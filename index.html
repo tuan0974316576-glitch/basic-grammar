@@ -5265,7 +5265,7 @@ function getShipIndices(idx, conf, v) {
         }
     }
 
-    function placeShipImage(boardId, idx, conf, v) {
+    function placeShipImage(boardId, idx, conf, v, shipIndex) {
         const board = document.getElementById(boardId);
         const startCell = board.children[idx];
         const img = document.createElement('img');
@@ -5276,9 +5276,11 @@ function getShipIndices(idx, conf, v) {
         } else if (selectedRace === 'CAUSTICS') {
             img.classList.add('caustics');
         }
-        
+
         if (boardId === 'player-grid') {
-            img.id = `board-ship-${deployIndex}`;
+            // Use passed shipIndex if available, otherwise fall back to deployIndex
+            const actualIndex = (shipIndex !== undefined) ? shipIndex : deployIndex;
+            img.id = `board-ship-${actualIndex}`;
         }
         
         const pW = 35 * conf.width + 2 * (conf.width - 1);
@@ -7389,7 +7391,7 @@ function autoDeployRemainingShips() {
                     idxs.forEach(x => myGrid[x] = 1);
                     FLEET[i].indices = idxs;
                     FLEET[i].isVertical = v;
-                    placeShipImage('player-grid', r, FLEET[i], v);
+                    placeShipImage('player-grid', r, FLEET[i], v, i);
                     const unit = document.getElementById(`ship-unit-${i}`);
                     if (unit) {
                         unit.classList.remove('pending', 'current');
