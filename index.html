@@ -4238,8 +4238,8 @@ let isTargeting = false;
             damaged: ['1x2_damaged.png', '1x3_damaged.png', '1x3+1_damaged.png', '1x4_damaged.png', '2x4_damaged.png']
         },
         'AURELIANS': {
-            ships: ['1x2_aurelians.png', '1+1_aurelians.png', '1+2_aurelians.png', '1+3+1_aurelians.png', '3x3_aurelians.png'],
-            damaged: ['1x2_aurelians_damaged.png', '1+1_aurelians_damaged.png', '1+2_aurelians_damaged.png', '1+3+1_aurelians_damaged.png', '3x3_aurelians_damaged.png']
+            ships: ['1x2_aurelians.png', '2+1_aurelians.png', '1+2_aurelians.png', '1+3_aurelians.png', '3x3_aurelians.png'],
+            damaged: ['1x2_aurelians_damaged.png', '2+1_aurelians_damaged.png', '1+2_aurelians_damaged.png', '1+3_aurelians_damaged.png', '3x3_aurelians_damaged.png']
         },
         'CAUSTICS': {
             ships: ['1x2.png', '1x3.png', '1x3+1.png', '1x4.png', '2x4.png'], // TODO: 加入 Caustics 圖片
@@ -4273,11 +4273,11 @@ let isTargeting = false;
                     layoutH: [1, 1, 0, 1],
                     voiceId: null // ★ Aurelians 暫時無語音
                 },
-                // 4. 1+3 (新 - 左邊3格+右下1格, 2x2)
+                // 4. 1+3 (新 - 左邊3格+右下1格, 2x3)
                 {
-                    width: 2, height: 2, img: images.ships[3], custom: true,
-                    layoutV: [1, 1, 1, 1],
-                    layoutH: [1, 1, 1, 0],
+                    width: 2, height: 3, img: images.ships[3], custom: true,
+                    layoutV: [1, 0, 1, 0, 1, 1],
+                    layoutH: [1, 1, 1, 0, 0, 1],
                     voiceId: null // ★ Aurelians 暫時無語音
                 },
                 // 5. 3x3 (不變)
