@@ -624,7 +624,7 @@ body {
         /* --- 動畫特效 --- */
         .anim-blue {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 20;
-            background-image: url('turret_02_explosion_01_anim.png'); 
+            background-image: url('turret_02_explosion_01_anim.png');
             background-repeat: no-repeat;
             background-size: 700% 100%; /* 7格圖 */
             animation: playBlue 0.5s steps(6) forwards;
@@ -632,9 +632,19 @@ body {
         }
         @keyframes playBlue { from { background-position: 0 0; } to { background-position: 100% 0; } }
 
+        .anim-gold {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 20;
+            background-image: url('explosion-c_gold.png');
+            background-repeat: no-repeat;
+            background-size: 900% 100%; /* 9格圖 */
+            animation: playGold 0.5s steps(8) forwards;
+            image-rendering: pixelated; pointer-events: none;
+        }
+        @keyframes playGold { from { background-position: 0 0; } to { background-position: 100% 0; } }
+
         .anim-orange {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 21;
-            background-image: url('turret_01_explosion.png'); 
+            background-image: url('turret_01_explosion.png');
             background-repeat: no-repeat;
             background-size: 500% 100%; /* 5格圖 */
             animation: playOrange 0.5s steps(4) forwards;
@@ -6763,7 +6773,16 @@ function checkMyShipDestruction(hitIdx) {
     // --- 修改後的動畫函數 (確保動畫在戰艦上面) ---
 function triggerAnimation(cell, type) {
     const d = document.createElement('div');
-    if (type === 'blue') d.classList.add('anim-blue');
+
+    // ★★★ 根據種族選擇explosion ★★★
+    if (type === 'blue') {
+        // 檢查玩家種族,Aurelians用金色,其他用藍色
+        if (selectedRace === 'AURELIANS') {
+            d.classList.add('anim-gold');
+        } else {
+            d.classList.add('anim-blue');
+        }
+    }
     if (type === 'orange') d.classList.add('anim-orange');
     
     // ★ 關鍵修改 1：將動畫加到 Board (父層)，而不是 Cell (子層) ★
