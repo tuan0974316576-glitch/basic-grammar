@@ -8587,7 +8587,18 @@ window.startExperience = function() {
     const gameWrapper = document.getElementById('game-content-wrapper');
     if (gameWrapper) {
         gameWrapper.style.display = 'block';
-        document.getElementById('start-screen').style.display = 'flex';
+
+        // ★★★ 檢查係咪舊人 auto login ★★★
+        const cachedName = localStorage.getItem('battleship_username');
+        if (cachedName && window.isFirebaseAuthenticated) {
+            // 舊人已經 authenticated,保持 CONNECTING 直到 Firebase 讀取完
+            console.log('[startExperience] Existing user auto-login, keeping CONNECTING panel');
+            switchHudPanel('connecting-panel');
+        } else {
+            // 新人或未 login,顯示 login panel
+            console.log('[startExperience] New user or not authenticated, showing login panel');
+            document.getElementById('start-screen').style.display = 'flex';
+        }
     }
     // 注意：Auth 邏輯全部由 onAuthStateChanged 處理
     // 佢會喺 page load 時已經設定好正確嘅 panel 狀態
