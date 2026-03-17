@@ -1014,27 +1014,43 @@ body {
     position: absolute;
     z-index: 10;
     pointer-events: none;
-    
+
+    /* CSS變數預設值 */
+    --ship-rotation: rotate(0deg);
+    --ship-translate: translate(0, 0);
+
     /* 設定最終狀態：高能橙色戰損光暈 */
-    opacity: 0.9; 
+    opacity: 0.9;
     /* 使用橙色 (#f59e0b) 與 深橙色 (#d97706) 進行多層發光 */
-    filter: drop-shadow(0 0 5px #f59e0b) drop-shadow(0 0 15px #d97706); 
-    
+    filter: drop-shadow(0 0 5px #f59e0b) drop-shadow(0 0 15px #d97706);
+
     /* 播放紅色變橙色的閃現動畫 */
     animation: shipMaterializeOrange 0.5s ease-out forwards;
 }
 
-/* ★ 新動畫：橙色全息投影閃現效果 ★ */
+/* ★ 橫放船隻專用 class ★ */
+.enemy-ship-revealed.horizontal-ship {
+    transform-origin: center center;
+}
+
+/* ★ 新動畫：橙色全息投影閃現效果 + Scale ★ */
 @keyframes shipMaterializeOrange {
-    0% { 
-        opacity: 0; 
+    0% {
+        opacity: 0;
+        transform: var(--ship-translate) var(--ship-rotation) scale(0.5);
         /* 一開始超光的白橙閃光 */
         filter: drop-shadow(0 0 0 #f59e0b) brightness(5) saturate(2);
     }
-    100% { 
-        opacity: 0.9; 
+    50% {
+        opacity: 0.7;
+        transform: var(--ship-translate) var(--ship-rotation) scale(1.1);
+        filter: drop-shadow(0 0 8px #f59e0b) brightness(2) saturate(1.5);
+    }
+    100% {
+        opacity: 0.9;
+        transform: var(--ship-translate) var(--ship-rotation) scale(1);
         /* 最終停留在強烈的橙色光暈 */
-        filter: drop-shadow(0 0 5px #f59e0b) drop-shadow(0 0 15px #d97706); 
+        filter: drop-shadow(0 0 5px #f59e0b) drop-shadow(0 0 15px #d97706);
     }
 }
 /* --- 敵軍艦隊狀態欄 --- */
@@ -4298,6 +4314,17 @@ let isTargeting = false;
     let DAMAGED_IMAGES = getDamagedImages('VANGUARDS');
     let ENEMY_DAMAGED_IMAGES = getDamagedImages('VANGUARDS'); // ★★★ AI 對手的受損圖片 ★★★
 
+    // ★★★ 預載 Damaged 圖片以消除延遲 ★★★
+    function preloadDamagedImages() {
+        const allImages = [...DAMAGED_IMAGES, ...ENEMY_DAMAGED_IMAGES];
+        allImages.forEach(src => {
+            if (src) {
+                const img = new Image();
+                img.src = src;
+            }
+        });
+    }
+
    
 
     // 全局變數：當前使用的生字表
@@ -4760,6 +4787,9 @@ function enterGameUI() {
     if (typeof renderSidebar === 'function') {
         renderSidebar();
     }
+
+    // ★★★ 預載 Damaged 圖片 ★★★
+    preloadDamagedImages();
 
     startDeploymentTimer();
 
@@ -6520,9 +6550,13 @@ function checkMyShipDestruction(hitIdx) {
     // 如果是橫放，就需要旋轉圖片
     if (!isVertical) {
         const shift = (pH - pW) / 2;
-        img.style.transform = `translate(${shift}px, -${shift}px) rotate(-90deg)`;
+        img.style.transformOrigin = 'center center';
+        img.style.setProperty('--ship-rotation', 'rotate(-90deg)');
+        img.style.setProperty('--ship-translate', `translate(${shift}px, -${shift}px)`);
+        img.classList.add('horizontal-ship');
     } else {
-        img.style.transform = 'none';
+        img.style.setProperty('--ship-rotation', 'rotate(0deg)');
+        img.style.setProperty('--ship-translate', 'translate(0, 0)');
     }
     
     grid.appendChild(img);
