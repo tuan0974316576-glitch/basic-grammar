@@ -1033,6 +1033,13 @@ body {
     transform-origin: center center;
 }
 
+/* ★ 禁用動畫 (已經播過一次) ★ */
+.enemy-ship-revealed.no-animation {
+    animation: none;
+    opacity: 0.9;
+    transform: var(--ship-translate) var(--ship-rotation) scale(1);
+}
+
 /* ★ 新動畫：橙色全息投影閃現效果 + Scale ★ */
 @keyframes shipMaterializeOrange {
     0% {
@@ -6474,6 +6481,13 @@ function checkMyShipDestruction(hitIdx) {
     // ★ 修正版：顯示我自己嘅戰艦殘骸 (並隱藏原本完好嘅船) ★
     function revealMyShip(ship, index) {
     ship.revealed = true;
+
+    // ★★★ 記錄係咪第一次爆 (用於控制動畫) ★★★
+    const isFirstReveal = !ship.animationPlayed;
+    if (isFirstReveal) {
+        ship.animationPlayed = true;
+    }
+
     const grid = document.getElementById('player-grid');
     const container = document.getElementById('player-board');
     const startCell = grid.children[ship.indices[0]];
@@ -6518,8 +6532,13 @@ function checkMyShipDestruction(hitIdx) {
         img.src = ship.img; // 如果無戰損圖，用原圖頂住先
     }
     
-    img.classList.add('enemy-ship-revealed'); 
-    
+    img.classList.add('enemy-ship-revealed');
+
+    // ★★★ 只有第一次爆先播動畫 ★★★
+    if (!isFirstReveal) {
+        img.classList.add('no-animation');
+    }
+
     // 提升層級，確保它蓋在所有東西上面
     img.style.zIndex = "10"; 
 
@@ -7530,6 +7549,13 @@ updateEnemyIndicator(ship.shipId);
 // ★ 最終修正版：顯示敵軍戰艦殘骸 (包含 T型船 橫向偏移修復) ★
 function revealEnemyShip(ship) {
     ship.revealed = true;
+
+    // ★★★ 記錄係咪第一次爆 (用於控制動畫) ★★★
+    const isFirstReveal = !ship.animationPlayed;
+    if (isFirstReveal) {
+        ship.animationPlayed = true;
+    }
+
     const board = document.getElementById('enemy-grid');
     const container = document.getElementById('enemy-board'); 
 
@@ -7572,8 +7598,13 @@ function revealEnemyShip(ship) {
         img.src = ship.conf.img;
     }
     
-    img.classList.add('enemy-ship-revealed'); 
-    
+    img.classList.add('enemy-ship-revealed');
+
+    // ★★★ 只有第一次爆先播動畫 ★★★
+    if (!isFirstReveal) {
+        img.classList.add('no-animation');
+    }
+
     const conf = ship.conf;
     const pW = cellSize * conf.width + 2 * (conf.width - 1);
     const pH = cellSize * conf.height + 2 * (conf.height - 1);
@@ -7597,15 +7628,19 @@ function revealEnemyShip(ship) {
     img.style.left = leftOffset + 'px';
     
     img.style.top = cellTop + 'px';
-    
+
     // Transform 修正 (旋轉)
     if (!ship.isVertical) {
         const shift = (pH - pW) / 2;
-        img.style.transform = `translate(${shift}px, -${shift}px) rotate(-90deg)`;
+        img.style.transformOrigin = 'center center';
+        img.style.setProperty('--ship-rotation', 'rotate(-90deg)');
+        img.style.setProperty('--ship-translate', `translate(${shift}px, -${shift}px)`);
+        img.classList.add('horizontal-ship');
     } else {
-        img.style.transform = 'none';
+        img.style.setProperty('--ship-rotation', 'rotate(0deg)');
+        img.style.setProperty('--ship-translate', 'translate(0, 0)');
     }
-    
+
     board.appendChild(img);
     
     playSound('destroy-sfx'); 
