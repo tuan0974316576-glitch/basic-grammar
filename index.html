@@ -3911,15 +3911,15 @@ body {
     </div>
 
     <div id="warning-overlay"></div>
-<div id="end-screen" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 300; background: rgba(0,0,0,0.95); flex-direction: column; align-items: center; backdrop-filter: blur(10px);">
+<div id="end-screen" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 300; background: rgba(0,0,0,0.95); flex-direction: column; align-items: center; justify-content: center; backdrop-filter: blur(10px); overflow: hidden;">
 
-    <!-- Scrollable content area with bottom padding for button -->
-    <div style="flex: 1; overflow-y: auto; width: 100%; display: flex; flex-direction: column; align-items: center; padding: 20px 0 100px 0;">
+    <!-- Content container - no scrolling, centered -->
+    <div style="width: 100%; max-width: 600px; display: flex; flex-direction: column; align-items: center; padding: 20px; box-sizing: border-box;">
         <h1 id="end-title" style="font-family: 'Black Ops One'; font-size: 60px; margin-bottom: 10px; text-shadow: 0 0 30px currentColor;">VICTORY</h1>
         <div id="end-msg" style="color: #94a3b8; margin-bottom: 20px; font-size: 18px;">ENEMY FLEET ELIMINATED</div>
 
         <!-- ★★★ PHASE 5: BATTLE RESULT ★★★ -->
-        <div id="settlement-summary" style="width: 85%; max-width: 600px; background: rgba(15, 23, 42, 0.9); border: 2px solid var(--warning); border-radius: 10px; padding: 15px; margin-bottom: 15px; display: flex; flex-direction: column; box-shadow: 0 0 20px rgba(251, 191, 36, 0.3); box-sizing: border-box;">
+        <div id="settlement-summary" style="width: 100%; background: rgba(15, 23, 42, 0.9); border: 2px solid var(--warning); border-radius: 10px; padding: 15px; margin-bottom: 15px; display: flex; flex-direction: column; box-shadow: 0 0 20px rgba(251, 191, 36, 0.3); box-sizing: border-box;">
             <div style="font-family: 'Black Ops One'; color: var(--warning); font-size: 20px; margin-bottom: 10px; text-align: center; letter-spacing: 2px; text-shadow: 0 0 10px var(--warning);">⚡ BATTLE RESULT ⚡</div>
 
             <div style="display: flex; flex-direction: column; gap: 6px; font-family: 'Orbitron'; font-size: 16px;">
@@ -3942,7 +3942,8 @@ body {
             </div>
         </div>
 
-        <div id="review-container" style="width: 90%; max-width: 600px; background: rgba(15, 23, 42, 0.8); border: 1px solid #334155; border-radius: 10px; padding: 15px; margin-bottom: 120px; display: flex; flex-direction: column;">
+        <!-- Mission Debrief - Hidden to prevent scrolling -->
+        <div id="review-container" style="display: none; width: 100%; background: rgba(15, 23, 42, 0.8); border: 1px solid #334155; border-radius: 10px; padding: 15px; margin-bottom: 20px; flex-direction: column;">
             <div style="font-family: 'Orbitron'; color: #0ea5e9; font-size: 16px; margin-bottom: 10px; text-align: center; letter-spacing: 2px;">>> MISSION DEBRIEF <<</div>
 
             <div style="display: grid; grid-template-columns: 0.5fr 0.8fr 1.2fr 1.5fr; border-bottom: 1px solid #475569; padding-bottom: 5px; margin-bottom: 10px; color: #94a3b8; font-size: 12px; font-weight: bold;">
@@ -3955,11 +3956,9 @@ body {
             <div id="review-list" style="overflow-y: auto; max-height: 300px; padding-right: 5px;">
             </div>
         </div>
-    </div>
 
-    <!-- Fixed button at bottom (outside scrollable area) -->
-    <div style="position: absolute; bottom: 0; left: 0; right: 0; display: flex; justify-content: center; padding: 20px; background: linear-gradient(to top, rgba(0,0,0,0.95) 70%, transparent); pointer-events: none;">
-        <button class="start-btn-large" onclick="playSound('deploy-sfx'); resetGame()" style="pointer-events: auto;">RETURN TO BASE</button>
+        <!-- Button -->
+        <button class="start-btn-large" onclick="playSound('deploy-sfx'); resetGame()" style="margin-top: 20px;">RETURN TO BASE</button>
     </div>
 </div>
 <div id="confirm-modal" class="tech-modal-overlay">
