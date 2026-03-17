@@ -3459,6 +3459,51 @@ body {
 #launch-modal.aurelians-theme .modal-content > div[style*="color: #64748b"] {
     color: #FAFAD2 !important;
 }
+
+/* ★★★ SCREEN SHAKE ANIMATIONS ★★★ */
+@keyframes screenShakeHit {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-3px, 2px); }
+    20% { transform: translate(3px, -2px); }
+    30% { transform: translate(-2px, 3px); }
+    40% { transform: translate(2px, -3px); }
+    50% { transform: translate(-3px, 2px); }
+    60% { transform: translate(3px, -2px); }
+    70% { transform: translate(-2px, 1px); }
+    80% { transform: translate(2px, -1px); }
+    90% { transform: translate(-1px, 1px); }
+}
+
+@keyframes screenShakeSunk {
+    0%, 100% { transform: translate(0, 0); }
+    5% { transform: translate(-8px, 5px); }
+    10% { transform: translate(8px, -5px); }
+    15% { transform: translate(-7px, 6px); }
+    20% { transform: translate(7px, -6px); }
+    25% { transform: translate(-6px, 5px); }
+    30% { transform: translate(6px, -5px); }
+    35% { transform: translate(-5px, 4px); }
+    40% { transform: translate(5px, -4px); }
+    45% { transform: translate(-4px, 3px); }
+    50% { transform: translate(4px, -3px); }
+    55% { transform: translate(-3px, 2px); }
+    60% { transform: translate(3px, -2px); }
+    65% { transform: translate(-2px, 2px); }
+    70% { transform: translate(2px, -2px); }
+    75% { transform: translate(-2px, 1px); }
+    80% { transform: translate(2px, -1px); }
+    85% { transform: translate(-1px, 1px); }
+    90% { transform: translate(1px, -1px); }
+    95% { transform: translate(-1px, 0px); }
+}
+
+.screen-shake-hit {
+    animation: screenShakeHit 0.4s ease-in-out;
+}
+
+.screen-shake-sunk {
+    animation: screenShakeSunk 0.8s ease-in-out;
+}
     </style>
 
 </head>
@@ -4992,8 +5037,14 @@ function initPVPListeners() {
 
                     if (isDestroyed) {
                         playSound('unit-lost-sfx'); // 爆船：播 Unit Lost
+                        // ★ 擊沉：強烈震動 ★
+                        document.body.classList.add('screen-shake-sunk');
+                        setTimeout(() => document.body.classList.remove('screen-shake-sunk'), 800);
                     } else {
                         playUnderAttackAlert();     // 未爆：播 Under Attack
+                        // ★ 擊中：輕微震動 ★
+                        document.body.classList.add('screen-shake-hit');
+                        setTimeout(() => document.body.classList.remove('screen-shake-hit'), 400);
                     }
 
                     if (checkGameOver()) return;
@@ -6293,8 +6344,14 @@ function aiFire() {
 
             if (isDestroyed) {
                 playSound('unit-lost-sfx'); // 爆船：播 Unit Lost
+                // ★ 擊沉：強烈震動 ★
+                document.body.classList.add('screen-shake-sunk');
+                setTimeout(() => document.body.classList.remove('screen-shake-sunk'), 800);
             } else {
                 playUnderAttackAlert();     // 未爆：播 Under Attack
+                // ★ 擊中：輕微震動 ★
+                document.body.classList.add('screen-shake-hit');
+                setTimeout(() => document.body.classList.remove('screen-shake-hit'), 400);
             }
 
             if (checkGameOver()) {
