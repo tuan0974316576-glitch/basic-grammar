@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>User Agent Test</h1>
+<script>
+document.write('<p>UserAgent: ' + navigator.userAgent + '</p>');
+document.write('<p>Is Mobile: ' + /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) + '</p>');
+document.write('<p>ontouchstart: ' + ('ontouchstart' in window) + '</p>');
+document.write('<p>maxTouchPoints: ' + navigator.maxTouchPoints + '</p>');
+</script>
+</body>
+</html>
