@@ -6474,8 +6474,6 @@ function checkMyShipDestruction(hitIdx) {
     const originalShipImg = document.getElementById(`board-ship-${index}`);
     if (originalShipImg) {
         originalShipImg.style.display = 'none'; // 隱藏舊圖
-        originalShipImg.style.visibility = 'hidden'; // 雙重保險
-        originalShipImg.remove(); // 直接移除，確保唔會重疊
     }
 
     // --- 4. 建立戰損圖片 ---
