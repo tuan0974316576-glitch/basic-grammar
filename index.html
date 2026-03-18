@@ -1976,6 +1976,9 @@ body {
 .panel-content-wrapper {
     opacity: 0;
     transform: scale(0.95);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 @keyframes holoAppear {
@@ -4753,12 +4756,12 @@ function selectLevel(level) {
     // closeLevelScreen() 係俾「返回鍵」用的，它會錯誤地帶你返去上一頁 (Skill Screen)
     document.getElementById('level-screen').style.display = 'none';
 
+    // ★★★ 先隱藏 Main Menu 避免閃現 ★★★
+    const carousel = document.getElementById('main-menu-carousel');
+    if (carousel) carousel.style.display = 'none';
+
     if (tempGameMode === 'AI') {
         // --- AI 模式：Level -> Skill (顯示 Skill 選擇) ---
-        // ★★★ 隱藏 Main Menu ★★★
-        const carousel = document.getElementById('main-menu-carousel');
-        if (carousel) carousel.style.display = 'none';
-
         // ★★★ Update skill buttons with progress for selected level ★★★
         updateSkillButtonsProgress();
 
