@@ -5850,9 +5850,10 @@ if (currentPracticeMode === 'SPEAKING') {
 
     // ★★★ INPUT & VIRTUAL KEYBOARD CONTROL ★★★
     const virtualKeyboard = document.getElementById('virtual-keyboard');
-    // 檢測手機/平板：iOS 或 Android 或 touch device (但排除大螢幕桌機)
+    // 檢測手機/平板：iOS 或 Android 或 touch device
+    // 移除 innerWidth 判斷，避免大平板（iPad Pro）或縮小視窗時誤判
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ||
-                     (navigator.maxTouchPoints > 0 && window.innerWidth < 1200);
+                     (navigator.maxTouchPoints > 0 && !window.matchMedia('(pointer: fine)').matches);
 
     if (isMobile && (currentPracticeMode === 'READING' || currentPracticeMode === 'LISTENING')) {
         // Mobile: Show virtual keyboard, keep input off-screen and readonly
