@@ -262,9 +262,20 @@ console.log("Firebase Modules Loaded Successfully");
 
 /* 恢復輸入框可以選取文字 (因為上面設定了 user-select: none) */
 input, textarea {
-    user-select: text; 
+    user-select: text;
     -webkit-user-select: text;
 }
+
+/* ★★★ iOS Safari scroll lock for html ★★★ */
+html {
+    overflow: hidden;
+    overscroll-behavior: none;
+    touch-action: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
         :root {
             --primary: #0ea5e9; 
             --danger: #ef4444;  
@@ -282,17 +293,17 @@ input, textarea {
 
 body {
     background-color: #000;
-    
-    background-image: url('stars_texture.png'); 
-    background-repeat: repeat; 
-    background-size: 500px; 
-    
+
+    background-image: url('stars_texture.png');
+    background-repeat: repeat;
+    background-size: 500px;
+
     background-position: center 0;
     /* ★ 改動：加入動畫，令背景不斷向下捲動 (60秒一圈，Linear 均速) ★ */
-    animation: spaceScroll 90s linear infinite; 
-    
+    animation: spaceScroll 90s linear infinite;
+
     color: var(--text);
-    font-family: 'Orbitron', sans-serif; 
+    font-family: 'Orbitron', sans-serif;
     letter-spacing: 1px;
     display: flex;
     flex-direction: column;
@@ -302,6 +313,10 @@ body {
     overflow: hidden;
     position: relative;
     user-select: none;
+    /* ★★★ iOS Safari scroll lock ★★★ */
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: touch;
+    touch-action: none;
 }
 
         /* Galaxy 背景 (已優化：減淡星雲，突出星星) */
