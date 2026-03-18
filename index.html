@@ -1975,35 +1975,17 @@ body {
 /* ★★★ Panel content wrapper - 初始隱藏 ★★★ */
 .panel-content-wrapper {
     opacity: 0;
-    transform: scale(1.5);
-    filter: blur(20px);
+    transform: scale(0.95);
 }
 
 @keyframes holoAppear {
     0% {
         opacity: 0;
-        transform: scale(1.5);
-        filter: blur(20px);
-    }
-    25% {
-        opacity: 0.3;
-        transform: scale(1.3);
-        filter: blur(15px);
-    }
-    35% {
-        opacity: 0;
-        transform: scale(1.4);
-        filter: blur(18px);
-    }
-    50% {
-        opacity: 0.6;
-        transform: scale(1.2);
-        filter: blur(10px);
+        transform: scale(0.95);
     }
     100% {
         opacity: 1;
         transform: scale(1);
-        filter: blur(0);
     }
 }
 
@@ -4545,7 +4527,7 @@ function selectMode(mode) {
         if (wrapper) {
             wrapper.style.animation = 'none';
             setTimeout(() => {
-                wrapper.style.animation = 'holoAppear 0.4s forwards';
+                wrapper.style.animation = 'holoAppear 0.25s ease-out forwards';
             }, 10);
         }
     }
@@ -4576,7 +4558,7 @@ function closeLevelScreen() {
         if (wrapper) {
             wrapper.style.animation = 'none';
             setTimeout(() => {
-                wrapper.style.animation = 'holoAppear 0.4s forwards';
+                wrapper.style.animation = 'holoAppear 0.25s ease-out forwards';
             }, 10);
         }
     }
@@ -4773,6 +4755,10 @@ function selectLevel(level) {
 
     if (tempGameMode === 'AI') {
         // --- AI 模式：Level -> Skill (顯示 Skill 選擇) ---
+        // ★★★ 隱藏 Main Menu ★★★
+        const carousel = document.getElementById('main-menu-carousel');
+        if (carousel) carousel.style.display = 'none';
+
         // ★★★ Update skill buttons with progress for selected level ★★★
         updateSkillButtonsProgress();
 
@@ -4783,7 +4769,7 @@ function selectLevel(level) {
         if (wrapper) {
             wrapper.style.animation = 'none';
             setTimeout(() => {
-                wrapper.style.animation = 'holoAppear 0.4s forwards';
+                wrapper.style.animation = 'holoAppear 0.25s ease-out forwards';
             }, 10);
         }
 
@@ -4803,7 +4789,7 @@ function selectLevel(level) {
         if (wrapper) {
             wrapper.style.animation = 'none';
             setTimeout(() => {
-                wrapper.style.animation = 'holoAppear 0.4s forwards';
+                wrapper.style.animation = 'holoAppear 0.25s ease-out forwards';
             }, 10);
         }
 
@@ -9330,7 +9316,7 @@ function handleSkillBack() {
         if (wrapper) {
             wrapper.style.animation = 'none';
             setTimeout(() => {
-                wrapper.style.animation = 'holoAppear 0.4s forwards';
+                wrapper.style.animation = 'holoAppear 0.25s ease-out forwards';
             }, 10);
         }
     }
