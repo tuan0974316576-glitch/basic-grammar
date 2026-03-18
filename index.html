@@ -3740,67 +3740,72 @@ body {
 </div>
 
 <div id="skill-screen" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 250; background: rgba(0,0,0,0.9); flex-direction: column; align-items: center; justify-content: center; backdrop-filter: blur(5px);">
-    <h2 style="font-family: 'Black Ops One'; color: var(--primary); font-size: 40px; margin-bottom: 30px; text-shadow: 0 0 20px var(--primary);">SELECT TRAINING MODULE</h2>
+    <div class="panel-content-wrapper">
+        <h2 style="font-family: 'Black Ops One'; color: var(--primary); font-size: 40px; margin-bottom: 30px; text-shadow: 0 0 20px var(--primary);">SELECT TRAINING MODULE</h2>
 
-    <div style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
+        <div style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
 
-        <button id="skill-btn-reading" class="skill-btn" onclick="selectSkill('READING')" style="border-color: #0ea5e9; color: #0ea5e9; width: 300px; height: 80px;">
-            <div style="display:flex; flex-direction:column; align-items:center;">
-                <span style="font-size:24px;">READING</span>
-                <span style="font-size:10px; opacity:0.7;">DECRYPT CODE</span>
-            </div>
-        </button>
+            <button id="skill-btn-reading" class="skill-btn" onclick="selectSkill('READING')" style="border-color: #0ea5e9; color: #0ea5e9; width: 300px; height: 80px;">
+                <div style="display:flex; flex-direction:column; align-items:center;">
+                    <span style="font-size:24px;">READING</span>
+                    <span style="font-size:10px; opacity:0.7;">DECRYPT CODE</span>
+                </div>
+            </button>
 
-        <button id="skill-btn-listening" class="skill-btn" onclick="selectSkill('LISTENING')" style="border-color: #22c55e; color: #22c55e; width: 300px; height: 80px;">
-            <div style="display:flex; flex-direction:column; align-items:center;">
-                <span style="font-size:24px;">LISTENING</span>
-                <span style="font-size:10px; opacity:0.7;">AUDIO INTEL</span>
-            </div>
-        </button>
+            <button id="skill-btn-listening" class="skill-btn" onclick="selectSkill('LISTENING')" style="border-color: #22c55e; color: #22c55e; width: 300px; height: 80px;">
+                <div style="display:flex; flex-direction:column; align-items:center;">
+                    <span style="font-size:24px;">LISTENING</span>
+                    <span style="font-size:10px; opacity:0.7;">AUDIO INTEL</span>
+                </div>
+            </button>
 
-        <button id="btn-skill-speaking" class="skill-btn" onclick="selectSkill('SPEAKING')" style="border-color: #d946ef; color: #d946ef; width: 300px; height: 80px;">
-            <div style="display:flex; flex-direction:column; align-items:center;">
-                <span style="font-size:24px;">SPEAKING</span>
-                <span style="font-size:10px; opacity:0.7;">VOICE COMMAND</span>
-            </div>
-        </button>
+            <button id="btn-skill-speaking" class="skill-btn" onclick="selectSkill('SPEAKING')" style="border-color: #d946ef; color: #d946ef; width: 300px; height: 80px;">
+                <div style="display:flex; flex-direction:column; align-items:center;">
+                    <span style="font-size:24px;">SPEAKING</span>
+                    <span style="font-size:10px; opacity:0.7;">VOICE COMMAND</span>
+                </div>
+            </button>
+        </div>
+
+        <button class="btn" onclick="playSound('delete-sfx'); backToMainMenu()" style="margin-top: 30px;">&lt; BACK</button>
     </div>
-
-    <button class="btn" onclick="playSound('delete-sfx'); backToMainMenu()" style="margin-top: 30px;">&lt; BACK</button>
 </div>
 
 <div id="race-screen" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 250; background: rgba(0,0,0,0.9); flex-direction: column; align-items: center; justify-content: center; backdrop-filter: blur(5px);">
-    <h2 style="font-family: 'Black Ops One'; color: var(--primary); font-size: 40px; margin-bottom: 30px; text-shadow: 0 0 20px var(--primary);">SELECT RACE</h2>
+    <div class="panel-content-wrapper">
+        <h2 style="font-family: 'Black Ops One'; color: var(--primary); font-size: 40px; margin-bottom: 30px; text-shadow: 0 0 20px var(--primary);">SELECT RACE</h2>
 
-    <div style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
+        <div style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
 
-        <button id="race-btn-vanguards" class="race-btn" onclick="selectRace('VANGUARDS')" style="border-color: #ffffff; color: #ffffff; width: 300px; height: 80px;">
-            <div style="display:flex; flex-direction:column; align-items:center;">
-                <span style="font-size:24px;">VANGUARDS</span>
-                <span style="font-size:10px; opacity:0.7;">ELITE STRIKE FORCE</span>
-            </div>
-        </button>
+            <button id="race-btn-vanguards" class="race-btn" onclick="selectRace('VANGUARDS')" style="border-color: #ffffff; color: #ffffff; width: 300px; height: 80px;">
+                <div style="display:flex; flex-direction:column; align-items:center;">
+                    <span style="font-size:24px;">VANGUARDS</span>
+                    <span style="font-size:10px; opacity:0.7;">ELITE STRIKE FORCE</span>
+                </div>
+            </button>
 
-        <button id="race-btn-aurelians" class="race-btn" onclick="selectRace('AURELIANS')" style="border-color: #EEE8AA; color: #EEE8AA; width: 300px; height: 80px;">
-            <div style="display:flex; flex-direction:column; align-items:center;">
-                <span style="font-size:24px;">AURELIANS</span>
-                <span style="font-size:10px; opacity:0.7;">GOLDEN EMPIRE</span>
-            </div>
-        </button>
+            <button id="race-btn-aurelians" class="race-btn" onclick="selectRace('AURELIANS')" style="border-color: #EEE8AA; color: #EEE8AA; width: 300px; height: 80px;">
+                <div style="display:flex; flex-direction:column; align-items:center;">
+                    <span style="font-size:24px;">AURELIANS</span>
+                    <span style="font-size:10px; opacity:0.7;">GOLDEN EMPIRE</span>
+                </div>
+            </button>
 
-        <button id="race-btn-caustics" class="race-btn" onclick="selectRace('CAUSTICS')" style="border-color: #c084fc; color: #c084fc; width: 300px; height: 80px;">
-            <div style="display:flex; flex-direction:column; align-items:center;">
-                <span style="font-size:24px;">CAUSTICS</span>
-                <span style="font-size:10px; opacity:0.7;">VOID HUNTERS</span>
-            </div>
-        </button>
+            <button id="race-btn-caustics" class="race-btn" onclick="selectRace('CAUSTICS')" style="border-color: #c084fc; color: #c084fc; width: 300px; height: 80px;">
+                <div style="display:flex; flex-direction:column; align-items:center;">
+                    <span style="font-size:24px;">CAUSTICS</span>
+                    <span style="font-size:10px; opacity:0.7;">VOID HUNTERS</span>
+                </div>
+            </button>
+        </div>
+
+        <button class="btn" onclick="playSound('delete-sfx'); handleRaceBack()" style="margin-top: 30px;">&lt; BACK</button>
     </div>
-
-    <button class="btn" onclick="playSound('delete-sfx'); handleRaceBack()" style="margin-top: 30px;">&lt; BACK</button>
 </div>
 <div id="level-screen" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 250; background: rgba(0,0,0,0.9); flex-direction: column; align-items: center; justify-content: center; backdrop-filter: blur(5px);">
+    <div class="panel-content-wrapper">
         <h2 style="font-family: 'Black Ops One'; color: var(--primary); font-size: 40px; margin-bottom: 30px; text-shadow: 0 0 20px var(--primary);">SELECT DIFFICULTY</h2>
-        
+
         <div class="level-grid">
             <button class="level-btn" onclick="selectLevel('L1')">LEVEL 1</button>
             <button class="level-btn" onclick="selectLevel('L2')">LEVEL 2</button>
@@ -3810,8 +3815,9 @@ body {
             <button class="level-btn" onclick="selectLevel('L5_STAR')">LEVEL 5*</button>
         </div>
 
-<button class="btn" onclick="playSound('delete-sfx'); closeLevelScreen()" style="margin-top: 30px;">&lt; BACK</button>
+        <button class="btn" onclick="playSound('delete-sfx'); closeLevelScreen()" style="margin-top: 30px;">&lt; BACK</button>
     </div>
+</div>
 <div id="lobby-screen" style="display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index: 150; flex-direction: column; align-items: center; justify-content: center; backdrop-filter: blur(5px);">
     <h2 style="font-family: 'Black Ops One'; color: var(--primary); font-size: 40px;">MULTIPLAYER LOBBY</h2>
     
@@ -4527,11 +4533,14 @@ function selectMode(mode) {
         // 顯示 Level 選擇 (先揀 Level 再揀 Skill)
         const levelScreen = document.getElementById('level-screen');
         levelScreen.style.display = 'flex';
-        // ★★★ Trigger holoAppear animation ★★★
-        levelScreen.style.animation = 'none';
-        setTimeout(() => {
-            levelScreen.style.animation = 'holoAppear 0.4s forwards';
-        }, 10);
+        // ★★★ Trigger holoAppear animation on content wrapper ★★★
+        const wrapper = levelScreen.querySelector('.panel-content-wrapper');
+        if (wrapper) {
+            wrapper.style.animation = 'none';
+            setTimeout(() => {
+                wrapper.style.animation = 'holoAppear 0.4s forwards';
+            }, 10);
+        }
     }
 }
 
@@ -4555,11 +4564,14 @@ function closeLevelScreen() {
         resetLevelButtonsToDefault();
         const levelScreen = document.getElementById('level-screen');
         levelScreen.style.display = 'flex';
-        // ★★★ Trigger holoAppear animation ★★★
-        levelScreen.style.animation = 'none';
-        setTimeout(() => {
-            levelScreen.style.animation = 'holoAppear 0.4s forwards';
-        }, 10);
+        // ★★★ Trigger holoAppear animation on content wrapper ★★★
+        const wrapper = levelScreen.querySelector('.panel-content-wrapper');
+        if (wrapper) {
+            wrapper.style.animation = 'none';
+            setTimeout(() => {
+                wrapper.style.animation = 'holoAppear 0.4s forwards';
+            }, 10);
+        }
     }
 
 // ★★★ PHASE 6: CONTEXT-SENSITIVE LEVEL PROGRESS DISPLAY ★★★
@@ -4759,11 +4771,14 @@ function selectLevel(level) {
 
         const skillScreen = document.getElementById('skill-screen');
         skillScreen.style.display = 'flex';
-        // ★★★ Trigger holoAppear animation ★★★
-        skillScreen.style.animation = 'none';
-        setTimeout(() => {
-            skillScreen.style.animation = 'holoAppear 0.4s forwards';
-        }, 10);
+        // ★★★ Trigger holoAppear animation on content wrapper ★★★
+        const wrapper = skillScreen.querySelector('.panel-content-wrapper');
+        if (wrapper) {
+            wrapper.style.animation = 'none';
+            setTimeout(() => {
+                wrapper.style.animation = 'holoAppear 0.4s forwards';
+            }, 10);
+        }
 
         // 確保 AI 模式見到 Speaking 按鈕
         const speakBtn = document.getElementById('btn-skill-speaking');
@@ -4776,11 +4791,14 @@ function selectLevel(level) {
         // 顯示 Skill 選擇
         const skillScreen = document.getElementById('skill-screen');
         skillScreen.style.display = 'flex';
-        // ★★★ Trigger holoAppear animation ★★★
-        skillScreen.style.animation = 'none';
-        setTimeout(() => {
-            skillScreen.style.animation = 'holoAppear 0.4s forwards';
-        }, 10);
+        // ★★★ Trigger holoAppear animation on content wrapper ★★★
+        const wrapper = skillScreen.querySelector('.panel-content-wrapper');
+        if (wrapper) {
+            wrapper.style.animation = 'none';
+            setTimeout(() => {
+                wrapper.style.animation = 'holoAppear 0.4s forwards';
+            }, 10);
+        }
 
         // PVP 暫時隱藏 Speaking Mode (如需要)
         const speakBtn = document.getElementById('btn-skill-speaking');
@@ -8995,11 +9013,14 @@ async function selectSkill(skill) {
     updateRaceButtons();
     const raceScreen = document.getElementById('race-screen');
     raceScreen.style.display = 'flex';
-    // ★★★ Trigger holoAppear animation ★★★
-    raceScreen.style.animation = 'none';
-    setTimeout(() => {
-        raceScreen.style.animation = 'holoAppear 0.4s forwards';
-    }, 10);
+    // ★★★ Trigger holoAppear animation on content wrapper ★★★
+    const wrapper = raceScreen.querySelector('.panel-content-wrapper');
+    if (wrapper) {
+        wrapper.style.animation = 'none';
+        setTimeout(() => {
+            wrapper.style.animation = 'holoAppear 0.4s forwards';
+        }, 10);
+    }
 }
 
 // ★★★ 新增：種族選擇函數 ★★★
@@ -9297,11 +9318,14 @@ function handleSkillBack() {
         // PVP: 返回 Level 選擇 (因為流程是 Level -> Skill)
         const levelScreen = document.getElementById('level-screen');
         levelScreen.style.display = 'flex';
-        // ★★★ Trigger holoAppear animation ★★★
-        levelScreen.style.animation = 'none';
-        setTimeout(() => {
-            levelScreen.style.animation = 'holoAppear 0.4s forwards';
-        }, 10);
+        // ★★★ Trigger holoAppear animation on content wrapper ★★★
+        const wrapper = levelScreen.querySelector('.panel-content-wrapper');
+        if (wrapper) {
+            wrapper.style.animation = 'none';
+            setTimeout(() => {
+                wrapper.style.animation = 'holoAppear 0.4s forwards';
+            }, 10);
+        }
     }
 }
 
