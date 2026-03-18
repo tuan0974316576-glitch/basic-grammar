@@ -4525,7 +4525,13 @@ function selectMode(mode) {
         document.getElementById('game-mode-selection').style.display = 'none';
 
         // 顯示 Level 選擇 (先揀 Level 再揀 Skill)
-        document.getElementById('level-screen').style.display = 'flex';
+        const levelScreen = document.getElementById('level-screen');
+        levelScreen.style.display = 'flex';
+        // ★★★ Trigger holoAppear animation ★★★
+        levelScreen.style.animation = 'none';
+        setTimeout(() => {
+            levelScreen.style.animation = 'holoAppear 0.4s forwards';
+        }, 10);
     }
 }
 
@@ -4547,7 +4553,13 @@ function closeLevelScreen() {
         // 彈出 Level 選單畀場主揀
         // ★★★ PVP 模式唔顯示進度，重置返原本嘅文字 ★★★
         resetLevelButtonsToDefault();
-        document.getElementById('level-screen').style.display = 'flex';
+        const levelScreen = document.getElementById('level-screen');
+        levelScreen.style.display = 'flex';
+        // ★★★ Trigger holoAppear animation ★★★
+        levelScreen.style.animation = 'none';
+        setTimeout(() => {
+            levelScreen.style.animation = 'holoAppear 0.4s forwards';
+        }, 10);
     }
 
 // ★★★ PHASE 6: CONTEXT-SENSITIVE LEVEL PROGRESS DISPLAY ★★★
@@ -4745,7 +4757,13 @@ function selectLevel(level) {
         // ★★★ Update skill buttons with progress for selected level ★★★
         updateSkillButtonsProgress();
 
-        document.getElementById('skill-screen').style.display = 'flex';
+        const skillScreen = document.getElementById('skill-screen');
+        skillScreen.style.display = 'flex';
+        // ★★★ Trigger holoAppear animation ★★★
+        skillScreen.style.animation = 'none';
+        setTimeout(() => {
+            skillScreen.style.animation = 'holoAppear 0.4s forwards';
+        }, 10);
 
         // 確保 AI 模式見到 Speaking 按鈕
         const speakBtn = document.getElementById('btn-skill-speaking');
@@ -4756,7 +4774,13 @@ function selectLevel(level) {
         resetSkillButtonsToDefault();
 
         // 顯示 Skill 選擇
-        document.getElementById('skill-screen').style.display = 'flex';
+        const skillScreen = document.getElementById('skill-screen');
+        skillScreen.style.display = 'flex';
+        // ★★★ Trigger holoAppear animation ★★★
+        skillScreen.style.animation = 'none';
+        setTimeout(() => {
+            skillScreen.style.animation = 'holoAppear 0.4s forwards';
+        }, 10);
 
         // PVP 暫時隱藏 Speaking Mode (如需要)
         const speakBtn = document.getElementById('btn-skill-speaking');
@@ -8969,7 +8993,13 @@ async function selectSkill(skill) {
 
     // 4. ★★★ 新流程：跳去種族選擇畫面 ★★★
     updateRaceButtons();
-    document.getElementById('race-screen').style.display = 'flex';
+    const raceScreen = document.getElementById('race-screen');
+    raceScreen.style.display = 'flex';
+    // ★★★ Trigger holoAppear animation ★★★
+    raceScreen.style.animation = 'none';
+    setTimeout(() => {
+        raceScreen.style.animation = 'holoAppear 0.4s forwards';
+    }, 10);
 }
 
 // ★★★ 新增：種族選擇函數 ★★★
@@ -9247,7 +9277,13 @@ function showSuppliesNeededAnimation(race) {
 function handleRaceBack() {
     playSound('delete-sfx');
     document.getElementById('race-screen').style.display = 'none';
-    document.getElementById('skill-screen').style.display = 'flex';
+    const skillScreen = document.getElementById('skill-screen');
+    skillScreen.style.display = 'flex';
+    // ★★★ Trigger holoAppear animation ★★★
+    skillScreen.style.animation = 'none';
+    setTimeout(() => {
+        skillScreen.style.animation = 'holoAppear 0.4s forwards';
+    }, 10);
 }
 
 function handleSkillBack() {
@@ -9259,7 +9295,13 @@ function handleSkillBack() {
         showMainMenu();
     } else {
         // PVP: 返回 Level 選擇 (因為流程是 Level -> Skill)
-        document.getElementById('level-screen').style.display = 'flex';
+        const levelScreen = document.getElementById('level-screen');
+        levelScreen.style.display = 'flex';
+        // ★★★ Trigger holoAppear animation ★★★
+        levelScreen.style.animation = 'none';
+        setTimeout(() => {
+            levelScreen.style.animation = 'holoAppear 0.4s forwards';
+        }, 10);
     }
 }
 
