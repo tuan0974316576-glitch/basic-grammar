@@ -5856,11 +5856,30 @@ if (currentPracticeMode === 'SPEAKING') {
                      (navigator.maxTouchPoints > 0 && !window.matchMedia('(pointer: fine)').matches);
 
     if (isMobile && (currentPracticeMode === 'READING' || currentPracticeMode === 'LISTENING')) {
-        // Mobile: Show virtual keyboard, keep input off-screen and readonly
+        // Mobile: Show virtual keyboard initially
         virtualKeyboard.style.display = 'block';
-        input.setAttribute('readonly', 'readonly');
+        input.removeAttribute('readonly'); // 允許實體鍵盤輸入
         input.style.position = 'absolute';
         input.style.left = '-9999px';
+
+        // ★★★ 偵測實體鍵盤：如果有 keydown 事件就隱藏虛擬鍵盤 ★★★
+        let physicalKeyboardDetected = false;
+        const detectPhysicalKeyboard = (e) => {
+            // 只在第一次實體鍵盤輸入時隱藏虛擬鍵盤
+            if (!physicalKeyboardDetected && e.key && e.key.length === 1) {
+                physicalKeyboardDetected = true;
+                virtualKeyboard.style.display = 'none';
+                console.log('[Keyboard] Physical keyboard detected, hiding virtual keyboard');
+
+                // 調整答題框位置返回中央
+                const modal = document.getElementById('launch-modal');
+                if (modal) {
+                    modal.style.alignItems = 'center';
+                    modal.style.paddingTop = '0';
+                }
+            }
+        };
+        input.addEventListener('keydown', detectPhysicalKeyboard);
 
         // ★★★ Apply Aurelians theme if player is using Aurelians ★★★
         if (selectedRace === 'AURELIANS') {
