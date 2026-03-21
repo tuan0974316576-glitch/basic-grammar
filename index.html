@@ -61,6 +61,65 @@ console.log("Firebase Modules Loaded Successfully");
             console.log('[Auth] User authenticated:', u.uid, 'isAnonymous:', u.isAnonymous);
             window.isFirebaseAuthenticated = true;
             window.myPlayerId = u.uid;
+
+            // ★★★ SESSION TRACKING: 生成或讀取 deviceId ★★★
+            let deviceId = localStorage.getItem('battleship_deviceId');
+            if (!deviceId) {
+                deviceId = 'device_' + Date.now() + '_' + Math.random().toString(36).substring(2, 9);
+                localStorage.setItem('battleship_deviceId', deviceId);
+                console.log('[Session] Generated new deviceId:', deviceId);
+            } else {
+                console.log('[Session] Using existing deviceId:', deviceId);
+            }
+
+            // ★★★ SESSION TRACKING: 寫入 activeSession 到 Firebase ★★★
+            const sessionRef = ref(db, 'users/' + u.uid + '/activeSession');
+            update(ref(db, 'users/' + u.uid), {
+                activeSession: {
+                    deviceId: deviceId,
+                    timestamp: Date.now()
+                }
+            }).then(() => {
+                console.log('[Session] Active session updated');
+            }).catch(err => {
+                console.error('[Session] Failed to update session:', err);
+            });
+
+            // ★★★ SESSION TRACKING: 監聽 activeSession 變化 ★★★
+            if (!window.sessionListener) {
+                window.sessionListener = onValue(sessionRef, (snapshot) => {
+                    if (snapshot.exists()) {
+                        const session = snapshot.val();
+                        console.log('[Session] Session changed:', session);
+
+                        // 如果 deviceId 唔同，代表另一部裝置登入咗
+                        if (session.deviceId !== deviceId) {
+                            console.log('[Session] Another device logged in, forcing logout');
+
+                            // 停止監聽，避免重複觸發
+                            if (window.sessionListener) {
+                                off(sessionRef);
+                                window.sessionListener = null;
+                            }
+
+                            // 顯示訊息並強制登出
+                            alert('Your account has been logged in on another device.');
+
+                            // 強制登出
+                            const { signOut, getAuth } = window.firebaseModules;
+                            signOut(getAuth()).then(() => {
+                                console.log('[Session] Forced logout successful');
+                                // 重新載入頁面返回登入畫面
+                                window.location.reload();
+                            }).catch(err => {
+                                console.error('[Session] Forced logout failed:', err);
+                                window.location.reload();
+                            });
+                        }
+                    }
+                });
+            }
+
             // 登入後從 Firebase 載入錯字記錄
             if (typeof loadWrongWordsFromFirebase === 'function') loadWrongWordsFromFirebase();
 
@@ -191,6 +250,12 @@ console.log("Firebase Modules Loaded Successfully");
             console.log('[Auth] Stack trace:', new Error().stack);
 
             window.isFirebaseAuthenticated = false;
+
+            // ★★★ SESSION TRACKING: 停止監聽 activeSession ★★★
+            if (window.sessionListener) {
+                console.log('[Session] Stopping session listener on logout');
+                window.sessionListener = null;
+            }
 
             // ★★★ CRITICAL FIX: Clear XP and Mastery data on logout ★★★
             window.userTotalXP = 0;
