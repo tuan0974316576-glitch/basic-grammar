@@ -101,40 +101,19 @@ console.log("Firebase Modules Loaded Successfully");
                                 off(sessionRef);
                                 window.sessionListener = null;
                             }
+                            // 顯示訊息並強制登出
+                            alert('Your account has been logged in on another device.');
 
-// 建立 Game 風格嘅自訂 Popup
-const popup = document.createElement('div');
-popup.innerHTML = '⚠️ CONNECTION LOST<br>Logged in on another device.';
-Object.assign(popup.style, {
-    position: 'fixed',
-    bottom: '10%',
-    left: '50%',
-    transform: 'translateX(-50%)',
-    backgroundColor: 'rgba(20, 0, 0, 0.9)',
-    color: '#ff4444',
-    border: '2px solid #ff0000',
-    borderRadius: '4px',
-    padding: '15px 30px',
-    fontFamily: '"Courier New", Courier, monospace',
-    fontSize: '18px',
-    fontWeight: 'bold',
-    textAlign: 'center',
-    zIndex: '9999',
-    boxShadow: '0 0 15px rgba(255, 0, 0, 0.5)',
-    textShadow: '0 0 5px #ff0000',
-    transition: 'opacity 0.3s ease-in'
-});
-document.body.appendChild(popup);
-
-// 延遲 3 秒等玩家睇完，然後先強制登出同 Refresh
-setTimeout(() => {
-    const { signOut, getAuth } = window.firebaseModules;
-    signOut(getAuth()).then(() => {
-        window.location.reload();
-    }).catch(err => {
-        window.location.reload();
-    });
-}, 3000);
+                            // 強制登出
+                            const { signOut, getAuth } = window.firebaseModules;
+                            signOut(getAuth()).then(() => {
+                                console.log('[Session] Forced logout successful');
+                                // 重新載入頁面返回登入畫面
+                                window.location.reload();
+                            }).catch(err => {
+                                console.error('[Session] Forced logout failed:', err);
+                                window.location.reload();
+                            });
                         }
                     }
                 });
