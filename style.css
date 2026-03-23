@@ -345,7 +345,7 @@ body {
         }
 
         #player-board.race-vanguards .game-grid {
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3), inset 0 0 10px rgba(255, 255, 255, 0.05);
         }
 
         /* AURELIANS: Goldenrod borders, cyan grid glow */
@@ -354,7 +354,7 @@ body {
         }
 
         #player-board.race-aurelians .game-grid {
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5), inset 0 0 15px rgba(0, 255, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3), inset 0 0 10px rgba(0, 255, 255, 0.05);
         }
 
         #enemy-board .cell { border-color: rgba(239, 68, 68, 0.3); }
@@ -2778,7 +2778,7 @@ body {
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 3px;
-    padding: 4px 6px;
+    padding: 5px;
     overflow: visible;
     border-radius: 8px;
     background: rgba(10, 20, 30, 0.7);
