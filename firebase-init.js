@@ -78,19 +78,22 @@ console.log("Firebase Modules Loaded Successfully");
                                 window.sessionListener = null;
                             }
 
-                            // 顯示訊息並強制登出
-                            alert('Your account has been logged in on another device.');
+                            // 顯示遊戲內通知並強制登出
+                            if (typeof showNotification === 'function') {
+                                showNotification("ACCOUNT LOGGED IN ON ANOTHER DEVICE", "error");
+                            }
 
-                            // 強制登出
-                            const { signOut, getAuth } = window.firebaseModules;
-                            signOut(getAuth()).then(() => {
-                                console.log('[Session] Forced logout successful');
-                                // 重新載入頁面返回登入畫面
-                                window.location.reload();
-                            }).catch(err => {
-                                console.error('[Session] Forced logout failed:', err);
-                                window.location.reload();
-                            });
+                            // 等 3 秒俾玩家睇到訊息，再強制登出
+                            setTimeout(() => {
+                                const { signOut, getAuth } = window.firebaseModules;
+                                signOut(getAuth()).then(() => {
+                                    console.log('[Session] Forced logout successful');
+                                    window.location.reload();
+                                }).catch(err => {
+                                    console.error('[Session] Forced logout failed:', err);
+                                    window.location.reload();
+                                });
+                            }, 3000);
                         }
                     }
                 });
