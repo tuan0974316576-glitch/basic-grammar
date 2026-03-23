@@ -1084,7 +1084,7 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
     text-shadow: 0 0 5px var(--primary);
-    box-shadow: 0 0 10px rgba(14, 165, 233, 0.2);
+    animation: glow-blue 2s ease-in-out infinite alternate;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2642,24 +2642,24 @@ body {
 #skill-screen .skill-btn:nth-child(2) {
     border-color: #22c55e;
     text-shadow: 0 0 5px #22c55e;
-    box-shadow: 0 0 10px rgba(34, 197, 94, 0.2);
+    animation: glow-green 2s ease-in-out infinite alternate;
 }
 #skill-screen .skill-btn:nth-child(3) {
     border-color: #d946ef;
     text-shadow: 0 0 5px #d946ef;
-    box-shadow: 0 0 10px rgba(217, 70, 239, 0.2);
+    animation: glow-purple 2s ease-in-out infinite alternate;
 }
 
 /* --- Legacy: Keep old selectors for compatibility --- */
 #skill-screen .level-btn:nth-child(2) {
     border-color: #22c55e;
     text-shadow: 0 0 5px #22c55e;
-    box-shadow: 0 0 10px rgba(34, 197, 94, 0.2);
+    animation: glow-green 2s ease-in-out infinite alternate;
 }
 #skill-screen .level-btn:nth-child(3) {
     border-color: #d946ef;
     text-shadow: 0 0 5px #d946ef;
-    box-shadow: 0 0 10px rgba(217, 70, 239, 0.2);
+    animation: glow-purple 2s ease-in-out infinite alternate;
 }
 
 /* --- Race Selection Buttons --- */
@@ -2725,16 +2725,16 @@ body {
     background: transparent !important; /* 確保中間始終透明 */
     border: 2px solid var(--primary); /* 使用主藍色邊框 */
     color: #fff;
-    padding: 15px; 
+    padding: 15px;
     font-family: 'Orbitron', sans-serif;
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease; /* 平滑過渡效果 */
-    
-    /* 常駐發光：淡淡的藍色陰影與文字霓虹效果 */
+
+    /* 常駐發光：藍色邊框呼吸動畫 */
     text-shadow: 0 0 5px var(--primary);
-    box-shadow: 0 0 10px rgba(14, 165, 233, 0.2);
+    animation: glow-blue 2s ease-in-out infinite alternate;
     
     display: flex;
     align-items: center;
@@ -2760,6 +2760,21 @@ body {
     transform: scale(0.95); /* 點擊時縮小增加按壓感 */
     transition: all 0.1s;
 }
+
+/* ★★★ 邊框呼吸發光動畫 ★★★ */
+@keyframes glow-blue {
+    0% { box-shadow: 0 0 5px rgba(14, 165, 233, 0.2); }
+    100% { box-shadow: 0 0 15px rgba(14, 165, 233, 0.6), 0 0 30px rgba(14, 165, 233, 0.2); }
+}
+@keyframes glow-green {
+    0% { box-shadow: 0 0 5px rgba(34, 197, 94, 0.2); }
+    100% { box-shadow: 0 0 15px rgba(34, 197, 94, 0.6), 0 0 30px rgba(34, 197, 94, 0.2); }
+}
+@keyframes glow-purple {
+    0% { box-shadow: 0 0 5px rgba(217, 70, 239, 0.2); }
+    100% { box-shadow: 0 0 15px rgba(217, 70, 239, 0.6), 0 0 30px rgba(217, 70, 239, 0.2); }
+}
+
 /* =========================================
    ★★★ TARGET LOCK SYSTEM (座標鎖定特效) ★★★
    ========================================= */
