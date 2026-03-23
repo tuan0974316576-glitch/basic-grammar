@@ -1084,7 +1084,7 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
     text-shadow: 0 0 5px var(--primary);
-    animation: glow-blue 2s ease-in-out infinite alternate;
+    box-shadow: 0 0 10px rgba(14, 165, 233, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2642,24 +2642,24 @@ body {
 #skill-screen .skill-btn:nth-child(2) {
     border-color: #22c55e;
     text-shadow: 0 0 5px #22c55e;
-    animation: glow-green 2s ease-in-out infinite alternate;
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.2);
 }
 #skill-screen .skill-btn:nth-child(3) {
     border-color: #d946ef;
     text-shadow: 0 0 5px #d946ef;
-    animation: glow-purple 2s ease-in-out infinite alternate;
+    box-shadow: 0 0 10px rgba(217, 70, 239, 0.2);
 }
 
 /* --- Legacy: Keep old selectors for compatibility --- */
 #skill-screen .level-btn:nth-child(2) {
     border-color: #22c55e;
     text-shadow: 0 0 5px #22c55e;
-    animation: glow-green 2s ease-in-out infinite alternate;
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.2);
 }
 #skill-screen .level-btn:nth-child(3) {
     border-color: #d946ef;
     text-shadow: 0 0 5px #d946ef;
-    animation: glow-purple 2s ease-in-out infinite alternate;
+    box-shadow: 0 0 10px rgba(217, 70, 239, 0.2);
 }
 
 /* --- Race Selection Buttons --- */
@@ -2732,9 +2732,9 @@ body {
     cursor: pointer;
     transition: all 0.3s ease; /* 平滑過渡效果 */
 
-    /* 常駐發光：藍色邊框呼吸動畫 */
+    /* 常駐發光 */
     text-shadow: 0 0 5px var(--primary);
-    animation: glow-blue 2s ease-in-out infinite alternate;
+    box-shadow: 0 0 10px rgba(14, 165, 233, 0.15);
     
     display: flex;
     align-items: center;
@@ -2759,20 +2759,6 @@ body {
 #level-screen .level-btn:active {
     transform: scale(0.95); /* 點擊時縮小增加按壓感 */
     transition: all 0.1s;
-}
-
-/* ★★★ 邊框呼吸發光動畫 ★★★ */
-@keyframes glow-blue {
-    0% { box-shadow: 0 0 8px rgba(14, 165, 233, 0.4), 0 0 15px rgba(14, 165, 233, 0.15); }
-    100% { box-shadow: 0 0 15px rgba(14, 165, 233, 0.6), 0 0 30px rgba(14, 165, 233, 0.25); }
-}
-@keyframes glow-green {
-    0% { box-shadow: 0 0 8px rgba(34, 197, 94, 0.4), 0 0 15px rgba(34, 197, 94, 0.15); }
-    100% { box-shadow: 0 0 15px rgba(34, 197, 94, 0.6), 0 0 30px rgba(34, 197, 94, 0.25); }
-}
-@keyframes glow-purple {
-    0% { box-shadow: 0 0 8px rgba(217, 70, 239, 0.4), 0 0 15px rgba(217, 70, 239, 0.15); }
-    100% { box-shadow: 0 0 15px rgba(217, 70, 239, 0.6), 0 0 30px rgba(217, 70, 239, 0.25); }
 }
 
 /* =========================================
