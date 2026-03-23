@@ -2778,7 +2778,7 @@ body {
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 3px;
-    padding: 3px;
+    padding: 4px 6px;
     overflow: visible;
     border-radius: 8px;
     background: rgba(10, 20, 30, 0.7);
@@ -2818,6 +2818,17 @@ body {
 /* Aurelians icon 金光 */
 #instruction-container.aurelians .crosshair-icon {
     filter: drop-shadow(0 0 6px rgba(250, 227, 130, 0.8)) drop-shadow(0 0 12px rgba(250, 227, 130, 0.4));
+}
+
+/* Aim icon 撳坐標時放大縮小動畫 */
+.crosshair-icon.aim-pulse {
+    animation: aim-pulse 0.4s ease-out;
+}
+
+@keyframes aim-pulse {
+    0% { transform: scale(1); }
+    40% { transform: scale(1.5); }
+    100% { transform: scale(1); }
 }
 
 /* 展開動畫 Class（由 JS 切換觸發） */

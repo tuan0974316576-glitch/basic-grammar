@@ -1536,9 +1536,13 @@ function handleEnemyGridClick(index) {
         // 2. ★ 上鎖：立即設定為 true
         isTargeting = true;
 
-        // 隱藏 instruction container（攻擊開始）
-        const instrContainer = document.getElementById('instruction-container');
-        if (instrContainer) instrContainer.style.display = 'none';
+        // Aim icon 放大縮小動畫
+        const aimIcon = document.querySelector('.crosshair-icon');
+        if (aimIcon) {
+            aimIcon.classList.remove('aim-pulse');
+            void aimIcon.offsetWidth;
+            aimIcon.classList.add('aim-pulse');
+        }
 
         // 3. 執行鎖定動畫
         runTargetLockAnimation(index, () => {
@@ -1740,6 +1744,10 @@ function openLaunchModal(index) {
     // 清理舊的 Mic 按鈕 (防止重複)
     const oldMic = document.getElementById('mic-btn');
     if(oldMic) oldMic.remove();
+
+    // 隱藏 instruction container（進入答題版面）
+    const instrContainer = document.getElementById('instruction-container');
+    if (instrContainer) instrContainer.style.display = 'none';
 
     // ★★★ 關鍵：先顯示視窗，再執行後面的 focus，確保鍵盤彈出 ★★★
     modal.style.display = "flex";
