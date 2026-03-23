@@ -5633,9 +5633,12 @@ window.onload = function() {
         if(document.getElementById('vol-voice')) document.getElementById('vol-voice').value = gameVolume.voice;
     }
 
-    // 被踢出後顯示通知
+    // 被踢出後跳過 tap-to-start，直接去 login panel 並顯示通知
     if (localStorage.getItem('battleship_kicked')) {
         localStorage.removeItem('battleship_kicked');
+        document.getElementById('start-screen').style.display = 'none';
+        document.getElementById('game-content-wrapper').style.display = 'flex';
+        switchHudPanel('login-panel');
         setTimeout(() => {
             showNotification("ACCOUNT LOGGED IN ON ANOTHER DEVICE", "error", 2000);
         }, 500);
