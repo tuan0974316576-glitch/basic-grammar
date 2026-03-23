@@ -2858,10 +2858,10 @@ function triggerAnimation(cell, type) {
 
 function playSound(id) {
     const s = document.getElementById(id);
-    if(s) { 
-        s.volume = gameVolume.sfx; // <-- 加入這行
-        s.currentTime = 0; 
-        s.play().catch(e=>{}); 
+    if(s) {
+        s.volume = (typeof gameVolume !== 'undefined' && isFinite(gameVolume.sfx)) ? gameVolume.sfx : 0.5;
+        s.currentTime = 0;
+        s.play().catch(e=>{});
     }
 }
 
