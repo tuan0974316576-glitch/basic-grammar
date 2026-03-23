@@ -1480,15 +1480,28 @@ function updateEnemyBoardLabel(race) {
 function switchScene(sceneName) {
         document.getElementById('player-board').classList.remove('active');
         document.getElementById('enemy-board').classList.remove('active');
-        
+        const instrContainer = document.getElementById('instruction-container');
+
         if (sceneName === 'PLAYER') {
             document.getElementById('enemy-board').classList.add('active');
             document.getElementById('game-status').innerHTML = `PHASE: <span style="color:var(--success)">YOUR TURN</span>`;
             document.getElementById('control-panel').style.borderColor = "var(--success)";
+            // 顯示 instruction container
+            if (instrContainer) {
+                instrContainer.style.display = 'flex';
+                // Aurelians 用金色
+                if (selectedRace === 'AURELIANS') {
+                    instrContainer.classList.add('aurelians');
+                } else {
+                    instrContainer.classList.remove('aurelians');
+                }
+            }
         } else {
             document.getElementById('player-board').classList.add('active');
             document.getElementById('game-status').innerHTML = `PHASE: <span style="color:var(--danger)">WARNING! ENEMY</span>`;
             document.getElementById('control-panel').style.borderColor = "var(--danger)";
+            // 隱藏 instruction container
+            if (instrContainer) instrContainer.style.display = 'none';
         }
     }
 
