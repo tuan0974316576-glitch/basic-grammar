@@ -4536,7 +4536,51 @@ function showMainMenu() {
         console.log('[showMainMenu] Hiding login overlay');
     }
 
-    // 切換去 Profile 面板
+    const splash = document.getElementById('splash-screen');
+
+    // ★★★ Auto-login 流程：從 splash screen 直接去 main menu ★★★
+    if (window.waitingForAutoLogin && splash && splash.style.display !== 'none') {
+        console.log('[showMainMenu] Auto-login complete, transitioning from splash to main menu');
+        window.waitingForAutoLogin = false;
+
+        // 先準備好 main menu 內容（喺 splash 後面）
+        const gameWrapper = document.getElementById('game-content-wrapper');
+        if (gameWrapper) gameWrapper.style.display = 'block';
+        document.getElementById('start-screen').style.display = 'flex';
+        switchHudPanel('user-profile-panel');
+
+        const gameModeSelect = document.getElementById('game-mode-selection');
+        if(gameModeSelect) gameModeSelect.style.display = 'flex';
+        const carouselWrapper = document.getElementById('main-menu-carousel');
+        if(carouselWrapper) {
+            carouselWrapper.style.display = 'flex';
+        }
+
+        const suppliesDisplay = document.getElementById('coins-display');
+        if(suppliesDisplay) {
+            suppliesDisplay.style.display = 'block';
+            updateSuppliesDisplay();
+        }
+
+        const statusText = document.getElementById('system-status-text');
+        if(statusText) {
+            statusText.innerText = "IDENTITY CONFIRMED // SYSTEM READY";
+            statusText.style.color = "#0ea5e9";
+        }
+
+        initCarouselControl();
+
+        // 淡出 splash，露出已經準備好嘅 main menu
+        splash.style.opacity = '0';
+        setTimeout(() => {
+            splash.style.display = 'none';
+        }, 500);
+
+        playBgm();
+        return;
+    }
+
+    // ★★★ 正常流程（手動登入後） ★★★
     switchHudPanel('user-profile-panel');
 
     const gameModeSelect = document.getElementById('game-mode-selection');
@@ -4544,19 +4588,14 @@ function showMainMenu() {
 
     if(gameModeSelect) gameModeSelect.style.display = 'flex';
 
-    // ★★★ 關鍵修正：顯示 Carousel 容器 ★★★
     const carouselWrapper = document.getElementById('main-menu-carousel');
     if(carouselWrapper) {
-        carouselWrapper.style.display = 'flex'; // 顯示選單！
-        carouselWrapper.style.animation = 'fadeIn 0.5s'; // 加個淡入特效
+        carouselWrapper.style.display = 'flex';
+        carouselWrapper.style.animation = 'fadeIn 0.5s';
     }
 
-    // ★★★ 顯示 Supplies UI ★★★
-    // ★★★ 關鍵修復：如果 splash screen 仲顯示緊，就唔好顯示 SUPPLIES ★★★
-    const splash = document.getElementById('splash-screen');
     const suppliesDisplay = document.getElementById('coins-display');
     if(suppliesDisplay) {
-        // 只有當 splash screen 已經隱藏時，先顯示 SUPPLIES
         if (!splash || splash.style.display === 'none') {
             suppliesDisplay.style.display = 'block';
             updateSuppliesDisplay();
@@ -4599,52 +4638,43 @@ window.startExperience = function() {
     if(typeof playSound === 'function') playSound('deploy-sfx');
 
     // ★★★ 關鍵修復：確保 SUPPLIES 在 TAP TO START 畫面不會顯示 ★★★
-    // 因為 onAuthStateChanged 可能會在 splash screen 顯示時觸發 showMainMenu()
-    // 導致 SUPPLIES 提早出現在 TAP TO START 畫面
     const suppliesDisplay = document.getElementById('coins-display');
     if (suppliesDisplay) {
         suppliesDisplay.style.display = 'none';
     }
 
-    // 3. 淡出 Splash Screen
     const splash = document.getElementById('splash-screen');
-    splash.style.opacity = '0';
-    setTimeout(() => {
-        splash.style.display = 'none';
+    const cachedName = localStorage.getItem('battleship_username');
 
-        // ★★★ 關鍵修復：Splash screen 消失後，如果用戶已經 login，顯示 SUPPLIES ★★★
-        if (window.isFirebaseAuthenticated && window.myPlayerId) {
-            const suppliesDisplay = document.getElementById('coins-display');
-            if (suppliesDisplay) {
-                suppliesDisplay.style.display = 'block';
-                if (typeof updateSuppliesDisplay === 'function') {
-                    updateSuppliesDisplay();
-                }
-            }
-        }
-    }, 500);
+    // ★★★ 舊用戶 auto-login：留喺 splash screen 顯示 AUTHENTICATING... ★★★
+    if (cachedName) {
+        console.log('[startExperience] Cached user found, staying on splash for auth...');
+        // 改 splash 文字為 AUTHENTICATING...
+        const blinkText = splash.querySelector('.blink-text');
+        const initText = splash.querySelector('div[style*="INITIALIZING"]') || splash.querySelector('div:last-child');
+        if (blinkText) blinkText.innerText = 'AUTHENTICATING...';
+        if (initText && initText !== blinkText) initText.style.display = 'none';
+        // 禁止再次點擊
+        splash.onclick = null;
 
-    // ★★★ 關鍵新增：顯示遊戲內容大箱 ★★★
-    // 如果唔加呢句，因為大箱預設係 display: none，你會見到全黑畫面
-    const gameWrapper = document.getElementById('game-content-wrapper');
-    if (gameWrapper) {
-        gameWrapper.style.display = 'block';
+        // 標記等緊 auto-login，俾 showMainMenu 知道要淡出 splash
+        window.waitingForAutoLogin = true;
+    } else {
+        // ★★★ 新用戶：即刻淡出 splash，顯示 login panel ★★★
+        console.log('[startExperience] No cached user, showing login panel');
+        window.waitingForAutoLogin = false;
+        splash.style.opacity = '0';
+        setTimeout(() => {
+            splash.style.display = 'none';
+        }, 500);
 
-        // ★★★ 檢查係咪舊人 auto login ★★★
-        const cachedName = localStorage.getItem('battleship_username');
-        if (cachedName && window.isFirebaseAuthenticated) {
-            // 舊人已經 authenticated,保持 CONNECTING 直到 Firebase 讀取完
-            console.log('[startExperience] Existing user auto-login, keeping CONNECTING panel');
-            switchHudPanel('connecting-panel');
-        } else {
-            // 新人或未 login,顯示 login panel
-            console.log('[startExperience] New user or not authenticated, showing login panel');
+        const gameWrapper = document.getElementById('game-content-wrapper');
+        if (gameWrapper) {
+            gameWrapper.style.display = 'block';
             document.getElementById('start-screen').style.display = 'flex';
+            switchHudPanel('login-panel');
         }
     }
-    // 注意：Auth 邏輯全部由 onAuthStateChanged 處理
-    // 佢會喺 page load 時已經設定好正確嘅 panel 狀態
-    // startExperience() 只負責顯示 game-content-wrapper，唔做 auth 決策
 }
 
 // 輔助函數：切換 HUD 面板
