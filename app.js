@@ -1536,6 +1536,10 @@ function handleEnemyGridClick(index) {
         // 2. ★ 上鎖：立即設定為 true
         isTargeting = true;
 
+        // 隱藏 instruction container（攻擊開始）
+        const instrContainer = document.getElementById('instruction-container');
+        if (instrContainer) instrContainer.style.display = 'none';
+
         // 3. 執行鎖定動畫
         runTargetLockAnimation(index, () => {
             // 動畫完成後的回調 (Callback)
