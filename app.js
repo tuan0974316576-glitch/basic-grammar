@@ -4792,8 +4792,6 @@ const checkInputInterval = setInterval(() => {
     }
 }, 500); // 每 0.5 秒檢查一次，直到搵到為止
 
-});
-
 // --- ★ 新增：獨立計時器啟動函數 ★ ---
 function startCountdownTimer() {
     // 1. 如果計時器已經在跑，就唔好再這啟動 (防止重複)
