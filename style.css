@@ -807,7 +807,7 @@ body {
 
 /* ★ 禁用動畫 (已經播過一次) ★ */
 .enemy-ship-revealed.no-animation {
-    animation: none;
+    animation: none !important;
     opacity: 0.9;
     transform: var(--ship-translate) var(--ship-rotation) scale(1);
 }
