@@ -83,19 +83,17 @@ console.log("Firebase Modules Loaded Successfully");
                             overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:99999;';
                             document.body.appendChild(overlay);
 
-                            // 顯示遊戲內通知
-                            if (typeof showNotification === 'function') {
-                                showNotification("ACCOUNT LOGGED IN ON ANOTHER DEVICE", "error");
-                            }
+                            // 記住要喺 reload 後顯示通知
+                            localStorage.setItem('battleship_kicked', '1');
 
-                            // 即時登出，等 3 秒俾玩家睇到訊息再 reload
+                            // 即時登出並 reload
                             const { signOut, getAuth } = window.firebaseModules;
                             signOut(getAuth()).then(() => {
                                 console.log('[Session] Forced logout successful');
-                                setTimeout(() => window.location.reload(), 3000);
+                                window.location.reload();
                             }).catch(err => {
                                 console.error('[Session] Forced logout failed:', err);
-                                setTimeout(() => window.location.reload(), 3000);
+                                window.location.reload();
                             });
                         }
                     }

@@ -3506,7 +3506,7 @@ function autoDeployRemainingShips() {
 }
 
 // 顯示高科技通知框
-    function showNotification(text, type = 'success') {
+    function showNotification(text, type = 'success', duration = 3000) {
         const box = document.getElementById('tech-notification');
         const title = document.getElementById('notif-title');
         const content = document.getElementById('notif-content');
@@ -3530,10 +3530,10 @@ function autoDeployRemainingShips() {
         // 顯示 (滑下來)
         box.classList.add('active');
 
-        // 3秒後自動收番埋去
+        // 自動收番埋去
         setTimeout(() => {
             box.classList.remove('active');
-        }, 3000);
+        }, duration);
     }
 // 設定「斷線遺囑」
     function setupDisconnectHandler() {
@@ -5631,6 +5631,14 @@ window.onload = function() {
         if(document.getElementById('vol-bgm')) document.getElementById('vol-bgm').value = gameVolume.bgm;
         if(document.getElementById('vol-sfx')) document.getElementById('vol-sfx').value = gameVolume.sfx;
         if(document.getElementById('vol-voice')) document.getElementById('vol-voice').value = gameVolume.voice;
+    }
+
+    // 被踢出後顯示通知
+    if (localStorage.getItem('battleship_kicked')) {
+        localStorage.removeItem('battleship_kicked');
+        setTimeout(() => {
+            showNotification("ACCOUNT LOGGED IN ON ANOTHER DEVICE", "error", 2000);
+        }, 500);
     }
 };
 function handleSkillBack() {
