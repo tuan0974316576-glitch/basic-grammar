@@ -5640,7 +5640,7 @@ window.onload = function() {
         document.getElementById('game-content-wrapper').style.display = 'flex';
         switchHudPanel('login-panel');
         setTimeout(() => {
-            showNotification("ACCOUNT LOGGED IN ON ANOTHER DEVICE", "error", 2000);
+            showNotification("ACCOUNT LOGGED IN ON ANOTHER DEVICE", "error", 3000);
         }, 500);
     }
 };
