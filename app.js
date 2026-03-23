@@ -1489,6 +1489,10 @@ function switchScene(sceneName) {
             // 顯示 instruction container
             if (instrContainer) {
                 instrContainer.style.display = 'flex';
+                // 重新觸發展開動畫
+                instrContainer.style.animation = 'none';
+                void instrContainer.offsetWidth;
+                instrContainer.style.animation = '';
                 // Aurelians 用金色
                 if (selectedRace === 'AURELIANS') {
                     instrContainer.classList.add('aurelians');
