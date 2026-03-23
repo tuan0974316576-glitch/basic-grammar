@@ -375,9 +375,16 @@
 
             <div id="enemy-grid" class="game-grid"></div>
             <div id="instruction-container" style="display: none;">
-                <span class="instruction-bracket">[</span>
-                <span id="instruction-text">SINGLE SHOT: TAP A CELL TO FIRE</span>
-                <span class="instruction-bracket">]</span>
+                <div id="instruction-inner">
+                    <svg class="crosshair-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="5"/>
+                        <line x1="12" y1="2" x2="12" y2="7"/>
+                        <line x1="12" y1="17" x2="12" y2="22"/>
+                        <line x1="2" y1="12" x2="7" y2="12"/>
+                        <line x1="17" y1="12" x2="22" y2="12"/>
+                    </svg>
+                    <span id="instruction-text">SINGLE SHOT: TAP A CELL TO FIRE</span>
+                </div>
             </div>
         </div>
     </div>
