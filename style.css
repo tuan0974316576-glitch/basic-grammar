@@ -2798,13 +2798,11 @@ body {
 
 @keyframes holo-expand {
     0% {
-        -webkit-clip-path: inset(0 50% 0 50%);
-        clip-path: inset(0 50% 0 50%);
+        transform: scaleX(0);
         opacity: 0;
     }
     100% {
-        -webkit-clip-path: inset(0 0 0 0);
-        clip-path: inset(0 0 0 0);
+        transform: scaleX(1);
         opacity: 1;
     }
 }
