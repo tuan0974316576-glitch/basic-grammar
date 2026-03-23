@@ -78,22 +78,25 @@ console.log("Firebase Modules Loaded Successfully");
                                 window.sessionListener = null;
                             }
 
-                            // 顯示遊戲內通知並強制登出
+                            // 全屏遮罩擋住所有操作
+                            const overlay = document.createElement('div');
+                            overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:99999;';
+                            document.body.appendChild(overlay);
+
+                            // 顯示遊戲內通知
                             if (typeof showNotification === 'function') {
                                 showNotification("ACCOUNT LOGGED IN ON ANOTHER DEVICE", "error");
                             }
 
-                            // 等 3 秒俾玩家睇到訊息，再強制登出
-                            setTimeout(() => {
-                                const { signOut, getAuth } = window.firebaseModules;
-                                signOut(getAuth()).then(() => {
-                                    console.log('[Session] Forced logout successful');
-                                    window.location.reload();
-                                }).catch(err => {
-                                    console.error('[Session] Forced logout failed:', err);
-                                    window.location.reload();
-                                });
-                            }, 3000);
+                            // 即時登出，等 3 秒俾玩家睇到訊息再 reload
+                            const { signOut, getAuth } = window.firebaseModules;
+                            signOut(getAuth()).then(() => {
+                                console.log('[Session] Forced logout successful');
+                                setTimeout(() => window.location.reload(), 3000);
+                            }).catch(err => {
+                                console.error('[Session] Forced logout failed:', err);
+                                setTimeout(() => window.location.reload(), 3000);
+                            });
                         }
                     }
                 });
