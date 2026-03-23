@@ -2547,12 +2547,14 @@ function checkMyShipDestruction(hitIdx) {
 
  // ★ 最終修復版：顯示我自己嘅戰艦殘骸 (移除 absolute，加入智能檢測) ★
     // ★ 修正版：顯示我自己嘅戰艦殘骸 (並隱藏原本完好嘅船) ★
-    function revealMyShip(ship, index, justDestroyed = true) {
+    function revealMyShip(ship, index) {
     ship.revealed = true;
 
-    // ★★★ 如果 DOM 已經有戰損圖，唔好再加 ★★★
-    const existingDmg = document.getElementById(`damaged-ship-${index}`);
-    if (existingDmg) return;
+    // ★★★ 記錄係咪第一次爆 (用於控制動畫) ★★★
+    const isFirstReveal = !ship.animationPlayed;
+    if (isFirstReveal) {
+        ship.animationPlayed = true;
+    }
 
     const grid = document.getElementById('player-grid');
     const container = document.getElementById('player-board');
@@ -2599,10 +2601,9 @@ function checkMyShipDestruction(hitIdx) {
     }
     
     img.classList.add('enemy-ship-revealed');
-    img.id = `damaged-ship-${index}`;
 
-    // ★★★ 只有剛剛爆嗰下先播動畫，轉場重繪唔播 ★★★
-    if (!justDestroyed) {
+    // ★★★ 只有第一次爆先播動畫 ★★★
+    if (!isFirstReveal) {
         img.classList.add('no-animation');
     }
 
@@ -3623,12 +3624,14 @@ updateEnemyIndicator(ship.shipId);
 
 
 // ★ 最終修正版：顯示敵軍戰艦殘骸 (包含 T型船 橫向偏移修復) ★
-function revealEnemyShip(ship, justDestroyed = true) {
+function revealEnemyShip(ship) {
     ship.revealed = true;
 
-    // ★★★ 如果 DOM 已經有戰損圖，唔好再加 ★★★
-    const existingDmg = document.getElementById(`damaged-enemy-ship-${ship.shipId}`);
-    if (existingDmg) return;
+    // ★★★ 記錄係咪第一次爆 (用於控制動畫) ★★★
+    const isFirstReveal = !ship.animationPlayed;
+    if (isFirstReveal) {
+        ship.animationPlayed = true;
+    }
 
     const board = document.getElementById('enemy-grid');
     const container = document.getElementById('enemy-board'); 
@@ -3673,10 +3676,9 @@ function revealEnemyShip(ship, justDestroyed = true) {
     }
     
     img.classList.add('enemy-ship-revealed');
-    img.id = `damaged-enemy-ship-${ship.shipId}`;
 
-    // ★★★ 只有剛剛爆嗰下先播動畫 ★★★
-    if (!justDestroyed) {
+    // ★★★ 只有第一次爆先播動畫 ★★★
+    if (!isFirstReveal) {
         img.classList.add('no-animation');
     }
 
