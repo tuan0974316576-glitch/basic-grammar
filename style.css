@@ -2788,21 +2788,23 @@ body {
     text-shadow: 0 0 6px rgba(14, 165, 233, 0.3);
     border: 1px solid rgba(14, 165, 233, 0.3);
     box-shadow: 0 0 12px rgba(14, 165, 233, 0.1), inset 0 0 8px rgba(14, 165, 233, 0.05);
-    /* 中間向左右展開動畫 */
-    animation: holo-expand 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* 展開動畫 Class（由 JS 切換觸發） */
+#instruction-container.play-expand {
+    animation: holo-expand 0.4s cubic-bezier(0.1, 0.9, 0.2, 1) forwards !important;
 }
 
 @keyframes holo-expand {
     0% {
+        -webkit-clip-path: inset(0 50% 0 50%);
         clip-path: inset(0 50% 0 50%);
         opacity: 0;
     }
-    60% {
-        clip-path: inset(0 0% 0 0%);
-        opacity: 1;
-    }
     100% {
-        clip-path: inset(0 0% 0 0%);
+        -webkit-clip-path: inset(0 0 0 0);
+        clip-path: inset(0 0 0 0);
         opacity: 1;
     }
 }

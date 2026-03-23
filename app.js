@@ -1489,10 +1489,10 @@ function switchScene(sceneName) {
             // 顯示 instruction container
             if (instrContainer) {
                 instrContainer.style.display = 'flex';
-                // 重新觸發展開動畫
-                instrContainer.style.animation = 'none';
+                // Class toggle 觸發展開動畫（兼容 Safari/iOS）
+                instrContainer.classList.remove('play-expand');
                 void instrContainer.offsetWidth;
-                instrContainer.style.animation = '';
+                instrContainer.classList.add('play-expand');
                 // Aurelians 用金色
                 if (selectedRace === 'AURELIANS') {
                     instrContainer.classList.add('aurelians');
