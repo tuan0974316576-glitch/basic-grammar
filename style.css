@@ -1,0 +1,3293 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Orbitron:wght@400;500;700;900&family=Roboto+Mono:wght@400;700&display=swap');
+
+* {
+    -webkit-tap-highlight-color: transparent; /* 針對 iOS/Android：移除點擊時的藍色/灰色半透明背景 */
+    outline: none;       /* 移除電腦版點擊時的聚焦框 */
+    -webkit-touch-callout: none; /* (選用) 針對 iOS：長按時不要彈出系統選單 */
+    user-select: none;   /* (選用) 防止玩家點太快變成長按選取文字，讓遊戲體驗更像 App */
+}
+
+/* 恢復輸入框可以選取文字 (因為上面設定了 user-select: none) */
+input, textarea {
+    user-select: text;
+    -webkit-user-select: text;
+}
+
+/* ★★★ iOS Safari scroll lock for html ★★★ */
+html {
+    overflow: hidden;
+    overscroll-behavior: none;
+    touch-action: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+        :root {
+            --primary: #0ea5e9; 
+            --danger: #ef4444;  
+            --success: #22c55e; 
+            --warning: #f59e0b;
+            --text: #e2e8f0;
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+/* --- 1. 背景無限捲動動畫 --- */
+@keyframes spaceScroll {
+    from { background-position: center 0; }
+    to { background-position: center 1000px; } /* 數值越大，流動越快 */
+}
+
+body {
+    background-color: #000;
+
+    background-image: url('stars_texture.png');
+    background-repeat: repeat;
+    background-size: 500px;
+
+    background-position: center 0;
+    /* ★ 改動：加入動畫，令背景不斷向下捲動 (60秒一圈，Linear 均速) ★ */
+    animation: spaceScroll 90s linear infinite;
+
+    color: var(--text);
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 1px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+    user-select: none;
+    /* ★★★ iOS Safari scroll lock ★★★ */
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: touch;
+    touch-action: none;
+}
+
+        /* Galaxy 背景 (已優化：減淡星雲，突出星星) */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 85vmin; height: 85vmin;
+            background-image: url('galaxy.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            mix-blend-mode: screen; 
+            opacity: 0.6; 
+            z-index: -1;
+            animation: rotateGalaxy 120s linear infinite;
+        }
+
+        @keyframes rotateGalaxy {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* ★★★ Energy Gain Animation ★★★ */
+        @keyframes energyPop {
+            0% {
+                transform: translate(-50%, -50%) scale(0.5);
+                opacity: 1;
+            }
+            50% {
+                transform: translate(-50%, -80%) scale(1.2);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -120%) scale(0.8);
+                opacity: 0;
+            }
+        }
+
+/* --- 標題畫面 (Start Screen) --- */
+#start-screen {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 200;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    background: rgba(0, 0, 0, 0.3); transition: opacity 0.5s;
+}
+
+/* --- ★ 最終版 XCOM 風格：無框全息電流 (TRUE TEXT SCANLINE) ★ --- */
+
+/* 1. 定義全息電流動畫 (Glitch) */
+@keyframes xcom-current-glitch {
+    /* --- 正常狀態 --- */
+    0%, 75% {
+        opacity: 1; transform: scale(1) skew(0deg);
+        text-shadow: 
+            0 0 10px rgba(14, 165, 233, 0.8),
+            0 0 20px rgba(14, 165, 233, 0.4),
+            0 0 40px rgba(14, 165, 233, 0.2);
+        filter: blur(0.5px);
+    }
+    
+    /* --- 電流衝擊 (Glitch) --- */
+    76% { opacity: 0.8; transform: skew(-3deg); }
+    77% {
+        opacity: 1; transform: scale(1.05) skew(2deg); filter: blur(1px);
+        text-shadow: -3px 0 0px rgba(255,255,255,0.8), 3px 0 0px var(--primary), 0 0 50px var(--primary);
+    }
+    78% { opacity: 0.2; transform: scale(0.95); }
+    79% {
+        opacity: 1; transform: skew(-1deg); filter: blur(2px);
+        text-shadow: 3px 0 0px rgba(255,255,255,0.8), -3px 0 0px var(--primary);
+    }
+    80% { transform: scale(1) skew(0deg); filter: blur(0px); text-shadow: 0 0 20px var(--primary); }
+    
+    /* --- 餘波 --- */
+    82% { transform: translate(1px, 0); }
+    84% { transform: translate(-1px, 0); }
+    100% {
+        opacity: 1; transform: scale(1); filter: blur(0.5px);
+        text-shadow: 0 0 10px rgba(14, 165, 233, 0.8);
+    }
+}
+
+/* 2. 定義文字內部掃描線捲動動畫 */
+@keyframes text-scan {
+    0% { background-position: 0 0, 0 0; }
+    100% { background-position: 0 200%, 0 0; } /* 只移動第一層(掃描線) */
+}
+
+/* 3. 標題本體樣式 (修正版：藍白藍漸變 + 掃描線) */
+.main-title {
+    font-family: 'Black Ops One', cursive;
+    font-size: 80px; /* 統一 Desktop 大小 */
+    line-height: 1.1;
+    text-align: center;
+    letter-spacing: 12px;
+    margin-bottom: 40px;
+    
+    position: relative;
+    z-index: 201;
+    border: none;
+    background: none;
+    padding: 0;
+
+    /* ★ 核心：文字透明，讓背景透出 ★ */
+    color: transparent; 
+
+    /* ★ 雙層背景：上層掃描線，下層漸變 ★ */
+    background-image: 
+        /* 層 1: 掃描線 (淺藍白色) */
+        repeating-linear-gradient(
+            transparent 0px,
+            transparent 2px,
+            rgba(200, 230, 255, 0.5) 3px, 
+            transparent 4px
+        ),
+        /* 層 2: 底色漸變 (上藍 -> 中白 -> 下藍) */
+        linear-gradient(to bottom,
+            rgba(14, 165, 233, 0.9) 0%,    /* 上：深藍 */
+            rgba(255, 255, 255, 1) 40%,    /* 中：純白 (開始) */
+            rgba(255, 255, 255, 1) 60%,    /* 中：純白 (結束) */
+            rgba(14, 165, 233, 0.9) 100%   /* 下：深藍 */
+        );
+
+    /* ★ 剪裁背景至文字 ★ */
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    /* ★ 關鍵設定：令漸變色每行獨立計算 ★ */
+    /* 層 1 (掃描線): 100% 闊, 200% 高 */
+    /* 層 2 (漸變色): 100% 闊, 50% 高 (即係一行的高度) */
+    background-size: 100% 200%, 100% 50%;
+    
+    /* 確保背景重複 (令第二行字都食到個漸變) */
+    background-repeat: repeat;
+    
+    /* 結合 Glitch + Scan 動畫 */
+    animation: xcom-current-glitch 5s infinite, text-scan 6s linear infinite;
+}
+
+/* 4. 手機版調整 */
+@media (max-width: 500px) {
+    .main-title { 
+        font-size: 46px; 
+        letter-spacing: 6px;
+    }
+}
+
+/* 1. 定義綠色呼吸動畫 (VS AI 專用) */
+        @keyframes pulse-green {
+            0% {
+                box-shadow: 0 0 10px rgba(34, 197, 94, 0.6);
+                border-color: rgba(34, 197, 94, 0.8);
+            }
+            100% {
+                box-shadow: 0 0 20px rgba(34, 197, 94, 1);
+                border-color: #4ade80;
+            }
+        }
+
+        .start-btn-large {
+            padding: 15px 40px;
+            font-size: 24px;
+            background: rgba(14, 165, 233, 0.1);
+            border: 2px solid var(--success);
+            color: var(--success);
+            font-family: 'Black Ops One';
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+
+            /* ★ 新增：綠色呼吸燈 (2秒來回) ★ */
+            animation: pulse-green 2s infinite alternate ease-in-out;
+        }
+
+        .start-btn-large:hover {
+            background: var(--success);
+            color: #000;
+            transform: scale(1.1);
+            box-shadow: 0 0 15px var(--success); /* ★ 減弱 hover 發光：30px -> 15px */
+            animation: none; /* Hover 時暫停呼吸，保持最光 */
+        }
+
+        /* --- 遊戲介面 (Game UI) --- */
+        #game-ui {
+            display: none; 
+            width: 100%;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+
+        /* --- 控制面板 --- */
+        #control-panel {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid var(--primary);
+            padding: 10px 20px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            z-index: 20;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.3);
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+.btn {
+            background: rgba(14, 165, 233, 0.2);
+            border: 1px solid var(--primary);
+            color: #fff;
+            padding: 5px 15px;
+            cursor: pointer;
+            
+            /* ★ 改用 Orbitron，加粗 ★ */
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700; 
+            
+            transition: 0.2s;
+        }
+        .btn:hover { background: var(--primary); color: #000; }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; border-color: #555; background: transparent; color: #555; }
+
+        /* --- 棋盤容器 --- */
+        .board-container {
+            display: none; 
+            position: relative;
+            margin: 10px;
+            z-index: 10;
+        }
+        
+        .board-container.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+        .board-label {
+            text-align: center;
+            font-family: 'Black Ops One';
+            font-size: 24px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px currentColor;
+        }
+
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr); 
+            gap: 2px;
+            background: rgba(255, 255, 255, 0.02); 
+            backdrop-filter: blur(2px);
+            padding: 10px;
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            box-shadow: 0 0 40px rgba(14, 165, 233, 0.15);
+            position: relative;
+        }
+
+        #enemy-board .game-grid { border-color: var(--danger); box-shadow: 0 0 40px rgba(239, 68, 68, 0.15); }
+
+        .cell {
+            width: 35px; height: 35px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px; position: relative;
+        }
+
+        /* ★★★ RACE-SPECIFIC BOARD STYLES ★★★ */
+        /* VANGUARDS: Blue borders, white grid glow */
+        #player-board.race-vanguards .cell {
+            border-color: rgba(14, 165, 233, 0.2);
+        }
+
+        #player-board.race-vanguards .game-grid {
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.1);
+        }
+
+        /* AURELIANS: Goldenrod borders, cyan grid glow */
+        #player-board.race-aurelians .cell {
+            border-color: rgba(218, 165, 32, 0.4);
+        }
+
+        #player-board.race-aurelians .game-grid {
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5), inset 0 0 15px rgba(0, 255, 255, 0.1);
+        }
+
+        #enemy-board .cell { border-color: rgba(239, 68, 68, 0.3); }
+        .cell.valid-hover { background-color: rgba(34, 197, 94, 0.5) !important; }
+        .cell.invalid-hover { background-color: rgba(239, 68, 68, 0.5) !important; }
+        
+        .cell.hit { background-color: rgba(239, 68, 68, 0.8) !important; border-color: var(--danger); text-shadow: 0 0 5px #fff; }
+        
+        .cell.miss { 
+            background-color: rgba(255, 255, 255, 0.05) !important; /* 極淡的底色 */
+            color: rgba(255, 255, 255, 0.3); /* 30% 透明度的白色 */
+            font-family: sans-serif; font-size: 28px; font-weight: bold;
+            text-shadow: none; cursor: default;
+        }
+        
+        .cell.revealed { cursor: default; }
+
+        .ship-overlay {
+            position: absolute; pointer-events: none; z-index: 6;
+            transition: all 0.3s ease; filter: drop-shadow(0 0 5px white);
+            image-rendering: pixelated;
+        }
+
+        /* ★★★ Aurelians 專屬樣式 - Cyan 發光 ★★★ */
+        .ship-overlay.aurelians {
+            filter: drop-shadow(0 0 5px #00f0ff);
+        }
+
+        /* --- 動畫特效 --- */
+        .anim-blue {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 20;
+            background-image: url('turret_02_explosion_01_anim.png');
+            background-repeat: no-repeat;
+            background-size: 700% 100%; /* 7格圖 */
+            animation: playBlue 0.5s steps(6) forwards;
+            image-rendering: pixelated; pointer-events: none;
+        }
+        @keyframes playBlue { from { background-position: 0 0; } to { background-position: 100% 0; } }
+
+        .anim-gold {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 20;
+            background-image: url('explosion-c_gold.png');
+            background-repeat: no-repeat;
+            background-size: 900% 100%; /* 9格圖 */
+            animation: playGold 0.5s steps(8) forwards;
+            image-rendering: pixelated; pointer-events: none;
+        }
+        @keyframes playGold { from { background-position: 0 0; } to { background-position: 100% 0; } }
+
+        .anim-orange {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 21;
+            background-image: url('turret_01_explosion.png');
+            background-repeat: no-repeat;
+            background-size: 500% 100%; /* 5格圖 */
+            animation: playOrange 0.5s steps(4) forwards;
+            image-rendering: pixelated; pointer-events: none;
+        }
+        @keyframes playOrange { from { background-position: 0 0; } to { background-position: 100% 0; } }
+
+        /* --- Modal (解碼視窗) --- */
+/* --- Modal (解碼視窗) - 電腦版預設 (保持置中) --- */
+    #launch-modal { 
+        display: none; 
+        position: fixed; 
+        top: 0; left: 0; 
+        width: 100%; height: 100%; 
+        background: rgba(0,0,0,0.85); 
+        z-index: 100; 
+        
+        /* ★ 電腦版設定：保持水平垂直完美置中 ★ */
+        justify-content: center; 
+        align-items: center; 
+        padding-top: 0; /* 電腦版唔使留空 */
+        
+        backdrop-filter: blur(10px); 
+    }
+        
+/* 1. 題目框容器 (父容器) */
+.modal-content {
+    /* --- 原有樣式保留 --- */
+    background: rgba(15, 23, 42, 0.85) !important; /* 背景調透一點 */
+    border: 2px solid var(--danger);
+    border-radius: 15px;
+    padding: 30px;
+    width: 90%;
+    max-width: 420px;
+    text-align: center;
+    box-shadow: 0 0 60px rgba(239, 68, 68, 0.6);
+    
+    /* --- ★★★ 關鍵修正部分 ★★★ --- */
+    position: relative;  /* 重要：讓裡面的 Canvas 知道邊界在哪 */
+    overflow: hidden;    /* 重要：防止動畫跑出圓角框外 */
+    backdrop-filter: blur(5px); /* 磨砂玻璃效果 */
+    
+    /* 確保有足夠高度顯示內容 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --- Matrix 全螢幕背景特效 --- */
+
+/* 1. 畫布設定：佔滿全屏 */
+#matrix-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;  /* 視窗寬度 */
+    height: 100vh; /* 視窗高度 */
+    z-index: 0;    /* 放在最底層 */
+    pointer-events: none; /* 讓點擊穿透 */
+}
+
+/* 2. 確保小框框浮在動畫上面 */
+.modal-content {
+    /* 加入 z-index 和 position 確保它比背景高 */
+    position: relative; 
+    z-index: 10; 
+    
+    /* 保持原本的半透明樣式，讓背後的字稍微透出來會很有型 */
+    background: rgba(15, 23, 42, 0.75) !important; 
+    backdrop-filter: blur(5px);
+}
+
+.vocab-hint { 
+            font-size: 36px; letter-spacing: 8px; color: var(--primary); margin: 20px 0; 
+            
+            /* ★ 改用 Orbitron ★ */
+            font-family: 'Orbitron', sans-serif; 
+            
+            font-weight: bold; text-transform: uppercase;
+            text-shadow: 0 0 10px var(--primary); min-height: 50px;
+        }
+
+        #hidden-input { position: absolute; opacity: 0; top: 0; left: 0; height: 100%; width: 100%; cursor: default; }
+        #timer-bar-container { width: 100%; height: 6px; background: #334155; border-radius: 3px; margin-top: 20px; overflow: hidden; }
+        #timer-bar { height: 100%; width: 100%; background: linear-gradient(90deg, #ef4444, #f87171); transition: width 1s linear; }
+
+        #warning-overlay {
+            position: fixed; top:0; left:0; width:100%; height:100%; pointer-events: none;
+            box-shadow: inset 0 0 100px rgba(255,0,0,0.5); display: none; z-index: 50;
+            animation: pulseWarning 1s infinite;
+        }
+        @keyframes pulseWarning { 0% { opacity: 0.2; } 50% { opacity: 0.8; } 100% { opacity: 0.2; } }
+
+        @media (max-width: 500px) {
+            .cell { width: 8vw; height: 8vw; max-width: 35px; max-height: 35px; } 
+            .main-title { font-size: 36px; }
+            #control-panel { flex-direction: column; gap: 5px; }
+            .vocab-hint { font-size: 28px; letter-spacing: 4px; }
+        }
+/* --- 艦隊側邊欄 --- */
+/* --- 艦隊側邊欄 (修改版：雙列佈局) --- */
+#fleet-sidebar {
+    /* ★ 改用 Grid 佈局，不再是一條直線 ★ */
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 強制分兩列 (左右並排) */
+
+    gap: 10px; /* 縮細船與船之間的距離 (原本係 20px) */
+
+    background: rgba(15, 23, 42, 0.8);
+    padding: 15px 10px;
+    border-radius: 8px;
+    border: 1px solid var(--glass-border);
+
+    /* 確保佢唔會拉到太長 */
+    height: fit-content;
+    align-self: center; /* 令側邊欄在畫面中間垂直置中 */
+
+    justify-items: center; /* 內容置中 */
+}
+.fleet-unit {
+            --mini-cell-size: 25px;
+            --mini-cell-gap: 2px;
+            position: relative;
+            display: inline-grid; /* 用 Grid 排列背景格仔 */
+            gap: var(--mini-cell-gap);      /* 格仔之間的空隙 */
+            transition: all 0.3s;
+            padding: 3px;
+            border: 2px solid transparent;
+            border-radius: 4px;
+            width: fit-content;
+            justify-self: center;
+        }
+.fleet-ship-img {
+            position: absolute;
+            top: 3px;  /* 對應 .fleet-unit 的 padding */
+            left: 3px;
+            z-index: 2; /* 確保在格仔上面 */
+            pointer-events: none; /* 讓點擊穿透 */
+            filter: drop-shadow(0 0 2px #000);
+        }
+.mini-cell {
+            box-sizing: border-box;
+            width: var(--mini-cell-size);  /* 迷你格大細 */
+            height: var(--mini-cell-size);
+            background-color: rgba(255, 255, 255, 0.1); /* 半透明底 */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* 邊框 */
+            border-radius: 2px;
+        }
+        .ship-preview {
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            border-radius: 4px;
+            padding: 2px;
+            background: rgba(255,255,255,0.05);
+        }
+
+        /* 狀態 1: 正準備放 (Active) - 發光 + 放大 */
+.fleet-unit.current {
+            border-color: var(--warning);
+            box-shadow: 0 0 15px var(--warning);
+            background: rgba(245, 158, 11, 0.1);
+            transform: scale(1.1);
+        }
+.fleet-unit.current .mini-cell {
+            background-color: rgba(245, 158, 11, 0.3); /* 格仔變黃 */
+            border-color: var(--warning);
+        }
+
+        /* ★★★ Aurelians 專屬樣式 - PaleGoldenrod 方格 + Cyan 發光 ★★★ */
+.fleet-unit.current.aurelians {
+            border-color: #00f0ff;
+            box-shadow: 0 0 15px #00f0ff;
+            background: rgba(0, 240, 255, 0.1);
+        }
+.fleet-unit.current.aurelians .mini-cell {
+            background-color: rgba(238, 232, 170, 0.4); /* PaleGoldenrod */
+            border-color: #EEE8AA;
+        }
+        /* 狀態 2: 未輪到 (Pending) - 實色但暗少少 */
+.fleet-unit.pending {
+            opacity: 0.6;
+            transform: scale(0.95);
+        }
+
+        /* 狀態 3: 已部署 (Deployed) - 剪影/黑白/透明 */
+.fleet-unit.deployed {
+            opacity: 0.3;
+            filter: grayscale(100%);
+            transform: scale(0.8);
+        }
+
+/* --- 高科技確認視窗樣式 --- */
+        .tech-modal-overlay {
+            display: none; /* 預設隱藏 */
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); z-index: 3000; /* 最最頂層 */
+            align-items: center; justify-content: center; 
+            backdrop-filter: blur(5px);
+        }
+
+        .tech-modal-box {
+            background: rgba(15, 23, 42, 0.95); 
+            border: 2px solid var(--danger); /* 紅色邊框 */
+            box-shadow: 0 0 50px rgba(239, 68, 68, 0.4); /* 紅色光暈 */
+            padding: 30px; 
+            text-align: center; 
+            border-radius: 10px;
+            max-width: 450px; 
+            width: 90%;
+            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .tech-warning-title {
+            font-family: 'Black Ops One'; 
+            color: var(--danger); 
+            font-size: 30px;
+            margin-bottom: 15px; 
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px var(--danger);
+        }
+
+        .tech-warning-msg {
+            color: #cbd5e1; 
+            font-family: 'Roboto Mono'; 
+            margin-bottom: 30px; 
+            font-size: 14px;
+            line-height: 1.5;
+            font-weight: bold;
+        }
+
+        .tech-btn-group { 
+            display: flex; 
+            gap: 20px; 
+            justify-content: center; 
+        }
+
+        .tech-btn {
+            flex: 1; 
+            padding: 12px; 
+            font-family: 'Black Ops One'; 
+            font-size: 16px;
+            cursor: pointer;
+            border: 1px solid; 
+            transition: all 0.2s;
+            text-transform: uppercase;
+        }
+
+        /* 取消掣樣式 */
+        .tech-btn.cancel { 
+            border-color: var(--primary); 
+            color: var(--primary); 
+            background: transparent; 
+        }
+        .tech-btn.cancel:hover { 
+            background: var(--primary); 
+            color: #000; 
+            box-shadow: 0 0 15px var(--primary);
+        }
+
+        /* 確認掣樣式 (危險) */
+        .tech-btn.confirm { 
+            border-color: var(--danger); 
+            color: var(--danger); 
+            background: transparent; 
+        }
+        .tech-btn.confirm:hover { 
+            background: var(--danger); 
+            color: #fff; 
+            box-shadow: 0 0 20px var(--danger);
+            transform: scale(1.05);
+        }
+
+        @keyframes popIn { 
+            from { transform: scale(0.8); opacity: 0; } 
+            to { transform: scale(1); opacity: 1; } 
+        }
+/* --- 未來感輸入框樣式 --- */
+       /* --- 未來感輸入框樣式 (Orbitron 版) --- */
+        #room-id-input {
+            background: rgba(0, 0, 0, 0.8); 
+            border: 2px solid var(--primary); /* 青藍色邊框 */
+            padding: 15px; 
+            color: var(--primary); 
+            text-align: center; 
+            width: 260px; /* 稍微整闊少少，因為 Orbitron 字比較闊 */
+            margin-bottom: 15px;
+            border-radius: 5px;
+            
+            /* ★ 重點：改用 Orbitron 字體 ★ */
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700; /* 粗體數字好睇啲 */
+            font-size: 28px; 
+            letter-spacing: 4px; /* 字距 */
+            
+            /* 發光特效 */
+            text-shadow: 0 0 10px var(--primary); 
+            box-shadow: 0 0 20px rgba(14, 165, 233, 0.2); 
+            outline: none; 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* 當輸入框被點擊時 (Focus) */
+        #room-id-input:focus {
+            border-color: var(--warning); /* 變成警告黃 */
+            color: var(--warning);
+            text-shadow: 0 0 15px var(--warning);
+            box-shadow: 0 0 30px rgba(245, 158, 11, 0.5);
+            transform: scale(1.05);
+        }
+
+        /* 修改 Placeholder (ENTER ROOM ID) */
+        #room-id-input::placeholder {
+            color: rgba(14, 165, 233, 0.4); 
+            
+            /* ★ Placeholder 都用埋 Orbitron，但幼身啲 ★ */
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 500; 
+            font-size: 14px; /* 縮細少少，費事同輸入嘅數字搶鏡 */
+            letter-spacing: 2px;
+            text-shadow: none;
+        }
+/* --- 題目文字 (發光特效) --- */
+        #q-text {
+            font-size: 32px; /* 加大字體 */
+            margin: 15px 0;
+            color: #fff;
+            font-weight: 900; /* 最粗體 */
+            
+            /* 雖然中文字型無 Orbitron，但英文/標點會變 Orbitron，混合起來好睇 */
+            font-family: 'Orbitron', sans-serif; 
+            
+            /* ★ 關鍵：雙重發光特效 ★ */
+            text-shadow: 
+                0 0 10px var(--primary), 
+                0 0 20px var(--primary),
+                0 0 40px var(--primary);
+                
+            letter-spacing: 2px; /* 字距拉闊少少 */
+        }
+/* --- START BATTLE 按鈕特效 (當可以按的時候) --- */
+        #start-btn:not(:disabled) {
+            /* 變更底色為橙色漸變 */
+            background: linear-gradient(45deg, rgba(245, 158, 11, 0.4), rgba(0, 0, 0, 0.6));
+            border: 2px solid var(--warning);
+            color: var(--warning);
+            
+            /* 字體升級 */
+            font-family: 'Black Ops One', cursive; 
+            font-size: 22px; 
+            letter-spacing: 2px;
+            padding: 5px 30px; /* 加闊按鈕 */
+            
+            /* 強烈發光動畫 (呼吸燈) */
+            animation: readyPulse 0.8s infinite alternate;
+            
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        /* 呼吸燈動畫 Keyframes */
+        @keyframes readyPulse {
+            from {
+                transform: scale(1);
+                box-shadow: 0 0 10px var(--warning);
+                text-shadow: 0 0 5px var(--warning);
+                border-color: var(--warning);
+            }
+            to {
+                transform: scale(1.1); /* 放大 1.1 倍 */
+                box-shadow: 0 0 40px var(--warning), 0 0 20px var(--warning) inset; /*內外發光*/
+                text-shadow: 0 0 20px var(--warning);
+                border-color: #fff; /* 邊框閃白光 */
+            }
+        }
+/* --- 戰艦殘骸 (擊沉後顯示) - 改良紅光特效 --- */
+.enemy-ship-revealed {
+    position: absolute;
+    z-index: 10;
+    pointer-events: none;
+
+    /* CSS變數預設值 */
+    --ship-rotation: rotate(0deg);
+    --ship-translate: translate(0, 0);
+
+    /* 設定最終狀態：高能橙色戰損光暈 */
+    opacity: 0.9;
+    /* 使用橙色 (#f59e0b) 與 深橙色 (#d97706) 進行多層發光 */
+    filter: drop-shadow(0 0 5px #f59e0b) drop-shadow(0 0 15px #d97706);
+
+    /* 播放紅色變橙色的閃現動畫 */
+    animation: shipMaterializeOrange 0.5s ease-out forwards;
+}
+
+/* ★ 橫放船隻專用 class ★ */
+.enemy-ship-revealed.horizontal-ship {
+    transform-origin: center center;
+}
+
+/* ★ 禁用動畫 (已經播過一次) ★ */
+.enemy-ship-revealed.no-animation {
+    animation: none;
+    opacity: 0.9;
+    transform: var(--ship-translate) var(--ship-rotation) scale(1);
+}
+
+/* ★ 新動畫：橙色全息投影閃現效果 + Scale ★ */
+@keyframes shipMaterializeOrange {
+    0% {
+        opacity: 0;
+        transform: var(--ship-translate) var(--ship-rotation) scale(0.5);
+        /* 一開始超光的白橙閃光 */
+        filter: drop-shadow(0 0 0 #f59e0b) brightness(5) saturate(2);
+    }
+    50% {
+        opacity: 0.7;
+        transform: var(--ship-translate) var(--ship-rotation) scale(1.1);
+        filter: drop-shadow(0 0 8px #f59e0b) brightness(2) saturate(1.5);
+    }
+    100% {
+        opacity: 0.9;
+        transform: var(--ship-translate) var(--ship-rotation) scale(1);
+        /* 最終停留在強烈的橙色光暈 */
+        filter: drop-shadow(0 0 5px #f59e0b) drop-shadow(0 0 15px #d97706);
+    }
+}
+/* --- 敵軍艦隊狀態欄 --- */
+/* --- 升級版狀態面板 (Status Panel) --- */
+        #status-panel {
+            display: flex;
+            justify-content: space-between; /* 左右撐開 */
+            align-items: center;
+            background: rgba(15, 23, 42, 0.85); /* 深藍黑底 */
+            border: 1px solid var(--danger); /* 紅色邊框 */
+            border-radius: 8px;
+            margin-bottom: 10px;
+            padding: 5px 15px;
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.15) inset;
+            min-height: 50px;
+            position: relative;
+        }
+
+        /* 左邊：艦隊容器 */
+        #enemy-fleet-indicator {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-grow: 1; /* 佔據剩餘空間 */
+            justify-content: center;
+        }
+
+/* --- 2.0 版：真實形狀能量方塊 --- */
+        
+        /* 每一整隻船的容器 (改用 Grid 佈局) */
+        .enemy-ship-block {
+            display: grid; /* ★ 關鍵：用 Grid 來排形狀 */
+            gap: 2px;      /* 方塊之間的空隙 (整密少少) */
+            padding: 4px;
+            background: rgba(0, 0, 0, 0.4); 
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 4px;
+            /* 讓船隻在容器內垂直置中 */
+            align-self: center; 
+        }
+
+        /* 單個能量方塊 (實心 = 生存) */
+        .indicator-cell {
+            width: 8px;   /* ★ 改細少少，因為 2x4 船會好大舊 */
+            height: 8px;
+            background-color: var(--warning); 
+            border-radius: 1px; 
+            box-shadow: 0 0 5px var(--warning); 
+            transition: all 0.3s ease;
+        }
+
+        /* 單個能量方塊 (空心 = 被毀) */
+        .indicator-cell.cell-destroyed {
+            background-color: transparent; 
+            border: 1px solid var(--warning); 
+            box-shadow: none; 
+            opacity: 0.4; 
+        }
+
+        /* ★ 新增：透明佔位格 (用於 T型船的空位) ★ */
+        .indicator-cell.cell-empty {
+            background: transparent;
+            box-shadow: none;
+            border: none;
+        }
+
+        /* 中間：分隔線 */
+        .panel-divider {
+            width: 1px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            margin: 0 15px;
+        }
+
+        /* ★★★ 左邊：Energy 顯示 ★★★ */
+        #energy-display {
+            text-align: center;
+            min-width: 50px;
+        }
+
+        #energy-count {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 32px;
+            color: var(--warning);
+            text-shadow: 0 0 5px var(--warning), 0 0 15px rgba(245, 158, 11, 0.4);
+            line-height: 1;
+            letter-spacing: 1px;
+        }
+
+        /* 右邊：回合數 */
+        #turn-display {
+            text-align: center;
+            min-width: 50px;
+        }
+
+#turn-count {
+            /* 改用 Orbitron */
+            font-family: 'Orbitron', sans-serif;
+            /* 用粗體 (700) 增加份量，如果覺得太粗可以改番做 500 */
+            font-weight: 700; 
+            font-size: 32px; /* 字體稍微加大 */
+            color: var(--warning);
+            /* 精細化發光效果，令邊緣更銳利 */
+            text-shadow: 0 0 5px var(--warning), 0 0 15px rgba(245, 158, 11, 0.4);
+            line-height: 1;
+            letter-spacing: 1px;
+        }
+/* --- 手機/平板 響應式佈局 --- */
+    @media (max-width: 768px) {
+        /* 1. 將「左右佈局」改為「上下佈局」 */
+        .fleet-main-layout {
+            flex-direction: column !important; /* 垂直排列 */
+            align-items: center !important;
+        }
+
+        /* 2. 將側邊欄改為「橫向排列」並放在頂部 */
+#fleet-sidebar {
+        display: flex; /* ★ 必須加呢句！強制變回 Flex 橫排，覆蓋上面的 Grid ★ */
+        flex-direction: row !important;
+        width: 100%;
+        max-width: 380px;
+        overflow-x: hidden;
+        margin-bottom: 15px;
+        padding: 10px 5px;
+        gap: 8px;
+        min-width: auto;
+        justify-content: center;
+    }
+
+        /* 3. 調整每隻船仔的大小 (稍微縮細以適應橫排) */
+        .fleet-unit {
+            transform: scale(0.85); /* 縮細 85% */
+            margin: 0; 
+            flex-shrink: 0; /* 防止被壓扁 */
+        }
+        
+        /* 選中時的放大效果稍微收斂，費事爆位 */
+        .fleet-unit.current {
+            transform: scale(0.95); 
+        }
+    }
+/* --- 手機專用調整 (當螢幕闊度細過 600px) --- */
+    @media (max-width: 600px) { 
+    
+    /* 1. 將成個視窗推高 (解決：想放高少少 & 避開鍵盤) */
+    #launch-modal {
+        align-items: flex-start !important; /* 強制靠上 */
+        padding-top: 5vh !important; /* 由 15vh 改做 5vh，即係貼近頂部好多 */
+        overflow-y: hidden !important; /* 禁止滾動，固定螢幕 */
+    }
+
+    /* 2. 縮細個框 & 修正左右爆邊 (解決：左右CUT左 & 細少少) */
+    .modal-content {
+        /* ★ 關鍵：將 Padding 計入闊度內，防止 90% + Padding 爆出螢幕 */
+        box-sizing: border-box;
+
+        width: 85%; /* 稍微收窄，留番啲邊位呼吸 */
+        max-width: 350px; /* 限制最大闊度 */
+
+        padding: 15px 20px; /* 上下 15px, 左右 20px (原本係 30px，改薄啲) */
+
+        /* 移除底部margin，因為keyboard係fixed position */
+        margin-bottom: 0;
+    }
+
+    /* 3. 字體微調 (解決：個框太大) */
+    .modal-content #q-text {
+        font-size: 24px !important; /* 中文題目字改細 */
+        margin: 5px 0 !important;
+    }
+    
+    .modal-content .vocab-hint {
+        font-size: 28px !important; /* 英文填充題字改細 */
+        margin: 10px 0 !important;
+        letter-spacing: 3px !important;
+    }
+    
+    .modal-content div[style*="font-size: 22px"] {
+        font-size: 18px !important; /* ⚠️ DECRYPT CODE ⚠️ 標題改細 */
+    }
+}
+/* --- ★ iPad / 平板專用設定 (601px 至 1024px) ★ --- */
+@media (min-width: 601px) and (max-width: 1024px) {
+    
+    #launch-modal {
+        /* 1. 改為靠上對齊，避開 Keyboard */
+        align-items: flex-start !important; 
+        
+        /* 2. 唔使好似手機(5vh)咁貼頂，iPad 留番 15vh 靚仔啲 */
+        padding-top: 15vh !important; 
+        
+        overflow-y: auto; 
+    }
+
+    .modal-content {
+        /* 3. iPad 畫面大，個框可以闊少少，唔使縮到 350px 咁細 */
+        width: 70%; 
+        max-width: 500px; 
+        
+        /* 4. 底部留白，預留空間俾 Keyboard 彈起 */
+        margin-bottom: 20vh; 
+    }
+    
+    /* 字體可以用番 Desktop 大細，唔使縮細，因為 iPad 夠位顯示 */
+}
+        /* --- 等級選擇畫面樣式 --- */
+/* --- 等級選擇畫面樣式 --- */
+    .level-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 強制兩列 */
+        gap: 20px;
+        width: 90%;
+        max-width: 400px; /* 稍微縮窄一點，讓按鈕看起來更緊湊 */
+    }
+
+/* --- 等級/技能按鈕樣式 (只修改外觀，不影響排版) --- */
+.level-btn {
+    background: transparent !important; /* ★ 關鍵：透明底 */
+    border: 2px solid var(--primary);
+    color: #fff;
+    padding: 15px; 
+    font-family: 'Orbitron', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 5px var(--primary);
+    box-shadow: 0 0 10px rgba(14, 165, 233, 0.2);
+    
+    /* 確保文字置中 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 確保 Hover 唔會變實心色 (重要！) */
+.level-btn:hover {
+    background: transparent !important;
+    transform: scale(1.1); /* 輕微放大 */
+}
+
+/* ★★★ SKILL BUTTON STYLING (Isolated from level-btn) ★★★ */
+.skill-btn {
+    background: transparent !important;
+    border: 2px solid var(--primary);
+    color: #fff;
+    padding: 15px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 5px var(--primary);
+    box-shadow: 0 0 10px rgba(14, 165, 233, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.skill-btn:hover {
+    background: transparent !important;
+    transform: scale(1.1);
+}
+
+/* --- 個別顏色光暈 (Skill Buttons) --- */
+
+/* 1. READING (藍色光) */
+#skill-screen .skill-btn:nth-child(1):hover {
+    border-color: #0ea5e9;
+    color: #0ea5e9;
+    box-shadow: 0 0 20px #0ea5e9, inset 0 0 10px rgba(14, 165, 233, 0.3);
+    text-shadow: 0 0 10px #0ea5e9;
+}
+
+/* 2. LISTENING (綠色光) */
+#skill-screen .skill-btn:nth-child(2):hover {
+    border-color: #22c55e;
+    color: #22c55e;
+    box-shadow: 0 0 20px #22c55e, inset 0 0 10px rgba(34, 197, 94, 0.3);
+    text-shadow: 0 0 10px #22c55e;
+}
+
+/* 3. SPEAKING (紫色光) */
+#skill-screen .skill-btn:nth-child(3):hover {
+    border-color: #d946ef;
+    color: #d946ef;
+    box-shadow: 0 0 20px #d946ef, inset 0 0 10px rgba(217, 70, 239, 0.3);
+    text-shadow: 0 0 10px #d946ef;
+}
+
+/* --- 個別顏色光暈 (Legacy - kept for compatibility) --- */
+
+/* 1. READING (藍色光) */
+#skill-screen .level-btn:nth-child(1):hover {
+    border-color: #0ea5e9;
+    color: #0ea5e9;
+    box-shadow: 0 0 20px #0ea5e9, inset 0 0 10px rgba(14, 165, 233, 0.3);
+    text-shadow: 0 0 10px #0ea5e9;
+}
+
+/* 2. LISTENING (綠色光) */
+#skill-screen .level-btn:nth-child(2):hover {
+    border-color: #22c55e;
+    color: #22c55e;
+    box-shadow: 0 0 20px #22c55e, inset 0 0 10px rgba(34, 197, 94, 0.3);
+    text-shadow: 0 0 10px #22c55e;
+}
+
+/* 3. SPEAKING (紫色光) */
+#skill-screen .level-btn:nth-child(3):hover {
+    border-color: #d946ef;
+    color: #d946ef;
+    box-shadow: 0 0 20px #d946ef, inset 0 0 10px rgba(217, 70, 239, 0.3);
+    text-shadow: 0 0 10px #d946ef;
+}
+
+/* 2. 定義橙色呼吸動畫 (VS PLAYER 專用) */
+    @keyframes pulse-orange {
+        0% {
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.6);
+            border-color: rgba(245, 158, 11, 0.8);
+        }
+        100% {
+            box-shadow: 0 0 20px rgba(245, 158, 11, 1);
+            border-color: #fbbf24;
+        }
+    }
+
+    /* --- VS PLAYER 按鈕專屬樣式 --- */
+    .btn-pvp {
+        border-color: var(--warning) !important;
+        color: var(--warning) !important;
+        background: rgba(245, 158, 11, 0.1);
+
+        /* ★ 修正：改用統一的橙色呼吸動畫 ★ */
+        animation: pulse-orange 2s infinite alternate ease-in-out;
+    }
+
+    .btn-pvp:hover {
+        background: var(--warning) !important;
+        color: #fff !important;
+        transform: scale(1.1);
+        box-shadow: 0 0 15px var(--warning); /* ★ 減弱 hover 發光：30px -> 15px */
+        text-shadow: none;
+        animation: none;
+    }
+/* =========================================
+   ★★★ DECRYPTION TABLE / CODE LIST 完整樣式 (紫色版) ★★★
+   ========================================= */
+
+/* 1. 全螢幕背景視窗 */
+#vocab-screen {
+    display: none; /* 預設隱藏 */
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 400; /* 確保在最上層 */
+    background: rgba(5, 10, 20, 0.95); /* 深黑背景 */
+    backdrop-filter: blur(10px); /* 模糊特效 */
+    flex-direction: column;
+    align-items: center; /* 修正了之前的 align_items 錯誤 */
+    justify-content: center;
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* ★★★ RANKING SCREEN (White Theme) ★★★ */
+#ranking-screen {
+    display: none;
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 400;
+    background: rgba(5, 10, 20, 0.95);
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    animation: fadeIn 0.3s ease-out;
+    overflow: hidden;
+    padding: 40px 0; /* ★ 移除左右padding，避免偏移 */
+    box-sizing: border-box;
+}
+
+#ranking-screen .tech-title {
+    font-family: 'Black Ops One'; font-size: 40px; color: #ffffff;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.6); margin: 0; letter-spacing: 3px;
+}
+
+#ranking-screen .tech-subtitle {
+    font-family: 'Orbitron'; font-size: 12px; color: #a8a29e; letter-spacing: 5px; margin-top: 5px;
+}
+
+/* ★★★ REMOVED OLD RANKING-CONTAINER - Using new one below ★★★ */
+
+/* 2. 標題區域 */
+.tech-header { text-align: center; margin-bottom: 20px; }
+.tech-title {
+    font-family: 'Black Ops One'; font-size: 40px; color: #d946ef; /* 紫色標題 */
+    text-shadow: 0 0 20px rgba(217, 70, 239, 0.6); margin: 0; letter-spacing: 3px;
+}
+.tech-subtitle {
+    font-family: 'Orbitron'; font-size: 12px; color: #a8a29e; letter-spacing: 5px; margin-top: 5px;
+}
+
+/* 3. Level 選擇按鈕 (Tabs) */
+.vocab-tabs {
+    display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; justify-content: center;
+}
+.tab-btn {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid #475569;
+    color: #94a3b8;
+    padding: 8px 16px;
+    font-family: 'Orbitron'; font-weight: bold;
+    cursor: pointer; transition: all 0.2s;
+    clip-path: polygon(10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%); /* 切角造型 */
+}
+.tab-btn:hover { 
+    background: rgba(217, 70, 239, 0.2); color: #fff; border-color: #d946ef; /* Hover 紫色 */
+}
+.tab-btn.active {
+    background: #d946ef; color: #fff; border-color: #d946ef; /* 選中時紫色 */
+    box-shadow: 0 0 15px rgba(217, 70, 239, 0.5);
+}
+
+/* 4. 列表容器 (中間個框) */
+.vocab-container {
+    width: 90%; max-width: 600px;
+    height: 50vh; 
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid #d946ef; /* 紫色框 */
+    border-top: 10px solid #d946ef; 
+    border-radius: 5px;
+    display: flex; flex-direction: column;
+    box-shadow: 0 0 30px rgba(217, 70, 239, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+/* 列表標題列 (Target / Code) */
+.vocab-list-header {
+    display: flex; justify-content: space-between; padding: 10px 20px;
+    background: rgba(217, 70, 239, 0.1); border-bottom: 1px solid #d946ef;
+    font-family: 'Orbitron'; color: #e879f9; font-size: 14px; letter-spacing: 2px;
+}
+
+/* 列表內容捲動區 */
+.vocab-list-body {
+    flex: 1; overflow-y: auto; padding: 10px;
+    scrollbar-width: thin; scrollbar-color: #d946ef #0f172a;
+}
+/* 捲軸樣式 */
+.vocab-list-body::-webkit-scrollbar { width: 8px; }
+.vocab-list-body::-webkit-scrollbar-track { background: #0f172a; }
+.vocab-list-body::-webkit-scrollbar-thumb { background: #d946ef; border-radius: 4px; }
+
+/* 5. 單字行樣式 (優化版) */
+/* 5. 單字行樣式 (全行可點擊版) */
+.vocab-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    background: rgba(255, 255, 255, 0.02);
+    border-bottom: 1px solid rgba(217, 70, 239, 0.2); 
+    transition: all 0.2s;
+    
+    /* ★ 新增：變成手指，表示成行都撳得 ★ */
+    cursor: pointer;
+}
+
+/* Hover 時的效果 */
+.vocab-row:hover {
+    background: rgba(217, 70, 239, 0.15); /* 紫色背景 */
+    padding-left: 20px; /* 動態位移 */
+    box-shadow: inset 0 0 10px rgba(217, 70, 239, 0.1);
+    border-left: 3px solid #d946ef; /* 左邊加條光條 */
+}
+
+/* 點擊時的按鍵感 */
+.vocab-row:active {
+    transform: scale(0.98);
+    background: rgba(217, 70, 239, 0.3);
+}
+
+/* 中文 (Target) - 銀白色數據風格 */
+/* --- 方案 A：極致科技感 (幼身 + 強光) --- */
+/* --- 中文 (Target) - 繁體科技感專用 --- */
+.vocab-ch { 
+    /* 使用 Noto Sans TC */
+    font-family: 'Noto Sans TC', sans-serif;
+    
+    /* ★ 重點 1：用幼身字體 (300 = Light, 100 = Thin) ★ */
+    /* 建議用 300，太幼 (100) 喺手機可能會難睇 */
+    font-weight: 300; 
+    
+    font-size: 20px; 
+    
+    /* 銀白色，帶少少透明感，扮投影 */
+    color: rgba(248, 250, 252, 0.9);
+    
+    /* ★ 重點 2：拉闊字距 (科技感來源) ★ */
+    letter-spacing: 2px; 
+    
+    /* ★ 重點 3：雙層發光 (核心光 + 散光) ★ */
+    text-shadow: 
+        0 0 5px rgba(255, 255, 255, 0.8),   /* 內層高光 */
+        0 0 15px rgba(14, 165, 233, 0.5);   /* 外層藍光 (配合你個 Primary Color) */
+        
+    transition: all 0.3s;
+}
+
+/* Hover 時的效果：變實、變光 */
+.vocab-row:hover .vocab-ch {
+    font-weight: 500; /* Hover 時稍微加粗，增加互動感 */
+    color: #fff;
+    text-shadow: 
+        0 0 10px rgba(255, 255, 255, 1),
+        0 0 25px rgba(14, 165, 233, 0.8);
+    transform: scale(1.05);
+}
+
+/* 英文 (Code) - Orbitron 科技體 + 紫色發光 */
+.vocab-en { 
+    font-family: 'Orbitron', sans-serif; 
+    font-size: 18px; 
+    color: #e879f9; /* 淺紫色 */
+    font-weight: 700; 
+    letter-spacing: 1px;
+    text-shadow: 0 0 5px rgba(232, 121, 249, 0.6);
+}
+
+/* =========================================
+   ★★★ 最終修正版：紫色 Code List 按鈕 (跟足橙色 PvP 風格) ★★★
+   ========================================= */
+
+/* 3. 定義紫色呼吸動畫 (CODE LIST 專用) */
+@keyframes pulse-purple {
+    0% {
+        box-shadow: 0 0 10px rgba(217, 70, 239, 0.6);
+        border-color: rgba(217, 70, 239, 0.8);
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(217, 70, 239, 1);
+        border-color: #e879f9;
+    }
+}
+
+/* ★★★ White/Silver Ranking Button Animation ★★★ */
+@keyframes pulse-white {
+    0% {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+        border-color: rgba(255, 255, 255, 0.8);
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 1);
+        border-color: #ffffff;
+    }
+}
+
+/* --- CODE LIST 按鈕樣式 --- */
+.btn-code-list {
+    border-color: #d946ef !important;
+    color: #e879f9 !important;
+    background: rgba(217, 70, 239, 0.1);
+
+    /* ★ 修正：改用統一的紫色呼吸動畫 ★ */
+    animation: pulse-purple 2s infinite alternate ease-in-out;
+}
+
+.btn-code-list:hover {
+    background: #d946ef !important;
+    color: #ffffff !important;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px #d946ef; /* ★ 減弱 hover 發光：30px -> 15px */
+    text-shadow: none;
+    animation: none;
+}
+
+.btn-ranking {
+    border-color: #ffffff !important;
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.05);
+    animation: pulse-white 2s infinite alternate ease-in-out;
+}
+
+.btn-ranking:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5); /* ★ 減弱 hover 發光：30px -> 15px */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    animation: none;
+}
+
+/* ★★★ RANKING TAB STYLES ★★★ */
+.ranking-tabs {
+    display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; justify-content: center;
+}
+
+.ranking-tab {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid #475569;
+    color: #94a3b8;
+    padding: 10px 20px;
+    font-family: 'Orbitron'; font-weight: bold; font-size: 12px;
+    cursor: pointer; transition: all 0.2s;
+    clip-path: polygon(10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%);
+    letter-spacing: 1px;
+}
+
+.ranking-tab:hover {
+    background: rgba(255, 255, 255, 0.2); color: #fff; border-color: #ffffff;
+}
+
+.ranking-tab.active {
+    background: rgba(255, 255, 255, 0.9); color: #000000; border-color: #ffffff;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+/* ★★★ RANKING CONTAINER (Scrollable) ★★★ */
+/* ★★★ RANKING CONTAINER (High-Tech White Theme - 仿 Code List 風格) ★★★ */
+.ranking-container {
+    width: 90%;
+    max-width: 800px;
+    height: 60vh;
+    max-height: 500px;
+    background: rgba(0, 0, 0, 0.6); /* 深黑背景，跟 Code List 一樣 */
+    border: 2px solid #ffffff; /* 白色框 */
+    border-top: 10px solid #ffffff; /* 頂部粗白色條 */
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.2); /* 白色發光 */
+    position: relative;
+    overflow: hidden;
+    padding: 0; /* 移除 padding，讓內部元素自己控制 */
+}
+
+/* 標題列 (RANK / OPERATOR / STATS) */
+.ranking-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.1); /* 白色半透明背景 */
+    border-bottom: 1px solid #ffffff;
+    font-family: 'Orbitron';
+    color: #ffffff;
+    font-size: 14px;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+/* 內部列表區域 (可捲動) */
+#ranking-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
+    scrollbar-width: thin;
+    scrollbar-color: #ffffff #0f172a;
+}
+
+/* Webkit 捲軸樣式 */
+#ranking-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+#ranking-list::-webkit-scrollbar-track {
+    background: #0f172a;
+    border-radius: 4px;
+}
+
+#ranking-list::-webkit-scrollbar-thumb {
+    background: #ffffff; /* 白色捲軸 */
+    border-radius: 4px;
+}
+
+#ranking-list::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+/* --- AI 語音讀取中的特效 --- */
+@keyframes tech-speak-pulse {
+    0% { color: #e879f9; text-shadow: 0 0 5px #e879f9; }
+    50% { color: #fff; text-shadow: 0 0 20px #d946ef, 0 0 40px #d946ef; transform: scale(1.05); }
+    100% { color: #e879f9; text-shadow: 0 0 5px #e879f9; }
+}
+
+/* --- AI 語音讀取中的特效 (整行發光版) --- */
+@keyframes tech-row-pulse {
+    0% { border-left-color: #e879f9; background: rgba(232, 121, 249, 0.1); }
+    50% { border-left-color: #fff; background: rgba(232, 121, 249, 0.3); box-shadow: 0 0 20px rgba(232, 121, 249, 0.4); }
+    100% { border-left-color: #e879f9; background: rgba(232, 121, 249, 0.1); }
+}
+
+/* 當整行被加上 .speaking 時 */
+.vocab-row.speaking {
+    animation: tech-row-pulse 0.5s infinite alternate; /* 快速閃動 */
+    border-left: 5px solid #e879f9; /* 左邊加一條粗光條 */
+    background: rgba(232, 121, 249, 0.2); /* 整行背景變紫 */
+    transform: scale(1.02); /* 稍微放大一點點，增加動感 */
+}
+.vocab-search-container {
+    width: 90%;
+    max-width: 600px;
+    margin: 10px auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+#vocab-search-input {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid #0ea5e9; /* 藍色邊框 */
+    color: #0ea5e9;
+    padding: 10px 15px;
+    font-family: 'Orbitron', sans-serif; /* 用返科技字體 */
+    font-size: 16px;
+    letter-spacing: 1px;
+    outline: none;
+    border-radius: 4px;
+    transition: all 0.3s;
+    box-shadow: inset 0 0 10px rgba(14, 165, 233, 0.2);
+}
+
+#vocab-search-input::placeholder {
+    color: rgba(14, 165, 233, 0.5);
+}
+
+/* Focus 時變紫色，配合整體風格 */
+#vocab-search-input:focus {
+    border-color: #d946ef;
+    color: #d946ef;
+    box-shadow: 0 0 15px rgba(217, 70, 239, 0.4), inset 0 0 10px rgba(217, 70, 239, 0.2);
+}
+
+/* --- 搜尋框右邊的特效 (改做閃爍光標) --- */
+.search-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    
+    /* 畫一個長方形光標 */
+    width: 10px;
+    height: 20px;
+    background-color: #0ea5e9; /* 藍色 */
+    
+    /* 加強發光 */
+    box-shadow: 0 0 8px #0ea5e9;
+    
+    /* 讓它閃動，扮 Terminal */
+    animation: cursor-blink 1s infinite step-end;
+    
+    pointer-events: none; /* 確保點擊時不會擋住 */
+}
+
+/* 閃爍動畫 */
+@keyframes cursor-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+.game-footer {
+    position: absolute; /* 固定在 Start Screen 底部 */
+    bottom: 30px;
+    width: 100%;
+    text-align: center;
+    
+    font-family: 'Orbitron', sans-serif;
+    font-size: 12px;
+    color: #94a3b8; /* 灰藍色 */
+    letter-spacing: 3px; /* 拉闊字距 */
+    line-height: 1.6;
+    
+    z-index: 10;
+    pointer-events: none; /* 唔好阻住人撳其他嘢 */
+    
+    /* 微微呼吸燈效果 */
+    animation: footerPulse 3s infinite alternate;
+}
+
+/* 品牌名加光 */
+.game-footer .brand {
+    color: var(--primary); /* 青藍色 */
+    font-weight: bold;
+    text-shadow: 0 0 8px rgba(14, 165, 233, 0.5);
+}
+
+@keyframes footerPulse {
+    from { opacity: 0.6; text-shadow: 0 0 0px transparent; }
+    to { opacity: 1; text-shadow: 0 0 10px rgba(14, 165, 233, 0.3); }
+}
+
+/* 手機版調整 */
+@media (max-width: 500px) {
+    .game-footer {
+        font-size: 10px;
+        letter-spacing: 1px;
+        bottom: 20px;
+        width: 90%; /* 防止太闊出界 */
+    }
+}
+        html, body {
+    /* 鎖死橫向捲動 */
+    overflow-x: hidden; 
+    /* 確保高度佔滿，防止縮放造成嘅跳動 */
+    height: 100%;
+    width: 100%;
+    position: relative;
+    /* 防止手機瀏覽器嘅「下拉重新整理」或「左右滑動返回」干擾遊戲 */
+    overscroll-behavior: none; 
+}
+
+/* 針對遊戲主容器進行限制 */
+#game-ui, #start-screen, #vocab-screen {
+    width: 100vw;
+    overflow-x: hidden;
+}
+/* --- HUD 容器 & Cyberpunk Style --- */
+.hud-container {
+    margin: 20px 0;
+    position: relative;
+    width: 320px;
+    text-align: center;
+    perspective: 1000px;
+}
+
+/* Google 按鈕特效 */
+#google-login-btn {
+    position: relative;
+    z-index: 10000;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid #0ea5e9;
+    color: #0ea5e9;
+    padding: 12px 30px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: 0.3s;
+    box-shadow: 0 0 10px rgba(14, 165, 233, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#google-login-btn:hover {
+    background: rgba(14, 165, 233, 0.1);
+    box-shadow: 0 0 20px #0ea5e9;
+    text-shadow: 0 0 8px #0ea5e9;
+    letter-spacing: 4px;
+}
+/* ★★★ Apple 按鈕：銀白 Cyberpunk 風格 ★★★ */
+#apple-login-btn {
+    position: relative;
+    z-index: 10000;
+    background: rgba(0, 0, 0, 0.6); 
+    border: 1px solid #ffffff;      
+    color: #ffffff;                 
+    padding: 12px 30px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: 0.3s;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* 改成：白光暈 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 15px; /* 加少少距離，唔好貼住上面個掣 */
+}
+
+/* Hover 特效：字距拉開 + 強烈發光 */
+#apple-login-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 20px #ffffff;
+    text-shadow: 0 0 8px #ffffff; 
+    letter-spacing: 4px;
+}
+/* Profile Panel 動畫 */
+#user-profile-panel {
+    background: rgba(15, 23, 42, 0.4);
+    /* border-left: 2px solid #fbbf24; */
+    /* border-right: 2px solid #fbbf24; */
+    padding: 15px;
+    position: relative;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 15px rgba(6, 182, 212, 0.5), inset 0 0 20px rgba(6, 182, 212, 0.2);
+    animation: holoAppear 0.4s forwards, profile-glow-pulse 2s infinite alternate ease-in-out;
+}
+
+@keyframes profile-glow-pulse {
+    from { box-shadow: 0 0 15px rgba(6, 182, 212, 0.5), inset 0 0 20px rgba(6, 182, 212, 0.2); }
+    to { box-shadow: 0 0 25px rgba(6, 182, 212, 0.8), inset 0 0 35px rgba(6, 182, 212, 0.3); }
+}
+
+/* ★★★ Panel content wrapper - 初始隱藏 ★★★ */
+.panel-content-wrapper {
+    opacity: 0;
+    transform: scale(0.95);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@keyframes holoAppear {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* 裝飾角落 */
+.hud-corner-tl { position: absolute; top: -2px; left: -2px; width: 10px; height: 10px; border-top: 2px solid #0ea5e9; border-left: 2px solid #0ea5e9; }
+.hud-corner-br { position: absolute; bottom: -2px; right: -2px; width: 10px; height: 10px; border-bottom: 2px solid #0ea5e9; border-right: 2px solid #0ea5e9; }
+
+.profile-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 10px;
+}
+
+#hud-player-name {
+    font-family: 'Black Ops One';
+    font-size: 20px;
+    color: #fff;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+/* 隱藏主畫面上的鉛筆按鈕 */
+.edit-btn {
+    display: none !important; /* 強制隱藏 */
+}
+
+/* 讓 Call Sign 顯示得更威武 */
+#hud-player-name {
+    font-family: 'Black Ops One';
+    font-size: 18px;  /* ★ Match rank title size for alignment */
+    color: #fff;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(14, 165, 233, 0.8); /* 藍光 */
+    letter-spacing: 2px;
+    /* ★★★ Prevent text overflow and wrapping ★★★ */
+    max-width: 200px;  /* Allow up to ~12 characters with letter-spacing */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.logout-link {
+    background: none; border: none; color: #ff4444;
+    font-family: 'Orbitron', sans-serif; font-size: 10px;
+    letter-spacing: 2px; cursor: pointer; opacity: 0.7; transition: 0.3s;
+}
+.logout-link:hover { opacity: 1; text-shadow: 0 0 10px #ff4444; letter-spacing: 3px; }
+
+/* ★★★ EXP BAR STYLES ★★★ */
+.exp-bar-container {
+    margin: 15px 0;
+    padding: 0 5px;
+}
+
+.exp-bar-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.exp-bar-track {
+    position: relative;
+    width: 100%;
+    height: 2px;
+    background: rgba(100, 116, 139, 0.3);
+    overflow: visible;
+}
+
+.exp-bar-fill {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 3px;
+    background: #0ea5e9;
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow:
+        0 0 8px rgba(14, 165, 233, 0.8),
+        0 0 12px rgba(14, 165, 233, 0.5),
+        0 0 16px rgba(14, 165, 233, 0.3);
+    overflow: hidden;
+}
+
+.exp-bar-glow {
+    position: absolute;
+    left: -100%;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.6) 50%,
+        transparent 100%
+    );
+    animation: exp-shimmer 2s infinite;
+    pointer-events: none;
+}
+
+@keyframes exp-shimmer {
+    0% { left: -100%; }
+    100% { left: 200%; }
+}
+
+/* =========================================
+   ★★★ 新增：Cyberpunk Modal 動畫 ★★★
+   ========================================= */
+@keyframes holo-open {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) perspective(1000px) rotateX(30deg); /* 一開始細粒、訓低 */
+        filter: blur(20px); /* 勁矇 */
+    }
+    70% {
+         transform: scale(1.05) perspective(1000px) rotateX(-10deg); /* 彈過頭少少 */
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) perspective(1000px) rotateX(0deg); /* 定位、清晰 */
+        filter: blur(0);
+    }
+}
+/* =========================================
+   ★★★ 新增：Cyberpunk Modal 動畫 ★★★
+   ========================================= */
+@keyframes holo-open {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) perspective(1000px) rotateX(30deg); /* 一開始細粒、訓低 */
+        filter: blur(20px); /* 勁矇 */
+    }
+    70% {
+         transform: scale(1.05) perspective(1000px) rotateX(-10deg); /* 彈過頭少少 */
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) perspective(1000px) rotateX(0deg); /* 定位、清晰 */
+        filter: blur(0);
+    }
+}
+
+/* 用嚟套用動畫嘅 Class */
+.cyber-modal-box {
+    /* 使用上面的動畫，0.6秒完成，帶有彈性效果 */
+    animation: holo-open 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    
+    /* 基本發光設定 (藍色霓虹燈) */
+    border: 2px solid #00f0ff; /* 更光嘅藍色 */
+    box-shadow: 
+        0 0 20px rgba(0, 240, 255, 0.4), /* 內層光暈 */
+        0 0 60px rgba(0, 240, 255, 0.2), /* 外層大光暈 */
+        inset 0 0 30px rgba(0, 240, 255, 0.1); /* 內部發光 */
+    background: rgba(10, 20, 35, 0.95); /* 深色半透明背景 */
+    backdrop-filter: blur(10px); /* 背景磨砂玻璃效果 */
+}
+/* =========================================
+   ★★★ 手機版緊急修正 (MOBILE FIXES) ★★★
+   ========================================= */
+/* =========================================
+   ★★★ 手機版緊急修正 (KEYBOARD SAFE V2) ★★★
+   ========================================= */
+@media (max-width: 600px) {
+    
+    /* 1. 修正視窗位置：強制靠上 (避開鍵盤) */
+    #registration-modal {
+        align-items: flex-start !important; /* ★ 關鍵：由 center 改做 flex-start (靠頂) */
+        justify-content: center !important; /* 水平置中保持不變 */
+        
+        /* ★ 關鍵：頂部留 50px 空位，唔好貼死個邊，又夠高避開鍵盤 */
+        padding-top: 50px !important;       
+        padding-bottom: 20px !important;
+        
+        box-sizing: border-box;
+        overflow-y: auto; /* 萬一鍵盤真係太高，容許個畫面碌上去 */
+    }
+
+    /* 2. 修正個框寬度 */
+    #registration-modal .cyber-modal-box {
+        width: 90% !important;   
+        max-width: none !important; 
+        padding: 25px 20px !important; 
+        border-width: 1px !important;
+        margin-bottom: 50px; /* 底部留多啲位緩衝 */
+    }
+
+    /* 3. 字體縮細 */
+    #registration-modal .cyber-modal-box div[style*="font-size: 32px"] {
+        font-size: 24px !important; 
+        margin-bottom: 5px !important;
+    }
+    
+    #registration-modal .cyber-modal-box div[style*="font-size: 12px"] {
+        font-size: 10px !important;
+        letter-spacing: 1px !important;
+        margin-bottom: 20px !important;
+    }
+
+    /* 4. 輸入框與按鈕調整 */
+    #registration-modal input#reg-input {
+        font-size: 20px !important;
+        padding: 10px !important;
+        letter-spacing: 2px !important;
+    }
+
+    #registration-modal button {
+        padding: 12px !important;
+        font-size: 16px !important;
+    }
+}
+/* --- 登入鎖定遮罩 (Login Overlay) --- */
+#login-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    
+    /* ★ 改動：升到 20000，確保高過按鈕 (10000) */
+    z-index: 20000 !important; 
+    
+    background: rgba(0, 0, 0, 0.4); /* 輕微黑底，等個圈突出啲 */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    
+    display: none; /* 平時隱藏 */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+/* 加強文字光暈，因為無咗黑底，字要光啲先睇到 */
+.login-loading-text {
+    font-family: 'Orbitron', sans-serif;
+    color: #0ea5e9;
+    font-size: 16px;
+    letter-spacing: 3px;
+    margin-top: 20px;
+    animation: pulseText 1s infinite alternate;
+    text-shadow: 0 0 10px #0ea5e9; /* 加強發光 */
+    font-weight: bold;
+}
+
+.login-spinner {
+    width: 40px; height: 40px;
+    border: 4px solid rgba(14, 165, 233, 0.3);
+    border-top: 4px solid #0ea5e9;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+@keyframes pulseText { from { opacity: 0.6; } to { opacity: 1; } }
+/* =========================================
+   新增按鈕樣式修正 (BGM & EXIT)
+   ========================================= */
+
+/* --- BGM 按鈕專用設定 --- */
+#music-btn {
+    /* 確保平時背景透明 */
+    background: transparent !important;
+    /* 使用主題藍色 */
+    color: var(--primary);
+    border-color: var(--primary);
+    transition: all 0.2s ease;
+}
+
+/* BGM 按鈕：滑鼠指住 或 按落去 嘅效果 */
+#music-btn:hover,
+#music-btn:active {
+    /* 重點：背景保持透明，唔好變粉藍色 */
+    background: transparent !important;
+    /* 文字同邊框保持藍色 */
+    color: var(--primary) !important;
+    border-color: var(--primary) !important;
+    /* 加強藍色發光效果 */
+    box-shadow: 0 0 15px var(--primary), inset 0 0 5px var(--primary);
+}
+
+/* --- AUTO DEPLOY 按鈕專用設定 (same as BGM) --- */
+#auto-deploy-btn {
+    background: transparent !important;
+    color: var(--primary);
+    border-color: var(--primary);
+    transition: all 0.2s ease;
+}
+
+#auto-deploy-btn:hover,
+#auto-deploy-btn:active {
+    background: transparent !important;
+    color: var(--primary) !important;
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 15px var(--primary), inset 0 0 5px var(--primary);
+}
+
+
+/* --- EXIT 按鈕專用設定 --- */
+#game-exit-btn {
+    /* 確保平時背景透明 */
+    background: transparent !important;
+    /* 強制用紅色，確保統一 */
+    color: var(--danger) !important;
+    border-color: var(--danger) !important;
+    transition: all 0.2s ease;
+}
+
+/* EXIT 按鈕：滑鼠指住 或 按落去 嘅效果 */
+#game-exit-btn:hover,
+#game-exit-btn:active {
+    /* 重點：背景保持透明，唔好變色 */
+    background: transparent !important;
+    /* 文字同邊框保持紅色 */
+    color: var(--danger) !important;
+    border-color: var(--danger) !important;
+    /* 加強紅色發光效果 */
+    box-shadow: 0 0 15px var(--danger), inset 0 0 5px var(--danger);
+}
+
+
+/* =========================================
+   ★★★ CAROUSEL MENU (FINAL 完整整合版) ★★★
+   包含：Cyberpunk 箭咀 + 智能置中 + 手機版修正
+   ========================================= */
+
+/* 1. 外層容器 */
+.mode-carousel-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 800px;
+    position: relative;
+    margin-top: 20px;
+    animation: fadeIn 0.5s;
+    overflow: visible; /* ★ 允許發光效果顯示 */
+}
+
+/* 2. 捲動軌道 (智能置中設定) */
+.carousel-track {
+    display: flex;
+    gap: 20px;
+
+    overflow-x: auto;
+    overflow-y: visible; /* ★ 允許垂直方向發光效果顯示 */
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+
+    padding: 50px 30px;
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    /* 智能置中核心 */
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto;
+}
+.carousel-track::-webkit-scrollbar { display: none; }
+
+/* 3. 按鈕項目 */
+.carousel-item {
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+    width: 200px; height: 100px;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0; 
+}
+
+.mode-title { font-size: 20px; font-weight: bold; letter-spacing: 2px; }
+
+
+/* =========================================
+   ★★★ CAROUSEL ARROWS (完整修復版) ★★★
+   解決：箭嘴唔消失(配合JS)、唔發光、動畫太細、手機卡住
+   ========================================= */
+
+/* 1. 箭嘴容器 */
+.nav-arrow {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+    width: 60px; height: 100%; 
+    position: absolute; 
+    top: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: opacity 0.3s ease, visibility 0.3s; /* 加入 visibility 過渡 */
+    text-shadow: none; box-shadow: none; 
+    
+    /* 預設透明度 */
+    opacity: 0.6;
+}
+.nav-arrow.left { left: -60px; }
+.nav-arrow.right { right: -60px; }
+
+/* 2. 箭嘴圖案 (幾何形狀) */
+.arrow-shape {
+    width: 20px; height: 20px;
+    border-top: 3px solid #e2e8f0;    /* 加粗少少 */
+    border-right: 3px solid #e2e8f0;  /* 加粗少少 */
+    
+    /* 預設微微發光 */
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.5));
+    
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* 預設旋轉角度 */
+.nav-arrow.left .arrow-shape { transform: rotate(-135deg); }
+.nav-arrow.right .arrow-shape { transform: rotate(45deg); }
+
+/* 3. ★ 呼吸發光動畫 (解決唔發光 + 不明顯問題) ★ */
+@keyframes arrowPulseLeft {
+    0%, 100% { 
+        transform: rotate(-135deg) translate(0, 0);
+        filter: drop-shadow(0 0 2px rgba(255,255,255,0.3)); /* 暗 */
+    }
+    50% { 
+        transform: rotate(-135deg) translate(5px, -5px); /* 移動幅度加大 */
+        filter: drop-shadow(0 0 8px #00f0ff); /* ★ 發藍光！ ★ */
+        border-color: #fff;
+    }
+}
+@keyframes arrowPulseRight {
+    0%, 100% { 
+        transform: rotate(45deg) translate(0, 0);
+        filter: drop-shadow(0 0 2px rgba(255,255,255,0.3)); /* 暗 */
+    }
+    50% { 
+        transform: rotate(45deg) translate(5px, -5px); /* 移動幅度加大 */
+        filter: drop-shadow(0 0 8px #00f0ff); /* ★ 發藍光！ ★ */
+        border-color: #fff;
+    }
+}
+
+/* 套用動畫 */
+.nav-arrow.left .arrow-shape { animation: arrowPulseLeft 2s infinite ease-in-out; }
+.nav-arrow.right .arrow-shape { animation: arrowPulseRight 2s infinite ease-in-out; }
+
+
+/* 4. ★ Hover 互動特效 (只在電腦版生效，防止手機卡死) ★ */
+@media (hover: hover) {
+    .nav-arrow:hover { 
+        opacity: 1; 
+    }
+    
+    /* Hover 時暫停呼吸，直接變最光最亮 */
+    .nav-arrow.left:hover .arrow-shape {
+        border-color: #00f0ff; 
+        box-shadow: none; /* 讓 filter 做發光就夠 */
+        filter: drop-shadow(0 0 15px #00f0ff); /* 強力藍光 */
+        transform: rotate(-135deg) translate(5px, -5px) scale(1.1);
+        animation: none; /* 暫停動畫 */
+    }
+
+    .nav-arrow.right:hover .arrow-shape {
+        border-color: #00f0ff; 
+        box-shadow: none;
+        filter: drop-shadow(0 0 15px #00f0ff); /* 強力藍光 */
+        transform: rotate(45deg) translate(5px, -5px) scale(1.1);
+        animation: none; /* 暫停動畫 */
+    }
+}
+
+/* 5. Active 點擊特效 (修復：暫停動畫 + 強勁藍光) */
+.nav-arrow:active .arrow-shape {
+    /* 變回 Cyberpunk 藍色 */
+    border-color: #00f0ff; 
+    
+    /* 強力發光，確保就算手指遮住都睇到光暈 */
+    filter: drop-shadow(0 0 20px #00f0ff); 
+    
+    transition: 0.1s;
+    
+    /* ★★★ 關鍵修正：必須暫停呼吸動畫，否則 Active 發光會無效 ★★★ */
+    animation: none; 
+}
+
+/* 保持原本的方向與縮小設定 (無需更改) */
+.nav-arrow.left:active .arrow-shape { transform: scale(0.9) rotate(-135deg); }
+.nav-arrow.right:active .arrow-shape { transform: scale(0.9) rotate(45deg); }
+
+
+/* 6. 手機版響應式調整 */
+@media (max-width: 768px) {
+    .nav-arrow {
+        width: 40px; 
+        opacity: 0.8; /* 手機版預設光少少 */
+    }
+    /* 修正位置：確保在中間 */
+    .nav-arrow.left { left: 0; }
+    .nav-arrow.right { right: 0; }
+    
+    .arrow-shape { width: 15px; height: 15px; border-width: 3px; }
+    
+    /* 手機版可以保留動畫，因為這動畫現在有發光效果，比較吸睛 */
+    /* 如果覺得太花，可以取消下面註解來關閉動畫 */
+    /* .nav-arrow.left .arrow-shape, .nav-arrow.right .arrow-shape { animation: none; } */
+
+    /* Track 設定 */
+    .carousel-track {
+        padding: 20px 15%; 
+        justify-content: flex-start;
+        width: 100%; 
+        max-width: none;
+    }
+    .carousel-item {
+        width: 60vw; max-width: 250px; height: 90px; 
+    }
+}
+/* =========================================
+   ★★★ SPLASH SCREEN (TAP TO START) ★★★
+   ========================================= */
+#splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent; 
+    backdrop-filter: none; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; 
+    transition: opacity 0.5s;
+}
+
+.splash-content {
+    text-align: center;
+    animation: fadeIn 1s ease-out;
+}
+
+/* 閃爍文字特效 */
+.blink-text {
+    animation: blinker 1.5s linear infinite;
+    text-shadow: 0 0 10px #0ea5e9;
+}
+
+@keyframes blinker {
+    50% { opacity: 0; }
+}
+/* =========================================
+   ★★★ 強制修復 LOBBY & LEVEL & SKILL 畫面置中 ★★★
+   ========================================= */
+
+/* 1. 強制確保這三個畫面開啟時，一定是 Flex 模式 (修正 JS 寫錯 Block 的問題) */
+#level-screen[style*="display: block"],
+#lobby-screen[style*="display: block"],
+#skill-screen[style*="display: block"], /* ★ 加入了 SKILL SCREEN */
+#level-screen[style*="display: flex"],
+#lobby-screen[style*="display: flex"],
+#skill-screen[style*="display: flex"] { /* ★ 加入了 SKILL SCREEN */
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* 2. 確保畫面內的文字同標題都置中 */
+#level-screen, 
+#lobby-screen,
+#skill-screen { /* ★ 加入了 SKILL SCREEN */
+    text-align: center !important;
+}
+
+/* 3. 確保標題 H2 自己置中 */
+#level-screen h2, 
+#lobby-screen h2,
+#skill-screen h2 { /* ★ 加入了 SKILL SCREEN */
+    width: 100%;
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* 4. 確保 Level 按鈕容器置中 */
+.level-grid {
+    display: grid; 
+    margin: 0 auto !important; 
+    justify-content: center !important;
+}
+/* =========================================
+   ★★★ 系統按鈕群組 (BGM + EXIT 強制同行) ★★★
+   ========================================= */
+.sys-btn-group {
+    display: flex;
+    flex-direction: row; /* 強制橫向 */
+    gap: 10px; /* 按鈕之間的距離 */
+    align-items: center;
+    justify-content: center;
+}
+
+/* 手機版微調 */
+@media (max-width: 500px) {
+    .sys-btn-group {
+        width: 100%; /* 佔滿一行 */
+        margin-top: 5px;
+        margin-bottom: 5px; 
+    }
+    
+    /* 稍微縮細按鈕字體，確保手機畫面夠位放兩個掣 */
+    .sys-btn-group .btn {
+        padding: 5px 10px;
+        font-size: 12px; 
+        flex: 1; /* 令兩個掣平均分配闊度，更加整齊 */
+        text-align: center;
+        white-space: nowrap; /* 防止文字換行 */
+    }
+}
+.cell {
+    position: relative; /* 必須係 relative */
+    z-index: 1; /* 確保有點擊層級 */
+}
+
+/* 2. 綠色 (可以放置) - 使用 !important 強制覆蓋 */
+.cell.valid-hover { 
+    background-color: rgba(34, 197, 94, 0.5) !important; 
+    border-color: #22c55e !important;
+    box-shadow: 0 0 10px #22c55e inset;
+}
+
+/* 3. 紅色 (不能放置/重疊) - 使用 !important 強制覆蓋 */
+.cell.invalid-hover { 
+    background-color: rgba(239, 68, 68, 0.5) !important; 
+    border-color: #ef4444 !important;
+    box-shadow: 0 0 10px #ef4444 inset;
+}
+/* --- 2. 隨機閃爍星星樣式 (更新版：圓點 + 十字) --- */
+
+/* --- 2. 隨機閃爍星星樣式 (高級光影版) --- */
+
+.star-item {
+    position: absolute;
+    z-index: -1; 
+    pointer-events: none;
+    opacity: 0; /* 預設隱藏，靠動畫顯示 */
+    background: #fff; /* 星星核心顏色 */
+}
+
+/* 樣式 A: 圓點 (加強光暈，核心改細) */
+.star-dot {
+    border-radius: 50%;
+    /* 核心細，光暈大且散，造出「遠處發光」嘅感覺 */
+    box-shadow: 0 0 4px 1px rgba(255, 255, 255, 0.8), 
+                0 0 10px 2px rgba(255, 255, 255, 0.4); 
+}
+
+/* --- 優化版：十字星 (更柔和、更似光) --- */
+.star-cross {
+    /* 使用 80% 透明白，唔好用死白，中心會透少少 */
+    background: rgba(255, 255, 255, 0.8);
+    
+    /* 十字形狀 */
+    clip-path: polygon(50% 0%, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0% 50%, 40% 40%);
+    
+    /* ★ 加強光暈 (Glow)，令邊緣模糊化 */
+    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.9)) 
+            drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+}
+
+/* --- 優化版：閃爍動畫 (調低最高亮度) --- */
+@keyframes twinkleAnim {
+    0% { opacity: 0; transform: scale(0.3) rotate(0deg); }
+    /* ★ 關鍵：最高只去到 0.7，唔好去到 1 (太實色) */
+    50% { opacity: 0.7; transform: scale(1); } 
+    100% { opacity: 0; transform: scale(0.3) rotate(45deg); }
+}
+        
+/* --- 戰後回顧樣式 --- */
+.review-item {
+    display: grid;
+    grid-template-columns: 0.5fr 0.8fr 1.2fr 1.5fr; /* ★ 修正欄寬 */
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(71, 85, 105, 0.3);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px;
+    align-items: center;
+}
+
+/* ★ 新增：Code List 風格的中文字特效 ★ */
+.review-meaning {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 300; /* 幼身 */
+    font-size: 16px;  /* 稍微縮細以適應欄位 */
+    color: rgba(248, 250, 252, 0.9); /* 銀白 */
+    letter-spacing: 1px;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 15px rgba(14, 165, 233, 0.5); /* 藍白發光 */
+}
+
+.review-turn {
+    color: #fff; /* Turn: 白色 */
+    opacity: 0.7;
+}
+
+.review-user.correct {
+    color: var(--success); /* 答啱: 綠色 */
+    text-shadow: 0 0 5px rgba(34, 197, 94, 0.5);
+    text-transform: lowercase;
+}
+
+.review-user.wrong {
+    color: var(--danger); /* 答錯: 紅色 */
+    text-decoration: line-through; /* 加刪除線更清楚係錯 */
+    opacity: 0.9;
+}
+
+.review-answer {
+    color: #0ea5e9; /* 正確答案: 藍色 */
+    font-weight: bold;
+}
+
+/* 捲軸美化 */
+#review-list::-webkit-scrollbar {
+    width: 5px;
+}
+#review-list::-webkit-scrollbar-track {
+    background: #0f172a;
+}
+#review-list::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 3px;
+}
+/* --- 系統通知框 (優化版：置中 + 低調) --- */
+#tech-notification {
+    display: none; /* 預設隱藏 */
+    position: fixed;
+    bottom: 30px; /* 距離底部 30px */
+    left: 50%;
+    transform: translateX(-50%); /* ★ 關鍵：水平置中 */
+    
+    z-index: 9999; /* 最頂層 */
+    
+    /* 低調風格 */
+    background: rgba(0, 0, 0, 0.7); /* 70% 透明黑底 */
+    border: 1px solid var(--primary); /* 幼身藍邊 (唔好太粗) */
+    border-radius: 4px;
+    padding: 8px 20px;
+    
+    text-align: center;
+    backdrop-filter: blur(3px); /* 輕微磨砂 */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* 柔和陰影 */
+    pointer-events: none; /* 唔會阻住你撳後面啲野 */
+}
+
+/* 顯示時的狀態 */
+#tech-notification.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: slideUpFade 0.3s ease-out;
+}
+
+/* 標題 (SYSTEM MESSAGE) */
+#notif-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 10px; /* 細字 */
+    color: var(--primary);
+    letter-spacing: 2px;
+    margin-bottom: 2px;
+    opacity: 0.8;
+}
+
+/* 內容 (CONNECTION LOST...) */
+#notif-content {
+    font-family: 'Roboto Mono', monospace; /* 用等寬字體更有科技感 */
+    font-size: 12px;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* 裝飾掃描線 (可選，令佢型啲) */
+.scan-line {
+    width: 100%; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    margin-top: 5px;
+    opacity: 0.5;
+}
+
+/* 進場動畫 */
+@keyframes slideUpFade {
+    from { transform: translate(-50%, 20px); opacity: 0; }
+    to { transform: translate(-50%, 0); opacity: 1; }
+}
+/* =========================================
+   ★★★ 技能圖示 (PNG 圖片最終整合版) ★★★
+   ========================================= */
+
+/* 1. 通用樣式 (Mic & Speaker 共用設定) */
+.mic-btn, .cyber-speaker-btn {
+    width: 80px; 
+    height: 80px;
+    border-radius: 50%;
+    
+    /* 底色與邊框 */
+    background-color: rgba(217, 70, 239, 0.05); 
+    border: 1px solid rgba(217, 70, 239, 0.4);
+    
+    /* 排版 */
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    margin: 15px auto; /* 上下留位 */
+    cursor: pointer;
+    transition: all 0.2s ease;
+    
+    /* ★ 核心：圖片設定 ★ */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 65%; /* 控制圖片大細，唔好逼爆個圈 */
+
+    /* ★ 核心：發光效果 (針對圖片線條) ★ */
+    filter: drop-shadow(0 0 5px rgba(217, 70, 239, 0.8));
+    
+    z-index: 10;
+    position: relative;
+}
+
+/* 2. 分別指定圖片路徑 */
+.mic-btn {
+    background-image: url('mic_icon.png');
+}
+
+.cyber-speaker-btn {
+    background-image: url('speaker_icon.png');
+}
+
+/* ★★★ Small Speaker Button (32px for inline use) ★★★ */
+.cyber-speaker-btn-small {
+    width: 32px;
+    height: 32px;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+/* 3. Hover 效果 (滑鼠指埋去) */
+.mic-btn:hover, .cyber-speaker-btn:hover {
+    background-color: rgba(217, 70, 239, 0.15);
+    border-color: #d946ef;
+    transform: scale(1.05); /* 輕微放大 */
+    box-shadow: 0 0 15px rgba(217, 70, 239, 0.3); /* 外圈加少少光 */
+}
+
+/* 4. Active / Recording 效果 (撳落去 / 錄音中) */
+.mic-btn:active, .cyber-speaker-btn:active, .mic-btn.recording {
+    transform: scale(0.95); /* 縮細少少扮撳掣 */
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: #ffffff;
+    
+    /* 強烈發光：白光 + 紫光疊加 */
+    filter: drop-shadow(0 0 8px #ffffff) drop-shadow(0 0 20px #d946ef);
+}
+
+/* 5. 呼吸燈動畫 (錄音專用) */
+@keyframes mic-glow-pulse {
+    from { filter: drop-shadow(0 0 5px #d946ef); }
+    to { filter: drop-shadow(0 0 20px #d946ef) drop-shadow(0 0 5px #ffffff); }
+}
+
+.mic-btn.recording {
+    animation: mic-glow-pulse 1s infinite alternate ease-in-out;
+}
+
+/* 6. 句子與填空位 (Listening Mode) */
+.sentence-container { 
+    font-family: 'Orbitron', sans-serif; 
+    font-size: 16px; 
+    color: #ffffff; 
+    line-height: 1.6; 
+    margin-bottom: 20px; 
+    text-align: center;
+    opacity: 0.9;
+    letter-spacing: 1px;
+}
+
+/* 填空位：只留顏色字，唔要底線框，因為 generateSmartBlanks 會做 */
+.listening-blank {
+    color: var(--primary); 
+    font-weight: bold; 
+    font-size: 20px;
+    text-shadow: 0 0 10px var(--primary); 
+    padding: 0 5px; 
+    margin: 0 5px; 
+    letter-spacing: 2px;
+}
+/* --- 新增：修正 Skill 按鈕預設顏色 --- */
+#skill-screen .skill-btn:nth-child(2) {
+    border-color: #22c55e;
+    text-shadow: 0 0 5px #22c55e;
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.2);
+}
+#skill-screen .skill-btn:nth-child(3) {
+    border-color: #d946ef;
+    text-shadow: 0 0 5px #d946ef;
+    box-shadow: 0 0 10px rgba(217, 70, 239, 0.2);
+}
+
+/* --- Legacy: Keep old selectors for compatibility --- */
+#skill-screen .level-btn:nth-child(2) {
+    border-color: #22c55e;
+    text-shadow: 0 0 5px #22c55e;
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.2);
+}
+#skill-screen .level-btn:nth-child(3) {
+    border-color: #d946ef;
+    text-shadow: 0 0 5px #d946ef;
+    box-shadow: 0 0 10px rgba(217, 70, 239, 0.2);
+}
+
+/* --- Race Selection Buttons --- */
+.race-btn {
+    background: transparent;
+    border: 2px solid;
+    padding: 15px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.race-btn:not(.locked):hover {
+    transform: scale(1.05);
+    filter: brightness(1.3);
+}
+
+.race-btn.locked {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.race-btn.locked:hover {
+    transform: none;
+    filter: none;
+}
+
+#race-btn-vanguards {
+    text-shadow: 0 0 10px #ffffff;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+#race-btn-vanguards:not(.locked):hover {
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+#race-btn-aurelians {
+    text-shadow: 0 0 10px #EEE8AA;
+    box-shadow: 0 0 15px rgba(238, 232, 170, 0.3);
+}
+
+#race-btn-aurelians:not(.locked):hover {
+    box-shadow: 0 0 30px rgba(238, 232, 170, 0.6), inset 0 0 20px rgba(238, 232, 170, 0.1);
+}
+
+#race-btn-caustics {
+    text-shadow: 0 0 10px #c084fc;
+    box-shadow: 0 0 15px rgba(192, 132, 252, 0.3);
+}
+
+#race-btn-caustics:not(.locked):hover {
+    box-shadow: 0 0 30px rgba(192, 132, 252, 0.6), inset 0 0 20px rgba(192, 132, 252, 0.1);
+}
+/* --- 參考技能按鈕編寫的等級按鈕樣式 --- */
+
+#level-screen .level-btn {
+    background: transparent !important; /* 確保中間始終透明 */
+    border: 2px solid var(--primary); /* 使用主藍色邊框 */
+    color: #fff;
+    padding: 15px; 
+    font-family: 'Orbitron', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease; /* 平滑過渡效果 */
+    
+    /* 常駐發光：淡淡的藍色陰影與文字霓虹效果 */
+    text-shadow: 0 0 5px var(--primary);
+    box-shadow: 0 0 10px rgba(14, 165, 233, 0.2);
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 懸停效果 (Hover)：模仿 READING 按鈕的藍色強光 */
+#level-screen .level-btn:hover {
+    background: transparent !important; /* 懸停時保持透明 */
+    transform: scale(1.1); /* 輕微放大 */
+    
+    /* 加強邊框與文字顏色 */
+    border-color: #0ea5e9;
+    color: #0ea5e9;
+    
+    /* 強力藍色外發光 + 內發光 (模仿技能按鈕核心寫法) */
+    box-shadow: 0 0 20px #0ea5e9, inset 0 0 10px rgba(14, 165, 233, 0.3);
+    text-shadow: 0 0 10px #0ea5e9;
+}
+
+/* 點擊效果 (Active) */
+#level-screen .level-btn:active {
+    transform: scale(0.95); /* 點擊時縮小增加按壓感 */
+    transition: all 0.1s;
+}
+/* =========================================
+   ★★★ TARGET LOCK SYSTEM (座標鎖定特效) ★★★
+   ========================================= */
+
+/* 1. 鎖定線與框的容器 (會動態加落去 enemy-grid) */
+.target-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none; /* 確保唔會阻住點擊 */
+    z-index: 50;
+    overflow: hidden; /* 防止線條飛出棋盤 */
+    border-radius: 12px; /* 跟番棋盤圓角 */
+}
+
+/* 2. 橫線 (Horizontal Line) */
+.aim-line-h {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--warning), transparent); /* 橙色漸變線 */
+    box-shadow: 0 0 8px var(--warning);
+    opacity: 0;
+    animation: scanH calc(var(--anim-duration) * 0.6) cubic-bezier(0.2, 0.8, 0.2, 1) forwards !important;
+}
+
+/* 3. 直線 (Vertical Line) */
+.aim-line-v {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, var(--warning), transparent);
+    box-shadow: 0 0 8px var(--warning);
+    opacity: 0;
+    animation: scanV calc(var(--anim-duration) * 0.6) cubic-bezier(0.2, 0.8, 0.2, 1) forwards !important;
+    
+}
+
+/* 4. 鎖定框 (Reticle) - 圓形狙擊鏡版 */
+.aim-reticle {
+    animation: lockOn calc(var(--anim-duration) - 0.1s) cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards !important;
+    position: absolute;
+    /* 變成圓形 */
+    border-radius: 50%; 
+    border: 2px solid var(--warning);
+    
+    /* 發光效果 */
+    box-shadow: 0 0 15px var(--warning), inset 0 0 20px rgba(245, 158, 11, 0.2);
+    opacity: 0;
+    
+    /* ★ 狙擊鏡細節：中心點 + 十字刻度 ★ */
+    background: 
+        /* 中心準心點 */
+        radial-gradient(circle, var(--warning) 2px, transparent 2.5px),
+        /* 垂直刻度線 (淡淡的) */
+        linear-gradient(to right, transparent 49%, var(--warning) 50%, transparent 51%),
+        /* 水平刻度線 (淡淡的) */
+        linear-gradient(to bottom, transparent 49%, var(--warning) 50%, transparent 51%),
+        /* 整體底色 */
+        rgba(245, 158, 11, 0.05);
+        
+    /* 調整刻度線的大小，只顯示在中間部分，唔好畫滿成個圓 */
+    background-size: 100% 100%, 10px 100%, 100% 10px, 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* 5. 動畫 Keyframes */
+
+/* 橫線掃描：由上而下衝落去目標位置 */
+@keyframes scanH {
+    0% { top: 0; opacity: 0; }
+    20% { opacity: 1; }
+    100% { top: var(--target-y); opacity: 0.5; }
+}
+
+/* 直線掃描：由左而右衝過去目標位置 */
+@keyframes scanV {
+    0% { left: 0; opacity: 0; }
+    20% { opacity: 1; }
+    100% { left: var(--target-x); opacity: 0.5; }
+}
+
+/* 鎖定框：放大縮細 (Lock-on) */
+@keyframes lockOn {
+    0% { transform: scale(2) rotate(45deg); opacity: 0; }
+    50% { opacity: 1; }
+    80% { transform: scale(0.9); } /* 縮過頭 */
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+/* 右上角齒輪按鈕 */
+#main-settings-btn {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    width: 40px;
+    height: 40px;
+    opacity: 0.4; /* 半透明效果 */
+    cursor: pointer;
+    z-index: 20000;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 0 5px var(--primary));
+}
+
+#main-settings-btn:hover {
+    opacity: 1; /* 碰觸時變亮 */
+    transform: rotate(90deg) scale(1.1);
+    filter: drop-shadow(0 0 15px var(--primary)); /* Hover 時發光 */
+}
+
+/* 左上角 Supplies 顯示 */
+#coins-display {
+    position: fixed;
+    top: 25px;
+    left: 25px;
+    z-index: 20000;
+    display: none;
+    font-family: 'Orbitron', sans-serif;
+}
+
+#coins-display .coins-amount {
+    color: #e5e7eb;
+    font-size: 12px;
+    font-weight: normal;
+    letter-spacing: 0.5px;
+    opacity: 0.8;
+    text-shadow: 0 0 8px rgba(229, 231, 235, 0.6), 0 0 12px rgba(229, 231, 235, 0.4);
+}
+
+/* 設定容器背景與磨砂玻璃 */
+.cyber-settings-box {
+    background: rgba(10, 20, 35, 0.95);
+    border: 1px solid var(--primary);
+    box-shadow: 0 0 30px rgba(0, 162, 255, 0.2), inset 0 0 15px rgba(0, 162, 255, 0.1);
+    padding: 35px;
+    text-align: center;
+    border-radius: 4px;
+    max-width: 350px;
+    width: calc(100% - 40px); /* ★ 左右各留 20px 空間 */
+    margin: 0 20px; /* ★ 確保左右有空間 */
+    position: relative;
+    backdrop-filter: blur(10px);
+    animation: holo-open 0.4s ease-out forwards;
+}
+
+.setting-item {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.setting-item label {
+    display: block;
+    color: var(--primary);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    opacity: 0.8;
+}
+
+/* 高科技 Slider */
+.setting-item input[type=range] {
+    width: 100%;
+    height: 4px;
+    background: rgba(14, 165, 233, 0.2);
+    outline: none;
+    accent-color: var(--primary);
+    cursor: pointer;
+}
+
+/* ★★★ VIRTUAL KEYBOARD STYLES ★★★ */
+#virtual-keyboard {
+    font-family: 'Orbitron', monospace;
+}
+
+.kb-row {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 5px;
+}
+
+/* Row 3: Z-M - left offset for trapezoid effect (Z under S) */
+.kb-row:nth-child(3) {
+    padding-left: 40px;
+}
+
+.kb-key {
+    min-width: 35px;
+    height: 45px;
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.15), rgba(6, 182, 212, 0.1));
+    border: 1px solid rgba(14, 165, 233, 0.4);
+    border-radius: 4px;
+    color: #0ea5e9;
+    font-family: 'Orbitron', monospace;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    box-shadow: 0 2px 8px rgba(14, 165, 233, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    text-shadow: 0 0 5px rgba(14, 165, 233, 0.5);
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.kb-key:active {
+    transform: translateY(2px) scale(0.95);
+    box-shadow: 0 1px 4px rgba(14, 165, 233, 0.5), inset 0 2px 12px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.6), rgba(6, 182, 212, 0.5));
+    border-color: rgba(14, 165, 233, 1);
+    color: #fff;
+    text-shadow: 0 0 10px rgba(14, 165, 233, 1);
+}
+
+.kb-key.kb-active {
+    transform: translateY(2px) scale(0.95);
+    box-shadow: 0 1px 4px rgba(14, 165, 233, 0.5), inset 0 2px 12px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.6), rgba(6, 182, 212, 0.5));
+    border-color: rgba(14, 165, 233, 1);
+    color: #fff;
+    text-shadow: 0 0 10px rgba(14, 165, 233, 1);
+}
+
+.kb-key:hover {
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.25), rgba(6, 182, 212, 0.15));
+    border-color: rgba(14, 165, 233, 0.6);
+    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.kb-backspace {
+    min-width: 60px;
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(220, 38, 38, 0.1));
+    border-color: rgba(239, 68, 68, 0.4);
+    color: #ef4444;
+    text-shadow: 0 0 5px rgba(239, 68, 68, 0.5);
+}
+
+.kb-backspace:active {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.6), rgba(220, 38, 38, 0.5));
+    border-color: rgba(239, 68, 68, 1);
+    color: #fff;
+    text-shadow: 0 0 10px rgba(239, 68, 68, 1);
+}
+
+.kb-backspace.kb-active {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.6), rgba(220, 38, 38, 0.5));
+    border-color: rgba(239, 68, 68, 1);
+    color: #fff;
+    text-shadow: 0 0 10px rgba(239, 68, 68, 1);
+}
+
+.kb-space {
+    flex: 1;
+    min-width: 150px;
+    background: linear-gradient(135deg, rgba(148, 163, 184, 0.15), rgba(100, 116, 139, 0.1));
+    border-color: rgba(148, 163, 184, 0.4);
+    color: #94a3b8;
+    text-shadow: 0 0 5px rgba(148, 163, 184, 0.5);
+}
+
+.kb-space:active {
+    background: linear-gradient(135deg, rgba(148, 163, 184, 0.6), rgba(100, 116, 139, 0.5));
+    border-color: rgba(148, 163, 184, 1);
+    color: #fff;
+    text-shadow: 0 0 10px rgba(148, 163, 184, 1);
+}
+
+.kb-space.kb-active {
+    background: linear-gradient(135deg, rgba(148, 163, 184, 0.6), rgba(100, 116, 139, 0.5));
+    border-color: rgba(148, 163, 184, 1);
+    color: #fff;
+    text-shadow: 0 0 10px rgba(148, 163, 184, 1);
+}
+
+.kb-enter {
+    min-width: 80px;
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(22, 163, 74, 0.1));
+    border-color: rgba(34, 197, 94, 0.4);
+    color: #22c55e;
+    text-shadow: 0 0 5px rgba(34, 197, 94, 0.5);
+    font-size: 14px;
+}
+
+.kb-enter:active {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.6), rgba(22, 163, 74, 0.5));
+    border-color: rgba(34, 197, 94, 1);
+    color: #fff;
+    text-shadow: 0 0 10px rgba(34, 197, 94, 1);
+}
+
+.kb-enter.kb-active {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.6), rgba(22, 163, 74, 0.5));
+    border-color: rgba(34, 197, 94, 1);
+    color: #fff;
+    text-shadow: 0 0 10px rgba(34, 197, 94, 1);
+}
+
+/* ★★★ AURELIANS THEME: Golden keyboard ★★★ */
+#virtual-keyboard.kb-aurelians .kb-key {
+    background: linear-gradient(135deg, rgba(250, 250, 210, 0.25), rgba(238, 232, 170, 0.15));
+    border: 1px solid rgba(250, 250, 210, 0.5);
+    color: #FAFAD2;
+    text-shadow: 0 0 5px rgba(250, 250, 210, 0.6);
+    box-shadow: 0 2px 8px rgba(250, 250, 210, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+#virtual-keyboard.kb-aurelians .kb-key:active {
+    background: linear-gradient(135deg, rgba(250, 250, 210, 0.7), rgba(238, 232, 170, 0.6));
+    border-color: rgba(250, 250, 210, 1);
+    color: #fff;
+    text-shadow: 0 0 10px rgba(250, 250, 210, 1);
+}
+
+#virtual-keyboard.kb-aurelians .kb-key.kb-active {
+    background: linear-gradient(135deg, rgba(250, 250, 210, 0.7), rgba(238, 232, 170, 0.6));
+    border-color: rgba(250, 250, 210, 1);
+    color: #fff;
+    text-shadow: 0 0 10px rgba(250, 250, 210, 1);
+}
+
+#virtual-keyboard.kb-aurelians .kb-key:hover {
+    background: linear-gradient(135deg, rgba(250, 250, 210, 0.35), rgba(238, 232, 170, 0.25));
+    border-color: rgba(250, 250, 210, 0.7);
+    box-shadow: 0 4px 12px rgba(250, 250, 210, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+#virtual-keyboard.kb-aurelians .kb-backspace {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(220, 38, 38, 0.1));
+    border-color: rgba(239, 68, 68, 0.4);
+    color: #ef4444;
+    text-shadow: 0 0 5px rgba(239, 68, 68, 0.5);
+}
+
+#virtual-keyboard.kb-aurelians .kb-backspace:active {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.6), rgba(220, 38, 38, 0.5));
+    border-color: rgba(239, 68, 68, 1);
+    color: #fff;
+    text-shadow: 0 0 10px rgba(239, 68, 68, 1);
+}
+
+#virtual-keyboard.kb-aurelians .kb-backspace.kb-active {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.6), rgba(220, 38, 38, 0.5));
+    border-color: rgba(239, 68, 68, 1);
+    color: #fff;
+    text-shadow: 0 0 10px rgba(239, 68, 68, 1);
+}
+
+#virtual-keyboard.kb-aurelians .kb-space {
+    background: linear-gradient(135deg, rgba(250, 250, 210, 0.2), rgba(238, 232, 170, 0.1));
+    border-color: rgba(250, 250, 210, 0.4);
+    color: #FAFAD2;
+    text-shadow: 0 0 5px rgba(250, 250, 210, 0.5);
+}
+
+#virtual-keyboard.kb-aurelians .kb-space:active {
+    background: linear-gradient(135deg, rgba(250, 250, 210, 0.6), rgba(238, 232, 170, 0.5));
+    border-color: rgba(250, 250, 210, 1);
+    color: #fff;
+    text-shadow: 0 0 10px rgba(250, 250, 210, 1);
+}
+
+#virtual-keyboard.kb-aurelians .kb-space.kb-active {
+    background: linear-gradient(135deg, rgba(250, 250, 210, 0.6), rgba(238, 232, 170, 0.5));
+    border-color: rgba(250, 250, 210, 1);
+    color: #fff;
+    text-shadow: 0 0 10px rgba(250, 250, 210, 1);
+}
+
+#virtual-keyboard.kb-aurelians .kb-enter {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(34, 211, 238, 0.1));
+    border-color: rgba(6, 182, 212, 0.4);
+    color: #06b6d4;
+    text-shadow: 0 0 5px rgba(6, 182, 212, 0.5);
+}
+
+#virtual-keyboard.kb-aurelians .kb-enter:active {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.6), rgba(34, 211, 238, 0.5));
+    border-color: rgba(6, 182, 212, 1);
+    color: #fff;
+    text-shadow: 0 0 10px rgba(6, 182, 212, 1);
+}
+
+#virtual-keyboard.kb-aurelians .kb-enter.kb-active {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.6), rgba(34, 211, 238, 0.5));
+    border-color: rgba(6, 182, 212, 1);
+    color: #fff;
+    text-shadow: 0 0 10px rgba(6, 182, 212, 1);
+}
+
+/* ★★★ TABLET-ONLY: 只加大按鈕，唔改 layout ★★★ */
+#virtual-keyboard.kb-tablet-size .kb-key {
+    min-width: 6.8vw;
+    height: 3.4vw;
+    font-size: 2.4vw;
+    font-weight: 500;
+}
+
+#virtual-keyboard.kb-tablet-size .kb-backspace {
+    min-width: 10.4vw;
+    height: 3.4vw;
+    font-size: 2.8vw;
+    font-weight: 500;
+}
+
+#virtual-keyboard.kb-tablet-size .kb-space {
+    min-width: 28vw;
+    height: 3.4vw;
+    font-weight: 500;
+}
+
+#virtual-keyboard.kb-tablet-size .kb-enter {
+    min-width: 13.6vw;
+    height: 3.4vw;
+    font-size: 2.1vw;
+    font-weight: 500;
+}
+
+/* ★★★ AURELIANS QUIZ THEME: Golden UI with Cyan accents ★★★ */
+/* Apply to launch modal when player uses Aurelians */
+#launch-modal.aurelians-theme .modal-content {
+    border: 2px solid #06b6d4;
+    box-shadow: 0 0 60px rgba(6, 182, 212, 0.6);
+}
+
+#launch-modal.aurelians-theme .vocab-hint {
+    color: #FAFAD2;
+    text-shadow: 0 0 10px #FAFAD2;
+}
+
+#launch-modal.aurelians-theme #q-display {
+    color: #FAFAD2 !important;
+}
+
+#launch-modal.aurelians-theme #timer-bar {
+    background: linear-gradient(90deg, #06b6d4, #22d3ee);
+}
+
+#launch-modal.aurelians-theme #msg-area {
+    color: #06b6d4 !important;
+}
+
+#launch-modal.aurelians-theme #hidden-input {
+    color: #FAFAD2;
+}
+
+/* DECRYPT CODE title - change to cyan */
+#launch-modal.aurelians-theme .modal-content > div[style*="var(--danger)"] {
+    color: #06b6d4 !important;
+}
+
+/* Listening mode speaker button */
+#launch-modal.aurelians-theme .cyber-speaker-btn {
+    border-color: #06b6d4;
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.4);
+}
+
+/* Sentence container with blanks */
+#launch-modal.aurelians-theme .listening-blank {
+    color: #FAFAD2;
+}
+
+/* Matrix effect canvas (if needed) */
+#launch-modal.aurelians-theme #matrix-canvas {
+    opacity: 0.3;
+}
+
+/* Player input letters - change all spans inside q-display to golden */
+#launch-modal.aurelians-theme #q-display span {
+    color: #FAFAD2 !important;
+}
+
+/* Additional text elements - "Translate to English:" */
+#launch-modal.aurelians-theme .modal-content > div[style*="color: #94a3b8"] {
+    color: #FAFAD2 !important;
+}
+
+/* "TYPE TO DECRYPT // ENTER TO FIRE" */
+#launch-modal.aurelians-theme .modal-content > div[style*="color: #64748b"] {
+    color: #FAFAD2 !important;
+}
+
+/* ★★★ SCREEN SHAKE ANIMATIONS ★★★ */
+@keyframes screenShakeHit {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-3px, 2px); }
+    20% { transform: translate(3px, -2px); }
+    30% { transform: translate(-2px, 3px); }
+    40% { transform: translate(2px, -3px); }
+    50% { transform: translate(-3px, 2px); }
+    60% { transform: translate(3px, -2px); }
+    70% { transform: translate(-2px, 1px); }
+    80% { transform: translate(2px, -1px); }
+    90% { transform: translate(-1px, 1px); }
+}
+
+@keyframes screenShakeSunk {
+    0%, 100% { transform: translate(0, 0); }
+    5% { transform: translate(-8px, 5px); }
+    10% { transform: translate(8px, -5px); }
+    15% { transform: translate(-7px, 6px); }
+    20% { transform: translate(7px, -6px); }
+    25% { transform: translate(-6px, 5px); }
+    30% { transform: translate(6px, -5px); }
+    35% { transform: translate(-5px, 4px); }
+    40% { transform: translate(5px, -4px); }
+    45% { transform: translate(-4px, 3px); }
+    50% { transform: translate(4px, -3px); }
+    55% { transform: translate(-3px, 2px); }
+    60% { transform: translate(3px, -2px); }
+    65% { transform: translate(-2px, 2px); }
+    70% { transform: translate(2px, -2px); }
+    75% { transform: translate(-2px, 1px); }
+    80% { transform: translate(2px, -1px); }
+    85% { transform: translate(-1px, 1px); }
+    90% { transform: translate(1px, -1px); }
+    95% { transform: translate(-1px, 0px); }
+}
+
+.screen-shake-hit {
+    animation: screenShakeHit 0.4s ease-in-out;
+}
+
+.screen-shake-sunk {
+    animation: screenShakeSunk 0.8s ease-in-out;
+}
