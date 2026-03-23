@@ -1,0 +1,307 @@
+let currentRankingTab = 'total-xp';
+
+function closeVocabScreen() {
+    playSound('delete-sfx');
+    document.getElementById('vocab-screen').style.display = 'none';
+    document.getElementById('start-screen').style.display = 'flex';
+
+    const suppliesDisplay = document.getElementById('coins-display');
+    if (suppliesDisplay) {
+        suppliesDisplay.style.display = 'block';
+        updateSuppliesDisplay();
+    }
+}
+
+function openRankingScreen() {
+    playSound('deploy-sfx');
+
+    const suppliesDisplay = document.getElementById('coins-display');
+    if (suppliesDisplay) {
+        suppliesDisplay.style.display = 'none';
+    }
+
+    document.getElementById('start-screen').style.display = 'none';
+    document.getElementById('ranking-screen').style.display = 'flex';
+    currentRankingTab = 'total-xp';
+    switchRankingTab('total-xp');
+}
+
+function closeRankingScreen() {
+    playSound('delete-sfx');
+    document.getElementById('ranking-screen').style.display = 'none';
+    document.getElementById('start-screen').style.display = 'flex';
+
+    const suppliesDisplay = document.getElementById('coins-display');
+    if (suppliesDisplay) {
+        suppliesDisplay.style.display = 'block';
+        updateSuppliesDisplay();
+    }
+}
+
+function switchRankingTab(tabName) {
+    currentRankingTab = tabName;
+
+    document.getElementById('tab-total-xp').classList.toggle('active', tabName === 'total-xp');
+    document.getElementById('tab-pvp-winrate').classList.toggle('active', tabName === 'pvp-winrate');
+
+    if (tabName === 'total-xp') {
+        loadTotalXPRanking();
+    } else {
+        loadPVPWinRateRanking();
+    }
+}
+
+async function loadTotalXPRanking() {
+    const rankingList = document.getElementById('ranking-list');
+    if (!rankingList) return;
+
+    rankingList.innerHTML = '<div style="text-align: center; color: #64748b; padding: 40px; font-family: \'Orbitron\'; font-size: 12px;">LOADING RANKING DATA...</div>';
+
+    try {
+        const { ref, get } = window.firebaseModules;
+        const usersRef = ref(window.db, 'users');
+        const snapshot = await get(usersRef);
+        const users = snapshot.val();
+
+        if (!users) {
+            rankingList.innerHTML = '<div style="text-align: center; color: #64748b; padding: 40px; font-family: \'Orbitron\'; font-size: 12px;">NO RANKING DATA AVAILABLE</div>';
+            return;
+        }
+
+        const userArray = Object.keys(users).map(uid => ({
+            uid,
+            name: users[uid].name || users[uid].displayName || 'UNKNOWN',
+            totalXP: users[uid].xp || 0
+        }));
+
+        userArray.sort((a, b) => b.totalXP - a.totalXP);
+
+        const top100 = userArray.slice(0, 100);
+
+        let html = '';
+        top100.forEach((user, index) => {
+            const rank = index + 1;
+            const rankData = getRankForXP(user.totalXP);
+            const isCurrentUser = user.uid === myPlayerId;
+            const iconColor = getIconColor(index);
+            const iconPath = `ranking_icon/${iconColor}/${rankData.iconFile}`;
+
+            let rankColor = '#94a3b8';
+            if (index === 0) rankColor = '#fbbf24';
+            else if (index >= 1 && index <= 2) rankColor = '#c0c0c0';
+            else if (index >= 3 && index <= 9) rankColor = '#cd7f32';
+
+            html += `
+                <div class="ranking-item" style="display: flex; align-items: center; justify-content: space-between; padding: 12px 15px; background: ${isCurrentUser ? 'rgba(255, 255, 255, 0.1)' : 'rgba(15, 23, 42, 0.5)'}; border: 1px solid ${isCurrentUser ? 'rgba(255, 255, 255, 0.4)' : 'rgba(100, 116, 139, 0.2)'}; border-radius: 3px; opacity: 0;">
+                    <div style="display: flex; align-items: center; gap: 15px; flex: 1;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div style="font-family: 'Black Ops One'; font-size: 16px; color: ${rankColor}; min-width: 50px; text-align: center;">
+                                #${rank}
+                            </div>
+                            <img src="${iconPath}" style="width: 24px; height: 24px; vertical-align: middle;" onerror="this.style.display='none'">
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="font-family: 'Orbitron'; font-size: 14px; color: ${isCurrentUser ? '#ffffff' : '#e2e8f0'}; font-weight: ${isCurrentUser ? 'bold' : 'normal'};">
+                                ${user.name} ${isCurrentUser ? '(YOU)' : ''}
+                            </div>
+                            <div style="font-size: 10px; color: #94a3b8; font-family: 'Orbitron'; margin-top: 2px;">
+                                ${rankData.name}
+                            </div>
+                        </div>
+                    </div>
+                    <div style="font-family: 'Orbitron'; font-size: 14px; color: #ffffff; font-weight: bold;">
+                        ${user.totalXP.toLocaleString()} XP
+                    </div>
+                </div>
+            `;
+        });
+
+        rankingList.innerHTML = html;
+
+        const rankingItems = document.querySelectorAll('.ranking-item');
+        rankingItems.forEach((item, index) => {
+            item.style.animation = `fadeIn 0.3s ease-out ${index * 0.05}s forwards`;
+        });
+    } catch (error) {
+        console.error('[Ranking] Error loading total XP data:', error);
+        rankingList.innerHTML = '<div style="text-align: center; color: #ff4444; padding: 40px; font-family: \'Orbitron\'; font-size: 12px;">ERROR LOADING RANKING DATA</div>';
+    }
+}
+
+async function loadPVPWinRateRanking() {
+    const rankingList = document.getElementById('ranking-list');
+    if (!rankingList) return;
+
+    rankingList.innerHTML = '<div style="text-align: center; color: #64748b; padding: 40px; font-family: \'Orbitron\'; font-size: 12px;">LOADING PVP RANKING DATA...</div>';
+
+    try {
+        const { ref, get } = window.firebaseModules;
+        const usersRef = ref(window.db, 'users');
+        const snapshot = await get(usersRef);
+        const users = snapshot.val();
+
+        if (!users) {
+            rankingList.innerHTML = '<div style="text-align: center; color: #64748b; padding: 40px; font-family: \'Orbitron\'; font-size: 12px;">NO RANKING DATA AVAILABLE</div>';
+            return;
+        }
+
+        const userArray = Object.keys(users)
+            .map(uid => ({
+                uid,
+                name: users[uid].name || users[uid].displayName || 'UNKNOWN',
+                totalXP: users[uid].xp || 0,
+                pvpWins: users[uid].pvpWins || 0,
+                pvpLosses: users[uid].pvpLosses || 0,
+                pvpTotalMatches: users[uid].pvpTotalMatches || 0
+            }))
+            .filter(user => user.pvpWins > 0);
+
+        userArray.forEach(user => {
+            user.winRate = user.pvpTotalMatches > 0
+                ? (user.pvpWins / user.pvpTotalMatches * 100)
+                : 0;
+        });
+
+        userArray.sort((a, b) => b.pvpWins - a.pvpWins);
+
+        if (userArray.length === 0) {
+            rankingList.innerHTML = '<div style="text-align: center; color: #64748b; padding: 40px; font-family: \'Orbitron\'; font-size: 12px;">NO PVP DATA AVAILABLE</div>';
+            return;
+        }
+
+        const top100 = userArray.slice(0, 100);
+
+        let html = '';
+        top100.forEach((user, index) => {
+            const rank = index + 1;
+            const rankData = getRankForXP(user.totalXP);
+            const isCurrentUser = user.uid === myPlayerId;
+            const iconColor = getIconColor(index);
+            const iconPath = `ranking_icon/${iconColor}/${rankData.iconFile}`;
+
+            let rankColor = '#94a3b8';
+            if (index === 0) rankColor = '#fbbf24';
+            else if (index >= 1 && index <= 2) rankColor = '#c0c0c0';
+            else if (index >= 3 && index <= 9) rankColor = '#cd7f32';
+
+            html += `
+                <div class="ranking-item" style="display: flex; align-items: center; justify-content: space-between; padding: 12px 15px; background: ${isCurrentUser ? 'rgba(255, 255, 255, 0.1)' : 'rgba(15, 23, 42, 0.5)'}; border: 1px solid ${isCurrentUser ? 'rgba(255, 255, 255, 0.4)' : 'rgba(100, 116, 139, 0.2)'}; border-radius: 3px; opacity: 0;">
+                    <div style="display: flex; align-items: center; gap: 15px; flex: 1;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div style="font-family: 'Black Ops One'; font-size: 16px; color: ${rankColor}; min-width: 50px; text-align: center;">
+                                #${rank}
+                            </div>
+                            <img src="${iconPath}" style="width: 24px; height: 24px; vertical-align: middle;" onerror="this.style.display='none'">
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="font-family: 'Orbitron'; font-size: 14px; color: ${isCurrentUser ? '#ffffff' : '#e2e8f0'}; font-weight: ${isCurrentUser ? 'bold' : 'normal'};">
+                                ${user.name} ${isCurrentUser ? '(YOU)' : ''}
+                            </div>
+                            <div style="font-size: 10px; color: #94a3b8; font-family: 'Orbitron'; margin-top: 2px;">
+                                ${rankData.name}
+                            </div>
+                        </div>
+                    </div>
+                    <div style="font-family: 'Orbitron'; font-size: 14px; color: #ffffff; font-weight: bold;">
+                        ${user.pvpWins}W${user.pvpLosses}L(${user.winRate.toFixed(1)}%)
+                    </div>
+                </div>
+            `;
+        });
+
+        rankingList.innerHTML = html;
+
+        const rankingItems = document.querySelectorAll('.ranking-item');
+        rankingItems.forEach((item, index) => {
+            item.style.animation = `fadeIn 0.3s ease-out ${index * 0.05}s forwards`;
+        });
+    } catch (error) {
+        console.error('[Ranking] Error loading PVP win rate data:', error);
+        rankingList.innerHTML = '<div style="text-align: center; color: #ff4444; padding: 40px; font-family: \'Orbitron\'; font-size: 12px;">ERROR LOADING RANKING DATA</div>';
+    }
+}
+
+function renderVocabList(level, isSilent = false) {
+    const listBody = document.getElementById('vocab-list-body');
+    const isFirstLoad = listBody.innerHTML === '';
+
+    if (!isFirstLoad && !isSilent) {
+        const levelSfx = document.getElementById('level-select-sfx');
+        if (levelSfx) {
+            levelSfx.currentTime = 0;
+            levelSfx.play().catch(error => console.log('Audio play prevented:', error));
+        }
+    }
+
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    const btns = document.querySelectorAll('.tab-btn');
+    btns.forEach(btn => {
+        if (btn.innerText.replace('*', '_STAR') === level || (level === 'L5_STAR' && btn.innerText === 'L5*')) {
+            btn.classList.add('active');
+        }
+    });
+
+    listBody.innerHTML = '';
+
+    const searchInput = document.getElementById('vocab-search-input');
+    if (searchInput) searchInput.value = '';
+
+    const data = VOCAB_DB[level];
+    if (!data) return;
+
+    const fragment = document.createDocumentFragment();
+
+    data.forEach((item, index) => {
+        const row = document.createElement('div');
+        row.classList.add('vocab-row');
+
+        if (index < 20) {
+            row.style.animation = `fadeIn 0.3s ease-out ${index * 0.05}s forwards`;
+            row.style.opacity = '0';
+        } else {
+            row.style.opacity = '1';
+        }
+
+        const safeText = item.en.replace(/'/g, '&apos;');
+        row.setAttribute('onclick', `speakText('${safeText}', this)`);
+
+        row.innerHTML = `
+            <span class="vocab-ch">${item.ch}</span>
+            <span class="vocab-en">${item.en}</span>
+        `;
+
+        fragment.appendChild(row);
+    });
+
+    listBody.appendChild(fragment);
+}
+
+function filterVocabList() {
+    const input = document.getElementById('vocab-search-input');
+    const filter = input.value.toLowerCase();
+    const rows = document.querySelectorAll('.vocab-row');
+
+    rows.forEach(row => {
+        const enText = row.querySelector('.vocab-en').innerText.toLowerCase();
+        const chText = row.querySelector('.vocab-ch').innerText.toLowerCase();
+
+        if (enText.includes(filter) || chText.includes(filter)) {
+            row.style.display = 'flex';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+}
+
+function openVocabScreen() {
+    playSound('open-room-sfx');
+
+    const suppliesDisplay = document.getElementById('coins-display');
+    if (suppliesDisplay) {
+        suppliesDisplay.style.display = 'none';
+    }
+
+    document.getElementById('start-screen').style.display = 'none';
+    document.getElementById('vocab-screen').style.display = 'flex';
+    renderVocabList('L1', true);
+}
