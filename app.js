@@ -3813,15 +3813,6 @@ window.addEventListener('load', () => {
     }
     });
     
-// 10. BGM 播放
-function playBgm() {
-    const bgm = document.getElementById('bgm');
-    if (bgm && bgm.paused) {
-        // 使用計算後的音量
-        bgm.volume = gameVolume.bgm * BGM_MAX_GAIN; 
-        bgm.play().catch(e => console.log("BGM waiting for interaction"));
-    }
-}
 // --- 修改後的 Carousel 控制邏輯 ---
 
 // --- ★★★ CAROUSEL 箭嘴智能隱藏系統 (最終整合版) ★★★ ---
@@ -4698,15 +4689,8 @@ window.onload = function() {
     }
 
     // 4. 讀取之前的音量設定
-    if(localStorage.getItem('setting_bgm')) {
-        gameVolume.bgm = parseFloat(localStorage.getItem('setting_bgm'));
-        gameVolume.sfx = parseFloat(localStorage.getItem('setting_sfx'));
-        gameVolume.voice = parseFloat(localStorage.getItem('setting_voice'));
-        
-        // 更新滑桿顯示 (如果滑桿存在)
-        if(document.getElementById('vol-bgm')) document.getElementById('vol-bgm').value = gameVolume.bgm;
-        if(document.getElementById('vol-sfx')) document.getElementById('vol-sfx').value = gameVolume.sfx;
-        if(document.getElementById('vol-voice')) document.getElementById('vol-voice').value = gameVolume.voice;
+    if (typeof loadSavedAudioSettings === 'function') {
+        loadSavedAudioSettings();
     }
 
     // 被踢出後跳過 tap-to-start，直接去 login panel 並顯示通知
@@ -4771,44 +4755,6 @@ function editDistance(s1, s2) {
     }
     return costs[s2.length];
 }
-// ★★★ BGM 漸變控制系統 (Audio Ducking) ★★★
-let bgmFadeInterval = null;
-
-// targetVol: 目標音量 (0.0 至 1.0)
-// duration: 用幾多毫秒變過去 (預設 800ms)
-function fadeBgm(targetVol, duration = 800) {
-    const bgm = document.getElementById('bgm');
-    
-    // 如果 BGM 根本無開，或者 Pause 緊，就唔好搞佢
-    if (!bgm || bgm.paused) return; 
-
-    // 清除舊的漸變 (防止有人狂撳導致衝突)
-    if (bgmFadeInterval) clearInterval(bgmFadeInterval);
-
-    const startVol = bgm.volume;
-    const stepTime = 50; // 每 50ms 更新一次
-    const steps = duration / stepTime; // 總共要行幾多步
-    const volStep = (targetVol - startVol) / steps; // 每步加/減幾多
-
-    let currentStep = 0;
-
-    bgmFadeInterval = setInterval(() => {
-        currentStep++;
-        let newVol = startVol + (volStep * currentStep);
-
-        // 安全鎖：確保唔會爆出 0-1 範圍
-        if (newVol < 0) newVol = 0;
-        if (newVol > 1) newVol = 1;
-
-        bgm.volume = newVol;
-
-        // 完成漸變
-        if (currentStep >= steps) {
-            clearInterval(bgmFadeInterval);
-            bgm.volume = targetVol; // 確保最後數值準確
-        }
-    }, stepTime);
-}
 // =========================================
 // ★★★ 玩家名稱輸入打字音效 (簡單版) ★★★
 // =========================================
@@ -4845,84 +4791,7 @@ const checkInputInterval = setInterval(() => {
         console.log("Typing sound loaded for player input!");
     }
 }, 500); // 每 0.5 秒檢查一次，直到搵到為止
-// --- ★★★ 戰鬥警報音效模組 (放在最頂) ★★★ ---
-const alertSfx = new Audio('your-fleet-is-under-attack.mp3');
-alertSfx.volume = 1.0; // 警報聲大聲啲
-let lastAlertTime = 0; // 記住上次響是幾時
 
-function playUnderAttackAlert() {
-    const now = Date.now();
-    // 冷卻機制：如果距離上次播放超過 8000 毫秒 (8秒)
-    if (now - lastAlertTime > 8000) {
-        // 閃避效果：播放時暫時將 BGM 收細
-        const bgm = document.getElementById('bgm-audio');
-        if (bgm) bgm.volume = 0.1;
-        
-        alertSfx.play().catch(e => console.log(e));
-        lastAlertTime = now;
-        
-        // 3秒後將 BGM 變回正常
-        setTimeout(() => {
-            if (bgm) bgm.volume = 0.3; 
-        }, 3000);
-    }
-}
-// 全局音量控制中心
-let gameVolume = {
-    bgm: 0.5,  // ★ 改動 1: 預設改做 0.5 (50%)
-    sfx: 0.5,
-    voice: 1.0
-};
-
-// ★ 新增：BGM 最大音量限制 (因為你首 BGM 本身可能好大聲)
-// 當 Slider 係 1.0 (100%) 時，實際 BGM 只會去到 0.6 (60%)
-const BGM_MAX_GAIN = 0.6; 
-
-function toggleSettingsModal() {
-    const modal = document.getElementById('settings-modal');
-    const isHidden = modal.style.display === 'none';
-    modal.style.display = isHidden ? 'flex' : 'none';
-    
-    if (isHidden) {
-        // 同步 Slider 顯示 (顯示 0.5)
-        document.getElementById('vol-bgm').value = gameVolume.bgm;
-        document.getElementById('vol-sfx').value = gameVolume.sfx;
-        document.getElementById('vol-voice').value = gameVolume.voice;
-        
-        if(typeof playSound === 'function') playSound('open-room-sfx');
-    } else {
-        if(typeof playSound === 'function') playSound('delete-sfx');
-    }
-}
-
-function updateVolume(type, val) {
-    const v = parseFloat(val);
-    gameVolume[type] = v;
-    
-    // 即時套用 BGM 音量
-    if (type === 'bgm') {
-        const bgm = document.getElementById('bgm');
-        if (bgm) {
-            // ★ 改動 2: 實際音量 = 設定值 * 限制系數
-            // 例子: 設定 0.5 * 0.6 = 實際 0.3 (这就係你要的效果！)
-            bgm.volume = v * BGM_MAX_GAIN; 
-        }
-    }
-    
-    // 保存到瀏覽器
-    localStorage.setItem(`setting_${type}`, v);
-}
-
-// 讀取保存的設定
-window.addEventListener('load', () => {
-    // ★ 改動 3: 如果第一次玩 (無 Record)，預設用 0.5
-    gameVolume.bgm = parseFloat(localStorage.getItem('setting_bgm')) || 0.5;
-    gameVolume.sfx = parseFloat(localStorage.getItem('setting_sfx')) || 0.5;
-    gameVolume.voice = parseFloat(localStorage.getItem('setting_voice')) || 1.0;
-    
-    // 確保一入 Game 就套用音量限制
-    const bgm = document.getElementById('bgm');
-    if (bgm) bgm.volume = gameVolume.bgm * BGM_MAX_GAIN;
 });
 
 // --- ★ 新增：獨立計時器啟動函數 ★ ---
