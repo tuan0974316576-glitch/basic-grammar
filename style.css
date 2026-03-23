@@ -2765,19 +2765,21 @@ body {
    ★★★ INSTRUCTION CONTAINER (戰鬥指令顯示) ★★★
    ========================================= */
 #instruction-container {
-    margin-top: 10px;
-    margin-bottom: 20px;
+    margin: 10px auto 20px auto;
     width: 100%;
     max-width: 372px;
     z-index: 10;
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
+    align-self: center;
     font-family: 'Orbitron', sans-serif;
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 3px;
     padding: 3px;
+    padding-left: 22px;
     border-radius: 8px;
     background: rgba(10, 20, 30, 0.7);
     backdrop-filter: blur(4px);
@@ -2802,10 +2804,22 @@ body {
     border-radius: 5px;
 }
 
-/* 瞄準 icon */
+/* 瞄準 icon — 突出 container 左邊 */
 .crosshair-icon {
+    position: absolute;
+    left: -18px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
     flex-shrink: 0;
-    filter: drop-shadow(0 0 4px currentColor);
+    /* Vanguards 藍光 */
+    filter: drop-shadow(0 0 6px rgba(14, 165, 233, 0.8)) drop-shadow(0 0 12px rgba(14, 165, 233, 0.4));
+}
+
+/* Aurelians icon 金光 */
+#instruction-container.aurelians .crosshair-icon {
+    filter: drop-shadow(0 0 6px rgba(250, 227, 130, 0.8)) drop-shadow(0 0 12px rgba(250, 227, 130, 0.4));
 }
 
 /* 展開動畫 Class（由 JS 切換觸發） */
