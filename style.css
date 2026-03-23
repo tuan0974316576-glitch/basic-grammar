@@ -2802,6 +2802,7 @@ body {
     padding: 6px 16px;
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 5px;
+    box-sizing: border-box;
 }
 
 /* 瞄準 icon — 喺 inner 入面但上下突出 container */
