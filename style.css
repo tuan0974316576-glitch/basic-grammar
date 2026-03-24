@@ -1574,10 +1574,10 @@ body {
     /* 畫一個長方形光標 */
     width: 10px;
     height: 20px;
-    background-color: #0ea5e9; /* 藍色 */
-    
+    background-color: #EEE8AA;
+
     /* 加強發光 */
-    box-shadow: 0 0 8px #0ea5e9;
+    box-shadow: 0 0 8px #EEE8AA;
     
     /* 讓它閃動，扮 Terminal */
     animation: cursor-blink 1s infinite step-end;
