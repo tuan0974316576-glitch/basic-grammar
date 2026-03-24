@@ -4350,8 +4350,7 @@ function updateRaceButtons() {
 // ★★★ 顯示 "需要更多補給" 動畫 ★★★
 function showSuppliesNeededAnimation(race) {
     const supplies = window.userSupplies || 0;
-    const btn = document.getElementById(`race-btn-${race.toLowerCase()}`);
-    const required = parseInt(btn.getAttribute('data-required') || '0');
+    const required = 15000;
     const needed = required - supplies;
 
     // 使用系統通知顯示
