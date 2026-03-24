@@ -4355,7 +4355,7 @@ function showSuppliesNeededAnimation(race) {
 
     // 使用系統通知顯示
     if (typeof showNotification === 'function') {
-        showNotification(`${needed.toLocaleString()} MORE SUPPLIES NEEDED`, 'error');
+        showNotification(`${needed.toLocaleString()} MORE SUPPLIES NEEDED`, 'error', 5000);
     }
 }
 
