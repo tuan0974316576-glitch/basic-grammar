@@ -3,7 +3,7 @@
   import { getAuth, signInAnonymously, onAuthStateChanged, GoogleAuthProvider, OAuthProvider, signInWithPopup, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
     const firebaseConfig = {
-        apiKey: "AIzaSyCfo5jxY1zvkRJPuPtZQMYj1V0kT7Te11A",
+        apiKey: "AIzaSyCfo5jxY1zvkRJPuPtZOMYj1V0kT7Te11A",
         authDomain: "battleship-game-c0909.firebaseapp.com",
         databaseURL: "https://battleship-game-c0909-default-rtdb.asia-southeast1.firebasedatabase.app",
         projectId: "battleship-game-c0909",
