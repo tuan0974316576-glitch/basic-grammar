@@ -3535,14 +3535,18 @@ function autoDeployRemainingShips() {
 }
 
 // 顯示高科技通知框
+    let _notifTimer = null;
     function showNotification(text, type = 'success', duration = 3000) {
         const box = document.getElementById('tech-notification');
         const title = document.getElementById('notif-title');
         const content = document.getElementById('notif-content');
 
+        // 清除上一個 timer，防止提早消失
+        if (_notifTimer) clearTimeout(_notifTimer);
+
         // 設定內容
         content.innerText = text;
-        
+
         // 設定顏色 (綠色=Success, 紅色=Alert)
         if (type === 'success') {
             box.style.borderColor = 'var(--success)';
@@ -3560,8 +3564,9 @@ function autoDeployRemainingShips() {
         box.classList.add('active');
 
         // 自動收番埋去
-        setTimeout(() => {
+        _notifTimer = setTimeout(() => {
             box.classList.remove('active');
+            _notifTimer = null;
         }, duration);
     }
 // 設定「斷線遺囑」
