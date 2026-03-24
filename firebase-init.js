@@ -3,13 +3,13 @@
   import { getAuth, signInAnonymously, onAuthStateChanged, GoogleAuthProvider, OAuthProvider, signInWithPopup, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
     const firebaseConfig = {
-        apiKey: "AIzaSyBdfTgb7FpkYdgjvrYWQ0jr-N-1fAaW9Q0",
-        authDomain: "vocabularyxdungeon.firebaseapp.com",
-        databaseURL: "https://vocabularyxdungeon-default-rtdb.asia-southeast1.firebasedatabase.app",
-        projectId: "vocabularyxdungeon",
-        storageBucket: "vocabularyxdungeon.appspot.com",
-        messagingSenderId: "834761939928",
-        appId: "1:834761939928:web:4591dcd9650ec99746f0ad"
+        apiKey: "AIzaSyCfo5jxY1zvkRJPuPtZQMYj1V0kT7Te11A",
+        authDomain: "battleship-game-c0909.firebaseapp.com",
+        databaseURL: "https://battleship-game-c0909-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "battleship-game-c0909",
+        storageBucket: "battleship-game-c0909.firebasestorage.app",
+        messagingSenderId: "199612407738",
+        appId: "1:199612407738:web:3ed7840ec14992be7f8783"
     };
 
     // 初始化
