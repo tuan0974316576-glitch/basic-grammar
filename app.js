@@ -5027,6 +5027,7 @@ let activeSkill = null;
 let radarPreviewIndex = null;
 let radarLockedIndex = null;
 const radarScannedCells = new Set();
+const RADAR_SCAN_DURATION = 2200;
 const DEFAULT_INSTRUCTION = {
     name: 'SINGLE SHOT',
     desc: 'TAP A CELL TO FIRE',
@@ -5234,7 +5235,7 @@ function executeRadarScan(centerIndex) {
         if (currentPhase === 'PLAYER_TURN') {
             startTurnSelectionTimer(false);
         }
-    }, 1000);
+    }, RADAR_SCAN_DURATION);
 }
 
 function onEnemyGridHover(event) {

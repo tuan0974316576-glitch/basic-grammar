@@ -3227,19 +3227,15 @@ body {
 .radar-scan-overlay {
     border: 1px solid rgba(0, 243, 255, 0.38);
     background: rgba(0, 20, 30, 0.08);
-    animation: radar-scan-frame 1s ease-out forwards;
+    animation: radar-scan-frame 2.2s ease-out forwards;
 }
 
 .radar-scan-circle {
     position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 72%;
-    height: 72%;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    border: 1.5px solid rgba(0, 243, 255, 0.75);
-    box-shadow: 0 0 14px rgba(0, 243, 255, 0.2);
+    inset: 0;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 243, 255, 0.48);
+    box-shadow: 0 0 14px rgba(0, 243, 255, 0.14);
     overflow: hidden;
 }
 
@@ -3255,18 +3251,18 @@ body {
 }
 
 .radar-scan-wave {
-    width: 22%;
-    height: 22%;
+    width: 12%;
+    height: 12%;
     border: 2px solid rgba(120, 245, 255, 0.8);
     opacity: 0;
 }
 
 .radar-scan-wave-primary {
-    animation: radarWaveExpand 1s ease-out forwards;
+    animation: radarWaveExpand 1s ease-out 0.2s forwards;
 }
 
 .radar-scan-wave-secondary {
-    animation: radarWaveExpand 1s ease-out 0.24s forwards;
+    animation: radarWaveExpand 1s ease-out 1.2s forwards;
 }
 
 .radar-scan-sweep {
@@ -3280,9 +3276,8 @@ body {
         transparent 95deg,
         transparent 360deg
     );
-    animation: radarSweepRotate 1s linear forwards;
-    mask-image: radial-gradient(circle, transparent 0 10%, #000 14% 100%);
-    -webkit-mask-image: radial-gradient(circle, transparent 0 10%, #000 14% 100%);
+    animation: radarSweepRotate 2s linear forwards;
+    transform-origin: center center;
 }
 
 .radar-scan-core {
@@ -3430,14 +3425,14 @@ body {
 @keyframes radarWaveExpand {
     0% {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(0.2);
+        transform: translate(-50%, -50%) scale(0.15);
     }
     18% {
         opacity: 0.95;
     }
     100% {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(4.3);
+        transform: translate(-50%, -50%) scale(9.2);
     }
 }
 
@@ -3451,7 +3446,7 @@ body {
     }
     100% {
         opacity: 0.15;
-        transform: translate(-50%, -50%) rotate(270deg);
+        transform: translate(-50%, -50%) rotate(630deg);
     }
 }
 
