@@ -1362,7 +1362,7 @@ function getShipIndices(idx, conf, v) {
     // --- 8. 戰鬥流程 ---
 function startBattle() {
     if (deploymentTimerInterval) clearInterval(deploymentTimerInterval);
-    document.getElementById('turn-timer-container').style.display = 'none';
+    document.getElementById('turn-timer-container').style.visibility = 'hidden';
 
     // ★ PHASE 5: Reset session XP counter (in case not reset in enterGameUI)
     sessionAnsweringXP = 0;
@@ -1491,7 +1491,7 @@ function switchScene(sceneName) {
             document.getElementById('control-panel').style.borderColor = "var(--success)";
             // 顯示 instruction container
             if (instrContainer) {
-                instrContainer.style.display = 'flex';
+                instrContainer.style.visibility = 'visible';
                 // Class toggle 觸發展開動畫（兼容 Safari/iOS）
                 instrContainer.classList.remove('play-expand');
                 void instrContainer.offsetWidth;
@@ -1508,7 +1508,7 @@ function switchScene(sceneName) {
             document.getElementById('game-status').innerHTML = `PHASE: <span style="color:var(--danger)">WARNING! ENEMY</span>`;
             document.getElementById('control-panel').style.borderColor = "var(--danger)";
             // 隱藏 instruction container
-            if (instrContainer) instrContainer.style.display = 'none';
+            if (instrContainer) instrContainer.style.visibility = 'hidden';
         }
     }
 
@@ -1534,7 +1534,7 @@ function handleEnemyGridClick(index) {
         }
         // (選用) 順手隱藏埋條計時 Bar，畀玩家知「系統收到你指令啦」
         const timerContainer = document.getElementById('turn-timer-container');
-        if (timerContainer) timerContainer.style.display = 'none';
+        if (timerContainer) timerContainer.style.visibility = 'hidden';
 
         // 2. ★ 上鎖：立即設定為 true
         isTargeting = true;
@@ -1626,7 +1626,7 @@ function runTargetLockAnimation(index, onComplete) {
 function openLaunchModal(index) {
     // 1. 停止選位倒數
     if (typeof turnTimerInterval !== 'undefined' && turnTimerInterval) clearInterval(turnTimerInterval);
-    document.getElementById('turn-timer-container').style.display = 'none';
+    document.getElementById('turn-timer-container').style.visibility = 'hidden';
 
     // 狀態文字
     let statusText = "DECRYPTING...";
@@ -1750,7 +1750,7 @@ function openLaunchModal(index) {
 
     // 隱藏 instruction container（進入答題版面）
     const instrContainer = document.getElementById('instruction-container');
-    if (instrContainer) instrContainer.style.display = 'none';
+    if (instrContainer) instrContainer.style.visibility = 'hidden';
 
     // ★★★ 關鍵：先顯示視窗，再執行後面的 focus，確保鍵盤彈出 ★★★
     modal.style.display = "flex";
@@ -2500,7 +2500,7 @@ function startPlayerTurn() {
         const bar = document.getElementById('turn-timer-bar');
         const status = document.getElementById('game-status');
         
-        barContainer.style.display = 'block';
+        barContainer.style.visibility = 'visible';
         bar.style.width = '100%';
         
         let timeLeft = 8.0; 
@@ -3324,7 +3324,7 @@ function resetGame() {
             gameTimeouts = [];
     }
 
-    document.getElementById('turn-timer-container').style.display = 'none';
+    document.getElementById('turn-timer-container').style.visibility = 'hidden';
     document.getElementById('end-screen').style.display = 'none';
     document.getElementById('game-ui').style.display = 'none';
     document.getElementById('lobby-screen').style.display = 'none';
@@ -3387,7 +3387,7 @@ function handleTurnTimeout() {
     // ★★★ 關鍵修正：一超時即刻鎖死狀態，防止玩家在轉場期間偷雞再打 ★★★
     currentPhase = 'TIMEOUT_LOCKED'; 
 
-    document.getElementById('turn-timer-container').style.display = 'none';
+    document.getElementById('turn-timer-container').style.visibility = 'hidden';
     playSound('timeout-sfx');
     
     const status = document.getElementById('game-status');
@@ -3419,7 +3419,7 @@ function startDeploymentTimer() {
         const bar = document.getElementById('turn-timer-bar');
         const status = document.getElementById('game-status');
         
-        barContainer.style.display = 'block';
+        barContainer.style.visibility = 'visible';
         bar.style.width = '100%';
         
         let timeLeft = 60.0; 

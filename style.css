@@ -2776,6 +2776,7 @@ body {
     z-index: 10;
     position: relative;
     display: flex;
+    visibility: hidden;
     align-items: center;
     justify-content: center;
     align-self: center;
