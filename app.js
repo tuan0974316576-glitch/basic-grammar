@@ -5114,6 +5114,14 @@ function clearRadarEffects() {
     document.querySelectorAll('.radar-preview-overlay, .radar-scan-overlay').forEach(el => el.remove());
 }
 
+function getRadarLinePosition(offsets, cellSize, lineIndex) {
+    if (!Array.isArray(offsets) || offsets.length <= lineIndex) return -9999;
+    const prev = offsets[lineIndex - 1];
+    const current = offsets[lineIndex];
+    const gap = current - prev - cellSize;
+    return current - (gap / 2);
+}
+
 function renderRadarPreview(centerIndex) {
     clearRadarPreview();
 
@@ -5139,12 +5147,10 @@ function renderRadarPreview(centerIndex) {
     if (centerCell) {
         const colOffsets = [...new Set(cells.map(cell => cell.offsetLeft - left))].sort((a, b) => a - b);
         const rowOffsets = [...new Set(cells.map(cell => cell.offsetTop - top))].sort((a, b) => a - b);
-        const gapX = colOffsets.length > 1 ? (colOffsets[1] - colOffsets[0] - centerCell.offsetWidth) : 0;
-        const gapY = rowOffsets.length > 1 ? (rowOffsets[1] - rowOffsets[0] - centerCell.offsetHeight) : 0;
-        const lineX1 = colOffsets[1] - (gapX / 2);
-        const lineX2 = colOffsets[2] - (gapX / 2);
-        const lineY1 = rowOffsets[1] - (gapY / 2);
-        const lineY2 = rowOffsets[2] - (gapY / 2);
+        const lineX1 = getRadarLinePosition(colOffsets, centerCell.offsetWidth, 1);
+        const lineX2 = getRadarLinePosition(colOffsets, centerCell.offsetWidth, 2);
+        const lineY1 = getRadarLinePosition(rowOffsets, centerCell.offsetHeight, 1);
+        const lineY2 = getRadarLinePosition(rowOffsets, centerCell.offsetHeight, 2);
 
         overlay.style.setProperty('--radar-line-x1', `${lineX1}px`);
         overlay.style.setProperty('--radar-line-x2', `${lineX2}px`);

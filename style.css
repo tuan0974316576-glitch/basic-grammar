@@ -418,20 +418,24 @@ body {
             pointer-events: none;
         }
 
-        .radar-count-static {
-            font-size: 18px;
-            letter-spacing: 0;
-        }
+.radar-count-static {
+    font-size: 18px;
+    letter-spacing: 0;
+    line-height: 1;
+    font-variant-numeric: lining-nums tabular-nums;
+}
 
-        .radar-count-floating {
-            position: absolute;
+.radar-count-floating {
+    position: absolute;
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
-            font-size: 24px;
-            z-index: 3;
-            animation: radarCountFloat 1.5s ease-out forwards;
-        }
+    font-size: 24px;
+    z-index: 3;
+    animation: radarCountFloat 1.5s ease-out forwards;
+    line-height: 1;
+    font-variant-numeric: lining-nums tabular-nums;
+}
         
         .cell.revealed { cursor: default; }
 
