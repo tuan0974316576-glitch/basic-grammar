@@ -4977,6 +4977,12 @@ function speakText(text, element = null) {
 
 let selectedSkill = null;
 
+const SKILL_INFO = {
+    radar:     { name: 'RADAR',   desc: 'Shows the number of undamaged objects surrounding a missed cell', icon: 'radar.png' },
+    explosion: { name: 'MISSILE', desc: 'Fire a missile at a 2x2 area of your choice', icon: 'explosion.png' },
+    nuke:      { name: 'NUKE',    desc: 'Launch a nuclear missile at a 4x4 area of your choice', icon: 'nuclear_bomb.png' }
+};
+
 // 根據 playerEnergy 更新每個技能嘅 available/disabled 狀態
 function updateSkillStates() {
     document.querySelectorAll('.skill-diamond').forEach(diamond => {
@@ -5022,6 +5028,15 @@ function onSkillClick(e) {
     const confirmBtns = document.getElementById('skill-confirm-btns');
     if (costVal) { costVal.textContent = cost; costVal.style.display = 'inline'; }
     if (confirmBtns) confirmBtns.style.display = 'flex';
+
+    // 更新 instruction panel
+    const info = SKILL_INFO[skill];
+    if (info) {
+        const instrIcon = document.getElementById('instruction-icon');
+        const instrText = document.getElementById('instruction-text');
+        if (instrIcon) instrIcon.src = info.icon;
+        if (instrText) instrText.innerHTML = `<span class="instr-name">${info.name}:</span> <span class="instr-desc">${info.desc}</span>`;
+    }
 }
 
 function cancelSkillSelection() {
@@ -5031,6 +5046,12 @@ function cancelSkillSelection() {
     const confirmBtns = document.getElementById('skill-confirm-btns');
     if (costVal) costVal.style.display = 'none';
     if (confirmBtns) confirmBtns.style.display = 'none';
+
+    // 還原 instruction panel
+    const instrIcon = document.getElementById('instruction-icon');
+    const instrText = document.getElementById('instruction-text');
+    if (instrIcon) instrIcon.src = 'aim.png';
+    if (instrText) instrText.innerHTML = '<span class="instr-name">SINGLE SHOT:</span> <span class="instr-desc">TAP A CELL TO FIRE</span>';
 }
 
 function confirmSkillSelection() {

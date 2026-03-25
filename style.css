@@ -2813,6 +2813,14 @@ body {
     transition: border-color 0.3s, box-shadow 0.3s;
 }
 
+.instr-name {
+    color: rgba(14, 165, 233, 0.9);
+}
+.instr-desc {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: none;
+}
+
 /* 內框：幼白線 */
 #instruction-inner {
     display: flex;
