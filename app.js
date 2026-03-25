@@ -5106,6 +5106,11 @@ function refreshRadarScanDisplays() {
 
 function clearRadarPreview() {
     radarPreviewIndex = null;
+    document.querySelectorAll('.radar-preview-overlay').forEach(el => el.remove());
+}
+
+function clearRadarEffects() {
+    radarPreviewIndex = null;
     document.querySelectorAll('.radar-preview-overlay, .radar-scan-overlay').forEach(el => el.remove());
 }
 
@@ -5173,7 +5178,7 @@ function clearActiveSkillState() {
     activeSkill = null;
     selectedSkill = null;
     radarLockedIndex = null;
-    clearRadarPreview();
+    clearRadarEffects();
     setRadarEligibleCells(false);
     document.querySelectorAll('.skill-diamond').forEach(d => d.classList.remove('skill-selected'));
 }
