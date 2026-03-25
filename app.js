@@ -1531,15 +1531,18 @@ function switchScene(sceneName) {
 
 function handleEnemyGridClick(index) {
     if (selectedSkill && !activeSkill) {
+        if (selectedSkill === 'radar') {
+            if (!isRadarSelectable(index)) {
+                playSound('wrong-sfx');
+                return;
+            }
+            lockRadarTarget(index);
+            return;
+        }
         return;
     }
 
     if (activeSkill === 'radar') {
-        if (!isRadarSelectable(index)) {
-            playSound('wrong-sfx');
-            return;
-        }
-        executeRadarScan(index);
         return;
     }
 
@@ -5000,6 +5003,7 @@ function speakText(text, element = null) {
 let selectedSkill = null;
 let activeSkill = null;
 let radarPreviewIndex = null;
+let radarLockedIndex = null;
 const radarScannedCells = new Set();
 const DEFAULT_INSTRUCTION = {
     name: 'SINGLE SHOT',
@@ -5122,33 +5126,21 @@ function setRadarEligibleCells(isEnabled) {
 function clearActiveSkillState() {
     activeSkill = null;
     selectedSkill = null;
+    radarLockedIndex = null;
     clearRadarPreview();
     setRadarEligibleCells(false);
     document.querySelectorAll('.skill-diamond').forEach(d => d.classList.remove('skill-selected'));
 }
 
-function activateRadarMode() {
-    activeSkill = 'radar';
-    selectedSkill = null;
-
-    const costVal = document.getElementById('skill-cost-val');
-    const confirmBtns = document.getElementById('skill-confirm-btns');
-    const costRow = costVal ? costVal.parentElement : null;
-    if (costVal) costVal.style.display = 'none';
-    if (costRow) costRow.classList.remove('cost-double-digit');
-    if (confirmBtns) confirmBtns.style.display = 'none';
-
-    document.querySelectorAll('.skill-diamond').forEach(d => d.classList.remove('skill-selected'));
-    const radarDiamond = document.querySelector('.skill-diamond[data-skill="radar"]');
-    if (radarDiamond) radarDiamond.classList.add('skill-selected');
-
-    setRadarEligibleCells(true);
-    setInstructionPanel('RADAR', 'SELECT A MISSED CELL TO SCAN', 'radar.png');
-}
-
 function finishRadarMode() {
     clearActiveSkillState();
     setInstructionPanel(DEFAULT_INSTRUCTION.name, DEFAULT_INSTRUCTION.desc, DEFAULT_INSTRUCTION.icon);
+}
+
+function lockRadarTarget(index) {
+    radarLockedIndex = index;
+    renderRadarPreview(index);
+    setInstructionPanel('RADAR', 'TARGET LOCKED. PRESS TICK TO SCAN', 'radar.png');
 }
 
 function showRadarResult(centerIndex) {
@@ -5169,8 +5161,9 @@ function executeRadarScan(centerIndex) {
     if (!grid || !isRadarSelectable(centerIndex)) return;
 
     clearRadarPreview();
+    radarLockedIndex = null;
     setRadarEligibleCells(false);
-    activeSkill = null;
+    activeSkill = 'radar';
     setInstructionPanel('RADAR', 'SCANNING TARGET AREA', 'radar.png');
 
     const cells = getRadarAreaIndices(centerIndex).map(index => getEnemyCell(index)).filter(Boolean);
@@ -5199,7 +5192,8 @@ function executeRadarScan(centerIndex) {
 
 function onEnemyGridHover(event) {
     if (currentPhase !== 'PLAYER_TURN') return;
-    if (selectedSkill !== 'radar' && activeSkill !== 'radar') return;
+    if (selectedSkill !== 'radar') return;
+    if (radarLockedIndex !== null) return;
 
     const cell = event.target.closest('.cell');
     const grid = document.getElementById('enemy-grid');
@@ -5217,6 +5211,11 @@ function onEnemyGridHover(event) {
     if (radarPreviewIndex !== index) {
         renderRadarPreview(index);
     }
+}
+
+function onEnemyGridLeave() {
+    if (radarLockedIndex !== null) return;
+    clearRadarPreview();
 }
 
 // 根據 playerEnergy 更新每個技能嘅 available/disabled 狀態
@@ -5278,7 +5277,9 @@ function onSkillClick(e) {
     }
 
     if (skill === 'radar') {
+        radarLockedIndex = null;
         setRadarEligibleCells(true);
+        setInstructionPanel('RADAR', 'SELECT A MISSED CELL TO SCAN', 'radar.png');
     } else {
         clearRadarPreview();
         setRadarEligibleCells(false);
@@ -5287,6 +5288,7 @@ function onSkillClick(e) {
 
 function cancelSkillSelection() {
     selectedSkill = null;
+    radarLockedIndex = null;
     document.querySelectorAll('.skill-diamond').forEach(d => d.classList.remove('skill-selected'));
     const costVal = document.getElementById('skill-cost-val');
     const confirmBtns = document.getElementById('skill-confirm-btns');
@@ -5312,14 +5314,20 @@ function confirmSkillSelection() {
         return;
     }
 
-    // 扣 energy
-    addEnergy(-cost, selectedSkill.toUpperCase());
-
     if (selectedSkill === 'radar') {
-        activateRadarMode();
+        if (radarLockedIndex === null || !isRadarSelectable(radarLockedIndex)) {
+            playSound('wrong-sfx');
+            setInstructionPanel('RADAR', 'SELECT A MISSED CELL FIRST', 'radar.png');
+            return;
+        }
+        addEnergy(-cost, selectedSkill.toUpperCase());
+        executeRadarScan(radarLockedIndex);
         updateSkillStates();
         return;
     }
+
+    // 扣 energy
+    addEnergy(-cost, selectedSkill.toUpperCase());
 
     console.log(`★ SKILL ACTIVATED: ${selectedSkill} (cost: ${cost})`);
     cancelSkillSelection();
@@ -5338,6 +5346,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (confirmBtn) confirmBtn.addEventListener('click', confirmSkillSelection);
     if (enemyGridEl) {
         enemyGridEl.addEventListener('mousemove', onEnemyGridHover);
-        enemyGridEl.addEventListener('mouseleave', clearRadarPreview);
+        enemyGridEl.addEventListener('mouseleave', onEnemyGridLeave);
     }
 });
