@@ -5225,6 +5225,7 @@ function executeRadarScan(centerIndex) {
     setInstructionPanel('RADAR', 'SCANNING TARGET AREA', 'radar.png');
 
     const cells = getRadarAreaIndices(centerIndex).map(index => getEnemyCell(index)).filter(Boolean);
+    const centerCell = getEnemyCell(centerIndex);
     const left = Math.min(...cells.map(cell => cell.offsetLeft));
     const top = Math.min(...cells.map(cell => cell.offsetTop));
     const right = Math.max(...cells.map(cell => cell.offsetLeft + cell.offsetWidth));
@@ -5236,6 +5237,10 @@ function executeRadarScan(centerIndex) {
     overlay.style.top = `${top}px`;
     overlay.style.width = `${right - left}px`;
     overlay.style.height = `${bottom - top}px`;
+    if (centerCell) {
+        overlay.style.setProperty('--radar-origin-x', `${centerCell.offsetLeft - left + (centerCell.offsetWidth / 2)}px`);
+        overlay.style.setProperty('--radar-origin-y', `${centerCell.offsetTop - top + (centerCell.offsetHeight / 2)}px`);
+    }
 
     const circle = document.createElement('div');
     circle.className = 'radar-scan-circle';

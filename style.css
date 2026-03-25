@@ -3263,8 +3263,8 @@ body {
 .radar-scan-sweep,
 .radar-scan-core {
     position: absolute;
-    left: 50%;
-    top: 50%;
+    left: var(--radar-origin-x, 50%);
+    top: var(--radar-origin-y, 50%);
     transform: translate(-50%, -50%);
     border-radius: 50%;
     pointer-events: none;
@@ -3291,8 +3291,8 @@ body {
 }
 
 .radar-scan-sweep {
-    width: 100%;
-    height: 100%;
+    width: 220%;
+    height: 220%;
     background: conic-gradient(
         from -90deg,
         rgba(0, 243, 255, 0.42) 0deg,
