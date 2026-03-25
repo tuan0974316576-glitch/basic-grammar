@@ -380,6 +380,8 @@ let isTargeting = false;
     // --- 3. 全局變數 ---
 let deploymentTimerInterval = null; // 佈陣倒數器
 let turnTimerInterval = null; // 用來計選位嗰 8 秒
+let turnTimeLeft = 10.0;
+const TURN_SELECTION_TIME = 10.0;
     var app, db, auth;
     var myPlayerId = null, currentRoomId = null, gameMode = 'AI', playerRole = null, currentOpponentId = null;
     let myGrid = Array(GRID_SIZE*GRID_SIZE).fill(0);
@@ -405,6 +407,49 @@ function setGameTimeout(callback, delay) {
     }, delay);
     gameTimeouts.push(id);
     return id;
+}
+
+function updateTurnTimerUI() {
+    const bar = document.getElementById('turn-timer-bar');
+    const status = document.getElementById('game-status');
+    if (bar) {
+        const percentage = Math.max(0, (turnTimeLeft / TURN_SELECTION_TIME) * 100);
+        bar.style.width = percentage + "%";
+    }
+    if (status && currentPhase === 'PLAYER_TURN') {
+        status.innerHTML = `TURN ${turnCounter} // YOUR MOVE (<span style="color:var(--warning)">${Math.ceil(turnTimeLeft)}s</span>)`;
+    }
+}
+
+function stopTurnSelectionTimer() {
+    if (turnTimerInterval) {
+        clearInterval(turnTimerInterval);
+        turnTimerInterval = null;
+    }
+}
+
+function startTurnSelectionTimer(reset = false) {
+    const barContainer = document.getElementById('turn-timer-container');
+    if (barContainer) barContainer.style.visibility = 'visible';
+
+    if (reset) {
+        turnTimeLeft = TURN_SELECTION_TIME;
+    }
+
+    stopTurnSelectionTimer();
+    updateTurnTimerUI();
+
+    turnTimerInterval = setInterval(() => {
+        turnTimeLeft -= 0.1;
+        updateTurnTimerUI();
+
+        if (turnTimeLeft <= 0) {
+            turnTimeLeft = 0;
+            updateTurnTimerUI();
+            stopTurnSelectionTimer();
+            handleTurnTimeout();
+        }
+    }, 100);
 }
 
 function startEnemyTurn() {
@@ -2529,30 +2574,7 @@ function startPlayerTurn() {
         switchScene('PLAYER');
 
         // --- 10秒選位倒數 ---
-        const barContainer = document.getElementById('turn-timer-container');
-        const bar = document.getElementById('turn-timer-bar');
-        const status = document.getElementById('game-status');
-        
-        barContainer.style.visibility = 'visible';
-        bar.style.width = '100%';
-        
-        let timeLeft = 10.0; 
-        
-        if (turnTimerInterval) clearInterval(turnTimerInterval);
-        
-        turnTimerInterval = setInterval(() => {
-            timeLeft -= 0.1;
-            const percentage = (timeLeft / 10.0) * 100;
-            bar.style.width = percentage + "%";
-            
-            // 更新狀態文字 (這裡也可以顯示回合)
-            status.innerHTML = `TURN ${turnCounter} // YOUR MOVE (<span style="color:var(--warning)">${Math.ceil(timeLeft)}s</span>)`;
-
-            if (timeLeft <= 0) {
-                clearInterval(turnTimerInterval);
-                handleTurnTimeout(); 
-            }
-        }, 100);
+        startTurnSelectionTimer(true);
     }
 
 function checkMyShipDestruction(hitIdx) {
@@ -5160,6 +5182,7 @@ function executeRadarScan(centerIndex) {
     const grid = document.getElementById('enemy-grid');
     if (!grid || !isRadarSelectable(centerIndex)) return;
 
+    stopTurnSelectionTimer();
     clearRadarPreview();
     radarLockedIndex = null;
     setRadarEligibleCells(false);
@@ -5208,6 +5231,9 @@ function executeRadarScan(centerIndex) {
         radarScannedCells.add(centerIndex);
         showRadarResult(centerIndex);
         finishRadarMode();
+        if (currentPhase === 'PLAYER_TURN') {
+            startTurnSelectionTimer(false);
+        }
     }, 1000);
 }
 
