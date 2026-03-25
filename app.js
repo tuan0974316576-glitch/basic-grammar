@@ -5254,13 +5254,9 @@ function executeRadarScan(centerIndex) {
     const sweep = document.createElement('div');
     sweep.className = 'radar-scan-sweep';
 
-    const core = document.createElement('div');
-    core.className = 'radar-scan-core';
-
     circle.appendChild(wavePrimary);
     circle.appendChild(waveSecondary);
     circle.appendChild(sweep);
-    circle.appendChild(core);
     overlay.appendChild(circle);
     grid.appendChild(overlay);
 
