@@ -291,15 +291,23 @@ body {
         .btn:disabled { opacity: 0.5; cursor: not-allowed; border-color: #555; background: transparent; color: #555; }
 
         /* --- 棋盤容器 --- */
-        .board-container {
-            display: none; 
-            position: relative;
+        #boards-wrapper {
+            display: grid;
+            grid-template: 1fr / 1fr;
             margin: 10px;
+        }
+
+        .board-container {
+            grid-area: 1 / 1;
+            visibility: hidden;
+            pointer-events: none;
+            position: relative;
             z-index: 10;
         }
-        
+
         .board-container.active {
-            display: block;
+            visibility: visible;
+            pointer-events: auto;
             animation: fadeIn 0.5s;
         }
 
