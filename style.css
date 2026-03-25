@@ -2946,12 +2946,17 @@ body {
 }
 
 /* Energy icon 下方 */
+.skill-row-bot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+}
 .skill-energy-icon {
-    width: 22px;
-    height: 22px;
+    width: 18px;
+    height: 18px;
     object-fit: contain;
     filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.7));
-    margin-top: 2px;
 }
 
 /* 選中 → 稍微放大 */
