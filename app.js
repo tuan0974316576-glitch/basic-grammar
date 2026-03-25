@@ -1508,7 +1508,9 @@ function switchScene(sceneName) {
             // ★★★ 我方回合：技能可用 ★★★
             const skillGroup = document.getElementById('hud-skills');
             if (skillGroup) skillGroup.classList.remove('skills-inactive');
+            clearActiveSkillState();
             cancelSkillSelection();
+            refreshRadarScanDisplays();
             if (typeof updateSkillStates === 'function') updateSkillStates();
         } else {
             document.getElementById('player-board').classList.add('active');
@@ -1517,6 +1519,7 @@ function switchScene(sceneName) {
             // ★★★ 敵方回合：技能不可用 ★★★
             const skillGroup = document.getElementById('hud-skills');
             if (skillGroup) skillGroup.classList.add('skills-inactive');
+            clearActiveSkillState();
             // 隱藏 instruction container
             if (instrContainer) instrContainer.style.visibility = 'hidden';
         }
@@ -1527,6 +1530,19 @@ function switchScene(sceneName) {
    ========================================= */
 
 function handleEnemyGridClick(index) {
+    if (selectedSkill && !activeSkill) {
+        return;
+    }
+
+    if (activeSkill === 'radar') {
+        if (!isRadarSelectable(index)) {
+            playSound('wrong-sfx');
+            return;
+        }
+        executeRadarScan(index);
+        return;
+    }
+
     // 1. 檢查鎖定：如果「正在瞄準(isTargeting)」或者「不是玩家回合」，直接無視點擊
     if (isTargeting || currentPhase !== 'PLAYER_TURN') {
         return; 
@@ -2348,6 +2364,8 @@ function playerFire(success) {
                     cell.innerHTML = '<img src="close.png" class="miss-icon">';
                 }
 
+                refreshRadarScanDisplays();
+
                 // ★ 5. 關鍵設定：延長至 3秒 後先轉場 (讓你睇清楚戰果) ★
                 setGameTimeout(() => {
                     currentPhase = 'ENEMY_TURN';
@@ -2381,6 +2399,8 @@ function playerFire(success) {
                     cell.classList.add('miss');
                     cell.innerHTML = '<img src="close.png" class="miss-icon">';
                 }
+
+                refreshRadarScanDisplays();
 
                 if (!isGameOver) {
                     // AI 模式節奏快啲，維持 0.7秒 轉場
@@ -3350,6 +3370,8 @@ function resetGame() {
     enemyGrid.fill(0);
     enemyShots = [];
     aiTargetStack = []; 
+    radarScannedCells.clear();
+    clearActiveSkillState();
     deployIndex = 0;
     currentPhase = 'DEPLOY';
     myDamage = 0;
@@ -4976,12 +4998,226 @@ function speakText(text, element = null) {
    ========================================= */
 
 let selectedSkill = null;
+let activeSkill = null;
+let radarPreviewIndex = null;
+const radarScannedCells = new Set();
+const DEFAULT_INSTRUCTION = {
+    name: 'SINGLE SHOT',
+    desc: 'TAP A CELL TO FIRE',
+    icon: 'aim.png'
+};
 
 const SKILL_INFO = {
     radar:     { name: 'RADAR',   desc: 'Shows the number of undamaged objects surrounding a missed cell', icon: 'radar.png' },
     explosion: { name: 'MISSILE', desc: 'Fire a missile at a 2x2 area of your choice', icon: 'explosion.png' },
     nuke:      { name: 'NUKE',    desc: 'Launch a nuclear missile at a 4x4 area of your choice', icon: 'nuclear_bomb.png' }
 };
+
+function setInstructionPanel(name, desc, icon) {
+    const instrIcon = document.getElementById('instruction-icon');
+    const instrText = document.getElementById('instruction-text');
+    if (instrIcon) instrIcon.src = icon;
+    if (instrText) {
+        instrText.innerHTML = `<span class="instr-name">${name}:</span> <span class="instr-desc">${desc}</span>`;
+    }
+}
+
+function getEnemyCell(index) {
+    const grid = document.getElementById('enemy-grid');
+    return grid ? grid.children[index] : null;
+}
+
+function getRadarAreaIndices(centerIndex) {
+    const centerRow = Math.floor(centerIndex / GRID_SIZE);
+    const centerCol = centerIndex % GRID_SIZE;
+    const indices = [];
+
+    for (let row = centerRow - 1; row <= centerRow + 1; row++) {
+        for (let col = centerCol - 1; col <= centerCol + 1; col++) {
+            if (row < 0 || row >= GRID_SIZE || col < 0 || col >= GRID_SIZE) continue;
+            indices.push(row * GRID_SIZE + col);
+        }
+    }
+
+    return indices;
+}
+
+function isRadarSelectable(index) {
+    const cell = getEnemyCell(index);
+    return !!cell && cell.classList.contains('miss');
+}
+
+function countRadarTargets(centerIndex) {
+    return getRadarAreaIndices(centerIndex).filter(index => {
+        if (index === centerIndex) return false;
+        const cell = getEnemyCell(index);
+        return enemyGrid[index] === 1 && cell && !cell.classList.contains('hit');
+    }).length;
+}
+
+function updateRadarCellDisplay(centerIndex) {
+    const cell = getEnemyCell(centerIndex);
+    if (!cell || !cell.classList.contains('miss')) return;
+
+    const count = countRadarTargets(centerIndex);
+    cell.classList.add('radar-scanned');
+    cell.dataset.radarCount = String(count);
+    cell.innerHTML = `<span class="radar-count-static">${count}</span>`;
+}
+
+function refreshRadarScanDisplays() {
+    radarScannedCells.forEach(index => updateRadarCellDisplay(index));
+}
+
+function clearRadarPreview() {
+    radarPreviewIndex = null;
+    document.querySelectorAll('.radar-preview-overlay, .radar-scan-overlay').forEach(el => el.remove());
+}
+
+function renderRadarPreview(centerIndex) {
+    clearRadarPreview();
+
+    const grid = document.getElementById('enemy-grid');
+    if (!grid || !isRadarSelectable(centerIndex)) return;
+
+    const cells = getRadarAreaIndices(centerIndex).map(index => getEnemyCell(index)).filter(Boolean);
+    if (cells.length === 0) return;
+
+    const left = Math.min(...cells.map(cell => cell.offsetLeft));
+    const top = Math.min(...cells.map(cell => cell.offsetTop));
+    const right = Math.max(...cells.map(cell => cell.offsetLeft + cell.offsetWidth));
+    const bottom = Math.max(...cells.map(cell => cell.offsetTop + cell.offsetHeight));
+
+    const overlay = document.createElement('div');
+    overlay.className = 'radar-preview-overlay';
+    overlay.style.left = `${left}px`;
+    overlay.style.top = `${top}px`;
+    overlay.style.width = `${right - left}px`;
+    overlay.style.height = `${bottom - top}px`;
+
+    const centerCell = getEnemyCell(centerIndex);
+    if (centerCell) {
+        const reticle = document.createElement('div');
+        reticle.className = 'radar-preview-center';
+        reticle.style.left = `${centerCell.offsetLeft - left}px`;
+        reticle.style.top = `${centerCell.offsetTop - top}px`;
+        reticle.style.width = `${centerCell.offsetWidth}px`;
+        reticle.style.height = `${centerCell.offsetHeight}px`;
+        overlay.appendChild(reticle);
+    }
+
+    grid.appendChild(overlay);
+    radarPreviewIndex = centerIndex;
+}
+
+function setRadarEligibleCells(isEnabled) {
+    document.querySelectorAll('#enemy-grid .cell').forEach(cell => {
+        cell.classList.remove('radar-eligible');
+        if (isEnabled && cell.classList.contains('miss')) {
+            cell.classList.add('radar-eligible');
+        }
+    });
+}
+
+function clearActiveSkillState() {
+    activeSkill = null;
+    selectedSkill = null;
+    clearRadarPreview();
+    setRadarEligibleCells(false);
+    document.querySelectorAll('.skill-diamond').forEach(d => d.classList.remove('skill-selected'));
+}
+
+function activateRadarMode() {
+    activeSkill = 'radar';
+    selectedSkill = null;
+
+    const costVal = document.getElementById('skill-cost-val');
+    const confirmBtns = document.getElementById('skill-confirm-btns');
+    const costRow = costVal ? costVal.parentElement : null;
+    if (costVal) costVal.style.display = 'none';
+    if (costRow) costRow.classList.remove('cost-double-digit');
+    if (confirmBtns) confirmBtns.style.display = 'none';
+
+    document.querySelectorAll('.skill-diamond').forEach(d => d.classList.remove('skill-selected'));
+    const radarDiamond = document.querySelector('.skill-diamond[data-skill="radar"]');
+    if (radarDiamond) radarDiamond.classList.add('skill-selected');
+
+    setRadarEligibleCells(true);
+    setInstructionPanel('RADAR', 'SELECT A MISSED CELL TO SCAN', 'radar.png');
+}
+
+function finishRadarMode() {
+    clearActiveSkillState();
+    setInstructionPanel(DEFAULT_INSTRUCTION.name, DEFAULT_INSTRUCTION.desc, DEFAULT_INSTRUCTION.icon);
+}
+
+function showRadarResult(centerIndex) {
+    const cell = getEnemyCell(centerIndex);
+    if (!cell) return;
+
+    updateRadarCellDisplay(centerIndex);
+    const count = cell.dataset.radarCount || '0';
+    const floating = document.createElement('span');
+    floating.className = 'radar-count-floating';
+    floating.textContent = count;
+    cell.appendChild(floating);
+    setTimeout(() => floating.remove(), 1500);
+}
+
+function executeRadarScan(centerIndex) {
+    const grid = document.getElementById('enemy-grid');
+    if (!grid || !isRadarSelectable(centerIndex)) return;
+
+    clearRadarPreview();
+    setRadarEligibleCells(false);
+    activeSkill = null;
+    setInstructionPanel('RADAR', 'SCANNING TARGET AREA', 'radar.png');
+
+    const cells = getRadarAreaIndices(centerIndex).map(index => getEnemyCell(index)).filter(Boolean);
+    const left = Math.min(...cells.map(cell => cell.offsetLeft));
+    const top = Math.min(...cells.map(cell => cell.offsetTop));
+    const right = Math.max(...cells.map(cell => cell.offsetLeft + cell.offsetWidth));
+    const bottom = Math.max(...cells.map(cell => cell.offsetTop + cell.offsetHeight));
+
+    const overlay = document.createElement('div');
+    overlay.className = 'radar-scan-overlay';
+    overlay.style.left = `${left}px`;
+    overlay.style.top = `${top}px`;
+    overlay.style.width = `${right - left}px`;
+    overlay.style.height = `${bottom - top}px`;
+    grid.appendChild(overlay);
+
+    playSound('laser-sfx');
+
+    setTimeout(() => {
+        overlay.remove();
+        radarScannedCells.add(centerIndex);
+        showRadarResult(centerIndex);
+        finishRadarMode();
+    }, 1000);
+}
+
+function onEnemyGridHover(event) {
+    if (currentPhase !== 'PLAYER_TURN') return;
+    if (selectedSkill !== 'radar' && activeSkill !== 'radar') return;
+
+    const cell = event.target.closest('.cell');
+    const grid = document.getElementById('enemy-grid');
+    if (!cell || !grid || !grid.contains(cell)) {
+        clearRadarPreview();
+        return;
+    }
+
+    const index = parseInt(cell.dataset.index, 10);
+    if (!Number.isInteger(index) || !isRadarSelectable(index)) {
+        clearRadarPreview();
+        return;
+    }
+
+    if (radarPreviewIndex !== index) {
+        renderRadarPreview(index);
+    }
+}
 
 // 根據 playerEnergy 更新每個技能嘅 available/disabled 狀態
 function updateSkillStates() {
@@ -5008,6 +5244,7 @@ function onSkillClick(e) {
     const diamond = e.currentTarget;
     if (diamond.classList.contains('skill-disabled')) return;
     if (currentPhase !== 'PLAYER_TURN') return;
+    if (activeSkill) return;
 
     const skill = diamond.dataset.skill;
     const cost = parseInt(diamond.dataset.cost) || 0;
@@ -5037,10 +5274,14 @@ function onSkillClick(e) {
     // 更新 instruction panel
     const info = SKILL_INFO[skill];
     if (info) {
-        const instrIcon = document.getElementById('instruction-icon');
-        const instrText = document.getElementById('instruction-text');
-        if (instrIcon) instrIcon.src = info.icon;
-        if (instrText) instrText.innerHTML = `<span class="instr-name">${info.name}:</span> <span class="instr-desc">${info.desc}</span>`;
+        setInstructionPanel(info.name, info.desc, info.icon);
+    }
+
+    if (skill === 'radar') {
+        setRadarEligibleCells(true);
+    } else {
+        clearRadarPreview();
+        setRadarEligibleCells(false);
     }
 }
 
@@ -5053,12 +5294,11 @@ function cancelSkillSelection() {
     if (costVal) costVal.style.display = 'none';
     if (costRow) costRow.classList.remove('cost-double-digit');
     if (confirmBtns) confirmBtns.style.display = 'none';
+    clearRadarPreview();
+    setRadarEligibleCells(false);
 
     // 還原 instruction panel
-    const instrIcon = document.getElementById('instruction-icon');
-    const instrText = document.getElementById('instruction-text');
-    if (instrIcon) instrIcon.src = 'aim.png';
-    if (instrText) instrText.innerHTML = '<span class="instr-name">SINGLE SHOT:</span> <span class="instr-desc">TAP A CELL TO FIRE</span>';
+    setInstructionPanel(DEFAULT_INSTRUCTION.name, DEFAULT_INSTRUCTION.desc, DEFAULT_INSTRUCTION.icon);
 }
 
 function confirmSkillSelection() {
@@ -5075,9 +5315,13 @@ function confirmSkillSelection() {
     // 扣 energy
     addEnergy(-cost, selectedSkill.toUpperCase());
 
-    // TODO: 執行技能效果
-    console.log(`★ SKILL ACTIVATED: ${selectedSkill} (cost: ${cost})`);
+    if (selectedSkill === 'radar') {
+        activateRadarMode();
+        updateSkillStates();
+        return;
+    }
 
+    console.log(`★ SKILL ACTIVATED: ${selectedSkill} (cost: ${cost})`);
     cancelSkillSelection();
     updateSkillStates();
 }
@@ -5089,6 +5333,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     const cancelBtn = document.getElementById('skill-cancel');
     const confirmBtn = document.getElementById('skill-confirm');
+    const enemyGridEl = document.getElementById('enemy-grid');
     if (cancelBtn) cancelBtn.addEventListener('click', cancelSkillSelection);
     if (confirmBtn) confirmBtn.addEventListener('click', confirmSkillSelection);
+    if (enemyGridEl) {
+        enemyGridEl.addEventListener('mousemove', onEnemyGridHover);
+        enemyGridEl.addEventListener('mouseleave', clearRadarPreview);
+    }
 });

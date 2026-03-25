@@ -383,11 +383,54 @@ body {
             cursor: default;
         }
 
+        #enemy-grid .cell.miss.radar-eligible {
+            background: rgba(0, 180, 255, 0.22) !important;
+            border-color: rgba(120, 235, 255, 0.8) !important;
+            box-shadow:
+                inset 0 0 10px rgba(0, 243, 255, 0.18),
+                0 0 10px rgba(0, 243, 255, 0.2);
+            animation: radarCellPulse 1.6s ease-in-out infinite;
+            cursor: pointer;
+        }
+
+        #enemy-grid .cell.miss.radar-scanned {
+            color: #bffcff;
+            text-shadow:
+                0 0 6px rgba(0, 243, 255, 0.8),
+                0 0 12px rgba(0, 243, 255, 0.45);
+        }
+
         .miss-icon {
             width: 60%;
             height: 60%;
             opacity: 0.3;
             pointer-events: none;
+        }
+
+        .radar-count-static,
+        .radar-count-floating {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            color: #bffcff;
+            text-shadow:
+                0 0 6px rgba(0, 243, 255, 0.9),
+                0 0 12px rgba(0, 243, 255, 0.45);
+            pointer-events: none;
+        }
+
+        .radar-count-static {
+            font-size: 18px;
+            letter-spacing: 0;
+        }
+
+        .radar-count-floating {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            z-index: 3;
+            animation: radarCountFloat 1.5s ease-out forwards;
         }
         
         .cell.revealed { cursor: default; }
@@ -3136,6 +3179,59 @@ body {
    ========================================= */
 
 /* 1. 鎖定線與框的容器 (會動態加落去 enemy-grid) */
+.radar-preview-overlay,
+.radar-scan-overlay {
+    position: absolute;
+    pointer-events: none;
+    z-index: 48;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.radar-preview-overlay {
+    border: 1px solid rgba(0, 243, 255, 0.9);
+    box-shadow:
+        0 0 14px rgba(0, 243, 255, 0.35),
+        inset 0 0 12px rgba(0, 243, 255, 0.14);
+    background:
+        linear-gradient(rgba(0, 243, 255, 0.16), rgba(0, 243, 255, 0.16)),
+        repeating-linear-gradient(
+            0deg,
+            transparent 0,
+            transparent 35px,
+            rgba(0, 243, 255, 0.55) 35px,
+            rgba(0, 243, 255, 0.55) 37px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent 0,
+            transparent 35px,
+            rgba(0, 243, 255, 0.55) 35px,
+            rgba(0, 243, 255, 0.55) 37px
+        );
+    animation: radarPreviewPulse 1.4s ease-in-out infinite;
+}
+
+.radar-preview-center {
+    position: absolute;
+    border: 1px solid rgba(180, 250, 255, 0.95);
+    border-radius: 6px;
+    box-shadow:
+        inset 0 0 12px rgba(0, 243, 255, 0.22),
+        0 0 10px rgba(0, 243, 255, 0.4);
+    background:
+        linear-gradient(to right, transparent 48%, rgba(180, 250, 255, 0.8) 50%, transparent 52%),
+        linear-gradient(to bottom, transparent 48%, rgba(180, 250, 255, 0.8) 50%, transparent 52%);
+}
+
+.radar-scan-overlay {
+    border: 1px solid rgba(0, 243, 255, 0.95);
+    background:
+        radial-gradient(circle at center, rgba(0, 243, 255, 0.25) 0%, rgba(0, 243, 255, 0.04) 45%, transparent 72%),
+        rgba(0, 20, 30, 0.18);
+    animation: radar-scan 1s ease-out forwards;
+}
+
 .target-overlay {
     position: absolute;
     top: 0; left: 0;
@@ -3224,6 +3320,67 @@ body {
     100% { transform: scale(1) rotate(0deg); opacity: 1; }
 }
 /* 右上角齒輪按鈕 */
+@keyframes radarCellPulse {
+    0%, 100% {
+        box-shadow:
+            inset 0 0 10px rgba(0, 243, 255, 0.18),
+            0 0 8px rgba(0, 243, 255, 0.2);
+        opacity: 0.65;
+    }
+    50% {
+        box-shadow:
+            inset 0 0 14px rgba(0, 243, 255, 0.35),
+            0 0 16px rgba(0, 243, 255, 0.4);
+        opacity: 1;
+    }
+}
+
+@keyframes radarPreviewPulse {
+    0%, 100% {
+        box-shadow:
+            0 0 10px rgba(0, 243, 255, 0.25),
+            inset 0 0 10px rgba(0, 243, 255, 0.08);
+    }
+    50% {
+        box-shadow:
+            0 0 18px rgba(0, 243, 255, 0.45),
+            inset 0 0 14px rgba(0, 243, 255, 0.18);
+    }
+}
+
+@keyframes radar-scan {
+    0% {
+        box-shadow:
+            inset 0 0 0 0 rgba(0, 243, 255, 0.95),
+            0 0 10px rgba(0, 243, 255, 0.25);
+    }
+    50% {
+        box-shadow:
+            inset 0 0 20px 0 rgba(0, 243, 255, 0.95),
+            0 0 18px rgba(0, 243, 255, 0.45);
+    }
+    100% {
+        box-shadow:
+            inset 0 0 0 0 rgba(0, 243, 255, 0.95),
+            0 0 8px rgba(0, 243, 255, 0.15);
+    }
+}
+
+@keyframes radarCountFloat {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -40%) scale(0.7);
+    }
+    20% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -115%) scale(1.08);
+    }
+}
+
 #main-settings-btn {
     position: fixed;
     top: 25px;
