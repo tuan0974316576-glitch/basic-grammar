@@ -1505,10 +1505,16 @@ function switchScene(sceneName) {
                     instrContainer.classList.remove('aurelians');
                 }
             }
+            // ★★★ 我方回合：技能可用 ★★★
+            const skillGroup = document.getElementById('hud-skills');
+            if (skillGroup) skillGroup.classList.remove('skills-inactive');
         } else {
             document.getElementById('player-board').classList.add('active');
             document.getElementById('game-status').innerHTML = `PHASE: <span style="color:var(--danger)">WARNING! ENEMY</span>`;
             document.getElementById('control-panel').style.borderColor = "var(--danger)";
+            // ★★★ 敵方回合：技能不可用 ★★★
+            const skillGroup = document.getElementById('hud-skills');
+            if (skillGroup) skillGroup.classList.add('skills-inactive');
             // 隱藏 instruction container
             if (instrContainer) instrContainer.style.visibility = 'hidden';
         }

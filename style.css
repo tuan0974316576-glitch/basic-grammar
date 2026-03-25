@@ -2989,6 +2989,12 @@ body {
     filter: grayscale(1) brightness(0.4);
 }
 
+/* 敵方回合：整個技能欄半透明 + 不可點擊 */
+#hud-skills.skills-inactive {
+    opacity: 0.35;
+    pointer-events: none;
+}
+
 /* 選中後顯示 cost + 確認/取消 */
 #skill-selected-info {
     display: flex;
