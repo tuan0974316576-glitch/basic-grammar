@@ -291,6 +291,13 @@ body {
         .btn:disabled { opacity: 0.5; cursor: not-allowed; border-color: #555; background: transparent; color: #555; }
 
         /* --- 棋盤容器 --- */
+        /* Spacer 令 player-board grid 對齊 enemy-board grid（戰鬥時才顯示） */
+        #player-board-spacer {
+            /* 同 #status-panel 一樣高：min-height 50 + padding 10 + border 2 + margin-bottom 10 = 72px */
+            height: 72px;
+            display: none;
+        }
+
         #boards-wrapper {
             display: grid;
             grid-template: 1fr / 1fr;

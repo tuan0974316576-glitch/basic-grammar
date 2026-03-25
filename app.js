@@ -1381,9 +1381,11 @@ function startBattle() {
 
     document.getElementById('deploy-controls').style.display = 'none';
     document.getElementById('fleet-sidebar').style.display = 'none';
-    // ★★★ 顯示底部 Battle HUD ★★★
+    // ★★★ 顯示底部 Battle HUD + spacer ★★★
     const battleHud = document.getElementById('battle-hud');
     if (battleHud) battleHud.style.display = 'flex';
+    const spacer = document.getElementById('player-board-spacer');
+    if (spacer) spacer.style.display = 'block';
     initEnemyFleetIndicator();
     playSound('deploy-sfx');
 
