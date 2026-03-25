@@ -5018,16 +5018,19 @@ function onSkillClick(e) {
     diamond.classList.add('skill-selected');
 
     // 顯示 cost + 確認/取消
-    const info = document.getElementById('skill-selected-info');
-    document.getElementById('skill-cost-val').textContent = cost;
-    if (info) info.style.display = 'flex';
+    const costVal = document.getElementById('skill-cost-val');
+    const confirmBtns = document.getElementById('skill-confirm-btns');
+    if (costVal) { costVal.textContent = cost; costVal.style.display = 'inline'; }
+    if (confirmBtns) confirmBtns.style.display = 'flex';
 }
 
 function cancelSkillSelection() {
     selectedSkill = null;
     document.querySelectorAll('.skill-diamond').forEach(d => d.classList.remove('skill-selected'));
-    const info = document.getElementById('skill-selected-info');
-    if (info) info.style.display = 'none';
+    const costVal = document.getElementById('skill-cost-val');
+    const confirmBtns = document.getElementById('skill-confirm-btns');
+    if (costVal) costVal.style.display = 'none';
+    if (confirmBtns) confirmBtns.style.display = 'none';
 }
 
 function confirmSkillSelection() {

@@ -2995,31 +2995,18 @@ body {
     pointer-events: none;
 }
 
-/* 選中後顯示 cost + 確認/取消 */
-#skill-selected-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    margin-top: 2px;
-}
-
-#skill-cost {
-    display: flex;
-    align-items: center;
-    gap: 3px;
-}
-.skill-cost-icon {
-    width: 16px;
-    height: 16px;
-    object-fit: contain;
-    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.6));
-}
+/* Cost 數字（喺 energy icon 右邊） */
 #skill-cost-val {
     font-family: 'Black Ops One', sans-serif;
     font-size: 14px;
     color: #fff;
     text-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
+    margin-left: 2px;
+}
+
+/* 確認/取消按鈕行 */
+.skill-row-confirm {
+    margin-top: 2px;
 }
 
 #skill-confirm-btns {
