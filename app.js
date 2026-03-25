@@ -3384,6 +3384,10 @@ function resetGame() {
     document.getElementById('end-screen').style.display = 'none';
     document.getElementById('game-ui').style.display = 'none';
     document.getElementById('lobby-screen').style.display = 'none';
+    const reviewContainer = document.getElementById('review-container');
+    const reviewList = document.getElementById('review-list');
+    if (reviewContainer) reviewContainer.style.display = 'none';
+    if (reviewList) reviewList.innerHTML = '';
     // ★★★ 隱藏底部 Battle HUD ★★★
     const battleHud = document.getElementById('battle-hud');
     if (battleHud) battleHud.style.display = 'none'; 
@@ -4058,8 +4062,12 @@ function formatDisplayInput(userRaw, targetCorrect) {
     return result;
 }
 function renderReview() {
+    const container = document.getElementById('review-container');
     const list = document.getElementById('review-list');
+    if (!container || !list) return;
+
     list.innerHTML = ""; 
+    container.style.display = battleLog.length > 0 ? 'flex' : 'none';
 
     battleLog.forEach(log => {
         const item = document.createElement('div');
