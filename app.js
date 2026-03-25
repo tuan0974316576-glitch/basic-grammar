@@ -5026,7 +5026,12 @@ function onSkillClick(e) {
     // 顯示 cost + 確認/取消
     const costVal = document.getElementById('skill-cost-val');
     const confirmBtns = document.getElementById('skill-confirm-btns');
-    if (costVal) { costVal.textContent = cost; costVal.style.display = 'inline'; }
+    const costRow = costVal ? costVal.parentElement : null;
+    if (costVal) {
+        costVal.textContent = cost;
+        costVal.style.display = 'inline';
+        if (costRow) costRow.classList.toggle('cost-double-digit', String(cost).length >= 2);
+    }
     if (confirmBtns) confirmBtns.style.display = 'flex';
 
     // 更新 instruction panel
@@ -5044,7 +5049,9 @@ function cancelSkillSelection() {
     document.querySelectorAll('.skill-diamond').forEach(d => d.classList.remove('skill-selected'));
     const costVal = document.getElementById('skill-cost-val');
     const confirmBtns = document.getElementById('skill-confirm-btns');
+    const costRow = costVal ? costVal.parentElement : null;
     if (costVal) costVal.style.display = 'none';
+    if (costRow) costRow.classList.remove('cost-double-digit');
     if (confirmBtns) confirmBtns.style.display = 'none';
 
     // 還原 instruction panel

@@ -2967,6 +2967,14 @@ body {
     align-items: center;
     justify-content: center;
     gap: 2px;
+    width: fit-content;
+    margin: 0 auto;
+    transform: translateX(-2px);
+}
+
+.skill-row-bot.cost-double-digit {
+    gap: 1px;
+    transform: translateX(-4px);
 }
 .skill-energy-icon {
     width: 18px;
@@ -3022,7 +3030,7 @@ body {
     font-size: 14px;
     color: #fff;
     text-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
-    margin-left: 2px;
+    margin-left: 1px;
 }
 
 /* 確認/取消按鈕行 */
