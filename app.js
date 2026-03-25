@@ -1508,6 +1508,8 @@ function switchScene(sceneName) {
             // ★★★ 我方回合：技能可用 ★★★
             const skillGroup = document.getElementById('hud-skills');
             if (skillGroup) skillGroup.classList.remove('skills-inactive');
+            cancelSkillSelection();
+            if (typeof updateSkillStates === 'function') updateSkillStates();
         } else {
             document.getElementById('player-board').classList.add('active');
             document.getElementById('game-status').innerHTML = `PHASE: <span style="color:var(--danger)">WARNING! ENEMY</span>`;
@@ -2752,6 +2754,7 @@ function checkMyShipDestruction(hitIdx) {
                 playerEnergy = targetEnergy; // 確保最終值正確
                 updateEnergyDisplay();
                 clearInterval(animationInterval);
+                if (typeof updateSkillStates === 'function') updateSkillStates();
             } else {
                 updateEnergyDisplay();
             }
@@ -4967,3 +4970,94 @@ function speakText(text, element = null) {
     // 5. 正式發聲
     window.speechSynthesis.speak(utterance);
 }
+
+/* =========================================
+   ★★★ SKILL SYSTEM ★★★
+   ========================================= */
+
+let selectedSkill = null;
+
+// 根據 playerEnergy 更新每個技能嘅 available/disabled 狀態
+function updateSkillStates() {
+    document.querySelectorAll('.skill-diamond').forEach(diamond => {
+        const cost = parseInt(diamond.dataset.cost) || 0;
+        if (playerEnergy >= cost) {
+            diamond.classList.add('skill-available');
+            diamond.classList.remove('skill-disabled');
+        } else {
+            diamond.classList.remove('skill-available');
+            diamond.classList.add('skill-disabled');
+        }
+    });
+    // Energy icon 同步
+    const energyIcon = document.querySelector('.skill-energy-icon');
+    if (energyIcon) {
+        const anyAvailable = document.querySelector('.skill-diamond.skill-available');
+        energyIcon.classList.toggle('energy-disabled', !anyAvailable);
+    }
+}
+
+// 撳技能 diamond
+function onSkillClick(e) {
+    const diamond = e.currentTarget;
+    if (diamond.classList.contains('skill-disabled')) return;
+    if (currentPhase !== 'PLAYER_TURN') return;
+
+    const skill = diamond.dataset.skill;
+    const cost = parseInt(diamond.dataset.cost) || 0;
+
+    // 如果已經選緊同一個 → 取消
+    if (selectedSkill === skill) {
+        cancelSkillSelection();
+        return;
+    }
+
+    // 選擇新技能
+    selectedSkill = skill;
+    document.querySelectorAll('.skill-diamond').forEach(d => d.classList.remove('skill-selected'));
+    diamond.classList.add('skill-selected');
+
+    // 顯示 cost + 確認/取消
+    const info = document.getElementById('skill-selected-info');
+    document.getElementById('skill-cost-val').textContent = cost;
+    if (info) info.style.display = 'flex';
+}
+
+function cancelSkillSelection() {
+    selectedSkill = null;
+    document.querySelectorAll('.skill-diamond').forEach(d => d.classList.remove('skill-selected'));
+    const info = document.getElementById('skill-selected-info');
+    if (info) info.style.display = 'none';
+}
+
+function confirmSkillSelection() {
+    if (!selectedSkill) return;
+    const diamond = document.querySelector(`.skill-diamond[data-skill="${selectedSkill}"]`);
+    if (!diamond) return;
+    const cost = parseInt(diamond.dataset.cost) || 0;
+
+    if (playerEnergy < cost) {
+        cancelSkillSelection();
+        return;
+    }
+
+    // 扣 energy
+    addEnergy(-cost, selectedSkill.toUpperCase());
+
+    // TODO: 執行技能效果
+    console.log(`★ SKILL ACTIVATED: ${selectedSkill} (cost: ${cost})`);
+
+    cancelSkillSelection();
+    updateSkillStates();
+}
+
+// 綁定事件
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.skill-diamond').forEach(diamond => {
+        diamond.addEventListener('click', onSkillClick);
+    });
+    const cancelBtn = document.getElementById('skill-cancel');
+    const confirmBtn = document.getElementById('skill-confirm');
+    if (cancelBtn) cancelBtn.addEventListener('click', cancelSkillSelection);
+    if (confirmBtn) confirmBtn.addEventListener('click', confirmSkillSelection);
+});
