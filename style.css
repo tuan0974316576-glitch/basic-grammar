@@ -2914,7 +2914,7 @@ body {
     transform: rotate(45deg);
     background: rgba(15, 30, 50, 0.85);
     border: 1.5px solid rgba(100, 200, 255, 0.8);
-    border-radius: 6px;
+    border-radius: 3px;
     box-shadow: 0 0 8px rgba(100, 180, 255, 0.4);
     cursor: pointer;
     transition: all 0.2s ease;
