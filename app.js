@@ -5124,6 +5124,20 @@ function renderRadarPreview(centerIndex) {
 
     const centerCell = getEnemyCell(centerIndex);
     if (centerCell) {
+        const colOffsets = [...new Set(cells.map(cell => cell.offsetLeft - left))].sort((a, b) => a - b);
+        const rowOffsets = [...new Set(cells.map(cell => cell.offsetTop - top))].sort((a, b) => a - b);
+        const gapX = colOffsets.length > 1 ? (colOffsets[1] - colOffsets[0] - centerCell.offsetWidth) : 0;
+        const gapY = rowOffsets.length > 1 ? (rowOffsets[1] - rowOffsets[0] - centerCell.offsetHeight) : 0;
+        const lineX1 = colOffsets[1] - (gapX / 2);
+        const lineX2 = colOffsets[2] - (gapX / 2);
+        const lineY1 = rowOffsets[1] - (gapY / 2);
+        const lineY2 = rowOffsets[2] - (gapY / 2);
+
+        overlay.style.setProperty('--radar-line-x1', `${lineX1}px`);
+        overlay.style.setProperty('--radar-line-x2', `${lineX2}px`);
+        overlay.style.setProperty('--radar-line-y1', `${lineY1}px`);
+        overlay.style.setProperty('--radar-line-y2', `${lineY2}px`);
+
         const reticle = document.createElement('div');
         reticle.className = 'radar-preview-center';
         reticle.style.left = `${centerCell.offsetLeft - left}px`;

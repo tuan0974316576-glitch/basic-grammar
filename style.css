@@ -3189,6 +3189,7 @@ body {
 }
 
 .radar-preview-overlay {
+    box-sizing: border-box;
     border: 1px solid rgba(0, 243, 255, 0.9);
     box-shadow:
         0 0 14px rgba(0, 243, 255, 0.35),
@@ -3197,31 +3198,38 @@ body {
         linear-gradient(rgba(0, 243, 255, 0.16), rgba(0, 243, 255, 0.16)),
         linear-gradient(
             90deg,
-            transparent 32.6%,
-            rgba(0, 243, 255, 0.28) 32.6%,
-            rgba(0, 243, 255, 0.28) 33.4%,
-            transparent 33.4%,
-            transparent 65.9%,
-            rgba(0, 243, 255, 0.28) 65.9%,
-            rgba(0, 243, 255, 0.28) 66.7%,
-            transparent 66.7%
+            transparent calc(var(--radar-line-x1, 36px) - 0.5px),
+            rgba(0, 243, 255, 0.18) calc(var(--radar-line-x1, 36px) - 0.5px),
+            rgba(0, 243, 255, 0.18) calc(var(--radar-line-x1, 36px) + 0.5px),
+            transparent calc(var(--radar-line-x1, 36px) + 0.5px)
+        ),
+        linear-gradient(
+            90deg,
+            transparent calc(var(--radar-line-x2, 73px) - 0.5px),
+            rgba(0, 243, 255, 0.18) calc(var(--radar-line-x2, 73px) - 0.5px),
+            rgba(0, 243, 255, 0.18) calc(var(--radar-line-x2, 73px) + 0.5px),
+            transparent calc(var(--radar-line-x2, 73px) + 0.5px)
         ),
         linear-gradient(
             180deg,
-            transparent 32.6%,
-            rgba(0, 243, 255, 0.28) 32.6%,
-            rgba(0, 243, 255, 0.28) 33.4%,
-            transparent 33.4%,
-            transparent 65.9%,
-            rgba(0, 243, 255, 0.28) 65.9%,
-            rgba(0, 243, 255, 0.28) 66.7%,
-            transparent 66.7%
+            transparent calc(var(--radar-line-y1, 36px) - 0.5px),
+            rgba(0, 243, 255, 0.18) calc(var(--radar-line-y1, 36px) - 0.5px),
+            rgba(0, 243, 255, 0.18) calc(var(--radar-line-y1, 36px) + 0.5px),
+            transparent calc(var(--radar-line-y1, 36px) + 0.5px)
+        ),
+        linear-gradient(
+            180deg,
+            transparent calc(var(--radar-line-y2, 73px) - 0.5px),
+            rgba(0, 243, 255, 0.18) calc(var(--radar-line-y2, 73px) - 0.5px),
+            rgba(0, 243, 255, 0.18) calc(var(--radar-line-y2, 73px) + 0.5px),
+            transparent calc(var(--radar-line-y2, 73px) + 0.5px)
         );
     animation: radarPreviewPulse 1.4s ease-in-out infinite;
 }
 
 .radar-preview-center {
     position: absolute;
+    box-sizing: border-box;
     border: 1px solid rgba(180, 250, 255, 0.95);
     border-radius: 6px;
     box-shadow:
@@ -3261,7 +3269,12 @@ body {
 .radar-scan-wave {
     width: 12%;
     height: 12%;
-    border: 2px solid rgba(120, 245, 255, 0.8);
+    border: 3px solid rgba(150, 248, 255, 0.42);
+    box-shadow:
+        0 0 18px rgba(0, 243, 255, 0.34),
+        0 0 34px rgba(0, 243, 255, 0.24),
+        0 0 56px rgba(0, 243, 255, 0.12);
+    filter: blur(4px);
     opacity: 0;
 }
 
@@ -3436,11 +3449,11 @@ body {
         transform: translate(-50%, -50%) scale(0.15);
     }
     18% {
-        opacity: 0.95;
+        opacity: 0.78;
     }
     100% {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(9.2);
+        transform: translate(-50%, -50%) scale(10.4);
     }
 }
 
