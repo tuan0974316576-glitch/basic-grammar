@@ -2866,6 +2866,69 @@ body {
 }
 
 /* =========================================
+   ★★★ BATTLE HUD (底部三欄) ★★★
+   ========================================= */
+#battle-hud {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 600px;
+    margin: 8px auto 0 auto;
+    padding: 0 5px;
+    gap: 8px;
+    z-index: 10;
+}
+
+/* 左欄：技能 */
+#hud-skills {
+    flex: 0 0 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+/* 中欄：小地圖 */
+#hud-minimap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#minimap-label {
+    font-family: 'Black Ops One', sans-serif;
+    font-size: 10px;
+    color: #94a3b8;
+    letter-spacing: 2px;
+    margin-bottom: 4px;
+}
+
+#minimap-grid {
+    width: 100%;
+    max-width: 140px;
+    aspect-ratio: 1;
+    background: rgba(10, 20, 30, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+/* 右欄：駕駛員 portrait */
+#hud-portrait {
+    flex: 0 0 80px;
+    height: 80px;
+    background: rgba(10, 20, 30, 0.7);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    overflow: hidden;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+/* =========================================
    ★★★ TARGET LOCK SYSTEM (座標鎖定特效) ★★★
    ========================================= */
 

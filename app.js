@@ -1381,6 +1381,9 @@ function startBattle() {
 
     document.getElementById('deploy-controls').style.display = 'none';
     document.getElementById('fleet-sidebar').style.display = 'none';
+    // ★★★ 顯示底部 Battle HUD ★★★
+    const battleHud = document.getElementById('battle-hud');
+    if (battleHud) battleHud.style.display = 'flex';
     initEnemyFleetIndicator();
     playSound('deploy-sfx');
 
@@ -3324,7 +3327,10 @@ function resetGame() {
     document.getElementById('turn-timer-container').style.display = 'none';
     document.getElementById('end-screen').style.display = 'none';
     document.getElementById('game-ui').style.display = 'none';
-    document.getElementById('lobby-screen').style.display = 'none'; 
+    document.getElementById('lobby-screen').style.display = 'none';
+    // ★★★ 隱藏底部 Battle HUD ★★★
+    const battleHud = document.getElementById('battle-hud');
+    if (battleHud) battleHud.style.display = 'none'; 
     
     document.getElementById('start-screen').style.display = 'flex';
     document.getElementById('start-screen').style.opacity = '1';
