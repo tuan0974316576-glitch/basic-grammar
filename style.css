@@ -2872,10 +2872,10 @@ body {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    width: 100%;
-    max-width: 600px;
+    /* 同棋盤 (.game-grid) 一樣寬：10×35 + 9×2(gap) + 20(padding) + 2(border) = 390px */
+    width: 390px;
+    max-width: calc(100% - 20px);
     margin: 8px auto 0 auto;
-    padding: 0 5px;
     gap: 8px;
     z-index: 10;
 }
