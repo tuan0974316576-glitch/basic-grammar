@@ -3024,22 +3024,27 @@ body {
     width: 28px;
     height: 28px;
     border-radius: 50%;
-    border: 1.5px solid;
-    font-size: 14px;
+    border: 2.5px solid;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     background: rgba(10, 20, 30, 0.8);
     transition: all 0.2s;
+    padding: 0;
+}
+.skill-btn-cancel img,
+.skill-btn-confirm img {
+    width: 14px;
+    height: 14px;
+    object-fit: contain;
+    filter: brightness(10);
 }
 .skill-btn-cancel {
-    border-color: rgba(220, 50, 50, 0.6);
-    color: #f87171;
+    border-color: rgba(220, 50, 50, 0.8);
 }
 .skill-btn-confirm {
-    border-color: rgba(50, 200, 100, 0.6);
-    color: #4ade80;
+    border-color: rgba(50, 200, 100, 0.8);
 }
 
 /* 中欄：小地圖 */
