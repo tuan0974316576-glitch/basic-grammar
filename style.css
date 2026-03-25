@@ -2870,7 +2870,7 @@ body {
    ========================================= */
 #battle-hud {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
     /* 同棋盤 (.game-grid) 一樣寬：10×35 + 9×2(gap) + 20(padding) + 2(border) = 390px */
     width: 390px;
