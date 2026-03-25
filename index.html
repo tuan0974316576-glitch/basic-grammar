@@ -385,7 +385,25 @@
         <!-- ★★★ BATTLE HUD: 底部三欄 (技能 / 小地圖 / Portrait) ★★★ -->
         <div id="battle-hud" style="display: none;">
             <div id="hud-skills">
-                <!-- 技能欄 -->
+                <div class="skill-icons-group">
+                    <div class="skill-diamond skill-lg" data-skill="nuke" title="Nuclear Strike">
+                        <span class="skill-icon">☢</span>
+                    </div>
+                    <div class="skill-diamond skill-md" data-skill="barrage" title="Barrage">
+                        <span class="skill-icon">☢</span>
+                    </div>
+                    <div class="skill-diamond skill-sm" data-skill="emp" title="EMP">
+                        <span class="skill-icon">⚡</span>
+                    </div>
+                </div>
+                <!-- 選擇後顯示 -->
+                <div id="skill-selected-info" style="display:none;">
+                    <div id="skill-cost"><span class="skill-bolt">⚡</span><span id="skill-cost-val">12</span></div>
+                    <div id="skill-confirm-btns">
+                        <button class="skill-btn-cancel" id="skill-cancel">✕</button>
+                        <button class="skill-btn-confirm" id="skill-confirm">✓</button>
+                    </div>
+                </div>
             </div>
             <div id="hud-minimap">
                 <div id="minimap-label">YOUR FLEET</div>
