@@ -3195,19 +3195,27 @@ body {
         inset 0 0 12px rgba(0, 243, 255, 0.14);
     background:
         linear-gradient(rgba(0, 243, 255, 0.16), rgba(0, 243, 255, 0.16)),
-        repeating-linear-gradient(
-            0deg,
-            transparent 0,
-            transparent 35px,
-            rgba(0, 243, 255, 0.55) 35px,
-            rgba(0, 243, 255, 0.55) 37px
-        ),
-        repeating-linear-gradient(
+        linear-gradient(
             90deg,
-            transparent 0,
-            transparent 35px,
-            rgba(0, 243, 255, 0.55) 35px,
-            rgba(0, 243, 255, 0.55) 37px
+            transparent 32.6%,
+            rgba(0, 243, 255, 0.28) 32.6%,
+            rgba(0, 243, 255, 0.28) 33.4%,
+            transparent 33.4%,
+            transparent 65.9%,
+            rgba(0, 243, 255, 0.28) 65.9%,
+            rgba(0, 243, 255, 0.28) 66.7%,
+            transparent 66.7%
+        ),
+        linear-gradient(
+            180deg,
+            transparent 32.6%,
+            rgba(0, 243, 255, 0.28) 32.6%,
+            rgba(0, 243, 255, 0.28) 33.4%,
+            transparent 33.4%,
+            transparent 65.9%,
+            rgba(0, 243, 255, 0.28) 65.9%,
+            rgba(0, 243, 255, 0.28) 66.7%,
+            transparent 66.7%
         );
     animation: radarPreviewPulse 1.4s ease-in-out infinite;
 }
