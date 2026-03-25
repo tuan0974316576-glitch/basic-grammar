@@ -2819,19 +2819,26 @@ body {
 .instr-desc {
     color: rgba(255, 255, 255, 0.9);
     text-shadow: none;
+    letter-spacing: 1px;
 }
 
 /* 內框：幼白線 */
 #instruction-inner {
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 8px;
     width: 100%;
     padding: 6px 16px;
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 5px;
     box-sizing: border-box;
+}
+
+#instruction-text {
+    flex: 1;
+    min-width: 0;
+    word-wrap: break-word;
+    line-height: 1.4;
 }
 
 /* 瞄準 icon — 喺 inner 入面但上下突出 container */

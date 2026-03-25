@@ -5035,7 +5035,7 @@ function onSkillClick(e) {
         const instrIcon = document.getElementById('instruction-icon');
         const instrText = document.getElementById('instruction-text');
         if (instrIcon) instrIcon.src = info.icon;
-        if (instrText) instrText.innerHTML = `<span class="instr-name">${info.name}:</span><br><span class="instr-desc">${info.desc}</span>`;
+        if (instrText) instrText.innerHTML = `<span class="instr-name">${info.name}:</span> <span class="instr-desc">${info.desc}</span>`;
     }
 }
 
