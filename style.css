@@ -2870,7 +2870,7 @@ body {
    ========================================= */
 #battle-hud {
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
     justify-content: space-between;
     /* 同棋盤 (.game-grid) 一樣寬：10×35 + 9×2(gap) + 20(padding) + 2(border) = 390px */
     width: 390px;
@@ -2902,8 +2902,8 @@ body {
     justify-content: center;
     gap: 24px;
 }
-.skill-row-top { margin-bottom: -4px; }
-.skill-row-mid { margin-bottom: -4px; }
+.skill-row-top { margin-bottom: -8px; }
+.skill-row-mid { margin-bottom: -8px; }
 
 .skill-diamond {
     width: 36px;
