@@ -5071,7 +5071,7 @@ function getRadarAreaIndices(centerIndex) {
 
 function isRadarSelectable(index) {
     const cell = getEnemyCell(index);
-    return !!cell && cell.classList.contains('miss');
+    return !!cell && cell.classList.contains('miss') && !radarScannedCells.has(index);
 }
 
 function countRadarTargets(centerIndex) {
@@ -5140,7 +5140,8 @@ function renderRadarPreview(centerIndex) {
 function setRadarEligibleCells(isEnabled) {
     document.querySelectorAll('#enemy-grid .cell').forEach(cell => {
         cell.classList.remove('radar-eligible');
-        if (isEnabled && cell.classList.contains('miss')) {
+        const index = parseInt(cell.dataset.index, 10);
+        if (isEnabled && Number.isInteger(index) && isRadarSelectable(index)) {
             cell.classList.add('radar-eligible');
         }
     });
