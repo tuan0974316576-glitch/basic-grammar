@@ -2528,7 +2528,7 @@ function startPlayerTurn() {
         currentPhase = 'PLAYER_TURN';
         switchScene('PLAYER');
 
-        // --- 8秒選位倒數 ---
+        // --- 10秒選位倒數 ---
         const barContainer = document.getElementById('turn-timer-container');
         const bar = document.getElementById('turn-timer-bar');
         const status = document.getElementById('game-status');
@@ -2536,13 +2536,13 @@ function startPlayerTurn() {
         barContainer.style.visibility = 'visible';
         bar.style.width = '100%';
         
-        let timeLeft = 8.0; 
+        let timeLeft = 10.0; 
         
         if (turnTimerInterval) clearInterval(turnTimerInterval);
         
         turnTimerInterval = setInterval(() => {
             timeLeft -= 0.1;
-            const percentage = (timeLeft / 8.0) * 100;
+            const percentage = (timeLeft / 10.0) * 100;
             bar.style.width = percentage + "%";
             
             // 更新狀態文字 (這裡也可以顯示回合)
@@ -5178,6 +5178,27 @@ function executeRadarScan(centerIndex) {
     overlay.style.top = `${top}px`;
     overlay.style.width = `${right - left}px`;
     overlay.style.height = `${bottom - top}px`;
+
+    const circle = document.createElement('div');
+    circle.className = 'radar-scan-circle';
+
+    const wavePrimary = document.createElement('div');
+    wavePrimary.className = 'radar-scan-wave radar-scan-wave-primary';
+
+    const waveSecondary = document.createElement('div');
+    waveSecondary.className = 'radar-scan-wave radar-scan-wave-secondary';
+
+    const sweep = document.createElement('div');
+    sweep.className = 'radar-scan-sweep';
+
+    const core = document.createElement('div');
+    core.className = 'radar-scan-core';
+
+    circle.appendChild(wavePrimary);
+    circle.appendChild(waveSecondary);
+    circle.appendChild(sweep);
+    circle.appendChild(core);
+    overlay.appendChild(circle);
     grid.appendChild(overlay);
 
     playSound('laser-sfx');
