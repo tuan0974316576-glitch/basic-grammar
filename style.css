@@ -3040,27 +3040,43 @@ body {
     width: 28px;
     height: 28px;
     border-radius: 50%;
-    border: 2.5px solid;
+    border: 1.5px solid;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(10, 20, 30, 0.8);
-    transition: all 0.2s;
+    background: rgba(10, 20, 30, 0.82);
+    transition: all 0.2s ease;
     padding: 0;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 .skill-btn-cancel img,
 .skill-btn-confirm img {
     width: 14px;
     height: 14px;
     object-fit: contain;
-    filter: brightness(10);
+    filter: brightness(10) drop-shadow(0 0 4px rgba(255, 255, 255, 0.45));
 }
 .skill-btn-cancel {
-    border-color: rgba(220, 50, 50, 0.8);
+    border-color: rgba(220, 50, 50, 0.82);
+    box-shadow: 0 0 8px rgba(220, 50, 50, 0.32), inset 0 0 0 1px rgba(255, 120, 120, 0.12);
 }
 .skill-btn-confirm {
-    border-color: rgba(50, 200, 100, 0.8);
+    border-color: rgba(50, 200, 100, 0.82);
+    box-shadow: 0 0 8px rgba(50, 200, 100, 0.32), inset 0 0 0 1px rgba(140, 255, 180, 0.12);
+}
+
+.skill-btn-cancel:hover,
+.skill-btn-confirm:hover {
+    transform: scale(1.06);
+}
+
+.skill-btn-cancel:hover {
+    box-shadow: 0 0 12px rgba(220, 50, 50, 0.45), inset 0 0 0 1px rgba(255, 150, 150, 0.18);
+}
+
+.skill-btn-confirm:hover {
+    box-shadow: 0 0 12px rgba(50, 200, 100, 0.45), inset 0 0 0 1px rgba(170, 255, 200, 0.18);
 }
 
 /* 中欄：小地圖 */
