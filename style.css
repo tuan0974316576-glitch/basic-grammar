@@ -2889,7 +2889,7 @@ body {
     gap: 4px;
 }
 
-/* 菱形 icon 群組 */
+/* 菱形 icon 群組 — mockup: 1大+2細排右側 */
 .skill-icons-group {
     display: grid;
     grid-template-columns: auto auto;
@@ -2899,44 +2899,38 @@ body {
 }
 
 .skill-diamond {
+    width: 36px;
+    height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
     transform: rotate(45deg);
     background: rgba(20, 40, 60, 0.85);
-    border: 1.5px solid rgba(100, 180, 255, 0.5);
+    border: 1.5px solid rgba(100, 200, 255, 0.8);
+    box-shadow: 0 0 8px rgba(100, 180, 255, 0.4);
     cursor: pointer;
     transition: all 0.2s ease;
-    position: relative;
 }
 
 .skill-diamond .skill-icon {
     transform: rotate(-45deg);
-    font-size: 14px;
-    line-height: 1;
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
     filter: drop-shadow(0 0 3px rgba(100, 180, 255, 0.6));
+    pointer-events: none;
 }
 
-.skill-diamond.skill-lg {
-    width: 38px;
-    height: 38px;
-    grid-row: 1 / 3;
-    grid-column: 1;
+/* 選中 → 稍微放大 */
+.skill-diamond.skill-selected {
+    width: 42px;
+    height: 42px;
+    border-color: #fbbf24;
+    box-shadow: 0 0 12px rgba(251, 191, 36, 0.5);
 }
-.skill-diamond.skill-lg .skill-icon { font-size: 18px; }
-
-.skill-diamond.skill-md {
-    width: 28px;
-    height: 28px;
-    grid-row: 1;
-    grid-column: 2;
-}
-
-.skill-diamond.skill-sm {
+.skill-diamond.skill-selected .skill-icon {
     width: 24px;
     height: 24px;
-    grid-row: 2;
-    grid-column: 2;
 }
 
 /* 夠 energy → 亮 */
@@ -2944,27 +2938,16 @@ body {
     border-color: rgba(100, 200, 255, 0.8);
     box-shadow: 0 0 8px rgba(100, 180, 255, 0.4);
 }
-.skill-diamond.skill-available .skill-icon {
-    color: #e0f0ff;
-}
 
 /* 唔夠 energy → 暗 */
 .skill-diamond.skill-disabled {
     border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: none;
     opacity: 0.35;
     cursor: default;
 }
 .skill-diamond.skill-disabled .skill-icon {
-    color: #556;
-}
-
-/* 預設亮（開發中先全部亮住） */
-.skill-diamond {
-    border-color: rgba(100, 200, 255, 0.8);
-    box-shadow: 0 0 8px rgba(100, 180, 255, 0.4);
-}
-.skill-diamond .skill-icon {
-    color: #e0f0ff;
+    filter: grayscale(1) brightness(0.4);
 }
 
 /* 選中後顯示 cost + 確認/取消 */
