@@ -1106,7 +1106,7 @@ function initPVPListeners() {
                 } else {
                     // --- Miss Logic ---
                     cell.classList.add('miss');
-                    cell.innerText = "X";
+                    cell.innerHTML = '<img src="close.png" class="miss-icon">';
                 }
             }, 500);
             
@@ -2332,7 +2332,7 @@ function playerFire(success) {
                 } else {
                     // --- 打失 (MISS) ---
                     cell.classList.add('miss');
-                    cell.innerText = "X";
+                    cell.innerHTML = '<img src="close.png" class="miss-icon">';
                 }
 
                 // ★ 5. 關鍵設定：延長至 3秒 後先轉場 (讓你睇清楚戰果) ★
@@ -2366,7 +2366,7 @@ function playerFire(success) {
                     if (checkGameOver()) isGameOver = true;
                 } else {
                     cell.classList.add('miss');
-                    cell.innerText = "X";
+                    cell.innerHTML = '<img src="close.png" class="miss-icon">';
                 }
 
                 if (!isGameOver) {
@@ -2466,7 +2466,7 @@ function aiFire() {
         } else {
             // 打失
             cell.classList.add('miss'); 
-            cell.innerText = "X";
+            cell.innerHTML = '<img src="close.png" class="miss-icon">';
         }
 
         document.getElementById('warning-overlay').style.display = 'none';

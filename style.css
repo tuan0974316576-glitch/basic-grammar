@@ -363,11 +363,16 @@ body {
         
         .cell.hit { background-color: rgba(239, 68, 68, 0.8) !important; border-color: var(--danger); text-shadow: 0 0 5px #fff; }
         
-        .cell.miss { 
-            background-color: rgba(255, 255, 255, 0.05) !important; /* 極淡的底色 */
-            color: rgba(255, 255, 255, 0.3); /* 30% 透明度的白色 */
-            font-family: sans-serif; font-size: 28px; font-weight: bold;
-            text-shadow: none; cursor: default;
+        .cell.miss {
+            background-color: rgba(255, 255, 255, 0.05) !important;
+            cursor: default;
+        }
+
+        .miss-icon {
+            width: 60%;
+            height: 60%;
+            opacity: 0.3;
+            pointer-events: none;
         }
         
         .cell.revealed { cursor: default; }
