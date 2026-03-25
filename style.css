@@ -2800,7 +2800,7 @@ body {
     font-weight: 600;
     letter-spacing: 1.5px;
     padding: 5px;
-    overflow: hidden;
+    overflow: visible;
     border-radius: 8px;
     background: rgba(10, 20, 30, 0.7);
     backdrop-filter: blur(4px);
@@ -2886,7 +2886,7 @@ body {
 }
 
 #instruction-text {
-    white-space: nowrap;
+    white-space: normal;
 }
 
 /* Aurelians 金色版本 */
