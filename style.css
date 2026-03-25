@@ -2902,8 +2902,8 @@ body {
     justify-content: center;
     gap: 24px;
 }
-.skill-row-top { margin-bottom: 0; }
-.skill-row-mid { margin-bottom: 0; }
+.skill-row-top { margin-bottom: -4px; }
+.skill-row-mid { margin-bottom: -4px; }
 
 .skill-diamond {
     width: 36px;
