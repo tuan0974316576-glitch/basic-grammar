@@ -3372,43 +3372,23 @@ body {
     position: absolute;
     left: 50%;
     top: 50%;
-    width: 34px;
-    height: 34px;
+    width: 46px;
+    height: 46px;
     transform: translate(-50%, -50%);
     pointer-events: none;
     z-index: 1;
-}
-
-.explosion-preview-reticle::before,
-.explosion-preview-reticle::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(255, 205, 124, 0.9);
-    box-shadow:
-        0 0 6px rgba(255, 168, 52, 0.55),
-        0 0 12px rgba(255, 126, 18, 0.28);
-}
-
-.explosion-preview-reticle::before {
-    width: 1.5px;
-    height: 100%;
-}
-
-.explosion-preview-reticle::after {
-    width: 100%;
-    height: 1.5px;
-}
-
-.explosion-preview-reticle {
     background:
-        linear-gradient(rgba(255, 196, 110, 0.92), rgba(255, 196, 110, 0.92)) center 3px / 1.5px 7px no-repeat,
-        linear-gradient(rgba(255, 196, 110, 0.92), rgba(255, 196, 110, 0.92)) center calc(100% - 3px) / 1.5px 7px no-repeat,
-        linear-gradient(90deg, rgba(255, 196, 110, 0.92), rgba(255, 196, 110, 0.92)) 3px center / 7px 1.5px no-repeat,
-        linear-gradient(90deg, rgba(255, 196, 110, 0.92), rgba(255, 196, 110, 0.92)) calc(100% - 3px) center / 7px 1.5px no-repeat;
-    filter: drop-shadow(0 0 5px rgba(255, 140, 32, 0.42));
+        linear-gradient(rgba(255, 196, 110, 0.96), rgba(255, 196, 110, 0.96)) center / 2px 100% no-repeat,
+        linear-gradient(90deg, rgba(255, 196, 110, 0.96), rgba(255, 196, 110, 0.96)) center / 100% 2px no-repeat,
+        linear-gradient(rgba(255, 196, 110, 0.92), rgba(255, 196, 110, 0.92)) calc(50% - 8px) calc(50% - 12px) / 1.5px 7px no-repeat,
+        linear-gradient(rgba(255, 196, 110, 0.92), rgba(255, 196, 110, 0.92)) calc(50% + 8px) calc(50% - 12px) / 1.5px 7px no-repeat,
+        linear-gradient(rgba(255, 196, 110, 0.92), rgba(255, 196, 110, 0.92)) calc(50% - 8px) calc(50% + 12px) / 1.5px 7px no-repeat,
+        linear-gradient(rgba(255, 196, 110, 0.92), rgba(255, 196, 110, 0.92)) calc(50% + 8px) calc(50% + 12px) / 1.5px 7px no-repeat,
+        linear-gradient(90deg, rgba(255, 196, 110, 0.92), rgba(255, 196, 110, 0.92)) calc(50% - 12px) calc(50% - 8px) / 7px 1.5px no-repeat,
+        linear-gradient(90deg, rgba(255, 196, 110, 0.92), rgba(255, 196, 110, 0.92)) calc(50% - 12px) calc(50% + 8px) / 7px 1.5px no-repeat,
+        linear-gradient(90deg, rgba(255, 196, 110, 0.92), rgba(255, 196, 110, 0.92)) calc(50% + 12px) calc(50% - 8px) / 7px 1.5px no-repeat,
+        linear-gradient(90deg, rgba(255, 196, 110, 0.92), rgba(255, 196, 110, 0.92)) calc(50% + 12px) calc(50% + 8px) / 7px 1.5px no-repeat;
+    filter: drop-shadow(0 0 6px rgba(255, 140, 32, 0.5));
 }
 
 .explosion-preview-arrow {
