@@ -5327,7 +5327,7 @@ function playMissileStrikeAnimation(boardId, topLeftIndex, onComplete) {
     const impactTop = centerY - missileHeight;
     const startTop = -(gridRect.top + missileHeight + 12);
     const travelDistance = Math.abs(impactTop - startTop);
-    const flightDuration = Math.max(520, Math.round(travelDistance / 1.45));
+    const flightDuration = Math.max(620, Math.round(travelDistance / 1.2));
     const totalDuration = flightDuration + MISSILE_EXPLOSION_DURATION;
 
     const overlay = document.createElement('div');
@@ -5383,7 +5383,6 @@ function applyExplosionDamageToEnemy(indices) {
     });
 
     if (hitIndices.length > 0) {
-        playSound('hit-sfx');
         [...new Set(hitIndices)].forEach(index => checkEnemyShipDestruction(index));
         if (checkGameOver()) isGameOver = true;
     }
@@ -5417,7 +5416,6 @@ function applyExplosionDamageToPlayer(indices) {
     });
 
     if (hitIndices.length > 0) {
-        playSound('hit-sfx');
         let destroyedAny = false;
         [...new Set(hitIndices)].forEach(index => {
             if (checkMyShipDestruction(index)) destroyedAny = true;
