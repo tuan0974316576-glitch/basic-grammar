@@ -3405,7 +3405,7 @@ body {
 
 .missile-sprite {
     position: absolute;
-    top: -92px;
+    top: var(--missile-start-top, -92px);
     width: 18px;
     height: 73px;
     transform: translateX(-50%);
@@ -3416,7 +3416,7 @@ body {
     transform-origin: center center;
     animation:
         missileFrames 0.16s steps(2) infinite,
-        missileDrop 0.62s linear forwards;
+        missileDrop var(--missile-flight-duration, 620ms) linear forwards;
     filter:
         drop-shadow(0 0 8px rgba(255, 185, 110, 0.26))
         drop-shadow(0 0 16px rgba(255, 122, 32, 0.16));
@@ -3472,7 +3472,7 @@ body {
 
 @keyframes missileDrop {
     from {
-        top: -92px;
+        top: var(--missile-start-top, -92px);
         opacity: 0.96;
     }
     to {

@@ -5060,7 +5060,7 @@ let missilePreviewIndex = null;
 let missileLockedIndex = null;
 const radarScannedCells = new Set();
 const RADAR_SCAN_DURATION = 2200;
-const MISSILE_STRIKE_DURATION = 1380;
+const MISSILE_EXPLOSION_DURATION = 720;
 const DEFAULT_INSTRUCTION = {
     name: 'SINGLE SHOT',
     desc: 'TAP A CELL TO FIRE',
@@ -5318,6 +5318,13 @@ function playMissileStrikeAnimation(boardId, topLeftIndex, onComplete) {
     const centerY = (top + bottom) / 2;
     const impactWidth = (right - left) + 44;
     const impactHeight = (bottom - top) + 44;
+    const gridRect = grid.getBoundingClientRect();
+    const missileHeight = 73;
+    const impactTop = centerY - missileHeight;
+    const startTop = -(gridRect.top + missileHeight + 12);
+    const travelDistance = Math.abs(impactTop - startTop);
+    const flightDuration = Math.max(420, Math.round(travelDistance / 1.9));
+    const totalDuration = flightDuration + MISSILE_EXPLOSION_DURATION;
 
     const overlay = document.createElement('div');
     overlay.className = 'missile-strike-overlay';
@@ -5325,7 +5332,9 @@ function playMissileStrikeAnimation(boardId, topLeftIndex, onComplete) {
     const missile = document.createElement('div');
     missile.className = 'missile-sprite';
     missile.style.left = `${centerX}px`;
-    missile.style.setProperty('--missile-impact-top', `${centerY - 74}px`);
+    missile.style.setProperty('--missile-start-top', `${startTop}px`);
+    missile.style.setProperty('--missile-impact-top', `${impactTop}px`);
+    missile.style.setProperty('--missile-flight-duration', `${flightDuration}ms`);
 
     const explosion = document.createElement('div');
     explosion.className = 'missile-explosion';
@@ -5341,12 +5350,12 @@ function playMissileStrikeAnimation(boardId, topLeftIndex, onComplete) {
         missile.remove();
         playSound('destroy-sfx');
         overlay.appendChild(explosion);
-    }, 620);
+    }, flightDuration);
 
     setTimeout(() => {
         overlay.remove();
         if (onComplete) onComplete();
-    }, MISSILE_STRIKE_DURATION);
+    }, totalDuration);
 }
 
 function applyExplosionDamageToEnemy(indices) {
