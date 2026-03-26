@@ -5327,7 +5327,7 @@ function playMissileStrikeAnimation(boardId, topLeftIndex, onComplete) {
     const impactTop = centerY - missileHeight;
     const startTop = -(gridRect.top + missileHeight + 12);
     const travelDistance = Math.abs(impactTop - startTop);
-    const flightDuration = Math.max(420, Math.round(travelDistance / 1.9));
+    const flightDuration = Math.max(520, Math.round(travelDistance / 1.45));
     const totalDuration = flightDuration + MISSILE_EXPLOSION_DURATION;
 
     const overlay = document.createElement('div');
