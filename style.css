@@ -3414,14 +3414,14 @@ body {
 
 .missile-explosion {
     position: absolute;
-    width: 80px;
-    height: 80px;
-    transform: translate(-50%, -50%) scale(var(--explosion-scale, 1.45));
-    transform-origin: center center;
+    width: 116px;
+    height: 116px;
+    transform: translate(-50%, -50%);
     background-image: url('Explosion-A.png');
     background-repeat: no-repeat;
-    background-size: 880px 80px;
-    animation: explosionFrames 0.7s steps(11) forwards;
+    background-size: 1100% 100%;
+    animation: explosionFrames 0.72s steps(10) forwards;
+    image-rendering: pixelated;
     filter:
         drop-shadow(0 0 16px rgba(255, 220, 120, 0.46))
         drop-shadow(0 0 24px rgba(255, 122, 30, 0.28));
@@ -3477,7 +3477,7 @@ body {
         opacity: 1;
     }
     to {
-        background-position: -800px 0;
+        background-position: 100% 0;
         opacity: 1;
     }
 }

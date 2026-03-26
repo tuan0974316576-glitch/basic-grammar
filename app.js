@@ -5307,8 +5307,8 @@ function playMissileStrikeAnimation(boardId, topLeftIndex, onComplete) {
     const bottom = Math.max(...cells.map(cell => cell.offsetTop + cell.offsetHeight));
     const centerX = (left + right) / 2;
     const centerY = (top + bottom) / 2;
-    const impactSize = Math.max(right - left, bottom - top) + 44;
-    const explosionScale = impactSize / 80;
+    const impactWidth = (right - left) + 44;
+    const impactHeight = (bottom - top) + 44;
 
     const overlay = document.createElement('div');
     overlay.className = 'missile-strike-overlay';
@@ -5322,7 +5322,8 @@ function playMissileStrikeAnimation(boardId, topLeftIndex, onComplete) {
     explosion.className = 'missile-explosion';
     explosion.style.left = `${centerX}px`;
     explosion.style.top = `${centerY}px`;
-    explosion.style.setProperty('--explosion-scale', String(explosionScale));
+    explosion.style.width = `${impactWidth}px`;
+    explosion.style.height = `${impactHeight}px`;
 
     overlay.appendChild(missile);
     grid.appendChild(overlay);
