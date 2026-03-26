@@ -5269,6 +5269,10 @@ function renderExplosionPreview(index) {
     overlay.style.width = `${right - left}px`;
     overlay.style.height = `${bottom - top}px`;
 
+    const reticle = document.createElement('div');
+    reticle.className = 'explosion-preview-reticle';
+    overlay.appendChild(reticle);
+
     ['top', 'right', 'bottom', 'left'].forEach(dir => {
         const arrow = document.createElement('div');
         arrow.className = `explosion-preview-arrow ${dir}`;
