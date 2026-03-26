@@ -1111,6 +1111,7 @@ function initPVPListeners() {
             }
 
             if (move.type === 'explosion' && Array.isArray(move.indices) && move.indices.length > 0) {
+                playSound('missile-flying-sfx');
                 playMissileStrikeAnimation('player-grid', move.anchor ?? move.indices[0], () => {
                     const isGameOver = applyExplosionDamageToPlayer(move.indices);
                     if (!isGameOver) {
