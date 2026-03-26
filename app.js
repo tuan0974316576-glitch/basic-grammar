@@ -1601,8 +1601,8 @@ function handleEnemyGridClick(index) {
                 playSound('wrong-sfx');
                 return;
             }
-            missileLockedIndex = index;
-            renderExplosionPreview(index);
+            missileLockedIndex = getExplosionAnchor(index);
+            renderExplosionPreview(missileLockedIndex);
             setInstructionPanel('MISSILE', 'TARGET LOCKED. PRESS TICK TO FIRE', 'explosion.png');
             return;
         }
@@ -5233,18 +5233,27 @@ function getExplosionAreaIndices(topLeftIndex) {
     ];
 }
 
-function isExplosionSelectable(topLeftIndex) {
-    const indices = getExplosionAreaIndices(topLeftIndex);
+function getExplosionAnchor(index) {
+    const row = Math.floor(index / GRID_SIZE);
+    const col = index % GRID_SIZE;
+    const anchorRow = Math.max(0, Math.min(row, GRID_SIZE - 2));
+    const anchorCol = Math.max(0, Math.min(col, GRID_SIZE - 2));
+    return anchorRow * GRID_SIZE + anchorCol;
+}
+
+function isExplosionSelectable(index) {
+    const indices = getExplosionAreaIndices(getExplosionAnchor(index));
     return indices.length === 4 && indices.some(index => {
         const cell = getEnemyCell(index);
         return cell && !cell.classList.contains('revealed');
     });
 }
 
-function renderExplosionPreview(topLeftIndex) {
+function renderExplosionPreview(index) {
     clearMissilePreview();
 
     const grid = document.getElementById('enemy-grid');
+    const topLeftIndex = getExplosionAnchor(index);
     const cells = getExplosionAreaIndices(topLeftIndex).map(index => getEnemyCell(index)).filter(Boolean);
     if (!grid || cells.length !== 4) return;
 
@@ -5578,8 +5587,9 @@ function onEnemyGridHover(event) {
         return;
     }
 
-    if (missilePreviewIndex !== index) {
-        renderExplosionPreview(index);
+    const anchorIndex = getExplosionAnchor(index);
+    if (missilePreviewIndex !== anchorIndex) {
+        renderExplosionPreview(anchorIndex);
     }
 }
 
