@@ -3275,10 +3275,10 @@ body {
     height: 12%;
     border: 3px solid rgba(150, 248, 255, 0.42);
     box-shadow:
-        0 0 18px rgba(0, 243, 255, 0.34),
-        0 0 34px rgba(0, 243, 255, 0.24),
-        0 0 56px rgba(0, 243, 255, 0.12);
-    filter: blur(4px);
+        0 0 12px rgba(0, 243, 255, 0.28),
+        0 0 22px rgba(0, 243, 255, 0.18),
+        0 0 34px rgba(0, 243, 255, 0.08);
+    filter: blur(2.5px);
     opacity: 0;
 }
 
@@ -3457,7 +3457,7 @@ body {
     }
     100% {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(10.4);
+        transform: translate(-50%, -50%) scale(9.1);
     }
 }
 
