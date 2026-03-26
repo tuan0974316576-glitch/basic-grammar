@@ -3323,38 +3323,48 @@ body {
 .explosion-preview-overlay {
     box-sizing: border-box;
     overflow: visible;
-    border: 1.5px solid rgba(255, 145, 28, 0.96);
+    border-radius: 8px;
+    border: 1px solid rgba(245, 158, 11, 0.9);
     box-shadow:
-        0 0 14px rgba(255, 130, 20, 0.52),
-        inset 0 0 10px rgba(255, 168, 48, 0.1);
+        0 0 14px rgba(245, 158, 11, 0.35),
+        inset 0 0 12px rgba(245, 158, 11, 0.14);
     animation: missilePreviewPulse 1s ease-in-out infinite;
     background:
-        linear-gradient(rgba(255, 132, 24, 0.16), rgba(255, 132, 24, 0.16)),
-        linear-gradient(90deg, transparent 49.3%, rgba(255, 188, 86, 0.22) 50%, transparent 50.7%),
-        linear-gradient(180deg, transparent 49.3%, rgba(255, 188, 86, 0.22) 50%, transparent 50.7%);
+        linear-gradient(rgba(245, 158, 11, 0.16), rgba(245, 158, 11, 0.16)),
+        linear-gradient(
+            90deg,
+            transparent calc(50% - 0.5px),
+            rgba(245, 158, 11, 0.18) calc(50% - 0.5px),
+            rgba(245, 158, 11, 0.18) calc(50% + 0.5px),
+            transparent calc(50% + 0.5px)
+        ),
+        linear-gradient(
+            180deg,
+            transparent calc(50% - 0.5px),
+            rgba(245, 158, 11, 0.18) calc(50% - 0.5px),
+            rgba(245, 158, 11, 0.18) calc(50% + 0.5px),
+            transparent calc(50% + 0.5px)
+        );
 }
 
 .explosion-preview-reticle {
     position: absolute;
     left: 50%;
     top: 50%;
-    width: 46px;
-    height: 46px;
+    width: 32px;
+    height: 32px;
     transform: translate(-50%, -50%);
     pointer-events: none;
     z-index: 1;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 220, 150, 0.95);
+    border-radius: 6px;
+    box-shadow:
+        inset 0 0 12px rgba(245, 158, 11, 0.22),
+        0 0 10px rgba(245, 158, 11, 0.4);
     background:
-        linear-gradient(rgba(255, 196, 110, 0.96), rgba(255, 196, 110, 0.96)) center / 2px 100% no-repeat,
-        linear-gradient(90deg, rgba(255, 196, 110, 0.96), rgba(255, 196, 110, 0.96)) center / 100% 2px no-repeat,
-        linear-gradient(rgba(255, 196, 110, 0.92), rgba(255, 196, 110, 0.92)) calc(50% - 8px) calc(50% - 12px) / 1.5px 7px no-repeat,
-        linear-gradient(rgba(255, 196, 110, 0.92), rgba(255, 196, 110, 0.92)) calc(50% + 8px) calc(50% - 12px) / 1.5px 7px no-repeat,
-        linear-gradient(rgba(255, 196, 110, 0.92), rgba(255, 196, 110, 0.92)) calc(50% - 8px) calc(50% + 12px) / 1.5px 7px no-repeat,
-        linear-gradient(rgba(255, 196, 110, 0.92), rgba(255, 196, 110, 0.92)) calc(50% + 8px) calc(50% + 12px) / 1.5px 7px no-repeat,
-        linear-gradient(90deg, rgba(255, 196, 110, 0.92), rgba(255, 196, 110, 0.92)) calc(50% - 12px) calc(50% - 8px) / 7px 1.5px no-repeat,
-        linear-gradient(90deg, rgba(255, 196, 110, 0.92), rgba(255, 196, 110, 0.92)) calc(50% - 12px) calc(50% + 8px) / 7px 1.5px no-repeat,
-        linear-gradient(90deg, rgba(255, 196, 110, 0.92), rgba(255, 196, 110, 0.92)) calc(50% + 12px) calc(50% - 8px) / 7px 1.5px no-repeat,
-        linear-gradient(90deg, rgba(255, 196, 110, 0.92), rgba(255, 196, 110, 0.92)) calc(50% + 12px) calc(50% + 8px) / 7px 1.5px no-repeat;
-    filter: drop-shadow(0 0 6px rgba(255, 140, 32, 0.5));
+        linear-gradient(to right, transparent 48%, rgba(255, 220, 150, 0.84) 50%, transparent 52%),
+        linear-gradient(to bottom, transparent 48%, rgba(255, 220, 150, 0.84) 50%, transparent 52%);
 }
 
 .explosion-preview-arrow {
@@ -3362,7 +3372,7 @@ body {
     width: 0;
     height: 0;
     opacity: 0.9;
-    filter: drop-shadow(0 0 6px rgba(255, 132, 28, 0.58));
+    filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.58));
     z-index: 2;
 }
 
@@ -3372,7 +3382,7 @@ body {
     transform: translateX(-50%);
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-bottom: 8px solid rgba(255, 160, 58, 0.94);
+    border-bottom: 8px solid rgba(245, 158, 11, 0.9);
     animation: missileArrowTop 0.9s ease-in-out infinite;
 }
 
@@ -3382,7 +3392,7 @@ body {
     transform: translateY(-50%);
     border-top: 5px solid transparent;
     border-bottom: 5px solid transparent;
-    border-left: 8px solid rgba(255, 160, 58, 0.94);
+    border-left: 8px solid rgba(245, 158, 11, 0.9);
     animation: missileArrowRight 0.9s ease-in-out infinite;
 }
 
@@ -3392,7 +3402,7 @@ body {
     transform: translateX(-50%);
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-top: 8px solid rgba(255, 160, 58, 0.94);
+    border-top: 8px solid rgba(245, 158, 11, 0.9);
     animation: missileArrowBottom 0.9s ease-in-out infinite;
 }
 
@@ -3402,7 +3412,7 @@ body {
     transform: translateY(-50%);
     border-top: 5px solid transparent;
     border-bottom: 5px solid transparent;
-    border-right: 8px solid rgba(255, 160, 58, 0.94);
+    border-right: 8px solid rgba(245, 158, 11, 0.9);
     animation: missileArrowLeft 0.9s ease-in-out infinite;
 }
 
@@ -3454,14 +3464,14 @@ body {
 @keyframes missilePreviewPulse {
     0%, 100% {
         box-shadow:
-            0 0 12px rgba(255, 136, 22, 0.42),
-            inset 0 0 8px rgba(255, 176, 52, 0.08);
+            0 0 12px rgba(245, 158, 11, 0.3),
+            inset 0 0 8px rgba(245, 158, 11, 0.1);
         opacity: 0.96;
     }
     50% {
         box-shadow:
-            0 0 18px rgba(255, 152, 40, 0.58),
-            inset 0 0 12px rgba(255, 196, 88, 0.12);
+            0 0 18px rgba(245, 158, 11, 0.45),
+            inset 0 0 12px rgba(245, 158, 11, 0.16);
         opacity: 1;
     }
 }
