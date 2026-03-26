@@ -3322,15 +3322,25 @@ body {
 
 .explosion-preview-overlay {
     box-sizing: border-box;
-    border: 1px solid rgba(255, 156, 48, 0.98);
-    border-radius: 7px;
+    border: 2px solid rgba(255, 145, 28, 0.98);
+    border-radius: 0;
     overflow: visible;
+    clip-path: polygon(
+        10px 0,
+        calc(100% - 10px) 0,
+        100% 10px,
+        100% calc(100% - 10px),
+        calc(100% - 10px) 100%,
+        10px 100%,
+        0 calc(100% - 10px),
+        0 10px
+    );
     background:
-        linear-gradient(90deg, transparent 49.5%, rgba(255, 186, 94, 0.16) 50%, transparent 50.5%),
-        linear-gradient(180deg, transparent 49.5%, rgba(255, 186, 94, 0.16) 50%, transparent 50.5%);
+        linear-gradient(90deg, transparent 49.3%, rgba(255, 188, 86, 0.22) 50%, transparent 50.7%),
+        linear-gradient(180deg, transparent 49.3%, rgba(255, 188, 86, 0.22) 50%, transparent 50.7%);
     box-shadow:
-        0 0 14px rgba(255, 140, 40, 0.48),
-        inset 0 0 10px rgba(255, 180, 70, 0.08);
+        0 0 18px rgba(255, 130, 20, 0.62),
+        inset 0 0 14px rgba(255, 168, 48, 0.12);
     animation: missilePreviewPulse 1s ease-in-out infinite;
 }
 
@@ -3338,8 +3348,8 @@ body {
     position: absolute;
     width: 0;
     height: 0;
-    opacity: 0.84;
-    filter: drop-shadow(0 0 5px rgba(255, 150, 55, 0.48));
+    opacity: 0.9;
+    filter: drop-shadow(0 0 6px rgba(255, 132, 28, 0.58));
 }
 
 .explosion-preview-arrow.top {
@@ -3348,7 +3358,7 @@ body {
     transform: translateX(-50%);
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-bottom: 8px solid rgba(255, 176, 86, 0.88);
+    border-bottom: 8px solid rgba(255, 160, 58, 0.94);
     animation: missileArrowTop 0.9s ease-in-out infinite;
 }
 
@@ -3358,7 +3368,7 @@ body {
     transform: translateY(-50%);
     border-top: 5px solid transparent;
     border-bottom: 5px solid transparent;
-    border-left: 8px solid rgba(255, 176, 86, 0.88);
+    border-left: 8px solid rgba(255, 160, 58, 0.94);
     animation: missileArrowRight 0.9s ease-in-out infinite;
 }
 
@@ -3368,7 +3378,7 @@ body {
     transform: translateX(-50%);
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-top: 8px solid rgba(255, 176, 86, 0.88);
+    border-top: 8px solid rgba(255, 160, 58, 0.94);
     animation: missileArrowBottom 0.9s ease-in-out infinite;
 }
 
@@ -3378,7 +3388,7 @@ body {
     transform: translateY(-50%);
     border-top: 5px solid transparent;
     border-bottom: 5px solid transparent;
-    border-right: 8px solid rgba(255, 176, 86, 0.88);
+    border-right: 8px solid rgba(255, 160, 58, 0.94);
     animation: missileArrowLeft 0.9s ease-in-out infinite;
 }
 
@@ -3430,14 +3440,14 @@ body {
 @keyframes missilePreviewPulse {
     0%, 100% {
         box-shadow:
-            0 0 12px rgba(255, 140, 40, 0.4),
-            inset 0 0 8px rgba(255, 180, 70, 0.08);
-        opacity: 0.94;
+            0 0 16px rgba(255, 136, 22, 0.54),
+            inset 0 0 10px rgba(255, 176, 52, 0.1);
+        opacity: 0.97;
     }
     50% {
         box-shadow:
-            0 0 20px rgba(255, 160, 55, 0.58),
-            inset 0 0 12px rgba(255, 196, 98, 0.14);
+            0 0 24px rgba(255, 152, 40, 0.74),
+            inset 0 0 16px rgba(255, 196, 88, 0.16);
         opacity: 1;
     }
 }
