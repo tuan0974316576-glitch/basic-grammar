@@ -1110,6 +1110,18 @@ function initPVPListeners() {
                 return;
             }
 
+            if (move.type === 'explosion' && Array.isArray(move.indices) && move.indices.length > 0) {
+                playMissileStrikeAnimation('player-grid', move.anchor ?? move.indices[0], () => {
+                    const isGameOver = applyExplosionDamageToPlayer(move.indices);
+                    if (!isGameOver) {
+                        setGameTimeout(() => {
+                            if (currentPhase !== 'GAME_OVER') startPlayerTurn();
+                        }, 1200);
+                    }
+                });
+                return;
+            }
+
             const idx = move.index;
             const cell = document.getElementById('player-grid').children[idx];
             
@@ -1582,6 +1594,16 @@ function handleEnemyGridClick(index) {
                 return;
             }
             lockRadarTarget(index);
+            return;
+        }
+        if (selectedSkill === 'explosion') {
+            if (!isExplosionSelectable(index)) {
+                playSound('wrong-sfx');
+                return;
+            }
+            missileLockedIndex = index;
+            renderExplosionPreview(index);
+            setInstructionPanel('MISSILE', 'TARGET LOCKED. PRESS TICK TO FIRE', 'explosion.png');
             return;
         }
         return;
@@ -5034,8 +5056,11 @@ let selectedSkill = null;
 let activeSkill = null;
 let radarPreviewIndex = null;
 let radarLockedIndex = null;
+let missilePreviewIndex = null;
+let missileLockedIndex = null;
 const radarScannedCells = new Set();
 const RADAR_SCAN_DURATION = 2200;
+const MISSILE_STRIKE_DURATION = 1400;
 const DEFAULT_INSTRUCTION = {
     name: 'SINGLE SHOT',
     desc: 'TAP A CELL TO FIRE',
@@ -5055,6 +5080,16 @@ function setInstructionPanel(name, desc, icon) {
     if (instrText) {
         instrText.innerHTML = `<span class="instr-name">${name}:</span> <span class="instr-desc">${desc}</span>`;
     }
+}
+
+function resetSkillSelectionUI() {
+    const costVal = document.getElementById('skill-cost-val');
+    const confirmBtns = document.getElementById('skill-confirm-btns');
+    const costRow = costVal ? costVal.parentElement : null;
+
+    if (costVal) costVal.style.display = 'none';
+    if (costRow) costRow.classList.remove('cost-double-digit');
+    if (confirmBtns) confirmBtns.style.display = 'none';
 }
 
 function getEnemyCell(index) {
@@ -5109,9 +5144,15 @@ function clearRadarPreview() {
     document.querySelectorAll('.radar-preview-overlay').forEach(el => el.remove());
 }
 
+function clearMissilePreview() {
+    missilePreviewIndex = null;
+    document.querySelectorAll('.explosion-preview-overlay').forEach(el => el.remove());
+}
+
 function clearRadarEffects() {
     radarPreviewIndex = null;
-    document.querySelectorAll('.radar-preview-overlay, .radar-scan-overlay').forEach(el => el.remove());
+    missilePreviewIndex = null;
+    document.querySelectorAll('.radar-preview-overlay, .radar-scan-overlay, .explosion-preview-overlay, .missile-strike-overlay').forEach(el => el.remove());
 }
 
 function getRadarLinePosition(offsets, cellSize, lineIndex) {
@@ -5180,18 +5221,248 @@ function setRadarEligibleCells(isEnabled) {
     });
 }
 
+function getExplosionAreaIndices(topLeftIndex) {
+    const row = Math.floor(topLeftIndex / GRID_SIZE);
+    const col = topLeftIndex % GRID_SIZE;
+    if (row >= GRID_SIZE - 1 || col >= GRID_SIZE - 1) return [];
+    return [
+        topLeftIndex,
+        topLeftIndex + 1,
+        topLeftIndex + GRID_SIZE,
+        topLeftIndex + GRID_SIZE + 1
+    ];
+}
+
+function isExplosionSelectable(topLeftIndex) {
+    const indices = getExplosionAreaIndices(topLeftIndex);
+    return indices.length === 4 && indices.some(index => {
+        const cell = getEnemyCell(index);
+        return cell && !cell.classList.contains('revealed');
+    });
+}
+
+function renderExplosionPreview(topLeftIndex) {
+    clearMissilePreview();
+
+    const grid = document.getElementById('enemy-grid');
+    const cells = getExplosionAreaIndices(topLeftIndex).map(index => getEnemyCell(index)).filter(Boolean);
+    if (!grid || cells.length !== 4) return;
+
+    const left = Math.min(...cells.map(cell => cell.offsetLeft));
+    const top = Math.min(...cells.map(cell => cell.offsetTop));
+    const right = Math.max(...cells.map(cell => cell.offsetLeft + cell.offsetWidth));
+    const bottom = Math.max(...cells.map(cell => cell.offsetTop + cell.offsetHeight));
+
+    const overlay = document.createElement('div');
+    overlay.className = 'explosion-preview-overlay';
+    overlay.style.left = `${left}px`;
+    overlay.style.top = `${top}px`;
+    overlay.style.width = `${right - left}px`;
+    overlay.style.height = `${bottom - top}px`;
+
+    ['top', 'right', 'bottom', 'left'].forEach(dir => {
+        const arrow = document.createElement('div');
+        arrow.className = `explosion-preview-arrow ${dir}`;
+        overlay.appendChild(arrow);
+    });
+
+    grid.appendChild(overlay);
+    missilePreviewIndex = topLeftIndex;
+}
+
+function setExplosionEligibleCells(isEnabled) {
+    document.querySelectorAll('#enemy-grid .cell').forEach(cell => {
+        cell.classList.remove('explosion-eligible');
+        const index = parseInt(cell.dataset.index, 10);
+        if (isEnabled && Number.isInteger(index) && isExplosionSelectable(index)) {
+            cell.classList.add('explosion-eligible');
+        }
+    });
+}
+
 function clearActiveSkillState() {
     activeSkill = null;
     selectedSkill = null;
     radarLockedIndex = null;
+    missileLockedIndex = null;
     clearRadarEffects();
+    resetSkillSelectionUI();
     setRadarEligibleCells(false);
+    setExplosionEligibleCells(false);
     document.querySelectorAll('.skill-diamond').forEach(d => d.classList.remove('skill-selected'));
 }
 
 function finishRadarMode() {
     clearActiveSkillState();
     setInstructionPanel(DEFAULT_INSTRUCTION.name, DEFAULT_INSTRUCTION.desc, DEFAULT_INSTRUCTION.icon);
+}
+
+function playMissileStrikeAnimation(boardId, topLeftIndex, onComplete) {
+    const grid = document.getElementById(boardId);
+    const cells = getExplosionAreaIndices(topLeftIndex).map(index => grid ? grid.children[index] : null).filter(Boolean);
+    if (!grid || cells.length !== 4) {
+        if (onComplete) onComplete();
+        return;
+    }
+
+    const left = Math.min(...cells.map(cell => cell.offsetLeft));
+    const top = Math.min(...cells.map(cell => cell.offsetTop));
+    const right = Math.max(...cells.map(cell => cell.offsetLeft + cell.offsetWidth));
+    const bottom = Math.max(...cells.map(cell => cell.offsetTop + cell.offsetHeight));
+    const centerX = (left + right) / 2;
+    const centerY = (top + bottom) / 2;
+
+    const overlay = document.createElement('div');
+    overlay.className = 'missile-strike-overlay';
+
+    const missile = document.createElement('div');
+    missile.className = 'missile-sprite';
+    missile.style.left = `${centerX}px`;
+    missile.style.setProperty('--missile-end-top', `${centerY - 300}px`);
+
+    const explosion = document.createElement('div');
+    explosion.className = 'missile-explosion';
+    explosion.style.left = `${centerX}px`;
+    explosion.style.top = `${centerY}px`;
+
+    overlay.appendChild(missile);
+    grid.appendChild(overlay);
+
+    setTimeout(() => {
+        playSound('destroy-sfx');
+        overlay.appendChild(explosion);
+    }, 550);
+
+    setTimeout(() => {
+        overlay.remove();
+        if (onComplete) onComplete();
+    }, MISSILE_STRIKE_DURATION);
+}
+
+function applyExplosionDamageToEnemy(indices) {
+    let isGameOver = false;
+    const hitIndices = [];
+
+    indices.forEach(index => {
+        const cell = getEnemyCell(index);
+        if (!cell || cell.classList.contains('revealed')) return;
+
+        cell.classList.add('revealed');
+        triggerAnimation(cell, 'blue');
+
+        if (enemyGrid[index] === 1) {
+            cell.classList.add('hit');
+            triggerAnimation(cell, 'orange');
+            enemyDamage++;
+            hitIndices.push(index);
+        } else {
+            cell.classList.add('miss');
+            cell.innerHTML = '<img src="close.png" class="miss-icon">';
+        }
+    });
+
+    if (hitIndices.length > 0) {
+        playSound('hit-sfx');
+        [...new Set(hitIndices)].forEach(index => checkEnemyShipDestruction(index));
+        if (checkGameOver()) isGameOver = true;
+    }
+
+    refreshRadarScanDisplays();
+    return isGameOver;
+}
+
+function applyExplosionDamageToPlayer(indices) {
+    const grid = document.getElementById('player-grid');
+    const hitIndices = [];
+
+    indices.forEach(index => {
+        const cell = grid ? grid.children[index] : null;
+        if (!cell || cell.classList.contains('revealed')) return;
+
+        cell.classList.add('revealed');
+        triggerAnimation(cell, 'blue');
+
+        if (myGrid[index] === 1) {
+            cell.classList.add('hit');
+            triggerAnimation(cell, 'orange');
+            myDamage++;
+            hitIndices.push(index);
+
+            if (selectedRace === 'AURELIANS' && typeof addEnergy === 'function') {
+                addEnergy(2, 'Ship Hit');
+            }
+        } else {
+            cell.classList.add('miss');
+            cell.innerHTML = '<img src="close.png" class="miss-icon">';
+        }
+    });
+
+    if (hitIndices.length > 0) {
+        playSound('hit-sfx');
+        let destroyedAny = false;
+        [...new Set(hitIndices)].forEach(index => {
+            if (checkMyShipDestruction(index)) destroyedAny = true;
+        });
+
+        if (destroyedAny) {
+            playSound('unit-lost-sfx');
+            document.body.classList.add('screen-shake-sunk');
+            setTimeout(() => document.body.classList.remove('screen-shake-sunk'), 800);
+        } else {
+            playUnderAttackAlert();
+            document.body.classList.add('screen-shake-hit');
+            setTimeout(() => document.body.classList.remove('screen-shake-hit'), 400);
+        }
+
+        if (checkGameOver()) return true;
+    }
+
+    return false;
+}
+
+function executeExplosionStrike(topLeftIndex) {
+    const indices = getExplosionAreaIndices(topLeftIndex);
+    if (indices.length !== 4) return;
+
+    stopTurnSelectionTimer();
+    const timerContainer = document.getElementById('turn-timer-container');
+    if (timerContainer) timerContainer.style.visibility = 'hidden';
+
+    clearMissilePreview();
+    radarLockedIndex = null;
+    missileLockedIndex = null;
+    resetSkillSelectionUI();
+    document.querySelectorAll('.skill-diamond').forEach(d => d.classList.remove('skill-selected'));
+    setRadarEligibleCells(false);
+    setExplosionEligibleCells(false);
+    activeSkill = 'explosion';
+    setInstructionPanel('MISSILE', 'MISSILE INBOUND', 'explosion.png');
+
+    if (gameMode === 'PVP') {
+        const { ref, update } = window.firebaseModules;
+        const nextTurn = (playerRole === 'host') ? 'guest' : 'host';
+        update(ref(db, 'rooms/' + currentRoomId), {
+            lastMove: { attacker: playerRole, type: 'explosion', indices, anchor: topLeftIndex, timestamp: Date.now() },
+            turn: nextTurn
+        });
+    }
+
+    playMissileStrikeAnimation('enemy-grid', topLeftIndex, () => {
+        const isGameOver = applyExplosionDamageToEnemy(indices);
+        clearActiveSkillState();
+
+        if (!isGameOver) {
+            if (gameMode === 'PVP') {
+                setGameTimeout(() => {
+                    currentPhase = 'ENEMY_TURN';
+                    document.getElementById('game-status').innerHTML = "OPPONENT'S TURN";
+                    switchScene('ENEMY');
+                }, 1500);
+            } else {
+                setGameTimeout(startEnemyTurn, 700);
+            }
+        }
+    });
 }
 
 function lockRadarTarget(index) {
@@ -5220,6 +5491,8 @@ function executeRadarScan(centerIndex) {
     stopTurnSelectionTimer();
     clearRadarPreview();
     radarLockedIndex = null;
+    resetSkillSelectionUI();
+    document.querySelectorAll('.skill-diamond').forEach(d => d.classList.remove('skill-selected'));
     setRadarEligibleCells(false);
     activeSkill = 'radar';
     setInstructionPanel('RADAR', 'SCANNING TARGET AREA', 'radar.png');
@@ -5273,30 +5546,50 @@ function executeRadarScan(centerIndex) {
 
 function onEnemyGridHover(event) {
     if (currentPhase !== 'PLAYER_TURN') return;
-    if (selectedSkill !== 'radar') return;
-    if (radarLockedIndex !== null) return;
+    if (selectedSkill !== 'radar' && selectedSkill !== 'explosion') return;
+    if (selectedSkill === 'radar' && radarLockedIndex !== null) return;
+    if (selectedSkill === 'explosion' && missileLockedIndex !== null) return;
 
     const cell = event.target.closest('.cell');
     const grid = document.getElementById('enemy-grid');
     if (!cell || !grid || !grid.contains(cell)) {
         clearRadarPreview();
+        clearMissilePreview();
         return;
     }
 
     const index = parseInt(cell.dataset.index, 10);
-    if (!Number.isInteger(index) || !isRadarSelectable(index)) {
+    if (!Number.isInteger(index)) {
         clearRadarPreview();
+        clearMissilePreview();
         return;
     }
 
-    if (radarPreviewIndex !== index) {
-        renderRadarPreview(index);
+    if (selectedSkill === 'radar') {
+        if (!isRadarSelectable(index)) {
+            clearRadarPreview();
+            return;
+        }
+        if (radarPreviewIndex !== index) {
+            renderRadarPreview(index);
+        }
+        return;
+    }
+
+    if (!isExplosionSelectable(index)) {
+        clearMissilePreview();
+        return;
+    }
+
+    if (missilePreviewIndex !== index) {
+        renderExplosionPreview(index);
     }
 }
 
 function onEnemyGridLeave() {
-    if (radarLockedIndex !== null) return;
+    if (radarLockedIndex !== null || missileLockedIndex !== null) return;
     clearRadarPreview();
+    clearMissilePreview();
 }
 
 // 根據 playerEnergy 更新每個技能嘅 available/disabled 狀態
@@ -5360,26 +5653,36 @@ function onSkillClick(e) {
 
     if (skill === 'radar') {
         radarLockedIndex = null;
+        missileLockedIndex = null;
+        clearMissilePreview();
         setRadarEligibleCells(true);
+        setExplosionEligibleCells(false);
         setInstructionPanel('RADAR', 'SELECT A MISSED CELL TO SCAN', 'radar.png');
-    } else {
+    } else if (skill === 'explosion') {
+        missileLockedIndex = null;
+        radarLockedIndex = null;
         clearRadarPreview();
         setRadarEligibleCells(false);
+        setExplosionEligibleCells(true);
+        setInstructionPanel('MISSILE', 'SELECT A 2X2 TARGET AREA', 'explosion.png');
+    } else {
+        clearRadarPreview();
+        clearMissilePreview();
+        setRadarEligibleCells(false);
+        setExplosionEligibleCells(false);
     }
 }
 
 function cancelSkillSelection() {
     selectedSkill = null;
     radarLockedIndex = null;
+    missileLockedIndex = null;
     document.querySelectorAll('.skill-diamond').forEach(d => d.classList.remove('skill-selected'));
-    const costVal = document.getElementById('skill-cost-val');
-    const confirmBtns = document.getElementById('skill-confirm-btns');
-    const costRow = costVal ? costVal.parentElement : null;
-    if (costVal) costVal.style.display = 'none';
-    if (costRow) costRow.classList.remove('cost-double-digit');
-    if (confirmBtns) confirmBtns.style.display = 'none';
+    resetSkillSelectionUI();
     clearRadarPreview();
+    clearMissilePreview();
     setRadarEligibleCells(false);
+    setExplosionEligibleCells(false);
 
     // 還原 instruction panel
     setInstructionPanel(DEFAULT_INSTRUCTION.name, DEFAULT_INSTRUCTION.desc, DEFAULT_INSTRUCTION.icon);
@@ -5405,6 +5708,18 @@ function confirmSkillSelection() {
         playSound('radar-sfx');
         addEnergy(-cost, selectedSkill.toUpperCase());
         executeRadarScan(radarLockedIndex);
+        updateSkillStates();
+        return;
+    }
+
+    if (selectedSkill === 'explosion') {
+        if (missileLockedIndex === null || !isExplosionSelectable(missileLockedIndex)) {
+            playSound('wrong-sfx');
+            setInstructionPanel('MISSILE', 'SELECT A 2X2 TARGET AREA FIRST', 'explosion.png');
+            return;
+        }
+        addEnergy(-cost, selectedSkill.toUpperCase());
+        executeExplosionStrike(missileLockedIndex);
         updateSkillStates();
         return;
     }
