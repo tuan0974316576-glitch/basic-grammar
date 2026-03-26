@@ -5260,8 +5260,6 @@ function executeRadarScan(centerIndex) {
     overlay.appendChild(circle);
     grid.appendChild(overlay);
 
-    playSound('laser-sfx');
-
     setTimeout(() => {
         overlay.remove();
         radarScannedCells.add(centerIndex);
