@@ -5341,6 +5341,7 @@ function onSkillClick(e) {
     selectedSkill = skill;
     document.querySelectorAll('.skill-diamond').forEach(d => d.classList.remove('skill-selected'));
     diamond.classList.add('skill-selected');
+    playSound('skill-select-sfx');
 
     // 顯示 cost + 確認/取消
     const costVal = document.getElementById('skill-cost-val');
@@ -5403,6 +5404,7 @@ function confirmSkillSelection() {
             setInstructionPanel('RADAR', 'SELECT A MISSED CELL FIRST', 'radar.png');
             return;
         }
+        playSound('radar-sfx');
         addEnergy(-cost, selectedSkill.toUpperCase());
         executeRadarScan(radarLockedIndex);
         updateSkillStates();
