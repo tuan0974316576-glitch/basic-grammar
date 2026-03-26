@@ -3326,7 +3326,6 @@ body {
     border-radius: 7px;
     overflow: visible;
     background:
-        linear-gradient(rgba(255, 146, 43, 0.12), rgba(255, 146, 43, 0.12)),
         linear-gradient(90deg, transparent 49.5%, rgba(255, 186, 94, 0.24) 50%, transparent 50.5%),
         linear-gradient(180deg, transparent 49.5%, rgba(255, 186, 94, 0.24) 50%, transparent 50.5%);
     box-shadow:
@@ -3339,51 +3338,54 @@ body {
     position: absolute;
     width: 0;
     height: 0;
-    filter: drop-shadow(0 0 4px rgba(255, 170, 70, 0.55));
+    opacity: 0.7;
+    filter: drop-shadow(0 0 4px rgba(255, 170, 70, 0.4));
 }
 
 .explosion-preview-arrow.top {
     left: 50%;
-    top: -9px;
+    top: -14px;
     transform: translateX(-50%);
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-bottom: 8px solid rgba(255, 188, 110, 0.9);
+    border-bottom: 8px solid rgba(255, 188, 110, 0.75);
+    animation: missileArrowTop 0.9s ease-in-out infinite;
 }
 
 .explosion-preview-arrow.right {
-    right: -9px;
+    right: -14px;
     top: 50%;
     transform: translateY(-50%);
     border-top: 5px solid transparent;
     border-bottom: 5px solid transparent;
-    border-left: 8px solid rgba(255, 188, 110, 0.9);
+    border-left: 8px solid rgba(255, 188, 110, 0.75);
+    animation: missileArrowRight 0.9s ease-in-out infinite;
 }
 
 .explosion-preview-arrow.bottom {
     left: 50%;
-    bottom: -9px;
+    bottom: -14px;
     transform: translateX(-50%);
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-top: 8px solid rgba(255, 188, 110, 0.9);
+    border-top: 8px solid rgba(255, 188, 110, 0.75);
+    animation: missileArrowBottom 0.9s ease-in-out infinite;
 }
 
 .explosion-preview-arrow.left {
-    left: -9px;
+    left: -14px;
     top: 50%;
     transform: translateY(-50%);
     border-top: 5px solid transparent;
     border-bottom: 5px solid transparent;
-    border-right: 8px solid rgba(255, 188, 110, 0.9);
+    border-right: 8px solid rgba(255, 188, 110, 0.75);
+    animation: missileArrowLeft 0.9s ease-in-out infinite;
 }
 
 #enemy-grid .cell.explosion-eligible {
-    background: rgba(255, 140, 35, 0.14);
-    box-shadow:
-        inset 0 0 12px rgba(255, 155, 50, 0.16),
-        0 0 8px rgba(255, 120, 30, 0.18);
-    animation: explosionCellPulse 1.2s ease-in-out infinite;
+    background: transparent;
+    box-shadow: none;
+    animation: none;
 }
 
 .missile-strike-overlay {
@@ -3393,33 +3395,31 @@ body {
 
 .missile-sprite {
     position: absolute;
-    top: -360px;
-    width: 85px;
-    height: 346px;
-    margin-left: -42.5px;
-    margin-top: -173px;
+    top: -92px;
+    width: 18px;
+    height: 73px;
+    transform: translateX(-50%);
     background-image: url('missile_sprite.png');
     background-repeat: no-repeat;
-    background-size: 170px 346px;
+    background-size: 36px 73px;
     image-rendering: auto;
     transform-origin: center center;
     animation:
         missileFrames 0.16s steps(2) infinite,
-        missileDrop 0.6s linear forwards;
+        missileDrop 0.62s linear forwards;
     filter:
-        drop-shadow(0 0 10px rgba(255, 185, 110, 0.32))
-        drop-shadow(0 0 24px rgba(255, 122, 32, 0.18));
+        drop-shadow(0 0 8px rgba(255, 185, 110, 0.26))
+        drop-shadow(0 0 16px rgba(255, 122, 32, 0.16));
 }
 
 .missile-explosion {
     position: absolute;
-    width: 80px;
-    height: 80px;
-    margin-left: -40px;
-    margin-top: -40px;
+    width: 116px;
+    height: 116px;
+    transform: translate(-50%, -50%);
     background-image: url('Explosion-A.png');
     background-repeat: no-repeat;
-    background-size: 880px 80px;
+    background-size: calc(var(--explosion-frame-size, 116px) * 11) 100%;
     animation: explosionFrames 0.7s steps(11) forwards;
     filter:
         drop-shadow(0 0 16px rgba(255, 220, 120, 0.46))
@@ -3455,17 +3455,17 @@ body {
         background-position: 0 0;
     }
     to {
-        background-position: -170px 0;
+        background-position: -36px 0;
     }
 }
 
 @keyframes missileDrop {
     from {
-        top: -360px;
+        top: -92px;
         opacity: 0.96;
     }
     to {
-        top: var(--missile-end-top, 0px);
+        top: var(--missile-impact-top, 0px);
         opacity: 1;
     }
 }
@@ -3476,8 +3476,44 @@ body {
         opacity: 1;
     }
     to {
-        background-position: -880px 0;
+        background-position: calc(var(--explosion-frame-size, 116px) * -10) 0;
         opacity: 1;
+    }
+}
+
+@keyframes missileArrowTop {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(-3px);
+    }
+}
+
+@keyframes missileArrowRight {
+    0%, 100% {
+        transform: translateY(-50%) translateX(0);
+    }
+    50% {
+        transform: translateY(-50%) translateX(3px);
+    }
+}
+
+@keyframes missileArrowBottom {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(3px);
+    }
+}
+
+@keyframes missileArrowLeft {
+    0%, 100% {
+        transform: translateY(-50%) translateX(0);
+    }
+    50% {
+        transform: translateY(-50%) translateX(-3px);
     }
 }
 

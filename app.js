@@ -5060,7 +5060,7 @@ let missilePreviewIndex = null;
 let missileLockedIndex = null;
 const radarScannedCells = new Set();
 const RADAR_SCAN_DURATION = 2200;
-const MISSILE_STRIKE_DURATION = 1400;
+const MISSILE_STRIKE_DURATION = 1380;
 const DEFAULT_INSTRUCTION = {
     name: 'SINGLE SHOT',
     desc: 'TAP A CELL TO FIRE',
@@ -5311,6 +5311,7 @@ function playMissileStrikeAnimation(boardId, topLeftIndex, onComplete) {
     const bottom = Math.max(...cells.map(cell => cell.offsetTop + cell.offsetHeight));
     const centerX = (left + right) / 2;
     const centerY = (top + bottom) / 2;
+    const impactSize = Math.max(right - left, bottom - top) + 44;
 
     const overlay = document.createElement('div');
     overlay.className = 'missile-strike-overlay';
@@ -5318,20 +5319,24 @@ function playMissileStrikeAnimation(boardId, topLeftIndex, onComplete) {
     const missile = document.createElement('div');
     missile.className = 'missile-sprite';
     missile.style.left = `${centerX}px`;
-    missile.style.setProperty('--missile-end-top', `${centerY - 300}px`);
+    missile.style.setProperty('--missile-impact-top', `${centerY - 74}px`);
 
     const explosion = document.createElement('div');
     explosion.className = 'missile-explosion';
     explosion.style.left = `${centerX}px`;
     explosion.style.top = `${centerY}px`;
+    explosion.style.width = `${impactSize}px`;
+    explosion.style.height = `${impactSize}px`;
+    explosion.style.setProperty('--explosion-frame-size', `${impactSize}px`);
 
     overlay.appendChild(missile);
     grid.appendChild(overlay);
 
     setTimeout(() => {
+        missile.remove();
         playSound('destroy-sfx');
         overlay.appendChild(explosion);
-    }, 550);
+    }, 620);
 
     setTimeout(() => {
         overlay.remove();
@@ -5348,11 +5353,9 @@ function applyExplosionDamageToEnemy(indices) {
         if (!cell || cell.classList.contains('revealed')) return;
 
         cell.classList.add('revealed');
-        triggerAnimation(cell, 'blue');
 
         if (enemyGrid[index] === 1) {
             cell.classList.add('hit');
-            triggerAnimation(cell, 'orange');
             enemyDamage++;
             hitIndices.push(index);
         } else {
@@ -5380,11 +5383,9 @@ function applyExplosionDamageToPlayer(indices) {
         if (!cell || cell.classList.contains('revealed')) return;
 
         cell.classList.add('revealed');
-        triggerAnimation(cell, 'blue');
 
         if (myGrid[index] === 1) {
             cell.classList.add('hit');
-            triggerAnimation(cell, 'orange');
             myDamage++;
             hitIndices.push(index);
 
