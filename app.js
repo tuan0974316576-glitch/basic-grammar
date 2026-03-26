@@ -5273,10 +5273,6 @@ function renderExplosionPreview(topLeftIndex) {
 function setExplosionEligibleCells(isEnabled) {
     document.querySelectorAll('#enemy-grid .cell').forEach(cell => {
         cell.classList.remove('explosion-eligible');
-        const index = parseInt(cell.dataset.index, 10);
-        if (isEnabled && Number.isInteger(index) && isExplosionSelectable(index)) {
-            cell.classList.add('explosion-eligible');
-        }
     });
 }
 
@@ -5312,6 +5308,7 @@ function playMissileStrikeAnimation(boardId, topLeftIndex, onComplete) {
     const centerX = (left + right) / 2;
     const centerY = (top + bottom) / 2;
     const impactSize = Math.max(right - left, bottom - top) + 44;
+    const explosionScale = impactSize / 80;
 
     const overlay = document.createElement('div');
     overlay.className = 'missile-strike-overlay';
@@ -5325,9 +5322,7 @@ function playMissileStrikeAnimation(boardId, topLeftIndex, onComplete) {
     explosion.className = 'missile-explosion';
     explosion.style.left = `${centerX}px`;
     explosion.style.top = `${centerY}px`;
-    explosion.style.width = `${impactSize}px`;
-    explosion.style.height = `${impactSize}px`;
-    explosion.style.setProperty('--explosion-frame-size', `${impactSize}px`);
+    explosion.style.setProperty('--explosion-scale', String(explosionScale));
 
     overlay.appendChild(missile);
     grid.appendChild(overlay);

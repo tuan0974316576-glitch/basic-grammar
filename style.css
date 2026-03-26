@@ -3322,15 +3322,15 @@ body {
 
 .explosion-preview-overlay {
     box-sizing: border-box;
-    border: 1px solid rgba(255, 170, 70, 0.92);
+    border: 1px solid rgba(255, 156, 48, 0.98);
     border-radius: 7px;
     overflow: visible;
     background:
-        linear-gradient(90deg, transparent 49.5%, rgba(255, 186, 94, 0.24) 50%, transparent 50.5%),
-        linear-gradient(180deg, transparent 49.5%, rgba(255, 186, 94, 0.24) 50%, transparent 50.5%);
+        linear-gradient(90deg, transparent 49.5%, rgba(255, 186, 94, 0.16) 50%, transparent 50.5%),
+        linear-gradient(180deg, transparent 49.5%, rgba(255, 186, 94, 0.16) 50%, transparent 50.5%);
     box-shadow:
-        0 0 14px rgba(255, 140, 40, 0.36),
-        inset 0 0 14px rgba(255, 180, 70, 0.12);
+        0 0 14px rgba(255, 140, 40, 0.48),
+        inset 0 0 10px rgba(255, 180, 70, 0.08);
     animation: missilePreviewPulse 1s ease-in-out infinite;
 }
 
@@ -3338,8 +3338,8 @@ body {
     position: absolute;
     width: 0;
     height: 0;
-    opacity: 0.7;
-    filter: drop-shadow(0 0 4px rgba(255, 170, 70, 0.4));
+    opacity: 0.84;
+    filter: drop-shadow(0 0 5px rgba(255, 150, 55, 0.48));
 }
 
 .explosion-preview-arrow.top {
@@ -3348,7 +3348,7 @@ body {
     transform: translateX(-50%);
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-bottom: 8px solid rgba(255, 188, 110, 0.75);
+    border-bottom: 8px solid rgba(255, 176, 86, 0.88);
     animation: missileArrowTop 0.9s ease-in-out infinite;
 }
 
@@ -3358,7 +3358,7 @@ body {
     transform: translateY(-50%);
     border-top: 5px solid transparent;
     border-bottom: 5px solid transparent;
-    border-left: 8px solid rgba(255, 188, 110, 0.75);
+    border-left: 8px solid rgba(255, 176, 86, 0.88);
     animation: missileArrowRight 0.9s ease-in-out infinite;
 }
 
@@ -3368,7 +3368,7 @@ body {
     transform: translateX(-50%);
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-top: 8px solid rgba(255, 188, 110, 0.75);
+    border-top: 8px solid rgba(255, 176, 86, 0.88);
     animation: missileArrowBottom 0.9s ease-in-out infinite;
 }
 
@@ -3378,12 +3378,12 @@ body {
     transform: translateY(-50%);
     border-top: 5px solid transparent;
     border-bottom: 5px solid transparent;
-    border-right: 8px solid rgba(255, 188, 110, 0.75);
+    border-right: 8px solid rgba(255, 176, 86, 0.88);
     animation: missileArrowLeft 0.9s ease-in-out infinite;
 }
 
 #enemy-grid .cell.explosion-eligible {
-    background: transparent;
+    background: none !important;
     box-shadow: none;
     animation: none;
 }
@@ -3414,12 +3414,13 @@ body {
 
 .missile-explosion {
     position: absolute;
-    width: 116px;
-    height: 116px;
-    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    transform: translate(-50%, -50%) scale(var(--explosion-scale, 1.45));
+    transform-origin: center center;
     background-image: url('Explosion-A.png');
     background-repeat: no-repeat;
-    background-size: calc(var(--explosion-frame-size, 116px) * 11) 100%;
+    background-size: 880px 80px;
     animation: explosionFrames 0.7s steps(11) forwards;
     filter:
         drop-shadow(0 0 16px rgba(255, 220, 120, 0.46))
@@ -3429,14 +3430,14 @@ body {
 @keyframes missilePreviewPulse {
     0%, 100% {
         box-shadow:
-            0 0 10px rgba(255, 140, 40, 0.28),
-            inset 0 0 10px rgba(255, 180, 70, 0.1);
-        opacity: 0.88;
+            0 0 12px rgba(255, 140, 40, 0.4),
+            inset 0 0 8px rgba(255, 180, 70, 0.08);
+        opacity: 0.94;
     }
     50% {
         box-shadow:
-            0 0 18px rgba(255, 160, 55, 0.46),
-            inset 0 0 16px rgba(255, 196, 98, 0.18);
+            0 0 20px rgba(255, 160, 55, 0.58),
+            inset 0 0 12px rgba(255, 196, 98, 0.14);
         opacity: 1;
     }
 }
@@ -3476,7 +3477,7 @@ body {
         opacity: 1;
     }
     to {
-        background-position: calc(var(--explosion-frame-size, 116px) * -10) 0;
+        background-position: -800px 0;
         opacity: 1;
     }
 }
