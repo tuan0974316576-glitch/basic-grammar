@@ -5736,6 +5736,7 @@ function confirmSkillSelection() {
             setInstructionPanel('MISSILE', 'SELECT A 2X2 TARGET AREA FIRST', 'explosion.png');
             return;
         }
+        playSound('missile-flying-sfx');
         addEnergy(-cost, selectedSkill.toUpperCase());
         executeExplosionStrike(missileLockedIndex);
         updateSkillStates();
