@@ -3686,11 +3686,9 @@ body {
     transform: translateX(-50%);
     background-image: url('nuke.png');
     background-repeat: no-repeat;
-    background-size: 200% 100%;
-    background-position: 0 0;
-    animation:
-        nukeFrames 0.18s steps(2) infinite,
-        missileDrop var(--missile-flight-duration, 980ms) linear forwards;
+    background-size: auto 100%;
+    background-position: left center;
+    animation: missileDrop var(--missile-flight-duration, 980ms) linear forwards;
     filter:
         drop-shadow(0 0 10px rgba(255, 180, 180, 0.26))
         drop-shadow(0 0 22px rgba(239, 68, 68, 0.28));
@@ -3844,15 +3842,6 @@ body {
     to {
         background-position: 100% 0;
         opacity: 1;
-    }
-}
-
-@keyframes nukeFrames {
-    from {
-        background-position: 0 0;
-    }
-    to {
-        background-position: 100% 0;
     }
 }
 

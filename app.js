@@ -5976,7 +5976,8 @@ function playNukeStrikeAnimation(boardId, topLeftIndex, lockOverlay, onImpact, o
                 NUKE_EXPLOSION_COLUMNS,
                 NUKE_EXPLOSION_ROWS,
                 NUKE_EXPLOSION_FRAMES,
-                NUKE_EXPLOSION_DURATION
+                NUKE_EXPLOSION_DURATION,
+                () => explosion.remove()
             );
             if (onImpact) onImpact();
         }, NUKE_WHITEOUT_HOLD);
