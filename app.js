@@ -5598,6 +5598,13 @@ function renderExplosionPreview(index, size = 2, variant = 'explosion') {
         : 'explosion-preview-reticle';
     overlay.appendChild(reticle);
 
+    if (variant === 'nuke') {
+        const sigil = document.createElement('div');
+        sigil.className = 'nuke-preview-sigil';
+        sigil.textContent = '☢';
+        overlay.appendChild(sigil);
+    }
+
     ['top', 'right', 'bottom', 'left'].forEach(dir => {
         const arrow = document.createElement('div');
         arrow.className = `explosion-preview-arrow ${dir}`;
