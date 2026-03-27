@@ -3229,6 +3229,7 @@ body {
 
 /* 1. 鎖定線與框的容器 (會動態加落去 enemy-grid) */
 .radar-preview-overlay,
+.radar-scanned-overlay,
 .radar-scan-overlay {
     position: absolute;
     pointer-events: none;
