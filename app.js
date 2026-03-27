@@ -5868,6 +5868,13 @@ function createNukeLockOverlay(boardId, topLeftIndex) {
         overlay.appendChild(frame);
     });
 
+    for (let i = 0; i < 4; i++) {
+        const pulse = document.createElement('div');
+        pulse.className = 'nuke-lock-square-pulse';
+        pulse.style.setProperty('--nuke-square-delay', `${i * 0.18}s`);
+        overlay.appendChild(pulse);
+    }
+
     grid.appendChild(overlay);
     return overlay;
 }

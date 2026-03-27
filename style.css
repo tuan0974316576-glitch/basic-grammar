@@ -3565,6 +3565,25 @@ body {
     overflow: visible;
 }
 
+.nuke-lock-square-pulse {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    height: 100%;
+    background:
+        linear-gradient(rgba(255, 60, 60, 0.14), rgba(255, 60, 60, 0.08));
+    border: 1px solid rgba(255, 80, 80, 0.38);
+    box-shadow:
+        0 0 14px rgba(255, 50, 50, 0.18),
+        inset 0 0 12px rgba(255, 80, 80, 0.08);
+    transform: translate(-50%, -50%) scale(1.22);
+    transform-origin: center center;
+    opacity: 0;
+    animation: nukeSquareCollapse 0.72s ease-in infinite;
+    animation-delay: var(--nuke-square-delay, 0s);
+}
+
 .nuke-lock-frame {
     position: absolute;
     left: 50%;
@@ -3800,6 +3819,20 @@ body {
         box-shadow:
             0 0 24px rgba(255, 70, 70, 0.76),
             inset 0 0 16px rgba(255, 70, 70, 0.22);
+    }
+}
+
+@keyframes nukeSquareCollapse {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1.28);
+    }
+    20% {
+        opacity: 0.42;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.08);
     }
 }
 
