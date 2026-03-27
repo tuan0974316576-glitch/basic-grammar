@@ -508,7 +508,7 @@ function selectMode(mode) {
         document.getElementById('start-screen').style.display = 'none';
 
         // ★ 修復問題 1：PVP 直接去 Lobby (跳過 Skill 選擇)
-        document.getElementById('lobby-screen').style.display = 'flex';
+        showLobbyScreen();
 
         // ★ 顯示玩家 ID (使用多重來源確保顯示)
         const pidEl = document.getElementById('player-id-display');
@@ -562,7 +562,7 @@ function closeLevelScreen() {
         showMainMenu();
     } else {
         // PVP 建房時按 Back，返回 Lobby
-        document.getElementById('lobby-screen').style.display = 'flex';
+        showLobbyScreen();
     }
 }
 
@@ -3839,6 +3839,21 @@ function hideMenuOverlayScreens() {
     if (overlay) overlay.style.display = 'none';
 }
 
+function showLobbyScreen() {
+    const lobbyScreen = document.getElementById('lobby-screen');
+    if (!lobbyScreen) return;
+
+    lobbyScreen.style.display = 'flex';
+
+    const wrapper = lobbyScreen.querySelector('.panel-content-wrapper');
+    if (wrapper) {
+        wrapper.style.animation = 'none';
+        setTimeout(() => {
+            wrapper.style.animation = 'holoAppear 0.25s ease-out forwards';
+        }, 10);
+    }
+}
+
 // A. 預先載入靚聲
 function loadVoices() {
     const voices = synth.getVoices();
@@ -4290,7 +4305,7 @@ function confirmRaceSelection(race) {
         gameMode = 'PVP';
 
         // ★ 保險措施：確保 Lobby 畫面係開緊嘅 (避免黑畫面)
-        document.getElementById('lobby-screen').style.display = 'flex';
+        showLobbyScreen();
 
         // ★ 關鍵：呼叫開房函數！
         if (typeof createRoom === 'function') {

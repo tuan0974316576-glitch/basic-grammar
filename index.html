@@ -307,22 +307,24 @@
     </div>
 </div>
 <div id="lobby-screen" style="display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index: 150; flex-direction: column; align-items: center; justify-content: center; backdrop-filter: blur(5px);">
-    <h2 style="font-family: 'Black Ops One'; color: var(--primary); font-size: 40px;">MULTIPLAYER LOBBY</h2>
-    
-    <div style="background: rgba(15, 23, 42, 0.9); padding: 30px; border: 1px solid var(--primary); border-radius: 10px; text-align: center;">
-        <div style="margin-bottom: 20px; color: #fff;">Your ID: <span id="player-id-display" style="color: var(--warning);">Connecting...</span></div>
+    <div class="panel-content-wrapper">
+        <h2 style="font-family: 'Black Ops One'; color: var(--primary); font-size: 40px;">MULTIPLAYER LOBBY</h2>
         
-        <button class="btn" onclick="prepareCreateRoom()" style="width: 100%; margin-bottom: 20px; font-size: 18px;">CREATE NEW ROOM</button>
-        
-        <div style="color: #94a3b8; margin: 10px 0;">-- OR JOIN ROOM --</div>
-        
-        <input type="text" id="room-id-input" placeholder="ENTER ROOM ID" style="background: #000; border: 1px solid #475569; padding: 10px; color: #fff; text-align: center; width: 200px; margin-bottom: 10px;">
-        <br>
-        <button class="btn" onclick="joinRoom()" style="width: 100%;">JOIN MISSION</button>
+        <div style="background: rgba(15, 23, 42, 0.9); padding: 30px; border: 1px solid var(--primary); border-radius: 10px; text-align: center;">
+            <div style="margin-bottom: 20px; color: #fff;">Your ID: <span id="player-id-display" style="color: var(--warning);">Connecting...</span></div>
+            
+            <button class="btn" onclick="prepareCreateRoom()" style="width: 100%; margin-bottom: 20px; font-size: 18px;">CREATE NEW ROOM</button>
+            
+            <div style="color: #94a3b8; margin: 10px 0;">-- OR JOIN ROOM --</div>
+            
+            <input type="text" id="room-id-input" placeholder="ENTER ROOM ID" style="background: #000; border: 1px solid #475569; padding: 10px; color: #fff; text-align: center; width: 200px; margin-bottom: 10px;">
+            <br>
+            <button class="btn" onclick="joinRoom()" style="width: 100%;">JOIN MISSION</button>
 
-        <button class="btn" onclick="confirmExit()" style="width: 100%; margin-top: 15px;">&lt; BACK</button>
+            <button class="btn" onclick="confirmExit()" style="width: 100%; margin-top: 15px;">&lt; BACK</button>
+        </div>
+        <div id="lobby-msg" style="color: var(--danger); margin-top: 20px; height: 20px;"></div>
     </div>
-    <div id="lobby-msg" style="color: var(--danger); margin-top: 20px; height: 20px;"></div>
 </div>
 
 <div id="game-ui">
