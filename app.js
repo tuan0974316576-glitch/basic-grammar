@@ -388,6 +388,8 @@ const TURN_SELECTION_TIME = 10.0;
     let enemyGrid = Array(GRID_SIZE*GRID_SIZE).fill(0);
     let enemyShots = [];
     let aiTargetStack = [];
+    let aiRadarScannedCenters = new Set();
+    let aiRadarIntel = [];
     let currentPhase = 'DEPLOY';
     let deployIndex = 0;
     let isVertical = true;
@@ -463,7 +465,7 @@ function startEnemyTurn() {
     document.getElementById('warning-overlay').style.display = 'block';
     
     // 改用 setGameTimeout
-    setGameTimeout(aiFire, 2000);
+    setGameTimeout(aiTakeTurn, 2000);
 }
 
     const TOTAL_HP = 21; 
@@ -2582,6 +2584,149 @@ function addSmartTargets(index) {
         }
     });
 }
+
+function getPlayerCell(index) {
+    const grid = document.getElementById('player-grid');
+    return grid ? grid.children[index] : null;
+}
+
+function countAiRadarTargets(centerIndex) {
+    return getRadarAreaIndices(centerIndex).filter(index => {
+        if (index === centerIndex) return false;
+        const cell = getPlayerCell(index);
+        return myGrid[index] === 1 && cell && !cell.classList.contains('hit');
+    }).length;
+}
+
+function refreshAiRadarIntel() {
+    aiRadarIntel = aiRadarIntel.map(entry => ({
+        ...entry,
+        remaining: countAiRadarTargets(entry.centerIndex)
+    }));
+}
+
+function getAiRadarEligibleCenters() {
+    return enemyShots.filter(index => {
+        const cell = getPlayerCell(index);
+        return cell && cell.classList.contains('miss') && !aiRadarScannedCenters.has(index);
+    });
+}
+
+function chooseBestAiRadarCenter() {
+    const eligible = getAiRadarEligibleCenters();
+    if (eligible.length === 0) return null;
+
+    let bestScore = -1;
+    let bestCenters = [];
+
+    eligible.forEach(centerIndex => {
+        const unknownCells = getRadarAreaIndices(centerIndex).filter(index => {
+            if (index === centerIndex) return false;
+            return !enemyShots.includes(index);
+        }).length;
+
+        if (unknownCells > bestScore) {
+            bestScore = unknownCells;
+            bestCenters = [centerIndex];
+        } else if (unknownCells === bestScore) {
+            bestCenters.push(centerIndex);
+        }
+    });
+
+    if (bestCenters.length === 0) return eligible[0];
+    return bestCenters[Math.floor(Math.random() * bestCenters.length)];
+}
+
+function getBestAiTargetFromRadarIntel() {
+    refreshAiRadarIntel();
+
+    const scores = new Map();
+    aiRadarIntel.forEach(entry => {
+        if (entry.remaining <= 0) return;
+
+        entry.area.forEach(index => {
+            if (index === entry.centerIndex) return;
+            if (enemyShots.includes(index)) return;
+            scores.set(index, (scores.get(index) || 0) + entry.remaining);
+        });
+    });
+
+    if (scores.size === 0) return null;
+
+    let bestScore = -1;
+    let bestTargets = [];
+    scores.forEach((score, index) => {
+        if (score > bestScore) {
+            bestScore = score;
+            bestTargets = [index];
+        } else if (score === bestScore) {
+            bestTargets.push(index);
+        }
+    });
+
+    return bestTargets[Math.floor(Math.random() * bestTargets.length)];
+}
+
+function getAiAvoidCells() {
+    refreshAiRadarIntel();
+    const avoid = new Set();
+    aiRadarIntel.forEach(entry => {
+        if (entry.remaining !== 0) return;
+        entry.area.forEach(index => {
+            if (index !== entry.centerIndex) avoid.add(index);
+        });
+    });
+    return avoid;
+}
+
+function performAiRadarScan(centerIndex) {
+    const result = countAiRadarTargets(centerIndex);
+    aiRadarScannedCenters.add(centerIndex);
+
+    const existingIndex = aiRadarIntel.findIndex(entry => entry.centerIndex === centerIndex);
+    const intel = {
+        centerIndex,
+        area: getRadarAreaIndices(centerIndex),
+        remaining: result
+    };
+
+    if (existingIndex >= 0) {
+        aiRadarIntel[existingIndex] = intel;
+    } else {
+        aiRadarIntel.push(intel);
+    }
+
+    const status = document.getElementById('game-status');
+    if (status) {
+        status.innerHTML = `PHASE: <span style="color:var(--primary)">ENEMY RADAR SCAN</span>`;
+    }
+
+    const cell = getPlayerCell(centerIndex);
+    if (cell && cell.classList.contains('miss')) {
+        cell.classList.add('radar-scanned');
+        cell.dataset.radarCount = String(result);
+        cell.innerHTML = `<span class="radar-count-static">${result}</span>`;
+    }
+}
+
+function aiTakeTurn() {
+    if (currentPhase === 'GAME_OVER') return;
+
+    refreshAiRadarIntel();
+
+    if (aiTargetStack.length === 0 && !getBestAiTargetFromRadarIntel()) {
+        const radarCenter = chooseBestAiRadarCenter();
+        if (radarCenter !== null) {
+            playSound('radar-sfx');
+            performAiRadarScan(radarCenter);
+            setGameTimeout(aiFire, 900);
+            return;
+        }
+    }
+
+    aiFire();
+}
+
 function aiFire() {
     playSound('laser-sfx');
     let t;
@@ -2600,7 +2745,22 @@ function aiFire() {
     // 如果 Stack 空了 (即係追擊完畢或未打中過)，或者取出的目標原來已經打過
     // 就變回「隨機亂打」
     if (t === undefined || enemyShots.includes(t)) {
-        do { t = Math.floor(Math.random() * 100); } while (enemyShots.includes(t));
+        t = getBestAiTargetFromRadarIntel();
+    }
+
+    if (t === undefined || enemyShots.includes(t)) {
+        const avoidCells = getAiAvoidCells();
+        const preferredTargets = [];
+        const fallbackTargets = [];
+
+        for (let i = 0; i < 100; i++) {
+            if (enemyShots.includes(i)) continue;
+            fallbackTargets.push(i);
+            if (!avoidCells.has(i)) preferredTargets.push(i);
+        }
+
+        const pool = preferredTargets.length > 0 ? preferredTargets : fallbackTargets;
+        t = pool[Math.floor(Math.random() * pool.length)];
     }
 
     enemyShots.push(t);
@@ -3520,6 +3680,8 @@ function resetGame() {
     enemyGrid.fill(0);
     enemyShots = [];
     aiTargetStack = []; 
+    aiRadarScannedCenters.clear();
+    aiRadarIntel = [];
     radarScannedCells.clear();
     clearRadarScannedOverlays();
     clearActiveSkillState();
