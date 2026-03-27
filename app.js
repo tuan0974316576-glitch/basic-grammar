@@ -466,6 +466,8 @@ function startEnemyTurn() {
     let myDamage = 0;    // 我被打中幾多格 (我輸的進度)
     let enemyDamage = 0; // 敵人被打中幾多格 (我贏的進度)
     let unsubscribeRoom = null; // 用來儲存 Firebase 監聽器
+    let pvpRaceSelectionShown = false;
+    let isEnteringPVPDeploy = false;
 
     // --- 5. 流程控制 ---
 function selectMode(mode) {
@@ -942,35 +944,27 @@ function createRoom() {
         const roomId = Math.floor(1000 + Math.random() * 9000).toString();
         currentRoomId = roomId;
         playerRole = 'host';
+        gameMode = 'PVP';
+        pvpRaceSelectionShown = false;
+        isEnteringPVPDeploy = false;
 
 set(ref(db, 'rooms/' + roomId), {
             host: myPlayerId, 
             guest: null, 
-            status: 'waiting', 
+            status: 'waiting_for_guest', 
             turn: 'host',
-            level: selectedLevel // ★ 新增：儲存等級設定 ★
+            level: selectedLevel,
+            practiceMode: currentPracticeMode,
+            hostRace: null,
+            guestRace: null
         });
 const { onDisconnect, remove } = window.firebaseModules; // 確保拿到工具
     onDisconnect(ref(db, 'rooms/' + roomId)).remove();        
-        const msg = document.getElementById('lobby-msg');
-        msg.innerText = `ROOM: ${roomId} - WAITING...`; 
-        msg.style.color = "var(--success)";
-
         const roomRef = ref(db, 'rooms/' + roomId);
-        
-unsubscribeRoom = onValue(roomRef, (snapshot) => {
-            const data = snapshot.val();
-            if (data && data.guest) {
-                if (unsubscribeRoom) unsubscribeRoom(); 
-                showNotification(`PLAYER LINKED! ROOM ${roomId}`);
-                
-                // ★ 新增：設定斷線處理 ★
-                setupDisconnectHandler();
+        showPVPWaitingState(`ROOM: ${roomId} - WAITING...`, 'var(--success)');
 
-                setTimeout(() => {
-                    enterGameUI();
-                }, 1500);
-            }
+unsubscribeRoom = onValue(roomRef, (snapshot) => {
+            handlePVPMatchSetupSnapshot(snapshot.val());
         });
     }
 function joinRoom() {
@@ -993,6 +987,9 @@ function joinRoom() {
                     playSound('open-room-sfx');
                     currentRoomId = inputId;
                     playerRole = 'guest';
+                    tempGameMode = 'PVP';
+                    pvpRaceSelectionShown = false;
+                    isEnteringPVPDeploy = false;
 
                     // ★ 關鍵修復：必須在這裡強制設定為 PVP 模式！ ★
                     // 因為 Guest 跳過了 selectLevel，如果唔加呢句，系統會以為係玩 AI
@@ -1021,7 +1018,7 @@ function joinRoom() {
 
                         update(roomRef, {
                             guest: myPlayerId,
-                            status: 'deploying',
+                            status: 'choosing_race',
                             matchLimitWarning: warningMsg.length > 0 ? warningMsg : null
                         });
 
@@ -1030,7 +1027,10 @@ function joinRoom() {
                         if (typeof showNotification === 'function') {
                             showNotification(`LINKING TO ROOM ${inputId}...`);
                         }
-                        enterGameUI();
+                        if (unsubscribeRoom) { unsubscribeRoom(); unsubscribeRoom = null; }
+                        unsubscribeRoom = window.firebaseModules.onValue(roomRef, (snapshot) => {
+                            handlePVPMatchSetupSnapshot(snapshot.val());
+                        });
                     });
                 } else {
                     document.getElementById('lobby-msg').innerText = "ROOM FULL";
@@ -3353,6 +3353,8 @@ function executeAbort() {
 
 function resetGame() {
     battleLog = [];
+    pvpRaceSelectionShown = false;
+    isEnteringPVPDeploy = false;
     
     // UI 重置
     const exitBtn = document.getElementById('game-exit-btn');
@@ -3360,6 +3362,7 @@ function resetGame() {
 
     const lobbyMsg = document.getElementById('lobby-msg');
     if (lobbyMsg) lobbyMsg.innerText = "";
+    resetLobbyScreenState();
     
     const roomInput = document.getElementById('room-id-input');
     if (roomInput) roomInput.value = ""; 
@@ -3847,6 +3850,7 @@ function showLobbyScreen() {
     const lobbyScreen = document.getElementById('lobby-screen');
     if (!lobbyScreen) return;
 
+    resetLobbyScreenState();
     lobbyScreen.style.display = 'flex';
 
     const wrapper = lobbyScreen.querySelector('.panel-content-wrapper');
@@ -3855,6 +3859,116 @@ function showLobbyScreen() {
         setTimeout(() => {
             wrapper.style.animation = 'holoAppear 0.25s ease-out forwards';
         }, 10);
+    }
+}
+
+function resetLobbyScreenState() {
+    const lobbyControls = document.getElementById('lobby-controls');
+    const lobbyMsg = document.getElementById('lobby-msg');
+
+    if (lobbyControls) lobbyControls.style.display = 'block';
+    if (lobbyMsg) {
+        lobbyMsg.innerText = '';
+        lobbyMsg.style.color = 'var(--danger)';
+    }
+}
+
+function showPVPWaitingState(message, color = 'var(--warning)') {
+    showLobbyScreen();
+
+    const lobbyControls = document.getElementById('lobby-controls');
+    const lobbyMsg = document.getElementById('lobby-msg');
+
+    if (lobbyControls) lobbyControls.style.display = 'none';
+    if (lobbyMsg) {
+        lobbyMsg.innerText = message;
+        lobbyMsg.style.color = color;
+    }
+}
+
+function showPVPRaceSelectionScreen() {
+    if (isEnteringPVPDeploy) return;
+
+    const lobbyScreen = document.getElementById('lobby-screen');
+    if (lobbyScreen) lobbyScreen.style.display = 'none';
+
+    updateRaceButtons();
+    const raceScreen = document.getElementById('race-screen');
+    if (!raceScreen) return;
+
+    raceScreen.style.display = 'flex';
+    const wrapper = raceScreen.querySelector('.panel-content-wrapper');
+    if (wrapper) {
+        wrapper.style.animation = 'none';
+        setTimeout(() => {
+            wrapper.style.animation = 'holoAppear 0.4s forwards';
+        }, 10);
+    }
+
+    pvpRaceSelectionShown = true;
+}
+
+function syncPVPSetupFromRoom(data) {
+    if (!data) return;
+
+    if (data.level && VOCAB_DB[data.level]) {
+        selectedLevel = data.level;
+        activeVocabList = VOCAB_DB[data.level];
+        sessionDeck = [...activeVocabList];
+    }
+
+    if (data.practiceMode) {
+        currentPracticeMode = data.practiceMode;
+    }
+}
+
+function handlePVPMatchSetupSnapshot(data) {
+    if (!data) {
+        if (isEnteringPVPDeploy || currentPhase === 'GAME_OVER') return;
+        showNotification('ROOM CLOSED', 'error');
+        playSound('wrong-sfx');
+        setTimeout(() => resetGame(), 1500);
+        return;
+    }
+
+    syncPVPSetupFromRoom(data);
+
+    if (!data.guest) {
+        if (playerRole === 'host' && !isEnteringPVPDeploy) {
+            showPVPWaitingState(`ROOM: ${currentRoomId} - WAITING...`, 'var(--success)');
+        }
+        return;
+    }
+
+    const myRaceField = playerRole === 'host' ? 'hostRace' : 'guestRace';
+    const opponentRaceField = playerRole === 'host' ? 'guestRace' : 'hostRace';
+    const myRaceLocked = !!data[myRaceField];
+    const opponentRaceLocked = !!data[opponentRaceField];
+
+    setupDisconnectHandler();
+
+    if (!myRaceLocked && !pvpRaceSelectionShown) {
+        showNotification('PLAYER LINKED! SELECT RACE');
+        showPVPRaceSelectionScreen();
+        return;
+    }
+
+    if (myRaceLocked && !opponentRaceLocked && !isEnteringPVPDeploy) {
+        showPVPWaitingState('WAITING FOR OPPONENT...', 'var(--warning)');
+        return;
+    }
+
+    if (data.hostRace && data.guestRace && !isEnteringPVPDeploy) {
+        isEnteringPVPDeploy = true;
+        if (unsubscribeRoom) {
+            unsubscribeRoom();
+            unsubscribeRoom = null;
+        }
+        hideMenuOverlayScreens();
+        showNotification('RACE LOCKED // DEPLOYING', 'success');
+        setTimeout(() => {
+            enterGameUI();
+        }, 600);
     }
 }
 
@@ -4207,17 +4321,26 @@ async function selectSkill(skill) {
     // 3. 隱藏 Skill 畫面
     document.getElementById('skill-screen').style.display = 'none';
 
-    // 4. ★★★ 新流程：跳去種族選擇畫面 ★★★
-    updateRaceButtons();
-    const raceScreen = document.getElementById('race-screen');
-    raceScreen.style.display = 'flex';
-    // ★★★ Trigger holoAppear animation on content wrapper ★★★
-    const wrapper = raceScreen.querySelector('.panel-content-wrapper');
-    if (wrapper) {
-        wrapper.style.animation = 'none';
-        setTimeout(() => {
-            wrapper.style.animation = 'holoAppear 0.4s forwards';
-        }, 10);
+    if (tempGameMode === 'AI') {
+        // 4. ★★★ AI 流程：跳去種族選擇畫面 ★★★
+        updateRaceButtons();
+        const raceScreen = document.getElementById('race-screen');
+        raceScreen.style.display = 'flex';
+        const wrapper = raceScreen.querySelector('.panel-content-wrapper');
+        if (wrapper) {
+            wrapper.style.animation = 'none';
+            setTimeout(() => {
+                wrapper.style.animation = 'holoAppear 0.4s forwards';
+            }, 10);
+        }
+        return;
+    }
+
+    // 4. ★★★ PVP 流程：揀完 Training Module 後直接開房 ★★★
+    gameMode = 'PVP';
+    showPVPWaitingState('OPENING ROOM...', 'var(--warning)');
+    if (typeof createRoom === 'function') {
+        createRoom();
     }
 }
 
@@ -4307,18 +4430,18 @@ function confirmRaceSelection(race) {
 
         enterGameUI();
     } else {
-        // --- PVP 模式：執行開房！ ---
+        // --- PVP 模式：鎖定種族，等對手揀完 ---
         gameMode = 'PVP';
+        const { ref, update } = window.firebaseModules;
+        const raceField = playerRole === 'host' ? 'hostRace' : 'guestRace';
 
-        // ★ 保險措施：確保 Lobby 畫面係開緊嘅 (避免黑畫面)
-        showLobbyScreen();
+        showPVPWaitingState('WAITING FOR OPPONENT...', 'var(--warning)');
 
-        // ★ 關鍵：呼叫開房函數！
-        if (typeof createRoom === 'function') {
-            createRoom();
-        } else {
-            console.error("createRoom function not found!");
-            alert("Error: createRoom function missing.");
+        if (currentRoomId) {
+            update(ref(db, 'rooms/' + currentRoomId), {
+                [raceField]: race,
+                status: 'choosing_race'
+            });
         }
     }
 }
