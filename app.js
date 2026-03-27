@@ -5573,7 +5573,7 @@ function clearMissilePreview() {
 
 function clearNukeFlashEffects() {
     document.querySelectorAll('.nuke-flash-overlay').forEach(el => el.remove());
-    document.body.classList.remove('screen-shake-sunk');
+    document.body.classList.remove('screen-shake-nuke');
 }
 
 function clearRadarEffects() {
@@ -5986,10 +5986,10 @@ function playNukeStrikeAnimation(boardId, topLeftIndex, lockOverlay, onImpact, o
         triggerNukeWhiteout(impactX, impactY);
 
         setTimeout(() => {
-            document.body.classList.remove('screen-shake-sunk');
+            document.body.classList.remove('screen-shake-nuke');
             void document.body.offsetWidth;
-            document.body.classList.add('screen-shake-sunk');
-            setTimeout(() => document.body.classList.remove('screen-shake-sunk'), NUKE_SHAKE_DURATION);
+            document.body.classList.add('screen-shake-nuke');
+            setTimeout(() => document.body.classList.remove('screen-shake-nuke'), NUKE_SHAKE_DURATION);
 
             playSound('destroy-sfx');
             overlay.appendChild(explosion);
