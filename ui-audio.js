@@ -11,6 +11,12 @@ let gameVolume = {
     voice: 1.0
 };
 
+function normalizeVolume(value, fallback) {
+    const parsed = parseFloat(value);
+    if (!Number.isFinite(parsed)) return fallback;
+    return Math.max(0, Math.min(1, parsed));
+}
+
 const BGM_MAX_GAIN = 0.6;
 
 function playBgm() {
@@ -82,7 +88,8 @@ function toggleSettingsModal() {
 }
 
 function updateVolume(type, val) {
-    const v = parseFloat(val);
+    const fallback = type === 'voice' ? 1.0 : 0.5;
+    const v = normalizeVolume(val, fallback);
     gameVolume[type] = v;
 
     if (type === 'bgm') {
@@ -97,9 +104,9 @@ function updateVolume(type, val) {
 
 function loadSavedAudioSettings() {
     if (localStorage.getItem('setting_bgm')) {
-        gameVolume.bgm = parseFloat(localStorage.getItem('setting_bgm'));
-        gameVolume.sfx = parseFloat(localStorage.getItem('setting_sfx'));
-        gameVolume.voice = parseFloat(localStorage.getItem('setting_voice'));
+        gameVolume.bgm = normalizeVolume(localStorage.getItem('setting_bgm'), 0.5);
+        gameVolume.sfx = normalizeVolume(localStorage.getItem('setting_sfx'), 0.5);
+        gameVolume.voice = normalizeVolume(localStorage.getItem('setting_voice'), 1.0);
 
         if (document.getElementById('vol-bgm')) document.getElementById('vol-bgm').value = gameVolume.bgm;
         if (document.getElementById('vol-sfx')) document.getElementById('vol-sfx').value = gameVolume.sfx;

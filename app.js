@@ -5378,11 +5378,10 @@ function speakText(text, element = null) {
 
     // 3. 設定語音參數 (整合音量設定)
     // 即使你未加音量設定，這段代碼也會自動用預設值，不會報錯
-    if (typeof gameVolume !== 'undefined') {
-        utterance.volume = gameVolume.voice;
-    } else {
-        utterance.volume = 1.0;
-    }
+    const voiceVolume = (typeof gameVolume !== 'undefined' && Number.isFinite(gameVolume.voice))
+        ? Math.max(0, Math.min(1, gameVolume.voice))
+        : 1.0;
+    utterance.volume = voiceVolume;
 
     // 嘗試套用 Google Voice 或其他英文聲
     if (typeof techVoice !== 'undefined' && techVoice) {
@@ -5460,7 +5459,25 @@ function speakText(text, element = null) {
     };
 
     // 5. 正式發聲
-    window.speechSynthesis.speak(utterance);
+    try {
+        window.speechSynthesis.speak(utterance);
+    } catch (error) {
+        console.error('Speech synthesis failed:', error);
+
+        if (element) element.classList.remove('speaking');
+
+        if (shouldMaintainFocus && hiddenInput) {
+            setTimeout(() => hiddenInput.focus(), 50);
+        }
+
+        if (typeof currentPracticeMode !== 'undefined' && currentPracticeMode === 'LISTENING' &&
+            !hasTimerStarted) {
+            const modal = document.getElementById('launch-modal');
+            if (modal && modal.style.display === 'flex' && typeof startCountdownTimer === 'function') {
+                startCountdownTimer();
+            }
+        }
+    }
 }
 
 /* =========================================
