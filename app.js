@@ -5902,6 +5902,18 @@ function animateSpriteSheet(element, columns, rows, totalFrames, duration, onCom
     }, frameDuration);
 }
 
+function animateImageSequence(element, frames, frameDuration) {
+    if (!element || !Array.isArray(frames) || frames.length === 0) return null;
+
+    let frameIndex = 0;
+    element.style.backgroundImage = `url('${frames[0]}')`;
+
+    return setInterval(() => {
+        frameIndex = (frameIndex + 1) % frames.length;
+        element.style.backgroundImage = `url('${frames[frameIndex]}')`;
+    }, frameDuration);
+}
+
 function playNukeStrikeAnimation(boardId, topLeftIndex, lockOverlay, onImpact, onComplete) {
     const grid = document.getElementById(boardId);
     const cells = getExplosionAreaIndices(topLeftIndex, 4).map(index => grid ? grid.children[index] : null).filter(Boolean);
@@ -5951,12 +5963,14 @@ function playNukeStrikeAnimation(boardId, topLeftIndex, lockOverlay, onImpact, o
 
     overlay.appendChild(missile);
     grid.appendChild(overlay);
+    const nukeFrameTimer = animateImageSequence(missile, ['nuke_1.png', 'nuke_2.png'], 180);
 
     setTimeout(() => {
         const gameUI = document.getElementById('game-ui');
         const impactX = gridRect.left + centerX;
         const impactY = gridRect.top + centerY;
 
+        if (nukeFrameTimer) clearInterval(nukeFrameTimer);
         if (lockOverlay) lockOverlay.remove();
         missile.remove();
         triggerNukeWhiteout(impactX, impactY);
@@ -5984,6 +5998,7 @@ function playNukeStrikeAnimation(boardId, topLeftIndex, lockOverlay, onImpact, o
     }, flightDuration);
 
     setTimeout(() => {
+        if (nukeFrameTimer) clearInterval(nukeFrameTimer);
         overlay.remove();
         clearNukeFlashEffects();
         if (onComplete) onComplete();

@@ -3684,10 +3684,10 @@ body {
     position: absolute;
     top: var(--missile-start-top, -120px);
     transform: translateX(-50%);
-    background-image: url('nuke.png');
+    background-image: url('nuke_1.png');
     background-repeat: no-repeat;
-    background-size: auto 100%;
-    background-position: left center;
+    background-size: contain;
+    background-position: center center;
     animation: missileDrop var(--missile-flight-duration, 980ms) linear forwards;
     filter:
         drop-shadow(0 0 10px rgba(255, 180, 180, 0.26))
