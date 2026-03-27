@@ -568,6 +568,8 @@ function closeLevelScreen() {
 
     function prepareCreateRoom() {
         playSound('deploy-sfx');
+        const lobbyScreen = document.getElementById('lobby-screen');
+        if (lobbyScreen) lobbyScreen.style.display = 'none';
         // 彈出 Level 選單畀場主揀
         // ★★★ PVP 模式唔顯示進度，重置返原本嘅文字 ★★★
         resetLevelButtonsToDefault();
@@ -800,6 +802,8 @@ function selectLevel(level) {
         // --- PVP 模式：Level -> Skill -> Lobby ---
         // ★★★ PVP 唔顯示進度，重置返原本嘅文字 ★★★
         resetSkillButtonsToDefault();
+        const lobbyScreen = document.getElementById('lobby-screen');
+        if (lobbyScreen) lobbyScreen.style.display = 'none';
 
         // 顯示 Skill 選擇
         const skillScreen = document.getElementById('skill-screen');
@@ -4186,6 +4190,8 @@ async function selectSkill(skill) {
     console.log("Skill Selected:", skill);
     currentPracticeMode = skill;
     playSound('deploy-sfx');
+    const lobbyScreen = document.getElementById('lobby-screen');
+    if (lobbyScreen) lobbyScreen.style.display = 'none';
 
     // 1. 預熱語音 (Listening 專用)
     if (skill === 'LISTENING') {
