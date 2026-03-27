@@ -3347,6 +3347,47 @@ body {
         );
 }
 
+.explosion-preview-overlay.nuke-preview-overlay {
+    border-width: 3px;
+    border-color: rgba(239, 68, 68, 0.96);
+    animation: nukePreviewPulse 1s ease-in-out infinite;
+    box-shadow:
+        0 0 22px rgba(239, 68, 68, 0.5),
+        inset 0 0 16px rgba(239, 68, 68, 0.16);
+    background:
+        linear-gradient(rgba(239, 68, 68, 0.16), rgba(239, 68, 68, 0.16)),
+        linear-gradient(
+            90deg,
+            transparent calc(25% - 0.5px),
+            rgba(248, 113, 113, 0.16) calc(25% - 0.5px),
+            rgba(248, 113, 113, 0.16) calc(25% + 0.5px),
+            transparent calc(25% + 0.5px),
+            transparent calc(50% - 0.5px),
+            rgba(248, 113, 113, 0.16) calc(50% - 0.5px),
+            rgba(248, 113, 113, 0.16) calc(50% + 0.5px),
+            transparent calc(50% + 0.5px),
+            transparent calc(75% - 0.5px),
+            rgba(248, 113, 113, 0.16) calc(75% - 0.5px),
+            rgba(248, 113, 113, 0.16) calc(75% + 0.5px),
+            transparent calc(75% + 0.5px)
+        ),
+        linear-gradient(
+            180deg,
+            transparent calc(25% - 0.5px),
+            rgba(248, 113, 113, 0.16) calc(25% - 0.5px),
+            rgba(248, 113, 113, 0.16) calc(25% + 0.5px),
+            transparent calc(25% + 0.5px),
+            transparent calc(50% - 0.5px),
+            rgba(248, 113, 113, 0.16) calc(50% - 0.5px),
+            rgba(248, 113, 113, 0.16) calc(50% + 0.5px),
+            transparent calc(50% + 0.5px),
+            transparent calc(75% - 0.5px),
+            rgba(248, 113, 113, 0.16) calc(75% - 0.5px),
+            rgba(248, 113, 113, 0.16) calc(75% + 0.5px),
+            transparent calc(75% + 0.5px)
+        );
+}
+
 .explosion-preview-reticle {
     position: absolute;
     left: 50%;
@@ -3368,6 +3409,21 @@ body {
         linear-gradient(rgba(255, 220, 150, 0.62), rgba(255, 220, 150, 0.62)) calc(50% + 7px) center / 1px 9px no-repeat,
         linear-gradient(rgba(255, 220, 150, 0.62), rgba(255, 220, 150, 0.62)) calc(50% + 13px) center / 1px 9px no-repeat;
     filter: drop-shadow(0 0 4px rgba(245, 158, 11, 0.18));
+}
+
+.nuke-preview-reticle {
+    background:
+        linear-gradient(to right, transparent calc(50% - 0.5px), rgba(254, 202, 202, 0.56) calc(50% - 0.5px), rgba(254, 202, 202, 0.56) calc(50% + 0.5px), transparent calc(50% + 0.5px)),
+        linear-gradient(to bottom, transparent calc(50% - 0.5px), rgba(254, 202, 202, 0.56) calc(50% - 0.5px), rgba(254, 202, 202, 0.56) calc(50% + 0.5px), transparent calc(50% + 0.5px)),
+        linear-gradient(90deg, rgba(254, 202, 202, 0.62), rgba(254, 202, 202, 0.62)) center calc(50% - 16px) / 11px 1px no-repeat,
+        linear-gradient(90deg, rgba(254, 202, 202, 0.62), rgba(254, 202, 202, 0.62)) center calc(50% - 8px) / 11px 1px no-repeat,
+        linear-gradient(90deg, rgba(254, 202, 202, 0.62), rgba(254, 202, 202, 0.62)) center calc(50% + 8px) / 11px 1px no-repeat,
+        linear-gradient(90deg, rgba(254, 202, 202, 0.62), rgba(254, 202, 202, 0.62)) center calc(50% + 16px) / 11px 1px no-repeat,
+        linear-gradient(rgba(254, 202, 202, 0.62), rgba(254, 202, 202, 0.62)) calc(50% - 16px) center / 1px 11px no-repeat,
+        linear-gradient(rgba(254, 202, 202, 0.62), rgba(254, 202, 202, 0.62)) calc(50% - 8px) center / 1px 11px no-repeat,
+        linear-gradient(rgba(254, 202, 202, 0.62), rgba(254, 202, 202, 0.62)) calc(50% + 8px) center / 1px 11px no-repeat,
+        linear-gradient(rgba(254, 202, 202, 0.62), rgba(254, 202, 202, 0.62)) calc(50% + 16px) center / 1px 11px no-repeat;
+    filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.28));
 }
 
 .explosion-preview-arrow {
@@ -3419,6 +3475,27 @@ body {
     animation: missileArrowLeft 0.9s ease-in-out infinite;
 }
 
+.nuke-preview-overlay .explosion-preview-arrow {
+    opacity: 0.95;
+    filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.62));
+}
+
+.nuke-preview-overlay .explosion-preview-arrow.top {
+    border-bottom-color: rgba(239, 68, 68, 0.94);
+}
+
+.nuke-preview-overlay .explosion-preview-arrow.right {
+    border-left-color: rgba(239, 68, 68, 0.94);
+}
+
+.nuke-preview-overlay .explosion-preview-arrow.bottom {
+    border-top-color: rgba(239, 68, 68, 0.94);
+}
+
+.nuke-preview-overlay .explosion-preview-arrow.left {
+    border-right-color: rgba(239, 68, 68, 0.94);
+}
+
 #enemy-grid .cell.explosion-eligible {
     background: none !important;
     box-shadow: none;
@@ -3464,6 +3541,64 @@ body {
         drop-shadow(0 0 24px rgba(255, 122, 30, 0.28));
 }
 
+.nuke-sprite {
+    position: absolute;
+    top: var(--missile-start-top, -120px);
+    transform: translateX(-50%);
+    background-image: url('nuke.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    animation: missileDrop var(--missile-flight-duration, 980ms) linear forwards;
+    filter:
+        drop-shadow(0 0 10px rgba(255, 180, 180, 0.26))
+        drop-shadow(0 0 22px rgba(239, 68, 68, 0.28));
+}
+
+.nuke-explosion {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    background-image: url('explosion-c.png');
+    background-repeat: no-repeat;
+    background-size: 1000% 100%;
+    animation: nukeExplosionFrames 0.72s steps(9) forwards;
+    image-rendering: pixelated;
+    filter:
+        drop-shadow(0 0 26px rgba(255, 255, 255, 0.66))
+        drop-shadow(0 0 34px rgba(239, 68, 68, 0.42));
+}
+
+.nuke-flash-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+    pointer-events: none;
+    background: rgba(255, 255, 255, 1);
+    opacity: 0;
+    animation: nukeFlashWhiteout 1.5s linear forwards;
+}
+
+.nuke-flash-bloom {
+    position: absolute;
+    left: var(--nuke-flash-x, 50vw);
+    top: var(--nuke-flash-y, 50vh);
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0.08);
+    background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.98) 40%, rgba(255, 255, 255, 0.38) 74%, rgba(255, 255, 255, 0) 100%);
+    box-shadow:
+        0 0 40px rgba(255, 255, 255, 0.92),
+        0 0 100px rgba(255, 255, 255, 0.75),
+        0 0 180px rgba(255, 255, 255, 0.46);
+    animation: nukeBloomExpand 0.2s ease-out forwards;
+}
+
+#game-ui.nuke-impact-shake {
+    animation: nukeImpactShake 1.8s ease-out forwards;
+    will-change: transform, filter;
+}
+
 @keyframes missilePreviewPulse {
     0%, 100% {
         box-shadow:
@@ -3488,6 +3623,21 @@ body {
     }
 }
 
+@keyframes nukePreviewPulse {
+    0%, 100% {
+        box-shadow:
+            0 0 18px rgba(239, 68, 68, 0.4),
+            inset 0 0 12px rgba(239, 68, 68, 0.12);
+        opacity: 0.96;
+    }
+    50% {
+        box-shadow:
+            0 0 28px rgba(239, 68, 68, 0.6),
+            inset 0 0 18px rgba(239, 68, 68, 0.2);
+        opacity: 1;
+    }
+}
+
 @keyframes missileFrames {
     from {
         background-position: 0 0;
@@ -3509,6 +3659,17 @@ body {
 }
 
 @keyframes explosionFrames {
+    from {
+        background-position: 0 0;
+        opacity: 1;
+    }
+    to {
+        background-position: 100% 0;
+        opacity: 1;
+    }
+}
+
+@keyframes nukeExplosionFrames {
     from {
         background-position: 0 0;
         opacity: 1;
@@ -3553,6 +3714,45 @@ body {
     50% {
         transform: translateY(-50%) translateX(-3px);
     }
+}
+
+@keyframes nukeBloomExpand {
+    from {
+        transform: translate(-50%, -50%) scale(0.08);
+        opacity: 1;
+    }
+    to {
+        transform: translate(-50%, -50%) scale(16);
+        opacity: 0.98;
+    }
+}
+
+@keyframes nukeFlashWhiteout {
+    0% {
+        opacity: 0;
+    }
+    13% {
+        opacity: 1;
+    }
+    66% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes nukeImpactShake {
+    0% { transform: translate(0, 0); filter: blur(0px) brightness(1); }
+    8% { transform: translate(-12px, 10px); filter: blur(3.6px) brightness(1.06); }
+    16% { transform: translate(13px, -11px); filter: blur(3.2px) brightness(1.05); }
+    24% { transform: translate(-10px, -8px); filter: blur(2.9px) brightness(1.04); }
+    32% { transform: translate(11px, 9px); filter: blur(2.4px) brightness(1.03); }
+    44% { transform: translate(-8px, 6px); filter: blur(1.8px) brightness(1.02); }
+    58% { transform: translate(6px, -5px); filter: blur(1.2px) brightness(1.015); }
+    72% { transform: translate(-4px, 3px); filter: blur(0.8px) brightness(1.01); }
+    86% { transform: translate(2px, -2px); filter: blur(0.3px) brightness(1.005); }
+    100% { transform: translate(0, 0); filter: blur(0px) brightness(1); }
 }
 
 .target-overlay {

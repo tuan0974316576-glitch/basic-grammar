@@ -1134,6 +1134,17 @@ function initPVPListeners() {
                 return;
             }
 
+            if (move.type === 'nuke' && Array.isArray(move.indices) && move.indices.length > 0) {
+                playNukeStrikeAnimation('player-grid', move.anchor ?? move.indices[0], () => {
+                    applyExplosionDamageToPlayer(move.indices);
+                }, () => {
+                    if (currentPhase !== 'GAME_OVER') {
+                        setGameTimeout(startPlayerTurn, 1200);
+                    }
+                });
+                return;
+            }
+
             const idx = move.index;
             const cell = document.getElementById('player-grid').children[idx];
             
@@ -1616,6 +1627,16 @@ function handleEnemyGridClick(index) {
             missileLockedIndex = getExplosionAnchor(index);
             renderExplosionPreview(missileLockedIndex);
             setInstructionPanel('MISSILE', 'TARGET LOCKED. PRESS TICK TO FIRE', 'explosion.png');
+            return;
+        }
+        if (selectedSkill === 'nuke') {
+            if (!isNukeSelectable(index)) {
+                playSound('wrong-sfx');
+                return;
+            }
+            missileLockedIndex = getExplosionAnchor(index, 4);
+            renderNukePreview(missileLockedIndex);
+            setInstructionPanel('NUKE', 'TARGET LOCKED. PRESS TICK TO LAUNCH', 'nuclear_bomb.png');
             return;
         }
         return;
@@ -5348,6 +5369,10 @@ let missileLockedIndex = null;
 const radarScannedCells = new Set();
 const RADAR_SCAN_DURATION = 2200;
 const MISSILE_EXPLOSION_DURATION = 720;
+const NUKE_WHITEOUT_HOLD = 1000;
+const NUKE_WHITEOUT_FADE = 500;
+const NUKE_SHAKE_DURATION = 1800;
+const NUKE_EXPLOSION_DURATION = 720;
 const DEFAULT_INSTRUCTION = {
     name: 'SINGLE SHOT',
     desc: 'TAP A CELL TO FIRE',
@@ -5436,10 +5461,17 @@ function clearMissilePreview() {
     document.querySelectorAll('.explosion-preview-overlay').forEach(el => el.remove());
 }
 
+function clearNukeFlashEffects() {
+    document.querySelectorAll('.nuke-flash-overlay').forEach(el => el.remove());
+    const gameUI = document.getElementById('game-ui');
+    if (gameUI) gameUI.classList.remove('nuke-impact-shake');
+}
+
 function clearRadarEffects() {
     radarPreviewIndex = null;
     missilePreviewIndex = null;
     document.querySelectorAll('.radar-preview-overlay, .radar-scan-overlay, .explosion-preview-overlay, .missile-strike-overlay').forEach(el => el.remove());
+    clearNukeFlashEffects();
 }
 
 function getRadarLinePosition(offsets, cellSize, lineIndex) {
@@ -5508,41 +5540,43 @@ function setRadarEligibleCells(isEnabled) {
     });
 }
 
-function getExplosionAreaIndices(topLeftIndex) {
+function getExplosionAreaIndices(topLeftIndex, size = 2) {
     const row = Math.floor(topLeftIndex / GRID_SIZE);
     const col = topLeftIndex % GRID_SIZE;
-    if (row >= GRID_SIZE - 1 || col >= GRID_SIZE - 1) return [];
-    return [
-        topLeftIndex,
-        topLeftIndex + 1,
-        topLeftIndex + GRID_SIZE,
-        topLeftIndex + GRID_SIZE + 1
-    ];
+    if (row > GRID_SIZE - size || col > GRID_SIZE - size) return [];
+
+    const indices = [];
+    for (let r = 0; r < size; r++) {
+        for (let c = 0; c < size; c++) {
+            indices.push(topLeftIndex + (r * GRID_SIZE) + c);
+        }
+    }
+    return indices;
 }
 
-function getExplosionAnchor(index) {
+function getExplosionAnchor(index, size = 2) {
     const row = Math.floor(index / GRID_SIZE);
     const col = index % GRID_SIZE;
-    const anchorRow = Math.max(0, Math.min(row, GRID_SIZE - 2));
-    const anchorCol = Math.max(0, Math.min(col, GRID_SIZE - 2));
+    const anchorRow = Math.max(0, Math.min(row, GRID_SIZE - size));
+    const anchorCol = Math.max(0, Math.min(col, GRID_SIZE - size));
     return anchorRow * GRID_SIZE + anchorCol;
 }
 
-function isExplosionSelectable(index) {
-    const indices = getExplosionAreaIndices(getExplosionAnchor(index));
-    return indices.length === 4 && indices.some(index => {
+function isExplosionSelectable(index, size = 2) {
+    const indices = getExplosionAreaIndices(getExplosionAnchor(index, size), size);
+    return indices.length === size * size && indices.some(index => {
         const cell = getEnemyCell(index);
         return cell && !cell.classList.contains('revealed');
     });
 }
 
-function renderExplosionPreview(index) {
+function renderExplosionPreview(index, size = 2, variant = 'explosion') {
     clearMissilePreview();
 
     const grid = document.getElementById('enemy-grid');
-    const topLeftIndex = getExplosionAnchor(index);
-    const cells = getExplosionAreaIndices(topLeftIndex).map(index => getEnemyCell(index)).filter(Boolean);
-    if (!grid || cells.length !== 4) return;
+    const topLeftIndex = getExplosionAnchor(index, size);
+    const cells = getExplosionAreaIndices(topLeftIndex, size).map(index => getEnemyCell(index)).filter(Boolean);
+    if (!grid || cells.length !== size * size) return;
 
     const left = Math.min(...cells.map(cell => cell.offsetLeft));
     const top = Math.min(...cells.map(cell => cell.offsetTop));
@@ -5550,14 +5584,18 @@ function renderExplosionPreview(index) {
     const bottom = Math.max(...cells.map(cell => cell.offsetTop + cell.offsetHeight));
 
     const overlay = document.createElement('div');
-    overlay.className = 'explosion-preview-overlay';
+    overlay.className = variant === 'nuke'
+        ? 'explosion-preview-overlay nuke-preview-overlay'
+        : 'explosion-preview-overlay';
     overlay.style.left = `${left}px`;
     overlay.style.top = `${top}px`;
     overlay.style.width = `${right - left}px`;
     overlay.style.height = `${bottom - top}px`;
 
     const reticle = document.createElement('div');
-    reticle.className = 'explosion-preview-reticle';
+    reticle.className = variant === 'nuke'
+        ? 'explosion-preview-reticle nuke-preview-reticle'
+        : 'explosion-preview-reticle';
     overlay.appendChild(reticle);
 
     ['top', 'right', 'bottom', 'left'].forEach(dir => {
@@ -5568,6 +5606,14 @@ function renderExplosionPreview(index) {
 
     grid.appendChild(overlay);
     missilePreviewIndex = topLeftIndex;
+}
+
+function isNukeSelectable(index) {
+    return isExplosionSelectable(index, 4);
+}
+
+function renderNukePreview(index) {
+    renderExplosionPreview(index, 4, 'nuke');
 }
 
 function setExplosionEligibleCells(isEnabled) {
@@ -5645,6 +5691,103 @@ function playMissileStrikeAnimation(boardId, topLeftIndex, onComplete) {
 
     setTimeout(() => {
         overlay.remove();
+        if (onComplete) onComplete();
+    }, totalDuration);
+}
+
+function triggerNukeWhiteout(screenX, screenY) {
+    clearNukeFlashEffects();
+
+    const flash = document.createElement('div');
+    flash.className = 'nuke-flash-overlay';
+    flash.style.setProperty('--nuke-flash-x', `${screenX}px`);
+    flash.style.setProperty('--nuke-flash-y', `${screenY}px`);
+
+    const bloom = document.createElement('div');
+    bloom.className = 'nuke-flash-bloom';
+    flash.appendChild(bloom);
+    document.body.appendChild(flash);
+
+    setTimeout(() => {
+        flash.remove();
+    }, NUKE_WHITEOUT_HOLD + NUKE_WHITEOUT_FADE + 120);
+}
+
+function playNukeStrikeAnimation(boardId, topLeftIndex, onImpact, onComplete) {
+    const grid = document.getElementById(boardId);
+    const cells = getExplosionAreaIndices(topLeftIndex, 4).map(index => grid ? grid.children[index] : null).filter(Boolean);
+    if (!grid || cells.length !== 16) {
+        if (onImpact) onImpact();
+        if (onComplete) onComplete();
+        return;
+    }
+
+    const left = Math.min(...cells.map(cell => cell.offsetLeft));
+    const top = Math.min(...cells.map(cell => cell.offsetTop));
+    const right = Math.max(...cells.map(cell => cell.offsetLeft + cell.offsetWidth));
+    const bottom = Math.max(...cells.map(cell => cell.offsetTop + cell.offsetHeight));
+    const centerX = (left + right) / 2;
+    const centerY = (top + bottom) / 2;
+    const impactWidth = (right - left) + 120;
+    const impactHeight = (bottom - top) + 120;
+    const gridRect = grid.getBoundingClientRect();
+    const cellWidth = cells[0].offsetWidth || 35;
+    const nukeWidth = Math.max(22, Math.round(cellWidth * 0.7));
+    const nukeHeight = Math.round(nukeWidth * (308 / 136));
+    const impactTop = centerY - nukeHeight;
+    const startTop = -(gridRect.top + nukeHeight + 24);
+    const travelDistance = Math.abs(impactTop - startTop);
+    const flightDuration = Math.max(900, Math.round(travelDistance / 0.95));
+    const fadeStart = flightDuration + NUKE_WHITEOUT_HOLD;
+    const totalDuration = fadeStart + Math.max(NUKE_SHAKE_DURATION, NUKE_WHITEOUT_FADE, NUKE_EXPLOSION_DURATION);
+
+    const overlay = document.createElement('div');
+    overlay.className = 'missile-strike-overlay';
+
+    const missile = document.createElement('div');
+    missile.className = 'nuke-sprite';
+    missile.style.left = `${centerX}px`;
+    missile.style.width = `${nukeWidth}px`;
+    missile.style.height = `${nukeHeight}px`;
+    missile.style.setProperty('--missile-start-top', `${startTop}px`);
+    missile.style.setProperty('--missile-impact-top', `${impactTop}px`);
+    missile.style.setProperty('--missile-flight-duration', `${flightDuration}ms`);
+
+    const explosion = document.createElement('div');
+    explosion.className = 'nuke-explosion';
+    explosion.style.left = `${centerX}px`;
+    explosion.style.top = `${centerY}px`;
+    explosion.style.width = `${impactWidth}px`;
+    explosion.style.height = `${impactHeight}px`;
+
+    overlay.appendChild(missile);
+    grid.appendChild(overlay);
+
+    setTimeout(() => {
+        const gameUI = document.getElementById('game-ui');
+        const impactX = gridRect.left + centerX;
+        const impactY = gridRect.top + centerY;
+
+        missile.remove();
+        triggerNukeWhiteout(impactX, impactY);
+
+        setTimeout(() => {
+            if (gameUI) {
+                gameUI.classList.remove('nuke-impact-shake');
+                void gameUI.offsetWidth;
+                gameUI.classList.add('nuke-impact-shake');
+                setTimeout(() => gameUI.classList.remove('nuke-impact-shake'), NUKE_SHAKE_DURATION);
+            }
+
+            playSound('destroy-sfx');
+            overlay.appendChild(explosion);
+            if (onImpact) onImpact();
+        }, NUKE_WHITEOUT_HOLD);
+    }, flightDuration);
+
+    setTimeout(() => {
+        overlay.remove();
+        clearNukeFlashEffects();
         if (onComplete) onComplete();
     }, totalDuration);
 }
@@ -5769,6 +5912,53 @@ function executeExplosionStrike(topLeftIndex) {
     });
 }
 
+function executeNukeStrike(topLeftIndex) {
+    const indices = getExplosionAreaIndices(topLeftIndex, 4);
+    if (indices.length !== 16) return;
+
+    stopTurnSelectionTimer();
+    const timerContainer = document.getElementById('turn-timer-container');
+    if (timerContainer) timerContainer.style.visibility = 'hidden';
+
+    clearMissilePreview();
+    radarLockedIndex = null;
+    missileLockedIndex = null;
+    resetSkillSelectionUI();
+    document.querySelectorAll('.skill-diamond').forEach(d => d.classList.remove('skill-selected'));
+    setRadarEligibleCells(false);
+    setExplosionEligibleCells(false);
+    activeSkill = 'nuke';
+    setInstructionPanel('NUKE', 'NUCLEAR PAYLOAD INBOUND', 'nuclear_bomb.png');
+
+    if (gameMode === 'PVP') {
+        const { ref, update } = window.firebaseModules;
+        const nextTurn = (playerRole === 'host') ? 'guest' : 'host';
+        update(ref(db, 'rooms/' + currentRoomId), {
+            lastMove: { attacker: playerRole, type: 'nuke', indices, anchor: topLeftIndex, timestamp: Date.now() },
+            turn: nextTurn
+        });
+    }
+
+    let isGameOver = false;
+    playNukeStrikeAnimation('enemy-grid', topLeftIndex, () => {
+        isGameOver = applyExplosionDamageToEnemy(indices);
+    }, () => {
+        clearActiveSkillState();
+
+        if (!isGameOver) {
+            if (gameMode === 'PVP') {
+                setGameTimeout(() => {
+                    currentPhase = 'ENEMY_TURN';
+                    document.getElementById('game-status').innerHTML = "OPPONENT'S TURN";
+                    switchScene('ENEMY');
+                }, 1200);
+            } else {
+                setGameTimeout(startEnemyTurn, 700);
+            }
+        }
+    });
+}
+
 function lockRadarTarget(index) {
     radarLockedIndex = index;
     renderRadarPreview(index);
@@ -5850,9 +6040,9 @@ function executeRadarScan(centerIndex) {
 
 function onEnemyGridHover(event) {
     if (currentPhase !== 'PLAYER_TURN') return;
-    if (selectedSkill !== 'radar' && selectedSkill !== 'explosion') return;
+    if (selectedSkill !== 'radar' && selectedSkill !== 'explosion' && selectedSkill !== 'nuke') return;
     if (selectedSkill === 'radar' && radarLockedIndex !== null) return;
-    if (selectedSkill === 'explosion' && missileLockedIndex !== null) return;
+    if ((selectedSkill === 'explosion' || selectedSkill === 'nuke') && missileLockedIndex !== null) return;
 
     const cell = event.target.closest('.cell');
     const grid = document.getElementById('enemy-grid');
@@ -5876,6 +6066,19 @@ function onEnemyGridHover(event) {
         }
         if (radarPreviewIndex !== index) {
             renderRadarPreview(index);
+        }
+        return;
+    }
+
+    if (selectedSkill === 'nuke') {
+        if (!isNukeSelectable(index)) {
+            clearMissilePreview();
+            return;
+        }
+
+        const anchorIndex = getExplosionAnchor(index, 4);
+        if (missilePreviewIndex !== anchorIndex) {
+            renderNukePreview(anchorIndex);
         }
         return;
     }
@@ -5970,6 +6173,13 @@ function onSkillClick(e) {
         setRadarEligibleCells(false);
         setExplosionEligibleCells(true);
         setInstructionPanel('MISSILE', 'SELECT A 2X2 TARGET AREA', 'explosion.png');
+    } else if (skill === 'nuke') {
+        missileLockedIndex = null;
+        radarLockedIndex = null;
+        clearRadarPreview();
+        setRadarEligibleCells(false);
+        setExplosionEligibleCells(true);
+        setInstructionPanel('NUKE', 'SELECT A 4X4 TARGET AREA', 'nuclear_bomb.png');
     } else {
         clearRadarPreview();
         clearMissilePreview();
@@ -6026,6 +6236,18 @@ function confirmSkillSelection() {
         playSound('missile-flying-sfx');
         addEnergy(-cost, selectedSkill.toUpperCase());
         executeExplosionStrike(missileLockedIndex);
+        updateSkillStates();
+        return;
+    }
+
+    if (selectedSkill === 'nuke') {
+        if (missileLockedIndex === null || !isNukeSelectable(missileLockedIndex)) {
+            playSound('wrong-sfx');
+            setInstructionPanel('NUKE', 'SELECT A 4X4 TARGET AREA FIRST', 'nuclear_bomb.png');
+            return;
+        }
+        addEnergy(-cost, selectedSkill.toUpperCase());
+        executeNukeStrike(missileLockedIndex);
         updateSkillStates();
         return;
     }
