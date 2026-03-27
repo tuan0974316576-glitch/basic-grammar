@@ -1158,10 +1158,13 @@ function initPVPListeners() {
             }
 
             if (move.type === 'explosion' && Array.isArray(move.indices) && move.indices.length > 0) {
-                playSound('missile-flying-sfx');
-                playMissileStrikeAnimation('player-grid', move.anchor ?? move.indices[0], () => {
-                    applyExplosionDamageToPlayer(move.indices);
-                });
+                const lockOverlay = createMissileLockOverlay('player-grid', move.anchor ?? move.indices[0]);
+                setGameTimeout(() => {
+                    playSound('missile-flying-sfx');
+                    playMissileStrikeAnimation('player-grid', move.anchor ?? move.indices[0], lockOverlay, () => {
+                        applyExplosionDamageToPlayer(move.indices);
+                    });
+                }, MISSILE_LOCK_ON_DURATION);
                 return;
             }
 
@@ -5475,6 +5478,7 @@ let missileLockedIndex = null;
 const radarScannedCells = new Set();
 const RADAR_SCAN_DURATION = 2200;
 const MISSILE_EXPLOSION_DURATION = 720;
+const MISSILE_LOCK_ON_DURATION = 500;
 const NUKE_WHITEOUT_HOLD = 1000;
 const NUKE_WHITEOUT_FADE = 500;
 const NUKE_SHAKE_DURATION = 800;
@@ -5579,7 +5583,7 @@ function clearNukeFlashEffects() {
 function clearRadarEffects() {
     radarPreviewIndex = null;
     missilePreviewIndex = null;
-    document.querySelectorAll('.radar-preview-overlay, .radar-scan-overlay, .explosion-preview-overlay, .missile-strike-overlay').forEach(el => el.remove());
+    document.querySelectorAll('.radar-preview-overlay, .radar-scan-overlay, .explosion-preview-overlay, .missile-strike-overlay, .nuke-lock-overlay').forEach(el => el.remove());
     clearNukeFlashEffects();
 }
 
@@ -5763,7 +5767,7 @@ function finishPlayerSkillMode() {
     }
 }
 
-function playMissileStrikeAnimation(boardId, topLeftIndex, onComplete) {
+function playMissileStrikeAnimation(boardId, topLeftIndex, lockOverlay, onComplete) {
     const grid = document.getElementById(boardId);
     const cells = getExplosionAreaIndices(topLeftIndex).map(index => grid ? grid.children[index] : null).filter(Boolean);
     if (!grid || cells.length !== 4) {
@@ -5808,6 +5812,7 @@ function playMissileStrikeAnimation(boardId, topLeftIndex, onComplete) {
     grid.appendChild(overlay);
 
     setTimeout(() => {
+        if (lockOverlay) lockOverlay.remove();
         missile.remove();
         playSound('destroy-sfx');
         overlay.appendChild(explosion);
@@ -5817,6 +5822,43 @@ function playMissileStrikeAnimation(boardId, topLeftIndex, onComplete) {
         overlay.remove();
         if (onComplete) onComplete();
     }, totalDuration);
+}
+
+function createMissileLockOverlay(boardId, topLeftIndex) {
+    const grid = document.getElementById(boardId);
+    const cells = getExplosionAreaIndices(topLeftIndex, 2).map(index => grid ? grid.children[index] : null).filter(Boolean);
+    if (!grid || cells.length !== 4) return null;
+
+    const left = Math.min(...cells.map(cell => cell.offsetLeft));
+    const top = Math.min(...cells.map(cell => cell.offsetTop));
+    const right = Math.max(...cells.map(cell => cell.offsetLeft + cell.offsetWidth));
+    const bottom = Math.max(...cells.map(cell => cell.offsetTop + cell.offsetHeight));
+    const width = right - left;
+    const height = bottom - top;
+
+    const overlay = document.createElement('div');
+    overlay.className = 'nuke-lock-overlay missile-lock-overlay';
+    overlay.style.left = `${left}px`;
+    overlay.style.top = `${top}px`;
+    overlay.style.width = `${width}px`;
+    overlay.style.height = `${height}px`;
+
+    [1.75, 1.38, 1.12].forEach((scale, index) => {
+        const frame = document.createElement('div');
+        frame.className = `nuke-lock-frame ${index === 2 ? 'final' : 'zooming'}`;
+        frame.style.setProperty('--nuke-lock-scale', scale);
+        overlay.appendChild(frame);
+    });
+
+    for (let i = 0; i < 3; i++) {
+        const pulse = document.createElement('div');
+        pulse.className = 'nuke-lock-square-pulse';
+        pulse.style.setProperty('--nuke-square-delay', `${i * 0.16}s`);
+        overlay.appendChild(pulse);
+    }
+
+    grid.appendChild(overlay);
+    return overlay;
 }
 
 function triggerNukeWhiteout(screenX, screenY) {
@@ -6113,14 +6155,19 @@ function executeExplosionStrike(topLeftIndex) {
         });
     }
 
-    playMissileStrikeAnimation('enemy-grid', topLeftIndex, () => {
-        const isGameOver = applyExplosionDamageToEnemy(indices);
-        finishPlayerSkillMode();
+    const lockOverlay = createMissileLockOverlay('enemy-grid', topLeftIndex);
 
-        if (!isGameOver) {
-            document.getElementById('game-status').innerHTML = `PHASE: <span style="color:var(--success)">YOUR TURN</span>`;
-        }
-    });
+    setTimeout(() => {
+        playSound('missile-flying-sfx');
+        playMissileStrikeAnimation('enemy-grid', topLeftIndex, lockOverlay, () => {
+            const isGameOver = applyExplosionDamageToEnemy(indices);
+            finishPlayerSkillMode();
+
+            if (!isGameOver) {
+                document.getElementById('game-status').innerHTML = `PHASE: <span style="color:var(--success)">YOUR TURN</span>`;
+            }
+        });
+    }, MISSILE_LOCK_ON_DURATION);
 }
 
 function executeNukeStrike(topLeftIndex) {
@@ -6439,7 +6486,6 @@ function confirmSkillSelection() {
             setInstructionPanel('MISSILE', 'SELECT A 2X2 TARGET AREA FIRST', 'explosion.png');
             return;
         }
-        playSound('missile-flying-sfx');
         addEnergy(-cost, selectedSkill.toUpperCase());
         executeExplosionStrike(missileLockedIndex);
         updateSkillStates();

@@ -3654,6 +3654,28 @@ body {
     border-bottom: 3px solid;
 }
 
+.missile-lock-overlay .nuke-lock-square-pulse {
+    background: linear-gradient(rgba(245, 158, 11, 0.16), rgba(245, 158, 11, 0.08));
+    border: 1px solid rgba(251, 191, 36, 0.38);
+    box-shadow:
+        0 0 14px rgba(245, 158, 11, 0.2),
+        inset 0 0 12px rgba(251, 191, 36, 0.08);
+    animation-duration: 0.76s;
+}
+
+.missile-lock-overlay .nuke-lock-frame {
+    border-color: rgba(245, 158, 11, 0.96);
+    box-shadow:
+        0 0 18px rgba(245, 158, 11, 0.44),
+        inset 0 0 12px rgba(251, 191, 36, 0.12);
+}
+
+.missile-lock-overlay .nuke-lock-frame.final {
+    animation:
+        nukeLockFinalEnter 0.5s ease-out forwards,
+        pulseOrange 0.24s infinite 0.5s;
+}
+
 #enemy-grid .cell.explosion-eligible {
     background: none !important;
     box-shadow: none;
@@ -3814,6 +3836,21 @@ body {
         box-shadow:
             0 0 24px rgba(255, 70, 70, 0.76),
             inset 0 0 16px rgba(255, 70, 70, 0.22);
+    }
+}
+
+@keyframes pulseOrange {
+    0%, 100% {
+        opacity: 0.78;
+        box-shadow:
+            0 0 12px rgba(245, 158, 11, 0.34),
+            inset 0 0 8px rgba(251, 191, 36, 0.1);
+    }
+    50% {
+        opacity: 1;
+        box-shadow:
+            0 0 20px rgba(245, 158, 11, 0.56),
+            inset 0 0 12px rgba(251, 191, 36, 0.16);
     }
 }
 
