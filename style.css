@@ -3432,7 +3432,7 @@ body {
     top: 50%;
     transform: translate(-50%, -50%);
     font-family: 'Orbitron', sans-serif;
-    font-size: 48px;
+    font-size: 96px;
     line-height: 1;
     color: rgba(255, 235, 235, 0.28);
     text-shadow:
@@ -3440,6 +3440,7 @@ body {
         0 0 18px rgba(239, 68, 68, 0.22);
     pointer-events: none;
     z-index: 1;
+    animation: nukeSigilPulse 1.8s ease-in-out infinite;
 }
 
 .explosion-preview-arrow {
@@ -3563,9 +3564,11 @@ body {
     transform: translateX(-50%);
     background-image: url('nuke.png');
     background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center center;
-    animation: missileDrop var(--missile-flight-duration, 980ms) linear forwards;
+    background-size: 200% 100%;
+    background-position: 0 0;
+    animation:
+        nukeFrames 0.18s steps(2) infinite,
+        missileDrop var(--missile-flight-duration, 980ms) linear forwards;
     filter:
         drop-shadow(0 0 10px rgba(255, 180, 180, 0.26))
         drop-shadow(0 0 22px rgba(239, 68, 68, 0.28));
@@ -3696,6 +3699,15 @@ body {
     }
 }
 
+@keyframes nukeFrames {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 100% 0;
+    }
+}
+
 @keyframes missileArrowTop {
     0%, 100% {
         transform: translateX(-50%) translateY(0);
@@ -3769,6 +3781,17 @@ body {
     72% { transform: translate(-4px, 3px); filter: blur(0.8px) brightness(1.01); }
     86% { transform: translate(2px, -2px); filter: blur(0.3px) brightness(1.005); }
     100% { transform: translate(0, 0); filter: blur(0px) brightness(1); }
+}
+
+@keyframes nukeSigilPulse {
+    0%, 100% {
+        opacity: 0.72;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        opacity: 0.92;
+        transform: translate(-50%, -50%) scale(1.06);
+    }
 }
 
 .target-overlay {

@@ -5740,7 +5740,7 @@ function playNukeStrikeAnimation(boardId, topLeftIndex, onImpact, onComplete) {
     const gridRect = grid.getBoundingClientRect();
     const cellWidth = cells[0].offsetWidth || 35;
     const nukeWidth = Math.max(22, Math.round(cellWidth * 0.7));
-    const nukeHeight = Math.round(nukeWidth * (308 / 136));
+    const nukeHeight = Math.round(nukeWidth * (308 / 68));
     const impactTop = centerY - nukeHeight;
     const startTop = -(gridRect.top + nukeHeight + 24);
     const travelDistance = Math.abs(impactTop - startTop);
