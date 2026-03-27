@@ -2457,15 +2457,15 @@ body {
     z-index: -1; 
     pointer-events: none;
     opacity: 0; /* 預設隱藏，靠動畫顯示 */
-    background: #fff; /* 星星核心顏色 */
+    background: rgb(var(--star-rgb, 255, 255, 255)); /* 星星核心顏色 */
 }
 
 /* 樣式 A: 圓點 (加強光暈，核心改細) */
 .star-dot {
     border-radius: 50%;
     /* 核心細，光暈大且散，造出「遠處發光」嘅感覺 */
-    box-shadow: 0 0 4px 1px rgba(255, 255, 255, 0.8), 
-                0 0 10px 2px rgba(255, 255, 255, 0.4); 
+    box-shadow: 0 0 4px 1px rgba(var(--star-rgb, 255, 255, 255), 0.8), 
+                0 0 10px 2px rgba(var(--star-rgb, 255, 255, 255), 0.4); 
 }
 
 /* --- 優化版：十字星 (更柔和、更似光) --- */

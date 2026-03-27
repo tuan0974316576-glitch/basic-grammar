@@ -4004,6 +4004,13 @@ function generateGuestId() {
 function createTwinklingStars() {
     const starCount = 30; // ★ 數量減少：由 50 減到 30
     const container = document.body;
+    const starColors = [
+        '255,255,255',
+        '191,219,254',
+        '254,240,138',
+        '251,207,232',
+        '186,230,253'
+    ];
 
     for (let i = 0; i < starCount; i++) {
         const star = document.createElement('div');
@@ -4016,6 +4023,13 @@ function createTwinklingStars() {
         const size = Math.random() * 2.5 + 1.5;
         star.style.width = size + 'px';
         star.style.height = size + 'px';
+
+        // 少量彩色星：大約 8%，其餘保持白色
+        const useColoredStar = Math.random() < 0.08;
+        const starRgb = useColoredStar
+            ? starColors[Math.floor(Math.random() * (starColors.length - 1)) + 1]
+            : starColors[0];
+        star.style.setProperty('--star-rgb', starRgb);
         
         // 隨機位置
         const x = Math.random() * 100;
