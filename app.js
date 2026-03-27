@@ -1130,6 +1130,7 @@ function initPVPListeners() {
             }
 
             if (move.type === 'nuke' && Array.isArray(move.indices) && move.indices.length > 0) {
+                playSound('nuke-detected-sfx');
                 playSound('missile-flying-sfx');
                 playNukeStrikeAnimation('player-grid', move.anchor ?? move.indices[0], null, () => {
                     applyExplosionDamageToPlayer(move.indices);
