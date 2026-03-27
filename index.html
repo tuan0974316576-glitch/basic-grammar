@@ -541,10 +541,10 @@
     </div>
 
     <div id="warning-overlay"></div>
-<div id="end-screen" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 300; background: rgba(0,0,0,0.95); flex-direction: column; align-items: center; justify-content: center; backdrop-filter: blur(10px); overflow: hidden;">
+<div id="end-screen" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 300; background: rgba(0,0,0,0.95); flex-direction: column; align-items: center; justify-content: flex-start; backdrop-filter: blur(10px); overflow-x: hidden; overflow-y: auto; padding: 18px 0 28px; box-sizing: border-box;">
 
     <!-- Content container - no scrolling, centered -->
-    <div style="width: 100%; max-width: 600px; display: flex; flex-direction: column; align-items: center; padding: 20px; box-sizing: border-box;">
+    <div style="width: 100%; max-width: 600px; display: flex; flex-direction: column; align-items: center; padding: 12px 20px 20px; box-sizing: border-box;">
         <h1 id="end-title" style="font-family: 'Black Ops One'; font-size: 60px; margin-bottom: 10px; text-shadow: 0 0 30px currentColor;">VICTORY</h1>
         <div id="end-msg" style="color: #94a3b8; margin-bottom: 20px; font-size: 18px;">ENEMY FLEET ELIMINATED</div>
 
@@ -573,7 +573,7 @@
         </div>
 
         <!-- Mission Debrief - Hidden to prevent scrolling -->
-        <div id="review-container" style="display: none; width: 100%; background: rgba(15, 23, 42, 0.8); border: 1px solid #334155; border-radius: 10px; padding: 15px; margin-bottom: 20px; flex-direction: column;">
+        <div id="review-container" style="display: none; width: 100%; background: rgba(15, 23, 42, 0.8); border: 1px solid #334155; border-radius: 10px; padding: 15px; margin-bottom: 16px; flex-direction: column;">
             <div style="font-family: 'Orbitron'; color: #0ea5e9; font-size: 16px; margin-bottom: 10px; text-align: center; letter-spacing: 2px;">>> MISSION DEBRIEF <<</div>
 
             <div style="display: grid; grid-template-columns: 0.5fr 0.8fr 1.2fr 1.5fr; border-bottom: 1px solid #475569; padding-bottom: 5px; margin-bottom: 10px; color: #94a3b8; font-size: 12px; font-weight: bold;">
@@ -588,7 +588,7 @@
         </div>
 
         <!-- Button -->
-        <button class="start-btn-large" onclick="playSound('deploy-sfx'); resetGame()" style="margin-top: 20px;">RETURN TO BASE</button>
+        <button class="start-btn-large" onclick="playSound('deploy-sfx'); resetGame()" style="margin-top: 12px; margin-bottom: 8px;">RETURN TO BASE</button>
     </div>
 </div>
 <div id="confirm-modal" class="tech-modal-overlay">
