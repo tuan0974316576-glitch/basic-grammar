@@ -572,6 +572,7 @@ function closeLevelScreen() {
         playSound('deploy-sfx');
         const lobbyScreen = document.getElementById('lobby-screen');
         if (lobbyScreen) lobbyScreen.style.display = 'none';
+        showSelectionOverlay();
         // 彈出 Level 選單畀場主揀
         // ★★★ PVP 模式唔顯示進度，重置返原本嘅文字 ★★★
         resetLevelButtonsToDefault();
@@ -804,6 +805,7 @@ function selectLevel(level) {
         // --- PVP 模式：Level -> Skill -> Lobby ---
         // ★★★ PVP 唔顯示進度，重置返原本嘅文字 ★★★
         resetSkillButtonsToDefault();
+        showSelectionOverlay();
         const lobbyScreen = document.getElementById('lobby-screen');
         if (lobbyScreen) lobbyScreen.style.display = 'none';
 
@@ -3846,11 +3848,18 @@ function hideMenuOverlayScreens() {
     if (overlay) overlay.style.display = 'none';
 }
 
+function showSelectionOverlay() {
+    const overlay = document.getElementById('selection-overlay');
+    if (overlay) overlay.style.display = 'block';
+}
+
 function showLobbyScreen() {
     const lobbyScreen = document.getElementById('lobby-screen');
     if (!lobbyScreen) return;
 
     resetLobbyScreenState();
+    const overlay = document.getElementById('selection-overlay');
+    if (overlay) overlay.style.display = 'none';
     lobbyScreen.style.display = 'flex';
 
     const wrapper = lobbyScreen.querySelector('.panel-content-wrapper');
@@ -3891,6 +3900,7 @@ function showPVPRaceSelectionScreen() {
 
     const lobbyScreen = document.getElementById('lobby-screen');
     if (lobbyScreen) lobbyScreen.style.display = 'none';
+    showSelectionOverlay();
 
     updateRaceButtons();
     const raceScreen = document.getElementById('race-screen');
