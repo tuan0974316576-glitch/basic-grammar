@@ -3276,6 +3276,44 @@ body {
     animation: radarPreviewPulse 1.4s ease-in-out infinite;
 }
 
+.radar-scanned-overlay {
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 243, 255, 0.78);
+    box-shadow:
+        0 0 12px rgba(0, 243, 255, 0.26),
+        inset 0 0 10px rgba(0, 243, 255, 0.1);
+    background:
+        linear-gradient(rgba(0, 243, 255, 0.1), rgba(0, 243, 255, 0.1)),
+        linear-gradient(
+            90deg,
+            transparent calc(var(--radar-line-x1, 36px) - 0.5px),
+            rgba(0, 243, 255, 0.14) calc(var(--radar-line-x1, 36px) - 0.5px),
+            rgba(0, 243, 255, 0.14) calc(var(--radar-line-x1, 36px) + 0.5px),
+            transparent calc(var(--radar-line-x1, 36px) + 0.5px)
+        ),
+        linear-gradient(
+            90deg,
+            transparent calc(var(--radar-line-x2, 73px) - 0.5px),
+            rgba(0, 243, 255, 0.14) calc(var(--radar-line-x2, 73px) - 0.5px),
+            rgba(0, 243, 255, 0.14) calc(var(--radar-line-x2, 73px) + 0.5px),
+            transparent calc(var(--radar-line-x2, 73px) + 0.5px)
+        ),
+        linear-gradient(
+            180deg,
+            transparent calc(var(--radar-line-y1, 36px) - 0.5px),
+            rgba(0, 243, 255, 0.14) calc(var(--radar-line-y1, 36px) - 0.5px),
+            rgba(0, 243, 255, 0.14) calc(var(--radar-line-y1, 36px) + 0.5px),
+            transparent calc(var(--radar-line-y1, 36px) + 0.5px)
+        ),
+        linear-gradient(
+            180deg,
+            transparent calc(var(--radar-line-y2, 73px) - 0.5px),
+            rgba(0, 243, 255, 0.14) calc(var(--radar-line-y2, 73px) - 0.5px),
+            rgba(0, 243, 255, 0.14) calc(var(--radar-line-y2, 73px) + 0.5px),
+            transparent calc(var(--radar-line-y2, 73px) + 0.5px)
+        );
+}
+
 .radar-preview-center {
     position: absolute;
     box-sizing: border-box;

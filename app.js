@@ -3505,6 +3505,7 @@ function resetGame() {
     enemyShots = [];
     aiTargetStack = []; 
     radarScannedCells.clear();
+    clearRadarScannedOverlays();
     clearActiveSkillState();
     deployIndex = 0;
     currentPhase = 'DEPLOY';
@@ -5559,7 +5560,10 @@ function updateRadarCellDisplay(centerIndex) {
 }
 
 function refreshRadarScanDisplays() {
-    radarScannedCells.forEach(index => updateRadarCellDisplay(index));
+    radarScannedCells.forEach(index => {
+        updateRadarCellDisplay(index);
+        renderRadarScannedOverlay(index);
+    });
 }
 
 function clearRadarPreview() {
@@ -5577,6 +5581,10 @@ function clearNukeFlashEffects() {
     document.body.classList.remove('screen-shake-nuke');
 }
 
+function clearRadarScannedOverlays() {
+    document.querySelectorAll('.radar-scanned-overlay').forEach(el => el.remove());
+}
+
 function clearRadarEffects() {
     radarPreviewIndex = null;
     missilePreviewIndex = null;
@@ -5592,14 +5600,12 @@ function getRadarLinePosition(offsets, cellSize, lineIndex) {
     return current - (gap / 2);
 }
 
-function renderRadarPreview(centerIndex) {
-    clearRadarPreview();
-
+function buildRadarOverlay(centerIndex, className, includeCenter = true) {
     const grid = document.getElementById('enemy-grid');
-    if (!grid || !isRadarSelectable(centerIndex)) return;
+    if (!grid) return null;
 
     const cells = getRadarAreaIndices(centerIndex).map(index => getEnemyCell(index)).filter(Boolean);
-    if (cells.length === 0) return;
+    if (cells.length === 0) return null;
 
     const left = Math.min(...cells.map(cell => cell.offsetLeft));
     const top = Math.min(...cells.map(cell => cell.offsetTop));
@@ -5607,11 +5613,12 @@ function renderRadarPreview(centerIndex) {
     const bottom = Math.max(...cells.map(cell => cell.offsetTop + cell.offsetHeight));
 
     const overlay = document.createElement('div');
-    overlay.className = 'radar-preview-overlay';
+    overlay.className = className;
     overlay.style.left = `${left}px`;
     overlay.style.top = `${top}px`;
     overlay.style.width = `${right - left}px`;
     overlay.style.height = `${bottom - top}px`;
+    overlay.dataset.centerIndex = String(centerIndex);
 
     const centerCell = getEnemyCell(centerIndex);
     if (centerCell) {
@@ -5627,17 +5634,41 @@ function renderRadarPreview(centerIndex) {
         overlay.style.setProperty('--radar-line-y1', `${lineY1}px`);
         overlay.style.setProperty('--radar-line-y2', `${lineY2}px`);
 
-        const reticle = document.createElement('div');
-        reticle.className = 'radar-preview-center';
-        reticle.style.left = `${centerCell.offsetLeft - left}px`;
-        reticle.style.top = `${centerCell.offsetTop - top}px`;
-        reticle.style.width = `${centerCell.offsetWidth}px`;
-        reticle.style.height = `${centerCell.offsetHeight}px`;
-        overlay.appendChild(reticle);
+        if (includeCenter) {
+            const reticle = document.createElement('div');
+            reticle.className = 'radar-preview-center';
+            reticle.style.left = `${centerCell.offsetLeft - left}px`;
+            reticle.style.top = `${centerCell.offsetTop - top}px`;
+            reticle.style.width = `${centerCell.offsetWidth}px`;
+            reticle.style.height = `${centerCell.offsetHeight}px`;
+            overlay.appendChild(reticle);
+        }
     }
+
+    return overlay;
+}
+
+function renderRadarPreview(centerIndex) {
+    clearRadarPreview();
+
+    if (!isRadarSelectable(centerIndex)) return;
+    const grid = document.getElementById('enemy-grid');
+    const overlay = buildRadarOverlay(centerIndex, 'radar-preview-overlay', true);
+    if (!grid || !overlay) return;
 
     grid.appendChild(overlay);
     radarPreviewIndex = centerIndex;
+}
+
+function renderRadarScannedOverlay(centerIndex) {
+    const grid = document.getElementById('enemy-grid');
+    if (!grid || !radarScannedCells.has(centerIndex)) return;
+
+    const existing = grid.querySelector(`.radar-scanned-overlay[data-center-index="${centerIndex}"]`);
+    if (existing) existing.remove();
+
+    const overlay = buildRadarOverlay(centerIndex, 'radar-scanned-overlay', false);
+    if (overlay) grid.appendChild(overlay);
 }
 
 function setRadarEligibleCells(isEnabled) {
@@ -6280,6 +6311,7 @@ function executeRadarScan(centerIndex) {
     setTimeout(() => {
         overlay.remove();
         radarScannedCells.add(centerIndex);
+        renderRadarScannedOverlay(centerIndex);
         showRadarResult(centerIndex);
         finishRadarMode();
         if (currentPhase === 'PLAYER_TURN') {
