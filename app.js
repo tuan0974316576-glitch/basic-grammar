@@ -392,6 +392,10 @@ const TURN_SELECTION_TIME = 10.0;
     let deployIndex = 0;
     let isVertical = true;
     let currentTargetIndex = null, timerInterval = null, currentVocab = null;
+    let launchTimerTotal = 0;
+    let launchTimerTimeLeft = 0;
+    let launchTimerPaused = false;
+    let speakingProcessingTimeout = null;
     let isMusicPlaying = false;
     let gameTimeouts = [];
 
@@ -2121,6 +2125,14 @@ function handlePlayerTimeout() {
     if(typeof fadeBgm === 'function') fadeBgm(0.5, 1000);
 
     if (typeof timerInterval !== 'undefined') clearInterval(timerInterval);
+    timerInterval = null;
+    launchTimerPaused = false;
+    launchTimerTotal = 0;
+    launchTimerTimeLeft = 0;
+    if (speakingProcessingTimeout) {
+        clearTimeout(speakingProcessingTimeout);
+        speakingProcessingTimeout = null;
+    }
     document.getElementById('launch-modal').style.display = "none";
 
     // Unlock body scroll when modal closes
@@ -4852,6 +4864,11 @@ function startListening() {
         recognition.maxAlternatives = 1;
 
         recognition.onstart = () => {
+            if (speakingProcessingTimeout) {
+                clearTimeout(speakingProcessingTimeout);
+                speakingProcessingTimeout = null;
+            }
+            launchTimerPaused = false;
             document.getElementById('mic-btn').classList.add('recording');
             document.getElementById('msg-area').innerText = "LISTENING... SPEAK NOW";
             document.getElementById('msg-area').style.color = "#d946ef";
@@ -4860,15 +4877,42 @@ function startListening() {
         recognition.onend = () => {
             const micBtn = document.getElementById('mic-btn');
             if(micBtn) micBtn.classList.remove('recording');
+
+            const modal = document.getElementById('launch-modal');
+            if (currentPracticeMode === 'SPEAKING' && modal && modal.style.display === 'flex' && timerInterval) {
+                launchTimerPaused = true;
+                document.getElementById('msg-area').innerText = "ANALYZING TRANSMISSION...";
+                document.getElementById('msg-area').style.color = "#fbbf24";
+
+                if (speakingProcessingTimeout) clearTimeout(speakingProcessingTimeout);
+                speakingProcessingTimeout = setTimeout(() => {
+                    launchTimerPaused = false;
+                    speakingProcessingTimeout = null;
+                    if (modal.style.display === 'flex') {
+                        document.getElementById('msg-area').innerText = "NO MATCH // TRY AGAIN";
+                        document.getElementById('msg-area').style.color = "var(--danger)";
+                    }
+                }, 2500);
+            }
         };
 
         recognition.onresult = (event) => {
+            if (speakingProcessingTimeout) {
+                clearTimeout(speakingProcessingTimeout);
+                speakingProcessingTimeout = null;
+            }
+            launchTimerPaused = false;
             const transcript = event.results[0][0].transcript;
             console.log("User said:", transcript);
             checkSpeakingResult(transcript);
         };
         
         recognition.onerror = (event) => {
+             if (speakingProcessingTimeout) {
+                clearTimeout(speakingProcessingTimeout);
+                speakingProcessingTimeout = null;
+             }
+             launchTimerPaused = false;
              document.getElementById('msg-area').innerText = "ERROR: " + event.error;
         };
     }
@@ -4879,6 +4923,12 @@ function startListening() {
 
 // --- 3. 檢查口語結果 (Speaking Score - 句子版) ---
 function checkSpeakingResult(spokenText) {
+    if (speakingProcessingTimeout) {
+        clearTimeout(speakingProcessingTimeout);
+        speakingProcessingTimeout = null;
+    }
+    launchTimerPaused = false;
+
     // 獲取目標句子 (如果無句子先用單字)
     const targetText = currentVocab.sent ? currentVocab.sent : currentVocab.en;
     
@@ -4896,6 +4946,7 @@ function checkSpeakingResult(spokenText) {
     if (similarity >= 0.8) {
         // --- ★★★ 關鍵修正 1：即刻停止倒數，防止誤判 Timeout ★★★ ---
         if (typeof timerInterval !== 'undefined') clearInterval(timerInterval);
+        timerInterval = null;
 
         // --- ★★★ 關鍵修正 2：寫入戰報 (Battle Log) ★★★ ---
         if (typeof battleLog !== 'undefined') {
@@ -5330,18 +5381,23 @@ function startCountdownTimer() {
         baseTime = 4; timeMultiplier = 0.8;
     }
     const totalTime = baseTime + (currentVocab.en.length * timeMultiplier);
-    let timeLeft = totalTime;
+    launchTimerTotal = currentPracticeMode === 'SPEAKING' ? totalTime * 2 : totalTime;
+    launchTimerTimeLeft = launchTimerTotal;
+    launchTimerPaused = false;
 
     // 開始動畫
     timerBar.style.transition = 'width 0.1s linear';
+    timerBar.style.width = '100%';
     
     // 啟動倒數
     timerInterval = setInterval(() => {
-        timeLeft -= 0.1;
-        const percentage = (timeLeft / totalTime) * 100;
+        if (launchTimerPaused) return;
+
+        launchTimerTimeLeft -= 0.1;
+        const percentage = (launchTimerTimeLeft / launchTimerTotal) * 100;
         timerBar.style.width = percentage + "%";
         
-        if (timeLeft <= 0) {
+        if (launchTimerTimeLeft <= 0) {
             clearInterval(timerInterval);
             timerInterval = null; // 確保重置
             handlePlayerTimeout();
