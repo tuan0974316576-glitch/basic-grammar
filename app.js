@@ -1124,12 +1124,7 @@ function initPVPListeners() {
             if (move.type === 'explosion' && Array.isArray(move.indices) && move.indices.length > 0) {
                 playSound('missile-flying-sfx');
                 playMissileStrikeAnimation('player-grid', move.anchor ?? move.indices[0], () => {
-                    const isGameOver = applyExplosionDamageToPlayer(move.indices);
-                    if (!isGameOver) {
-                        setGameTimeout(() => {
-                            if (currentPhase !== 'GAME_OVER') startPlayerTurn();
-                        }, 1200);
-                    }
+                    applyExplosionDamageToPlayer(move.indices);
                 });
                 return;
             }
@@ -1138,10 +1133,6 @@ function initPVPListeners() {
                 playSound('missile-flying-sfx');
                 playNukeStrikeAnimation('player-grid', move.anchor ?? move.indices[0], null, () => {
                     applyExplosionDamageToPlayer(move.indices);
-                }, () => {
-                    if (currentPhase !== 'GAME_OVER') {
-                        setGameTimeout(startPlayerTurn, 1200);
-                    }
                 });
                 return;
             }
@@ -5651,6 +5642,14 @@ function finishRadarMode() {
     setInstructionPanel(DEFAULT_INSTRUCTION.name, DEFAULT_INSTRUCTION.desc, DEFAULT_INSTRUCTION.icon);
 }
 
+function finishPlayerSkillMode() {
+    clearActiveSkillState();
+    setInstructionPanel(DEFAULT_INSTRUCTION.name, DEFAULT_INSTRUCTION.desc, DEFAULT_INSTRUCTION.icon);
+    if (currentPhase === 'PLAYER_TURN') {
+        startTurnSelectionTimer(false);
+    }
+}
+
 function playMissileStrikeAnimation(boardId, topLeftIndex, onComplete) {
     const grid = document.getElementById(boardId);
     const cells = getExplosionAreaIndices(topLeftIndex).map(index => grid ? grid.children[index] : null).filter(Boolean);
@@ -5976,27 +5975,17 @@ function executeExplosionStrike(topLeftIndex) {
 
     if (gameMode === 'PVP') {
         const { ref, update } = window.firebaseModules;
-        const nextTurn = (playerRole === 'host') ? 'guest' : 'host';
         update(ref(db, 'rooms/' + currentRoomId), {
-            lastMove: { attacker: playerRole, type: 'explosion', indices, anchor: topLeftIndex, timestamp: Date.now() },
-            turn: nextTurn
+            lastMove: { attacker: playerRole, type: 'explosion', indices, anchor: topLeftIndex, timestamp: Date.now() }
         });
     }
 
     playMissileStrikeAnimation('enemy-grid', topLeftIndex, () => {
         const isGameOver = applyExplosionDamageToEnemy(indices);
-        clearActiveSkillState();
+        finishPlayerSkillMode();
 
         if (!isGameOver) {
-            if (gameMode === 'PVP') {
-                setGameTimeout(() => {
-                    currentPhase = 'ENEMY_TURN';
-                    document.getElementById('game-status').innerHTML = "OPPONENT'S TURN";
-                    switchScene('ENEMY');
-                }, 1500);
-            } else {
-                setGameTimeout(startEnemyTurn, 700);
-            }
+            document.getElementById('game-status').innerHTML = `PHASE: <span style="color:var(--success)">YOUR TURN</span>`;
         }
     });
 }
@@ -6021,10 +6010,8 @@ function executeNukeStrike(topLeftIndex) {
 
     if (gameMode === 'PVP') {
         const { ref, update } = window.firebaseModules;
-        const nextTurn = (playerRole === 'host') ? 'guest' : 'host';
         update(ref(db, 'rooms/' + currentRoomId), {
-            lastMove: { attacker: playerRole, type: 'nuke', indices, anchor: topLeftIndex, timestamp: Date.now() },
-            turn: nextTurn
+            lastMove: { attacker: playerRole, type: 'nuke', indices, anchor: topLeftIndex, timestamp: Date.now() }
         });
     }
 
@@ -6036,18 +6023,10 @@ function executeNukeStrike(topLeftIndex) {
         playNukeStrikeAnimation('enemy-grid', topLeftIndex, lockOverlay, () => {
             isGameOver = applyExplosionDamageToEnemy(indices);
         }, () => {
-            clearActiveSkillState();
+            finishPlayerSkillMode();
 
             if (!isGameOver) {
-                if (gameMode === 'PVP') {
-                    setGameTimeout(() => {
-                        currentPhase = 'ENEMY_TURN';
-                        document.getElementById('game-status').innerHTML = "OPPONENT'S TURN";
-                        switchScene('ENEMY');
-                    }, 1200);
-                } else {
-                    setGameTimeout(startEnemyTurn, 700);
-                }
+                document.getElementById('game-status').innerHTML = `PHASE: <span style="color:var(--success)">YOUR TURN</span>`;
             }
         });
     }, NUKE_LOCK_ON_DURATION);
