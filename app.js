@@ -1135,7 +1135,8 @@ function initPVPListeners() {
             }
 
             if (move.type === 'nuke' && Array.isArray(move.indices) && move.indices.length > 0) {
-                playNukeStrikeAnimation('player-grid', move.anchor ?? move.indices[0], () => {
+                playSound('missile-flying-sfx');
+                playNukeStrikeAnimation('player-grid', move.anchor ?? move.indices[0], null, () => {
                     applyExplosionDamageToPlayer(move.indices);
                 }, () => {
                     if (currentPhase !== 'GAME_OVER') {
@@ -5376,6 +5377,7 @@ const NUKE_EXPLOSION_DURATION = 720;
 const NUKE_EXPLOSION_COLUMNS = 5;
 const NUKE_EXPLOSION_ROWS = 5;
 const NUKE_EXPLOSION_FRAMES = 20;
+const NUKE_LOCK_ON_DURATION = 1000;
 const DEFAULT_INSTRUCTION = {
     name: 'SINGLE SHOT',
     desc: 'TAP A CELL TO FIRE',
@@ -5723,6 +5725,45 @@ function triggerNukeWhiteout(screenX, screenY) {
     }, NUKE_WHITEOUT_HOLD + NUKE_WHITEOUT_FADE + 120);
 }
 
+function createNukeLockOverlay(boardId, topLeftIndex) {
+    const grid = document.getElementById(boardId);
+    const cells = getExplosionAreaIndices(topLeftIndex, 4).map(index => grid ? grid.children[index] : null).filter(Boolean);
+    if (!grid || cells.length !== 16) return null;
+
+    const left = Math.min(...cells.map(cell => cell.offsetLeft));
+    const top = Math.min(...cells.map(cell => cell.offsetTop));
+    const right = Math.max(...cells.map(cell => cell.offsetLeft + cell.offsetWidth));
+    const bottom = Math.max(...cells.map(cell => cell.offsetTop + cell.offsetHeight));
+    const width = right - left;
+    const height = bottom - top;
+
+    const overlay = document.createElement('div');
+    overlay.className = 'nuke-lock-overlay';
+    overlay.style.left = `${left}px`;
+    overlay.style.top = `${top}px`;
+    overlay.style.width = `${width}px`;
+    overlay.style.height = `${height}px`;
+
+    [1.95, 1.55, 1.18].forEach((scale, index) => {
+        const frame = document.createElement('div');
+        frame.className = `nuke-lock-frame ${index === 2 ? 'final' : 'zooming'}`;
+        frame.style.setProperty('--nuke-lock-scale', scale);
+
+        if (index === 2) {
+            ['tl', 'tr', 'br', 'bl'].forEach(corner => {
+                const cornerEl = document.createElement('div');
+                cornerEl.className = `nuke-lock-corner ${corner}`;
+                frame.appendChild(cornerEl);
+            });
+        }
+
+        overlay.appendChild(frame);
+    });
+
+    grid.appendChild(overlay);
+    return overlay;
+}
+
 function animateSpriteSheet(element, columns, rows, totalFrames, duration, onComplete) {
     if (!element) {
         if (onComplete) onComplete();
@@ -5753,7 +5794,7 @@ function animateSpriteSheet(element, columns, rows, totalFrames, duration, onCom
     }, frameDuration);
 }
 
-function playNukeStrikeAnimation(boardId, topLeftIndex, onImpact, onComplete) {
+function playNukeStrikeAnimation(boardId, topLeftIndex, lockOverlay, onImpact, onComplete) {
     const grid = document.getElementById(boardId);
     const cells = getExplosionAreaIndices(topLeftIndex, 4).map(index => grid ? grid.children[index] : null).filter(Boolean);
     if (!grid || cells.length !== 16) {
@@ -5808,6 +5849,7 @@ function playNukeStrikeAnimation(boardId, topLeftIndex, onImpact, onComplete) {
         const impactX = gridRect.left + centerX;
         const impactY = gridRect.top + centerY;
 
+        if (lockOverlay) lockOverlay.remove();
         missile.remove();
         triggerNukeWhiteout(impactX, impactY);
 
@@ -5987,23 +6029,28 @@ function executeNukeStrike(topLeftIndex) {
     }
 
     let isGameOver = false;
-    playNukeStrikeAnimation('enemy-grid', topLeftIndex, () => {
-        isGameOver = applyExplosionDamageToEnemy(indices);
-    }, () => {
-        clearActiveSkillState();
+    const lockOverlay = createNukeLockOverlay('enemy-grid', topLeftIndex);
 
-        if (!isGameOver) {
-            if (gameMode === 'PVP') {
-                setGameTimeout(() => {
-                    currentPhase = 'ENEMY_TURN';
-                    document.getElementById('game-status').innerHTML = "OPPONENT'S TURN";
-                    switchScene('ENEMY');
-                }, 1200);
-            } else {
-                setGameTimeout(startEnemyTurn, 700);
+    setTimeout(() => {
+        playSound('missile-flying-sfx');
+        playNukeStrikeAnimation('enemy-grid', topLeftIndex, lockOverlay, () => {
+            isGameOver = applyExplosionDamageToEnemy(indices);
+        }, () => {
+            clearActiveSkillState();
+
+            if (!isGameOver) {
+                if (gameMode === 'PVP') {
+                    setGameTimeout(() => {
+                        currentPhase = 'ENEMY_TURN';
+                        document.getElementById('game-status').innerHTML = "OPPONENT'S TURN";
+                        switchScene('ENEMY');
+                    }, 1200);
+                } else {
+                    setGameTimeout(startEnemyTurn, 700);
+                }
             }
-        }
-    });
+        });
+    }, NUKE_LOCK_ON_DURATION);
 }
 
 function lockRadarTarget(index) {

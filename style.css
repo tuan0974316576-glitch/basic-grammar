@@ -3513,6 +3513,83 @@ body {
     border-right-color: rgba(239, 68, 68, 0.94);
 }
 
+.nuke-lock-overlay {
+    position: absolute;
+    pointer-events: none;
+    z-index: 52;
+    overflow: visible;
+}
+
+.nuke-lock-frame {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    border: 2.5px solid rgba(255, 70, 70, 0.98);
+    box-shadow:
+        0 0 18px rgba(255, 50, 50, 0.46),
+        inset 0 0 12px rgba(255, 70, 70, 0.14);
+    transform: translate(-50%, -50%) scale(var(--nuke-lock-scale, 1));
+}
+
+.nuke-lock-frame.zooming {
+    opacity: 0;
+    animation: nukeLockZoom 0.5s ease-out forwards;
+}
+
+.nuke-lock-frame.zooming:nth-child(2) {
+    animation-delay: 0.06s;
+}
+
+.nuke-lock-frame.zooming:nth-child(3) {
+    animation-delay: 0.12s;
+}
+
+.nuke-lock-frame.final {
+    opacity: 0;
+    animation:
+        nukeLockFinalEnter 0.5s ease-out forwards,
+        pulseRed 0.1s infinite 0.5s;
+}
+
+.nuke-lock-corner {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-color: rgba(255, 200, 200, 0.98);
+    filter: drop-shadow(0 0 6px rgba(255, 70, 70, 0.65));
+}
+
+.nuke-lock-corner.tl {
+    left: -2px;
+    top: -2px;
+    border-left: 3px solid;
+    border-top: 3px solid;
+}
+
+.nuke-lock-corner.tr {
+    right: -2px;
+    top: -2px;
+    border-right: 3px solid;
+    border-top: 3px solid;
+}
+
+.nuke-lock-corner.br {
+    right: -2px;
+    bottom: -2px;
+    border-right: 3px solid;
+    border-bottom: 3px solid;
+}
+
+.nuke-lock-corner.bl {
+    left: -2px;
+    bottom: -2px;
+    border-left: 3px solid;
+    border-bottom: 3px solid;
+}
+
 #enemy-grid .cell.explosion-eligible {
     background: none !important;
     box-shadow: none;
@@ -3654,6 +3731,43 @@ body {
             0 0 28px rgba(239, 68, 68, 0.6),
             inset 0 0 18px rgba(239, 68, 68, 0.2);
         opacity: 1;
+    }
+}
+
+@keyframes nukeLockZoom {
+    0% {
+        opacity: 0.18;
+        transform: translate(-50%, -50%) scale(var(--nuke-lock-scale, 1.6));
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes pulseRed {
+    0%, 100% {
+        opacity: 0.72;
+        box-shadow:
+            0 0 14px rgba(255, 70, 70, 0.44),
+            inset 0 0 10px rgba(255, 70, 70, 0.12);
+    }
+    50% {
+        opacity: 1;
+        box-shadow:
+            0 0 24px rgba(255, 70, 70, 0.76),
+            inset 0 0 16px rgba(255, 70, 70, 0.22);
+    }
+}
+
+@keyframes nukeLockFinalEnter {
+    0% {
+        opacity: 0.22;
+        transform: translate(-50%, -50%) scale(var(--nuke-lock-scale, 1.18));
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
     }
 }
 
