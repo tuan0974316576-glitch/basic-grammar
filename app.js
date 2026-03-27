@@ -3029,6 +3029,10 @@ function playSound(id) {
     }
 }
 
+function isElementVisible(el) {
+    return !!(el && el.offsetParent !== null);
+}
+
     function toggleMusic() {
         const bgm = document.getElementById('bgm');
         const btn = document.getElementById('music-btn');
@@ -4971,8 +4975,6 @@ function checkSpeakingResult(spokenText) {
         document.getElementById('msg-area').innerText = `ACCURACY: ${scorePercent}% // MATCH CONFIRMED!`;
         document.getElementById('msg-area').style.color = "var(--success)";
 
-        playSound('enter-sfx');
-
         // 延遲 1 秒發射
         setTimeout(() => playerFire(true), 1000);
 
@@ -5209,7 +5211,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.addEventListener('keydown', function(e) {
         const lobbyControls = document.getElementById('lobby-controls');
-        if (!lobbyControls || lobbyControls.style.display === 'none') return;
+        const lobbyScreen = document.getElementById('lobby-screen');
+        if (!isElementVisible(lobbyScreen) || !isElementVisible(lobbyControls)) return;
 
         if (/^\d$/.test(e.key)) {
             e.preventDefault();
