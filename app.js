@@ -6187,7 +6187,7 @@ function onSkillClick(e) {
     selectedSkill = skill;
     document.querySelectorAll('.skill-diamond').forEach(d => d.classList.remove('skill-selected'));
     diamond.classList.add('skill-selected');
-    playSound('skill-select-sfx');
+    playSound(skill === 'nuke' ? 'nuke-ready-sfx' : 'skill-select-sfx');
 
     // 顯示 cost + 確認/取消
     const costVal = document.getElementById('skill-cost-val');
@@ -6293,6 +6293,7 @@ function confirmSkillSelection() {
             setInstructionPanel('NUKE', 'SELECT A 4X4 TARGET AREA FIRST', 'nuclear_bomb.png');
             return;
         }
+        playSound('nuke-launch-sfx');
         addEnergy(-cost, selectedSkill.toUpperCase());
         executeNukeStrike(missileLockedIndex);
         updateSkillStates();
