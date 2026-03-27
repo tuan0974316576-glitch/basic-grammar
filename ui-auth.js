@@ -340,11 +340,35 @@ function updateSuppliesDisplay() {
     }
 }
 
+function revealAuthenticatedMainMenu() {
+    const splash = document.getElementById('splash-screen');
+    const gameWrapper = document.getElementById('game-content-wrapper');
+    const startScreen = document.getElementById('start-screen');
+
+    if (splash && splash.style.display !== 'none') {
+        splash.style.opacity = '0';
+        splash.style.display = 'none';
+        console.log('[revealAuthenticatedMainMenu] Splash dismissed for authenticated auto-login');
+    }
+
+    if (gameWrapper) {
+        gameWrapper.style.display = 'block';
+    }
+
+    if (startScreen) {
+        startScreen.style.display = 'flex';
+    }
+}
+
 function showMainMenu() {
     const overlay = document.getElementById('login-overlay');
     if (overlay) {
         overlay.style.display = 'none';
         console.log('[showMainMenu] Hiding login overlay');
+    }
+
+    if (window.isFirebaseAuthenticated && window.myPlayerId) {
+        revealAuthenticatedMainMenu();
     }
 
     switchHudPanel('user-profile-panel');
