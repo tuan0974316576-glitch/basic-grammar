@@ -371,6 +371,10 @@ function showMainMenu() {
         revealAuthenticatedMainMenu();
     }
 
+    if (typeof hideMenuOverlayScreens === 'function') {
+        hideMenuOverlayScreens();
+    }
+
     switchHudPanel('user-profile-panel');
 
     const gameModeSelect = document.getElementById('game-mode-selection');

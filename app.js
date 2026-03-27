@@ -470,6 +470,7 @@ function startEnemyTurn() {
     // --- 5. 流程控制 ---
 function selectMode(mode) {
     tempGameMode = mode;
+    hideMenuOverlayScreens();
 
     // ★★★ 隱藏 Supplies 顯示 (選擇遊戲模式後) ★★★
     const suppliesDisplay = document.getElementById('coins-display');
@@ -3826,6 +3827,17 @@ function revealEnemyShip(ship) {
 
 let synth = window.speechSynthesis;
 let techVoice = null;
+
+function hideMenuOverlayScreens() {
+    const ids = ['level-screen', 'skill-screen', 'race-screen', 'lobby-screen', 'ranking-screen', 'vocab-screen'];
+    ids.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+    });
+
+    const overlay = document.getElementById('selection-overlay');
+    if (overlay) overlay.style.display = 'none';
+}
 
 // A. 預先載入靚聲
 function loadVoices() {
