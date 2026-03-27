@@ -4002,7 +4002,7 @@ function generateGuestId() {
 }
 // ★★★ 新增：生成隨機閃爍背景星星 (更新版：慢速 + 十字星) ★★★
 function createTwinklingStars() {
-    const starCount = 30; // ★ 數量減少：由 50 減到 30
+    const starCount = 60;
     const container = document.body;
     const starColors = [
         '255,255,255',
