@@ -3260,6 +3260,20 @@ function calculateAndDisplaySettlement(isVictory, isSurrender = false) {
     console.log(`[Settlement] Answering: +${sessionAnsweringXP} | Bonus: +${matchBonus} | Total: +${totalSessionXP} | Final XP: ${userTotalXP}`);
 }
 
+   function enterGameOverState() {
+        if (currentPhase === 'GAME_OVER') return;
+
+        currentPhase = 'GAME_OVER';
+
+        if (turnTimerInterval) clearInterval(turnTimerInterval);
+        if (timerInterval) clearInterval(timerInterval);
+
+        if (typeof gameTimeouts !== 'undefined') {
+            gameTimeouts.forEach(id => clearTimeout(id));
+            gameTimeouts = [];
+        }
+    }
+
    function checkGameOver() {
         const title = document.getElementById('end-title');
         const msg = document.getElementById('end-msg');
@@ -3267,6 +3281,7 @@ function calculateAndDisplaySettlement(isVictory, isSurrender = false) {
 
         // --- 情況 A：勝利 (Victory) ---
         if (enemyDamage >= TOTAL_HP) {
+            enterGameOverState();
             title.innerText = "VICTORY";
             title.style.color = "var(--success)";
             title.style.textShadow = "0 0 30px var(--success)";
@@ -3291,6 +3306,7 @@ function calculateAndDisplaySettlement(isVictory, isSurrender = false) {
         
         // --- 情況 B：戰敗 (Defeat) ---
         if (myDamage >= TOTAL_HP) {
+            enterGameOverState();
             title.innerText = "DEFEAT";
             title.style.color = "var(--danger)";
             title.style.textShadow = "0 0 30px var(--danger)";
