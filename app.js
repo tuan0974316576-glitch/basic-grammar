@@ -1081,7 +1081,7 @@ function handleRoomCodeInput(keyValue) {
     if (/^\d$/.test(keyValue)) {
         if (roomInput.value.length >= 4) return;
         updateRoomCodeValue(roomInput.value + keyValue);
-        if (typeof playSound === 'function') playSound('enter-sfx');
+        if (typeof playSound === 'function') playSound('enter-number-sfx');
     }
 }
 
