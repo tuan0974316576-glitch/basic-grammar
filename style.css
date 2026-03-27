@@ -3577,10 +3577,10 @@ body {
 .nuke-explosion {
     position: absolute;
     transform: translate(-50%, -50%);
-    background-image: url('explosion-c.png');
+    background-image: url('nuke explosion.png');
     background-repeat: no-repeat;
-    background-size: 1000% 100%;
-    animation: nukeExplosionFrames 0.72s steps(9) forwards;
+    background-size: 500% 500%;
+    background-position: 0 0;
     image-rendering: pixelated;
     filter:
         drop-shadow(0 0 26px rgba(255, 255, 255, 0.66))
@@ -3678,17 +3678,6 @@ body {
 }
 
 @keyframes explosionFrames {
-    from {
-        background-position: 0 0;
-        opacity: 1;
-    }
-    to {
-        background-position: 100% 0;
-        opacity: 1;
-    }
-}
-
-@keyframes nukeExplosionFrames {
     from {
         background-position: 0 0;
         opacity: 1;

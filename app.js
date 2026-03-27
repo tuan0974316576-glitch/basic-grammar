@@ -5373,6 +5373,9 @@ const NUKE_WHITEOUT_HOLD = 1000;
 const NUKE_WHITEOUT_FADE = 500;
 const NUKE_SHAKE_DURATION = 1800;
 const NUKE_EXPLOSION_DURATION = 720;
+const NUKE_EXPLOSION_COLUMNS = 5;
+const NUKE_EXPLOSION_ROWS = 5;
+const NUKE_EXPLOSION_FRAMES = 20;
 const DEFAULT_INSTRUCTION = {
     name: 'SINGLE SHOT',
     desc: 'TAP A CELL TO FIRE',
@@ -5720,6 +5723,36 @@ function triggerNukeWhiteout(screenX, screenY) {
     }, NUKE_WHITEOUT_HOLD + NUKE_WHITEOUT_FADE + 120);
 }
 
+function animateSpriteSheet(element, columns, rows, totalFrames, duration, onComplete) {
+    if (!element) {
+        if (onComplete) onComplete();
+        return;
+    }
+
+    const frameDuration = duration / totalFrames;
+    let frame = 0;
+
+    const renderFrame = () => {
+        const col = frame % columns;
+        const row = Math.floor(frame / columns);
+        const x = columns > 1 ? (col / (columns - 1)) * 100 : 0;
+        const y = rows > 1 ? (row / (rows - 1)) * 100 : 0;
+        element.style.backgroundPosition = `${x}% ${y}%`;
+    };
+
+    renderFrame();
+
+    const timer = setInterval(() => {
+        frame++;
+        if (frame >= totalFrames) {
+            clearInterval(timer);
+            if (onComplete) onComplete();
+            return;
+        }
+        renderFrame();
+    }, frameDuration);
+}
+
 function playNukeStrikeAnimation(boardId, topLeftIndex, onImpact, onComplete) {
     const grid = document.getElementById(boardId);
     const cells = getExplosionAreaIndices(topLeftIndex, 4).map(index => grid ? grid.children[index] : null).filter(Boolean);
@@ -5735,8 +5768,8 @@ function playNukeStrikeAnimation(boardId, topLeftIndex, onImpact, onComplete) {
     const bottom = Math.max(...cells.map(cell => cell.offsetTop + cell.offsetHeight));
     const centerX = (left + right) / 2;
     const centerY = (top + bottom) / 2;
-    const impactWidth = (right - left) + 120;
-    const impactHeight = (bottom - top) + 120;
+    const impactWidth = (right - left) + 28;
+    const impactHeight = (bottom - top) + 28;
     const gridRect = grid.getBoundingClientRect();
     const cellWidth = cells[0].offsetWidth || 35;
     const nukeWidth = Math.max(22, Math.round(cellWidth * 0.7));
@@ -5788,6 +5821,13 @@ function playNukeStrikeAnimation(boardId, topLeftIndex, onImpact, onComplete) {
 
             playSound('destroy-sfx');
             overlay.appendChild(explosion);
+            animateSpriteSheet(
+                explosion,
+                NUKE_EXPLOSION_COLUMNS,
+                NUKE_EXPLOSION_ROWS,
+                NUKE_EXPLOSION_FRAMES,
+                NUKE_EXPLOSION_DURATION
+            );
             if (onImpact) onImpact();
         }, NUKE_WHITEOUT_HOLD);
     }, flightDuration);
