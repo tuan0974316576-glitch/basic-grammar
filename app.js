@@ -2774,12 +2774,7 @@ function checkMyShipDestruction(hitIdx) {
          isVertical = (ship.indices[1] === ship.indices[0] + 10);
     }
 
-    // ★★★ 關鍵修正：針對 T型船 (index 2) 橫放時的偏移修正 ★★★
-    if (index === 2 && !isVertical) {
-        img.style.left = (cellLeft - cellSize - 2) + 'px';
-    } else {
-        img.style.left = cellLeft + 'px';
-    }
+    img.style.left = cellLeft + 'px';
     img.style.top = cellTop + 'px';
 
     // 如果是橫放，就需要旋轉圖片
@@ -3872,21 +3867,7 @@ function revealEnemyShip(ship) {
     img.style.width = pW + 'px'; 
     img.style.height = pH + 'px';
     
-    // ★★★ 關鍵修正：針對特殊形狀船隻的偏移修正 ★★★
-    // 需要根據種族和船隻 ID 來決定偏移
-    let leftOffset = cellLeft;
-
-    // 獲取當前船隻的種族（AI 模式用 enemyRace，PVP 用對手的種族）
-    const shipRace = (gameMode === 'AI') ? enemyRace : selectedRace;
-
-    if (ship.shipId === 2 && !ship.isVertical && (shipRace === 'VANGUARDS' || shipRace === 'CAUSTICS')) {
-        // 只有 Vanguards/Caustics 的 T 型船 (Spectre) 橫放時需要偏移
-        // Root 在 (0,1)，需要向左偏移一格
-        leftOffset = cellLeft - cellSize - 2;
-    }
-
-    img.style.left = leftOffset + 'px';
-    
+    img.style.left = cellLeft + 'px';
     img.style.top = cellTop + 'px';
 
     // Transform 修正 (旋轉)
