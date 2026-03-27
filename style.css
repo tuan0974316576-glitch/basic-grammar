@@ -3614,7 +3614,7 @@ body {
 }
 
 #game-ui.nuke-impact-shake {
-    animation: nukeImpactShake 1.8s ease-out forwards;
+    animation: nukeImpactShake 2s ease-out forwards;
     will-change: transform, filter;
 }
 
@@ -3772,14 +3772,16 @@ body {
 
 @keyframes nukeImpactShake {
     0% { transform: translate(0, 0); filter: blur(0px) brightness(1); }
-    8% { transform: translate(-12px, 10px); filter: blur(3.6px) brightness(1.06); }
-    16% { transform: translate(13px, -11px); filter: blur(3.2px) brightness(1.05); }
-    24% { transform: translate(-10px, -8px); filter: blur(2.9px) brightness(1.04); }
-    32% { transform: translate(11px, 9px); filter: blur(2.4px) brightness(1.03); }
-    44% { transform: translate(-8px, 6px); filter: blur(1.8px) brightness(1.02); }
-    58% { transform: translate(6px, -5px); filter: blur(1.2px) brightness(1.015); }
-    72% { transform: translate(-4px, 3px); filter: blur(0.8px) brightness(1.01); }
-    86% { transform: translate(2px, -2px); filter: blur(0.3px) brightness(1.005); }
+    5% { transform: translate(-22px, 18px); filter: blur(5.6px) brightness(1.09); }
+    10% { transform: translate(24px, -20px); filter: blur(5.2px) brightness(1.08); }
+    15% { transform: translate(-19px, -16px); filter: blur(4.8px) brightness(1.075); }
+    20% { transform: translate(21px, 17px); filter: blur(4.4px) brightness(1.07); }
+    28% { transform: translate(-16px, 13px); filter: blur(3.8px) brightness(1.055); }
+    36% { transform: translate(15px, -12px); filter: blur(3.2px) brightness(1.045); }
+    48% { transform: translate(-11px, 9px); filter: blur(2.4px) brightness(1.032); }
+    60% { transform: translate(8px, -7px); filter: blur(1.6px) brightness(1.02); }
+    74% { transform: translate(-5px, 4px); filter: blur(0.9px) brightness(1.012); }
+    88% { transform: translate(3px, -2px); filter: blur(0.4px) brightness(1.006); }
     100% { transform: translate(0, 0); filter: blur(0px) brightness(1); }
 }
 
