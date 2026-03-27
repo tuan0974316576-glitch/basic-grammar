@@ -4010,23 +4010,12 @@ function createTwinklingStars() {
         
         // 加入通用 class
         star.classList.add('star-item');
+        star.classList.add('star-dot');
 
-        // ★ 隨機決定形狀：30% 機會係十字星，70% 係圓點
-        const isCross = Math.random() > 0.7; 
-
-        if (isCross) {
-            star.classList.add('star-cross');
-            // 十字星通常大粒少少 (10px - 18px) 睇落先似十字
-            const size = Math.random() * 8 + 10; 
-            star.style.width = size + 'px';
-            star.style.height = size + 'px';
-        } else {
-            star.classList.add('star-dot');
-            // 圓點維持細細粒 (2px - 4px)
-            const size = Math.random() * 2 + 2; 
-            star.style.width = size + 'px';
-            star.style.height = size + 'px';
-        }
+        // 普通發光星點：細細粒但有少少隨機大細
+        const size = Math.random() * 2.5 + 1.5;
+        star.style.width = size + 'px';
+        star.style.height = size + 'px';
         
         // 隨機位置
         const x = Math.random() * 100;
