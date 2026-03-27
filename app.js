@@ -1049,6 +1049,42 @@ function joinRoom() {
         });
     }
 
+function updateRoomCodeValue(nextValue) {
+    const roomInput = document.getElementById('room-id-input');
+    if (!roomInput) return;
+    roomInput.value = String(nextValue || '').replace(/\D/g, '').slice(0, 4);
+}
+
+function handleRoomCodeInput(keyValue) {
+    const lobbyControls = document.getElementById('lobby-controls');
+    const roomInput = document.getElementById('room-id-input');
+    if (!lobbyControls || !roomInput || lobbyControls.style.display === 'none') return;
+
+    if (keyValue === 'JOIN') {
+        if (typeof playSound === 'function') playSound('deploy-sfx');
+        joinRoom();
+        return;
+    }
+
+    if (keyValue === 'BACKSPACE') {
+        updateRoomCodeValue(roomInput.value.slice(0, -1));
+        if (typeof playSound === 'function') playSound('delete-sfx');
+        return;
+    }
+
+    if (keyValue === 'CLEAR') {
+        updateRoomCodeValue('');
+        if (typeof playSound === 'function') playSound('delete-sfx');
+        return;
+    }
+
+    if (/^\d$/.test(keyValue)) {
+        if (roomInput.value.length >= 4) return;
+        updateRoomCodeValue(roomInput.value + keyValue);
+        if (typeof playSound === 'function') playSound('enter-sfx');
+    }
+}
+
 function initPVPListeners() {
     const { ref, onValue, off } = window.firebaseModules;
     
@@ -5069,6 +5105,78 @@ document.addEventListener('DOMContentLoaded', function() {
             key.classList.remove('kb-active');
         }, { passive: true });
     }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const roomCodePad = document.getElementById('room-code-pad');
+    const roomInput = document.getElementById('room-id-input');
+
+    if (roomCodePad) {
+        roomCodePad.addEventListener('click', function(e) {
+            const key = e.target.closest('[data-room-key]');
+            if (!key) return;
+
+            e.preventDefault();
+            e.stopPropagation();
+            handleRoomCodeInput(key.getAttribute('data-room-key'));
+        });
+
+        roomCodePad.addEventListener('touchstart', function(e) {
+            const key = e.target.closest('.room-code-key, .room-code-join');
+            if (!key) return;
+            key.classList.add('kb-active');
+        }, { passive: true });
+
+        roomCodePad.addEventListener('touchend', function(e) {
+            const key = e.target.closest('.room-code-key, .room-code-join');
+            if (!key) return;
+            setTimeout(() => key.classList.remove('kb-active'), 100);
+        }, { passive: true });
+
+        roomCodePad.addEventListener('touchcancel', function(e) {
+            const key = e.target.closest('.room-code-key, .room-code-join');
+            if (!key) return;
+            key.classList.remove('kb-active');
+        }, { passive: true });
+    }
+
+    if (roomInput) {
+        roomInput.addEventListener('keydown', function(e) {
+            e.preventDefault();
+        });
+
+        roomInput.addEventListener('focus', function() {
+            roomInput.blur();
+        });
+    }
+
+    document.addEventListener('keydown', function(e) {
+        const lobbyControls = document.getElementById('lobby-controls');
+        if (!lobbyControls || lobbyControls.style.display === 'none') return;
+
+        if (/^\d$/.test(e.key)) {
+            e.preventDefault();
+            handleRoomCodeInput(e.key);
+            return;
+        }
+
+        if (e.key === 'Backspace') {
+            e.preventDefault();
+            handleRoomCodeInput('BACKSPACE');
+            return;
+        }
+
+        if (e.key === 'Delete') {
+            e.preventDefault();
+            handleRoomCodeInput('CLEAR');
+            return;
+        }
+
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            handleRoomCodeInput('JOIN');
+        }
+    });
 });
 
 window.onload = function() {
