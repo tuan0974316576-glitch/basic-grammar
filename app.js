@@ -4190,7 +4190,8 @@ window.addEventListener('load', () => {
 
     // 2. 極速登入檢查 (Cache Check)
     const cachedName = localStorage.getItem('battleship_username');
-    if (cachedName) {
+    const cachedUid = localStorage.getItem('battleship_auth_uid');
+    if (cachedName && cachedUid) {
         console.log("🚀 FAST LOGIN: Found cached user -> " + cachedName);
         // ★★★ CRITICAL FIX: Clear XP before updateHUD to prevent inheritance ★★★
         window.userTotalXP = 0;
@@ -4226,7 +4227,8 @@ window.addEventListener('load', () => {
                 const pidEl = document.getElementById('player-id-display');
                 if (pidEl) {
                     const displayName = localStorage.getItem('battleship_username');
-                    pidEl.innerText = displayName || u.uid.substring(0, 8).toUpperCase();
+                    const cachedUid = localStorage.getItem('battleship_auth_uid');
+                    pidEl.innerText = (cachedUid === u.uid ? displayName : null) || u.uid.substring(0, 8).toUpperCase();
                 }
                 // ★ 同步 XP & Mastery
                 userTotalXP = window.userTotalXP || 0;

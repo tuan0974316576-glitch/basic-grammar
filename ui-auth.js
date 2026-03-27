@@ -36,7 +36,7 @@ window.playAsGuest = function() {
 };
 
 window.loginWithGoogle = function() {
-    const { getAuth, GoogleAuthProvider, signInWithPopup } = window.firebaseModules;
+    const { getAuth, GoogleAuthProvider, signInWithPopup, linkWithPopup } = window.firebaseModules;
     if (typeof playSound === 'function') playSound('deploy-sfx');
 
     const overlay = document.getElementById('login-overlay');
@@ -45,9 +45,15 @@ window.loginWithGoogle = function() {
 
     if (typeof playBgm === 'function') playBgm();
 
-    signInWithPopup(getAuth(), new GoogleAuthProvider())
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider();
+    const authAction = auth.currentUser && auth.currentUser.isAnonymous
+        ? linkWithPopup(auth.currentUser, provider)
+        : signInWithPopup(auth, provider);
+
+    authAction
         .then(() => {
-            console.log('[Google Login] signInWithPopup success, waiting for onAuthStateChanged...');
+            console.log('[Google Login] Auth success, waiting for onAuthStateChanged...');
         })
         .catch(error => {
             cancelAuthOverlay();
@@ -66,7 +72,7 @@ window.loginWithGoogle = function() {
 };
 
 window.loginWithApple = function() {
-    const { getAuth, OAuthProvider, signInWithPopup } = window.firebaseModules;
+    const { getAuth, OAuthProvider, signInWithPopup, linkWithPopup } = window.firebaseModules;
     if (typeof playSound === 'function') playSound('deploy-sfx');
 
     const overlay = document.getElementById('login-overlay');
@@ -79,9 +85,14 @@ window.loginWithApple = function() {
     provider.addScope('email');
     provider.addScope('name');
 
-    signInWithPopup(getAuth(), provider)
+    const auth = getAuth();
+    const authAction = auth.currentUser && auth.currentUser.isAnonymous
+        ? linkWithPopup(auth.currentUser, provider)
+        : signInWithPopup(auth, provider);
+
+    authAction
         .then(() => {
-            console.log('[Apple Login] signInWithPopup success, waiting for onAuthStateChanged...');
+            console.log('[Apple Login] Auth success, waiting for onAuthStateChanged...');
         })
         .catch(error => {
             cancelAuthOverlay();
@@ -106,6 +117,7 @@ window.logout = function() {
     localStorage.removeItem('battleship_username');
 
     signOut(getAuth()).then(() => {
+        localStorage.removeItem('battleship_auth_uid');
         document.getElementById('main-menu-carousel').style.display = 'none';
         document.getElementById('game-mode-selection').style.display = 'none';
         console.log('LOGOUT SUCCESSFUL -> RETURN TO LOGIN');
@@ -159,6 +171,7 @@ window.submitRegistration = function() {
         supplies: 0
     }).then(() => {
         localStorage.setItem('battleship_username', name);
+        localStorage.setItem('battleship_auth_uid', user.uid);
         if (typeof playSound === 'function') playSound('deploy-sfx');
 
         const modal = document.getElementById('registration-modal');

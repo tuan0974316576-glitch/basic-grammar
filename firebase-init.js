@@ -1,6 +1,6 @@
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
   import { getDatabase, ref, set, onValue, update, push, child, get, onDisconnect, off, remove, query, orderByChild, limitToLast } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
-  import { getAuth, signInAnonymously, onAuthStateChanged, GoogleAuthProvider, OAuthProvider, signInWithPopup, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+  import { getAuth, signInAnonymously, onAuthStateChanged, GoogleAuthProvider, OAuthProvider, signInWithPopup, linkWithPopup, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
     const firebaseConfig = {
         apiKey: "AIzaSyCfo5jxY1zvkRJPuPtZOMYj1V0kT7Te11A",
@@ -21,7 +21,7 @@
 window.firebaseModules = {
       initializeApp,
       getDatabase, ref, set, onValue, update, push, child, get, onDisconnect, off, remove, query, orderByChild, limitToLast,
-      getAuth, signInAnonymously, onAuthStateChanged, GoogleAuthProvider, OAuthProvider, signInWithPopup, signOut
+      getAuth, signInAnonymously, onAuthStateChanged, GoogleAuthProvider, OAuthProvider, signInWithPopup, linkWithPopup, signOut
   };
     window.db = db;
     window.auth = auth;
@@ -130,6 +130,7 @@ console.log("Firebase Modules Loaded Successfully");
                     const realName = snapshot.val().displayName;
                     console.log('[Auth] Existing user:', realName);
                     localStorage.setItem('battleship_username', realName);
+                    localStorage.setItem('battleship_auth_uid', u.uid);
 
                     // ★ 讀取 XP & Mastery (如果存在)
                     const userData = snapshot.val();
@@ -188,6 +189,7 @@ console.log("Firebase Modules Loaded Successfully");
                         update(ref(db, 'users/' + u.uid), { displayName: autoName, lastLogin: Date.now(), xp: 0, supplies: 0, unlockedRaces: ['VANGUARDS'] }).then(() => {
                             console.log('[Auth] Guest account created successfully');
                             localStorage.setItem('battleship_username', autoName);
+                            localStorage.setItem('battleship_auth_uid', u.uid);
                             if(typeof updateHUD === 'function') updateHUD(autoName);
                             if(typeof showMainMenu === 'function') showMainMenu();
                             if(overlay) overlay.style.display = 'none';
@@ -252,6 +254,7 @@ console.log("Firebase Modules Loaded Successfully");
 
             // ★ 清除可能殘留嘅 cached username (確保下次唔會誤跳主選單)
             localStorage.removeItem('battleship_username');
+            localStorage.removeItem('battleship_auth_uid');
 
             // ★★★ 確保隱藏 overlay（可能是 auth token 過期導致）★★★
             if(overlay) {
