@@ -5477,11 +5477,11 @@ const RADAR_SCAN_DURATION = 2200;
 const MISSILE_EXPLOSION_DURATION = 720;
 const NUKE_WHITEOUT_HOLD = 1000;
 const NUKE_WHITEOUT_FADE = 500;
-const NUKE_SHAKE_DURATION = 1800;
+const NUKE_SHAKE_DURATION = 800;
 const NUKE_EXPLOSION_DURATION = 720;
 const NUKE_EXPLOSION_COLUMNS = 5;
 const NUKE_EXPLOSION_ROWS = 5;
-const NUKE_EXPLOSION_FRAMES = 20;
+const NUKE_EXPLOSION_FRAMES = 25;
 const NUKE_LOCK_ON_DURATION = 1000;
 const DEFAULT_INSTRUCTION = {
     name: 'SINGLE SHOT',
@@ -5573,8 +5573,7 @@ function clearMissilePreview() {
 
 function clearNukeFlashEffects() {
     document.querySelectorAll('.nuke-flash-overlay').forEach(el => el.remove());
-    const gameUI = document.getElementById('game-ui');
-    if (gameUI) gameUI.classList.remove('nuke-impact-shake');
+    document.body.classList.remove('screen-shake-sunk');
 }
 
 function clearRadarEffects() {
@@ -5978,7 +5977,6 @@ function playNukeStrikeAnimation(boardId, topLeftIndex, lockOverlay, onImpact, o
     const nukeFrameTimer = animateImageSequence(missile, ['nuke_1.png', 'nuke_2.png'], 180);
 
     setTimeout(() => {
-        const gameUI = document.getElementById('game-ui');
         const impactX = gridRect.left + centerX;
         const impactY = gridRect.top + centerY;
 
@@ -5988,12 +5986,10 @@ function playNukeStrikeAnimation(boardId, topLeftIndex, lockOverlay, onImpact, o
         triggerNukeWhiteout(impactX, impactY);
 
         setTimeout(() => {
-            if (gameUI) {
-                gameUI.classList.remove('nuke-impact-shake');
-                void gameUI.offsetWidth;
-                gameUI.classList.add('nuke-impact-shake');
-                setTimeout(() => gameUI.classList.remove('nuke-impact-shake'), NUKE_SHAKE_DURATION);
-            }
+            document.body.classList.remove('screen-shake-sunk');
+            void document.body.offsetWidth;
+            document.body.classList.add('screen-shake-sunk');
+            setTimeout(() => document.body.classList.remove('screen-shake-sunk'), NUKE_SHAKE_DURATION);
 
             playSound('destroy-sfx');
             overlay.appendChild(explosion);
