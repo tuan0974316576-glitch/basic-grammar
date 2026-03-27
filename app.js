@@ -2709,10 +2709,127 @@ function performAiRadarScan(centerIndex) {
     }
 }
 
+function getAiKnownHitIndices() {
+    const hits = [];
+    const grid = document.getElementById('player-grid');
+    if (!grid) return hits;
+
+    for (let i = 0; i < myGrid.length; i++) {
+        const cell = grid.children[i];
+        if (cell && cell.classList.contains('hit')) {
+            hits.push(i);
+        }
+    }
+
+    return hits;
+}
+
+function getAdjacentIndices(index) {
+    const row = Math.floor(index / GRID_SIZE);
+    const col = index % GRID_SIZE;
+    const adjacent = [];
+
+    if (row > 0) adjacent.push(index - GRID_SIZE);
+    if (row < GRID_SIZE - 1) adjacent.push(index + GRID_SIZE);
+    if (col > 0) adjacent.push(index - 1);
+    if (col < GRID_SIZE - 1) adjacent.push(index + 1);
+
+    return adjacent;
+}
+
+function evaluateAiMissileAnchor(topLeftIndex) {
+    const indices = getExplosionAreaIndices(topLeftIndex, 2);
+    if (indices.length !== 4) return null;
+
+    const unshotIndices = indices.filter(index => !enemyShots.includes(index));
+    if (unshotIndices.length === 0) return null;
+
+    const knownHits = new Set(getAiKnownHitIndices());
+    const avoidCells = getAiAvoidCells();
+    let score = 0;
+
+    unshotIndices.forEach(index => {
+        aiRadarIntel.forEach(entry => {
+            if (entry.remaining > 0 && entry.area.includes(index)) {
+                score += entry.remaining * 1.6;
+            }
+        });
+
+        if (avoidCells.has(index)) {
+            score -= 1.2;
+        }
+
+        if (getAdjacentIndices(index).some(adj => knownHits.has(adj))) {
+            score += 2.5;
+        }
+    });
+
+    score += Math.max(0, unshotIndices.length - 1) * 0.6;
+
+    return { topLeftIndex, score, unshotCount: unshotIndices.length };
+}
+
+function chooseBestAiMissileAnchor() {
+    refreshAiRadarIntel();
+
+    let best = null;
+    for (let row = 0; row < GRID_SIZE - 1; row++) {
+        for (let col = 0; col < GRID_SIZE - 1; col++) {
+            const candidate = evaluateAiMissileAnchor(row * GRID_SIZE + col);
+            if (!candidate) continue;
+
+            if (!best || candidate.score > best.score) {
+                best = candidate;
+            }
+        }
+    }
+
+    if (!best) return null;
+    if (best.score < 4.2) return null;
+    return best.topLeftIndex;
+}
+
+function performAiMissileStrike(topLeftIndex) {
+    const indices = getExplosionAreaIndices(topLeftIndex, 2);
+    if (indices.length !== 4) {
+        aiFire();
+        return;
+    }
+
+    indices.forEach(index => {
+        if (!enemyShots.includes(index)) enemyShots.push(index);
+    });
+
+    const status = document.getElementById('game-status');
+    if (status) {
+        status.innerHTML = `PHASE: <span style="color:var(--warning)">ENEMY MISSILE STRIKE</span>`;
+    }
+
+    const lockOverlay = createMissileLockOverlay('player-grid', topLeftIndex);
+    setGameTimeout(() => {
+        playSound('missile-flying-sfx');
+        playMissileStrikeAnimation('player-grid', topLeftIndex, lockOverlay, () => {
+            const isGameOver = applyExplosionDamageToPlayer(indices);
+            document.getElementById('warning-overlay').style.display = 'none';
+            refreshAiRadarIntel();
+
+            if (!isGameOver) {
+                setGameTimeout(startPlayerTurn, 700);
+            }
+        });
+    }, MISSILE_LOCK_ON_DURATION);
+}
+
 function aiTakeTurn() {
     if (currentPhase === 'GAME_OVER') return;
 
     refreshAiRadarIntel();
+
+    const missileAnchor = chooseBestAiMissileAnchor();
+    if (missileAnchor !== null) {
+        performAiMissileStrike(missileAnchor);
+        return;
+    }
 
     if (aiTargetStack.length === 0 && !getBestAiTargetFromRadarIntel()) {
         const radarCenter = chooseBestAiRadarCenter();
