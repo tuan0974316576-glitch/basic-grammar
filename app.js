@@ -2769,6 +2769,51 @@ function evaluateAiMissileAnchor(topLeftIndex) {
     return { topLeftIndex, score, unshotCount: unshotIndices.length };
 }
 
+function evaluateAiNukeAnchor(topLeftIndex) {
+    const indices = getExplosionAreaIndices(topLeftIndex, 4);
+    if (indices.length !== 16) return null;
+
+    const unshotIndices = indices.filter(index => !enemyShots.includes(index));
+    if (unshotIndices.length === 0) return null;
+
+    const knownHits = new Set(getAiKnownHitIndices());
+    const avoidCells = getAiAvoidCells();
+    let score = 0;
+    let positiveIntelCells = 0;
+
+    unshotIndices.forEach(index => {
+        let cellIntelScore = 0;
+
+        aiRadarIntel.forEach(entry => {
+            if (entry.remaining > 0 && entry.area.includes(index)) {
+                cellIntelScore += entry.remaining * 1.9;
+            }
+        });
+
+        if (cellIntelScore > 0) {
+            positiveIntelCells++;
+            score += cellIntelScore;
+        }
+
+        if (avoidCells.has(index)) {
+            score -= 1.35;
+        }
+
+        const adjacentHitCount = getAdjacentIndices(index).filter(adj => knownHits.has(adj)).length;
+        score += adjacentHitCount * 2.8;
+    });
+
+    score += Math.max(0, positiveIntelCells - 2) * 1.2;
+    score += Math.max(0, unshotIndices.length - 6) * 0.35;
+
+    return {
+        topLeftIndex,
+        score,
+        unshotCount: unshotIndices.length,
+        positiveIntelCells
+    };
+}
+
 function chooseBestAiMissileAnchor() {
     refreshAiRadarIntel();
 
@@ -2786,6 +2831,33 @@ function chooseBestAiMissileAnchor() {
 
     if (!best) return null;
     if (best.score < 4.2) return null;
+    return best.topLeftIndex;
+}
+
+function chooseBestAiNukeAnchor() {
+    refreshAiRadarIntel();
+
+    let best = null;
+    for (let row = 0; row < GRID_SIZE - 3; row++) {
+        for (let col = 0; col < GRID_SIZE - 3; col++) {
+            const candidate = evaluateAiNukeAnchor(row * GRID_SIZE + col);
+            if (!candidate) continue;
+
+            if (!best || candidate.score > best.score) {
+                best = candidate;
+            }
+        }
+    }
+
+    if (!best) return null;
+
+    const hasKnownHits = getAiKnownHitIndices().length > 0;
+    const hasActionableIntel = aiRadarIntel.some(entry => entry.remaining > 0);
+
+    if (best.unshotCount < 8) return null;
+    if (best.positiveIntelCells < 3 && !hasKnownHits) return null;
+    if (best.score < (hasKnownHits || hasActionableIntel ? 11.5 : 14.5)) return null;
+
     return best.topLeftIndex;
 }
 
@@ -2820,10 +2892,52 @@ function performAiMissileStrike(topLeftIndex) {
     }, MISSILE_LOCK_ON_DURATION);
 }
 
+function performAiNukeStrike(topLeftIndex) {
+    const indices = getExplosionAreaIndices(topLeftIndex, 4);
+    if (indices.length !== 16) {
+        aiFire();
+        return;
+    }
+
+    indices.forEach(index => {
+        if (!enemyShots.includes(index)) enemyShots.push(index);
+    });
+
+    const status = document.getElementById('game-status');
+    if (status) {
+        status.innerHTML = `PHASE: <span style="color:var(--danger)">ENEMY NUCLEAR STRIKE</span>`;
+    }
+
+    playSound('nuke-detected-sfx');
+    const lockOverlay = createNukeLockOverlay('player-grid', topLeftIndex);
+
+    setGameTimeout(() => {
+        playSound('missile-flying-sfx');
+        let isGameOver = false;
+
+        playNukeStrikeAnimation('player-grid', topLeftIndex, lockOverlay, () => {
+            isGameOver = applyExplosionDamageToPlayer(indices);
+            refreshAiRadarIntel();
+        }, () => {
+            document.getElementById('warning-overlay').style.display = 'none';
+
+            if (!isGameOver) {
+                setGameTimeout(startPlayerTurn, 700);
+            }
+        });
+    }, NUKE_LOCK_ON_DURATION);
+}
+
 function aiTakeTurn() {
     if (currentPhase === 'GAME_OVER') return;
 
     refreshAiRadarIntel();
+
+    const nukeAnchor = chooseBestAiNukeAnchor();
+    if (nukeAnchor !== null) {
+        performAiNukeStrike(nukeAnchor);
+        return;
+    }
 
     const missileAnchor = chooseBestAiMissileAnchor();
     if (missileAnchor !== null) {
