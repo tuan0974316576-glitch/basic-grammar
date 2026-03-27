@@ -324,6 +324,47 @@
 
                 <button class="btn" onclick="confirmExit()" style="width: 100%; margin-top: 15px;">&lt; BACK</button>
             </div>
+
+            <div id="lobby-briefing" style="display:none; width:100%; max-width:520px; margin-top:10px; text-align:left;">
+                <div style="border:1px solid rgba(56, 189, 248, 0.7); border-radius:12px; background:rgba(2, 12, 24, 0.92); box-shadow:0 0 18px rgba(56, 189, 248, 0.18), inset 0 0 18px rgba(56, 189, 248, 0.08); padding:18px;">
+                    <div id="lobby-briefing-title" style="font-family:'Orbitron', sans-serif; color:var(--primary); font-size:18px; letter-spacing:1.5px; text-align:center; margin-bottom:14px;">WAITING FOR OPPONENT...</div>
+
+                    <div style="display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:10px; margin-bottom:14px;">
+                        <div style="border:1px solid rgba(56, 189, 248, 0.3); background:rgba(15, 23, 42, 0.45); padding:10px; border-radius:8px; text-align:center;">
+                            <div style="font-size:10px; color:#94a3b8; letter-spacing:1px;">ROOM</div>
+                            <div id="lobby-briefing-room" style="font-family:'Orbitron', sans-serif; color:#fff; font-size:16px; margin-top:4px;">----</div>
+                        </div>
+                        <div style="border:1px solid rgba(56, 189, 248, 0.3); background:rgba(15, 23, 42, 0.45); padding:10px; border-radius:8px; text-align:center;">
+                            <div style="font-size:10px; color:#94a3b8; letter-spacing:1px;">DIFFICULTY</div>
+                            <div id="lobby-briefing-level" style="font-family:'Orbitron', sans-serif; color:#fff; font-size:16px; margin-top:4px;">--</div>
+                        </div>
+                        <div style="border:1px solid rgba(56, 189, 248, 0.3); background:rgba(15, 23, 42, 0.45); padding:10px; border-radius:8px; text-align:center;">
+                            <div style="font-size:10px; color:#94a3b8; letter-spacing:1px;">MODULE</div>
+                            <div id="lobby-briefing-skill" style="font-family:'Orbitron', sans-serif; color:#fff; font-size:16px; margin-top:4px;">--</div>
+                        </div>
+                    </div>
+
+                    <div style="display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:12px; margin-bottom:14px;">
+                        <div style="border:1px solid rgba(56, 189, 248, 0.32); border-radius:10px; background:rgba(8, 47, 73, 0.25); padding:12px;">
+                            <div style="font-size:10px; color:#67e8f9; letter-spacing:1.5px; margin-bottom:8px;">YOU</div>
+                            <div id="lobby-you-name" style="font-family:'Black Ops One', sans-serif; color:#fff; font-size:18px; line-height:1.1;">LOADING</div>
+                            <div id="lobby-you-rank" style="color:#fbbf24; font-size:12px; margin-top:6px;">RANK: --</div>
+                            <div id="lobby-you-record" style="color:#cbd5e1; font-size:12px; margin-top:4px;">PVP: W0 / L0</div>
+                            <div id="lobby-you-status" style="color:var(--primary); font-size:11px; margin-top:8px; letter-spacing:1px;">STATUS: STANDBY</div>
+                        </div>
+
+                        <div style="border:1px solid rgba(248, 113, 113, 0.28); border-radius:10px; background:rgba(69, 10, 10, 0.18); padding:12px;">
+                            <div style="font-size:10px; color:#fda4af; letter-spacing:1.5px; margin-bottom:8px;">OPPONENT</div>
+                            <div id="lobby-opp-name" style="font-family:'Black Ops One', sans-serif; color:#fff; font-size:18px; line-height:1.1;">AWAITING LINK</div>
+                            <div id="lobby-opp-rank" style="color:#fbbf24; font-size:12px; margin-top:6px;">RANK: --</div>
+                            <div id="lobby-opp-record" style="color:#cbd5e1; font-size:12px; margin-top:4px;">PVP: W0 / L0</div>
+                            <div id="lobby-opp-status" style="color:#fda4af; font-size:11px; margin-top:8px; letter-spacing:1px;">STATUS: WAITING</div>
+                        </div>
+                    </div>
+
+                    <button class="btn" onclick="abolishRoom()" style="width:100%; border-color:var(--danger); color:var(--danger);">ABOLISH ROOM</button>
+                </div>
+            </div>
         </div>
         <div id="lobby-msg" style="color: var(--danger); margin-top: 20px; height: 20px;"></div>
     </div>

@@ -468,6 +468,8 @@ function startEnemyTurn() {
     let unsubscribeRoom = null; // 用來儲存 Firebase 監聽器
     let pvpRaceSelectionShown = false;
     let isEnteringPVPDeploy = false;
+    let latestPVPSetupData = null;
+    const lobbyProfileCache = new Map();
 
     // --- 5. 流程控制 ---
 function selectMode(mode) {
@@ -949,6 +951,7 @@ function createRoom() {
         gameMode = 'PVP';
         pvpRaceSelectionShown = false;
         isEnteringPVPDeploy = false;
+        latestPVPSetupData = null;
 
 set(ref(db, 'rooms/' + roomId), {
             host: myPlayerId, 
@@ -992,6 +995,7 @@ function joinRoom() {
                     tempGameMode = 'PVP';
                     pvpRaceSelectionShown = false;
                     isEnteringPVPDeploy = false;
+                    latestPVPSetupData = null;
 
                     // ★ 關鍵修復：必須在這裡強制設定為 PVP 模式！ ★
                     // 因為 Guest 跳過了 selectLevel，如果唔加呢句，系統會以為係玩 AI
@@ -3357,6 +3361,7 @@ function resetGame() {
     battleLog = [];
     pvpRaceSelectionShown = false;
     isEnteringPVPDeploy = false;
+    latestPVPSetupData = null;
     
     // UI 重置
     const exitBtn = document.getElementById('game-exit-btn');
@@ -3873,9 +3878,11 @@ function showLobbyScreen() {
 
 function resetLobbyScreenState() {
     const lobbyControls = document.getElementById('lobby-controls');
+    const briefing = document.getElementById('lobby-briefing');
     const lobbyMsg = document.getElementById('lobby-msg');
 
     if (lobbyControls) lobbyControls.style.display = 'block';
+    if (briefing) briefing.style.display = 'none';
     if (lobbyMsg) {
         lobbyMsg.innerText = '';
         lobbyMsg.style.color = 'var(--danger)';
@@ -3886,12 +3893,20 @@ function showPVPWaitingState(message, color = 'var(--warning)') {
     showLobbyScreen();
 
     const lobbyControls = document.getElementById('lobby-controls');
+    const briefing = document.getElementById('lobby-briefing');
     const lobbyMsg = document.getElementById('lobby-msg');
+    const briefingTitle = document.getElementById('lobby-briefing-title');
 
     if (lobbyControls) lobbyControls.style.display = 'none';
+    if (briefing) briefing.style.display = 'block';
+    if (briefingTitle) briefingTitle.innerText = message;
     if (lobbyMsg) {
-        lobbyMsg.innerText = message;
+        lobbyMsg.innerText = '';
         lobbyMsg.style.color = color;
+    }
+
+    if (latestPVPSetupData) {
+        updatePVPBriefingPanel(latestPVPSetupData);
     }
 }
 
@@ -3932,6 +3947,100 @@ function syncPVPSetupFromRoom(data) {
     }
 }
 
+function formatLobbyLevel(level) {
+    if (!level) return '--';
+    return level === 'L5_STAR' ? 'LEVEL 5*' : level.replace('L', 'LEVEL ');
+}
+
+function formatLobbySkill(skill) {
+    if (!skill) return '--';
+    return skill.replace(/_/g, ' ');
+}
+
+async function getLobbyPlayerProfile(playerId) {
+    if (!playerId) return null;
+    if (lobbyProfileCache.has(playerId)) return lobbyProfileCache.get(playerId);
+
+    let profile = {
+        name: playerId.substring(0, 8).toUpperCase(),
+        rank: 'UNRANKED',
+        wins: 0,
+        losses: 0
+    };
+
+    try {
+        const { ref, get } = window.firebaseModules;
+        const snapshot = await get(ref(window.db, `users/${playerId}`));
+        if (snapshot.exists()) {
+            const userData = snapshot.val();
+            const xp = userData.totalXP || userData.xp || 0;
+            const rank = typeof getRankForXP === 'function' ? getRankForXP(xp) : null;
+            profile = {
+                name: userData.username || profile.name,
+                rank: rank ? rank.name : 'UNRANKED',
+                wins: userData.pvpWins || 0,
+                losses: userData.pvpLosses || 0
+            };
+        }
+    } catch (error) {
+        console.warn('[Lobby] Failed to fetch player profile:', playerId, error);
+    }
+
+    lobbyProfileCache.set(playerId, profile);
+    return profile;
+}
+
+function updateLobbyPlayerCard(prefix, profile, statusText, statusColor) {
+    const nameEl = document.getElementById(`lobby-${prefix}-name`);
+    const rankEl = document.getElementById(`lobby-${prefix}-rank`);
+    const recordEl = document.getElementById(`lobby-${prefix}-record`);
+    const statusEl = document.getElementById(`lobby-${prefix}-status`);
+
+    if (nameEl) nameEl.innerText = profile?.name || 'AWAITING LINK';
+    if (rankEl) rankEl.innerText = `RANK: ${profile?.rank || '--'}`;
+    if (recordEl) recordEl.innerText = `PVP: W${profile?.wins || 0} / L${profile?.losses || 0}`;
+    if (statusEl) {
+        statusEl.innerText = `STATUS: ${statusText}`;
+        statusEl.style.color = statusColor;
+    }
+}
+
+async function updatePVPBriefingPanel(data) {
+    if (!data) return;
+
+    const roomEl = document.getElementById('lobby-briefing-room');
+    const levelEl = document.getElementById('lobby-briefing-level');
+    const skillEl = document.getElementById('lobby-briefing-skill');
+
+    if (roomEl) roomEl.innerText = currentRoomId || '----';
+    if (levelEl) levelEl.innerText = formatLobbyLevel(data.level || selectedLevel);
+    if (skillEl) skillEl.innerText = formatLobbySkill(data.practiceMode || currentPracticeMode);
+
+    const myId = myPlayerId || window.myPlayerId;
+    const opponentId = playerRole === 'host' ? data.guest : data.host;
+    const myRaceLocked = playerRole === 'host' ? !!data.hostRace : !!data.guestRace;
+    const opponentRaceLocked = playerRole === 'host' ? !!data.guestRace : !!data.hostRace;
+
+    const [myProfile, opponentProfile] = await Promise.all([
+        getLobbyPlayerProfile(myId),
+        getLobbyPlayerProfile(opponentId)
+    ]);
+
+    updateLobbyPlayerCard(
+        'you',
+        myProfile,
+        myRaceLocked ? 'RACE LOCKED' : (data.guest ? 'CHOOSING RACE' : 'ROOM OPEN'),
+        myRaceLocked ? 'var(--success)' : 'var(--primary)'
+    );
+
+    updateLobbyPlayerCard(
+        'opp',
+        opponentProfile,
+        !opponentId ? 'AWAITING LINK' : (opponentRaceLocked ? 'RACE LOCKED' : 'CHOOSING RACE'),
+        opponentRaceLocked ? 'var(--success)' : '#fda4af'
+    );
+}
+
 function handlePVPMatchSetupSnapshot(data) {
     if (!data) {
         if (isEnteringPVPDeploy || currentPhase === 'GAME_OVER') return;
@@ -3941,7 +4050,9 @@ function handlePVPMatchSetupSnapshot(data) {
         return;
     }
 
+    latestPVPSetupData = data;
     syncPVPSetupFromRoom(data);
+    updatePVPBriefingPanel(data);
 
     if (!data.guest) {
         if (playerRole === 'host' && !isEnteringPVPDeploy) {
@@ -3980,6 +4091,12 @@ function handlePVPMatchSetupSnapshot(data) {
             enterGameUI();
         }, 600);
     }
+}
+
+function abolishRoom() {
+    playSound('delete-sfx');
+    showNotification('ROOM ABOLISHED', 'warning');
+    resetGame();
 }
 
 // A. 預先載入靚聲
