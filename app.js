@@ -174,6 +174,7 @@ let battleLog = [];
 let battleUnsubscribe = null; // ★ 新增：專門管理戰鬥中的監聽器
 let turnCounter = 0; // 回合計數器
 let playerEnergy = 0; // ★★★ 玩家 Energy ★★★
+let aiEnergy = 0; // ★★★ AI Energy ★★★
 let isTargeting = false;
     // --- 1. Firebase 設定 (已填入你的資料) ---
     const firebaseConfig = {
@@ -463,6 +464,10 @@ function startEnemyTurn() {
     currentPhase = 'ENEMY_TURN';
     switchScene('ENEMY');
     document.getElementById('warning-overlay').style.display = 'block';
+
+    if (gameMode === 'AI' && enemyRace === 'VANGUARDS') {
+        addAiEnergy(1, 'Turn Start');
+    }
     
     // 改用 setGameTimeout
     setGameTimeout(aiTakeTurn, 2000);
@@ -2741,6 +2746,33 @@ function isValidAiTargetIndex(index) {
     return Number.isInteger(index) && index >= 0 && index < GRID_SIZE * GRID_SIZE;
 }
 
+const AI_SKILL_COSTS = {
+    radar: 3,
+    explosion: 5,
+    nuke: 15
+};
+
+function aiCanUseBattleSkills() {
+    return gameMode === 'AI' && enemyRace === 'VANGUARDS';
+}
+
+function getAiSkillCost(skill) {
+    return AI_SKILL_COSTS[skill] ?? Infinity;
+}
+
+function addAiEnergy(amount, reason) {
+    aiEnergy = Math.max(0, aiEnergy + amount);
+    console.log(`[AI Energy] ${amount >= 0 ? '+' : ''}${amount} (${reason}) → Total: ${aiEnergy}`);
+}
+
+function spendAiEnergy(skill) {
+    const cost = getAiSkillCost(skill);
+    if (!aiCanUseBattleSkills() || aiEnergy < cost) return false;
+    aiEnergy = Math.max(0, aiEnergy - cost);
+    console.log(`[AI Energy] -${cost} (${skill.toUpperCase()}) → Total: ${aiEnergy}`);
+    return true;
+}
+
 function evaluateAiMissileAnchor(topLeftIndex) {
     const indices = getExplosionAreaIndices(topLeftIndex, 2);
     if (indices.length !== 4) return null;
@@ -2872,6 +2904,11 @@ function performAiMissileStrike(topLeftIndex) {
         return;
     }
 
+    if (!spendAiEnergy('explosion')) {
+        aiFire();
+        return;
+    }
+
     indices.forEach(index => {
         if (!enemyShots.includes(index)) enemyShots.push(index);
     });
@@ -2899,6 +2936,11 @@ function performAiMissileStrike(topLeftIndex) {
 function performAiNukeStrike(topLeftIndex) {
     const indices = getExplosionAreaIndices(topLeftIndex, 4);
     if (indices.length !== 16) {
+        aiFire();
+        return;
+    }
+
+    if (!spendAiEnergy('nuke')) {
         aiFire();
         return;
     }
@@ -2937,25 +2979,31 @@ function aiTakeTurn() {
 
     refreshAiRadarIntel();
 
-    const nukeAnchor = chooseBestAiNukeAnchor();
-    if (nukeAnchor !== null) {
-        performAiNukeStrike(nukeAnchor);
-        return;
-    }
+    if (aiCanUseBattleSkills()) {
+        if (aiEnergy >= getAiSkillCost('nuke')) {
+            const nukeAnchor = chooseBestAiNukeAnchor();
+            if (nukeAnchor !== null) {
+                performAiNukeStrike(nukeAnchor);
+                return;
+            }
+        }
 
-    const missileAnchor = chooseBestAiMissileAnchor();
-    if (missileAnchor !== null) {
-        performAiMissileStrike(missileAnchor);
-        return;
-    }
+        if (aiEnergy >= getAiSkillCost('explosion')) {
+            const missileAnchor = chooseBestAiMissileAnchor();
+            if (missileAnchor !== null) {
+                performAiMissileStrike(missileAnchor);
+                return;
+            }
+        }
 
-    if (aiTargetStack.length === 0 && !getBestAiTargetFromRadarIntel()) {
-        const radarCenter = chooseBestAiRadarCenter();
-        if (radarCenter !== null) {
-            playSound('radar-sfx');
-            performAiRadarScan(radarCenter);
-            setGameTimeout(aiFire, 900);
-            return;
+        if (aiEnergy >= getAiSkillCost('radar') && aiTargetStack.length === 0 && !getBestAiTargetFromRadarIntel()) {
+            const radarCenter = chooseBestAiRadarCenter();
+            if (radarCenter !== null && spendAiEnergy('radar')) {
+                playSound('radar-sfx');
+                performAiRadarScan(radarCenter);
+                setGameTimeout(aiFire, 900);
+                return;
+            }
         }
     }
 
@@ -3951,6 +3999,7 @@ function resetGame() {
 
     // ★★★ 重置 Energy ★★★
     playerEnergy = 0;
+    aiEnergy = 0;
     updateEnergyDisplay();
 
     createGrid('player-grid');
