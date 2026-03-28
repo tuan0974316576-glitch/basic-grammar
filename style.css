@@ -1052,6 +1052,26 @@ body {
             letter-spacing: 1px;
         }
 
+        .status-value {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 32px;
+            color: var(--warning);
+            text-shadow: 0 0 6px rgba(245, 158, 11, 0.95), 0 0 16px rgba(245, 158, 11, 0.35);
+            line-height: 1;
+            letter-spacing: 0.6px;
+            font-variant-numeric: tabular-nums;
+            display: inline-block;
+            min-width: 1ch;
+        }
+
+        #energy-count.status-value,
+        #turn-count.status-value {
+            color: var(--warning);
+            text-shadow: 0 0 6px rgba(245, 158, 11, 0.95), 0 0 16px rgba(245, 158, 11, 0.35);
+            letter-spacing: 0.6px;
+        }
+
         /* 右邊：回合數 */
         #turn-display {
             text-align: center;
