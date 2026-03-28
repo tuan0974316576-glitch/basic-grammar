@@ -2737,6 +2737,10 @@ function getAdjacentIndices(index) {
     return adjacent;
 }
 
+function isValidAiTargetIndex(index) {
+    return Number.isInteger(index) && index >= 0 && index < GRID_SIZE * GRID_SIZE;
+}
+
 function evaluateAiMissileAnchor(topLeftIndex) {
     const indices = getExplosionAreaIndices(topLeftIndex, 2);
     if (indices.length !== 4) return null;
@@ -2975,11 +2979,11 @@ function aiFire() {
     
     // 如果 Stack 空了 (即係追擊完畢或未打中過)，或者取出的目標原來已經打過
     // 就變回「隨機亂打」
-    if (t === undefined || enemyShots.includes(t)) {
+    if (!isValidAiTargetIndex(t) || enemyShots.includes(t)) {
         t = getBestAiTargetFromRadarIntel();
     }
 
-    if (t === undefined || enemyShots.includes(t)) {
+    if (!isValidAiTargetIndex(t) || enemyShots.includes(t)) {
         const avoidCells = getAiAvoidCells();
         const preferredTargets = [];
         const fallbackTargets = [];
@@ -2991,7 +2995,24 @@ function aiFire() {
         }
 
         const pool = preferredTargets.length > 0 ? preferredTargets : fallbackTargets;
-        t = pool[Math.floor(Math.random() * pool.length)];
+        if (pool.length > 0) {
+            t = pool[Math.floor(Math.random() * pool.length)];
+        }
+    }
+
+    if (!isValidAiTargetIndex(t) || enemyShots.includes(t)) {
+        const remainingTargets = [];
+        for (let i = 0; i < GRID_SIZE * GRID_SIZE; i++) {
+            if (!enemyShots.includes(i)) remainingTargets.push(i);
+        }
+
+        if (remainingTargets.length === 0) {
+            document.getElementById('warning-overlay').style.display = 'none';
+            setGameTimeout(startPlayerTurn, 300);
+            return;
+        }
+
+        t = remainingTargets[Math.floor(Math.random() * remainingTargets.length)];
     }
 
     enemyShots.push(t);
