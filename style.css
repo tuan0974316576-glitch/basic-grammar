@@ -1011,13 +1011,13 @@ body {
         }
 
         #enemy-board.aurelians-theme .indicator-cell {
-            background-color: #2dd4bf;
-            box-shadow: 0 0 5px rgba(45, 212, 191, 0.9);
+            background-color: rgba(250, 227, 130, 0.95);
+            box-shadow: 0 0 5px rgba(250, 227, 130, 0.9);
         }
 
         #enemy-board.aurelians-theme .indicator-cell.cell-destroyed {
             background-color: transparent;
-            border: 1px solid rgba(45, 212, 191, 0.9);
+            border: 1px solid rgba(250, 227, 130, 0.9);
             box-shadow: none;
         }
 
@@ -3021,6 +3021,12 @@ body {
 #instruction-container.aurelians .instr-desc {
     color: rgba(255, 255, 255, 0.92);
     text-shadow: none;
+}
+
+#enemy-board.aurelians-theme #energy-count,
+#enemy-board.aurelians-theme #turn-count {
+    color: rgba(250, 227, 130, 0.96);
+    text-shadow: 0 0 6px rgba(250, 227, 130, 0.95), 0 0 16px rgba(250, 227, 130, 0.35);
 }
 
 /* =========================================
