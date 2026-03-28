@@ -1616,7 +1616,10 @@ function switchScene(sceneName) {
         if (sceneName === 'PLAYER') {
             document.getElementById('enemy-board').classList.add('active');
             document.getElementById('game-status').innerHTML = `PHASE: <span style="color:var(--success)">YOUR TURN</span>`;
-            document.getElementById('control-panel').style.borderColor = "var(--success)";
+            document.getElementById('control-panel').style.borderColor = selectedRace === 'AURELIANS' ? "#2dd4bf" : "var(--success)";
+            document.getElementById('control-panel').style.boxShadow = selectedRace === 'AURELIANS'
+                ? "0 0 15px rgba(45, 212, 191, 0.3)"
+                : "0 0 15px rgba(14, 165, 233, 0.3)";
             // 顯示 instruction container
             if (instrContainer) {
                 instrContainer.style.visibility = 'visible';
@@ -1624,7 +1627,7 @@ function switchScene(sceneName) {
                 instrContainer.classList.remove('play-expand');
                 void instrContainer.offsetWidth;
                 instrContainer.classList.add('play-expand');
-                // Aurelians 用金色
+                // Aurelians 用主題色
                 if (selectedRace === 'AURELIANS') {
                     instrContainer.classList.add('aurelians');
                 } else {
@@ -6066,11 +6069,17 @@ function updateBattleRaceUiTheme() {
     const isAurelians = selectedRace === 'AURELIANS';
     const hudSkills = document.getElementById('hud-skills');
     const enemyBoard = document.getElementById('enemy-board');
+    const playerBoard = document.getElementById('player-board');
+    const playerBoardLabel = playerBoard ? playerBoard.querySelector('.board-label') : null;
     const energyIcon = document.querySelector('.skill-energy-icon');
     const visuals = isAurelians ? AURELIANS_SKILL_INFO : SKILL_INFO;
 
     if (hudSkills) hudSkills.classList.toggle('aurelians-theme', isAurelians);
     if (enemyBoard) enemyBoard.classList.toggle('aurelians-theme', isAurelians);
+    if (playerBoardLabel) {
+        playerBoardLabel.style.color = isAurelians ? '#2dd4bf' : 'var(--success)';
+        playerBoardLabel.style.textShadow = isAurelians ? '0 0 10px rgba(45, 212, 191, 0.8)' : '0 0 10px currentColor';
+    }
     if (energyIcon) energyIcon.src = isAurelians ? 'aurelians_energy.png' : 'energy.png';
 
     document.querySelectorAll('.skill-diamond').forEach(diamond => {

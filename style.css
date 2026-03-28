@@ -1010,12 +1010,12 @@ body {
             opacity: 0.4; 
         }
 
-        #enemy-board.aurelians-theme .indicator-cell {
+        #enemy-board.aurelians-theme .indicator-cell:not(.cell-empty) {
             background-color: rgba(250, 227, 130, 0.95);
             box-shadow: 0 0 5px rgba(250, 227, 130, 0.9);
         }
 
-        #enemy-board.aurelians-theme .indicator-cell.cell-destroyed {
+        #enemy-board.aurelians-theme .indicator-cell.cell-destroyed:not(.cell-empty) {
             background-color: transparent;
             border: 1px solid rgba(250, 227, 130, 0.9);
             box-shadow: none;
