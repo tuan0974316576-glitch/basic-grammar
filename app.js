@@ -3457,7 +3457,13 @@ function triggerAnimation(cell, type) {
             d.classList.add('anim-blue');
         }
     }
-    if (type === 'orange') d.classList.add('anim-orange');
+    if (type === 'orange') {
+        if (selectedRace === 'AURELIANS') {
+            d.classList.add('anim-teal');
+        } else {
+            d.classList.add('anim-orange');
+        }
+    }
     
     // ★ 關鍵修改 1：將動畫加到 Board (父層)，而不是 Cell (子層) ★
     // 這樣動畫就可以跟戰艦 (ship-overlay) 在同一個層級競爭
@@ -5049,6 +5055,7 @@ function confirmRaceSelection(race) {
     selectedRace = race;
     console.log("Race Selected:", race);
     playSound('deploy-sfx');
+    updateBattleRaceUiTheme();
 
     // ★★★ 重新載入對應種族的戰艦配置 ★★★
     FLEET = getFleetConfig(race);
@@ -6039,6 +6046,42 @@ const SKILL_INFO = {
     nuke:      { name: 'NUKE',    desc: 'Launch a nuclear missile at a 4x4 area of your choice', icon: 'nuclear_bomb.png' }
 };
 
+const AURELIANS_SKILL_INFO = {
+    radar:     { name: 'AEGIS',    desc: 'SELECT A SHIELDED 4X4 ZONE', icon: 'aurelians_shield.png', title: 'Aegis (4⚡)' },
+    explosion: { name: 'TELEPORT', desc: 'SELECT A TELEPORT ZONE', icon: 'aurelians_teleport.png', title: 'Teleport (6⚡)' },
+    nuke:      { name: 'JUDGMENT', desc: 'SELECT A 4X4 JUDGMENT ZONE', icon: 'aurelians_judgment.png', title: 'Judgment (19⚡)' }
+};
+
+function getSkillInfo(skill) {
+    if (selectedRace === 'AURELIANS') {
+        return AURELIANS_SKILL_INFO[skill] || SKILL_INFO[skill];
+    }
+    return SKILL_INFO[skill];
+}
+
+function updateBattleRaceUiTheme() {
+    const isAurelians = selectedRace === 'AURELIANS';
+    const hudSkills = document.getElementById('hud-skills');
+    const enemyBoard = document.getElementById('enemy-board');
+    const energyIcon = document.querySelector('.skill-energy-icon');
+    const visuals = isAurelians ? AURELIANS_SKILL_INFO : SKILL_INFO;
+
+    if (hudSkills) hudSkills.classList.toggle('aurelians-theme', isAurelians);
+    if (enemyBoard) enemyBoard.classList.toggle('aurelians-theme', isAurelians);
+    if (energyIcon) energyIcon.src = isAurelians ? 'aurelians_energy.png' : 'energy.png';
+
+    document.querySelectorAll('.skill-diamond').forEach(diamond => {
+        const skill = diamond.dataset.skill;
+        const info = visuals[skill];
+        const icon = diamond.querySelector('.skill-icon');
+        if (!info || !icon) return;
+
+        icon.src = info.icon;
+        icon.alt = info.name;
+        diamond.title = info.title || `${info.name}`;
+    });
+}
+
 function setInstructionPanel(name, desc, icon) {
     const instrIcon = document.getElementById('instruction-icon');
     const instrText = document.getElementById('instruction-text');
@@ -6990,7 +7033,7 @@ function onSkillClick(e) {
     if (confirmBtns) confirmBtns.style.display = 'flex';
 
     // 更新 instruction panel
-    const info = SKILL_INFO[skill];
+    const info = getSkillInfo(skill);
     if (info) {
         setInstructionPanel(info.name, info.desc, info.icon);
     }
@@ -7001,21 +7044,24 @@ function onSkillClick(e) {
         clearMissilePreview();
         setRadarEligibleCells(true);
         setExplosionEligibleCells(false);
-        setInstructionPanel('RADAR', 'SELECT A MISSED CELL TO SCAN', 'radar.png');
+        const radarInfo = getSkillInfo('radar');
+        setInstructionPanel(radarInfo.name, 'SELECT A MISSED CELL TO SCAN', radarInfo.icon);
     } else if (skill === 'explosion') {
         missileLockedIndex = null;
         radarLockedIndex = null;
         clearRadarPreview();
         setRadarEligibleCells(false);
         setExplosionEligibleCells(true);
-        setInstructionPanel('MISSILE', 'SELECT A 2X2 TARGET AREA', 'explosion.png');
+        const explosionInfo = getSkillInfo('explosion');
+        setInstructionPanel(explosionInfo.name, 'SELECT A 2X2 TARGET AREA', explosionInfo.icon);
     } else if (skill === 'nuke') {
         missileLockedIndex = null;
         radarLockedIndex = null;
         clearRadarPreview();
         setRadarEligibleCells(false);
         setExplosionEligibleCells(true);
-        setInstructionPanel('NUKE', 'SELECT A 4X4 TARGET AREA', 'nuclear_bomb.png');
+        const nukeInfo = getSkillInfo('nuke');
+        setInstructionPanel(nukeInfo.name, 'SELECT A 4X4 TARGET AREA', nukeInfo.icon);
     } else {
         clearRadarPreview();
         clearMissilePreview();
