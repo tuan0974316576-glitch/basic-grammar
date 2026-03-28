@@ -1757,6 +1757,9 @@ function runTargetLockAnimation(index, onComplete) {
 
     const overlay = document.createElement('div');
     overlay.className = 'target-overlay';
+    if (selectedRace === 'AURELIANS') {
+        overlay.classList.add('aurelians-theme');
+    }
     grid.appendChild(overlay);
 
     const lineH = document.createElement('div');

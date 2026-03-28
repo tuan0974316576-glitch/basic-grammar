@@ -3011,8 +3011,16 @@ body {
 
 #instruction-container.aurelians .instr-name,
 #instruction-container.aurelians .instr-desc {
-    color: rgba(250, 227, 130, 0.92);
     text-shadow: 0 0 6px rgba(250, 227, 130, 0.25);
+}
+
+#instruction-container.aurelians .instr-name {
+    color: rgba(250, 227, 130, 0.92);
+}
+
+#instruction-container.aurelians .instr-desc {
+    color: rgba(255, 255, 255, 0.92);
+    text-shadow: none;
 }
 
 /* =========================================
@@ -4134,6 +4142,29 @@ body {
         rgba(245, 158, 11, 0.05);
         
     /* 調整刻度線的大小，只顯示在中間部分，唔好畫滿成個圓 */
+    background-size: 100% 100%, 10px 100%, 100% 10px, 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.target-overlay.aurelians-theme .aim-line-h {
+    background: linear-gradient(90deg, transparent, #2dd4bf, transparent);
+    box-shadow: 0 0 8px #2dd4bf;
+}
+
+.target-overlay.aurelians-theme .aim-line-v {
+    background: linear-gradient(180deg, transparent, #2dd4bf, transparent);
+    box-shadow: 0 0 8px #2dd4bf;
+}
+
+.target-overlay.aurelians-theme .aim-reticle {
+    border-color: #2dd4bf;
+    box-shadow: 0 0 15px #2dd4bf, inset 0 0 20px rgba(45, 212, 191, 0.18);
+    background:
+        radial-gradient(circle, #2dd4bf 2px, transparent 2.5px),
+        linear-gradient(to right, transparent 49%, #2dd4bf 50%, transparent 51%),
+        linear-gradient(to bottom, transparent 49%, #2dd4bf 50%, transparent 51%),
+        rgba(45, 212, 191, 0.06);
     background-size: 100% 100%, 10px 100%, 100% 10px, 100% 100%;
     background-repeat: no-repeat;
     background-position: center;
