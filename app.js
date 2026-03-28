@@ -1644,7 +1644,10 @@ function switchScene(sceneName) {
         } else {
             document.getElementById('player-board').classList.add('active');
             document.getElementById('game-status').innerHTML = `PHASE: <span style="color:var(--danger)">WARNING! ENEMY</span>`;
-            document.getElementById('control-panel').style.borderColor = "var(--danger)";
+            document.getElementById('control-panel').style.borderColor = selectedRace === 'AURELIANS' ? "#2dd4bf" : "var(--danger)";
+            document.getElementById('control-panel').style.boxShadow = selectedRace === 'AURELIANS'
+                ? "0 0 15px rgba(45, 212, 191, 0.3)"
+                : "0 0 15px rgba(14, 165, 233, 0.3)";
             // ★★★ 敵方回合：技能不可用 ★★★
             const skillGroup = document.getElementById('hud-skills');
             if (skillGroup) skillGroup.classList.add('skills-inactive');
@@ -2160,7 +2163,10 @@ function handlePlayerTimeout() {
 
     const status = document.getElementById('game-status');
     status.innerHTML = `PHASE: <span style="color:var(--danger)">TIMEOUT - TURN LOST</span>`;
-    document.getElementById('control-panel').style.borderColor = "var(--danger)";
+    document.getElementById('control-panel').style.borderColor = selectedRace === 'AURELIANS' ? "#2dd4bf" : "var(--danger)";
+    document.getElementById('control-panel').style.boxShadow = selectedRace === 'AURELIANS'
+        ? "0 0 15px rgba(45, 212, 191, 0.3)"
+        : "0 0 15px rgba(14, 165, 233, 0.3)";
     
     if (typeof battleLog !== 'undefined' && typeof currentVocab !== 'undefined') {
         const lastLog = battleLog[battleLog.length - 1];
@@ -4029,7 +4035,10 @@ function resetGame() {
     document.getElementById('rotate-btn').style.display = 'inline-block';
     
     document.getElementById('game-status').innerHTML = `PHASE: <span style="color: var(--warning);">DEPLOYMENT</span>`;
-    document.getElementById('control-panel').style.borderColor = "var(--primary)";
+    document.getElementById('control-panel').style.borderColor = selectedRace === 'AURELIANS' ? "#2dd4bf" : "var(--primary)";
+    document.getElementById('control-panel').style.boxShadow = selectedRace === 'AURELIANS'
+        ? "0 0 15px rgba(45, 212, 191, 0.3)"
+        : "0 0 15px rgba(14, 165, 233, 0.3)";
     
     const sBtn = document.getElementById('start-btn');
     sBtn.style.display = 'none'; 
@@ -6071,6 +6080,7 @@ function updateBattleRaceUiTheme() {
     const enemyBoard = document.getElementById('enemy-board');
     const playerBoard = document.getElementById('player-board');
     const playerBoardLabel = playerBoard ? playerBoard.querySelector('.board-label') : null;
+    const controlPanel = document.getElementById('control-panel');
     const energyIcon = document.querySelector('.skill-energy-icon');
     const visuals = isAurelians ? AURELIANS_SKILL_INFO : SKILL_INFO;
 
@@ -6079,6 +6089,10 @@ function updateBattleRaceUiTheme() {
     if (playerBoardLabel) {
         playerBoardLabel.style.color = isAurelians ? '#2dd4bf' : 'var(--success)';
         playerBoardLabel.style.textShadow = isAurelians ? '0 0 10px rgba(45, 212, 191, 0.8)' : '0 0 10px currentColor';
+    }
+    if (controlPanel && isAurelians) {
+        controlPanel.style.borderColor = '#2dd4bf';
+        controlPanel.style.boxShadow = '0 0 15px rgba(45, 212, 191, 0.3)';
     }
     if (energyIcon) energyIcon.src = isAurelians ? 'aurelians_energy.png' : 'energy.png';
 
