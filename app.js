@@ -3983,6 +3983,7 @@ function resetGame() {
     aiRadarScannedCenters.clear();
     aiRadarIntel = [];
     radarScannedCells.clear();
+    lastRadarResultShownAt = 0;
     clearRadarScannedOverlays();
     clearActiveSkillState();
     deployIndex = 0;
@@ -4030,7 +4031,7 @@ function resetGame() {
     showMainMenu();
 }
     
-function handleTurnTimeout() {
+function handleTurnTimeout(skipRecoveryDelay = false) {
     // ★★★ 關鍵修正：一超時即刻鎖死狀態，防止玩家在轉場期間偷雞再打 ★★★
     currentPhase = 'TIMEOUT_LOCKED'; 
 
@@ -4052,13 +4053,13 @@ function handleTurnTimeout() {
             currentPhase = 'ENEMY_TURN'; // 轉場完成，正式交更
             document.getElementById('game-status').innerHTML = "OPPONENT'S TURN";
             switchScene('ENEMY');
-        }, 1500);
+        }, skipRecoveryDelay ? 0 : 1500);
     } else {
         // AI 模式
         setGameTimeout(() => {
             // startEnemyTurn 裡面會將 phase 設定為 ENEMY_TURN
             startEnemyTurn(); 
-        }, 1500);
+        }, skipRecoveryDelay ? 0 : 1500);
     }
 }
 function startDeploymentTimer() {
@@ -6012,8 +6013,10 @@ let radarPreviewIndex = null;
 let radarLockedIndex = null;
 let missilePreviewIndex = null;
 let missileLockedIndex = null;
+let lastRadarResultShownAt = 0;
 const radarScannedCells = new Set();
 const RADAR_SCAN_DURATION = 2200;
+const RADAR_RESULT_DISPLAY_DURATION = 1500;
 const MISSILE_EXPLOSION_DURATION = 720;
 const MISSILE_LOCK_ON_DURATION = 500;
 const NUKE_WHITEOUT_HOLD = 1000;
@@ -6095,7 +6098,9 @@ function updateRadarCellDisplay(centerIndex) {
     const count = countRadarTargets(centerIndex);
     cell.classList.add('radar-scanned');
     cell.dataset.radarCount = String(count);
-    cell.innerHTML = `<span class="radar-count-static">${count}</span>`;
+    if (!cell.querySelector('.radar-count-static')) {
+        cell.innerHTML = '<img src="close.png" class="miss-icon">';
+    }
 }
 
 function refreshRadarScanDisplays() {
@@ -6787,15 +6792,20 @@ function lockRadarTarget(index) {
 
 function showRadarResult(centerIndex) {
     const cell = getEnemyCell(centerIndex);
-    if (!cell) return;
+    if (!cell || !cell.classList.contains('miss')) return;
 
-    updateRadarCellDisplay(centerIndex);
-    const count = cell.dataset.radarCount || '0';
-    const floating = document.createElement('span');
-    floating.className = 'radar-count-floating';
-    floating.textContent = count;
-    cell.appendChild(floating);
-    setTimeout(() => floating.remove(), 1500);
+    const count = String(countRadarTargets(centerIndex));
+    cell.classList.add('radar-scanned');
+    cell.dataset.radarCount = count;
+    cell.innerHTML = `<span class="radar-count-static">${count}</span>`;
+    lastRadarResultShownAt = Date.now();
+
+    setTimeout(() => {
+        const latestCell = getEnemyCell(centerIndex);
+        if (!latestCell || !latestCell.classList.contains('miss')) return;
+        latestCell.classList.add('radar-scanned');
+        latestCell.innerHTML = '<img src="close.png" class="miss-icon">';
+    }, RADAR_RESULT_DISPLAY_DURATION);
 }
 
 function executeRadarScan(centerIndex) {
@@ -6854,7 +6864,12 @@ function executeRadarScan(centerIndex) {
         showRadarResult(centerIndex);
         finishRadarMode();
         if (currentPhase === 'PLAYER_TURN') {
-            startTurnSelectionTimer(false);
+            if (turnTimeLeft <= 0.15) {
+                stopTurnSelectionTimer();
+                setGameTimeout(() => handleTurnTimeout(true), RADAR_RESULT_DISPLAY_DURATION);
+            } else {
+                startTurnSelectionTimer(false);
+            }
         }
     }, RADAR_SCAN_DURATION);
 }
