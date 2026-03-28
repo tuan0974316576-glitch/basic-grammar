@@ -2747,9 +2747,9 @@ function isValidAiTargetIndex(index) {
 }
 
 const AI_SKILL_COSTS = {
-    radar: 3,
-    explosion: 5,
-    nuke: 15
+    radar: 4,
+    explosion: 6,
+    nuke: 19
 };
 
 function aiCanUseBattleSkills() {
