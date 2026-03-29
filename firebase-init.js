@@ -57,7 +57,7 @@ console.log("Firebase Modules Loaded Successfully");
                 }
             }).then(() => {
                 console.log('[Session] Active session updated');
-            }).catch(err => {
+            }).catch(async (err) => {
                 console.error('[Session] Failed to update session:', err);
             });
 
