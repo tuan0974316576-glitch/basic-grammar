@@ -204,7 +204,7 @@ console.log("Firebase Modules Loaded Successfully");
                         if(reg) reg.style.display = 'flex';
                     }
                 }
-            }).catch(err => {
+            }).catch(async (err) => {
                 console.error('[Auth] Firebase get() failed:', err);
                 // ★★★ 安全網：如果 Firebase 請求失敗，都要隱藏 overlay ★★★
                 if(overlay) overlay.style.display = 'none';
