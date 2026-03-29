@@ -468,8 +468,9 @@ window.startExperience = function() {
         gameWrapper.style.display = 'block';
 
         const cachedName = localStorage.getItem('battleship_username');
-        if (cachedName && window.isFirebaseAuthenticated) {
-            console.log('[startExperience] Existing user auto-login, keeping CONNECTING panel');
+        const cachedUid = localStorage.getItem('battleship_auth_uid');
+        if ((cachedName && cachedUid) || (cachedName && window.isFirebaseAuthenticated)) {
+            console.log('[startExperience] Cached auth found, keeping CONNECTING panel until Firebase resolves');
             switchHudPanel('connecting-panel');
         } else {
             console.log('[startExperience] New user or not authenticated, showing login panel');
