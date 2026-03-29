@@ -123,7 +123,7 @@ console.log("Firebase Modules Loaded Successfully");
             // 背景 fetch Firebase 數據 (更新名稱 / 處理新用戶)
             const userRef = ref(db, 'users/' + u.uid);
             console.log('[Auth] Fetching user data from Firebase...');
-            get(userRef).then((snapshot) => {
+            get(userRef).then(async (snapshot) => {
                 console.log('[Auth] Firebase get() completed, exists:', snapshot.exists());
                 if (snapshot.exists() && snapshot.val().displayName) {
                     // 舊用戶 — 更新名稱 (可能 Firebase 上改過名)
@@ -157,7 +157,7 @@ console.log("Firebase Modules Loaded Successfully");
                     }
 
                     // ★★★ 重要：即使用咗 cached name，都要再 call updateHUD 更新 XP 顯示 ★★★
-                    if(typeof updateHUD === 'function') updateHUD(realName);
+                    if(typeof updateHUD === 'function') await updateHUD(realName);
 
                     // ★★★ 更新 Level 按鈕進度顯示 ★★★
                     if(typeof updateLevelButtonsProgress === 'function') updateLevelButtonsProgress();
@@ -186,11 +186,11 @@ console.log("Firebase Modules Loaded Successfully");
                         window.userMastery = { reading: {}, listening: {}, speaking: {} };
                         window.userSupplies = 0;
                         window.unlockedRaces = ['VANGUARDS'];
-                        update(ref(db, 'users/' + u.uid), { displayName: autoName, lastLogin: Date.now(), xp: 0, supplies: 0, unlockedRaces: ['VANGUARDS'] }).then(() => {
+                        update(ref(db, 'users/' + u.uid), { displayName: autoName, lastLogin: Date.now(), xp: 0, supplies: 0, unlockedRaces: ['VANGUARDS'] }).then(async () => {
                             console.log('[Auth] Guest account created successfully');
                             localStorage.setItem('battleship_username', autoName);
                             localStorage.setItem('battleship_auth_uid', u.uid);
-                            if(typeof updateHUD === 'function') updateHUD(autoName);
+                            if(typeof updateHUD === 'function') await updateHUD(autoName);
                             if(typeof showMainMenu === 'function') showMainMenu();
                             if(overlay) overlay.style.display = 'none';
                         }).catch(err => {
@@ -214,7 +214,7 @@ console.log("Firebase Modules Loaded Successfully");
                 // 只係讀取 user data 失敗，唔應該卡住喺 LOGIN PANEL
                 const cachedName = localStorage.getItem('battleship_username');
                 if (cachedName && typeof updateHUD === 'function') {
-                    updateHUD(cachedName);
+                    await updateHUD(cachedName);
                 }
                 if(typeof showMainMenu === 'function') {
                     console.log('[Auth] Showing main menu despite Firebase error (user is authenticated)');

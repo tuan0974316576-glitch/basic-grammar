@@ -177,8 +177,7 @@ window.submitRegistration = function() {
         const modal = document.getElementById('registration-modal');
         if (modal) modal.style.display = 'none';
 
-        updateHUD(name);
-        showMainMenu();
+        revealMainMenuWhenHudReady(name);
     }).catch(error => {
         console.error(error);
         if (errorMsg) errorMsg.innerText = 'DB ERROR: ' + error.message;
@@ -186,7 +185,7 @@ window.submitRegistration = function() {
     });
 };
 
-function updateHUD(name) {
+async function updateHUD(name) {
     const hudName = document.getElementById('hud-player-name');
     if (hudName) hudName.innerText = name;
 
@@ -195,10 +194,17 @@ function updateHUD(name) {
         const rank = getRankForXP(xp);
         const rankEl = document.getElementById('hud-rank-title');
         if (rankEl) {
-            checkGlobalRankAndUpdateIcon(rankEl, rank);
+            await checkGlobalRankAndUpdateIcon(rankEl, rank);
         }
         updateExpBar(xp, rank);
     }
+}
+
+async function revealMainMenuWhenHudReady(name) {
+    if (typeof updateHUD === 'function') {
+        await updateHUD(name);
+    }
+    showMainMenu();
 }
 
 async function checkGlobalRankAndUpdateIcon(rankEl, rank) {
