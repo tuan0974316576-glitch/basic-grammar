@@ -1465,8 +1465,12 @@ function getShipIndices(idx, conf, v) {
             img.id = `board-ship-${actualIndex}`;
         }
         
-        const pW = 35 * conf.width + 2 * (conf.width - 1);
-        const pH = 35 * conf.height + 2 * (conf.height - 1);
+        const cellWidth = startCell.offsetWidth;
+        const cellHeight = startCell.offsetHeight;
+        const boardStyle = window.getComputedStyle(board);
+        const gridGap = parseFloat(boardStyle.gap || boardStyle.columnGap || '0') || 0;
+        const pW = (cellWidth * conf.width) + (gridGap * (conf.width - 1));
+        const pH = (cellHeight * conf.height) + (gridGap * (conf.height - 1));
         
         img.style.width = pW + 'px'; 
         img.style.height = pH + 'px';
