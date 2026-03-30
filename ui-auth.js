@@ -133,6 +133,45 @@ window.changeName = function() {
 
 let currentUserUid = null;
 
+function isRegistrationModalVisible() {
+    const modal = document.getElementById('registration-modal');
+    return !!(modal && modal.style.display !== 'none');
+}
+
+function setRegistrationValue(nextValue) {
+    const input = document.getElementById('reg-input');
+    if (!input) return;
+    input.value = nextValue.toUpperCase().slice(0, 12);
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+}
+
+function handleRegistrationKeyInput(keyValue) {
+    if (!isRegistrationModalVisible()) return;
+
+    const input = document.getElementById('reg-input');
+    const errorMsg = document.getElementById('reg-error');
+    if (!input) return;
+
+    if (errorMsg) errorMsg.innerText = '';
+
+    if (keyValue === 'BACKSPACE') {
+        setRegistrationValue(input.value.slice(0, -1));
+        if (typeof playSound === 'function') playSound('delete-sfx');
+        return;
+    }
+
+    if (keyValue === 'ENTER') {
+        submitRegistration();
+        return;
+    }
+
+    if (!/^[A-Z0-9]$/.test(keyValue)) return;
+    if (input.value.length >= 12) return;
+
+    setRegistrationValue(input.value + keyValue);
+    if (typeof playSound === 'function') playSound('enter-sfx');
+}
+
 window.submitRegistration = function() {
     const input = document.getElementById('reg-input');
     const errorMsg = document.getElementById('reg-error');
@@ -184,6 +223,70 @@ window.submitRegistration = function() {
         if (typeof playSound === 'function') playSound('wrong-sfx');
     });
 };
+
+document.addEventListener('DOMContentLoaded', function() {
+    const regInput = document.getElementById('reg-input');
+    const regKeyboard = document.getElementById('registration-keyboard');
+
+    if (regInput) {
+        regInput.addEventListener('focus', function() {
+            regInput.blur();
+        });
+
+        regInput.addEventListener('keydown', function(e) {
+            e.preventDefault();
+        });
+    }
+
+    if (regKeyboard) {
+        regKeyboard.addEventListener('click', function(e) {
+            const key = e.target.closest('[data-reg-key]');
+            if (!key) return;
+            e.preventDefault();
+            e.stopPropagation();
+            handleRegistrationKeyInput(key.getAttribute('data-reg-key'));
+        });
+
+        regKeyboard.addEventListener('touchstart', function(e) {
+            const key = e.target.closest('.kb-key');
+            if (!key) return;
+            key.classList.add('kb-active');
+        }, { passive: true });
+
+        regKeyboard.addEventListener('touchend', function(e) {
+            const key = e.target.closest('.kb-key');
+            if (!key) return;
+            setTimeout(() => key.classList.remove('kb-active'), 100);
+        }, { passive: true });
+
+        regKeyboard.addEventListener('touchcancel', function(e) {
+            const key = e.target.closest('.kb-key');
+            if (!key) return;
+            key.classList.remove('kb-active');
+        }, { passive: true });
+    }
+
+    document.addEventListener('keydown', function(e) {
+        if (!isRegistrationModalVisible()) return;
+
+        if (/^[a-zA-Z0-9]$/.test(e.key)) {
+            e.preventDefault();
+            handleRegistrationKeyInput(e.key.toUpperCase());
+            return;
+        }
+
+        if (e.key === 'Backspace') {
+            e.preventDefault();
+            handleRegistrationKeyInput('BACKSPACE');
+            return;
+        }
+
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            handleRegistrationKeyInput('ENTER');
+        }
+    });
+});
 
 async function updateHUD(name) {
     const hudName = document.getElementById('hud-player-name');

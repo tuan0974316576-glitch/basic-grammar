@@ -643,14 +643,12 @@
 <script src="ui-screens.js"></script>
 <script src="ui-auth.js"></script>
 <script src="ui-audio.js"></script>
-<div id="registration-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 9999; flex-direction: column; align-items: center; justify-content: center;">
+<div id="registration-modal" class="registration-modal" style="display: none;">
     
-    <div style="position: absolute; width: 100%; height: 100%; background: repeating-linear-gradient(0deg, transparent 0px, transparent 2px, rgba(0, 240, 255, 0.03) 3px); pointer-events: none; animation: scanlineMove 10s linear infinite;"></div>
+    <div class="registration-scanlines"></div>
 
-    <div class="cyber-modal-box" style="z-index: 10; text-align: center; padding: 40px; max-width: 500px; width: 90%; position: relative; overflow: hidden; border: 1px solid #00f0ff; box-shadow: 0 0 30px rgba(0, 240, 255, 0.2); background: rgba(10, 20, 35, 0.95); backdrop-filter: blur(10px);">
+    <div class="cyber-modal-box registration-modal-box">
         
-        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: #00f0ff; box-shadow: 0 0 10px #00f0ff;"></div>
-
         <div style="font-family: 'Black Ops One'; font-size: 32px; color: #00f0ff; margin-bottom: 10px; text-shadow: 0 0 15px #00f0ff; letter-spacing: 2px;">
             IDENTITY UNVERIFIED
         </div>
@@ -658,24 +656,8 @@
             >> NEW COMMANDER DETECTED <<
         </div>
 
-        <div style="position: relative; width: 100%; margin-bottom: 30px;">
-            <input type="text" id="reg-input" maxlength="12" placeholder="ENTER CALLSIGN" style="
-                background: rgba(0, 10, 20, 0.6); 
-                border: 1px solid #0077b6; 
-                color: #fff; 
-                font-family: 'Black Ops One'; 
-                font-size: 24px; 
-                text-align: center; 
-                padding: 12px; 
-                width: 100%; 
-                box-sizing: border-box; 
-                outline: none; 
-                text-transform: uppercase;
-                letter-spacing: 3px;
-                transition: 0.3s all;
-            " 
-            onfocus="this.style.borderColor='#00f0ff'; this.style.boxShadow='0 0 20px rgba(0, 240, 255, 0.4)';" 
-            onblur="this.style.borderColor='#0077b6'; this.style.boxShadow='none';">
+        <div class="registration-input-wrap">
+            <input type="text" id="reg-input" maxlength="12" placeholder="ENTER CALLSIGN" readonly inputmode="none" autocomplete="off" autocapitalize="characters" spellcheck="false" class="registration-input">
         </div>
 
         <button onclick="submitRegistration()" class="btn" style="
@@ -700,10 +682,63 @@
             CONFIRM IDENTITY
         </button>
 
-        <div id="reg-error" style="color: #ff4444; font-size: 12px; margin-top: 20px; height: 20px; font-family: 'Orbitron';"></div>
+        <div id="reg-error" class="registration-error"></div>
+
+        <div id="registration-keyboard" class="registration-keyboard">
+            <div class="reg-kb-row reg-kb-row-digits">
+                <button class="kb-key" data-reg-key="1">1</button>
+                <button class="kb-key" data-reg-key="2">2</button>
+                <button class="kb-key" data-reg-key="3">3</button>
+                <button class="kb-key" data-reg-key="4">4</button>
+                <button class="kb-key" data-reg-key="5">5</button>
+                <button class="kb-key" data-reg-key="6">6</button>
+                <button class="kb-key" data-reg-key="7">7</button>
+                <button class="kb-key" data-reg-key="8">8</button>
+                <button class="kb-key" data-reg-key="9">9</button>
+                <button class="kb-key" data-reg-key="0">0</button>
+            </div>
+            <div class="reg-kb-row">
+                <button class="kb-key" data-reg-key="Q">Q</button>
+                <button class="kb-key" data-reg-key="W">W</button>
+                <button class="kb-key" data-reg-key="E">E</button>
+                <button class="kb-key" data-reg-key="R">R</button>
+                <button class="kb-key" data-reg-key="T">T</button>
+                <button class="kb-key" data-reg-key="Y">Y</button>
+                <button class="kb-key" data-reg-key="U">U</button>
+                <button class="kb-key" data-reg-key="I">I</button>
+                <button class="kb-key" data-reg-key="O">O</button>
+                <button class="kb-key" data-reg-key="P">P</button>
+            </div>
+            <div class="reg-kb-row">
+                <button class="kb-key" data-reg-key="A">A</button>
+                <button class="kb-key" data-reg-key="S">S</button>
+                <button class="kb-key" data-reg-key="D">D</button>
+                <button class="kb-key" data-reg-key="F">F</button>
+                <button class="kb-key" data-reg-key="G">G</button>
+                <button class="kb-key" data-reg-key="H">H</button>
+                <button class="kb-key" data-reg-key="J">J</button>
+                <button class="kb-key" data-reg-key="K">K</button>
+                <button class="kb-key" data-reg-key="L">L</button>
+            </div>
+            <div class="reg-kb-row reg-kb-row-bottom">
+                <button class="kb-key" data-reg-key="Z">Z</button>
+                <button class="kb-key" data-reg-key="X">X</button>
+                <button class="kb-key" data-reg-key="C">C</button>
+                <button class="kb-key" data-reg-key="V">V</button>
+                <button class="kb-key" data-reg-key="B">B</button>
+                <button class="kb-key" data-reg-key="N">N</button>
+                <button class="kb-key" data-reg-key="M">M</button>
+                <button class="kb-key kb-backspace" data-reg-key="BACKSPACE">⌫</button>
+            </div>
+            <div class="reg-kb-row reg-kb-row-action">
+                <button id="registration-confirm-btn" onclick="submitRegistration()" class="kb-key kb-enter reg-kb-confirm">CONFIRM IDENTITY</button>
+            </div>
+        </div>
         
         <div style="position: absolute; bottom: 0; right: 0; width: 15px; height: 15px; border-bottom: 2px solid #00f0ff; border-right: 2px solid #00f0ff;"></div>
         <div style="position: absolute; bottom: 0; left: 0; width: 15px; height: 15px; border-bottom: 2px solid #00f0ff; border-left: 2px solid #00f0ff;"></div>
+        <div style="position: absolute; top: 0; right: 0; width: 15px; height: 15px; border-top: 2px solid #00f0ff; border-right: 2px solid #00f0ff;"></div>
+        <div style="position: absolute; top: 0; left: 0; width: 15px; height: 15px; border-top: 2px solid #00f0ff; border-left: 2px solid #00f0ff;"></div>
     </div>
 </div>
 <div id="settings-modal" class="tech-modal-overlay" style="display: none; z-index: 10001;">

@@ -2545,6 +2545,279 @@ body {
     background: rgb(var(--star-rgb, 255, 255, 255)); /* 星星核心顏色 */
 }
 
+.registration-modal {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 9999;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+    box-sizing: border-box;
+}
+
+.registration-scanlines {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent 0px, transparent 2px, rgba(0, 240, 255, 0.03) 3px);
+    pointer-events: none;
+    animation: scanlineMove 10s linear infinite;
+}
+
+.registration-modal-box {
+    z-index: 10;
+    text-align: center;
+    padding: 32px 20px 22px;
+    width: min(500px, calc(100vw - 32px));
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #00f0ff;
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.2);
+    background: rgba(10, 20, 35, 0.95);
+    backdrop-filter: blur(10px);
+    box-sizing: border-box;
+}
+
+.registration-input-wrap {
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.registration-input {
+    background: rgba(0, 10, 20, 0.6);
+    border: 1px solid #0077b6;
+    color: #fff;
+    font-family: 'Black Ops One';
+    font-size: 24px;
+    text-align: center;
+    padding: 12px;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    transition: 0.3s all;
+}
+
+.registration-input:focus {
+    border-color: #00f0ff;
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+}
+
+.registration-modal-box > .btn {
+    display: none;
+}
+
+.registration-error {
+    color: #ff4444;
+    font-size: 12px;
+    margin-top: 14px;
+    min-height: 18px;
+    font-family: 'Orbitron';
+}
+
+.registration-keyboard {
+    width: 100%;
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.reg-kb-row {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: nowrap;
+}
+
+.reg-kb-row .kb-key {
+    min-width: 0;
+    flex: 1 1 0;
+}
+
+.reg-kb-row:nth-child(3) {
+    padding: 0 18px;
+}
+
+.reg-kb-row-bottom {
+    padding: 0 28px;
+}
+
+.reg-kb-confirm {
+    width: 100%;
+    height: 48px;
+    font-size: 16px;
+}
+
+@media (max-width: 600px) {
+    #registration-modal {
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 16px !important;
+    }
+
+    #registration-modal .cyber-modal-box {
+        width: calc(100vw - 32px) !important;
+        max-width: none !important;
+        padding: 24px 16px 18px !important;
+        margin: 0 auto !important;
+    }
+
+    #registration-modal input#reg-input {
+        font-size: 18px !important;
+        padding: 10px !important;
+        letter-spacing: 2px !important;
+    }
+
+    #registration-keyboard {
+        gap: 8px !important;
+    }
+
+    #registration-keyboard .reg-kb-row {
+        gap: 5px !important;
+    }
+
+    #registration-keyboard .kb-key {
+        min-width: 0 !important;
+        height: 40px !important;
+        font-size: 15px !important;
+    }
+
+    #registration-keyboard .reg-kb-row:nth-child(3) {
+        padding: 0 10px !important;
+    }
+
+    #registration-keyboard .reg-kb-row-bottom {
+        padding: 0 18px !important;
+    }
+
+    #registration-confirm-btn {
+        height: 44px !important;
+        font-size: 14px !important;
+    }
+}
+
+.registration-modal {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 9999;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+    box-sizing: border-box;
+}
+
+.registration-scanlines {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent 0px, transparent 2px, rgba(0, 240, 255, 0.03) 3px);
+    pointer-events: none;
+    animation: scanlineMove 10s linear infinite;
+}
+
+.registration-modal-box {
+    z-index: 10;
+    text-align: center;
+    padding: 32px 20px 22px;
+    width: min(500px, calc(100vw - 32px));
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #00f0ff;
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.2);
+    background: rgba(10, 20, 35, 0.95);
+    backdrop-filter: blur(10px);
+    box-sizing: border-box;
+}
+
+.registration-input-wrap {
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.registration-input {
+    background: rgba(0, 10, 20, 0.6);
+    border: 1px solid #0077b6;
+    color: #fff;
+    font-family: 'Black Ops One';
+    font-size: 24px;
+    text-align: center;
+    padding: 12px;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    transition: 0.3s all;
+}
+
+.registration-input:focus {
+    border-color: #00f0ff;
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+}
+
+.registration-modal-box > .btn {
+    display: none;
+}
+
+.registration-error {
+    color: #ff4444;
+    font-size: 12px;
+    margin-top: 14px;
+    min-height: 18px;
+    font-family: 'Orbitron';
+}
+
+.registration-keyboard {
+    width: 100%;
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.reg-kb-row {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: nowrap;
+}
+
+.reg-kb-row-digits .kb-key {
+    min-width: 0;
+    flex: 1 1 0;
+}
+
+.reg-kb-row:not(.reg-kb-row-digits):not(.reg-kb-row-action) .kb-key {
+    min-width: 0;
+    flex: 1 1 0;
+}
+
+.reg-kb-row:nth-child(3) {
+    padding: 0 18px;
+}
+
+.reg-kb-row-bottom {
+    padding: 0 28px;
+}
+
+.reg-kb-confirm {
+    width: 100%;
+    height: 48px;
+    font-size: 16px;
+}
+
 /* 樣式 A: 圓點 (加強光暈，核心改細) */
 .star-dot {
     border-radius: 50%;
