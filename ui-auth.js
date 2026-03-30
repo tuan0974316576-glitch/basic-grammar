@@ -133,6 +133,36 @@ window.changeName = function() {
 
 let currentUserUid = null;
 
+function shouldUseRegistrationGameKeyboard() {
+    if (typeof window.matchMedia !== 'function') return false;
+    return window.matchMedia('(hover: none), (pointer: coarse)').matches;
+}
+
+function syncRegistrationInputMode() {
+    const regInput = document.getElementById('reg-input');
+    const regKeyboard = document.getElementById('registration-keyboard');
+    const useGameKeyboard = shouldUseRegistrationGameKeyboard();
+
+    if (regKeyboard) {
+        regKeyboard.style.display = useGameKeyboard ? 'flex' : 'none';
+    }
+
+    if (regInput) {
+        if (useGameKeyboard) {
+            regInput.setAttribute('readonly', 'readonly');
+            regInput.setAttribute('inputmode', 'none');
+            regInput.blur();
+        } else {
+            regInput.removeAttribute('readonly');
+            regInput.setAttribute('inputmode', 'text');
+
+            if (isRegistrationModalVisible()) {
+                setTimeout(() => regInput.focus(), 0);
+            }
+        }
+    }
+}
+
 function isRegistrationModalVisible() {
     const modal = document.getElementById('registration-modal');
     return !!(modal && modal.style.display !== 'none');
@@ -230,11 +260,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (regInput) {
         regInput.addEventListener('focus', function() {
-            regInput.blur();
+            if (shouldUseRegistrationGameKeyboard()) {
+                regInput.blur();
+            }
         });
 
         regInput.addEventListener('keydown', function(e) {
-            e.preventDefault();
+            if (shouldUseRegistrationGameKeyboard()) {
+                e.preventDefault();
+            }
         });
     }
 
@@ -268,17 +302,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.addEventListener('keydown', function(e) {
         if (!isRegistrationModalVisible()) return;
+        if (shouldUseRegistrationGameKeyboard()) return;
 
         if (/^[a-zA-Z0-9]$/.test(e.key)) {
-            e.preventDefault();
-            handleRegistrationKeyInput(e.key.toUpperCase());
-            return;
+            const regInput = document.getElementById('reg-input');
+            const errorMsg = document.getElementById('reg-error');
+            if (errorMsg) errorMsg.innerText = '';
+            if (regInput) {
+                regInput.value = regInput.value.toUpperCase();
+            }
         }
 
         if (e.key === 'Backspace') {
-            e.preventDefault();
-            handleRegistrationKeyInput('BACKSPACE');
-            return;
+            const errorMsg = document.getElementById('reg-error');
+            if (errorMsg) errorMsg.innerText = '';
         }
 
         if (e.key === 'Enter') {
@@ -286,6 +323,9 @@ document.addEventListener('DOMContentLoaded', function() {
             handleRegistrationKeyInput('ENTER');
         }
     });
+
+    syncRegistrationInputMode();
+    window.addEventListener('resize', syncRegistrationInputMode);
 });
 
 async function updateHUD(name) {

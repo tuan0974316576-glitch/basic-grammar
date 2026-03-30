@@ -2655,6 +2655,42 @@ body {
     font-size: 16px;
 }
 
+#registration-keyboard .kb-key {
+    background: linear-gradient(135deg, rgba(0, 240, 255, 0.16), rgba(0, 170, 220, 0.1));
+    border-color: rgba(0, 240, 255, 0.45);
+    color: #00f0ff;
+    text-shadow: 0 0 5px rgba(0, 240, 255, 0.55);
+    box-shadow: 0 2px 8px rgba(0, 240, 255, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+#registration-keyboard .kb-key:hover {
+    background: linear-gradient(135deg, rgba(0, 240, 255, 0.24), rgba(0, 170, 220, 0.14));
+    border-color: rgba(0, 240, 255, 0.7);
+    box-shadow: 0 4px 12px rgba(0, 240, 255, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+#registration-keyboard .kb-key:active,
+#registration-keyboard .kb-key.kb-active {
+    background: linear-gradient(135deg, rgba(0, 240, 255, 0.55), rgba(0, 170, 220, 0.46));
+    border-color: rgba(0, 240, 255, 1);
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0, 240, 255, 1);
+}
+
+#registration-keyboard .kb-backspace {
+    background: linear-gradient(135deg, rgba(0, 240, 255, 0.18), rgba(0, 170, 220, 0.12));
+    border-color: rgba(0, 240, 255, 0.55);
+    color: #00f0ff;
+    text-shadow: 0 0 6px rgba(0, 240, 255, 0.6);
+}
+
+#registration-confirm-btn {
+    background: linear-gradient(135deg, rgba(0, 240, 255, 0.18), rgba(0, 170, 220, 0.12));
+    border-color: rgba(0, 240, 255, 0.6);
+    color: #00f0ff;
+    text-shadow: 0 0 6px rgba(0, 240, 255, 0.6);
+}
+
 @media (max-width: 600px) {
     #registration-modal {
         align-items: center !important;

@@ -202,6 +202,7 @@ console.log("Firebase Modules Loaded Successfully");
                         if(overlay) overlay.style.display = 'none';
                         const reg = document.getElementById('registration-modal');
                         if(reg) reg.style.display = 'flex';
+                        if (typeof syncRegistrationInputMode === 'function') syncRegistrationInputMode();
                     }
                 }
             }).catch(async (err) => {
