@@ -4787,6 +4787,9 @@ body {
     box-sizing: border-box;
     padding: clamp(10px, 2.8vw, 15px) clamp(4px, 1.8vw, 10px) !important;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .kb-row {
@@ -4794,17 +4797,22 @@ body {
     justify-content: center;
     gap: clamp(3px, 1vw, 5px);
     margin-bottom: clamp(3px, 1vw, 5px);
-    width: 100%;
+    width: auto;
+    max-width: 100%;
     box-sizing: border-box;
 }
 
 /* Row 3: Z-M - left offset for trapezoid effect (Z under S) */
+.kb-row:nth-child(2) {
+    padding-inline: clamp(8px, 2.5vw, 18px);
+}
+
 .kb-row:nth-child(3) {
-    padding-left: clamp(10px, 6vw, 40px);
+    padding-inline: clamp(16px, 5vw, 30px);
 }
 
 .kb-key {
-    min-width: 0;
+    min-width: clamp(26px, 8.3vw, 40px);
     height: clamp(36px, 9vw, 45px);
     background: linear-gradient(135deg, rgba(14, 165, 233, 0.15), rgba(6, 182, 212, 0.1));
     border: 1px solid rgba(14, 165, 233, 0.4);
@@ -4827,7 +4835,7 @@ body {
 }
 
 .kb-row:not(:last-child) .kb-key {
-    flex: 1 1 0;
+    flex: 0 1 clamp(26px, 8.3vw, 40px);
 }
 
 .kb-key:active {
@@ -4855,7 +4863,8 @@ body {
 }
 
 .kb-backspace {
-    flex: 1.35 1 0;
+    flex: 0 1 clamp(42px, 11vw, 56px);
+    min-width: clamp(42px, 11vw, 56px);
     background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(220, 38, 38, 0.1));
     border-color: rgba(239, 68, 68, 0.4);
     color: #ef4444;
@@ -4877,7 +4886,8 @@ body {
 }
 
 .kb-space {
-    flex: 1 1 0;
+    flex: 1 1 auto;
+    min-width: clamp(148px, 42vw, 190px);
     background: linear-gradient(135deg, rgba(148, 163, 184, 0.15), rgba(100, 116, 139, 0.1));
     border-color: rgba(148, 163, 184, 0.4);
     color: #94a3b8;
@@ -4899,7 +4909,8 @@ body {
 }
 
 .kb-enter {
-    flex: 0.78 1 0;
+    flex: 0 1 clamp(76px, 22vw, 96px);
+    min-width: clamp(76px, 22vw, 96px);
     background: linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(22, 163, 74, 0.1));
     border-color: rgba(34, 197, 94, 0.4);
     color: #22c55e;
