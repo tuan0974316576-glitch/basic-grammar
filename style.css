@@ -576,12 +576,82 @@ body {
         }
         @keyframes pulseWarning { 0% { opacity: 0.2; } 50% { opacity: 0.8; } 100% { opacity: 0.2; } }
 
-        @media (max-width: 500px) {
-            .cell { width: 8vw; height: 8vw; max-width: 35px; max-height: 35px; } 
-            .main-title { font-size: 36px; }
-            #control-panel { flex-direction: column; gap: 5px; }
-            .vocab-hint { font-size: 28px; letter-spacing: 4px; }
-        }
+@media (max-width: 500px) {
+    .cell { width: 8vw; height: 8vw; max-width: 35px; max-height: 35px; } 
+    .main-title { font-size: 36px; }
+    #control-panel { flex-direction: column; gap: 5px; }
+    .vocab-hint { font-size: 28px; letter-spacing: 4px; }
+}
+
+@media (max-width: 500px) and (max-height: 780px) {
+    #game-ui {
+        justify-content: flex-start;
+        padding-top: 4px;
+    }
+
+    #control-panel {
+        margin-top: 8px;
+        margin-bottom: 6px;
+        padding: 8px 12px;
+        gap: 8px;
+    }
+
+    #game-status {
+        font-size: 11px;
+    }
+
+    #turn-timer-container {
+        margin-bottom: 6px !important;
+    }
+
+    #boards-wrapper {
+        margin: 4px;
+        transform: scale(0.92);
+        transform-origin: top center;
+    }
+
+    .board-label {
+        font-size: 20px;
+        margin-bottom: 6px;
+    }
+
+    #player-board-spacer {
+        height: 62px;
+    }
+
+    .cell {
+        width: min(7.2vw, 5.2vh);
+        height: min(7.2vw, 5.2vh);
+        max-width: 32px;
+        max-height: 32px;
+    }
+
+    .game-grid {
+        padding: 8px;
+    }
+
+    #battle-hud {
+        transform: scale(0.9);
+        transform-origin: top center;
+        margin-top: -14px;
+    }
+}
+
+@media (max-width: 500px) and (max-height: 700px) {
+    #boards-wrapper {
+        transform: scale(0.86);
+    }
+
+    #battle-hud {
+        transform: scale(0.84);
+        margin-top: -22px;
+    }
+
+    .board-label {
+        font-size: 18px;
+        margin-bottom: 4px;
+    }
+}
 /* --- 艦隊側邊欄 --- */
 /* --- 艦隊側邊欄 (修改版：雙列佈局) --- */
 #fleet-sidebar {
