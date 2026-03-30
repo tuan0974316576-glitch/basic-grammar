@@ -729,6 +729,10 @@
             <input type="range" id="vol-voice" min="0" max="1" step="0.1" oninput="updateVolume('voice', this.value)">
         </div>
 
+        <button id="settings-surrender-btn" class="tech-btn confirm" onclick="toggleSettingsModal(); confirmExit()" style="display:none; width: 100%; margin-top: 18px; border-color: var(--danger); color: var(--danger); background: rgba(127, 29, 29, 0.18);">
+            SURRENDER MISSION
+        </button>
+
         <button class="tech-btn cancel" onclick="toggleSettingsModal()" style="width: 100%; margin-top: 20px;">CLOSE CONFIG</button>
     </div>
 </div>

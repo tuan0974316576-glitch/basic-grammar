@@ -1495,8 +1495,10 @@ function startBattle() {
 
     const exitBtn = document.getElementById('game-exit-btn');
     if(exitBtn) {
-        exitBtn.innerText = "SURRENDER";
+        exitBtn.innerText = "EXIT";
         exitBtn.style.borderColor = "var(--danger)";
+        exitBtn.style.color = "var(--danger)";
+        exitBtn.style.display = "none";
     }
 
     // ★★★ Hide AUTO DEPLOY button when battle starts ★★★
@@ -3926,7 +3928,12 @@ function resetGame() {
     
     // UI 重置
     const exitBtn = document.getElementById('game-exit-btn');
-    if(exitBtn) { exitBtn.innerText = "EXIT"; }
+    if(exitBtn) {
+        exitBtn.innerText = "EXIT";
+        exitBtn.style.display = "";
+        exitBtn.style.borderColor = "var(--danger)";
+        exitBtn.style.color = "var(--danger)";
+    }
 
     const lobbyMsg = document.getElementById('lobby-msg');
     if (lobbyMsg) lobbyMsg.innerText = "";

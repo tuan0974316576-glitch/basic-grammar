@@ -73,6 +73,7 @@ function playUnderAttackAlert() {
 
 function toggleSettingsModal() {
     const modal = document.getElementById('settings-modal');
+    const surrenderBtn = document.getElementById('settings-surrender-btn');
     const isHidden = modal.style.display === 'none';
     modal.style.display = isHidden ? 'flex' : 'none';
 
@@ -81,8 +82,16 @@ function toggleSettingsModal() {
         document.getElementById('vol-sfx').value = gameVolume.sfx;
         document.getElementById('vol-voice').value = gameVolume.voice;
 
+        const gameUi = document.getElementById('game-ui');
+        const inBattle = typeof currentPhase !== 'undefined'
+            && currentPhase !== 'DEPLOY'
+            && gameUi
+            && gameUi.style.display !== 'none';
+        if (surrenderBtn) surrenderBtn.style.display = inBattle ? 'block' : 'none';
+
         if (typeof playSound === 'function') playSound('open-room-sfx');
     } else {
+        if (surrenderBtn) surrenderBtn.style.display = 'none';
         if (typeof playSound === 'function') playSound('delete-sfx');
     }
 }
