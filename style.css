@@ -3254,6 +3254,7 @@ body {
     margin: 10px auto 20px auto;
     width: 100%;
     max-width: 372px;
+    box-sizing: border-box;
     z-index: 10;
     position: relative;
     display: none;
@@ -3427,6 +3428,8 @@ body {
 
     #instruction-container {
         margin: 8px auto 10px auto;
+        width: calc(100% - 12px);
+        max-width: calc(100% - 12px);
     }
 
     #instruction-inner {
@@ -3435,10 +3438,11 @@ body {
     }
 
     #battle-hud {
-        width: calc(100% - 12px);
-        max-width: calc(100% - 12px);
+        width: calc(100% - 18px);
+        max-width: calc(100% - 18px);
         gap: 6px;
         margin-top: 0;
+        box-sizing: border-box;
     }
 
     .skill-diamond {
@@ -3472,8 +3476,8 @@ body {
 
     #minimap-grid,
     #hud-portrait {
-        width: 104px;
-        height: 104px;
+        width: 96px;
+        height: 96px;
     }
 }
 
