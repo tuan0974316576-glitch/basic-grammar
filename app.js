@@ -1509,6 +1509,8 @@ function startBattle() {
 
     document.getElementById('deploy-controls').style.display = 'none';
     document.getElementById('fleet-sidebar').style.display = 'none';
+    const controlPanel = document.getElementById('control-panel');
+    if (controlPanel) controlPanel.classList.add('battle-mode');
     // ★★★ 顯示底部 Battle HUD + spacer ★★★
     const battleHud = document.getElementById('battle-hud');
     if (battleHud) battleHud.style.display = 'flex';
@@ -1624,6 +1626,7 @@ function switchScene(sceneName) {
                 : "0 0 15px rgba(14, 165, 233, 0.3)";
             // 顯示 instruction container
             if (instrContainer) {
+                instrContainer.style.display = 'flex';
                 instrContainer.style.visibility = 'visible';
                 // Class toggle 觸發展開動畫（兼容 Safari/iOS）
                 instrContainer.classList.remove('play-expand');
@@ -1655,9 +1658,12 @@ function switchScene(sceneName) {
             if (skillGroup) skillGroup.classList.add('skills-inactive');
             clearActiveSkillState();
             // 隱藏 instruction container
-            if (instrContainer) instrContainer.style.visibility = 'hidden';
+            if (instrContainer) {
+                instrContainer.style.visibility = 'hidden';
+                instrContainer.style.display = 'none';
+            }
         }
-    }
+}
 
 /* =========================================
    ★★★ TARGET LOCK LOGIC (JS) - 修正計時器 Bug 版 ★★★
@@ -1936,7 +1942,10 @@ function openLaunchModal(index) {
 
     // 隱藏 instruction container（進入答題版面）
     const instrContainer = document.getElementById('instruction-container');
-    if (instrContainer) instrContainer.style.visibility = 'hidden';
+    if (instrContainer) {
+        instrContainer.style.visibility = 'hidden';
+        instrContainer.style.display = 'none';
+    }
 
     // ★★★ 關鍵：先顯示視窗，再執行後面的 focus，確保鍵盤彈出 ★★★
     modal.style.display = "flex";
@@ -3997,6 +4006,16 @@ function resetGame() {
     // ★★★ 隱藏底部 Battle HUD ★★★
     const battleHud = document.getElementById('battle-hud');
     if (battleHud) battleHud.style.display = 'none'; 
+    const spacer = document.getElementById('player-board-spacer');
+    if (spacer) spacer.style.display = 'none';
+    const instrContainer = document.getElementById('instruction-container');
+    if (instrContainer) {
+        instrContainer.style.visibility = 'hidden';
+        instrContainer.style.display = 'none';
+        instrContainer.classList.remove('play-expand', 'aurelians');
+    }
+    const controlPanel = document.getElementById('control-panel');
+    if (controlPanel) controlPanel.classList.remove('battle-mode');
     
     document.getElementById('start-screen').style.display = 'flex';
     document.getElementById('start-screen').style.opacity = '1';
