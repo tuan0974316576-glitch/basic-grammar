@@ -3383,6 +3383,100 @@ body {
     text-shadow: 0 0 6px rgba(250, 227, 130, 0.95), 0 0 16px rgba(250, 227, 130, 0.35);
 }
 
+@media (max-width: 420px) {
+    #turn-timer-container {
+        margin-bottom: 6px !important;
+    }
+
+    #enemy-board .board-label,
+    #player-board .board-label {
+        font-size: 20px;
+        margin-bottom: 6px;
+    }
+
+    #status-panel {
+        padding: 4px 10px;
+        margin-bottom: 6px;
+        min-height: 44px;
+    }
+
+    #enemy-fleet-indicator {
+        gap: 6px;
+    }
+
+    .enemy-ship-block {
+        gap: 1px;
+        padding: 3px;
+    }
+
+    .indicator-cell {
+        width: 7px;
+        height: 7px;
+    }
+
+    .panel-divider {
+        margin: 0 10px;
+        height: 24px;
+    }
+
+    .status-value,
+    #energy-count,
+    #turn-count {
+        font-size: 28px;
+    }
+
+    #instruction-container {
+        margin: 8px auto 10px auto;
+    }
+
+    #instruction-inner {
+        padding: 5px 12px;
+        gap: 6px;
+    }
+
+    #battle-hud {
+        width: calc(100% - 12px);
+        max-width: calc(100% - 12px);
+        gap: 6px;
+        margin-top: 0;
+    }
+
+    .skill-diamond {
+        width: 32px;
+        height: 32px;
+    }
+
+    .skill-diamond .skill-icon {
+        width: 19px;
+        height: 19px;
+    }
+
+    .skill-diamond.skill-selected {
+        width: 37px;
+        height: 37px;
+    }
+
+    .skill-diamond.skill-selected .skill-icon {
+        width: 22px;
+        height: 22px;
+    }
+
+    .skill-row {
+        gap: 20px;
+    }
+
+    #minimap-label {
+        font-size: 9px;
+        margin-bottom: 3px;
+    }
+
+    #minimap-grid,
+    #hud-portrait {
+        width: 104px;
+        height: 104px;
+    }
+}
+
 @media (orientation: landscape) and (min-width: 900px) and (hover: none),
        (orientation: landscape) and (min-width: 900px) and (pointer: coarse) {
     #enemy-board {
