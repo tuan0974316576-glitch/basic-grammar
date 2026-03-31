@@ -1465,8 +1465,12 @@ function getShipIndices(idx, conf, v) {
             img.id = `board-ship-${actualIndex}`;
         }
         
-        const pW = 35 * conf.width + 2 * (conf.width - 1);
-        const pH = 35 * conf.height + 2 * (conf.height - 1);
+        const cellWidth = startCell.offsetWidth;
+        const cellHeight = startCell.offsetHeight;
+        const boardStyle = window.getComputedStyle(board);
+        const gridGap = parseFloat(boardStyle.gap || boardStyle.columnGap || '0') || 0;
+        const pW = (cellWidth * conf.width) + (gridGap * (conf.width - 1));
+        const pH = (cellHeight * conf.height) + (gridGap * (conf.height - 1));
         
         img.style.width = pW + 'px'; 
         img.style.height = pH + 'px';
@@ -3220,6 +3224,8 @@ function checkMyShipDestruction(hitIdx) {
     const cellLeft = startCell.offsetLeft;
     const cellTop = startCell.offsetTop;
     const cellSize = startCell.offsetWidth;
+    const boardStyle = window.getComputedStyle(container);
+    const gridGap = parseFloat(boardStyle.gap || boardStyle.columnGap || '0') || 0;
 
     // 3. 還原棋盤顯示狀態
     if (!isVisible) {
@@ -3254,8 +3260,8 @@ function checkMyShipDestruction(hitIdx) {
     img.style.zIndex = "10"; 
 
     // 計算圖片大細 (包含邊框間隙)
-    const pW = cellSize * ship.width + 2 * (ship.width - 1);
-    const pH = cellSize * ship.height + 2 * (ship.height - 1);
+    const pW = cellSize * ship.width + gridGap * (ship.width - 1);
+    const pH = cellSize * ship.height + gridGap * (ship.height - 1);
 
     img.style.width = pW + 'px';
     img.style.height = pH + 'px';
@@ -4363,6 +4369,8 @@ function revealEnemyShip(ship) {
     const cellLeft = startCell.offsetLeft;
     const cellTop = startCell.offsetTop;
     const cellSize = startCell.offsetWidth; 
+    const boardStyle = window.getComputedStyle(container);
+    const gridGap = parseFloat(boardStyle.gap || boardStyle.columnGap || '0') || 0;
 
     // 3. 還原狀態
     if (!isVisible) {
@@ -4389,8 +4397,8 @@ function revealEnemyShip(ship) {
     }
 
     const conf = ship.conf;
-    const pW = cellSize * conf.width + 2 * (conf.width - 1);
-    const pH = cellSize * conf.height + 2 * (conf.height - 1);
+    const pW = cellSize * conf.width + gridGap * (conf.width - 1);
+    const pH = cellSize * conf.height + gridGap * (conf.height - 1);
     
     img.style.width = pW + 'px'; 
     img.style.height = pH + 'px';
