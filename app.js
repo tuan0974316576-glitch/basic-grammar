@@ -2049,28 +2049,10 @@ if (currentPracticeMode === 'SPEAKING') {
     if (isMobile && (currentPracticeMode === 'READING' || currentPracticeMode === 'LISTENING')) {
         // Mobile: Show virtual keyboard initially
         virtualKeyboard.style.display = 'block';
-        input.removeAttribute('readonly'); // 允許實體鍵盤輸入
+        input.setAttribute('readonly', 'readonly');
         input.style.position = 'absolute';
         input.style.left = '-9999px';
-
-        // ★★★ 偵測實體鍵盤：如果有 keydown 事件就隱藏虛擬鍵盤 ★★★
-        let physicalKeyboardDetected = false;
-        const detectPhysicalKeyboard = (e) => {
-            // 只在第一次實體鍵盤輸入時隱藏虛擬鍵盤
-            if (!physicalKeyboardDetected && e.key && e.key.length === 1) {
-                physicalKeyboardDetected = true;
-                virtualKeyboard.style.display = 'none';
-                console.log('[Keyboard] Physical keyboard detected, hiding virtual keyboard');
-
-                // 調整答題框位置返回中央
-                const modal = document.getElementById('launch-modal');
-                if (modal) {
-                    modal.style.alignItems = 'center';
-                    modal.style.paddingTop = '0';
-                }
-            }
-        };
-        input.addEventListener('keydown', detectPhysicalKeyboard);
+        input.blur();
 
         // ★★★ Apply Aurelians theme if player is using Aurelians ★★★
         if (selectedRace === 'AURELIANS') {
@@ -2084,6 +2066,11 @@ if (currentPracticeMode === 'SPEAKING') {
         if (screenWidth >= 768) {
             virtualKeyboard.classList.add('kb-tablet-size');
             console.log('[Keyboard] Tablet detected, using larger buttons');
+            if (typeof window.requestLandscapeForTablet === 'function') {
+                window.requestLandscapeForTablet();
+            }
+        } else {
+            virtualKeyboard.classList.remove('kb-tablet-size');
         }
 
         // ★★★ 調整答題框位置，避免被鍵盤遮住 ★★★
@@ -2100,6 +2087,7 @@ if (currentPracticeMode === 'SPEAKING') {
     } else if (!isMobile && (currentPracticeMode === 'READING' || currentPracticeMode === 'LISTENING')) {
         // Desktop: Hide virtual keyboard, show and focus input
         virtualKeyboard.style.display = 'none';
+        virtualKeyboard.classList.remove('kb-tablet-size');
         input.removeAttribute('readonly');
         input.style.position = 'static';
         input.style.left = 'auto';

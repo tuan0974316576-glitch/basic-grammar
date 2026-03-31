@@ -568,7 +568,25 @@ function showMainMenu() {
 
     playBgm();
     initCarouselControl();
+    if (typeof window.requestLandscapeForTablet === 'function') {
+        window.requestLandscapeForTablet();
+    }
 }
+
+window.requestLandscapeForTablet = async function() {
+    const isTouchDevice = navigator.maxTouchPoints > 0 && typeof window.matchMedia === 'function' && !window.matchMedia('(pointer: fine)').matches;
+    const shortestSide = Math.min(window.screen?.width || window.innerWidth, window.screen?.height || window.innerHeight);
+    const isTablet = isTouchDevice && shortestSide >= 700;
+    if (!isTablet) return;
+
+    try {
+        if (screen.orientation && typeof screen.orientation.lock === 'function') {
+            await screen.orientation.lock('landscape');
+        }
+    } catch (error) {
+        console.log('[Orientation] Landscape lock skipped:', error?.message || error);
+    }
+};
 
 window.startExperience = function() {
     window.ignoreConnectionAlert = true;
@@ -590,6 +608,9 @@ window.startExperience = function() {
 
     playBgm();
     if (typeof playSound === 'function') playSound('deploy-sfx');
+    if (typeof window.requestLandscapeForTablet === 'function') {
+        window.requestLandscapeForTablet();
+    }
 
     const suppliesDisplay = document.getElementById('coins-display');
     if (suppliesDisplay) {
