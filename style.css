@@ -3448,8 +3448,9 @@ body {
         --battle-hud-side-size: clamp(78px, 25vw, 96px);
         --battle-hud-gap: clamp(4px, 1vw, 6px);
         width: min(100%, var(--enemy-board-width));
-        max-width: calc(100vw - 14px);
+        max-width: calc(100vw - 16px);
         gap: 6px;
+        padding-inline: clamp(5px, 1.8vw, 8px);
         margin-top: 0;
         box-sizing: border-box;
     }
@@ -3566,6 +3567,7 @@ body {
     max-width: calc(100vw - 12px);
     margin: 2px auto 0 auto;
     gap: var(--battle-hud-gap);
+    padding-inline: clamp(4px, 1.4vw, 8px);
     z-index: 10;
     box-sizing: border-box;
 }
