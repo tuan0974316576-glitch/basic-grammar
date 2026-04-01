@@ -2728,7 +2728,7 @@ function performAiRadarScan(centerIndex) {
         scannedSet: aiRadarScannedCenters,
         onScanComplete: (result) => {
             updateAiRadarIntel(centerIndex, result);
-            setGameTimeout(aiFire, RADAR_RESULT_DISPLAY_DURATION);
+            setGameTimeout(aiFire, AI_RADAR_ATTACK_DELAY);
         }
     });
 }
@@ -6064,6 +6064,7 @@ let lastRadarResultShownAt = 0;
 const radarScannedCells = new Set();
 const RADAR_SCAN_DURATION = 2200;
 const RADAR_RESULT_DISPLAY_DURATION = 1500;
+const AI_RADAR_ATTACK_DELAY = 500;
 const MISSILE_EXPLOSION_DURATION = 720;
 const MISSILE_LOCK_ON_DURATION = 500;
 const NUKE_WHITEOUT_HOLD = 1000;
