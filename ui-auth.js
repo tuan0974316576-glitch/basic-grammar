@@ -693,6 +693,31 @@ window.startExperience = function() {
         suppliesDisplay.style.display = 'none';
     }
 
+    const cachedName = localStorage.getItem('battleship_username');
+    const cachedUid = localStorage.getItem('battleship_auth_uid');
+    const shouldWaitForFirebase = !!((cachedName && cachedUid) || window.isFirebaseAuthenticated);
+
+    if (typeof window.applyAuthFlowState === 'function') {
+        window.authFlowState.started = true;
+        if (shouldWaitForFirebase) {
+            window.applyAuthFlowState({
+                resolved: false,
+                authenticated: true,
+                needsRegistration: false,
+                displayName: null,
+                force: true
+            });
+        } else {
+            window.applyAuthFlowState({
+                resolved: true,
+                authenticated: false,
+                needsRegistration: false,
+                displayName: null,
+                force: true
+            });
+        }
+    }
+
     const splash = document.getElementById('splash-screen');
     splash.style.opacity = '0';
     setTimeout(() => {
@@ -709,10 +734,6 @@ window.startExperience = function() {
         }
 
         if (typeof window.applyAuthFlowState === 'function') {
-            const cachedName = localStorage.getItem('battleship_username');
-            const cachedUid = localStorage.getItem('battleship_auth_uid');
-            const shouldWaitForFirebase = !!((cachedName && cachedUid) || window.isFirebaseAuthenticated);
-
             window.applyAuthFlowState({
                 started: true,
                 ...(window.authFlowState.resolved ? {} : shouldWaitForFirebase
