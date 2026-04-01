@@ -4914,7 +4914,8 @@ body {
 
 /* Row 3: Z-M - narrower row for trapezoid effect */
 .kb-row:nth-child(3) {
-    width: min(78%, 330px);
+    width: min(84%, 354px);
+    transform: translateX(clamp(14px, 3.5vw, 28px));
 }
 
 .kb-key {
@@ -4965,7 +4966,7 @@ body {
 }
 
 .kb-backspace {
-    flex: 1.35 1 0;
+    flex: 1.48 1 0;
     min-width: 0;
     background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(220, 38, 38, 0.1));
     border-color: rgba(239, 68, 68, 0.4);
