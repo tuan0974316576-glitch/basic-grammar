@@ -55,6 +55,7 @@ function getNextTargetVoice() {
 let currentPracticeMode = 'READING'; // 預設模式
 let recognition = null; // 語音識別物件
 let battleLog = [];
+let battleUsedWordKeys = new Set();
     // ★★★ 新增：自動排序功能 ★★★
     // 這段代碼會走遍所有 Level (L1, L2...), 自動按英文字母 A-Z 排列
     function sortDatabase() {
@@ -414,6 +415,18 @@ function setGameTimeout(callback, delay) {
     }, delay);
     gameTimeouts.push(id);
     return id;
+}
+
+function getBattleWordKey(word) {
+    if (!word || !word.en) return '';
+    return `${currentPracticeMode || 'UNKNOWN'}::${selectedLevel || 'L1'}::${word.en.toLowerCase()}`;
+}
+
+function pickBattleUniqueWord(wordList) {
+    if (!Array.isArray(wordList) || wordList.length === 0) return null;
+    const unusedWords = wordList.filter(word => !battleUsedWordKeys.has(getBattleWordKey(word)));
+    const pool = unusedWords.length > 0 ? unusedWords : wordList;
+    return pool[Math.floor(Math.random() * pool.length)] || null;
 }
 
 function updateTurnTimerUI() {
@@ -1922,8 +1935,11 @@ function openLaunchModal(index) {
             alert("Error: Database is empty!");
             return;
         }
-        const randIdx = Math.floor(Math.random() * activeVocabList.length);
-        currentVocab = activeVocabList[randIdx];
+        currentVocab = pickBattleUniqueWord(activeVocabList);
+        if (!currentVocab) {
+            alert("Error: Database is empty!");
+            return;
+        }
         console.log(`[PVP Random] Word: ${currentVocab.en}`);
     } else {
         // ★★★ AI 模式：PHASE 3: 3-TIER QUEUE SYSTEM ★★★
@@ -1936,10 +1952,15 @@ function openLaunchModal(index) {
 
         // Pool 1: Prioritize wrong words
         if (wrongWordsDeck.length > 0) {
-            const wIdx = Math.floor(Math.random() * wrongWordsDeck.length);
-            currentVocab = wrongWordsDeck[wIdx];
-            wrongWordsDeck.splice(wIdx, 1);
-            console.log(`[Pool 1 - Learning] Wrong word: ${currentVocab.en} (${wrongWordsDeck.length} remaining)`);
+            const availableWrongWords = wrongWordsDeck.filter(word => !battleUsedWordKeys.has(getBattleWordKey(word)));
+            const learningPool = availableWrongWords.length > 0 ? availableWrongWords : wrongWordsDeck;
+            const pickedWrongWord = pickBattleUniqueWord(learningPool);
+            if (pickedWrongWord) {
+                currentVocab = pickedWrongWord;
+                const removeIndex = wrongWordsDeck.findIndex(word => word.en === pickedWrongWord.en && word.ch === pickedWrongWord.ch);
+                if (removeIndex >= 0) wrongWordsDeck.splice(removeIndex, 1);
+                console.log(`[Pool 1 - Learning] Wrong word: ${currentVocab.en} (${wrongWordsDeck.length} remaining)`);
+            }
         } else {
             // Pool 2: New words (not in mastery)
             const newWords = activeVocabList.filter(word => {
@@ -1949,8 +1970,7 @@ function openLaunchModal(index) {
             });
 
             if (newWords.length > 0) {
-                const randIdx = Math.floor(Math.random() * newWords.length);
-                currentVocab = newWords[randIdx];
+                currentVocab = pickBattleUniqueWord(newWords);
                 console.log(`[Pool 2 - New] Fresh word: ${currentVocab.en} (${newWords.length} new words available)`);
             } else {
                 // Pool 3: Review mastered words
@@ -1961,8 +1981,7 @@ function openLaunchModal(index) {
                 });
 
                 if (masteredWords.length > 0) {
-                    const randIdx = Math.floor(Math.random() * masteredWords.length);
-                    currentVocab = masteredWords[randIdx];
+                    currentVocab = pickBattleUniqueWord(masteredWords);
                     const masteryData = userMastery[masteryKey][selectedLevel][currentVocab.en];
                     console.log(`[Pool 3 - Review] Mastered word: ${currentVocab.en} (count: ${masteryData.count})`);
                 } else {
@@ -1971,12 +1990,15 @@ function openLaunchModal(index) {
                         alert("Error: Database is empty!");
                         return;
                     }
-                    const randIdx = Math.floor(Math.random() * activeVocabList.length);
-                    currentVocab = activeVocabList[randIdx];
+                    currentVocab = pickBattleUniqueWord(activeVocabList);
                     console.log(`[Fallback] Random word: ${currentVocab.en}`);
                 }
             }
         }
+    }
+
+    if (currentVocab && currentVocab.en) {
+        battleUsedWordKeys.add(getBattleWordKey(currentVocab));
     }
 
     // ★★★ Handle sentence selection (support both old and new format) ★★★
@@ -4002,6 +4024,7 @@ function executeAbort() {
 
 function resetGame() {
     battleLog = [];
+    battleUsedWordKeys.clear();
     pvpRaceSelectionShown = false;
     isEnteringPVPDeploy = false;
     latestPVPSetupData = null;
