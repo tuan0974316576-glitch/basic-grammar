@@ -1617,6 +1617,10 @@ function updateEnemyBoardLabel(race) {
     }
 }
 
+function minimapHasPlayerShipAt(index) {
+    return index >= 0 && index < GRID_SIZE * GRID_SIZE && myGrid[index] === 1;
+}
+
 function renderBattleMinimap(sceneName = null) {
     const minimap = document.getElementById('hud-minimap');
     const label = document.getElementById('minimap-label');
@@ -1630,6 +1634,10 @@ function renderBattleMinimap(sceneName = null) {
     minimap.classList.toggle('enemy-map', !showPlayerMap);
     label.textContent = showPlayerMap ? 'YOUR FLEET' : 'ENEMY SECTOR';
     grid.innerHTML = '';
+    const scannedArea = new Set();
+    radarScannedCells.forEach(centerIndex => {
+        getRadarAreaIndices(centerIndex).forEach(index => scannedArea.add(index));
+    });
 
     for (let i = 0; i < GRID_SIZE * GRID_SIZE; i++) {
         const miniCell = document.createElement('div');
@@ -1639,7 +1647,15 @@ function renderBattleMinimap(sceneName = null) {
             const boardCell = getPlayerCell(i);
             const wasShot = enemyShots.includes(i) || (boardCell && boardCell.classList.contains('revealed'));
 
-            if (myGrid[i] === 1) miniCell.classList.add('ship');
+            if (myGrid[i] === 1) {
+                miniCell.classList.add('ship');
+                const row = Math.floor(i / GRID_SIZE);
+                const col = i % GRID_SIZE;
+                if (row === 0 || !minimapHasPlayerShipAt(i - GRID_SIZE)) miniCell.classList.add('ship-edge-top');
+                if (row === GRID_SIZE - 1 || !minimapHasPlayerShipAt(i + GRID_SIZE)) miniCell.classList.add('ship-edge-bottom');
+                if (col === 0 || !minimapHasPlayerShipAt(i - 1)) miniCell.classList.add('ship-edge-left');
+                if (col === GRID_SIZE - 1 || !minimapHasPlayerShipAt(i + 1)) miniCell.classList.add('ship-edge-right');
+            }
             if (boardCell && boardCell.classList.contains('hit')) {
                 miniCell.classList.add('hit');
             } else if (wasShot) {
@@ -1654,8 +1670,11 @@ function renderBattleMinimap(sceneName = null) {
                 miniCell.classList.add('miss');
             }
 
-            if (radarScannedCells.has(i)) {
+            if (scannedArea.has(i)) {
                 miniCell.classList.add('scanned');
+            }
+            if (radarScannedCells.has(i)) {
+                miniCell.classList.add('scanned-center');
             }
         }
 
