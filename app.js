@@ -225,14 +225,14 @@ let isTargeting = false;
                 {
                     width: 2, height: 2, img: images.ships[1], custom: true,
                     layoutV: [1, 0, 1, 1],
-                    layoutH: [1, 1, 0, 1],
+                    layoutH: [0, 1, 1, 1],
                     voiceId: null // ★ Aurelians 暫時無語音
                 },
                 // 3. 1+2 (左下1格+右邊2格)
                 {
                     width: 2, height: 2, img: images.ships[2], custom: true,
                     layoutV: [0, 1, 1, 1],
-                    layoutH: [0, 1, 1, 1],
+                    layoutH: [1, 1, 0, 1],
                     voiceId: null // ★ Aurelians 暫時無語音
                 },
                 // 4. 1+3 (新 - VERTICAL:左上+右邊3格, HORIZONTAL:上排3格+左下1格, 2x3)
