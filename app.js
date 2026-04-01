@@ -5889,10 +5889,14 @@ window.onload = function() {
         createTwinklingStars();
     }
 
-    // 3. 確保預設狀態是「登入畫面」
-    // ★ 關鍵修正：原本這裡錯誤地直接呼叫了 showMainMenu()，導致登入畫面被跳過
-    // 現在我們強制先顯示 Login Panel，讓 Firebase 去決定下一步
-    switchHudPanel('login-panel');
+    // 3. 初始化 HUD 狀態：有 cached auth 就先顯示 CONNECTING，避免閃出 LOGIN PANEL
+    const cachedName = localStorage.getItem('battleship_username');
+    const cachedUid = localStorage.getItem('battleship_auth_uid');
+    if (cachedName && cachedUid) {
+        switchHudPanel('connecting-panel');
+    } else {
+        switchHudPanel('login-panel');
+    }
 
     // 確保主選單 Carousel 是隱藏的
     const carousel = document.getElementById('main-menu-carousel');
