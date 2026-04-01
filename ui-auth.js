@@ -21,8 +21,7 @@ function hideMainMenuChrome() {
 window.applyAuthFlowState = function(patch = {}) {
     Object.assign(window.authFlowState, patch);
 
-    const splash = document.getElementById('splash-screen');
-    if (!window.authFlowState.started || (splash && splash.style.display !== 'none')) {
+    if (!window.authFlowState.started) {
         return;
     }
 
@@ -69,10 +68,12 @@ window.applyAuthFlowState = function(patch = {}) {
 window.reconcileAuthFlowState = function(force = false) {
     const splash = document.getElementById('splash-screen');
     const splashHidden = !splash || splash.style.display === 'none';
+    const gameWrapper = document.getElementById('game-content-wrapper');
+    const appVisible = !!(gameWrapper && gameWrapper.style.display !== 'none');
     const cachedName = localStorage.getItem('battleship_username');
     const cachedUid = localStorage.getItem('battleship_auth_uid');
 
-    if (!window.authFlowState.started && splashHidden) {
+    if (!window.authFlowState.started && (splashHidden || appVisible)) {
         window.authFlowState.started = true;
     }
 
