@@ -3818,6 +3818,21 @@ body {
     text-shadow: 0 0 8px rgba(0, 243, 255, 0.28);
 }
 
+#hud-minimap.player-map.race-vanguards #minimap-label {
+    color: rgba(191, 252, 255, 0.88);
+    text-shadow: 0 0 8px rgba(0, 243, 255, 0.28);
+}
+
+#hud-minimap.player-map.race-aurelians #minimap-label {
+    color: rgba(255, 244, 190, 0.92);
+    text-shadow: 0 0 8px rgba(250, 227, 130, 0.32);
+}
+
+#hud-minimap.player-map.race-caustics #minimap-label {
+    color: rgba(224, 200, 255, 0.9);
+    text-shadow: 0 0 8px rgba(192, 132, 252, 0.3);
+}
+
 #hud-minimap.enemy-map #minimap-label {
     color: rgba(255, 220, 200, 0.9);
     text-shadow: 0 0 8px rgba(239, 68, 68, 0.24);
@@ -3826,6 +3841,16 @@ body {
 #hud-minimap.player-map #minimap-grid {
     border-color: rgba(110, 245, 255, 0.42);
     box-shadow: inset 0 0 14px rgba(0, 243, 255, 0.08), 0 0 14px rgba(0, 243, 255, 0.12);
+}
+
+#hud-minimap.player-map.race-aurelians #minimap-grid {
+    border-color: rgba(250, 227, 130, 0.42);
+    box-shadow: inset 0 0 14px rgba(250, 227, 130, 0.08), 0 0 14px rgba(250, 227, 130, 0.14);
+}
+
+#hud-minimap.player-map.race-caustics #minimap-grid {
+    border-color: rgba(192, 132, 252, 0.4);
+    box-shadow: inset 0 0 14px rgba(192, 132, 252, 0.08), 0 0 14px rgba(192, 132, 252, 0.14);
 }
 
 #hud-minimap.enemy-map #minimap-grid {
@@ -3875,10 +3900,32 @@ body {
     box-shadow: 0 0 4px rgba(0, 243, 255, 0.08);
 }
 
+#hud-minimap.player-map.race-aurelians .minimap-cell.ship {
+    background: linear-gradient(180deg, rgba(255, 239, 170, 0.3), rgba(214, 186, 92, 0.22));
+    border-color: rgba(255, 240, 180, 0.3);
+    box-shadow: 0 0 4px rgba(250, 227, 130, 0.12);
+}
+
+#hud-minimap.player-map.race-caustics .minimap-cell.ship {
+    background: linear-gradient(180deg, rgba(224, 190, 255, 0.3), rgba(147, 51, 234, 0.2));
+    border-color: rgba(220, 190, 255, 0.28);
+    box-shadow: 0 0 4px rgba(192, 132, 252, 0.12);
+}
+
 .minimap-cell.ship.ship-edge-top { border-top-color: rgba(185, 245, 255, 0.85); }
 .minimap-cell.ship.ship-edge-bottom { border-bottom-color: rgba(145, 228, 255, 0.72); }
 .minimap-cell.ship.ship-edge-left { border-left-color: rgba(185, 245, 255, 0.82); }
 .minimap-cell.ship.ship-edge-right { border-right-color: rgba(145, 228, 255, 0.72); }
+
+#hud-minimap.player-map.race-aurelians .minimap-cell.ship.ship-edge-top { border-top-color: rgba(255, 246, 200, 0.92); }
+#hud-minimap.player-map.race-aurelians .minimap-cell.ship.ship-edge-bottom { border-bottom-color: rgba(240, 220, 145, 0.76); }
+#hud-minimap.player-map.race-aurelians .minimap-cell.ship.ship-edge-left { border-left-color: rgba(255, 246, 200, 0.88); }
+#hud-minimap.player-map.race-aurelians .minimap-cell.ship.ship-edge-right { border-right-color: rgba(240, 220, 145, 0.76); }
+
+#hud-minimap.player-map.race-caustics .minimap-cell.ship.ship-edge-top { border-top-color: rgba(238, 220, 255, 0.92); }
+#hud-minimap.player-map.race-caustics .minimap-cell.ship.ship-edge-bottom { border-bottom-color: rgba(210, 170, 255, 0.76); }
+#hud-minimap.player-map.race-caustics .minimap-cell.ship.ship-edge-left { border-left-color: rgba(238, 220, 255, 0.88); }
+#hud-minimap.player-map.race-caustics .minimap-cell.ship.ship-edge-right { border-right-color: rgba(210, 170, 255, 0.76); }
 
 .minimap-cell.hit {
     background: linear-gradient(180deg, rgba(255, 110, 110, 0.92), rgba(239, 68, 68, 0.78));

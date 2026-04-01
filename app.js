@@ -1632,6 +1632,9 @@ function renderBattleMinimap(sceneName = null) {
 
     minimap.classList.toggle('player-map', showPlayerMap);
     minimap.classList.toggle('enemy-map', !showPlayerMap);
+    minimap.classList.toggle('race-vanguards', showPlayerMap && selectedRace === 'VANGUARDS');
+    minimap.classList.toggle('race-aurelians', showPlayerMap && selectedRace === 'AURELIANS');
+    minimap.classList.toggle('race-caustics', showPlayerMap && selectedRace === 'CAUSTICS');
     label.textContent = showPlayerMap ? 'YOUR FLEET' : 'ENEMY SECTOR';
     grid.innerHTML = '';
     const scannedArea = new Set();
