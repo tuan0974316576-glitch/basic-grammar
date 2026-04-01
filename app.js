@@ -3732,7 +3732,7 @@ function calculateAndDisplaySettlement(isVictory, isSurrender = false) {
     if (matchBonusEl) {
         matchBonusEl.innerText = `+${matchBonus}`;
         if (isPerfect && isVictory) {
-            matchBonusEl.innerHTML = `+${matchBonus} <span style="color: var(--warning); font-size: 12px;">(+150 PERFECT!)</span>`;
+            matchBonusEl.innerHTML = `+${matchBonus} <span style="color: var(--warning); font-size: 11px; white-space: nowrap;">(+150 PERFECT!)</span>`;
         }
     }
     if (totalXpEl) totalXpEl.innerText = `+${totalSessionXP}`;
