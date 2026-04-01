@@ -2233,29 +2233,64 @@ function warmUpVoiceEngine() {
         console.log("🔊 Voice Engine Warmed Up!");
     }
 }
-    
-// --- 修正版：處理輸入超時 ---
-function handlePlayerTimeout() {
-    if(typeof fadeBgm === 'function') fadeBgm(0.5, 1000);
 
-    if (typeof timerInterval !== 'undefined') clearInterval(timerInterval);
+function closeLaunchModalUI() {
+    const modal = document.getElementById('launch-modal');
+    const virtualKeyboard = document.getElementById('virtual-keyboard');
+    const hiddenInput = document.getElementById('hidden-input');
+    const msgArea = document.getElementById('msg-area');
+
+    if (typeof timerInterval !== 'undefined' && timerInterval) {
+        clearInterval(timerInterval);
+    }
     timerInterval = null;
     launchTimerPaused = false;
     launchTimerTotal = 0;
     launchTimerTimeLeft = 0;
+
     if (speakingProcessingTimeout) {
         clearTimeout(speakingProcessingTimeout);
         speakingProcessingTimeout = null;
     }
-    document.getElementById('launch-modal').style.display = "none";
 
-    // Unlock body scroll when modal closes
+    if (modal) {
+        modal.style.display = 'none';
+        modal.style.alignItems = '';
+        modal.style.paddingTop = '';
+        modal.classList.remove('aurelians-theme');
+    }
+
+    if (virtualKeyboard) {
+        virtualKeyboard.style.display = 'none';
+        virtualKeyboard.classList.remove('kb-aurelians', 'kb-tablet-size');
+    }
+
+    if (hiddenInput) {
+        hiddenInput.value = '';
+        hiddenInput.blur();
+        hiddenInput.oninput = null;
+        hiddenInput.onkeydown = null;
+        hiddenInput.setAttribute('readonly', 'readonly');
+        hiddenInput.style.position = 'absolute';
+        hiddenInput.style.left = '-9999px';
+    }
+
+    if (msgArea) msgArea.innerText = '';
+
+    // Unlock body scroll / fixed positioning when modal closes
     document.body.style.overflow = '';
     document.body.style.position = '';
     document.body.style.width = '';
 
-    playSound('timeout-sfx');
     stopMatrixEffect();
+}
+    
+// --- 修正版：處理輸入超時 ---
+function handlePlayerTimeout() {
+    if(typeof fadeBgm === 'function') fadeBgm(0.5, 1000);
+    closeLaunchModalUI();
+
+    playSound('timeout-sfx');
     
     currentPhase = 'PHASE_SWITCH'; 
 
@@ -2575,15 +2610,7 @@ function checkAnswer() {
 function playerFire(success) {
     fadeBgm(0.5, 1000);
     // 1. 基本清理：停計時器、關閉彈窗
-    clearInterval(timerInterval);
-    document.getElementById('launch-modal').style.display = "none";
-
-    // Unlock body scroll when modal closes
-    document.body.style.overflow = '';
-    document.body.style.position = '';
-    document.body.style.width = '';
-
-    stopMatrixEffect();
+    closeLaunchModalUI();
 
     if (success) {
         // ============================
@@ -3969,6 +3996,7 @@ function confirmExit() {
 function executeAbort() {
     // 1. 關閉確認視窗
     document.getElementById('confirm-modal').style.display = 'none';
+    closeLaunchModalUI();
 
     // 2. 判斷當前階段
     // 如果還在大廳，或者還在部署船隻 (DEPLOY)，就直接重置 (當作退出)
@@ -4044,6 +4072,7 @@ function resetGame() {
     
     const roomInput = document.getElementById('room-id-input');
     if (roomInput) roomInput.value = ""; 
+    closeLaunchModalUI();
     
     // --- 1. 斷開 Firebase 連線 & 清理房間 ---
     if (unsubscribeRoom) { unsubscribeRoom(); unsubscribeRoom = null; }
