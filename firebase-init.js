@@ -37,6 +37,14 @@ console.log("Firebase Modules Loaded Successfully");
             console.log('[Auth] User authenticated:', u.uid, 'isAnonymous:', u.isAnonymous);
             window.isFirebaseAuthenticated = true;
             window.myPlayerId = u.uid;
+            if (typeof window.applyAuthFlowState === 'function') {
+                window.applyAuthFlowState({
+                    resolved: false,
+                    authenticated: true,
+                    needsRegistration: false,
+                    displayName: null
+                });
+            }
 
             // ★★★ SESSION TRACKING: 生成或讀取 deviceId ★★★
             let deviceId = localStorage.getItem('battleship_deviceId');
@@ -164,15 +172,15 @@ console.log("Firebase Modules Loaded Successfully");
                     if(typeof updateSkillButtonsProgress === 'function') updateSkillButtonsProgress();
 
                     // ★★★ Firebase 驗證成功，現在才顯示 MAIN MENU ★★★
-                    console.log('[Auth] Firebase validation complete, showing main menu');
-                    if(typeof showMainMenu === 'function') showMainMenu();
-
-                    if(overlay) {
-                        console.log('[Auth] Hiding overlay (Firebase path), current display:', overlay.style.display);
-                        overlay.style.display = 'none';
-                        console.log('[Auth] Overlay display after setting to none:', overlay.style.display);
-                    } else {
-                        console.warn('[Auth] Overlay element is null!');
+                    console.log('[Auth] Firebase validation complete, auth flow ready');
+                    if (typeof window.applyAuthFlowState === 'function') {
+                        window.applyAuthFlowState({
+                            resolved: true,
+                            authenticated: true,
+                            needsRegistration: false,
+                            displayName: realName,
+                            force: true
+                        });
                     }
                 } else {
                     // 新用戶
@@ -191,18 +199,30 @@ console.log("Firebase Modules Loaded Successfully");
                             localStorage.setItem('battleship_username', autoName);
                             localStorage.setItem('battleship_auth_uid', u.uid);
                             if(typeof updateHUD === 'function') await updateHUD(autoName);
-                            if(typeof showMainMenu === 'function') showMainMenu();
-                            if(overlay) overlay.style.display = 'none';
+                            if (typeof window.applyAuthFlowState === 'function') {
+                                window.applyAuthFlowState({
+                                    resolved: true,
+                                    authenticated: true,
+                                    needsRegistration: false,
+                                    displayName: autoName,
+                                    force: true
+                                });
+                            }
                         }).catch(err => {
                             console.error('[Auth] Guest account creation failed:', err);
                         });
                     } else {
                         // Google/Apple 新人
                         console.log('[Auth] Google/Apple new user, showing registration');
-                        if(overlay) overlay.style.display = 'none';
-                        const reg = document.getElementById('registration-modal');
-                        if(reg) reg.style.display = 'flex';
-                        if (typeof syncRegistrationInputMode === 'function') syncRegistrationInputMode();
+                        if (typeof window.applyAuthFlowState === 'function') {
+                            window.applyAuthFlowState({
+                                resolved: true,
+                                authenticated: true,
+                                needsRegistration: true,
+                                displayName: null,
+                                force: true
+                            });
+                        }
                     }
                 }
             }).catch(async (err) => {
@@ -217,9 +237,15 @@ console.log("Firebase Modules Loaded Successfully");
                 if (cachedName && typeof updateHUD === 'function') {
                     await updateHUD(cachedName);
                 }
-                if(typeof showMainMenu === 'function') {
-                    console.log('[Auth] Showing main menu despite Firebase error (user is authenticated)');
-                    showMainMenu();
+                if (typeof window.applyAuthFlowState === 'function') {
+                    console.log('[Auth] Falling back to cached auth state after Firebase error');
+                    window.applyAuthFlowState({
+                        resolved: true,
+                        authenticated: true,
+                        needsRegistration: false,
+                        displayName: cachedName || null,
+                        force: true
+                    });
                 }
 
                 // 顯示錯誤通知
@@ -263,7 +289,15 @@ console.log("Firebase Modules Loaded Successfully");
                 overlay.style.display = 'none';
             }
 
-            if(typeof switchHudPanel === 'function') switchHudPanel('login-panel');
+            if (typeof window.applyAuthFlowState === 'function') {
+                window.applyAuthFlowState({
+                    resolved: true,
+                    authenticated: false,
+                    needsRegistration: false,
+                    displayName: null,
+                    force: true
+                });
+            }
 
             // ★ 確保主選單元素都隱藏 (防止之前 showMainMenu 留低嘅狀態)
             const carousel = document.getElementById('main-menu-carousel');
@@ -271,7 +305,7 @@ console.log("Firebase Modules Loaded Successfully");
             if (carousel) carousel.style.display = 'none';
             if (gameModeSelect) gameModeSelect.style.display = 'none';
 
-            console.log('[Auth] Switched to login panel');
+            console.log('[Auth] Auth flow returned to login panel');
         }
     });
 

@@ -1,4 +1,70 @@
 let authOverlayTimeout = null;
+window.authFlowState = window.authFlowState || {
+    started: false,
+    resolved: false,
+    authenticated: false,
+    needsRegistration: false,
+    displayName: null,
+    currentView: null
+};
+
+function hideMainMenuChrome() {
+    const carousel = document.getElementById('main-menu-carousel');
+    const gameModeSelect = document.getElementById('game-mode-selection');
+    const suppliesDisplay = document.getElementById('coins-display');
+
+    if (carousel) carousel.style.display = 'none';
+    if (gameModeSelect) gameModeSelect.style.display = 'none';
+    if (suppliesDisplay) suppliesDisplay.style.display = 'none';
+}
+
+window.applyAuthFlowState = function(patch = {}) {
+    Object.assign(window.authFlowState, patch);
+
+    const splash = document.getElementById('splash-screen');
+    if (!window.authFlowState.started || (splash && splash.style.display !== 'none')) {
+        return;
+    }
+
+    const startScreen = document.getElementById('start-screen');
+    const regModal = document.getElementById('registration-modal');
+    const overlay = document.getElementById('login-overlay');
+
+    if (startScreen) startScreen.style.display = 'flex';
+    if (overlay) overlay.style.display = 'none';
+
+    let nextView = 'login';
+    if (!window.authFlowState.resolved) {
+        nextView = 'connecting';
+    } else if (window.authFlowState.authenticated && window.authFlowState.needsRegistration) {
+        nextView = 'registration';
+    } else if (window.authFlowState.authenticated && window.authFlowState.displayName) {
+        nextView = 'main';
+    }
+
+    if (window.authFlowState.currentView === nextView && !patch.force) {
+        return;
+    }
+    window.authFlowState.currentView = nextView;
+
+    if (nextView === 'main') {
+        if (regModal) regModal.style.display = 'none';
+        showMainMenu();
+        return;
+    }
+
+    hideMainMenuChrome();
+
+    if (nextView === 'registration') {
+        switchHudPanel('login-panel');
+        if (regModal) regModal.style.display = 'flex';
+        if (typeof syncRegistrationInputMode === 'function') syncRegistrationInputMode();
+        return;
+    }
+
+    if (regModal) regModal.style.display = 'none';
+    switchHudPanel(nextView === 'connecting' ? 'connecting-panel' : 'login-panel');
+};
 
 window.cancelAuthOverlay = function() {
     const overlay = document.getElementById('login-overlay');
@@ -347,7 +413,17 @@ async function revealMainMenuWhenHudReady(name) {
     if (typeof updateHUD === 'function') {
         await updateHUD(name);
     }
-    showMainMenu();
+    if (typeof window.applyAuthFlowState === 'function') {
+        window.applyAuthFlowState({
+            resolved: true,
+            authenticated: true,
+            needsRegistration: false,
+            displayName: name,
+            force: true
+        });
+    } else {
+        showMainMenu();
+    }
 }
 
 async function checkGlobalRankAndUpdateIcon(rankEl, rank) {
@@ -631,21 +707,24 @@ window.startExperience = function() {
                 }
             }
         }
+
+        if (typeof window.applyAuthFlowState === 'function') {
+            const cachedName = localStorage.getItem('battleship_username');
+            const cachedUid = localStorage.getItem('battleship_auth_uid');
+            const shouldWaitForFirebase = !!((cachedName && cachedUid) || window.isFirebaseAuthenticated);
+
+            window.applyAuthFlowState({
+                started: true,
+                ...(window.authFlowState.resolved ? {} : shouldWaitForFirebase
+                    ? { resolved: false, authenticated: true, needsRegistration: false, displayName: null }
+                    : { resolved: true, authenticated: false, needsRegistration: false, displayName: null })
+            });
+        }
     }, 500);
 
     const gameWrapper = document.getElementById('game-content-wrapper');
     if (gameWrapper) {
         gameWrapper.style.display = 'block';
-
-        const cachedName = localStorage.getItem('battleship_username');
-        const cachedUid = localStorage.getItem('battleship_auth_uid');
-        if ((cachedName && cachedUid) || (cachedName && window.isFirebaseAuthenticated)) {
-            console.log('[startExperience] Cached auth found, keeping CONNECTING panel until Firebase resolves');
-            switchHudPanel('connecting-panel');
-        } else {
-            console.log('[startExperience] New user or not authenticated, showing login panel');
-            document.getElementById('start-screen').style.display = 'flex';
-        }
     }
 };
 
