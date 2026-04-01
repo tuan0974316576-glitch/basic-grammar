@@ -30,6 +30,10 @@ html {
             --warning: #f59e0b;
             --text: #e2e8f0;
             --glass-border: rgba(255, 255, 255, 0.2);
+            --grid-cell-size: 35px;
+            --grid-gap: 2px;
+            --grid-padding: 10px;
+            --enemy-board-width: calc((var(--grid-cell-size) * 10) + (var(--grid-gap) * 9) + (var(--grid-padding) * 2) + 2px);
         }
 
 /* --- 1. 背景無限捲動動畫 --- */
@@ -346,10 +350,10 @@ body {
         .game-grid {
             display: grid;
             grid-template-columns: repeat(10, 1fr); 
-            gap: 2px;
+            gap: var(--grid-gap);
             background: rgba(255, 255, 255, 0.02); 
             backdrop-filter: blur(2px);
-            padding: 10px;
+            padding: var(--grid-padding);
             border: 1px solid var(--glass-border);
             border-radius: 12px;
             box-shadow: 0 0 40px rgba(14, 165, 233, 0.15);
@@ -359,7 +363,8 @@ body {
         #enemy-board .game-grid { border-color: var(--danger); box-shadow: 0 0 40px rgba(239, 68, 68, 0.15); }
 
         .cell {
-            width: 35px; height: 35px;
+            width: var(--grid-cell-size);
+            height: var(--grid-cell-size);
             background-color: rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(14, 165, 233, 0.2);
             border-radius: 4px;
@@ -592,7 +597,9 @@ body {
         @keyframes pulseWarning { 0% { opacity: 0.2; } 50% { opacity: 0.8; } 100% { opacity: 0.2; } }
 
         @media (max-width: 500px) {
-            .cell { width: 8vw; height: 8vw; max-width: 35px; max-height: 35px; } 
+            :root {
+                --grid-cell-size: min(8vw, 35px);
+            }
             .main-title { font-size: 36px; }
             #control-panel { flex-direction: column; gap: 5px; }
             .vocab-hint { font-size: 28px; letter-spacing: 4px; }
@@ -3252,7 +3259,7 @@ body {
    ========================================= */
 #instruction-container {
     margin: 10px auto 20px auto;
-    width: min(100%, 390px);
+    width: min(100%, var(--enemy-board-width));
     max-width: calc(100vw - 12px);
     box-sizing: border-box;
     z-index: 10;
@@ -3428,7 +3435,7 @@ body {
 
     #instruction-container {
         margin: 8px auto 10px auto;
-        width: min(100%, 390px);
+        width: min(100%, var(--enemy-board-width));
         max-width: calc(100vw - 12px);
     }
 
@@ -3440,7 +3447,7 @@ body {
     #battle-hud {
         --battle-hud-side-size: clamp(78px, 25vw, 96px);
         --battle-hud-gap: clamp(4px, 1vw, 6px);
-        width: min(100%, 390px);
+        width: min(100%, var(--enemy-board-width));
         max-width: calc(100vw - 14px);
         gap: 6px;
         margin-top: 0;
@@ -3504,7 +3511,7 @@ body {
     #enemy-board #status-panel {
         grid-area: status;
         margin-bottom: 0;
-        min-height: 390px;
+        min-height: var(--enemy-board-width);
         width: 90px;
         padding: 10px 8px;
         flex-direction: column;
@@ -3519,7 +3526,7 @@ body {
         grid-area: instruction;
         margin: 0 auto;
         width: 100%;
-        max-width: 390px;
+        max-width: var(--enemy-board-width);
     }
 
     #enemy-board #enemy-fleet-indicator {
@@ -3555,7 +3562,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: min(100%, 390px);
+    width: min(100%, var(--enemy-board-width));
     max-width: calc(100vw - 12px);
     margin: 2px auto 0 auto;
     gap: var(--battle-hud-gap);
