@@ -1666,17 +1666,19 @@ function renderBattleMinimap(sceneName = null) {
             }
         } else {
             const boardCell = getEnemyCell(i);
+            const isHit = !!(boardCell && boardCell.classList.contains('hit'));
+            const isMiss = !!(boardCell && boardCell.classList.contains('miss'));
 
-            if (boardCell && boardCell.classList.contains('hit')) {
+            if (isHit) {
                 miniCell.classList.add('hit');
-            } else if (boardCell && boardCell.classList.contains('miss')) {
+            } else if (isMiss) {
                 miniCell.classList.add('miss');
             }
 
-            if (scannedArea.has(i)) {
+            if (!isHit && !isMiss && scannedArea.has(i)) {
                 miniCell.classList.add('scanned');
             }
-            if (radarScannedCells.has(i)) {
+            if (!isHit && !isMiss && radarScannedCells.has(i)) {
                 miniCell.classList.add('scanned-center');
             }
         }
