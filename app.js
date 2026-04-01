@@ -2699,10 +2699,7 @@ function getAiAvoidCells() {
     return avoid;
 }
 
-function performAiRadarScan(centerIndex) {
-    const result = countAiRadarTargets(centerIndex);
-    aiRadarScannedCenters.add(centerIndex);
-
+function updateAiRadarIntel(centerIndex, result) {
     const existingIndex = aiRadarIntel.findIndex(entry => entry.centerIndex === centerIndex);
     const intel = {
         centerIndex,
@@ -2715,18 +2712,25 @@ function performAiRadarScan(centerIndex) {
     } else {
         aiRadarIntel.push(intel);
     }
+}
 
+function performAiRadarScan(centerIndex) {
     const status = document.getElementById('game-status');
     if (status) {
         status.innerHTML = `PHASE: <span style="color:var(--primary)">ENEMY RADAR SCAN</span>`;
     }
 
-    const cell = getPlayerCell(centerIndex);
-    if (cell && cell.classList.contains('miss')) {
-        cell.classList.add('radar-scanned');
-        cell.dataset.radarCount = String(result);
-        cell.innerHTML = `<span class="radar-count-static">${result}</span>`;
-    }
+    playRadarScanOnBoard({
+        gridId: 'player-grid',
+        centerIndex,
+        getCell: getPlayerCell,
+        countTargets: countAiRadarTargets,
+        scannedSet: aiRadarScannedCenters,
+        onScanComplete: (result) => {
+            updateAiRadarIntel(centerIndex, result);
+            setGameTimeout(aiFire, RADAR_RESULT_DISPLAY_DURATION);
+        }
+    });
 }
 
 function getAiKnownHitIndices() {
@@ -3016,7 +3020,6 @@ function aiTakeTurn() {
             if (radarCenter !== null && spendAiEnergy('radar')) {
                 playSound('radar-sfx');
                 performAiRadarScan(radarCenter);
-                setGameTimeout(aiFire, 900);
                 return;
             }
         }
@@ -6235,11 +6238,11 @@ function getRadarLinePosition(offsets, cellSize, lineIndex) {
     return current - (gap / 2);
 }
 
-function buildRadarOverlay(centerIndex, className, includeCenter = true) {
-    const grid = document.getElementById('enemy-grid');
+function buildRadarOverlay(centerIndex, className, includeCenter = true, getCell = getEnemyCell, gridId = 'enemy-grid') {
+    const grid = document.getElementById(gridId);
     if (!grid) return null;
 
-    const cells = getRadarAreaIndices(centerIndex).map(index => getEnemyCell(index)).filter(Boolean);
+    const cells = getRadarAreaIndices(centerIndex).map(index => getCell(index)).filter(Boolean);
     if (cells.length === 0) return null;
 
     const left = Math.min(...cells.map(cell => cell.offsetLeft));
@@ -6255,7 +6258,7 @@ function buildRadarOverlay(centerIndex, className, includeCenter = true) {
     overlay.style.height = `${bottom - top}px`;
     overlay.dataset.centerIndex = String(centerIndex);
 
-    const centerCell = getEnemyCell(centerIndex);
+    const centerCell = getCell(centerIndex);
     if (centerCell) {
         const colOffsets = [...new Set(cells.map(cell => cell.offsetLeft - left))].sort((a, b) => a - b);
         const rowOffsets = [...new Set(cells.map(cell => cell.offsetTop - top))].sort((a, b) => a - b);
@@ -6288,22 +6291,109 @@ function renderRadarPreview(centerIndex) {
 
     if (!isRadarSelectable(centerIndex)) return;
     const grid = document.getElementById('enemy-grid');
-    const overlay = buildRadarOverlay(centerIndex, 'radar-preview-overlay', true);
+    const overlay = buildRadarOverlay(centerIndex, 'radar-preview-overlay', true, getEnemyCell, 'enemy-grid');
     if (!grid || !overlay) return;
 
     grid.appendChild(overlay);
     radarPreviewIndex = centerIndex;
 }
 
-function renderRadarScannedOverlay(centerIndex) {
-    const grid = document.getElementById('enemy-grid');
-    if (!grid || !radarScannedCells.has(centerIndex)) return;
+function renderRadarScannedOverlay(centerIndex, options = {}) {
+    const {
+        gridId = 'enemy-grid',
+        scannedSet = radarScannedCells,
+        getCell = getEnemyCell
+    } = options;
+    const grid = document.getElementById(gridId);
+    if (!grid || !scannedSet.has(centerIndex)) return;
 
     const existing = grid.querySelector(`.radar-scanned-overlay[data-center-index="${centerIndex}"]`);
     if (existing) existing.remove();
 
-    const overlay = buildRadarOverlay(centerIndex, 'radar-scanned-overlay', false);
+    const overlay = buildRadarOverlay(centerIndex, 'radar-scanned-overlay', false, getCell, gridId);
     if (overlay) grid.appendChild(overlay);
+}
+
+function showRadarResultOnBoard(centerIndex, options = {}) {
+    const {
+        getCell = getEnemyCell,
+        countTargets = countRadarTargets,
+        resultDisplayDuration = RADAR_RESULT_DISPLAY_DURATION
+    } = options;
+    const cell = getCell(centerIndex);
+    if (!cell || !cell.classList.contains('miss')) return;
+
+    const count = String(countTargets(centerIndex));
+    cell.classList.add('radar-scanned');
+    cell.dataset.radarCount = count;
+    cell.innerHTML = `<span class="radar-count-static">${count}</span>`;
+    lastRadarResultShownAt = Date.now();
+
+    setTimeout(() => {
+        const latestCell = getCell(centerIndex);
+        if (!latestCell || !latestCell.classList.contains('miss')) return;
+        latestCell.classList.add('radar-scanned');
+        latestCell.innerHTML = '<img src="close.png" class="miss-icon">';
+    }, resultDisplayDuration);
+}
+
+function playRadarScanOnBoard(options) {
+    const {
+        gridId,
+        centerIndex,
+        getCell,
+        countTargets,
+        scannedSet,
+        onScanComplete
+    } = options;
+
+    const grid = document.getElementById(gridId);
+    if (!grid) return;
+
+    const cells = getRadarAreaIndices(centerIndex).map(index => getCell(index)).filter(Boolean);
+    const centerCell = getCell(centerIndex);
+    if (!centerCell || cells.length === 0) return;
+
+    const left = Math.min(...cells.map(cell => cell.offsetLeft));
+    const top = Math.min(...cells.map(cell => cell.offsetTop));
+    const right = Math.max(...cells.map(cell => cell.offsetLeft + cell.offsetWidth));
+    const bottom = Math.max(...cells.map(cell => cell.offsetTop + cell.offsetHeight));
+
+    const overlay = document.createElement('div');
+    overlay.className = 'radar-scan-overlay';
+    overlay.style.left = `${left}px`;
+    overlay.style.top = `${top}px`;
+    overlay.style.width = `${right - left}px`;
+    overlay.style.height = `${bottom - top}px`;
+    overlay.style.setProperty('--radar-origin-x', `${centerCell.offsetLeft - left + (centerCell.offsetWidth / 2)}px`);
+    overlay.style.setProperty('--radar-origin-y', `${centerCell.offsetTop - top + (centerCell.offsetHeight / 2)}px`);
+
+    const circle = document.createElement('div');
+    circle.className = 'radar-scan-circle';
+
+    const wavePrimary = document.createElement('div');
+    wavePrimary.className = 'radar-scan-wave radar-scan-wave-primary';
+
+    const waveSecondary = document.createElement('div');
+    waveSecondary.className = 'radar-scan-wave radar-scan-wave-secondary';
+
+    const sweep = document.createElement('div');
+    sweep.className = 'radar-scan-sweep';
+
+    circle.appendChild(wavePrimary);
+    circle.appendChild(waveSecondary);
+    circle.appendChild(sweep);
+    overlay.appendChild(circle);
+    grid.appendChild(overlay);
+
+    setTimeout(() => {
+        overlay.remove();
+        scannedSet.add(centerIndex);
+        renderRadarScannedOverlay(centerIndex, { gridId, scannedSet, getCell });
+        const result = countTargets(centerIndex);
+        showRadarResultOnBoard(centerIndex, { getCell, countTargets });
+        if (typeof onScanComplete === 'function') onScanComplete(result);
+    }, RADAR_SCAN_DURATION);
 }
 
 function setRadarEligibleCells(isEnabled) {
@@ -6882,21 +6972,10 @@ function lockRadarTarget(index) {
 }
 
 function showRadarResult(centerIndex) {
-    const cell = getEnemyCell(centerIndex);
-    if (!cell || !cell.classList.contains('miss')) return;
-
-    const count = String(countRadarTargets(centerIndex));
-    cell.classList.add('radar-scanned');
-    cell.dataset.radarCount = count;
-    cell.innerHTML = `<span class="radar-count-static">${count}</span>`;
-    lastRadarResultShownAt = Date.now();
-
-    setTimeout(() => {
-        const latestCell = getEnemyCell(centerIndex);
-        if (!latestCell || !latestCell.classList.contains('miss')) return;
-        latestCell.classList.add('radar-scanned');
-        latestCell.innerHTML = '<img src="close.png" class="miss-icon">';
-    }, RADAR_RESULT_DISPLAY_DURATION);
+    showRadarResultOnBoard(centerIndex, {
+        getCell: getEnemyCell,
+        countTargets: countRadarTargets
+    });
 }
 
 function executeRadarScan(centerIndex) {
@@ -6912,47 +6991,13 @@ function executeRadarScan(centerIndex) {
     activeSkill = 'radar';
     setInstructionPanel('RADAR', 'SCANNING TARGET AREA', 'radar.png');
 
-    const cells = getRadarAreaIndices(centerIndex).map(index => getEnemyCell(index)).filter(Boolean);
-    const centerCell = getEnemyCell(centerIndex);
-    const left = Math.min(...cells.map(cell => cell.offsetLeft));
-    const top = Math.min(...cells.map(cell => cell.offsetTop));
-    const right = Math.max(...cells.map(cell => cell.offsetLeft + cell.offsetWidth));
-    const bottom = Math.max(...cells.map(cell => cell.offsetTop + cell.offsetHeight));
-
-    const overlay = document.createElement('div');
-    overlay.className = 'radar-scan-overlay';
-    overlay.style.left = `${left}px`;
-    overlay.style.top = `${top}px`;
-    overlay.style.width = `${right - left}px`;
-    overlay.style.height = `${bottom - top}px`;
-    if (centerCell) {
-        overlay.style.setProperty('--radar-origin-x', `${centerCell.offsetLeft - left + (centerCell.offsetWidth / 2)}px`);
-        overlay.style.setProperty('--radar-origin-y', `${centerCell.offsetTop - top + (centerCell.offsetHeight / 2)}px`);
-    }
-
-    const circle = document.createElement('div');
-    circle.className = 'radar-scan-circle';
-
-    const wavePrimary = document.createElement('div');
-    wavePrimary.className = 'radar-scan-wave radar-scan-wave-primary';
-
-    const waveSecondary = document.createElement('div');
-    waveSecondary.className = 'radar-scan-wave radar-scan-wave-secondary';
-
-    const sweep = document.createElement('div');
-    sweep.className = 'radar-scan-sweep';
-
-    circle.appendChild(wavePrimary);
-    circle.appendChild(waveSecondary);
-    circle.appendChild(sweep);
-    overlay.appendChild(circle);
-    grid.appendChild(overlay);
-
-    setTimeout(() => {
-        overlay.remove();
-        radarScannedCells.add(centerIndex);
-        renderRadarScannedOverlay(centerIndex);
-        showRadarResult(centerIndex);
+    playRadarScanOnBoard({
+        gridId: 'enemy-grid',
+        centerIndex,
+        getCell: getEnemyCell,
+        countTargets: countRadarTargets,
+        scannedSet: radarScannedCells,
+        onScanComplete: () => {
         finishRadarMode();
         if (currentPhase === 'PLAYER_TURN') {
             if (turnTimeLeft <= 0.15) {
@@ -6962,7 +7007,8 @@ function executeRadarScan(centerIndex) {
                 startTurnSelectionTimer(false);
             }
         }
-    }, RADAR_SCAN_DURATION);
+        }
+    });
 }
 
 function onEnemyGridHover(event) {
