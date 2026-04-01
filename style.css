@@ -3252,8 +3252,8 @@ body {
    ========================================= */
 #instruction-container {
     margin: 10px auto 20px auto;
-    width: 100%;
-    max-width: 372px;
+    width: min(100%, 390px);
+    max-width: calc(100vw - 12px);
     box-sizing: border-box;
     z-index: 10;
     position: relative;
@@ -3428,8 +3428,8 @@ body {
 
     #instruction-container {
         margin: 8px auto 10px auto;
-        width: calc(100% - 12px);
-        max-width: calc(100% - 12px);
+        width: min(100%, 390px);
+        max-width: calc(100vw - 12px);
     }
 
     #instruction-inner {
@@ -3438,8 +3438,10 @@ body {
     }
 
     #battle-hud {
-        width: calc(100% - 18px);
-        max-width: calc(100% - 18px);
+        --battle-hud-side-size: clamp(78px, 25vw, 96px);
+        --battle-hud-gap: clamp(4px, 1vw, 6px);
+        width: min(100%, 390px);
+        max-width: calc(100vw - 14px);
         gap: 6px;
         margin-top: 0;
         box-sizing: border-box;
@@ -3474,10 +3476,8 @@ body {
         margin-bottom: 3px;
     }
 
-    #minimap-grid,
-    #hud-portrait {
-        width: 96px;
-        height: 96px;
+    #hud-skills {
+        flex-basis: clamp(70px, 21vw, 84px);
     }
 }
 
@@ -3550,20 +3550,23 @@ body {
    ★★★ BATTLE HUD (底部三欄) ★★★
    ========================================= */
 #battle-hud {
+    --battle-hud-side-size: clamp(82px, 24vw, 120px);
+    --battle-hud-gap: clamp(4px, 1.1vw, 8px);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* 同棋盤 (.game-grid) 一樣寬：10×35 + 9×2(gap) + 20(padding) + 2(border) = 390px */
-    width: 390px;
-    max-width: calc(100% - 20px);
+    width: min(100%, 390px);
+    max-width: calc(100vw - 12px);
     margin: 2px auto 0 auto;
-    gap: 8px;
+    gap: var(--battle-hud-gap);
     z-index: 10;
+    box-sizing: border-box;
 }
 
 /* 左欄：技能 */
 #hud-skills {
-    flex: 0 0 auto;
+    flex: 0 1 clamp(74px, 22vw, 96px);
+    min-width: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -3766,7 +3769,8 @@ body {
 
 /* 中欄：小地圖 */
 #hud-minimap {
-    flex: 1;
+    flex: 1 1 0;
+    min-width: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -3781,8 +3785,8 @@ body {
 }
 
 #minimap-grid {
-    width: 120px;
-    height: 120px;
+    width: var(--battle-hud-side-size);
+    height: var(--battle-hud-side-size);
     background: rgba(10, 20, 30, 0.7);
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 4px;
@@ -3792,8 +3796,10 @@ body {
 
 /* 右欄：駕駛員 portrait */
 #hud-portrait {
-    flex: 0 0 120px;
-    height: 120px;
+    flex: 0 1 var(--battle-hud-side-size);
+    width: var(--battle-hud-side-size);
+    height: var(--battle-hud-side-size);
+    min-width: 0;
     background: rgba(10, 20, 30, 0.7);
     border: 2px solid rgba(255, 255, 255, 0.25);
     border-radius: 6px;
