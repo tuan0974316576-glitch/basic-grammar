@@ -1525,6 +1525,7 @@ function startBattle() {
 
     if (gameMode === 'AI') {
         updateEnemyBoardLabel(enemyRace); // ★ Update AI opponent label ★
+        renderBattleMinimap('PLAYER');
         startPlayerTurn();
     } else {
         const { ref, update, onValue, off } = window.firebaseModules;
@@ -1616,6 +1617,52 @@ function updateEnemyBoardLabel(race) {
     }
 }
 
+function renderBattleMinimap(sceneName = null) {
+    const minimap = document.getElementById('hud-minimap');
+    const label = document.getElementById('minimap-label');
+    const grid = document.getElementById('minimap-grid');
+    if (!minimap || !label || !grid) return;
+
+    const resolvedScene = sceneName || (document.getElementById('enemy-board')?.classList.contains('active') ? 'PLAYER' : 'ENEMY');
+    const showPlayerMap = resolvedScene === 'PLAYER';
+
+    minimap.classList.toggle('player-map', showPlayerMap);
+    minimap.classList.toggle('enemy-map', !showPlayerMap);
+    label.textContent = showPlayerMap ? 'YOUR FLEET' : 'ENEMY SECTOR';
+    grid.innerHTML = '';
+
+    for (let i = 0; i < GRID_SIZE * GRID_SIZE; i++) {
+        const miniCell = document.createElement('div');
+        miniCell.className = 'minimap-cell';
+
+        if (showPlayerMap) {
+            const boardCell = getPlayerCell(i);
+            const wasShot = enemyShots.includes(i) || (boardCell && boardCell.classList.contains('revealed'));
+
+            if (myGrid[i] === 1) miniCell.classList.add('ship');
+            if (boardCell && boardCell.classList.contains('hit')) {
+                miniCell.classList.add('hit');
+            } else if (wasShot) {
+                miniCell.classList.add('miss');
+            }
+        } else {
+            const boardCell = getEnemyCell(i);
+
+            if (boardCell && boardCell.classList.contains('hit')) {
+                miniCell.classList.add('hit');
+            } else if (boardCell && boardCell.classList.contains('miss')) {
+                miniCell.classList.add('miss');
+            }
+
+            if (radarScannedCells.has(i)) {
+                miniCell.classList.add('scanned');
+            }
+        }
+
+        grid.appendChild(miniCell);
+    }
+}
+
 function switchScene(sceneName) {
         document.getElementById('player-board').classList.remove('active');
         document.getElementById('enemy-board').classList.remove('active');
@@ -1667,6 +1714,8 @@ function switchScene(sceneName) {
                 instrContainer.style.display = 'none';
             }
         }
+
+        renderBattleMinimap(sceneName);
 }
 
 /* =========================================
@@ -3131,6 +3180,7 @@ function aiFire() {
         }
 
         document.getElementById('warning-overlay').style.display = 'none';
+        renderBattleMinimap('ENEMY');
 
         if (!isGameOver) {
             setGameTimeout(startPlayerTurn, 700);
@@ -6861,6 +6911,8 @@ function applyExplosionDamageToPlayer(indices) {
             cell.innerHTML = '<img src="close.png" class="miss-icon">';
         }
     });
+
+    renderBattleMinimap('ENEMY');
 
     if (hitIndices.length > 0) {
         let destroyedAny = false;
