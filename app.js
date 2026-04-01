@@ -4846,15 +4846,7 @@ window.addEventListener('load', () => {
     const cachedUid = localStorage.getItem('battleship_auth_uid');
     if (cachedName && cachedUid) {
         console.log("🚀 FAST LOGIN: Found cached user -> " + cachedName);
-        // ★★★ CRITICAL FIX: Clear XP before updateHUD to prevent inheritance ★★★
-        window.userTotalXP = 0;
-        window.userMastery = { reading: {}, listening: {}, speaking: {} };
-        window.userSupplies = 0;
-        if (typeof userTotalXP !== 'undefined') userTotalXP = 0;
-        if (typeof userMastery !== 'undefined') userMastery = { reading: {}, listening: {}, speaking: {} };
-        if (typeof userSupplies !== 'undefined') userSupplies = 0;
-        console.log('[FAST LOGIN] Cleared XP data before updateHUD');
-        updateHUD(cachedName);
+        console.log('[FAST LOGIN] Deferring HUD render until Firebase auth resolves');
     }
 
     // 3. ★★★ 關鍵修復：同步 Module Scope 嘅 Firebase 變數到 Regular Script Scope ★★★
