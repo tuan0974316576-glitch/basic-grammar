@@ -66,6 +66,38 @@ window.applyAuthFlowState = function(patch = {}) {
     switchHudPanel(nextView === 'connecting' ? 'connecting-panel' : 'login-panel');
 };
 
+window.reconcileAuthFlowState = function(force = false) {
+    const splash = document.getElementById('splash-screen');
+    const splashHidden = !splash || splash.style.display === 'none';
+    const cachedName = localStorage.getItem('battleship_username');
+    const cachedUid = localStorage.getItem('battleship_auth_uid');
+
+    if (!window.authFlowState.started && splashHidden) {
+        window.authFlowState.started = true;
+    }
+
+    if (!window.authFlowState.started) return;
+
+    if (window.isFirebaseAuthenticated && window.myPlayerId) {
+        window.applyAuthFlowState({
+            resolved: true,
+            authenticated: true,
+            needsRegistration: !(cachedName && cachedUid && cachedUid === window.myPlayerId),
+            displayName: (cachedUid === window.myPlayerId ? cachedName : null) || null,
+            force
+        });
+        return;
+    }
+
+    window.applyAuthFlowState({
+        resolved: true,
+        authenticated: false,
+        needsRegistration: false,
+        displayName: null,
+        force
+    });
+};
+
 window.cancelAuthOverlay = function() {
     const overlay = document.getElementById('login-overlay');
     if (overlay) overlay.style.display = 'none';
@@ -392,6 +424,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     syncRegistrationInputMode();
     window.addEventListener('resize', syncRegistrationInputMode);
+    if (typeof window.reconcileAuthFlowState === 'function') {
+        setTimeout(() => window.reconcileAuthFlowState(true), 0);
+    }
 });
 
 async function updateHUD(name) {
