@@ -84,6 +84,9 @@ const SPEAKING_PASS_SCORE = 75;
     // ★★★ 排序代碼結束 ★★★
 
     function getSpeakingAssessmentBaseUrl() {
+        const configBase = (window.APP_CONFIG && window.APP_CONFIG.SPEAKING_API_BASE || '').trim();
+        if (configBase) return configBase.replace(/\/$/, '');
+
         const explicitBase = (localStorage.getItem('speaking_api_base') || '').trim();
         if (explicitBase) return explicitBase.replace(/\/$/, '');
 

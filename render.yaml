@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: vocab-conqueror-speaking
+    runtime: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: npm run server
+    autoDeploy: true
+    envVars:
+      - key: AZURE_SPEECH_KEY
+        sync: false
+      - key: AZURE_SPEECH_REGION
+        value: eastasia
+      - key: PORT
+        value: 10000

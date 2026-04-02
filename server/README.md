@@ -43,6 +43,30 @@ Then run:
 npm run server
 ```
 
+## Best way to use this on computer, phone, and tablet
+
+Use an HTTPS backend. The easiest setup for this repo is:
+
+1. Push this repo to GitHub
+2. Create a new Render Blueprint / Web Service from the repo
+3. Use the included `render.yaml`
+4. Set env vars in Render:
+   - `AZURE_SPEECH_KEY`
+   - `AZURE_SPEECH_REGION=eastasia`
+5. After Render gives you a URL like:
+   - `https://vocab-conqueror-speaking.onrender.com`
+6. Put that URL into:
+   - `/app-config.js`
+   - `SPEAKING_API_BASE: 'https://your-render-url.onrender.com'`
+
+After that, the same GitHub Pages frontend can use Azure pronunciation assessment on:
+
+- desktop
+- phone
+- tablet
+
+No native app conversion is required.
+
 ## Important note for the first version
 
 This first backend version expects `WAV` audio upload.
