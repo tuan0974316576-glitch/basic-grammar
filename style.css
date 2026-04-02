@@ -5310,21 +5310,43 @@ body {
     font-weight: 500;
 }
 
+#virtual-keyboard.kb-tablet-size .kb-row {
+    width: min(92vw, 760px);
+    gap: clamp(6px, 1vw, 10px);
+    margin-bottom: 8px;
+}
+
+#virtual-keyboard.kb-tablet-size .kb-row:nth-child(1) {
+    width: min(92vw, 760px);
+}
+
+#virtual-keyboard.kb-tablet-size .kb-row:nth-child(2) {
+    width: min(84vw, 690px);
+}
+
+#virtual-keyboard.kb-tablet-size .kb-row:nth-child(3) {
+    width: min(82vw, 660px);
+    transform: translateX(clamp(20px, 2.8vw, 34px));
+}
+
 #virtual-keyboard.kb-tablet-size .kb-backspace {
     height: clamp(42px, 4.2vw, 52px);
     font-size: clamp(16px, 2vw, 20px);
     font-weight: 500;
+    flex: 1.65 1 0;
 }
 
 #virtual-keyboard.kb-tablet-size .kb-space {
     height: clamp(42px, 4.2vw, 52px);
     font-weight: 500;
+    flex: 1.15 1 0;
 }
 
 #virtual-keyboard.kb-tablet-size .kb-enter {
     height: clamp(42px, 4.2vw, 52px);
     font-size: clamp(13px, 1.6vw, 16px);
     font-weight: 500;
+    flex: 0.72 1 0;
 }
 
 /* ★★★ AURELIANS QUIZ THEME: Golden UI with Cyan accents ★★★ */

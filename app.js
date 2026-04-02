@@ -2268,8 +2268,6 @@ function closeLaunchModalUI() {
     if (hiddenInput) {
         hiddenInput.value = '';
         hiddenInput.blur();
-        hiddenInput.oninput = null;
-        hiddenInput.onkeydown = null;
         hiddenInput.setAttribute('readonly', 'readonly');
         hiddenInput.style.position = 'absolute';
         hiddenInput.style.left = '-9999px';
