@@ -12,6 +12,7 @@ const azureSpeechRegion = defineString('AZURE_SPEECH_REGION', {
 });
 
 const app = express();
+const corsMiddleware = cors({ origin: true });
 const upload = multer({
   storage: multer.memoryStorage(),
   limits: {
@@ -19,14 +20,12 @@ const upload = multer({
   }
 });
 
-app.use(cors({ origin: true }));
+app.use(corsMiddleware);
+app.options('*', corsMiddleware);
 app.use((req, res, next) => {
   res.set('Access-Control-Allow-Origin', '*');
   res.set('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
   res.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  if (req.method === 'OPTIONS') {
-    return res.status(204).send('');
-  }
   next();
 });
 app.use(express.json({ limit: '1mb' }));
@@ -94,6 +93,7 @@ app.post('/api/pronunciation-assessment', upload.single('audio'), async (req, re
 exports.speakingApi = onRequest(
   {
     region: 'asia-east2',
+    cors: true,
     timeoutSeconds: 60,
     memory: '512MiB',
     secrets: [azureSpeechKey]
