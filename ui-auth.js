@@ -1,6 +1,5 @@
 let authOverlayTimeout = null;
 window.pendingAuthFlowPatch = window.pendingAuthFlowPatch || null;
-window.suppressNextMainMenuAnimation = window.suppressNextMainMenuAnimation || false;
 window.authFlowState = window.authFlowState || {
     started: false,
     resolved: false,
@@ -46,15 +45,13 @@ window.applyAuthFlowState = function(patch = {}) {
         nextView = 'main';
     }
 
-    if (window.authFlowState.currentView === nextView && !patch.force) {
+    const previousView = window.authFlowState.currentView;
+    if (previousView === nextView && !patch.force) {
         return;
     }
     window.authFlowState.currentView = nextView;
 
     if (nextView === 'main') {
-        if (window.authFlowState.currentView === 'connecting') {
-            window.suppressNextMainMenuAnimation = true;
-        }
         if (regModal) regModal.style.display = 'none';
         showMainMenu();
         return;
@@ -650,9 +647,6 @@ function revealAuthenticatedMainMenu() {
 }
 
 function showMainMenu() {
-    const suppressAnimation = !!window.suppressNextMainMenuAnimation;
-    window.suppressNextMainMenuAnimation = false;
-
     const overlay = document.getElementById('login-overlay');
     if (overlay) {
         overlay.style.display = 'none';
@@ -676,7 +670,7 @@ function showMainMenu() {
     const carouselWrapper = document.getElementById('main-menu-carousel');
     if (carouselWrapper) {
         carouselWrapper.style.display = 'flex';
-        carouselWrapper.style.animation = suppressAnimation ? 'none' : 'fadeIn 0.5s';
+        carouselWrapper.style.animation = 'fadeIn 0.5s';
     }
 
     const splash = document.getElementById('splash-screen');
@@ -751,29 +745,27 @@ window.startExperience = function() {
     const cachedUid = localStorage.getItem('battleship_auth_uid');
     const shouldWaitForFirebase = !!((cachedName && cachedUid) || window.isFirebaseAuthenticated);
 
-    if (typeof window.applyAuthFlowState === 'function') {
-        window.authFlowState.started = true;
-        if (shouldWaitForFirebase) {
-            window.applyAuthFlowState({
-                resolved: false,
-                authenticated: true,
-                needsRegistration: false,
-                displayName: null,
-                force: true
-            });
-        } else {
-            window.applyAuthFlowState({
-                resolved: true,
-                authenticated: false,
-                needsRegistration: false,
-                displayName: null,
-                force: true
-            });
+        if (typeof window.applyAuthFlowState === 'function') {
+            window.authFlowState.started = true;
+            if (shouldWaitForFirebase) {
+                window.applyAuthFlowState({
+                    resolved: false,
+                    authenticated: true,
+                    needsRegistration: false,
+                    displayName: null
+                });
+            } else {
+                window.applyAuthFlowState({
+                    resolved: true,
+                    authenticated: false,
+                    needsRegistration: false,
+                    displayName: null
+                });
+            }
+            if (typeof window.reconcileAuthFlowState === 'function') {
+                window.reconcileAuthFlowState(false);
+            }
         }
-        if (typeof window.reconcileAuthFlowState === 'function') {
-            window.reconcileAuthFlowState(true);
-        }
-    }
 
     const splash = document.getElementById('splash-screen');
     splash.style.opacity = '0';
@@ -798,7 +790,7 @@ window.startExperience = function() {
                     : { resolved: true, authenticated: false, needsRegistration: false, displayName: null })
             });
             if (typeof window.reconcileAuthFlowState === 'function') {
-                window.reconcileAuthFlowState(true);
+                window.reconcileAuthFlowState(false);
             }
         }
     }, 500);
@@ -810,7 +802,6 @@ window.startExperience = function() {
 };
 
 function switchHudPanel(panelId) {
-    const suppressAnimation = !!window.suppressNextMainMenuAnimation && panelId === 'user-profile-panel';
     document.getElementById('connecting-panel').style.display = 'none';
     document.getElementById('login-panel').style.display = 'none';
     document.getElementById('user-profile-panel').style.display = 'none';
@@ -823,17 +814,11 @@ function switchHudPanel(panelId) {
         target.style.display = 'block';
 
         if (panelId === 'user-profile-panel') {
-            if (suppressAnimation) {
-                target.style.animation = 'none';
-                target.style.opacity = '1';
-                target.style.transform = 'none';
-            } else {
-                console.log('[switchHudPanel] Triggering holoAppear animation for user-profile-panel');
-                target.style.animation = 'none';
-                void target.offsetWidth;
-                target.style.animation = 'holoAppear 0.4s forwards';
-                console.log('[switchHudPanel] Animation set:', target.style.animation);
-            }
+            console.log('[switchHudPanel] Triggering holoAppear animation for user-profile-panel');
+            target.style.animation = 'none';
+            void target.offsetWidth;
+            target.style.animation = 'holoAppear 0.4s forwards';
+            console.log('[switchHudPanel] Animation set:', target.style.animation);
         } else {
             target.style.animation = 'fadeIn 0.5s';
         }
