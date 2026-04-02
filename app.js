@@ -5425,6 +5425,112 @@ function formatDisplayInput(userRaw, targetCorrect) {
     
     return result;
 }
+function escapeHtml(value) {
+    return String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
+}
+
+function buildSpeakingDebriefSentence(log) {
+    const assessment = log?.speakingAssessment;
+    const targetWord = (assessment?.targetWord || '').toLowerCase();
+    const words = Array.isArray(assessment?.words) ? assessment.words : [];
+    if (words.length) {
+        return words.map(wordEntry => {
+            const score = Math.round(wordEntry.accuracy ?? 0);
+            const color = getSpeakingAssessmentColor(score, wordEntry.errorType);
+            const isTarget = targetWord && String(wordEntry.word || '').toLowerCase() === targetWord;
+            return `<span class="speaking-debrief-word${isTarget ? ' target' : ''}" style="color:${color}">${escapeHtml(wordEntry.word || '?')}</span>`;
+        }).join(' ');
+    }
+
+    const sentence = log?.sentence || log?.correct || '';
+    if (!sentence) return '<span class="speaking-debrief-word" style="color:#94a3b8">NO SENTENCE DATA</span>';
+    return sentence.split(/(\s+)/).map(token => {
+        if (!token.trim()) return token;
+        const cleanToken = token.toLowerCase().replace(/[^a-z']/g, '');
+        const isTarget = targetWord && cleanToken === targetWord;
+        return `<span class="speaking-debrief-word${isTarget ? ' target' : ''}" style="color:${isTarget ? 'var(--warning)' : '#67e8f9'}">${escapeHtml(token)}</span>`;
+    }).join('');
+}
+
+function buildSpeakingDebriefWordRows(log) {
+    const words = Array.isArray(log?.speakingAssessment?.words) ? log.speakingAssessment.words : [];
+    if (!words.length) {
+        return '<div class="speaking-debrief-word-row"><div class="speaking-debrief-word-name">no data</div><div class="speaking-debrief-phoneme-list"><span class="speaking-chip" style="color:#94a3b8"><span class="speaking-chip-label">NO BREAKDOWN</span></span></div></div>';
+    }
+
+    return words.map(wordEntry => {
+        const phonemes = Array.isArray(wordEntry.phonemes) && wordEntry.phonemes.length ? wordEntry.phonemes : (Array.isArray(wordEntry.syllables) ? wordEntry.syllables : []);
+        const labelKey = Array.isArray(wordEntry.phonemes) && wordEntry.phonemes.length ? 'phoneme' : 'syllable';
+        const bars = phonemes.length
+            ? phonemes.map(item => {
+                const label = escapeHtml(item[labelKey] || '?');
+                const score = Math.max(0, Math.min(100, Math.round(item.accuracy ?? 0)));
+                const color = getSpeakingAssessmentColor(score, item.errorType);
+                return `<div class="speaking-debrief-phoneme"><div class="speaking-debrief-phoneme-bar"><div class="speaking-debrief-phoneme-fill" style="height:${Math.max(8, score)}%; color:${color}; background:${color};"></div></div><div class="speaking-debrief-phoneme-label">${label}</div></div>`;
+            }).join('')
+            : '<span class="speaking-chip" style="color:#94a3b8"><span class="speaking-chip-label">NO BREAKDOWN</span></span>';
+
+        return `<div class="speaking-debrief-word-row"><div class="speaking-debrief-word-name">${escapeHtml(wordEntry.word || '?')}</div><div class="speaking-debrief-phoneme-list">${bars}</div></div>`;
+    }).join('');
+}
+
+function closeSpeakingDebriefModal() {
+    const modal = document.getElementById('speaking-debrief-modal');
+    if (modal) modal.style.display = 'none';
+}
+
+function openSpeakingDebriefModal(logIndex) {
+    const log = battleLog[Number(logIndex)];
+    if (!log || log.mode !== 'SPEAKING' || !log.speakingAssessment) return;
+
+    const modal = document.getElementById('speaking-debrief-modal');
+    const sentenceEl = document.getElementById('speaking-debrief-sentence');
+    const scoreGridEl = document.getElementById('speaking-debrief-score-grid');
+    const wordListEl = document.getElementById('speaking-debrief-word-list');
+    if (!modal || !sentenceEl || !scoreGridEl || !wordListEl) return;
+
+    const overall = log.speakingAssessment.overall || {};
+    const cards = [
+        { label: 'SESSION SCORE', value: Math.round(overall.pronunciation ?? log.speakingAssessment.targetScore ?? 0) },
+        { label: 'ACCURACY', value: Math.round(overall.accuracy ?? 0) },
+        { label: 'FLUENCY', value: Math.round(overall.fluency ?? 0) },
+        { label: 'COMPLETENESS', value: Math.round(overall.completeness ?? 0) }
+    ];
+
+    sentenceEl.innerHTML = buildSpeakingDebriefSentence(log);
+    scoreGridEl.innerHTML = cards.map(card => `<div class="speaking-debrief-score-card"><div class="speaking-debrief-score-value">${card.value}</div><div class="speaking-debrief-score-label">${card.label}</div></div>`).join('');
+    wordListEl.innerHTML = buildSpeakingDebriefWordRows(log);
+    modal.style.display = 'flex';
+}
+
+function upsertSpeakingBattleLogEntry(transcript, targetText, result, targetWord, targetScore, isCorrect) {
+    if (typeof battleLog === 'undefined') return;
+
+    const turn = (typeof turnCounter !== 'undefined' ? turnCounter : 1);
+    const speakingEntry = {
+        turn,
+        user: transcript || '(no transcript)',
+        correct: targetText,
+        isCorrect,
+        mode: 'SPEAKING',
+        sentence: currentVocab.sent || currentVocab.en || null,
+        speakingAssessment: {
+            targetWord: targetWord,
+            targetScore: targetScore,
+            recognizedText: transcript || '',
+            overall: result.overall || {},
+            words: Array.isArray(result.words) ? result.words : []
+        }
+    };
+
+    const existingIndex = battleLog.findIndex(log => log.turn === turn);
+    if (existingIndex !== -1) {
+        battleLog[existingIndex] = { ...battleLog[existingIndex], ...speakingEntry };
+    } else {
+        battleLog.push(speakingEntry);
+    }
+}
+
 function renderReview() {
     const container = document.getElementById('review-container');
     const list = document.getElementById('review-list');
@@ -5450,8 +5556,12 @@ function renderReview() {
         // �� ���� 2�������DС�� (���ǂS TIMEOUT ����) ��
 let displayUser = log.user;
 if (displayUser !== "(TIMEOUT)") {
-    displayUser = displayUser.toLowerCase();
-    displayUser = formatDisplayInput(displayUser, log.correct);
+    if (log.mode === 'SPEAKING') {
+        displayUser = escapeHtml(displayUser);
+    } else {
+        displayUser = displayUser.toLowerCase();
+        displayUser = formatDisplayInput(displayUser, log.correct);
+    }
 }
 
         // �� ���� 1������ .review-meaning ��ʽ ��
@@ -5463,6 +5573,12 @@ if (displayUser !== "(TIMEOUT)") {
             const sentence = log.sentence;
             const regex = new RegExp(`\\b(${answerWord})\\b`, 'gi');
             correctDisplay = sentence.replace(regex, '<span style="color: var(--warning);">$1</span>');
+        }
+
+        if (log.mode === 'SPEAKING' && log.speakingAssessment) {
+            item.classList.add('review-item-interactive');
+            item.dataset.logIndex = String(battleLog.indexOf(log));
+            item.onclick = () => openSpeakingDebriefModal(item.dataset.logIndex);
         }
 
         item.innerHTML = `
@@ -6132,14 +6248,14 @@ function checkSpeakingAssessment(result) {
         if (typeof timerInterval !== 'undefined') clearInterval(timerInterval);
         timerInterval = null;
 
-        if (typeof battleLog !== 'undefined') {
-            battleLog.push({
-                turn: (typeof turnCounter !== 'undefined' ? turnCounter : 1),
-                user: transcript || '(no transcript)',
-                correct: currentVocab.sent ? currentVocab.sent : currentVocab.en,
-                isCorrect: true
-            });
-        }
+        upsertSpeakingBattleLogEntry(
+            transcript,
+            currentVocab.sent ? currentVocab.sent : currentVocab.en,
+            result,
+            targetWord,
+            targetScore,
+            true
+        );
 
         removeWrongWord(currentPracticeMode, selectedLevel, currentVocab.en);
         if (typeof handleCorrectAnswer === 'function') handleCorrectAnswer();
@@ -6152,6 +6268,15 @@ function checkSpeakingAssessment(result) {
         setTimeout(() => playerFire(true), 1000);
         return;
     }
+
+    upsertSpeakingBattleLogEntry(
+        transcript,
+        currentVocab.sent ? currentVocab.sent : currentVocab.en,
+        result,
+        targetWord,
+        targetScore,
+        false
+    );
 
     saveWrongWord(currentPracticeMode, selectedLevel, currentVocab.en);
     if (msgArea) {

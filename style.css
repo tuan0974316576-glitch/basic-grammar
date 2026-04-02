@@ -5672,3 +5672,242 @@ body {
 .screen-shake-nuke {
     animation: screenShakeNuke 0.65s linear;
 }
+.review-item.review-item-interactive {
+    cursor: pointer;
+    transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.review-item.review-item-interactive:hover {
+    background: rgba(14, 165, 233, 0.08);
+    box-shadow: inset 0 0 0 1px rgba(14, 165, 233, 0.2);
+    transform: translateX(2px);
+}
+
+.review-item.review-item-interactive .review-answer {
+    color: #67e8f9;
+}
+
+.speaking-debrief-overlay {
+    z-index: 10020;
+}
+
+.speaking-debrief-box {
+    width: min(880px, calc(100vw - 32px));
+    max-width: 880px;
+    max-height: calc(100vh - 48px);
+    border-color: #0ea5e9;
+    box-shadow: 0 0 40px rgba(14, 165, 233, 0.3), inset 0 0 40px rgba(14, 165, 233, 0.08);
+    padding: 24px;
+    text-align: left;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.speaking-debrief-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.speaking-debrief-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: #67e8f9;
+    text-shadow: 0 0 12px rgba(103, 232, 249, 0.75);
+}
+
+.speaking-debrief-close {
+    border: 1px solid rgba(103, 232, 249, 0.5);
+    background: rgba(15, 23, 42, 0.8);
+    color: #67e8f9;
+    padding: 10px 16px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    box-shadow: 0 0 16px rgba(14, 165, 233, 0.18);
+}
+
+.speaking-debrief-sentence {
+    padding: 16px 18px;
+    border: 1px solid rgba(103, 232, 249, 0.18);
+    border-radius: 12px;
+    background:
+        linear-gradient(180deg, rgba(15, 23, 42, 0.94), rgba(2, 6, 23, 0.92)),
+        radial-gradient(circle at top left, rgba(14, 165, 233, 0.15), transparent 48%);
+    color: #e2e8f0;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 22px;
+    line-height: 1.5;
+    box-shadow: inset 0 0 28px rgba(14, 165, 233, 0.08);
+}
+
+.speaking-debrief-word {
+    display: inline-block;
+    margin: 0 8px 8px 0;
+    padding: 2px 4px;
+    border-bottom: 2px solid currentColor;
+}
+
+.speaking-debrief-word.target {
+    padding: 4px 10px;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.05), 0 0 12px rgba(255, 255, 255, 0.08);
+}
+
+.speaking-debrief-score-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.speaking-debrief-score-card {
+    border: 1px solid rgba(103, 232, 249, 0.15);
+    border-radius: 12px;
+    padding: 14px;
+    background: rgba(2, 6, 23, 0.85);
+    box-shadow: inset 0 0 16px rgba(14, 165, 233, 0.06);
+}
+
+.speaking-debrief-score-value {
+    font-family: 'Black Ops One', cursive;
+    font-size: 34px;
+    color: #67e8f9;
+    line-height: 1;
+    text-shadow: 0 0 10px rgba(103, 232, 249, 0.45);
+}
+
+.speaking-debrief-score-label {
+    margin-top: 8px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #94a3b8;
+    text-transform: uppercase;
+}
+
+.speaking-debrief-section-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: #cbd5e1;
+    text-transform: uppercase;
+}
+
+.speaking-debrief-word-list {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-right: 4px;
+}
+
+.speaking-debrief-word-row {
+    display: grid;
+    grid-template-columns: minmax(110px, 150px) 1fr;
+    gap: 16px;
+    align-items: center;
+    padding: 14px 16px;
+    border: 1px solid rgba(71, 85, 105, 0.55);
+    border-radius: 12px;
+    background: rgba(15, 23, 42, 0.88);
+}
+
+.speaking-debrief-word-name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 20px;
+    color: #f8fafc;
+    text-transform: lowercase;
+}
+
+.speaking-debrief-phoneme-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: flex-end;
+}
+
+.speaking-debrief-phoneme {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    min-width: 22px;
+}
+
+.speaking-debrief-phoneme-bar {
+    width: 6px;
+    height: 58px;
+    border-radius: 999px;
+    background: rgba(71, 85, 105, 0.5);
+    overflow: hidden;
+    box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.18);
+}
+
+.speaking-debrief-phoneme-fill {
+    width: 100%;
+    border-radius: 999px;
+    margin-top: auto;
+    min-height: 4px;
+    box-shadow: 0 0 8px currentColor;
+}
+
+.speaking-debrief-phoneme-label {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 13px;
+    color: #e2e8f0;
+}
+
+.speaking-debrief-word-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.speaking-debrief-word-list::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.6);
+}
+
+.speaking-debrief-word-list::-webkit-scrollbar-thumb {
+    background: rgba(103, 232, 249, 0.35);
+    border-radius: 999px;
+}
+
+@media (max-width: 700px) {
+    .speaking-debrief-box {
+        width: calc(100vw - 24px);
+        max-height: calc(100vh - 24px);
+        padding: 18px 14px;
+        gap: 14px;
+    }
+
+    .speaking-debrief-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .speaking-debrief-sentence {
+        font-size: 17px;
+        padding: 14px;
+    }
+
+    .speaking-debrief-score-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .speaking-debrief-word-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .speaking-debrief-word-name {
+        font-size: 18px;
+    }
+
+    .speaking-debrief-phoneme-list {
+        gap: 10px;
+    }
+}

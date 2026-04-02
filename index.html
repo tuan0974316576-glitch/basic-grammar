@@ -627,6 +627,19 @@
         </div>
     </div>
 
+<div id="speaking-debrief-modal" class="tech-modal-overlay speaking-debrief-overlay" onclick="if(event.target===this) closeSpeakingDebriefModal()">
+        <div class="tech-modal-box speaking-debrief-box">
+            <div class="speaking-debrief-header">
+                <div class="speaking-debrief-title">PRONUNCIATION ANALYSIS</div>
+                <button class="speaking-debrief-close" onclick="closeSpeakingDebriefModal()">CLOSE</button>
+            </div>
+            <div id="speaking-debrief-sentence" class="speaking-debrief-sentence"></div>
+            <div id="speaking-debrief-score-grid" class="speaking-debrief-score-grid"></div>
+            <div class="speaking-debrief-section-title">WORD PERFORMANCE</div>
+            <div id="speaking-debrief-word-list" class="speaking-debrief-word-list"></div>
+        </div>
+    </div>
+
 <div id="tech-notification">
         <div id="notif-title">SYSTEM MESSAGE</div>
         <div id="notif-content">...</div>
