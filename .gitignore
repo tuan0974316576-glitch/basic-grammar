@@ -8,3 +8,4 @@ android/app/build/
 *.log
 server/.env
 server/.env.*
+!server/.env.example
