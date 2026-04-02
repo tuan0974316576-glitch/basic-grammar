@@ -2090,6 +2090,8 @@ if (currentPracticeMode === 'SPEAKING') {
 
         // ★★★ Use listeningAnswer if available (new format), otherwise use base form (old format) ★★★
         const targetWord = currentVocab.listeningAnswer || currentVocab.en;
+        const textToRead = currentVocab.sent ? currentVocab.sent : currentVocab.en;
+        const safeText = textToRead.replace(/'/g, "\\'");
         console.log(`[Listening Display] Using target word: "${targetWord}"`);
 
         // 1. 顯示句子填空 (如果有句子)
@@ -2098,19 +2100,17 @@ if (currentPracticeMode === 'SPEAKING') {
             // 將目標字換成跟字數一樣長度的動態底線
             const dynamicBlanks = generateSmartBlanks(targetWord);
             const displayHTML = currentVocab.sent.replace(regex, `<span class="listening-blank">${dynamicBlanks}</span>`);
-            contentHTML += `<div class="sentence-container">${displayHTML}</div>`;
+            contentHTML += `<div class="sentence-container">${displayHTML}<span class="cyber-speaker-btn cyber-speaker-btn-small listening-replay-btn" onclick="speakText('${safeText}')" role="button" aria-label="Replay audio"></span></div>`;
         } else {
             contentHTML += `<div style="font-family:'Orbitron'; font-size:14px; color:#d946ef; margin-bottom:15px; letter-spacing:2px;">// AUDIO INTERCEPTED //</div>`;
         }
 
         // 2. 加入高科技喇叭掣 (使用你畫的 PNG)
-        const textToRead = currentVocab.sent ? currentVocab.sent : currentVocab.en;
-        const safeText = textToRead.replace(/'/g, "\\'");
-
-        contentHTML += `
-            <div class="cyber-speaker-btn" onclick="speakText('${safeText}')"></div>
-            <div style="font-size:10px; color:#d946ef; margin-top:5px; opacity:0.8; font-family:'Orbitron';">TAP TO REPLAY</div>
-        `;
+        if (!currentVocab.sent) {
+            contentHTML += `
+                <div class="cyber-speaker-btn" onclick="speakText('${safeText}')"></div>
+            `;
+        }
 
         qText.innerHTML = contentHTML;
         qText.style.cursor = "default";
