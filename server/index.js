@@ -1,4 +1,5 @@
 const express = require('express');
+const os = require('os');
 const cors = require('cors');
 const multer = require('multer');
 const { assessPronunciation } = require('./services/pronunciation');
@@ -81,6 +82,13 @@ app.post('/api/pronunciation-assessment', upload.single('audio'), async (req, re
 });
 
 const port = Number(process.env.PORT || 8787);
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
   console.log(`[Speaking Backend] Listening on http://localhost:${port}`);
+
+  const interfaces = os.networkInterfaces();
+  Object.values(interfaces).flat().forEach((details) => {
+    if (details && details.family === 'IPv4' && !details.internal) {
+      console.log(`[Speaking Backend] LAN URL http://${details.address}:${port}`);
+    }
+  });
 });

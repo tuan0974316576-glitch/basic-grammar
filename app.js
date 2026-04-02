@@ -96,7 +96,7 @@ const SPEAKING_PASS_SCORE = 75;
         return '';
     }
 
-    function canUseAzureSpeakingAssessment() {
+function canUseAzureSpeakingAssessment() {
         return Boolean(
             speakingUseAzureAssessment &&
             getSpeakingAssessmentBaseUrl() &&
@@ -215,6 +215,24 @@ const SPEAKING_PASS_SCORE = 75;
         if (speakingAudioStream) {
             speakingAudioStream.getTracks().forEach(track => track.stop());
             speakingAudioStream = null;
+        }
+    }
+
+    function showSpeakingAzureUnavailable(message) {
+        launchTimerPaused = false;
+        const qDisplay = document.getElementById('q-display');
+        const msgArea = document.getElementById('msg-area');
+        const micBtn = document.getElementById('mic-btn');
+
+        if (micBtn) micBtn.classList.remove('recording');
+        if (qDisplay) {
+            qDisplay.innerText = "(Azure pronunciation backend unavailable)";
+            qDisplay.style.color = "#fbbf24";
+            qDisplay.style.fontSize = "18px";
+        }
+        if (msgArea) {
+            msgArea.innerText = message || "AZURE LINK OFFLINE";
+            msgArea.style.color = "#f59e0b";
         }
     }
 
@@ -5815,18 +5833,7 @@ async function startAzureSpeakingAssessment() {
             checkSpeakingAssessment(assessment);
         } catch (error) {
             console.warn('Azure speaking assessment failed:', error);
-            launchTimerPaused = false;
-            speakingUseAzureAssessment = false;
-
-            if (qDisplay) {
-                qDisplay.innerText = "(Azure offline - fallback mic ready)";
-                qDisplay.style.color = "#fbbf24";
-            }
-
-            if (msgArea) {
-                msgArea.innerText = "AZURE OFFLINE // TAP MIC AGAIN";
-                msgArea.style.color = "#f59e0b";
-            }
+            showSpeakingAzureUnavailable("AZURE OFFLINE // CHECK BACKEND");
         }
     };
 
@@ -5839,11 +5846,21 @@ async function startAzureSpeakingAssessment() {
 }
 
 function startListening() {
-    if (currentPracticeMode === 'SPEAKING' && canUseAzureSpeakingAssessment()) {
+    if (currentPracticeMode === 'SPEAKING') {
+        if (!canUseAzureSpeakingAssessment()) {
+            const baseUrl = getSpeakingAssessmentBaseUrl();
+            const blockedByMixedContent = window.isSecureContext && baseUrl && /^http:\/\//i.test(baseUrl) && !/^http:\/\/localhost(?::\d+)?$/i.test(baseUrl);
+            if (blockedByMixedContent) {
+                showSpeakingAzureUnavailable("AZURE NEEDS HTTPS BACKEND");
+            } else {
+                showSpeakingAzureUnavailable("AZURE BACKEND NOT READY");
+            }
+            return;
+        }
+
         startAzureSpeakingAssessment().catch((error) => {
-            console.warn('Azure speaking start failed, falling back to browser recognition:', error);
-            speakingUseAzureAssessment = false;
-            startLegacySpeechRecognition();
+            console.warn('Azure speaking start failed:', error);
+            showSpeakingAzureUnavailable("AZURE START FAILED");
         });
         return;
     }
