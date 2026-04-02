@@ -62,6 +62,7 @@ let speakingSilenceAnalyser = null;
 let speakingSilenceSource = null;
 let speakingSilenceCheckInterval = null;
 let speakingSilenceDetectedVoice = false;
+let speakingWaveLevel = 0;
 let speakingSilenceMs = 1000;
 let speakingSilenceThreshold = 0.02;
 let speakingMaxRecordingMs = 7000;
@@ -254,6 +255,8 @@ function canUseAzureSpeakingAssessment() {
             speakingSilenceAudioContext = null;
         }
         speakingSilenceDetectedVoice = false;
+        speakingWaveLevel = 0;
+        updateSpeakingWave(0);
     }
 
     function startSpeakingSilenceMonitor() {
@@ -281,6 +284,8 @@ function canUseAzureSpeakingAssessment() {
             for (let i = 0; i < samples.length; i++) sum += samples[i] * samples[i];
             const rms = Math.sqrt(sum / samples.length);
             const now = Date.now();
+            speakingWaveLevel = rms;
+            updateSpeakingWave(Math.min(1, rms / 0.08));
 
             if (rms >= speakingSilenceThreshold) {
                 speakingSilenceDetectedVoice = true;
@@ -309,12 +314,29 @@ function canUseAzureSpeakingAssessment() {
         }
     }
 
-    function showSpeakingAzureUnavailable(message) {
+    function updateSpeakingWave(level = 0) {
+    const waveEl = document.getElementById('speaking-wave');
+    if (!waveEl) return;
+    const bars = waveEl.querySelectorAll('.speaking-wave-bar');
+    const clamped = Math.max(0, Math.min(1, level));
+    waveEl.style.display = clamped > 0 ? 'flex' : 'none';
+
+    bars.forEach((bar, index) => {
+        const spread = 1 - Math.abs(index - (bars.length - 1) / 2) / ((bars.length - 1) / 2 || 1);
+        const scaled = Math.max(0.18, Math.min(1, (clamped * 1.35) * (0.55 + spread * 0.6)));
+        const height = 6 + Math.round(22 * scaled);
+        bar.style.height = height + 'px';
+        bar.style.opacity = String(0.35 + scaled * 0.65);
+        bar.style.transform = 'scaleY(' + (0.75 + scaled * 0.55) + ')';
+    });
+}
+function showSpeakingAzureUnavailable(message) {
     launchTimerPaused = false;
     const qDisplay = document.getElementById('q-display');
     const msgArea = document.getElementById('msg-area');
     const micBtn = document.getElementById('mic-btn');
     if (micBtn) micBtn.classList.remove('recording');
+    updateSpeakingWave(0);
     if (qDisplay) {
         qDisplay.innerText = "(Azure pronunciation backend unavailable)";
         qDisplay.style.color = "#fbbf24";
@@ -5983,6 +6005,7 @@ async function startAzureSpeakingAssessment() {
             msgArea.style.color = "var(--danger)";
         }
         setSpeakingUiState('error', 'MIC LINK FAILED', '--');
+        updateSpeakingWave(0);
         if (micBtn) micBtn.classList.remove('recording');
         launchTimerPaused = false;
         speakingMediaRecorder = null;

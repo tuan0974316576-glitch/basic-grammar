@@ -630,6 +630,27 @@ body {
             box-shadow: 0 0 16px rgba(239, 68, 68, 0.2), inset 0 0 14px rgba(239, 68, 68, 0.12);
         }
 
+        .speaking-wave {
+            width: min(220px, 70%);
+            height: 24px;
+            margin-top: 10px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .speaking-wave-bar {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: linear-gradient(180deg, rgba(244, 114, 182, 0.95), rgba(56, 189, 248, 0.95));
+            box-shadow: 0 0 8px rgba(56, 189, 248, 0.25);
+            transform-origin: center bottom;
+            transition: transform 90ms linear, opacity 90ms linear, height 90ms linear;
+            opacity: 0.5;
+        }
+
         .speaking-scorebar {
             width: 100%;
             display: flex;
