@@ -57,6 +57,14 @@ let recognition = null; // �Z���R�e���
 let speakingMediaRecorder = null;
 let speakingRecordedChunks = [];
 let speakingAudioStream = null;
+let speakingSilenceAudioContext = null;
+let speakingSilenceAnalyser = null;
+let speakingSilenceSource = null;
+let speakingSilenceCheckInterval = null;
+let speakingSilenceDetectedVoice = false;
+let speakingSilenceMs = 1000;
+let speakingSilenceThreshold = 0.02;
+let speakingMaxRecordingMs = 7000;
 let speakingUseAzureAssessment = true;
 let battleLog = [];
 let battleUsedWordKeys = new Set();
@@ -228,7 +236,73 @@ function canUseAzureSpeakingAssessment() {
         return btoa(binary);
     }
 
+    function stopSpeakingSilenceMonitor() {
+        if (speakingSilenceCheckInterval) {
+            clearInterval(speakingSilenceCheckInterval);
+            speakingSilenceCheckInterval = null;
+        }
+        if (speakingSilenceSource) {
+            try { speakingSilenceSource.disconnect(); } catch (_error) {}
+            speakingSilenceSource = null;
+        }
+        if (speakingSilenceAnalyser) {
+            try { speakingSilenceAnalyser.disconnect(); } catch (_error) {}
+            speakingSilenceAnalyser = null;
+        }
+        if (speakingSilenceAudioContext) {
+            try { speakingSilenceAudioContext.close(); } catch (_error) {}
+            speakingSilenceAudioContext = null;
+        }
+        speakingSilenceDetectedVoice = false;
+    }
+
+    function startSpeakingSilenceMonitor() {
+        if (!speakingAudioStream || !speakingMediaRecorder) return;
+
+        stopSpeakingSilenceMonitor();
+
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+
+        speakingSilenceAudioContext = new AudioCtx();
+        speakingSilenceSource = speakingSilenceAudioContext.createMediaStreamSource(speakingAudioStream);
+        speakingSilenceAnalyser = speakingSilenceAudioContext.createAnalyser();
+        speakingSilenceAnalyser.fftSize = 2048;
+        speakingSilenceSource.connect(speakingSilenceAnalyser);
+
+        const samples = new Float32Array(speakingSilenceAnalyser.fftSize);
+        let silenceStartedAt = 0;
+
+        speakingSilenceCheckInterval = setInterval(() => {
+            if (!speakingMediaRecorder || speakingMediaRecorder.state !== 'recording' || !speakingSilenceAnalyser) return;
+
+            speakingSilenceAnalyser.getFloatTimeDomainData(samples);
+            let sum = 0;
+            for (let i = 0; i < samples.length; i++) sum += samples[i] * samples[i];
+            const rms = Math.sqrt(sum / samples.length);
+            const now = Date.now();
+
+            if (rms >= speakingSilenceThreshold) {
+                speakingSilenceDetectedVoice = true;
+                silenceStartedAt = 0;
+                return;
+            }
+
+            if (!speakingSilenceDetectedVoice) return;
+
+            if (!silenceStartedAt) {
+                silenceStartedAt = now;
+                return;
+            }
+
+            if (now - silenceStartedAt >= speakingSilenceMs) {
+                speakingMediaRecorder.stop();
+            }
+        }, 100);
+    }
+
     function stopSpeakingAudioStream() {
+        stopSpeakingSilenceMonitor();
         if (speakingAudioStream) {
             speakingAudioStream.getTracks().forEach(track => track.stop());
             speakingAudioStream = null;
@@ -5953,7 +6027,7 @@ async function startAzureSpeakingAssessment() {
         if (speakingMediaRecorder && speakingMediaRecorder.state === 'recording') {
             speakingMediaRecorder.stop();
         }
-    }, 3200);
+    }, speakingMaxRecordingMs);
 }
 
 function startListening() {
