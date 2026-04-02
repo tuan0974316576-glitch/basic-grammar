@@ -147,6 +147,39 @@ function canUseAzureSpeakingAssessment() {
         }) || null;
     }
 
+    function findClosestWordAssessment(words, targetWord) {
+        const normalizedTarget = normalizeAssessmentWord(targetWord);
+        if (!normalizedTarget) return null;
+
+        let best = null;
+        let bestSimilarity = 0;
+        for (const wordEntry of (words || [])) {
+            const normalizedWord = normalizeAssessmentWord(wordEntry.word);
+            if (!normalizedWord) continue;
+            const similarity = calculateSimilarity(normalizedWord, normalizedTarget);
+            if (similarity > bestSimilarity) {
+                bestSimilarity = similarity;
+                best = wordEntry;
+            }
+        }
+
+        return bestSimilarity >= 0.45 ? { wordAssessment: best, similarity: bestSimilarity } : null;
+    }
+
+    function resolveSpeakingTargetAssessment(words, targetWord) {
+        const exact = findTargetWordAssessment(words, targetWord);
+        if (exact) {
+            return { wordAssessment: exact, matchType: 'exact', similarity: 1 };
+        }
+
+        const closest = findClosestWordAssessment(words, targetWord);
+        if (closest?.wordAssessment) {
+            return { wordAssessment: closest.wordAssessment, matchType: 'closest', similarity: closest.similarity };
+        }
+
+        return { wordAssessment: null, matchType: 'missing', similarity: 0 };
+    }
+
     function getSpeakingScoreClass(score) {
         if (score < 35) return 'danger';
         if (score < 55) return 'warning';
@@ -232,17 +265,16 @@ function canUseAzureSpeakingAssessment() {
     }
 
     async function blobToBase64(blob) {
-        const buffer = await blob.arrayBuffer();
-        const bytes = new Uint8Array(buffer);
-        let binary = '';
-        const chunkSize = 0x8000;
-
-        for (let i = 0; i < bytes.length; i += chunkSize) {
-            const chunk = bytes.subarray(i, i + chunkSize);
-            binary += String.fromCharCode.apply(null, chunk);
-        }
-
-        return btoa(binary);
+        return await new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                const result = String(reader.result || '');
+                const commaIndex = result.indexOf(',');
+                resolve(commaIndex >= 0 ? result.slice(commaIndex + 1) : result);
+            };
+            reader.onerror = () => reject(reader.error || new Error('Failed to convert blob to base64.'));
+            reader.readAsDataURL(blob);
+        });
     }
 
     function stopSpeakingSilenceMonitor() {
@@ -366,14 +398,21 @@ function clearSpeakingAssessmentDetail() {
     detailBodyEl.innerHTML = '';
 }
 
-function renderSpeakingAssessmentDetail(wordAssessment) {
+function renderSpeakingAssessmentDetail(wordAssessment, matchType = 'exact', sentenceScore = null) {
     const detailEl = document.getElementById('speaking-detail');
     const detailTitleEl = document.getElementById('speaking-detail-title');
     const detailBodyEl = document.getElementById('speaking-detail-body');
     if (!detailEl || !detailTitleEl || !detailBodyEl) return;
 
     if (!wordAssessment) {
-        clearSpeakingAssessmentDetail();
+        if (sentenceScore == null) {
+            clearSpeakingAssessmentDetail();
+            return;
+        }
+
+        detailTitleEl.textContent = 'SENTENCE // PRONUNCIATION SIGNAL';
+        detailBodyEl.innerHTML = `<span class="speaking-chip" style="color:${getSpeakingScoreColor(sentenceScore)}"><span class="speaking-chip-label">SENTENCE SCORE</span><span class="speaking-chip-score">${Math.round(sentenceScore)}</span></span><span class="speaking-chip" style="color:#94a3b8"><span class="speaking-chip-label">WORD BREAKDOWN UNAVAILABLE</span></span>`;
+        detailEl.style.display = 'block';
         return;
     }
 
@@ -382,8 +421,9 @@ function renderSpeakingAssessmentDetail(wordAssessment) {
     const breakdown = phonemes.length ? phonemes : syllables;
     const labelKey = phonemes.length ? 'phoneme' : 'syllable';
     const breakdownLabel = phonemes.length ? 'PHONEME' : 'SYLLABLE';
+    const matchLabel = matchType === 'closest' ? ' // CLOSEST MATCH' : '';
 
-    detailTitleEl.textContent = `${(wordAssessment.word || 'TARGET').toUpperCase()} // ${breakdownLabel} BREAKDOWN`;
+    detailTitleEl.textContent = `${(wordAssessment.word || 'TARGET').toUpperCase()} // ${breakdownLabel} BREAKDOWN${matchLabel}`;
     detailBodyEl.innerHTML = breakdown.length
         ? breakdown.map(item => {
             const label = String(item[labelKey] || '?');
@@ -391,7 +431,7 @@ function renderSpeakingAssessmentDetail(wordAssessment) {
             const color = getSpeakingAssessmentColor(score, item.errorType);
             return `<span class="speaking-chip" style="color:${color}"><span class="speaking-chip-label">${label}</span><span class="speaking-chip-score">${score}</span></span>`;
         }).join('')
-        : '<span class="speaking-chip" style="color:#94a3b8"><span class="speaking-chip-label">NO BREAKDOWN</span></span>';
+        : `<span class="speaking-chip" style="color:${getSpeakingAssessmentColor(Math.round(wordAssessment.accuracy ?? sentenceScore ?? 0), wordAssessment.errorType)}"><span class="speaking-chip-label">WORD SCORE</span><span class="speaking-chip-score">${Math.round(wordAssessment.accuracy ?? sentenceScore ?? 0)}</span></span><span class="speaking-chip" style="color:#94a3b8"><span class="speaking-chip-label">NO PHONEME DATA</span></span>`;
     detailEl.style.display = 'block';
 }
 
@@ -5433,11 +5473,12 @@ function buildSpeakingDebriefSentence(log) {
     const assessment = log?.speakingAssessment;
     const targetWord = (assessment?.targetWord || '').toLowerCase();
     const words = Array.isArray(assessment?.words) ? assessment.words : [];
+    const targetMatch = resolveSpeakingTargetAssessment(words, targetWord).wordAssessment;
     if (words.length) {
         return words.map(wordEntry => {
             const score = Math.round(wordEntry.accuracy ?? 0);
             const color = getSpeakingAssessmentColor(score, wordEntry.errorType);
-            const isTarget = targetWord && String(wordEntry.word || '').toLowerCase() === targetWord;
+            const isTarget = targetMatch && wordEntry === targetMatch;
             return `<span class="speaking-debrief-word${isTarget ? ' target' : ''}" style="color:${color}">${escapeHtml(wordEntry.word || '?')}</span>`;
         }).join(' ');
     }
@@ -5468,7 +5509,7 @@ function buildSpeakingDebriefWordRows(log) {
                 const color = getSpeakingAssessmentColor(score, item.errorType);
                 return `<div class="speaking-debrief-phoneme"><div class="speaking-debrief-phoneme-bar"><div class="speaking-debrief-phoneme-fill" style="height:${Math.max(8, score)}%; color:${color}; background:${color};"></div></div><div class="speaking-debrief-phoneme-label">${label}</div></div>`;
             }).join('')
-            : '<span class="speaking-chip" style="color:#94a3b8"><span class="speaking-chip-label">NO BREAKDOWN</span></span>';
+            : `<span class="speaking-chip" style="color:${getSpeakingAssessmentColor(Math.round(wordEntry.accuracy ?? 0), wordEntry.errorType)}"><span class="speaking-chip-label">WORD SCORE</span><span class="speaking-chip-score">${Math.round(wordEntry.accuracy ?? 0)}</span></span><span class="speaking-chip" style="color:#94a3b8"><span class="speaking-chip-label">NO PHONEME DATA</span></span>`;
 
         return `<div class="speaking-debrief-word-row"><div class="speaking-debrief-word-name">${escapeHtml(wordEntry.word || '?')}</div><div class="speaking-debrief-phoneme-list">${bars}</div></div>`;
     }).join('');
@@ -6159,6 +6200,7 @@ async function startAzureSpeakingAssessment() {
         }
         setSpeakingUiState('analyzing', 'ANALYZING PRONUNCIATION...', '--');
         clearSpeakingAssessmentDetail();
+        await new Promise(resolve => requestAnimationFrame(() => setTimeout(resolve, 0)));
 
         try {
             const assessment = await submitSpeakingAudioForAssessment(recordedBlob);
@@ -6201,7 +6243,7 @@ function startListening() {
 }
 
 function renderSpeakingWordScores(words, targetWord) {
-    const targetMatch = findTargetWordAssessment(words, targetWord);
+    const targetMatch = resolveSpeakingTargetAssessment(words, targetWord).wordAssessment;
     return (words || []).map(wordEntry => {
         const score = Math.round(wordEntry.accuracy ?? 0);
         const color = getSpeakingAssessmentColor(score, wordEntry.errorType);
@@ -6223,13 +6265,16 @@ function checkSpeakingAssessment(result) {
     launchTimerPaused = false;
 
     const targetWord = currentVocab.en;
-    const targetWordAssessment = findTargetWordAssessment(result.words, targetWord);
-    const targetScore = Math.round(
-        targetWordAssessment?.accuracy ??
-        result.overall?.pronunciation ??
-        result.overall?.accuracy ??
-        0
-    );
+    const targetContext = resolveSpeakingTargetAssessment(result.words, targetWord);
+    const targetWordAssessment = targetContext.wordAssessment;
+    const sentenceScore = Math.round(result.overall?.pronunciation ?? result.overall?.accuracy ?? 0);
+    const rawWordScore = Math.round(targetWordAssessment?.accuracy ?? sentenceScore ?? 0);
+    const blendedScore = targetWordAssessment
+        ? Math.round((rawWordScore * 0.55) + (sentenceScore * 0.45))
+        : sentenceScore;
+    const targetScore = targetContext.matchType === 'missing'
+        ? sentenceScore
+        : Math.max(rawWordScore, blendedScore);
     const transcript = result.recognizedText || '';
     const qDisplay = document.getElementById('q-display');
     const msgArea = document.getElementById('msg-area');
@@ -6240,7 +6285,7 @@ function checkSpeakingAssessment(result) {
     }
 
     setSpeakingUiState('analyzing', 'ASSESSMENT LOCKED', `${targetScore}`);
-    renderSpeakingAssessmentDetail(targetWordAssessment);
+    renderSpeakingAssessmentDetail(targetWordAssessment, targetContext.matchType, sentenceScore);
 
     const isCorrect = targetScore >= SPEAKING_PASS_SCORE;
 
