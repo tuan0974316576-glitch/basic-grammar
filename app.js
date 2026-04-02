@@ -3347,7 +3347,7 @@ function checkMyShipDestruction(hitIdx) {
     const cellLeft = startCell.offsetLeft;
     const cellTop = startCell.offsetTop;
     const cellSize = startCell.offsetWidth;
-    const boardStyle = window.getComputedStyle(container);
+    const boardStyle = window.getComputedStyle(grid);
     const gridGap = parseFloat(boardStyle.gap || boardStyle.columnGap || '0') || 0;
 
     // 3. 還原棋盤顯示狀態
@@ -4420,6 +4420,7 @@ function autoDeployRemainingShips() {
     function processEnemyFleetData(shipsData) {
         enemyFleetData = [];
         if(!shipsData) return;
+        const enemyFleetConfig = getFleetConfig(enemyRace);
         
         shipsData.forEach(ship => {
             if(!ship.indices) return;
@@ -4433,7 +4434,7 @@ function autoDeployRemainingShips() {
             enemyFleetData.push({
                 shipId: ship.shipId, // 從對手那邊收到的 ID
                 indices: ship.indices,
-                conf: FLEET[ship.shipId], // 取得基本設定
+                conf: enemyFleetConfig[ship.shipId] || FLEET[ship.shipId], // 用對手種族設定，避免尺寸/形狀錯配
                 rootIndex: root,
                 isVertical: isV,
                 revealed: false
@@ -4495,7 +4496,7 @@ function revealEnemyShip(ship) {
     const cellLeft = startCell.offsetLeft;
     const cellTop = startCell.offsetTop;
     const cellSize = startCell.offsetWidth; 
-    const boardStyle = window.getComputedStyle(container);
+    const boardStyle = window.getComputedStyle(board);
     const gridGap = parseFloat(boardStyle.gap || boardStyle.columnGap || '0') || 0;
 
     // 3. 還原狀態
