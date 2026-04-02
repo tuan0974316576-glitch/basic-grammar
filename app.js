@@ -57,6 +57,12 @@ let recognition = null; // �Z���R�e���
 let speakingMediaRecorder = null;
 let speakingRecordedChunks = [];
 let speakingAudioStream = null;
+let speakingPcmAudioContext = null;
+let speakingPcmSource = null;
+let speakingPcmProcessor = null;
+let speakingPcmSilenceGain = null;
+let speakingPcmChunks = [];
+let speakingPcmSampleRate = 16000;
 let speakingSilenceAudioContext = null;
 let speakingSilenceAnalyser = null;
 let speakingSilenceSource = null;
@@ -277,6 +283,80 @@ function canUseAzureSpeakingAssessment() {
         });
     }
 
+    function stopSpeakingPcmCapture() {
+        if (speakingPcmProcessor) {
+            try { speakingPcmProcessor.disconnect(); } catch (_error) {}
+            speakingPcmProcessor.onaudioprocess = null;
+            speakingPcmProcessor = null;
+        }
+        if (speakingPcmSource) {
+            try { speakingPcmSource.disconnect(); } catch (_error) {}
+            speakingPcmSource = null;
+        }
+        if (speakingPcmSilenceGain) {
+            try { speakingPcmSilenceGain.disconnect(); } catch (_error) {}
+            speakingPcmSilenceGain = null;
+        }
+        if (speakingPcmAudioContext) {
+            try { speakingPcmAudioContext.close(); } catch (_error) {}
+            speakingPcmAudioContext = null;
+        }
+    }
+
+    function startSpeakingPcmCapture() {
+        stopSpeakingPcmCapture();
+        speakingPcmChunks = [];
+
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx || !speakingAudioStream) return false;
+
+        speakingPcmAudioContext = new AudioCtx();
+        speakingPcmSampleRate = speakingPcmAudioContext.sampleRate || 44100;
+        speakingPcmSource = speakingPcmAudioContext.createMediaStreamSource(speakingAudioStream);
+        speakingPcmProcessor = speakingPcmAudioContext.createScriptProcessor(2048, 1, 1);
+        speakingPcmSilenceGain = speakingPcmAudioContext.createGain();
+        speakingPcmSilenceGain.gain.value = 0;
+
+        speakingPcmProcessor.onaudioprocess = (event) => {
+            if (!speakingMediaRecorder || speakingMediaRecorder.state !== 'recording') return;
+            const inputBuffer = event.inputBuffer;
+            const channelCount = inputBuffer.numberOfChannels || 1;
+            const frameCount = inputBuffer.length;
+            const monoChunk = new Float32Array(frameCount);
+
+            for (let channel = 0; channel < channelCount; channel++) {
+                const channelData = inputBuffer.getChannelData(channel);
+                for (let i = 0; i < frameCount; i++) {
+                    monoChunk[i] += channelData[i] / channelCount;
+                }
+            }
+
+            speakingPcmChunks.push(monoChunk);
+        };
+
+        speakingPcmSource.connect(speakingPcmProcessor);
+        speakingPcmProcessor.connect(speakingPcmSilenceGain);
+        speakingPcmSilenceGain.connect(speakingPcmAudioContext.destination);
+        return true;
+    }
+
+    function buildSpeakingPcmWavBlob() {
+        if (!speakingPcmChunks.length) {
+            return encodeWavFromMonoFloat(new Float32Array(0), speakingPcmSampleRate || 16000);
+        }
+
+        const totalLength = speakingPcmChunks.reduce((sum, chunk) => sum + chunk.length, 0);
+        const combined = new Float32Array(totalLength);
+        let offset = 0;
+
+        for (const chunk of speakingPcmChunks) {
+            combined.set(chunk, offset);
+            offset += chunk.length;
+        }
+
+        return encodeWavFromMonoFloat(combined, speakingPcmSampleRate || 16000);
+    }
+
     function stopSpeakingSilenceMonitor() {
         if (speakingSilenceCheckInterval) {
             clearInterval(speakingSilenceCheckInterval);
@@ -349,6 +429,7 @@ function canUseAzureSpeakingAssessment() {
 
     function stopSpeakingAudioStream() {
         stopSpeakingSilenceMonitor();
+        stopSpeakingPcmCapture();
         if (speakingAudioStream) {
             speakingAudioStream.getTracks().forEach(track => track.stop());
             speakingAudioStream = null;
@@ -6085,7 +6166,7 @@ async function submitSpeakingAudioForAssessment(blob) {
     const baseUrl = getSpeakingAssessmentBaseUrl();
     if (!baseUrl) throw new Error('Speaking assessment backend is not configured.');
 
-    const wavBlob = await convertBlobToMonoWav(blob);
+    const wavBlob = /wav/i.test(blob.type || '') ? blob : await convertBlobToMonoWav(blob);
     const audioBase64 = await blobToBase64(wavBlob);
     const payload = {
         audioBase64,
@@ -6128,66 +6209,21 @@ async function startAzureSpeakingAssessment() {
     const modal = document.getElementById('launch-modal');
 
     speakingRecordedChunks = [];
+    speakingPcmChunks = [];
     speakingAudioStream = await navigator.mediaDevices.getUserMedia({ audio: true });
 
-    const mimeType = MediaRecorder.isTypeSupported('audio/webm;codecs=opus')
-        ? 'audio/webm;codecs=opus'
-        : (MediaRecorder.isTypeSupported('audio/webm') ? 'audio/webm' : '');
+    const stopRecording = async () => {
+        if (!speakingMediaRecorder || speakingMediaRecorder.state !== 'recording') return;
+        speakingMediaRecorder.state = 'stopping';
 
-    speakingMediaRecorder = mimeType
-        ? new MediaRecorder(speakingAudioStream, { mimeType })
-        : new MediaRecorder(speakingAudioStream);
-
-    speakingMediaRecorder.ondataavailable = (event) => {
-        if (event.data && event.data.size > 0) {
-            speakingRecordedChunks.push(event.data);
-        }
-    };
-
-    speakingMediaRecorder.onstart = () => {
-        if (speakingProcessingTimeout) {
-            clearTimeout(speakingProcessingTimeout);
-            speakingProcessingTimeout = null;
-        }
-        launchTimerPaused = false;
-        if (micBtn) micBtn.classList.add('recording');
-        if (msgArea) {
-            msgArea.innerText = "READ THE FULL SENTENCE CLEARLY";
-            msgArea.style.color = "#d946ef";
-        }
-        if (qDisplay) {
-            qDisplay.innerText = "VOICE CAPTURE ACTIVE";
-            qDisplay.style.color = "#f0abfc";
-            qDisplay.style.fontSize = "18px";
-        }
-        setSpeakingUiState('recording', 'LISTENING FOR VOICE...', '--');
-        clearSpeakingAssessmentDetail();
-    };
-
-    speakingMediaRecorder.onerror = (event) => {
-        console.warn('Azure speaking recorder error:', event.error || event);
-        if (msgArea) {
-            msgArea.innerText = "MIC ERROR // TRY AGAIN";
-            msgArea.style.color = "var(--danger)";
-        }
-        setSpeakingUiState('error', 'MIC LINK FAILED', '--');
-        updateSpeakingWave(0);
         if (micBtn) micBtn.classList.remove('recording');
-        launchTimerPaused = false;
-        speakingMediaRecorder = null;
-        speakingRecordedChunks = [];
-        stopSpeakingAudioStream();
-    };
 
-    speakingMediaRecorder.onstop = async () => {
-        if (micBtn) micBtn.classList.remove('recording');
-        stopSpeakingAudioStream();
-
-        const recordedBlob = new Blob(speakingRecordedChunks, { type: speakingMediaRecorder.mimeType || 'audio/webm' });
-        speakingMediaRecorder = null;
-        speakingRecordedChunks = [];
-
-        if (!modal || modal.style.display !== 'flex') return;
+        if (!modal || modal.style.display !== 'flex') {
+            speakingMediaRecorder = null;
+            stopSpeakingAudioStream();
+            speakingPcmChunks = [];
+            return;
+        }
 
         launchTimerPaused = true;
         if (msgArea) {
@@ -6201,7 +6237,12 @@ async function startAzureSpeakingAssessment() {
         }
         setSpeakingUiState('analyzing', 'ANALYZING PRONUNCIATION...', '--');
         clearSpeakingAssessmentDetail();
-        await new Promise(resolve => requestAnimationFrame(() => setTimeout(resolve, 0)));
+        await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+
+        const recordedBlob = buildSpeakingPcmWavBlob();
+        speakingMediaRecorder = null;
+        speakingPcmChunks = [];
+        stopSpeakingAudioStream();
 
         try {
             const assessment = await submitSpeakingAudioForAssessment(recordedBlob);
@@ -6212,7 +6253,41 @@ async function startAzureSpeakingAssessment() {
         }
     };
 
-    speakingMediaRecorder.start();
+    speakingMediaRecorder = {
+        state: 'recording',
+        stop: () => {
+            stopRecording().catch((error) => {
+                console.warn('Azure speaking recorder stop failed:', error);
+                showSpeakingAzureUnavailable("AZURE START FAILED");
+            });
+        }
+    };
+
+    if (!startSpeakingPcmCapture()) {
+        speakingMediaRecorder = null;
+        stopSpeakingAudioStream();
+        throw new Error('PCM capture unavailable.');
+    }
+
+    if (speakingProcessingTimeout) {
+        clearTimeout(speakingProcessingTimeout);
+        speakingProcessingTimeout = null;
+    }
+    launchTimerPaused = false;
+    if (micBtn) micBtn.classList.add('recording');
+    if (msgArea) {
+        msgArea.innerText = "READ THE FULL SENTENCE CLEARLY";
+        msgArea.style.color = "#d946ef";
+    }
+    if (qDisplay) {
+        qDisplay.innerText = "VOICE CAPTURE ACTIVE";
+        qDisplay.style.color = "#f0abfc";
+        qDisplay.style.fontSize = "18px";
+    }
+    setSpeakingUiState('recording', 'LISTENING FOR VOICE...', '--');
+    clearSpeakingAssessmentDetail();
+
+    startSpeakingSilenceMonitor();
     setTimeout(() => {
         if (speakingMediaRecorder && speakingMediaRecorder.state === 'recording') {
             speakingMediaRecorder.stop();
