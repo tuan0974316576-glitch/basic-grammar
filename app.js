@@ -64,7 +64,7 @@ let speakingSilenceCheckInterval = null;
 let speakingSilenceDetectedVoice = false;
 let speakingWaveLevel = 0;
 let speakingSilenceMs = 500;
-let speakingSilenceThreshold = 0.02;
+let speakingSilenceThreshold = 0.03;
 let speakingMaxRecordingMs = 7000;
 let speakingUseAzureAssessment = true;
 let battleLog = [];
@@ -310,7 +310,8 @@ function canUseAzureSpeakingAssessment() {
         speakingSilenceAudioContext = new AudioCtx();
         speakingSilenceSource = speakingSilenceAudioContext.createMediaStreamSource(speakingAudioStream);
         speakingSilenceAnalyser = speakingSilenceAudioContext.createAnalyser();
-        speakingSilenceAnalyser.fftSize = 2048;
+        speakingSilenceAnalyser.fftSize = 1024;
+        speakingSilenceAnalyser.smoothingTimeConstant = 0.2;
         speakingSilenceSource.connect(speakingSilenceAnalyser);
 
         const samples = new Float32Array(speakingSilenceAnalyser.fftSize);
@@ -343,7 +344,7 @@ function canUseAzureSpeakingAssessment() {
             if (now - silenceStartedAt >= speakingSilenceMs) {
                 speakingMediaRecorder.stop();
             }
-        }, 100);
+        }, 50);
     }
 
     function stopSpeakingAudioStream() {
