@@ -54,8 +54,14 @@ function getNextTargetVoice() {
 }
 let currentPracticeMode = 'READING'; // 預設模式
 let recognition = null; // 語音識別物件
+let speakingMediaRecorder = null;
+let speakingRecordedChunks = [];
+let speakingAudioStream = null;
+let speakingUseAzureAssessment = true;
 let battleLog = [];
 let battleUsedWordKeys = new Set();
+const DEFAULT_SPEAKING_ASSESSMENT_BASE = 'http://localhost:8787';
+const SPEAKING_PASS_SCORE = 75;
     // ★★★ 新增：自動排序功能 ★★★
     // 這段代碼會走遍所有 Level (L1, L2...), 自動按英文字母 A-Z 排列
     function sortDatabase() {
@@ -76,6 +82,141 @@ let battleUsedWordKeys = new Set();
     // 立即執行排序
     sortDatabase();
     // ★★★ 排序代碼結束 ★★★
+
+    function getSpeakingAssessmentBaseUrl() {
+        const explicitBase = (localStorage.getItem('speaking_api_base') || '').trim();
+        if (explicitBase) return explicitBase.replace(/\/$/, '');
+
+        const host = window.location.hostname;
+        const isDesktopWindows = /Windows/i.test(navigator.userAgent);
+        if (host === 'localhost' || host === '127.0.0.1' || isDesktopWindows) {
+            return DEFAULT_SPEAKING_ASSESSMENT_BASE;
+        }
+
+        return '';
+    }
+
+    function canUseAzureSpeakingAssessment() {
+        return Boolean(
+            speakingUseAzureAssessment &&
+            getSpeakingAssessmentBaseUrl() &&
+            navigator.mediaDevices &&
+            typeof navigator.mediaDevices.getUserMedia === 'function' &&
+            window.MediaRecorder
+        );
+    }
+
+    function normalizeAssessmentWord(word) {
+        return String(word || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+    }
+
+    function getWordRoots(word) {
+        const normalized = normalizeAssessmentWord(word);
+        const roots = new Set();
+        if (!normalized) return roots;
+
+        roots.add(normalized);
+        if (normalized.endsWith('ies') && normalized.length > 3) roots.add(normalized.slice(0, -3) + 'y');
+        if (normalized.endsWith('es') && normalized.length > 2) roots.add(normalized.slice(0, -2));
+        if (normalized.endsWith('s') && normalized.length > 1) roots.add(normalized.slice(0, -1));
+        return roots;
+    }
+
+    function findTargetWordAssessment(words, targetWord) {
+        const targetRoots = getWordRoots(targetWord);
+        if (!targetRoots.size) return null;
+
+        return (words || []).find(wordEntry => {
+            const wordRoots = getWordRoots(wordEntry.word);
+            for (const root of targetRoots) {
+                if (wordRoots.has(root)) return true;
+            }
+            return false;
+        }) || null;
+    }
+
+    function getSpeakingScoreClass(score) {
+        if (score < 60) return 'danger';
+        if (score >= 80) return 'success';
+        return 'warning';
+    }
+
+    function getSpeakingScoreColor(score) {
+        if (score < 60) return 'var(--danger)';
+        if (score >= 80) return 'var(--success)';
+        return '#fbbf24';
+    }
+
+    function writeWavString(view, offset, string) {
+        for (let i = 0; i < string.length; i++) {
+            view.setUint8(offset + i, string.charCodeAt(i));
+        }
+    }
+
+    function encodeWavFromMonoFloat(samples, sampleRate) {
+        const bytesPerSample = 2;
+        const blockAlign = bytesPerSample;
+        const buffer = new ArrayBuffer(44 + samples.length * bytesPerSample);
+        const view = new DataView(buffer);
+
+        writeWavString(view, 0, 'RIFF');
+        view.setUint32(4, 36 + samples.length * bytesPerSample, true);
+        writeWavString(view, 8, 'WAVE');
+        writeWavString(view, 12, 'fmt ');
+        view.setUint32(16, 16, true);
+        view.setUint16(20, 1, true);
+        view.setUint16(22, 1, true);
+        view.setUint32(24, sampleRate, true);
+        view.setUint32(28, sampleRate * blockAlign, true);
+        view.setUint16(32, blockAlign, true);
+        view.setUint16(34, 16, true);
+        writeWavString(view, 36, 'data');
+        view.setUint32(40, samples.length * bytesPerSample, true);
+
+        let offset = 44;
+        for (let i = 0; i < samples.length; i++, offset += 2) {
+            const sample = Math.max(-1, Math.min(1, samples[i]));
+            view.setInt16(offset, sample < 0 ? sample * 0x8000 : sample * 0x7fff, true);
+        }
+
+        return new Blob([buffer], { type: 'audio/wav' });
+    }
+
+    async function convertBlobToMonoWav(blob, targetSampleRate = 16000) {
+        const arrayBuffer = await blob.arrayBuffer();
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+        try {
+            const decoded = await audioContext.decodeAudioData(arrayBuffer.slice(0));
+            const offlineContext = new OfflineAudioContext(1, Math.ceil(decoded.duration * targetSampleRate), targetSampleRate);
+            const source = offlineContext.createBufferSource();
+            const monoBuffer = offlineContext.createBuffer(1, decoded.length, decoded.sampleRate);
+            const monoOutput = monoBuffer.getChannelData(0);
+
+            for (let channel = 0; channel < decoded.numberOfChannels; channel++) {
+                const input = decoded.getChannelData(channel);
+                for (let i = 0; i < input.length; i++) {
+                    monoOutput[i] += input[i] / decoded.numberOfChannels;
+                }
+            }
+
+            source.buffer = monoBuffer;
+            source.connect(offlineContext.destination);
+            source.start(0);
+
+            const rendered = await offlineContext.startRendering();
+            return encodeWavFromMonoFloat(rendered.getChannelData(0), targetSampleRate);
+        } finally {
+            await audioContext.close();
+        }
+    }
+
+    function stopSpeakingAudioStream() {
+        if (speakingAudioStream) {
+            speakingAudioStream.getTracks().forEach(track => track.stop());
+            speakingAudioStream = null;
+        }
+    }
 
     // =========================================
     // ★★★ 錯字記錄系統 (Wrong Words Tracker) ★★★
@@ -2262,6 +2403,13 @@ function closeLaunchModalUI() {
         clearTimeout(speakingProcessingTimeout);
         speakingProcessingTimeout = null;
     }
+
+    if (speakingMediaRecorder && speakingMediaRecorder.state !== 'inactive') {
+        speakingMediaRecorder.stop();
+    }
+    speakingMediaRecorder = null;
+    speakingRecordedChunks = [];
+    stopSpeakingAudioStream();
 
     if (modal) {
         modal.style.display = 'none';
@@ -5491,80 +5639,295 @@ function handleSkillBack() {
     }
 }
 
-// --- 2. 玩家說話 (Speech-to-Text) - 用於 Speaking Mode ---
-function startListening() {
-    // 檢查瀏覽器支唔支援
+// --- 2. 玩家說話 (Speech-to-Text / Azure Pronunciation) - 用於 Speaking Mode ---
+function createLegacySpeechRecognition() {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SpeechRecognition) {
+    if (!SpeechRecognition) return null;
+
+    const instance = new SpeechRecognition();
+    instance.lang = 'en-US';
+    instance.interimResults = false;
+    instance.maxAlternatives = 1;
+
+    instance.onstart = () => {
+        if (speakingProcessingTimeout) {
+            clearTimeout(speakingProcessingTimeout);
+            speakingProcessingTimeout = null;
+        }
+        launchTimerPaused = false;
+        const micBtn = document.getElementById('mic-btn');
+        if (micBtn) micBtn.classList.add('recording');
+        document.getElementById('msg-area').innerText = "LISTENING... SPEAK NOW";
+        document.getElementById('msg-area').style.color = "#d946ef";
+    };
+
+    instance.onend = () => {
+        const micBtn = document.getElementById('mic-btn');
+        if (micBtn) micBtn.classList.remove('recording');
+
+        const modal = document.getElementById('launch-modal');
+        if (currentPracticeMode === 'SPEAKING' && modal && modal.style.display === 'flex' && timerInterval) {
+            launchTimerPaused = true;
+            document.getElementById('msg-area').innerText = "ANALYZING TRANSMISSION...";
+            document.getElementById('msg-area').style.color = "#fbbf24";
+
+            if (speakingProcessingTimeout) clearTimeout(speakingProcessingTimeout);
+            speakingProcessingTimeout = setTimeout(() => {
+                launchTimerPaused = false;
+                speakingProcessingTimeout = null;
+                if (modal.style.display === 'flex') {
+                    document.getElementById('msg-area').innerText = "NO MATCH // TRY AGAIN";
+                    document.getElementById('msg-area').style.color = "var(--danger)";
+                }
+            }, 2500);
+        }
+    };
+
+    instance.onresult = (event) => {
+        if (speakingProcessingTimeout) {
+            clearTimeout(speakingProcessingTimeout);
+            speakingProcessingTimeout = null;
+        }
+        launchTimerPaused = false;
+        const transcript = event.results[0][0].transcript;
+        console.log("User said:", transcript);
+        checkSpeakingResult(transcript);
+    };
+
+    instance.onerror = (event) => {
+        if (speakingProcessingTimeout) {
+            clearTimeout(speakingProcessingTimeout);
+            speakingProcessingTimeout = null;
+        }
+        launchTimerPaused = false;
+        document.getElementById('msg-area').innerText = "ERROR: " + event.error;
+    };
+
+    return instance;
+}
+
+function startLegacySpeechRecognition() {
+    if (!recognition) recognition = createLegacySpeechRecognition();
+    if (!recognition) {
         alert("Microphone API not supported (Try Chrome/Safari).");
         return;
     }
-
-    if (!recognition) {
-        recognition = new SpeechRecognition();
-        recognition.lang = 'en-US';
-        recognition.interimResults = false; // 只取最終結果
-        recognition.maxAlternatives = 1;
-
-        recognition.onstart = () => {
-            if (speakingProcessingTimeout) {
-                clearTimeout(speakingProcessingTimeout);
-                speakingProcessingTimeout = null;
-            }
-            launchTimerPaused = false;
-            document.getElementById('mic-btn').classList.add('recording');
-            document.getElementById('msg-area').innerText = "LISTENING... SPEAK NOW";
-            document.getElementById('msg-area').style.color = "#d946ef";
-        };
-
-        recognition.onend = () => {
-            const micBtn = document.getElementById('mic-btn');
-            if(micBtn) micBtn.classList.remove('recording');
-
-            const modal = document.getElementById('launch-modal');
-            if (currentPracticeMode === 'SPEAKING' && modal && modal.style.display === 'flex' && timerInterval) {
-                launchTimerPaused = true;
-                document.getElementById('msg-area').innerText = "ANALYZING TRANSMISSION...";
-                document.getElementById('msg-area').style.color = "#fbbf24";
-
-                if (speakingProcessingTimeout) clearTimeout(speakingProcessingTimeout);
-                speakingProcessingTimeout = setTimeout(() => {
-                    launchTimerPaused = false;
-                    speakingProcessingTimeout = null;
-                    if (modal.style.display === 'flex') {
-                        document.getElementById('msg-area').innerText = "NO MATCH // TRY AGAIN";
-                        document.getElementById('msg-area').style.color = "var(--danger)";
-                    }
-                }, 2500);
-            }
-        };
-
-        recognition.onresult = (event) => {
-            if (speakingProcessingTimeout) {
-                clearTimeout(speakingProcessingTimeout);
-                speakingProcessingTimeout = null;
-            }
-            launchTimerPaused = false;
-            const transcript = event.results[0][0].transcript;
-            console.log("User said:", transcript);
-            checkSpeakingResult(transcript);
-        };
-        
-        recognition.onerror = (event) => {
-             if (speakingProcessingTimeout) {
-                clearTimeout(speakingProcessingTimeout);
-                speakingProcessingTimeout = null;
-             }
-             launchTimerPaused = false;
-             document.getElementById('msg-area').innerText = "ERROR: " + event.error;
-        };
-    }
-    
-    // 開始錄音
     recognition.start();
 }
 
-// --- 3. 檢查口語結果 (Speaking Score - 句子版) ---
+async function submitSpeakingAudioForAssessment(blob) {
+    const baseUrl = getSpeakingAssessmentBaseUrl();
+    if (!baseUrl) throw new Error('Speaking assessment backend is not configured.');
+
+    const wavBlob = await convertBlobToMonoWav(blob);
+    const formData = new FormData();
+    formData.append('audio', wavBlob, 'speaking.wav');
+    formData.append('expectedText', currentVocab.sent ? currentVocab.sent : currentVocab.en);
+    formData.append('locale', 'en-US');
+    formData.append('referenceId', `speaking-${Date.now()}`);
+
+    const response = await fetch(`${baseUrl}/api/pronunciation-assessment`, {
+        method: 'POST',
+        body: formData
+    });
+
+    const result = await response.json();
+    if (!response.ok) {
+        throw new Error(result.message || result.error || 'Pronunciation assessment failed.');
+    }
+
+    return result;
+}
+
+async function startAzureSpeakingAssessment() {
+    if (speakingMediaRecorder && speakingMediaRecorder.state !== 'inactive') return;
+
+    const micBtn = document.getElementById('mic-btn');
+    const msgArea = document.getElementById('msg-area');
+    const qDisplay = document.getElementById('q-display');
+    const modal = document.getElementById('launch-modal');
+
+    speakingRecordedChunks = [];
+    speakingAudioStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+
+    const mimeType = MediaRecorder.isTypeSupported('audio/webm;codecs=opus')
+        ? 'audio/webm;codecs=opus'
+        : (MediaRecorder.isTypeSupported('audio/webm') ? 'audio/webm' : '');
+
+    speakingMediaRecorder = mimeType
+        ? new MediaRecorder(speakingAudioStream, { mimeType })
+        : new MediaRecorder(speakingAudioStream);
+
+    speakingMediaRecorder.ondataavailable = (event) => {
+        if (event.data && event.data.size > 0) {
+            speakingRecordedChunks.push(event.data);
+        }
+    };
+
+    speakingMediaRecorder.onstart = () => {
+        if (speakingProcessingTimeout) {
+            clearTimeout(speakingProcessingTimeout);
+            speakingProcessingTimeout = null;
+        }
+        launchTimerPaused = false;
+        if (micBtn) micBtn.classList.add('recording');
+        if (msgArea) {
+            msgArea.innerText = "LISTENING... SPEAK NOW";
+            msgArea.style.color = "#d946ef";
+        }
+        if (qDisplay) {
+            qDisplay.innerText = "(Recording...)";
+            qDisplay.style.color = "#94a3b8";
+        }
+    };
+
+    speakingMediaRecorder.onerror = (event) => {
+        console.warn('Azure speaking recorder error:', event.error || event);
+        if (msgArea) {
+            msgArea.innerText = "MIC ERROR // TRY AGAIN";
+            msgArea.style.color = "var(--danger)";
+        }
+        if (micBtn) micBtn.classList.remove('recording');
+        launchTimerPaused = false;
+        speakingMediaRecorder = null;
+        speakingRecordedChunks = [];
+        stopSpeakingAudioStream();
+    };
+
+    speakingMediaRecorder.onstop = async () => {
+        if (micBtn) micBtn.classList.remove('recording');
+        stopSpeakingAudioStream();
+
+        const recordedBlob = new Blob(speakingRecordedChunks, { type: speakingMediaRecorder.mimeType || 'audio/webm' });
+        speakingMediaRecorder = null;
+        speakingRecordedChunks = [];
+
+        if (!modal || modal.style.display !== 'flex') return;
+
+        launchTimerPaused = true;
+        if (msgArea) {
+            msgArea.innerText = "ANALYZING PRONUNCIATION...";
+            msgArea.style.color = "#fbbf24";
+        }
+
+        try {
+            const assessment = await submitSpeakingAudioForAssessment(recordedBlob);
+            checkSpeakingAssessment(assessment);
+        } catch (error) {
+            console.warn('Azure speaking assessment failed:', error);
+            launchTimerPaused = false;
+            speakingUseAzureAssessment = false;
+
+            if (qDisplay) {
+                qDisplay.innerText = "(Azure offline - fallback mic ready)";
+                qDisplay.style.color = "#fbbf24";
+            }
+
+            if (msgArea) {
+                msgArea.innerText = "AZURE OFFLINE // TAP MIC AGAIN";
+                msgArea.style.color = "#f59e0b";
+            }
+        }
+    };
+
+    speakingMediaRecorder.start();
+    setTimeout(() => {
+        if (speakingMediaRecorder && speakingMediaRecorder.state === 'recording') {
+            speakingMediaRecorder.stop();
+        }
+    }, 3200);
+}
+
+function startListening() {
+    if (currentPracticeMode === 'SPEAKING' && canUseAzureSpeakingAssessment()) {
+        startAzureSpeakingAssessment().catch((error) => {
+            console.warn('Azure speaking start failed, falling back to browser recognition:', error);
+            speakingUseAzureAssessment = false;
+            startLegacySpeechRecognition();
+        });
+        return;
+    }
+
+    startLegacySpeechRecognition();
+}
+
+function renderSpeakingWordScores(words, targetWord) {
+    const targetMatch = findTargetWordAssessment(words, targetWord);
+    return (words || []).map(wordEntry => {
+        const score = Math.round(wordEntry.accuracy ?? 0);
+        const color = getSpeakingScoreColor(score);
+        const isTarget = targetMatch && wordEntry === targetMatch;
+        const style = [
+            `color:${color}`,
+            'display:inline-block',
+            'margin:0 6px 6px 0',
+            isTarget ? 'text-shadow:0 0 8px currentColor' : ''
+        ].filter(Boolean).join(';');
+        return `<span style="${style}">${wordEntry.word}</span>`;
+    }).join(' ');
+}
+
+function checkSpeakingAssessment(result) {
+    if (speakingProcessingTimeout) {
+        clearTimeout(speakingProcessingTimeout);
+        speakingProcessingTimeout = null;
+    }
+
+    launchTimerPaused = false;
+
+    const targetWord = currentVocab.en;
+    const targetWordAssessment = findTargetWordAssessment(result.words, targetWord);
+    const targetScore = Math.round(
+        targetWordAssessment?.accuracy ??
+        result.overall?.pronunciation ??
+        result.overall?.accuracy ??
+        0
+    );
+    const transcript = result.recognizedText || '';
+    const qDisplay = document.getElementById('q-display');
+    const msgArea = document.getElementById('msg-area');
+
+    if (qDisplay) {
+        qDisplay.innerHTML = renderSpeakingWordScores(result.words, targetWord) || `"${transcript}"`;
+        qDisplay.style.fontSize = "18px";
+    }
+
+    const isCorrect = targetScore >= SPEAKING_PASS_SCORE;
+
+    if (isCorrect) {
+        if (typeof timerInterval !== 'undefined') clearInterval(timerInterval);
+        timerInterval = null;
+
+        if (typeof battleLog !== 'undefined') {
+            battleLog.push({
+                turn: (typeof turnCounter !== 'undefined' ? turnCounter : 1),
+                user: transcript || '(no transcript)',
+                correct: currentVocab.sent ? currentVocab.sent : currentVocab.en,
+                isCorrect: true
+            });
+        }
+
+        removeWrongWord(currentPracticeMode, selectedLevel, currentVocab.en);
+        if (typeof handleCorrectAnswer === 'function') handleCorrectAnswer();
+
+        if (msgArea) {
+            msgArea.innerText = `${targetWord.toUpperCase()} ${targetScore} // MATCH CONFIRMED!`;
+            msgArea.style.color = getSpeakingScoreColor(targetScore);
+        }
+
+        setTimeout(() => playerFire(true), 1000);
+        return;
+    }
+
+    saveWrongWord(currentPracticeMode, selectedLevel, currentVocab.en);
+    if (msgArea) {
+        msgArea.innerText = `${targetWord.toUpperCase()} ${targetScore} // TRY AGAIN`;
+        msgArea.style.color = getSpeakingScoreColor(targetScore);
+    }
+    playSound('wrong-sfx');
+}
+
+// --- 3. 檢查口語結果 (Speaking Score - fallback legacy sentence matching) ---
 function checkSpeakingResult(spokenText) {
     if (speakingProcessingTimeout) {
         clearTimeout(speakingProcessingTimeout);
