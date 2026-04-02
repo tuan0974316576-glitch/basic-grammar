@@ -70,7 +70,7 @@ let speakingUseAzureAssessment = true;
 let battleLog = [];
 let battleUsedWordKeys = new Set();
 const DEFAULT_SPEAKING_ASSESSMENT_BASE = 'http://localhost:8787';
-const SPEAKING_PASS_SCORE = 75;
+const SPEAKING_PASS_SCORE = 65;
     // ���� �������Ԅ������� ����
     // �@�δ��a���߱����� Level (L1, L2...), �ԄӰ�Ӣ����ĸ A-Z ����
     function sortDatabase() {
