@@ -5694,6 +5694,7 @@ body {
 .speaking-debrief-box {
     width: min(880px, calc(100vw - 32px));
     max-width: 880px;
+    height: min(840px, calc(100vh - 48px));
     max-height: calc(100vh - 48px);
     border-color: #0ea5e9;
     box-shadow: 0 0 40px rgba(14, 165, 233, 0.3), inset 0 0 40px rgba(14, 165, 233, 0.08);
@@ -5764,6 +5765,7 @@ body {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 12px;
+    flex-shrink: 0;
 }
 
 .speaking-debrief-score-card {
@@ -5805,17 +5807,20 @@ body {
     flex-direction: column;
     gap: 12px;
     padding-right: 4px;
+    flex: 1 1 auto;
+    min-height: 0;
 }
 
 .speaking-debrief-word-row {
     display: grid;
-    grid-template-columns: minmax(110px, 150px) 1fr;
+    grid-template-columns: 88px minmax(0, 1fr);
     gap: 16px;
     align-items: center;
     padding: 14px 16px;
     border: 1px solid rgba(71, 85, 105, 0.55);
     border-radius: 12px;
     background: rgba(15, 23, 42, 0.88);
+    min-height: 96px;
 }
 
 .speaking-debrief-word-name {
@@ -5823,13 +5828,19 @@ body {
     font-size: 20px;
     color: #f8fafc;
     text-transform: lowercase;
+    align-self: center;
+    word-break: break-word;
 }
 
 .speaking-debrief-phoneme-list {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 14px;
     align-items: flex-end;
+    min-width: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 2px;
 }
 
 .speaking-debrief-phoneme {
@@ -5879,6 +5890,7 @@ body {
 @media (max-width: 700px) {
     .speaking-debrief-box {
         width: calc(100vw - 24px);
+        height: calc(100vh - 24px);
         max-height: calc(100vh - 24px);
         padding: 18px 14px;
         gap: 14px;
@@ -5899,8 +5911,9 @@ body {
     }
 
     .speaking-debrief-word-row {
-        grid-template-columns: 1fr;
+        grid-template-columns: 72px minmax(0, 1fr);
         gap: 12px;
+        min-height: 88px;
     }
 
     .speaking-debrief-word-name {
