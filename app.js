@@ -252,6 +252,45 @@ function canUseAzureSpeakingAssessment() {
     }
     setSpeakingUiState('error', message || "AZURE LINK OFFLINE", '--');
 }
+function clearSpeakingAssessmentDetail() {
+    const detailEl = document.getElementById('speaking-detail');
+    const detailTitleEl = document.getElementById('speaking-detail-title');
+    const detailBodyEl = document.getElementById('speaking-detail-body');
+    if (!detailEl || !detailTitleEl || !detailBodyEl) return;
+    detailEl.style.display = 'none';
+    detailTitleEl.textContent = 'PRONUNCIATION BREAKDOWN';
+    detailBodyEl.innerHTML = '';
+}
+
+function renderSpeakingAssessmentDetail(wordAssessment) {
+    const detailEl = document.getElementById('speaking-detail');
+    const detailTitleEl = document.getElementById('speaking-detail-title');
+    const detailBodyEl = document.getElementById('speaking-detail-body');
+    if (!detailEl || !detailTitleEl || !detailBodyEl) return;
+
+    if (!wordAssessment) {
+        clearSpeakingAssessmentDetail();
+        return;
+    }
+
+    const phonemes = Array.isArray(wordAssessment.phonemes) ? wordAssessment.phonemes : [];
+    const syllables = Array.isArray(wordAssessment.syllables) ? wordAssessment.syllables : [];
+    const breakdown = phonemes.length ? phonemes : syllables;
+    const labelKey = phonemes.length ? 'phoneme' : 'syllable';
+    const breakdownLabel = phonemes.length ? 'PHONEME' : 'SYLLABLE';
+
+    detailTitleEl.textContent = `${(wordAssessment.word || 'TARGET').toUpperCase()} // ${breakdownLabel} BREAKDOWN`;
+    detailBodyEl.innerHTML = breakdown.length
+        ? breakdown.map(item => {
+            const label = String(item[labelKey] || '?');
+            const score = Math.round(item.accuracy ?? 0);
+            const color = getSpeakingScoreColor(score);
+            return `<span class="speaking-chip" style="color:${color}"><span class="speaking-chip-label">${label}</span><span class="speaking-chip-score">${score}</span></span>`;
+        }).join('')
+        : '<span class="speaking-chip" style="color:#94a3b8"><span class="speaking-chip-label">NO BREAKDOWN</span></span>';
+    detailEl.style.display = 'block';
+}
+
 function setSpeakingUiState(state = 'idle', statusText = 'VOICE LINK STANDBY', scoreText = '--') {
     const statusEl = document.getElementById('speaking-status');
     const scorebarEl = document.getElementById('speaking-scorebar');
@@ -264,6 +303,7 @@ function setSpeakingUiState(state = 'idle', statusText = 'VOICE LINK STANDBY', s
         statusEl.className = 'speaking-status';
         scoreValueEl.textContent = '--';
         scoreValueEl.style.color = '#f8fafc';
+        clearSpeakingAssessmentDetail();
         return;
     }
     statusEl.style.display = 'inline-flex';
@@ -272,6 +312,7 @@ function setSpeakingUiState(state = 'idle', statusText = 'VOICE LINK STANDBY', s
     statusEl.textContent = statusText;
     scoreValueEl.textContent = scoreText;
     scoreValueEl.style.color = scoreText === '--' ? '#f8fafc' : getSpeakingScoreColor(parseInt(scoreText, 10) || 0);
+    if (scoreText === '--') clearSpeakingAssessmentDetail();
 }
 
     // =========================================
@@ -5853,6 +5894,7 @@ async function startAzureSpeakingAssessment() {
             qDisplay.style.fontSize = "18px";
         }
         setSpeakingUiState('recording', 'LISTENING FOR VOICE...', '--');
+        clearSpeakingAssessmentDetail();
     };
 
     speakingMediaRecorder.onerror = (event) => {
@@ -5890,6 +5932,7 @@ async function startAzureSpeakingAssessment() {
             qDisplay.style.fontSize = "18px";
         }
         setSpeakingUiState('analyzing', 'ANALYZING PRONUNCIATION...', '--');
+        clearSpeakingAssessmentDetail();
 
         try {
             const assessment = await submitSpeakingAudioForAssessment(recordedBlob);
@@ -5971,6 +6014,7 @@ function checkSpeakingAssessment(result) {
     }
 
     setSpeakingUiState('analyzing', 'ASSESSMENT LOCKED', `${targetScore}`);
+    renderSpeakingAssessmentDetail(targetWordAssessment);
 
     const isCorrect = targetScore >= SPEAKING_PASS_SCORE;
 
