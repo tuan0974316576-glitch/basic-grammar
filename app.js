@@ -2443,6 +2443,7 @@ if (currentPracticeMode === 'SPEAKING') {
         input.setAttribute('readonly', 'readonly');
         input.style.position = 'absolute';
         input.style.left = '-9999px';
+        if (typeof fadeBgm === 'function') fadeBgm(0.05, 450);
     }
 
 // --- �Ӯ��c���� (������) ---
@@ -2537,6 +2538,10 @@ function closeLaunchModalUI() {
     document.body.style.overflow = '';
     document.body.style.position = '';
     document.body.style.width = '';
+
+    if (currentPracticeMode === 'SPEAKING' && typeof fadeBgm === 'function') {
+        fadeBgm(0.5, 700);
+    }
 
     stopMatrixEffect();
 }
