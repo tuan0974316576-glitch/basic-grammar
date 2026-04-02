@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pronunciation Test</title>
+    <style>
+        :root {
+            --bg: #08111d;
+            --panel: rgba(15, 23, 42, 0.92);
+            --line: rgba(34, 211, 238, 0.45);
+            --glow: rgba(34, 211, 238, 0.2);
+            --text: #e2e8f0;
+            --muted: #94a3b8;
+            --danger: #ef4444;
+            --warn: #f59e0b;
+            --ok: #22c55e;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            padding: 24px;
+            background:
+                radial-gradient(circle at top, rgba(34, 211, 238, 0.08), transparent 30%),
+                linear-gradient(180deg, #030712 0%, var(--bg) 100%);
+            color: var(--text);
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        .wrap {
+            width: min(100%, 880px);
+            margin: 0 auto;
+            display: grid;
+            gap: 18px;
+        }
+
+        .panel {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 18px;
+            box-shadow: 0 0 30px var(--glow);
+        }
+
+        h1, h2 {
+            margin: 0 0 12px;
+            font-family: Orbitron, "Segoe UI", sans-serif;
+            letter-spacing: 1px;
+        }
+
+        h1 { font-size: 28px; }
+        h2 { font-size: 18px; color: #67e8f9; }
+
+        .muted { color: var(--muted); }
+
+        .grid {
+            display: grid;
+            gap: 14px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            color: #67e8f9;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            border: 1px solid rgba(148, 163, 184, 0.28);
+            background: rgba(2, 6, 23, 0.85);
+            color: var(--text);
+            border-radius: 10px;
+            padding: 12px 14px;
+            font-size: 15px;
+        }
+
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        button {
+            border: 1px solid rgba(34, 211, 238, 0.45);
+            border-radius: 10px;
+            background: rgba(34, 211, 238, 0.12);
+            color: #67e8f9;
+            padding: 12px 18px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .danger {
+            border-color: rgba(239, 68, 68, 0.5);
+            color: #fca5a5;
+            background: rgba(239, 68, 68, 0.12);
+        }
+
+        .ok {
+            border-color: rgba(34, 197, 94, 0.5);
+            color: #86efac;
+            background: rgba(34, 197, 94, 0.12);
+        }
+
+        .score-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+        }
+
+        .score-card {
+            background: rgba(2, 6, 23, 0.8);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 10px;
+            padding: 12px;
+        }
+
+        .score-label {
+            color: var(--muted);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+        }
+
+        .score-value {
+            margin-top: 6px;
+            font-size: 28px;
+            font-weight: 800;
+        }
+
+        .words {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .word-chip {
+            border-radius: 999px;
+            padding: 8px 12px;
+            font-weight: 700;
+            font-size: 14px;
+            border: 1px solid transparent;
+            background: rgba(148, 163, 184, 0.1);
+        }
+
+        .score-low {
+            color: #fecaca;
+            border-color: rgba(239, 68, 68, 0.45);
+            background: rgba(127, 29, 29, 0.35);
+        }
+
+        .score-mid {
+            color: #fde68a;
+            border-color: rgba(245, 158, 11, 0.45);
+            background: rgba(120, 53, 15, 0.32);
+        }
+
+        .score-high {
+            color: #bbf7d0;
+            border-color: rgba(34, 197, 94, 0.45);
+            background: rgba(20, 83, 45, 0.32);
+        }
+
+        pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+            background: rgba(2, 6, 23, 0.88);
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            border-radius: 10px;
+            padding: 14px;
+            color: #cbd5e1;
+            font-size: 13px;
+        }
+
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="panel">
+            <h1>Azure Pronunciation Test</h1>
+            <div class="muted">Use this page to test speaking accuracy, response speed, and word/phoneme scoring before wiring it into the game.</div>
+        </div>
+
+        <div class="panel grid">
+            <div>
+                <label for="expectedText">Expected text</label>
+                <textarea id="expectedText">The artist drew a portrait of the girl.</textarea>
+            </div>
+
+            <div class="row">
+                <div style="flex:1 1 200px;">
+                    <label for="locale">Locale</label>
+                    <select id="locale">
+                        <option value="en-US">en-US</option>
+                        <option value="en-GB">en-GB</option>
+                    </select>
+                </div>
+                <div style="flex:1 1 200px;">
+                    <label for="referenceId">Reference ID</label>
+                    <input id="referenceId" type="text" value="manual-test-1">
+                </div>
+            </div>
+
+            <div class="row">
+                <button id="recordBtn">Start Recording</button>
+                <button id="stopBtn" class="danger" disabled>Stop Recording</button>
+                <button id="submitBtn" class="ok" disabled>Upload for Assessment</button>
+            </div>
+
+            <div id="status" class="muted">Ready.</div>
+            <audio id="playback" controls class="hidden"></audio>
+        </div>
+
+        <div class="panel hidden" id="resultPanel">
+            <h2>Overall Scores</h2>
+            <div class="score-grid" id="scoreGrid"></div>
+        </div>
+
+        <div class="panel hidden" id="wordsPanel">
+            <h2>Word Scores</h2>
+            <div class="words" id="wordScores"></div>
+        </div>
+
+        <div class="panel hidden" id="rawPanel">
+            <h2>Raw Response</h2>
+            <pre id="rawOutput"></pre>
+        </div>
+    </div>
+
+    <script>
+        const recordBtn = document.getElementById('recordBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const submitBtn = document.getElementById('submitBtn');
+        const statusEl = document.getElementById('status');
+        const playback = document.getElementById('playback');
+        const resultPanel = document.getElementById('resultPanel');
+        const wordsPanel = document.getElementById('wordsPanel');
+        const rawPanel = document.getElementById('rawPanel');
+        const scoreGrid = document.getElementById('scoreGrid');
+        const wordScores = document.getElementById('wordScores');
+        const rawOutput = document.getElementById('rawOutput');
+
+        let mediaRecorder = null;
+        let recordedChunks = [];
+        let recordedBlob = null;
+        let audioStream = null;
+
+        function setStatus(text) {
+            statusEl.textContent = text;
+        }
+
+        function scoreClass(score) {
+            if (score == null) return '';
+            if (score < 60) return 'score-low';
+            if (score >= 80) return 'score-high';
+            return 'score-mid';
+        }
+
+        function renderScores(result) {
+            scoreGrid.innerHTML = '';
+            wordScores.innerHTML = '';
+            rawOutput.textContent = JSON.stringify(result, null, 2);
+
+            const overall = result.overall || {};
+            const scoreEntries = [
+                ['Pronunciation', overall.pronunciation],
+                ['Accuracy', overall.accuracy],
+                ['Fluency', overall.fluency],
+                ['Completeness', overall.completeness],
+                ['Prosody', overall.prosody]
+            ];
+
+            scoreEntries.forEach(([label, value]) => {
+                const card = document.createElement('div');
+                card.className = 'score-card';
+                card.innerHTML = `
+                    <div class="score-label">${label}</div>
+                    <div class="score-value ${scoreClass(value)}">${value ?? '--'}</div>
+                `;
+                scoreGrid.appendChild(card);
+            });
+
+            (result.words || []).forEach((word) => {
+                const chip = document.createElement('div');
+                chip.className = `word-chip ${scoreClass(word.accuracy)}`;
+                chip.textContent = `${word.word}: ${word.accuracy ?? '--'}`;
+                wordScores.appendChild(chip);
+            });
+
+            resultPanel.classList.remove('hidden');
+            wordsPanel.classList.remove('hidden');
+            rawPanel.classList.remove('hidden');
+        }
+
+        recordBtn.addEventListener('click', async () => {
+            try {
+                audioStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                recordedChunks = [];
+                mediaRecorder = new MediaRecorder(audioStream, { mimeType: 'audio/webm' });
+
+                mediaRecorder.ondataavailable = (event) => {
+                    if (event.data && event.data.size > 0) {
+                        recordedChunks.push(event.data);
+                    }
+                };
+
+                mediaRecorder.onstop = () => {
+                    recordedBlob = new Blob(recordedChunks, { type: mediaRecorder.mimeType || 'audio/webm' });
+                    playback.src = URL.createObjectURL(recordedBlob);
+                    playback.classList.remove('hidden');
+                    submitBtn.disabled = false;
+                    setStatus(`Recorded ${Math.round(recordedBlob.size / 1024)} KB. Ready to upload.`);
+                };
+
+                mediaRecorder.start();
+                recordBtn.disabled = true;
+                stopBtn.disabled = false;
+                submitBtn.disabled = true;
+                setStatus('Recording...');
+            } catch (error) {
+                console.error(error);
+                setStatus(`Mic error: ${error.message}`);
+            }
+        });
+
+        stopBtn.addEventListener('click', () => {
+            if (!mediaRecorder) return;
+            mediaRecorder.stop();
+            stopBtn.disabled = true;
+            recordBtn.disabled = false;
+            if (audioStream) {
+                audioStream.getTracks().forEach(track => track.stop());
+                audioStream = null;
+            }
+        });
+
+        submitBtn.addEventListener('click', async () => {
+            if (!recordedBlob) {
+                setStatus('Please record something first.');
+                return;
+            }
+
+            setStatus('Uploading to backend...');
+            submitBtn.disabled = true;
+
+            const formData = new FormData();
+            formData.append('audio', recordedBlob, 'recording.webm');
+            formData.append('expectedText', document.getElementById('expectedText').value);
+            formData.append('locale', document.getElementById('locale').value);
+            formData.append('referenceId', document.getElementById('referenceId').value);
+
+            try {
+                const startedAt = performance.now();
+                const response = await fetch('http://localhost:8787/api/pronunciation-assessment', {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json();
+                const elapsed = Math.round(performance.now() - startedAt);
+
+                if (!response.ok) {
+                    throw new Error(result.message || result.error || 'Assessment failed');
+                }
+
+                renderScores(result);
+                setStatus(`Done in ${elapsed} ms.`);
+            } catch (error) {
+                console.error(error);
+                rawPanel.classList.remove('hidden');
+                rawOutput.textContent = error.message;
+                setStatus(`Assessment failed: ${error.message}`);
+            } finally {
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
