@@ -44,6 +44,13 @@ console.log("Firebase Modules Loaded Successfully");
                     needsRegistration: false,
                     displayName: null
                 });
+            } else {
+                window.pendingAuthFlowPatch = {
+                    resolved: false,
+                    authenticated: true,
+                    needsRegistration: false,
+                    displayName: null
+                };
             }
 
             // ★★★ SESSION TRACKING: 生成或讀取 deviceId ★★★
@@ -181,6 +188,14 @@ console.log("Firebase Modules Loaded Successfully");
                             displayName: realName,
                             force: true
                         });
+                    } else {
+                        window.pendingAuthFlowPatch = {
+                            resolved: true,
+                            authenticated: true,
+                            needsRegistration: false,
+                            displayName: realName,
+                            force: true
+                        };
                     }
                 } else {
                     // 新用戶
@@ -207,6 +222,14 @@ console.log("Firebase Modules Loaded Successfully");
                                     displayName: autoName,
                                     force: true
                                 });
+                            } else {
+                                window.pendingAuthFlowPatch = {
+                                    resolved: true,
+                                    authenticated: true,
+                                    needsRegistration: false,
+                                    displayName: autoName,
+                                    force: true
+                                };
                             }
                         }).catch(err => {
                             console.error('[Auth] Guest account creation failed:', err);
@@ -222,6 +245,14 @@ console.log("Firebase Modules Loaded Successfully");
                                 displayName: null,
                                 force: true
                             });
+                        } else {
+                            window.pendingAuthFlowPatch = {
+                                resolved: true,
+                                authenticated: true,
+                                needsRegistration: true,
+                                displayName: null,
+                                force: true
+                            };
                         }
                     }
                 }
@@ -246,6 +277,14 @@ console.log("Firebase Modules Loaded Successfully");
                         displayName: cachedName || null,
                         force: true
                     });
+                } else {
+                    window.pendingAuthFlowPatch = {
+                        resolved: true,
+                        authenticated: true,
+                        needsRegistration: false,
+                        displayName: cachedName || null,
+                        force: true
+                    };
                 }
 
                 // 顯示錯誤通知
@@ -297,6 +336,14 @@ console.log("Firebase Modules Loaded Successfully");
                     displayName: null,
                     force: true
                 });
+            } else {
+                window.pendingAuthFlowPatch = {
+                    resolved: true,
+                    authenticated: false,
+                    needsRegistration: false,
+                    displayName: null,
+                    force: true
+                };
             }
 
             // ★ 確保主選單元素都隱藏 (防止之前 showMainMenu 留低嘅狀態)

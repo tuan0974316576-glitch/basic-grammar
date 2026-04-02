@@ -1,4 +1,5 @@
 let authOverlayTimeout = null;
+window.pendingAuthFlowPatch = window.pendingAuthFlowPatch || null;
 window.authFlowState = window.authFlowState || {
     started: false,
     resolved: false,
@@ -22,8 +23,11 @@ window.applyAuthFlowState = function(patch = {}) {
     Object.assign(window.authFlowState, patch);
 
     if (!window.authFlowState.started) {
+        window.pendingAuthFlowPatch = { ...patch };
         return;
     }
+
+    window.pendingAuthFlowPatch = null;
 
     const startScreen = document.getElementById('start-screen');
     const regModal = document.getElementById('registration-modal');
@@ -78,6 +82,13 @@ window.reconcileAuthFlowState = function(force = false) {
     }
 
     if (!window.authFlowState.started) return;
+
+    if (window.pendingAuthFlowPatch) {
+        const pendingPatch = { ...window.pendingAuthFlowPatch, force: true };
+        window.pendingAuthFlowPatch = null;
+        window.applyAuthFlowState(pendingPatch);
+        return;
+    }
 
     if (window.isFirebaseAuthenticated && window.myPlayerId) {
         window.applyAuthFlowState({
@@ -752,6 +763,9 @@ window.startExperience = function() {
                 force: true
             });
         }
+        if (typeof window.reconcileAuthFlowState === 'function') {
+            window.reconcileAuthFlowState(true);
+        }
     }
 
     const splash = document.getElementById('splash-screen');
@@ -776,6 +790,9 @@ window.startExperience = function() {
                     ? { resolved: false, authenticated: true, needsRegistration: false, displayName: null }
                     : { resolved: true, authenticated: false, needsRegistration: false, displayName: null })
             });
+            if (typeof window.reconcileAuthFlowState === 'function') {
+                window.reconcileAuthFlowState(true);
+            }
         }
     }, 500);
 
