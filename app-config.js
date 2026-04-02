@@ -1,5 +1,4 @@
 window.APP_CONFIG = window.APP_CONFIG || {
-    // Set this to your deployed HTTPS speaking backend URL.
-    // Example: 'https://vocab-conqueror-speaking.onrender.com'
-    SPEAKING_API_BASE: ''
+    // Firebase Functions speaking backend.
+    SPEAKING_API_BASE: 'https://asia-east2-battleship-game-c0909.cloudfunctions.net/speakingApi'
 };

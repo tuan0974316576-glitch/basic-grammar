@@ -9,3 +9,6 @@ android/app/build/
 server/.env
 server/.env.*
 !server/.env.example
+.firebase/
+firebase-debug.log
+firebase-debug.*.log
