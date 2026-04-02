@@ -5069,6 +5069,7 @@ body {
     box-sizing: border-box;
     padding: 10px 8px 0;
     overflow: hidden;
+    contain: layout paint style;
 }
 
 .kb-row {
@@ -5305,48 +5306,56 @@ body {
 
 /* ★★★ TABLET-ONLY: 只加大按鈕，唔改 layout ★★★ */
 #virtual-keyboard.kb-tablet-size .kb-key {
-    height: clamp(42px, 4.2vw, 52px);
-    font-size: clamp(15px, 1.8vw, 18px);
+    height: clamp(46px, 4vw, 56px);
+    font-size: clamp(16px, 1.55vw, 19px);
     font-weight: 500;
+}
+
+#virtual-keyboard.kb-tablet-size {
+    padding: 12px clamp(16px, 2.6vw, 30px) 0;
 }
 
 #virtual-keyboard.kb-tablet-size .kb-row {
-    width: min(92vw, 760px);
-    gap: clamp(6px, 1vw, 10px);
-    margin-bottom: 8px;
+    width: min(calc(100vw - clamp(36px, 5vw, 68px)), 980px);
+    gap: clamp(8px, 0.95vw, 12px);
+    margin-bottom: 10px;
 }
 
 #virtual-keyboard.kb-tablet-size .kb-row:nth-child(1) {
-    width: min(92vw, 760px);
+    width: min(calc(100vw - clamp(36px, 5vw, 68px)), 980px);
 }
 
 #virtual-keyboard.kb-tablet-size .kb-row:nth-child(2) {
-    width: min(84vw, 690px);
+    width: min(calc(100vw - clamp(96px, 10vw, 148px)), 910px);
 }
 
 #virtual-keyboard.kb-tablet-size .kb-row:nth-child(3) {
-    width: min(82vw, 660px);
-    transform: translateX(clamp(20px, 2.8vw, 34px));
+    width: min(calc(100vw - clamp(124px, 13vw, 192px)), 860px);
+    transform: translateX(clamp(24px, 3.2vw, 42px));
+}
+
+#virtual-keyboard.kb-tablet-size .kb-row:nth-child(4) {
+    width: min(calc(100vw - clamp(84px, 8vw, 124px)), 920px);
 }
 
 #virtual-keyboard.kb-tablet-size .kb-backspace {
-    height: clamp(42px, 4.2vw, 52px);
-    font-size: clamp(16px, 2vw, 20px);
+    height: clamp(46px, 4vw, 56px);
+    font-size: clamp(16px, 1.85vw, 20px);
     font-weight: 500;
-    flex: 1.65 1 0;
+    flex: 1.95 1 0;
 }
 
 #virtual-keyboard.kb-tablet-size .kb-space {
-    height: clamp(42px, 4.2vw, 52px);
+    height: clamp(46px, 4vw, 56px);
     font-weight: 500;
-    flex: 1.15 1 0;
+    flex: 1.28 1 0;
 }
 
 #virtual-keyboard.kb-tablet-size .kb-enter {
-    height: clamp(42px, 4.2vw, 52px);
-    font-size: clamp(13px, 1.6vw, 16px);
+    height: clamp(46px, 4vw, 56px);
+    font-size: clamp(13px, 1.45vw, 16px);
     font-weight: 500;
-    flex: 0.72 1 0;
+    flex: 0.82 1 0;
 }
 
 /* ★★★ AURELIANS QUIZ THEME: Golden UI with Cyan accents ★★★ */

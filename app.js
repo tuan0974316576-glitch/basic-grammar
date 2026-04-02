@@ -2142,7 +2142,15 @@ if (currentPracticeMode === 'SPEAKING') {
                      (navigator.maxTouchPoints > 0 && !window.matchMedia('(pointer: fine)').matches);
 
     if (isMobile && (currentPracticeMode === 'READING' || currentPracticeMode === 'LISTENING')) {
+        const screenWidth = window.innerWidth || screen.width;
+        const isTablet = screenWidth >= 768;
+
+        // Apply final keyboard classes before first paint to avoid the
+        // temporary "grow taller" reflow on tablets.
+        virtualKeyboard.classList.toggle('kb-tablet-size', isTablet);
+
         // Mobile: Show virtual keyboard initially
+        virtualKeyboard.style.visibility = 'hidden';
         virtualKeyboard.style.display = 'block';
         input.setAttribute('readonly', 'readonly');
         input.style.position = 'absolute';
@@ -2157,15 +2165,11 @@ if (currentPracticeMode === 'SPEAKING') {
         }
 
         // ★★★ 檢測平板並加大按鈕（只改大小，唔改 layout）★★★
-        const screenWidth = window.innerWidth || screen.width;
-        if (screenWidth >= 768) {
-            virtualKeyboard.classList.add('kb-tablet-size');
+        if (isTablet) {
             console.log('[Keyboard] Tablet detected, using larger buttons');
             if (typeof window.requestLandscapeForTablet === 'function') {
                 window.requestLandscapeForTablet();
             }
-        } else {
-            virtualKeyboard.classList.remove('kb-tablet-size');
         }
 
         // ★★★ 調整答題框位置，避免被鍵盤遮住 ★★★
@@ -2179,9 +2183,14 @@ if (currentPracticeMode === 'SPEAKING') {
         document.body.style.overflow = 'hidden';
         document.body.style.position = 'fixed';
         document.body.style.width = '100%';
+
+        // Force layout once with the final tablet/mobile classes, then reveal.
+        virtualKeyboard.offsetHeight;
+        virtualKeyboard.style.visibility = 'visible';
     } else if (!isMobile && (currentPracticeMode === 'READING' || currentPracticeMode === 'LISTENING')) {
         // Desktop: Hide virtual keyboard, show and focus input
         virtualKeyboard.style.display = 'none';
+        virtualKeyboard.style.visibility = 'hidden';
         virtualKeyboard.classList.remove('kb-tablet-size');
         input.removeAttribute('readonly');
         input.style.position = 'static';
@@ -2190,6 +2199,7 @@ if (currentPracticeMode === 'SPEAKING') {
     } else {
         // SPEAKING mode: hide virtual keyboard, hide input
         virtualKeyboard.style.display = 'none';
+        virtualKeyboard.style.visibility = 'hidden';
         input.setAttribute('readonly', 'readonly');
         input.style.position = 'absolute';
         input.style.left = '-9999px';
@@ -2262,6 +2272,7 @@ function closeLaunchModalUI() {
 
     if (virtualKeyboard) {
         virtualKeyboard.style.display = 'none';
+        virtualKeyboard.style.visibility = 'hidden';
         virtualKeyboard.classList.remove('kb-aurelians', 'kb-tablet-size');
     }
 
