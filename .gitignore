@@ -6,3 +6,5 @@ android/build/
 android/app/build/
 .DS_Store
 *.log
+server/.env
+server/.env.*

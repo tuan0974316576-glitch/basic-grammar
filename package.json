@@ -4,6 +4,7 @@
   "description": "Vocab Conqueror - Military-themed vocabulary learning game",
   "main": "index.html",
   "scripts": {
+    "server": "node server/index.js",
     "build:ios": "npx cap add ios && npx cap sync ios && npx cap open ios",
     "build:android": "npx cap add android && npx cap sync android && npx cap open android",
     "sync": "npx cap sync"
@@ -20,6 +21,11 @@
     "@capacitor/android": "^5.5.1",
     "@capacitor/keyboard": "^5.0.7",
     "@capacitor/splash-screen": "^5.0.7",
-    "@capacitor/status-bar": "^5.0.7"
+    "@capacitor/status-bar": "^5.0.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^4.21.2",
+    "microsoft-cognitiveservices-speech-sdk": "^1.44.1",
+    "multer": "^1.4.5-lts.2"
   }
 }
