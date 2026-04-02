@@ -1,5 +1,6 @@
 let authOverlayTimeout = null;
 window.pendingAuthFlowPatch = window.pendingAuthFlowPatch || null;
+window.suppressNextMainMenuAnimation = window.suppressNextMainMenuAnimation || false;
 window.authFlowState = window.authFlowState || {
     started: false,
     resolved: false,
@@ -51,6 +52,9 @@ window.applyAuthFlowState = function(patch = {}) {
     window.authFlowState.currentView = nextView;
 
     if (nextView === 'main') {
+        if (window.authFlowState.currentView === 'connecting') {
+            window.suppressNextMainMenuAnimation = true;
+        }
         if (regModal) regModal.style.display = 'none';
         showMainMenu();
         return;
@@ -646,6 +650,9 @@ function revealAuthenticatedMainMenu() {
 }
 
 function showMainMenu() {
+    const suppressAnimation = !!window.suppressNextMainMenuAnimation;
+    window.suppressNextMainMenuAnimation = false;
+
     const overlay = document.getElementById('login-overlay');
     if (overlay) {
         overlay.style.display = 'none';
@@ -669,7 +676,7 @@ function showMainMenu() {
     const carouselWrapper = document.getElementById('main-menu-carousel');
     if (carouselWrapper) {
         carouselWrapper.style.display = 'flex';
-        carouselWrapper.style.animation = 'fadeIn 0.5s';
+        carouselWrapper.style.animation = suppressAnimation ? 'none' : 'fadeIn 0.5s';
     }
 
     const splash = document.getElementById('splash-screen');
@@ -803,6 +810,7 @@ window.startExperience = function() {
 };
 
 function switchHudPanel(panelId) {
+    const suppressAnimation = !!window.suppressNextMainMenuAnimation && panelId === 'user-profile-panel';
     document.getElementById('connecting-panel').style.display = 'none';
     document.getElementById('login-panel').style.display = 'none';
     document.getElementById('user-profile-panel').style.display = 'none';
@@ -815,11 +823,17 @@ function switchHudPanel(panelId) {
         target.style.display = 'block';
 
         if (panelId === 'user-profile-panel') {
-            console.log('[switchHudPanel] Triggering holoAppear animation for user-profile-panel');
-            target.style.animation = 'none';
-            void target.offsetWidth;
-            target.style.animation = 'holoAppear 0.4s forwards';
-            console.log('[switchHudPanel] Animation set:', target.style.animation);
+            if (suppressAnimation) {
+                target.style.animation = 'none';
+                target.style.opacity = '1';
+                target.style.transform = 'none';
+            } else {
+                console.log('[switchHudPanel] Triggering holoAppear animation for user-profile-panel');
+                target.style.animation = 'none';
+                void target.offsetWidth;
+                target.style.animation = 'holoAppear 0.4s forwards';
+                console.log('[switchHudPanel] Animation set:', target.style.animation);
+            }
         } else {
             target.style.animation = 'fadeIn 0.5s';
         }
