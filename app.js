@@ -148,15 +148,23 @@ function canUseAzureSpeakingAssessment() {
     }
 
     function getSpeakingScoreClass(score) {
-        if (score < 60) return 'danger';
-        if (score >= 80) return 'success';
-        return 'warning';
+        if (score < 35) return 'danger';
+        if (score < 55) return 'warning';
+        return 'success';
     }
 
     function getSpeakingScoreColor(score) {
-        if (score < 60) return 'var(--danger)';
-        if (score >= 80) return 'var(--success)';
-        return '#fbbf24';
+        if (score < 35) return 'var(--danger)';
+        if (score < 55) return '#fbbf24';
+        return 'var(--success)';
+    }
+
+    function getSpeakingAssessmentColor(score, errorType = 'None') {
+        const normalizedError = String(errorType || 'None').toLowerCase();
+        if (normalizedError && normalizedError !== 'none') {
+            return 'var(--danger)';
+        }
+        return getSpeakingScoreColor(score);
     }
 
     function writeWavString(view, offset, string) {
@@ -380,7 +388,7 @@ function renderSpeakingAssessmentDetail(wordAssessment) {
         ? breakdown.map(item => {
             const label = String(item[labelKey] || '?');
             const score = Math.round(item.accuracy ?? 0);
-            const color = getSpeakingScoreColor(score);
+            const color = getSpeakingAssessmentColor(score, item.errorType);
             return `<span class="speaking-chip" style="color:${color}"><span class="speaking-chip-label">${label}</span><span class="speaking-chip-score">${score}</span></span>`;
         }).join('')
         : '<span class="speaking-chip" style="color:#94a3b8"><span class="speaking-chip-label">NO BREAKDOWN</span></span>';
@@ -6080,7 +6088,7 @@ function renderSpeakingWordScores(words, targetWord) {
     const targetMatch = findTargetWordAssessment(words, targetWord);
     return (words || []).map(wordEntry => {
         const score = Math.round(wordEntry.accuracy ?? 0);
-        const color = getSpeakingScoreColor(score);
+        const color = getSpeakingAssessmentColor(score, wordEntry.errorType);
         const isTarget = targetMatch && wordEntry === targetMatch;
         const style = [
             `color:${color}`,
@@ -6138,7 +6146,7 @@ function checkSpeakingAssessment(result) {
 
         if (msgArea) {
             msgArea.innerText = `${targetWord.toUpperCase()} ${targetScore} // MATCH CONFIRMED!`;
-            msgArea.style.color = getSpeakingScoreColor(targetScore);
+            msgArea.style.color = getSpeakingAssessmentColor(targetScore, targetWordAssessment?.errorType);
         }
         setSpeakingUiState('success', 'TARGET LOCKED // FIRE AUTHORIZED', `${targetScore}`);
         setTimeout(() => playerFire(true), 1000);
@@ -6148,9 +6156,9 @@ function checkSpeakingAssessment(result) {
     saveWrongWord(currentPracticeMode, selectedLevel, currentVocab.en);
     if (msgArea) {
         msgArea.innerText = `${targetWord.toUpperCase()} ${targetScore} // TRY AGAIN`;
-        msgArea.style.color = getSpeakingScoreColor(targetScore);
+        msgArea.style.color = getSpeakingAssessmentColor(targetScore, targetWordAssessment?.errorType);
     }
-    setSpeakingUiState(targetScore >= 60 ? 'analyzing' : 'error', targetScore >= 60 ? 'NEAR MATCH // ADJUST PRONUNCIATION' : 'TARGET LOST // TRY AGAIN', `${targetScore}`);
+    setSpeakingUiState(targetScore >= 35 ? 'analyzing' : 'error', targetScore >= 35 ? 'UNCLEAR // ADJUST PRONUNCIATION' : 'TARGET LOST // TRY AGAIN', `${targetScore}`);
     playSound('wrong-sfx');
 }
 
