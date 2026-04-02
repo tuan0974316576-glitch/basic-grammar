@@ -214,6 +214,20 @@ function canUseAzureSpeakingAssessment() {
         }
     }
 
+    async function blobToBase64(blob) {
+        const buffer = await blob.arrayBuffer();
+        const bytes = new Uint8Array(buffer);
+        let binary = '';
+        const chunkSize = 0x8000;
+
+        for (let i = 0; i < bytes.length; i += chunkSize) {
+            const chunk = bytes.subarray(i, i + chunkSize);
+            binary += String.fromCharCode.apply(null, chunk);
+        }
+
+        return btoa(binary);
+    }
+
     function stopSpeakingAudioStream() {
         if (speakingAudioStream) {
             speakingAudioStream.getTracks().forEach(track => track.stop());

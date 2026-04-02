@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const multer = require('multer');
 const logger = require('firebase-functions/logger');
 const { onRequest } = require('firebase-functions/v2/https');
 const { defineSecret, defineString } = require('firebase-functions/params');
@@ -13,12 +12,6 @@ const azureSpeechRegion = defineString('AZURE_SPEECH_REGION', {
 
 const app = express();
 const corsMiddleware = cors({ origin: true });
-const upload = multer({
-  storage: multer.memoryStorage(),
-  limits: {
-    fileSize: 8 * 1024 * 1024
-  }
-});
 
 app.use(corsMiddleware);
 app.options('*', corsMiddleware);
@@ -28,7 +21,7 @@ app.use((req, res, next) => {
   res.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   next();
 });
-app.use(express.json({ limit: '1mb' }));
+app.use(express.json({ limit: '12mb' }));
 
 app.get('/api/health', (_req, res) => {
   res.json({
@@ -39,17 +32,18 @@ app.get('/api/health', (_req, res) => {
   });
 });
 
-app.post('/api/pronunciation-assessment', upload.single('audio'), async (req, res) => {
+app.post('/api/pronunciation-assessment', async (req, res) => {
   try {
-    const audioFile = req.file;
     const expectedText = (req.body.expectedText || '').trim();
     const locale = (req.body.locale || 'en-US').trim();
     const referenceId = (req.body.referenceId || '').trim();
+    const mimeType = (req.body.mimeType || '').trim();
+    const audioBase64 = (req.body.audioBase64 || '').trim();
 
-    if (!audioFile || !audioFile.buffer?.length) {
+    if (!audioBase64) {
       return res.status(400).json({
         error: 'missing_audio',
-        message: 'Please upload an audio file in the "audio" field.'
+        message: 'audioBase64 is required.'
       });
     }
 
@@ -60,21 +54,26 @@ app.post('/api/pronunciation-assessment', upload.single('audio'), async (req, re
       });
     }
 
-    const mime = audioFile.mimetype || '';
-    const isWav = mime.includes('wav') || mime.includes('wave');
-
-    if (!isWav) {
+    if (mimeType && !mimeType.includes('wav') && !mimeType.includes('wave')) {
       return res.status(415).json({
         error: 'unsupported_audio_format',
         message: 'This backend expects WAV audio. Convert the recorded blob to mono PCM WAV before upload.',
-        receivedMimeType: mime || 'unknown'
+        receivedMimeType: mimeType || 'unknown'
+      });
+    }
+
+    const audioBuffer = Buffer.from(audioBase64, 'base64');
+    if (!audioBuffer.length) {
+      return res.status(400).json({
+        error: 'invalid_audio',
+        message: 'The provided audioBase64 could not be decoded.'
       });
     }
 
     const result = await assessPronunciation({
       speechKey: azureSpeechKey.value(),
       speechRegion: azureSpeechRegion.value(),
-      audioBuffer: audioFile.buffer,
+      audioBuffer,
       expectedText,
       locale,
       referenceId
