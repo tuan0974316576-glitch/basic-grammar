@@ -77,6 +77,8 @@ let speakingTailStopTimeout = null;
 let speakingWaveLevel = 0;
 let speakingLatestRms = 0;
 let speakingLastSampleAt = 0;
+let speakingNoiseFloorRms = 0.006;
+let speakingNoiseSampleCount = 0;
 let speakingSilenceMs = 1000;
 let speakingTailBufferMs = 450;
 let speakingSilenceThreshold = 0.018;
@@ -312,6 +314,8 @@ function canUseAzureSpeakingAssessment() {
         }
         speakingLatestRms = 0;
         speakingLastSampleAt = 0;
+        speakingNoiseFloorRms = 0.006;
+        speakingNoiseSampleCount = 0;
     }
 
     function startSpeakingPcmCapture() {
@@ -348,6 +352,11 @@ function canUseAzureSpeakingAssessment() {
             }
             speakingLatestRms = Math.sqrt(sum / frameCount);
             speakingLastSampleAt = Date.now();
+            if (!speakingSilenceDetectedVoice && speakingRecordingStartedAt && (speakingLastSampleAt - speakingRecordingStartedAt < 1400)) {
+                speakingNoiseSampleCount += 1;
+                const alpha = speakingNoiseSampleCount <= 1 ? 1 : 0.18;
+                speakingNoiseFloorRms = (speakingNoiseFloorRms * (1 - alpha)) + (speakingLatestRms * alpha);
+            }
             speakingWaveLevel = speakingLatestRms;
             updateSpeakingWave(Math.min(1, speakingLatestRms / 0.06));
             speakingPcmChunks.push(monoChunk);
@@ -421,8 +430,9 @@ function canUseAzureSpeakingAssessment() {
                 updateSpeakingWave(0);
             }
 
-            const voiceGate = speakingSilenceThreshold * 0.6;
-            const sustainedVoiceGate = speakingSilenceThreshold * 0.65;
+            const adaptiveFloor = Math.max(speakingNoiseFloorRms * 2.4, speakingSilenceThreshold * 0.45);
+            const voiceGate = Math.max(speakingSilenceThreshold * 0.6, adaptiveFloor);
+            const sustainedVoiceGate = Math.max(speakingSilenceThreshold * 0.65, speakingNoiseFloorRms * 1.7);
             if (rms >= voiceGate) {
                 speakingVoiceDetectionFrames += 1;
             } else if (!speakingSilenceDetectedVoice && speakingVoiceDetectionFrames > 0) {
@@ -6267,6 +6277,8 @@ async function startAzureSpeakingAssessment() {
     speakingSilenceDetectedVoice = false;
     speakingVoiceDetectionFrames = 0;
     speakingVoiceStartedAt = 0;
+    speakingNoiseFloorRms = 0.006;
+    speakingNoiseSampleCount = 0;
     const sentenceText = String((currentVocab && (currentVocab.sent || currentVocab.en)) || '').trim();
     const sentenceWordCount = sentenceText ? sentenceText.split(/\s+/).filter(Boolean).length : 1;
     speakingMinVoiceWindowMs = Math.max(2200, Math.min(3600, sentenceWordCount * 320));
