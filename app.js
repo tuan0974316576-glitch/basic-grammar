@@ -6453,7 +6453,7 @@ function checkSpeakingAssessment(result) {
         msgArea.innerText = `${targetWord.toUpperCase()} ${targetScore} // TRY AGAIN`;
         msgArea.style.color = getSpeakingAssessmentColor(targetScore, targetWordAssessment?.errorType);
     }
-    setSpeakingUiState(targetScore >= 35 ? 'analyzing' : 'error', targetScore >= 35 ? 'UNCLEAR // ADJUST PRONUNCIATION' : 'TARGET LOST // TRY AGAIN', `${targetScore}`);
+    setSpeakingUiState('error', targetScore >= 35 ? 'UNCLEAR // ADJUST PRONUNCIATION' : 'TARGET LOST // TRY AGAIN', `${targetScore}`);
     playSound('wrong-sfx');
 }
 
