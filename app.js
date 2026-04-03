@@ -68,10 +68,13 @@ let speakingSilenceAnalyser = null;
 let speakingSilenceSource = null;
 let speakingSilenceCheckInterval = null;
 let speakingSilenceDetectedVoice = false;
+let speakingVoiceDetectionFrames = 0;
+let speakingRecordingStartedAt = 0;
+let speakingVoiceStartedAt = 0;
 let speakingWaveLevel = 0;
-let speakingSilenceMs = 500;
-let speakingSilenceThreshold = 0.03;
-let speakingMaxRecordingMs = 7000;
+let speakingSilenceMs = 1000;
+let speakingSilenceThreshold = 0.02;
+let speakingMaxRecordingMs = 10000;
 let speakingUseAzureAssessment = true;
 let battleLog = [];
 let battleUsedWordKeys = new Set();
@@ -375,6 +378,8 @@ function canUseAzureSpeakingAssessment() {
             speakingSilenceAudioContext = null;
         }
         speakingSilenceDetectedVoice = false;
+        speakingVoiceDetectionFrames = 0;
+        speakingVoiceStartedAt = 0;
         speakingWaveLevel = 0;
         updateSpeakingWave(0);
     }
@@ -408,13 +413,29 @@ function canUseAzureSpeakingAssessment() {
             speakingWaveLevel = rms;
             updateSpeakingWave(Math.min(1, rms / 0.08));
 
-            if (rms >= speakingSilenceThreshold) {
+            const voiceGate = speakingSilenceThreshold * 0.6;
+            if (rms >= voiceGate) {
+                speakingVoiceDetectionFrames += 1;
+            } else if (!speakingSilenceDetectedVoice && speakingVoiceDetectionFrames > 0) {
+                speakingVoiceDetectionFrames -= 1;
+            }
+
+            if (!speakingSilenceDetectedVoice && speakingVoiceDetectionFrames >= 2) {
                 speakingSilenceDetectedVoice = true;
+                speakingVoiceStartedAt = now;
+            }
+
+            if (speakingSilenceDetectedVoice && rms >= speakingSilenceThreshold) {
                 silenceStartedAt = 0;
                 return;
             }
 
             if (!speakingSilenceDetectedVoice) return;
+
+            if (speakingVoiceStartedAt && (now - speakingVoiceStartedAt < 1200)) {
+                silenceStartedAt = 0;
+                return;
+            }
 
             if (!silenceStartedAt) {
                 silenceStartedAt = now;
@@ -6210,6 +6231,9 @@ async function startAzureSpeakingAssessment() {
 
     speakingRecordedChunks = [];
     speakingPcmChunks = [];
+    speakingSilenceDetectedVoice = false;
+    speakingVoiceDetectionFrames = 0;
+    speakingVoiceStartedAt = 0;
     speakingAudioStream = await navigator.mediaDevices.getUserMedia({ audio: true });
 
     const stopRecording = async () => {
@@ -6273,7 +6297,8 @@ async function startAzureSpeakingAssessment() {
         clearTimeout(speakingProcessingTimeout);
         speakingProcessingTimeout = null;
     }
-    launchTimerPaused = false;
+    speakingRecordingStartedAt = Date.now();
+    launchTimerPaused = true;
     if (micBtn) micBtn.classList.add('recording');
     if (msgArea) {
         msgArea.innerText = "READ THE FULL SENTENCE CLEARLY";
