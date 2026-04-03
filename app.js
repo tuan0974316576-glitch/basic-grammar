@@ -423,6 +423,7 @@ function canUseAzureSpeakingAssessment() {
             if (!speakingSilenceDetectedVoice && speakingVoiceDetectionFrames >= 2) {
                 speakingSilenceDetectedVoice = true;
                 speakingVoiceStartedAt = now;
+                console.log(`[Speaking Debug] Voice detected at ${now - speakingRecordingStartedAt}ms (rms=${rms.toFixed(4)})`);
             }
 
             if (speakingSilenceDetectedVoice && rms >= speakingSilenceThreshold) {
@@ -443,6 +444,7 @@ function canUseAzureSpeakingAssessment() {
             }
 
             if (now - silenceStartedAt >= speakingSilenceMs) {
+                console.log(`[Speaking Debug] Silence stop triggered after ${now - speakingRecordingStartedAt}ms`);
                 speakingMediaRecorder.stop();
             }
         }, 50);
@@ -6188,6 +6190,7 @@ async function submitSpeakingAudioForAssessment(blob) {
     if (!baseUrl) throw new Error('Speaking assessment backend is not configured.');
 
     const wavBlob = /wav/i.test(blob.type || '') ? blob : await convertBlobToMonoWav(blob);
+    console.log(`[Speaking Debug] Submitting assessment (${Math.round(wavBlob.size / 1024)} KB WAV)`);
     const audioBase64 = await blobToBase64(wavBlob);
     const payload = {
         audioBase64,
@@ -6218,6 +6221,7 @@ async function submitSpeakingAudioForAssessment(blob) {
         throw new Error((result && (result.message || result.error)) || 'Pronunciation assessment failed.');
     }
 
+    console.log('[Speaking Debug] Assessment response received');
     return result;
 }
 
@@ -6234,6 +6238,7 @@ async function startAzureSpeakingAssessment() {
     speakingSilenceDetectedVoice = false;
     speakingVoiceDetectionFrames = 0;
     speakingVoiceStartedAt = 0;
+    console.log('[Speaking Debug] Azure speaking capture started');
     speakingAudioStream = await navigator.mediaDevices.getUserMedia({ audio: true });
 
     const stopRecording = async () => {
@@ -6272,6 +6277,7 @@ async function startAzureSpeakingAssessment() {
             const assessment = await submitSpeakingAudioForAssessment(recordedBlob);
             checkSpeakingAssessment(assessment);
         } catch (error) {
+            console.warn('[Speaking Debug] Assessment request failed:', error);
             console.warn('Azure speaking assessment failed:', error);
             showSpeakingAzureUnavailable("AZURE OFFLINE // CHECK BACKEND");
         }
