@@ -69,9 +69,18 @@ let speakingSilenceSource = null;
 let speakingSilenceCheckInterval = null;
 let speakingSilenceDetectedVoice = false;
 let speakingWaveLevel = 0;
-let speakingSilenceMs = 500;
+let speakingWaveRenderLevel = 0;
+let speakingWavePhase = 0;
+let speakingWaveAnimationFrame = null;
+let speakingAutoRetryTimeout = null;
+let speakingAttemptCount = 0;
+let speakingRecordingStartedAt = 0;
+let speakingSilenceMs = 1000;
 let speakingSilenceThreshold = 0.03;
-let speakingMaxRecordingMs = 7000;
+let speakingNoSpeechGraceMsInitial = 5000;
+let speakingNoSpeechGraceMsRetry = 3500;
+let speakingRetryDelayMs = 2200;
+let speakingMaxRecordingMs = 10000;
 let speakingUseAzureAssessment = true;
 let battleLog = [];
 let battleUsedWordKeys = new Set();
@@ -375,7 +384,6 @@ function canUseAzureSpeakingAssessment() {
             speakingSilenceAudioContext = null;
         }
         speakingSilenceDetectedVoice = false;
-        speakingWaveLevel = 0;
         updateSpeakingWave(0);
     }
 
@@ -405,7 +413,6 @@ function canUseAzureSpeakingAssessment() {
             for (let i = 0; i < samples.length; i++) sum += samples[i] * samples[i];
             const rms = Math.sqrt(sum / samples.length);
             const now = Date.now();
-            speakingWaveLevel = rms;
             updateSpeakingWave(Math.min(1, rms / 0.08));
 
             if (rms >= speakingSilenceThreshold) {
@@ -414,7 +421,13 @@ function canUseAzureSpeakingAssessment() {
                 return;
             }
 
-            if (!speakingSilenceDetectedVoice) return;
+            if (!speakingSilenceDetectedVoice) {
+                const noSpeechLimit = speakingAttemptCount <= 1 ? speakingNoSpeechGraceMsInitial : speakingNoSpeechGraceMsRetry;
+                if (now - speakingRecordingStartedAt >= noSpeechLimit) {
+                    speakingMediaRecorder.stop();
+                }
+                return;
+            }
 
             if (!silenceStartedAt) {
                 silenceStartedAt = now;
@@ -436,24 +449,114 @@ function canUseAzureSpeakingAssessment() {
         }
     }
 
-    function updateSpeakingWave(level = 0) {
-    const waveEl = document.getElementById('speaking-wave');
-    if (!waveEl) return;
-    const bars = waveEl.querySelectorAll('.speaking-wave-bar');
-    const clamped = Math.max(0, Math.min(1, level));
-    waveEl.style.display = clamped > 0 ? 'flex' : 'none';
+    function stopSpeakingWaveAnimation() {
+        if (speakingWaveAnimationFrame) {
+            cancelAnimationFrame(speakingWaveAnimationFrame);
+            speakingWaveAnimationFrame = null;
+        }
+    }
 
-    bars.forEach((bar, index) => {
-        const spread = 1 - Math.abs(index - (bars.length - 1) / 2) / ((bars.length - 1) / 2 || 1);
-        const scaled = Math.max(0.18, Math.min(1, (clamped * 1.35) * (0.55 + spread * 0.6)));
-        const height = 6 + Math.round(22 * scaled);
-        bar.style.height = height + 'px';
-        bar.style.opacity = String(0.35 + scaled * 0.65);
-        bar.style.transform = 'scaleY(' + (0.75 + scaled * 0.55) + ')';
-    });
+    function drawSpeakingWaveFrame() {
+        const modal = document.getElementById('launch-modal');
+        const waveEl = document.getElementById('speaking-wave');
+        const canvas = document.getElementById('speaking-wave-canvas');
+        if (!waveEl || !canvas || currentPracticeMode !== 'SPEAKING' || !modal || modal.style.display !== 'flex') {
+            if (waveEl) waveEl.style.display = 'none';
+            stopSpeakingWaveAnimation();
+            return;
+        }
+
+        waveEl.style.display = 'block';
+        const rect = waveEl.getBoundingClientRect();
+        const dpr = window.devicePixelRatio || 1;
+        const width = Math.max(1, Math.floor(rect.width));
+        const height = Math.max(1, Math.floor(rect.height));
+        if (canvas.width !== Math.floor(width * dpr) || canvas.height !== Math.floor(height * dpr)) {
+            canvas.width = Math.floor(width * dpr);
+            canvas.height = Math.floor(height * dpr);
+        }
+
+        const ctx = canvas.getContext('2d');
+        if (!ctx) {
+            stopSpeakingWaveAnimation();
+            return;
+        }
+
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.scale(dpr, dpr);
+
+        speakingWaveRenderLevel += (speakingWaveLevel - speakingWaveRenderLevel) * 0.18;
+        speakingWavePhase += 0.05 + speakingWaveRenderLevel * 0.08;
+
+        const centerY = height * 0.52;
+        const baseAmplitude = 4 + height * 0.04;
+        const amplitude = baseAmplitude + (height * 0.16 * Math.max(0.08, speakingWaveRenderLevel));
+        const lineCount = 64;
+
+        const drawLine = (offset, alpha, widthPx) => {
+            ctx.beginPath();
+            for (let i = 0; i <= lineCount; i++) {
+                const x = (i / lineCount) * width;
+                const t = i / lineCount;
+                const envelope = Math.sin(Math.PI * t) ** 0.85;
+                const y = centerY
+                    + Math.sin((t * 8.5) + speakingWavePhase + offset) * amplitude * envelope
+                    + Math.sin((t * 17.5) + (speakingWavePhase * 0.7) - offset) * amplitude * 0.22 * envelope;
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            ctx.strokeStyle = 'rgba(255,255,255,' + alpha + ')';
+            ctx.lineWidth = widthPx;
+            ctx.shadowBlur = 14;
+            ctx.shadowColor = 'rgba(255,255,255,' + Math.min(0.4, alpha + 0.08) + ')';
+            ctx.stroke();
+            ctx.shadowBlur = 0;
+        };
+
+        drawLine(0, 0.34, 2.2);
+        drawLine(1.4, 0.16, 1.1);
+        speakingWaveAnimationFrame = requestAnimationFrame(drawSpeakingWaveFrame);
+    }
+
+    function ensureSpeakingWaveAnimation() {
+        if (!speakingWaveAnimationFrame) {
+            speakingWaveAnimationFrame = requestAnimationFrame(drawSpeakingWaveFrame);
+        }
+    }
+
+    function updateSpeakingWave(level = 0) {
+        speakingWaveLevel = Math.max(0, Math.min(1, level));
+        ensureSpeakingWaveAnimation();
+    }
+function clearSpeakingAutoRetry() {
+    if (speakingAutoRetryTimeout) {
+        clearTimeout(speakingAutoRetryTimeout);
+        speakingAutoRetryTimeout = null;
+    }
 }
+
+function scheduleSpeakingAutoRetry(statusText = 'VOICE LINK RECYCLING...', msgText = 'PREPARE TO RETRY') {
+    clearSpeakingAutoRetry();
+    const modal = document.getElementById('launch-modal');
+    const msgArea = document.getElementById('msg-area');
+    if (msgArea) {
+        msgArea.innerText = msgText;
+        msgArea.style.color = '#fbbf24';
+    }
+    setSpeakingUiState('idle', statusText, '--');
+    updateSpeakingWave(0);
+    speakingAutoRetryTimeout = setTimeout(() => {
+        speakingAutoRetryTimeout = null;
+        if (!modal || modal.style.display !== 'flex' || currentPracticeMode !== 'SPEAKING') return;
+        if (speakingMediaRecorder && speakingMediaRecorder.state === 'recording') return;
+        startListening();
+    }, speakingRetryDelayMs);
+}
+
 function showSpeakingAzureUnavailable(message) {
     launchTimerPaused = false;
+    clearSpeakingAutoRetry();
     const qDisplay = document.getElementById('q-display');
     const msgArea = document.getElementById('msg-area');
     const micBtn = document.getElementById('mic-btn');
@@ -2538,6 +2641,12 @@ if (currentPracticeMode === 'SPEAKING') {
         qDisplay.style.color = "#94a3b8"; 
         qDisplay.style.fontSize = "18px";
         setSpeakingUiState('idle', 'VOICE LINK STANDBY', '--');
+        modal.classList.add('speaking-mode');
+        speakingAttemptCount = 0;
+        speakingRecordingStartedAt = 0;
+        clearSpeakingAutoRetry();
+        updateSpeakingWave(0);
+        ensureSpeakingWaveAnimation();
         input.style.display = 'none'; 
 
         // �ӑB���� Mic ���o (ʹ���㮋�� PNG)
@@ -2548,6 +2657,10 @@ if (currentPracticeMode === 'SPEAKING') {
         
         const container = document.getElementById('timer-bar-container');
         qDisplay.parentNode.insertBefore(micBtn, container);
+        setTimeout(() => {
+            if (currentPracticeMode !== 'SPEAKING' || modal.style.display !== 'flex') return;
+            startListening();
+        }, 180);
 
     } else if (currentPracticeMode === 'LISTENING') {
         // --- B.  ��ģʽ (Listening) ---
@@ -2729,12 +2842,15 @@ function closeLaunchModalUI() {
         clearTimeout(speakingProcessingTimeout);
         speakingProcessingTimeout = null;
     }
+    clearSpeakingAutoRetry();
 
     if (speakingMediaRecorder && speakingMediaRecorder.state !== 'inactive') {
         speakingMediaRecorder.stop();
     }
     speakingMediaRecorder = null;
     speakingRecordedChunks = [];
+    speakingAttemptCount = 0;
+    speakingRecordingStartedAt = 0;
     stopSpeakingAudioStream();
 
     if (modal) {
@@ -2742,7 +2858,9 @@ function closeLaunchModalUI() {
         modal.style.alignItems = '';
         modal.style.paddingTop = '';
         modal.classList.remove('aurelians-theme');
+        modal.classList.remove('speaking-mode');
     }
+    stopSpeakingWaveAnimation();
 
     if (virtualKeyboard) {
         virtualKeyboard.style.display = 'none';
@@ -6201,15 +6319,17 @@ async function submitSpeakingAudioForAssessment(blob) {
 }
 
 async function startAzureSpeakingAssessment() {
-    if (speakingMediaRecorder && speakingMediaRecorder.state !== 'inactive') return;
+    if (speakingMediaRecorder && speakingMediaRecorder.state === 'recording') return;
 
     const micBtn = document.getElementById('mic-btn');
     const msgArea = document.getElementById('msg-area');
     const qDisplay = document.getElementById('q-display');
     const modal = document.getElementById('launch-modal');
 
+    clearSpeakingAutoRetry();
     speakingRecordedChunks = [];
     speakingPcmChunks = [];
+    speakingSilenceDetectedVoice = false;
     speakingAudioStream = await navigator.mediaDevices.getUserMedia({ audio: true });
 
     const stopRecording = async () => {
@@ -6244,6 +6364,21 @@ async function startAzureSpeakingAssessment() {
         speakingPcmChunks = [];
         stopSpeakingAudioStream();
 
+        if (!speakingSilenceDetectedVoice) {
+            if (msgArea) {
+                msgArea.innerText = speakingAttemptCount <= 1 ? "NO VOICE DETECTED // TRY READING NOW" : "VOICE NOT DETECTED // RETRY";
+                msgArea.style.color = "#fbbf24";
+            }
+            if (qDisplay) {
+                qDisplay.innerText = "MIC OPEN // READ THE SENTENCE";
+                qDisplay.style.color = "#f8fafc";
+                qDisplay.style.fontSize = "18px";
+            }
+            setSpeakingUiState('idle', 'VOICE LINK RECYCLING...', '--');
+            scheduleSpeakingAutoRetry('VOICE LINK RECYCLING...', speakingAttemptCount <= 1 ? 'PREPARE TO READ THE SENTENCE' : 'TRY THE SENTENCE AGAIN');
+            return;
+        }
+
         try {
             const assessment = await submitSpeakingAudioForAssessment(recordedBlob);
             checkSpeakingAssessment(assessment);
@@ -6273,10 +6408,12 @@ async function startAzureSpeakingAssessment() {
         clearTimeout(speakingProcessingTimeout);
         speakingProcessingTimeout = null;
     }
+    speakingAttemptCount += 1;
+    speakingRecordingStartedAt = Date.now();
     launchTimerPaused = false;
     if (micBtn) micBtn.classList.add('recording');
     if (msgArea) {
-        msgArea.innerText = "READ THE FULL SENTENCE CLEARLY";
+        msgArea.innerText = speakingAttemptCount <= 1 ? "MIC LIVE // YOU HAVE TIME TO READ" : "MIC LIVE // PRESS MIC TO STOP";
         msgArea.style.color = "#d946ef";
     }
     if (qDisplay) {
@@ -6297,6 +6434,11 @@ async function startAzureSpeakingAssessment() {
 
 function startListening() {
     if (currentPracticeMode === 'SPEAKING') {
+        if (speakingMediaRecorder && speakingMediaRecorder.state === 'recording') {
+            speakingMediaRecorder.stop();
+            return;
+        }
+
         if (!canUseAzureSpeakingAssessment()) {
             const baseUrl = getSpeakingAssessmentBaseUrl();
             const blockedByMixedContent = window.isSecureContext && baseUrl && /^http:\/\//i.test(baseUrl) && !/^http:\/\/localhost(?::\d+)?$/i.test(baseUrl);
@@ -6406,6 +6548,7 @@ function checkSpeakingAssessment(result) {
     }
     setSpeakingUiState(targetScore >= 35 ? 'analyzing' : 'error', targetScore >= 35 ? 'UNCLEAR // ADJUST PRONUNCIATION' : 'TARGET LOST // TRY AGAIN', `${targetScore}`);
     playSound('wrong-sfx');
+    scheduleSpeakingAutoRetry('VOICE LINK RECYCLING...', 'RECALIBRATING // TRY AGAIN');
 }
 
 // --- 3. �z����Z�Y�� (Speaking Score - fallback legacy sentence matching) ---

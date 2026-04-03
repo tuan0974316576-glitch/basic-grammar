@@ -630,25 +630,28 @@ body {
             box-shadow: 0 0 16px rgba(239, 68, 68, 0.2), inset 0 0 14px rgba(239, 68, 68, 0.12);
         }
 
-        .speaking-wave {
-            width: min(220px, 70%);
-            height: 24px;
-            margin-top: 10px;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            gap: 5px;
+        #launch-modal.speaking-mode .modal-content > * {
+            position: relative;
+            z-index: 1;
         }
 
-        .speaking-wave-bar {
-            width: 7px;
-            height: 7px;
-            border-radius: 999px;
-            background: linear-gradient(180deg, rgba(244, 114, 182, 0.95), rgba(56, 189, 248, 0.95));
-            box-shadow: 0 0 8px rgba(56, 189, 248, 0.25);
-            transform-origin: center bottom;
-            transition: transform 90ms linear, opacity 90ms linear, height 90ms linear;
-            opacity: 0.5;
+        .speaking-wave {
+            position: absolute;
+            left: 14px;
+            right: 14px;
+            top: 72px;
+            bottom: 56px;
+            display: block;
+            pointer-events: none;
+            opacity: 0.55;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .speaking-wave-canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
         }
 
         .speaking-scorebar {
@@ -5694,16 +5697,16 @@ body {
 .speaking-debrief-box {
     width: min(880px, calc(100vw - 32px));
     max-width: 880px;
-    height: min(840px, calc(100vh - 48px));
-    max-height: calc(100vh - 48px);
+    height: min(760px, calc(100dvh - 32px));
+    max-height: calc(100dvh - 32px);
     border-color: #0ea5e9;
     box-shadow: 0 0 40px rgba(14, 165, 233, 0.3), inset 0 0 40px rgba(14, 165, 233, 0.08);
-    padding: 24px;
+    padding: 20px;
     text-align: left;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 14px;
 }
 
 .speaking-debrief-header {
@@ -5734,7 +5737,7 @@ body {
 }
 
 .speaking-debrief-sentence {
-    padding: 16px 18px;
+    padding: 14px 16px;
     border: 1px solid rgba(103, 232, 249, 0.18);
     border-radius: 12px;
     background:
@@ -5742,8 +5745,8 @@ body {
         radial-gradient(circle at top left, rgba(14, 165, 233, 0.15), transparent 48%);
     color: #e2e8f0;
     font-family: 'Roboto Mono', monospace;
-    font-size: 22px;
-    line-height: 1.5;
+    font-size: 20px;
+    line-height: 1.4;
     box-shadow: inset 0 0 28px rgba(14, 165, 233, 0.08);
 }
 
@@ -5771,14 +5774,14 @@ body {
 .speaking-debrief-score-card {
     border: 1px solid rgba(103, 232, 249, 0.15);
     border-radius: 12px;
-    padding: 14px;
+    padding: 12px;
     background: rgba(2, 6, 23, 0.85);
     box-shadow: inset 0 0 16px rgba(14, 165, 233, 0.06);
 }
 
 .speaking-debrief-score-value {
     font-family: 'Black Ops One', cursive;
-    font-size: 34px;
+    font-size: 30px;
     color: #67e8f9;
     line-height: 1;
     text-shadow: 0 0 10px rgba(103, 232, 249, 0.45);
@@ -5816,16 +5819,16 @@ body {
     grid-template-columns: 88px minmax(0, 1fr);
     gap: 16px;
     align-items: center;
-    padding: 14px 16px;
+    padding: 12px 14px;
     border: 1px solid rgba(71, 85, 105, 0.55);
     border-radius: 12px;
     background: rgba(15, 23, 42, 0.88);
-    min-height: 96px;
+    min-height: 84px;
 }
 
 .speaking-debrief-word-name {
     font-family: 'Orbitron', sans-serif;
-    font-size: 20px;
+    font-size: 18px;
     color: #f8fafc;
     text-transform: lowercase;
     align-self: center;
@@ -5853,7 +5856,7 @@ body {
 
 .speaking-debrief-phoneme-bar {
     width: 6px;
-    height: 58px;
+    height: 48px;
     border-radius: 999px;
     background: rgba(71, 85, 105, 0.5);
     overflow: hidden;
@@ -5890,10 +5893,10 @@ body {
 @media (max-width: 700px) {
     .speaking-debrief-box {
         width: calc(100vw - 24px);
-        height: calc(100vh - 24px);
-        max-height: calc(100vh - 24px);
-        padding: 18px 14px;
-        gap: 14px;
+        height: calc(100dvh - 20px);
+        max-height: calc(100dvh - 20px);
+        padding: 14px 12px;
+        gap: 12px;
     }
 
     .speaking-debrief-header {
@@ -5902,8 +5905,8 @@ body {
     }
 
     .speaking-debrief-sentence {
-        font-size: 17px;
-        padding: 14px;
+        font-size: 16px;
+        padding: 12px;
     }
 
     .speaking-debrief-score-grid {
@@ -5912,15 +5915,19 @@ body {
 
     .speaking-debrief-word-row {
         grid-template-columns: 72px minmax(0, 1fr);
-        gap: 12px;
-        min-height: 88px;
+        gap: 10px;
+        min-height: 76px;
     }
 
     .speaking-debrief-word-name {
-        font-size: 18px;
+        font-size: 16px;
     }
 
     .speaking-debrief-phoneme-list {
-        gap: 10px;
+        gap: 8px;
+    }
+
+    .speaking-debrief-phoneme-bar {
+        height: 42px;
     }
 }
