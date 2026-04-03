@@ -73,10 +73,12 @@ let speakingRecordingStartedAt = 0;
 let speakingVoiceStartedAt = 0;
 let speakingMinVoiceWindowMs = 2200;
 let speakingRecordingTimeout = null;
+let speakingTailStopTimeout = null;
 let speakingWaveLevel = 0;
 let speakingLatestRms = 0;
 let speakingLastSampleAt = 0;
 let speakingSilenceMs = 1000;
+let speakingTailBufferMs = 450;
 let speakingSilenceThreshold = 0.018;
 let speakingMaxRecordingMs = 10000;
 let speakingUseAzureAssessment = true;
@@ -394,6 +396,10 @@ function canUseAzureSpeakingAssessment() {
         speakingSilenceDetectedVoice = false;
         speakingVoiceDetectionFrames = 0;
         speakingVoiceStartedAt = 0;
+        if (speakingTailStopTimeout) {
+            clearTimeout(speakingTailStopTimeout);
+            speakingTailStopTimeout = null;
+        }
         speakingWaveLevel = 0;
         updateSpeakingWave(0);
     }
@@ -416,7 +422,7 @@ function canUseAzureSpeakingAssessment() {
             }
 
             const voiceGate = speakingSilenceThreshold * 0.6;
-            const sustainedVoiceGate = speakingSilenceThreshold * 0.72;
+            const sustainedVoiceGate = speakingSilenceThreshold * 0.65;
             if (rms >= voiceGate) {
                 speakingVoiceDetectionFrames += 1;
             } else if (!speakingSilenceDetectedVoice && speakingVoiceDetectionFrames > 0) {
@@ -431,6 +437,10 @@ function canUseAzureSpeakingAssessment() {
 
             if (speakingSilenceDetectedVoice && rms >= sustainedVoiceGate) {
                 silenceStartedAt = 0;
+                if (speakingTailStopTimeout) {
+                    clearTimeout(speakingTailStopTimeout);
+                    speakingTailStopTimeout = null;
+                }
                 return;
             }
 
@@ -447,8 +457,16 @@ function canUseAzureSpeakingAssessment() {
             }
 
             if (now - silenceStartedAt >= speakingSilenceMs) {
-                console.log(`[Speaking Debug] Silence stop triggered after ${now - speakingRecordingStartedAt}ms`);
-                speakingMediaRecorder.stop();
+                if (!speakingTailStopTimeout) {
+                    console.log(`[Speaking Debug] Silence stop triggered after ${now - speakingRecordingStartedAt}ms`);
+                    speakingTailStopTimeout = setTimeout(() => {
+                        speakingTailStopTimeout = null;
+                        if (speakingMediaRecorder && speakingMediaRecorder.state === 'recording') {
+                            console.log(`[Speaking Debug] Tail buffer stop after ${now - speakingRecordingStartedAt + speakingTailBufferMs}ms`);
+                            speakingMediaRecorder.stop();
+                        }
+                    }, speakingTailBufferMs);
+                }
             }
         }, 50);
     }
@@ -457,6 +475,10 @@ function canUseAzureSpeakingAssessment() {
         if (speakingRecordingTimeout) {
             clearTimeout(speakingRecordingTimeout);
             speakingRecordingTimeout = null;
+        }
+        if (speakingTailStopTimeout) {
+            clearTimeout(speakingTailStopTimeout);
+            speakingTailStopTimeout = null;
         }
         stopSpeakingSilenceMonitor();
         stopSpeakingPcmCapture();
