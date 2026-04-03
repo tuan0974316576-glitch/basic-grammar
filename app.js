@@ -74,6 +74,8 @@ let speakingVoiceStartedAt = 0;
 let speakingMinVoiceWindowMs = 2200;
 let speakingRecordingTimeout = null;
 let speakingWaveLevel = 0;
+let speakingLatestRms = 0;
+let speakingLastSampleAt = 0;
 let speakingSilenceMs = 1000;
 let speakingSilenceThreshold = 0.018;
 let speakingMaxRecordingMs = 10000;
@@ -306,6 +308,8 @@ function canUseAzureSpeakingAssessment() {
             try { speakingPcmAudioContext.close(); } catch (_error) {}
             speakingPcmAudioContext = null;
         }
+        speakingLatestRms = 0;
+        speakingLastSampleAt = 0;
     }
 
     function startSpeakingPcmCapture() {
@@ -336,6 +340,14 @@ function canUseAzureSpeakingAssessment() {
                 }
             }
 
+            let sum = 0;
+            for (let i = 0; i < frameCount; i++) {
+                sum += monoChunk[i] * monoChunk[i];
+            }
+            speakingLatestRms = Math.sqrt(sum / frameCount);
+            speakingLastSampleAt = Date.now();
+            speakingWaveLevel = speakingLatestRms;
+            updateSpeakingWave(Math.min(1, speakingLatestRms / 0.06));
             speakingPcmChunks.push(monoChunk);
         };
 
@@ -390,30 +402,18 @@ function canUseAzureSpeakingAssessment() {
         if (!speakingAudioStream || !speakingMediaRecorder) return;
 
         stopSpeakingSilenceMonitor();
-
-        const AudioCtx = window.AudioContext || window.webkitAudioContext;
-        if (!AudioCtx) return;
-
-        speakingSilenceAudioContext = new AudioCtx();
-        speakingSilenceSource = speakingSilenceAudioContext.createMediaStreamSource(speakingAudioStream);
-        speakingSilenceAnalyser = speakingSilenceAudioContext.createAnalyser();
-        speakingSilenceAnalyser.fftSize = 1024;
-        speakingSilenceAnalyser.smoothingTimeConstant = 0.2;
-        speakingSilenceSource.connect(speakingSilenceAnalyser);
-
-        const samples = new Float32Array(speakingSilenceAnalyser.fftSize);
         let silenceStartedAt = 0;
 
         speakingSilenceCheckInterval = setInterval(() => {
-            if (!speakingMediaRecorder || speakingMediaRecorder.state !== 'recording' || !speakingSilenceAnalyser) return;
+            if (!speakingMediaRecorder || speakingMediaRecorder.state !== 'recording') return;
 
-            speakingSilenceAnalyser.getFloatTimeDomainData(samples);
-            let sum = 0;
-            for (let i = 0; i < samples.length; i++) sum += samples[i] * samples[i];
-            const rms = Math.sqrt(sum / samples.length);
             const now = Date.now();
-            speakingWaveLevel = rms;
-            updateSpeakingWave(Math.min(1, rms / 0.08));
+            const rms = speakingLatestRms;
+            if (speakingLastSampleAt && (now - speakingLastSampleAt > 250)) {
+                speakingLatestRms = 0;
+                speakingWaveLevel = 0;
+                updateSpeakingWave(0);
+            }
 
             const voiceGate = speakingSilenceThreshold * 0.6;
             const sustainedVoiceGate = speakingSilenceThreshold * 0.72;
