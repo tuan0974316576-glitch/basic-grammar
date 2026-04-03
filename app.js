@@ -76,7 +76,7 @@ let speakingAutoRetryTimeout = null;
 let speakingAttemptCount = 0;
 let speakingRecordingStartedAt = 0;
 let speakingSilenceMs = 1000;
-let speakingSilenceThreshold = 0.03;
+let speakingSilenceThreshold = 0.02;
 let speakingNoSpeechGraceMsInitial = 5000;
 let speakingNoSpeechGraceMsRetry = 3500;
 let speakingRetryDelayMs = 2200;
@@ -196,21 +196,24 @@ function canUseAzureSpeakingAssessment() {
     }
 
     function getSpeakingScoreClass(score) {
-        if (score < 35) return 'danger';
+        if (score < 30) return 'warning';
         if (score < 55) return 'warning';
         return 'success';
     }
 
     function getSpeakingScoreColor(score) {
-        if (score < 35) return 'var(--danger)';
+        if (score < 30) return '#fbbf24';
         if (score < 55) return '#fbbf24';
         return 'var(--success)';
     }
 
     function getSpeakingAssessmentColor(score, errorType = 'None') {
         const normalizedError = String(errorType || 'None').toLowerCase();
-        if (normalizedError && normalizedError !== 'none') {
+        if (normalizedError.includes('omission') || normalizedError.includes('missing')) {
             return 'var(--danger)';
+        }
+        if (normalizedError && normalizedError !== 'none') {
+            return '#fbbf24';
         }
         return getSpeakingScoreColor(score);
     }
@@ -572,6 +575,36 @@ function showSpeakingAzureUnavailable(message) {
         msgArea.style.color = "#f59e0b";
     }
     setSpeakingUiState('error', message || "AZURE LINK OFFLINE", '--');
+}
+
+function handleSpeakingAssessmentTransportFailure(error) {
+    console.warn('Azure speaking assessment failed:', error);
+    const message = String(error?.message || error || '').toLowerCase();
+    const hardFailure = message.includes('backend is not configured')
+        || message.includes('https backend')
+        || message.includes('azure backend not ready')
+        || message.includes('pcm capture unavailable')
+        || message.includes('permission denied')
+        || message.includes('notallowederror');
+
+    if (hardFailure) {
+        showSpeakingAzureUnavailable("AZURE OFFLINE // CHECK BACKEND");
+        return;
+    }
+
+    const qDisplay = document.getElementById('q-display');
+    const msgArea = document.getElementById('msg-area');
+    if (qDisplay) {
+        qDisplay.innerText = "VOICE LINK RECOVERING...";
+        qDisplay.style.color = "#fbbf24";
+        qDisplay.style.fontSize = "18px";
+    }
+    if (msgArea) {
+        msgArea.innerText = "TEMP LINK ISSUE // RETRYING";
+        msgArea.style.color = "#fbbf24";
+    }
+    setSpeakingUiState('idle', 'VOICE LINK RECOVERING...', '--');
+    scheduleSpeakingAutoRetry('VOICE LINK RECOVERING...', 'PREPARE TO RETRY');
 }
 function clearSpeakingAssessmentDetail() {
     const detailEl = document.getElementById('speaking-detail');
@@ -6294,28 +6327,54 @@ async function submitSpeakingAudioForAssessment(blob) {
         mimeType: 'audio/wav'
     };
 
-    const response = await fetch(`${baseUrl}/api/pronunciation-assessment`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(payload)
-    });
+    let lastError = null;
+    for (let attempt = 0; attempt < 2; attempt++) {
+        try {
+            const response = await fetch(`${baseUrl}/api/pronunciation-assessment`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
 
-    const rawText = await response.text();
-    let result = null;
+            const rawText = await response.text();
+            let result = null;
 
-    try {
-        result = rawText ? JSON.parse(rawText) : null;
-    } catch (_error) {
-        throw new Error(rawText || 'Pronunciation assessment failed.');
+            try {
+                result = rawText ? JSON.parse(rawText) : null;
+            } catch (_error) {
+                throw new Error(rawText || 'Pronunciation assessment failed.');
+            }
+
+            if (!response.ok) {
+                const message = (result && (result.message || result.error)) || 'Pronunciation assessment failed.';
+                const retriable = response.status >= 500;
+                if (retriable && attempt === 0) {
+                    await new Promise(resolve => setTimeout(resolve, 350));
+                    continue;
+                }
+                throw new Error(message);
+            }
+
+            return result;
+        } catch (error) {
+            lastError = error;
+            const message = String(error?.message || error || '').toLowerCase();
+            const retriable = attempt === 0 && (
+                message.includes('failed to fetch') ||
+                message.includes('networkerror') ||
+                message.includes('fetch')
+            );
+            if (retriable) {
+                await new Promise(resolve => setTimeout(resolve, 350));
+                continue;
+            }
+            break;
+        }
     }
 
-    if (!response.ok) {
-        throw new Error((result && (result.message || result.error)) || 'Pronunciation assessment failed.');
-    }
-
-    return result;
+    throw lastError || new Error('Pronunciation assessment failed.');
 }
 
 async function startAzureSpeakingAssessment() {
@@ -6330,7 +6389,14 @@ async function startAzureSpeakingAssessment() {
     speakingRecordedChunks = [];
     speakingPcmChunks = [];
     speakingSilenceDetectedVoice = false;
-    speakingAudioStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    speakingAudioStream = await navigator.mediaDevices.getUserMedia({
+        audio: {
+            echoCancellation: true,
+            noiseSuppression: true,
+            autoGainControl: true,
+            channelCount: 1
+        }
+    });
 
     const stopRecording = async () => {
         if (!speakingMediaRecorder || speakingMediaRecorder.state !== 'recording') return;
@@ -6383,8 +6449,7 @@ async function startAzureSpeakingAssessment() {
             const assessment = await submitSpeakingAudioForAssessment(recordedBlob);
             checkSpeakingAssessment(assessment);
         } catch (error) {
-            console.warn('Azure speaking assessment failed:', error);
-            showSpeakingAzureUnavailable("AZURE OFFLINE // CHECK BACKEND");
+            handleSpeakingAssessmentTransportFailure(error);
         }
     };
 
@@ -6546,7 +6611,7 @@ function checkSpeakingAssessment(result) {
         msgArea.innerText = `${targetWord.toUpperCase()} ${targetScore} // TRY AGAIN`;
         msgArea.style.color = getSpeakingAssessmentColor(targetScore, targetWordAssessment?.errorType);
     }
-    setSpeakingUiState(targetScore >= 35 ? 'analyzing' : 'error', targetScore >= 35 ? 'UNCLEAR // ADJUST PRONUNCIATION' : 'TARGET LOST // TRY AGAIN', `${targetScore}`);
+    setSpeakingUiState(targetScore >= 30 ? 'analyzing' : 'error', targetScore >= 30 ? 'UNCLEAR // ADJUST PRONUNCIATION' : 'TARGET LOST // TRY AGAIN', `${targetScore}`);
     playSound('wrong-sfx');
     scheduleSpeakingAutoRetry('VOICE LINK RECYCLING...', 'RECALIBRATING // TRY AGAIN');
 }
