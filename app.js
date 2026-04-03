@@ -6430,7 +6430,7 @@ async function startAzureSpeakingAssessment() {
         stopSpeakingAudioStream();
 
         if (!speakingSilenceDetectedVoice) {
-            launchTimerPaused = true;
+            launchTimerPaused = false;
             if (msgArea) {
                 msgArea.innerText = speakingAttemptCount <= 1 ? "NO VOICE DETECTED // TRY READING NOW" : "VOICE NOT DETECTED // RETRY";
                 msgArea.style.color = "#fbbf24";
@@ -6484,7 +6484,7 @@ async function startAzureSpeakingAssessment() {
     }
     speakingAttemptCount += 1;
     speakingRecordingStartedAt = Date.now();
-    launchTimerPaused = true;
+    launchTimerPaused = false;
     if (micBtn) micBtn.classList.add('recording');
     if (msgArea) {
         msgArea.innerText = speakingAttemptCount <= 1 ? "MIC LIVE // YOU HAVE TIME TO READ" : "MIC LIVE // PRESS MIC TO STOP";
