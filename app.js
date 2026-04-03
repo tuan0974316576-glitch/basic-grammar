@@ -75,7 +75,7 @@ let speakingMinVoiceWindowMs = 2200;
 let speakingRecordingTimeout = null;
 let speakingWaveLevel = 0;
 let speakingSilenceMs = 1000;
-let speakingSilenceThreshold = 0.02;
+let speakingSilenceThreshold = 0.018;
 let speakingMaxRecordingMs = 10000;
 let speakingUseAzureAssessment = true;
 let battleLog = [];
@@ -416,6 +416,7 @@ function canUseAzureSpeakingAssessment() {
             updateSpeakingWave(Math.min(1, rms / 0.08));
 
             const voiceGate = speakingSilenceThreshold * 0.6;
+            const sustainedVoiceGate = speakingSilenceThreshold * 0.72;
             if (rms >= voiceGate) {
                 speakingVoiceDetectionFrames += 1;
             } else if (!speakingSilenceDetectedVoice && speakingVoiceDetectionFrames > 0) {
@@ -428,7 +429,7 @@ function canUseAzureSpeakingAssessment() {
                 console.log(`[Speaking Debug] Voice detected at ${now - speakingRecordingStartedAt}ms (rms=${rms.toFixed(4)})`);
             }
 
-            if (speakingSilenceDetectedVoice && rms >= speakingSilenceThreshold) {
+            if (speakingSilenceDetectedVoice && rms >= sustainedVoiceGate) {
                 silenceStartedAt = 0;
                 return;
             }
@@ -6248,7 +6249,14 @@ async function startAzureSpeakingAssessment() {
     const sentenceWordCount = sentenceText ? sentenceText.split(/\s+/).filter(Boolean).length : 1;
     speakingMinVoiceWindowMs = Math.max(2200, Math.min(3600, sentenceWordCount * 320));
     console.log('[Speaking Debug] Azure speaking capture started');
-    speakingAudioStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    speakingAudioStream = await navigator.mediaDevices.getUserMedia({
+        audio: {
+            channelCount: 1,
+            echoCancellation: true,
+            noiseSuppression: true,
+            autoGainControl: true
+        }
+    });
 
     const stopRecording = async () => {
         if (!speakingMediaRecorder || speakingMediaRecorder.state !== 'recording') return;
