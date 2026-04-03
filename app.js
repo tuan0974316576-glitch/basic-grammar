@@ -71,6 +71,8 @@ let speakingSilenceDetectedVoice = false;
 let speakingVoiceDetectionFrames = 0;
 let speakingRecordingStartedAt = 0;
 let speakingVoiceStartedAt = 0;
+let speakingMinVoiceWindowMs = 2200;
+let speakingRecordingTimeout = null;
 let speakingWaveLevel = 0;
 let speakingSilenceMs = 1000;
 let speakingSilenceThreshold = 0.02;
@@ -433,7 +435,7 @@ function canUseAzureSpeakingAssessment() {
 
             if (!speakingSilenceDetectedVoice) return;
 
-            if (speakingVoiceStartedAt && (now - speakingVoiceStartedAt < 1200)) {
+            if (speakingVoiceStartedAt && (now - speakingVoiceStartedAt < speakingMinVoiceWindowMs)) {
                 silenceStartedAt = 0;
                 return;
             }
@@ -451,6 +453,10 @@ function canUseAzureSpeakingAssessment() {
     }
 
     function stopSpeakingAudioStream() {
+        if (speakingRecordingTimeout) {
+            clearTimeout(speakingRecordingTimeout);
+            speakingRecordingTimeout = null;
+        }
         stopSpeakingSilenceMonitor();
         stopSpeakingPcmCapture();
         if (speakingAudioStream) {
@@ -6238,6 +6244,9 @@ async function startAzureSpeakingAssessment() {
     speakingSilenceDetectedVoice = false;
     speakingVoiceDetectionFrames = 0;
     speakingVoiceStartedAt = 0;
+    const sentenceText = String((currentVocab && (currentVocab.sent || currentVocab.en)) || '').trim();
+    const sentenceWordCount = sentenceText ? sentenceText.split(/\s+/).filter(Boolean).length : 1;
+    speakingMinVoiceWindowMs = Math.max(2200, Math.min(3600, sentenceWordCount * 320));
     console.log('[Speaking Debug] Azure speaking capture started');
     speakingAudioStream = await navigator.mediaDevices.getUserMedia({ audio: true });
 
@@ -6303,6 +6312,10 @@ async function startAzureSpeakingAssessment() {
         clearTimeout(speakingProcessingTimeout);
         speakingProcessingTimeout = null;
     }
+    if (speakingRecordingTimeout) {
+        clearTimeout(speakingRecordingTimeout);
+        speakingRecordingTimeout = null;
+    }
     speakingRecordingStartedAt = Date.now();
     launchTimerPaused = false;
     if (micBtn) micBtn.classList.add('recording');
@@ -6319,7 +6332,8 @@ async function startAzureSpeakingAssessment() {
     clearSpeakingAssessmentDetail();
 
     startSpeakingSilenceMonitor();
-    setTimeout(() => {
+    speakingRecordingTimeout = setTimeout(() => {
+        speakingRecordingTimeout = null;
         if (speakingMediaRecorder && speakingMediaRecorder.state === 'recording') {
             speakingMediaRecorder.stop();
         }
@@ -6328,6 +6342,10 @@ async function startAzureSpeakingAssessment() {
 
 function startListening() {
     if (currentPracticeMode === 'SPEAKING') {
+        const statusEl = document.getElementById('speaking-status');
+        if (speakingMediaRecorder && speakingMediaRecorder.state !== 'inactive') return;
+        if (statusEl && (statusEl.classList.contains('analyzing') || statusEl.classList.contains('success'))) return;
+
         if (!canUseAzureSpeakingAssessment()) {
             const baseUrl = getSpeakingAssessmentBaseUrl();
             const blockedByMixedContent = window.isSecureContext && baseUrl && /^http:\/\//i.test(baseUrl) && !/^http:\/\/localhost(?::\d+)?$/i.test(baseUrl);
