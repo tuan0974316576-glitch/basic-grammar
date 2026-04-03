@@ -6298,7 +6298,7 @@ async function startAzureSpeakingAssessment() {
         speakingProcessingTimeout = null;
     }
     speakingRecordingStartedAt = Date.now();
-    launchTimerPaused = true;
+    launchTimerPaused = false;
     if (micBtn) micBtn.classList.add('recording');
     if (msgArea) {
         msgArea.innerText = "READ THE FULL SENTENCE CLEARLY";
