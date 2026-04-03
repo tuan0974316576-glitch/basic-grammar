@@ -6274,9 +6274,9 @@ async function startAzureSpeakingAssessment() {
     speakingAudioStream = await navigator.mediaDevices.getUserMedia({
         audio: {
             channelCount: 1,
-            echoCancellation: true,
-            noiseSuppression: true,
-            autoGainControl: true
+            echoCancellation: false,
+            noiseSuppression: false,
+            autoGainControl: false
         }
     });
 
