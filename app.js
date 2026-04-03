@@ -6424,6 +6424,22 @@ async function startAzureSpeakingAssessment() {
             return;
         }
 
+        const recordedBlob = buildSpeakingPcmWavBlob();
+        speakingMediaRecorder = null;
+        speakingPcmChunks = [];
+        stopSpeakingAudioStream();
+
+        if (!speakingSilenceDetectedVoice) {
+            launchTimerPaused = false;
+            if (msgArea) {
+                msgArea.innerText = speakingAttemptCount <= 1 ? "NO VOICE DETECTED // TRY READING NOW" : "VOICE NOT DETECTED // RETRY";
+                msgArea.style.color = "#fbbf24";
+            }
+            setSpeakingUiState('idle', 'VOICE LINK RECYCLING...', '--');
+            scheduleSpeakingAutoRetry('VOICE LINK RECYCLING...', speakingAttemptCount <= 1 ? 'PREPARE TO READ THE SENTENCE' : 'TRY THE SENTENCE AGAIN');
+            return;
+        }
+
         launchTimerPaused = true;
         if (msgArea) {
             msgArea.innerText = "SCORING TARGET WORD // HOLD POSITION";
@@ -6437,21 +6453,6 @@ async function startAzureSpeakingAssessment() {
         setSpeakingUiState('analyzing', 'ANALYZING PRONUNCIATION...', '--');
         clearSpeakingAssessmentDetail();
         await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
-
-        const recordedBlob = buildSpeakingPcmWavBlob();
-        speakingMediaRecorder = null;
-        speakingPcmChunks = [];
-        stopSpeakingAudioStream();
-
-        if (!speakingSilenceDetectedVoice) {
-            if (msgArea) {
-                msgArea.innerText = speakingAttemptCount <= 1 ? "NO VOICE DETECTED // TRY READING NOW" : "VOICE NOT DETECTED // RETRY";
-                msgArea.style.color = "#fbbf24";
-            }
-            setSpeakingUiState('idle', 'VOICE LINK RECYCLING...', '--');
-            scheduleSpeakingAutoRetry('VOICE LINK RECYCLING...', speakingAttemptCount <= 1 ? 'PREPARE TO READ THE SENTENCE' : 'TRY THE SENTENCE AGAIN');
-            return;
-        }
 
         try {
             const assessment = await submitSpeakingAudioForAssessment(recordedBlob);
