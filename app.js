@@ -77,6 +77,7 @@ let speakingAttemptCount = 0;
 let speakingRecordingStartedAt = 0;
 let speakingSilenceMs = 1000;
 let speakingSilenceThreshold = 0.02;
+let speakingVoiceDetectionFrames = 0;
 let speakingNoSpeechGraceMsInitial = 5000;
 let speakingNoSpeechGraceMsRetry = 3500;
 let speakingRetryDelayMs = 2200;
@@ -387,6 +388,7 @@ function canUseAzureSpeakingAssessment() {
             speakingSilenceAudioContext = null;
         }
         speakingSilenceDetectedVoice = false;
+        speakingVoiceDetectionFrames = 0;
         updateSpeakingWave(0);
     }
 
@@ -418,8 +420,18 @@ function canUseAzureSpeakingAssessment() {
             const now = Date.now();
             updateSpeakingWave(Math.min(1, rms / 0.08));
 
-            if (rms >= speakingSilenceThreshold) {
+            const voiceGate = speakingSilenceThreshold * 0.55;
+            if (rms >= voiceGate) {
+                speakingVoiceDetectionFrames += 1;
+            } else if (!speakingSilenceDetectedVoice && speakingVoiceDetectionFrames > 0) {
+                speakingVoiceDetectionFrames -= 1;
+            }
+
+            if (speakingVoiceDetectionFrames >= 2) {
                 speakingSilenceDetectedVoice = true;
+            }
+
+            if (speakingSilenceDetectedVoice && rms >= speakingSilenceThreshold) {
                 silenceStartedAt = 0;
                 return;
             }
@@ -6389,6 +6401,7 @@ async function startAzureSpeakingAssessment() {
     speakingRecordedChunks = [];
     speakingPcmChunks = [];
     speakingSilenceDetectedVoice = false;
+    speakingVoiceDetectionFrames = 0;
     speakingAudioStream = await navigator.mediaDevices.getUserMedia({
         audio: {
             echoCancellation: true,
@@ -6435,11 +6448,6 @@ async function startAzureSpeakingAssessment() {
                 msgArea.innerText = speakingAttemptCount <= 1 ? "NO VOICE DETECTED // TRY READING NOW" : "VOICE NOT DETECTED // RETRY";
                 msgArea.style.color = "#fbbf24";
             }
-            if (qDisplay) {
-                qDisplay.innerText = "MIC OPEN // READ THE SENTENCE";
-                qDisplay.style.color = "#f8fafc";
-                qDisplay.style.fontSize = "18px";
-            }
             setSpeakingUiState('idle', 'VOICE LINK RECYCLING...', '--');
             scheduleSpeakingAutoRetry('VOICE LINK RECYCLING...', speakingAttemptCount <= 1 ? 'PREPARE TO READ THE SENTENCE' : 'TRY THE SENTENCE AGAIN');
             return;
@@ -6482,8 +6490,8 @@ async function startAzureSpeakingAssessment() {
         msgArea.style.color = "#d946ef";
     }
     if (qDisplay) {
-        qDisplay.innerText = "VOICE CAPTURE ACTIVE";
-        qDisplay.style.color = "#f0abfc";
+        qDisplay.innerText = "TARGET WORD WILL BE ANALYZED";
+        qDisplay.style.color = "#94a3b8";
         qDisplay.style.fontSize = "18px";
     }
     setSpeakingUiState('recording', 'LISTENING FOR VOICE...', '--');

@@ -637,13 +637,13 @@ body {
 
         .speaking-wave {
             position: absolute;
-            left: 14px;
-            right: 14px;
-            top: 72px;
-            bottom: 56px;
+            left: 10px;
+            right: 10px;
+            top: 10px;
+            bottom: 10px;
             display: block;
             pointer-events: none;
-            opacity: 0.55;
+            opacity: 0.34;
             z-index: 0;
             overflow: hidden;
         }
