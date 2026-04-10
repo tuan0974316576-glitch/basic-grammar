@@ -503,10 +503,10 @@ function canUseAzureSpeakingAssessment() {
     if (!waveEl) return;
     const clamped = Math.max(0, Math.min(1, level));
     waveEl.style.display = clamped > 0.01 ? 'block' : 'none';
-    waveEl.style.setProperty('--wave-opacity', (0.08 + clamped * 0.28).toFixed(3));
-    waveEl.style.setProperty('--wave-height', `${16 + clamped * 42}px`);
+    waveEl.style.setProperty('--wave-opacity', (0.06 + clamped * 0.22).toFixed(3));
+    waveEl.style.setProperty('--wave-height', `${18 + clamped * 48}px`);
     waveEl.style.setProperty('--wave-glow', `${8 + clamped * 24}px`);
-    waveEl.style.setProperty('--wave-drift', `${18 + clamped * 36}px`);
+    waveEl.style.setProperty('--wave-scale', (0.55 + clamped * 0.9).toFixed(3));
 }
 function showSpeakingAzureUnavailable(message) {
     launchTimerPaused = false;
