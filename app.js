@@ -504,7 +504,7 @@ function canUseAzureSpeakingAssessment() {
     const clamped = Math.max(0, Math.min(1, level));
     waveEl.style.display = clamped > 0.01 ? 'block' : 'none';
     waveEl.style.setProperty('--wave-opacity', (0.08 + clamped * 0.28).toFixed(3));
-    waveEl.style.setProperty('--wave-height', `${12 + clamped * 34}px`);
+    waveEl.style.setProperty('--wave-height', `${16 + clamped * 42}px`);
     waveEl.style.setProperty('--wave-glow', `${8 + clamped * 24}px`);
     waveEl.style.setProperty('--wave-drift', `${18 + clamped * 36}px`);
 }

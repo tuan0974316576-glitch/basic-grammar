@@ -632,10 +632,11 @@ body {
 
         .speaking-wave {
             position: absolute;
-            left: 8%;
-            right: 8%;
-            top: 108px;
-            height: 74px;
+            left: 0;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 118px;
             display: none;
             pointer-events: none;
             opacity: var(--wave-opacity, 0.14);
@@ -647,35 +648,28 @@ body {
         .speaking-wave::after {
             content: '';
             position: absolute;
-            left: calc(var(--wave-drift, 24px) * -1);
-            right: calc(var(--wave-drift, 24px) * -1);
+            left: calc(var(--wave-drift, 24px) * -1 - 8px);
+            right: calc(var(--wave-drift, 24px) * -1 - 8px);
             top: 50%;
-            height: var(--wave-height, 24px);
+            height: 100%;
             transform: translateY(-50%);
-            border-radius: 999px;
             background-repeat: repeat-x;
-            filter: blur(var(--wave-glow, 12px));
+            background-position: 0 50%;
+            filter: blur(calc(var(--wave-glow, 12px) * 0.45));
         }
 
         .speaking-wave::before {
-            background-image:
-                radial-gradient(70% 115% at 12% 50%, rgba(255,255,255,0.9) 0 36%, transparent 37% 100%),
-                radial-gradient(75% 115% at 38% 50%, rgba(255,255,255,0.62) 0 34%, transparent 35% 100%),
-                radial-gradient(72% 115% at 64% 50%, rgba(255,255,255,0.88) 0 34%, transparent 35% 100%),
-                radial-gradient(70% 115% at 90% 50%, rgba(255,255,255,0.55) 0 33%, transparent 34% 100%);
-            background-size: 220px 100%;
-            background-position: 0 50%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 120' preserveAspectRatio='none'%3E%3Cpath d='M0 60 C20 60 20 24 40 24 S60 96 80 96 S100 24 120 24 S140 96 160 96 S180 24 200 24 S220 96 240 96 S260 24 280 24 S300 60 320 60' fill='none' stroke='rgba(255,255,255,0.95)' stroke-width='4.2' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-size: 320px calc(var(--wave-height, 24px) * 2.1);
             animation: speaking-wave-drift 2.4s linear infinite;
+            opacity: 0.92;
         }
 
         .speaking-wave::after {
-            background-image:
-                radial-gradient(70% 110% at 24% 50%, rgba(255,255,255,0.42) 0 30%, transparent 31% 100%),
-                radial-gradient(78% 110% at 56% 50%, rgba(255,255,255,0.68) 0 32%, transparent 33% 100%),
-                radial-gradient(75% 110% at 88% 50%, rgba(255,255,255,0.38) 0 30%, transparent 31% 100%);
-            background-size: 260px 100%;
-            background-position: 0 50%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 120' preserveAspectRatio='none'%3E%3Cpath d='M0 60 C20 60 20 88 40 88 S60 32 80 32 S100 88 120 88 S140 32 160 32 S180 88 200 88 S220 32 240 32 S260 88 280 88 S300 60 320 60' fill='none' stroke='rgba(255,255,255,0.55)' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-size: 280px calc(var(--wave-height, 24px) * 1.8);
             animation: speaking-wave-drift 3.3s linear infinite reverse;
+            opacity: 0.72;
         }
 
         .speaking-scorebar {
