@@ -501,18 +501,12 @@ function canUseAzureSpeakingAssessment() {
     function updateSpeakingWave(level = 0) {
     const waveEl = document.getElementById('speaking-wave');
     if (!waveEl) return;
-    const bars = waveEl.querySelectorAll('.speaking-wave-bar');
     const clamped = Math.max(0, Math.min(1, level));
-    waveEl.style.display = clamped > 0 ? 'flex' : 'none';
-
-    bars.forEach((bar, index) => {
-        const spread = 1 - Math.abs(index - (bars.length - 1) / 2) / ((bars.length - 1) / 2 || 1);
-        const scaled = Math.max(0.18, Math.min(1, (clamped * 1.35) * (0.55 + spread * 0.6)));
-        const height = 6 + Math.round(22 * scaled);
-        bar.style.height = height + 'px';
-        bar.style.opacity = String(0.35 + scaled * 0.65);
-        bar.style.transform = 'scaleY(' + (0.75 + scaled * 0.55) + ')';
-    });
+    waveEl.style.display = clamped > 0.01 ? 'block' : 'none';
+    waveEl.style.setProperty('--wave-opacity', (0.08 + clamped * 0.28).toFixed(3));
+    waveEl.style.setProperty('--wave-height', `${12 + clamped * 34}px`);
+    waveEl.style.setProperty('--wave-glow', `${8 + clamped * 24}px`);
+    waveEl.style.setProperty('--wave-drift', `${18 + clamped * 36}px`);
 }
 function showSpeakingAzureUnavailable(message) {
     launchTimerPaused = false;

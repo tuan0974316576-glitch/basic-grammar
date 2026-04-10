@@ -631,24 +631,51 @@ body {
         }
 
         .speaking-wave {
-            width: min(220px, 70%);
-            height: 24px;
-            margin-top: 10px;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            gap: 5px;
+            position: absolute;
+            left: 8%;
+            right: 8%;
+            top: 108px;
+            height: 74px;
+            display: none;
+            pointer-events: none;
+            opacity: var(--wave-opacity, 0.14);
+            z-index: 1;
+            overflow: hidden;
         }
 
-        .speaking-wave-bar {
-            width: 7px;
-            height: 7px;
+        .speaking-wave::before,
+        .speaking-wave::after {
+            content: '';
+            position: absolute;
+            left: calc(var(--wave-drift, 24px) * -1);
+            right: calc(var(--wave-drift, 24px) * -1);
+            top: 50%;
+            height: var(--wave-height, 24px);
+            transform: translateY(-50%);
             border-radius: 999px;
-            background: linear-gradient(180deg, rgba(244, 114, 182, 0.95), rgba(56, 189, 248, 0.95));
-            box-shadow: 0 0 8px rgba(56, 189, 248, 0.25);
-            transform-origin: center bottom;
-            transition: transform 90ms linear, opacity 90ms linear, height 90ms linear;
-            opacity: 0.5;
+            background-repeat: repeat-x;
+            filter: blur(var(--wave-glow, 12px));
+        }
+
+        .speaking-wave::before {
+            background-image:
+                radial-gradient(70% 115% at 12% 50%, rgba(255,255,255,0.9) 0 36%, transparent 37% 100%),
+                radial-gradient(75% 115% at 38% 50%, rgba(255,255,255,0.62) 0 34%, transparent 35% 100%),
+                radial-gradient(72% 115% at 64% 50%, rgba(255,255,255,0.88) 0 34%, transparent 35% 100%),
+                radial-gradient(70% 115% at 90% 50%, rgba(255,255,255,0.55) 0 33%, transparent 34% 100%);
+            background-size: 220px 100%;
+            background-position: 0 50%;
+            animation: speaking-wave-drift 2.4s linear infinite;
+        }
+
+        .speaking-wave::after {
+            background-image:
+                radial-gradient(70% 110% at 24% 50%, rgba(255,255,255,0.42) 0 30%, transparent 31% 100%),
+                radial-gradient(78% 110% at 56% 50%, rgba(255,255,255,0.68) 0 32%, transparent 33% 100%),
+                radial-gradient(75% 110% at 88% 50%, rgba(255,255,255,0.38) 0 30%, transparent 31% 100%);
+            background-size: 260px 100%;
+            background-position: 0 50%;
+            animation: speaking-wave-drift 3.3s linear infinite reverse;
         }
 
         .speaking-scorebar {
@@ -663,6 +690,16 @@ body {
             border-radius: 10px;
             background: linear-gradient(90deg, rgba(15, 23, 42, 0.78), rgba(30, 41, 59, 0.52));
             box-sizing: border-box;
+        }
+
+        #q-text,
+        #q-display,
+        #msg-area,
+        #timer-bar-container,
+        .speaking-status,
+        .speaking-scorebar {
+            position: relative;
+            z-index: 2;
         }
 
         .speaking-score-label,
@@ -755,6 +792,11 @@ body {
         @keyframes speaking-status-scan {
             0% { background-position: -140px 0; }
             100% { background-position: 140px 0; }
+        }
+
+        @keyframes speaking-wave-drift {
+            0% { transform: translateY(-50%) translateX(0); }
+            100% { transform: translateY(-50%) translateX(var(--wave-drift, 24px)); }
         }
 
         #hidden-input { position: absolute; opacity: 0; top: 0; left: 0; height: 100%; width: 100%; cursor: default; }
