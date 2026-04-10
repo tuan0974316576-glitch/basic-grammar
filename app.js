@@ -75,6 +75,7 @@ let speakingMinVoiceWindowMs = 2200;
 let speakingRecordingTimeout = null;
 let speakingTailStopTimeout = null;
 let speakingWaveLevel = 0;
+let speakingWaveVisualLevel = 0;
 let speakingLatestRms = 0;
 let speakingLastSampleAt = 0;
 let speakingNoiseFloorRms = 0.006;
@@ -498,15 +499,18 @@ function canUseAzureSpeakingAssessment() {
         }
     }
 
-    function updateSpeakingWave(level = 0) {
+function updateSpeakingWave(level = 0) {
     const waveEl = document.getElementById('speaking-wave');
     if (!waveEl) return;
     const clamped = Math.max(0, Math.min(1, level));
-    waveEl.style.display = clamped > 0.01 ? 'block' : 'none';
-    waveEl.style.setProperty('--wave-opacity', (0.06 + clamped * 0.22).toFixed(3));
-    waveEl.style.setProperty('--wave-height', `${18 + clamped * 48}px`);
-    waveEl.style.setProperty('--wave-glow', `${8 + clamped * 24}px`);
-    waveEl.style.setProperty('--wave-scale', (0.55 + clamped * 0.9).toFixed(3));
+    const eased = Math.pow(clamped, 0.7);
+    speakingWaveVisualLevel = (speakingWaveVisualLevel * 0.72) + (eased * 0.28);
+    const visual = Math.max(0.02, Math.min(1, speakingWaveVisualLevel));
+    waveEl.style.display = 'block';
+    waveEl.style.setProperty('--wave-opacity', (0.09 + visual * 0.14).toFixed(3));
+    waveEl.style.setProperty('--wave-height', `${18 + visual * 42}px`);
+    waveEl.style.setProperty('--wave-glow', `${6 + visual * 18}px`);
+    waveEl.style.setProperty('--wave-scale', (0.12 + visual * 0.88).toFixed(3));
 }
 function showSpeakingAzureUnavailable(message) {
     launchTimerPaused = false;
