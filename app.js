@@ -350,15 +350,16 @@ function canUseAzureSpeakingAssessment() {
             for (let i = 0; i < frameCount; i++) {
                 sum += monoChunk[i] * monoChunk[i];
             }
-            speakingLatestRms = Math.sqrt(sum / frameCount);
+            const rawRms = Math.sqrt(sum / frameCount);
             speakingLastSampleAt = Date.now();
-            if (!speakingSilenceDetectedVoice && speakingRecordingStartedAt && (speakingLastSampleAt - speakingRecordingStartedAt < 1400)) {
+            if (!speakingSilenceDetectedVoice && speakingRecordingStartedAt && (speakingLastSampleAt - speakingRecordingStartedAt < 1800)) {
                 speakingNoiseSampleCount += 1;
                 const alpha = speakingNoiseSampleCount <= 1 ? 1 : 0.18;
-                speakingNoiseFloorRms = (speakingNoiseFloorRms * (1 - alpha)) + (speakingLatestRms * alpha);
+                speakingNoiseFloorRms = (speakingNoiseFloorRms * (1 - alpha)) + (rawRms * alpha);
             }
+            speakingLatestRms = Math.max(0, rawRms - (speakingNoiseFloorRms * 1.1));
             speakingWaveLevel = speakingLatestRms;
-            updateSpeakingWave(Math.min(1, speakingLatestRms / 0.06));
+            updateSpeakingWave(Math.min(1, speakingLatestRms / 0.045));
             speakingPcmChunks.push(monoChunk);
         };
 
@@ -430,9 +431,8 @@ function canUseAzureSpeakingAssessment() {
                 updateSpeakingWave(0);
             }
 
-            const adaptiveFloor = Math.max(speakingNoiseFloorRms * 2.4, speakingSilenceThreshold * 0.45);
-            const voiceGate = Math.max(speakingSilenceThreshold * 0.6, adaptiveFloor);
-            const sustainedVoiceGate = Math.max(speakingSilenceThreshold * 0.65, speakingNoiseFloorRms * 1.7);
+            const voiceGate = Math.max(speakingSilenceThreshold * 0.45, 0.0065);
+            const sustainedVoiceGate = Math.max(voiceGate * 0.72, 0.0045);
             if (rms >= voiceGate) {
                 speakingVoiceDetectionFrames += 1;
             } else if (!speakingSilenceDetectedVoice && speakingVoiceDetectionFrames > 0) {
