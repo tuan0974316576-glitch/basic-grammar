@@ -2013,6 +2013,11 @@ body {
     text-shadow: 0 0 8px rgba(14, 165, 233, 0.5);
 }
 
+.splash-footer {
+    opacity: 0.82;
+    font-size: 11px;
+}
+
 @keyframes footerPulse {
     from { opacity: 0.6; text-shadow: 0 0 0px transparent; }
     to { opacity: 1; text-shadow: 0 0 10px rgba(14, 165, 233, 0.3); }
