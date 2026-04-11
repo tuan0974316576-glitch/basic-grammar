@@ -507,11 +507,11 @@ function updateSpeakingWave(level = 0) {
     speakingWaveVisualLevel = (speakingWaveVisualLevel * 0.72) + (eased * 0.28);
     const visual = Math.max(0, Math.min(1, speakingWaveVisualLevel));
     waveEl.style.display = 'block';
-    waveEl.style.setProperty('--wave-opacity', (0.18 + visual * 0.16).toFixed(3));
+    waveEl.style.setProperty('--wave-opacity', (0.52 + visual * 0.12).toFixed(3));
     waveEl.style.setProperty('--wave-height', `${18 + visual * 34}px`);
     waveEl.style.setProperty('--wave-glow', `${7 + visual * 14}px`);
     waveEl.style.setProperty('--wave-scale', (0.015 + visual * 0.985).toFixed(3));
-    waveEl.style.setProperty('--wave-offset', `${1 + visual * 7}px`);
+    waveEl.style.setProperty('--wave-offset', `${visual * 7}px`);
     waveEl.style.setProperty('--wave-main-opacity', (0.52 + visual * 0.28).toFixed(3));
     waveEl.style.setProperty('--wave-accent-opacity', (0.42 + visual * 0.26).toFixed(3));
 }

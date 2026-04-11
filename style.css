@@ -639,16 +639,21 @@ body {
             height: 118px;
             display: block;
             pointer-events: none;
-            opacity: var(--wave-opacity, 0.14);
+            opacity: var(--wave-opacity, 0.52);
             z-index: 2;
             overflow: hidden;
-            --speaking-wave-main-glow: rgba(56, 189, 248, 0.42);
-            --speaking-wave-accent-glow: rgba(255, 255, 255, 0.28);
+            --wave-scale: 0.02;
+            --wave-offset: 0px;
+            --wave-glow: 18px;
+            --wave-main-opacity: 0.88;
+            --wave-accent-opacity: 0.82;
+            --speaking-wave-main-glow: rgba(56, 189, 248, 0.78);
+            --speaking-wave-accent-glow: rgba(255, 255, 255, 0.62);
         }
 
         #launch-modal.aurelians-theme .speaking-wave {
-            --speaking-wave-main-glow: rgba(250, 227, 130, 0.38);
-            --speaking-wave-accent-glow: rgba(255, 255, 255, 0.24);
+            --speaking-wave-main-glow: rgba(250, 227, 130, 0.72);
+            --speaking-wave-accent-glow: rgba(255, 255, 255, 0.6);
         }
 
         .speaking-wave::before,
@@ -666,14 +671,14 @@ body {
         .speaking-wave::before {
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 140' preserveAspectRatio='none'%3E%3Cpath d='M0 70 C 50 70, 70 22, 120 22 S 190 118, 260 118 S 330 22, 400 22 S 470 118, 540 118 S 610 22, 680 22 S 750 118, 800 70' fill='none' stroke='%2338bdf8' stroke-width='8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
             opacity: var(--wave-main-opacity, 0.72);
-            filter: drop-shadow(0 0 var(--wave-glow, 14px) var(--speaking-wave-main-glow));
+            filter: drop-shadow(0 0 calc(var(--wave-glow, 18px) * 0.5) var(--speaking-wave-main-glow)) drop-shadow(0 0 var(--wave-glow, 18px) var(--speaking-wave-main-glow));
             transform: translateY(var(--wave-offset, 1px)) scaleY(var(--wave-scale, 0.035));
         }
 
         .speaking-wave::after {
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 140' preserveAspectRatio='none'%3E%3Cpath d='M0 70 C 50 70, 70 118, 120 118 S 190 22, 260 22 S 330 118, 400 118 S 470 22, 540 22 S 610 118, 680 118 S 750 22, 800 70' fill='none' stroke='%23ffffff' stroke-width='7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
             opacity: var(--wave-accent-opacity, 0.58);
-            filter: drop-shadow(0 0 calc(var(--wave-glow, 14px) * 0.82) var(--speaking-wave-accent-glow));
+            filter: drop-shadow(0 0 calc(var(--wave-glow, 18px) * 0.45) var(--speaking-wave-accent-glow)) drop-shadow(0 0 calc(var(--wave-glow, 18px) * 0.9) var(--speaking-wave-accent-glow));
             transform: translateY(calc(var(--wave-offset, 1px) * -1)) scaleY(calc(var(--wave-scale, 0.035) * 0.96));
         }
 
