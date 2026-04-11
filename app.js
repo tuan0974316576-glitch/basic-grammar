@@ -604,6 +604,9 @@ function setSpeakingUiState(state = 'idle', statusText = 'VOICE LINK STANDBY', s
     scorebarEl.style.display = 'flex';
     statusEl.className = ('speaking-status ' + state).trim();
     statusEl.textContent = statusText;
+    statusEl.style.color = (state === 'recording' || (typeof statusText === 'string' && statusText.startsWith('VOICE LINK ACTIVE')))
+        ? '#ffffff'
+        : '';
     scoreValueEl.textContent = scoreText;
     scoreValueEl.style.color = scoreText === '--' ? '#f8fafc' : getSpeakingScoreColor(parseInt(scoreText, 10) || 0);
     if (scoreText === '--') clearSpeakingAssessmentDetail();
