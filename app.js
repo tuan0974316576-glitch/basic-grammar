@@ -5681,6 +5681,7 @@ function buildSpeakingDebriefWordRows(log) {
 
 function closeSpeakingDebriefModal() {
     const modal = document.getElementById('speaking-debrief-modal');
+    if (typeof playSound === 'function') playSound('delete-sfx');
     if (modal) modal.style.display = 'none';
 }
 
@@ -5705,6 +5706,7 @@ function openSpeakingDebriefModal(logIndex) {
     sentenceEl.innerHTML = buildSpeakingDebriefSentence(log);
     scoreGridEl.innerHTML = cards.map(card => `<div class="speaking-debrief-score-card"><div class="speaking-debrief-score-value">${card.value}</div><div class="speaking-debrief-score-label">${card.label}</div></div>`).join('');
     wordListEl.innerHTML = buildSpeakingDebriefWordRows(log);
+    if (typeof playSound === 'function') playSound('level-select-sfx');
     modal.style.display = 'flex';
 }
 
