@@ -6197,7 +6197,7 @@ function createLegacySpeechRecognition() {
         const micBtn = document.getElementById('mic-btn');
         if (micBtn) micBtn.classList.add('recording');
         document.getElementById('msg-area').innerText = "LISTENING... SPEAK NOW";
-        document.getElementById('msg-area').style.color = "#d946ef";
+        document.getElementById('msg-area').style.color = getSpeakingThemeColor();
     };
 
     instance.onend = () => {
@@ -6393,7 +6393,7 @@ async function startAzureSpeakingAssessment() {
     if (micBtn) micBtn.classList.add('recording');
     if (msgArea) {
         msgArea.innerText = "READ CLEARLY // TAP MIC AGAIN TO SEND";
-        msgArea.style.color = "#d946ef";
+        msgArea.style.color = getSpeakingThemeColor();
     }
     if (qDisplay) {
         qDisplay.style.color = "var(--primary)";
@@ -6436,6 +6436,10 @@ function startListening() {
     }
 
     startLegacySpeechRecognition();
+}
+
+function getSpeakingThemeColor() {
+    return selectedRace === 'AURELIANS' ? '#fae382' : '#0ea5e9';
 }
 
 function handleSpeakingMicClick() {

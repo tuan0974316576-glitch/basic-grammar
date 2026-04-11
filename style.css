@@ -3257,10 +3257,12 @@ body {
     width: 80px; 
     height: 80px;
     border-radius: 50%;
+    --mic-theme-rgb: 14, 165, 233;
+    --mic-theme-solid: #0ea5e9;
     
     /* 底色與邊框 */
-    background-color: rgba(217, 70, 239, 0.05); 
-    border: 1px solid rgba(217, 70, 239, 0.4);
+    background-color: rgba(var(--mic-theme-rgb), 0.05); 
+    border: 1px solid rgba(var(--mic-theme-rgb), 0.4);
     
     /* 排版 */
     display: flex; 
@@ -3276,7 +3278,7 @@ body {
     background-size: 65%; /* 控制圖片大細，唔好逼爆個圈 */
 
     /* ★ 核心：發光效果 (針對圖片線條) ★ */
-    filter: drop-shadow(0 0 5px rgba(217, 70, 239, 0.8));
+    filter: drop-shadow(0 0 5px rgba(var(--mic-theme-rgb), 0.8));
     
     z-index: 10;
     position: relative;
@@ -3285,6 +3287,11 @@ body {
 /* 2. 分別指定圖片路徑 */
 .mic-btn {
     background-image: url('mic_icon.png');
+}
+
+#launch-modal.aurelians-theme .mic-btn {
+    --mic-theme-rgb: 250, 227, 130;
+    --mic-theme-solid: #fae382;
 }
 
 .cyber-speaker-btn {
@@ -3333,6 +3340,32 @@ body {
 
 .mic-btn.recording {
     animation: mic-glow-pulse 1s infinite alternate ease-in-out;
+}
+
+#launch-modal .mic-btn {
+    --mic-theme-rgb: 14, 165, 233;
+    --mic-theme-solid: #0ea5e9;
+}
+
+#launch-modal.aurelians-theme .mic-btn {
+    --mic-theme-rgb: 250, 227, 130;
+    --mic-theme-solid: #fae382;
+}
+
+#launch-modal .mic-btn:hover {
+    background-color: rgba(var(--mic-theme-rgb), 0.15);
+    border-color: var(--mic-theme-solid);
+    box-shadow: 0 0 15px rgba(var(--mic-theme-rgb), 0.3);
+}
+
+#launch-modal .mic-btn:active,
+#launch-modal .mic-btn.recording {
+    filter: drop-shadow(0 0 8px #ffffff) drop-shadow(0 0 20px rgba(var(--mic-theme-rgb), 0.95));
+}
+
+@keyframes mic-glow-pulse {
+    from { filter: drop-shadow(0 0 5px rgba(var(--mic-theme-rgb), 0.72)); }
+    to { filter: drop-shadow(0 0 20px rgba(var(--mic-theme-rgb), 0.95)) drop-shadow(0 0 5px #ffffff); }
 }
 
 /* 6. 句子與填空位 (Listening Mode) */
