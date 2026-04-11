@@ -2288,6 +2288,10 @@ function switchScene(sceneName) {
    ========================================= */
 
 function handleEnemyGridClick(index) {
+    if (isSpeakingLaunchModalBlockingInteraction()) {
+        return;
+    }
+
     if (selectedSkill && !activeSkill) {
         if (selectedSkill === 'radar') {
             if (!isRadarSelectable(index)) {
@@ -2553,6 +2557,7 @@ function openLaunchModal(index) {
     
     // �@ȡ����Ԫ��
     const modal = document.getElementById('launch-modal');
+    const modeLabel = document.getElementById('launch-mode-label');
     const qText = document.getElementById('q-text');
     const qDisplay = document.getElementById('q-display');
     const input = document.getElementById('hidden-input');
@@ -2589,6 +2594,7 @@ function openLaunchModal(index) {
 
     // ���� ���ģ�����ģʽ�ГQ���� ����
 if (currentPracticeMode === 'SPEAKING') {
+    if (modeLabel) modeLabel.innerText = "READ IT ALOUD.";
     const textToRead = currentVocab.sent ? currentVocab.sent : currentVocab.en;
     qText.innerText = `READ: ${textToRead}`;
     
@@ -2614,6 +2620,7 @@ if (currentPracticeMode === 'SPEAKING') {
         qDisplay.parentNode.insertBefore(micBtn, container);
 
     } else if (currentPracticeMode === 'LISTENING') {
+        if (modeLabel) modeLabel.innerText = "Translate to English:";
         // --- B.  ��ģʽ (Listening) ---
         fadeBgm(0.1, 800);
         let contentHTML = '';
@@ -2654,6 +2661,7 @@ if (currentPracticeMode === 'SPEAKING') {
         setTimeout(() => speakText(textToRead), 300);
 
     } else {
+        if (modeLabel) modeLabel.innerText = "Translate to English:";
         // --- C. ��xģʽ (Reading) ---
         qText.innerText = currentVocab.ch;
         qText.style.fontSize = "";
@@ -8174,6 +8182,11 @@ function onEnemyGridLeave() {
     clearMissilePreview();
 }
 
+function isSpeakingLaunchModalBlockingInteraction() {
+    const modal = document.getElementById('launch-modal');
+    return currentPracticeMode === 'SPEAKING' && modal && modal.style.display === 'flex';
+}
+
 // ���� playerEnergy ����ÿ�����܆� available/disabled ��B
 function updateSkillStates() {
     document.querySelectorAll('.skill-diamond').forEach(diamond => {
@@ -8196,6 +8209,8 @@ function updateSkillStates() {
 
 // �弼�� diamond
 function onSkillClick(e) {
+    if (isSpeakingLaunchModalBlockingInteraction()) return;
+
     const diamond = e.currentTarget;
     if (diamond.classList.contains('skill-disabled')) return;
     if (currentPhase !== 'PLAYER_TURN') return;
