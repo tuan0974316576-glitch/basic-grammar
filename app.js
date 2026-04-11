@@ -218,7 +218,7 @@ function canUseAzureSpeakingAssessment() {
             return 'var(--danger)';
         }
         if (score >= 80) return 'var(--success)';
-        if (score >= 60) return '#fbbf24';
+        if (score >= 40) return '#fbbf24';
         return 'var(--danger)';
     }
 
