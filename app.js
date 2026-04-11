@@ -505,12 +505,12 @@ function updateSpeakingWave(level = 0) {
     const clamped = Math.max(0, Math.min(1, level));
     const eased = Math.pow(clamped, 0.7);
     speakingWaveVisualLevel = (speakingWaveVisualLevel * 0.72) + (eased * 0.28);
-    const visual = Math.max(0.02, Math.min(1, speakingWaveVisualLevel));
+    const visual = Math.max(0.14, Math.min(1, speakingWaveVisualLevel));
     waveEl.style.display = 'block';
-    waveEl.style.setProperty('--wave-opacity', (0.09 + visual * 0.14).toFixed(3));
-    waveEl.style.setProperty('--wave-height', `${18 + visual * 42}px`);
-    waveEl.style.setProperty('--wave-glow', `${6 + visual * 18}px`);
-    waveEl.style.setProperty('--wave-scale', (0.12 + visual * 0.88).toFixed(3));
+    waveEl.style.setProperty('--wave-opacity', (0.18 + visual * 0.18).toFixed(3));
+    waveEl.style.setProperty('--wave-height', `${24 + visual * 44}px`);
+    waveEl.style.setProperty('--wave-glow', `${10 + visual * 20}px`);
+    waveEl.style.setProperty('--wave-scale', (0.24 + visual * 0.76).toFixed(3));
 }
 function showSpeakingAzureUnavailable(message) {
     launchTimerPaused = false;
