@@ -5681,7 +5681,9 @@ function buildSpeakingDebriefWordRows(log) {
 
 function closeSpeakingDebriefModal() {
     const modal = document.getElementById('speaking-debrief-modal');
+    const box = modal ? modal.querySelector('.speaking-debrief-box') : null;
     if (typeof playSound === 'function') playSound('delete-sfx');
+    if (box) box.classList.remove('reveal');
     if (modal) modal.style.display = 'none';
 }
 
@@ -5690,6 +5692,7 @@ function openSpeakingDebriefModal(logIndex) {
     if (!log || log.mode !== 'SPEAKING' || !log.speakingAssessment) return;
 
     const modal = document.getElementById('speaking-debrief-modal');
+    const box = modal ? modal.querySelector('.speaking-debrief-box') : null;
     const sentenceEl = document.getElementById('speaking-debrief-sentence');
     const scoreGridEl = document.getElementById('speaking-debrief-score-grid');
     const wordListEl = document.getElementById('speaking-debrief-word-list');
@@ -5707,6 +5710,11 @@ function openSpeakingDebriefModal(logIndex) {
     scoreGridEl.innerHTML = cards.map(card => `<div class="speaking-debrief-score-card"><div class="speaking-debrief-score-value">${card.value}</div><div class="speaking-debrief-score-label">${card.label}</div></div>`).join('');
     wordListEl.innerHTML = buildSpeakingDebriefWordRows(log);
     if (typeof playSound === 'function') playSound('level-select-sfx');
+    if (box) {
+        box.classList.remove('reveal');
+        void box.offsetWidth;
+        box.classList.add('reveal');
+    }
     modal.style.display = 'flex';
 }
 
