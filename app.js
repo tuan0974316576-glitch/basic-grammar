@@ -72,6 +72,7 @@ let speakingVoiceDetectionFrames = 0;
 let speakingRecordingStartedAt = 0;
 let speakingVoiceStartedAt = 0;
 let speakingMinVoiceWindowMs = 2200;
+let speakingManualStopMinMs = 2000;
 let speakingRecordingTimeout = null;
 let speakingTailStopTimeout = null;
 let speakingWaveLevel = 0;
@@ -2607,7 +2608,7 @@ if (currentPracticeMode === 'SPEAKING') {
         const micBtn = document.createElement('div');
         micBtn.id = 'mic-btn';
         micBtn.className = 'mic-btn'; 
-        micBtn.onclick = startListening;
+        micBtn.onclick = handleSpeakingMicClick;
         
         const container = document.getElementById('timer-bar-container');
         qDisplay.parentNode.insertBefore(micBtn, container);
@@ -6283,6 +6284,7 @@ async function startAzureSpeakingAssessment() {
     const sentenceText = String((currentVocab && (currentVocab.sent || currentVocab.en)) || '').trim();
     const sentenceWordCount = sentenceText ? sentenceText.split(/\s+/).filter(Boolean).length : 1;
     speakingMinVoiceWindowMs = Math.max(2200, Math.min(3600, sentenceWordCount * 320));
+    speakingManualStopMinMs = Math.max(1500, Math.min(6000, sentenceWordCount * 500));
     console.log('[Speaking Debug] Azure speaking capture started');
     speakingAudioStream = await navigator.mediaDevices.getUserMedia({
         audio: {
@@ -6363,7 +6365,7 @@ async function startAzureSpeakingAssessment() {
     launchTimerPaused = false;
     if (micBtn) micBtn.classList.add('recording');
     if (msgArea) {
-        msgArea.innerText = "READ THE FULL SENTENCE CLEARLY";
+        msgArea.innerText = "READ CLEARLY // TAP MIC AGAIN TO SEND";
         msgArea.style.color = "#d946ef";
     }
     if (qDisplay) {
@@ -6408,6 +6410,33 @@ function startListening() {
     }
 
     startLegacySpeechRecognition();
+}
+
+function handleSpeakingMicClick() {
+    const qDisplay = document.getElementById('q-display');
+    const statusEl = document.getElementById('speaking-status');
+
+    if (speakingMediaRecorder && speakingMediaRecorder.state === 'recording') {
+        const elapsed = Math.max(0, Date.now() - speakingRecordingStartedAt);
+        if (elapsed < speakingManualStopMinMs) {
+            const remainingMs = Math.max(0, speakingManualStopMinMs - elapsed);
+            if (qDisplay) {
+                qDisplay.innerText = "KEEP READING // MIC SEND LOCKED";
+                qDisplay.style.color = "#94a3b8";
+                qDisplay.style.fontSize = "18px";
+            }
+            if (statusEl && !statusEl.classList.contains('analyzing')) {
+                setSpeakingUiState('recording', `VOICE LINK ACTIVE // ${Math.ceil(remainingMs / 1000)}S TO SEND`, '--');
+            }
+            return;
+        }
+
+        console.log(`[Speaking Debug] Manual mic stop after ${elapsed}ms`);
+        speakingMediaRecorder.stop();
+        return;
+    }
+
+    startListening();
 }
 
 function renderSpeakingWordScores(words, targetWord) {
