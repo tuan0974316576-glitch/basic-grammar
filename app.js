@@ -218,7 +218,8 @@ function canUseAzureSpeakingAssessment() {
             return 'var(--danger)';
         }
         if (score >= 80) return 'var(--success)';
-        return '#fbbf24';
+        if (score >= 60) return '#fbbf24';
+        return 'var(--danger)';
     }
 
     function writeWavString(view, offset, string) {
