@@ -5717,7 +5717,7 @@ function openSpeakingDebriefModal(logIndex) {
     sentenceEl.innerHTML = buildSpeakingDebriefSentence(log);
     scoreGridEl.innerHTML = cards.map(card => `<div class="speaking-debrief-score-card"><div class="speaking-debrief-score-value">${card.value}</div><div class="speaking-debrief-score-label">${card.label}</div></div>`).join('');
     wordListEl.innerHTML = buildSpeakingDebriefWordRows(log);
-    if (typeof playSound === 'function') playSound('level-select-sfx');
+    if (typeof playSound === 'function') playSound('speaking-open-sfx');
     if (box) {
         box.classList.remove('reveal');
         void box.offsetWidth;
@@ -6545,6 +6545,7 @@ function checkSpeakingAssessment(result) {
             msgArea.innerText = `${targetWord.toUpperCase()} ${targetScore} // MATCH CONFIRMED!`;
             msgArea.style.color = getSpeakingAssessmentColor(targetScore, targetWordAssessment?.errorType);
         }
+        playSound('speaking-green-sfx');
         setSpeakingUiState('success', 'TARGET LOCKED // FIRE AUTHORIZED', `${targetScore}`);
         setTimeout(() => playerFire(true), 1000);
         return;
@@ -6565,7 +6566,7 @@ function checkSpeakingAssessment(result) {
         msgArea.style.color = getSpeakingAssessmentColor(targetScore, targetWordAssessment?.errorType);
     }
     setSpeakingUiState('error', targetScore >= 35 ? 'UNCLEAR // ADJUST PRONUNCIATION' : 'TARGET LOST // TRY AGAIN', `${targetScore}`);
-    playSound('wrong-sfx');
+    playSound('speaking-wrong-sfx');
 }
 
 // --- 3. �z����Z�Y�� (Speaking Score - fallback legacy sentence matching) ---
