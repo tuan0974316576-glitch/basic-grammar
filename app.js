@@ -2608,22 +2608,26 @@ if (currentPracticeMode === 'SPEAKING') {
     qText.style.cursor = "default";
     qText.onclick = null;
 
-    qDisplay.innerHTML = generateSmartBlanks(currentVocab.en);
+    qDisplay.innerHTML = '';
+        qDisplay.style.display = 'none';
         qDisplay.style.color = "var(--primary)";
         qDisplay.style.fontSize = "";
         setSpeakingUiState('idle', 'VOICE LINK STANDBY', '--');
         input.style.display = 'none'; 
 
         // �ӑB���� Mic ���o (ʹ���㮋�� PNG)
+        const speakingStatus = document.getElementById('speaking-status');
         const micBtn = document.createElement('div');
         micBtn.id = 'mic-btn';
         micBtn.className = 'mic-btn'; 
         micBtn.onclick = handleSpeakingMicClick;
         
         const container = document.getElementById('timer-bar-container');
+        if (speakingStatus) qDisplay.parentNode.insertBefore(speakingStatus, container);
         qDisplay.parentNode.insertBefore(micBtn, container);
 
     } else if (currentPracticeMode === 'LISTENING') {
+        qDisplay.style.display = 'block';
         if (modeLabel) modeLabel.innerText = "Translate to English:";
         // --- B.  ��ģʽ (Listening) ---
         fadeBgm(0.1, 800);
@@ -2665,6 +2669,7 @@ if (currentPracticeMode === 'SPEAKING') {
         setTimeout(() => speakText(textToRead), 300);
 
     } else {
+        qDisplay.style.display = 'block';
         if (modeLabel) modeLabel.innerText = "Translate to English:";
         // --- C. ��xģʽ (Reading) ---
         qText.innerText = currentVocab.ch;
@@ -6507,6 +6512,7 @@ function checkSpeakingAssessment(result) {
     const msgArea = document.getElementById('msg-area');
 
     if (qDisplay) {
+        qDisplay.style.display = 'block';
         qDisplay.innerHTML = renderSpeakingWordScores(result.words, targetWord) || `"${transcript}"`;
         qDisplay.style.fontSize = "18px";
     }
@@ -6571,6 +6577,7 @@ function checkSpeakingResult(spokenText) {
     const targetText = currentVocab.sent ? currentVocab.sent : currentVocab.en;
     
     // �@ʾ����x��ؿ
+    document.getElementById('q-display').style.display = 'block';
     document.getElementById('q-display').innerText = `"${spokenText}"`;
     document.getElementById('q-display').style.fontSize = "18px"; 
 

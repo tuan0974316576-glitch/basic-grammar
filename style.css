@@ -587,20 +587,21 @@ body {
 
         .speaking-status {
             min-height: 24px;
-            margin-top: 4px;
+            margin: 0 auto 10px;
             padding: 0;
             border: none;
             border-radius: 0;
             background: transparent;
             color: #94a3b8;
             font-family: 'Orbitron', sans-serif;
-            font-size: 12px;
+            font-size: 14px;
             font-weight: 700;
-            letter-spacing: 2px;
+            letter-spacing: 2.4px;
             text-transform: uppercase;
             box-shadow: none;
             align-items: center;
             justify-content: center;
+            text-shadow: 0 0 10px rgba(148, 163, 184, 0.22);
         }
 
         .speaking-status.recording {
