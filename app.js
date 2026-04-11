@@ -584,12 +584,14 @@ function renderSpeakingAssessmentDetail(wordAssessment, matchType = 'exact', sen
 
 function setSpeakingUiState(state = 'idle', statusText = 'VOICE LINK STANDBY', scoreText = '--') {
     const statusEl = document.getElementById('speaking-status');
+    const subhintEl = document.getElementById('launch-subhint');
     const scorebarEl = document.getElementById('speaking-scorebar');
     const scoreValueEl = document.getElementById('speaking-score-value');
     const isSpeaking = currentPracticeMode === 'SPEAKING';
-    if (!statusEl || !scorebarEl || !scoreValueEl) return;
+    if (!statusEl || !subhintEl || !scorebarEl || !scoreValueEl) return;
     if (!isSpeaking) {
         statusEl.style.display = 'none';
+        subhintEl.style.display = '';
         scorebarEl.style.display = 'none';
         statusEl.className = 'speaking-status';
         scoreValueEl.textContent = '--';
@@ -598,6 +600,7 @@ function setSpeakingUiState(state = 'idle', statusText = 'VOICE LINK STANDBY', s
         return;
     }
     statusEl.style.display = 'inline-flex';
+    subhintEl.style.display = 'none';
     scorebarEl.style.display = 'flex';
     statusEl.className = ('speaking-status ' + state).trim();
     statusEl.textContent = statusText;
@@ -2605,9 +2608,9 @@ if (currentPracticeMode === 'SPEAKING') {
     qText.style.cursor = "default";
     qText.onclick = null;
 
-    qDisplay.innerText = "TARGET WORD WILL BE ANALYZED";
-        qDisplay.style.color = "#94a3b8"; 
-        qDisplay.style.fontSize = "18px";
+    qDisplay.innerHTML = generateSmartBlanks(currentVocab.en);
+        qDisplay.style.color = "var(--primary)";
+        qDisplay.style.fontSize = "";
         setSpeakingUiState('idle', 'VOICE LINK STANDBY', '--');
         input.style.display = 'none'; 
 
@@ -6329,9 +6332,8 @@ async function startAzureSpeakingAssessment() {
             msgArea.style.color = "#fbbf24";
         }
         if (qDisplay) {
-            qDisplay.innerText = "ANALYZING PRONUNCIATION...";
-            qDisplay.style.color = "#fcd34d";
-            qDisplay.style.fontSize = "18px";
+            qDisplay.style.color = "var(--primary)";
+            qDisplay.style.fontSize = "";
         }
         setSpeakingUiState('analyzing', 'ANALYZING PRONUNCIATION...', '--');
         clearSpeakingAssessmentDetail();
@@ -6384,9 +6386,8 @@ async function startAzureSpeakingAssessment() {
         msgArea.style.color = "#d946ef";
     }
     if (qDisplay) {
-        qDisplay.innerText = "VOICE CAPTURE ACTIVE";
-        qDisplay.style.color = "#f0abfc";
-        qDisplay.style.fontSize = "18px";
+        qDisplay.style.color = "var(--primary)";
+        qDisplay.style.fontSize = "";
     }
     setSpeakingUiState('recording', 'LISTENING FOR VOICE...', '--');
     clearSpeakingAssessmentDetail();
