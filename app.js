@@ -214,10 +214,11 @@ function canUseAzureSpeakingAssessment() {
 
     function getSpeakingAssessmentColor(score, errorType = 'None') {
         const normalizedError = String(errorType || 'None').toLowerCase();
-        if (normalizedError && normalizedError !== 'none') {
+        if (normalizedError.includes('omission') || normalizedError.includes('missing')) {
             return 'var(--danger)';
         }
-        return getSpeakingScoreColor(score);
+        if (score >= 80) return 'var(--success)';
+        return '#fbbf24';
     }
 
     function writeWavString(view, offset, string) {
@@ -6503,13 +6504,29 @@ function checkSpeakingAssessment(result) {
     const targetContext = resolveSpeakingTargetAssessment(result.words, targetWord);
     const targetWordAssessment = targetContext.wordAssessment;
     const sentenceScore = Math.round(result.overall?.pronunciation ?? result.overall?.accuracy ?? 0);
-    const rawWordScore = Math.round(targetWordAssessment?.accuracy ?? sentenceScore ?? 0);
-    const blendedScore = targetWordAssessment
-        ? Math.round((rawWordScore * 0.55) + (sentenceScore * 0.45))
+    const targetMissing = targetContext.matchType === 'missing' || /omission|missing/i.test(String(targetWordAssessment?.errorType || ''));
+    const rawWordScore = targetMissing
+        ? 0
+        : Math.round(targetWordAssessment?.accuracy ?? sentenceScore ?? 0);
+    const speakingWords = Array.isArray(result.words) ? result.words : [];
+    const targetWordLower = String(targetWord || '').trim().toLowerCase();
+    const weightedWordTotal = speakingWords.reduce((sum, wordEntry) => {
+        const word = String(wordEntry?.word || '').trim().toLowerCase();
+        const weight = word && word === targetWordLower ? 2 : 1;
+        return sum + (Math.round(wordEntry?.accuracy ?? 0) * weight);
+    }, 0);
+    const weightedWordDivisor = speakingWords.reduce((sum, wordEntry) => {
+        const word = String(wordEntry?.word || '').trim().toLowerCase();
+        return sum + (word && word === targetWordLower ? 2 : 1);
+    }, 0);
+    const hasTargetWordInWords = speakingWords.some(wordEntry => String(wordEntry?.word || '').trim().toLowerCase() === targetWordLower);
+    const weightedSentenceScore = weightedWordDivisor > 0
+        ? Math.round((weightedWordTotal + (hasTargetWordInWords ? 0 : rawWordScore * 2)) / (weightedWordDivisor + (hasTargetWordInWords ? 0 : 2)))
         : sentenceScore;
-    const targetScore = targetContext.matchType === 'missing'
-        ? sentenceScore
-        : Math.max(rawWordScore, blendedScore);
+    const targetScore = targetMissing ? 0 : rawWordScore;
+    const finalScore = weightedWordDivisor > 0
+        ? weightedSentenceScore
+        : Math.round((sentenceScore * 0.6) + (targetScore * 0.4));
     const transcript = result.recognizedText || '';
     const qDisplay = document.getElementById('q-display');
     const msgArea = document.getElementById('msg-area');
@@ -6520,10 +6537,10 @@ function checkSpeakingAssessment(result) {
         qDisplay.style.fontSize = "18px";
     }
 
-    setSpeakingUiState('analyzing', 'ASSESSMENT LOCKED', `${targetScore}`);
+    setSpeakingUiState('analyzing', 'ASSESSMENT LOCKED', `${finalScore}`);
     renderSpeakingAssessmentDetail(targetWordAssessment, targetContext.matchType, sentenceScore);
 
-    const isCorrect = targetScore >= SPEAKING_PASS_SCORE;
+    const isCorrect = finalScore >= SPEAKING_PASS_SCORE && !targetMissing;
 
     if (isCorrect) {
         if (typeof timerInterval !== 'undefined') clearInterval(timerInterval);
@@ -6534,7 +6551,7 @@ function checkSpeakingAssessment(result) {
             currentVocab.sent ? currentVocab.sent : currentVocab.en,
             result,
             targetWord,
-            targetScore,
+            finalScore,
             true
         );
 
@@ -6542,11 +6559,11 @@ function checkSpeakingAssessment(result) {
         if (typeof handleCorrectAnswer === 'function') handleCorrectAnswer();
 
         if (msgArea) {
-            msgArea.innerText = `${targetWord.toUpperCase()} ${targetScore} // MATCH CONFIRMED!`;
+            msgArea.innerText = `${targetWord.toUpperCase()} ${finalScore} // MATCH CONFIRMED!`;
             msgArea.style.color = getSpeakingAssessmentColor(targetScore, targetWordAssessment?.errorType);
         }
         playSound('speaking-green-sfx');
-        setSpeakingUiState('success', 'TARGET LOCKED // FIRE AUTHORIZED', `${targetScore}`);
+        setSpeakingUiState('success', 'TARGET LOCKED // FIRE AUTHORIZED', `${finalScore}`);
         setTimeout(() => playerFire(true), 1000);
         return;
     }
@@ -6556,16 +6573,16 @@ function checkSpeakingAssessment(result) {
         currentVocab.sent ? currentVocab.sent : currentVocab.en,
         result,
         targetWord,
-        targetScore,
+        finalScore,
         false
     );
 
     saveWrongWord(currentPracticeMode, selectedLevel, currentVocab.en);
     if (msgArea) {
-        msgArea.innerText = `${targetWord.toUpperCase()} ${targetScore} // TRY AGAIN`;
+        msgArea.innerText = `${targetWord.toUpperCase()} ${finalScore} // TRY AGAIN`;
         msgArea.style.color = getSpeakingAssessmentColor(targetScore, targetWordAssessment?.errorType);
     }
-    setSpeakingUiState('error', targetScore >= 35 ? 'UNCLEAR // ADJUST PRONUNCIATION' : 'TARGET LOST // TRY AGAIN', `${targetScore}`);
+    setSpeakingUiState('error', targetMissing ? 'MISPRONUNCIATION // TRY AGAIN' : 'UNCLEAR // ADJUST PRONUNCIATION', `${finalScore}`);
     playSound('speaking-wrong-sfx');
 }
 
