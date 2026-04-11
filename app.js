@@ -86,11 +86,13 @@ let speakingTailBufferMs = 450;
 let speakingSilenceThreshold = 0.018;
 let speakingMaxRecordingMs = 10000;
 let speakingUseAzureAssessment = true;
+let speakingNoVoiceTimeout = null;
+let speakingNoVoiceTimeoutMs = 5000;
 let battleLog = [];
 let battleUsedWordKeys = new Set();
 let attackResolutionLocked = false;
 const DEFAULT_SPEAKING_ASSESSMENT_BASE = 'http://localhost:8787';
-const SPEAKING_PASS_SCORE = 65;
+const SPEAKING_PASS_SCORE = 70;
     // ���� �������Ԅ������� ����
     // �@�δ��a���߱����� Level (L1, L2...), �ԄӰ�Ӣ����ĸ A-Z ����
     function sortDatabase() {
@@ -444,11 +446,15 @@ function canUseAzureSpeakingAssessment() {
                 speakingVoiceDetectionFrames -= 1;
             }
 
-            if (!speakingSilenceDetectedVoice && speakingVoiceDetectionFrames >= 2) {
-                speakingSilenceDetectedVoice = true;
-                speakingVoiceStartedAt = now;
-                console.log(`[Speaking Debug] Voice detected at ${now - speakingRecordingStartedAt}ms (rms=${rms.toFixed(4)})`);
+        if (!speakingSilenceDetectedVoice && speakingVoiceDetectionFrames >= 2) {
+            speakingSilenceDetectedVoice = true;
+            speakingVoiceStartedAt = now;
+            console.log(`[Speaking Debug] Voice detected at ${now - speakingRecordingStartedAt}ms (rms=${rms.toFixed(4)})`);
+            if (speakingNoVoiceTimeout) {
+                clearTimeout(speakingNoVoiceTimeout);
+                speakingNoVoiceTimeout = null;
             }
+        }
 
             if (speakingSilenceDetectedVoice && rms >= sustainedVoiceGate) {
                 silenceStartedAt = 0;
@@ -494,6 +500,10 @@ function canUseAzureSpeakingAssessment() {
         if (speakingTailStopTimeout) {
             clearTimeout(speakingTailStopTimeout);
             speakingTailStopTimeout = null;
+        }
+        if (speakingNoVoiceTimeout) {
+            clearTimeout(speakingNoVoiceTimeout);
+            speakingNoVoiceTimeout = null;
         }
         stopSpeakingSilenceMonitor();
         stopSpeakingPcmCapture();
@@ -6323,6 +6333,7 @@ async function startAzureSpeakingAssessment() {
     const sentenceWordCount = sentenceText ? sentenceText.split(/\s+/).filter(Boolean).length : 1;
     speakingMinVoiceWindowMs = Math.max(2200, Math.min(3600, sentenceWordCount * 320));
     speakingManualStopMinMs = Math.max(1500, Math.min(6000, sentenceWordCount * 500));
+    speakingNoVoiceTimeoutMs = Math.max(5000, Math.min(9000, sentenceWordCount * 500));
     console.log('[Speaking Debug] Azure speaking capture started');
     speakingAudioStream = await navigator.mediaDevices.getUserMedia({
         audio: {
@@ -6413,6 +6424,28 @@ async function startAzureSpeakingAssessment() {
     clearSpeakingAssessmentDetail();
 
     startSpeakingSilenceMonitor();
+    if (speakingNoVoiceTimeout) {
+        clearTimeout(speakingNoVoiceTimeout);
+        speakingNoVoiceTimeout = null;
+    }
+    speakingNoVoiceTimeout = setTimeout(() => {
+        speakingNoVoiceTimeout = null;
+        if (!speakingMediaRecorder || speakingMediaRecorder.state !== 'recording') return;
+        if (speakingSilenceDetectedVoice) return;
+        if (micBtn) micBtn.classList.remove('recording');
+        if (msgArea) {
+            msgArea.innerText = "NO VOICE DETECTED // TRY AGAIN";
+            msgArea.style.color = "#fbbf24";
+        }
+        if (qDisplay) {
+            qDisplay.style.color = "var(--primary)";
+            qDisplay.style.fontSize = "";
+        }
+        setSpeakingUiState('error', 'NO VOICE DETECTED // TRY AGAIN', '--');
+        speakingMediaRecorder = null;
+        speakingPcmChunks = [];
+        stopSpeakingAudioStream();
+    }, speakingNoVoiceTimeoutMs);
     speakingRecordingTimeout = setTimeout(() => {
         speakingRecordingTimeout = null;
         if (speakingMediaRecorder && speakingMediaRecorder.state === 'recording') {
