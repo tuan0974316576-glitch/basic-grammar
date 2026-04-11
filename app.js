@@ -88,6 +88,7 @@ let speakingMaxRecordingMs = 10000;
 let speakingUseAzureAssessment = true;
 let battleLog = [];
 let battleUsedWordKeys = new Set();
+let attackResolutionLocked = false;
 const DEFAULT_SPEAKING_ASSESSMENT_BASE = 'http://localhost:8787';
 const SPEAKING_PASS_SCORE = 65;
     // ���� �������Ԅ������� ����
@@ -1002,6 +1003,8 @@ function startTurnSelectionTimer(reset = false) {
 
 function startEnemyTurn() {
     if (currentPhase === 'GAME_OVER') return;
+    attackResolutionLocked = false;
+    isTargeting = false;
     currentPhase = 'ENEMY_TURN';
     switchScene('ENEMY');
     document.getElementById('warning-overlay').style.display = 'block';
@@ -2288,7 +2291,7 @@ function switchScene(sceneName) {
    ========================================= */
 
 function handleEnemyGridClick(index) {
-    if (isSpeakingLaunchModalBlockingInteraction()) {
+    if (isBattleInteractionLocked()) {
         return;
     }
 
@@ -2349,6 +2352,7 @@ function handleEnemyGridClick(index) {
 
         // 2. �� ���i�������O���� true
         isTargeting = true;
+        attackResolutionLocked = true;
 
         // Aim icon �Ŵ�sС�Ӯ�
         const aimIcon = document.querySelector('.crosshair-icon');
@@ -2362,9 +2366,6 @@ function handleEnemyGridClick(index) {
         runTargetLockAnimation(index, () => {
             // �Ӯ������Ļ��{ (Callback)
             openLaunchModal(index);
-
-            // 4. �� ���i
-            isTargeting = false;
         });
     }
 }
@@ -2847,6 +2848,8 @@ function closeLaunchModalUI() {
 // --- �����棺̎��ݔ�볬�r ---
 function handlePlayerTimeout() {
     if(typeof fadeBgm === 'function') fadeBgm(0.5, 1000);
+    attackResolutionLocked = false;
+    isTargeting = false;
     closeLaunchModalUI();
 
     playSound('timeout-sfx');
@@ -3822,6 +3825,8 @@ function aiFire() {
 
 function startPlayerTurn() {
         if (currentPhase === 'GAME_OVER') return;
+        attackResolutionLocked = false;
+        isTargeting = false;
         // �� �������غϔ� +1 ��
         turnCounter++;
         document.getElementById('turn-count').innerText = turnCounter;
@@ -4555,6 +4560,8 @@ function confirmExit() {
 function executeAbort() {
     // 1. �P�]�_�Jҕ��
     document.getElementById('confirm-modal').style.display = 'none';
+    attackResolutionLocked = false;
+    isTargeting = false;
     closeLaunchModalUI();
 
     // 2. �Дஔǰ�A��
@@ -8187,6 +8194,10 @@ function isSpeakingLaunchModalBlockingInteraction() {
     return currentPracticeMode === 'SPEAKING' && modal && modal.style.display === 'flex';
 }
 
+function isBattleInteractionLocked() {
+    return attackResolutionLocked || isSpeakingLaunchModalBlockingInteraction();
+}
+
 // ���� playerEnergy ����ÿ�����܆� available/disabled ��B
 function updateSkillStates() {
     document.querySelectorAll('.skill-diamond').forEach(diamond => {
@@ -8209,7 +8220,7 @@ function updateSkillStates() {
 
 // �弼�� diamond
 function onSkillClick(e) {
-    if (isSpeakingLaunchModalBlockingInteraction()) return;
+    if (isBattleInteractionLocked()) return;
 
     const diamond = e.currentTarget;
     if (diamond.classList.contains('skill-disabled')) return;
