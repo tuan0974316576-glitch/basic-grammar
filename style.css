@@ -642,16 +642,13 @@ body {
             opacity: var(--wave-opacity, 0.14);
             z-index: 2;
             overflow: hidden;
-            background:
-                linear-gradient(
-                    90deg,
-                    transparent 0%,
-                    rgba(255,255,255,0.12) 10%,
-                    rgba(255,255,255,0.34) 50%,
-                    rgba(255,255,255,0.12) 90%,
-                    transparent 100%
-                )
-                center / 100% 1px no-repeat;
+            --speaking-wave-main-glow: rgba(56, 189, 248, 0.42);
+            --speaking-wave-accent-glow: rgba(255, 255, 255, 0.28);
+        }
+
+        #launch-modal.aurelians-theme .speaking-wave {
+            --speaking-wave-main-glow: rgba(250, 227, 130, 0.38);
+            --speaking-wave-accent-glow: rgba(255, 255, 255, 0.24);
         }
 
         .speaking-wave::before,
@@ -667,20 +664,21 @@ body {
         }
 
         .speaking-wave::before {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 140' preserveAspectRatio='none'%3E%3Cg stroke='%23ffffff' stroke-linecap='round'%3E%3Cline x1='8' y1='70' x2='8' y2='70' stroke-width='3'/%3E%3Cline x1='24' y1='70' x2='24' y2='70' stroke-width='3'/%3E%3Cline x1='40' y1='69' x2='40' y2='71' stroke-width='3'/%3E%3Cline x1='56' y1='68' x2='56' y2='72' stroke-width='3'/%3E%3Cline x1='72' y1='67' x2='72' y2='73' stroke-width='3'/%3E%3Cline x1='88' y1='66' x2='88' y2='74' stroke-width='3'/%3E%3Cline x1='104' y1='63' x2='104' y2='77' stroke-width='3'/%3E%3Cline x1='120' y1='59' x2='120' y2='81' stroke-width='3'/%3E%3Cline x1='136' y1='52' x2='136' y2='88' stroke-width='3'/%3E%3Cline x1='152' y1='44' x2='152' y2='96' stroke-width='3'/%3E%3Cline x1='168' y1='36' x2='168' y2='104' stroke-width='3'/%3E%3Cline x1='184' y1='30' x2='184' y2='110' stroke-width='3'/%3E%3Cline x1='200' y1='24' x2='200' y2='116' stroke-width='3'/%3E%3Cline x1='216' y1='18' x2='216' y2='122' stroke-width='3'/%3E%3Cline x1='232' y1='13' x2='232' y2='127' stroke-width='3'/%3E%3Cline x1='248' y1='18' x2='248' y2='122' stroke-width='3'/%3E%3Cline x1='264' y1='28' x2='264' y2='112' stroke-width='3'/%3E%3Cline x1='280' y1='42' x2='280' y2='98' stroke-width='3'/%3E%3Cline x1='296' y1='56' x2='296' y2='84' stroke-width='3'/%3E%3Cline x1='312' y1='50' x2='312' y2='90' stroke-width='3'/%3E%3Cline x1='328' y1='32' x2='328' y2='108' stroke-width='3'/%3E%3Cline x1='344' y1='14' x2='344' y2='126' stroke-width='3'/%3E%3Cline x1='360' y1='6' x2='360' y2='134' stroke-width='3'/%3E%3Cline x1='376' y1='20' x2='376' y2='120' stroke-width='3'/%3E%3Cline x1='392' y1='42' x2='392' y2='98' stroke-width='3'/%3E%3Cline x1='408' y1='54' x2='408' y2='86' stroke-width='3'/%3E%3Cline x1='424' y1='45' x2='424' y2='95' stroke-width='3'/%3E%3Cline x1='440' y1='28' x2='440' y2='112' stroke-width='3'/%3E%3Cline x1='456' y1='12' x2='456' y2='128' stroke-width='3'/%3E%3Cline x1='472' y1='8' x2='472' y2='132' stroke-width='3'/%3E%3Cline x1='488' y1='16' x2='488' y2='124' stroke-width='3'/%3E%3Cline x1='504' y1='32' x2='504' y2='108' stroke-width='3'/%3E%3Cline x1='520' y1='48' x2='520' y2='92' stroke-width='3'/%3E%3Cline x1='536' y1='58' x2='536' y2='82' stroke-width='3'/%3E%3Cline x1='552' y1='46' x2='552' y2='94' stroke-width='3'/%3E%3Cline x1='568' y1='30' x2='568' y2='110' stroke-width='3'/%3E%3Cline x1='584' y1='24' x2='584' y2='116' stroke-width='3'/%3E%3Cline x1='600' y1='30' x2='600' y2='110' stroke-width='3'/%3E%3Cline x1='616' y1='40' x2='616' y2='100' stroke-width='3'/%3E%3Cline x1='632' y1='50' x2='632' y2='90' stroke-width='3'/%3E%3Cline x1='648' y1='58' x2='648' y2='82' stroke-width='3'/%3E%3Cline x1='664' y1='62' x2='664' y2='78' stroke-width='3'/%3E%3Cline x1='680' y1='65' x2='680' y2='75' stroke-width='3'/%3E%3Cline x1='696' y1='67' x2='696' y2='73' stroke-width='3'/%3E%3Cline x1='712' y1='68' x2='712' y2='72' stroke-width='3'/%3E%3Cline x1='728' y1='69' x2='728' y2='71' stroke-width='3'/%3E%3Cline x1='744' y1='70' x2='744' y2='70' stroke-width='3'/%3E%3Cline x1='760' y1='70' x2='760' y2='70' stroke-width='3'/%3E%3Cline x1='776' y1='70' x2='776' y2='70' stroke-width='3'/%3E%3Cline x1='792' y1='70' x2='792' y2='70' stroke-width='3'/%3E%3C/g%3E%3C/svg%3E");
-            opacity: var(--wave-spectrum-opacity, 0.08);
-            filter: drop-shadow(0 0 var(--wave-glow, 10px) rgba(125, 211, 252, 0.42));
-            transform: scaleY(var(--wave-scale, 0.04));
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 140' preserveAspectRatio='none'%3E%3Cpath d='M10 70 C 70 70, 130 70, 190 70 S 310 70, 390 70 S 510 70, 610 70 S 730 70, 790 70' fill='none' stroke='%2338bdf8' stroke-width='8' stroke-linecap='round'/%3E%3C/svg%3E");
+            opacity: var(--wave-main-opacity, 0.7);
+            filter: drop-shadow(0 0 var(--wave-glow, 12px) var(--speaking-wave-main-glow));
+            transform: scaleY(var(--wave-scale, 0.06));
         }
 
         .speaking-wave::after {
-            background-image:
-                radial-gradient(circle at center, rgba(125, 211, 252, 0.2) 0%, rgba(125, 211, 252, 0.08) 22%, transparent 56%),
-                linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.12) 18%, rgba(255,255,255,0.28) 50%, rgba(255,255,255,0.12) 82%, transparent 100%);
-            mix-blend-mode: screen;
-            opacity: var(--wave-accent-opacity, 0.04);
-            filter: blur(calc(var(--wave-glow, 10px) * 0.62));
-            transform: scaleY(calc(var(--wave-scale, 0.04) * 0.96));
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 140' preserveAspectRatio='none'%3E%3Cpath d='M10 70 C 70 70, 130 70, 190 70 S 310 70, 390 70 S 510 70, 610 70 S 730 70, 790 70' fill='none' stroke='%23ffffff' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E");
+            opacity: var(--wave-accent-opacity, 0.52);
+            filter: drop-shadow(0 0 calc(var(--wave-glow, 12px) * 0.78) var(--speaking-wave-accent-glow));
+            transform: scaleY(calc(var(--wave-scale, 0.06) * 0.92));
+        }
+
+        #launch-modal.aurelians-theme .speaking-wave::before {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 140' preserveAspectRatio='none'%3E%3Cpath d='M10 70 C 70 70, 130 70, 190 70 S 310 70, 390 70 S 510 70, 610 70 S 730 70, 790 70' fill='none' stroke='%23fae382' stroke-width='8' stroke-linecap='round'/%3E%3C/svg%3E");
         }
 
         .speaking-scorebar {
