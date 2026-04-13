@@ -6010,10 +6010,15 @@ body {
 }
 
 @media (max-width: 700px) {
+    .speaking-debrief-overlay {
+        padding-top: max(8svh, env(safe-area-inset-top, 0px) + 12px);
+        padding-bottom: max(8svh, env(safe-area-inset-bottom, 0px) + 12px);
+    }
+
     .speaking-debrief-box {
         width: calc(100vw - 24px);
-        height: min(500px, calc(100dvh - 88px));
-        max-height: calc(100dvh - 88px);
+        height: auto;
+        max-height: calc(100svh - 16svh);
         padding: 18px 14px;
         gap: 14px;
     }
