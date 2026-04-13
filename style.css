@@ -5812,6 +5812,31 @@ body {
     gap: 16px;
 }
 
+.speaking-debrief-audio-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.speaking-debrief-audio-btn {
+    border: 1px solid rgba(103, 232, 249, 0.42);
+    background: linear-gradient(180deg, rgba(8, 47, 73, 0.9), rgba(15, 23, 42, 0.92));
+    color: #e0f2fe;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+    cursor: pointer;
+    box-shadow: 0 0 14px rgba(14, 165, 233, 0.16), inset 0 0 18px rgba(14, 165, 233, 0.06);
+}
+
+.speaking-debrief-audio-btn:disabled {
+    opacity: 0.45;
+    cursor: default;
+}
+
 .speaking-debrief-title {
     font-family: 'Orbitron', sans-serif;
     font-size: 22px;
@@ -6028,6 +6053,10 @@ body {
     .speaking-debrief-header {
         flex-direction: column;
         align-items: stretch;
+    }
+
+    .speaking-debrief-audio-actions {
+        flex-direction: column;
     }
 
     .speaking-debrief-sentence {

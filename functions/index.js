@@ -3,7 +3,7 @@ const cors = require('cors');
 const logger = require('firebase-functions/logger');
 const { onRequest } = require('firebase-functions/v2/https');
 const { defineSecret, defineString } = require('firebase-functions/params');
-const { assessPronunciation } = require('./services/pronunciation');
+const { assessPronunciation, synthesizeSpeech } = require('./services/pronunciation');
 
 const azureSpeechKey = defineSecret('AZURE_SPEECH_KEY');
 const azureSpeechRegion = defineString('AZURE_SPEECH_REGION', {
@@ -85,6 +85,35 @@ app.post('/api/pronunciation-assessment', async (req, res) => {
     res.status(500).json({
       error: 'assessment_failed',
       message: error.message || 'Pronunciation assessment failed.'
+    });
+  }
+});
+
+app.post('/api/speak-text', async (req, res) => {
+  try {
+    const text = (req.body.text || '').trim();
+    const locale = (req.body.locale || 'en-US').trim();
+
+    if (!text) {
+      return res.status(400).json({
+        error: 'missing_text',
+        message: 'text is required.'
+      });
+    }
+
+    const result = await synthesizeSpeech({
+      speechKey: azureSpeechKey.value(),
+      speechRegion: azureSpeechRegion.value(),
+      text,
+      locale
+    });
+
+    res.json(result);
+  } catch (error) {
+    logger.error('[SpeechSynthesis] Failed', error);
+    res.status(500).json({
+      error: 'tts_failed',
+      message: error.message || 'Speech synthesis failed.'
     });
   }
 });

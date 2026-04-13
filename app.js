@@ -89,6 +89,9 @@ let speakingMaxRecordingMs = 10000;
 let speakingUseAzureAssessment = true;
 let speakingNoVoiceTimeout = null;
 let speakingNoVoiceTimeoutMs = 5000;
+let speakingLastRecordedAudioBase64 = '';
+let speakingDebriefActiveLogIndex = null;
+let speakingDebriefPlaybackAudio = null;
 let battleLog = [];
 let battleUsedWordKeys = new Set();
 let attackResolutionLocked = false;
@@ -5714,6 +5717,8 @@ function buildSpeakingDebriefWordRows(log) {
 function closeSpeakingDebriefModal() {
     const modal = document.getElementById('speaking-debrief-modal');
     const box = modal ? modal.querySelector('.speaking-debrief-box') : null;
+    speakingDebriefActiveLogIndex = null;
+    stopSpeakingDebriefPlayback();
     if (typeof playSound === 'function') playSound('delete-sfx');
     if (box) box.classList.remove('reveal');
     if (modal) modal.style.display = 'none';
@@ -5728,8 +5733,12 @@ function openSpeakingDebriefModal(logIndex) {
     const sentenceEl = document.getElementById('speaking-debrief-sentence');
     const scoreGridEl = document.getElementById('speaking-debrief-score-grid');
     const wordListEl = document.getElementById('speaking-debrief-word-list');
+    const azurePlayBtn = document.getElementById('speaking-debrief-azure-play');
+    const playerPlayBtn = document.getElementById('speaking-debrief-player-play');
     if (!modal || !sentenceEl || !scoreGridEl || !wordListEl) return;
 
+    speakingDebriefActiveLogIndex = Number(logIndex);
+    stopSpeakingDebriefPlayback();
     const overall = log.speakingAssessment.overall || {};
     const cards = [
         { label: 'SESSION SCORE', value: Math.round(overall.pronunciation ?? log.speakingAssessment.targetScore ?? 0) },
@@ -5741,6 +5750,8 @@ function openSpeakingDebriefModal(logIndex) {
     sentenceEl.innerHTML = buildSpeakingDebriefSentence(log);
     scoreGridEl.innerHTML = cards.map(card => `<div class="speaking-debrief-score-card"><div class="speaking-debrief-score-value">${card.value}</div><div class="speaking-debrief-score-label">${card.label}</div></div>`).join('');
     wordListEl.innerHTML = buildSpeakingDebriefWordRows(log);
+    if (azurePlayBtn) azurePlayBtn.disabled = !log.sentence;
+    if (playerPlayBtn) playerPlayBtn.disabled = !log.speakingAssessment.playerAudioBase64;
     if (typeof playSound === 'function') playSound('speaking-open-sfx');
     if (box) {
         box.classList.remove('reveal');
@@ -5766,7 +5777,9 @@ function upsertSpeakingBattleLogEntry(transcript, targetText, result, targetWord
             targetScore: targetScore,
             recognizedText: transcript || '',
             overall: result.overall || {},
-            words: Array.isArray(result.words) ? result.words : []
+            words: Array.isArray(result.words) ? result.words : [],
+            playerAudioBase64: speakingLastRecordedAudioBase64 || '',
+            playerAudioMimeType: 'audio/wav'
         }
     };
 
@@ -6293,6 +6306,7 @@ async function submitSpeakingAudioForAssessment(blob) {
     const wavBlob = /wav/i.test(blob.type || '') ? blob : await convertBlobToMonoWav(blob);
     console.log(`[Speaking Debug] Submitting assessment (${Math.round(wavBlob.size / 1024)} KB WAV)`);
     const audioBase64 = await blobToBase64(wavBlob);
+    speakingLastRecordedAudioBase64 = audioBase64;
     const payload = {
         audioBase64,
         expectedText: currentVocab.sent ? currentVocab.sent : currentVocab.en,
@@ -6324,6 +6338,88 @@ async function submitSpeakingAudioForAssessment(blob) {
 
     console.log('[Speaking Debug] Assessment response received');
     return result;
+}
+
+async function fetchSpeakingDebriefReferenceAudio(text, locale = 'en-US') {
+    const baseUrl = getSpeakingAssessmentBaseUrl();
+    if (!baseUrl) throw new Error('Speaking assessment backend is not configured.');
+
+    const response = await fetch(`${baseUrl}/api/speak-text`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ text, locale })
+    });
+
+    const rawText = await response.text();
+    let result = null;
+
+    try {
+        result = rawText ? JSON.parse(rawText) : null;
+    } catch (_error) {
+        throw new Error(rawText || 'Speech synthesis failed.');
+    }
+
+    if (!response.ok) {
+        throw new Error((result && (result.message || result.error)) || 'Speech synthesis failed.');
+    }
+
+    return result;
+}
+
+function stopSpeakingDebriefPlayback() {
+    if (!speakingDebriefPlaybackAudio) return;
+    try {
+        speakingDebriefPlaybackAudio.pause();
+    } catch (_error) {}
+    if (speakingDebriefPlaybackAudio.dataset && speakingDebriefPlaybackAudio.dataset.objectUrl) {
+        URL.revokeObjectURL(speakingDebriefPlaybackAudio.dataset.objectUrl);
+    }
+    speakingDebriefPlaybackAudio = null;
+}
+
+function playBase64Audio(base64Audio, mimeType = 'audio/mpeg') {
+    stopSpeakingDebriefPlayback();
+    if (!base64Audio) return;
+
+    const binary = atob(base64Audio);
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) {
+        bytes[i] = binary.charCodeAt(i);
+    }
+
+    const objectUrl = URL.createObjectURL(new Blob([bytes], { type: mimeType }));
+    const audio = new Audio(objectUrl);
+    audio.volume = (typeof gameVolume !== 'undefined' && isFinite(gameVolume.sfx)) ? gameVolume.sfx : 0.5;
+    audio.dataset.objectUrl = objectUrl;
+    audio.onended = () => {
+        URL.revokeObjectURL(objectUrl);
+        if (speakingDebriefPlaybackAudio === audio) {
+            speakingDebriefPlaybackAudio = null;
+        }
+    };
+    audio.play().catch(() => {
+        URL.revokeObjectURL(objectUrl);
+    });
+    speakingDebriefPlaybackAudio = audio;
+}
+
+async function playSpeakingDebriefReference() {
+    const log = battleLog[Number(speakingDebriefActiveLogIndex)];
+    if (!log || !log.sentence) return;
+    try {
+        const result = await fetchSpeakingDebriefReferenceAudio(log.sentence, 'en-US');
+        playBase64Audio(result.audioBase64, result.format || 'audio/mpeg');
+    } catch (error) {
+        console.warn('Speaking debrief Azure reference playback failed:', error);
+    }
+}
+
+function playSpeakingDebriefPlayer() {
+    const log = battleLog[Number(speakingDebriefActiveLogIndex)];
+    if (!log?.speakingAssessment?.playerAudioBase64) return;
+    playBase64Audio(log.speakingAssessment.playerAudioBase64, log.speakingAssessment.playerAudioMimeType || 'audio/wav');
 }
 
 async function startAzureSpeakingAssessment() {

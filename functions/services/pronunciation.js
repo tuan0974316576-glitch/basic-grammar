@@ -106,6 +106,48 @@ async function assessPronunciation({
   });
 }
 
+async function synthesizeSpeech({
+  speechKey,
+  speechRegion,
+  text,
+  locale = 'en-US'
+}) {
+  const speechConfig = sdk.SpeechConfig.fromSubscription(speechKey, speechRegion);
+  speechConfig.speechSynthesisLanguage = locale;
+  speechConfig.speechSynthesisVoiceName = locale === 'en-GB' ? 'en-GB-SoniaNeural' : 'en-US-JennyNeural';
+  speechConfig.speechSynthesisOutputFormat = sdk.SpeechSynthesisOutputFormat.Audio16Khz32KBitRateMonoMp3;
+
+  const synthesizer = new sdk.SpeechSynthesizer(speechConfig);
+
+  return new Promise((resolve, reject) => {
+    synthesizer.speakTextAsync(
+      text,
+      (result) => {
+        try {
+          const audioData = result.audioData instanceof ArrayBuffer
+            ? Buffer.from(result.audioData)
+            : Buffer.from(result.audioData || []);
+          synthesizer.close();
+          resolve({
+            ok: true,
+            locale,
+            format: 'audio/mpeg',
+            audioBase64: audioData.toString('base64')
+          });
+        } catch (error) {
+          synthesizer.close();
+          reject(error);
+        }
+      },
+      (error) => {
+        synthesizer.close();
+        reject(error);
+      }
+    );
+  });
+}
+
 module.exports = {
-  assessPronunciation
+  assessPronunciation,
+  synthesizeSpeech
 };
