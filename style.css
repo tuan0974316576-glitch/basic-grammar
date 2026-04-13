@@ -5780,10 +5780,10 @@ body {
 
 .speaking-debrief-overlay {
     z-index: 10020;
-    align-items: flex-start;
+    align-items: center;
     padding-top: max(20px, env(safe-area-inset-top, 0px) + 12px);
     padding-bottom: max(20px, env(safe-area-inset-bottom, 0px) + 12px);
-    overflow-y: auto;
+    overflow: hidden;
 }
 
 .speaking-debrief-box {
@@ -6013,6 +6013,8 @@ body {
     .speaking-debrief-overlay {
         padding-top: max(8svh, env(safe-area-inset-top, 0px) + 12px);
         padding-bottom: max(8svh, env(safe-area-inset-bottom, 0px) + 12px);
+        align-items: center;
+        overflow: hidden;
     }
 
     .speaking-debrief-box {
