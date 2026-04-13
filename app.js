@@ -63,6 +63,7 @@ let speakingPcmProcessor = null;
 let speakingPcmSilenceGain = null;
 let speakingPcmChunks = [];
 let speakingPcmSampleRate = 16000;
+let speakingPcmClosePromise = Promise.resolve();
 let speakingSilenceAudioContext = null;
 let speakingSilenceAnalyser = null;
 let speakingSilenceSource = null;
@@ -316,7 +317,12 @@ function canUseAzureSpeakingAssessment() {
             speakingPcmSilenceGain = null;
         }
         if (speakingPcmAudioContext) {
-            try { speakingPcmAudioContext.close(); } catch (_error) {}
+            try {
+                const closingContext = speakingPcmAudioContext;
+                speakingPcmClosePromise = Promise.resolve(closingContext.close()).catch(() => {});
+            } catch (_error) {
+                speakingPcmClosePromise = Promise.resolve();
+            }
             speakingPcmAudioContext = null;
         }
         speakingLatestRms = 0;
@@ -325,14 +331,20 @@ function canUseAzureSpeakingAssessment() {
         speakingNoiseSampleCount = 0;
     }
 
-    function startSpeakingPcmCapture() {
+    async function startSpeakingPcmCapture() {
         stopSpeakingPcmCapture();
+        await speakingPcmClosePromise;
         speakingPcmChunks = [];
 
         const AudioCtx = window.AudioContext || window.webkitAudioContext;
         if (!AudioCtx || !speakingAudioStream) return false;
 
         speakingPcmAudioContext = new AudioCtx();
+        if (speakingPcmAudioContext.state === 'suspended') {
+            try {
+                await speakingPcmAudioContext.resume();
+            } catch (_error) {}
+        }
         speakingPcmSampleRate = speakingPcmAudioContext.sampleRate || 44100;
         speakingPcmSource = speakingPcmAudioContext.createMediaStreamSource(speakingAudioStream);
         speakingPcmProcessor = speakingPcmAudioContext.createScriptProcessor(2048, 1, 1);
@@ -6395,7 +6407,7 @@ async function startAzureSpeakingAssessment() {
         }
     };
 
-    if (!startSpeakingPcmCapture()) {
+    if (!(await startSpeakingPcmCapture())) {
         speakingMediaRecorder = null;
         stopSpeakingAudioStream();
         throw new Error('PCM capture unavailable.');
