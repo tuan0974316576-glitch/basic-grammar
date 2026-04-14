@@ -93,6 +93,7 @@ let speakingLastRecordedAudioBase64 = '';
 let speakingDebriefActiveLogIndex = null;
 let speakingDebriefPlaybackAudio = null;
 let speakingDebriefPlaybackObjectUrl = '';
+let speakingDebriefBgmRestoreVolume = null;
 let battleLog = [];
 let battleUsedWordKeys = new Set();
 let attackResolutionLocked = false;
@@ -6379,6 +6380,23 @@ function stopSpeakingDebriefPlayback() {
         speakingDebriefPlaybackObjectUrl = '';
     }
     speakingDebriefPlaybackAudio = null;
+    restoreSpeakingDebriefBgm();
+}
+
+function duckSpeakingDebriefBgm(targetVolume = 0.08) {
+    const bgm = document.getElementById('bgm');
+    if (!bgm || bgm.paused) return;
+    if (speakingDebriefBgmRestoreVolume === null) {
+        speakingDebriefBgmRestoreVolume = bgm.volume;
+    }
+    bgm.volume = Math.max(0, Math.min(1, targetVolume));
+}
+
+function restoreSpeakingDebriefBgm() {
+    const bgm = document.getElementById('bgm');
+    if (!bgm || speakingDebriefBgmRestoreVolume === null) return;
+    bgm.volume = speakingDebriefBgmRestoreVolume;
+    speakingDebriefBgmRestoreVolume = null;
 }
 
 function boostWavPlaybackBytes(bytes, peakTarget = 0.92, maxBoost = 2.8) {
@@ -6457,6 +6475,7 @@ function playBase64Audio(base64Audio, mimeType = 'audio/mpeg', options = {}) {
     const objectUrl = URL.createObjectURL(new Blob([processedBytes], { type: mimeType }));
     const audio = new Audio(objectUrl);
     audio.volume = (typeof gameVolume !== 'undefined' && isFinite(gameVolume.sfx)) ? gameVolume.sfx : 0.5;
+    duckSpeakingDebriefBgm();
     audio.onended = () => {
         URL.revokeObjectURL(objectUrl);
         if (speakingDebriefPlaybackObjectUrl === objectUrl) {
@@ -6465,12 +6484,14 @@ function playBase64Audio(base64Audio, mimeType = 'audio/mpeg', options = {}) {
         if (speakingDebriefPlaybackAudio === audio) {
             speakingDebriefPlaybackAudio = null;
         }
+        restoreSpeakingDebriefBgm();
     };
     audio.play().catch(() => {
         URL.revokeObjectURL(objectUrl);
         if (speakingDebriefPlaybackObjectUrl === objectUrl) {
             speakingDebriefPlaybackObjectUrl = '';
         }
+        restoreSpeakingDebriefBgm();
     });
     speakingDebriefPlaybackAudio = audio;
     speakingDebriefPlaybackObjectUrl = objectUrl;
