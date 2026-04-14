@@ -5832,6 +5832,42 @@ body {
     box-shadow: 0 0 14px rgba(14, 165, 233, 0.16), inset 0 0 18px rgba(14, 165, 233, 0.06);
 }
 
+.speaking-debrief-audio-btn.reference {
+    border-color: rgba(86, 217, 255, 0.72);
+    background: linear-gradient(180deg, rgba(10, 54, 94, 0.92), rgba(10, 24, 50, 0.95));
+    color: #c7f4ff;
+    box-shadow:
+        0 0 18px rgba(34, 193, 255, 0.2),
+        inset 0 0 20px rgba(34, 193, 255, 0.11);
+    text-shadow: 0 0 12px rgba(118, 229, 255, 0.42);
+}
+
+.speaking-debrief-audio-btn.player {
+    border-color: rgba(95, 255, 174, 0.68);
+    background: linear-gradient(180deg, rgba(9, 62, 42, 0.92), rgba(7, 31, 21, 0.95));
+    color: #c8ffe0;
+    box-shadow:
+        0 0 18px rgba(64, 255, 156, 0.16),
+        inset 0 0 20px rgba(64, 255, 156, 0.1);
+    text-shadow: 0 0 12px rgba(121, 255, 193, 0.34);
+}
+
+.speaking-debrief-audio-btn.reference:hover:not(:disabled),
+.speaking-debrief-audio-btn.reference:focus-visible:not(:disabled) {
+    border-color: rgba(137, 239, 255, 0.96);
+    box-shadow:
+        0 0 24px rgba(34, 193, 255, 0.28),
+        inset 0 0 24px rgba(34, 193, 255, 0.16);
+}
+
+.speaking-debrief-audio-btn.player:hover:not(:disabled),
+.speaking-debrief-audio-btn.player:focus-visible:not(:disabled) {
+    border-color: rgba(160, 255, 211, 0.92);
+    box-shadow:
+        0 0 24px rgba(64, 255, 156, 0.22),
+        inset 0 0 24px rgba(64, 255, 156, 0.14);
+}
+
 .speaking-debrief-audio-btn:disabled {
     opacity: 0.45;
     cursor: default;
