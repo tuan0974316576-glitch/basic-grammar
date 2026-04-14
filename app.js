@@ -92,6 +92,7 @@ let speakingNoVoiceTimeoutMs = 5000;
 let speakingLastRecordedAudioBase64 = '';
 let speakingDebriefActiveLogIndex = null;
 let speakingDebriefPlaybackAudio = null;
+let speakingDebriefPlaybackObjectUrl = '';
 let battleLog = [];
 let battleUsedWordKeys = new Set();
 let attackResolutionLocked = false;
@@ -6373,13 +6374,76 @@ function stopSpeakingDebriefPlayback() {
     try {
         speakingDebriefPlaybackAudio.pause();
     } catch (_error) {}
-    if (speakingDebriefPlaybackAudio.dataset && speakingDebriefPlaybackAudio.dataset.objectUrl) {
-        URL.revokeObjectURL(speakingDebriefPlaybackAudio.dataset.objectUrl);
+    if (speakingDebriefPlaybackObjectUrl) {
+        URL.revokeObjectURL(speakingDebriefPlaybackObjectUrl);
+        speakingDebriefPlaybackObjectUrl = '';
     }
     speakingDebriefPlaybackAudio = null;
 }
 
-function playBase64Audio(base64Audio, mimeType = 'audio/mpeg') {
+function boostWavPlaybackBytes(bytes, peakTarget = 0.92, maxBoost = 2.8) {
+    if (!(bytes instanceof Uint8Array) || bytes.length < 48) return bytes;
+
+    const riff = String.fromCharCode(bytes[0], bytes[1], bytes[2], bytes[3]);
+    const wave = String.fromCharCode(bytes[8], bytes[9], bytes[10], bytes[11]);
+    if (riff !== 'RIFF' || wave !== 'WAVE') return bytes;
+
+    let offset = 12;
+    let audioFormat = 1;
+    let bitsPerSample = 16;
+    let dataOffset = -1;
+    let dataSize = 0;
+
+    while (offset + 8 <= bytes.length) {
+        const chunkId = String.fromCharCode(bytes[offset], bytes[offset + 1], bytes[offset + 2], bytes[offset + 3]);
+        const chunkSize =
+            bytes[offset + 4] |
+            (bytes[offset + 5] << 8) |
+            (bytes[offset + 6] << 16) |
+            (bytes[offset + 7] << 24);
+        const chunkDataOffset = offset + 8;
+
+        if (chunkId === 'fmt ' && chunkSize >= 16 && chunkDataOffset + 16 <= bytes.length) {
+            audioFormat = bytes[chunkDataOffset] | (bytes[chunkDataOffset + 1] << 8);
+            bitsPerSample = bytes[chunkDataOffset + 14] | (bytes[chunkDataOffset + 15] << 8);
+        } else if (chunkId === 'data') {
+            dataOffset = chunkDataOffset;
+            dataSize = Math.min(chunkSize, bytes.length - chunkDataOffset);
+            break;
+        }
+
+        offset = chunkDataOffset + chunkSize + (chunkSize % 2);
+    }
+
+    if (audioFormat !== 1 || bitsPerSample !== 16 || dataOffset < 0 || dataSize < 2) {
+        return bytes;
+    }
+
+    const boosted = new Uint8Array(bytes);
+    const view = new DataView(boosted.buffer);
+    let peak = 0;
+
+    for (let i = dataOffset; i < dataOffset + dataSize; i += 2) {
+        const sample = view.getInt16(i, true);
+        const normalized = Math.abs(sample) / 32768;
+        if (normalized > peak) peak = normalized;
+    }
+
+    if (peak <= 0) return boosted;
+
+    const gain = Math.max(1, Math.min(maxBoost, peakTarget / peak));
+    if (gain <= 1.02) return boosted;
+
+    for (let i = dataOffset; i < dataOffset + dataSize; i += 2) {
+        const sample = view.getInt16(i, true);
+        const amplified = Math.max(-32768, Math.min(32767, Math.round(sample * gain)));
+        view.setInt16(i, amplified, true);
+    }
+
+    return boosted;
+}
+
+function playBase64Audio(base64Audio, mimeType = 'audio/mpeg', options = {}) {
     stopSpeakingDebriefPlayback();
     if (!base64Audio) return;
 
@@ -6389,20 +6453,27 @@ function playBase64Audio(base64Audio, mimeType = 'audio/mpeg') {
         bytes[i] = binary.charCodeAt(i);
     }
 
-    const objectUrl = URL.createObjectURL(new Blob([bytes], { type: mimeType }));
+    const processedBytes = options.boostWavPlayback ? boostWavPlaybackBytes(bytes) : bytes;
+    const objectUrl = URL.createObjectURL(new Blob([processedBytes], { type: mimeType }));
     const audio = new Audio(objectUrl);
     audio.volume = (typeof gameVolume !== 'undefined' && isFinite(gameVolume.sfx)) ? gameVolume.sfx : 0.5;
-    audio.dataset.objectUrl = objectUrl;
     audio.onended = () => {
         URL.revokeObjectURL(objectUrl);
+        if (speakingDebriefPlaybackObjectUrl === objectUrl) {
+            speakingDebriefPlaybackObjectUrl = '';
+        }
         if (speakingDebriefPlaybackAudio === audio) {
             speakingDebriefPlaybackAudio = null;
         }
     };
     audio.play().catch(() => {
         URL.revokeObjectURL(objectUrl);
+        if (speakingDebriefPlaybackObjectUrl === objectUrl) {
+            speakingDebriefPlaybackObjectUrl = '';
+        }
     });
     speakingDebriefPlaybackAudio = audio;
+    speakingDebriefPlaybackObjectUrl = objectUrl;
 }
 
 async function playSpeakingDebriefReference() {
@@ -6419,7 +6490,11 @@ async function playSpeakingDebriefReference() {
 function playSpeakingDebriefPlayer() {
     const log = battleLog[Number(speakingDebriefActiveLogIndex)];
     if (!log?.speakingAssessment?.playerAudioBase64) return;
-    playBase64Audio(log.speakingAssessment.playerAudioBase64, log.speakingAssessment.playerAudioMimeType || 'audio/wav');
+    playBase64Audio(
+        log.speakingAssessment.playerAudioBase64,
+        log.speakingAssessment.playerAudioMimeType || 'audio/wav',
+        { boostWavPlayback: true }
+    );
 }
 
 async function startAzureSpeakingAssessment() {
