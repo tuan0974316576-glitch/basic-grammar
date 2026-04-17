@@ -97,14 +97,6 @@ let speakingDebriefBgmRestoreVolume = null;
 let battleLog = [];
 let battleUsedWordKeys = new Set();
 let attackResolutionLocked = false;
-const LEVEL_DISPLAY_NAMES = {
-    L1: 'A1',
-    L2: 'A2',
-    L3: 'B1',
-    L4: 'B2',
-    L5: 'C1',
-    L5_STAR: 'C2'
-};
 const DEFAULT_SPEAKING_ASSESSMENT_BASE = 'http://localhost:8787';
 const SPEAKING_PASS_SCORE = 70;
     // ���� �������Ԅ������� ����
@@ -226,10 +218,6 @@ function canUseAzureSpeakingAssessment() {
         if (score < 35) return 'var(--danger)';
         if (score < 55) return '#fbbf24';
         return 'var(--success)';
-    }
-
-function formatLevelDisplay(level) {
-        return LEVEL_DISPLAY_NAMES[level] || level || 'A1';
     }
 
     function getSpeakingAssessmentColor(score, errorType = 'None') {
@@ -1195,7 +1183,7 @@ function closeLevelScreen() {
 // ���� PHASE 6: CONTEXT-SENSITIVE LEVEL PROGRESS DISPLAY ����
 function updateLevelProgressUI() {
     const levels = ['L1', 'L2', 'L3', 'L4', 'L5', 'L5_STAR'];
-    const levelNames = levels.map(formatLevelDisplay);
+    const levelNames = ['LEVEL 1', 'LEVEL 2', 'LEVEL 3', 'LEVEL 4', 'LEVEL 5', 'LEVEL 5*'];
 
     // Determine current mode and its display letter
     let modeKey = 'reading'; // default
@@ -1338,7 +1326,7 @@ function resetSkillButtonsToDefault() {
 // ���� RESET LEVEL BUTTONS TO DEFAULT (FOR PVP) ����
 function resetLevelButtonsToDefault() {
     const levels = ['L1', 'L2', 'L3', 'L4', 'L5', 'L5_STAR'];
-    const levelNames = levels.map(formatLevelDisplay);
+    const levelNames = ['LEVEL 1', 'LEVEL 2', 'LEVEL 3', 'LEVEL 4', 'LEVEL 5', 'LEVEL 5*'];
 
     levels.forEach((levelKey, index) => {
         const levelScreen = document.getElementById('level-screen');
@@ -5274,7 +5262,7 @@ function syncPVPSetupFromRoom(data) {
 
 function formatLobbyLevel(level) {
     if (!level) return '--';
-    return formatLevelDisplay(level);
+    return level === 'L5_STAR' ? 'LEVEL 5*' : level.replace('L', 'LEVEL ');
 }
 
 function formatLobbySkill(skill) {
