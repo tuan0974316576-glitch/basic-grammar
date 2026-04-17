@@ -2099,175 +2099,552 @@
     "word": "desk",
     "cefr": "A1",
     "frequency": 17,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My books are on the desk.",
+        "answer": "desk"
+      },
+      {
+        "text": "Please clean your desk before you leave.",
+        "answer": "desk"
+      },
+      {
+        "text": "There is a lamp on her desk.",
+        "answer": "desk"
+      }
+    ]
   },
   {
     "word": "Diamond Hill",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We changed trains at Diamond Hill.",
+        "answer": "Diamond Hill"
+      },
+      {
+        "text": "My aunt lives near Diamond Hill.",
+        "answer": "Diamond Hill"
+      },
+      {
+        "text": "Diamond Hill is busy in the evening.",
+        "answer": "Diamond Hill"
+      }
+    ]
   },
   {
     "word": "dictionary",
     "cefr": "A1",
     "frequency": 2,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Please look up the word in the dictionary.",
+        "answer": "dictionary"
+      },
+      {
+        "text": "I keep a small dictionary in my bag.",
+        "answer": "dictionary"
+      },
+      {
+        "text": "This dictionary is very useful for students.",
+        "answer": "dictionary"
+      }
+    ]
   },
   {
     "word": "diet",
     "cefr": "A1",
     "frequency": 2,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Fruit and vegetables are part of a healthy diet.",
+        "answer": "diet"
+      },
+      {
+        "text": "He changed his diet to eat less sugar.",
+        "answer": "diet"
+      },
+      {
+        "text": "A good diet helps you stay strong.",
+        "answer": "diet"
+      }
+    ]
   },
   {
     "word": "difference",
     "cefr": "A1",
     "frequency": 8,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Can you see the difference between these two pictures?",
+        "answer": "difference"
+      },
+      {
+        "text": "There is a big difference in price.",
+        "answer": "difference"
+      },
+      {
+        "text": "The teacher explained the difference clearly.",
+        "answer": "difference"
+      }
+    ]
   },
   {
     "word": "different",
     "cefr": "A1",
     "frequency": 65,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My brother and I like different sports.",
+        "answer": "different"
+      },
+      {
+        "text": "These two bags are different in size.",
+        "answer": "different"
+      },
+      {
+        "text": "We all have different ideas.",
+        "answer": "different"
+      }
+    ]
   },
   {
     "word": "dinner",
     "cefr": "A1",
     "frequency": 3,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We had fish and rice for dinner.",
+        "answer": "dinner"
+      },
+      {
+        "text": "What time do you usually eat dinner?",
+        "answer": "dinner"
+      },
+      {
+        "text": "My family ate dinner together last night.",
+        "answer": "dinner"
+      }
+    ]
   },
   {
     "word": "discuss",
     "cefr": "A1",
     "frequency": 20,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Let us discuss the problem together.",
+        "answer": "discuss"
+      },
+      {
+        "text": "We will discuss the plan after lunch.",
+        "answer": "discuss"
+      },
+      {
+        "text": "The students discussed the topic in groups.",
+        "answer": "discussed"
+      }
+    ]
   },
   {
     "word": "dish",
     "cefr": "A1",
     "frequency": 5,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "This noodle dish is very popular.",
+        "answer": "dish"
+      },
+      {
+        "text": "My mother taught me how to cook this dish.",
+        "answer": "dish"
+      },
+      {
+        "text": "The restaurant serves a spicy chicken dish.",
+        "answer": "dish"
+      }
+    ]
   },
   {
     "word": "draw",
     "cefr": "A1",
     "frequency": 16,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I like to draw animals in my notebook.",
+        "answer": "draw"
+      },
+      {
+        "text": "Can you draw a picture of your house?",
+        "answer": "draw"
+      },
+      {
+        "text": "She draws very well for her age.",
+        "answer": "draws"
+      }
+    ]
   },
   {
     "word": "dress",
     "cefr": "A1",
     "frequency": 5,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "She wore a blue dress to the party.",
+        "answer": "dress"
+      },
+      {
+        "text": "This dress is too long for me.",
+        "answer": "dress"
+      },
+      {
+        "text": "My sister bought a new summer dress.",
+        "answer": "dress"
+      }
+    ]
   },
   {
     "word": "drink",
     "cefr": "A1",
     "frequency": 3,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Do not forget to drink more water.",
+        "answer": "drink"
+      },
+      {
+        "text": "I need a cold drink after running.",
+        "answer": "drink"
+      },
+      {
+        "text": "He drank a hot drink before bed.",
+        "answer": "drink"
+      }
+    ]
   },
   {
     "word": "ear",
     "cefr": "A1",
     "frequency": 2,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My left ear hurts a little.",
+        "answer": "ear"
+      },
+      {
+        "text": "The baby has small ears.",
+        "answer": "ears"
+      },
+      {
+        "text": "She whispered the secret in my ear.",
+        "answer": "ear"
+      }
+    ]
   },
   {
     "word": "easier",
     "cefr": "A1",
     "frequency": 4,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "This question is easier than the last one.",
+        "answer": "easier"
+      },
+      {
+        "text": "The new road makes the trip easier.",
+        "answer": "easier"
+      },
+      {
+        "text": "It is easier to study in a quiet room.",
+        "answer": "easier"
+      }
+    ]
   },
   {
     "word": "elephant",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The elephant is the largest animal in the zoo.",
+        "answer": "elephant"
+      },
+      {
+        "text": "We saw an elephant eating leaves.",
+        "answer": "elephant"
+      },
+      {
+        "text": "The little boy drew a grey elephant.",
+        "answer": "elephant"
+      }
+    ]
   },
   {
     "word": "else",
     "cefr": "A1",
     "frequency": 11,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Would you like anything else to eat?",
+        "answer": "else"
+      },
+      {
+        "text": "Everyone is here, but who else is coming?",
+        "answer": "else"
+      },
+      {
+        "text": "There is nothing else in the box.",
+        "answer": "else"
+      }
+    ]
   },
   {
     "word": "email",
     "cefr": "A1",
     "frequency": 121,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Please send me an email tonight.",
+        "answer": "email"
+      },
+      {
+        "text": "I got an email from my teacher.",
+        "answer": "email"
+      },
+      {
+        "text": "She checks her email every morning.",
+        "answer": "email"
+      }
+    ]
   },
   {
     "word": "enjoy",
     "cefr": "A1",
     "frequency": 39,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I enjoy reading before bed.",
+        "answer": "enjoy"
+      },
+      {
+        "text": "They enjoy playing football together.",
+        "answer": "enjoy"
+      },
+      {
+        "text": "Did you enjoy the concert last night?",
+        "answer": "enjoy"
+      }
+    ]
   },
   {
     "word": "event",
     "cefr": "A1",
     "frequency": 79,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The school event starts at two o clock.",
+        "answer": "event"
+      },
+      {
+        "text": "Many students joined the sports event.",
+        "answer": "event"
+      },
+      {
+        "text": "This event is open to the public.",
+        "answer": "event"
+      }
+    ]
   },
   {
     "word": "every",
     "cefr": "A1",
     "frequency": 43,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I go to school every weekday.",
+        "answer": "every"
+      },
+      {
+        "text": "She calls her grandmother every Sunday.",
+        "answer": "every"
+      },
+      {
+        "text": "Every student must bring a pencil.",
+        "answer": "Every"
+      }
+    ]
   },
   {
     "word": "everybody",
     "cefr": "A1",
     "frequency": 5,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Everybody was excited about the trip.",
+        "answer": "Everybody"
+      },
+      {
+        "text": "The teacher asked everybody to sit down.",
+        "answer": "everybody"
+      },
+      {
+        "text": "Everybody in my family likes music.",
+        "answer": "Everybody"
+      }
+    ]
   },
   {
     "word": "everyone",
     "cefr": "A1",
     "frequency": 30,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Everyone in the class finished the work.",
+        "answer": "Everyone"
+      },
+      {
+        "text": "Please give everyone a copy.",
+        "answer": "everyone"
+      },
+      {
+        "text": "Everyone was smiling in the photo.",
+        "answer": "Everyone"
+      }
+    ]
   },
   {
     "word": "exam",
     "cefr": "A1",
     "frequency": 4,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We have an English exam tomorrow.",
+        "answer": "exam"
+      },
+      {
+        "text": "She studied hard for the math exam.",
+        "answer": "exam"
+      },
+      {
+        "text": "The exam starts at nine o clock.",
+        "answer": "exam"
+      }
+    ]
   },
   {
     "word": "exercise",
     "cefr": "A1",
     "frequency": 11,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Daily exercise is good for your health.",
+        "answer": "exercise"
+      },
+      {
+        "text": "We did a grammar exercise in class.",
+        "answer": "exercise"
+      },
+      {
+        "text": "My doctor told me to get more exercise.",
+        "answer": "exercise"
+      }
+    ]
   },
   {
     "word": "Exhibition Centre",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We got off at Exhibition Centre Station.",
+        "answer": "Exhibition Centre"
+      },
+      {
+        "text": "The art fair is near Exhibition Centre.",
+        "answer": "Exhibition Centre"
+      },
+      {
+        "text": "My father met his client at Exhibition Centre.",
+        "answer": "Exhibition Centre"
+      }
+    ]
   },
   {
     "word": "expensive",
     "cefr": "A1",
     "frequency": 13,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "That watch is too expensive for me.",
+        "answer": "expensive"
+      },
+      {
+        "text": "Eating out can be expensive.",
+        "answer": "expensive"
+      },
+      {
+        "text": "This shop sells expensive bags.",
+        "answer": "expensive"
+      }
+    ]
   },
   {
     "word": "explain",
     "cefr": "A1",
     "frequency": 50,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Can you explain this answer to me?",
+        "answer": "explain"
+      },
+      {
+        "text": "The teacher explained the rule clearly.",
+        "answer": "explained"
+      },
+      {
+        "text": "Please explain why you were late.",
+        "answer": "explain"
+      }
+    ]
   },
   {
     "word": "fact",
     "cefr": "A1",
     "frequency": 35,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "It is a fact that water is important.",
+        "answer": "fact"
+      },
+      {
+        "text": "The book is full of interesting facts.",
+        "answer": "facts"
+      },
+      {
+        "text": "Tell me one fact about whales.",
+        "answer": "fact"
+      }
+    ]
   },
   {
     "word": "famous",
     "cefr": "A1",
     "frequency": 21,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "This restaurant is famous for seafood.",
+        "answer": "famous"
+      },
+      {
+        "text": "She wants to become a famous singer.",
+        "answer": "famous"
+      },
+      {
+        "text": "That actor is famous around the world.",
+        "answer": "famous"
+      }
+    ]
   },
   {
     "word": "fantastic",
