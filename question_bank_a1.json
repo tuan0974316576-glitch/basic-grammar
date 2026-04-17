@@ -6165,79 +6165,248 @@
     "word": "red",
     "cefr": "A1",
     "frequency": 4,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "She wore a red hat to school.",
+        "answer": "red"
+      },
+      {
+        "text": "The red bus stopped in front of us.",
+        "answer": "red"
+      },
+      {
+        "text": "Please use the red marker.",
+        "answer": "red"
+      }
+    ]
   },
   {
     "word": "relax",
     "cefr": "A1",
     "frequency": 6,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I like to relax by listening to music.",
+        "answer": "relax"
+      },
+      {
+        "text": "We sat in the park to relax.",
+        "answer": "relax"
+      },
+      {
+        "text": "Take a deep breath and relax.",
+        "answer": "relax"
+      }
+    ]
   },
   {
     "word": "restaurant",
     "cefr": "A1",
     "frequency": 31,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We ate dinner at a small restaurant.",
+        "answer": "restaurant"
+      },
+      {
+        "text": "The restaurant is famous for noodles.",
+        "answer": "restaurant"
+      },
+      {
+        "text": "My parents booked a table at the restaurant.",
+        "answer": "restaurant"
+      }
+    ]
   },
   {
     "word": "return",
     "cefr": "A1",
     "frequency": 10,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Please return the book to the library.",
+        "answer": "return"
+      },
+      {
+        "text": "I will return home before six.",
+        "answer": "return"
+      },
+      {
+        "text": "She returned the pen to her friend.",
+        "answer": "returned"
+      }
+    ]
   },
   {
     "word": "rice",
     "cefr": "A1",
     "frequency": 6,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We had chicken and rice for dinner.",
+        "answer": "rice"
+      },
+      {
+        "text": "There is some rice left in the pot.",
+        "answer": "rice"
+      },
+      {
+        "text": "My grandmother cooks rice every day.",
+        "answer": "rice"
+      }
+    ]
   },
   {
     "word": "road",
     "cefr": "A1",
     "frequency": 12,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Please cross the road carefully.",
+        "answer": "road"
+      },
+      {
+        "text": "The school is across the road.",
+        "answer": "road"
+      },
+      {
+        "text": "There were many cars on the road.",
+        "answer": "road"
+      }
+    ]
   },
   {
     "word": "safer",
     "cefr": "A1",
     "frequency": 3,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "It is safer to use the bridge.",
+        "answer": "safer"
+      },
+      {
+        "text": "Wearing a helmet makes cycling safer.",
+        "answer": "safer"
+      },
+      {
+        "text": "This road is safer at night because it is brighter.",
+        "answer": "safer"
+      }
+    ]
   },
   {
     "word": "salt",
     "cefr": "A1",
     "frequency": 5,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Please add a little salt to the soup.",
+        "answer": "salt"
+      },
+      {
+        "text": "There is too much salt in this dish.",
+        "answer": "salt"
+      },
+      {
+        "text": "The chef used salt and pepper.",
+        "answer": "salt"
+      }
+    ]
   },
   {
     "word": "sandwich",
     "cefr": "A1",
     "frequency": 5,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I made a cheese sandwich for lunch.",
+        "answer": "sandwich"
+      },
+      {
+        "text": "She bought a chicken sandwich at the shop.",
+        "answer": "sandwich"
+      },
+      {
+        "text": "The sandwich is on the plate.",
+        "answer": "sandwich"
+      }
+    ]
   },
   {
     "word": "Saturday",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We play football every Saturday.",
+        "answer": "Saturday"
+      },
+      {
+        "text": "My music lesson is on Saturday morning.",
+        "answer": "Saturday"
+      },
+      {
+        "text": "The market is very busy on Saturday.",
+        "answer": "Saturday"
+      }
+    ]
   },
   {
     "word": "schoolmate",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I met an old schoolmate on the bus.",
+        "answer": "schoolmate"
+      },
+      {
+        "text": "My schoolmate helped me with the homework.",
+        "answer": "schoolmate"
+      },
+      {
+        "text": "She sat next to her schoolmate in class.",
+        "answer": "schoolmate"
+      }
+    ]
   },
   {
     "word": "science",
     "cefr": "A1",
     "frequency": 28,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Science is my favourite subject.",
+        "answer": "Science"
+      },
+      {
+        "text": "We did a science experiment today.",
+        "answer": "science"
+      },
+      {
+        "text": "My brother is good at science.",
+        "answer": "science"
+      }
+    ]
   },
   {
     "word": "scientist",
     "cefr": "A1",
     "frequency": 4,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The scientist worked in a large laboratory.",
+        "answer": "scientist"
+      },
+      {
+        "text": "She wants to be a scientist one day.",
+        "answer": "scientist"
+      },
+      {
+        "text": "The scientist explained the new discovery.",
+        "answer": "scientist"
+      }
+    ]
   },
   {
     "word": "sea",
@@ -6247,6 +6416,14 @@
       {
         "text": "We swim in the sea every summer.",
         "answer": "sea"
+      },
+      {
+        "text": "The children played near the sea.",
+        "answer": "sea"
+      },
+      {
+        "text": "We could see the blue sea from the hill.",
+        "answer": "sea"
       }
     ]
   },
@@ -6254,211 +6431,666 @@
     "word": "sell",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "They sell fruit at the market.",
+        "answer": "sell"
+      },
+      {
+        "text": "My aunt wants to sell her old bike.",
+        "answer": "sell"
+      },
+      {
+        "text": "This shop sells school bags and shoes.",
+        "answer": "sells"
+      }
+    ]
   },
   {
     "word": "September",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The new school year starts in September.",
+        "answer": "September"
+      },
+      {
+        "text": "My birthday is in September.",
+        "answer": "September"
+      },
+      {
+        "text": "The weather is still hot in September.",
+        "answer": "September"
+      }
+    ]
   },
   {
     "word": "Sham Shui Po",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We bought fabric in Sham Shui Po.",
+        "answer": "Sham Shui Po"
+      },
+      {
+        "text": "My uncle lives in Sham Shui Po.",
+        "answer": "Sham Shui Po"
+      },
+      {
+        "text": "Sham Shui Po is famous for its markets.",
+        "answer": "Sham Shui Po"
+      }
+    ]
   },
   {
     "word": "Shek Kip Mei",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My grandmother lives in Shek Kip Mei.",
+        "answer": "Shek Kip Mei"
+      },
+      {
+        "text": "We passed through Shek Kip Mei on the bus.",
+        "answer": "Shek Kip Mei"
+      },
+      {
+        "text": "Shek Kip Mei is not far from our school.",
+        "answer": "Shek Kip Mei"
+      }
+    ]
   },
   {
     "word": "shirt",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "He wore a white shirt to the party.",
+        "answer": "shirt"
+      },
+      {
+        "text": "My new shirt is hanging in the wardrobe.",
+        "answer": "shirt"
+      },
+      {
+        "text": "This shirt is too big for me.",
+        "answer": "shirt"
+      }
+    ]
   },
   {
     "word": "shoe",
     "cefr": "A1",
     "frequency": 3,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "One shoe is under the bed.",
+        "answer": "shoe"
+      },
+      {
+        "text": "Her left shoe is dirty.",
+        "answer": "shoe"
+      },
+      {
+        "text": "I need a new running shoe.",
+        "answer": "shoe"
+      }
+    ]
   },
   {
     "word": "shorter",
     "cefr": "A1",
     "frequency": 2,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "This pencil is shorter than that one.",
+        "answer": "shorter"
+      },
+      {
+        "text": "The second route is shorter.",
+        "answer": "shorter"
+      },
+      {
+        "text": "My hair is shorter now.",
+        "answer": "shorter"
+      }
+    ]
   },
   {
     "word": "shower",
     "cefr": "A1",
     "frequency": 2,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I take a shower every morning.",
+        "answer": "shower"
+      },
+      {
+        "text": "The shower is in the bathroom.",
+        "answer": "shower"
+      },
+      {
+        "text": "She sang in the shower.",
+        "answer": "shower"
+      }
+    ]
   },
   {
     "word": "Shung Wong Toi",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We got off at Shung Wong Toi Station.",
+        "answer": "Shung Wong Toi"
+      },
+      {
+        "text": "My aunt works near Shung Wong Toi.",
+        "answer": "Shung Wong Toi"
+      },
+      {
+        "text": "Shung Wong Toi is on the new line.",
+        "answer": "Shung Wong Toi"
+      }
+    ]
   },
   {
     "word": "sick",
     "cefr": "A1",
     "frequency": 3,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "He stayed home because he was sick.",
+        "answer": "sick"
+      },
+      {
+        "text": "I feel a little sick today.",
+        "answer": "sick"
+      },
+      {
+        "text": "The sick child went to see a doctor.",
+        "answer": "sick"
+      }
+    ]
   },
   {
     "word": "similar",
     "cefr": "A1",
     "frequency": 17,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "These two bags are very similar.",
+        "answer": "similar"
+      },
+      {
+        "text": "Our ideas are quite similar.",
+        "answer": "similar"
+      },
+      {
+        "text": "The twins look similar to each other.",
+        "answer": "similar"
+      }
+    ]
   },
   {
     "word": "sing",
     "cefr": "A1",
     "frequency": 6,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I like to sing in music class.",
+        "answer": "sing"
+      },
+      {
+        "text": "They will sing on the stage tonight.",
+        "answer": "sing"
+      },
+      {
+        "text": "My sister can sing very well.",
+        "answer": "sing"
+      }
+    ]
   },
   {
     "word": "Singapore",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My cousin moved to Singapore last year.",
+        "answer": "Singapore"
+      },
+      {
+        "text": "Singapore is a clean and modern city.",
+        "answer": "Singapore"
+      },
+      {
+        "text": "They flew to Singapore for a short holiday.",
+        "answer": "Singapore"
+      }
+    ]
   },
   {
     "word": "singer",
     "cefr": "A1",
     "frequency": 10,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The singer waved to the fans.",
+        "answer": "singer"
+      },
+      {
+        "text": "She wants to be a famous singer.",
+        "answer": "singer"
+      },
+      {
+        "text": "The singer performed three songs.",
+        "answer": "singer"
+      }
+    ]
   },
   {
     "word": "situation",
     "cefr": "A1",
     "frequency": 19,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "It was a difficult situation for everyone.",
+        "answer": "situation"
+      },
+      {
+        "text": "Please stay calm in this situation.",
+        "answer": "situation"
+      },
+      {
+        "text": "The teacher explained the situation clearly.",
+        "answer": "situation"
+      }
+    ]
   },
   {
     "word": "skill",
     "cefr": "A1",
     "frequency": 21,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Reading is an important skill.",
+        "answer": "skill"
+      },
+      {
+        "text": "She improved her speaking skill quickly.",
+        "answer": "skill"
+      },
+      {
+        "text": "Cooking is a useful life skill.",
+        "answer": "skill"
+      }
+    ]
   },
   {
     "word": "skirt",
     "cefr": "A1",
     "frequency": 2,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "She wore a blue skirt to school.",
+        "answer": "skirt"
+      },
+      {
+        "text": "This skirt is too long for me.",
+        "answer": "skirt"
+      },
+      {
+        "text": "My sister bought a new skirt yesterday.",
+        "answer": "skirt"
+      }
+    ]
   },
   {
     "word": "smaller",
     "cefr": "A1",
     "frequency": 7,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "This room is smaller than the other one.",
+        "answer": "smaller"
+      },
+      {
+        "text": "We need a smaller box for this gift.",
+        "answer": "smaller"
+      },
+      {
+        "text": "The younger dog is smaller.",
+        "answer": "smaller"
+      }
+    ]
   },
   {
     "word": "smallest",
     "cefr": "A1",
     "frequency": 2,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "This is the smallest cup in the set.",
+        "answer": "smallest"
+      },
+      {
+        "text": "The smallest child stood in front.",
+        "answer": "smallest"
+      },
+      {
+        "text": "That is the smallest fish I have seen.",
+        "answer": "smallest"
+      }
+    ]
   },
   {
     "word": "snake",
     "cefr": "A1",
     "frequency": 15,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We saw a snake in the zoo.",
+        "answer": "snake"
+      },
+      {
+        "text": "The snake moved slowly across the ground.",
+        "answer": "snake"
+      },
+      {
+        "text": "The little boy was afraid of the snake.",
+        "answer": "snake"
+      }
+    ]
   },
   {
     "word": "soda",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "He drank a can of soda after lunch.",
+        "answer": "soda"
+      },
+      {
+        "text": "There is too much sugar in soda.",
+        "answer": "soda"
+      },
+      {
+        "text": "My father does not drink soda often.",
+        "answer": "soda"
+      }
+    ]
   },
   {
     "word": "somebody",
     "cefr": "A1",
     "frequency": 2,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Somebody left a bag in the room.",
+        "answer": "Somebody"
+      },
+      {
+        "text": "I think somebody is at the door.",
+        "answer": "somebody"
+      },
+      {
+        "text": "Somebody called you this morning.",
+        "answer": "Somebody"
+      }
+    ]
   },
   {
     "word": "someone",
     "cefr": "A1",
     "frequency": 33,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Someone is waiting outside for you.",
+        "answer": "Someone"
+      },
+      {
+        "text": "I heard someone singing in the hall.",
+        "answer": "someone"
+      },
+      {
+        "text": "Please ask someone for help.",
+        "answer": "someone"
+      }
+    ]
   },
   {
     "word": "song",
     "cefr": "A1",
     "frequency": 10,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "That song is very easy to sing.",
+        "answer": "song"
+      },
+      {
+        "text": "My sister wrote a new song.",
+        "answer": "song"
+      },
+      {
+        "text": "We listened to a happy song on the bus.",
+        "answer": "song"
+      }
+    ]
   },
   {
     "word": "sorry",
     "cefr": "A1",
     "frequency": 3,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I am sorry for being late.",
+        "answer": "sorry"
+      },
+      {
+        "text": "She said sorry to her friend.",
+        "answer": "sorry"
+      },
+      {
+        "text": "Sorry, I do not understand the question.",
+        "answer": "Sorry"
+      }
+    ]
   },
   {
     "word": "soup",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The soup is hot, so be careful.",
+        "answer": "soup"
+      },
+      {
+        "text": "My mother made vegetable soup.",
+        "answer": "soup"
+      },
+      {
+        "text": "Would you like some chicken soup?",
+        "answer": "soup"
+      }
+    ]
   },
   {
     "word": "south",
     "cefr": "A1",
     "frequency": 2,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The wind is coming from the south.",
+        "answer": "south"
+      },
+      {
+        "text": "They travelled to the south of the country.",
+        "answer": "south"
+      },
+      {
+        "text": "Our hotel is south of the station.",
+        "answer": "south"
+      }
+    ]
   },
   {
     "word": "South Korea",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My uncle works in South Korea.",
+        "answer": "South Korea"
+      },
+      {
+        "text": "South Korea is famous for pop music.",
+        "answer": "South Korea"
+      },
+      {
+        "text": "They travelled to South Korea in winter.",
+        "answer": "South Korea"
+      }
+    ]
   },
   {
     "word": "space",
     "cefr": "A1",
     "frequency": 35,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "There is not enough space in my bag.",
+        "answer": "space"
+      },
+      {
+        "text": "Please leave a space between the words.",
+        "answer": "space"
+      },
+      {
+        "text": "The room has a lot of open space.",
+        "answer": "space"
+      }
+    ]
   },
   {
     "word": "Spain",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My teacher visited Spain last summer.",
+        "answer": "Spain"
+      },
+      {
+        "text": "Spain is famous for football.",
+        "answer": "Spain"
+      },
+      {
+        "text": "They want to travel around Spain next year.",
+        "answer": "Spain"
+      }
+    ]
   },
   {
     "word": "special",
     "cefr": "A1",
     "frequency": 50,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Today is a special day for our family.",
+        "answer": "special"
+      },
+      {
+        "text": "She wore a special dress to the party.",
+        "answer": "special"
+      },
+      {
+        "text": "This cake is special because my father made it.",
+        "answer": "special"
+      }
+    ]
   },
   {
     "word": "sport",
     "cefr": "A1",
     "frequency": 54,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Football is my favourite sport.",
+        "answer": "sport"
+      },
+      {
+        "text": "We learned a new sport in PE class.",
+        "answer": "sport"
+      },
+      {
+        "text": "He enjoys watching sport on TV.",
+        "answer": "sport"
+      }
+    ]
   },
   {
     "word": "statement",
     "cefr": "A1",
     "frequency": 3,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The teacher wrote a statement on the board.",
+        "answer": "statement"
+      },
+      {
+        "text": "Please read the statement carefully.",
+        "answer": "statement"
+      },
+      {
+        "text": "Her statement was short and clear.",
+        "answer": "statement"
+      }
+    ]
   },
   {
     "word": "station",
     "cefr": "A1",
     "frequency": 6,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The station is near my home.",
+        "answer": "station"
+      },
+      {
+        "text": "We waited at the station for ten minutes.",
+        "answer": "station"
+      },
+      {
+        "text": "Please meet me outside the station.",
+        "answer": "station"
+      }
+    ]
   },
   {
     "word": "story",
     "cefr": "A1",
     "frequency": 17,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My grandfather told me a funny story.",
+        "answer": "story"
+      },
+      {
+        "text": "We read a story in English class.",
+        "answer": "story"
+      },
+      {
+        "text": "She wrote a short story about a cat.",
+        "answer": "story"
+      }
+    ]
   },
   {
     "word": "street",
