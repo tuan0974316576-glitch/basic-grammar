@@ -7586,6 +7586,7 @@ function assignSentenceForCurrentVocab() {
 
     currentVocab.sentenceIndex = selectedIndex;
     applySelectedSentenceToCurrentVocab(currentVocab.sents[selectedIndex]);
+    console.log(`[Sentence Debug] ${modeKey.toUpperCase()} ${levelKey} ${wordId} -> S${selectedIndex + 1}`);
     console.log(`[Sentence Progress] ${modeKey}/${levelKey}/${wordId} -> sentence ${selectedIndex + 1}/${sentenceCount}`);
 }
 
