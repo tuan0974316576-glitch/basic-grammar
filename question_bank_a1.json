@@ -3752,175 +3752,552 @@
     "word": "improve",
     "cefr": "A1",
     "frequency": 18,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Reading every day can improve your English.",
+        "answer": "improve"
+      },
+      {
+        "text": "She wants to improve her drawing skills.",
+        "answer": "improve"
+      },
+      {
+        "text": "This app can help students improve quickly.",
+        "answer": "improve"
+      }
+    ]
   },
   {
     "word": "in front of",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Please wait in front of the school gate.",
+        "answer": "in front of"
+      },
+      {
+        "text": "The bus stop is in front of the bank.",
+        "answer": "in front of"
+      },
+      {
+        "text": "He stood in front of the class and spoke.",
+        "answer": "in front of"
+      }
+    ]
   },
   {
     "word": "information",
     "cefr": "A1",
     "frequency": 70,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "You can find more information on the website.",
+        "answer": "information"
+      },
+      {
+        "text": "The teacher gave us useful information.",
+        "answer": "information"
+      },
+      {
+        "text": "Please ask at the desk for information.",
+        "answer": "information"
+      }
+    ]
   },
   {
     "word": "interest",
     "cefr": "A1",
     "frequency": 64,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Music is one of my main interests.",
+        "answer": "interest"
+      },
+      {
+        "text": "The story caught my interest right away.",
+        "answer": "interest"
+      },
+      {
+        "text": "She has a strong interest in science.",
+        "answer": "interest"
+      }
+    ]
   },
   {
     "word": "internet",
     "cefr": "A1",
     "frequency": 10,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I use the internet to do my homework.",
+        "answer": "internet"
+      },
+      {
+        "text": "The internet is slow today.",
+        "answer": "internet"
+      },
+      {
+        "text": "Many people shop on the internet now.",
+        "answer": "internet"
+      }
+    ]
   },
   {
     "word": "interview",
     "cefr": "A1",
     "frequency": 53,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "She has a job interview tomorrow.",
+        "answer": "interview"
+      },
+      {
+        "text": "The reporter did an interview with the singer.",
+        "answer": "interview"
+      },
+      {
+        "text": "He felt nervous before the interview.",
+        "answer": "interview"
+      }
+    ]
   },
   {
     "word": "introduce",
     "cefr": "A1",
     "frequency": 7,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Let me introduce my new classmate.",
+        "answer": "introduce"
+      },
+      {
+        "text": "The host will introduce the speaker first.",
+        "answer": "introduce"
+      },
+      {
+        "text": "She introduced herself to the group.",
+        "answer": "introduced"
+      }
+    ]
   },
   {
     "word": "island",
     "cefr": "A1",
     "frequency": 8,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We took a boat to the small island.",
+        "answer": "island"
+      },
+      {
+        "text": "The island is famous for its beaches.",
+        "answer": "island"
+      },
+      {
+        "text": "They spent the weekend on an island.",
+        "answer": "island"
+      }
+    ]
   },
   {
     "word": "Italy",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My aunt travelled to Italy last summer.",
+        "answer": "Italy"
+      },
+      {
+        "text": "Italy is famous for pizza and pasta.",
+        "answer": "Italy"
+      },
+      {
+        "text": "They dream of visiting Italy one day.",
+        "answer": "Italy"
+      }
+    ]
   },
   {
     "word": "jacket",
     "cefr": "A1",
     "frequency": 2,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Please wear your jacket before you go out.",
+        "answer": "jacket"
+      },
+      {
+        "text": "His jacket is hanging by the door.",
+        "answer": "jacket"
+      },
+      {
+        "text": "She bought a warm jacket for winter.",
+        "answer": "jacket"
+      }
+    ]
   },
   {
     "word": "January",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "School starts again in January.",
+        "answer": "January"
+      },
+      {
+        "text": "My birthday is in January.",
+        "answer": "January"
+      },
+      {
+        "text": "The weather is cool in January.",
+        "answer": "January"
+      }
+    ]
   },
   {
     "word": "join",
     "cefr": "A1",
     "frequency": 19,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Do you want to join our basketball team?",
+        "answer": "join"
+      },
+      {
+        "text": "She joined the art club last week.",
+        "answer": "joined"
+      },
+      {
+        "text": "Many students joined the school event.",
+        "answer": "joined"
+      }
+    ]
   },
   {
     "word": "Jordan",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My friend moved to Jordan with his family.",
+        "answer": "Jordan"
+      },
+      {
+        "text": "Jordan is in the Middle East.",
+        "answer": "Jordan"
+      },
+      {
+        "text": "They want to visit Jordan next year.",
+        "answer": "Jordan"
+      }
+    ]
   },
   {
     "word": "journey",
     "cefr": "A1",
     "frequency": 5,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The train journey was long but comfortable.",
+        "answer": "journey"
+      },
+      {
+        "text": "We started our journey early in the morning.",
+        "answer": "journey"
+      },
+      {
+        "text": "The journey to school takes thirty minutes.",
+        "answer": "journey"
+      }
+    ]
   },
   {
     "word": "juice",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Would you like some orange juice?",
+        "answer": "juice"
+      },
+      {
+        "text": "She poured apple juice into a glass.",
+        "answer": "juice"
+      },
+      {
+        "text": "The children drank cold juice after the game.",
+        "answer": "juice"
+      }
+    ]
   },
   {
     "word": "July",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We will travel in July.",
+        "answer": "July"
+      },
+      {
+        "text": "July is one of the hottest months here.",
+        "answer": "July"
+      },
+      {
+        "text": "My cousin is getting married in July.",
+        "answer": "July"
+      }
+    ]
   },
   {
     "word": "June",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The school term ends in June.",
+        "answer": "June"
+      },
+      {
+        "text": "We go swimming a lot in June.",
+        "answer": "June"
+      },
+      {
+        "text": "Her birthday party is in June.",
+        "answer": "June"
+      }
+    ]
   },
   {
     "word": "Kai Tak",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We visited the sports park in Kai Tak.",
+        "answer": "Kai Tak"
+      },
+      {
+        "text": "My uncle lives near Kai Tak.",
+        "answer": "Kai Tak"
+      },
+      {
+        "text": "Kai Tak is changing very quickly.",
+        "answer": "Kai Tak"
+      }
+    ]
   },
   {
     "word": "Kennedy Town",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We had dinner in Kennedy Town last night.",
+        "answer": "Kennedy Town"
+      },
+      {
+        "text": "My friend lives in Kennedy Town.",
+        "answer": "Kennedy Town"
+      },
+      {
+        "text": "There are many caf?s in Kennedy Town.",
+        "answer": "Kennedy Town"
+      }
+    ]
   },
   {
     "word": "kitchen",
     "cefr": "A1",
     "frequency": 32,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My mother is cooking in the kitchen.",
+        "answer": "kitchen"
+      },
+      {
+        "text": "The kitchen is next to the dining room.",
+        "answer": "kitchen"
+      },
+      {
+        "text": "Please put the cups back in the kitchen.",
+        "answer": "kitchen"
+      }
+    ]
   },
   {
     "word": "Kowloon Tong",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We changed to another line at Kowloon Tong.",
+        "answer": "Kowloon Tong"
+      },
+      {
+        "text": "My school is near Kowloon Tong.",
+        "answer": "Kowloon Tong"
+      },
+      {
+        "text": "Kowloon Tong is busy in the morning.",
+        "answer": "Kowloon Tong"
+      }
+    ]
   },
   {
     "word": "Lamma Island",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We spent the weekend on Lamma Island.",
+        "answer": "Lamma Island"
+      },
+      {
+        "text": "Lamma Island is famous for seafood.",
+        "answer": "Lamma Island"
+      },
+      {
+        "text": "They took a ferry to Lamma Island.",
+        "answer": "Lamma Island"
+      }
+    ]
   },
   {
     "word": "Lantau Island",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The airport is on Lantau Island.",
+        "answer": "Lantau Island"
+      },
+      {
+        "text": "We visited a beach on Lantau Island.",
+        "answer": "Lantau Island"
+      },
+      {
+        "text": "Lantau Island is very large.",
+        "answer": "Lantau Island"
+      }
+    ]
   },
   {
     "word": "laugh",
     "cefr": "A1",
     "frequency": 5,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The joke made everyone laugh.",
+        "answer": "laugh"
+      },
+      {
+        "text": "I could hear the children laugh outside.",
+        "answer": "laugh"
+      },
+      {
+        "text": "She started to laugh when she saw the photo.",
+        "answer": "laugh"
+      }
+    ]
   },
   {
     "word": "lesson",
     "cefr": "A1",
     "frequency": 20,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Our English lesson starts at nine.",
+        "answer": "lesson"
+      },
+      {
+        "text": "The lesson was interesting today.",
+        "answer": "lesson"
+      },
+      {
+        "text": "I learned a lot from the swimming lesson.",
+        "answer": "lesson"
+      }
+    ]
   },
   {
     "word": "letter",
     "cefr": "A1",
     "frequency": 28,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I wrote a letter to my grandmother.",
+        "answer": "letter"
+      },
+      {
+        "text": "There is a letter on the table for you.",
+        "answer": "letter"
+      },
+      {
+        "text": "The teacher asked us to circle the first letter.",
+        "answer": "letter"
+      }
+    ]
   },
   {
     "word": "library",
     "cefr": "A1",
     "frequency": 27,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We borrowed three books from the library.",
+        "answer": "library"
+      },
+      {
+        "text": "Please keep quiet in the library.",
+        "answer": "library"
+      },
+      {
+        "text": "The public library closes at eight.",
+        "answer": "library"
+      }
+    ]
   },
   {
     "word": "lion",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The lion was sleeping in the zoo.",
+        "answer": "lion"
+      },
+      {
+        "text": "We heard the lion roar loudly.",
+        "answer": "lion"
+      },
+      {
+        "text": "The little boy drew a lion in art class.",
+        "answer": "lion"
+      }
+    ]
   },
   {
     "word": "Lion Rock",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We could see Lion Rock from the bus.",
+        "answer": "Lion Rock"
+      },
+      {
+        "text": "Lion Rock is one of Hong Kong?s famous landmarks.",
+        "answer": "Lion Rock"
+      },
+      {
+        "text": "My father likes hiking near Lion Rock.",
+        "answer": "Lion Rock"
+      }
+    ]
   },
   {
     "word": "list",
