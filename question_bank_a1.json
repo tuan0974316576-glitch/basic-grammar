@@ -5234,295 +5234,932 @@
     "word": "online",
     "cefr": "A1",
     "frequency": 58,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I bought the book online yesterday.",
+        "answer": "online"
+      },
+      {
+        "text": "Many students study online now.",
+        "answer": "online"
+      },
+      {
+        "text": "She ordered lunch online during the break.",
+        "answer": "online"
+      }
+    ]
   },
   {
     "word": "opinion",
     "cefr": "A1",
     "frequency": 7,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "What is your opinion on this idea?",
+        "answer": "opinion"
+      },
+      {
+        "text": "In my opinion, the blue one looks better.",
+        "answer": "opinion"
+      },
+      {
+        "text": "Everyone shared an opinion in class.",
+        "answer": "opinion"
+      }
+    ]
   },
   {
     "word": "opposite",
     "cefr": "A1",
     "frequency": 2,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The bank is opposite the supermarket.",
+        "answer": "opposite"
+      },
+      {
+        "text": "She sat on the seat opposite mine.",
+        "answer": "opposite"
+      },
+      {
+        "text": "Our classroom is opposite the library.",
+        "answer": "opposite"
+      }
+    ]
   },
   {
     "word": "opposite",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The bank is opposite the supermarket.",
+        "answer": "opposite"
+      },
+      {
+        "text": "She sat on the seat opposite mine.",
+        "answer": "opposite"
+      },
+      {
+        "text": "Our classroom is opposite the library.",
+        "answer": "opposite"
+      }
+    ]
   },
   {
     "word": "orange",
     "cefr": "A1",
     "frequency": 2,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I ate an orange after lunch.",
+        "answer": "orange"
+      },
+      {
+        "text": "Her bag is bright orange.",
+        "answer": "orange"
+      },
+      {
+        "text": "Would you like some orange juice?",
+        "answer": "orange"
+      }
+    ]
   },
   {
     "word": "order",
     "cefr": "A1",
     "frequency": 17,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I would like to order a sandwich.",
+        "answer": "order"
+      },
+      {
+        "text": "The books are in alphabetical order.",
+        "answer": "order"
+      },
+      {
+        "text": "She placed an order on the website.",
+        "answer": "order"
+      }
+    ]
   },
   {
     "word": "pair",
     "cefr": "A1",
     "frequency": 5,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I bought a new pair of shoes.",
+        "answer": "pair"
+      },
+      {
+        "text": "This pair of socks is clean.",
+        "answer": "pair"
+      },
+      {
+        "text": "She found a matching pair of earrings.",
+        "answer": "pair"
+      }
+    ]
   },
   {
     "word": "panda",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The panda was eating bamboo in the zoo.",
+        "answer": "panda"
+      },
+      {
+        "text": "My little brother loves pandas.",
+        "answer": "panda"
+      },
+      {
+        "text": "We saw a giant panda on TV.",
+        "answer": "panda"
+      }
+    ]
   },
   {
     "word": "partner",
     "cefr": "A1",
     "frequency": 7,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Please talk to your partner about the question.",
+        "answer": "partner"
+      },
+      {
+        "text": "My project partner is absent today.",
+        "answer": "partner"
+      },
+      {
+        "text": "She worked with her partner in science class.",
+        "answer": "partner"
+      }
+    ]
   },
   {
     "word": "party",
     "cefr": "A1",
     "frequency": 5,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We had a birthday party on Saturday.",
+        "answer": "party"
+      },
+      {
+        "text": "Everyone danced at the party.",
+        "answer": "party"
+      },
+      {
+        "text": "She invited me to her house party.",
+        "answer": "party"
+      }
+    ]
   },
   {
     "word": "passport",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Do not forget your passport at the airport.",
+        "answer": "passport"
+      },
+      {
+        "text": "My passport is in the drawer.",
+        "answer": "passport"
+      },
+      {
+        "text": "He checked his passport before the flight.",
+        "answer": "passport"
+      }
+    ]
   },
   {
     "word": "pencil",
     "cefr": "A1",
     "frequency": 3,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Please use a pencil to do the exercise.",
+        "answer": "pencil"
+      },
+      {
+        "text": "My pencil is on the floor.",
+        "answer": "pencil"
+      },
+      {
+        "text": "She sharpened her pencil before class.",
+        "answer": "pencil"
+      }
+    ]
   },
   {
     "word": "people",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Many people take the train every day.",
+        "answer": "people"
+      },
+      {
+        "text": "There were many people at the concert.",
+        "answer": "people"
+      },
+      {
+        "text": "People were waiting outside the shop.",
+        "answer": "People"
+      }
+    ]
   },
   {
     "word": "pepper",
     "cefr": "A1",
     "frequency": 2,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Please add some pepper to the soup.",
+        "answer": "pepper"
+      },
+      {
+        "text": "There is black pepper on the table.",
+        "answer": "pepper"
+      },
+      {
+        "text": "My father likes eggs with pepper.",
+        "answer": "pepper"
+      }
+    ]
   },
   {
     "word": "perfect",
     "cefr": "A1",
     "frequency": 13,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "This weather is perfect for a picnic.",
+        "answer": "perfect"
+      },
+      {
+        "text": "Her answer was perfect.",
+        "answer": "perfect"
+      },
+      {
+        "text": "It was a perfect day for a walk.",
+        "answer": "perfect"
+      }
+    ]
   },
   {
     "word": "period",
     "cefr": "A1",
     "frequency": 6,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The lesson is in the second period.",
+        "answer": "period"
+      },
+      {
+        "text": "We had a short rest between each period.",
+        "answer": "period"
+      },
+      {
+        "text": "Math is my favourite period of the day.",
+        "answer": "period"
+      }
+    ]
   },
   {
     "word": "personal",
     "cefr": "A1",
     "frequency": 14,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "That is my personal opinion.",
+        "answer": "personal"
+      },
+      {
+        "text": "Please keep your personal information safe.",
+        "answer": "personal"
+      },
+      {
+        "text": "He has a personal reason for leaving early.",
+        "answer": "personal"
+      }
+    ]
   },
   {
     "word": "photo",
     "cefr": "A1",
     "frequency": 22,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We took a photo in front of the tower.",
+        "answer": "photo"
+      },
+      {
+        "text": "Can you send me the photo later?",
+        "answer": "photo"
+      },
+      {
+        "text": "This old photo shows my grandparents.",
+        "answer": "photo"
+      }
+    ]
   },
   {
     "word": "phrase",
     "cefr": "A1",
     "frequency": 2,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Please copy this phrase into your notebook.",
+        "answer": "phrase"
+      },
+      {
+        "text": "The teacher explained the phrase carefully.",
+        "answer": "phrase"
+      },
+      {
+        "text": "I do not understand this English phrase.",
+        "answer": "phrase"
+      }
+    ]
   },
   {
     "word": "piano",
     "cefr": "A1",
     "frequency": 12,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My sister plays the piano every evening.",
+        "answer": "piano"
+      },
+      {
+        "text": "There is a black piano in the hall.",
+        "answer": "piano"
+      },
+      {
+        "text": "He is learning the piano at school.",
+        "answer": "piano"
+      }
+    ]
   },
   {
     "word": "piece",
     "cefr": "A1",
     "frequency": 17,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Would you like another piece of cake?",
+        "answer": "piece"
+      },
+      {
+        "text": "She found a piece of paper on the floor.",
+        "answer": "piece"
+      },
+      {
+        "text": "This piece of music is very calm.",
+        "answer": "piece"
+      }
+    ]
   },
   {
     "word": "plan",
     "cefr": "A1",
     "frequency": 18,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We need a plan for the project.",
+        "answer": "plan"
+      },
+      {
+        "text": "My parents made a plan for the trip.",
+        "answer": "plan"
+      },
+      {
+        "text": "That sounds like a good plan.",
+        "answer": "plan"
+      }
+    ]
   },
   {
     "word": "plane",
     "cefr": "A1",
     "frequency": 2,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The plane landed safely in Hong Kong.",
+        "answer": "plane"
+      },
+      {
+        "text": "We watched the plane fly over the sea.",
+        "answer": "plane"
+      },
+      {
+        "text": "My uncle travels by plane for work.",
+        "answer": "plane"
+      }
+    ]
   },
   {
     "word": "player",
     "cefr": "A1",
     "frequency": 26,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The football player scored a goal.",
+        "answer": "player"
+      },
+      {
+        "text": "She is the youngest player on the team.",
+        "answer": "player"
+      },
+      {
+        "text": "Each player needs to wear a badge.",
+        "answer": "player"
+      }
+    ]
   },
   {
     "word": "pool",
     "cefr": "A1",
     "frequency": 23,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The children are swimming in the pool.",
+        "answer": "pool"
+      },
+      {
+        "text": "There is a small pool behind the hotel.",
+        "answer": "pool"
+      },
+      {
+        "text": "My brother jumped into the pool.",
+        "answer": "pool"
+      }
+    ]
   },
   {
     "word": "popular",
     "cefr": "A1",
     "frequency": 40,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Bubble tea is popular with students.",
+        "answer": "popular"
+      },
+      {
+        "text": "This singer is very popular in Asia.",
+        "answer": "popular"
+      },
+      {
+        "text": "The park is a popular place for families.",
+        "answer": "popular"
+      }
+    ]
   },
   {
     "word": "possible",
     "cefr": "A1",
     "frequency": 28,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Is it possible to finish today?",
+        "answer": "possible"
+      },
+      {
+        "text": "Please come as early as possible.",
+        "answer": "possible"
+      },
+      {
+        "text": "It is not possible to open this door.",
+        "answer": "possible"
+      }
+    ]
   },
   {
     "word": "post",
     "cefr": "A1",
     "frequency": 53,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I will post the letter after school.",
+        "answer": "post"
+      },
+      {
+        "text": "She wrote a short post online.",
+        "answer": "post"
+      },
+      {
+        "text": "There is a lamp post near the crossing.",
+        "answer": "post"
+      }
+    ]
   },
   {
     "word": "potato",
     "cefr": "A1",
     "frequency": 7,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We had potato soup for lunch.",
+        "answer": "potato"
+      },
+      {
+        "text": "He cut the potato into small pieces.",
+        "answer": "potato"
+      },
+      {
+        "text": "There is one potato left in the kitchen.",
+        "answer": "potato"
+      }
+    ]
   },
   {
     "word": "pound",
     "cefr": "A1",
     "frequency": 2,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "This cake costs two pounds.",
+        "answer": "pounds"
+      },
+      {
+        "text": "The dog can hear that sound from a pound away.",
+        "answer": "pound"
+      },
+      {
+        "text": "She paid one pound for the postcard.",
+        "answer": "pound"
+      }
+    ]
   },
   {
     "word": "practice",
     "cefr": "A1",
     "frequency": 19,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Football practice starts at four o clock.",
+        "answer": "practice"
+      },
+      {
+        "text": "You need more practice to improve.",
+        "answer": "practice"
+      },
+      {
+        "text": "The band had practice after school.",
+        "answer": "practice"
+      }
+    ]
   },
   {
     "word": "practise",
     "cefr": "A1",
     "frequency": 4,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I practise the piano every day.",
+        "answer": "practise"
+      },
+      {
+        "text": "She wants to practise her English speaking.",
+        "answer": "practise"
+      },
+      {
+        "text": "We practise before the match.",
+        "answer": "practise"
+      }
+    ]
   },
   {
     "word": "prefer",
     "cefr": "A1",
     "frequency": 5,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I prefer tea to coffee.",
+        "answer": "prefer"
+      },
+      {
+        "text": "She prefers to travel by train.",
+        "answer": "prefers"
+      },
+      {
+        "text": "Do you prefer summer or winter?",
+        "answer": "prefer"
+      }
+    ]
   },
   {
     "word": "prepare",
     "cefr": "A1",
     "frequency": 12,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Please prepare your books before class.",
+        "answer": "prepare"
+      },
+      {
+        "text": "We need to prepare for the test.",
+        "answer": "prepare"
+      },
+      {
+        "text": "My mother is preparing dinner now.",
+        "answer": "preparing"
+      }
+    ]
   },
   {
     "word": "pretty",
     "cefr": "A1",
     "frequency": 13,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The flower is very pretty.",
+        "answer": "pretty"
+      },
+      {
+        "text": "She wore a pretty pink dress.",
+        "answer": "pretty"
+      },
+      {
+        "text": "The park looks pretty in spring.",
+        "answer": "pretty"
+      }
+    ]
   },
   {
     "word": "Prince Edward",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We got off the train at Prince Edward.",
+        "answer": "Prince Edward"
+      },
+      {
+        "text": "My cousin lives near Prince Edward.",
+        "answer": "Prince Edward"
+      },
+      {
+        "text": "Prince Edward is busy at lunchtime.",
+        "answer": "Prince Edward"
+      }
+    ]
   },
   {
     "word": "product",
     "cefr": "A1",
     "frequency": 35,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "This product is safe for children.",
+        "answer": "product"
+      },
+      {
+        "text": "The company launched a new product.",
+        "answer": "product"
+      },
+      {
+        "text": "I read the product label carefully.",
+        "answer": "product"
+      }
+    ]
   },
   {
     "word": "programme",
     "cefr": "A1",
     "frequency": 8,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I watched a science programme on TV.",
+        "answer": "programme"
+      },
+      {
+        "text": "The school printed the concert programme.",
+        "answer": "programme"
+      },
+      {
+        "text": "This radio programme starts at nine.",
+        "answer": "programme"
+      }
+    ]
   },
   {
     "word": "purple",
     "cefr": "A1",
     "frequency": 2,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "She wore a purple scarf to school.",
+        "answer": "purple"
+      },
+      {
+        "text": "The sky turned purple at sunset.",
+        "answer": "purple"
+      },
+      {
+        "text": "Please use the purple marker.",
+        "answer": "purple"
+      }
+    ]
   },
   {
     "word": "Quarry Bay",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My aunt works in Quarry Bay.",
+        "answer": "Quarry Bay"
+      },
+      {
+        "text": "We changed buses in Quarry Bay.",
+        "answer": "Quarry Bay"
+      },
+      {
+        "text": "There are many offices in Quarry Bay.",
+        "answer": "Quarry Bay"
+      }
+    ]
   },
   {
     "word": "quick",
     "cefr": "A1",
     "frequency": 7,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We need a quick answer.",
+        "answer": "quick"
+      },
+      {
+        "text": "He took a quick shower before dinner.",
+        "answer": "quick"
+      },
+      {
+        "text": "That was a quick trip to the shop.",
+        "answer": "quick"
+      }
+    ]
   },
   {
     "word": "quickly",
     "cefr": "A1",
     "frequency": 11,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Please finish your work quickly.",
+        "answer": "quickly"
+      },
+      {
+        "text": "The bus moved quickly through the tunnel.",
+        "answer": "quickly"
+      },
+      {
+        "text": "She quickly put the book into her bag.",
+        "answer": "quickly"
+      }
+    ]
   },
   {
     "word": "quiet",
     "cefr": "A1",
     "frequency": 20,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Please be quiet in the library.",
+        "answer": "quiet"
+      },
+      {
+        "text": "The street is very quiet at night.",
+        "answer": "quiet"
+      },
+      {
+        "text": "We found a quiet place to study.",
+        "answer": "quiet"
+      }
+    ]
   },
   {
     "word": "Race course",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We walked past the Race course on Sunday.",
+        "answer": "Race course"
+      },
+      {
+        "text": "My uncle works near the Race course.",
+        "answer": "Race course"
+      },
+      {
+        "text": "There was a big event at the Race course.",
+        "answer": "Race course"
+      }
+    ]
   },
   {
     "word": "radio",
     "cefr": "A1",
     "frequency": 10,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My grandfather listens to the radio every morning.",
+        "answer": "radio"
+      },
+      {
+        "text": "The news came on the radio at seven.",
+        "answer": "radio"
+      },
+      {
+        "text": "She turned off the radio before class.",
+        "answer": "radio"
+      }
+    ]
   },
   {
     "word": "reader",
     "cefr": "A1",
     "frequency": 25,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "She is a careful reader.",
+        "answer": "reader"
+      },
+      {
+        "text": "Every reader enjoyed the story.",
+        "answer": "reader"
+      },
+      {
+        "text": "The reader wrote a letter to the newspaper.",
+        "answer": "reader"
+      }
+    ]
   },
   {
     "word": "ready",
     "cefr": "A1",
     "frequency": 11,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Are you ready to go now?",
+        "answer": "ready"
+      },
+      {
+        "text": "Dinner is ready on the table.",
+        "answer": "ready"
+      },
+      {
+        "text": "We are ready for the school trip.",
+        "answer": "ready"
+      }
+    ]
   },
   {
     "word": "real",
     "cefr": "A1",
     "frequency": 44,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Is that story real?",
+        "answer": "real"
+      },
+      {
+        "text": "The movie is based on a real event.",
+        "answer": "real"
+      },
+      {
+        "text": "She showed me a real gold ring.",
+        "answer": "real"
+      }
+    ]
   },
   {
     "word": "reason",
     "cefr": "A1",
     "frequency": 25,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "What is the reason for your choice?",
+        "answer": "reason"
+      },
+      {
+        "text": "She had a good reason to leave early.",
+        "answer": "reason"
+      },
+      {
+        "text": "Tell me the reason why you were late.",
+        "answer": "reason"
+      }
+    ]
   },
   {
     "word": "red",
