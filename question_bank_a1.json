@@ -4303,295 +4303,932 @@
     "word": "list",
     "cefr": "A1",
     "frequency": 12,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Please write your name on the list.",
+        "answer": "list"
+      },
+      {
+        "text": "I made a shopping list before going out.",
+        "answer": "list"
+      },
+      {
+        "text": "Her name is first on the class list.",
+        "answer": "list"
+      }
+    ]
   },
   {
     "word": "listen",
     "cefr": "A1",
     "frequency": 34,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Please listen to the teacher carefully.",
+        "answer": "listen"
+      },
+      {
+        "text": "I like to listen to music at night.",
+        "answer": "listen"
+      },
+      {
+        "text": "Listen to me for one minute.",
+        "answer": "Listen"
+      }
+    ]
   },
   {
     "word": "longer",
     "cefr": "A1",
     "frequency": 16,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "This road is longer than that one.",
+        "answer": "longer"
+      },
+      {
+        "text": "I need a longer ruler for this task.",
+        "answer": "longer"
+      },
+      {
+        "text": "The movie was longer than I expected.",
+        "answer": "longer"
+      }
+    ]
   },
   {
     "word": "LOUAS Park",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We walked through LOUAS Park after dinner.",
+        "answer": "LOUAS Park"
+      },
+      {
+        "text": "My friend met me outside LOUAS Park.",
+        "answer": "LOUAS Park"
+      },
+      {
+        "text": "There were many families in LOUAS Park yesterday.",
+        "answer": "LOUAS Park"
+      }
+    ]
   },
   {
     "word": "lunch",
     "cefr": "A1",
     "frequency": 7,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We had noodles for lunch.",
+        "answer": "lunch"
+      },
+      {
+        "text": "I forgot to bring my lunch today.",
+        "answer": "lunch"
+      },
+      {
+        "text": "Lunch starts at twelve thirty.",
+        "answer": "Lunch"
+      }
+    ]
   },
   {
     "word": "M+ Museum",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Our class visited the M+ Museum last week.",
+        "answer": "M+ Museum"
+      },
+      {
+        "text": "There is a new show at the M+ Museum.",
+        "answer": "M+ Museum"
+      },
+      {
+        "text": "My brother wants to go to the M+ Museum on Sunday.",
+        "answer": "M+ Museum"
+      }
+    ]
   },
   {
     "word": "machine",
     "cefr": "A1",
     "frequency": 15,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "This washing machine is very quiet.",
+        "answer": "machine"
+      },
+      {
+        "text": "The machine stopped working suddenly.",
+        "answer": "machine"
+      },
+      {
+        "text": "He learned how to use the coffee machine.",
+        "answer": "machine"
+      }
+    ]
   },
   {
     "word": "magazine",
     "cefr": "A1",
     "frequency": 28,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "She bought a fashion magazine at the station.",
+        "answer": "magazine"
+      },
+      {
+        "text": "I read a sports magazine on the bus.",
+        "answer": "magazine"
+      },
+      {
+        "text": "There is an interesting article in this magazine.",
+        "answer": "magazine"
+      }
+    ]
   },
   {
     "word": "Mai Po",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We saw many birds in Mai Po.",
+        "answer": "Mai Po"
+      },
+      {
+        "text": "My teacher took us to Mai Po for a school trip.",
+        "answer": "Mai Po"
+      },
+      {
+        "text": "Mai Po is famous for its wetlands.",
+        "answer": "Mai Po"
+      }
+    ]
   },
   {
     "word": "main",
     "cefr": "A1",
     "frequency": 23,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The main door is still open.",
+        "answer": "main"
+      },
+      {
+        "text": "This is the main reason for the delay.",
+        "answer": "main"
+      },
+      {
+        "text": "The shop is on the main road.",
+        "answer": "main"
+      }
+    ]
   },
   {
     "word": "Malaysia",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My cousins live in Malaysia.",
+        "answer": "Malaysia"
+      },
+      {
+        "text": "Malaysia is known for its delicious food.",
+        "answer": "Malaysia"
+      },
+      {
+        "text": "They flew to Malaysia during the holiday.",
+        "answer": "Malaysia"
+      }
+    ]
   },
   {
     "word": "March",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The school picnic will be in March.",
+        "answer": "March"
+      },
+      {
+        "text": "March is often warm and sunny here.",
+        "answer": "March"
+      },
+      {
+        "text": "My uncle was born in March.",
+        "answer": "March"
+      }
+    ]
   },
   {
     "word": "match",
     "cefr": "A1",
     "frequency": 6,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We watched a football match on TV.",
+        "answer": "match"
+      },
+      {
+        "text": "This shirt does not match my shoes.",
+        "answer": "match"
+      },
+      {
+        "text": "The final match starts at eight tonight.",
+        "answer": "match"
+      }
+    ]
   },
   {
     "word": "May",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My exams start in May.",
+        "answer": "May"
+      },
+      {
+        "text": "The weather becomes hotter in May.",
+        "answer": "May"
+      },
+      {
+        "text": "Her birthday is in early May.",
+        "answer": "May"
+      }
+    ]
   },
   {
     "word": "meal",
     "cefr": "A1",
     "frequency": 6,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Breakfast is my favourite meal of the day.",
+        "answer": "meal"
+      },
+      {
+        "text": "We shared a hot meal after the hike.",
+        "answer": "meal"
+      },
+      {
+        "text": "The restaurant serves a cheap set meal.",
+        "answer": "meal"
+      }
+    ]
   },
   {
     "word": "meat",
     "cefr": "A1",
     "frequency": 2,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We bought some meat for dinner.",
+        "answer": "meat"
+      },
+      {
+        "text": "This soup has vegetables and meat in it.",
+        "answer": "meat"
+      },
+      {
+        "text": "He does not eat much meat.",
+        "answer": "meat"
+      }
+    ]
   },
   {
     "word": "member",
     "cefr": "A1",
     "frequency": 24,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Every member of the team was ready.",
+        "answer": "member"
+      },
+      {
+        "text": "She is a member of the school choir.",
+        "answer": "member"
+      },
+      {
+        "text": "Each club member got a badge.",
+        "answer": "member"
+      }
+    ]
   },
   {
     "word": "menu",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Please look at the menu before ordering.",
+        "answer": "menu"
+      },
+      {
+        "text": "The waiter gave us the menu.",
+        "answer": "menu"
+      },
+      {
+        "text": "There is a new lunch menu today.",
+        "answer": "menu"
+      }
+    ]
   },
   {
     "word": "message",
     "cefr": "A1",
     "frequency": 40,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I left a message for my mother.",
+        "answer": "message"
+      },
+      {
+        "text": "Did you get my message this morning?",
+        "answer": "message"
+      },
+      {
+        "text": "The message on the screen was clear.",
+        "answer": "message"
+      }
+    ]
   },
   {
     "word": "metre",
     "cefr": "A1",
     "frequency": 7,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The table is one metre long.",
+        "answer": "metre"
+      },
+      {
+        "text": "Please stand one metre away from the line.",
+        "answer": "metre"
+      },
+      {
+        "text": "The box is less than a metre wide.",
+        "answer": "metre"
+      }
+    ]
   },
   {
     "word": "midnight",
     "cefr": "A1",
     "frequency": 3,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The party ended at midnight.",
+        "answer": "midnight"
+      },
+      {
+        "text": "I was still awake at midnight.",
+        "answer": "midnight"
+      },
+      {
+        "text": "The train arrived just before midnight.",
+        "answer": "midnight"
+      }
+    ]
   },
   {
     "word": "mile",
     "cefr": "A1",
     "frequency": 3,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "They walked a mile to school.",
+        "answer": "mile"
+      },
+      {
+        "text": "The village is only one mile away.",
+        "answer": "mile"
+      },
+      {
+        "text": "He ran a mile in the sports test.",
+        "answer": "mile"
+      }
+    ]
   },
   {
     "word": "milk",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I drink a glass of milk every morning.",
+        "answer": "milk"
+      },
+      {
+        "text": "Please put the milk back in the fridge.",
+        "answer": "milk"
+      },
+      {
+        "text": "She added milk to her tea.",
+        "answer": "milk"
+      }
+    ]
   },
   {
     "word": "modern",
     "cefr": "A1",
     "frequency": 14,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The library has a modern design.",
+        "answer": "modern"
+      },
+      {
+        "text": "They live in a modern apartment.",
+        "answer": "modern"
+      },
+      {
+        "text": "This shop sells modern furniture.",
+        "answer": "modern"
+      }
+    ]
   },
   {
     "word": "moment",
     "cefr": "A1",
     "frequency": 12,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Please wait a moment.",
+        "answer": "moment"
+      },
+      {
+        "text": "For a moment, I forgot her name.",
+        "answer": "moment"
+      },
+      {
+        "text": "It was a happy moment for the team.",
+        "answer": "moment"
+      }
+    ]
   },
   {
     "word": "Monday",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We have a quiz on Monday.",
+        "answer": "Monday"
+      },
+      {
+        "text": "My piano class is every Monday.",
+        "answer": "Monday"
+      },
+      {
+        "text": "The museum is closed on Monday.",
+        "answer": "Monday"
+      }
+    ]
   },
   {
     "word": "Mong Kok",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We went shopping in Mong Kok yesterday.",
+        "answer": "Mong Kok"
+      },
+      {
+        "text": "Mong Kok is very busy on weekends.",
+        "answer": "Mong Kok"
+      },
+      {
+        "text": "My aunt works in Mong Kok.",
+        "answer": "Mong Kok"
+      }
+    ]
   },
   {
     "word": "mountain",
     "cefr": "A1",
     "frequency": 9,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We climbed a mountain during the holiday.",
+        "answer": "mountain"
+      },
+      {
+        "text": "The mountain was covered with clouds.",
+        "answer": "mountain"
+      },
+      {
+        "text": "There is a small village near the mountain.",
+        "answer": "mountain"
+      }
+    ]
   },
   {
     "word": "movie",
     "cefr": "A1",
     "frequency": 20,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We watched a funny movie last night.",
+        "answer": "movie"
+      },
+      {
+        "text": "That movie was better than I expected.",
+        "answer": "movie"
+      },
+      {
+        "text": "My sister wants to see the new movie.",
+        "answer": "movie"
+      }
+    ]
   },
   {
     "word": "museum",
     "cefr": "A1",
     "frequency": 36,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The museum was full of visitors.",
+        "answer": "museum"
+      },
+      {
+        "text": "We saw old coins in the museum.",
+        "answer": "museum"
+      },
+      {
+        "text": "Our class visited the science museum.",
+        "answer": "museum"
+      }
+    ]
   },
   {
     "word": "music",
     "cefr": "A1",
     "frequency": 17,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I listen to music while doing homework.",
+        "answer": "music"
+      },
+      {
+        "text": "She loves music and plays the piano.",
+        "answer": "music"
+      },
+      {
+        "text": "The room was filled with soft music.",
+        "answer": "music"
+      }
+    ]
   },
   {
     "word": "natural",
     "cefr": "A1",
     "frequency": 11,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "This soap is made from natural ingredients.",
+        "answer": "natural"
+      },
+      {
+        "text": "The park is famous for its natural beauty.",
+        "answer": "natural"
+      },
+      {
+        "text": "Her smile looked very natural.",
+        "answer": "natural"
+      }
+    ]
   },
   {
     "word": "near",
     "cefr": "A1",
     "frequency": 19,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My home is near the station.",
+        "answer": "near"
+      },
+      {
+        "text": "Please sit near the window.",
+        "answer": "near"
+      },
+      {
+        "text": "There is a bakery near our school.",
+        "answer": "near"
+      }
+    ]
   },
   {
     "word": "nearest",
     "cefr": "A1",
     "frequency": 2,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Where is the nearest toilet?",
+        "answer": "nearest"
+      },
+      {
+        "text": "The nearest shop is across the road.",
+        "answer": "nearest"
+      },
+      {
+        "text": "Please take me to the nearest hospital.",
+        "answer": "nearest"
+      }
+    ]
   },
   {
     "word": "news",
     "cefr": "A1",
     "frequency": 26,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Did you hear the news this morning?",
+        "answer": "news"
+      },
+      {
+        "text": "The news was surprising to everyone.",
+        "answer": "news"
+      },
+      {
+        "text": "My father watches the evening news every day.",
+        "answer": "news"
+      }
+    ]
   },
   {
     "word": "newspaper",
     "cefr": "A1",
     "frequency": 13,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My grandfather reads the newspaper every day.",
+        "answer": "newspaper"
+      },
+      {
+        "text": "There was an article about sports in the newspaper.",
+        "answer": "newspaper"
+      },
+      {
+        "text": "She bought a newspaper at the station.",
+        "answer": "newspaper"
+      }
+    ]
   },
   {
     "word": "nobody",
     "cefr": "A1",
     "frequency": 6,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Nobody knew the answer.",
+        "answer": "Nobody"
+      },
+      {
+        "text": "There was nobody in the classroom.",
+        "answer": "nobody"
+      },
+      {
+        "text": "Nobody wants to miss the show.",
+        "answer": "Nobody"
+      }
+    ]
   },
   {
     "word": "north",
     "cefr": "A1",
     "frequency": 3,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The wind is coming from the north.",
+        "answer": "north"
+      },
+      {
+        "text": "The village is in the north of the island.",
+        "answer": "north"
+      },
+      {
+        "text": "Birds fly north in some seasons.",
+        "answer": "north"
+      }
+    ]
   },
   {
     "word": "North Point",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My grandmother lives in North Point.",
+        "answer": "North Point"
+      },
+      {
+        "text": "We had dinner in North Point yesterday.",
+        "answer": "North Point"
+      },
+      {
+        "text": "North Point is easy to reach by MTR.",
+        "answer": "North Point"
+      }
+    ]
   },
   {
     "word": "nose",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My nose is red because of my cold.",
+        "answer": "nose"
+      },
+      {
+        "text": "The dog touched my hand with its nose.",
+        "answer": "nose"
+      },
+      {
+        "text": "She wears glasses on her nose.",
+        "answer": "nose"
+      }
+    ]
   },
   {
     "word": "not",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I am not ready yet.",
+        "answer": "not"
+      },
+      {
+        "text": "This book is not mine.",
+        "answer": "not"
+      },
+      {
+        "text": "He is not at home now.",
+        "answer": "not"
+      }
+    ]
   },
   {
     "word": "November",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The weather is cool in November.",
+        "answer": "November"
+      },
+      {
+        "text": "Our school picnic is in November.",
+        "answer": "November"
+      },
+      {
+        "text": "My aunt was born in November.",
+        "answer": "November"
+      }
+    ]
   },
   {
     "word": "nurse",
     "cefr": "A1",
     "frequency": 14,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The nurse helped the little boy.",
+        "answer": "nurse"
+      },
+      {
+        "text": "My sister wants to be a nurse.",
+        "answer": "nurse"
+      },
+      {
+        "text": "The nurse checked my temperature.",
+        "answer": "nurse"
+      }
+    ]
   },
   {
     "word": "October",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The weather is nice in October.",
+        "answer": "October"
+      },
+      {
+        "text": "Our exam starts in October.",
+        "answer": "October"
+      },
+      {
+        "text": "She will visit us in October.",
+        "answer": "October"
+      }
+    ]
   },
   {
     "word": "okay",
     "cefr": "A1",
     "frequency": 4,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "It is okay to ask for help.",
+        "answer": "okay"
+      },
+      {
+        "text": "Are you feeling okay now?",
+        "answer": "okay"
+      },
+      {
+        "text": "Everything will be okay soon.",
+        "answer": "okay"
+      }
+    ]
   },
   {
     "word": "older",
     "cefr": "A1",
     "frequency": 5,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My brother is two years older than me.",
+        "answer": "older"
+      },
+      {
+        "text": "This building is older than the school.",
+        "answer": "older"
+      },
+      {
+        "text": "She looks older in that photo.",
+        "answer": "older"
+      }
+    ]
   },
   {
     "word": "oldest",
     "cefr": "A1",
     "frequency": 2,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "He is the oldest child in the family.",
+        "answer": "oldest"
+      },
+      {
+        "text": "This is the oldest tree in the park.",
+        "answer": "oldest"
+      },
+      {
+        "text": "My oldest cousin lives in Canada.",
+        "answer": "oldest"
+      }
+    ]
   },
   {
     "word": "Olyampic",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "She dreams of joining the Olyampic team one day.",
+        "answer": "Olyampic"
+      },
+      {
+        "text": "The school held an Olyampic sports event.",
+        "answer": "Olyampic"
+      },
+      {
+        "text": "He watched an Olyampic race on TV.",
+        "answer": "Olyampic"
+      }
+    ]
   },
   {
     "word": "onion",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My mother cut an onion for the soup.",
+        "answer": "onion"
+      },
+      {
+        "text": "There is onion in this salad.",
+        "answer": "onion"
+      },
+      {
+        "text": "He does not like the smell of onion.",
+        "answer": "onion"
+      }
+    ]
   },
   {
     "word": "online",
