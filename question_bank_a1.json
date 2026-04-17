@@ -1548,175 +1548,552 @@
     "word": "coat",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Please wear your coat before you go outside.",
+        "answer": "coat"
+      },
+      {
+        "text": "His coat is hanging behind the door.",
+        "answer": "coat"
+      },
+      {
+        "text": "I bought a new winter coat yesterday.",
+        "answer": "coat"
+      }
+    ]
   },
   {
     "word": "coffee",
     "cefr": "A1",
     "frequency": 3,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My father drinks coffee every morning.",
+        "answer": "coffee"
+      },
+      {
+        "text": "Would you like some coffee or tea?",
+        "answer": "coffee"
+      },
+      {
+        "text": "The smell of fresh coffee filled the room.",
+        "answer": "coffee"
+      }
+    ]
   },
   {
     "word": "college",
     "cefr": "A1",
     "frequency": 8,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My sister is studying at college now.",
+        "answer": "college"
+      },
+      {
+        "text": "He wants to go to college after secondary school.",
+        "answer": "college"
+      },
+      {
+        "text": "The college library is very large.",
+        "answer": "college"
+      }
+    ]
   },
   {
     "word": "colour",
     "cefr": "A1",
     "frequency": 9,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Blue is my favourite colour.",
+        "answer": "colour"
+      },
+      {
+        "text": "What colour is your new bag?",
+        "answer": "colour"
+      },
+      {
+        "text": "This flower has a bright yellow colour.",
+        "answer": "colour"
+      }
+    ]
   },
   {
     "word": "common",
     "cefr": "A1",
     "frequency": 10,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "It is common to take photos here.",
+        "answer": "common"
+      },
+      {
+        "text": "This mistake is very common among students.",
+        "answer": "common"
+      },
+      {
+        "text": "Cold weather is common in winter.",
+        "answer": "common"
+      }
+    ]
   },
   {
     "word": "company",
     "cefr": "A1",
     "frequency": 68,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My uncle works for a large company.",
+        "answer": "company"
+      },
+      {
+        "text": "The company is opening a new office.",
+        "answer": "company"
+      },
+      {
+        "text": "She started her own small company.",
+        "answer": "company"
+      }
+    ]
   },
   {
     "word": "compare",
     "cefr": "A1",
     "frequency": 9,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Please compare these two pictures.",
+        "answer": "compare"
+      },
+      {
+        "text": "We compared the prices in three shops.",
+        "answer": "compared"
+      },
+      {
+        "text": "It is hard to compare the two plans.",
+        "answer": "compare"
+      }
+    ]
   },
   {
     "word": "conversation",
     "cefr": "A1",
     "frequency": 4,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I had a long conversation with my teacher.",
+        "answer": "conversation"
+      },
+      {
+        "text": "Their conversation was about travel.",
+        "answer": "conversation"
+      },
+      {
+        "text": "Please keep your conversation quiet in the library.",
+        "answer": "conversation"
+      }
+    ]
   },
   {
     "word": "corner",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The bookstore is on the corner of the street.",
+        "answer": "corner"
+      },
+      {
+        "text": "She put the chair in the corner of the room.",
+        "answer": "corner"
+      },
+      {
+        "text": "Wait for me at the corner near the bank.",
+        "answer": "corner"
+      }
+    ]
   },
   {
     "word": "correct",
     "cefr": "A1",
     "frequency": 5,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Your answer is correct.",
+        "answer": "correct"
+      },
+      {
+        "text": "Please choose the correct spelling.",
+        "answer": "correct"
+      },
+      {
+        "text": "The teacher checked whether the sentence was correct.",
+        "answer": "correct"
+      }
+    ]
   },
   {
     "word": "corridor",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Please do not run in the corridor.",
+        "answer": "corridor"
+      },
+      {
+        "text": "The students waited in the corridor.",
+        "answer": "corridor"
+      },
+      {
+        "text": "Our classroom is at the end of the corridor.",
+        "answer": "corridor"
+      }
+    ]
   },
   {
     "word": "cost",
     "cefr": "A1",
     "frequency": 31,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "How much does this book cost?",
+        "answer": "cost"
+      },
+      {
+        "text": "The trip will cost more than we expected.",
+        "answer": "cost"
+      },
+      {
+        "text": "Food costs a lot in this area.",
+        "answer": "costs"
+      }
+    ]
   },
   {
     "word": "course",
     "cefr": "A1",
     "frequency": 62,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "She is taking an English course this summer.",
+        "answer": "course"
+      },
+      {
+        "text": "The course lasts for three months.",
+        "answer": "course"
+      },
+      {
+        "text": "I signed up for a swimming course.",
+        "answer": "course"
+      }
+    ]
   },
   {
     "word": "cousin",
     "cefr": "A1",
     "frequency": 3,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My cousin is one year older than me.",
+        "answer": "cousin"
+      },
+      {
+        "text": "We visited our cousin during the holiday.",
+        "answer": "cousin"
+      },
+      {
+        "text": "Her cousin lives in another city.",
+        "answer": "cousin"
+      }
+    ]
   },
   {
     "word": "cow",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The cow is eating grass in the field.",
+        "answer": "cow"
+      },
+      {
+        "text": "We saw a black and white cow on the farm.",
+        "answer": "cow"
+      },
+      {
+        "text": "The farmer fed the cow early in the morning.",
+        "answer": "cow"
+      }
+    ]
   },
   {
     "word": "Croatia",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My teacher travelled to Croatia last year.",
+        "answer": "Croatia"
+      },
+      {
+        "text": "Croatia is a beautiful country by the sea.",
+        "answer": "Croatia"
+      },
+      {
+        "text": "They want to visit Croatia in summer.",
+        "answer": "Croatia"
+      }
+    ]
   },
   {
     "word": "cross",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Please cross the road carefully.",
+        "answer": "cross"
+      },
+      {
+        "text": "We had to cross the bridge to get home.",
+        "answer": "cross"
+      },
+      {
+        "text": "Do not cross the line on the floor.",
+        "answer": "cross"
+      }
+    ]
   },
   {
     "word": "culture",
     "cefr": "A1",
     "frequency": 35,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We learned about Japanese culture in class.",
+        "answer": "culture"
+      },
+      {
+        "text": "Food is an important part of culture.",
+        "answer": "culture"
+      },
+      {
+        "text": "The museum teaches visitors about local culture.",
+        "answer": "culture"
+      }
+    ]
   },
   {
     "word": "cup",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "She poured tea into a cup.",
+        "answer": "cup"
+      },
+      {
+        "text": "My cup is on the kitchen table.",
+        "answer": "cup"
+      },
+      {
+        "text": "He dropped the cup by accident.",
+        "answer": "cup"
+      }
+    ]
   },
   {
     "word": "customer",
     "cefr": "A1",
     "frequency": 35,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The shop assistant smiled at the customer.",
+        "answer": "customer"
+      },
+      {
+        "text": "Each customer must wait in line.",
+        "answer": "customer"
+      },
+      {
+        "text": "The customer asked for a refund.",
+        "answer": "customer"
+      }
+    ]
   },
   {
     "word": "Cyberport",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My brother works in Cyberport.",
+        "answer": "Cyberport"
+      },
+      {
+        "text": "We took a bus to Cyberport.",
+        "answer": "Cyberport"
+      },
+      {
+        "text": "Cyberport has many technology companies.",
+        "answer": "Cyberport"
+      }
+    ]
   },
   {
     "word": "dance",
     "cefr": "A1",
     "frequency": 10,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "They love to dance at parties.",
+        "answer": "dance"
+      },
+      {
+        "text": "We will dance on the stage tonight.",
+        "answer": "dance"
+      },
+      {
+        "text": "She wants to learn how to dance.",
+        "answer": "dance"
+      }
+    ]
   },
   {
     "word": "dancer",
     "cefr": "A1",
     "frequency": 3,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The dancer moved gracefully across the stage.",
+        "answer": "dancer"
+      },
+      {
+        "text": "My sister wants to be a dancer.",
+        "answer": "dancer"
+      },
+      {
+        "text": "The dancer wore a bright costume.",
+        "answer": "dancer"
+      }
+    ]
   },
   {
     "word": "dangerous",
     "cefr": "A1",
     "frequency": 11,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "It is dangerous to swim there.",
+        "answer": "dangerous"
+      },
+      {
+        "text": "That road is dangerous at night.",
+        "answer": "dangerous"
+      },
+      {
+        "text": "Playing with fire can be dangerous.",
+        "answer": "dangerous"
+      }
+    ]
   },
   {
     "word": "December",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My birthday is in December.",
+        "answer": "December"
+      },
+      {
+        "text": "School ends in late December.",
+        "answer": "December"
+      },
+      {
+        "text": "The weather is cool in December.",
+        "answer": "December"
+      }
+    ]
   },
   {
     "word": "decide",
     "cefr": "A1",
     "frequency": 48,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We need to decide before noon.",
+        "answer": "decide"
+      },
+      {
+        "text": "She cannot decide which dress to buy.",
+        "answer": "decide"
+      },
+      {
+        "text": "My parents decided to stay at home.",
+        "answer": "decided"
+      }
+    ]
   },
   {
     "word": "describe",
     "cefr": "A1",
     "frequency": 20,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Can you describe your new teacher?",
+        "answer": "describe"
+      },
+      {
+        "text": "Please describe what happened yesterday.",
+        "answer": "describe"
+      },
+      {
+        "text": "He found it hard to describe the scene.",
+        "answer": "describe"
+      }
+    ]
   },
   {
     "word": "description",
     "cefr": "A1",
     "frequency": 5,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The description of the hotel was accurate.",
+        "answer": "description"
+      },
+      {
+        "text": "Please read the job description carefully.",
+        "answer": "description"
+      },
+      {
+        "text": "Her description of the game was very clear.",
+        "answer": "description"
+      }
+    ]
   },
   {
     "word": "design",
     "cefr": "A1",
     "frequency": 36,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I like the design of this poster.",
+        "answer": "design"
+      },
+      {
+        "text": "She helped design the school website.",
+        "answer": "design"
+      },
+      {
+        "text": "The building has a modern design.",
+        "answer": "design"
+      }
+    ]
   },
   {
     "word": "desk",
