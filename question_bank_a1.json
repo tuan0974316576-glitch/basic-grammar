@@ -100,12 +100,16 @@
     "frequency": 33,
     "sentences": [
       {
-        "text": "The suggestion will be added to the proposal.",
-        "answer": "added"
+        "text": "Please add some sugar to the tea.",
+        "answer": "add"
       },
       {
-        "text": "He adds some e-books onto the database from time to time",
-        "answer": "adds"
+        "text": "I want to add your name to the list.",
+        "answer": "add"
+      },
+      {
+        "text": "Do not add too much salt to the soup.",
+        "answer": "add"
       }
     ]
   },
@@ -113,13 +117,39 @@
     "word": "adjacent to",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Our classroom is adjacent to the library.",
+        "answer": "adjacent to"
+      },
+      {
+        "text": "The lift is adjacent to the main door.",
+        "answer": "adjacent to"
+      },
+      {
+        "text": "The small shop is adjacent to the bank.",
+        "answer": "adjacent to"
+      }
+    ]
   },
   {
     "word": "Admiralty",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My father works in Admiralty.",
+        "answer": "Admiralty"
+      },
+      {
+        "text": "We changed trains at Admiralty this morning.",
+        "answer": "Admiralty"
+      },
+      {
+        "text": "There are many offices in Admiralty.",
+        "answer": "Admiralty"
+      }
+    ]
   },
   {
     "word": "advice",
@@ -410,7 +440,20 @@
     "word": "AsiaWorld-Expo",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The concert will be held at AsiaWorld-Expo.",
+        "answer": "AsiaWorld-Expo"
+      },
+      {
+        "text": "We took the train to AsiaWorld-Expo.",
+        "answer": "AsiaWorld-Expo"
+      },
+      {
+        "text": "Many big events happen at AsiaWorld-Expo.",
+        "answer": "AsiaWorld-Expo"
+      }
+    ]
   },
   {
     "word": "August",
@@ -435,13 +478,39 @@
     "word": "Austin",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We got off at Austin and walked to school.",
+        "answer": "Austin"
+      },
+      {
+        "text": "Austin Station is near my home.",
+        "answer": "Austin"
+      },
+      {
+        "text": "My aunt met us outside Austin yesterday.",
+        "answer": "Austin"
+      }
+    ]
   },
   {
     "word": "Australia",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My cousin moved to Australia last year.",
+        "answer": "Australia"
+      },
+      {
+        "text": "Australia is famous for kangaroos.",
+        "answer": "Australia"
+      },
+      {
+        "text": "We want to visit Australia in summer.",
+        "answer": "Australia"
+      }
+    ]
   },
   {
     "word": "autumn",
@@ -865,7 +934,20 @@
     "word": "bottom",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Your socks are in the bottom drawer.",
+        "answer": "bottom"
+      },
+      {
+        "text": "Write your name at the bottom of the page.",
+        "answer": "bottom"
+      },
+      {
+        "text": "The toy is at the bottom of the box.",
+        "answer": "bottom"
+      }
+    ]
   },
   {
     "word": "box",
@@ -1048,133 +1130,419 @@
     "word": "cake",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "She baked a chocolate cake for my birthday.",
+        "answer": "cake"
+      },
+      {
+        "text": "Would you like another piece of cake?",
+        "answer": "cake"
+      },
+      {
+        "text": "The cake looks beautiful on the table.",
+        "answer": "cake"
+      }
+    ]
   },
   {
     "word": "camera",
     "cefr": "A1",
     "frequency": 10,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Please bring your camera to the park.",
+        "answer": "camera"
+      },
+      {
+        "text": "My brother bought a new camera yesterday.",
+        "answer": "camera"
+      },
+      {
+        "text": "This camera is easy to use.",
+        "answer": "camera"
+      }
+    ]
   },
   {
     "word": "Canada",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My uncle lives in Canada.",
+        "answer": "Canada"
+      },
+      {
+        "text": "Canada has very cold winters.",
+        "answer": "Canada"
+      },
+      {
+        "text": "They flew to Canada for a holiday.",
+        "answer": "Canada"
+      }
+    ]
   },
   {
     "word": "capital",
     "cefr": "A1",
     "frequency": 3,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Bangkok is the capital of Thailand.",
+        "answer": "capital"
+      },
+      {
+        "text": "What is the capital of Japan?",
+        "answer": "capital"
+      },
+      {
+        "text": "The capital city is very busy.",
+        "answer": "capital"
+      }
+    ]
   },
   {
     "word": "career",
     "cefr": "A1",
     "frequency": 20,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "She wants a career in medicine.",
+        "answer": "career"
+      },
+      {
+        "text": "My teacher gave us advice about career planning.",
+        "answer": "career"
+      },
+      {
+        "text": "He is thinking about his future career.",
+        "answer": "career"
+      }
+    ]
   },
   {
     "word": "carry",
     "cefr": "A1",
     "frequency": 17,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Can you carry this bag for me?",
+        "answer": "carry"
+      },
+      {
+        "text": "The boy can carry the heavy box.",
+        "answer": "carry"
+      },
+      {
+        "text": "Do not carry too many books at once.",
+        "answer": "carry"
+      }
+    ]
   },
   {
     "word": "Causeway Bay",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We went shopping in Causeway Bay.",
+        "answer": "Causeway Bay"
+      },
+      {
+        "text": "Causeway Bay is crowded on weekends.",
+        "answer": "Causeway Bay"
+      },
+      {
+        "text": "My friend met me in Causeway Bay after school.",
+        "answer": "Causeway Bay"
+      }
+    ]
   },
   {
     "word": "Causeway Bay",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We went shopping in Causeway Bay.",
+        "answer": "Causeway Bay"
+      },
+      {
+        "text": "Causeway Bay is crowded on weekends.",
+        "answer": "Causeway Bay"
+      },
+      {
+        "text": "My friend met me in Causeway Bay after school.",
+        "answer": "Causeway Bay"
+      }
+    ]
   },
   {
     "word": "Central",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My office is in Central.",
+        "answer": "Central"
+      },
+      {
+        "text": "We took the MTR to Central.",
+        "answer": "Central"
+      },
+      {
+        "text": "Central has many tall buildings.",
+        "answer": "Central"
+      }
+    ]
   },
   {
     "word": "century",
     "cefr": "A1",
     "frequency": 8,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "This old church was built a century ago.",
+        "answer": "century"
+      },
+      {
+        "text": "People lived very differently a century ago.",
+        "answer": "century"
+      },
+      {
+        "text": "The painting is over a century old.",
+        "answer": "century"
+      }
+    ]
   },
   {
     "word": "Che Kung Temple",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We visited Che Kung Temple during the holiday.",
+        "answer": "Che Kung Temple"
+      },
+      {
+        "text": "Many tourists go to Che Kung Temple each year.",
+        "answer": "Che Kung Temple"
+      },
+      {
+        "text": "Che Kung Temple is a famous place in Hong Kong.",
+        "answer": "Che Kung Temple"
+      }
+    ]
   },
   {
     "word": "cheaper",
     "cefr": "A1",
     "frequency": 2,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "This bag is cheaper than that one.",
+        "answer": "cheaper"
+      },
+      {
+        "text": "The blue shirt is cheaper today.",
+        "answer": "cheaper"
+      },
+      {
+        "text": "Buying online is sometimes cheaper.",
+        "answer": "cheaper"
+      }
+    ]
   },
   {
     "word": "cheapest",
     "cefr": "A1",
     "frequency": 2,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "This is the cheapest meal on the menu.",
+        "answer": "cheapest"
+      },
+      {
+        "text": "We chose the cheapest ticket for the show.",
+        "answer": "cheapest"
+      },
+      {
+        "text": "That shop sells the cheapest fruit in the area.",
+        "answer": "cheapest"
+      }
+    ]
   },
   {
     "word": "cheese",
     "cefr": "A1",
     "frequency": 2,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I like cheese on my pizza.",
+        "answer": "cheese"
+      },
+      {
+        "text": "There is some cheese in the fridge.",
+        "answer": "cheese"
+      },
+      {
+        "text": "She bought bread and cheese for lunch.",
+        "answer": "cheese"
+      }
+    ]
   },
   {
     "word": "Chek Lap Kok",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The airport is in Chek Lap Kok.",
+        "answer": "Chek Lap Kok"
+      },
+      {
+        "text": "My father drove us to Chek Lap Kok.",
+        "answer": "Chek Lap Kok"
+      },
+      {
+        "text": "Chek Lap Kok is on Lantau Island.",
+        "answer": "Chek Lap Kok"
+      }
+    ]
   },
   {
     "word": "chicken",
     "cefr": "A1",
     "frequency": 6,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We had rice and chicken for dinner.",
+        "answer": "chicken"
+      },
+      {
+        "text": "The chicken soup smells great.",
+        "answer": "chicken"
+      },
+      {
+        "text": "She ordered grilled chicken at the restaurant.",
+        "answer": "chicken"
+      }
+    ]
   },
   {
     "word": "China",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My grandparents were born in China.",
+        "answer": "China"
+      },
+      {
+        "text": "China is a very large country.",
+        "answer": "China"
+      },
+      {
+        "text": "We learned about China in class today.",
+        "answer": "China"
+      }
+    ]
   },
   {
     "word": "cinema",
     "cefr": "A1",
     "frequency": 9,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We are going to the cinema tonight.",
+        "answer": "cinema"
+      },
+      {
+        "text": "The new cinema is near the mall.",
+        "answer": "cinema"
+      },
+      {
+        "text": "I met my classmates outside the cinema.",
+        "answer": "cinema"
+      }
+    ]
   },
   {
     "word": "class",
     "cefr": "A1",
     "frequency": 26,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Our class starts at eight o clock.",
+        "answer": "class"
+      },
+      {
+        "text": "The whole class was very quiet today.",
+        "answer": "class"
+      },
+      {
+        "text": "She is the tallest girl in the class.",
+        "answer": "class"
+      }
+    ]
   },
   {
     "word": "classroom",
     "cefr": "A1",
     "frequency": 8,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Please keep the classroom clean.",
+        "answer": "classroom"
+      },
+      {
+        "text": "Our classroom is on the third floor.",
+        "answer": "classroom"
+      },
+      {
+        "text": "The teacher is waiting in the classroom.",
+        "answer": "classroom"
+      }
+    ]
   },
   {
     "word": "cleverest",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Tom is the cleverest student in the group.",
+        "answer": "cleverest"
+      },
+      {
+        "text": "She had the cleverest idea of all.",
+        "answer": "cleverest"
+      },
+      {
+        "text": "That was the cleverest answer in the quiz.",
+        "answer": "cleverest"
+      }
+    ]
   },
   {
     "word": "club",
     "cefr": "A1",
     "frequency": 2,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I joined the school chess club.",
+        "answer": "club"
+      },
+      {
+        "text": "The art club meets every Friday.",
+        "answer": "club"
+      },
+      {
+        "text": "My sister is in the drama club.",
+        "answer": "club"
+      }
+    ]
   },
   {
     "word": "coat",
