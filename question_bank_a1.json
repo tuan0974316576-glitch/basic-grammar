@@ -3201,175 +3201,552 @@
     "word": "great",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "You did a great job in the test.",
+        "answer": "great"
+      },
+      {
+        "text": "We had a great time at the beach.",
+        "answer": "great"
+      },
+      {
+        "text": "That sounds like a great idea.",
+        "answer": "great"
+      }
+    ]
   },
   {
     "word": "green",
     "cefr": "A1",
     "frequency": 19,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The leaves are bright green in spring.",
+        "answer": "green"
+      },
+      {
+        "text": "She wore a green dress yesterday.",
+        "answer": "green"
+      },
+      {
+        "text": "Please use the green pen.",
+        "answer": "green"
+      }
+    ]
   },
   {
     "word": "grey",
     "cefr": "A1",
     "frequency": 4,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The sky looks grey today.",
+        "answer": "grey"
+      },
+      {
+        "text": "My cat has soft grey fur.",
+        "answer": "grey"
+      },
+      {
+        "text": "He bought a grey jacket for winter.",
+        "answer": "grey"
+      }
+    ]
   },
   {
     "word": "group",
     "cefr": "A1",
     "frequency": 53,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We worked in a group of four.",
+        "answer": "group"
+      },
+      {
+        "text": "The teacher divided the class into groups.",
+        "answer": "group"
+      },
+      {
+        "text": "A group of students visited the museum.",
+        "answer": "group"
+      }
+    ]
   },
   {
     "word": "guess",
     "cefr": "A1",
     "frequency": 13,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Can you guess the answer?",
+        "answer": "guess"
+      },
+      {
+        "text": "I guess he will arrive soon.",
+        "answer": "guess"
+      },
+      {
+        "text": "Take a guess if you are not sure.",
+        "answer": "guess"
+      }
+    ]
   },
   {
     "word": "guitar",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My brother plays the guitar every night.",
+        "answer": "guitar"
+      },
+      {
+        "text": "She bought a new guitar for music class.",
+        "answer": "guitar"
+      },
+      {
+        "text": "The guitar on the wall belongs to my father.",
+        "answer": "guitar"
+      }
+    ]
   },
   {
     "word": "hair",
     "cefr": "A1",
     "frequency": 7,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "She has long black hair.",
+        "answer": "hair"
+      },
+      {
+        "text": "My hair is still wet after the shower.",
+        "answer": "hair"
+      },
+      {
+        "text": "He cut his hair last week.",
+        "answer": "hair"
+      }
+    ]
   },
   {
     "word": "happier",
     "cefr": "A1",
     "frequency": 5,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "She looks happier today.",
+        "answer": "happier"
+      },
+      {
+        "text": "I feel happier when the weather is sunny.",
+        "answer": "happier"
+      },
+      {
+        "text": "The children were happier after lunch.",
+        "answer": "happier"
+      }
+    ]
   },
   {
     "word": "hat",
     "cefr": "A1",
     "frequency": 4,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "He wore a hat in the hot sun.",
+        "answer": "hat"
+      },
+      {
+        "text": "My red hat is on the chair.",
+        "answer": "hat"
+      },
+      {
+        "text": "She bought a new winter hat.",
+        "answer": "hat"
+      }
+    ]
   },
   {
     "word": "health",
     "cefr": "A1",
     "frequency": 14,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Good food is important for your health.",
+        "answer": "health"
+      },
+      {
+        "text": "Exercise can improve your health.",
+        "answer": "health"
+      },
+      {
+        "text": "The nurse talked to us about health.",
+        "answer": "health"
+      }
+    ]
   },
   {
     "word": "healthy",
     "cefr": "A1",
     "frequency": 12,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Fruit is a healthy snack.",
+        "answer": "healthy"
+      },
+      {
+        "text": "He wants to stay healthy by walking more.",
+        "answer": "healthy"
+      },
+      {
+        "text": "A healthy diet includes vegetables.",
+        "answer": "healthy"
+      }
+    ]
   },
   {
     "word": "help",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Can you help me with my homework?",
+        "answer": "help"
+      },
+      {
+        "text": "Thank you for your help.",
+        "answer": "help"
+      },
+      {
+        "text": "The teacher came to help us.",
+        "answer": "help"
+      }
+    ]
   },
   {
     "word": "hike",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We went on a hike in the morning.",
+        "answer": "hike"
+      },
+      {
+        "text": "The class will hike up the hill tomorrow.",
+        "answer": "hike"
+      },
+      {
+        "text": "Our family planned a short hike on Sunday.",
+        "answer": "hike"
+      }
+    ]
   },
   {
     "word": "history",
     "cefr": "A1",
     "frequency": 20,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "History is my favourite subject.",
+        "answer": "History"
+      },
+      {
+        "text": "We learned about Hong Kong history in class.",
+        "answer": "history"
+      },
+      {
+        "text": "My brother is reading a history book.",
+        "answer": "history"
+      }
+    ]
   },
   {
     "word": "hobby",
     "cefr": "A1",
     "frequency": 3,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Drawing is my favourite hobby.",
+        "answer": "hobby"
+      },
+      {
+        "text": "What is your hobby?",
+        "answer": "hobby"
+      },
+      {
+        "text": "My hobby takes up a lot of time.",
+        "answer": "hobby"
+      }
+    ]
   },
   {
     "word": "holiday",
     "cefr": "A1",
     "frequency": 12,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We went to Japan during the holiday.",
+        "answer": "holiday"
+      },
+      {
+        "text": "The children are excited about the summer holiday.",
+        "answer": "holiday"
+      },
+      {
+        "text": "My parents took a short holiday last month.",
+        "answer": "holiday"
+      }
+    ]
   },
   {
     "word": "homework",
     "cefr": "A1",
     "frequency": 3,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I finished my homework after dinner.",
+        "answer": "homework"
+      },
+      {
+        "text": "Did you bring your homework to school?",
+        "answer": "homework"
+      },
+      {
+        "text": "The teacher gave us a lot of homework.",
+        "answer": "homework"
+      }
+    ]
   },
   {
     "word": "Hong Kong",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Hong Kong is my home city.",
+        "answer": "Hong Kong"
+      },
+      {
+        "text": "Many tourists visit Hong Kong every year.",
+        "answer": "Hong Kong"
+      },
+      {
+        "text": "The weather in Hong Kong is very hot in summer.",
+        "answer": "Hong Kong"
+      }
+    ]
   },
   {
     "word": "horse",
     "cefr": "A1",
     "frequency": 9,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The horse ran across the field.",
+        "answer": "horse"
+      },
+      {
+        "text": "We saw a brown horse on the farm.",
+        "answer": "horse"
+      },
+      {
+        "text": "The boy learned how to ride a horse.",
+        "answer": "horse"
+      }
+    ]
   },
   {
     "word": "hospital",
     "cefr": "A1",
     "frequency": 10,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My uncle works in a hospital.",
+        "answer": "hospital"
+      },
+      {
+        "text": "She was taken to the hospital by ambulance.",
+        "answer": "hospital"
+      },
+      {
+        "text": "The hospital is near the station.",
+        "answer": "hospital"
+      }
+    ]
   },
   {
     "word": "hotel",
     "cefr": "A1",
     "frequency": 25,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We stayed in a hotel near the beach.",
+        "answer": "hotel"
+      },
+      {
+        "text": "The hotel has a large swimming pool.",
+        "answer": "hotel"
+      },
+      {
+        "text": "My parents booked a room in the hotel.",
+        "answer": "hotel"
+      }
+    ]
   },
   {
     "word": "however",
     "cefr": "A1",
     "frequency": 29,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I wanted to go; however, it was raining.",
+        "answer": "however"
+      },
+      {
+        "text": "The task was difficult; however, we finished it.",
+        "answer": "however"
+      },
+      {
+        "text": "She was tired; however, she kept working.",
+        "answer": "however"
+      }
+    ]
   },
   {
     "word": "hungry",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I am hungry after the game.",
+        "answer": "hungry"
+      },
+      {
+        "text": "The baby was hungry and crying.",
+        "answer": "hungry"
+      },
+      {
+        "text": "Are you hungry now?",
+        "answer": "hungry"
+      }
+    ]
   },
   {
     "word": "husband",
     "cefr": "A1",
     "frequency": 4,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Her husband works in an office.",
+        "answer": "husband"
+      },
+      {
+        "text": "The woman walked with her husband.",
+        "answer": "husband"
+      },
+      {
+        "text": "My aunt and her husband visited us.",
+        "answer": "husband"
+      }
+    ]
   },
   {
     "word": "ice",
     "cefr": "A1",
     "frequency": 11,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Please put some ice in my drink.",
+        "answer": "ice"
+      },
+      {
+        "text": "The ice melted quickly in the sun.",
+        "answer": "ice"
+      },
+      {
+        "text": "Be careful on the ice.",
+        "answer": "ice"
+      }
+    ]
   },
   {
     "word": "ice cream",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We ate ice cream after lunch.",
+        "answer": "ice cream"
+      },
+      {
+        "text": "My favourite dessert is chocolate ice cream.",
+        "answer": "ice cream"
+      },
+      {
+        "text": "The children bought ice cream from the shop.",
+        "answer": "ice cream"
+      }
+    ]
   },
   {
     "word": "idea",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "That is a good idea.",
+        "answer": "idea"
+      },
+      {
+        "text": "She shared her idea with the group.",
+        "answer": "idea"
+      },
+      {
+        "text": "I have an idea for our project.",
+        "answer": "idea"
+      }
+    ]
   },
   {
     "word": "imagine",
     "cefr": "A1",
     "frequency": 11,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Can you imagine living on the moon?",
+        "answer": "imagine"
+      },
+      {
+        "text": "I cannot imagine life without the internet.",
+        "answer": "imagine"
+      },
+      {
+        "text": "Please imagine you are a bird.",
+        "answer": "imagine"
+      }
+    ]
   },
   {
     "word": "important",
     "cefr": "A1",
     "frequency": 41,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Sleep is important for students.",
+        "answer": "important"
+      },
+      {
+        "text": "This meeting is very important.",
+        "answer": "important"
+      },
+      {
+        "text": "It is important to be on time.",
+        "answer": "important"
+      }
+    ]
   },
   {
     "word": "improve",
