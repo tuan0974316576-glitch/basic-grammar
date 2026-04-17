@@ -1,0 +1,3452 @@
+[
+  {
+    "word": "across",
+    "cefr": "A1",
+    "frequency": 17,
+    "sentences": [
+      {
+        "text": "We walked across the street.",
+        "answer": "across"
+      },
+      {
+        "text": "The cat ran across the garden.",
+        "answer": "across"
+      },
+      {
+        "text": "He swam across the river.",
+        "answer": "across"
+      }
+    ]
+  },
+  {
+    "word": "action",
+    "cefr": "A1",
+    "frequency": 15,
+    "sentences": [
+      {
+        "text": "Actions speak louder than words.",
+        "answer": "Actions"
+      },
+      {
+        "text": "We need to take action now.",
+        "answer": "action"
+      },
+      {
+        "text": "I like watching action movies.",
+        "answer": "action"
+      }
+    ]
+  },
+  {
+    "word": "activity",
+    "cefr": "A1",
+    "frequency": 56,
+    "sentences": [
+      {
+        "text": "Swimming is my favorite summer activity.",
+        "answer": "activity"
+      },
+      {
+        "text": "There are many activities for kids here.",
+        "answer": "activity"
+      },
+      {
+        "text": "School activities start at 4 PM.",
+        "answer": "activity"
+      }
+    ]
+  },
+  {
+    "word": "actor",
+    "cefr": "A1",
+    "frequency": 3,
+    "sentences": [
+      {
+        "text": "He is a very famous Hollywood actor.",
+        "answer": "actor"
+      },
+      {
+        "text": "The actor forgot his lines on stage.",
+        "answer": "actor"
+      },
+      {
+        "text": "I want to be an actor when I grow up.",
+        "answer": "actor"
+      }
+    ]
+  },
+  {
+    "word": "actress",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": [
+      {
+        "text": "The actress wore a beautiful red dress.",
+        "answer": "actress"
+      },
+      {
+        "text": "She is a talented young actress.",
+        "answer": "actress"
+      },
+      {
+        "text": "The actress played the role of a queen.",
+        "answer": "actress"
+      }
+    ]
+  },
+  {
+    "word": "add",
+    "cefr": "A1",
+    "frequency": 33,
+    "sentences": [
+      {
+        "text": "The suggestion will be added to the proposal.",
+        "answer": "added"
+      },
+      {
+        "text": "He adds some e-books onto the database from time to time",
+        "answer": "adds"
+      }
+    ]
+  },
+  {
+    "word": "adjacent to",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "Admiralty",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "advice",
+    "cefr": "A1",
+    "frequency": 19,
+    "sentences": [
+      {
+        "text": "Can you give me some advice?",
+        "answer": "advice"
+      },
+      {
+        "text": "My teacher gave me good advice today.",
+        "answer": "advice"
+      },
+      {
+        "text": "Listen to your parents' advice.",
+        "answer": "advice"
+      }
+    ]
+  },
+  {
+    "word": "afraid",
+    "cefr": "A1",
+    "frequency": 9,
+    "sentences": [
+      {
+        "text": "Don't be afraid of the dark.",
+        "answer": "afraid"
+      },
+      {
+        "text": "She is afraid of big dogs.",
+        "answer": "afraid"
+      },
+      {
+        "text": "Are you afraid of spiders?",
+        "answer": "afraid"
+      }
+    ]
+  },
+  {
+    "word": "agree",
+    "cefr": "A1",
+    "frequency": 72,
+    "sentences": [
+      {
+        "text": "I agree with your plan.",
+        "answer": "agree"
+      },
+      {
+        "text": "Do you agree with me?",
+        "answer": "agree"
+      },
+      {
+        "text": "They finally agreed on a price.",
+        "answer": "agreed"
+      }
+    ]
+  },
+  {
+    "word": "air",
+    "cefr": "A1",
+    "frequency": 15,
+    "sentences": [
+      {
+        "text": "I love the fresh air in the morning.",
+        "answer": "air"
+      },
+      {
+        "text": "Open the window for some fresh air.",
+        "answer": "air"
+      },
+      {
+        "text": "The air is cold today.",
+        "answer": "air"
+      }
+    ]
+  },
+  {
+    "word": "airport",
+    "cefr": "A1",
+    "frequency": 8,
+    "sentences": [
+      {
+        "text": "We are going to the airport now.",
+        "answer": "airport"
+      },
+      {
+        "text": "The airport is far from the city.",
+        "answer": "airport"
+      },
+      {
+        "text": "He works at the international airport.",
+        "answer": "airport"
+      }
+    ]
+  },
+  {
+    "word": "angry",
+    "cefr": "A1",
+    "frequency": 4,
+    "sentences": [
+      {
+        "text": "My mom was angry because I was late.",
+        "answer": "angry"
+      },
+      {
+        "text": "Don't be angry with me.",
+        "answer": "angry"
+      },
+      {
+        "text": "He looked very angry this morning.",
+        "answer": "angry"
+      }
+    ]
+  },
+  {
+    "word": "anyone",
+    "cefr": "A1",
+    "frequency": 10,
+    "sentences": [
+      {
+        "text": "Does anyone have a pen?",
+        "answer": "anyone"
+      },
+      {
+        "text": "Anyone can join the club.",
+        "answer": "Anyone"
+      },
+      {
+        "text": "I didn't see anyone I knew at the party.",
+        "answer": "anyone"
+      }
+    ]
+  },
+  {
+    "word": "apartment",
+    "cefr": "A1",
+    "frequency": 4,
+    "sentences": [
+      {
+        "text": "I live in a small apartment in Tsuen Wan.",
+        "answer": "apartment"
+      },
+      {
+        "text": "Her apartment is on the fifth floor.",
+        "answer": "apartment"
+      },
+      {
+        "text": "They are looking for a new apartment.",
+        "answer": "apartment"
+      }
+    ]
+  },
+  {
+    "word": "apple",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": [
+      {
+        "text": "An apple a day keeps the doctor away.",
+        "answer": "apple"
+      },
+      {
+        "text": "I like to eat a red apple for breakfast.",
+        "answer": "apple"
+      },
+      {
+        "text": "She is peeling an apple.",
+        "answer": "apple"
+      }
+    ]
+  },
+  {
+    "word": "April",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": [
+      {
+        "text": "My birthday is in April.",
+        "answer": "April"
+      },
+      {
+        "text": "April is the fourth month of the year.",
+        "answer": "April"
+      },
+      {
+        "text": "It often rains in April.",
+        "answer": "April"
+      }
+    ]
+  },
+  {
+    "word": "around",
+    "cefr": "A1",
+    "frequency": 82,
+    "sentences": [
+      {
+        "text": "The earth goes around the sun.",
+        "answer": "around"
+      },
+      {
+        "text": "We walked around the lake.",
+        "answer": "around"
+      },
+      {
+        "text": "Is there a bank around here?",
+        "answer": "around"
+      }
+    ]
+  },
+  {
+    "word": "arrive",
+    "cefr": "A1",
+    "frequency": 16,
+    "sentences": [
+      {
+        "text": "What time does the train arrive?",
+        "answer": "arrive"
+      },
+      {
+        "text": "We arrived at the airport early.",
+        "answer": "arrived"
+      },
+      {
+        "text": "She arrived home late last night.",
+        "answer": "arrived"
+      }
+    ]
+  },
+  {
+    "word": "art",
+    "cefr": "A1",
+    "frequency": 7,
+    "sentences": [
+      {
+        "text": "I love studying art at school.",
+        "answer": "art"
+      },
+      {
+        "text": "Do you like modern art?",
+        "answer": "art"
+      },
+      {
+        "text": "She is very good at art.",
+        "answer": "art"
+      }
+    ]
+  },
+  {
+    "word": "article",
+    "cefr": "A1",
+    "frequency": 71,
+    "sentences": [
+      {
+        "text": "I read an interesting article today.",
+        "answer": "article"
+      },
+      {
+        "text": "He wrote an article for the newspaper.",
+        "answer": "article"
+      },
+      {
+        "text": "Did you see the article about the game?",
+        "answer": "article"
+      }
+    ]
+  },
+  {
+    "word": "artist",
+    "cefr": "A1",
+    "frequency": 17,
+    "sentences": [
+      {
+        "text": "She is a very talented artist.",
+        "answer": "artist"
+      },
+      {
+        "text": "The artist painted a beautiful sunset.",
+        "answer": "artist"
+      },
+      {
+        "text": "He wants to become a professional artist.",
+        "answer": "artist"
+      }
+    ]
+  },
+  {
+    "word": "AsiaWorld-Expo",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "August",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": [
+      {
+        "text": "August is the hottest month here.",
+        "answer": "August"
+      },
+      {
+        "text": "We went to Japan last August.",
+        "answer": "August"
+      },
+      {
+        "text": "School starts in late August.",
+        "answer": "August"
+      }
+    ]
+  },
+  {
+    "word": "Austin",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "Australia",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "autumn",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": [
+      {
+        "text": "I love the cool weather in autumn.",
+        "answer": "autumn"
+      },
+      {
+        "text": "The leaves change color in autumn.",
+        "answer": "autumn"
+      },
+      {
+        "text": "Autumn is my favorite season.",
+        "answer": "Autumn"
+      }
+    ]
+  },
+  {
+    "word": "away",
+    "cefr": "A1",
+    "frequency": 32,
+    "sentences": [
+      {
+        "text": "Go away! I am busy.",
+        "answer": "away"
+      },
+      {
+        "text": "The bird flew away.",
+        "answer": "away"
+      },
+      {
+        "text": "Put your toys away.",
+        "answer": "away"
+      }
+    ]
+  },
+  {
+    "word": "ball",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": [
+      {
+        "text": "He kicked the ball across the field.",
+        "answer": "ball"
+      },
+      {
+        "text": "Throw the ball to me!",
+        "answer": "ball"
+      },
+      {
+        "text": "The children are playing with a ball.",
+        "answer": "ball"
+      }
+    ]
+  },
+  {
+    "word": "band",
+    "cefr": "A1",
+    "frequency": 19,
+    "sentences": [
+      {
+        "text": "My brother plays in a rock band.",
+        "answer": "band"
+      },
+      {
+        "text": "The band is playing my favorite song.",
+        "answer": "band"
+      },
+      {
+        "text": "I want to start a band with my friends.",
+        "answer": "band"
+      }
+    ]
+  },
+  {
+    "word": "bath",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": [
+      {
+        "text": "I like to take a warm bath before bed.",
+        "answer": "bath"
+      },
+      {
+        "text": "The baby is having a bath in the tub.",
+        "answer": "bath"
+      },
+      {
+        "text": "I need to give the dog a bath.",
+        "answer": "bath"
+      }
+    ]
+  },
+  {
+    "word": "bathroom",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": [
+      {
+        "text": "May I use your bathroom?",
+        "answer": "bathroom"
+      },
+      {
+        "text": "The bathroom is at the end of the hall.",
+        "answer": "bathroom"
+      },
+      {
+        "text": "I need to clean the bathroom today.",
+        "answer": "bathroom"
+      }
+    ]
+  },
+  {
+    "word": "beach",
+    "cefr": "A1",
+    "frequency": 12,
+    "sentences": [
+      {
+        "text": "Let's go to the beach this weekend.",
+        "answer": "beach"
+      },
+      {
+        "text": "I like walking on the beach at sunset.",
+        "answer": "beach"
+      },
+      {
+        "text": "The children are building a sandcastle on the beach.",
+        "answer": "beach"
+      }
+    ]
+  },
+  {
+    "word": "bed",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": [
+      {
+        "text": "It's time to go to bed.",
+        "answer": "bed"
+      },
+      {
+        "text": "I like to read in bed.",
+        "answer": "bed"
+      },
+      {
+        "text": "The bed is very soft and comfortable.",
+        "answer": "bed"
+      }
+    ]
+  },
+  {
+    "word": "bedroom",
+    "cefr": "A1",
+    "frequency": 3,
+    "sentences": [
+      {
+        "text": "My bedroom is on the second floor.",
+        "answer": "bedroom"
+      },
+      {
+        "text": "I share a bedroom with my sister.",
+        "answer": "bedroom"
+      },
+      {
+        "text": "She is cleaning her bedroom now.",
+        "answer": "bedroom"
+      }
+    ]
+  },
+  {
+    "word": "beer",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": [
+      {
+        "text": "He likes to drink a cold beer after work.",
+        "answer": "beer"
+      },
+      {
+        "text": "Would you like another beer?",
+        "answer": "beer"
+      },
+      {
+        "text": "This beer is from Germany.",
+        "answer": "beer"
+      }
+    ]
+  },
+  {
+    "word": "behind",
+    "cefr": "A1",
+    "frequency": 20,
+    "sentences": [
+      {
+        "text": "The cat is hiding behind the sofa.",
+        "answer": "behind"
+      },
+      {
+        "text": "The sun went behind a cloud.",
+        "answer": "behind"
+      },
+      {
+        "text": "Who is that standing behind you?",
+        "answer": "behind"
+      }
+    ]
+  },
+  {
+    "word": "behind",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": [
+      {
+        "text": "The cat is hiding behind the sofa.",
+        "answer": "behind"
+      },
+      {
+        "text": "The sun went behind a cloud.",
+        "answer": "behind"
+      },
+      {
+        "text": "Who is that standing behind you?",
+        "answer": "behind"
+      }
+    ]
+  },
+  {
+    "word": "between",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": [
+      {
+        "text": "The shop is between the bank and the pharmacy.",
+        "answer": "between"
+      },
+      {
+        "text": "I am sitting between Tom and Mary.",
+        "answer": "between"
+      },
+      {
+        "text": "What happened between them?",
+        "answer": "between"
+      }
+    ]
+  },
+  {
+    "word": "bicycle",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": [
+      {
+        "text": "I go to school by bicycle every day.",
+        "answer": "bicycle"
+      },
+      {
+        "text": "He is learning how to ride a bicycle.",
+        "answer": "bicycle"
+      },
+      {
+        "text": "My bicycle has a small bell.",
+        "answer": "bicycle"
+      }
+    ]
+  },
+  {
+    "word": "bird",
+    "cefr": "A1",
+    "frequency": 10,
+    "sentences": [
+      {
+        "text": "A small bird is singing in the tree.",
+        "answer": "bird"
+      },
+      {
+        "text": "Look at that beautiful blue bird!",
+        "answer": "bird"
+      },
+      {
+        "text": "Birds can fly high in the sky.",
+        "answer": "Birds"
+      }
+    ]
+  },
+  {
+    "word": "birthday",
+    "cefr": "A1",
+    "frequency": 3,
+    "sentences": [
+      {
+        "text": "When is your birthday?",
+        "answer": "birthday"
+      },
+      {
+        "text": "Happy birthday to you!",
+        "answer": "birthday"
+      },
+      {
+        "text": "I am having a party for my birthday.",
+        "answer": "birthday"
+      }
+    ]
+  },
+  {
+    "word": "black",
+    "cefr": "A1",
+    "frequency": 7,
+    "sentences": [
+      {
+        "text": "She is wearing a black dress.",
+        "answer": "black"
+      },
+      {
+        "text": "My car is black.",
+        "answer": "black"
+      },
+      {
+        "text": "He has short black hair.",
+        "answer": "black"
+      }
+    ]
+  },
+  {
+    "word": "blog",
+    "cefr": "A1",
+    "frequency": 14,
+    "sentences": [
+      {
+        "text": "She writes a travel blog.",
+        "answer": "blog"
+      },
+      {
+        "text": "I read your latest blog post today.",
+        "answer": "blog"
+      },
+      {
+        "text": "He started a blog about cooking.",
+        "answer": "blog"
+      }
+    ]
+  },
+  {
+    "word": "blue",
+    "cefr": "A1",
+    "frequency": 3,
+    "sentences": [
+      {
+        "text": "The sky is clear and blue today.",
+        "answer": "blue"
+      },
+      {
+        "text": "She has beautiful blue eyes.",
+        "answer": "blue"
+      },
+      {
+        "text": "He is wearing a blue shirt.",
+        "answer": "blue"
+      }
+    ]
+  },
+  {
+    "word": "boat",
+    "cefr": "A1",
+    "frequency": 3,
+    "sentences": [
+      {
+        "text": "We took a boat across the lake.",
+        "answer": "boat"
+      },
+      {
+        "text": "The boat is sailing on the river.",
+        "answer": "boat"
+      },
+      {
+        "text": "He owns a small fishing boat.",
+        "answer": "boat"
+      }
+    ]
+  },
+  {
+    "word": "body",
+    "cefr": "A1",
+    "frequency": 20,
+    "sentences": [
+      {
+        "text": "Exercise is good for your body.",
+        "answer": "body"
+      },
+      {
+        "text": "The human body is amazing.",
+        "answer": "body"
+      },
+      {
+        "text": "He has a very strong body.",
+        "answer": "body"
+      }
+    ]
+  },
+  {
+    "word": "bottle",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": [
+      {
+        "text": "Can I have a bottle of water?",
+        "answer": "bottle"
+      },
+      {
+        "text": "The baby is drinking from a bottle.",
+        "answer": "bottle"
+      },
+      {
+        "text": "She broke a glass bottle.",
+        "answer": "bottle"
+      }
+    ]
+  },
+  {
+    "word": "bottom",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "box",
+    "cefr": "A1",
+    "frequency": 5,
+    "sentences": [
+      {
+        "text": "The toys are in the big box.",
+        "answer": "box"
+      },
+      {
+        "text": "He opened the gift box.",
+        "answer": "box"
+      },
+      {
+        "text": "I need a cardboard box for moving.",
+        "answer": "box"
+      }
+    ]
+  },
+  {
+    "word": "boyfriend",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": [
+      {
+        "text": "She went to the cinema with her boyfriend.",
+        "answer": "boyfriend"
+      },
+      {
+        "text": "Is he your boyfriend?",
+        "answer": "boyfriend"
+      },
+      {
+        "text": "Her boyfriend works as a computer programmer.",
+        "answer": "boyfriend"
+      }
+    ]
+  },
+  {
+    "word": "bread",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": [
+      {
+        "text": "I usually have bread and eggs for breakfast.",
+        "answer": "bread"
+      },
+      {
+        "text": "This bread is fresh and warm.",
+        "answer": "bread"
+      },
+      {
+        "text": "Would you like a slice of bread?",
+        "answer": "bread"
+      }
+    ]
+  },
+  {
+    "word": "break",
+    "cefr": "A1",
+    "frequency": 23,
+    "sentences": [
+      {
+        "text": "Be careful not to break the glass.",
+        "answer": "break"
+      },
+      {
+        "text": "Let's take a ten-minute break.",
+        "answer": "break"
+      },
+      {
+        "text": "Did you break your phone screen?",
+        "answer": "break"
+      }
+    ]
+  },
+  {
+    "word": "breakfast",
+    "cefr": "A1",
+    "frequency": 6,
+    "sentences": [
+      {
+        "text": "What did you have for breakfast?",
+        "answer": "breakfast"
+      },
+      {
+        "text": "I never skip breakfast.",
+        "answer": "breakfast"
+      },
+      {
+        "text": "Breakfast is the most important meal of the day.",
+        "answer": "Breakfast"
+      }
+    ]
+  },
+  {
+    "word": "brown",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": [
+      {
+        "text": "The dog has brown fur.",
+        "answer": "brown"
+      },
+      {
+        "text": "She is wearing a brown jacket.",
+        "answer": "brown"
+      },
+      {
+        "text": "He has dark brown eyes.",
+        "answer": "brown"
+      }
+    ]
+  },
+  {
+    "word": "business",
+    "cefr": "A1",
+    "frequency": 56,
+    "sentences": [
+      {
+        "text": "He runs a successful clothing business.",
+        "answer": "business"
+      },
+      {
+        "text": "I'm here on business, not for a holiday.",
+        "answer": "business"
+      },
+      {
+        "text": "Starting a new business is risky.",
+        "answer": "business"
+      }
+    ]
+  },
+  {
+    "word": "busy",
+    "cefr": "A1",
+    "frequency": 6,
+    "sentences": [
+      {
+        "text": "I am very busy preparing for the test.",
+        "answer": "busy"
+      },
+      {
+        "text": "The streets are always busy in the evening.",
+        "answer": "busy"
+      },
+      {
+        "text": "She has a busy schedule today.",
+        "answer": "busy"
+      }
+    ]
+  },
+  {
+    "word": "butter",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": [
+      {
+        "text": "I put some butter on my toast.",
+        "answer": "butter"
+      },
+      {
+        "text": "Keep the butter in the fridge.",
+        "answer": "butter"
+      },
+      {
+        "text": "Do you want butter or jam on your bread?",
+        "answer": "butter"
+      }
+    ]
+  },
+  {
+    "word": "café",
+    "cefr": "A1",
+    "frequency": 19,
+    "sentences": []
+  },
+  {
+    "word": "cake",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "camera",
+    "cefr": "A1",
+    "frequency": 10,
+    "sentences": []
+  },
+  {
+    "word": "Canada",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "capital",
+    "cefr": "A1",
+    "frequency": 3,
+    "sentences": []
+  },
+  {
+    "word": "career",
+    "cefr": "A1",
+    "frequency": 20,
+    "sentences": []
+  },
+  {
+    "word": "carry",
+    "cefr": "A1",
+    "frequency": 17,
+    "sentences": []
+  },
+  {
+    "word": "Causeway Bay",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "Causeway Bay",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "Central",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "century",
+    "cefr": "A1",
+    "frequency": 8,
+    "sentences": []
+  },
+  {
+    "word": "Che Kung Temple",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "cheaper",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": []
+  },
+  {
+    "word": "cheapest",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": []
+  },
+  {
+    "word": "cheese",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": []
+  },
+  {
+    "word": "Chek Lap Kok",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "chicken",
+    "cefr": "A1",
+    "frequency": 6,
+    "sentences": []
+  },
+  {
+    "word": "China",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "cinema",
+    "cefr": "A1",
+    "frequency": 9,
+    "sentences": []
+  },
+  {
+    "word": "class",
+    "cefr": "A1",
+    "frequency": 26,
+    "sentences": []
+  },
+  {
+    "word": "classroom",
+    "cefr": "A1",
+    "frequency": 8,
+    "sentences": []
+  },
+  {
+    "word": "cleverest",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "club",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": []
+  },
+  {
+    "word": "coat",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "coffee",
+    "cefr": "A1",
+    "frequency": 3,
+    "sentences": []
+  },
+  {
+    "word": "college",
+    "cefr": "A1",
+    "frequency": 8,
+    "sentences": []
+  },
+  {
+    "word": "colour",
+    "cefr": "A1",
+    "frequency": 9,
+    "sentences": []
+  },
+  {
+    "word": "common",
+    "cefr": "A1",
+    "frequency": 10,
+    "sentences": []
+  },
+  {
+    "word": "company",
+    "cefr": "A1",
+    "frequency": 68,
+    "sentences": []
+  },
+  {
+    "word": "compare",
+    "cefr": "A1",
+    "frequency": 9,
+    "sentences": []
+  },
+  {
+    "word": "conversation",
+    "cefr": "A1",
+    "frequency": 4,
+    "sentences": []
+  },
+  {
+    "word": "corner",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "correct",
+    "cefr": "A1",
+    "frequency": 5,
+    "sentences": []
+  },
+  {
+    "word": "corridor",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "cost",
+    "cefr": "A1",
+    "frequency": 31,
+    "sentences": []
+  },
+  {
+    "word": "course",
+    "cefr": "A1",
+    "frequency": 62,
+    "sentences": []
+  },
+  {
+    "word": "cousin",
+    "cefr": "A1",
+    "frequency": 3,
+    "sentences": []
+  },
+  {
+    "word": "cow",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "Croatia",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "cross",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "culture",
+    "cefr": "A1",
+    "frequency": 35,
+    "sentences": []
+  },
+  {
+    "word": "cup",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "customer",
+    "cefr": "A1",
+    "frequency": 35,
+    "sentences": []
+  },
+  {
+    "word": "Cyberport",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "dance",
+    "cefr": "A1",
+    "frequency": 10,
+    "sentences": []
+  },
+  {
+    "word": "dancer",
+    "cefr": "A1",
+    "frequency": 3,
+    "sentences": []
+  },
+  {
+    "word": "dangerous",
+    "cefr": "A1",
+    "frequency": 11,
+    "sentences": []
+  },
+  {
+    "word": "December",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "decide",
+    "cefr": "A1",
+    "frequency": 48,
+    "sentences": []
+  },
+  {
+    "word": "describe",
+    "cefr": "A1",
+    "frequency": 20,
+    "sentences": []
+  },
+  {
+    "word": "description",
+    "cefr": "A1",
+    "frequency": 5,
+    "sentences": []
+  },
+  {
+    "word": "design",
+    "cefr": "A1",
+    "frequency": 36,
+    "sentences": []
+  },
+  {
+    "word": "desk",
+    "cefr": "A1",
+    "frequency": 17,
+    "sentences": []
+  },
+  {
+    "word": "Diamond Hill",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "dictionary",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": []
+  },
+  {
+    "word": "diet",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": []
+  },
+  {
+    "word": "difference",
+    "cefr": "A1",
+    "frequency": 8,
+    "sentences": []
+  },
+  {
+    "word": "different",
+    "cefr": "A1",
+    "frequency": 65,
+    "sentences": []
+  },
+  {
+    "word": "dinner",
+    "cefr": "A1",
+    "frequency": 3,
+    "sentences": []
+  },
+  {
+    "word": "discuss",
+    "cefr": "A1",
+    "frequency": 20,
+    "sentences": []
+  },
+  {
+    "word": "dish",
+    "cefr": "A1",
+    "frequency": 5,
+    "sentences": []
+  },
+  {
+    "word": "draw",
+    "cefr": "A1",
+    "frequency": 16,
+    "sentences": []
+  },
+  {
+    "word": "dress",
+    "cefr": "A1",
+    "frequency": 5,
+    "sentences": []
+  },
+  {
+    "word": "drink",
+    "cefr": "A1",
+    "frequency": 3,
+    "sentences": []
+  },
+  {
+    "word": "ear",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": []
+  },
+  {
+    "word": "easier",
+    "cefr": "A1",
+    "frequency": 4,
+    "sentences": []
+  },
+  {
+    "word": "elephant",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "else",
+    "cefr": "A1",
+    "frequency": 11,
+    "sentences": []
+  },
+  {
+    "word": "email",
+    "cefr": "A1",
+    "frequency": 121,
+    "sentences": []
+  },
+  {
+    "word": "enjoy",
+    "cefr": "A1",
+    "frequency": 39,
+    "sentences": []
+  },
+  {
+    "word": "event",
+    "cefr": "A1",
+    "frequency": 79,
+    "sentences": []
+  },
+  {
+    "word": "every",
+    "cefr": "A1",
+    "frequency": 43,
+    "sentences": []
+  },
+  {
+    "word": "everybody",
+    "cefr": "A1",
+    "frequency": 5,
+    "sentences": []
+  },
+  {
+    "word": "everyone",
+    "cefr": "A1",
+    "frequency": 30,
+    "sentences": []
+  },
+  {
+    "word": "exam",
+    "cefr": "A1",
+    "frequency": 4,
+    "sentences": []
+  },
+  {
+    "word": "exercise",
+    "cefr": "A1",
+    "frequency": 11,
+    "sentences": []
+  },
+  {
+    "word": "Exhibition Centre",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "expensive",
+    "cefr": "A1",
+    "frequency": 13,
+    "sentences": []
+  },
+  {
+    "word": "explain",
+    "cefr": "A1",
+    "frequency": 50,
+    "sentences": []
+  },
+  {
+    "word": "fact",
+    "cefr": "A1",
+    "frequency": 35,
+    "sentences": []
+  },
+  {
+    "word": "famous",
+    "cefr": "A1",
+    "frequency": 21,
+    "sentences": []
+  },
+  {
+    "word": "fantastic",
+    "cefr": "A1",
+    "frequency": 7,
+    "sentences": []
+  },
+  {
+    "word": "farmer",
+    "cefr": "A1",
+    "frequency": 10,
+    "sentences": []
+  },
+  {
+    "word": "faster",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "favourite",
+    "cefr": "A1",
+    "frequency": 9,
+    "sentences": []
+  },
+  {
+    "word": "February",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "festival",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": []
+  },
+  {
+    "word": "flight",
+    "cefr": "A1",
+    "frequency": 4,
+    "sentences": []
+  },
+  {
+    "word": "floor",
+    "cefr": "A1",
+    "frequency": 5,
+    "sentences": []
+  },
+  {
+    "word": "flower",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "foot",
+    "cefr": "A1",
+    "frequency": 5,
+    "sentences": []
+  },
+  {
+    "word": "football",
+    "cefr": "A1",
+    "frequency": 3,
+    "sentences": []
+  },
+  {
+    "word": "forget",
+    "cefr": "A1",
+    "frequency": 19,
+    "sentences": []
+  },
+  {
+    "word": "form",
+    "cefr": "A1",
+    "frequency": 29,
+    "sentences": []
+  },
+  {
+    "word": "Fortress Point",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "France",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "Friday",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "friendly",
+    "cefr": "A1",
+    "frequency": 4,
+    "sentences": []
+  },
+  {
+    "word": "fruit",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": []
+  },
+  {
+    "word": "funny",
+    "cefr": "A1",
+    "frequency": 3,
+    "sentences": []
+  },
+  {
+    "word": "garden",
+    "cefr": "A1",
+    "frequency": 6,
+    "sentences": []
+  },
+  {
+    "word": "Germany",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "girlfriend",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": []
+  },
+  {
+    "word": "glass",
+    "cefr": "A1",
+    "frequency": 21,
+    "sentences": []
+  },
+  {
+    "word": "go past",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "go straight ahead",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "goodbye",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "grandfather",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "grandmother",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": []
+  },
+  {
+    "word": "grandparent",
+    "cefr": "A1",
+    "frequency": 4,
+    "sentences": []
+  },
+  {
+    "word": "great",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "green",
+    "cefr": "A1",
+    "frequency": 19,
+    "sentences": []
+  },
+  {
+    "word": "grey",
+    "cefr": "A1",
+    "frequency": 4,
+    "sentences": []
+  },
+  {
+    "word": "group",
+    "cefr": "A1",
+    "frequency": 53,
+    "sentences": []
+  },
+  {
+    "word": "guess",
+    "cefr": "A1",
+    "frequency": 13,
+    "sentences": []
+  },
+  {
+    "word": "guitar",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "hair",
+    "cefr": "A1",
+    "frequency": 7,
+    "sentences": []
+  },
+  {
+    "word": "happier",
+    "cefr": "A1",
+    "frequency": 5,
+    "sentences": []
+  },
+  {
+    "word": "hat",
+    "cefr": "A1",
+    "frequency": 4,
+    "sentences": []
+  },
+  {
+    "word": "health",
+    "cefr": "A1",
+    "frequency": 14,
+    "sentences": []
+  },
+  {
+    "word": "healthy",
+    "cefr": "A1",
+    "frequency": 12,
+    "sentences": []
+  },
+  {
+    "word": "help",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "hike",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "history",
+    "cefr": "A1",
+    "frequency": 20,
+    "sentences": []
+  },
+  {
+    "word": "hobby",
+    "cefr": "A1",
+    "frequency": 3,
+    "sentences": []
+  },
+  {
+    "word": "holiday",
+    "cefr": "A1",
+    "frequency": 12,
+    "sentences": []
+  },
+  {
+    "word": "homework",
+    "cefr": "A1",
+    "frequency": 3,
+    "sentences": []
+  },
+  {
+    "word": "Hong Kong",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "horse",
+    "cefr": "A1",
+    "frequency": 9,
+    "sentences": []
+  },
+  {
+    "word": "hospital",
+    "cefr": "A1",
+    "frequency": 10,
+    "sentences": []
+  },
+  {
+    "word": "hotel",
+    "cefr": "A1",
+    "frequency": 25,
+    "sentences": []
+  },
+  {
+    "word": "however",
+    "cefr": "A1",
+    "frequency": 29,
+    "sentences": []
+  },
+  {
+    "word": "hungry",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "husband",
+    "cefr": "A1",
+    "frequency": 4,
+    "sentences": []
+  },
+  {
+    "word": "ice",
+    "cefr": "A1",
+    "frequency": 11,
+    "sentences": []
+  },
+  {
+    "word": "ice cream",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "idea",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "imagine",
+    "cefr": "A1",
+    "frequency": 11,
+    "sentences": []
+  },
+  {
+    "word": "important",
+    "cefr": "A1",
+    "frequency": 41,
+    "sentences": []
+  },
+  {
+    "word": "improve",
+    "cefr": "A1",
+    "frequency": 18,
+    "sentences": []
+  },
+  {
+    "word": "in front of",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "information",
+    "cefr": "A1",
+    "frequency": 70,
+    "sentences": []
+  },
+  {
+    "word": "interest",
+    "cefr": "A1",
+    "frequency": 64,
+    "sentences": []
+  },
+  {
+    "word": "internet",
+    "cefr": "A1",
+    "frequency": 10,
+    "sentences": []
+  },
+  {
+    "word": "interview",
+    "cefr": "A1",
+    "frequency": 53,
+    "sentences": []
+  },
+  {
+    "word": "introduce",
+    "cefr": "A1",
+    "frequency": 7,
+    "sentences": []
+  },
+  {
+    "word": "island",
+    "cefr": "A1",
+    "frequency": 8,
+    "sentences": []
+  },
+  {
+    "word": "Italy",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "jacket",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": []
+  },
+  {
+    "word": "January",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "join",
+    "cefr": "A1",
+    "frequency": 19,
+    "sentences": []
+  },
+  {
+    "word": "Jordan",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "journey",
+    "cefr": "A1",
+    "frequency": 5,
+    "sentences": []
+  },
+  {
+    "word": "juice",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "July",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "June",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "Kai Tak",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "Kennedy Town",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "kitchen",
+    "cefr": "A1",
+    "frequency": 32,
+    "sentences": []
+  },
+  {
+    "word": "Kowloon Tong",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "Lamma Island",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "Lantau Island",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "laugh",
+    "cefr": "A1",
+    "frequency": 5,
+    "sentences": []
+  },
+  {
+    "word": "lesson",
+    "cefr": "A1",
+    "frequency": 20,
+    "sentences": []
+  },
+  {
+    "word": "letter",
+    "cefr": "A1",
+    "frequency": 28,
+    "sentences": []
+  },
+  {
+    "word": "library",
+    "cefr": "A1",
+    "frequency": 27,
+    "sentences": []
+  },
+  {
+    "word": "lion",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "Lion Rock",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "list",
+    "cefr": "A1",
+    "frequency": 12,
+    "sentences": []
+  },
+  {
+    "word": "listen",
+    "cefr": "A1",
+    "frequency": 34,
+    "sentences": []
+  },
+  {
+    "word": "longer",
+    "cefr": "A1",
+    "frequency": 16,
+    "sentences": []
+  },
+  {
+    "word": "LOUAS Park",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "lunch",
+    "cefr": "A1",
+    "frequency": 7,
+    "sentences": []
+  },
+  {
+    "word": "M+ Museum",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "machine",
+    "cefr": "A1",
+    "frequency": 15,
+    "sentences": []
+  },
+  {
+    "word": "magazine",
+    "cefr": "A1",
+    "frequency": 28,
+    "sentences": []
+  },
+  {
+    "word": "Mai Po",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "main",
+    "cefr": "A1",
+    "frequency": 23,
+    "sentences": []
+  },
+  {
+    "word": "Malaysia",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "March",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "match",
+    "cefr": "A1",
+    "frequency": 6,
+    "sentences": []
+  },
+  {
+    "word": "May",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "meal",
+    "cefr": "A1",
+    "frequency": 6,
+    "sentences": []
+  },
+  {
+    "word": "meat",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": []
+  },
+  {
+    "word": "member",
+    "cefr": "A1",
+    "frequency": 24,
+    "sentences": []
+  },
+  {
+    "word": "menu",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "message",
+    "cefr": "A1",
+    "frequency": 40,
+    "sentences": []
+  },
+  {
+    "word": "metre",
+    "cefr": "A1",
+    "frequency": 7,
+    "sentences": []
+  },
+  {
+    "word": "midnight",
+    "cefr": "A1",
+    "frequency": 3,
+    "sentences": []
+  },
+  {
+    "word": "mile",
+    "cefr": "A1",
+    "frequency": 3,
+    "sentences": []
+  },
+  {
+    "word": "milk",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "modern",
+    "cefr": "A1",
+    "frequency": 14,
+    "sentences": []
+  },
+  {
+    "word": "moment",
+    "cefr": "A1",
+    "frequency": 12,
+    "sentences": []
+  },
+  {
+    "word": "Monday",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "Mong Kok",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "mountain",
+    "cefr": "A1",
+    "frequency": 9,
+    "sentences": []
+  },
+  {
+    "word": "movie",
+    "cefr": "A1",
+    "frequency": 20,
+    "sentences": []
+  },
+  {
+    "word": "museum",
+    "cefr": "A1",
+    "frequency": 36,
+    "sentences": []
+  },
+  {
+    "word": "music",
+    "cefr": "A1",
+    "frequency": 17,
+    "sentences": []
+  },
+  {
+    "word": "natural",
+    "cefr": "A1",
+    "frequency": 11,
+    "sentences": []
+  },
+  {
+    "word": "near",
+    "cefr": "A1",
+    "frequency": 19,
+    "sentences": []
+  },
+  {
+    "word": "nearest",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": []
+  },
+  {
+    "word": "news",
+    "cefr": "A1",
+    "frequency": 26,
+    "sentences": []
+  },
+  {
+    "word": "newspaper",
+    "cefr": "A1",
+    "frequency": 13,
+    "sentences": []
+  },
+  {
+    "word": "nobody",
+    "cefr": "A1",
+    "frequency": 6,
+    "sentences": []
+  },
+  {
+    "word": "north",
+    "cefr": "A1",
+    "frequency": 3,
+    "sentences": []
+  },
+  {
+    "word": "North Point",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "nose",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "not",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "November",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "nurse",
+    "cefr": "A1",
+    "frequency": 14,
+    "sentences": []
+  },
+  {
+    "word": "October",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "okay",
+    "cefr": "A1",
+    "frequency": 4,
+    "sentences": []
+  },
+  {
+    "word": "older",
+    "cefr": "A1",
+    "frequency": 5,
+    "sentences": []
+  },
+  {
+    "word": "oldest",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": []
+  },
+  {
+    "word": "Olyampic",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "onion",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "online",
+    "cefr": "A1",
+    "frequency": 58,
+    "sentences": []
+  },
+  {
+    "word": "opinion",
+    "cefr": "A1",
+    "frequency": 7,
+    "sentences": []
+  },
+  {
+    "word": "opposite",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": []
+  },
+  {
+    "word": "opposite",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "orange",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": []
+  },
+  {
+    "word": "order",
+    "cefr": "A1",
+    "frequency": 17,
+    "sentences": []
+  },
+  {
+    "word": "pair",
+    "cefr": "A1",
+    "frequency": 5,
+    "sentences": []
+  },
+  {
+    "word": "panda",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "partner",
+    "cefr": "A1",
+    "frequency": 7,
+    "sentences": []
+  },
+  {
+    "word": "party",
+    "cefr": "A1",
+    "frequency": 5,
+    "sentences": []
+  },
+  {
+    "word": "passport",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "pencil",
+    "cefr": "A1",
+    "frequency": 3,
+    "sentences": []
+  },
+  {
+    "word": "people",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "pepper",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": []
+  },
+  {
+    "word": "perfect",
+    "cefr": "A1",
+    "frequency": 13,
+    "sentences": []
+  },
+  {
+    "word": "period",
+    "cefr": "A1",
+    "frequency": 6,
+    "sentences": []
+  },
+  {
+    "word": "personal",
+    "cefr": "A1",
+    "frequency": 14,
+    "sentences": []
+  },
+  {
+    "word": "photo",
+    "cefr": "A1",
+    "frequency": 22,
+    "sentences": []
+  },
+  {
+    "word": "phrase",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": []
+  },
+  {
+    "word": "piano",
+    "cefr": "A1",
+    "frequency": 12,
+    "sentences": []
+  },
+  {
+    "word": "piece",
+    "cefr": "A1",
+    "frequency": 17,
+    "sentences": []
+  },
+  {
+    "word": "plan",
+    "cefr": "A1",
+    "frequency": 18,
+    "sentences": []
+  },
+  {
+    "word": "plane",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": []
+  },
+  {
+    "word": "player",
+    "cefr": "A1",
+    "frequency": 26,
+    "sentences": []
+  },
+  {
+    "word": "pool",
+    "cefr": "A1",
+    "frequency": 23,
+    "sentences": []
+  },
+  {
+    "word": "popular",
+    "cefr": "A1",
+    "frequency": 40,
+    "sentences": []
+  },
+  {
+    "word": "possible",
+    "cefr": "A1",
+    "frequency": 28,
+    "sentences": []
+  },
+  {
+    "word": "post",
+    "cefr": "A1",
+    "frequency": 53,
+    "sentences": []
+  },
+  {
+    "word": "potato",
+    "cefr": "A1",
+    "frequency": 7,
+    "sentences": []
+  },
+  {
+    "word": "pound",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": []
+  },
+  {
+    "word": "practice",
+    "cefr": "A1",
+    "frequency": 19,
+    "sentences": []
+  },
+  {
+    "word": "practise",
+    "cefr": "A1",
+    "frequency": 4,
+    "sentences": []
+  },
+  {
+    "word": "prefer",
+    "cefr": "A1",
+    "frequency": 5,
+    "sentences": []
+  },
+  {
+    "word": "prepare",
+    "cefr": "A1",
+    "frequency": 12,
+    "sentences": []
+  },
+  {
+    "word": "pretty",
+    "cefr": "A1",
+    "frequency": 13,
+    "sentences": []
+  },
+  {
+    "word": "Prince Edward",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "product",
+    "cefr": "A1",
+    "frequency": 35,
+    "sentences": []
+  },
+  {
+    "word": "programme",
+    "cefr": "A1",
+    "frequency": 8,
+    "sentences": []
+  },
+  {
+    "word": "purple",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": []
+  },
+  {
+    "word": "Quarry Bay",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "quick",
+    "cefr": "A1",
+    "frequency": 7,
+    "sentences": []
+  },
+  {
+    "word": "quickly",
+    "cefr": "A1",
+    "frequency": 11,
+    "sentences": []
+  },
+  {
+    "word": "quiet",
+    "cefr": "A1",
+    "frequency": 20,
+    "sentences": []
+  },
+  {
+    "word": "Race course",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "radio",
+    "cefr": "A1",
+    "frequency": 10,
+    "sentences": []
+  },
+  {
+    "word": "reader",
+    "cefr": "A1",
+    "frequency": 25,
+    "sentences": []
+  },
+  {
+    "word": "ready",
+    "cefr": "A1",
+    "frequency": 11,
+    "sentences": []
+  },
+  {
+    "word": "real",
+    "cefr": "A1",
+    "frequency": 44,
+    "sentences": []
+  },
+  {
+    "word": "reason",
+    "cefr": "A1",
+    "frequency": 25,
+    "sentences": []
+  },
+  {
+    "word": "red",
+    "cefr": "A1",
+    "frequency": 4,
+    "sentences": []
+  },
+  {
+    "word": "relax",
+    "cefr": "A1",
+    "frequency": 6,
+    "sentences": []
+  },
+  {
+    "word": "restaurant",
+    "cefr": "A1",
+    "frequency": 31,
+    "sentences": []
+  },
+  {
+    "word": "return",
+    "cefr": "A1",
+    "frequency": 10,
+    "sentences": []
+  },
+  {
+    "word": "rice",
+    "cefr": "A1",
+    "frequency": 6,
+    "sentences": []
+  },
+  {
+    "word": "road",
+    "cefr": "A1",
+    "frequency": 12,
+    "sentences": []
+  },
+  {
+    "word": "safer",
+    "cefr": "A1",
+    "frequency": 3,
+    "sentences": []
+  },
+  {
+    "word": "salt",
+    "cefr": "A1",
+    "frequency": 5,
+    "sentences": []
+  },
+  {
+    "word": "sandwich",
+    "cefr": "A1",
+    "frequency": 5,
+    "sentences": []
+  },
+  {
+    "word": "Saturday",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "schoolmate",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "science",
+    "cefr": "A1",
+    "frequency": 28,
+    "sentences": []
+  },
+  {
+    "word": "scientist",
+    "cefr": "A1",
+    "frequency": 4,
+    "sentences": []
+  },
+  {
+    "word": "sea",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": [
+      {
+        "text": "We swim in the sea every summer.",
+        "answer": "sea"
+      }
+    ]
+  },
+  {
+    "word": "sell",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "September",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "Sham Shui Po",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "Shek Kip Mei",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "shirt",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "shoe",
+    "cefr": "A1",
+    "frequency": 3,
+    "sentences": []
+  },
+  {
+    "word": "shorter",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": []
+  },
+  {
+    "word": "shower",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": []
+  },
+  {
+    "word": "Shung Wong Toi",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "sick",
+    "cefr": "A1",
+    "frequency": 3,
+    "sentences": []
+  },
+  {
+    "word": "similar",
+    "cefr": "A1",
+    "frequency": 17,
+    "sentences": []
+  },
+  {
+    "word": "sing",
+    "cefr": "A1",
+    "frequency": 6,
+    "sentences": []
+  },
+  {
+    "word": "Singapore",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "singer",
+    "cefr": "A1",
+    "frequency": 10,
+    "sentences": []
+  },
+  {
+    "word": "situation",
+    "cefr": "A1",
+    "frequency": 19,
+    "sentences": []
+  },
+  {
+    "word": "skill",
+    "cefr": "A1",
+    "frequency": 21,
+    "sentences": []
+  },
+  {
+    "word": "skirt",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": []
+  },
+  {
+    "word": "smaller",
+    "cefr": "A1",
+    "frequency": 7,
+    "sentences": []
+  },
+  {
+    "word": "smallest",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": []
+  },
+  {
+    "word": "snake",
+    "cefr": "A1",
+    "frequency": 15,
+    "sentences": []
+  },
+  {
+    "word": "soda",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "somebody",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": []
+  },
+  {
+    "word": "someone",
+    "cefr": "A1",
+    "frequency": 33,
+    "sentences": []
+  },
+  {
+    "word": "song",
+    "cefr": "A1",
+    "frequency": 10,
+    "sentences": []
+  },
+  {
+    "word": "sorry",
+    "cefr": "A1",
+    "frequency": 3,
+    "sentences": []
+  },
+  {
+    "word": "soup",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "south",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": []
+  },
+  {
+    "word": "South Korea",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "space",
+    "cefr": "A1",
+    "frequency": 35,
+    "sentences": []
+  },
+  {
+    "word": "Spain",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "special",
+    "cefr": "A1",
+    "frequency": 50,
+    "sentences": []
+  },
+  {
+    "word": "sport",
+    "cefr": "A1",
+    "frequency": 54,
+    "sentences": []
+  },
+  {
+    "word": "statement",
+    "cefr": "A1",
+    "frequency": 3,
+    "sentences": []
+  },
+  {
+    "word": "station",
+    "cefr": "A1",
+    "frequency": 6,
+    "sentences": []
+  },
+  {
+    "word": "story",
+    "cefr": "A1",
+    "frequency": 17,
+    "sentences": []
+  },
+  {
+    "word": "street",
+    "cefr": "A1",
+    "frequency": 28,
+    "sentences": []
+  },
+  {
+    "word": "strong",
+    "cefr": "A1",
+    "frequency": 13,
+    "sentences": []
+  },
+  {
+    "word": "student",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "study",
+    "cefr": "A1",
+    "frequency": 37,
+    "sentences": []
+  },
+  {
+    "word": "style",
+    "cefr": "A1",
+    "frequency": 11,
+    "sentences": []
+  },
+  {
+    "word": "subway",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "success",
+    "cefr": "A1",
+    "frequency": 16,
+    "sentences": []
+  },
+  {
+    "word": "sugar",
+    "cefr": "A1",
+    "frequency": 12,
+    "sentences": []
+  },
+  {
+    "word": "summer",
+    "cefr": "A1",
+    "frequency": 16,
+    "sentences": []
+  },
+  {
+    "word": "Sunday",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "supermarket",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "sweeter",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "Switzerland",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "Tai Koo",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "Tai O",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "tallest",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "taxi",
+    "cefr": "A1",
+    "frequency": 3,
+    "sentences": []
+  },
+  {
+    "word": "tea",
+    "cefr": "A1",
+    "frequency": 4,
+    "sentences": []
+  },
+  {
+    "word": "teach",
+    "cefr": "A1",
+    "frequency": 10,
+    "sentences": []
+  },
+  {
+    "word": "team",
+    "cefr": "A1",
+    "frequency": 31,
+    "sentences": []
+  },
+  {
+    "word": "teenager",
+    "cefr": "A1",
+    "frequency": 13,
+    "sentences": []
+  },
+  {
+    "word": "telephone",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "television",
+    "cefr": "A1",
+    "frequency": 9,
+    "sentences": []
+  },
+  {
+    "word": "ten",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "tennis",
+    "cefr": "A1",
+    "frequency": 13,
+    "sentences": []
+  },
+  {
+    "word": "terrible",
+    "cefr": "A1",
+    "frequency": 8,
+    "sentences": []
+  },
+  {
+    "word": "test",
+    "cefr": "A1",
+    "frequency": 18,
+    "sentences": []
+  },
+  {
+    "word": "Thailand",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "thank",
+    "cefr": "A1",
+    "frequency": 49,
+    "sentences": []
+  },
+  {
+    "word": "The Peak",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "The United Kingdom",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "The USA",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "theatre",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": []
+  },
+  {
+    "word": "thirdly",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": []
+  },
+  {
+    "word": "Thursday",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "ticket",
+    "cefr": "A1",
+    "frequency": 24,
+    "sentences": []
+  },
+  {
+    "word": "together",
+    "cefr": "A1",
+    "frequency": 28,
+    "sentences": []
+  },
+  {
+    "word": "toilet",
+    "cefr": "A1",
+    "frequency": 7,
+    "sentences": []
+  },
+  {
+    "word": "top",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "topic",
+    "cefr": "A1",
+    "frequency": 12,
+    "sentences": []
+  },
+  {
+    "word": "tourist",
+    "cefr": "A1",
+    "frequency": 31,
+    "sentences": []
+  },
+  {
+    "word": "traffic",
+    "cefr": "A1",
+    "frequency": 8,
+    "sentences": []
+  },
+  {
+    "word": "travel",
+    "cefr": "A1",
+    "frequency": 31,
+    "sentences": []
+  },
+  {
+    "word": "tree",
+    "cefr": "A1",
+    "frequency": 6,
+    "sentences": []
+  },
+  {
+    "word": "Tsim Sha Tsui",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "Tuen Mun",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "Tuesday",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "turn left",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "turn right",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "twice",
+    "cefr": "A1",
+    "frequency": 4,
+    "sentences": []
+  },
+  {
+    "word": "umbrella",
+    "cefr": "A1",
+    "frequency": 6,
+    "sentences": []
+  },
+  {
+    "word": "university",
+    "cefr": "A1",
+    "frequency": 12,
+    "sentences": []
+  },
+  {
+    "word": "useful",
+    "cefr": "A1",
+    "frequency": 15,
+    "sentences": []
+  },
+  {
+    "word": "vacation",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "vegetable",
+    "cefr": "A1",
+    "frequency": 8,
+    "sentences": []
+  },
+  {
+    "word": "Victoria Harbour",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "video",
+    "cefr": "A1",
+    "frequency": 61,
+    "sentences": []
+  },
+  {
+    "word": "village",
+    "cefr": "A1",
+    "frequency": 19,
+    "sentences": []
+  },
+  {
+    "word": "visit",
+    "cefr": "A1",
+    "frequency": 23,
+    "sentences": []
+  },
+  {
+    "word": "visitor",
+    "cefr": "A1",
+    "frequency": 20,
+    "sentences": []
+  },
+  {
+    "word": "wake",
+    "cefr": "A1",
+    "frequency": 3,
+    "sentences": []
+  },
+  {
+    "word": "walk along",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "Wan Chai",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "warmer",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": []
+  },
+  {
+    "word": "wear",
+    "cefr": "A1",
+    "frequency": 11,
+    "sentences": []
+  },
+  {
+    "word": "weather",
+    "cefr": "A1",
+    "frequency": 14,
+    "sentences": []
+  },
+  {
+    "word": "website",
+    "cefr": "A1",
+    "frequency": 51,
+    "sentences": []
+  },
+  {
+    "word": "Wednesday",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "west",
+    "cefr": "A1",
+    "frequency": 3,
+    "sentences": []
+  },
+  {
+    "word": "West Kowloon Cultural District",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "Whampoa",
+    "cefr": "A1",
+    "frequency": null,
+    "sentences": []
+  },
+  {
+    "word": "white",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "wife",
+    "cefr": "A1",
+    "frequency": 3,
+    "sentences": []
+  },
+  {
+    "word": "window",
+    "cefr": "A1",
+    "frequency": 6,
+    "sentences": []
+  },
+  {
+    "word": "wine",
+    "cefr": "A1",
+    "frequency": 3,
+    "sentences": []
+  },
+  {
+    "word": "winter",
+    "cefr": "A1",
+    "frequency": 6,
+    "sentences": []
+  },
+  {
+    "word": "without",
+    "cefr": "A1",
+    "frequency": 37,
+    "sentences": []
+  },
+  {
+    "word": "wonderful",
+    "cefr": "A1",
+    "frequency": 10,
+    "sentences": []
+  },
+  {
+    "word": "worker",
+    "cefr": "A1",
+    "frequency": 13,
+    "sentences": []
+  },
+  {
+    "word": "worksheet",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": []
+  },
+  {
+    "word": "would",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "writer",
+    "cefr": "A1",
+    "frequency": 16,
+    "sentences": []
+  },
+  {
+    "word": "years",
+    "cefr": "A1",
+    "frequency": 1,
+    "sentences": []
+  },
+  {
+    "word": "yellow",
+    "cefr": "A1",
+    "frequency": 3,
+    "sentences": []
+  },
+  {
+    "word": "yes",
+    "cefr": "A1",
+    "frequency": 53,
+    "sentences": []
+  },
+  {
+    "word": "zoo",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": []
+  }
+]
