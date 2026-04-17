@@ -94,6 +94,7 @@ let speakingDebriefActiveLogIndex = null;
 let speakingDebriefPlaybackAudio = null;
 let speakingDebriefPlaybackObjectUrl = '';
 let speakingDebriefBgmRestoreVolume = null;
+let userSentenceProgress = { listening: {}, speaking: {} };
 let battleLog = [];
 let battleUsedWordKeys = new Set();
 let attackResolutionLocked = false;
@@ -2569,27 +2570,7 @@ function openLaunchModal(index) {
         battleUsedWordKeys.add(getBattleWordKey(currentVocab));
     }
 
-    // ���� Handle sentence selection (support both old and new format) ����
-    if (currentVocab.sents && currentVocab.sents.length > 0) {
-        const randSentIndex = Math.floor(Math.random() * currentVocab.sents.length);
-        const selectedSent = currentVocab.sents[randSentIndex];
-
-        // Check if new format (object with text and answer)
-        if (typeof selectedSent === 'object' && selectedSent.text) {
-            currentVocab.sent = selectedSent.text;
-            currentVocab.listeningAnswer = selectedSent.answer; // Store the correct answer for listening
-            console.log(`[Vocab] Using new format - Sentence: "${selectedSent.text}", Answer: "${selectedSent.answer}"`);
-        } else {
-            // Old format (plain string)
-            currentVocab.sent = selectedSent;
-            currentVocab.listeningAnswer = null; // Will use base form
-            console.log(`[Vocab] Using old format - Sentence: "${selectedSent}"`);
-        }
-    } else if (!currentVocab.sent && currentVocab.en) {
-        // ����Bһ�����䶼�o�����Â����ֱ����ס��
-        currentVocab.sent = currentVocab.en;
-        currentVocab.listeningAnswer = null;
-    }
+    assignSentenceForCurrentVocab();
     
     // �@ȡ����Ԫ��
     const modal = document.getElementById('launch-modal');
@@ -5467,6 +5448,8 @@ window.addEventListener('load', () => {
     // �� ͬ�� XP & Mastery �� Module Scope
     userTotalXP = window.userTotalXP || 0;
     userMastery = window.userMastery || { reading: {}, listening: {}, speaking: {} };
+    userSentenceProgress = window.userSentenceProgress || { listening: {}, speaking: {} };
+    normalizeSentenceProgressState();
     userSupplies = window.userSupplies || 0;
 
     // 4. ͬ�� myPlayerId (��� onAuthStateChanged ������δ fire)
@@ -5484,15 +5467,19 @@ window.addEventListener('load', () => {
                 }
                 // �� ͬ�� XP & Mastery
                 userTotalXP = window.userTotalXP || 0;
-                userMastery = window.userMastery || { reading: {}, listening: {}, speaking: {} };
-                userSupplies = window.userSupplies || 0;
-            } else {
-                myPlayerId = null;
-                userTotalXP = 0;
-                userMastery = { reading: {}, listening: {}, speaking: {} };
-                userSupplies = 0;
-            }
-        });
+                    userMastery = window.userMastery || { reading: {}, listening: {}, speaking: {} };
+                    userSentenceProgress = window.userSentenceProgress || { listening: {}, speaking: {} };
+                    normalizeSentenceProgressState();
+                    userSupplies = window.userSupplies || 0;
+                } else {
+                    myPlayerId = null;
+                    userTotalXP = 0;
+                    userMastery = { reading: {}, listening: {}, speaking: {} };
+                    userSentenceProgress = { listening: {}, speaking: {} };
+                    normalizeSentenceProgressState();
+                    userSupplies = 0;
+                }
+            });
     }
     });
     
@@ -7492,6 +7479,114 @@ function getSkillInfo(skill) {
         return AURELIANS_SKILL_INFO[skill] || SKILL_INFO[skill];
     }
     return SKILL_INFO[skill];
+}
+
+function normalizeSentenceProgressState() {
+    if (!userSentenceProgress || typeof userSentenceProgress !== 'object') {
+        userSentenceProgress = { listening: {}, speaking: {} };
+    }
+    if (!userSentenceProgress.listening || typeof userSentenceProgress.listening !== 'object') {
+        userSentenceProgress.listening = {};
+    }
+    if (!userSentenceProgress.speaking || typeof userSentenceProgress.speaking !== 'object') {
+        userSentenceProgress.speaking = {};
+    }
+    window.userSentenceProgress = userSentenceProgress;
+    return userSentenceProgress;
+}
+
+function buildSentenceCycleQueue(sentenceCount) {
+    return Array.from({ length: sentenceCount }, (_, index) => index);
+}
+
+function isValidSentenceQueue(queue, sentenceCount) {
+    return Array.isArray(queue) &&
+        queue.length > 0 &&
+        queue.every(index => Number.isInteger(index) && index >= 0 && index < sentenceCount);
+}
+
+function ensureSentenceProgressEntry(modeKey, levelKey, wordId, sentenceCount) {
+    const progress = normalizeSentenceProgressState();
+    if (!progress[modeKey][levelKey]) progress[modeKey][levelKey] = {};
+
+    const existingEntry = progress[modeKey][levelKey][wordId];
+    const queue = isValidSentenceQueue(existingEntry?.queue, sentenceCount)
+        ? [...existingEntry.queue]
+        : buildSentenceCycleQueue(sentenceCount);
+
+    const entry = {
+        queue,
+        lastIndex: Number.isInteger(existingEntry?.lastIndex) ? existingEntry.lastIndex : null,
+        updatedAt: existingEntry?.updatedAt || null
+    };
+
+    progress[modeKey][levelKey][wordId] = entry;
+    return entry;
+}
+
+function syncSentenceProgressEntry(modeKey, levelKey, wordId, entry) {
+    const progress = normalizeSentenceProgressState();
+    if (!progress[modeKey][levelKey]) progress[modeKey][levelKey] = {};
+    progress[modeKey][levelKey][wordId] = entry;
+    window.userSentenceProgress = progress;
+
+    if (!window.myPlayerId || !window.db || !window.firebaseModules?.set || !window.firebaseModules?.ref) return;
+
+    const sentenceProgressRef = window.firebaseModules.ref(
+        window.db,
+        `users/${window.myPlayerId}/sentenceProgress/${modeKey}/${levelKey}/${wordId}`
+    );
+    window.firebaseModules.set(sentenceProgressRef, entry).catch(error => {
+        console.warn('[Sentence Progress] Failed to sync sentence queue:', error);
+    });
+}
+
+function applySelectedSentenceToCurrentVocab(selectedSent) {
+    if (typeof selectedSent === 'object' && selectedSent?.text) {
+        currentVocab.sent = selectedSent.text;
+        currentVocab.listeningAnswer = selectedSent.answer || null;
+        console.log(`[Vocab] Using new format - Sentence: "${selectedSent.text}", Answer: "${selectedSent.answer}"`);
+    } else {
+        currentVocab.sent = selectedSent;
+        currentVocab.listeningAnswer = null;
+        console.log(`[Vocab] Using old format - Sentence: "${selectedSent}"`);
+    }
+}
+
+function assignSentenceForCurrentVocab() {
+    if (!currentVocab?.sents || currentVocab.sents.length === 0) {
+        if (!currentVocab?.sent && currentVocab?.en) {
+            currentVocab.sent = currentVocab.en;
+            currentVocab.listeningAnswer = null;
+        }
+        return;
+    }
+
+    const modeKey = (currentPracticeMode || '').toLowerCase();
+    if (modeKey !== 'listening' && modeKey !== 'speaking') {
+        const fallbackSent = currentVocab.sents[0];
+        applySelectedSentenceToCurrentVocab(fallbackSent);
+        currentVocab.sentenceIndex = 0;
+        return;
+    }
+
+    const sentenceCount = currentVocab.sents.length;
+    const levelKey = selectedLevel || 'L1';
+    const wordId = currentVocab.en;
+    const entry = ensureSentenceProgressEntry(modeKey, levelKey, wordId, sentenceCount);
+    const selectedIndex = entry.queue.shift();
+
+    if (entry.queue.length === 0) {
+        entry.queue = buildSentenceCycleQueue(sentenceCount);
+    }
+
+    entry.lastIndex = selectedIndex;
+    entry.updatedAt = Date.now();
+    syncSentenceProgressEntry(modeKey, levelKey, wordId, entry);
+
+    currentVocab.sentenceIndex = selectedIndex;
+    applySelectedSentenceToCurrentVocab(currentVocab.sents[selectedIndex]);
+    console.log(`[Sentence Progress] ${modeKey}/${levelKey}/${wordId} -> sentence ${selectedIndex + 1}/${sentenceCount}`);
 }
 
 function updateBattleRaceUiTheme() {

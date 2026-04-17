@@ -151,6 +151,7 @@ console.log("Firebase Modules Loaded Successfully");
                     const userData = snapshot.val();
                     window.userTotalXP = (typeof userData.xp === 'number') ? userData.xp : 0;
                     window.userMastery = userData.mastery || { reading: {}, listening: {}, speaking: {} };
+                    window.userSentenceProgress = userData.sentenceProgress || { listening: {}, speaking: {} };
                     window.userSupplies = (typeof userData.supplies === 'number') ? userData.supplies : 0;
                     window.unlockedRaces = userData.unlockedRaces || ['VANGUARDS'];
                     console.log('[Auth] Loaded XP:', window.userTotalXP);
@@ -163,6 +164,9 @@ console.log("Firebase Modules Loaded Successfully");
                     }
                     if (typeof userMastery !== 'undefined') {
                         userMastery = window.userMastery;
+                    }
+                    if (typeof userSentenceProgress !== 'undefined') {
+                        userSentenceProgress = window.userSentenceProgress;
                     }
                     if (typeof userSupplies !== 'undefined') {
                         userSupplies = window.userSupplies;
@@ -207,9 +211,17 @@ console.log("Firebase Modules Loaded Successfully");
                         // ★ 新用戶初始化 XP & Mastery & Unlocked Races
                         window.userTotalXP = 0;
                         window.userMastery = { reading: {}, listening: {}, speaking: {} };
+                        window.userSentenceProgress = { listening: {}, speaking: {} };
                         window.userSupplies = 0;
                         window.unlockedRaces = ['VANGUARDS'];
-                        update(ref(db, 'users/' + u.uid), { displayName: autoName, lastLogin: Date.now(), xp: 0, supplies: 0, unlockedRaces: ['VANGUARDS'] }).then(async () => {
+                        update(ref(db, 'users/' + u.uid), {
+                            displayName: autoName,
+                            lastLogin: Date.now(),
+                            xp: 0,
+                            supplies: 0,
+                            unlockedRaces: ['VANGUARDS'],
+                            sentenceProgress: { listening: {}, speaking: {} }
+                        }).then(async () => {
                             console.log('[Auth] Guest account created successfully');
                             localStorage.setItem('battleship_username', autoName);
                             localStorage.setItem('battleship_auth_uid', u.uid);
@@ -308,9 +320,11 @@ console.log("Firebase Modules Loaded Successfully");
             // ★★★ CRITICAL FIX: Clear XP and Mastery data on logout ★★★
             window.userTotalXP = 0;
             window.userMastery = { reading: {}, listening: {}, speaking: {} };
+            window.userSentenceProgress = { listening: {}, speaking: {} };
             window.userSupplies = 0;
             if (typeof userTotalXP !== 'undefined') userTotalXP = 0;
             if (typeof userMastery !== 'undefined') userMastery = { reading: {}, listening: {}, speaking: {} };
+            if (typeof userSentenceProgress !== 'undefined') userSentenceProgress = { listening: {}, speaking: {} };
             if (typeof userSupplies !== 'undefined') userSupplies = 0;
             console.log('[Auth] Cleared XP and Mastery data');
 
