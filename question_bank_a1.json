@@ -1124,7 +1124,20 @@
     "word": "café",
     "cefr": "A1",
     "frequency": 19,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We sat in a quiet café after school.",
+        "answer": "café"
+      },
+      {
+        "text": "The café on the corner sells good coffee.",
+        "answer": "café"
+      },
+      {
+        "text": "My mother is meeting her friend at the café.",
+        "answer": "café"
+      }
+    ]
   },
   {
     "word": "cake",
@@ -8027,222 +8040,703 @@
     "word": "twice",
     "cefr": "A1",
     "frequency": 4,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I brush my teeth twice a day.",
+        "answer": "twice"
+      },
+      {
+        "text": "We visited the museum twice this year.",
+        "answer": "twice"
+      },
+      {
+        "text": "She called me twice yesterday.",
+        "answer": "twice"
+      }
+    ]
   },
   {
     "word": "umbrella",
     "cefr": "A1",
     "frequency": 6,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Take an umbrella because it may rain.",
+        "answer": "umbrella"
+      },
+      {
+        "text": "Her umbrella is beside the door.",
+        "answer": "umbrella"
+      },
+      {
+        "text": "I bought a new umbrella yesterday.",
+        "answer": "umbrella"
+      }
+    ]
   },
   {
     "word": "university",
     "cefr": "A1",
     "frequency": 12,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My sister studies at a university in Hong Kong.",
+        "answer": "university"
+      },
+      {
+        "text": "He wants to go to university in the future.",
+        "answer": "university"
+      },
+      {
+        "text": "The university library is very large.",
+        "answer": "university"
+      }
+    ]
   },
   {
     "word": "useful",
     "cefr": "A1",
     "frequency": 15,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "This dictionary is very useful.",
+        "answer": "useful"
+      },
+      {
+        "text": "She gave me some useful advice.",
+        "answer": "useful"
+      },
+      {
+        "text": "Learning English is useful for travel.",
+        "answer": "useful"
+      }
+    ]
   },
   {
     "word": "vacation",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We went to Japan during the summer vacation.",
+        "answer": "vacation"
+      },
+      {
+        "text": "My family is planning a short vacation.",
+        "answer": "vacation"
+      },
+      {
+        "text": "The children were excited about the vacation.",
+        "answer": "vacation"
+      }
+    ]
   },
   {
     "word": "vegetable",
     "cefr": "A1",
     "frequency": 8,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Carrot is my favourite vegetable.",
+        "answer": "vegetable"
+      },
+      {
+        "text": "We bought fresh vegetable soup for lunch.",
+        "answer": "vegetable"
+      },
+      {
+        "text": "Every meal should include a vegetable.",
+        "answer": "vegetable"
+      }
+    ]
   },
   {
     "word": "Victoria Harbour",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We took photos at Victoria Harbour.",
+        "answer": "Victoria Harbour"
+      },
+      {
+        "text": "The lights at Victoria Harbour are beautiful at night.",
+        "answer": "Victoria Harbour"
+      },
+      {
+        "text": "Many tourists visit Victoria Harbour every evening.",
+        "answer": "Victoria Harbour"
+      }
+    ]
   },
   {
     "word": "video",
     "cefr": "A1",
     "frequency": 61,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I watched a funny video online.",
+        "answer": "video"
+      },
+      {
+        "text": "She made a short video for class.",
+        "answer": "video"
+      },
+      {
+        "text": "Please send me the video later.",
+        "answer": "video"
+      }
+    ]
   },
   {
     "word": "village",
     "cefr": "A1",
     "frequency": 19,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My grandparents live in a small village.",
+        "answer": "village"
+      },
+      {
+        "text": "The village is near the river.",
+        "answer": "village"
+      },
+      {
+        "text": "We visited an old village during the holiday.",
+        "answer": "village"
+      }
+    ]
   },
   {
     "word": "visit",
     "cefr": "A1",
     "frequency": 23,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We will visit our cousins this weekend.",
+        "answer": "visit"
+      },
+      {
+        "text": "Many tourists visit the museum every day.",
+        "answer": "visit"
+      },
+      {
+        "text": "She wants to visit Japan one day.",
+        "answer": "visit"
+      }
+    ]
   },
   {
     "word": "visitor",
     "cefr": "A1",
     "frequency": 20,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Every visitor must sign in at the office.",
+        "answer": "visitor"
+      },
+      {
+        "text": "The museum welcomes many visitors every year.",
+        "answer": "visitor"
+      },
+      {
+        "text": "A visitor asked me for directions.",
+        "answer": "visitor"
+      }
+    ]
   },
   {
     "word": "wake",
     "cefr": "A1",
     "frequency": 3,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I wake up at seven every morning.",
+        "answer": "wake"
+      },
+      {
+        "text": "Please wake me before eight.",
+        "answer": "wake"
+      },
+      {
+        "text": "The loud noise woke the baby.",
+        "answer": "wake"
+      }
+    ]
   },
   {
     "word": "walk along",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Walk along the road until you see the park.",
+        "answer": "walk along"
+      },
+      {
+        "text": "We like to walk along the beach at sunset.",
+        "answer": "walk along"
+      },
+      {
+        "text": "Please walk along the corridor quietly.",
+        "answer": "walk along"
+      }
+    ]
   },
   {
     "word": "Wan Chai",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My aunt works in Wan Chai.",
+        "answer": "Wan Chai"
+      },
+      {
+        "text": "We had dinner in Wan Chai yesterday.",
+        "answer": "Wan Chai"
+      },
+      {
+        "text": "Wan Chai is busy during lunchtime.",
+        "answer": "Wan Chai"
+      }
+    ]
   },
   {
     "word": "warmer",
     "cefr": "A1",
     "frequency": 2,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Today is warmer than yesterday.",
+        "answer": "warmer"
+      },
+      {
+        "text": "This jacket keeps me warmer in winter.",
+        "answer": "warmer"
+      },
+      {
+        "text": "The weather gets warmer in spring.",
+        "answer": "warmer"
+      }
+    ]
   },
   {
     "word": "wear",
     "cefr": "A1",
     "frequency": 11,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Please wear your school uniform tomorrow.",
+        "answer": "wear"
+      },
+      {
+        "text": "I usually wear sports shoes to school.",
+        "answer": "wear"
+      },
+      {
+        "text": "She likes to wear bright colours.",
+        "answer": "wear"
+      }
+    ]
   },
   {
     "word": "weather",
     "cefr": "A1",
     "frequency": 14,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The weather is sunny today.",
+        "answer": "weather"
+      },
+      {
+        "text": "Bad weather kept us at home.",
+        "answer": "weather"
+      },
+      {
+        "text": "We talked about the weather all morning.",
+        "answer": "weather"
+      }
+    ]
   },
   {
     "word": "website",
     "cefr": "A1",
     "frequency": 51,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "You can find the homework on the website.",
+        "answer": "website"
+      },
+      {
+        "text": "The school website has a new design.",
+        "answer": "website"
+      },
+      {
+        "text": "I bought the tickets from the website.",
+        "answer": "website"
+      }
+    ]
   },
   {
     "word": "Wednesday",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We have science on Wednesday.",
+        "answer": "Wednesday"
+      },
+      {
+        "text": "My swimming lesson is every Wednesday.",
+        "answer": "Wednesday"
+      },
+      {
+        "text": "I will see you next Wednesday.",
+        "answer": "Wednesday"
+      }
+    ]
   },
   {
     "word": "west",
     "cefr": "A1",
     "frequency": 3,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The sun sets in the west.",
+        "answer": "west"
+      },
+      {
+        "text": "They travelled to the west of the island.",
+        "answer": "west"
+      },
+      {
+        "text": "Our hotel is west of the station.",
+        "answer": "west"
+      }
+    ]
   },
   {
     "word": "West Kowloon Cultural District",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We visited the West Kowloon Cultural District on Sunday.",
+        "answer": "West Kowloon Cultural District"
+      },
+      {
+        "text": "There was a music show in the West Kowloon Cultural District.",
+        "answer": "West Kowloon Cultural District"
+      },
+      {
+        "text": "Many families walk around the West Kowloon Cultural District at night.",
+        "answer": "West Kowloon Cultural District"
+      }
+    ]
   },
   {
     "word": "Whampoa",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My friend lives in Whampoa.",
+        "answer": "Whampoa"
+      },
+      {
+        "text": "We got off the train at Whampoa.",
+        "answer": "Whampoa"
+      },
+      {
+        "text": "Whampoa is not far from my school.",
+        "answer": "Whampoa"
+      }
+    ]
   },
   {
     "word": "white",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "She wore a white shirt today.",
+        "answer": "white"
+      },
+      {
+        "text": "The cat has soft white fur.",
+        "answer": "white"
+      },
+      {
+        "text": "Please use the white plate.",
+        "answer": "white"
+      }
+    ]
   },
   {
     "word": "wife",
     "cefr": "A1",
     "frequency": 3,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "His wife works in a hospital.",
+        "answer": "wife"
+      },
+      {
+        "text": "The man and his wife came together.",
+        "answer": "wife"
+      },
+      {
+        "text": "My uncle bought flowers for his wife.",
+        "answer": "wife"
+      }
+    ]
   },
   {
     "word": "window",
     "cefr": "A1",
     "frequency": 6,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Please open the window.",
+        "answer": "window"
+      },
+      {
+        "text": "There is a bird outside the window.",
+        "answer": "window"
+      },
+      {
+        "text": "She sat near the window on the bus.",
+        "answer": "window"
+      }
+    ]
   },
   {
     "word": "wine",
     "cefr": "A1",
     "frequency": 3,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The restaurant serves red wine.",
+        "answer": "wine"
+      },
+      {
+        "text": "He bought a bottle of wine for dinner.",
+        "answer": "wine"
+      },
+      {
+        "text": "My parents sometimes drink wine on special days.",
+        "answer": "wine"
+      }
+    ]
   },
   {
     "word": "winter",
     "cefr": "A1",
     "frequency": 6,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "It is cold in winter.",
+        "answer": "winter"
+      },
+      {
+        "text": "We wear thick coats in winter.",
+        "answer": "winter"
+      },
+      {
+        "text": "My favourite season is winter.",
+        "answer": "winter"
+      }
+    ]
   },
   {
     "word": "without",
     "cefr": "A1",
     "frequency": 37,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I cannot go out without my keys.",
+        "answer": "without"
+      },
+      {
+        "text": "She left home without an umbrella.",
+        "answer": "without"
+      },
+      {
+        "text": "Do not cross the road without looking.",
+        "answer": "without"
+      }
+    ]
   },
   {
     "word": "wonderful",
     "cefr": "A1",
     "frequency": 10,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We had a wonderful time at the beach.",
+        "answer": "wonderful"
+      },
+      {
+        "text": "The concert was wonderful.",
+        "answer": "wonderful"
+      },
+      {
+        "text": "What a wonderful surprise!",
+        "answer": "wonderful"
+      }
+    ]
   },
   {
     "word": "worker",
     "cefr": "A1",
     "frequency": 13,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The worker fixed the broken door.",
+        "answer": "worker"
+      },
+      {
+        "text": "Every worker wore a safety helmet.",
+        "answer": "worker"
+      },
+      {
+        "text": "The worker carried the boxes into the room.",
+        "answer": "worker"
+      }
+    ]
   },
   {
     "word": "worksheet",
     "cefr": "A1",
     "frequency": 2,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Please complete the worksheet in class.",
+        "answer": "worksheet"
+      },
+      {
+        "text": "The teacher handed out a maths worksheet.",
+        "answer": "worksheet"
+      },
+      {
+        "text": "I put the worksheet in my folder.",
+        "answer": "worksheet"
+      }
+    ]
   },
   {
     "word": "would",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I would like a glass of water.",
+        "answer": "would"
+      },
+      {
+        "text": "She said she would come later.",
+        "answer": "would"
+      },
+      {
+        "text": "Would you like to join us?",
+        "answer": "Would"
+      }
+    ]
   },
   {
     "word": "writer",
     "cefr": "A1",
     "frequency": 16,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The writer signed his new book.",
+        "answer": "writer"
+      },
+      {
+        "text": "She wants to become a writer.",
+        "answer": "writer"
+      },
+      {
+        "text": "The writer gave a talk at school.",
+        "answer": "writer"
+      }
+    ]
   },
   {
     "word": "years",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We have been friends for many years.",
+        "answer": "years"
+      },
+      {
+        "text": "My grandparents lived there for ten years.",
+        "answer": "years"
+      },
+      {
+        "text": "The school is over one hundred years old.",
+        "answer": "years"
+      }
+    ]
   },
   {
     "word": "yellow",
     "cefr": "A1",
     "frequency": 3,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The sunflowers are bright yellow.",
+        "answer": "yellow"
+      },
+      {
+        "text": "She wore a yellow hat.",
+        "answer": "yellow"
+      },
+      {
+        "text": "Please use the yellow folder.",
+        "answer": "yellow"
+      }
+    ]
   },
   {
     "word": "yes",
     "cefr": "A1",
     "frequency": 53,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Yes, I understand the question.",
+        "answer": "Yes"
+      },
+      {
+        "text": "She smiled and said yes.",
+        "answer": "yes"
+      },
+      {
+        "text": "Yes, I would like some tea.",
+        "answer": "Yes"
+      }
+    ]
   },
   {
     "word": "zoo",
     "cefr": "A1",
     "frequency": 2,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We visited the zoo on Sunday.",
+        "answer": "zoo"
+      },
+      {
+        "text": "The children saw lions at the zoo.",
+        "answer": "zoo"
+      },
+      {
+        "text": "My favourite place in the zoo is the panda house.",
+        "answer": "zoo"
+      }
+    ]
   }
 ]
