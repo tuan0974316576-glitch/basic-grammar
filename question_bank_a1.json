@@ -2650,175 +2650,552 @@
     "word": "fantastic",
     "cefr": "A1",
     "frequency": 7,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The fireworks show was fantastic.",
+        "answer": "fantastic"
+      },
+      {
+        "text": "You did a fantastic job today.",
+        "answer": "fantastic"
+      },
+      {
+        "text": "We had a fantastic time at the beach.",
+        "answer": "fantastic"
+      }
+    ]
   },
   {
     "word": "farmer",
     "cefr": "A1",
     "frequency": 10,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The farmer fed the chickens early in the morning.",
+        "answer": "farmer"
+      },
+      {
+        "text": "My grandfather was a farmer.",
+        "answer": "farmer"
+      },
+      {
+        "text": "The farmer grows vegetables on his land.",
+        "answer": "farmer"
+      }
+    ]
   },
   {
     "word": "faster",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "This train is faster than the bus.",
+        "answer": "faster"
+      },
+      {
+        "text": "You need to walk faster to catch up.",
+        "answer": "faster"
+      },
+      {
+        "text": "My computer is much faster now.",
+        "answer": "faster"
+      }
+    ]
   },
   {
     "word": "favourite",
     "cefr": "A1",
     "frequency": 9,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Blue is my favourite colour.",
+        "answer": "favourite"
+      },
+      {
+        "text": "What is your favourite subject?",
+        "answer": "favourite"
+      },
+      {
+        "text": "This is my favourite song.",
+        "answer": "favourite"
+      }
+    ]
   },
   {
     "word": "February",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My cousin was born in February.",
+        "answer": "February"
+      },
+      {
+        "text": "School sports day is in February.",
+        "answer": "February"
+      },
+      {
+        "text": "The weather can be cool in February.",
+        "answer": "February"
+      }
+    ]
   },
   {
     "word": "festival",
     "cefr": "A1",
     "frequency": 2,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We visited the food festival on Sunday.",
+        "answer": "festival"
+      },
+      {
+        "text": "The school held a music festival last month.",
+        "answer": "festival"
+      },
+      {
+        "text": "Many people joined the spring festival.",
+        "answer": "festival"
+      }
+    ]
   },
   {
     "word": "flight",
     "cefr": "A1",
     "frequency": 4,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Our flight leaves at six in the morning.",
+        "answer": "flight"
+      },
+      {
+        "text": "The flight to Tokyo was delayed.",
+        "answer": "flight"
+      },
+      {
+        "text": "Please check the flight number on your ticket.",
+        "answer": "flight"
+      }
+    ]
   },
   {
     "word": "floor",
     "cefr": "A1",
     "frequency": 5,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My classroom is on the third floor.",
+        "answer": "floor"
+      },
+      {
+        "text": "There is water on the kitchen floor.",
+        "answer": "floor"
+      },
+      {
+        "text": "The baby sat on the floor and played.",
+        "answer": "floor"
+      }
+    ]
   },
   {
     "word": "flower",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "That pink flower smells sweet.",
+        "answer": "flower"
+      },
+      {
+        "text": "She put a flower in her hair.",
+        "answer": "flower"
+      },
+      {
+        "text": "We planted a flower in the garden.",
+        "answer": "flower"
+      }
+    ]
   },
   {
     "word": "foot",
     "cefr": "A1",
     "frequency": 5,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My left foot hurts after the game.",
+        "answer": "foot"
+      },
+      {
+        "text": "He dropped the book on his foot.",
+        "answer": "foot"
+      },
+      {
+        "text": "Wash your hands and your foot carefully.",
+        "answer": "foot"
+      }
+    ]
   },
   {
     "word": "football",
     "cefr": "A1",
     "frequency": 3,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The boys are playing football in the park.",
+        "answer": "football"
+      },
+      {
+        "text": "My brother watches football every weekend.",
+        "answer": "football"
+      },
+      {
+        "text": "She bought a new football yesterday.",
+        "answer": "football"
+      }
+    ]
   },
   {
     "word": "forget",
     "cefr": "A1",
     "frequency": 19,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Do not forget your homework again.",
+        "answer": "forget"
+      },
+      {
+        "text": "I always forget where I put my keys.",
+        "answer": "forget"
+      },
+      {
+        "text": "He forgot to bring his lunch box.",
+        "answer": "forgot"
+      }
+    ]
   },
   {
     "word": "form",
     "cefr": "A1",
     "frequency": 29,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Please fill in the form carefully.",
+        "answer": "form"
+      },
+      {
+        "text": "You must sign the form before you leave.",
+        "answer": "form"
+      },
+      {
+        "text": "I handed the form to the teacher.",
+        "answer": "form"
+      }
+    ]
   },
   {
     "word": "Fortress Point",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My aunt lives in Fortress Point.",
+        "answer": "Fortress Point"
+      },
+      {
+        "text": "We got off the tram at Fortress Point.",
+        "answer": "Fortress Point"
+      },
+      {
+        "text": "There are many restaurants in Fortress Point.",
+        "answer": "Fortress Point"
+      }
+    ]
   },
   {
     "word": "France",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My teacher travelled to France last year.",
+        "answer": "France"
+      },
+      {
+        "text": "France is famous for art and food.",
+        "answer": "France"
+      },
+      {
+        "text": "They want to study in France one day.",
+        "answer": "France"
+      }
+    ]
   },
   {
     "word": "Friday",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We have PE on Friday.",
+        "answer": "Friday"
+      },
+      {
+        "text": "My piano lesson is every Friday.",
+        "answer": "Friday"
+      },
+      {
+        "text": "The test will be held next Friday.",
+        "answer": "Friday"
+      }
+    ]
   },
   {
     "word": "friendly",
     "cefr": "A1",
     "frequency": 4,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Our new teacher is very friendly.",
+        "answer": "friendly"
+      },
+      {
+        "text": "The shopkeeper was warm and friendly.",
+        "answer": "friendly"
+      },
+      {
+        "text": "He has a friendly smile.",
+        "answer": "friendly"
+      }
+    ]
   },
   {
     "word": "fruit",
     "cefr": "A1",
     "frequency": 2,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Eating fruit every day is healthy.",
+        "answer": "fruit"
+      },
+      {
+        "text": "She bought some fruit from the market.",
+        "answer": "fruit"
+      },
+      {
+        "text": "My favourite fruit is mango.",
+        "answer": "fruit"
+      }
+    ]
   },
   {
     "word": "funny",
     "cefr": "A1",
     "frequency": 3,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "That joke is really funny.",
+        "answer": "funny"
+      },
+      {
+        "text": "We watched a funny movie last night.",
+        "answer": "funny"
+      },
+      {
+        "text": "My little brother made a funny face.",
+        "answer": "funny"
+      }
+    ]
   },
   {
     "word": "garden",
     "cefr": "A1",
     "frequency": 6,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My grandmother grows flowers in the garden.",
+        "answer": "garden"
+      },
+      {
+        "text": "The children are running in the garden.",
+        "answer": "garden"
+      },
+      {
+        "text": "There is a small garden behind our house.",
+        "answer": "garden"
+      }
+    ]
   },
   {
     "word": "Germany",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My friend moved to Germany last year.",
+        "answer": "Germany"
+      },
+      {
+        "text": "Germany is a country in Europe.",
+        "answer": "Germany"
+      },
+      {
+        "text": "They visited Germany during the summer holiday.",
+        "answer": "Germany"
+      }
+    ]
   },
   {
     "word": "girlfriend",
     "cefr": "A1",
     "frequency": 2,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "He went to the concert with his girlfriend.",
+        "answer": "girlfriend"
+      },
+      {
+        "text": "My cousin introduced his girlfriend to the family.",
+        "answer": "girlfriend"
+      },
+      {
+        "text": "His girlfriend bought him a birthday cake.",
+        "answer": "girlfriend"
+      }
+    ]
   },
   {
     "word": "glass",
     "cefr": "A1",
     "frequency": 21,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Please pour some water into the glass.",
+        "answer": "glass"
+      },
+      {
+        "text": "The glass fell off the table.",
+        "answer": "glass"
+      },
+      {
+        "text": "This glass is made of clear blue glass.",
+        "answer": "glass"
+      }
+    ]
   },
   {
     "word": "go past",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Go past the bank and turn left.",
+        "answer": "go past"
+      },
+      {
+        "text": "We need to go past the post office first.",
+        "answer": "go past"
+      },
+      {
+        "text": "Go past the school and you will see the park.",
+        "answer": "go past"
+      }
+    ]
   },
   {
     "word": "go straight ahead",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Go straight ahead and you will find the station.",
+        "answer": "go straight ahead"
+      },
+      {
+        "text": "Please go straight ahead at the crossing.",
+        "answer": "go straight ahead"
+      },
+      {
+        "text": "If you go straight ahead, the shop is on your right.",
+        "answer": "go straight ahead"
+      }
+    ]
   },
   {
     "word": "goodbye",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "She waved goodbye to her classmates.",
+        "answer": "goodbye"
+      },
+      {
+        "text": "I said goodbye before leaving the party.",
+        "answer": "goodbye"
+      },
+      {
+        "text": "They hugged each other and said goodbye.",
+        "answer": "goodbye"
+      }
+    ]
   },
   {
     "word": "grandfather",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My grandfather tells great stories.",
+        "answer": "grandfather"
+      },
+      {
+        "text": "We visited my grandfather on Sunday.",
+        "answer": "grandfather"
+      },
+      {
+        "text": "Her grandfather likes reading the newspaper.",
+        "answer": "grandfather"
+      }
+    ]
   },
   {
     "word": "grandmother",
     "cefr": "A1",
     "frequency": 2,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My grandmother makes delicious soup.",
+        "answer": "grandmother"
+      },
+      {
+        "text": "We called my grandmother last night.",
+        "answer": "grandmother"
+      },
+      {
+        "text": "Her grandmother lives near the market.",
+        "answer": "grandmother"
+      }
+    ]
   },
   {
     "word": "grandparent",
     "cefr": "A1",
     "frequency": 4,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Each grandparent came to the school show.",
+        "answer": "grandparent"
+      },
+      {
+        "text": "My grandparent lives in a quiet village.",
+        "answer": "grandparent"
+      },
+      {
+        "text": "Every grandparent was proud of the children.",
+        "answer": "grandparent"
+      }
+    ]
   },
   {
     "word": "great",
