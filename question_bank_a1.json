@@ -7096,295 +7096,932 @@
     "word": "street",
     "cefr": "A1",
     "frequency": 28,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The children crossed the street carefully.",
+        "answer": "street"
+      },
+      {
+        "text": "Our school is on a quiet street.",
+        "answer": "street"
+      },
+      {
+        "text": "There are many shops on this street.",
+        "answer": "street"
+      }
+    ]
   },
   {
     "word": "strong",
     "cefr": "A1",
     "frequency": 13,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The boy is strong enough to carry the box.",
+        "answer": "strong"
+      },
+      {
+        "text": "This coffee tastes very strong.",
+        "answer": "strong"
+      },
+      {
+        "text": "We need a strong team to win.",
+        "answer": "strong"
+      }
+    ]
   },
   {
     "word": "student",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Every student must bring a pencil.",
+        "answer": "student"
+      },
+      {
+        "text": "The new student sits near the window.",
+        "answer": "student"
+      },
+      {
+        "text": "She is a hard-working student.",
+        "answer": "student"
+      }
+    ]
   },
   {
     "word": "study",
     "cefr": "A1",
     "frequency": 37,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I need to study for the test tonight.",
+        "answer": "study"
+      },
+      {
+        "text": "She likes to study in the library.",
+        "answer": "study"
+      },
+      {
+        "text": "My brother went to his room to study.",
+        "answer": "study"
+      }
+    ]
   },
   {
     "word": "style",
     "cefr": "A1",
     "frequency": 11,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I like the style of this dress.",
+        "answer": "style"
+      },
+      {
+        "text": "His writing style is clear and simple.",
+        "answer": "style"
+      },
+      {
+        "text": "That shop sells clothes in a modern style.",
+        "answer": "style"
+      }
+    ]
   },
   {
     "word": "subway",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We took the subway to the city centre.",
+        "answer": "subway"
+      },
+      {
+        "text": "The subway station is under the mall.",
+        "answer": "subway"
+      },
+      {
+        "text": "I use the subway every morning.",
+        "answer": "subway"
+      }
+    ]
   },
   {
     "word": "success",
     "cefr": "A1",
     "frequency": 16,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Hard work can lead to success.",
+        "answer": "success"
+      },
+      {
+        "text": "Her success made her family proud.",
+        "answer": "success"
+      },
+      {
+        "text": "The show was a big success.",
+        "answer": "success"
+      }
+    ]
   },
   {
     "word": "sugar",
     "cefr": "A1",
     "frequency": 12,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Please add some sugar to my tea.",
+        "answer": "sugar"
+      },
+      {
+        "text": "There is too much sugar in this drink.",
+        "answer": "sugar"
+      },
+      {
+        "text": "My mother bought a bag of sugar.",
+        "answer": "sugar"
+      }
+    ]
   },
   {
     "word": "summer",
     "cefr": "A1",
     "frequency": 16,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We go swimming every summer.",
+        "answer": "summer"
+      },
+      {
+        "text": "The weather is hot in summer.",
+        "answer": "summer"
+      },
+      {
+        "text": "My family will travel in the summer holiday.",
+        "answer": "summer"
+      }
+    ]
   },
   {
     "word": "Sunday",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We visit my grandparents every Sunday.",
+        "answer": "Sunday"
+      },
+      {
+        "text": "The shop is closed on Sunday.",
+        "answer": "Sunday"
+      },
+      {
+        "text": "My art class is on Sunday morning.",
+        "answer": "Sunday"
+      }
+    ]
   },
   {
     "word": "supermarket",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My mother bought vegetables at the supermarket.",
+        "answer": "supermarket"
+      },
+      {
+        "text": "The supermarket closes at ten.",
+        "answer": "supermarket"
+      },
+      {
+        "text": "We walked to the supermarket after dinner.",
+        "answer": "supermarket"
+      }
+    ]
   },
   {
     "word": "sweeter",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "This mango is sweeter than that one.",
+        "answer": "sweeter"
+      },
+      {
+        "text": "The tea is sweeter with honey.",
+        "answer": "sweeter"
+      },
+      {
+        "text": "Her second cake tasted even sweeter.",
+        "answer": "sweeter"
+      }
+    ]
   },
   {
     "word": "Switzerland",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My uncle travelled to Switzerland last winter.",
+        "answer": "Switzerland"
+      },
+      {
+        "text": "Switzerland is famous for mountains and chocolate.",
+        "answer": "Switzerland"
+      },
+      {
+        "text": "They want to visit Switzerland one day.",
+        "answer": "Switzerland"
+      }
+    ]
   },
   {
     "word": "Tai Koo",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We met at Tai Koo after school.",
+        "answer": "Tai Koo"
+      },
+      {
+        "text": "My aunt works near Tai Koo.",
+        "answer": "Tai Koo"
+      },
+      {
+        "text": "Tai Koo is easy to reach by MTR.",
+        "answer": "Tai Koo"
+      }
+    ]
   },
   {
     "word": "Tai O",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We visited Tai O during the holiday.",
+        "answer": "Tai O"
+      },
+      {
+        "text": "Tai O is famous for its stilt houses.",
+        "answer": "Tai O"
+      },
+      {
+        "text": "The seafood in Tai O is very popular.",
+        "answer": "Tai O"
+      }
+    ]
   },
   {
     "word": "tallest",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "He is the tallest boy in the class.",
+        "answer": "tallest"
+      },
+      {
+        "text": "That is the tallest building in the area.",
+        "answer": "tallest"
+      },
+      {
+        "text": "My tallest plant is by the window.",
+        "answer": "tallest"
+      }
+    ]
   },
   {
     "word": "taxi",
     "cefr": "A1",
     "frequency": 3,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We took a taxi to the airport.",
+        "answer": "taxi"
+      },
+      {
+        "text": "The taxi stopped outside the hotel.",
+        "answer": "taxi"
+      },
+      {
+        "text": "My father called a taxi for us.",
+        "answer": "taxi"
+      }
+    ]
   },
   {
     "word": "tea",
     "cefr": "A1",
     "frequency": 4,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My grandmother drinks tea every afternoon.",
+        "answer": "tea"
+      },
+      {
+        "text": "Would you like some hot tea?",
+        "answer": "tea"
+      },
+      {
+        "text": "She made milk tea for everyone.",
+        "answer": "tea"
+      }
+    ]
   },
   {
     "word": "teach",
     "cefr": "A1",
     "frequency": 10,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My mother can teach me how to cook.",
+        "answer": "teach"
+      },
+      {
+        "text": "Good teachers teach with patience.",
+        "answer": "teach"
+      },
+      {
+        "text": "Will you teach me this song?",
+        "answer": "teach"
+      }
+    ]
   },
   {
     "word": "team",
     "cefr": "A1",
     "frequency": 31,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Our team won the football match.",
+        "answer": "team"
+      },
+      {
+        "text": "She is the captain of the team.",
+        "answer": "team"
+      },
+      {
+        "text": "The whole team practised after school.",
+        "answer": "team"
+      }
+    ]
   },
   {
     "word": "teenager",
     "cefr": "A1",
     "frequency": 13,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The magazine is for teenagers.",
+        "answer": "teenagers"
+      },
+      {
+        "text": "He became a teenager last year.",
+        "answer": "teenager"
+      },
+      {
+        "text": "Many teenagers use social media every day.",
+        "answer": "teenagers"
+      }
+    ]
   },
   {
     "word": "telephone",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The old telephone is on the desk.",
+        "answer": "telephone"
+      },
+      {
+        "text": "She answered the telephone quickly.",
+        "answer": "telephone"
+      },
+      {
+        "text": "My grandfather still uses a home telephone.",
+        "answer": "telephone"
+      }
+    ]
   },
   {
     "word": "television",
     "cefr": "A1",
     "frequency": 9,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We watched a movie on television.",
+        "answer": "television"
+      },
+      {
+        "text": "The children sat in front of the television.",
+        "answer": "television"
+      },
+      {
+        "text": "There is a new programme on television tonight.",
+        "answer": "television"
+      }
+    ]
   },
   {
     "word": "ten",
     "cefr": "A1",
     "frequency": 1,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "There are ten apples in the basket.",
+        "answer": "ten"
+      },
+      {
+        "text": "The class begins at ten o clock.",
+        "answer": "ten"
+      },
+      {
+        "text": "My brother is ten years old.",
+        "answer": "ten"
+      }
+    ]
   },
   {
     "word": "tennis",
     "cefr": "A1",
     "frequency": 13,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We play tennis on Saturday mornings.",
+        "answer": "tennis"
+      },
+      {
+        "text": "She bought a new tennis racket.",
+        "answer": "tennis"
+      },
+      {
+        "text": "Tennis is my favourite sport.",
+        "answer": "Tennis"
+      }
+    ]
   },
   {
     "word": "terrible",
     "cefr": "A1",
     "frequency": 8,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The weather was terrible yesterday.",
+        "answer": "terrible"
+      },
+      {
+        "text": "I had a terrible headache in the morning.",
+        "answer": "terrible"
+      },
+      {
+        "text": "That was a terrible mistake.",
+        "answer": "terrible"
+      }
+    ]
   },
   {
     "word": "test",
     "cefr": "A1",
     "frequency": 18,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We have a spelling test tomorrow.",
+        "answer": "test"
+      },
+      {
+        "text": "She studied hard for the math test.",
+        "answer": "test"
+      },
+      {
+        "text": "The teacher gave us a short test.",
+        "answer": "test"
+      }
+    ]
   },
   {
     "word": "Thailand",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My family visited Thailand last summer.",
+        "answer": "Thailand"
+      },
+      {
+        "text": "Thailand is famous for its beaches.",
+        "answer": "Thailand"
+      },
+      {
+        "text": "They want to travel to Thailand next year.",
+        "answer": "Thailand"
+      }
+    ]
   },
   {
     "word": "thank",
     "cefr": "A1",
     "frequency": 49,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Please thank your mother for the gift.",
+        "answer": "thank"
+      },
+      {
+        "text": "I want to thank you for your help.",
+        "answer": "thank"
+      },
+      {
+        "text": "She thanked her teacher after class.",
+        "answer": "thanked"
+      }
+    ]
   },
   {
     "word": "The Peak",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We could see the whole city from The Peak.",
+        "answer": "The Peak"
+      },
+      {
+        "text": "Many tourists visit The Peak every day.",
+        "answer": "The Peak"
+      },
+      {
+        "text": "My parents took us to The Peak on Sunday.",
+        "answer": "The Peak"
+      }
+    ]
   },
   {
     "word": "The United Kingdom",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My aunt moved to The United Kingdom last year.",
+        "answer": "The United Kingdom"
+      },
+      {
+        "text": "The United Kingdom is made up of four countries.",
+        "answer": "The United Kingdom"
+      },
+      {
+        "text": "They flew to The United Kingdom for a holiday.",
+        "answer": "The United Kingdom"
+      }
+    ]
   },
   {
     "word": "The USA",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My cousin studies in The USA.",
+        "answer": "The USA"
+      },
+      {
+        "text": "The USA is very far from Hong Kong.",
+        "answer": "The USA"
+      },
+      {
+        "text": "They travelled around The USA in summer.",
+        "answer": "The USA"
+      }
+    ]
   },
   {
     "word": "theatre",
     "cefr": "A1",
     "frequency": 2,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We watched a play in the theatre.",
+        "answer": "theatre"
+      },
+      {
+        "text": "The theatre was full of people.",
+        "answer": "theatre"
+      },
+      {
+        "text": "My teacher loves going to the theatre.",
+        "answer": "theatre"
+      }
+    ]
   },
   {
     "word": "thirdly",
     "cefr": "A1",
     "frequency": 2,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Thirdly, we need to clean the room.",
+        "answer": "Thirdly"
+      },
+      {
+        "text": "Thirdly, please check your spelling.",
+        "answer": "Thirdly"
+      },
+      {
+        "text": "Thirdly, the teacher asked us to work in groups.",
+        "answer": "Thirdly"
+      }
+    ]
   },
   {
     "word": "Thursday",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Our music lesson is on Thursday.",
+        "answer": "Thursday"
+      },
+      {
+        "text": "We will have a meeting next Thursday.",
+        "answer": "Thursday"
+      },
+      {
+        "text": "The shop opens late on Thursday.",
+        "answer": "Thursday"
+      }
+    ]
   },
   {
     "word": "ticket",
     "cefr": "A1",
     "frequency": 24,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I bought a train ticket at the station.",
+        "answer": "ticket"
+      },
+      {
+        "text": "Please keep your ticket safe.",
+        "answer": "ticket"
+      },
+      {
+        "text": "She showed her ticket at the door.",
+        "answer": "ticket"
+      }
+    ]
   },
   {
     "word": "together",
     "cefr": "A1",
     "frequency": 28,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We studied together after school.",
+        "answer": "together"
+      },
+      {
+        "text": "The family ate dinner together.",
+        "answer": "together"
+      },
+      {
+        "text": "Let us work together on this project.",
+        "answer": "together"
+      }
+    ]
   },
   {
     "word": "toilet",
     "cefr": "A1",
     "frequency": 7,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Excuse me, where is the toilet?",
+        "answer": "toilet"
+      },
+      {
+        "text": "The toilet is next to the lift.",
+        "answer": "toilet"
+      },
+      {
+        "text": "Please wash your hands after using the toilet.",
+        "answer": "toilet"
+      }
+    ]
   },
   {
     "word": "top",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The book is on the top shelf.",
+        "answer": "top"
+      },
+      {
+        "text": "She lives on the top floor.",
+        "answer": "top"
+      },
+      {
+        "text": "Write your name at the top of the page.",
+        "answer": "top"
+      }
+    ]
   },
   {
     "word": "topic",
     "cefr": "A1",
     "frequency": 12,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "The topic of today?s lesson is travel.",
+        "answer": "topic"
+      },
+      {
+        "text": "We discussed an interesting topic in class.",
+        "answer": "topic"
+      },
+      {
+        "text": "Please choose a topic for your speech.",
+        "answer": "topic"
+      }
+    ]
   },
   {
     "word": "tourist",
     "cefr": "A1",
     "frequency": 31,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Many tourists visit Hong Kong every year.",
+        "answer": "tourists"
+      },
+      {
+        "text": "A tourist asked me for directions.",
+        "answer": "tourist"
+      },
+      {
+        "text": "The tourist took many photos.",
+        "answer": "tourist"
+      }
+    ]
   },
   {
     "word": "traffic",
     "cefr": "A1",
     "frequency": 8,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "There is heavy traffic this morning.",
+        "answer": "traffic"
+      },
+      {
+        "text": "The traffic was slow near the tunnel.",
+        "answer": "traffic"
+      },
+      {
+        "text": "We were late because of the traffic.",
+        "answer": "traffic"
+      }
+    ]
   },
   {
     "word": "travel",
     "cefr": "A1",
     "frequency": 31,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "I love to travel with my family.",
+        "answer": "travel"
+      },
+      {
+        "text": "My father travels for work.",
+        "answer": "travels"
+      },
+      {
+        "text": "They want to travel to Japan next year.",
+        "answer": "travel"
+      }
+    ]
   },
   {
     "word": "tree",
     "cefr": "A1",
     "frequency": 6,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "There is a tall tree in the park.",
+        "answer": "tree"
+      },
+      {
+        "text": "The bird sat in the tree.",
+        "answer": "tree"
+      },
+      {
+        "text": "We planted a small tree at school.",
+        "answer": "tree"
+      }
+    ]
   },
   {
     "word": "Tsim Sha Tsui",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We went shopping in Tsim Sha Tsui.",
+        "answer": "Tsim Sha Tsui"
+      },
+      {
+        "text": "My cousin works in Tsim Sha Tsui.",
+        "answer": "Tsim Sha Tsui"
+      },
+      {
+        "text": "There are many tourists in Tsim Sha Tsui.",
+        "answer": "Tsim Sha Tsui"
+      }
+    ]
   },
   {
     "word": "Tuen Mun",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "My aunt lives in Tuen Mun.",
+        "answer": "Tuen Mun"
+      },
+      {
+        "text": "We visited a beach in Tuen Mun.",
+        "answer": "Tuen Mun"
+      },
+      {
+        "text": "The bus to Tuen Mun was full.",
+        "answer": "Tuen Mun"
+      }
+    ]
   },
   {
     "word": "Tuesday",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "We have English on Tuesday.",
+        "answer": "Tuesday"
+      },
+      {
+        "text": "My piano lesson is every Tuesday.",
+        "answer": "Tuesday"
+      },
+      {
+        "text": "I will see you next Tuesday.",
+        "answer": "Tuesday"
+      }
+    ]
   },
   {
     "word": "turn left",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Turn left at the traffic lights.",
+        "answer": "turn left"
+      },
+      {
+        "text": "Please turn left after the bank.",
+        "answer": "turn left"
+      },
+      {
+        "text": "If you turn left, you will see the station.",
+        "answer": "turn left"
+      }
+    ]
   },
   {
     "word": "turn right",
     "cefr": "A1",
     "frequency": null,
-    "sentences": []
+    "sentences": [
+      {
+        "text": "Turn right at the next corner.",
+        "answer": "turn right"
+      },
+      {
+        "text": "Please turn right after the park.",
+        "answer": "turn right"
+      },
+      {
+        "text": "If you turn right, the shop is on your left.",
+        "answer": "turn right"
+      }
+    ]
   },
   {
     "word": "twice",
