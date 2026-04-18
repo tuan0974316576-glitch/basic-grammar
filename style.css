@@ -6203,6 +6203,7 @@ body {
     width: 90%;
     max-width: 400px;
     margin: 0 auto;
+    justify-content: center !important;
     max-height: none;
     overflow: visible;
     padding: 0;
@@ -6210,7 +6211,9 @@ body {
 
 #stage-screen .stage-btn-simple {
     min-height: 72px;
-    width: 100%;
+    width: auto;
+    box-sizing: border-box;
+    align-self: stretch;
     background: transparent !important;
     border: 2px solid var(--primary);
     color: #fff;
@@ -6264,8 +6267,8 @@ body {
     font-size: 12px;
     font-weight: 700;
     line-height: 1;
-    text-shadow: 0 0 8px rgba(125, 211, 252, 0.5);
-    box-shadow: 0 0 10px rgba(14, 165, 233, 0.18), inset 0 0 8px rgba(14, 165, 233, 0.08);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 16px rgba(125, 211, 252, 0.7);
+    box-shadow: 0 0 14px rgba(14, 165, 233, 0.32), inset 0 0 10px rgba(14, 165, 233, 0.16);
     clip-path: polygon(18% 0, 100% 0, 100% 82%, 82% 100%, 0 100%, 0 18%);
     cursor: pointer;
     z-index: 2;
@@ -6274,7 +6277,8 @@ body {
 #stage-screen .stage-info-btn:hover {
     border-color: #7dd3fc;
     color: #ffffff;
-    box-shadow: 0 0 14px rgba(56, 189, 248, 0.28), inset 0 0 10px rgba(56, 189, 248, 0.12);
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.95), 0 0 20px rgba(125, 211, 252, 0.95);
+    box-shadow: 0 0 18px rgba(56, 189, 248, 0.42), inset 0 0 12px rgba(56, 189, 248, 0.2);
 }
 
 #vocab-screen.stage-preview .tech-title {
