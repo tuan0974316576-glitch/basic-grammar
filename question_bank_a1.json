@@ -16,7 +16,8 @@
         "text": "He swam across the river.",
         "answer": "across"
       }
-    ]
+    ],
+    "ch": "橫過 (prep.)"
   },
   {
     "word": "action",
@@ -35,7 +36,8 @@
         "text": "I like watching action movies.",
         "answer": "action"
       }
-    ]
+    ],
+    "ch": "行動 (n.)"
   },
   {
     "word": "activity",
@@ -54,7 +56,8 @@
         "text": "School activities start at 4 PM.",
         "answer": "activity"
       }
-    ]
+    ],
+    "ch": "活動 (n.)"
   },
   {
     "word": "actor",
@@ -73,7 +76,8 @@
         "text": "I want to be an actor when I grow up.",
         "answer": "actor"
       }
-    ]
+    ],
+    "ch": "男演員 (n.)"
   },
   {
     "word": "actress",
@@ -92,7 +96,8 @@
         "text": "The actress played the role of a queen.",
         "answer": "actress"
       }
-    ]
+    ],
+    "ch": "女演員 (n.)"
   },
   {
     "word": "add",
@@ -111,7 +116,8 @@
         "text": "Do not add too much salt to the soup.",
         "answer": "add"
       }
-    ]
+    ],
+    "ch": "增加 (v.)"
   },
   {
     "word": "adjacent to",
@@ -130,7 +136,8 @@
         "text": "The small shop is adjacent to the bank.",
         "answer": "adjacent to"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "Admiralty",
@@ -149,7 +156,8 @@
         "text": "There are many offices in Admiralty.",
         "answer": "Admiralty"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "advice",
@@ -168,7 +176,8 @@
         "text": "Listen to your parents' advice.",
         "answer": "advice"
       }
-    ]
+    ],
+    "ch": "建議 (n.)"
   },
   {
     "word": "afraid",
@@ -187,7 +196,8 @@
         "text": "Are you afraid of spiders?",
         "answer": "afraid"
       }
-    ]
+    ],
+    "ch": "害怕 (adj.)"
   },
   {
     "word": "agree",
@@ -206,7 +216,8 @@
         "text": "They finally agreed on a price.",
         "answer": "agreed"
       }
-    ]
+    ],
+    "ch": "同意 (v.)"
   },
   {
     "word": "air",
@@ -225,7 +236,8 @@
         "text": "The air is cold today.",
         "answer": "air"
       }
-    ]
+    ],
+    "ch": "空氣 (n.)"
   },
   {
     "word": "airport",
@@ -244,7 +256,8 @@
         "text": "He works at the international airport.",
         "answer": "airport"
       }
-    ]
+    ],
+    "ch": "機場 (n.)"
   },
   {
     "word": "angry",
@@ -263,7 +276,8 @@
         "text": "He looked very angry this morning.",
         "answer": "angry"
       }
-    ]
+    ],
+    "ch": "生氣 (adj.)"
   },
   {
     "word": "anyone",
@@ -282,7 +296,8 @@
         "text": "I didn't see anyone I knew at the party.",
         "answer": "anyone"
       }
-    ]
+    ],
+    "ch": "任何人 (pron.)"
   },
   {
     "word": "apartment",
@@ -301,7 +316,8 @@
         "text": "They are looking for a new apartment.",
         "answer": "apartment"
       }
-    ]
+    ],
+    "ch": "公寓 (n.)"
   },
   {
     "word": "apple",
@@ -320,7 +336,8 @@
         "text": "She is peeling an apple.",
         "answer": "apple"
       }
-    ]
+    ],
+    "ch": "蘋果 (n.)"
   },
   {
     "word": "April",
@@ -339,7 +356,8 @@
         "text": "It often rains in April.",
         "answer": "April"
       }
-    ]
+    ],
+    "ch": "四月 (n.)"
   },
   {
     "word": "around",
@@ -358,7 +376,8 @@
         "text": "Is there a bank around here?",
         "answer": "around"
       }
-    ]
+    ],
+    "ch": "在周圍 (prep.)"
   },
   {
     "word": "arrive",
@@ -377,7 +396,8 @@
         "text": "She arrived home late last night.",
         "answer": "arrived"
       }
-    ]
+    ],
+    "ch": "到達 (v.)"
   },
   {
     "word": "art",
@@ -396,7 +416,8 @@
         "text": "She is very good at art.",
         "answer": "art"
       }
-    ]
+    ],
+    "ch": "藝術 (n.)"
   },
   {
     "word": "article",
@@ -415,7 +436,8 @@
         "text": "Did you see the article about the game?",
         "answer": "article"
       }
-    ]
+    ],
+    "ch": "文章 (n.)"
   },
   {
     "word": "artist",
@@ -434,7 +456,8 @@
         "text": "He wants to become a professional artist.",
         "answer": "artist"
       }
-    ]
+    ],
+    "ch": "藝術家 (n.)"
   },
   {
     "word": "AsiaWorld-Expo",
@@ -453,7 +476,8 @@
         "text": "Many big events happen at AsiaWorld-Expo.",
         "answer": "AsiaWorld-Expo"
       }
-    ]
+    ],
+    "ch": "???????"
   },
   {
     "word": "August",
@@ -472,7 +496,8 @@
         "text": "School starts in late August.",
         "answer": "August"
       }
-    ]
+    ],
+    "ch": "八月 (n.)"
   },
   {
     "word": "Austin",
@@ -491,7 +516,8 @@
         "text": "My aunt met us outside Austin yesterday.",
         "answer": "Austin"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "Australia",
@@ -510,7 +536,8 @@
         "text": "We want to visit Australia in summer.",
         "answer": "Australia"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "autumn",
@@ -529,7 +556,8 @@
         "text": "Autumn is my favorite season.",
         "answer": "Autumn"
       }
-    ]
+    ],
+    "ch": "秋天 (n.)"
   },
   {
     "word": "away",
@@ -548,7 +576,8 @@
         "text": "Put your toys away.",
         "answer": "away"
       }
-    ]
+    ],
+    "ch": "離開 (adv.)"
   },
   {
     "word": "ball",
@@ -567,7 +596,8 @@
         "text": "The children are playing with a ball.",
         "answer": "ball"
       }
-    ]
+    ],
+    "ch": "球 (n.)"
   },
   {
     "word": "band",
@@ -586,7 +616,8 @@
         "text": "I want to start a band with my friends.",
         "answer": "band"
       }
-    ]
+    ],
+    "ch": "樂隊 (n.)"
   },
   {
     "word": "bath",
@@ -605,7 +636,8 @@
         "text": "I need to give the dog a bath.",
         "answer": "bath"
       }
-    ]
+    ],
+    "ch": "洗澡 (n.)"
   },
   {
     "word": "bathroom",
@@ -624,7 +656,8 @@
         "text": "I need to clean the bathroom today.",
         "answer": "bathroom"
       }
-    ]
+    ],
+    "ch": "浴室 (n.)"
   },
   {
     "word": "beach",
@@ -643,7 +676,8 @@
         "text": "The children are building a sandcastle on the beach.",
         "answer": "beach"
       }
-    ]
+    ],
+    "ch": "沙灘 (n.)"
   },
   {
     "word": "bed",
@@ -662,7 +696,8 @@
         "text": "The bed is very soft and comfortable.",
         "answer": "bed"
       }
-    ]
+    ],
+    "ch": "床 (n.)"
   },
   {
     "word": "bedroom",
@@ -681,7 +716,8 @@
         "text": "She is cleaning her bedroom now.",
         "answer": "bedroom"
       }
-    ]
+    ],
+    "ch": "睡房 (n.)"
   },
   {
     "word": "beer",
@@ -700,7 +736,8 @@
         "text": "This beer is from Germany.",
         "answer": "beer"
       }
-    ]
+    ],
+    "ch": "啤酒 (n.)"
   },
   {
     "word": "behind",
@@ -719,7 +756,8 @@
         "text": "Who is that standing behind you?",
         "answer": "behind"
       }
-    ]
+    ],
+    "ch": "在...後面 (prep.)"
   },
   {
     "word": "behind",
@@ -738,7 +776,8 @@
         "text": "Who is that standing behind you?",
         "answer": "behind"
       }
-    ]
+    ],
+    "ch": "在...後面 (prep.)"
   },
   {
     "word": "between",
@@ -757,7 +796,8 @@
         "text": "What happened between them?",
         "answer": "between"
       }
-    ]
+    ],
+    "ch": "在...之間 (prep.)"
   },
   {
     "word": "bicycle",
@@ -776,7 +816,8 @@
         "text": "My bicycle has a small bell.",
         "answer": "bicycle"
       }
-    ]
+    ],
+    "ch": "單車 (n.)"
   },
   {
     "word": "bird",
@@ -795,7 +836,8 @@
         "text": "Birds can fly high in the sky.",
         "answer": "Birds"
       }
-    ]
+    ],
+    "ch": "鳥 (n.)"
   },
   {
     "word": "birthday",
@@ -814,7 +856,8 @@
         "text": "I am having a party for my birthday.",
         "answer": "birthday"
       }
-    ]
+    ],
+    "ch": "生日 (n.)"
   },
   {
     "word": "black",
@@ -833,7 +876,8 @@
         "text": "He has short black hair.",
         "answer": "black"
       }
-    ]
+    ],
+    "ch": "黑色 (adj.)"
   },
   {
     "word": "blog",
@@ -852,7 +896,8 @@
         "text": "He started a blog about cooking.",
         "answer": "blog"
       }
-    ]
+    ],
+    "ch": "博客 (n.)"
   },
   {
     "word": "blue",
@@ -871,7 +916,8 @@
         "text": "He is wearing a blue shirt.",
         "answer": "blue"
       }
-    ]
+    ],
+    "ch": "藍色 (adj.)"
   },
   {
     "word": "boat",
@@ -890,7 +936,8 @@
         "text": "He owns a small fishing boat.",
         "answer": "boat"
       }
-    ]
+    ],
+    "ch": "船 (n.)"
   },
   {
     "word": "body",
@@ -909,7 +956,8 @@
         "text": "He has a very strong body.",
         "answer": "body"
       }
-    ]
+    ],
+    "ch": "身體 (n.)"
   },
   {
     "word": "bottle",
@@ -928,7 +976,8 @@
         "text": "She broke a glass bottle.",
         "answer": "bottle"
       }
-    ]
+    ],
+    "ch": "樽 (n.)"
   },
   {
     "word": "bottom",
@@ -947,7 +996,8 @@
         "text": "The toy is at the bottom of the box.",
         "answer": "bottom"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "box",
@@ -966,7 +1016,8 @@
         "text": "I need a cardboard box for moving.",
         "answer": "box"
       }
-    ]
+    ],
+    "ch": "盒 (n.)"
   },
   {
     "word": "boyfriend",
@@ -985,7 +1036,8 @@
         "text": "Her boyfriend works as a computer programmer.",
         "answer": "boyfriend"
       }
-    ]
+    ],
+    "ch": "男朋友 (n.)"
   },
   {
     "word": "bread",
@@ -1004,7 +1056,8 @@
         "text": "Would you like a slice of bread?",
         "answer": "bread"
       }
-    ]
+    ],
+    "ch": "麵包 (n.)"
   },
   {
     "word": "break",
@@ -1023,7 +1076,8 @@
         "text": "Did you break your phone screen?",
         "answer": "break"
       }
-    ]
+    ],
+    "ch": "休息/打破 (v./n.)"
   },
   {
     "word": "breakfast",
@@ -1042,7 +1096,8 @@
         "text": "Breakfast is the most important meal of the day.",
         "answer": "Breakfast"
       }
-    ]
+    ],
+    "ch": "早餐 (n.)"
   },
   {
     "word": "brown",
@@ -1061,7 +1116,8 @@
         "text": "He has dark brown eyes.",
         "answer": "brown"
       }
-    ]
+    ],
+    "ch": "啡色 (adj.)"
   },
   {
     "word": "business",
@@ -1080,7 +1136,8 @@
         "text": "Starting a new business is risky.",
         "answer": "business"
       }
-    ]
+    ],
+    "ch": "商業/生意 (n.)"
   },
   {
     "word": "busy",
@@ -1099,7 +1156,8 @@
         "text": "She has a busy schedule today.",
         "answer": "busy"
       }
-    ]
+    ],
+    "ch": "忙碌的 (adj.)"
   },
   {
     "word": "butter",
@@ -1118,7 +1176,8 @@
         "text": "Do you want butter or jam on your bread?",
         "answer": "butter"
       }
-    ]
+    ],
+    "ch": "牛油 (n.)"
   },
   {
     "word": "café",
@@ -1137,7 +1196,8 @@
         "text": "My mother is meeting her friend at the café.",
         "answer": "café"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "cake",
@@ -1156,7 +1216,8 @@
         "text": "The cake looks beautiful on the table.",
         "answer": "cake"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "camera",
@@ -1175,7 +1236,8 @@
         "text": "This camera is easy to use.",
         "answer": "camera"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "Canada",
@@ -1194,7 +1256,8 @@
         "text": "They flew to Canada for a holiday.",
         "answer": "Canada"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "capital",
@@ -1213,7 +1276,8 @@
         "text": "The capital city is very busy.",
         "answer": "capital"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "career",
@@ -1232,7 +1296,8 @@
         "text": "He is thinking about his future career.",
         "answer": "career"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "carry",
@@ -1251,7 +1316,8 @@
         "text": "Do not carry too many books at once.",
         "answer": "carry"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "Causeway Bay",
@@ -1270,7 +1336,8 @@
         "text": "My friend met me in Causeway Bay after school.",
         "answer": "Causeway Bay"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "Causeway Bay",
@@ -1289,7 +1356,8 @@
         "text": "My friend met me in Causeway Bay after school.",
         "answer": "Causeway Bay"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "Central",
@@ -1308,7 +1376,8 @@
         "text": "Central has many tall buildings.",
         "answer": "Central"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "century",
@@ -1327,7 +1396,8 @@
         "text": "The painting is over a century old.",
         "answer": "century"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "Che Kung Temple",
@@ -1346,7 +1416,8 @@
         "text": "Che Kung Temple is a famous place in Hong Kong.",
         "answer": "Che Kung Temple"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "cheaper",
@@ -1365,7 +1436,8 @@
         "text": "Buying online is sometimes cheaper.",
         "answer": "cheaper"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "cheapest",
@@ -1384,7 +1456,8 @@
         "text": "That shop sells the cheapest fruit in the area.",
         "answer": "cheapest"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "cheese",
@@ -1403,7 +1476,8 @@
         "text": "She bought bread and cheese for lunch.",
         "answer": "cheese"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "Chek Lap Kok",
@@ -1422,7 +1496,8 @@
         "text": "Chek Lap Kok is on Lantau Island.",
         "answer": "Chek Lap Kok"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "chicken",
@@ -1441,7 +1516,8 @@
         "text": "She ordered grilled chicken at the restaurant.",
         "answer": "chicken"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "China",
@@ -1460,7 +1536,8 @@
         "text": "We learned about China in class today.",
         "answer": "China"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "cinema",
@@ -1479,7 +1556,8 @@
         "text": "I met my classmates outside the cinema.",
         "answer": "cinema"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "class",
@@ -1498,7 +1576,8 @@
         "text": "She is the tallest girl in the class.",
         "answer": "class"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "classroom",
@@ -1517,7 +1596,8 @@
         "text": "The teacher is waiting in the classroom.",
         "answer": "classroom"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "cleverest",
@@ -1536,7 +1616,8 @@
         "text": "That was the cleverest answer in the quiz.",
         "answer": "cleverest"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "club",
@@ -1555,7 +1636,8 @@
         "text": "My sister is in the drama club.",
         "answer": "club"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "coat",
@@ -1574,7 +1656,8 @@
         "text": "I bought a new winter coat yesterday.",
         "answer": "coat"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "coffee",
@@ -1593,7 +1676,8 @@
         "text": "The smell of fresh coffee filled the room.",
         "answer": "coffee"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "college",
@@ -1612,7 +1696,8 @@
         "text": "The college library is very large.",
         "answer": "college"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "colour",
@@ -1631,7 +1716,8 @@
         "text": "This flower has a bright yellow colour.",
         "answer": "colour"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "common",
@@ -1650,7 +1736,8 @@
         "text": "Cold weather is common in winter.",
         "answer": "common"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "company",
@@ -1669,7 +1756,8 @@
         "text": "She started her own small company.",
         "answer": "company"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "compare",
@@ -1688,7 +1776,8 @@
         "text": "It is hard to compare the two plans.",
         "answer": "compare"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "conversation",
@@ -1707,7 +1796,8 @@
         "text": "Please keep your conversation quiet in the library.",
         "answer": "conversation"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "corner",
@@ -1726,7 +1816,8 @@
         "text": "Wait for me at the corner near the bank.",
         "answer": "corner"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "correct",
@@ -1745,7 +1836,8 @@
         "text": "The teacher checked whether the sentence was correct.",
         "answer": "correct"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "corridor",
@@ -1764,7 +1856,8 @@
         "text": "Our classroom is at the end of the corridor.",
         "answer": "corridor"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "cost",
@@ -1783,7 +1876,8 @@
         "text": "Food costs a lot in this area.",
         "answer": "costs"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "course",
@@ -1802,7 +1896,8 @@
         "text": "I signed up for a swimming course.",
         "answer": "course"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "cousin",
@@ -1821,7 +1916,8 @@
         "text": "Her cousin lives in another city.",
         "answer": "cousin"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "cow",
@@ -1840,7 +1936,8 @@
         "text": "The farmer fed the cow early in the morning.",
         "answer": "cow"
       }
-    ]
+    ],
+    "ch": "?"
   },
   {
     "word": "Croatia",
@@ -1859,7 +1956,8 @@
         "text": "They want to visit Croatia in summer.",
         "answer": "Croatia"
       }
-    ]
+    ],
+    "ch": "????"
   },
   {
     "word": "cross",
@@ -1878,7 +1976,8 @@
         "text": "Do not cross the line on the floor.",
         "answer": "cross"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "culture",
@@ -1897,7 +1996,8 @@
         "text": "The museum teaches visitors about local culture.",
         "answer": "culture"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "cup",
@@ -1916,7 +2016,8 @@
         "text": "He dropped the cup by accident.",
         "answer": "cup"
       }
-    ]
+    ],
+    "ch": "?"
   },
   {
     "word": "customer",
@@ -1935,7 +2036,8 @@
         "text": "The customer asked for a refund.",
         "answer": "customer"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "Cyberport",
@@ -1954,7 +2056,8 @@
         "text": "Cyberport has many technology companies.",
         "answer": "Cyberport"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "dance",
@@ -1973,7 +2076,8 @@
         "text": "She wants to learn how to dance.",
         "answer": "dance"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "dancer",
@@ -1992,7 +2096,8 @@
         "text": "The dancer wore a bright costume.",
         "answer": "dancer"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "dangerous",
@@ -2011,7 +2116,8 @@
         "text": "Playing with fire can be dangerous.",
         "answer": "dangerous"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "December",
@@ -2030,7 +2136,8 @@
         "text": "The weather is cool in December.",
         "answer": "December"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "decide",
@@ -2049,7 +2156,8 @@
         "text": "My parents decided to stay at home.",
         "answer": "decided"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "describe",
@@ -2068,7 +2176,8 @@
         "text": "He found it hard to describe the scene.",
         "answer": "describe"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "description",
@@ -2087,7 +2196,8 @@
         "text": "Her description of the game was very clear.",
         "answer": "description"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "design",
@@ -2106,7 +2216,8 @@
         "text": "The building has a modern design.",
         "answer": "design"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "desk",
@@ -2125,7 +2236,8 @@
         "text": "There is a lamp on her desk.",
         "answer": "desk"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "Diamond Hill",
@@ -2144,7 +2256,8 @@
         "text": "Diamond Hill is busy in the evening.",
         "answer": "Diamond Hill"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "dictionary",
@@ -2163,7 +2276,8 @@
         "text": "This dictionary is very useful for students.",
         "answer": "dictionary"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "diet",
@@ -2182,7 +2296,8 @@
         "text": "A good diet helps you stay strong.",
         "answer": "diet"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "difference",
@@ -2201,7 +2316,8 @@
         "text": "The teacher explained the difference clearly.",
         "answer": "difference"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "different",
@@ -2220,7 +2336,8 @@
         "text": "We all have different ideas.",
         "answer": "different"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "dinner",
@@ -2239,7 +2356,8 @@
         "text": "My family ate dinner together last night.",
         "answer": "dinner"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "discuss",
@@ -2258,7 +2376,8 @@
         "text": "The students discussed the topic in groups.",
         "answer": "discussed"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "dish",
@@ -2277,7 +2396,8 @@
         "text": "The restaurant serves a spicy chicken dish.",
         "answer": "dish"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "draw",
@@ -2296,7 +2416,8 @@
         "text": "She draws very well for her age.",
         "answer": "draws"
       }
-    ]
+    ],
+    "ch": "?"
   },
   {
     "word": "dress",
@@ -2315,7 +2436,8 @@
         "text": "My sister bought a new summer dress.",
         "answer": "dress"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "drink",
@@ -2334,7 +2456,8 @@
         "text": "He drank a hot drink before bed.",
         "answer": "drink"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "ear",
@@ -2353,7 +2476,8 @@
         "text": "She whispered the secret in my ear.",
         "answer": "ear"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "easier",
@@ -2372,7 +2496,8 @@
         "text": "It is easier to study in a quiet room.",
         "answer": "easier"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "elephant",
@@ -2391,7 +2516,8 @@
         "text": "The little boy drew a grey elephant.",
         "answer": "elephant"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "else",
@@ -2410,7 +2536,8 @@
         "text": "There is nothing else in the box.",
         "answer": "else"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "email",
@@ -2429,7 +2556,8 @@
         "text": "She checks her email every morning.",
         "answer": "email"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "enjoy",
@@ -2448,7 +2576,8 @@
         "text": "Did you enjoy the concert last night?",
         "answer": "enjoy"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "event",
@@ -2467,7 +2596,8 @@
         "text": "This event is open to the public.",
         "answer": "event"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "every",
@@ -2486,7 +2616,8 @@
         "text": "Every student must bring a pencil.",
         "answer": "Every"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "everybody",
@@ -2505,7 +2636,8 @@
         "text": "Everybody in my family likes music.",
         "answer": "Everybody"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "everyone",
@@ -2524,7 +2656,8 @@
         "text": "Everyone was smiling in the photo.",
         "answer": "Everyone"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "exam",
@@ -2543,7 +2676,8 @@
         "text": "The exam starts at nine o clock.",
         "answer": "exam"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "exercise",
@@ -2562,7 +2696,8 @@
         "text": "My doctor told me to get more exercise.",
         "answer": "exercise"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "Exhibition Centre",
@@ -2581,7 +2716,8 @@
         "text": "My father met his client at Exhibition Centre.",
         "answer": "Exhibition Centre"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "expensive",
@@ -2600,7 +2736,8 @@
         "text": "This shop sells expensive bags.",
         "answer": "expensive"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "explain",
@@ -2619,7 +2756,8 @@
         "text": "Please explain why you were late.",
         "answer": "explain"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "fact",
@@ -2638,7 +2776,8 @@
         "text": "Tell me one fact about whales.",
         "answer": "fact"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "famous",
@@ -2657,7 +2796,8 @@
         "text": "That actor is famous around the world.",
         "answer": "famous"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "fantastic",
@@ -2676,7 +2816,8 @@
         "text": "We had a fantastic time at the beach.",
         "answer": "fantastic"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "farmer",
@@ -2695,7 +2836,8 @@
         "text": "The farmer grows vegetables on his land.",
         "answer": "farmer"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "faster",
@@ -2714,7 +2856,8 @@
         "text": "My computer is much faster now.",
         "answer": "faster"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "favourite",
@@ -2733,7 +2876,8 @@
         "text": "This is my favourite song.",
         "answer": "favourite"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "February",
@@ -2752,7 +2896,8 @@
         "text": "The weather can be cool in February.",
         "answer": "February"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "festival",
@@ -2771,7 +2916,8 @@
         "text": "Many people joined the spring festival.",
         "answer": "festival"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "flight",
@@ -2790,7 +2936,8 @@
         "text": "Please check the flight number on your ticket.",
         "answer": "flight"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "floor",
@@ -2809,7 +2956,8 @@
         "text": "The baby sat on the floor and played.",
         "answer": "floor"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "flower",
@@ -2828,7 +2976,8 @@
         "text": "We planted a flower in the garden.",
         "answer": "flower"
       }
-    ]
+    ],
+    "ch": "?"
   },
   {
     "word": "foot",
@@ -2847,7 +2996,8 @@
         "text": "Wash your hands and your foot carefully.",
         "answer": "foot"
       }
-    ]
+    ],
+    "ch": "?"
   },
   {
     "word": "football",
@@ -2866,7 +3016,8 @@
         "text": "She bought a new football yesterday.",
         "answer": "football"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "forget",
@@ -2885,7 +3036,8 @@
         "text": "He forgot to bring his lunch box.",
         "answer": "forgot"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "form",
@@ -2904,7 +3056,8 @@
         "text": "I handed the form to the teacher.",
         "answer": "form"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "Fortress Point",
@@ -2923,7 +3076,8 @@
         "text": "There are many restaurants in Fortress Point.",
         "answer": "Fortress Point"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "France",
@@ -2942,7 +3096,8 @@
         "text": "They want to study in France one day.",
         "answer": "France"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "Friday",
@@ -2961,7 +3116,8 @@
         "text": "The test will be held next Friday.",
         "answer": "Friday"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "friendly",
@@ -2980,7 +3136,8 @@
         "text": "He has a friendly smile.",
         "answer": "friendly"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "fruit",
@@ -2999,7 +3156,8 @@
         "text": "My favourite fruit is mango.",
         "answer": "fruit"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "funny",
@@ -3018,7 +3176,8 @@
         "text": "My little brother made a funny face.",
         "answer": "funny"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "garden",
@@ -3037,7 +3196,8 @@
         "text": "There is a small garden behind our house.",
         "answer": "garden"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "Germany",
@@ -3056,7 +3216,8 @@
         "text": "They visited Germany during the summer holiday.",
         "answer": "Germany"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "girlfriend",
@@ -3075,7 +3236,8 @@
         "text": "His girlfriend bought him a birthday cake.",
         "answer": "girlfriend"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "glass",
@@ -3094,7 +3256,8 @@
         "text": "This glass is made of clear blue glass.",
         "answer": "glass"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "go past",
@@ -3113,7 +3276,8 @@
         "text": "Go past the school and you will see the park.",
         "answer": "go past"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "go straight ahead",
@@ -3132,7 +3296,8 @@
         "text": "If you go straight ahead, the shop is on your right.",
         "answer": "go straight ahead"
       }
-    ]
+    ],
+    "ch": "????"
   },
   {
     "word": "goodbye",
@@ -3151,7 +3316,8 @@
         "text": "They hugged each other and said goodbye.",
         "answer": "goodbye"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "grandfather",
@@ -3170,7 +3336,8 @@
         "text": "Her grandfather likes reading the newspaper.",
         "answer": "grandfather"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "grandmother",
@@ -3189,7 +3356,8 @@
         "text": "Her grandmother lives near the market.",
         "answer": "grandmother"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "grandparent",
@@ -3208,7 +3376,8 @@
         "text": "Every grandparent was proud of the children.",
         "answer": "grandparent"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "great",
@@ -3227,7 +3396,8 @@
         "text": "That sounds like a great idea.",
         "answer": "great"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "green",
@@ -3246,7 +3416,8 @@
         "text": "Please use the green pen.",
         "answer": "green"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "grey",
@@ -3265,7 +3436,8 @@
         "text": "He bought a grey jacket for winter.",
         "answer": "grey"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "group",
@@ -3284,7 +3456,8 @@
         "text": "A group of students visited the museum.",
         "answer": "group"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "guess",
@@ -3303,7 +3476,8 @@
         "text": "Take a guess if you are not sure.",
         "answer": "guess"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "guitar",
@@ -3322,7 +3496,8 @@
         "text": "The guitar on the wall belongs to my father.",
         "answer": "guitar"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "hair",
@@ -3341,7 +3516,8 @@
         "text": "He cut his hair last week.",
         "answer": "hair"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "happier",
@@ -3360,7 +3536,8 @@
         "text": "The children were happier after lunch.",
         "answer": "happier"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "hat",
@@ -3379,7 +3556,8 @@
         "text": "She bought a new winter hat.",
         "answer": "hat"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "health",
@@ -3398,7 +3576,8 @@
         "text": "The nurse talked to us about health.",
         "answer": "health"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "healthy",
@@ -3417,7 +3596,8 @@
         "text": "A healthy diet includes vegetables.",
         "answer": "healthy"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "help",
@@ -3436,7 +3616,8 @@
         "text": "The teacher came to help us.",
         "answer": "help"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "hike",
@@ -3455,7 +3636,8 @@
         "text": "Our family planned a short hike on Sunday.",
         "answer": "hike"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "history",
@@ -3474,7 +3656,8 @@
         "text": "My brother is reading a history book.",
         "answer": "history"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "hobby",
@@ -3493,7 +3676,8 @@
         "text": "My hobby takes up a lot of time.",
         "answer": "hobby"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "holiday",
@@ -3512,7 +3696,8 @@
         "text": "My parents took a short holiday last month.",
         "answer": "holiday"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "homework",
@@ -3531,7 +3716,8 @@
         "text": "The teacher gave us a lot of homework.",
         "answer": "homework"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "Hong Kong",
@@ -3550,7 +3736,8 @@
         "text": "The weather in Hong Kong is very hot in summer.",
         "answer": "Hong Kong"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "horse",
@@ -3569,7 +3756,8 @@
         "text": "The boy learned how to ride a horse.",
         "answer": "horse"
       }
-    ]
+    ],
+    "ch": "?"
   },
   {
     "word": "hospital",
@@ -3588,7 +3776,8 @@
         "text": "The hospital is near the station.",
         "answer": "hospital"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "hotel",
@@ -3607,7 +3796,8 @@
         "text": "My parents booked a room in the hotel.",
         "answer": "hotel"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "however",
@@ -3626,7 +3816,8 @@
         "text": "She was tired; however, she kept working.",
         "answer": "however"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "hungry",
@@ -3645,7 +3836,8 @@
         "text": "Are you hungry now?",
         "answer": "hungry"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "husband",
@@ -3664,7 +3856,8 @@
         "text": "My aunt and her husband visited us.",
         "answer": "husband"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "ice",
@@ -3683,7 +3876,8 @@
         "text": "Be careful on the ice.",
         "answer": "ice"
       }
-    ]
+    ],
+    "ch": "?"
   },
   {
     "word": "ice cream",
@@ -3702,7 +3896,8 @@
         "text": "The children bought ice cream from the shop.",
         "answer": "ice cream"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "idea",
@@ -3721,7 +3916,8 @@
         "text": "I have an idea for our project.",
         "answer": "idea"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "imagine",
@@ -3740,7 +3936,8 @@
         "text": "Please imagine you are a bird.",
         "answer": "imagine"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "important",
@@ -3759,7 +3956,8 @@
         "text": "It is important to be on time.",
         "answer": "important"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "improve",
@@ -3778,7 +3976,8 @@
         "text": "This app can help students improve quickly.",
         "answer": "improve"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "in front of",
@@ -3797,7 +3996,8 @@
         "text": "He stood in front of the class and spoke.",
         "answer": "in front of"
       }
-    ]
+    ],
+    "ch": "????"
   },
   {
     "word": "information",
@@ -3816,7 +4016,8 @@
         "text": "Please ask at the desk for information.",
         "answer": "information"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "interest",
@@ -3835,7 +4036,8 @@
         "text": "She has a strong interest in science.",
         "answer": "interest"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "internet",
@@ -3854,7 +4056,8 @@
         "text": "Many people shop on the internet now.",
         "answer": "internet"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "interview",
@@ -3873,7 +4076,8 @@
         "text": "He felt nervous before the interview.",
         "answer": "interview"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "introduce",
@@ -3892,7 +4096,8 @@
         "text": "She introduced herself to the group.",
         "answer": "introduced"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "island",
@@ -3911,7 +4116,8 @@
         "text": "They spent the weekend on an island.",
         "answer": "island"
       }
-    ]
+    ],
+    "ch": "?"
   },
   {
     "word": "Italy",
@@ -3930,7 +4136,8 @@
         "text": "They dream of visiting Italy one day.",
         "answer": "Italy"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "jacket",
@@ -3949,7 +4156,8 @@
         "text": "She bought a warm jacket for winter.",
         "answer": "jacket"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "January",
@@ -3968,7 +4176,8 @@
         "text": "The weather is cool in January.",
         "answer": "January"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "join",
@@ -3987,7 +4196,8 @@
         "text": "Many students joined the school event.",
         "answer": "joined"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "Jordan",
@@ -4006,7 +4216,8 @@
         "text": "They want to visit Jordan next year.",
         "answer": "Jordan"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "journey",
@@ -4025,7 +4236,8 @@
         "text": "The journey to school takes thirty minutes.",
         "answer": "journey"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "juice",
@@ -4044,7 +4256,8 @@
         "text": "The children drank cold juice after the game.",
         "answer": "juice"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "July",
@@ -4063,7 +4276,8 @@
         "text": "My cousin is getting married in July.",
         "answer": "July"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "June",
@@ -4082,7 +4296,8 @@
         "text": "Her birthday party is in June.",
         "answer": "June"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "Kai Tak",
@@ -4101,7 +4316,8 @@
         "text": "Kai Tak is changing very quickly.",
         "answer": "Kai Tak"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "Kennedy Town",
@@ -4120,7 +4336,8 @@
         "text": "There are many caf?s in Kennedy Town.",
         "answer": "Kennedy Town"
       }
-    ]
+    ],
+    "ch": "????"
   },
   {
     "word": "kitchen",
@@ -4139,7 +4356,8 @@
         "text": "Please put the cups back in the kitchen.",
         "answer": "kitchen"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "Kowloon Tong",
@@ -4158,7 +4376,8 @@
         "text": "Kowloon Tong is busy in the morning.",
         "answer": "Kowloon Tong"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "Lamma Island",
@@ -4177,7 +4396,8 @@
         "text": "They took a ferry to Lamma Island.",
         "answer": "Lamma Island"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "Lantau Island",
@@ -4196,7 +4416,8 @@
         "text": "Lantau Island is very large.",
         "answer": "Lantau Island"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "laugh",
@@ -4215,7 +4436,8 @@
         "text": "She started to laugh when she saw the photo.",
         "answer": "laugh"
       }
-    ]
+    ],
+    "ch": "?"
   },
   {
     "word": "lesson",
@@ -4234,7 +4456,8 @@
         "text": "I learned a lot from the swimming lesson.",
         "answer": "lesson"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "letter",
@@ -4253,7 +4476,8 @@
         "text": "The teacher asked us to circle the first letter.",
         "answer": "letter"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "library",
@@ -4272,7 +4496,8 @@
         "text": "The public library closes at eight.",
         "answer": "library"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "lion",
@@ -4291,7 +4516,8 @@
         "text": "The little boy drew a lion in art class.",
         "answer": "lion"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "Lion Rock",
@@ -4310,7 +4536,8 @@
         "text": "My father likes hiking near Lion Rock.",
         "answer": "Lion Rock"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "list",
@@ -4329,7 +4556,8 @@
         "text": "Her name is first on the class list.",
         "answer": "list"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "listen",
@@ -4348,7 +4576,8 @@
         "text": "Listen to me for one minute.",
         "answer": "Listen"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "longer",
@@ -4367,7 +4596,8 @@
         "text": "The movie was longer than I expected.",
         "answer": "longer"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "LOUAS Park",
@@ -4386,7 +4616,8 @@
         "text": "There were many families in LOUAS Park yesterday.",
         "answer": "LOUAS Park"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "lunch",
@@ -4405,7 +4636,8 @@
         "text": "Lunch starts at twelve thirty.",
         "answer": "Lunch"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "M+ Museum",
@@ -4424,7 +4656,8 @@
         "text": "My brother wants to go to the M+ Museum on Sunday.",
         "answer": "M+ Museum"
       }
-    ]
+    ],
+    "ch": "M+???"
   },
   {
     "word": "machine",
@@ -4443,7 +4676,8 @@
         "text": "He learned how to use the coffee machine.",
         "answer": "machine"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "magazine",
@@ -4462,7 +4696,8 @@
         "text": "There is an interesting article in this magazine.",
         "answer": "magazine"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "Mai Po",
@@ -4481,7 +4716,8 @@
         "text": "Mai Po is famous for its wetlands.",
         "answer": "Mai Po"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "main",
@@ -4500,7 +4736,8 @@
         "text": "The shop is on the main road.",
         "answer": "main"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "Malaysia",
@@ -4519,7 +4756,8 @@
         "text": "They flew to Malaysia during the holiday.",
         "answer": "Malaysia"
       }
-    ]
+    ],
+    "ch": "????"
   },
   {
     "word": "March",
@@ -4538,7 +4776,8 @@
         "text": "My uncle was born in March.",
         "answer": "March"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "match",
@@ -4557,7 +4796,8 @@
         "text": "The final match starts at eight tonight.",
         "answer": "match"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "May",
@@ -4576,7 +4816,8 @@
         "text": "Her birthday is in early May.",
         "answer": "May"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "meal",
@@ -4595,7 +4836,8 @@
         "text": "The restaurant serves a cheap set meal.",
         "answer": "meal"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "meat",
@@ -4614,7 +4856,8 @@
         "text": "He does not eat much meat.",
         "answer": "meat"
       }
-    ]
+    ],
+    "ch": "?"
   },
   {
     "word": "member",
@@ -4633,7 +4876,8 @@
         "text": "Each club member got a badge.",
         "answer": "member"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "menu",
@@ -4652,7 +4896,8 @@
         "text": "There is a new lunch menu today.",
         "answer": "menu"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "message",
@@ -4671,7 +4916,8 @@
         "text": "The message on the screen was clear.",
         "answer": "message"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "metre",
@@ -4690,7 +4936,8 @@
         "text": "The box is less than a metre wide.",
         "answer": "metre"
       }
-    ]
+    ],
+    "ch": "?"
   },
   {
     "word": "midnight",
@@ -4709,7 +4956,8 @@
         "text": "The train arrived just before midnight.",
         "answer": "midnight"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "mile",
@@ -4728,7 +4976,8 @@
         "text": "He ran a mile in the sports test.",
         "answer": "mile"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "milk",
@@ -4747,7 +4996,8 @@
         "text": "She added milk to her tea.",
         "answer": "milk"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "modern",
@@ -4766,7 +5016,8 @@
         "text": "This shop sells modern furniture.",
         "answer": "modern"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "moment",
@@ -4785,7 +5036,8 @@
         "text": "It was a happy moment for the team.",
         "answer": "moment"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "Monday",
@@ -4804,7 +5056,8 @@
         "text": "The museum is closed on Monday.",
         "answer": "Monday"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "Mong Kok",
@@ -4823,7 +5076,8 @@
         "text": "My aunt works in Mong Kok.",
         "answer": "Mong Kok"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "mountain",
@@ -4842,7 +5096,8 @@
         "text": "There is a small village near the mountain.",
         "answer": "mountain"
       }
-    ]
+    ],
+    "ch": "?"
   },
   {
     "word": "movie",
@@ -4861,7 +5116,8 @@
         "text": "My sister wants to see the new movie.",
         "answer": "movie"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "museum",
@@ -4880,7 +5136,8 @@
         "text": "Our class visited the science museum.",
         "answer": "museum"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "music",
@@ -4899,7 +5156,8 @@
         "text": "The room was filled with soft music.",
         "answer": "music"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "natural",
@@ -4918,7 +5176,8 @@
         "text": "Her smile looked very natural.",
         "answer": "natural"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "near",
@@ -4937,7 +5196,8 @@
         "text": "There is a bakery near our school.",
         "answer": "near"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "nearest",
@@ -4956,7 +5216,8 @@
         "text": "Please take me to the nearest hospital.",
         "answer": "nearest"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "news",
@@ -4975,7 +5236,8 @@
         "text": "My father watches the evening news every day.",
         "answer": "news"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "newspaper",
@@ -4994,7 +5256,8 @@
         "text": "She bought a newspaper at the station.",
         "answer": "newspaper"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "nobody",
@@ -5013,7 +5276,8 @@
         "text": "Nobody wants to miss the show.",
         "answer": "Nobody"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "north",
@@ -5032,7 +5296,8 @@
         "text": "Birds fly north in some seasons.",
         "answer": "north"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "North Point",
@@ -5051,7 +5316,8 @@
         "text": "North Point is easy to reach by MTR.",
         "answer": "North Point"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "nose",
@@ -5070,7 +5336,8 @@
         "text": "She wears glasses on her nose.",
         "answer": "nose"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "not",
@@ -5089,7 +5356,8 @@
         "text": "He is not at home now.",
         "answer": "not"
       }
-    ]
+    ],
+    "ch": "?"
   },
   {
     "word": "November",
@@ -5108,7 +5376,8 @@
         "text": "My aunt was born in November.",
         "answer": "November"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "nurse",
@@ -5127,7 +5396,8 @@
         "text": "The nurse checked my temperature.",
         "answer": "nurse"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "October",
@@ -5146,7 +5416,8 @@
         "text": "She will visit us in October.",
         "answer": "October"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "okay",
@@ -5165,7 +5436,8 @@
         "text": "Everything will be okay soon.",
         "answer": "okay"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "older",
@@ -5184,7 +5456,8 @@
         "text": "She looks older in that photo.",
         "answer": "older"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "oldest",
@@ -5203,7 +5476,8 @@
         "text": "My oldest cousin lives in Canada.",
         "answer": "oldest"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "Olyampic",
@@ -5222,7 +5496,8 @@
         "text": "He watched an Olyampic race on TV.",
         "answer": "Olyampic"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "onion",
@@ -5241,7 +5516,8 @@
         "text": "He does not like the smell of onion.",
         "answer": "onion"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "online",
@@ -5260,7 +5536,8 @@
         "text": "She ordered lunch online during the break.",
         "answer": "online"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "opinion",
@@ -5279,7 +5556,8 @@
         "text": "Everyone shared an opinion in class.",
         "answer": "opinion"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "opposite",
@@ -5298,7 +5576,8 @@
         "text": "Our classroom is opposite the library.",
         "answer": "opposite"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "opposite",
@@ -5317,7 +5596,8 @@
         "text": "Our classroom is opposite the library.",
         "answer": "opposite"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "orange",
@@ -5336,7 +5616,8 @@
         "text": "Would you like some orange juice?",
         "answer": "orange"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "order",
@@ -5355,7 +5636,8 @@
         "text": "She placed an order on the website.",
         "answer": "order"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "pair",
@@ -5374,7 +5656,8 @@
         "text": "She found a matching pair of earrings.",
         "answer": "pair"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "panda",
@@ -5393,7 +5676,8 @@
         "text": "We saw a giant panda on TV.",
         "answer": "panda"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "partner",
@@ -5412,7 +5696,8 @@
         "text": "She worked with her partner in science class.",
         "answer": "partner"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "party",
@@ -5431,7 +5716,8 @@
         "text": "She invited me to her house party.",
         "answer": "party"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "passport",
@@ -5450,7 +5736,8 @@
         "text": "He checked his passport before the flight.",
         "answer": "passport"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "pencil",
@@ -5469,7 +5756,8 @@
         "text": "She sharpened her pencil before class.",
         "answer": "pencil"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "people",
@@ -5488,7 +5776,8 @@
         "text": "People were waiting outside the shop.",
         "answer": "People"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "pepper",
@@ -5507,7 +5796,8 @@
         "text": "My father likes eggs with pepper.",
         "answer": "pepper"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "perfect",
@@ -5526,7 +5816,8 @@
         "text": "It was a perfect day for a walk.",
         "answer": "perfect"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "period",
@@ -5545,7 +5836,8 @@
         "text": "Math is my favourite period of the day.",
         "answer": "period"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "personal",
@@ -5564,7 +5856,8 @@
         "text": "He has a personal reason for leaving early.",
         "answer": "personal"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "photo",
@@ -5583,7 +5876,8 @@
         "text": "This old photo shows my grandparents.",
         "answer": "photo"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "phrase",
@@ -5602,7 +5896,8 @@
         "text": "I do not understand this English phrase.",
         "answer": "phrase"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "piano",
@@ -5621,7 +5916,8 @@
         "text": "He is learning the piano at school.",
         "answer": "piano"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "piece",
@@ -5640,7 +5936,8 @@
         "text": "This piece of music is very calm.",
         "answer": "piece"
       }
-    ]
+    ],
+    "ch": "?"
   },
   {
     "word": "plan",
@@ -5659,7 +5956,8 @@
         "text": "That sounds like a good plan.",
         "answer": "plan"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "plane",
@@ -5678,7 +5976,8 @@
         "text": "My uncle travels by plane for work.",
         "answer": "plane"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "player",
@@ -5697,7 +5996,8 @@
         "text": "Each player needs to wear a badge.",
         "answer": "player"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "pool",
@@ -5716,7 +6016,8 @@
         "text": "My brother jumped into the pool.",
         "answer": "pool"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "popular",
@@ -5735,7 +6036,8 @@
         "text": "The park is a popular place for families.",
         "answer": "popular"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "possible",
@@ -5754,7 +6056,8 @@
         "text": "It is not possible to open this door.",
         "answer": "possible"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "post",
@@ -5773,7 +6076,8 @@
         "text": "There is a lamp post near the crossing.",
         "answer": "post"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "potato",
@@ -5792,7 +6096,8 @@
         "text": "There is one potato left in the kitchen.",
         "answer": "potato"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "pound",
@@ -5811,7 +6116,8 @@
         "text": "She paid one pound for the postcard.",
         "answer": "pound"
       }
-    ]
+    ],
+    "ch": "?"
   },
   {
     "word": "practice",
@@ -5830,7 +6136,8 @@
         "text": "The band had practice after school.",
         "answer": "practice"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "practise",
@@ -5849,7 +6156,8 @@
         "text": "We practise before the match.",
         "answer": "practise"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "prefer",
@@ -5868,7 +6176,8 @@
         "text": "Do you prefer summer or winter?",
         "answer": "prefer"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "prepare",
@@ -5887,7 +6196,8 @@
         "text": "My mother is preparing dinner now.",
         "answer": "preparing"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "pretty",
@@ -5906,7 +6216,8 @@
         "text": "The park looks pretty in spring.",
         "answer": "pretty"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "Prince Edward",
@@ -5925,7 +6236,8 @@
         "text": "Prince Edward is busy at lunchtime.",
         "answer": "Prince Edward"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "product",
@@ -5944,7 +6256,8 @@
         "text": "I read the product label carefully.",
         "answer": "product"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "programme",
@@ -5963,7 +6276,8 @@
         "text": "This radio programme starts at nine.",
         "answer": "programme"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "purple",
@@ -5982,7 +6296,8 @@
         "text": "Please use the purple marker.",
         "answer": "purple"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "Quarry Bay",
@@ -6001,7 +6316,8 @@
         "text": "There are many offices in Quarry Bay.",
         "answer": "Quarry Bay"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "quick",
@@ -6020,7 +6336,8 @@
         "text": "That was a quick trip to the shop.",
         "answer": "quick"
       }
-    ]
+    ],
+    "ch": "?"
   },
   {
     "word": "quickly",
@@ -6039,7 +6356,8 @@
         "text": "She quickly put the book into her bag.",
         "answer": "quickly"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "quiet",
@@ -6058,7 +6376,8 @@
         "text": "We found a quiet place to study.",
         "answer": "quiet"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "Race course",
@@ -6077,7 +6396,8 @@
         "text": "There was a big event at the Race course.",
         "answer": "Race course"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "radio",
@@ -6096,7 +6416,8 @@
         "text": "She turned off the radio before class.",
         "answer": "radio"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "reader",
@@ -6115,7 +6436,8 @@
         "text": "The reader wrote a letter to the newspaper.",
         "answer": "reader"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "ready",
@@ -6134,7 +6456,8 @@
         "text": "We are ready for the school trip.",
         "answer": "ready"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "real",
@@ -6153,7 +6476,8 @@
         "text": "She showed me a real gold ring.",
         "answer": "real"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "reason",
@@ -6172,7 +6496,8 @@
         "text": "Tell me the reason why you were late.",
         "answer": "reason"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "red",
@@ -6191,7 +6516,8 @@
         "text": "Please use the red marker.",
         "answer": "red"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "relax",
@@ -6210,7 +6536,8 @@
         "text": "Take a deep breath and relax.",
         "answer": "relax"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "restaurant",
@@ -6229,7 +6556,8 @@
         "text": "My parents booked a table at the restaurant.",
         "answer": "restaurant"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "return",
@@ -6248,7 +6576,8 @@
         "text": "She returned the pen to her friend.",
         "answer": "returned"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "rice",
@@ -6267,7 +6596,8 @@
         "text": "My grandmother cooks rice every day.",
         "answer": "rice"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "road",
@@ -6286,7 +6616,8 @@
         "text": "There were many cars on the road.",
         "answer": "road"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "safer",
@@ -6305,7 +6636,8 @@
         "text": "This road is safer at night because it is brighter.",
         "answer": "safer"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "salt",
@@ -6324,7 +6656,8 @@
         "text": "The chef used salt and pepper.",
         "answer": "salt"
       }
-    ]
+    ],
+    "ch": "?"
   },
   {
     "word": "sandwich",
@@ -6343,7 +6676,8 @@
         "text": "The sandwich is on the plate.",
         "answer": "sandwich"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "Saturday",
@@ -6362,7 +6696,8 @@
         "text": "The market is very busy on Saturday.",
         "answer": "Saturday"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "schoolmate",
@@ -6381,7 +6716,8 @@
         "text": "She sat next to her schoolmate in class.",
         "answer": "schoolmate"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "science",
@@ -6400,7 +6736,8 @@
         "text": "My brother is good at science.",
         "answer": "science"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "scientist",
@@ -6419,7 +6756,8 @@
         "text": "The scientist explained the new discovery.",
         "answer": "scientist"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "sea",
@@ -6438,7 +6776,8 @@
         "text": "We could see the blue sea from the hill.",
         "answer": "sea"
       }
-    ]
+    ],
+    "ch": "?"
   },
   {
     "word": "sell",
@@ -6457,7 +6796,8 @@
         "text": "This shop sells school bags and shoes.",
         "answer": "sells"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "September",
@@ -6476,7 +6816,8 @@
         "text": "The weather is still hot in September.",
         "answer": "September"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "Sham Shui Po",
@@ -6495,7 +6836,8 @@
         "text": "Sham Shui Po is famous for its markets.",
         "answer": "Sham Shui Po"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "Shek Kip Mei",
@@ -6514,7 +6856,8 @@
         "text": "Shek Kip Mei is not far from our school.",
         "answer": "Shek Kip Mei"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "shirt",
@@ -6533,7 +6876,8 @@
         "text": "This shirt is too big for me.",
         "answer": "shirt"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "shoe",
@@ -6552,7 +6896,8 @@
         "text": "I need a new running shoe.",
         "answer": "shoe"
       }
-    ]
+    ],
+    "ch": "?"
   },
   {
     "word": "shorter",
@@ -6571,7 +6916,8 @@
         "text": "My hair is shorter now.",
         "answer": "shorter"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "shower",
@@ -6590,7 +6936,8 @@
         "text": "She sang in the shower.",
         "answer": "shower"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "Shung Wong Toi",
@@ -6609,7 +6956,8 @@
         "text": "Shung Wong Toi is on the new line.",
         "answer": "Shung Wong Toi"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "sick",
@@ -6628,7 +6976,8 @@
         "text": "The sick child went to see a doctor.",
         "answer": "sick"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "similar",
@@ -6647,7 +6996,8 @@
         "text": "The twins look similar to each other.",
         "answer": "similar"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "sing",
@@ -6666,7 +7016,8 @@
         "text": "My sister can sing very well.",
         "answer": "sing"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "Singapore",
@@ -6685,7 +7036,8 @@
         "text": "They flew to Singapore for a short holiday.",
         "answer": "Singapore"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "singer",
@@ -6704,7 +7056,8 @@
         "text": "The singer performed three songs.",
         "answer": "singer"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "situation",
@@ -6723,7 +7076,8 @@
         "text": "The teacher explained the situation clearly.",
         "answer": "situation"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "skill",
@@ -6742,7 +7096,8 @@
         "text": "Cooking is a useful life skill.",
         "answer": "skill"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "skirt",
@@ -6761,7 +7116,8 @@
         "text": "My sister bought a new skirt yesterday.",
         "answer": "skirt"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "smaller",
@@ -6780,7 +7136,8 @@
         "text": "The younger dog is smaller.",
         "answer": "smaller"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "smallest",
@@ -6799,7 +7156,8 @@
         "text": "That is the smallest fish I have seen.",
         "answer": "smallest"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "snake",
@@ -6818,7 +7176,8 @@
         "text": "The little boy was afraid of the snake.",
         "answer": "snake"
       }
-    ]
+    ],
+    "ch": "?"
   },
   {
     "word": "soda",
@@ -6837,7 +7196,8 @@
         "text": "My father does not drink soda often.",
         "answer": "soda"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "somebody",
@@ -6856,7 +7216,8 @@
         "text": "Somebody called you this morning.",
         "answer": "Somebody"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "someone",
@@ -6875,7 +7236,8 @@
         "text": "Please ask someone for help.",
         "answer": "someone"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "song",
@@ -6894,7 +7256,8 @@
         "text": "We listened to a happy song on the bus.",
         "answer": "song"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "sorry",
@@ -6913,7 +7276,8 @@
         "text": "Sorry, I do not understand the question.",
         "answer": "Sorry"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "soup",
@@ -6932,7 +7296,8 @@
         "text": "Would you like some chicken soup?",
         "answer": "soup"
       }
-    ]
+    ],
+    "ch": "?"
   },
   {
     "word": "south",
@@ -6951,7 +7316,8 @@
         "text": "Our hotel is south of the station.",
         "answer": "south"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "South Korea",
@@ -6970,7 +7336,8 @@
         "text": "They travelled to South Korea in winter.",
         "answer": "South Korea"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "space",
@@ -6989,7 +7356,8 @@
         "text": "The room has a lot of open space.",
         "answer": "space"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "Spain",
@@ -7008,7 +7376,8 @@
         "text": "They want to travel around Spain next year.",
         "answer": "Spain"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "special",
@@ -7027,7 +7396,8 @@
         "text": "This cake is special because my father made it.",
         "answer": "special"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "sport",
@@ -7046,7 +7416,8 @@
         "text": "He enjoys watching sport on TV.",
         "answer": "sport"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "statement",
@@ -7065,7 +7436,8 @@
         "text": "Her statement was short and clear.",
         "answer": "statement"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "station",
@@ -7084,7 +7456,8 @@
         "text": "Please meet me outside the station.",
         "answer": "station"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "story",
@@ -7103,7 +7476,8 @@
         "text": "She wrote a short story about a cat.",
         "answer": "story"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "street",
@@ -7122,7 +7496,8 @@
         "text": "There are many shops on this street.",
         "answer": "street"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "strong",
@@ -7141,7 +7516,8 @@
         "text": "We need a strong team to win.",
         "answer": "strong"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "student",
@@ -7160,7 +7536,8 @@
         "text": "She is a hard-working student.",
         "answer": "student"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "study",
@@ -7179,7 +7556,8 @@
         "text": "My brother went to his room to study.",
         "answer": "study"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "style",
@@ -7198,7 +7576,8 @@
         "text": "That shop sells clothes in a modern style.",
         "answer": "style"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "subway",
@@ -7217,7 +7596,8 @@
         "text": "I use the subway every morning.",
         "answer": "subway"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "success",
@@ -7236,7 +7616,8 @@
         "text": "The show was a big success.",
         "answer": "success"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "sugar",
@@ -7255,7 +7636,8 @@
         "text": "My mother bought a bag of sugar.",
         "answer": "sugar"
       }
-    ]
+    ],
+    "ch": "?"
   },
   {
     "word": "summer",
@@ -7274,7 +7656,8 @@
         "text": "My family will travel in the summer holiday.",
         "answer": "summer"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "Sunday",
@@ -7293,7 +7676,8 @@
         "text": "My art class is on Sunday morning.",
         "answer": "Sunday"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "supermarket",
@@ -7312,7 +7696,8 @@
         "text": "We walked to the supermarket after dinner.",
         "answer": "supermarket"
       }
-    ]
+    ],
+    "ch": "????"
   },
   {
     "word": "sweeter",
@@ -7331,7 +7716,8 @@
         "text": "Her second cake tasted even sweeter.",
         "answer": "sweeter"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "Switzerland",
@@ -7350,7 +7736,8 @@
         "text": "They want to visit Switzerland one day.",
         "answer": "Switzerland"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "Tai Koo",
@@ -7369,7 +7756,8 @@
         "text": "Tai Koo is easy to reach by MTR.",
         "answer": "Tai Koo"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "Tai O",
@@ -7388,7 +7776,8 @@
         "text": "The seafood in Tai O is very popular.",
         "answer": "Tai O"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "tallest",
@@ -7407,7 +7796,8 @@
         "text": "My tallest plant is by the window.",
         "answer": "tallest"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "taxi",
@@ -7426,7 +7816,8 @@
         "text": "My father called a taxi for us.",
         "answer": "taxi"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "tea",
@@ -7445,7 +7836,8 @@
         "text": "She made milk tea for everyone.",
         "answer": "tea"
       }
-    ]
+    ],
+    "ch": "?"
   },
   {
     "word": "teach",
@@ -7464,7 +7856,8 @@
         "text": "Will you teach me this song?",
         "answer": "teach"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "team",
@@ -7483,7 +7876,8 @@
         "text": "The whole team practised after school.",
         "answer": "team"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "teenager",
@@ -7502,7 +7896,8 @@
         "text": "Many teenagers use social media every day.",
         "answer": "teenagers"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "telephone",
@@ -7521,7 +7916,8 @@
         "text": "My grandfather still uses a home telephone.",
         "answer": "telephone"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "television",
@@ -7540,7 +7936,8 @@
         "text": "There is a new programme on television tonight.",
         "answer": "television"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "ten",
@@ -7559,7 +7956,8 @@
         "text": "My brother is ten years old.",
         "answer": "ten"
       }
-    ]
+    ],
+    "ch": "?"
   },
   {
     "word": "tennis",
@@ -7578,7 +7976,8 @@
         "text": "Tennis is my favourite sport.",
         "answer": "Tennis"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "terrible",
@@ -7597,7 +7996,8 @@
         "text": "That was a terrible mistake.",
         "answer": "terrible"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "test",
@@ -7616,7 +8016,8 @@
         "text": "The teacher gave us a short test.",
         "answer": "test"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "Thailand",
@@ -7635,7 +8036,8 @@
         "text": "They want to travel to Thailand next year.",
         "answer": "Thailand"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "thank",
@@ -7654,7 +8056,8 @@
         "text": "She thanked her teacher after class.",
         "answer": "thanked"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "The Peak",
@@ -7673,7 +8076,8 @@
         "text": "My parents took us to The Peak on Sunday.",
         "answer": "The Peak"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "The United Kingdom",
@@ -7692,7 +8096,8 @@
         "text": "They flew to The United Kingdom for a holiday.",
         "answer": "The United Kingdom"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "The USA",
@@ -7711,7 +8116,8 @@
         "text": "They travelled around The USA in summer.",
         "answer": "The USA"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "theatre",
@@ -7730,7 +8136,8 @@
         "text": "My teacher loves going to the theatre.",
         "answer": "theatre"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "thirdly",
@@ -7749,7 +8156,8 @@
         "text": "Thirdly, the teacher asked us to work in groups.",
         "answer": "Thirdly"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "Thursday",
@@ -7768,7 +8176,8 @@
         "text": "The shop opens late on Thursday.",
         "answer": "Thursday"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "ticket",
@@ -7787,7 +8196,8 @@
         "text": "She showed her ticket at the door.",
         "answer": "ticket"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "together",
@@ -7806,7 +8216,8 @@
         "text": "Let us work together on this project.",
         "answer": "together"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "toilet",
@@ -7825,7 +8236,8 @@
         "text": "Please wash your hands after using the toilet.",
         "answer": "toilet"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "top",
@@ -7844,7 +8256,8 @@
         "text": "Write your name at the top of the page.",
         "answer": "top"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "topic",
@@ -7863,7 +8276,8 @@
         "text": "Please choose a topic for your speech.",
         "answer": "topic"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "tourist",
@@ -7882,7 +8296,8 @@
         "text": "The tourist took many photos.",
         "answer": "tourist"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "traffic",
@@ -7901,7 +8316,8 @@
         "text": "We were late because of the traffic.",
         "answer": "traffic"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "travel",
@@ -7920,7 +8336,8 @@
         "text": "They want to travel to Japan next year.",
         "answer": "travel"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "tree",
@@ -7939,7 +8356,8 @@
         "text": "We planted a small tree at school.",
         "answer": "tree"
       }
-    ]
+    ],
+    "ch": "?"
   },
   {
     "word": "Tsim Sha Tsui",
@@ -7958,7 +8376,8 @@
         "text": "There are many tourists in Tsim Sha Tsui.",
         "answer": "Tsim Sha Tsui"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "Tuen Mun",
@@ -7977,7 +8396,8 @@
         "text": "The bus to Tuen Mun was full.",
         "answer": "Tuen Mun"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "Tuesday",
@@ -7996,7 +8416,8 @@
         "text": "I will see you next Tuesday.",
         "answer": "Tuesday"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "turn left",
@@ -8015,7 +8436,8 @@
         "text": "If you turn left, you will see the station.",
         "answer": "turn left"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "turn right",
@@ -8034,7 +8456,8 @@
         "text": "If you turn right, the shop is on your left.",
         "answer": "turn right"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "twice",
@@ -8053,7 +8476,8 @@
         "text": "She called me twice yesterday.",
         "answer": "twice"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "umbrella",
@@ -8072,7 +8496,8 @@
         "text": "I bought a new umbrella yesterday.",
         "answer": "umbrella"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "university",
@@ -8091,7 +8516,8 @@
         "text": "The university library is very large.",
         "answer": "university"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "useful",
@@ -8110,7 +8536,8 @@
         "text": "Learning English is useful for travel.",
         "answer": "useful"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "vacation",
@@ -8129,7 +8556,8 @@
         "text": "The children were excited about the vacation.",
         "answer": "vacation"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "vegetable",
@@ -8148,7 +8576,8 @@
         "text": "Every meal should include a vegetable.",
         "answer": "vegetable"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "Victoria Harbour",
@@ -8167,7 +8596,8 @@
         "text": "Many tourists visit Victoria Harbour every evening.",
         "answer": "Victoria Harbour"
       }
-    ]
+    ],
+    "ch": "?????"
   },
   {
     "word": "video",
@@ -8186,7 +8616,8 @@
         "text": "Please send me the video later.",
         "answer": "video"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "village",
@@ -8205,7 +8636,8 @@
         "text": "We visited an old village during the holiday.",
         "answer": "village"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "visit",
@@ -8224,7 +8656,8 @@
         "text": "She wants to visit Japan one day.",
         "answer": "visit"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "visitor",
@@ -8243,7 +8676,8 @@
         "text": "A visitor asked me for directions.",
         "answer": "visitor"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "wake",
@@ -8262,7 +8696,8 @@
         "text": "The loud noise woke the baby.",
         "answer": "wake"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "walk along",
@@ -8281,7 +8716,8 @@
         "text": "Please walk along the corridor quietly.",
         "answer": "walk along"
       }
-    ]
+    ],
+    "ch": "????"
   },
   {
     "word": "Wan Chai",
@@ -8300,7 +8736,8 @@
         "text": "Wan Chai is busy during lunchtime.",
         "answer": "Wan Chai"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "warmer",
@@ -8319,7 +8756,8 @@
         "text": "The weather gets warmer in spring.",
         "answer": "warmer"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "wear",
@@ -8338,7 +8776,8 @@
         "text": "She likes to wear bright colours.",
         "answer": "wear"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "weather",
@@ -8357,7 +8796,8 @@
         "text": "We talked about the weather all morning.",
         "answer": "weather"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "website",
@@ -8376,7 +8816,8 @@
         "text": "I bought the tickets from the website.",
         "answer": "website"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "Wednesday",
@@ -8395,7 +8836,8 @@
         "text": "I will see you next Wednesday.",
         "answer": "Wednesday"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "west",
@@ -8414,7 +8856,8 @@
         "text": "Our hotel is west of the station.",
         "answer": "west"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "West Kowloon Cultural District",
@@ -8433,7 +8876,8 @@
         "text": "Many families walk around the West Kowloon Cultural District at night.",
         "answer": "West Kowloon Cultural District"
       }
-    ]
+    ],
+    "ch": "?????"
   },
   {
     "word": "Whampoa",
@@ -8452,7 +8896,8 @@
         "text": "Whampoa is not far from my school.",
         "answer": "Whampoa"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "white",
@@ -8471,7 +8916,8 @@
         "text": "Please use the white plate.",
         "answer": "white"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "wife",
@@ -8490,7 +8936,8 @@
         "text": "My uncle bought flowers for his wife.",
         "answer": "wife"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "window",
@@ -8509,7 +8956,8 @@
         "text": "She sat near the window on the bus.",
         "answer": "window"
       }
-    ]
+    ],
+    "ch": "?"
   },
   {
     "word": "wine",
@@ -8528,7 +8976,8 @@
         "text": "My parents sometimes drink wine on special days.",
         "answer": "wine"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "winter",
@@ -8547,7 +8996,8 @@
         "text": "My favourite season is winter.",
         "answer": "winter"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "without",
@@ -8566,7 +9016,8 @@
         "text": "Do not cross the road without looking.",
         "answer": "without"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "wonderful",
@@ -8585,7 +9036,8 @@
         "text": "What a wonderful surprise!",
         "answer": "wonderful"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "worker",
@@ -8604,7 +9056,8 @@
         "text": "The worker carried the boxes into the room.",
         "answer": "worker"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "worksheet",
@@ -8623,7 +9076,8 @@
         "text": "I put the worksheet in my folder.",
         "answer": "worksheet"
       }
-    ]
+    ],
+    "ch": "???"
   },
   {
     "word": "would",
@@ -8642,7 +9096,8 @@
         "text": "Would you like to join us?",
         "answer": "Would"
       }
-    ]
+    ],
+    "ch": "?"
   },
   {
     "word": "writer",
@@ -8661,7 +9116,8 @@
         "text": "The writer gave a talk at school.",
         "answer": "writer"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "years",
@@ -8680,7 +9136,8 @@
         "text": "The school is over one hundred years old.",
         "answer": "years"
       }
-    ]
+    ],
+    "ch": "?"
   },
   {
     "word": "yellow",
@@ -8699,7 +9156,8 @@
         "text": "Please use the yellow folder.",
         "answer": "yellow"
       }
-    ]
+    ],
+    "ch": "??"
   },
   {
     "word": "yes",
@@ -8718,7 +9176,8 @@
         "text": "Yes, I would like some tea.",
         "answer": "Yes"
       }
-    ]
+    ],
+    "ch": "?"
   },
   {
     "word": "zoo",
@@ -8737,6 +9196,7 @@
         "text": "My favourite place in the zoo is the panda house.",
         "answer": "zoo"
       }
-    ]
+    ],
+    "ch": "???"
   }
 ]

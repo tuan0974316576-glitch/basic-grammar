@@ -110,7 +110,7 @@ const VOCAB_DB = {
         },
         {
             "en": "adjacent to",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Our classroom is adjacent to the library.",
@@ -128,7 +128,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Admiralty",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My father works in Admiralty.",
@@ -416,7 +416,7 @@ const VOCAB_DB = {
         },
         {
             "en": "AsiaWorld-Expo",
-            "ch": "",
+            "ch": "???????",
             "sents": [
                 {
                     "text": "The concert will be held at AsiaWorld-Expo.",
@@ -452,7 +452,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Austin",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "We got off at Austin and walked to school.",
@@ -470,7 +470,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Australia",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My cousin moved to Australia last year.",
@@ -884,7 +884,7 @@ const VOCAB_DB = {
         },
         {
             "en": "bottom",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Your socks are in the bottom drawer.",
@@ -1064,7 +1064,7 @@ const VOCAB_DB = {
         },
         {
             "en": "café",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "We sat in a quiet café after school.",
@@ -1082,7 +1082,7 @@ const VOCAB_DB = {
         },
         {
             "en": "cake",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "She baked a chocolate cake for my birthday.",
@@ -1100,7 +1100,7 @@ const VOCAB_DB = {
         },
         {
             "en": "camera",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Please bring your camera to the park.",
@@ -1118,7 +1118,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Canada",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "My uncle lives in Canada.",
@@ -1136,7 +1136,7 @@ const VOCAB_DB = {
         },
         {
             "en": "capital",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Bangkok is the capital of Thailand.",
@@ -1154,7 +1154,7 @@ const VOCAB_DB = {
         },
         {
             "en": "career",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "She wants a career in medicine.",
@@ -1172,7 +1172,7 @@ const VOCAB_DB = {
         },
         {
             "en": "carry",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Can you carry this bag for me?",
@@ -1190,7 +1190,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Causeway Bay",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "We went shopping in Causeway Bay.",
@@ -1208,7 +1208,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Causeway Bay",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "We went shopping in Causeway Bay.",
@@ -1226,7 +1226,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Central",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My office is in Central.",
@@ -1244,7 +1244,7 @@ const VOCAB_DB = {
         },
         {
             "en": "century",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "This old church was built a century ago.",
@@ -1262,7 +1262,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Che Kung Temple",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "We visited Che Kung Temple during the holiday.",
@@ -1280,7 +1280,7 @@ const VOCAB_DB = {
         },
         {
             "en": "cheaper",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "This bag is cheaper than that one.",
@@ -1298,7 +1298,7 @@ const VOCAB_DB = {
         },
         {
             "en": "cheapest",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "This is the cheapest meal on the menu.",
@@ -1316,7 +1316,7 @@ const VOCAB_DB = {
         },
         {
             "en": "cheese",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "I like cheese on my pizza.",
@@ -1334,7 +1334,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Chek Lap Kok",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "The airport is in Chek Lap Kok.",
@@ -1352,7 +1352,7 @@ const VOCAB_DB = {
         },
         {
             "en": "chicken",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We had rice and chicken for dinner.",
@@ -1370,7 +1370,7 @@ const VOCAB_DB = {
         },
         {
             "en": "China",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My grandparents were born in China.",
@@ -1388,7 +1388,7 @@ const VOCAB_DB = {
         },
         {
             "en": "cinema",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We are going to the cinema tonight.",
@@ -1406,7 +1406,7 @@ const VOCAB_DB = {
         },
         {
             "en": "class",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Our class starts at eight o clock.",
@@ -1424,7 +1424,7 @@ const VOCAB_DB = {
         },
         {
             "en": "classroom",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Please keep the classroom clean.",
@@ -1442,7 +1442,7 @@ const VOCAB_DB = {
         },
         {
             "en": "cleverest",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "Tom is the cleverest student in the group.",
@@ -1460,7 +1460,7 @@ const VOCAB_DB = {
         },
         {
             "en": "club",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "I joined the school chess club.",
@@ -1478,7 +1478,7 @@ const VOCAB_DB = {
         },
         {
             "en": "coat",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Please wear your coat before you go outside.",
@@ -1496,7 +1496,7 @@ const VOCAB_DB = {
         },
         {
             "en": "coffee",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My father drinks coffee every morning.",
@@ -1514,7 +1514,7 @@ const VOCAB_DB = {
         },
         {
             "en": "college",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My sister is studying at college now.",
@@ -1532,7 +1532,7 @@ const VOCAB_DB = {
         },
         {
             "en": "colour",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Blue is my favourite colour.",
@@ -1550,7 +1550,7 @@ const VOCAB_DB = {
         },
         {
             "en": "common",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "It is common to take photos here.",
@@ -1568,7 +1568,7 @@ const VOCAB_DB = {
         },
         {
             "en": "company",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My uncle works for a large company.",
@@ -1586,7 +1586,7 @@ const VOCAB_DB = {
         },
         {
             "en": "compare",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Please compare these two pictures.",
@@ -1604,7 +1604,7 @@ const VOCAB_DB = {
         },
         {
             "en": "conversation",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "I had a long conversation with my teacher.",
@@ -1622,7 +1622,7 @@ const VOCAB_DB = {
         },
         {
             "en": "corner",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The bookstore is on the corner of the street.",
@@ -1640,7 +1640,7 @@ const VOCAB_DB = {
         },
         {
             "en": "correct",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Your answer is correct.",
@@ -1658,7 +1658,7 @@ const VOCAB_DB = {
         },
         {
             "en": "corridor",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Please do not run in the corridor.",
@@ -1676,7 +1676,7 @@ const VOCAB_DB = {
         },
         {
             "en": "cost",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "How much does this book cost?",
@@ -1694,7 +1694,7 @@ const VOCAB_DB = {
         },
         {
             "en": "course",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "She is taking an English course this summer.",
@@ -1712,7 +1712,7 @@ const VOCAB_DB = {
         },
         {
             "en": "cousin",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My cousin is one year older than me.",
@@ -1730,7 +1730,7 @@ const VOCAB_DB = {
         },
         {
             "en": "cow",
-            "ch": "",
+            "ch": "?",
             "sents": [
                 {
                     "text": "The cow is eating grass in the field.",
@@ -1748,7 +1748,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Croatia",
-            "ch": "",
+            "ch": "????",
             "sents": [
                 {
                     "text": "My teacher travelled to Croatia last year.",
@@ -1766,7 +1766,7 @@ const VOCAB_DB = {
         },
         {
             "en": "cross",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Please cross the road carefully.",
@@ -1784,7 +1784,7 @@ const VOCAB_DB = {
         },
         {
             "en": "culture",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We learned about Japanese culture in class.",
@@ -1802,7 +1802,7 @@ const VOCAB_DB = {
         },
         {
             "en": "cup",
-            "ch": "",
+            "ch": "?",
             "sents": [
                 {
                     "text": "She poured tea into a cup.",
@@ -1820,7 +1820,7 @@ const VOCAB_DB = {
         },
         {
             "en": "customer",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The shop assistant smiled at the customer.",
@@ -1838,7 +1838,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Cyberport",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "My brother works in Cyberport.",
@@ -1856,7 +1856,7 @@ const VOCAB_DB = {
         },
         {
             "en": "dance",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "They love to dance at parties.",
@@ -1874,7 +1874,7 @@ const VOCAB_DB = {
         },
         {
             "en": "dancer",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The dancer moved gracefully across the stage.",
@@ -1892,7 +1892,7 @@ const VOCAB_DB = {
         },
         {
             "en": "dangerous",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "It is dangerous to swim there.",
@@ -1910,7 +1910,7 @@ const VOCAB_DB = {
         },
         {
             "en": "December",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "My birthday is in December.",
@@ -1928,7 +1928,7 @@ const VOCAB_DB = {
         },
         {
             "en": "decide",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We need to decide before noon.",
@@ -1946,7 +1946,7 @@ const VOCAB_DB = {
         },
         {
             "en": "describe",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Can you describe your new teacher?",
@@ -1964,7 +1964,7 @@ const VOCAB_DB = {
         },
         {
             "en": "description",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The description of the hotel was accurate.",
@@ -1982,7 +1982,7 @@ const VOCAB_DB = {
         },
         {
             "en": "design",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "I like the design of this poster.",
@@ -2000,7 +2000,7 @@ const VOCAB_DB = {
         },
         {
             "en": "desk",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My books are on the desk.",
@@ -2018,7 +2018,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Diamond Hill",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "We changed trains at Diamond Hill.",
@@ -2036,7 +2036,7 @@ const VOCAB_DB = {
         },
         {
             "en": "dictionary",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Please look up the word in the dictionary.",
@@ -2054,7 +2054,7 @@ const VOCAB_DB = {
         },
         {
             "en": "diet",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Fruit and vegetables are part of a healthy diet.",
@@ -2072,7 +2072,7 @@ const VOCAB_DB = {
         },
         {
             "en": "difference",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Can you see the difference between these two pictures?",
@@ -2090,7 +2090,7 @@ const VOCAB_DB = {
         },
         {
             "en": "different",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My brother and I like different sports.",
@@ -2108,7 +2108,7 @@ const VOCAB_DB = {
         },
         {
             "en": "dinner",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We had fish and rice for dinner.",
@@ -2126,7 +2126,7 @@ const VOCAB_DB = {
         },
         {
             "en": "discuss",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Let us discuss the problem together.",
@@ -2144,7 +2144,7 @@ const VOCAB_DB = {
         },
         {
             "en": "dish",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "This noodle dish is very popular.",
@@ -2162,7 +2162,7 @@ const VOCAB_DB = {
         },
         {
             "en": "draw",
-            "ch": "",
+            "ch": "?",
             "sents": [
                 {
                     "text": "I like to draw animals in my notebook.",
@@ -2180,7 +2180,7 @@ const VOCAB_DB = {
         },
         {
             "en": "dress",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "She wore a blue dress to the party.",
@@ -2198,7 +2198,7 @@ const VOCAB_DB = {
         },
         {
             "en": "drink",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Do not forget to drink more water.",
@@ -2216,7 +2216,7 @@ const VOCAB_DB = {
         },
         {
             "en": "ear",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My left ear hurts a little.",
@@ -2234,7 +2234,7 @@ const VOCAB_DB = {
         },
         {
             "en": "easier",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "This question is easier than the last one.",
@@ -2252,7 +2252,7 @@ const VOCAB_DB = {
         },
         {
             "en": "elephant",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The elephant is the largest animal in the zoo.",
@@ -2270,7 +2270,7 @@ const VOCAB_DB = {
         },
         {
             "en": "else",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Would you like anything else to eat?",
@@ -2288,7 +2288,7 @@ const VOCAB_DB = {
         },
         {
             "en": "email",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Please send me an email tonight.",
@@ -2306,7 +2306,7 @@ const VOCAB_DB = {
         },
         {
             "en": "enjoy",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "I enjoy reading before bed.",
@@ -2324,7 +2324,7 @@ const VOCAB_DB = {
         },
         {
             "en": "event",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The school event starts at two o clock.",
@@ -2342,7 +2342,7 @@ const VOCAB_DB = {
         },
         {
             "en": "every",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "I go to school every weekday.",
@@ -2360,7 +2360,7 @@ const VOCAB_DB = {
         },
         {
             "en": "everybody",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "Everybody was excited about the trip.",
@@ -2378,7 +2378,7 @@ const VOCAB_DB = {
         },
         {
             "en": "everyone",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Everyone in the class finished the work.",
@@ -2396,7 +2396,7 @@ const VOCAB_DB = {
         },
         {
             "en": "exam",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We have an English exam tomorrow.",
@@ -2414,7 +2414,7 @@ const VOCAB_DB = {
         },
         {
             "en": "exercise",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Daily exercise is good for your health.",
@@ -2432,7 +2432,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Exhibition Centre",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We got off at Exhibition Centre Station.",
@@ -2450,7 +2450,7 @@ const VOCAB_DB = {
         },
         {
             "en": "expensive",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "That watch is too expensive for me.",
@@ -2468,7 +2468,7 @@ const VOCAB_DB = {
         },
         {
             "en": "explain",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Can you explain this answer to me?",
@@ -2486,7 +2486,7 @@ const VOCAB_DB = {
         },
         {
             "en": "fact",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "It is a fact that water is important.",
@@ -2504,7 +2504,7 @@ const VOCAB_DB = {
         },
         {
             "en": "famous",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "This restaurant is famous for seafood.",
@@ -2522,7 +2522,7 @@ const VOCAB_DB = {
         },
         {
             "en": "fantastic",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The fireworks show was fantastic.",
@@ -2540,7 +2540,7 @@ const VOCAB_DB = {
         },
         {
             "en": "farmer",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The farmer fed the chickens early in the morning.",
@@ -2558,7 +2558,7 @@ const VOCAB_DB = {
         },
         {
             "en": "faster",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "This train is faster than the bus.",
@@ -2576,7 +2576,7 @@ const VOCAB_DB = {
         },
         {
             "en": "favourite",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "Blue is my favourite colour.",
@@ -2594,7 +2594,7 @@ const VOCAB_DB = {
         },
         {
             "en": "February",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My cousin was born in February.",
@@ -2612,7 +2612,7 @@ const VOCAB_DB = {
         },
         {
             "en": "festival",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We visited the food festival on Sunday.",
@@ -2630,7 +2630,7 @@ const VOCAB_DB = {
         },
         {
             "en": "flight",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Our flight leaves at six in the morning.",
@@ -2648,7 +2648,7 @@ const VOCAB_DB = {
         },
         {
             "en": "floor",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My classroom is on the third floor.",
@@ -2666,7 +2666,7 @@ const VOCAB_DB = {
         },
         {
             "en": "flower",
-            "ch": "",
+            "ch": "?",
             "sents": [
                 {
                     "text": "That pink flower smells sweet.",
@@ -2684,7 +2684,7 @@ const VOCAB_DB = {
         },
         {
             "en": "foot",
-            "ch": "",
+            "ch": "?",
             "sents": [
                 {
                     "text": "My left foot hurts after the game.",
@@ -2702,7 +2702,7 @@ const VOCAB_DB = {
         },
         {
             "en": "football",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The boys are playing football in the park.",
@@ -2720,7 +2720,7 @@ const VOCAB_DB = {
         },
         {
             "en": "forget",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Do not forget your homework again.",
@@ -2738,7 +2738,7 @@ const VOCAB_DB = {
         },
         {
             "en": "form",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Please fill in the form carefully.",
@@ -2756,7 +2756,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Fortress Point",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "My aunt lives in Fortress Point.",
@@ -2774,7 +2774,7 @@ const VOCAB_DB = {
         },
         {
             "en": "France",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My teacher travelled to France last year.",
@@ -2792,7 +2792,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Friday",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "We have PE on Friday.",
@@ -2810,7 +2810,7 @@ const VOCAB_DB = {
         },
         {
             "en": "friendly",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Our new teacher is very friendly.",
@@ -2828,7 +2828,7 @@ const VOCAB_DB = {
         },
         {
             "en": "fruit",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Eating fruit every day is healthy.",
@@ -2846,7 +2846,7 @@ const VOCAB_DB = {
         },
         {
             "en": "funny",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "That joke is really funny.",
@@ -2864,7 +2864,7 @@ const VOCAB_DB = {
         },
         {
             "en": "garden",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My grandmother grows flowers in the garden.",
@@ -2882,7 +2882,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Germany",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My friend moved to Germany last year.",
@@ -2900,7 +2900,7 @@ const VOCAB_DB = {
         },
         {
             "en": "girlfriend",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "He went to the concert with his girlfriend.",
@@ -2918,7 +2918,7 @@ const VOCAB_DB = {
         },
         {
             "en": "glass",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "Please pour some water into the glass.",
@@ -2936,7 +2936,7 @@ const VOCAB_DB = {
         },
         {
             "en": "go past",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Go past the bank and turn left.",
@@ -2954,7 +2954,7 @@ const VOCAB_DB = {
         },
         {
             "en": "go straight ahead",
-            "ch": "",
+            "ch": "????",
             "sents": [
                 {
                     "text": "Go straight ahead and you will find the station.",
@@ -2972,7 +2972,7 @@ const VOCAB_DB = {
         },
         {
             "en": "goodbye",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "She waved goodbye to her classmates.",
@@ -2990,7 +2990,7 @@ const VOCAB_DB = {
         },
         {
             "en": "grandfather",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My grandfather tells great stories.",
@@ -3008,7 +3008,7 @@ const VOCAB_DB = {
         },
         {
             "en": "grandmother",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My grandmother makes delicious soup.",
@@ -3026,7 +3026,7 @@ const VOCAB_DB = {
         },
         {
             "en": "grandparent",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "Each grandparent came to the school show.",
@@ -3044,7 +3044,7 @@ const VOCAB_DB = {
         },
         {
             "en": "great",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "You did a great job in the test.",
@@ -3062,7 +3062,7 @@ const VOCAB_DB = {
         },
         {
             "en": "green",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The leaves are bright green in spring.",
@@ -3080,7 +3080,7 @@ const VOCAB_DB = {
         },
         {
             "en": "grey",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The sky looks grey today.",
@@ -3098,7 +3098,7 @@ const VOCAB_DB = {
         },
         {
             "en": "group",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We worked in a group of four.",
@@ -3116,7 +3116,7 @@ const VOCAB_DB = {
         },
         {
             "en": "guess",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Can you guess the answer?",
@@ -3134,7 +3134,7 @@ const VOCAB_DB = {
         },
         {
             "en": "guitar",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My brother plays the guitar every night.",
@@ -3152,7 +3152,7 @@ const VOCAB_DB = {
         },
         {
             "en": "hair",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "She has long black hair.",
@@ -3170,7 +3170,7 @@ const VOCAB_DB = {
         },
         {
             "en": "happier",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "She looks happier today.",
@@ -3188,7 +3188,7 @@ const VOCAB_DB = {
         },
         {
             "en": "hat",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "He wore a hat in the hot sun.",
@@ -3206,7 +3206,7 @@ const VOCAB_DB = {
         },
         {
             "en": "health",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Good food is important for your health.",
@@ -3224,7 +3224,7 @@ const VOCAB_DB = {
         },
         {
             "en": "healthy",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "Fruit is a healthy snack.",
@@ -3242,7 +3242,7 @@ const VOCAB_DB = {
         },
         {
             "en": "help",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Can you help me with my homework?",
@@ -3260,7 +3260,7 @@ const VOCAB_DB = {
         },
         {
             "en": "hike",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We went on a hike in the morning.",
@@ -3278,7 +3278,7 @@ const VOCAB_DB = {
         },
         {
             "en": "history",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "History is my favourite subject.",
@@ -3296,7 +3296,7 @@ const VOCAB_DB = {
         },
         {
             "en": "hobby",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Drawing is my favourite hobby.",
@@ -3314,7 +3314,7 @@ const VOCAB_DB = {
         },
         {
             "en": "holiday",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We went to Japan during the holiday.",
@@ -3332,7 +3332,7 @@ const VOCAB_DB = {
         },
         {
             "en": "homework",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "I finished my homework after dinner.",
@@ -3350,7 +3350,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Hong Kong",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Hong Kong is my home city.",
@@ -3368,7 +3368,7 @@ const VOCAB_DB = {
         },
         {
             "en": "horse",
-            "ch": "",
+            "ch": "?",
             "sents": [
                 {
                     "text": "The horse ran across the field.",
@@ -3386,7 +3386,7 @@ const VOCAB_DB = {
         },
         {
             "en": "hospital",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My uncle works in a hospital.",
@@ -3404,7 +3404,7 @@ const VOCAB_DB = {
         },
         {
             "en": "hotel",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We stayed in a hotel near the beach.",
@@ -3422,7 +3422,7 @@ const VOCAB_DB = {
         },
         {
             "en": "however",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "I wanted to go; however, it was raining.",
@@ -3440,7 +3440,7 @@ const VOCAB_DB = {
         },
         {
             "en": "hungry",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "I am hungry after the game.",
@@ -3458,7 +3458,7 @@ const VOCAB_DB = {
         },
         {
             "en": "husband",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Her husband works in an office.",
@@ -3476,7 +3476,7 @@ const VOCAB_DB = {
         },
         {
             "en": "ice",
-            "ch": "",
+            "ch": "?",
             "sents": [
                 {
                     "text": "Please put some ice in my drink.",
@@ -3494,7 +3494,7 @@ const VOCAB_DB = {
         },
         {
             "en": "ice cream",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We ate ice cream after lunch.",
@@ -3512,7 +3512,7 @@ const VOCAB_DB = {
         },
         {
             "en": "idea",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "That is a good idea.",
@@ -3530,7 +3530,7 @@ const VOCAB_DB = {
         },
         {
             "en": "imagine",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Can you imagine living on the moon?",
@@ -3548,7 +3548,7 @@ const VOCAB_DB = {
         },
         {
             "en": "important",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Sleep is important for students.",
@@ -3566,7 +3566,7 @@ const VOCAB_DB = {
         },
         {
             "en": "improve",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Reading every day can improve your English.",
@@ -3584,7 +3584,7 @@ const VOCAB_DB = {
         },
         {
             "en": "in front of",
-            "ch": "",
+            "ch": "????",
             "sents": [
                 {
                     "text": "Please wait in front of the school gate.",
@@ -3602,7 +3602,7 @@ const VOCAB_DB = {
         },
         {
             "en": "information",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "You can find more information on the website.",
@@ -3620,7 +3620,7 @@ const VOCAB_DB = {
         },
         {
             "en": "interest",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Music is one of my main interests.",
@@ -3638,7 +3638,7 @@ const VOCAB_DB = {
         },
         {
             "en": "internet",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "I use the internet to do my homework.",
@@ -3656,7 +3656,7 @@ const VOCAB_DB = {
         },
         {
             "en": "interview",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "She has a job interview tomorrow.",
@@ -3674,7 +3674,7 @@ const VOCAB_DB = {
         },
         {
             "en": "introduce",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Let me introduce my new classmate.",
@@ -3692,7 +3692,7 @@ const VOCAB_DB = {
         },
         {
             "en": "island",
-            "ch": "",
+            "ch": "?",
             "sents": [
                 {
                     "text": "We took a boat to the small island.",
@@ -3710,7 +3710,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Italy",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "My aunt travelled to Italy last summer.",
@@ -3728,7 +3728,7 @@ const VOCAB_DB = {
         },
         {
             "en": "jacket",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Please wear your jacket before you go out.",
@@ -3746,7 +3746,7 @@ const VOCAB_DB = {
         },
         {
             "en": "January",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "School starts again in January.",
@@ -3764,7 +3764,7 @@ const VOCAB_DB = {
         },
         {
             "en": "join",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Do you want to join our basketball team?",
@@ -3782,7 +3782,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Jordan",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My friend moved to Jordan with his family.",
@@ -3800,7 +3800,7 @@ const VOCAB_DB = {
         },
         {
             "en": "journey",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The train journey was long but comfortable.",
@@ -3818,7 +3818,7 @@ const VOCAB_DB = {
         },
         {
             "en": "juice",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Would you like some orange juice?",
@@ -3836,7 +3836,7 @@ const VOCAB_DB = {
         },
         {
             "en": "July",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We will travel in July.",
@@ -3854,7 +3854,7 @@ const VOCAB_DB = {
         },
         {
             "en": "June",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The school term ends in June.",
@@ -3872,7 +3872,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Kai Tak",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We visited the sports park in Kai Tak.",
@@ -3890,7 +3890,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Kennedy Town",
-            "ch": "",
+            "ch": "????",
             "sents": [
                 {
                     "text": "We had dinner in Kennedy Town last night.",
@@ -3908,7 +3908,7 @@ const VOCAB_DB = {
         },
         {
             "en": "kitchen",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My mother is cooking in the kitchen.",
@@ -3926,7 +3926,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Kowloon Tong",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "We changed to another line at Kowloon Tong.",
@@ -3944,7 +3944,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Lamma Island",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "We spent the weekend on Lamma Island.",
@@ -3962,7 +3962,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Lantau Island",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "The airport is on Lantau Island.",
@@ -3980,7 +3980,7 @@ const VOCAB_DB = {
         },
         {
             "en": "laugh",
-            "ch": "",
+            "ch": "?",
             "sents": [
                 {
                     "text": "The joke made everyone laugh.",
@@ -3998,7 +3998,7 @@ const VOCAB_DB = {
         },
         {
             "en": "lesson",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Our English lesson starts at nine.",
@@ -4016,7 +4016,7 @@ const VOCAB_DB = {
         },
         {
             "en": "letter",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "I wrote a letter to my grandmother.",
@@ -4034,7 +4034,7 @@ const VOCAB_DB = {
         },
         {
             "en": "library",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "We borrowed three books from the library.",
@@ -4052,7 +4052,7 @@ const VOCAB_DB = {
         },
         {
             "en": "lion",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The lion was sleeping in the zoo.",
@@ -4070,7 +4070,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Lion Rock",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "We could see Lion Rock from the bus.",
@@ -4088,7 +4088,7 @@ const VOCAB_DB = {
         },
         {
             "en": "list",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Please write your name on the list.",
@@ -4106,7 +4106,7 @@ const VOCAB_DB = {
         },
         {
             "en": "listen",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Please listen to the teacher carefully.",
@@ -4124,7 +4124,7 @@ const VOCAB_DB = {
         },
         {
             "en": "longer",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "This road is longer than that one.",
@@ -4142,7 +4142,7 @@ const VOCAB_DB = {
         },
         {
             "en": "LOUAS Park",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We walked through LOUAS Park after dinner.",
@@ -4160,7 +4160,7 @@ const VOCAB_DB = {
         },
         {
             "en": "lunch",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We had noodles for lunch.",
@@ -4178,7 +4178,7 @@ const VOCAB_DB = {
         },
         {
             "en": "M+ Museum",
-            "ch": "",
+            "ch": "M+???",
             "sents": [
                 {
                     "text": "Our class visited the M+ Museum last week.",
@@ -4196,7 +4196,7 @@ const VOCAB_DB = {
         },
         {
             "en": "machine",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "This washing machine is very quiet.",
@@ -4214,7 +4214,7 @@ const VOCAB_DB = {
         },
         {
             "en": "magazine",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "She bought a fashion magazine at the station.",
@@ -4232,7 +4232,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Mai Po",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We saw many birds in Mai Po.",
@@ -4250,7 +4250,7 @@ const VOCAB_DB = {
         },
         {
             "en": "main",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The main door is still open.",
@@ -4268,7 +4268,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Malaysia",
-            "ch": "",
+            "ch": "????",
             "sents": [
                 {
                     "text": "My cousins live in Malaysia.",
@@ -4286,7 +4286,7 @@ const VOCAB_DB = {
         },
         {
             "en": "March",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The school picnic will be in March.",
@@ -4304,7 +4304,7 @@ const VOCAB_DB = {
         },
         {
             "en": "match",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We watched a football match on TV.",
@@ -4322,7 +4322,7 @@ const VOCAB_DB = {
         },
         {
             "en": "May",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My exams start in May.",
@@ -4340,7 +4340,7 @@ const VOCAB_DB = {
         },
         {
             "en": "meal",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Breakfast is my favourite meal of the day.",
@@ -4358,7 +4358,7 @@ const VOCAB_DB = {
         },
         {
             "en": "meat",
-            "ch": "",
+            "ch": "?",
             "sents": [
                 {
                     "text": "We bought some meat for dinner.",
@@ -4376,7 +4376,7 @@ const VOCAB_DB = {
         },
         {
             "en": "member",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Every member of the team was ready.",
@@ -4394,7 +4394,7 @@ const VOCAB_DB = {
         },
         {
             "en": "menu",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Please look at the menu before ordering.",
@@ -4412,7 +4412,7 @@ const VOCAB_DB = {
         },
         {
             "en": "message",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "I left a message for my mother.",
@@ -4430,7 +4430,7 @@ const VOCAB_DB = {
         },
         {
             "en": "metre",
-            "ch": "",
+            "ch": "?",
             "sents": [
                 {
                     "text": "The table is one metre long.",
@@ -4448,7 +4448,7 @@ const VOCAB_DB = {
         },
         {
             "en": "midnight",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The party ended at midnight.",
@@ -4466,7 +4466,7 @@ const VOCAB_DB = {
         },
         {
             "en": "mile",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "They walked a mile to school.",
@@ -4484,7 +4484,7 @@ const VOCAB_DB = {
         },
         {
             "en": "milk",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "I drink a glass of milk every morning.",
@@ -4502,7 +4502,7 @@ const VOCAB_DB = {
         },
         {
             "en": "modern",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The library has a modern design.",
@@ -4520,7 +4520,7 @@ const VOCAB_DB = {
         },
         {
             "en": "moment",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Please wait a moment.",
@@ -4538,7 +4538,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Monday",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "We have a quiz on Monday.",
@@ -4556,7 +4556,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Mong Kok",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We went shopping in Mong Kok yesterday.",
@@ -4574,7 +4574,7 @@ const VOCAB_DB = {
         },
         {
             "en": "mountain",
-            "ch": "",
+            "ch": "?",
             "sents": [
                 {
                     "text": "We climbed a mountain during the holiday.",
@@ -4592,7 +4592,7 @@ const VOCAB_DB = {
         },
         {
             "en": "movie",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We watched a funny movie last night.",
@@ -4610,7 +4610,7 @@ const VOCAB_DB = {
         },
         {
             "en": "museum",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "The museum was full of visitors.",
@@ -4628,7 +4628,7 @@ const VOCAB_DB = {
         },
         {
             "en": "music",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "I listen to music while doing homework.",
@@ -4646,7 +4646,7 @@ const VOCAB_DB = {
         },
         {
             "en": "natural",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "This soap is made from natural ingredients.",
@@ -4664,7 +4664,7 @@ const VOCAB_DB = {
         },
         {
             "en": "near",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My home is near the station.",
@@ -4682,7 +4682,7 @@ const VOCAB_DB = {
         },
         {
             "en": "nearest",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Where is the nearest toilet?",
@@ -4700,7 +4700,7 @@ const VOCAB_DB = {
         },
         {
             "en": "news",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Did you hear the news this morning?",
@@ -4718,7 +4718,7 @@ const VOCAB_DB = {
         },
         {
             "en": "newspaper",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My grandfather reads the newspaper every day.",
@@ -4736,7 +4736,7 @@ const VOCAB_DB = {
         },
         {
             "en": "nobody",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "Nobody knew the answer.",
@@ -4754,7 +4754,7 @@ const VOCAB_DB = {
         },
         {
             "en": "north",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The wind is coming from the north.",
@@ -4772,7 +4772,7 @@ const VOCAB_DB = {
         },
         {
             "en": "North Point",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My grandmother lives in North Point.",
@@ -4790,7 +4790,7 @@ const VOCAB_DB = {
         },
         {
             "en": "nose",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My nose is red because of my cold.",
@@ -4808,7 +4808,7 @@ const VOCAB_DB = {
         },
         {
             "en": "not",
-            "ch": "",
+            "ch": "?",
             "sents": [
                 {
                     "text": "I am not ready yet.",
@@ -4826,7 +4826,7 @@ const VOCAB_DB = {
         },
         {
             "en": "November",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "The weather is cool in November.",
@@ -4844,7 +4844,7 @@ const VOCAB_DB = {
         },
         {
             "en": "nurse",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The nurse helped the little boy.",
@@ -4862,7 +4862,7 @@ const VOCAB_DB = {
         },
         {
             "en": "October",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The weather is nice in October.",
@@ -4880,7 +4880,7 @@ const VOCAB_DB = {
         },
         {
             "en": "okay",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "It is okay to ask for help.",
@@ -4898,7 +4898,7 @@ const VOCAB_DB = {
         },
         {
             "en": "older",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "My brother is two years older than me.",
@@ -4916,7 +4916,7 @@ const VOCAB_DB = {
         },
         {
             "en": "oldest",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "He is the oldest child in the family.",
@@ -4934,7 +4934,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Olyampic",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "She dreams of joining the Olyampic team one day.",
@@ -4952,7 +4952,7 @@ const VOCAB_DB = {
         },
         {
             "en": "onion",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My mother cut an onion for the soup.",
@@ -4970,7 +4970,7 @@ const VOCAB_DB = {
         },
         {
             "en": "online",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "I bought the book online yesterday.",
@@ -4988,7 +4988,7 @@ const VOCAB_DB = {
         },
         {
             "en": "opinion",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "What is your opinion on this idea?",
@@ -5006,7 +5006,7 @@ const VOCAB_DB = {
         },
         {
             "en": "opposite",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The bank is opposite the supermarket.",
@@ -5024,7 +5024,7 @@ const VOCAB_DB = {
         },
         {
             "en": "opposite",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The bank is opposite the supermarket.",
@@ -5042,7 +5042,7 @@ const VOCAB_DB = {
         },
         {
             "en": "orange",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "I ate an orange after lunch.",
@@ -5060,7 +5060,7 @@ const VOCAB_DB = {
         },
         {
             "en": "order",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "I would like to order a sandwich.",
@@ -5078,7 +5078,7 @@ const VOCAB_DB = {
         },
         {
             "en": "pair",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "I bought a new pair of shoes.",
@@ -5096,7 +5096,7 @@ const VOCAB_DB = {
         },
         {
             "en": "panda",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The panda was eating bamboo in the zoo.",
@@ -5114,7 +5114,7 @@ const VOCAB_DB = {
         },
         {
             "en": "partner",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Please talk to your partner about the question.",
@@ -5132,7 +5132,7 @@ const VOCAB_DB = {
         },
         {
             "en": "party",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We had a birthday party on Saturday.",
@@ -5150,7 +5150,7 @@ const VOCAB_DB = {
         },
         {
             "en": "passport",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Do not forget your passport at the airport.",
@@ -5168,7 +5168,7 @@ const VOCAB_DB = {
         },
         {
             "en": "pencil",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Please use a pencil to do the exercise.",
@@ -5186,7 +5186,7 @@ const VOCAB_DB = {
         },
         {
             "en": "people",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Many people take the train every day.",
@@ -5204,7 +5204,7 @@ const VOCAB_DB = {
         },
         {
             "en": "pepper",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Please add some pepper to the soup.",
@@ -5222,7 +5222,7 @@ const VOCAB_DB = {
         },
         {
             "en": "perfect",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "This weather is perfect for a picnic.",
@@ -5240,7 +5240,7 @@ const VOCAB_DB = {
         },
         {
             "en": "period",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The lesson is in the second period.",
@@ -5258,7 +5258,7 @@ const VOCAB_DB = {
         },
         {
             "en": "personal",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "That is my personal opinion.",
@@ -5276,7 +5276,7 @@ const VOCAB_DB = {
         },
         {
             "en": "photo",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We took a photo in front of the tower.",
@@ -5294,7 +5294,7 @@ const VOCAB_DB = {
         },
         {
             "en": "phrase",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Please copy this phrase into your notebook.",
@@ -5312,7 +5312,7 @@ const VOCAB_DB = {
         },
         {
             "en": "piano",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My sister plays the piano every evening.",
@@ -5330,7 +5330,7 @@ const VOCAB_DB = {
         },
         {
             "en": "piece",
-            "ch": "",
+            "ch": "?",
             "sents": [
                 {
                     "text": "Would you like another piece of cake?",
@@ -5348,7 +5348,7 @@ const VOCAB_DB = {
         },
         {
             "en": "plan",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We need a plan for the project.",
@@ -5366,7 +5366,7 @@ const VOCAB_DB = {
         },
         {
             "en": "plane",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The plane landed safely in Hong Kong.",
@@ -5384,7 +5384,7 @@ const VOCAB_DB = {
         },
         {
             "en": "player",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The football player scored a goal.",
@@ -5402,7 +5402,7 @@ const VOCAB_DB = {
         },
         {
             "en": "pool",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The children are swimming in the pool.",
@@ -5420,7 +5420,7 @@ const VOCAB_DB = {
         },
         {
             "en": "popular",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "Bubble tea is popular with students.",
@@ -5438,7 +5438,7 @@ const VOCAB_DB = {
         },
         {
             "en": "possible",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Is it possible to finish today?",
@@ -5456,7 +5456,7 @@ const VOCAB_DB = {
         },
         {
             "en": "post",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "I will post the letter after school.",
@@ -5474,7 +5474,7 @@ const VOCAB_DB = {
         },
         {
             "en": "potato",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We had potato soup for lunch.",
@@ -5492,7 +5492,7 @@ const VOCAB_DB = {
         },
         {
             "en": "pound",
-            "ch": "",
+            "ch": "?",
             "sents": [
                 {
                     "text": "This cake costs two pounds.",
@@ -5510,7 +5510,7 @@ const VOCAB_DB = {
         },
         {
             "en": "practice",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Football practice starts at four o clock.",
@@ -5528,7 +5528,7 @@ const VOCAB_DB = {
         },
         {
             "en": "practise",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "I practise the piano every day.",
@@ -5546,7 +5546,7 @@ const VOCAB_DB = {
         },
         {
             "en": "prefer",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "I prefer tea to coffee.",
@@ -5564,7 +5564,7 @@ const VOCAB_DB = {
         },
         {
             "en": "prepare",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Please prepare your books before class.",
@@ -5582,7 +5582,7 @@ const VOCAB_DB = {
         },
         {
             "en": "pretty",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The flower is very pretty.",
@@ -5600,7 +5600,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Prince Edward",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We got off the train at Prince Edward.",
@@ -5618,7 +5618,7 @@ const VOCAB_DB = {
         },
         {
             "en": "product",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "This product is safe for children.",
@@ -5636,7 +5636,7 @@ const VOCAB_DB = {
         },
         {
             "en": "programme",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "I watched a science programme on TV.",
@@ -5654,7 +5654,7 @@ const VOCAB_DB = {
         },
         {
             "en": "purple",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "She wore a purple scarf to school.",
@@ -5672,7 +5672,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Quarry Bay",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "My aunt works in Quarry Bay.",
@@ -5690,7 +5690,7 @@ const VOCAB_DB = {
         },
         {
             "en": "quick",
-            "ch": "",
+            "ch": "?",
             "sents": [
                 {
                     "text": "We need a quick answer.",
@@ -5708,7 +5708,7 @@ const VOCAB_DB = {
         },
         {
             "en": "quickly",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "Please finish your work quickly.",
@@ -5726,7 +5726,7 @@ const VOCAB_DB = {
         },
         {
             "en": "quiet",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Please be quiet in the library.",
@@ -5744,7 +5744,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Race course",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We walked past the Race course on Sunday.",
@@ -5762,7 +5762,7 @@ const VOCAB_DB = {
         },
         {
             "en": "radio",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "My grandfather listens to the radio every morning.",
@@ -5780,7 +5780,7 @@ const VOCAB_DB = {
         },
         {
             "en": "reader",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "She is a careful reader.",
@@ -5798,7 +5798,7 @@ const VOCAB_DB = {
         },
         {
             "en": "ready",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "Are you ready to go now?",
@@ -5816,7 +5816,7 @@ const VOCAB_DB = {
         },
         {
             "en": "real",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Is that story real?",
@@ -5834,7 +5834,7 @@ const VOCAB_DB = {
         },
         {
             "en": "reason",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "What is the reason for your choice?",
@@ -5852,7 +5852,7 @@ const VOCAB_DB = {
         },
         {
             "en": "red",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "She wore a red hat to school.",
@@ -5870,7 +5870,7 @@ const VOCAB_DB = {
         },
         {
             "en": "relax",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "I like to relax by listening to music.",
@@ -5888,7 +5888,7 @@ const VOCAB_DB = {
         },
         {
             "en": "restaurant",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We ate dinner at a small restaurant.",
@@ -5906,7 +5906,7 @@ const VOCAB_DB = {
         },
         {
             "en": "return",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Please return the book to the library.",
@@ -5924,7 +5924,7 @@ const VOCAB_DB = {
         },
         {
             "en": "rice",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We had chicken and rice for dinner.",
@@ -5942,7 +5942,7 @@ const VOCAB_DB = {
         },
         {
             "en": "road",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Please cross the road carefully.",
@@ -5960,7 +5960,7 @@ const VOCAB_DB = {
         },
         {
             "en": "safer",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "It is safer to use the bridge.",
@@ -5978,7 +5978,7 @@ const VOCAB_DB = {
         },
         {
             "en": "salt",
-            "ch": "",
+            "ch": "?",
             "sents": [
                 {
                     "text": "Please add a little salt to the soup.",
@@ -5996,7 +5996,7 @@ const VOCAB_DB = {
         },
         {
             "en": "sandwich",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "I made a cheese sandwich for lunch.",
@@ -6014,7 +6014,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Saturday",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "We play football every Saturday.",
@@ -6032,7 +6032,7 @@ const VOCAB_DB = {
         },
         {
             "en": "schoolmate",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "I met an old schoolmate on the bus.",
@@ -6050,7 +6050,7 @@ const VOCAB_DB = {
         },
         {
             "en": "science",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Science is my favourite subject.",
@@ -6068,7 +6068,7 @@ const VOCAB_DB = {
         },
         {
             "en": "scientist",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "The scientist worked in a large laboratory.",
@@ -6086,7 +6086,7 @@ const VOCAB_DB = {
         },
         {
             "en": "sea",
-            "ch": "",
+            "ch": "?",
             "sents": [
                 {
                     "text": "We swim in the sea every summer.",
@@ -6104,7 +6104,7 @@ const VOCAB_DB = {
         },
         {
             "en": "sell",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "They sell fruit at the market.",
@@ -6122,7 +6122,7 @@ const VOCAB_DB = {
         },
         {
             "en": "September",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The new school year starts in September.",
@@ -6140,7 +6140,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Sham Shui Po",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "We bought fabric in Sham Shui Po.",
@@ -6158,7 +6158,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Shek Kip Mei",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "My grandmother lives in Shek Kip Mei.",
@@ -6176,7 +6176,7 @@ const VOCAB_DB = {
         },
         {
             "en": "shirt",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "He wore a white shirt to the party.",
@@ -6194,7 +6194,7 @@ const VOCAB_DB = {
         },
         {
             "en": "shoe",
-            "ch": "",
+            "ch": "?",
             "sents": [
                 {
                     "text": "One shoe is under the bed.",
@@ -6212,7 +6212,7 @@ const VOCAB_DB = {
         },
         {
             "en": "shorter",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "This pencil is shorter than that one.",
@@ -6230,7 +6230,7 @@ const VOCAB_DB = {
         },
         {
             "en": "shower",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "I take a shower every morning.",
@@ -6248,7 +6248,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Shung Wong Toi",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "We got off at Shung Wong Toi Station.",
@@ -6266,7 +6266,7 @@ const VOCAB_DB = {
         },
         {
             "en": "sick",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "He stayed home because he was sick.",
@@ -6284,7 +6284,7 @@ const VOCAB_DB = {
         },
         {
             "en": "similar",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "These two bags are very similar.",
@@ -6302,7 +6302,7 @@ const VOCAB_DB = {
         },
         {
             "en": "sing",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "I like to sing in music class.",
@@ -6320,7 +6320,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Singapore",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "My cousin moved to Singapore last year.",
@@ -6338,7 +6338,7 @@ const VOCAB_DB = {
         },
         {
             "en": "singer",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The singer waved to the fans.",
@@ -6356,7 +6356,7 @@ const VOCAB_DB = {
         },
         {
             "en": "situation",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "It was a difficult situation for everyone.",
@@ -6374,7 +6374,7 @@ const VOCAB_DB = {
         },
         {
             "en": "skill",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Reading is an important skill.",
@@ -6392,7 +6392,7 @@ const VOCAB_DB = {
         },
         {
             "en": "skirt",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "She wore a blue skirt to school.",
@@ -6410,7 +6410,7 @@ const VOCAB_DB = {
         },
         {
             "en": "smaller",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "This room is smaller than the other one.",
@@ -6428,7 +6428,7 @@ const VOCAB_DB = {
         },
         {
             "en": "smallest",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "This is the smallest cup in the set.",
@@ -6446,7 +6446,7 @@ const VOCAB_DB = {
         },
         {
             "en": "snake",
-            "ch": "",
+            "ch": "?",
             "sents": [
                 {
                     "text": "We saw a snake in the zoo.",
@@ -6464,7 +6464,7 @@ const VOCAB_DB = {
         },
         {
             "en": "soda",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "He drank a can of soda after lunch.",
@@ -6482,7 +6482,7 @@ const VOCAB_DB = {
         },
         {
             "en": "somebody",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Somebody left a bag in the room.",
@@ -6500,7 +6500,7 @@ const VOCAB_DB = {
         },
         {
             "en": "someone",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Someone is waiting outside for you.",
@@ -6518,7 +6518,7 @@ const VOCAB_DB = {
         },
         {
             "en": "song",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "That song is very easy to sing.",
@@ -6536,7 +6536,7 @@ const VOCAB_DB = {
         },
         {
             "en": "sorry",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "I am sorry for being late.",
@@ -6554,7 +6554,7 @@ const VOCAB_DB = {
         },
         {
             "en": "soup",
-            "ch": "",
+            "ch": "?",
             "sents": [
                 {
                     "text": "The soup is hot, so be careful.",
@@ -6572,7 +6572,7 @@ const VOCAB_DB = {
         },
         {
             "en": "south",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The wind is coming from the south.",
@@ -6590,7 +6590,7 @@ const VOCAB_DB = {
         },
         {
             "en": "South Korea",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My uncle works in South Korea.",
@@ -6608,7 +6608,7 @@ const VOCAB_DB = {
         },
         {
             "en": "space",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "There is not enough space in my bag.",
@@ -6626,7 +6626,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Spain",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "My teacher visited Spain last summer.",
@@ -6644,7 +6644,7 @@ const VOCAB_DB = {
         },
         {
             "en": "special",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Today is a special day for our family.",
@@ -6662,7 +6662,7 @@ const VOCAB_DB = {
         },
         {
             "en": "sport",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Football is my favourite sport.",
@@ -6680,7 +6680,7 @@ const VOCAB_DB = {
         },
         {
             "en": "statement",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The teacher wrote a statement on the board.",
@@ -6698,7 +6698,7 @@ const VOCAB_DB = {
         },
         {
             "en": "station",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The station is near my home.",
@@ -6716,7 +6716,7 @@ const VOCAB_DB = {
         },
         {
             "en": "story",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My grandfather told me a funny story.",
@@ -6734,7 +6734,7 @@ const VOCAB_DB = {
         },
         {
             "en": "street",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The children crossed the street carefully.",
@@ -6752,7 +6752,7 @@ const VOCAB_DB = {
         },
         {
             "en": "strong",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The boy is strong enough to carry the box.",
@@ -6770,7 +6770,7 @@ const VOCAB_DB = {
         },
         {
             "en": "student",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Every student must bring a pencil.",
@@ -6788,7 +6788,7 @@ const VOCAB_DB = {
         },
         {
             "en": "study",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "I need to study for the test tonight.",
@@ -6806,7 +6806,7 @@ const VOCAB_DB = {
         },
         {
             "en": "style",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "I like the style of this dress.",
@@ -6824,7 +6824,7 @@ const VOCAB_DB = {
         },
         {
             "en": "subway",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We took the subway to the city centre.",
@@ -6842,7 +6842,7 @@ const VOCAB_DB = {
         },
         {
             "en": "success",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Hard work can lead to success.",
@@ -6860,7 +6860,7 @@ const VOCAB_DB = {
         },
         {
             "en": "sugar",
-            "ch": "",
+            "ch": "?",
             "sents": [
                 {
                     "text": "Please add some sugar to my tea.",
@@ -6878,7 +6878,7 @@ const VOCAB_DB = {
         },
         {
             "en": "summer",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We go swimming every summer.",
@@ -6896,7 +6896,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Sunday",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "We visit my grandparents every Sunday.",
@@ -6914,7 +6914,7 @@ const VOCAB_DB = {
         },
         {
             "en": "supermarket",
-            "ch": "",
+            "ch": "????",
             "sents": [
                 {
                     "text": "My mother bought vegetables at the supermarket.",
@@ -6932,7 +6932,7 @@ const VOCAB_DB = {
         },
         {
             "en": "sweeter",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "This mango is sweeter than that one.",
@@ -6950,7 +6950,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Switzerland",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My uncle travelled to Switzerland last winter.",
@@ -6968,7 +6968,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Tai Koo",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We met at Tai Koo after school.",
@@ -6986,7 +6986,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Tai O",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We visited Tai O during the holiday.",
@@ -7004,7 +7004,7 @@ const VOCAB_DB = {
         },
         {
             "en": "tallest",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "He is the tallest boy in the class.",
@@ -7022,7 +7022,7 @@ const VOCAB_DB = {
         },
         {
             "en": "taxi",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We took a taxi to the airport.",
@@ -7040,7 +7040,7 @@ const VOCAB_DB = {
         },
         {
             "en": "tea",
-            "ch": "",
+            "ch": "?",
             "sents": [
                 {
                     "text": "My grandmother drinks tea every afternoon.",
@@ -7058,7 +7058,7 @@ const VOCAB_DB = {
         },
         {
             "en": "teach",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My mother can teach me how to cook.",
@@ -7076,7 +7076,7 @@ const VOCAB_DB = {
         },
         {
             "en": "team",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Our team won the football match.",
@@ -7094,7 +7094,7 @@ const VOCAB_DB = {
         },
         {
             "en": "teenager",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "The magazine is for teenagers.",
@@ -7112,7 +7112,7 @@ const VOCAB_DB = {
         },
         {
             "en": "telephone",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The old telephone is on the desk.",
@@ -7130,7 +7130,7 @@ const VOCAB_DB = {
         },
         {
             "en": "television",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We watched a movie on television.",
@@ -7148,7 +7148,7 @@ const VOCAB_DB = {
         },
         {
             "en": "ten",
-            "ch": "",
+            "ch": "?",
             "sents": [
                 {
                     "text": "There are ten apples in the basket.",
@@ -7166,7 +7166,7 @@ const VOCAB_DB = {
         },
         {
             "en": "tennis",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We play tennis on Saturday mornings.",
@@ -7184,7 +7184,7 @@ const VOCAB_DB = {
         },
         {
             "en": "terrible",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The weather was terrible yesterday.",
@@ -7202,7 +7202,7 @@ const VOCAB_DB = {
         },
         {
             "en": "test",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We have a spelling test tomorrow.",
@@ -7220,7 +7220,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Thailand",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My family visited Thailand last summer.",
@@ -7238,7 +7238,7 @@ const VOCAB_DB = {
         },
         {
             "en": "thank",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Please thank your mother for the gift.",
@@ -7256,7 +7256,7 @@ const VOCAB_DB = {
         },
         {
             "en": "The Peak",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We could see the whole city from The Peak.",
@@ -7274,7 +7274,7 @@ const VOCAB_DB = {
         },
         {
             "en": "The United Kingdom",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My aunt moved to The United Kingdom last year.",
@@ -7292,7 +7292,7 @@ const VOCAB_DB = {
         },
         {
             "en": "The USA",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My cousin studies in The USA.",
@@ -7310,7 +7310,7 @@ const VOCAB_DB = {
         },
         {
             "en": "theatre",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We watched a play in the theatre.",
@@ -7328,7 +7328,7 @@ const VOCAB_DB = {
         },
         {
             "en": "thirdly",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Thirdly, we need to clean the room.",
@@ -7346,7 +7346,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Thursday",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "Our music lesson is on Thursday.",
@@ -7364,7 +7364,7 @@ const VOCAB_DB = {
         },
         {
             "en": "ticket",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "I bought a train ticket at the station.",
@@ -7382,7 +7382,7 @@ const VOCAB_DB = {
         },
         {
             "en": "together",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We studied together after school.",
@@ -7400,7 +7400,7 @@ const VOCAB_DB = {
         },
         {
             "en": "toilet",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "Excuse me, where is the toilet?",
@@ -7418,7 +7418,7 @@ const VOCAB_DB = {
         },
         {
             "en": "top",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The book is on the top shelf.",
@@ -7436,7 +7436,7 @@ const VOCAB_DB = {
         },
         {
             "en": "topic",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The topic of today?s lesson is travel.",
@@ -7454,7 +7454,7 @@ const VOCAB_DB = {
         },
         {
             "en": "tourist",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Many tourists visit Hong Kong every year.",
@@ -7472,7 +7472,7 @@ const VOCAB_DB = {
         },
         {
             "en": "traffic",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "There is heavy traffic this morning.",
@@ -7490,7 +7490,7 @@ const VOCAB_DB = {
         },
         {
             "en": "travel",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "I love to travel with my family.",
@@ -7508,7 +7508,7 @@ const VOCAB_DB = {
         },
         {
             "en": "tree",
-            "ch": "",
+            "ch": "?",
             "sents": [
                 {
                     "text": "There is a tall tree in the park.",
@@ -7526,7 +7526,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Tsim Sha Tsui",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "We went shopping in Tsim Sha Tsui.",
@@ -7544,7 +7544,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Tuen Mun",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My aunt lives in Tuen Mun.",
@@ -7562,7 +7562,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Tuesday",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "We have English on Tuesday.",
@@ -7580,7 +7580,7 @@ const VOCAB_DB = {
         },
         {
             "en": "turn left",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Turn left at the traffic lights.",
@@ -7598,7 +7598,7 @@ const VOCAB_DB = {
         },
         {
             "en": "turn right",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Turn right at the next corner.",
@@ -7616,7 +7616,7 @@ const VOCAB_DB = {
         },
         {
             "en": "twice",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "I brush my teeth twice a day.",
@@ -7634,7 +7634,7 @@ const VOCAB_DB = {
         },
         {
             "en": "umbrella",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Take an umbrella because it may rain.",
@@ -7652,7 +7652,7 @@ const VOCAB_DB = {
         },
         {
             "en": "university",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My sister studies at a university in Hong Kong.",
@@ -7670,7 +7670,7 @@ const VOCAB_DB = {
         },
         {
             "en": "useful",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "This dictionary is very useful.",
@@ -7688,7 +7688,7 @@ const VOCAB_DB = {
         },
         {
             "en": "vacation",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We went to Japan during the summer vacation.",
@@ -7706,7 +7706,7 @@ const VOCAB_DB = {
         },
         {
             "en": "vegetable",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Carrot is my favourite vegetable.",
@@ -7724,7 +7724,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Victoria Harbour",
-            "ch": "",
+            "ch": "?????",
             "sents": [
                 {
                     "text": "We took photos at Victoria Harbour.",
@@ -7742,7 +7742,7 @@ const VOCAB_DB = {
         },
         {
             "en": "video",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "I watched a funny video online.",
@@ -7760,7 +7760,7 @@ const VOCAB_DB = {
         },
         {
             "en": "village",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My grandparents live in a small village.",
@@ -7778,7 +7778,7 @@ const VOCAB_DB = {
         },
         {
             "en": "visit",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We will visit our cousins this weekend.",
@@ -7796,7 +7796,7 @@ const VOCAB_DB = {
         },
         {
             "en": "visitor",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Every visitor must sign in at the office.",
@@ -7814,7 +7814,7 @@ const VOCAB_DB = {
         },
         {
             "en": "wake",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "I wake up at seven every morning.",
@@ -7832,7 +7832,7 @@ const VOCAB_DB = {
         },
         {
             "en": "walk along",
-            "ch": "",
+            "ch": "????",
             "sents": [
                 {
                     "text": "Walk along the road until you see the park.",
@@ -7850,7 +7850,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Wan Chai",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My aunt works in Wan Chai.",
@@ -7868,7 +7868,7 @@ const VOCAB_DB = {
         },
         {
             "en": "warmer",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Today is warmer than yesterday.",
@@ -7886,7 +7886,7 @@ const VOCAB_DB = {
         },
         {
             "en": "wear",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "Please wear your school uniform tomorrow.",
@@ -7904,7 +7904,7 @@ const VOCAB_DB = {
         },
         {
             "en": "weather",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The weather is sunny today.",
@@ -7922,7 +7922,7 @@ const VOCAB_DB = {
         },
         {
             "en": "website",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "You can find the homework on the website.",
@@ -7940,7 +7940,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Wednesday",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "We have science on Wednesday.",
@@ -7958,7 +7958,7 @@ const VOCAB_DB = {
         },
         {
             "en": "west",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The sun sets in the west.",
@@ -7976,7 +7976,7 @@ const VOCAB_DB = {
         },
         {
             "en": "West Kowloon Cultural District",
-            "ch": "",
+            "ch": "?????",
             "sents": [
                 {
                     "text": "We visited the West Kowloon Cultural District on Sunday.",
@@ -7994,7 +7994,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Whampoa",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "My friend lives in Whampoa.",
@@ -8012,7 +8012,7 @@ const VOCAB_DB = {
         },
         {
             "en": "white",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "She wore a white shirt today.",
@@ -8030,7 +8030,7 @@ const VOCAB_DB = {
         },
         {
             "en": "wife",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "His wife works in a hospital.",
@@ -8048,7 +8048,7 @@ const VOCAB_DB = {
         },
         {
             "en": "window",
-            "ch": "",
+            "ch": "?",
             "sents": [
                 {
                     "text": "Please open the window.",
@@ -8066,7 +8066,7 @@ const VOCAB_DB = {
         },
         {
             "en": "wine",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "The restaurant serves red wine.",
@@ -8084,7 +8084,7 @@ const VOCAB_DB = {
         },
         {
             "en": "winter",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "It is cold in winter.",
@@ -8102,7 +8102,7 @@ const VOCAB_DB = {
         },
         {
             "en": "without",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "I cannot go out without my keys.",
@@ -8120,7 +8120,7 @@ const VOCAB_DB = {
         },
         {
             "en": "wonderful",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "We had a wonderful time at the beach.",
@@ -8138,7 +8138,7 @@ const VOCAB_DB = {
         },
         {
             "en": "worker",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The worker fixed the broken door.",
@@ -8156,7 +8156,7 @@ const VOCAB_DB = {
         },
         {
             "en": "worksheet",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "Please complete the worksheet in class.",
@@ -8174,7 +8174,7 @@ const VOCAB_DB = {
         },
         {
             "en": "would",
-            "ch": "",
+            "ch": "?",
             "sents": [
                 {
                     "text": "I would like a glass of water.",
@@ -8192,7 +8192,7 @@ const VOCAB_DB = {
         },
         {
             "en": "writer",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The writer signed his new book.",
@@ -8210,7 +8210,7 @@ const VOCAB_DB = {
         },
         {
             "en": "years",
-            "ch": "",
+            "ch": "?",
             "sents": [
                 {
                     "text": "We have been friends for many years.",
@@ -8228,7 +8228,7 @@ const VOCAB_DB = {
         },
         {
             "en": "yellow",
-            "ch": "",
+            "ch": "??",
             "sents": [
                 {
                     "text": "The sunflowers are bright yellow.",
@@ -8246,7 +8246,7 @@ const VOCAB_DB = {
         },
         {
             "en": "yes",
-            "ch": "",
+            "ch": "?",
             "sents": [
                 {
                     "text": "Yes, I understand the question.",
@@ -8264,7 +8264,7 @@ const VOCAB_DB = {
         },
         {
             "en": "zoo",
-            "ch": "",
+            "ch": "???",
             "sents": [
                 {
                     "text": "We visited the zoo on Sunday.",
