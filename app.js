@@ -1380,7 +1380,7 @@ function openStageInfo(stageIndex, event) {
     }
 
     const stageWords = getStageBaseWords(selectedLevel, stageIndex);
-    const previewTitle = `${getStageLabel(selectedLevel, stageIndex)} // NEW WORDS`;
+    const previewTitle = `${getStageLabel(selectedLevel, stageIndex)} // VOCAB`;
     if (typeof window.openStageVocabPreview === 'function') {
         window.openStageVocabPreview(selectedLevel, stageWords, previewTitle);
     }
