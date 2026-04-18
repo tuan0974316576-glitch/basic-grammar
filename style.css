@@ -6239,7 +6239,7 @@ body {
 
 #stage-screen .stage-btn-simple {
     position: relative;
-    overflow: hidden;
+    overflow: visible;
 }
 
 #stage-screen .stage-btn-label {
@@ -6249,23 +6249,22 @@ body {
 
 #stage-screen .stage-info-btn {
     position: absolute;
-    top: -6px;
-    right: -6px;
-    width: 22px;
-    height: 22px;
+    top: -16px;
+    right: -14px;
+    width: 30px;
+    height: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(14, 165, 233, 0.9);
+    border: 2px solid rgba(14, 165, 233, 0.95);
     color: #dbeafe;
-    background: rgba(2, 12, 24, 0.88);
+    background: rgba(2, 12, 24, 0.98);
     font-family: 'Orbitron', sans-serif;
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 700;
     line-height: 1;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 16px rgba(125, 211, 252, 0.7);
     box-shadow: 0 0 18px rgba(14, 165, 233, 0.38), inset 0 0 10px rgba(14, 165, 233, 0.16);
-    clip-path: polygon(18% 0, 100% 0, 100% 82%, 82% 100%, 0 100%, 0 18%);
     cursor: pointer;
     z-index: 2;
 }
