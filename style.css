@@ -6195,3 +6195,46 @@ body {
     color: #38bdf8;
     text-shadow: 0 0 8px rgba(56, 189, 248, 0.18);
 }
+
+#stage-screen .stage-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    width: 90%;
+    max-width: 400px;
+    margin: 0 auto;
+    max-height: none;
+    overflow: visible;
+    padding: 0;
+}
+
+#stage-screen .stage-btn-simple {
+    min-height: 72px;
+    width: 100%;
+    background: transparent !important;
+    border: 2px solid var(--primary);
+    color: #fff;
+    padding: 15px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    text-shadow: 0 0 5px var(--primary);
+    box-shadow: 0 0 10px rgba(14, 165, 233, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#stage-screen .stage-btn-simple:hover {
+    background: transparent !important;
+    transform: scale(1.1);
+    border-color: #0ea5e9;
+    color: #0ea5e9;
+    box-shadow: 0 0 20px #0ea5e9, inset 0 0 10px rgba(14, 165, 233, 0.3);
+    text-shadow: 0 0 10px #0ea5e9;
+}
+
+#stage-screen .stage-btn-simple:active {
+    transform: scale(0.95);
+    transition: all 0.1s;
+}

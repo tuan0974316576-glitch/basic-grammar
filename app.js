@@ -1259,29 +1259,19 @@ function renderStageScreen(levelKey) {
     if (!stageGrid) return;
 
     const stageCount = getLevelStageCount(levelKey);
-    const levelShort = getLevelDisplayShort(levelKey);
-    if (stageTitle) stageTitle.textContent = `LEVEL ${levelShort} // SELECT STAGE`;
+    if (stageTitle) stageTitle.textContent = 'SELECT STAGE';
     if (stageSubtitle) {
-        stageSubtitle.textContent = '30 NEW WORDS PER STAGE // EARLIER STAGE WORDS RETURN AS RANDOM REVIEW';
+        stageSubtitle.style.display = 'none';
     }
 
     stageGrid.innerHTML = '';
 
     for (let stageIndex = 0; stageIndex < stageCount; stageIndex++) {
-        const stageWords = getStageBaseWords(levelKey, stageIndex);
         const button = document.createElement('button');
-        button.className = 'stage-btn';
+        button.className = 'level-btn stage-btn-simple';
         button.type = 'button';
         button.onclick = () => selectStage(stageIndex);
-
-        const priorWordCount = stageIndex * STAGE_WORD_COUNT;
-        button.innerHTML = `
-            <div class="stage-btn-title">${getStageLabel(levelKey, stageIndex)}</div>
-            <div class="stage-btn-count">${stageWords.length} NEW WORDS</div>
-            <div class="stage-btn-meta">
-                ${priorWordCount > 0 ? `${priorWordCount} EARLIER WORDS RETURN AS RANDOM REVIEW` : 'FOUNDATION STAGE // NEW WORDS ONLY'}
-            </div>
-        `;
+        button.textContent = `STAGE ${stageIndex + 1}`;
         stageGrid.appendChild(button);
     }
 }
@@ -1304,6 +1294,7 @@ function closeStageScreen() {
 }
 
 function selectStage(stageIndex) {
+    playSound('deploy-sfx');
     selectedStageIndex = stageIndex;
     selectedStageLabel = getStageLabel(selectedLevel, stageIndex);
     activeVocabList = buildStageVocabListForMode('reading');
