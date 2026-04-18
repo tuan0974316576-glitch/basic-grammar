@@ -1271,7 +1271,10 @@ function renderStageScreen(levelKey) {
         button.className = 'level-btn stage-btn-simple';
         button.type = 'button';
         button.onclick = () => selectStage(stageIndex);
-        button.textContent = `STAGE ${stageIndex + 1}`;
+        button.innerHTML = `
+            <span class="stage-btn-label">STAGE ${stageIndex + 1}</span>
+            <span class="stage-info-btn" onclick="openStageInfo(${stageIndex}, event)" title="Stage info" aria-label="Stage info">i</span>
+        `;
         stageGrid.appendChild(button);
     }
 }
@@ -1321,6 +1324,19 @@ function selectStage(stageIndex) {
 
     const speakBtn = document.getElementById('btn-skill-speaking');
     if (speakBtn) speakBtn.style.display = 'flex';
+}
+
+function openStageInfo(stageIndex, event) {
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+
+    const stageWords = getStageBaseWords(selectedLevel, stageIndex);
+    const previewTitle = `${getStageLabel(selectedLevel, stageIndex)} // NEW WORDS`;
+    if (typeof window.openStageVocabPreview === 'function') {
+        window.openStageVocabPreview(selectedLevel, stageWords, previewTitle);
+    }
 }
 
     function prepareCreateRoom() {
