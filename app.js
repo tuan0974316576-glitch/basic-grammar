@@ -1191,12 +1191,20 @@ function getStageBaseWords(levelKey, stageIndex) {
     return levelWords.slice(startIndex, startIndex + STAGE_WORD_COUNT);
 }
 
+function shuffleArray(items) {
+    const arr = [...items];
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
 function getStageReviewWords(levelKey, modeKey, stageIndex) {
     if (stageIndex <= 0) return [];
     const levelWords = VOCAB_DB[levelKey] || [];
     const priorWords = levelWords.slice(0, stageIndex * STAGE_WORD_COUNT);
-    const masteryByWord = userMastery?.[modeKey]?.[levelKey] || {};
-    return priorWords.filter(word => masteryByWord[word.en]?.status !== 1);
+    return shuffleArray(priorWords);
 }
 
 function buildStageVocabListForMode(modeKey) {
@@ -1254,7 +1262,7 @@ function renderStageScreen(levelKey) {
     const levelShort = getLevelDisplayShort(levelKey);
     if (stageTitle) stageTitle.textContent = `LEVEL ${levelShort} // SELECT STAGE`;
     if (stageSubtitle) {
-        stageSubtitle.textContent = '30 NEW WORDS PER STAGE // EARLIER UNFINISHED WORDS RETURN IN LATER STAGES';
+        stageSubtitle.textContent = '30 NEW WORDS PER STAGE // EARLIER STAGE WORDS RETURN AS RANDOM REVIEW';
     }
 
     stageGrid.innerHTML = '';
@@ -1271,7 +1279,7 @@ function renderStageScreen(levelKey) {
             <div class="stage-btn-title">${getStageLabel(levelKey, stageIndex)}</div>
             <div class="stage-btn-count">${stageWords.length} NEW WORDS</div>
             <div class="stage-btn-meta">
-                ${priorWordCount > 0 ? `${priorWordCount} EARLIER WORDS MAY RETURN IF UNFINISHED` : 'FOUNDATION STAGE // NEW WORDS ONLY'}
+                ${priorWordCount > 0 ? `${priorWordCount} EARLIER WORDS RETURN AS RANDOM REVIEW` : 'FOUNDATION STAGE // NEW WORDS ONLY'}
             </div>
         `;
         stageGrid.appendChild(button);
