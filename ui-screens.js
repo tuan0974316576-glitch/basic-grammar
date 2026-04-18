@@ -7,19 +7,23 @@ let vocabPreviewSubtitle = 'CLASSIFIED VOCABULARY DATABASE';
 
 function closeVocabScreen() {
     playSound('delete-sfx');
-    document.getElementById('vocab-screen').style.display = 'none';
+    const vocabScreen = document.getElementById('vocab-screen');
+    vocabScreen.style.display = 'none';
     const returnScreen = vocabPreviewReturnScreen;
 
     const tabs = document.querySelector('.vocab-tabs');
     const searchContainer = document.querySelector('.vocab-search-container');
     const title = document.querySelector('#vocab-screen .tech-title');
     const subtitle = document.querySelector('#vocab-screen .tech-subtitle');
+    const backButton = document.querySelector('#vocab-screen > .btn');
 
     if (vocabScreenMode === 'stage-preview') {
+        vocabScreen.classList.remove('stage-preview');
         if (title) title.innerText = 'CODE LIST';
         if (subtitle) subtitle.innerText = 'CLASSIFIED VOCABULARY DATABASE';
         if (tabs) tabs.style.display = 'flex';
         if (searchContainer) searchContainer.style.display = 'flex';
+        if (backButton) backButton.removeAttribute('style');
         vocabScreenMode = 'default';
         vocabPreviewRows = [];
         vocabPreviewReturnScreen = 'start';
@@ -373,6 +377,8 @@ function openVocabScreen() {
     }
 
     document.getElementById('start-screen').style.display = 'none';
+    const vocabScreen = document.getElementById('vocab-screen');
+    if (vocabScreen) vocabScreen.classList.remove('stage-preview');
     document.getElementById('vocab-screen').style.display = 'flex';
     renderVocabList('L1', true);
 }
@@ -393,6 +399,7 @@ function openStageVocabPreview(levelKey, stageWords, previewTitle) {
     const searchContainer = document.querySelector('.vocab-search-container');
     const title = document.querySelector('#vocab-screen .tech-title');
     const subtitle = document.querySelector('#vocab-screen .tech-subtitle');
+    const backButton = document.querySelector('#vocab-screen > .btn');
 
     vocabScreenMode = 'stage-preview';
     vocabPreviewRows = Array.isArray(stageWords) ? [...stageWords] : [];
@@ -404,8 +411,16 @@ function openStageVocabPreview(levelKey, stageWords, previewTitle) {
     if (subtitle) subtitle.innerText = vocabPreviewSubtitle;
     if (tabs) tabs.style.display = 'none';
     if (searchContainer) searchContainer.style.display = 'none';
+    if (backButton) {
+        backButton.style.borderColor = '#ffffff';
+        backButton.style.color = '#ffffff';
+        backButton.style.background = 'rgba(255, 255, 255, 0.06)';
+    }
 
-    if (vocabScreen) vocabScreen.style.display = 'flex';
+    if (vocabScreen) {
+        vocabScreen.classList.add('stage-preview');
+        vocabScreen.style.display = 'flex';
+    }
     renderCustomVocabList(vocabPreviewRows);
 }
 

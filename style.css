@@ -6276,3 +6276,47 @@ body {
     color: #ffffff;
     box-shadow: 0 0 14px rgba(56, 189, 248, 0.28), inset 0 0 10px rgba(56, 189, 248, 0.12);
 }
+
+#vocab-screen.stage-preview .tech-title {
+    color: #7dd3fc;
+    text-shadow: 0 0 20px rgba(56, 189, 248, 0.55);
+}
+
+#vocab-screen.stage-preview .tech-subtitle {
+    color: #bfdbfe;
+}
+
+#vocab-screen.stage-preview .vocab-container {
+    border-color: #38bdf8;
+    border-top-color: #38bdf8;
+    box-shadow: 0 0 30px rgba(56, 189, 248, 0.16);
+}
+
+#vocab-screen.stage-preview .vocab-list-header {
+    background: rgba(56, 189, 248, 0.1);
+    border-bottom-color: #38bdf8;
+    color: #7dd3fc;
+}
+
+#vocab-screen.stage-preview .vocab-list-body {
+    scrollbar-color: #38bdf8 #0f172a;
+}
+
+#vocab-screen.stage-preview .vocab-list-body::-webkit-scrollbar-thumb {
+    background: #38bdf8;
+}
+
+#vocab-screen.stage-preview .vocab-row {
+    border-bottom-color: rgba(56, 189, 248, 0.2);
+}
+
+#vocab-screen.stage-preview .vocab-row:hover {
+    background: rgba(56, 189, 248, 0.12);
+    box-shadow: inset 0 0 10px rgba(56, 189, 248, 0.08);
+    border-left-color: #38bdf8;
+}
+
+#vocab-screen.stage-preview .vocab-en {
+    color: #7dd3fc;
+    text-shadow: 0 0 5px rgba(125, 211, 252, 0.55);
+}
