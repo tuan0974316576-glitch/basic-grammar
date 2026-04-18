@@ -942,7 +942,10 @@ let isTargeting = false;
     let activeVocabList = [];
     let sessionDeck = [];
     let selectedLevel = 'L1'; // �A�O
+    let selectedStageIndex = null;
+    let selectedStageLabel = '';
     let tempGameMode = 'AI';  // ����ģʽ�x��
+    const STAGE_WORD_COUNT = 30;
 
     // --- 3. ȫ��׃�� ---
 let deploymentTimerInterval = null; // ��ꇵ�����
@@ -1161,6 +1164,166 @@ function closeLevelScreen() {
     }
 }
 
+function getLevelDisplayShort(levelKey) {
+    const map = {
+        L1: '1',
+        L2: '2',
+        L3: '3',
+        L4: '4',
+        L5: '5',
+        L5_STAR: '5*'
+    };
+    return map[levelKey] || levelKey;
+}
+
+function getLevelStageCount(levelKey) {
+    const totalWords = VOCAB_DB[levelKey] ? VOCAB_DB[levelKey].length : 0;
+    return Math.max(1, Math.ceil(totalWords / STAGE_WORD_COUNT));
+}
+
+function getStageLabel(levelKey, stageIndex) {
+    return `${getLevelDisplayShort(levelKey)}-${stageIndex + 1}`;
+}
+
+function getStageBaseWords(levelKey, stageIndex) {
+    const levelWords = VOCAB_DB[levelKey] || [];
+    const startIndex = stageIndex * STAGE_WORD_COUNT;
+    return levelWords.slice(startIndex, startIndex + STAGE_WORD_COUNT);
+}
+
+function getStageReviewWords(levelKey, modeKey, stageIndex) {
+    if (stageIndex <= 0) return [];
+    const levelWords = VOCAB_DB[levelKey] || [];
+    const priorWords = levelWords.slice(0, stageIndex * STAGE_WORD_COUNT);
+    const masteryByWord = userMastery?.[modeKey]?.[levelKey] || {};
+    return priorWords.filter(word => masteryByWord[word.en]?.status !== 1);
+}
+
+function buildStageVocabListForMode(modeKey) {
+    const levelWords = VOCAB_DB[selectedLevel] || [];
+    if (tempGameMode !== 'AI' || selectedStageIndex === null) {
+        return levelWords;
+    }
+
+    const stageWords = getStageBaseWords(selectedLevel, selectedStageIndex);
+    const reviewWords = getStageReviewWords(selectedLevel, modeKey, selectedStageIndex);
+    const stageWordSet = new Set(stageWords.map(word => word.en));
+    const dedupedReviewWords = reviewWords.filter(word => !stageWordSet.has(word.en));
+    return [...stageWords, ...dedupedReviewWords];
+}
+
+function getScopedWordSetForMode(modeKey) {
+    return new Set(buildStageVocabListForMode(modeKey).map(word => word.en));
+}
+
+function getScopedMasteryCountForMode(modeKey) {
+    const masteryByWord = userMastery?.[modeKey]?.[selectedLevel] || {};
+    const scopedWords = getScopedWordSetForMode(modeKey);
+    let masteryCount = 0;
+
+    scopedWords.forEach(wordEn => {
+        if (masteryByWord[wordEn]?.status === 1) {
+            masteryCount += 1;
+        }
+    });
+
+    return masteryCount;
+}
+
+function showStageScreen() {
+    const stageScreen = document.getElementById('stage-screen');
+    if (!stageScreen) return;
+    stageScreen.style.display = 'flex';
+
+    const wrapper = stageScreen.querySelector('.panel-content-wrapper');
+    if (wrapper) {
+        wrapper.style.animation = 'none';
+        setTimeout(() => {
+            wrapper.style.animation = 'holoAppear 0.25s ease-out forwards';
+        }, 10);
+    }
+}
+
+function renderStageScreen(levelKey) {
+    const stageTitle = document.getElementById('stage-screen-title');
+    const stageSubtitle = document.getElementById('stage-screen-subtitle');
+    const stageGrid = document.getElementById('stage-grid');
+    if (!stageGrid) return;
+
+    const stageCount = getLevelStageCount(levelKey);
+    const levelShort = getLevelDisplayShort(levelKey);
+    if (stageTitle) stageTitle.textContent = `LEVEL ${levelShort} // SELECT STAGE`;
+    if (stageSubtitle) {
+        stageSubtitle.textContent = '30 NEW WORDS PER STAGE // EARLIER UNFINISHED WORDS RETURN IN LATER STAGES';
+    }
+
+    stageGrid.innerHTML = '';
+
+    for (let stageIndex = 0; stageIndex < stageCount; stageIndex++) {
+        const stageWords = getStageBaseWords(levelKey, stageIndex);
+        const button = document.createElement('button');
+        button.className = 'stage-btn';
+        button.type = 'button';
+        button.onclick = () => selectStage(stageIndex);
+
+        const priorWordCount = stageIndex * STAGE_WORD_COUNT;
+        button.innerHTML = `
+            <div class="stage-btn-title">${getStageLabel(levelKey, stageIndex)}</div>
+            <div class="stage-btn-count">${stageWords.length} NEW WORDS</div>
+            <div class="stage-btn-meta">
+                ${priorWordCount > 0 ? `${priorWordCount} EARLIER WORDS MAY RETURN IF UNFINISHED` : 'FOUNDATION STAGE // NEW WORDS ONLY'}
+            </div>
+        `;
+        stageGrid.appendChild(button);
+    }
+}
+
+function closeStageScreen() {
+    const stageScreen = document.getElementById('stage-screen');
+    if (stageScreen) stageScreen.style.display = 'none';
+
+    const levelScreen = document.getElementById('level-screen');
+    if (levelScreen) {
+        levelScreen.style.display = 'flex';
+        const wrapper = levelScreen.querySelector('.panel-content-wrapper');
+        if (wrapper) {
+            wrapper.style.animation = 'none';
+            setTimeout(() => {
+                wrapper.style.animation = 'holoAppear 0.25s ease-out forwards';
+            }, 10);
+        }
+    }
+}
+
+function selectStage(stageIndex) {
+    selectedStageIndex = stageIndex;
+    selectedStageLabel = getStageLabel(selectedLevel, stageIndex);
+    activeVocabList = buildStageVocabListForMode('reading');
+    sessionDeck = [...activeVocabList];
+
+    console.log(`[Stage] ${selectedStageLabel} selected for ${selectedLevel}. Preview size: ${sessionDeck.length}`);
+
+    const stageScreen = document.getElementById('stage-screen');
+    if (stageScreen) stageScreen.style.display = 'none';
+
+    updateSkillButtonsProgress();
+
+    const skillScreen = document.getElementById('skill-screen');
+    if (skillScreen) {
+        skillScreen.style.display = 'flex';
+        const wrapper = skillScreen.querySelector('.panel-content-wrapper');
+        if (wrapper) {
+            wrapper.style.animation = 'none';
+            setTimeout(() => {
+                wrapper.style.animation = 'holoAppear 0.25s ease-out forwards';
+            }, 10);
+        }
+    }
+
+    const speakBtn = document.getElementById('btn-skill-speaking');
+    if (speakBtn) speakBtn.style.display = 'flex';
+}
+
     function prepareCreateRoom() {
         playSound('deploy-sfx');
         const lobbyScreen = document.getElementById('lobby-screen');
@@ -1233,22 +1396,26 @@ function updateSkillButtonsProgress() {
     // Only update if we have a selected level
     if (!selectedLevel || !VOCAB_DB[selectedLevel]) return;
 
-    const totalWords = VOCAB_DB[selectedLevel].length;
+    const useStageScope = tempGameMode === 'AI' && selectedStageIndex !== null;
+    const readingTotal = useStageScope ? buildStageVocabListForMode('reading').length : VOCAB_DB[selectedLevel].length;
+    const listeningTotal = useStageScope ? buildStageVocabListForMode('listening').length : VOCAB_DB[selectedLevel].length;
+    const speakingTotal = useStageScope ? buildStageVocabListForMode('speaking').length : VOCAB_DB[selectedLevel].length;
 
-    // Calculate progress for each skill
-    let readingCount = 0;
-    let listeningCount = 0;
-    let speakingCount = 0;
-
-    if (userMastery.reading && userMastery.reading[selectedLevel]) {
-        readingCount = Object.values(userMastery.reading[selectedLevel]).filter(m => m.status === 1).length;
-    }
-    if (userMastery.listening && userMastery.listening[selectedLevel]) {
-        listeningCount = Object.values(userMastery.listening[selectedLevel]).filter(m => m.status === 1).length;
-    }
-    if (userMastery.speaking && userMastery.speaking[selectedLevel]) {
-        speakingCount = Object.values(userMastery.speaking[selectedLevel]).filter(m => m.status === 1).length;
-    }
+    const readingCount = useStageScope
+        ? getScopedMasteryCountForMode('reading')
+        : (userMastery.reading && userMastery.reading[selectedLevel]
+            ? Object.values(userMastery.reading[selectedLevel]).filter(m => m.status === 1).length
+            : 0);
+    const listeningCount = useStageScope
+        ? getScopedMasteryCountForMode('listening')
+        : (userMastery.listening && userMastery.listening[selectedLevel]
+            ? Object.values(userMastery.listening[selectedLevel]).filter(m => m.status === 1).length
+            : 0);
+    const speakingCount = useStageScope
+        ? getScopedMasteryCountForMode('speaking')
+        : (userMastery.speaking && userMastery.speaking[selectedLevel]
+            ? Object.values(userMastery.speaking[selectedLevel]).filter(m => m.status === 1).length
+            : 0);
 
     // Update Reading button
     const readingBtn = document.getElementById('skill-btn-reading');
@@ -1256,7 +1423,7 @@ function updateSkillButtonsProgress() {
         readingBtn.innerHTML = `
             <div style="display:flex; flex-direction:column; align-items:center;">
                 <span style="font-size:24px;">READING</span>
-                <span style="font-size:12px; opacity:0.8; font-family: 'Orbitron';">${readingCount}/${totalWords}</span>
+                <span style="font-size:12px; opacity:0.8; font-family: 'Orbitron';">${readingCount}/${readingTotal}</span>
             </div>
         `;
     }
@@ -1267,7 +1434,7 @@ function updateSkillButtonsProgress() {
         listeningBtn.innerHTML = `
             <div style="display:flex; flex-direction:column; align-items:center;">
                 <span style="font-size:24px;">LISTENING</span>
-                <span style="font-size:12px; opacity:0.8; font-family: 'Orbitron';">${listeningCount}/${totalWords}</span>
+                <span style="font-size:12px; opacity:0.8; font-family: 'Orbitron';">${listeningCount}/${listeningTotal}</span>
             </div>
         `;
     }
@@ -1278,12 +1445,13 @@ function updateSkillButtonsProgress() {
         speakingBtn.innerHTML = `
             <div style="display:flex; flex-direction:column; align-items:center;">
                 <span style="font-size:24px;">SPEAKING</span>
-                <span style="font-size:12px; opacity:0.8; font-family: 'Orbitron';">${speakingCount}/${totalWords}</span>
+                <span style="font-size:12px; opacity:0.8; font-family: 'Orbitron';">${speakingCount}/${speakingTotal}</span>
             </div>
         `;
     }
 
-    console.log(`[Skill Progress] R: ${readingCount}/${totalWords} | L: ${listeningCount}/${totalWords} | S: ${speakingCount}/${totalWords}`);
+    const stageSuffix = useStageScope && selectedStageLabel ? ` [${selectedStageLabel}]` : '';
+    console.log(`[Skill Progress${stageSuffix}] R: ${readingCount}/${readingTotal} | L: ${listeningCount}/${listeningTotal} | S: ${speakingCount}/${speakingTotal}`);
 }
 
 // ���� RESET SKILL BUTTONS TO DEFAULT (FOR PVP) ����
@@ -1356,6 +1524,8 @@ function updateLevelProgress() {
 // --- �����棺�x��ȼ� (PVP �Ğ�ȥ�x Skill) ---
 function selectLevel(level) {
     selectedLevel = level;
+    selectedStageIndex = null;
+    selectedStageLabel = '';
     activeVocabList = VOCAB_DB[level];
     sessionDeck = [...activeVocabList];
     console.log(`Level ${level} selected. Deck size: ${sessionDeck.length}`);
@@ -1376,24 +1546,8 @@ function selectLevel(level) {
     if (carousel) carousel.style.display = 'none';
 
     if (tempGameMode === 'AI') {
-        // --- AI ģʽ��Level -> Skill (�@ʾ Skill �x��) ---
-        // ���� Update skill buttons with progress for selected level ����
-        updateSkillButtonsProgress();
-
-        const skillScreen = document.getElementById('skill-screen');
-        skillScreen.style.display = 'flex';
-        // ���� Trigger holoAppear animation on content wrapper ����
-        const wrapper = skillScreen.querySelector('.panel-content-wrapper');
-        if (wrapper) {
-            wrapper.style.animation = 'none';
-            setTimeout(() => {
-                wrapper.style.animation = 'holoAppear 0.25s ease-out forwards';
-            }, 10);
-        }
-
-        // �_�� AI ģʽҊ�� Speaking ���o
-        const speakBtn = document.getElementById('btn-skill-speaking');
-        if (speakBtn) speakBtn.style.display = 'flex';
+        renderStageScreen(level);
+        showStageScreen();
     } else {
         // --- PVP ģʽ��Level -> Skill -> Lobby ---
         // ���� PVP ���@ʾ�M�ȣ����÷�ԭ�������� ����
@@ -1433,6 +1587,10 @@ function enterGameUI() {
 
     // �� ��ʼ���e�փ��� deck����֮ǰ�e�^�������ȳ�
     wrongWordsDeck = getWrongWordsForSession(currentPracticeMode, selectedLevel);
+    if (tempGameMode === 'AI' && Array.isArray(activeVocabList) && activeVocabList.length > 0) {
+        const activeWordSet = new Set(activeVocabList.map(word => word.en));
+        wrongWordsDeck = wrongWordsDeck.filter(word => activeWordSet.has(word.en));
+    }
     if (wrongWordsDeck.length > 0) {
         console.log(`[Wrong Words] ${wrongWordsDeck.length} words to review for ${currentPracticeMode}/${selectedLevel}`);
     }
@@ -5861,6 +6019,13 @@ function generateSmartBlanks(text) {
 async function selectSkill(skill) {
     console.log("Skill Selected:", skill);
     currentPracticeMode = skill;
+    if (tempGameMode === 'AI') {
+        activeVocabList = buildStageVocabListForMode(skill.toLowerCase());
+        sessionDeck = [...activeVocabList];
+        if (selectedStageLabel) {
+            console.log(`[Stage] ${selectedStageLabel} -> ${skill} deck size: ${sessionDeck.length}`);
+        }
+    }
     playSound('deploy-sfx');
     const lobbyScreen = document.getElementById('lobby-screen');
     if (lobbyScreen) lobbyScreen.style.display = 'none';
@@ -7176,8 +7341,12 @@ function handleSkillBack() {
     document.getElementById('skill-screen').style.display = 'none';
     
     if (tempGameMode === 'AI') {
-        // AI: �������x��
-        showMainMenu();
+        if (selectedLevel) {
+            renderStageScreen(selectedLevel);
+            showStageScreen();
+        } else {
+            showMainMenu();
+        }
     } else {
         // PVP: ���� Level �x�� (��������� Level -> Skill)
         document.getElementById('level-screen').style.display = 'flex';
