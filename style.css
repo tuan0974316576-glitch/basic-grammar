@@ -6324,3 +6324,45 @@ body {
     color: #7dd3fc;
     text-shadow: 0 0 5px rgba(125, 211, 252, 0.55);
 }
+
+.orientation-guard {
+    position: fixed;
+    inset: 0;
+    z-index: 20000;
+    background: rgba(2, 6, 23, 0.96);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+.orientation-guard-box {
+    width: min(420px, calc(100vw - 48px));
+    border: 2px solid rgba(56, 189, 248, 0.6);
+    background: rgba(10, 20, 30, 0.92);
+    box-shadow: 0 0 28px rgba(56, 189, 248, 0.18), inset 0 0 18px rgba(56, 189, 248, 0.08);
+    padding: 28px 22px;
+    text-align: center;
+    border-radius: 12px;
+}
+
+.orientation-guard-title {
+    font-family: 'Black Ops One', sans-serif;
+    font-size: 28px;
+    letter-spacing: 2px;
+    color: #f8fafc;
+    text-shadow: 0 0 14px rgba(255,255,255,0.28);
+    margin-bottom: 12px;
+}
+
+.orientation-guard-msg {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    line-height: 1.6;
+    color: #7dd3fc;
+    text-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+}

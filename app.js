@@ -100,6 +100,53 @@ let battleUsedWordKeys = new Set();
 let attackResolutionLocked = false;
 const DEFAULT_SPEAKING_ASSESSMENT_BASE = 'http://localhost:8787';
 const SPEAKING_PASS_SCORE = 70;
+
+function isCoarseTouchDevice() {
+    return window.matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0;
+}
+
+function isTabletLikeDevice() {
+    const shortestSide = Math.min(window.innerWidth, window.innerHeight);
+    const longestSide = Math.max(window.innerWidth, window.innerHeight);
+    return isCoarseTouchDevice() && (shortestSide >= 768 || longestSide >= 1024);
+}
+
+function getDesiredOrientationMode() {
+    if (!isCoarseTouchDevice()) return null;
+    return isTabletLikeDevice() ? 'landscape' : 'portrait';
+}
+
+function tryLockOrientation(mode) {
+    if (!mode || !screen.orientation || typeof screen.orientation.lock !== 'function') return;
+    const lockValue = mode === 'landscape' ? 'landscape-primary' : 'portrait-primary';
+    screen.orientation.lock(lockValue).catch(() => {});
+}
+
+function updateOrientationGuard() {
+    const guard = document.getElementById('orientation-guard');
+    const guardMsg = document.getElementById('orientation-guard-msg');
+    if (!guard || !guardMsg) return;
+
+    const desiredMode = getDesiredOrientationMode();
+    if (!desiredMode) {
+        guard.style.display = 'none';
+        return;
+    }
+
+    tryLockOrientation(desiredMode);
+
+    const currentMode = window.innerWidth > window.innerHeight ? 'landscape' : 'portrait';
+    const isValid = currentMode === desiredMode;
+    guardMsg.textContent = desiredMode === 'landscape'
+        ? 'LANDSCAPE MODE REQUIRED FOR TABLETS'
+        : 'PORTRAIT MODE REQUIRED FOR PHONES';
+    guard.style.display = isValid ? 'none' : 'flex';
+}
+
+window.addEventListener('load', updateOrientationGuard);
+window.addEventListener('resize', updateOrientationGuard);
+window.addEventListener('orientationchange', updateOrientationGuard);
+
     // ���� �������Ԅ������� ����
     // �@�δ��a���߱����� Level (L1, L2...), �ԄӰ�Ӣ����ĸ A-Z ����
     function sortDatabase() {
