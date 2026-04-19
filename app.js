@@ -2875,9 +2875,7 @@ if (currentPracticeMode === 'SPEAKING') {
         // 1. �@ʾ������� (����о���)
         if (currentVocab.sent) {
             const regex = new RegExp(`\\b${targetWord}\\b`, 'gi');
-            // ��Ŀ���֓Q�ɸ��֔�һ���L�ȵĄӑB�׾�
-            const dynamicBlanks = generateSmartBlanks(targetWord);
-            const displayHTML = currentVocab.sent.replace(regex, `<span class="listening-blank">${dynamicBlanks}</span>`);
+            const displayHTML = currentVocab.sent.replace(regex, renderListeningSentenceBlank(targetWord));
             contentHTML += `<div class="sentence-container">${displayHTML}<span class="cyber-speaker-btn cyber-speaker-btn-small listening-replay-btn" onclick="speakText('${safeText}')" role="button" aria-label="Replay audio"></span></div>`;
         } else {
             contentHTML += `<div style="font-family:'Orbitron'; font-size:14px; color:#d946ef; margin-bottom:15px; letter-spacing:2px;">// AUDIO INTERCEPTED //</div>`;
@@ -2895,7 +2893,7 @@ if (currentPracticeMode === 'SPEAKING') {
         qText.onclick = null;
 
         // 3. �@ʾ���ܵ׾�
-        qDisplay.innerHTML = generateSmartBlanks(targetWord);
+        qDisplay.innerHTML = renderListeningAnswerDisplay(targetWord, "");
         qDisplay.style.color = "var(--primary)";
 
         // �Ԅ��x���������
@@ -3219,13 +3217,16 @@ function handlePlayerTimeout() {
 
     // --- 4. �����@ʾ���� (���ģ��� "WAKEUP" ������ȥ "WAKE UP" �����ж�) ---
     function updateSmartDisplay(inputVal) {
+        if (currentPracticeMode === 'LISTENING') {
+            const targetWord = currentVocab.listeningAnswer || currentVocab.en;
+            document.getElementById('q-display').innerHTML = renderListeningAnswerDisplay(targetWord, inputVal);
+            return;
+        }
+
         let html = "";
         let inputIdx = 0; // ����ӛס�õ��ڎׂ����ݔ�����ĸ
 
-        // ���� For LISTENING mode, use listeningAnswer if available ����
-        const targetWord = (currentPracticeMode === 'LISTENING' && currentVocab.listeningAnswer)
-            ? currentVocab.listeningAnswer
-            : currentVocab.en;
+        const targetWord = currentVocab.en;
 
         // ����֙z���}Ŀԭ����ʽ (���� "WAKE UP")
         for (let i = 0; i < targetWord.length; i++) {
@@ -6076,6 +6077,67 @@ function generateSmartBlanks(text) {
         }
     }
     return html;
+}
+
+function getListeningAnswerRows(text) {
+    const cleanText = (text || '').trim();
+    if (!cleanText) return [''];
+    if (cleanText.length <= 12) return [cleanText];
+
+    const words = cleanText.split(/\s+/);
+    if (words.length > 1) {
+        const totalLength = cleanText.length;
+        let currentLength = 0;
+        let splitIndex = 1;
+        for (let i = 0; i < words.length - 1; i++) {
+            currentLength += words[i].length + (i > 0 ? 1 : 0);
+            splitIndex = i + 1;
+            if (currentLength >= totalLength / 2) break;
+        }
+
+        const firstRow = words.slice(0, splitIndex).join(' ');
+        const secondRow = words.slice(splitIndex).join(' ');
+        if (firstRow && secondRow) return [firstRow, secondRow];
+    }
+
+    const midpoint = Math.ceil(cleanText.length / 2);
+    return [cleanText.slice(0, midpoint), cleanText.slice(midpoint)];
+}
+
+function splitListeningInputByRows(inputVal, rows) {
+    let remaining = inputVal || '';
+    return rows.map((row, index) => {
+        if (index === rows.length - 1) return remaining;
+        const chunk = remaining.slice(0, row.length);
+        remaining = remaining.slice(chunk.length);
+        return chunk;
+    });
+}
+
+function renderListeningSentenceBlank(text) {
+    const isLongAnswer = (text || '').trim().length > 12;
+    const blankClass = isLongAnswer
+        ? 'listening-blank listening-blank-inline listening-blank-inline-wide'
+        : 'listening-blank listening-blank-inline';
+    return `<span class="${blankClass}" aria-hidden="true"><span class="listening-answer-line"></span></span>`;
+}
+
+function renderListeningAnswerDisplay(text, inputVal) {
+    const rows = getListeningAnswerRows(text);
+    const typedRows = splitListeningInputByRows(inputVal, rows);
+    const rowClass = rows.length > 1 ? 'listening-answer-shell two-line' : 'listening-answer-shell one-line';
+
+    const rowMarkup = rows.map((row, index) => {
+        const typedText = escapeHtml(typedRows[index] || '');
+        return `
+            <div class="listening-answer-row">
+                <span class="listening-answer-typed">${typedText || '&nbsp;'}</span>
+                <span class="listening-answer-line"></span>
+            </div>
+        `;
+    }).join('');
+
+    return `<div class="${rowClass}">${rowMarkup}</div>`;
 }
 // --- ��K�����棺�x���� (PVP ����) ---
 async function selectSkill(skill) {

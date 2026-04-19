@@ -3394,13 +3394,98 @@ body {
 
 /* 填空位：只留顏色字，唔要底線框，因為 generateSmartBlanks 會做 */
 .listening-blank {
-    color: var(--primary); 
-    font-weight: bold; 
-    font-size: 20px;
-    text-shadow: 0 0 10px var(--primary); 
-    padding: 0 5px; 
-    margin: 0 5px; 
-    letter-spacing: 2px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    margin: 0 6px;
+}
+
+.listening-blank-inline {
+    width: 120px;
+    min-width: 120px;
+}
+
+.listening-blank-inline-wide {
+    width: 168px;
+    min-width: 168px;
+}
+
+.listening-answer-shell {
+    width: min(100%, 320px);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+}
+
+.listening-answer-shell.two-line {
+    width: min(100%, 360px);
+}
+
+.listening-answer-row {
+    position: relative;
+    min-height: 34px;
+    padding: 0 10px 10px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.listening-answer-typed {
+    position: relative;
+    z-index: 2;
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 26px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: var(--primary);
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(34, 211, 238, 0.9), 0 0 24px rgba(34, 211, 238, 0.45);
+}
+
+.listening-answer-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 0;
+    border-bottom: 4px solid rgba(34, 211, 238, 0.95);
+    box-shadow: 0 0 12px rgba(34, 211, 238, 0.7), 0 0 24px rgba(34, 211, 238, 0.25);
+    border-radius: 999px;
+}
+
+#q-display .listening-answer-shell {
+    width: min(100%, 360px);
+}
+
+#q-display .listening-answer-shell.two-line {
+    width: min(100%, 390px);
+}
+
+#q-display .listening-answer-row {
+    min-height: 38px;
+}
+
+#q-display .listening-answer-typed {
+    font-size: 28px;
+}
+
+#launch-modal.aurelians-theme .listening-answer-typed,
+#launch-modal.aurelians-theme #q-display span.listening-answer-typed {
+    color: #FAFAD2 !important;
+    text-shadow: 0 0 10px rgba(250, 250, 210, 0.9), 0 0 24px rgba(234, 179, 8, 0.45);
+}
+
+#launch-modal.aurelians-theme .listening-answer-line {
+    border-bottom-color: rgba(250, 250, 210, 0.95);
+    box-shadow: 0 0 12px rgba(250, 250, 210, 0.75), 0 0 24px rgba(234, 179, 8, 0.25);
 }
 /* --- 新增：修正 Skill 按鈕預設顏色 --- */
 #skill-screen .skill-btn:nth-child(2) {
