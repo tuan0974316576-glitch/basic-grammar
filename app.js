@@ -98,6 +98,7 @@ const listeningTtsCache = new Map();
 let listeningPlaybackAudio = null;
 let listeningPlaybackObjectUrl = '';
 let listeningPlaybackToken = 0;
+let listeningTimerStartTimeout = null;
 let userSentenceProgress = { listening: {}, speaking: {} };
 let battleLog = [];
 let battleUsedWordKeys = new Set();
@@ -2795,6 +2796,7 @@ function openLaunchModal(index) {
     }
 
     assignSentenceForCurrentVocab();
+    preloadLikelyNextListeningPrompt();
     
     // �@ȡ����Ԫ��
     const modal = document.getElementById('launch-modal');
@@ -3028,6 +3030,13 @@ function warmUpVoiceEngine() {
     }
 }
 
+function clearListeningTimerStartTimeout() {
+    if (listeningTimerStartTimeout) {
+        clearTimeout(listeningTimerStartTimeout);
+        listeningTimerStartTimeout = null;
+    }
+}
+
 function getListeningTtsCacheKey(text, locale = 'en-US') {
     return `${locale}::${(text || '').trim()}`;
 }
@@ -3055,6 +3064,7 @@ function preloadListeningAzureAudio(text, locale = 'en-US') {
 }
 
 function stopListeningPlayback() {
+    clearListeningTimerStartTimeout();
     listeningPlaybackToken++;
     window.speechSynthesis.cancel();
     if (!listeningPlaybackAudio) return;
@@ -3066,6 +3076,85 @@ function stopListeningPlayback() {
         listeningPlaybackObjectUrl = '';
     }
     listeningPlaybackAudio = null;
+}
+
+function estimateListeningTargetFinishMs(text, targetWord, durationMs) {
+    const safeText = (text || '').trim();
+    const safeTarget = (targetWord || '').trim();
+    if (!safeText || !safeTarget || !durationMs || durationMs <= 0) return durationMs;
+
+    const escapedTarget = safeTarget.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const regex = new RegExp(`\\b${escapedTarget}\\b`, 'i');
+    const match = regex.exec(safeText);
+    if (!match) return durationMs;
+
+    const endIndex = match.index + match[0].length;
+    const ratio = Math.max(0.12, Math.min(0.92, endIndex / safeText.length));
+    return Math.round(durationMs * ratio);
+}
+
+function getPreviewSentenceForWord(word, modeKey, levelKey) {
+    if (!word?.sents || word.sents.length === 0) {
+        return {
+            text: word?.sent || word?.en || '',
+            answer: word?.listeningAnswer || null
+        };
+    }
+
+    if (modeKey !== 'listening' && modeKey !== 'speaking') {
+        const firstSentence = word.sents[0];
+        return typeof firstSentence === 'object' && firstSentence?.text
+            ? { text: firstSentence.text, answer: firstSentence.answer || null }
+            : { text: firstSentence, answer: null };
+    }
+
+    const entry = ensureSentenceProgressEntry(modeKey, levelKey, word.en, word.sents.length);
+    const previewIndex = entry.queue[0] ?? 0;
+    const selected = word.sents[previewIndex];
+    return typeof selected === 'object' && selected?.text
+        ? { text: selected.text, answer: selected.answer || null }
+        : { text: selected, answer: null };
+}
+
+function getLikelyNextBattleWord() {
+    if (!Array.isArray(activeVocabList) || activeVocabList.length === 0) return null;
+
+    if (gameMode === 'PVP') {
+        const previewPool = activeVocabList.filter(word => !battleUsedWordKeys.has(getBattleWordKey(word)));
+        return (previewPool.length > 0 ? previewPool : activeVocabList)[0] || null;
+    }
+
+    const masteryKey = (currentPracticeMode || '').toLowerCase();
+    if (wrongWordsDeck.length > 0) {
+        const availableWrongWords = wrongWordsDeck.filter(word => !battleUsedWordKeys.has(getBattleWordKey(word)));
+        return (availableWrongWords.length > 0 ? availableWrongWords : wrongWordsDeck)[0] || null;
+    }
+
+    const newWords = activeVocabList.filter(word => {
+        if (!userMastery[masteryKey]) return true;
+        if (!userMastery[masteryKey][selectedLevel]) return true;
+        return !userMastery[masteryKey][selectedLevel][word.en];
+    });
+    if (newWords.length > 0) return newWords[0];
+
+    const masteredWords = activeVocabList.filter(word => {
+        if (!userMastery[masteryKey]) return false;
+        if (!userMastery[masteryKey][selectedLevel]) return false;
+        return userMastery[masteryKey][selectedLevel][word.en];
+    });
+    if (masteredWords.length > 0) return masteredWords[0];
+
+    return activeVocabList[0] || null;
+}
+
+function preloadLikelyNextListeningPrompt() {
+    if (currentPracticeMode !== 'LISTENING') return;
+    const previewWord = getLikelyNextBattleWord();
+    if (!previewWord) return;
+    const preview = getPreviewSentenceForWord(previewWord, 'listening', selectedLevel || 'L1');
+    if (preview?.text) {
+        preloadListeningAzureAudio(preview.text).catch(() => {});
+    }
 }
 
 async function playListeningAzureText(text, element = null, startListeningTimer = false) {
@@ -3108,9 +3197,27 @@ async function playListeningAzureText(text, element = null, startListeningTimer 
 
     audio.onplay = () => {
         if (element) element.classList.add('speaking');
+        if (startListeningTimer) {
+            const listeningTarget = currentVocab?.listeningAnswer || currentVocab?.en || '';
+            const estimatedMs = estimateListeningTargetFinishMs(
+                currentVocab?.sent ? currentVocab.sent : text,
+                listeningTarget,
+                Math.max(0, Math.round(audio.duration * 1000))
+            );
+            clearListeningTimerStartTimeout();
+            listeningTimerStartTimeout = setTimeout(() => {
+                listeningTimerStartTimeout = null;
+                const modal = document.getElementById('launch-modal');
+                if (modal && modal.style.display === 'flex' && typeof startCountdownTimer === 'function' && !timerInterval) {
+                    console.log(`[Listening Debug] Estimated target finished at ${estimatedMs}ms, starting timer.`);
+                    startCountdownTimer();
+                }
+            }, Math.max(250, estimatedMs));
+        }
     };
 
     audio.onended = () => {
+        clearListeningTimerStartTimeout();
         cleanup();
         if (shouldMaintainFocus && hiddenInput) {
             setTimeout(() => hiddenInput.focus(), 50);
@@ -3124,6 +3231,7 @@ async function playListeningAzureText(text, element = null, startListeningTimer 
     };
 
     audio.onerror = () => {
+        clearListeningTimerStartTimeout();
         cleanup();
     };
 
