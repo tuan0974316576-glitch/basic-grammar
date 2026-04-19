@@ -94,6 +94,10 @@ let speakingDebriefActiveLogIndex = null;
 let speakingDebriefPlaybackAudio = null;
 let speakingDebriefPlaybackObjectUrl = '';
 let speakingDebriefBgmRestoreVolume = null;
+const listeningTtsCache = new Map();
+let listeningPlaybackAudio = null;
+let listeningPlaybackObjectUrl = '';
+let listeningPlaybackToken = 0;
 let userSentenceProgress = { listening: {}, speaking: {} };
 let battleLog = [];
 let battleUsedWordKeys = new Set();
@@ -2876,7 +2880,7 @@ if (currentPracticeMode === 'SPEAKING') {
         if (currentVocab.sent) {
             const regex = new RegExp(`\\b${targetWord}\\b`, 'gi');
             const displayHTML = currentVocab.sent.replace(regex, renderListeningSentenceBlank(targetWord));
-            contentHTML += `<div class="sentence-container">${displayHTML}<span class="cyber-speaker-btn cyber-speaker-btn-small listening-replay-btn" onclick="speakText('${safeText}')" role="button" aria-label="Replay audio"></span></div>`;
+            contentHTML += `<div class="sentence-container">${displayHTML}<span class="cyber-speaker-btn cyber-speaker-btn-small listening-replay-btn" onclick="speakText('${safeText}', null, false)" role="button" aria-label="Replay audio"></span></div>`;
         } else {
             contentHTML += `<div style="font-family:'Orbitron'; font-size:14px; color:#d946ef; margin-bottom:15px; letter-spacing:2px;">// AUDIO INTERCEPTED //</div>`;
         }
@@ -2884,7 +2888,7 @@ if (currentPracticeMode === 'SPEAKING') {
         // 2. ����߿Ƽ����ȳ� (ʹ���㮋�� PNG)
         if (!currentVocab.sent) {
             contentHTML += `
-                <div class="cyber-speaker-btn" onclick="speakText('${safeText}')"></div>
+                <div class="cyber-speaker-btn" onclick="speakText('${safeText}', null, false)"></div>
             `;
         }
 
@@ -2897,7 +2901,8 @@ if (currentPracticeMode === 'SPEAKING') {
         qDisplay.style.color = "var(--primary)";
 
         // �Ԅ��x���������
-        setTimeout(() => speakText(textToRead), 300);
+        preloadListeningAzureAudio(textToRead).catch(() => {});
+        setTimeout(() => speakText(textToRead, null, true), 300);
 
     } else {
         qDisplay.style.display = 'block';
@@ -3023,6 +3028,111 @@ function warmUpVoiceEngine() {
     }
 }
 
+function getListeningTtsCacheKey(text, locale = 'en-US') {
+    return `${locale}::${(text || '').trim()}`;
+}
+
+function preloadListeningAzureAudio(text, locale = 'en-US') {
+    const cleanText = (text || '').trim();
+    if (!cleanText) return Promise.reject(new Error('Text is required for listening TTS.'));
+
+    const cacheKey = getListeningTtsCacheKey(cleanText, locale);
+    const cached = listeningTtsCache.get(cacheKey);
+    if (cached) return cached;
+
+    const request = fetchSpeakingDebriefReferenceAudio(cleanText, locale)
+        .then((result) => {
+            listeningTtsCache.set(cacheKey, Promise.resolve(result));
+            return result;
+        })
+        .catch((error) => {
+            listeningTtsCache.delete(cacheKey);
+            throw error;
+        });
+
+    listeningTtsCache.set(cacheKey, request);
+    return request;
+}
+
+function stopListeningPlayback() {
+    listeningPlaybackToken++;
+    window.speechSynthesis.cancel();
+    if (!listeningPlaybackAudio) return;
+    try {
+        listeningPlaybackAudio.pause();
+    } catch (_error) {}
+    if (listeningPlaybackObjectUrl) {
+        URL.revokeObjectURL(listeningPlaybackObjectUrl);
+        listeningPlaybackObjectUrl = '';
+    }
+    listeningPlaybackAudio = null;
+}
+
+async function playListeningAzureText(text, element = null, startListeningTimer = false) {
+    const hiddenInput = document.getElementById('hidden-input');
+    const shouldMaintainFocus = hiddenInput && hiddenInput.style.display !== 'none' &&
+                                 typeof currentPracticeMode !== 'undefined' && currentPracticeMode === 'LISTENING';
+
+    window.speechSynthesis.cancel();
+    document.querySelectorAll('.vocab-row.speaking').forEach(el => el.classList.remove('speaking'));
+    stopListeningPlayback();
+    const playbackToken = ++listeningPlaybackToken;
+
+    const result = await preloadListeningAzureAudio(text, 'en-US');
+    if (playbackToken !== listeningPlaybackToken) return true;
+
+    const binary = atob(result.audioBase64 || '');
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) {
+        bytes[i] = binary.charCodeAt(i);
+    }
+
+    const objectUrl = URL.createObjectURL(new Blob([bytes], { type: result.format || 'audio/mpeg' }));
+    const audio = new Audio(objectUrl);
+    const voiceVolume = (typeof gameVolume !== 'undefined' && Number.isFinite(gameVolume.voice))
+        ? Math.max(0, Math.min(1, gameVolume.voice))
+        : 1.0;
+    audio.volume = voiceVolume;
+    audio.preload = 'auto';
+
+    const cleanup = () => {
+        if (listeningPlaybackObjectUrl === objectUrl) {
+            URL.revokeObjectURL(objectUrl);
+            listeningPlaybackObjectUrl = '';
+        }
+        if (listeningPlaybackAudio === audio) {
+            listeningPlaybackAudio = null;
+        }
+        if (element) element.classList.remove('speaking');
+    };
+
+    audio.onplay = () => {
+        if (element) element.classList.add('speaking');
+    };
+
+    audio.onended = () => {
+        cleanup();
+        if (shouldMaintainFocus && hiddenInput) {
+            setTimeout(() => hiddenInput.focus(), 50);
+        }
+        if (startListeningTimer && typeof currentPracticeMode !== 'undefined' && currentPracticeMode === 'LISTENING') {
+            const modal = document.getElementById('launch-modal');
+            if (modal && modal.style.display === 'flex' && typeof startCountdownTimer === 'function' && !timerInterval) {
+                startCountdownTimer();
+            }
+        }
+    };
+
+    audio.onerror = () => {
+        cleanup();
+    };
+
+    listeningPlaybackAudio = audio;
+    listeningPlaybackObjectUrl = objectUrl;
+    await audio.play();
+    return true;
+}
+
 function closeLaunchModalUI() {
     const modal = document.getElementById('launch-modal');
     const virtualKeyboard = document.getElementById('virtual-keyboard');
@@ -3045,6 +3155,7 @@ function closeLaunchModalUI() {
     if (speakingMediaRecorder && speakingMediaRecorder.state !== 'inactive') {
         speakingMediaRecorder.stop();
     }
+    stopListeningPlayback();
     speakingMediaRecorder = null;
     speakingRecordedChunks = [];
     stopSpeakingAudioStream();
@@ -7597,8 +7708,17 @@ function startCountdownTimer() {
    ���� ADVANCED VOICE ENGINE (Smart Timing) ����
    ========================================= */
 
-function speakText(text, element = null) {
+async function speakText(text, element = null, startListeningTimer = false) {
     if (!text) return;
+
+    if (typeof currentPracticeMode !== 'undefined' && currentPracticeMode === 'LISTENING') {
+        try {
+            const played = await playListeningAzureText(text, element, startListeningTimer);
+            if (played) return;
+        } catch (error) {
+            console.warn('Listening Azure playback failed, falling back to browser voice:', error);
+        }
+    }
 
     // �� ���殔ǰfocus��B��LISTENING mode��Ҫ��
     const hiddenInput = document.getElementById('hidden-input');
@@ -7690,7 +7810,8 @@ function speakText(text, element = null) {
         }
 
         // ����x�궼δ Trigger (���炀�ւS���������һ����)���͂S�� Trigger
-        if (typeof currentPracticeMode !== 'undefined' && currentPracticeMode === 'LISTENING' &&
+        if (startListeningTimer &&
+            typeof currentPracticeMode !== 'undefined' && currentPracticeMode === 'LISTENING' &&
             !hasTimerStarted) {
              const modal = document.getElementById('launch-modal');
              // �_��ҕ�����_�o
@@ -7714,7 +7835,8 @@ function speakText(text, element = null) {
             setTimeout(() => hiddenInput.focus(), 50);
         }
 
-        if (typeof currentPracticeMode !== 'undefined' && currentPracticeMode === 'LISTENING' &&
+        if (startListeningTimer &&
+            typeof currentPracticeMode !== 'undefined' && currentPracticeMode === 'LISTENING' &&
             !hasTimerStarted) {
             const modal = document.getElementById('launch-modal');
             if (modal && modal.style.display === 'flex' && typeof startCountdownTimer === 'function') {
