@@ -3402,13 +3402,22 @@ body {
 }
 
 .listening-blank-inline {
+    position: relative;
+    height: 28px;
     width: 120px;
     min-width: 120px;
+    padding-bottom: 8px;
 }
 
 .listening-blank-inline-wide {
     width: 168px;
     min-width: 168px;
+}
+
+.listening-blank-inline .listening-answer-line {
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
 .listening-answer-shell {
