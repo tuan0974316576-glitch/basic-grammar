@@ -6284,14 +6284,15 @@ body {
 #stage-screen .stage-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 20px;
-    width: 90%;
-    max-width: 400px;
+    gap: 18px;
+    width: 100%;
+    max-width: none;
     margin: 0 auto !important;
     justify-content: center !important;
     max-height: none;
     overflow: visible;
-    padding: 0;
+    padding: 18px 16px 0 10px;
+    box-sizing: border-box;
 }
 
 #stage-screen .stage-btn-simple {
@@ -6479,7 +6480,7 @@ body {
     width: 100%;
     flex: 1 1 auto;
     overflow-y: auto;
-    overflow-x: visible;
+    overflow-x: hidden;
     padding: 0 0 12px;
     box-sizing: border-box;
     scrollbar-width: thin;
@@ -6510,7 +6511,7 @@ body {
 #stage-screen .stage-grid {
     width: 100%;
     max-width: none;
-    padding: 0 4px;
+    padding: 18px 16px 0 10px;
     box-sizing: border-box;
 }
 
