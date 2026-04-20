@@ -3396,9 +3396,6 @@ function handlePlayerTimeout() {
         // �@�� "LIVING ROOM" �Ŀո�Ų������Ե�
         let displayVal = rawVal.replace(/[^A-Z0-9\s\-\']/g, '');
 
-        // B. �����пո񡹵İ汾�Ż�ݔ��� (�o��ҿ���Ҳ�o battleLog ��)
-        e.target.value = displayVal;
-
         // C. ���ɡ�����ĸ���汾 (�Á��Д���e�������)
         // �@�e�҂��������ѷ�̖���ߣ����� "LIVING ROOM" -> "LIVINGROOM"
         let logicVal = displayVal.replace(/[^A-Z0-9]/g, '');
@@ -3415,7 +3412,14 @@ function handlePlayerTimeout() {
                  logicVal = logicVal.substring(0, targetClean.length);
                  // ע�⣺�@�e���ؔ� displayVal������h�e��҄���Ŀո񣬷���������ֲ����������
              }
+
+             if (currentPracticeMode === 'LISTENING') {
+                 displayVal = formatInputForTarget(logicVal, targetWord);
+             }
         }
+
+        // B. �����пո񡹵İ汾�Ż�ݔ��� (�o��ҿ���Ҳ�o battleLog ��)
+        e.target.value = displayVal;
 
         // E. ��Ч
         if (e.inputType === 'deleteContentBackward') {
@@ -3438,7 +3442,8 @@ function handlePlayerTimeout() {
     function updateSmartDisplay(inputVal) {
         if (currentPracticeMode === 'LISTENING') {
             const targetWord = currentVocab.listeningAnswer || currentVocab.en;
-            document.getElementById('q-display').innerHTML = renderListeningAnswerDisplay(targetWord, inputVal);
+            const formattedVal = formatInputForTarget(inputVal, targetWord);
+            document.getElementById('q-display').innerHTML = renderListeningAnswerDisplay(targetWord, formattedVal);
             return;
         }
 
@@ -6339,6 +6344,30 @@ function renderListeningSentenceBlank(text) {
         ? 'listening-blank listening-blank-inline listening-blank-inline-wide'
         : 'listening-blank listening-blank-inline';
     return `<span class="${blankClass}" aria-hidden="true"><span class="listening-answer-line"></span></span>`;
+}
+
+function formatInputForTarget(logicInput, targetWord) {
+    const cleanLogic = String(logicInput || '').replace(/[^A-Za-z0-9]/g, '').toUpperCase();
+    const target = String(targetWord || '');
+    let logicIdx = 0;
+    let formatted = '';
+
+    for (let i = 0; i < target.length; i++) {
+        const targetChar = target[i];
+
+        if (/[A-Za-z0-9]/.test(targetChar)) {
+            if (logicIdx >= cleanLogic.length) break;
+            formatted += cleanLogic[logicIdx];
+            logicIdx++;
+            continue;
+        }
+
+        if (/[\s\-']/.test(targetChar) && logicIdx > 0 && logicIdx < cleanLogic.length) {
+            formatted += targetChar;
+        }
+    }
+
+    return formatted;
 }
 
 function renderListeningAnswerDisplay(text, inputVal) {
