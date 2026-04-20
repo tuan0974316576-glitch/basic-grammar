@@ -5451,6 +5451,11 @@ body {
     contain: layout paint style;
 }
 
+#end-msg {
+    width: 100%;
+    text-align: center;
+}
+
 .kb-row {
     display: flex;
     justify-content: center;
