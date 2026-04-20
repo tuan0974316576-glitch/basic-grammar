@@ -17,7 +17,7 @@
         "answer": "ability"
       }
     ],
-    "ch": ""
+    "ch": "能力"
   },
   {
     "word": "able",
@@ -37,7 +37,7 @@
         "answer": "able"
       }
     ],
-    "ch": ""
+    "ch": "能夠；有能力的"
   },
   {
     "word": "abroad",
@@ -49,7 +49,7 @@
         "answer": "abroad"
       }
     ],
-    "ch": ""
+    "ch": "在外國；到外國"
   },
   {
     "word": "accept",
@@ -69,7 +69,7 @@
         "answer": "accept"
       }
     ],
-    "ch": ""
+    "ch": "接受"
   },
   {
     "word": "accident",
@@ -89,7 +89,7 @@
         "answer": "accident"
       }
     ],
-    "ch": ""
+    "ch": "意外；事故"
   },
   {
     "word": "achieve",
@@ -109,7 +109,7 @@
         "answer": "achieve"
       }
     ],
-    "ch": ""
+    "ch": "達到；實現"
   },
   {
     "word": "active",
@@ -121,7 +121,7 @@
         "answer": "active"
       }
     ],
-    "ch": ""
+    "ch": "活躍的；積極的"
   },
   {
     "word": "actually",
@@ -141,7 +141,7 @@
         "answer": "actually"
       }
     ],
-    "ch": ""
+    "ch": "其實；實際上"
   },
   {
     "word": "adult",
@@ -161,7 +161,7 @@
         "answer": "adult"
       }
     ],
-    "ch": "成年人 (n.)"
+    "ch": "成人"
   },
   {
     "word": "advantage",
@@ -181,7 +181,7 @@
         "answer": "advantage"
       }
     ],
-    "ch": ""
+    "ch": "優點；有利條件"
   },
   {
     "word": "adventure",
@@ -201,7 +201,7 @@
         "answer": "adventure"
       }
     ],
-    "ch": ""
+    "ch": "冒險；奇遇"
   },
   {
     "word": "advertise",
@@ -221,7 +221,7 @@
         "answer": "advertise"
       }
     ],
-    "ch": ""
+    "ch": "做廣告；宣傳"
   },
   {
     "word": "advertisement",
@@ -241,7 +241,7 @@
         "answer": "advertisement"
       }
     ],
-    "ch": ""
+    "ch": "廣告"
   },
   {
     "word": "affect",
@@ -257,7 +257,7 @@
         "answer": "affect"
       }
     ],
-    "ch": ""
+    "ch": "影響"
   },
   {
     "word": "afterward",
@@ -269,14 +269,14 @@
         "answer": "afterward"
       }
     ],
-    "ch": ""
+    "ch": "之後；後來"
   },
   {
     "word": "airline",
     "cefr": "A2",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "航空公司"
   },
   {
     "word": "alive",
@@ -296,7 +296,7 @@
         "answer": "alive"
       }
     ],
-    "ch": ""
+    "ch": "活着的；仍然存在的"
   },
   {
     "word": "allow",
@@ -316,7 +316,7 @@
         "answer": "allow"
       }
     ],
-    "ch": ""
+    "ch": "允許；容許"
   },
   {
     "word": "alone",
@@ -336,7 +336,7 @@
         "answer": "alone"
       }
     ],
-    "ch": ""
+    "ch": "單獨；獨自"
   },
   {
     "word": "along",
@@ -356,7 +356,7 @@
         "answer": "along"
       }
     ],
-    "ch": ""
+    "ch": "沿着；一起"
   },
   {
     "word": "although",
@@ -376,7 +376,7 @@
         "answer": "although"
       }
     ],
-    "ch": ""
+    "ch": "雖然；儘管"
   },
   {
     "word": "among",
@@ -396,7 +396,7 @@
         "answer": "among"
       }
     ],
-    "ch": ""
+    "ch": "在…之中"
   },
   {
     "word": "ancient",
@@ -416,7 +416,7 @@
         "answer": "ancient"
       }
     ],
-    "ch": ""
+    "ch": "古代的；古老的"
   },
   {
     "word": "ankle",
@@ -432,7 +432,7 @@
         "answer": "ankle"
       }
     ],
-    "ch": ""
+    "ch": "腳踝"
   },
   {
     "word": "anybody",
@@ -448,7 +448,7 @@
         "answer": "anybody"
       }
     ],
-    "ch": ""
+    "ch": "任何人"
   },
   {
     "word": "anymore",
@@ -464,7 +464,7 @@
         "answer": "anymore"
       }
     ],
-    "ch": ""
+    "ch": "再；再也"
   },
   {
     "word": "anyway",
@@ -476,7 +476,7 @@
         "answer": "anyway"
       }
     ],
-    "ch": ""
+    "ch": "無論如何；反正"
   },
   {
     "word": "anywhere",
@@ -492,7 +492,7 @@
         "answer": "anywhere"
       }
     ],
-    "ch": ""
+    "ch": "任何地方"
   },
   {
     "word": "app",
@@ -504,7 +504,7 @@
         "answer": "app"
       }
     ],
-    "ch": ""
+    "ch": "應用程式"
   },
   {
     "word": "appearance",
@@ -520,7 +520,7 @@
         "answer": "appearance"
       }
     ],
-    "ch": ""
+    "ch": "外表；出現"
   },
   {
     "word": "apply",
@@ -540,21 +540,21 @@
         "answer": "apply"
       }
     ],
-    "ch": ""
+    "ch": "申請；應用"
   },
   {
     "word": "architect",
     "cefr": "A2",
     "frequency": 2,
     "sentences": [],
-    "ch": ""
+    "ch": "建築師"
   },
   {
     "word": "architecture",
     "cefr": "A2",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "建築學；建築風格"
   },
   {
     "word": "argue",
@@ -574,7 +574,7 @@
         "answer": "argue"
       }
     ],
-    "ch": ""
+    "ch": "爭論；主張"
   },
   {
     "word": "argument",
@@ -594,7 +594,7 @@
         "answer": "argument"
       }
     ],
-    "ch": ""
+    "ch": "爭論；論點"
   },
   {
     "word": "army",
@@ -614,7 +614,7 @@
         "answer": "army"
       }
     ],
-    "ch": ""
+    "ch": "軍隊；陸軍"
   },
   {
     "word": "arrange",
@@ -626,7 +626,7 @@
         "answer": "arrange"
       }
     ],
-    "ch": ""
+    "ch": "安排；整理"
   },
   {
     "word": "arrangement",
@@ -646,7 +646,7 @@
         "answer": "arrangement"
       }
     ],
-    "ch": ""
+    "ch": "安排；佈置"
   },
   {
     "word": "asian",
@@ -666,7 +666,7 @@
         "answer": "asian"
       }
     ],
-    "ch": ""
+    "ch": "亞洲的；亞洲人"
   },
   {
     "word": "asleep",
@@ -682,7 +682,7 @@
         "answer": "asleep"
       }
     ],
-    "ch": ""
+    "ch": "睡着的"
   },
   {
     "word": "assistant",
@@ -702,7 +702,7 @@
         "answer": "assistant"
       }
     ],
-    "ch": ""
+    "ch": "助手；助理"
   },
   {
     "word": "astronaut",
@@ -714,7 +714,7 @@
         "answer": "astronaut"
       }
     ],
-    "ch": ""
+    "ch": "太空人"
   },
   {
     "word": "athlete",
@@ -734,7 +734,7 @@
         "answer": "athlete"
       }
     ],
-    "ch": ""
+    "ch": "運動員"
   },
   {
     "word": "attack",
@@ -754,7 +754,7 @@
         "answer": "attack"
       }
     ],
-    "ch": ""
+    "ch": "攻擊；襲擊"
   },
   {
     "word": "attend",
@@ -774,7 +774,7 @@
         "answer": "attend"
       }
     ],
-    "ch": ""
+    "ch": "出席；參加"
   },
   {
     "word": "attention",
@@ -794,7 +794,7 @@
         "answer": "attention"
       }
     ],
-    "ch": ""
+    "ch": "注意；留心"
   },
   {
     "word": "attractive",
@@ -814,7 +814,7 @@
         "answer": "attractive"
       }
     ],
-    "ch": ""
+    "ch": "吸引人的"
   },
   {
     "word": "audience",
@@ -834,7 +834,7 @@
         "answer": "audience"
       }
     ],
-    "ch": ""
+    "ch": "觀眾；聽眾"
   },
   {
     "word": "author",
@@ -854,7 +854,7 @@
         "answer": "author"
       }
     ],
-    "ch": ""
+    "ch": "作者"
   },
   {
     "word": "available",
@@ -874,7 +874,7 @@
         "answer": "available"
       }
     ],
-    "ch": ""
+    "ch": "可得到的；有空的"
   },
   {
     "word": "avoid",
