@@ -894,7 +894,7 @@
         "answer": "avoid"
       }
     ],
-    "ch": ""
+    "ch": "避免"
   },
   {
     "word": "awful",
@@ -906,7 +906,7 @@
         "answer": "awful"
       }
     ],
-    "ch": ""
+    "ch": "糟糕的；可怕的"
   },
   {
     "word": "background",
@@ -926,7 +926,7 @@
         "answer": "background"
       }
     ],
-    "ch": ""
+    "ch": "背景"
   },
   {
     "word": "badly",
@@ -938,7 +938,7 @@
         "answer": "badly"
       }
     ],
-    "ch": ""
+    "ch": "差；嚴重地"
   },
   {
     "word": "barbeque",
@@ -950,21 +950,21 @@
         "answer": "barbeque"
       }
     ],
-    "ch": ""
+    "ch": "燒烤"
   },
   {
     "word": "basketball",
     "cefr": "A2",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "籃球"
   },
   {
     "word": "beef",
     "cefr": "A2",
     "frequency": 2,
     "sentences": [],
-    "ch": ""
+    "ch": "牛肉"
   },
   {
     "word": "beginner",
@@ -984,7 +984,7 @@
         "answer": "beginner"
       }
     ],
-    "ch": ""
+    "ch": "初學者"
   },
   {
     "word": "behave",
@@ -1000,7 +1000,7 @@
         "answer": "behave"
       }
     ],
-    "ch": ""
+    "ch": "表現；行為舉止"
   },
   {
     "word": "behaviour",
@@ -1012,7 +1012,7 @@
         "answer": "behaviour"
       }
     ],
-    "ch": ""
+    "ch": "行為；舉止"
   },
   {
     "word": "belong",
@@ -1024,14 +1024,14 @@
         "answer": "belong"
       }
     ],
-    "ch": ""
+    "ch": "屬於"
   },
   {
     "word": "biology",
     "cefr": "A2",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "生物學"
   },
   {
     "word": "blood",
@@ -1043,7 +1043,7 @@
         "answer": "blood"
       }
     ],
-    "ch": ""
+    "ch": "血液"
   },
   {
     "word": "blueberry",
@@ -1055,14 +1055,14 @@
         "answer": "blueberry"
       }
     ],
-    "ch": ""
+    "ch": "藍莓"
   },
   {
     "word": "boil",
     "cefr": "A2",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "煮沸；沸騰"
   },
   {
     "word": "bone",
@@ -1074,7 +1074,7 @@
         "answer": "bone"
       }
     ],
-    "ch": ""
+    "ch": "骨頭"
   },
   {
     "word": "borrow",
@@ -1094,7 +1094,7 @@
         "answer": "borrow"
       }
     ],
-    "ch": ""
+    "ch": "借入"
   },
   {
     "word": "boss",
@@ -1106,7 +1106,7 @@
         "answer": "boss"
       }
     ],
-    "ch": ""
+    "ch": "老闆；上司"
   },
   {
     "word": "brain",
@@ -1126,7 +1126,7 @@
         "answer": "brain"
       }
     ],
-    "ch": ""
+    "ch": "大腦"
   },
   {
     "word": "bright",
@@ -1146,7 +1146,7 @@
         "answer": "bright"
       }
     ],
-    "ch": ""
+    "ch": "明亮的；聰明的"
   },
   {
     "word": "brilliant",
@@ -1166,7 +1166,7 @@
         "answer": "brilliant"
       }
     ],
-    "ch": ""
+    "ch": "出色的；聰明的"
   },
   {
     "word": "british",
@@ -1182,7 +1182,7 @@
         "answer": "british"
       }
     ],
-    "ch": ""
+    "ch": "英國的；英國人"
   },
   {
     "word": "brush",
@@ -1198,7 +1198,7 @@
         "answer": "brush"
       }
     ],
-    "ch": ""
+    "ch": "刷；刷子"
   },
   {
     "word": "calendar",
@@ -1214,7 +1214,7 @@
         "answer": "calendar"
       }
     ],
-    "ch": ""
+    "ch": "日曆"
   },
   {
     "word": "camp",
@@ -1234,7 +1234,7 @@
         "answer": "camp"
       }
     ],
-    "ch": ""
+    "ch": "露營；營地"
   },
   {
     "word": "candy",
@@ -1254,7 +1254,7 @@
         "answer": "candy"
       }
     ],
-    "ch": ""
+    "ch": "糖果"
   },
   {
     "word": "careful",
@@ -1274,14 +1274,14 @@
         "answer": "careful"
       }
     ],
-    "ch": ""
+    "ch": "小心的；仔細的"
   },
   {
     "word": "carpet",
     "cefr": "A2",
     "frequency": 3,
     "sentences": [],
-    "ch": ""
+    "ch": "地毯"
   },
   {
     "word": "case",
@@ -1301,7 +1301,7 @@
         "answer": "case"
       }
     ],
-    "ch": ""
+    "ch": "情況；盒子"
   },
   {
     "word": "cash",
@@ -1317,7 +1317,7 @@
         "answer": "cash"
       }
     ],
-    "ch": ""
+    "ch": "現金"
   },
   {
     "word": "castle",
@@ -1337,7 +1337,7 @@
         "answer": "castle"
       }
     ],
-    "ch": ""
+    "ch": "城堡"
   },
   {
     "word": "cause",
@@ -1357,7 +1357,7 @@
         "answer": "cause"
       }
     ],
-    "ch": ""
+    "ch": "造成；原因"
   },
   {
     "word": "celebrate",
@@ -1369,7 +1369,7 @@
         "answer": "celebrate"
       }
     ],
-    "ch": ""
+    "ch": "慶祝"
   },
   {
     "word": "celebrity",
@@ -1389,14 +1389,14 @@
         "answer": "celebrity"
       }
     ],
-    "ch": ""
+    "ch": "名人"
   },
   {
     "word": "center",
     "cefr": "A2",
     "frequency": 4,
     "sentences": [],
-    "ch": ""
+    "ch": "中心"
   },
   {
     "word": "certain",
@@ -1408,7 +1408,7 @@
         "answer": "certain"
       }
     ],
-    "ch": ""
+    "ch": "某些；確定的"
   },
   {
     "word": "chance",
@@ -1428,7 +1428,7 @@
         "answer": "chance"
       }
     ],
-    "ch": ""
+    "ch": "機會"
   },
   {
     "word": "character",
@@ -1448,7 +1448,7 @@
         "answer": "character"
       }
     ],
-    "ch": ""
+    "ch": "角色；性格"
   },
   {
     "word": "charity",
@@ -1468,7 +1468,7 @@
         "answer": "charity"
       }
     ],
-    "ch": ""
+    "ch": "慈善；慈善機構"
   },
   {
     "word": "chat",
@@ -1488,7 +1488,7 @@
         "answer": "chat"
       }
     ],
-    "ch": ""
+    "ch": "聊天"
   },
   {
     "word": "check",
@@ -1508,7 +1508,7 @@
         "answer": "check"
       }
     ],
-    "ch": ""
+    "ch": "檢查；核對"
   },
   {
     "word": "chef",
@@ -1528,7 +1528,7 @@
         "answer": "chef"
       }
     ],
-    "ch": ""
+    "ch": "廚師"
   },
   {
     "word": "chess",
@@ -1540,7 +1540,7 @@
         "answer": "chess"
       }
     ],
-    "ch": ""
+    "ch": "國際象棋"
   },
   {
     "word": "chilli",
@@ -1552,7 +1552,7 @@
         "answer": "chilli"
       }
     ],
-    "ch": ""
+    "ch": "辣椒"
   },
   {
     "word": "choice",
@@ -1572,7 +1572,7 @@
         "answer": "choice"
       }
     ],
-    "ch": ""
+    "ch": "選擇"
   },
   {
     "word": "cigarette",
@@ -1584,7 +1584,7 @@
         "answer": "cigarette"
       }
     ],
-    "ch": ""
+    "ch": "香煙"
   },
   {
     "word": "circle",
@@ -1600,14 +1600,14 @@
         "answer": "circle"
       }
     ],
-    "ch": ""
+    "ch": "圓形；圈"
   },
   {
     "word": "classical",
     "cefr": "A2",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "古典的"
   },
   {
     "word": "classmate",
@@ -1619,7 +1619,7 @@
         "answer": "classmate"
       }
     ],
-    "ch": ""
+    "ch": "同學"
   },
   {
     "word": "cleaner",
@@ -1631,14 +1631,14 @@
         "answer": "cleaner"
       }
     ],
-    "ch": ""
+    "ch": "清潔工；更乾淨的"
   },
   {
     "word": "clearest",
     "cefr": "A2",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "最清楚的"
   },
   {
     "word": "clearly",
@@ -1658,7 +1658,7 @@
         "answer": "clearly"
       }
     ],
-    "ch": ""
+    "ch": "清楚地"
   },
   {
     "word": "clever",
@@ -1670,7 +1670,7 @@
         "answer": "clever"
       }
     ],
-    "ch": ""
+    "ch": "聰明的"
   },
   {
     "word": "climate",
@@ -1690,7 +1690,7 @@
         "answer": "climate"
       }
     ],
-    "ch": ""
+    "ch": "氣候"
   },
   {
     "word": "cloud",
@@ -1706,7 +1706,7 @@
         "answer": "cloud"
       }
     ],
-    "ch": ""
+    "ch": "雲"
   },
   {
     "word": "code",
@@ -1718,7 +1718,7 @@
         "answer": "code"
       }
     ],
-    "ch": ""
+    "ch": "密碼；代碼"
   },
   {
     "word": "colleague",
@@ -1730,7 +1730,7 @@
         "answer": "colleague"
       }
     ],
-    "ch": ""
+    "ch": "同事"
   },
   {
     "word": "collect",
@@ -1750,7 +1750,7 @@
         "answer": "collect"
       }
     ],
-    "ch": ""
+    "ch": "收集"
   },
   {
     "word": "comfortable",
@@ -1762,7 +1762,7 @@
         "answer": "comfortable"
       }
     ],
-    "ch": ""
+    "ch": "舒服的；舒適的"
   },
   {
     "word": "communicate",
@@ -1778,7 +1778,7 @@
         "answer": "communicate"
       }
     ],
-    "ch": ""
+    "ch": "溝通"
   },
   {
     "word": "community",
@@ -1798,7 +1798,7 @@
         "answer": "community"
       }
     ],
-    "ch": ""
+    "ch": "社區"
   },
   {
     "word": "compete",
@@ -1818,7 +1818,7 @@
         "answer": "compete"
       }
     ],
-    "ch": ""
+    "ch": "競爭；比賽"
   },
   {
     "word": "competition",
@@ -1838,7 +1838,7 @@
         "answer": "competition"
       }
     ],
-    "ch": ""
+    "ch": "比賽；競爭"
   },
   {
     "word": "complain",
@@ -1858,7 +1858,7 @@
         "answer": "complain"
       }
     ],
-    "ch": ""
+    "ch": "抱怨"
   },
   {
     "word": "completely",
@@ -1878,7 +1878,7 @@
         "answer": "completely"
       }
     ],
-    "ch": ""
+    "ch": "完全地"
   },
   {
     "word": "condition",
@@ -1898,7 +1898,7 @@
         "answer": "condition"
       }
     ],
-    "ch": ""
+    "ch": "情況；條件"
   },
   {
     "word": "conference",
@@ -1918,7 +1918,7 @@
         "answer": "conference"
       }
     ],
-    "ch": ""
+    "ch": "會議"
   },
   {
     "word": "congratulation",
@@ -1938,7 +1938,7 @@
         "answer": "congratulation"
       }
     ],
-    "ch": ""
+    "ch": "祝賀；恭喜"
   },
   {
     "word": "connect",
@@ -1958,7 +1958,7 @@
         "answer": "connect"
       }
     ],
-    "ch": ""
+    "ch": "連接"
   },
   {
     "word": "contain",
@@ -1978,14 +1978,14 @@
         "answer": "contain"
       }
     ],
-    "ch": ""
+    "ch": "包含"
   },
   {
     "word": "context",
     "cefr": "A2",
     "frequency": 3,
     "sentences": [],
-    "ch": ""
+    "ch": "背景；語境"
   },
   {
     "word": "control",
@@ -2005,7 +2005,7 @@
         "answer": "control"
       }
     ],
-    "ch": ""
+    "ch": "控制"
   },
   {
     "word": "cook",
@@ -2025,14 +2025,14 @@
         "answer": "cook"
       }
     ],
-    "ch": ""
+    "ch": "烹調；廚師"
   },
   {
     "word": "cooks",
     "cefr": "A2",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "廚師；煮食"
   },
   {
     "word": "copy",
@@ -2052,14 +2052,14 @@
         "answer": "copy"
       }
     ],
-    "ch": ""
+    "ch": "複製；副本"
   },
   {
     "word": "corner",
     "cefr": "A2",
     "frequency": 3,
     "sentences": [],
-    "ch": ""
+    "ch": "角落"
   },
   {
     "word": "correctly",
@@ -2071,7 +2071,7 @@
         "answer": "correctly"
       }
     ],
-    "ch": ""
+    "ch": "正確地"
   },
   {
     "word": "couch",
@@ -2091,7 +2091,7 @@
         "answer": "couch"
       }
     ],
-    "ch": ""
+    "ch": "沙發"
   },
   {
     "word": "couple",
@@ -2111,7 +2111,7 @@
         "answer": "couple"
       }
     ],
-    "ch": ""
+    "ch": "一對；兩個"
   },
   {
     "word": "crazy",
@@ -2131,7 +2131,7 @@
         "answer": "crazy"
       }
     ],
-    "ch": ""
+    "ch": "瘋狂的"
   },
   {
     "word": "creative",
@@ -2151,7 +2151,7 @@
         "answer": "creative"
       }
     ],
-    "ch": ""
+    "ch": "有創意的"
   },
   {
     "word": "crime",
@@ -2163,7 +2163,7 @@
         "answer": "crime"
       }
     ],
-    "ch": ""
+    "ch": "罪行"
   },
   {
     "word": "cross",
@@ -2183,7 +2183,7 @@
         "answer": "cross"
       }
     ],
-    "ch": ""
+    "ch": "穿過；交叉"
   },
   {
     "word": "crowd",
@@ -2203,7 +2203,7 @@
         "answer": "crowd"
       }
     ],
-    "ch": ""
+    "ch": "人群"
   },
   {
     "word": "cupboard",
@@ -2223,7 +2223,7 @@
         "answer": "cupboard"
       }
     ],
-    "ch": ""
+    "ch": "櫥櫃"
   },
   {
     "word": "cupcake",
@@ -2235,14 +2235,14 @@
         "answer": "cupcake"
       }
     ],
-    "ch": ""
+    "ch": "杯子蛋糕"
   },
   {
     "word": "curl",
     "cefr": "A2",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "捲曲；捲髮"
   },
   {
     "word": "danger",
@@ -2262,7 +2262,7 @@
         "answer": "danger"
       }
     ],
-    "ch": ""
+    "ch": "危險"
   },
   {
     "word": "dark",
@@ -2274,7 +2274,7 @@
         "answer": "dark"
       }
     ],
-    "ch": ""
+    "ch": "黑暗的；深色的"
   },
   {
     "word": "darker",
@@ -2286,14 +2286,14 @@
         "answer": "darker"
       }
     ],
-    "ch": ""
+    "ch": "更暗的；更深色的"
   },
   {
     "word": "data",
     "cefr": "A2",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "資料；數據"
   },
   {
     "word": "dead",
@@ -2313,7 +2313,7 @@
         "answer": "dead"
       }
     ],
-    "ch": ""
+    "ch": "死的"
   },
   {
     "word": "dear",
@@ -2333,7 +2333,7 @@
         "answer": "dear"
       }
     ],
-    "ch": ""
+    "ch": "親愛的；昂貴的"
   },
   {
     "word": "death",
@@ -2353,7 +2353,7 @@
         "answer": "death"
       }
     ],
-    "ch": ""
+    "ch": "死亡"
   },
   {
     "word": "decision",
@@ -2373,21 +2373,21 @@
         "answer": "decision"
       }
     ],
-    "ch": ""
+    "ch": "決定"
   },
   {
     "word": "deeper",
     "cefr": "A2",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "更深的"
   },
   {
     "word": "deepest",
     "cefr": "A2",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "最深的"
   },
   {
     "word": "degree",
@@ -2407,7 +2407,7 @@
         "answer": "degree"
       }
     ],
-    "ch": ""
+    "ch": "程度；學位"
   },
   {
     "word": "department",
@@ -2427,7 +2427,7 @@
         "answer": "department"
       }
     ],
-    "ch": ""
+    "ch": "部門"
   },
   {
     "word": "depend",
@@ -2447,7 +2447,7 @@
         "answer": "depend"
       }
     ],
-    "ch": ""
+    "ch": "依靠；取決於"
   },
   {
     "word": "designer",
