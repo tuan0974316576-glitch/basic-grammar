@@ -140,26 +140,6 @@
     "ch": "毗鄰"
   },
   {
-    "word": "Admiralty",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "My father works in Admiralty.",
-        "answer": "Admiralty"
-      },
-      {
-        "text": "We changed trains at Admiralty this morning.",
-        "answer": "Admiralty"
-      },
-      {
-        "text": "There are many offices in Admiralty.",
-        "answer": "Admiralty"
-      }
-    ],
-    "ch": "金鐘"
-  },
-  {
     "word": "advice",
     "cefr": "A1",
     "frequency": 19,
@@ -460,26 +440,6 @@
     "ch": "藝術家 (n.)"
   },
   {
-    "word": "AsiaWorld-Expo",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "The concert will be held at AsiaWorld-Expo.",
-        "answer": "AsiaWorld-Expo"
-      },
-      {
-        "text": "We took the train to AsiaWorld-Expo.",
-        "answer": "AsiaWorld-Expo"
-      },
-      {
-        "text": "Many big events happen at AsiaWorld-Expo.",
-        "answer": "AsiaWorld-Expo"
-      }
-    ],
-    "ch": "亞洲國際博覽館"
-  },
-  {
     "word": "August",
     "cefr": "A1",
     "frequency": null,
@@ -498,46 +458,6 @@
       }
     ],
     "ch": "八月 (n.)"
-  },
-  {
-    "word": "Austin",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "We got off at Austin and walked to school.",
-        "answer": "Austin"
-      },
-      {
-        "text": "Austin Station is near my home.",
-        "answer": "Austin"
-      },
-      {
-        "text": "My aunt met us outside Austin yesterday.",
-        "answer": "Austin"
-      }
-    ],
-    "ch": "柯士甸"
-  },
-  {
-    "word": "Australia",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "My cousin moved to Australia last year.",
-        "answer": "Australia"
-      },
-      {
-        "text": "Australia is famous for kangaroos.",
-        "answer": "Australia"
-      },
-      {
-        "text": "We want to visit Australia in summer.",
-        "answer": "Australia"
-      }
-    ],
-    "ch": "澳洲"
   },
   {
     "word": "autumn",
@@ -1240,26 +1160,6 @@
     "ch": "相機"
   },
   {
-    "word": "Canada",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "My uncle lives in Canada.",
-        "answer": "Canada"
-      },
-      {
-        "text": "Canada has very cold winters.",
-        "answer": "Canada"
-      },
-      {
-        "text": "They flew to Canada for a holiday.",
-        "answer": "Canada"
-      }
-    ],
-    "ch": "加拿大"
-  },
-  {
     "word": "capital",
     "cefr": "A1",
     "frequency": 3,
@@ -1320,66 +1220,6 @@
     "ch": "攜帶"
   },
   {
-    "word": "Causeway Bay",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "We went shopping in Causeway Bay.",
-        "answer": "Causeway Bay"
-      },
-      {
-        "text": "Causeway Bay is crowded on weekends.",
-        "answer": "Causeway Bay"
-      },
-      {
-        "text": "My friend met me in Causeway Bay after school.",
-        "answer": "Causeway Bay"
-      }
-    ],
-    "ch": "銅鑼灣"
-  },
-  {
-    "word": "Causeway Bay",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "We went shopping in Causeway Bay.",
-        "answer": "Causeway Bay"
-      },
-      {
-        "text": "Causeway Bay is crowded on weekends.",
-        "answer": "Causeway Bay"
-      },
-      {
-        "text": "My friend met me in Causeway Bay after school.",
-        "answer": "Causeway Bay"
-      }
-    ],
-    "ch": "銅鑼灣"
-  },
-  {
-    "word": "Central",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "My office is in Central.",
-        "answer": "Central"
-      },
-      {
-        "text": "We took the MTR to Central.",
-        "answer": "Central"
-      },
-      {
-        "text": "Central has many tall buildings.",
-        "answer": "Central"
-      }
-    ],
-    "ch": "中環"
-  },
-  {
     "word": "century",
     "cefr": "A1",
     "frequency": 8,
@@ -1398,26 +1238,6 @@
       }
     ],
     "ch": "世紀"
-  },
-  {
-    "word": "Che Kung Temple",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "We visited Che Kung Temple during the holiday.",
-        "answer": "Che Kung Temple"
-      },
-      {
-        "text": "Many tourists go to Che Kung Temple each year.",
-        "answer": "Che Kung Temple"
-      },
-      {
-        "text": "Che Kung Temple is a famous place in Hong Kong.",
-        "answer": "Che Kung Temple"
-      }
-    ],
-    "ch": "車公廟"
   },
   {
     "word": "cheaper",
@@ -1480,26 +1300,6 @@
     "ch": "芝士"
   },
   {
-    "word": "Chek Lap Kok",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "The airport is in Chek Lap Kok.",
-        "answer": "Chek Lap Kok"
-      },
-      {
-        "text": "My father drove us to Chek Lap Kok.",
-        "answer": "Chek Lap Kok"
-      },
-      {
-        "text": "Chek Lap Kok is on Lantau Island.",
-        "answer": "Chek Lap Kok"
-      }
-    ],
-    "ch": "赤鱲角"
-  },
-  {
     "word": "chicken",
     "cefr": "A1",
     "frequency": 6,
@@ -1518,26 +1318,6 @@
       }
     ],
     "ch": "雞肉"
-  },
-  {
-    "word": "China",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "My grandparents were born in China.",
-        "answer": "China"
-      },
-      {
-        "text": "China is a very large country.",
-        "answer": "China"
-      },
-      {
-        "text": "We learned about China in class today.",
-        "answer": "China"
-      }
-    ],
-    "ch": "中國"
   },
   {
     "word": "cinema",
@@ -1940,26 +1720,6 @@
     "ch": "牛"
   },
   {
-    "word": "Croatia",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "My teacher travelled to Croatia last year.",
-        "answer": "Croatia"
-      },
-      {
-        "text": "Croatia is a beautiful country by the sea.",
-        "answer": "Croatia"
-      },
-      {
-        "text": "They want to visit Croatia in summer.",
-        "answer": "Croatia"
-      }
-    ],
-    "ch": "克羅地亞"
-  },
-  {
     "word": "cross",
     "cefr": "A1",
     "frequency": null,
@@ -2038,26 +1798,6 @@
       }
     ],
     "ch": "顧客"
-  },
-  {
-    "word": "Cyberport",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "My brother works in Cyberport.",
-        "answer": "Cyberport"
-      },
-      {
-        "text": "We took a bus to Cyberport.",
-        "answer": "Cyberport"
-      },
-      {
-        "text": "Cyberport has many technology companies.",
-        "answer": "Cyberport"
-      }
-    ],
-    "ch": "數碼港"
   },
   {
     "word": "dance",
@@ -2238,26 +1978,6 @@
       }
     ],
     "ch": "書桌"
-  },
-  {
-    "word": "Diamond Hill",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "We changed trains at Diamond Hill.",
-        "answer": "Diamond Hill"
-      },
-      {
-        "text": "My aunt lives near Diamond Hill.",
-        "answer": "Diamond Hill"
-      },
-      {
-        "text": "Diamond Hill is busy in the evening.",
-        "answer": "Diamond Hill"
-      }
-    ],
-    "ch": "鑽石山"
   },
   {
     "word": "dictionary",
@@ -2700,26 +2420,6 @@
     "ch": "運動"
   },
   {
-    "word": "Exhibition Centre",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "We got off at Exhibition Centre Station.",
-        "answer": "Exhibition Centre"
-      },
-      {
-        "text": "The art fair is near Exhibition Centre.",
-        "answer": "Exhibition Centre"
-      },
-      {
-        "text": "My father met his client at Exhibition Centre.",
-        "answer": "Exhibition Centre"
-      }
-    ],
-    "ch": "會展"
-  },
-  {
     "word": "expensive",
     "cefr": "A1",
     "frequency": 13,
@@ -3060,46 +2760,6 @@
     "ch": "表格"
   },
   {
-    "word": "Fortress Point",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "My aunt lives in Fortress Point.",
-        "answer": "Fortress Point"
-      },
-      {
-        "text": "We got off the tram at Fortress Point.",
-        "answer": "Fortress Point"
-      },
-      {
-        "text": "There are many restaurants in Fortress Point.",
-        "answer": "Fortress Point"
-      }
-    ],
-    "ch": "炮台山"
-  },
-  {
-    "word": "France",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "My teacher travelled to France last year.",
-        "answer": "France"
-      },
-      {
-        "text": "France is famous for art and food.",
-        "answer": "France"
-      },
-      {
-        "text": "They want to study in France one day.",
-        "answer": "France"
-      }
-    ],
-    "ch": "法國"
-  },
-  {
     "word": "Friday",
     "cefr": "A1",
     "frequency": null,
@@ -3198,26 +2858,6 @@
       }
     ],
     "ch": "花園"
-  },
-  {
-    "word": "Germany",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "My friend moved to Germany last year.",
-        "answer": "Germany"
-      },
-      {
-        "text": "Germany is a country in Europe.",
-        "answer": "Germany"
-      },
-      {
-        "text": "They visited Germany during the summer holiday.",
-        "answer": "Germany"
-      }
-    ],
-    "ch": "德國"
   },
   {
     "word": "girlfriend",
@@ -3720,26 +3360,6 @@
     "ch": "家課"
   },
   {
-    "word": "Hong Kong",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "Hong Kong is my home city.",
-        "answer": "Hong Kong"
-      },
-      {
-        "text": "Many tourists visit Hong Kong every year.",
-        "answer": "Hong Kong"
-      },
-      {
-        "text": "The weather in Hong Kong is very hot in summer.",
-        "answer": "Hong Kong"
-      }
-    ],
-    "ch": "香港"
-  },
-  {
     "word": "horse",
     "cefr": "A1",
     "frequency": 9,
@@ -4120,26 +3740,6 @@
     "ch": "島"
   },
   {
-    "word": "Italy",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "My aunt travelled to Italy last summer.",
-        "answer": "Italy"
-      },
-      {
-        "text": "Italy is famous for pizza and pasta.",
-        "answer": "Italy"
-      },
-      {
-        "text": "They dream of visiting Italy one day.",
-        "answer": "Italy"
-      }
-    ],
-    "ch": "意大利"
-  },
-  {
     "word": "jacket",
     "cefr": "A1",
     "frequency": 2,
@@ -4198,26 +3798,6 @@
       }
     ],
     "ch": "參加"
-  },
-  {
-    "word": "Jordan",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "My friend moved to Jordan with his family.",
-        "answer": "Jordan"
-      },
-      {
-        "text": "Jordan is in the Middle East.",
-        "answer": "Jordan"
-      },
-      {
-        "text": "They want to visit Jordan next year.",
-        "answer": "Jordan"
-      }
-    ],
-    "ch": "佐敦"
   },
   {
     "word": "journey",
@@ -4300,46 +3880,6 @@
     "ch": "六月"
   },
   {
-    "word": "Kai Tak",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "We visited the sports park in Kai Tak.",
-        "answer": "Kai Tak"
-      },
-      {
-        "text": "My uncle lives near Kai Tak.",
-        "answer": "Kai Tak"
-      },
-      {
-        "text": "Kai Tak is changing very quickly.",
-        "answer": "Kai Tak"
-      }
-    ],
-    "ch": "啟德"
-  },
-  {
-    "word": "Kennedy Town",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "We had dinner in Kennedy Town last night.",
-        "answer": "Kennedy Town"
-      },
-      {
-        "text": "My friend lives in Kennedy Town.",
-        "answer": "Kennedy Town"
-      },
-      {
-        "text": "There are many caf?s in Kennedy Town.",
-        "answer": "Kennedy Town"
-      }
-    ],
-    "ch": "堅尼地城"
-  },
-  {
     "word": "kitchen",
     "cefr": "A1",
     "frequency": 32,
@@ -4358,66 +3898,6 @@
       }
     ],
     "ch": "廚房"
-  },
-  {
-    "word": "Kowloon Tong",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "We changed to another line at Kowloon Tong.",
-        "answer": "Kowloon Tong"
-      },
-      {
-        "text": "My school is near Kowloon Tong.",
-        "answer": "Kowloon Tong"
-      },
-      {
-        "text": "Kowloon Tong is busy in the morning.",
-        "answer": "Kowloon Tong"
-      }
-    ],
-    "ch": "九龍塘"
-  },
-  {
-    "word": "Lamma Island",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "We spent the weekend on Lamma Island.",
-        "answer": "Lamma Island"
-      },
-      {
-        "text": "Lamma Island is famous for seafood.",
-        "answer": "Lamma Island"
-      },
-      {
-        "text": "They took a ferry to Lamma Island.",
-        "answer": "Lamma Island"
-      }
-    ],
-    "ch": "南丫島"
-  },
-  {
-    "word": "Lantau Island",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "The airport is on Lantau Island.",
-        "answer": "Lantau Island"
-      },
-      {
-        "text": "We visited a beach on Lantau Island.",
-        "answer": "Lantau Island"
-      },
-      {
-        "text": "Lantau Island is very large.",
-        "answer": "Lantau Island"
-      }
-    ],
-    "ch": "大嶼山"
   },
   {
     "word": "laugh",
@@ -4520,26 +4000,6 @@
     "ch": "獅子"
   },
   {
-    "word": "Lion Rock",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "We could see Lion Rock from the bus.",
-        "answer": "Lion Rock"
-      },
-      {
-        "text": "Lion Rock is one of Hong Kong?s famous landmarks.",
-        "answer": "Lion Rock"
-      },
-      {
-        "text": "My father likes hiking near Lion Rock.",
-        "answer": "Lion Rock"
-      }
-    ],
-    "ch": "獅子山"
-  },
-  {
     "word": "list",
     "cefr": "A1",
     "frequency": 12,
@@ -4600,26 +4060,6 @@
     "ch": "較長"
   },
   {
-    "word": "LOUAS Park",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "We walked through LOUAS Park after dinner.",
-        "answer": "LOUAS Park"
-      },
-      {
-        "text": "My friend met me outside LOUAS Park.",
-        "answer": "LOUAS Park"
-      },
-      {
-        "text": "There were many families in LOUAS Park yesterday.",
-        "answer": "LOUAS Park"
-      }
-    ],
-    "ch": "康城"
-  },
-  {
     "word": "lunch",
     "cefr": "A1",
     "frequency": 7,
@@ -4638,26 +4078,6 @@
       }
     ],
     "ch": "午餐"
-  },
-  {
-    "word": "M+ Museum",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "Our class visited the M+ Museum last week.",
-        "answer": "M+ Museum"
-      },
-      {
-        "text": "There is a new show at the M+ Museum.",
-        "answer": "M+ Museum"
-      },
-      {
-        "text": "My brother wants to go to the M+ Museum on Sunday.",
-        "answer": "M+ Museum"
-      }
-    ],
-    "ch": "M+???"
   },
   {
     "word": "machine",
@@ -4700,26 +4120,6 @@
     "ch": "雜誌"
   },
   {
-    "word": "Mai Po",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "We saw many birds in Mai Po.",
-        "answer": "Mai Po"
-      },
-      {
-        "text": "My teacher took us to Mai Po for a school trip.",
-        "answer": "Mai Po"
-      },
-      {
-        "text": "Mai Po is famous for its wetlands.",
-        "answer": "Mai Po"
-      }
-    ],
-    "ch": "米埔"
-  },
-  {
     "word": "main",
     "cefr": "A1",
     "frequency": 23,
@@ -4738,26 +4138,6 @@
       }
     ],
     "ch": "主要的"
-  },
-  {
-    "word": "Malaysia",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "My cousins live in Malaysia.",
-        "answer": "Malaysia"
-      },
-      {
-        "text": "Malaysia is known for its delicious food.",
-        "answer": "Malaysia"
-      },
-      {
-        "text": "They flew to Malaysia during the holiday.",
-        "answer": "Malaysia"
-      }
-    ],
-    "ch": "馬來西亞"
   },
   {
     "word": "March",
@@ -5060,26 +4440,6 @@
     "ch": "星期一"
   },
   {
-    "word": "Mong Kok",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "We went shopping in Mong Kok yesterday.",
-        "answer": "Mong Kok"
-      },
-      {
-        "text": "Mong Kok is very busy on weekends.",
-        "answer": "Mong Kok"
-      },
-      {
-        "text": "My aunt works in Mong Kok.",
-        "answer": "Mong Kok"
-      }
-    ],
-    "ch": "旺角"
-  },
-  {
     "word": "mountain",
     "cefr": "A1",
     "frequency": 9,
@@ -5300,26 +4660,6 @@
     "ch": "北面"
   },
   {
-    "word": "North Point",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "My grandmother lives in North Point.",
-        "answer": "North Point"
-      },
-      {
-        "text": "We had dinner in North Point yesterday.",
-        "answer": "North Point"
-      },
-      {
-        "text": "North Point is easy to reach by MTR.",
-        "answer": "North Point"
-      }
-    ],
-    "ch": "北角"
-  },
-  {
     "word": "nose",
     "cefr": "A1",
     "frequency": 1,
@@ -5478,26 +4818,6 @@
       }
     ],
     "ch": "最年長"
-  },
-  {
-    "word": "Olyampic",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "She dreams of joining the Olyampic team one day.",
-        "answer": "Olyampic"
-      },
-      {
-        "text": "The school held an Olyampic sports event.",
-        "answer": "Olyampic"
-      },
-      {
-        "text": "He watched an Olyampic race on TV.",
-        "answer": "Olyampic"
-      }
-    ],
-    "ch": "奧運"
   },
   {
     "word": "onion",
@@ -6220,26 +5540,6 @@
     "ch": "漂亮的"
   },
   {
-    "word": "Prince Edward",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "We got off the train at Prince Edward.",
-        "answer": "Prince Edward"
-      },
-      {
-        "text": "My cousin lives near Prince Edward.",
-        "answer": "Prince Edward"
-      },
-      {
-        "text": "Prince Edward is busy at lunchtime.",
-        "answer": "Prince Edward"
-      }
-    ],
-    "ch": "太子"
-  },
-  {
     "word": "product",
     "cefr": "A1",
     "frequency": 35,
@@ -6300,26 +5600,6 @@
     "ch": "紫色"
   },
   {
-    "word": "Quarry Bay",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "My aunt works in Quarry Bay.",
-        "answer": "Quarry Bay"
-      },
-      {
-        "text": "We changed buses in Quarry Bay.",
-        "answer": "Quarry Bay"
-      },
-      {
-        "text": "There are many offices in Quarry Bay.",
-        "answer": "Quarry Bay"
-      }
-    ],
-    "ch": "鰂魚涌"
-  },
-  {
     "word": "quick",
     "cefr": "A1",
     "frequency": 7,
@@ -6378,26 +5658,6 @@
       }
     ],
     "ch": "安靜的"
-  },
-  {
-    "word": "Race course",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "We walked past the Race course on Sunday.",
-        "answer": "Race course"
-      },
-      {
-        "text": "My uncle works near the Race course.",
-        "answer": "Race course"
-      },
-      {
-        "text": "There was a big event at the Race course.",
-        "answer": "Race course"
-      }
-    ],
-    "ch": "馬場"
   },
   {
     "word": "radio",
@@ -6820,46 +6080,6 @@
     "ch": "九月"
   },
   {
-    "word": "Sham Shui Po",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "We bought fabric in Sham Shui Po.",
-        "answer": "Sham Shui Po"
-      },
-      {
-        "text": "My uncle lives in Sham Shui Po.",
-        "answer": "Sham Shui Po"
-      },
-      {
-        "text": "Sham Shui Po is famous for its markets.",
-        "answer": "Sham Shui Po"
-      }
-    ],
-    "ch": "深水埗"
-  },
-  {
-    "word": "Shek Kip Mei",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "My grandmother lives in Shek Kip Mei.",
-        "answer": "Shek Kip Mei"
-      },
-      {
-        "text": "We passed through Shek Kip Mei on the bus.",
-        "answer": "Shek Kip Mei"
-      },
-      {
-        "text": "Shek Kip Mei is not far from our school.",
-        "answer": "Shek Kip Mei"
-      }
-    ],
-    "ch": "石硤尾"
-  },
-  {
     "word": "shirt",
     "cefr": "A1",
     "frequency": 1,
@@ -6940,26 +6160,6 @@
     "ch": "淋浴"
   },
   {
-    "word": "Shung Wong Toi",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "We got off at Shung Wong Toi Station.",
-        "answer": "Shung Wong Toi"
-      },
-      {
-        "text": "My aunt works near Shung Wong Toi.",
-        "answer": "Shung Wong Toi"
-      },
-      {
-        "text": "Shung Wong Toi is on the new line.",
-        "answer": "Shung Wong Toi"
-      }
-    ],
-    "ch": "宋皇臺"
-  },
-  {
     "word": "sick",
     "cefr": "A1",
     "frequency": 3,
@@ -7018,26 +6218,6 @@
       }
     ],
     "ch": "唱歌"
-  },
-  {
-    "word": "Singapore",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "My cousin moved to Singapore last year.",
-        "answer": "Singapore"
-      },
-      {
-        "text": "Singapore is a clean and modern city.",
-        "answer": "Singapore"
-      },
-      {
-        "text": "They flew to Singapore for a short holiday.",
-        "answer": "Singapore"
-      }
-    ],
-    "ch": "新加坡"
   },
   {
     "word": "singer",
@@ -7320,26 +6500,6 @@
     "ch": "南面"
   },
   {
-    "word": "South Korea",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "My uncle works in South Korea.",
-        "answer": "South Korea"
-      },
-      {
-        "text": "South Korea is famous for pop music.",
-        "answer": "South Korea"
-      },
-      {
-        "text": "They travelled to South Korea in winter.",
-        "answer": "South Korea"
-      }
-    ],
-    "ch": "南韓"
-  },
-  {
     "word": "space",
     "cefr": "A1",
     "frequency": 35,
@@ -7358,26 +6518,6 @@
       }
     ],
     "ch": "太空"
-  },
-  {
-    "word": "Spain",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "My teacher visited Spain last summer.",
-        "answer": "Spain"
-      },
-      {
-        "text": "Spain is famous for football.",
-        "answer": "Spain"
-      },
-      {
-        "text": "They want to travel around Spain next year.",
-        "answer": "Spain"
-      }
-    ],
-    "ch": "西班牙"
   },
   {
     "word": "special",
@@ -7720,66 +6860,6 @@
     "ch": "較甜"
   },
   {
-    "word": "Switzerland",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "My uncle travelled to Switzerland last winter.",
-        "answer": "Switzerland"
-      },
-      {
-        "text": "Switzerland is famous for mountains and chocolate.",
-        "answer": "Switzerland"
-      },
-      {
-        "text": "They want to visit Switzerland one day.",
-        "answer": "Switzerland"
-      }
-    ],
-    "ch": "瑞士"
-  },
-  {
-    "word": "Tai Koo",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "We met at Tai Koo after school.",
-        "answer": "Tai Koo"
-      },
-      {
-        "text": "My aunt works near Tai Koo.",
-        "answer": "Tai Koo"
-      },
-      {
-        "text": "Tai Koo is easy to reach by MTR.",
-        "answer": "Tai Koo"
-      }
-    ],
-    "ch": "太古"
-  },
-  {
-    "word": "Tai O",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "We visited Tai O during the holiday.",
-        "answer": "Tai O"
-      },
-      {
-        "text": "Tai O is famous for its stilt houses.",
-        "answer": "Tai O"
-      },
-      {
-        "text": "The seafood in Tai O is very popular.",
-        "answer": "Tai O"
-      }
-    ],
-    "ch": "大澳"
-  },
-  {
     "word": "tallest",
     "cefr": "A1",
     "frequency": 1,
@@ -8020,26 +7100,6 @@
     "ch": "測驗"
   },
   {
-    "word": "Thailand",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "My family visited Thailand last summer.",
-        "answer": "Thailand"
-      },
-      {
-        "text": "Thailand is famous for its beaches.",
-        "answer": "Thailand"
-      },
-      {
-        "text": "They want to travel to Thailand next year.",
-        "answer": "Thailand"
-      }
-    ],
-    "ch": "泰國"
-  },
-  {
     "word": "thank",
     "cefr": "A1",
     "frequency": 49,
@@ -8058,66 +7118,6 @@
       }
     ],
     "ch": "感謝"
-  },
-  {
-    "word": "The Peak",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "We could see the whole city from The Peak.",
-        "answer": "The Peak"
-      },
-      {
-        "text": "Many tourists visit The Peak every day.",
-        "answer": "The Peak"
-      },
-      {
-        "text": "My parents took us to The Peak on Sunday.",
-        "answer": "The Peak"
-      }
-    ],
-    "ch": "山頂"
-  },
-  {
-    "word": "The United Kingdom",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "My aunt moved to The United Kingdom last year.",
-        "answer": "The United Kingdom"
-      },
-      {
-        "text": "The United Kingdom is made up of four countries.",
-        "answer": "The United Kingdom"
-      },
-      {
-        "text": "They flew to The United Kingdom for a holiday.",
-        "answer": "The United Kingdom"
-      }
-    ],
-    "ch": "英國"
-  },
-  {
-    "word": "The USA",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "My cousin studies in The USA.",
-        "answer": "The USA"
-      },
-      {
-        "text": "The USA is very far from Hong Kong.",
-        "answer": "The USA"
-      },
-      {
-        "text": "They travelled around The USA in summer.",
-        "answer": "The USA"
-      }
-    ],
-    "ch": "美國"
   },
   {
     "word": "theatre",
@@ -8360,46 +7360,6 @@
     "ch": "樹"
   },
   {
-    "word": "Tsim Sha Tsui",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "We went shopping in Tsim Sha Tsui.",
-        "answer": "Tsim Sha Tsui"
-      },
-      {
-        "text": "My cousin works in Tsim Sha Tsui.",
-        "answer": "Tsim Sha Tsui"
-      },
-      {
-        "text": "There are many tourists in Tsim Sha Tsui.",
-        "answer": "Tsim Sha Tsui"
-      }
-    ],
-    "ch": "尖沙咀"
-  },
-  {
-    "word": "Tuen Mun",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "My aunt lives in Tuen Mun.",
-        "answer": "Tuen Mun"
-      },
-      {
-        "text": "We visited a beach in Tuen Mun.",
-        "answer": "Tuen Mun"
-      },
-      {
-        "text": "The bus to Tuen Mun was full.",
-        "answer": "Tuen Mun"
-      }
-    ],
-    "ch": "屯門"
-  },
-  {
     "word": "Tuesday",
     "cefr": "A1",
     "frequency": null,
@@ -8580,26 +7540,6 @@
     "ch": "蔬菜"
   },
   {
-    "word": "Victoria Harbour",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "We took photos at Victoria Harbour.",
-        "answer": "Victoria Harbour"
-      },
-      {
-        "text": "The lights at Victoria Harbour are beautiful at night.",
-        "answer": "Victoria Harbour"
-      },
-      {
-        "text": "Many tourists visit Victoria Harbour every evening.",
-        "answer": "Victoria Harbour"
-      }
-    ],
-    "ch": "維多利亞港"
-  },
-  {
     "word": "video",
     "cefr": "A1",
     "frequency": 61,
@@ -8720,26 +7660,6 @@
     "ch": "沿著…走"
   },
   {
-    "word": "Wan Chai",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "My aunt works in Wan Chai.",
-        "answer": "Wan Chai"
-      },
-      {
-        "text": "We had dinner in Wan Chai yesterday.",
-        "answer": "Wan Chai"
-      },
-      {
-        "text": "Wan Chai is busy during lunchtime.",
-        "answer": "Wan Chai"
-      }
-    ],
-    "ch": "灣仔"
-  },
-  {
     "word": "warmer",
     "cefr": "A1",
     "frequency": 2,
@@ -8858,46 +7778,6 @@
       }
     ],
     "ch": "西面"
-  },
-  {
-    "word": "West Kowloon Cultural District",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "We visited the West Kowloon Cultural District on Sunday.",
-        "answer": "West Kowloon Cultural District"
-      },
-      {
-        "text": "There was a music show in the West Kowloon Cultural District.",
-        "answer": "West Kowloon Cultural District"
-      },
-      {
-        "text": "Many families walk around the West Kowloon Cultural District at night.",
-        "answer": "West Kowloon Cultural District"
-      }
-    ],
-    "ch": "西九文化區"
-  },
-  {
-    "word": "Whampoa",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "My friend lives in Whampoa.",
-        "answer": "Whampoa"
-      },
-      {
-        "text": "We got off the train at Whampoa.",
-        "answer": "Whampoa"
-      },
-      {
-        "text": "Whampoa is not far from my school.",
-        "answer": "Whampoa"
-      }
-    ],
-    "ch": "黃埔"
   },
   {
     "word": "white",

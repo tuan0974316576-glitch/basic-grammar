@@ -127,24 +127,6 @@ const VOCAB_DB = {
             ]
         },
         {
-            "en": "Admiralty",
-            "ch": "金鐘",
-            "sents": [
-                {
-                    "text": "My father works in Admiralty.",
-                    "answer": "Admiralty"
-                },
-                {
-                    "text": "We changed trains at Admiralty this morning.",
-                    "answer": "Admiralty"
-                },
-                {
-                    "text": "There are many offices in Admiralty.",
-                    "answer": "Admiralty"
-                }
-            ]
-        },
-        {
             "en": "advice",
             "ch": "建議 (n.)",
             "sents": [
@@ -415,24 +397,6 @@ const VOCAB_DB = {
             ]
         },
         {
-            "en": "AsiaWorld-Expo",
-            "ch": "亞洲國際博覽館",
-            "sents": [
-                {
-                    "text": "The concert will be held at AsiaWorld-Expo.",
-                    "answer": "AsiaWorld-Expo"
-                },
-                {
-                    "text": "We took the train to AsiaWorld-Expo.",
-                    "answer": "AsiaWorld-Expo"
-                },
-                {
-                    "text": "Many big events happen at AsiaWorld-Expo.",
-                    "answer": "AsiaWorld-Expo"
-                }
-            ]
-        },
-        {
             "en": "August",
             "ch": "八月 (n.)",
             "sents": [
@@ -447,42 +411,6 @@ const VOCAB_DB = {
                 {
                     "text": "School starts in late August.",
                     "answer": "August"
-                }
-            ]
-        },
-        {
-            "en": "Austin",
-            "ch": "柯士甸",
-            "sents": [
-                {
-                    "text": "We got off at Austin and walked to school.",
-                    "answer": "Austin"
-                },
-                {
-                    "text": "Austin Station is near my home.",
-                    "answer": "Austin"
-                },
-                {
-                    "text": "My aunt met us outside Austin yesterday.",
-                    "answer": "Austin"
-                }
-            ]
-        },
-        {
-            "en": "Australia",
-            "ch": "澳洲",
-            "sents": [
-                {
-                    "text": "My cousin moved to Australia last year.",
-                    "answer": "Australia"
-                },
-                {
-                    "text": "Australia is famous for kangaroos.",
-                    "answer": "Australia"
-                },
-                {
-                    "text": "We want to visit Australia in summer.",
-                    "answer": "Australia"
                 }
             ]
         },
@@ -1117,24 +1045,6 @@ const VOCAB_DB = {
             ]
         },
         {
-            "en": "Canada",
-            "ch": "加拿大",
-            "sents": [
-                {
-                    "text": "My uncle lives in Canada.",
-                    "answer": "Canada"
-                },
-                {
-                    "text": "Canada has very cold winters.",
-                    "answer": "Canada"
-                },
-                {
-                    "text": "They flew to Canada for a holiday.",
-                    "answer": "Canada"
-                }
-            ]
-        },
-        {
             "en": "capital",
             "ch": "首都",
             "sents": [
@@ -1189,60 +1099,6 @@ const VOCAB_DB = {
             ]
         },
         {
-            "en": "Causeway Bay",
-            "ch": "銅鑼灣",
-            "sents": [
-                {
-                    "text": "We went shopping in Causeway Bay.",
-                    "answer": "Causeway Bay"
-                },
-                {
-                    "text": "Causeway Bay is crowded on weekends.",
-                    "answer": "Causeway Bay"
-                },
-                {
-                    "text": "My friend met me in Causeway Bay after school.",
-                    "answer": "Causeway Bay"
-                }
-            ]
-        },
-        {
-            "en": "Causeway Bay",
-            "ch": "銅鑼灣",
-            "sents": [
-                {
-                    "text": "We went shopping in Causeway Bay.",
-                    "answer": "Causeway Bay"
-                },
-                {
-                    "text": "Causeway Bay is crowded on weekends.",
-                    "answer": "Causeway Bay"
-                },
-                {
-                    "text": "My friend met me in Causeway Bay after school.",
-                    "answer": "Causeway Bay"
-                }
-            ]
-        },
-        {
-            "en": "Central",
-            "ch": "中環",
-            "sents": [
-                {
-                    "text": "My office is in Central.",
-                    "answer": "Central"
-                },
-                {
-                    "text": "We took the MTR to Central.",
-                    "answer": "Central"
-                },
-                {
-                    "text": "Central has many tall buildings.",
-                    "answer": "Central"
-                }
-            ]
-        },
-        {
             "en": "century",
             "ch": "世紀",
             "sents": [
@@ -1257,24 +1113,6 @@ const VOCAB_DB = {
                 {
                     "text": "The painting is over a century old.",
                     "answer": "century"
-                }
-            ]
-        },
-        {
-            "en": "Che Kung Temple",
-            "ch": "車公廟",
-            "sents": [
-                {
-                    "text": "We visited Che Kung Temple during the holiday.",
-                    "answer": "Che Kung Temple"
-                },
-                {
-                    "text": "Many tourists go to Che Kung Temple each year.",
-                    "answer": "Che Kung Temple"
-                },
-                {
-                    "text": "Che Kung Temple is a famous place in Hong Kong.",
-                    "answer": "Che Kung Temple"
                 }
             ]
         },
@@ -1333,24 +1171,6 @@ const VOCAB_DB = {
             ]
         },
         {
-            "en": "Chek Lap Kok",
-            "ch": "赤鱲角",
-            "sents": [
-                {
-                    "text": "The airport is in Chek Lap Kok.",
-                    "answer": "Chek Lap Kok"
-                },
-                {
-                    "text": "My father drove us to Chek Lap Kok.",
-                    "answer": "Chek Lap Kok"
-                },
-                {
-                    "text": "Chek Lap Kok is on Lantau Island.",
-                    "answer": "Chek Lap Kok"
-                }
-            ]
-        },
-        {
             "en": "chicken",
             "ch": "雞肉",
             "sents": [
@@ -1365,24 +1185,6 @@ const VOCAB_DB = {
                 {
                     "text": "She ordered grilled chicken at the restaurant.",
                     "answer": "chicken"
-                }
-            ]
-        },
-        {
-            "en": "China",
-            "ch": "中國",
-            "sents": [
-                {
-                    "text": "My grandparents were born in China.",
-                    "answer": "China"
-                },
-                {
-                    "text": "China is a very large country.",
-                    "answer": "China"
-                },
-                {
-                    "text": "We learned about China in class today.",
-                    "answer": "China"
                 }
             ]
         },
@@ -1747,24 +1549,6 @@ const VOCAB_DB = {
             ]
         },
         {
-            "en": "Croatia",
-            "ch": "克羅地亞",
-            "sents": [
-                {
-                    "text": "My teacher travelled to Croatia last year.",
-                    "answer": "Croatia"
-                },
-                {
-                    "text": "Croatia is a beautiful country by the sea.",
-                    "answer": "Croatia"
-                },
-                {
-                    "text": "They want to visit Croatia in summer.",
-                    "answer": "Croatia"
-                }
-            ]
-        },
-        {
             "en": "cross",
             "ch": "橫過",
             "sents": [
@@ -1833,24 +1617,6 @@ const VOCAB_DB = {
                 {
                     "text": "The customer asked for a refund.",
                     "answer": "customer"
-                }
-            ]
-        },
-        {
-            "en": "Cyberport",
-            "ch": "數碼港",
-            "sents": [
-                {
-                    "text": "My brother works in Cyberport.",
-                    "answer": "Cyberport"
-                },
-                {
-                    "text": "We took a bus to Cyberport.",
-                    "answer": "Cyberport"
-                },
-                {
-                    "text": "Cyberport has many technology companies.",
-                    "answer": "Cyberport"
                 }
             ]
         },
@@ -2013,24 +1779,6 @@ const VOCAB_DB = {
                 {
                     "text": "There is a lamp on her desk.",
                     "answer": "desk"
-                }
-            ]
-        },
-        {
-            "en": "Diamond Hill",
-            "ch": "鑽石山",
-            "sents": [
-                {
-                    "text": "We changed trains at Diamond Hill.",
-                    "answer": "Diamond Hill"
-                },
-                {
-                    "text": "My aunt lives near Diamond Hill.",
-                    "answer": "Diamond Hill"
-                },
-                {
-                    "text": "Diamond Hill is busy in the evening.",
-                    "answer": "Diamond Hill"
                 }
             ]
         },
@@ -2431,24 +2179,6 @@ const VOCAB_DB = {
             ]
         },
         {
-            "en": "Exhibition Centre",
-            "ch": "會展",
-            "sents": [
-                {
-                    "text": "We got off at Exhibition Centre Station.",
-                    "answer": "Exhibition Centre"
-                },
-                {
-                    "text": "The art fair is near Exhibition Centre.",
-                    "answer": "Exhibition Centre"
-                },
-                {
-                    "text": "My father met his client at Exhibition Centre.",
-                    "answer": "Exhibition Centre"
-                }
-            ]
-        },
-        {
             "en": "expensive",
             "ch": "昂貴的",
             "sents": [
@@ -2755,42 +2485,6 @@ const VOCAB_DB = {
             ]
         },
         {
-            "en": "Fortress Point",
-            "ch": "炮台山",
-            "sents": [
-                {
-                    "text": "My aunt lives in Fortress Point.",
-                    "answer": "Fortress Point"
-                },
-                {
-                    "text": "We got off the tram at Fortress Point.",
-                    "answer": "Fortress Point"
-                },
-                {
-                    "text": "There are many restaurants in Fortress Point.",
-                    "answer": "Fortress Point"
-                }
-            ]
-        },
-        {
-            "en": "France",
-            "ch": "法國",
-            "sents": [
-                {
-                    "text": "My teacher travelled to France last year.",
-                    "answer": "France"
-                },
-                {
-                    "text": "France is famous for art and food.",
-                    "answer": "France"
-                },
-                {
-                    "text": "They want to study in France one day.",
-                    "answer": "France"
-                }
-            ]
-        },
-        {
             "en": "Friday",
             "ch": "星期五",
             "sents": [
@@ -2877,24 +2571,6 @@ const VOCAB_DB = {
                 {
                     "text": "There is a small garden behind our house.",
                     "answer": "garden"
-                }
-            ]
-        },
-        {
-            "en": "Germany",
-            "ch": "德國",
-            "sents": [
-                {
-                    "text": "My friend moved to Germany last year.",
-                    "answer": "Germany"
-                },
-                {
-                    "text": "Germany is a country in Europe.",
-                    "answer": "Germany"
-                },
-                {
-                    "text": "They visited Germany during the summer holiday.",
-                    "answer": "Germany"
                 }
             ]
         },
@@ -3349,24 +3025,6 @@ const VOCAB_DB = {
             ]
         },
         {
-            "en": "Hong Kong",
-            "ch": "香港",
-            "sents": [
-                {
-                    "text": "Hong Kong is my home city.",
-                    "answer": "Hong Kong"
-                },
-                {
-                    "text": "Many tourists visit Hong Kong every year.",
-                    "answer": "Hong Kong"
-                },
-                {
-                    "text": "The weather in Hong Kong is very hot in summer.",
-                    "answer": "Hong Kong"
-                }
-            ]
-        },
-        {
             "en": "horse",
             "ch": "馬",
             "sents": [
@@ -3709,24 +3367,6 @@ const VOCAB_DB = {
             ]
         },
         {
-            "en": "Italy",
-            "ch": "意大利",
-            "sents": [
-                {
-                    "text": "My aunt travelled to Italy last summer.",
-                    "answer": "Italy"
-                },
-                {
-                    "text": "Italy is famous for pizza and pasta.",
-                    "answer": "Italy"
-                },
-                {
-                    "text": "They dream of visiting Italy one day.",
-                    "answer": "Italy"
-                }
-            ]
-        },
-        {
             "en": "jacket",
             "ch": "外套",
             "sents": [
@@ -3777,24 +3417,6 @@ const VOCAB_DB = {
                 {
                     "text": "Many students joined the school event.",
                     "answer": "joined"
-                }
-            ]
-        },
-        {
-            "en": "Jordan",
-            "ch": "佐敦",
-            "sents": [
-                {
-                    "text": "My friend moved to Jordan with his family.",
-                    "answer": "Jordan"
-                },
-                {
-                    "text": "Jordan is in the Middle East.",
-                    "answer": "Jordan"
-                },
-                {
-                    "text": "They want to visit Jordan next year.",
-                    "answer": "Jordan"
                 }
             ]
         },
@@ -3871,42 +3493,6 @@ const VOCAB_DB = {
             ]
         },
         {
-            "en": "Kai Tak",
-            "ch": "啟德",
-            "sents": [
-                {
-                    "text": "We visited the sports park in Kai Tak.",
-                    "answer": "Kai Tak"
-                },
-                {
-                    "text": "My uncle lives near Kai Tak.",
-                    "answer": "Kai Tak"
-                },
-                {
-                    "text": "Kai Tak is changing very quickly.",
-                    "answer": "Kai Tak"
-                }
-            ]
-        },
-        {
-            "en": "Kennedy Town",
-            "ch": "堅尼地城",
-            "sents": [
-                {
-                    "text": "We had dinner in Kennedy Town last night.",
-                    "answer": "Kennedy Town"
-                },
-                {
-                    "text": "My friend lives in Kennedy Town.",
-                    "answer": "Kennedy Town"
-                },
-                {
-                    "text": "There are many caf?s in Kennedy Town.",
-                    "answer": "Kennedy Town"
-                }
-            ]
-        },
-        {
             "en": "kitchen",
             "ch": "廚房",
             "sents": [
@@ -3921,60 +3507,6 @@ const VOCAB_DB = {
                 {
                     "text": "Please put the cups back in the kitchen.",
                     "answer": "kitchen"
-                }
-            ]
-        },
-        {
-            "en": "Kowloon Tong",
-            "ch": "九龍塘",
-            "sents": [
-                {
-                    "text": "We changed to another line at Kowloon Tong.",
-                    "answer": "Kowloon Tong"
-                },
-                {
-                    "text": "My school is near Kowloon Tong.",
-                    "answer": "Kowloon Tong"
-                },
-                {
-                    "text": "Kowloon Tong is busy in the morning.",
-                    "answer": "Kowloon Tong"
-                }
-            ]
-        },
-        {
-            "en": "Lamma Island",
-            "ch": "南丫島",
-            "sents": [
-                {
-                    "text": "We spent the weekend on Lamma Island.",
-                    "answer": "Lamma Island"
-                },
-                {
-                    "text": "Lamma Island is famous for seafood.",
-                    "answer": "Lamma Island"
-                },
-                {
-                    "text": "They took a ferry to Lamma Island.",
-                    "answer": "Lamma Island"
-                }
-            ]
-        },
-        {
-            "en": "Lantau Island",
-            "ch": "大嶼山",
-            "sents": [
-                {
-                    "text": "The airport is on Lantau Island.",
-                    "answer": "Lantau Island"
-                },
-                {
-                    "text": "We visited a beach on Lantau Island.",
-                    "answer": "Lantau Island"
-                },
-                {
-                    "text": "Lantau Island is very large.",
-                    "answer": "Lantau Island"
                 }
             ]
         },
@@ -4069,24 +3601,6 @@ const VOCAB_DB = {
             ]
         },
         {
-            "en": "Lion Rock",
-            "ch": "獅子山",
-            "sents": [
-                {
-                    "text": "We could see Lion Rock from the bus.",
-                    "answer": "Lion Rock"
-                },
-                {
-                    "text": "Lion Rock is one of Hong Kong?s famous landmarks.",
-                    "answer": "Lion Rock"
-                },
-                {
-                    "text": "My father likes hiking near Lion Rock.",
-                    "answer": "Lion Rock"
-                }
-            ]
-        },
-        {
             "en": "list",
             "ch": "清單",
             "sents": [
@@ -4141,24 +3655,6 @@ const VOCAB_DB = {
             ]
         },
         {
-            "en": "LOUAS Park",
-            "ch": "康城",
-            "sents": [
-                {
-                    "text": "We walked through LOUAS Park after dinner.",
-                    "answer": "LOUAS Park"
-                },
-                {
-                    "text": "My friend met me outside LOUAS Park.",
-                    "answer": "LOUAS Park"
-                },
-                {
-                    "text": "There were many families in LOUAS Park yesterday.",
-                    "answer": "LOUAS Park"
-                }
-            ]
-        },
-        {
             "en": "lunch",
             "ch": "午餐",
             "sents": [
@@ -4173,24 +3669,6 @@ const VOCAB_DB = {
                 {
                     "text": "Lunch starts at twelve thirty.",
                     "answer": "Lunch"
-                }
-            ]
-        },
-        {
-            "en": "M+ Museum",
-            "ch": "M+???",
-            "sents": [
-                {
-                    "text": "Our class visited the M+ Museum last week.",
-                    "answer": "M+ Museum"
-                },
-                {
-                    "text": "There is a new show at the M+ Museum.",
-                    "answer": "M+ Museum"
-                },
-                {
-                    "text": "My brother wants to go to the M+ Museum on Sunday.",
-                    "answer": "M+ Museum"
                 }
             ]
         },
@@ -4231,24 +3709,6 @@ const VOCAB_DB = {
             ]
         },
         {
-            "en": "Mai Po",
-            "ch": "米埔",
-            "sents": [
-                {
-                    "text": "We saw many birds in Mai Po.",
-                    "answer": "Mai Po"
-                },
-                {
-                    "text": "My teacher took us to Mai Po for a school trip.",
-                    "answer": "Mai Po"
-                },
-                {
-                    "text": "Mai Po is famous for its wetlands.",
-                    "answer": "Mai Po"
-                }
-            ]
-        },
-        {
             "en": "main",
             "ch": "主要的",
             "sents": [
@@ -4263,24 +3723,6 @@ const VOCAB_DB = {
                 {
                     "text": "The shop is on the main road.",
                     "answer": "main"
-                }
-            ]
-        },
-        {
-            "en": "Malaysia",
-            "ch": "馬來西亞",
-            "sents": [
-                {
-                    "text": "My cousins live in Malaysia.",
-                    "answer": "Malaysia"
-                },
-                {
-                    "text": "Malaysia is known for its delicious food.",
-                    "answer": "Malaysia"
-                },
-                {
-                    "text": "They flew to Malaysia during the holiday.",
-                    "answer": "Malaysia"
                 }
             ]
         },
@@ -4555,24 +3997,6 @@ const VOCAB_DB = {
             ]
         },
         {
-            "en": "Mong Kok",
-            "ch": "旺角",
-            "sents": [
-                {
-                    "text": "We went shopping in Mong Kok yesterday.",
-                    "answer": "Mong Kok"
-                },
-                {
-                    "text": "Mong Kok is very busy on weekends.",
-                    "answer": "Mong Kok"
-                },
-                {
-                    "text": "My aunt works in Mong Kok.",
-                    "answer": "Mong Kok"
-                }
-            ]
-        },
-        {
             "en": "mountain",
             "ch": "山",
             "sents": [
@@ -4771,24 +4195,6 @@ const VOCAB_DB = {
             ]
         },
         {
-            "en": "North Point",
-            "ch": "北角",
-            "sents": [
-                {
-                    "text": "My grandmother lives in North Point.",
-                    "answer": "North Point"
-                },
-                {
-                    "text": "We had dinner in North Point yesterday.",
-                    "answer": "North Point"
-                },
-                {
-                    "text": "North Point is easy to reach by MTR.",
-                    "answer": "North Point"
-                }
-            ]
-        },
-        {
             "en": "nose",
             "ch": "鼻子",
             "sents": [
@@ -4929,24 +4335,6 @@ const VOCAB_DB = {
                 {
                     "text": "My oldest cousin lives in Canada.",
                     "answer": "oldest"
-                }
-            ]
-        },
-        {
-            "en": "Olyampic",
-            "ch": "奧運",
-            "sents": [
-                {
-                    "text": "She dreams of joining the Olyampic team one day.",
-                    "answer": "Olyampic"
-                },
-                {
-                    "text": "The school held an Olyampic sports event.",
-                    "answer": "Olyampic"
-                },
-                {
-                    "text": "He watched an Olyampic race on TV.",
-                    "answer": "Olyampic"
                 }
             ]
         },
@@ -5599,24 +4987,6 @@ const VOCAB_DB = {
             ]
         },
         {
-            "en": "Prince Edward",
-            "ch": "太子",
-            "sents": [
-                {
-                    "text": "We got off the train at Prince Edward.",
-                    "answer": "Prince Edward"
-                },
-                {
-                    "text": "My cousin lives near Prince Edward.",
-                    "answer": "Prince Edward"
-                },
-                {
-                    "text": "Prince Edward is busy at lunchtime.",
-                    "answer": "Prince Edward"
-                }
-            ]
-        },
-        {
             "en": "product",
             "ch": "產品",
             "sents": [
@@ -5671,24 +5041,6 @@ const VOCAB_DB = {
             ]
         },
         {
-            "en": "Quarry Bay",
-            "ch": "鰂魚涌",
-            "sents": [
-                {
-                    "text": "My aunt works in Quarry Bay.",
-                    "answer": "Quarry Bay"
-                },
-                {
-                    "text": "We changed buses in Quarry Bay.",
-                    "answer": "Quarry Bay"
-                },
-                {
-                    "text": "There are many offices in Quarry Bay.",
-                    "answer": "Quarry Bay"
-                }
-            ]
-        },
-        {
             "en": "quick",
             "ch": "快的",
             "sents": [
@@ -5739,24 +5091,6 @@ const VOCAB_DB = {
                 {
                     "text": "We found a quiet place to study.",
                     "answer": "quiet"
-                }
-            ]
-        },
-        {
-            "en": "Race course",
-            "ch": "馬場",
-            "sents": [
-                {
-                    "text": "We walked past the Race course on Sunday.",
-                    "answer": "Race course"
-                },
-                {
-                    "text": "My uncle works near the Race course.",
-                    "answer": "Race course"
-                },
-                {
-                    "text": "There was a big event at the Race course.",
-                    "answer": "Race course"
                 }
             ]
         },
@@ -6139,42 +5473,6 @@ const VOCAB_DB = {
             ]
         },
         {
-            "en": "Sham Shui Po",
-            "ch": "深水埗",
-            "sents": [
-                {
-                    "text": "We bought fabric in Sham Shui Po.",
-                    "answer": "Sham Shui Po"
-                },
-                {
-                    "text": "My uncle lives in Sham Shui Po.",
-                    "answer": "Sham Shui Po"
-                },
-                {
-                    "text": "Sham Shui Po is famous for its markets.",
-                    "answer": "Sham Shui Po"
-                }
-            ]
-        },
-        {
-            "en": "Shek Kip Mei",
-            "ch": "石硤尾",
-            "sents": [
-                {
-                    "text": "My grandmother lives in Shek Kip Mei.",
-                    "answer": "Shek Kip Mei"
-                },
-                {
-                    "text": "We passed through Shek Kip Mei on the bus.",
-                    "answer": "Shek Kip Mei"
-                },
-                {
-                    "text": "Shek Kip Mei is not far from our school.",
-                    "answer": "Shek Kip Mei"
-                }
-            ]
-        },
-        {
             "en": "shirt",
             "ch": "襯衫",
             "sents": [
@@ -6247,24 +5545,6 @@ const VOCAB_DB = {
             ]
         },
         {
-            "en": "Shung Wong Toi",
-            "ch": "宋皇臺",
-            "sents": [
-                {
-                    "text": "We got off at Shung Wong Toi Station.",
-                    "answer": "Shung Wong Toi"
-                },
-                {
-                    "text": "My aunt works near Shung Wong Toi.",
-                    "answer": "Shung Wong Toi"
-                },
-                {
-                    "text": "Shung Wong Toi is on the new line.",
-                    "answer": "Shung Wong Toi"
-                }
-            ]
-        },
-        {
             "en": "sick",
             "ch": "生病的",
             "sents": [
@@ -6315,24 +5595,6 @@ const VOCAB_DB = {
                 {
                     "text": "My sister can sing very well.",
                     "answer": "sing"
-                }
-            ]
-        },
-        {
-            "en": "Singapore",
-            "ch": "新加坡",
-            "sents": [
-                {
-                    "text": "My cousin moved to Singapore last year.",
-                    "answer": "Singapore"
-                },
-                {
-                    "text": "Singapore is a clean and modern city.",
-                    "answer": "Singapore"
-                },
-                {
-                    "text": "They flew to Singapore for a short holiday.",
-                    "answer": "Singapore"
                 }
             ]
         },
@@ -6589,24 +5851,6 @@ const VOCAB_DB = {
             ]
         },
         {
-            "en": "South Korea",
-            "ch": "南韓",
-            "sents": [
-                {
-                    "text": "My uncle works in South Korea.",
-                    "answer": "South Korea"
-                },
-                {
-                    "text": "South Korea is famous for pop music.",
-                    "answer": "South Korea"
-                },
-                {
-                    "text": "They travelled to South Korea in winter.",
-                    "answer": "South Korea"
-                }
-            ]
-        },
-        {
             "en": "space",
             "ch": "太空",
             "sents": [
@@ -6621,24 +5865,6 @@ const VOCAB_DB = {
                 {
                     "text": "The room has a lot of open space.",
                     "answer": "space"
-                }
-            ]
-        },
-        {
-            "en": "Spain",
-            "ch": "西班牙",
-            "sents": [
-                {
-                    "text": "My teacher visited Spain last summer.",
-                    "answer": "Spain"
-                },
-                {
-                    "text": "Spain is famous for football.",
-                    "answer": "Spain"
-                },
-                {
-                    "text": "They want to travel around Spain next year.",
-                    "answer": "Spain"
                 }
             ]
         },
@@ -6949,60 +6175,6 @@ const VOCAB_DB = {
             ]
         },
         {
-            "en": "Switzerland",
-            "ch": "瑞士",
-            "sents": [
-                {
-                    "text": "My uncle travelled to Switzerland last winter.",
-                    "answer": "Switzerland"
-                },
-                {
-                    "text": "Switzerland is famous for mountains and chocolate.",
-                    "answer": "Switzerland"
-                },
-                {
-                    "text": "They want to visit Switzerland one day.",
-                    "answer": "Switzerland"
-                }
-            ]
-        },
-        {
-            "en": "Tai Koo",
-            "ch": "太古",
-            "sents": [
-                {
-                    "text": "We met at Tai Koo after school.",
-                    "answer": "Tai Koo"
-                },
-                {
-                    "text": "My aunt works near Tai Koo.",
-                    "answer": "Tai Koo"
-                },
-                {
-                    "text": "Tai Koo is easy to reach by MTR.",
-                    "answer": "Tai Koo"
-                }
-            ]
-        },
-        {
-            "en": "Tai O",
-            "ch": "大澳",
-            "sents": [
-                {
-                    "text": "We visited Tai O during the holiday.",
-                    "answer": "Tai O"
-                },
-                {
-                    "text": "Tai O is famous for its stilt houses.",
-                    "answer": "Tai O"
-                },
-                {
-                    "text": "The seafood in Tai O is very popular.",
-                    "answer": "Tai O"
-                }
-            ]
-        },
-        {
             "en": "tallest",
             "ch": "最高",
             "sents": [
@@ -7219,24 +6391,6 @@ const VOCAB_DB = {
             ]
         },
         {
-            "en": "Thailand",
-            "ch": "泰國",
-            "sents": [
-                {
-                    "text": "My family visited Thailand last summer.",
-                    "answer": "Thailand"
-                },
-                {
-                    "text": "Thailand is famous for its beaches.",
-                    "answer": "Thailand"
-                },
-                {
-                    "text": "They want to travel to Thailand next year.",
-                    "answer": "Thailand"
-                }
-            ]
-        },
-        {
             "en": "thank",
             "ch": "感謝",
             "sents": [
@@ -7251,60 +6405,6 @@ const VOCAB_DB = {
                 {
                     "text": "She thanked her teacher after class.",
                     "answer": "thanked"
-                }
-            ]
-        },
-        {
-            "en": "The Peak",
-            "ch": "山頂",
-            "sents": [
-                {
-                    "text": "We could see the whole city from The Peak.",
-                    "answer": "The Peak"
-                },
-                {
-                    "text": "Many tourists visit The Peak every day.",
-                    "answer": "The Peak"
-                },
-                {
-                    "text": "My parents took us to The Peak on Sunday.",
-                    "answer": "The Peak"
-                }
-            ]
-        },
-        {
-            "en": "The United Kingdom",
-            "ch": "英國",
-            "sents": [
-                {
-                    "text": "My aunt moved to The United Kingdom last year.",
-                    "answer": "The United Kingdom"
-                },
-                {
-                    "text": "The United Kingdom is made up of four countries.",
-                    "answer": "The United Kingdom"
-                },
-                {
-                    "text": "They flew to The United Kingdom for a holiday.",
-                    "answer": "The United Kingdom"
-                }
-            ]
-        },
-        {
-            "en": "The USA",
-            "ch": "美國",
-            "sents": [
-                {
-                    "text": "My cousin studies in The USA.",
-                    "answer": "The USA"
-                },
-                {
-                    "text": "The USA is very far from Hong Kong.",
-                    "answer": "The USA"
-                },
-                {
-                    "text": "They travelled around The USA in summer.",
-                    "answer": "The USA"
                 }
             ]
         },
@@ -7525,42 +6625,6 @@ const VOCAB_DB = {
             ]
         },
         {
-            "en": "Tsim Sha Tsui",
-            "ch": "尖沙咀",
-            "sents": [
-                {
-                    "text": "We went shopping in Tsim Sha Tsui.",
-                    "answer": "Tsim Sha Tsui"
-                },
-                {
-                    "text": "My cousin works in Tsim Sha Tsui.",
-                    "answer": "Tsim Sha Tsui"
-                },
-                {
-                    "text": "There are many tourists in Tsim Sha Tsui.",
-                    "answer": "Tsim Sha Tsui"
-                }
-            ]
-        },
-        {
-            "en": "Tuen Mun",
-            "ch": "屯門",
-            "sents": [
-                {
-                    "text": "My aunt lives in Tuen Mun.",
-                    "answer": "Tuen Mun"
-                },
-                {
-                    "text": "We visited a beach in Tuen Mun.",
-                    "answer": "Tuen Mun"
-                },
-                {
-                    "text": "The bus to Tuen Mun was full.",
-                    "answer": "Tuen Mun"
-                }
-            ]
-        },
-        {
             "en": "Tuesday",
             "ch": "星期二",
             "sents": [
@@ -7723,24 +6787,6 @@ const VOCAB_DB = {
             ]
         },
         {
-            "en": "Victoria Harbour",
-            "ch": "維多利亞港",
-            "sents": [
-                {
-                    "text": "We took photos at Victoria Harbour.",
-                    "answer": "Victoria Harbour"
-                },
-                {
-                    "text": "The lights at Victoria Harbour are beautiful at night.",
-                    "answer": "Victoria Harbour"
-                },
-                {
-                    "text": "Many tourists visit Victoria Harbour every evening.",
-                    "answer": "Victoria Harbour"
-                }
-            ]
-        },
-        {
             "en": "video",
             "ch": "影片",
             "sents": [
@@ -7849,24 +6895,6 @@ const VOCAB_DB = {
             ]
         },
         {
-            "en": "Wan Chai",
-            "ch": "灣仔",
-            "sents": [
-                {
-                    "text": "My aunt works in Wan Chai.",
-                    "answer": "Wan Chai"
-                },
-                {
-                    "text": "We had dinner in Wan Chai yesterday.",
-                    "answer": "Wan Chai"
-                },
-                {
-                    "text": "Wan Chai is busy during lunchtime.",
-                    "answer": "Wan Chai"
-                }
-            ]
-        },
-        {
             "en": "warmer",
             "ch": "較暖",
             "sents": [
@@ -7971,42 +6999,6 @@ const VOCAB_DB = {
                 {
                     "text": "Our hotel is west of the station.",
                     "answer": "west"
-                }
-            ]
-        },
-        {
-            "en": "West Kowloon Cultural District",
-            "ch": "西九文化區",
-            "sents": [
-                {
-                    "text": "We visited the West Kowloon Cultural District on Sunday.",
-                    "answer": "West Kowloon Cultural District"
-                },
-                {
-                    "text": "There was a music show in the West Kowloon Cultural District.",
-                    "answer": "West Kowloon Cultural District"
-                },
-                {
-                    "text": "Many families walk around the West Kowloon Cultural District at night.",
-                    "answer": "West Kowloon Cultural District"
-                }
-            ]
-        },
-        {
-            "en": "Whampoa",
-            "ch": "黃埔",
-            "sents": [
-                {
-                    "text": "My friend lives in Whampoa.",
-                    "answer": "Whampoa"
-                },
-                {
-                    "text": "We got off the train at Whampoa.",
-                    "answer": "Whampoa"
-                },
-                {
-                    "text": "Whampoa is not far from my school.",
-                    "answer": "Whampoa"
                 }
             ]
         },
