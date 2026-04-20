@@ -3420,7 +3420,9 @@ body {
     bottom: 2px;
     border-bottom-width: 2px;
     border-bottom-color: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    box-shadow:
+        0 0 6px rgba(255, 255, 255, 0.45),
+        0 0 12px rgba(34, 211, 238, 0.3);
 }
 
 .listening-answer-shell {
