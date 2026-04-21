@@ -12710,28 +12710,44 @@
     "word": "investment",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The company made a large investment in new technology.",
+      "Education is often seen as a good investment.",
+      "The project failed to attract enough investment."
+    ],
     "ch": "投資"
   },
   {
     "word": "investor",
     "cefr": "B2",
     "frequency": 6,
-    "sentences": [],
+    "sentences": [
+      "An investor agreed to support the new business.",
+      "The startup is looking for another investor.",
+      "Each investor wanted to know the risks involved."
+    ],
     "ch": "投資者"
   },
   {
     "word": "irresponsible",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "It was irresponsible to leave the fire burning.",
+      "The article criticised irresponsible spending.",
+      "Parents were angry about the driver's irresponsible behaviour."
+    ],
     "ch": "不負責任的"
   },
   {
     "word": "issue",
     "cefr": "B2",
     "frequency": 57,
-    "sentences": [],
+    "sentences": [
+      "Climate change is a global issue.",
+      "The magazine publishes a new issue every month.",
+      "We need to discuss this issue in detail."
+    ],
     "ch": "議題；問題"
   },
   {
@@ -12758,49 +12774,77 @@
     "word": "itch",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "I had an itch on my arm all morning.",
+      "Mosquito bites often itch for hours.",
+      "He tried not to scratch the itch on his neck."
+    ],
     "ch": "癢；渴望"
   },
   {
     "word": "itchy",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "This wool sweater feels itchy on my skin.",
+      "My eyes get itchy in spring.",
+      "The bite left an itchy red mark."
+    ],
     "ch": "發癢的"
   },
   {
     "word": "jag",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The torn paper had a jag along the edge.",
+      "The glass broke into pieces with a sharp jag.",
+      "She cut her finger on a small jag of metal."
+    ],
     "ch": "鋸齒狀突起；尖角"
   },
   {
     "word": "jail",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The criminal was sent to jail for two years.",
+      "He wrote a letter while in jail.",
+      "The film begins with the hero escaping from jail."
+    ],
     "ch": "監獄；監禁"
   },
   {
     "word": "jigsaw",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "We spent the evening finishing a jigsaw.",
+      "The child lost a piece of the jigsaw puzzle.",
+      "A thousand-piece jigsaw covered the table."
+    ],
     "ch": "拼圖；拼板"
   },
   {
     "word": "jobless",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Many workers became jobless after the factory closed.",
+      "The programme helps jobless people learn new skills.",
+      "He felt stressed after being jobless for months."
+    ],
     "ch": "失業的"
   },
   {
     "word": "joint",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "The two schools ran a joint project.",
+      "His knee joint still hurts after the game.",
+      "The report was a joint effort by three teams."
+    ],
     "ch": "關節；聯合的"
   },
   {
@@ -12827,21 +12871,33 @@
     "word": "joy",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Her face lit up with joy.",
+      "The news brought joy to the whole family.",
+      "Children shouted with joy in the playground."
+    ],
     "ch": "喜悅；快樂"
   },
   {
     "word": "judgement",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "You should trust your own judgement.",
+      "The teacher praised her good judgement.",
+      "His poor judgement caused the problem."
+    ],
     "ch": "判斷；裁決"
   },
   {
     "word": "justify",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Can you justify the extra cost?",
+      "Nothing can justify such rude behaviour.",
+      "The results justify the effort we made."
+    ],
     "ch": "證明…有理；為…辯護"
   },
   {
@@ -12888,21 +12944,33 @@
     "word": "kindergartener",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Each kindergartener drew a picture of home.",
+      "The kindergartener held his teacher's hand.",
+      "A cheerful kindergartener greeted us at the gate."
+    ],
     "ch": "幼稚園學生"
   },
   {
     "word": "kindness",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Her kindness made everyone feel welcome.",
+      "He will always remember the nurse's kindness.",
+      "A small act of kindness can change someone's day."
+    ],
     "ch": "善良；仁慈"
   },
   {
     "word": "kit",
     "cefr": "B2",
     "frequency": 25,
-    "sentences": [],
+    "sentences": [
+      "I bought a first-aid kit for the trip.",
+      "The player packed his football kit carefully.",
+      "Each science kit contains simple tools and instructions."
+    ],
     "ch": "成套工具；裝備"
   },
   {
@@ -12929,7 +12997,11 @@
     "word": "ladder",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "Please hold the ladder steady.",
+      "He climbed the ladder to fix the light.",
+      "A wooden ladder leaned against the wall."
+    ],
     "ch": "梯子"
   },
   {
@@ -12956,14 +13028,22 @@
     "word": "landfill",
     "cefr": "B2",
     "frequency": 10,
-    "sentences": [],
+    "sentences": [
+      "This waste will end up in a landfill.",
+      "The city is trying to reduce landfill use.",
+      "Plastic takes years to break down in landfill sites."
+    ],
     "ch": "垃圾堆填區"
   },
   {
     "word": "landscape",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "The mountain landscape looked breathtaking at sunrise.",
+      "The artist painted a peaceful rural landscape.",
+      "Technology has changed the media landscape."
+    ],
     "ch": "景觀；形勢"
   },
   {
@@ -12990,154 +13070,242 @@
     "word": "largely",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "The event was largely successful.",
+      "The island remains largely untouched.",
+      "Public opinion was largely against the plan."
+    ],
     "ch": "主要地；大致上"
   },
   {
     "word": "latest",
     "cefr": "B2",
     "frequency": 26,
-    "sentences": [],
+    "sentences": [
+      "Have you read her latest article?",
+      "This is the latest version of the app.",
+      "The latest news will be shared at noon."
+    ],
     "ch": "最新的；最近的"
   },
   {
     "word": "launch",
     "cefr": "B2",
     "frequency": 6,
-    "sentences": [],
+    "sentences": [
+      "The company will launch the new phone next month.",
+      "The rocket launch was delayed by rain.",
+      "They plan to launch a campaign to promote reading."
+    ],
     "ch": "發射；推出"
   },
   {
     "word": "leadership",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Good leadership can unite a team.",
+      "The course focuses on leadership skills.",
+      "Her calm leadership helped during the crisis."
+    ],
     "ch": "領導能力；領導層"
   },
   {
     "word": "leaflet",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "Please take a leaflet from the table.",
+      "The nurse gave us a health leaflet.",
+      "A colourful leaflet advertised the school fair."
+    ],
     "ch": "單張；小冊子"
   },
   {
     "word": "lean",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Do not lean out of the train window.",
+      "He leaned on the wall while waiting.",
+      "The company is trying to build a lean operation."
+    ],
     "ch": "傾斜；瘦的"
   },
   {
     "word": "learner",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Every learner needs time to improve.",
+      "The app is designed for adult learners.",
+      "She is a fast learner in the kitchen."
+    ],
     "ch": "學習者"
   },
   {
     "word": "lecturer",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The lecturer explained the theory clearly.",
+      "A university lecturer gave the speech.",
+      "Our lecturer uploaded the slides after class."
+    ],
     "ch": "講師"
   },
   {
     "word": "leftover",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "There was plenty of leftover rice from dinner.",
+      "We packed the leftovers in small boxes.",
+      "Leftover paint was stored in the garage."
+    ],
     "ch": "剩餘物；吃剩的"
   },
   {
     "word": "legally",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "You are legally required to wear a seat belt.",
+      "The company acted legally but unfairly.",
+      "They are not legally allowed to build there."
+    ],
     "ch": "在法律上；合法地"
   },
   {
     "word": "lender",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "The bank was the main lender for the project.",
+      "A lender checked his income before approving the loan.",
+      "The lender asked for more documents."
+    ],
     "ch": "貸款人；出借人"
   },
   {
     "word": "lens",
     "cefr": "B2",
     "frequency": 5,
-    "sentences": [],
+    "sentences": [
+      "The camera lens was covered in dust.",
+      "He cleaned his glasses lens with a cloth.",
+      "The documentary looks at the city through a historical lens."
+    ],
     "ch": "鏡頭；透鏡"
   },
   {
     "word": "leopard",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "A leopard moved quietly through the grass.",
+      "We saw a snow leopard at the zoo.",
+      "The leopard's spots helped it hide in the wild."
+    ],
     "ch": "豹"
   },
   {
     "word": "level",
     "cefr": "B2",
     "frequency": 25,
-    "sentences": [],
+    "sentences": [
+      "The water level rose after the storm.",
+      "Please keep the picture level on the wall.",
+      "Her fitness level improved after training."
+    ],
     "ch": "水平；等級"
   },
   {
     "word": "liar",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "No one trusted him because he was known as a liar.",
+      "The story is about a boy who becomes a liar.",
+      "She called him a liar after hearing the truth."
+    ],
     "ch": "說謊者"
   },
   {
     "word": "licence",
     "cefr": "B2",
     "frequency": 18,
-    "sentences": [],
+    "sentences": [
+      "You need a licence to drive this vehicle.",
+      "He showed his fishing licence to the officer.",
+      "The restaurant lost its licence after the complaint."
+    ],
     "ch": "執照；許可證"
   },
   {
     "word": "lick",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The dog tried to lick my hand.",
+      "She licked the ice cream before it melted.",
+      "A flame gave the wood a quick lick of heat."
+    ],
     "ch": "舔"
   },
   {
     "word": "lifetime",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "That was the opportunity of a lifetime.",
+      "He collected enough memories for a lifetime.",
+      "Over a lifetime, reading habits can change greatly."
+    ],
     "ch": "一生；終身"
   },
   {
     "word": "lightweight",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "This laptop is lightweight and easy to carry.",
+      "The jacket is warm but lightweight.",
+      "A lightweight bag is better for hiking."
+    ],
     "ch": "輕量的；輕量級選手"
   },
   {
     "word": "likeable",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The main character is funny and very likeable.",
+      "Her honest style makes her instantly likeable.",
+      "A likeable teacher can motivate students."
+    ],
     "ch": "討人喜歡的"
   },
   {
     "word": "likewise",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Thank you, and likewise to you.",
+      "If parents read at home, children often do likewise.",
+      "The first team improved, and the second team did likewise."
+    ],
     "ch": "同樣地；此外"
   },
   {
     "word": "limitation",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Every system has some limitation.",
+      "The main limitation of the plan is cost.",
+      "Poor internet access is a serious limitation in rural areas."
+    ],
     "ch": "限制；局限"
   },
   {
@@ -13164,77 +13332,121 @@
     "word": "literally",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "He literally ran all the way home.",
+      "The room was literally shaking during the storm.",
+      "Do not take the joke literally."
+    ],
     "ch": "字面上地；確實地"
   },
   {
     "word": "litter",
     "cefr": "B2",
     "frequency": 5,
-    "sentences": [],
+    "sentences": [
+      "Please do not litter in the park.",
+      "Plastic litter washed onto the beach.",
+      "The children joined a campaign to clear litter."
+    ],
     "ch": "垃圾；亂丟垃圾"
   },
   {
     "word": "livable",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Affordable housing makes a city more livable.",
+      "We need cleaner air to keep the neighbourhood livable.",
+      "Good transport helps make urban life livable."
+    ],
     "ch": "宜居的；適合生活的"
   },
   {
     "word": "lively",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The market is lively at the weekend.",
+      "Her lively talk kept everyone interested.",
+      "The party became more lively after dinner."
+    ],
     "ch": "活潑的；生動的"
   },
   {
     "word": "loads of",
     "cefr": "B2",
     "frequency": 5,
-    "sentences": [],
+    "sentences": [
+      "There were loads of people at the concert.",
+      "She has loads of ideas for the project.",
+      "We still have loads of time before the train leaves."
+    ],
     "ch": "大量的；很多"
   },
   {
     "word": "loan",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "He took out a loan to start the business.",
+      "The bank approved her student loan.",
+      "They repaid the loan within three years."
+    ],
     "ch": "貸款；借出"
   },
   {
     "word": "logical",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "That seems like a logical answer.",
+      "We need a logical way to solve the problem.",
+      "Her argument was clear and logical."
+    ],
     "ch": "合乎邏輯的"
   },
   {
     "word": "logo",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The company's logo is easy to recognise.",
+      "They printed the school logo on every T-shirt.",
+      "A designer created a new logo for the event."
+    ],
     "ch": "標誌；商標"
   },
   {
     "word": "loose",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "This screw is too loose.",
+      "He wore a loose shirt in the heat.",
+      "Be careful, there is a loose tile near the door."
+    ],
     "ch": "鬆的；不嚴格的"
   },
   {
     "word": "loosely",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The rope was loosely tied to the post.",
+      "The film is loosely based on a true story.",
+      "Her hair was loosely tied back."
+    ],
     "ch": "鬆散地；大致上"
   },
   {
     "word": "looser",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "This jacket feels looser than before.",
+      "The new rule is looser than the old one.",
+      "As he lost weight, his jeans became looser."
+    ],
     "ch": "較鬆的；較寬鬆的"
   },
   {
@@ -13261,28 +13473,44 @@
     "word": "lower",
     "cefr": "B2",
     "frequency": 7,
-    "sentences": [],
+    "sentences": [
+      "Please lower your voice in the library.",
+      "The company wants to lower production costs.",
+      "Prices were lower during the sale."
+    ],
     "ch": "較低的；降低"
   },
   {
     "word": "loyal",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Dogs are known for being loyal companions.",
+      "Customers stayed loyal to the brand.",
+      "She remained loyal to her friends."
+    ],
     "ch": "忠誠的"
   },
   {
     "word": "lunar",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The festival follows the lunar calendar.",
+      "The museum has a show about lunar exploration.",
+      "A lunar eclipse was visible last night."
+    ],
     "ch": "月球的；陰曆的"
   },
   {
     "word": "lyric",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "That lyric stayed in my head all day.",
+      "He forgot a lyric during the performance.",
+      "She wrote every lyric in her notebook."
+    ],
     "ch": "歌詞；抒情詩"
   },
   {
@@ -13309,14 +13537,22 @@
     "word": "magnificent",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The palace looked magnificent in the evening light.",
+      "We had a magnificent view from the top floor.",
+      "Her performance was absolutely magnificent."
+    ],
     "ch": "壯麗的；極好的"
   },
   {
     "word": "magnify",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "These glasses magnify small text.",
+      "Use this tool to magnify the image.",
+      "The mirror seemed to magnify the light."
+    ],
     "ch": "放大；擴大"
   },
   {
@@ -13343,21 +13579,33 @@
     "word": "maintain",
     "cefr": "B2",
     "frequency": 8,
-    "sentences": [],
+    "sentences": [
+      "It is hard to maintain a healthy routine.",
+      "The company must maintain high standards.",
+      "Workers maintain the bridge every year."
+    ],
     "ch": "維持；保養"
   },
   {
     "word": "majority",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "The majority of students agreed with the rule.",
+      "A clear majority voted in favour of the plan.",
+      "The majority of the work is already done."
+    ],
     "ch": "大多數；多數派"
   },
   {
     "word": "maker",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "The phone maker released a cheaper model.",
+      "Each maker brought a handmade toy to the fair.",
+      "The film honours the maker of the original game."
+    ],
     "ch": "製作者；製造商"
   },
   {
@@ -13384,364 +13632,572 @@
     "word": "mankind",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Fire changed the history of mankind.",
+      "The discovery may benefit all mankind.",
+      "The museum explores how technology shaped mankind."
+    ],
     "ch": "人類"
   },
   {
     "word": "manly",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "He tried to speak in a deep, manly voice.",
+      "The actor played a manly hero in the film.",
+      "The old ad praised manly strength and courage."
+    ],
     "ch": "有男子氣概的"
   },
   {
     "word": "manual",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "Please read the manual before using the machine.",
+      "The car comes with a printed manual.",
+      "This job requires careful manual work."
+    ],
     "ch": "手冊；手動的"
   },
   {
     "word": "manufacture",
     "cefr": "B2",
     "frequency": 5,
-    "sentences": [],
+    "sentences": [
+      "The factory will manufacture parts for electric cars.",
+      "This company manufactures medical equipment.",
+      "It is cheaper to manufacture the product locally."
+    ],
     "ch": "製造；製造業"
   },
   {
     "word": "manufacturer",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The phone manufacturer offered a free repair.",
+      "The manufacturer warned customers about the fault.",
+      "A local manufacturer supplied the school desks."
+    ],
     "ch": "製造商"
   },
   {
     "word": "map",
     "cefr": "B2",
     "frequency": 11,
-    "sentences": [],
+    "sentences": [
+      "Please check the map before we leave.",
+      "The tourist map shows all the main attractions.",
+      "We used an online map to find the caf?."
+    ],
     "ch": "地圖；映射"
   },
   {
     "word": "mascot",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The school mascot danced during the match.",
+      "A giant lion served as the team's mascot.",
+      "Children lined up to take photos with the mascot."
+    ],
     "ch": "吉祥物"
   },
   {
     "word": "mass",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "A mass of dark clouds covered the sky.",
+      "The law affected a mass of workers across the country.",
+      "The box has a surprisingly large mass."
+    ],
     "ch": "大量；群眾"
   },
   {
     "word": "massive",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "A massive crowd gathered in the square.",
+      "The company made a massive investment in research.",
+      "The storm caused massive damage to the coast."
+    ],
     "ch": "巨大的；大量的"
   },
   {
     "word": "massively",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The app grew massively popular within weeks.",
+      "Prices have risen massively this year.",
+      "The team was massively encouraged by the result."
+    ],
     "ch": "大規模地；極其"
   },
   {
     "word": "master",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "It takes time to master a new language.",
+      "He hopes to master the software by summer.",
+      "The artist was a master of light and colour."
+    ],
     "ch": "精通；主人"
   },
   {
     "word": "mate",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "He met an old schoolmate on the train.",
+      "One of my mates helped me move house.",
+      "The dog searched for its mate in the field."
+    ],
     "ch": "伙伴；配偶"
   },
   {
     "word": "material",
     "cefr": "B2",
     "frequency": 17,
-    "sentences": [],
+    "sentences": [
+      "This material is soft but strong.",
+      "The teacher uploaded all the course material online.",
+      "Recycling saves valuable material from being wasted."
+    ],
     "ch": "材料；物質的"
   },
   {
     "word": "materially",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The decision materially changed the project budget.",
+      "Conditions improved materially after the repair.",
+      "The new law did not materially affect small shops."
+    ],
     "ch": "實質上地；物質上地"
   },
   {
     "word": "maximum",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The room has a maximum capacity of fifty people.",
+      "Please keep your stay to a maximum of two hours.",
+      "The machine reached maximum speed quickly."
+    ],
     "ch": "最大的；最大值"
   },
   {
     "word": "maze",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The children ran through the hedge maze.",
+      "The old streets formed a maze around the market.",
+      "I got lost in the underground maze of tunnels."
+    ],
     "ch": "迷宮"
   },
   {
     "word": "measurement",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The tailor took a measurement of my shoulders.",
+      "Accurate measurement is important in science.",
+      "The chart shows temperature measurements over time."
+    ],
     "ch": "測量；尺寸"
   },
   {
     "word": "medal",
     "cefr": "B2",
     "frequency": 7,
-    "sentences": [],
+    "sentences": [
+      "She won a gold medal in swimming.",
+      "Each winner received a medal and a certificate.",
+      "He proudly showed his medal to his family."
+    ],
     "ch": "獎牌；勳章"
   },
   {
     "word": "medalist",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The medalist waved to the crowd.",
+      "Every medalist stood on the stage for photos.",
+      "She became the youngest medalist in the event."
+    ],
     "ch": "獎牌得主"
   },
   {
     "word": "medicinal",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "People have long used the plant for medicinal purposes.",
+      "The herb has a medicinal smell.",
+      "The book describes the medicinal value of local plants."
+    ],
     "ch": "藥用的；醫療的"
   },
   {
     "word": "medium",
     "cefr": "B2",
     "frequency": 31,
-    "sentences": [],
+    "sentences": [
+      "Oil paint was her preferred medium.",
+      "This shirt is available in medium and large.",
+      "The message was shared through several media."
+    ],
     "ch": "媒介；中等的"
   },
   {
     "word": "melt",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Ice begins to melt in the sun.",
+      "Add butter and let it melt slowly.",
+      "Her anger seemed to melt away after the apology."
+    ],
     "ch": "融化；熔化"
   },
   {
     "word": "membership",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Library membership is free for students.",
+      "Her club membership lasts for one year.",
+      "The gym offers family membership at a discount."
+    ],
     "ch": "會員資格；成員身分"
   },
   {
     "word": "memorable",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "It was a memorable trip to Japan.",
+      "Her speech was short but memorable.",
+      "The final match gave us a memorable ending."
+    ],
     "ch": "難忘的；值得紀念的"
   },
   {
     "word": "mentally",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "He felt mentally tired after the exam.",
+      "Running helps me stay mentally sharp.",
+      "The accident affected him both physically and mentally."
+    ],
     "ch": "精神上地；心理上地"
   },
   {
     "word": "micro",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The company released a micro version of the sensor.",
+      "Her phone uses a micro cable for charging.",
+      "The lab studies changes at a micro level."
+    ],
     "ch": "微型的"
   },
   {
     "word": "microphone",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Please speak clearly into the microphone.",
+      "The singer adjusted the microphone before starting.",
+      "The microphone stopped working during the show."
+    ],
     "ch": "麥克風"
   },
   {
     "word": "midweek",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The restaurant is quieter in midweek.",
+      "We usually do our shopping midweek.",
+      "A midweek break helped everyone relax."
+    ],
     "ch": "週中"
   },
   {
     "word": "migrant",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "The city welcomed many migrant workers.",
+      "A migrant family moved into the village.",
+      "Bird experts tracked the route of each migrant flock."
+    ],
     "ch": "移民；候鳥"
   },
   {
     "word": "migrate",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Many birds migrate south in winter.",
+      "Workers may migrate to cities for better jobs.",
+      "The company plans to migrate its data to the cloud."
+    ],
     "ch": "遷移；移居"
   },
   {
     "word": "migratory",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "This wetland is home to migratory birds.",
+      "Scientists study migratory patterns each year.",
+      "The lake is an important stop for migratory species."
+    ],
     "ch": "遷徙的；流動的"
   },
   {
     "word": "milestone",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Graduation was a major milestone in her life.",
+      "The company reached an important milestone this year.",
+      "Finishing the first chapter felt like a milestone."
+    ],
     "ch": "里程碑"
   },
   {
     "word": "military",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The museum displays old military uniforms.",
+      "He comes from a military family.",
+      "The road was once used for military transport."
+    ],
     "ch": "軍事的；軍隊"
   },
   {
     "word": "millennial",
     "cefr": "B2",
     "frequency": 31,
-    "sentences": [],
+    "sentences": [
+      "The article discusses millennial work habits.",
+      "Many millennial buyers prefer online shopping.",
+      "A millennial artist designed the exhibition poster."
+    ],
     "ch": "千禧世代的人"
   },
   {
     "word": "mimic",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Parrots can mimic human voices.",
+      "He tried to mimic the teacher's accent.",
+      "The robot was built to mimic natural movement."
+    ],
     "ch": "模仿；擬態"
   },
   {
     "word": "mindset",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "A positive mindset helps during difficult times.",
+      "The course encourages a growth mindset.",
+      "We need a different mindset to solve this problem."
+    ],
     "ch": "思維模式；心態"
   },
   {
     "word": "mineral",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Milk contains important minerals for the body.",
+      "The region is rich in mineral resources.",
+      "This water has a high mineral content."
+    ],
     "ch": "礦物；礦物質"
   },
   {
     "word": "minister",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The minister announced a new education plan.",
+      "A government minister visited the hospital.",
+      "The foreign minister met with reporters."
+    ],
     "ch": "部長；牧師"
   },
   {
     "word": "minor",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "He made a few minor changes to the design.",
+      "The injury was painful but minor.",
+      "A minor road leads to the village."
+    ],
     "ch": "較小的；次要的"
   },
   {
     "word": "minority",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "A small minority opposed the plan.",
+      "The law protects minority groups.",
+      "Only a minority of students arrived late."
+    ],
     "ch": "少數；少數群體"
   },
   {
     "word": "miserable",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "He felt miserable after failing the test.",
+      "The weather was cold and miserable all day.",
+      "The dog looked miserable in the rain."
+    ],
     "ch": "悲慘的；難受的"
   },
   {
     "word": "misguide",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "False information can misguide the public.",
+      "Please do not misguide younger students.",
+      "The article may misguide readers about the facts."
+    ],
     "ch": "誤導；引錯方向"
   },
   {
     "word": "mission",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The rescue mission lasted all night.",
+      "Our school's mission is to support every learner.",
+      "The team completed its mission successfully."
+    ],
     "ch": "任務；使命"
   },
   {
     "word": "mistake",
     "cefr": "B2",
     "frequency": 16,
-    "sentences": [],
+    "sentences": [
+      "Everyone makes a mistake sometimes.",
+      "I realised my mistake too late.",
+      "Please correct any mistake on the form."
+    ],
     "ch": "錯誤；弄錯"
   },
   {
     "word": "mistakenly",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "He mistakenly took my bag from the shelf.",
+      "The email was mistakenly sent to the wrong person.",
+      "I mistakenly thought the meeting was tomorrow."
+    ],
     "ch": "錯誤地；誤以為"
   },
   {
     "word": "misunderstand",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Please do not misunderstand my comment.",
+      "People often misunderstand the purpose of the rule.",
+      "It is easy to misunderstand jokes in a second language."
+    ],
     "ch": "誤解"
   },
   {
     "word": "misunderstanding",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "The argument began with a simple misunderstanding.",
+      "We cleared up the misunderstanding quickly.",
+      "A misunderstanding between teams delayed the project."
+    ],
     "ch": "誤會；誤解"
   },
   {
     "word": "model",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "The company released a cheaper model of the phone.",
+      "The teacher used a model to explain the structure.",
+      "Her success made her a role model for younger players."
+    ],
     "ch": "模型；模範"
   },
   {
     "word": "modest",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "He lived in a modest apartment near the station.",
+      "We made a modest profit in the first year.",
+      "She remained modest despite her success."
+    ],
     "ch": "謙虛的；適中的"
   },
   {
     "word": "modify",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "We may need to modify the schedule.",
+      "The designer modified the logo slightly.",
+      "Please modify the form to include a phone number."
+    ],
     "ch": "修改；調整"
   },
   {
     "word": "moist",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The cake stayed moist after baking.",
+      "The soil should remain moist but not wet.",
+      "Her hands felt moist in the summer heat."
+    ],
     "ch": "潮濕的；微濕的"
   },
   {
     "word": "moisture",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "This cream helps keep moisture in the skin.",
+      "The walls were damaged by moisture.",
+      "The sensor measures the moisture in the soil."
+    ],
     "ch": "水分；濕氣"
   },
   {
@@ -13768,35 +14224,55 @@
     "word": "monster",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The child was scared of the movie monster.",
+      "The story tells of a sea monster in the bay.",
+      "A tiny mistake grew into a monster problem."
+    ],
     "ch": "怪物；龐然大物"
   },
   {
     "word": "monument",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The city built a monument to honour the victims.",
+      "Tourists lined up to photograph the monument.",
+      "The old monument stands in the middle of the square."
+    ],
     "ch": "紀念碑；歷史遺跡"
   },
   {
     "word": "moral",
     "cefr": "B2",
     "frequency": 9,
-    "sentences": [],
+    "sentences": [
+      "The story has a clear moral.",
+      "He faced a difficult moral choice.",
+      "Teachers often discuss moral values with students."
+    ],
     "ch": "道德的；寓意"
   },
   {
     "word": "morally",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "She felt morally responsible for helping.",
+      "The decision may be legal but not morally right.",
+      "He objected morally to the company's actions."
+    ],
     "ch": "在道德上地"
   },
   {
     "word": "moreover",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "The hotel is cheap; moreover, it is close to the station.",
+      "The phone is fast and, moreover, easy to use.",
+      "The plan saves energy and, moreover, reduces waste."
+    ],
     "ch": "此外；而且"
   },
   {
