@@ -16997,833 +16997,1309 @@
     "word": "rapidly",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "The city is growing rapidly.",
+      "Her condition improved rapidly after treatment.",
+      "Technology is changing rapidly every year."
+    ],
     "ch": "迅速地"
   },
   {
     "word": "rat",
     "cefr": "B2",
     "frequency": 13,
-    "sentences": [],
+    "sentences": [
+      "A rat ran across the alley.",
+      "The old barn was full of rats.",
+      "The cat stared at the rat under the table."
+    ],
     "ch": "老鼠"
   },
   {
     "word": "rate",
     "cefr": "B2",
     "frequency": 5,
-    "sentences": [],
+    "sentences": [
+      "At this rate, we will miss the bus.",
+      "The interest rate rose this month.",
+      "Please rate the service from one to five."
+    ],
     "ch": "比率；評價"
   },
   {
     "word": "rationale",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The report explained the rationale behind the change.",
+      "I understand the rationale for the new rule.",
+      "The teacher shared the rationale for giving more reading tasks."
+    ],
     "ch": "理據；基本原理"
   },
   {
     "word": "raw",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "The fish should not be eaten raw.",
+      "He showed raw emotion in his speech.",
+      "The table was made from raw wood."
+    ],
     "ch": "生的；未加工的"
   },
   {
     "word": "realistic",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "We need a realistic plan for next month.",
+      "Her painting is very realistic.",
+      "It is not realistic to finish everything today."
+    ],
     "ch": "現實的；實際的"
   },
   {
     "word": "reapplying",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "She is reapplying for the scholarship this year.",
+      "Reapplying may give him a better chance of success.",
+      "The office helped students who were reapplying for visas."
+    ],
     "ch": "重新申請"
   },
   {
     "word": "reasonable",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "That sounds like a reasonable idea.",
+      "The shop offers food at a reasonable price.",
+      "It is reasonable to ask for more time."
+    ],
     "ch": "合理的；通情達理的"
   },
   {
     "word": "reassemble",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Can you reassemble the chair after moving it?",
+      "The mechanic reassembled the engine carefully.",
+      "Students learned how to reassemble the device."
+    ],
     "ch": "重新組裝"
   },
   {
     "word": "recall",
     "cefr": "B2",
     "frequency": 8,
-    "sentences": [],
+    "sentences": [
+      "I cannot recall where I left my keys.",
+      "The company issued a recall for the toy.",
+      "She clearly recalled the teacher's advice."
+    ],
     "ch": "回想；召回"
   },
   {
     "word": "recapture",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The museum hopes to recapture the spirit of the old market.",
+      "The team failed to recapture the lead.",
+      "The film tries to recapture a lost era."
+    ],
     "ch": "重新捕獲；再次獲得"
   },
   {
     "word": "reckon",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "I reckon we have enough time.",
+      "Do you reckon it will rain later?",
+      "They reckon the bridge will open by June."
+    ],
     "ch": "認為；估計"
   },
   {
     "word": "recognition",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Her work finally received national recognition.",
+      "The award is a sign of recognition for his effort.",
+      "Facial recognition is used in some phones."
+    ],
     "ch": "認可；辨認"
   },
   {
     "word": "reconnect",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The trip helped old friends reconnect.",
+      "Please reconnect the cable before testing the screen.",
+      "The power team worked overnight to reconnect the area."
+    ],
     "ch": "重新連接；重建聯繫"
   },
   {
     "word": "recover",
     "cefr": "B2",
     "frequency": 8,
-    "sentences": [],
+    "sentences": [
+      "It took her weeks to recover from the flu.",
+      "The files were impossible to recover after the crash.",
+      "The business is slowly recovering from the loss."
+    ],
     "ch": "恢復；取回"
   },
   {
     "word": "recreation",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The park offers many opportunities for recreation.",
+      "Swimming is both exercise and recreation.",
+      "The centre was built for education and recreation."
+    ],
     "ch": "娛樂；消遣活動"
   },
   {
     "word": "recruit",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The company plans to recruit more engineers.",
+      "The army began to recruit young volunteers.",
+      "We need to recruit helpers for the event."
+    ],
     "ch": "招募；新成員"
   },
   {
     "word": "recruiter",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "A recruiter called her after reading her r?sum?.",
+      "The recruiter explained the job requirements.",
+      "Each recruiter met with students at the fair."
+    ],
     "ch": "招聘人員"
   },
   {
     "word": "recruitment",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "The school started a recruitment campaign for teachers.",
+      "Online recruitment has become more common.",
+      "The company improved its recruitment process."
+    ],
     "ch": "招聘；招募"
   },
   {
     "word": "recyclables",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Please put paper and cans with the recyclables.",
+      "The workers collected recyclables from each floor.",
+      "The bin for recyclables was full by evening."
+    ],
     "ch": "可回收物"
   },
   {
     "word": "recyclers",
     "cefr": "B2",
     "frequency": 6,
-    "sentences": [],
+    "sentences": [
+      "Local recyclers sorted the plastic by hand.",
+      "The city worked with private recyclers to handle waste.",
+      "Some recyclers specialize in electronic parts."
+    ],
     "ch": "回收者；回收商"
   },
   {
     "word": "redden",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "His face began to redden in the heat.",
+      "The sunset made the clouds redden slowly.",
+      "Her eyes reddened after hours of study."
+    ],
     "ch": "變紅；使發紅"
   },
   {
     "word": "redesign",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "They plan to redesign the website next month.",
+      "The school redesigned its logo for the anniversary.",
+      "We need to redesign the room to save space."
+    ],
     "ch": "重新設計"
   },
   {
     "word": "redirect",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Please redirect the call to my office.",
+      "Police redirected traffic after the accident.",
+      "The website will redirect you to the payment page."
+    ],
     "ch": "重新導向；轉寄"
   },
   {
     "word": "redline",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The company decided to redline the contract draft.",
+      "He redlined several parts of the proposal.",
+      "The editor used redline notes on every page."
+    ],
     "ch": "劃紅線；極限"
   },
   {
     "word": "reduction",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "There was a reduction in travel costs this year.",
+      "The doctor recommended a reduction in sugar.",
+      "The plan led to a reduction in waste."
+    ],
     "ch": "減少；縮減"
   },
   {
     "word": "reductionist",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "His explanation was too reductionist for such a complex issue.",
+      "The article criticizes a reductionist view of education.",
+      "A reductionist approach can miss important details."
+    ],
     "ch": "簡化主義者；還原論的"
   },
   {
     "word": "reel",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "He used a reel to pull in the fishing line.",
+      "The camera operator changed the film reel.",
+      "The boxer began to reel after the punch."
+    ],
     "ch": "捲軸；踉蹌"
   },
   {
     "word": "reevaluate",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "We need to reevaluate the budget next week.",
+      "The accident forced the team to reevaluate the plan.",
+      "She reevaluated her goals after graduation."
+    ],
     "ch": "重新評估"
   },
   {
     "word": "reformer",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The book is about a famous social reformer.",
+      "The reformer called for better working conditions.",
+      "Many students admired the reformer's courage."
+    ],
     "ch": "改革者"
   },
   {
     "word": "refugee",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The city welcomed several refugee families.",
+      "A refugee camp was built near the border.",
+      "The novel follows the journey of a young refugee."
+    ],
     "ch": "難民"
   },
   {
     "word": "regard",
     "cefr": "B2",
     "frequency": 37,
-    "sentences": [],
+    "sentences": [
+      "Many people regard her as a leader.",
+      "The school has high regard for student safety.",
+      "With regard to the schedule, nothing has changed."
+    ],
     "ch": "關注；看待"
   },
   {
     "word": "regional",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The airport is an important regional hub.",
+      "The company opened a regional office in Taipei.",
+      "This dish is popular in the regional countryside."
+    ],
     "ch": "地區的；區域性的"
   },
   {
     "word": "register",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Please register online before Friday.",
+      "The hotel will register your passport details.",
+      "We need to register for the competition today."
+    ],
     "ch": "登記；登記簿"
   },
   {
     "word": "registration",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Registration closes at five o'clock.",
+      "The fee is paid during registration.",
+      "Early registration is recommended for this course."
+    ],
     "ch": "登記；註冊"
   },
   {
     "word": "regulate",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "The law helps regulate the market.",
+      "Plants regulate water through their leaves.",
+      "The body regulates temperature automatically."
+    ],
     "ch": "管制；調節"
   },
   {
     "word": "regulation",
     "cefr": "B2",
     "frequency": 10,
-    "sentences": [],
+    "sentences": [
+      "The new regulation affects all shops.",
+      "Safety regulation must be followed carefully.",
+      "The company changed its policy to meet the regulation."
+    ],
     "ch": "規則；法規"
   },
   {
     "word": "rehearsal",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The actors arrived early for rehearsal.",
+      "We had a final rehearsal before the show.",
+      "The singer used rehearsal time to test the sound."
+    ],
     "ch": "排練；演習"
   },
   {
     "word": "reignite",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The speech helped reignite public interest.",
+      "A strong wind can reignite the fire.",
+      "The win may reignite the team's confidence."
+    ],
     "ch": "重新點燃；重新激發"
   },
   {
     "word": "reinforce",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The bridge must be reinforced before winter.",
+      "Teachers reinforce grammar with short drills.",
+      "The good result reinforced her belief in the plan."
+    ],
     "ch": "加強；增強"
   },
   {
     "word": "reinforcement",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The wall needed extra reinforcement.",
+      "Positive reinforcement often works with children.",
+      "Steel bars provide reinforcement for the structure."
+    ],
     "ch": "加強；補強物"
   },
   {
     "word": "relatable",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The main character is funny and relatable.",
+      "Her story felt relatable to many students.",
+      "A relatable example made the lesson clearer."
+    ],
     "ch": "有共鳴的；能理解的"
   },
   {
     "word": "relatively",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The hotel is relatively cheap for this area.",
+      "The task was relatively simple.",
+      "The air remained relatively cool in the morning."
+    ],
     "ch": "相對地；比較地"
   },
   {
     "word": "relearn",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "He had to relearn how to walk after the accident.",
+      "Teachers often relearn old ideas through new research.",
+      "I need to relearn those math formulas."
+    ],
     "ch": "重新學習"
   },
   {
     "word": "relevant",
     "cefr": "B2",
     "frequency": 11,
-    "sentences": [],
+    "sentences": [
+      "Please include only relevant information.",
+      "That example is relevant to our topic.",
+      "Work experience is highly relevant for this job."
+    ],
     "ch": "相關的；切題的"
   },
   {
     "word": "relief",
     "cefr": "B2",
     "frequency": 5,
-    "sentences": [],
+    "sentences": [
+      "She felt relief after hearing the results.",
+      "The medicine brought quick relief from pain.",
+      "The rain was a relief after the heat wave."
+    ],
     "ch": "寬慰；救濟"
   },
   {
     "word": "relieve",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "This drink may relieve your sore throat.",
+      "A short break can relieve stress.",
+      "Trees help relieve summer heat in cities."
+    ],
     "ch": "緩解；解除"
   },
   {
     "word": "relocate",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "The family had to relocate after the flood.",
+      "The company will relocate its office next year.",
+      "Some animals relocate when food becomes scarce."
+    ],
     "ch": "搬遷；重新安置"
   },
   {
     "word": "rely",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "You can rely on her to be honest.",
+      "Many people rely on public transport every day.",
+      "Do not rely only on luck."
+    ],
     "ch": "依賴；信賴"
   },
   {
     "word": "rely on",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Farmers rely on rain during the dry season.",
+      "Students should not rely on translation apps alone.",
+      "The hospital relies on volunteers during busy periods."
+    ],
     "ch": "依靠；依賴"
   },
   {
     "word": "remarkable",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "She made remarkable progress in one year.",
+      "The old tree has a remarkable shape.",
+      "It is remarkable that they finished so quickly."
+    ],
     "ch": "卓越的；引人注目的"
   },
   {
     "word": "replica",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The museum displayed a replica of the ancient boat.",
+      "This sword is only a replica, not the original.",
+      "Tourists took photos with a replica of the statue."
+    ],
     "ch": "複製品；仿製品"
   },
   {
     "word": "replicate",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "Scientists tried to replicate the experiment.",
+      "It is hard to replicate that exact taste.",
+      "The company hopes to replicate the model in other cities."
+    ],
     "ch": "複製；重現"
   },
   {
     "word": "representative",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "A representative from the company gave a speech.",
+      "This sample is representative of the whole group.",
+      "Each class elected one representative."
+    ],
     "ch": "代表；具代表性的"
   },
   {
     "word": "reputation",
     "cefr": "B2",
     "frequency": 6,
-    "sentences": [],
+    "sentences": [
+      "The school has a strong reputation for science.",
+      "A single mistake can damage your reputation.",
+      "The restaurant built a reputation for good service."
+    ],
     "ch": "名聲；聲譽"
   },
   {
     "word": "requirement",
     "cefr": "B2",
     "frequency": 10,
-    "sentences": [],
+    "sentences": [
+      "English is a requirement for this course.",
+      "The job's main requirement is experience.",
+      "Please check every entry requirement carefully."
+    ],
     "ch": "要求；必要條件"
   },
   {
     "word": "rescue",
     "cefr": "B2",
     "frequency": 7,
-    "sentences": [],
+    "sentences": [
+      "Firefighters launched a rescue at dawn.",
+      "The dog rescue center is full this month.",
+      "A helicopter was sent to rescue the climbers."
+    ],
     "ch": "拯救；營救"
   },
   {
     "word": "reserve",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Please reserve a table for four.",
+      "The birds live in a protected nature reserve.",
+      "He kept some money in reserve for emergencies."
+    ],
     "ch": "保留；預訂"
   },
   {
     "word": "reservoir",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The city gets water from the reservoir.",
+      "Heavy rain quickly filled the reservoir.",
+      "A path circles the hilltop reservoir."
+    ],
     "ch": "水庫；儲水池"
   },
   {
     "word": "residency",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "She is applying for permanent residency.",
+      "The artist completed a one-year residency abroad.",
+      "Residency rules changed last spring."
+    ],
     "ch": "居住權；住院醫師期"
   },
   {
     "word": "resident",
     "cefr": "B2",
     "frequency": 27,
-    "sentences": [],
+    "sentences": [
+      "Every resident received a notice about the repair.",
+      "She has been a resident of the estate for ten years.",
+      "A local resident showed us the way."
+    ],
     "ch": "居民；住戶"
   },
   {
     "word": "resist",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "It is hard to resist fresh bread.",
+      "Some materials resist heat better than others.",
+      "He tried to resist the pressure to give up."
+    ],
     "ch": "抵抗；抵制"
   },
   {
     "word": "resistant",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "This fabric is resistant to water.",
+      "The bacteria became resistant to the drug.",
+      "Some plants are naturally resistant to disease."
+    ],
     "ch": "有抵抗力的；抵抗的"
   },
   {
     "word": "resolution",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The photo has high resolution.",
+      "We reached a peaceful resolution to the conflict.",
+      "Her New Year resolution was to read more."
+    ],
     "ch": "決心；解決方案"
   },
   {
     "word": "resolve",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "We must resolve this issue today.",
+      "The software update may resolve the problem.",
+      "She resolved to study harder this term."
+    ],
     "ch": "解決；下定決心"
   },
   {
     "word": "resort",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "They stayed at a beach resort in Thailand.",
+      "The city may resort to water limits in summer.",
+      "The mountain resort is busy in winter."
+    ],
     "ch": "度假村；訴諸"
   },
   {
     "word": "responsive",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The website is fast and responsive.",
+      "Teachers should be responsive to students' needs.",
+      "The customer service team was very responsive."
+    ],
     "ch": "反應迅速的；有回應的"
   },
   {
     "word": "restore",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "Workers will restore the old building carefully.",
+      "This backup can restore your lost files.",
+      "A holiday helped restore her energy."
+    ],
     "ch": "恢復；修復"
   },
   {
     "word": "restrict",
     "cefr": "B2",
     "frequency": 5,
-    "sentences": [],
+    "sentences": [
+      "New rules restrict access to the lab.",
+      "Doctors told him to restrict his sugar intake.",
+      "The city restricted traffic in the center."
+    ],
     "ch": "限制；約束"
   },
   {
     "word": "restriction",
     "cefr": "B2",
     "frequency": 5,
-    "sentences": [],
+    "sentences": [
+      "There is a restriction on outside food.",
+      "Travel restrictions were lifted last month.",
+      "Each ticket comes with a baggage restriction."
+    ],
     "ch": "限制；約束"
   },
   {
     "word": "result in",
     "cefr": "B2",
     "frequency": 0,
-    "sentences": [],
+    "sentences": [
+      "Heavy rain may result in flooding.",
+      "Poor planning can result in extra costs.",
+      "The delay could result in missed flights."
+    ],
     "ch": "導致；造成"
   },
   {
     "word": "retail",
     "cefr": "B2",
     "frequency": 6,
-    "sentences": [],
+    "sentences": [
+      "She works in the retail industry.",
+      "The shop sells goods at retail prices.",
+      "Retail sales usually rise before festivals."
+    ],
     "ch": "零售；零售業"
   },
   {
     "word": "retain",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "It is hard to retain all this information.",
+      "The company wants to retain skilled staff.",
+      "This material can retain heat for hours."
+    ],
     "ch": "保留；保持"
   },
   {
     "word": "retriever",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The golden retriever ran across the field.",
+      "A retriever loves carrying balls back to its owner.",
+      "Their old retriever slept by the door."
+    ],
     "ch": "尋回犬；取回者"
   },
   {
     "word": "reunite",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The film follows two sisters who reunite after years apart.",
+      "The lost child was quickly reunited with his mother.",
+      "Graduation helped old friends reunite."
+    ],
     "ch": "重聚；使重逢"
   },
   {
     "word": "reveal",
     "cefr": "B2",
     "frequency": 18,
-    "sentences": [],
+    "sentences": [
+      "Please do not reveal the ending yet.",
+      "The survey may reveal useful patterns.",
+      "A smile can reveal a lot about a person."
+    ],
     "ch": "揭露；顯示"
   },
   {
     "word": "revenue",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Ticket sales brought in extra revenue.",
+      "Tourism is a major source of revenue.",
+      "The company reported higher revenue this quarter."
+    ],
     "ch": "收入；收益"
   },
   {
     "word": "revision",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Good revision helps before exams.",
+      "The teacher gave us a revision schedule.",
+      "The final revision of the essay took all night."
+    ],
     "ch": "修訂；複習"
   },
   {
     "word": "revolution",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The invention started an industrial revolution.",
+      "Some people believe AI will create another revolution.",
+      "The museum explores the political revolution of that era."
+    ],
     "ch": "革命；劇變"
   },
   {
     "word": "revolve",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The story revolves around one family.",
+      "Many planets revolve around stars.",
+      "The discussion revolved around school stress."
+    ],
     "ch": "旋轉；圍繞"
   },
   {
     "word": "reward",
     "cefr": "B2",
     "frequency": 6,
-    "sentences": [],
+    "sentences": [
+      "Hard work is often its own reward.",
+      "The shop offers a reward for lost pets.",
+      "She was rewarded for her honesty."
+    ],
     "ch": "獎勵；報酬"
   },
   {
     "word": "rework",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The designer had to rework the poster.",
+      "We need to rework the first paragraph.",
+      "A rework of the old plan saved time."
+    ],
     "ch": "重做；修改"
   },
   {
     "word": "rhetorical",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "That was a rhetorical question, so do not answer it.",
+      "The speech used several rhetorical devices.",
+      "His rhetorical style made the talk more powerful."
+    ],
     "ch": "修辭的；反問的"
   },
   {
     "word": "rid",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "We need to get rid of this old sofa.",
+      "She tried to rid the room of smoke.",
+      "The town wants to rid the beach of litter."
+    ],
     "ch": "使擺脫；去除"
   },
   {
     "word": "ridiculous",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The price is absolutely ridiculous.",
+      "He looked ridiculous in the oversized hat.",
+      "It would be ridiculous to ignore that warning."
+    ],
     "ch": "荒謬的；可笑的"
   },
   {
     "word": "rightly",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "She was rightly proud of her work.",
+      "The coach rightly praised the team.",
+      "Many people rightly questioned the decision."
+    ],
     "ch": "理所當然地；正確地"
   },
   {
     "word": "rinse",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Please rinse the fruit before eating it.",
+      "She used warm water to rinse the cup.",
+      "Rinse your hands after painting."
+    ],
     "ch": "沖洗；漱"
   },
   {
     "word": "risky",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "It is risky to walk there at night.",
+      "The company avoided a risky investment.",
+      "That move looked risky but it worked."
+    ],
     "ch": "有風險的"
   },
   {
     "word": "rival",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The two schools are old rivals.",
+      "The brand launched a phone to rival its competitors.",
+      "A rival team won the tournament last year."
+    ],
     "ch": "對手；競爭的"
   },
   {
     "word": "riverside",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "We took a walk along the riverside.",
+      "A caf? opened on the riverside path.",
+      "The festival lights reflected on the riverside water."
+    ],
     "ch": "河邊；河畔的"
   },
   {
     "word": "roam",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Tourists roamed through the market all afternoon.",
+      "The sheep are free to roam the hill.",
+      "My thoughts began to roam during the lecture."
+    ],
     "ch": "漫遊；閒逛"
   },
   {
     "word": "root",
     "cefr": "B2",
     "frequency": 10,
-    "sentences": [],
+    "sentences": [
+      "The tree's roots broke the pavement.",
+      "We need to find the root of the problem.",
+      "These plants grow well because their roots are strong."
+    ],
     "ch": "根；根源"
   },
   {
     "word": "roughly",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "The trip takes roughly two hours.",
+      "He drew the shape roughly in pencil.",
+      "There were roughly one hundred people there."
+    ],
     "ch": "大約；粗略地"
   },
   {
     "word": "round",
     "cefr": "B2",
     "frequency": 10,
-    "sentences": [],
+    "sentences": [
+      "The table is round and made of wood.",
+      "We played one more round of cards.",
+      "The earth is not perfectly round."
+    ],
     "ch": "圓形的；回合"
   },
   {
     "word": "routinely",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "The machine is routinely checked for safety.",
+      "She routinely arrives early for class.",
+      "Doctors routinely ask about sleep and stress."
+    ],
     "ch": "例行地；經常地"
   },
   {
     "word": "rub",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Rub the paint gently off the glass.",
+      "He rubbed his eyes and sat up.",
+      "Please rub the table clean with this cloth."
+    ],
     "ch": "摩擦；擦拭"
   },
   {
     "word": "rubber",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "The boots are made of rubber.",
+      "A small rubber duck floated in the bath.",
+      "Rubber gloves were used in the lab."
+    ],
     "ch": "橡膠；橡皮"
   },
   {
     "word": "ruin",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "Heavy rain can ruin a picnic.",
+      "The castle is now a ruin on the hill.",
+      "One mistake should not ruin your day."
+    ],
     "ch": "毀壞；廢墟"
   },
   {
     "word": "rumor",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "A rumor spread through the office quickly.",
+      "Do not believe every rumor you hear.",
+      "The rumor turned out to be false."
+    ],
     "ch": "謠言；傳聞"
   },
   {
     "word": "rural",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "She grew up in a rural village.",
+      "Rural roads can be narrow and dark.",
+      "The program supports students from rural areas."
+    ],
     "ch": "鄉村的；農村的"
   },
   {
     "word": "rush",
     "cefr": "B2",
     "frequency": 5,
-    "sentences": [],
+    "sentences": [
+      "There is no need to rush.",
+      "Morning rush hour begins before seven.",
+      "He rushed to finish the work before lunch."
+    ],
     "ch": "衝；匆忙"
   },
   {
     "word": "sadness",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Her voice was full of sadness.",
+      "The film ends with quiet sadness.",
+      "He could not hide his sadness after the loss."
+    ],
     "ch": "悲傷"
   },
   {
     "word": "safeguard",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The law safeguards children's rights.",
+      "These checks are meant to safeguard public money.",
+      "A backup system helps safeguard important files."
+    ],
     "ch": "保護措施；保護"
   },
   {
     "word": "salty",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The soup tastes too salty.",
+      "Sea air leaves a salty smell on the shore.",
+      "He bought a bag of salty snacks."
+    ],
     "ch": "鹹的"
   },
   {
     "word": "sample",
     "cefr": "B2",
     "frequency": 6,
-    "sentences": [],
+    "sentences": [
+      "Please take a sample of the water.",
+      "The teacher played a sample of the song.",
+      "A small sample can still give useful results."
+    ],
     "ch": "樣本；取樣"
   },
   {
     "word": "sap",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "Sticky sap ran down the tree trunk.",
+      "Some insects feed on plant sap.",
+      "The cut branch leaked clear sap."
+    ],
     "ch": "樹液；削弱"
   },
   {
     "word": "satellite",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The satellite sent images back to Earth.",
+      "A weather satellite tracked the storm.",
+      "The dish receives signals from a satellite."
+    ],
     "ch": "衛星"
   },
   {
     "word": "satisfaction",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "She felt deep satisfaction after helping the team.",
+      "Customer satisfaction is important to the company.",
+      "The result brought him great satisfaction."
+    ],
     "ch": "滿足；滿意"
   },
   {
     "word": "satisfactory",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Your progress this term is satisfactory.",
+      "The repair was completed to a satisfactory standard.",
+      "We are looking for a satisfactory solution."
+    ],
     "ch": "令人滿意的"
   },
   {
     "word": "satisfy",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "This answer may not satisfy the committee.",
+      "The meal was enough to satisfy everyone.",
+      "The results satisfied the customer."
+    ],
     "ch": "使滿意；滿足"
   },
   {
     "word": "saving",
     "cefr": "B2",
     "frequency": 5,
-    "sentences": [],
+    "sentences": [
+      "Her savings helped pay the rent.",
+      "Energy saving is now a key goal.",
+      "The new system brought a significant saving in time."
+    ],
     "ch": "節省；儲蓄"
   },
   {
     "word": "scale",
     "cefr": "B2",
     "frequency": null,
-    "sentences": [],
+    "sentences": [
+      "The map is not drawn to scale.",
+      "The scale of the project surprised everyone.",
+      "Please weigh the fruit on the scale."
+    ],
     "ch": "規模；刻度"
   },
   {
     "word": "scallop",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The chef served scallops with lemon sauce.",
+      "She found a scallop shell on the beach.",
+      "Fresh scallops were sold at the market."
+    ],
     "ch": "扇貝"
   },
   {
     "word": "scar",
     "cefr": "B2",
     "frequency": 8,
-    "sentences": [],
+    "sentences": [
+      "He has a scar on his left hand.",
+      "The fire left a scar on the wall.",
+      "The old injury left a thin scar."
+    ],
     "ch": "疤痕；留下創傷"
   },
   {
     "word": "scare",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The loud bang gave us a scare.",
+      "Do not scare the birds away.",
+      "That film used music to scare the audience."
+    ],
     "ch": "驚嚇；使害怕"
   },
   {
     "word": "scenario",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "In the worst-case scenario, the bridge will close.",
+      "The teacher described a real-life scenario.",
+      "We discussed several possible scenarios."
+    ],
     "ch": "情境；可能情況"
   },
   {
     "word": "schedule",
     "cefr": "B2",
     "frequency": 11,
-    "sentences": [],
+    "sentences": [
+      "The train schedule changed this week.",
+      "Please schedule the meeting for Friday.",
+      "Her work schedule is very busy."
+    ],
     "ch": "時間表；安排"
   },
   {
     "word": "scheme",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "The city launched a recycling scheme.",
+      "He invested in a health insurance scheme.",
+      "The color scheme made the room feel calmer."
+    ],
     "ch": "計劃；方案"
   },
   {
     "word": "scholarship",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "She won a scholarship to study overseas.",
+      "The school offers a scholarship for top athletes.",
+      "He applied for a scholarship in science."
+    ],
     "ch": "獎學金；學問"
   },
   {
