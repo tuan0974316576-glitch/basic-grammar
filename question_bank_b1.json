@@ -6445,11 +6445,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "Clean your fryers daily.",
+        "text": "The kitchen uses a large fryer for chips.",
         "answer": "fryer"
       },
       {
-        "text": "This extends the life of the fryer.",
+        "text": "Please be careful when cleaning the fryer.",
+        "answer": "fryer"
+      },
+      {
+        "text": "The cook placed the basket into the fryer.",
         "answer": "fryer"
       }
     ],
@@ -6461,11 +6465,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "One night he sprang from sleep with a start, his thick fur bristling in recurrent waves.",
+        "text": "The fox has thick fur for winter.",
         "answer": "fur"
       },
       {
-        "text": "Bees in the wild can burrow into the fur of an attacking bear, to sting the animal where it will hurt them hopping mad.",
+        "text": "Her coat has a soft fur collar.",
+        "answer": "fur"
+      },
+      {
+        "text": "The rabbit?s fur felt warm and smooth.",
         "answer": "fur"
       }
     ],
@@ -6475,7 +6483,20 @@
     "word": "furthermore",
     "cefr": "B1",
     "frequency": null,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The room is spacious; furthermore, it is close to the station.",
+        "answer": "furthermore"
+      },
+      {
+        "text": "Furthermore, we should consider the long-term cost.",
+        "answer": "furthermore"
+      },
+      {
+        "text": "He is hardworking and, furthermore, very patient.",
+        "answer": "furthermore"
+      }
+    ],
     "ch": "此外；而且"
   },
   {
@@ -6484,7 +6505,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "Don't blow a fuse!",
+        "text": "A broken fuse caused the lights to go out.",
+        "answer": "fuse"
+      },
+      {
+        "text": "The artist used heat to fuse the glass pieces together.",
+        "answer": "fuse"
+      },
+      {
+        "text": "Please check the fuse before calling an electrician.",
         "answer": "fuse"
       }
     ],
@@ -6494,7 +6523,20 @@
     "word": "gag",
     "cefr": "B1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The comedian?s opening gag made everyone laugh.",
+        "answer": "gag"
+      },
+      {
+        "text": "The loud noise ruined the joke and the gag fell flat.",
+        "answer": "gag"
+      },
+      {
+        "text": "He placed a gag over the microphone as part of the skit.",
+        "answer": "gag"
+      }
+    ],
     "ch": "笑料；堵住嘴"
   },
   {
@@ -6543,7 +6585,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "How is A Geek different from your first book?",
+        "text": "He is a computer geek who loves coding.",
+        "answer": "geek"
+      },
+      {
+        "text": "The film was popular with science geeks.",
+        "answer": "geek"
+      },
+      {
+        "text": "She proudly calls herself a book geek.",
         "answer": "geek"
       }
     ],
@@ -6555,11 +6605,15 @@
     "frequency": 6,
     "sentences": [
       {
-        "text": "Although the skies have generally been lovely and clear in the past few days, a sudden change in conditions was recorded in the area around the time of the crash.",
+        "text": "People here generally walk to the station.",
         "answer": "generally"
       },
       {
-        "text": "Kemi: I think generally Ceci that it's a good thing.",
+        "text": "I generally avoid sweet drinks.",
+        "answer": "generally"
+      },
+      {
+        "text": "The weather is generally warm in May.",
         "answer": "generally"
       }
     ],
@@ -6609,14 +6663,40 @@
     "word": "gentleman",
     "cefr": "B1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A gentleman opened the door for us.",
+        "answer": "gentleman"
+      },
+      {
+        "text": "The old gentleman smiled kindly.",
+        "answer": "gentleman"
+      },
+      {
+        "text": "He introduced himself as a true gentleman.",
+        "answer": "gentleman"
+      }
+    ],
     "ch": "先生；紳士"
   },
   {
     "word": "get rid of",
     "cefr": "B1",
     "frequency": 0,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "We need to get rid of these old boxes.",
+        "answer": "get rid of"
+      },
+      {
+        "text": "She wants to get rid of her bad habits.",
+        "answer": "get rid of"
+      },
+      {
+        "text": "How can I get rid of this stain?",
+        "answer": "get rid of"
+      }
+    ],
     "ch": "去除；擺脫"
   },
   {
@@ -6625,7 +6705,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "Brad 6. wildtamer@gmail.com 7. hobbies 8. article 9. ghosts 10.",
+        "text": "The children told a ghost story by the fire.",
+        "answer": "ghost"
+      },
+      {
+        "text": "He dressed like a ghost for Halloween.",
+        "answer": "ghost"
+      },
+      {
+        "text": "Some people say a ghost lives in that house.",
         "answer": "ghost"
       }
     ],
@@ -6637,7 +6725,15 @@
     "frequency": 4,
     "sentences": [
       {
-        "text": "Nearly 2000 of them, lighting up the night sky like a giant spider web as part of Tokyo's incredible Olympic Games Opening Ceremony.",
+        "text": "A giant screen was placed in the square.",
+        "answer": "giant"
+      },
+      {
+        "text": "The story is about a kind giant.",
+        "answer": "giant"
+      },
+      {
+        "text": "We saw a giant wave from the shore.",
         "answer": "giant"
       }
     ],
@@ -6649,7 +6745,15 @@
     "frequency": 4,
     "sentences": [
       {
-        "text": "Kim tells us he's really glad he got Sparky.",
+        "text": "I am glad you came today.",
+        "answer": "glad"
+      },
+      {
+        "text": "She was glad to hear the news.",
+        "answer": "glad"
+      },
+      {
+        "text": "We are glad that the project is finished.",
         "answer": "glad"
       }
     ],
@@ -6719,7 +6823,20 @@
     "word": "grain",
     "cefr": "B1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The farmer stores grain in a large barn.",
+        "answer": "grain"
+      },
+      {
+        "text": "A grain of sand got into my shoe.",
+        "answer": "grain"
+      },
+      {
+        "text": "This bread is made from whole grain.",
+        "answer": "grain"
+      }
+    ],
     "ch": "穀物；顆粒"
   },
   {
@@ -6788,7 +6905,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "If Benjamin Franklin can feel guilty about not getting enough stuff done because he’s messy, I think the rest of us can cut ourselves some slack.",
+        "text": "He felt guilty after telling a lie.",
+        "answer": "guilty"
+      },
+      {
+        "text": "The court found the man guilty.",
+        "answer": "guilty"
+      },
+      {
+        "text": "I feel guilty when I waste food.",
         "answer": "guilty"
       }
     ],
@@ -6800,7 +6925,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "He or she is a champion in gymnastics.",
+        "text": "She practices gymnastics twice a week.",
+        "answer": "gymnastics"
+      },
+      {
+        "text": "The gymnastics team won the event.",
+        "answer": "gymnastics"
+      },
+      {
+        "text": "Gymnastics requires strength and balance.",
         "answer": "gymnastics"
       }
     ],
@@ -6832,7 +6965,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "(listening to) a talk (given) by (store) owner // (store) owner will give talk 8. handmade umbrella workshop 9.",
+        "text": "The market sells handmade soap.",
+        "answer": "handmade"
+      },
+      {
+        "text": "She gave me a handmade card.",
+        "answer": "handmade"
+      },
+      {
+        "text": "That handmade bag looks beautiful.",
         "answer": "handmade"
       }
     ],
@@ -6882,14 +7023,40 @@
     "word": "hardly",
     "cefr": "B1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "I could hardly hear the speaker.",
+        "answer": "hardly"
+      },
+      {
+        "text": "He hardly ever eats fast food.",
+        "answer": "hardly"
+      },
+      {
+        "text": "We had hardly started when it began to rain.",
+        "answer": "hardly"
+      }
+    ],
     "ch": "幾乎不"
   },
   {
     "word": "hate",
     "cefr": "B1",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "I hate getting up so early.",
+        "answer": "hate"
+      },
+      {
+        "text": "She hates loud noises.",
+        "answer": "hate"
+      },
+      {
+        "text": "They hate waiting in long lines.",
+        "answer": "hate"
+      }
+    ],
     "ch": "討厭；憎恨"
   },
   {
@@ -6918,7 +7085,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "**Book Publishers Weekly** The Wall Street Journal's provocative January 8 headline alone—'Why Chinese Mothers Are Superior'—would have been enough to spark intense discussion.",
+        "text": "The headline was printed in large letters.",
+        "answer": "headline"
+      },
+      {
+        "text": "That story made the front-page headline.",
+        "answer": "headline"
+      },
+      {
+        "text": "He wrote a stronger headline for the article.",
         "answer": "headline"
       }
     ],
@@ -6928,7 +7103,20 @@
     "word": "heavily",
     "cefr": "B1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "It rained heavily all night.",
+        "answer": "heavily"
+      },
+      {
+        "text": "The box was heavily damaged in the fall.",
+        "answer": "heavily"
+      },
+      {
+        "text": "He was breathing heavily after the race.",
+        "answer": "heavily"
+      }
+    ],
     "ch": "沉重地；大量地"
   },
   {
@@ -6997,7 +7185,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "This is what allows the banyan to grow in varied conditions, which is why they are the most prominent forms of greenery in the hilliest and most densely packed parts of Hong Kong.",
+        "text": "This is the hilliest part of the island.",
+        "answer": "hilliest"
+      },
+      {
+        "text": "The hilliest route is also the most beautiful.",
+        "answer": "hilliest"
+      },
+      {
+        "text": "We cycled through the hilliest streets in town.",
         "answer": "hilliest"
       }
     ],
@@ -7009,7 +7205,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "Hired hands worked full shifts, moving up the hillsides as each orchard hit blossom-time.",
+        "text": "A small house stood on the hillside.",
+        "answer": "hillside"
+      },
+      {
+        "text": "Rainwater rushed down the hillside.",
+        "answer": "hillside"
+      },
+      {
+        "text": "Wild flowers covered the hillside in spring.",
         "answer": "hillside"
       }
     ],
@@ -7021,11 +7225,15 @@
     "frequency": 3,
     "sentences": [
       {
-        "text": "Wang Chung Village /Reservoir - reservoir water levels at historic low found farmhouse.",
+        "text": "We visited a historic building in town.",
         "answer": "historic"
       },
       {
-        "text": "More than just a museum, or an art gallery, or an historic site, Tai Kwun is a place that brings many different threads of Hong Kong life together.",
+        "text": "The team achieved a historic victory.",
+        "answer": "historic"
+      },
+      {
+        "text": "This street is part of a historic district.",
         "answer": "historic"
       }
     ],
@@ -7037,7 +7245,15 @@
     "frequency": 4,
     "sentences": [
       {
-        "text": "January 15th 2013 I love random historical statistics!",
+        "text": "She enjoys reading historical novels.",
+        "answer": "historical"
+      },
+      {
+        "text": "The museum contains many historical records.",
+        "answer": "historical"
+      },
+      {
+        "text": "We watched a historical documentary in class.",
         "answer": "historical"
       }
     ],
@@ -7049,11 +7265,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "The knock-out was the hot dog, a dark sausage of minced and pickled pork, with homemade sauce.",
+        "text": "My grandmother served homemade soup.",
         "answer": "homemade"
       },
       {
-        "text": "[7] Veteran hawker Lee Tai-wing, who has been a hawker trading clothes and selling cart noodles and homemade snacks for over 40 years, remains optimistic about Hong Kong hawking.",
+        "text": "He brought homemade cookies to school.",
+        "answer": "homemade"
+      },
+      {
+        "text": "The caf? is famous for homemade bread.",
         "answer": "homemade"
       }
     ],
@@ -7065,11 +7285,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "So we have the Sauri village homepage on the Internet.",
+        "text": "The link is on our homepage.",
         "answer": "homepage"
       },
       {
-        "text": "Start by listening to the The Classical podcast and by having a look at the MelakaBank homepage.",
+        "text": "Their homepage was updated this morning.",
+        "answer": "homepage"
+      },
+      {
+        "text": "Please return to the homepage and try again.",
         "answer": "homepage"
       }
     ],
@@ -7079,7 +7303,20 @@
     "word": "hometown",
     "cefr": "B1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "She returned to her hometown for the festival.",
+        "answer": "hometown"
+      },
+      {
+        "text": "His hometown is much quieter than Hong Kong.",
+        "answer": "hometown"
+      },
+      {
+        "text": "The guide told us stories about her hometown.",
+        "answer": "hometown"
+      }
+    ],
     "ch": "家鄉"
   },
   {
@@ -7108,7 +7345,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "[9] This, it turns out, was our honeymoon phase.",
+        "text": "They traveled to Bali for their honeymoon.",
+        "answer": "honeymoon"
+      },
+      {
+        "text": "The couple is planning a short honeymoon.",
+        "answer": "honeymoon"
+      },
+      {
+        "text": "A warm beach is perfect for a honeymoon.",
         "answer": "honeymoon"
       }
     ],
@@ -7118,7 +7363,20 @@
     "word": "honor",
     "cefr": "B1",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "It is an honor to speak here today.",
+        "answer": "honor"
+      },
+      {
+        "text": "They held a dinner in her honor.",
+        "answer": "honor"
+      },
+      {
+        "text": "He promised to act with honor.",
+        "answer": "honor"
+      }
+    ],
     "ch": "榮譽；尊敬"
   },
   {
@@ -7127,7 +7385,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "At this point, he felt hopeless, but that was when his family decided to get a guide dog, and it changed his life.",
+        "text": "He felt hopeless after losing his job.",
+        "answer": "hopeless"
+      },
+      {
+        "text": "The old machine looked hopeless.",
+        "answer": "hopeless"
+      },
+      {
+        "text": "Without help, the situation may become hopeless.",
         "answer": "hopeless"
       }
     ],
@@ -7139,11 +7405,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "It was horrible.",
+        "text": "The weather was horrible yesterday.",
         "answer": "horrible"
       },
       {
-        "text": "Nancy Kipkirui Bubblegum lipstick - horrible!",
+        "text": "We heard a horrible noise outside.",
+        "answer": "horrible"
+      },
+      {
+        "text": "He had a horrible feeling about the trip.",
         "answer": "horrible"
       }
     ],
@@ -7153,14 +7423,40 @@
     "word": "horrors",
     "cefr": "B1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The film is full of dark horrors.",
+        "answer": "horrors"
+      },
+      {
+        "text": "They spoke about the horrors of war.",
+        "answer": "horrors"
+      },
+      {
+        "text": "The old book described many strange horrors.",
+        "answer": "horrors"
+      }
+    ],
     "ch": "恐怖故事；驚恐"
   },
   {
     "word": "however",
     "cefr": "B1",
     "frequency": null,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "However, we still need more time.",
+        "answer": "however"
+      },
+      {
+        "text": "The room is small; however, it is comfortable.",
+        "answer": "however"
+      },
+      {
+        "text": "He was tired; however, he kept working.",
+        "answer": "however"
+      }
+    ],
     "ch": "然而"
   },
   {
@@ -7169,7 +7465,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "In your book, you write about jeong the invisible hug.",
+        "text": "She gave her mother a warm hug.",
+        "answer": "hug"
+      },
+      {
+        "text": "The child ran over for a hug.",
+        "answer": "hug"
+      },
+      {
+        "text": "A quick hug made him smile.",
         "answer": "hug"
       }
     ],
@@ -7181,11 +7485,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "And that’s a big hurdle.",
+        "text": "The runner jumped over each hurdle easily.",
         "answer": "hurdle"
       },
       {
-        "text": "[21] I would also strongly suggest that when things are proving challenging in your new home, you don’t give up at the first hurdle.",
+        "text": "Money was the first hurdle in the plan.",
+        "answer": "hurdle"
+      },
+      {
+        "text": "Every hurdle made the race harder.",
         "answer": "hurdle"
       }
     ],
@@ -7197,7 +7505,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "Georg: The pace of life here is so fast, everyone seems to be in a hurry and they don't seem to nave the time to talk to you.",
+        "text": "Please hurry or we will miss the train.",
+        "answer": "hurry"
+      },
+      {
+        "text": "There is no need to hurry.",
+        "answer": "hurry"
+      },
+      {
+        "text": "He left in a hurry after the call.",
         "answer": "hurry"
       }
     ],
@@ -7209,7 +7525,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "Made this sketch of what the icy peak looked like in the sun.",
+        "text": "Be careful on the icy road.",
+        "answer": "icy"
+      },
+      {
+        "text": "The wind felt icy in the morning.",
+        "answer": "icy"
+      },
+      {
+        "text": "An icy drink was waiting on the table.",
         "answer": "icy"
       }
     ],
@@ -7221,7 +7545,15 @@
     "frequency": 3,
     "sentences": [
       {
-        "text": "Culturally, Millennials believe that their identity is just as valid as anyone else’s.",
+        "text": "The police checked his identity card.",
+        "answer": "identity"
+      },
+      {
+        "text": "Music is part of her cultural identity.",
+        "answer": "identity"
+      },
+      {
+        "text": "The website must protect your identity.",
         "answer": "identity"
       }
     ],
@@ -7233,11 +7565,15 @@
     "frequency": 4,
     "sentences": [
       {
-        "text": "And if you have a Gamezstart project at the same time as another project, one from a big company, then your project is very likely gonna be ignored by investors.",
+        "text": "Do not ignore the warning signs.",
         "answer": "ignore"
       },
       {
-        "text": "Don't ignore me\" as the third song.",
+        "text": "She chose to ignore the rude comment.",
+        "answer": "ignore"
+      },
+      {
+        "text": "It is hard to ignore that loud noise.",
         "answer": "ignore"
       }
     ],
@@ -7267,14 +7603,40 @@
     "word": "imaginary",
     "cefr": "B1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The child has an imaginary friend.",
+        "answer": "imaginary"
+      },
+      {
+        "text": "We drew an imaginary island in class.",
+        "answer": "imaginary"
+      },
+      {
+        "text": "The story takes place in an imaginary city.",
+        "answer": "imaginary"
+      }
+    ],
     "ch": "想像中的"
   },
   {
     "word": "imagine a scenario where",
     "cefr": "B1",
     "frequency": null,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Imagine a scenario where all buses are free.",
+        "answer": "imagine a scenario where"
+      },
+      {
+        "text": "The teacher asked us to imagine a scenario where the power fails.",
+        "answer": "imagine a scenario where"
+      },
+      {
+        "text": "Imagine a scenario where your phone stops working before an exam.",
+        "answer": "imagine a scenario where"
+      }
+    ],
     "ch": "想像一個情境："
   },
   {
@@ -7283,11 +7645,15 @@
     "frequency": 6,
     "sentences": [
       {
-        "text": "Therefore, any emergency cases requiring immediate hospitalization should be taken to the Tsing Shan Hospital instead.",
+        "text": "The patient needs immediate care.",
         "answer": "immediate"
       },
       {
-        "text": "The effect is immediate and results in a sharp, burning sensation.",
+        "text": "We expect an immediate reply.",
+        "answer": "immediate"
+      },
+      {
+        "text": "There was no immediate danger to the public.",
         "answer": "immediate"
       }
     ],
@@ -7299,11 +7665,15 @@
     "frequency": 3,
     "sentences": [
       {
-        "text": "Mr. Tudor pushes into new social and economic territory with his book, including the rising role of immigrants, multicultural families and even gay people in South Korea.",
+        "text": "The city welcomed many immigrant families.",
         "answer": "immigrant"
       },
       {
-        "text": "There are significant implications for the differences in the ways that the natives and the immigrants think about the land they live in.",
+        "text": "His grandparents were immigrant workers.",
+        "answer": "immigrant"
+      },
+      {
+        "text": "An immigrant community opened new shops here.",
         "answer": "immigrant"
       }
     ],
@@ -7335,7 +7705,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "Last year, we imported about sixty million dollars’ worth of seafood compared to one billion dollars for the whole sector.",
+        "text": "Hong Kong imports food from many places.",
+        "answer": "import"
+      },
+      {
+        "text": "Rice is an important import for that country.",
+        "answer": "import"
+      },
+      {
+        "text": "The company will import new equipment next month.",
         "answer": "import"
       }
     ],
@@ -7347,11 +7725,15 @@
     "frequency": 4,
     "sentences": [
       {
-        "text": "is our tongue-in-cheek guide to avoiding cross-contamination in the kitchen, while \"Burn those bugs\" explains the importance of safe cooking temperatures.",
+        "text": "The teacher stressed the importance of sleep.",
         "answer": "importance"
       },
       {
-        "text": "Details We teach the importance of Crystal Clear CommunicationTM: the art of only saying what you mean and meaning what you say.",
+        "text": "He understands the importance of teamwork.",
+        "answer": "importance"
+      },
+      {
+        "text": "The book explains the importance of clean water.",
         "answer": "importance"
       }
     ],
@@ -7361,7 +7743,20 @@
     "word": "impression",
     "cefr": "B1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "She made a good impression on the interview panel.",
+        "answer": "impression"
+      },
+      {
+        "text": "My first impression of the hotel was positive.",
+        "answer": "impression"
+      },
+      {
+        "text": "His speech left a strong impression on the audience.",
+        "answer": "impression"
+      }
+    ],
     "ch": "印象"
   },
   {
@@ -7370,7 +7765,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "Mr Lai agreed with the overall message of the blog, although the display had been impressive.",
+        "text": "That was an impressive performance.",
+        "answer": "impressive"
+      },
+      {
+        "text": "The new bridge is very impressive.",
+        "answer": "impressive"
+      },
+      {
+        "text": "She made impressive progress in a short time.",
         "answer": "impressive"
       }
     ],
@@ -7400,21 +7803,60 @@
     "word": "in addition",
     "cefr": "B1",
     "frequency": null,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "In addition, we should invite the parents.",
+        "answer": "in addition"
+      },
+      {
+        "text": "The room is cheap and, in addition, quite spacious.",
+        "answer": "in addition"
+      },
+      {
+        "text": "In addition to English, she studies Japanese.",
+        "answer": "in addition"
+      }
+    ],
     "ch": "此外"
   },
   {
     "word": "in other words",
     "cefr": "B1",
     "frequency": null,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "He is very careful; in other words, he checks everything twice.",
+        "answer": "in other words"
+      },
+      {
+        "text": "In other words, the project needs more time.",
+        "answer": "in other words"
+      },
+      {
+        "text": "The road is blocked, in other words, we must use another route.",
+        "answer": "in other words"
+      }
+    ],
     "ch": "換句話說"
   },
   {
     "word": "in spite of",
     "cefr": "B1",
     "frequency": null,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "In spite of the rain, they kept playing.",
+        "answer": "in spite of"
+      },
+      {
+        "text": "She smiled in spite of the pain.",
+        "answer": "in spite of"
+      },
+      {
+        "text": "In spite of his age, he walks very fast.",
+        "answer": "in spite of"
+      }
+    ],
     "ch": "儘管"
   },
   {
@@ -7443,11 +7885,15 @@
     "frequency": 5,
     "sentences": [
       {
-        "text": "After multiple tests it was found that Space Food is indeed a healthy food source if you are doing exercise.",
+        "text": "The result was indeed surprising.",
         "answer": "indeed"
       },
       {
-        "text": "Researchers calculate that there are indeed such benefits to recycling, but not in the way that many people imagine.",
+        "text": "He is indeed a talented singer.",
+        "answer": "indeed"
+      },
+      {
+        "text": "It was cold indeed on the mountain.",
         "answer": "indeed"
       }
     ],
@@ -7459,7 +7905,15 @@
     "frequency": 4,
     "sentences": [
       {
-        "text": "Style of article to be decided by the writer, unless otherwise indicated by the editor.",
+        "text": "The sign indicates the way to the exit.",
+        "answer": "indicate"
+      },
+      {
+        "text": "Please indicate your choice with a tick.",
+        "answer": "indicate"
+      },
+      {
+        "text": "Dark clouds indicate that rain is coming.",
         "answer": "indicate"
       }
     ],
@@ -7471,11 +7925,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "Course Provider: The Grill Gurus Need comprehensive chef training for indoor and outdoor chefs?",
+        "text": "The school built a new indoor court.",
         "answer": "indoor"
       },
       {
-        "text": "My buddy Steve says he thought it was a waste of time because he works at an indoor kitchen.",
+        "text": "Indoor plants need enough light.",
+        "answer": "indoor"
+      },
+      {
+        "text": "We moved to an indoor space because of the rain.",
         "answer": "indoor"
       }
     ],
@@ -7487,7 +7945,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "NO UMBRELLAS INSIDE Opening an umbrella indoors brings bad luck and danger – you might just poke someone’s eye out.",
+        "text": "It was raining, so we stayed indoors.",
+        "answer": "indoors"
+      },
+      {
+        "text": "Children played indoors during the storm.",
+        "answer": "indoors"
+      },
+      {
+        "text": "Keep the plant indoors in winter.",
         "answer": "indoors"
       }
     ],
@@ -7499,7 +7965,15 @@
     "frequency": 5,
     "sentences": [
       {
-        "text": "Now, these tribal groups can live immersed in their own traditions and without being negatively influenced by anyone from outside their own community or country.",
+        "text": "Parents often influence their children?s habits.",
+        "answer": "influence"
+      },
+      {
+        "text": "Music can influence your mood.",
+        "answer": "influence"
+      },
+      {
+        "text": "Social media has a strong influence on young people.",
         "answer": "influence"
       }
     ],
@@ -7531,7 +8005,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "Injured during the climb, Ms Fong believes that the experience has given her the inspiration to start her own company, and even the company name.",
+        "text": "Two players were injured in the match.",
+        "answer": "injured"
+      },
+      {
+        "text": "An injured bird was found near the road.",
+        "answer": "injured"
+      },
+      {
+        "text": "He was injured but still smiling.",
         "answer": "injured"
       }
     ],
@@ -7543,7 +8025,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "[8] But it’s not all so innocent.",
+        "text": "The child gave an innocent smile.",
+        "answer": "innocent"
+      },
+      {
+        "text": "The man was found innocent in court.",
+        "answer": "innocent"
+      },
+      {
+        "text": "She asked an innocent question.",
         "answer": "innocent"
       }
     ],
@@ -7555,7 +8045,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "In the last half-century, though, emphasis on inquiry has become dominant, and it has often been reduced to the ability to expose error and undermine belief.",
+        "text": "Please send your inquiry by email.",
+        "answer": "inquiry"
+      },
+      {
+        "text": "The office received an inquiry about the course.",
+        "answer": "inquiry"
+      },
+      {
+        "text": "A formal inquiry started after the accident.",
         "answer": "inquiry"
       }
     ],
@@ -7565,7 +8063,20 @@
     "word": "instead",
     "cefr": "B1",
     "frequency": null,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "We stayed home instead of going out.",
+        "answer": "instead"
+      },
+      {
+        "text": "Take this road instead.",
+        "answer": "instead"
+      },
+      {
+        "text": "She chose tea instead of coffee.",
+        "answer": "instead"
+      }
+    ],
     "ch": "反而；代替"
   },
   {
@@ -7614,7 +8125,15 @@
     "frequency": 3,
     "sentences": [
       {
-        "text": "[6] At home, once or twice I announced my intention of running away, but my mother diffused the threat by packing me a bag containing peanut butter sandwiches and pyjamas.",
+        "text": "His intention was to help the team.",
+        "answer": "intention"
+      },
+      {
+        "text": "She explained the intention behind the design.",
+        "answer": "intention"
+      },
+      {
+        "text": "I have no intention of leaving early.",
         "answer": "intention"
       }
     ],
@@ -7624,7 +8143,20 @@
     "word": "internationally",
     "cefr": "B1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The artist is known internationally.",
+        "answer": "internationally"
+      },
+      {
+        "text": "That company sells products internationally.",
+        "answer": "internationally"
+      },
+      {
+        "text": "Her work was praised internationally.",
+        "answer": "internationally"
+      }
+    ],
     "ch": "國際上"
   },
   {
@@ -7633,11 +8165,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "You'll also study communication and the course includes a six-month internship (local or overseas).",
+        "text": "She started an internship at a bank.",
         "answer": "internship"
       },
       {
-        "text": "Host: And from what you've seen in your internships, what were the challenges of being a trainee veterinary nurse?",
+        "text": "The internship lasted eight weeks.",
+        "answer": "internship"
+      },
+      {
+        "text": "An internship can help students gain experience.",
         "answer": "internship"
       }
     ],
@@ -7687,14 +8223,40 @@
     "word": "investigate",
     "cefr": "B1",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The police will investigate the cause of the fire.",
+        "answer": "investigate"
+      },
+      {
+        "text": "Doctors are investigating the new illness.",
+        "answer": "investigate"
+      },
+      {
+        "text": "Reporters went there to investigate the story.",
+        "answer": "investigate"
+      }
+    ],
     "ch": "調查"
   },
   {
     "word": "Ir is unseniable that",
     "cefr": "B1",
     "frequency": null,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "It is undeniable that exercise is good for health.",
+        "answer": "Ir is unseniable that"
+      },
+      {
+        "text": "It is undeniable that the city has changed quickly.",
+        "answer": "Ir is unseniable that"
+      },
+      {
+        "text": "It is undeniable that young people spend more time online now.",
+        "answer": "Ir is unseniable that"
+      }
+    ],
     "ch": "不可否認的是"
   },
   {
@@ -7703,11 +8265,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "**China's army of irregular recyclers face scrapheap** Unlicensed rubbish collectors are frowned on, despite helping to keep cities clean, writes Patti Waldmeir.",
+        "text": "The patient had an irregular heartbeat.",
         "answer": "irregular"
       },
       {
-        "text": "They are like Mao's army during the Long March days: very irregular, but very efficient.",
+        "text": "This shape is irregular, not round.",
+        "answer": "irregular"
+      },
+      {
+        "text": "His working hours are very irregular.",
         "answer": "irregular"
       }
     ],
@@ -7717,21 +8283,60 @@
     "word": "It goes without saying that",
     "cefr": "B1",
     "frequency": null,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "It goes without saying that safety comes first.",
+        "answer": "It goes without saying that"
+      },
+      {
+        "text": "It goes without saying that practice improves skill.",
+        "answer": "It goes without saying that"
+      },
+      {
+        "text": "It goes without saying that honesty matters.",
+        "answer": "It goes without saying that"
+      }
+    ],
     "ch": "不用說的是"
   },
   {
     "word": "It is not uncommon that",
     "cefr": "B1",
     "frequency": null,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "It is not uncommon that students feel stressed before exams.",
+        "answer": "It is not uncommon that"
+      },
+      {
+        "text": "It is not uncommon that buses arrive late in heavy rain.",
+        "answer": "It is not uncommon that"
+      },
+      {
+        "text": "It is not uncommon that people move jobs after graduation.",
+        "answer": "It is not uncommon that"
+      }
+    ],
     "ch": "這並不少見"
   },
   {
     "word": "It is widely acknowledged that",
     "cefr": "B1",
     "frequency": null,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "It is widely acknowledged that sleep is important.",
+        "answer": "It is widely acknowledged that"
+      },
+      {
+        "text": "It is widely acknowledged that climate change is real.",
+        "answer": "It is widely acknowledged that"
+      },
+      {
+        "text": "It is widely acknowledged that reading helps vocabulary growth.",
+        "answer": "It is widely acknowledged that"
+      }
+    ],
     "ch": "普遍認為"
   },
   {
@@ -7740,7 +8345,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "Smells of jasmine.",
+        "text": "The garden smelled of jasmine after dark.",
+        "answer": "jasmine"
+      },
+      {
+        "text": "She bought jasmine tea for her mother.",
+        "answer": "jasmine"
+      },
+      {
+        "text": "A jasmine plant grew near the window.",
         "answer": "jasmine"
       }
     ],
@@ -7752,7 +8365,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "Those who are criticising this poster are probably jealous that they will never be as beautiful or successful as this woman.",
+        "text": "He felt jealous of his brother?s success.",
+        "answer": "jealous"
+      },
+      {
+        "text": "Do not be jealous of other people?s lives.",
+        "answer": "jealous"
+      },
+      {
+        "text": "The dog became jealous when the cat got attention.",
         "answer": "jealous"
       }
     ],
@@ -7764,7 +8385,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "Both are clad in black aluminium blocks that give them the appearance of leather jewellery boxes.",
+        "text": "The jeweller cleaned my ring carefully.",
+        "answer": "jeweller"
+      },
+      {
+        "text": "We visited a jeweller in Central.",
+        "answer": "jeweller"
+      },
+      {
+        "text": "A skilled jeweller repaired the broken necklace.",
         "answer": "jeweller"
       }
     ],
@@ -7776,7 +8405,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "We have attached the relevant news story to jog your memory.",
+        "text": "I jog around the park every morning.",
+        "answer": "jog"
+      },
+      {
+        "text": "She likes to jog before breakfast.",
+        "answer": "jog"
+      },
+      {
+        "text": "A short jog helped him relax.",
         "answer": "jog"
       }
     ],
@@ -7786,7 +8423,20 @@
     "word": "journal",
     "cefr": "B1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "She wrote about the trip in her journal.",
+        "answer": "journal"
+      },
+      {
+        "text": "The article was published in a science journal.",
+        "answer": "journal"
+      },
+      {
+        "text": "Keep a journal to record your ideas.",
+        "answer": "journal"
+      }
+    ],
     "ch": "期刊；日誌"
   },
   {
@@ -7795,11 +8445,15 @@
     "frequency": 8,
     "sentences": [
       {
-        "text": "Nico should select the cheapest judge.",
+        "text": "The judge listened to both sides.",
         "answer": "judge"
       },
       {
-        "text": "A recipe from the internet or a cookery book is fine, but the judges all prefer traditional family recipes.",
+        "text": "Do not judge a person too quickly.",
+        "answer": "judge"
+      },
+      {
+        "text": "The chef will judge the cooking contest.",
         "answer": "judge"
       }
     ],
@@ -7811,11 +8465,15 @@
     "frequency": 5,
     "sentences": [
       {
-        "text": "a jungle theme.",
+        "text": "The explorers moved through the dense jungle.",
         "answer": "jungle"
       },
       {
-        "text": "Since when are there castles in a jungle?!",
+        "text": "A tiger lived deep in the jungle.",
+        "answer": "jungle"
+      },
+      {
+        "text": "The film was set in a tropical jungle.",
         "answer": "jungle"
       }
     ],
@@ -7867,7 +8525,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "Isabel Luna at work on set Broch: And that's when her troubles really kick off, of course.",
+        "text": "He kicked the ball into the goal.",
+        "answer": "kick"
+      },
+      {
+        "text": "Please do not kick the door.",
+        "answer": "kick"
+      },
+      {
+        "text": "One strong kick opened the box.",
         "answer": "kick"
       }
     ],
@@ -7879,7 +8545,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "We're working out a killer compensation package, in addition to what we've already announced, that'll hopefully mean they won't even dream of choosing another cruise provider.",
+        "text": "The story is about a dangerous killer.",
+        "answer": "killer"
+      },
+      {
+        "text": "The police searched for the killer all night.",
+        "answer": "killer"
+      },
+      {
+        "text": "Heat can be a silent killer in summer.",
         "answer": "killer"
       }
     ],
@@ -7889,7 +8563,20 @@
     "word": "kindergarten",
     "cefr": "B1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The child started kindergarten this year.",
+        "answer": "kindergarten"
+      },
+      {
+        "text": "Her son walks to kindergarten every day.",
+        "answer": "kindergarten"
+      },
+      {
+        "text": "The kindergarten has a bright play area.",
+        "answer": "kindergarten"
+      }
+    ],
     "ch": "幼稚園"
   },
   {
@@ -7898,7 +8585,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "Were you to kindly accept our request, would the following details be acceptable to you?",
+        "text": "She kindly offered to help me.",
+        "answer": "kindly"
+      },
+      {
+        "text": "Kindly wait here for a moment.",
+        "answer": "kindly"
+      },
+      {
+        "text": "He spoke kindly to the nervous child.",
         "answer": "kindly"
       }
     ],
@@ -7910,7 +8605,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "The pagan ritual of ‘knocking on wood’ was designed to elicit the help of benign and powerful tree gods.",
+        "text": "Please knock before entering.",
+        "answer": "knock"
+      },
+      {
+        "text": "I heard a knock at the door.",
+        "answer": "knock"
+      },
+      {
+        "text": "The wind may knock the sign over.",
         "answer": "knock"
       }
     ],
@@ -7920,7 +8623,20 @@
     "word": "labor",
     "cefr": "B1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The factory depends on cheap labor.",
+        "answer": "labor"
+      },
+      {
+        "text": "Labor costs have risen this year.",
+        "answer": "labor"
+      },
+      {
+        "text": "Some jobs require a lot of physical labor.",
+        "answer": "labor"
+      }
+    ],
     "ch": "勞動"
   },
   {
@@ -7929,7 +8645,15 @@
     "frequency": 3,
     "sentences": [
       {
-        "text": "The most colorful pieces (and the earth surrounding them) have been removed to an on-site laboratory for further treatment.",
+        "text": "The samples were tested in a laboratory.",
+        "answer": "laboratory"
+      },
+      {
+        "text": "She works in a medical laboratory.",
+        "answer": "laboratory"
+      },
+      {
+        "text": "The school laboratory has new equipment.",
         "answer": "laboratory"
       }
     ],
@@ -7959,7 +8683,20 @@
     "word": "lag",
     "cefr": "B1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "There may be a short lag in the video call.",
+        "answer": "lag"
+      },
+      {
+        "text": "The team began to lag behind in the race.",
+        "answer": "lag"
+      },
+      {
+        "text": "A system lag slowed the game down.",
+        "answer": "lag"
+      }
+    ],
     "ch": "落後；延遲"
   },
   {
@@ -7968,7 +8705,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "Gentle as a lamb.",
+        "text": "They served roasted lamb for dinner.",
+        "answer": "lamb"
+      },
+      {
+        "text": "A lamb was sleeping in the field.",
+        "answer": "lamb"
+      },
+      {
+        "text": "The farmer carried a young lamb.",
         "answer": "lamb"
       }
     ],
@@ -7980,7 +8725,15 @@
     "frequency": 4,
     "sentences": [
       {
-        "text": "[3] The solution lay in the network of railway tracks carved into the top of each desk by successive generations of occupants.",
+        "text": "Please lay the books on the table.",
+        "answer": "lay"
+      },
+      {
+        "text": "The hen will lay an egg soon.",
+        "answer": "lay"
+      },
+      {
+        "text": "They lay quietly on the grass.",
         "answer": "lay"
       }
     ],
@@ -7992,11 +8745,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "This version consisted of a thin crust and a light layer of cheese.",
+        "text": "Add one more layer of paint.",
         "answer": "layer"
       },
       {
-        "text": "The best-preserved specimens were found at the bottom of the pit, where a layer of mud created by flooding acted as a sort of 2,000-year-long spa treatment.",
+        "text": "Clouds formed a thick layer over the hills.",
+        "answer": "layer"
+      },
+      {
+        "text": "The cake has a layer of cream inside.",
         "answer": "layer"
       }
     ],
@@ -8008,7 +8765,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "FALLING LEAVES If you catch falling leaves in autumn, every leaf you catch means a lucky month next year.",
+        "text": "A red leaf fell onto the path.",
+        "answer": "leaf"
+      },
+      {
+        "text": "The plant grew a new leaf.",
+        "answer": "leaf"
+      },
+      {
+        "text": "Each leaf was covered with rain.",
         "answer": "leaf"
       }
     ],
@@ -8020,11 +8785,15 @@
     "frequency": 3,
     "sentences": [
       {
-        "text": "A few steps away is an intact military drum whose leather surface has left another glorious pattern on the dirt, its crimson lines as fine as human hair.",
+        "text": "This bag is made of leather.",
         "answer": "leather"
       },
       {
-        "text": "Both are clad in black aluminium blocks that give them the appearance of leather jewellery boxes.",
+        "text": "He wore a black leather jacket.",
+        "answer": "leather"
+      },
+      {
+        "text": "The old chair had cracked leather.",
         "answer": "leather"
       }
     ],
@@ -8056,11 +8825,15 @@
     "frequency": 5,
     "sentences": [
       {
-        "text": "[9] The music office of the Leisure and Cultural Services Department has courses at elementary, intermediate and advanced levels for students aged between six and 23.",
+        "text": "Reading is one of her leisure activities.",
         "answer": "leisure"
       },
       {
-        "text": "It is a different story for his daughter, whose leisure hours are filled with television and electronic games.",
+        "text": "We visited the leisure center after school.",
+        "answer": "leisure"
+      },
+      {
+        "text": "He finally had some leisure time.",
         "answer": "leisure"
       }
     ],
@@ -8092,7 +8865,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "The fault lies with your museum.",
+        "text": "Please do not lie to me.",
+        "answer": "lie"
+      },
+      {
+        "text": "You can lie down on the sofa.",
+        "answer": "lie"
+      },
+      {
+        "text": "The papers lie on the desk.",
         "answer": "lie"
       }
     ],
@@ -8104,7 +8885,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "“That’s it.” Winston felt good, lighter somehow.",
+        "text": "This bag is lighter than mine.",
+        "answer": "lighter"
+      },
+      {
+        "text": "Do you have a lighter for the candles?",
+        "answer": "lighter"
+      },
+      {
+        "text": "The sky looked lighter after the storm.",
         "answer": "lighter"
       }
     ],
@@ -8116,11 +8905,15 @@
     "frequency": 5,
     "sentences": [
       {
-        "text": "Built in 1823, the Beacon, Scotland's premier lighthouse hotel, is a home from home.",
+        "text": "The lighthouse guided ships at night.",
         "answer": "lighthouse"
       },
       {
-        "text": "I slept in a lighthouse hotel in Scotland last year.",
+        "text": "We climbed the steps inside the lighthouse.",
+        "answer": "lighthouse"
+      },
+      {
+        "text": "A white lighthouse stood on the hill.",
         "answer": "lighthouse"
       }
     ],
@@ -8132,7 +8925,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "Beware [7] Never fly in rain or lightning.",
+        "text": "A flash of lightning lit the sky.",
+        "answer": "lightning"
+      },
+      {
+        "text": "The storm brought heavy rain and lightning.",
+        "answer": "lightning"
+      },
+      {
+        "text": "We counted the seconds after the lightning.",
         "answer": "lightning"
       }
     ],
@@ -8144,7 +8945,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "The wraps had plenty of zing and slap from fresh lime, and were topped with hot chilli and fresh greens all locally grown.",
+        "text": "Add some lime to the drink.",
+        "answer": "lime"
+      },
+      {
+        "text": "The fish was served with lime.",
+        "answer": "lime"
+      },
+      {
+        "text": "She squeezed fresh lime over the salad.",
         "answer": "lime"
       }
     ],
@@ -8176,11 +8985,15 @@
     "frequency": 3,
     "sentences": [
       {
-        "text": "It just shows up one day and... well, anyway.” Karl licked his lips.",
+        "text": "She put red color on her lip.",
         "answer": "lip"
       },
       {
-        "text": "I’d notice it out of the corner of my eye: Robbie’s lips would unpurse themselves just slightly.",
+        "text": "He bit his lip while thinking.",
+        "answer": "lip"
+      },
+      {
+        "text": "The cup touched the lip of the sink.",
         "answer": "lip"
       }
     ],
@@ -8212,7 +9025,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "Timothy looked down at the glistening bench, taking in the jewel-coloured containers of liquids and crystals, without a clue of what they were or how to use them.",
+        "text": "The bottle is full of clear liquid.",
+        "answer": "liquid"
+      },
+      {
+        "text": "This medicine is in liquid form.",
+        "answer": "liquid"
+      },
+      {
+        "text": "The heat changed the solid into a liquid.",
         "answer": "liquid"
       }
     ],
@@ -8244,7 +9065,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "We have some concrete plant holders outside and we should put some colourful plants in them to make it livelier.",
+        "text": "The market becomes livelier at night.",
+        "answer": "livelier"
+      },
+      {
+        "text": "This song sounds livelier than the last one.",
+        "answer": "livelier"
+      },
+      {
+        "text": "Her second speech was much livelier.",
         "answer": "livelier"
       }
     ],
@@ -8276,11 +9105,15 @@
     "frequency": 3,
     "sentences": [
       {
-        "text": "The wraps had plenty of zing and slap from fresh lime, and were topped with hot chilli and fresh greens all locally grown.",
+        "text": "The vegetables are grown locally.",
         "answer": "locally"
       },
       {
-        "text": "[2] Michael Leung is the founder and creative director of HK Honey, an organisation that links local beekeepers with city dwellers by providing locally produced honey products.",
+        "text": "This brand is produced locally.",
+        "answer": "locally"
+      },
+      {
+        "text": "People prefer to shop locally when possible.",
         "answer": "locally"
       }
     ],
@@ -8332,7 +9165,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "That purple backdrop was to die for as well - you'll see what I mean when you log in for the first time.",
+        "text": "Please log in before using the app.",
+        "answer": "log in"
+      },
+      {
+        "text": "He forgot how to log in to the system.",
+        "answer": "log in"
+      },
+      {
+        "text": "You must log in with your student account.",
         "answer": "log in"
       }
     ],
@@ -8362,7 +9203,20 @@
     "word": "Long gone are the days when",
     "cefr": "B1",
     "frequency": null,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Long gone are the days when we wrote every letter by hand.",
+        "answer": "Long gone are the days when"
+      },
+      {
+        "text": "Long gone are the days when children played outside all evening.",
+        "answer": "Long gone are the days when"
+      },
+      {
+        "text": "Long gone are the days when one radio served the whole family.",
+        "answer": "Long gone are the days when"
+      }
+    ],
     "ch": "那種日子早已一去不返"
   },
   {
