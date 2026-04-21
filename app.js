@@ -922,6 +922,50 @@ let isTargeting = false;
         });
     }
 
+    const BATTLE_EFFECT_IMAGE_SOURCES = [
+        'missile_sprite.png',
+        'Explosion-A.png',
+        'nuke_1.png',
+        'nuke_2.png',
+        'nuke explosion.png'
+    ];
+
+    const BATTLE_EFFECT_AUDIO_IDS = [
+        'missile-flying-sfx',
+        'nuke-ready-sfx',
+        'nuke-launch-sfx',
+        'nuke-detected-sfx',
+        'destroy-sfx'
+    ];
+
+    const preloadedBattleEffectImages = [];
+    let battleEffectAssetsPreloaded = false;
+
+    function preloadBattleEffectAssets() {
+        if (battleEffectAssetsPreloaded) return;
+        battleEffectAssetsPreloaded = true;
+
+        BATTLE_EFFECT_IMAGE_SOURCES.forEach(src => {
+            const img = new Image();
+            img.decoding = 'async';
+            img.src = src;
+            preloadedBattleEffectImages.push(img);
+
+            if (typeof img.decode === 'function') {
+                img.decode().catch(() => {});
+            }
+        });
+
+        BATTLE_EFFECT_AUDIO_IDS.forEach(id => {
+            const audio = document.getElementById(id);
+            if (!audio) return;
+            audio.preload = 'auto';
+            try {
+                audio.load();
+            } catch (_) {}
+        });
+    }
+
    
 
     // ȫ��׃������ǰʹ�õ����ֱ�
@@ -7666,6 +7710,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 window.onload = function() {
     console.log("System Initializing...");
+
+    preloadBattleEffectAssets();
 
     // 1. ��ʼ���Y�ώ� (�����)
     if(typeof sortDatabase === 'function') {
