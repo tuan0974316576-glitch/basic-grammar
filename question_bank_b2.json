@@ -14279,224 +14279,352 @@
     "word": "mortar",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The builder mixed cement with sand and mortar.",
+      "Old bricks were held together by dry mortar.",
+      "The wall needed fresh mortar after the storm."
+    ],
     "ch": "灰泥；迫擊炮"
   },
   {
     "word": "motion",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Her hand motion told us to come closer.",
+      "The machine stopped all motion during the repair.",
+      "The judge rejected the motion in court."
+    ],
     "ch": "動作；提議"
   },
   {
     "word": "motivate",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Good teachers motivate students to keep trying.",
+      "Her progress motivated the rest of the team.",
+      "We need a clear goal to motivate everyone."
+    ],
     "ch": "激勵；促使"
   },
   {
     "word": "motivation",
     "cefr": "B2",
     "frequency": 5,
-    "sentences": [],
+    "sentences": [
+      "Lack of sleep can reduce your motivation.",
+      "Winning the prize gave him extra motivation.",
+      "Her main motivation was to help her family."
+    ],
     "ch": "動機；動力"
   },
   {
     "word": "mount",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "They plan to mount a camera above the door.",
+      "Pressure began to mount as the deadline approached.",
+      "The museum will mount a new exhibition next month."
+    ],
     "ch": "登上；安裝"
   },
   {
     "word": "mountaineer",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The mountaineer reached the peak at dawn.",
+      "Every mountaineer carried ropes and food.",
+      "The documentary followed a young mountaineer in Nepal."
+    ],
     "ch": "登山者"
   },
   {
     "word": "muddy",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The path became muddy after the rain.",
+      "His shoes were muddy from football practice.",
+      "A muddy river ran through the valley."
+    ],
     "ch": "泥濘的；混濁的"
   },
   {
     "word": "multicolored",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "A multicolored kite flew above the beach.",
+      "The parade featured multicolored costumes.",
+      "She wore a multicolored scarf in winter."
+    ],
     "ch": "多彩的；多色的"
   },
   {
     "word": "multicultural",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Hong Kong is a multicultural city.",
+      "The school has a multicultural student body.",
+      "We enjoyed the multicultural atmosphere at the festival."
+    ],
     "ch": "多元文化的"
   },
   {
     "word": "multinational",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "He works for a multinational company.",
+      "The project involved a multinational team.",
+      "A multinational brand opened an office in the city."
+    ],
     "ch": "跨國的；多國籍的"
   },
   {
     "word": "multiple",
     "cefr": "B2",
     "frequency": 7,
-    "sentences": [],
+    "sentences": [
+      "The test has multiple sections.",
+      "Multiple factors caused the delay.",
+      "She applied to multiple universities."
+    ],
     "ch": "多重的；多個的"
   },
   {
     "word": "mumble",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Please do not mumble during the presentation.",
+      "He tends to mumble when he is nervous.",
+      "She mumbled a quick apology and left."
+    ],
     "ch": "含糊地說；咕噥"
   },
   {
     "word": "mutter",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "He muttered something under his breath.",
+      "She began to mutter when she read the message.",
+      "Please speak clearly instead of muttering."
+    ],
     "ch": "低聲抱怨；喃喃自語"
   },
   {
     "word": "mysterious",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "A mysterious light appeared in the sky.",
+      "The story begins with a mysterious phone call.",
+      "His sudden silence felt mysterious."
+    ],
     "ch": "神秘的"
   },
   {
     "word": "myth",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "We studied an ancient Greek myth in class.",
+      "The film is based on a local myth.",
+      "It is a myth that you only use ten percent of your brain."
+    ],
     "ch": "神話；迷思"
   },
   {
     "word": "naked",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The tree stood naked in winter.",
+      "The baby ran around with naked feet.",
+      "The walls looked naked without any pictures."
+    ],
     "ch": "赤裸的；裸露的"
   },
   {
     "word": "narrow",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The road is too narrow for two cars.",
+      "We walked through a narrow alley.",
+      "Her eyes narrowed as she read the note."
+    ],
     "ch": "狹窄的；使變窄"
   },
   {
     "word": "nasty",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The soup left a nasty taste in my mouth.",
+      "He received a nasty comment online.",
+      "There was a nasty smell in the room."
+    ],
     "ch": "令人厭惡的；惡劣的"
   },
   {
     "word": "national",
     "cefr": "B2",
     "frequency": 7,
-    "sentences": [],
+    "sentences": [
+      "The museum displays national treasures.",
+      "It was a national holiday last Monday.",
+      "The team won the national championship."
+    ],
     "ch": "國家的；全國性的"
   },
   {
     "word": "nearby",
     "cefr": "B2",
     "frequency": 6,
-    "sentences": [],
+    "sentences": [
+      "We found a nearby caf? for lunch.",
+      "A nearby school closed because of the storm.",
+      "Please park in a nearby car park."
+    ],
     "ch": "附近的；在附近"
   },
   {
     "word": "neat",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Please keep your desk neat and tidy.",
+      "Her handwriting is neat and clear.",
+      "That is a neat solution to the problem."
+    ],
     "ch": "整潔的；俐落的"
   },
   {
     "word": "necessity",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Water is a basic necessity of life.",
+      "Wearing helmets is a necessity on this site.",
+      "She bought only the necessities for the trip."
+    ],
     "ch": "必要性；必需品"
   },
   {
     "word": "negative",
     "cefr": "B2",
     "frequency": 22,
-    "sentences": [],
+    "sentences": [
+      "The news had a negative effect on sales.",
+      "Try not to be too negative about the result.",
+      "His test result was negative."
+    ],
     "ch": "負面的；否定的"
   },
   {
     "word": "negatively",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Stress can negatively affect your health.",
+      "The comment was received negatively by readers.",
+      "Heavy traffic impacts the environment negatively."
+    ],
     "ch": "負面地；否定地"
   },
   {
     "word": "negotiate",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The two sides met to negotiate a deal.",
+      "You can sometimes negotiate a better price.",
+      "They negotiated for hours before reaching an agreement."
+    ],
     "ch": "談判；協商"
   },
   {
     "word": "nervously",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "He waited nervously outside the office.",
+      "She laughed nervously before speaking.",
+      "The child looked around nervously for his mother."
+    ],
     "ch": "緊張地；不安地"
   },
   {
     "word": "neutral",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The wall was painted in a neutral colour.",
+      "Please remain neutral during the argument.",
+      "Switzerland stayed neutral during the conflict."
+    ],
     "ch": "中立的；中性的"
   },
   {
     "word": "nevertheless",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "It was raining; nevertheless, they went hiking.",
+      "The task was difficult, but she finished it nevertheless.",
+      "He was tired; nevertheless, he kept working."
+    ],
     "ch": "然而；儘管如此"
   },
   {
     "word": "newcomer",
     "cefr": "B2",
     "frequency": 9,
-    "sentences": [],
+    "sentences": [
+      "The newcomer felt shy on the first day.",
+      "Each newcomer joined a short orientation session.",
+      "The award was won by a newcomer to the industry."
+    ],
     "ch": "新來者；新手"
   },
   {
     "word": "nightmare",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The traffic jam turned the trip into a nightmare.",
+      "As a child, he often had the same nightmare.",
+      "Losing the passport was every traveler's nightmare."
+    ],
     "ch": "惡夢；可怕的經歷"
   },
   {
     "word": "nonstop",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The baby cried nonstop for an hour.",
+      "We flew nonstop to London.",
+      "Rain fell nonstop through the night."
+    ],
     "ch": "不停的；直達的"
   },
   {
     "word": "norm",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "Working from home is now the norm in some jobs.",
+      "In many countries, tipping is the norm.",
+      "The new rule soon became the norm."
+    ],
     "ch": "常態；標準"
   },
   {
@@ -14523,168 +14651,264 @@
     "word": "notion",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "He rejected the notion that success is easy.",
+      "I had no notion of how late it was.",
+      "The idea challenged the traditional notion of beauty."
+    ],
     "ch": "概念；想法"
   },
   {
     "word": "nuisance",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The barking dog became a nuisance.",
+      "Parking here is more than a small nuisance.",
+      "Flies can be a real nuisance in summer."
+    ],
     "ch": "麻煩事；討厭的人"
   },
   {
     "word": "numerous",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The report includes numerous examples.",
+      "Numerous students joined the competition.",
+      "The village has numerous small shops."
+    ],
     "ch": "眾多的"
   },
   {
     "word": "nutrient",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Plants need the right nutrient balance to grow.",
+      "This food is rich in important nutrients.",
+      "Lack of one nutrient can affect your health."
+    ],
     "ch": "營養素"
   },
   {
     "word": "nutrition",
     "cefr": "B2",
     "frequency": 5,
-    "sentences": [],
+    "sentences": [
+      "Good nutrition supports child development.",
+      "The lesson focused on nutrition and exercise.",
+      "Parents learned more about healthy nutrition at the workshop."
+    ],
     "ch": "營養；營養學"
   },
   {
     "word": "nutritionist",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The nutritionist suggested a healthier breakfast.",
+      "She works as a nutritionist at a hospital.",
+      "A nutritionist gave a talk on balanced meals."
+    ],
     "ch": "營養師"
   },
   {
     "word": "nylon",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The bag is made of strong nylon.",
+      "Nylon ropes were stacked in the store room.",
+      "This jacket uses a light nylon fabric."
+    ],
     "ch": "尼龍"
   },
   {
     "word": "oak",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "An old oak stood beside the stream.",
+      "The table was made of oak wood.",
+      "We rested under a large oak tree."
+    ],
     "ch": "橡樹；橡木"
   },
   {
     "word": "object",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "A shiny object lay on the floor.",
+      "Some people object to the new rule.",
+      "Please place each object back in the box."
+    ],
     "ch": "物體；反對"
   },
   {
     "word": "objective",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "Our main objective is to improve safety.",
+      "The report gives an objective view of the problem.",
+      "Each lesson has a clear objective."
+    ],
     "ch": "客觀的；目標"
   },
   {
     "word": "obligation",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "Parents have an obligation to protect their children.",
+      "I felt no obligation to answer immediately.",
+      "Employees must understand their legal obligations."
+    ],
     "ch": "責任；義務"
   },
   {
     "word": "observation",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Her observation helped solve the mystery.",
+      "The report is based on careful observation.",
+      "We recorded each bird observation in a notebook."
+    ],
     "ch": "觀察；觀測"
   },
   {
     "word": "observe",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Please observe the safety rules at all times.",
+      "We observed a rare bird in the wetland.",
+      "He stood quietly to observe the crowd."
+    ],
     "ch": "觀察；遵守"
   },
   {
     "word": "observer",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Each observer took notes during the test.",
+      "An outside observer joined the meeting.",
+      "The match was watched by a neutral observer."
+    ],
     "ch": "觀察者；旁觀者"
   },
   {
     "word": "obstacle",
     "cefr": "B2",
     "frequency": 8,
-    "sentences": [],
+    "sentences": [
+      "Lack of time was the biggest obstacle.",
+      "The runner jumped over each obstacle easily.",
+      "Cost can be an obstacle to further study."
+    ],
     "ch": "障礙；阻礙"
   },
   {
     "word": "obstruction",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "A fallen tree caused an obstruction on the road.",
+      "The nurse checked for airway obstruction.",
+      "Please remove any obstruction from the entrance."
+    ],
     "ch": "阻塞；妨礙"
   },
   {
     "word": "obtain",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "You must obtain permission before entering.",
+      "It is hard to obtain tickets for that concert.",
+      "She obtained useful data from the survey."
+    ],
     "ch": "獲得；取得"
   },
   {
     "word": "occupation",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "What is your occupation?",
+      "His occupation requires frequent travel.",
+      "The form asked for age, address, and occupation."
+    ],
     "ch": "職業；佔領"
   },
   {
     "word": "occupy",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "These books occupy too much shelf space.",
+      "The children occupied themselves with a puzzle.",
+      "Two tables occupy the corner of the room."
+    ],
     "ch": "佔據；佔用"
   },
   {
     "word": "odor",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "A strange odor came from the kitchen.",
+      "The odor of paint filled the room.",
+      "Please tell me if you notice any unusual odor."
+    ],
     "ch": "氣味；臭味"
   },
   {
     "word": "offend",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "I did not mean to offend you.",
+      "His joke may offend some people.",
+      "Please be careful not to offend the guests."
+    ],
     "ch": "冒犯；使不快"
   },
   {
     "word": "offender",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The offender was asked to leave the event.",
+      "Police arrested the offender near the station.",
+      "Young offenders often need support as well as punishment."
+    ],
     "ch": "冒犯者；罪犯"
   },
   {
     "word": "offensive",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The comment was deeply offensive.",
+      "The website removed offensive language.",
+      "Many people found the joke offensive."
+    ],
     "ch": "冒犯的；進攻性的"
   },
   {
     "word": "official",
     "cefr": "B2",
     "frequency": 10,
-    "sentences": [],
+    "sentences": [
+      "The official report was released today.",
+      "An official welcomed the visitors at the gate.",
+      "The match will begin after the official signal."
+    ],
     "ch": "官方的；官員"
   },
   {
@@ -14711,441 +14935,693 @@
     "word": "on behalf of",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "I am speaking on behalf of the whole team.",
+      "Please accept this gift on behalf of our school.",
+      "She thanked the coach on behalf of the players."
+    ],
     "ch": "代表；為了"
   },
   {
     "word": "ongoing",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The project is still ongoing.",
+      "We discussed the ongoing problem of waste.",
+      "An ongoing review will continue next month."
+    ],
     "ch": "持續進行的"
   },
   {
     "word": "operate",
     "cefr": "B2",
     "frequency": 11,
-    "sentences": [],
+    "sentences": [
+      "Only trained staff may operate this machine.",
+      "The restaurant operates from noon to midnight.",
+      "Doctors had to operate immediately."
+    ],
     "ch": "操作；運作"
   },
   {
     "word": "operator",
     "cefr": "B2",
     "frequency": 6,
-    "sentences": [],
+    "sentences": [
+      "The machine operator checked the controls carefully.",
+      "The phone operator connected the call.",
+      "A train operator explained the delay."
+    ],
     "ch": "操作員；經營者"
   },
   {
     "word": "opponent",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Our opponent played very well.",
+      "The candidate attacked his opponent's ideas.",
+      "She studied every opponent before the match."
+    ],
     "ch": "對手；反對者"
   },
   {
     "word": "opposition",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The proposal faced strong opposition.",
+      "The team played well despite tough opposition.",
+      "Public opposition forced the plan to change."
+    ],
     "ch": "反對；反對派"
   },
   {
     "word": "oppressive",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The heat felt oppressive in the crowded room.",
+      "The novel describes life under an oppressive ruler.",
+      "Workers suffered under oppressive conditions."
+    ],
     "ch": "壓迫的；沉悶的"
   },
   {
     "word": "optimistic",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "She is optimistic about the future.",
+      "We remain optimistic despite the delay.",
+      "The coach sounded optimistic before the final."
+    ],
     "ch": "樂觀的"
   },
   {
     "word": "orchestral",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The concert included several orchestral pieces.",
+      "He loves the power of orchestral music.",
+      "An orchestral version of the song closed the show."
+    ],
     "ch": "管弦樂的"
   },
   {
     "word": "orderly",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The crowd left in an orderly way.",
+      "Please keep your desk neat and orderly.",
+      "The hospital ward was calm and orderly."
+    ],
     "ch": "有秩序的；整齊的"
   },
   {
     "word": "organic",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "This farm sells organic vegetables.",
+      "She prefers organic cotton clothing.",
+      "The market has a growing demand for organic food."
+    ],
     "ch": "有機的；天然的"
   },
   {
     "word": "organically",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "These tomatoes were grown organically.",
+      "The business expanded organically over time.",
+      "The dye was produced organically from plants."
+    ],
     "ch": "有機地；自然地"
   },
   {
     "word": "organism",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Each organism depends on its environment.",
+      "A single-celled organism was seen under the microscope.",
+      "The smallest organism can still play an important role."
+    ],
     "ch": "生物體"
   },
   {
     "word": "oriental",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The museum has a section on oriental art.",
+      "An oriental pattern decorated the vase.",
+      "The shop sold fabrics with an oriental design."
+    ],
     "ch": "東方的；東方人"
   },
   {
     "word": "orienteering",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The camp includes an orienteering activity in the forest.",
+      "Students learned map reading through orienteering.",
+      "Orienteering teaches both navigation and teamwork."
+    ],
     "ch": "定向越野"
   },
   {
     "word": "origin",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "No one knew the true origin of the rumor.",
+      "The museum explains the origin of the tradition.",
+      "The word has a Latin origin."
+    ],
     "ch": "起源；來源"
   },
   {
     "word": "ornery",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The old horse can be ornery when tired.",
+      "He became ornery after waiting too long.",
+      "The story features an ornery but lovable farmer."
+    ],
     "ch": "難相處的；暴躁的"
   },
   {
     "word": "otherwise",
     "cefr": "B2",
     "frequency": 10,
-    "sentences": [],
+    "sentences": [
+      "Wear a coat; otherwise, you will be cold.",
+      "We thought she was quiet, but otherwise she was kind.",
+      "Please hurry, otherwise we will miss the bus."
+    ],
     "ch": "否則；除此之外"
   },
   {
     "word": "outcome",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "No one could predict the outcome of the match.",
+      "The outcome of the discussion was positive.",
+      "Every choice may affect the final outcome."
+    ],
     "ch": "結果；成果"
   },
   {
     "word": "outdated",
     "cefr": "B2",
     "frequency": 7,
-    "sentences": [],
+    "sentences": [
+      "This software is now outdated.",
+      "Some people still follow outdated ideas about learning.",
+      "The equipment looked old and outdated."
+    ],
     "ch": "過時的"
   },
   {
     "word": "outfit",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Her outfit matched the blue theme perfectly.",
+      "He packed one warm outfit for the trip.",
+      "The dancer wore a bright outfit on stage."
+    ],
     "ch": "服裝；裝備"
   },
   {
     "word": "outline",
     "cefr": "B2",
     "frequency": 6,
-    "sentences": [],
+    "sentences": [
+      "Please write an outline before the essay.",
+      "The mountain's outline appeared through the fog.",
+      "He outlined the plan in three short points."
+    ],
     "ch": "大綱；輪廓"
   },
   {
     "word": "outlying",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The storm damaged several outlying villages.",
+      "Buses connect the city with outlying areas.",
+      "An outlying island was used as a shelter."
+    ],
     "ch": "偏遠的；邊緣的"
   },
   {
     "word": "outperform",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "This team may outperform last year's group.",
+      "She outperformed all her competitors in the test.",
+      "The new phone outperforms the older model."
+    ],
     "ch": "勝過；表現優於"
   },
   {
     "word": "outstanding",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Her work this term has been outstanding.",
+      "The company still has outstanding bills to pay.",
+      "We received outstanding support from volunteers."
+    ],
     "ch": "傑出的；未完成的"
   },
   {
     "word": "overall",
     "cefr": "B2",
     "frequency": 7,
-    "sentences": [],
+    "sentences": [
+      "Overall, the event was a success.",
+      "His overall score was the highest in class.",
+      "We need to look at the overall picture."
+    ],
     "ch": "整體的；總體上"
   },
   {
     "word": "overcome",
     "cefr": "B2",
     "frequency": 5,
-    "sentences": [],
+    "sentences": [
+      "You can overcome fear through practice.",
+      "The team overcame many problems to finish the project.",
+      "She worked hard to overcome her weakness in math."
+    ],
     "ch": "克服；戰勝"
   },
   {
     "word": "overfishing",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Overfishing threatens marine life.",
+      "The report warns about overfishing in nearby waters.",
+      "New rules were introduced to reduce overfishing."
+    ],
     "ch": "過度捕魚"
   },
   {
     "word": "overhead",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "A helicopter flew overhead.",
+      "The company wants to cut overhead costs.",
+      "Overhead lights made the room brighter."
+    ],
     "ch": "在頭頂上；經常開支"
   },
   {
     "word": "overnight",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "We stayed overnight in a small hotel.",
+      "The bag was delivered overnight.",
+      "The problem did not appear overnight."
+    ],
     "ch": "一夜之間；過夜"
   },
   {
     "word": "overseas",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "She plans to study overseas next year.",
+      "The company sells goods overseas.",
+      "He returned home after working overseas for five years."
+    ],
     "ch": "海外的；在海外"
   },
   {
     "word": "oversight",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Leaving your name off the form was an oversight.",
+      "The committee provides oversight for the project.",
+      "This mistake happened because of poor oversight."
+    ],
     "ch": "疏忽；監督"
   },
   {
     "word": "oversized",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The parcel was too oversized for the locker.",
+      "He wore an oversized hoodie on the trip.",
+      "The airline charged extra for the oversized bag."
+    ],
     "ch": "過大的"
   },
   {
     "word": "overtime",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Many nurses worked overtime during the outbreak.",
+      "He earned extra pay for overtime work.",
+      "The team stayed in the office overtime to finish."
+    ],
     "ch": "加班；超時"
   },
   {
     "word": "ownership",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Car ownership is expensive in the city.",
+      "The contract transfers ownership of the house.",
+      "We discussed who should take ownership of the project."
+    ],
     "ch": "擁有權；所有權"
   },
   {
     "word": "oxygen",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "Plants produce oxygen during the day.",
+      "The patient was given extra oxygen.",
+      "Without oxygen, the fire could not continue."
+    ],
     "ch": "氧氣"
   },
   {
     "word": "pace",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "Please work at your own pace.",
+      "The runner kept a steady pace.",
+      "The pace of change is getting faster."
+    ],
     "ch": "步伐；速度"
   },
   {
     "word": "package",
     "cefr": "B2",
     "frequency": 9,
-    "sentences": [],
+    "sentences": [
+      "A package arrived at the office this morning.",
+      "The travel package includes hotel and breakfast.",
+      "Please sign when you receive the package."
+    ],
     "ch": "包裹；套裝"
   },
   {
     "word": "pajama",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The child wore soft pajama trousers to bed.",
+      "She bought a warm pajama set for winter.",
+      "His pajama pocket held a small torch."
+    ],
     "ch": "睡衣"
   },
   {
     "word": "pancake",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "I ate a pancake with honey for breakfast.",
+      "The chef flipped the pancake neatly.",
+      "Each pancake was served with fresh fruit."
+    ],
     "ch": "薄煎餅"
   },
   {
     "word": "pandemic",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The pandemic changed how people worked.",
+      "Many schools closed during the pandemic.",
+      "The hospital expanded quickly during the pandemic."
+    ],
     "ch": "大流行病"
   },
   {
     "word": "panel",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "A panel of judges reviewed the entries.",
+      "The solar panel was placed on the roof.",
+      "She joined a discussion panel at the conference."
+    ],
     "ch": "小組；面板"
   },
   {
     "word": "panic",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "The loud noise caused panic in the crowd.",
+      "He tried not to panic during the exam.",
+      "There was no need to panic over the delay."
+    ],
     "ch": "恐慌；驚慌失措"
   },
   {
     "word": "paperwork",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The visa paperwork took longer than expected.",
+      "I spent the afternoon doing paperwork.",
+      "Please finish the paperwork before Friday."
+    ],
     "ch": "文書工作"
   },
   {
     "word": "parlor",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "We stopped at an ice cream parlor after dinner.",
+      "The old house had a small front parlor.",
+      "A barber parlor opened next to the caf?."
+    ],
     "ch": "客廳；店鋪"
   },
   {
     "word": "participant",
     "cefr": "B2",
     "frequency": 34,
-    "sentences": [],
+    "sentences": [
+      "Each participant received a name tag.",
+      "The study involved one hundred participants.",
+      "Every participant must sign the form first."
+    ],
     "ch": "參與者"
   },
   {
     "word": "participation",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "Class participation counts toward your final grade.",
+      "The project encourages youth participation.",
+      "Low participation made the event hard to run."
+    ],
     "ch": "參與；參加"
   },
   {
     "word": "partly",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "The road is partly closed for repairs.",
+      "She succeeded partly because of her patience.",
+      "The room was only partly lit."
+    ],
     "ch": "部分地；在某種程度上"
   },
   {
     "word": "pass on",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Please pass on this message to your sister.",
+      "He hopes to pass on family traditions to his children.",
+      "The coach passed on useful advice to the team."
+    ],
     "ch": "傳遞；去世"
   },
   {
     "word": "passionate",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "She is passionate about environmental issues.",
+      "His passionate speech moved the audience.",
+      "A passionate teacher can inspire a whole class."
+    ],
     "ch": "充滿熱情的"
   },
   {
     "word": "password",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Please enter your password carefully.",
+      "Never share your password with strangers.",
+      "I changed my password after the warning email."
+    ],
     "ch": "密碼"
   },
   {
     "word": "patience",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Learning a language takes patience.",
+      "The nurse treated every patient with patience.",
+      "Her patience helped the children calm down."
+    ],
     "ch": "耐心"
   },
   {
     "word": "patient",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "The doctor spoke kindly to the patient.",
+      "You need to be patient while the paint dries.",
+      "Each patient waited quietly in the hall."
+    ],
     "ch": "病人；有耐心的"
   },
   {
     "word": "patiently",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "He waited patiently for his turn.",
+      "The teacher listened patiently to every question.",
+      "She patiently explained the steps again."
+    ],
     "ch": "耐心地"
   },
   {
     "word": "pause",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "There was a long pause before he answered.",
+      "Please pause the video at this point.",
+      "The singer took a short pause between songs."
+    ],
     "ch": "暫停；停頓"
   },
   {
     "word": "pave",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "They plan to pave the road next month.",
+      "Education can pave the way to a better future.",
+      "The workers paved the path with stone."
+    ],
     "ch": "鋪路；為…鋪平道路"
   },
   {
     "word": "peacefully",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The baby slept peacefully through the night.",
+      "Protesters gathered peacefully in the square.",
+      "The lake looked calm and peacefully still."
+    ],
     "ch": "和平地；安詳地"
   },
   {
     "word": "peer",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "He asked a peer to review his essay.",
+      "Teenagers often feel pressure from their peers.",
+      "A peer mentor helped the new student settle in."
+    ],
     "ch": "同儕；凝視"
   },
   {
     "word": "peppermint",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "She drank a cup of peppermint tea.",
+      "The room smelled of peppermint and lemon.",
+      "A peppermint sweet helped freshen his breath."
+    ],
     "ch": "薄荷"
   },
   {
     "word": "perceive",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "People may perceive the message differently.",
+      "Children perceive time in a different way.",
+      "It is hard to perceive small changes at first."
+    ],
     "ch": "察覺；理解"
   },
   {
     "word": "perception",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "The film changed public perception of the issue.",
+      "Her perception of the city improved over time.",
+      "Good design can affect user perception."
+    ],
     "ch": "看法；感知"
   },
   {
     "word": "permanent",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "This job may become permanent next year.",
+      "The stain caused permanent damage to the carpet.",
+      "Nothing in life seems permanent anymore."
+    ],
     "ch": "永久的；固定的"
   },
   {
     "word": "permanently",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The shop closed permanently after the fire.",
+      "His name is permanently recorded on the wall.",
+      "If ignored, the injury could permanently affect his movement."
+    ],
     "ch": "永久地"
   },
   {
