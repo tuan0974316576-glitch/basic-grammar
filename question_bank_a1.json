@@ -120,26 +120,6 @@
     "ch": "增加 (v.)"
   },
   {
-    "word": "adjacent to",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "Our classroom is adjacent to the library.",
-        "answer": "adjacent to"
-      },
-      {
-        "text": "The lift is adjacent to the main door.",
-        "answer": "adjacent to"
-      },
-      {
-        "text": "The small shop is adjacent to the bank.",
-        "answer": "adjacent to"
-      }
-    ],
-    "ch": "毗鄰"
-  },
-  {
     "word": "advice",
     "cefr": "A1",
     "frequency": 19,
@@ -1220,6 +1200,26 @@
     "ch": "世紀"
   },
   {
+    "word": "cheap",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": [
+      {
+        "text": "This bag is cheap and useful.",
+        "answer": "cheap"
+      },
+      {
+        "text": "We found a cheap hotel near the station.",
+        "answer": "cheap"
+      },
+      {
+        "text": "These shoes look good but they are cheap.",
+        "answer": "cheap"
+      }
+    ],
+    "ch": "??"
+  },
+  {
     "word": "cheaper",
     "cefr": "A1",
     "frequency": 2,
@@ -1238,26 +1238,6 @@
       }
     ],
     "ch": "較便宜"
-  },
-  {
-    "word": "cheapest",
-    "cefr": "A1",
-    "frequency": 2,
-    "sentences": [
-      {
-        "text": "This is the cheapest meal on the menu.",
-        "answer": "cheapest"
-      },
-      {
-        "text": "We chose the cheapest ticket for the show.",
-        "answer": "cheapest"
-      },
-      {
-        "text": "That shop sells the cheapest fruit in the area.",
-        "answer": "cheapest"
-      }
-    ],
-    "ch": "最便宜"
   },
   {
     "word": "cheese",
@@ -1360,24 +1340,24 @@
     "ch": "課室"
   },
   {
-    "word": "cleverest",
+    "word": "clever",
     "cefr": "A1",
     "frequency": 1,
     "sentences": [
       {
-        "text": "Tom is the cleverest student in the group.",
-        "answer": "cleverest"
+        "text": "She is a clever student.",
+        "answer": "clever"
       },
       {
-        "text": "She had the cleverest idea of all.",
-        "answer": "cleverest"
+        "text": "That was a clever idea.",
+        "answer": "clever"
       },
       {
-        "text": "That was the cleverest answer in the quiz.",
-        "answer": "cleverest"
+        "text": "The fox is clever in the story.",
+        "answer": "clever"
       }
     ],
-    "ch": "最聰明"
+    "ch": "??"
   },
   {
     "word": "club",
@@ -4505,7 +4485,7 @@
     "frequency": 19,
     "sentences": [
       {
-        "text": "My home is near the station.",
+        "text": "The shop is near the station.",
         "answer": "near"
       },
       {
@@ -4513,31 +4493,11 @@
         "answer": "near"
       },
       {
-        "text": "There is a bakery near our school.",
+        "text": "There is a hospital near our school.",
         "answer": "near"
       }
     ],
-    "ch": "附近"
-  },
-  {
-    "word": "nearest",
-    "cefr": "A1",
-    "frequency": 2,
-    "sentences": [
-      {
-        "text": "Where is the nearest toilet?",
-        "answer": "nearest"
-      },
-      {
-        "text": "The nearest shop is across the road.",
-        "answer": "nearest"
-      },
-      {
-        "text": "Please take me to the nearest hospital.",
-        "answer": "nearest"
-      }
-    ],
-    "ch": "最近的"
+    "ch": "?"
   },
   {
     "word": "news",
@@ -6200,6 +6160,26 @@
     "ch": "裙子"
   },
   {
+    "word": "small",
+    "cefr": "A1",
+    "frequency": 2,
+    "sentences": [
+      {
+        "text": "This cup is small.",
+        "answer": "small"
+      },
+      {
+        "text": "The cat is small and quiet.",
+        "answer": "small"
+      },
+      {
+        "text": "We live in a small house.",
+        "answer": "small"
+      }
+    ],
+    "ch": "?"
+  },
+  {
     "word": "smaller",
     "cefr": "A1",
     "frequency": 7,
@@ -6218,26 +6198,6 @@
       }
     ],
     "ch": "較小"
-  },
-  {
-    "word": "smallest",
-    "cefr": "A1",
-    "frequency": 2,
-    "sentences": [
-      {
-        "text": "This is the smallest cup in the set.",
-        "answer": "smallest"
-      },
-      {
-        "text": "The smallest child stood in front.",
-        "answer": "smallest"
-      },
-      {
-        "text": "That is the smallest fish I have seen.",
-        "answer": "smallest"
-      }
-    ],
-    "ch": "最小"
   },
   {
     "word": "snake",
@@ -6740,24 +6700,24 @@
     "ch": "較甜"
   },
   {
-    "word": "tallest",
+    "word": "tall",
     "cefr": "A1",
     "frequency": 1,
     "sentences": [
       {
-        "text": "He is the tallest boy in the class.",
-        "answer": "tallest"
+        "text": "He is tall for his age.",
+        "answer": "tall"
       },
       {
-        "text": "That is the tallest building in the area.",
-        "answer": "tallest"
+        "text": "That tree is very tall.",
+        "answer": "tall"
       },
       {
-        "text": "My tallest plant is by the window.",
-        "answer": "tallest"
+        "text": "The boy with glasses is tall.",
+        "answer": "tall"
       }
     ],
-    "ch": "最高"
+    "ch": "?"
   },
   {
     "word": "taxi",
@@ -7000,24 +6960,24 @@
     "ch": "劇院"
   },
   {
-    "word": "thirdly",
+    "word": "third",
     "cefr": "A1",
     "frequency": 2,
     "sentences": [
       {
-        "text": "Thirdly, we need to clean the room.",
-        "answer": "Thirdly"
+        "text": "He finished in third place.",
+        "answer": "third"
       },
       {
-        "text": "Thirdly, please check your spelling.",
-        "answer": "Thirdly"
+        "text": "This is the third question on the page.",
+        "answer": "third"
       },
       {
-        "text": "Thirdly, the teacher asked us to work in groups.",
-        "answer": "Thirdly"
+        "text": "The third train arrives at noon.",
+        "answer": "third"
       }
     ],
-    "ch": "第三"
+    "ch": "??"
   },
   {
     "word": "Thursday",
@@ -7840,24 +7800,24 @@
     "ch": "作家"
   },
   {
-    "word": "years",
+    "word": "year",
     "cefr": "A1",
     "frequency": 1,
     "sentences": [
       {
-        "text": "We have been friends for many years.",
-        "answer": "years"
+        "text": "This year feels very busy.",
+        "answer": "year"
       },
       {
-        "text": "My grandparents lived there for ten years.",
-        "answer": "years"
+        "text": "Last year we visited Japan.",
+        "answer": "year"
       },
       {
-        "text": "The school is over one hundred years old.",
-        "answer": "years"
+        "text": "The school year starts in September.",
+        "answer": "year"
       }
     ],
-    "ch": "年"
+    "ch": "?"
   },
   {
     "word": "yellow",

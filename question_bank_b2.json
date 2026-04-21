@@ -600,6 +600,26 @@
     "ch": "遵守；依附於"
   },
   {
+    "word": "adjacent to",
+    "cefr": "B2",
+    "frequency": null,
+    "sentences": [
+      {
+        "text": "Our classroom is adjacent to the library.",
+        "answer": "adjacent to"
+      },
+      {
+        "text": "The lift is adjacent to the main door.",
+        "answer": "adjacent to"
+      },
+      {
+        "text": "The small shop is adjacent to the bank.",
+        "answer": "adjacent to"
+      }
+    ],
+    "ch": "毗鄰"
+  },
+  {
     "word": "administration",
     "cefr": "B2",
     "frequency": 2,
