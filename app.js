@@ -2150,6 +2150,21 @@ function getShipIndices(idx, conf, v) {
         return indices;
     }
 
+function getShipBoundsFromIndices(indices) {
+        if (!Array.isArray(indices) || indices.length === 0) return null;
+
+        const rows = indices.map(idx => Math.floor(idx / GRID_SIZE));
+        const cols = indices.map(idx => idx % GRID_SIZE);
+
+        return {
+            topRow: Math.min(...rows),
+            leftCol: Math.min(...cols),
+            bottomRow: Math.max(...rows),
+            rightCol: Math.max(...cols),
+            rootIndex: (Math.min(...rows) * GRID_SIZE) + Math.min(...cols)
+        };
+    }
+
     function handleHover(index) {
         if (currentPhase !== 'DEPLOY') return;
         clearPreview();
@@ -4393,7 +4408,9 @@ function checkMyShipDestruction(hitIdx) {
 
     const grid = document.getElementById('player-grid');
     const container = document.getElementById('player-board');
-    const startCell = grid.children[ship.indices[0]];
+    const shipBounds = getShipBoundsFromIndices(ship.indices);
+    if (!shipBounds) return;
+    const startCell = grid.children[shipBounds.rootIndex];
 
     // --- 1. ���ܜy�� (Smart Measurement) ---
     // �z����P�Ƿ��[���У�����ǣ����r�@ʾ�ԫ@ȡ���_����
@@ -4460,7 +4477,9 @@ function checkMyShipDestruction(hitIdx) {
 
     // (��ȫ��ʩ) ��� undefined (�����f��n)���Lԇ���f�������㣬�� 2x4 ���ܕ��e
     if (isVertical === undefined && ship.indices.length > 1) {
-         isVertical = (ship.indices[1] === ship.indices[0] + 10);
+         const spanRows = shipBounds.bottomRow - shipBounds.topRow + 1;
+         const spanCols = shipBounds.rightCol - shipBounds.leftCol + 1;
+         isVertical = spanRows >= spanCols;
     }
 
     img.style.left = cellLeft + 'px';
@@ -5491,11 +5510,14 @@ function autoDeployRemainingShips() {
         
         shipsData.forEach(ship => {
             if(!ship.indices) return;
-            const root = ship.indices[0];
-            // ���㷽��
-            let isV = false;
-            if (ship.indices.length > 1) {
-                isV = (ship.indices[1] === root + GRID_SIZE);
+            const shipBounds = getShipBoundsFromIndices(ship.indices);
+            if (!shipBounds) return;
+            const root = shipBounds.rootIndex;
+            let isV = ship.isVertical;
+            if (isV === undefined && ship.indices.length > 1) {
+                const spanRows = shipBounds.bottomRow - shipBounds.topRow + 1;
+                const spanCols = shipBounds.rightCol - shipBounds.leftCol + 1;
+                isV = spanRows >= spanCols;
             }
             
             enemyFleetData.push({
@@ -5544,7 +5566,8 @@ function revealEnemyShip(ship) {
 
     // ��ȫ�z��
     if (!ship.rootIndex && ship.rootIndex !== 0) return;
-    const startCell = board.children[ship.rootIndex];
+    const shipBounds = getShipBoundsFromIndices(ship.indices);
+    const startCell = board.children[(shipBounds ? shipBounds.rootIndex : ship.rootIndex)];
     if (!startCell) return;
 
     // --- 1. ���ܜy�� (Smart Measurement) ---
