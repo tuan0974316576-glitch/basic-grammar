@@ -18306,196 +18306,308 @@
     "word": "scout",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "A scout from the club visited our school.",
+      "The scout walked ahead to check the path.",
+      "A football scout watched the final match."
+    ],
     "ch": "偵察員；童軍"
   },
   {
     "word": "scratch",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Be careful not to scratch the table.",
+      "The cat left a scratch on my hand.",
+      "She started the drawing from scratch."
+    ],
     "ch": "抓；抓痕"
   },
   {
     "word": "scrawl",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Someone used a marker to scrawl on the wall.",
+      "His quick scrawl was hard to read.",
+      "A rude message was scrawled on the sign."
+    ],
     "ch": "潦草寫；潦草字跡"
   },
   {
     "word": "scream",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "I heard a scream from the next room.",
+      "The children screamed with excitement.",
+      "Do not scream unless you need help."
+    ],
     "ch": "尖叫；高聲呼喊"
   },
   {
     "word": "screen",
     "cefr": "B2",
     "frequency": 18,
-    "sentences": [],
+    "sentences": [
+      "The film will screen at eight o'clock.",
+      "Please clean the phone screen carefully.",
+      "A large screen showed the results live."
+    ],
     "ch": "屏幕；篩選"
   },
   {
     "word": "scuba",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "She took a scuba course on holiday.",
+      "Scuba diving requires special equipment.",
+      "The island is famous for scuba tours."
+    ],
     "ch": "水肺潛水"
   },
   {
     "word": "seam",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The seam of my shirt came loose.",
+      "She stitched the seam by hand.",
+      "A crack ran along the seam of the wall."
+    ],
     "ch": "縫；接縫"
   },
   {
     "word": "seasonal",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "This caf? offers seasonal drinks in summer.",
+      "Farmers often hire seasonal workers.",
+      "The shop decor changes with seasonal trends."
+    ],
     "ch": "季節性的"
   },
   {
     "word": "seat",
     "cefr": "B2",
     "frequency": 7,
-    "sentences": [],
+    "sentences": [
+      "Please take a seat near the window.",
+      "Every ticket includes a seat number.",
+      "She found a seat at the back of the bus."
+    ],
     "ch": "座位；使就座"
   },
   {
     "word": "sector",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "Tourism is an important sector of the economy.",
+      "The report focuses on the health sector.",
+      "Several jobs were created in the technology sector."
+    ],
     "ch": "部門；領域"
   },
   {
     "word": "secure",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "Please secure the ladder before climbing.",
+      "The app uses a secure login system.",
+      "She managed to secure a place on the course."
+    ],
     "ch": "安全的；確保"
   },
   {
     "word": "securely",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Please close the door securely.",
+      "The package was securely tied with string.",
+      "Her data was securely stored online."
+    ],
     "ch": "安全地；牢固地"
   },
   {
     "word": "seek",
     "cefr": "B2",
     "frequency": 9,
-    "sentences": [],
+    "sentences": [
+      "Many students seek advice before applying.",
+      "You should seek help if you feel unwell.",
+      "The company seeks workers with experience."
+    ],
     "ch": "尋求；尋找"
   },
   {
     "word": "select",
     "cefr": "B2",
     "frequency": 7,
-    "sentences": [],
+    "sentences": [
+      "Please select one answer from the list.",
+      "The coach will select the final team tomorrow.",
+      "You can select a theme in the settings menu."
+    ],
     "ch": "選擇；精選的"
   },
   {
     "word": "selection",
     "cefr": "B2",
     "frequency": 6,
-    "sentences": [],
+    "sentences": [
+      "The shop has a good selection of books.",
+      "Final selection will be based on experience.",
+      "The teacher prepared a selection of poems."
+    ],
     "ch": "選擇；精選"
   },
   {
     "word": "self",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "He tries to improve his sense of self.",
+      "The course encourages self reflection.",
+      "She carried herself with confidence and self control."
+    ],
     "ch": "自我；自己"
   },
   {
     "word": "senior",
     "cefr": "B2",
     "frequency": 6,
-    "sentences": [],
+    "sentences": [
+      "A senior student showed us around the school.",
+      "She was promoted to a senior role.",
+      "The team asked for a senior manager's opinion."
+    ],
     "ch": "年長的；高級的"
   },
   {
     "word": "sense",
     "cefr": "B2",
     "frequency": 23,
-    "sentences": [],
+    "sentences": [
+      "This rule makes no sense to me.",
+      "She has a strong sense of responsibility.",
+      "The smell gave me a sense of danger."
+    ],
     "ch": "感覺；意義"
   },
   {
     "word": "sensitive",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "This is a sensitive topic for many families.",
+      "My skin is sensitive to the sun.",
+      "The device is sensitive enough to detect smoke."
+    ],
     "ch": "敏感的；體貼的"
   },
   {
     "word": "sensor",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "A motion sensor turned on the light.",
+      "The phone uses a sensor to measure steps.",
+      "The engineer tested each sensor in the lab."
+    ],
     "ch": "感測器"
   },
   {
     "word": "sentence",
     "cefr": "B2",
     "frequency": 5,
-    "sentences": [],
+    "sentences": [
+      "Please write one sentence about your weekend.",
+      "The judge gave the man a short sentence.",
+      "That sentence is difficult to understand."
+    ],
     "ch": "句子；判刑"
   },
   {
     "word": "separately",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Please pack the dishes separately.",
+      "The two groups were interviewed separately.",
+      "Tickets must be purchased separately online."
+    ],
     "ch": "分開地；個別地"
   },
   {
     "word": "seriousness",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The doctor explained the seriousness of the injury.",
+      "Her seriousness impressed the interviewers.",
+      "The students did not realise the seriousness of the storm."
+    ],
     "ch": "嚴重性；認真"
   },
   {
     "word": "session",
     "cefr": "B2",
     "frequency": 8,
-    "sentences": [],
+    "sentences": [
+      "The training session starts at ten.",
+      "We had a short revision session after school.",
+      "Each therapy session lasts one hour."
+    ],
     "ch": "會議；一節課"
   },
   {
     "word": "settle",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Dust began to settle on the table.",
+      "The family hopes to settle in Canada.",
+      "We need to settle the bill before leaving."
+    ],
     "ch": "安頓；解決"
   },
   {
     "word": "severe",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "The patient had a severe headache.",
+      "The storm caused severe damage to the coast.",
+      "There was a severe shortage of water."
+    ],
     "ch": "嚴重的；嚴厲的"
   },
   {
     "word": "shade",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Let's sit in the shade of that tree.",
+      "The wall was painted a dark shade of blue.",
+      "Her hat gave her face some shade."
+    ],
     "ch": "陰涼處；色調"
   },
   {
     "word": "shallow",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The water here is too shallow for diving.",
+      "The bowl was wide and shallow.",
+      "His apology sounded shallow and weak."
+    ],
     "ch": "淺的；膚淺的"
   },
   {
@@ -18522,21 +18634,33 @@
     "word": "shame",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "It is a shame that the show was cancelled.",
+      "He felt shame after telling the lie.",
+      "What a shame we missed the last bus."
+    ],
     "ch": "羞恥；可惜"
   },
   {
     "word": "shape",
     "cefr": "B2",
     "frequency": 7,
-    "sentences": [],
+    "sentences": [
+      "The box was an unusual shape.",
+      "Exercise helps keep you in shape.",
+      "The cloud took the shape of a dragon."
+    ],
     "ch": "形狀；塑造"
   },
   {
     "word": "sharply",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "Prices rose sharply last year.",
+      "She turned sharply when she heard her name.",
+      "The road bends sharply near the hill."
+    ],
     "ch": "急劇地；尖銳地"
   },
   {
@@ -18563,63 +18687,99 @@
     "word": "shift",
     "cefr": "B2",
     "frequency": 8,
-    "sentences": [],
+    "sentences": [
+      "She works the night shift at the hospital.",
+      "Public opinion began to shift after the speech.",
+      "Please shift the chair a little to the left."
+    ],
     "ch": "轉移；輪班"
   },
   {
     "word": "ship",
     "cefr": "B2",
     "frequency": 13,
-    "sentences": [],
+    "sentences": [
+      "The cargo ship arrived this morning.",
+      "Please ship the books before Friday.",
+      "We watched a ship disappear beyond the harbour."
+    ],
     "ch": "船；運送"
   },
   {
     "word": "shock",
     "cefr": "B2",
     "frequency": 9,
-    "sentences": [],
+    "sentences": [
+      "The news came as a shock to everyone.",
+      "He was still in shock after the crash.",
+      "The result shocked even the coach."
+    ],
     "ch": "震驚；使震驚"
   },
   {
     "word": "shocker",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The defeat was a complete shocker.",
+      "The film's ending was a real shocker.",
+      "It was a shocker to hear the store had closed."
+    ],
     "ch": "令人震驚的事"
   },
   {
     "word": "shocking",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The report revealed shocking details.",
+      "It was shocking to see the damage.",
+      "The rise in costs was truly shocking."
+    ],
     "ch": "令人震驚的"
   },
   {
     "word": "shore",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Waves crashed against the shore.",
+      "We walked slowly along the shore.",
+      "A small boat reached the shore before dawn."
+    ],
     "ch": "岸；海濱"
   },
   {
     "word": "shortage",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The city faced a shortage of clean water.",
+      "A staff shortage caused delays at the clinic.",
+      "There is a growing shortage of teachers."
+    ],
     "ch": "短缺；不足"
   },
   {
     "word": "shotgun",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The farmer kept a shotgun in a locked case.",
+      "Police found an old shotgun in the shed.",
+      "The film showed a hunter carrying a shotgun."
+    ],
     "ch": "霰彈槍"
   },
   {
     "word": "showcased",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The museum showcased local artists this month.",
+      "The festival showcased new student films.",
+      "Her speech showcased her confidence and humour."
+    ],
     "ch": "展示了；陳列的"
   },
   {
@@ -18646,77 +18806,121 @@
     "word": "shutdown",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The airport faced a temporary shutdown.",
+      "A power shutdown affected the whole building.",
+      "The factory announced a two-week shutdown."
+    ],
     "ch": "關閉；停工"
   },
   {
     "word": "sidejobs",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "He took sidejobs to earn extra money.",
+      "Many students do sidejobs during the summer.",
+      "Her sidejobs helped pay the rent."
+    ],
     "ch": "兼職工作"
   },
   {
     "word": "sideline",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The coach watched from the sideline.",
+      "Do not sideline quieter students in discussion.",
+      "She started a sideline selling handmade soap."
+    ],
     "ch": "邊線；使退出主流"
   },
   {
     "word": "sighting",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "There was a rare bird sighting near the lake.",
+      "The police received a sighting report last night.",
+      "A shark sighting closed the beach for a day."
+    ],
     "ch": "目擊；發現"
   },
   {
     "word": "sightsee",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "We plan to sightsee after lunch.",
+      "Tourists often sightsee by bus in the old town.",
+      "They spent the morning sightseeing by the harbour."
+    ],
     "ch": "觀光"
   },
   {
     "word": "sightseer",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Every sightseer stopped to photograph the temple.",
+      "The square was crowded with sightseers.",
+      "A sightseer asked me for directions."
+    ],
     "ch": "觀光客"
   },
   {
     "word": "significance",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The event had great historical significance.",
+      "Few people understood the significance of the discovery.",
+      "The teacher explained the significance of the poem."
+    ],
     "ch": "重要性；意義"
   },
   {
     "word": "significant",
     "cefr": "B2",
     "frequency": 10,
-    "sentences": [],
+    "sentences": [
+      "There was a significant drop in sales.",
+      "The bridge is significant to the city's history.",
+      "A significant number of students chose science."
+    ],
     "ch": "重要的；顯著的"
   },
   {
     "word": "significantly",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Travel times fell significantly after the new line opened.",
+      "Her health improved significantly after surgery.",
+      "Prices have risen significantly since last year."
+    ],
     "ch": "顯著地；大大地"
   },
   {
     "word": "silence",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "The room fell into silence after the announcement.",
+      "A long silence made everyone uneasy.",
+      "Please observe silence during the test."
+    ],
     "ch": "沉默；寂靜"
   },
   {
     "word": "silk",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "She wore a silk scarf to the dinner.",
+      "The dress was made from smooth silk.",
+      "Ancient traders carried silk across Asia."
+    ],
     "ch": "絲綢"
   },
   {
@@ -18743,133 +18947,209 @@
     "word": "skilled",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The job requires skilled workers.",
+      "She is highly skilled at design.",
+      "A skilled driver handled the steep road well."
+    ],
     "ch": "熟練的；有技能的"
   },
   {
     "word": "skyscraper",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "A new skyscraper is being built downtown.",
+      "The city's skyline is full of skyscrapers.",
+      "We could see the harbour from the top of the skyscraper."
+    ],
     "ch": "摩天大樓"
   },
   {
     "word": "slasher",
     "cefr": "B2",
     "frequency": 16,
-    "sentences": [],
+    "sentences": [
+      "The teenager loved watching old slasher films.",
+      "A slasher movie played at the midnight screening.",
+      "The poster made it clear that the film was a slasher."
+    ],
     "ch": "砍殺者；恐怖砍殺片"
   },
   {
     "word": "slide",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "Children lined up to use the slide.",
+      "Her presentation had twenty slides.",
+      "The cup began to slide across the table."
+    ],
     "ch": "滑動；幻燈片"
   },
   {
     "word": "slight",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "There was a slight delay at the station.",
+      "He gave only a slight smile.",
+      "The road rises at a slight angle."
+    ],
     "ch": "輕微的；纖細的"
   },
   {
     "word": "slip",
     "cefr": "B2",
     "frequency": 7,
-    "sentences": [],
+    "sentences": [
+      "Be careful not to slip on the wet floor.",
+      "She let the paper slip from her hand.",
+      "I found a payment slip in my bag."
+    ],
     "ch": "滑倒；紙條"
   },
   {
     "word": "slogan",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "The campaign used a short slogan on every poster.",
+      "The company changed its slogan this year.",
+      "A catchy slogan can be easy to remember."
+    ],
     "ch": "口號；標語"
   },
   {
     "word": "slope",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "The village sits on a gentle slope.",
+      "Children ran down the grassy slope.",
+      "The roof has a steep slope."
+    ],
     "ch": "斜坡；傾斜"
   },
   {
     "word": "smartcard",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "She tapped her smartcard at the station gate.",
+      "A smartcard makes travel more convenient.",
+      "Please top up your smartcard before boarding."
+    ],
     "ch": "智能卡"
   },
   {
     "word": "smiley",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "He added a smiley to the message.",
+      "A yellow smiley was printed on the badge.",
+      "The note ended with a cheerful smiley."
+    ],
     "ch": "笑臉符號；笑臉圖案"
   },
   {
     "word": "snorkelling",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "We went snorkelling near the coral reef.",
+      "Snorkelling is popular on the island.",
+      "She bought new goggles for snorkelling."
+    ],
     "ch": "浮潛"
   },
   {
     "word": "sob",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "I heard her sob quietly in the next room.",
+      "The sad ending made the child sob.",
+      "He let out a sob after hearing the news."
+    ],
     "ch": "抽泣；嗚咽"
   },
   {
     "word": "socialize",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Students often socialize after class.",
+      "The app helps players socialize online.",
+      "It takes time for shy children to socialize."
+    ],
     "ch": "交際；使社會化"
   },
   {
     "word": "solar",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The school installed solar panels on the roof.",
+      "This lamp uses solar power.",
+      "The project explores solar energy for homes."
+    ],
     "ch": "太陽的；利用太陽能的"
   },
   {
     "word": "somehow",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "We somehow managed to finish on time.",
+      "She looked tired but somehow cheerful.",
+      "The package somehow arrived early."
+    ],
     "ch": "不知怎地；以某種方式"
   },
   {
     "word": "sometime",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Let's meet sometime next week.",
+      "I saw him sometime in the afternoon.",
+      "We should visit that caf? sometime."
+    ],
     "ch": "某個時候；改天"
   },
   {
     "word": "somewhat",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The room was somewhat smaller than expected.",
+      "He seemed somewhat nervous before the talk.",
+      "The film was somewhat confusing at first."
+    ],
     "ch": "有點；稍微"
   },
   {
     "word": "soul",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The song touched my soul.",
+      "She is a kind and generous soul.",
+      "The old church seemed to have a peaceful soul."
+    ],
     "ch": "靈魂；精神"
   },
   {
     "word": "soundtrack",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "I love the soundtrack of that film.",
+      "The soundtrack made the final scene more emotional.",
+      "She bought the soundtrack after watching the movie."
+    ],
     "ch": "原聲帶"
   },
   {
@@ -18916,343 +19196,539 @@
     "word": "specialise",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Some doctors specialise in heart disease.",
+      "This store specialises in handmade shoes.",
+      "The course allows students to specialise later."
+    ],
     "ch": "專門從事；專攻"
   },
   {
     "word": "specialist",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The patient was sent to a specialist.",
+      "He works as a language specialist at the university.",
+      "A specialist checked the damaged machine."
+    ],
     "ch": "專家；專科醫生"
   },
   {
     "word": "specialize",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Many restaurants specialize in local seafood.",
+      "She hopes to specialize in child psychology.",
+      "The clinic specializes in sports injuries."
+    ],
     "ch": "專門從事；專攻"
   },
   {
     "word": "specialness",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "The place lost some of its specialness over time.",
+      "Her words captured the specialness of the day.",
+      "Children still remember the specialness of that trip."
+    ],
     "ch": "特別之處；獨特性"
   },
   {
     "word": "specie",
     "cefr": "B2",
     "frequency": 8,
-    "sentences": [],
+    "sentences": [
+      "The gold specie was kept in a museum case.",
+      "Merchants once traded using silver specie.",
+      "The historian showed us old specie from the region."
+    ],
     "ch": "硬幣；現金"
   },
   {
     "word": "species",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "This wetland protects many bird species.",
+      "Several species of fish live in the bay.",
+      "The zoo breeds rare species in safety."
+    ],
     "ch": "物種；種類"
   },
   {
     "word": "specify",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Please specify the size you want.",
+      "The form asks you to specify your address.",
+      "The teacher did not specify a deadline."
+    ],
     "ch": "具體說明；明確指出"
   },
   {
     "word": "spectacular",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The fireworks show was spectacular.",
+      "We enjoyed a spectacular view from the hill.",
+      "Her performance was nothing short of spectacular."
+    ],
     "ch": "壯觀的；驚人的"
   },
   {
     "word": "spectator",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "Every spectator stood to cheer at the end.",
+      "A spectator dropped a phone near the track.",
+      "The stadium was full of excited spectators."
+    ],
     "ch": "觀眾；旁觀者"
   },
   {
     "word": "speculate",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "It is useless to speculate without evidence.",
+      "Reporters began to speculate about his future.",
+      "We can only speculate about what happened."
+    ],
     "ch": "推測；投機"
   },
   {
     "word": "speculation",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "There is much speculation about the result.",
+      "Online speculation spread before the announcement.",
+      "The company refused to comment on the speculation."
+    ],
     "ch": "推測；猜測"
   },
   {
     "word": "speed",
     "cefr": "B2",
     "frequency": 5,
-    "sentences": [],
+    "sentences": [
+      "Please reduce your speed near the school.",
+      "The internet speed improved after the upgrade.",
+      "He finished the race at an amazing speed."
+    ],
     "ch": "速度；加速"
   },
   {
     "word": "spiritual",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The temple is an important spiritual place.",
+      "She found spiritual comfort in music.",
+      "The retreat focuses on spiritual growth."
+    ],
     "ch": "精神的；心靈的"
   },
   {
     "word": "split",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "We agreed to split the bill equally.",
+      "The board split into two pieces.",
+      "Opinion was split on the new rule."
+    ],
     "ch": "分裂；分開"
   },
   {
     "word": "spoil",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Too much rain may spoil the picnic.",
+      "Do not spoil the ending for me.",
+      "Milk can spoil quickly in hot weather."
+    ],
     "ch": "寵壞；破壞"
   },
   {
     "word": "spokesman",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The company spokesman answered reporters' questions.",
+      "A government spokesman made a short statement.",
+      "The spokesman denied the rumor."
+    ],
     "ch": "發言人（男）"
   },
   {
     "word": "spokesperson",
     "cefr": "B2",
     "frequency": 5,
-    "sentences": [],
+    "sentences": [
+      "The spokesperson explained the new policy.",
+      "A police spokesperson gave an update on the case.",
+      "The spokesperson thanked the public for their support."
+    ],
     "ch": "發言人"
   },
   {
     "word": "spokeswoman",
     "cefr": "B2",
     "frequency": 6,
-    "sentences": [],
+    "sentences": [
+      "The spokeswoman spoke to the press at noon.",
+      "A company spokeswoman confirmed the delay.",
+      "The spokeswoman read the official statement."
+    ],
     "ch": "發言人（女）"
   },
   {
     "word": "sponsor",
     "cefr": "B2",
     "frequency": 17,
-    "sentences": [],
+    "sentences": [
+      "A local bank agreed to sponsor the event.",
+      "The team thanked each sponsor on stage.",
+      "This company is the main sponsor of the festival."
+    ],
     "ch": "贊助；贊助商"
   },
   {
     "word": "sponsorship",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The club depends on business sponsorship.",
+      "She applied for sponsorship for the trip.",
+      "Sports sponsorship has become more competitive."
+    ],
     "ch": "贊助；贊助關係"
   },
   {
     "word": "spot",
     "cefr": "B2",
     "frequency": 10,
-    "sentences": [],
+    "sentences": [
+      "We found a quiet spot by the water.",
+      "Can you spot the difference between the two photos?",
+      "The dog likes to sleep in the same spot."
+    ],
     "ch": "地點；發現"
   },
   {
     "word": "spray",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Use this spray to clean the glass.",
+      "Sea spray covered the rocks.",
+      "The gardener sprayed water on the flowers."
+    ],
     "ch": "噴霧；噴灑"
   },
   {
     "word": "spread",
     "cefr": "B2",
     "frequency": 7,
-    "sentences": [],
+    "sentences": [
+      "The fire spread quickly through the building.",
+      "Please spread the map on the table.",
+      "A rumor spread across the school by lunch."
+    ],
     "ch": "擴散；攤開"
   },
   {
     "word": "springboard",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "This role can be a springboard to better jobs.",
+      "The diver stepped onto the springboard.",
+      "The contest became a springboard for her career."
+    ],
     "ch": "跳板；跳台"
   },
   {
     "word": "squat",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The cat sat beside a squat stone wall.",
+      "He did twenty squats during training.",
+      "A squat building stood at the edge of the field."
+    ],
     "ch": "蹲；蹲坐"
   },
   {
     "word": "stable",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The horse returned to the stable at night.",
+      "Prices remained stable this month.",
+      "She now has a stable job and income."
+    ],
     "ch": "穩定的；馬廄"
   },
   {
     "word": "stage",
     "cefr": "B2",
     "frequency": 11,
-    "sentences": [],
+    "sentences": [
+      "The singer walked onto the stage.",
+      "The project entered its final stage.",
+      "Lights were added to the stage before the show."
+    ],
     "ch": "階段；舞台"
   },
   {
     "word": "stakeholder",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Each stakeholder was invited to the meeting.",
+      "Parents are important stakeholders in education.",
+      "The company listened to feedback from every stakeholder."
+    ],
     "ch": "持份者；利益相關者"
   },
   {
     "word": "stalk",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The tiger began to stalk its prey.",
+      "A tall stalk of corn stood in the field.",
+      "The bird slowly stalked through the grass."
+    ],
     "ch": "莖；偷偷跟蹤"
   },
   {
     "word": "stall",
     "cefr": "B2",
     "frequency": 8,
-    "sentences": [],
+    "sentences": [
+      "We bought fruit from a market stall.",
+      "The car engine began to stall on the hill.",
+      "Each food stall had a long queue."
+    ],
     "ch": "攤位；拖延"
   },
   {
     "word": "stationery",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Please put the stationery back in the drawer.",
+      "The shop sells school stationery and gifts.",
+      "She packed extra stationery for the exam."
+    ],
     "ch": "文具"
   },
   {
     "word": "status",
     "cefr": "B2",
     "frequency": 9,
-    "sentences": [],
+    "sentences": [
+      "Please check the status of your order online.",
+      "The bridge remains in good condition and status.",
+      "His social status changed after the award."
+    ],
     "ch": "地位；狀態"
   },
   {
     "word": "steadier",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Her breathing became steadier after a rest.",
+      "The boat felt steadier once the wind dropped.",
+      "His hand grew steadier with practice."
+    ],
     "ch": "更穩定的"
   },
   {
     "word": "steadily",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Sales rose steadily over the year.",
+      "She walked steadily across the room.",
+      "The rain fell steadily all afternoon."
+    ],
     "ch": "穩定地；持續地"
   },
   {
     "word": "steady",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Keep the camera steady when filming.",
+      "He made steady progress in reading.",
+      "The patient is now in a steady condition."
+    ],
     "ch": "穩定的；穩步的"
   },
   {
     "word": "steam",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Steam rose from the hot soup.",
+      "The train ran on steam many years ago.",
+      "The mirror fogged up because of the steam."
+    ],
     "ch": "蒸氣；蒸"
   },
   {
     "word": "step",
     "cefr": "B2",
     "frequency": 18,
-    "sentences": [],
+    "sentences": [
+      "Please take one step back.",
+      "This is the first step in the process.",
+      "He heard footsteps on the step outside."
+    ],
     "ch": "步；步驟"
   },
   {
     "word": "stimulate",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The game is designed to stimulate creative thinking.",
+      "Exercise can stimulate the mind as well as the body.",
+      "The government hopes to stimulate the economy."
+    ],
     "ch": "刺激；促進"
   },
   {
     "word": "stock",
     "cefr": "B2",
     "frequency": 7,
-    "sentences": [],
+    "sentences": [
+      "The shop ran out of stock yesterday.",
+      "The chef checked the soup stock in the pot.",
+      "The company keeps extra stock in the warehouse."
+    ],
     "ch": "庫存；股票"
   },
   {
     "word": "stormy",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "We stayed inside during the stormy night.",
+      "Their relationship had a stormy beginning.",
+      "The sea became rough and stormy by evening."
+    ],
     "ch": "暴風雨的；激烈的"
   },
   {
     "word": "storyboard",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The director showed us the storyboard for the film.",
+      "She drew a storyboard before making the video.",
+      "A clear storyboard helps organize each scene."
+    ],
     "ch": "分鏡腳本"
   },
   {
     "word": "storyboarding",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Storyboarding helped the students plan their animation.",
+      "The class spent a day storyboarding the short film.",
+      "Good storyboarding saves time during filming."
+    ],
     "ch": "分鏡製作"
   },
   {
     "word": "stray",
     "cefr": "B2",
     "frequency": 5,
-    "sentences": [],
+    "sentences": [
+      "A stray dog followed us home.",
+      "Be careful not to let the cows stray.",
+      "A stray ball broke the window."
+    ],
     "ch": "走失的；偏離"
   },
   {
     "word": "stream",
     "cefr": "B2",
     "frequency": 5,
-    "sentences": [],
+    "sentences": [
+      "A clear stream runs behind the house.",
+      "We can stream the concert live online.",
+      "Sunlight reflected on the narrow stream."
+    ],
     "ch": "溪流；串流"
   },
   {
     "word": "strengthen",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Exercise can strengthen your back.",
+      "The school wants to strengthen ties with parents.",
+      "This policy may strengthen public trust."
+    ],
     "ch": "加強；增強"
   },
   {
     "word": "stretch",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Please stretch before the race.",
+      "A long stretch of road was closed.",
+      "The rubber band can stretch a little more."
+    ],
     "ch": "伸展；延伸"
   },
   {
     "word": "strict",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The teacher is strict but fair.",
+      "The hospital follows strict safety rules.",
+      "Her parents were strict about homework."
+    ],
     "ch": "嚴格的"
   },
   {
     "word": "strictly",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Food is strictly forbidden in the lab.",
+      "The budget was strictly controlled.",
+      "Please follow the instructions strictly."
+    ],
     "ch": "嚴格地；嚴密地"
   },
   {
     "word": "strike",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "Lightning may strike the tallest tree.",
+      "Workers planned to strike on Monday.",
+      "The clock struck twelve at midnight."
+    ],
     "ch": "打擊；罷工"
   },
   {
