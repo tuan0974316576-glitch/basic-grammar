@@ -7146,7 +7146,7 @@
     "cefr": "A2",
     "frequency": 6,
     "sentences": [],
-    "ch": ""
+    "ch": "已編程的"
   },
   {
     "word": "promise",
@@ -7162,14 +7162,14 @@
         "answer": "promise"
       }
     ],
-    "ch": ""
+    "ch": "承諾；答應"
   },
   {
     "word": "pronounce",
     "cefr": "A2",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "發音；宣告"
   },
   {
     "word": "protect",
@@ -7189,7 +7189,7 @@
         "answer": "protect"
       }
     ],
-    "ch": ""
+    "ch": "保護"
   },
   {
     "word": "provide",
@@ -7209,7 +7209,7 @@
         "answer": "provide"
       }
     ],
-    "ch": ""
+    "ch": "提供"
   },
   {
     "word": "public",
@@ -7229,7 +7229,7 @@
         "answer": "public"
       }
     ],
-    "ch": ""
+    "ch": "公眾的；公共的"
   },
   {
     "word": "publish",
@@ -7249,7 +7249,7 @@
         "answer": "publish"
       }
     ],
-    "ch": ""
+    "ch": "出版；發表"
   },
   {
     "word": "purpose",
@@ -7265,14 +7265,14 @@
         "answer": "purpose"
       }
     ],
-    "ch": ""
+    "ch": "目的"
   },
   {
     "word": "purse",
     "cefr": "A2",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "手袋；錢包"
   },
   {
     "word": "quality",
@@ -7292,14 +7292,14 @@
         "answer": "quality"
       }
     ],
-    "ch": ""
+    "ch": "質素；品質"
   },
   {
     "word": "quietest",
     "cefr": "A2",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "最安靜的"
   },
   {
     "word": "quietly",
@@ -7311,7 +7311,7 @@
         "answer": "quietly"
       }
     ],
-    "ch": ""
+    "ch": "安靜地"
   },
   {
     "word": "quiz",
@@ -7331,7 +7331,7 @@
         "answer": "quiz"
       }
     ],
-    "ch": ""
+    "ch": "小測驗"
   },
   {
     "word": "rabbit",
@@ -7343,7 +7343,7 @@
         "answer": "rabbit"
       }
     ],
-    "ch": ""
+    "ch": "兔子"
   },
   {
     "word": "railroad",
@@ -7355,7 +7355,7 @@
         "answer": "railroad"
       }
     ],
-    "ch": ""
+    "ch": "鐵路"
   },
   {
     "word": "railway",
@@ -7371,7 +7371,7 @@
         "answer": "railway"
       }
     ],
-    "ch": ""
+    "ch": "鐵路"
   },
   {
     "word": "raise",
@@ -7391,7 +7391,7 @@
         "answer": "raise"
       }
     ],
-    "ch": ""
+    "ch": "舉起；提高"
   },
   {
     "word": "rather",
@@ -7411,7 +7411,7 @@
         "answer": "rather"
       }
     ],
-    "ch": ""
+    "ch": "相當；寧可"
   },
   {
     "word": "react",
@@ -7423,7 +7423,7 @@
         "answer": "react"
       }
     ],
-    "ch": ""
+    "ch": "反應；回應"
   },
   {
     "word": "realize",
@@ -7435,7 +7435,7 @@
         "answer": "realize"
       }
     ],
-    "ch": ""
+    "ch": "意識到；實現"
   },
   {
     "word": "receive",
@@ -7455,7 +7455,7 @@
         "answer": "receive"
       }
     ],
-    "ch": ""
+    "ch": "收到；接收"
   },
   {
     "word": "recent",
@@ -7475,7 +7475,7 @@
         "answer": "recent"
       }
     ],
-    "ch": ""
+    "ch": "最近的"
   },
   {
     "word": "recently",
@@ -7495,7 +7495,7 @@
         "answer": "recently"
       }
     ],
-    "ch": ""
+    "ch": "最近"
   },
   {
     "word": "reception",
@@ -7507,7 +7507,7 @@
         "answer": "reception"
       }
     ],
-    "ch": ""
+    "ch": "接待處；接收"
   },
   {
     "word": "recipe",
@@ -7527,14 +7527,14 @@
         "answer": "recipe"
       }
     ],
-    "ch": ""
+    "ch": "食譜"
   },
   {
     "word": "recognize",
     "cefr": "A2",
     "frequency": 10,
     "sentences": [],
-    "ch": ""
+    "ch": "認出；承認"
   },
   {
     "word": "recommend",
@@ -7554,7 +7554,7 @@
         "answer": "recommend"
       }
     ],
-    "ch": ""
+    "ch": "推薦；建議"
   },
   {
     "word": "record",
@@ -7574,7 +7574,7 @@
         "answer": "record"
       }
     ],
-    "ch": ""
+    "ch": "紀錄；錄音"
   },
   {
     "word": "recycle",
@@ -7594,7 +7594,7 @@
         "answer": "recycle"
       }
     ],
-    "ch": ""
+    "ch": "回收；循環再用"
   },
   {
     "word": "reduce",
@@ -7614,7 +7614,7 @@
         "answer": "reduce"
       }
     ],
-    "ch": ""
+    "ch": "減少"
   },
   {
     "word": "refuse",
@@ -7630,7 +7630,7 @@
         "answer": "refuse"
       }
     ],
-    "ch": ""
+    "ch": "拒絕"
   },
   {
     "word": "region",
@@ -7642,7 +7642,7 @@
         "answer": "region"
       }
     ],
-    "ch": ""
+    "ch": "地區"
   },
   {
     "word": "regular",
@@ -7662,7 +7662,7 @@
         "answer": "regular"
       }
     ],
-    "ch": ""
+    "ch": "定期的；規律的"
   },
   {
     "word": "relationship",
@@ -7674,7 +7674,7 @@
         "answer": "relationship"
       }
     ],
-    "ch": ""
+    "ch": "關係"
   },
   {
     "word": "remove",
@@ -7694,7 +7694,7 @@
         "answer": "remove"
       }
     ],
-    "ch": ""
+    "ch": "移除；除去"
   },
   {
     "word": "replace",
@@ -7714,7 +7714,7 @@
         "answer": "replace"
       }
     ],
-    "ch": ""
+    "ch": "取代；更換"
   },
   {
     "word": "reply",
@@ -7734,7 +7734,7 @@
         "answer": "reply"
       }
     ],
-    "ch": ""
+    "ch": "回覆"
   },
   {
     "word": "report",
@@ -7754,7 +7754,7 @@
         "answer": "report"
       }
     ],
-    "ch": ""
+    "ch": "報告；報道"
   },
   {
     "word": "reporter",
@@ -7774,7 +7774,7 @@
         "answer": "reporter"
       }
     ],
-    "ch": ""
+    "ch": "記者"
   },
   {
     "word": "research",
@@ -7794,7 +7794,7 @@
         "answer": "research"
       }
     ],
-    "ch": ""
+    "ch": "研究"
   },
   {
     "word": "researcher",
@@ -7814,7 +7814,7 @@
         "answer": "researcher"
       }
     ],
-    "ch": ""
+    "ch": "研究員"
   },
   {
     "word": "respond",
@@ -7834,7 +7834,7 @@
         "answer": "respond"
       }
     ],
-    "ch": ""
+    "ch": "回應；回答"
   },
   {
     "word": "response",
@@ -7854,7 +7854,7 @@
         "answer": "response"
       }
     ],
-    "ch": ""
+    "ch": "回應；答覆"
   },
   {
     "word": "rest",
@@ -7874,7 +7874,7 @@
         "answer": "rest"
       }
     ],
-    "ch": ""
+    "ch": "休息；其餘部分"
   },
   {
     "word": "review",
@@ -7894,7 +7894,7 @@
         "answer": "review"
       }
     ],
-    "ch": ""
+    "ch": "複習；評論"
   },
   {
     "word": "ride",
@@ -7910,7 +7910,7 @@
         "answer": "ride"
       }
     ],
-    "ch": ""
+    "ch": "騎；乘坐"
   },
   {
     "word": "roast",
@@ -7922,7 +7922,7 @@
         "answer": "roast"
       }
     ],
-    "ch": ""
+    "ch": "烤；烤肉"
   },
   {
     "word": "role",
@@ -7942,7 +7942,7 @@
         "answer": "role"
       }
     ],
-    "ch": ""
+    "ch": "角色；作用"
   },
   {
     "word": "roof",
@@ -7958,7 +7958,7 @@
         "answer": "roof"
       }
     ],
-    "ch": ""
+    "ch": "屋頂"
   },
   {
     "word": "route",
@@ -7974,7 +7974,7 @@
         "answer": "route"
       }
     ],
-    "ch": ""
+    "ch": "路線"
   },
   {
     "word": "rubbish",
@@ -7994,7 +7994,7 @@
         "answer": "rubbish"
       }
     ],
-    "ch": ""
+    "ch": "垃圾"
   },
   {
     "word": "rude",
@@ -8006,7 +8006,7 @@
         "answer": "rude"
       }
     ],
-    "ch": ""
+    "ch": "粗魯的；無禮的"
   },
   {
     "word": "sadly",
@@ -8022,7 +8022,7 @@
         "answer": "sadly"
       }
     ],
-    "ch": ""
+    "ch": "傷心地；可惜地"
   },
   {
     "word": "safe",
@@ -8042,7 +8042,7 @@
         "answer": "safe"
       }
     ],
-    "ch": ""
+    "ch": "安全的；保險箱"
   },
   {
     "word": "sale",
@@ -8062,7 +8062,7 @@
         "answer": "sale"
       }
     ],
-    "ch": ""
+    "ch": "售賣；特價"
   },
   {
     "word": "sauce",
@@ -8082,7 +8082,7 @@
         "answer": "sauce"
       }
     ],
-    "ch": ""
+    "ch": "醬汁"
   },
   {
     "word": "sausage",
@@ -8094,21 +8094,21 @@
         "answer": "sausage"
       }
     ],
-    "ch": ""
+    "ch": "香腸"
   },
   {
     "word": "scared",
     "cefr": "A2",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "害怕的"
   },
   {
     "word": "scary",
     "cefr": "A2",
     "frequency": 2,
     "sentences": [],
-    "ch": ""
+    "ch": "嚇人的"
   },
   {
     "word": "scene",
@@ -8128,14 +8128,14 @@
         "answer": "scene"
       }
     ],
-    "ch": ""
+    "ch": "場景；現場"
   },
   {
     "word": "schoolkids",
     "cefr": "A2",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "學童"
   },
   {
     "word": "search",
@@ -8155,7 +8155,7 @@
         "answer": "search"
       }
     ],
-    "ch": ""
+    "ch": "搜尋；搜查"
   },
   {
     "word": "season",
@@ -8171,7 +8171,7 @@
         "answer": "season"
       }
     ],
-    "ch": ""
+    "ch": "季節"
   },
   {
     "word": "secondly",
@@ -8187,7 +8187,7 @@
         "answer": "secondly"
       }
     ],
-    "ch": ""
+    "ch": "第二；其次"
   },
   {
     "word": "secret",
@@ -8203,7 +8203,7 @@
         "answer": "secret"
       }
     ],
-    "ch": ""
+    "ch": "秘密"
   },
   {
     "word": "secretary",
@@ -8215,14 +8215,14 @@
         "answer": "secretary"
       }
     ],
-    "ch": ""
+    "ch": "秘書"
   },
   {
     "word": "semester",
     "cefr": "A2",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "學期"
   },
   {
     "word": "series",
@@ -8238,7 +8238,7 @@
         "answer": "series"
       }
     ],
-    "ch": ""
+    "ch": "系列"
   },
   {
     "word": "serious",
@@ -8258,7 +8258,7 @@
         "answer": "serious"
       }
     ],
-    "ch": ""
+    "ch": "嚴重的；認真的"
   },
   {
     "word": "service",
@@ -8278,7 +8278,7 @@
         "answer": "service"
       }
     ],
-    "ch": ""
+    "ch": "服務"
   },
   {
     "word": "shampoo",
@@ -8290,7 +8290,7 @@
         "answer": "shampoo"
       }
     ],
-    "ch": ""
+    "ch": "洗髮水"
   },
   {
     "word": "shanghai",
@@ -8306,7 +8306,7 @@
         "answer": "shanghai"
       }
     ],
-    "ch": ""
+    "ch": "上海"
   },
   {
     "word": "shelve",
@@ -8318,7 +8318,7 @@
         "answer": "shelve"
       }
     ],
-    "ch": ""
+    "ch": "擱置；放上架"
   },
   {
     "word": "shopper",
@@ -8330,7 +8330,7 @@
         "answer": "shopper"
       }
     ],
-    "ch": ""
+    "ch": "購物者"
   },
   {
     "word": "shoulder",
@@ -8346,14 +8346,14 @@
         "answer": "shoulder"
       }
     ],
-    "ch": ""
+    "ch": "肩膀"
   },
   {
     "word": "shout",
     "cefr": "A2",
     "frequency": 3,
     "sentences": [],
-    "ch": ""
+    "ch": "大叫"
   },
   {
     "word": "shut",
@@ -8369,7 +8369,7 @@
         "answer": "shut"
       }
     ],
-    "ch": ""
+    "ch": "關上"
   },
   {
     "word": "sign",
@@ -8389,7 +8389,7 @@
         "answer": "sign"
       }
     ],
-    "ch": ""
+    "ch": "標誌；簽名"
   },
   {
     "word": "silver",
@@ -8409,7 +8409,7 @@
         "answer": "silver"
       }
     ],
-    "ch": ""
+    "ch": "銀；銀色"
   },
   {
     "word": "simpler",
@@ -8421,7 +8421,7 @@
         "answer": "simpler"
       }
     ],
-    "ch": ""
+    "ch": "更簡單的"
   },
   {
     "word": "single",
@@ -8441,14 +8441,14 @@
         "answer": "single"
       }
     ],
-    "ch": ""
+    "ch": "單一的；單身的"
   },
   {
     "word": "singular",
     "cefr": "A2",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "單數的；獨特的"
   },
   {
     "word": "site",
@@ -8468,7 +8468,7 @@
         "answer": "site"
       }
     ],
-    "ch": ""
+    "ch": "地點；網站"
   },
   {
     "word": "size",
@@ -8488,14 +8488,14 @@
         "answer": "size"
       }
     ],
-    "ch": ""
+    "ch": "大小；尺寸"
   },
   {
     "word": "ski",
     "cefr": "A2",
     "frequency": 4,
     "sentences": [],
-    "ch": ""
+    "ch": "滑雪"
   },
   {
     "word": "skin",
@@ -8515,14 +8515,14 @@
         "answer": "skin"
       }
     ],
-    "ch": ""
+    "ch": "皮膚"
   },
   {
     "word": "skying",
     "cefr": "A2",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "滑雪活動"
   },
   {
     "word": "sleep",
@@ -8538,7 +8538,7 @@
         "answer": "sleep"
       }
     ],
-    "ch": ""
+    "ch": "睡覺；睡眠"
   },
   {
     "word": "slowly",
@@ -8558,28 +8558,28 @@
         "answer": "slowly"
       }
     ],
-    "ch": ""
+    "ch": "慢慢地"
   },
   {
     "word": "smartphone",
     "cefr": "A2",
     "frequency": 2,
     "sentences": [],
-    "ch": ""
+    "ch": "智能手機"
   },
   {
     "word": "smartphones",
     "cefr": "A2",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "智能手機（複數）"
   },
   {
     "word": "smartwatch",
     "cefr": "A2",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "智能手錶"
   },
   {
     "word": "smell",
@@ -8599,7 +8599,7 @@
         "answer": "smell"
       }
     ],
-    "ch": ""
+    "ch": "氣味；聞"
   },
   {
     "word": "smile",
@@ -8619,14 +8619,14 @@
         "answer": "smile"
       }
     ],
-    "ch": ""
+    "ch": "微笑"
   },
   {
     "word": "smoke",
     "cefr": "A2",
     "frequency": 5,
     "sentences": [],
-    "ch": ""
+    "ch": "煙；吸煙"
   },
   {
     "word": "snack",
@@ -8646,7 +8646,7 @@
         "answer": "snack"
       }
     ],
-    "ch": ""
+    "ch": "小吃；零食"
   },
   {
     "word": "soap",
@@ -8658,7 +8658,7 @@
         "answer": "soap"
       }
     ],
-    "ch": ""
+    "ch": "肥皂"
   },
   {
     "word": "social",
@@ -8678,7 +8678,7 @@
         "answer": "social"
       }
     ],
-    "ch": ""
+    "ch": "社交的；社會的"
   },
   {
     "word": "society",
@@ -8698,7 +8698,7 @@
         "answer": "society"
       }
     ],
-    "ch": ""
+    "ch": "社會"
   },
   {
     "word": "sofa",
@@ -8710,7 +8710,7 @@
         "answer": "sofa"
       }
     ],
-    "ch": ""
+    "ch": "梳化；沙發"
   },
   {
     "word": "soft",
