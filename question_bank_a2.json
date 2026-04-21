@@ -4086,7 +4086,7 @@
         "answer": "gift"
       }
     ],
-    "ch": ""
+    "ch": "禮物"
   },
   {
     "word": "goal",
@@ -4106,7 +4106,7 @@
         "answer": "goal"
       }
     ],
-    "ch": ""
+    "ch": "目標；入球"
   },
   {
     "word": "god",
@@ -4126,7 +4126,7 @@
         "answer": "god"
       }
     ],
-    "ch": ""
+    "ch": "神"
   },
   {
     "word": "gold",
@@ -4138,7 +4138,7 @@
         "answer": "gold"
       }
     ],
-    "ch": ""
+    "ch": "金；金色"
   },
   {
     "word": "government",
@@ -4158,14 +4158,14 @@
         "answer": "government"
       }
     ],
-    "ch": ""
+    "ch": "政府"
   },
   {
     "word": "grammar",
     "cefr": "A2",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "文法；語法"
   },
   {
     "word": "grandchild",
@@ -4181,7 +4181,7 @@
         "answer": "grandchild"
       }
     ],
-    "ch": ""
+    "ch": "孫兒；孫女"
   },
   {
     "word": "granddaughter",
@@ -4193,7 +4193,7 @@
         "answer": "granddaughter"
       }
     ],
-    "ch": ""
+    "ch": "孫女"
   },
   {
     "word": "grandpa",
@@ -4205,28 +4205,28 @@
         "answer": "grandpa"
       }
     ],
-    "ch": ""
+    "ch": "爺爺；外公"
   },
   {
     "word": "grandson",
     "cefr": "A2",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "孫子"
   },
   {
     "word": "granny",
     "cefr": "A2",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "祖母；婆婆"
   },
   {
     "word": "greatest",
     "cefr": "A2",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "最好的；最偉大的"
   },
   {
     "word": "greet",
@@ -4238,7 +4238,7 @@
         "answer": "greet"
       }
     ],
-    "ch": ""
+    "ch": "打招呼；問候"
   },
   {
     "word": "ground",
@@ -4254,7 +4254,7 @@
         "answer": "ground"
       }
     ],
-    "ch": ""
+    "ch": "地面；場地"
   },
   {
     "word": "guest",
@@ -4274,7 +4274,7 @@
         "answer": "guest"
       }
     ],
-    "ch": ""
+    "ch": "客人"
   },
   {
     "word": "guide",
@@ -4294,7 +4294,7 @@
         "answer": "guide"
       }
     ],
-    "ch": ""
+    "ch": "指南；引導"
   },
   {
     "word": "guidebook",
@@ -4306,7 +4306,7 @@
         "answer": "guidebook"
       }
     ],
-    "ch": ""
+    "ch": "指南；旅遊書"
   },
   {
     "word": "habit",
@@ -4326,7 +4326,7 @@
         "answer": "habit"
       }
     ],
-    "ch": ""
+    "ch": "習慣"
   },
   {
     "word": "half",
@@ -4346,7 +4346,7 @@
         "answer": "half"
       }
     ],
-    "ch": ""
+    "ch": "一半"
   },
   {
     "word": "hall",
@@ -4358,7 +4358,7 @@
         "answer": "hall"
       }
     ],
-    "ch": ""
+    "ch": "大廳；禮堂"
   },
   {
     "word": "handbook",
@@ -4378,7 +4378,7 @@
         "answer": "handbook"
       }
     ],
-    "ch": ""
+    "ch": "手冊"
   },
   {
     "word": "happily",
@@ -4390,7 +4390,7 @@
         "answer": "happily"
       }
     ],
-    "ch": ""
+    "ch": "快樂地"
   },
   {
     "word": "harder",
@@ -4402,14 +4402,14 @@
         "answer": "harder"
       }
     ],
-    "ch": ""
+    "ch": "更難的；更努力地"
   },
   {
     "word": "hardest",
     "cefr": "A2",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "最難的；最努力地"
   },
   {
     "word": "headache",
@@ -4425,7 +4425,7 @@
         "answer": "headache"
       }
     ],
-    "ch": ""
+    "ch": "頭痛"
   },
   {
     "word": "healthier",
@@ -4437,7 +4437,7 @@
         "answer": "healthier"
       }
     ],
-    "ch": ""
+    "ch": "更健康的"
   },
   {
     "word": "healthiest",
@@ -4449,14 +4449,14 @@
         "answer": "healthiest"
       }
     ],
-    "ch": ""
+    "ch": "最健康的"
   },
   {
     "word": "heart",
     "cefr": "A2",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "心；心臟"
   },
   {
     "word": "heat",
@@ -4472,7 +4472,7 @@
         "answer": "heat"
       }
     ],
-    "ch": ""
+    "ch": "熱；加熱"
   },
   {
     "word": "heavy",
@@ -4492,7 +4492,7 @@
         "answer": "heavy"
       }
     ],
-    "ch": ""
+    "ch": "重的"
   },
   {
     "word": "height",
@@ -4504,7 +4504,7 @@
         "answer": "height"
       }
     ],
-    "ch": ""
+    "ch": "高度；身高"
   },
   {
     "word": "helpful",
@@ -4524,7 +4524,7 @@
         "answer": "helpful"
       }
     ],
-    "ch": ""
+    "ch": "有幫助的"
   },
   {
     "word": "hero",
@@ -4536,7 +4536,7 @@
         "answer": "hero"
       }
     ],
-    "ch": ""
+    "ch": "英雄"
   },
   {
     "word": "hide",
@@ -4548,7 +4548,7 @@
         "answer": "hide"
       }
     ],
-    "ch": ""
+    "ch": "隱藏"
   },
   {
     "word": "highest",
@@ -4564,7 +4564,7 @@
         "answer": "highest"
       }
     ],
-    "ch": ""
+    "ch": "最高的"
   },
   {
     "word": "hit",
@@ -4584,7 +4584,7 @@
         "answer": "hit"
       }
     ],
-    "ch": ""
+    "ch": "擊中；打擊"
   },
   {
     "word": "hole",
@@ -4604,7 +4604,7 @@
         "answer": "hole"
       }
     ],
-    "ch": ""
+    "ch": "洞"
   },
   {
     "word": "honey",
@@ -4624,7 +4624,7 @@
         "answer": "honey"
       }
     ],
-    "ch": ""
+    "ch": "蜂蜜"
   },
   {
     "word": "hongkongers",
@@ -4636,7 +4636,7 @@
         "answer": "hongkongers"
       }
     ],
-    "ch": ""
+    "ch": "香港人"
   },
   {
     "word": "hotline",
@@ -4656,21 +4656,21 @@
         "answer": "hotline"
       }
     ],
-    "ch": ""
+    "ch": "熱線"
   },
   {
     "word": "hotter",
     "cefr": "A2",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "更熱的"
   },
   {
     "word": "housewife",
     "cefr": "A2",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "家庭主婦"
   },
   {
     "word": "huge",
@@ -4690,14 +4690,14 @@
         "answer": "huge"
       }
     ],
-    "ch": ""
+    "ch": "巨大的"
   },
   {
     "word": "hunter",
     "cefr": "A2",
     "frequency": 2,
     "sentences": [],
-    "ch": ""
+    "ch": "獵人"
   },
   {
     "word": "identify",
@@ -4717,7 +4717,7 @@
         "answer": "identify"
       }
     ],
-    "ch": ""
+    "ch": "識別；確認"
   },
   {
     "word": "image",
@@ -4737,7 +4737,7 @@
         "answer": "image"
       }
     ],
-    "ch": ""
+    "ch": "圖像；形象"
   },
   {
     "word": "immediately",
@@ -4757,7 +4757,7 @@
         "answer": "immediately"
       }
     ],
-    "ch": ""
+    "ch": "立刻；馬上"
   },
   {
     "word": "impossible",
@@ -4777,7 +4777,7 @@
         "answer": "impossible"
       }
     ],
-    "ch": ""
+    "ch": "不可能的"
   },
   {
     "word": "increase",
@@ -4797,7 +4797,7 @@
         "answer": "increase"
       }
     ],
-    "ch": ""
+    "ch": "增加；增長"
   },
   {
     "word": "incredible",
@@ -4817,7 +4817,7 @@
         "answer": "incredible"
       }
     ],
-    "ch": ""
+    "ch": "難以置信的；很棒的"
   },
   {
     "word": "independent",
@@ -4837,7 +4837,7 @@
         "answer": "independent"
       }
     ],
-    "ch": ""
+    "ch": "獨立的"
   },
   {
     "word": "indian",
@@ -4849,7 +4849,7 @@
         "answer": "indian"
       }
     ],
-    "ch": ""
+    "ch": "印度的；印度人"
   },
   {
     "word": "individual",
@@ -4869,7 +4869,7 @@
         "answer": "individual"
       }
     ],
-    "ch": ""
+    "ch": "個別的；個人"
   },
   {
     "word": "industry",
@@ -4889,14 +4889,14 @@
         "answer": "industry"
       }
     ],
-    "ch": ""
+    "ch": "工業；行業"
   },
   {
     "word": "injury",
     "cefr": "A2",
     "frequency": 3,
     "sentences": [],
-    "ch": ""
+    "ch": "受傷；傷害"
   },
   {
     "word": "insect",
@@ -4916,7 +4916,7 @@
         "answer": "insect"
       }
     ],
-    "ch": ""
+    "ch": "昆蟲"
   },
   {
     "word": "instead",
@@ -4936,7 +4936,7 @@
         "answer": "instead"
       }
     ],
-    "ch": ""
+    "ch": "代替；反而"
   },
   {
     "word": "instruction",
@@ -4956,7 +4956,7 @@
         "answer": "instruction"
       }
     ],
-    "ch": ""
+    "ch": "指示；說明"
   },
   {
     "word": "instructor",
@@ -4976,21 +4976,21 @@
         "answer": "instructor"
       }
     ],
-    "ch": ""
+    "ch": "導師；教練"
   },
   {
     "word": "instrument",
     "cefr": "A2",
     "frequency": 4,
     "sentences": [],
-    "ch": ""
+    "ch": "樂器；儀器"
   },
   {
     "word": "intelligent",
     "cefr": "A2",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "聰明的"
   },
   {
     "word": "international",
@@ -5002,7 +5002,7 @@
         "answer": "international"
       }
     ],
-    "ch": ""
+    "ch": "國際的"
   },
   {
     "word": "introduction",
@@ -5022,7 +5022,7 @@
         "answer": "introduction"
       }
     ],
-    "ch": ""
+    "ch": "介紹；引言"
   },
   {
     "word": "invent",
@@ -5034,14 +5034,14 @@
         "answer": "invent"
       }
     ],
-    "ch": ""
+    "ch": "發明"
   },
   {
     "word": "invention",
     "cefr": "A2",
     "frequency": 2,
     "sentences": [],
-    "ch": ""
+    "ch": "發明；創造"
   },
   {
     "word": "invitation",
@@ -5057,7 +5057,7 @@
         "answer": "invitation"
       }
     ],
-    "ch": ""
+    "ch": "邀請；請柬"
   },
   {
     "word": "invite",
@@ -5077,7 +5077,7 @@
         "answer": "invite"
       }
     ],
-    "ch": ""
+    "ch": "邀請"
   },
   {
     "word": "involve",
@@ -5097,7 +5097,7 @@
         "answer": "involve"
       }
     ],
-    "ch": ""
+    "ch": "涉及；包含"
   },
   {
     "word": "ipad",
@@ -5109,14 +5109,14 @@
         "answer": "ipad"
       }
     ],
-    "ch": ""
+    "ch": "平板電腦"
   },
   {
     "word": "italian",
     "cefr": "A2",
     "frequency": 2,
     "sentences": [],
-    "ch": ""
+    "ch": "意大利的；意大利人；意大利語"
   },
   {
     "word": "item",
@@ -5136,7 +5136,7 @@
         "answer": "item"
       }
     ],
-    "ch": ""
+    "ch": "項目；物品"
   },
   {
     "word": "jam",
@@ -5156,7 +5156,7 @@
         "answer": "jam"
       }
     ],
-    "ch": ""
+    "ch": "果醬；塞車"
   },
   {
     "word": "japanese",
@@ -5176,7 +5176,7 @@
         "answer": "japanese"
       }
     ],
-    "ch": ""
+    "ch": "日本的；日本人；日語"
   },
   {
     "word": "joke",
@@ -5188,7 +5188,7 @@
         "answer": "joke"
       }
     ],
-    "ch": ""
+    "ch": "笑話"
   },
   {
     "word": "journalist",
@@ -5200,7 +5200,7 @@
         "answer": "journalist"
       }
     ],
-    "ch": ""
+    "ch": "記者"
   },
   {
     "word": "jump",
@@ -5212,7 +5212,7 @@
         "answer": "jump"
       }
     ],
-    "ch": ""
+    "ch": "跳"
   },
   {
     "word": "ketchup",
@@ -5224,7 +5224,7 @@
         "answer": "ketchup"
       }
     ],
-    "ch": ""
+    "ch": "番茄醬"
   },
   {
     "word": "kilogram",
@@ -5236,21 +5236,21 @@
         "answer": "kilogram"
       }
     ],
-    "ch": ""
+    "ch": "公斤"
   },
   {
     "word": "kinder",
     "cefr": "A2",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "更善良的"
   },
   {
     "word": "king",
     "cefr": "A2",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "國王"
   },
   {
     "word": "kite",
@@ -5270,7 +5270,7 @@
         "answer": "kite"
       }
     ],
-    "ch": ""
+    "ch": "風箏"
   },
   {
     "word": "knee",
@@ -5282,7 +5282,7 @@
         "answer": "knee"
       }
     ],
-    "ch": ""
+    "ch": "膝蓋"
   },
   {
     "word": "knife",
@@ -5298,7 +5298,7 @@
         "answer": "knife"
       }
     ],
-    "ch": ""
+    "ch": "刀"
   },
   {
     "word": "knowledge",
@@ -5318,7 +5318,7 @@
         "answer": "knowledge"
       }
     ],
-    "ch": ""
+    "ch": "知識"
   },
   {
     "word": "korean",
@@ -5338,7 +5338,7 @@
         "answer": "korean"
       }
     ],
-    "ch": ""
+    "ch": "韓國的；韓國人；韓語"
   },
   {
     "word": "lab",
@@ -5350,7 +5350,7 @@
         "answer": "lab"
       }
     ],
-    "ch": ""
+    "ch": "實驗室"
   },
   {
     "word": "lady",
@@ -5366,7 +5366,7 @@
         "answer": "lady"
       }
     ],
-    "ch": ""
+    "ch": "女士"
   },
   {
     "word": "lake",
@@ -5386,7 +5386,7 @@
         "answer": "lake"
       }
     ],
-    "ch": ""
+    "ch": "湖"
   },
   {
     "word": "land",
@@ -5406,7 +5406,7 @@
         "answer": "land"
       }
     ],
-    "ch": ""
+    "ch": "土地；降落"
   },
   {
     "word": "laptop",
@@ -5418,7 +5418,7 @@
         "answer": "laptop"
       }
     ],
-    "ch": ""
+    "ch": "手提電腦"
   },
   {
     "word": "larger",
@@ -5434,14 +5434,14 @@
         "answer": "larger"
       }
     ],
-    "ch": ""
+    "ch": "更大的"
   },
   {
     "word": "largest",
     "cefr": "A2",
     "frequency": 2,
     "sentences": [],
-    "ch": ""
+    "ch": "最大的"
   },
   {
     "word": "later",
@@ -5461,7 +5461,7 @@
         "answer": "later"
       }
     ],
-    "ch": ""
+    "ch": "之後；較後"
   },
   {
     "word": "law",
@@ -5481,14 +5481,14 @@
         "answer": "law"
       }
     ],
-    "ch": ""
+    "ch": "法律"
   },
   {
     "word": "lawyer",
     "cefr": "A2",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "律師"
   },
   {
     "word": "lazy",
@@ -5500,7 +5500,7 @@
         "answer": "lazy"
       }
     ],
-    "ch": ""
+    "ch": "懶惰的"
   },
   {
     "word": "leader",
@@ -5512,7 +5512,7 @@
         "answer": "leader"
       }
     ],
-    "ch": ""
+    "ch": "領袖；隊長"
   },
   {
     "word": "lecture",
@@ -5524,7 +5524,7 @@
         "answer": "lecture"
       }
     ],
-    "ch": ""
+    "ch": "演講；講課"
   },
   {
     "word": "lend",
@@ -5540,7 +5540,7 @@
         "answer": "lend"
       }
     ],
-    "ch": ""
+    "ch": "借出"
   },
   {
     "word": "librarian",
@@ -5552,7 +5552,7 @@
         "answer": "librarian"
       }
     ],
-    "ch": ""
+    "ch": "圖書館管理員"
   },
   {
     "word": "lifestyle",
