@@ -19735,203 +19735,319 @@
     "word": "stroke",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "He had a stroke and needed urgent care.",
+      "She painted the leaf with one quick stroke.",
+      "A single stroke of luck changed the game."
+    ],
     "ch": "中風；一擊"
   },
   {
     "word": "structure",
     "cefr": "B2",
     "frequency": 6,
-    "sentences": [],
+    "sentences": [
+      "The bridge has a strong steel structure.",
+      "This essay needs a clearer structure.",
+      "The company changed its management structure."
+    ],
     "ch": "結構；建築物"
   },
   {
     "word": "struggle",
     "cefr": "B2",
     "frequency": 10,
-    "sentences": [],
+    "sentences": [
+      "Many students struggle with time management.",
+      "She had to struggle through heavy traffic.",
+      "His struggle to recover inspired the team."
+    ],
     "ch": "掙扎；奮鬥"
   },
   {
     "word": "stubborn",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The old dog can be very stubborn.",
+      "He was too stubborn to admit he was wrong.",
+      "A stubborn stain remained on the shirt."
+    ],
     "ch": "固執的"
   },
   {
     "word": "stunning",
     "cefr": "B2",
     "frequency": 0,
-    "sentences": [],
+    "sentences": [
+      "The mountain view was absolutely stunning.",
+      "She wore a stunning dress to the event.",
+      "The film ended with a stunning visual scene."
+    ],
     "ch": "令人震驚的；極美的"
   },
   {
     "word": "subject",
     "cefr": "B2",
     "frequency": 40,
-    "sentences": [],
+    "sentences": [
+      "Math is his strongest subject.",
+      "The speech returned to the main subject.",
+      "The email subject line was missing."
+    ],
     "ch": "主題；科目"
   },
   {
     "word": "submit",
     "cefr": "B2",
     "frequency": 8,
-    "sentences": [],
+    "sentences": [
+      "Please submit your work by Friday.",
+      "The company had to submit a new report.",
+      "She submitted her application online."
+    ],
     "ch": "提交；屈服"
   },
   {
     "word": "subscribe",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "You can subscribe to the channel for updates.",
+      "Many readers subscribe to the weekend edition.",
+      "Please subscribe before the free trial ends."
+    ],
     "ch": "訂閱；贊同"
   },
   {
     "word": "sufficient",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "We have sufficient chairs for everyone.",
+      "There was not sufficient evidence to act.",
+      "Two hours should be sufficient for the trip."
+    ],
     "ch": "足夠的"
   },
   {
     "word": "suitably",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Please dress suitably for the formal dinner.",
+      "The room was suitably decorated for the celebration.",
+      "He answered the complaint suitably and politely."
+    ],
     "ch": "適當地；合適地"
   },
   {
     "word": "sum",
     "cefr": "B2",
     "frequency": 5,
-    "sentences": [],
+    "sentences": [
+      "The total sum was larger than expected.",
+      "She paid a large sum for the painting.",
+      "Please write the final sum at the bottom."
+    ],
     "ch": "總和；概括"
   },
   {
     "word": "sums",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The children practised simple sums in class.",
+      "She checked all the sums twice.",
+      "Math homework today included ten sums."
+    ],
     "ch": "總額；總和（複數）"
   },
   {
     "word": "sunlight",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "Plants need sunlight to grow well.",
+      "Morning sunlight filled the room.",
+      "Do not leave the medicine in direct sunlight."
+    ],
     "ch": "陽光"
   },
   {
     "word": "super",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "That idea sounds super useful.",
+      "The kids thought the trip was super fun.",
+      "She gave a super clear explanation."
+    ],
     "ch": "極好的；超級的"
   },
   {
     "word": "supermodel",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The magazine featured a famous supermodel on the cover.",
+      "She dreamed of becoming a supermodel as a child.",
+      "The interview was with a retired supermodel."
+    ],
     "ch": "超級名模"
   },
   {
     "word": "supernatural",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The film tells a supernatural story.",
+      "Some people enjoy books about supernatural events.",
+      "A supernatural glow filled the old house in the movie."
+    ],
     "ch": "超自然的"
   },
   {
     "word": "supplier",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "The restaurant changed its seafood supplier.",
+      "A local supplier delivered the chairs this morning.",
+      "The company depends on one main supplier."
+    ],
     "ch": "供應商"
   },
   {
     "word": "surgery",
     "cefr": "B2",
     "frequency": 6,
-    "sentences": [],
+    "sentences": [
+      "He had surgery on his knee last year.",
+      "The patient recovered quickly after surgery.",
+      "The clinic specializes in eye surgery."
+    ],
     "ch": "手術；外科"
   },
   {
     "word": "surround",
     "cefr": "B2",
     "frequency": 9,
-    "sentences": [],
+    "sentences": [
+      "Tall trees surround the lake.",
+      "Police surrounded the building before dawn.",
+      "The photos surround the mirror on the wall."
+    ],
     "ch": "圍繞；包圍"
   },
   {
     "word": "survey",
     "cefr": "B2",
     "frequency": 21,
-    "sentences": [],
+    "sentences": [
+      "Please complete the online survey.",
+      "The survey shows rising interest in reading.",
+      "We carried out a survey of local shops."
+    ],
     "ch": "調查；勘測"
   },
   {
     "word": "survival",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Clean water is essential for survival.",
+      "The film is about survival in the desert.",
+      "The team learned basic survival skills."
+    ],
     "ch": "生存；倖存"
   },
   {
     "word": "suspect",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Police questioned a suspect after the robbery.",
+      "I suspect the train will be late.",
+      "The witness could not identify the suspect."
+    ],
     "ch": "懷疑；嫌疑人"
   },
   {
     "word": "sustainable",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The city needs a sustainable transport plan.",
+      "Farmers are learning more sustainable methods.",
+      "The project aims to create sustainable growth."
+    ],
     "ch": "可持續的"
   },
   {
     "word": "swear",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "He promised not to swear in class again.",
+      "I swear I told you the truth.",
+      "Some people swear by this medicine."
+    ],
     "ch": "發誓；咒罵"
   },
   {
     "word": "sweep",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Please sweep the floor after dinner.",
+      "A cold wind swept across the hill.",
+      "The team managed a clean sweep of the prizes."
+    ],
     "ch": "打掃；席捲"
   },
   {
     "word": "sweetness",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The sweetness of the fruit surprised me.",
+      "This tea has a natural sweetness.",
+      "She remembered the sweetness of her grandmother's cake."
+    ],
     "ch": "甜味；甜美"
   },
   {
     "word": "swimmingly",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Everything went swimmingly until the power failed.",
+      "The meeting was going swimmingly at first.",
+      "Her first week in the new job went swimmingly."
+    ],
     "ch": "順利地"
   },
   {
     "word": "swiss",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "He bought a Swiss watch at the airport.",
+      "The conference hosted several Swiss researchers.",
+      "We tried Swiss chocolate in the duty-free shop."
+    ],
     "ch": "瑞士的；瑞士人"
   },
   {
     "word": "switch",
     "cefr": "B2",
     "frequency": 11,
-    "sentences": [],
+    "sentences": [
+      "Please switch off the lights before leaving.",
+      "The team may switch to a new system next term.",
+      "A small switch controls the fan."
+    ],
     "ch": "開關；轉換"
   },
   {
@@ -19958,35 +20074,55 @@
     "word": "symbolically",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The candles were placed symbolically around the stage.",
+      "He handed over the key symbolically during the ceremony.",
+      "The tree was planted symbolically to mark peace."
+    ],
     "ch": "象徵性地"
   },
   {
     "word": "sympathy",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "She expressed sympathy to the victim's family.",
+      "The audience felt sympathy for the main character.",
+      "Thank you for your sympathy during this difficult time."
+    ],
     "ch": "同情；憐憫"
   },
   {
     "word": "tabloid",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The story first appeared in a tabloid newspaper.",
+      "Many people do not trust tabloid reports.",
+      "A tabloid headline caused public debate."
+    ],
     "ch": "小報"
   },
   {
     "word": "taco",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "I ordered a chicken taco for lunch.",
+      "The caf? now sells fish tacos on weekends.",
+      "He dropped salsa on his taco shell."
+    ],
     "ch": "墨西哥夾餅"
   },
   {
     "word": "tag",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Please attach a name tag to your bag.",
+      "The bird was released with a tracking tag.",
+      "She forgot to remove the price tag from her coat."
+    ],
     "ch": "標籤；加標籤"
   },
   {
@@ -20033,168 +20169,264 @@
     "word": "tailor",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The tailor adjusted the sleeves for me.",
+      "A good teacher tailors lessons to student needs.",
+      "The tailor finished the suit in one week."
+    ],
     "ch": "裁縫；量身訂做"
   },
   {
     "word": "tale",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "My grandfather told us a sea tale.",
+      "The book is a dark tale of revenge.",
+      "Each tale in the collection is based on folklore."
+    ],
     "ch": "故事；傳說"
   },
   {
     "word": "talentless",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The critic unfairly called the actor talentless.",
+      "No beginner should be labelled talentless.",
+      "He felt talentless after the poor performance."
+    ],
     "ch": "沒有天賦的"
   },
   {
     "word": "tank",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "A water tank stood behind the house.",
+      "The museum displayed an old army tank.",
+      "Please fill the fish tank before you leave."
+    ],
     "ch": "水箱；坦克"
   },
   {
     "word": "tap",
     "cefr": "B2",
     "frequency": 6,
-    "sentences": [],
+    "sentences": [
+      "Please turn off the tap tightly.",
+      "She tapped the table to get attention.",
+      "Use the app to tap and pay at the station."
+    ],
     "ch": "輕敲；水龍頭"
   },
   {
     "word": "target",
     "cefr": "B2",
     "frequency": 11,
-    "sentences": [],
+    "sentences": [
+      "Our target is to finish by noon.",
+      "The marketing team targeted young adults.",
+      "She hit the target on her second shot."
+    ],
     "ch": "目標；瞄準"
   },
   {
     "word": "tattoo",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "He has a tattoo on his shoulder.",
+      "The artist designed a small tattoo for her.",
+      "A tattoo can carry personal meaning."
+    ],
     "ch": "紋身"
   },
   {
     "word": "tbc",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The final date is still marked TBC.",
+      "Venue details are TBC on the poster.",
+      "The timetable shows one speaker as TBC."
+    ],
     "ch": "待定"
   },
   {
     "word": "tear",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "A tear rolled down her cheek.",
+      "Be careful not to tear the page.",
+      "The child wiped away a tear and smiled."
+    ],
     "ch": "眼淚；撕裂"
   },
   {
     "word": "tease",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Do not tease your younger brother.",
+      "She teased the new product on social media.",
+      "Friends sometimes tease each other for fun."
+    ],
     "ch": "取笑；逗弄"
   },
   {
     "word": "technological",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The company needs technological support to grow.",
+      "We live in a period of rapid technological change.",
+      "Technological progress has changed education."
+    ],
     "ch": "科技的；技術上的"
   },
   {
     "word": "televise",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The station will televise the match live.",
+      "Only major events are televised nationally.",
+      "They decided to televise the awards ceremony."
+    ],
     "ch": "電視播送"
   },
   {
     "word": "temper",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "He lost his temper during the argument.",
+      "Please learn to control your temper.",
+      "Her quick temper caused problems at work."
+    ],
     "ch": "脾氣；控制情緒"
   },
   {
     "word": "template",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "Use this template to write your report.",
+      "The designer created a simple email template.",
+      "Each student received a presentation template."
+    ],
     "ch": "模板；範本"
   },
   {
     "word": "temple",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "Tourists lined up outside the temple.",
+      "The temple is hundreds of years old.",
+      "They lit incense at the mountain temple."
+    ],
     "ch": "廟宇；太陽穴"
   },
   {
     "word": "temporarily",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The bridge is temporarily closed.",
+      "He moved back home temporarily.",
+      "Service was temporarily unavailable last night."
+    ],
     "ch": "暫時地"
   },
   {
     "word": "temporary",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The school set up a temporary classroom.",
+      "This is only a temporary solution.",
+      "Workers built a temporary shelter after the storm."
+    ],
     "ch": "暫時的"
   },
   {
     "word": "tension",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "There was tension in the room before the vote.",
+      "The rope must be kept under tension.",
+      "Political tension grew across the region."
+    ],
     "ch": "緊張；張力"
   },
   {
     "word": "term",
     "cefr": "B2",
     "frequency": 7,
-    "sentences": [],
+    "sentences": [
+      "The new term begins in September.",
+      "In the long term, the plan may save money.",
+      "That scientific term is difficult to pronounce."
+    ],
     "ch": "術語；學期"
   },
   {
     "word": "terrace",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "We had lunch on the hotel terrace.",
+      "A row of terrace houses stood near the station.",
+      "Flowers were arranged along the terrace wall."
+    ],
     "ch": "露台；階梯地"
   },
   {
     "word": "terrify",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The loud thunder used to terrify me.",
+      "Horror films terrify her.",
+      "The warning was meant to terrify people into leaving."
+    ],
     "ch": "使驚恐"
   },
   {
     "word": "territory",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "The lion defended its territory.",
+      "The company entered new territory with the launch.",
+      "The map showed the limits of the territory."
+    ],
     "ch": "領土；範圍"
   },
   {
     "word": "terror",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The sudden explosion caused terror in the crowd.",
+      "He looked at the snake in terror.",
+      "The story describes a night of fear and terror."
+    ],
     "ch": "恐怖；驚恐"
   },
   {
     "word": "terrorism",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The documentary explores the impact of terrorism.",
+      "Security was increased because of fears of terrorism.",
+      "The topic of terrorism is discussed carefully in class."
+    ],
     "ch": "恐怖主義"
   },
   {
@@ -20241,7 +20473,11 @@
     "word": "the philippines",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Her family moved here from the Philippines.",
+      "The Philippines is made up of many islands.",
+      "We learned about festivals in the Philippines."
+    ],
     "ch": "菲律賓"
   },
   {
@@ -20288,308 +20524,484 @@
     "word": "therapist",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The therapist helped him deal with stress.",
+      "A speech therapist worked with the child weekly.",
+      "She plans to become a therapist after graduation."
+    ],
     "ch": "治療師"
   },
   {
     "word": "therapy",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Music therapy can calm anxious patients.",
+      "He continued therapy after the accident.",
+      "The doctor recommended physical therapy for her knee."
+    ],
     "ch": "治療；療法"
   },
   {
     "word": "thicken",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Add flour to thicken the sauce.",
+      "Clouds began to thicken over the hills.",
+      "The crowd thickened near the main gate."
+    ],
     "ch": "變厚；使濃"
   },
   {
     "word": "thorough",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The police carried out a thorough search.",
+      "She gave the report a thorough review.",
+      "A thorough cleaning took the whole morning."
+    ],
     "ch": "徹底的；詳盡的"
   },
   {
     "word": "thoroughly",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Please wash the fruit thoroughly.",
+      "He thoroughly enjoyed the concert.",
+      "The topic was thoroughly discussed in class."
+    ],
     "ch": "徹底地；完全地"
   },
   {
     "word": "threat",
     "cefr": "B2",
     "frequency": 5,
-    "sentences": [],
+    "sentences": [
+      "The storm remains a serious threat to the coast.",
+      "Online abuse can be a real threat to safety.",
+      "The dog barked at anything it saw as a threat."
+    ],
     "ch": "威脅"
   },
   {
     "word": "threaten",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "Dark clouds threaten more rain tonight.",
+      "No one should threaten another person.",
+      "The cuts could threaten the future of the project."
+    ],
     "ch": "威脅；恐嚇"
   },
   {
     "word": "threatening",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "He received a threatening message online.",
+      "The sky looked dark and threatening.",
+      "The man's threatening tone frightened the staff."
+    ],
     "ch": "威脅性的"
   },
   {
     "word": "thumb",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "He hurt his thumb while cooking.",
+      "The child sucked his thumb in the car.",
+      "She raised a thumb to show approval."
+    ],
     "ch": "拇指"
   },
   {
     "word": "thus",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The road was flooded, thus the buses were late.",
+      "No decision was made, and thus the problem remained.",
+      "Prices fell and thus demand increased."
+    ],
     "ch": "因此；如此"
   },
   {
     "word": "ticketholder",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Each ticketholder entered through the main gate.",
+      "Ticketholders were allowed to arrive early.",
+      "The prize draw was open to every ticketholder."
+    ],
     "ch": "持票者"
   },
   {
     "word": "tighter",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The lid needs to be tighter.",
+      "Security became tighter after the incident.",
+      "His schedule is tighter this term."
+    ],
     "ch": "更緊的；更嚴格的"
   },
   {
     "word": "tightly",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Please hold the rope tightly.",
+      "The jar was tightly sealed.",
+      "She crossed her arms tightly in the cold."
+    ],
     "ch": "緊緊地；牢牢地"
   },
   {
     "word": "tile",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "One tile on the floor is cracked.",
+      "The roof is covered with red tiles.",
+      "She chose blue tile for the bathroom wall."
+    ],
     "ch": "瓷磚；瓦片"
   },
   {
     "word": "tomb",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The king's tomb was discovered underground.",
+      "Visitors were not allowed to enter the tomb.",
+      "The guide explained the symbols on the tomb wall."
+    ],
     "ch": "墓；墓碑"
   },
   {
     "word": "ton",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The truck can carry one ton of sand.",
+      "We had a ton of homework this week.",
+      "The machine weighs nearly a ton."
+    ],
     "ch": "噸；大量"
   },
   {
     "word": "tone",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Please use a polite tone in emails.",
+      "His tone changed when he heard the news.",
+      "The walls were painted in a warm tone."
+    ],
     "ch": "語氣；音調"
   },
   {
     "word": "tornado",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The tornado damaged several houses.",
+      "A tornado warning was issued in the afternoon.",
+      "They watched videos about how a tornado forms."
+    ],
     "ch": "龍捲風"
   },
   {
     "word": "tough",
     "cefr": "B2",
     "frequency": 12,
-    "sentences": [],
+    "sentences": [
+      "The exam was really tough.",
+      "Leather is a tough material.",
+      "She stayed tough during the crisis."
+    ],
     "ch": "艱難的；強硬的"
   },
   {
     "word": "tougher",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "This level is tougher than the last one.",
+      "The teacher became tougher after the warning.",
+      "The new rule is tougher on late work."
+    ],
     "ch": "更艱難的；更強硬的"
   },
   {
     "word": "tournament",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Our school won the basketball tournament.",
+      "The chess tournament begins tomorrow.",
+      "Players trained hard for the summer tournament."
+    ],
     "ch": "錦標賽；聯賽"
   },
   {
     "word": "track",
     "cefr": "B2",
     "frequency": 10,
-    "sentences": [],
+    "sentences": [
+      "The runner stayed in the inside track.",
+      "Police used cameras to track the suspect.",
+      "We need a way to track our spending."
+    ],
     "ch": "軌道；追蹤"
   },
   {
     "word": "traditionally",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "Rice cakes are traditionally eaten during the festival.",
+      "The song is traditionally performed in spring.",
+      "Families traditionally gather there each year."
+    ],
     "ch": "傳統上地"
   },
   {
     "word": "tragedy",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The play ended in tragedy.",
+      "The fire was a terrible tragedy for the town.",
+      "The documentary looks back on the tragedy."
+    ],
     "ch": "悲劇；慘事"
   },
   {
     "word": "trait",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Patience is a useful trait for teachers.",
+      "Honesty is one of her strongest traits.",
+      "That habit may be a family trait."
+    ],
     "ch": "特徵；性格特質"
   },
   {
     "word": "transfer",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Please transfer the files to this folder.",
+      "He asked for a transfer to another office.",
+      "The patient was transferred to a larger hospital."
+    ],
     "ch": "轉移；轉帳"
   },
   {
     "word": "transform",
     "cefr": "B2",
     "frequency": 8,
-    "sentences": [],
+    "sentences": [
+      "The project could transform the neighbourhood.",
+      "A fresh coat of paint can transform a room.",
+      "The butterfly transforms from a caterpillar."
+    ],
     "ch": "改變；轉化"
   },
   {
     "word": "transmit",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The radio can transmit signals over long distances.",
+      "Mosquitoes may transmit disease.",
+      "The tower transmits live weather data."
+    ],
     "ch": "傳送；傳播"
   },
   {
     "word": "transportation",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "Public transportation is important in large cities.",
+      "The museum explores the history of transportation.",
+      "They discussed transportation costs in the budget."
+    ],
     "ch": "交通運輸"
   },
   {
     "word": "trap",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "The mouse escaped from the trap.",
+      "Do not let fear trap you.",
+      "Falling leaves can trap water in the drain."
+    ],
     "ch": "陷阱；使陷入困境"
   },
   {
     "word": "tray",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "She carried the cups on a tray.",
+      "The food was served on a metal tray.",
+      "Please put your bag on the tray at security."
+    ],
     "ch": "托盤"
   },
   {
     "word": "treasure",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The pirates searched for hidden treasure.",
+      "I treasure the letters my grandmother wrote.",
+      "The museum protects its cultural treasures carefully."
+    ],
     "ch": "寶藏；珍愛"
   },
   {
     "word": "trial",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The new medicine is still in trial.",
+      "He was put on trial last year.",
+      "The team gave the software a one-week trial."
+    ],
     "ch": "審判；試驗"
   },
   {
     "word": "tribe",
     "cefr": "B2",
     "frequency": 5,
-    "sentences": [],
+    "sentences": [
+      "The documentary follows a tribe in the Amazon.",
+      "Each tribe has its own traditions.",
+      "The story is about conflict between two tribes."
+    ],
     "ch": "部落；族群"
   },
   {
     "word": "tricky",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "This question is a bit tricky.",
+      "It was tricky to park on that hill.",
+      "The last part of the recipe is the trickiest."
+    ],
     "ch": "棘手的；狡猾的"
   },
   {
     "word": "trip",
     "cefr": "B2",
     "frequency": 12,
-    "sentences": [],
+    "sentences": [
+      "Our school trip starts at eight.",
+      "She packed lightly for the weekend trip.",
+      "The road trip lasted three days."
+    ],
     "ch": "旅程；絆倒"
   },
   {
     "word": "trivial",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Do not worry about trivial details.",
+      "The argument began over something trivial.",
+      "Compared with safety, cost is a trivial issue."
+    ],
     "ch": "瑣碎的；無關緊要的"
   },
   {
     "word": "trolley",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Please return the trolley after shopping.",
+      "A food trolley moved down the hallway.",
+      "He pushed the luggage trolley toward the exit."
+    ],
     "ch": "手推車；電車"
   },
   {
     "word": "tropical",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The island has a tropical climate.",
+      "We drank tropical fruit juice at lunch.",
+      "The greenhouse keeps several tropical plants alive."
+    ],
     "ch": "熱帶的"
   },
   {
     "word": "trouble",
     "cefr": "B2",
     "frequency": 14,
-    "sentences": [],
+    "sentences": [
+      "Call me if you get into trouble.",
+      "The engine caused trouble again this morning.",
+      "He had trouble opening the door."
+    ],
     "ch": "麻煩；使困擾"
   },
   {
     "word": "troublemaker",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The teacher warned the troublemaker to sit down.",
+      "He was known as a troublemaker in class.",
+      "The film's hero begins as a troublemaker."
+    ],
     "ch": "惹事者；搗蛋鬼"
   },
   {
     "word": "truly",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "I am truly grateful for your help.",
+      "The view was truly unforgettable.",
+      "She truly believes the plan will work."
+    ],
     "ch": "真正地；確實地"
   },
   {
     "word": "trunk",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The tree trunk was covered in moss.",
+      "Please put the bags in the trunk.",
+      "An elephant uses its trunk to lift food."
+    ],
     "ch": "樹幹；行李箱"
   },
   {
     "word": "trust",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "It takes time to build trust.",
+      "You can trust her with the keys.",
+      "Public trust in the company fell quickly."
+    ],
     "ch": "信任；信託"
   },
   {
@@ -20616,7 +21028,11 @@
     "word": "tuck",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Please tuck the blanket under the baby.",
+      "He tucked the note into his pocket.",
+      "She tucked her hair behind one ear."
+    ],
     "ch": "塞進；摺起"
   },
   {
@@ -20643,105 +21059,165 @@
     "word": "tues",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "The meeting was moved to Tues on the calendar.",
+      "Classes on Tues end a little earlier.",
+      "The note simply said Tues at 4 p.m."
+    ],
     "ch": "星期二"
   },
   {
     "word": "tune",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "The piano is out of tune.",
+      "I know that tune from somewhere.",
+      "The mechanic tuned the engine carefully."
+    ],
     "ch": "曲調；調整"
   },
   {
     "word": "tunnel",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The train passed through a long tunnel.",
+      "A road tunnel connects the two islands.",
+      "The workers inspected the old tunnel."
+    ],
     "ch": "隧道"
   },
   {
     "word": "tutor",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "She works as a math tutor after school.",
+      "A private tutor helped him prepare for exams.",
+      "The tutor explained the essay clearly."
+    ],
     "ch": "導師；私人教師"
   },
   {
     "word": "ultimate",
     "cefr": "B2",
     "frequency": 12,
-    "sentences": [],
+    "sentences": [
+      "Winning the title was her ultimate goal.",
+      "This is the ultimate test of patience.",
+      "The ultimate result depends on teamwork."
+    ],
     "ch": "最終的；極限的"
   },
   {
     "word": "ultimately",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "Ultimately, the choice is yours.",
+      "The project ultimately failed because of cost.",
+      "He ultimately decided to stay in Hong Kong."
+    ],
     "ch": "最終；終究"
   },
   {
     "word": "unacceptable",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "That kind of language is unacceptable.",
+      "Late payment is unacceptable under the rules.",
+      "The delay became unacceptable to customers."
+    ],
     "ch": "無法接受的"
   },
   {
     "word": "unbalance",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "One heavy box can unbalance the shelf.",
+      "Poor planning may unbalance the whole schedule.",
+      "A sudden step backward can unbalance a climber."
+    ],
     "ch": "使失衡；失去平衡"
   },
   {
     "word": "unbearable",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The heat was unbearable at noon.",
+      "The noise became unbearable after midnight.",
+      "Waiting in uncertainty was almost unbearable."
+    ],
     "ch": "難以忍受的"
   },
   {
     "word": "unchanged",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The price remained unchanged for months.",
+      "Most of the plan stayed unchanged.",
+      "Her opinion on the issue was unchanged."
+    ],
     "ch": "未改變的"
   },
   {
     "word": "unclear",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The instructions were unclear.",
+      "It remains unclear why the system failed.",
+      "The photo was too unclear to use."
+    ],
     "ch": "不清楚的"
   },
   {
     "word": "unconscious",
     "cefr": "B2",
     "frequency": 5,
-    "sentences": [],
+    "sentences": [
+      "The rider was found unconscious after the crash.",
+      "He lay unconscious on the ground for a minute.",
+      "The patient remained unconscious overnight."
+    ],
     "ch": "失去知覺的；無意識的"
   },
   {
     "word": "underestimate",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Do not underestimate the power of practice.",
+      "They underestimated the time needed for the trip.",
+      "It is easy to underestimate small daily costs."
+    ],
     "ch": "低估"
   },
   {
     "word": "undergo",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The bridge will undergo repairs this summer.",
+      "She had to undergo surgery last year.",
+      "The building underwent major changes."
+    ],
     "ch": "經歷；遭受"
   },
   {
     "word": "underprivileged",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The program supports underprivileged children.",
+      "She volunteers at a school for underprivileged families.",
+      "Books were donated to underprivileged communities."
+    ],
     "ch": "弱勢的；貧困的"
   },
   {
