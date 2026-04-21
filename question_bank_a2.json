@@ -11785,7 +11785,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "A local resident, surnamed Ho, complained, 'Last year the tennis fans dropped rubbish everywhere.",
+        "text": "Please write your surname in capital letters.",
+        "answer": "surname"
+      },
+      {
+        "text": "Her surname is the same as mine.",
+        "answer": "surname"
+      },
+      {
+        "text": "The teacher called students by surname today.",
         "answer": "surname"
       }
     ],
@@ -11817,7 +11825,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "We made up over a sushi buffet and some very, very nice sencha tea.",
+        "text": "We ate sushi for dinner last night.",
+        "answer": "sushi"
+      },
+      {
+        "text": "This restaurant serves fresh sushi.",
+        "answer": "sushi"
+      },
+      {
+        "text": "She learned how to make sushi at home.",
         "answer": "sushi"
       }
     ],
@@ -11849,7 +11865,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "[10] The 17th century playwright Li Yu saw the banyan tree as a symbol of love.",
+        "text": "A heart is a common symbol of love.",
+        "answer": "symbol"
+      },
+      {
+        "text": "This symbol means you should be careful.",
+        "answer": "symbol"
+      },
+      {
+        "text": "The flag has a special symbol in the center.",
         "answer": "symbol"
       }
     ],
@@ -11881,11 +11905,15 @@
     "frequency": 5,
     "sentences": [
       {
-        "text": "We even forget our phones and tablets when we encounter these unexpected sources of inspiration.",
+        "text": "He uses a tablet to read books.",
         "answer": "tablet"
       },
       {
-        "text": "[11] To relieve itching, apply an anti-histamine cream for bites and stings or take an oral anti-histamine tablet (a hay fever tablet).",
+        "text": "The doctor gave her a tablet for the pain.",
+        "answer": "tablet"
+      },
+      {
+        "text": "Please charge the tablet before class.",
         "answer": "tablet"
       }
     ],
@@ -11917,7 +11945,15 @@
     "frequency": 4,
     "sentences": [
       {
-        "text": "Jamie   I cooked my fries for 35 minutes and they tasted so dry!",
+        "text": "This soup has a rich taste.",
+        "answer": "taste"
+      },
+      {
+        "text": "Taste the sauce before serving it.",
+        "answer": "taste"
+      },
+      {
+        "text": "The cake tastes better when it is warm.",
         "answer": "taste"
       }
     ],
@@ -11929,7 +11965,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "Some think it's the ultimate beach sport and if you're daring enough to enter the water, you're pretty sure to make friends for life with your teammates.",
+        "text": "My teammate passed me the ball.",
+        "answer": "teammate"
+      },
+      {
+        "text": "A good teammate always gives support.",
+        "answer": "teammate"
+      },
+      {
+        "text": "She thanked every teammate after the match.",
         "answer": "teammate"
       }
     ],
@@ -11981,7 +12025,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "Don't forget you'll be writing for Bubblegum's teenage fans.",
+        "text": "Teenage students often need more sleep.",
+        "answer": "teenage"
+      },
+      {
+        "text": "He wrote a book about teenage life.",
+        "answer": "teenage"
+      },
+      {
+        "text": "Many teenage athletes train after school.",
         "answer": "teenage"
       }
     ],
@@ -11993,7 +12045,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "23. teeth   24. scare off other fish   25. ear bones   26. for balance // help staying upright in water // help swimming in the right direction   27.",
+        "text": "Brush your teeth twice a day.",
+        "answer": "teeth"
+      },
+      {
+        "text": "The baby has two new teeth.",
+        "answer": "teeth"
+      },
+      {
+        "text": "Cold drinks can hurt sensitive teeth.",
         "answer": "teeth"
       }
     ],
@@ -12023,7 +12083,20 @@
     "word": "theater",
     "cefr": "A2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "We watched a comedy at the theater.",
+        "answer": "theater"
+      },
+      {
+        "text": "The new theater opened last month.",
+        "answer": "theater"
+      },
+      {
+        "text": "Her parents met outside the theater.",
+        "answer": "theater"
+      }
+    ],
     "ch": "劇院"
   },
   {
@@ -12070,7 +12143,20 @@
     "word": "tick",
     "cefr": "A2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Put a tick next to the right answer.",
+        "answer": "tick"
+      },
+      {
+        "text": "I heard the clock tick in the quiet room.",
+        "answer": "tick"
+      },
+      {
+        "text": "Please tick the boxes you agree with.",
+        "answer": "tick"
+      }
+    ],
     "ch": "剔號；滴答聲"
   },
   {
@@ -12079,11 +12165,15 @@
     "frequency": 3,
     "sentences": [
       {
-        "text": "Visitors write their wish on a piece of yellow paper, tie it to an orange and toss it onto one of the trees’ branches.",
+        "text": "He wore a blue tie to the wedding.",
         "answer": "tie"
       },
       {
-        "text": "After the weight of all the wishes caused a branch to collapse in 2005, worshippers were instructed to tie their wishes to a plastic tree instead.",
+        "text": "Can you help me tie this ribbon?",
+        "answer": "tie"
+      },
+      {
+        "text": "The score ended in a tie after extra time.",
         "answer": "tie"
       }
     ],
@@ -12155,11 +12245,15 @@
     "frequency": 4,
     "sentences": [
       {
-        "text": "He starts wiping his face with a tea towel, the same one he used to dry the raw chicken.",
+        "text": "Take a clean towel to the pool.",
         "answer": "towel"
       },
       {
-        "text": "Archie: And the tea towel?",
+        "text": "He dried his hands with a towel.",
+        "answer": "towel"
+      },
+      {
+        "text": "The towel is hanging by the window.",
         "answer": "towel"
       }
     ],
@@ -12169,7 +12263,20 @@
     "word": "tower",
     "cefr": "A2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "You can see the whole city from the tower.",
+        "answer": "tower"
+      },
+      {
+        "text": "The clock tower is over one hundred years old.",
+        "answer": "tower"
+      },
+      {
+        "text": "A tall tower stood near the harbor.",
+        "answer": "tower"
+      }
+    ],
     "ch": "塔"
   },
   {
@@ -12238,11 +12345,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "We all know the airport at Chek Lap Kok is always a popular choice with world travellers.",
+        "text": "The tired traveller looked for a hotel.",
         "answer": "traveller"
       },
       {
-        "text": "A special thank you must go to all the world travellers who voted in this year's competition and our hearty congratulations to the winners.",
+        "text": "A traveller asked me for directions.",
+        "answer": "traveller"
+      },
+      {
+        "text": "This card is useful for any traveller.",
         "answer": "traveller"
       }
     ],
@@ -12272,7 +12383,20 @@
     "word": "twentieth",
     "cefr": "A2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Today is the twentieth of April.",
+        "answer": "twentieth"
+      },
+      {
+        "text": "She finished in twentieth place.",
+        "answer": "twentieth"
+      },
+      {
+        "text": "The twentieth chapter is very short.",
+        "answer": "twentieth"
+      }
+    ],
     "ch": "第二十"
   },
   {
@@ -12281,7 +12405,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "One real Chinese mom is 39-year-old Guo Jing, a government office-worker in Beijing with 8-year-old twins.",
+        "text": "Her twin looks almost the same as she does.",
+        "answer": "twin"
+      },
+      {
+        "text": "The family has twin boys.",
+        "answer": "twin"
+      },
+      {
+        "text": "My friend is a twin.",
         "answer": "twin"
       }
     ],
@@ -12293,11 +12425,15 @@
     "frequency": 5,
     "sentences": [
       {
-        "text": "Story 2 [4] Sami is just like any typical everyday sixteen-year-old, except she is blind.",
+        "text": "This weather is typical for spring.",
         "answer": "typical"
       },
       {
-        "text": "[6] The typical arc of the dystopian narrative mirrors the course of adolescent disaffection.",
+        "text": "That is a typical mistake for beginners.",
+        "answer": "typical"
+      },
+      {
+        "text": "A typical school day starts early.",
         "answer": "typical"
       }
     ],
@@ -12309,7 +12445,15 @@
     "frequency": 6,
     "sentences": [
       {
-        "text": "First thing is the maintenance work on the underground rail link to the airport.",
+        "text": "We took the underground to Central.",
+        "answer": "underground"
+      },
+      {
+        "text": "The station has an underground exit.",
+        "answer": "underground"
+      },
+      {
+        "text": "An underground tunnel connects the buildings.",
         "answer": "underground"
       }
     ],
@@ -12321,11 +12465,15 @@
     "frequency": 3,
     "sentences": [
       {
-        "text": "More and more, technology has unfortunately resulted in many people having shorter attention spans.",
+        "text": "Unfortunately, the shop was already closed.",
         "answer": "unfortunately"
       },
       {
-        "text": "That’s a small canon, unfortunately.",
+        "text": "Unfortunately, we missed the last bus.",
+        "answer": "unfortunately"
+      },
+      {
+        "text": "She studied hard, but unfortunately she was sick on exam day.",
         "answer": "unfortunately"
       }
     ],
@@ -12337,7 +12485,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "Ms Kapoor said she was unhappy with the image on the poster.",
+        "text": "He felt unhappy about the decision.",
+        "answer": "unhappy"
+      },
+      {
+        "text": "The child looked unhappy in the photo.",
+        "answer": "unhappy"
+      },
+      {
+        "text": "I would be unhappy if we canceled the trip.",
         "answer": "unhappy"
       }
     ],
@@ -12349,11 +12505,15 @@
     "frequency": 3,
     "sentences": [
       {
-        "text": "All wear cinema uniform - black bottoms, red tops.",
+        "text": "Students must wear the school uniform.",
         "answer": "uniform"
       },
       {
-        "text": "David: No, let's insist they wear their PE uniform.",
+        "text": "Her uniform was neat and clean.",
+        "answer": "uniform"
+      },
+      {
+        "text": "The shop sells sports uniform sets.",
         "answer": "uniform"
       }
     ],
@@ -12385,11 +12545,15 @@
     "frequency": 3,
     "sentences": [
       {
-        "text": "In this connection, Y'Eν (2011) examined the use of virtual pets amongst adult users aged 60 and over in Hong Kong.",
+        "text": "Every user needs a password.",
         "answer": "user"
       },
       {
-        "text": "Cel Bautista, a regular park user, added, 'You should have seen all of the plastic bottles and cigarette butts.'",
+        "text": "The app asks each user to sign in.",
+        "answer": "user"
+      },
+      {
+        "text": "A new user may need help at first.",
         "answer": "user"
       }
     ],
@@ -12401,11 +12565,15 @@
     "frequency": 6,
     "sentences": [
       {
-        "text": "We do the usual things with our virtual pets.",
+        "text": "We met at our usual place after school.",
         "answer": "usual"
       },
       {
-        "text": "You know the usual one we're bombarded with.",
+        "text": "Her usual breakfast is toast and tea.",
+        "answer": "usual"
+      },
+      {
+        "text": "The bus was later than usual today.",
         "answer": "usual"
       }
     ],
@@ -12457,7 +12625,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "This is like a virus.",
+        "text": "Doctors are studying a new virus.",
+        "answer": "virus"
+      },
+      {
+        "text": "The computer had a virus and stopped working.",
+        "answer": "virus"
+      },
+      {
+        "text": "A virus can spread quickly in winter.",
         "answer": "virus"
       }
     ],
@@ -12469,7 +12645,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "It can also improve children's vocabulary, especially when they play with their parents, and stretches their minds to think abstractly'.",
+        "text": "Reading helps improve your vocabulary.",
+        "answer": "vocabulary"
+      },
+      {
+        "text": "We learned new vocabulary in class today.",
+        "answer": "vocabulary"
+      },
+      {
+        "text": "His English vocabulary is growing fast.",
         "answer": "vocabulary"
       }
     ],
@@ -12501,7 +12685,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "Sepak Takraw: type of volleyball played with feet, head, chest and knees (no hands).",
+        "text": "They played volleyball on the beach.",
+        "answer": "volleyball"
+      },
+      {
+        "text": "Our class has a volleyball match tomorrow.",
+        "answer": "volleyball"
+      },
+      {
+        "text": "She joined the volleyball team this year.",
         "answer": "volleyball"
       }
     ],
@@ -12511,7 +12703,20 @@
     "word": "walking",
     "cefr": "A2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Walking after dinner helps me relax.",
+        "answer": "walking"
+      },
+      {
+        "text": "We spent the afternoon walking around the lake.",
+        "answer": "walking"
+      },
+      {
+        "text": "Walking to school saves money and time.",
+        "answer": "walking"
+      }
+    ],
     "ch": "步行；走路"
   },
   {
@@ -12520,7 +12725,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "“Please confirm your identity.” Winston pulled his card from his wallet and waved it over the reader.",
+        "text": "My wallet is in my jacket pocket.",
+        "answer": "wallet"
+      },
+      {
+        "text": "He lost his wallet on the bus.",
+        "answer": "wallet"
+      },
+      {
+        "text": "There was no cash in her wallet.",
         "answer": "wallet"
       }
     ],
@@ -12532,11 +12745,15 @@
     "frequency": 6,
     "sentences": [
       {
-        "text": "Some Old Hawkers are Still Here [1] Hong Kong hawking is the age-old practice of selling cheap food and wares from stalls and street carts.",
+        "text": "The museum has photos from the war.",
         "answer": "war"
       },
       {
-        "text": "[14] I understand some of you feel battered and bruised, like you’ve been in the wars.",
+        "text": "Many families suffered during the war.",
+        "answer": "war"
+      },
+      {
+        "text": "The novel tells a story about war and loss.",
         "answer": "war"
       }
     ],
@@ -12568,11 +12785,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "We're the oldest virtual horse whisperers on the web!\"",
+        "text": "I found the article on the web.",
         "answer": "web"
       },
       {
-        "text": "Nearly 2000 of them, lighting up the night sky like a giant spider web as part of Tokyo's incredible Olympic Games Opening Ceremony.",
+        "text": "That spider built a web in the corner.",
+        "answer": "web"
+      },
+      {
+        "text": "The web page loaded very slowly today.",
         "answer": "web"
       }
     ],
@@ -12602,7 +12823,20 @@
     "word": "wedding",
     "cefr": "A2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "We are going to a wedding on Saturday.",
+        "answer": "wedding"
+      },
+      {
+        "text": "She bought a dress for the wedding.",
+        "answer": "wedding"
+      },
+      {
+        "text": "The wedding took place in a small church.",
+        "answer": "wedding"
+      }
+    ],
     "ch": "婚禮"
   },
   {
@@ -12611,7 +12845,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "of) two hours on weekdays   24.",
+        "text": "I usually wake up early on weekdays.",
+        "answer": "weekday"
+      },
+      {
+        "text": "Traffic is heavier on a weekday morning.",
+        "answer": "weekday"
+      },
+      {
+        "text": "We only open on weekdays.",
         "answer": "weekday"
       }
     ],
@@ -12661,7 +12903,20 @@
     "word": "wet",
     "cefr": "A2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Be careful, the floor is wet.",
+        "answer": "wet"
+      },
+      {
+        "text": "My shoes got wet in the rain.",
+        "answer": "wet"
+      },
+      {
+        "text": "Hang the clothes outside until they are not wet.",
+        "answer": "wet"
+      }
+    ],
     "ch": "濕的"
   },
   {
@@ -12730,11 +12985,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "The entrance is a perfect place for plants because there is a lot of sunlight but it only hits the left side which is also windy and cold in the winter.",
+        "text": "It was too windy to fly a kite.",
         "answer": "windy"
       },
       {
-        "text": "Human pollinators were better at getting to every blossom, performed cross-pollination more efficiently, and could work in windy, rainy weather.",
+        "text": "Today is cold and windy.",
+        "answer": "windy"
+      },
+      {
+        "text": "The beach gets very windy at night.",
         "answer": "windy"
       }
     ],
@@ -12806,7 +13065,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "They had survived for two days on the wooden cupboard while waiting for help after their home had been struck by a flash flood.",
+        "text": "The table is made of wooden boards.",
+        "answer": "wooden"
+      },
+      {
+        "text": "A wooden bridge crosses the stream.",
+        "answer": "wooden"
+      },
+      {
+        "text": "She bought a small wooden box.",
         "answer": "wooden"
       }
     ],
@@ -12836,7 +13103,20 @@
     "word": "zero",
     "cefr": "A2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The answer is zero.",
+        "answer": "zero"
+      },
+      {
+        "text": "The temperature fell below zero.",
+        "answer": "zero"
+      },
+      {
+        "text": "He had zero interest in that movie.",
+        "answer": "zero"
+      }
+    ],
     "ch": "零"
   }
 ]
