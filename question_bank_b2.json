@@ -3,182 +3,520 @@
     "word": "abandon",
     "cefr": "B2",
     "frequency": 8,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The villagers had to abandon the old bridge after the storm damaged it.",
+        "answer": "abandon"
+      },
+      {
+        "text": "She refused to abandon her research even when funding was cut.",
+        "answer": "abandon"
+      },
+      {
+        "text": "We should not abandon the plan without discussing other options first.",
+        "answer": "abandon"
+      }
+    ],
     "ch": "放棄；遺棄"
   },
   {
     "word": "abdomen",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The doctor gently pressed his abdomen to check for pain.",
+        "answer": "abdomen"
+      },
+      {
+        "text": "A strong hit to the abdomen can be very dangerous.",
+        "answer": "abdomen"
+      },
+      {
+        "text": "The athlete held his abdomen after colliding with another player.",
+        "answer": "abdomen"
+      }
+    ],
     "ch": "腹部"
   },
   {
     "word": "absolute",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "There is no absolute guarantee that the weather will stay dry.",
+        "answer": "absolute"
+      },
+      {
+        "text": "The teacher demanded absolute silence during the listening test.",
+        "answer": "absolute"
+      },
+      {
+        "text": "His support for the idea was absolute and never changed.",
+        "answer": "absolute"
+      }
+    ],
     "ch": "絕對的；完全的"
   },
   {
     "word": "absorb",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Dry soil can absorb a surprising amount of rainwater.",
+        "answer": "absorb"
+      },
+      {
+        "text": "Young children absorb new languages very quickly.",
+        "answer": "absorb"
+      },
+      {
+        "text": "The article was so interesting that it absorbed all my attention.",
+        "answer": "absorb"
+      }
+    ],
     "ch": "吸收；吸引"
   },
   {
     "word": "abstract",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The artist is known for painting in an abstract style.",
+        "answer": "abstract"
+      },
+      {
+        "text": "Justice can feel like an abstract idea until it affects your own life.",
+        "answer": "abstract"
+      },
+      {
+        "text": "Please read the abstract before deciding whether the paper is useful.",
+        "answer": "abstract"
+      }
+    ],
     "ch": "抽象的；摘要"
   },
   {
     "word": "academic",
     "cefr": "B2",
     "frequency": 7,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The school gives extra support to students with strong academic goals.",
+        "answer": "academic"
+      },
+      {
+        "text": "She chose an academic route instead of a vocational one.",
+        "answer": "academic"
+      },
+      {
+        "text": "His academic writing improved after months of practice.",
+        "answer": "academic"
+      }
+    ],
     "ch": "學術的；學業的"
   },
   {
     "word": "academically",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "She performed academically better after joining the study group.",
+        "answer": "academically"
+      },
+      {
+        "text": "The program helps teenagers who are struggling academically.",
+        "answer": "academically"
+      },
+      {
+        "text": "Students are assessed academically as well as socially.",
+        "answer": "academically"
+      }
+    ],
     "ch": "學術上；學業上"
   },
   {
     "word": "acceptable",
     "cefr": "B2",
     "frequency": 5,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A small delay is acceptable, but two hours is too much.",
+        "answer": "acceptable"
+      },
+      {
+        "text": "The teacher said the second draft was acceptable for submission.",
+        "answer": "acceptable"
+      },
+      {
+        "text": "That tone may be common online, but it is not acceptable in class.",
+        "answer": "acceptable"
+      }
+    ],
     "ch": "可接受的；合意的"
   },
   {
     "word": "accommodate",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The hall can accommodate more than five hundred visitors.",
+        "answer": "accommodate"
+      },
+      {
+        "text": "We changed the seating plan to accommodate wheelchair users.",
+        "answer": "accommodate"
+      },
+      {
+        "text": "Good teachers accommodate different learning styles in the classroom.",
+        "answer": "accommodate"
+      }
+    ],
     "ch": "容納；配合"
   },
   {
     "word": "accompany",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A pianist will accompany the choir during the final performance.",
+        "answer": "accompany"
+      },
+      {
+        "text": "Please accompany your younger brother to the clinic.",
+        "answer": "accompany"
+      },
+      {
+        "text": "The report is accompanied by several clear charts and maps.",
+        "answer": "accompany"
+      }
+    ],
     "ch": "陪同；伴隨"
   },
   {
     "word": "accomplish",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "With careful planning, a small team can accomplish a great deal.",
+        "answer": "accomplish"
+      },
+      {
+        "text": "She felt proud to accomplish such a difficult task alone.",
+        "answer": "accomplish"
+      },
+      {
+        "text": "We can accomplish more if we divide the work fairly.",
+        "answer": "accomplish"
+      }
+    ],
     "ch": "完成；達成"
   },
   {
     "word": "account",
     "cefr": "B2",
     "frequency": 11,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Please create an account before using the new learning platform.",
+        "answer": "account"
+      },
+      {
+        "text": "The witness gave a detailed account of what happened that night.",
+        "answer": "account"
+      },
+      {
+        "text": "His bank account was frozen after suspicious activity was detected.",
+        "answer": "account"
+      }
+    ],
     "ch": "帳戶；解釋"
   },
   {
     "word": "accuracy",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The machine was tested for speed and accuracy.",
+        "answer": "accuracy"
+      },
+      {
+        "text": "Writers must check facts carefully to improve accuracy.",
+        "answer": "accuracy"
+      },
+      {
+        "text": "The judge praised the team for the accuracy of their data.",
+        "answer": "accuracy"
+      }
+    ],
     "ch": "準確性"
   },
   {
     "word": "accurate",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The weather app is usually accurate during the summer months.",
+        "answer": "accurate"
+      },
+      {
+        "text": "An accurate translation can still sound natural and clear.",
+        "answer": "accurate"
+      },
+      {
+        "text": "We need accurate measurements before cutting the wood.",
+        "answer": "accurate"
+      }
+    ],
     "ch": "準確的"
   },
   {
     "word": "accuse",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "It is unfair to accuse someone without real evidence.",
+        "answer": "accuse"
+      },
+      {
+        "text": "The article seems to accuse the company of ignoring safety rules.",
+        "answer": "accuse"
+      },
+      {
+        "text": "He was quick to accuse others when the plan failed.",
+        "answer": "accuse"
+      }
+    ],
     "ch": "指控；指責"
   },
   {
     "word": "acknowledge",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The mayor paused to acknowledge the volunteers in the audience.",
+        "answer": "acknowledge"
+      },
+      {
+        "text": "You should acknowledge the source when you use someone else?s idea.",
+        "answer": "acknowledge"
+      },
+      {
+        "text": "She refused to acknowledge that the original plan had failed.",
+        "answer": "acknowledge"
+      }
+    ],
     "ch": "承認；確認"
   },
   {
     "word": "acquire",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Children often acquire new habits from the adults around them.",
+        "answer": "acquire"
+      },
+      {
+        "text": "The museum hopes to acquire several rare historical letters.",
+        "answer": "acquire"
+      },
+      {
+        "text": "It takes time to acquire confidence in public speaking.",
+        "answer": "acquire"
+      }
+    ],
     "ch": "獲得；習得"
   },
   {
     "word": "acrobat",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The acrobat balanced on one hand high above the stage.",
+        "answer": "acrobat"
+      },
+      {
+        "text": "A young acrobat impressed the audience with her timing and strength.",
+        "answer": "acrobat"
+      },
+      {
+        "text": "Training as an acrobat requires trust as well as courage.",
+        "answer": "acrobat"
+      }
+    ],
     "ch": "雜技演員"
   },
   {
     "word": "activate",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Press this button to activate the emergency lights.",
+        "answer": "activate"
+      },
+      {
+        "text": "The passcode will activate your student account immediately.",
+        "answer": "activate"
+      },
+      {
+        "text": "Heat can activate the chemicals inside the device.",
+        "answer": "activate"
+      }
+    ],
     "ch": "啟動；使生效"
   },
   {
     "word": "actively",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Students are encouraged to actively join classroom discussions.",
+        "answer": "actively"
+      },
+      {
+        "text": "The charity is actively searching for more local volunteers.",
+        "answer": "actively"
+      },
+      {
+        "text": "She actively avoids wasting food at home.",
+        "answer": "actively"
+      }
+    ],
     "ch": "積極地；主動地"
   },
   {
     "word": "actual",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The actual cost was much lower than we expected.",
+        "answer": "actual"
+      },
+      {
+        "text": "Please focus on the actual issue instead of the rumor.",
+        "answer": "actual"
+      },
+      {
+        "text": "The brochure looked impressive, but the actual room was small.",
+        "answer": "actual"
+      }
+    ],
     "ch": "實際的；真正的"
   },
   {
     "word": "adapt",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Animals adapt to new environments over time.",
+        "answer": "adapt"
+      },
+      {
+        "text": "We had to adapt the schedule because of the heavy rain.",
+        "answer": "adapt"
+      },
+      {
+        "text": "A good leader can adapt quickly when plans change.",
+        "answer": "adapt"
+      }
+    ],
     "ch": "適應；改編"
   },
   {
     "word": "adaptable",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "An adaptable worker can handle sudden changes calmly.",
+        "answer": "adaptable"
+      },
+      {
+        "text": "The software is adaptable enough for different school systems.",
+        "answer": "adaptable"
+      },
+      {
+        "text": "Children are often more adaptable than adults in new situations.",
+        "answer": "adaptable"
+      }
+    ],
     "ch": "適應力強的"
   },
   {
     "word": "adaptive",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The app uses adaptive learning to adjust the level of each task.",
+        "answer": "adaptive"
+      },
+      {
+        "text": "Adaptive equipment can make sports more accessible to everyone.",
+        "answer": "adaptive"
+      },
+      {
+        "text": "The species developed adaptive features to survive in dry climates.",
+        "answer": "adaptive"
+      }
+    ],
     "ch": "適應性的"
   },
   {
     "word": "additional",
     "cefr": "B2",
     "frequency": 5,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "We need additional chairs before the guests arrive.",
+        "answer": "additional"
+      },
+      {
+        "text": "Additional practice will help you feel more confident.",
+        "answer": "additional"
+      },
+      {
+        "text": "The teacher gave us additional reading for the weekend.",
+        "answer": "additional"
+      }
+    ],
     "ch": "額外的；附加的"
   },
   {
     "word": "additionally",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The hotel is clean and comfortable; additionally, it is close to the station.",
+        "answer": "additionally"
+      },
+      {
+        "text": "Students must submit the form online and additionally bring a printed copy.",
+        "answer": "additionally"
+      },
+      {
+        "text": "Additionally, the report includes several useful case studies.",
+        "answer": "additionally"
+      }
+    ],
     "ch": "此外；而且"
   },
   {
@@ -205,35 +543,100 @@
     "word": "adequate",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The shelter provides adequate food and clean water.",
+        "answer": "adequate"
+      },
+      {
+        "text": "We do not yet have adequate evidence to make that claim.",
+        "answer": "adequate"
+      },
+      {
+        "text": "The classroom lighting is adequate for reading and writing.",
+        "answer": "adequate"
+      }
+    ],
     "ch": "足夠的；合適的"
   },
   {
     "word": "adequately",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The guide explained the safety rules adequately before the hike.",
+        "answer": "adequately"
+      },
+      {
+        "text": "The room was adequately heated despite the winter weather.",
+        "answer": "adequately"
+      },
+      {
+        "text": "You must rest adequately if you want to recover fully.",
+        "answer": "adequately"
+      }
+    ],
     "ch": "充分地；適當地"
   },
   {
     "word": "adhere to",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "All visitors must adhere to the museum rules.",
+        "answer": "adhere to"
+      },
+      {
+        "text": "Please adhere to the deadline so the event can run smoothly.",
+        "answer": "adhere to"
+      },
+      {
+        "text": "Good scientists adhere to strict ethical standards.",
+        "answer": "adhere to"
+      }
+    ],
     "ch": "遵守；依附於"
   },
   {
     "word": "administration",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The school administration announced changes to the timetable.",
+        "answer": "administration"
+      },
+      {
+        "text": "She works in administration rather than in teaching.",
+        "answer": "administration"
+      },
+      {
+        "text": "The new administration promised to improve transport and housing.",
+        "answer": "administration"
+      }
+    ],
     "ch": "行政；管理部門"
   },
   {
     "word": "admirable",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Her admirable patience helped the whole group stay calm.",
+        "answer": "admirable"
+      },
+      {
+        "text": "It is admirable that he still volunteers every weekend.",
+        "answer": "admirable"
+      },
+      {
+        "text": "The team showed admirable discipline under pressure.",
+        "answer": "admirable"
+      }
+    ],
     "ch": "值得欽佩的"
   },
   {
@@ -260,434 +663,1240 @@
     "word": "admittedly",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Admittedly, the task is harder than we first thought.",
+        "answer": "admittedly"
+      },
+      {
+        "text": "He is admittedly talented, though still a little careless.",
+        "answer": "admittedly"
+      },
+      {
+        "text": "Admittedly, we could have communicated the plan more clearly.",
+        "answer": "admittedly"
+      }
+    ],
     "ch": "誠然；不可否認地"
   },
   {
     "word": "adopt",
     "cefr": "B2",
     "frequency": 9,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The city plans to adopt a cleaner energy policy.",
+        "answer": "adopt"
+      },
+      {
+        "text": "They decided to adopt a dog from the rescue center.",
+        "answer": "adopt"
+      },
+      {
+        "text": "Many schools now adopt digital tools for homework and testing.",
+        "answer": "adopt"
+      }
+    ],
     "ch": "採納；收養"
   },
   {
     "word": "adoration",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The singer looked out at the crowd with surprise and adoration.",
+        "answer": "adoration"
+      },
+      {
+        "text": "Her childhood diary was full of adoration for movie stars.",
+        "answer": "adoration"
+      },
+      {
+        "text": "The puppy watched its owner with complete adoration.",
+        "answer": "adoration"
+      }
+    ],
     "ch": "崇拜；愛慕"
   },
   {
     "word": "adore",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Children adore stories with talking animals and brave heroes.",
+        "answer": "adore"
+      },
+      {
+        "text": "She adores her grandmother?s handmade desserts.",
+        "answer": "adore"
+      },
+      {
+        "text": "Fans clearly adore the actor?s sense of humor.",
+        "answer": "adore"
+      }
+    ],
     "ch": "熱愛；崇拜"
   },
   {
     "word": "adulthood",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The novel follows a boy?s journey into adulthood.",
+        "answer": "adulthood"
+      },
+      {
+        "text": "Some responsibilities become heavier in adulthood.",
+        "answer": "adulthood"
+      },
+      {
+        "text": "Many people remember their first step into adulthood very clearly.",
+        "answer": "adulthood"
+      }
+    ],
     "ch": "成年期"
   },
   {
     "word": "advance",
     "cefr": "B2",
     "frequency": 7,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Technology continues to advance faster than many laws can adapt.",
+        "answer": "advance"
+      },
+      {
+        "text": "Please pay in advance if you want to reserve a seat.",
+        "answer": "advance"
+      },
+      {
+        "text": "The rescue team advanced carefully through the flooded street.",
+        "answer": "advance"
+      }
+    ],
     "ch": "進步；推進"
   },
   {
     "word": "advancement",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Education is often linked to career advancement.",
+        "answer": "advancement"
+      },
+      {
+        "text": "Medical advancement has improved survival rates worldwide.",
+        "answer": "advancement"
+      },
+      {
+        "text": "Her rapid advancement surprised even her closest colleagues.",
+        "answer": "advancement"
+      }
+    ],
     "ch": "進步；晉升"
   },
   {
     "word": "adventurous",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "He is too adventurous to stay in one city for long.",
+        "answer": "adventurous"
+      },
+      {
+        "text": "An adventurous traveler might enjoy the rough mountain route.",
+        "answer": "adventurous"
+      },
+      {
+        "text": "The menu is perfect for diners with adventurous tastes.",
+        "answer": "adventurous"
+      }
+    ],
     "ch": "愛冒險的"
   },
   {
     "word": "advisory",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "An advisory board reviewed the plan before it was approved.",
+        "answer": "advisory"
+      },
+      {
+        "text": "The school sent an advisory notice about the storm.",
+        "answer": "advisory"
+      },
+      {
+        "text": "The committee plays an advisory role rather than a legal one.",
+        "answer": "advisory"
+      }
+    ],
     "ch": "諮詢性的；顧問的"
   },
   {
     "word": "affair",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The dinner was a quiet family affair at home.",
+        "answer": "affair"
+      },
+      {
+        "text": "The newspaper described the event as an international affair.",
+        "answer": "affair"
+      },
+      {
+        "text": "Her personal affairs are kept private.",
+        "answer": "affair"
+      }
+    ],
     "ch": "事情；事務"
   },
   {
     "word": "affordable",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The city needs more affordable housing for young families.",
+        "answer": "affordable"
+      },
+      {
+        "text": "This restaurant is popular because the food is affordable.",
+        "answer": "affordable"
+      },
+      {
+        "text": "Solar panels are becoming more affordable each year.",
+        "answer": "affordable"
+      }
+    ],
     "ch": "付得起的"
   },
   {
     "word": "afterwards",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "We watched the lecture and talked about it afterwards.",
+        "answer": "afterwards"
+      },
+      {
+        "text": "She was nervous before the speech but relaxed afterwards.",
+        "answer": "afterwards"
+      },
+      {
+        "text": "The children cleaned the classroom afterwards without being asked.",
+        "answer": "afterwards"
+      }
+    ],
     "ch": "後來；之後"
   },
   {
     "word": "agenda",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The meeting agenda includes transport, housing, and public safety.",
+        "answer": "agenda"
+      },
+      {
+        "text": "Please send me the final agenda before tomorrow morning.",
+        "answer": "agenda"
+      },
+      {
+        "text": "He arrived early to prepare the agenda for the workshop.",
+        "answer": "agenda"
+      }
+    ],
     "ch": "議程；待辦事項"
   },
   {
     "word": "aggressive",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The dog looked aggressive, so we stayed back.",
+        "answer": "aggressive"
+      },
+      {
+        "text": "An aggressive marketing plan can raise sales quickly.",
+        "answer": "aggressive"
+      },
+      {
+        "text": "The coach warned that aggressive behavior would not be tolerated.",
+        "answer": "aggressive"
+      }
+    ],
     "ch": "進取的；具攻擊性的"
   },
   {
     "word": "aggressively",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The company expanded aggressively into new markets.",
+        "answer": "aggressively"
+      },
+      {
+        "text": "He was speaking so aggressively that others stopped responding.",
+        "answer": "aggressively"
+      },
+      {
+        "text": "The team defended aggressively for the first ten minutes.",
+        "answer": "aggressively"
+      }
+    ],
     "ch": "激進地；具攻擊性地"
   },
   {
     "word": "aid",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "International aid arrived after the earthquake damaged the town.",
+        "answer": "aid"
+      },
+      {
+        "text": "The map will aid visitors who are unfamiliar with the area.",
+        "answer": "aid"
+      },
+      {
+        "text": "Doctors worked through the night to deliver medical aid.",
+        "answer": "aid"
+      }
+    ],
     "ch": "援助；幫助"
   },
   {
     "word": "airflow",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Good airflow makes the room feel cooler in summer.",
+        "answer": "airflow"
+      },
+      {
+        "text": "The engineer adjusted the design to improve airflow.",
+        "answer": "airflow"
+      },
+      {
+        "text": "Plants can suffer if there is not enough airflow indoors.",
+        "answer": "airflow"
+      }
+    ],
     "ch": "氣流；空氣流動"
   },
   {
     "word": "aisle",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A flight attendant walked quickly down the aisle.",
+        "answer": "aisle"
+      },
+      {
+        "text": "The bread is usually in the middle aisle of the supermarket.",
+        "answer": "aisle"
+      },
+      {
+        "text": "Please keep the aisle clear for safety reasons.",
+        "answer": "aisle"
+      }
+    ],
     "ch": "走道；通道"
   },
   {
     "word": "akin",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "His calm style is akin to that of an experienced diplomat.",
+        "answer": "akin"
+      },
+      {
+        "text": "This kind of pressure is akin to working under exam conditions.",
+        "answer": "akin"
+      },
+      {
+        "text": "Her latest design is akin to the one she showed last spring.",
+        "answer": "akin"
+      }
+    ],
     "ch": "相似的；近似的"
   },
   {
     "word": "alarm",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The fire alarm rang just as the class was ending.",
+        "answer": "alarm"
+      },
+      {
+        "text": "There is no need for alarm; the problem is already under control.",
+        "answer": "alarm"
+      },
+      {
+        "text": "He set the alarm for six so he could catch the first train.",
+        "answer": "alarm"
+      }
+    ],
     "ch": "警報；驚慌"
   },
   {
     "word": "allergic",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "She is allergic to peanuts and always checks the label.",
+        "answer": "allergic"
+      },
+      {
+        "text": "If you are allergic to dust, keep the windows closed on windy days.",
+        "answer": "allergic"
+      },
+      {
+        "text": "He became allergic to the cream after using it twice.",
+        "answer": "allergic"
+      }
+    ],
     "ch": "過敏的"
   },
   {
     "word": "allergy",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A severe allergy can turn a small bite into an emergency.",
+        "answer": "allergy"
+      },
+      {
+        "text": "The form asks whether students have any food allergy.",
+        "answer": "allergy"
+      },
+      {
+        "text": "Her cat allergy makes visiting friends difficult.",
+        "answer": "allergy"
+      }
+    ],
     "ch": "過敏症"
   },
   {
     "word": "alongside",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A new bike path will run alongside the river.",
+        "answer": "alongside"
+      },
+      {
+        "text": "She studied alongside some of the brightest students in the city.",
+        "answer": "alongside"
+      },
+      {
+        "text": "Traditional methods still exist alongside modern technology.",
+        "answer": "alongside"
+      }
+    ],
     "ch": "在旁邊；與…一起"
   },
   {
     "word": "alter",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "You may need to alter the plan after hearing their feedback.",
+        "answer": "alter"
+      },
+      {
+        "text": "The tailor can alter the jacket to fit you better.",
+        "answer": "alter"
+      },
+      {
+        "text": "Even small mistakes can alter the final result.",
+        "answer": "alter"
+      }
+    ],
     "ch": "改變；修改"
   },
   {
     "word": "altitude",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "At high altitude, breathing can become more difficult.",
+        "answer": "altitude"
+      },
+      {
+        "text": "The plane slowly gained altitude after takeoff.",
+        "answer": "altitude"
+      },
+      {
+        "text": "Plants at this altitude grow differently from those at sea level.",
+        "answer": "altitude"
+      }
+    ],
     "ch": "高度；海拔"
   },
   {
     "word": "altogether",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "There were thirty people altogether at the workshop.",
+        "answer": "altogether"
+      },
+      {
+        "text": "If the weather gets worse, we may cancel the event altogether.",
+        "answer": "altogether"
+      },
+      {
+        "text": "Altogether, the project took nearly six months to finish.",
+        "answer": "altogether"
+      }
+    ],
     "ch": "總共；完全地"
   },
   {
     "word": "aluminum",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The frame is made from lightweight aluminum.",
+        "answer": "aluminum"
+      },
+      {
+        "text": "Many drink cans are recycled into new aluminum products.",
+        "answer": "aluminum"
+      },
+      {
+        "text": "An aluminum ladder is easier to carry than a steel one.",
+        "answer": "aluminum"
+      }
+    ],
     "ch": "鋁"
   },
   {
     "word": "ambulance",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "An ambulance arrived within minutes of the emergency call.",
+        "answer": "ambulance"
+      },
+      {
+        "text": "We heard the ambulance siren long before we saw the vehicle.",
+        "answer": "ambulance"
+      },
+      {
+        "text": "The injured cyclist was taken to hospital by ambulance.",
+        "answer": "ambulance"
+      }
+    ],
     "ch": "救護車"
   },
   {
     "word": "amuse",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The clown tried to amuse the children during the party.",
+        "answer": "amuse"
+      },
+      {
+        "text": "Her stories always amuse the whole table.",
+        "answer": "amuse"
+      },
+      {
+        "text": "It amuses me that he still uses the same old umbrella.",
+        "answer": "amuse"
+      }
+    ],
     "ch": "逗樂；使發笑"
   },
   {
     "word": "amusement",
     "cefr": "B2",
     "frequency": 7,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The children shouted with amusement as the puppet danced.",
+        "answer": "amusement"
+      },
+      {
+        "text": "The city plans to build a new amusement park near the harbor.",
+        "answer": "amusement"
+      },
+      {
+        "text": "To our amusement, the dog refused to leave the slide.",
+        "answer": "amusement"
+      }
+    ],
     "ch": "娛樂；消遣"
   },
   {
     "word": "analyst",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A market analyst predicted a drop in housing prices.",
+        "answer": "analyst"
+      },
+      {
+        "text": "The data analyst found a pattern the team had missed.",
+        "answer": "analyst"
+      },
+      {
+        "text": "She works as an analyst for an international bank.",
+        "answer": "analyst"
+      }
+    ],
     "ch": "分析員"
   },
   {
     "word": "analyze",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Scientists analyze the water samples every week.",
+        "answer": "analyze"
+      },
+      {
+        "text": "Students were asked to analyze the poem in pairs.",
+        "answer": "analyze"
+      },
+      {
+        "text": "Good software can analyze thousands of records in seconds.",
+        "answer": "analyze"
+      }
+    ],
     "ch": "分析"
   },
   {
     "word": "ancestor",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "My ancestor came to Hong Kong over a century ago.",
+        "answer": "ancestor"
+      },
+      {
+        "text": "The museum tells the story of a farming ancestor of the tribe.",
+        "answer": "ancestor"
+      },
+      {
+        "text": "Some people study family history to learn about each ancestor.",
+        "answer": "ancestor"
+      }
+    ],
     "ch": "祖先；先人"
   },
   {
     "word": "anger",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "He struggled to hide his anger during the meeting.",
+        "answer": "anger"
+      },
+      {
+        "text": "Her voice shook with anger when she heard the news.",
+        "answer": "anger"
+      },
+      {
+        "text": "A moment of anger can damage a friendship for years.",
+        "answer": "anger"
+      }
+    ],
     "ch": "憤怒"
   },
   {
     "word": "animation",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The studio is famous for its hand-drawn animation.",
+        "answer": "animation"
+      },
+      {
+        "text": "Children were fascinated by the bright colors and animation.",
+        "answer": "animation"
+      },
+      {
+        "text": "She hopes to study animation after secondary school.",
+        "answer": "animation"
+      }
+    ],
     "ch": "動畫；生氣"
   },
   {
     "word": "anniversary",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "They celebrated their wedding anniversary with a quiet dinner.",
+        "answer": "anniversary"
+      },
+      {
+        "text": "The museum is planning a special exhibition for its anniversary.",
+        "answer": "anniversary"
+      },
+      {
+        "text": "A silver watch was given to mark the company?s fiftieth anniversary.",
+        "answer": "anniversary"
+      }
+    ],
     "ch": "週年紀念"
   },
   {
     "word": "annually",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The prize is awarded annually to one outstanding student.",
+        "answer": "annually"
+      },
+      {
+        "text": "Our school trip takes place annually in early spring.",
+        "answer": "annually"
+      },
+      {
+        "text": "The report is updated annually with new figures.",
+        "answer": "annually"
+      }
+    ],
     "ch": "每年地"
   },
   {
     "word": "anonymously",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Students answered the survey anonymously online.",
+        "answer": "anonymously"
+      },
+      {
+        "text": "The letter was sent anonymously to the newspaper office.",
+        "answer": "anonymously"
+      },
+      {
+        "text": "Complaints can be submitted anonymously if necessary.",
+        "answer": "anonymously"
+      }
+    ],
     "ch": "匿名地"
   },
   {
     "word": "antagonist",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The antagonist in the novel is both cruel and clever.",
+        "answer": "antagonist"
+      },
+      {
+        "text": "A strong antagonist can make a story more memorable.",
+        "answer": "antagonist"
+      },
+      {
+        "text": "The film reveals the antagonist?s motive near the end.",
+        "answer": "antagonist"
+      }
+    ],
     "ch": "對手；反派角色"
   },
   {
     "word": "anticipate",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "We did not anticipate such a large crowd at the event.",
+        "answer": "anticipate"
+      },
+      {
+        "text": "Investors anticipate further changes in the market.",
+        "answer": "anticipate"
+      },
+      {
+        "text": "The doctor tried to anticipate possible side effects.",
+        "answer": "anticipate"
+      }
+    ],
     "ch": "預期；預料"
   },
   {
     "word": "anxiety",
     "cefr": "B2",
     "frequency": 5,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Long periods of uncertainty can cause serious anxiety.",
+        "answer": "anxiety"
+      },
+      {
+        "text": "She felt anxiety building before the interview began.",
+        "answer": "anxiety"
+      },
+      {
+        "text": "Exercise can help reduce stress and anxiety.",
+        "answer": "anxiety"
+      }
+    ],
     "ch": "焦慮；憂慮"
   },
   {
     "word": "anxious",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Parents were anxious about the safety of their children.",
+        "answer": "anxious"
+      },
+      {
+        "text": "He looked anxious while waiting for the exam results.",
+        "answer": "anxious"
+      },
+      {
+        "text": "She is anxious to hear whether the proposal was accepted.",
+        "answer": "anxious"
+      }
+    ],
     "ch": "焦急的；憂慮的"
   },
   {
     "word": "apathy",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Public apathy makes social change much harder to achieve.",
+        "answer": "apathy"
+      },
+      {
+        "text": "Her apathy toward the issue shocked the whole group.",
+        "answer": "apathy"
+      },
+      {
+        "text": "The campaign tries to fight political apathy among young adults.",
+        "answer": "apathy"
+      }
+    ],
     "ch": "冷漠；缺乏興趣"
   },
   {
     "word": "apes",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Great apes are among the most intelligent animals on Earth.",
+        "answer": "apes"
+      },
+      {
+        "text": "The documentary compared apes and humans in surprising ways.",
+        "answer": "apes"
+      },
+      {
+        "text": "Many apes use tools to solve simple problems.",
+        "answer": "apes"
+      }
+    ],
     "ch": "猿類"
   },
   {
     "word": "apology",
     "cefr": "B2",
     "frequency": 10,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "He offered a sincere apology for arriving late.",
+        "answer": "apology"
+      },
+      {
+        "text": "The company issued a public apology after the error was discovered.",
+        "answer": "apology"
+      },
+      {
+        "text": "A simple apology can sometimes repair a damaged friendship.",
+        "answer": "apology"
+      }
+    ],
     "ch": "道歉；歉意"
   },
   {
     "word": "apparent",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "It became apparent that the team needed more time.",
+        "answer": "apparent"
+      },
+      {
+        "text": "There was no apparent reason for the sudden delay.",
+        "answer": "apparent"
+      },
+      {
+        "text": "Her relief was apparent as soon as the result was announced.",
+        "answer": "apparent"
+      }
+    ],
     "ch": "明顯的；顯然的"
   },
   {
     "word": "apparently",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Apparently, the train line will reopen next week.",
+        "answer": "apparently"
+      },
+      {
+        "text": "She was apparently the last person to leave the office.",
+        "answer": "apparently"
+      },
+      {
+        "text": "Apparently, nobody informed the volunteers about the change.",
+        "answer": "apparently"
+      }
+    ],
     "ch": "顯然地；看來"
   },
   {
     "word": "appeal",
     "cefr": "B2",
     "frequency": 10,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The old district has a strong appeal for photographers.",
+        "answer": "appeal"
+      },
+      {
+        "text": "The lawyer plans to appeal against the court decision.",
+        "answer": "appeal"
+      },
+      {
+        "text": "Bright colors can appeal to younger audiences.",
+        "answer": "appeal"
+      }
+    ],
     "ch": "吸引力；呼籲"
   },
   {
     "word": "applicant",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Each applicant must submit two reference letters.",
+        "answer": "applicant"
+      },
+      {
+        "text": "The school interviewed every shortlisted applicant.",
+        "answer": "applicant"
+      },
+      {
+        "text": "An applicant with experience may have an advantage.",
+        "answer": "applicant"
+      }
+    ],
     "ch": "申請人"
   },
   {
     "word": "approach",
     "cefr": "B2",
     "frequency": 11,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "We need a new approach to the traffic problem.",
+        "answer": "approach"
+      },
+      {
+        "text": "As the storm began to approach, the beach quickly emptied.",
+        "answer": "approach"
+      },
+      {
+        "text": "Her calm approach made the discussion more productive.",
+        "answer": "approach"
+      }
+    ],
     "ch": "方法；接近"
   },
   {
     "word": "appropriate",
     "cefr": "B2",
     "frequency": 5,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Please wear appropriate shoes for the hiking trip.",
+        "answer": "appropriate"
+      },
+      {
+        "text": "That joke is not appropriate for a formal ceremony.",
+        "answer": "appropriate"
+      },
+      {
+        "text": "The teacher chose appropriate materials for beginner learners.",
+        "answer": "appropriate"
+      }
+    ],
     "ch": "合適的；恰當的"
   },
   {
     "word": "appropriately",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Students are expected to behave appropriately during the visit.",
+        "answer": "appropriately"
+      },
+      {
+        "text": "The warning signs were placed appropriately near the cliffs.",
+        "answer": "appropriately"
+      },
+      {
+        "text": "Please dress appropriately for the interview.",
+        "answer": "appropriately"
+      }
+    ],
     "ch": "適當地；恰如其分地"
   },
   {
     "word": "approval",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The plan cannot move forward without official approval.",
+        "answer": "approval"
+      },
+      {
+        "text": "Her face showed approval when she read the final draft.",
+        "answer": "approval"
+      },
+      {
+        "text": "Parents must sign the form to give their approval.",
+        "answer": "approval"
+      }
+    ],
     "ch": "批准；贊同"
   },
   {
     "word": "approve",
     "cefr": "B2",
     "frequency": 7,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The committee may approve the budget by Friday.",
+        "answer": "approve"
+      },
+      {
+        "text": "My parents do not approve of staying out too late.",
+        "answer": "approve"
+      },
+      {
+        "text": "Only trained staff can approve access to the lab.",
+        "answer": "approve"
+      }
+    ],
     "ch": "批准；贊成"
   },
   {
     "word": "arise",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Problems may arise if the instructions are unclear.",
+        "answer": "arise"
+      },
+      {
+        "text": "A good leader stays calm when unexpected issues arise.",
+        "answer": "arise"
+      },
+      {
+        "text": "Questions often arise after people hear only part of the story.",
+        "answer": "arise"
+      }
+    ],
     "ch": "出現；引起"
   },
   {
     "word": "arrogant",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "He sounded confident, but not arrogant, during the speech.",
+        "answer": "arrogant"
+      },
+      {
+        "text": "An arrogant attitude can damage teamwork quickly.",
+        "answer": "arrogant"
+      },
+      {
+        "text": "The character is rich and talented, yet strangely arrogant.",
+        "answer": "arrogant"
+      }
+    ],
     "ch": "傲慢的"
   },
   {
     "word": "arrow",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Follow the arrow on the sign to reach the exit.",
+        "answer": "arrow"
+      },
+      {
+        "text": "The hunter raised his bow and arrow in the old painting.",
+        "answer": "arrow"
+      },
+      {
+        "text": "A red arrow was used to highlight the mistake.",
+        "answer": "arrow"
+      }
+    ],
     "ch": "箭；箭頭"
   },
   {
     "word": "artifact",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The museum protects each artifact in a glass case.",
+        "answer": "artifact"
+      },
+      {
+        "text": "Archaeologists discovered a metal artifact near the river.",
+        "answer": "artifact"
+      },
+      {
+        "text": "Every artifact tells part of the city?s history.",
+        "answer": "artifact"
+      }
+    ],
     "ch": "人工製品；文物"
   },
   {
     "word": "artificial",
     "cefr": "B2",
     "frequency": 5,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The room was lit by artificial light instead of sunlight.",
+        "answer": "artificial"
+      },
+      {
+        "text": "Researchers are testing artificial materials for the project.",
+        "answer": "artificial"
+      },
+      {
+        "text": "Her smile looked artificial in the advertisement.",
+        "answer": "artificial"
+      }
+    ],
     "ch": "人工的；人造的"
   },
   {
     "word": "artistic",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "She is admired for her artistic vision and patience.",
+        "answer": "artistic"
+      },
+      {
+        "text": "The school encourages both academic and artistic growth.",
+        "answer": "artistic"
+      },
+      {
+        "text": "His latest work shows clear artistic development.",
+        "answer": "artistic"
+      }
+    ],
     "ch": "藝術的；有美感的"
   },
   {
     "word": "artistry",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The performance displayed both power and artistry.",
+        "answer": "artistry"
+      },
+      {
+        "text": "Her cake designs show real artistry as well as skill.",
+        "answer": "artistry"
+      },
+      {
+        "text": "The director is famous for visual artistry in film.",
+        "answer": "artistry"
+      }
+    ],
     "ch": "藝術技巧；藝術性"
   },
   {
     "word": "artwork",
     "cefr": "B2",
     "frequency": 15,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The gallery displayed student artwork from around the city.",
+        "answer": "artwork"
+      },
+      {
+        "text": "Please do not touch the artwork near the entrance.",
+        "answer": "artwork"
+      },
+      {
+        "text": "Her latest artwork combines photography and paint.",
+        "answer": "artwork"
+      }
+    ],
     "ch": "藝術作品"
   },
   {
@@ -714,49 +1923,140 @@
     "word": "aside",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Set those forms aside and finish the urgent ones first.",
+        "answer": "aside"
+      },
+      {
+        "text": "She pulled him aside to ask a private question.",
+        "answer": "aside"
+      },
+      {
+        "text": "Aside from the weather, the trip went smoothly.",
+        "answer": "aside"
+      }
+    ],
     "ch": "在旁邊；撇開"
   },
   {
     "word": "aspect",
     "cefr": "B2",
     "frequency": 8,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "We need to examine every aspect of the proposal.",
+        "answer": "aspect"
+      },
+      {
+        "text": "Cost is only one aspect of the problem.",
+        "answer": "aspect"
+      },
+      {
+        "text": "The course covers both practical and cultural aspects of travel.",
+        "answer": "aspect"
+      }
+    ],
     "ch": "方面；特徵"
   },
   {
     "word": "assessment",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The teacher completed the final assessment on Friday.",
+        "answer": "assessment"
+      },
+      {
+        "text": "A risk assessment must be done before the event begins.",
+        "answer": "assessment"
+      },
+      {
+        "text": "Her assessment of the situation turned out to be accurate.",
+        "answer": "assessment"
+      }
+    ],
     "ch": "評估；考核"
   },
   {
     "word": "assign",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The manager will assign tasks after the morning meeting.",
+        "answer": "assign"
+      },
+      {
+        "text": "Please assign each team a different discussion topic.",
+        "answer": "assign"
+      },
+      {
+        "text": "Teachers often assign reading before the lesson.",
+        "answer": "assign"
+      }
+    ],
     "ch": "分配；指派"
   },
   {
     "word": "assistance",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Please ask for assistance if the system stops working.",
+        "answer": "assistance"
+      },
+      {
+        "text": "Financial assistance is available for low-income families.",
+        "answer": "assistance"
+      },
+      {
+        "text": "The hikers signaled for assistance after getting lost.",
+        "answer": "assistance"
+      }
+    ],
     "ch": "協助；幫助"
   },
   {
     "word": "associate",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Many people associate summer with beaches and cold drinks.",
+        "answer": "associate"
+      },
+      {
+        "text": "She worked as a research associate at the university.",
+        "answer": "associate"
+      },
+      {
+        "text": "Do you associate that song with your childhood?",
+        "answer": "associate"
+      }
+    ],
     "ch": "聯繫；使有關聯"
   },
   {
     "word": "association",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The association organizes sports events for local schools.",
+        "answer": "association"
+      },
+      {
+        "text": "There is a strong association between sleep and concentration.",
+        "answer": "association"
+      },
+      {
+        "text": "Her name has long been linked with the association.",
+        "answer": "association"
+      }
+    ],
     "ch": "協會；聯繫"
   },
   {
