@@ -16798,7 +16798,7 @@ const VOCAB_DB = {
         },
         {
             "en": "smartphone",
-            "ch": "智能手機",
+            "ch": "????",
             "sents": [
                 {
                     "text": "My smartphone battery is low again.",
@@ -16811,24 +16811,6 @@ const VOCAB_DB = {
                 {
                     "text": "Do not use your smartphone during the test.",
                     "answer": "smartphone"
-                }
-            ]
-        },
-        {
-            "en": "smartphones",
-            "ch": "智能手機（複數）",
-            "sents": [
-                {
-                    "text": "Most students carry smartphones now.",
-                    "answer": "smartphones"
-                },
-                {
-                    "text": "Smartphones can be useful learning tools.",
-                    "answer": "smartphones"
-                },
-                {
-                    "text": "The shop sells many kinds of smartphones.",
-                    "answer": "smartphones"
                 }
             ]
         },
@@ -17805,6 +17787,24 @@ const VOCAB_DB = {
             ]
         },
         {
+            "en": "take a walk",
+            "ch": "??",
+            "sents": [
+                {
+                    "text": "Let's take a walk after dinner.",
+                    "answer": "take a walk"
+                },
+                {
+                    "text": "We usually take a walk around the lake on Sundays.",
+                    "answer": "take a walk"
+                },
+                {
+                    "text": "Taking a walk helps me relax after work.",
+                    "answer": "take a walk"
+                }
+            ]
+        },
+        {
             "en": "task",
             "ch": "任務",
             "sents": [
@@ -18503,24 +18503,6 @@ const VOCAB_DB = {
                 {
                     "text": "She joined the volleyball team this year.",
                     "answer": "volleyball"
-                }
-            ]
-        },
-        {
-            "en": "walking",
-            "ch": "步行；走路",
-            "sents": [
-                {
-                    "text": "Walking after dinner helps me relax.",
-                    "answer": "walking"
-                },
-                {
-                    "text": "We spent the afternoon walking around the lake.",
-                    "answer": "walking"
-                },
-                {
-                    "text": "Walking to school saves money and time.",
-                    "answer": "walking"
                 }
             ]
         },

@@ -10817,27 +10817,7 @@
         "answer": "smartphone"
       }
     ],
-    "ch": "智能手機"
-  },
-  {
-    "word": "smartphones",
-    "cefr": "A2",
-    "frequency": 1,
-    "sentences": [
-      {
-        "text": "Most students carry smartphones now.",
-        "answer": "smartphones"
-      },
-      {
-        "text": "Smartphones can be useful learning tools.",
-        "answer": "smartphones"
-      },
-      {
-        "text": "The shop sells many kinds of smartphones.",
-        "answer": "smartphones"
-      }
-    ],
-    "ch": "智能手機（複數）"
+    "ch": "????"
   },
   {
     "word": "smartwatch",
@@ -11920,6 +11900,26 @@
     "ch": "平板電腦；藥片"
   },
   {
+    "word": "take a walk",
+    "cefr": "A2",
+    "frequency": 1,
+    "sentences": [
+      {
+        "text": "Let's take a walk after dinner.",
+        "answer": "take a walk"
+      },
+      {
+        "text": "We usually take a walk around the lake on Sundays.",
+        "answer": "take a walk"
+      },
+      {
+        "text": "Taking a walk helps me relax after work.",
+        "answer": "take a walk"
+      }
+    ],
+    "ch": "??"
+  },
+  {
     "word": "task",
     "cefr": "A2",
     "frequency": 43,
@@ -12698,26 +12698,6 @@
       }
     ],
     "ch": "排球"
-  },
-  {
-    "word": "walking",
-    "cefr": "A2",
-    "frequency": 1,
-    "sentences": [
-      {
-        "text": "Walking after dinner helps me relax.",
-        "answer": "walking"
-      },
-      {
-        "text": "We spent the afternoon walking around the lake.",
-        "answer": "walking"
-      },
-      {
-        "text": "Walking to school saves money and time.",
-        "answer": "walking"
-      }
-    ],
-    "ch": "步行；走路"
   },
   {
     "word": "wallet",
