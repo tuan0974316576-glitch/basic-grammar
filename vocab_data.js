@@ -22469,20 +22469,20 @@ const VOCAB_DB = {
             ]
         },
         {
-            "en": "creatives",
-            "ch": "創作人；創意工作者",
+            "en": "creative",
+            "ch": "?????",
             "sents": [
                 {
-                    "text": "The company hired young creatives for the project.",
-                    "answer": "creatives"
+                    "text": "The company hired a young creative for the project.",
+                    "answer": "creative"
                 },
                 {
-                    "text": "Many creatives work in this part of the city.",
-                    "answer": "creatives"
+                    "text": "A creative often works with ideas and design.",
+                    "answer": "creative"
                 },
                 {
-                    "text": "The event brought together designers and other creatives.",
-                    "answer": "creatives"
+                    "text": "The event brought together designers and other creative people.",
+                    "answer": "creative"
                 }
             ]
         },
@@ -25547,20 +25547,20 @@ const VOCAB_DB = {
             ]
         },
         {
-            "en": "horrors",
-            "ch": "恐怖故事；驚恐",
+            "en": "horror",
+            "ch": "?????",
             "sents": [
                 {
-                    "text": "The film is full of dark horrors.",
-                    "answer": "horrors"
+                    "text": "The film is full of horror.",
+                    "answer": "horror"
                 },
                 {
-                    "text": "They spoke about the horrors of war.",
-                    "answer": "horrors"
+                    "text": "They spoke about the horror of war.",
+                    "answer": "horror"
                 },
                 {
-                    "text": "The old book described many strange horrors.",
-                    "answer": "horrors"
+                    "text": "The old book described a scene of pure horror.",
+                    "answer": "horror"
                 }
             ]
         },
