@@ -538,13 +538,6 @@
     "ch": "除此之外"
   },
   {
-    "word": "apart from this",
-    "cefr": "B1",
-    "frequency": null,
-    "sentences": [],
-    "ch": "除此之外"
-  },
-  {
     "word": "ape",
     "cefr": "B1",
     "frequency": 1,
@@ -2898,7 +2891,7 @@
         "answer": "coz"
       }
     ],
-    "ch": ""
+    "ch": "因為"
   },
   {
     "word": "cream",
@@ -2914,7 +2907,7 @@
         "answer": "cream"
       }
     ],
-    "ch": ""
+    "ch": "忌廉；乳霜"
   },
   {
     "word": "creatives",
@@ -2926,7 +2919,7 @@
         "answer": "creatives"
       }
     ],
-    "ch": ""
+    "ch": "創作人；創意工作者"
   },
   {
     "word": "cruel",
@@ -2938,7 +2931,7 @@
         "answer": "cruel"
       }
     ],
-    "ch": ""
+    "ch": "殘忍的"
   },
   {
     "word": "cuisine",
@@ -2954,7 +2947,7 @@
         "answer": "cuisine"
       }
     ],
-    "ch": ""
+    "ch": "菜式；烹飪風格"
   },
   {
     "word": "cultural",
@@ -2974,7 +2967,7 @@
         "answer": "cultural"
       }
     ],
-    "ch": ""
+    "ch": "文化的"
   },
   {
     "word": "currency",
@@ -2986,7 +2979,7 @@
         "answer": "currency"
       }
     ],
-    "ch": ""
+    "ch": "貨幣"
   },
   {
     "word": "currently",
@@ -3006,14 +2999,14 @@
         "answer": "currently"
       }
     ],
-    "ch": ""
+    "ch": "目前；現時"
   },
   {
     "word": "curtain",
     "cefr": "B1",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "窗簾；帷幕"
   },
   {
     "word": "cushion",
@@ -3025,7 +3018,7 @@
         "answer": "cushion"
       }
     ],
-    "ch": ""
+    "ch": "坐墊；靠墊"
   },
   {
     "word": "custom",
@@ -3041,7 +3034,7 @@
         "answer": "custom"
       }
     ],
-    "ch": ""
+    "ch": "習俗；訂製"
   },
   {
     "word": "damage",
@@ -3061,7 +3054,7 @@
         "answer": "damage"
       }
     ],
-    "ch": ""
+    "ch": "損壞；損害"
   },
   {
     "word": "dangerously",
@@ -3073,7 +3066,7 @@
         "answer": "dangerously"
       }
     ],
-    "ch": ""
+    "ch": "危險地"
   },
   {
     "word": "deal",
@@ -3093,7 +3086,7 @@
         "answer": "deal"
       }
     ],
-    "ch": ""
+    "ch": "處理；交易"
   },
   {
     "word": "decade",
@@ -3113,7 +3106,7 @@
         "answer": "decade"
       }
     ],
-    "ch": ""
+    "ch": "十年"
   },
   {
     "word": "deep",
@@ -3133,14 +3126,14 @@
         "answer": "deep"
       }
     ],
-    "ch": ""
+    "ch": "深的"
   },
   {
     "word": "defense",
     "cefr": "B1",
     "frequency": 4,
     "sentences": [],
-    "ch": ""
+    "ch": "防禦"
   },
   {
     "word": "define",
@@ -3156,7 +3149,7 @@
         "answer": "define"
       }
     ],
-    "ch": ""
+    "ch": "界定；下定義"
   },
   {
     "word": "definition",
@@ -3176,7 +3169,7 @@
         "answer": "definition"
       }
     ],
-    "ch": ""
+    "ch": "定義"
   },
   {
     "word": "deliver",
@@ -3196,7 +3189,7 @@
         "answer": "deliver"
       }
     ],
-    "ch": ""
+    "ch": "派送；發表"
   },
   {
     "word": "despite",
@@ -3216,27 +3209,7 @@
         "answer": "despite"
       }
     ],
-    "ch": ""
-  },
-  {
-    "word": "despite",
-    "cefr": "B1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "**China's army of irregular recyclers face scrapheap** Unlicensed rubbish collectors are frowned on, despite helping to keep cities clean, writes Patti Waldmeir.",
-        "answer": "despite"
-      },
-      {
-        "text": "[4] Despite decades of initiatives, it’s still typically more expensive for local governments to recycle household waste than to send it to a landfill.",
-        "answer": "despite"
-      },
-      {
-        "text": "[2] Despite Thommo's fate, on the whole I would rather have been him than me.",
-        "answer": "despite"
-      }
-    ],
-    "ch": ""
+    "ch": "儘管"
   },
   {
     "word": "destination",
@@ -3248,7 +3221,7 @@
         "answer": "destination"
       }
     ],
-    "ch": ""
+    "ch": "目的地"
   },
   {
     "word": "determine",
@@ -3260,7 +3233,7 @@
         "answer": "determine"
       }
     ],
-    "ch": ""
+    "ch": "決定；確定"
   },
   {
     "word": "development",
@@ -3280,7 +3253,7 @@
         "answer": "development"
       }
     ],
-    "ch": ""
+    "ch": "發展"
   },
   {
     "word": "diamond",
@@ -3292,14 +3265,14 @@
         "answer": "diamond"
       }
     ],
-    "ch": ""
+    "ch": "鑽石"
   },
   {
     "word": "difficulty",
     "cefr": "B1",
     "frequency": 5,
     "sentences": [],
-    "ch": ""
+    "ch": "困難"
   },
   {
     "word": "direct",
@@ -3311,7 +3284,7 @@
         "answer": "direct"
       }
     ],
-    "ch": ""
+    "ch": "直接的；指導"
   },
   {
     "word": "directly",
@@ -3327,7 +3300,7 @@
         "answer": "directly"
       }
     ],
-    "ch": ""
+    "ch": "直接地"
   },
   {
     "word": "dirt",
@@ -3339,7 +3312,7 @@
         "answer": "dirt"
       }
     ],
-    "ch": ""
+    "ch": "泥土；污垢"
   },
   {
     "word": "disadvantage",
@@ -3351,7 +3324,7 @@
         "answer": "disadvantage"
       }
     ],
-    "ch": ""
+    "ch": "缺點；不利條件"
   },
   {
     "word": "disappointed",
@@ -3363,7 +3336,7 @@
         "answer": "disappointed"
       }
     ],
-    "ch": ""
+    "ch": "失望的"
   },
   {
     "word": "disk",
@@ -3375,7 +3348,7 @@
         "answer": "disk"
       }
     ],
-    "ch": ""
+    "ch": "磁碟；圓盤"
   },
   {
     "word": "diver",
@@ -3387,14 +3360,14 @@
         "answer": "diver"
       }
     ],
-    "ch": ""
+    "ch": "潛水員"
   },
   {
     "word": "documentary",
     "cefr": "B1",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "紀錄片"
   },
   {
     "word": "dolphin",
@@ -3406,14 +3379,14 @@
         "answer": "dolphin"
       }
     ],
-    "ch": ""
+    "ch": "海豚"
   },
   {
     "word": "donate",
     "cefr": "B1",
     "frequency": 4,
     "sentences": [],
-    "ch": ""
+    "ch": "捐贈"
   },
   {
     "word": "double",
@@ -3425,7 +3398,7 @@
         "answer": "double"
       }
     ],
-    "ch": ""
+    "ch": "雙倍的；加倍"
   },
   {
     "word": "doubt",
@@ -3445,7 +3418,7 @@
         "answer": "doubt"
       }
     ],
-    "ch": ""
+    "ch": "懷疑；疑問"
   },
   {
     "word": "drop",
@@ -3465,7 +3438,7 @@
         "answer": "drop"
       }
     ],
-    "ch": ""
+    "ch": "掉下；下降"
   },
   {
     "word": "drum",
@@ -3477,7 +3450,7 @@
         "answer": "drum"
       }
     ],
-    "ch": ""
+    "ch": "鼓"
   },
   {
     "word": "due",
@@ -3497,7 +3470,7 @@
         "answer": "due"
       }
     ],
-    "ch": ""
+    "ch": "到期的；應得的"
   },
   {
     "word": "due to",
@@ -3517,7 +3490,7 @@
         "answer": "due to"
       }
     ],
-    "ch": ""
+    "ch": "由於"
   },
   {
     "word": "durian",
@@ -3529,7 +3502,7 @@
         "answer": "durian"
       }
     ],
-    "ch": ""
+    "ch": "榴槤"
   },
   {
     "word": "dust",
@@ -3549,14 +3522,14 @@
         "answer": "dust"
       }
     ],
-    "ch": ""
+    "ch": "灰塵"
   },
   {
     "word": "dusty",
     "cefr": "B1",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "滿是灰塵的"
   },
   {
     "word": "duty",
@@ -3568,7 +3541,7 @@
         "answer": "duty"
       }
     ],
-    "ch": ""
+    "ch": "責任；值班"
   },
   {
     "word": "earlier",
@@ -3580,14 +3553,14 @@
         "answer": "earlier"
       }
     ],
-    "ch": ""
+    "ch": "較早；更早的"
   },
   {
     "word": "earthquake",
     "cefr": "B1",
     "frequency": 2,
     "sentences": [],
-    "ch": ""
+    "ch": "地震"
   },
   {
     "word": "economic",
@@ -3607,7 +3580,7 @@
         "answer": "economic"
       }
     ],
-    "ch": ""
+    "ch": "經濟的"
   },
   {
     "word": "economy",
@@ -3627,7 +3600,7 @@
         "answer": "economy"
       }
     ],
-    "ch": ""
+    "ch": "經濟"
   },
   {
     "word": "edge",
@@ -3643,7 +3616,7 @@
         "answer": "edge"
       }
     ],
-    "ch": ""
+    "ch": "邊緣"
   },
   {
     "word": "editor",
@@ -3663,7 +3636,7 @@
         "answer": "editor"
       }
     ],
-    "ch": ""
+    "ch": "編輯"
   },
   {
     "word": "educate",
@@ -3683,7 +3656,7 @@
         "answer": "educate"
       }
     ],
-    "ch": ""
+    "ch": "教育"
   },
   {
     "word": "educational",
@@ -3703,7 +3676,7 @@
         "answer": "educational"
       }
     ],
-    "ch": ""
+    "ch": "教育的；有教育意義的"
   },
   {
     "word": "effective",
@@ -3723,7 +3696,7 @@
         "answer": "effective"
       }
     ],
-    "ch": ""
+    "ch": "有效的"
   },
   {
     "word": "effectively",
@@ -3735,7 +3708,7 @@
         "answer": "effectively"
       }
     ],
-    "ch": ""
+    "ch": "有效地"
   },
   {
     "word": "effort",
@@ -3747,7 +3720,7 @@
         "answer": "effort"
       }
     ],
-    "ch": ""
+    "ch": "努力"
   },
   {
     "word": "element",
@@ -3759,7 +3732,7 @@
         "answer": "element"
       }
     ],
-    "ch": ""
+    "ch": "元素；要素"
   },
   {
     "word": "emergency",
@@ -3779,7 +3752,7 @@
         "answer": "emergency"
       }
     ],
-    "ch": ""
+    "ch": "緊急情況"
   },
   {
     "word": "emotion",
@@ -3791,14 +3764,14 @@
         "answer": "emotion"
       }
     ],
-    "ch": ""
+    "ch": "情感；情緒"
   },
   {
     "word": "employment",
     "cefr": "B1",
     "frequency": 6,
     "sentences": [],
-    "ch": ""
+    "ch": "就業；工作"
   },
   {
     "word": "encourage",
@@ -3818,7 +3791,7 @@
         "answer": "encourage"
       }
     ],
-    "ch": ""
+    "ch": "鼓勵"
   },
   {
     "word": "endanger",
@@ -3838,14 +3811,14 @@
         "answer": "endanger"
       }
     ],
-    "ch": ""
+    "ch": "危害"
   },
   {
     "word": "enemy",
     "cefr": "B1",
     "frequency": 2,
     "sentences": [],
-    "ch": ""
+    "ch": "敵人"
   },
   {
     "word": "entertain",
@@ -3857,14 +3830,14 @@
         "answer": "entertain"
       }
     ],
-    "ch": ""
+    "ch": "娛樂；招待"
   },
   {
     "word": "entertainment",
     "cefr": "B1",
     "frequency": 2,
     "sentences": [],
-    "ch": ""
+    "ch": "娛樂"
   },
   {
     "word": "entrance",
@@ -3884,7 +3857,7 @@
         "answer": "entrance"
       }
     ],
-    "ch": ""
+    "ch": "入口"
   },
   {
     "word": "entry",
@@ -3904,7 +3877,7 @@
         "answer": "entry"
       }
     ],
-    "ch": ""
+    "ch": "進入；條目"
   },
   {
     "word": "environmental",
@@ -3924,7 +3897,7 @@
         "answer": "environmental"
       }
     ],
-    "ch": ""
+    "ch": "環境的"
   },
   {
     "word": "episode",
@@ -3940,7 +3913,7 @@
         "answer": "episode"
       }
     ],
-    "ch": ""
+    "ch": "一集；片段"
   },
   {
     "word": "equally",
@@ -3956,7 +3929,7 @@
         "answer": "equally"
       }
     ],
-    "ch": ""
+    "ch": "同樣地；平等地"
   },
   {
     "word": "escape",
@@ -3972,7 +3945,7 @@
         "answer": "escape"
       }
     ],
-    "ch": ""
+    "ch": "逃走；逃脫"
   },
   {
     "word": "essential",
@@ -3992,7 +3965,7 @@
         "answer": "essential"
       }
     ],
-    "ch": ""
+    "ch": "必要的；本質的"
   },
   {
     "word": "european",
@@ -4004,7 +3977,7 @@
         "answer": "european"
       }
     ],
-    "ch": ""
+    "ch": "歐洲的；歐洲人"
   },
   {
     "word": "eventually",
@@ -4024,7 +3997,7 @@
         "answer": "eventually"
       }
     ],
-    "ch": ""
+    "ch": "最終"
   },
   {
     "word": "examine",
@@ -4040,7 +4013,7 @@
         "answer": "examine"
       }
     ],
-    "ch": ""
+    "ch": "檢查；考核"
   },
   {
     "word": "except",
@@ -4060,7 +4033,7 @@
         "answer": "except"
       }
     ],
-    "ch": ""
+    "ch": "除了"
   },
   {
     "word": "exchange",
@@ -4080,7 +4053,7 @@
         "answer": "exchange"
       }
     ],
-    "ch": ""
+    "ch": "交換；交流"
   },
   {
     "word": "excite",
@@ -4100,7 +4073,7 @@
         "answer": "excite"
       }
     ],
-    "ch": ""
+    "ch": "使興奮"
   },
   {
     "word": "excitement",
@@ -4120,7 +4093,7 @@
         "answer": "excitement"
       }
     ],
-    "ch": ""
+    "ch": "興奮"
   },
   {
     "word": "exhibition",
@@ -4140,7 +4113,7 @@
         "answer": "exhibition"
       }
     ],
-    "ch": ""
+    "ch": "展覽"
   },
   {
     "word": "expand",
@@ -4160,7 +4133,7 @@
         "answer": "expand"
       }
     ],
-    "ch": ""
+    "ch": "擴展；擴大"
   },
   {
     "word": "experience",
@@ -4180,7 +4153,7 @@
         "answer": "experience"
       }
     ],
-    "ch": ""
+    "ch": "經驗；經歷"
   },
   {
     "word": "experiment",
@@ -4200,7 +4173,7 @@
         "answer": "experiment"
       }
     ],
-    "ch": ""
+    "ch": "實驗"
   },
   {
     "word": "explode",
@@ -4212,7 +4185,7 @@
         "answer": "explode"
       }
     ],
-    "ch": ""
+    "ch": "爆炸"
   },
   {
     "word": "explore",
@@ -4228,14 +4201,14 @@
         "answer": "explore"
       }
     ],
-    "ch": ""
+    "ch": "探索"
   },
   {
     "word": "explorer",
     "cefr": "B1",
     "frequency": 2,
     "sentences": [],
-    "ch": ""
+    "ch": "探險家"
   },
   {
     "word": "explosion",
@@ -4247,7 +4220,7 @@
         "answer": "explosion"
       }
     ],
-    "ch": ""
+    "ch": "爆炸"
   },
   {
     "word": "export",
@@ -4263,7 +4236,7 @@
         "answer": "export"
       }
     ],
-    "ch": ""
+    "ch": "出口；輸出"
   },
   {
     "word": "extra",
@@ -4283,21 +4256,21 @@
         "answer": "extra"
       }
     ],
-    "ch": ""
+    "ch": "額外的；額外地"
   },
   {
     "word": "facebook",
     "cefr": "B1",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "臉書"
   },
   {
     "word": "failing",
     "cefr": "B1",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "失敗；不及格"
   },
   {
     "word": "fairly",
@@ -4317,7 +4290,7 @@
         "answer": "fairly"
       }
     ],
-    "ch": ""
+    "ch": "相當；公平地"
   },
   {
     "word": "familiar",
@@ -4329,14 +4302,14 @@
         "answer": "familiar"
       }
     ],
-    "ch": ""
+    "ch": "熟悉的"
   },
   {
     "word": "fancy",
     "cefr": "B1",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "花俏的；想要"
   },
   {
     "word": "far",
@@ -4356,7 +4329,7 @@
         "answer": "far"
       }
     ],
-    "ch": ""
+    "ch": "遠地；很大程度上"
   },
   {
     "word": "farmhouse",
@@ -4376,21 +4349,21 @@
         "answer": "farmhouse"
       }
     ],
-    "ch": ""
+    "ch": "農舍"
   },
   {
     "word": "fashionable",
     "cefr": "B1",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "時尚的"
   },
   {
     "word": "favor",
     "cefr": "B1",
     "frequency": 2,
     "sentences": [],
-    "ch": ""
+    "ch": "幫助；偏愛"
   },
   {
     "word": "fear",
@@ -4402,7 +4375,7 @@
         "answer": "fear"
       }
     ],
-    "ch": ""
+    "ch": "恐懼；害怕"
   },
   {
     "word": "feature",
@@ -4422,7 +4395,7 @@
         "answer": "feature"
       }
     ],
-    "ch": ""
+    "ch": "特色；特徵"
   },
   {
     "word": "fence",
@@ -4434,14 +4407,14 @@
         "answer": "fence"
       }
     ],
-    "ch": ""
+    "ch": "圍欄"
   },
   {
     "word": "ferry",
     "cefr": "B1",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "渡輪"
   },
   {
     "word": "filmmaker",
@@ -4457,7 +4430,7 @@
         "answer": "filmmaker"
       }
     ],
-    "ch": ""
+    "ch": "電影製作人"
   },
   {
     "word": "financial",
@@ -4477,7 +4450,7 @@
         "answer": "financial"
       }
     ],
-    "ch": ""
+    "ch": "財務的；金融的"
   },
   {
     "word": "fire",
@@ -4497,7 +4470,7 @@
         "answer": "fire"
       }
     ],
-    "ch": ""
+    "ch": "火；解僱；開火"
   },
   {
     "word": "fitness",
@@ -4513,7 +4486,7 @@
         "answer": "fitness"
       }
     ],
-    "ch": ""
+    "ch": "健康；健身"
   },
   {
     "word": "flag",
@@ -4525,14 +4498,14 @@
         "answer": "flag"
       }
     ],
-    "ch": ""
+    "ch": "旗幟"
   },
   {
     "word": "flavor",
     "cefr": "B1",
     "frequency": 4,
     "sentences": [],
-    "ch": ""
+    "ch": "味道；風味"
   },
   {
     "word": "flood",
@@ -4552,7 +4525,7 @@
         "answer": "flood"
       }
     ],
-    "ch": ""
+    "ch": "洪水；淹沒"
   },
   {
     "word": "floorball",
@@ -4568,7 +4541,7 @@
         "answer": "floorball"
       }
     ],
-    "ch": ""
+    "ch": "地板曲棍球"
   },
   {
     "word": "flour",
@@ -4580,7 +4553,7 @@
         "answer": "flour"
       }
     ],
-    "ch": ""
+    "ch": "麵粉"
   },
   {
     "word": "flow",
@@ -4592,7 +4565,7 @@
         "answer": "flow"
       }
     ],
-    "ch": ""
+    "ch": "流動；流量"
   },
   {
     "word": "force",
@@ -4612,7 +4585,7 @@
         "answer": "force"
       }
     ],
-    "ch": ""
+    "ch": "力量；迫使"
   },
   {
     "word": "forever",
@@ -4632,7 +4605,7 @@
         "answer": "forever"
       }
     ],
-    "ch": ""
+    "ch": "永遠"
   },
   {
     "word": "frame",
@@ -4644,14 +4617,14 @@
         "answer": "frame"
       }
     ],
-    "ch": ""
+    "ch": "框架；畫框"
   },
   {
     "word": "freeze",
     "cefr": "B1",
     "frequency": 3,
     "sentences": [],
-    "ch": ""
+    "ch": "結冰；凍住"
   },
   {
     "word": "frequently",
@@ -4671,7 +4644,7 @@
         "answer": "frequently"
       }
     ],
-    "ch": ""
+    "ch": "經常地"
   },
   {
     "word": "freshly",
@@ -4683,21 +4656,21 @@
         "answer": "freshly"
       }
     ],
-    "ch": ""
+    "ch": "新鮮地；剛剛"
   },
   {
     "word": "freshness",
     "cefr": "B1",
     "frequency": 2,
     "sentences": [],
-    "ch": ""
+    "ch": "新鮮；清新"
   },
   {
     "word": "friendship",
     "cefr": "B1",
     "frequency": 3,
     "sentences": [],
-    "ch": ""
+    "ch": "友誼"
   },
   {
     "word": "frighten",
@@ -4713,21 +4686,21 @@
         "answer": "frighten"
       }
     ],
-    "ch": ""
+    "ch": "使害怕"
   },
   {
     "word": "frustrate",
     "cefr": "B1",
     "frequency": 2,
     "sentences": [],
-    "ch": ""
+    "ch": "使沮喪"
   },
   {
     "word": "fry",
     "cefr": "B1",
     "frequency": 9,
     "sentences": [],
-    "ch": ""
+    "ch": "油炸；煎"
   },
   {
     "word": "fryer",
@@ -4743,7 +4716,7 @@
         "answer": "fryer"
       }
     ],
-    "ch": ""
+    "ch": "炸鍋；油炸器"
   },
   {
     "word": "fur",
@@ -4759,14 +4732,14 @@
         "answer": "fur"
       }
     ],
-    "ch": ""
+    "ch": "毛皮"
   },
   {
     "word": "furthermore",
     "cefr": "B1",
     "frequency": null,
     "sentences": [],
-    "ch": ""
+    "ch": "此外；而且"
   },
   {
     "word": "fuse",
@@ -4778,14 +4751,14 @@
         "answer": "fuse"
       }
     ],
-    "ch": ""
+    "ch": "保險絲；融合"
   },
   {
     "word": "gag",
     "cefr": "B1",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "笑料；堵住嘴"
   },
   {
     "word": "garbage",
@@ -4805,7 +4778,7 @@
         "answer": "garbage"
       }
     ],
-    "ch": ""
+    "ch": "垃圾"
   },
   {
     "word": "gather",
@@ -4825,7 +4798,7 @@
         "answer": "gather"
       }
     ],
-    "ch": ""
+    "ch": "聚集；收集"
   },
   {
     "word": "geek",
@@ -4837,7 +4810,7 @@
         "answer": "geek"
       }
     ],
-    "ch": ""
+    "ch": "電腦迷；怪咖"
   },
   {
     "word": "generally",
@@ -4853,7 +4826,7 @@
         "answer": "generally"
       }
     ],
-    "ch": ""
+    "ch": "一般來說；通常"
   },
   {
     "word": "generation",
@@ -4873,7 +4846,7 @@
         "answer": "generation"
       }
     ],
-    "ch": ""
+    "ch": "世代；一代人"
   },
   {
     "word": "gentle",
@@ -4893,21 +4866,21 @@
         "answer": "gentle"
       }
     ],
-    "ch": ""
+    "ch": "溫柔的"
   },
   {
     "word": "gentleman",
     "cefr": "B1",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "先生；紳士"
   },
   {
     "word": "get rid of",
     "cefr": "B1",
     "frequency": 0,
     "sentences": [],
-    "ch": ""
+    "ch": "去除；擺脫"
   },
   {
     "word": "ghost",
@@ -4919,7 +4892,7 @@
         "answer": "ghost"
       }
     ],
-    "ch": ""
+    "ch": "鬼魂"
   },
   {
     "word": "giant",
@@ -4931,7 +4904,7 @@
         "answer": "giant"
       }
     ],
-    "ch": ""
+    "ch": "巨大的；巨人"
   },
   {
     "word": "glad",
@@ -4943,7 +4916,7 @@
         "answer": "glad"
       }
     ],
-    "ch": ""
+    "ch": "高興的"
   },
   {
     "word": "global",
@@ -4963,7 +4936,7 @@
         "answer": "global"
       }
     ],
-    "ch": ""
+    "ch": "全球的"
   },
   {
     "word": "glove",
@@ -4983,7 +4956,7 @@
         "answer": "glove"
       }
     ],
-    "ch": ""
+    "ch": "手套"
   },
   {
     "word": "graduate",
@@ -5003,14 +4976,14 @@
         "answer": "graduate"
       }
     ],
-    "ch": ""
+    "ch": "畢業；畢業生"
   },
   {
     "word": "grain",
     "cefr": "B1",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "穀物；顆粒"
   },
   {
     "word": "grateful",
@@ -5030,7 +5003,7 @@
         "answer": "grateful"
       }
     ],
-    "ch": ""
+    "ch": "感激的"
   },
   {
     "word": "growth",
@@ -5050,7 +5023,7 @@
         "answer": "growth"
       }
     ],
-    "ch": ""
+    "ch": "增長；成長"
   },
   {
     "word": "guard",
@@ -5070,7 +5043,7 @@
         "answer": "guard"
       }
     ],
-    "ch": ""
+    "ch": "守衛；保護"
   },
   {
     "word": "guilty",
@@ -5082,7 +5055,7 @@
         "answer": "guilty"
       }
     ],
-    "ch": ""
+    "ch": "有罪的；內疚的"
   },
   {
     "word": "gymnastics",
@@ -5094,7 +5067,7 @@
         "answer": "gymnastics"
       }
     ],
-    "ch": ""
+    "ch": "體操"
   },
   {
     "word": "hand",
@@ -5114,7 +5087,7 @@
         "answer": "hand"
       }
     ],
-    "ch": ""
+    "ch": "手；交給"
   },
   {
     "word": "handmade",
@@ -5126,7 +5099,7 @@
         "answer": "handmade"
       }
     ],
-    "ch": ""
+    "ch": "手工製作的"
   },
   {
     "word": "hang",
@@ -5146,7 +5119,7 @@
         "answer": "hang"
       }
     ],
-    "ch": ""
+    "ch": "懸掛；吊著"
   },
   {
     "word": "happiness",
@@ -5166,21 +5139,21 @@
         "answer": "happiness"
       }
     ],
-    "ch": ""
+    "ch": "快樂；幸福"
   },
   {
     "word": "hardly",
     "cefr": "B1",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "幾乎不"
   },
   {
     "word": "hate",
     "cefr": "B1",
     "frequency": 3,
     "sentences": [],
-    "ch": ""
+    "ch": "討厭；憎恨"
   },
   {
     "word": "head",
@@ -5200,7 +5173,7 @@
         "answer": "head"
       }
     ],
-    "ch": ""
+    "ch": "頭；領導"
   },
   {
     "word": "headline",
@@ -5212,14 +5185,14 @@
         "answer": "headline"
       }
     ],
-    "ch": ""
+    "ch": "標題；頭條"
   },
   {
     "word": "heavily",
     "cefr": "B1",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "沉重地；大量地"
   },
   {
     "word": "helicopter",
@@ -5239,7 +5212,7 @@
         "answer": "helicopter"
       }
     ],
-    "ch": ""
+    "ch": "直升機"
   },
   {
     "word": "highlight",
@@ -5259,7 +5232,7 @@
         "answer": "highlight"
       }
     ],
-    "ch": ""
+    "ch": "重點；突出"
   },
   {
     "word": "highly",
@@ -5279,7 +5252,7 @@
         "answer": "highly"
       }
     ],
-    "ch": ""
+    "ch": "高度地；非常"
   },
   {
     "word": "hilliest",
@@ -5291,7 +5264,7 @@
         "answer": "hilliest"
       }
     ],
-    "ch": ""
+    "ch": "最多山的"
   },
   {
     "word": "hillside",
@@ -5303,7 +5276,7 @@
         "answer": "hillside"
       }
     ],
-    "ch": ""
+    "ch": "山坡"
   },
   {
     "word": "historic",
@@ -5319,7 +5292,7 @@
         "answer": "historic"
       }
     ],
-    "ch": ""
+    "ch": "有歷史意義的"
   },
   {
     "word": "historical",
@@ -5331,7 +5304,7 @@
         "answer": "historical"
       }
     ],
-    "ch": ""
+    "ch": "歷史的"
   },
   {
     "word": "homemade",
@@ -5347,7 +5320,7 @@
         "answer": "homemade"
       }
     ],
-    "ch": ""
+    "ch": "自家製的"
   },
   {
     "word": "homepage",
@@ -5363,14 +5336,14 @@
         "answer": "homepage"
       }
     ],
-    "ch": ""
+    "ch": "主頁"
   },
   {
     "word": "hometown",
     "cefr": "B1",
     "frequency": 2,
     "sentences": [],
-    "ch": ""
+    "ch": "家鄉"
   },
   {
     "word": "honest",
@@ -5390,7 +5363,7 @@
         "answer": "honest"
       }
     ],
-    "ch": ""
+    "ch": "誠實的"
   },
   {
     "word": "honeymoon",
@@ -5402,14 +5375,14 @@
         "answer": "honeymoon"
       }
     ],
-    "ch": ""
+    "ch": "蜜月"
   },
   {
     "word": "honor",
     "cefr": "B1",
     "frequency": 3,
     "sentences": [],
-    "ch": ""
+    "ch": "榮譽；尊敬"
   },
   {
     "word": "hopeless",
@@ -5421,7 +5394,7 @@
         "answer": "hopeless"
       }
     ],
-    "ch": ""
+    "ch": "絕望的；無望的"
   },
   {
     "word": "horrible",
@@ -5437,21 +5410,21 @@
         "answer": "horrible"
       }
     ],
-    "ch": ""
+    "ch": "可怕的"
   },
   {
     "word": "horrors",
     "cefr": "B1",
     "frequency": 1,
     "sentences": [],
-    "ch": ""
+    "ch": "恐怖故事；驚恐"
   },
   {
     "word": "however",
     "cefr": "B1",
     "frequency": null,
     "sentences": [],
-    "ch": ""
+    "ch": "然而"
   },
   {
     "word": "hug",
@@ -5463,7 +5436,7 @@
         "answer": "hug"
       }
     ],
-    "ch": ""
+    "ch": "擁抱"
   },
   {
     "word": "hurdle",
@@ -5479,7 +5452,7 @@
         "answer": "hurdle"
       }
     ],
-    "ch": ""
+    "ch": "欄架；障礙"
   },
   {
     "word": "hurry",
@@ -5491,7 +5464,7 @@
         "answer": "hurry"
       }
     ],
-    "ch": ""
+    "ch": "趕快；匆忙"
   },
   {
     "word": "icy",
@@ -5503,7 +5476,7 @@
         "answer": "icy"
       }
     ],
-    "ch": ""
+    "ch": "結冰的；冰冷的"
   },
   {
     "word": "identity",
@@ -5515,7 +5488,7 @@
         "answer": "identity"
       }
     ],
-    "ch": ""
+    "ch": "身份；特徵"
   },
   {
     "word": "ignore",
@@ -5531,7 +5504,7 @@
         "answer": "ignore"
       }
     ],
-    "ch": ""
+    "ch": "忽略"
   },
   {
     "word": "illegal",
@@ -5551,21 +5524,21 @@
         "answer": "illegal"
       }
     ],
-    "ch": ""
+    "ch": "非法的"
   },
   {
     "word": "imaginary",
     "cefr": "B1",
     "frequency": 2,
     "sentences": [],
-    "ch": ""
+    "ch": "想像中的"
   },
   {
     "word": "imagine a scenario where",
     "cefr": "B1",
     "frequency": null,
     "sentences": [],
-    "ch": ""
+    "ch": "想像一個情境："
   },
   {
     "word": "immediate",
@@ -5581,7 +5554,7 @@
         "answer": "immediate"
       }
     ],
-    "ch": ""
+    "ch": "即時的；立即的"
   },
   {
     "word": "immigrant",
@@ -5597,7 +5570,7 @@
         "answer": "immigrant"
       }
     ],
-    "ch": ""
+    "ch": "移民"
   },
   {
     "word": "impact",
@@ -5617,7 +5590,7 @@
         "answer": "impact"
       }
     ],
-    "ch": ""
+    "ch": "影響；衝擊"
   },
   {
     "word": "import",
@@ -5629,7 +5602,7 @@
         "answer": "import"
       }
     ],
-    "ch": ""
+    "ch": "進口；輸入"
   },
   {
     "word": "importance",
@@ -5645,14 +5618,14 @@
         "answer": "importance"
       }
     ],
-    "ch": ""
+    "ch": "重要性"
   },
   {
     "word": "impression",
     "cefr": "B1",
     "frequency": 2,
     "sentences": [],
-    "ch": ""
+    "ch": "印象"
   },
   {
     "word": "impressive",
@@ -5664,7 +5637,7 @@
         "answer": "impressive"
       }
     ],
-    "ch": ""
+    "ch": "令人印象深刻的"
   },
   {
     "word": "improvement",
@@ -5684,28 +5657,28 @@
         "answer": "improvement"
       }
     ],
-    "ch": ""
+    "ch": "改善；進步"
   },
   {
     "word": "in addition",
     "cefr": "B1",
     "frequency": null,
     "sentences": [],
-    "ch": ""
+    "ch": "此外"
   },
   {
     "word": "in other words",
     "cefr": "B1",
     "frequency": null,
     "sentences": [],
-    "ch": ""
+    "ch": "換句話說"
   },
   {
     "word": "in spite of",
     "cefr": "B1",
     "frequency": null,
     "sentences": [],
-    "ch": ""
+    "ch": "儘管"
   },
   {
     "word": "incredibly",
@@ -5725,7 +5698,7 @@
         "answer": "incredibly"
       }
     ],
-    "ch": ""
+    "ch": "非常地；難以置信地"
   },
   {
     "word": "indeed",
@@ -5741,7 +5714,7 @@
         "answer": "indeed"
       }
     ],
-    "ch": ""
+    "ch": "的確"
   },
   {
     "word": "indicate",
@@ -5753,7 +5726,7 @@
         "answer": "indicate"
       }
     ],
-    "ch": ""
+    "ch": "顯示；表明"
   },
   {
     "word": "indoor",
@@ -5769,7 +5742,7 @@
         "answer": "indoor"
       }
     ],
-    "ch": ""
+    "ch": "室內的"
   },
   {
     "word": "indoors",
@@ -5781,7 +5754,7 @@
         "answer": "indoors"
       }
     ],
-    "ch": ""
+    "ch": "在室內"
   },
   {
     "word": "influence",
@@ -11350,26 +11323,6 @@
     "word": "therefore",
     "cefr": "B1",
     "frequency": 12,
-    "sentences": [
-      {
-        "text": "Therefore, any emergency cases requiring immediate hospitalization should be taken to the Tsing Shan Hospital instead.",
-        "answer": "therefore"
-      },
-      {
-        "text": "It is therefore extremely rare and would be difficult / impossible to replace if damaged.",
-        "answer": "therefore"
-      },
-      {
-        "text": "The work will therefore be conducted from the hours of 9am to 7pm from Monday to Saturday from 10 April and we can still finish the work within the agreed time frame.",
-        "answer": "therefore"
-      }
-    ],
-    "ch": ""
-  },
-  {
-    "word": "therefore",
-    "cefr": "B1",
-    "frequency": null,
     "sentences": [
       {
         "text": "Therefore, any emergency cases requiring immediate hospitalization should be taken to the Tsing Shan Hospital instead.",
