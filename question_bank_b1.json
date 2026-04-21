@@ -15623,7 +15623,20 @@
     "word": "texting",
     "cefr": "B1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Texting while crossing the road can be very dangerous.",
+        "answer": "texting"
+      },
+      {
+        "text": "She prefers calling her friends to texting them.",
+        "answer": "texting"
+      },
+      {
+        "text": "The teacher warned students against texting during class.",
+        "answer": "texting"
+      }
+    ],
     "ch": "發短訊"
   },
   {
@@ -15632,7 +15645,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "There's little foreign text to slow you down, and anyway you get Thai instructions and the staff can help with the rules.",
+        "text": "We had Thai food for dinner after the concert.",
+        "answer": "thai"
+      },
+      {
+        "text": "She is learning how to cook Thai green curry.",
+        "answer": "thai"
+      },
+      {
+        "text": "A Thai restaurant opened near the station last month.",
         "answer": "thai"
       }
     ],
@@ -15682,7 +15703,20 @@
     "word": "There is a growing awareness that",
     "cefr": "B1",
     "frequency": null,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "There is a growing awareness that sleep is essential for learning.",
+        "answer": "There is a growing awareness that"
+      },
+      {
+        "text": "There is a growing awareness that plastic waste harms marine life.",
+        "answer": "There is a growing awareness that"
+      },
+      {
+        "text": "There is a growing awareness that mental health needs more support.",
+        "answer": "There is a growing awareness that"
+      }
+    ],
     "ch": "越來越多人意識到"
   },
   {
@@ -15729,7 +15763,20 @@
     "word": "thriller",
     "cefr": "B1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The book is a fast-paced thriller set in a snowy mountain town.",
+        "answer": "thriller"
+      },
+      {
+        "text": "She prefers a thriller to a romantic comedy.",
+        "answer": "thriller"
+      },
+      {
+        "text": "The trailer made the film look like a clever political thriller.",
+        "answer": "thriller"
+      }
+    ],
     "ch": "驚悚片；驚悚小說"
   },
   {
@@ -15756,14 +15803,40 @@
     "word": "tiger",
     "cefr": "B1",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A tiger moved silently through the tall grass.",
+        "answer": "tiger"
+      },
+      {
+        "text": "The documentary explained how hard it is to protect every remaining tiger.",
+        "answer": "tiger"
+      },
+      {
+        "text": "Children crowded around the tiger enclosure at the zoo.",
+        "answer": "tiger"
+      }
+    ],
     "ch": "老虎"
   },
   {
     "word": "tight",
     "cefr": "B1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "These shoes feel too tight around my toes.",
+        "answer": "tight"
+      },
+      {
+        "text": "The rope was pulled tight before the tent was raised.",
+        "answer": "tight"
+      },
+      {
+        "text": "Money is tight this month, so we are eating at home more often.",
+        "answer": "tight"
+      }
+    ],
     "ch": "緊的；密切的"
   },
   {
@@ -15830,7 +15903,20 @@
     "word": "tongue",
     "cefr": "B1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "He burned his tongue on the hot soup.",
+        "answer": "tongue"
+      },
+      {
+        "text": "The doctor asked her to stick out her tongue.",
+        "answer": "tongue"
+      },
+      {
+        "text": "Learning to control your tongue can help you speak more clearly.",
+        "answer": "tongue"
+      }
+    ],
     "ch": "舌頭"
   },
   {
@@ -15839,7 +15925,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "People reported enjoying smelling the soaps and tasting the toothpaste as top highlights.",
+        "text": "Please buy some toothpaste when you go to the supermarket.",
+        "answer": "toothpaste"
+      },
+      {
+        "text": "He squeezed too much toothpaste onto the brush.",
+        "answer": "toothpaste"
+      },
+      {
+        "text": "Mint toothpaste leaves a cool feeling in your mouth.",
         "answer": "toothpaste"
       }
     ],
@@ -15969,7 +16063,20 @@
     "word": "translation",
     "cefr": "B1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Her English translation of the poem was elegant and clear.",
+        "answer": "translation"
+      },
+      {
+        "text": "The teacher checked the Chinese translation for mistakes.",
+        "answer": "translation"
+      },
+      {
+        "text": "Some ideas are difficult to express in direct translation.",
+        "answer": "translation"
+      }
+    ],
     "ch": "翻譯；譯文"
   },
   {
@@ -16078,11 +16185,15 @@
     "frequency": 5,
     "sentences": [
       {
-        "text": "From Klara in Denmark @Ice Queen, I stayed in an ice hotel and I didn't like it too much to tell you the truth.",
+        "text": "It took courage for him to tell the truth.",
         "answer": "truth"
       },
       {
-        "text": "In truth, they are rare moments of reprieve from a harsher reality: the traditional comic industry in Hong Kong is dying.",
+        "text": "The truth became clear after the emails were examined.",
+        "answer": "truth"
+      },
+      {
+        "text": "Many stories contain a small amount of truth.",
         "answer": "truth"
       }
     ],
@@ -16112,7 +16223,20 @@
     "word": "type",
     "cefr": "B1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "What type of music do you listen to most often?",
+        "answer": "type"
+      },
+      {
+        "text": "This type of fabric dries very quickly.",
+        "answer": "type"
+      },
+      {
+        "text": "Please type your full name into the form.",
+        "answer": "type"
+      }
+    ],
     "ch": "類型；打字"
   },
   {
@@ -16139,7 +16263,20 @@
     "word": "unable",
     "cefr": "B1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "She was unable to attend the meeting because of illness.",
+        "answer": "unable"
+      },
+      {
+        "text": "The pilot was unable to land due to bad weather.",
+        "answer": "unable"
+      },
+      {
+        "text": "He felt frustrated after being unable to solve the final question.",
+        "answer": "unable"
+      }
+    ],
     "ch": "不能夠的"
   },
   {
@@ -16148,7 +16285,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "Unbelievable!",
+        "text": "The view from the cliff was almost unbelievable.",
+        "answer": "unbelievable"
+      },
+      {
+        "text": "It is unbelievable that they finished the project in two days.",
+        "answer": "unbelievable"
+      },
+      {
+        "text": "Her recovery after the accident was unbelievable.",
         "answer": "unbelievable"
       }
     ],
@@ -16160,7 +16305,15 @@
     "frequency": 3,
     "sentences": [
       {
-        "text": "As I say, the conditions here seem just as uncomfortable and I'm sure we'll also be doing a lot of walking.",
+        "text": "These chairs are fine for a short time but uncomfortable after an hour.",
+        "answer": "uncomfortable"
+      },
+      {
+        "text": "He felt uncomfortable answering such a personal question.",
+        "answer": "uncomfortable"
+      },
+      {
+        "text": "The room became uncomfortable when the air conditioner stopped.",
         "answer": "uncomfortable"
       }
     ],
@@ -16172,7 +16325,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "The title of your video competition should always be underlined.",
+        "text": "Please underline the key words in the passage.",
+        "answer": "underline"
+      },
+      {
+        "text": "The report uses bold lines to underline the main conclusion.",
+        "answer": "underline"
+      },
+      {
+        "text": "I always underline useful phrases when reading articles.",
         "answer": "underline"
       }
     ],
@@ -16184,11 +16345,15 @@
     "frequency": 3,
     "sentences": [
       {
-        "text": "Not Rachel, who right now was poking a plastic magic wand at the robot from underneath the coffee table.",
+        "text": "The cat was hiding underneath the sofa.",
         "answer": "underneath"
       },
       {
-        "text": "Whereas with the person who seems highly organized, actually everything looks neat but underneath the surface, the system is dysfunctional.",
+        "text": "There was a note taped underneath the desk.",
+        "answer": "underneath"
+      },
+      {
+        "text": "Underneath his calm voice, you could hear worry.",
         "answer": "underneath"
       }
     ],
@@ -16198,7 +16363,20 @@
     "word": "underwear",
     "cefr": "B1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "He packed extra underwear for the week-long trip.",
+        "answer": "underwear"
+      },
+      {
+        "text": "The store sells socks, pajamas, and underwear on the second floor.",
+        "answer": "underwear"
+      },
+      {
+        "text": "Fresh underwear is easy to forget when you rush to pack.",
+        "answer": "underwear"
+      }
+    ],
     "ch": "內衣"
   },
   {
@@ -16207,7 +16385,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "* Luna903 - 2 April 2025 08:56 I’d rather my kid was a quiet quitter than being unemployed just lounging about at home playing online games.",
+        "text": "He was unemployed for three months before finding a new job.",
+        "answer": "unemployed"
+      },
+      {
+        "text": "The support center offers training for unemployed adults.",
+        "answer": "unemployed"
+      },
+      {
+        "text": "Being unemployed made her rethink her career goals.",
         "answer": "unemployed"
       }
     ],
@@ -16219,11 +16405,15 @@
     "frequency": 4,
     "sentences": [
       {
-        "text": "Any kind of tourism is really unfair.",
+        "text": "It was unfair to blame one person for the whole mistake.",
         "answer": "unfair"
       },
       {
-        "text": "As well as being unfair, I can also testify that a good number of these corporate sponsor seats are invariably left empty because they don't show up.",
+        "text": "Students complained that the marking system was unfair.",
+        "answer": "unfair"
+      },
+      {
+        "text": "The coach made an unfair decision during the final round.",
         "answer": "unfair"
       }
     ],
@@ -16235,11 +16425,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "It was an unforgettable meal.",
+        "text": "The trip to Iceland was an unforgettable experience.",
         "answer": "unforgettable"
       },
       {
-        "text": "Unforgettable!",
+        "text": "Her farewell speech was short but unforgettable.",
+        "answer": "unforgettable"
+      },
+      {
+        "text": "We had an unforgettable view of the city at night.",
         "answer": "unforgettable"
       }
     ],
@@ -16249,7 +16443,20 @@
     "word": "unfriendly",
     "cefr": "B1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The shop assistant looked unfriendly and impatient.",
+        "answer": "unfriendly"
+      },
+      {
+        "text": "The website is useful, but the layout is unfriendly to new users.",
+        "answer": "unfriendly"
+      },
+      {
+        "text": "He may seem unfriendly at first, but he is actually shy.",
+        "answer": "unfriendly"
+      }
+    ],
     "ch": "不友善的"
   },
   {
@@ -16258,7 +16465,15 @@
     "frequency": 3,
     "sentences": [
       {
-        "text": "How dare you feed children such terrible unhealthy junk food?",
+        "text": "Too much sugary drink can become an unhealthy habit.",
+        "answer": "unhealthy"
+      },
+      {
+        "text": "The doctor warned that his diet was becoming unhealthy.",
+        "answer": "unhealthy"
+      },
+      {
+        "text": "Long hours without rest create an unhealthy routine.",
         "answer": "unhealthy"
       }
     ],
@@ -16290,7 +16505,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "It shows us that unlike New York, Hong Kong does not have its own equivalent of the Statue of Liberty.",
+        "text": "Unlike his brother, he enjoys speaking in front of a crowd.",
+        "answer": "unlike"
+      },
+      {
+        "text": "This year, unlike last year, the event will be free.",
+        "answer": "unlike"
+      },
+      {
+        "text": "Unlike plastic, paper breaks down more easily.",
         "answer": "unlike"
       }
     ],
@@ -16300,7 +16523,20 @@
     "word": "unlikely",
     "cefr": "B1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "It is unlikely that the train will arrive on time in this storm.",
+        "answer": "unlikely"
+      },
+      {
+        "text": "Such a quick recovery seems unlikely, but not impossible.",
+        "answer": "unlikely"
+      },
+      {
+        "text": "They are unlikely to agree without more discussion.",
+        "answer": "unlikely"
+      }
+    ],
     "ch": "不大可能的"
   },
   {
@@ -16329,7 +16565,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "Their sudden removal was defended by the government as a precautionary measure, but experts like Jim said it was an unnecessary overreaction.",
+        "text": "These extra pages are unnecessary and can be removed.",
+        "answer": "unnecessary"
+      },
+      {
+        "text": "He apologized for causing unnecessary worry.",
+        "answer": "unnecessary"
+      },
+      {
+        "text": "Unnecessary spending can damage a small budget.",
         "answer": "unnecessary"
       }
     ],
@@ -16341,7 +16585,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "He had done this thing before, and he was doing it again, running free in the open, the unpacked earth underfoot, the wide sky overhead.",
+        "text": "We need to unpack the boxes before the guests arrive.",
+        "answer": "unpack"
+      },
+      {
+        "text": "She sat on the floor to unpack her new books.",
+        "answer": "unpack"
+      },
+      {
+        "text": "It took him an hour to unpack after the trip.",
         "answer": "unpack"
       }
     ],
@@ -16353,7 +16605,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "And if what we're doing is unpleasant or dull – so you’re already having to force your attention to stay fixed on it – the unconscious attention system is even more potent.",
+        "text": "There was an unpleasant smell in the storage room.",
+        "answer": "unpleasant"
+      },
+      {
+        "text": "The conversation ended in an unpleasant silence.",
+        "answer": "unpleasant"
+      },
+      {
+        "text": "It was an unpleasant surprise to see the extra fee.",
         "answer": "unpleasant"
       }
     ],
@@ -16385,11 +16645,15 @@
     "frequency": 4,
     "sentences": [
       {
-        "text": "William will soon be uploading an updated recipe to our website, based on the suggestions of our head chef Christine and the fans we invited to comment online.",
+        "text": "Please upload your homework before midnight.",
         "answer": "upload"
       },
       {
-        "text": "Does the webpage state which file format customers should use to upload their design?",
+        "text": "He forgot to upload the final version of the poster.",
+        "answer": "upload"
+      },
+      {
+        "text": "The app allows users to upload photos quickly.",
         "answer": "upload"
       }
     ],
@@ -16441,7 +16705,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "Special training Those of you who listened to the online staff meeting will have heard that we identified two areas of training that we need urgently.",
+        "text": "The hospital urgently needs more blood donors.",
+        "answer": "urgently"
+      },
+      {
+        "text": "She spoke urgently because time was running out.",
+        "answer": "urgently"
+      },
+      {
+        "text": "We must urgently review the safety rules.",
         "answer": "urgently"
       }
     ],
@@ -16493,7 +16765,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "It was full of stolen treasures from Coles and Woolworths: balloons, bull-dog paper clips, funny hats, a cut-glass vase.",
+        "text": "A blue vase stood in the middle of the dining table.",
+        "answer": "vase"
+      },
+      {
+        "text": "She placed fresh roses in a glass vase.",
+        "answer": "vase"
+      },
+      {
+        "text": "Be careful not to knock over that old vase.",
         "answer": "vase"
       }
     ],
@@ -16505,7 +16785,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "Are either of you vegetarian?",
+        "text": "The restaurant offers a separate vegetarian menu.",
+        "answer": "vegetarian"
+      },
+      {
+        "text": "She became vegetarian after reading about animal welfare.",
+        "answer": "vegetarian"
+      },
+      {
+        "text": "A vegetarian dish can still be rich and filling.",
         "answer": "vegetarian"
       }
     ],
@@ -16557,7 +16845,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "The latest victim of celebrity violence, King is now worried about the physical harm Nelson has done to him.",
+        "text": "The victim was taken to hospital for further checks.",
+        "answer": "victim"
+      },
+      {
+        "text": "The film follows a victim who fights back bravely.",
+        "answer": "victim"
+      },
+      {
+        "text": "Support groups can help each victim recover from trauma.",
         "answer": "victim"
       }
     ],
@@ -16609,11 +16905,15 @@
     "frequency": 3,
     "sentences": [
       {
-        "text": "Is he really so violent?",
+        "text": "The movie contains several violent scenes.",
         "answer": "violent"
       },
       {
-        "text": "Violent people like him are a danger to honest hard working people like myself.",
+        "text": "A violent storm damaged the fishing boats.",
+        "answer": "violent"
+      },
+      {
+        "text": "Teachers stepped in before the argument became violent.",
         "answer": "violent"
       }
     ],
@@ -16625,7 +16925,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "This course is absolutely not just for social media stars: I work in PR as well as being a vlogger.",
+        "text": "The vlogger posted a new travel video every Friday.",
+        "answer": "vlogger"
+      },
+      {
+        "text": "A popular food vlogger visited the night market.",
+        "answer": "vlogger"
+      },
+      {
+        "text": "She hopes to become a full-time vlogger after graduation.",
         "answer": "vlogger"
       }
     ],
@@ -16675,7 +16983,20 @@
     "word": "walkway",
     "cefr": "B1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A narrow walkway connects the library to the arts block.",
+        "answer": "walkway"
+      },
+      {
+        "text": "The mountain walkway offers a clear view of the sea.",
+        "answer": "walkway"
+      },
+      {
+        "text": "Please keep the emergency walkway free of bags.",
+        "answer": "walkway"
+      }
+    ],
     "ch": "行人通道"
   },
   {
@@ -16684,7 +17005,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "Not Rachel, who right now was poking a plastic magic wand at the robot from underneath the coffee table.",
+        "text": "The actor raised a wand in the final magic scene.",
+        "answer": "wand"
+      },
+      {
+        "text": "The child waved a plastic wand at the costume party.",
+        "answer": "wand"
+      },
+      {
+        "text": "A silver wand lay beside the storybook on the shelf.",
         "answer": "wand"
       }
     ],
@@ -16694,7 +17023,20 @@
     "word": "wardrobe",
     "cefr": "B1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Her wardrobe is full of winter coats and scarves.",
+        "answer": "wardrobe"
+      },
+      {
+        "text": "A large wardrobe stood against the bedroom wall.",
+        "answer": "wardrobe"
+      },
+      {
+        "text": "He wants to build a smarter wardrobe with fewer clothes.",
+        "answer": "wardrobe"
+      }
+    ],
     "ch": "衣櫃"
   },
   {
@@ -16743,7 +17085,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "[2] In 1996, I wrote an article arguing that the recycling process as we carried it out was wasteful.",
+        "text": "Leaving the lights on all day is wasteful.",
+        "answer": "wasteful"
+      },
+      {
+        "text": "The report criticizes wasteful packaging in online shopping.",
+        "answer": "wasteful"
+      },
+      {
+        "text": "A wasteful habit can be hard to break.",
         "answer": "wasteful"
       }
     ],
@@ -16753,7 +17103,20 @@
     "word": "watcher",
     "cefr": "B1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A bird watcher stood quietly beside the wetland path.",
+        "answer": "watcher"
+      },
+      {
+        "text": "Every watcher in the crowd cheered when the goal was scored.",
+        "answer": "watcher"
+      },
+      {
+        "text": "The film rewards a careful watcher with small visual clues.",
+        "answer": "watcher"
+      }
+    ],
     "ch": "觀看者；監察者"
   },
   {
@@ -16782,7 +17145,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "But the same naked capitalism that has poisoned Chinese skies and waterways is hard at work in the streets of Shanghai, cleaning up the mess.",
+        "text": "The old waterway once carried goods into the city.",
+        "answer": "waterway"
+      },
+      {
+        "text": "Fishermen still use the narrow waterway at dawn.",
+        "answer": "waterway"
+      },
+      {
+        "text": "Pollution in the waterway has become a serious concern.",
         "answer": "waterway"
       }
     ],
@@ -16812,7 +17183,20 @@
     "word": "weaker",
     "cefr": "B1",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The patient felt weaker after a night without sleep.",
+        "answer": "weaker"
+      },
+      {
+        "text": "Their argument became weaker once the data was checked.",
+        "answer": "weaker"
+      },
+      {
+        "text": "The signal grows weaker as you move farther from the tower.",
+        "answer": "weaker"
+      }
+    ],
     "ch": "較弱的"
   },
   {
@@ -16821,7 +17205,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "Yet, the study found that this was actually the weakest motivation that led people to gossip.",
+        "text": "Maths is still my weakest subject at school.",
+        "answer": "weakest"
+      },
+      {
+        "text": "The bridge collapsed at its weakest point.",
+        "answer": "weakest"
+      },
+      {
+        "text": "The youngest runner was the weakest in the final lap.",
         "answer": "weakest"
       }
     ],
@@ -16833,7 +17225,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "Grow food ☑ Make clothes ☑ Build houses Make weapons Task 2 (14 marks) 13.",
+        "text": "Police found a hidden weapon during the search.",
+        "answer": "weapon"
+      },
+      {
+        "text": "Words can become a weapon when used to hurt others.",
+        "answer": "weapon"
+      },
+      {
+        "text": "The museum displays weapons from different historical periods.",
         "answer": "weapon"
       }
     ],
@@ -16845,11 +17245,15 @@
     "frequency": 4,
     "sentences": [
       {
-        "text": "(animals') weight // how much they weigh 7.",
+        "text": "Please weigh the vegetables before printing the label.",
         "answer": "weigh"
       },
       {
-        "text": "individual items that weigh over 40kg).",
+        "text": "The doctor asked me to weigh myself once a week.",
+        "answer": "weigh"
+      },
+      {
+        "text": "We must weigh the risks before making a final decision.",
         "answer": "weigh"
       }
     ],
@@ -16881,7 +17285,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "You started, like so many other Westerners in Korea, teaching English.",
+        "text": "The guide explained the custom to a group of westerners.",
+        "answer": "westerner"
+      },
+      {
+        "text": "As a westerner, he was surprised by the local breakfast dishes.",
+        "answer": "westerner"
+      },
+      {
+        "text": "The article discusses how one westerner adapted to village life.",
         "answer": "westerner"
       }
     ],
@@ -16893,11 +17305,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "In the meantime, enjoy the rest of the whale migration season!",
+        "text": "A whale surfaced briefly near the research boat.",
         "answer": "whale"
       },
       {
-        "text": "Captain Moby 11:08am That day, we had also planned to scout the whale migration routes.",
+        "text": "The documentary follows a whale migration across the ocean.",
+        "answer": "whale"
+      },
+      {
+        "text": "Children stared at the model of a blue whale in the museum.",
         "answer": "whale"
       }
     ],
@@ -16929,11 +17345,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "Wheelchair access into auditorium for audience.",
+        "text": "The building has a ramp for wheelchair users.",
         "answer": "wheelchair"
       },
       {
-        "text": "BTW tell them I need wheelchair access.",
+        "text": "He pushed the wheelchair carefully through the crowd.",
+        "answer": "wheelchair"
+      },
+      {
+        "text": "A wheelchair was waiting near the clinic entrance.",
         "answer": "wheelchair"
       }
     ],
@@ -16945,7 +17365,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "Also, whenever we move the glass tubes, they can be broken very easily so we have to be very, very careful with them.",
+        "text": "Call me whenever you need help with the report.",
+        "answer": "whenever"
+      },
+      {
+        "text": "She smiles whenever she hears that song.",
+        "answer": "whenever"
+      },
+      {
+        "text": "Whenever it rains, the old roof starts to leak.",
         "answer": "whenever"
       }
     ],
@@ -16997,7 +17425,15 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "However, you see stalls selling fish balls, chicken wings and other snacks.",
+        "text": "The injured bird could not lift its left wing.",
+        "answer": "wing"
+      },
+      {
+        "text": "The science wing of the school opens next month.",
+        "answer": "wing"
+      },
+      {
+        "text": "Our seats were in the east wing of the theater.",
         "answer": "wing"
       }
     ],
@@ -17029,11 +17465,15 @@
     "frequency": 9,
     "sentences": [
       {
-        "text": "I wonder how you handle the demand from the public for the biggest matches at Wimbledon.",
+        "text": "I wonder if the train has already left the station.",
         "answer": "wonder"
       },
       {
-        "text": "Have you ever wondered what that might feel like?",
+        "text": "The Great Wall remains a wonder of engineering.",
+        "answer": "wonder"
+      },
+      {
+        "text": "Children watched the fireworks in complete wonder.",
         "answer": "wonder"
       }
     ],
@@ -17045,7 +17485,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "In the field of medicine, we see similar tricks used by the pharmaceutical industry to pull the wool over the eyes of doctors and patients.",
+        "text": "This scarf is made from soft wool.",
+        "answer": "wool"
+      },
+      {
+        "text": "Wool keeps you warm even on windy days.",
+        "answer": "wool"
+      },
+      {
+        "text": "She bought a ball of red wool for knitting.",
         "answer": "wool"
       }
     ],
@@ -17057,11 +17505,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "They have lived in an era of relative peace, knowing little of worldwide conflict until the recent emergence of global terrorism.",
+        "text": "The brand sells its products worldwide.",
         "answer": "worldwide"
       },
       {
-        "text": "“Your competition is now worldwide,” he says.",
+        "text": "Scientists worldwide are studying the new discovery.",
+        "answer": "worldwide"
+      },
+      {
+        "text": "The song became famous worldwide within a few weeks.",
         "answer": "worldwide"
       }
     ],
@@ -17093,11 +17545,15 @@
     "frequency": 4,
     "sentences": [
       {
-        "text": "The pit bull was then thrown over a fence onto the yard of the housing estate.",
+        "text": "The children played football in the front yard.",
         "answer": "yard"
       },
       {
-        "text": "The second time I got all the way to Rocky Point Road, more than two hundred yards from home.",
+        "text": "A dog was sleeping in the yard beside the gate.",
+        "answer": "yard"
+      },
+      {
+        "text": "The school yard was empty after sunset.",
         "answer": "yard"
       }
     ],
@@ -17109,7 +17565,15 @@
     "frequency": 3,
     "sentences": [
       {
-        "text": "Yoga mums and fitness dads also welcome!",
+        "text": "She attends a yoga class every Tuesday evening.",
+        "answer": "yoga"
+      },
+      {
+        "text": "A short yoga session helped him relax before bed.",
+        "answer": "yoga"
+      },
+      {
+        "text": "The gym added yoga to its weekend timetable.",
         "answer": "yoga"
       }
     ],
