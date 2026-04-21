@@ -15628,469 +15628,737 @@
     "word": "permit",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "You need a permit to build here.",
+      "The park permit is valid for one year.",
+      "The rules do not permit smoking indoors."
+    ],
     "ch": "允許；許可證"
   },
   {
     "word": "perspective",
     "cefr": "B2",
     "frequency": 6,
-    "sentences": [],
+    "sentences": [
+      "Travel gave her a new perspective on life.",
+      "Try to see the issue from my perspective.",
+      "The course explores history from a local perspective."
+    ],
     "ch": "觀點；視角"
   },
   {
     "word": "pessimistic",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "He felt pessimistic about the results.",
+      "Do not be too pessimistic about the future.",
+      "Her pessimistic view worried the team."
+    ],
     "ch": "悲觀的"
   },
   {
     "word": "pest",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Mosquitoes are a common summer pest.",
+      "The farmer used nets to keep out pests.",
+      "This insect can become a serious pest in gardens."
+    ],
     "ch": "害蟲；討厭的人"
   },
   {
     "word": "pharmacist",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "The pharmacist explained how to use the medicine.",
+      "Please ask the pharmacist if you have questions.",
+      "A pharmacist checked the prescription carefully."
+    ],
     "ch": "藥劑師"
   },
   {
     "word": "phase",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The project entered its final phase.",
+      "Teenagers often go through a difficult phase.",
+      "We are now in the testing phase of development."
+    ],
     "ch": "階段；時期"
   },
   {
     "word": "phenomenon",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The northern lights are a natural phenomenon.",
+      "Scientists studied the strange weather phenomenon.",
+      "The sudden popularity of the song became a global phenomenon."
+    ],
     "ch": "現象"
   },
   {
     "word": "philippine",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "She bought a book about Philippine history.",
+      "The restaurant serves Philippine dishes.",
+      "A Philippine festival was held in the park."
+    ],
     "ch": "菲律賓的"
   },
   {
     "word": "philosophy",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "Her teaching philosophy focuses on confidence.",
+      "He studies philosophy at university.",
+      "The company changed its business philosophy."
+    ],
     "ch": "哲學；人生觀"
   },
   {
     "word": "photosynthesis",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Plants use photosynthesis to make food.",
+      "The science lesson explained photosynthesis clearly.",
+      "Sunlight is needed for photosynthesis to happen."
+    ],
     "ch": "光合作用"
   },
   {
     "word": "photosynthetic",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Leaves contain photosynthetic cells.",
+      "The plant's photosynthetic process slows in winter.",
+      "Scientists measured photosynthetic activity in the lab."
+    ],
     "ch": "光合作用的"
   },
   {
     "word": "physically",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The race was physically demanding.",
+      "He is physically stronger than before.",
+      "The work left her physically tired."
+    ],
     "ch": "身體上地；實際上地"
   },
   {
     "word": "physicist",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The physicist explained the experiment to students.",
+      "A famous physicist visited the science fair.",
+      "She hopes to become a physicist one day."
+    ],
     "ch": "物理學家"
   },
   {
     "word": "pick",
     "cefr": "B2",
     "frequency": 24,
-    "sentences": [],
+    "sentences": [
+      "Please pick one card from the table.",
+      "We stopped to pick some flowers.",
+      "It is hard to pick a winner this early."
+    ],
     "ch": "挑選；採摘"
   },
   {
     "word": "picker",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The fruit picker worked from sunrise to noon.",
+      "A tea picker moved quickly across the field.",
+      "The apple picker filled three baskets before lunch."
+    ],
     "ch": "採摘者；挑選者"
   },
   {
     "word": "pickle",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "He added a pickle to the sandwich.",
+      "My grandmother knows how to pickle vegetables.",
+      "The jar contained onions in pickle."
+    ],
     "ch": "醃菜；醃製"
   },
   {
     "word": "picture",
     "cefr": "B2",
     "frequency": 10,
-    "sentences": [],
+    "sentences": [
+      "She hung a family picture on the wall.",
+      "Can you picture life without the internet?",
+      "The article gives a clear picture of the problem."
+    ],
     "ch": "圖片；描繪"
   },
   {
     "word": "pile",
     "cefr": "B2",
     "frequency": 11,
-    "sentences": [],
+    "sentences": [
+      "A pile of books covered the desk.",
+      "Leaves formed a pile in the corner.",
+      "He stacked the plates in a neat pile."
+    ],
     "ch": "堆；堆積"
   },
   {
     "word": "pill",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Take one pill after dinner.",
+      "She forgot to bring her allergy pill.",
+      "The doctor changed the patient to a smaller pill."
+    ],
     "ch": "藥丸"
   },
   {
     "word": "pine",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "A tall pine stood near the cabin.",
+      "The room smelled of pine and smoke.",
+      "They walked through a pine forest."
+    ],
     "ch": "松樹"
   },
   {
     "word": "pitch",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The singer reached a high pitch easily.",
+      "He made a strong pitch to investors.",
+      "The football pitch was wet after the storm."
+    ],
     "ch": "音高；投擲"
   },
   {
     "word": "pity",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "It is a pity that you cannot join us.",
+      "She felt pity for the injured bird.",
+      "What a pity the show was cancelled."
+    ],
     "ch": "同情；可惜"
   },
   {
     "word": "pizzeria",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "We had dinner at a small pizzeria.",
+      "The pizzeria near school stays open late.",
+      "A new pizzeria opened on the corner."
+    ],
     "ch": "披薩店"
   },
   {
     "word": "placement",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The placement of the lights changed the mood.",
+      "She completed a work placement at a bank.",
+      "Careful placement of furniture made the room look bigger."
+    ],
     "ch": "安置；安排"
   },
   {
     "word": "plain",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "She wore a plain white shirt.",
+      "The message was written in plain language.",
+      "We crossed a wide plain before reaching the hills."
+    ],
     "ch": "平凡的；平原"
   },
   {
     "word": "plainly",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "He spoke plainly so everyone could understand.",
+      "The mistake was plainly visible.",
+      "She plainly said that the idea would not work."
+    ],
     "ch": "清楚地；坦白地"
   },
   {
     "word": "planetary",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The museum hosted a talk on planetary science.",
+      "Planetary motion was shown in the model.",
+      "Students learned about planetary systems in class."
+    ],
     "ch": "行星的"
   },
   {
     "word": "playmates",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The child invited her playmates over after school.",
+      "Two playmates were building a sandcastle together.",
+      "His old playmates still lived on the same street."
+    ],
     "ch": "玩伴"
   },
   {
     "word": "playwright",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The playwright attended the first performance.",
+      "A young playwright won the drama prize.",
+      "The museum displayed letters from a famous playwright."
+    ],
     "ch": "劇作家"
   },
   {
     "word": "plot",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "The film has a simple but moving plot.",
+      "They bought a small plot of land outside town.",
+      "The detectives uncovered a dangerous plot."
+    ],
     "ch": "情節；地塊"
   },
   {
     "word": "plus",
     "cefr": "B2",
     "frequency": 10,
-    "sentences": [],
+    "sentences": [
+      "Two plus three equals five.",
+      "The hotel is cheap, plus it is near the station.",
+      "The tour cost includes lunch plus drinks."
+    ],
     "ch": "加；另外的"
   },
   {
     "word": "podcast",
     "cefr": "B2",
     "frequency": 29,
-    "sentences": [],
+    "sentences": [
+      "I listened to a history podcast on the bus.",
+      "She started a podcast about city life.",
+      "The latest podcast episode discusses climate change."
+    ],
     "ch": "播客節目"
   },
   {
     "word": "poke",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Do not poke the sleeping dog.",
+      "He gave the fire a gentle poke with a stick.",
+      "Someone poked me in the arm to get my attention."
+    ],
     "ch": "戳；捅"
   },
   {
     "word": "pollutant",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "This factory releases a harmful pollutant.",
+      "Scientists tested the river for pollutants.",
+      "The law limits the amount of each pollutant in the air."
+    ],
     "ch": "污染物"
   },
   {
     "word": "popularity",
     "cefr": "B2",
     "frequency": 7,
-    "sentences": [],
+    "sentences": [
+      "The game gained popularity among teenagers.",
+      "Her popularity grew after the interview.",
+      "The dish enjoys great popularity in summer."
+    ],
     "ch": "受歡迎程度；人氣"
   },
   {
     "word": "popularly",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The area is popularly known as the old quarter.",
+      "This fish is popularly eaten during festivals.",
+      "The temple is popularly believed to bring good luck."
+    ],
     "ch": "普遍地；通俗地"
   },
   {
     "word": "portion",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The restaurant served a large portion of rice.",
+      "A small portion of the budget was used for travel.",
+      "She saved a portion of her salary each month."
+    ],
     "ch": "部分；一份"
   },
   {
     "word": "pose",
     "cefr": "B2",
     "frequency": 7,
-    "sentences": [],
+    "sentences": [
+      "The broken bridge could pose a danger.",
+      "Please pose for the class photo.",
+      "The question posed a challenge for the speaker."
+    ],
     "ch": "擺姿勢；造成"
   },
   {
     "word": "posh",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "They stayed in a posh hotel by the harbour.",
+      "The restaurant looked a bit too posh for us.",
+      "He wore a posh suit to the awards dinner."
+    ],
     "ch": "豪華的；時髦的"
   },
   {
     "word": "position",
     "cefr": "B2",
     "frequency": 9,
-    "sentences": [],
+    "sentences": [
+      "Please keep the vase in the same position.",
+      "She applied for a teaching position.",
+      "The team improved its position in the table."
+    ],
     "ch": "位置；職位"
   },
   {
     "word": "positive",
     "cefr": "B2",
     "frequency": 23,
-    "sentences": [],
+    "sentences": [
+      "Try to keep a positive attitude.",
+      "The feedback from parents was mostly positive.",
+      "She tested positive for the virus."
+    ],
     "ch": "正面的；肯定的"
   },
   {
     "word": "possess",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Very few people possess that level of patience.",
+      "The necklace is said to possess magical powers.",
+      "She possesses strong communication skills."
+    ],
     "ch": "擁有；具有"
   },
   {
     "word": "potent",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The medicine is too potent for children.",
+      "A potent smell filled the room.",
+      "The herb creates a potent mixture when heated."
+    ],
     "ch": "強效的；有力的"
   },
   {
     "word": "potential",
     "cefr": "B2",
     "frequency": 16,
-    "sentences": [],
+    "sentences": [
+      "She has the potential to become a leader.",
+      "The site has potential for tourism.",
+      "Teachers should help students reach their full potential."
+    ],
     "ch": "潛力；潛在的"
   },
   {
     "word": "potentially",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "This storm is potentially dangerous.",
+      "The leak is potentially harmful to wildlife.",
+      "A small mistake can become potentially costly."
+    ],
     "ch": "潛在地；可能地"
   },
   {
     "word": "pottery",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Ancient pottery was displayed in the museum.",
+      "She joined a pottery class on weekends.",
+      "Broken pottery was found at the site."
+    ],
     "ch": "陶器；陶藝"
   },
   {
     "word": "power",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "The city lost power during the storm.",
+      "Education has the power to change lives.",
+      "The machine runs on solar power."
+    ],
     "ch": "力量；權力"
   },
   {
     "word": "practically",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The room was practically empty by noon.",
+      "She practically grew up in that library.",
+      "The plan is practically impossible to finish today."
+    ],
     "ch": "實際上；幾乎"
   },
   {
     "word": "praise",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The teacher praised the class for their effort.",
+      "Her performance earned praise from the judges.",
+      "Children respond well to praise."
+    ],
     "ch": "稱讚；讚揚"
   },
   {
     "word": "precautionary",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The school took precautionary measures before the storm.",
+      "A precautionary check was carried out on the bridge.",
+      "The event was cancelled as a precautionary step."
+    ],
     "ch": "預防性的"
   },
   {
     "word": "precede",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "A short introduction will precede the film.",
+      "Heavy rain often precedes the flooding here.",
+      "Silence preceded the final announcement."
+    ],
     "ch": "先於；在…之前"
   },
   {
     "word": "precisely",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The train arrived at precisely eight o'clock.",
+      "That is precisely what I meant.",
+      "The doctor measured the dose precisely."
+    ],
     "ch": "精確地；正是"
   },
   {
     "word": "predictable",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The ending was too predictable.",
+      "His daily routine is very predictable.",
+      "Weather in this season is not always predictable."
+    ],
     "ch": "可預測的"
   },
   {
     "word": "preferably",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Please reply by Friday, preferably before noon.",
+      "The room should be quiet, preferably on the top floor.",
+      "Wear comfortable shoes, preferably waterproof ones."
+    ],
     "ch": "最好；較理想地"
   },
   {
     "word": "preference",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Please tell us your seating preference.",
+      "Children often show a preference for sweet food.",
+      "Her preference is for small group lessons."
+    ],
     "ch": "偏好；優先權"
   },
   {
     "word": "pregnant",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The clinic offers support for pregnant women.",
+      "She was pregnant with her second child.",
+      "The doctor gave advice to the pregnant patient."
+    ],
     "ch": "懷孕的"
   },
   {
     "word": "preparation",
     "cefr": "B2",
     "frequency": 7,
-    "sentences": [],
+    "sentences": [
+      "Good preparation makes exams less stressful.",
+      "The team spent weeks in preparation for the race.",
+      "Food preparation started early in the morning."
+    ],
     "ch": "準備；預備工作"
   },
   {
     "word": "presence",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The teacher's presence calmed the class.",
+      "Her presence made the event feel special.",
+      "The police increased their presence in the area."
+    ],
     "ch": "在場；存在"
   },
   {
     "word": "preservative",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "This drink contains no artificial preservative.",
+      "The label warns about food preservatives.",
+      "Salt was once used as a preservative."
+    ],
     "ch": "防腐劑"
   },
   {
     "word": "preserve",
     "cefr": "B2",
     "frequency": 8,
-    "sentences": [],
+    "sentences": [
+      "We must preserve the old temple.",
+      "The jar helps preserve the fruit for winter.",
+      "These photos preserve memories of the trip."
+    ],
     "ch": "保護；保存"
   },
   {
     "word": "prevalent",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "This illness is more prevalent in winter.",
+      "Smartphones are prevalent among teenagers.",
+      "The problem remains prevalent in many cities."
+    ],
     "ch": "普遍的；盛行的"
   },
   {
     "word": "price",
     "cefr": "B2",
     "frequency": 26,
-    "sentences": [],
+    "sentences": [
+      "The price of bread went up again.",
+      "Please check the price before ordering.",
+      "She compared the price at three shops."
+    ],
     "ch": "價格；定價"
   },
   {
     "word": "priceless",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The museum protects priceless paintings.",
+      "His advice was priceless during the crisis.",
+      "Family photos are priceless to many people."
+    ],
     "ch": "無價的；極珍貴的"
   },
   {
     "word": "pricey",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "That jacket looks nice but it is pricey.",
+      "Seafood can be pricey in winter.",
+      "The caf? is small but a bit pricey."
+    ],
     "ch": "昂貴的"
   },
   {
     "word": "priciest",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "This is the priciest item on the menu.",
+      "The downtown flat was the priciest option.",
+      "Among the three phones, this one is the priciest."
+    ],
     "ch": "最昂貴的"
   },
   {
     "word": "pride",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "She felt pride after finishing the race.",
+      "The town takes pride in its history.",
+      "Too much pride can stop people from asking for help."
+    ],
     "ch": "自豪；驕傲"
   },
   {
     "word": "prime",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "This is a prime location for a caf?.",
+      "Students study prime numbers in math class.",
+      "The shop opens in prime business hours."
+    ],
     "ch": "主要的；最佳的"
   },
   {
@@ -16117,301 +16385,473 @@
     "word": "principle",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The machine works on a simple principle.",
+      "She refused on principle.",
+      "Fairness is an important principle in teaching."
+    ],
     "ch": "原則；準則"
   },
   {
     "word": "print",
     "cefr": "B2",
     "frequency": 12,
-    "sentences": [],
+    "sentences": [
+      "Please print two copies of the form.",
+      "The text is too small to print clearly.",
+      "I saw the notice in large print."
+    ],
     "ch": "印刷；打印"
   },
   {
     "word": "prior",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Please call prior to your visit.",
+      "No prior experience is needed for the class.",
+      "The decision was made without prior warning."
+    ],
     "ch": "較早的；優先的"
   },
   {
     "word": "prioritize",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "You should prioritize the most urgent tasks.",
+      "The school will prioritize student safety.",
+      "We need to prioritize repairs before winter."
+    ],
     "ch": "優先處理"
   },
   {
     "word": "priority",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Public safety is our top priority.",
+      "The teacher made reading a priority this term.",
+      "Getting enough sleep should be a priority."
+    ],
     "ch": "優先事項；優先權"
   },
   {
     "word": "privacy",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "Everyone deserves privacy at home.",
+      "The app must protect users' privacy.",
+      "Please close the door for privacy."
+    ],
     "ch": "私隱；隱私"
   },
   {
     "word": "privately",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "He apologized privately after the meeting.",
+      "The school is privately funded.",
+      "They spoke privately in the office."
+    ],
     "ch": "私下地；私人地"
   },
   {
     "word": "pro",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "She became a pro at using the software.",
+      "Make a list of each pro and con.",
+      "He plays like a pro even though he is still young."
+    ],
     "ch": "專業選手；支持者"
   },
   {
     "word": "procedure",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "Please follow the safety procedure carefully.",
+      "The hospital has a new procedure for visitors.",
+      "This procedure takes less than five minutes."
+    ],
     "ch": "程序；步驟"
   },
   {
     "word": "process",
     "cefr": "B2",
     "frequency": 20,
-    "sentences": [],
+    "sentences": [
+      "Learning is a slow process.",
+      "The factory can process thousands of boxes a day.",
+      "We need time to process the results."
+    ],
     "ch": "過程；處理"
   },
   {
     "word": "produce",
     "cefr": "B2",
     "frequency": 15,
-    "sentences": [],
+    "sentences": [
+      "The farm produces fresh vegetables every season.",
+      "Plants produce oxygen in daylight.",
+      "The market sells local produce on weekends."
+    ],
     "ch": "生產；農產品"
   },
   {
     "word": "professional",
     "cefr": "B2",
     "frequency": 9,
-    "sentences": [],
+    "sentences": [
+      "She gave a calm and professional reply.",
+      "The photographer did a professional job.",
+      "You should seek professional advice."
+    ],
     "ch": "專業的；專業人士"
   },
   {
     "word": "progress",
     "cefr": "B2",
     "frequency": 7,
-    "sentences": [],
+    "sentences": [
+      "The students made clear progress this term.",
+      "Please keep working and track your progress.",
+      "Road works slowed progress on the project."
+    ],
     "ch": "進步；進展"
   },
   {
     "word": "project",
     "cefr": "B2",
     "frequency": 26,
-    "sentences": [],
+    "sentences": [
+      "The class worked on a science project.",
+      "This bridge project will take two years.",
+      "The app can project sound across the room."
+    ],
     "ch": "項目；工程"
   },
   {
     "word": "promoter",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The concert promoter sold tickets online.",
+      "A local promoter helped organize the event.",
+      "The promoter spoke to reporters before the show."
+    ],
     "ch": "推廣者；發起人"
   },
   {
     "word": "promotion",
     "cefr": "B2",
     "frequency": 6,
-    "sentences": [],
+    "sentences": [
+      "She earned a promotion last month.",
+      "The store is offering a special promotion.",
+      "Hard work led to his promotion."
+    ],
     "ch": "宣傳；晉升"
   },
   {
     "word": "promotional",
     "cefr": "B2",
     "frequency": 5,
-    "sentences": [],
+    "sentences": [
+      "The company sent out promotional emails.",
+      "She wore a promotional T-shirt for the event.",
+      "The team designed promotional posters for the launch."
+    ],
     "ch": "宣傳的；促銷的"
   },
   {
     "word": "prompt",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "Thank you for your prompt reply.",
+      "The alarm will prompt staff to leave.",
+      "A writing prompt was given at the start of class."
+    ],
     "ch": "及時的；提示"
   },
   {
     "word": "promptly",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The train left promptly at nine.",
+      "Please answer the email promptly.",
+      "She arrived promptly for the interview."
+    ],
     "ch": "迅速地；準時地"
   },
   {
     "word": "proof",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "Do you have proof of payment?",
+      "The muddy shoes were proof that he had gone out.",
+      "The final proof of the book was ready for review."
+    ],
     "ch": "證據；證明"
   },
   {
     "word": "proportion",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "A large proportion of the class passed.",
+      "The artist changed the proportion of the figure.",
+      "Only a small proportion of the budget was cut."
+    ],
     "ch": "比例；部分"
   },
   {
     "word": "proposal",
     "cefr": "B2",
     "frequency": 11,
-    "sentences": [],
+    "sentences": [
+      "The committee reviewed the proposal carefully.",
+      "Her proposal received strong support.",
+      "We submitted a new proposal on Monday."
+    ],
     "ch": "提案；求婚"
   },
   {
     "word": "propose",
     "cefr": "B2",
     "frequency": 8,
-    "sentences": [],
+    "sentences": [
+      "I propose that we start earlier tomorrow.",
+      "The school will propose changes to the timetable.",
+      "He plans to propose a new idea at the meeting."
+    ],
     "ch": "提議；求婚"
   },
   {
     "word": "pros",
     "cefr": "B2",
     "frequency": 12,
-    "sentences": [],
+    "sentences": [
+      "Let's list the pros and cons first.",
+      "She explained the pros of working from home.",
+      "The website compares the pros of each option."
+    ],
     "ch": "優點；支持者"
   },
   {
     "word": "prospect",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "The prospect of rain worried the runners.",
+      "Graduates have good job prospects in that field.",
+      "The prospect of success kept them motivated."
+    ],
     "ch": "前景；可能性"
   },
   {
     "word": "protection",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "This cream offers sun protection.",
+      "The law provides protection for workers.",
+      "The helmet gives extra protection in a crash."
+    ],
     "ch": "保護；防護"
   },
   {
     "word": "proudly",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "She proudly showed us her medal.",
+      "The flag flew proudly above the school.",
+      "He proudly spoke about his hometown."
+    ],
     "ch": "自豪地"
   },
   {
     "word": "psychologically",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The event affected him psychologically.",
+      "Children need to feel psychologically safe in class.",
+      "Stress can harm people both physically and psychologically."
+    ],
     "ch": "心理上地"
   },
   {
     "word": "psychologist",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The psychologist spoke to the parents after the session.",
+      "She wants to become a child psychologist.",
+      "A psychologist visited the school to give advice."
+    ],
     "ch": "心理學家"
   },
   {
     "word": "psychology",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "She studies psychology at university.",
+      "The book explores the psychology of fear.",
+      "Sports psychology can help athletes stay focused."
+    ],
     "ch": "心理學"
   },
   {
     "word": "publication",
     "cefr": "B2",
     "frequency": 7,
-    "sentences": [],
+    "sentences": [
+      "The book's publication was delayed.",
+      "This article appeared in an online publication.",
+      "The publication of the report drew attention."
+    ],
     "ch": "出版；刊物"
   },
   {
     "word": "publicity",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "The campaign received a lot of publicity.",
+      "Bad publicity can damage a brand.",
+      "The actor tried to avoid publicity."
+    ],
     "ch": "宣傳；公眾關注"
   },
   {
     "word": "publisher",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "The publisher accepted her first book.",
+      "A major publisher released the novel.",
+      "The publisher requested a few final changes."
+    ],
     "ch": "出版商"
   },
   {
     "word": "pup",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The pup followed its mother across the field.",
+      "A tiny pup slept in the basket.",
+      "The children wanted to hold the playful pup."
+    ],
     "ch": "幼犬；小動物"
   },
   {
     "word": "pupil",
     "cefr": "B2",
     "frequency": 6,
-    "sentences": [],
+    "sentences": [
+      "Each pupil handed in the worksheet.",
+      "The teacher praised the youngest pupil.",
+      "The doctor checked the size of the patient's pupil."
+    ],
     "ch": "學生；瞳孔"
   },
   {
     "word": "purchase",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "Thank you for your purchase.",
+      "We plan to purchase new computers next term.",
+      "Her biggest purchase this year was a bike."
+    ],
     "ch": "購買；購買物"
   },
   {
     "word": "pure",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "The lake looked pure and clean.",
+      "This ring is made of pure silver.",
+      "The child shouted with pure joy."
+    ],
     "ch": "純的；純粹的"
   },
   {
     "word": "purely",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The change was made purely for safety.",
+      "He acted purely out of kindness.",
+      "The room is used purely for storage."
+    ],
     "ch": "純粹地；完全地"
   },
   {
     "word": "pursue",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "She wants to pursue a career in medicine.",
+      "Police pursued the stolen car.",
+      "The company will pursue new business opportunities."
+    ],
     "ch": "追求；從事"
   },
   {
     "word": "pursuit",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "Knowledge should be a lifelong pursuit.",
+      "The officers were in pursuit of the suspect.",
+      "Happiness is a common human pursuit."
+    ],
     "ch": "追求；追趕"
   },
   {
     "word": "puzzle",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "The final clue solved the puzzle.",
+      "A crossword puzzle lay on the table.",
+      "His sudden smile was a puzzle to everyone."
+    ],
     "ch": "謎題；使困惑"
   },
   {
     "word": "quantify",
     "cefr": "B2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      "It is hard to quantify the value of friendship.",
+      "The report tries to quantify the damage.",
+      "Scientists need data to quantify the effect."
+    ],
     "ch": "量化"
   },
   {
     "word": "quarrel",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The brothers had a quarrel over money.",
+      "They quarrelled loudly in the kitchen.",
+      "A small quarrel ruined the evening."
+    ],
     "ch": "爭吵；爭論"
   },
   {
@@ -16438,14 +16878,22 @@
     "word": "questionnaire",
     "cefr": "B2",
     "frequency": 7,
-    "sentences": [],
+    "sentences": [
+      "Please complete the questionnaire honestly.",
+      "The survey begins with a short questionnaire.",
+      "Students filled out a questionnaire about homework."
+    ],
     "ch": "問卷"
   },
   {
     "word": "quicken",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The pace began to quicken near the end.",
+      "Her heart quickened when she heard the news.",
+      "The warm wind quickened the melting snow."
+    ],
     "ch": "加快；使活躍"
   },
   {
@@ -16472,49 +16920,77 @@
     "word": "rail",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "Please hold the rail while climbing the stairs.",
+      "The city plans to expand its rail network.",
+      "A bird sat on the balcony rail."
+    ],
     "ch": "欄杆；鐵路"
   },
   {
     "word": "rainbow",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "A rainbow appeared after the storm.",
+      "The child pointed at the bright rainbow.",
+      "We stopped the car to photograph the rainbow."
+    ],
     "ch": "彩虹"
   },
   {
     "word": "rainwater",
     "cefr": "B2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      "The school collects rainwater for the garden.",
+      "Rainwater filled the barrel overnight.",
+      "This system filters rainwater for reuse."
+    ],
     "ch": "雨水"
   },
   {
     "word": "random",
     "cefr": "B2",
     "frequency": 9,
-    "sentences": [],
+    "sentences": [
+      "The names were chosen at random.",
+      "A random comment made everyone laugh.",
+      "We asked random people in the street."
+    ],
     "ch": "隨機的；任意的"
   },
   {
     "word": "range",
     "cefr": "B2",
     "frequency": 10,
-    "sentences": [],
+    "sentences": [
+      "The shop sells a wide range of books.",
+      "Children's ages range from six to ten.",
+      "The mountain range was covered in mist."
+    ],
     "ch": "範圍；種類"
   },
   {
     "word": "rank",
     "cefr": "B2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      "The school ranked first in the competition.",
+      "He holds a senior rank in the company.",
+      "Please rank the options from best to worst."
+    ],
     "ch": "排名；級別"
   },
   {
     "word": "rapid",
     "cefr": "B2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      "The city saw rapid growth in recent years.",
+      "Rapid changes can be hard to manage.",
+      "The patient showed rapid improvement after treatment."
+    ],
     "ch": "快速的"
   },
   {
