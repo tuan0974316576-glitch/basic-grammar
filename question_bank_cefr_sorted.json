@@ -3,6 +3,7 @@
     "word": "across",
     "cefr": "A1",
     "frequency": 17,
+    "ch": "橫過 (prep.)",
     "sentences": [
       {
         "text": "We walked across the street.",
@@ -16,13 +17,13 @@
         "text": "He swam across the river.",
         "answer": "across"
       }
-    ],
-    "ch": "橫過 (prep.)"
+    ]
   },
   {
     "word": "action",
     "cefr": "A1",
     "frequency": 15,
+    "ch": "行動 (n.)",
     "sentences": [
       {
         "text": "Actions speak louder than words.",
@@ -36,13 +37,13 @@
         "text": "I like watching action movies.",
         "answer": "action"
       }
-    ],
-    "ch": "行動 (n.)"
+    ]
   },
   {
     "word": "activity",
     "cefr": "A1",
     "frequency": 56,
+    "ch": "活動 (n.)",
     "sentences": [
       {
         "text": "Swimming is my favorite summer activity.",
@@ -56,13 +57,13 @@
         "text": "School activities start at 4 PM.",
         "answer": "activity"
       }
-    ],
-    "ch": "活動 (n.)"
+    ]
   },
   {
     "word": "actor",
     "cefr": "A1",
     "frequency": 3,
+    "ch": "男演員 (n.)",
     "sentences": [
       {
         "text": "He is a very famous Hollywood actor.",
@@ -76,13 +77,13 @@
         "text": "I want to be an actor when I grow up.",
         "answer": "actor"
       }
-    ],
-    "ch": "男演員 (n.)"
+    ]
   },
   {
     "word": "actress",
     "cefr": "A1",
     "frequency": 2,
+    "ch": "女演員 (n.)",
     "sentences": [
       {
         "text": "The actress wore a beautiful red dress.",
@@ -96,13 +97,13 @@
         "text": "The actress played the role of a queen.",
         "answer": "actress"
       }
-    ],
-    "ch": "女演員 (n.)"
+    ]
   },
   {
     "word": "add",
     "cefr": "A1",
     "frequency": 33,
+    "ch": "增加 (v.)",
     "sentences": [
       {
         "text": "Please add some sugar to the tea.",
@@ -116,13 +117,13 @@
         "text": "Do not add too much salt to the soup.",
         "answer": "add"
       }
-    ],
-    "ch": "增加 (v.)"
+    ]
   },
   {
     "word": "adjacent to",
     "cefr": "A1",
     "frequency": null,
+    "ch": "毗鄰",
     "sentences": [
       {
         "text": "Our classroom is adjacent to the library.",
@@ -136,13 +137,13 @@
         "text": "The small shop is adjacent to the bank.",
         "answer": "adjacent to"
       }
-    ],
-    "ch": "毗鄰"
+    ]
   },
   {
     "word": "advice",
     "cefr": "A1",
     "frequency": 19,
+    "ch": "建議 (n.)",
     "sentences": [
       {
         "text": "Can you give me some advice?",
@@ -156,13 +157,13 @@
         "text": "Listen to your parents' advice.",
         "answer": "advice"
       }
-    ],
-    "ch": "建議 (n.)"
+    ]
   },
   {
     "word": "afraid",
     "cefr": "A1",
     "frequency": 9,
+    "ch": "害怕 (adj.)",
     "sentences": [
       {
         "text": "Don't be afraid of the dark.",
@@ -176,13 +177,13 @@
         "text": "Are you afraid of spiders?",
         "answer": "afraid"
       }
-    ],
-    "ch": "害怕 (adj.)"
+    ]
   },
   {
     "word": "agree",
     "cefr": "A1",
     "frequency": 72,
+    "ch": "同意 (v.)",
     "sentences": [
       {
         "text": "I agree with your plan.",
@@ -196,13 +197,13 @@
         "text": "They finally agreed on a price.",
         "answer": "agreed"
       }
-    ],
-    "ch": "同意 (v.)"
+    ]
   },
   {
     "word": "air",
     "cefr": "A1",
     "frequency": 15,
+    "ch": "空氣 (n.)",
     "sentences": [
       {
         "text": "I love the fresh air in the morning.",
@@ -216,13 +217,13 @@
         "text": "The air is cold today.",
         "answer": "air"
       }
-    ],
-    "ch": "空氣 (n.)"
+    ]
   },
   {
     "word": "airport",
     "cefr": "A1",
     "frequency": 8,
+    "ch": "機場 (n.)",
     "sentences": [
       {
         "text": "We are going to the airport now.",
@@ -236,13 +237,13 @@
         "text": "He works at the international airport.",
         "answer": "airport"
       }
-    ],
-    "ch": "機場 (n.)"
+    ]
   },
   {
     "word": "angry",
     "cefr": "A1",
     "frequency": 4,
+    "ch": "生氣 (adj.)",
     "sentences": [
       {
         "text": "My mom was angry because I was late.",
@@ -256,13 +257,13 @@
         "text": "He looked very angry this morning.",
         "answer": "angry"
       }
-    ],
-    "ch": "生氣 (adj.)"
+    ]
   },
   {
     "word": "anyone",
     "cefr": "A1",
     "frequency": 10,
+    "ch": "任何人 (pron.)",
     "sentences": [
       {
         "text": "Does anyone have a pen?",
@@ -276,13 +277,13 @@
         "text": "I didn't see anyone I knew at the party.",
         "answer": "anyone"
       }
-    ],
-    "ch": "任何人 (pron.)"
+    ]
   },
   {
     "word": "apartment",
     "cefr": "A1",
     "frequency": 4,
+    "ch": "公寓 (n.)",
     "sentences": [
       {
         "text": "I live in a small apartment in Tsuen Wan.",
@@ -296,13 +297,13 @@
         "text": "They are looking for a new apartment.",
         "answer": "apartment"
       }
-    ],
-    "ch": "公寓 (n.)"
+    ]
   },
   {
     "word": "apple",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "蘋果 (n.)",
     "sentences": [
       {
         "text": "An apple a day keeps the doctor away.",
@@ -316,13 +317,13 @@
         "text": "She is peeling an apple.",
         "answer": "apple"
       }
-    ],
-    "ch": "蘋果 (n.)"
+    ]
   },
   {
     "word": "April",
     "cefr": "A1",
     "frequency": null,
+    "ch": "四月 (n.)",
     "sentences": [
       {
         "text": "My birthday is in April.",
@@ -336,13 +337,13 @@
         "text": "It often rains in April.",
         "answer": "April"
       }
-    ],
-    "ch": "四月 (n.)"
+    ]
   },
   {
     "word": "around",
     "cefr": "A1",
     "frequency": 82,
+    "ch": "在周圍 (prep.)",
     "sentences": [
       {
         "text": "The earth goes around the sun.",
@@ -356,13 +357,13 @@
         "text": "Is there a bank around here?",
         "answer": "around"
       }
-    ],
-    "ch": "在周圍 (prep.)"
+    ]
   },
   {
     "word": "arrive",
     "cefr": "A1",
     "frequency": 16,
+    "ch": "到達 (v.)",
     "sentences": [
       {
         "text": "What time does the train arrive?",
@@ -376,13 +377,13 @@
         "text": "She arrived home late last night.",
         "answer": "arrived"
       }
-    ],
-    "ch": "到達 (v.)"
+    ]
   },
   {
     "word": "art",
     "cefr": "A1",
     "frequency": 7,
+    "ch": "藝術 (n.)",
     "sentences": [
       {
         "text": "I love studying art at school.",
@@ -396,13 +397,13 @@
         "text": "She is very good at art.",
         "answer": "art"
       }
-    ],
-    "ch": "藝術 (n.)"
+    ]
   },
   {
     "word": "article",
     "cefr": "A1",
     "frequency": 71,
+    "ch": "文章 (n.)",
     "sentences": [
       {
         "text": "I read an interesting article today.",
@@ -416,13 +417,13 @@
         "text": "Did you see the article about the game?",
         "answer": "article"
       }
-    ],
-    "ch": "文章 (n.)"
+    ]
   },
   {
     "word": "artist",
     "cefr": "A1",
     "frequency": 17,
+    "ch": "藝術家 (n.)",
     "sentences": [
       {
         "text": "She is a very talented artist.",
@@ -436,13 +437,13 @@
         "text": "He wants to become a professional artist.",
         "answer": "artist"
       }
-    ],
-    "ch": "藝術家 (n.)"
+    ]
   },
   {
     "word": "August",
     "cefr": "A1",
     "frequency": null,
+    "ch": "八月 (n.)",
     "sentences": [
       {
         "text": "August is the hottest month here.",
@@ -456,13 +457,13 @@
         "text": "School starts in late August.",
         "answer": "August"
       }
-    ],
-    "ch": "八月 (n.)"
+    ]
   },
   {
     "word": "autumn",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "秋天 (n.)",
     "sentences": [
       {
         "text": "I love the cool weather in autumn.",
@@ -476,13 +477,13 @@
         "text": "Autumn is my favorite season.",
         "answer": "Autumn"
       }
-    ],
-    "ch": "秋天 (n.)"
+    ]
   },
   {
     "word": "away",
     "cefr": "A1",
     "frequency": 32,
+    "ch": "離開 (adv.)",
     "sentences": [
       {
         "text": "Go away! I am busy.",
@@ -496,13 +497,13 @@
         "text": "Put your toys away.",
         "answer": "away"
       }
-    ],
-    "ch": "離開 (adv.)"
+    ]
   },
   {
     "word": "ball",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "球 (n.)",
     "sentences": [
       {
         "text": "He kicked the ball across the field.",
@@ -516,13 +517,13 @@
         "text": "The children are playing with a ball.",
         "answer": "ball"
       }
-    ],
-    "ch": "球 (n.)"
+    ]
   },
   {
     "word": "band",
     "cefr": "A1",
     "frequency": 19,
+    "ch": "樂隊 (n.)",
     "sentences": [
       {
         "text": "My brother plays in a rock band.",
@@ -536,13 +537,13 @@
         "text": "I want to start a band with my friends.",
         "answer": "band"
       }
-    ],
-    "ch": "樂隊 (n.)"
+    ]
   },
   {
     "word": "bath",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "洗澡 (n.)",
     "sentences": [
       {
         "text": "I like to take a warm bath before bed.",
@@ -556,13 +557,13 @@
         "text": "I need to give the dog a bath.",
         "answer": "bath"
       }
-    ],
-    "ch": "洗澡 (n.)"
+    ]
   },
   {
     "word": "bathroom",
     "cefr": "A1",
     "frequency": 2,
+    "ch": "浴室 (n.)",
     "sentences": [
       {
         "text": "May I use your bathroom?",
@@ -576,13 +577,13 @@
         "text": "I need to clean the bathroom today.",
         "answer": "bathroom"
       }
-    ],
-    "ch": "浴室 (n.)"
+    ]
   },
   {
     "word": "beach",
     "cefr": "A1",
     "frequency": 12,
+    "ch": "沙灘 (n.)",
     "sentences": [
       {
         "text": "Let's go to the beach this weekend.",
@@ -596,13 +597,13 @@
         "text": "The children are building a sandcastle on the beach.",
         "answer": "beach"
       }
-    ],
-    "ch": "沙灘 (n.)"
+    ]
   },
   {
     "word": "bed",
     "cefr": "A1",
     "frequency": 2,
+    "ch": "床 (n.)",
     "sentences": [
       {
         "text": "It's time to go to bed.",
@@ -616,13 +617,13 @@
         "text": "The bed is very soft and comfortable.",
         "answer": "bed"
       }
-    ],
-    "ch": "床 (n.)"
+    ]
   },
   {
     "word": "bedroom",
     "cefr": "A1",
     "frequency": 3,
+    "ch": "睡房 (n.)",
     "sentences": [
       {
         "text": "My bedroom is on the second floor.",
@@ -636,13 +637,13 @@
         "text": "She is cleaning her bedroom now.",
         "answer": "bedroom"
       }
-    ],
-    "ch": "睡房 (n.)"
+    ]
   },
   {
     "word": "beer",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "啤酒 (n.)",
     "sentences": [
       {
         "text": "He likes to drink a cold beer after work.",
@@ -656,13 +657,13 @@
         "text": "This beer is from Germany.",
         "answer": "beer"
       }
-    ],
-    "ch": "啤酒 (n.)"
+    ]
   },
   {
     "word": "behind",
     "cefr": "A1",
     "frequency": 20,
+    "ch": "在...後面 (prep.)",
     "sentences": [
       {
         "text": "The cat is hiding behind the sofa.",
@@ -676,33 +677,13 @@
         "text": "Who is that standing behind you?",
         "answer": "behind"
       }
-    ],
-    "ch": "在...後面 (prep.)"
-  },
-  {
-    "word": "behind",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "The cat is hiding behind the sofa.",
-        "answer": "behind"
-      },
-      {
-        "text": "The sun went behind a cloud.",
-        "answer": "behind"
-      },
-      {
-        "text": "Who is that standing behind you?",
-        "answer": "behind"
-      }
-    ],
-    "ch": "在...後面 (prep.)"
+    ]
   },
   {
     "word": "between",
     "cefr": "A1",
     "frequency": null,
+    "ch": "在...之間 (prep.)",
     "sentences": [
       {
         "text": "The shop is between the bank and the pharmacy.",
@@ -716,13 +697,13 @@
         "text": "What happened between them?",
         "answer": "between"
       }
-    ],
-    "ch": "在...之間 (prep.)"
+    ]
   },
   {
     "word": "bicycle",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "單車 (n.)",
     "sentences": [
       {
         "text": "I go to school by bicycle every day.",
@@ -736,13 +717,13 @@
         "text": "My bicycle has a small bell.",
         "answer": "bicycle"
       }
-    ],
-    "ch": "單車 (n.)"
+    ]
   },
   {
     "word": "bird",
     "cefr": "A1",
     "frequency": 10,
+    "ch": "鳥 (n.)",
     "sentences": [
       {
         "text": "A small bird is singing in the tree.",
@@ -756,13 +737,13 @@
         "text": "Birds can fly high in the sky.",
         "answer": "Birds"
       }
-    ],
-    "ch": "鳥 (n.)"
+    ]
   },
   {
     "word": "birthday",
     "cefr": "A1",
     "frequency": 3,
+    "ch": "生日 (n.)",
     "sentences": [
       {
         "text": "When is your birthday?",
@@ -776,13 +757,13 @@
         "text": "I am having a party for my birthday.",
         "answer": "birthday"
       }
-    ],
-    "ch": "生日 (n.)"
+    ]
   },
   {
     "word": "black",
     "cefr": "A1",
     "frequency": 7,
+    "ch": "黑色 (adj.)",
     "sentences": [
       {
         "text": "She is wearing a black dress.",
@@ -796,13 +777,13 @@
         "text": "He has short black hair.",
         "answer": "black"
       }
-    ],
-    "ch": "黑色 (adj.)"
+    ]
   },
   {
     "word": "blog",
     "cefr": "A1",
     "frequency": 14,
+    "ch": "博客 (n.)",
     "sentences": [
       {
         "text": "She writes a travel blog.",
@@ -816,13 +797,13 @@
         "text": "He started a blog about cooking.",
         "answer": "blog"
       }
-    ],
-    "ch": "博客 (n.)"
+    ]
   },
   {
     "word": "blue",
     "cefr": "A1",
     "frequency": 3,
+    "ch": "藍色 (adj.)",
     "sentences": [
       {
         "text": "The sky is clear and blue today.",
@@ -836,13 +817,13 @@
         "text": "He is wearing a blue shirt.",
         "answer": "blue"
       }
-    ],
-    "ch": "藍色 (adj.)"
+    ]
   },
   {
     "word": "boat",
     "cefr": "A1",
     "frequency": 3,
+    "ch": "船 (n.)",
     "sentences": [
       {
         "text": "We took a boat across the lake.",
@@ -856,13 +837,13 @@
         "text": "He owns a small fishing boat.",
         "answer": "boat"
       }
-    ],
-    "ch": "船 (n.)"
+    ]
   },
   {
     "word": "body",
     "cefr": "A1",
     "frequency": 20,
+    "ch": "身體 (n.)",
     "sentences": [
       {
         "text": "Exercise is good for your body.",
@@ -876,13 +857,13 @@
         "text": "He has a very strong body.",
         "answer": "body"
       }
-    ],
-    "ch": "身體 (n.)"
+    ]
   },
   {
     "word": "bottle",
     "cefr": "A1",
     "frequency": 2,
+    "ch": "樽 (n.)",
     "sentences": [
       {
         "text": "Can I have a bottle of water?",
@@ -896,13 +877,13 @@
         "text": "She broke a glass bottle.",
         "answer": "bottle"
       }
-    ],
-    "ch": "樽 (n.)"
+    ]
   },
   {
     "word": "bottom",
     "cefr": "A1",
     "frequency": null,
+    "ch": "底部",
     "sentences": [
       {
         "text": "Your socks are in the bottom drawer.",
@@ -916,13 +897,13 @@
         "text": "The toy is at the bottom of the box.",
         "answer": "bottom"
       }
-    ],
-    "ch": "底部"
+    ]
   },
   {
     "word": "box",
     "cefr": "A1",
     "frequency": 5,
+    "ch": "盒 (n.)",
     "sentences": [
       {
         "text": "The toys are in the big box.",
@@ -936,13 +917,13 @@
         "text": "I need a cardboard box for moving.",
         "answer": "box"
       }
-    ],
-    "ch": "盒 (n.)"
+    ]
   },
   {
     "word": "boyfriend",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "男朋友 (n.)",
     "sentences": [
       {
         "text": "She went to the cinema with her boyfriend.",
@@ -956,13 +937,13 @@
         "text": "Her boyfriend works as a computer programmer.",
         "answer": "boyfriend"
       }
-    ],
-    "ch": "男朋友 (n.)"
+    ]
   },
   {
     "word": "bread",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "麵包 (n.)",
     "sentences": [
       {
         "text": "I usually have bread and eggs for breakfast.",
@@ -976,13 +957,13 @@
         "text": "Would you like a slice of bread?",
         "answer": "bread"
       }
-    ],
-    "ch": "麵包 (n.)"
+    ]
   },
   {
     "word": "break",
     "cefr": "A1",
     "frequency": 23,
+    "ch": "休息/打破 (v./n.)",
     "sentences": [
       {
         "text": "Be careful not to break the glass.",
@@ -996,13 +977,13 @@
         "text": "Did you break your phone screen?",
         "answer": "break"
       }
-    ],
-    "ch": "休息/打破 (v./n.)"
+    ]
   },
   {
     "word": "breakfast",
     "cefr": "A1",
     "frequency": 6,
+    "ch": "早餐 (n.)",
     "sentences": [
       {
         "text": "What did you have for breakfast?",
@@ -1016,13 +997,13 @@
         "text": "Breakfast is the most important meal of the day.",
         "answer": "Breakfast"
       }
-    ],
-    "ch": "早餐 (n.)"
+    ]
   },
   {
     "word": "brown",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "啡色 (adj.)",
     "sentences": [
       {
         "text": "The dog has brown fur.",
@@ -1036,13 +1017,13 @@
         "text": "He has dark brown eyes.",
         "answer": "brown"
       }
-    ],
-    "ch": "啡色 (adj.)"
+    ]
   },
   {
     "word": "business",
     "cefr": "A1",
     "frequency": 56,
+    "ch": "商業/生意 (n.)",
     "sentences": [
       {
         "text": "He runs a successful clothing business.",
@@ -1056,13 +1037,13 @@
         "text": "Starting a new business is risky.",
         "answer": "business"
       }
-    ],
-    "ch": "商業/生意 (n.)"
+    ]
   },
   {
     "word": "busy",
     "cefr": "A1",
     "frequency": 6,
+    "ch": "忙碌的 (adj.)",
     "sentences": [
       {
         "text": "I am very busy preparing for the test.",
@@ -1076,13 +1057,13 @@
         "text": "She has a busy schedule today.",
         "answer": "busy"
       }
-    ],
-    "ch": "忙碌的 (adj.)"
+    ]
   },
   {
     "word": "butter",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "牛油 (n.)",
     "sentences": [
       {
         "text": "I put some butter on my toast.",
@@ -1096,13 +1077,13 @@
         "text": "Do you want butter or jam on your bread?",
         "answer": "butter"
       }
-    ],
-    "ch": "牛油 (n.)"
+    ]
   },
   {
     "word": "café",
     "cefr": "A1",
     "frequency": 19,
+    "ch": "咖啡店",
     "sentences": [
       {
         "text": "We sat in a quiet café after school.",
@@ -1116,13 +1097,13 @@
         "text": "My mother is meeting her friend at the café.",
         "answer": "café"
       }
-    ],
-    "ch": "咖啡店"
+    ]
   },
   {
     "word": "cake",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "蛋糕",
     "sentences": [
       {
         "text": "She baked a chocolate cake for my birthday.",
@@ -1136,13 +1117,13 @@
         "text": "The cake looks beautiful on the table.",
         "answer": "cake"
       }
-    ],
-    "ch": "蛋糕"
+    ]
   },
   {
     "word": "camera",
     "cefr": "A1",
     "frequency": 10,
+    "ch": "相機",
     "sentences": [
       {
         "text": "Please bring your camera to the park.",
@@ -1156,13 +1137,13 @@
         "text": "This camera is easy to use.",
         "answer": "camera"
       }
-    ],
-    "ch": "相機"
+    ]
   },
   {
     "word": "capital",
     "cefr": "A1",
     "frequency": 3,
+    "ch": "首都",
     "sentences": [
       {
         "text": "Bangkok is the capital of Thailand.",
@@ -1176,13 +1157,13 @@
         "text": "The capital city is very busy.",
         "answer": "capital"
       }
-    ],
-    "ch": "首都"
+    ]
   },
   {
     "word": "career",
     "cefr": "A1",
     "frequency": 20,
+    "ch": "事業",
     "sentences": [
       {
         "text": "She wants a career in medicine.",
@@ -1196,13 +1177,13 @@
         "text": "He is thinking about his future career.",
         "answer": "career"
       }
-    ],
-    "ch": "事業"
+    ]
   },
   {
     "word": "carry",
     "cefr": "A1",
     "frequency": 17,
+    "ch": "攜帶",
     "sentences": [
       {
         "text": "Can you carry this bag for me?",
@@ -1216,13 +1197,13 @@
         "text": "Do not carry too many books at once.",
         "answer": "carry"
       }
-    ],
-    "ch": "攜帶"
+    ]
   },
   {
     "word": "century",
     "cefr": "A1",
     "frequency": 8,
+    "ch": "世紀",
     "sentences": [
       {
         "text": "This old church was built a century ago.",
@@ -1236,13 +1217,13 @@
         "text": "The painting is over a century old.",
         "answer": "century"
       }
-    ],
-    "ch": "世紀"
+    ]
   },
   {
     "word": "cheaper",
     "cefr": "A1",
     "frequency": 2,
+    "ch": "較便宜",
     "sentences": [
       {
         "text": "This bag is cheaper than that one.",
@@ -1256,13 +1237,13 @@
         "text": "Buying online is sometimes cheaper.",
         "answer": "cheaper"
       }
-    ],
-    "ch": "較便宜"
+    ]
   },
   {
     "word": "cheapest",
     "cefr": "A1",
     "frequency": 2,
+    "ch": "最便宜",
     "sentences": [
       {
         "text": "This is the cheapest meal on the menu.",
@@ -1276,13 +1257,13 @@
         "text": "That shop sells the cheapest fruit in the area.",
         "answer": "cheapest"
       }
-    ],
-    "ch": "最便宜"
+    ]
   },
   {
     "word": "cheese",
     "cefr": "A1",
     "frequency": 2,
+    "ch": "芝士",
     "sentences": [
       {
         "text": "I like cheese on my pizza.",
@@ -1296,13 +1277,13 @@
         "text": "She bought bread and cheese for lunch.",
         "answer": "cheese"
       }
-    ],
-    "ch": "芝士"
+    ]
   },
   {
     "word": "chicken",
     "cefr": "A1",
     "frequency": 6,
+    "ch": "雞肉",
     "sentences": [
       {
         "text": "We had rice and chicken for dinner.",
@@ -1316,13 +1297,13 @@
         "text": "She ordered grilled chicken at the restaurant.",
         "answer": "chicken"
       }
-    ],
-    "ch": "雞肉"
+    ]
   },
   {
     "word": "cinema",
     "cefr": "A1",
     "frequency": 9,
+    "ch": "電影院",
     "sentences": [
       {
         "text": "We are going to the cinema tonight.",
@@ -1336,13 +1317,13 @@
         "text": "I met my classmates outside the cinema.",
         "answer": "cinema"
       }
-    ],
-    "ch": "電影院"
+    ]
   },
   {
     "word": "class",
     "cefr": "A1",
     "frequency": 26,
+    "ch": "班別",
     "sentences": [
       {
         "text": "Our class starts at eight o clock.",
@@ -1356,13 +1337,13 @@
         "text": "She is the tallest girl in the class.",
         "answer": "class"
       }
-    ],
-    "ch": "班別"
+    ]
   },
   {
     "word": "classroom",
     "cefr": "A1",
     "frequency": 8,
+    "ch": "課室",
     "sentences": [
       {
         "text": "Please keep the classroom clean.",
@@ -1376,13 +1357,13 @@
         "text": "The teacher is waiting in the classroom.",
         "answer": "classroom"
       }
-    ],
-    "ch": "課室"
+    ]
   },
   {
     "word": "cleverest",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "最聰明",
     "sentences": [
       {
         "text": "Tom is the cleverest student in the group.",
@@ -1396,13 +1377,13 @@
         "text": "That was the cleverest answer in the quiz.",
         "answer": "cleverest"
       }
-    ],
-    "ch": "最聰明"
+    ]
   },
   {
     "word": "club",
     "cefr": "A1",
     "frequency": 2,
+    "ch": "俱樂部",
     "sentences": [
       {
         "text": "I joined the school chess club.",
@@ -1416,13 +1397,13 @@
         "text": "My sister is in the drama club.",
         "answer": "club"
       }
-    ],
-    "ch": "俱樂部"
+    ]
   },
   {
     "word": "coat",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "外套",
     "sentences": [
       {
         "text": "Please wear your coat before you go outside.",
@@ -1436,13 +1417,13 @@
         "text": "I bought a new winter coat yesterday.",
         "answer": "coat"
       }
-    ],
-    "ch": "外套"
+    ]
   },
   {
     "word": "coffee",
     "cefr": "A1",
     "frequency": 3,
+    "ch": "咖啡",
     "sentences": [
       {
         "text": "My father drinks coffee every morning.",
@@ -1456,13 +1437,13 @@
         "text": "The smell of fresh coffee filled the room.",
         "answer": "coffee"
       }
-    ],
-    "ch": "咖啡"
+    ]
   },
   {
     "word": "college",
     "cefr": "A1",
     "frequency": 8,
+    "ch": "學院",
     "sentences": [
       {
         "text": "My sister is studying at college now.",
@@ -1476,13 +1457,13 @@
         "text": "The college library is very large.",
         "answer": "college"
       }
-    ],
-    "ch": "學院"
+    ]
   },
   {
     "word": "colour",
     "cefr": "A1",
     "frequency": 9,
+    "ch": "顏色",
     "sentences": [
       {
         "text": "Blue is my favourite colour.",
@@ -1496,13 +1477,13 @@
         "text": "This flower has a bright yellow colour.",
         "answer": "colour"
       }
-    ],
-    "ch": "顏色"
+    ]
   },
   {
     "word": "common",
     "cefr": "A1",
     "frequency": 10,
+    "ch": "常見的",
     "sentences": [
       {
         "text": "It is common to take photos here.",
@@ -1516,13 +1497,13 @@
         "text": "Cold weather is common in winter.",
         "answer": "common"
       }
-    ],
-    "ch": "常見的"
+    ]
   },
   {
     "word": "company",
     "cefr": "A1",
     "frequency": 68,
+    "ch": "公司",
     "sentences": [
       {
         "text": "My uncle works for a large company.",
@@ -1536,13 +1517,13 @@
         "text": "She started her own small company.",
         "answer": "company"
       }
-    ],
-    "ch": "公司"
+    ]
   },
   {
     "word": "compare",
     "cefr": "A1",
     "frequency": 9,
+    "ch": "比較",
     "sentences": [
       {
         "text": "Please compare these two pictures.",
@@ -1556,13 +1537,13 @@
         "text": "It is hard to compare the two plans.",
         "answer": "compare"
       }
-    ],
-    "ch": "比較"
+    ]
   },
   {
     "word": "conversation",
     "cefr": "A1",
     "frequency": 4,
+    "ch": "對話",
     "sentences": [
       {
         "text": "I had a long conversation with my teacher.",
@@ -1576,13 +1557,13 @@
         "text": "Please keep your conversation quiet in the library.",
         "answer": "conversation"
       }
-    ],
-    "ch": "對話"
+    ]
   },
   {
     "word": "corner",
     "cefr": "A1",
     "frequency": null,
+    "ch": "角落",
     "sentences": [
       {
         "text": "The bookstore is on the corner of the street.",
@@ -1596,13 +1577,13 @@
         "text": "Wait for me at the corner near the bank.",
         "answer": "corner"
       }
-    ],
-    "ch": "角落"
+    ]
   },
   {
     "word": "correct",
     "cefr": "A1",
     "frequency": 5,
+    "ch": "正確的",
     "sentences": [
       {
         "text": "Your answer is correct.",
@@ -1616,13 +1597,13 @@
         "text": "The teacher checked whether the sentence was correct.",
         "answer": "correct"
       }
-    ],
-    "ch": "正確的"
+    ]
   },
   {
     "word": "corridor",
     "cefr": "A1",
     "frequency": null,
+    "ch": "走廊",
     "sentences": [
       {
         "text": "Please do not run in the corridor.",
@@ -1636,13 +1617,13 @@
         "text": "Our classroom is at the end of the corridor.",
         "answer": "corridor"
       }
-    ],
-    "ch": "走廊"
+    ]
   },
   {
     "word": "cost",
     "cefr": "A1",
     "frequency": 31,
+    "ch": "花費",
     "sentences": [
       {
         "text": "How much does this book cost?",
@@ -1656,13 +1637,13 @@
         "text": "Food costs a lot in this area.",
         "answer": "costs"
       }
-    ],
-    "ch": "花費"
+    ]
   },
   {
     "word": "course",
     "cefr": "A1",
     "frequency": 62,
+    "ch": "課程",
     "sentences": [
       {
         "text": "She is taking an English course this summer.",
@@ -1676,13 +1657,13 @@
         "text": "I signed up for a swimming course.",
         "answer": "course"
       }
-    ],
-    "ch": "課程"
+    ]
   },
   {
     "word": "cousin",
     "cefr": "A1",
     "frequency": 3,
+    "ch": "表親",
     "sentences": [
       {
         "text": "My cousin is one year older than me.",
@@ -1696,13 +1677,13 @@
         "text": "Her cousin lives in another city.",
         "answer": "cousin"
       }
-    ],
-    "ch": "表親"
+    ]
   },
   {
     "word": "cow",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "牛",
     "sentences": [
       {
         "text": "The cow is eating grass in the field.",
@@ -1716,13 +1697,13 @@
         "text": "The farmer fed the cow early in the morning.",
         "answer": "cow"
       }
-    ],
-    "ch": "牛"
+    ]
   },
   {
     "word": "cross",
     "cefr": "A1",
     "frequency": null,
+    "ch": "橫過",
     "sentences": [
       {
         "text": "Please cross the road carefully.",
@@ -1736,13 +1717,13 @@
         "text": "Do not cross the line on the floor.",
         "answer": "cross"
       }
-    ],
-    "ch": "橫過"
+    ]
   },
   {
     "word": "culture",
     "cefr": "A1",
     "frequency": 35,
+    "ch": "文化",
     "sentences": [
       {
         "text": "We learned about Japanese culture in class.",
@@ -1756,13 +1737,13 @@
         "text": "The museum teaches visitors about local culture.",
         "answer": "culture"
       }
-    ],
-    "ch": "文化"
+    ]
   },
   {
     "word": "cup",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "杯",
     "sentences": [
       {
         "text": "She poured tea into a cup.",
@@ -1776,13 +1757,13 @@
         "text": "He dropped the cup by accident.",
         "answer": "cup"
       }
-    ],
-    "ch": "杯"
+    ]
   },
   {
     "word": "customer",
     "cefr": "A1",
     "frequency": 35,
+    "ch": "顧客",
     "sentences": [
       {
         "text": "The shop assistant smiled at the customer.",
@@ -1796,13 +1777,13 @@
         "text": "The customer asked for a refund.",
         "answer": "customer"
       }
-    ],
-    "ch": "顧客"
+    ]
   },
   {
     "word": "dance",
     "cefr": "A1",
     "frequency": 10,
+    "ch": "跳舞",
     "sentences": [
       {
         "text": "They love to dance at parties.",
@@ -1816,13 +1797,13 @@
         "text": "She wants to learn how to dance.",
         "answer": "dance"
       }
-    ],
-    "ch": "跳舞"
+    ]
   },
   {
     "word": "dancer",
     "cefr": "A1",
     "frequency": 3,
+    "ch": "舞者",
     "sentences": [
       {
         "text": "The dancer moved gracefully across the stage.",
@@ -1836,13 +1817,13 @@
         "text": "The dancer wore a bright costume.",
         "answer": "dancer"
       }
-    ],
-    "ch": "舞者"
+    ]
   },
   {
     "word": "dangerous",
     "cefr": "A1",
     "frequency": 11,
+    "ch": "危險的",
     "sentences": [
       {
         "text": "It is dangerous to swim there.",
@@ -1856,13 +1837,13 @@
         "text": "Playing with fire can be dangerous.",
         "answer": "dangerous"
       }
-    ],
-    "ch": "危險的"
+    ]
   },
   {
     "word": "December",
     "cefr": "A1",
     "frequency": null,
+    "ch": "十二月",
     "sentences": [
       {
         "text": "My birthday is in December.",
@@ -1876,13 +1857,13 @@
         "text": "The weather is cool in December.",
         "answer": "December"
       }
-    ],
-    "ch": "十二月"
+    ]
   },
   {
     "word": "decide",
     "cefr": "A1",
     "frequency": 48,
+    "ch": "決定",
     "sentences": [
       {
         "text": "We need to decide before noon.",
@@ -1896,13 +1877,13 @@
         "text": "My parents decided to stay at home.",
         "answer": "decided"
       }
-    ],
-    "ch": "決定"
+    ]
   },
   {
     "word": "describe",
     "cefr": "A1",
     "frequency": 20,
+    "ch": "描述",
     "sentences": [
       {
         "text": "Can you describe your new teacher?",
@@ -1916,13 +1897,13 @@
         "text": "He found it hard to describe the scene.",
         "answer": "describe"
       }
-    ],
-    "ch": "描述"
+    ]
   },
   {
     "word": "description",
     "cefr": "A1",
     "frequency": 5,
+    "ch": "描述",
     "sentences": [
       {
         "text": "The description of the hotel was accurate.",
@@ -1936,13 +1917,13 @@
         "text": "Her description of the game was very clear.",
         "answer": "description"
       }
-    ],
-    "ch": "描述"
+    ]
   },
   {
     "word": "design",
     "cefr": "A1",
     "frequency": 36,
+    "ch": "設計",
     "sentences": [
       {
         "text": "I like the design of this poster.",
@@ -1956,13 +1937,13 @@
         "text": "The building has a modern design.",
         "answer": "design"
       }
-    ],
-    "ch": "設計"
+    ]
   },
   {
     "word": "desk",
     "cefr": "A1",
     "frequency": 17,
+    "ch": "書桌",
     "sentences": [
       {
         "text": "My books are on the desk.",
@@ -1976,13 +1957,13 @@
         "text": "There is a lamp on her desk.",
         "answer": "desk"
       }
-    ],
-    "ch": "書桌"
+    ]
   },
   {
     "word": "dictionary",
     "cefr": "A1",
     "frequency": 2,
+    "ch": "字典",
     "sentences": [
       {
         "text": "Please look up the word in the dictionary.",
@@ -1996,13 +1977,13 @@
         "text": "This dictionary is very useful for students.",
         "answer": "dictionary"
       }
-    ],
-    "ch": "字典"
+    ]
   },
   {
     "word": "diet",
     "cefr": "A1",
     "frequency": 2,
+    "ch": "飲食",
     "sentences": [
       {
         "text": "Fruit and vegetables are part of a healthy diet.",
@@ -2016,13 +1997,13 @@
         "text": "A good diet helps you stay strong.",
         "answer": "diet"
       }
-    ],
-    "ch": "飲食"
+    ]
   },
   {
     "word": "difference",
     "cefr": "A1",
     "frequency": 8,
+    "ch": "分別",
     "sentences": [
       {
         "text": "Can you see the difference between these two pictures?",
@@ -2036,13 +2017,13 @@
         "text": "The teacher explained the difference clearly.",
         "answer": "difference"
       }
-    ],
-    "ch": "分別"
+    ]
   },
   {
     "word": "different",
     "cefr": "A1",
     "frequency": 65,
+    "ch": "不同的",
     "sentences": [
       {
         "text": "My brother and I like different sports.",
@@ -2056,13 +2037,13 @@
         "text": "We all have different ideas.",
         "answer": "different"
       }
-    ],
-    "ch": "不同的"
+    ]
   },
   {
     "word": "dinner",
     "cefr": "A1",
     "frequency": 3,
+    "ch": "晚餐",
     "sentences": [
       {
         "text": "We had fish and rice for dinner.",
@@ -2076,13 +2057,13 @@
         "text": "My family ate dinner together last night.",
         "answer": "dinner"
       }
-    ],
-    "ch": "晚餐"
+    ]
   },
   {
     "word": "discuss",
     "cefr": "A1",
     "frequency": 20,
+    "ch": "討論",
     "sentences": [
       {
         "text": "Let us discuss the problem together.",
@@ -2096,13 +2077,13 @@
         "text": "The students discussed the topic in groups.",
         "answer": "discussed"
       }
-    ],
-    "ch": "討論"
+    ]
   },
   {
     "word": "dish",
     "cefr": "A1",
     "frequency": 5,
+    "ch": "菜式",
     "sentences": [
       {
         "text": "This noodle dish is very popular.",
@@ -2116,13 +2097,13 @@
         "text": "The restaurant serves a spicy chicken dish.",
         "answer": "dish"
       }
-    ],
-    "ch": "菜式"
+    ]
   },
   {
     "word": "draw",
     "cefr": "A1",
     "frequency": 16,
+    "ch": "畫",
     "sentences": [
       {
         "text": "I like to draw animals in my notebook.",
@@ -2136,13 +2117,13 @@
         "text": "She draws very well for her age.",
         "answer": "draws"
       }
-    ],
-    "ch": "畫"
+    ]
   },
   {
     "word": "dress",
     "cefr": "A1",
     "frequency": 5,
+    "ch": "連身裙",
     "sentences": [
       {
         "text": "She wore a blue dress to the party.",
@@ -2156,13 +2137,13 @@
         "text": "My sister bought a new summer dress.",
         "answer": "dress"
       }
-    ],
-    "ch": "連身裙"
+    ]
   },
   {
     "word": "drink",
     "cefr": "A1",
     "frequency": 3,
+    "ch": "飲品",
     "sentences": [
       {
         "text": "Do not forget to drink more water.",
@@ -2176,13 +2157,13 @@
         "text": "He drank a hot drink before bed.",
         "answer": "drink"
       }
-    ],
-    "ch": "飲品"
+    ]
   },
   {
     "word": "ear",
     "cefr": "A1",
     "frequency": 2,
+    "ch": "耳朵",
     "sentences": [
       {
         "text": "My left ear hurts a little.",
@@ -2196,13 +2177,13 @@
         "text": "She whispered the secret in my ear.",
         "answer": "ear"
       }
-    ],
-    "ch": "耳朵"
+    ]
   },
   {
     "word": "easier",
     "cefr": "A1",
     "frequency": 4,
+    "ch": "較容易",
     "sentences": [
       {
         "text": "This question is easier than the last one.",
@@ -2216,13 +2197,13 @@
         "text": "It is easier to study in a quiet room.",
         "answer": "easier"
       }
-    ],
-    "ch": "較容易"
+    ]
   },
   {
     "word": "elephant",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "大象",
     "sentences": [
       {
         "text": "The elephant is the largest animal in the zoo.",
@@ -2236,33 +2217,13 @@
         "text": "The little boy drew a grey elephant.",
         "answer": "elephant"
       }
-    ],
-    "ch": "大象"
-  },
-  {
-    "word": "else",
-    "cefr": "A1",
-    "frequency": 11,
-    "sentences": [
-      {
-        "text": "Would you like anything else to eat?",
-        "answer": "else"
-      },
-      {
-        "text": "Everyone is here, but who else is coming?",
-        "answer": "else"
-      },
-      {
-        "text": "There is nothing else in the box.",
-        "answer": "else"
-      }
-    ],
-    "ch": "其他"
+    ]
   },
   {
     "word": "email",
     "cefr": "A1",
     "frequency": 121,
+    "ch": "電郵",
     "sentences": [
       {
         "text": "Please send me an email tonight.",
@@ -2276,13 +2237,13 @@
         "text": "She checks her email every morning.",
         "answer": "email"
       }
-    ],
-    "ch": "電郵"
+    ]
   },
   {
     "word": "enjoy",
     "cefr": "A1",
     "frequency": 39,
+    "ch": "享受",
     "sentences": [
       {
         "text": "I enjoy reading before bed.",
@@ -2296,13 +2257,13 @@
         "text": "Did you enjoy the concert last night?",
         "answer": "enjoy"
       }
-    ],
-    "ch": "享受"
+    ]
   },
   {
     "word": "event",
     "cefr": "A1",
     "frequency": 79,
+    "ch": "活動",
     "sentences": [
       {
         "text": "The school event starts at two o clock.",
@@ -2316,13 +2277,13 @@
         "text": "This event is open to the public.",
         "answer": "event"
       }
-    ],
-    "ch": "活動"
+    ]
   },
   {
     "word": "every",
     "cefr": "A1",
     "frequency": 43,
+    "ch": "每一個",
     "sentences": [
       {
         "text": "I go to school every weekday.",
@@ -2336,13 +2297,13 @@
         "text": "Every student must bring a pencil.",
         "answer": "Every"
       }
-    ],
-    "ch": "每一個"
+    ]
   },
   {
     "word": "everybody",
     "cefr": "A1",
     "frequency": 5,
+    "ch": "每個人",
     "sentences": [
       {
         "text": "Everybody was excited about the trip.",
@@ -2356,13 +2317,13 @@
         "text": "Everybody in my family likes music.",
         "answer": "Everybody"
       }
-    ],
-    "ch": "每個人"
+    ]
   },
   {
     "word": "everyone",
     "cefr": "A1",
     "frequency": 30,
+    "ch": "每個人",
     "sentences": [
       {
         "text": "Everyone in the class finished the work.",
@@ -2376,13 +2337,13 @@
         "text": "Everyone was smiling in the photo.",
         "answer": "Everyone"
       }
-    ],
-    "ch": "每個人"
+    ]
   },
   {
     "word": "exam",
     "cefr": "A1",
     "frequency": 4,
+    "ch": "考試",
     "sentences": [
       {
         "text": "We have an English exam tomorrow.",
@@ -2396,13 +2357,13 @@
         "text": "The exam starts at nine o clock.",
         "answer": "exam"
       }
-    ],
-    "ch": "考試"
+    ]
   },
   {
     "word": "exercise",
     "cefr": "A1",
     "frequency": 11,
+    "ch": "運動",
     "sentences": [
       {
         "text": "Daily exercise is good for your health.",
@@ -2416,13 +2377,13 @@
         "text": "My doctor told me to get more exercise.",
         "answer": "exercise"
       }
-    ],
-    "ch": "運動"
+    ]
   },
   {
     "word": "expensive",
     "cefr": "A1",
     "frequency": 13,
+    "ch": "昂貴的",
     "sentences": [
       {
         "text": "That watch is too expensive for me.",
@@ -2436,13 +2397,13 @@
         "text": "This shop sells expensive bags.",
         "answer": "expensive"
       }
-    ],
-    "ch": "昂貴的"
+    ]
   },
   {
     "word": "explain",
     "cefr": "A1",
     "frequency": 50,
+    "ch": "解釋",
     "sentences": [
       {
         "text": "Can you explain this answer to me?",
@@ -2456,13 +2417,13 @@
         "text": "Please explain why you were late.",
         "answer": "explain"
       }
-    ],
-    "ch": "解釋"
+    ]
   },
   {
     "word": "fact",
     "cefr": "A1",
     "frequency": 35,
+    "ch": "事實",
     "sentences": [
       {
         "text": "It is a fact that water is important.",
@@ -2476,13 +2437,13 @@
         "text": "Tell me one fact about whales.",
         "answer": "fact"
       }
-    ],
-    "ch": "事實"
+    ]
   },
   {
     "word": "famous",
     "cefr": "A1",
     "frequency": 21,
+    "ch": "著名的",
     "sentences": [
       {
         "text": "This restaurant is famous for seafood.",
@@ -2496,13 +2457,13 @@
         "text": "That actor is famous around the world.",
         "answer": "famous"
       }
-    ],
-    "ch": "著名的"
+    ]
   },
   {
     "word": "fantastic",
     "cefr": "A1",
     "frequency": 7,
+    "ch": "極好的",
     "sentences": [
       {
         "text": "The fireworks show was fantastic.",
@@ -2516,13 +2477,13 @@
         "text": "We had a fantastic time at the beach.",
         "answer": "fantastic"
       }
-    ],
-    "ch": "極好的"
+    ]
   },
   {
     "word": "farmer",
     "cefr": "A1",
     "frequency": 10,
+    "ch": "農夫",
     "sentences": [
       {
         "text": "The farmer fed the chickens early in the morning.",
@@ -2536,13 +2497,13 @@
         "text": "The farmer grows vegetables on his land.",
         "answer": "farmer"
       }
-    ],
-    "ch": "農夫"
+    ]
   },
   {
     "word": "faster",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "較快",
     "sentences": [
       {
         "text": "This train is faster than the bus.",
@@ -2556,13 +2517,13 @@
         "text": "My computer is much faster now.",
         "answer": "faster"
       }
-    ],
-    "ch": "較快"
+    ]
   },
   {
     "word": "favourite",
     "cefr": "A1",
     "frequency": 9,
+    "ch": "最喜愛的",
     "sentences": [
       {
         "text": "Blue is my favourite colour.",
@@ -2576,13 +2537,13 @@
         "text": "This is my favourite song.",
         "answer": "favourite"
       }
-    ],
-    "ch": "最喜愛的"
+    ]
   },
   {
     "word": "February",
     "cefr": "A1",
     "frequency": null,
+    "ch": "二月",
     "sentences": [
       {
         "text": "My cousin was born in February.",
@@ -2596,13 +2557,13 @@
         "text": "The weather can be cool in February.",
         "answer": "February"
       }
-    ],
-    "ch": "二月"
+    ]
   },
   {
     "word": "festival",
     "cefr": "A1",
     "frequency": 2,
+    "ch": "節日",
     "sentences": [
       {
         "text": "We visited the food festival on Sunday.",
@@ -2616,13 +2577,13 @@
         "text": "Many people joined the spring festival.",
         "answer": "festival"
       }
-    ],
-    "ch": "節日"
+    ]
   },
   {
     "word": "flight",
     "cefr": "A1",
     "frequency": 4,
+    "ch": "航班",
     "sentences": [
       {
         "text": "Our flight leaves at six in the morning.",
@@ -2636,13 +2597,13 @@
         "text": "Please check the flight number on your ticket.",
         "answer": "flight"
       }
-    ],
-    "ch": "航班"
+    ]
   },
   {
     "word": "floor",
     "cefr": "A1",
     "frequency": 5,
+    "ch": "地板",
     "sentences": [
       {
         "text": "My classroom is on the third floor.",
@@ -2656,13 +2617,13 @@
         "text": "The baby sat on the floor and played.",
         "answer": "floor"
       }
-    ],
-    "ch": "地板"
+    ]
   },
   {
     "word": "flower",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "花",
     "sentences": [
       {
         "text": "That pink flower smells sweet.",
@@ -2676,13 +2637,13 @@
         "text": "We planted a flower in the garden.",
         "answer": "flower"
       }
-    ],
-    "ch": "花"
+    ]
   },
   {
     "word": "foot",
     "cefr": "A1",
     "frequency": 5,
+    "ch": "腳",
     "sentences": [
       {
         "text": "My left foot hurts after the game.",
@@ -2696,13 +2657,13 @@
         "text": "Wash your hands and your foot carefully.",
         "answer": "foot"
       }
-    ],
-    "ch": "腳"
+    ]
   },
   {
     "word": "football",
     "cefr": "A1",
     "frequency": 3,
+    "ch": "足球",
     "sentences": [
       {
         "text": "The boys are playing football in the park.",
@@ -2716,13 +2677,13 @@
         "text": "She bought a new football yesterday.",
         "answer": "football"
       }
-    ],
-    "ch": "足球"
+    ]
   },
   {
     "word": "forget",
     "cefr": "A1",
     "frequency": 19,
+    "ch": "忘記",
     "sentences": [
       {
         "text": "Do not forget your homework again.",
@@ -2736,13 +2697,13 @@
         "text": "He forgot to bring his lunch box.",
         "answer": "forgot"
       }
-    ],
-    "ch": "忘記"
+    ]
   },
   {
     "word": "form",
     "cefr": "A1",
     "frequency": 29,
+    "ch": "表格",
     "sentences": [
       {
         "text": "Please fill in the form carefully.",
@@ -2756,13 +2717,13 @@
         "text": "I handed the form to the teacher.",
         "answer": "form"
       }
-    ],
-    "ch": "表格"
+    ]
   },
   {
     "word": "Friday",
     "cefr": "A1",
     "frequency": null,
+    "ch": "星期五",
     "sentences": [
       {
         "text": "We have PE on Friday.",
@@ -2776,13 +2737,13 @@
         "text": "The test will be held next Friday.",
         "answer": "Friday"
       }
-    ],
-    "ch": "星期五"
+    ]
   },
   {
     "word": "friendly",
     "cefr": "A1",
     "frequency": 4,
+    "ch": "友善的",
     "sentences": [
       {
         "text": "Our new teacher is very friendly.",
@@ -2796,13 +2757,13 @@
         "text": "He has a friendly smile.",
         "answer": "friendly"
       }
-    ],
-    "ch": "友善的"
+    ]
   },
   {
     "word": "fruit",
     "cefr": "A1",
     "frequency": 2,
+    "ch": "水果",
     "sentences": [
       {
         "text": "Eating fruit every day is healthy.",
@@ -2816,13 +2777,13 @@
         "text": "My favourite fruit is mango.",
         "answer": "fruit"
       }
-    ],
-    "ch": "水果"
+    ]
   },
   {
     "word": "funny",
     "cefr": "A1",
     "frequency": 3,
+    "ch": "有趣的",
     "sentences": [
       {
         "text": "That joke is really funny.",
@@ -2836,13 +2797,13 @@
         "text": "My little brother made a funny face.",
         "answer": "funny"
       }
-    ],
-    "ch": "有趣的"
+    ]
   },
   {
     "word": "garden",
     "cefr": "A1",
     "frequency": 6,
+    "ch": "花園",
     "sentences": [
       {
         "text": "My grandmother grows flowers in the garden.",
@@ -2856,13 +2817,13 @@
         "text": "There is a small garden behind our house.",
         "answer": "garden"
       }
-    ],
-    "ch": "花園"
+    ]
   },
   {
     "word": "girlfriend",
     "cefr": "A1",
     "frequency": 2,
+    "ch": "女朋友",
     "sentences": [
       {
         "text": "He went to the concert with his girlfriend.",
@@ -2876,13 +2837,13 @@
         "text": "His girlfriend bought him a birthday cake.",
         "answer": "girlfriend"
       }
-    ],
-    "ch": "女朋友"
+    ]
   },
   {
     "word": "glass",
     "cefr": "A1",
     "frequency": 21,
+    "ch": "玻璃杯",
     "sentences": [
       {
         "text": "Please pour some water into the glass.",
@@ -2896,13 +2857,13 @@
         "text": "This glass is made of clear blue glass.",
         "answer": "glass"
       }
-    ],
-    "ch": "玻璃杯"
+    ]
   },
   {
     "word": "go past",
     "cefr": "A1",
     "frequency": null,
+    "ch": "經過",
     "sentences": [
       {
         "text": "Go past the bank and turn left.",
@@ -2916,13 +2877,13 @@
         "text": "Go past the school and you will see the park.",
         "answer": "go past"
       }
-    ],
-    "ch": "經過"
+    ]
   },
   {
     "word": "go straight ahead",
     "cefr": "A1",
     "frequency": null,
+    "ch": "一直向前",
     "sentences": [
       {
         "text": "Go straight ahead and you will find the station.",
@@ -2936,13 +2897,13 @@
         "text": "If you go straight ahead, the shop is on your right.",
         "answer": "go straight ahead"
       }
-    ],
-    "ch": "一直向前"
+    ]
   },
   {
     "word": "goodbye",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "再見",
     "sentences": [
       {
         "text": "She waved goodbye to her classmates.",
@@ -2956,13 +2917,13 @@
         "text": "They hugged each other and said goodbye.",
         "answer": "goodbye"
       }
-    ],
-    "ch": "再見"
+    ]
   },
   {
     "word": "grandfather",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "祖父",
     "sentences": [
       {
         "text": "My grandfather tells great stories.",
@@ -2976,13 +2937,13 @@
         "text": "Her grandfather likes reading the newspaper.",
         "answer": "grandfather"
       }
-    ],
-    "ch": "祖父"
+    ]
   },
   {
     "word": "grandmother",
     "cefr": "A1",
     "frequency": 2,
+    "ch": "祖母",
     "sentences": [
       {
         "text": "My grandmother makes delicious soup.",
@@ -2996,13 +2957,13 @@
         "text": "Her grandmother lives near the market.",
         "answer": "grandmother"
       }
-    ],
-    "ch": "祖母"
+    ]
   },
   {
     "word": "grandparent",
     "cefr": "A1",
     "frequency": 4,
+    "ch": "祖父母",
     "sentences": [
       {
         "text": "Each grandparent came to the school show.",
@@ -3016,13 +2977,13 @@
         "text": "Every grandparent was proud of the children.",
         "answer": "grandparent"
       }
-    ],
-    "ch": "祖父母"
+    ]
   },
   {
     "word": "great",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "很棒的",
     "sentences": [
       {
         "text": "You did a great job in the test.",
@@ -3036,13 +2997,13 @@
         "text": "That sounds like a great idea.",
         "answer": "great"
       }
-    ],
-    "ch": "很棒的"
+    ]
   },
   {
     "word": "green",
     "cefr": "A1",
     "frequency": 19,
+    "ch": "綠色",
     "sentences": [
       {
         "text": "The leaves are bright green in spring.",
@@ -3056,13 +3017,13 @@
         "text": "Please use the green pen.",
         "answer": "green"
       }
-    ],
-    "ch": "綠色"
+    ]
   },
   {
     "word": "grey",
     "cefr": "A1",
     "frequency": 4,
+    "ch": "灰色",
     "sentences": [
       {
         "text": "The sky looks grey today.",
@@ -3076,13 +3037,13 @@
         "text": "He bought a grey jacket for winter.",
         "answer": "grey"
       }
-    ],
-    "ch": "灰色"
+    ]
   },
   {
     "word": "group",
     "cefr": "A1",
     "frequency": 53,
+    "ch": "小組",
     "sentences": [
       {
         "text": "We worked in a group of four.",
@@ -3096,13 +3057,13 @@
         "text": "A group of students visited the museum.",
         "answer": "group"
       }
-    ],
-    "ch": "小組"
+    ]
   },
   {
     "word": "guess",
     "cefr": "A1",
     "frequency": 13,
+    "ch": "猜測",
     "sentences": [
       {
         "text": "Can you guess the answer?",
@@ -3116,13 +3077,13 @@
         "text": "Take a guess if you are not sure.",
         "answer": "guess"
       }
-    ],
-    "ch": "猜測"
+    ]
   },
   {
     "word": "guitar",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "結他",
     "sentences": [
       {
         "text": "My brother plays the guitar every night.",
@@ -3136,13 +3097,13 @@
         "text": "The guitar on the wall belongs to my father.",
         "answer": "guitar"
       }
-    ],
-    "ch": "結他"
+    ]
   },
   {
     "word": "hair",
     "cefr": "A1",
     "frequency": 7,
+    "ch": "頭髮",
     "sentences": [
       {
         "text": "She has long black hair.",
@@ -3156,13 +3117,13 @@
         "text": "He cut his hair last week.",
         "answer": "hair"
       }
-    ],
-    "ch": "頭髮"
+    ]
   },
   {
     "word": "happier",
     "cefr": "A1",
     "frequency": 5,
+    "ch": "較開心",
     "sentences": [
       {
         "text": "She looks happier today.",
@@ -3176,13 +3137,13 @@
         "text": "The children were happier after lunch.",
         "answer": "happier"
       }
-    ],
-    "ch": "較開心"
+    ]
   },
   {
     "word": "hat",
     "cefr": "A1",
     "frequency": 4,
+    "ch": "帽子",
     "sentences": [
       {
         "text": "He wore a hat in the hot sun.",
@@ -3196,13 +3157,13 @@
         "text": "She bought a new winter hat.",
         "answer": "hat"
       }
-    ],
-    "ch": "帽子"
+    ]
   },
   {
     "word": "health",
     "cefr": "A1",
     "frequency": 14,
+    "ch": "健康",
     "sentences": [
       {
         "text": "Good food is important for your health.",
@@ -3216,13 +3177,13 @@
         "text": "The nurse talked to us about health.",
         "answer": "health"
       }
-    ],
-    "ch": "健康"
+    ]
   },
   {
     "word": "healthy",
     "cefr": "A1",
     "frequency": 12,
+    "ch": "健康的",
     "sentences": [
       {
         "text": "Fruit is a healthy snack.",
@@ -3236,13 +3197,13 @@
         "text": "A healthy diet includes vegetables.",
         "answer": "healthy"
       }
-    ],
-    "ch": "健康的"
+    ]
   },
   {
     "word": "help",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "幫助",
     "sentences": [
       {
         "text": "Can you help me with my homework?",
@@ -3256,13 +3217,13 @@
         "text": "The teacher came to help us.",
         "answer": "help"
       }
-    ],
-    "ch": "幫助"
+    ]
   },
   {
     "word": "hike",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "遠足",
     "sentences": [
       {
         "text": "We went on a hike in the morning.",
@@ -3276,13 +3237,13 @@
         "text": "Our family planned a short hike on Sunday.",
         "answer": "hike"
       }
-    ],
-    "ch": "遠足"
+    ]
   },
   {
     "word": "history",
     "cefr": "A1",
     "frequency": 20,
+    "ch": "歷史",
     "sentences": [
       {
         "text": "History is my favourite subject.",
@@ -3296,13 +3257,13 @@
         "text": "My brother is reading a history book.",
         "answer": "history"
       }
-    ],
-    "ch": "歷史"
+    ]
   },
   {
     "word": "hobby",
     "cefr": "A1",
     "frequency": 3,
+    "ch": "嗜好",
     "sentences": [
       {
         "text": "Drawing is my favourite hobby.",
@@ -3316,13 +3277,13 @@
         "text": "My hobby takes up a lot of time.",
         "answer": "hobby"
       }
-    ],
-    "ch": "嗜好"
+    ]
   },
   {
     "word": "holiday",
     "cefr": "A1",
     "frequency": 12,
+    "ch": "假期",
     "sentences": [
       {
         "text": "We went to Japan during the holiday.",
@@ -3336,13 +3297,13 @@
         "text": "My parents took a short holiday last month.",
         "answer": "holiday"
       }
-    ],
-    "ch": "假期"
+    ]
   },
   {
     "word": "homework",
     "cefr": "A1",
     "frequency": 3,
+    "ch": "家課",
     "sentences": [
       {
         "text": "I finished my homework after dinner.",
@@ -3356,13 +3317,13 @@
         "text": "The teacher gave us a lot of homework.",
         "answer": "homework"
       }
-    ],
-    "ch": "家課"
+    ]
   },
   {
     "word": "horse",
     "cefr": "A1",
     "frequency": 9,
+    "ch": "馬",
     "sentences": [
       {
         "text": "The horse ran across the field.",
@@ -3376,13 +3337,13 @@
         "text": "The boy learned how to ride a horse.",
         "answer": "horse"
       }
-    ],
-    "ch": "馬"
+    ]
   },
   {
     "word": "hospital",
     "cefr": "A1",
     "frequency": 10,
+    "ch": "醫院",
     "sentences": [
       {
         "text": "My uncle works in a hospital.",
@@ -3396,13 +3357,13 @@
         "text": "The hospital is near the station.",
         "answer": "hospital"
       }
-    ],
-    "ch": "醫院"
+    ]
   },
   {
     "word": "hotel",
     "cefr": "A1",
     "frequency": 25,
+    "ch": "酒店",
     "sentences": [
       {
         "text": "We stayed in a hotel near the beach.",
@@ -3416,13 +3377,13 @@
         "text": "My parents booked a room in the hotel.",
         "answer": "hotel"
       }
-    ],
-    "ch": "酒店"
+    ]
   },
   {
     "word": "however",
     "cefr": "A1",
     "frequency": 29,
+    "ch": "然而",
     "sentences": [
       {
         "text": "I wanted to go; however, it was raining.",
@@ -3436,13 +3397,13 @@
         "text": "She was tired; however, she kept working.",
         "answer": "however"
       }
-    ],
-    "ch": "然而"
+    ]
   },
   {
     "word": "hungry",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "肚餓的",
     "sentences": [
       {
         "text": "I am hungry after the game.",
@@ -3456,13 +3417,13 @@
         "text": "Are you hungry now?",
         "answer": "hungry"
       }
-    ],
-    "ch": "肚餓的"
+    ]
   },
   {
     "word": "husband",
     "cefr": "A1",
     "frequency": 4,
+    "ch": "丈夫",
     "sentences": [
       {
         "text": "Her husband works in an office.",
@@ -3476,13 +3437,13 @@
         "text": "My aunt and her husband visited us.",
         "answer": "husband"
       }
-    ],
-    "ch": "丈夫"
+    ]
   },
   {
     "word": "ice",
     "cefr": "A1",
     "frequency": 11,
+    "ch": "冰",
     "sentences": [
       {
         "text": "Please put some ice in my drink.",
@@ -3496,13 +3457,13 @@
         "text": "Be careful on the ice.",
         "answer": "ice"
       }
-    ],
-    "ch": "冰"
+    ]
   },
   {
     "word": "ice cream",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "雪糕",
     "sentences": [
       {
         "text": "We ate ice cream after lunch.",
@@ -3516,13 +3477,13 @@
         "text": "The children bought ice cream from the shop.",
         "answer": "ice cream"
       }
-    ],
-    "ch": "雪糕"
+    ]
   },
   {
     "word": "idea",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "主意",
     "sentences": [
       {
         "text": "That is a good idea.",
@@ -3536,13 +3497,13 @@
         "text": "I have an idea for our project.",
         "answer": "idea"
       }
-    ],
-    "ch": "主意"
+    ]
   },
   {
     "word": "imagine",
     "cefr": "A1",
     "frequency": 11,
+    "ch": "想像",
     "sentences": [
       {
         "text": "Can you imagine living on the moon?",
@@ -3556,13 +3517,13 @@
         "text": "Please imagine you are a bird.",
         "answer": "imagine"
       }
-    ],
-    "ch": "想像"
+    ]
   },
   {
     "word": "important",
     "cefr": "A1",
     "frequency": 41,
+    "ch": "重要的",
     "sentences": [
       {
         "text": "Sleep is important for students.",
@@ -3576,13 +3537,13 @@
         "text": "It is important to be on time.",
         "answer": "important"
       }
-    ],
-    "ch": "重要的"
+    ]
   },
   {
     "word": "improve",
     "cefr": "A1",
     "frequency": 18,
+    "ch": "改善",
     "sentences": [
       {
         "text": "Reading every day can improve your English.",
@@ -3596,13 +3557,13 @@
         "text": "This app can help students improve quickly.",
         "answer": "improve"
       }
-    ],
-    "ch": "改善"
+    ]
   },
   {
     "word": "in front of",
     "cefr": "A1",
     "frequency": null,
+    "ch": "在…前面",
     "sentences": [
       {
         "text": "Please wait in front of the school gate.",
@@ -3616,13 +3577,13 @@
         "text": "He stood in front of the class and spoke.",
         "answer": "in front of"
       }
-    ],
-    "ch": "在…前面"
+    ]
   },
   {
     "word": "information",
     "cefr": "A1",
     "frequency": 70,
+    "ch": "資訊",
     "sentences": [
       {
         "text": "You can find more information on the website.",
@@ -3636,13 +3597,13 @@
         "text": "Please ask at the desk for information.",
         "answer": "information"
       }
-    ],
-    "ch": "資訊"
+    ]
   },
   {
     "word": "interest",
     "cefr": "A1",
     "frequency": 64,
+    "ch": "興趣",
     "sentences": [
       {
         "text": "Music is one of my main interests.",
@@ -3656,13 +3617,13 @@
         "text": "She has a strong interest in science.",
         "answer": "interest"
       }
-    ],
-    "ch": "興趣"
+    ]
   },
   {
     "word": "internet",
     "cefr": "A1",
     "frequency": 10,
+    "ch": "互聯網",
     "sentences": [
       {
         "text": "I use the internet to do my homework.",
@@ -3676,13 +3637,13 @@
         "text": "Many people shop on the internet now.",
         "answer": "internet"
       }
-    ],
-    "ch": "互聯網"
+    ]
   },
   {
     "word": "interview",
     "cefr": "A1",
     "frequency": 53,
+    "ch": "面試",
     "sentences": [
       {
         "text": "She has a job interview tomorrow.",
@@ -3696,13 +3657,13 @@
         "text": "He felt nervous before the interview.",
         "answer": "interview"
       }
-    ],
-    "ch": "面試"
+    ]
   },
   {
     "word": "introduce",
     "cefr": "A1",
     "frequency": 7,
+    "ch": "介紹",
     "sentences": [
       {
         "text": "Let me introduce my new classmate.",
@@ -3716,13 +3677,13 @@
         "text": "She introduced herself to the group.",
         "answer": "introduced"
       }
-    ],
-    "ch": "介紹"
+    ]
   },
   {
     "word": "island",
     "cefr": "A1",
     "frequency": 8,
+    "ch": "島",
     "sentences": [
       {
         "text": "We took a boat to the small island.",
@@ -3736,13 +3697,13 @@
         "text": "They spent the weekend on an island.",
         "answer": "island"
       }
-    ],
-    "ch": "島"
+    ]
   },
   {
     "word": "jacket",
     "cefr": "A1",
     "frequency": 2,
+    "ch": "外套",
     "sentences": [
       {
         "text": "Please wear your jacket before you go out.",
@@ -3756,13 +3717,13 @@
         "text": "She bought a warm jacket for winter.",
         "answer": "jacket"
       }
-    ],
-    "ch": "外套"
+    ]
   },
   {
     "word": "January",
     "cefr": "A1",
     "frequency": null,
+    "ch": "一月",
     "sentences": [
       {
         "text": "School starts again in January.",
@@ -3776,13 +3737,13 @@
         "text": "The weather is cool in January.",
         "answer": "January"
       }
-    ],
-    "ch": "一月"
+    ]
   },
   {
     "word": "join",
     "cefr": "A1",
     "frequency": 19,
+    "ch": "參加",
     "sentences": [
       {
         "text": "Do you want to join our basketball team?",
@@ -3796,13 +3757,13 @@
         "text": "Many students joined the school event.",
         "answer": "joined"
       }
-    ],
-    "ch": "參加"
+    ]
   },
   {
     "word": "journey",
     "cefr": "A1",
     "frequency": 5,
+    "ch": "旅程",
     "sentences": [
       {
         "text": "The train journey was long but comfortable.",
@@ -3816,13 +3777,13 @@
         "text": "The journey to school takes thirty minutes.",
         "answer": "journey"
       }
-    ],
-    "ch": "旅程"
+    ]
   },
   {
     "word": "juice",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "果汁",
     "sentences": [
       {
         "text": "Would you like some orange juice?",
@@ -3836,13 +3797,13 @@
         "text": "The children drank cold juice after the game.",
         "answer": "juice"
       }
-    ],
-    "ch": "果汁"
+    ]
   },
   {
     "word": "July",
     "cefr": "A1",
     "frequency": null,
+    "ch": "七月",
     "sentences": [
       {
         "text": "We will travel in July.",
@@ -3856,13 +3817,13 @@
         "text": "My cousin is getting married in July.",
         "answer": "July"
       }
-    ],
-    "ch": "七月"
+    ]
   },
   {
     "word": "June",
     "cefr": "A1",
     "frequency": null,
+    "ch": "六月",
     "sentences": [
       {
         "text": "The school term ends in June.",
@@ -3876,13 +3837,13 @@
         "text": "Her birthday party is in June.",
         "answer": "June"
       }
-    ],
-    "ch": "六月"
+    ]
   },
   {
     "word": "kitchen",
     "cefr": "A1",
     "frequency": 32,
+    "ch": "廚房",
     "sentences": [
       {
         "text": "My mother is cooking in the kitchen.",
@@ -3896,13 +3857,13 @@
         "text": "Please put the cups back in the kitchen.",
         "answer": "kitchen"
       }
-    ],
-    "ch": "廚房"
+    ]
   },
   {
     "word": "laugh",
     "cefr": "A1",
     "frequency": 5,
+    "ch": "笑",
     "sentences": [
       {
         "text": "The joke made everyone laugh.",
@@ -3916,13 +3877,13 @@
         "text": "She started to laugh when she saw the photo.",
         "answer": "laugh"
       }
-    ],
-    "ch": "笑"
+    ]
   },
   {
     "word": "lesson",
     "cefr": "A1",
     "frequency": 20,
+    "ch": "課堂",
     "sentences": [
       {
         "text": "Our English lesson starts at nine.",
@@ -3936,13 +3897,13 @@
         "text": "I learned a lot from the swimming lesson.",
         "answer": "lesson"
       }
-    ],
-    "ch": "課堂"
+    ]
   },
   {
     "word": "letter",
     "cefr": "A1",
     "frequency": 28,
+    "ch": "信件",
     "sentences": [
       {
         "text": "I wrote a letter to my grandmother.",
@@ -3956,13 +3917,13 @@
         "text": "The teacher asked us to circle the first letter.",
         "answer": "letter"
       }
-    ],
-    "ch": "信件"
+    ]
   },
   {
     "word": "library",
     "cefr": "A1",
     "frequency": 27,
+    "ch": "圖書館",
     "sentences": [
       {
         "text": "We borrowed three books from the library.",
@@ -3976,13 +3937,13 @@
         "text": "The public library closes at eight.",
         "answer": "library"
       }
-    ],
-    "ch": "圖書館"
+    ]
   },
   {
     "word": "lion",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "獅子",
     "sentences": [
       {
         "text": "The lion was sleeping in the zoo.",
@@ -3996,13 +3957,13 @@
         "text": "The little boy drew a lion in art class.",
         "answer": "lion"
       }
-    ],
-    "ch": "獅子"
+    ]
   },
   {
     "word": "list",
     "cefr": "A1",
     "frequency": 12,
+    "ch": "清單",
     "sentences": [
       {
         "text": "Please write your name on the list.",
@@ -4016,13 +3977,13 @@
         "text": "Her name is first on the class list.",
         "answer": "list"
       }
-    ],
-    "ch": "清單"
+    ]
   },
   {
     "word": "listen",
     "cefr": "A1",
     "frequency": 34,
+    "ch": "聆聽",
     "sentences": [
       {
         "text": "Please listen to the teacher carefully.",
@@ -4036,13 +3997,13 @@
         "text": "Listen to me for one minute.",
         "answer": "Listen"
       }
-    ],
-    "ch": "聆聽"
+    ]
   },
   {
     "word": "longer",
     "cefr": "A1",
     "frequency": 16,
+    "ch": "較長",
     "sentences": [
       {
         "text": "This road is longer than that one.",
@@ -4056,13 +4017,13 @@
         "text": "The movie was longer than I expected.",
         "answer": "longer"
       }
-    ],
-    "ch": "較長"
+    ]
   },
   {
     "word": "lunch",
     "cefr": "A1",
     "frequency": 7,
+    "ch": "午餐",
     "sentences": [
       {
         "text": "We had noodles for lunch.",
@@ -4076,13 +4037,13 @@
         "text": "Lunch starts at twelve thirty.",
         "answer": "Lunch"
       }
-    ],
-    "ch": "午餐"
+    ]
   },
   {
     "word": "machine",
     "cefr": "A1",
     "frequency": 15,
+    "ch": "機器",
     "sentences": [
       {
         "text": "This washing machine is very quiet.",
@@ -4096,13 +4057,13 @@
         "text": "He learned how to use the coffee machine.",
         "answer": "machine"
       }
-    ],
-    "ch": "機器"
+    ]
   },
   {
     "word": "magazine",
     "cefr": "A1",
     "frequency": 28,
+    "ch": "雜誌",
     "sentences": [
       {
         "text": "She bought a fashion magazine at the station.",
@@ -4116,13 +4077,13 @@
         "text": "There is an interesting article in this magazine.",
         "answer": "magazine"
       }
-    ],
-    "ch": "雜誌"
+    ]
   },
   {
     "word": "main",
     "cefr": "A1",
     "frequency": 23,
+    "ch": "主要的",
     "sentences": [
       {
         "text": "The main door is still open.",
@@ -4136,13 +4097,13 @@
         "text": "The shop is on the main road.",
         "answer": "main"
       }
-    ],
-    "ch": "主要的"
+    ]
   },
   {
     "word": "March",
     "cefr": "A1",
     "frequency": null,
+    "ch": "三月",
     "sentences": [
       {
         "text": "The school picnic will be in March.",
@@ -4156,13 +4117,13 @@
         "text": "My uncle was born in March.",
         "answer": "March"
       }
-    ],
-    "ch": "三月"
+    ]
   },
   {
     "word": "match",
     "cefr": "A1",
     "frequency": 6,
+    "ch": "比賽",
     "sentences": [
       {
         "text": "We watched a football match on TV.",
@@ -4176,13 +4137,13 @@
         "text": "The final match starts at eight tonight.",
         "answer": "match"
       }
-    ],
-    "ch": "比賽"
+    ]
   },
   {
     "word": "May",
     "cefr": "A1",
     "frequency": null,
+    "ch": "五月",
     "sentences": [
       {
         "text": "My exams start in May.",
@@ -4196,13 +4157,13 @@
         "text": "Her birthday is in early May.",
         "answer": "May"
       }
-    ],
-    "ch": "五月"
+    ]
   },
   {
     "word": "meal",
     "cefr": "A1",
     "frequency": 6,
+    "ch": "一餐",
     "sentences": [
       {
         "text": "Breakfast is my favourite meal of the day.",
@@ -4216,13 +4177,13 @@
         "text": "The restaurant serves a cheap set meal.",
         "answer": "meal"
       }
-    ],
-    "ch": "一餐"
+    ]
   },
   {
     "word": "meat",
     "cefr": "A1",
     "frequency": 2,
+    "ch": "肉",
     "sentences": [
       {
         "text": "We bought some meat for dinner.",
@@ -4236,13 +4197,13 @@
         "text": "He does not eat much meat.",
         "answer": "meat"
       }
-    ],
-    "ch": "肉"
+    ]
   },
   {
     "word": "member",
     "cefr": "A1",
     "frequency": 24,
+    "ch": "成員",
     "sentences": [
       {
         "text": "Every member of the team was ready.",
@@ -4256,13 +4217,13 @@
         "text": "Each club member got a badge.",
         "answer": "member"
       }
-    ],
-    "ch": "成員"
+    ]
   },
   {
     "word": "menu",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "餐牌",
     "sentences": [
       {
         "text": "Please look at the menu before ordering.",
@@ -4276,13 +4237,13 @@
         "text": "There is a new lunch menu today.",
         "answer": "menu"
       }
-    ],
-    "ch": "餐牌"
+    ]
   },
   {
     "word": "message",
     "cefr": "A1",
     "frequency": 40,
+    "ch": "訊息",
     "sentences": [
       {
         "text": "I left a message for my mother.",
@@ -4296,13 +4257,13 @@
         "text": "The message on the screen was clear.",
         "answer": "message"
       }
-    ],
-    "ch": "訊息"
+    ]
   },
   {
     "word": "metre",
     "cefr": "A1",
     "frequency": 7,
+    "ch": "米",
     "sentences": [
       {
         "text": "The table is one metre long.",
@@ -4316,13 +4277,13 @@
         "text": "The box is less than a metre wide.",
         "answer": "metre"
       }
-    ],
-    "ch": "米"
+    ]
   },
   {
     "word": "midnight",
     "cefr": "A1",
     "frequency": 3,
+    "ch": "午夜",
     "sentences": [
       {
         "text": "The party ended at midnight.",
@@ -4336,13 +4297,13 @@
         "text": "The train arrived just before midnight.",
         "answer": "midnight"
       }
-    ],
-    "ch": "午夜"
+    ]
   },
   {
     "word": "mile",
     "cefr": "A1",
     "frequency": 3,
+    "ch": "英里",
     "sentences": [
       {
         "text": "They walked a mile to school.",
@@ -4356,13 +4317,13 @@
         "text": "He ran a mile in the sports test.",
         "answer": "mile"
       }
-    ],
-    "ch": "英里"
+    ]
   },
   {
     "word": "milk",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "牛奶",
     "sentences": [
       {
         "text": "I drink a glass of milk every morning.",
@@ -4376,13 +4337,13 @@
         "text": "She added milk to her tea.",
         "answer": "milk"
       }
-    ],
-    "ch": "牛奶"
+    ]
   },
   {
     "word": "modern",
     "cefr": "A1",
     "frequency": 14,
+    "ch": "現代的",
     "sentences": [
       {
         "text": "The library has a modern design.",
@@ -4396,13 +4357,13 @@
         "text": "This shop sells modern furniture.",
         "answer": "modern"
       }
-    ],
-    "ch": "現代的"
+    ]
   },
   {
     "word": "moment",
     "cefr": "A1",
     "frequency": 12,
+    "ch": "時刻",
     "sentences": [
       {
         "text": "Please wait a moment.",
@@ -4416,13 +4377,13 @@
         "text": "It was a happy moment for the team.",
         "answer": "moment"
       }
-    ],
-    "ch": "時刻"
+    ]
   },
   {
     "word": "Monday",
     "cefr": "A1",
     "frequency": null,
+    "ch": "星期一",
     "sentences": [
       {
         "text": "We have a quiz on Monday.",
@@ -4436,13 +4397,13 @@
         "text": "The museum is closed on Monday.",
         "answer": "Monday"
       }
-    ],
-    "ch": "星期一"
+    ]
   },
   {
     "word": "mountain",
     "cefr": "A1",
     "frequency": 9,
+    "ch": "山",
     "sentences": [
       {
         "text": "We climbed a mountain during the holiday.",
@@ -4456,13 +4417,13 @@
         "text": "There is a small village near the mountain.",
         "answer": "mountain"
       }
-    ],
-    "ch": "山"
+    ]
   },
   {
     "word": "movie",
     "cefr": "A1",
     "frequency": 20,
+    "ch": "電影",
     "sentences": [
       {
         "text": "We watched a funny movie last night.",
@@ -4476,13 +4437,13 @@
         "text": "My sister wants to see the new movie.",
         "answer": "movie"
       }
-    ],
-    "ch": "電影"
+    ]
   },
   {
     "word": "museum",
     "cefr": "A1",
     "frequency": 36,
+    "ch": "博物館",
     "sentences": [
       {
         "text": "The museum was full of visitors.",
@@ -4496,13 +4457,13 @@
         "text": "Our class visited the science museum.",
         "answer": "museum"
       }
-    ],
-    "ch": "博物館"
+    ]
   },
   {
     "word": "music",
     "cefr": "A1",
     "frequency": 17,
+    "ch": "音樂",
     "sentences": [
       {
         "text": "I listen to music while doing homework.",
@@ -4516,13 +4477,13 @@
         "text": "The room was filled with soft music.",
         "answer": "music"
       }
-    ],
-    "ch": "音樂"
+    ]
   },
   {
     "word": "natural",
     "cefr": "A1",
     "frequency": 11,
+    "ch": "自然的",
     "sentences": [
       {
         "text": "This soap is made from natural ingredients.",
@@ -4536,13 +4497,13 @@
         "text": "Her smile looked very natural.",
         "answer": "natural"
       }
-    ],
-    "ch": "自然的"
+    ]
   },
   {
     "word": "near",
     "cefr": "A1",
     "frequency": 19,
+    "ch": "附近",
     "sentences": [
       {
         "text": "My home is near the station.",
@@ -4556,13 +4517,13 @@
         "text": "There is a bakery near our school.",
         "answer": "near"
       }
-    ],
-    "ch": "附近"
+    ]
   },
   {
     "word": "nearest",
     "cefr": "A1",
     "frequency": 2,
+    "ch": "最近的",
     "sentences": [
       {
         "text": "Where is the nearest toilet?",
@@ -4576,13 +4537,13 @@
         "text": "Please take me to the nearest hospital.",
         "answer": "nearest"
       }
-    ],
-    "ch": "最近的"
+    ]
   },
   {
     "word": "news",
     "cefr": "A1",
     "frequency": 26,
+    "ch": "新聞",
     "sentences": [
       {
         "text": "Did you hear the news this morning?",
@@ -4596,13 +4557,13 @@
         "text": "My father watches the evening news every day.",
         "answer": "news"
       }
-    ],
-    "ch": "新聞"
+    ]
   },
   {
     "word": "newspaper",
     "cefr": "A1",
     "frequency": 13,
+    "ch": "報紙",
     "sentences": [
       {
         "text": "My grandfather reads the newspaper every day.",
@@ -4616,13 +4577,13 @@
         "text": "She bought a newspaper at the station.",
         "answer": "newspaper"
       }
-    ],
-    "ch": "報紙"
+    ]
   },
   {
     "word": "nobody",
     "cefr": "A1",
     "frequency": 6,
+    "ch": "沒有人",
     "sentences": [
       {
         "text": "Nobody knew the answer.",
@@ -4636,13 +4597,13 @@
         "text": "Nobody wants to miss the show.",
         "answer": "Nobody"
       }
-    ],
-    "ch": "沒有人"
+    ]
   },
   {
     "word": "north",
     "cefr": "A1",
     "frequency": 3,
+    "ch": "北面",
     "sentences": [
       {
         "text": "The wind is coming from the north.",
@@ -4656,13 +4617,13 @@
         "text": "Birds fly north in some seasons.",
         "answer": "north"
       }
-    ],
-    "ch": "北面"
+    ]
   },
   {
     "word": "nose",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "鼻子",
     "sentences": [
       {
         "text": "My nose is red because of my cold.",
@@ -4676,33 +4637,13 @@
         "text": "She wears glasses on her nose.",
         "answer": "nose"
       }
-    ],
-    "ch": "鼻子"
-  },
-  {
-    "word": "not",
-    "cefr": "A1",
-    "frequency": 1,
-    "sentences": [
-      {
-        "text": "I am not ready yet.",
-        "answer": "not"
-      },
-      {
-        "text": "This book is not mine.",
-        "answer": "not"
-      },
-      {
-        "text": "He is not at home now.",
-        "answer": "not"
-      }
-    ],
-    "ch": "不"
+    ]
   },
   {
     "word": "November",
     "cefr": "A1",
     "frequency": null,
+    "ch": "十一月",
     "sentences": [
       {
         "text": "The weather is cool in November.",
@@ -4716,13 +4657,13 @@
         "text": "My aunt was born in November.",
         "answer": "November"
       }
-    ],
-    "ch": "十一月"
+    ]
   },
   {
     "word": "nurse",
     "cefr": "A1",
     "frequency": 14,
+    "ch": "護士",
     "sentences": [
       {
         "text": "The nurse helped the little boy.",
@@ -4736,13 +4677,13 @@
         "text": "The nurse checked my temperature.",
         "answer": "nurse"
       }
-    ],
-    "ch": "護士"
+    ]
   },
   {
     "word": "October",
     "cefr": "A1",
     "frequency": null,
+    "ch": "十月",
     "sentences": [
       {
         "text": "The weather is nice in October.",
@@ -4756,33 +4697,13 @@
         "text": "She will visit us in October.",
         "answer": "October"
       }
-    ],
-    "ch": "十月"
-  },
-  {
-    "word": "okay",
-    "cefr": "A1",
-    "frequency": 4,
-    "sentences": [
-      {
-        "text": "It is okay to ask for help.",
-        "answer": "okay"
-      },
-      {
-        "text": "Are you feeling okay now?",
-        "answer": "okay"
-      },
-      {
-        "text": "Everything will be okay soon.",
-        "answer": "okay"
-      }
-    ],
-    "ch": "可以"
+    ]
   },
   {
     "word": "older",
     "cefr": "A1",
     "frequency": 5,
+    "ch": "較年長",
     "sentences": [
       {
         "text": "My brother is two years older than me.",
@@ -4796,13 +4717,13 @@
         "text": "She looks older in that photo.",
         "answer": "older"
       }
-    ],
-    "ch": "較年長"
+    ]
   },
   {
     "word": "oldest",
     "cefr": "A1",
     "frequency": 2,
+    "ch": "最年長",
     "sentences": [
       {
         "text": "He is the oldest child in the family.",
@@ -4816,13 +4737,13 @@
         "text": "My oldest cousin lives in Canada.",
         "answer": "oldest"
       }
-    ],
-    "ch": "最年長"
+    ]
   },
   {
     "word": "onion",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "洋蔥",
     "sentences": [
       {
         "text": "My mother cut an onion for the soup.",
@@ -4836,13 +4757,13 @@
         "text": "He does not like the smell of onion.",
         "answer": "onion"
       }
-    ],
-    "ch": "洋蔥"
+    ]
   },
   {
     "word": "online",
     "cefr": "A1",
     "frequency": 58,
+    "ch": "網上",
     "sentences": [
       {
         "text": "I bought the book online yesterday.",
@@ -4856,13 +4777,13 @@
         "text": "She ordered lunch online during the break.",
         "answer": "online"
       }
-    ],
-    "ch": "網上"
+    ]
   },
   {
     "word": "opinion",
     "cefr": "A1",
     "frequency": 7,
+    "ch": "意見",
     "sentences": [
       {
         "text": "What is your opinion on this idea?",
@@ -4876,13 +4797,13 @@
         "text": "Everyone shared an opinion in class.",
         "answer": "opinion"
       }
-    ],
-    "ch": "意見"
+    ]
   },
   {
     "word": "opposite",
     "cefr": "A1",
     "frequency": 2,
+    "ch": "對面",
     "sentences": [
       {
         "text": "The bank is opposite the supermarket.",
@@ -4896,33 +4817,13 @@
         "text": "Our classroom is opposite the library.",
         "answer": "opposite"
       }
-    ],
-    "ch": "對面"
-  },
-  {
-    "word": "opposite",
-    "cefr": "A1",
-    "frequency": null,
-    "sentences": [
-      {
-        "text": "The bank is opposite the supermarket.",
-        "answer": "opposite"
-      },
-      {
-        "text": "She sat on the seat opposite mine.",
-        "answer": "opposite"
-      },
-      {
-        "text": "Our classroom is opposite the library.",
-        "answer": "opposite"
-      }
-    ],
-    "ch": "對面"
+    ]
   },
   {
     "word": "orange",
     "cefr": "A1",
     "frequency": 2,
+    "ch": "橙色",
     "sentences": [
       {
         "text": "I ate an orange after lunch.",
@@ -4936,13 +4837,13 @@
         "text": "Would you like some orange juice?",
         "answer": "orange"
       }
-    ],
-    "ch": "橙色"
+    ]
   },
   {
     "word": "order",
     "cefr": "A1",
     "frequency": 17,
+    "ch": "點餐",
     "sentences": [
       {
         "text": "I would like to order a sandwich.",
@@ -4956,13 +4857,13 @@
         "text": "She placed an order on the website.",
         "answer": "order"
       }
-    ],
-    "ch": "點餐"
+    ]
   },
   {
     "word": "pair",
     "cefr": "A1",
     "frequency": 5,
+    "ch": "一對",
     "sentences": [
       {
         "text": "I bought a new pair of shoes.",
@@ -4976,13 +4877,13 @@
         "text": "She found a matching pair of earrings.",
         "answer": "pair"
       }
-    ],
-    "ch": "一對"
+    ]
   },
   {
     "word": "panda",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "熊貓",
     "sentences": [
       {
         "text": "The panda was eating bamboo in the zoo.",
@@ -4996,13 +4897,13 @@
         "text": "We saw a giant panda on TV.",
         "answer": "panda"
       }
-    ],
-    "ch": "熊貓"
+    ]
   },
   {
     "word": "partner",
     "cefr": "A1",
     "frequency": 7,
+    "ch": "拍檔",
     "sentences": [
       {
         "text": "Please talk to your partner about the question.",
@@ -5016,13 +4917,13 @@
         "text": "She worked with her partner in science class.",
         "answer": "partner"
       }
-    ],
-    "ch": "拍檔"
+    ]
   },
   {
     "word": "party",
     "cefr": "A1",
     "frequency": 5,
+    "ch": "派對",
     "sentences": [
       {
         "text": "We had a birthday party on Saturday.",
@@ -5036,13 +4937,13 @@
         "text": "She invited me to her house party.",
         "answer": "party"
       }
-    ],
-    "ch": "派對"
+    ]
   },
   {
     "word": "passport",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "護照",
     "sentences": [
       {
         "text": "Do not forget your passport at the airport.",
@@ -5056,13 +4957,13 @@
         "text": "He checked his passport before the flight.",
         "answer": "passport"
       }
-    ],
-    "ch": "護照"
+    ]
   },
   {
     "word": "pencil",
     "cefr": "A1",
     "frequency": 3,
+    "ch": "鉛筆",
     "sentences": [
       {
         "text": "Please use a pencil to do the exercise.",
@@ -5076,13 +4977,13 @@
         "text": "She sharpened her pencil before class.",
         "answer": "pencil"
       }
-    ],
-    "ch": "鉛筆"
+    ]
   },
   {
     "word": "people",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "人們",
     "sentences": [
       {
         "text": "Many people take the train every day.",
@@ -5096,13 +4997,13 @@
         "text": "People were waiting outside the shop.",
         "answer": "People"
       }
-    ],
-    "ch": "人們"
+    ]
   },
   {
     "word": "pepper",
     "cefr": "A1",
     "frequency": 2,
+    "ch": "胡椒",
     "sentences": [
       {
         "text": "Please add some pepper to the soup.",
@@ -5116,13 +5017,13 @@
         "text": "My father likes eggs with pepper.",
         "answer": "pepper"
       }
-    ],
-    "ch": "胡椒"
+    ]
   },
   {
     "word": "perfect",
     "cefr": "A1",
     "frequency": 13,
+    "ch": "完美的",
     "sentences": [
       {
         "text": "This weather is perfect for a picnic.",
@@ -5136,13 +5037,13 @@
         "text": "It was a perfect day for a walk.",
         "answer": "perfect"
       }
-    ],
-    "ch": "完美的"
+    ]
   },
   {
     "word": "period",
     "cefr": "A1",
     "frequency": 6,
+    "ch": "時期",
     "sentences": [
       {
         "text": "The lesson is in the second period.",
@@ -5156,13 +5057,13 @@
         "text": "Math is my favourite period of the day.",
         "answer": "period"
       }
-    ],
-    "ch": "時期"
+    ]
   },
   {
     "word": "personal",
     "cefr": "A1",
     "frequency": 14,
+    "ch": "個人的",
     "sentences": [
       {
         "text": "That is my personal opinion.",
@@ -5176,13 +5077,13 @@
         "text": "He has a personal reason for leaving early.",
         "answer": "personal"
       }
-    ],
-    "ch": "個人的"
+    ]
   },
   {
     "word": "photo",
     "cefr": "A1",
     "frequency": 22,
+    "ch": "照片",
     "sentences": [
       {
         "text": "We took a photo in front of the tower.",
@@ -5196,13 +5097,13 @@
         "text": "This old photo shows my grandparents.",
         "answer": "photo"
       }
-    ],
-    "ch": "照片"
+    ]
   },
   {
     "word": "phrase",
     "cefr": "A1",
     "frequency": 2,
+    "ch": "片語",
     "sentences": [
       {
         "text": "Please copy this phrase into your notebook.",
@@ -5216,13 +5117,13 @@
         "text": "I do not understand this English phrase.",
         "answer": "phrase"
       }
-    ],
-    "ch": "片語"
+    ]
   },
   {
     "word": "piano",
     "cefr": "A1",
     "frequency": 12,
+    "ch": "鋼琴",
     "sentences": [
       {
         "text": "My sister plays the piano every evening.",
@@ -5236,13 +5137,13 @@
         "text": "He is learning the piano at school.",
         "answer": "piano"
       }
-    ],
-    "ch": "鋼琴"
+    ]
   },
   {
     "word": "piece",
     "cefr": "A1",
     "frequency": 17,
+    "ch": "一件",
     "sentences": [
       {
         "text": "Would you like another piece of cake?",
@@ -5256,13 +5157,13 @@
         "text": "This piece of music is very calm.",
         "answer": "piece"
       }
-    ],
-    "ch": "一件"
+    ]
   },
   {
     "word": "plan",
     "cefr": "A1",
     "frequency": 18,
+    "ch": "計劃",
     "sentences": [
       {
         "text": "We need a plan for the project.",
@@ -5276,13 +5177,13 @@
         "text": "That sounds like a good plan.",
         "answer": "plan"
       }
-    ],
-    "ch": "計劃"
+    ]
   },
   {
     "word": "plane",
     "cefr": "A1",
     "frequency": 2,
+    "ch": "飛機",
     "sentences": [
       {
         "text": "The plane landed safely in Hong Kong.",
@@ -5296,13 +5197,13 @@
         "text": "My uncle travels by plane for work.",
         "answer": "plane"
       }
-    ],
-    "ch": "飛機"
+    ]
   },
   {
     "word": "player",
     "cefr": "A1",
     "frequency": 26,
+    "ch": "球員",
     "sentences": [
       {
         "text": "The football player scored a goal.",
@@ -5316,13 +5217,13 @@
         "text": "Each player needs to wear a badge.",
         "answer": "player"
       }
-    ],
-    "ch": "球員"
+    ]
   },
   {
     "word": "pool",
     "cefr": "A1",
     "frequency": 23,
+    "ch": "泳池",
     "sentences": [
       {
         "text": "The children are swimming in the pool.",
@@ -5336,13 +5237,13 @@
         "text": "My brother jumped into the pool.",
         "answer": "pool"
       }
-    ],
-    "ch": "泳池"
+    ]
   },
   {
     "word": "popular",
     "cefr": "A1",
     "frequency": 40,
+    "ch": "受歡迎的",
     "sentences": [
       {
         "text": "Bubble tea is popular with students.",
@@ -5356,13 +5257,13 @@
         "text": "The park is a popular place for families.",
         "answer": "popular"
       }
-    ],
-    "ch": "受歡迎的"
+    ]
   },
   {
     "word": "possible",
     "cefr": "A1",
     "frequency": 28,
+    "ch": "可能的",
     "sentences": [
       {
         "text": "Is it possible to finish today?",
@@ -5376,13 +5277,13 @@
         "text": "It is not possible to open this door.",
         "answer": "possible"
       }
-    ],
-    "ch": "可能的"
+    ]
   },
   {
     "word": "post",
     "cefr": "A1",
     "frequency": 53,
+    "ch": "郵件",
     "sentences": [
       {
         "text": "I will post the letter after school.",
@@ -5396,13 +5297,13 @@
         "text": "There is a lamp post near the crossing.",
         "answer": "post"
       }
-    ],
-    "ch": "郵件"
+    ]
   },
   {
     "word": "potato",
     "cefr": "A1",
     "frequency": 7,
+    "ch": "薯仔",
     "sentences": [
       {
         "text": "We had potato soup for lunch.",
@@ -5416,13 +5317,13 @@
         "text": "There is one potato left in the kitchen.",
         "answer": "potato"
       }
-    ],
-    "ch": "薯仔"
+    ]
   },
   {
     "word": "pound",
     "cefr": "A1",
     "frequency": 2,
+    "ch": "磅",
     "sentences": [
       {
         "text": "This cake costs two pounds.",
@@ -5436,13 +5337,13 @@
         "text": "She paid one pound for the postcard.",
         "answer": "pound"
       }
-    ],
-    "ch": "磅"
+    ]
   },
   {
     "word": "practice",
     "cefr": "A1",
     "frequency": 19,
+    "ch": "練習",
     "sentences": [
       {
         "text": "Football practice starts at four o clock.",
@@ -5456,13 +5357,13 @@
         "text": "The band had practice after school.",
         "answer": "practice"
       }
-    ],
-    "ch": "練習"
+    ]
   },
   {
     "word": "practise",
     "cefr": "A1",
     "frequency": 4,
+    "ch": "練習",
     "sentences": [
       {
         "text": "I practise the piano every day.",
@@ -5476,13 +5377,13 @@
         "text": "We practise before the match.",
         "answer": "practise"
       }
-    ],
-    "ch": "練習"
+    ]
   },
   {
     "word": "prefer",
     "cefr": "A1",
     "frequency": 5,
+    "ch": "較喜歡",
     "sentences": [
       {
         "text": "I prefer tea to coffee.",
@@ -5496,13 +5397,13 @@
         "text": "Do you prefer summer or winter?",
         "answer": "prefer"
       }
-    ],
-    "ch": "較喜歡"
+    ]
   },
   {
     "word": "prepare",
     "cefr": "A1",
     "frequency": 12,
+    "ch": "準備",
     "sentences": [
       {
         "text": "Please prepare your books before class.",
@@ -5516,13 +5417,13 @@
         "text": "My mother is preparing dinner now.",
         "answer": "preparing"
       }
-    ],
-    "ch": "準備"
+    ]
   },
   {
     "word": "pretty",
     "cefr": "A1",
     "frequency": 13,
+    "ch": "漂亮的",
     "sentences": [
       {
         "text": "The flower is very pretty.",
@@ -5536,13 +5437,13 @@
         "text": "The park looks pretty in spring.",
         "answer": "pretty"
       }
-    ],
-    "ch": "漂亮的"
+    ]
   },
   {
     "word": "product",
     "cefr": "A1",
     "frequency": 35,
+    "ch": "產品",
     "sentences": [
       {
         "text": "This product is safe for children.",
@@ -5556,13 +5457,13 @@
         "text": "I read the product label carefully.",
         "answer": "product"
       }
-    ],
-    "ch": "產品"
+    ]
   },
   {
     "word": "programme",
     "cefr": "A1",
     "frequency": 8,
+    "ch": "節目",
     "sentences": [
       {
         "text": "I watched a science programme on TV.",
@@ -5576,13 +5477,13 @@
         "text": "This radio programme starts at nine.",
         "answer": "programme"
       }
-    ],
-    "ch": "節目"
+    ]
   },
   {
     "word": "purple",
     "cefr": "A1",
     "frequency": 2,
+    "ch": "紫色",
     "sentences": [
       {
         "text": "She wore a purple scarf to school.",
@@ -5596,13 +5497,13 @@
         "text": "Please use the purple marker.",
         "answer": "purple"
       }
-    ],
-    "ch": "紫色"
+    ]
   },
   {
     "word": "quick",
     "cefr": "A1",
     "frequency": 7,
+    "ch": "快的",
     "sentences": [
       {
         "text": "We need a quick answer.",
@@ -5616,13 +5517,13 @@
         "text": "That was a quick trip to the shop.",
         "answer": "quick"
       }
-    ],
-    "ch": "快的"
+    ]
   },
   {
     "word": "quickly",
     "cefr": "A1",
     "frequency": 11,
+    "ch": "很快地",
     "sentences": [
       {
         "text": "Please finish your work quickly.",
@@ -5636,13 +5537,13 @@
         "text": "She quickly put the book into her bag.",
         "answer": "quickly"
       }
-    ],
-    "ch": "很快地"
+    ]
   },
   {
     "word": "quiet",
     "cefr": "A1",
     "frequency": 20,
+    "ch": "安靜的",
     "sentences": [
       {
         "text": "Please be quiet in the library.",
@@ -5656,13 +5557,13 @@
         "text": "We found a quiet place to study.",
         "answer": "quiet"
       }
-    ],
-    "ch": "安靜的"
+    ]
   },
   {
     "word": "radio",
     "cefr": "A1",
     "frequency": 10,
+    "ch": "收音機",
     "sentences": [
       {
         "text": "My grandfather listens to the radio every morning.",
@@ -5676,13 +5577,13 @@
         "text": "She turned off the radio before class.",
         "answer": "radio"
       }
-    ],
-    "ch": "收音機"
+    ]
   },
   {
     "word": "reader",
     "cefr": "A1",
     "frequency": 25,
+    "ch": "讀者",
     "sentences": [
       {
         "text": "She is a careful reader.",
@@ -5696,13 +5597,13 @@
         "text": "The reader wrote a letter to the newspaper.",
         "answer": "reader"
       }
-    ],
-    "ch": "讀者"
+    ]
   },
   {
     "word": "ready",
     "cefr": "A1",
     "frequency": 11,
+    "ch": "準備好",
     "sentences": [
       {
         "text": "Are you ready to go now?",
@@ -5716,13 +5617,13 @@
         "text": "We are ready for the school trip.",
         "answer": "ready"
       }
-    ],
-    "ch": "準備好"
+    ]
   },
   {
     "word": "real",
     "cefr": "A1",
     "frequency": 44,
+    "ch": "真實的",
     "sentences": [
       {
         "text": "Is that story real?",
@@ -5736,13 +5637,13 @@
         "text": "She showed me a real gold ring.",
         "answer": "real"
       }
-    ],
-    "ch": "真實的"
+    ]
   },
   {
     "word": "reason",
     "cefr": "A1",
     "frequency": 25,
+    "ch": "原因",
     "sentences": [
       {
         "text": "What is the reason for your choice?",
@@ -5756,13 +5657,13 @@
         "text": "Tell me the reason why you were late.",
         "answer": "reason"
       }
-    ],
-    "ch": "原因"
+    ]
   },
   {
     "word": "red",
     "cefr": "A1",
     "frequency": 4,
+    "ch": "紅色",
     "sentences": [
       {
         "text": "She wore a red hat to school.",
@@ -5776,13 +5677,13 @@
         "text": "Please use the red marker.",
         "answer": "red"
       }
-    ],
-    "ch": "紅色"
+    ]
   },
   {
     "word": "relax",
     "cefr": "A1",
     "frequency": 6,
+    "ch": "放鬆",
     "sentences": [
       {
         "text": "I like to relax by listening to music.",
@@ -5796,13 +5697,13 @@
         "text": "Take a deep breath and relax.",
         "answer": "relax"
       }
-    ],
-    "ch": "放鬆"
+    ]
   },
   {
     "word": "restaurant",
     "cefr": "A1",
     "frequency": 31,
+    "ch": "餐廳",
     "sentences": [
       {
         "text": "We ate dinner at a small restaurant.",
@@ -5816,13 +5717,13 @@
         "text": "My parents booked a table at the restaurant.",
         "answer": "restaurant"
       }
-    ],
-    "ch": "餐廳"
+    ]
   },
   {
     "word": "return",
     "cefr": "A1",
     "frequency": 10,
+    "ch": "返回",
     "sentences": [
       {
         "text": "Please return the book to the library.",
@@ -5836,13 +5737,13 @@
         "text": "She returned the pen to her friend.",
         "answer": "returned"
       }
-    ],
-    "ch": "返回"
+    ]
   },
   {
     "word": "rice",
     "cefr": "A1",
     "frequency": 6,
+    "ch": "米飯",
     "sentences": [
       {
         "text": "We had chicken and rice for dinner.",
@@ -5856,13 +5757,13 @@
         "text": "My grandmother cooks rice every day.",
         "answer": "rice"
       }
-    ],
-    "ch": "米飯"
+    ]
   },
   {
     "word": "road",
     "cefr": "A1",
     "frequency": 12,
+    "ch": "道路",
     "sentences": [
       {
         "text": "Please cross the road carefully.",
@@ -5876,13 +5777,13 @@
         "text": "There were many cars on the road.",
         "answer": "road"
       }
-    ],
-    "ch": "道路"
+    ]
   },
   {
     "word": "safer",
     "cefr": "A1",
     "frequency": 3,
+    "ch": "較安全",
     "sentences": [
       {
         "text": "It is safer to use the bridge.",
@@ -5896,13 +5797,13 @@
         "text": "This road is safer at night because it is brighter.",
         "answer": "safer"
       }
-    ],
-    "ch": "較安全"
+    ]
   },
   {
     "word": "salt",
     "cefr": "A1",
     "frequency": 5,
+    "ch": "鹽",
     "sentences": [
       {
         "text": "Please add a little salt to the soup.",
@@ -5916,13 +5817,13 @@
         "text": "The chef used salt and pepper.",
         "answer": "salt"
       }
-    ],
-    "ch": "鹽"
+    ]
   },
   {
     "word": "sandwich",
     "cefr": "A1",
     "frequency": 5,
+    "ch": "三文治",
     "sentences": [
       {
         "text": "I made a cheese sandwich for lunch.",
@@ -5936,13 +5837,13 @@
         "text": "The sandwich is on the plate.",
         "answer": "sandwich"
       }
-    ],
-    "ch": "三文治"
+    ]
   },
   {
     "word": "Saturday",
     "cefr": "A1",
     "frequency": null,
+    "ch": "星期六",
     "sentences": [
       {
         "text": "We play football every Saturday.",
@@ -5956,13 +5857,13 @@
         "text": "The market is very busy on Saturday.",
         "answer": "Saturday"
       }
-    ],
-    "ch": "星期六"
+    ]
   },
   {
     "word": "schoolmate",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "同學",
     "sentences": [
       {
         "text": "I met an old schoolmate on the bus.",
@@ -5976,13 +5877,13 @@
         "text": "She sat next to her schoolmate in class.",
         "answer": "schoolmate"
       }
-    ],
-    "ch": "同學"
+    ]
   },
   {
     "word": "science",
     "cefr": "A1",
     "frequency": 28,
+    "ch": "科學",
     "sentences": [
       {
         "text": "Science is my favourite subject.",
@@ -5996,13 +5897,13 @@
         "text": "My brother is good at science.",
         "answer": "science"
       }
-    ],
-    "ch": "科學"
+    ]
   },
   {
     "word": "scientist",
     "cefr": "A1",
     "frequency": 4,
+    "ch": "科學家",
     "sentences": [
       {
         "text": "The scientist worked in a large laboratory.",
@@ -6016,13 +5917,13 @@
         "text": "The scientist explained the new discovery.",
         "answer": "scientist"
       }
-    ],
-    "ch": "科學家"
+    ]
   },
   {
     "word": "sea",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "海",
     "sentences": [
       {
         "text": "We swim in the sea every summer.",
@@ -6036,13 +5937,13 @@
         "text": "We could see the blue sea from the hill.",
         "answer": "sea"
       }
-    ],
-    "ch": "海"
+    ]
   },
   {
     "word": "sell",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "賣",
     "sentences": [
       {
         "text": "They sell fruit at the market.",
@@ -6056,13 +5957,13 @@
         "text": "This shop sells school bags and shoes.",
         "answer": "sells"
       }
-    ],
-    "ch": "賣"
+    ]
   },
   {
     "word": "September",
     "cefr": "A1",
     "frequency": null,
+    "ch": "九月",
     "sentences": [
       {
         "text": "The new school year starts in September.",
@@ -6076,13 +5977,13 @@
         "text": "The weather is still hot in September.",
         "answer": "September"
       }
-    ],
-    "ch": "九月"
+    ]
   },
   {
     "word": "shirt",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "襯衫",
     "sentences": [
       {
         "text": "He wore a white shirt to the party.",
@@ -6096,13 +5997,13 @@
         "text": "This shirt is too big for me.",
         "answer": "shirt"
       }
-    ],
-    "ch": "襯衫"
+    ]
   },
   {
     "word": "shoe",
     "cefr": "A1",
     "frequency": 3,
+    "ch": "鞋",
     "sentences": [
       {
         "text": "One shoe is under the bed.",
@@ -6116,13 +6017,13 @@
         "text": "I need a new running shoe.",
         "answer": "shoe"
       }
-    ],
-    "ch": "鞋"
+    ]
   },
   {
     "word": "shorter",
     "cefr": "A1",
     "frequency": 2,
+    "ch": "較短",
     "sentences": [
       {
         "text": "This pencil is shorter than that one.",
@@ -6136,13 +6037,13 @@
         "text": "My hair is shorter now.",
         "answer": "shorter"
       }
-    ],
-    "ch": "較短"
+    ]
   },
   {
     "word": "shower",
     "cefr": "A1",
     "frequency": 2,
+    "ch": "淋浴",
     "sentences": [
       {
         "text": "I take a shower every morning.",
@@ -6156,13 +6057,13 @@
         "text": "She sang in the shower.",
         "answer": "shower"
       }
-    ],
-    "ch": "淋浴"
+    ]
   },
   {
     "word": "sick",
     "cefr": "A1",
     "frequency": 3,
+    "ch": "生病的",
     "sentences": [
       {
         "text": "He stayed home because he was sick.",
@@ -6176,13 +6077,13 @@
         "text": "The sick child went to see a doctor.",
         "answer": "sick"
       }
-    ],
-    "ch": "生病的"
+    ]
   },
   {
     "word": "similar",
     "cefr": "A1",
     "frequency": 17,
+    "ch": "相似的",
     "sentences": [
       {
         "text": "These two bags are very similar.",
@@ -6196,13 +6097,13 @@
         "text": "The twins look similar to each other.",
         "answer": "similar"
       }
-    ],
-    "ch": "相似的"
+    ]
   },
   {
     "word": "sing",
     "cefr": "A1",
     "frequency": 6,
+    "ch": "唱歌",
     "sentences": [
       {
         "text": "I like to sing in music class.",
@@ -6216,13 +6117,13 @@
         "text": "My sister can sing very well.",
         "answer": "sing"
       }
-    ],
-    "ch": "唱歌"
+    ]
   },
   {
     "word": "singer",
     "cefr": "A1",
     "frequency": 10,
+    "ch": "歌手",
     "sentences": [
       {
         "text": "The singer waved to the fans.",
@@ -6236,13 +6137,13 @@
         "text": "The singer performed three songs.",
         "answer": "singer"
       }
-    ],
-    "ch": "歌手"
+    ]
   },
   {
     "word": "situation",
     "cefr": "A1",
     "frequency": 19,
+    "ch": "情況",
     "sentences": [
       {
         "text": "It was a difficult situation for everyone.",
@@ -6256,13 +6157,13 @@
         "text": "The teacher explained the situation clearly.",
         "answer": "situation"
       }
-    ],
-    "ch": "情況"
+    ]
   },
   {
     "word": "skill",
     "cefr": "A1",
     "frequency": 21,
+    "ch": "技能",
     "sentences": [
       {
         "text": "Reading is an important skill.",
@@ -6276,13 +6177,13 @@
         "text": "Cooking is a useful life skill.",
         "answer": "skill"
       }
-    ],
-    "ch": "技能"
+    ]
   },
   {
     "word": "skirt",
     "cefr": "A1",
     "frequency": 2,
+    "ch": "裙子",
     "sentences": [
       {
         "text": "She wore a blue skirt to school.",
@@ -6296,13 +6197,13 @@
         "text": "My sister bought a new skirt yesterday.",
         "answer": "skirt"
       }
-    ],
-    "ch": "裙子"
+    ]
   },
   {
     "word": "smaller",
     "cefr": "A1",
     "frequency": 7,
+    "ch": "較小",
     "sentences": [
       {
         "text": "This room is smaller than the other one.",
@@ -6316,13 +6217,13 @@
         "text": "The younger dog is smaller.",
         "answer": "smaller"
       }
-    ],
-    "ch": "較小"
+    ]
   },
   {
     "word": "smallest",
     "cefr": "A1",
     "frequency": 2,
+    "ch": "最小",
     "sentences": [
       {
         "text": "This is the smallest cup in the set.",
@@ -6336,13 +6237,13 @@
         "text": "That is the smallest fish I have seen.",
         "answer": "smallest"
       }
-    ],
-    "ch": "最小"
+    ]
   },
   {
     "word": "snake",
     "cefr": "A1",
     "frequency": 15,
+    "ch": "蛇",
     "sentences": [
       {
         "text": "We saw a snake in the zoo.",
@@ -6356,13 +6257,13 @@
         "text": "The little boy was afraid of the snake.",
         "answer": "snake"
       }
-    ],
-    "ch": "蛇"
+    ]
   },
   {
     "word": "soda",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "汽水",
     "sentences": [
       {
         "text": "He drank a can of soda after lunch.",
@@ -6376,13 +6277,13 @@
         "text": "My father does not drink soda often.",
         "answer": "soda"
       }
-    ],
-    "ch": "汽水"
+    ]
   },
   {
     "word": "somebody",
     "cefr": "A1",
     "frequency": 2,
+    "ch": "某人",
     "sentences": [
       {
         "text": "Somebody left a bag in the room.",
@@ -6396,13 +6297,13 @@
         "text": "Somebody called you this morning.",
         "answer": "Somebody"
       }
-    ],
-    "ch": "某人"
+    ]
   },
   {
     "word": "someone",
     "cefr": "A1",
     "frequency": 33,
+    "ch": "某人",
     "sentences": [
       {
         "text": "Someone is waiting outside for you.",
@@ -6416,13 +6317,13 @@
         "text": "Please ask someone for help.",
         "answer": "someone"
       }
-    ],
-    "ch": "某人"
+    ]
   },
   {
     "word": "song",
     "cefr": "A1",
     "frequency": 10,
+    "ch": "歌曲",
     "sentences": [
       {
         "text": "That song is very easy to sing.",
@@ -6436,33 +6337,13 @@
         "text": "We listened to a happy song on the bus.",
         "answer": "song"
       }
-    ],
-    "ch": "歌曲"
-  },
-  {
-    "word": "sorry",
-    "cefr": "A1",
-    "frequency": 3,
-    "sentences": [
-      {
-        "text": "I am sorry for being late.",
-        "answer": "sorry"
-      },
-      {
-        "text": "She said sorry to her friend.",
-        "answer": "sorry"
-      },
-      {
-        "text": "Sorry, I do not understand the question.",
-        "answer": "Sorry"
-      }
-    ],
-    "ch": "對不起"
+    ]
   },
   {
     "word": "soup",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "湯",
     "sentences": [
       {
         "text": "The soup is hot, so be careful.",
@@ -6476,13 +6357,13 @@
         "text": "Would you like some chicken soup?",
         "answer": "soup"
       }
-    ],
-    "ch": "湯"
+    ]
   },
   {
     "word": "south",
     "cefr": "A1",
     "frequency": 2,
+    "ch": "南面",
     "sentences": [
       {
         "text": "The wind is coming from the south.",
@@ -6496,13 +6377,13 @@
         "text": "Our hotel is south of the station.",
         "answer": "south"
       }
-    ],
-    "ch": "南面"
+    ]
   },
   {
     "word": "space",
     "cefr": "A1",
     "frequency": 35,
+    "ch": "太空",
     "sentences": [
       {
         "text": "There is not enough space in my bag.",
@@ -6516,13 +6397,13 @@
         "text": "The room has a lot of open space.",
         "answer": "space"
       }
-    ],
-    "ch": "太空"
+    ]
   },
   {
     "word": "special",
     "cefr": "A1",
     "frequency": 50,
+    "ch": "特別的",
     "sentences": [
       {
         "text": "Today is a special day for our family.",
@@ -6536,13 +6417,13 @@
         "text": "This cake is special because my father made it.",
         "answer": "special"
       }
-    ],
-    "ch": "特別的"
+    ]
   },
   {
     "word": "sport",
     "cefr": "A1",
     "frequency": 54,
+    "ch": "運動",
     "sentences": [
       {
         "text": "Football is my favourite sport.",
@@ -6556,13 +6437,13 @@
         "text": "He enjoys watching sport on TV.",
         "answer": "sport"
       }
-    ],
-    "ch": "運動"
+    ]
   },
   {
     "word": "statement",
     "cefr": "A1",
     "frequency": 3,
+    "ch": "陳述",
     "sentences": [
       {
         "text": "The teacher wrote a statement on the board.",
@@ -6576,13 +6457,13 @@
         "text": "Her statement was short and clear.",
         "answer": "statement"
       }
-    ],
-    "ch": "陳述"
+    ]
   },
   {
     "word": "station",
     "cefr": "A1",
     "frequency": 6,
+    "ch": "車站",
     "sentences": [
       {
         "text": "The station is near my home.",
@@ -6596,13 +6477,13 @@
         "text": "Please meet me outside the station.",
         "answer": "station"
       }
-    ],
-    "ch": "車站"
+    ]
   },
   {
     "word": "story",
     "cefr": "A1",
     "frequency": 17,
+    "ch": "故事",
     "sentences": [
       {
         "text": "My grandfather told me a funny story.",
@@ -6616,13 +6497,13 @@
         "text": "She wrote a short story about a cat.",
         "answer": "story"
       }
-    ],
-    "ch": "故事"
+    ]
   },
   {
     "word": "street",
     "cefr": "A1",
     "frequency": 28,
+    "ch": "街道",
     "sentences": [
       {
         "text": "The children crossed the street carefully.",
@@ -6636,13 +6517,13 @@
         "text": "There are many shops on this street.",
         "answer": "street"
       }
-    ],
-    "ch": "街道"
+    ]
   },
   {
     "word": "strong",
     "cefr": "A1",
     "frequency": 13,
+    "ch": "強壯的",
     "sentences": [
       {
         "text": "The boy is strong enough to carry the box.",
@@ -6656,13 +6537,13 @@
         "text": "We need a strong team to win.",
         "answer": "strong"
       }
-    ],
-    "ch": "強壯的"
+    ]
   },
   {
     "word": "student",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "學生",
     "sentences": [
       {
         "text": "Every student must bring a pencil.",
@@ -6676,13 +6557,13 @@
         "text": "She is a hard-working student.",
         "answer": "student"
       }
-    ],
-    "ch": "學生"
+    ]
   },
   {
     "word": "study",
     "cefr": "A1",
     "frequency": 37,
+    "ch": "學習",
     "sentences": [
       {
         "text": "I need to study for the test tonight.",
@@ -6696,13 +6577,13 @@
         "text": "My brother went to his room to study.",
         "answer": "study"
       }
-    ],
-    "ch": "學習"
+    ]
   },
   {
     "word": "style",
     "cefr": "A1",
     "frequency": 11,
+    "ch": "風格",
     "sentences": [
       {
         "text": "I like the style of this dress.",
@@ -6716,13 +6597,13 @@
         "text": "That shop sells clothes in a modern style.",
         "answer": "style"
       }
-    ],
-    "ch": "風格"
+    ]
   },
   {
     "word": "subway",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "地鐵",
     "sentences": [
       {
         "text": "We took the subway to the city centre.",
@@ -6736,13 +6617,13 @@
         "text": "I use the subway every morning.",
         "answer": "subway"
       }
-    ],
-    "ch": "地鐵"
+    ]
   },
   {
     "word": "success",
     "cefr": "A1",
     "frequency": 16,
+    "ch": "成功",
     "sentences": [
       {
         "text": "Hard work can lead to success.",
@@ -6756,13 +6637,13 @@
         "text": "The show was a big success.",
         "answer": "success"
       }
-    ],
-    "ch": "成功"
+    ]
   },
   {
     "word": "sugar",
     "cefr": "A1",
     "frequency": 12,
+    "ch": "糖",
     "sentences": [
       {
         "text": "Please add some sugar to my tea.",
@@ -6776,13 +6657,13 @@
         "text": "My mother bought a bag of sugar.",
         "answer": "sugar"
       }
-    ],
-    "ch": "糖"
+    ]
   },
   {
     "word": "summer",
     "cefr": "A1",
     "frequency": 16,
+    "ch": "夏天",
     "sentences": [
       {
         "text": "We go swimming every summer.",
@@ -6796,13 +6677,13 @@
         "text": "My family will travel in the summer holiday.",
         "answer": "summer"
       }
-    ],
-    "ch": "夏天"
+    ]
   },
   {
     "word": "Sunday",
     "cefr": "A1",
     "frequency": null,
+    "ch": "星期日",
     "sentences": [
       {
         "text": "We visit my grandparents every Sunday.",
@@ -6816,13 +6697,13 @@
         "text": "My art class is on Sunday morning.",
         "answer": "Sunday"
       }
-    ],
-    "ch": "星期日"
+    ]
   },
   {
     "word": "supermarket",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "超級市場",
     "sentences": [
       {
         "text": "My mother bought vegetables at the supermarket.",
@@ -6836,13 +6717,13 @@
         "text": "We walked to the supermarket after dinner.",
         "answer": "supermarket"
       }
-    ],
-    "ch": "超級市場"
+    ]
   },
   {
     "word": "sweeter",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "較甜",
     "sentences": [
       {
         "text": "This mango is sweeter than that one.",
@@ -6856,13 +6737,13 @@
         "text": "Her second cake tasted even sweeter.",
         "answer": "sweeter"
       }
-    ],
-    "ch": "較甜"
+    ]
   },
   {
     "word": "tallest",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "最高",
     "sentences": [
       {
         "text": "He is the tallest boy in the class.",
@@ -6876,13 +6757,13 @@
         "text": "My tallest plant is by the window.",
         "answer": "tallest"
       }
-    ],
-    "ch": "最高"
+    ]
   },
   {
     "word": "taxi",
     "cefr": "A1",
     "frequency": 3,
+    "ch": "的士",
     "sentences": [
       {
         "text": "We took a taxi to the airport.",
@@ -6896,13 +6777,13 @@
         "text": "My father called a taxi for us.",
         "answer": "taxi"
       }
-    ],
-    "ch": "的士"
+    ]
   },
   {
     "word": "tea",
     "cefr": "A1",
     "frequency": 4,
+    "ch": "茶",
     "sentences": [
       {
         "text": "My grandmother drinks tea every afternoon.",
@@ -6916,13 +6797,13 @@
         "text": "She made milk tea for everyone.",
         "answer": "tea"
       }
-    ],
-    "ch": "茶"
+    ]
   },
   {
     "word": "teach",
     "cefr": "A1",
     "frequency": 10,
+    "ch": "教導",
     "sentences": [
       {
         "text": "My mother can teach me how to cook.",
@@ -6936,13 +6817,13 @@
         "text": "Will you teach me this song?",
         "answer": "teach"
       }
-    ],
-    "ch": "教導"
+    ]
   },
   {
     "word": "team",
     "cefr": "A1",
     "frequency": 31,
+    "ch": "隊伍",
     "sentences": [
       {
         "text": "Our team won the football match.",
@@ -6956,13 +6837,13 @@
         "text": "The whole team practised after school.",
         "answer": "team"
       }
-    ],
-    "ch": "隊伍"
+    ]
   },
   {
     "word": "teenager",
     "cefr": "A1",
     "frequency": 13,
+    "ch": "青少年",
     "sentences": [
       {
         "text": "The magazine is for teenagers.",
@@ -6976,13 +6857,13 @@
         "text": "Many teenagers use social media every day.",
         "answer": "teenagers"
       }
-    ],
-    "ch": "青少年"
+    ]
   },
   {
     "word": "telephone",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "電話",
     "sentences": [
       {
         "text": "The old telephone is on the desk.",
@@ -6996,13 +6877,13 @@
         "text": "My grandfather still uses a home telephone.",
         "answer": "telephone"
       }
-    ],
-    "ch": "電話"
+    ]
   },
   {
     "word": "television",
     "cefr": "A1",
     "frequency": 9,
+    "ch": "電視",
     "sentences": [
       {
         "text": "We watched a movie on television.",
@@ -7016,13 +6897,13 @@
         "text": "There is a new programme on television tonight.",
         "answer": "television"
       }
-    ],
-    "ch": "電視"
+    ]
   },
   {
     "word": "ten",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "十",
     "sentences": [
       {
         "text": "There are ten apples in the basket.",
@@ -7036,13 +6917,13 @@
         "text": "My brother is ten years old.",
         "answer": "ten"
       }
-    ],
-    "ch": "十"
+    ]
   },
   {
     "word": "tennis",
     "cefr": "A1",
     "frequency": 13,
+    "ch": "網球",
     "sentences": [
       {
         "text": "We play tennis on Saturday mornings.",
@@ -7056,13 +6937,13 @@
         "text": "Tennis is my favourite sport.",
         "answer": "Tennis"
       }
-    ],
-    "ch": "網球"
+    ]
   },
   {
     "word": "terrible",
     "cefr": "A1",
     "frequency": 8,
+    "ch": "可怕的",
     "sentences": [
       {
         "text": "The weather was terrible yesterday.",
@@ -7076,13 +6957,13 @@
         "text": "That was a terrible mistake.",
         "answer": "terrible"
       }
-    ],
-    "ch": "可怕的"
+    ]
   },
   {
     "word": "test",
     "cefr": "A1",
     "frequency": 18,
+    "ch": "測驗",
     "sentences": [
       {
         "text": "We have a spelling test tomorrow.",
@@ -7096,33 +6977,13 @@
         "text": "The teacher gave us a short test.",
         "answer": "test"
       }
-    ],
-    "ch": "測驗"
-  },
-  {
-    "word": "thank",
-    "cefr": "A1",
-    "frequency": 49,
-    "sentences": [
-      {
-        "text": "Please thank your mother for the gift.",
-        "answer": "thank"
-      },
-      {
-        "text": "I want to thank you for your help.",
-        "answer": "thank"
-      },
-      {
-        "text": "She thanked her teacher after class.",
-        "answer": "thanked"
-      }
-    ],
-    "ch": "感謝"
+    ]
   },
   {
     "word": "theatre",
     "cefr": "A1",
     "frequency": 2,
+    "ch": "劇院",
     "sentences": [
       {
         "text": "We watched a play in the theatre.",
@@ -7136,13 +6997,13 @@
         "text": "My teacher loves going to the theatre.",
         "answer": "theatre"
       }
-    ],
-    "ch": "劇院"
+    ]
   },
   {
     "word": "thirdly",
     "cefr": "A1",
     "frequency": 2,
+    "ch": "第三",
     "sentences": [
       {
         "text": "Thirdly, we need to clean the room.",
@@ -7156,13 +7017,13 @@
         "text": "Thirdly, the teacher asked us to work in groups.",
         "answer": "Thirdly"
       }
-    ],
-    "ch": "第三"
+    ]
   },
   {
     "word": "Thursday",
     "cefr": "A1",
     "frequency": null,
+    "ch": "星期四",
     "sentences": [
       {
         "text": "Our music lesson is on Thursday.",
@@ -7176,13 +7037,13 @@
         "text": "The shop opens late on Thursday.",
         "answer": "Thursday"
       }
-    ],
-    "ch": "星期四"
+    ]
   },
   {
     "word": "ticket",
     "cefr": "A1",
     "frequency": 24,
+    "ch": "門票",
     "sentences": [
       {
         "text": "I bought a train ticket at the station.",
@@ -7196,13 +7057,13 @@
         "text": "She showed her ticket at the door.",
         "answer": "ticket"
       }
-    ],
-    "ch": "門票"
+    ]
   },
   {
     "word": "together",
     "cefr": "A1",
     "frequency": 28,
+    "ch": "一起",
     "sentences": [
       {
         "text": "We studied together after school.",
@@ -7216,13 +7077,13 @@
         "text": "Let us work together on this project.",
         "answer": "together"
       }
-    ],
-    "ch": "一起"
+    ]
   },
   {
     "word": "toilet",
     "cefr": "A1",
     "frequency": 7,
+    "ch": "洗手間",
     "sentences": [
       {
         "text": "Excuse me, where is the toilet?",
@@ -7236,13 +7097,13 @@
         "text": "Please wash your hands after using the toilet.",
         "answer": "toilet"
       }
-    ],
-    "ch": "洗手間"
+    ]
   },
   {
     "word": "top",
     "cefr": "A1",
     "frequency": null,
+    "ch": "頂部",
     "sentences": [
       {
         "text": "The book is on the top shelf.",
@@ -7256,13 +7117,13 @@
         "text": "Write your name at the top of the page.",
         "answer": "top"
       }
-    ],
-    "ch": "頂部"
+    ]
   },
   {
     "word": "topic",
     "cefr": "A1",
     "frequency": 12,
+    "ch": "題目",
     "sentences": [
       {
         "text": "The topic of today?s lesson is travel.",
@@ -7276,13 +7137,13 @@
         "text": "Please choose a topic for your speech.",
         "answer": "topic"
       }
-    ],
-    "ch": "題目"
+    ]
   },
   {
     "word": "tourist",
     "cefr": "A1",
     "frequency": 31,
+    "ch": "遊客",
     "sentences": [
       {
         "text": "Many tourists visit Hong Kong every year.",
@@ -7296,13 +7157,13 @@
         "text": "The tourist took many photos.",
         "answer": "tourist"
       }
-    ],
-    "ch": "遊客"
+    ]
   },
   {
     "word": "traffic",
     "cefr": "A1",
     "frequency": 8,
+    "ch": "交通",
     "sentences": [
       {
         "text": "There is heavy traffic this morning.",
@@ -7316,13 +7177,13 @@
         "text": "We were late because of the traffic.",
         "answer": "traffic"
       }
-    ],
-    "ch": "交通"
+    ]
   },
   {
     "word": "travel",
     "cefr": "A1",
     "frequency": 31,
+    "ch": "旅行",
     "sentences": [
       {
         "text": "I love to travel with my family.",
@@ -7336,13 +7197,13 @@
         "text": "They want to travel to Japan next year.",
         "answer": "travel"
       }
-    ],
-    "ch": "旅行"
+    ]
   },
   {
     "word": "tree",
     "cefr": "A1",
     "frequency": 6,
+    "ch": "樹",
     "sentences": [
       {
         "text": "There is a tall tree in the park.",
@@ -7356,13 +7217,13 @@
         "text": "We planted a small tree at school.",
         "answer": "tree"
       }
-    ],
-    "ch": "樹"
+    ]
   },
   {
     "word": "Tuesday",
     "cefr": "A1",
     "frequency": null,
+    "ch": "星期二",
     "sentences": [
       {
         "text": "We have English on Tuesday.",
@@ -7376,13 +7237,13 @@
         "text": "I will see you next Tuesday.",
         "answer": "Tuesday"
       }
-    ],
-    "ch": "星期二"
+    ]
   },
   {
     "word": "turn left",
     "cefr": "A1",
     "frequency": null,
+    "ch": "向左轉",
     "sentences": [
       {
         "text": "Turn left at the traffic lights.",
@@ -7396,13 +7257,13 @@
         "text": "If you turn left, you will see the station.",
         "answer": "turn left"
       }
-    ],
-    "ch": "向左轉"
+    ]
   },
   {
     "word": "turn right",
     "cefr": "A1",
     "frequency": null,
+    "ch": "向右轉",
     "sentences": [
       {
         "text": "Turn right at the next corner.",
@@ -7416,13 +7277,13 @@
         "text": "If you turn right, the shop is on your left.",
         "answer": "turn right"
       }
-    ],
-    "ch": "向右轉"
+    ]
   },
   {
     "word": "twice",
     "cefr": "A1",
     "frequency": 4,
+    "ch": "兩次",
     "sentences": [
       {
         "text": "I brush my teeth twice a day.",
@@ -7436,13 +7297,13 @@
         "text": "She called me twice yesterday.",
         "answer": "twice"
       }
-    ],
-    "ch": "兩次"
+    ]
   },
   {
     "word": "umbrella",
     "cefr": "A1",
     "frequency": 6,
+    "ch": "雨傘",
     "sentences": [
       {
         "text": "Take an umbrella because it may rain.",
@@ -7456,13 +7317,13 @@
         "text": "I bought a new umbrella yesterday.",
         "answer": "umbrella"
       }
-    ],
-    "ch": "雨傘"
+    ]
   },
   {
     "word": "university",
     "cefr": "A1",
     "frequency": 12,
+    "ch": "大學",
     "sentences": [
       {
         "text": "My sister studies at a university in Hong Kong.",
@@ -7476,13 +7337,13 @@
         "text": "The university library is very large.",
         "answer": "university"
       }
-    ],
-    "ch": "大學"
+    ]
   },
   {
     "word": "useful",
     "cefr": "A1",
     "frequency": 15,
+    "ch": "有用的",
     "sentences": [
       {
         "text": "This dictionary is very useful.",
@@ -7496,13 +7357,13 @@
         "text": "Learning English is useful for travel.",
         "answer": "useful"
       }
-    ],
-    "ch": "有用的"
+    ]
   },
   {
     "word": "vacation",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "假期",
     "sentences": [
       {
         "text": "We went to Japan during the summer vacation.",
@@ -7516,13 +7377,13 @@
         "text": "The children were excited about the vacation.",
         "answer": "vacation"
       }
-    ],
-    "ch": "假期"
+    ]
   },
   {
     "word": "vegetable",
     "cefr": "A1",
     "frequency": 8,
+    "ch": "蔬菜",
     "sentences": [
       {
         "text": "Carrot is my favourite vegetable.",
@@ -7536,13 +7397,13 @@
         "text": "Every meal should include a vegetable.",
         "answer": "vegetable"
       }
-    ],
-    "ch": "蔬菜"
+    ]
   },
   {
     "word": "video",
     "cefr": "A1",
     "frequency": 61,
+    "ch": "影片",
     "sentences": [
       {
         "text": "I watched a funny video online.",
@@ -7556,13 +7417,13 @@
         "text": "Please send me the video later.",
         "answer": "video"
       }
-    ],
-    "ch": "影片"
+    ]
   },
   {
     "word": "village",
     "cefr": "A1",
     "frequency": 19,
+    "ch": "村莊",
     "sentences": [
       {
         "text": "My grandparents live in a small village.",
@@ -7576,13 +7437,13 @@
         "text": "We visited an old village during the holiday.",
         "answer": "village"
       }
-    ],
-    "ch": "村莊"
+    ]
   },
   {
     "word": "visit",
     "cefr": "A1",
     "frequency": 23,
+    "ch": "參觀",
     "sentences": [
       {
         "text": "We will visit our cousins this weekend.",
@@ -7596,13 +7457,13 @@
         "text": "She wants to visit Japan one day.",
         "answer": "visit"
       }
-    ],
-    "ch": "參觀"
+    ]
   },
   {
     "word": "visitor",
     "cefr": "A1",
     "frequency": 20,
+    "ch": "訪客",
     "sentences": [
       {
         "text": "Every visitor must sign in at the office.",
@@ -7616,13 +7477,13 @@
         "text": "A visitor asked me for directions.",
         "answer": "visitor"
       }
-    ],
-    "ch": "訪客"
+    ]
   },
   {
     "word": "wake",
     "cefr": "A1",
     "frequency": 3,
+    "ch": "醒來",
     "sentences": [
       {
         "text": "I wake up at seven every morning.",
@@ -7636,13 +7497,13 @@
         "text": "The loud noise woke the baby.",
         "answer": "wake"
       }
-    ],
-    "ch": "醒來"
+    ]
   },
   {
     "word": "walk along",
     "cefr": "A1",
     "frequency": null,
+    "ch": "沿著…走",
     "sentences": [
       {
         "text": "Walk along the road until you see the park.",
@@ -7656,13 +7517,13 @@
         "text": "Please walk along the corridor quietly.",
         "answer": "walk along"
       }
-    ],
-    "ch": "沿著…走"
+    ]
   },
   {
     "word": "warmer",
     "cefr": "A1",
     "frequency": 2,
+    "ch": "較暖",
     "sentences": [
       {
         "text": "Today is warmer than yesterday.",
@@ -7676,13 +7537,13 @@
         "text": "The weather gets warmer in spring.",
         "answer": "warmer"
       }
-    ],
-    "ch": "較暖"
+    ]
   },
   {
     "word": "wear",
     "cefr": "A1",
     "frequency": 11,
+    "ch": "穿著",
     "sentences": [
       {
         "text": "Please wear your school uniform tomorrow.",
@@ -7696,13 +7557,13 @@
         "text": "She likes to wear bright colours.",
         "answer": "wear"
       }
-    ],
-    "ch": "穿著"
+    ]
   },
   {
     "word": "weather",
     "cefr": "A1",
     "frequency": 14,
+    "ch": "天氣",
     "sentences": [
       {
         "text": "The weather is sunny today.",
@@ -7716,13 +7577,13 @@
         "text": "We talked about the weather all morning.",
         "answer": "weather"
       }
-    ],
-    "ch": "天氣"
+    ]
   },
   {
     "word": "website",
     "cefr": "A1",
     "frequency": 51,
+    "ch": "網站",
     "sentences": [
       {
         "text": "You can find the homework on the website.",
@@ -7736,13 +7597,13 @@
         "text": "I bought the tickets from the website.",
         "answer": "website"
       }
-    ],
-    "ch": "網站"
+    ]
   },
   {
     "word": "Wednesday",
     "cefr": "A1",
     "frequency": null,
+    "ch": "星期三",
     "sentences": [
       {
         "text": "We have science on Wednesday.",
@@ -7756,13 +7617,13 @@
         "text": "I will see you next Wednesday.",
         "answer": "Wednesday"
       }
-    ],
-    "ch": "星期三"
+    ]
   },
   {
     "word": "west",
     "cefr": "A1",
     "frequency": 3,
+    "ch": "西面",
     "sentences": [
       {
         "text": "The sun sets in the west.",
@@ -7776,13 +7637,13 @@
         "text": "Our hotel is west of the station.",
         "answer": "west"
       }
-    ],
-    "ch": "西面"
+    ]
   },
   {
     "word": "white",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "白色",
     "sentences": [
       {
         "text": "She wore a white shirt today.",
@@ -7796,13 +7657,13 @@
         "text": "Please use the white plate.",
         "answer": "white"
       }
-    ],
-    "ch": "白色"
+    ]
   },
   {
     "word": "wife",
     "cefr": "A1",
     "frequency": 3,
+    "ch": "妻子",
     "sentences": [
       {
         "text": "His wife works in a hospital.",
@@ -7816,13 +7677,13 @@
         "text": "My uncle bought flowers for his wife.",
         "answer": "wife"
       }
-    ],
-    "ch": "妻子"
+    ]
   },
   {
     "word": "window",
     "cefr": "A1",
     "frequency": 6,
+    "ch": "窗",
     "sentences": [
       {
         "text": "Please open the window.",
@@ -7836,13 +7697,13 @@
         "text": "She sat near the window on the bus.",
         "answer": "window"
       }
-    ],
-    "ch": "窗"
+    ]
   },
   {
     "word": "wine",
     "cefr": "A1",
     "frequency": 3,
+    "ch": "葡萄酒",
     "sentences": [
       {
         "text": "The restaurant serves red wine.",
@@ -7856,13 +7717,13 @@
         "text": "My parents sometimes drink wine on special days.",
         "answer": "wine"
       }
-    ],
-    "ch": "葡萄酒"
+    ]
   },
   {
     "word": "winter",
     "cefr": "A1",
     "frequency": 6,
+    "ch": "冬天",
     "sentences": [
       {
         "text": "It is cold in winter.",
@@ -7876,13 +7737,13 @@
         "text": "My favourite season is winter.",
         "answer": "winter"
       }
-    ],
-    "ch": "冬天"
+    ]
   },
   {
     "word": "without",
     "cefr": "A1",
     "frequency": 37,
+    "ch": "沒有",
     "sentences": [
       {
         "text": "I cannot go out without my keys.",
@@ -7896,13 +7757,13 @@
         "text": "Do not cross the road without looking.",
         "answer": "without"
       }
-    ],
-    "ch": "沒有"
+    ]
   },
   {
     "word": "wonderful",
     "cefr": "A1",
     "frequency": 10,
+    "ch": "精彩的",
     "sentences": [
       {
         "text": "We had a wonderful time at the beach.",
@@ -7916,13 +7777,13 @@
         "text": "What a wonderful surprise!",
         "answer": "wonderful"
       }
-    ],
-    "ch": "精彩的"
+    ]
   },
   {
     "word": "worker",
     "cefr": "A1",
     "frequency": 13,
+    "ch": "工人",
     "sentences": [
       {
         "text": "The worker fixed the broken door.",
@@ -7936,13 +7797,13 @@
         "text": "The worker carried the boxes into the room.",
         "answer": "worker"
       }
-    ],
-    "ch": "工人"
+    ]
   },
   {
     "word": "worksheet",
     "cefr": "A1",
     "frequency": 2,
+    "ch": "工作紙",
     "sentences": [
       {
         "text": "Please complete the worksheet in class.",
@@ -7956,33 +7817,13 @@
         "text": "I put the worksheet in my folder.",
         "answer": "worksheet"
       }
-    ],
-    "ch": "工作紙"
-  },
-  {
-    "word": "would",
-    "cefr": "A1",
-    "frequency": 1,
-    "sentences": [
-      {
-        "text": "I would like a glass of water.",
-        "answer": "would"
-      },
-      {
-        "text": "She said she would come later.",
-        "answer": "would"
-      },
-      {
-        "text": "Would you like to join us?",
-        "answer": "Would"
-      }
-    ],
-    "ch": "會"
+    ]
   },
   {
     "word": "writer",
     "cefr": "A1",
     "frequency": 16,
+    "ch": "作家",
     "sentences": [
       {
         "text": "The writer signed his new book.",
@@ -7996,13 +7837,13 @@
         "text": "The writer gave a talk at school.",
         "answer": "writer"
       }
-    ],
-    "ch": "作家"
+    ]
   },
   {
     "word": "years",
     "cefr": "A1",
     "frequency": 1,
+    "ch": "年",
     "sentences": [
       {
         "text": "We have been friends for many years.",
@@ -8016,13 +7857,13 @@
         "text": "The school is over one hundred years old.",
         "answer": "years"
       }
-    ],
-    "ch": "年"
+    ]
   },
   {
     "word": "yellow",
     "cefr": "A1",
     "frequency": 3,
+    "ch": "黃色",
     "sentences": [
       {
         "text": "The sunflowers are bright yellow.",
@@ -8036,33 +7877,13 @@
         "text": "Please use the yellow folder.",
         "answer": "yellow"
       }
-    ],
-    "ch": "黃色"
-  },
-  {
-    "word": "yes",
-    "cefr": "A1",
-    "frequency": 53,
-    "sentences": [
-      {
-        "text": "Yes, I understand the question.",
-        "answer": "Yes"
-      },
-      {
-        "text": "She smiled and said yes.",
-        "answer": "yes"
-      },
-      {
-        "text": "Yes, I would like some tea.",
-        "answer": "Yes"
-      }
-    ],
-    "ch": "是"
+    ]
   },
   {
     "word": "zoo",
     "cefr": "A1",
     "frequency": 2,
+    "ch": "動物園",
     "sentences": [
       {
         "text": "We visited the zoo on Sunday.",
@@ -8076,8 +7897,7 @@
         "text": "My favourite place in the zoo is the panda house.",
         "answer": "zoo"
       }
-    ],
-    "ch": "動物園"
+    ]
   },
   {
     "word": "ability",
@@ -17554,6 +17374,7 @@
     "word": "Admiralty",
     "cefr": "B2",
     "frequency": null,
+    "ch": "金鐘",
     "sentences": [
       {
         "text": "My father works in Admiralty.",
@@ -17567,8 +17388,7 @@
         "text": "There are many offices in Admiralty.",
         "answer": "Admiralty"
       }
-    ],
-    "ch": "金鐘"
+    ]
   },
   {
     "word": "admittedly",
@@ -17946,6 +17766,7 @@
     "word": "AsiaWorld-Expo",
     "cefr": "B2",
     "frequency": null,
+    "ch": "亞洲國際博覽館",
     "sentences": [
       {
         "text": "The concert will be held at AsiaWorld-Expo.",
@@ -17959,8 +17780,7 @@
         "text": "Many big events happen at AsiaWorld-Expo.",
         "answer": "AsiaWorld-Expo"
       }
-    ],
-    "ch": "亞洲國際博覽館"
+    ]
   },
   {
     "word": "aside",
@@ -18062,6 +17882,7 @@
     "word": "Austin",
     "cefr": "B2",
     "frequency": null,
+    "ch": "柯士甸",
     "sentences": [
       {
         "text": "We got off at Austin and walked to school.",
@@ -18075,13 +17896,13 @@
         "text": "My aunt met us outside Austin yesterday.",
         "answer": "Austin"
       }
-    ],
-    "ch": "柯士甸"
+    ]
   },
   {
     "word": "Australia",
     "cefr": "B2",
     "frequency": null,
+    "ch": "澳洲",
     "sentences": [
       {
         "text": "My cousin moved to Australia last year.",
@@ -18095,8 +17916,7 @@
         "text": "We want to visit Australia in summer.",
         "answer": "Australia"
       }
-    ],
-    "ch": "澳洲"
+    ]
   },
   {
     "word": "autobiography",
@@ -18613,6 +18433,7 @@
     "word": "Canada",
     "cefr": "B2",
     "frequency": null,
+    "ch": "加拿大",
     "sentences": [
       {
         "text": "My uncle lives in Canada.",
@@ -18626,8 +18447,7 @@
         "text": "They flew to Canada for a holiday.",
         "answer": "Canada"
       }
-    ],
-    "ch": "加拿大"
+    ]
   },
   {
     "word": "cancel",
@@ -18729,6 +18549,7 @@
     "word": "Causeway Bay",
     "cefr": "B2",
     "frequency": null,
+    "ch": "銅鑼灣",
     "sentences": [
       {
         "text": "We went shopping in Causeway Bay.",
@@ -18742,8 +18563,7 @@
         "text": "My friend met me in Causeway Bay after school.",
         "answer": "Causeway Bay"
       }
-    ],
-    "ch": "銅鑼灣"
+    ]
   },
   {
     "word": "cell",
@@ -18755,6 +18575,7 @@
     "word": "Central",
     "cefr": "B2",
     "frequency": null,
+    "ch": "中環",
     "sentences": [
       {
         "text": "My office is in Central.",
@@ -18768,8 +18589,7 @@
         "text": "Central has many tall buildings.",
         "answer": "Central"
       }
-    ],
-    "ch": "中環"
+    ]
   },
   {
     "word": "certificate",
@@ -18835,6 +18655,7 @@
     "word": "Che Kung Temple",
     "cefr": "B2",
     "frequency": null,
+    "ch": "車公廟",
     "sentences": [
       {
         "text": "We visited Che Kung Temple during the holiday.",
@@ -18848,8 +18669,7 @@
         "text": "Che Kung Temple is a famous place in Hong Kong.",
         "answer": "Che Kung Temple"
       }
-    ],
-    "ch": "車公廟"
+    ]
   },
   {
     "word": "cheapness",
@@ -18879,6 +18699,7 @@
     "word": "Chek Lap Kok",
     "cefr": "B2",
     "frequency": null,
+    "ch": "赤鱲角",
     "sentences": [
       {
         "text": "The airport is in Chek Lap Kok.",
@@ -18892,8 +18713,7 @@
         "text": "Chek Lap Kok is on Lantau Island.",
         "answer": "Chek Lap Kok"
       }
-    ],
-    "ch": "赤鱲角"
+    ]
   },
   {
     "word": "chestnut",
@@ -18923,6 +18743,7 @@
     "word": "China",
     "cefr": "B2",
     "frequency": null,
+    "ch": "中國",
     "sentences": [
       {
         "text": "My grandparents were born in China.",
@@ -18936,8 +18757,7 @@
         "text": "We learned about China in class today.",
         "answer": "China"
       }
-    ],
-    "ch": "中國"
+    ]
   },
   {
     "word": "chop",
@@ -19573,6 +19393,7 @@
     "word": "Croatia",
     "cefr": "B2",
     "frequency": null,
+    "ch": "克羅地亞",
     "sentences": [
       {
         "text": "My teacher travelled to Croatia last year.",
@@ -19586,8 +19407,7 @@
         "text": "They want to visit Croatia in summer.",
         "answer": "Croatia"
       }
-    ],
-    "ch": "克羅地亞"
+    ]
   },
   {
     "word": "crocodile",
@@ -19683,6 +19503,7 @@
     "word": "Cyberport",
     "cefr": "B2",
     "frequency": null,
+    "ch": "數碼港",
     "sentences": [
       {
         "text": "My brother works in Cyberport.",
@@ -19696,8 +19517,7 @@
         "text": "Cyberport has many technology companies.",
         "answer": "Cyberport"
       }
-    ],
-    "ch": "數碼港"
+    ]
   },
   {
     "word": "damp",
@@ -19997,6 +19817,7 @@
     "word": "Diamond Hill",
     "cefr": "B2",
     "frequency": null,
+    "ch": "鑽石山",
     "sentences": [
       {
         "text": "We changed trains at Diamond Hill.",
@@ -20010,8 +19831,7 @@
         "text": "Diamond Hill is busy in the evening.",
         "answer": "Diamond Hill"
       }
-    ],
-    "ch": "鑽石山"
+    ]
   },
   {
     "word": "dietary",
@@ -20719,6 +20539,7 @@
     "word": "Exhibition Centre",
     "cefr": "B2",
     "frequency": null,
+    "ch": "會展",
     "sentences": [
       {
         "text": "We got off at Exhibition Centre Station.",
@@ -20732,8 +20553,7 @@
         "text": "My father met his client at Exhibition Centre.",
         "answer": "Exhibition Centre"
       }
-    ],
-    "ch": "會展"
+    ]
   },
   {
     "word": "existence",
@@ -21201,6 +21021,7 @@
     "word": "Fortress Point",
     "cefr": "B2",
     "frequency": null,
+    "ch": "炮台山",
     "sentences": [
       {
         "text": "My aunt lives in Fortress Point.",
@@ -21214,8 +21035,7 @@
         "text": "There are many restaurants in Fortress Point.",
         "answer": "Fortress Point"
       }
-    ],
-    "ch": "炮台山"
+    ]
   },
   {
     "word": "fortune",
@@ -21263,6 +21083,7 @@
     "word": "France",
     "cefr": "B2",
     "frequency": null,
+    "ch": "法國",
     "sentences": [
       {
         "text": "My teacher travelled to France last year.",
@@ -21276,8 +21097,7 @@
         "text": "They want to study in France one day.",
         "answer": "France"
       }
-    ],
-    "ch": "法國"
+    ]
   },
   {
     "word": "free",
@@ -21463,6 +21283,7 @@
     "word": "Germany",
     "cefr": "B2",
     "frequency": null,
+    "ch": "德國",
     "sentences": [
       {
         "text": "My friend moved to Germany last year.",
@@ -21476,8 +21297,7 @@
         "text": "They visited Germany during the summer holiday.",
         "answer": "Germany"
       }
-    ],
-    "ch": "德國"
+    ]
   },
   {
     "word": "gesture",
@@ -21819,6 +21639,7 @@
     "word": "Hong Kong",
     "cefr": "B2",
     "frequency": null,
+    "ch": "香港",
     "sentences": [
       {
         "text": "Hong Kong is my home city.",
@@ -21832,8 +21653,7 @@
         "text": "The weather in Hong Kong is very hot in summer.",
         "answer": "Hong Kong"
       }
-    ],
-    "ch": "香港"
+    ]
   },
   {
     "word": "honour",
@@ -22427,6 +22247,7 @@
     "word": "Italy",
     "cefr": "B2",
     "frequency": null,
+    "ch": "意大利",
     "sentences": [
       {
         "text": "My aunt travelled to Italy last summer.",
@@ -22440,8 +22261,7 @@
         "text": "They dream of visiting Italy one day.",
         "answer": "Italy"
       }
-    ],
-    "ch": "意大利"
+    ]
   },
   {
     "word": "itch",
@@ -22489,6 +22309,7 @@
     "word": "Jordan",
     "cefr": "B2",
     "frequency": null,
+    "ch": "佐敦",
     "sentences": [
       {
         "text": "My friend moved to Jordan with his family.",
@@ -22502,8 +22323,7 @@
         "text": "They want to visit Jordan next year.",
         "answer": "Jordan"
       }
-    ],
-    "ch": "佐敦"
+    ]
   },
   {
     "word": "joy",
@@ -22527,6 +22347,7 @@
     "word": "Kai Tak",
     "cefr": "B2",
     "frequency": null,
+    "ch": "啟德",
     "sentences": [
       {
         "text": "We visited the sports park in Kai Tak.",
@@ -22540,13 +22361,13 @@
         "text": "Kai Tak is changing very quickly.",
         "answer": "Kai Tak"
       }
-    ],
-    "ch": "啟德"
+    ]
   },
   {
     "word": "Kennedy Town",
     "cefr": "B2",
     "frequency": null,
+    "ch": "堅尼地城",
     "sentences": [
       {
         "text": "We had dinner in Kennedy Town last night.",
@@ -22560,8 +22381,7 @@
         "text": "There are many caf?s in Kennedy Town.",
         "answer": "Kennedy Town"
       }
-    ],
-    "ch": "堅尼地城"
+    ]
   },
   {
     "word": "kindergartener",
@@ -22585,6 +22405,7 @@
     "word": "Kowloon Tong",
     "cefr": "B2",
     "frequency": null,
+    "ch": "九龍塘",
     "sentences": [
       {
         "text": "We changed to another line at Kowloon Tong.",
@@ -22598,8 +22419,7 @@
         "text": "Kowloon Tong is busy in the morning.",
         "answer": "Kowloon Tong"
       }
-    ],
-    "ch": "九龍塘"
+    ]
   },
   {
     "word": "ladder",
@@ -22611,6 +22431,7 @@
     "word": "Lamma Island",
     "cefr": "B2",
     "frequency": null,
+    "ch": "南丫島",
     "sentences": [
       {
         "text": "We spent the weekend on Lamma Island.",
@@ -22624,8 +22445,7 @@
         "text": "They took a ferry to Lamma Island.",
         "answer": "Lamma Island"
       }
-    ],
-    "ch": "南丫島"
+    ]
   },
   {
     "word": "landfill",
@@ -22643,6 +22463,7 @@
     "word": "Lantau Island",
     "cefr": "B2",
     "frequency": null,
+    "ch": "大嶼山",
     "sentences": [
       {
         "text": "The airport is on Lantau Island.",
@@ -22656,8 +22477,7 @@
         "text": "Lantau Island is very large.",
         "answer": "Lantau Island"
       }
-    ],
-    "ch": "大嶼山"
+    ]
   },
   {
     "word": "largely",
@@ -22795,6 +22615,7 @@
     "word": "Lion Rock",
     "cefr": "B2",
     "frequency": null,
+    "ch": "獅子山",
     "sentences": [
       {
         "text": "We could see Lion Rock from the bus.",
@@ -22808,8 +22629,7 @@
         "text": "My father likes hiking near Lion Rock.",
         "answer": "Lion Rock"
       }
-    ],
-    "ch": "獅子山"
+    ]
   },
   {
     "word": "literally",
@@ -22881,6 +22701,7 @@
     "word": "LOUAS Park",
     "cefr": "B2",
     "frequency": null,
+    "ch": "康城",
     "sentences": [
       {
         "text": "We walked through LOUAS Park after dinner.",
@@ -22894,8 +22715,7 @@
         "text": "There were many families in LOUAS Park yesterday.",
         "answer": "LOUAS Park"
       }
-    ],
-    "ch": "康城"
+    ]
   },
   {
     "word": "lower",
@@ -22925,6 +22745,7 @@
     "word": "M+ Museum",
     "cefr": "B2",
     "frequency": null,
+    "ch": "M+???",
     "sentences": [
       {
         "text": "Our class visited the M+ Museum last week.",
@@ -22938,8 +22759,7 @@
         "text": "My brother wants to go to the M+ Museum on Sunday.",
         "answer": "M+ Museum"
       }
-    ],
-    "ch": "M+???"
+    ]
   },
   {
     "word": "magnificent",
@@ -22957,6 +22777,7 @@
     "word": "Mai Po",
     "cefr": "B2",
     "frequency": null,
+    "ch": "米埔",
     "sentences": [
       {
         "text": "We saw many birds in Mai Po.",
@@ -22970,8 +22791,7 @@
         "text": "Mai Po is famous for its wetlands.",
         "answer": "Mai Po"
       }
-    ],
-    "ch": "米埔"
+    ]
   },
   {
     "word": "maintain",
@@ -22995,6 +22815,7 @@
     "word": "Malaysia",
     "cefr": "B2",
     "frequency": null,
+    "ch": "馬來西亞",
     "sentences": [
       {
         "text": "My cousins live in Malaysia.",
@@ -23008,8 +22829,7 @@
         "text": "They flew to Malaysia during the holiday.",
         "answer": "Malaysia"
       }
-    ],
-    "ch": "馬來西亞"
+    ]
   },
   {
     "word": "mankind",
@@ -23327,6 +23147,7 @@
     "word": "Mong Kok",
     "cefr": "B2",
     "frequency": null,
+    "ch": "旺角",
     "sentences": [
       {
         "text": "We went shopping in Mong Kok yesterday.",
@@ -23340,8 +23161,7 @@
         "text": "My aunt works in Mong Kok.",
         "answer": "Mong Kok"
       }
-    ],
-    "ch": "旺角"
+    ]
   },
   {
     "word": "monster",
@@ -23569,6 +23389,7 @@
     "word": "North Point",
     "cefr": "B2",
     "frequency": null,
+    "ch": "北角",
     "sentences": [
       {
         "text": "My grandmother lives in North Point.",
@@ -23582,8 +23403,7 @@
         "text": "North Point is easy to reach by MTR.",
         "answer": "North Point"
       }
-    ],
-    "ch": "北角"
+    ]
   },
   {
     "word": "notion",
@@ -23733,6 +23553,7 @@
     "word": "Olyampic",
     "cefr": "B2",
     "frequency": null,
+    "ch": "奧運",
     "sentences": [
       {
         "text": "She dreams of joining the Olyampic team one day.",
@@ -23746,8 +23567,7 @@
         "text": "He watched an Olyampic race on TV.",
         "answer": "Olyampic"
       }
-    ],
-    "ch": "奧運"
+    ]
   },
   {
     "word": "on behalf of",
@@ -24533,6 +24353,7 @@
     "word": "Prince Edward",
     "cefr": "B2",
     "frequency": null,
+    "ch": "太子",
     "sentences": [
       {
         "text": "We got off the train at Prince Edward.",
@@ -24546,8 +24367,7 @@
         "text": "Prince Edward is busy at lunchtime.",
         "answer": "Prince Edward"
       }
-    ],
-    "ch": "太子"
+    ]
   },
   {
     "word": "principle",
@@ -24811,6 +24631,7 @@
     "word": "Quarry Bay",
     "cefr": "B2",
     "frequency": null,
+    "ch": "鰂魚涌",
     "sentences": [
       {
         "text": "My aunt works in Quarry Bay.",
@@ -24824,8 +24645,7 @@
         "text": "There are many offices in Quarry Bay.",
         "answer": "Quarry Bay"
       }
-    ],
-    "ch": "鰂魚涌"
+    ]
   },
   {
     "word": "questionnaire",
@@ -24843,6 +24663,7 @@
     "word": "Race course",
     "cefr": "B2",
     "frequency": null,
+    "ch": "馬場",
     "sentences": [
       {
         "text": "We walked past the Race course on Sunday.",
@@ -24856,8 +24677,7 @@
         "text": "There was a big event at the Race course.",
         "answer": "Race course"
       }
-    ],
-    "ch": "馬場"
+    ]
   },
   {
     "word": "rail",
@@ -25787,6 +25607,7 @@
     "word": "Sham Shui Po",
     "cefr": "B2",
     "frequency": null,
+    "ch": "深水埗",
     "sentences": [
       {
         "text": "We bought fabric in Sham Shui Po.",
@@ -25800,8 +25621,7 @@
         "text": "Sham Shui Po is famous for its markets.",
         "answer": "Sham Shui Po"
       }
-    ],
-    "ch": "深水埗"
+    ]
   },
   {
     "word": "shame",
@@ -25825,6 +25645,7 @@
     "word": "Shek Kip Mei",
     "cefr": "B2",
     "frequency": null,
+    "ch": "石硤尾",
     "sentences": [
       {
         "text": "My grandmother lives in Shek Kip Mei.",
@@ -25838,8 +25659,7 @@
         "text": "Shek Kip Mei is not far from our school.",
         "answer": "Shek Kip Mei"
       }
-    ],
-    "ch": "石硤尾"
+    ]
   },
   {
     "word": "shift",
@@ -25899,6 +25719,7 @@
     "word": "Shung Wong Toi",
     "cefr": "B2",
     "frequency": null,
+    "ch": "宋皇臺",
     "sentences": [
       {
         "text": "We got off at Shung Wong Toi Station.",
@@ -25912,8 +25733,7 @@
         "text": "Shung Wong Toi is on the new line.",
         "answer": "Shung Wong Toi"
       }
-    ],
-    "ch": "宋皇臺"
+    ]
   },
   {
     "word": "shutdown",
@@ -25985,6 +25805,7 @@
     "word": "Singapore",
     "cefr": "B2",
     "frequency": null,
+    "ch": "新加坡",
     "sentences": [
       {
         "text": "My cousin moved to Singapore last year.",
@@ -25998,8 +25819,7 @@
         "text": "They flew to Singapore for a short holiday.",
         "answer": "Singapore"
       }
-    ],
-    "ch": "新加坡"
+    ]
   },
   {
     "word": "skilled",
@@ -26119,6 +25939,7 @@
     "word": "South Korea",
     "cefr": "B2",
     "frequency": null,
+    "ch": "南韓",
     "sentences": [
       {
         "text": "My uncle works in South Korea.",
@@ -26132,13 +25953,13 @@
         "text": "They travelled to South Korea in winter.",
         "answer": "South Korea"
       }
-    ],
-    "ch": "南韓"
+    ]
   },
   {
     "word": "Spain",
     "cefr": "B2",
     "frequency": null,
+    "ch": "西班牙",
     "sentences": [
       {
         "text": "My teacher visited Spain last summer.",
@@ -26152,8 +25973,7 @@
         "text": "They want to travel around Spain next year.",
         "answer": "Spain"
       }
-    ],
-    "ch": "西班牙"
+    ]
   },
   {
     "word": "specialise",
@@ -26627,6 +26447,7 @@
     "word": "Switzerland",
     "cefr": "B2",
     "frequency": null,
+    "ch": "瑞士",
     "sentences": [
       {
         "text": "My uncle travelled to Switzerland last winter.",
@@ -26640,8 +26461,7 @@
         "text": "They want to visit Switzerland one day.",
         "answer": "Switzerland"
       }
-    ],
-    "ch": "瑞士"
+    ]
   },
   {
     "word": "symbolically",
@@ -26677,6 +26497,7 @@
     "word": "Tai Koo",
     "cefr": "B2",
     "frequency": null,
+    "ch": "太古",
     "sentences": [
       {
         "text": "We met at Tai Koo after school.",
@@ -26690,13 +26511,13 @@
         "text": "Tai Koo is easy to reach by MTR.",
         "answer": "Tai Koo"
       }
-    ],
-    "ch": "太古"
+    ]
   },
   {
     "word": "Tai O",
     "cefr": "B2",
     "frequency": null,
+    "ch": "大澳",
     "sentences": [
       {
         "text": "We visited Tai O during the holiday.",
@@ -26710,8 +26531,7 @@
         "text": "The seafood in Tai O is very popular.",
         "answer": "Tai O"
       }
-    ],
-    "ch": "大澳"
+    ]
   },
   {
     "word": "tailor",
@@ -26861,6 +26681,7 @@
     "word": "Thailand",
     "cefr": "B2",
     "frequency": null,
+    "ch": "泰國",
     "sentences": [
       {
         "text": "My family visited Thailand last summer.",
@@ -26874,13 +26695,13 @@
         "text": "They want to travel to Thailand next year.",
         "answer": "Thailand"
       }
-    ],
-    "ch": "泰國"
+    ]
   },
   {
     "word": "The Peak",
     "cefr": "B2",
     "frequency": null,
+    "ch": "山頂",
     "sentences": [
       {
         "text": "We could see the whole city from The Peak.",
@@ -26894,8 +26715,7 @@
         "text": "My parents took us to The Peak on Sunday.",
         "answer": "The Peak"
       }
-    ],
-    "ch": "山頂"
+    ]
   },
   {
     "word": "the philippines",
@@ -26907,6 +26727,7 @@
     "word": "The United Kingdom",
     "cefr": "B2",
     "frequency": null,
+    "ch": "英國",
     "sentences": [
       {
         "text": "My aunt moved to The United Kingdom last year.",
@@ -26920,13 +26741,13 @@
         "text": "They flew to The United Kingdom for a holiday.",
         "answer": "The United Kingdom"
       }
-    ],
-    "ch": "英國"
+    ]
   },
   {
     "word": "The USA",
     "cefr": "B2",
     "frequency": null,
+    "ch": "美國",
     "sentences": [
       {
         "text": "My cousin studies in The USA.",
@@ -26940,8 +26761,7 @@
         "text": "They travelled around The USA in summer.",
         "answer": "The USA"
       }
-    ],
-    "ch": "美國"
+    ]
   },
   {
     "word": "therapist",
@@ -27211,6 +27031,7 @@
     "word": "Tsim Sha Tsui",
     "cefr": "B2",
     "frequency": null,
+    "ch": "尖沙咀",
     "sentences": [
       {
         "text": "We went shopping in Tsim Sha Tsui.",
@@ -27224,8 +27045,7 @@
         "text": "There are many tourists in Tsim Sha Tsui.",
         "answer": "Tsim Sha Tsui"
       }
-    ],
-    "ch": "尖沙咀"
+    ]
   },
   {
     "word": "tuck",
@@ -27237,6 +27057,7 @@
     "word": "Tuen Mun",
     "cefr": "B2",
     "frequency": null,
+    "ch": "屯門",
     "sentences": [
       {
         "text": "My aunt lives in Tuen Mun.",
@@ -27250,8 +27071,7 @@
         "text": "The bus to Tuen Mun was full.",
         "answer": "Tuen Mun"
       }
-    ],
-    "ch": "屯門"
+    ]
   },
   {
     "word": "tues",
@@ -27599,6 +27419,7 @@
     "word": "Victoria Harbour",
     "cefr": "B2",
     "frequency": null,
+    "ch": "維多利亞港",
     "sentences": [
       {
         "text": "We took photos at Victoria Harbour.",
@@ -27612,8 +27433,7 @@
         "text": "Many tourists visit Victoria Harbour every evening.",
         "answer": "Victoria Harbour"
       }
-    ],
-    "ch": "維多利亞港"
+    ]
   },
   {
     "word": "vietnamese",
@@ -27727,6 +27547,7 @@
     "word": "Wan Chai",
     "cefr": "B2",
     "frequency": null,
+    "ch": "灣仔",
     "sentences": [
       {
         "text": "My aunt works in Wan Chai.",
@@ -27740,8 +27561,7 @@
         "text": "Wan Chai is busy during lunchtime.",
         "answer": "Wan Chai"
       }
-    ],
-    "ch": "灣仔"
+    ]
   },
   {
     "word": "warmth",
@@ -27813,6 +27633,7 @@
     "word": "West Kowloon Cultural District",
     "cefr": "B2",
     "frequency": null,
+    "ch": "西九文化區",
     "sentences": [
       {
         "text": "We visited the West Kowloon Cultural District on Sunday.",
@@ -27826,13 +27647,13 @@
         "text": "Many families walk around the West Kowloon Cultural District at night.",
         "answer": "West Kowloon Cultural District"
       }
-    ],
-    "ch": "西九文化區"
+    ]
   },
   {
     "word": "Whampoa",
     "cefr": "B2",
     "frequency": null,
+    "ch": "黃埔",
     "sentences": [
       {
         "text": "My friend lives in Whampoa.",
@@ -27846,8 +27667,7 @@
         "text": "Whampoa is not far from my school.",
         "answer": "Whampoa"
       }
-    ],
-    "ch": "黃埔"
+    ]
   },
   {
     "word": "whereas",

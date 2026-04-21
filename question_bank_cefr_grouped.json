@@ -681,26 +681,6 @@
       "ch": "在...後面 (prep.)"
     },
     {
-      "word": "behind",
-      "cefr": "A1",
-      "frequency": null,
-      "sentences": [
-        {
-          "text": "The cat is hiding behind the sofa.",
-          "answer": "behind"
-        },
-        {
-          "text": "The sun went behind a cloud.",
-          "answer": "behind"
-        },
-        {
-          "text": "Who is that standing behind you?",
-          "answer": "behind"
-        }
-      ],
-      "ch": "在...後面 (prep.)"
-    },
-    {
       "word": "between",
       "cefr": "A1",
       "frequency": null,
@@ -2239,26 +2219,6 @@
         }
       ],
       "ch": "大象"
-    },
-    {
-      "word": "else",
-      "cefr": "A1",
-      "frequency": 11,
-      "sentences": [
-        {
-          "text": "Would you like anything else to eat?",
-          "answer": "else"
-        },
-        {
-          "text": "Everyone is here, but who else is coming?",
-          "answer": "else"
-        },
-        {
-          "text": "There is nothing else in the box.",
-          "answer": "else"
-        }
-      ],
-      "ch": "其他"
     },
     {
       "word": "email",
@@ -4681,26 +4641,6 @@
       "ch": "鼻子"
     },
     {
-      "word": "not",
-      "cefr": "A1",
-      "frequency": 1,
-      "sentences": [
-        {
-          "text": "I am not ready yet.",
-          "answer": "not"
-        },
-        {
-          "text": "This book is not mine.",
-          "answer": "not"
-        },
-        {
-          "text": "He is not at home now.",
-          "answer": "not"
-        }
-      ],
-      "ch": "不"
-    },
-    {
       "word": "November",
       "cefr": "A1",
       "frequency": null,
@@ -4759,26 +4699,6 @@
         }
       ],
       "ch": "十月"
-    },
-    {
-      "word": "okay",
-      "cefr": "A1",
-      "frequency": 4,
-      "sentences": [
-        {
-          "text": "It is okay to ask for help.",
-          "answer": "okay"
-        },
-        {
-          "text": "Are you feeling okay now?",
-          "answer": "okay"
-        },
-        {
-          "text": "Everything will be okay soon.",
-          "answer": "okay"
-        }
-      ],
-      "ch": "可以"
     },
     {
       "word": "older",
@@ -4884,26 +4804,6 @@
       "word": "opposite",
       "cefr": "A1",
       "frequency": 2,
-      "sentences": [
-        {
-          "text": "The bank is opposite the supermarket.",
-          "answer": "opposite"
-        },
-        {
-          "text": "She sat on the seat opposite mine.",
-          "answer": "opposite"
-        },
-        {
-          "text": "Our classroom is opposite the library.",
-          "answer": "opposite"
-        }
-      ],
-      "ch": "對面"
-    },
-    {
-      "word": "opposite",
-      "cefr": "A1",
-      "frequency": null,
       "sentences": [
         {
           "text": "The bank is opposite the supermarket.",
@@ -6441,26 +6341,6 @@
       "ch": "歌曲"
     },
     {
-      "word": "sorry",
-      "cefr": "A1",
-      "frequency": 3,
-      "sentences": [
-        {
-          "text": "I am sorry for being late.",
-          "answer": "sorry"
-        },
-        {
-          "text": "She said sorry to her friend.",
-          "answer": "sorry"
-        },
-        {
-          "text": "Sorry, I do not understand the question.",
-          "answer": "Sorry"
-        }
-      ],
-      "ch": "對不起"
-    },
-    {
       "word": "soup",
       "cefr": "A1",
       "frequency": 1,
@@ -7099,26 +6979,6 @@
         }
       ],
       "ch": "測驗"
-    },
-    {
-      "word": "thank",
-      "cefr": "A1",
-      "frequency": 49,
-      "sentences": [
-        {
-          "text": "Please thank your mother for the gift.",
-          "answer": "thank"
-        },
-        {
-          "text": "I want to thank you for your help.",
-          "answer": "thank"
-        },
-        {
-          "text": "She thanked her teacher after class.",
-          "answer": "thanked"
-        }
-      ],
-      "ch": "感謝"
     },
     {
       "word": "theatre",
@@ -7961,26 +7821,6 @@
       "ch": "工作紙"
     },
     {
-      "word": "would",
-      "cefr": "A1",
-      "frequency": 1,
-      "sentences": [
-        {
-          "text": "I would like a glass of water.",
-          "answer": "would"
-        },
-        {
-          "text": "She said she would come later.",
-          "answer": "would"
-        },
-        {
-          "text": "Would you like to join us?",
-          "answer": "Would"
-        }
-      ],
-      "ch": "會"
-    },
-    {
       "word": "writer",
       "cefr": "A1",
       "frequency": 16,
@@ -8039,26 +7879,6 @@
         }
       ],
       "ch": "黃色"
-    },
-    {
-      "word": "yes",
-      "cefr": "A1",
-      "frequency": 53,
-      "sentences": [
-        {
-          "text": "Yes, I understand the question.",
-          "answer": "Yes"
-        },
-        {
-          "text": "She smiled and said yes.",
-          "answer": "yes"
-        },
-        {
-          "text": "Yes, I would like some tea.",
-          "answer": "Yes"
-        }
-      ],
-      "ch": "是"
     },
     {
       "word": "zoo",

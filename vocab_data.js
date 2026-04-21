@@ -613,24 +613,6 @@ const VOCAB_DB = {
             ]
         },
         {
-            "en": "behind",
-            "ch": "在...後面 (prep.)",
-            "sents": [
-                {
-                    "text": "The cat is hiding behind the sofa.",
-                    "answer": "behind"
-                },
-                {
-                    "text": "The sun went behind a cloud.",
-                    "answer": "behind"
-                },
-                {
-                    "text": "Who is that standing behind you?",
-                    "answer": "behind"
-                }
-            ]
-        },
-        {
             "en": "between",
             "ch": "在...之間 (prep.)",
             "sents": [
@@ -2013,24 +1995,6 @@ const VOCAB_DB = {
                 {
                     "text": "The little boy drew a grey elephant.",
                     "answer": "elephant"
-                }
-            ]
-        },
-        {
-            "en": "else",
-            "ch": "其他",
-            "sents": [
-                {
-                    "text": "Would you like anything else to eat?",
-                    "answer": "else"
-                },
-                {
-                    "text": "Everyone is here, but who else is coming?",
-                    "answer": "else"
-                },
-                {
-                    "text": "There is nothing else in the box.",
-                    "answer": "else"
                 }
             ]
         },
@@ -4213,24 +4177,6 @@ const VOCAB_DB = {
             ]
         },
         {
-            "en": "not",
-            "ch": "不",
-            "sents": [
-                {
-                    "text": "I am not ready yet.",
-                    "answer": "not"
-                },
-                {
-                    "text": "This book is not mine.",
-                    "answer": "not"
-                },
-                {
-                    "text": "He is not at home now.",
-                    "answer": "not"
-                }
-            ]
-        },
-        {
             "en": "November",
             "ch": "十一月",
             "sents": [
@@ -4281,24 +4227,6 @@ const VOCAB_DB = {
                 {
                     "text": "She will visit us in October.",
                     "answer": "October"
-                }
-            ]
-        },
-        {
-            "en": "okay",
-            "ch": "可以",
-            "sents": [
-                {
-                    "text": "It is okay to ask for help.",
-                    "answer": "okay"
-                },
-                {
-                    "text": "Are you feeling okay now?",
-                    "answer": "okay"
-                },
-                {
-                    "text": "Everything will be okay soon.",
-                    "answer": "okay"
                 }
             ]
         },
@@ -4389,24 +4317,6 @@ const VOCAB_DB = {
                 {
                     "text": "Everyone shared an opinion in class.",
                     "answer": "opinion"
-                }
-            ]
-        },
-        {
-            "en": "opposite",
-            "ch": "對面",
-            "sents": [
-                {
-                    "text": "The bank is opposite the supermarket.",
-                    "answer": "opposite"
-                },
-                {
-                    "text": "She sat on the seat opposite mine.",
-                    "answer": "opposite"
-                },
-                {
-                    "text": "Our classroom is opposite the library.",
-                    "answer": "opposite"
                 }
             ]
         },
@@ -5797,24 +5707,6 @@ const VOCAB_DB = {
             ]
         },
         {
-            "en": "sorry",
-            "ch": "對不起",
-            "sents": [
-                {
-                    "text": "I am sorry for being late.",
-                    "answer": "sorry"
-                },
-                {
-                    "text": "She said sorry to her friend.",
-                    "answer": "sorry"
-                },
-                {
-                    "text": "Sorry, I do not understand the question.",
-                    "answer": "Sorry"
-                }
-            ]
-        },
-        {
             "en": "soup",
             "ch": "湯",
             "sents": [
@@ -6387,24 +6279,6 @@ const VOCAB_DB = {
                 {
                     "text": "The teacher gave us a short test.",
                     "answer": "test"
-                }
-            ]
-        },
-        {
-            "en": "thank",
-            "ch": "感謝",
-            "sents": [
-                {
-                    "text": "Please thank your mother for the gift.",
-                    "answer": "thank"
-                },
-                {
-                    "text": "I want to thank you for your help.",
-                    "answer": "thank"
-                },
-                {
-                    "text": "She thanked her teacher after class.",
-                    "answer": "thanked"
                 }
             ]
         },
@@ -7165,24 +7039,6 @@ const VOCAB_DB = {
             ]
         },
         {
-            "en": "would",
-            "ch": "會",
-            "sents": [
-                {
-                    "text": "I would like a glass of water.",
-                    "answer": "would"
-                },
-                {
-                    "text": "She said she would come later.",
-                    "answer": "would"
-                },
-                {
-                    "text": "Would you like to join us?",
-                    "answer": "Would"
-                }
-            ]
-        },
-        {
             "en": "writer",
             "ch": "作家",
             "sents": [
@@ -7237,24 +7093,6 @@ const VOCAB_DB = {
             ]
         },
         {
-            "en": "yes",
-            "ch": "是",
-            "sents": [
-                {
-                    "text": "Yes, I understand the question.",
-                    "answer": "Yes"
-                },
-                {
-                    "text": "She smiled and said yes.",
-                    "answer": "yes"
-                },
-                {
-                    "text": "Yes, I would like some tea.",
-                    "answer": "Yes"
-                }
-            ]
-        },
-        {
             "en": "zoo",
             "ch": "動物園",
             "sents": [
@@ -7273,6 +7111,7 @@ const VOCAB_DB = {
             ]
         }
     ],
+
     "L2": [
         {
             "en": "ability",
