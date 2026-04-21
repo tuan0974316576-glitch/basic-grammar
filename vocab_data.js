@@ -7275,34 +7275,11815 @@ const VOCAB_DB = {
     ],
     "L2": [
         {
-            "en": "ant",
-            "ch": "螞蟻 (n.)",
+            "en": "ability",
+            "ch": "能力",
             "sents": [
                 {
-                    "text": "The owls is carrying a crumb.",
-                    "answer": "owls"
+                    "text": "That way, we can really get a feel for their ability.",
+                    "answer": "ability"
                 },
                 {
-                    "text": "Owls like sweet food.",
-                    "answer": "Owls"
+                    "text": "But this ability will not take you very far beyond the university.",
+                    "answer": "ability"
+                },
+                {
+                    "text": "In the last half-century, though, emphasis on inquiry has become dominant, and it has often been reduced to the ability to expose error and undermine belief.",
+                    "answer": "ability"
                 }
             ]
         },
         {
-            "en": "add",
-            "ch": "螞蟻 (n.)",
+            "en": "able",
+            "ch": "能夠；有能力的",
             "sents": [
                 {
-                    "text": "The suggestion will be added to the proposal.",
-                    "answer": "added"
+                    "text": "As you know, we were hopeful that we would be able to move venues to Cheung Chau but that will now not be happening.",
+                    "answer": "able"
                 },
                 {
-                    "text": "He adds some e-books onto the database from time to time ",
-                    "answer": "adds"
+                    "text": "Being able to specialize like this will hopefully be the key to my future career.",
+                    "answer": "able"
+                },
+                {
+                    "text": "Would you be able to remind spectators not to litter?",
+                    "answer": "able"
+                }
+            ]
+        },
+        {
+            "en": "abroad",
+            "ch": "在外國；到外國",
+            "sents": [
+                {
+                    "text": "My cousin wants to study abroad next year.",
+                    "answer": "abroad"
+                },
+                {
+                    "text": "Her parents worked abroad for many years.",
+                    "answer": "abroad"
+                },
+                {
+                    "text": "We called my uncle while he was abroad.",
+                    "answer": "abroad"
+                }
+            ]
+        },
+        {
+            "en": "accept",
+            "ch": "接受",
+            "sents": [
+                {
+                    "text": "Were you to kindly accept our request, would the following details be acceptable to you?",
+                    "answer": "accept"
+                },
+                {
+                    "text": "Once an article is accepted for publication, payment will be made.",
+                    "answer": "accept"
+                },
+                {
+                    "text": "The meeting unanimously accepted the proposal.",
+                    "answer": "accept"
+                }
+            ]
+        },
+        {
+            "en": "accident",
+            "ch": "意外；事故",
+            "sents": [
+                {
+                    "text": "Things have not been great there recently due to the accident the World City Travel catamaran was involved in.",
+                    "answer": "accident"
+                },
+                {
+                    "text": "First, complete the internal incident report for the catamaran accident.",
+                    "answer": "accident"
+                },
+                {
+                    "text": "It seems you've got all the other documents related to the accident.",
+                    "answer": "accident"
+                }
+            ]
+        },
+        {
+            "en": "achieve",
+            "ch": "達到；實現",
+            "sents": [
+                {
+                    "text": "As one of our alumni, now a research chemist put it:   \"The Locae Foundation gave me hope and the drive to work on my talents and achieve my ambitions.\"",
+                    "answer": "achieve"
+                },
+                {
+                    "text": "Summer: You know, it's like as if that's the best thing the ultimate - the highest achievement a woman can achieve, to be like a man.",
+                    "answer": "achieve"
+                },
+                {
+                    "text": "Here are the latest initiatives to make sure that we all keep on track and strive to achieve:   1.",
+                    "answer": "achieve"
+                }
+            ]
+        },
+        {
+            "en": "active",
+            "ch": "活躍的；積極的",
+            "sents": [
+                {
+                    "text": "My grandfather stays active by walking every morning.",
+                    "answer": "active"
+                },
+                {
+                    "text": "She is very active in the school music club.",
+                    "answer": "active"
+                },
+                {
+                    "text": "An active child needs time to run and play.",
+                    "answer": "active"
+                }
+            ]
+        },
+        {
+            "en": "actually",
+            "ch": "其實；實際上",
+            "sents": [
+                {
+                    "text": "Another issue last year was that us real fans could not get a hold of tickets whilst the people who actually got the tickets weren't even real tennis fans.",
+                    "answer": "actually"
+                },
+                {
+                    "text": "It's actually the woman I interviewed's father in the photo.",
+                    "answer": "actually"
+                },
+                {
+                    "text": "Rowett Uni   Posted: February 3 2019, 08:01 AM   Well, everybody actually.",
+                    "answer": "actually"
+                }
+            ]
+        },
+        {
+            "en": "adult",
+            "ch": "成人",
+            "sents": [
+                {
+                    "text": "In this connection, Y'Eν (2011) examined the use of virtual pets amongst adult users aged 60 and over in Hong Kong.",
+                    "answer": "adult"
+                },
+                {
+                    "text": "To show main / adult characters were happily married (and had happy family)   56.",
+                    "answer": "adult"
+                },
+                {
+                    "text": "Remember these children are the potential adult visitors that will ensure your museum's future.",
+                    "answer": "adult"
+                }
+            ]
+        },
+        {
+            "en": "advantage",
+            "ch": "優點；有利條件",
+            "sents": [
+                {
+                    "text": "Why not take advantage of our June 2013 '2-4-1' deal?",
+                    "answer": "advantage"
+                },
+                {
+                    "text": "So what are the advantages of a virtual pet compared to a real one?",
+                    "answer": "advantage"
+                },
+                {
+                    "text": "Summarize the advantages and disadvantages of each funding option.",
+                    "answer": "advantage"
+                }
+            ]
+        },
+        {
+            "en": "adventure",
+            "ch": "冒險；奇遇",
+            "sents": [
+                {
+                    "text": "Don't feel like an adventure?",
+                    "answer": "adventure"
+                },
+                {
+                    "text": "This will mean that there will be a doctor and/or a nurse present at the adventure camp 24 hours a day for non-emergency situations.",
+                    "answer": "adventure"
+                },
+                {
+                    "text": "So we will now have an Adventure Camp in March, May, August and November every year.",
+                    "answer": "adventure"
+                }
+            ]
+        },
+        {
+            "en": "advertise",
+            "ch": "做廣告；宣傳",
+            "sents": [
+                {
+                    "text": "Sales / advertising   KL suggested contacting local travel agents and hotels to ask them if they wanted to advertise.",
+                    "answer": "advertise"
+                },
+                {
+                    "text": "Well, one huge plus without a doubt is that you get to advertise your game on their website.",
+                    "answer": "advertise"
+                },
+                {
+                    "text": "Big companies who are already well-known, and who have already published a bunch of stuff, are now using Gamezstart to advertise their latest products.",
+                    "answer": "advertise"
+                }
+            ]
+        },
+        {
+            "en": "advertisement",
+            "ch": "廣告",
+            "sents": [
+                {
+                    "text": "Finally, I need you to draft a script for a YouTube advertisement promoting the Adventure Fishing Tour.",
+                    "answer": "advertisement"
+                },
+                {
+                    "text": "Mention this in any new advertisements.",
+                    "answer": "advertisement"
+                },
+                {
+                    "text": "Email to Plaza Hotel   Kim Ross at the Plaza Hotel has sent us an advertisement to put in the next issue, but there are some problems with it.",
+                    "answer": "advertisement"
+                }
+            ]
+        },
+        {
+            "en": "affect",
+            "ch": "影響",
+            "sents": [
+                {
+                    "text": "Lack of sleep can affect your mood at school.",
+                    "answer": "affect"
+                },
+                {
+                    "text": "Rain may affect the football match this afternoon.",
+                    "answer": "affect"
+                },
+                {
+                    "text": "The new rule will affect all students in our class.",
+                    "answer": "affect"
+                }
+            ]
+        },
+        {
+            "en": "afterward",
+            "ch": "之後；後來",
+            "sents": [
+                {
+                    "text": "We went for dessert afterward.",
+                    "answer": "afterward"
+                },
+                {
+                    "text": "Finish your homework and relax afterward.",
+                    "answer": "afterward"
+                },
+                {
+                    "text": "They watched a movie and talked afterward.",
+                    "answer": "afterward"
+                }
+            ]
+        },
+        {
+            "en": "airline",
+            "ch": "航空公司",
+            "sents": [
+                {
+                    "text": "Which airline are you flying with tomorrow?",
+                    "answer": "airline"
+                },
+                {
+                    "text": "The airline sent us an email about the delay.",
+                    "answer": "airline"
+                },
+                {
+                    "text": "That airline has cheap tickets to Japan.",
+                    "answer": "airline"
+                }
+            ]
+        },
+        {
+            "en": "alive",
+            "ch": "活着的；仍然存在的",
+            "sents": [
+                {
+                    "text": "Ceci: So it really does sound like tourism is helping you keep your culture alive.",
+                    "answer": "alive"
+                },
+                {
+                    "text": "10:46 PM   Gehry:   And you weren't eaten alive!",
+                    "answer": "alive"
+                },
+                {
+                    "text": "I'm truly grateful just to be alive.",
+                    "answer": "alive"
+                }
+            ]
+        },
+        {
+            "en": "allow",
+            "ch": "允許；容許",
+            "sents": [
+                {
+                    "text": "I know that some gardens don't allow food, but can I ask if the staff on the Hong Kong Botanical Gardens Bird Watching Tour will also do the same?",
+                    "answer": "allow"
+                },
+                {
+                    "text": "Finally, can you please explain why my daughter was not allowed her turn in the Mars Experience Room?",
+                    "answer": "allow"
+                },
+                {
+                    "text": "All articles must be submitted on time to allow the editorial team time to read and suggest any revisions.",
+                    "answer": "allow"
+                }
+            ]
+        },
+        {
+            "en": "alone",
+            "ch": "單獨；獨自",
+            "sents": [
+                {
+                    "text": "Bugsy/her dog started to cry because he was left alone on the boat / when she went scuba diving   the owner needs be an experienced scuba diver 49.",
+                    "answer": "alone"
+                },
+                {
+                    "text": "Worldwide, good zoos and aquariums host over 600 million visitors each year, and in Hong Kong alone, close to 5 million people visit Ocean Park annually.",
+                    "answer": "alone"
+                },
+                {
+                    "text": "Even that might be an underestimate: the 3-D sensors alone on Google’s autonomous car cost about $70,000.",
+                    "answer": "alone"
+                }
+            ]
+        },
+        {
+            "en": "along",
+            "ch": "沿着；一起",
+            "sents": [
+                {
+                    "text": "Bring along your sunglasses - it can get bright out there!",
+                    "answer": "along"
+                },
+                {
+                    "text": "Everyone gets along well.",
+                    "answer": "along"
+                },
+                {
+                    "text": "We look forward to hearing your response and demand an explanation along with proposed solutions or a summary of action that you've taken on the issue.",
+                    "answer": "along"
+                }
+            ]
+        },
+        {
+            "en": "although",
+            "ch": "雖然；儘管",
+            "sents": [
+                {
+                    "text": "Although I don't trade them for money, I swap them for other birds I haven't got.\"",
+                    "answer": "although"
+                },
+                {
+                    "text": "Although I liked the course, I thought it was a bit too short.",
+                    "answer": "although"
+                },
+                {
+                    "text": "Mr Lai agreed with the overall message of the blog, although the display had been impressive.",
+                    "answer": "although"
+                }
+            ]
+        },
+        {
+            "en": "among",
+            "ch": "在…之中",
+            "sents": [
+                {
+                    "text": "His dramatic \"Aqua Vita\" photo prints, of aquatic mammals in the wild, are among the most popular in our online shop and would light up any home or office.",
+                    "answer": "among"
+                },
+                {
+                    "text": "As he drew closer to the cry he went more slowly, with caution in every movement, till he came to an open place among the trees.",
+                    "answer": "among"
+                },
+                {
+                    "text": "But a more careful look at the results reveals that Hong Kong pupils are still among the best readers across the globe.",
+                    "answer": "among"
+                }
+            ]
+        },
+        {
+            "en": "ancient",
+            "ch": "古代的；古老的",
+            "sents": [
+                {
+                    "text": "Now archaeologists and artists, armed with the latest tools and techniques, are bringing that ancient vision back to life.",
+                    "answer": "ancient"
+                },
+                {
+                    "text": "In an earthen pit in central China, under what used to be their village’s persimmon orchard, three middle-aged women are hunched over an ancient jigsaw puzzle.",
+                    "answer": "ancient"
+                },
+                {
+                    "text": "To everyone’s delight, the modern techniques for preserving ancient colors seem to be working.",
+                    "answer": "ancient"
+                }
+            ]
+        },
+        {
+            "en": "ankle",
+            "ch": "腳踝",
+            "sents": [
+                {
+                    "text": "I hurt my ankle during basketball practice.",
+                    "answer": "ankle"
+                },
+                {
+                    "text": "Her ankle was sore after the long hike.",
+                    "answer": "ankle"
+                },
+                {
+                    "text": "The doctor told him to rest his ankle.",
+                    "answer": "ankle"
+                }
+            ]
+        },
+        {
+            "en": "anybody",
+            "ch": "任何人",
+            "sents": [
+                {
+                    "text": "Does anybody know the answer to this question?",
+                    "answer": "anybody"
+                },
+                {
+                    "text": "If anybody calls, tell them I am busy.",
+                    "answer": "anybody"
+                },
+                {
+                    "text": "We did not see anybody in the park.",
+                    "answer": "anybody"
+                }
+            ]
+        },
+        {
+            "en": "anymore",
+            "ch": "再；再也",
+            "sents": [
+                {
+                    "text": "I do not play that game anymore.",
+                    "answer": "anymore"
+                },
+                {
+                    "text": "My brother is not a child anymore.",
+                    "answer": "anymore"
+                },
+                {
+                    "text": "We cannot wait here anymore.",
+                    "answer": "anymore"
+                }
+            ]
+        },
+        {
+            "en": "anyway",
+            "ch": "無論如何；反正",
+            "sents": [
+                {
+                    "text": "It is raining, but we can go anyway.",
+                    "answer": "anyway"
+                },
+                {
+                    "text": "I was tired, but I finished the work anyway.",
+                    "answer": "anyway"
+                },
+                {
+                    "text": "Anyway, let us focus on the next question.",
+                    "answer": "anyway"
+                }
+            ]
+        },
+        {
+            "en": "anywhere",
+            "ch": "任何地方",
+            "sents": [
+                {
+                    "text": "You can sit anywhere in this room.",
+                    "answer": "anywhere"
+                },
+                {
+                    "text": "I could not find my keys anywhere.",
+                    "answer": "anywhere"
+                },
+                {
+                    "text": "Is there anywhere to charge my phone here?",
+                    "answer": "anywhere"
+                }
+            ]
+        },
+        {
+            "en": "app",
+            "ch": "應用程式",
+            "sents": [
+                {
+                    "text": "I use a map app when I travel alone.",
+                    "answer": "app"
+                },
+                {
+                    "text": "This app helps me learn new words every day.",
+                    "answer": "app"
+                },
+                {
+                    "text": "Please download the app before the lesson.",
+                    "answer": "app"
+                }
+            ]
+        },
+        {
+            "en": "appearance",
+            "ch": "外表；出現",
+            "sents": [
+                {
+                    "text": "His appearance changed after he cut his hair.",
+                    "answer": "appearance"
+                },
+                {
+                    "text": "Do not judge people by appearance alone.",
+                    "answer": "appearance"
+                },
+                {
+                    "text": "The actor made a short appearance in the film.",
+                    "answer": "appearance"
+                }
+            ]
+        },
+        {
+            "en": "apply",
+            "ch": "申請；應用",
+            "sents": [
+                {
+                    "text": "The announcement will be posted on our website so try to persuade the readers to apply.",
+                    "answer": "apply"
+                },
+                {
+                    "text": "We are looking for trainees at the moment, so if any of your readers are interested, please apply to be a trainee.",
+                    "answer": "apply"
+                },
+                {
+                    "text": "Hong Kong Arts and Crafts: How can they apply?",
+                    "answer": "apply"
+                }
+            ]
+        },
+        {
+            "en": "architect",
+            "ch": "建築師",
+            "sents": [
+                {
+                    "text": "The architect showed us the building plan.",
+                    "answer": "architect"
+                },
+                {
+                    "text": "My aunt is an architect in Hong Kong.",
+                    "answer": "architect"
+                },
+                {
+                    "text": "The architect designed a bright new library.",
+                    "answer": "architect"
+                }
+            ]
+        },
+        {
+            "en": "architecture",
+            "ch": "建築學；建築風格",
+            "sents": [
+                {
+                    "text": "The city is famous for modern architecture.",
+                    "answer": "architecture"
+                },
+                {
+                    "text": "I enjoy looking at old church architecture.",
+                    "answer": "architecture"
+                },
+                {
+                    "text": "She wants to study architecture at university.",
+                    "answer": "architecture"
+                }
+            ]
+        },
+        {
+            "en": "argue",
+            "ch": "爭論；主張",
+            "sents": [
+                {
+                    "text": "Write the editorial to argue against his position.",
+                    "answer": "argue"
+                },
+                {
+                    "text": "It has even been argued that body language is the most important aspect of human communication (Duncan, 2004).",
+                    "answer": "argue"
+                },
+                {
+                    "text": "But in a special report, the editor of The Economist, Robert Guest, argues that millennials have it tougher than most people think.",
+                    "answer": "argue"
+                }
+            ]
+        },
+        {
+            "en": "argument",
+            "ch": "爭論；論點",
+            "sents": [
+                {
+                    "text": "Focus on One Theme [7] Your theme is the moral argument of your story.",
+                    "answer": "argument"
+                },
+                {
+                    "text": "The Hunger Games could be taken as an indictment of reality TV, but it is not an argument.",
+                    "answer": "argument"
+                },
+                {
+                    "text": "[7] I see “Messy” as an argument against the excessive attempts to organize.",
+                    "answer": "argument"
+                }
+            ]
+        },
+        {
+            "en": "army",
+            "ch": "軍隊；陸軍",
+            "sents": [
+                {
+                    "text": "China has a 10 million strong illegal army of rubbish entrepreneurs and in Shanghai they can seem ubiquitous.",
+                    "answer": "army"
+                },
+                {
+                    "text": "They are like Mao's army during the Long March days: very irregular, but very efficient.",
+                    "answer": "army"
+                },
+                {
+                    "text": "The government wants to turn them into a regular army.'",
+                    "answer": "army"
+                }
+            ]
+        },
+        {
+            "en": "arrange",
+            "ch": "安排；整理",
+            "sents": [
+                {
+                    "text": "Let us arrange the chairs before the meeting.",
+                    "answer": "arrange"
+                },
+                {
+                    "text": "She will arrange a time for the interview.",
+                    "answer": "arrange"
+                },
+                {
+                    "text": "Can you arrange these books by color?",
+                    "answer": "arrange"
+                }
+            ]
+        },
+        {
+            "en": "arrangement",
+            "ch": "安排；佈置",
+            "sents": [
+                {
+                    "text": "Special Arrangements Form   We need to complete the summary of the special arrangements for this year's Victoria Cup to send to all players and agents.",
+                    "answer": "arrangement"
+                },
+                {
+                    "text": "Please complete the attached Special Arrangements Form.",
+                    "answer": "arrangement"
+                },
+                {
+                    "text": "Can you update me on arrangements for this?",
+                    "answer": "arrangement"
+                }
+            ]
+        },
+        {
+            "en": "asian",
+            "ch": "亞洲的；亞洲人",
+            "sents": [
+                {
+                    "text": "Event poster   We need to prepare a poster with information about the Asian Games Week.",
+                    "answer": "asian"
+                },
+                {
+                    "text": "Invitation email to guest speaker   Please write an email to invite a guest speaker to the Opening Event of the Asian Games Week.",
+                    "answer": "asian"
+                },
+                {
+                    "text": "Presentation script on the Asian Games   We'll be playing a presentation about the Asian Games to all students before the quiz event.",
+                    "answer": "asian"
+                }
+            ]
+        },
+        {
+            "en": "asleep",
+            "ch": "睡着的",
+            "sents": [
+                {
+                    "text": "The baby was already asleep at eight.",
+                    "answer": "asleep"
+                },
+                {
+                    "text": "I almost fell asleep on the bus.",
+                    "answer": "asleep"
+                },
+                {
+                    "text": "He was asleep when the phone rang.",
+                    "answer": "asleep"
+                }
+            ]
+        },
+        {
+            "en": "assistant",
+            "ch": "助手；助理",
+            "sents": [
+                {
+                    "text": "Finally, can you write a letter to Ms Pollitti, the Careers Mistress at St Scritti's School, and tell her about the part-time student assistant positions.",
+                    "answer": "assistant"
+                },
+                {
+                    "text": "You should include positive feedback from previous student assistants to show why it will be a good experience.",
+                    "answer": "assistant"
+                },
+                {
+                    "text": "Part-time student assistants   Dr Jones has agreed to the request to hire three part-time assistants this year.",
+                    "answer": "assistant"
+                }
+            ]
+        },
+        {
+            "en": "astronaut",
+            "ch": "太空人",
+            "sents": [
+                {
+                    "text": "The child dreams of becoming an astronaut.",
+                    "answer": "astronaut"
+                },
+                {
+                    "text": "That astronaut spent six months in space.",
+                    "answer": "astronaut"
+                },
+                {
+                    "text": "We watched a video about a famous astronaut.",
+                    "answer": "astronaut"
+                }
+            ]
+        },
+        {
+            "en": "athlete",
+            "ch": "運動員",
+            "sents": [
+                {
+                    "text": "This will be a professional athlete, so try to be persuasive but make sure you're polite.",
+                    "answer": "athlete"
+                },
+                {
+                    "text": "Tell Nico to invite the athlete from the sport with the most votes.",
+                    "answer": "athlete"
+                },
+                {
+                    "text": "I've attached a transcript of an interview with a famous Asian Games athlete.",
+                    "answer": "athlete"
+                }
+            ]
+        },
+        {
+            "en": "attack",
+            "ch": "攻擊；襲擊",
+            "sents": [
+                {
+                    "text": "You must have heard about that all-girl Japanese band who were attacked by a crazy man with a knife.",
+                    "answer": "attack"
+                },
+                {
+                    "text": "REPORTER   In a worrying development photographers seem to be deliberately making it look like celebrities are attacking them.",
+                    "answer": "attack"
+                },
+                {
+                    "text": "The pit bull didn't make a single sound as it savagely attacked her screaming dogs three times, almost killing one of them.",
+                    "answer": "attack"
+                }
+            ]
+        },
+        {
+            "en": "attend",
+            "ch": "出席；參加",
+            "sents": [
+                {
+                    "text": "Action to be taken: Invite the girl to attend the Open Day (date to be confirmed).",
+                    "answer": "attend"
+                },
+                {
+                    "text": "SJ proposed adopting the same system at the 2021 Victoria Cup so that even more real fans can attend.",
+                    "answer": "attend"
+                },
+                {
+                    "text": "On one occasion it was an important phone call about a job interview I'd attended and I just couldn't catch what was being said.",
+                    "answer": "attend"
+                }
+            ]
+        },
+        {
+            "en": "attention",
+            "ch": "注意；留心",
+            "sents": [
+                {
+                    "text": "If you have a cat or dog, you have to give them a lot of attention my sister's cat just follows her all over the house.",
+                    "answer": "attention"
+                },
+                {
+                    "text": "First, I would like to draw your attention to concerns I have about how safe your museum is for children.",
+                    "answer": "attention"
+                },
+                {
+                    "text": "We would like to draw your attention to two problems we feel very, very concerned about.",
+                    "answer": "attention"
+                }
+            ]
+        },
+        {
+            "en": "attractive",
+            "ch": "吸引人的",
+            "sents": [
+                {
+                    "text": "They tend to be attractive, wealthy, and considered successful, which many people assume makes them invulnerable to a lot of life’s problems.",
+                    "answer": "attractive"
+                },
+                {
+                    "text": "[2] Initially, the food truck business model looked attractive.",
+                    "answer": "attractive"
+                },
+                {
+                    "text": "[5] For the modern graduate, the idea that you can become a slasher can be very attractive.",
+                    "answer": "attractive"
+                }
+            ]
+        },
+        {
+            "en": "audience",
+            "ch": "觀眾；聽眾",
+            "sents": [
+                {
+                    "text": "No, it might offend Americans (in the audience)   56.",
+                    "answer": "audience"
+                },
+                {
+                    "text": "Wheelchair access into auditorium for audience.",
+                    "answer": "audience"
+                },
+                {
+                    "text": "Audience voting   The voting hotline number will be on the screen in each episode.",
+                    "answer": "audience"
+                }
+            ]
+        },
+        {
+            "en": "author",
+            "ch": "作者",
+            "sents": [
+                {
+                    "text": "[2] Flash fiction is a category of short story that limits the author to a word count of 1,000 words or less.",
+                    "answer": "author"
+                },
+                {
+                    "text": "The government looks at these people as disorder,' says Adam Minter, author of the blog Shanghai Scrap.",
+                    "answer": "author"
+                },
+                {
+                    "text": "The 31-year-old has since authored two books on his adopted home and has several other volumes in the pipeline.",
+                    "answer": "author"
+                }
+            ]
+        },
+        {
+            "en": "available",
+            "ch": "可得到的；有空的",
+            "sents": [
+                {
+                    "text": "He also added that participants should be informed of the details of the available cruises.",
+                    "answer": "available"
+                },
+                {
+                    "text": "Such information is usually available after initial investigations and interviews, or taken from other relevant sources.",
+                    "answer": "available"
+                },
+                {
+                    "text": "Ms Ochoa agreed that the Space Capsule only could be made available.",
+                    "answer": "available"
+                }
+            ]
+        },
+        {
+            "en": "avoid",
+            "ch": "避免",
+            "sents": [
+                {
+                    "text": "Martha   Same problem here: I also changed to 210°C to avoid this.",
+                    "answer": "avoid"
+                },
+                {
+                    "text": "is our tongue-in-cheek guide to avoiding cross-contamination in the kitchen, while \"Burn those bugs\" explains the importance of safe cooking temperatures.",
+                    "answer": "avoid"
+                },
+                {
+                    "text": "She also recommended avoiding Mr Khatoon's language about \"fault\" and \"blame\".",
+                    "answer": "avoid"
+                }
+            ]
+        },
+        {
+            "en": "awful",
+            "ch": "糟糕的；可怕的",
+            "sents": [
+                {
+                    "text": "The weather was awful during our trip.",
+                    "answer": "awful"
+                },
+                {
+                    "text": "I felt awful after eating too much cake.",
+                    "answer": "awful"
+                },
+                {
+                    "text": "That smell is awful.",
+                    "answer": "awful"
+                }
+            ]
+        },
+        {
+            "en": "background",
+            "ch": "背景",
+            "sents": [
+                {
+                    "text": "(strongly) connected to (your/our/one's) cultural background   28.",
+                    "answer": "background"
+                },
+                {
+                    "text": "This is to ensure readers have all the necessary background information.",
+                    "answer": "background"
+                },
+                {
+                    "text": "Please include a brief background on virtual pets and focus on how old people use virtual pets.",
+                    "answer": "background"
+                }
+            ]
+        },
+        {
+            "en": "badly",
+            "ch": "差；嚴重地",
+            "sents": [
+                {
+                    "text": "He played badly in the first half.",
+                    "answer": "badly"
+                },
+                {
+                    "text": "I need this job badly.",
+                    "answer": "badly"
+                },
+                {
+                    "text": "The bag was badly damaged in the rain.",
+                    "answer": "badly"
+                }
+            ]
+        },
+        {
+            "en": "barbeque",
+            "ch": "燒烤",
+            "sents": [
+                {
+                    "text": "We had a family barbeque on Sunday.",
+                    "answer": "barbeque"
+                },
+                {
+                    "text": "The smell of the barbeque made me hungry.",
+                    "answer": "barbeque"
+                },
+                {
+                    "text": "They bought chicken wings for the barbeque.",
+                    "answer": "barbeque"
+                }
+            ]
+        },
+        {
+            "en": "basketball",
+            "ch": "籃球",
+            "sents": [
+                {
+                    "text": "My brother plays basketball after school.",
+                    "answer": "basketball"
+                },
+                {
+                    "text": "We need a new basketball for practice.",
+                    "answer": "basketball"
+                },
+                {
+                    "text": "Basketball is her favorite sport.",
+                    "answer": "basketball"
+                }
+            ]
+        },
+        {
+            "en": "beef",
+            "ch": "牛肉",
+            "sents": [
+                {
+                    "text": "My dad cooked beef with onions tonight.",
+                    "answer": "beef"
+                },
+                {
+                    "text": "This soup has beef and potatoes in it.",
+                    "answer": "beef"
+                },
+                {
+                    "text": "She does not eat beef.",
+                    "answer": "beef"
+                }
+            ]
+        },
+        {
+            "en": "beginner",
+            "ch": "初學者",
+            "sents": [
+                {
+                    "text": "The sports need to be enjoyable for beginners.",
+                    "answer": "beginner"
+                },
+                {
+                    "text": "Beginners can pick this sport up quickly, which might account for its growing popularity.",
+                    "answer": "beginner"
+                },
+                {
+                    "text": "The beginners' course runs for two years and involves weekly, one-hour lessons in a group setting and tuition costs HK$1,650.",
+                    "answer": "beginner"
+                }
+            ]
+        },
+        {
+            "en": "behave",
+            "ch": "表現；行為舉止",
+            "sents": [
+                {
+                    "text": "Please behave during the school visit.",
+                    "answer": "behave"
+                },
+                {
+                    "text": "Young children do not always behave well.",
+                    "answer": "behave"
+                },
+                {
+                    "text": "He knows how to behave in public.",
+                    "answer": "behave"
+                }
+            ]
+        },
+        {
+            "en": "behaviour",
+            "ch": "行為；舉止",
+            "sents": [
+                {
+                    "text": "The teacher praised his good behaviour.",
+                    "answer": "behaviour"
+                },
+                {
+                    "text": "Bad behaviour can affect the whole class.",
+                    "answer": "behaviour"
+                },
+                {
+                    "text": "Her behaviour was polite and calm.",
+                    "answer": "behaviour"
+                }
+            ]
+        },
+        {
+            "en": "belong",
+            "ch": "屬於",
+            "sents": [
+                {
+                    "text": "These keys belong to my sister.",
+                    "answer": "belong"
+                },
+                {
+                    "text": "That red bag does not belong here.",
+                    "answer": "belong"
+                },
+                {
+                    "text": "We all want to belong to a friendly group.",
+                    "answer": "belong"
+                }
+            ]
+        },
+        {
+            "en": "biology",
+            "ch": "生物學",
+            "sents": [
+                {
+                    "text": "Biology is my favorite science subject.",
+                    "answer": "biology"
+                },
+                {
+                    "text": "We studied plants in biology class today.",
+                    "answer": "biology"
+                },
+                {
+                    "text": "Her biology teacher is very kind.",
+                    "answer": "biology"
+                }
+            ]
+        },
+        {
+            "en": "blood",
+            "ch": "血液",
+            "sents": [
+                {
+                    "text": "The nurse took a small blood sample.",
+                    "answer": "blood"
+                },
+                {
+                    "text": "There was blood on his knee after he fell.",
+                    "answer": "blood"
+                },
+                {
+                    "text": "Doctors need blood for some emergencies.",
+                    "answer": "blood"
+                }
+            ]
+        },
+        {
+            "en": "blueberry",
+            "ch": "藍莓",
+            "sents": [
+                {
+                    "text": "I had a blueberry muffin for breakfast.",
+                    "answer": "blueberry"
+                },
+                {
+                    "text": "This yogurt has a sweet blueberry flavor.",
+                    "answer": "blueberry"
+                },
+                {
+                    "text": "She picked a fresh blueberry from the bush.",
+                    "answer": "blueberry"
+                }
+            ]
+        },
+        {
+            "en": "boil",
+            "ch": "煮沸；沸騰",
+            "sents": [
+                {
+                    "text": "Boil the water before making tea.",
+                    "answer": "boil"
+                },
+                {
+                    "text": "We need to boil the eggs for ten minutes.",
+                    "answer": "boil"
+                },
+                {
+                    "text": "The soup began to boil on the stove.",
+                    "answer": "boil"
+                }
+            ]
+        },
+        {
+            "en": "bone",
+            "ch": "骨頭",
+            "sents": [
+                {
+                    "text": "The dog buried a bone in the garden.",
+                    "answer": "bone"
+                },
+                {
+                    "text": "Milk is good for strong bone growth.",
+                    "answer": "bone"
+                },
+                {
+                    "text": "He hurt a bone in his hand.",
+                    "answer": "bone"
+                }
+            ]
+        },
+        {
+            "en": "borrow",
+            "ch": "借入",
+            "sents": [
+                {
+                    "text": "We would most humbly request to borrow the capsule and in doing so give our children an experience they will treasure for the rest of their lives.",
+                    "answer": "borrow"
+                },
+                {
+                    "text": "We would like to borrow the capsule from 23rd to 27th of April   Children would play inside and outside the capsule under close supervision.",
+                    "answer": "borrow"
+                },
+                {
+                    "text": "I need you to write an email to reply to Ms Ip about our museum borrowing the Chang Yee Tak Plough.",
+                    "answer": "borrow"
+                }
+            ]
+        },
+        {
+            "en": "boss",
+            "ch": "老闆；上司",
+            "sents": [
+                {
+                    "text": "Her boss asked her to send the report.",
+                    "answer": "boss"
+                },
+                {
+                    "text": "My boss is friendly but strict.",
+                    "answer": "boss"
+                },
+                {
+                    "text": "He called his boss before taking leave.",
+                    "answer": "boss"
+                }
+            ]
+        },
+        {
+            "en": "brain",
+            "ch": "大腦",
+            "sents": [
+                {
+                    "text": "Sana: Ok, so, I'm calling to pick your brains about on-the-day ticketing.",
+                    "answer": "brain"
+                },
+                {
+                    "text": "My brain's gone dead.",
+                    "answer": "brain"
+                },
+                {
+                    "text": "Another cafe patron, Aey, says she was never big on games but she's really taken by the fun she's found here, and the intriguing effects on the brain.",
+                    "answer": "brain"
+                }
+            ]
+        },
+        {
+            "en": "bright",
+            "ch": "明亮的；聰明的",
+            "sents": [
+                {
+                    "text": "But be careful: the Wetland Park can have very high temperatures and bright sunshine.",
+                    "answer": "bright"
+                },
+                {
+                    "text": "Bring along your sunglasses - it can get bright out there!",
+                    "answer": "bright"
+                },
+                {
+                    "text": "Rick Lai: It's very bright!",
+                    "answer": "bright"
+                }
+            ]
+        },
+        {
+            "en": "brilliant",
+            "ch": "出色的；聰明的",
+            "sents": [
+                {
+                    "text": "I stayed in an ice hotel in Norway, it was brilliant.",
+                    "answer": "brilliant"
+                },
+                {
+                    "text": "10:56 PM   Gehry:   Brilliant!",
+                    "answer": "brilliant"
+                },
+                {
+                    "text": "It's brilliant!",
+                    "answer": "brilliant"
+                }
+            ]
+        },
+        {
+            "en": "british",
+            "ch": "英國的；英國人",
+            "sents": [
+                {
+                    "text": "We watched a british cooking show last night.",
+                    "answer": "british"
+                },
+                {
+                    "text": "He likes british pop music.",
+                    "answer": "british"
+                },
+                {
+                    "text": "Our school invited a british writer to speak.",
+                    "answer": "british"
+                }
+            ]
+        },
+        {
+            "en": "brush",
+            "ch": "刷；刷子",
+            "sents": [
+                {
+                    "text": "Do not forget to brush your teeth.",
+                    "answer": "brush"
+                },
+                {
+                    "text": "She used a small brush to paint the box.",
+                    "answer": "brush"
+                },
+                {
+                    "text": "I need a new hair brush.",
+                    "answer": "brush"
+                }
+            ]
+        },
+        {
+            "en": "calendar",
+            "ch": "日曆",
+            "sents": [
+                {
+                    "text": "Mark the test date on your calendar.",
+                    "answer": "calendar"
+                },
+                {
+                    "text": "I bought a cat calendar for my desk.",
+                    "answer": "calendar"
+                },
+                {
+                    "text": "The school calendar is full this month.",
+                    "answer": "calendar"
+                }
+            ]
+        },
+        {
+            "en": "camp",
+            "ch": "露營；營地",
+            "sents": [
+                {
+                    "text": "Next, I would like you to write a response to the complaint letter we received from a Mrs Sue Liu about her daughter's experience at the camp at Star Pod.",
+                    "answer": "camp"
+                },
+                {
+                    "text": "This will mean that there will be a doctor and/or a nurse present at the adventure camp 24 hours a day for non-emergency situations.",
+                    "answer": "camp"
+                },
+                {
+                    "text": "Action to be taken: Inform parents in the FAQ that if a child has food allergies or requires a special diet we must be informed before camp begins.",
+                    "answer": "camp"
+                }
+            ]
+        },
+        {
+            "en": "candy",
+            "ch": "糖果",
+            "sents": [
+                {
+                    "text": "Candy: I've not done that.",
+                    "answer": "candy"
+                },
+                {
+                    "text": "Candy: I think it was learning not to be nervous with animals.",
+                    "answer": "candy"
+                },
+                {
+                    "text": "Candy: At first, but it got better - I asked the experienced nurses for tips and copied them!",
+                    "answer": "candy"
+                }
+            ]
+        },
+        {
+            "en": "careful",
+            "ch": "小心的；仔細的",
+            "sents": [
+                {
+                    "text": "But be careful: the Wetland Park can have very high temperatures and bright sunshine.",
+                    "answer": "careful"
+                },
+                {
+                    "text": "So you have to be careful when you handle them.\"",
+                    "answer": "careful"
+                },
+                {
+                    "text": "Be careful, though: we've made several changes since that draft.",
+                    "answer": "careful"
+                }
+            ]
+        },
+        {
+            "en": "carpet",
+            "ch": "地毯",
+            "sents": [
+                {
+                    "text": "Please take off your shoes on the carpet.",
+                    "answer": "carpet"
+                },
+                {
+                    "text": "The living room has a soft blue carpet.",
+                    "answer": "carpet"
+                },
+                {
+                    "text": "The puppy slept on the carpet.",
+                    "answer": "carpet"
+                }
+            ]
+        },
+        {
+            "en": "case",
+            "ch": "情況；盒子",
+            "sents": [
+                {
+                    "text": "Therefore, any emergency cases requiring immediate hospitalization should be taken to the Tsing Shan Hospital instead.",
+                    "answer": "case"
+                },
+                {
+                    "text": "The Orphan Programme Committee reports a summary of cases handled in the last five years (see Figure 1, below).",
+                    "answer": "case"
+                },
+                {
+                    "text": "It also seemed your staff members did not know what to do in case of a fire.",
+                    "answer": "case"
+                }
+            ]
+        },
+        {
+            "en": "cash",
+            "ch": "現金",
+            "sents": [
+                {
+                    "text": "Do you have enough cash for lunch?",
+                    "answer": "cash"
+                },
+                {
+                    "text": "I paid in cash at the small shop.",
+                    "answer": "cash"
+                },
+                {
+                    "text": "He keeps some cash in his wallet.",
+                    "answer": "cash"
+                }
+            ]
+        },
+        {
+            "en": "castle",
+            "ch": "城堡",
+            "sents": [
+                {
+                    "text": "Tell them to drop the castle though.",
+                    "answer": "castle"
+                },
+                {
+                    "text": "I agree with Mari about the castle.",
+                    "answer": "castle"
+                },
+                {
+                    "text": "Since when are there castles in a jungle?!",
+                    "answer": "castle"
+                }
+            ]
+        },
+        {
+            "en": "cause",
+            "ch": "造成；原因",
+            "sents": [
+                {
+                    "text": "Initial-reports are that, ruling out human error, the accident was likely to have been caused by bad weather.",
+                    "answer": "cause"
+                },
+                {
+                    "text": "A report should explain the reason(s) why those involved were present at the location, and any known cause(s) of the incident, no matter how preliminary.",
+                    "answer": "cause"
+                },
+                {
+                    "text": "\"And what would you say caused this?\"",
+                    "answer": "cause"
+                }
+            ]
+        },
+        {
+            "en": "celebrate",
+            "ch": "慶祝",
+            "sents": [
+                {
+                    "text": "We will celebrate her birthday tonight.",
+                    "answer": "celebrate"
+                },
+                {
+                    "text": "People celebrate the festival with music.",
+                    "answer": "celebrate"
+                },
+                {
+                    "text": "Our class went out to celebrate the win.",
+                    "answer": "celebrate"
+                }
+            ]
+        },
+        {
+            "en": "celebrity",
+            "ch": "名人",
+            "sents": [
+                {
+                    "text": "Viewers expressed shock on Monday at the disasters that befell celebrity chef William Puddle in the Teen NetChef TV test kitchen.",
+                    "answer": "celebrity"
+                },
+                {
+                    "text": "The latest victim of celebrity violence, King is now worried about the physical harm Nelson has done to him.",
+                    "answer": "celebrity"
+                },
+                {
+                    "text": "“When life is overwhelming, focusing on celebrity gossip can be a way to numb out our feelings of dissatisfaction, unhappiness, or stress,” says Benning.",
+                    "answer": "celebrity"
+                }
+            ]
+        },
+        {
+            "en": "center",
+            "ch": "中心",
+            "sents": [
+                {
+                    "text": "Draw a circle in the center of the page.",
+                    "answer": "center"
+                },
+                {
+                    "text": "The shopping center is near the station.",
+                    "answer": "center"
+                },
+                {
+                    "text": "She stood in the center of the room.",
+                    "answer": "center"
+                }
+            ]
+        },
+        {
+            "en": "certain",
+            "ch": "某些；確定的",
+            "sents": [
+                {
+                    "text": "I am not certain about the answer.",
+                    "answer": "certain"
+                },
+                {
+                    "text": "Only certain students can join the team.",
+                    "answer": "certain"
+                },
+                {
+                    "text": "She felt certain that she was right.",
+                    "answer": "certain"
+                }
+            ]
+        },
+        {
+            "en": "chance",
+            "ch": "機會",
+            "sents": [
+                {
+                    "text": "What are the chances of me winning?",
+                    "answer": "chance"
+                },
+                {
+                    "text": "The Wellness Month was a chance to unwind.",
+                    "answer": "chance"
+                },
+                {
+                    "text": "For me, I loved the chance to let my creativity run loose.",
+                    "answer": "chance"
+                }
+            ]
+        },
+        {
+            "en": "character",
+            "ch": "角色；性格",
+            "sents": [
+                {
+                    "text": "Titles must not be more than 80 characters long.",
+                    "answer": "character"
+                },
+                {
+                    "text": "Remember there's a limit on number of characters.",
+                    "answer": "character"
+                },
+                {
+                    "text": "Sons and/or daughters of main characters // Small / supporting roles   55.",
+                    "answer": "character"
+                }
+            ]
+        },
+        {
+            "en": "charity",
+            "ch": "慈善；慈善機構",
+            "sents": [
+                {
+                    "text": "Finally, I would like you to write a refusal to a request made by the Locae Foundation charity.",
+                    "answer": "charity"
+                },
+                {
+                    "text": "Please show sensitivity in your response and offer what we can to support this wonderful charity.",
+                    "answer": "charity"
+                },
+                {
+                    "text": "Ms Chawla said that in order not to seem like we are being cruel to a charity, they could be invited as VIPs to Star Pod's Open Day.",
+                    "answer": "charity"
+                }
+            ]
+        },
+        {
+            "en": "chat",
+            "ch": "聊天",
+            "sents": [
+                {
+                    "text": "WhatsApp chat between Avery Goh and Shane Lee   Friday 12th April   Shane: Hi Avery!",
+                    "answer": "chat"
+                },
+                {
+                    "text": "Anyway-thanks for the chat.",
+                    "answer": "chat"
+                },
+                {
+                    "text": "Skype chat between David Atkinson and Shane Lee   Thursday 11th April   David: Hi Shane.",
+                    "answer": "chat"
+                }
+            ]
+        },
+        {
+            "en": "check",
+            "ch": "檢查；核對",
+            "sents": [
+                {
+                    "text": "Shane: I was looking through the information for the Guided Nature Walk and I wanted to double check a few things.",
+                    "answer": "check"
+                },
+                {
+                    "text": "Check out this week's prices online!",
+                    "answer": "check"
+                },
+                {
+                    "text": "Next meeting   The next meeting date was set for 10th May to give the team time to check submitted advertisements.",
+                    "answer": "check"
+                }
+            ]
+        },
+        {
+            "en": "chef",
+            "ch": "廚師",
+            "sents": [
+                {
+                    "text": "As you know, contestants send us a video of their cooking and the winner gets to be the chef in the new series.",
+                    "answer": "chef"
+                },
+                {
+                    "text": "William will soon be uploading an updated recipe to our website, based on the suggestions of our head chef Christine and the fans we invited to comment online.",
+                    "answer": "chef"
+                },
+                {
+                    "text": "What are the age limits for chefs on Live, Study, Cook?",
+                    "answer": "chef"
+                }
+            ]
+        },
+        {
+            "en": "chess",
+            "ch": "國際象棋",
+            "sents": [
+                {
+                    "text": "My brother taught me how to play chess.",
+                    "answer": "chess"
+                },
+                {
+                    "text": "The chess club meets every Friday.",
+                    "answer": "chess"
+                },
+                {
+                    "text": "He won the chess game in ten minutes.",
+                    "answer": "chess"
+                }
+            ]
+        },
+        {
+            "en": "chilli",
+            "ch": "辣椒",
+            "sents": [
+                {
+                    "text": "This chilli sauce is very hot.",
+                    "answer": "chilli"
+                },
+                {
+                    "text": "He added fresh chilli to the noodles.",
+                    "answer": "chilli"
+                },
+                {
+                    "text": "I cannot eat too much chilli.",
+                    "answer": "chilli"
+                }
+            ]
+        },
+        {
+            "en": "choice",
+            "ch": "選擇",
+            "sents": [
+                {
+                    "text": "Join our tour groups, we offer the best choice of hotel stays!",
+                    "answer": "choice"
+                },
+                {
+                    "text": "We all know the airport at Chek Lap Kok is always a popular choice with world travellers.",
+                    "answer": "choice"
+                },
+                {
+                    "text": "Please could you explain why a sugar glider is not a good choice for a pet and suggest something else?",
+                    "answer": "choice"
+                }
+            ]
+        },
+        {
+            "en": "cigarette",
+            "ch": "香煙",
+            "sents": [
+                {
+                    "text": "The sign says no cigarette smoking here.",
+                    "answer": "cigarette"
+                },
+                {
+                    "text": "He threw the cigarette into the bin.",
+                    "answer": "cigarette"
+                },
+                {
+                    "text": "A cigarette smell came from the street.",
+                    "answer": "cigarette"
+                }
+            ]
+        },
+        {
+            "en": "circle",
+            "ch": "圓形；圈",
+            "sents": [
+                {
+                    "text": "Please circle the correct answer.",
+                    "answer": "circle"
+                },
+                {
+                    "text": "The children sat in a circle on the floor.",
+                    "answer": "circle"
+                },
+                {
+                    "text": "Draw a small circle with your pencil.",
+                    "answer": "circle"
+                }
+            ]
+        },
+        {
+            "en": "classical",
+            "ch": "古典的",
+            "sents": [
+                {
+                    "text": "My mother enjoys classical music.",
+                    "answer": "classical"
+                },
+                {
+                    "text": "We visited a museum of classical art.",
+                    "answer": "classical"
+                },
+                {
+                    "text": "He plays classical guitar very well.",
+                    "answer": "classical"
+                }
+            ]
+        },
+        {
+            "en": "classmate",
+            "ch": "同學",
+            "sents": [
+                {
+                    "text": "My classmate lent me a pen.",
+                    "answer": "classmate"
+                },
+                {
+                    "text": "I worked with a classmate on the project.",
+                    "answer": "classmate"
+                },
+                {
+                    "text": "That classmate sits next to me in science.",
+                    "answer": "classmate"
+                }
+            ]
+        },
+        {
+            "en": "cleaner",
+            "ch": "清潔工；更乾淨的",
+            "sents": [
+                {
+                    "text": "The cleaner arrived before the office opened.",
+                    "answer": "cleaner"
+                },
+                {
+                    "text": "This new soap makes the sink cleaner.",
+                    "answer": "cleaner"
+                },
+                {
+                    "text": "Our school cleaner is always cheerful.",
+                    "answer": "cleaner"
+                }
+            ]
+        },
+        {
+            "en": "clearest",
+            "ch": "最清楚的",
+            "sents": [
+                {
+                    "text": "This is the clearest photo on my phone.",
+                    "answer": "clearest"
+                },
+                {
+                    "text": "Her explanation was the clearest of all.",
+                    "answer": "clearest"
+                },
+                {
+                    "text": "The sky looked clearest after the rain.",
+                    "answer": "clearest"
+                }
+            ]
+        },
+        {
+            "en": "clearly",
+            "ch": "清楚地",
+            "sents": [
+                {
+                    "text": "Make sure you are polite and clearly give reasons for the change and questions.",
+                    "answer": "clearly"
+                },
+                {
+                    "text": "Shane: OK. Make sure we state that clearly in the email.",
+                    "answer": "clearly"
+                },
+                {
+                    "text": "Mr Lee affirmed that booking availability for this season should be clearly communicated to the participants, as well as the change in cruise duration.",
+                    "answer": "clearly"
+                }
+            ]
+        },
+        {
+            "en": "clever",
+            "ch": "聰明的",
+            "sents": [
+                {
+                    "text": "That was a clever idea.",
+                    "answer": "clever"
+                },
+                {
+                    "text": "The clever fox found a way out.",
+                    "answer": "clever"
+                },
+                {
+                    "text": "She is clever enough to solve it quickly.",
+                    "answer": "clever"
+                }
+            ]
+        },
+        {
+            "en": "climate",
+            "ch": "氣候",
+            "sents": [
+                {
+                    "text": "To do that, we would begin with altering the current climate and atmosphere to resemble that of Earth’s.",
+                    "answer": "climate"
+                },
+                {
+                    "text": "The territory lies in the subtropical zone, which means it provides ideal conditions for both tropical plants and plants that grow in colder climates.",
+                    "answer": "climate"
+                },
+                {
+                    "text": "**   The world's children are joining the fight against climate change.",
+                    "answer": "climate"
+                }
+            ]
+        },
+        {
+            "en": "cloud",
+            "ch": "雲",
+            "sents": [
+                {
+                    "text": "A dark cloud covered the sun.",
+                    "answer": "cloud"
+                },
+                {
+                    "text": "That cloud looks like a rabbit.",
+                    "answer": "cloud"
+                },
+                {
+                    "text": "We saw one white cloud in the blue sky.",
+                    "answer": "cloud"
+                }
+            ]
+        },
+        {
+            "en": "code",
+            "ch": "密碼；代碼",
+            "sents": [
+                {
+                    "text": "Enter the code to open the door.",
+                    "answer": "code"
+                },
+                {
+                    "text": "The app sent me a six-digit code.",
+                    "answer": "code"
+                },
+                {
+                    "text": "He forgot the code for his tablet.",
+                    "answer": "code"
+                }
+            ]
+        },
+        {
+            "en": "colleague",
+            "ch": "同事",
+            "sents": [
+                {
+                    "text": "My mother had lunch with a colleague.",
+                    "answer": "colleague"
+                },
+                {
+                    "text": "Her colleague helped her finish the report.",
+                    "answer": "colleague"
+                },
+                {
+                    "text": "He met a colleague at the train station.",
+                    "answer": "colleague"
+                }
+            ]
+        },
+        {
+            "en": "collect",
+            "ch": "收集",
+            "sents": [
+                {
+                    "text": "The story is that there's a community of old people in Florida, USA doing some serious game time to collect online virtual pets of all things.",
+                    "answer": "collect"
+                },
+                {
+                    "text": "10:45 AM   Norman   Tell our litter disposal contractor Tony's to hire 20 more people to collect the rubbish from the beaches every morning.",
+                    "answer": "collect"
+                },
+                {
+                    "text": "The organisers collected rainwater for us to use to lower water consumption.",
+                    "answer": "collect"
+                }
+            ]
+        },
+        {
+            "en": "comfortable",
+            "ch": "舒服的；舒適的",
+            "sents": [
+                {
+                    "text": "These shoes are very comfortable.",
+                    "answer": "comfortable"
+                },
+                {
+                    "text": "I feel comfortable in this quiet room.",
+                    "answer": "comfortable"
+                },
+                {
+                    "text": "That chair looks comfortable to sit on.",
+                    "answer": "comfortable"
+                }
+            ]
+        },
+        {
+            "en": "communicate",
+            "ch": "溝通",
+            "sents": [
+                {
+                    "text": "We communicate by email every week.",
+                    "answer": "communicate"
+                },
+                {
+                    "text": "Good teachers communicate clearly with students.",
+                    "answer": "communicate"
+                },
+                {
+                    "text": "It is easy to communicate with close friends.",
+                    "answer": "communicate"
+                }
+            ]
+        },
+        {
+            "en": "community",
+            "ch": "社區",
+            "sents": [
+                {
+                    "text": "Make sure you mention all of the voluntary work we do for the community in Hong Kong.",
+                    "answer": "community"
+                },
+                {
+                    "text": "The story is that there's a community of old people in Florida, USA doing some serious game time to collect online virtual pets of all things.",
+                    "answer": "community"
+                },
+                {
+                    "text": "[6] The FEHD spokesperson said the government is considering issuing new hawking licences, given the wide community support hawkers have gained in recent years.",
+                    "answer": "community"
+                }
+            ]
+        },
+        {
+            "en": "compete",
+            "ch": "競爭；比賽",
+            "sents": [
+                {
+                    "text": "MH: For the Athletics Jamboree, students form teams and compete against each other in track and field events.",
+                    "answer": "compete"
+                },
+                {
+                    "text": "Interviewer:   Peter, you competed in the 2022 Asian Games in Hangzhou.",
+                    "answer": "compete"
+                },
+                {
+                    "text": "He competed in long-distance running, just like me.",
+                    "answer": "compete"
+                }
+            ]
+        },
+        {
+            "en": "competition",
+            "ch": "比賽；競爭",
+            "sents": [
+                {
+                    "text": "The competition was close this year, with some airports showing a big improvement on the figures from 2011.",
+                    "answer": "competition"
+                },
+                {
+                    "text": "A special thank you must go to all the world travellers who voted in this year's competition and our hearty congratulations to the winners.",
+                    "answer": "competition"
+                },
+                {
+                    "text": "Also have a look at Maude's poster, the Fideo Verse website and the competition rules to help you.",
+                    "answer": "competition"
+                }
+            ]
+        },
+        {
+            "en": "complain",
+            "ch": "抱怨",
+            "sents": [
+                {
+                    "text": "Also the mother of the same girl who complained about the dog (Rey Liu) is complaining about Space Food.",
+                    "answer": "complain"
+                },
+                {
+                    "text": "(be) a live exhibit (in the zoo)   52. protested // complained // wrote to newspaper   53.",
+                    "answer": "complain"
+                },
+                {
+                    "text": "A local resident, surnamed Ho, complained, 'Last year the tennis fans dropped rubbish everywhere.",
+                    "answer": "complain"
+                }
+            ]
+        },
+        {
+            "en": "completely",
+            "ch": "完全地",
+            "sents": [
+                {
+                    "text": "I'm sure that will be a completely unique experience.",
+                    "answer": "completely"
+                },
+                {
+                    "text": "We'll take any animal, no questions asked, and it's all completely free of charge.'",
+                    "answer": "completely"
+                },
+                {
+                    "text": "I've come up with a completely new event that I think would be much more interesting and inclusive: Sports Day at the Beach!",
+                    "answer": "completely"
+                }
+            ]
+        },
+        {
+            "en": "condition",
+            "ch": "情況；條件",
+            "sents": [
+                {
+                    "text": "They saw that we were struggling in the conditions and that it was difficult for us to walk for such a long time.",
+                    "answer": "condition"
+                },
+                {
+                    "text": "As I say, the conditions here seem just as uncomfortable and I'm sure we'll also be doing a lot of walking.",
+                    "answer": "condition"
+                },
+                {
+                    "text": "How are conditions looking ... Over.",
+                    "answer": "condition"
+                }
+            ]
+        },
+        {
+            "en": "conference",
+            "ch": "會議",
+            "sents": [
+                {
+                    "text": "Look at the minutes of the committee meeting and listen to the video conference I had with Mira.",
+                    "answer": "conference"
+                },
+                {
+                    "text": "You can also listen to our video conference.",
+                    "answer": "conference"
+                },
+                {
+                    "text": "Start by looking at the FilmTalk Forum, our WhatsApp group as well as the notes you took from the video conference I had with Mira.",
+                    "answer": "conference"
+                }
+            ]
+        },
+        {
+            "en": "congratulation",
+            "ch": "祝賀；恭喜",
+            "sents": [
+                {
+                    "text": "Congratulations go to Hong Kong for winning first prize.",
+                    "answer": "congratulation"
+                },
+                {
+                    "text": "A special thank you must go to all the world travellers who voted in this year's competition and our hearty congratulations to the winners.",
+                    "answer": "congratulation"
+                },
+                {
+                    "text": "Congratulations to everyone who contacted us.",
+                    "answer": "congratulation"
+                }
+            ]
+        },
+        {
+            "en": "connect",
+            "ch": "連接",
+            "sents": [
+                {
+                    "text": "(strongly) connected to (your/our/one's) cultural background   28.",
+                    "answer": "connect"
+                },
+                {
+                    "text": "Ms Gau asked whether the evacuation of the building yesterday afternoon was connected in any way to this.",
+                    "answer": "connect"
+                },
+                {
+                    "text": "England’s a cold society and, growing up, I suppose I always wanted this feeling of being connected to people.",
+                    "answer": "connect"
+                }
+            ]
+        },
+        {
+            "en": "contain",
+            "ch": "包含",
+            "sents": [
+                {
+                    "text": "The recording of the Zoom meeting between me, Shane Lee and David Atkinson contains information on all the tasks above.",
+                    "answer": "contain"
+                },
+                {
+                    "text": "You'll have to contain your excitement until then.",
+                    "answer": "contain"
+                },
+                {
+                    "text": "The hole in our culture is gaping: evidence-based medicine, the ultimate applied science, contains some of the cleverest ideas from the past two centuries.",
+                    "answer": "contain"
+                }
+            ]
+        },
+        {
+            "en": "context",
+            "ch": "背景；語境",
+            "sents": [
+                {
+                    "text": "You need the full context to understand the joke.",
+                    "answer": "context"
+                },
+                {
+                    "text": "This word has a different meaning in another context.",
+                    "answer": "context"
+                },
+                {
+                    "text": "The teacher explained the sentence in context.",
+                    "answer": "context"
+                }
+            ]
+        },
+        {
+            "en": "control",
+            "ch": "控制",
+            "sents": [
+                {
+                    "text": "Thanks,   Avery Goh   World City Travel Manager       Transcript of radio communication between Captain Moby and control centre   Date: 27th March   Time.",
+                    "answer": "control"
+                },
+                {
+                    "text": "Captain Moby: Captain Moby to control...",
+                    "answer": "control"
+                },
+                {
+                    "text": "Date: 27th March   Time: 5:00pm   Captain Moby: Captain Moby to control... We are currently in Sydney Harbour.",
+                    "answer": "control"
+                }
+            ]
+        },
+        {
+            "en": "cook",
+            "ch": "烹調；廚師",
+            "sents": [
+                {
+                    "text": "All the hotel guests had to cook dinner together in the prison kitchen.",
+                    "answer": "cook"
+                },
+                {
+                    "text": "(more than) 35,000   46. cooking   47.",
+                    "answer": "cook"
+                },
+                {
+                    "text": "As you know, contestants send us a video of their cooking and the winner gets to be the chef in the new series.",
+                    "answer": "cook"
+                }
+            ]
+        },
+        {
+            "en": "cooks",
+            "ch": "廚師；煮食",
+            "sents": [
+                {
+                    "text": "My father cooks dinner every Sunday.",
+                    "answer": "cooks"
+                },
+                {
+                    "text": "She cooks faster than her brother.",
+                    "answer": "cooks"
+                },
+                {
+                    "text": "The chef cooks fresh fish for lunch.",
+                    "answer": "cooks"
+                }
+            ]
+        },
+        {
+            "en": "copy",
+            "ch": "複製；副本",
+            "sents": [
+                {
+                    "text": "Look at the minutes from the last sales meeting and the copy of the advertisement the sales team has made some notes on it.",
+                    "answer": "copy"
+                },
+                {
+                    "text": "Images for articles: soft copy (high resolution JPEG file format).",
+                    "answer": "copy"
+                },
+                {
+                    "text": "And when it's finished you send one copy of the game to each investor.",
+                    "answer": "copy"
+                }
+            ]
+        },
+        {
+            "en": "corner",
+            "ch": "角落",
+            "sents": [
+                {
+                    "text": "There is a bakery on the corner.",
+                    "answer": "corner"
+                },
+                {
+                    "text": "He left his bag in the corner of the room.",
+                    "answer": "corner"
+                },
+                {
+                    "text": "Turn left at the next corner.",
+                    "answer": "corner"
+                }
+            ]
+        },
+        {
+            "en": "correctly",
+            "ch": "正確地",
+            "sents": [
+                {
+                    "text": "Please spell the word correctly.",
+                    "answer": "correctly"
+                },
+                {
+                    "text": "He answered all the questions correctly.",
+                    "answer": "correctly"
+                },
+                {
+                    "text": "Wear the mask correctly on the bus.",
+                    "answer": "correctly"
+                }
+            ]
+        },
+        {
+            "en": "couch",
+            "ch": "沙發",
+            "sents": [
+                {
+                    "text": "Winston Sinclair, sir, I am here to apologize.” Winston sat on the couch with Elizabeth and Rachel while the robot explained.",
+                    "answer": "couch"
+                },
+                {
+                    "text": "“Winston Sinclair, do you accept the apology?” He sat down on the couch and reached for Elizabeth’s hand.",
+                    "answer": "couch"
+                },
+                {
+                    "text": "?” “Value of new apology must calculate to within plus or minus twelve percent of value of accepted apology.” Winston rose from the couch.",
+                    "answer": "couch"
+                }
+            ]
+        },
+        {
+            "en": "couple",
+            "ch": "一對；兩個",
+            "sents": [
+                {
+                    "text": "She was going on about that Highland Adventure Centre in the UK that caused us all the headaches a couple of years back.",
+                    "answer": "couple"
+                },
+                {
+                    "text": "The average age of couples getting married in 1970 was 20.",
+                    "answer": "couple"
+                },
+                {
+                    "text": "Access to books at home, in school and in the community, coupled with capitalising on technology, can reignite the passion for reading among youngsters.",
+                    "answer": "couple"
+                }
+            ]
+        },
+        {
+            "en": "crazy",
+            "ch": "瘋狂的",
+            "sents": [
+                {
+                    "text": "It is driving us crazy!",
+                    "answer": "crazy"
+                },
+                {
+                    "text": "That's crazy money!",
+                    "answer": "crazy"
+                },
+                {
+                    "text": "You must have heard about that all-girl Japanese band who were attacked by a crazy man with a knife.",
+                    "answer": "crazy"
+                }
+            ]
+        },
+        {
+            "en": "creative",
+            "ch": "有創意的",
+            "sents": [
+                {
+                    "text": "I mean, how can we attract the most creative candidates?",
+                    "answer": "creative"
+                },
+                {
+                    "text": "Positive   3. boring       4. user-friendly       32. creative software/software to draw/desiga     5. file(s)/documents)/picture(s)/video clips       33.",
+                    "answer": "creative"
+                },
+                {
+                    "text": "The article seems to ignore creative talents like artists and craftsmen who have complex and diverse careers.",
+                    "answer": "creative"
+                }
+            ]
+        },
+        {
+            "en": "crime",
+            "ch": "罪行",
+            "sents": [
+                {
+                    "text": "The police are fighting crime in the city.",
+                    "answer": "crime"
+                },
+                {
+                    "text": "Stealing is a crime.",
+                    "answer": "crime"
+                },
+                {
+                    "text": "We watched a film about crime and justice.",
+                    "answer": "crime"
+                }
+            ]
+        },
+        {
+            "en": "cross",
+            "ch": "穿過；交叉",
+            "sents": [
+                {
+                    "text": "One is a Draglion a cross between a lion and a Komodo dragon, imagine that!",
+                    "answer": "cross"
+                },
+                {
+                    "text": "We promote cross cultural activities.",
+                    "answer": "cross"
+                },
+                {
+                    "text": "I was not allowed to cross Rocky Point Road.",
+                    "answer": "cross"
+                }
+            ]
+        },
+        {
+            "en": "crowd",
+            "ch": "人群",
+            "sents": [
+                {
+                    "text": "It'll be a bit crowded but I think we can squeeze them in.",
+                    "answer": "crowd"
+                },
+                {
+                    "text": "Was he tired of being forced to perform to amuse the crowds?",
+                    "answer": "crowd"
+                },
+                {
+                    "text": "It made flying kites unfeasible in a city cramped with skyscrapers and crowded with vehicles.",
+                    "answer": "crowd"
+                }
+            ]
+        },
+        {
+            "en": "cupboard",
+            "ch": "櫥櫃",
+            "sents": [
+                {
+                    "text": "(kitchen) cupboard // cup board (shelves)   30.",
+                    "answer": "cupboard"
+                },
+                {
+                    "text": "Include a brief summary of the amazing story of the kitchen cupboard, which is in the farmhouse.",
+                    "answer": "cupboard"
+                },
+                {
+                    "text": "The 1983 flood story: kitchen cupboard - 1983 -strange writing on left door.",
+                    "answer": "cupboard"
+                }
+            ]
+        },
+        {
+            "en": "cupcake",
+            "ch": "杯子蛋糕",
+            "sents": [
+                {
+                    "text": "She baked a chocolate cupcake for me.",
+                    "answer": "cupcake"
+                },
+                {
+                    "text": "The pink cupcake looked beautiful.",
+                    "answer": "cupcake"
+                },
+                {
+                    "text": "I bought one cupcake after school.",
+                    "answer": "cupcake"
+                }
+            ]
+        },
+        {
+            "en": "curl",
+            "ch": "捲曲；捲髮",
+            "sents": [
+                {
+                    "text": "Her hair will curl in wet weather.",
+                    "answer": "curl"
+                },
+                {
+                    "text": "A small wave began to curl at the beach.",
+                    "answer": "curl"
+                },
+                {
+                    "text": "The ribbon started to curl at the end.",
+                    "answer": "curl"
+                }
+            ]
+        },
+        {
+            "en": "danger",
+            "ch": "危險",
+            "sents": [
+                {
+                    "text": "The main dangers of dust storms is that dust particles are so small on Mars that they would get into, and seriously damage, space suits.",
+                    "answer": "danger"
+                },
+                {
+                    "text": "Another point is that some exotic animals carry diseases and this can put the public in danger.",
+                    "answer": "danger"
+                },
+                {
+                    "text": "Hazard Awareness   The kitchen is full of fire hazards and dangers.",
+                    "answer": "danger"
+                }
+            ]
+        },
+        {
+            "en": "dark",
+            "ch": "黑暗的；深色的",
+            "sents": [
+                {
+                    "text": "It gets dark early in winter.",
+                    "answer": "dark"
+                },
+                {
+                    "text": "He wore a dark jacket to the party.",
+                    "answer": "dark"
+                },
+                {
+                    "text": "The room was dark after we turned off the light.",
+                    "answer": "dark"
+                }
+            ]
+        },
+        {
+            "en": "darker",
+            "ch": "更暗的；更深色的",
+            "sents": [
+                {
+                    "text": "This blue is darker than that one.",
+                    "answer": "darker"
+                },
+                {
+                    "text": "The sky grew darker before the storm.",
+                    "answer": "darker"
+                },
+                {
+                    "text": "She chose the darker dress.",
+                    "answer": "darker"
+                }
+            ]
+        },
+        {
+            "en": "data",
+            "ch": "資料；數據",
+            "sents": [
+                {
+                    "text": "The app stores data on a secure server.",
+                    "answer": "data"
+                },
+                {
+                    "text": "We used the data to make a chart.",
+                    "answer": "data"
+                },
+                {
+                    "text": "Scientists need more data before deciding.",
+                    "answer": "data"
+                }
+            ]
+        },
+        {
+            "en": "dead",
+            "ch": "死的",
+            "sents": [
+                {
+                    "text": "My concerns were first raised when my daughter told me she saw a dead dog in the swimming pool on her first day there.",
+                    "answer": "dead"
+                },
+                {
+                    "text": "How on earth could you miss a dead dog!",
+                    "answer": "dead"
+                },
+                {
+                    "text": "Just wanted to follow up on that complaint about a dead dog being found in the pool.",
+                    "answer": "dead"
+                }
+            ]
+        },
+        {
+            "en": "dear",
+            "ch": "親愛的；昂貴的",
+            "sents": [
+                {
+                    "text": "As for the beaches - oh dear!",
+                    "answer": "dear"
+                },
+                {
+                    "text": "Charlie Chiba: Oh dear.",
+                    "answer": "dear"
+                },
+                {
+                    "text": "Oh dear!",
+                    "answer": "dear"
+                }
+            ]
+        },
+        {
+            "en": "death",
+            "ch": "死亡",
+            "sents": [
+                {
+                    "text": "Tilly had been involved in two previous human deaths.",
+                    "answer": "death"
+                },
+                {
+                    "text": "Every year, two children from each district are forced to fight to death in a televised contest called the Hunger Games, which are held in a huge outdoor arena.",
+                    "answer": "death"
+                },
+                {
+                    "text": "Instead, the sting rips the centre from the bee’s abdomen so the insect straggles towards death, its insides ripped out, pink and pulsing.",
+                    "answer": "death"
+                }
+            ]
+        },
+        {
+            "en": "decision",
+            "ch": "決定",
+            "sents": [
+                {
+                    "text": "We've recently made quite a few decisions on what this should include-start by looking at Shane Lee's email to me.",
+                    "answer": "decision"
+                },
+                {
+                    "text": "We made some decisions regarding this in the Management Committee meeting earlier this week.",
+                    "answer": "decision"
+                },
+                {
+                    "text": "I couldn't agree more with this decision.",
+                    "answer": "decision"
+                }
+            ]
+        },
+        {
+            "en": "deeper",
+            "ch": "更深的",
+            "sents": [
+                {
+                    "text": "The water becomes deeper near the bridge.",
+                    "answer": "deeper"
+                },
+                {
+                    "text": "He dug a deeper hole in the sand.",
+                    "answer": "deeper"
+                },
+                {
+                    "text": "Take a deeper breath and relax.",
+                    "answer": "deeper"
+                }
+            ]
+        },
+        {
+            "en": "deepest",
+            "ch": "最深的",
+            "sents": [
+                {
+                    "text": "This is the deepest part of the pool.",
+                    "answer": "deepest"
+                },
+                {
+                    "text": "The deepest snow was near the trees.",
+                    "answer": "deepest"
+                },
+                {
+                    "text": "She asked the deepest question of all.",
+                    "answer": "deepest"
+                }
+            ]
+        },
+        {
+            "en": "degree",
+            "ch": "程度；學位",
+            "sents": [
+                {
+                    "text": "You can choose from a full-time degree, diploma or certificate programme.",
+                    "answer": "degree"
+                },
+                {
+                    "text": "Totally rocks to see the Virtual Reality (VR) on 360 degree headset, you know what I'm sayin'.",
+                    "answer": "degree"
+                },
+                {
+                    "text": "And great to see Rebecca Chin back in a leading role after taking time off to finish her degree.",
+                    "answer": "degree"
+                }
+            ]
+        },
+        {
+            "en": "department",
+            "ch": "部門",
+            "sents": [
+                {
+                    "text": "(all) department heads   4. board room   5.",
+                    "answer": "department"
+                },
+                {
+                    "text": "Please send an email t Alfred Roi at the PR department making sure that he understands exactly why the poster hast be redesigned.",
+                    "answer": "department"
+                },
+                {
+                    "text": "“We agree with the department that the trees had to be removed immediately.",
+                    "answer": "department"
+                }
+            ]
+        },
+        {
+            "en": "depend",
+            "ch": "依靠；取決於",
+            "sents": [
+                {
+                    "text": "Each comprises eight, one-hour lessons and costs from HK$680 to HK$980 depending on student level.",
+                    "answer": "depend"
+                },
+                {
+                    "text": "Liberal learning depends on absorption in compelling work.",
+                    "answer": "depend"
+                },
+                {
+                    "text": "However, that depends on who you ask – some say it’s a sign of good things to come, but for others, it’s a terrible warning.",
+                    "answer": "depend"
+                }
+            ]
+        },
+        {
+            "en": "designer",
+            "ch": "設計師",
+            "sents": [
+                {
+                    "text": "The designer showed us three new ideas.",
+                    "answer": "designer"
+                },
+                {
+                    "text": "She wants to become a fashion designer.",
+                    "answer": "designer"
+                },
+                {
+                    "text": "That designer created the school logo.",
+                    "answer": "designer"
+                }
+            ]
+        },
+        {
+            "en": "destroy",
+            "ch": "破壞；摧毀",
+            "sents": [
+                {
+                    "text": "Idiots saying TV's totally gonna destroy cinema.",
+                    "answer": "destroy"
+                },
+                {
+                    "text": "We refer to the incident where a similar moving display on a building collapsed and destroyed a car in 2015.",
+                    "answer": "destroy"
+                },
+                {
+                    "text": "It destroys their sense of their own space, of their control of their environment.",
+                    "answer": "destroy"
+                }
+            ]
+        },
+        {
+            "en": "develop",
+            "ch": "發展；培養",
+            "sents": [
+                {
+                    "text": "I had to learn to develop a strategy to cope with that one.",
+                    "answer": "develop"
+                },
+                {
+                    "text": "Also, summarise their opinions regarding how they would like to develop the features.",
+                    "answer": "develop"
+                },
+                {
+                    "text": "Advanced Fire Safety   This course will help develop and manage your staff in the realm of fire safety.",
+                    "answer": "develop"
+                }
+            ]
+        },
+        {
+            "en": "device",
+            "ch": "裝置；設備",
+            "sents": [
+                {
+                    "text": "This device can measure temperature.",
+                    "answer": "device"
+                },
+                {
+                    "text": "Please turn off your device during the lesson.",
+                    "answer": "device"
+                },
+                {
+                    "text": "He bought a new device for the kitchen.",
+                    "answer": "device"
+                }
+            ]
+        },
+        {
+            "en": "diary",
+            "ch": "日記",
+            "sents": [
+                {
+                    "text": "She writes in her diary every night.",
+                    "answer": "diary"
+                },
+                {
+                    "text": "My diary is full of travel memories.",
+                    "answer": "diary"
+                },
+                {
+                    "text": "He hid the diary in a drawer.",
+                    "answer": "diary"
+                }
+            ]
+        },
+        {
+            "en": "digital",
+            "ch": "數碼的；數位的",
+            "sents": [
+                {
+                    "text": "\"a digital application which simulates online the experience of having a real pet.\"",
+                    "answer": "digital"
+                },
+                {
+                    "text": "Excerpt from the Elderly News magazine   Talking about the digital generation?",
+                    "answer": "digital"
+                },
+                {
+                    "text": "Archie: Wait: how about using digital cameras?",
+                    "answer": "digital"
+                }
+            ]
+        },
+        {
+            "en": "diploma",
+            "ch": "文憑",
+            "sents": [
+                {
+                    "text": "She received a diploma at graduation.",
+                    "answer": "diploma"
+                },
+                {
+                    "text": "His diploma hangs on the wall.",
+                    "answer": "diploma"
+                },
+                {
+                    "text": "You need a diploma for that course.",
+                    "answer": "diploma"
+                }
+            ]
+        },
+        {
+            "en": "direction",
+            "ch": "方向",
+            "sents": [
+                {
+                    "text": "Can you show me the direction to the bank?",
+                    "answer": "direction"
+                },
+                {
+                    "text": "The wind changed direction suddenly.",
+                    "answer": "direction"
+                },
+                {
+                    "text": "Read the direction on the package carefully.",
+                    "answer": "direction"
+                }
+            ]
+        },
+        {
+            "en": "director",
+            "ch": "導演；主管",
+            "sents": [
+                {
+                    "text": "Luna: Well let me answer by asking a question: Where do the big studios get new talented directors from?",
+                    "answer": "director"
+                },
+                {
+                    "text": "Luna: So who are the directors who will be making the blockbusters in the future?",
+                    "answer": "director"
+                },
+                {
+                    "text": "The low-budget independent film directors of today.",
+                    "answer": "director"
+                }
+            ]
+        },
+        {
+            "en": "disagree",
+            "ch": "不同意",
+            "sents": [
+                {
+                    "text": "I disagree with that idea.",
+                    "answer": "disagree"
+                },
+                {
+                    "text": "My parents disagree about the movie.",
+                    "answer": "disagree"
+                },
+                {
+                    "text": "Two students disagree on the answer.",
+                    "answer": "disagree"
+                }
+            ]
+        },
+        {
+            "en": "disappear",
+            "ch": "消失",
+            "sents": [
+                {
+                    "text": "The rainbow began to disappear.",
+                    "answer": "disappear"
+                },
+                {
+                    "text": "My phone seemed to disappear from the table.",
+                    "answer": "disappear"
+                },
+                {
+                    "text": "The pain will disappear soon.",
+                    "answer": "disappear"
+                }
+            ]
+        },
+        {
+            "en": "disaster",
+            "ch": "災難",
+            "sents": [
+                {
+                    "text": "The storm was a disaster for local farms.",
+                    "answer": "disaster"
+                },
+                {
+                    "text": "Nobody expected the trip to become a disaster.",
+                    "answer": "disaster"
+                },
+                {
+                    "text": "The news reported a natural disaster overseas.",
+                    "answer": "disaster"
+                }
+            ]
+        },
+        {
+            "en": "discover",
+            "ch": "發現",
+            "sents": [
+                {
+                    "text": "Recently, the Brazilian government discovered a 'lost tribe' of people living deep inside the rainforest.",
+                    "answer": "discover"
+                },
+                {
+                    "text": "We discovered most of the factories have either ended their business in Hong Kong or will end their business very soon.",
+                    "answer": "discover"
+                },
+                {
+                    "text": "And then, I’ve discovered, there are problematic problems.",
+                    "answer": "discover"
+                }
+            ]
+        },
+        {
+            "en": "discovery",
+            "ch": "發現",
+            "sents": [
+                {
+                    "text": "Human beings have been captivated by the possibility of planet hopping since the discovery of planets.",
+                    "answer": "discovery"
+                },
+                {
+                    "text": "The discovery, exploration, and invasion of the Americas by Europeans led to dire consequences for the indigenous people of that ‘New World’.",
+                    "answer": "discovery"
+                },
+                {
+                    "text": "Sadly, most of the colors did not survive the crucible of time or the exposure to air that comes with discovery and excavation.",
+                    "answer": "discovery"
+                }
+            ]
+        },
+        {
+            "en": "discussion",
+            "ch": "討論",
+            "sents": [
+                {
+                    "text": "A lengthy discussion ensued regarding the relative merits of both.",
+                    "answer": "discussion"
+                },
+                {
+                    "text": "The use of the Fanzone's an agenda item at our next committee meeting, so what you've just told will be useful for our discussion.",
+                    "answer": "discussion"
+                },
+                {
+                    "text": "The theme for the discussion is the Current State of Cinema.",
+                    "answer": "discussion"
+                }
+            ]
+        },
+        {
+            "en": "disease",
+            "ch": "疾病",
+            "sents": [
+                {
+                    "text": "Doctors work hard to treat disease.",
+                    "answer": "disease"
+                },
+                {
+                    "text": "This disease spreads quickly in summer.",
+                    "answer": "disease"
+                },
+                {
+                    "text": "Exercise may help prevent heart disease.",
+                    "answer": "disease"
+                }
+            ]
+        },
+        {
+            "en": "distance",
+            "ch": "距離",
+            "sents": [
+                {
+                    "text": "D69X   The D69X has the distinction of being the most fuel-efficient luxury yacht in the world, offering huge savings over long distances.",
+                    "answer": "distance"
+                },
+                {
+                    "text": "However, that hasn’t stopped Sami from long distance running.",
+                    "answer": "distance"
+                },
+                {
+                    "text": "Because of Chloe, Sami is able to continue doing long distance running with her school, and now the team has an extra four-legged member.",
+                    "answer": "distance"
+                }
+            ]
+        },
+        {
+            "en": "download",
+            "ch": "下載",
+            "sents": [
+                {
+                    "text": "Please download the file before class.",
+                    "answer": "download"
+                },
+                {
+                    "text": "I need to download the new update tonight.",
+                    "answer": "download"
+                },
+                {
+                    "text": "The app is free to download.",
+                    "answer": "download"
+                }
+            ]
+        },
+        {
+            "en": "downstairs",
+            "ch": "樓下；在樓下",
+            "sents": [
+                {
+                    "text": "My grandparents are waiting downstairs.",
+                    "answer": "downstairs"
+                },
+                {
+                    "text": "We heard music from downstairs.",
+                    "answer": "downstairs"
+                },
+                {
+                    "text": "The kitchen is downstairs.",
+                    "answer": "downstairs"
+                }
+            ]
+        },
+        {
+            "en": "dragon",
+            "ch": "龍",
+            "sents": [
+                {
+                    "text": "The children made a paper dragon.",
+                    "answer": "dragon"
+                },
+                {
+                    "text": "A red dragon danced in the parade.",
+                    "answer": "dragon"
+                },
+                {
+                    "text": "The story is about a brave dragon.",
+                    "answer": "dragon"
+                }
+            ]
+        },
+        {
+            "en": "drama",
+            "ch": "戲劇",
+            "sents": [
+                {
+                    "text": "But the drama didn't stop there.",
+                    "answer": "drama"
+                },
+                {
+                    "text": "I don’t like the drama stuff.",
+                    "answer": "drama"
+                },
+                {
+                    "text": "Such is the drama of harvest.",
+                    "answer": "drama"
+                }
+            ]
+        },
+        {
+            "en": "drawing",
+            "ch": "圖畫；素描",
+            "sents": [
+                {
+                    "text": "Her drawing of the cat was lovely.",
+                    "answer": "drawing"
+                },
+                {
+                    "text": "We handed in a drawing for art class.",
+                    "answer": "drawing"
+                },
+                {
+                    "text": "He put the drawing on the wall.",
+                    "answer": "drawing"
+                }
+            ]
+        },
+        {
+            "en": "dream",
+            "ch": "夢想；做夢",
+            "sents": [
+                {
+                    "text": "My dream is to travel around the world.",
+                    "answer": "dream"
+                },
+                {
+                    "text": "She had a strange dream last night.",
+                    "answer": "dream"
+                },
+                {
+                    "text": "Do not give up on your dream.",
+                    "answer": "dream"
+                }
+            ]
+        },
+        {
+            "en": "drive",
+            "ch": "駕駛",
+            "sents": [
+                {
+                    "text": "As one of our alumni, now a research chemist put it:   \"The Locae Foundation gave me hope and the drive to work on my talents and achieve my ambitions.\"",
+                    "answer": "drive"
+                },
+                {
+                    "text": "Cars driven by robots could travel closer together at steadier speeds.",
+                    "answer": "drive"
+                },
+                {
+                    "text": "And what could be more suspicious than an outlet that sells food—and then drives away before its customers expire?",
+                    "answer": "drive"
+                }
+            ]
+        },
+        {
+            "en": "drug",
+            "ch": "藥物；毒品",
+            "sents": [
+                {
+                    "text": "The hospital tested a new drug.",
+                    "answer": "drug"
+                },
+                {
+                    "text": "This drug can help reduce pain.",
+                    "answer": "drug"
+                },
+                {
+                    "text": "Keep the drug away from children.",
+                    "answer": "drug"
+                }
+            ]
+        },
+        {
+            "en": "dry",
+            "ch": "乾的；弄乾",
+            "sents": [
+                {
+                    "text": "Jamie   Do I need to dry the potatoes after washing them?",
+                    "answer": "dry"
+                },
+                {
+                    "text": "It is important to dry the potatoes carefully after washing them.",
+                    "answer": "dry"
+                },
+                {
+                    "text": "Jamie   I cooked my fries for 35 minutes and they tasted so dry!",
+                    "answer": "dry"
+                }
+            ]
+        },
+        {
+            "en": "earth",
+            "ch": "地球；土地",
+            "sents": [
+                {
+                    "text": "How on earth could you miss a dead dog!",
+                    "answer": "earth"
+                },
+                {
+                    "text": "He had done this thing before, and he was doing it again, running free in the open, the unpacked earth underfoot, the wide sky overhead.",
+                    "answer": "earth"
+                },
+                {
+                    "text": "The most colorful pieces (and the earth surrounding them) have been removed to an on-site laboratory for further treatment.",
+                    "answer": "earth"
+                }
+            ]
+        },
+        {
+            "en": "easily",
+            "ch": "容易地",
+            "sents": [
+                {
+                    "text": "Also, whenever we move the glass tubes, they can be broken very easily so we have to be very, very careful with them.",
+                    "answer": "easily"
+                },
+                {
+                    "text": "A story can be easily defined as a character who wants or needs something and has to overcome some obstacle in order to attain it.",
+                    "answer": "easily"
+                },
+                {
+                    "text": "Having strong critical skills shows that you will not be easily fooled.",
+                    "answer": "easily"
+                }
+            ]
+        },
+        {
+            "en": "education",
+            "ch": "教育",
+            "sents": [
+                {
+                    "text": "They can buy things they really need... say like education for their kids.",
+                    "answer": "education"
+                },
+                {
+                    "text": "Hey guys, I've got a question though: Do local people get education from tourism?",
+                    "answer": "education"
+                },
+                {
+                    "text": "For all these people, zoos and aquariums are a resource for wildlife education, motivators for environmental stewardship and a place for family recreation.",
+                    "answer": "education"
+                }
+            ]
+        },
+        {
+            "en": "effect",
+            "ch": "效果；影響",
+            "sents": [
+                {
+                    "text": "Editorial   Please write the editorial for the next issue to highlight the positive effects of tourism.",
+                    "answer": "effect"
+                },
+                {
+                    "text": "Letter printed from Kevin Hui in Asia Life magazine March issue   Dear Sir   I'm writing about the effects of tourism.",
+                    "answer": "effect"
+                },
+                {
+                    "text": "The trade in some exotic pets can have some serious effects.",
+                    "answer": "effect"
+                }
+            ]
+        },
+        {
+            "en": "eighth",
+            "ch": "第八",
+            "sents": [
+                {
+                    "text": "She finished in eighth place.",
+                    "answer": "eighth"
+                },
+                {
+                    "text": "My birthday is on the eighth of May.",
+                    "answer": "eighth"
+                },
+                {
+                    "text": "The eighth question was the hardest.",
+                    "answer": "eighth"
+                }
+            ]
+        },
+        {
+            "en": "electric",
+            "ch": "電動的；用電的",
+            "sents": [
+                {
+                    "text": "We bought an electric fan for summer.",
+                    "answer": "electric"
+                },
+                {
+                    "text": "This electric car is very quiet.",
+                    "answer": "electric"
+                },
+                {
+                    "text": "The shop sells electric scooters.",
+                    "answer": "electric"
+                }
+            ]
+        },
+        {
+            "en": "electrical",
+            "ch": "電力的；與電有關的",
+            "sents": [
+                {
+                    "text": "Only experts should fix electrical problems.",
+                    "answer": "electrical"
+                },
+                {
+                    "text": "The building had an electrical fire.",
+                    "answer": "electrical"
+                },
+                {
+                    "text": "Electrical safety is very important at home.",
+                    "answer": "electrical"
+                }
+            ]
+        },
+        {
+            "en": "electricity",
+            "ch": "電；電力",
+            "sents": [
+                {
+                    "text": "Rick Lai: It uses electricity.",
+                    "answer": "electricity"
+                },
+                {
+                    "text": "We'll need a stage so that people can see us and please make sure we have electricity available to play the music.",
+                    "answer": "electricity"
+                },
+                {
+                    "text": "If you need further equipment, we can provide things such as chairs and generators for electricity.",
+                    "answer": "electricity"
+                }
+            ]
+        },
+        {
+            "en": "electronic",
+            "ch": "電子的",
+            "sents": [
+                {
+                    "text": "This electronic dictionary is useful.",
+                    "answer": "electronic"
+                },
+                {
+                    "text": "The toy makes an electronic sound.",
+                    "answer": "electronic"
+                },
+                {
+                    "text": "We sell electronic parts in this shop.",
+                    "answer": "electronic"
+                }
+            ]
+        },
+        {
+            "en": "emoji",
+            "ch": "表情符號",
+            "sents": [
+                {
+                    "text": "She ended the message with a heart emoji.",
+                    "answer": "emoji"
+                },
+                {
+                    "text": "My brother uses too many emoji in texts.",
+                    "answer": "emoji"
+                },
+                {
+                    "text": "That emoji made me laugh.",
+                    "answer": "emoji"
+                }
+            ]
+        },
+        {
+            "en": "employ",
+            "ch": "僱用",
+            "sents": [
+                {
+                    "text": "The company plans to employ more staff.",
+                    "answer": "employ"
+                },
+                {
+                    "text": "They employ local workers at the factory.",
+                    "answer": "employ"
+                },
+                {
+                    "text": "A good shop will employ helpful people.",
+                    "answer": "employ"
+                }
+            ]
+        },
+        {
+            "en": "employee",
+            "ch": "僱員；員工",
+            "sents": [
+                {
+                    "text": "Broch: I also like the scene just after that when you show how the corporation in the film tricked its employees into wearing its lenses.",
+                    "answer": "employee"
+                },
+                {
+                    "text": "Finally, we've got you covered in maintaining those all-important emergency routes that could be vital in the survival of you and your employees.",
+                    "answer": "employee"
+                },
+                {
+                    "text": "We have three measures to improve employee engagement.",
+                    "answer": "employee"
+                }
+            ]
+        },
+        {
+            "en": "employer",
+            "ch": "僱主",
+            "sents": [
+                {
+                    "text": "Her employer offered flexible working hours.",
+                    "answer": "employer"
+                },
+                {
+                    "text": "The employer asked for two references.",
+                    "answer": "employer"
+                },
+                {
+                    "text": "A fair employer listens to workers.",
+                    "answer": "employer"
+                }
+            ]
+        },
+        {
+            "en": "energy",
+            "ch": "能量；精力",
+            "sents": [
+                {
+                    "text": "I have more energy after a good sleep.",
+                    "answer": "energy"
+                },
+                {
+                    "text": "Solar panels can save energy.",
+                    "answer": "energy"
+                },
+                {
+                    "text": "Running used all my energy today.",
+                    "answer": "energy"
+                }
+            ]
+        },
+        {
+            "en": "engine",
+            "ch": "引擎；發動機",
+            "sents": [
+                {
+                    "text": "The engine made a strange noise.",
+                    "answer": "engine"
+                },
+                {
+                    "text": "This car has a small engine.",
+                    "answer": "engine"
+                },
+                {
+                    "text": "He opened the front to check the engine.",
+                    "answer": "engine"
+                }
+            ]
+        },
+        {
+            "en": "engineer",
+            "ch": "工程師",
+            "sents": [
+                {
+                    "text": "s failure given by the engineer.",
+                    "answer": "engineer"
+                },
+                {
+                    "text": "Engineering Assessment.",
+                    "answer": "engineer"
+                },
+                {
+                    "text": "Many of our children have gone on to become doctors, engineers and scientists.",
+                    "answer": "engineer"
+                }
+            ]
+        },
+        {
+            "en": "enormous",
+            "ch": "巨大的",
+            "sents": [
+                {
+                    "text": "An enormous cake was on the table.",
+                    "answer": "enormous"
+                },
+                {
+                    "text": "The whale looked enormous in the water.",
+                    "answer": "enormous"
+                },
+                {
+                    "text": "They live in an enormous house.",
+                    "answer": "enormous"
+                }
+            ]
+        },
+        {
+            "en": "enter",
+            "ch": "進入",
+            "sents": [
+                {
+                    "text": "Owner: Jessie, age 8   I'm called Rio, I was entered into a virtual pet beauty contest.",
+                    "answer": "enter"
+                },
+                {
+                    "text": "I mean, as the fans enter, I suppose you could say what is the equivalent of your \"Fanzone\" at Wimbledon, they're given a ticket number as they come in.",
+                    "answer": "enter"
+                },
+                {
+                    "text": "Some think it's the ultimate beach sport and if you're daring enough to enter the water, you're pretty sure to make friends for life with your teammates.",
+                    "answer": "enter"
+                }
+            ]
+        },
+        {
+            "en": "environment",
+            "ch": "環境",
+            "sents": [
+                {
+                    "text": "Kitchen environment   SJ confirmed that the kitchen surfaces will be disinfected every two hours.",
+                    "answer": "environment"
+                },
+                {
+                    "text": "Second, write up an overview of what DPP has done in Hong Kong to protect the environment.",
+                    "answer": "environment"
+                },
+                {
+                    "text": "[5] Prof. Cheung: I agree that the activities of human beings can damage the environment and cause other negative consequences, but these are exceptions.",
+                    "answer": "environment"
+                }
+            ]
+        },
+        {
+            "en": "equipment",
+            "ch": "設備；器材",
+            "sents": [
+                {
+                    "text": "Actually listeners, we had to do this... and they searched our bags and equipment!",
+                    "answer": "equipment"
+                },
+                {
+                    "text": "We would also need to know what heavy equipment you intend to bring (i.e.",
+                    "answer": "equipment"
+                },
+                {
+                    "text": "8:11 PM   Malcolm:   Oh, The Peak Sky Deck Manager wants to know the weight of the equipment you'll be using.",
+                    "answer": "equipment"
+                }
+            ]
+        },
+        {
+            "en": "error",
+            "ch": "錯誤",
+            "sents": [
+                {
+                    "text": "Initial-reports are that, ruling out human error, the accident was likely to have been caused by bad weather.",
+                    "answer": "error"
+                },
+                {
+                    "text": "[12] We will see the rhetorical slights of hand and amateurish errors that have led to you being repeatedly misled about food and nutrition.",
+                    "answer": "error"
+                },
+                {
+                    "text": "In the last half-century, though, emphasis on inquiry has become dominant, and it has often been reduced to the ability to expose error and undermine belief.",
+                    "answer": "error"
+                }
+            ]
+        },
+        {
+            "en": "especially",
+            "ch": "尤其；特別",
+            "sents": [
+                {
+                    "text": "The government even has guards to stop everyone, especially tourists, going into those areas to contact the tribes.",
+                    "answer": "especially"
+                },
+                {
+                    "text": "Honestly, especially from the corporate sponsors.",
+                    "answer": "especially"
+                },
+                {
+                    "text": "The reviews in the newspapers have been very positive, especially about the household of the 1980s.",
+                    "answer": "especially"
+                }
+            ]
+        },
+        {
+            "en": "essay",
+            "ch": "文章；短文",
+            "sents": [
+                {
+                    "text": "I need to finish my history essay tonight.",
+                    "answer": "essay"
+                },
+                {
+                    "text": "Her essay was clear and well organized.",
+                    "answer": "essay"
+                },
+                {
+                    "text": "The teacher returned our essay this morning.",
+                    "answer": "essay"
+                }
+            ]
+        },
+        {
+            "en": "everyday",
+            "ch": "日常的",
+            "sents": [
+                {
+                    "text": "Walking is part of my everyday routine.",
+                    "answer": "everyday"
+                },
+                {
+                    "text": "These are everyday problems for busy parents.",
+                    "answer": "everyday"
+                },
+                {
+                    "text": "She wore simple clothes for everyday use.",
+                    "answer": "everyday"
+                }
+            ]
+        },
+        {
+            "en": "everywhere",
+            "ch": "到處；各處",
+            "sents": [
+                {
+                    "text": "A local resident, surnamed Ho, complained, 'Last year the tennis fans dropped rubbish everywhere.",
+                    "answer": "everywhere"
+                },
+                {
+                    "text": "Water, water everywhere!",
+                    "answer": "everywhere"
+                },
+                {
+                    "text": "The city was nice, and it was funny to see those small robots everywhere.",
+                    "answer": "everywhere"
+                }
+            ]
+        },
+        {
+            "en": "evidence",
+            "ch": "證據",
+            "sents": [
+                {
+                    "text": "I will show you evidence that a vanguard of startling wrongness is entering British universities, alongside genuine academic research into nutrition.",
+                    "answer": "evidence"
+                },
+                {
+                    "text": "I presented plenty of evidence that recycling was costly and ineffectual, but its defenders said that it was unfair to rush to judgment.",
+                    "answer": "evidence"
+                },
+                {
+                    "text": "All those pieces were sold at the event, which drew more than 5,000 visitors in 10 days, evidence that fans are still rabid for traditional comics.",
+                    "answer": "evidence"
+                }
+            ]
+        },
+        {
+            "en": "exact",
+            "ch": "確切的；準確的",
+            "sents": [
+                {
+                    "text": "Tell me the exact time of the meeting.",
+                    "answer": "exact"
+                },
+                {
+                    "text": "This is the exact book I wanted.",
+                    "answer": "exact"
+                },
+                {
+                    "text": "The map shows the exact location.",
+                    "answer": "exact"
+                }
+            ]
+        },
+        {
+            "en": "exactly",
+            "ch": "確實；正是",
+            "sents": [
+                {
+                    "text": "Avery: Exactly.",
+                    "answer": "exactly"
+                },
+                {
+                    "text": "In the follow-up email, tell them exactly how much we vatue our customers, then let them know about the compensation package.",
+                    "answer": "exactly"
+                },
+                {
+                    "text": "What is it exactly?",
+                    "answer": "exactly"
+                }
+            ]
+        },
+        {
+            "en": "excellent",
+            "ch": "極好的；優秀的",
+            "sents": [
+                {
+                    "text": "On top of that, we really do provide some excellent travel products,\" said Dr Atkinson.",
+                    "answer": "excellent"
+                },
+                {
+                    "text": "We want to attract pupils from this excellent school.",
+                    "answer": "excellent"
+                },
+                {
+                    "text": "Overall, I have to say this was an excellent day out.",
+                    "answer": "excellent"
+                }
+            ]
+        },
+        {
+            "en": "exist",
+            "ch": "存在",
+            "sents": [
+                {
+                    "text": "They were very patient and kind to me, and it is wonderful to see such responsive customer service still exists.",
+                    "answer": "exist"
+                },
+                {
+                    "text": "With evidence showing that water exists in a frozen state on Mars, the human race could one day make Mars its second home.",
+                    "answer": "exist"
+                },
+                {
+                    "text": "The possibility that life exists on other planets tells us that we cannot simply land on other planets because we want to satisfy our need for more land.",
+                    "answer": "exist"
+                }
+            ]
+        },
+        {
+            "en": "expert",
+            "ch": "專家",
+            "sents": [
+                {
+                    "text": "What makes u such an expert?",
+                    "answer": "expert"
+                },
+                {
+                    "text": "Our experts, Chef Christine and her team, will try your suggestions.",
+                    "answer": "expert"
+                },
+                {
+                    "text": "Experts agree that these shocking safety mistakes set a terrible example to other chefs, especially younger fans.",
+                    "answer": "expert"
+                }
+            ]
+        },
+        {
+            "en": "explanation",
+            "ch": "解釋；說明",
+            "sents": [
+                {
+                    "text": "His explanation was easy to understand.",
+                    "answer": "explanation"
+                },
+                {
+                    "text": "The teacher gave a clear explanation.",
+                    "answer": "explanation"
+                },
+                {
+                    "text": "We asked for an explanation about the rule.",
+                    "answer": "explanation"
+                }
+            ]
+        },
+        {
+            "en": "express",
+            "ch": "表達；快遞",
+            "sents": [
+                {
+                    "text": "Captain Moby expressed relief at the results and that he planned to return to work at the end of the month.",
+                    "answer": "express"
+                },
+                {
+                    "text": "Letter in the Kowloon Herald   March 23, 2014   Dear Editor,   I'm writing to express my anger about the Kowloon Exotic Pets Hospital.",
+                    "answer": "express"
+                },
+                {
+                    "text": "He expressed a hope that this would counter negative press from yesterday's Hong Kong Press & Journal article.",
+                    "answer": "express"
+                }
+            ]
+        },
+        {
+            "en": "expression",
+            "ch": "表達；表情",
+            "sents": [
+                {
+                    "text": "Her expression changed when she saw the gift.",
+                    "answer": "expression"
+                },
+                {
+                    "text": "That expression means you are surprised.",
+                    "answer": "expression"
+                },
+                {
+                    "text": "The actor used facial expression very well.",
+                    "answer": "expression"
+                }
+            ]
+        },
+        {
+            "en": "extremely",
+            "ch": "極其；非常",
+            "sents": [
+                {
+                    "text": "It was so hot, just like here in Hong Kong (the weather here has been extremely hot recently).",
+                    "answer": "extremely"
+                },
+                {
+                    "text": "It is therefore extremely rare and would be difficult / impossible to replace if damaged.",
+                    "answer": "extremely"
+                },
+                {
+                    "text": "It is the only known species in South China that pollinates the extremely rare Splash of Gold Orchid.",
+                    "answer": "extremely"
+                }
+            ]
+        },
+        {
+            "en": "factor",
+            "ch": "因素",
+            "sents": [
+                {
+                    "text": "Cost is an important factor in the decision.",
+                    "answer": "factor"
+                },
+                {
+                    "text": "Weather was a big factor in the delay.",
+                    "answer": "factor"
+                },
+                {
+                    "text": "Health can be a factor in school success.",
+                    "answer": "factor"
+                }
+            ]
+        },
+        {
+            "en": "factory",
+            "ch": "工廠",
+            "sents": [
+                {
+                    "text": "My uncle works in a toy factory.",
+                    "answer": "factory"
+                },
+                {
+                    "text": "The old factory is now a museum.",
+                    "answer": "factory"
+                },
+                {
+                    "text": "The factory makes shoes for export.",
+                    "answer": "factory"
+                }
+            ]
+        },
+        {
+            "en": "fail",
+            "ch": "失敗；不及格",
+            "sents": [
+                {
+                    "text": "Ms Ray told the committee that she had heard rumours that the Brighthouse Cinema failed a government inspection previously.",
+                    "answer": "fail"
+                },
+                {
+                    "text": "Brighthouse failed govt.",
+                    "answer": "fail"
+                },
+                {
+                    "text": "She found that in a job interview situation, candidates actually failed the stood when asked to give a presentation.",
+                    "answer": "fail"
+                }
+            ]
+        },
+        {
+            "en": "fair",
+            "ch": "公平的；展覽會",
+            "sents": [
+                {
+                    "text": "Posted by Africa Anna   11 Dec 12 20:52   BlogGal: It is fair - at least they have some money because tourists go to their countries.",
+                    "answer": "fair"
+                },
+                {
+                    "text": "All agreed that this measure would be harsh but fair.",
+                    "answer": "fair"
+                },
+                {
+                    "text": "Angel:   Fair point.",
+                    "answer": "fair"
+                }
+            ]
+        },
+        {
+            "en": "fan",
+            "ch": "風扇；迷",
+            "sents": [
+                {
+                    "text": "A new feature in the Mars Experience Room is the dust storm (which we will do with lights and a big fan).",
+                    "answer": "fan"
+                },
+                {
+                    "text": "There may be fans at the airport when you arrive, but you'll be transported in a private car with darkened windows every day.",
+                    "answer": "fan"
+                },
+                {
+                    "text": "A local resident, surnamed Ho, complained, 'Last year the tennis fans dropped rubbish everywhere.",
+                    "answer": "fan"
+                }
+            ]
+        },
+        {
+            "en": "farm",
+            "ch": "農場",
+            "sents": [
+                {
+                    "text": "We visited a farm during the holiday.",
+                    "answer": "farm"
+                },
+                {
+                    "text": "The farm has cows and chickens.",
+                    "answer": "farm"
+                },
+                {
+                    "text": "Fresh eggs came from the farm.",
+                    "answer": "farm"
+                }
+            ]
+        },
+        {
+            "en": "fashion",
+            "ch": "時尚；時裝",
+            "sents": [
+                {
+                    "text": "She studies fashion and design.",
+                    "answer": "fashion"
+                },
+                {
+                    "text": "That style is popular in fashion this year.",
+                    "answer": "fashion"
+                },
+                {
+                    "text": "He is interested in street fashion.",
+                    "answer": "fashion"
+                }
+            ]
+        },
+        {
+            "en": "female",
+            "ch": "女性的；女性",
+            "sents": [
+                {
+                    "text": "The female lion stayed near the cubs.",
+                    "answer": "female"
+                },
+                {
+                    "text": "Our team has both male and female players.",
+                    "answer": "female"
+                },
+                {
+                    "text": "The doctor spoke to a female patient.",
+                    "answer": "female"
+                }
+            ]
+        },
+        {
+            "en": "fiction",
+            "ch": "小說；虛構作品",
+            "sents": [
+                {
+                    "text": "Flash fiction is a medium that works perfectly in a low-attention-span world.",
+                    "answer": "fiction"
+                },
+                {
+                    "text": "[2] Flash fiction is a category of short story that limits the author to a word count of 1,000 words or less.",
+                    "answer": "fiction"
+                },
+                {
+                    "text": "Some magazines limit flash fiction stories to as little as 300 words.",
+                    "answer": "fiction"
+                }
+            ]
+        },
+        {
+            "en": "field",
+            "ch": "田野；領域",
+            "sents": [
+                {
+                    "text": "Tourists from the city would come at the weekend to see the rice fields.",
+                    "answer": "field"
+                },
+                {
+                    "text": "Dr Jones: Yes, the \"S\"-shaped fields.",
+                    "answer": "field"
+                },
+                {
+                    "text": "MH: For the Athletics Jamboree, students form teams and compete against each other in track and field events.",
+                    "answer": "field"
+                }
+            ]
+        },
+        {
+            "en": "fight",
+            "ch": "打鬥；爭取",
+            "sents": [
+                {
+                    "text": "(from) island to island   10. lack of food // to find food   11. fighting (with) other humans // escape from other humans   12.",
+                    "answer": "fight"
+                },
+                {
+                    "text": "I did a cat that had been in a fight.",
+                    "answer": "fight"
+                },
+                {
+                    "text": "**   The world's children are joining the fight against climate change.",
+                    "answer": "fight"
+                }
+            ]
+        },
+        {
+            "en": "film",
+            "ch": "電影；膠卷",
+            "sents": [
+                {
+                    "text": "Include any special requirements you have for your films or videos (e.g.",
+                    "answer": "film"
+                },
+                {
+                    "text": "Include the main theme of the film and an outline of the plot.",
+                    "answer": "film"
+                },
+                {
+                    "text": "Rowett Uni   Posted: February 2 2019, 03:05 AM   So tired of dummies not getting the meaning of this genius film.",
+                    "answer": "film"
+                }
+            ]
+        },
+        {
+            "en": "final",
+            "ch": "最後的；決賽",
+            "sents": [
+                {
+                    "text": "Lara said the final report would be completed by Indy.",
+                    "answer": "final"
+                },
+                {
+                    "text": "Summarize what is successful and what needs to be changed in the final artwork.",
+                    "answer": "final"
+                },
+                {
+                    "text": "Interviewer:   Any final thoughts, Peter?",
+                    "answer": "final"
+                }
+            ]
+        },
+        {
+            "en": "finally",
+            "ch": "最後；終於",
+            "sents": [
+                {
+                    "text": "Finally, write a blog post for the new Insects and Reptiles Exhibition at Kowloon Park we are launching soon.",
+                    "answer": "finally"
+                },
+                {
+                    "text": "Finally, I need you to draft a script for a YouTube advertisement promoting the Adventure Fishing Tour.",
+                    "answer": "finally"
+                },
+                {
+                    "text": "It's finally here, the long-awaited sister ship to the D69X.",
+                    "answer": "finally"
+                }
+            ]
+        },
+        {
+            "en": "finger",
+            "ch": "手指",
+            "sents": [
+                {
+                    "text": "She cut her finger while cooking dinner.",
+                    "answer": "finger"
+                },
+                {
+                    "text": "Raise one finger if you know the answer.",
+                    "answer": "finger"
+                },
+                {
+                    "text": "My ring is too small for this finger.",
+                    "answer": "finger"
+                }
+            ]
+        },
+        {
+            "en": "finish",
+            "ch": "完成；結束",
+            "sents": [
+                {
+                    "text": "The new Tour schedule would now start on 6th Decemhor due to the change, but would finish on the same date announced previously.",
+                    "answer": "finish"
+                },
+                {
+                    "text": "Finally, can you finish the FAQ (Frequently Asked Questions) for the Star Pod website?",
+                    "answer": "finish"
+                },
+                {
+                    "text": "Staff found her after the Mars Experience Room activity had finished.",
+                    "answer": "finish"
+                }
+            ]
+        },
+        {
+            "en": "firstly",
+            "ch": "首先",
+            "sents": [
+                {
+                    "text": "Firstly, please read the question carefully.",
+                    "answer": "firstly"
+                },
+                {
+                    "text": "Firstly, let us check the date and time.",
+                    "answer": "firstly"
+                },
+                {
+                    "text": "He thanked everyone firstly before starting his speech.",
+                    "answer": "firstly"
+                }
+            ]
+        },
+        {
+            "en": "fish",
+            "ch": "魚",
+            "sents": [
+                {
+                    "text": "(the) stars   23. fish   24. in bamboo (water) containers   25.",
+                    "answer": "fish"
+                },
+                {
+                    "text": "With such a wide variety of fish and other aquatic life, find out why the Hong Kong Wetland Park is such a popular migration destination!",
+                    "answer": "fish"
+                },
+                {
+                    "text": "Dr Atkinson's concern was that it would scare away the fish.",
+                    "answer": "fish"
+                }
+            ]
+        },
+        {
+            "en": "flat",
+            "ch": "平的；單位",
+            "sents": [
+                {
+                    "text": "They live in a small flat near the station.",
+                    "answer": "flat"
+                },
+                {
+                    "text": "The road looks flat and easy to cycle on.",
+                    "answer": "flat"
+                },
+                {
+                    "text": "The balloon went flat after the party.",
+                    "answer": "flat"
+                }
+            ]
+        },
+        {
+            "en": "flu",
+            "ch": "流感",
+            "sents": [
+                {
+                    "text": "He stayed home because he had the flu.",
+                    "answer": "flu"
+                },
+                {
+                    "text": "Drink more water if you have the flu.",
+                    "answer": "flu"
+                },
+                {
+                    "text": "The flu spread quickly around the office.",
+                    "answer": "flu"
+                }
+            ]
+        },
+        {
+            "en": "fly",
+            "ch": "飛；蒼蠅",
+            "sents": [
+                {
+                    "text": "Birds fly south in winter.",
+                    "answer": "fly"
+                },
+                {
+                    "text": "We will fly to Seoul next month.",
+                    "answer": "fly"
+                },
+                {
+                    "text": "A small fly landed on my drink.",
+                    "answer": "fly"
+                }
+            ]
+        },
+        {
+            "en": "focus",
+            "ch": "集中；焦點",
+            "sents": [
+                {
+                    "text": "Upcoming issue   JL reported that one of the main focuses for the next issue would be unusual travel and tourism.",
+                    "answer": "focus"
+                },
+                {
+                    "text": "The main focus would be on unusual travel and tourism.",
+                    "answer": "focus"
+                },
+                {
+                    "text": "Please include a brief background on virtual pets and focus on how old people use virtual pets.",
+                    "answer": "focus"
+                }
+            ]
+        },
+        {
+            "en": "foreign",
+            "ch": "外國的",
+            "sents": [
+                {
+                    "text": "She enjoys reading foreign novels.",
+                    "answer": "foreign"
+                },
+                {
+                    "text": "We met many foreign visitors at the museum.",
+                    "answer": "foreign"
+                },
+                {
+                    "text": "He wants to learn a foreign language.",
+                    "answer": "foreign"
+                }
+            ]
+        },
+        {
+            "en": "forest",
+            "ch": "森林",
+            "sents": [
+                {
+                    "text": "We walked through the forest in silence.",
+                    "answer": "forest"
+                },
+                {
+                    "text": "A forest fire can spread very fast.",
+                    "answer": "forest"
+                },
+                {
+                    "text": "The campers slept near the edge of the forest.",
+                    "answer": "forest"
+                }
+            ]
+        },
+        {
+            "en": "fork",
+            "ch": "叉子",
+            "sents": [
+                {
+                    "text": "Use a fork for the salad.",
+                    "answer": "fork"
+                },
+                {
+                    "text": "He dropped his fork on the floor.",
+                    "answer": "fork"
+                },
+                {
+                    "text": "There is only one clean fork left.",
+                    "answer": "fork"
+                }
+            ]
+        },
+        {
+            "en": "formal",
+            "ch": "正式的",
+            "sents": [
+                {
+                    "text": "This event requires formal clothes.",
+                    "answer": "formal"
+                },
+                {
+                    "text": "His letter sounded too formal for a friend.",
+                    "answer": "formal"
+                },
+                {
+                    "text": "We had a formal meeting with the school principal.",
+                    "answer": "formal"
+                }
+            ]
+        },
+        {
+            "en": "fortunately",
+            "ch": "幸運地",
+            "sents": [
+                {
+                    "text": "Fortunately, no one was hurt in the fall.",
+                    "answer": "fortunately"
+                },
+                {
+                    "text": "Fortunately, we caught the last train home.",
+                    "answer": "fortunately"
+                },
+                {
+                    "text": "She forgot her card, but fortunately I had mine.",
+                    "answer": "fortunately"
+                }
+            ]
+        },
+        {
+            "en": "french",
+            "ch": "法國的；法語",
+            "sents": [
+                {
+                    "text": "She is learning french at school.",
+                    "answer": "french"
+                },
+                {
+                    "text": "We ordered french bread from the bakery.",
+                    "answer": "french"
+                },
+                {
+                    "text": "A french artist visited our class.",
+                    "answer": "french"
+                }
+            ]
+        },
+        {
+            "en": "fresh",
+            "ch": "新鮮的",
+            "sents": [
+                {
+                    "text": "The wraps had plenty of zing and slap from fresh lime, and were topped with hot chilli and fresh greens all locally grown.",
+                    "answer": "fresh"
+                },
+                {
+                    "text": "Also by adding plants, the front area would become more pleasant and fresh.",
+                    "answer": "fresh"
+                },
+                {
+                    "text": "The climbers will help cover the posts and pipes and brighten the entrance and keep the air fresh.",
+                    "answer": "fresh"
+                }
+            ]
+        },
+        {
+            "en": "fridge",
+            "ch": "雪櫃",
+            "sents": [
+                {
+                    "text": "Put the milk back in the fridge.",
+                    "answer": "fridge"
+                },
+                {
+                    "text": "There is some fruit in the fridge.",
+                    "answer": "fridge"
+                },
+                {
+                    "text": "The fridge was full after shopping.",
+                    "answer": "fridge"
+                }
+            ]
+        },
+        {
+            "en": "friendliest",
+            "ch": "最友善的",
+            "sents": [
+                {
+                    "text": "Our new neighbor is the friendliest person here.",
+                    "answer": "friendliest"
+                },
+                {
+                    "text": "That dog looks the friendliest of the three.",
+                    "answer": "friendliest"
+                },
+                {
+                    "text": "She gave the friendliest smile in the room.",
+                    "answer": "friendliest"
+                }
+            ]
+        },
+        {
+            "en": "frog",
+            "ch": "青蛙",
+            "sents": [
+                {
+                    "text": "Another popular exotic pet is the tree frog.",
+                    "answer": "frog"
+                },
+                {
+                    "text": "Tree frogs are my particular passion as you will see!",
+                    "answer": "frog"
+                },
+                {
+                    "text": "Interviewer: Now, Kit, you have a virtual pet, which is a tree frog.",
+                    "answer": "frog"
+                }
+            ]
+        },
+        {
+            "en": "fun",
+            "ch": "樂趣；有趣",
+            "sents": [
+                {
+                    "text": "We really want to promote the exhibition, so try to make it sound fun.",
+                    "answer": "fun"
+                },
+                {
+                    "text": "That couldn't have been fun for them.",
+                    "answer": "fun"
+                },
+                {
+                    "text": "Make sure it sounds fun and exciting!",
+                    "answer": "fun"
+                }
+            ]
+        },
+        {
+            "en": "furniture",
+            "ch": "家具",
+            "sents": [
+                {
+                    "text": "We bought new furniture for the living room.",
+                    "answer": "furniture"
+                },
+                {
+                    "text": "The shop sells wooden furniture.",
+                    "answer": "furniture"
+                },
+                {
+                    "text": "Heavy furniture can be hard to move.",
+                    "answer": "furniture"
+                }
+            ]
+        },
+        {
+            "en": "gallery",
+            "ch": "畫廊；展覽館",
+            "sents": [
+                {
+                    "text": "The school visited an art gallery downtown.",
+                    "answer": "gallery"
+                },
+                {
+                    "text": "Her photos were shown in a small gallery.",
+                    "answer": "gallery"
+                },
+                {
+                    "text": "We spent an hour in the gallery.",
+                    "answer": "gallery"
+                }
+            ]
+        },
+        {
+            "en": "gamer",
+            "ch": "遊戲玩家",
+            "sents": [
+                {
+                    "text": "My cousin is a serious gamer.",
+                    "answer": "gamer"
+                },
+                {
+                    "text": "That gamer streams online every night.",
+                    "answer": "gamer"
+                },
+                {
+                    "text": "The competition attracted every young gamer in town.",
+                    "answer": "gamer"
+                }
+            ]
+        },
+        {
+            "en": "gap",
+            "ch": "空隙；差距",
+            "sents": [
+                {
+                    "text": "There is a gap under the door.",
+                    "answer": "gap"
+                },
+                {
+                    "text": "The age gap between them is ten years.",
+                    "answer": "gap"
+                },
+                {
+                    "text": "Please leave a small gap between the boxes.",
+                    "answer": "gap"
+                }
+            ]
+        },
+        {
+            "en": "gas",
+            "ch": "氣體；煤氣",
+            "sents": [
+                {
+                    "text": "Their sole purpose would be to emit carbon dioxide and other greenhouse gases into the atmosphere.",
+                    "answer": "gas"
+                },
+                {
+                    "text": "Decomposing garbage releases methane, a potent greenhouse gas, but landfill operators have started capturing it and using it to generate electricity.",
+                    "answer": "gas"
+                },
+                {
+                    "text": "Nearly everyone, though, approves of one potential gain from recycling: reduced emissions of greenhouse gases.",
+                    "answer": "gas"
+                }
+            ]
+        },
+        {
+            "en": "gate",
+            "ch": "大門",
+            "sents": [
+                {
+                    "text": "Meet me at the school gate after class.",
+                    "answer": "gate"
+                },
+                {
+                    "text": "The gate was locked at midnight.",
+                    "answer": "gate"
+                },
+                {
+                    "text": "A guard stood beside the gate.",
+                    "answer": "gate"
+                }
+            ]
+        },
+        {
+            "en": "general",
+            "ch": "一般的；將軍",
+            "sents": [
+                {
+                    "text": "(general) health // see if the animals are healthy   8. lounge   9. shower (cold water only)   10. toilet   11.",
+                    "answer": "general"
+                },
+                {
+                    "text": "For the benefit of the Hong Kong public and for the health of the sport in general, I urge Events Horizon to address these issues.",
+                    "answer": "general"
+                },
+                {
+                    "text": "One idea to think about for the mall is this:   Alamy   Obviously we could never have the general public abseiling actually in the waterfall like this guy!!!!",
+                    "answer": "general"
+                }
+            ]
+        },
+        {
+            "en": "gift",
+            "ch": "禮物",
+            "sents": [
+                {
+                    "text": "I bought a gift for my teacher.",
+                    "answer": "gift"
+                },
+                {
+                    "text": "Her gift was wrapped in blue paper.",
+                    "answer": "gift"
+                },
+                {
+                    "text": "This watch was a gift from my uncle.",
+                    "answer": "gift"
+                }
+            ]
+        },
+        {
+            "en": "goal",
+            "ch": "目標；入球",
+            "sents": [
+                {
+                    "text": "[10] But while politicians set higher goals, the national rate of recycling has stagnated in recent years.",
+                    "answer": "goal"
+                },
+                {
+                    "text": "[11] The national rate of recycling rose during the 1990s to 25 percent, the goal set by an E.P.A.",
+                    "answer": "goal"
+                },
+                {
+                    "text": "He advised state officials that no more than 35 percent of the nation’s trash was worth recycling, but some ignored him and set goals of 50 percent and higher.",
+                    "answer": "goal"
+                }
+            ]
+        },
+        {
+            "en": "god",
+            "ch": "神",
+            "sents": [
+                {
+                    "text": "They are also believed to be home to earth gods, the indigenous deities that protect each village, and shrines are often built at their base.",
+                    "answer": "god"
+                },
+                {
+                    "text": "In many cases, people worship the trees themselves, not just the earth gods.",
+                    "answer": "god"
+                },
+                {
+                    "text": "The pagan ritual of ‘knocking on wood’ was designed to elicit the help of benign and powerful tree gods.",
+                    "answer": "god"
+                }
+            ]
+        },
+        {
+            "en": "gold",
+            "ch": "金；金色",
+            "sents": [
+                {
+                    "text": "The ring is made of gold.",
+                    "answer": "gold"
+                },
+                {
+                    "text": "He won a gold medal in the race.",
+                    "answer": "gold"
+                },
+                {
+                    "text": "The sky turned gold at sunset.",
+                    "answer": "gold"
+                }
+            ]
+        },
+        {
+            "en": "government",
+            "ch": "政府",
+            "sents": [
+                {
+                    "text": "Recently, the Brazilian government discovered a 'lost tribe' of people living deep inside the rainforest.",
+                    "answer": "government"
+                },
+                {
+                    "text": "The government even has guards to stop everyone, especially tourists, going into those areas to contact the tribes.",
+                    "answer": "government"
+                },
+                {
+                    "text": "Ms Ray told the committee that she had heard rumours that the Brighthouse Cinema failed a government inspection previously.",
+                    "answer": "government"
+                }
+            ]
+        },
+        {
+            "en": "grammar",
+            "ch": "文法；語法",
+            "sents": [
+                {
+                    "text": "Good grammar makes your writing clearer.",
+                    "answer": "grammar"
+                },
+                {
+                    "text": "We studied grammar in English class.",
+                    "answer": "grammar"
+                },
+                {
+                    "text": "Her grammar has improved this year.",
+                    "answer": "grammar"
+                }
+            ]
+        },
+        {
+            "en": "grandchild",
+            "ch": "孫兒；孫女",
+            "sents": [
+                {
+                    "text": "Their first grandchild was born in June.",
+                    "answer": "grandchild"
+                },
+                {
+                    "text": "The old man smiled at his grandchild.",
+                    "answer": "grandchild"
+                },
+                {
+                    "text": "Each grandchild received a red packet.",
+                    "answer": "grandchild"
+                }
+            ]
+        },
+        {
+            "en": "granddaughter",
+            "ch": "孫女",
+            "sents": [
+                {
+                    "text": "His granddaughter plays the violin.",
+                    "answer": "granddaughter"
+                },
+                {
+                    "text": "They visited their granddaughter on Sunday.",
+                    "answer": "granddaughter"
+                },
+                {
+                    "text": "The proud grandfather showed us a photo of his granddaughter.",
+                    "answer": "granddaughter"
+                }
+            ]
+        },
+        {
+            "en": "grandpa",
+            "ch": "爺爺；外公",
+            "sents": [
+                {
+                    "text": "My grandpa grows vegetables at home.",
+                    "answer": "grandpa"
+                },
+                {
+                    "text": "Grandpa told us a story after dinner.",
+                    "answer": "grandpa"
+                },
+                {
+                    "text": "I called my grandpa on his birthday.",
+                    "answer": "grandpa"
+                }
+            ]
+        },
+        {
+            "en": "grandson",
+            "ch": "孫子",
+            "sents": [
+                {
+                    "text": "Their grandson lives in Canada.",
+                    "answer": "grandson"
+                },
+                {
+                    "text": "The old lady baked cookies for her grandson.",
+                    "answer": "grandson"
+                },
+                {
+                    "text": "Her grandson helped carry the bags.",
+                    "answer": "grandson"
+                }
+            ]
+        },
+        {
+            "en": "granny",
+            "ch": "祖母；婆婆",
+            "sents": [
+                {
+                    "text": "My granny makes the best soup.",
+                    "answer": "granny"
+                },
+                {
+                    "text": "Granny sat by the window and knitted.",
+                    "answer": "granny"
+                },
+                {
+                    "text": "We visit my granny every weekend.",
+                    "answer": "granny"
+                }
+            ]
+        },
+        {
+            "en": "greatest",
+            "ch": "最好的；最偉大的",
+            "sents": [
+                {
+                    "text": "This is one of her greatest songs.",
+                    "answer": "greatest"
+                },
+                {
+                    "text": "The greatest challenge was the weather.",
+                    "answer": "greatest"
+                },
+                {
+                    "text": "He is considered the greatest player on the team.",
+                    "answer": "greatest"
+                }
+            ]
+        },
+        {
+            "en": "greet",
+            "ch": "打招呼；問候",
+            "sents": [
+                {
+                    "text": "Please greet our guests at the door.",
+                    "answer": "greet"
+                },
+                {
+                    "text": "She smiled to greet her new classmates.",
+                    "answer": "greet"
+                },
+                {
+                    "text": "We went outside to greet the visitors.",
+                    "answer": "greet"
+                }
+            ]
+        },
+        {
+            "en": "ground",
+            "ch": "地面；場地",
+            "sents": [
+                {
+                    "text": "The ball fell to the ground.",
+                    "answer": "ground"
+                },
+                {
+                    "text": "Please keep both feet on the ground.",
+                    "answer": "ground"
+                },
+                {
+                    "text": "The ground was wet after the rain.",
+                    "answer": "ground"
+                }
+            ]
+        },
+        {
+            "en": "guest",
+            "ch": "客人",
+            "sents": [
+                {
+                    "text": "Want to throw a party where guests can't wait for the ride home (or there!)?",
+                    "answer": "guest"
+                },
+                {
+                    "text": "He's delighted that this will be the vessel to carry him and our guests on the new Adventuro Fishing Tour.",
+                    "answer": "guest"
+                },
+                {
+                    "text": "They could join the Open Day and meet the special guest at no extra expense to us.",
+                    "answer": "guest"
+                }
+            ]
+        },
+        {
+            "en": "guide",
+            "ch": "指南；引導",
+            "sents": [
+                {
+                    "text": "Regards,   Avery Goh   World City Travel Manager             Hong Kong Wetland Park visitor guide   Plan Your Visit!",
+                    "answer": "guide"
+                },
+                {
+                    "text": "Avery: No, the walk this time will still be in Chinese, but English audio guides will be provided on request.",
+                    "answer": "guide"
+                },
+                {
+                    "text": "I would also like to take this opportunity to thank your office staff who helped guide me around your website over the phone.",
+                    "answer": "guide"
+                }
+            ]
+        },
+        {
+            "en": "guidebook",
+            "ch": "指南；旅遊書",
+            "sents": [
+                {
+                    "text": "I bought a guidebook for our trip to Osaka.",
+                    "answer": "guidebook"
+                },
+                {
+                    "text": "The guidebook shows the best local restaurants.",
+                    "answer": "guidebook"
+                },
+                {
+                    "text": "Check the guidebook before planning the route.",
+                    "answer": "guidebook"
+                }
+            ]
+        },
+        {
+            "en": "habit",
+            "ch": "習慣",
+            "sents": [
+                {
+                    "text": "I also picked up quite a few healthy habits as well.",
+                    "answer": "habit"
+                },
+                {
+                    "text": "Dragonhead Sportswear   29. health related // positive / healthy image // not encourage bad habits   30.",
+                    "answer": "habit"
+                },
+                {
+                    "text": "She had a deadly habit of inviting the neighbours in for tea so that she could casually refer to my school reports a couple of hundred times.",
+                    "answer": "habit"
+                }
+            ]
+        },
+        {
+            "en": "half",
+            "ch": "一半",
+            "sents": [
+                {
+                    "text": "August 30 //30/8   2. half past 9 // 9:30 (AM)   3.",
+                    "answer": "half"
+                },
+                {
+                    "text": "Only half of this island has been designated by the HKSAR Government as a nature park due to it being an area of special scientific interest.",
+                    "answer": "half"
+                },
+                {
+                    "text": "Most of the students are still half asleep at that time in the morning!",
+                    "answer": "half"
+                }
+            ]
+        },
+        {
+            "en": "hall",
+            "ch": "大廳；禮堂",
+            "sents": [
+                {
+                    "text": "The parents waited in the school hall.",
+                    "answer": "hall"
+                },
+                {
+                    "text": "Her voice echoed through the hall.",
+                    "answer": "hall"
+                },
+                {
+                    "text": "We decorated the hall for the event.",
+                    "answer": "hall"
+                }
+            ]
+        },
+        {
+            "en": "handbook",
+            "ch": "手冊",
+            "sents": [
+                {
+                    "text": "I've attached the guidelines from the company handbook for what we include in incident reports, so start there.",
+                    "answer": "handbook"
+                },
+                {
+                    "text": "Listen to the Wish You Were Here podcast, and look at the company handbook and Rick Lai's interview in the Hong Kong Arts and Crafts magazine for details.",
+                    "answer": "handbook"
+                },
+                {
+                    "text": "Take a look at the company handbook and Rick Lai's interview in the Hong Kong Arts and Crafts magazine.",
+                    "answer": "handbook"
+                }
+            ]
+        },
+        {
+            "en": "happily",
+            "ch": "快樂地",
+            "sents": [
+                {
+                    "text": "The children played happily in the park.",
+                    "answer": "happily"
+                },
+                {
+                    "text": "She happily accepted the invitation.",
+                    "answer": "happily"
+                },
+                {
+                    "text": "The dog ran happily to its owner.",
+                    "answer": "happily"
+                }
+            ]
+        },
+        {
+            "en": "harder",
+            "ch": "更難的；更努力地",
+            "sents": [
+                {
+                    "text": "This question is harder than the last one.",
+                    "answer": "harder"
+                },
+                {
+                    "text": "You need to work harder next term.",
+                    "answer": "harder"
+                },
+                {
+                    "text": "The wind blew harder at night.",
+                    "answer": "harder"
+                }
+            ]
+        },
+        {
+            "en": "hardest",
+            "ch": "最難的；最努力地",
+            "sents": [
+                {
+                    "text": "Math was the hardest subject for him.",
+                    "answer": "hardest"
+                },
+                {
+                    "text": "She tried her hardest in the final round.",
+                    "answer": "hardest"
+                },
+                {
+                    "text": "That was the hardest climb of the day.",
+                    "answer": "hardest"
+                }
+            ]
+        },
+        {
+            "en": "headache",
+            "ch": "頭痛",
+            "sents": [
+                {
+                    "text": "I have a headache after staring at the screen.",
+                    "answer": "headache"
+                },
+                {
+                    "text": "The loud music gave him a headache.",
+                    "answer": "headache"
+                },
+                {
+                    "text": "She took a break because of her headache.",
+                    "answer": "headache"
+                }
+            ]
+        },
+        {
+            "en": "healthier",
+            "ch": "更健康的",
+            "sents": [
+                {
+                    "text": "Soup is healthier than fries.",
+                    "answer": "healthier"
+                },
+                {
+                    "text": "He wants to live a healthier life.",
+                    "answer": "healthier"
+                },
+                {
+                    "text": "This lunch looks much healthier.",
+                    "answer": "healthier"
+                }
+            ]
+        },
+        {
+            "en": "healthiest",
+            "ch": "最健康的",
+            "sents": [
+                {
+                    "text": "Fruit is one of the healthiest snacks.",
+                    "answer": "healthiest"
+                },
+                {
+                    "text": "Walking is the healthiest habit she has.",
+                    "answer": "healthiest"
+                },
+                {
+                    "text": "This is the healthiest choice on the menu.",
+                    "answer": "healthiest"
+                }
+            ]
+        },
+        {
+            "en": "heart",
+            "ch": "心；心臟",
+            "sents": [
+                {
+                    "text": "My heart was beating very fast.",
+                    "answer": "heart"
+                },
+                {
+                    "text": "The doctor checked his heart carefully.",
+                    "answer": "heart"
+                },
+                {
+                    "text": "She drew a heart on the card.",
+                    "answer": "heart"
+                }
+            ]
+        },
+        {
+            "en": "heat",
+            "ch": "熱；加熱",
+            "sents": [
+                {
+                    "text": "The heat in summer can be exhausting.",
+                    "answer": "heat"
+                },
+                {
+                    "text": "Turn down the heat on the stove.",
+                    "answer": "heat"
+                },
+                {
+                    "text": "Plants need water during strong heat.",
+                    "answer": "heat"
+                }
+            ]
+        },
+        {
+            "en": "heavy",
+            "ch": "重的",
+            "sents": [
+                {
+                    "text": "Last time, you filled both our lifts with your big, heavy cameras.",
+                    "answer": "heavy"
+                },
+                {
+                    "text": "They're actually quite heavy.",
+                    "answer": "heavy"
+                },
+                {
+                    "text": "In Incheon back in 2014, there was a heavy focus on environmental awareness.",
+                    "answer": "heavy"
+                }
+            ]
+        },
+        {
+            "en": "height",
+            "ch": "高度；身高",
+            "sents": [
+                {
+                    "text": "What is your height in centimeters?",
+                    "answer": "height"
+                },
+                {
+                    "text": "The height of the tower surprised us.",
+                    "answer": "height"
+                },
+                {
+                    "text": "He measured the height of the shelf.",
+                    "answer": "height"
+                }
+            ]
+        },
+        {
+            "en": "helpful",
+            "ch": "有幫助的",
+            "sents": [
+                {
+                    "text": "We include helpful guidance on how to develop a fire plan as well as the important things to consider when training fire marshals.",
+                    "answer": "helpful"
+                },
+                {
+                    "text": "Parents also played an important administration role throughout the month, so if you could get us some volunteers, that would be helpful.",
+                    "answer": "helpful"
+                },
+                {
+                    "text": "If you can include information about costs too, that would be very helpful.",
+                    "answer": "helpful"
+                }
+            ]
+        },
+        {
+            "en": "hero",
+            "ch": "英雄",
+            "sents": [
+                {
+                    "text": "The firefighter became a local hero.",
+                    "answer": "hero"
+                },
+                {
+                    "text": "My little brother thinks Batman is a hero.",
+                    "answer": "hero"
+                },
+                {
+                    "text": "The story is about a young hero.",
+                    "answer": "hero"
+                }
+            ]
+        },
+        {
+            "en": "hide",
+            "ch": "隱藏",
+            "sents": [
+                {
+                    "text": "Do not hide the truth from me.",
+                    "answer": "hide"
+                },
+                {
+                    "text": "The cat likes to hide under the bed.",
+                    "answer": "hide"
+                },
+                {
+                    "text": "He tried to hide his laughter.",
+                    "answer": "hide"
+                }
+            ]
+        },
+        {
+            "en": "highest",
+            "ch": "最高的",
+            "sents": [
+                {
+                    "text": "This is the highest mountain in the region.",
+                    "answer": "highest"
+                },
+                {
+                    "text": "She got the highest score in class.",
+                    "answer": "highest"
+                },
+                {
+                    "text": "The highest shelf is hard to reach.",
+                    "answer": "highest"
+                }
+            ]
+        },
+        {
+            "en": "hit",
+            "ch": "擊中；打擊",
+            "sents": [
+                {
+                    "text": "After college, she moved to New York City but was hit by depression and loneliness.",
+                    "answer": "hit"
+                },
+                {
+                    "text": "The entrance is a perfect place for plants because there is a lot of sunlight but it only hits the left side which is also windy and cold in the winter.",
+                    "answer": "hit"
+                },
+                {
+                    "text": "In fact, a Google search produces hits from The Washington Post, The New York Times, The Wall Street Journal, and countless academic publications.",
+                    "answer": "hit"
+                }
+            ]
+        },
+        {
+            "en": "hole",
+            "ch": "洞",
+            "sents": [
+                {
+                    "text": "The hole in our culture is gaping: evidence-based medicine, the ultimate applied science, contains some of the cleverest ideas from the past two centuries.",
+                    "answer": "hole"
+                },
+                {
+                    "text": "In contrast, the only sign of a wasp sting is likely to be a small puncture hole in the skin.",
+                    "answer": "hole"
+                },
+                {
+                    "text": "A hole in the finger-tip of a glove, a stray stitch on the seam, will not go unpunished.",
+                    "answer": "hole"
+                }
+            ]
+        },
+        {
+            "en": "honey",
+            "ch": "蜂蜜",
+            "sents": [
+                {
+                    "text": "“What are you doing, honey?” Elizabeth said from the table.",
+                    "answer": "honey"
+                },
+                {
+                    "text": "[1] Bees are known for their role in producing honey and pollinating flowers to produce fruit.",
+                    "answer": "honey"
+                },
+                {
+                    "text": "In Hong Kong, honey bees and carpenter bees seldom sting unless they are provoked.",
+                    "answer": "honey"
+                }
+            ]
+        },
+        {
+            "en": "hongkongers",
+            "ch": "香港人",
+            "sents": [
+                {
+                    "text": "Many hongkongers enjoy hiking on weekends.",
+                    "answer": "hongkongers"
+                },
+                {
+                    "text": "The festival is popular with hongkongers of all ages.",
+                    "answer": "hongkongers"
+                },
+                {
+                    "text": "Hongkongers often move quickly through the city.",
+                    "answer": "hongkongers"
+                }
+            ]
+        },
+        {
+            "en": "hotline",
+            "ch": "熱線",
+            "sents": [
+                {
+                    "text": "Audience voting   The voting hotline number will be on the screen in each episode.",
+                    "answer": "hotline"
+                },
+                {
+                    "text": "That should get the voting hotline ringing!!!",
+                    "answer": "hotline"
+                },
+                {
+                    "text": "We've cancelled the voting hotline.",
+                    "answer": "hotline"
+                }
+            ]
+        },
+        {
+            "en": "hotter",
+            "ch": "更熱的",
+            "sents": [
+                {
+                    "text": "Today feels hotter than yesterday.",
+                    "answer": "hotter"
+                },
+                {
+                    "text": "The soup gets hotter as it cooks.",
+                    "answer": "hotter"
+                },
+                {
+                    "text": "This room is much hotter in the afternoon.",
+                    "answer": "hotter"
+                }
+            ]
+        },
+        {
+            "en": "housewife",
+            "ch": "家庭主婦",
+            "sents": [
+                {
+                    "text": "My aunt worked as a housewife for many years.",
+                    "answer": "housewife"
+                },
+                {
+                    "text": "The article interviewed a busy housewife.",
+                    "answer": "housewife"
+                },
+                {
+                    "text": "That housewife runs the home very well.",
+                    "answer": "housewife"
+                }
+            ]
+        },
+        {
+            "en": "huge",
+            "ch": "巨大的",
+            "sents": [
+                {
+                    "text": "D69X   The D69X has the distinction of being the most fuel-efficient luxury yacht in the world, offering huge savings over long distances.",
+                    "answer": "huge"
+                },
+                {
+                    "text": "Our rice was in huge demand then, you know.",
+                    "answer": "huge"
+                },
+                {
+                    "text": "Well, one huge plus without a doubt is that you get to advertise your game on their website.",
+                    "answer": "huge"
+                }
+            ]
+        },
+        {
+            "en": "hunter",
+            "ch": "獵人",
+            "sents": [
+                {
+                    "text": "The hunter waited quietly in the forest.",
+                    "answer": "hunter"
+                },
+                {
+                    "text": "A hunter followed the animal tracks.",
+                    "answer": "hunter"
+                },
+                {
+                    "text": "The story is about a brave hunter.",
+                    "answer": "hunter"
+                }
+            ]
+        },
+        {
+            "en": "identify",
+            "ch": "識別；確認",
+            "sents": [
+                {
+                    "text": "The Changing Young Lives Foundation is committed to identifying talented underprivileged youngsters in Hong Kong and changing their lives for the better.",
+                    "answer": "identify"
+                },
+                {
+                    "text": "Foraging in Hong Kong [1] Wanda Huang is an experienced Hong Kong forager who knows how to identify edible and medicinal plants.",
+                    "answer": "identify"
+                },
+                {
+                    "text": "So, I took it home, bought a book, and managed to identify the species.",
+                    "answer": "identify"
+                }
+            ]
+        },
+        {
+            "en": "image",
+            "ch": "圖像；形象",
+            "sents": [
+                {
+                    "text": "Writers should state the source of images.",
+                    "answer": "image"
+                },
+                {
+                    "text": "Images for articles: soft copy (high resolution JPEG file format).",
+                    "answer": "image"
+                },
+                {
+                    "text": "// Yes   22. good for (the/our) school('s) image   23.",
+                    "answer": "image"
+                }
+            ]
+        },
+        {
+            "en": "immediately",
+            "ch": "立刻；馬上",
+            "sents": [
+                {
+                    "text": "The children will be told that if there is a dust storm they must evacuate the room immediately.",
+                    "answer": "immediately"
+                },
+                {
+                    "text": "It should be shut down immediately.",
+                    "answer": "immediately"
+                },
+                {
+                    "text": "Finally it was decided that 24 December would be best as it would mean that the mall could immediately benefit from the holiday period over Christmas.",
+                    "answer": "immediately"
+                }
+            ]
+        },
+        {
+            "en": "impossible",
+            "ch": "不可能的",
+            "sents": [
+                {
+                    "text": "It is therefore extremely rare and would be difficult / impossible to replace if damaged.",
+                    "answer": "impossible"
+                },
+                {
+                    "text": "I didn’t want a young hotshot like you competing with me, so I spread the rumor that you were impossible to work with.",
+                    "answer": "impossible"
+                },
+                {
+                    "text": "But Mr. Tudor’s profile is about to take a sharp rise with the publication of his new book, “Korea: The Impossible Country”.",
+                    "answer": "impossible"
+                }
+            ]
+        },
+        {
+            "en": "increase",
+            "ch": "增加；增長",
+            "sents": [
+                {
+                    "text": "I would also say that we should increase the amount of Physics.",
+                    "answer": "increase"
+                },
+                {
+                    "text": "It was agreed to increase the hourly rate to $38.",
+                    "answer": "increase"
+                },
+                {
+                    "text": "But that will take time, and in the meantime the government is working all-out to increase private consumption.",
+                    "answer": "increase"
+                }
+            ]
+        },
+        {
+            "en": "incredible",
+            "ch": "難以置信的；很棒的",
+            "sents": [
+                {
+                    "text": "Nearly 2000 of them, lighting up the night sky like a giant spider web as part of Tokyo's incredible Olympic Games Opening Ceremony.",
+                    "answer": "incredible"
+                },
+                {
+                    "text": "What an incredible woman she is!",
+                    "answer": "incredible"
+                },
+                {
+                    "text": "Incredible view of Manaslu as we left.",
+                    "answer": "incredible"
+                }
+            ]
+        },
+        {
+            "en": "independent",
+            "ch": "獨立的",
+            "sents": [
+                {
+                    "text": "You make these low-budget independent films and still get them shown in mainstream cinemas.",
+                    "answer": "independent"
+                },
+                {
+                    "text": "The low-budget independent film directors of today.",
+                    "answer": "independent"
+                },
+                {
+                    "text": "The technology's cheap and all of these low budget film makers - being independent and everything -have the freedom to explore this type of thing.",
+                    "answer": "independent"
+                }
+            ]
+        },
+        {
+            "en": "indian",
+            "ch": "印度的；印度人",
+            "sents": [
+                {
+                    "text": "We ate at an indian restaurant last night.",
+                    "answer": "indian"
+                },
+                {
+                    "text": "She loves indian music and dance.",
+                    "answer": "indian"
+                },
+                {
+                    "text": "An indian family moved next door.",
+                    "answer": "indian"
+                }
+            ]
+        },
+        {
+            "en": "individual",
+            "ch": "個別的；個人",
+            "sents": [
+                {
+                    "text": "individual items that weigh over 40kg).",
+                    "answer": "individual"
+                },
+                {
+                    "text": "[10] But then part of me thinks there are some individuals who just don’t make friends, and they are lonely.",
+                    "answer": "individual"
+                },
+                {
+                    "text": "And some individuals never find a partner and wish they could, and beyond that there’s not much more to say about it.",
+                    "answer": "individual"
+                }
+            ]
+        },
+        {
+            "en": "industry",
+            "ch": "工業；行業",
+            "sents": [
+                {
+                    "text": "I couldn't resist asking him if what we were seeing represented the future of this industry.",
+                    "answer": "industry"
+                },
+                {
+                    "text": "“There’s real interest from the food and beverage industry in Hong Kong and they’re fascinated about what is edible around them,” Huang says.",
+                    "answer": "industry"
+                },
+                {
+                    "text": "Such enterprises are part of the entertainment industry.",
+                    "answer": "industry"
+                }
+            ]
+        },
+        {
+            "en": "injury",
+            "ch": "受傷；傷害",
+            "sents": [
+                {
+                    "text": "He missed the game because of a knee injury.",
+                    "answer": "injury"
+                },
+                {
+                    "text": "The nurse treated her injury quickly.",
+                    "answer": "injury"
+                },
+                {
+                    "text": "That fall could have caused a serious injury.",
+                    "answer": "injury"
+                }
+            ]
+        },
+        {
+            "en": "insect",
+            "ch": "昆蟲",
+            "sents": [
+                {
+                    "text": "Finally, write a blog post for the new Insects and Reptiles Exhibition at Kowloon Park we are launching soon.",
+                    "answer": "insect"
+                },
+                {
+                    "text": "Kowloon Park website - Insects and Reptiles Exhibition page   Read up on the variety of Dragonflies in Hong Kong so you don't miss them!",
+                    "answer": "insect"
+                },
+                {
+                    "text": "Need your advice: we're drafting the blog post for the Insects and Reptiles Exhibition at Kowloon Park.",
+                    "answer": "insect"
+                }
+            ]
+        },
+        {
+            "en": "instead",
+            "ch": "代替；反而",
+            "sents": [
+                {
+                    "text": "Therefore, any emergency cases requiring immediate hospitalization should be taken to the Tsing Shan Hospital instead.",
+                    "answer": "instead"
+                },
+                {
+                    "text": "Make it like a real Science class so that the kids can learn something useful instead of just chatting.\"",
+                    "answer": "instead"
+                },
+                {
+                    "text": "Instead of using the tribe to generate more tourism as we have seen in so many other countries, they have decided to leave the tribes of people uncontacted.",
+                    "answer": "instead"
+                }
+            ]
+        },
+        {
+            "en": "instruction",
+            "ch": "指示；說明",
+            "sents": [
+                {
+                    "text": "Captain Moby: Please repeat instruction, control.",
+                    "answer": "instruction"
+                },
+                {
+                    "text": "First, I want you to write the script for an instruction video for the Mars Experience Room where kids go into a room and pretend they are exploring Mars.",
+                    "answer": "instruction"
+                },
+                {
+                    "text": "This instruction video will be shown to them before they go into the Mars Experience Room.",
+                    "answer": "instruction"
+                }
+            ]
+        },
+        {
+            "en": "instructor",
+            "ch": "導師；教練",
+            "sents": [
+                {
+                    "text": "All instructors are HАВ approved.",
+                    "answer": "instructor"
+                },
+                {
+                    "text": "The instructors gave out some really interesting tips on food safety.",
+                    "answer": "instructor"
+                },
+                {
+                    "text": "Jake, the instructor, was super knowledgeable and answered all my questions.",
+                    "answer": "instructor"
+                }
+            ]
+        },
+        {
+            "en": "instrument",
+            "ch": "樂器；儀器",
+            "sents": [
+                {
+                    "text": "She can play three musical instruments.",
+                    "answer": "instrument"
+                },
+                {
+                    "text": "This instrument makes a soft sound.",
+                    "answer": "instrument"
+                },
+                {
+                    "text": "The lab instrument must be handled carefully.",
+                    "answer": "instrument"
+                }
+            ]
+        },
+        {
+            "en": "intelligent",
+            "ch": "聰明的",
+            "sents": [
+                {
+                    "text": "That student is very intelligent.",
+                    "answer": "intelligent"
+                },
+                {
+                    "text": "Dolphins are intelligent animals.",
+                    "answer": "intelligent"
+                },
+                {
+                    "text": "She gave an intelligent answer to the question.",
+                    "answer": "intelligent"
+                }
+            ]
+        },
+        {
+            "en": "international",
+            "ch": "國際的",
+            "sents": [
+                {
+                    "text": "The airport has many international flights.",
+                    "answer": "international"
+                },
+                {
+                    "text": "She attends an international school.",
+                    "answer": "international"
+                },
+                {
+                    "text": "We watched an international news report.",
+                    "answer": "international"
+                }
+            ]
+        },
+        {
+            "en": "introduction",
+            "ch": "介紹；引言",
+            "sents": [
+                {
+                    "text": "I've attached an introduction to an article on Space Food from the Journal of Food and Health for Nico to refer to in the reply.",
+                    "answer": "introduction"
+                },
+                {
+                    "text": "I think it would be good to add to the introduction.\"",
+                    "answer": "introduction"
+                },
+                {
+                    "text": "Ms Fong has already written the introduction for the speech to help you get started.",
+                    "answer": "introduction"
+                }
+            ]
+        },
+        {
+            "en": "invent",
+            "ch": "發明",
+            "sents": [
+                {
+                    "text": "Who invents these useful tools?",
+                    "answer": "invent"
+                },
+                {
+                    "text": "She wants to invent a better phone case.",
+                    "answer": "invent"
+                },
+                {
+                    "text": "People continue to invent new ways to save energy.",
+                    "answer": "invent"
+                }
+            ]
+        },
+        {
+            "en": "invention",
+            "ch": "發明；創造",
+            "sents": [
+                {
+                    "text": "The internet is a great invention.",
+                    "answer": "invention"
+                },
+                {
+                    "text": "This invention changed daily life.",
+                    "answer": "invention"
+                },
+                {
+                    "text": "His science project was a clever invention.",
+                    "answer": "invention"
+                }
+            ]
+        },
+        {
+            "en": "invitation",
+            "ch": "邀請；請柬",
+            "sents": [
+                {
+                    "text": "We received an invitation to the wedding.",
+                    "answer": "invitation"
+                },
+                {
+                    "text": "Her invitation arrived by email.",
+                    "answer": "invitation"
+                },
+                {
+                    "text": "Thank you for the invitation to dinner.",
+                    "answer": "invitation"
+                }
+            ]
+        },
+        {
+            "en": "invite",
+            "ch": "邀請",
+            "sents": [
+                {
+                    "text": "Ms Chawla said that in order not to seem like we are being cruel to a charity, they could be invited as VIPs to Star Pod's Open Day.",
+                    "answer": "invite"
+                },
+                {
+                    "text": "William will soon be uploading an updated recipe to our website, based on the suggestions of our head chef Christine and the fans we invited to comment online.",
+                    "answer": "invite"
+                },
+                {
+                    "text": "Invitation email to guest speaker   Please write an email to invite a guest speaker to the Opening Event of the Asian Games Week.",
+                    "answer": "invite"
+                }
+            ]
+        },
+        {
+            "en": "involve",
+            "ch": "涉及；包含",
+            "sents": [
+                {
+                    "text": "Things have not been great there recently due to the accident the World City Travel catamaran was involved in.",
+                    "answer": "involve"
+                },
+                {
+                    "text": "A report should explain the reason(s) why those involved were present at the location, and any known cause(s) of the incident, no matter how preliminary.",
+                    "answer": "involve"
+                },
+                {
+                    "text": "In the report, you need to explain what happened to the girl involved, the conclusions reached by the doctor and explanations for the M.A.T.",
+                    "answer": "involve"
+                }
+            ]
+        },
+        {
+            "en": "ipad",
+            "ch": "平板電腦",
+            "sents": [
+                {
+                    "text": "He uses an ipad to read comics.",
+                    "answer": "ipad"
+                },
+                {
+                    "text": "Please charge the ipad before class.",
+                    "answer": "ipad"
+                },
+                {
+                    "text": "The ipad screen was cracked.",
+                    "answer": "ipad"
+                }
+            ]
+        },
+        {
+            "en": "italian",
+            "ch": "意大利的；意大利人；意大利語",
+            "sents": [
+                {
+                    "text": "We had italian food for lunch.",
+                    "answer": "italian"
+                },
+                {
+                    "text": "She is taking an italian cooking course.",
+                    "answer": "italian"
+                },
+                {
+                    "text": "An italian singer visited the city.",
+                    "answer": "italian"
+                }
+            ]
+        },
+        {
+            "en": "item",
+            "ch": "項目；物品",
+            "sents": [
+                {
+                    "text": "The use of the Fanzone's an agenda item at our next committee meeting, so what you've just told will be useful for our discussion.",
+                    "answer": "item"
+                },
+                {
+                    "text": "This is to protect the museum from being blamed for damage to items that may be caused by visitors touching or handling items without permission.",
+                    "answer": "item"
+                },
+                {
+                    "text": "3.2.2 Transport   Movers with no experience or who are not trained in handling borrowed items must NOT be hired.",
+                    "answer": "item"
+                }
+            ]
+        },
+        {
+            "en": "jam",
+            "ch": "果醬；塞車",
+            "sents": [
+                {
+                    "text": "Traffic jams and deadly accidents will become a thing of the past.",
+                    "answer": "jam"
+                },
+                {
+                    "text": "They wouldn’t bunch up in traffic jams caused by a ripple of brake lights.",
+                    "answer": "jam"
+                },
+                {
+                    "text": "There may be ketchup on the table – but don’t forget to try the lingonberry jam!",
+                    "answer": "jam"
+                }
+            ]
+        },
+        {
+            "en": "japanese",
+            "ch": "日本的；日本人；日語",
+            "sents": [
+                {
+                    "text": "That's nice, because the Japanese word for tigerfish also means 'flame'.",
+                    "answer": "japanese"
+                },
+                {
+                    "text": "And your dad was Japanese right?",
+                    "answer": "japanese"
+                },
+                {
+                    "text": "You must have heard about that all-girl Japanese band who were attacked by a crazy man with a knife.",
+                    "answer": "japanese"
+                }
+            ]
+        },
+        {
+            "en": "joke",
+            "ch": "笑話",
+            "sents": [
+                {
+                    "text": "That joke made everyone laugh.",
+                    "answer": "joke"
+                },
+                {
+                    "text": "He told a funny joke at lunch.",
+                    "answer": "joke"
+                },
+                {
+                    "text": "I do not understand this joke.",
+                    "answer": "joke"
+                }
+            ]
+        },
+        {
+            "en": "journalist",
+            "ch": "記者",
+            "sents": [
+                {
+                    "text": "The journalist interviewed the actor.",
+                    "answer": "journalist"
+                },
+                {
+                    "text": "A journalist wrote the story for the paper.",
+                    "answer": "journalist"
+                },
+                {
+                    "text": "She dreams of becoming a journalist.",
+                    "answer": "journalist"
+                }
+            ]
+        },
+        {
+            "en": "jump",
+            "ch": "跳",
+            "sents": [
+                {
+                    "text": "The child can jump very high.",
+                    "answer": "jump"
+                },
+                {
+                    "text": "Do not jump on the sofa.",
+                    "answer": "jump"
+                },
+                {
+                    "text": "He had to jump over the puddle.",
+                    "answer": "jump"
+                }
+            ]
+        },
+        {
+            "en": "ketchup",
+            "ch": "番茄醬",
+            "sents": [
+                {
+                    "text": "Would you like ketchup with your fries?",
+                    "answer": "ketchup"
+                },
+                {
+                    "text": "There is no ketchup left in the bottle.",
+                    "answer": "ketchup"
+                },
+                {
+                    "text": "He added too much ketchup to the burger.",
+                    "answer": "ketchup"
+                }
+            ]
+        },
+        {
+            "en": "kilogram",
+            "ch": "公斤",
+            "sents": [
+                {
+                    "text": "This bag of rice weighs one kilogram.",
+                    "answer": "kilogram"
+                },
+                {
+                    "text": "The baby gained a kilogram this month.",
+                    "answer": "kilogram"
+                },
+                {
+                    "text": "Apples are sold by the kilogram here.",
+                    "answer": "kilogram"
+                }
+            ]
+        },
+        {
+            "en": "kinder",
+            "ch": "更善良的",
+            "sents": [
+                {
+                    "text": "Please be kinder to your little brother.",
+                    "answer": "kinder"
+                },
+                {
+                    "text": "Her second message sounded kinder.",
+                    "answer": "kinder"
+                },
+                {
+                    "text": "A kinder teacher would explain it slowly.",
+                    "answer": "kinder"
+                }
+            ]
+        },
+        {
+            "en": "king",
+            "ch": "國王",
+            "sents": [
+                {
+                    "text": "The king greeted the crowd from the balcony.",
+                    "answer": "king"
+                },
+                {
+                    "text": "The story begins with an old king.",
+                    "answer": "king"
+                },
+                {
+                    "text": "A golden crown belonged to the king.",
+                    "answer": "king"
+                }
+            ]
+        },
+        {
+            "en": "kite",
+            "ch": "風箏",
+            "sents": [
+                {
+                    "text": "So grab your kite and join in the fun, the sky is big enough for everyone!",
+                    "answer": "kite"
+                },
+                {
+                    "text": "You can make your kite dance across the sky by pulling in and letting out the line.",
+                    "answer": "kite"
+                },
+                {
+                    "text": "Be sure your kite is put together correctly, or it may not fly at all.",
+                    "answer": "kite"
+                }
+            ]
+        },
+        {
+            "en": "knee",
+            "ch": "膝蓋",
+            "sents": [
+                {
+                    "text": "He hurt his knee during practice.",
+                    "answer": "knee"
+                },
+                {
+                    "text": "My knee still aches after the run.",
+                    "answer": "knee"
+                },
+                {
+                    "text": "She put ice on her knee.",
+                    "answer": "knee"
+                }
+            ]
+        },
+        {
+            "en": "knife",
+            "ch": "刀",
+            "sents": [
+                {
+                    "text": "Use a sharp knife for the vegetables.",
+                    "answer": "knife"
+                },
+                {
+                    "text": "Be careful with that knife.",
+                    "answer": "knife"
+                },
+                {
+                    "text": "The knife is in the kitchen drawer.",
+                    "answer": "knife"
+                }
+            ]
+        },
+        {
+            "en": "knowledge",
+            "ch": "知識",
+            "sents": [
+                {
+                    "text": "MH: A quiz would be fun, but I think we should have questions about all aspects of the Asian Games, not just sports knowledge?",
+                    "answer": "knowledge"
+                },
+                {
+                    "text": "Our customers can relax in the knowledge that our experienced team is committed to finding the right lighting solution for you.",
+                    "answer": "knowledge"
+                },
+                {
+                    "text": "This knowledge I now applied, rubbing the end of my box-wood ruler against the edge of one of the tracks.",
+                    "answer": "knowledge"
+                }
+            ]
+        },
+        {
+            "en": "korean",
+            "ch": "韓國的；韓國人；韓語",
+            "sents": [
+                {
+                    "text": "A lot of Koreans say jeong – the warmth between people and mutual sacrifice – is uniquely Korean, as is han.",
+                    "answer": "korean"
+                },
+                {
+                    "text": "Even traditional Korean funerals used to feature extreme alcohol consumption, raucous singing, and the like.",
+                    "answer": "korean"
+                },
+                {
+                    "text": "But Koreans in fact tend to be very expressive and open with their feelings.",
+                    "answer": "korean"
+                }
+            ]
+        },
+        {
+            "en": "lab",
+            "ch": "實驗室",
+            "sents": [
+                {
+                    "text": "We did an experiment in the science lab.",
+                    "answer": "lab"
+                },
+                {
+                    "text": "The lab has new equipment this year.",
+                    "answer": "lab"
+                },
+                {
+                    "text": "Please wear goggles in the lab.",
+                    "answer": "lab"
+                }
+            ]
+        },
+        {
+            "en": "lady",
+            "ch": "女士",
+            "sents": [
+                {
+                    "text": "An elderly lady asked for help.",
+                    "answer": "lady"
+                },
+                {
+                    "text": "The shop lady smiled at us.",
+                    "answer": "lady"
+                },
+                {
+                    "text": "That lady carries herself with confidence.",
+                    "answer": "lady"
+                }
+            ]
+        },
+        {
+            "en": "lake",
+            "ch": "湖",
+            "sents": [
+                {
+                    "text": "Our studies have found that we are seeing fewer local fish in streams, ponds and lakes because the alligator gar is becoming dominant; they eat the local fish.'",
+                    "answer": "lake"
+                },
+                {
+                    "text": "The waterfall, the ship and the lake - yes, all great ideas and should be the key features of the mall.",
+                    "answer": "lake"
+                },
+                {
+                    "text": "Personally, I'd go for making the lake an aquarium.",
+                    "answer": "lake"
+                }
+            ]
+        },
+        {
+            "en": "land",
+            "ch": "土地；降落",
+            "sents": [
+                {
+                    "text": "A   5. a (rescue) helicopter   6. the noise (helicopters make)   7. can land anywhere   8. captain   9. ankle   10. fell down (some) stairs   11. hospital   12.",
+                    "answer": "land"
+                },
+                {
+                    "text": "It’s also illegal to dig up plants from private land without permission from the landowner.",
+                    "answer": "land"
+                },
+                {
+                    "text": "“And we don’t have to spend time farming — constantly ploughing the land and sowing seeds.",
+                    "answer": "land"
+                }
+            ]
+        },
+        {
+            "en": "laptop",
+            "ch": "手提電腦",
+            "sents": [
+                {
+                    "text": "My laptop battery is almost empty.",
+                    "answer": "laptop"
+                },
+                {
+                    "text": "He brought his laptop to the library.",
+                    "answer": "laptop"
+                },
+                {
+                    "text": "This laptop is lighter than my old one.",
+                    "answer": "laptop"
+                }
+            ]
+        },
+        {
+            "en": "larger",
+            "ch": "更大的",
+            "sents": [
+                {
+                    "text": "We need a larger table for the meeting.",
+                    "answer": "larger"
+                },
+                {
+                    "text": "This shirt is larger than I expected.",
+                    "answer": "larger"
+                },
+                {
+                    "text": "The city grew larger over time.",
+                    "answer": "larger"
+                }
+            ]
+        },
+        {
+            "en": "largest",
+            "ch": "最大的",
+            "sents": [
+                {
+                    "text": "This is the largest room in the house.",
+                    "answer": "largest"
+                },
+                {
+                    "text": "The elephant is the largest animal here.",
+                    "answer": "largest"
+                },
+                {
+                    "text": "Our school has the largest library in the area.",
+                    "answer": "largest"
+                }
+            ]
+        },
+        {
+            "en": "later",
+            "ch": "之後；較後",
+            "sents": [
+                {
+                    "text": "The Open Day will be held later this month and we will have a very very very special mystery special guest.",
+                    "answer": "later"
+                },
+                {
+                    "text": "She added that Mr Lok, the builders, had promised to send an interim report later that day.",
+                    "answer": "later"
+                },
+                {
+                    "text": "It's now a week later, on the 18th.",
+                    "answer": "later"
+                }
+            ]
+        },
+        {
+            "en": "law",
+            "ch": "法律",
+            "sents": [
+                {
+                    "text": "Article from the Hong Kong Times, November 2013   Foreign fish fall foul of the law   Have you been for a walk in a Hong Kong park recently?",
+                    "answer": "law"
+                },
+                {
+                    "text": "“The government needs to change the current laws, which do not protect dogs under training,” Cheung said.",
+                    "answer": "law"
+                },
+                {
+                    "text": "Erin is a pharmacist, an assistant professor, an entrepreneur, a writer, and a law student: does this make her any less employable?",
+                    "answer": "law"
+                }
+            ]
+        },
+        {
+            "en": "lawyer",
+            "ch": "律師",
+            "sents": [
+                {
+                    "text": "The lawyer explained the case to them.",
+                    "answer": "lawyer"
+                },
+                {
+                    "text": "She wants to become a lawyer one day.",
+                    "answer": "lawyer"
+                },
+                {
+                    "text": "A lawyer helped my uncle sign the contract.",
+                    "answer": "lawyer"
+                }
+            ]
+        },
+        {
+            "en": "lazy",
+            "ch": "懶惰的",
+            "sents": [
+                {
+                    "text": "Do not be lazy about your homework.",
+                    "answer": "lazy"
+                },
+                {
+                    "text": "The cat looked lazy in the sun.",
+                    "answer": "lazy"
+                },
+                {
+                    "text": "He felt lazy on Sunday morning.",
+                    "answer": "lazy"
+                }
+            ]
+        },
+        {
+            "en": "leader",
+            "ch": "領袖；隊長",
+            "sents": [
+                {
+                    "text": "She was chosen as team leader.",
+                    "answer": "leader"
+                },
+                {
+                    "text": "A good leader listens to others.",
+                    "answer": "leader"
+                },
+                {
+                    "text": "The class leader made the announcement.",
+                    "answer": "leader"
+                }
+            ]
+        },
+        {
+            "en": "lecture",
+            "ch": "演講；講課",
+            "sents": [
+                {
+                    "text": "We attended a lecture about space travel.",
+                    "answer": "lecture"
+                },
+                {
+                    "text": "The professor gave a short lecture.",
+                    "answer": "lecture"
+                },
+                {
+                    "text": "Her lecture was easy to follow.",
+                    "answer": "lecture"
+                }
+            ]
+        },
+        {
+            "en": "lend",
+            "ch": "借出",
+            "sents": [
+                {
+                    "text": "Can you lend me your pen?",
+                    "answer": "lend"
+                },
+                {
+                    "text": "My brother will not lend me his bike.",
+                    "answer": "lend"
+                },
+                {
+                    "text": "The library lends books for two weeks.",
+                    "answer": "lend"
+                }
+            ]
+        },
+        {
+            "en": "librarian",
+            "ch": "圖書館管理員",
+            "sents": [
+                {
+                    "text": "The librarian helped me find a novel.",
+                    "answer": "librarian"
+                },
+                {
+                    "text": "Ask the librarian if you need help.",
+                    "answer": "librarian"
+                },
+                {
+                    "text": "Our school librarian knows every shelf.",
+                    "answer": "librarian"
+                }
+            ]
+        },
+        {
+            "en": "lifestyle",
+            "ch": "生活方式",
+            "sents": [
+                {
+                    "text": "Regular exercise can improve your lifestyle.",
+                    "answer": "lifestyle"
+                },
+                {
+                    "text": "City life changed his lifestyle completely.",
+                    "answer": "lifestyle"
+                },
+                {
+                    "text": "They chose a healthier lifestyle this year.",
+                    "answer": "lifestyle"
+                }
+            ]
+        },
+        {
+            "en": "lift",
+            "ch": "電梯；舉起",
+            "sents": [
+                {
+                    "text": "Escalator and Lift Maintenance   Escalators and lifts must have at least one inspection per year.",
+                    "answer": "lift"
+                },
+                {
+                    "text": "Last time, you filled both our lifts with your big, heavy cameras.",
+                    "answer": "lift"
+                },
+                {
+                    "text": "You took so many trips that people in the building had to either use the stairs or wait for a whole hour to use the lifts.",
+                    "answer": "lift"
+                }
+            ]
+        },
+        {
+            "en": "light",
+            "ch": "光；輕的",
+            "sents": [
+                {
+                    "text": "C   17. light   18. strong   19.5   20.14   21.",
+                    "answer": "light"
+                },
+                {
+                    "text": "Make sure you wear light clothing.",
+                    "answer": "light"
+                },
+                {
+                    "text": "His dramatic \"Aqua Vita\" photo prints, of aquatic mammals in the wild, are among the most popular in our online shop and would light up any home or office.",
+                    "answer": "light"
+                }
+            ]
+        },
+        {
+            "en": "likely",
+            "ch": "可能的；很可能",
+            "sents": [
+                {
+                    "text": "Initial-reports are that, ruling out human error, the accident was likely to have been caused by bad weather.",
+                    "answer": "likely"
+                },
+                {
+                    "text": "Cleaning staff must be provided with facial masks in situations in which they are likely to be dealing with airborne dust particles.",
+                    "answer": "likely"
+                },
+                {
+                    "text": "It's basically a mini sports day, on the beach, with two sports our students are likely to have never played before.",
+                    "answer": "likely"
+                }
+            ]
+        },
+        {
+            "en": "link",
+            "ch": "連結；聯繫",
+            "sents": [
+                {
+                    "text": "Enjoy reading them and remember to send us your travel blog links.",
+                    "answer": "link"
+                },
+                {
+                    "text": "Here's the link to the transcript of the interview: https://hkshm.org/researchproject14.",
+                    "answer": "link"
+                },
+                {
+                    "text": "First thing is the maintenance work on the underground rail link to the airport.",
+                    "answer": "link"
+                }
+            ]
+        },
+        {
+            "en": "listener",
+            "ch": "聽眾",
+            "sents": [
+                {
+                    "text": "Actually listeners, we had to do this... and they searched our bags and equipment!",
+                    "answer": "listener"
+                },
+                {
+                    "text": "Now, our listeners might be interested to know that you went to the same school as me.",
+                    "answer": "listener"
+                },
+                {
+                    "text": "De Frietas (2006), for example, found that how people stand has a significant effect on listeners' perceptions of the speaker when giving presentations.",
+                    "answer": "listener"
+                }
+            ]
+        },
+        {
+            "en": "lobster",
+            "ch": "龍蝦",
+            "sents": [
+                {
+                    "text": "The restaurant is famous for lobster dishes.",
+                    "answer": "lobster"
+                },
+                {
+                    "text": "We saw a live lobster in the tank.",
+                    "answer": "lobster"
+                },
+                {
+                    "text": "He ordered grilled lobster for dinner.",
+                    "answer": "lobster"
+                }
+            ]
+        },
+        {
+            "en": "lock",
+            "ch": "鎖上；鎖",
+            "sents": [
+                {
+                    "text": "Please lock the door before you leave.",
+                    "answer": "lock"
+                },
+                {
+                    "text": "I forgot the lock code again.",
+                    "answer": "lock"
+                },
+                {
+                    "text": "She heard the gate lock at night.",
+                    "answer": "lock"
+                }
+            ]
+        },
+        {
+            "en": "lorry",
+            "ch": "貨車",
+            "sents": [
+                {
+                    "text": "A lorry blocked the narrow road.",
+                    "answer": "lorry"
+                },
+                {
+                    "text": "The lorry carried boxes to the market.",
+                    "answer": "lorry"
+                },
+                {
+                    "text": "We waited while the lorry turned the corner.",
+                    "answer": "lorry"
+                }
+            ]
+        },
+        {
+            "en": "loud",
+            "ch": "大聲的",
+            "sents": [
+                {
+                    "text": "The music is too loud for studying.",
+                    "answer": "loud"
+                },
+                {
+                    "text": "He spoke in a loud voice.",
+                    "answer": "loud"
+                },
+                {
+                    "text": "There was a loud crash outside.",
+                    "answer": "loud"
+                }
+            ]
+        },
+        {
+            "en": "lovely",
+            "ch": "可愛的；令人愉快的",
+            "sents": [
+                {
+                    "text": "What a lovely evening for a walk.",
+                    "answer": "lovely"
+                },
+                {
+                    "text": "She wore a lovely blue dress.",
+                    "answer": "lovely"
+                },
+                {
+                    "text": "That was a lovely message from your aunt.",
+                    "answer": "lovely"
+                }
+            ]
+        },
+        {
+            "en": "luck",
+            "ch": "運氣",
+            "sents": [
+                {
+                    "text": "Will this have better luck?",
+                    "answer": "luck"
+                },
+                {
+                    "text": "Good luck and do let me know how it goes.",
+                    "answer": "luck"
+                },
+                {
+                    "text": "THERE GOES A MAGPIE It’s bad luck to see one magpie, but it’s lucky to see two.",
+                    "answer": "luck"
+                }
+            ]
+        },
+        {
+            "en": "lucky",
+            "ch": "幸運的",
+            "sents": [
+                {
+                    "text": "Host: We're lucky enough today to be sitting with three new graduates from the School of Veterinary Medicine at King George University, Canada.",
+                    "answer": "lucky"
+                },
+                {
+                    "text": "And in the end it's family and friends that are important and I'm lucky.",
+                    "answer": "lucky"
+                },
+                {
+                    "text": "Winnie: No Archie - we've decided to have a lucky draw for all the participants.",
+                    "answer": "lucky"
+                }
+            ]
+        },
+        {
+            "en": "luggage",
+            "ch": "行李",
+            "sents": [
+                {
+                    "text": "Please keep your luggage with you.",
+                    "answer": "luggage"
+                },
+                {
+                    "text": "His luggage was too heavy to carry.",
+                    "answer": "luggage"
+                },
+                {
+                    "text": "We waited a long time for our luggage.",
+                    "answer": "luggage"
+                }
+            ]
+        },
+        {
+            "en": "lunchtime",
+            "ch": "午餐時間",
+            "sents": [
+                {
+                    "text": "The canteen is crowded at lunchtime.",
+                    "answer": "lunchtime"
+                },
+                {
+                    "text": "We met in the park at lunchtime.",
+                    "answer": "lunchtime"
+                },
+                {
+                    "text": "She usually reads at lunchtime.",
+                    "answer": "lunchtime"
+                }
+            ]
+        },
+        {
+            "en": "mail",
+            "ch": "郵件；郵寄",
+            "sents": [
+                {
+                    "text": "I checked my mail before breakfast.",
+                    "answer": "mail"
+                },
+                {
+                    "text": "The package came in today?s mail.",
+                    "answer": "mail"
+                },
+                {
+                    "text": "Please send the form by mail.",
+                    "answer": "mail"
+                }
+            ]
+        },
+        {
+            "en": "major",
+            "ch": "主要的",
+            "sents": [
+                {
+                    "text": "As residents we hold two major concerns.",
+                    "answer": "major"
+                },
+                {
+                    "text": "[5] Following the collapse on 22 July, the Highways Department’s contractor inspected the remaining trees and carried out major trimming work.",
+                    "answer": "major"
+                },
+                {
+                    "text": "[9] One major magazine recently suggested that food trucks had brought affordable ethnic cuisine to the people of Los Angeles – seriously?",
+                    "answer": "major"
+                }
+            ]
+        },
+        {
+            "en": "makeup",
+            "ch": "化妝品；化妝",
+            "sents": [
+                {
+                    "text": "She bought makeup for the party.",
+                    "answer": "makeup"
+                },
+                {
+                    "text": "The actor wore heavy makeup on stage.",
+                    "answer": "makeup"
+                },
+                {
+                    "text": "He packed her makeup in a small bag.",
+                    "answer": "makeup"
+                }
+            ]
+        },
+        {
+            "en": "manage",
+            "ch": "管理；設法做到",
+            "sents": [
+                {
+                    "text": "Advanced Fire Safety   This course will help develop and manage your staff in the realm of fire safety.",
+                    "answer": "manage"
+                },
+                {
+                    "text": "Anyway, I've managed to find you a room for holding the interview (room 829).",
+                    "answer": "manage"
+                },
+                {
+                    "text": "Some alternative therapists claim to be nutritionists and have somehow managed to brand themselves as men and women of science.",
+                    "answer": "manage"
+                }
+            ]
+        },
+        {
+            "en": "manager",
+            "ch": "經理",
+            "sents": [
+                {
+                    "text": "The manager approved our request.",
+                    "answer": "manager"
+                },
+                {
+                    "text": "She spoke to the store manager.",
+                    "answer": "manager"
+                },
+                {
+                    "text": "A good manager supports the team.",
+                    "answer": "manager"
+                }
+            ]
+        },
+        {
+            "en": "manner",
+            "ch": "方式；態度",
+            "sents": [
+                {
+                    "text": "He answered in a polite manner.",
+                    "answer": "manner"
+                },
+                {
+                    "text": "That manner of speaking sounds rude.",
+                    "answer": "manner"
+                },
+                {
+                    "text": "She always behaves in a calm manner.",
+                    "answer": "manner"
+                }
+            ]
+        },
+        {
+            "en": "marry",
+            "ch": "結婚；嫁；娶",
+            "sents": [
+                {
+                    "text": "They plan to marry next spring.",
+                    "answer": "marry"
+                },
+                {
+                    "text": "My cousin will marry in July.",
+                    "answer": "marry"
+                },
+                {
+                    "text": "He asked if she would marry him.",
+                    "answer": "marry"
+                }
+            ]
+        },
+        {
+            "en": "mathematics",
+            "ch": "數學",
+            "sents": [
+                {
+                    "text": "Mathematics is easier with practice.",
+                    "answer": "mathematics"
+                },
+                {
+                    "text": "She scored well in mathematics this term.",
+                    "answer": "mathematics"
+                },
+                {
+                    "text": "Our mathematics teacher loves puzzles.",
+                    "answer": "mathematics"
+                }
+            ]
+        },
+        {
+            "en": "matter",
+            "ch": "事情；有關係",
+            "sents": [
+                {
+                    "text": "A report should explain the reason(s) why those involved were present at the location, and any known cause(s) of the incident, no matter how preliminary.",
+                    "answer": "matter"
+                },
+                {
+                    "text": "Matters arising   3.",
+                    "answer": "matter"
+                },
+                {
+                    "text": "Regarding the other matter, don't worry.",
+                    "answer": "matter"
+                }
+            ]
+        },
+        {
+            "en": "medical",
+            "ch": "醫療的",
+            "sents": [
+                {
+                    "text": "He needs medical help right away.",
+                    "answer": "medical"
+                },
+                {
+                    "text": "The school keeps medical records safely.",
+                    "answer": "medical"
+                },
+                {
+                    "text": "A medical team arrived quickly.",
+                    "answer": "medical"
+                }
+            ]
+        },
+        {
+            "en": "medicals",
+            "ch": "體檢；醫療用品",
+            "sents": [
+                {
+                    "text": "The team completed their medicals before training.",
+                    "answer": "medicals"
+                },
+                {
+                    "text": "He booked his medicals for next week.",
+                    "answer": "medicals"
+                },
+                {
+                    "text": "Some jobs require regular medicals.",
+                    "answer": "medicals"
+                }
+            ]
+        },
+        {
+            "en": "medicine",
+            "ch": "藥；醫學",
+            "sents": [
+                {
+                    "text": "Apart from collecting wild plants for food, people also forage for a wide range of medicinal plants to use in Chinese medicine or dietary therapy.",
+                    "answer": "medicine"
+                },
+                {
+                    "text": "The hole in our culture is gaping: evidence-based medicine, the ultimate applied science, contains some of the cleverest ideas from the past two centuries.",
+                    "answer": "medicine"
+                },
+                {
+                    "text": "In the field of medicine, we see similar tricks used by the pharmaceutical industry to pull the wool over the eyes of doctors and patients.",
+                    "answer": "medicine"
+                }
+            ]
+        },
+        {
+            "en": "memory",
+            "ch": "記憶；回憶",
+            "sents": [
+                {
+                    "text": "That song brings back a happy memory.",
+                    "answer": "memory"
+                },
+                {
+                    "text": "My memory of that day is clear.",
+                    "answer": "memory"
+                },
+                {
+                    "text": "She has a good memory for names.",
+                    "answer": "memory"
+                }
+            ]
+        },
+        {
+            "en": "metal",
+            "ch": "金屬",
+            "sents": [
+                {
+                    "text": "9:10 AM   Mira   And you don't want to miss the metal noodles scene!",
+                    "answer": "metal"
+                },
+                {
+                    "text": "Maggie Wang Key chains are cool but metal NOT plastic!!!!",
+                    "answer": "metal"
+                },
+                {
+                    "text": "It’s likely that you separate paper from plastic and glass and metal.",
+                    "answer": "metal"
+                }
+            ]
+        },
+        {
+            "en": "method",
+            "ch": "方法",
+            "sents": [
+                {
+                    "text": "It’s possible that we might have continued this way, Robbie and I, had I been less curious and more reverent when it came to her piano method.",
+                    "answer": "method"
+                },
+                {
+                    "text": "The next challenge, Rong says, will be to find an acceptable method for reapplying this color to the warriors.",
+                    "answer": "method"
+                },
+                {
+                    "text": "The problem was to become the centre of attention in some way more acceptable than my usual method of throwing my hands in the air, crying 'Sir!",
+                    "answer": "method"
+                }
+            ]
+        },
+        {
+            "en": "middle",
+            "ch": "中間；中部",
+            "sents": [
+                {
+                    "text": "He sat in the middle of the row.",
+                    "answer": "middle"
+                },
+                {
+                    "text": "The shop is in the middle of town.",
+                    "answer": "middle"
+                },
+                {
+                    "text": "We stopped in the middle of the game.",
+                    "answer": "middle"
+                }
+            ]
+        },
+        {
+            "en": "mind",
+            "ch": "頭腦；介意",
+            "sents": [
+                {
+                    "text": "But I had never been to the new Hong Kong Social History Museum, so I tried to keep an open mind....",
+                    "answer": "mind"
+                },
+                {
+                    "text": "Would you mind if I asked you guys a few questions about your experience this past month?",
+                    "answer": "mind"
+                },
+                {
+                    "text": "I wouldn't mind but I had a photo shoot the next day I had to cancel.",
+                    "answer": "mind"
+                }
+            ]
+        },
+        {
+            "en": "mini",
+            "ch": "迷你的",
+            "sents": [
+                {
+                    "text": "She carried a mini umbrella in her bag.",
+                    "answer": "mini"
+                },
+                {
+                    "text": "They bought a mini speaker for travel.",
+                    "answer": "mini"
+                },
+                {
+                    "text": "The bakery sells mini cakes on weekends.",
+                    "answer": "mini"
+                }
+            ]
+        },
+        {
+            "en": "minus",
+            "ch": "減；負號",
+            "sents": [
+                {
+                    "text": "Six minus two equals four.",
+                    "answer": "minus"
+                },
+                {
+                    "text": "The weather may drop to minus one tonight.",
+                    "answer": "minus"
+                },
+                {
+                    "text": "The bill came to twenty dollars minus the discount.",
+                    "answer": "minus"
+                }
+            ]
+        },
+        {
+            "en": "mirror",
+            "ch": "鏡子",
+            "sents": [
+                {
+                    "text": "She looked in the mirror before leaving.",
+                    "answer": "mirror"
+                },
+                {
+                    "text": "The mirror above the sink is new.",
+                    "answer": "mirror"
+                },
+                {
+                    "text": "A small mirror was in her bag.",
+                    "answer": "mirror"
+                }
+            ]
+        },
+        {
+            "en": "mobile",
+            "ch": "流動的；手機",
+            "sents": [
+                {
+                    "text": "These mobile outlets and the hawkers will in effect fill the same niche.",
+                    "answer": "mobile"
+                },
+                {
+                    "text": "The best mobile operators offer good food at affordable prices.",
+                    "answer": "mobile"
+                },
+                {
+                    "text": "[11] The only mobile food business currently operating in Hong Kong is the fleet of Mister Softee ice-cream vans.",
+                    "answer": "mobile"
+                }
+            ]
+        },
+        {
+            "en": "mostly",
+            "ch": "大多數；主要地",
+            "sents": [
+                {
+                    "text": "It mostly deals with work settings, though, so nothing I could use at home.",
+                    "answer": "mostly"
+                },
+                {
+                    "text": "They seemed to view their job as mostly to listen and bolster us as needed inside the four walls of our home.",
+                    "answer": "mostly"
+                },
+                {
+                    "text": "Mostly, this is a good thing.",
+                    "answer": "mostly"
+                }
+            ]
+        },
+        {
+            "en": "movement",
+            "ch": "動作；運動",
+            "sents": [
+                {
+                    "text": "Any sudden movement may scare the bird.",
+                    "answer": "movement"
+                },
+                {
+                    "text": "The dance needs smooth movement.",
+                    "answer": "movement"
+                },
+                {
+                    "text": "The police watched every movement closely.",
+                    "answer": "movement"
+                }
+            ]
+        },
+        {
+            "en": "mug",
+            "ch": "馬克杯",
+            "sents": [
+                {
+                    "text": "He poured tea into a large mug.",
+                    "answer": "mug"
+                },
+                {
+                    "text": "My favorite mug has a cat on it.",
+                    "answer": "mug"
+                },
+                {
+                    "text": "That mug is still warm.",
+                    "answer": "mug"
+                }
+            ]
+        },
+        {
+            "en": "mushroom",
+            "ch": "蘑菇",
+            "sents": [
+                {
+                    "text": "[3] It was mushrooms that first got me interested.",
+                    "answer": "mushroom"
+                },
+                {
+                    "text": "I encountered a mushroom and was annoyed that I didn’t know what it was.",
+                    "answer": "mushroom"
+                },
+                {
+                    "text": "I started teaching evening classes and now I lead mushroom picking trips and I’m currently working on my ninth nature guidebook.",
+                    "answer": "mushroom"
+                }
+            ]
+        },
+        {
+            "en": "musician",
+            "ch": "音樂家",
+            "sents": [
+                {
+                    "text": "The musician played the piano beautifully.",
+                    "answer": "musician"
+                },
+                {
+                    "text": "A young musician visited our school today.",
+                    "answer": "musician"
+                },
+                {
+                    "text": "She hopes to become a musician one day.",
+                    "answer": "musician"
+                }
+            ]
+        },
+        {
+            "en": "nature",
+            "ch": "大自然；本質",
+            "sents": [
+                {
+                    "text": "First, complete the email to the participants of the Guided Nature Walk at the Hong Kong Wetland Park.",
+                    "answer": "nature"
+                },
+                {
+                    "text": "I have some urgent information to pass on regarding the Guided Nature Walk at the Hong Kong Wetland Park.",
+                    "answer": "nature"
+                },
+                {
+                    "text": "These inspired a whole generation of nature enthusiasts.",
+                    "answer": "nature"
+                }
+            ]
+        },
+        {
+            "en": "nearly",
+            "ch": "幾乎",
+            "sents": [
+                {
+                    "text": "Their expert is spot on about Jianzi: I see students in the playground playing this nearly every day.",
+                    "answer": "nearly"
+                },
+                {
+                    "text": "Nearly 2000 of them, lighting up the night sky like a giant spider web as part of Tokyo's incredible Olympic Games Opening Ceremony.",
+                    "answer": "nearly"
+                },
+                {
+                    "text": "A poll taken in 2005 found that the public was nearly unanimous in its acclaim for the educational impact of marine life parks, zoos and aquariums.",
+                    "answer": "nearly"
+                }
+            ]
+        },
+        {
+            "en": "necessary",
+            "ch": "必要的",
+            "sents": [
+                {
+                    "text": "A passport is necessary for this trip.",
+                    "answer": "necessary"
+                },
+                {
+                    "text": "It is necessary to drink enough water.",
+                    "answer": "necessary"
+                },
+                {
+                    "text": "Do you think this change is really necessary?",
+                    "answer": "necessary"
+                }
+            ]
+        },
+        {
+            "en": "nervous",
+            "ch": "緊張的",
+            "sents": [
+                {
+                    "text": "I felt nervous before the interview.",
+                    "answer": "nervous"
+                },
+                {
+                    "text": "He looks nervous about the exam.",
+                    "answer": "nervous"
+                },
+                {
+                    "text": "Do not be nervous when you speak in class.",
+                    "answer": "nervous"
+                }
+            ]
+        },
+        {
+            "en": "network",
+            "ch": "網絡",
+            "sents": [
+                {
+                    "text": "Cherry     39. got social network (system)   [twenty four]   12.",
+                    "answer": "network"
+                },
+                {
+                    "text": "Both Venny and Theresa have decided to try to build up a network to encourage others to do more.",
+                    "answer": "network"
+                },
+                {
+                    "text": "There’s the dwindling distribution network.",
+                    "answer": "network"
+                }
+            ]
+        },
+        {
+            "en": "noise",
+            "ch": "噪音",
+            "sents": [
+                {
+                    "text": "No noise at all.",
+                    "answer": "noise"
+                },
+                {
+                    "text": "And it made a load of noise at night.",
+                    "answer": "noise"
+                },
+                {
+                    "text": "Oh and the noise (from the traffic).",
+                    "answer": "noise"
+                }
+            ]
+        },
+        {
+            "en": "noisy",
+            "ch": "吵鬧的",
+            "sents": [
+                {
+                    "text": "It's so noisy.",
+                    "answer": "noisy"
+                },
+                {
+                    "text": "I mean really noisy!",
+                    "answer": "noisy"
+                },
+                {
+                    "text": "We used to have a dog and it was really noisy.",
+                    "answer": "noisy"
+                }
+            ]
+        },
+        {
+            "en": "none",
+            "ch": "沒有一個",
+            "sents": [
+                {
+                    "text": "None of the answers was correct.",
+                    "answer": "none"
+                },
+                {
+                    "text": "I invited three friends, but none could come.",
+                    "answer": "none"
+                },
+                {
+                    "text": "There were many boxes, but none were open.",
+                    "answer": "none"
+                }
+            ]
+        },
+        {
+            "en": "noodle",
+            "ch": "麵條",
+            "sents": [
+                {
+                    "text": "I will never look at noodles the same way tho - LOL!",
+                    "answer": "noodle"
+                },
+                {
+                    "text": "NOODLES!!!!",
+                    "answer": "noodle"
+                },
+                {
+                    "text": "So no noodles!",
+                    "answer": "noodle"
+                }
+            ]
+        },
+        {
+            "en": "normally",
+            "ch": "通常；正常地",
+            "sents": [
+                {
+                    "text": "I normally wake up at six thirty.",
+                    "answer": "normally"
+                },
+                {
+                    "text": "The bus normally arrives on time.",
+                    "answer": "normally"
+                },
+                {
+                    "text": "She normally eats lunch with her sister.",
+                    "answer": "normally"
+                }
+            ]
+        },
+        {
+            "en": "notepad",
+            "ch": "記事本",
+            "sents": [
+                {
+                    "text": "Write your ideas in this notepad.",
+                    "answer": "notepad"
+                },
+                {
+                    "text": "He keeps a small notepad in his bag.",
+                    "answer": "notepad"
+                },
+                {
+                    "text": "The notepad is full of meeting notes.",
+                    "answer": "notepad"
+                }
+            ]
+        },
+        {
+            "en": "notice",
+            "ch": "注意到；告示",
+            "sents": [
+                {
+                    "text": "I noticed we had quite a few comments on this after the last event.",
+                    "answer": "notice"
+                },
+                {
+                    "text": "You may want to start by looking at the notice we sent to the charities.",
+                    "answer": "notice"
+                },
+                {
+                    "text": "Check the Project Team memo, the Finance Department notice, the Live, Study, Cook Prize Fund group chat and listen to the online staff meeting to help you.",
+                    "answer": "notice"
+                }
+            ]
+        },
+        {
+            "en": "nowhere",
+            "ch": "無處；哪裡都不",
+            "sents": [
+                {
+                    "text": "I looked everywhere but found nowhere to sit.",
+                    "answer": "nowhere"
+                },
+                {
+                    "text": "There is nowhere to hide in this room.",
+                    "answer": "nowhere"
+                },
+                {
+                    "text": "The old map led us nowhere.",
+                    "answer": "nowhere"
+                }
+            ]
+        },
+        {
+            "en": "number",
+            "ch": "數字；號碼",
+            "sents": [
+                {
+                    "text": "Please write your phone number here.",
+                    "answer": "number"
+                },
+                {
+                    "text": "What number comes after nineteen?",
+                    "answer": "number"
+                },
+                {
+                    "text": "Her lucky number is eight.",
+                    "answer": "number"
+                }
+            ]
+        },
+        {
+            "en": "officer",
+            "ch": "官員；警官",
+            "sents": [
+                {
+                    "text": "A police officer helped the tourists.",
+                    "answer": "officer"
+                },
+                {
+                    "text": "The customs officer checked our bags.",
+                    "answer": "officer"
+                },
+                {
+                    "text": "An officer stood near the entrance.",
+                    "answer": "officer"
+                }
+            ]
+        },
+        {
+            "en": "oil",
+            "ch": "油",
+            "sents": [
+                {
+                    "text": "Add a little oil to the pan.",
+                    "answer": "oil"
+                },
+                {
+                    "text": "The car needs more oil.",
+                    "answer": "oil"
+                },
+                {
+                    "text": "This salad has olive oil on top.",
+                    "answer": "oil"
+                }
+            ]
+        },
+        {
+            "en": "onto",
+            "ch": "到…上面",
+            "sents": [
+                {
+                    "text": "As Public Relations Officer, can you apply your magic with words and get onto the following things ASAP?",
+                    "answer": "onto"
+                },
+                {
+                    "text": "Product name: The Wall   Projection onto 'wall' of water - looks just like real 3D!",
+                    "answer": "onto"
+                },
+                {
+                    "text": "[11] Then we will move onto bigger fish.",
+                    "answer": "onto"
+                }
+            ]
+        },
+        {
+            "en": "opportunity",
+            "ch": "機會",
+            "sents": [
+                {
+                    "text": "This job is a great opportunity for her.",
+                    "answer": "opportunity"
+                },
+                {
+                    "text": "Do not miss the opportunity to learn.",
+                    "answer": "opportunity"
+                },
+                {
+                    "text": "He thanked them for the opportunity to speak.",
+                    "answer": "opportunity"
+                }
+            ]
+        },
+        {
+            "en": "option",
+            "ch": "選擇；選項",
+            "sents": [
+                {
+                    "text": "Please write a letter to the editor explaining how we will try to stop the littering and what TV options are available.",
+                    "answer": "option"
+                },
+                {
+                    "text": "Option 2:   Maximise My Money   How to turn your social media feed into a money-spinner?",
+                    "answer": "option"
+                },
+                {
+                    "text": "In our last company meeting in March we discussed two funding options for Escape to Hong Kong Island: Gamezstart and the Acorn Grant.",
+                    "answer": "option"
+                }
+            ]
+        },
+        {
+            "en": "ordinary",
+            "ch": "普通的",
+            "sents": [
+                {
+                    "text": "[3] Don Don is not an ordinary dog.",
+                    "answer": "ordinary"
+                },
+                {
+                    "text": "One of my favourite bands is 3rd Line Butterfly: these guys are not rich and famous; they’re ordinary guys you can be friends with.",
+                    "answer": "ordinary"
+                },
+                {
+                    "text": "For ordinary offences Thommo was caned by Mr Slavin and for more serious transgressions he was caned by the Deputy Headmaster.",
+                    "answer": "ordinary"
+                }
+            ]
+        },
+        {
+            "en": "organization",
+            "ch": "機構；組織",
+            "sents": [
+                {
+                    "text": "Posters   The name of your organization or society must be really big so people know who you are.",
+                    "answer": "organization"
+                },
+                {
+                    "text": "Make sure the website of your organization or society is on your poster.",
+                    "answer": "organization"
+                },
+                {
+                    "text": "Government organizations are also doing their bit to help.",
+                    "answer": "organization"
+                }
+            ]
+        },
+        {
+            "en": "organize",
+            "ch": "組織；安排",
+            "sents": [
+                {
+                    "text": "Focusing on one project might seem like the most efficient and simple way to organize one’s work.",
+                    "answer": "organize"
+                },
+                {
+                    "text": "[7] I see “Messy” as an argument against the excessive attempts to organize.",
+                    "answer": "organize"
+                },
+                {
+                    "text": "It’s actually naturally and organically organized by the process of using it.",
+                    "answer": "organize"
+                }
+            ]
+        },
+        {
+            "en": "orion",
+            "ch": "獵戶座",
+            "sents": [
+                {
+                    "text": "We tried to find Orion in the night sky.",
+                    "answer": "orion"
+                },
+                {
+                    "text": "My teacher showed us where Orion was.",
+                    "answer": "orion"
+                },
+                {
+                    "text": "Orion is easier to see on clear winter nights.",
+                    "answer": "orion"
+                }
+            ]
+        },
+        {
+            "en": "oven",
+            "ch": "焗爐；烤箱",
+            "sents": [
+                {
+                    "text": "Heat the oven to 220°C   Preparation   2.",
+                    "answer": "oven"
+                },
+                {
+                    "text": "Bake in the oven for 35 minutes   Serving suggestion   8.",
+                    "answer": "oven"
+                },
+                {
+                    "text": "Best Baked Potato Fries: Online comments and suggestions   Graham   I think William's oven temperature is too hot.",
+                    "answer": "oven"
+                }
+            ]
+        },
+        {
+            "en": "owner",
+            "ch": "物主；主人",
+            "sents": [
+                {
+                    "text": ";-) \"   (Fanny Lo)   Sparky   Sparky belongs to proud owner Kim Tse.",
+                    "answer": "owner"
+                },
+                {
+                    "text": "Page from the Cincinnati Pet Owners' Newsletter   Virtual Pets: what they do with their owners   A virtual pet!",
+                    "answer": "owner"
+                },
+                {
+                    "text": "We sent our reporter out and about to find some of the virtual pets at Cincinnati Elementary School and ask what they have been up to with their owners!",
+                    "answer": "owner"
+                }
+            ]
+        },
+        {
+            "en": "pain",
+            "ch": "痛楚；疼痛",
+            "sents": [
+                {
+                    "text": "Never felt so much pain for so long, but we made it down.",
+                    "answer": "pain"
+                },
+                {
+                    "text": "The pain was considerable, but the glory was greater.",
+                    "answer": "pain"
+                },
+                {
+                    "text": "To give such insects time to feed, insect bites have evolved so that the pain is not as sharp as a sting and is usually felt only minutes later.",
+                    "answer": "pain"
+                }
+            ]
+        },
+        {
+            "en": "painter",
+            "ch": "畫家；油漆工",
+            "sents": [
+                {
+                    "text": "The painter worked on a large wall mural.",
+                    "answer": "painter"
+                },
+                {
+                    "text": "My uncle is a house painter.",
+                    "answer": "painter"
+                },
+                {
+                    "text": "A famous painter created that picture.",
+                    "answer": "painter"
+                }
+            ]
+        },
+        {
+            "en": "particular",
+            "ch": "特定的；特別的",
+            "sents": [
+                {
+                    "text": "Tree frogs are my particular passion as you will see!",
+                    "answer": "particular"
+                },
+                {
+                    "text": "Firstly, can you clarify why it is that you want to borrow the Chang Yee Tak Plough in particular?",
+                    "answer": "particular"
+                },
+                {
+                    "text": "In particular, we are rather worried that your filming will be too disruptive to our operations (e.g.",
+                    "answer": "particular"
+                }
+            ]
+        },
+        {
+            "en": "passenger",
+            "ch": "乘客",
+            "sents": [
+                {
+                    "text": "Each passenger must show a ticket.",
+                    "answer": "passenger"
+                },
+                {
+                    "text": "The passenger thanked the bus driver.",
+                    "answer": "passenger"
+                },
+                {
+                    "text": "A tired passenger fell asleep by the window.",
+                    "answer": "passenger"
+                }
+            ]
+        },
+        {
+            "en": "pattern",
+            "ch": "圖案；模式",
+            "sents": [
+                {
+                    "text": "This shirt has a striped pattern.",
+                    "answer": "pattern"
+                },
+                {
+                    "text": "I noticed a pattern in the mistakes.",
+                    "answer": "pattern"
+                },
+                {
+                    "text": "The floor pattern looks beautiful.",
+                    "answer": "pattern"
+                }
+            ]
+        },
+        {
+            "en": "peace",
+            "ch": "和平",
+            "sents": [
+                {
+                    "text": "No, it does not refer to wordlessly slipping out the door or logging out of the group chat without so much as a peace sign emoji.",
+                    "answer": "peace"
+                },
+                {
+                    "text": "They have lived in an era of relative peace, knowing little of worldwide conflict until the recent emergence of global terrorism.",
+                    "answer": "peace"
+                },
+                {
+                    "text": "Am I alone in wanting peace and quiet... no sounds apart from the rain or wind.",
+                    "answer": "peace"
+                }
+            ]
+        },
+        {
+            "en": "per",
+            "ch": "每；按照",
+            "sents": [
+                {
+                    "text": "The speed limit in the car park was 20km per hour.",
+                    "answer": "per"
+                },
+                {
+                    "text": "The silver car was travelling at about 40km per hour.",
+                    "answer": "per"
+                },
+                {
+                    "text": "[2] In the past, an employee was traditionally expected to put in 40 hours per week (plus the other 40 hours of unpaid overtime!)",
+                    "answer": "per"
+                }
+            ]
+        },
+        {
+            "en": "perform",
+            "ch": "表演；執行",
+            "sents": [
+                {
+                    "text": "Also, I'm sure you know I want to book the pop band Bubblegum to perform live music on the yacht.",
+                    "answer": "perform"
+                },
+                {
+                    "text": "They must perform these duties so that players and officials can concentrate without being distracted.",
+                    "answer": "perform"
+                },
+                {
+                    "text": "\"You try programming thousands of drones to perform at once!\"",
+                    "answer": "perform"
+                }
+            ]
+        },
+        {
+            "en": "permission",
+            "ch": "准許；許可",
+            "sents": [
+                {
+                    "text": "You need permission to leave early.",
+                    "answer": "permission"
+                },
+                {
+                    "text": "She asked for permission to use the room.",
+                    "answer": "permission"
+                },
+                {
+                    "text": "No one entered without permission.",
+                    "answer": "permission"
+                }
+            ]
+        },
+        {
+            "en": "personality",
+            "ch": "性格；個性",
+            "sents": [
+                {
+                    "text": "She has a warm and friendly personality.",
+                    "answer": "personality"
+                },
+                {
+                    "text": "His personality makes people feel relaxed.",
+                    "answer": "personality"
+                },
+                {
+                    "text": "That job suits her personality well.",
+                    "answer": "personality"
+                }
+            ]
+        },
+        {
+            "en": "pet",
+            "ch": "寵物",
+            "sents": [
+                {
+                    "text": "Could you complete the introductory page on keeping an exotic pet?",
+                    "answer": "pet"
+                },
+                {
+                    "text": "We're considering including a page on our website where kids can keep a virtual pet.",
+                    "answer": "pet"
+                },
+                {
+                    "text": "The doctor was very rude and told him not to get a sugar glider as a pet, but he did not explain why not.",
+                    "answer": "pet"
+                }
+            ]
+        },
+        {
+            "en": "photograph",
+            "ch": "照片；拍照",
+            "sents": [
+                {
+                    "text": "photographs) must not breach copyright.",
+                    "answer": "photograph"
+                },
+                {
+                    "text": "It would also be great if we could photograph the plough - I want to put a photo of it on our new museum posters.",
+                    "answer": "photograph"
+                },
+                {
+                    "text": "Did Ms. Dong tell you where she wants the band to be photographed?",
+                    "answer": "photograph"
+                }
+            ]
+        },
+        {
+            "en": "physical",
+            "ch": "身體的；實體的",
+            "sents": [
+                {
+                    "text": "Regular exercise improves physical health.",
+                    "answer": "physical"
+                },
+                {
+                    "text": "The job needs physical strength.",
+                    "answer": "physical"
+                },
+                {
+                    "text": "We had a physical education lesson after lunch.",
+                    "answer": "physical"
+                }
+            ]
+        },
+        {
+            "en": "pillow",
+            "ch": "枕頭",
+            "sents": [
+                {
+                    "text": "My pillow is too soft for my neck.",
+                    "answer": "pillow"
+                },
+                {
+                    "text": "He hugged the pillow and fell asleep.",
+                    "answer": "pillow"
+                },
+                {
+                    "text": "I need a clean pillow for the guest room.",
+                    "answer": "pillow"
+                }
+            ]
+        },
+        {
+            "en": "planet",
+            "ch": "行星",
+            "sents": [
+                {
+                    "text": "These greenhouse-gas machines would either have to be ferried to Mars or made out of materials already located on the planet.",
+                    "answer": "planet"
+                },
+                {
+                    "text": "Human beings have been captivated by the possibility of planet hopping since the discovery of planets.",
+                    "answer": "planet"
+                },
+                {
+                    "text": "The possibility that life exists on other planets tells us that we cannot simply land on other planets because we want to satisfy our need for more land.",
+                    "answer": "planet"
+                }
+            ]
+        },
+        {
+            "en": "plant",
+            "ch": "植物；工廠",
+            "sents": [
+                {
+                    "text": "This rare and beautiful plant can now only be found on Golden Flower Island.",
+                    "answer": "plant"
+                },
+                {
+                    "text": "Let's hope common sense prevails and we can protect these beautiful plants and creatures.",
+                    "answer": "plant"
+                },
+                {
+                    "text": "I have thought about putting climbing plants in the plant holders on the right side of the entrance.",
+                    "answer": "plant"
+                }
+            ]
+        },
+        {
+            "en": "plastic",
+            "ch": "塑膠；塑膠的",
+            "sents": [
+                {
+                    "text": "Email to Queenie Lau   Queenie Lau has submitted an article about plastic surgery holidays in Thailand for inclusion in the next issue.",
+                    "answer": "plastic"
+                },
+                {
+                    "text": "Cel Bautista, a regular park user, added, 'You should have seen all of the plastic bottles and cigarette butts.'",
+                    "answer": "plastic"
+                },
+                {
+                    "text": "I refer to something that happened on our visit when a girl from our school fell off your large plastic ox and broke her arm.",
+                    "answer": "plastic"
+                }
+            ]
+        },
+        {
+            "en": "plate",
+            "ch": "碟子；盤子",
+            "sents": [
+                {
+                    "text": "Please put the cake on a plate.",
+                    "answer": "plate"
+                },
+                {
+                    "text": "There was only one clean plate left.",
+                    "answer": "plate"
+                },
+                {
+                    "text": "The plate slipped from my hands.",
+                    "answer": "plate"
+                }
+            ]
+        },
+        {
+            "en": "platform",
+            "ch": "月台；平台",
+            "sents": [
+                {
+                    "text": "Meet me on platform three.",
+                    "answer": "platform"
+                },
+                {
+                    "text": "The train has arrived at the platform.",
+                    "answer": "platform"
+                },
+                {
+                    "text": "Please stand behind the yellow line on the platform.",
+                    "answer": "platform"
+                }
+            ]
+        },
+        {
+            "en": "playground",
+            "ch": "操場；遊樂場",
+            "sents": [
+                {
+                    "text": "The children ran across the playground.",
+                    "answer": "playground"
+                },
+                {
+                    "text": "Our school playground is very large.",
+                    "answer": "playground"
+                },
+                {
+                    "text": "It rained, so the playground was empty.",
+                    "answer": "playground"
+                }
+            ]
+        },
+        {
+            "en": "pocket",
+            "ch": "口袋",
+            "sents": [
+                {
+                    "text": "He found a coin in his pocket.",
+                    "answer": "pocket"
+                },
+                {
+                    "text": "Keep your ticket in your pocket.",
+                    "answer": "pocket"
+                },
+                {
+                    "text": "My keys fell out of my pocket.",
+                    "answer": "pocket"
+                }
+            ]
+        },
+        {
+            "en": "polite",
+            "ch": "有禮貌的",
+            "sents": [
+                {
+                    "text": "Make sure you are polite and clearly give reasons for the change and questions.",
+                    "answer": "polite"
+                },
+                {
+                    "text": "Can you please write her a polite email and explain why she has been rejected (e.g.",
+                    "answer": "polite"
+                },
+                {
+                    "text": "This will be a professional athlete, so try to be persuasive but make sure you're polite.",
+                    "answer": "polite"
+                }
+            ]
+        },
+        {
+            "en": "pollution",
+            "ch": "污染",
+            "sents": [
+                {
+                    "text": "People used to hire horse + carriage (now taxis - she doesn't like taxis = pollution).",
+                    "answer": "pollution"
+                },
+                {
+                    "text": "Plus, there's just too much air pollution from the traffic.",
+                    "answer": "pollution"
+                },
+                {
+                    "text": "The first is light pollution.",
+                    "answer": "pollution"
+                }
+            ]
+        },
+        {
+            "en": "population",
+            "ch": "人口",
+            "sents": [
+                {
+                    "text": "The population of the city is growing.",
+                    "answer": "population"
+                },
+                {
+                    "text": "This island has a small population.",
+                    "answer": "population"
+                },
+                {
+                    "text": "They studied the population of birds there.",
+                    "answer": "population"
+                }
+            ]
+        },
+        {
+            "en": "possession",
+            "ch": "擁有；財物",
+            "sents": [
+                {
+                    "text": "This watch is my most valuable possession.",
+                    "answer": "possession"
+                },
+                {
+                    "text": "Do not touch other people?s possessions.",
+                    "answer": "possession"
+                },
+                {
+                    "text": "The stolen possession was returned to her.",
+                    "answer": "possession"
+                }
+            ]
+        },
+        {
+            "en": "possibility",
+            "ch": "可能性",
+            "sents": [
+                {
+                    "text": "There is a possibility of rain later.",
+                    "answer": "possibility"
+                },
+                {
+                    "text": "We discussed every possibility before deciding.",
+                    "answer": "possibility"
+                },
+                {
+                    "text": "Winning is still a real possibility.",
+                    "answer": "possibility"
+                }
+            ]
+        },
+        {
+            "en": "poster",
+            "ch": "海報",
+            "sents": [
+                {
+                    "text": "Email to PR Department about Promotional Poster   Our promotional poster for the Victoria Cup has received criticism.",
+                    "answer": "poster"
+                },
+                {
+                    "text": "Please send an email t Alfred Roi at the PR department making sure that he understands exactly why the poster hast be redesigned.",
+                    "answer": "poster"
+                },
+                {
+                    "text": "The poster in question featured an image of Suzie Gilmour, ranked number 80 in the world, posing according to one insider, \"like an amateur model\".",
+                    "answer": "poster"
+                }
+            ]
+        },
+        {
+            "en": "predict",
+            "ch": "預測",
+            "sents": [
+                {
+                    "text": "Can you predict tomorrow?s weather?",
+                    "answer": "predict"
+                },
+                {
+                    "text": "It is hard to predict the result.",
+                    "answer": "predict"
+                },
+                {
+                    "text": "Scientists try to predict earthquakes early.",
+                    "answer": "predict"
+                }
+            ]
+        },
+        {
+            "en": "president",
+            "ch": "總統；主席",
+            "sents": [
+                {
+                    "text": "The club president welcomed the guests.",
+                    "answer": "president"
+                },
+                {
+                    "text": "The president gave a short speech.",
+                    "answer": "president"
+                },
+                {
+                    "text": "Students voted for a new president.",
+                    "answer": "president"
+                }
+            ]
+        },
+        {
+            "en": "prevent",
+            "ch": "防止；阻止",
+            "sents": [
+                {
+                    "text": "Washing hands can prevent disease.",
+                    "answer": "prevent"
+                },
+                {
+                    "text": "A strong lock may prevent theft.",
+                    "answer": "prevent"
+                },
+                {
+                    "text": "We left early to prevent being late.",
+                    "answer": "prevent"
+                }
+            ]
+        },
+        {
+            "en": "prison",
+            "ch": "監獄",
+            "sents": [
+                {
+                    "text": "Try a prison hotel!",
+                    "answer": "prison"
+                },
+                {
+                    "text": "From Roberto in Brazil   Me and some friends stayed in a prison hotel it was a great place to stay because the history of the prison was really interesting.",
+                    "answer": "prison"
+                },
+                {
+                    "text": "All the hotel guests had to cook dinner together in the prison kitchen.",
+                    "answer": "prison"
+                }
+            ]
+        },
+        {
+            "en": "prize",
+            "ch": "獎品；獎項",
+            "sents": [
+                {
+                    "text": "Congratulations go to Hong Kong for winning first prize.",
+                    "answer": "prize"
+                },
+                {
+                    "text": "how long it should be)   Have you included what your first prize will be (if you have one)?",
+                    "answer": "prize"
+                },
+                {
+                    "text": "The fact file tells them all the basic information, including the other great prizes on offer.",
+                    "answer": "prize"
+                }
+            ]
+        },
+        {
+            "en": "professor",
+            "ch": "教授",
+            "sents": [
+                {
+                    "text": "Below is a short extract from a transcript of a debate between two professors, Annabelle Lee and Theodore Cheung, who are discussing this issue.",
+                    "answer": "professor"
+                },
+                {
+                    "text": "Erin is a pharmacist, an assistant professor, an entrepreneur, a writer, and a law student: does this make her any less employable?",
+                    "answer": "professor"
+                },
+                {
+                    "text": "(Yale law professor Amy Chua is of Filipino-Chinese descent and lives in the U.S., not in China.)",
+                    "answer": "professor"
+                }
+            ]
+        },
+        {
+            "en": "profile",
+            "ch": "簡介；個人資料",
+            "sents": [
+                {
+                    "text": "Her online profile needs a new photo.",
+                    "answer": "profile"
+                },
+                {
+                    "text": "Please complete your profile before joining.",
+                    "answer": "profile"
+                },
+                {
+                    "text": "The app shows your profile on the first page.",
+                    "answer": "profile"
+                }
+            ]
+        },
+        {
+            "en": "programmed",
+            "ch": "已編程的",
+            "sents": [
+                {
+                    "text": "The robot was programmed to stop at walls.",
+                    "answer": "programmed"
+                },
+                {
+                    "text": "This game was programmed by students.",
+                    "answer": "programmed"
+                },
+                {
+                    "text": "The device is programmed to save power.",
+                    "answer": "programmed"
+                }
+            ]
+        },
+        {
+            "en": "promise",
+            "ch": "承諾；答應",
+            "sents": [
+                {
+                    "text": "I promise to finish this today.",
+                    "answer": "promise"
+                },
+                {
+                    "text": "He made a promise to help her.",
+                    "answer": "promise"
+                },
+                {
+                    "text": "Please promise me you will be careful.",
+                    "answer": "promise"
+                }
+            ]
+        },
+        {
+            "en": "pronounce",
+            "ch": "發音；宣告",
+            "sents": [
+                {
+                    "text": "Can you pronounce this word for me?",
+                    "answer": "pronounce"
+                },
+                {
+                    "text": "She can pronounce French words clearly.",
+                    "answer": "pronounce"
+                },
+                {
+                    "text": "It is hard to pronounce that name.",
+                    "answer": "pronounce"
+                }
+            ]
+        },
+        {
+            "en": "protect",
+            "ch": "保護",
+            "sents": [
+                {
+                    "text": "David: They can still join the walk, but the warning should be included just to protect ourselves.",
+                    "answer": "protect"
+                },
+                {
+                    "text": "This is to protect the museum from being blamed for damage to items that may be caused by visitors touching or handling items without permission.",
+                    "answer": "protect"
+                },
+                {
+                    "text": "Second, write up an overview of what DPP has done in Hong Kong to protect the environment.",
+                    "answer": "protect"
+                }
+            ]
+        },
+        {
+            "en": "provide",
+            "ch": "提供",
+            "sents": [
+                {
+                    "text": "Avery: Not sunscreen - our sponsor provides that free for participants - but they tend to forget mosquito repellent.",
+                    "answer": "provide"
+                },
+                {
+                    "text": "Mr Lee made the announcement that Chez Poisson could no longer provide the buffet for the Adventure Fishing Tour.",
+                    "answer": "provide"
+                },
+                {
+                    "text": "On top of that, we really do provide some excellent travel products,\" said Dr Atkinson.",
+                    "answer": "provide"
+                }
+            ]
+        },
+        {
+            "en": "public",
+            "ch": "公眾的；公共的",
+            "sents": [
+                {
+                    "text": "However, it is now sold to the public as a high energy food for sports activities such as running and hiking.",
+                    "answer": "public"
+                },
+                {
+                    "text": "Another point is that some exotic animals carry diseases and this can put the public in danger.",
+                    "answer": "public"
+                },
+                {
+                    "text": "For the benefit of the Hong Kong public and for the health of the sport in general, I urge Events Horizon to address these issues.",
+                    "answer": "public"
+                }
+            ]
+        },
+        {
+            "en": "publish",
+            "ch": "出版；發表",
+            "sents": [
+                {
+                    "text": "Payment   It was agreed that the payment for all advertisements should be 50% one week before the issue was published and the remaining 50% afterward.",
+                    "answer": "publish"
+                },
+                {
+                    "text": "You can use the letter from Kevin Hui which was published in the March issue as a starting point.",
+                    "answer": "publish"
+                },
+                {
+                    "text": "Asia Life magazine retains the rights to any articles published.",
+                    "answer": "publish"
+                }
+            ]
+        },
+        {
+            "en": "purpose",
+            "ch": "目的",
+            "sents": [
+                {
+                    "text": "What is the purpose of this meeting?",
+                    "answer": "purpose"
+                },
+                {
+                    "text": "This tool has a special purpose.",
+                    "answer": "purpose"
+                },
+                {
+                    "text": "He explained the purpose of the project.",
+                    "answer": "purpose"
+                }
+            ]
+        },
+        {
+            "en": "purse",
+            "ch": "手袋；錢包",
+            "sents": [
+                {
+                    "text": "She keeps coins in a small purse.",
+                    "answer": "purse"
+                },
+                {
+                    "text": "Her purse was under the chair.",
+                    "answer": "purse"
+                },
+                {
+                    "text": "The black purse matches her shoes.",
+                    "answer": "purse"
+                }
+            ]
+        },
+        {
+            "en": "quality",
+            "ch": "質素；品質",
+            "sents": [
+                {
+                    "text": "How about the filming quality?",
+                    "answer": "quality"
+                },
+                {
+                    "text": "We thought it'd be a chance for them to spend some quality time outdoors.",
+                    "answer": "quality"
+                },
+                {
+                    "text": "A   29. quality local suppliers   30.",
+                    "answer": "quality"
+                }
+            ]
+        },
+        {
+            "en": "quietest",
+            "ch": "最安靜的",
+            "sents": [
+                {
+                    "text": "This is the quietest room in the house.",
+                    "answer": "quietest"
+                },
+                {
+                    "text": "The library is quietest in the morning.",
+                    "answer": "quietest"
+                },
+                {
+                    "text": "He chose the quietest corner to study.",
+                    "answer": "quietest"
+                }
+            ]
+        },
+        {
+            "en": "quietly",
+            "ch": "安靜地",
+            "sents": [
+                {
+                    "text": "Please close the door quietly.",
+                    "answer": "quietly"
+                },
+                {
+                    "text": "The baby was sleeping quietly.",
+                    "answer": "quietly"
+                },
+                {
+                    "text": "She quietly left the room.",
+                    "answer": "quietly"
+                }
+            ]
+        },
+        {
+            "en": "quiz",
+            "ch": "小測驗",
+            "sents": [
+                {
+                    "text": "Presentation script on the Asian Games   We'll be playing a presentation about the Asian Games to all students before the quiz event.",
+                    "answer": "quiz"
+                },
+                {
+                    "text": "TS: How about a quiz?",
+                    "answer": "quiz"
+                },
+                {
+                    "text": "MH: A quiz would be fun, but I think we should have questions about all aspects of the Asian Games, not just sports knowledge?",
+                    "answer": "quiz"
+                }
+            ]
+        },
+        {
+            "en": "rabbit",
+            "ch": "兔子",
+            "sents": [
+                {
+                    "text": "A white rabbit ran across the grass.",
+                    "answer": "rabbit"
+                },
+                {
+                    "text": "The child fed the rabbit a carrot.",
+                    "answer": "rabbit"
+                },
+                {
+                    "text": "We saw a rabbit in the field.",
+                    "answer": "rabbit"
+                }
+            ]
+        },
+        {
+            "en": "railroad",
+            "ch": "鐵路",
+            "sents": [
+                {
+                    "text": "The old town grew beside the railroad.",
+                    "answer": "railroad"
+                },
+                {
+                    "text": "A long fence runs along the railroad.",
+                    "answer": "railroad"
+                },
+                {
+                    "text": "The train crossed the railroad bridge slowly.",
+                    "answer": "railroad"
+                }
+            ]
+        },
+        {
+            "en": "railway",
+            "ch": "鐵路",
+            "sents": [
+                {
+                    "text": "The railway station is near my school.",
+                    "answer": "railway"
+                },
+                {
+                    "text": "Workers repaired the railway last night.",
+                    "answer": "railway"
+                },
+                {
+                    "text": "The railway connects two small towns.",
+                    "answer": "railway"
+                }
+            ]
+        },
+        {
+            "en": "raise",
+            "ch": "舉起；提高",
+            "sents": [
+                {
+                    "text": "My concerns were first raised when my daughter told me she saw a dead dog in the swimming pool on her first day there.",
+                    "answer": "raise"
+                },
+                {
+                    "text": "Mr Howard also referred the committee to the results of the online survey recently carried out in relation to points raised by the complainant.",
+                    "answer": "raise"
+                },
+                {
+                    "text": "Fidel C. 12 March 2018   12:23   I used Gamezstart and actually raised a load of money.",
+                    "answer": "raise"
+                }
+            ]
+        },
+        {
+            "en": "rather",
+            "ch": "相當；寧可",
+            "sents": [
+                {
+                    "text": "In particular, we are rather worried that your filming will be too disruptive to our operations (e.g.",
+                    "answer": "rather"
+                },
+                {
+                    "text": "Persevere and make sure that if or when you leave it feels like a decision you are in charge of rather than simply running away.",
+                    "answer": "rather"
+                },
+                {
+                    "text": "[2] Despite Thommo's fate, on the whole I would rather have been him than me.",
+                    "answer": "rather"
+                }
+            ]
+        },
+        {
+            "en": "react",
+            "ch": "反應；回應",
+            "sents": [
+                {
+                    "text": "How would you react in that situation?",
+                    "answer": "react"
+                },
+                {
+                    "text": "Oil and water do not react easily.",
+                    "answer": "react"
+                },
+                {
+                    "text": "She did not know how to react to the news.",
+                    "answer": "react"
+                }
+            ]
+        },
+        {
+            "en": "realize",
+            "ch": "意識到；實現",
+            "sents": [
+                {
+                    "text": "I suddenly realized my phone was gone.",
+                    "answer": "realize"
+                },
+                {
+                    "text": "He will realize his dream one day.",
+                    "answer": "realize"
+                },
+                {
+                    "text": "Do you realize how late it is?",
+                    "answer": "realize"
+                }
+            ]
+        },
+        {
+            "en": "receive",
+            "ch": "收到；接收",
+            "sents": [
+                {
+                    "text": "You can refer to the enquiry we received from Karen Ken and the emails I received from Shane Lee.",
+                    "answer": "receive"
+                },
+                {
+                    "text": "Next, I would like you to write a response to the complaint letter we received from a Mrs Sue Liu about her daughter's experience at the camp at Star Pod.",
+                    "answer": "receive"
+                },
+                {
+                    "text": "Request from Locae Foundation   Ms Ochoa referred the committee to the letter received from the Locae Foundation.",
+                    "answer": "receive"
+                }
+            ]
+        },
+        {
+            "en": "recent",
+            "ch": "最近的",
+            "sents": [
+                {
+                    "text": "See below for what some of our recent graduates are doing:   I've got a placement as a veterinary nurse in a horse clinic.",
+                    "answer": "recent"
+                },
+                {
+                    "text": "Just look at the recent Hong Kong Times story about the alligator gars.",
+                    "answer": "recent"
+                },
+                {
+                    "text": "Start by looking at the email from Ms O'Conner and the minutes of the recent staff meeting.",
+                    "answer": "recent"
+                }
+            ]
+        },
+        {
+            "en": "recently",
+            "ch": "最近",
+            "sents": [
+                {
+                    "text": "It was so hot, just like here in Hong Kong (the weather here has been extremely hot recently).",
+                    "answer": "recently"
+                },
+                {
+                    "text": "Things have not been great there recently due to the accident the World City Travel catamaran was involved in.",
+                    "answer": "recently"
+                },
+                {
+                    "text": "We've recently made quite a few decisions on what this should include-start by looking at Shane Lee's email to me.",
+                    "answer": "recently"
+                }
+            ]
+        },
+        {
+            "en": "reception",
+            "ch": "接待處；接收",
+            "sents": [
+                {
+                    "text": "We asked at reception for directions.",
+                    "answer": "reception"
+                },
+                {
+                    "text": "The hotel reception is open all night.",
+                    "answer": "reception"
+                },
+                {
+                    "text": "There was a wedding reception after dinner.",
+                    "answer": "reception"
+                }
+            ]
+        },
+        {
+            "en": "recipe",
+            "ch": "食譜",
+            "sents": [
+                {
+                    "text": "Thirdly, write an email to William Puddle to tell him about the changes to his Best Baked Potato Fries recipe.",
+                    "answer": "recipe"
+                },
+                {
+                    "text": "William will soon be uploading an updated recipe to our website, based on the suggestions of our head chef Christine and the fans we invited to comment online.",
+                    "answer": "recipe"
+                },
+                {
+                    "text": "Look at William's recipe and the online comments and suggestions.",
+                    "answer": "recipe"
+                }
+            ]
+        },
+        {
+            "en": "recognize",
+            "ch": "認出；承認",
+            "sents": [
+                {
+                    "text": "I did not recognize him with short hair.",
+                    "answer": "recognize"
+                },
+                {
+                    "text": "Can you recognize this song?",
+                    "answer": "recognize"
+                },
+                {
+                    "text": "The machine can recognize your face.",
+                    "answer": "recognize"
+                }
+            ]
+        },
+        {
+            "en": "recommend",
+            "ch": "推薦；建議",
+            "sents": [
+                {
+                    "text": "We need to recommend that they consult a doctor first if they want to join.",
+                    "answer": "recommend"
+                },
+                {
+                    "text": "He recommended that in response to the complaint all members of staff should be ready to assist school groups at all times during their visit.",
+                    "answer": "recommend"
+                },
+                {
+                    "text": "Cooking time   30 minutes is a much better time to recommend.",
+                    "answer": "recommend"
+                }
+            ]
+        },
+        {
+            "en": "record",
+            "ch": "紀錄；錄音",
+            "sents": [
+                {
+                    "text": "The recording of the Zoom meeting between me, Shane Lee and David Atkinson contains information on all the tasks above.",
+                    "answer": "record"
+                },
+                {
+                    "text": "Also refer to the recording of the Zoom meeting between me, Shane Lee and Dr David Atkinson: we discussed all of the above.",
+                    "answer": "record"
+                },
+                {
+                    "text": "Sana: Just so you know, I'm recording the call so that I can transcribe it to share the information with my colleagues.",
+                    "answer": "record"
+                }
+            ]
+        },
+        {
+            "en": "recycle",
+            "ch": "回收；循環再用",
+            "sents": [
+                {
+                    "text": "[4] Despite decades of initiatives, it’s still typically more expensive for local governments to recycle household waste than to send it to a landfill.",
+                    "answer": "recycle"
+                },
+                {
+                    "text": "Most recycled materials are exported, and the prices for these materials have plummeted because of lower oil prices and reduced demand for them overseas.",
+                    "answer": "recycle"
+                },
+                {
+                    "text": "[12] “It’s practical to recycle cardboard and some paper, as well as selected metals and plastics,” he says.",
+                    "answer": "recycle"
+                }
+            ]
+        },
+        {
+            "en": "reduce",
+            "ch": "減少",
+            "sents": [
+                {
+                    "text": "51. reduce cost by sharing their car (with friends and strangers)   32. International ravel   53.",
+                    "answer": "reduce"
+                },
+                {
+                    "text": "We have to reduce the group size down from ten - I'd say to 5 and give the children more than just 30 mins.",
+                    "answer": "reduce"
+                },
+                {
+                    "text": "Given that the work is ahead of schedule, we can now reduce the number of working hours in the weeks ahead.",
+                    "answer": "reduce"
+                }
+            ]
+        },
+        {
+            "en": "refuse",
+            "ch": "拒絕",
+            "sents": [
+                {
+                    "text": "She had to refuse the invitation.",
+                    "answer": "refuse"
+                },
+                {
+                    "text": "He refused to answer the question.",
+                    "answer": "refuse"
+                },
+                {
+                    "text": "I cannot refuse such a kind offer.",
+                    "answer": "refuse"
+                }
+            ]
+        },
+        {
+            "en": "region",
+            "ch": "地區",
+            "sents": [
+                {
+                    "text": "This region is known for tea farms.",
+                    "answer": "region"
+                },
+                {
+                    "text": "Heavy rain affected the whole region.",
+                    "answer": "region"
+                },
+                {
+                    "text": "The map shows every region clearly.",
+                    "answer": "region"
+                }
+            ]
+        },
+        {
+            "en": "regular",
+            "ch": "定期的；規律的",
+            "sents": [
+                {
+                    "text": "We're now in regular touch - all online!\"",
+                    "answer": "regular"
+                },
+                {
+                    "text": "Cel Bautista, a regular park user, added, 'You should have seen all of the plastic bottles and cigarette butts.'",
+                    "answer": "regular"
+                },
+                {
+                    "text": "Introduce the star(s)   Our regular chef, plus one mystery guest each week   3.",
+                    "answer": "regular"
+                }
+            ]
+        },
+        {
+            "en": "relationship",
+            "ch": "關係",
+            "sents": [
+                {
+                    "text": "They have a close relationship.",
+                    "answer": "relationship"
+                },
+                {
+                    "text": "Trust is important in any relationship.",
+                    "answer": "relationship"
+                },
+                {
+                    "text": "The book explores the relationship between art and nature.",
+                    "answer": "relationship"
+                }
+            ]
+        },
+        {
+            "en": "remove",
+            "ch": "移除；除去",
+            "sents": [
+                {
+                    "text": "The most colorful pieces (and the earth surrounding them) have been removed to an on-site laboratory for further treatment.",
+                    "answer": "remove"
+                },
+                {
+                    "text": "“We agree with the department that the trees had to be removed immediately.",
+                    "answer": "remove"
+                },
+                {
+                    "text": "[9] If stung by a bee, the pain will be reduced significantly if the stinger is removed promptly.",
+                    "answer": "remove"
+                }
+            ]
+        },
+        {
+            "en": "replace",
+            "ch": "取代；更換",
+            "sents": [
+                {
+                    "text": "It is therefore extremely rare and would be difficult / impossible to replace if damaged.",
+                    "answer": "replace"
+                },
+                {
+                    "text": "She felt it should be replaced because the Saint Elgin's School Video Club uses the same image.",
+                    "answer": "replace"
+                },
+                {
+                    "text": "So they decided to replace bees with humans.",
+                    "answer": "replace"
+                }
+            ]
+        },
+        {
+            "en": "reply",
+            "ch": "回覆",
+            "sents": [
+                {
+                    "text": "I will look forward to your reply and the Tour.",
+                    "answer": "reply"
+                },
+                {
+                    "text": "I've attached an introduction to an article on Space Food from the Journal of Food and Health for Nico to refer to in the reply.",
+                    "answer": "reply"
+                },
+                {
+                    "text": "Nico will have to write a reply so let me know as soon as you can.",
+                    "answer": "reply"
+                }
+            ]
+        },
+        {
+            "en": "report",
+            "ch": "報告；報道",
+            "sents": [
+                {
+                    "text": "Several neighbours reported seeing a man running from the scene just as the attack began and police confirmed there hadn't yet been an arrest in the case.",
+                    "answer": "report"
+                },
+                {
+                    "text": "The Eno report also notes that there’s still a ton of research yet to be done about the prospect of self-driving cars.",
+                    "answer": "report"
+                },
+                {
+                    "text": "But in a special report, the editor of The Economist, Robert Guest, argues that millennials have it tougher than most people think.",
+                    "answer": "report"
+                }
+            ]
+        },
+        {
+            "en": "reporter",
+            "ch": "記者",
+            "sents": [
+                {
+                    "text": "We sent our reporter out and about to find some of the virtual pets at Cincinnati Elementary School and ask what they have been up to with their owners!",
+                    "answer": "reporter"
+                },
+                {
+                    "text": "Sonic Attack Reporter: What was the slogan again?",
+                    "answer": "reporter"
+                },
+                {
+                    "text": "Reporter:   Great!",
+                    "answer": "reporter"
+                }
+            ]
+        },
+        {
+            "en": "research",
+            "ch": "研究",
+            "sents": [
+                {
+                    "text": "As one of our alumni, now a research chemist put it:   \"The Locae Foundation gave me hope and the drive to work on my talents and achieve my ambitions.\"",
+                    "answer": "research"
+                },
+                {
+                    "text": "Can you do some research into this and send me a report?",
+                    "answer": "research"
+                },
+                {
+                    "text": "I found some statistics in one of Lionel Chan's research articles.",
+                    "answer": "research"
+                }
+            ]
+        },
+        {
+            "en": "researcher",
+            "ch": "研究員",
+            "sents": [
+                {
+                    "text": "Researchers can’t predict how, exactly, self-driving cars might reshape society.",
+                    "answer": "researcher"
+                },
+                {
+                    "text": "Several researchers have tested these age-old beliefs and found them wanting.",
+                    "answer": "researcher"
+                },
+                {
+                    "text": "Researchers calculate that there are indeed such benefits to recycling, but not in the way that many people imagine.",
+                    "answer": "researcher"
+                }
+            ]
+        },
+        {
+            "en": "respond",
+            "ch": "回應；回答",
+            "sents": [
+                {
+                    "text": "Have a look at her email and respond to her questions.",
+                    "answer": "respond"
+                },
+                {
+                    "text": "We hope that you can address these points at some point soon or at least respond to the concerns of our committee.",
+                    "answer": "respond"
+                },
+                {
+                    "text": "Second, can you respond to the email from Ms Ma?",
+                    "answer": "respond"
+                }
+            ]
+        },
+        {
+            "en": "response",
+            "ch": "回應；答覆",
+            "sents": [
+                {
+                    "text": "Next, I would like you to write a response to the complaint letter we received from a Mrs Sue Liu about her daughter's experience at the camp at Star Pod.",
+                    "answer": "response"
+                },
+                {
+                    "text": "Please show sensitivity in your response and offer what we can to support this wonderful charity.",
+                    "answer": "response"
+                },
+                {
+                    "text": "Please write a letter to the editor of the Kowloon Herald in response to the letter from Mr. W. Squeers, which criticizes the Kowloon Exotic Pets Hospital.",
+                    "answer": "response"
+                }
+            ]
+        },
+        {
+            "en": "rest",
+            "ch": "休息；其餘部分",
+            "sents": [
+                {
+                    "text": "In the meantime, enjoy the rest of the whale migration season!",
+                    "answer": "rest"
+                },
+                {
+                    "text": "We would most humbly request to borrow the capsule and in doing so give our children an experience they will treasure for the rest of their lives.",
+                    "answer": "rest"
+                },
+                {
+                    "text": "Can you finish the rest of the information in the fact file?",
+                    "answer": "rest"
+                }
+            ]
+        },
+        {
+            "en": "review",
+            "ch": "複習；評論",
+            "sents": [
+                {
+                    "text": "I tend to agree with them, and I don't want any more negative reviews!",
+                    "answer": "review"
+                },
+                {
+                    "text": "You see, some people who joined the tour previously have left us negative reviews.",
+                    "answer": "review"
+                },
+                {
+                    "text": "The editorial team has reviewed it and she needs to check and change a few things.",
+                    "answer": "review"
+                }
+            ]
+        },
+        {
+            "en": "ride",
+            "ch": "騎；乘坐",
+            "sents": [
+                {
+                    "text": "Would you like a ride home?",
+                    "answer": "ride"
+                },
+                {
+                    "text": "The children enjoyed the boat ride.",
+                    "answer": "ride"
+                },
+                {
+                    "text": "He learned to ride a bicycle last year.",
+                    "answer": "ride"
+                }
+            ]
+        },
+        {
+            "en": "roast",
+            "ch": "烤；烤肉",
+            "sents": [
+                {
+                    "text": "We roast vegetables in the oven.",
+                    "answer": "roast"
+                },
+                {
+                    "text": "My mother made roast chicken on Sunday.",
+                    "answer": "roast"
+                },
+                {
+                    "text": "The smell of roast garlic filled the kitchen.",
+                    "answer": "roast"
+                }
+            ]
+        },
+        {
+            "en": "role",
+            "ch": "角色；作用",
+            "sents": [
+                {
+                    "text": "Sons and/or daughters of main characters // Small / supporting roles   55.",
+                    "answer": "role"
+                },
+                {
+                    "text": "And great to see Rebecca Chin back in a leading role after taking time off to finish her degree.",
+                    "answer": "role"
+                },
+                {
+                    "text": "Maya's mum:   I've been a helper at some of the events, and it was great to see so many parents take up this role.",
+                    "answer": "role"
+                }
+            ]
+        },
+        {
+            "en": "roof",
+            "ch": "屋頂",
+            "sents": [
+                {
+                    "text": "Rain hit the roof all night.",
+                    "answer": "roof"
+                },
+                {
+                    "text": "The cat jumped onto the roof.",
+                    "answer": "roof"
+                },
+                {
+                    "text": "Workers fixed the roof this week.",
+                    "answer": "roof"
+                }
+            ]
+        },
+        {
+            "en": "route",
+            "ch": "路線",
+            "sents": [
+                {
+                    "text": "This bus route passes my home.",
+                    "answer": "route"
+                },
+                {
+                    "text": "We chose a safer route to the village.",
+                    "answer": "route"
+                },
+                {
+                    "text": "The app showed the fastest route.",
+                    "answer": "route"
+                }
+            ]
+        },
+        {
+            "en": "rubbish",
+            "ch": "垃圾",
+            "sents": [
+                {
+                    "text": "A local resident, surnamed Ho, complained, 'Last year the tennis fans dropped rubbish everywhere.",
+                    "answer": "rubbish"
+                },
+                {
+                    "text": "10:45 AM   Norman   Tell our litter disposal contractor Tony's to hire 20 more people to collect the rubbish from the beaches every morning.",
+                    "answer": "rubbish"
+                },
+                {
+                    "text": "8:18 PM   Malcolm:   Come on Eduardo, don't believe that rubbish.",
+                    "answer": "rubbish"
+                }
+            ]
+        },
+        {
+            "en": "rude",
+            "ch": "粗魯的；無禮的",
+            "sents": [
+                {
+                    "text": "It is rude to interrupt people.",
+                    "answer": "rude"
+                },
+                {
+                    "text": "His answer sounded rude.",
+                    "answer": "rude"
+                },
+                {
+                    "text": "Please do not be rude to the staff.",
+                    "answer": "rude"
+                }
+            ]
+        },
+        {
+            "en": "sadly",
+            "ch": "傷心地；可惜地",
+            "sents": [
+                {
+                    "text": "Sadly, the show was canceled.",
+                    "answer": "sadly"
+                },
+                {
+                    "text": "She smiled sadly at the old photo.",
+                    "answer": "sadly"
+                },
+                {
+                    "text": "Sadly, we had to leave early.",
+                    "answer": "sadly"
+                }
+            ]
+        },
+        {
+            "en": "safe",
+            "ch": "安全的；保險箱",
+            "sents": [
+                {
+                    "text": "In the email we'll also remind participants of the basic necessities people need to prepare, just to be safe.",
+                    "answer": "safe"
+                },
+                {
+                    "text": "You can get them for your kids a small snake is usually perfectly safe.",
+                    "answer": "safe"
+                },
+                {
+                    "text": "Secondly, we need to check that the plough will be safe during its time there and what would happen if it was damaged or broken in any way.",
+                    "answer": "safe"
+                }
+            ]
+        },
+        {
+            "en": "sale",
+            "ch": "售賣；特價",
+            "sents": [
+                {
+                    "text": "But shhh... it's a secret: see the brand new D79XF at the 2025 Luxury Yacht Expo; sales begin in 2026.",
+                    "answer": "sale"
+                },
+                {
+                    "text": "Look at the minutes from the last sales meeting and the copy of the advertisement the sales team has made some notes on it.",
+                    "answer": "sale"
+                },
+                {
+                    "text": "Sales Meeting   Present:   Date: 3rd April, 2013   James Lee   Casey Wong   Kai Lam   Rosie Tsang   Vicki Swan   Venue: meeting room, 6th Floor   1.",
+                    "answer": "sale"
+                }
+            ]
+        },
+        {
+            "en": "sauce",
+            "ch": "醬汁",
+            "sents": [
+                {
+                    "text": "Serve with chili sauce   What do you think about William's recipe?",
+                    "answer": "sauce"
+                },
+                {
+                    "text": "That's my favourite sauce!",
+                    "answer": "sauce"
+                },
+                {
+                    "text": "I definitely agree with Julia's suggestion about the best sauce to serve with the fries, so be sure to get William to make this change!",
+                    "answer": "sauce"
+                }
+            ]
+        },
+        {
+            "en": "sausage",
+            "ch": "香腸",
+            "sents": [
+                {
+                    "text": "He ordered eggs and sausage for breakfast.",
+                    "answer": "sausage"
+                },
+                {
+                    "text": "These sausages smell delicious.",
+                    "answer": "sausage"
+                },
+                {
+                    "text": "The market sells homemade sausage.",
+                    "answer": "sausage"
+                }
+            ]
+        },
+        {
+            "en": "scared",
+            "ch": "害怕的",
+            "sents": [
+                {
+                    "text": "The child felt scared in the dark.",
+                    "answer": "scared"
+                },
+                {
+                    "text": "I was scared by the loud sound.",
+                    "answer": "scared"
+                },
+                {
+                    "text": "She looked scared after the dream.",
+                    "answer": "scared"
+                }
+            ]
+        },
+        {
+            "en": "scary",
+            "ch": "嚇人的",
+            "sents": [
+                {
+                    "text": "That movie was too scary for me.",
+                    "answer": "scary"
+                },
+                {
+                    "text": "The storm sounded scary at night.",
+                    "answer": "scary"
+                },
+                {
+                    "text": "He told a scary ghost story.",
+                    "answer": "scary"
+                }
+            ]
+        },
+        {
+            "en": "scene",
+            "ch": "場景；現場",
+            "sents": [
+                {
+                    "text": "Don't forget to mention that 'stand-out scene'.",
+                    "answer": "scene"
+                },
+                {
+                    "text": "Luna: Yes well I wanted to start the movie with the scene where it's Sammi's first day at her first job at the corporation.",
+                    "answer": "scene"
+                },
+                {
+                    "text": "Broch: I also like the scene just after that when you show how the corporation in the film tricked its employees into wearing its lenses.",
+                    "answer": "scene"
+                }
+            ]
+        },
+        {
+            "en": "schoolkids",
+            "ch": "學童",
+            "sents": [
+                {
+                    "text": "The museum welcomed many schoolkids today.",
+                    "answer": "schoolkids"
+                },
+                {
+                    "text": "Schoolkids lined up outside the hall.",
+                    "answer": "schoolkids"
+                },
+                {
+                    "text": "The program was designed for schoolkids.",
+                    "answer": "schoolkids"
+                }
+            ]
+        },
+        {
+            "en": "search",
+            "ch": "搜尋；搜查",
+            "sents": [
+                {
+                    "text": "Actually listeners, we had to do this... and they searched our bags and equipment!",
+                    "answer": "search"
+                },
+                {
+                    "text": "[3] Banyan trees are immediately recognisable for their spindly aerial roots, which cast outwards in search of water and nutrition.",
+                    "answer": "search"
+                },
+                {
+                    "text": "Dear Graham, [23] The past 40-odd years have for me been an often fruitless search for a barber who can do a good job on my challenging hair.",
+                    "answer": "search"
+                }
+            ]
+        },
+        {
+            "en": "season",
+            "ch": "季節",
+            "sents": [
+                {
+                    "text": "Spring is my favorite season.",
+                    "answer": "season"
+                },
+                {
+                    "text": "The rainy season starts in June.",
+                    "answer": "season"
+                },
+                {
+                    "text": "Tourists come here in every season.",
+                    "answer": "season"
+                }
+            ]
+        },
+        {
+            "en": "secondly",
+            "ch": "第二；其次",
+            "sents": [
+                {
+                    "text": "Secondly, we need to check the cost.",
+                    "answer": "secondly"
+                },
+                {
+                    "text": "Secondly, please think about the risks.",
+                    "answer": "secondly"
+                },
+                {
+                    "text": "He explained the plan firstly and secondly.",
+                    "answer": "secondly"
+                }
+            ]
+        },
+        {
+            "en": "secret",
+            "ch": "秘密",
+            "sents": [
+                {
+                    "text": "Do not tell anyone my secret.",
+                    "answer": "secret"
+                },
+                {
+                    "text": "She kept the surprise party a secret.",
+                    "answer": "secret"
+                },
+                {
+                    "text": "The door opened with a secret code.",
+                    "answer": "secret"
+                }
+            ]
+        },
+        {
+            "en": "secretary",
+            "ch": "秘書",
+            "sents": [
+                {
+                    "text": "The secretary answered the phone politely.",
+                    "answer": "secretary"
+                },
+                {
+                    "text": "Please give the form to the secretary.",
+                    "answer": "secretary"
+                },
+                {
+                    "text": "The school secretary knows every student?s name.",
+                    "answer": "secretary"
+                }
+            ]
+        },
+        {
+            "en": "semester",
+            "ch": "學期",
+            "sents": [
+                {
+                    "text": "The new semester begins next Monday.",
+                    "answer": "semester"
+                },
+                {
+                    "text": "She worked hard this semester.",
+                    "answer": "semester"
+                },
+                {
+                    "text": "We have a short break after the semester.",
+                    "answer": "semester"
+                }
+            ]
+        },
+        {
+            "en": "series",
+            "ch": "系列",
+            "sents": [
+                {
+                    "text": "I watched the whole series last month.",
+                    "answer": "series"
+                },
+                {
+                    "text": "This book is part of a series.",
+                    "answer": "series"
+                },
+                {
+                    "text": "The channel showed a new crime series.",
+                    "answer": "series"
+                }
+            ]
+        },
+        {
+            "en": "serious",
+            "ch": "嚴重的；認真的",
+            "sents": [
+                {
+                    "text": "David: Well, the Guided Nature Walk may not be suitable for pregnant women and people with serious health issues.",
+                    "answer": "serious"
+                },
+                {
+                    "text": "So pregnant women and people with serious health issues cannot join the walk?",
+                    "answer": "serious"
+                },
+                {
+                    "text": "The story is that there's a community of old people in Florida, USA doing some serious game time to collect online virtual pets of all things.",
+                    "answer": "serious"
+                }
+            ]
+        },
+        {
+            "en": "service",
+            "ch": "服務",
+            "sents": [
+                {
+                    "text": "They were very patient and kind to me, and it is wonderful to see such responsive customer service still exists.",
+                    "answer": "service"
+                },
+                {
+                    "text": "Our staff are on call 24 hours a day and we pride ourselves on our first-rate service!",
+                    "answer": "service"
+                },
+                {
+                    "text": "The hospital helps us by volunteering their services to relocate gars to Ocean Park.",
+                    "answer": "service"
+                }
+            ]
+        },
+        {
+            "en": "shampoo",
+            "ch": "洗髮水",
+            "sents": [
+                {
+                    "text": "I need to buy shampoo after work.",
+                    "answer": "shampoo"
+                },
+                {
+                    "text": "This shampoo smells like flowers.",
+                    "answer": "shampoo"
+                },
+                {
+                    "text": "The bottle of shampoo fell in the shower.",
+                    "answer": "shampoo"
+                }
+            ]
+        },
+        {
+            "en": "shanghai",
+            "ch": "上海",
+            "sents": [
+                {
+                    "text": "My cousin moved to Shanghai last year.",
+                    "answer": "shanghai"
+                },
+                {
+                    "text": "We tasted noodles from Shanghai.",
+                    "answer": "shanghai"
+                },
+                {
+                    "text": "A business team arrived from Shanghai today.",
+                    "answer": "shanghai"
+                }
+            ]
+        },
+        {
+            "en": "shelve",
+            "ch": "擱置；放上架",
+            "sents": [
+                {
+                    "text": "We may shelve this plan for now.",
+                    "answer": "shelve"
+                },
+                {
+                    "text": "The shop will shelve the new books tomorrow.",
+                    "answer": "shelve"
+                },
+                {
+                    "text": "They decided to shelve the project after the meeting.",
+                    "answer": "shelve"
+                }
+            ]
+        },
+        {
+            "en": "shopper",
+            "ch": "購物者",
+            "sents": [
+                {
+                    "text": "Every shopper received a discount coupon.",
+                    "answer": "shopper"
+                },
+                {
+                    "text": "A tired shopper sat near the entrance.",
+                    "answer": "shopper"
+                },
+                {
+                    "text": "The market was full of shoppers today.",
+                    "answer": "shopper"
+                }
+            ]
+        },
+        {
+            "en": "shoulder",
+            "ch": "肩膀",
+            "sents": [
+                {
+                    "text": "He carried the bag on one shoulder.",
+                    "answer": "shoulder"
+                },
+                {
+                    "text": "My shoulder hurts after tennis practice.",
+                    "answer": "shoulder"
+                },
+                {
+                    "text": "She touched my shoulder to get my attention.",
+                    "answer": "shoulder"
+                }
+            ]
+        },
+        {
+            "en": "shout",
+            "ch": "大叫",
+            "sents": [
+                {
+                    "text": "Do not shout in the library.",
+                    "answer": "shout"
+                },
+                {
+                    "text": "He had to shout over the noise.",
+                    "answer": "shout"
+                },
+                {
+                    "text": "I heard someone shout my name.",
+                    "answer": "shout"
+                }
+            ]
+        },
+        {
+            "en": "shut",
+            "ch": "關上",
+            "sents": [
+                {
+                    "text": "Please shut the window before you leave.",
+                    "answer": "shut"
+                },
+                {
+                    "text": "The shop shuts at eight.",
+                    "answer": "shut"
+                },
+                {
+                    "text": "He shut his book and looked up.",
+                    "answer": "shut"
+                }
+            ]
+        },
+        {
+            "en": "sign",
+            "ch": "標誌；簽名",
+            "sents": [
+                {
+                    "text": "April 25 at 3:54 PM     Hamburger outlets   Anti-littering signs   No smoking signs   2020 2021   Copyright All rights reserved.",
+                    "answer": "sign"
+                },
+                {
+                    "text": "Rick Lai: There are many aspects to the job I enjoy but what I love most is taking a customer's design and turning it into a neon sign.",
+                    "answer": "sign"
+                },
+                {
+                    "text": "That's all before we start making the sign using a machine called the Glass Heater.",
+                    "answer": "sign"
+                }
+            ]
+        },
+        {
+            "en": "silver",
+            "ch": "銀；銀色",
+            "sents": [
+                {
+                    "text": "I noticed that a silver car was driving down the aisle behind me.",
+                    "answer": "silver"
+                },
+                {
+                    "text": "I saw a green sports car reverse out of a car space and collide with the silver car.",
+                    "answer": "silver"
+                },
+                {
+                    "text": "The silver car was moving at the time of the collision.",
+                    "answer": "silver"
+                }
+            ]
+        },
+        {
+            "en": "simpler",
+            "ch": "更簡單的",
+            "sents": [
+                {
+                    "text": "This example is simpler than the last one.",
+                    "answer": "simpler"
+                },
+                {
+                    "text": "Try a simpler way to explain it.",
+                    "answer": "simpler"
+                },
+                {
+                    "text": "We chose a simpler design.",
+                    "answer": "simpler"
+                }
+            ]
+        },
+        {
+            "en": "single",
+            "ch": "單一的；單身的",
+            "sents": [
+                {
+                    "text": "The pit bull didn't make a single sound as it savagely attacked her screaming dogs three times, almost killing one of them.",
+                    "answer": "single"
+                },
+                {
+                    "text": "She now has to sell 10kg of paper to make a single renminbi profit.",
+                    "answer": "single"
+                },
+                {
+                    "text": "The first emperor to unify China under a single dynasty, Qin Shi Huang Di packed a lot into his earthly reign, from 221 to 210 B.C.",
+                    "answer": "single"
+                }
+            ]
+        },
+        {
+            "en": "singular",
+            "ch": "單數的；獨特的",
+            "sents": [
+                {
+                    "text": "This noun is singular, not plural.",
+                    "answer": "singular"
+                },
+                {
+                    "text": "The word has a singular form.",
+                    "answer": "singular"
+                },
+                {
+                    "text": "Please use the singular noun here.",
+                    "answer": "singular"
+                }
+            ]
+        },
+        {
+            "en": "site",
+            "ch": "地點；網站",
+            "sents": [
+                {
+                    "text": "We will be continuing at our Sai Kung camp site for the foreseeable future, I'm afraid.",
+                    "answer": "site"
+                },
+                {
+                    "text": "Kit: Well, I don't know if it's my favourite thing but I can send my pet or other pets on the site a birthday card!",
+                    "answer": "site"
+                },
+                {
+                    "text": "Action to be taken:   Ms Alia Kapoor to conduct site visit of the Brighthouse Cinema in coming week.",
+                    "answer": "site"
+                }
+            ]
+        },
+        {
+            "en": "size",
+            "ch": "大小；尺寸",
+            "sents": [
+                {
+                    "text": "We have to reduce the group size down from ten - I'd say to 5 and give the children more than just 30 mins.",
+                    "answer": "size"
+                },
+                {
+                    "text": "Agree to adopt her suggestions regarding group size and time.",
+                    "answer": "size"
+                },
+                {
+                    "text": "Very clear 4%   More or less 5%   Comments   \"The font size is far too small!!!\"",
+                    "answer": "size"
+                }
+            ]
+        },
+        {
+            "en": "ski",
+            "ch": "滑雪",
+            "sents": [
+                {
+                    "text": "They plan to ski in January.",
+                    "answer": "ski"
+                },
+                {
+                    "text": "I learned to ski during the holiday.",
+                    "answer": "ski"
+                },
+                {
+                    "text": "We watched people ski down the hill.",
+                    "answer": "ski"
+                }
+            ]
+        },
+        {
+            "en": "skin",
+            "ch": "皮膚",
+            "sents": [
+                {
+                    "text": "It stings by injecting poison into or under the skin.",
+                    "answer": "skin"
+                },
+                {
+                    "text": "The key sign of a bee sting is that the bee leaves its stinger lodged inside the skin and a venomous sac will continue to pump poison for more than a minute.",
+                    "answer": "skin"
+                },
+                {
+                    "text": "In contrast, the only sign of a wasp sting is likely to be a small puncture hole in the skin.",
+                    "answer": "skin"
+                }
+            ]
+        },
+        {
+            "en": "skying",
+            "ch": "滑雪活動",
+            "sents": [
+                {
+                    "text": "Skying in fresh snow looks exciting.",
+                    "answer": "skying"
+                },
+                {
+                    "text": "He went skying with his cousins.",
+                    "answer": "skying"
+                },
+                {
+                    "text": "Skying is popular in that mountain town.",
+                    "answer": "skying"
+                }
+            ]
+        },
+        {
+            "en": "sleep",
+            "ch": "睡覺；睡眠",
+            "sents": [
+                {
+                    "text": "I need more sleep before the exam.",
+                    "answer": "sleep"
+                },
+                {
+                    "text": "The baby will sleep after lunch.",
+                    "answer": "sleep"
+                },
+                {
+                    "text": "Good sleep helps you stay healthy.",
+                    "answer": "sleep"
+                }
+            ]
+        },
+        {
+            "en": "slowly",
+            "ch": "慢慢地",
+            "sents": [
+                {
+                    "text": "He slowly turned his chair around.",
+                    "answer": "slowly"
+                },
+                {
+                    "text": "As he drew closer to the cry he went more slowly, with caution in every movement, till he came to an open place among the trees.",
+                    "answer": "slowly"
+                },
+                {
+                    "text": "But Buck turned about and started slowly on the back track.",
+                    "answer": "slowly"
+                }
+            ]
+        },
+        {
+            "en": "smartphone",
+            "ch": "智能手機",
+            "sents": [
+                {
+                    "text": "My smartphone battery is low again.",
+                    "answer": "smartphone"
+                },
+                {
+                    "text": "She uses a smartphone to check the bus time.",
+                    "answer": "smartphone"
+                },
+                {
+                    "text": "Do not use your smartphone during the test.",
+                    "answer": "smartphone"
+                }
+            ]
+        },
+        {
+            "en": "smartphones",
+            "ch": "智能手機（複數）",
+            "sents": [
+                {
+                    "text": "Most students carry smartphones now.",
+                    "answer": "smartphones"
+                },
+                {
+                    "text": "Smartphones can be useful learning tools.",
+                    "answer": "smartphones"
+                },
+                {
+                    "text": "The shop sells many kinds of smartphones.",
+                    "answer": "smartphones"
+                }
+            ]
+        },
+        {
+            "en": "smartwatch",
+            "ch": "智能手錶",
+            "sents": [
+                {
+                    "text": "His smartwatch counts his daily steps.",
+                    "answer": "smartwatch"
+                },
+                {
+                    "text": "I got a smartwatch for my birthday.",
+                    "answer": "smartwatch"
+                },
+                {
+                    "text": "The smartwatch vibrated during class.",
+                    "answer": "smartwatch"
+                }
+            ]
+        },
+        {
+            "en": "smell",
+            "ch": "氣味；聞",
+            "sents": [
+                {
+                    "text": "A, B   41. couldn't hear   42. was often late for work (and almost lost his job)   43. peppermint   44. blows air / smell   45. in a good mood   46.",
+                    "answer": "smell"
+                },
+                {
+                    "text": "People reported enjoying smelling the soaps and tasting the toothpaste as top highlights.",
+                    "answer": "smell"
+                },
+                {
+                    "text": "Smells of jasmine.",
+                    "answer": "smell"
+                }
+            ]
+        },
+        {
+            "en": "smile",
+            "ch": "微笑",
+            "sents": [
+                {
+                    "text": "Her happy smile kept me motivated day after day.",
+                    "answer": "smile"
+                },
+                {
+                    "text": "Remember, we're smiles better than any of our competitors!",
+                    "answer": "smile"
+                },
+                {
+                    "text": "She’ll sometimes speak in clipped sentences, her wisdom packed into short bursts and punctuated with an infectious smile or a wry laugh.",
+                    "answer": "smile"
+                }
+            ]
+        },
+        {
+            "en": "smoke",
+            "ch": "煙；吸煙",
+            "sents": [
+                {
+                    "text": "Smoke rose from the kitchen.",
+                    "answer": "smoke"
+                },
+                {
+                    "text": "The fire made thick black smoke.",
+                    "answer": "smoke"
+                },
+                {
+                    "text": "Please do not smoke near the door.",
+                    "answer": "smoke"
+                }
+            ]
+        },
+        {
+            "en": "snack",
+            "ch": "小吃；零食",
+            "sents": [
+                {
+                    "text": "“Celebrity gossip is a safe way to snack on schadenfreude (the delight in the misfortune of others),” says Benning.",
+                    "answer": "snack"
+                },
+                {
+                    "text": "However, you see stalls selling fish balls, chicken wings and other snacks.",
+                    "answer": "snack"
+                },
+                {
+                    "text": "Sometimes there's a small admission fee that covers snacks, several hours of gaming and help from the staff.",
+                    "answer": "snack"
+                }
+            ]
+        },
+        {
+            "en": "soap",
+            "ch": "肥皂",
+            "sents": [
+                {
+                    "text": "Wash your hands with soap.",
+                    "answer": "soap"
+                },
+                {
+                    "text": "This soap has a lemon smell.",
+                    "answer": "soap"
+                },
+                {
+                    "text": "We ran out of soap in the bathroom.",
+                    "answer": "soap"
+                }
+            ]
+        },
+        {
+            "en": "social",
+            "ch": "社交的；社會的",
+            "sents": [
+                {
+                    "text": "They're already in our social media advert, but it can't hurt to repeat them in the blog post.",
+                    "answer": "social"
+                },
+                {
+                    "text": "You will need to explain what a social history museum is as well as outline the details of the position.",
+                    "answer": "social"
+                },
+                {
+                    "text": "The video, showing a series of calamitous mistakes, quickly went viral after appearing on Puddle's social media accounts.",
+                    "answer": "social"
+                }
+            ]
+        },
+        {
+            "en": "society",
+            "ch": "社會",
+            "sents": [
+                {
+                    "text": "Posters   The name of your organization or society must be really big so people know who you are.",
+                    "answer": "society"
+                },
+                {
+                    "text": "Make sure the website of your organization or society is on your poster.",
+                    "answer": "society"
+                },
+                {
+                    "text": "England’s a cold society and, growing up, I suppose I always wanted this feeling of being connected to people.",
+                    "answer": "society"
+                }
+            ]
+        },
+        {
+            "en": "sofa",
+            "ch": "梳化；沙發",
+            "sents": [
+                {
+                    "text": "We sat on the sofa and talked.",
+                    "answer": "sofa"
+                },
+                {
+                    "text": "The new sofa is very soft.",
+                    "answer": "sofa"
+                },
+                {
+                    "text": "A cat was sleeping on the sofa.",
+                    "answer": "sofa"
+                }
+            ]
+        },
+        {
+            "en": "soft",
+            "ch": "柔軟的",
+            "sents": [
+                {
+                    "text": "It was just a soft toy, that's all.",
+                    "answer": "soft"
+                },
+                {
+                    "text": "Images for articles: soft copy (high resolution JPEG file format).",
+                    "answer": "soft"
+                },
+                {
+                    "text": "5   677   Bubblegirl46 Love to have Bubblegum soft toy animals.",
+                    "answer": "soft"
+                }
+            ]
+        },
+        {
+            "en": "soldier",
+            "ch": "士兵",
+            "sents": [
+                {
+                    "text": "At the conference, she talked about a woman whose husband, a soldier, came back from the war and they struggled to reconnect.",
+                    "answer": "soldier"
+                },
+                {
+                    "text": "TERRA-COTTA WARRIORS IN COLOR It was a dazzling spectacle: a life-size army of painted clay soldiers buried to guard an emperor’s tomb.",
+                    "answer": "soldier"
+                },
+                {
+                    "text": "Qin’s army of clay soldiers and horses was not a somber procession but a supernatural display of bold colors: red and green, purple and yellow.",
+                    "answer": "soldier"
+                }
+            ]
+        },
+        {
+            "en": "solution",
+            "ch": "解決方法",
+            "sents": [
+                {
+                    "text": "We look forward to hearing your response and demand an explanation along with proposed solutions or a summary of action that you've taken on the issue.",
+                    "answer": "solution"
+                },
+                {
+                    "text": "The solution at the Highland Adventure Centre was quite costly at the time and the centre was closed for six months.",
+                    "answer": "solution"
+                },
+                {
+                    "text": "Our customers can relax in the knowledge that our experienced team is committed to finding the right lighting solution for you.",
+                    "answer": "solution"
+                }
+            ]
+        },
+        {
+            "en": "solve",
+            "ch": "解決",
+            "sents": [
+                {
+                    "text": "to solve the problem.",
+                    "answer": "solve"
+                },
+                {
+                    "text": "How about 2 hours overall one hour to solve the problem, one hour for the groups to present to the other groups?",
+                    "answer": "solve"
+                },
+                {
+                    "text": "Please explain the cause of the problems and what DPP intends to do to solve them.",
+                    "answer": "solve"
+                }
+            ]
+        },
+        {
+            "en": "somewhere",
+            "ch": "某處",
+            "sents": [
+                {
+                    "text": "I left my glasses somewhere in the car.",
+                    "answer": "somewhere"
+                },
+                {
+                    "text": "Let us eat somewhere quiet.",
+                    "answer": "somewhere"
+                },
+                {
+                    "text": "There must be somewhere to sit nearby.",
+                    "answer": "somewhere"
+                }
+            ]
+        },
+        {
+            "en": "spa",
+            "ch": "水療中心",
+            "sents": [
+                {
+                    "text": "My aunt booked a day at the spa.",
+                    "answer": "spa"
+                },
+                {
+                    "text": "The hotel has a spa on the top floor.",
+                    "answer": "spa"
+                },
+                {
+                    "text": "She went to the spa to relax.",
+                    "answer": "spa"
+                }
+            ]
+        },
+        {
+            "en": "spaceman",
+            "ch": "太空人",
+            "sents": [
+                {
+                    "text": "The toy spaceman glowed in the dark.",
+                    "answer": "spaceman"
+                },
+                {
+                    "text": "The child dressed as a spaceman for school.",
+                    "answer": "spaceman"
+                },
+                {
+                    "text": "A cartoon spaceman appeared on the screen.",
+                    "answer": "spaceman"
+                }
+            ]
+        },
+        {
+            "en": "spaghetti",
+            "ch": "意大利粉",
+            "sents": [
+                {
+                    "text": "We had spaghetti with tomato sauce.",
+                    "answer": "spaghetti"
+                },
+                {
+                    "text": "She cooked spaghetti for dinner.",
+                    "answer": "spaghetti"
+                },
+                {
+                    "text": "The children made a mess with the spaghetti.",
+                    "answer": "spaghetti"
+                }
+            ]
+        },
+        {
+            "en": "speaker",
+            "ch": "講者；喇叭",
+            "sents": [
+                {
+                    "text": "Invitation email to guest speaker   Please write an email to invite a guest speaker to the Opening Event of the Asian Games Week.",
+                    "answer": "speaker"
+                },
+                {
+                    "text": "Dr Chan tells me we have a budget of $1000 as payment to the guest speaker.",
+                    "answer": "speaker"
+                },
+                {
+                    "text": "I think having a speaker on parachuting would be such a memorable experience for students.'",
+                    "answer": "speaker"
+                }
+            ]
+        },
+        {
+            "en": "specific",
+            "ch": "具體的；特定的",
+            "sents": [
+                {
+                    "text": "Do you need a specific color?",
+                    "answer": "specific"
+                },
+                {
+                    "text": "The teacher gave specific instructions.",
+                    "answer": "specific"
+                },
+                {
+                    "text": "I am looking for a specific book.",
+                    "answer": "specific"
+                }
+            ]
+        },
+        {
+            "en": "speech",
+            "ch": "演講；說話",
+            "sents": [
+                {
+                    "text": "Next month, we're going to have an open day and I'm going to give a speech and I'd like you to write it for me.",
+                    "answer": "speech"
+                },
+                {
+                    "text": "I want to see your speech written out in full.",
+                    "answer": "speech"
+                },
+                {
+                    "text": "10:30 AM   Mira   Just thinking, Nico, this is all stuff you could include in your speech.",
+                    "answer": "speech"
+                }
+            ]
+        },
+        {
+            "en": "spider",
+            "ch": "蜘蛛",
+            "sents": [
+                {
+                    "text": "Get a spider instead.",
+                    "answer": "spider"
+                },
+                {
+                    "text": "Blackstar   Posted: March 24 2014, 09:35 AM   Quote   Hey spiders are way cooler than snakes!",
+                    "answer": "spider"
+                },
+                {
+                    "text": "My brother just got a wolf spider.",
+                    "answer": "spider"
+                }
+            ]
+        },
+        {
+            "en": "square",
+            "ch": "正方形；廣場",
+            "sents": [
+                {
+                    "text": "The table is square, not round.",
+                    "answer": "square"
+                },
+                {
+                    "text": "They met in the town square.",
+                    "answer": "square"
+                },
+                {
+                    "text": "Draw a square in your notebook.",
+                    "answer": "square"
+                }
+            ]
+        },
+        {
+            "en": "stair",
+            "ch": "樓梯",
+            "sents": [
+                {
+                    "text": "Be careful on that wet stair.",
+                    "answer": "stair"
+                },
+                {
+                    "text": "He sat on the bottom stair.",
+                    "answer": "stair"
+                },
+                {
+                    "text": "A broken stair needs repair.",
+                    "answer": "stair"
+                }
+            ]
+        },
+        {
+            "en": "stamp",
+            "ch": "郵票；蓋章",
+            "sents": [
+                {
+                    "text": "I bought a stamp for the letter.",
+                    "answer": "stamp"
+                },
+                {
+                    "text": "Please stamp the form here.",
+                    "answer": "stamp"
+                },
+                {
+                    "text": "That old stamp is worth a lot.",
+                    "answer": "stamp"
+                }
+            ]
+        },
+        {
+            "en": "star",
+            "ch": "星星；明星",
+            "sents": [
+                {
+                    "text": "(the) stars   23. fish   24. in bamboo (water) containers   25.",
+                    "answer": "star"
+                },
+                {
+                    "text": "They should really add your name as well: use your star power!",
+                    "answer": "star"
+                },
+                {
+                    "text": "I need you to write the announcement for our website to show our support for Teen NetChef TV star William Puddle.",
+                    "answer": "star"
+                }
+            ]
+        },
+        {
+            "en": "steak",
+            "ch": "牛排",
+            "sents": [
+                {
+                    "text": "He ordered steak with fries.",
+                    "answer": "steak"
+                },
+                {
+                    "text": "The steak was cooked perfectly.",
+                    "answer": "steak"
+                },
+                {
+                    "text": "We shared a large steak at dinner.",
+                    "answer": "steak"
+                }
+            ]
+        },
+        {
+            "en": "steal",
+            "ch": "偷取",
+            "sents": [
+                {
+                    "text": "Someone tried to steal her bike.",
+                    "answer": "steal"
+                },
+                {
+                    "text": "It is wrong to steal from others.",
+                    "answer": "steal"
+                },
+                {
+                    "text": "A thief entered the store to steal money.",
+                    "answer": "steal"
+                }
+            ]
+        },
+        {
+            "en": "stone",
+            "ch": "石頭",
+            "sents": [
+                {
+                    "text": "He threw a stone into the river.",
+                    "answer": "stone"
+                },
+                {
+                    "text": "The path was made of stone.",
+                    "answer": "stone"
+                },
+                {
+                    "text": "A small stone got into my shoe.",
+                    "answer": "stone"
+                }
+            ]
+        },
+        {
+            "en": "storm",
+            "ch": "暴風雨",
+            "sents": [
+                {
+                    "text": "A new feature in the Mars Experience Room is the dust storm (which we will do with lights and a big fan).",
+                    "answer": "storm"
+                },
+                {
+                    "text": "The children will be told that if there is a dust storm they must evacuate the room immediately.",
+                    "answer": "storm"
+                },
+                {
+                    "text": "The main dangers of dust storms is that dust particles are so small on Mars that they would get into, and seriously damage, space suits.",
+                    "answer": "storm"
+                }
+            ]
+        },
+        {
+            "en": "straight",
+            "ch": "直的；直接地",
+            "sents": [
+                {
+                    "text": "Walk straight for two blocks.",
+                    "answer": "straight"
+                },
+                {
+                    "text": "Please sit up straight.",
+                    "answer": "straight"
+                },
+                {
+                    "text": "His hair is naturally straight.",
+                    "answer": "straight"
+                }
+            ]
+        },
+        {
+            "en": "strange",
+            "ch": "奇怪的",
+            "sents": [
+                {
+                    "text": "You also sent us some hotel stories some of you have stayed in some pretty strange places.",
+                    "answer": "strange"
+                },
+                {
+                    "text": "Tokyo, 23rd July 2021   I looked up into the sky last night in Tokyo and saw something strange.",
+                    "answer": "strange"
+                },
+                {
+                    "text": "(too) strange   23. different/new (types of) music   24. original // (songs) written by them   25.",
+                    "answer": "strange"
+                }
+            ]
+        },
+        {
+            "en": "strangest",
+            "ch": "最奇怪的",
+            "sents": [
+                {
+                    "text": "That was the strangest dream ever.",
+                    "answer": "strangest"
+                },
+                {
+                    "text": "He told the strangest story at lunch.",
+                    "answer": "strangest"
+                },
+                {
+                    "text": "This is the strangest item in the shop.",
+                    "answer": "strangest"
+                }
+            ]
+        },
+        {
+            "en": "strategy",
+            "ch": "策略",
+            "sents": [
+                {
+                    "text": "We need a better strategy for the game.",
+                    "answer": "strategy"
+                },
+                {
+                    "text": "Her study strategy works well.",
+                    "answer": "strategy"
+                },
+                {
+                    "text": "The coach explained the team strategy.",
+                    "answer": "strategy"
+                }
+            ]
+        },
+        {
+            "en": "stress",
+            "ch": "壓力",
+            "sents": [
+                {
+                    "text": "She insisted that it be stressed that the company cared deeply about residents living near our4ighting displays.",
+                    "answer": "stress"
+                },
+                {
+                    "text": "Did the whale, nicknamed Tilly, act out of stress at being held captive in a sterile concrete tank?",
+                    "answer": "stress"
+                },
+                {
+                    "text": "The rote learning that she stresses at home might work for her daughters because, outside the home, they are encouraged to think independently.",
+                    "answer": "stress"
+                }
+            ]
+        },
+        {
+            "en": "stronger",
+            "ch": "更強壯的；更強的",
+            "sents": [
+                {
+                    "text": "This rope is stronger than the old one.",
+                    "answer": "stronger"
+                },
+                {
+                    "text": "She feels stronger after training.",
+                    "answer": "stronger"
+                },
+                {
+                    "text": "A stronger wind arrived in the evening.",
+                    "answer": "stronger"
+                }
+            ]
+        },
+        {
+            "en": "strongest",
+            "ch": "最強壯的；最強的",
+            "sents": [
+                {
+                    "text": "He is the strongest player on the team.",
+                    "answer": "strongest"
+                },
+                {
+                    "text": "This is the strongest coffee here.",
+                    "answer": "strongest"
+                },
+                {
+                    "text": "The strongest support came from her family.",
+                    "answer": "strongest"
+                }
+            ]
+        },
+        {
+            "en": "stupid",
+            "ch": "愚蠢的",
+            "sents": [
+                {
+                    "text": "\"Keep it separate, stupid!\"",
+                    "answer": "stupid"
+                },
+                {
+                    "text": "I thought the \"101\" section, which focused on food hygiene, was really informative, and the \"Keep it separate, stupid!\"",
+                    "answer": "stupid"
+                },
+                {
+                    "text": "[15] It won’t be even slightly difficult, because this is the only science lesson where I can guarantee that the people making the stupid mistakes won’t be you.",
+                    "answer": "stupid"
+                }
+            ]
+        },
+        {
+            "en": "succeed",
+            "ch": "成功",
+            "sents": [
+                {
+                    "text": "Work hard if you want to succeed.",
+                    "answer": "succeed"
+                },
+                {
+                    "text": "She will succeed in that role.",
+                    "answer": "succeed"
+                },
+                {
+                    "text": "Many students succeed with practice.",
+                    "answer": "succeed"
+                }
+            ]
+        },
+        {
+            "en": "successful",
+            "ch": "成功的",
+            "sents": [
+                {
+                    "text": "Those who are criticising this poster are probably jealous that they will never be as beautiful or successful as this woman.",
+                    "answer": "successful"
+                },
+                {
+                    "text": "Summarize what is successful and what needs to be changed in the final artwork.",
+                    "answer": "successful"
+                },
+                {
+                    "text": "________________   ¹ Forbes is a business magazine featuring articles on finance, investing and successful companies.",
+                    "answer": "successful"
+                }
+            ]
+        },
+        {
+            "en": "suddenly",
+            "ch": "突然地",
+            "sents": [
+                {
+                    "text": "That's when she suddenly sees the real world.",
+                    "answer": "suddenly"
+                },
+                {
+                    "text": "Something quite innocuous suddenly becomes much more infuriating when you’re trying to work on a task your brain doesn’t necessarily enjoy.",
+                    "answer": "suddenly"
+                },
+                {
+                    "text": "In the mid-1990s, the bees that regularly showed up there every spring suddenly didn’t.",
+                    "answer": "suddenly"
+                }
+            ]
+        },
+        {
+            "en": "suggest",
+            "ch": "建議",
+            "sents": [
+                {
+                    "text": "We suggest the following to make the most out of your trip:   1.",
+                    "answer": "suggest"
+                },
+                {
+                    "text": "Seems like some clouds are rolling in... We suggest you... Over.",
+                    "answer": "suggest"
+                },
+                {
+                    "text": "Control centre: We suggest you wait it out.",
+                    "answer": "suggest"
+                }
+            ]
+        },
+        {
+            "en": "suggestion",
+            "ch": "建議",
+            "sents": [
+                {
+                    "text": "Ms Chawla added that she herself had made comments on the suggestions.",
+                    "answer": "suggestion"
+                },
+                {
+                    "text": "Agree to adopt her suggestions regarding group size and time.",
+                    "answer": "suggestion"
+                },
+                {
+                    "text": "Their suggestions seem reasonable - we should adopt them all.",
+                    "answer": "suggestion"
+                }
+            ]
+        },
+        {
+            "en": "sunglasses",
+            "ch": "太陽眼鏡",
+            "sents": [
+                {
+                    "text": "He wore sunglasses in the bright sun.",
+                    "answer": "sunglasses"
+                },
+                {
+                    "text": "I left my sunglasses in the car.",
+                    "answer": "sunglasses"
+                },
+                {
+                    "text": "These sunglasses look good on you.",
+                    "answer": "sunglasses"
+                }
+            ]
+        },
+        {
+            "en": "superlative",
+            "ch": "最高級",
+            "sents": [
+                {
+                    "text": "The teacher explained the superlative form.",
+                    "answer": "superlative"
+                },
+                {
+                    "text": "We practiced comparative and superlative adjectives.",
+                    "answer": "superlative"
+                },
+                {
+                    "text": "Big becomes biggest in the superlative.",
+                    "answer": "superlative"
+                }
+            ]
+        },
+        {
+            "en": "support",
+            "ch": "支持",
+            "sents": [
+                {
+                    "text": "Please show sensitivity in your response and offer what we can to support this wonderful charity.",
+                    "answer": "support"
+                },
+                {
+                    "text": "Ian: Well, most obviously we provide care and support for animals when they get sick.",
+                    "answer": "support"
+                },
+                {
+                    "text": "This hospital supports the exotic pet trade.",
+                    "answer": "support"
+                }
+            ]
+        },
+        {
+            "en": "suppose",
+            "ch": "假設；認為",
+            "sents": [
+                {
+                    "text": "Plaza Hotel   Total word count for this advert = 80+   This is supposed to be a half-page advert!",
+                    "answer": "suppose"
+                },
+                {
+                    "text": "I mean, as the fans enter, I suppose you could say what is the equivalent of your \"Fanzone\" at Wimbledon, they're given a ticket number as they come in.",
+                    "answer": "suppose"
+                },
+                {
+                    "text": "The main thing I suppose is that the café won't be on the ground floor.",
+                    "answer": "suppose"
+                }
+            ]
+        },
+        {
+            "en": "sure",
+            "ch": "確定的；當然",
+            "sents": [
+                {
+                    "text": "Make sure you are polite and clearly give reasons for the change and questions.",
+                    "answer": "sure"
+                },
+                {
+                    "text": "Make sure you wear light clothing.",
+                    "answer": "sure"
+                },
+                {
+                    "text": "I'm sure that will be a completely unique experience.",
+                    "answer": "sure"
+                }
+            ]
+        },
+        {
+            "en": "surname",
+            "ch": "姓氏",
+            "sents": [
+                {
+                    "text": "Please write your surname in capital letters.",
+                    "answer": "surname"
+                },
+                {
+                    "text": "Her surname is the same as mine.",
+                    "answer": "surname"
+                },
+                {
+                    "text": "The teacher called students by surname today.",
+                    "answer": "surname"
+                }
+            ]
+        },
+        {
+            "en": "surprise",
+            "ch": "驚喜；使驚訝",
+            "sents": [
+                {
+                    "text": "You'd be surprised how many no-shows we get.",
+                    "answer": "surprise"
+                },
+                {
+                    "text": "What really surprised me was how much fun it was for us parents too.",
+                    "answer": "surprise"
+                },
+                {
+                    "text": "I'm actually surprised it's not even more popular because the game itself is very easy to learn.",
+                    "answer": "surprise"
+                }
+            ]
+        },
+        {
+            "en": "sushi",
+            "ch": "壽司",
+            "sents": [
+                {
+                    "text": "We ate sushi for dinner last night.",
+                    "answer": "sushi"
+                },
+                {
+                    "text": "This restaurant serves fresh sushi.",
+                    "answer": "sushi"
+                },
+                {
+                    "text": "She learned how to make sushi at home.",
+                    "answer": "sushi"
+                }
+            ]
+        },
+        {
+            "en": "sweet",
+            "ch": "甜的",
+            "sents": [
+                {
+                    "text": "What's more, the staff there were really very sweet.",
+                    "answer": "sweet"
+                },
+                {
+                    "text": "Sweet Bean Awesome idea.",
+                    "answer": "sweet"
+                },
+                {
+                    "text": "It’s a style that makes her a favorite of everyone she meets — a sweet, witty companion who doesn’t need the limelight.",
+                    "answer": "sweet"
+                }
+            ]
+        },
+        {
+            "en": "symbol",
+            "ch": "符號；象徵",
+            "sents": [
+                {
+                    "text": "A heart is a common symbol of love.",
+                    "answer": "symbol"
+                },
+                {
+                    "text": "This symbol means you should be careful.",
+                    "answer": "symbol"
+                },
+                {
+                    "text": "The flag has a special symbol in the center.",
+                    "answer": "symbol"
+                }
+            ]
+        },
+        {
+            "en": "system",
+            "ch": "系統",
+            "sents": [
+                {
+                    "text": "(special) heating system   33. saved space (on the ship) // didn't take up (much) space   34. the crew put on a show (once a month) // singing and acting   35.",
+                    "answer": "system"
+                },
+                {
+                    "text": "She reported that she had contacted the All England Lawn Tennis Club regarding their use of the Fanzone and ticket system there.",
+                    "answer": "system"
+                },
+                {
+                    "text": "SJ proposed adopting the same system at the 2021 Victoria Cup so that even more real fans can attend.",
+                    "answer": "system"
+                }
+            ]
+        },
+        {
+            "en": "tablet",
+            "ch": "平板電腦；藥片",
+            "sents": [
+                {
+                    "text": "He uses a tablet to read books.",
+                    "answer": "tablet"
+                },
+                {
+                    "text": "The doctor gave her a tablet for the pain.",
+                    "answer": "tablet"
+                },
+                {
+                    "text": "Please charge the tablet before class.",
+                    "answer": "tablet"
+                }
+            ]
+        },
+        {
+            "en": "task",
+            "ch": "任務",
+            "sents": [
+                {
+                    "text": "The recording of the Zoom meeting between me, Shane Lee and David Atkinson contains information on all the tasks above.",
+                    "answer": "task"
+                },
+                {
+                    "text": "I need you to work on a number of tasks for me as we try to fix the fallout and move on.",
+                    "answer": "task"
+                },
+                {
+                    "text": "Dr Atkinson sent me his SMS messages with Captain Moby, which should be useful for all of these tasks as well.",
+                    "answer": "task"
+                }
+            ]
+        },
+        {
+            "en": "taste",
+            "ch": "味道；品嚐",
+            "sents": [
+                {
+                    "text": "This soup has a rich taste.",
+                    "answer": "taste"
+                },
+                {
+                    "text": "Taste the sauce before serving it.",
+                    "answer": "taste"
+                },
+                {
+                    "text": "The cake tastes better when it is warm.",
+                    "answer": "taste"
+                }
+            ]
+        },
+        {
+            "en": "teammate",
+            "ch": "隊友",
+            "sents": [
+                {
+                    "text": "My teammate passed me the ball.",
+                    "answer": "teammate"
+                },
+                {
+                    "text": "A good teammate always gives support.",
+                    "answer": "teammate"
+                },
+                {
+                    "text": "She thanked every teammate after the match.",
+                    "answer": "teammate"
+                }
+            ]
+        },
+        {
+            "en": "technology",
+            "ch": "科技",
+            "sents": [
+                {
+                    "text": "The technology's cheap and all of these low budget film makers - being independent and everything -have the freedom to explore this type of thing.",
+                    "answer": "technology"
+                },
+                {
+                    "text": "Cutting edge technology!",
+                    "answer": "technology"
+                },
+                {
+                    "text": "In the speech, Ms Fong would like to discuss 3D projection technology, drone displays, and the lasting appeal of neon lights.",
+                    "answer": "technology"
+                }
+            ]
+        },
+        {
+            "en": "teen",
+            "ch": "青少年",
+            "sents": [
+                {
+                    "text": "(much) better / more choice (of books)   23. problems teenagers / teens have   24. arguing with parents   25.",
+                    "answer": "teen"
+                },
+                {
+                    "text": "The world of our hovered-over teens and preteens may be safer, but it's also less conducive to adventure, and therefore to adventure stories.",
+                    "answer": "teen"
+                },
+                {
+                    "text": "As a teen, he would watch experienced chestnut roasters practising their craft, hoping to catch a glimpse of the tricks of the trade.",
+                    "answer": "teen"
+                }
+            ]
+        },
+        {
+            "en": "teenage",
+            "ch": "青少年的",
+            "sents": [
+                {
+                    "text": "Teenage students often need more sleep.",
+                    "answer": "teenage"
+                },
+                {
+                    "text": "He wrote a book about teenage life.",
+                    "answer": "teenage"
+                },
+                {
+                    "text": "Many teenage athletes train after school.",
+                    "answer": "teenage"
+                }
+            ]
+        },
+        {
+            "en": "teeth",
+            "ch": "牙齒",
+            "sents": [
+                {
+                    "text": "Brush your teeth twice a day.",
+                    "answer": "teeth"
+                },
+                {
+                    "text": "The baby has two new teeth.",
+                    "answer": "teeth"
+                },
+                {
+                    "text": "Cold drinks can hurt sensitive teeth.",
+                    "answer": "teeth"
+                }
+            ]
+        },
+        {
+            "en": "temperature",
+            "ch": "溫度",
+            "sents": [
+                {
+                    "text": "But be careful: the Wetland Park can have very high temperatures and bright sunshine.",
+                    "answer": "temperature"
+                },
+                {
+                    "text": "Low temperatures   29.",
+                    "answer": "temperature"
+                },
+                {
+                    "text": "Temperature very comfortable.",
+                    "answer": "temperature"
+                }
+            ]
+        },
+        {
+            "en": "theater",
+            "ch": "劇院",
+            "sents": [
+                {
+                    "text": "We watched a comedy at the theater.",
+                    "answer": "theater"
+                },
+                {
+                    "text": "The new theater opened last month.",
+                    "answer": "theater"
+                },
+                {
+                    "text": "Her parents met outside the theater.",
+                    "answer": "theater"
+                }
+            ]
+        },
+        {
+            "en": "thick",
+            "ch": "厚的",
+            "sents": [
+                {
+                    "text": "And I hope you made the glass walls thick enough!",
+                    "answer": "thick"
+                },
+                {
+                    "text": "Cut the potatoes into fries, about 1.5 cm thick   4.",
+                    "answer": "thick"
+                },
+                {
+                    "text": "One night he sprang from sleep with a start, his thick fur bristling in recurrent waves.",
+                    "answer": "thick"
+                }
+            ]
+        },
+        {
+            "en": "throw",
+            "ch": "拋；投",
+            "sents": [
+                {
+                    "text": "Want to throw a party where guests can't wait for the ride home (or there!)?",
+                    "answer": "throw"
+                },
+                {
+                    "text": "I even heard that one group of tourists were throwing money and food at some native dancers.",
+                    "answer": "throw"
+                },
+                {
+                    "text": "The pit bull was then thrown over a fence onto the yard of the housing estate.",
+                    "answer": "throw"
+                }
+            ]
+        },
+        {
+            "en": "tick",
+            "ch": "剔號；滴答聲",
+            "sents": [
+                {
+                    "text": "Put a tick next to the right answer.",
+                    "answer": "tick"
+                },
+                {
+                    "text": "I heard the clock tick in the quiet room.",
+                    "answer": "tick"
+                },
+                {
+                    "text": "Please tick the boxes you agree with.",
+                    "answer": "tick"
+                }
+            ]
+        },
+        {
+            "en": "tie",
+            "ch": "領帶；綁",
+            "sents": [
+                {
+                    "text": "He wore a blue tie to the wedding.",
+                    "answer": "tie"
+                },
+                {
+                    "text": "Can you help me tie this ribbon?",
+                    "answer": "tie"
+                },
+                {
+                    "text": "The score ended in a tie after extra time.",
+                    "answer": "tie"
+                }
+            ]
+        },
+        {
+            "en": "tool",
+            "ch": "工具",
+            "sents": [
+                {
+                    "text": "Now archaeologists and artists, armed with the latest tools and techniques, are bringing that ancient vision back to life.",
+                    "answer": "tool"
+                },
+                {
+                    "text": "Yes, hard-nosed critical thinking is a useful tool, but it also may become a defense against the risky insight that absorption can offer.",
+                    "answer": "tool"
+                },
+                {
+                    "text": "**Board games as a learning tool**  Pat and Dee also run a Chinese-language school called Learning East and use board games as teaching tools.",
+                    "answer": "tool"
+                }
+            ]
+        },
+        {
+            "en": "tourism",
+            "ch": "旅遊業",
+            "sents": [
+                {
+                    "text": "Upcoming issue   JL reported that one of the main focuses for the next issue would be unusual travel and tourism.",
+                    "answer": "tourism"
+                },
+                {
+                    "text": "Short feature article   We want to write a short article about travel and tourism in Hong Kong in the 1920s entitled 'Hong Kong Tourism: The Way It Was'.",
+                    "answer": "tourism"
+                },
+                {
+                    "text": "Please can you write the article including some examples of what travel and tourism was like in the 1920s.",
+                    "answer": "tourism"
+                }
+            ]
+        },
+        {
+            "en": "towards",
+            "ch": "朝向",
+            "sents": [
+                {
+                    "text": "Puddles of tears   Perhaps realising his downfall, Puddle even appears to be crying towards the end of the video.",
+                    "answer": "towards"
+                },
+                {
+                    "text": "Annual Review Targets (ARTs)   I have informed Human Resources that all training will count as credit towards your Annual Review Targets (ARTs).",
+                    "answer": "towards"
+                },
+                {
+                    "text": "It may often edge towards the latter, with evidence that Facebook is as addictive as cigarettes and alcohol.",
+                    "answer": "towards"
+                }
+            ]
+        },
+        {
+            "en": "towel",
+            "ch": "毛巾",
+            "sents": [
+                {
+                    "text": "Take a clean towel to the pool.",
+                    "answer": "towel"
+                },
+                {
+                    "text": "He dried his hands with a towel.",
+                    "answer": "towel"
+                },
+                {
+                    "text": "The towel is hanging by the window.",
+                    "answer": "towel"
+                }
+            ]
+        },
+        {
+            "en": "tower",
+            "ch": "塔",
+            "sents": [
+                {
+                    "text": "You can see the whole city from the tower.",
+                    "answer": "tower"
+                },
+                {
+                    "text": "The clock tower is over one hundred years old.",
+                    "answer": "tower"
+                },
+                {
+                    "text": "A tall tower stood near the harbor.",
+                    "answer": "tower"
+                }
+            ]
+        },
+        {
+            "en": "tradition",
+            "ch": "傳統",
+            "sents": [
+                {
+                    "text": "We have a great tradition of story-telling and together with the local people Mrs. Glasser wrote down some of the stories and helped us to get those published.",
+                    "answer": "tradition"
+                },
+                {
+                    "text": "So that anybody who reads the book learns about our traditions.",
+                    "answer": "tradition"
+                },
+                {
+                    "text": "Originates from Ancient Chinese traditions and festivals.",
+                    "answer": "tradition"
+                }
+            ]
+        },
+        {
+            "en": "traditional",
+            "ch": "傳統的",
+            "sents": [
+                {
+                    "text": "I think I'm just someone who likes normal traditional hotels.",
+                    "answer": "traditional"
+                },
+                {
+                    "text": "He added that the talk would be about the changes in the traditional way of life on farms in the New Territories since the 1980s.",
+                    "answer": "traditional"
+                },
+                {
+                    "text": "Please write a description for the website to introduce the traditional farmhouse from Wang Chung Village.",
+                    "answer": "traditional"
+                }
+            ]
+        },
+        {
+            "en": "trainer",
+            "ch": "教練；運動鞋",
+            "sents": [
+                {
+                    "text": "As per our company policy on food hygiene, trainers for this course must be approved by the Health Advisory Board (HAB).",
+                    "answer": "trainer"
+                },
+                {
+                    "text": "[5] Such incidents reflect the daily challenges faced by guide dog trainers in the city.",
+                    "answer": "trainer"
+                },
+                {
+                    "text": "[6] Hong Kong only started breeding guide dogs in 2011 because of a previous lack of professional trainers.",
+                    "answer": "trainer"
+                }
+            ]
+        },
+        {
+            "en": "traveller",
+            "ch": "旅客",
+            "sents": [
+                {
+                    "text": "The tired traveller looked for a hotel.",
+                    "answer": "traveller"
+                },
+                {
+                    "text": "A traveller asked me for directions.",
+                    "answer": "traveller"
+                },
+                {
+                    "text": "This card is useful for any traveller.",
+                    "answer": "traveller"
+                }
+            ]
+        },
+        {
+            "en": "truck",
+            "ch": "貨車",
+            "sents": [
+                {
+                    "text": "At that time, it was just a humble food truck, turning out fast food that promised not to send you to a fast grave.",
+                    "answer": "truck"
+                },
+                {
+                    "text": "After the show aired, fans flocked to the truck, and the business has since also opened a restaurant on 90 Wellesley St. West, in the City Works district.",
+                    "answer": "truck"
+                },
+                {
+                    "text": "The food truck is a huge hit all around town.",
+                    "answer": "truck"
+                }
+            ]
+        },
+        {
+            "en": "twentieth",
+            "ch": "第二十",
+            "sents": [
+                {
+                    "text": "Today is the twentieth of April.",
+                    "answer": "twentieth"
+                },
+                {
+                    "text": "She finished in twentieth place.",
+                    "answer": "twentieth"
+                },
+                {
+                    "text": "The twentieth chapter is very short.",
+                    "answer": "twentieth"
+                }
+            ]
+        },
+        {
+            "en": "twin",
+            "ch": "雙胞胎之一",
+            "sents": [
+                {
+                    "text": "Her twin looks almost the same as she does.",
+                    "answer": "twin"
+                },
+                {
+                    "text": "The family has twin boys.",
+                    "answer": "twin"
+                },
+                {
+                    "text": "My friend is a twin.",
+                    "answer": "twin"
+                }
+            ]
+        },
+        {
+            "en": "typical",
+            "ch": "典型的",
+            "sents": [
+                {
+                    "text": "This weather is typical for spring.",
+                    "answer": "typical"
+                },
+                {
+                    "text": "That is a typical mistake for beginners.",
+                    "answer": "typical"
+                },
+                {
+                    "text": "A typical school day starts early.",
+                    "answer": "typical"
+                }
+            ]
+        },
+        {
+            "en": "underground",
+            "ch": "地下的；地鐵",
+            "sents": [
+                {
+                    "text": "We took the underground to Central.",
+                    "answer": "underground"
+                },
+                {
+                    "text": "The station has an underground exit.",
+                    "answer": "underground"
+                },
+                {
+                    "text": "An underground tunnel connects the buildings.",
+                    "answer": "underground"
+                }
+            ]
+        },
+        {
+            "en": "unfortunately",
+            "ch": "不幸地",
+            "sents": [
+                {
+                    "text": "Unfortunately, the shop was already closed.",
+                    "answer": "unfortunately"
+                },
+                {
+                    "text": "Unfortunately, we missed the last bus.",
+                    "answer": "unfortunately"
+                },
+                {
+                    "text": "She studied hard, but unfortunately she was sick on exam day.",
+                    "answer": "unfortunately"
+                }
+            ]
+        },
+        {
+            "en": "unhappy",
+            "ch": "不快樂的",
+            "sents": [
+                {
+                    "text": "He felt unhappy about the decision.",
+                    "answer": "unhappy"
+                },
+                {
+                    "text": "The child looked unhappy in the photo.",
+                    "answer": "unhappy"
+                },
+                {
+                    "text": "I would be unhappy if we canceled the trip.",
+                    "answer": "unhappy"
+                }
+            ]
+        },
+        {
+            "en": "uniform",
+            "ch": "制服",
+            "sents": [
+                {
+                    "text": "Students must wear the school uniform.",
+                    "answer": "uniform"
+                },
+                {
+                    "text": "Her uniform was neat and clean.",
+                    "answer": "uniform"
+                },
+                {
+                    "text": "The shop sells sports uniform sets.",
+                    "answer": "uniform"
+                }
+            ]
+        },
+        {
+            "en": "unusual",
+            "ch": "不尋常的",
+            "sents": [
+                {
+                    "text": "Short feature article   We want to include a short feature article to introduce unusual hotels and encourage people to try them.",
+                    "answer": "unusual"
+                },
+                {
+                    "text": "Nothing unusual for me thank you!",
+                    "answer": "unusual"
+                },
+                {
+                    "text": "Upcoming issue   JL reported that one of the main focuses for the next issue would be unusual travel and tourism.",
+                    "answer": "unusual"
+                }
+            ]
+        },
+        {
+            "en": "user",
+            "ch": "使用者",
+            "sents": [
+                {
+                    "text": "Every user needs a password.",
+                    "answer": "user"
+                },
+                {
+                    "text": "The app asks each user to sign in.",
+                    "answer": "user"
+                },
+                {
+                    "text": "A new user may need help at first.",
+                    "answer": "user"
+                }
+            ]
+        },
+        {
+            "en": "usual",
+            "ch": "通常的",
+            "sents": [
+                {
+                    "text": "We met at our usual place after school.",
+                    "answer": "usual"
+                },
+                {
+                    "text": "Her usual breakfast is toast and tea.",
+                    "answer": "usual"
+                },
+                {
+                    "text": "The bus was later than usual today.",
+                    "answer": "usual"
+                }
+            ]
+        },
+        {
+            "en": "variety",
+            "ch": "種類；多樣化",
+            "sents": [
+                {
+                    "text": "With such a wide variety of fish and other aquatic life, find out why the Hong Kong Wetland Park is such a popular migration destination!",
+                    "answer": "variety"
+                },
+                {
+                    "text": "Kowloon Park website - Insects and Reptiles Exhibition page   Read up on the variety of Dragonflies in Hong Kong so you don't miss them!",
+                    "answer": "variety"
+                },
+                {
+                    "text": "This will be an awesome space for a variety of exciting activities.",
+                    "answer": "variety"
+                }
+            ]
+        },
+        {
+            "en": "vehicle",
+            "ch": "車輛",
+            "sents": [
+                {
+                    "text": "Google is developing “autonomous vehicles” that are improving rapidly each year.",
+                    "answer": "vehicle"
+                },
+                {
+                    "text": "A future of completely self-driving vehicles doesn’t seem too far off.",
+                    "answer": "vehicle"
+                },
+                {
+                    "text": "The benefits of self-driving cars It’s easy to list the benefits of a world with self-driving vehicles.",
+                    "answer": "vehicle"
+                }
+            ]
+        },
+        {
+            "en": "virus",
+            "ch": "病毒",
+            "sents": [
+                {
+                    "text": "Doctors are studying a new virus.",
+                    "answer": "virus"
+                },
+                {
+                    "text": "The computer had a virus and stopped working.",
+                    "answer": "virus"
+                },
+                {
+                    "text": "A virus can spread quickly in winter.",
+                    "answer": "virus"
+                }
+            ]
+        },
+        {
+            "en": "vocabulary",
+            "ch": "詞彙",
+            "sents": [
+                {
+                    "text": "Reading helps improve your vocabulary.",
+                    "answer": "vocabulary"
+                },
+                {
+                    "text": "We learned new vocabulary in class today.",
+                    "answer": "vocabulary"
+                },
+                {
+                    "text": "His English vocabulary is growing fast.",
+                    "answer": "vocabulary"
+                }
+            ]
+        },
+        {
+            "en": "voice",
+            "ch": "聲音",
+            "sents": [
+                {
+                    "text": "Mr Howard voiced concerns about recent problems the museum has had with some visitors.",
+                    "answer": "voice"
+                },
+                {
+                    "text": "Because when it came to raising her kids, my mom knew that her voice was less important than allowing me to use my own.",
+                    "answer": "voice"
+                },
+                {
+                    "text": "**Saving the World, one Patch at a Time** **Climate quilt gives children a voice in fighting for the environment**   **A.",
+                    "answer": "voice"
+                }
+            ]
+        },
+        {
+            "en": "volleyball",
+            "ch": "排球",
+            "sents": [
+                {
+                    "text": "They played volleyball on the beach.",
+                    "answer": "volleyball"
+                },
+                {
+                    "text": "Our class has a volleyball match tomorrow.",
+                    "answer": "volleyball"
+                },
+                {
+                    "text": "She joined the volleyball team this year.",
+                    "answer": "volleyball"
+                }
+            ]
+        },
+        {
+            "en": "walking",
+            "ch": "步行；走路",
+            "sents": [
+                {
+                    "text": "Walking after dinner helps me relax.",
+                    "answer": "walking"
+                },
+                {
+                    "text": "We spent the afternoon walking around the lake.",
+                    "answer": "walking"
+                },
+                {
+                    "text": "Walking to school saves money and time.",
+                    "answer": "walking"
+                }
+            ]
+        },
+        {
+            "en": "wallet",
+            "ch": "銀包",
+            "sents": [
+                {
+                    "text": "My wallet is in my jacket pocket.",
+                    "answer": "wallet"
+                },
+                {
+                    "text": "He lost his wallet on the bus.",
+                    "answer": "wallet"
+                },
+                {
+                    "text": "There was no cash in her wallet.",
+                    "answer": "wallet"
+                }
+            ]
+        },
+        {
+            "en": "war",
+            "ch": "戰爭",
+            "sents": [
+                {
+                    "text": "The museum has photos from the war.",
+                    "answer": "war"
+                },
+                {
+                    "text": "Many families suffered during the war.",
+                    "answer": "war"
+                },
+                {
+                    "text": "The novel tells a story about war and loss.",
+                    "answer": "war"
+                }
+            ]
+        },
+        {
+            "en": "wash",
+            "ch": "洗",
+            "sents": [
+                {
+                    "text": "Jamie   Do I need to dry the potatoes after washing them?",
+                    "answer": "wash"
+                },
+                {
+                    "text": "It is important to dry the potatoes carefully after washing them.",
+                    "answer": "wash"
+                },
+                {
+                    "text": "He then starts slicing up the other ingredients without washing his hands.",
+                    "answer": "wash"
+                }
+            ]
+        },
+        {
+            "en": "web",
+            "ch": "網絡；蜘蛛網",
+            "sents": [
+                {
+                    "text": "I found the article on the web.",
+                    "answer": "web"
+                },
+                {
+                    "text": "That spider built a web in the corner.",
+                    "answer": "web"
+                },
+                {
+                    "text": "The web page loaded very slowly today.",
+                    "answer": "web"
+                }
+            ]
+        },
+        {
+            "en": "webpage",
+            "ch": "網頁",
+            "sents": [
+                {
+                    "text": "I found a lot of interesting stuff on Tarkov and the science behind why the weather is so extreme on the NASA webpage.",
+                    "answer": "webpage"
+                },
+                {
+                    "text": "And helped us create a village webpage.",
+                    "answer": "webpage"
+                },
+                {
+                    "text": "You can check the HK Exotic Pets Forum webpage and the Foreword from the Exotic Pet Owner's Guide and remember to check your notes from the Pet Club podcast.",
+                    "answer": "webpage"
+                }
+            ]
+        },
+        {
+            "en": "wedding",
+            "ch": "婚禮",
+            "sents": [
+                {
+                    "text": "We are going to a wedding on Saturday.",
+                    "answer": "wedding"
+                },
+                {
+                    "text": "She bought a dress for the wedding.",
+                    "answer": "wedding"
+                },
+                {
+                    "text": "The wedding took place in a small church.",
+                    "answer": "wedding"
+                }
+            ]
+        },
+        {
+            "en": "weekday",
+            "ch": "平日",
+            "sents": [
+                {
+                    "text": "I usually wake up early on weekdays.",
+                    "answer": "weekday"
+                },
+                {
+                    "text": "Traffic is heavier on a weekday morning.",
+                    "answer": "weekday"
+                },
+                {
+                    "text": "We only open on weekdays.",
+                    "answer": "weekday"
+                }
+            ]
+        },
+        {
+            "en": "weight",
+            "ch": "重量",
+            "sents": [
+                {
+                    "text": "(animals') weight // how much they weigh   7.",
+                    "answer": "weight"
+                },
+                {
+                    "text": "No, you juggle a weighted shuttlecock called a Jianzi.",
+                    "answer": "weight"
+                },
+                {
+                    "text": "8:11 PM   Malcolm:   Oh, The Peak Sky Deck Manager wants to know the weight of the equipment you'll be using.",
+                    "answer": "weight"
+                }
+            ]
+        },
+        {
+            "en": "welcome",
+            "ch": "歡迎",
+            "sents": [
+                {
+                    "text": "Please welcome Ian McBain, Randall Worthing and Candy Tse.",
+                    "answer": "welcome"
+                },
+                {
+                    "text": "Yoga mums and fitness dads also welcome!",
+                    "answer": "welcome"
+                },
+                {
+                    "text": "You're welcome!",
+                    "answer": "welcome"
+                }
+            ]
+        },
+        {
+            "en": "wet",
+            "ch": "濕的",
+            "sents": [
+                {
+                    "text": "Be careful, the floor is wet.",
+                    "answer": "wet"
+                },
+                {
+                    "text": "My shoes got wet in the rain.",
+                    "answer": "wet"
+                },
+                {
+                    "text": "Hang the clothes outside until they are not wet.",
+                    "answer": "wet"
+                }
+            ]
+        },
+        {
+            "en": "wheel",
+            "ch": "輪子",
+            "sents": [
+                {
+                    "text": "This is what will happen if we don't turn back now, they scold, and scolding makes sense when your readers have a shot at getting their hands on the wheel.",
+                    "answer": "wheel"
+                },
+                {
+                    "text": "Letting robots take the wheel would save lives.",
+                    "answer": "wheel"
+                },
+                {
+                    "text": "Early autonomous cars will likely require their human drivers to take the wheel during especially complicated situations.",
+                    "answer": "wheel"
+                }
+            ]
+        },
+        {
+            "en": "wide",
+            "ch": "寬的",
+            "sents": [
+                {
+                    "text": "With such a wide variety of fish and other aquatic life, find out why the Hong Kong Wetland Park is such a popular migration destination!",
+                    "answer": "wide"
+                },
+                {
+                    "text": "I was really impressed by the wide variety of activities.",
+                    "answer": "wide"
+                },
+                {
+                    "text": "Ultimatum Products can manufacture a wide range of high quality products for retail at highly competitive prices.",
+                    "answer": "wide"
+                }
+            ]
+        },
+        {
+            "en": "wild",
+            "ch": "野生的",
+            "sents": [
+                {
+                    "text": "His dramatic \"Aqua Vita\" photo prints, of aquatic mammals in the wild, are among the most popular in our online shop and would light up any home or office.",
+                    "answer": "wild"
+                },
+                {
+                    "text": "And we worry about wild boars!",
+                    "answer": "wild"
+                },
+                {
+                    "text": "Well, it's any animal which is wild but is looked after by a person.",
+                    "answer": "wild"
+                }
+            ]
+        },
+        {
+            "en": "windy",
+            "ch": "有風的",
+            "sents": [
+                {
+                    "text": "It was too windy to fly a kite.",
+                    "answer": "windy"
+                },
+                {
+                    "text": "Today is cold and windy.",
+                    "answer": "windy"
+                },
+                {
+                    "text": "The beach gets very windy at night.",
+                    "answer": "windy"
+                }
+            ]
+        },
+        {
+            "en": "winner",
+            "ch": "勝利者",
+            "sents": [
+                {
+                    "text": "The International Airport Committee is pleased to announce the winners of the Best International Airport Award for 2012.",
+                    "answer": "winner"
+                },
+                {
+                    "text": "A special thank you must go to all the world travellers who voted in this year's competition and our hearty congratulations to the winners.",
+                    "answer": "winner"
+                },
+                {
+                    "text": "Second, we have now chosen the winners of the Jade Islands Home Viewing Day competition.",
+                    "answer": "winner"
+                }
+            ]
+        },
+        {
+            "en": "wish",
+            "ch": "希望；願望",
+            "sents": [
+                {
+                    "text": "I wish I'd had all of this when I was younger.\"",
+                    "answer": "wish"
+                },
+                {
+                    "text": "Rick Lai and Pris Fong also discuss some product details on the Wish You Were Here podcast.",
+                    "answer": "wish"
+                },
+                {
+                    "text": "We would very much like to know why you wish to film here specifically and how it would benefit The Peak Sky Deck or even Hong Kong tourism in general.",
+                    "answer": "wish"
+                }
+            ]
+        },
+        {
+            "en": "wood",
+            "ch": "木頭",
+            "sents": [
+                {
+                    "text": "He sprang through the sleeping camp and in swift silence dashed through the woods.",
+                    "answer": "wood"
+                },
+                {
+                    "text": "The wood has rotted away, but the shield’s delicate design and brilliant reds, greens, and whites are imprinted on the earth.",
+                    "answer": "wood"
+                },
+                {
+                    "text": "“Its wood is gnarled and so cannot be used as timber.",
+                    "answer": "wood"
+                }
+            ]
+        },
+        {
+            "en": "wooden",
+            "ch": "木製的",
+            "sents": [
+                {
+                    "text": "The table is made of wooden boards.",
+                    "answer": "wooden"
+                },
+                {
+                    "text": "A wooden bridge crosses the stream.",
+                    "answer": "wooden"
+                },
+                {
+                    "text": "She bought a small wooden box.",
+                    "answer": "wooden"
+                }
+            ]
+        },
+        {
+            "en": "wow",
+            "ch": "哇",
+            "sents": [
+                {
+                    "text": "Captain Moby   11:01am   Oh wow!",
+                    "answer": "wow"
+                },
+                {
+                    "text": "10:33 PM   Gehry:   Wow!",
+                    "answer": "wow"
+                },
+                {
+                    "text": "Interviewer:   Wow!",
+                    "answer": "wow"
+                }
+            ]
+        },
+        {
+            "en": "zero",
+            "ch": "零",
+            "sents": [
+                {
+                    "text": "The answer is zero.",
+                    "answer": "zero"
+                },
+                {
+                    "text": "The temperature fell below zero.",
+                    "answer": "zero"
+                },
+                {
+                    "text": "He had zero interest in that movie.",
+                    "answer": "zero"
                 }
             ]
         }
     ],
+
     "L3": [
         {
             "en": "sea",
