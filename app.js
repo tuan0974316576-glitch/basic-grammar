@@ -1055,6 +1055,7 @@ const TURN_SELECTION_TIME = 10.0;
     let enemyShots = [];
     let aiTargetStack = [];
     let aiRadarScannedCenters = new Set();
+    let pvpOpponentRadarScannedCenters = new Set();
     let aiRadarIntel = [];
     let currentPhase = 'DEPLOY';
     let deployIndex = 0;
@@ -1977,6 +1978,7 @@ function initPVPListeners() {
             if (currentPhase === 'GAME_OVER') return; 
             if (data.winner === playerRole) {
                 renderReview();
+                calculateAndDisplaySettlement(true, false);
                 document.getElementById('end-title').innerText = "VICTORY";
                 document.getElementById('end-title').style.color = "var(--success)";
                 document.getElementById('end-title').style.textShadow = "0 0 30px var(--success)";
@@ -2037,6 +2039,23 @@ function initPVPListeners() {
                         applyExplosionDamageToPlayer(move.indices);
                     });
                 }, NUKE_LOCK_ON_DURATION);
+                return;
+            }
+
+            if (move.type === 'radar' && Number.isInteger(move.centerIndex)) {
+                const status = document.getElementById('game-status');
+                if (status) {
+                    status.innerHTML = `PHASE: <span style="color:var(--primary)">ENEMY RADAR SCAN</span>`;
+                }
+
+                playRadarScanOnBoard({
+                    gridId: 'player-grid',
+                    centerIndex: move.centerIndex,
+                    getCell: getPlayerCell,
+                    countTargets: countAiRadarTargets,
+                    scannedSet: pvpOpponentRadarScannedCenters,
+                    onScanComplete: () => {}
+                });
                 return;
             }
 
@@ -5247,6 +5266,7 @@ function resetGame() {
     enemyShots = [];
     aiTargetStack = []; 
     aiRadarScannedCenters.clear();
+    pvpOpponentRadarScannedCenters.clear();
     aiRadarIntel = [];
     radarScannedCells.clear();
     lastRadarResultShownAt = 0;
@@ -9053,6 +9073,13 @@ function executeRadarScan(centerIndex) {
     setRadarEligibleCells(false);
     activeSkill = 'radar';
     setInstructionPanel('RADAR', 'SCANNING TARGET AREA', 'radar.png');
+
+    if (gameMode === 'PVP') {
+        const { ref, update } = window.firebaseModules;
+        update(ref(db, 'rooms/' + currentRoomId), {
+            lastMove: { attacker: playerRole, type: 'radar', centerIndex, timestamp: Date.now() }
+        });
+    }
 
     playRadarScanOnBoard({
         gridId: 'enemy-grid',
