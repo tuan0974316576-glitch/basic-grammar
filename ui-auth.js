@@ -713,6 +713,7 @@ window.requestLandscapeForTablet = async function() {
 };
 
 window.startExperience = function() {
+    window.pendingStartExperience = false;
     window.ignoreConnectionAlert = true;
     setTimeout(() => {
         window.ignoreConnectionAlert = false;
@@ -800,6 +801,14 @@ window.startExperience = function() {
         gameWrapper.style.display = 'block';
     }
 };
+
+if (window.pendingStartExperience) {
+    setTimeout(() => {
+        if (typeof window.startExperience === 'function') {
+            window.startExperience();
+        }
+    }, 0);
+}
 
 function switchHudPanel(panelId) {
     document.getElementById('connecting-panel').style.display = 'none';
