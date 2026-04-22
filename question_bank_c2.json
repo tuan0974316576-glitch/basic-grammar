@@ -4003,700 +4003,2000 @@
     "word": "glow",
     "cefr": "C2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The fireplace gave the room a warm glow.",
+        "answer": "glow"
+      },
+      {
+        "text": "Her face seemed to glow with happiness.",
+        "answer": "glow"
+      },
+      {
+        "text": "The city began to glow as evening fell.",
+        "answer": "glow"
+      }
+    ],
     "ch": "發光／光彩"
   },
   {
     "word": "glut",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A glut of cheap goods flooded the market.",
+        "answer": "glut"
+      },
+      {
+        "text": "There is a seasonal glut of tomatoes every summer.",
+        "answer": "glut"
+      },
+      {
+        "text": "The sudden glut in supply drove prices down.",
+        "answer": "glut"
+      }
+    ],
     "ch": "供過於求／充斥"
   },
   {
     "word": "grandiose",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "He announced a grandiose plan to transform the city in a year.",
+        "answer": "grandiose"
+      },
+      {
+        "text": "The palace was built in a grandiose style.",
+        "answer": "grandiose"
+      },
+      {
+        "text": "Her grandiose promises impressed nobody in the end.",
+        "answer": "grandiose"
+      }
+    ],
     "ch": "浮誇宏大的"
   },
   {
     "word": "grapple",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Scientists continue to grapple with the mystery.",
+        "answer": "grapple"
+      },
+      {
+        "text": "The town is grappling with a housing shortage.",
+        "answer": "grapple"
+      },
+      {
+        "text": "He grappled with the ethical implications of the choice.",
+        "answer": "grapple"
+      }
+    ],
     "ch": "搏鬥／努力解決"
   },
   {
     "word": "grotesque",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The film used grotesque images to unsettle viewers.",
+        "answer": "grotesque"
+      },
+      {
+        "text": "The statue had a grotesque expression on its face.",
+        "answer": "grotesque"
+      },
+      {
+        "text": "They mocked the grotesque waste of public money.",
+        "answer": "grotesque"
+      }
+    ],
     "ch": "怪誕的／荒謬的"
   },
   {
     "word": "guise",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "He entered the meeting under the guise of a consultant.",
+        "answer": "guise"
+      },
+      {
+        "text": "The policy was introduced in the guise of reform.",
+        "answer": "guise"
+      },
+      {
+        "text": "She visited in the guise of an old friend.",
+        "answer": "guise"
+      }
+    ],
     "ch": "偽裝／外表"
   },
   {
     "word": "hapless",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The hapless tourist dropped his map into the river.",
+        "answer": "hapless"
+      },
+      {
+        "text": "A hapless clerk became the target of public anger.",
+        "answer": "hapless"
+      },
+      {
+        "text": "The comedy follows a hapless hero through a series of disasters.",
+        "answer": "hapless"
+      }
+    ],
     "ch": "倒霉的／無助的"
   },
   {
     "word": "harbinger",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Dark clouds were a harbinger of the storm.",
+        "answer": "harbinger"
+      },
+      {
+        "text": "Some saw the small protest as a harbinger of wider unrest.",
+        "answer": "harbinger"
+      },
+      {
+        "text": "The first frost is a harbinger of winter.",
+        "answer": "harbinger"
+      }
+    ],
     "ch": "先兆／預兆"
   },
   {
     "word": "haul",
     "cefr": "C2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The fishermen returned with a large haul of squid.",
+        "answer": "haul"
+      },
+      {
+        "text": "It took hours to haul the equipment up the hill.",
+        "answer": "haul"
+      },
+      {
+        "text": "Police seized a haul of stolen goods.",
+        "answer": "haul"
+      }
+    ],
     "ch": "拖／搬運／收穫量"
   },
   {
     "word": "hay",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The horses were fed fresh hay every morning.",
+        "answer": "hay"
+      },
+      {
+        "text": "They stored the hay in a dry barn.",
+        "answer": "hay"
+      },
+      {
+        "text": "The smell of hay drifted across the field.",
+        "answer": "hay"
+      }
+    ],
     "ch": "乾草"
   },
   {
     "word": "headhunter",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A headhunter contacted her about a senior post overseas.",
+        "answer": "headhunter"
+      },
+      {
+        "text": "He now works as a headhunter for technology firms.",
+        "answer": "headhunter"
+      },
+      {
+        "text": "The company hired a headhunter to find a new chief executive.",
+        "answer": "headhunter"
+      }
+    ],
     "ch": "獵頭／招聘專員"
   },
   {
     "word": "heap",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A heap of clothes covered the chair.",
+        "answer": "heap"
+      },
+      {
+        "text": "The mechanic found a heap of broken parts in the yard.",
+        "answer": "heap"
+      },
+      {
+        "text": "She gave me a heap of reasons to stay.",
+        "answer": "heap"
+      }
+    ],
     "ch": "堆／大量"
   },
   {
     "word": "heather",
     "cefr": "C2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Purple heather covered the hillside in late summer.",
+        "answer": "heather"
+      },
+      {
+        "text": "They walked through fields of blooming heather.",
+        "answer": "heather"
+      },
+      {
+        "text": "The painting featured sheep grazing among the heather.",
+        "answer": "heather"
+      }
+    ],
     "ch": "石楠花"
   },
   {
     "word": "hedonism",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The novel criticizes a culture of shallow hedonism.",
+        "answer": "hedonism"
+      },
+      {
+        "text": "He mistook freedom for pure hedonism.",
+        "answer": "hedonism"
+      },
+      {
+        "text": "The philosopher warned that endless hedonism leads to emptiness.",
+        "answer": "hedonism"
+      }
+    ],
     "ch": "享樂主義"
   },
   {
     "word": "hippocratic",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Medical ethics still draw on Hippocratic principles.",
+        "answer": "hippocratic"
+      },
+      {
+        "text": "The speaker discussed the Hippocratic tradition in medicine.",
+        "answer": "hippocratic"
+      },
+      {
+        "text": "Students reflected on the Hippocratic duty to do no harm.",
+        "answer": "hippocratic"
+      }
+    ],
     "ch": "希波克拉底的／醫德的"
   },
   {
     "word": "hipster",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The cafe was full of hipsters with vintage cameras.",
+        "answer": "hipster"
+      },
+      {
+        "text": "He mocked the neighborhood for becoming too hipster.",
+        "answer": "hipster"
+      },
+      {
+        "text": "The magazine featured a guide to hipster fashion.",
+        "answer": "hipster"
+      }
+    ],
     "ch": "嬉皮雅痞／潮人"
   },
   {
     "word": "hive",
     "cefr": "C2",
     "frequency": 5,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The beekeeper checked every hive before sunset.",
+        "answer": "hive"
+      },
+      {
+        "text": "The office became a hive of activity before the deadline.",
+        "answer": "hive"
+      },
+      {
+        "text": "Smoke was used to calm the bees in the hive.",
+        "answer": "hive"
+      }
+    ],
     "ch": "蜂巢"
   },
   {
     "word": "homeopathy",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "She turned to homeopathy after conventional treatment failed.",
+        "answer": "homeopathy"
+      },
+      {
+        "text": "The article questioned the claims of homeopathy.",
+        "answer": "homeopathy"
+      },
+      {
+        "text": "Doctors debated whether homeopathy should be publicly funded.",
+        "answer": "homeopathy"
+      }
+    ],
     "ch": "順勢療法"
   },
   {
     "word": "homey",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The kitchen felt warm and homey on a rainy evening.",
+        "answer": "homey"
+      },
+      {
+        "text": "They decorated the apartment to make it more homey.",
+        "answer": "homey"
+      },
+      {
+        "text": "A homey atmosphere made guests relax quickly.",
+        "answer": "homey"
+      }
+    ],
     "ch": "溫馨如家的"
   },
   {
     "word": "homogeneity",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The policy increased cultural homogeneity in the schools.",
+        "answer": "homogeneity"
+      },
+      {
+        "text": "Scientists tested the homogeneity of the mixture.",
+        "answer": "homogeneity"
+      },
+      {
+        "text": "Too much homogeneity can limit creativity.",
+        "answer": "homogeneity"
+      }
+    ],
     "ch": "同質性"
   },
   {
     "word": "hop",
     "cefr": "C2",
     "frequency": 8,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The child tried to hop across the puddles.",
+        "answer": "hop"
+      },
+      {
+        "text": "We may need to hop on the next train quickly.",
+        "answer": "hop"
+      },
+      {
+        "text": "Small birds hop across the lawn in the morning.",
+        "answer": "hop"
+      }
+    ],
     "ch": "跳躍／快速移動"
   },
   {
     "word": "hornet",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A hornet flew into the kitchen through the open window.",
+        "answer": "hornet"
+      },
+      {
+        "text": "The nest turned out to belong to hornets, not bees.",
+        "answer": "hornet"
+      },
+      {
+        "text": "He was stung by a hornet while trimming the hedge.",
+        "answer": "hornet"
+      }
+    ],
     "ch": "大黃蜂"
   },
   {
     "word": "howl",
     "cefr": "C2",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "We heard wolves howl in the distance.",
+        "answer": "howl"
+      },
+      {
+        "text": "The wind began to howl around the old house.",
+        "answer": "howl"
+      },
+      {
+        "text": "The audience howled with laughter at the final joke.",
+        "answer": "howl"
+      }
+    ],
     "ch": "嚎叫／呼嘯"
   },
   {
     "word": "huff",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "She stormed out in a huff after the argument.",
+        "answer": "huff"
+      },
+      {
+        "text": "He began to huff as he climbed the stairs.",
+        "answer": "huff"
+      },
+      {
+        "text": "Do not leave in a huff every time someone disagrees with you.",
+        "answer": "huff"
+      }
+    ],
     "ch": "氣呼呼地走開／惱怒"
   },
   {
     "word": "humbly",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "He humbly accepted the award on behalf of his team.",
+        "answer": "humbly"
+      },
+      {
+        "text": "She humbly admitted that she still had much to learn.",
+        "answer": "humbly"
+      },
+      {
+        "text": "The monk spoke humbly about his achievements.",
+        "answer": "humbly"
+      }
+    ],
     "ch": "謙卑地"
   },
   {
     "word": "hunch",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "I have a hunch that she already knows the truth.",
+        "answer": "hunch"
+      },
+      {
+        "text": "His hunch proved correct after the files were checked.",
+        "answer": "hunch"
+      },
+      {
+        "text": "Detectives followed a hunch and found the missing car.",
+        "answer": "hunch"
+      }
+    ],
     "ch": "直覺／預感"
   },
   {
     "word": "idolatry",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The writer criticizes celebrity idolatry in modern culture.",
+        "answer": "idolatry"
+      },
+      {
+        "text": "Religious leaders warned against idolatry.",
+        "answer": "idolatry"
+      },
+      {
+        "text": "His admiration for the coach bordered on idolatry.",
+        "answer": "idolatry"
+      }
+    ],
     "ch": "偶像崇拜"
   },
   {
     "word": "ignorant",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "It was an ignorant remark that offended many listeners.",
+        "answer": "ignorant"
+      },
+      {
+        "text": "He remained ignorant of the changes until too late.",
+        "answer": "ignorant"
+      },
+      {
+        "text": "No one should be mocked for being ignorant and willing to learn.",
+        "answer": "ignorant"
+      }
+    ],
     "ch": "無知的"
   },
   {
     "word": "immortal",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The poet hoped his work would make him immortal.",
+        "answer": "immortal"
+      },
+      {
+        "text": "In myth, the gods are often immortal.",
+        "answer": "immortal"
+      },
+      {
+        "text": "The victory gave the player an almost immortal status among fans.",
+        "answer": "immortal"
+      }
+    ],
     "ch": "不朽的／永生的"
   },
   {
     "word": "impeccably",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "She was impeccably dressed for the ceremony.",
+        "answer": "impeccably"
+      },
+      {
+        "text": "The room was impeccably clean.",
+        "answer": "impeccably"
+      },
+      {
+        "text": "He behaved impeccably throughout the interview.",
+        "answer": "impeccably"
+      }
+    ],
     "ch": "無可挑剔地"
   },
   {
     "word": "impede",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Heavy traffic may impede emergency services.",
+        "answer": "impede"
+      },
+      {
+        "text": "Fear can impede honest communication.",
+        "answer": "impede"
+      },
+      {
+        "text": "The wall was built to impede the spread of the fire.",
+        "answer": "impede"
+      }
+    ],
     "ch": "阻礙"
   },
   {
     "word": "impressionable",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Young children are highly impressionable.",
+        "answer": "impressionable"
+      },
+      {
+        "text": "Advertisers often target impressionable audiences.",
+        "answer": "impressionable"
+      },
+      {
+        "text": "He worried that the violent content might affect impressionable viewers.",
+        "answer": "impressionable"
+      }
+    ],
     "ch": "易受影響的"
   },
   {
     "word": "inclement",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The match was canceled because of inclement weather.",
+        "answer": "inclement"
+      },
+      {
+        "text": "Travelers should prepare for inclement conditions in winter.",
+        "answer": "inclement"
+      },
+      {
+        "text": "The shelter was built to withstand inclement seas.",
+        "answer": "inclement"
+      }
+    ],
     "ch": "惡劣的（天氣）"
   },
   {
     "word": "incongruity",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "There was an amusing incongruity between his voice and his size.",
+        "answer": "incongruity"
+      },
+      {
+        "text": "The architect embraced incongruity in the design.",
+        "answer": "incongruity"
+      },
+      {
+        "text": "The sudden joke created a strange incongruity in the solemn ceremony.",
+        "answer": "incongruity"
+      }
+    ],
     "ch": "不協調／不一致"
   },
   {
     "word": "indebted to",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "I am deeply indebted to my teachers for their support.",
+        "answer": "indebted to"
+      },
+      {
+        "text": "The project is indebted to earlier research from the same team.",
+        "answer": "indebted to"
+      },
+      {
+        "text": "She said she remained indebted to the doctor who helped her family.",
+        "answer": "indebted to"
+      }
+    ],
     "ch": "感激／欠…情"
   },
   {
     "word": "indispensable",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Reliable internet has become indispensable for many workers.",
+        "answer": "indispensable"
+      },
+      {
+        "text": "Her calm judgment was indispensable during the crisis.",
+        "answer": "indispensable"
+      },
+      {
+        "text": "Maps remain indispensable on long mountain walks.",
+        "answer": "indispensable"
+      }
+    ],
     "ch": "不可或缺的"
   },
   {
     "word": "indoctrinate",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The group was accused of trying to indoctrinate children.",
+        "answer": "indoctrinate"
+      },
+      {
+        "text": "Education should encourage inquiry, not indoctrinate students.",
+        "answer": "indoctrinate"
+      },
+      {
+        "text": "The regime used media to indoctrinate the public.",
+        "answer": "indoctrinate"
+      }
+    ],
     "ch": "灌輸思想"
   },
   {
     "word": "infancy",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The technology is still in its infancy.",
+        "answer": "infancy"
+      },
+      {
+        "text": "The memory dates back to his infancy.",
+        "answer": "infancy"
+      },
+      {
+        "text": "The company struggled during its infancy.",
+        "answer": "infancy"
+      }
+    ],
     "ch": "嬰兒期／初期"
   },
   {
     "word": "infectious",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Her laughter was so infectious that everyone smiled.",
+        "answer": "infectious"
+      },
+      {
+        "text": "Doctors wore masks to prevent infectious disease from spreading.",
+        "answer": "infectious"
+      },
+      {
+        "text": "His enthusiasm proved infectious in the classroom.",
+        "answer": "infectious"
+      }
+    ],
     "ch": "傳染性的／有感染力的"
   },
   {
     "word": "infinite",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The universe may seem infinite to us.",
+        "answer": "infinite"
+      },
+      {
+        "text": "Children often have an infinite supply of questions.",
+        "answer": "infinite"
+      },
+      {
+        "text": "The game allows for almost infinite combinations.",
+        "answer": "infinite"
+      }
+    ],
     "ch": "無限的"
   },
   {
     "word": "infuriate",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The delay was enough to infuriate even patient customers.",
+        "answer": "infuriate"
+      },
+      {
+        "text": "False accusations would infuriate anyone.",
+        "answer": "infuriate"
+      },
+      {
+        "text": "He knew the remark would infuriate his opponent.",
+        "answer": "infuriate"
+      }
+    ],
     "ch": "使暴怒"
   },
   {
     "word": "infuse",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "She tried to infuse the lesson with humor.",
+        "answer": "infuse"
+      },
+      {
+        "text": "Tea leaves need time to infuse in hot water.",
+        "answer": "infuse"
+      },
+      {
+        "text": "The artist wanted to infuse the work with local history.",
+        "answer": "infuse"
+      }
+    ],
     "ch": "注入／使充滿"
   },
   {
     "word": "ingenuity",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The invention shows real ingenuity.",
+        "answer": "ingenuity"
+      },
+      {
+        "text": "They solved the problem with remarkable ingenuity.",
+        "answer": "ingenuity"
+      },
+      {
+        "text": "Human ingenuity often thrives under pressure.",
+        "answer": "ingenuity"
+      }
+    ],
     "ch": "巧思／創造力"
   },
   {
     "word": "ingratiate",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "He tried to ingratiate himself with the new manager.",
+        "answer": "ingratiate"
+      },
+      {
+        "text": "Flattery may help some people ingratiate themselves with power.",
+        "answer": "ingratiate"
+      },
+      {
+        "text": "She refused to ingratiate herself for promotion.",
+        "answer": "ingratiate"
+      }
+    ],
     "ch": "迎合討好"
   },
   {
     "word": "inhabit",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Rare birds inhabit the cliffs along the coast.",
+        "answer": "inhabit"
+      },
+      {
+        "text": "The stories inhabit his imagination even now.",
+        "answer": "inhabit"
+      },
+      {
+        "text": "More than a million people inhabit the valley.",
+        "answer": "inhabit"
+      }
+    ],
     "ch": "居住於／棲息於"
   },
   {
     "word": "inscrutable",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "He gave an inscrutable smile and said nothing.",
+        "answer": "inscrutable"
+      },
+      {
+        "text": "The painting's meaning remains inscrutable to many viewers.",
+        "answer": "inscrutable"
+      },
+      {
+        "text": "Her inscrutable expression made the room uneasy.",
+        "answer": "inscrutable"
+      }
+    ],
     "ch": "高深莫測的"
   },
   {
     "word": "instigate",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The article accused him of trying to instigate violence.",
+        "answer": "instigate"
+      },
+      {
+        "text": "A single rumor can instigate panic.",
+        "answer": "instigate"
+      },
+      {
+        "text": "She did not instigate the argument, but she kept it going.",
+        "answer": "instigate"
+      }
+    ],
     "ch": "煽動／促成"
   },
   {
     "word": "intertwine",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Their personal lives began to intertwine with work.",
+        "answer": "intertwine"
+      },
+      {
+        "text": "Vines intertwine around the old fence.",
+        "answer": "intertwine"
+      },
+      {
+        "text": "History and myth intertwine in the novel.",
+        "answer": "intertwine"
+      }
+    ],
     "ch": "交織／纏繞"
   },
   {
     "word": "intolerable",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The heat inside the car became intolerable.",
+        "answer": "intolerable"
+      },
+      {
+        "text": "The report described the living conditions as intolerable.",
+        "answer": "intolerable"
+      },
+      {
+        "text": "For many workers, the pressure had become intolerable.",
+        "answer": "intolerable"
+      }
+    ],
     "ch": "無法容忍的"
   },
   {
     "word": "intricately",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The ceiling was intricately painted with gold patterns.",
+        "answer": "intricately"
+      },
+      {
+        "text": "Their lives were intricately connected.",
+        "answer": "intricately"
+      },
+      {
+        "text": "The machine was intricately designed for precision work.",
+        "answer": "intricately"
+      }
+    ],
     "ch": "錯綜複雜地"
   },
   {
     "word": "intrigue",
     "cefr": "C2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The mystery was enough to intrigue the audience.",
+        "answer": "intrigue"
+      },
+      {
+        "text": "Court intrigue shaped the empire's history.",
+        "answer": "intrigue"
+      },
+      {
+        "text": "Her unusual research topic intrigued the committee.",
+        "answer": "intrigue"
+      }
+    ],
     "ch": "陰謀／引起興趣"
   },
   {
     "word": "intrinsic",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The necklace has little intrinsic value.",
+        "answer": "intrinsic"
+      },
+      {
+        "text": "Curiosity is an intrinsic part of learning.",
+        "answer": "intrinsic"
+      },
+      {
+        "text": "The artwork's intrinsic beauty mattered more than its price.",
+        "answer": "intrinsic"
+      }
+    ],
     "ch": "內在的／本質的"
   },
   {
     "word": "intruder",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The guard spotted an intruder near the gate.",
+        "answer": "intruder"
+      },
+      {
+        "text": "The dog barked loudly at the intruder.",
+        "answer": "intruder"
+      },
+      {
+        "text": "They installed cameras to warn them of any intruder.",
+        "answer": "intruder"
+      }
+    ],
     "ch": "闖入者"
   },
   {
     "word": "intuition",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Her intuition told her not to trust the offer.",
+        "answer": "intuition"
+      },
+      {
+        "text": "Good doctors balance evidence with intuition.",
+        "answer": "intuition"
+      },
+      {
+        "text": "He relied on intuition when the data was incomplete.",
+        "answer": "intuition"
+      }
+    ],
     "ch": "直覺"
   },
   {
     "word": "invariably",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "He invariably arrives five minutes early.",
+        "answer": "invariably"
+      },
+      {
+        "text": "The discussion invariably turns to money.",
+        "answer": "invariably"
+      },
+      {
+        "text": "Cheap repairs invariably lead to more problems.",
+        "answer": "invariably"
+      }
+    ],
     "ch": "總是／不變地"
   },
   {
     "word": "invincibility",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Youth can create a false sense of invincibility.",
+        "answer": "invincibility"
+      },
+      {
+        "text": "The champion's aura of invincibility finally faded.",
+        "answer": "invincibility"
+      },
+      {
+        "text": "The film questions the myth of national invincibility.",
+        "answer": "invincibility"
+      }
+    ],
     "ch": "無敵／不可戰勝"
   },
   {
     "word": "iteration",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "This version is only the first iteration of the design.",
+        "answer": "iteration"
+      },
+      {
+        "text": "Each iteration of the model became more accurate.",
+        "answer": "iteration"
+      },
+      {
+        "text": "The app improved after several quick iterations.",
+        "answer": "iteration"
+      }
+    ],
     "ch": "反覆／迭代"
   },
   {
     "word": "itinerant",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The village once depended on itinerant traders.",
+        "answer": "itinerant"
+      },
+      {
+        "text": "An itinerant musician played outside the station.",
+        "answer": "itinerant"
+      },
+      {
+        "text": "He lived an itinerant life for many years.",
+        "answer": "itinerant"
+      }
+    ],
     "ch": "巡迴的／流動的"
   },
   {
     "word": "janitor",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The janitor locked the school after everyone left.",
+        "answer": "janitor"
+      },
+      {
+        "text": "She thanked the janitor for fixing the broken light.",
+        "answer": "janitor"
+      },
+      {
+        "text": "The janitor found the missing bag in the hallway.",
+        "answer": "janitor"
+      }
+    ],
     "ch": "管理員／看守人"
   },
   {
     "word": "jerk",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Do not jerk the rope too hard.",
+        "answer": "jerk"
+      },
+      {
+        "text": "He acted like a jerk during the meeting.",
+        "answer": "jerk"
+      },
+      {
+        "text": "The bus gave a sudden jerk as it stopped.",
+        "answer": "jerk"
+      }
+    ],
     "ch": "混蛋／猛拉"
   },
   {
     "word": "judgment",
     "cefr": "C2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Good judgment matters more than quick reactions here.",
+        "answer": "judgment"
+      },
+      {
+        "text": "The court will deliver its judgment tomorrow.",
+        "answer": "judgment"
+      },
+      {
+        "text": "Her judgment improved after years of experience.",
+        "answer": "judgment"
+      }
+    ],
     "ch": "判斷／裁決"
   },
   {
     "word": "juggle",
     "cefr": "C2",
     "frequency": 6,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Working parents often juggle many duties at once.",
+        "answer": "juggle"
+      },
+      {
+        "text": "He can juggle three balls with ease.",
+        "answer": "juggle"
+      },
+      {
+        "text": "The manager had to juggle budget cuts and staff concerns.",
+        "answer": "juggle"
+      }
+    ],
     "ch": "耍弄／兼顧"
   },
   {
     "word": "klaxon",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A loud klaxon sounded throughout the ship.",
+        "answer": "klaxon"
+      },
+      {
+        "text": "The factory's klaxon warned workers to evacuate.",
+        "answer": "klaxon"
+      },
+      {
+        "text": "At dawn, the klaxon broke the silence of the base.",
+        "answer": "klaxon"
+      }
+    ],
     "ch": "警報器"
   },
   {
     "word": "knot",
     "cefr": "C2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "He tied the rope in a strong knot.",
+        "answer": "knot"
+      },
+      {
+        "text": "Stress left a knot in her stomach.",
+        "answer": "knot"
+      },
+      {
+        "text": "The wood had a dark knot near the center.",
+        "answer": "knot"
+      }
+    ],
     "ch": "結／糾結"
   },
   {
     "word": "labyrinth",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The palace was a labyrinth of corridors and staircases.",
+        "answer": "labyrinth"
+      },
+      {
+        "text": "The plot becomes a political labyrinth by the second act.",
+        "answer": "labyrinth"
+      },
+      {
+        "text": "Visitors wandered through the hedge labyrinth for an hour.",
+        "answer": "labyrinth"
+      }
+    ],
     "ch": "迷宮"
   },
   {
     "word": "lackluster",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Sales were disappointing after a lackluster launch.",
+        "answer": "lackluster"
+      },
+      {
+        "text": "The team gave a lackluster performance in the first half.",
+        "answer": "lackluster"
+      },
+      {
+        "text": "Critics called the sequel dull and lackluster.",
+        "answer": "lackluster"
+      }
+    ],
     "ch": "乏味的／暗淡的"
   },
   {
     "word": "lacquer",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The box was covered with black lacquer.",
+        "answer": "lacquer"
+      },
+      {
+        "text": "Workers applied lacquer to the wooden panels.",
+        "answer": "lacquer"
+      },
+      {
+        "text": "The museum displayed a lacquer table from the Qing era.",
+        "answer": "lacquer"
+      }
+    ],
     "ch": "漆／給…上漆"
   },
   {
     "word": "lacrosse",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "She joined the school lacrosse team this year.",
+        "answer": "lacrosse"
+      },
+      {
+        "text": "The finals of the lacrosse tournament drew a big crowd.",
+        "answer": "lacrosse"
+      },
+      {
+        "text": "He practices lacrosse every weekend.",
+        "answer": "lacrosse"
+      }
+    ],
     "ch": "長曲棍球"
   },
   {
     "word": "lair",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The story leads the hero into the dragon's lair.",
+        "answer": "lair"
+      },
+      {
+        "text": "Police discovered the gang's lair in an abandoned warehouse.",
+        "answer": "lair"
+      },
+      {
+        "text": "The fox retreated to its lair at dusk.",
+        "answer": "lair"
+      }
+    ],
     "ch": "巢穴／藏身處"
   },
   {
     "word": "lame",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "His excuse sounded lame even to his friends.",
+        "answer": "lame"
+      },
+      {
+        "text": "The injured horse looked lame after the fall.",
+        "answer": "lame"
+      },
+      {
+        "text": "They ended the show with a lame joke.",
+        "answer": "lame"
+      }
+    ],
     "ch": "跛的／無力的"
   },
   {
     "word": "lancet",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The nurse used a sterile lancet to draw a drop of blood.",
+        "answer": "lancet"
+      },
+      {
+        "text": "A lancet is often included in home testing kits.",
+        "answer": "lancet"
+      },
+      {
+        "text": "He flinched when he saw the tiny lancet.",
+        "answer": "lancet"
+      }
+    ],
     "ch": "柳葉刀"
   },
   {
     "word": "landowner",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The landowner refused to sell the field.",
+        "answer": "landowner"
+      },
+      {
+        "text": "Several landowners opposed the new highway.",
+        "answer": "landowner"
+      },
+      {
+        "text": "The estate has belonged to the same landowner for decades.",
+        "answer": "landowner"
+      }
+    ],
     "ch": "地主／土地擁有人"
   },
   {
     "word": "languish",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The bill continued to languish in committee.",
+        "answer": "languish"
+      },
+      {
+        "text": "Without support, the theater may languish for years.",
+        "answer": "languish"
+      },
+      {
+        "text": "The prisoner languished in jail awaiting trial.",
+        "answer": "languish"
+      }
+    ],
     "ch": "衰弱／萎靡不振"
   },
   {
     "word": "leaping",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Leaping flames could be seen from miles away.",
+        "answer": "leaping"
+      },
+      {
+        "text": "The dog made a leaping grab for the ball.",
+        "answer": "leaping"
+      },
+      {
+        "text": "Leaping fish flashed silver in the river.",
+        "answer": "leaping"
+      }
+    ],
     "ch": "跳躍的／飛躍的"
   },
   {
     "word": "legalities",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "We need to sort out the legalities before signing anything.",
+        "answer": "legalities"
+      },
+      {
+        "text": "The startup ignored basic legalities and paid the price.",
+        "answer": "legalities"
+      },
+      {
+        "text": "Their lawyer handled the legalities of the sale.",
+        "answer": "legalities"
+      }
+    ],
     "ch": "法律程序／法律細節"
   },
   {
     "word": "linen",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Fresh linen was folded neatly on the bed.",
+        "answer": "linen"
+      },
+      {
+        "text": "The hotel changed the linen every morning.",
+        "answer": "linen"
+      },
+      {
+        "text": "She wore a white linen dress in the heat.",
+        "answer": "linen"
+      }
+    ],
     "ch": "亞麻布／亞麻製品"
   },
   {
     "word": "lingonberry",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The jam was made from wild lingonberry.",
+        "answer": "lingonberry"
+      },
+      {
+        "text": "She served meatballs with lingonberry sauce.",
+        "answer": "lingonberry"
+      },
+      {
+        "text": "Lingonberry grows in cold northern forests.",
+        "answer": "lingonberry"
+      }
+    ],
     "ch": "越橘"
   },
   {
     "word": "lodge",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "They decided to lodge a formal complaint.",
+        "answer": "lodge"
+      },
+      {
+        "text": "We stayed in a mountain lodge during the storm.",
+        "answer": "lodge"
+      },
+      {
+        "text": "A piece of glass lodged in the tire.",
+        "answer": "lodge"
+      }
+    ],
     "ch": "小屋／正式提出"
   },
   {
     "word": "long for",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "After months abroad, she began to long for home.",
+        "answer": "long for"
+      },
+      {
+        "text": "Many people long for a quieter life.",
+        "answer": "long for"
+      },
+      {
+        "text": "He still longs for the freedom he once had.",
+        "answer": "long for"
+      }
+    ],
     "ch": "渴望"
   },
   {
     "word": "longevity",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Regular exercise may improve longevity.",
+        "answer": "longevity"
+      },
+      {
+        "text": "The product's longevity surprised the engineers.",
+        "answer": "longevity"
+      },
+      {
+        "text": "The festival owes its longevity to local support.",
+        "answer": "longevity"
+      }
+    ],
     "ch": "長壽／持久"
   },
   {
     "word": "lull",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "There was a brief lull in the storm.",
+        "answer": "lull"
+      },
+      {
+        "text": "The music helped lull the baby to sleep.",
+        "answer": "lull"
+      },
+      {
+        "text": "Do not let the quiet lull you into a false sense of safety.",
+        "answer": "lull"
+      }
+    ],
     "ch": "平靜期／使平靜"
   },
   {
     "word": "lump",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "She found a small lump in her neck.",
+        "answer": "lump"
+      },
+      {
+        "text": "There was a lump of clay on the table.",
+        "answer": "lump"
+      },
+      {
+        "text": "He felt a lump in his throat during the speech.",
+        "answer": "lump"
+      }
+    ],
     "ch": "塊狀物／腫塊"
   },
   {
     "word": "lunatic",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Only a lunatic would try that stunt without training.",
+        "answer": "lunatic"
+      },
+      {
+        "text": "The villain was portrayed as a dangerous lunatic.",
+        "answer": "lunatic"
+      },
+      {
+        "text": "Some thought his plan sounded utterly lunatic at first.",
+        "answer": "lunatic"
+      }
+    ],
     "ch": "瘋子／極愚蠢的人"
   },
   {
     "word": "lurk",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Danger may lurk behind the simple explanation.",
+        "answer": "lurk"
+      },
+      {
+        "text": "Sharks are said to lurk in the deeper water.",
+        "answer": "lurk"
+      },
+      {
+        "text": "He tends to lurk at the back of the room during meetings.",
+        "answer": "lurk"
+      }
+    ],
     "ch": "潛伏／埋伏"
   },
   {
     "word": "magpie",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A magpie landed on the fence and watched us closely.",
+        "answer": "magpie"
+      },
+      {
+        "text": "The child was called a magpie because she collected shiny things.",
+        "answer": "magpie"
+      },
+      {
+        "text": "Magpies can be surprisingly bold around people.",
+        "answer": "magpie"
+      }
+    ],
     "ch": "喜鵲"
   },
   {
     "word": "malicious",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The company sued over the malicious rumor.",
+        "answer": "malicious"
+      },
+      {
+        "text": "Police warned users about malicious software.",
+        "answer": "malicious"
+      },
+      {
+        "text": "It was a malicious lie designed to hurt her career.",
+        "answer": "malicious"
+      }
+    ],
     "ch": "惡意的"
   },
   {
     "word": "maltese",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The exhibition included rare Maltese coins.",
+        "answer": "maltese"
+      },
+      {
+        "text": "He adopted a small Maltese dog.",
+        "answer": "maltese"
+      },
+      {
+        "text": "She studies Maltese history and culture.",
+        "answer": "maltese"
+      }
+    ],
     "ch": "馬耳他的／馬耳他人"
   },
   {
     "word": "mar",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A single error could mar the whole performance.",
+        "answer": "mar"
+      },
+      {
+        "text": "Rain may mar the opening ceremony.",
+        "answer": "mar"
+      },
+      {
+        "text": "The wall was marred by deep scratches.",
+        "answer": "mar"
+      }
+    ],
     "ch": "損害／玷污"
   },
   {
     "word": "marian",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The church is known for its Marian traditions.",
+        "answer": "marian"
+      },
+      {
+        "text": "She wrote a paper on Marian symbolism in art.",
+        "answer": "marian"
+      },
+      {
+        "text": "The shrine hosts a Marian festival each spring.",
+        "answer": "marian"
+      }
+    ],
     "ch": "聖母瑪利亞的"
   },
   {
     "word": "marital",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The counselor specializes in marital problems.",
+        "answer": "marital"
+      },
+      {
+        "text": "Financial stress can damage marital harmony.",
+        "answer": "marital"
+      },
+      {
+        "text": "The survey focused on marital status and income.",
+        "answer": "marital"
+      }
+    ],
     "ch": "婚姻的"
   },
   {
     "word": "masonry",
     "cefr": "C2",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The old bridge is an example of fine masonry.",
+        "answer": "masonry"
+      },
+      {
+        "text": "Cracks had appeared in the building's masonry.",
+        "answer": "masonry"
+      },
+      {
+        "text": "He trained in masonry before becoming an architect.",
+        "answer": "masonry"
+      }
+    ],
     "ch": "石工／磚石建築"
   },
   {
     "word": "maximise",
     "cefr": "C2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The company wants to maximise efficiency.",
+        "answer": "maximise"
+      },
+      {
+        "text": "We should maximise the use of available space.",
+        "answer": "maximise"
+      },
+      {
+        "text": "The design was altered to maximise natural light.",
+        "answer": "maximise"
+      }
+    ],
     "ch": "使最大化"
   },
   {
     "word": "meddle",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "She tends to meddle in other people's decisions.",
+        "answer": "meddle"
+      },
+      {
+        "text": "Do not meddle with the machine unless trained.",
+        "answer": "meddle"
+      },
+      {
+        "text": "Parents should guide, not meddle constantly.",
+        "answer": "meddle"
+      }
+    ],
     "ch": "干涉／插手"
   },
   {
     "word": "melancholic",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The song has a slow, melancholic tone.",
+        "answer": "melancholic"
+      },
+      {
+        "text": "He became melancholic whenever autumn arrived.",
+        "answer": "melancholic"
+      },
+      {
+        "text": "The film ends on a quietly melancholic note.",
+        "answer": "melancholic"
+      }
+    ],
     "ch": "憂鬱的"
   },
   {
     "word": "microbial",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The study focused on microbial life in deep oceans.",
+        "answer": "microbial"
+      },
+      {
+        "text": "Scientists tested the water for microbial contamination.",
+        "answer": "microbial"
+      },
+      {
+        "text": "Microbial activity can affect soil quality.",
+        "answer": "microbial"
+      }
+    ],
     "ch": "微生物的"
   },
   {
     "word": "mighty",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A mighty wave crashed against the cliff.",
+        "answer": "mighty"
+      },
+      {
+        "text": "The empire was once a mighty power.",
+        "answer": "mighty"
+      },
+      {
+        "text": "She gave the door a mighty push.",
+        "answer": "mighty"
+      }
+    ],
     "ch": "強大的"
   },
   {
     "word": "millennium",
     "cefr": "C2",
     "frequency": 5,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The monument was built to welcome the new millennium.",
+        "answer": "millennium"
+      },
+      {
+        "text": "The city changed dramatically over the last millennium.",
+        "answer": "millennium"
+      },
+      {
+        "text": "Historians debated the exact start of the millennium.",
+        "answer": "millennium"
+      }
+    ],
     "ch": "千禧年／一千年"
   },
   {
     "word": "mingle",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Guests were invited to mingle before dinner.",
+        "answer": "mingle"
+      },
+      {
+        "text": "The smell of coffee mingled with fresh bread.",
+        "answer": "mingle"
+      },
+      {
+        "text": "Excitement and fear mingled in her mind.",
+        "answer": "mingle"
+      }
+    ],
     "ch": "混合／交際"
   },
   {
     "word": "miniature",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "He collected miniature cars from around the world.",
+        "answer": "miniature"
+      },
+      {
+        "text": "The artist painted a miniature portrait.",
+        "answer": "miniature"
+      },
+      {
+        "text": "A miniature model of the town stood in the museum.",
+        "answer": "miniature"
+      }
+    ],
     "ch": "微型的／縮小模型"
   },
   {
     "word": "miniscule",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Only a miniscule amount of the substance was detected.",
+        "answer": "miniscule"
+      },
+      {
+        "text": "The difference between the two samples was miniscule.",
+        "answer": "miniscule"
+      },
+      {
+        "text": "A miniscule error can ruin the entire calculation.",
+        "answer": "miniscule"
+      }
+    ],
     "ch": "極小的"
   },
   {
