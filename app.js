@@ -1136,6 +1136,15 @@ function buildPvpQuestionConsumePatch() {
     };
 }
 
+function preloadPvpSharedListeningQuestion(questionPayload) {
+    if ((currentPracticeMode || '').toUpperCase() !== 'LISTENING') return;
+    const text = String(questionPayload?.sent || questionPayload?.en || '').trim();
+    if (!text) return;
+    preloadListeningAzureAudio(text).then(() => {
+        console.log(`[PVP Listening Preload] Ready: ${text}`);
+    }).catch(() => {});
+}
+
 async function resolvePvpSharedQuestion() {
     if (gameMode !== 'PVP' || !currentRoomId) return false;
 
@@ -1174,6 +1183,8 @@ async function resolvePvpSharedQuestion() {
                 guest: true
             }
         });
+
+        preloadPvpSharedListeningQuestion(payload);
 
         latestPVPSetupData = {
             ...(latestPVPSetupData || {}),
@@ -5921,6 +5932,10 @@ function handlePVPMatchSetupSnapshot(data) {
     latestPVPSetupData = data;
     syncPVPSetupFromRoom(data);
     updatePVPBriefingPanel(data);
+
+    if (data.currentQuestion) {
+        preloadPvpSharedListeningQuestion(data.currentQuestion);
+    }
 
     if (!data.guest) {
         if (playerRole === 'host' && !isEnteringPVPDeploy) {
