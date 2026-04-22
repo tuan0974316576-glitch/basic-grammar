@@ -5777,16 +5777,22 @@ window.filterInvitePlayers = filterInvitePlayers;
 async function fetchRecentInviteCandidates() {
     const { ref, get } = window.firebaseModules;
     let snapshot = null;
+    let publicLookupFailed = false;
     try {
         snapshot = await get(ref(window.db, 'users_public'));
     } catch (error) {
+        publicLookupFailed = true;
         console.warn('[Invite] users_public lookup failed, falling back to users:', error);
     }
 
-    if (!snapshot || !snapshot.exists()) {
-        snapshot = await get(ref(window.db, 'users'));
+    if ((!snapshot || !snapshot.exists()) && !publicLookupFailed) {
+        try {
+            snapshot = await get(ref(window.db, 'users'));
+        } catch (error) {
+            console.warn('[Invite] users fallback lookup failed:', error);
+        }
     }
-    if (!snapshot.exists()) return [];
+    if (!snapshot || !snapshot.exists()) return [];
 
     const now = Date.now();
     const players = [];

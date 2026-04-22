@@ -1,0 +1,36 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "rooms": {
+      ".read": "auth != null",
+      "$roomId": {
+        ".write": "auth != null"
+      }
+    },
+    "users_public": {
+      ".read": "auth != null",
+      ".indexOn": ["activeSession/timestamp"],
+      "$uid": {
+        ".write": "auth != null && auth.uid === $uid"
+      }
+    },
+    "users": {
+      ".read": "auth != null",
+      ".indexOn": ["activeSession/timestamp"],
+      "$uid": {
+        ".write": "auth != null && auth.uid === $uid",
+        "pvpInbox": {
+          "invite": {
+            ".read": "auth != null && auth.uid === $uid",
+            ".write": "auth != null"
+          },
+          "response": {
+            ".read": "auth != null && auth.uid === $uid",
+            ".write": "auth != null"
+          }
+        }
+      }
+    }
+  }
+}
