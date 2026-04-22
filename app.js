@@ -1042,11 +1042,15 @@ let isTargeting = false;
             const rangeLabel = nextMinXP === null
                 ? `${rank.minXP.toLocaleString()}+`
                 : `${rank.minXP.toLocaleString()}`;
+            const iconPath = `ranking_icon/white/${rank.iconFile}`;
 
             return `
                 <div class="rank-info-row${isCurrent ? ' current' : ''}">
                     <div class="rank-info-threshold">${rangeLabel}</div>
-                    <div class="rank-info-name">${rank.name}</div>
+                    <div class="rank-info-main">
+                        <img class="rank-info-icon" src="${iconPath}" alt="${rank.name} icon" onerror="this.style.display='none'">
+                        <div class="rank-info-name">${rank.name}</div>
+                    </div>
                     <div class="rank-info-badge${isCurrent ? ' current' : ''}">${isCurrent ? 'YOU' : `R${index + 1}`}</div>
                 </div>
             `;

@@ -2986,17 +2986,39 @@ body {
     text-shadow: 0 0 10px rgba(251, 191, 36, 0.18);
 }
 
+.rank-info-main {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+.rank-info-icon {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.18));
+    flex: 0 0 auto;
+}
+
 .rank-info-name {
     color: #e2e8f0;
     font-family: 'Black Ops One', cursive;
     font-size: 20px;
     letter-spacing: 1px;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.12);
+    min-width: 0;
 }
 
 .rank-info-row.current .rank-info-name {
     color: #67e8f9;
     text-shadow: 0 0 12px rgba(103, 232, 249, 0.28);
+}
+
+.rank-info-row.current .rank-info-icon {
+    filter:
+        drop-shadow(0 0 10px rgba(103, 232, 249, 0.24))
+        drop-shadow(0 0 6px rgba(255, 255, 255, 0.18));
 }
 
 .rank-info-badge {
@@ -3036,6 +3058,15 @@ body {
 
     .rank-info-threshold {
         font-size: 12px;
+    }
+
+    .rank-info-main {
+        gap: 8px;
+    }
+
+    .rank-info-icon {
+        width: 22px;
+        height: 22px;
     }
 
     .rank-info-name {
