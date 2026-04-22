@@ -124,10 +124,12 @@
 
             <div class="profile-grid">
                 <div class="profile-rank">
-                    <div style="font-size: 10px; color: #64748b; text-align: left;">CURRENT RANK</div>
+                    <div class="current-rank-label-row">
+                        <div style="font-size: 10px; color: #64748b; text-align: left;">CURRENT RANK</div>
+                        <button class="rank-info-trigger" onclick="openRankInfoModal()" aria-label="Open rank information"><span>i</span></button>
+                    </div>
                     <div class="rank-title-row">
                         <div id="hud-rank-title" style="color: #fbbf24; font-size: 18px; text-shadow: 0 0 10px #fbbf24; font-family: 'Black Ops One'; text-align: left;">CADET</div>
-                        <button class="rank-info-trigger" onclick="openRankInfoModal()" aria-label="Open rank information"><span>i</span></button>
                     </div>
                 </div>
 
@@ -687,7 +689,7 @@
                     <div class="rank-info-title">RANK INTEL</div>
                     <div id="rank-info-current" class="rank-info-current">CURRENT: RECRUIT</div>
                 </div>
-                <button class="speaking-debrief-close rank-info-close" aria-label="Close rank information" onclick="closeRankInfoModal()">&times;</button>
+                <button class="rank-info-close" aria-label="Close rank information" onclick="closeRankInfoModal()">&times;</button>
             </div>
             <div class="rank-info-legend">
                 XP THRESHOLD // MILITARY RANK
