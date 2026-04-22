@@ -2150,7 +2150,7 @@ function getShipIndices(idx, conf, v) {
         return indices;
     }
 
-function getShipBoundsFromIndices(indices) {
+    function getShipBoundsFromIndices(indices) {
         if (!Array.isArray(indices) || indices.length === 0) return null;
 
         const rows = indices.map(idx => Math.floor(idx / GRID_SIZE));
@@ -2163,6 +2163,81 @@ function getShipBoundsFromIndices(indices) {
             rightCol: Math.max(...cols),
             rootIndex: (Math.min(...rows) * GRID_SIZE) + Math.min(...cols)
         };
+    }
+
+function createPositionedShipImage(boardId, idx, conf, v, options = {}) {
+        const board = document.getElementById(boardId);
+        if (!board) return null;
+
+        const {
+            src = conf.img,
+            className = 'ship-overlay',
+            extraClasses = [],
+            elementId = null,
+            zIndex = null,
+            containerId = null
+        } = options;
+
+        const container = containerId ? document.getElementById(containerId) : null;
+        const isVisible = !container || container.offsetParent !== null;
+        let prevDisplay = '';
+        let prevVisibility = '';
+
+        if (container && !isVisible) {
+            prevDisplay = container.style.display;
+            prevVisibility = container.style.visibility;
+            container.style.visibility = 'hidden';
+            container.style.display = 'block';
+        }
+
+        const startCell = board.children[idx];
+        if (!startCell) {
+            if (container && !isVisible) {
+                container.style.display = prevDisplay;
+                container.style.visibility = prevVisibility;
+            }
+            return null;
+        }
+
+        const img = document.createElement('img');
+        img.src = src;
+        img.classList.add(className);
+        extraClasses.forEach(cls => cls && img.classList.add(cls));
+        if (elementId) img.id = elementId;
+
+        const cellWidth = startCell.offsetWidth;
+        const cellHeight = startCell.offsetHeight;
+        const boardStyle = window.getComputedStyle(board);
+        const gridGap = parseFloat(boardStyle.gap || boardStyle.columnGap || '0') || 0;
+        const pW = (cellWidth * conf.width) + (gridGap * (conf.width - 1));
+        const pH = (cellHeight * conf.height) + (gridGap * (conf.height - 1));
+
+        img.style.width = pW + 'px';
+        img.style.height = pH + 'px';
+        img.style.left = startCell.offsetLeft + 'px';
+        img.style.top = startCell.offsetTop + 'px';
+        if (zIndex !== null) img.style.zIndex = String(zIndex);
+
+        if (!v) {
+            const shift = (pH - pW) / 2;
+            img.style.transformOrigin = 'center center';
+            img.style.setProperty('--ship-rotation', 'rotate(-90deg)');
+            img.style.setProperty('--ship-translate', `translate(${shift}px, -${shift}px)`);
+            img.style.transform = `translate(${shift}px, -${shift}px) rotate(-90deg)`;
+            img.classList.add('horizontal-ship');
+        } else {
+            img.style.transformOrigin = 'center center';
+            img.style.setProperty('--ship-rotation', 'rotate(0deg)');
+            img.style.setProperty('--ship-translate', 'translate(0, 0)');
+            img.style.transform = 'translate(0, 0) rotate(0deg)';
+        }
+
+        if (container && !isVisible) {
+            container.style.display = prevDisplay;
+            container.style.visibility = prevVisibility;
+        }
+
+        return img;
     }
 
     function handleHover(index) {
@@ -2313,39 +2388,28 @@ function getShipBoundsFromIndices(indices) {
 
     function placeShipImage(boardId, idx, conf, v, shipIndex) {
         const board = document.getElementById(boardId);
-        const startCell = board.children[idx];
-        const img = document.createElement('img');
-        img.src = conf.img;
-        img.classList.add('ship-overlay');
+        if (!board) return;
+
+        const extraClasses = [];
         if (selectedRace === 'AURELIANS') {
-            img.classList.add('aurelians');
+            extraClasses.push('aurelians');
         } else if (selectedRace === 'CAUSTICS') {
-            img.classList.add('caustics');
+            extraClasses.push('caustics');
         }
 
-        if (boardId === 'player-grid') {
-            // Use passed shipIndex if available, otherwise fall back to deployIndex
-            const actualIndex = (shipIndex !== undefined) ? shipIndex : deployIndex;
-            img.id = `board-ship-${actualIndex}`;
+        const actualIndex = (boardId === 'player-grid')
+            ? ((shipIndex !== undefined) ? shipIndex : deployIndex)
+            : null;
+
+        const img = createPositionedShipImage(boardId, idx, conf, v, {
+            className: 'ship-overlay',
+            extraClasses,
+            elementId: actualIndex !== null ? `board-ship-${actualIndex}` : null
+        });
+
+        if (img) {
+            board.appendChild(img);
         }
-        
-        const cellWidth = startCell.offsetWidth;
-        const cellHeight = startCell.offsetHeight;
-        const boardStyle = window.getComputedStyle(board);
-        const gridGap = parseFloat(boardStyle.gap || boardStyle.columnGap || '0') || 0;
-        const pW = (cellWidth * conf.width) + (gridGap * (conf.width - 1));
-        const pH = (cellHeight * conf.height) + (gridGap * (conf.height - 1));
-        
-        img.style.width = pW + 'px'; 
-        img.style.height = pH + 'px';
-        img.style.left = startCell.offsetLeft + 'px';
-        img.style.top = startCell.offsetTop + 'px';
-        
-        if (!v) { 
-            img.style.transformOrigin = '0 0'; 
-            img.style.transform = `rotate(-90deg) translateX(-${pW}px)`; 
-        }
-        board.appendChild(img);
     }
 
     function rotateShip() {
@@ -4406,37 +4470,10 @@ function checkMyShipDestruction(hitIdx) {
         ship.animationPlayed = true;
     }
 
-    const grid = document.getElementById('player-grid');
-    const container = document.getElementById('player-board');
     const shipBounds = getShipBoundsFromIndices(ship.indices);
     if (!shipBounds) return;
-    const startCell = grid.children[shipBounds.rootIndex];
-
-    // --- 1. ���ܜy�� (Smart Measurement) ---
-    // �z����P�Ƿ��[���У�����ǣ����r�@ʾ�ԫ@ȡ���_����
-    const isVisible = (container.offsetParent !== null);
-    let prevDisplay = '';
-    let prevVisibility = '';
-
-    if (!isVisible) {
-        prevDisplay = container.style.display;
-        prevVisibility = container.style.visibility;
-        container.style.visibility = 'hidden'; 
-        container.style.display = 'block';     
-    }
-
-    // 2. �xȡ�挍����
-    const cellLeft = startCell.offsetLeft;
-    const cellTop = startCell.offsetTop;
-    const cellSize = startCell.offsetWidth;
-    const boardStyle = window.getComputedStyle(grid);
-    const gridGap = parseFloat(boardStyle.gap || boardStyle.columnGap || '0') || 0;
-
-    // 3. ߀ԭ��P�@ʾ��B
-    if (!isVisible) {
-        container.style.display = prevDisplay;
-        container.style.visibility = prevVisibility;
-    }
+    const grid = document.getElementById('player-grid');
+    if (!grid) return;
 
     // --- �� �[��ԭ����Æ��� (�����دB�@ʾ) �� ---
     const originalShipImg = document.getElementById(`board-ship-${index}`);
@@ -4445,34 +4482,6 @@ function checkMyShipDestruction(hitIdx) {
     }
 
     // --- 4. ������p�DƬ ---
-    const img = document.createElement('img');
-    
-    // �_��ʹ�Ì����� Damaged �DƬ
-    if (typeof DAMAGED_IMAGES !== 'undefined' && DAMAGED_IMAGES[index]) {
-        img.src = DAMAGED_IMAGES[index];
-    } else {
-        img.src = ship.img; // ����o��p�D����ԭ�D�ס��
-    }
-    
-    img.classList.add('enemy-ship-revealed');
-
-    // ���� ֻ�е�һ�α��Ȳ��Ӯ� ����
-    if (!isFirstReveal) {
-        img.classList.add('no-animation');
-    }
-
-    // �����Ӽ����_�����w�����Ж|������
-    img.style.zIndex = "10"; 
-
-    // Ӌ��DƬ�� (����߅���g϶)
-    const pW = cellSize * ship.width + gridGap * (ship.width - 1);
-    const pH = cellSize * ship.height + gridGap * (ship.height - 1);
-
-    img.style.width = pW + 'px';
-    img.style.height = pH + 'px';
-
-    // ���� ���c������ֱ���xȡ����rӛ䛵ķ��� ����
-    // �@�� 2x4 ���b�Ͳ����ٱ��e�`�Д��M��
     let isVertical = ship.isVertical;
 
     // (��ȫ��ʩ) ��� undefined (�����f��n)���Lԇ���f�������㣬�� 2x4 ���ܕ��e
@@ -4482,21 +4491,16 @@ function checkMyShipDestruction(hitIdx) {
          isVertical = spanRows >= spanCols;
     }
 
-    img.style.left = cellLeft + 'px';
-    img.style.top = cellTop + 'px';
+    const img = createPositionedShipImage('player-grid', shipBounds.rootIndex, ship, isVertical, {
+        src: (typeof DAMAGED_IMAGES !== 'undefined' && DAMAGED_IMAGES[index]) ? DAMAGED_IMAGES[index] : ship.img,
+        className: 'enemy-ship-revealed',
+        extraClasses: !isFirstReveal ? ['no-animation'] : [],
+        zIndex: 10,
+        containerId: 'player-board'
+    });
 
-    // ����ǙM�ţ�����Ҫ���D�DƬ
-    if (!isVertical) {
-        const shift = (pH - pW) / 2;
-        img.style.transformOrigin = 'center center';
-        img.style.setProperty('--ship-rotation', 'rotate(-90deg)');
-        img.style.setProperty('--ship-translate', `translate(${shift}px, -${shift}px)`);
-        img.classList.add('horizontal-ship');
-    } else {
-        img.style.setProperty('--ship-rotation', 'rotate(0deg)');
-        img.style.setProperty('--ship-translate', 'translate(0, 0)');
-    }
-    
+    if (!img) return;
+
     grid.appendChild(img);
     
     playSound('destroy-sfx'); 
@@ -5562,7 +5566,6 @@ function revealEnemyShip(ship) {
     }
 
     const board = document.getElementById('enemy-grid');
-    const container = document.getElementById('enemy-board'); 
 
     // ��ȫ�z��
     if (!ship.rootIndex && ship.rootIndex !== 0) return;
@@ -5570,70 +5573,16 @@ function revealEnemyShip(ship) {
     const startCell = board.children[(shipBounds ? shipBounds.rootIndex : ship.rootIndex)];
     if (!startCell) return;
 
-    // --- 1. ���ܜy�� (Smart Measurement) ---
-    const isVisible = (container.offsetParent !== null);
-    let prevDisplay = '';
-    let prevVisibility = '';
-
-    if (!isVisible) {
-        prevDisplay = container.style.display;
-        prevVisibility = container.style.visibility;
-        container.style.visibility = 'hidden'; 
-        container.style.display = 'block';     
-    }
-
-    // 2. �xȡ�挍���� & ��
-    const cellLeft = startCell.offsetLeft;
-    const cellTop = startCell.offsetTop;
-    const cellSize = startCell.offsetWidth; 
-    const boardStyle = window.getComputedStyle(board);
-    const gridGap = parseFloat(boardStyle.gap || boardStyle.columnGap || '0') || 0;
-
-    // 3. ߀ԭ��B
-    if (!isVisible) {
-        container.style.display = prevDisplay;
-        container.style.visibility = prevVisibility;
-    }
-
     // --- 4. �����DƬ ---
-    const img = document.createElement('img');
-
-    // ���� �DƬ��Դ�O����AI ģʽʹ�� ENEMY_DAMAGED_IMAGES ����
     const damagedImages = (gameMode === 'AI') ? ENEMY_DAMAGED_IMAGES : DAMAGED_IMAGES;
-    if (typeof damagedImages !== 'undefined' && damagedImages[ship.shipId]) {
-        img.src = damagedImages[ship.shipId];
-    } else {
-        img.src = ship.conf.img;
-    }
-    
-    img.classList.add('enemy-ship-revealed');
+    const img = createPositionedShipImage('enemy-grid', (shipBounds ? shipBounds.rootIndex : ship.rootIndex), ship.conf, ship.isVertical, {
+        src: (typeof damagedImages !== 'undefined' && damagedImages[ship.shipId]) ? damagedImages[ship.shipId] : ship.conf.img,
+        className: 'enemy-ship-revealed',
+        extraClasses: !isFirstReveal ? ['no-animation'] : [],
+        containerId: 'enemy-board'
+    });
 
-    // ���� ֻ�е�һ�α��Ȳ��Ӯ� ����
-    if (!isFirstReveal) {
-        img.classList.add('no-animation');
-    }
-
-    const conf = ship.conf;
-    const pW = cellSize * conf.width + gridGap * (conf.width - 1);
-    const pH = cellSize * conf.height + gridGap * (conf.height - 1);
-    
-    img.style.width = pW + 'px'; 
-    img.style.height = pH + 'px';
-    
-    img.style.left = cellLeft + 'px';
-    img.style.top = cellTop + 'px';
-
-    // Transform ���� (���D)
-    if (!ship.isVertical) {
-        const shift = (pH - pW) / 2;
-        img.style.transformOrigin = 'center center';
-        img.style.setProperty('--ship-rotation', 'rotate(-90deg)');
-        img.style.setProperty('--ship-translate', `translate(${shift}px, -${shift}px)`);
-        img.classList.add('horizontal-ship');
-    } else {
-        img.style.setProperty('--ship-rotation', 'rotate(0deg)');
-        img.style.setProperty('--ship-translate', 'translate(0, 0)');
-    }
+    if (!img) return;
 
     board.appendChild(img);
     
