@@ -5017,10 +5017,8 @@ function calculateAndDisplaySettlement(isVictory, isSurrender = false) {
     if (isSurrender) {
         matchBonus = 0; // Surrender: no bonus
     } else if (isVictory) {
-        matchBonus = (gameMode === 'PVP') ? 100 : 50; // Win PVP: +100, Win AI: +50
-        if (isPerfect) {
-            matchBonus += 150; // Perfection bonus
-        }
+        // Victory and perfect victory both grant the same flat bonus.
+        matchBonus = 500;
     } else {
         matchBonus = 20; // Loss: +20
     }
@@ -5062,7 +5060,7 @@ function calculateAndDisplaySettlement(isVictory, isSurrender = false) {
     if (matchBonusEl) {
         matchBonusEl.innerText = `+${matchBonus}`;
         if (isPerfect && isVictory) {
-            matchBonusEl.innerHTML = `+${matchBonus} <span style="color: var(--warning); font-size: 11px; white-space: nowrap;">(+150 PERFECT!)</span>`;
+            matchBonusEl.innerHTML = `+${matchBonus} <span style="color: var(--warning); font-size: 11px; white-space: nowrap;">(PERFECT)</span>`;
         }
     }
     if (totalXpEl) totalXpEl.innerText = `+${totalSessionXP}`;
