@@ -1082,7 +1082,7 @@ const VOCAB_DB = {
         },
         {
             "en": "cheap",
-            "ch": "??",
+            "ch": "便宜的",
             "sents": [
                 {
                     "text": "This bag is cheap and useful.",
@@ -1208,7 +1208,7 @@ const VOCAB_DB = {
         },
         {
             "en": "clever",
-            "ch": "??",
+            "ch": "聰明的",
             "sents": [
                 {
                     "text": "She is a clever student.",
@@ -4034,7 +4034,7 @@ const VOCAB_DB = {
         },
         {
             "en": "near",
-            "ch": "?",
+            "ch": "近的／在附近",
             "sents": [
                 {
                     "text": "The shop is near the station.",
@@ -5546,7 +5546,7 @@ const VOCAB_DB = {
         },
         {
             "en": "small",
-            "ch": "?",
+            "ch": "小的",
             "sents": [
                 {
                     "text": "This cup is small.",
@@ -6032,7 +6032,7 @@ const VOCAB_DB = {
         },
         {
             "en": "tall",
-            "ch": "?",
+            "ch": "高的",
             "sents": [
                 {
                     "text": "He is tall for his age.",
@@ -6266,7 +6266,7 @@ const VOCAB_DB = {
         },
         {
             "en": "third",
-            "ch": "??",
+            "ch": "第三",
             "sents": [
                 {
                     "text": "He finished in third place.",
@@ -7022,7 +7022,7 @@ const VOCAB_DB = {
         },
         {
             "en": "year",
-            "ch": "?",
+            "ch": "年",
             "sents": [
                 {
                     "text": "This year feels very busy.",
@@ -16798,7 +16798,7 @@ const VOCAB_DB = {
         },
         {
             "en": "smartphone",
-            "ch": "????",
+            "ch": "智能手機",
             "sents": [
                 {
                     "text": "My smartphone battery is low again.",
@@ -17788,7 +17788,7 @@ const VOCAB_DB = {
         },
         {
             "en": "take a walk",
-            "ch": "??",
+            "ch": "散步",
             "sents": [
                 {
                     "text": "Let's take a walk after dinner.",
@@ -22470,7 +22470,7 @@ const VOCAB_DB = {
         },
         {
             "en": "creative",
-            "ch": "?????",
+            "ch": "創意工作者",
             "sents": [
                 {
                     "text": "The company hired a young creative for the project.",
@@ -25548,7 +25548,7 @@ const VOCAB_DB = {
         },
         {
             "en": "horror",
-            "ch": "?????",
+            "ch": "恐怖／恐懼",
             "sents": [
                 {
                     "text": "The film is full of horror.",
