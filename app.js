@@ -1094,6 +1094,98 @@ function pickBattleUniqueWord(wordList) {
     return pool[Math.floor(Math.random() * pool.length)] || null;
 }
 
+function markBattleWordUsed(word) {
+    if (word && word.en) {
+        battleUsedWordKeys.add(getBattleWordKey(word));
+    }
+}
+
+function buildPvpQuestionPayload(word) {
+    if (!word || !word.en) return null;
+    return {
+        en: word.en,
+        ch: word.ch || '',
+        sent: word.sent || word.en,
+        listeningAnswer: word.listeningAnswer || null,
+        sentenceIndex: Number.isInteger(word.sentenceIndex) ? word.sentenceIndex : 0,
+        timestamp: Date.now()
+    };
+}
+
+function hydrateCurrentVocabFromPvpQuestion(payload) {
+    if (!payload?.en || !Array.isArray(activeVocabList)) return false;
+    const baseWord = activeVocabList.find(word => word.en === payload.en);
+    if (!baseWord) return false;
+
+    currentVocab = {
+        ...baseWord,
+        ch: payload.ch || baseWord.ch || '',
+        sent: payload.sent || baseWord.sent || baseWord.en,
+        listeningAnswer: payload.listeningAnswer || null,
+        sentenceIndex: Number.isInteger(payload.sentenceIndex) ? payload.sentenceIndex : 0
+    };
+
+    markBattleWordUsed(currentVocab);
+    return true;
+}
+
+function buildPvpQuestionConsumePatch() {
+    if (!playerRole) return {};
+    return {
+        [`currentQuestionPending/${playerRole}`]: false
+    };
+}
+
+async function resolvePvpSharedQuestion() {
+    if (gameMode !== 'PVP' || !currentRoomId) return false;
+
+    const currentPending = latestPVPSetupData?.currentQuestionPending || {};
+    const currentQuestion = latestPVPSetupData?.currentQuestion || null;
+    const myPending = currentPending[playerRole] !== false;
+    const bothConsumed = !!currentQuestion && currentPending.host === false && currentPending.guest === false;
+
+    if (currentQuestion && myPending) {
+        return hydrateCurrentVocabFromPvpQuestion(currentQuestion);
+    }
+
+    if (!currentQuestion || bothConsumed) {
+        if (!Array.isArray(activeVocabList) || activeVocabList.length === 0) {
+            alert("Error: Database is empty!");
+            return false;
+        }
+
+        currentVocab = pickBattleUniqueWord(activeVocabList);
+        if (!currentVocab) {
+            alert("Error: Database is empty!");
+            return false;
+        }
+
+        assignSentenceForCurrentVocab();
+        markBattleWordUsed(currentVocab);
+
+        const payload = buildPvpQuestionPayload(currentVocab);
+        if (!payload) return false;
+
+        const { ref, update } = window.firebaseModules;
+        await update(ref(db, 'rooms/' + currentRoomId), {
+            currentQuestion: payload,
+            currentQuestionPending: {
+                host: true,
+                guest: true
+            }
+        });
+
+        latestPVPSetupData = {
+            ...(latestPVPSetupData || {}),
+            currentQuestion: payload,
+            currentQuestionPending: { host: true, guest: true }
+        };
+        return true;
+    }
+
+    return hydrateCurrentVocabFromPvpQuestion(currentQuestion);
+}
+
 function updateTurnTimerUI() {
     const bar = document.getElementById('turn-timer-bar');
     const status = document.getElementById('game-status');
@@ -1822,7 +1914,9 @@ set(ref(db, 'rooms/' + roomId), {
             level: selectedLevel,
             practiceMode: currentPracticeMode,
             hostRace: null,
-            guestRace: null
+            guestRace: null,
+            currentQuestion: null,
+            currentQuestionPending: { host: false, guest: false }
         });
 const { onDisconnect, remove } = window.firebaseModules; // �_���õ�����
     onDisconnect(ref(db, 'rooms/' + roomId)).remove();        
@@ -2841,7 +2935,7 @@ function runTargetLockAnimation(index, onComplete) {
 }
 
 // --- ��K�������ϰ棺���}ҕ�� (�DƬ�Dʾ + �����Ű� + �Z���ޏ�) ---
-function openLaunchModal(index) {
+async function openLaunchModal(index) {
     // 1. ֹͣ�xλ����
     if (typeof turnTimerInterval !== 'undefined' && turnTimerInterval) clearInterval(turnTimerInterval);
     document.getElementById('turn-timer-container').style.visibility = 'hidden';
@@ -2864,19 +2958,14 @@ function openLaunchModal(index) {
 
 // �ʂ��}Ŀ (AI: 3-Tier Spaced Repetition | PVP: Random)
 
-    // ���� PVP ģʽ�������S�C���� (���� mastery ϵ�y) ����
+    // ���� PVP ģʽ������ shared question ���^���S�C���� ����
     if (gameMode === 'PVP') {
-        // PVP ֱ�ӏ� activeVocabList �S�C��
-        if (activeVocabList.length === 0) {
-            alert("Error: Database is empty!");
+        const resolved = await resolvePvpSharedQuestion();
+        if (!resolved || !currentVocab) {
+            showNotification("QUESTION LINK LOST", "error");
             return;
         }
-        currentVocab = pickBattleUniqueWord(activeVocabList);
-        if (!currentVocab) {
-            alert("Error: Database is empty!");
-            return;
-        }
-        console.log(`[PVP Random] Word: ${currentVocab.en}`);
+        console.log(`[PVP Shared Question] Word: ${currentVocab.en}`);
     } else {
         // ���� AI ģʽ��PHASE 3: 3-TIER QUEUE SYSTEM ����
         // Pool 1 (Learning): Wrong words from previous session
@@ -2934,10 +3023,12 @@ function openLaunchModal(index) {
     }
 
     if (currentVocab && currentVocab.en) {
-        battleUsedWordKeys.add(getBattleWordKey(currentVocab));
+        markBattleWordUsed(currentVocab);
     }
 
-    assignSentenceForCurrentVocab();
+    if (gameMode !== 'PVP') {
+        assignSentenceForCurrentVocab();
+    }
     preloadLikelyNextListeningPrompt();
     
     // �@ȡ����Ԫ��
@@ -3496,7 +3587,8 @@ function handlePlayerTimeout() {
         const nextTurn = (playerRole === 'host') ? 'guest' : 'host';
         update(ref(db, 'rooms/' + currentRoomId), {
             lastMove: { attacker: playerRole, index: -1, timestamp: Date.now() },
-            turn: nextTurn 
+            turn: nextTurn,
+            ...buildPvpQuestionConsumePatch()
         });
         setGameTimeout(() => {
             currentPhase = 'ENEMY_TURN';
@@ -3799,7 +3891,8 @@ function playerFire(success) {
             // 2. ���� Firebase (�ρ���һ�� Update)
             update(ref(db, 'rooms/' + currentRoomId), {
                 lastMove: { attacker: playerRole, index: currentTargetIndex, timestamp: Date.now() },
-                turn: nextTurn // �� ���ƽ�����Ԓ� DB ֪����݆����һλ��
+                turn: nextTurn, // �� ���ƽ�����Ԓ� DB ֪����݆����һλ��
+                ...buildPvpQuestionConsumePatch()
             });
 
             // 3. ���Űl��Ӯ�
