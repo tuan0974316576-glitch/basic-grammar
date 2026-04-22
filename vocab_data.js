@@ -3026,7 +3026,7 @@ const VOCAB_DB = {
         },
         {
             "en": "however",
-            "ch": "然而",
+            "ch": "但是",
             "sents": [
                 {
                     "text": "I wanted to go; however, it was raining.",
@@ -7438,7 +7438,7 @@ const VOCAB_DB = {
         },
         {
             "en": "although",
-            "ch": "雖然；儘管",
+            "ch": "雖然（+句子）",
             "sents": [
                 {
                     "text": "Although I don't trade them for money, I swap them for other birds I haven't got.\"",
@@ -12604,7 +12604,7 @@ const VOCAB_DB = {
         },
         {
             "en": "instead",
-            "ch": "代替；反而",
+            "ch": "相反（前句否定）",
             "sents": [
                 {
                     "text": "Therefore, any emergency cases requiring immediate hospitalization should be taken to the Tsing Shan Hospital instead.",
@@ -20346,7 +20346,7 @@ const VOCAB_DB = {
         },
         {
             "en": "besides",
-            "ch": "此外；除…之外",
+            "ch": "此外",
             "sents": [
                 {
                     "text": "Besides English, she also speaks Japanese.",
@@ -22794,7 +22794,7 @@ const VOCAB_DB = {
         },
         {
             "en": "despite",
-            "ch": "儘管",
+            "ch": "雖然（+名詞／V-ing）",
             "sents": [
                 {
                     "text": "**China's army of irregular recyclers face scrapheap** Unlicensed rubbish collectors are frowned on, despite helping to keep cities clean, writes Patti Waldmeir.",
@@ -23172,7 +23172,7 @@ const VOCAB_DB = {
         },
         {
             "en": "due to",
-            "ch": "由於",
+            "ch": "由於／因為（+名詞）",
             "sents": [
                 {
                     "text": "Things have not been great there recently due to the accident the World City Travel catamaran was involved in.",
@@ -23802,7 +23802,7 @@ const VOCAB_DB = {
         },
         {
             "en": "except",
-            "ch": "除了",
+            "ch": "除了…之外（不包括）",
             "sents": [
                 {
                     "text": "We've now written a biography for all the band members except for Charlie Chiba.",
@@ -25566,7 +25566,7 @@ const VOCAB_DB = {
         },
         {
             "en": "however",
-            "ch": "然而",
+            "ch": "但是",
             "sents": [
                 {
                     "text": "However, we still need more time.",
@@ -25926,7 +25926,7 @@ const VOCAB_DB = {
         },
         {
             "en": "in spite of",
-            "ch": "儘管",
+            "ch": "儘管／雖然（+名詞／V-ing）",
             "sents": [
                 {
                     "text": "In spite of the rain, they kept playing.",
@@ -26124,7 +26124,7 @@ const VOCAB_DB = {
         },
         {
             "en": "instead",
-            "ch": "反而；代替",
+            "ch": "相反（前句否定）",
             "sents": [
                 {
                     "text": "We stayed home instead of going out.",
@@ -33036,7 +33036,7 @@ const VOCAB_DB = {
         },
         {
             "en": "though",
-            "ch": "雖然；不過",
+            "ch": "雖然（+句子）／但是（放句末）",
             "sents": [
                 {
                     "text": "Contractually, though, we still have to mention that there will be a break from the Tour on Christmas Day, so keep that in the promotions.",

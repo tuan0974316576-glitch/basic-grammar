@@ -1657,7 +1657,7 @@
         "answer": "besides"
       }
     ],
-    "ch": "此外；除…之外"
+    "ch": "此外"
   },
   {
     "word": "better",
@@ -4377,7 +4377,7 @@
         "answer": "despite"
       }
     ],
-    "ch": "儘管"
+    "ch": "雖然（+名詞／V-ing）"
   },
   {
     "word": "destination",
@@ -4797,7 +4797,7 @@
         "answer": "due to"
       }
     ],
-    "ch": "由於"
+    "ch": "由於／因為（+名詞）"
   },
   {
     "word": "durian",
@@ -5497,7 +5497,7 @@
         "answer": "except"
       }
     ],
-    "ch": "除了"
+    "ch": "除了…之外（不包括）"
   },
   {
     "word": "exchange",
@@ -7457,7 +7457,7 @@
         "answer": "however"
       }
     ],
-    "ch": "然而"
+    "ch": "但是"
   },
   {
     "word": "hug",
@@ -7857,7 +7857,7 @@
         "answer": "in spite of"
       }
     ],
-    "ch": "儘管"
+    "ch": "儘管／雖然（+名詞／V-ing）"
   },
   {
     "word": "incredibly",
@@ -8077,7 +8077,7 @@
         "answer": "instead"
       }
     ],
-    "ch": "反而；代替"
+    "ch": "相反（前句否定）"
   },
   {
     "word": "intelligence",
@@ -15757,7 +15757,7 @@
         "answer": "though"
       }
     ],
-    "ch": "雖然；不過"
+    "ch": "雖然（+句子）／但是（放句末）"
   },
   {
     "word": "thriller",
