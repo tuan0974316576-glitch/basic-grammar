@@ -888,6 +888,7 @@
         <div class="hud-corner-br" style="border-color: var(--primary);"></div>
         <div class="tech-warning-title" style="color: var(--primary); text-shadow: 0 0 10px var(--primary); font-size: 24px;">SEND INVITE</div>
         <div style="font-family: 'Orbitron'; color: #a5f3fc; font-size: 10px; letter-spacing: 3px; margin-bottom: 18px; opacity: 0.6;">>> RECENT ONLINE COMMANDERS <<</div>
+        <input type="text" id="invite-player-search" placeholder="SEARCH PLAYER" class="invite-player-search" oninput="filterInvitePlayers(this.value)" autocomplete="off" spellcheck="false">
         <div id="invite-players-list" class="invite-players-list"></div>
         <button class="tech-btn cancel" onclick="closeInvitePlayersModal()" style="width: 100%; margin-top: 18px;">CLOSE</button>
     </div>

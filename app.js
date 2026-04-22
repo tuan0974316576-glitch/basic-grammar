@@ -5758,6 +5758,22 @@ function renderInvitePlayersList(players) {
     `).join('');
 }
 
+function filterInvitePlayers(queryText = '') {
+    const query = String(queryText || '').trim().toLowerCase();
+    if (!query) {
+        renderInvitePlayersList(recentInviteCandidates);
+        return;
+    }
+
+    const filtered = recentInviteCandidates.filter(player => {
+        const haystack = `${player.name} ${player.rank} ${player.id}`.toLowerCase();
+        return haystack.includes(query);
+    });
+    renderInvitePlayersList(filtered);
+}
+
+window.filterInvitePlayers = filterInvitePlayers;
+
 async function fetchRecentInviteCandidates() {
     const { ref, get, query, orderByChild, limitToLast } = window.firebaseModules;
     const usersQuery = query(ref(window.db, 'users'), orderByChild('activeSession/timestamp'), limitToLast(30));
@@ -5802,9 +5818,11 @@ async function openInvitePlayersModal() {
     }
 
     const modal = document.getElementById('invite-players-modal');
+    const searchInput = document.getElementById('invite-player-search');
     if (!modal) return;
 
     modal.style.display = 'flex';
+    if (searchInput) searchInput.value = '';
     renderInvitePlayersList([]);
 
     try {
@@ -5899,8 +5917,9 @@ function handleIncomingInviteSnapshot(snapshot) {
         return;
     }
 
-    const lobbyVisible = document.getElementById('lobby-screen')?.style.display !== 'none';
-    if ((gameMode === 'PVP' && currentRoomId) || (typeof currentPhase !== 'undefined' && currentPhase !== 'DEPLOY') || lobbyVisible) {
+    const inActiveBattle = typeof currentPhase !== 'undefined' && currentPhase !== 'DEPLOY' && currentPhase !== 'GAME_OVER';
+    const alreadyLinkedToRoom = gameMode === 'PVP' && !!currentRoomId;
+    if (inActiveBattle || alreadyLinkedToRoom) {
         currentIncomingInvite = invite;
         declineIncomingInvite(true);
         return;
