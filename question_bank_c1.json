@@ -6023,700 +6023,2000 @@
     "word": "disastrous",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The team suffered a disastrous defeat in the final.",
+        "answer": "disastrous"
+      },
+      {
+        "text": "The flood had disastrous effects on local farms.",
+        "answer": "disastrous"
+      },
+      {
+        "text": "A disastrous mistake forced the company to apologize.",
+        "answer": "disastrous"
+      }
+    ],
     "ch": "災難性的"
   },
   {
     "word": "disbelieve",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "It was hard to disbelieve the evidence in front of us.",
+        "answer": "disbelieve"
+      },
+      {
+        "text": "She could hardly disbelieve her own luck.",
+        "answer": "disbelieve"
+      },
+      {
+        "text": "Many people disbelieve rumors until they see proof.",
+        "answer": "disbelieve"
+      }
+    ],
     "ch": "不相信"
   },
   {
     "word": "discard",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Do not discard useful notes after one exam.",
+        "answer": "discard"
+      },
+      {
+        "text": "The machine can sort and discard damaged parts.",
+        "answer": "discard"
+      },
+      {
+        "text": "They decided to discard the outdated plan.",
+        "answer": "discard"
+      }
+    ],
     "ch": "丟棄"
   },
   {
     "word": "discharge",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The hospital plans to discharge the patient tomorrow.",
+        "answer": "discharge"
+      },
+      {
+        "text": "The factory was fined for illegal waste discharge.",
+        "answer": "discharge"
+      },
+      {
+        "text": "After the storm, the battery began to discharge quickly.",
+        "answer": "discharge"
+      }
+    ],
     "ch": "排放／出院／解除"
   },
   {
     "word": "disclosure",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The company delayed disclosure of the agreement.",
+        "answer": "disclosure"
+      },
+      {
+        "text": "Full disclosure of the risks is required by law.",
+        "answer": "disclosure"
+      },
+      {
+        "text": "The disclosure caused concern among investors.",
+        "answer": "disclosure"
+      }
+    ],
     "ch": "披露"
   },
   {
     "word": "discomfort",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "He felt slight discomfort in his knee after the run.",
+        "answer": "discomfort"
+      },
+      {
+        "text": "Her speech caused visible discomfort among the guests.",
+        "answer": "discomfort"
+      },
+      {
+        "text": "The chair was stylish but offered little comfort and much discomfort.",
+        "answer": "discomfort"
+      }
+    ],
     "ch": "不適"
   },
   {
     "word": "discontent",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Public discontent grew as prices continued to rise.",
+        "answer": "discontent"
+      },
+      {
+        "text": "The article reflected deep discontent with the policy.",
+        "answer": "discontent"
+      },
+      {
+        "text": "Years of discontent finally led to protest.",
+        "answer": "discontent"
+      }
+    ],
     "ch": "不滿"
   },
   {
     "word": "discriminate",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "It is illegal to discriminate against workers because of age.",
+        "answer": "discriminate"
+      },
+      {
+        "text": "Plants can discriminate between light and shade.",
+        "answer": "discriminate"
+      },
+      {
+        "text": "Good judges must discriminate carefully between fact and opinion.",
+        "answer": "discriminate"
+      }
+    ],
     "ch": "歧視／區分"
   },
   {
     "word": "discrimination",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The school adopted a policy against discrimination.",
+        "answer": "discrimination"
+      },
+      {
+        "text": "Many activists fight against racial discrimination.",
+        "answer": "discrimination"
+      },
+      {
+        "text": "The law offers protection from workplace discrimination.",
+        "answer": "discrimination"
+      }
+    ],
     "ch": "歧視"
   },
   {
     "word": "disdain",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "He looked at the cheap copy with open disdain.",
+        "answer": "disdain"
+      },
+      {
+        "text": "Her tone suggested disdain for the whole process.",
+        "answer": "disdain"
+      },
+      {
+        "text": "The article expressed disdain for empty political slogans.",
+        "answer": "disdain"
+      }
+    ],
     "ch": "鄙視"
   },
   {
     "word": "disengagement",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Student disengagement became obvious during the lecture.",
+        "answer": "disengagement"
+      },
+      {
+        "text": "The report links social media fatigue to emotional disengagement.",
+        "answer": "disengagement"
+      },
+      {
+        "text": "A lack of challenge can lead to disengagement at work.",
+        "answer": "disengagement"
+      }
+    ],
     "ch": "脫離／不投入"
   },
   {
     "word": "disinfect",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Please disinfect the table before the next class.",
+        "answer": "disinfect"
+      },
+      {
+        "text": "Workers were asked to disinfect shared equipment daily.",
+        "answer": "disinfect"
+      },
+      {
+        "text": "The nurse used alcohol to disinfect the cut.",
+        "answer": "disinfect"
+      }
+    ],
     "ch": "消毒"
   },
   {
     "word": "disintegrate",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The old paper began to disintegrate in her hands.",
+        "answer": "disintegrate"
+      },
+      {
+        "text": "Without trust, the alliance may disintegrate quickly.",
+        "answer": "disintegrate"
+      },
+      {
+        "text": "The rock seemed to disintegrate after the blast.",
+        "answer": "disintegrate"
+      }
+    ],
     "ch": "瓦解"
   },
   {
     "word": "dispenser",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "There is a soap dispenser beside the sink.",
+        "answer": "dispenser"
+      },
+      {
+        "text": "The office installed a water dispenser in the hall.",
+        "answer": "dispenser"
+      },
+      {
+        "text": "He pressed the dispenser twice for more cream.",
+        "answer": "dispenser"
+      }
+    ],
     "ch": "分配器"
   },
   {
     "word": "disposal",
     "cefr": "C1",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Safe disposal of medical waste is essential.",
+        "answer": "disposal"
+      },
+      {
+        "text": "The city changed its rules on plastic disposal.",
+        "answer": "disposal"
+      },
+      {
+        "text": "Funds were placed at the committee's disposal.",
+        "answer": "disposal"
+      }
+    ],
     "ch": "處理／處置"
   },
   {
     "word": "dispose",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Please dispose of batteries in the proper bin.",
+        "answer": "dispose"
+      },
+      {
+        "text": "The team needed a day to dispose of the old files.",
+        "answer": "dispose"
+      },
+      {
+        "text": "His calm manner disposed people to trust him.",
+        "answer": "dispose"
+      }
+    ],
     "ch": "處理／安排"
   },
   {
     "word": "dispute",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The two companies entered a dispute over ownership.",
+        "answer": "dispute"
+      },
+      {
+        "text": "Nobody can dispute the need for safer roads.",
+        "answer": "dispute"
+      },
+      {
+        "text": "The border dispute lasted for years.",
+        "answer": "dispute"
+      }
+    ],
     "ch": "爭議／爭論"
   },
   {
     "word": "disqualification",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A false start led to his immediate disqualification.",
+        "answer": "disqualification"
+      },
+      {
+        "text": "The rules clearly state the grounds for disqualification.",
+        "answer": "disqualification"
+      },
+      {
+        "text": "The athlete appealed against her disqualification.",
+        "answer": "disqualification"
+      }
+    ],
     "ch": "取消資格"
   },
   {
     "word": "disrupt",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The strike may disrupt public transport tomorrow.",
+        "answer": "disrupt"
+      },
+      {
+        "text": "Do not disrupt the class with side conversations.",
+        "answer": "disrupt"
+      },
+      {
+        "text": "New technology can disrupt entire industries.",
+        "answer": "disrupt"
+      }
+    ],
     "ch": "干擾／擾亂"
   },
   {
     "word": "disruption",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Flight disruption continued throughout the morning.",
+        "answer": "disruption"
+      },
+      {
+        "text": "The school prepared for possible internet disruption.",
+        "answer": "disruption"
+      },
+      {
+        "text": "Major disruption followed the power failure.",
+        "answer": "disruption"
+      }
+    ],
     "ch": "中斷／擾亂"
   },
   {
     "word": "distinction",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "There is an important distinction between price and value.",
+        "answer": "distinction"
+      },
+      {
+        "text": "She graduated with distinction from the university.",
+        "answer": "distinction"
+      },
+      {
+        "text": "The award recognizes distinction in public service.",
+        "answer": "distinction"
+      }
+    ],
     "ch": "區別／榮譽"
   },
   {
     "word": "distinctive",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The singer has a highly distinctive voice.",
+        "answer": "distinctive"
+      },
+      {
+        "text": "The building's distinctive shape can be seen from far away.",
+        "answer": "distinctive"
+      },
+      {
+        "text": "A distinctive smell filled the old kitchen.",
+        "answer": "distinctive"
+      }
+    ],
     "ch": "獨特的"
   },
   {
     "word": "distortion",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The mirror caused a slight distortion of the image.",
+        "answer": "distortion"
+      },
+      {
+        "text": "The article was criticized for distortion of the facts.",
+        "answer": "distortion"
+      },
+      {
+        "text": "Heat can create visual distortion above the road.",
+        "answer": "distortion"
+      }
+    ],
     "ch": "扭曲"
   },
   {
     "word": "distraction",
     "cefr": "C1",
     "frequency": 9,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Phone notifications are a major distraction during study.",
+        "answer": "distraction"
+      },
+      {
+        "text": "The noise outside became a constant distraction.",
+        "answer": "distraction"
+      },
+      {
+        "text": "Some people use music as a distraction from stress.",
+        "answer": "distraction"
+      }
+    ],
     "ch": "分心事物"
   },
   {
     "word": "distress",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The child was in obvious distress after the fall.",
+        "answer": "distress"
+      },
+      {
+        "text": "Financial distress forced the shop to close.",
+        "answer": "distress"
+      },
+      {
+        "text": "A distress signal was sent from the damaged boat.",
+        "answer": "distress"
+      }
+    ],
     "ch": "痛苦／困擾"
   },
   {
     "word": "divergent",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The two reports reached divergent conclusions.",
+        "answer": "divergent"
+      },
+      {
+        "text": "The group held divergent views on the issue.",
+        "answer": "divergent"
+      },
+      {
+        "text": "Their careers followed increasingly divergent paths.",
+        "answer": "divergent"
+      }
+    ],
     "ch": "分歧的"
   },
   {
     "word": "divert",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Police had to divert traffic away from the accident.",
+        "answer": "divert"
+      },
+      {
+        "text": "The canal was built to divert water from the river.",
+        "answer": "divert"
+      },
+      {
+        "text": "She tried to divert attention from the mistake.",
+        "answer": "divert"
+      }
+    ],
     "ch": "轉移"
   },
   {
     "word": "dormitory",
     "cefr": "C1",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The students returned to the dormitory after dinner.",
+        "answer": "dormitory"
+      },
+      {
+        "text": "The new dormitory can house two hundred students.",
+        "answer": "dormitory"
+      },
+      {
+        "text": "Lights in the dormitory went out at midnight.",
+        "answer": "dormitory"
+      }
+    ],
     "ch": "宿舍"
   },
   {
     "word": "dough",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The baker left the dough to rise by the window.",
+        "answer": "dough"
+      },
+      {
+        "text": "She kneaded the dough until it felt smooth.",
+        "answer": "dough"
+      },
+      {
+        "text": "Too much water can ruin the dough.",
+        "answer": "dough"
+      }
+    ],
     "ch": "麵團"
   },
   {
     "word": "downfall",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Greed eventually led to his downfall.",
+        "answer": "downfall"
+      },
+      {
+        "text": "The film shows the downfall of a powerful leader.",
+        "answer": "downfall"
+      },
+      {
+        "text": "A series of bad choices caused the company's downfall.",
+        "answer": "downfall"
+      }
+    ],
     "ch": "垮台／衰敗"
   },
   {
     "word": "downside",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The downside of remote work is the lack of social contact.",
+        "answer": "downside"
+      },
+      {
+        "text": "Every solution has some downside to consider.",
+        "answer": "downside"
+      },
+      {
+        "text": "The phone is excellent, but its battery life is a downside.",
+        "answer": "downside"
+      }
+    ],
     "ch": "缺點／不利面"
   },
   {
     "word": "drain",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The sink will not empty because the drain is blocked.",
+        "answer": "drain"
+      },
+      {
+        "text": "Long meetings can drain your energy.",
+        "answer": "drain"
+      },
+      {
+        "text": "Heavy rain caused the street drains to overflow.",
+        "answer": "drain"
+      }
+    ],
     "ch": "排走／耗盡"
   },
   {
     "word": "drastic",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The company announced drastic changes to its structure.",
+        "answer": "drastic"
+      },
+      {
+        "text": "Drastic action may be needed to save the forest.",
+        "answer": "drastic"
+      },
+      {
+        "text": "There was a drastic fall in demand last month.",
+        "answer": "drastic"
+      }
+    ],
     "ch": "激烈的／重大的"
   },
   {
     "word": "drastically",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Food prices rose drastically after the storm.",
+        "answer": "drastically"
+      },
+      {
+        "text": "The design changed drastically in the final version.",
+        "answer": "drastically"
+      },
+      {
+        "text": "Her opinion shifted drastically over time.",
+        "answer": "drastically"
+      }
+    ],
     "ch": "大幅地"
   },
   {
     "word": "drawback",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The main drawback of the plan is its cost.",
+        "answer": "drawback"
+      },
+      {
+        "text": "Every technology has at least one drawback.",
+        "answer": "drawback"
+      },
+      {
+        "text": "A major drawback of the apartment is the noise.",
+        "answer": "drawback"
+      }
+    ],
     "ch": "缺點"
   },
   {
     "word": "dreary",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The weather remained cold, wet, and dreary all day.",
+        "answer": "dreary"
+      },
+      {
+        "text": "They spent a dreary afternoon waiting in the station.",
+        "answer": "dreary"
+      },
+      {
+        "text": "The office looked dreary under the grey light.",
+        "answer": "dreary"
+      }
+    ],
     "ch": "沉悶的／陰鬱的"
   },
   {
     "word": "drift",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Small boats began to drift toward the rocks.",
+        "answer": "drift"
+      },
+      {
+        "text": "Her thoughts started to drift during the lecture.",
+        "answer": "drift"
+      },
+      {
+        "text": "Snow can drift across the road overnight.",
+        "answer": "drift"
+      }
+    ],
     "ch": "漂流／逐漸偏移"
   },
   {
     "word": "drill",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The school held a fire drill in the morning.",
+        "answer": "drill"
+      },
+      {
+        "text": "Workers used a drill to fix the metal frame.",
+        "answer": "drill"
+      },
+      {
+        "text": "The coach made the team repeat the drill five times.",
+        "answer": "drill"
+      }
+    ],
     "ch": "鑽孔／演練"
   },
   {
     "word": "drone",
     "cefr": "C1",
     "frequency": 10,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A drone captured aerial footage of the coastline.",
+        "answer": "drone"
+      },
+      {
+        "text": "The farmer used a drone to inspect the field.",
+        "answer": "drone"
+      },
+      {
+        "text": "New laws limit where a drone may be flown.",
+        "answer": "drone"
+      }
+    ],
     "ch": "無人機／低沉聲音"
   },
   {
     "word": "droplet",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A tiny droplet of water rolled down the leaf.",
+        "answer": "droplet"
+      },
+      {
+        "text": "Each droplet reflected the morning light.",
+        "answer": "droplet"
+      },
+      {
+        "text": "The mask helps block infected droplets.",
+        "answer": "droplet"
+      }
+    ],
     "ch": "小滴"
   },
   {
     "word": "drown",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "He nearly drown?",
+        "answer": "drown"
+      },
+      {
+        "text": "Loud music can drown out an important announcement.",
+        "answer": "drown"
+      },
+      {
+        "text": "Rescuers acted fast to stop the victim from starting to drown.",
+        "answer": "drown"
+      }
+    ],
     "ch": "溺死"
   },
   {
     "word": "dub",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The media quickly dubbed the plan a miracle cure.",
+        "answer": "dub"
+      },
+      {
+        "text": "The documentary was dubbed into three languages.",
+        "answer": "dub"
+      },
+      {
+        "text": "Fans dubbed him the king of the tournament.",
+        "answer": "dub"
+      }
+    ],
     "ch": "取綽號／配音"
   },
   {
     "word": "dumpling",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "We shared a basket of hot dumpling at lunch.",
+        "answer": "dumpling"
+      },
+      {
+        "text": "The chef folded each dumpling by hand.",
+        "answer": "dumpling"
+      },
+      {
+        "text": "Steam rose from the fresh pork dumpling.",
+        "answer": "dumpling"
+      }
+    ],
     "ch": "餃子"
   },
   {
     "word": "duo",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The musical duo released a new album this week.",
+        "answer": "duo"
+      },
+      {
+        "text": "A comedy duo opened the show.",
+        "answer": "duo"
+      },
+      {
+        "text": "The famous duo performed together for the last time.",
+        "answer": "duo"
+      }
+    ],
     "ch": "二人組"
   },
   {
     "word": "durable",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "These shoes are made from durable material.",
+        "answer": "durable"
+      },
+      {
+        "text": "The bag is lightweight but surprisingly durable.",
+        "answer": "durable"
+      },
+      {
+        "text": "Good furniture should be both attractive and durable.",
+        "answer": "durable"
+      }
+    ],
     "ch": "耐用的"
   },
   {
     "word": "dweller",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "City dwellers often have less living space.",
+        "answer": "dweller"
+      },
+      {
+        "text": "Forest dwellers rely on local plants for food.",
+        "answer": "dweller"
+      },
+      {
+        "text": "Urban dwellers welcomed the new park.",
+        "answer": "dweller"
+      }
+    ],
     "ch": "居民"
   },
   {
     "word": "dynamic",
     "cefr": "C1",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "She is a dynamic speaker who keeps audiences engaged.",
+        "answer": "dynamic"
+      },
+      {
+        "text": "The company operates in a highly dynamic market.",
+        "answer": "dynamic"
+      },
+      {
+        "text": "Their friendship has a strange but dynamic energy.",
+        "answer": "dynamic"
+      }
+    ],
     "ch": "動態的／充滿活力的"
   },
   {
     "word": "dysfunctional",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The meeting became dysfunctional after the argument.",
+        "answer": "dysfunctional"
+      },
+      {
+        "text": "The film depicts a deeply dysfunctional family.",
+        "answer": "dysfunctional"
+      },
+      {
+        "text": "A dysfunctional system cannot serve the public well.",
+        "answer": "dysfunctional"
+      }
+    ],
     "ch": "失靈的／功能失調的"
   },
   {
     "word": "eager",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The students were eager to hear the results.",
+        "answer": "eager"
+      },
+      {
+        "text": "She is eager for a chance to prove herself.",
+        "answer": "eager"
+      },
+      {
+        "text": "The puppy looked eager to go outside.",
+        "answer": "eager"
+      }
+    ],
     "ch": "渴望的"
   },
   {
     "word": "earthen",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The village still uses traditional earthen pots.",
+        "answer": "earthen"
+      },
+      {
+        "text": "An earthen path led through the field.",
+        "answer": "earthen"
+      },
+      {
+        "text": "The walls were built from simple earthen materials.",
+        "answer": "earthen"
+      }
+    ],
     "ch": "陶製的／泥土的"
   },
   {
     "word": "earthly",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Nothing earthly could convince him to change his mind.",
+        "answer": "earthly"
+      },
+      {
+        "text": "The poem contrasts spiritual hope with earthly desire.",
+        "answer": "earthly"
+      },
+      {
+        "text": "Why on earthly terms would anyone refuse such help?",
+        "answer": "earthly"
+      }
+    ],
     "ch": "塵世的"
   },
   {
     "word": "ease",
     "cefr": "C1",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "She completed the task with surprising ease.",
+        "answer": "ease"
+      },
+      {
+        "text": "These measures may ease pressure on hospitals.",
+        "answer": "ease"
+      },
+      {
+        "text": "At ease, the audience laughed more freely.",
+        "answer": "ease"
+      }
+    ],
     "ch": "緩解／輕鬆"
   },
   {
     "word": "echo",
     "cefr": "C1",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Her voice created an echo in the empty hall.",
+        "answer": "echo"
+      },
+      {
+        "text": "The policy seems to echo earlier mistakes.",
+        "answer": "echo"
+      },
+      {
+        "text": "We heard an echo from deep inside the cave.",
+        "answer": "echo"
+      }
+    ],
     "ch": "回聲"
   },
   {
     "word": "ecological",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The report warns of serious ecological damage.",
+        "answer": "ecological"
+      },
+      {
+        "text": "Ecological balance is fragile in island habitats.",
+        "answer": "ecological"
+      },
+      {
+        "text": "The project was praised for its ecological design.",
+        "answer": "ecological"
+      }
+    ],
     "ch": "生態的"
   },
   {
     "word": "edible",
     "cefr": "C1",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Only a few of these wild plants are edible.",
+        "answer": "edible"
+      },
+      {
+        "text": "The flowers are decorative but not edible.",
+        "answer": "edible"
+      },
+      {
+        "text": "Always check whether a mushroom is edible before eating it.",
+        "answer": "edible"
+      }
+    ],
     "ch": "可食用的"
   },
   {
     "word": "educator",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The conference invited an experienced educator to speak.",
+        "answer": "educator"
+      },
+      {
+        "text": "A good educator listens as well as teaches.",
+        "answer": "educator"
+      },
+      {
+        "text": "The award honors one outstanding educator each year.",
+        "answer": "educator"
+      }
+    ],
     "ch": "教育工作者"
   },
   {
     "word": "efficiency",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The new system improved energy efficiency in the building.",
+        "answer": "efficiency"
+      },
+      {
+        "text": "Managers are always looking for greater efficiency.",
+        "answer": "efficiency"
+      },
+      {
+        "text": "Efficiency matters when resources are limited.",
+        "answer": "efficiency"
+      }
+    ],
     "ch": "效率"
   },
   {
     "word": "elegance",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The design is admired for its simplicity and elegance.",
+        "answer": "elegance"
+      },
+      {
+        "text": "She moved with quiet elegance across the stage.",
+        "answer": "elegance"
+      },
+      {
+        "text": "The room had a sense of old-fashioned elegance.",
+        "answer": "elegance"
+      }
+    ],
     "ch": "優雅"
   },
   {
     "word": "elevate",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The platform can elevate heavy equipment safely.",
+        "answer": "elevate"
+      },
+      {
+        "text": "Good lighting can elevate the mood of a room.",
+        "answer": "elevate"
+      },
+      {
+        "text": "The new role will elevate her profile in the company.",
+        "answer": "elevate"
+      }
+    ],
     "ch": "提升"
   },
   {
     "word": "elicit",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The question was meant to elicit honest opinions.",
+        "answer": "elicit"
+      },
+      {
+        "text": "Her speech failed to elicit much sympathy.",
+        "answer": "elicit"
+      },
+      {
+        "text": "The survey aims to elicit useful feedback from students.",
+        "answer": "elicit"
+      }
+    ],
     "ch": "引出"
   },
   {
     "word": "embark",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "They plan to embark on a major research project.",
+        "answer": "embark"
+      },
+      {
+        "text": "Passengers began to embark just before sunset.",
+        "answer": "embark"
+      },
+      {
+        "text": "She is ready to embark on a new career.",
+        "answer": "embark"
+      }
+    ],
     "ch": "開始／上船"
   },
   {
     "word": "embroidery",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Her dress was decorated with fine embroidery.",
+        "answer": "embroidery"
+      },
+      {
+        "text": "The museum displayed regional embroidery from the 19th century.",
+        "answer": "embroidery"
+      },
+      {
+        "text": "She learned embroidery from her grandmother.",
+        "answer": "embroidery"
+      }
+    ],
     "ch": "刺繡"
   },
   {
     "word": "emergence",
     "cefr": "C1",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The emergence of new evidence changed the case.",
+        "answer": "emergence"
+      },
+      {
+        "text": "Scientists are studying the emergence of resistant bacteria.",
+        "answer": "emergence"
+      },
+      {
+        "text": "The emergence of online learning transformed education.",
+        "answer": "emergence"
+      }
+    ],
     "ch": "出現"
   },
   {
     "word": "emperor",
     "cefr": "C1",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The emperor ruled the empire for over thirty years.",
+        "answer": "emperor"
+      },
+      {
+        "text": "The museum holds portraits of a former emperor.",
+        "answer": "emperor"
+      },
+      {
+        "text": "Legends often describe an emperor with absolute power.",
+        "answer": "emperor"
+      }
+    ],
     "ch": "皇帝"
   },
   {
     "word": "employable",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The course helps students become more employable.",
+        "answer": "employable"
+      },
+      {
+        "text": "Strong communication skills make graduates more employable.",
+        "answer": "employable"
+      },
+      {
+        "text": "He worried that the gap in his resume made him less employable.",
+        "answer": "employable"
+      }
+    ],
     "ch": "具備受聘能力的"
   },
   {
     "word": "empower",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Education can empower young people to shape their future.",
+        "answer": "empower"
+      },
+      {
+        "text": "The law aims to empower local communities.",
+        "answer": "empower"
+      },
+      {
+        "text": "The workshop will empower staff to make better decisions.",
+        "answer": "empower"
+      }
+    ],
     "ch": "賦權／使有能力"
   },
   {
     "word": "encouragement",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Her teacher's encouragement gave her more confidence.",
+        "answer": "encouragement"
+      },
+      {
+        "text": "Young athletes need support and encouragement.",
+        "answer": "encouragement"
+      },
+      {
+        "text": "A few words of encouragement can change someone's day.",
+        "answer": "encouragement"
+      }
+    ],
     "ch": "鼓勵"
   },
   {
     "word": "endeavor",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The space mission was an international endeavor.",
+        "answer": "endeavor"
+      },
+      {
+        "text": "Writing the book became a lifelong endeavor.",
+        "answer": "endeavor"
+      },
+      {
+        "text": "Science is a collective human endeavor.",
+        "answer": "endeavor"
+      }
+    ],
     "ch": "努力／嘗試"
   },
   {
     "word": "endless",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The road seemed endless in the desert heat.",
+        "answer": "endless"
+      },
+      {
+        "text": "We had endless discussions about the design.",
+        "answer": "endless"
+      },
+      {
+        "text": "Children often ask what feels like endless questions.",
+        "answer": "endless"
+      }
+    ],
     "ch": "無止境的"
   },
   {
     "word": "endorse",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Several experts endorse the new safety guidelines.",
+        "answer": "endorse"
+      },
+      {
+        "text": "The athlete was asked to endorse a sports brand.",
+        "answer": "endorse"
+      },
+      {
+        "text": "The board refused to endorse the proposal.",
+        "answer": "endorse"
+      }
+    ],
     "ch": "支持／背書"
   },
   {
     "word": "endure",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The bridge was built to endure harsh winters.",
+        "answer": "endure"
+      },
+      {
+        "text": "Many families had to endure years of uncertainty.",
+        "answer": "endure"
+      },
+      {
+        "text": "Strong friendship can endure great hardship.",
+        "answer": "endure"
+      }
+    ],
     "ch": "忍受／持續"
   },
   {
     "word": "enforce",
     "cefr": "C1",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Police were sent to enforce the new traffic law.",
+        "answer": "enforce"
+      },
+      {
+        "text": "It is difficult to enforce rules without support.",
+        "answer": "enforce"
+      },
+      {
+        "text": "The agency will enforce stricter safety standards.",
+        "answer": "enforce"
+      }
+    ],
     "ch": "執行／強制實施"
   },
   {
     "word": "engagement",
     "cefr": "C1",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Student engagement improved after the lesson redesign.",
+        "answer": "engagement"
+      },
+      {
+        "text": "The company values customer engagement online.",
+        "answer": "engagement"
+      },
+      {
+        "text": "Their engagement was announced at dinner.",
+        "answer": "engagement"
+      }
+    ],
     "ch": "參與／訂婚"
   },
   {
     "word": "enquire",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Please enquire at the front desk for more details.",
+        "answer": "enquire"
+      },
+      {
+        "text": "Several parents enquired about the course fee.",
+        "answer": "enquire"
+      },
+      {
+        "text": "Tourists often enquire about train times.",
+        "answer": "enquire"
+      }
+    ],
     "ch": "詢問"
   },
   {
     "word": "enrichment",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Travel can bring personal enrichment as well as enjoyment.",
+        "answer": "enrichment"
+      },
+      {
+        "text": "The school added enrichment activities after class.",
+        "answer": "enrichment"
+      },
+      {
+        "text": "Reading widely contributes to cultural enrichment.",
+        "answer": "enrichment"
+      }
+    ],
     "ch": "充實／豐富化"
   },
   {
     "word": "ensue",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A long argument may ensue if no one compromises.",
+        "answer": "ensue"
+      },
+      {
+        "text": "Confusion ensued after the sudden announcement.",
+        "answer": "ensue"
+      },
+      {
+        "text": "Once the signal failed, delays quickly ensued.",
+        "answer": "ensue"
+      }
+    ],
     "ch": "隨之發生"
   },
   {
     "word": "enterprise",
     "cefr": "C1",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The small enterprise grew into a national brand.",
+        "answer": "enterprise"
+      },
+      {
+        "text": "Running an enterprise requires both courage and planning.",
+        "answer": "enterprise"
+      },
+      {
+        "text": "The town supports youth enterprise through grants.",
+        "answer": "enterprise"
+      }
+    ],
     "ch": "企業／事業"
   },
   {
     "word": "enthusiast",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "He is a cycling enthusiast who rides every weekend.",
+        "answer": "enthusiast"
+      },
+      {
+        "text": "The exhibition attracted art enthusiasts from abroad.",
+        "answer": "enthusiast"
+      },
+      {
+        "text": "A train enthusiast helped restore the old carriage.",
+        "answer": "enthusiast"
+      }
+    ],
     "ch": "愛好者"
   },
   {
     "word": "entitle",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The pass will entitle you to free entry.",
+        "answer": "entitle"
+      },
+      {
+        "text": "What entitles him to speak for the whole group?",
+        "answer": "entitle"
+      },
+      {
+        "text": "The law entitles workers to paid leave.",
+        "answer": "entitle"
+      }
+    ],
     "ch": "給予權利／命名"
   },
   {
     "word": "envelop",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A heavy fog began to envelop the valley.",
+        "answer": "envelop"
+      },
+      {
+        "text": "Dark smoke quickly enveloped the building.",
+        "answer": "envelop"
+      },
+      {
+        "text": "Silence seemed to envelop the hall after the speech.",
+        "answer": "envelop"
+      }
+    ],
     "ch": "包圍"
   },
   {
     "word": "environmentalist",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The environmentalist urged the city to protect its wetlands.",
+        "answer": "environmentalist"
+      },
+      {
+        "text": "A well-known environmentalist led the campaign.",
+        "answer": "environmentalist"
+      },
+      {
+        "text": "Young environmentalists planted trees along the river.",
+        "answer": "environmentalist"
+      }
+    ],
     "ch": "環保人士"
   },
   {
     "word": "envisage",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "It is hard to envisage the city without cars.",
+        "answer": "envisage"
+      },
+      {
+        "text": "The architect envisaged a greener future for the district.",
+        "answer": "envisage"
+      },
+      {
+        "text": "Few people envisaged such rapid change.",
+        "answer": "envisage"
+      }
+    ],
     "ch": "設想／預想"
   },
   {
     "word": "epic",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The novel tells an epic story across generations.",
+        "answer": "epic"
+      },
+      {
+        "text": "Their journey through the desert felt epic.",
+        "answer": "epic"
+      },
+      {
+        "text": "The film ends with an epic battle scene.",
+        "answer": "epic"
+      }
+    ],
     "ch": "史詩般的／史詩"
   },
   {
     "word": "equality",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The campaign calls for greater equality in education.",
+        "answer": "equality"
+      },
+      {
+        "text": "True equality requires equal access to opportunity.",
+        "answer": "equality"
+      },
+      {
+        "text": "The law was passed in the name of equality.",
+        "answer": "equality"
+      }
+    ],
     "ch": "平等"
   },
   {
     "word": "equation",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "She solved the equation without using a calculator.",
+        "answer": "equation"
+      },
+      {
+        "text": "Cost is only one part of the equation.",
+        "answer": "equation"
+      },
+      {
+        "text": "The scientist wrote the equation on the board.",
+        "answer": "equation"
+      }
+    ],
     "ch": "方程式"
   },
   {
     "word": "escalate",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Small disagreements can escalate into major conflict.",
+        "answer": "escalate"
+      },
+      {
+        "text": "Costs may escalate if the project is delayed.",
+        "answer": "escalate"
+      },
+      {
+        "text": "Officials tried to prevent the protest from escalating.",
+        "answer": "escalate"
+      }
+    ],
     "ch": "升級／加劇"
   },
   {
     "word": "establishment",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The restaurant is a long-established local establishment.",
+        "answer": "establishment"
+      },
+      {
+        "text": "The establishment of trust takes time.",
+        "answer": "establishment"
+      },
+      {
+        "text": "He criticized the political establishment in his speech.",
+        "answer": "establishment"
+      }
+    ],
     "ch": "機構／建立"
   },
   {
     "word": "ethically",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Companies should act ethically in every market.",
+        "answer": "ethically"
+      },
+      {
+        "text": "The report asks whether the data was collected ethically.",
+        "answer": "ethically"
+      },
+      {
+        "text": "She argued that the decision was ethically wrong.",
+        "answer": "ethically"
+      }
+    ],
     "ch": "合乎道德地"
   },
   {
     "word": "ethicist",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "An ethicist joined the panel to discuss medical choices.",
+        "answer": "ethicist"
+      },
+      {
+        "text": "The ethicist questioned the risks of the experiment.",
+        "answer": "ethicist"
+      },
+      {
+        "text": "A leading ethicist spoke about artificial intelligence.",
+        "answer": "ethicist"
+      }
+    ],
     "ch": "倫理學者"
   },
   {
     "word": "evacuate",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Residents were told to evacuate before the storm arrived.",
+        "answer": "evacuate"
+      },
+      {
+        "text": "The school had to evacuate the building after the alarm.",
+        "answer": "evacuate"
+      },
+      {
+        "text": "Firefighters helped evacuate people from the train.",
+        "answer": "evacuate"
+      }
+    ],
     "ch": "撤離"
   },
   {
     "word": "evacuation",
     "cefr": "C1",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The evacuation took place in less than ten minutes.",
+        "answer": "evacuation"
+      },
+      {
+        "text": "Officials reviewed the hospital evacuation plan.",
+        "answer": "evacuation"
+      },
+      {
+        "text": "The storm forced the evacuation of several villages.",
+        "answer": "evacuation"
+      }
+    ],
     "ch": "撤離"
   },
   {
     "word": "evolutionary",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The scientist studies evolutionary changes in birds.",
+        "answer": "evolutionary"
+      },
+      {
+        "text": "Language can be explained from an evolutionary perspective.",
+        "answer": "evolutionary"
+      },
+      {
+        "text": "The book discusses evolutionary biology in simple terms.",
+        "answer": "evolutionary"
+      }
+    ],
     "ch": "進化的"
   },
   {
     "word": "exaggerate",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Do not exaggerate the problem when reporting it.",
+        "answer": "exaggerate"
+      },
+      {
+        "text": "He tends to exaggerate his own achievements.",
+        "answer": "exaggerate"
+      },
+      {
+        "text": "The article may exaggerate the risks slightly.",
+        "answer": "exaggerate"
+      }
+    ],
     "ch": "誇大"
   },
   {
     "word": "exaggeration",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Calling it a disaster would be an exaggeration.",
+        "answer": "exaggeration"
+      },
+      {
+        "text": "The story contains a little exaggeration for effect.",
+        "answer": "exaggeration"
+      },
+      {
+        "text": "Journalists should avoid exaggeration in headlines.",
+        "answer": "exaggeration"
+      }
+    ],
     "ch": "誇張"
   },
   {
     "word": "excavate",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Workers began to excavate the site before dawn.",
+        "answer": "excavate"
+      },
+      {
+        "text": "Archaeologists will excavate the ancient settlement next year.",
+        "answer": "excavate"
+      },
+      {
+        "text": "The team carefully excavated the buried wall.",
+        "answer": "excavate"
+      }
+    ],
     "ch": "挖掘"
   },
   {
     "word": "excavation",
     "cefr": "C1",
     "frequency": 6,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The excavation uncovered pottery from the Roman period.",
+        "answer": "excavation"
+      },
+      {
+        "text": "Roadworks were delayed by an archaeological excavation.",
+        "answer": "excavation"
+      },
+      {
+        "text": "The excavation lasted for several months.",
+        "answer": "excavation"
+      }
+    ],
     "ch": "挖掘"
   },
   {
     "word": "excellence",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The school is known for academic excellence.",
+        "answer": "excellence"
+      },
+      {
+        "text": "The award recognizes excellence in teaching.",
+        "answer": "excellence"
+      },
+      {
+        "text": "Years of practice helped her achieve excellence.",
+        "answer": "excellence"
+      }
+    ],
     "ch": "卓越"
   },
   {
     "word": "exceptional",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "She showed exceptional courage during the rescue.",
+        "answer": "exceptional"
+      },
+      {
+        "text": "The hotel offers exceptional service.",
+        "answer": "exceptional"
+      },
+      {
+        "text": "His performance was exceptional for a first attempt.",
+        "answer": "exceptional"
+      }
+    ],
     "ch": "卓越的／例外的"
   },
   {
     "word": "excerpt",
     "cefr": "C1",
     "frequency": 12,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The teacher read an excerpt from the novel aloud.",
+        "answer": "excerpt"
+      },
+      {
+        "text": "An excerpt of the interview was shared online.",
+        "answer": "excerpt"
+      },
+      {
+        "text": "The article includes a short excerpt from her diary.",
+        "answer": "excerpt"
+      }
+    ],
     "ch": "摘錄"
   },
   {
     "word": "excess",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The body stores excess sugar as fat.",
+        "answer": "excess"
+      },
+      {
+        "text": "Excess noise made it impossible to focus.",
+        "answer": "excess"
+      },
+      {
+        "text": "The shop reduced excess stock before summer.",
+        "answer": "excess"
+      }
+    ],
     "ch": "過量／過剩"
   },
   {
