@@ -1028,6 +1028,57 @@ let isTargeting = false;
         return { level, name: rank.name, minXP: rank.minXP, nextXP, iconFile: rank.iconFile };
     }
 
+    function renderRankInfoModal() {
+        const currentXP = window.userTotalXP || userTotalXP || 0;
+        const currentRank = getRankForXP(currentXP);
+        const currentLabelEl = document.getElementById('rank-info-current');
+        const listEl = document.getElementById('rank-info-list');
+        if (!currentLabelEl || !listEl) return;
+
+        currentLabelEl.innerText = `CURRENT: ${currentRank.name} // ${currentXP.toLocaleString()} XP`;
+        listEl.innerHTML = RANK_TABLE.map((rank, index) => {
+            const isCurrent = currentRank.name === rank.name;
+            const nextMinXP = RANK_TABLE[index + 1]?.minXP ?? null;
+            const rangeLabel = nextMinXP === null
+                ? `${rank.minXP.toLocaleString()}+`
+                : `${rank.minXP.toLocaleString()}`;
+
+            return `
+                <div class="rank-info-row${isCurrent ? ' current' : ''}">
+                    <div class="rank-info-threshold">${rangeLabel}</div>
+                    <div class="rank-info-name">${rank.name}</div>
+                    <div class="rank-info-badge${isCurrent ? ' current' : ''}">${isCurrent ? 'YOU' : `R${index + 1}`}</div>
+                </div>
+            `;
+        }).join('');
+
+        const currentRow = listEl.querySelector('.rank-info-row.current');
+        if (currentRow) {
+            requestAnimationFrame(() => {
+                currentRow.scrollIntoView({ block: 'center', behavior: 'smooth' });
+            });
+        }
+    }
+
+    function openRankInfoModal() {
+        const modal = document.getElementById('rank-info-modal');
+        if (!modal) return;
+        renderRankInfoModal();
+        modal.style.display = 'flex';
+        if (typeof playSound === 'function') {
+            playSound('deploy-sfx');
+        }
+    }
+
+    function closeRankInfoModal() {
+        const modal = document.getElementById('rank-info-modal');
+        if (!modal) return;
+        modal.style.display = 'none';
+        if (typeof playSound === 'function') {
+            playSound('delete-sfx');
+        }
+    }
+
     // ���� XP & MASTERY GLOBAL VARIABLES ����
     let userTotalXP = 0;
     // mastery �Y��: { reading: { L1: { "apple": { count: 3, status: 1 } }, ... }, listening: {...}, speaking: {...} }

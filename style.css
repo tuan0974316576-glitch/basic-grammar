@@ -2198,6 +2198,70 @@ body {
     padding-bottom: 10px;
 }
 
+.rank-title-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.rank-info-trigger {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    background: rgba(255, 255, 255, 0.03);
+    color: #ffffff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.18);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.65);
+}
+
+.rank-info-trigger::before {
+    content: '';
+    position: absolute;
+    inset: -12px;
+    background: conic-gradient(
+        from 0deg,
+        transparent 0deg 300deg,
+        rgba(255, 255, 255, 0.98) 332deg 350deg,
+        transparent 360deg
+    );
+    animation: rankInfoSweep 2.2s linear infinite;
+}
+
+.rank-info-trigger::after {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    background: rgba(8, 14, 28, 0.94);
+    z-index: 0;
+}
+
+.rank-info-trigger span {
+    position: relative;
+    z-index: 1;
+}
+
+.rank-info-trigger:hover,
+.rank-info-trigger:focus-visible {
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.34), 0 0 18px rgba(14, 165, 233, 0.24);
+    transform: translateY(-1px);
+}
+
+@keyframes rankInfoSweep {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
 #hud-player-name {
     font-family: 'Black Ops One';
     font-size: 20px;
@@ -2822,6 +2886,166 @@ body {
     pointer-events: none;
     opacity: 0; /* 預設隱藏，靠動畫顯示 */
     background: rgb(var(--star-rgb, 255, 255, 255)); /* 星星核心顏色 */
+}
+
+.rank-info-overlay {
+    z-index: 10020;
+}
+
+.rank-info-box {
+    width: min(540px, calc(100vw - 36px));
+    max-height: min(78vh, 720px);
+    padding: 18px 18px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow:
+        0 0 16px rgba(255, 255, 255, 0.12),
+        0 0 28px rgba(14, 165, 233, 0.18),
+        inset 0 0 18px rgba(255, 255, 255, 0.04);
+}
+
+.rank-info-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.rank-info-title {
+    color: #f8fafc;
+    font-family: 'Black Ops One', cursive;
+    font-size: 30px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 16px rgba(255, 255, 255, 0.32), 0 0 18px rgba(14, 165, 233, 0.24);
+}
+
+.rank-info-current {
+    margin-top: 2px;
+    color: #94a3b8;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    letter-spacing: 1.6px;
+}
+
+.rank-info-close {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.rank-info-legend {
+    margin-bottom: 12px;
+    color: #94a3b8;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    letter-spacing: 1.8px;
+}
+
+.rank-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: min(60vh, 560px);
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.rank-info-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.rank-info-list::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.35);
+}
+
+.rank-info-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.24);
+    box-shadow: 0 0 10px rgba(14, 165, 233, 0.28);
+}
+
+.rank-info-row {
+    display: grid;
+    grid-template-columns: 98px 1fr 74px;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border: 1px solid rgba(148, 163, 184, 0.16);
+    background: rgba(2, 6, 23, 0.48);
+}
+
+.rank-info-row.current {
+    border-color: rgba(255, 255, 255, 0.45);
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.08), rgba(14, 165, 233, 0.08));
+    box-shadow: 0 0 14px rgba(255, 255, 255, 0.12), 0 0 18px rgba(14, 165, 233, 0.14);
+}
+
+.rank-info-threshold {
+    color: #fbbf24;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(251, 191, 36, 0.18);
+}
+
+.rank-info-name {
+    color: #e2e8f0;
+    font-family: 'Black Ops One', cursive;
+    font-size: 20px;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.12);
+}
+
+.rank-info-row.current .rank-info-name {
+    color: #67e8f9;
+    text-shadow: 0 0 12px rgba(103, 232, 249, 0.28);
+}
+
+.rank-info-badge {
+    justify-self: end;
+    padding: 4px 8px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    color: #ffffff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.22);
+}
+
+.rank-info-badge.current {
+    border-color: rgba(103, 232, 249, 0.48);
+    color: #67e8f9;
+    box-shadow: 0 0 10px rgba(103, 232, 249, 0.18);
+}
+
+@media (max-width: 640px) {
+    .rank-info-box {
+        width: min(100vw - 24px, 520px);
+        max-height: min(82dvh, 720px);
+        padding: 16px 14px 14px;
+    }
+
+    .rank-info-title {
+        font-size: 24px;
+    }
+
+    .rank-info-row {
+        grid-template-columns: 82px 1fr 56px;
+        gap: 8px;
+        padding: 9px 10px;
+    }
+
+    .rank-info-threshold {
+        font-size: 12px;
+    }
+
+    .rank-info-name {
+        font-size: 16px;
+    }
+
+    .rank-info-badge {
+        font-size: 9px;
+        padding: 3px 6px;
+    }
 }
 
 .registration-modal {

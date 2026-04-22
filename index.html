@@ -125,7 +125,10 @@
             <div class="profile-grid">
                 <div class="profile-rank">
                     <div style="font-size: 10px; color: #64748b; text-align: left;">CURRENT RANK</div>
-                    <div id="hud-rank-title" style="color: #fbbf24; font-size: 18px; text-shadow: 0 0 10px #fbbf24; font-family: 'Black Ops One'; text-align: left;">CADET</div>
+                    <div class="rank-title-row">
+                        <div id="hud-rank-title" style="color: #fbbf24; font-size: 18px; text-shadow: 0 0 10px #fbbf24; font-family: 'Black Ops One'; text-align: left;">CADET</div>
+                        <button class="rank-info-trigger" onclick="openRankInfoModal()" aria-label="Open rank information"><span>i</span></button>
+                    </div>
                 </div>
 
                 <div class="profile-name-box">
@@ -674,6 +677,22 @@
             <div id="speaking-debrief-score-grid" class="speaking-debrief-score-grid"></div>
             <div class="speaking-debrief-section-title">WORD PERFORMANCE</div>
             <div id="speaking-debrief-word-list" class="speaking-debrief-word-list"></div>
+        </div>
+    </div>
+
+<div id="rank-info-modal" class="tech-modal-overlay rank-info-overlay" onclick="if(event.target===this) closeRankInfoModal()">
+        <div class="tech-modal-box rank-info-box">
+            <div class="rank-info-header">
+                <div>
+                    <div class="rank-info-title">RANK INTEL</div>
+                    <div id="rank-info-current" class="rank-info-current">CURRENT: RECRUIT</div>
+                </div>
+                <button class="speaking-debrief-close rank-info-close" aria-label="Close rank information" onclick="closeRankInfoModal()">&times;</button>
+            </div>
+            <div class="rank-info-legend">
+                XP THRESHOLD // MILITARY RANK
+            </div>
+            <div id="rank-info-list" class="rank-info-list"></div>
         </div>
     </div>
 
