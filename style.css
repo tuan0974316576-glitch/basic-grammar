@@ -6572,3 +6572,20 @@ body {
 #vocab-screen.stage-preview > .btn {
     margin-top: 28px !important;
 }
+
+#lobby-screen {
+    padding: 20px !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+}
+
+.lobby-screen-wrapper {
+    width: min(560px, calc(100vw - 40px));
+    max-width: calc(100vw - 40px);
+    box-sizing: border-box;
+}
+
+.lobby-panel-shell {
+    width: 100%;
+    box-sizing: border-box;
+}
