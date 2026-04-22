@@ -5416,9 +5416,14 @@ function resetGame() {
             if (typeof update === 'function') {
                 update(ref(db, 'rooms/' + currentRoomId), {
                     guest: null,
-                    status: 'waiting', // ׃�� waiting ��B
-                    guestReady: null,  // ����ʂ��B
-                    guestBoard: null
+                    status: 'waiting_for_guest',
+                    guestReady: null,
+                    guestBoard: null,
+                    guestBoardShips: null,
+                    guestRace: null,
+                    currentQuestion: null,
+                    currentQuestionPending: { host: false, guest: false },
+                    matchLimitWarning: null
                 });
             }
         }
@@ -5428,6 +5433,8 @@ function resetGame() {
     currentRoomId = null;
     playerRole = null;
     currentOpponentId = null;
+    selectedRace = null;
+    enemyRace = null;
 
     // --- (���±��ֲ�׃) ---
     if (turnTimerInterval) clearInterval(turnTimerInterval);
@@ -6130,6 +6137,8 @@ function resetLobbyScreenState() {
     const lobbyMsg = document.getElementById('lobby-msg');
 
     closeInvitePlayersModal();
+    closeIncomingInviteModal();
+    recentInviteCandidates = [];
     if (lobbyControls) lobbyControls.style.display = 'block';
     if (briefing) briefing.style.display = 'none';
     if (lobbyMsg) {
@@ -7237,6 +7246,11 @@ function showSuppliesNeededAnimation(race) {
 // ���� ���ذ��o̎�� ����
 function handleRaceBack() {
     playSound('delete-sfx');
+    if (tempGameMode === 'PVP' && currentRoomId) {
+        showNotification('PVP LINK ABORTED', 'warning', 2000);
+        resetGame();
+        return;
+    }
     document.getElementById('race-screen').style.display = 'none';
     const skillScreen = document.getElementById('skill-screen');
     skillScreen.style.display = 'flex';
@@ -8232,6 +8246,11 @@ window.onload = function() {
 };
 function handleSkillBack() {
     playSound('delete-sfx');
+    if (tempGameMode === 'PVP' && currentRoomId) {
+        showNotification('PVP LINK ABORTED', 'warning', 2000);
+        resetGame();
+        return;
+    }
     document.getElementById('skill-screen').style.display = 'none';
     
     if (tempGameMode === 'AI') {
