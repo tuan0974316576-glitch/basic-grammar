@@ -12023,700 +12023,2000 @@
     "word": "itinerary",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The tour guide emailed the final itinerary last night.",
+        "answer": "itinerary"
+      },
+      {
+        "text": "Our itinerary includes three museums and a harbor walk.",
+        "answer": "itinerary"
+      },
+      {
+        "text": "A change in weather forced them to revise the itinerary.",
+        "answer": "itinerary"
+      }
+    ],
     "ch": "行程"
   },
   {
     "word": "journalistic",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Her journalistic style is clear and direct.",
+        "answer": "journalistic"
+      },
+      {
+        "text": "The film adopts a journalistic approach to the scandal.",
+        "answer": "journalistic"
+      },
+      {
+        "text": "He brought strong journalistic instincts to the interview.",
+        "answer": "journalistic"
+      }
+    ],
     "ch": "新聞報導的"
   },
   {
     "word": "junk",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The garage was full of old junk and broken tools.",
+        "answer": "junk"
+      },
+      {
+        "text": "She tries to avoid junk food during the week.",
+        "answer": "junk"
+      },
+      {
+        "text": "Please remove the junk from the back room.",
+        "answer": "junk"
+      }
+    ],
     "ch": "廢物／垃圾"
   },
   {
     "word": "justly",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The judge acted justly in a difficult case.",
+        "answer": "justly"
+      },
+      {
+        "text": "Workers expect to be treated justly and fairly.",
+        "answer": "justly"
+      },
+      {
+        "text": "History may remember her more justly than her critics did.",
+        "answer": "justly"
+      }
+    ],
     "ch": "公正地"
   },
   {
     "word": "knob",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Turn the knob gently to open the cabinet.",
+        "answer": "knob"
+      },
+      {
+        "text": "One oven knob was missing after the move.",
+        "answer": "knob"
+      },
+      {
+        "text": "The old radio has a volume knob on the side.",
+        "answer": "knob"
+      }
+    ],
     "ch": "旋鈕"
   },
   {
     "word": "knowledgeable",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The museum guide was friendly and knowledgeable.",
+        "answer": "knowledgeable"
+      },
+      {
+        "text": "Ask someone knowledgeable before making a decision.",
+        "answer": "knowledgeable"
+      },
+      {
+        "text": "She sounded highly knowledgeable about marine life.",
+        "answer": "knowledgeable"
+      }
+    ],
     "ch": "知識豐富的"
   },
   {
     "word": "labrador",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Their labrador waited patiently by the gate.",
+        "answer": "labrador"
+      },
+      {
+        "text": "A young labrador greeted every visitor with excitement.",
+        "answer": "labrador"
+      },
+      {
+        "text": "The family adopted a rescue labrador last year.",
+        "answer": "labrador"
+      }
+    ],
     "ch": "拉布拉多犬"
   },
   {
     "word": "lament",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Writers still lament the loss of old neighborhoods.",
+        "answer": "lament"
+      },
+      {
+        "text": "Her speech became a lament for the disappearing wetlands.",
+        "answer": "lament"
+      },
+      {
+        "text": "Many fans lament the closure of the historic cinema.",
+        "answer": "lament"
+      }
+    ],
     "ch": "哀嘆"
   },
   {
     "word": "lander",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The moon lander sent back new images of the surface.",
+        "answer": "lander"
+      },
+      {
+        "text": "Engineers tested the lander before launch.",
+        "answer": "lander"
+      },
+      {
+        "text": "The robotic lander touched down safely at dawn.",
+        "answer": "lander"
+      }
+    ],
     "ch": "著陸器"
   },
   {
     "word": "landmark",
     "cefr": "C1",
     "frequency": 7,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The law was described as a landmark decision.",
+        "answer": "landmark"
+      },
+      {
+        "text": "The clock tower is the city's best-known landmark.",
+        "answer": "landmark"
+      },
+      {
+        "text": "Researchers called the study a landmark in cancer treatment.",
+        "answer": "landmark"
+      }
+    ],
     "ch": "地標"
   },
   {
     "word": "lap",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The child fell asleep on her mother's lap.",
+        "answer": "lap"
+      },
+      {
+        "text": "He completed the final lap in record time.",
+        "answer": "lap"
+      },
+      {
+        "text": "The cat jumped into his lap without warning.",
+        "answer": "lap"
+      }
+    ],
     "ch": "一圈／膝部"
   },
   {
     "word": "latter",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Of the two proposals, the latter seems more realistic.",
+        "answer": "latter"
+      },
+      {
+        "text": "The first half was slow, but the latter part improved.",
+        "answer": "latter"
+      },
+      {
+        "text": "Choose between history and economics, or the latter if you prefer numbers.",
+        "answer": "latter"
+      }
+    ],
     "ch": "後者"
   },
   {
     "word": "lawyerly",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "His lawyerly tone made the interview feel formal.",
+        "answer": "lawyerly"
+      },
+      {
+        "text": "She gave a careful, lawyerly answer to every question.",
+        "answer": "lawyerly"
+      },
+      {
+        "text": "The article was written in a precise, lawyerly style.",
+        "answer": "lawyerly"
+      }
+    ],
     "ch": "像律師般的"
   },
   {
     "word": "leap",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The company took a leap into the electric vehicle market.",
+        "answer": "leap"
+      },
+      {
+        "text": "A fox made a sudden leap across the stream.",
+        "answer": "leap"
+      },
+      {
+        "text": "It was a major leap forward in medical research.",
+        "answer": "leap"
+      }
+    ],
     "ch": "跳躍"
   },
   {
     "word": "legendary",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The athlete became legendary after winning three titles.",
+        "answer": "legendary"
+      },
+      {
+        "text": "Their chef is known for legendary desserts.",
+        "answer": "legendary"
+      },
+      {
+        "text": "The mountain is linked to a legendary battle.",
+        "answer": "legendary"
+      }
+    ],
     "ch": "傳奇的"
   },
   {
     "word": "legitimate",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Parents have a legitimate concern about online safety.",
+        "answer": "legitimate"
+      },
+      {
+        "text": "The business was found to be entirely legitimate.",
+        "answer": "legitimate"
+      },
+      {
+        "text": "She raised a legitimate question during the meeting.",
+        "answer": "legitimate"
+      }
+    ],
     "ch": "合法的／合理的"
   },
   {
     "word": "lengthy",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "After a lengthy discussion, the committee reached agreement.",
+        "answer": "lengthy"
+      },
+      {
+        "text": "The report is accurate but too lengthy for most readers.",
+        "answer": "lengthy"
+      },
+      {
+        "text": "He gave a lengthy explanation that confused everyone.",
+        "answer": "lengthy"
+      }
+    ],
     "ch": "冗長的"
   },
   {
     "word": "lever",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Pull the lever slowly to release the gate.",
+        "answer": "lever"
+      },
+      {
+        "text": "The machine has a safety lever on the side.",
+        "answer": "lever"
+      },
+      {
+        "text": "Policy can be used as a lever for social change.",
+        "answer": "lever"
+      }
+    ],
     "ch": "槓桿"
   },
   {
     "word": "leverage",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The company used its size to leverage better prices.",
+        "answer": "leverage"
+      },
+      {
+        "text": "She has enough leverage to influence the final decision.",
+        "answer": "leverage"
+      },
+      {
+        "text": "Investors were warned about the risks of high leverage.",
+        "answer": "leverage"
+      }
+    ],
     "ch": "影響力／槓桿作用"
   },
   {
     "word": "liability",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The accident exposed the firm's legal liability.",
+        "answer": "liability"
+      },
+      {
+        "text": "High debt can become a serious liability.",
+        "answer": "liability"
+      },
+      {
+        "text": "The contract limits liability in certain cases.",
+        "answer": "liability"
+      }
+    ],
     "ch": "責任／負債"
   },
   {
     "word": "liable",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Drivers are liable for damage caused by careless behavior.",
+        "answer": "liable"
+      },
+      {
+        "text": "The area is liable to flooding during heavy rain.",
+        "answer": "liable"
+      },
+      {
+        "text": "He may be liable for the unpaid tax.",
+        "answer": "liable"
+      }
+    ],
     "ch": "有責任的／易於…的"
   },
   {
     "word": "liberal",
     "cefr": "C1",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The college is known for its liberal atmosphere.",
+        "answer": "liberal"
+      },
+      {
+        "text": "She supports a more liberal policy on migration.",
+        "answer": "liberal"
+      },
+      {
+        "text": "Use a liberal amount of butter for the sauce.",
+        "answer": "liberal"
+      }
+    ],
     "ch": "開明的／自由派的"
   },
   {
     "word": "license",
     "cefr": "C1",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "You need a special license to operate the drone.",
+        "answer": "license"
+      },
+      {
+        "text": "The restaurant lost its license after repeated complaints.",
+        "answer": "license"
+      },
+      {
+        "text": "He showed his driver's license at the desk.",
+        "answer": "license"
+      }
+    ],
     "ch": "牌照／許可"
   },
   {
     "word": "lifelike",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The sculpture is so lifelike that it seems ready to move.",
+        "answer": "lifelike"
+      },
+      {
+        "text": "Artists admired the portrait for its lifelike detail.",
+        "answer": "lifelike"
+      },
+      {
+        "text": "The robot's face looks strangely lifelike.",
+        "answer": "lifelike"
+      }
+    ],
     "ch": "栩栩如生的"
   },
   {
     "word": "lifelong",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Reading became a lifelong habit for her.",
+        "answer": "lifelong"
+      },
+      {
+        "text": "They remained lifelong friends after university.",
+        "answer": "lifelong"
+      },
+      {
+        "text": "He has a lifelong interest in astronomy.",
+        "answer": "lifelong"
+      }
+    ],
     "ch": "終身的"
   },
   {
     "word": "likelihood",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The likelihood of rain has increased this afternoon.",
+        "answer": "likelihood"
+      },
+      {
+        "text": "We must assess the likelihood of failure before launch.",
+        "answer": "likelihood"
+      },
+      {
+        "text": "There is little likelihood of a quick solution.",
+        "answer": "likelihood"
+      }
+    ],
     "ch": "可能性"
   },
   {
     "word": "limelight",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "She dislikes being in the limelight for too long.",
+        "answer": "limelight"
+      },
+      {
+        "text": "Winning the award pushed him into the limelight.",
+        "answer": "limelight"
+      },
+      {
+        "text": "The scandal kept the mayor in the limelight for weeks.",
+        "answer": "limelight"
+      }
+    ],
     "ch": "矚目焦點"
   },
   {
     "word": "listing",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The apartment listing attracted dozens of replies.",
+        "answer": "listing"
+      },
+      {
+        "text": "The company plans a stock market listing next year.",
+        "answer": "listing"
+      },
+      {
+        "text": "Check the online listing before visiting the shop.",
+        "answer": "listing"
+      }
+    ],
     "ch": "清單／上市"
   },
   {
     "word": "literacy",
     "cefr": "C1",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Digital literacy is essential in modern workplaces.",
+        "answer": "literacy"
+      },
+      {
+        "text": "The charity focuses on adult literacy programs.",
+        "answer": "literacy"
+      },
+      {
+        "text": "Improving reading literacy takes time and support.",
+        "answer": "literacy"
+      }
+    ],
     "ch": "識字能力"
   },
   {
     "word": "liven",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A little music can liven the atmosphere instantly.",
+        "answer": "liven"
+      },
+      {
+        "text": "The speaker tried to liven the discussion with humor.",
+        "answer": "liven"
+      },
+      {
+        "text": "Bright flowers liven the entrance to the hall.",
+        "answer": "liven"
+      }
+    ],
     "ch": "使活躍"
   },
   {
     "word": "lobby",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Visitors waited in the hotel lobby before check-in.",
+        "answer": "lobby"
+      },
+      {
+        "text": "Several groups continue to lobby for legal reform.",
+        "answer": "lobby"
+      },
+      {
+        "text": "The marble lobby was wider than expected.",
+        "answer": "lobby"
+      }
+    ],
     "ch": "大堂／遊說"
   },
   {
     "word": "locale",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The film was shot in a remote mountain locale.",
+        "answer": "locale"
+      },
+      {
+        "text": "This quiet coastal locale attracts painters every summer.",
+        "answer": "locale"
+      },
+      {
+        "text": "The story moves to a darker urban locale in the final chapter.",
+        "answer": "locale"
+      }
+    ],
     "ch": "地區"
   },
   {
     "word": "log",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Please log every fault in the maintenance book.",
+        "answer": "log"
+      },
+      {
+        "text": "He sat on a fallen log beside the river.",
+        "answer": "log"
+      },
+      {
+        "text": "The pilot checked the flight log after landing.",
+        "answer": "log"
+      }
+    ],
     "ch": "紀錄／原木"
   },
   {
     "word": "logic",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Her argument follows a clear and careful logic.",
+        "answer": "logic"
+      },
+      {
+        "text": "There is no logic in punishing everyone for one mistake.",
+        "answer": "logic"
+      },
+      {
+        "text": "Students were asked to explain the logic behind their answers.",
+        "answer": "logic"
+      }
+    ],
     "ch": "邏輯"
   },
   {
     "word": "loneliness",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Moving abroad increased her sense of loneliness.",
+        "answer": "loneliness"
+      },
+      {
+        "text": "The novel captures the loneliness of city life.",
+        "answer": "loneliness"
+      },
+      {
+        "text": "Community programs can reduce loneliness among older adults.",
+        "answer": "loneliness"
+      }
+    ],
     "ch": "孤獨"
   },
   {
     "word": "loom",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Dark clouds began to loom over the harbor.",
+        "answer": "loom"
+      },
+      {
+        "text": "Another deadline was already beginning to loom.",
+        "answer": "loom"
+      },
+      {
+        "text": "The old tower seemed to loom above the village.",
+        "answer": "loom"
+      }
+    ],
     "ch": "隱約出現／織布機"
   },
   {
     "word": "lounge",
     "cefr": "C1",
     "frequency": 7,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Passengers relaxed in the airport lounge before boarding.",
+        "answer": "lounge"
+      },
+      {
+        "text": "We spent an hour in the hotel lounge after dinner.",
+        "answer": "lounge"
+      },
+      {
+        "text": "Students were told not to lounge in the hallway.",
+        "answer": "lounge"
+      }
+    ],
     "ch": "休息室"
   },
   {
     "word": "lush",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The island is covered in lush green forest.",
+        "answer": "lush"
+      },
+      {
+        "text": "Recent rain left the valley looking lush and bright.",
+        "answer": "lush"
+      },
+      {
+        "text": "The garden became lush by midsummer.",
+        "answer": "lush"
+      }
+    ],
     "ch": "茂盛的"
   },
   {
     "word": "machinery",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Heavy machinery arrived at the construction site at dawn.",
+        "answer": "machinery"
+      },
+      {
+        "text": "The factory upgraded its aging machinery last year.",
+        "answer": "machinery"
+      },
+      {
+        "text": "Dust can damage delicate machinery.",
+        "answer": "machinery"
+      }
+    ],
     "ch": "機械設備"
   },
   {
     "word": "magical",
     "cefr": "C1",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The snow gave the village a magical appearance.",
+        "answer": "magical"
+      },
+      {
+        "text": "For children, the show felt truly magical.",
+        "answer": "magical"
+      },
+      {
+        "text": "Sunrise over the lake was a magical sight.",
+        "answer": "magical"
+      }
+    ],
     "ch": "神奇的"
   },
   {
     "word": "mainland",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The ferry links the island with the mainland.",
+        "answer": "mainland"
+      },
+      {
+        "text": "Strong winds cut off supplies from the mainland.",
+        "answer": "mainland"
+      },
+      {
+        "text": "Many birds migrate between the island and the mainland.",
+        "answer": "mainland"
+      }
+    ],
     "ch": "大陸"
   },
   {
     "word": "mainstream",
     "cefr": "C1",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The idea gradually entered mainstream discussion.",
+        "answer": "mainstream"
+      },
+      {
+        "text": "The singer moved from indie music to mainstream pop.",
+        "answer": "mainstream"
+      },
+      {
+        "text": "Mainstream media covered the issue for weeks.",
+        "answer": "mainstream"
+      }
+    ],
     "ch": "主流的"
   },
   {
     "word": "maintenance",
     "cefr": "C1",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The bridge is closed for routine maintenance.",
+        "answer": "maintenance"
+      },
+      {
+        "text": "Regular maintenance keeps the engine running safely.",
+        "answer": "maintenance"
+      },
+      {
+        "text": "The building requires expensive maintenance each year.",
+        "answer": "maintenance"
+      }
+    ],
     "ch": "維修／保養"
   },
   {
     "word": "mammal",
     "cefr": "C1",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A whale is a mammal, not a fish.",
+        "answer": "mammal"
+      },
+      {
+        "text": "Every mammal in the exhibit has adapted differently.",
+        "answer": "mammal"
+      },
+      {
+        "text": "The researcher studies how each mammal raises its young.",
+        "answer": "mammal"
+      }
+    ],
     "ch": "哺乳類動物"
   },
   {
     "word": "mandatory",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Helmet use is mandatory on this site.",
+        "answer": "mandatory"
+      },
+      {
+        "text": "Attendance at the safety workshop is mandatory.",
+        "answer": "mandatory"
+      },
+      {
+        "text": "The school introduced mandatory reporting rules.",
+        "answer": "mandatory"
+      }
+    ],
     "ch": "強制性的"
   },
   {
     "word": "manic",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The office felt manic before the product launch.",
+        "answer": "manic"
+      },
+      {
+        "text": "Her laughter had a manic edge to it.",
+        "answer": "manic"
+      },
+      {
+        "text": "The market showed manic swings all week.",
+        "answer": "manic"
+      }
+    ],
     "ch": "狂躁的"
   },
   {
     "word": "manipulate",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The software allows users to manipulate images easily.",
+        "answer": "manipulate"
+      },
+      {
+        "text": "He tried to manipulate the data to support his argument.",
+        "answer": "manipulate"
+      },
+      {
+        "text": "No one should manipulate others through fear.",
+        "answer": "manipulate"
+      }
+    ],
     "ch": "操控"
   },
   {
     "word": "marine",
     "cefr": "C1",
     "frequency": 8,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The reserve protects rare marine species.",
+        "answer": "marine"
+      },
+      {
+        "text": "She studies marine biology at university.",
+        "answer": "marine"
+      },
+      {
+        "text": "Plastic waste can severely damage marine life.",
+        "answer": "marine"
+      }
+    ],
     "ch": "海洋的／海軍陸戰隊員"
   },
   {
     "word": "markedly",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Sales rose markedly after the redesign.",
+        "answer": "markedly"
+      },
+      {
+        "text": "The two groups differed markedly in age.",
+        "answer": "markedly"
+      },
+      {
+        "text": "His condition improved markedly overnight.",
+        "answer": "markedly"
+      }
+    ],
     "ch": "明顯地"
   },
   {
     "word": "marshal",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The commander tried to marshal support for the plan.",
+        "answer": "marshal"
+      },
+      {
+        "text": "Event staff helped marshal the crowd toward the exits.",
+        "answer": "marshal"
+      },
+      {
+        "text": "A fire marshal inspected the old theater.",
+        "answer": "marshal"
+      }
+    ],
     "ch": "元帥／整頓"
   },
   {
     "word": "martian",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The child drew a cheerful martian with green ears.",
+        "answer": "martian"
+      },
+      {
+        "text": "The novel imagines a martian colony in the future.",
+        "answer": "martian"
+      },
+      {
+        "text": "Some of the plants looked almost martian in shape.",
+        "answer": "martian"
+      }
+    ],
     "ch": "火星的／火星人"
   },
   {
     "word": "marvel",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Visitors marvel at the size of the ancient wall.",
+        "answer": "marvel"
+      },
+      {
+        "text": "The bridge is a marvel of engineering.",
+        "answer": "marvel"
+      },
+      {
+        "text": "We stood in silence to marvel at the night sky.",
+        "answer": "marvel"
+      }
+    ],
     "ch": "奇蹟／驚嘆"
   },
   {
     "word": "mask",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A white mask covered the actor's face.",
+        "answer": "mask"
+      },
+      {
+        "text": "Some people use humor to mask anxiety.",
+        "answer": "mask"
+      },
+      {
+        "text": "The child decorated a paper mask with gold paint.",
+        "answer": "mask"
+      }
+    ],
     "ch": "面具／掩飾"
   },
   {
     "word": "mastermind",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Police believe she was the mastermind behind the fraud.",
+        "answer": "mastermind"
+      },
+      {
+        "text": "He helped mastermind the campaign from the start.",
+        "answer": "mastermind"
+      },
+      {
+        "text": "The film follows a criminal mastermind in hiding.",
+        "answer": "mastermind"
+      }
+    ],
     "ch": "策劃者／策劃"
   },
   {
     "word": "mat",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Please wipe your shoes on the mat.",
+        "answer": "mat"
+      },
+      {
+        "text": "She rolled up the yoga mat after class.",
+        "answer": "mat"
+      },
+      {
+        "text": "The cat slept on the front mat in the sun.",
+        "answer": "mat"
+      }
+    ],
     "ch": "墊子"
   },
   {
     "word": "materialize",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The promised support failed to materialize.",
+        "answer": "materialize"
+      },
+      {
+        "text": "A clear plan began to materialize after lunch.",
+        "answer": "materialize"
+      },
+      {
+        "text": "Resources did not materialize as quickly as hoped.",
+        "answer": "materialize"
+      }
+    ],
     "ch": "實現／顯現"
   },
   {
     "word": "mature",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "She gave a calm and mature response to the criticism.",
+        "answer": "mature"
+      },
+      {
+        "text": "These plants need time to mature fully.",
+        "answer": "mature"
+      },
+      {
+        "text": "The market has become more mature over time.",
+        "answer": "mature"
+      }
+    ],
     "ch": "成熟的／成熟"
   },
   {
     "word": "maximize",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "We should maximize the use of natural light.",
+        "answer": "maximize"
+      },
+      {
+        "text": "The coach wants to maximize every player's strengths.",
+        "answer": "maximize"
+      },
+      {
+        "text": "Careful planning can maximize the impact of limited funds.",
+        "answer": "maximize"
+      }
+    ],
     "ch": "使最大化"
   },
   {
     "word": "meaningful",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "They had a meaningful conversation after dinner.",
+        "answer": "meaningful"
+      },
+      {
+        "text": "Real change requires meaningful action, not slogans.",
+        "answer": "meaningful"
+      },
+      {
+        "text": "The award was especially meaningful to her family.",
+        "answer": "meaningful"
+      }
+    ],
     "ch": "有意義的"
   },
   {
     "word": "meantime",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The repairs will take weeks; in the meantime, use the side door.",
+        "answer": "meantime"
+      },
+      {
+        "text": "The documents are still being checked, but in the meantime we can start.",
+        "answer": "meantime"
+      },
+      {
+        "text": "She is waiting for the final decision and resting in the meantime.",
+        "answer": "meantime"
+      }
+    ],
     "ch": "其間"
   },
   {
     "word": "meditation",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Daily meditation helps him stay calm under pressure.",
+        "answer": "meditation"
+      },
+      {
+        "text": "The retreat offers yoga and meditation sessions.",
+        "answer": "meditation"
+      },
+      {
+        "text": "She turned to meditation during a stressful month.",
+        "answer": "meditation"
+      }
+    ],
     "ch": "冥想"
   },
   {
     "word": "melody",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The song has a simple but unforgettable melody.",
+        "answer": "melody"
+      },
+      {
+        "text": "A faint melody drifted from the open window.",
+        "answer": "melody"
+      },
+      {
+        "text": "She hummed the melody while walking home.",
+        "answer": "melody"
+      }
+    ],
     "ch": "旋律"
   },
   {
     "word": "memo",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The manager sent a memo to all staff this morning.",
+        "answer": "memo"
+      },
+      {
+        "text": "Please read the safety memo before entering the lab.",
+        "answer": "memo"
+      },
+      {
+        "text": "A short memo explained the new schedule.",
+        "answer": "memo"
+      }
+    ],
     "ch": "備忘錄"
   },
   {
     "word": "memoir",
     "cefr": "C1",
     "frequency": 3,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Her memoir describes life during the war years.",
+        "answer": "memoir"
+      },
+      {
+        "text": "The actor published a memoir after retirement.",
+        "answer": "memoir"
+      },
+      {
+        "text": "We read an excerpt from his memoir in class.",
+        "answer": "memoir"
+      }
+    ],
     "ch": "回憶錄"
   },
   {
     "word": "mender",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The shoe mender repaired the old boots in a day.",
+        "answer": "mender"
+      },
+      {
+        "text": "A skilled mender can make torn fabric look new again.",
+        "answer": "mender"
+      },
+      {
+        "text": "The village mender was known for careful work.",
+        "answer": "mender"
+      }
+    ],
     "ch": "修補工人"
   },
   {
     "word": "mentors",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Good mentors guide students without controlling them.",
+        "answer": "mentors"
+      },
+      {
+        "text": "Many young artists rely on mentors for advice.",
+        "answer": "mentors"
+      },
+      {
+        "text": "The program pairs learners with experienced mentors.",
+        "answer": "mentors"
+      }
+    ],
     "ch": "導師們"
   },
   {
     "word": "mercedes",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A black mercedes was parked outside the hotel.",
+        "answer": "mercedes"
+      },
+      {
+        "text": "He arrived in an old mercedes with faded paint.",
+        "answer": "mercedes"
+      },
+      {
+        "text": "The photo showed a silver mercedes near the gate.",
+        "answer": "mercedes"
+      }
+    ],
     "ch": "平治"
   },
   {
     "word": "merchandise",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Fans lined up early to buy concert merchandise.",
+        "answer": "merchandise"
+      },
+      {
+        "text": "The shop displayed winter merchandise near the entrance.",
+        "answer": "merchandise"
+      },
+      {
+        "text": "Damaged merchandise was removed from the shelves.",
+        "answer": "merchandise"
+      }
+    ],
     "ch": "商品"
   },
   {
     "word": "merely",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The guide is merely offering a suggestion.",
+        "answer": "merely"
+      },
+      {
+        "text": "He was merely trying to help the team.",
+        "answer": "merely"
+      },
+      {
+        "text": "The problem is not merely technical but social.",
+        "answer": "merely"
+      }
+    ],
     "ch": "僅僅"
   },
   {
     "word": "merit",
     "cefr": "C1",
     "frequency": 5,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The idea has merit even if it needs revision.",
+        "answer": "merit"
+      },
+      {
+        "text": "Promotion should be based on merit, not favoritism.",
+        "answer": "merit"
+      },
+      {
+        "text": "Her proposal deserves serious merit-based review.",
+        "answer": "merit"
+      }
+    ],
     "ch": "優點／值得"
   },
   {
     "word": "methane",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Methane is a powerful greenhouse gas.",
+        "answer": "methane"
+      },
+      {
+        "text": "Scientists measured methane levels in the wetland.",
+        "answer": "methane"
+      },
+      {
+        "text": "Leaks of methane can be difficult to detect.",
+        "answer": "methane"
+      }
+    ],
     "ch": "甲烷"
   },
   {
     "word": "microorganism",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A microorganism too small to see caused the illness.",
+        "answer": "microorganism"
+      },
+      {
+        "text": "The sample contained an unusual microorganism.",
+        "answer": "microorganism"
+      },
+      {
+        "text": "Researchers identified the microorganism in the lab.",
+        "answer": "microorganism"
+      }
+    ],
     "ch": "微生物"
   },
   {
     "word": "migration",
     "cefr": "C1",
     "frequency": 9,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The documentary follows bird migration across continents.",
+        "answer": "migration"
+      },
+      {
+        "text": "Climate change can alter patterns of migration.",
+        "answer": "migration"
+      },
+      {
+        "text": "The town was shaped by decades of rural migration.",
+        "answer": "migration"
+      }
+    ],
     "ch": "遷徙／移民"
   },
   {
     "word": "militant",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The group adopted an increasingly militant tone.",
+        "answer": "militant"
+      },
+      {
+        "text": "A militant faction rejected the peace talks.",
+        "answer": "militant"
+      },
+      {
+        "text": "The article examined the rise of militant movements.",
+        "answer": "militant"
+      }
+    ],
     "ch": "激進的／激進分子"
   },
   {
     "word": "mince",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The chef began to mince garlic for the sauce.",
+        "answer": "mince"
+      },
+      {
+        "text": "He did not mince his words during the meeting.",
+        "answer": "mince"
+      },
+      {
+        "text": "Fresh herbs were minced finely by hand.",
+        "answer": "mince"
+      }
+    ],
     "ch": "切碎"
   },
   {
     "word": "mindblowing",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The final scene was absolutely mindblowing.",
+        "answer": "mindblowing"
+      },
+      {
+        "text": "For first-time visitors, the view is mindblowing.",
+        "answer": "mindblowing"
+      },
+      {
+        "text": "The speed of the machine felt mindblowing to the audience.",
+        "answer": "mindblowing"
+      }
+    ],
     "ch": "令人震撼的"
   },
   {
     "word": "minimise",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The company wants to minimise waste in production.",
+        "answer": "minimise"
+      },
+      {
+        "text": "Please minimise noise during the recording session.",
+        "answer": "minimise"
+      },
+      {
+        "text": "Careful planning can minimise delays.",
+        "answer": "minimise"
+      }
+    ],
     "ch": "使最小化"
   },
   {
     "word": "minimize",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The design aims to minimize energy loss.",
+        "answer": "minimize"
+      },
+      {
+        "text": "We should minimize unnecessary travel this month.",
+        "answer": "minimize"
+      },
+      {
+        "text": "The team tried to minimize the risk of error.",
+        "answer": "minimize"
+      }
+    ],
     "ch": "使最小化"
   },
   {
     "word": "miracle",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Doctors called her recovery a miracle.",
+        "answer": "miracle"
+      },
+      {
+        "text": "The rescue felt like a miracle to the family.",
+        "answer": "miracle"
+      },
+      {
+        "text": "There is no miracle cure for hard work.",
+        "answer": "miracle"
+      }
+    ],
     "ch": "奇蹟"
   },
   {
     "word": "misconception",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The article corrects a common misconception about diet.",
+        "answer": "misconception"
+      },
+      {
+        "text": "Many students begin with the same misconception.",
+        "answer": "misconception"
+      },
+      {
+        "text": "That belief is a harmful misconception.",
+        "answer": "misconception"
+      }
+    ],
     "ch": "誤解"
   },
   {
     "word": "misfortune",
     "cefr": "C1",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A series of misfortune events left the family exhausted.",
+        "answer": "misfortune"
+      },
+      {
+        "text": "He faced sudden misfortune after losing his job.",
+        "answer": "misfortune"
+      },
+      {
+        "text": "The novel follows a hero through repeated misfortune.",
+        "answer": "misfortune"
+      }
+    ],
     "ch": "不幸"
   },
   {
     "word": "mislead",
     "cefr": "C1",
     "frequency": 5,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Do not let one photo mislead you about the whole place.",
+        "answer": "mislead"
+      },
+      {
+        "text": "The graph could mislead readers if taken alone.",
+        "answer": "mislead"
+      },
+      {
+        "text": "False headlines often mislead the public.",
+        "answer": "mislead"
+      }
+    ],
     "ch": "誤導"
   },
   {
     "word": "misstep",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A single misstep on the trail could be dangerous.",
+        "answer": "misstep"
+      },
+      {
+        "text": "The company admitted its public misstep quickly.",
+        "answer": "misstep"
+      },
+      {
+        "text": "One small misstep does not define a whole career.",
+        "answer": "misstep"
+      }
+    ],
     "ch": "失誤"
   },
   {
     "word": "misuse",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The report warns against the misuse of personal data.",
+        "answer": "misuse"
+      },
+      {
+        "text": "Misuse of medicine can lead to serious harm.",
+        "answer": "misuse"
+      },
+      {
+        "text": "He was accused of misuse of public funds.",
+        "answer": "misuse"
+      }
+    ],
     "ch": "濫用"
   },
   {
     "word": "monochrome",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The designer chose a clean monochrome style.",
+        "answer": "monochrome"
+      },
+      {
+        "text": "The photo looked elegant in monochrome.",
+        "answer": "monochrome"
+      },
+      {
+        "text": "A monochrome palette made the poster more striking.",
+        "answer": "monochrome"
+      }
+    ],
     "ch": "單色的"
   },
   {
     "word": "monoculture",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The farm depends too heavily on monoculture methods.",
+        "answer": "monoculture"
+      },
+      {
+        "text": "Critics say monoculture reduces biodiversity.",
+        "answer": "monoculture"
+      },
+      {
+        "text": "A shift away from monoculture may improve soil health.",
+        "answer": "monoculture"
+      }
+    ],
     "ch": "單一栽培"
   },
   {
     "word": "monologue",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The actor delivered a moving monologue on stage.",
+        "answer": "monologue"
+      },
+      {
+        "text": "Her opening monologue won immediate applause.",
+        "answer": "monologue"
+      },
+      {
+        "text": "The film includes a long inner monologue from the hero.",
+        "answer": "monologue"
+      }
+    ],
     "ch": "獨白"
   },
   {
     "word": "moor",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The boat was left to moor near the old pier.",
+        "answer": "moor"
+      },
+      {
+        "text": "They walked across the misty moor before sunrise.",
+        "answer": "moor"
+      },
+      {
+        "text": "Fishermen moor their boats there during storms.",
+        "answer": "moor"
+      }
+    ],
     "ch": "荒野／停泊"
   },
   {
     "word": "morality",
     "cefr": "C1",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The novel raises difficult questions about morality.",
+        "answer": "morality"
+      },
+      {
+        "text": "Some argue that law and morality should not always overlap.",
+        "answer": "morality"
+      },
+      {
+        "text": "The debate turned from politics to morality.",
+        "answer": "morality"
+      }
+    ],
     "ch": "道德"
   },
   {
     "word": "motivational",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The speaker delivered a short motivational talk.",
+        "answer": "motivational"
+      },
+      {
+        "text": "Many students enjoy motivational podcasts before exams.",
+        "answer": "motivational"
+      },
+      {
+        "text": "The coach posted a motivational message in the locker room.",
+        "answer": "motivational"
+      }
+    ],
     "ch": "激勵的"
   },
   {
     "word": "motivator",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Fear is not the best motivator for long-term learning.",
+        "answer": "motivator"
+      },
+      {
+        "text": "For her, curiosity is a stronger motivator than praise.",
+        "answer": "motivator"
+      },
+      {
+        "text": "Money can be a motivator, but not the only one.",
+        "answer": "motivator"
+      }
+    ],
     "ch": "激勵者"
   },
   {
     "word": "motive",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Police are still trying to determine the motive.",
+        "answer": "motive"
+      },
+      {
+        "text": "Her real motive remained unclear to the team.",
+        "answer": "motive"
+      },
+      {
+        "text": "The court examined whether there was a financial motive.",
+        "answer": "motive"
+      }
+    ],
     "ch": "動機"
   },
   {
     "word": "mould",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Black mould spread across the bathroom ceiling.",
+        "answer": "mould"
+      },
+      {
+        "text": "The baker used a round mould for the cake.",
+        "answer": "mould"
+      },
+      {
+        "text": "Leaders can mould public opinion through media.",
+        "answer": "mould"
+      }
+    ],
     "ch": "模具／塑造／霉菌"
   },
   {
     "word": "mound",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A mound of sand blocked part of the path.",
+        "answer": "mound"
+      },
+      {
+        "text": "The child sat on a grassy mound near the lake.",
+        "answer": "mound"
+      },
+      {
+        "text": "Workers found an ancient burial mound in the field.",
+        "answer": "mound"
+      }
+    ],
     "ch": "土堆"
   },
   {
     "word": "mournful",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A mournful tune drifted from the violin.",
+        "answer": "mournful"
+      },
+      {
+        "text": "His face took on a mournful expression.",
+        "answer": "mournful"
+      },
+      {
+        "text": "The film ends with a slow, mournful scene.",
+        "answer": "mournful"
+      }
+    ],
     "ch": "哀傷的"
   },
   {
     "word": "mutual",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Trust depends on mutual respect.",
+        "answer": "mutual"
+      },
+      {
+        "text": "The two teams reached a mutual agreement.",
+        "answer": "mutual"
+      },
+      {
+        "text": "Their friendship was built on mutual support.",
+        "answer": "mutual"
+      }
+    ],
     "ch": "相互的"
   },
   {
     "word": "nationwide",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The strike caused nationwide disruption to transport.",
+        "answer": "nationwide"
+      },
+      {
+        "text": "The survey gathered responses from people nationwide.",
+        "answer": "nationwide"
+      },
+      {
+        "text": "A nationwide campaign was launched to save water.",
+        "answer": "nationwide"
+      }
+    ],
     "ch": "全國性的"
   },
   {
     "word": "neon",
     "cefr": "C1",
     "frequency": 10,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A bright neon sign lit the corner shop.",
+        "answer": "neon"
+      },
+      {
+        "text": "The poster used neon colors to attract attention.",
+        "answer": "neon"
+      },
+      {
+        "text": "Neon lights reflected on the wet street.",
+        "answer": "neon"
+      }
+    ],
     "ch": "霓虹燈／氖"
   },
   {
     "word": "nest",
     "cefr": "C1",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A small bird had built a nest above the window.",
+        "answer": "nest"
+      },
+      {
+        "text": "The rescue team found the nest hidden in the tree.",
+        "answer": "nest"
+      },
+      {
+        "text": "Foxes rarely sleep in the same nest every night.",
+        "answer": "nest"
+      }
+    ],
     "ch": "巢"
   },
   {
     "word": "net",
     "cefr": "C1",
     "frequency": 4,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The fisherman repaired his torn net before dawn.",
+        "answer": "net"
+      },
+      {
+        "text": "After tax, the company reported a smaller net profit.",
+        "answer": "net"
+      },
+      {
+        "text": "The ball struck the net and dropped straight down.",
+        "answer": "net"
+      }
+    ],
     "ch": "淨值／網"
   },
   {
