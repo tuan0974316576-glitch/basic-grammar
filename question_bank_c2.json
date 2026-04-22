@@ -6003,700 +6003,2000 @@
     "word": "miraculously",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The child was miraculously unharmed after the crash.",
+        "answer": "miraculously"
+      },
+      {
+        "text": "The missing boat was miraculously found at dawn.",
+        "answer": "miraculously"
+      },
+      {
+        "text": "She miraculously finished the race despite the injury.",
+        "answer": "miraculously"
+      }
+    ],
     "ch": "奇蹟般地"
   },
   {
     "word": "misfit",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "He always felt like a misfit at school.",
+        "answer": "misfit"
+      },
+      {
+        "text": "The film follows a group of lovable misfits.",
+        "answer": "misfit"
+      },
+      {
+        "text": "That strange chair looks like a misfit in the modern room.",
+        "answer": "misfit"
+      }
+    ],
     "ch": "不合群的人／不合適的東西"
   },
   {
     "word": "mishap",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A small mishap delayed the ceremony by ten minutes.",
+        "answer": "mishap"
+      },
+      {
+        "text": "The actor laughed off the stage mishap.",
+        "answer": "mishap"
+      },
+      {
+        "text": "Travel insurance can help if a mishap occurs abroad.",
+        "answer": "mishap"
+      }
+    ],
     "ch": "小災禍／意外"
   },
   {
     "word": "moan",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "He let out a moan of pain when he stood up.",
+        "answer": "moan"
+      },
+      {
+        "text": "Please do not moan about the weather all day.",
+        "answer": "moan"
+      },
+      {
+        "text": "We heard the old house moan in the wind.",
+        "answer": "moan"
+      }
+    ],
     "ch": "呻吟／抱怨"
   },
   {
     "word": "mojo",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The team seems to have lost its mojo this season.",
+        "answer": "mojo"
+      },
+      {
+        "text": "After the holiday, she got her creative mojo back.",
+        "answer": "mojo"
+      },
+      {
+        "text": "The singer still has enough mojo to command the stage.",
+        "answer": "mojo"
+      }
+    ],
     "ch": "魅力／魔力"
   },
   {
     "word": "molehill",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A small molehill appeared in the middle of the lawn.",
+        "answer": "molehill"
+      },
+      {
+        "text": "Do not make a mountain out of a molehill.",
+        "answer": "molehill"
+      },
+      {
+        "text": "The dog kept sniffing at the fresh molehill.",
+        "answer": "molehill"
+      }
+    ],
     "ch": "鼴鼠丘／小土堆"
   },
   {
     "word": "monetise",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The company wants to monetise its online audience.",
+        "answer": "monetise"
+      },
+      {
+        "text": "Artists often struggle to monetise their work fairly.",
+        "answer": "monetise"
+      },
+      {
+        "text": "The platform teaches creators how to monetise short videos.",
+        "answer": "monetise"
+      }
+    ],
     "ch": "使貨幣化／從…獲利"
   },
   {
     "word": "moreish",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The roasted nuts were so moreish that we finished the bowl.",
+        "answer": "moreish"
+      },
+      {
+        "text": "That sauce is salty, spicy, and dangerously moreish.",
+        "answer": "moreish"
+      },
+      {
+        "text": "She baked a surprisingly moreish lemon cake.",
+        "answer": "moreish"
+      }
+    ],
     "ch": "令人越吃越想吃的"
   },
   {
     "word": "mortal",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Even great kings are only mortal.",
+        "answer": "mortal"
+      },
+      {
+        "text": "The doctor confirmed that the wound was not mortal.",
+        "answer": "mortal"
+      },
+      {
+        "text": "In mythology, gods often interfere in mortal affairs.",
+        "answer": "mortal"
+      }
+    ],
     "ch": "凡人的／致命的"
   },
   {
     "word": "motif",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The designer repeated a floral motif across the fabric.",
+        "answer": "motif"
+      },
+      {
+        "text": "Water becomes a central motif in the poem.",
+        "answer": "motif"
+      },
+      {
+        "text": "The film uses mirrors as a visual motif.",
+        "answer": "motif"
+      }
+    ],
     "ch": "主題／圖案"
   },
   {
     "word": "nauseate",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The smell of spoiled milk can nauseate anyone.",
+        "answer": "nauseate"
+      },
+      {
+        "text": "Rough seas began to nauseate the passengers.",
+        "answer": "nauseate"
+      },
+      {
+        "text": "Some medicines may nauseate patients at first.",
+        "answer": "nauseate"
+      }
+    ],
     "ch": "使作嘔"
   },
   {
     "word": "nectar",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Bees collect nectar from the flowers each morning.",
+        "answer": "nectar"
+      },
+      {
+        "text": "The juice tasted like nectar after the long hike.",
+        "answer": "nectar"
+      },
+      {
+        "text": "Birds were feeding on the nectar of the red blossoms.",
+        "answer": "nectar"
+      }
+    ],
     "ch": "花蜜／甘露"
   },
   {
     "word": "negligent",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The report accused the company of being negligent.",
+        "answer": "negligent"
+      },
+      {
+        "text": "A negligent driver caused the crash.",
+        "answer": "negligent"
+      },
+      {
+        "text": "Doctors must not be negligent in emergency care.",
+        "answer": "negligent"
+      }
+    ],
     "ch": "疏忽的／玩忽職守的"
   },
   {
     "word": "nosh",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "We grabbed a quick nosh before the show.",
+        "answer": "nosh"
+      },
+      {
+        "text": "They stopped at a cafe for a bit of nosh.",
+        "answer": "nosh"
+      },
+      {
+        "text": "There was plenty of nosh at the evening party.",
+        "answer": "nosh"
+      }
+    ],
     "ch": "小吃／吃點東西"
   },
   {
     "word": "nostril",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Smoke entered his nostril and made him cough.",
+        "answer": "nostril"
+      },
+      {
+        "text": "The horse flared its nostril before it ran.",
+        "answer": "nostril"
+      },
+      {
+        "text": "A drop of water hung from one nostril after the swim.",
+        "answer": "nostril"
+      }
+    ],
     "ch": "鼻孔"
   },
   {
     "word": "obliterate",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The explosion seemed to obliterate the entire wall.",
+        "answer": "obliterate"
+      },
+      {
+        "text": "One scandal can obliterate years of trust.",
+        "answer": "obliterate"
+      },
+      {
+        "text": "Snow may obliterate the mountain path overnight.",
+        "answer": "obliterate"
+      }
+    ],
     "ch": "抹去／徹底摧毀"
   },
   {
     "word": "obscure",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Fog began to obscure the view of the harbor.",
+        "answer": "obscure"
+      },
+      {
+        "text": "He wrote a book about an obscure poet.",
+        "answer": "obscure"
+      },
+      {
+        "text": "Her meaning was obscured by vague language.",
+        "answer": "obscure"
+      }
+    ],
     "ch": "模糊的／鮮為人知的"
   },
   {
     "word": "observant",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "An observant child noticed the missing key at once.",
+        "answer": "observant"
+      },
+      {
+        "text": "Good detectives must be patient and observant.",
+        "answer": "observant"
+      },
+      {
+        "text": "She is more observant than people realize.",
+        "answer": "observant"
+      }
+    ],
     "ch": "善於觀察的"
   },
   {
     "word": "offset",
     "cefr": "C2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The savings will offset the extra cost.",
+        "answer": "offset"
+      },
+      {
+        "text": "Planting trees may help offset carbon emissions.",
+        "answer": "offset"
+      },
+      {
+        "text": "The windows are slightly offset from each other.",
+        "answer": "offset"
+      }
+    ],
     "ch": "抵消／補償"
   },
   {
     "word": "openness",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Her openness made the conversation easier.",
+        "answer": "openness"
+      },
+      {
+        "text": "The company values openness and honesty.",
+        "answer": "openness"
+      },
+      {
+        "text": "Greater openness to new ideas can strengthen a team.",
+        "answer": "openness"
+      }
+    ],
     "ch": "開放／坦率"
   },
   {
     "word": "opine",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Commentators were quick to opine on the result.",
+        "answer": "opine"
+      },
+      {
+        "text": "He loves to opine on topics he barely understands.",
+        "answer": "opine"
+      },
+      {
+        "text": "Experts opined that the policy would fail.",
+        "answer": "opine"
+      }
+    ],
     "ch": "發表意見"
   },
   {
     "word": "orphan",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The charity supports every orphan in the shelter.",
+        "answer": "orphan"
+      },
+      {
+        "text": "A flood of records can orphan children from their roots.",
+        "answer": "orphan"
+      },
+      {
+        "text": "The novel follows an orphan through wartime Europe.",
+        "answer": "orphan"
+      }
+    ],
     "ch": "孤兒"
   },
   {
     "word": "ossify",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Without reform, the system may ossify over time.",
+        "answer": "ossify"
+      },
+      {
+        "text": "Traditional views can ossify into rigid rules.",
+        "answer": "ossify"
+      },
+      {
+        "text": "The group feared its culture would ossify as it grew.",
+        "answer": "ossify"
+      }
+    ],
     "ch": "骨化／僵化"
   },
   {
     "word": "outlandish",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "At first, the idea sounded completely outlandish.",
+        "answer": "outlandish"
+      },
+      {
+        "text": "He wore an outlandish hat to the wedding.",
+        "answer": "outlandish"
+      },
+      {
+        "text": "The tabloids published another outlandish claim.",
+        "answer": "outlandish"
+      }
+    ],
     "ch": "古怪離奇的"
   },
   {
     "word": "outright",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "She denied the accusation outright.",
+        "answer": "outright"
+      },
+      {
+        "text": "They bought the house outright with cash.",
+        "answer": "outright"
+      },
+      {
+        "text": "The proposal was an outright failure.",
+        "answer": "outright"
+      }
+    ],
     "ch": "徹底地／公然地"
   },
   {
     "word": "overarching",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Safety remains the overarching concern of the project.",
+        "answer": "overarching"
+      },
+      {
+        "text": "The novel has an overarching theme of loss.",
+        "answer": "overarching"
+      },
+      {
+        "text": "Their overarching goal is long-term stability.",
+        "answer": "overarching"
+      }
+    ],
     "ch": "全面的／首要的"
   },
   {
     "word": "overflow",
     "cefr": "C2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Heavy rain caused the river to overflow its banks.",
+        "answer": "overflow"
+      },
+      {
+        "text": "The hall had to open an overflow room for extra guests.",
+        "answer": "overflow"
+      },
+      {
+        "text": "Her inbox began to overflow with messages.",
+        "answer": "overflow"
+      }
+    ],
     "ch": "溢出／滿溢"
   },
   {
     "word": "overlord",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The film presents the emperor as a cruel overlord.",
+        "answer": "overlord"
+      },
+      {
+        "text": "Peasants rose against their feudal overlord.",
+        "answer": "overlord"
+      },
+      {
+        "text": "The game features a final battle against a cosmic overlord.",
+        "answer": "overlord"
+      }
+    ],
     "ch": "霸主／領主"
   },
   {
     "word": "pagan",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The festival has roots in ancient pagan rituals.",
+        "answer": "pagan"
+      },
+      {
+        "text": "Early missionaries tried to replace pagan customs.",
+        "answer": "pagan"
+      },
+      {
+        "text": "The book explores pagan symbols in European art.",
+        "answer": "pagan"
+      }
+    ],
     "ch": "異教徒的／異教徒"
   },
   {
     "word": "palette",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The artist chose a soft winter palette.",
+        "answer": "palette"
+      },
+      {
+        "text": "The makeup line offers a wide color palette.",
+        "answer": "palette"
+      },
+      {
+        "text": "His musical palette grew richer over the years.",
+        "answer": "palette"
+      }
+    ],
     "ch": "調色板／色彩範圍"
   },
   {
     "word": "pander",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The ad seems to pander to fear instead of reason.",
+        "answer": "pander"
+      },
+      {
+        "text": "Politicians should not pander to prejudice.",
+        "answer": "pander"
+      },
+      {
+        "text": "The show panders to easy jokes rather than deeper ideas.",
+        "answer": "pander"
+      }
+    ],
     "ch": "迎合／縱容"
   },
   {
     "word": "paparazzi",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The actor was followed by paparazzi outside the hotel.",
+        "answer": "paparazzi"
+      },
+      {
+        "text": "Paparazzi waited near the airport for the singer.",
+        "answer": "paparazzi"
+      },
+      {
+        "text": "The celebrity sued the paparazzi for harassment.",
+        "answer": "paparazzi"
+      }
+    ],
     "ch": "狗仔隊"
   },
   {
     "word": "paperback",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "I bought the paperback because it was cheaper.",
+        "answer": "paperback"
+      },
+      {
+        "text": "The novel first appeared in hardcover, then in paperback.",
+        "answer": "paperback"
+      },
+      {
+        "text": "She slipped the paperback into her bag for the train ride.",
+        "answer": "paperback"
+      }
+    ],
     "ch": "平裝書"
   },
   {
     "word": "parasocial",
     "cefr": "C2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Many fans develop a parasocial bond with online creators.",
+        "answer": "parasocial"
+      },
+      {
+        "text": "The documentary examines parasocial relationships in the digital age.",
+        "answer": "parasocial"
+      },
+      {
+        "text": "Parasocial attachment can feel real despite being one-sided.",
+        "answer": "parasocial"
+      }
+    ],
     "ch": "擬社會關係的"
   },
   {
     "word": "particle",
     "cefr": "C2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The microscope detected tiny dust particles in the air.",
+        "answer": "particle"
+      },
+      {
+        "text": "Scientists studied how each particle moved through the liquid.",
+        "answer": "particle"
+      },
+      {
+        "text": "A single particle can affect the entire experiment.",
+        "answer": "particle"
+      }
+    ],
     "ch": "微粒／粒子"
   },
   {
     "word": "pastime",
     "cefr": "C2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Reading became his favorite pastime during winter.",
+        "answer": "pastime"
+      },
+      {
+        "text": "Birdwatching is a peaceful pastime for many retirees.",
+        "answer": "pastime"
+      },
+      {
+        "text": "Chess was once only a weekend pastime for her.",
+        "answer": "pastime"
+      }
+    ],
     "ch": "消遣／娛樂"
   },
   {
     "word": "patina",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The old bell had a green patina from years of weather.",
+        "answer": "patina"
+      },
+      {
+        "text": "Age gave the leather a rich patina.",
+        "answer": "patina"
+      },
+      {
+        "text": "Collectors admired the bronze patina on the statue.",
+        "answer": "patina"
+      }
+    ],
     "ch": "銅綠／表面光澤"
   },
   {
     "word": "peek",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "He took a quick peek through the curtain.",
+        "answer": "peek"
+      },
+      {
+        "text": "Do not peek at the answers during the quiz.",
+        "answer": "peek"
+      },
+      {
+        "text": "Children tried to peek inside the wrapped gift.",
+        "answer": "peek"
+      }
+    ],
     "ch": "偷看／窺視"
   },
   {
     "word": "pendulum",
     "cefr": "C2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The old clock has a brass pendulum.",
+        "answer": "pendulum"
+      },
+      {
+        "text": "Public opinion often swings like a pendulum.",
+        "answer": "pendulum"
+      },
+      {
+        "text": "He watched the pendulum move back and forth in silence.",
+        "answer": "pendulum"
+      }
+    ],
     "ch": "鐘擺"
   },
   {
     "word": "perceptive",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "She made a perceptive comment about the team's weakness.",
+        "answer": "perceptive"
+      },
+      {
+        "text": "A perceptive reader will notice the hidden clues.",
+        "answer": "perceptive"
+      },
+      {
+        "text": "Children can be surprisingly perceptive.",
+        "answer": "perceptive"
+      }
+    ],
     "ch": "敏銳的／有洞察力的"
   },
   {
     "word": "perseverance",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Her success is the result of talent and perseverance.",
+        "answer": "perseverance"
+      },
+      {
+        "text": "The climb demanded great perseverance.",
+        "answer": "perseverance"
+      },
+      {
+        "text": "Teachers praised his perseverance after months of effort.",
+        "answer": "perseverance"
+      }
+    ],
     "ch": "毅力／堅持不懈"
   },
   {
     "word": "persistence",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Her persistence finally paid off.",
+        "answer": "persistence"
+      },
+      {
+        "text": "The disease shows a worrying persistence in the region.",
+        "answer": "persistence"
+      },
+      {
+        "text": "Success often depends on persistence more than luck.",
+        "answer": "persistence"
+      }
+    ],
     "ch": "持續／堅持"
   },
   {
     "word": "personhood",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The court debated the legal meaning of personhood.",
+        "answer": "personhood"
+      },
+      {
+        "text": "Some philosophers link memory closely to personhood.",
+        "answer": "personhood"
+      },
+      {
+        "text": "The exhibit explored identity and personhood.",
+        "answer": "personhood"
+      }
+    ],
     "ch": "人格／個體身分"
   },
   {
     "word": "persuasion",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The speech was a masterpiece of persuasion.",
+        "answer": "persuasion"
+      },
+      {
+        "text": "She finally agreed after a little gentle persuasion.",
+        "answer": "persuasion"
+      },
+      {
+        "text": "The book studies persuasion in political language.",
+        "answer": "persuasion"
+      }
+    ],
     "ch": "說服／信仰"
   },
   {
     "word": "pertinent",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Please keep your questions pertinent to the topic.",
+        "answer": "pertinent"
+      },
+      {
+        "text": "The report includes all the pertinent facts.",
+        "answer": "pertinent"
+      },
+      {
+        "text": "His remark was more pertinent than it first seemed.",
+        "answer": "pertinent"
+      }
+    ],
     "ch": "相關的／中肯的"
   },
   {
     "word": "peruse",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Take a moment to peruse the menu.",
+        "answer": "peruse"
+      },
+      {
+        "text": "She perused the report before the meeting.",
+        "answer": "peruse"
+      },
+      {
+        "text": "Customers were invited to peruse the exhibition at their own pace.",
+        "answer": "peruse"
+      }
+    ],
     "ch": "細讀／審閱"
   },
   {
     "word": "pervade",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A sense of tension pervaded the room.",
+        "answer": "pervade"
+      },
+      {
+        "text": "The smell of smoke pervaded the building.",
+        "answer": "pervade"
+      },
+      {
+        "text": "Hope still pervades the community despite the loss.",
+        "answer": "pervade"
+      }
+    ],
     "ch": "瀰漫／充斥"
   },
   {
     "word": "pharmaceutical",
     "cefr": "C2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The country imports most of its pharmaceutical products.",
+        "answer": "pharmaceutical"
+      },
+      {
+        "text": "She works in pharmaceutical research.",
+        "answer": "pharmaceutical"
+      },
+      {
+        "text": "The pharmaceutical industry invested heavily in the vaccine.",
+        "answer": "pharmaceutical"
+      }
+    ],
     "ch": "製藥的／藥物"
   },
   {
     "word": "pigment",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Artists once made blue pigment from rare minerals.",
+        "answer": "pigment"
+      },
+      {
+        "text": "The cream helps restore skin pigment after injury.",
+        "answer": "pigment"
+      },
+      {
+        "text": "The wall paint lost much of its pigment in the sun.",
+        "answer": "pigment"
+      }
+    ],
     "ch": "色素／顏料"
   },
   {
     "word": "pinnacle",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Many regard this novel as the pinnacle of his career.",
+        "answer": "pinnacle"
+      },
+      {
+        "text": "The climbers reached the rocky pinnacle at noon.",
+        "answer": "pinnacle"
+      },
+      {
+        "text": "Winning the award was the pinnacle of her season.",
+        "answer": "pinnacle"
+      }
+    ],
     "ch": "頂峰／巔峰"
   },
   {
     "word": "pious",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "He was raised in a deeply pious household.",
+        "answer": "pious"
+      },
+      {
+        "text": "The article warns against pious but empty promises.",
+        "answer": "pious"
+      },
+      {
+        "text": "She gave a pious speech that impressed no one.",
+        "answer": "pious"
+      }
+    ],
     "ch": "虔誠的／假虔誠的"
   },
   {
     "word": "plough",
     "cefr": "C2",
     "frequency": 7,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Farmers began to plough the fields before dawn.",
+        "answer": "plough"
+      },
+      {
+        "text": "The ship tried to plough through the rough sea.",
+        "answer": "plough"
+      },
+      {
+        "text": "He ploughed through the report in one evening.",
+        "answer": "plough"
+      }
+    ],
     "ch": "犁／耕作"
   },
   {
     "word": "pluck",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "She had the pluck to challenge the board directly.",
+        "answer": "pluck"
+      },
+      {
+        "text": "Please pluck the leaves from the stem.",
+        "answer": "pluck"
+      },
+      {
+        "text": "The song was played on a plucked instrument.",
+        "answer": "pluck"
+      }
+    ],
     "ch": "拔／勇氣"
   },
   {
     "word": "ply",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Ferries ply this route every day.",
+        "answer": "ply"
+      },
+      {
+        "text": "The vendor continued to ply us with tea and cakes.",
+        "answer": "ply"
+      },
+      {
+        "text": "Craftsmen still ply the trade in the old district.",
+        "answer": "ply"
+      }
+    ],
     "ch": "定期往返／不斷供應"
   },
   {
     "word": "poise",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "She answered every question with calm poise.",
+        "answer": "poise"
+      },
+      {
+        "text": "The dancer showed remarkable poise on stage.",
+        "answer": "poise"
+      },
+      {
+        "text": "He seemed poised between laughter and anger.",
+        "answer": "poise"
+      }
+    ],
     "ch": "鎮定／優雅"
   },
   {
     "word": "ponder",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "He paused to ponder the strange message.",
+        "answer": "ponder"
+      },
+      {
+        "text": "We need time to ponder the long-term effects.",
+        "answer": "ponder"
+      },
+      {
+        "text": "She sat by the window and pondered her next move.",
+        "answer": "ponder"
+      }
+    ],
     "ch": "沉思／仔細考慮"
   },
   {
     "word": "porch",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "We sat on the porch until the rain stopped.",
+        "answer": "porch"
+      },
+      {
+        "text": "A lantern hung above the porch.",
+        "answer": "porch"
+      },
+      {
+        "text": "The cat was sleeping on the front porch.",
+        "answer": "porch"
+      }
+    ],
     "ch": "門廊"
   },
   {
     "word": "posit",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The theory posits that memory is shaped by emotion.",
+        "answer": "posit"
+      },
+      {
+        "text": "Some scientists posit a link between the two events.",
+        "answer": "posit"
+      },
+      {
+        "text": "The article posits a very different account of history.",
+        "answer": "posit"
+      }
+    ],
     "ch": "假定／提出"
   },
   {
     "word": "poultry",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The farm raises poultry for local restaurants.",
+        "answer": "poultry"
+      },
+      {
+        "text": "Frozen poultry must be handled carefully.",
+        "answer": "poultry"
+      },
+      {
+        "text": "The market sells fresh poultry every morning.",
+        "answer": "poultry"
+      }
+    ],
     "ch": "家禽"
   },
   {
     "word": "pragmatic",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "She took a pragmatic approach to the budget problem.",
+        "answer": "pragmatic"
+      },
+      {
+        "text": "Their solution was simple, pragmatic, and cheap.",
+        "answer": "pragmatic"
+      },
+      {
+        "text": "A pragmatic leader focuses on what works.",
+        "answer": "pragmatic"
+      }
+    ],
     "ch": "務實的"
   },
   {
     "word": "premeditate",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Police believe the attack was carefully premeditated.",
+        "answer": "premeditate"
+      },
+      {
+        "text": "He did not premeditate the remark; it just slipped out.",
+        "answer": "premeditate"
+      },
+      {
+        "text": "The law treats premeditated violence more severely.",
+        "answer": "premeditate"
+      }
+    ],
     "ch": "預先策劃"
   },
   {
     "word": "pretties",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "She filled the shelf with little pretties from antique markets.",
+        "answer": "pretties"
+      },
+      {
+        "text": "The boutique sells ribbons, beads, and other pretties.",
+        "answer": "pretties"
+      },
+      {
+        "text": "He dismissed the display as useless pretties.",
+        "answer": "pretties"
+      }
+    ],
     "ch": "漂亮小物件／裝飾品"
   },
   {
     "word": "procession",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A solemn procession moved through the old town.",
+        "answer": "procession"
+      },
+      {
+        "text": "The wedding procession was led by musicians.",
+        "answer": "procession"
+      },
+      {
+        "text": "Crowds lined the street to watch the royal procession.",
+        "answer": "procession"
+      }
+    ],
     "ch": "隊伍／行列"
   },
   {
     "word": "procurement",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The company tightened its procurement rules after the scandal.",
+        "answer": "procurement"
+      },
+      {
+        "text": "Procurement of medical supplies became urgent.",
+        "answer": "procurement"
+      },
+      {
+        "text": "She works in procurement for an international firm.",
+        "answer": "procurement"
+      }
+    ],
     "ch": "採購／取得"
   },
   {
     "word": "propel",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Curiosity helped propel her research forward.",
+        "answer": "propel"
+      },
+      {
+        "text": "The engine propels the boat through shallow water.",
+        "answer": "propel"
+      },
+      {
+        "text": "A strong wind can propel the fire across the valley.",
+        "answer": "propel"
+      }
+    ],
     "ch": "推進／驅使"
   },
   {
     "word": "propensity",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "He has a propensity for taking unnecessary risks.",
+        "answer": "propensity"
+      },
+      {
+        "text": "The study examined children's propensity to copy adults.",
+        "answer": "propensity"
+      },
+      {
+        "text": "Her propensity for detail made her a strong editor.",
+        "answer": "propensity"
+      }
+    ],
     "ch": "傾向／習性"
   },
   {
     "word": "protagonist",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The protagonist changes deeply by the end of the novel.",
+        "answer": "protagonist"
+      },
+      {
+        "text": "Viewers quickly sympathize with the young protagonist.",
+        "answer": "protagonist"
+      },
+      {
+        "text": "The film has no clear villain, only a conflicted protagonist.",
+        "answer": "protagonist"
+      }
+    ],
     "ch": "主角"
   },
   {
     "word": "protestation",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Despite his protestation of innocence, the evidence was strong.",
+        "answer": "protestation"
+      },
+      {
+        "text": "She rejected his protestation that it was only a joke.",
+        "answer": "protestation"
+      },
+      {
+        "text": "Their loud protestation failed to change the decision.",
+        "answer": "protestation"
+      }
+    ],
     "ch": "抗議／聲稱"
   },
   {
     "word": "proverbially",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "He is proverbially hard to impress.",
+        "answer": "proverbially"
+      },
+      {
+        "text": "The city is proverbially busy even after midnight.",
+        "answer": "proverbially"
+      },
+      {
+        "text": "She remained proverbially calm during the crisis.",
+        "answer": "proverbially"
+      }
+    ],
     "ch": "眾所周知地"
   },
   {
     "word": "provocation",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The attack was seen as a deliberate provocation.",
+        "answer": "provocation"
+      },
+      {
+        "text": "He reacted badly to even mild provocation.",
+        "answer": "provocation"
+      },
+      {
+        "text": "The protest was sparked by a political provocation.",
+        "answer": "provocation"
+      }
+    ],
     "ch": "挑釁／刺激"
   },
   {
     "word": "psyche",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The novel explores the human psyche in great detail.",
+        "answer": "psyche"
+      },
+      {
+        "text": "Years of war can damage the national psyche.",
+        "answer": "psyche"
+      },
+      {
+        "text": "Artists often draw on dreams and the psyche.",
+        "answer": "psyche"
+      }
+    ],
     "ch": "心靈／精神"
   },
   {
     "word": "psychopath",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The detective suspected the killer was a psychopath.",
+        "answer": "psychopath"
+      },
+      {
+        "text": "The thriller presents a charming but dangerous psychopath.",
+        "answer": "psychopath"
+      },
+      {
+        "text": "People often misuse the word psychopath in casual speech.",
+        "answer": "psychopath"
+      }
+    ],
     "ch": "精神病態者"
   },
   {
     "word": "puncture",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A nail caused a puncture in the rear tire.",
+        "answer": "puncture"
+      },
+      {
+        "text": "Be careful not to puncture the bag with the scissors.",
+        "answer": "puncture"
+      },
+      {
+        "text": "Doctors had to puncture the blister to relieve pressure.",
+        "answer": "puncture"
+      }
+    ],
     "ch": "刺穿／穿孔"
   },
   {
     "word": "purge",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The company began to purge unnecessary files from the server.",
+        "answer": "purge"
+      },
+      {
+        "text": "The regime tried to purge its critics from public life.",
+        "answer": "purge"
+      },
+      {
+        "text": "She used the retreat to purge old habits.",
+        "answer": "purge"
+      }
+    ],
     "ch": "清除／清洗"
   },
   {
     "word": "pushy",
     "cefr": "C2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The salesman was too pushy for my liking.",
+        "answer": "pushy"
+      },
+      {
+        "text": "Parents should support children without becoming pushy.",
+        "answer": "pushy"
+      },
+      {
+        "text": "Her pushy tone made the team uncomfortable.",
+        "answer": "pushy"
+      }
+    ],
     "ch": "咄咄逼人的"
   },
   {
     "word": "quaint",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "They stayed in a quaint cottage by the river.",
+        "answer": "quaint"
+      },
+      {
+        "text": "The village looks charming rather than merely quaint.",
+        "answer": "quaint"
+      },
+      {
+        "text": "He found the custom quaint but outdated.",
+        "answer": "quaint"
+      }
+    ],
     "ch": "古雅的／別緻的"
   },
   {
     "word": "quilt",
     "cefr": "C2",
     "frequency": 10,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "My grandmother stitched the quilt by hand.",
+        "answer": "quilt"
+      },
+      {
+        "text": "The child pulled the quilt up to his chin.",
+        "answer": "quilt"
+      },
+      {
+        "text": "A bright patchwork quilt covered the bed.",
+        "answer": "quilt"
+      }
+    ],
     "ch": "被子"
   },
   {
     "word": "quiver",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Her voice began to quiver with emotion.",
+        "answer": "quiver"
+      },
+      {
+        "text": "The bow rested beside a leather quiver.",
+        "answer": "quiver"
+      },
+      {
+        "text": "The leaves quivered in the evening wind.",
+        "answer": "quiver"
+      }
+    ],
     "ch": "顫抖／箭袋"
   },
   {
     "word": "rabid",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The team has a rabid fan base online.",
+        "answer": "rabid"
+      },
+      {
+        "text": "The article drew criticism from rabid supporters of the policy.",
+        "answer": "rabid"
+      },
+      {
+        "text": "They feared a rabid dog had entered the village.",
+        "answer": "rabid"
+      }
+    ],
     "ch": "狂熱的／狂犬病的"
   },
   {
     "word": "rag",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "He wiped the table with an old rag.",
+        "answer": "rag"
+      },
+      {
+        "text": "The costume was reduced to a rag after the fire.",
+        "answer": "rag"
+      },
+      {
+        "text": "She tied a wet rag around the burn.",
+        "answer": "rag"
+      }
+    ],
     "ch": "破布／抹布"
   },
   {
     "word": "rake in",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The film managed to rake in millions on its first weekend.",
+        "answer": "rake in"
+      },
+      {
+        "text": "Tourist shops rake in huge profits during summer.",
+        "answer": "rake in"
+      },
+      {
+        "text": "The company raked in far more money than expected.",
+        "answer": "rake in"
+      }
+    ],
     "ch": "大量賺取"
   },
   {
     "word": "ramp up",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Factories plan to ramp up production before the holiday season.",
+        "answer": "ramp up"
+      },
+      {
+        "text": "The campaign began to ramp up its online presence.",
+        "answer": "ramp up"
+      },
+      {
+        "text": "Hospitals had to ramp up emergency staffing during the outbreak.",
+        "answer": "ramp up"
+      }
+    ],
     "ch": "提高／加快"
   },
   {
     "word": "raucous",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A raucous cheer rose from the crowd.",
+        "answer": "raucous"
+      },
+      {
+        "text": "The bar was loud and raucous after the match.",
+        "answer": "raucous"
+      },
+      {
+        "text": "Seagulls made a raucous noise above the harbor.",
+        "answer": "raucous"
+      }
+    ],
     "ch": "刺耳吵鬧的"
   },
   {
     "word": "reap",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Farmers worked through the night to reap the wheat.",
+        "answer": "reap"
+      },
+      {
+        "text": "She hopes to reap the rewards of years of study.",
+        "answer": "reap"
+      },
+      {
+        "text": "The firm may reap huge benefits from the merger.",
+        "answer": "reap"
+      }
+    ],
     "ch": "收割／獲得"
   },
   {
     "word": "receptive",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The audience seemed receptive to the new idea.",
+        "answer": "receptive"
+      },
+      {
+        "text": "Young minds are often highly receptive to language.",
+        "answer": "receptive"
+      },
+      {
+        "text": "She was not receptive to criticism that day.",
+        "answer": "receptive"
+      }
+    ],
     "ch": "樂於接受的"
   },
   {
     "word": "redundant",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The sentence became redundant after the edit.",
+        "answer": "redundant"
+      },
+      {
+        "text": "Several workers were made redundant during the downturn.",
+        "answer": "redundant"
+      },
+      {
+        "text": "The second battery serves as a redundant backup.",
+        "answer": "redundant"
+      }
+    ],
     "ch": "多餘的／被裁員的"
   },
   {
     "word": "refine",
     "cefr": "C2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The team continues to refine the app before launch.",
+        "answer": "refine"
+      },
+      {
+        "text": "Years of training helped refine his technique.",
+        "answer": "refine"
+      },
+      {
+        "text": "Oil must be refined before it can be used widely.",
+        "answer": "refine"
+      }
+    ],
     "ch": "改進／提煉"
   },
   {
     "word": "relentless",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The team faced relentless pressure in the final minutes.",
+        "answer": "relentless"
+      },
+      {
+        "text": "The rain was relentless all afternoon.",
+        "answer": "relentless"
+      },
+      {
+        "text": "Her relentless work ethic inspired the staff.",
+        "answer": "relentless"
+      }
+    ],
     "ch": "無情的／持續不斷的"
   },
   {
     "word": "relentlessly",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The reporters pursued the story relentlessly.",
+        "answer": "relentlessly"
+      },
+      {
+        "text": "She trained relentlessly for the championship.",
+        "answer": "relentlessly"
+      },
+      {
+        "text": "The sea battered the rocks relentlessly through the night.",
+        "answer": "relentlessly"
+      }
+    ],
     "ch": "不懈地／無情地"
   },
   {
     "word": "reliance",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The region's heavy reliance on tourism worries economists.",
+        "answer": "reliance"
+      },
+      {
+        "text": "A healthy team should avoid total reliance on one leader.",
+        "answer": "reliance"
+      },
+      {
+        "text": "Modern life shows a growing reliance on digital systems.",
+        "answer": "reliance"
+      }
+    ],
     "ch": "依賴"
   },
   {
     "word": "relish",
     "cefr": "C2",
     "frequency": 2,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "She always relishes a difficult challenge.",
+        "answer": "relish"
+      },
+      {
+        "text": "The burger was served with a sweet onion relish.",
+        "answer": "relish"
+      },
+      {
+        "text": "He relished the chance to prove his critics wrong.",
+        "answer": "relish"
+      }
+    ],
     "ch": "享受／滋味"
   },
   {
     "word": "remnant",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Only a remnant of the old wall remains.",
+        "answer": "remnant"
+      },
+      {
+        "text": "A tiny remnant of hope kept them moving.",
+        "answer": "remnant"
+      },
+      {
+        "text": "Shops were selling remnant pieces of fabric at low prices.",
+        "answer": "remnant"
+      }
+    ],
     "ch": "殘餘物／殘存部分"
   },
   {
     "word": "rep",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "A sales rep called us about the new product.",
+        "answer": "rep"
+      },
+      {
+        "text": "He works as a union rep in the factory.",
+        "answer": "rep"
+      },
+      {
+        "text": "The band sent a rep to negotiate the contract.",
+        "answer": "rep"
+      }
+    ],
     "ch": "代表／聲譽"
   },
   {
     "word": "repellent",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Use insect repellent before going into the forest.",
+        "answer": "repellent"
+      },
+      {
+        "text": "His repellent behavior shocked the audience.",
+        "answer": "repellent"
+      },
+      {
+        "text": "The smell was so repellent that we left at once.",
+        "answer": "repellent"
+      }
+    ],
     "ch": "令人厭惡的／驅蟲劑"
   },
   {
     "word": "reprehensible",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The judge called the fraud morally reprehensible.",
+        "answer": "reprehensible"
+      },
+      {
+        "text": "Such treatment of workers is utterly reprehensible.",
+        "answer": "reprehensible"
+      },
+      {
+        "text": "He apologized for his reprehensible conduct.",
+        "answer": "reprehensible"
+      }
+    ],
     "ch": "應受譴責的"
   },
   {
     "word": "reprieve",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The rain gave the firefighters a brief reprieve.",
+        "answer": "reprieve"
+      },
+      {
+        "text": "The prisoner was granted a temporary reprieve.",
+        "answer": "reprieve"
+      },
+      {
+        "text": "Cool weather offered a reprieve from the heatwave.",
+        "answer": "reprieve"
+      }
+    ],
     "ch": "緩刑／暫時解脫"
   },
   {
     "word": "resemblance",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "There is a strong resemblance between the twins.",
+        "answer": "resemblance"
+      },
+      {
+        "text": "The building bears no resemblance to the original design.",
+        "answer": "resemblance"
+      },
+      {
+        "text": "Her voice has a striking resemblance to her mother's.",
+        "answer": "resemblance"
+      }
+    ],
     "ch": "相似"
   },
   {
     "word": "resentment",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "Years of unfair treatment built up deep resentment.",
+        "answer": "resentment"
+      },
+      {
+        "text": "He spoke without bitterness or resentment.",
+        "answer": "resentment"
+      },
+      {
+        "text": "The policy created resentment among small businesses.",
+        "answer": "resentment"
+      }
+    ],
     "ch": "憤恨／怨恨"
   },
   {
     "word": "resiliency",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The city showed remarkable resiliency after the storm.",
+        "answer": "resiliency"
+      },
+      {
+        "text": "Training can improve emotional resiliency in teenagers.",
+        "answer": "resiliency"
+      },
+      {
+        "text": "The material's resiliency made it useful for sports gear.",
+        "answer": "resiliency"
+      }
+    ],
     "ch": "復原力／彈性"
   },
   {
     "word": "retailer",
     "cefr": "C2",
     "frequency": 1,
-    "sentences": [],
+    "sentences": [
+      {
+        "text": "The retailer lowered prices before the holiday rush.",
+        "answer": "retailer"
+      },
+      {
+        "text": "Online retailers now dominate the market.",
+        "answer": "retailer"
+      },
+      {
+        "text": "A major retailer agreed to stock the new product.",
+        "answer": "retailer"
+      }
+    ],
     "ch": "零售商"
   },
   {
