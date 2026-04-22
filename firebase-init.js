@@ -76,6 +76,24 @@ console.log("Firebase Modules Loaded Successfully");
                 console.error('[Session] Failed to update session:', err);
             });
 
+            if (window.activeSessionHeartbeat) {
+                clearInterval(window.activeSessionHeartbeat);
+            }
+            window.activeSessionHeartbeat = setInterval(() => {
+                update(ref(db, 'users/' + u.uid + '/activeSession'), {
+                    deviceId: deviceId,
+                    timestamp: Date.now()
+                }).catch(err => {
+                    console.error('[Session] Heartbeat update failed:', err);
+                });
+            }, 60000);
+
+            if (typeof window.startInviteListeners === 'function') {
+                window.startInviteListeners(u.uid);
+            } else {
+                window.pendingInviteListenerUid = u.uid;
+            }
+
             // ★★★ SESSION TRACKING: 監聽 activeSession 變化 ★★★
             if (!window.sessionListener) {
                 window.sessionListener = onValue(sessionRef, (snapshot) => {
@@ -315,6 +333,13 @@ console.log("Firebase Modules Loaded Successfully");
             if (window.sessionListener) {
                 console.log('[Session] Stopping session listener on logout');
                 window.sessionListener = null;
+            }
+            if (window.activeSessionHeartbeat) {
+                clearInterval(window.activeSessionHeartbeat);
+                window.activeSessionHeartbeat = null;
+            }
+            if (typeof window.stopInviteListeners === 'function') {
+                window.stopInviteListeners();
             }
 
             // ★★★ CRITICAL FIX: Clear XP and Mastery data on logout ★★★

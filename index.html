@@ -429,7 +429,10 @@
                         </div>
                     </div>
 
-                    <button class="btn" onclick="abolishRoom()" style="width:100%; border-color:var(--danger); color:var(--danger);">ABOLISH ROOM</button>
+                    <div class="lobby-briefing-actions">
+                        <button id="lobby-invite-btn" class="btn" onclick="openInvitePlayersModal()" style="display:none; flex:1;">INVITE</button>
+                        <button class="btn" onclick="abolishRoom()" style="flex:1; border-color:var(--danger); color:var(--danger);">ABOLISH ROOM</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -863,11 +866,44 @@
             <input type="range" id="vol-voice" min="0" max="1" step="0.1" oninput="updateVolume('voice', this.value)">
         </div>
 
+        <div class="setting-item setting-item-toggle">
+            <label for="toggle-pvp-invite-popups">PVP INVITE POPUPS</label>
+            <label class="cyber-toggle">
+                <input type="checkbox" id="toggle-pvp-invite-popups" onchange="updateInvitePopupSetting(this.checked)">
+                <span class="cyber-toggle-slider"></span>
+            </label>
+        </div>
+
         <button id="settings-surrender-btn" class="tech-btn confirm" onclick="toggleSettingsModal(); confirmExit()" style="display:none; width: 100%; margin-top: 18px; border-color: var(--danger); color: var(--danger); background: rgba(127, 29, 29, 0.18);">
             SURRENDER
         </button>
 
         <button class="tech-btn cancel" onclick="toggleSettingsModal()" style="width: 100%; margin-top: 20px;">CLOSE CONFIG</button>
+    </div>
+</div>
+
+<div id="invite-players-modal" class="tech-modal-overlay" style="display:none; z-index: 10002;">
+    <div class="cyber-settings-box invite-modal-box">
+        <div class="hud-corner-tl" style="border-color: var(--primary);"></div>
+        <div class="hud-corner-br" style="border-color: var(--primary);"></div>
+        <div class="tech-warning-title" style="color: var(--primary); text-shadow: 0 0 10px var(--primary); font-size: 24px;">SEND INVITE</div>
+        <div style="font-family: 'Orbitron'; color: #a5f3fc; font-size: 10px; letter-spacing: 3px; margin-bottom: 18px; opacity: 0.6;">>> RECENT ONLINE COMMANDERS <<</div>
+        <div id="invite-players-list" class="invite-players-list"></div>
+        <button class="tech-btn cancel" onclick="closeInvitePlayersModal()" style="width: 100%; margin-top: 18px;">CLOSE</button>
+    </div>
+</div>
+
+<div id="incoming-invite-modal" class="tech-modal-overlay" style="display:none; z-index: 10003;">
+    <div class="cyber-settings-box invite-modal-box incoming-invite-box">
+        <div class="hud-corner-tl" style="border-color: var(--warning);"></div>
+        <div class="hud-corner-br" style="border-color: var(--warning);"></div>
+        <div class="tech-warning-title" style="color: var(--warning); text-shadow: 0 0 10px var(--warning); font-size: 24px;">PVP INVITE</div>
+        <div id="incoming-invite-summary" class="incoming-invite-summary">INCOMING TRANSMISSION</div>
+        <div id="incoming-invite-detail" class="incoming-invite-detail">--</div>
+        <div class="incoming-invite-actions">
+            <button class="tech-btn confirm" onclick="acceptIncomingInvite()">ACCEPT</button>
+            <button class="tech-btn cancel" onclick="declineIncomingInvite()">DECLINE</button>
+        </div>
     </div>
 </div>
 </body>

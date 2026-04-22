@@ -1325,6 +1325,10 @@ function startEnemyTurn() {
     let isEnteringPVPDeploy = false;
     let latestPVPSetupData = null;
     const lobbyProfileCache = new Map();
+    let inviteListenerUnsubscribe = null;
+    let inviteResponseListenerUnsubscribe = null;
+    let currentIncomingInvite = null;
+    let recentInviteCandidates = [];
 
     // --- 5. ���̿��� ---
 function selectMode(mode) {
@@ -1999,82 +2003,117 @@ unsubscribeRoom = onValue(roomRef, (snapshot) => {
             handlePVPMatchSetupSnapshot(snapshot.val());
         });
     }
-function joinRoom() {
-        const { ref, get, update } = window.firebaseModules;
-        const inputId = document.getElementById('room-id-input').value.trim();
 
-        // ���Ιz���L��
-        if (inputId.length !== 4) {
-            playSound('wrong-sfx');
-            return;
-        }
+async function joinRoomById(inputId, viaInvite = false) {
+    const { ref, get, update } = window.firebaseModules;
+    const normalizedId = String(inputId || '').trim();
 
-        const roomRef = ref(db, 'rooms/' + inputId);
-        get(roomRef).then((snapshot) => {
-            if (snapshot.exists()) {
-                const data = snapshot.val();
-
-                // �z�鷿�g�Ƿ�δ�M
-                if (!data.guest) {
-                    playSound('open-room-sfx');
-                    currentRoomId = inputId;
-                    playerRole = 'guest';
-                    tempGameMode = 'PVP';
-                    pvpRaceSelectionShown = false;
-                    isEnteringPVPDeploy = false;
-                    latestPVPSetupData = null;
-
-                    // �� �P�I�ޏͣ�������@�e�����O���� PVP ģʽ�� ��
-                    // ��� Guest ���^�� selectLevel���������ؾ䣬ϵ�y���Ԟ�S�� AI
-                    gameMode = 'PVP';
-
-                    // Guest ���S Host �ĵȼ��O��
-                    if (data.level && VOCAB_DB[data.level]) {
-                        selectedLevel = data.level;
-                        activeVocabList = VOCAB_DB[data.level];
-                        showNotification(`SYNCED: ${data.level}`, 'success');
-                    }
-
-                    // ���� Check match history before joining ����
-                    checkMatchHistory(data.host, myPlayerId).then(result => {
-                        const warningMsg = [];
-                        if (result.hostExceeded) {
-                            warningMsg.push(`?? HOST has won 3+ matches against you in 24h. This match WON'T count for HOST.`);
-                        }
-                        if (result.guestExceeded) {
-                            warningMsg.push(`?? YOU have won 3+ matches against HOST in 24h. This match WON'T count for YOU.`);
-                        }
-
-                        if (warningMsg.length > 0) {
-                            showNotification(warningMsg.join('\n'), 'warning', 8000);
-                        }
-
-                        update(roomRef, {
-                            guest: myPlayerId,
-                            status: 'choosing_race',
-                            matchLimitWarning: warningMsg.length > 0 ? warningMsg : null
-                        });
-
-                        setupDisconnectHandler();
-
-                        if (typeof showNotification === 'function') {
-                            showNotification(`LINKING TO ROOM ${inputId}...`);
-                        }
-                        if (unsubscribeRoom) { unsubscribeRoom(); unsubscribeRoom = null; }
-                        unsubscribeRoom = window.firebaseModules.onValue(roomRef, (snapshot) => {
-                            handlePVPMatchSetupSnapshot(snapshot.val());
-                        });
-                    });
-                } else {
-                    document.getElementById('lobby-msg').innerText = "ROOM FULL";
-                    playSound('wrong-sfx');
-                }
-            } else {
-                document.getElementById('lobby-msg').innerText = "ROOM NOT FOUND";
-                playSound('wrong-sfx');
-            }
-        });
+    if (normalizedId.length !== 4) {
+        playSound('wrong-sfx');
+        return false;
     }
+
+    const roomRef = ref(db, 'rooms/' + normalizedId);
+    const snapshot = await get(roomRef);
+    if (!snapshot.exists()) {
+        const lobbyMsg = document.getElementById('lobby-msg');
+        if (lobbyMsg) lobbyMsg.innerText = "ROOM NOT FOUND";
+        playSound('wrong-sfx');
+        return false;
+    }
+
+    const data = snapshot.val();
+    if (data.guest) {
+        const lobbyMsg = document.getElementById('lobby-msg');
+        if (lobbyMsg) lobbyMsg.innerText = "ROOM FULL";
+        playSound('wrong-sfx');
+        return false;
+    }
+
+    playSound('open-room-sfx');
+    currentRoomId = normalizedId;
+    playerRole = 'guest';
+    tempGameMode = 'PVP';
+    pvpRaceSelectionShown = false;
+    isEnteringPVPDeploy = false;
+    latestPVPSetupData = null;
+    gameMode = 'PVP';
+
+    if (data.level && VOCAB_DB[data.level]) {
+        selectedLevel = data.level;
+        activeVocabList = VOCAB_DB[data.level];
+        showNotification(`SYNCED: ${data.level}`, 'success');
+    }
+
+    const result = await checkMatchHistory(data.host, myPlayerId);
+    const warningMsg = [];
+    if (result.hostExceeded) {
+        warningMsg.push(`?? HOST has won 3+ matches against you in 24h. This match WON'T count for HOST.`);
+    }
+    if (result.guestExceeded) {
+        warningMsg.push(`?? YOU have won 3+ matches against HOST in 24h. This match WON'T count for YOU.`);
+    }
+
+    if (warningMsg.length > 0) {
+        showNotification(warningMsg.join('\n'), 'warning', 8000);
+    }
+
+    await update(roomRef, {
+        guest: myPlayerId,
+        status: 'choosing_race',
+        matchLimitWarning: warningMsg.length > 0 ? warningMsg : null
+    });
+
+    setupDisconnectHandler();
+
+    if (typeof showNotification === 'function') {
+        showNotification(viaInvite ? `INVITE ACCEPTED // LINKING ROOM ${normalizedId}` : `LINKING TO ROOM ${normalizedId}...`);
+    }
+    if (unsubscribeRoom) { unsubscribeRoom(); unsubscribeRoom = null; }
+    unsubscribeRoom = window.firebaseModules.onValue(roomRef, (nextSnapshot) => {
+        handlePVPMatchSetupSnapshot(nextSnapshot.val());
+    });
+    return true;
+}
+
+async function joinRoom() {
+        const inputId = document.getElementById('room-id-input').value.trim();
+        await joinRoomById(inputId, false);
+    }
+
+async function sendPvpInvite(targetId) {
+    if (!targetId || !window.db || !window.firebaseModules) return;
+
+    if (!currentRoomId || playerRole !== 'host') {
+        showNotification('OPEN A HOST ROOM FIRST', 'warning', 2500);
+        return;
+    }
+
+    if (latestPVPSetupData?.guest) {
+        showNotification('ROOM ALREADY LINKED', 'warning', 2500);
+        return;
+    }
+
+    const targetPlayer = recentInviteCandidates.find(player => player.id === targetId);
+    const inviteId = `invite_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`;
+    const payload = {
+        inviteId,
+        from: window.myPlayerId || myPlayerId,
+        fromName: localStorage.getItem('battleship_username') || 'COMMANDER',
+        roomId: currentRoomId,
+        level: selectedLevel,
+        practiceMode: currentPracticeMode,
+        createdAt: Date.now()
+    };
+
+    const { ref, set, remove } = window.firebaseModules;
+    await remove(ref(window.db, `users/${payload.from}/pvpInbox/response`));
+    await set(ref(window.db, `users/${targetId}/pvpInbox/invite`), payload);
+    closeInvitePlayersModal();
+    showNotification(`INVITE SENT TO ${targetPlayer?.name || 'COMMANDER'}`, 'success', 2600);
+}
+
+window.sendPvpInvite = sendPvpInvite;
 
 function updateRoomCodeValue(nextValue) {
     const roomInput = document.getElementById('room-id-input');
@@ -5675,6 +5714,244 @@ function autoDeployRemainingShips() {
             _notifTimer = null;
         }, duration);
     }
+
+function getInvitePopupEnabled() {
+    return localStorage.getItem('setting_pvp_invite_popups') !== '0';
+}
+
+function updateInvitePopupSetting(enabled) {
+    const normalized = !!enabled;
+    localStorage.setItem('setting_pvp_invite_popups', normalized ? '1' : '0');
+    const toggle = document.getElementById('toggle-pvp-invite-popups');
+    if (toggle) toggle.checked = normalized;
+    showNotification(
+        normalized ? 'PVP INVITE POPUPS // ENABLED' : 'PVP INVITE POPUPS // DISABLED',
+        normalized ? 'success' : 'warning',
+        2400
+    );
+}
+
+window.updateInvitePopupSetting = updateInvitePopupSetting;
+
+function closeInvitePlayersModal() {
+    const modal = document.getElementById('invite-players-modal');
+    if (modal) modal.style.display = 'none';
+}
+
+function renderInvitePlayersList(players) {
+    const listEl = document.getElementById('invite-players-list');
+    if (!listEl) return;
+
+    if (!players.length) {
+        listEl.innerHTML = '<div class="invite-player-empty">NO ONLINE COMMANDERS AVAILABLE</div>';
+        return;
+    }
+
+    listEl.innerHTML = players.map(player => `
+        <div class="invite-player-row">
+            <div>
+                <div class="invite-player-name">${escapeHtml(player.name)}</div>
+                <div class="invite-player-meta">RANK: ${escapeHtml(player.rank)} // PVP: W${player.wins} / L${player.losses}</div>
+            </div>
+            <button class="btn" onclick="sendPvpInvite('${player.id}')">INVITE</button>
+        </div>
+    `).join('');
+}
+
+async function fetchRecentInviteCandidates() {
+    const { ref, get, query, orderByChild, limitToLast } = window.firebaseModules;
+    const usersQuery = query(ref(window.db, 'users'), orderByChild('activeSession/timestamp'), limitToLast(30));
+    const snapshot = await get(usersQuery);
+    if (!snapshot.exists()) return [];
+
+    const now = Date.now();
+    const players = [];
+    snapshot.forEach(childSnap => {
+        const uid = childSnap.key;
+        if (uid === (window.myPlayerId || myPlayerId)) return;
+
+        const user = childSnap.val() || {};
+        const ts = user.activeSession?.timestamp || 0;
+        if (!ts || now - ts > 10 * 60 * 1000) return;
+
+        const xp = user.totalXP || user.xp || 0;
+        const rank = typeof getRankForXP === 'function' ? getRankForXP(xp) : null;
+        players.push({
+            id: uid,
+            name: user.username || user.displayName || uid.substring(0, 8).toUpperCase(),
+            rank: rank ? rank.name : 'UNRANKED',
+            wins: user.pvpWins || 0,
+            losses: user.pvpLosses || 0,
+            activeAt: ts
+        });
+    });
+
+    players.sort((a, b) => b.activeAt - a.activeAt);
+    return players;
+}
+
+async function openInvitePlayersModal() {
+    if (!currentRoomId || playerRole !== 'host') {
+        showNotification('OPEN A HOST ROOM FIRST', 'warning', 2500);
+        return;
+    }
+
+    if (latestPVPSetupData?.guest) {
+        showNotification('ROOM ALREADY LINKED', 'warning', 2500);
+        return;
+    }
+
+    const modal = document.getElementById('invite-players-modal');
+    if (!modal) return;
+
+    modal.style.display = 'flex';
+    renderInvitePlayersList([]);
+
+    try {
+        recentInviteCandidates = await fetchRecentInviteCandidates();
+        renderInvitePlayersList(recentInviteCandidates);
+    } catch (error) {
+        console.warn('[Invite] Failed to load invite candidates:', error);
+        const listEl = document.getElementById('invite-players-list');
+        if (listEl) {
+            listEl.innerHTML = '<div class="invite-player-empty">FAILED TO LOAD ONLINE PLAYERS</div>';
+        }
+    }
+}
+
+function openIncomingInviteModal(invite) {
+    currentIncomingInvite = invite;
+    const modal = document.getElementById('incoming-invite-modal');
+    const summary = document.getElementById('incoming-invite-summary');
+    const detail = document.getElementById('incoming-invite-detail');
+    if (!modal || !summary || !detail) return;
+
+    summary.innerText = `${invite.fromName || 'COMMANDER'} IS CALLING YOU`;
+    detail.innerHTML = `ROOM ${invite.roomId} // ${formatLobbyLevel(invite.level)} // ${formatLobbySkill(invite.practiceMode)}<br>ACCEPT TO LINK DIRECTLY INTO PVP`;
+    modal.style.display = 'flex';
+}
+
+function closeIncomingInviteModal() {
+    currentIncomingInvite = null;
+    const modal = document.getElementById('incoming-invite-modal');
+    if (modal) modal.style.display = 'none';
+}
+
+async function respondToIncomingInvite(invite, status) {
+    if (!invite || !window.db || !window.firebaseModules) return;
+    const { ref, set, remove } = window.firebaseModules;
+    const myId = window.myPlayerId || myPlayerId;
+    const myName = localStorage.getItem('battleship_username') || (myId ? myId.substring(0, 8).toUpperCase() : 'PILOT');
+
+    await set(ref(window.db, `users/${invite.from}/pvpInbox/response`), {
+        inviteId: invite.inviteId,
+        roomId: invite.roomId,
+        status,
+        by: myId,
+        byName: myName,
+        createdAt: Date.now()
+    });
+
+    await remove(ref(window.db, `users/${myId}/pvpInbox/invite`));
+}
+
+async function acceptIncomingInvite() {
+    if (!currentIncomingInvite) return;
+    const invite = currentIncomingInvite;
+    closeIncomingInviteModal();
+
+    const joined = await joinRoomById(invite.roomId, true);
+    await respondToIncomingInvite(invite, joined ? 'accepted' : 'declined');
+    if (!joined) {
+        showNotification('INVITE EXPIRED OR ROOM FULL', 'warning', 3000);
+    }
+}
+
+async function declineIncomingInvite(autoReason = false) {
+    if (!currentIncomingInvite) return;
+    const invite = currentIncomingInvite;
+    closeIncomingInviteModal();
+    await respondToIncomingInvite(invite, 'declined');
+    if (!autoReason) {
+        showNotification('PVP INVITE DECLINED', 'warning', 2200);
+    }
+}
+
+window.acceptIncomingInvite = acceptIncomingInvite;
+window.declineIncomingInvite = declineIncomingInvite;
+window.openInvitePlayersModal = openInvitePlayersModal;
+window.closeInvitePlayersModal = closeInvitePlayersModal;
+
+function handleIncomingInviteSnapshot(snapshot) {
+    const invite = snapshot.exists() ? snapshot.val() : null;
+    if (!invite) return;
+
+    const now = Date.now();
+    if (!invite.createdAt || now - invite.createdAt > 60 * 1000) {
+        currentIncomingInvite = invite;
+        declineIncomingInvite(true);
+        return;
+    }
+
+    if (!getInvitePopupEnabled()) {
+        currentIncomingInvite = invite;
+        declineIncomingInvite(true);
+        return;
+    }
+
+    const lobbyVisible = document.getElementById('lobby-screen')?.style.display !== 'none';
+    if ((gameMode === 'PVP' && currentRoomId) || (typeof currentPhase !== 'undefined' && currentPhase !== 'DEPLOY') || lobbyVisible) {
+        currentIncomingInvite = invite;
+        declineIncomingInvite(true);
+        return;
+    }
+
+    openIncomingInviteModal(invite);
+}
+
+function handleInviteResponseSnapshot(snapshot) {
+    if (!snapshot.exists()) return;
+    const response = snapshot.val();
+    const { ref, remove } = window.firebaseModules;
+    const status = response?.status;
+    const name = response?.byName || 'COMMANDER';
+
+    if (status === 'accepted') {
+        showNotification(`${name} ACCEPTED YOUR INVITE`, 'success', 2600);
+    } else if (status === 'declined') {
+        showNotification(`${name} DECLINED YOUR INVITE`, 'warning', 2600);
+    }
+
+    remove(ref(window.db, `users/${window.myPlayerId}/pvpInbox/response`));
+}
+
+function stopInviteListeners() {
+    if (typeof inviteListenerUnsubscribe === 'function') {
+        inviteListenerUnsubscribe();
+        inviteListenerUnsubscribe = null;
+    }
+    if (typeof inviteResponseListenerUnsubscribe === 'function') {
+        inviteResponseListenerUnsubscribe();
+        inviteResponseListenerUnsubscribe = null;
+    }
+}
+
+function startInviteListeners(uid) {
+    if (!uid || !window.db || !window.firebaseModules) return;
+    stopInviteListeners();
+
+    const { ref, onValue } = window.firebaseModules;
+    inviteListenerUnsubscribe = onValue(ref(window.db, `users/${uid}/pvpInbox/invite`), handleIncomingInviteSnapshot);
+    inviteResponseListenerUnsubscribe = onValue(ref(window.db, `users/${uid}/pvpInbox/response`), handleInviteResponseSnapshot);
+}
+
+window.startInviteListeners = startInviteListeners;
+window.stopInviteListeners = stopInviteListeners;
+
+if (window.pendingInviteListenerUid) {
+    startInviteListeners(window.pendingInviteListenerUid);
+    window.pendingInviteListenerUid = null;
+}
 // �O�����ྀ�z�ڡ�
     function setupDisconnectHandler() {
         const { ref, onDisconnect, update } = window.firebaseModules;
@@ -5819,6 +6096,7 @@ function resetLobbyScreenState() {
     const briefing = document.getElementById('lobby-briefing');
     const lobbyMsg = document.getElementById('lobby-msg');
 
+    closeInvitePlayersModal();
     if (lobbyControls) lobbyControls.style.display = 'block';
     if (briefing) briefing.style.display = 'none';
     if (lobbyMsg) {
@@ -5949,6 +6227,7 @@ async function updatePVPBriefingPanel(data) {
     const roomEl = document.getElementById('lobby-briefing-room');
     const levelEl = document.getElementById('lobby-briefing-level');
     const skillEl = document.getElementById('lobby-briefing-skill');
+    const inviteBtn = document.getElementById('lobby-invite-btn');
 
     if (roomEl) roomEl.innerText = currentRoomId || '----';
     if (levelEl) levelEl.innerText = formatLobbyLevel(data.level || selectedLevel);
@@ -5977,6 +6256,11 @@ async function updatePVPBriefingPanel(data) {
         !opponentId ? 'AWAITING LINK' : (opponentRaceLocked ? 'RACE LOCKED' : 'CHOOSING RACE'),
         opponentRaceLocked ? 'var(--success)' : '#fda4af'
     );
+
+    if (inviteBtn) {
+        const canInvite = playerRole === 'host' && !opponentId;
+        inviteBtn.style.display = canInvite ? 'block' : 'none';
+    }
 }
 
 function handlePVPMatchSetupSnapshot(data) {

@@ -6893,3 +6893,143 @@ body {
     width: 100%;
     box-sizing: border-box;
 }
+
+.lobby-briefing-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 2px;
+}
+
+.setting-item-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.cyber-toggle {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    width: 54px;
+    height: 28px;
+    flex: 0 0 auto;
+}
+
+.cyber-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.cyber-toggle-slider {
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(56, 189, 248, 0.6);
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.85);
+    box-shadow: inset 0 0 12px rgba(56, 189, 248, 0.12);
+    transition: 0.2s ease;
+}
+
+.cyber-toggle-slider::before {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #e2e8f0;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.28);
+    transition: 0.2s ease;
+}
+
+.cyber-toggle input:checked + .cyber-toggle-slider {
+    background: rgba(8, 47, 73, 0.95);
+    border-color: rgba(34, 197, 94, 0.65);
+    box-shadow: 0 0 14px rgba(34, 197, 94, 0.22), inset 0 0 12px rgba(34, 197, 94, 0.1);
+}
+
+.cyber-toggle input:checked + .cyber-toggle-slider::before {
+    transform: translateX(24px);
+    background: #bbf7d0;
+    box-shadow: 0 0 14px rgba(34, 197, 94, 0.45);
+}
+
+.invite-modal-box {
+    width: min(560px, calc(100vw - 32px));
+    max-height: min(78vh, 720px);
+    overflow: hidden;
+}
+
+.invite-players-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: min(48vh, 420px);
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.invite-player-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 12px;
+    align-items: center;
+    border: 1px solid rgba(56, 189, 248, 0.28);
+    border-radius: 10px;
+    background: rgba(2, 12, 24, 0.92);
+    padding: 12px 14px;
+}
+
+.invite-player-name {
+    font-family: 'Orbitron', sans-serif;
+    color: #f8fafc;
+    font-size: 16px;
+}
+
+.invite-player-meta {
+    margin-top: 5px;
+    color: #94a3b8;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.invite-player-empty {
+    padding: 24px 16px;
+    border: 1px dashed rgba(56, 189, 248, 0.25);
+    border-radius: 10px;
+    color: #94a3b8;
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.incoming-invite-box {
+    width: min(500px, calc(100vw - 32px));
+    text-align: center;
+}
+
+.incoming-invite-summary {
+    font-family: 'Orbitron', sans-serif;
+    color: #f8fafc;
+    font-size: 18px;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.incoming-invite-detail {
+    color: #cbd5e1;
+    font-size: 13px;
+    line-height: 1.6;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.incoming-invite-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}

@@ -81,6 +81,10 @@ function toggleSettingsModal() {
         document.getElementById('vol-bgm').value = gameVolume.bgm;
         document.getElementById('vol-sfx').value = gameVolume.sfx;
         document.getElementById('vol-voice').value = gameVolume.voice;
+        const inviteToggle = document.getElementById('toggle-pvp-invite-popups');
+        if (inviteToggle && typeof getInvitePopupEnabled === 'function') {
+            inviteToggle.checked = getInvitePopupEnabled();
+        }
 
         const gameUi = document.getElementById('game-ui');
         const inBattle = typeof currentPhase !== 'undefined'
@@ -120,6 +124,11 @@ function loadSavedAudioSettings() {
         if (document.getElementById('vol-bgm')) document.getElementById('vol-bgm').value = gameVolume.bgm;
         if (document.getElementById('vol-sfx')) document.getElementById('vol-sfx').value = gameVolume.sfx;
         if (document.getElementById('vol-voice')) document.getElementById('vol-voice').value = gameVolume.voice;
+    }
+
+    const inviteToggle = document.getElementById('toggle-pvp-invite-popups');
+    if (inviteToggle && typeof getInvitePopupEnabled === 'function') {
+        inviteToggle.checked = getInvitePopupEnabled();
     }
 
     const bgm = document.getElementById('bgm');
