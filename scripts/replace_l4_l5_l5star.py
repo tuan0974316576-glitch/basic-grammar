@@ -23,10 +23,10 @@ def build_level_block(entries):
                 "sents": item["sentences"],
             }
         )
-    return json.dumps(payload, ensure_ascii=False, indent=4)
+    return json.dumps(payload, ensure_ascii=False, indent=4).splitlines()
 
 
-def replace_level_block(text, level_key, replacement_json):
+def replace_level_block(text, level_key, replacement_lines):
     marker = f'    "{level_key}": ['
     start = text.index(marker)
     array_start = text.index("[", start)
@@ -43,8 +43,8 @@ def replace_level_block(text, level_key, replacement_json):
                 break
         end += 1
 
-    indented = "\n".join(f"        {line}" if line else "" for line in replacement_json.splitlines())
-    return text[:array_start] + "[\n" + indented + "\n    ]" + text[end + 1 :]
+    indented = "\n".join(f"    {line}" if line else "" for line in replacement_lines)
+    return text[:array_start] + "\n" + indented + text[end + 1 :]
 
 
 def main():
