@@ -925,12 +925,18 @@ let isTargeting = false;
     const BATTLE_EFFECT_IMAGE_SOURCES = [
         'missile_sprite.png',
         'Explosion-A.png',
+        'turret_02_explosion_01_anim.png',
+        'turret_01_explosion.png',
+        'explosion-c_gold.png',
+        'close.png',
         'nuke_1.png',
         'nuke_2.png',
         'nuke explosion.png'
     ];
 
     const BATTLE_EFFECT_AUDIO_IDS = [
+        'laser-sfx',
+        'hit-sfx',
         'missile-flying-sfx',
         'nuke-ready-sfx',
         'nuke-launch-sfx',
