@@ -33,10 +33,10 @@ SENTENCES = {
         {"text": "The movement aimed to africanize the school curriculum.", "answer": "africanize"},
         {"text": "Scholars debated whether the institution should africanize its policies.", "answer": "africanize"},
     ],
-    "ala": [
-        {"text": "They served the fish grilled, Mediterranean style, a la carte.", "answer": "ala"},
-        {"text": "The designer created a Parisian look, ala the 1920s.", "answer": "ala"},
-        {"text": "He ordered dinner ala carte instead of choosing a set menu.", "answer": "ala"},
+    "a la carte": [
+        {"text": "They ordered a la carte instead of choosing the set menu.", "answer": "a la carte"},
+        {"text": "This restaurant lets guests dine a la carte at lunch.", "answer": "a la carte"},
+        {"text": "He preferred the a la carte option because it gave him more choice.", "answer": "a la carte"},
     ],
     "alfresco": [
         {"text": "We ate alfresco under the garden lights.", "answer": "alfresco"},
