@@ -5775,9 +5775,17 @@ function filterInvitePlayers(queryText = '') {
 window.filterInvitePlayers = filterInvitePlayers;
 
 async function fetchRecentInviteCandidates() {
-    const { ref, get, query, orderByChild, limitToLast } = window.firebaseModules;
-    const usersQuery = query(ref(window.db, 'users'), orderByChild('activeSession/timestamp'), limitToLast(30));
-    const snapshot = await get(usersQuery);
+    const { ref, get } = window.firebaseModules;
+    let snapshot = null;
+    try {
+        snapshot = await get(ref(window.db, 'users_public'));
+    } catch (error) {
+        console.warn('[Invite] users_public lookup failed, falling back to users:', error);
+    }
+
+    if (!snapshot || !snapshot.exists()) {
+        snapshot = await get(ref(window.db, 'users'));
+    }
     if (!snapshot.exists()) return [];
 
     const now = Date.now();
@@ -5803,7 +5811,7 @@ async function fetchRecentInviteCandidates() {
     });
 
     players.sort((a, b) => b.activeAt - a.activeAt);
-    return players;
+    return players.slice(0, 30);
 }
 
 async function openInvitePlayersModal() {

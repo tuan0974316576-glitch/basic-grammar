@@ -26,6 +26,12 @@ window.firebaseModules = {
     window.db = db;
     window.auth = auth;
 console.log("Firebase Modules Loaded Successfully");
+
+function syncPublicUserProfile(uid, payload) {
+    return update(ref(db, 'users_public/' + uid), payload).catch(err => {
+        console.error('[Invite] Failed to sync public profile:', err);
+    });
+}
     // --- 1. 登入狀態監聽 (包含 Guest 自動派名) ---
     onAuthStateChanged(auth, (u) => {
         console.log('[Auth] onAuthStateChanged triggered, user:', u ? u.uid : 'null');
@@ -80,11 +86,17 @@ console.log("Firebase Modules Loaded Successfully");
                 clearInterval(window.activeSessionHeartbeat);
             }
             window.activeSessionHeartbeat = setInterval(() => {
+                const now = Date.now();
                 update(ref(db, 'users/' + u.uid + '/activeSession'), {
                     deviceId: deviceId,
-                    timestamp: Date.now()
+                    timestamp: now
                 }).catch(err => {
                     console.error('[Session] Heartbeat update failed:', err);
+                });
+                syncPublicUserProfile(u.uid, {
+                    activeSession: {
+                        timestamp: now
+                    }
                 });
             }, 60000);
 
@@ -195,6 +207,16 @@ console.log("Firebase Modules Loaded Successfully");
 
                     // ★★★ 重要：即使用咗 cached name，都要再 call updateHUD 更新 XP 顯示 ★★★
                     if(typeof updateHUD === 'function') await updateHUD(realName);
+                    syncPublicUserProfile(u.uid, {
+                        displayName: realName,
+                        username: realName,
+                        xp: window.userTotalXP,
+                        pvpWins: userData.pvpWins || 0,
+                        pvpLosses: userData.pvpLosses || 0,
+                        activeSession: {
+                            timestamp: Date.now()
+                        }
+                    });
 
                     // ★★★ 更新 Level 按鈕進度顯示 ★★★
                     if(typeof updateLevelButtonsProgress === 'function') updateLevelButtonsProgress();
@@ -244,6 +266,16 @@ console.log("Firebase Modules Loaded Successfully");
                             localStorage.setItem('battleship_username', autoName);
                             localStorage.setItem('battleship_auth_uid', u.uid);
                             if(typeof updateHUD === 'function') await updateHUD(autoName);
+                            syncPublicUserProfile(u.uid, {
+                                displayName: autoName,
+                                username: autoName,
+                                xp: 0,
+                                pvpWins: 0,
+                                pvpLosses: 0,
+                                activeSession: {
+                                    timestamp: Date.now()
+                                }
+                            });
                             if (typeof window.applyAuthFlowState === 'function') {
                                 window.applyAuthFlowState({
                                     resolved: true,
