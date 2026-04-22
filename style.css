@@ -1667,9 +1667,18 @@ body {
 
 /* 列表標題列 (Target / Code) */
 .vocab-list-header {
-    display: flex; justify-content: space-between; padding: 10px 20px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(150px, 44%);
+    align-items: center;
+    column-gap: 16px;
+    padding: 10px 20px;
     background: rgba(217, 70, 239, 0.1); border-bottom: 1px solid #d946ef;
     font-family: 'Orbitron'; color: #e879f9; font-size: 14px; letter-spacing: 2px;
+}
+
+.vocab-list-header span:last-child {
+    text-align: right;
+    justify-self: end;
 }
 
 /* 列表內容捲動區 */
@@ -1685,7 +1694,10 @@ body {
 /* 5. 單字行樣式 (優化版) */
 /* 5. 單字行樣式 (全行可點擊版) */
 .vocab-row {
-    display: flex; justify-content: space-between; align-items: center;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(150px, 44%);
+    align-items: center;
+    column-gap: 16px;
     padding: 12px 15px;
     margin-bottom: 8px;
     background: rgba(255, 255, 255, 0.02);
@@ -1749,12 +1761,17 @@ body {
 
 /* 英文 (Code) - Orbitron 科技體 + 紫色發光 */
 .vocab-en { 
+    display: block;
+    width: 100%;
     font-family: 'Orbitron', sans-serif; 
     font-size: 18px; 
     color: #e879f9; /* 淺紫色 */
     font-weight: 700; 
     letter-spacing: 1px;
     text-shadow: 0 0 5px rgba(232, 121, 249, 0.6);
+    text-align: right;
+    justify-self: end;
+    word-break: break-word;
 }
 
 /* =========================================
