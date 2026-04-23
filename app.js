@@ -5376,6 +5376,11 @@ function resetGame() {
     pvpRaceSelectionShown = false;
     isEnteringPVPDeploy = false;
     latestPVPSetupData = null;
+    selectedStageIndex = null;
+    selectedStageLabel = '';
+    gameMode = 'AI';
+    tempGameMode = 'AI';
+    currentPracticeMode = 'READING';
     
     // UI ����
     const exitBtn = document.getElementById('game-exit-btn');
@@ -5393,6 +5398,17 @@ function resetGame() {
     const roomInput = document.getElementById('room-id-input');
     if (roomInput) roomInput.value = ""; 
     closeLaunchModalUI();
+    closeIncomingInviteModal();
+    closeInvitePlayersModal();
+    const confirmModal = document.getElementById('confirm-modal');
+    if (confirmModal) confirmModal.style.display = 'none';
+    const settingsModal = document.getElementById('settings-modal');
+    if (settingsModal) settingsModal.style.display = 'none';
+    const selectionOverlay = document.getElementById('selection-overlay');
+    if (selectionOverlay) selectionOverlay.style.display = 'none';
+    if (typeof hideMenuOverlayScreens === 'function') {
+        hideMenuOverlayScreens();
+    }
     
     // --- 1. ���_ Firebase �B�� & ������g ---
     if (unsubscribeRoom) { unsubscribeRoom(); unsubscribeRoom = null; }
