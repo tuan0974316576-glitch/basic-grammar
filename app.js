@@ -3323,8 +3323,7 @@ if (currentPracticeMode === 'SPEAKING') {
 
         // 1. �@ʾ������� (����о���)
         if (currentVocab.sent) {
-            const regex = new RegExp(`\\b${targetWord}\\b`, 'gi');
-            const displayHTML = currentVocab.sent.replace(regex, renderListeningSentenceBlank(targetWord));
+            const displayHTML = replaceListeningAnswerWithBlank(currentVocab.sent, targetWord);
             contentHTML += `<div class="sentence-container">${displayHTML}<span class="cyber-speaker-btn cyber-speaker-btn-small listening-replay-btn" onclick="speakText('${safeText}', null, false)" role="button" aria-label="Replay audio"></span></div>`;
         } else {
             contentHTML += `<div style="font-family:'Orbitron'; font-size:14px; color:#d946ef; margin-bottom:15px; letter-spacing:2px;">// AUDIO INTERCEPTED //</div>`;
@@ -6956,8 +6955,9 @@ if (displayUser !== "(TIMEOUT)") {
             // Show full sentence with answer word highlighted in orange
             const answerWord = log.correct;
             const sentence = log.sentence;
-            const regex = new RegExp(`\\b(${answerWord})\\b`, 'gi');
-            correctDisplay = sentence.replace(regex, '<span style="color: var(--warning);">$1</span>');
+            const regex = new RegExp(`(${escapeRegExp(answerWord)})`, 'gi');
+            const replacedSentence = sentence.replace(regex, '<span style="color: var(--warning);">$1</span>');
+            correctDisplay = replacedSentence !== sentence ? replacedSentence : escapeHtml(answerWord);
         }
 
         if (log.mode === 'SPEAKING' && log.speakingAssessment) {
@@ -7035,6 +7035,20 @@ function renderListeningSentenceBlank(text) {
         ? 'listening-blank listening-blank-inline listening-blank-inline-wide'
         : 'listening-blank listening-blank-inline';
     return `<span class="${blankClass}" aria-hidden="true"><span class="listening-answer-line"></span></span>`;
+}
+
+function escapeRegExp(text) {
+    return String(text || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function replaceListeningAnswerWithBlank(sentence, answer) {
+    const source = String(sentence || '');
+    const target = String(answer || '').trim();
+    if (!source || !target) return renderListeningSentenceBlank(target);
+
+    const regex = new RegExp(escapeRegExp(target), 'gi');
+    const replaced = source.replace(regex, renderListeningSentenceBlank(target));
+    return replaced !== source ? replaced : renderListeningSentenceBlank(target);
 }
 
 function formatInputForTarget(logicInput, targetWord) {

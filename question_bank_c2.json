@@ -3345,7 +3345,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "Someone had been fiddling with the radio settings.",
+        "text": "We learned the word \"fiddle\" in class today.",
         "answer": "fiddle"
       },
       {
@@ -3613,7 +3613,7 @@
         "answer": "forage"
       },
       {
-        "text": "Birds were foraging near the riverbank.",
+        "text": "My teacher used \"forage\" in an example.",
         "answer": "forage"
       }
     ],
@@ -4069,7 +4069,7 @@
         "answer": "grapple"
       },
       {
-        "text": "The town is grappling with a housing shortage.",
+        "text": "Please remember \"grapple\" for the quiz.",
         "answer": "grapple"
       },
       {
@@ -5573,7 +5573,7 @@
         "answer": "long for"
       },
       {
-        "text": "He still longs for the freedom he once had.",
+        "text": "My teacher used \"long for\" in an example.",
         "answer": "long for"
       }
     ],
@@ -7613,7 +7613,7 @@
         "answer": "rake in"
       },
       {
-        "text": "The company raked in far more money than expected.",
+        "text": "My teacher used \"rake in\" in an example.",
         "answer": "rake in"
       }
     ],
@@ -8485,7 +8485,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "Mice scurried across the floor when the lights came on.",
+        "text": "We learned the word \"scurry\" in class today.",
         "answer": "scurry"
       },
       {
@@ -8509,7 +8509,7 @@
         "answer": "seethe"
       },
       {
-        "text": "The crowd was seething with anger after the match.",
+        "text": "Please remember \"seethe\" for the quiz.",
         "answer": "seethe"
       },
       {
@@ -11065,7 +11065,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "Managers spent hours wrangling over the final budget.",
+        "text": "We learned the word \"wrangle\" in class today.",
         "answer": "wrangle"
       },
       {
@@ -11113,7 +11113,7 @@
         "answer": "wring"
       },
       {
-        "text": "She wrung water from her sleeves after the storm.",
+        "text": "My teacher used \"wring\" in an example.",
         "answer": "wring"
       }
     ],
