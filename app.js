@@ -6084,22 +6084,29 @@ function handleIncomingInviteSnapshot(snapshot) {
         return;
     }
 
-    const lobbyVisible = isElementActuallyVisible('lobby-screen');
     const gameUiVisible = isElementActuallyVisible('game-ui');
     const selectionOverlayVisible = isElementActuallyVisible('selection-overlay');
     const inActiveBattle = typeof currentPhase !== 'undefined' && currentPhase !== 'DEPLOY' && currentPhase !== 'GAME_OVER';
-    const inPvpFlow = lobbyVisible || isEnteringPVPDeploy || pvpRaceSelectionShown ||
+    const roomLinked = !!currentRoomId && (
+        playerRole === 'guest' ||
+        !!latestPVPSetupData?.guest ||
+        !!latestPVPSetupData?.hostRace ||
+        !!latestPVPSetupData?.guestRace
+    );
+    const inPvpFlow = roomLinked || isEnteringPVPDeploy || pvpRaceSelectionShown ||
         (selectionOverlayVisible && tempGameMode === 'PVP') ||
         (gameUiVisible && gameMode === 'PVP');
 
     console.log('[Invite Debug]', {
         inviteId: invite.inviteId,
-        lobbyVisible,
         gameUiVisible,
         selectionOverlayVisible,
         currentPhase,
         gameMode,
         tempGameMode,
+        currentRoomId,
+        playerRole,
+        roomLinked,
         isEnteringPVPDeploy,
         pvpRaceSelectionShown,
         inActiveBattle,
