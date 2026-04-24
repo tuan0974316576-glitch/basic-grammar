@@ -1520,6 +1520,13 @@ function setStageScreenMessage(text, type = 'info') {
     stageSubtitle.style.color = colorMap[type] || colorMap.info;
 }
 
+function hideStageScreenMessage() {
+    const stageSubtitle = document.getElementById('stage-screen-subtitle');
+    if (!stageSubtitle) return;
+    stageSubtitle.style.display = 'none';
+    stageSubtitle.textContent = '';
+}
+
 function getCurrentStagePrimaryWords(modeKey) {
     const levelWords = VOCAB_DB[selectedLevel] || [];
     if (tempGameMode !== 'AI' || selectedStageIndex === null) {
@@ -1588,7 +1595,7 @@ function renderStageScreen(levelKey) {
 
     const stageCount = getLevelStageCount(levelKey);
     if (stageTitle) stageTitle.textContent = 'SELECT STAGE';
-    setStageScreenMessage('UNLOCK NEXT STAGE AT 80% OF THE PREVIOUS STAGE', 'info');
+    hideStageScreenMessage();
 
     stageGrid.innerHTML = '';
 
@@ -1602,7 +1609,7 @@ function renderStageScreen(levelKey) {
         button.onclick = () => selectStage(stageIndex);
         button.innerHTML = `
             <span class="stage-btn-label">STAGE ${stageIndex + 1}</span>
-            <span class="stage-btn-progress">${progress.percent}% COMPLETED</span>
+            ${unlocked ? `<span class="stage-btn-progress">${progress.percent}% COMPLETED</span>` : ''}
             <span class="stage-info-btn" onclick="openStageInfo(${stageIndex}, event)" title="Stage info" aria-label="Stage info">i</span>
         `;
         stageGrid.appendChild(button);
@@ -1630,9 +1637,10 @@ function selectStage(stageIndex) {
     if (!isStageUnlocked(selectedLevel, stageIndex)) {
         playSound('delete-sfx');
         const requiredProgress = getStageProgressSummary(selectedLevel, stageIndex - 1);
-        setStageScreenMessage(
-            `STAGE ${stageIndex + 1} LOCKED // STAGE ${stageIndex} NEEDS 80% (${requiredProgress.completedSlots}/${requiredProgress.totalSlots})`,
-            'warning'
+        showNotification(
+            `STAGE ${stageIndex + 1} LOCKED // STAGE ${stageIndex} ${requiredProgress.completedSlots}/${requiredProgress.totalSlots}`,
+            'error',
+            3500
         );
         return;
     }
