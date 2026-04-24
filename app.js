@@ -3861,13 +3861,6 @@ function handlePlayerTimeout() {
              const targetWord = (currentPracticeMode === 'LISTENING' && currentVocab.listeningAnswer)
                  ? currentVocab.listeningAnswer
                  : currentVocab.en;
-             const targetClean = targetWord.replace(/[^a-zA-Z0-9]/g, '');
-             if (logicVal.length > targetClean.length) {
-                 // ����������ؔ� logicVal
-                 logicVal = logicVal.substring(0, targetClean.length);
-                 // ע�⣺�@�e���ؔ� displayVal������h�e��҄���Ŀո񣬷���������ֲ����������
-             }
-
              if (currentPracticeMode === 'LISTENING') {
                  displayVal = formatInputForTarget(logicVal, targetWord);
              }
@@ -7021,6 +7014,10 @@ function formatInputForTarget(logicInput, targetWord) {
         if (/[\s\-']/.test(targetChar) && logicIdx > 0 && logicIdx < cleanLogic.length) {
             formatted += targetChar;
         }
+    }
+
+    if (logicIdx < cleanLogic.length) {
+        formatted += cleanLogic.slice(logicIdx);
     }
 
     return formatted;
