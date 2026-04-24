@@ -1636,9 +1636,8 @@ function closeStageScreen() {
 function selectStage(stageIndex) {
     if (!isStageUnlocked(selectedLevel, stageIndex)) {
         playSound('delete-sfx');
-        const requiredProgress = getStageProgressSummary(selectedLevel, stageIndex - 1);
         showNotification(
-            `STAGE ${stageIndex + 1} LOCKED // STAGE ${stageIndex} ${requiredProgress.completedSlots}/${requiredProgress.totalSlots}`,
+            `COMPLETE AT LEAST 80% OF STAGE ${stageIndex} TO UNLOCK STAGE ${stageIndex + 1}`,
             'error',
             3500
         );
