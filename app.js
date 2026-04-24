@@ -4464,8 +4464,8 @@ function isValidAiTargetIndex(index) {
 
 const AI_SKILL_COSTS = {
     radar: 4,
-    explosion: 6,
-    nuke: 19
+    explosion: 7,
+    nuke: 20
 };
 
 function aiCanUseBattleSkills() {
@@ -8856,8 +8856,8 @@ const SKILL_INFO = {
 
 const AURELIANS_SKILL_INFO = {
     radar:     { name: 'AEGIS',    desc: 'SELECT A SHIELDED 4X4 ZONE', icon: 'aurelians_shield.png', title: 'Aegis (4?)' },
-    explosion: { name: 'TELEPORT', desc: 'SELECT A TELEPORT ZONE', icon: 'aurelians_teleport.png', title: 'Teleport (6?)' },
-    nuke:      { name: 'JUDGMENT', desc: 'SELECT A 4X4 JUDGMENT ZONE', icon: 'aurelians_judgment.png', title: 'Judgment (19?)' }
+    explosion: { name: 'TELEPORT', desc: 'SELECT A TELEPORT ZONE', icon: 'aurelians_teleport.png', title: 'Teleport (7?)' },
+    nuke:      { name: 'JUDGMENT', desc: 'SELECT A 4X4 JUDGMENT ZONE', icon: 'aurelians_judgment.png', title: 'Judgment (20?)' }
 };
 
 function getSkillInfo(skill) {
@@ -9344,7 +9344,6 @@ function renderExplosionPreview(index, size = 2, variant = 'explosion') {
     if (variant === 'nuke') {
         const sigil = document.createElement('div');
         sigil.className = 'nuke-preview-sigil';
-        sigil.textContent = '?';
         overlay.appendChild(sigil);
     }
 

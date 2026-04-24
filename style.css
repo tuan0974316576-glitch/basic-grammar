@@ -4976,13 +4976,13 @@ body {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    font-family: 'Orbitron', sans-serif;
-    font-size: 96px;
-    line-height: 1;
-    color: rgba(255, 235, 235, 0.28);
-    text-shadow:
-        0 0 10px rgba(255, 255, 255, 0.18),
-        0 0 18px rgba(239, 68, 68, 0.22);
+    width: 108px;
+    height: 108px;
+    background: url('nuke.png') center / contain no-repeat;
+    opacity: 0.28;
+    filter:
+        drop-shadow(0 0 10px rgba(255, 255, 255, 0.16))
+        drop-shadow(0 0 18px rgba(239, 68, 68, 0.2));
     pointer-events: none;
     z-index: 1;
     animation: nukeSigilPulse 1.8s ease-in-out infinite;
