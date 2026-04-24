@@ -1472,6 +1472,21 @@ function getStageReviewWords(levelKey, modeKey, stageIndex) {
     return shuffleArray(priorWords);
 }
 
+function getCurrentStagePrimaryWords(modeKey) {
+    const levelWords = VOCAB_DB[selectedLevel] || [];
+    if (tempGameMode !== 'AI' || selectedStageIndex === null) {
+        return levelWords;
+    }
+    return getStageBaseWords(selectedLevel, selectedStageIndex);
+}
+
+function getCurrentStageReviewWords(modeKey) {
+    if (tempGameMode !== 'AI' || selectedStageIndex === null) {
+        return [];
+    }
+    return getStageReviewWords(selectedLevel, modeKey, selectedStageIndex);
+}
+
 function buildStageVocabListForMode(modeKey) {
     const levelWords = VOCAB_DB[selectedLevel] || [];
     if (tempGameMode !== 'AI' || selectedStageIndex === null) {
@@ -1486,7 +1501,7 @@ function buildStageVocabListForMode(modeKey) {
 }
 
 function getScopedWordSetForMode(modeKey) {
-    return new Set(buildStageVocabListForMode(modeKey).map(word => word.en));
+    return new Set(getCurrentStagePrimaryWords(modeKey).map(word => word.en));
 }
 
 function getScopedMasteryCountForMode(modeKey) {
@@ -1677,9 +1692,9 @@ function updateSkillButtonsProgress() {
     if (!selectedLevel || !VOCAB_DB[selectedLevel]) return;
 
     const useStageScope = tempGameMode === 'AI' && selectedStageIndex !== null;
-    const readingTotal = useStageScope ? buildStageVocabListForMode('reading').length : VOCAB_DB[selectedLevel].length;
-    const listeningTotal = useStageScope ? buildStageVocabListForMode('listening').length : VOCAB_DB[selectedLevel].length;
-    const speakingTotal = useStageScope ? buildStageVocabListForMode('speaking').length : VOCAB_DB[selectedLevel].length;
+    const readingTotal = useStageScope ? getCurrentStagePrimaryWords('reading').length : VOCAB_DB[selectedLevel].length;
+    const listeningTotal = useStageScope ? getCurrentStagePrimaryWords('listening').length : VOCAB_DB[selectedLevel].length;
+    const speakingTotal = useStageScope ? getCurrentStagePrimaryWords('speaking').length : VOCAB_DB[selectedLevel].length;
 
     const readingCount = useStageScope
         ? getScopedMasteryCountForMode('reading')
@@ -1868,7 +1883,10 @@ function enterGameUI() {
     // �� ��ʼ���e�փ��� deck����֮ǰ�e�^�������ȳ�
     wrongWordsDeck = getWrongWordsForSession(currentPracticeMode, selectedLevel);
     if (tempGameMode === 'AI' && Array.isArray(activeVocabList) && activeVocabList.length > 0) {
-        const activeWordSet = new Set(activeVocabList.map(word => word.en));
+        const scopedPrimaryWords = selectedStageIndex !== null
+            ? getCurrentStagePrimaryWords(currentPracticeMode.toLowerCase())
+            : activeVocabList;
+        const activeWordSet = new Set(scopedPrimaryWords.map(word => word.en));
         wrongWordsDeck = wrongWordsDeck.filter(word => activeWordSet.has(word.en));
     }
     if (wrongWordsDeck.length > 0) {
@@ -3080,11 +3098,18 @@ async function openLaunchModal(index) {
     } else {
         // ���� AI ģʽ��PHASE 3: 3-TIER QUEUE SYSTEM ����
         // Pool 1 (Learning): Wrong words from previous session
-        // Pool 2 (New): Words not in userMastery
-        // Pool 3 (Review): Mastered words
+        // Pool 2 (Stage New): Current stage words not in userMastery
+        // Pool 3 (Stage Review): Current stage words already mastered
+        // Pool 4 (Legacy Review): Random words from previous stages
 
         // Convert currentPracticeMode to lowercase for mastery key (READING -> reading)
         const masteryKey = currentPracticeMode.toLowerCase();
+        const primaryWordPool = (tempGameMode === 'AI' && selectedStageIndex !== null)
+            ? getCurrentStagePrimaryWords(masteryKey)
+            : activeVocabList;
+        const stageReviewPool = (tempGameMode === 'AI' && selectedStageIndex !== null)
+            ? getCurrentStageReviewWords(masteryKey)
+            : [];
 
         // Pool 1: Prioritize wrong words
         if (wrongWordsDeck.length > 0) {
@@ -3098,8 +3123,8 @@ async function openLaunchModal(index) {
                 console.log(`[Pool 1 - Learning] Wrong word: ${currentVocab.en} (${wrongWordsDeck.length} remaining)`);
             }
         } else {
-            // Pool 2: New words (not in mastery)
-            const newWords = activeVocabList.filter(word => {
+            // Pool 2: New words in the current stage (not in mastery)
+            const newWords = primaryWordPool.filter(word => {
                 if (!userMastery[masteryKey]) return true;
                 if (!userMastery[masteryKey][selectedLevel]) return true;
                 return !userMastery[masteryKey][selectedLevel][word.en];
@@ -3107,10 +3132,10 @@ async function openLaunchModal(index) {
 
             if (newWords.length > 0) {
                 currentVocab = pickBattleUniqueWord(newWords);
-                console.log(`[Pool 2 - New] Fresh word: ${currentVocab.en} (${newWords.length} new words available)`);
+                console.log(`[Pool 2 - Stage New] Fresh word: ${currentVocab.en} (${newWords.length} stage words available)`);
             } else {
-                // Pool 3: Review mastered words
-                const masteredWords = activeVocabList.filter(word => {
+                // Pool 3: Current stage words already mastered
+                const masteredWords = primaryWordPool.filter(word => {
                     if (!userMastery[masteryKey]) return false;
                     if (!userMastery[masteryKey][selectedLevel]) return false;
                     return userMastery[masteryKey][selectedLevel][word.en];
@@ -3119,7 +3144,10 @@ async function openLaunchModal(index) {
                 if (masteredWords.length > 0) {
                     currentVocab = pickBattleUniqueWord(masteredWords);
                     const masteryData = userMastery[masteryKey][selectedLevel][currentVocab.en];
-                    console.log(`[Pool 3 - Review] Mastered word: ${currentVocab.en} (count: ${masteryData.count})`);
+                    console.log(`[Pool 3 - Stage Review] Mastered word: ${currentVocab.en} (count: ${masteryData.count})`);
+                } else if (stageReviewPool.length > 0) {
+                    currentVocab = pickBattleUniqueWord(stageReviewPool);
+                    console.log(`[Pool 4 - Legacy Review] Review word: ${currentVocab.en} (${stageReviewPool.length} prior-stage words available)`);
                 } else {
                     // Fallback: if somehow no words available
                     if (activeVocabList.length === 0) {
@@ -3469,24 +3497,33 @@ function getLikelyNextBattleWord() {
     }
 
     const masteryKey = (currentPracticeMode || '').toLowerCase();
+    const primaryWordPool = (tempGameMode === 'AI' && selectedStageIndex !== null)
+        ? getCurrentStagePrimaryWords(masteryKey)
+        : activeVocabList;
+    const stageReviewPool = (tempGameMode === 'AI' && selectedStageIndex !== null)
+        ? getCurrentStageReviewWords(masteryKey)
+        : [];
+
     if (wrongWordsDeck.length > 0) {
         const availableWrongWords = wrongWordsDeck.filter(word => !battleUsedWordKeys.has(getBattleWordKey(word)));
         return (availableWrongWords.length > 0 ? availableWrongWords : wrongWordsDeck)[0] || null;
     }
 
-    const newWords = activeVocabList.filter(word => {
+    const newWords = primaryWordPool.filter(word => {
         if (!userMastery[masteryKey]) return true;
         if (!userMastery[masteryKey][selectedLevel]) return true;
         return !userMastery[masteryKey][selectedLevel][word.en];
     });
     if (newWords.length > 0) return newWords[0];
 
-    const masteredWords = activeVocabList.filter(word => {
+    const masteredWords = primaryWordPool.filter(word => {
         if (!userMastery[masteryKey]) return false;
         if (!userMastery[masteryKey][selectedLevel]) return false;
         return userMastery[masteryKey][selectedLevel][word.en];
     });
     if (masteredWords.length > 0) return masteredWords[0];
+
+    if (stageReviewPool.length > 0) return stageReviewPool[0];
 
     return activeVocabList[0] || null;
 }
