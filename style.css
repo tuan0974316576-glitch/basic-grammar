@@ -5797,8 +5797,8 @@ body {
 
 /* Row 3: Z-M - narrower row for trapezoid effect */
 .kb-row:nth-child(3) {
-    width: min(84%, 354px);
-    transform: translateX(clamp(14px, 3.5vw, 28px));
+    width: min(93.5%, 392px);
+    transform: translateX(clamp(8px, 2vw, 28px));
 }
 
 .kb-key {
@@ -6036,8 +6036,8 @@ body {
 }
 
 #virtual-keyboard.kb-tablet-size .kb-row:nth-child(3) {
-    width: min(calc(100vw - clamp(124px, 13vw, 192px)), 860px);
-    transform: translateX(clamp(24px, 3.2vw, 42px));
+    width: min(calc(100vw - clamp(84px, 8vw, 124px)), 878px);
+    transform: translateX(clamp(18px, 2.4vw, 42px));
 }
 
 #virtual-keyboard.kb-tablet-size .kb-row:nth-child(4) {
