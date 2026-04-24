@@ -8247,7 +8247,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Restore readonly
                 if (wasReadonly) hiddenInput.setAttribute('readonly', 'readonly');
 
-                if(typeof playSound === 'function') playSound('delete-sfx');
             } else {
                 lastVirtualKeyboardKey = key;
                 // Regular key or space - add character
@@ -8264,7 +8263,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Restore readonly
                 if (wasReadonly) hiddenInput.setAttribute('readonly', 'readonly');
 
-                if(typeof playSound === 'function') playSound('enter-sfx');
             }
         });
 
