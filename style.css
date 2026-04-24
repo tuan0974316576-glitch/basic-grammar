@@ -6689,6 +6689,60 @@ body {
     white-space: nowrap;
 }
 
+#stage-screen .stage-btn-progress {
+    position: absolute;
+    left: 50%;
+    bottom: 9px;
+    transform: translateX(-50%);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: rgba(191, 219, 254, 0.85);
+    text-shadow: 0 0 8px rgba(56, 189, 248, 0.24);
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+#stage-screen .stage-btn-simple.locked {
+    border-color: rgba(71, 85, 105, 0.8);
+    color: rgba(148, 163, 184, 0.7);
+    box-shadow: none;
+    text-shadow: none;
+    opacity: 0.62;
+}
+
+#stage-screen .stage-btn-simple.locked .stage-btn-progress {
+    color: rgba(148, 163, 184, 0.78);
+    text-shadow: none;
+}
+
+#stage-screen .stage-btn-simple.locked:hover {
+    transform: none;
+    border-color: rgba(100, 116, 139, 0.85);
+    color: rgba(203, 213, 225, 0.82);
+    box-shadow: 0 0 12px rgba(100, 116, 139, 0.12);
+    text-shadow: none;
+}
+
+#stage-screen .stage-btn-simple.completed {
+    border-color: #22c55e;
+    color: #f0fdf4;
+    box-shadow: 0 0 18px rgba(34, 197, 94, 0.18);
+    text-shadow: 0 0 8px rgba(34, 197, 94, 0.45);
+}
+
+#stage-screen .stage-btn-simple.completed:hover {
+    border-color: #4ade80;
+    color: #ffffff;
+    box-shadow: 0 0 24px rgba(74, 222, 128, 0.22), inset 0 0 10px rgba(34, 197, 94, 0.16);
+    text-shadow: 0 0 10px rgba(74, 222, 128, 0.65);
+}
+
+#stage-screen .stage-btn-simple.completed .stage-btn-progress {
+    color: rgba(187, 247, 208, 0.94);
+    text-shadow: 0 0 8px rgba(34, 197, 94, 0.26);
+}
+
 #stage-screen .stage-info-btn {
     position: absolute;
     top: -16px;
@@ -6821,9 +6875,20 @@ body {
     width: 100%;
     flex: 0 0 auto;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 8px;
     padding-bottom: 18px;
+}
+
+#stage-screen-subtitle {
+    min-height: 16px;
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
 }
 
 #stage-screen .stage-screen-scroll {

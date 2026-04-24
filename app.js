@@ -1472,6 +1472,54 @@ function getStageReviewWords(levelKey, modeKey, stageIndex) {
     return shuffleArray(priorWords);
 }
 
+function getStageProgressSummary(levelKey, stageIndex) {
+    const stageWords = getStageBaseWords(levelKey, stageIndex);
+    const totalSlots = stageWords.length * 3;
+    if (totalSlots === 0) {
+        return { completedSlots: 0, totalSlots: 0, ratio: 0, percent: 0 };
+    }
+
+    let completedSlots = 0;
+    const modeKeys = ['reading', 'listening', 'speaking'];
+
+    stageWords.forEach(word => {
+        modeKeys.forEach(modeKey => {
+            if (userMastery?.[modeKey]?.[levelKey]?.[word.en]?.status === 1) {
+                completedSlots += 1;
+            }
+        });
+    });
+
+    const ratio = completedSlots / totalSlots;
+    return {
+        completedSlots,
+        totalSlots,
+        ratio,
+        percent: Math.round(ratio * 100)
+    };
+}
+
+function isStageUnlocked(levelKey, stageIndex) {
+    if (stageIndex <= 0) return true;
+    return getStageProgressSummary(levelKey, stageIndex - 1).ratio >= 0.8;
+}
+
+function setStageScreenMessage(text, type = 'info') {
+    const stageSubtitle = document.getElementById('stage-screen-subtitle');
+    if (!stageSubtitle) return;
+
+    const colorMap = {
+        info: '#94a3b8',
+        warning: '#fbbf24',
+        success: '#22c55e',
+        error: '#ef4444'
+    };
+
+    stageSubtitle.style.display = 'block';
+    stageSubtitle.textContent = text;
+    stageSubtitle.style.color = colorMap[type] || colorMap.info;
+}
+
 function getCurrentStagePrimaryWords(modeKey) {
     const levelWords = VOCAB_DB[selectedLevel] || [];
     if (tempGameMode !== 'AI' || selectedStageIndex === null) {
@@ -1540,19 +1588,21 @@ function renderStageScreen(levelKey) {
 
     const stageCount = getLevelStageCount(levelKey);
     if (stageTitle) stageTitle.textContent = 'SELECT STAGE';
-    if (stageSubtitle) {
-        stageSubtitle.style.display = 'none';
-    }
+    setStageScreenMessage('UNLOCK NEXT STAGE AT 80% OF THE PREVIOUS STAGE', 'info');
 
     stageGrid.innerHTML = '';
 
     for (let stageIndex = 0; stageIndex < stageCount; stageIndex++) {
+        const progress = getStageProgressSummary(levelKey, stageIndex);
+        const unlocked = isStageUnlocked(levelKey, stageIndex);
+        const completed = progress.ratio >= 1;
         const button = document.createElement('button');
-        button.className = 'level-btn stage-btn-simple';
+        button.className = `level-btn stage-btn-simple${unlocked ? '' : ' locked'}${completed ? ' completed' : ''}`;
         button.type = 'button';
         button.onclick = () => selectStage(stageIndex);
         button.innerHTML = `
             <span class="stage-btn-label">STAGE ${stageIndex + 1}</span>
+            <span class="stage-btn-progress">${progress.percent}% COMPLETED</span>
             <span class="stage-info-btn" onclick="openStageInfo(${stageIndex}, event)" title="Stage info" aria-label="Stage info">i</span>
         `;
         stageGrid.appendChild(button);
@@ -1577,6 +1627,16 @@ function closeStageScreen() {
 }
 
 function selectStage(stageIndex) {
+    if (!isStageUnlocked(selectedLevel, stageIndex)) {
+        playSound('delete-sfx');
+        const requiredProgress = getStageProgressSummary(selectedLevel, stageIndex - 1);
+        setStageScreenMessage(
+            `STAGE ${stageIndex + 1} LOCKED // STAGE ${stageIndex} NEEDS 80% (${requiredProgress.completedSlots}/${requiredProgress.totalSlots})`,
+            'warning'
+        );
+        return;
+    }
+
     playSound('deploy-sfx');
     selectedStageIndex = stageIndex;
     selectedStageLabel = getStageLabel(selectedLevel, stageIndex);
