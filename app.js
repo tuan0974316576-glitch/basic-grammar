@@ -3670,8 +3670,12 @@ function handlePlayerTimeout() {
         const currentTurn = (typeof turnCounter !== 'undefined' ? turnCounter : 1);
         
         let correctContent = currentVocab.en; 
+        let sentenceContent = null;
         if (currentPracticeMode === 'SPEAKING' && currentVocab.sent) {
             correctContent = currentVocab.sent;
+        }
+        if (currentPracticeMode === 'LISTENING' && currentVocab.sent) {
+            sentenceContent = currentVocab.sent;
         }
 
         // �� ���� 3���Lԇ�@ȡݔ���������� ��
@@ -3682,8 +3686,10 @@ function handlePlayerTimeout() {
         if (!lastLog || lastLog.turn !== currentTurn) {
             battleLog.push({
                 turn: currentTurn,
+                mode: currentPracticeMode,
                 user: userDisplay,    // �� ʹ�Ú�������
                 correct: correctContent,
+                sentence: sentenceContent,
                 isCorrect: false
             });
         }
@@ -6922,9 +6928,24 @@ function renderListeningAnswerDisplay(text, inputVal) {
 
     const rowMarkup = rows.map((row, index) => {
         const typedText = escapeHtml(typedRows[index] || '');
+        const lengthBasis = Math.max((typedRows[index] || '').length, row.length);
+        let fontSize = 24;
+        let letterSpacing = 3;
+
+        if (lengthBasis >= 16) {
+            fontSize = 18;
+            letterSpacing = 1;
+        } else if (lengthBasis >= 13) {
+            fontSize = 20;
+            letterSpacing = 2;
+        } else if (lengthBasis >= 10) {
+            fontSize = 22;
+            letterSpacing = 2.4;
+        }
+
         return `
             <div class="listening-answer-row">
-                <span class="listening-answer-typed">${typedText || '&nbsp;'}</span>
+                <span class="listening-answer-typed" style="font-size:${fontSize}px; letter-spacing:${letterSpacing}px;">${typedText || '&nbsp;'}</span>
                 <span class="listening-answer-line"></span>
             </div>
         `;
