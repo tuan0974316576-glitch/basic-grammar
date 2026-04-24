@@ -6062,6 +6062,7 @@ window.closeInvitePlayersModal = closeInvitePlayersModal;
 function handleIncomingInviteSnapshot(snapshot) {
     const invite = snapshot.exists() ? snapshot.val() : null;
     if (!invite) return;
+    if (currentIncomingInvite?.inviteId && currentIncomingInvite.inviteId === invite.inviteId) return;
 
     const now = Date.now();
     if (!invite.createdAt || now - invite.createdAt > 60 * 1000) {
@@ -6076,9 +6077,15 @@ function handleIncomingInviteSnapshot(snapshot) {
         return;
     }
 
+    const lobbyVisible = document.getElementById('lobby-screen')?.style.display !== 'none';
+    const gameUiVisible = document.getElementById('game-ui')?.style.display !== 'none';
+    const selectionOverlayVisible = document.getElementById('selection-overlay')?.style.display !== 'none';
     const inActiveBattle = typeof currentPhase !== 'undefined' && currentPhase !== 'DEPLOY' && currentPhase !== 'GAME_OVER';
-    const alreadyLinkedToRoom = gameMode === 'PVP' && !!currentRoomId;
-    if (inActiveBattle || alreadyLinkedToRoom) {
+    const inPvpFlow = lobbyVisible || isEnteringPVPDeploy || pvpRaceSelectionShown ||
+        (selectionOverlayVisible && tempGameMode === 'PVP') ||
+        (gameUiVisible && gameMode === 'PVP');
+
+    if (inActiveBattle || inPvpFlow) {
         currentIncomingInvite = invite;
         declineIncomingInvite(true);
         return;
