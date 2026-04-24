@@ -3479,19 +3479,22 @@ function clearListeningTimerStartTimeout() {
     }
 }
 
-function getListeningTtsCacheKey(text, locale = 'en-US') {
-    return `${locale}::${(text || '').trim()}`;
+function getListeningTtsCacheKey(text, locale = 'en-US', levelKey = '') {
+    return `${locale}::${levelKey || ''}::${(text || '').trim()}`;
 }
 
-function preloadListeningAzureAudio(text, locale = 'en-US') {
+function preloadListeningAzureAudio(text, locale = 'en-US', levelKey = '') {
     const cleanText = (text || '').trim();
     if (!cleanText) return Promise.reject(new Error('Text is required for listening TTS.'));
 
-    const cacheKey = getListeningTtsCacheKey(cleanText, locale);
+    const cacheKey = getListeningTtsCacheKey(cleanText, locale, levelKey);
     const cached = listeningTtsCache.get(cacheKey);
     if (cached) return cached;
 
-    const request = fetchSpeakingDebriefReferenceAudio(cleanText, locale)
+    const request = fetchSpeakingDebriefReferenceAudio(cleanText, locale, {
+        mode: 'listening',
+        level: levelKey || selectedLevel || 'L1'
+    })
         .then((result) => {
             listeningTtsCache.set(cacheKey, Promise.resolve(result));
             return result;
@@ -3604,7 +3607,7 @@ function preloadLikelyNextListeningPrompt() {
     if (!previewWord) return;
     const preview = getPreviewSentenceForWord(previewWord, 'listening', selectedLevel || 'L1');
     if (preview?.text) {
-        preloadListeningAzureAudio(preview.text).catch(() => {});
+        preloadListeningAzureAudio(preview.text, 'en-US', selectedLevel || 'L1').catch(() => {});
     }
 }
 
@@ -3618,7 +3621,7 @@ async function playListeningAzureText(text, element = null, startListeningTimer 
     stopListeningPlayback();
     const playbackToken = ++listeningPlaybackToken;
 
-    const result = await preloadListeningAzureAudio(text, 'en-US');
+    const result = await preloadListeningAzureAudio(text, 'en-US', selectedLevel || 'L1');
     if (playbackToken !== listeningPlaybackToken) return true;
 
     const binary = atob(result.audioBase64 || '');
@@ -7604,7 +7607,7 @@ async function submitSpeakingAudioForAssessment(blob) {
     return result;
 }
 
-async function fetchSpeakingDebriefReferenceAudio(text, locale = 'en-US') {
+async function fetchSpeakingDebriefReferenceAudio(text, locale = 'en-US', options = {}) {
     const baseUrl = getSpeakingAssessmentBaseUrl();
     if (!baseUrl) throw new Error('Speaking assessment backend is not configured.');
 
@@ -7613,7 +7616,12 @@ async function fetchSpeakingDebriefReferenceAudio(text, locale = 'en-US') {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ text, locale })
+        body: JSON.stringify({
+            text,
+            locale,
+            mode: options.mode || 'default',
+            level: options.level || null
+        })
     });
 
     const rawText = await response.text();

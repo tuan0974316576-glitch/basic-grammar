@@ -110,7 +110,9 @@ async function synthesizeSpeech({
   speechKey,
   speechRegion,
   text,
-  locale = 'en-US'
+  locale = 'en-US',
+  mode = 'default',
+  level = ''
 }) {
   const speechConfig = sdk.SpeechConfig.fromSubscription(speechKey, speechRegion);
   speechConfig.speechSynthesisLanguage = locale;
@@ -118,10 +120,35 @@ async function synthesizeSpeech({
   speechConfig.speechSynthesisOutputFormat = sdk.SpeechSynthesisOutputFormat.Audio16Khz32KBitRateMonoMp3;
 
   const synthesizer = new sdk.SpeechSynthesizer(speechConfig);
+  const escapedText = String(text || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
+  const listeningRateByLevel = {
+    L1: '-10%',
+    L2: '-8%',
+    L3: '-6%',
+    L4: '-4%',
+    L5: '-2%',
+    'L5*': '0%',
+    L5_STAR: '0%'
+  };
+  const isListening = mode === 'listening';
+  const rate = isListening ? (listeningRateByLevel[level] || '0%') : '0%';
+  const volume = '+10%';
+  const ssml = [
+    `<speak version="1.0" xml:lang="${locale}">`,
+    `  <voice name="${speechConfig.speechSynthesisVoiceName}">`,
+    `    <prosody rate="${rate}" volume="${volume}">${escapedText}</prosody>`,
+    '  </voice>',
+    '</speak>'
+  ].join('');
 
   return new Promise((resolve, reject) => {
-    synthesizer.speakTextAsync(
-      text,
+    synthesizer.speakSsmlAsync(
+      ssml,
       (result) => {
         try {
           const audioData = result.audioData instanceof ArrayBuffer
@@ -131,6 +158,8 @@ async function synthesizeSpeech({
           resolve({
             ok: true,
             locale,
+            mode,
+            level,
             format: 'audio/mpeg',
             audioBase64: audioData.toString('base64')
           });

@@ -93,6 +93,8 @@ app.post('/api/speak-text', async (req, res) => {
   try {
     const text = (req.body.text || '').trim();
     const locale = (req.body.locale || 'en-US').trim();
+    const mode = (req.body.mode || 'default').trim();
+    const level = (req.body.level || '').trim();
 
     if (!text) {
       return res.status(400).json({
@@ -105,7 +107,9 @@ app.post('/api/speak-text', async (req, res) => {
       speechKey: azureSpeechKey.value(),
       speechRegion: azureSpeechRegion.value(),
       text,
-      locale
+      locale,
+      mode,
+      level
     });
 
     res.json(result);
