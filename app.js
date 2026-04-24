@@ -6014,6 +6014,13 @@ function closeIncomingInviteModal() {
     if (modal) modal.style.display = 'none';
 }
 
+function isElementActuallyVisible(elementId) {
+    const el = document.getElementById(elementId);
+    if (!el) return false;
+    const styles = window.getComputedStyle(el);
+    return styles.display !== 'none' && styles.visibility !== 'hidden' && styles.opacity !== '0';
+}
+
 async function respondToIncomingInvite(invite, status) {
     if (!invite || !window.db || !window.firebaseModules) return;
     const { ref, set, remove } = window.firebaseModules;
@@ -6077,13 +6084,27 @@ function handleIncomingInviteSnapshot(snapshot) {
         return;
     }
 
-    const lobbyVisible = document.getElementById('lobby-screen')?.style.display !== 'none';
-    const gameUiVisible = document.getElementById('game-ui')?.style.display !== 'none';
-    const selectionOverlayVisible = document.getElementById('selection-overlay')?.style.display !== 'none';
+    const lobbyVisible = isElementActuallyVisible('lobby-screen');
+    const gameUiVisible = isElementActuallyVisible('game-ui');
+    const selectionOverlayVisible = isElementActuallyVisible('selection-overlay');
     const inActiveBattle = typeof currentPhase !== 'undefined' && currentPhase !== 'DEPLOY' && currentPhase !== 'GAME_OVER';
     const inPvpFlow = lobbyVisible || isEnteringPVPDeploy || pvpRaceSelectionShown ||
         (selectionOverlayVisible && tempGameMode === 'PVP') ||
         (gameUiVisible && gameMode === 'PVP');
+
+    console.log('[Invite Debug]', {
+        inviteId: invite.inviteId,
+        lobbyVisible,
+        gameUiVisible,
+        selectionOverlayVisible,
+        currentPhase,
+        gameMode,
+        tempGameMode,
+        isEnteringPVPDeploy,
+        pvpRaceSelectionShown,
+        inActiveBattle,
+        inPvpFlow
+    });
 
     if (inActiveBattle || inPvpFlow) {
         currentIncomingInvite = invite;
