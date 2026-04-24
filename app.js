@@ -1501,7 +1501,7 @@ function getStageProgressSummary(levelKey, stageIndex) {
 
 function isStageUnlocked(levelKey, stageIndex) {
     if (stageIndex <= 0) return true;
-    return getStageProgressSummary(levelKey, stageIndex - 1).ratio >= 0.8;
+    return getStageProgressSummary(levelKey, stageIndex - 1).ratio >= 0.6;
 }
 
 function setStageScreenMessage(text, type = 'info') {
@@ -1637,7 +1637,7 @@ function selectStage(stageIndex) {
     if (!isStageUnlocked(selectedLevel, stageIndex)) {
         playSound('delete-sfx');
         showNotification(
-            `COMPLETE AT LEAST 80% OF STAGE ${stageIndex} TO UNLOCK STAGE ${stageIndex + 1}`,
+            `COMPLETE AT LEAST 60% OF STAGE ${stageIndex} TO UNLOCK STAGE ${stageIndex + 1}`,
             'error',
             3500
         );
