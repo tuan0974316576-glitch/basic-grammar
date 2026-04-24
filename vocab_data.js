@@ -46521,7 +46521,7 @@ const VOCAB_DB = {
         },
         {
             "en": "M+ Museum",
-            "ch": "M+???",
+            "ch": "M+博物館",
             "sents": [
                 {
                     "text": "Our class visited the M+ Museum last week.",

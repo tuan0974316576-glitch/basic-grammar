@@ -1219,6 +1219,10 @@ async function resolvePvpSharedQuestion() {
     }
 
     if (!currentQuestion || bothConsumed) {
+        if (playerRole !== 'host') {
+            return false;
+        }
+
         if (!Array.isArray(activeVocabList) || activeVocabList.length === 0) {
             alert("Error: Database is empty!");
             return false;
@@ -1255,7 +1259,7 @@ async function resolvePvpSharedQuestion() {
         return true;
     }
 
-    return hydrateCurrentVocabFromPvpQuestion(currentQuestion);
+    return false;
 }
 
 function updateTurnTimerUI() {
