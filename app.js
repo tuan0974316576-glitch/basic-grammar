@@ -3861,6 +3861,20 @@ function handlePlayerTimeout() {
              const targetWord = (currentPracticeMode === 'LISTENING' && currentVocab.listeningAnswer)
                  ? currentVocab.listeningAnswer
                  : currentVocab.en;
+             const targetClean = targetWord.replace(/[^A-Z0-9]/g, '');
+
+             if (currentPracticeMode === 'READING' && logicVal.length > targetClean.length) {
+                 logicVal = logicVal.substring(0, targetClean.length);
+                 displayVal = logicVal;
+                 e.target.value = displayVal;
+                 if(typeof playSound === 'function') playSound('wrong-sfx');
+                 flashReadingOverflowFeedback();
+                 if(typeof updateSmartDisplay === 'function') {
+                     updateSmartDisplay(logicVal);
+                 }
+                 return;
+             }
+
              if (currentPracticeMode === 'LISTENING') {
                  displayVal = formatInputForTarget(logicVal, targetWord);
              }
@@ -7021,6 +7035,15 @@ function formatInputForTarget(logicInput, targetWord) {
     }
 
     return formatted;
+}
+
+function flashReadingOverflowFeedback() {
+    const qDisplay = document.getElementById('q-display');
+    if (!qDisplay) return;
+    qDisplay.classList.remove('reading-overflow-feedback');
+    void qDisplay.offsetWidth;
+    qDisplay.classList.add('reading-overflow-feedback');
+    setTimeout(() => qDisplay.classList.remove('reading-overflow-feedback'), 280);
 }
 
 function renderListeningAnswerDisplay(text, inputVal) {
