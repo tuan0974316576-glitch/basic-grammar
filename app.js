@@ -6096,57 +6096,18 @@ function handleIncomingInviteSnapshot(snapshot) {
         return;
     }
 
-    const gameUiVisible = isElementActuallyVisible('game-ui');
-    const selectionOverlayVisible = isElementActuallyVisible('selection-overlay');
-    const inActiveBattle = typeof currentPhase !== 'undefined' && currentPhase !== 'DEPLOY' && currentPhase !== 'GAME_OVER';
-    const roomLinked = !!currentRoomId && (
-        playerRole === 'guest' ||
-        !!latestPVPSetupData?.guest ||
-        !!latestPVPSetupData?.hostRace ||
-        !!latestPVPSetupData?.guestRace
-    );
-    const inPvpFlow = roomLinked || isEnteringPVPDeploy || pvpRaceSelectionShown ||
-        (selectionOverlayVisible && tempGameMode === 'PVP') ||
-        (gameUiVisible && gameMode === 'PVP');
-
     console.log('[Invite Debug]', {
         inviteId: invite.inviteId,
-        gameUiVisible,
-        selectionOverlayVisible,
         currentPhase,
         gameMode,
         tempGameMode,
         currentRoomId,
         playerRole,
-        roomLinked,
         isEnteringPVPDeploy,
-        pvpRaceSelectionShown,
-        inActiveBattle,
-        inPvpFlow
+        pvpRaceSelectionShown
     });
 
-    if (inActiveBattle || inPvpFlow) {
-        console.log('[Invite Auto-Decline]', {
-            reason: 'busy',
-            inviteId: invite.inviteId,
-            gameUiVisible,
-            selectionOverlayVisible,
-            currentPhase,
-            gameMode,
-            tempGameMode,
-            currentRoomId,
-            playerRole,
-            roomLinked,
-            isEnteringPVPDeploy,
-            pvpRaceSelectionShown,
-            inActiveBattle,
-            inPvpFlow
-        });
-        currentIncomingInvite = invite;
-        declineIncomingInvite(true);
-        return;
-    }
-
+    console.log('[Invite Debug] opening popup', { inviteId: invite.inviteId });
     openIncomingInviteModal(invite);
 }
 
