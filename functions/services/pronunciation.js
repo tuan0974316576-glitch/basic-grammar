@@ -112,11 +112,13 @@ async function synthesizeSpeech({
   text,
   locale = 'en-US',
   mode = 'default',
-  level = ''
+  level = '',
+  voiceName = '',
+  accentLocale = ''
 }) {
   const speechConfig = sdk.SpeechConfig.fromSubscription(speechKey, speechRegion);
   speechConfig.speechSynthesisLanguage = locale;
-  speechConfig.speechSynthesisVoiceName = locale === 'en-GB' ? 'en-GB-SoniaNeural' : 'en-US-JennyNeural';
+  speechConfig.speechSynthesisVoiceName = voiceName || (locale === 'en-GB' ? 'en-GB-SoniaNeural' : 'en-US-JennyNeural');
   speechConfig.speechSynthesisOutputFormat = sdk.SpeechSynthesisOutputFormat.Audio16Khz32KBitRateMonoMp3;
 
   const synthesizer = new sdk.SpeechSynthesizer(speechConfig);
@@ -138,10 +140,11 @@ async function synthesizeSpeech({
   const isListening = mode === 'listening';
   const rate = isListening ? (listeningRateByLevel[level] || '0%') : '0%';
   const volume = '+10%';
+  const langLocale = accentLocale || locale;
   const ssml = [
     `<speak version="1.0" xml:lang="${locale}">`,
     `  <voice name="${speechConfig.speechSynthesisVoiceName}">`,
-    `    <prosody rate="${rate}" volume="${volume}">${escapedText}</prosody>`,
+    `    <prosody rate="${rate}" volume="${volume}"><lang xml:lang="${langLocale}">${escapedText}</lang></prosody>`,
     '  </voice>',
     '</speak>'
   ].join('');
@@ -160,6 +163,8 @@ async function synthesizeSpeech({
             locale,
             mode,
             level,
+            voiceName: speechConfig.speechSynthesisVoiceName,
+            accentLocale: langLocale,
             format: 'audio/mpeg',
             audioBase64: audioData.toString('base64')
           });

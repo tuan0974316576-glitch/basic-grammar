@@ -95,6 +95,8 @@ app.post('/api/speak-text', async (req, res) => {
     const locale = (req.body.locale || 'en-US').trim();
     const mode = (req.body.mode || 'default').trim();
     const level = (req.body.level || '').trim();
+    const voiceName = (req.body.voiceName || '').trim();
+    const accentLocale = (req.body.accentLocale || '').trim();
 
     if (!text) {
       return res.status(400).json({
@@ -109,7 +111,9 @@ app.post('/api/speak-text', async (req, res) => {
       text,
       locale,
       mode,
-      level
+      level,
+      voiceName,
+      accentLocale
     });
 
     res.json(result);

@@ -99,6 +99,31 @@ let listeningPlaybackAudio = null;
 let listeningPlaybackObjectUrl = '';
 let listeningPlaybackToken = 0;
 let listeningTimerStartTimeout = null;
+const LISTENING_VOICE_ROTATION = [
+    {
+        label: 'Ava (Canada)',
+        voiceName: 'en-US-AvaMultilingualNeural',
+        accentLocale: 'en-CA'
+    },
+    {
+        label: 'Andrew (US)',
+        voiceName: 'en-US-AndrewMultilingualNeural',
+        accentLocale: 'en-US'
+    },
+    {
+        label: 'Seraphina (Australia)',
+        voiceName: 'de-DE-SeraphinaMultilingualNeural',
+        accentLocale: 'en-AU'
+    },
+    {
+        label: 'Florian (UK)',
+        voiceName: 'de-DE-FlorianMultilingualNeural',
+        accentLocale: 'en-GB'
+    }
+];
+let listeningVoiceCycleIndex = null;
+let listeningPromptVoiceKey = '';
+let listeningPromptVoiceProfile = null;
 let userSentenceProgress = { listening: {}, speaking: {} };
 let battleLog = [];
 let battleUsedWordKeys = new Set();
@@ -3483,17 +3508,64 @@ function getListeningTtsCacheKey(text, locale = 'en-US', levelKey = '') {
     return `${locale}::${levelKey || ''}::${(text || '').trim()}`;
 }
 
-function preloadListeningAzureAudio(text, locale = 'en-US', levelKey = '') {
+function buildListeningVoiceCacheKey(voiceProfile) {
+    if (!voiceProfile) return 'default';
+    return `${voiceProfile.voiceName || 'default'}::${voiceProfile.accentLocale || ''}`;
+}
+
+function getListeningPromptVoiceKey(text, levelKey = '') {
+    return `${levelKey || ''}::${(text || '').trim()}`;
+}
+
+function resetListeningVoiceCycle() {
+    listeningVoiceCycleIndex = null;
+    listeningPromptVoiceKey = '';
+    listeningPromptVoiceProfile = null;
+}
+
+function advanceListeningVoiceProfile() {
+    if (!LISTENING_VOICE_ROTATION.length) return null;
+    if (listeningVoiceCycleIndex === null) {
+        listeningVoiceCycleIndex = Math.floor(Math.random() * LISTENING_VOICE_ROTATION.length);
+    } else {
+        listeningVoiceCycleIndex = (listeningVoiceCycleIndex + 1) % LISTENING_VOICE_ROTATION.length;
+    }
+    return { ...LISTENING_VOICE_ROTATION[listeningVoiceCycleIndex] };
+}
+
+function ensureListeningPromptVoiceProfile(text, levelKey = '') {
+    const promptKey = getListeningPromptVoiceKey(text, levelKey);
+    if (listeningPromptVoiceKey !== promptKey || !listeningPromptVoiceProfile) {
+        listeningPromptVoiceKey = promptKey;
+        listeningPromptVoiceProfile = advanceListeningVoiceProfile();
+        if (listeningPromptVoiceProfile) {
+            console.log('[Listening Voice]', listeningPromptVoiceProfile.label, listeningPromptVoiceProfile.voiceName, listeningPromptVoiceProfile.accentLocale);
+        }
+    }
+    return listeningPromptVoiceProfile;
+}
+
+function peekNextListeningVoiceProfile() {
+    if (!LISTENING_VOICE_ROTATION.length) return null;
+    const nextIndex = listeningVoiceCycleIndex === null
+        ? 0
+        : (listeningVoiceCycleIndex + 1) % LISTENING_VOICE_ROTATION.length;
+    return { ...LISTENING_VOICE_ROTATION[nextIndex] };
+}
+
+function preloadListeningAzureAudio(text, locale = 'en-US', levelKey = '', voiceProfile = null) {
     const cleanText = (text || '').trim();
     if (!cleanText) return Promise.reject(new Error('Text is required for listening TTS.'));
 
-    const cacheKey = getListeningTtsCacheKey(cleanText, locale, levelKey);
+    const cacheKey = `${getListeningTtsCacheKey(cleanText, locale, levelKey)}::${buildListeningVoiceCacheKey(voiceProfile)}`;
     const cached = listeningTtsCache.get(cacheKey);
     if (cached) return cached;
 
     const request = fetchSpeakingDebriefReferenceAudio(cleanText, locale, {
         mode: 'listening',
-        level: levelKey || selectedLevel || 'L1'
+        level: levelKey || selectedLevel || 'L1',
+        voiceName: voiceProfile?.voiceName || null,
+        accentLocale: voiceProfile?.accentLocale || null
     })
         .then((result) => {
             listeningTtsCache.set(cacheKey, Promise.resolve(result));
@@ -3607,7 +3679,12 @@ function preloadLikelyNextListeningPrompt() {
     if (!previewWord) return;
     const preview = getPreviewSentenceForWord(previewWord, 'listening', selectedLevel || 'L1');
     if (preview?.text) {
-        preloadListeningAzureAudio(preview.text, 'en-US', selectedLevel || 'L1').catch(() => {});
+        preloadListeningAzureAudio(
+            preview.text,
+            'en-US',
+            selectedLevel || 'L1',
+            peekNextListeningVoiceProfile()
+        ).catch(() => {});
     }
 }
 
@@ -3621,7 +3698,8 @@ async function playListeningAzureText(text, element = null, startListeningTimer 
     stopListeningPlayback();
     const playbackToken = ++listeningPlaybackToken;
 
-    const result = await preloadListeningAzureAudio(text, 'en-US', selectedLevel || 'L1');
+    const voiceProfile = ensureListeningPromptVoiceProfile(text, selectedLevel || 'L1');
+    const result = await preloadListeningAzureAudio(text, 'en-US', selectedLevel || 'L1', voiceProfile);
     if (playbackToken !== listeningPlaybackToken) return true;
 
     const binary = atob(result.audioBase64 || '');
@@ -5496,6 +5574,7 @@ function executeAbort() {
 function resetGame() {
     battleLog = [];
     battleUsedWordKeys.clear();
+    resetListeningVoiceCycle();
     pvpRaceSelectionShown = false;
     isEnteringPVPDeploy = false;
     latestPVPSetupData = null;
@@ -7620,7 +7699,9 @@ async function fetchSpeakingDebriefReferenceAudio(text, locale = 'en-US', option
             text,
             locale,
             mode: options.mode || 'default',
-            level: options.level || null
+            level: options.level || null,
+            voiceName: options.voiceName || null,
+            accentLocale: options.accentLocale || null
         })
     });
 
