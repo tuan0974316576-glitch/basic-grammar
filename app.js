@@ -5854,6 +5854,7 @@ function getInvitePopupEnabled() {
 
 function updateInvitePopupSetting(enabled) {
     const normalized = !!enabled;
+    playSound('deploy-sfx');
     localStorage.setItem('setting_pvp_invite_popups', normalized ? '1' : '0');
     const toggle = document.getElementById('toggle-pvp-invite-popups');
     if (toggle) toggle.checked = normalized;
