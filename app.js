@@ -3861,7 +3861,7 @@ function handlePlayerTimeout() {
              const targetWord = (currentPracticeMode === 'LISTENING' && currentVocab.listeningAnswer)
                  ? currentVocab.listeningAnswer
                  : currentVocab.en;
-             const targetClean = targetWord.replace(/[^A-Z0-9]/g, '');
+             const targetClean = String(targetWord || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
 
              if (currentPracticeMode === 'READING' && logicVal.length > targetClean.length) {
                  logicVal = logicVal.substring(0, targetClean.length);
