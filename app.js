@@ -6073,12 +6073,24 @@ function handleIncomingInviteSnapshot(snapshot) {
 
     const now = Date.now();
     if (!invite.createdAt || now - invite.createdAt > 60 * 1000) {
+        console.log('[Invite Auto-Decline]', {
+            reason: 'expired',
+            inviteId: invite.inviteId,
+            createdAt: invite.createdAt || null,
+            now,
+            ageMs: invite.createdAt ? now - invite.createdAt : null
+        });
         currentIncomingInvite = invite;
         declineIncomingInvite(true);
         return;
     }
 
     if (!getInvitePopupEnabled()) {
+        console.log('[Invite Auto-Decline]', {
+            reason: 'popup_disabled',
+            inviteId: invite.inviteId,
+            popupEnabled: false
+        });
         currentIncomingInvite = invite;
         declineIncomingInvite(true);
         return;
@@ -6114,6 +6126,22 @@ function handleIncomingInviteSnapshot(snapshot) {
     });
 
     if (inActiveBattle || inPvpFlow) {
+        console.log('[Invite Auto-Decline]', {
+            reason: 'busy',
+            inviteId: invite.inviteId,
+            gameUiVisible,
+            selectionOverlayVisible,
+            currentPhase,
+            gameMode,
+            tempGameMode,
+            currentRoomId,
+            playerRole,
+            roomLinked,
+            isEnteringPVPDeploy,
+            pvpRaceSelectionShown,
+            inActiveBattle,
+            inPvpFlow
+        });
         currentIncomingInvite = invite;
         declineIncomingInvite(true);
         return;
