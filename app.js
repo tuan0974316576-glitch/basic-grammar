@@ -6946,7 +6946,6 @@ function renderListeningAnswerDisplay(text, inputVal) {
         return `
             <div class="listening-answer-row">
                 <span class="listening-answer-typed" style="font-size:${fontSize}px; letter-spacing:${letterSpacing}px;">${typedText || '&nbsp;'}</span>
-                <span class="listening-answer-line"></span>
             </div>
         `;
     }).join('');

@@ -3762,7 +3762,7 @@ body {
 .listening-answer-row {
     position: relative;
     min-height: 34px;
-    padding: 0 10px 10px;
+    padding: 0 10px 2px;
     display: flex;
     align-items: flex-end;
     justify-content: center;
@@ -3807,7 +3807,7 @@ body {
 
 #q-display .listening-answer-row {
     min-height: 38px;
-    padding: 0 6px;
+    padding: 0 6px 2px;
 }
 
 #q-display .listening-answer-typed {
