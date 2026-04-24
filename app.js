@@ -3868,7 +3868,7 @@ function handlePlayerTimeout() {
                  displayVal = logicVal;
                  e.target.value = displayVal;
                  if(typeof playSound === 'function') playSound('wrong-sfx');
-                 flashReadingOverflowFeedback();
+                 flashVirtualKeyboardErrorKey(lastVirtualKeyboardKey);
                  if(typeof updateSmartDisplay === 'function') {
                      updateSmartDisplay(logicVal);
                  }
@@ -7037,13 +7037,14 @@ function formatInputForTarget(logicInput, targetWord) {
     return formatted;
 }
 
-function flashReadingOverflowFeedback() {
-    const qDisplay = document.getElementById('q-display');
-    if (!qDisplay) return;
-    qDisplay.classList.remove('reading-overflow-feedback');
-    void qDisplay.offsetWidth;
-    qDisplay.classList.add('reading-overflow-feedback');
-    setTimeout(() => qDisplay.classList.remove('reading-overflow-feedback'), 280);
+let lastVirtualKeyboardKey = null;
+
+function flashVirtualKeyboardErrorKey(keyElement) {
+    if (!keyElement) return;
+    keyElement.classList.remove('kb-error');
+    void keyElement.offsetWidth;
+    keyElement.classList.add('kb-error');
+    setTimeout(() => keyElement.classList.remove('kb-error'), 220);
 }
 
 function renderListeningAnswerDisplay(text, inputVal) {
@@ -8230,6 +8231,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Fire button - submit answer
                 checkAnswer();
             } else if (keyValue === 'BACKSPACE') {
+                lastVirtualKeyboardKey = null;
                 // Backspace - remove last character
                 // Temporarily remove readonly to modify value
                 const wasReadonly = hiddenInput.hasAttribute('readonly');
@@ -8247,6 +8249,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 if(typeof playSound === 'function') playSound('delete-sfx');
             } else {
+                lastVirtualKeyboardKey = key;
                 // Regular key or space - add character
                 // Temporarily remove readonly to modify value
                 const wasReadonly = hiddenInput.hasAttribute('readonly');
