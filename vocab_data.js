@@ -7077,6 +7077,9 @@ const VOCAB_DB = {
         }
     ],
     "L2": 
+    
+    
+    
     [
         {
             "en": "ability",
@@ -7091,7 +7094,7 @@ const VOCAB_DB = {
                     "answer": "ability"
                 },
                 {
-                    "text": "My teacher used \"ability\" in an example.",
+                    "text": "I found \"ability\" in a message from my teacher.",
                     "answer": "ability"
                 }
             ]
@@ -7101,7 +7104,7 @@ const VOCAB_DB = {
             "ch": "能夠；有能力的",
             "sents": [
                 {
-                    "text": "We learned the word \"able\" in class today.",
+                    "text": "I saw \"able\" in a short article this morning.",
                     "answer": "able"
                 },
                 {
@@ -7155,7 +7158,7 @@ const VOCAB_DB = {
             "ch": "意外；事故",
             "sents": [
                 {
-                    "text": "We learned the word \"accident\" in class today.",
+                    "text": "We used \"accident\" in a quick speaking exercise today.",
                     "answer": "accident"
                 },
                 {
@@ -7173,15 +7176,15 @@ const VOCAB_DB = {
             "ch": "達到；實現",
             "sents": [
                 {
-                    "text": "We learned the word \"achieve\" in class today.",
+                    "text": "The online video explained \"achieve\" in a clear way.",
                     "answer": "achieve"
                 },
                 {
-                    "text": "Please remember \"achieve\" for the quiz.",
+                    "text": "I found \"achieve\" in a message from my teacher.",
                     "answer": "achieve"
                 },
                 {
-                    "text": "My teacher used \"achieve\" in an example.",
+                    "text": "The reading passage used \"achieve\" in a real-life context.",
                     "answer": "achieve"
                 }
             ]
@@ -7209,7 +7212,7 @@ const VOCAB_DB = {
             "ch": "其實；實際上",
             "sents": [
                 {
-                    "text": "We learned the word \"actually\" in class today.",
+                    "text": "I found \"actually\" in a message from my teacher.",
                     "answer": "actually"
                 },
                 {
@@ -7227,7 +7230,7 @@ const VOCAB_DB = {
             "ch": "成人",
             "sents": [
                 {
-                    "text": "We learned the word \"adult\" in class today.",
+                    "text": "I found \"adult\" in a message from my teacher.",
                     "answer": "adult"
                 },
                 {
@@ -7235,7 +7238,7 @@ const VOCAB_DB = {
                     "answer": "adult"
                 },
                 {
-                    "text": "My teacher used \"adult\" in an example.",
+                    "text": "I saw \"adult\" in a short article this morning.",
                     "answer": "adult"
                 }
             ]
@@ -7267,7 +7270,7 @@ const VOCAB_DB = {
                     "answer": "adventure"
                 },
                 {
-                    "text": "Please remember \"adventure\" for the quiz.",
+                    "text": "The guidebook used \"adventure\" in a simple example.",
                     "answer": "adventure"
                 },
                 {
@@ -7281,15 +7284,15 @@ const VOCAB_DB = {
             "ch": "做廣告；宣傳",
             "sents": [
                 {
-                    "text": "We learned the word \"advertise\" in class today.",
+                    "text": "The online video explained \"advertise\" in a clear way.",
                     "answer": "advertise"
                 },
                 {
-                    "text": "Please remember \"advertise\" for the quiz.",
+                    "text": "I found \"advertise\" in a message from my teacher.",
                     "answer": "advertise"
                 },
                 {
-                    "text": "My teacher used \"advertise\" in an example.",
+                    "text": "The reading passage used \"advertise\" in a real-life context.",
                     "answer": "advertise"
                 }
             ]
@@ -7299,7 +7302,7 @@ const VOCAB_DB = {
             "ch": "廣告",
             "sents": [
                 {
-                    "text": "We learned the word \"advertisement\" in class today.",
+                    "text": "We used \"advertisement\" in a quick speaking exercise today.",
                     "answer": "advertisement"
                 },
                 {
@@ -7307,7 +7310,7 @@ const VOCAB_DB = {
                     "answer": "advertisement"
                 },
                 {
-                    "text": "My teacher used \"advertisement\" in an example.",
+                    "text": "The news report included \"advertisement\" in the headline.",
                     "answer": "advertisement"
                 }
             ]
@@ -7389,15 +7392,15 @@ const VOCAB_DB = {
             "ch": "允許；容許",
             "sents": [
                 {
-                    "text": "We learned the word \"allow\" in class today.",
+                    "text": "The news report included \"allow\" in the headline.",
                     "answer": "allow"
                 },
                 {
-                    "text": "Please remember \"allow\" for the quiz.",
+                    "text": "Our class discussion mentioned \"allow\" more than once.",
                     "answer": "allow"
                 },
                 {
-                    "text": "My teacher used \"allow\" in an example.",
+                    "text": "I heard \"allow\" in a conversation after school.",
                     "answer": "allow"
                 }
             ]
@@ -7407,15 +7410,15 @@ const VOCAB_DB = {
             "ch": "單獨；獨自",
             "sents": [
                 {
-                    "text": "We learned the word \"alone\" in class today.",
+                    "text": "I noticed \"alone\" in a poster at the station.",
                     "answer": "alone"
                 },
                 {
-                    "text": "Please remember \"alone\" for the quiz.",
+                    "text": "The news report included \"alone\" in the headline.",
                     "answer": "alone"
                 },
                 {
-                    "text": "My teacher used \"alone\" in an example.",
+                    "text": "Our class discussion mentioned \"alone\" more than once.",
                     "answer": "alone"
                 }
             ]
@@ -7433,7 +7436,7 @@ const VOCAB_DB = {
                     "answer": "along"
                 },
                 {
-                    "text": "My teacher used \"along\" in an example.",
+                    "text": "The reading passage used \"along\" in a real-life context.",
                     "answer": "along"
                 }
             ]
@@ -7451,7 +7454,7 @@ const VOCAB_DB = {
                     "answer": "although"
                 },
                 {
-                    "text": "My teacher used \"although\" in an example.",
+                    "text": "She wrote \"although\" in her notebook during the lesson.",
                     "answer": "although"
                 }
             ]
@@ -7461,15 +7464,15 @@ const VOCAB_DB = {
             "ch": "在…之中",
             "sents": [
                 {
-                    "text": "We learned the word \"among\" in class today.",
+                    "text": "The online video explained \"among\" in a clear way.",
                     "answer": "among"
                 },
                 {
-                    "text": "Please remember \"among\" for the quiz.",
+                    "text": "I found \"among\" in a message from my teacher.",
                     "answer": "among"
                 },
                 {
-                    "text": "My teacher used \"among\" in an example.",
+                    "text": "The reading passage used \"among\" in a real-life context.",
                     "answer": "among"
                 }
             ]
@@ -7479,15 +7482,15 @@ const VOCAB_DB = {
             "ch": "古代的；古老的",
             "sents": [
                 {
-                    "text": "We learned the word \"ancient\" in class today.",
+                    "text": "I saw \"ancient\" in a short article this morning.",
                     "answer": "ancient"
                 },
                 {
-                    "text": "Please remember \"ancient\" for the quiz.",
+                    "text": "The teacher wrote \"ancient\" on the board before class.",
                     "answer": "ancient"
                 },
                 {
-                    "text": "My teacher used \"ancient\" in an example.",
+                    "text": "We used \"ancient\" in a quick speaking exercise today.",
                     "answer": "ancient"
                 }
             ]
@@ -7627,7 +7630,7 @@ const VOCAB_DB = {
                     "answer": "apply"
                 },
                 {
-                    "text": "Please remember \"apply\" for the quiz.",
+                    "text": "I found \"apply\" in a message from my teacher.",
                     "answer": "apply"
                 },
                 {
@@ -7681,11 +7684,11 @@ const VOCAB_DB = {
                     "answer": "argue"
                 },
                 {
-                    "text": "Please remember \"argue\" for the quiz.",
+                    "text": "I saw \"argue\" in a short article this morning.",
                     "answer": "argue"
                 },
                 {
-                    "text": "My teacher used \"argue\" in an example.",
+                    "text": "The teacher wrote \"argue\" on the board before class.",
                     "answer": "argue"
                 }
             ]
@@ -7713,7 +7716,7 @@ const VOCAB_DB = {
             "ch": "軍隊；陸軍",
             "sents": [
                 {
-                    "text": "We learned the word \"army\" in class today.",
+                    "text": "The reading passage used \"army\" in a real-life context.",
                     "answer": "army"
                 },
                 {
@@ -7749,7 +7752,7 @@ const VOCAB_DB = {
             "ch": "安排；佈置",
             "sents": [
                 {
-                    "text": "We learned the word \"arrangement\" in class today.",
+                    "text": "I saw \"arrangement\" in a short article this morning.",
                     "answer": "arrangement"
                 },
                 {
@@ -7771,11 +7774,11 @@ const VOCAB_DB = {
                     "answer": "asian"
                 },
                 {
-                    "text": "Please remember \"asian\" for the quiz.",
+                    "text": "The online video explained \"asian\" in a clear way.",
                     "answer": "asian"
                 },
                 {
-                    "text": "My teacher used \"asian\" in an example.",
+                    "text": "I found \"asian\" in a message from my teacher.",
                     "answer": "asian"
                 }
             ]
@@ -7803,15 +7806,15 @@ const VOCAB_DB = {
             "ch": "助手；助理",
             "sents": [
                 {
-                    "text": "We learned the word \"assistant\" in class today.",
+                    "text": "I noticed \"assistant\" in a poster at the station.",
                     "answer": "assistant"
                 },
                 {
-                    "text": "Please remember \"assistant\" for the quiz.",
+                    "text": "The news report included \"assistant\" in the headline.",
                     "answer": "assistant"
                 },
                 {
-                    "text": "My teacher used \"assistant\" in an example.",
+                    "text": "Our class discussion mentioned \"assistant\" more than once.",
                     "answer": "assistant"
                 }
             ]
@@ -7857,15 +7860,15 @@ const VOCAB_DB = {
             "ch": "攻擊；襲擊",
             "sents": [
                 {
-                    "text": "We learned the word \"attack\" in class today.",
+                    "text": "I found \"attack\" in a message from my teacher.",
                     "answer": "attack"
                 },
                 {
-                    "text": "Please remember \"attack\" for the quiz.",
+                    "text": "The reading passage used \"attack\" in a real-life context.",
                     "answer": "attack"
                 },
                 {
-                    "text": "My teacher used \"attack\" in an example.",
+                    "text": "I saw \"attack\" in a short article this morning.",
                     "answer": "attack"
                 }
             ]
@@ -7879,11 +7882,11 @@ const VOCAB_DB = {
                     "answer": "attend"
                 },
                 {
-                    "text": "Please remember \"attend\" for the quiz.",
+                    "text": "The teacher wrote \"attend\" on the board before class.",
                     "answer": "attend"
                 },
                 {
-                    "text": "My teacher used \"attend\" in an example.",
+                    "text": "We used \"attend\" in a quick speaking exercise today.",
                     "answer": "attend"
                 }
             ]
@@ -7893,11 +7896,11 @@ const VOCAB_DB = {
             "ch": "注意；留心",
             "sents": [
                 {
-                    "text": "We learned the word \"attention\" in class today.",
+                    "text": "The news report included \"attention\" in the headline.",
                     "answer": "attention"
                 },
                 {
-                    "text": "Please remember \"attention\" for the quiz.",
+                    "text": "Our class discussion mentioned \"attention\" more than once.",
                     "answer": "attention"
                 },
                 {
@@ -7911,7 +7914,7 @@ const VOCAB_DB = {
             "ch": "吸引人的",
             "sents": [
                 {
-                    "text": "We learned the word \"attractive\" in class today.",
+                    "text": "I found \"attractive\" in a message from my teacher.",
                     "answer": "attractive"
                 },
                 {
@@ -7919,7 +7922,7 @@ const VOCAB_DB = {
                     "answer": "attractive"
                 },
                 {
-                    "text": "My teacher used \"attractive\" in an example.",
+                    "text": "I saw \"attractive\" in a short article this morning.",
                     "answer": "attractive"
                 }
             ]
@@ -7947,15 +7950,15 @@ const VOCAB_DB = {
             "ch": "作者",
             "sents": [
                 {
-                    "text": "We learned the word \"author\" in class today.",
+                    "text": "I heard \"author\" in a conversation after school.",
                     "answer": "author"
                 },
                 {
-                    "text": "Please remember \"author\" for the quiz.",
+                    "text": "The guidebook used \"author\" in a simple example.",
                     "answer": "author"
                 },
                 {
-                    "text": "My teacher used \"author\" in an example.",
+                    "text": "She wrote \"author\" in her notebook during the lesson.",
                     "answer": "author"
                 }
             ]
@@ -7965,11 +7968,11 @@ const VOCAB_DB = {
             "ch": "可得到的；有空的",
             "sents": [
                 {
-                    "text": "We learned the word \"available\" in class today.",
+                    "text": "I noticed \"available\" in a poster at the station.",
                     "answer": "available"
                 },
                 {
-                    "text": "Please remember \"available\" for the quiz.",
+                    "text": "The news report included \"available\" in the headline.",
                     "answer": "available"
                 },
                 {
@@ -7987,7 +7990,7 @@ const VOCAB_DB = {
                     "answer": "avoid"
                 },
                 {
-                    "text": "Please remember \"avoid\" for the quiz.",
+                    "text": "The guidebook used \"avoid\" in a simple example.",
                     "answer": "avoid"
                 },
                 {
@@ -8027,7 +8030,7 @@ const VOCAB_DB = {
                     "answer": "background"
                 },
                 {
-                    "text": "My teacher used \"background\" in an example.",
+                    "text": "We used \"background\" in a quick speaking exercise today.",
                     "answer": "background"
                 }
             ]
@@ -8117,7 +8120,7 @@ const VOCAB_DB = {
                     "answer": "beginner"
                 },
                 {
-                    "text": "My teacher used \"beginner\" in an example.",
+                    "text": "Our class discussion mentioned \"beginner\" more than once.",
                     "answer": "beginner"
                 }
             ]
@@ -8271,15 +8274,15 @@ const VOCAB_DB = {
             "ch": "借入",
             "sents": [
                 {
-                    "text": "We learned the word \"borrow\" in class today.",
+                    "text": "I heard \"borrow\" in a conversation after school.",
                     "answer": "borrow"
                 },
                 {
-                    "text": "Please remember \"borrow\" for the quiz.",
+                    "text": "The guidebook used \"borrow\" in a simple example.",
                     "answer": "borrow"
                 },
                 {
-                    "text": "My teacher used \"borrow\" in an example.",
+                    "text": "She wrote \"borrow\" in her notebook during the lesson.",
                     "answer": "borrow"
                 }
             ]
@@ -8315,7 +8318,7 @@ const VOCAB_DB = {
                     "answer": "brain"
                 },
                 {
-                    "text": "My teacher used \"brain\" in an example.",
+                    "text": "The online video explained \"brain\" in a clear way.",
                     "answer": "brain"
                 }
             ]
@@ -8415,15 +8418,15 @@ const VOCAB_DB = {
             "ch": "露營；營地",
             "sents": [
                 {
-                    "text": "We learned the word \"camp\" in class today.",
+                    "text": "I found \"camp\" in a message from my teacher.",
                     "answer": "camp"
                 },
                 {
-                    "text": "Please remember \"camp\" for the quiz.",
+                    "text": "The reading passage used \"camp\" in a real-life context.",
                     "answer": "camp"
                 },
                 {
-                    "text": "My teacher used \"camp\" in an example.",
+                    "text": "I saw \"camp\" in a short article this morning.",
                     "answer": "camp"
                 }
             ]
@@ -8441,7 +8444,7 @@ const VOCAB_DB = {
                     "answer": "candy"
                 },
                 {
-                    "text": "My teacher used \"candy\" in an example.",
+                    "text": "I noticed \"candy\" in a poster at the station.",
                     "answer": "candy"
                 }
             ]
@@ -8487,11 +8490,11 @@ const VOCAB_DB = {
             "ch": "情況；盒子",
             "sents": [
                 {
-                    "text": "We learned the word \"case\" in class today.",
+                    "text": "The news report included \"case\" in the headline.",
                     "answer": "case"
                 },
                 {
-                    "text": "Please remember \"case\" for the quiz.",
+                    "text": "Our class discussion mentioned \"case\" more than once.",
                     "answer": "case"
                 },
                 {
@@ -8541,11 +8544,11 @@ const VOCAB_DB = {
             "ch": "造成；原因",
             "sents": [
                 {
-                    "text": "We learned the word \"cause\" in class today.",
+                    "text": "I saw \"cause\" in a short article this morning.",
                     "answer": "cause"
                 },
                 {
-                    "text": "Please remember \"cause\" for the quiz.",
+                    "text": "The teacher wrote \"cause\" on the board before class.",
                     "answer": "cause"
                 },
                 {
@@ -8577,15 +8580,15 @@ const VOCAB_DB = {
             "ch": "名人",
             "sents": [
                 {
-                    "text": "We learned the word \"celebrity\" in class today.",
+                    "text": "I noticed \"celebrity\" in a poster at the station.",
                     "answer": "celebrity"
                 },
                 {
-                    "text": "Please remember \"celebrity\" for the quiz.",
+                    "text": "The news report included \"celebrity\" in the headline.",
                     "answer": "celebrity"
                 },
                 {
-                    "text": "My teacher used \"celebrity\" in an example.",
+                    "text": "Our class discussion mentioned \"celebrity\" more than once.",
                     "answer": "celebrity"
                 }
             ]
@@ -8667,15 +8670,15 @@ const VOCAB_DB = {
             "ch": "慈善；慈善機構",
             "sents": [
                 {
-                    "text": "We learned the word \"charity\" in class today.",
+                    "text": "I noticed \"charity\" in a poster at the station.",
                     "answer": "charity"
                 },
                 {
-                    "text": "Please remember \"charity\" for the quiz.",
+                    "text": "The news report included \"charity\" in the headline.",
                     "answer": "charity"
                 },
                 {
-                    "text": "My teacher used \"charity\" in an example.",
+                    "text": "Our class discussion mentioned \"charity\" more than once.",
                     "answer": "charity"
                 }
             ]
@@ -8703,7 +8706,7 @@ const VOCAB_DB = {
             "ch": "檢查；核對",
             "sents": [
                 {
-                    "text": "We learned the word \"check\" in class today.",
+                    "text": "The online video explained \"check\" in a clear way.",
                     "answer": "check"
                 },
                 {
@@ -8711,7 +8714,7 @@ const VOCAB_DB = {
                     "answer": "check"
                 },
                 {
-                    "text": "My teacher used \"check\" in an example.",
+                    "text": "The reading passage used \"check\" in a real-life context.",
                     "answer": "check"
                 }
             ]
@@ -8721,11 +8724,11 @@ const VOCAB_DB = {
             "ch": "廚師",
             "sents": [
                 {
-                    "text": "We learned the word \"chef\" in class today.",
+                    "text": "The online video explained \"chef\" in a clear way.",
                     "answer": "chef"
                 },
                 {
-                    "text": "Please remember \"chef\" for the quiz.",
+                    "text": "I found \"chef\" in a message from my teacher.",
                     "answer": "chef"
                 },
                 {
@@ -8783,7 +8786,7 @@ const VOCAB_DB = {
                     "answer": "choice"
                 },
                 {
-                    "text": "My teacher used \"choice\" in an example.",
+                    "text": "Our class discussion mentioned \"choice\" more than once.",
                     "answer": "choice"
                 }
             ]
@@ -8909,7 +8912,7 @@ const VOCAB_DB = {
                     "answer": "clearly"
                 },
                 {
-                    "text": "My teacher used \"clearly\" in an example.",
+                    "text": "Our class discussion mentioned \"clearly\" more than once.",
                     "answer": "clearly"
                 }
             ]
@@ -8937,11 +8940,11 @@ const VOCAB_DB = {
             "ch": "氣候",
             "sents": [
                 {
-                    "text": "We learned the word \"climate\" in class today.",
+                    "text": "The teacher wrote \"climate\" on the board before class.",
                     "answer": "climate"
                 },
                 {
-                    "text": "Please remember \"climate\" for the quiz.",
+                    "text": "We used \"climate\" in a quick speaking exercise today.",
                     "answer": "climate"
                 },
                 {
@@ -9009,11 +9012,11 @@ const VOCAB_DB = {
             "ch": "收集",
             "sents": [
                 {
-                    "text": "We learned the word \"collect\" in class today.",
+                    "text": "The reading passage used \"collect\" in a real-life context.",
                     "answer": "collect"
                 },
                 {
-                    "text": "Please remember \"collect\" for the quiz.",
+                    "text": "I saw \"collect\" in a short article this morning.",
                     "answer": "collect"
                 },
                 {
@@ -9067,11 +9070,11 @@ const VOCAB_DB = {
                     "answer": "community"
                 },
                 {
-                    "text": "Please remember \"community\" for the quiz.",
+                    "text": "I heard \"community\" in a conversation after school.",
                     "answer": "community"
                 },
                 {
-                    "text": "My teacher used \"community\" in an example.",
+                    "text": "The guidebook used \"community\" in a simple example.",
                     "answer": "community"
                 }
             ]
@@ -9081,7 +9084,7 @@ const VOCAB_DB = {
             "ch": "競爭；比賽",
             "sents": [
                 {
-                    "text": "We learned the word \"compete\" in class today.",
+                    "text": "The online video explained \"compete\" in a clear way.",
                     "answer": "compete"
                 },
                 {
@@ -9099,15 +9102,15 @@ const VOCAB_DB = {
             "ch": "比賽；競爭",
             "sents": [
                 {
-                    "text": "We learned the word \"competition\" in class today.",
+                    "text": "I noticed \"competition\" in a poster at the station.",
                     "answer": "competition"
                 },
                 {
-                    "text": "Please remember \"competition\" for the quiz.",
+                    "text": "The news report included \"competition\" in the headline.",
                     "answer": "competition"
                 },
                 {
-                    "text": "My teacher used \"competition\" in an example.",
+                    "text": "Our class discussion mentioned \"competition\" more than once.",
                     "answer": "competition"
                 }
             ]
@@ -9117,7 +9120,7 @@ const VOCAB_DB = {
             "ch": "抱怨",
             "sents": [
                 {
-                    "text": "We learned the word \"complain\" in class today.",
+                    "text": "I found \"complain\" in a message from my teacher.",
                     "answer": "complain"
                 },
                 {
@@ -9125,7 +9128,7 @@ const VOCAB_DB = {
                     "answer": "complain"
                 },
                 {
-                    "text": "My teacher used \"complain\" in an example.",
+                    "text": "I saw \"complain\" in a short article this morning.",
                     "answer": "complain"
                 }
             ]
@@ -9143,7 +9146,7 @@ const VOCAB_DB = {
                     "answer": "completely"
                 },
                 {
-                    "text": "My teacher used \"completely\" in an example.",
+                    "text": "She wrote \"completely\" in her notebook during the lesson.",
                     "answer": "completely"
                 }
             ]
@@ -9153,11 +9156,11 @@ const VOCAB_DB = {
             "ch": "情況；條件",
             "sents": [
                 {
-                    "text": "We learned the word \"condition\" in class today.",
+                    "text": "The guidebook used \"condition\" in a simple example.",
                     "answer": "condition"
                 },
                 {
-                    "text": "Please remember \"condition\" for the quiz.",
+                    "text": "She wrote \"condition\" in her notebook during the lesson.",
                     "answer": "condition"
                 },
                 {
@@ -9171,7 +9174,7 @@ const VOCAB_DB = {
             "ch": "會議",
             "sents": [
                 {
-                    "text": "We learned the word \"conference\" in class today.",
+                    "text": "She wrote \"conference\" in her notebook during the lesson.",
                     "answer": "conference"
                 },
                 {
@@ -9179,7 +9182,7 @@ const VOCAB_DB = {
                     "answer": "conference"
                 },
                 {
-                    "text": "My teacher used \"conference\" in an example.",
+                    "text": "I found \"conference\" in a message from my teacher.",
                     "answer": "conference"
                 }
             ]
@@ -9193,7 +9196,7 @@ const VOCAB_DB = {
                     "answer": "congratulation"
                 },
                 {
-                    "text": "Please remember \"congratulation\" for the quiz.",
+                    "text": "The guidebook used \"congratulation\" in a simple example.",
                     "answer": "congratulation"
                 },
                 {
@@ -9211,11 +9214,11 @@ const VOCAB_DB = {
                     "answer": "connect"
                 },
                 {
-                    "text": "Please remember \"connect\" for the quiz.",
+                    "text": "We used \"connect\" in a quick speaking exercise today.",
                     "answer": "connect"
                 },
                 {
-                    "text": "My teacher used \"connect\" in an example.",
+                    "text": "I noticed \"connect\" in a poster at the station.",
                     "answer": "connect"
                 }
             ]
@@ -9225,7 +9228,7 @@ const VOCAB_DB = {
             "ch": "包含",
             "sents": [
                 {
-                    "text": "We learned the word \"contain\" in class today.",
+                    "text": "The teacher wrote \"contain\" on the board before class.",
                     "answer": "contain"
                 },
                 {
@@ -9233,7 +9236,7 @@ const VOCAB_DB = {
                     "answer": "contain"
                 },
                 {
-                    "text": "My teacher used \"contain\" in an example.",
+                    "text": "I noticed \"contain\" in a poster at the station.",
                     "answer": "contain"
                 }
             ]
@@ -9261,7 +9264,7 @@ const VOCAB_DB = {
             "ch": "控制",
             "sents": [
                 {
-                    "text": "We learned the word \"control\" in class today.",
+                    "text": "I heard \"control\" in a conversation after school.",
                     "answer": "control"
                 },
                 {
@@ -9269,7 +9272,7 @@ const VOCAB_DB = {
                     "answer": "control"
                 },
                 {
-                    "text": "My teacher used \"control\" in an example.",
+                    "text": "She wrote \"control\" in her notebook during the lesson.",
                     "answer": "control"
                 }
             ]
@@ -9287,7 +9290,7 @@ const VOCAB_DB = {
                     "answer": "cook"
                 },
                 {
-                    "text": "My teacher used \"cook\" in an example.",
+                    "text": "Our class discussion mentioned \"cook\" more than once.",
                     "answer": "cook"
                 }
             ]
@@ -9315,7 +9318,7 @@ const VOCAB_DB = {
             "ch": "複製；副本",
             "sents": [
                 {
-                    "text": "We learned the word \"copy\" in class today.",
+                    "text": "She wrote \"copy\" in her notebook during the lesson.",
                     "answer": "copy"
                 },
                 {
@@ -9369,15 +9372,15 @@ const VOCAB_DB = {
             "ch": "沙發",
             "sents": [
                 {
-                    "text": "We learned the word \"couch\" in class today.",
+                    "text": "The online video explained \"couch\" in a clear way.",
                     "answer": "couch"
                 },
                 {
-                    "text": "Please remember \"couch\" for the quiz.",
+                    "text": "I found \"couch\" in a message from my teacher.",
                     "answer": "couch"
                 },
                 {
-                    "text": "My teacher used \"couch\" in an example.",
+                    "text": "The reading passage used \"couch\" in a real-life context.",
                     "answer": "couch"
                 }
             ]
@@ -9387,7 +9390,7 @@ const VOCAB_DB = {
             "ch": "一對；兩個",
             "sents": [
                 {
-                    "text": "We learned the word \"couple\" in class today.",
+                    "text": "I noticed \"couple\" in a poster at the station.",
                     "answer": "couple"
                 },
                 {
@@ -9395,7 +9398,7 @@ const VOCAB_DB = {
                     "answer": "couple"
                 },
                 {
-                    "text": "My teacher used \"couple\" in an example.",
+                    "text": "Our class discussion mentioned \"couple\" more than once.",
                     "answer": "couple"
                 }
             ]
@@ -9413,7 +9416,7 @@ const VOCAB_DB = {
                     "answer": "crazy"
                 },
                 {
-                    "text": "My teacher used \"crazy\" in an example.",
+                    "text": "Our class discussion mentioned \"crazy\" more than once.",
                     "answer": "crazy"
                 }
             ]
@@ -9427,11 +9430,11 @@ const VOCAB_DB = {
                     "answer": "creative"
                 },
                 {
-                    "text": "Please remember \"creative\" for the quiz.",
+                    "text": "She wrote \"creative\" in her notebook during the lesson.",
                     "answer": "creative"
                 },
                 {
-                    "text": "My teacher used \"creative\" in an example.",
+                    "text": "The online video explained \"creative\" in a clear way.",
                     "answer": "creative"
                 }
             ]
@@ -9485,7 +9488,7 @@ const VOCAB_DB = {
                     "answer": "crowd"
                 },
                 {
-                    "text": "My teacher used \"crowd\" in an example.",
+                    "text": "Our class discussion mentioned \"crowd\" more than once.",
                     "answer": "crowd"
                 }
             ]
@@ -9499,7 +9502,7 @@ const VOCAB_DB = {
                     "answer": "cupboard"
                 },
                 {
-                    "text": "Please remember \"cupboard\" for the quiz.",
+                    "text": "She wrote \"cupboard\" in her notebook during the lesson.",
                     "answer": "cupboard"
                 },
                 {
@@ -9549,11 +9552,11 @@ const VOCAB_DB = {
             "ch": "危險",
             "sents": [
                 {
-                    "text": "We learned the word \"danger\" in class today.",
+                    "text": "I found \"danger\" in a message from my teacher.",
                     "answer": "danger"
                 },
                 {
-                    "text": "Please remember \"danger\" for the quiz.",
+                    "text": "The reading passage used \"danger\" in a real-life context.",
                     "answer": "danger"
                 },
                 {
@@ -9621,7 +9624,7 @@ const VOCAB_DB = {
             "ch": "死的",
             "sents": [
                 {
-                    "text": "We learned the word \"dead\" in class today.",
+                    "text": "I found \"dead\" in a message from my teacher.",
                     "answer": "dead"
                 },
                 {
@@ -9661,11 +9664,11 @@ const VOCAB_DB = {
                     "answer": "death"
                 },
                 {
-                    "text": "Please remember \"death\" for the quiz.",
+                    "text": "She wrote \"death\" in her notebook during the lesson.",
                     "answer": "death"
                 },
                 {
-                    "text": "My teacher used \"death\" in an example.",
+                    "text": "The online video explained \"death\" in a clear way.",
                     "answer": "death"
                 }
             ]
@@ -9675,11 +9678,11 @@ const VOCAB_DB = {
             "ch": "決定",
             "sents": [
                 {
-                    "text": "We learned the word \"decision\" in class today.",
+                    "text": "The teacher wrote \"decision\" on the board before class.",
                     "answer": "decision"
                 },
                 {
-                    "text": "Please remember \"decision\" for the quiz.",
+                    "text": "We used \"decision\" in a quick speaking exercise today.",
                     "answer": "decision"
                 },
                 {
@@ -9733,11 +9736,11 @@ const VOCAB_DB = {
                     "answer": "degree"
                 },
                 {
-                    "text": "Please remember \"degree\" for the quiz.",
+                    "text": "We used \"degree\" in a quick speaking exercise today.",
                     "answer": "degree"
                 },
                 {
-                    "text": "My teacher used \"degree\" in an example.",
+                    "text": "I noticed \"degree\" in a poster at the station.",
                     "answer": "degree"
                 }
             ]
@@ -9751,7 +9754,7 @@ const VOCAB_DB = {
                     "answer": "department"
                 },
                 {
-                    "text": "Please remember \"department\" for the quiz.",
+                    "text": "She wrote \"department\" in her notebook during the lesson.",
                     "answer": "department"
                 },
                 {
@@ -9765,7 +9768,7 @@ const VOCAB_DB = {
             "ch": "依靠；取決於",
             "sents": [
                 {
-                    "text": "We learned the word \"depend\" in class today.",
+                    "text": "Our class discussion mentioned \"depend\" more than once.",
                     "answer": "depend"
                 },
                 {
@@ -9773,7 +9776,7 @@ const VOCAB_DB = {
                     "answer": "depend"
                 },
                 {
-                    "text": "My teacher used \"depend\" in an example.",
+                    "text": "The guidebook used \"depend\" in a simple example.",
                     "answer": "depend"
                 }
             ]
@@ -9805,7 +9808,7 @@ const VOCAB_DB = {
                     "answer": "destroy"
                 },
                 {
-                    "text": "Please remember \"destroy\" for the quiz.",
+                    "text": "The online video explained \"destroy\" in a clear way.",
                     "answer": "destroy"
                 },
                 {
@@ -9827,7 +9830,7 @@ const VOCAB_DB = {
                     "answer": "develop"
                 },
                 {
-                    "text": "My teacher used \"develop\" in an example.",
+                    "text": "The guidebook used \"develop\" in a simple example.",
                     "answer": "develop"
                 }
             ]
@@ -9927,7 +9930,7 @@ const VOCAB_DB = {
             "ch": "導演；主管",
             "sents": [
                 {
-                    "text": "We learned the word \"director\" in class today.",
+                    "text": "The reading passage used \"director\" in a real-life context.",
                     "answer": "director"
                 },
                 {
@@ -9999,11 +10002,11 @@ const VOCAB_DB = {
             "ch": "發現",
             "sents": [
                 {
-                    "text": "We learned the word \"discover\" in class today.",
+                    "text": "I heard \"discover\" in a conversation after school.",
                     "answer": "discover"
                 },
                 {
-                    "text": "Please remember \"discover\" for the quiz.",
+                    "text": "The guidebook used \"discover\" in a simple example.",
                     "answer": "discover"
                 },
                 {
@@ -10017,15 +10020,15 @@ const VOCAB_DB = {
             "ch": "發現",
             "sents": [
                 {
-                    "text": "We learned the word \"discovery\" in class today.",
+                    "text": "We used \"discovery\" in a quick speaking exercise today.",
                     "answer": "discovery"
                 },
                 {
-                    "text": "Please remember \"discovery\" for the quiz.",
+                    "text": "I noticed \"discovery\" in a poster at the station.",
                     "answer": "discovery"
                 },
                 {
-                    "text": "My teacher used \"discovery\" in an example.",
+                    "text": "The news report included \"discovery\" in the headline.",
                     "answer": "discovery"
                 }
             ]
@@ -10039,7 +10042,7 @@ const VOCAB_DB = {
                     "answer": "discussion"
                 },
                 {
-                    "text": "Please remember \"discussion\" for the quiz.",
+                    "text": "I noticed \"discussion\" in a poster at the station.",
                     "answer": "discussion"
                 },
                 {
@@ -10071,7 +10074,7 @@ const VOCAB_DB = {
             "ch": "距離",
             "sents": [
                 {
-                    "text": "We learned the word \"distance\" in class today.",
+                    "text": "The news report included \"distance\" in the headline.",
                     "answer": "distance"
                 },
                 {
@@ -10079,7 +10082,7 @@ const VOCAB_DB = {
                     "answer": "distance"
                 },
                 {
-                    "text": "My teacher used \"distance\" in an example.",
+                    "text": "I heard \"distance\" in a conversation after school.",
                     "answer": "distance"
                 }
             ]
@@ -10197,7 +10200,7 @@ const VOCAB_DB = {
             "ch": "駕駛",
             "sents": [
                 {
-                    "text": "We learned the word \"drive\" in class today.",
+                    "text": "The teacher wrote \"drive\" on the board before class.",
                     "answer": "drive"
                 },
                 {
@@ -10205,7 +10208,7 @@ const VOCAB_DB = {
                     "answer": "drive"
                 },
                 {
-                    "text": "My teacher used \"drive\" in an example.",
+                    "text": "I noticed \"drive\" in a poster at the station.",
                     "answer": "drive"
                 }
             ]
@@ -10255,11 +10258,11 @@ const VOCAB_DB = {
                     "answer": "earth"
                 },
                 {
-                    "text": "Please remember \"earth\" for the quiz.",
+                    "text": "The online video explained \"earth\" in a clear way.",
                     "answer": "earth"
                 },
                 {
-                    "text": "My teacher used \"earth\" in an example.",
+                    "text": "I found \"earth\" in a message from my teacher.",
                     "answer": "earth"
                 }
             ]
@@ -10269,11 +10272,11 @@ const VOCAB_DB = {
             "ch": "容易地",
             "sents": [
                 {
-                    "text": "We learned the word \"easily\" in class today.",
+                    "text": "We used \"easily\" in a quick speaking exercise today.",
                     "answer": "easily"
                 },
                 {
-                    "text": "Please remember \"easily\" for the quiz.",
+                    "text": "I noticed \"easily\" in a poster at the station.",
                     "answer": "easily"
                 },
                 {
@@ -10295,7 +10298,7 @@ const VOCAB_DB = {
                     "answer": "education"
                 },
                 {
-                    "text": "My teacher used \"education\" in an example.",
+                    "text": "We used \"education\" in a quick speaking exercise today.",
                     "answer": "education"
                 }
             ]
@@ -10305,11 +10308,11 @@ const VOCAB_DB = {
             "ch": "效果；影響",
             "sents": [
                 {
-                    "text": "We learned the word \"effect\" in class today.",
+                    "text": "She wrote \"effect\" in her notebook during the lesson.",
                     "answer": "effect"
                 },
                 {
-                    "text": "Please remember \"effect\" for the quiz.",
+                    "text": "The online video explained \"effect\" in a clear way.",
                     "answer": "effect"
                 },
                 {
@@ -10381,11 +10384,11 @@ const VOCAB_DB = {
                     "answer": "electricity"
                 },
                 {
-                    "text": "Please remember \"electricity\" for the quiz.",
+                    "text": "The online video explained \"electricity\" in a clear way.",
                     "answer": "electricity"
                 },
                 {
-                    "text": "My teacher used \"electricity\" in an example.",
+                    "text": "I found \"electricity\" in a message from my teacher.",
                     "answer": "electricity"
                 }
             ]
@@ -10449,11 +10452,11 @@ const VOCAB_DB = {
             "ch": "僱員；員工",
             "sents": [
                 {
-                    "text": "We learned the word \"employee\" in class today.",
+                    "text": "I found \"employee\" in a message from my teacher.",
                     "answer": "employee"
                 },
                 {
-                    "text": "Please remember \"employee\" for the quiz.",
+                    "text": "The reading passage used \"employee\" in a real-life context.",
                     "answer": "employee"
                 },
                 {
@@ -10561,11 +10564,11 @@ const VOCAB_DB = {
                     "answer": "enter"
                 },
                 {
-                    "text": "Please remember \"enter\" for the quiz.",
+                    "text": "The guidebook used \"enter\" in a simple example.",
                     "answer": "enter"
                 },
                 {
-                    "text": "My teacher used \"enter\" in an example.",
+                    "text": "She wrote \"enter\" in her notebook during the lesson.",
                     "answer": "enter"
                 }
             ]
@@ -10575,7 +10578,7 @@ const VOCAB_DB = {
             "ch": "環境",
             "sents": [
                 {
-                    "text": "We learned the word \"environment\" in class today.",
+                    "text": "I heard \"environment\" in a conversation after school.",
                     "answer": "environment"
                 },
                 {
@@ -10583,7 +10586,7 @@ const VOCAB_DB = {
                     "answer": "environment"
                 },
                 {
-                    "text": "My teacher used \"environment\" in an example.",
+                    "text": "She wrote \"environment\" in her notebook during the lesson.",
                     "answer": "environment"
                 }
             ]
@@ -10601,7 +10604,7 @@ const VOCAB_DB = {
                     "answer": "equipment"
                 },
                 {
-                    "text": "My teacher used \"equipment\" in an example.",
+                    "text": "I saw \"equipment\" in a short article this morning.",
                     "answer": "equipment"
                 }
             ]
@@ -10611,15 +10614,15 @@ const VOCAB_DB = {
             "ch": "錯誤",
             "sents": [
                 {
-                    "text": "We learned the word \"error\" in class today.",
+                    "text": "Our class discussion mentioned \"error\" more than once.",
                     "answer": "error"
                 },
                 {
-                    "text": "Please remember \"error\" for the quiz.",
+                    "text": "I heard \"error\" in a conversation after school.",
                     "answer": "error"
                 },
                 {
-                    "text": "My teacher used \"error\" in an example.",
+                    "text": "The guidebook used \"error\" in a simple example.",
                     "answer": "error"
                 }
             ]
@@ -10629,7 +10632,7 @@ const VOCAB_DB = {
             "ch": "尤其；特別",
             "sents": [
                 {
-                    "text": "We learned the word \"especially\" in class today.",
+                    "text": "I found \"especially\" in a message from my teacher.",
                     "answer": "especially"
                 },
                 {
@@ -10637,7 +10640,7 @@ const VOCAB_DB = {
                     "answer": "especially"
                 },
                 {
-                    "text": "My teacher used \"especially\" in an example.",
+                    "text": "I saw \"especially\" in a short article this morning.",
                     "answer": "especially"
                 }
             ]
@@ -10683,7 +10686,7 @@ const VOCAB_DB = {
             "ch": "到處；各處",
             "sents": [
                 {
-                    "text": "We learned the word \"everywhere\" in class today.",
+                    "text": "The guidebook used \"everywhere\" in a simple example.",
                     "answer": "everywhere"
                 },
                 {
@@ -10701,15 +10704,15 @@ const VOCAB_DB = {
             "ch": "證據",
             "sents": [
                 {
-                    "text": "We learned the word \"evidence\" in class today.",
+                    "text": "The news report included \"evidence\" in the headline.",
                     "answer": "evidence"
                 },
                 {
-                    "text": "Please remember \"evidence\" for the quiz.",
+                    "text": "Our class discussion mentioned \"evidence\" more than once.",
                     "answer": "evidence"
                 },
                 {
-                    "text": "My teacher used \"evidence\" in an example.",
+                    "text": "I heard \"evidence\" in a conversation after school.",
                     "answer": "evidence"
                 }
             ]
@@ -10741,7 +10744,7 @@ const VOCAB_DB = {
                     "answer": "exactly"
                 },
                 {
-                    "text": "Please remember \"exactly\" for the quiz.",
+                    "text": "The reading passage used \"exactly\" in a real-life context.",
                     "answer": "exactly"
                 },
                 {
@@ -10773,15 +10776,15 @@ const VOCAB_DB = {
             "ch": "存在",
             "sents": [
                 {
-                    "text": "We learned the word \"exist\" in class today.",
+                    "text": "I heard \"exist\" in a conversation after school.",
                     "answer": "exist"
                 },
                 {
-                    "text": "Please remember \"exist\" for the quiz.",
+                    "text": "The guidebook used \"exist\" in a simple example.",
                     "answer": "exist"
                 },
                 {
-                    "text": "My teacher used \"exist\" in an example.",
+                    "text": "She wrote \"exist\" in her notebook during the lesson.",
                     "answer": "exist"
                 }
             ]
@@ -10799,7 +10802,7 @@ const VOCAB_DB = {
                     "answer": "expert"
                 },
                 {
-                    "text": "My teacher used \"expert\" in an example.",
+                    "text": "Our class discussion mentioned \"expert\" more than once.",
                     "answer": "expert"
                 }
             ]
@@ -10827,15 +10830,15 @@ const VOCAB_DB = {
             "ch": "表達；快遞",
             "sents": [
                 {
-                    "text": "We learned the word \"express\" in class today.",
+                    "text": "I noticed \"express\" in a poster at the station.",
                     "answer": "express"
                 },
                 {
-                    "text": "Please remember \"express\" for the quiz.",
+                    "text": "The news report included \"express\" in the headline.",
                     "answer": "express"
                 },
                 {
-                    "text": "My teacher used \"express\" in an example.",
+                    "text": "Our class discussion mentioned \"express\" more than once.",
                     "answer": "express"
                 }
             ]
@@ -10863,7 +10866,7 @@ const VOCAB_DB = {
             "ch": "極其；非常",
             "sents": [
                 {
-                    "text": "We learned the word \"extremely\" in class today.",
+                    "text": "The online video explained \"extremely\" in a clear way.",
                     "answer": "extremely"
                 },
                 {
@@ -10871,7 +10874,7 @@ const VOCAB_DB = {
                     "answer": "extremely"
                 },
                 {
-                    "text": "My teacher used \"extremely\" in an example.",
+                    "text": "The reading passage used \"extremely\" in a real-life context.",
                     "answer": "extremely"
                 }
             ]
@@ -10917,7 +10920,7 @@ const VOCAB_DB = {
             "ch": "失敗；不及格",
             "sents": [
                 {
-                    "text": "We learned the word \"fail\" in class today.",
+                    "text": "I found \"fail\" in a message from my teacher.",
                     "answer": "fail"
                 },
                 {
@@ -10925,7 +10928,7 @@ const VOCAB_DB = {
                     "answer": "fail"
                 },
                 {
-                    "text": "My teacher used \"fail\" in an example.",
+                    "text": "I saw \"fail\" in a short article this morning.",
                     "answer": "fail"
                 }
             ]
@@ -10935,7 +10938,7 @@ const VOCAB_DB = {
             "ch": "公平的；展覽會",
             "sents": [
                 {
-                    "text": "We learned the word \"fair\" in class today.",
+                    "text": "I saw \"fair\" in a short article this morning.",
                     "answer": "fair"
                 },
                 {
@@ -10953,15 +10956,15 @@ const VOCAB_DB = {
             "ch": "風扇；迷",
             "sents": [
                 {
-                    "text": "We learned the word \"fan\" in class today.",
+                    "text": "The news report included \"fan\" in the headline.",
                     "answer": "fan"
                 },
                 {
-                    "text": "Please remember \"fan\" for the quiz.",
+                    "text": "Our class discussion mentioned \"fan\" more than once.",
                     "answer": "fan"
                 },
                 {
-                    "text": "My teacher used \"fan\" in an example.",
+                    "text": "I heard \"fan\" in a conversation after school.",
                     "answer": "fan"
                 }
             ]
@@ -11029,7 +11032,7 @@ const VOCAB_DB = {
                     "answer": "fiction"
                 },
                 {
-                    "text": "Please remember \"fiction\" for the quiz.",
+                    "text": "I noticed \"fiction\" in a poster at the station.",
                     "answer": "fiction"
                 },
                 {
@@ -11051,7 +11054,7 @@ const VOCAB_DB = {
                     "answer": "field"
                 },
                 {
-                    "text": "My teacher used \"field\" in an example.",
+                    "text": "The reading passage used \"field\" in a real-life context.",
                     "answer": "field"
                 }
             ]
@@ -11061,7 +11064,7 @@ const VOCAB_DB = {
             "ch": "打鬥；爭取",
             "sents": [
                 {
-                    "text": "We learned the word \"fight\" in class today.",
+                    "text": "The online video explained \"fight\" in a clear way.",
                     "answer": "fight"
                 },
                 {
@@ -11087,7 +11090,7 @@ const VOCAB_DB = {
                     "answer": "film"
                 },
                 {
-                    "text": "My teacher used \"film\" in an example.",
+                    "text": "The guidebook used \"film\" in a simple example.",
                     "answer": "film"
                 }
             ]
@@ -11115,11 +11118,11 @@ const VOCAB_DB = {
             "ch": "最後；終於",
             "sents": [
                 {
-                    "text": "We learned the word \"finally\" in class today.",
+                    "text": "The reading passage used \"finally\" in a real-life context.",
                     "answer": "finally"
                 },
                 {
-                    "text": "Please remember \"finally\" for the quiz.",
+                    "text": "I saw \"finally\" in a short article this morning.",
                     "answer": "finally"
                 },
                 {
@@ -11151,7 +11154,7 @@ const VOCAB_DB = {
             "ch": "完成；結束",
             "sents": [
                 {
-                    "text": "We learned the word \"finish\" in class today.",
+                    "text": "She wrote \"finish\" in her notebook during the lesson.",
                     "answer": "finish"
                 },
                 {
@@ -11191,7 +11194,7 @@ const VOCAB_DB = {
                     "answer": "fish"
                 },
                 {
-                    "text": "Please remember \"fish\" for the quiz.",
+                    "text": "Our class discussion mentioned \"fish\" more than once.",
                     "answer": "fish"
                 },
                 {
@@ -11259,7 +11262,7 @@ const VOCAB_DB = {
             "ch": "集中；焦點",
             "sents": [
                 {
-                    "text": "We learned the word \"focus\" in class today.",
+                    "text": "I saw \"focus\" in a short article this morning.",
                     "answer": "focus"
                 },
                 {
@@ -11267,7 +11270,7 @@ const VOCAB_DB = {
                     "answer": "focus"
                 },
                 {
-                    "text": "My teacher used \"focus\" in an example.",
+                    "text": "We used \"focus\" in a quick speaking exercise today.",
                     "answer": "focus"
                 }
             ]
@@ -11385,7 +11388,7 @@ const VOCAB_DB = {
             "ch": "新鮮的",
             "sents": [
                 {
-                    "text": "We learned the word \"fresh\" in class today.",
+                    "text": "The guidebook used \"fresh\" in a simple example.",
                     "answer": "fresh"
                 },
                 {
@@ -11393,7 +11396,7 @@ const VOCAB_DB = {
                     "answer": "fresh"
                 },
                 {
-                    "text": "My teacher used \"fresh\" in an example.",
+                    "text": "The online video explained \"fresh\" in a clear way.",
                     "answer": "fresh"
                 }
             ]
@@ -11547,15 +11550,15 @@ const VOCAB_DB = {
             "ch": "氣體；煤氣",
             "sents": [
                 {
-                    "text": "We learned the word \"gas\" in class today.",
+                    "text": "I found \"gas\" in a message from my teacher.",
                     "answer": "gas"
                 },
                 {
-                    "text": "Please remember \"gas\" for the quiz.",
+                    "text": "The reading passage used \"gas\" in a real-life context.",
                     "answer": "gas"
                 },
                 {
-                    "text": "My teacher used \"gas\" in an example.",
+                    "text": "I saw \"gas\" in a short article this morning.",
                     "answer": "gas"
                 }
             ]
@@ -11583,15 +11586,15 @@ const VOCAB_DB = {
             "ch": "一般的；將軍",
             "sents": [
                 {
-                    "text": "We learned the word \"general\" in class today.",
+                    "text": "The guidebook used \"general\" in a simple example.",
                     "answer": "general"
                 },
                 {
-                    "text": "Please remember \"general\" for the quiz.",
+                    "text": "She wrote \"general\" in her notebook during the lesson.",
                     "answer": "general"
                 },
                 {
-                    "text": "My teacher used \"general\" in an example.",
+                    "text": "The online video explained \"general\" in a clear way.",
                     "answer": "general"
                 }
             ]
@@ -11619,15 +11622,15 @@ const VOCAB_DB = {
             "ch": "目標；入球",
             "sents": [
                 {
-                    "text": "We learned the word \"goal\" in class today.",
+                    "text": "I noticed \"goal\" in a poster at the station.",
                     "answer": "goal"
                 },
                 {
-                    "text": "Please remember \"goal\" for the quiz.",
+                    "text": "The news report included \"goal\" in the headline.",
                     "answer": "goal"
                 },
                 {
-                    "text": "My teacher used \"goal\" in an example.",
+                    "text": "Our class discussion mentioned \"goal\" more than once.",
                     "answer": "goal"
                 }
             ]
@@ -11637,7 +11640,7 @@ const VOCAB_DB = {
             "ch": "神",
             "sents": [
                 {
-                    "text": "We learned the word \"god\" in class today.",
+                    "text": "The online video explained \"god\" in a clear way.",
                     "answer": "god"
                 },
                 {
@@ -11645,7 +11648,7 @@ const VOCAB_DB = {
                     "answer": "god"
                 },
                 {
-                    "text": "My teacher used \"god\" in an example.",
+                    "text": "The reading passage used \"god\" in a real-life context.",
                     "answer": "god"
                 }
             ]
@@ -11673,15 +11676,15 @@ const VOCAB_DB = {
             "ch": "政府",
             "sents": [
                 {
-                    "text": "We learned the word \"government\" in class today.",
+                    "text": "The reading passage used \"government\" in a real-life context.",
                     "answer": "government"
                 },
                 {
-                    "text": "Please remember \"government\" for the quiz.",
+                    "text": "I saw \"government\" in a short article this morning.",
                     "answer": "government"
                 },
                 {
-                    "text": "My teacher used \"government\" in an example.",
+                    "text": "The teacher wrote \"government\" on the board before class.",
                     "answer": "government"
                 }
             ]
@@ -11857,7 +11860,7 @@ const VOCAB_DB = {
                     "answer": "guest"
                 },
                 {
-                    "text": "Please remember \"guest\" for the quiz.",
+                    "text": "I heard \"guest\" in a conversation after school.",
                     "answer": "guest"
                 },
                 {
@@ -11871,15 +11874,15 @@ const VOCAB_DB = {
             "ch": "指南；引導",
             "sents": [
                 {
-                    "text": "We learned the word \"guide\" in class today.",
+                    "text": "The teacher wrote \"guide\" on the board before class.",
                     "answer": "guide"
                 },
                 {
-                    "text": "Please remember \"guide\" for the quiz.",
+                    "text": "We used \"guide\" in a quick speaking exercise today.",
                     "answer": "guide"
                 },
                 {
-                    "text": "My teacher used \"guide\" in an example.",
+                    "text": "I noticed \"guide\" in a poster at the station.",
                     "answer": "guide"
                 }
             ]
@@ -11911,11 +11914,11 @@ const VOCAB_DB = {
                     "answer": "habit"
                 },
                 {
-                    "text": "Please remember \"habit\" for the quiz.",
+                    "text": "The online video explained \"habit\" in a clear way.",
                     "answer": "habit"
                 },
                 {
-                    "text": "My teacher used \"habit\" in an example.",
+                    "text": "I found \"habit\" in a message from my teacher.",
                     "answer": "habit"
                 }
             ]
@@ -11929,7 +11932,7 @@ const VOCAB_DB = {
                     "answer": "half"
                 },
                 {
-                    "text": "Please remember \"half\" for the quiz.",
+                    "text": "We used \"half\" in a quick speaking exercise today.",
                     "answer": "half"
                 },
                 {
@@ -11961,15 +11964,15 @@ const VOCAB_DB = {
             "ch": "手冊",
             "sents": [
                 {
-                    "text": "We learned the word \"handbook\" in class today.",
+                    "text": "I heard \"handbook\" in a conversation after school.",
                     "answer": "handbook"
                 },
                 {
-                    "text": "Please remember \"handbook\" for the quiz.",
+                    "text": "The guidebook used \"handbook\" in a simple example.",
                     "answer": "handbook"
                 },
                 {
-                    "text": "My teacher used \"handbook\" in an example.",
+                    "text": "She wrote \"handbook\" in her notebook during the lesson.",
                     "answer": "handbook"
                 }
             ]
@@ -12159,11 +12162,11 @@ const VOCAB_DB = {
             "ch": "有幫助的",
             "sents": [
                 {
-                    "text": "We learned the word \"helpful\" in class today.",
+                    "text": "I noticed \"helpful\" in a poster at the station.",
                     "answer": "helpful"
                 },
                 {
-                    "text": "Please remember \"helpful\" for the quiz.",
+                    "text": "The news report included \"helpful\" in the headline.",
                     "answer": "helpful"
                 },
                 {
@@ -12235,11 +12238,11 @@ const VOCAB_DB = {
                     "answer": "hit"
                 },
                 {
-                    "text": "Please remember \"hit\" for the quiz.",
+                    "text": "I saw \"hit\" in a short article this morning.",
                     "answer": "hit"
                 },
                 {
-                    "text": "My teacher used \"hit\" in an example.",
+                    "text": "The teacher wrote \"hit\" on the board before class.",
                     "answer": "hit"
                 }
             ]
@@ -12249,11 +12252,11 @@ const VOCAB_DB = {
             "ch": "洞",
             "sents": [
                 {
-                    "text": "We learned the word \"hole\" in class today.",
+                    "text": "We used \"hole\" in a quick speaking exercise today.",
                     "answer": "hole"
                 },
                 {
-                    "text": "Please remember \"hole\" for the quiz.",
+                    "text": "I noticed \"hole\" in a poster at the station.",
                     "answer": "hole"
                 },
                 {
@@ -12271,7 +12274,7 @@ const VOCAB_DB = {
                     "answer": "honey"
                 },
                 {
-                    "text": "Please remember \"honey\" for the quiz.",
+                    "text": "We used \"honey\" in a quick speaking exercise today.",
                     "answer": "honey"
                 },
                 {
@@ -12357,7 +12360,7 @@ const VOCAB_DB = {
             "ch": "巨大的",
             "sents": [
                 {
-                    "text": "We learned the word \"huge\" in class today.",
+                    "text": "We used \"huge\" in a quick speaking exercise today.",
                     "answer": "huge"
                 },
                 {
@@ -12365,7 +12368,7 @@ const VOCAB_DB = {
                     "answer": "huge"
                 },
                 {
-                    "text": "My teacher used \"huge\" in an example.",
+                    "text": "The news report included \"huge\" in the headline.",
                     "answer": "huge"
                 }
             ]
@@ -12393,11 +12396,11 @@ const VOCAB_DB = {
             "ch": "識別；確認",
             "sents": [
                 {
-                    "text": "We learned the word \"identify\" in class today.",
+                    "text": "The reading passage used \"identify\" in a real-life context.",
                     "answer": "identify"
                 },
                 {
-                    "text": "Please remember \"identify\" for the quiz.",
+                    "text": "I saw \"identify\" in a short article this morning.",
                     "answer": "identify"
                 },
                 {
@@ -12429,7 +12432,7 @@ const VOCAB_DB = {
             "ch": "立刻；馬上",
             "sents": [
                 {
-                    "text": "We learned the word \"immediately\" in class today.",
+                    "text": "We used \"immediately\" in a quick speaking exercise today.",
                     "answer": "immediately"
                 },
                 {
@@ -12437,7 +12440,7 @@ const VOCAB_DB = {
                     "answer": "immediately"
                 },
                 {
-                    "text": "My teacher used \"immediately\" in an example.",
+                    "text": "The news report included \"immediately\" in the headline.",
                     "answer": "immediately"
                 }
             ]
@@ -12451,11 +12454,11 @@ const VOCAB_DB = {
                     "answer": "impossible"
                 },
                 {
-                    "text": "Please remember \"impossible\" for the quiz.",
+                    "text": "I saw \"impossible\" in a short article this morning.",
                     "answer": "impossible"
                 },
                 {
-                    "text": "My teacher used \"impossible\" in an example.",
+                    "text": "The teacher wrote \"impossible\" on the board before class.",
                     "answer": "impossible"
                 }
             ]
@@ -12473,7 +12476,7 @@ const VOCAB_DB = {
                     "answer": "increase"
                 },
                 {
-                    "text": "My teacher used \"increase\" in an example.",
+                    "text": "The reading passage used \"increase\" in a real-life context.",
                     "answer": "increase"
                 }
             ]
@@ -12483,7 +12486,7 @@ const VOCAB_DB = {
             "ch": "難以置信的；很棒的",
             "sents": [
                 {
-                    "text": "We learned the word \"incredible\" in class today.",
+                    "text": "The reading passage used \"incredible\" in a real-life context.",
                     "answer": "incredible"
                 },
                 {
@@ -12501,7 +12504,7 @@ const VOCAB_DB = {
             "ch": "獨立的",
             "sents": [
                 {
-                    "text": "We learned the word \"independent\" in class today.",
+                    "text": "I found \"independent\" in a message from my teacher.",
                     "answer": "independent"
                 },
                 {
@@ -12509,7 +12512,7 @@ const VOCAB_DB = {
                     "answer": "independent"
                 },
                 {
-                    "text": "My teacher used \"independent\" in an example.",
+                    "text": "I saw \"independent\" in a short article this morning.",
                     "answer": "independent"
                 }
             ]
@@ -12541,11 +12544,11 @@ const VOCAB_DB = {
                     "answer": "individual"
                 },
                 {
-                    "text": "Please remember \"individual\" for the quiz.",
+                    "text": "Our class discussion mentioned \"individual\" more than once.",
                     "answer": "individual"
                 },
                 {
-                    "text": "My teacher used \"individual\" in an example.",
+                    "text": "I heard \"individual\" in a conversation after school.",
                     "answer": "individual"
                 }
             ]
@@ -12555,11 +12558,11 @@ const VOCAB_DB = {
             "ch": "工業；行業",
             "sents": [
                 {
-                    "text": "We learned the word \"industry\" in class today.",
+                    "text": "The teacher wrote \"industry\" on the board before class.",
                     "answer": "industry"
                 },
                 {
-                    "text": "Please remember \"industry\" for the quiz.",
+                    "text": "We used \"industry\" in a quick speaking exercise today.",
                     "answer": "industry"
                 },
                 {
@@ -12591,15 +12594,15 @@ const VOCAB_DB = {
             "ch": "昆蟲",
             "sents": [
                 {
-                    "text": "We learned the word \"insect\" in class today.",
+                    "text": "We used \"insect\" in a quick speaking exercise today.",
                     "answer": "insect"
                 },
                 {
-                    "text": "Please remember \"insect\" for the quiz.",
+                    "text": "I noticed \"insect\" in a poster at the station.",
                     "answer": "insect"
                 },
                 {
-                    "text": "My teacher used \"insect\" in an example.",
+                    "text": "The news report included \"insect\" in the headline.",
                     "answer": "insect"
                 }
             ]
@@ -12609,15 +12612,15 @@ const VOCAB_DB = {
             "ch": "相反（前句否定）",
             "sents": [
                 {
-                    "text": "We learned the word \"instead\" in class today.",
+                    "text": "I noticed \"instead\" in a poster at the station.",
                     "answer": "instead"
                 },
                 {
-                    "text": "Please remember \"instead\" for the quiz.",
+                    "text": "The news report included \"instead\" in the headline.",
                     "answer": "instead"
                 },
                 {
-                    "text": "My teacher used \"instead\" in an example.",
+                    "text": "Our class discussion mentioned \"instead\" more than once.",
                     "answer": "instead"
                 }
             ]
@@ -12631,7 +12634,7 @@ const VOCAB_DB = {
                     "answer": "instruction"
                 },
                 {
-                    "text": "Please remember \"instruction\" for the quiz.",
+                    "text": "I found \"instruction\" in a message from my teacher.",
                     "answer": "instruction"
                 },
                 {
@@ -12717,7 +12720,7 @@ const VOCAB_DB = {
             "ch": "介紹；引言",
             "sents": [
                 {
-                    "text": "We learned the word \"introduction\" in class today.",
+                    "text": "We used \"introduction\" in a quick speaking exercise today.",
                     "answer": "introduction"
                 },
                 {
@@ -12789,15 +12792,15 @@ const VOCAB_DB = {
             "ch": "邀請",
             "sents": [
                 {
-                    "text": "We learned the word \"invite\" in class today.",
+                    "text": "Our class discussion mentioned \"invite\" more than once.",
                     "answer": "invite"
                 },
                 {
-                    "text": "Please remember \"invite\" for the quiz.",
+                    "text": "I heard \"invite\" in a conversation after school.",
                     "answer": "invite"
                 },
                 {
-                    "text": "My teacher used \"invite\" in an example.",
+                    "text": "The guidebook used \"invite\" in a simple example.",
                     "answer": "invite"
                 }
             ]
@@ -12807,15 +12810,15 @@ const VOCAB_DB = {
             "ch": "涉及；包含",
             "sents": [
                 {
-                    "text": "We learned the word \"involve\" in class today.",
+                    "text": "I heard \"involve\" in a conversation after school.",
                     "answer": "involve"
                 },
                 {
-                    "text": "Please remember \"involve\" for the quiz.",
+                    "text": "The guidebook used \"involve\" in a simple example.",
                     "answer": "involve"
                 },
                 {
-                    "text": "My teacher used \"involve\" in an example.",
+                    "text": "She wrote \"involve\" in her notebook during the lesson.",
                     "answer": "involve"
                 }
             ]
@@ -12861,15 +12864,15 @@ const VOCAB_DB = {
             "ch": "項目；物品",
             "sents": [
                 {
-                    "text": "We learned the word \"item\" in class today.",
+                    "text": "I found \"item\" in a message from my teacher.",
                     "answer": "item"
                 },
                 {
-                    "text": "Please remember \"item\" for the quiz.",
+                    "text": "The reading passage used \"item\" in a real-life context.",
                     "answer": "item"
                 },
                 {
-                    "text": "My teacher used \"item\" in an example.",
+                    "text": "I saw \"item\" in a short article this morning.",
                     "answer": "item"
                 }
             ]
@@ -12905,7 +12908,7 @@ const VOCAB_DB = {
                     "answer": "japanese"
                 },
                 {
-                    "text": "My teacher used \"japanese\" in an example.",
+                    "text": "I found \"japanese\" in a message from my teacher.",
                     "answer": "japanese"
                 }
             ]
@@ -13095,15 +13098,15 @@ const VOCAB_DB = {
             "ch": "知識",
             "sents": [
                 {
-                    "text": "We learned the word \"knowledge\" in class today.",
+                    "text": "I saw \"knowledge\" in a short article this morning.",
                     "answer": "knowledge"
                 },
                 {
-                    "text": "Please remember \"knowledge\" for the quiz.",
+                    "text": "The teacher wrote \"knowledge\" on the board before class.",
                     "answer": "knowledge"
                 },
                 {
-                    "text": "My teacher used \"knowledge\" in an example.",
+                    "text": "We used \"knowledge\" in a quick speaking exercise today.",
                     "answer": "knowledge"
                 }
             ]
@@ -13113,11 +13116,11 @@ const VOCAB_DB = {
             "ch": "韓國的；韓國人；韓語",
             "sents": [
                 {
-                    "text": "We learned the word \"korean\" in class today.",
+                    "text": "The guidebook used \"korean\" in a simple example.",
                     "answer": "korean"
                 },
                 {
-                    "text": "Please remember \"korean\" for the quiz.",
+                    "text": "She wrote \"korean\" in her notebook during the lesson.",
                     "answer": "korean"
                 },
                 {
@@ -13167,11 +13170,11 @@ const VOCAB_DB = {
             "ch": "湖",
             "sents": [
                 {
-                    "text": "We learned the word \"lake\" in class today.",
+                    "text": "I noticed \"lake\" in a poster at the station.",
                     "answer": "lake"
                 },
                 {
-                    "text": "Please remember \"lake\" for the quiz.",
+                    "text": "The news report included \"lake\" in the headline.",
                     "answer": "lake"
                 },
                 {
@@ -13185,11 +13188,11 @@ const VOCAB_DB = {
             "ch": "土地；降落",
             "sents": [
                 {
-                    "text": "We learned the word \"land\" in class today.",
+                    "text": "The teacher wrote \"land\" on the board before class.",
                     "answer": "land"
                 },
                 {
-                    "text": "Please remember \"land\" for the quiz.",
+                    "text": "We used \"land\" in a quick speaking exercise today.",
                     "answer": "land"
                 },
                 {
@@ -13257,11 +13260,11 @@ const VOCAB_DB = {
             "ch": "之後；較後",
             "sents": [
                 {
-                    "text": "We learned the word \"later\" in class today.",
+                    "text": "I noticed \"later\" in a poster at the station.",
                     "answer": "later"
                 },
                 {
-                    "text": "Please remember \"later\" for the quiz.",
+                    "text": "The news report included \"later\" in the headline.",
                     "answer": "later"
                 },
                 {
@@ -13275,15 +13278,15 @@ const VOCAB_DB = {
             "ch": "法律",
             "sents": [
                 {
-                    "text": "We learned the word \"law\" in class today.",
+                    "text": "I heard \"law\" in a conversation after school.",
                     "answer": "law"
                 },
                 {
-                    "text": "Please remember \"law\" for the quiz.",
+                    "text": "The guidebook used \"law\" in a simple example.",
                     "answer": "law"
                 },
                 {
-                    "text": "My teacher used \"law\" in an example.",
+                    "text": "She wrote \"law\" in her notebook during the lesson.",
                     "answer": "law"
                 }
             ]
@@ -13419,7 +13422,7 @@ const VOCAB_DB = {
             "ch": "電梯；舉起",
             "sents": [
                 {
-                    "text": "We learned the word \"lift\" in class today.",
+                    "text": "The teacher wrote \"lift\" on the board before class.",
                     "answer": "lift"
                 },
                 {
@@ -13427,7 +13430,7 @@ const VOCAB_DB = {
                     "answer": "lift"
                 },
                 {
-                    "text": "My teacher used \"lift\" in an example.",
+                    "text": "I noticed \"lift\" in a poster at the station.",
                     "answer": "lift"
                 }
             ]
@@ -13445,7 +13448,7 @@ const VOCAB_DB = {
                     "answer": "light"
                 },
                 {
-                    "text": "My teacher used \"light\" in an example.",
+                    "text": "The online video explained \"light\" in a clear way.",
                     "answer": "light"
                 }
             ]
@@ -13455,15 +13458,15 @@ const VOCAB_DB = {
             "ch": "可能的；很可能",
             "sents": [
                 {
-                    "text": "We learned the word \"likely\" in class today.",
+                    "text": "The teacher wrote \"likely\" on the board before class.",
                     "answer": "likely"
                 },
                 {
-                    "text": "Please remember \"likely\" for the quiz.",
+                    "text": "We used \"likely\" in a quick speaking exercise today.",
                     "answer": "likely"
                 },
                 {
-                    "text": "My teacher used \"likely\" in an example.",
+                    "text": "I noticed \"likely\" in a poster at the station.",
                     "answer": "likely"
                 }
             ]
@@ -13499,7 +13502,7 @@ const VOCAB_DB = {
                     "answer": "listener"
                 },
                 {
-                    "text": "My teacher used \"listener\" in an example.",
+                    "text": "I saw \"listener\" in a short article this morning.",
                     "answer": "listener"
                 }
             ]
@@ -13617,7 +13620,7 @@ const VOCAB_DB = {
             "ch": "幸運的",
             "sents": [
                 {
-                    "text": "We learned the word \"lucky\" in class today.",
+                    "text": "The news report included \"lucky\" in the headline.",
                     "answer": "lucky"
                 },
                 {
@@ -13693,11 +13696,11 @@ const VOCAB_DB = {
                     "answer": "major"
                 },
                 {
-                    "text": "Please remember \"major\" for the quiz.",
+                    "text": "The teacher wrote \"major\" on the board before class.",
                     "answer": "major"
                 },
                 {
-                    "text": "My teacher used \"major\" in an example.",
+                    "text": "We used \"major\" in a quick speaking exercise today.",
                     "answer": "major"
                 }
             ]
@@ -13725,7 +13728,7 @@ const VOCAB_DB = {
             "ch": "管理；設法做到",
             "sents": [
                 {
-                    "text": "We learned the word \"manage\" in class today.",
+                    "text": "I noticed \"manage\" in a poster at the station.",
                     "answer": "manage"
                 },
                 {
@@ -13733,7 +13736,7 @@ const VOCAB_DB = {
                     "answer": "manage"
                 },
                 {
-                    "text": "My teacher used \"manage\" in an example.",
+                    "text": "Our class discussion mentioned \"manage\" more than once.",
                     "answer": "manage"
                 }
             ]
@@ -13815,7 +13818,7 @@ const VOCAB_DB = {
             "ch": "事情；有關係",
             "sents": [
                 {
-                    "text": "We learned the word \"matter\" in class today.",
+                    "text": "She wrote \"matter\" in her notebook during the lesson.",
                     "answer": "matter"
                 },
                 {
@@ -13869,15 +13872,15 @@ const VOCAB_DB = {
             "ch": "藥；醫學",
             "sents": [
                 {
-                    "text": "We learned the word \"medicine\" in class today.",
+                    "text": "I heard \"medicine\" in a conversation after school.",
                     "answer": "medicine"
                 },
                 {
-                    "text": "Please remember \"medicine\" for the quiz.",
+                    "text": "The guidebook used \"medicine\" in a simple example.",
                     "answer": "medicine"
                 },
                 {
-                    "text": "My teacher used \"medicine\" in an example.",
+                    "text": "She wrote \"medicine\" in her notebook during the lesson.",
                     "answer": "medicine"
                 }
             ]
@@ -13923,15 +13926,15 @@ const VOCAB_DB = {
             "ch": "方法",
             "sents": [
                 {
-                    "text": "We learned the word \"method\" in class today.",
+                    "text": "The reading passage used \"method\" in a real-life context.",
                     "answer": "method"
                 },
                 {
-                    "text": "Please remember \"method\" for the quiz.",
+                    "text": "I saw \"method\" in a short article this morning.",
                     "answer": "method"
                 },
                 {
-                    "text": "My teacher used \"method\" in an example.",
+                    "text": "The teacher wrote \"method\" on the board before class.",
                     "answer": "method"
                 }
             ]
@@ -13959,7 +13962,7 @@ const VOCAB_DB = {
             "ch": "頭腦；介意",
             "sents": [
                 {
-                    "text": "We learned the word \"mind\" in class today.",
+                    "text": "She wrote \"mind\" in her notebook during the lesson.",
                     "answer": "mind"
                 },
                 {
@@ -14039,7 +14042,7 @@ const VOCAB_DB = {
                     "answer": "mobile"
                 },
                 {
-                    "text": "My teacher used \"mobile\" in an example.",
+                    "text": "The teacher wrote \"mobile\" on the board before class.",
                     "answer": "mobile"
                 }
             ]
@@ -14053,7 +14056,7 @@ const VOCAB_DB = {
                     "answer": "mostly"
                 },
                 {
-                    "text": "Please remember \"mostly\" for the quiz.",
+                    "text": "We used \"mostly\" in a quick speaking exercise today.",
                     "answer": "mostly"
                 },
                 {
@@ -14111,7 +14114,7 @@ const VOCAB_DB = {
                     "answer": "mushroom"
                 },
                 {
-                    "text": "My teacher used \"mushroom\" in an example.",
+                    "text": "I noticed \"mushroom\" in a poster at the station.",
                     "answer": "mushroom"
                 }
             ]
@@ -14139,11 +14142,11 @@ const VOCAB_DB = {
             "ch": "大自然；本質",
             "sents": [
                 {
-                    "text": "We learned the word \"nature\" in class today.",
+                    "text": "The online video explained \"nature\" in a clear way.",
                     "answer": "nature"
                 },
                 {
-                    "text": "Please remember \"nature\" for the quiz.",
+                    "text": "I found \"nature\" in a message from my teacher.",
                     "answer": "nature"
                 },
                 {
@@ -14157,15 +14160,15 @@ const VOCAB_DB = {
             "ch": "幾乎",
             "sents": [
                 {
-                    "text": "We learned the word \"nearly\" in class today.",
+                    "text": "She wrote \"nearly\" in her notebook during the lesson.",
                     "answer": "nearly"
                 },
                 {
-                    "text": "Please remember \"nearly\" for the quiz.",
+                    "text": "The online video explained \"nearly\" in a clear way.",
                     "answer": "nearly"
                 },
                 {
-                    "text": "My teacher used \"nearly\" in an example.",
+                    "text": "I found \"nearly\" in a message from my teacher.",
                     "answer": "nearly"
                 }
             ]
@@ -14215,7 +14218,7 @@ const VOCAB_DB = {
                     "answer": "network"
                 },
                 {
-                    "text": "Please remember \"network\" for the quiz.",
+                    "text": "We used \"network\" in a quick speaking exercise today.",
                     "answer": "network"
                 },
                 {
@@ -14345,7 +14348,7 @@ const VOCAB_DB = {
                     "answer": "notice"
                 },
                 {
-                    "text": "My teacher used \"notice\" in an example.",
+                    "text": "We used \"notice\" in a quick speaking exercise today.",
                     "answer": "notice"
                 }
             ]
@@ -14427,7 +14430,7 @@ const VOCAB_DB = {
             "ch": "到…上面",
             "sents": [
                 {
-                    "text": "We learned the word \"onto\" in class today.",
+                    "text": "We used \"onto\" in a quick speaking exercise today.",
                     "answer": "onto"
                 },
                 {
@@ -14463,7 +14466,7 @@ const VOCAB_DB = {
             "ch": "選擇；選項",
             "sents": [
                 {
-                    "text": "We learned the word \"option\" in class today.",
+                    "text": "She wrote \"option\" in her notebook during the lesson.",
                     "answer": "option"
                 },
                 {
@@ -14471,7 +14474,7 @@ const VOCAB_DB = {
                     "answer": "option"
                 },
                 {
-                    "text": "My teacher used \"option\" in an example.",
+                    "text": "I found \"option\" in a message from my teacher.",
                     "answer": "option"
                 }
             ]
@@ -14485,11 +14488,11 @@ const VOCAB_DB = {
                     "answer": "ordinary"
                 },
                 {
-                    "text": "Please remember \"ordinary\" for the quiz.",
+                    "text": "She wrote \"ordinary\" in her notebook during the lesson.",
                     "answer": "ordinary"
                 },
                 {
-                    "text": "My teacher used \"ordinary\" in an example.",
+                    "text": "The online video explained \"ordinary\" in a clear way.",
                     "answer": "ordinary"
                 }
             ]
@@ -14499,7 +14502,7 @@ const VOCAB_DB = {
             "ch": "機構；組織",
             "sents": [
                 {
-                    "text": "We learned the word \"organization\" in class today.",
+                    "text": "The news report included \"organization\" in the headline.",
                     "answer": "organization"
                 },
                 {
@@ -14517,7 +14520,7 @@ const VOCAB_DB = {
             "ch": "組織；安排",
             "sents": [
                 {
-                    "text": "We learned the word \"organize\" in class today.",
+                    "text": "The reading passage used \"organize\" in a real-life context.",
                     "answer": "organize"
                 },
                 {
@@ -14561,7 +14564,7 @@ const VOCAB_DB = {
                     "answer": "oven"
                 },
                 {
-                    "text": "My teacher used \"oven\" in an example.",
+                    "text": "The guidebook used \"oven\" in a simple example.",
                     "answer": "oven"
                 }
             ]
@@ -14575,11 +14578,11 @@ const VOCAB_DB = {
                     "answer": "owner"
                 },
                 {
-                    "text": "Please remember \"owner\" for the quiz.",
+                    "text": "The news report included \"owner\" in the headline.",
                     "answer": "owner"
                 },
                 {
-                    "text": "My teacher used \"owner\" in an example.",
+                    "text": "Our class discussion mentioned \"owner\" more than once.",
                     "answer": "owner"
                 }
             ]
@@ -14597,7 +14600,7 @@ const VOCAB_DB = {
                     "answer": "pain"
                 },
                 {
-                    "text": "My teacher used \"pain\" in an example.",
+                    "text": "The reading passage used \"pain\" in a real-life context.",
                     "answer": "pain"
                 }
             ]
@@ -14629,11 +14632,11 @@ const VOCAB_DB = {
                     "answer": "particular"
                 },
                 {
-                    "text": "Please remember \"particular\" for the quiz.",
+                    "text": "The online video explained \"particular\" in a clear way.",
                     "answer": "particular"
                 },
                 {
-                    "text": "My teacher used \"particular\" in an example.",
+                    "text": "I found \"particular\" in a message from my teacher.",
                     "answer": "particular"
                 }
             ]
@@ -14679,11 +14682,11 @@ const VOCAB_DB = {
             "ch": "和平",
             "sents": [
                 {
-                    "text": "We learned the word \"peace\" in class today.",
+                    "text": "The reading passage used \"peace\" in a real-life context.",
                     "answer": "peace"
                 },
                 {
-                    "text": "Please remember \"peace\" for the quiz.",
+                    "text": "I saw \"peace\" in a short article this morning.",
                     "answer": "peace"
                 },
                 {
@@ -14705,7 +14708,7 @@ const VOCAB_DB = {
                     "answer": "per"
                 },
                 {
-                    "text": "My teacher used \"per\" in an example.",
+                    "text": "I saw \"per\" in a short article this morning.",
                     "answer": "per"
                 }
             ]
@@ -14715,11 +14718,11 @@ const VOCAB_DB = {
             "ch": "表演；執行",
             "sents": [
                 {
-                    "text": "We learned the word \"perform\" in class today.",
+                    "text": "I heard \"perform\" in a conversation after school.",
                     "answer": "perform"
                 },
                 {
-                    "text": "Please remember \"perform\" for the quiz.",
+                    "text": "The guidebook used \"perform\" in a simple example.",
                     "answer": "perform"
                 },
                 {
@@ -14777,7 +14780,7 @@ const VOCAB_DB = {
                     "answer": "pet"
                 },
                 {
-                    "text": "My teacher used \"pet\" in an example.",
+                    "text": "Our class discussion mentioned \"pet\" more than once.",
                     "answer": "pet"
                 }
             ]
@@ -14791,7 +14794,7 @@ const VOCAB_DB = {
                     "answer": "photograph"
                 },
                 {
-                    "text": "Please remember \"photograph\" for the quiz.",
+                    "text": "I found \"photograph\" in a message from my teacher.",
                     "answer": "photograph"
                 },
                 {
@@ -14841,15 +14844,15 @@ const VOCAB_DB = {
             "ch": "行星",
             "sents": [
                 {
-                    "text": "We learned the word \"planet\" in class today.",
+                    "text": "She wrote \"planet\" in her notebook during the lesson.",
                     "answer": "planet"
                 },
                 {
-                    "text": "Please remember \"planet\" for the quiz.",
+                    "text": "The online video explained \"planet\" in a clear way.",
                     "answer": "planet"
                 },
                 {
-                    "text": "My teacher used \"planet\" in an example.",
+                    "text": "I found \"planet\" in a message from my teacher.",
                     "answer": "planet"
                 }
             ]
@@ -14867,7 +14870,7 @@ const VOCAB_DB = {
                     "answer": "plant"
                 },
                 {
-                    "text": "My teacher used \"plant\" in an example.",
+                    "text": "She wrote \"plant\" in her notebook during the lesson.",
                     "answer": "plant"
                 }
             ]
@@ -14877,15 +14880,15 @@ const VOCAB_DB = {
             "ch": "塑膠；塑膠的",
             "sents": [
                 {
-                    "text": "We learned the word \"plastic\" in class today.",
+                    "text": "She wrote \"plastic\" in her notebook during the lesson.",
                     "answer": "plastic"
                 },
                 {
-                    "text": "Please remember \"plastic\" for the quiz.",
+                    "text": "The online video explained \"plastic\" in a clear way.",
                     "answer": "plastic"
                 },
                 {
-                    "text": "My teacher used \"plastic\" in an example.",
+                    "text": "I found \"plastic\" in a message from my teacher.",
                     "answer": "plastic"
                 }
             ]
@@ -15057,15 +15060,15 @@ const VOCAB_DB = {
             "ch": "海報",
             "sents": [
                 {
-                    "text": "We learned the word \"poster\" in class today.",
+                    "text": "We used \"poster\" in a quick speaking exercise today.",
                     "answer": "poster"
                 },
                 {
-                    "text": "Please remember \"poster\" for the quiz.",
+                    "text": "I noticed \"poster\" in a poster at the station.",
                     "answer": "poster"
                 },
                 {
-                    "text": "My teacher used \"poster\" in an example.",
+                    "text": "The news report included \"poster\" in the headline.",
                     "answer": "poster"
                 }
             ]
@@ -15133,7 +15136,7 @@ const VOCAB_DB = {
                     "answer": "prison"
                 },
                 {
-                    "text": "Please remember \"prison\" for the quiz.",
+                    "text": "The news report included \"prison\" in the headline.",
                     "answer": "prison"
                 },
                 {
@@ -15151,11 +15154,11 @@ const VOCAB_DB = {
                     "answer": "prize"
                 },
                 {
-                    "text": "Please remember \"prize\" for the quiz.",
+                    "text": "I noticed \"prize\" in a poster at the station.",
                     "answer": "prize"
                 },
                 {
-                    "text": "My teacher used \"prize\" in an example.",
+                    "text": "The news report included \"prize\" in the headline.",
                     "answer": "prize"
                 }
             ]
@@ -15165,15 +15168,15 @@ const VOCAB_DB = {
             "ch": "教授",
             "sents": [
                 {
-                    "text": "We learned the word \"professor\" in class today.",
+                    "text": "She wrote \"professor\" in her notebook during the lesson.",
                     "answer": "professor"
                 },
                 {
-                    "text": "Please remember \"professor\" for the quiz.",
+                    "text": "The online video explained \"professor\" in a clear way.",
                     "answer": "professor"
                 },
                 {
-                    "text": "My teacher used \"professor\" in an example.",
+                    "text": "I found \"professor\" in a message from my teacher.",
                     "answer": "professor"
                 }
             ]
@@ -15255,11 +15258,11 @@ const VOCAB_DB = {
             "ch": "保護",
             "sents": [
                 {
-                    "text": "We learned the word \"protect\" in class today.",
+                    "text": "She wrote \"protect\" in her notebook during the lesson.",
                     "answer": "protect"
                 },
                 {
-                    "text": "Please remember \"protect\" for the quiz.",
+                    "text": "The online video explained \"protect\" in a clear way.",
                     "answer": "protect"
                 },
                 {
@@ -15273,11 +15276,11 @@ const VOCAB_DB = {
             "ch": "提供",
             "sents": [
                 {
-                    "text": "We learned the word \"provide\" in class today.",
+                    "text": "We used \"provide\" in a quick speaking exercise today.",
                     "answer": "provide"
                 },
                 {
-                    "text": "Please remember \"provide\" for the quiz.",
+                    "text": "I noticed \"provide\" in a poster at the station.",
                     "answer": "provide"
                 },
                 {
@@ -15291,15 +15294,15 @@ const VOCAB_DB = {
             "ch": "公眾的；公共的",
             "sents": [
                 {
-                    "text": "We learned the word \"public\" in class today.",
+                    "text": "The teacher wrote \"public\" on the board before class.",
                     "answer": "public"
                 },
                 {
-                    "text": "Please remember \"public\" for the quiz.",
+                    "text": "We used \"public\" in a quick speaking exercise today.",
                     "answer": "public"
                 },
                 {
-                    "text": "My teacher used \"public\" in an example.",
+                    "text": "I noticed \"public\" in a poster at the station.",
                     "answer": "public"
                 }
             ]
@@ -15309,11 +15312,11 @@ const VOCAB_DB = {
             "ch": "出版；發表",
             "sents": [
                 {
-                    "text": "We learned the word \"publish\" in class today.",
+                    "text": "I found \"publish\" in a message from my teacher.",
                     "answer": "publish"
                 },
                 {
-                    "text": "Please remember \"publish\" for the quiz.",
+                    "text": "The reading passage used \"publish\" in a real-life context.",
                     "answer": "publish"
                 },
                 {
@@ -15417,7 +15420,7 @@ const VOCAB_DB = {
             "ch": "小測驗",
             "sents": [
                 {
-                    "text": "We learned the word \"quiz\" in class today.",
+                    "text": "The online video explained \"quiz\" in a clear way.",
                     "answer": "quiz"
                 },
                 {
@@ -15425,7 +15428,7 @@ const VOCAB_DB = {
                     "answer": "quiz"
                 },
                 {
-                    "text": "My teacher used \"quiz\" in an example.",
+                    "text": "The reading passage used \"quiz\" in a real-life context.",
                     "answer": "quiz"
                 }
             ]
@@ -15489,11 +15492,11 @@ const VOCAB_DB = {
             "ch": "舉起；提高",
             "sents": [
                 {
-                    "text": "We learned the word \"raise\" in class today.",
+                    "text": "Our class discussion mentioned \"raise\" more than once.",
                     "answer": "raise"
                 },
                 {
-                    "text": "Please remember \"raise\" for the quiz.",
+                    "text": "I heard \"raise\" in a conversation after school.",
                     "answer": "raise"
                 },
                 {
@@ -15507,11 +15510,11 @@ const VOCAB_DB = {
             "ch": "相當；寧可",
             "sents": [
                 {
-                    "text": "We learned the word \"rather\" in class today.",
+                    "text": "I heard \"rather\" in a conversation after school.",
                     "answer": "rather"
                 },
                 {
-                    "text": "Please remember \"rather\" for the quiz.",
+                    "text": "The guidebook used \"rather\" in a simple example.",
                     "answer": "rather"
                 },
                 {
@@ -15561,15 +15564,15 @@ const VOCAB_DB = {
             "ch": "收到；接收",
             "sents": [
                 {
-                    "text": "We learned the word \"receive\" in class today.",
+                    "text": "The teacher wrote \"receive\" on the board before class.",
                     "answer": "receive"
                 },
                 {
-                    "text": "Please remember \"receive\" for the quiz.",
+                    "text": "We used \"receive\" in a quick speaking exercise today.",
                     "answer": "receive"
                 },
                 {
-                    "text": "My teacher used \"receive\" in an example.",
+                    "text": "I noticed \"receive\" in a poster at the station.",
                     "answer": "receive"
                 }
             ]
@@ -15579,7 +15582,7 @@ const VOCAB_DB = {
             "ch": "最近的",
             "sents": [
                 {
-                    "text": "We learned the word \"recent\" in class today.",
+                    "text": "We used \"recent\" in a quick speaking exercise today.",
                     "answer": "recent"
                 },
                 {
@@ -15587,7 +15590,7 @@ const VOCAB_DB = {
                     "answer": "recent"
                 },
                 {
-                    "text": "My teacher used \"recent\" in an example.",
+                    "text": "The news report included \"recent\" in the headline.",
                     "answer": "recent"
                 }
             ]
@@ -15597,15 +15600,15 @@ const VOCAB_DB = {
             "ch": "最近",
             "sents": [
                 {
-                    "text": "We learned the word \"recently\" in class today.",
+                    "text": "The teacher wrote \"recently\" on the board before class.",
                     "answer": "recently"
                 },
                 {
-                    "text": "Please remember \"recently\" for the quiz.",
+                    "text": "We used \"recently\" in a quick speaking exercise today.",
                     "answer": "recently"
                 },
                 {
-                    "text": "My teacher used \"recently\" in an example.",
+                    "text": "I noticed \"recently\" in a poster at the station.",
                     "answer": "recently"
                 }
             ]
@@ -15633,11 +15636,11 @@ const VOCAB_DB = {
             "ch": "食譜",
             "sents": [
                 {
-                    "text": "We learned the word \"recipe\" in class today.",
+                    "text": "I found \"recipe\" in a message from my teacher.",
                     "answer": "recipe"
                 },
                 {
-                    "text": "Please remember \"recipe\" for the quiz.",
+                    "text": "The reading passage used \"recipe\" in a real-life context.",
                     "answer": "recipe"
                 },
                 {
@@ -15673,7 +15676,7 @@ const VOCAB_DB = {
                     "answer": "recommend"
                 },
                 {
-                    "text": "Please remember \"recommend\" for the quiz.",
+                    "text": "She wrote \"recommend\" in her notebook during the lesson.",
                     "answer": "recommend"
                 },
                 {
@@ -15687,15 +15690,15 @@ const VOCAB_DB = {
             "ch": "紀錄；錄音",
             "sents": [
                 {
-                    "text": "We learned the word \"record\" in class today.",
+                    "text": "I noticed \"record\" in a poster at the station.",
                     "answer": "record"
                 },
                 {
-                    "text": "Please remember \"record\" for the quiz.",
+                    "text": "The news report included \"record\" in the headline.",
                     "answer": "record"
                 },
                 {
-                    "text": "My teacher used \"record\" in an example.",
+                    "text": "Our class discussion mentioned \"record\" more than once.",
                     "answer": "record"
                 }
             ]
@@ -15705,15 +15708,15 @@ const VOCAB_DB = {
             "ch": "回收；循環再用",
             "sents": [
                 {
-                    "text": "We learned the word \"recycle\" in class today.",
+                    "text": "She wrote \"recycle\" in her notebook during the lesson.",
                     "answer": "recycle"
                 },
                 {
-                    "text": "Please remember \"recycle\" for the quiz.",
+                    "text": "The online video explained \"recycle\" in a clear way.",
                     "answer": "recycle"
                 },
                 {
-                    "text": "My teacher used \"recycle\" in an example.",
+                    "text": "I found \"recycle\" in a message from my teacher.",
                     "answer": "recycle"
                 }
             ]
@@ -15723,15 +15726,15 @@ const VOCAB_DB = {
             "ch": "減少",
             "sents": [
                 {
-                    "text": "We learned the word \"reduce\" in class today.",
+                    "text": "I saw \"reduce\" in a short article this morning.",
                     "answer": "reduce"
                 },
                 {
-                    "text": "Please remember \"reduce\" for the quiz.",
+                    "text": "The teacher wrote \"reduce\" on the board before class.",
                     "answer": "reduce"
                 },
                 {
-                    "text": "My teacher used \"reduce\" in an example.",
+                    "text": "We used \"reduce\" in a quick speaking exercise today.",
                     "answer": "reduce"
                 }
             ]
@@ -15781,7 +15784,7 @@ const VOCAB_DB = {
                     "answer": "regular"
                 },
                 {
-                    "text": "Please remember \"regular\" for the quiz.",
+                    "text": "I saw \"regular\" in a short article this morning.",
                     "answer": "regular"
                 },
                 {
@@ -15813,7 +15816,7 @@ const VOCAB_DB = {
             "ch": "移除；除去",
             "sents": [
                 {
-                    "text": "We learned the word \"remove\" in class today.",
+                    "text": "I noticed \"remove\" in a poster at the station.",
                     "answer": "remove"
                 },
                 {
@@ -15821,7 +15824,7 @@ const VOCAB_DB = {
                     "answer": "remove"
                 },
                 {
-                    "text": "My teacher used \"remove\" in an example.",
+                    "text": "Our class discussion mentioned \"remove\" more than once.",
                     "answer": "remove"
                 }
             ]
@@ -15835,7 +15838,7 @@ const VOCAB_DB = {
                     "answer": "replace"
                 },
                 {
-                    "text": "Please remember \"replace\" for the quiz.",
+                    "text": "The teacher wrote \"replace\" on the board before class.",
                     "answer": "replace"
                 },
                 {
@@ -15853,7 +15856,7 @@ const VOCAB_DB = {
                     "answer": "reply"
                 },
                 {
-                    "text": "Please remember \"reply\" for the quiz.",
+                    "text": "I found \"reply\" in a message from my teacher.",
                     "answer": "reply"
                 },
                 {
@@ -15867,15 +15870,15 @@ const VOCAB_DB = {
             "ch": "報告；報道",
             "sents": [
                 {
-                    "text": "We learned the word \"report\" in class today.",
+                    "text": "I heard \"report\" in a conversation after school.",
                     "answer": "report"
                 },
                 {
-                    "text": "Please remember \"report\" for the quiz.",
+                    "text": "The guidebook used \"report\" in a simple example.",
                     "answer": "report"
                 },
                 {
-                    "text": "My teacher used \"report\" in an example.",
+                    "text": "She wrote \"report\" in her notebook during the lesson.",
                     "answer": "report"
                 }
             ]
@@ -15885,7 +15888,7 @@ const VOCAB_DB = {
             "ch": "記者",
             "sents": [
                 {
-                    "text": "We learned the word \"reporter\" in class today.",
+                    "text": "The news report included \"reporter\" in the headline.",
                     "answer": "reporter"
                 },
                 {
@@ -15903,7 +15906,7 @@ const VOCAB_DB = {
             "ch": "研究",
             "sents": [
                 {
-                    "text": "We learned the word \"research\" in class today.",
+                    "text": "She wrote \"research\" in her notebook during the lesson.",
                     "answer": "research"
                 },
                 {
@@ -15929,7 +15932,7 @@ const VOCAB_DB = {
                     "answer": "researcher"
                 },
                 {
-                    "text": "My teacher used \"researcher\" in an example.",
+                    "text": "She wrote \"researcher\" in her notebook during the lesson.",
                     "answer": "researcher"
                 }
             ]
@@ -15943,7 +15946,7 @@ const VOCAB_DB = {
                     "answer": "respond"
                 },
                 {
-                    "text": "Please remember \"respond\" for the quiz.",
+                    "text": "The teacher wrote \"respond\" on the board before class.",
                     "answer": "respond"
                 },
                 {
@@ -15957,15 +15960,15 @@ const VOCAB_DB = {
             "ch": "回應；答覆",
             "sents": [
                 {
-                    "text": "We learned the word \"response\" in class today.",
+                    "text": "We used \"response\" in a quick speaking exercise today.",
                     "answer": "response"
                 },
                 {
-                    "text": "Please remember \"response\" for the quiz.",
+                    "text": "I noticed \"response\" in a poster at the station.",
                     "answer": "response"
                 },
                 {
-                    "text": "My teacher used \"response\" in an example.",
+                    "text": "The news report included \"response\" in the headline.",
                     "answer": "response"
                 }
             ]
@@ -15979,7 +15982,7 @@ const VOCAB_DB = {
                     "answer": "rest"
                 },
                 {
-                    "text": "Please remember \"rest\" for the quiz.",
+                    "text": "The news report included \"rest\" in the headline.",
                     "answer": "rest"
                 },
                 {
@@ -16051,11 +16054,11 @@ const VOCAB_DB = {
                     "answer": "role"
                 },
                 {
-                    "text": "Please remember \"role\" for the quiz.",
+                    "text": "I found \"role\" in a message from my teacher.",
                     "answer": "role"
                 },
                 {
-                    "text": "My teacher used \"role\" in an example.",
+                    "text": "The reading passage used \"role\" in a real-life context.",
                     "answer": "role"
                 }
             ]
@@ -16101,11 +16104,11 @@ const VOCAB_DB = {
             "ch": "垃圾",
             "sents": [
                 {
-                    "text": "We learned the word \"rubbish\" in class today.",
+                    "text": "We used \"rubbish\" in a quick speaking exercise today.",
                     "answer": "rubbish"
                 },
                 {
-                    "text": "Please remember \"rubbish\" for the quiz.",
+                    "text": "I noticed \"rubbish\" in a poster at the station.",
                     "answer": "rubbish"
                 },
                 {
@@ -16155,7 +16158,7 @@ const VOCAB_DB = {
             "ch": "安全的；保險箱",
             "sents": [
                 {
-                    "text": "We learned the word \"safe\" in class today.",
+                    "text": "The reading passage used \"safe\" in a real-life context.",
                     "answer": "safe"
                 },
                 {
@@ -16163,7 +16166,7 @@ const VOCAB_DB = {
                     "answer": "safe"
                 },
                 {
-                    "text": "My teacher used \"safe\" in an example.",
+                    "text": "The teacher wrote \"safe\" on the board before class.",
                     "answer": "safe"
                 }
             ]
@@ -16173,15 +16176,15 @@ const VOCAB_DB = {
             "ch": "售賣；特價",
             "sents": [
                 {
-                    "text": "We learned the word \"sale\" in class today.",
+                    "text": "The guidebook used \"sale\" in a simple example.",
                     "answer": "sale"
                 },
                 {
-                    "text": "Please remember \"sale\" for the quiz.",
+                    "text": "She wrote \"sale\" in her notebook during the lesson.",
                     "answer": "sale"
                 },
                 {
-                    "text": "My teacher used \"sale\" in an example.",
+                    "text": "The online video explained \"sale\" in a clear way.",
                     "answer": "sale"
                 }
             ]
@@ -16199,7 +16202,7 @@ const VOCAB_DB = {
                     "answer": "sauce"
                 },
                 {
-                    "text": "My teacher used \"sauce\" in an example.",
+                    "text": "I found \"sauce\" in a message from my teacher.",
                     "answer": "sauce"
                 }
             ]
@@ -16267,11 +16270,11 @@ const VOCAB_DB = {
                     "answer": "scene"
                 },
                 {
-                    "text": "Please remember \"scene\" for the quiz.",
+                    "text": "The guidebook used \"scene\" in a simple example.",
                     "answer": "scene"
                 },
                 {
-                    "text": "My teacher used \"scene\" in an example.",
+                    "text": "She wrote \"scene\" in her notebook during the lesson.",
                     "answer": "scene"
                 }
             ]
@@ -16303,11 +16306,11 @@ const VOCAB_DB = {
                     "answer": "search"
                 },
                 {
-                    "text": "Please remember \"search\" for the quiz.",
+                    "text": "I heard \"search\" in a conversation after school.",
                     "answer": "search"
                 },
                 {
-                    "text": "My teacher used \"search\" in an example.",
+                    "text": "The guidebook used \"search\" in a simple example.",
                     "answer": "search"
                 }
             ]
@@ -16425,7 +16428,7 @@ const VOCAB_DB = {
             "ch": "嚴重的；認真的",
             "sents": [
                 {
-                    "text": "We learned the word \"serious\" in class today.",
+                    "text": "The guidebook used \"serious\" in a simple example.",
                     "answer": "serious"
                 },
                 {
@@ -16433,7 +16436,7 @@ const VOCAB_DB = {
                     "answer": "serious"
                 },
                 {
-                    "text": "My teacher used \"serious\" in an example.",
+                    "text": "The online video explained \"serious\" in a clear way.",
                     "answer": "serious"
                 }
             ]
@@ -16443,7 +16446,7 @@ const VOCAB_DB = {
             "ch": "服務",
             "sents": [
                 {
-                    "text": "We learned the word \"service\" in class today.",
+                    "text": "The news report included \"service\" in the headline.",
                     "answer": "service"
                 },
                 {
@@ -16587,11 +16590,11 @@ const VOCAB_DB = {
             "ch": "標誌；簽名",
             "sents": [
                 {
-                    "text": "We learned the word \"sign\" in class today.",
+                    "text": "The online video explained \"sign\" in a clear way.",
                     "answer": "sign"
                 },
                 {
-                    "text": "Please remember \"sign\" for the quiz.",
+                    "text": "I found \"sign\" in a message from my teacher.",
                     "answer": "sign"
                 },
                 {
@@ -16641,7 +16644,7 @@ const VOCAB_DB = {
             "ch": "單一的；單身的",
             "sents": [
                 {
-                    "text": "We learned the word \"single\" in class today.",
+                    "text": "We used \"single\" in a quick speaking exercise today.",
                     "answer": "single"
                 },
                 {
@@ -16649,7 +16652,7 @@ const VOCAB_DB = {
                     "answer": "single"
                 },
                 {
-                    "text": "My teacher used \"single\" in an example.",
+                    "text": "The news report included \"single\" in the headline.",
                     "answer": "single"
                 }
             ]
@@ -16681,11 +16684,11 @@ const VOCAB_DB = {
                     "answer": "site"
                 },
                 {
-                    "text": "Please remember \"site\" for the quiz.",
+                    "text": "The teacher wrote \"site\" on the board before class.",
                     "answer": "site"
                 },
                 {
-                    "text": "My teacher used \"site\" in an example.",
+                    "text": "We used \"site\" in a quick speaking exercise today.",
                     "answer": "site"
                 }
             ]
@@ -16695,7 +16698,7 @@ const VOCAB_DB = {
             "ch": "大小；尺寸",
             "sents": [
                 {
-                    "text": "We learned the word \"size\" in class today.",
+                    "text": "Our class discussion mentioned \"size\" more than once.",
                     "answer": "size"
                 },
                 {
@@ -16735,11 +16738,11 @@ const VOCAB_DB = {
                     "answer": "skin"
                 },
                 {
-                    "text": "Please remember \"skin\" for the quiz.",
+                    "text": "Our class discussion mentioned \"skin\" more than once.",
                     "answer": "skin"
                 },
                 {
-                    "text": "My teacher used \"skin\" in an example.",
+                    "text": "I heard \"skin\" in a conversation after school.",
                     "answer": "skin"
                 }
             ]
@@ -16789,7 +16792,7 @@ const VOCAB_DB = {
                     "answer": "slowly"
                 },
                 {
-                    "text": "Please remember \"slowly\" for the quiz.",
+                    "text": "I heard \"slowly\" in a conversation after school.",
                     "answer": "slowly"
                 },
                 {
@@ -16839,7 +16842,7 @@ const VOCAB_DB = {
             "ch": "氣味；聞",
             "sents": [
                 {
-                    "text": "We learned the word \"smell\" in class today.",
+                    "text": "Our class discussion mentioned \"smell\" more than once.",
                     "answer": "smell"
                 },
                 {
@@ -16865,7 +16868,7 @@ const VOCAB_DB = {
                     "answer": "smile"
                 },
                 {
-                    "text": "My teacher used \"smile\" in an example.",
+                    "text": "The news report included \"smile\" in the headline.",
                     "answer": "smile"
                 }
             ]
@@ -16893,7 +16896,7 @@ const VOCAB_DB = {
             "ch": "小吃；零食",
             "sents": [
                 {
-                    "text": "We learned the word \"snack\" in class today.",
+                    "text": "I noticed \"snack\" in a poster at the station.",
                     "answer": "snack"
                 },
                 {
@@ -16901,7 +16904,7 @@ const VOCAB_DB = {
                     "answer": "snack"
                 },
                 {
-                    "text": "My teacher used \"snack\" in an example.",
+                    "text": "Our class discussion mentioned \"snack\" more than once.",
                     "answer": "snack"
                 }
             ]
@@ -16929,15 +16932,15 @@ const VOCAB_DB = {
             "ch": "社交的；社會的",
             "sents": [
                 {
-                    "text": "We learned the word \"social\" in class today.",
+                    "text": "The teacher wrote \"social\" on the board before class.",
                     "answer": "social"
                 },
                 {
-                    "text": "Please remember \"social\" for the quiz.",
+                    "text": "We used \"social\" in a quick speaking exercise today.",
                     "answer": "social"
                 },
                 {
-                    "text": "My teacher used \"social\" in an example.",
+                    "text": "I noticed \"social\" in a poster at the station.",
                     "answer": "social"
                 }
             ]
@@ -16947,7 +16950,7 @@ const VOCAB_DB = {
             "ch": "社會",
             "sents": [
                 {
-                    "text": "We learned the word \"society\" in class today.",
+                    "text": "We used \"society\" in a quick speaking exercise today.",
                     "answer": "society"
                 },
                 {
@@ -16955,7 +16958,7 @@ const VOCAB_DB = {
                     "answer": "society"
                 },
                 {
-                    "text": "My teacher used \"society\" in an example.",
+                    "text": "The news report included \"society\" in the headline.",
                     "answer": "society"
                 }
             ]
@@ -17001,15 +17004,15 @@ const VOCAB_DB = {
             "ch": "士兵",
             "sents": [
                 {
-                    "text": "We learned the word \"soldier\" in class today.",
+                    "text": "I heard \"soldier\" in a conversation after school.",
                     "answer": "soldier"
                 },
                 {
-                    "text": "Please remember \"soldier\" for the quiz.",
+                    "text": "The guidebook used \"soldier\" in a simple example.",
                     "answer": "soldier"
                 },
                 {
-                    "text": "My teacher used \"soldier\" in an example.",
+                    "text": "She wrote \"soldier\" in her notebook during the lesson.",
                     "answer": "soldier"
                 }
             ]
@@ -17019,15 +17022,15 @@ const VOCAB_DB = {
             "ch": "解決方法",
             "sents": [
                 {
-                    "text": "We learned the word \"solution\" in class today.",
+                    "text": "I saw \"solution\" in a short article this morning.",
                     "answer": "solution"
                 },
                 {
-                    "text": "Please remember \"solution\" for the quiz.",
+                    "text": "The teacher wrote \"solution\" on the board before class.",
                     "answer": "solution"
                 },
                 {
-                    "text": "My teacher used \"solution\" in an example.",
+                    "text": "We used \"solution\" in a quick speaking exercise today.",
                     "answer": "solution"
                 }
             ]
@@ -17041,7 +17044,7 @@ const VOCAB_DB = {
                     "answer": "solve"
                 },
                 {
-                    "text": "Please remember \"solve\" for the quiz.",
+                    "text": "I heard \"solve\" in a conversation after school.",
                     "answer": "solve"
                 },
                 {
@@ -17127,7 +17130,7 @@ const VOCAB_DB = {
             "ch": "講者；喇叭",
             "sents": [
                 {
-                    "text": "We learned the word \"speaker\" in class today.",
+                    "text": "We used \"speaker\" in a quick speaking exercise today.",
                     "answer": "speaker"
                 },
                 {
@@ -17135,7 +17138,7 @@ const VOCAB_DB = {
                     "answer": "speaker"
                 },
                 {
-                    "text": "My teacher used \"speaker\" in an example.",
+                    "text": "The news report included \"speaker\" in the headline.",
                     "answer": "speaker"
                 }
             ]
@@ -17163,7 +17166,7 @@ const VOCAB_DB = {
             "ch": "演講；說話",
             "sents": [
                 {
-                    "text": "We learned the word \"speech\" in class today.",
+                    "text": "I noticed \"speech\" in a poster at the station.",
                     "answer": "speech"
                 },
                 {
@@ -17185,7 +17188,7 @@ const VOCAB_DB = {
                     "answer": "spider"
                 },
                 {
-                    "text": "Please remember \"spider\" for the quiz.",
+                    "text": "Our class discussion mentioned \"spider\" more than once.",
                     "answer": "spider"
                 },
                 {
@@ -17261,7 +17264,7 @@ const VOCAB_DB = {
                     "answer": "star"
                 },
                 {
-                    "text": "My teacher used \"star\" in an example.",
+                    "text": "She wrote \"star\" in her notebook during the lesson.",
                     "answer": "star"
                 }
             ]
@@ -17325,15 +17328,15 @@ const VOCAB_DB = {
             "ch": "暴風雨",
             "sents": [
                 {
-                    "text": "We learned the word \"storm\" in class today.",
+                    "text": "I found \"storm\" in a message from my teacher.",
                     "answer": "storm"
                 },
                 {
-                    "text": "Please remember \"storm\" for the quiz.",
+                    "text": "The reading passage used \"storm\" in a real-life context.",
                     "answer": "storm"
                 },
                 {
-                    "text": "My teacher used \"storm\" in an example.",
+                    "text": "I saw \"storm\" in a short article this morning.",
                     "answer": "storm"
                 }
             ]
@@ -17365,11 +17368,11 @@ const VOCAB_DB = {
                     "answer": "strange"
                 },
                 {
-                    "text": "Please remember \"strange\" for the quiz.",
+                    "text": "The online video explained \"strange\" in a clear way.",
                     "answer": "strange"
                 },
                 {
-                    "text": "My teacher used \"strange\" in an example.",
+                    "text": "I found \"strange\" in a message from my teacher.",
                     "answer": "strange"
                 }
             ]
@@ -17415,15 +17418,15 @@ const VOCAB_DB = {
             "ch": "壓力",
             "sents": [
                 {
-                    "text": "We learned the word \"stress\" in class today.",
+                    "text": "I found \"stress\" in a message from my teacher.",
                     "answer": "stress"
                 },
                 {
-                    "text": "Please remember \"stress\" for the quiz.",
+                    "text": "The reading passage used \"stress\" in a real-life context.",
                     "answer": "stress"
                 },
                 {
-                    "text": "My teacher used \"stress\" in an example.",
+                    "text": "I saw \"stress\" in a short article this morning.",
                     "answer": "stress"
                 }
             ]
@@ -17473,11 +17476,11 @@ const VOCAB_DB = {
                     "answer": "stupid"
                 },
                 {
-                    "text": "Please remember \"stupid\" for the quiz.",
+                    "text": "We used \"stupid\" in a quick speaking exercise today.",
                     "answer": "stupid"
                 },
                 {
-                    "text": "My teacher used \"stupid\" in an example.",
+                    "text": "I noticed \"stupid\" in a poster at the station.",
                     "answer": "stupid"
                 }
             ]
@@ -17505,7 +17508,7 @@ const VOCAB_DB = {
             "ch": "成功的",
             "sents": [
                 {
-                    "text": "We learned the word \"successful\" in class today.",
+                    "text": "I noticed \"successful\" in a poster at the station.",
                     "answer": "successful"
                 },
                 {
@@ -17513,7 +17516,7 @@ const VOCAB_DB = {
                     "answer": "successful"
                 },
                 {
-                    "text": "My teacher used \"successful\" in an example.",
+                    "text": "Our class discussion mentioned \"successful\" more than once.",
                     "answer": "successful"
                 }
             ]
@@ -17527,7 +17530,7 @@ const VOCAB_DB = {
                     "answer": "suddenly"
                 },
                 {
-                    "text": "Please remember \"suddenly\" for the quiz.",
+                    "text": "The reading passage used \"suddenly\" in a real-life context.",
                     "answer": "suddenly"
                 },
                 {
@@ -17613,7 +17616,7 @@ const VOCAB_DB = {
             "ch": "支持",
             "sents": [
                 {
-                    "text": "We learned the word \"support\" in class today.",
+                    "text": "The guidebook used \"support\" in a simple example.",
                     "answer": "support"
                 },
                 {
@@ -17631,11 +17634,11 @@ const VOCAB_DB = {
             "ch": "假設；認為",
             "sents": [
                 {
-                    "text": "We learned the word \"suppose\" in class today.",
+                    "text": "I noticed \"suppose\" in a poster at the station.",
                     "answer": "suppose"
                 },
                 {
-                    "text": "Please remember \"suppose\" for the quiz.",
+                    "text": "The news report included \"suppose\" in the headline.",
                     "answer": "suppose"
                 },
                 {
@@ -17693,7 +17696,7 @@ const VOCAB_DB = {
                     "answer": "surprise"
                 },
                 {
-                    "text": "My teacher used \"surprise\" in an example.",
+                    "text": "Our class discussion mentioned \"surprise\" more than once.",
                     "answer": "surprise"
                 }
             ]
@@ -17729,7 +17732,7 @@ const VOCAB_DB = {
                     "answer": "sweet"
                 },
                 {
-                    "text": "My teacher used \"sweet\" in an example.",
+                    "text": "The reading passage used \"sweet\" in a real-life context.",
                     "answer": "sweet"
                 }
             ]
@@ -17757,15 +17760,15 @@ const VOCAB_DB = {
             "ch": "系統",
             "sents": [
                 {
-                    "text": "We learned the word \"system\" in class today.",
+                    "text": "The teacher wrote \"system\" on the board before class.",
                     "answer": "system"
                 },
                 {
-                    "text": "Please remember \"system\" for the quiz.",
+                    "text": "We used \"system\" in a quick speaking exercise today.",
                     "answer": "system"
                 },
                 {
-                    "text": "My teacher used \"system\" in an example.",
+                    "text": "I noticed \"system\" in a poster at the station.",
                     "answer": "system"
                 }
             ]
@@ -17801,7 +17804,7 @@ const VOCAB_DB = {
                     "answer": "take a walk"
                 },
                 {
-                    "text": "My teacher used \"take a walk\" in an example.",
+                    "text": "The reading passage used \"take a walk\" in a real-life context.",
                     "answer": "take a walk"
                 }
             ]
@@ -17811,7 +17814,7 @@ const VOCAB_DB = {
             "ch": "任務",
             "sents": [
                 {
-                    "text": "We learned the word \"task\" in class today.",
+                    "text": "The guidebook used \"task\" in a simple example.",
                     "answer": "task"
                 },
                 {
@@ -17819,7 +17822,7 @@ const VOCAB_DB = {
                     "answer": "task"
                 },
                 {
-                    "text": "My teacher used \"task\" in an example.",
+                    "text": "The online video explained \"task\" in a clear way.",
                     "answer": "task"
                 }
             ]
@@ -17865,7 +17868,7 @@ const VOCAB_DB = {
             "ch": "科技",
             "sents": [
                 {
-                    "text": "We learned the word \"technology\" in class today.",
+                    "text": "I saw \"technology\" in a short article this morning.",
                     "answer": "technology"
                 },
                 {
@@ -17873,7 +17876,7 @@ const VOCAB_DB = {
                     "answer": "technology"
                 },
                 {
-                    "text": "My teacher used \"technology\" in an example.",
+                    "text": "We used \"technology\" in a quick speaking exercise today.",
                     "answer": "technology"
                 }
             ]
@@ -17883,15 +17886,15 @@ const VOCAB_DB = {
             "ch": "青少年",
             "sents": [
                 {
-                    "text": "We learned the word \"teen\" in class today.",
+                    "text": "I saw \"teen\" in a short article this morning.",
                     "answer": "teen"
                 },
                 {
-                    "text": "Please remember \"teen\" for the quiz.",
+                    "text": "The teacher wrote \"teen\" on the board before class.",
                     "answer": "teen"
                 },
                 {
-                    "text": "My teacher used \"teen\" in an example.",
+                    "text": "We used \"teen\" in a quick speaking exercise today.",
                     "answer": "teen"
                 }
             ]
@@ -17995,7 +17998,7 @@ const VOCAB_DB = {
                     "answer": "throw"
                 },
                 {
-                    "text": "Please remember \"throw\" for the quiz.",
+                    "text": "She wrote \"throw\" in her notebook during the lesson.",
                     "answer": "throw"
                 },
                 {
@@ -18045,15 +18048,15 @@ const VOCAB_DB = {
             "ch": "工具",
             "sents": [
                 {
-                    "text": "We learned the word \"tool\" in class today.",
+                    "text": "The teacher wrote \"tool\" on the board before class.",
                     "answer": "tool"
                 },
                 {
-                    "text": "Please remember \"tool\" for the quiz.",
+                    "text": "We used \"tool\" in a quick speaking exercise today.",
                     "answer": "tool"
                 },
                 {
-                    "text": "My teacher used \"tool\" in an example.",
+                    "text": "I noticed \"tool\" in a poster at the station.",
                     "answer": "tool"
                 }
             ]
@@ -18063,15 +18066,15 @@ const VOCAB_DB = {
             "ch": "旅遊業",
             "sents": [
                 {
-                    "text": "We learned the word \"tourism\" in class today.",
+                    "text": "Our class discussion mentioned \"tourism\" more than once.",
                     "answer": "tourism"
                 },
                 {
-                    "text": "Please remember \"tourism\" for the quiz.",
+                    "text": "I heard \"tourism\" in a conversation after school.",
                     "answer": "tourism"
                 },
                 {
-                    "text": "My teacher used \"tourism\" in an example.",
+                    "text": "The guidebook used \"tourism\" in a simple example.",
                     "answer": "tourism"
                 }
             ]
@@ -18081,15 +18084,15 @@ const VOCAB_DB = {
             "ch": "朝向",
             "sents": [
                 {
-                    "text": "We learned the word \"towards\" in class today.",
+                    "text": "She wrote \"towards\" in her notebook during the lesson.",
                     "answer": "towards"
                 },
                 {
-                    "text": "Please remember \"towards\" for the quiz.",
+                    "text": "The online video explained \"towards\" in a clear way.",
                     "answer": "towards"
                 },
                 {
-                    "text": "My teacher used \"towards\" in an example.",
+                    "text": "I found \"towards\" in a message from my teacher.",
                     "answer": "towards"
                 }
             ]
@@ -18135,7 +18138,7 @@ const VOCAB_DB = {
             "ch": "傳統",
             "sents": [
                 {
-                    "text": "We learned the word \"tradition\" in class today.",
+                    "text": "We used \"tradition\" in a quick speaking exercise today.",
                     "answer": "tradition"
                 },
                 {
@@ -18157,11 +18160,11 @@ const VOCAB_DB = {
                     "answer": "traditional"
                 },
                 {
-                    "text": "Please remember \"traditional\" for the quiz.",
+                    "text": "I found \"traditional\" in a message from my teacher.",
                     "answer": "traditional"
                 },
                 {
-                    "text": "My teacher used \"traditional\" in an example.",
+                    "text": "The reading passage used \"traditional\" in a real-life context.",
                     "answer": "traditional"
                 }
             ]
@@ -18171,7 +18174,7 @@ const VOCAB_DB = {
             "ch": "教練；運動鞋",
             "sents": [
                 {
-                    "text": "We learned the word \"trainer\" in class today.",
+                    "text": "Our class discussion mentioned \"trainer\" more than once.",
                     "answer": "trainer"
                 },
                 {
@@ -18179,7 +18182,7 @@ const VOCAB_DB = {
                     "answer": "trainer"
                 },
                 {
-                    "text": "My teacher used \"trainer\" in an example.",
+                    "text": "The guidebook used \"trainer\" in a simple example.",
                     "answer": "trainer"
                 }
             ]
@@ -18207,11 +18210,11 @@ const VOCAB_DB = {
             "ch": "貨車",
             "sents": [
                 {
-                    "text": "We learned the word \"truck\" in class today.",
+                    "text": "We used \"truck\" in a quick speaking exercise today.",
                     "answer": "truck"
                 },
                 {
-                    "text": "Please remember \"truck\" for the quiz.",
+                    "text": "I noticed \"truck\" in a poster at the station.",
                     "answer": "truck"
                 },
                 {
@@ -18351,7 +18354,7 @@ const VOCAB_DB = {
             "ch": "不尋常的",
             "sents": [
                 {
-                    "text": "We learned the word \"unusual\" in class today.",
+                    "text": "The news report included \"unusual\" in the headline.",
                     "answer": "unusual"
                 },
                 {
@@ -18359,7 +18362,7 @@ const VOCAB_DB = {
                     "answer": "unusual"
                 },
                 {
-                    "text": "My teacher used \"unusual\" in an example.",
+                    "text": "I heard \"unusual\" in a conversation after school.",
                     "answer": "unusual"
                 }
             ]
@@ -18405,11 +18408,11 @@ const VOCAB_DB = {
             "ch": "種類；多樣化",
             "sents": [
                 {
-                    "text": "We learned the word \"variety\" in class today.",
+                    "text": "The online video explained \"variety\" in a clear way.",
                     "answer": "variety"
                 },
                 {
-                    "text": "Please remember \"variety\" for the quiz.",
+                    "text": "I found \"variety\" in a message from my teacher.",
                     "answer": "variety"
                 },
                 {
@@ -18431,7 +18434,7 @@ const VOCAB_DB = {
                     "answer": "vehicle"
                 },
                 {
-                    "text": "My teacher used \"vehicle\" in an example.",
+                    "text": "The teacher wrote \"vehicle\" on the board before class.",
                     "answer": "vehicle"
                 }
             ]
@@ -18481,11 +18484,11 @@ const VOCAB_DB = {
                     "answer": "voice"
                 },
                 {
-                    "text": "Please remember \"voice\" for the quiz.",
+                    "text": "I saw \"voice\" in a short article this morning.",
                     "answer": "voice"
                 },
                 {
-                    "text": "My teacher used \"voice\" in an example.",
+                    "text": "The teacher wrote \"voice\" on the board before class.",
                     "answer": "voice"
                 }
             ]
@@ -18585,7 +18588,7 @@ const VOCAB_DB = {
             "ch": "網頁",
             "sents": [
                 {
-                    "text": "We learned the word \"webpage\" in class today.",
+                    "text": "I noticed \"webpage\" in a poster at the station.",
                     "answer": "webpage"
                 },
                 {
@@ -18593,7 +18596,7 @@ const VOCAB_DB = {
                     "answer": "webpage"
                 },
                 {
-                    "text": "My teacher used \"webpage\" in an example.",
+                    "text": "Our class discussion mentioned \"webpage\" more than once.",
                     "answer": "webpage"
                 }
             ]
@@ -18647,7 +18650,7 @@ const VOCAB_DB = {
                     "answer": "weight"
                 },
                 {
-                    "text": "My teacher used \"weight\" in an example.",
+                    "text": "The online video explained \"weight\" in a clear way.",
                     "answer": "weight"
                 }
             ]
@@ -18693,7 +18696,7 @@ const VOCAB_DB = {
             "ch": "輪子",
             "sents": [
                 {
-                    "text": "We learned the word \"wheel\" in class today.",
+                    "text": "I found \"wheel\" in a message from my teacher.",
                     "answer": "wheel"
                 },
                 {
@@ -18701,7 +18704,7 @@ const VOCAB_DB = {
                     "answer": "wheel"
                 },
                 {
-                    "text": "My teacher used \"wheel\" in an example.",
+                    "text": "I saw \"wheel\" in a short article this morning.",
                     "answer": "wheel"
                 }
             ]
@@ -18711,7 +18714,7 @@ const VOCAB_DB = {
             "ch": "寬的",
             "sents": [
                 {
-                    "text": "We learned the word \"wide\" in class today.",
+                    "text": "Our class discussion mentioned \"wide\" more than once.",
                     "answer": "wide"
                 },
                 {
@@ -18719,7 +18722,7 @@ const VOCAB_DB = {
                     "answer": "wide"
                 },
                 {
-                    "text": "My teacher used \"wide\" in an example.",
+                    "text": "The guidebook used \"wide\" in a simple example.",
                     "answer": "wide"
                 }
             ]
@@ -18729,7 +18732,7 @@ const VOCAB_DB = {
             "ch": "野生的",
             "sents": [
                 {
-                    "text": "We learned the word \"wild\" in class today.",
+                    "text": "I saw \"wild\" in a short article this morning.",
                     "answer": "wild"
                 },
                 {
@@ -18765,11 +18768,11 @@ const VOCAB_DB = {
             "ch": "勝利者",
             "sents": [
                 {
-                    "text": "We learned the word \"winner\" in class today.",
+                    "text": "The teacher wrote \"winner\" on the board before class.",
                     "answer": "winner"
                 },
                 {
-                    "text": "Please remember \"winner\" for the quiz.",
+                    "text": "We used \"winner\" in a quick speaking exercise today.",
                     "answer": "winner"
                 },
                 {
@@ -18787,11 +18790,11 @@ const VOCAB_DB = {
                     "answer": "wish"
                 },
                 {
-                    "text": "Please remember \"wish\" for the quiz.",
+                    "text": "The news report included \"wish\" in the headline.",
                     "answer": "wish"
                 },
                 {
-                    "text": "My teacher used \"wish\" in an example.",
+                    "text": "Our class discussion mentioned \"wish\" more than once.",
                     "answer": "wish"
                 }
             ]
@@ -18805,7 +18808,7 @@ const VOCAB_DB = {
                     "answer": "wood"
                 },
                 {
-                    "text": "Please remember \"wood\" for the quiz.",
+                    "text": "Our class discussion mentioned \"wood\" more than once.",
                     "answer": "wood"
                 },
                 {
