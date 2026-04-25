@@ -17,7 +17,6 @@
   "Tuesday": "星期二",
   "Wednesday": "星期三",
   "bottom": "底部",
-  "café": "咖啡店",
   "cake": "蛋糕",
   "camera": "相機",
   "capital": "首都",
@@ -339,5 +338,6 @@
   "writer": "作家",
   "year": "年",
   "yellow": "黃色",
-  "zoo": "動物園"
+  "zoo": "動物園",
+  "cafe": "咖啡店"
 }

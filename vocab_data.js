@@ -956,20 +956,20 @@ const VOCAB_DB = {
             ]
         },
         {
-            "en": "café",
+            "en": "cafe",
             "ch": "咖啡店",
             "sents": [
                 {
-                    "text": "We sat in a quiet café after school.",
-                    "answer": "café"
+                    "text": "We sat in a quiet cafe after school.",
+                    "answer": "cafe"
                 },
                 {
-                    "text": "The café on the corner sells good coffee.",
-                    "answer": "café"
+                    "text": "The cafe on the corner sells good coffee.",
+                    "answer": "cafe"
                 },
                 {
-                    "text": "My mother is meeting her friend at the café.",
-                    "answer": "café"
+                    "text": "My mother is meeting her friend at the cafe.",
+                    "answer": "cafe"
                 }
             ]
         },

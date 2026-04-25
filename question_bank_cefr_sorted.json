@@ -1060,21 +1060,21 @@
     "ch": "牛油 (n.)"
   },
   {
-    "word": "café",
+    "word": "cafe",
     "cefr": "A1",
     "frequency": 19,
     "sentences": [
       {
-        "text": "We sat in a quiet café after school.",
-        "answer": "café"
+        "text": "We sat in a quiet cafe after school.",
+        "answer": "cafe"
       },
       {
-        "text": "The café on the corner sells good coffee.",
-        "answer": "café"
+        "text": "The cafe on the corner sells good coffee.",
+        "answer": "cafe"
       },
       {
-        "text": "My mother is meeting her friend at the café.",
-        "answer": "café"
+        "text": "My mother is meeting her friend at the cafe.",
+        "answer": "cafe"
       }
     ],
     "ch": "咖啡店"
@@ -19593,7 +19593,7 @@
         "answer": "suppose"
       },
       {
-        "text": "The main thing I suppose is that the café won't be on the ground floor.",
+        "text": "The main thing I suppose is that the cafe won't be on the ground floor.",
         "answer": "suppose"
       }
     ],
@@ -38349,7 +38349,7 @@
         "answer": "whether"
       },
       {
-        "text": "Limahl enquired whether they would help on a daily basis in the café.",
+        "text": "Limahl enquired whether they would help on a daily basis in the cafe.",
         "answer": "whether"
       },
       {
