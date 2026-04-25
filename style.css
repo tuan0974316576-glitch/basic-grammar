@@ -3747,7 +3747,7 @@ body {
 }
 
 .listening-answer-shell {
-    width: min(100%, 320px);
+    width: min(100%, 100%);
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -3756,7 +3756,7 @@ body {
 }
 
 .listening-answer-shell.two-line {
-    width: min(100%, 360px);
+    width: min(100%, 100%);
 }
 
 .listening-answer-row {
@@ -3798,11 +3798,11 @@ body {
 }
 
 #q-display .listening-answer-shell {
-    width: min(100%, 360px);
+    width: min(100%, 100%);
 }
 
 #q-display .listening-answer-shell.two-line {
-    width: min(100%, 390px);
+    width: min(100%, 100%);
 }
 
 #q-display .listening-answer-row {

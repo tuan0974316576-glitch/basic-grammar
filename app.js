@@ -691,6 +691,7 @@ function renderSpeakingAssessmentDetail(wordAssessment, matchType = 'exact', sen
 
 function setSpeakingUiState(state = 'idle', statusText = 'VOICE LINK STANDBY', scoreText = '--') {
     const statusEl = document.getElementById('speaking-status');
+    const waveEl = document.getElementById('speaking-wave');
     const subhintEl = document.getElementById('launch-subhint');
     const scorebarEl = document.getElementById('speaking-scorebar');
     const scoreValueEl = document.getElementById('speaking-score-value');
@@ -698,6 +699,7 @@ function setSpeakingUiState(state = 'idle', statusText = 'VOICE LINK STANDBY', s
     if (!statusEl || !subhintEl || !scorebarEl || !scoreValueEl) return;
     if (!isSpeaking) {
         statusEl.style.display = 'none';
+        if (waveEl) waveEl.style.display = 'none';
         subhintEl.style.display = '';
         scorebarEl.style.display = 'none';
         statusEl.className = 'speaking-status';
@@ -7078,27 +7080,7 @@ function generateSmartBlanks(text) {
 
 function getListeningAnswerRows(text) {
     const cleanText = (text || '').trim();
-    if (!cleanText) return [''];
-    if (cleanText.length <= 12) return [cleanText];
-
-    const words = cleanText.split(/\s+/);
-    if (words.length > 1) {
-        const totalLength = cleanText.length;
-        let currentLength = 0;
-        let splitIndex = 1;
-        for (let i = 0; i < words.length - 1; i++) {
-            currentLength += words[i].length + (i > 0 ? 1 : 0);
-            splitIndex = i + 1;
-            if (currentLength >= totalLength / 2) break;
-        }
-
-        const firstRow = words.slice(0, splitIndex).join(' ');
-        const secondRow = words.slice(splitIndex).join(' ');
-        if (firstRow && secondRow) return [firstRow, secondRow];
-    }
-
-    const midpoint = Math.ceil(cleanText.length / 2);
-    return [cleanText.slice(0, midpoint), cleanText.slice(midpoint)];
+    return [cleanText];
 }
 
 function splitListeningInputByRows(inputVal, rows) {
@@ -7174,7 +7156,7 @@ function flashVirtualKeyboardErrorKey(keyElement) {
 function renderListeningAnswerDisplay(text, inputVal) {
     const rows = getListeningAnswerRows(text);
     const typedRows = splitListeningInputByRows(inputVal, rows);
-    const rowClass = rows.length > 1 ? 'listening-answer-shell two-line' : 'listening-answer-shell one-line';
+    const rowClass = 'listening-answer-shell one-line';
 
     const rowMarkup = rows.map((row, index) => {
         const typedText = escapeHtml(typedRows[index] || '');
@@ -7182,12 +7164,18 @@ function renderListeningAnswerDisplay(text, inputVal) {
         let fontSize = 24;
         let letterSpacing = 3;
 
-        if (lengthBasis >= 16) {
+        if (lengthBasis >= 24) {
+            fontSize = 12;
+            letterSpacing = 0.4;
+        } else if (lengthBasis >= 20) {
+            fontSize = 14;
+            letterSpacing = 0.6;
+        } else if (lengthBasis >= 17) {
+            fontSize = 16;
+            letterSpacing = 0.8;
+        } else if (lengthBasis >= 14) {
             fontSize = 18;
-            letterSpacing = 1;
-        } else if (lengthBasis >= 13) {
-            fontSize = 20;
-            letterSpacing = 2;
+            letterSpacing = 1.2;
         } else if (lengthBasis >= 10) {
             fontSize = 22;
             letterSpacing = 2.4;
