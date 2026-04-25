@@ -4976,8 +4976,8 @@ body {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 36px;
-    height: 36px;
+    width: 75px;
+    height: 75px;
     background: url('radiactive.png') center / contain no-repeat;
     opacity: 0.4;
     filter:
