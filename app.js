@@ -1055,8 +1055,31 @@ let isTargeting = false;
         return { level, name: rank.name, minXP: rank.minXP, nextXP, iconFile: rank.iconFile };
     }
 
+    function getCurrentUserXPValue() {
+        if (typeof userTotalXP === 'number' && !Number.isNaN(userTotalXP)) {
+            return userTotalXP;
+        }
+        if (typeof window.userTotalXP === 'number' && !Number.isNaN(window.userTotalXP)) {
+            return window.userTotalXP;
+        }
+        return 0;
+    }
+
+    function refreshRankInfoModalIfOpen() {
+        const modal = document.getElementById('rank-info-modal');
+        if (modal && modal.style.display === 'flex') {
+            renderRankInfoModal();
+        }
+    }
+
+    function syncUserProgressGlobals() {
+        window.userTotalXP = userTotalXP;
+        window.userSupplies = userSupplies;
+        refreshRankInfoModalIfOpen();
+    }
+
     function renderRankInfoModal() {
-        const currentXP = window.userTotalXP || userTotalXP || 0;
+        const currentXP = getCurrentUserXPValue();
         const currentRank = getRankForXP(currentXP);
         const currentLabelEl = document.getElementById('rank-info-current');
         const listEl = document.getElementById('rank-info-list');
@@ -1129,7 +1152,10 @@ let isTargeting = false;
     let selectedStageIndex = null;
     let selectedStageLabel = '';
     let tempGameMode = 'AI';  // ����ģʽ�x��
-    const STAGE_WORD_COUNT = 30;
+    const STAGE_WORD_COUNT = 25;
+    const STAGE_WORD_SESSION_MISS_LIMIT = 2;
+    let stageSessionMissCounts = {};
+    let lastAskedWordKey = '';
 
     // --- 3. ȫ��׃�� ---
 let deploymentTimerInterval = null; // ��ꇵ�����
@@ -1182,10 +1208,43 @@ function pickBattleUniqueWord(wordList) {
     return pool[Math.floor(Math.random() * pool.length)] || null;
 }
 
+function pickBattleWordWithCooldown(wordList) {
+    if (!Array.isArray(wordList) || wordList.length === 0) return null;
+    const basePick = pickBattleUniqueWord(wordList);
+    if (!basePick) return null;
+
+    if (wordList.length <= 1 || !lastAskedWordKey) {
+        return basePick;
+    }
+
+    const filtered = wordList.filter(word => getBattleWordKey(word) !== lastAskedWordKey);
+    if (filtered.length === 0) {
+        return basePick;
+    }
+
+    return pickBattleUniqueWord(filtered) || basePick;
+}
+
 function markBattleWordUsed(word) {
     if (word && word.en) {
-        battleUsedWordKeys.add(getBattleWordKey(word));
+        const wordKey = getBattleWordKey(word);
+        battleUsedWordKeys.add(wordKey);
+        lastAskedWordKey = wordKey;
     }
+}
+
+function isCurrentStagePrimaryWord(word) {
+    if (!word || tempGameMode !== 'AI' || selectedStageIndex === null) return false;
+    return getCurrentStagePrimaryWords(currentPracticeMode.toLowerCase()).some(stageWord => stageWord.en === word.en);
+}
+
+function getStageSessionMissCount(wordEn) {
+    return stageSessionMissCounts[wordEn] || 0;
+}
+
+function recordStageSessionMiss(wordEn) {
+    if (!wordEn) return;
+    stageSessionMissCounts[wordEn] = (stageSessionMissCounts[wordEn] || 0) + 1;
 }
 
 function buildPvpQuestionPayload(word) {
@@ -1668,7 +1727,7 @@ function selectStage(stageIndex) {
     if (!isStageUnlocked(selectedLevel, stageIndex)) {
         playSound('delete-sfx');
         showNotification(
-            `COMPLETE AT LEAST 60% OF STAGE ${stageIndex} TO UNLOCK STAGE ${stageIndex + 1}`,
+            `COMPLETE AT LEAST 60% OF THE ${STAGE_WORD_COUNT} WORDS IN STAGE ${stageIndex} TO UNLOCK STAGE ${stageIndex + 1}`,
             'error',
             3500
         );
@@ -1980,6 +2039,8 @@ function enterGameUI() {
 
     // �� ��ʼ���e�փ��� deck����֮ǰ�e�^�������ȳ�
     wrongWordsDeck = getWrongWordsForSession(currentPracticeMode, selectedLevel);
+    stageSessionMissCounts = {};
+    lastAskedWordKey = '';
     if (tempGameMode === 'AI' && Array.isArray(activeVocabList) && activeVocabList.length > 0) {
         const scopedPrimaryWords = selectedStageIndex !== null
             ? getCurrentStagePrimaryWords(currentPracticeMode.toLowerCase())
@@ -2794,6 +2855,7 @@ function startBattle() {
     if (gameMode === 'AI') {
         updateEnemyBoardLabel(enemyRace); // �� Update AI opponent label ��
         renderBattleMinimap('PLAYER');
+        preloadLikelyNextListeningPrompt();
         startPlayerTurn();
     } else {
         const { ref, update, onValue, off } = window.firebaseModules;
@@ -3213,7 +3275,7 @@ async function openLaunchModal(index) {
         if (wrongWordsDeck.length > 0) {
             const availableWrongWords = wrongWordsDeck.filter(word => !battleUsedWordKeys.has(getBattleWordKey(word)));
             const learningPool = availableWrongWords.length > 0 ? availableWrongWords : wrongWordsDeck;
-            const pickedWrongWord = pickBattleUniqueWord(learningPool);
+            const pickedWrongWord = pickBattleWordWithCooldown(learningPool);
             if (pickedWrongWord) {
                 currentVocab = pickedWrongWord;
                 const removeIndex = wrongWordsDeck.findIndex(word => word.en === pickedWrongWord.en && word.ch === pickedWrongWord.ch);
@@ -3225,11 +3287,12 @@ async function openLaunchModal(index) {
             const newWords = primaryWordPool.filter(word => {
                 if (!userMastery[masteryKey]) return true;
                 if (!userMastery[masteryKey][selectedLevel]) return true;
-                return !userMastery[masteryKey][selectedLevel][word.en];
+                if (userMastery[masteryKey][selectedLevel][word.en]) return false;
+                return getStageSessionMissCount(word.en) < STAGE_WORD_SESSION_MISS_LIMIT;
             });
 
             if (newWords.length > 0) {
-                currentVocab = pickBattleUniqueWord(newWords);
+                currentVocab = pickBattleWordWithCooldown(newWords);
                 console.log(`[Pool 2 - Stage New] Fresh word: ${currentVocab.en} (${newWords.length} stage words available)`);
             } else {
                 // Pool 3: Current stage words already mastered
@@ -3240,11 +3303,11 @@ async function openLaunchModal(index) {
                 });
 
                 if (masteredWords.length > 0) {
-                    currentVocab = pickBattleUniqueWord(masteredWords);
+                    currentVocab = pickBattleWordWithCooldown(masteredWords);
                     const masteryData = userMastery[masteryKey][selectedLevel][currentVocab.en];
                     console.log(`[Pool 3 - Stage Review] Mastered word: ${currentVocab.en} (count: ${masteryData.count})`);
                 } else if (stageReviewPool.length > 0) {
-                    currentVocab = pickBattleUniqueWord(stageReviewPool);
+                    currentVocab = pickBattleWordWithCooldown(stageReviewPool);
                     console.log(`[Pool 4 - Legacy Review] Review word: ${currentVocab.en} (${stageReviewPool.length} prior-stage words available)`);
                 } else {
                     // Fallback: if somehow no words available
@@ -3252,7 +3315,7 @@ async function openLaunchModal(index) {
                         alert("Error: Database is empty!");
                         return;
                     }
-                    currentVocab = pickBattleUniqueWord(activeVocabList);
+                    currentVocab = pickBattleWordWithCooldown(activeVocabList);
                     console.log(`[Fallback] Random word: ${currentVocab.en}`);
                 }
             }
@@ -3729,25 +3792,46 @@ async function playListeningAzureText(text, element = null, startListeningTimer 
         if (element) element.classList.remove('speaking');
     };
 
+    let listeningCountdownScheduled = false;
+    let listeningCountdownStarted = false;
+    const scheduleListeningCountdown = () => {
+        if (!startListeningTimer || listeningCountdownScheduled) return;
+
+        const durationMs = Number.isFinite(result?.durationMs) && result.durationMs > 0
+            ? Math.round(result.durationMs)
+            : (Number.isFinite(audio.duration) && audio.duration > 0 ? Math.round(audio.duration * 1000) : 0);
+
+        if (!durationMs) {
+            return;
+        }
+
+        const listeningTarget = currentVocab?.listeningAnswer || currentVocab?.en || '';
+        const estimatedMs = estimateListeningTargetFinishMs(
+            currentVocab?.sent ? currentVocab.sent : text,
+            listeningTarget,
+            durationMs
+        );
+
+        listeningCountdownScheduled = true;
+        clearListeningTimerStartTimeout();
+        listeningTimerStartTimeout = setTimeout(() => {
+            listeningTimerStartTimeout = null;
+            const modal = document.getElementById('launch-modal');
+            if (modal && modal.style.display === 'flex' && typeof startCountdownTimer === 'function' && !timerInterval) {
+                listeningCountdownStarted = true;
+                console.log(`[Listening Debug] Estimated target finished at ${estimatedMs}ms, starting timer.`);
+                startCountdownTimer();
+            }
+        }, Math.max(250, estimatedMs));
+    };
+
     audio.onplay = () => {
         if (element) element.classList.add('speaking');
-        if (startListeningTimer) {
-            const listeningTarget = currentVocab?.listeningAnswer || currentVocab?.en || '';
-            const estimatedMs = estimateListeningTargetFinishMs(
-                currentVocab?.sent ? currentVocab.sent : text,
-                listeningTarget,
-                Math.max(0, Math.round(audio.duration * 1000))
-            );
-            clearListeningTimerStartTimeout();
-            listeningTimerStartTimeout = setTimeout(() => {
-                listeningTimerStartTimeout = null;
-                const modal = document.getElementById('launch-modal');
-                if (modal && modal.style.display === 'flex' && typeof startCountdownTimer === 'function' && !timerInterval) {
-                    console.log(`[Listening Debug] Estimated target finished at ${estimatedMs}ms, starting timer.`);
-                    startCountdownTimer();
-                }
-            }, Math.max(250, estimatedMs));
-        }
+        scheduleListeningCountdown();
+    };
+
+    audio.onloadedmetadata = () => {
+        scheduleListeningCountdown();
     };
 
     audio.onended = () => {
@@ -3756,9 +3840,13 @@ async function playListeningAzureText(text, element = null, startListeningTimer 
         if (shouldMaintainFocus && hiddenInput) {
             setTimeout(() => hiddenInput.focus(), 50);
         }
-        if (startListeningTimer && typeof currentPracticeMode !== 'undefined' && currentPracticeMode === 'LISTENING') {
+        if (startListeningTimer &&
+            typeof currentPracticeMode !== 'undefined' &&
+            currentPracticeMode === 'LISTENING' &&
+            !listeningCountdownStarted) {
             const modal = document.getElementById('launch-modal');
             if (modal && modal.style.display === 'flex' && typeof startCountdownTimer === 'function' && !timerInterval) {
+                listeningCountdownStarted = true;
                 startCountdownTimer();
             }
         }
@@ -4058,6 +4146,7 @@ function handleCorrectAnswer() {
 
     // Update global XP
     userTotalXP += xpGained;
+    syncUserProgressGlobals();
 
     // ���� SUPPLIES SYSTEM: Earn supplies for correct answers ����
     let suppliesGained = 0;
@@ -4072,7 +4161,7 @@ function handleCorrectAnswer() {
     }
 
     userSupplies += suppliesGained;
-    window.userSupplies = userSupplies;
+    syncUserProgressGlobals();
     console.log(`[Supplies] Earned ${suppliesGained} supplies, total: ${userSupplies}`);
 
     // ���� ENERGY SYSTEM: ���_���} +1 energy (���зN��) ����
@@ -4169,6 +4258,10 @@ function checkAnswer() {
         handleCorrectAnswer();
     } else {
         saveWrongWord(currentPracticeMode, selectedLevel, currentVocab.en);
+        if (isCurrentStagePrimaryWord(currentVocab)) {
+            recordStageSessionMiss(currentVocab.en);
+            console.log(`[Stage Miss] ${currentVocab.en} miss count: ${getStageSessionMissCount(currentVocab.en)}/${STAGE_WORD_SESSION_MISS_LIMIT}`);
+        }
     }
 
     // �Y��̎��
@@ -5268,6 +5361,7 @@ function calculateAndDisplaySettlement(isVictory, isSurrender = false) {
 
     // Add match bonus to total XP
     userTotalXP += matchBonus;
+    syncUserProgressGlobals();
 
     // Calculate total session XP
     const totalSessionXP = sessionAnsweringXP + matchBonus;
@@ -5577,6 +5671,8 @@ function executeAbort() {
 function resetGame() {
     battleLog = [];
     battleUsedWordKeys.clear();
+    stageSessionMissCounts = {};
+    lastAskedWordKey = '';
     resetListeningVoiceCycle();
     pvpRaceSelectionShown = false;
     isEnteringPVPDeploy = false;
@@ -8654,10 +8750,13 @@ function startCountdownTimer() {
     const timerBar = document.getElementById('timer-bar');
     
     // Ӌ��r�g (߉݋ͬԭ��һ��)
-    let timeMultiplier = 0.7;
+    let timeMultiplier = 0.5;
     let baseTime = 3;
-    if (currentPracticeMode === 'SPEAKING') {
-        baseTime = 4; timeMultiplier = 0.8;
+    if (currentPracticeMode === 'LISTENING') {
+        timeMultiplier = 0.3;
+    } else if (currentPracticeMode === 'SPEAKING') {
+        baseTime = 4;
+        timeMultiplier = 0.8;
     }
     const totalTime = baseTime + (currentVocab.en.length * timeMultiplier);
     launchTimerTotal = currentPracticeMode === 'SPEAKING' ? totalTime * 2 : totalTime;
