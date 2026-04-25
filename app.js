@@ -8753,7 +8753,7 @@ function startCountdownTimer() {
     let timeMultiplier = 0.5;
     let baseTime = 3;
     if (currentPracticeMode === 'LISTENING') {
-        timeMultiplier = 0.3;
+        timeMultiplier = 1.1;
     } else if (currentPracticeMode === 'SPEAKING') {
         baseTime = 4;
         timeMultiplier = 0.8;
