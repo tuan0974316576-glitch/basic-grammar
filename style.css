@@ -4979,12 +4979,12 @@ body {
     width: 75px;
     height: 75px;
     background: url('radiactive.png') center / contain no-repeat;
-    opacity: 0.4;
+    opacity: 0.26;
     filter:
         drop-shadow(0 0 8px rgba(255, 255, 255, 0.12))
         drop-shadow(0 0 14px rgba(239, 68, 68, 0.18));
     pointer-events: none;
-    z-index: 1;
+    z-index: 0;
     animation: nukeSigilPulse 1.8s ease-in-out infinite;
 }
 
