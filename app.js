@@ -3865,6 +3865,7 @@ function handlePlayerTimeout() {
             correctContent = currentVocab.sent;
         }
         if (currentPracticeMode === 'LISTENING' && currentVocab.sent) {
+            correctContent = currentVocab.listeningAnswer || currentVocab.en;
             sentenceContent = currentVocab.sent;
         }
 
@@ -7115,6 +7116,26 @@ function replaceListeningAnswerWithBlank(sentence, answer) {
     return replaced !== source ? replaced : renderListeningSentenceBlank(target);
 }
 
+function getSentenceSurfaceAnswer(sentence, answer) {
+    const source = String(sentence || '');
+    const target = String(answer || '').trim();
+    if (!source || !target) return target;
+
+    const exactRegex = new RegExp(`(?<![A-Za-z0-9])${escapeRegExp(target)}(?![A-Za-z0-9])`, 'i');
+    const exactMatch = source.match(exactRegex);
+    if (exactMatch && exactMatch[0]) return exactMatch[0];
+
+    const tokenMatches = source.match(/[A-Za-z]+(?:['’-][A-Za-z]+)*/g) || [];
+    const lowerTarget = target.toLowerCase();
+    const preferred = tokenMatches.find(token => token.toLowerCase() === lowerTarget);
+    if (preferred) return preferred;
+
+    const containing = tokenMatches.find(token => token.toLowerCase().includes(lowerTarget));
+    if (containing) return containing;
+
+    return target;
+}
+
 function formatInputForTarget(logicInput, targetWord) {
     const cleanLogic = String(logicInput || '').replace(/[^A-Za-z0-9]/g, '').toUpperCase();
     const target = String(targetWord || '');
@@ -8918,8 +8939,11 @@ function syncSentenceProgressEntry(modeKey, levelKey, wordId, entry) {
 function applySelectedSentenceToCurrentVocab(selectedSent) {
     if (typeof selectedSent === 'object' && selectedSent?.text) {
         currentVocab.sent = selectedSent.text;
-        currentVocab.listeningAnswer = selectedSent.answer || null;
-        console.log(`[Vocab] Using new format - Sentence: "${selectedSent.text}", Answer: "${selectedSent.answer}"`);
+        currentVocab.listeningAnswer = getSentenceSurfaceAnswer(
+            selectedSent.text,
+            selectedSent.answer || currentVocab.en || ''
+        );
+        console.log(`[Vocab] Using new format - Sentence: "${selectedSent.text}", Answer: "${currentVocab.listeningAnswer}"`);
     } else {
         currentVocab.sent = selectedSent;
         currentVocab.listeningAnswer = null;
