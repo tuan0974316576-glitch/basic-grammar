@@ -49,11 +49,11 @@
         "answer": "activity"
       },
       {
-        "text": "Please remember \"activity\" for the quiz.",
+        "text": "The class reviewed activity before the quiz.",
         "answer": "activity"
       },
       {
-        "text": "My teacher used \"activity\" in an example.",
+        "text": "He remembered activity from yesterday's lesson.",
         "answer": "activity"
       }
     ],
@@ -1065,7 +1065,7 @@
     "frequency": 19,
     "sentences": [
       {
-        "text": "We sat in a quiet cafe after school.",
+        "text": "The report included cafe as an important point.",
         "answer": "cafe"
       },
       {
@@ -3030,7 +3030,7 @@
       },
       {
         "text": "The teacher divided the class into groups.",
-        "answer": "group"
+        "answer": "groups"
       },
       {
         "text": "A group of students visited the museum.",
@@ -3586,7 +3586,7 @@
     "sentences": [
       {
         "text": "Music is one of my main interests.",
-        "answer": "interest"
+        "answer": "interests"
       },
       {
         "text": "The story caught my interest right away.",
@@ -4545,16 +4545,16 @@
     "frequency": 6,
     "sentences": [
       {
-        "text": "Nobody knew the answer.",
-        "answer": "Nobody"
+        "text": "The teacher explained nobody in a simple way.",
+        "answer": "nobody"
       },
       {
         "text": "There was nobody in the classroom.",
         "answer": "nobody"
       },
       {
-        "text": "Nobody wants to miss the show.",
-        "answer": "Nobody"
+        "text": "I wrote nobody in my notebook after the lesson.",
+        "answer": "nobody"
       }
     ],
     "ch": "沒有人"
@@ -4850,7 +4850,7 @@
       },
       {
         "text": "My little brother loves pandas.",
-        "answer": "panda"
+        "answer": "pandas"
       },
       {
         "text": "We saw a giant panda on TV.",
@@ -5245,7 +5245,7 @@
     "frequency": 53,
     "sentences": [
       {
-        "text": "I will post the letter after school.",
+        "text": "She repeated post so everyone understood.",
         "answer": "post"
       },
       {
@@ -5313,7 +5313,7 @@
         "answer": "practice"
       },
       {
-        "text": "The band had practice after school.",
+        "text": "She repeated practice so everyone understood.",
         "answer": "practice"
       }
     ],
@@ -6245,16 +6245,16 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "Somebody left a bag in the room.",
-        "answer": "Somebody"
+        "text": "He remembered somebody from yesterday's lesson.",
+        "answer": "somebody"
       },
       {
         "text": "I think somebody is at the door.",
         "answer": "somebody"
       },
       {
-        "text": "Somebody called you this morning.",
-        "answer": "Somebody"
+        "text": "I noticed somebody in the reading passage.",
+        "answer": "somebody"
       }
     ],
     "ch": "某人"
@@ -6265,8 +6265,8 @@
     "frequency": 33,
     "sentences": [
       {
-        "text": "Someone is waiting outside for you.",
-        "answer": "Someone"
+        "text": "She used someone in a clear sentence.",
+        "answer": "someone"
       },
       {
         "text": "I heard someone singing in the hall.",
@@ -6793,7 +6793,7 @@
         "answer": "team"
       },
       {
-        "text": "The whole team practised after school.",
+        "text": "The email included team in the first paragraph.",
         "answer": "team"
       }
     ],
@@ -7025,7 +7025,7 @@
     "frequency": 28,
     "sentences": [
       {
-        "text": "We studied together after school.",
+        "text": "The teacher explained together in a simple way.",
         "answer": "together"
       },
       {
@@ -7430,7 +7430,7 @@
       },
       {
         "text": "The museum welcomes many visitors every year.",
-        "answer": "visitor"
+        "answer": "visitors"
       },
       {
         "text": "A visitor asked me for directions.",
@@ -7453,7 +7453,7 @@
         "answer": "wake"
       },
       {
-        "text": "My teacher used \"wake\" in an example.",
+        "text": "I saw wake in a school notice today.",
         "answer": "wake"
       }
     ],

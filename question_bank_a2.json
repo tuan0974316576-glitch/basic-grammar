@@ -9,11 +9,11 @@
         "answer": "ability"
       },
       {
-        "text": "But this ability will not take you very far beyond the university.",
+        "text": "I saw ability in a school notice today.",
         "answer": "ability"
       },
       {
-        "text": "I found \"ability\" in a message from my teacher.",
+        "text": "We heard ability in a class conversation.",
         "answer": "ability"
       }
     ],
@@ -25,7 +25,7 @@
     "frequency": 37,
     "sentences": [
       {
-        "text": "I saw \"able\" in a short article this morning.",
+        "text": "The class reviewed able before the quiz.",
         "answer": "able"
       },
       {
@@ -70,11 +70,11 @@
       },
       {
         "text": "Once an article is accepted for publication, payment will be made.",
-        "answer": "accept"
+        "answer": "accepted"
       },
       {
         "text": "The meeting unanimously accepted the proposal.",
-        "answer": "accept"
+        "answer": "accepted"
       }
     ],
     "ch": "接受"
@@ -85,7 +85,7 @@
     "frequency": 15,
     "sentences": [
       {
-        "text": "We used \"accident\" in a quick speaking exercise today.",
+        "text": "The report included accident as an important point.",
         "answer": "accident"
       },
       {
@@ -105,15 +105,15 @@
     "frequency": 10,
     "sentences": [
       {
-        "text": "The online video explained \"achieve\" in a clear way.",
+        "text": "I noticed achieve in the reading passage.",
         "answer": "achieve"
       },
       {
-        "text": "I found \"achieve\" in a message from my teacher.",
+        "text": "The speaker used achieve when answering the question.",
         "answer": "achieve"
       },
       {
-        "text": "The reading passage used \"achieve\" in a real-life context.",
+        "text": "We copied achieve into our notes carefully.",
         "answer": "achieve"
       }
     ],
@@ -145,7 +145,7 @@
     "frequency": 31,
     "sentences": [
       {
-        "text": "I found \"actually\" in a message from my teacher.",
+        "text": "The speaker used actually when answering the question.",
         "answer": "actually"
       },
       {
@@ -153,7 +153,7 @@
         "answer": "actually"
       },
       {
-        "text": "Rowett Uni   Posted: February 3 2019, 08:01 AM   Well, everybody actually.",
+        "text": "The teacher explained actually in a simple way.",
         "answer": "actually"
       }
     ],
@@ -165,15 +165,15 @@
     "frequency": 23,
     "sentences": [
       {
-        "text": "I found \"adult\" in a message from my teacher.",
+        "text": "She used adult in a clear sentence.",
         "answer": "adult"
       },
       {
-        "text": "To show main / adult characters were happily married (and had happy family)   56.",
+        "text": "He heard adult during a short discussion.",
         "answer": "adult"
       },
       {
-        "text": "I saw \"adult\" in a short article this morning.",
+        "text": "The guide used adult in a useful example.",
         "answer": "adult"
       }
     ],
@@ -189,12 +189,12 @@
         "answer": "advantage"
       },
       {
-        "text": "So what are the advantages of a virtual pet compared to a real one?",
+        "text": "The article mentioned advantage more than once.",
         "answer": "advantage"
       },
       {
         "text": "Summarize the advantages and disadvantages of each funding option.",
-        "answer": "advantage"
+        "answer": "advantages"
       }
     ],
     "ch": "優點；有利條件"
@@ -209,11 +209,11 @@
         "answer": "adventure"
       },
       {
-        "text": "The guidebook used \"adventure\" in a simple example.",
+        "text": "He remembered adventure from yesterday's lesson.",
         "answer": "adventure"
       },
       {
-        "text": "So we will now have an Adventure Camp in March, May, August and November every year.",
+        "text": "The email included adventure in the first paragraph.",
         "answer": "adventure"
       }
     ],
@@ -225,15 +225,15 @@
     "frequency": 8,
     "sentences": [
       {
-        "text": "The online video explained \"advertise\" in a clear way.",
+        "text": "I noticed advertise in the reading passage.",
         "answer": "advertise"
       },
       {
-        "text": "I found \"advertise\" in a message from my teacher.",
+        "text": "The speaker used advertise when answering the question.",
         "answer": "advertise"
       },
       {
-        "text": "The reading passage used \"advertise\" in a real-life context.",
+        "text": "We copied advertise into our notes carefully.",
         "answer": "advertise"
       }
     ],
@@ -245,15 +245,15 @@
     "frequency": 14,
     "sentences": [
       {
-        "text": "We used \"advertisement\" in a quick speaking exercise today.",
+        "text": "The report included advertisement as an important point.",
         "answer": "advertisement"
       },
       {
         "text": "Mention this in any new advertisements.",
-        "answer": "advertisement"
+        "answer": "advertisements"
       },
       {
-        "text": "The news report included \"advertisement\" in the headline.",
+        "text": "We heard advertisement in a class conversation.",
         "answer": "advertisement"
       }
     ],
@@ -325,11 +325,11 @@
     "frequency": 8,
     "sentences": [
       {
-        "text": "Ceci: So it really does sound like tourism is helping you keep your culture alive.",
+        "text": "The teacher explained alive in a simple way.",
         "answer": "alive"
       },
       {
-        "text": "10:46 PM   Gehry:   And you weren't eaten alive!",
+        "text": "The small plant stayed alive through the winter.",
         "answer": "alive"
       },
       {
@@ -345,15 +345,15 @@
     "frequency": 28,
     "sentences": [
       {
-        "text": "The news report included \"allow\" in the headline.",
+        "text": "We heard allow in a class conversation.",
         "answer": "allow"
       },
       {
-        "text": "Our class discussion mentioned \"allow\" more than once.",
+        "text": "She repeated allow so everyone understood.",
         "answer": "allow"
       },
       {
-        "text": "I heard \"allow\" in a conversation after school.",
+        "text": "The class reviewed allow before the quiz.",
         "answer": "allow"
       }
     ],
@@ -365,15 +365,15 @@
     "frequency": 16,
     "sentences": [
       {
-        "text": "I noticed \"alone\" in a poster at the station.",
+        "text": "I saw alone in a school notice today.",
         "answer": "alone"
       },
       {
-        "text": "The news report included \"alone\" in the headline.",
+        "text": "We heard alone in a class conversation.",
         "answer": "alone"
       },
       {
-        "text": "Our class discussion mentioned \"alone\" more than once.",
+        "text": "She repeated alone so everyone understood.",
         "answer": "alone"
       }
     ],
@@ -393,7 +393,7 @@
         "answer": "along"
       },
       {
-        "text": "The reading passage used \"along\" in a real-life context.",
+        "text": "She repeated along so everyone understood.",
         "answer": "along"
       }
     ],
@@ -405,7 +405,7 @@
     "frequency": 13,
     "sentences": [
       {
-        "text": "Although I don't trade them for money, I swap them for other birds I haven't got.\"",
+        "text": "The guide used although in a useful example.",
         "answer": "although"
       },
       {
@@ -413,7 +413,7 @@
         "answer": "although"
       },
       {
-        "text": "She wrote \"although\" in her notebook during the lesson.",
+        "text": "The report included although as an important point.",
         "answer": "although"
       }
     ],
@@ -425,15 +425,15 @@
     "frequency": 15,
     "sentences": [
       {
-        "text": "The online video explained \"among\" in a clear way.",
+        "text": "I saw among in a school notice today.",
         "answer": "among"
       },
       {
-        "text": "I found \"among\" in a message from my teacher.",
+        "text": "We heard among in a class conversation.",
         "answer": "among"
       },
       {
-        "text": "The reading passage used \"among\" in a real-life context.",
+        "text": "She repeated among so everyone understood.",
         "answer": "among"
       }
     ],
@@ -445,15 +445,15 @@
     "frequency": 6,
     "sentences": [
       {
-        "text": "I saw \"ancient\" in a short article this morning.",
+        "text": "The class reviewed ancient before the quiz.",
         "answer": "ancient"
       },
       {
-        "text": "The teacher wrote \"ancient\" on the board before class.",
+        "text": "He remembered ancient from yesterday's lesson.",
         "answer": "ancient"
       },
       {
-        "text": "We used \"ancient\" in a quick speaking exercise today.",
+        "text": "The email included ancient in the first paragraph.",
         "answer": "ancient"
       }
     ],
@@ -533,7 +533,7 @@
         "answer": "anyway"
       },
       {
-        "text": "Anyway, let us focus on the next question.",
+        "text": "I saw anyway in a school notice today.",
         "answer": "anyway"
       }
     ],
@@ -609,11 +609,11 @@
         "answer": "apply"
       },
       {
-        "text": "I found \"apply\" in a message from my teacher.",
+        "text": "The speaker used apply when answering the question.",
         "answer": "apply"
       },
       {
-        "text": "Hong Kong Arts and Crafts: How can they apply?",
+        "text": "Students can apply online before the deadline.",
         "answer": "apply"
       }
     ],
@@ -669,11 +669,11 @@
         "answer": "argue"
       },
       {
-        "text": "I saw \"argue\" in a short article this morning.",
+        "text": "The class reviewed argue before the quiz.",
         "answer": "argue"
       },
       {
-        "text": "The teacher wrote \"argue\" on the board before class.",
+        "text": "He remembered argue from yesterday's lesson.",
         "answer": "argue"
       }
     ],
@@ -685,7 +685,7 @@
     "frequency": 8,
     "sentences": [
       {
-        "text": "Focus on One Theme [7] Your theme is the moral argument of your story.",
+        "text": "I noticed argument in the reading passage.",
         "answer": "argument"
       },
       {
@@ -693,7 +693,7 @@
         "answer": "argument"
       },
       {
-        "text": "[7] I see “Messy” as an argument against the excessive attempts to organize.",
+        "text": "We copied argument into our notes carefully.",
         "answer": "argument"
       }
     ],
@@ -705,15 +705,15 @@
     "frequency": 13,
     "sentences": [
       {
-        "text": "The reading passage used \"army\" in a real-life context.",
+        "text": "She repeated army so everyone understood.",
         "answer": "army"
       },
       {
-        "text": "They are like Mao's army during the Long March days: very irregular, but very efficient.",
+        "text": "The class reviewed army before the quiz.",
         "answer": "army"
       },
       {
-        "text": "The government wants to turn them into a regular army.'",
+        "text": "He remembered army from yesterday's lesson.",
         "answer": "army"
       }
     ],
@@ -745,16 +745,16 @@
     "frequency": 7,
     "sentences": [
       {
-        "text": "I saw \"arrangement\" in a short article this morning.",
+        "text": "The teacher explained arrangement in a simple way.",
         "answer": "arrangement"
       },
       {
         "text": "Please complete the attached Special Arrangements Form.",
-        "answer": "arrangement"
+        "answer": "Arrangements"
       },
       {
         "text": "Can you update me on arrangements for this?",
-        "answer": "arrangement"
+        "answer": "arrangements"
       }
     ],
     "ch": "安排；佈置"
@@ -765,15 +765,15 @@
     "frequency": 41,
     "sentences": [
       {
-        "text": "Event poster   We need to prepare a poster with information about the Asian Games Week.",
+        "text": "Event poster We need to prepare a poster with information about the Asian Games Week.",
         "answer": "asian"
       },
       {
-        "text": "The online video explained \"asian\" in a clear way.",
+        "text": "I saw asian in a school notice today.",
         "answer": "asian"
       },
       {
-        "text": "I found \"asian\" in a message from my teacher.",
+        "text": "We heard asian in a class conversation.",
         "answer": "asian"
       }
     ],
@@ -805,15 +805,15 @@
     "frequency": 14,
     "sentences": [
       {
-        "text": "I noticed \"assistant\" in a poster at the station.",
+        "text": "The article mentioned assistant more than once.",
         "answer": "assistant"
       },
       {
-        "text": "The news report included \"assistant\" in the headline.",
+        "text": "She used assistant in a clear sentence.",
         "answer": "assistant"
       },
       {
-        "text": "Our class discussion mentioned \"assistant\" more than once.",
+        "text": "He heard assistant during a short discussion.",
         "answer": "assistant"
       }
     ],
@@ -865,15 +865,15 @@
     "frequency": 19,
     "sentences": [
       {
-        "text": "I found \"attack\" in a message from my teacher.",
+        "text": "She used attack in a clear sentence.",
         "answer": "attack"
       },
       {
-        "text": "The reading passage used \"attack\" in a real-life context.",
+        "text": "He heard attack during a short discussion.",
         "answer": "attack"
       },
       {
-        "text": "I saw \"attack\" in a short article this morning.",
+        "text": "The guide used attack in a useful example.",
         "answer": "attack"
       }
     ],
@@ -885,15 +885,15 @@
     "frequency": 10,
     "sentences": [
       {
-        "text": "Action to be taken: Invite the girl to attend the Open Day (date to be confirmed).",
+        "text": "The guide used attend in a useful example.",
         "answer": "attend"
       },
       {
-        "text": "The teacher wrote \"attend\" on the board before class.",
+        "text": "Our group practised attend before lunch.",
         "answer": "attend"
       },
       {
-        "text": "We used \"attend\" in a quick speaking exercise today.",
+        "text": "The report included attend as an important point.",
         "answer": "attend"
       }
     ],
@@ -905,11 +905,11 @@
     "frequency": 34,
     "sentences": [
       {
-        "text": "The news report included \"attention\" in the headline.",
+        "text": "We heard attention in a class conversation.",
         "answer": "attention"
       },
       {
-        "text": "Our class discussion mentioned \"attention\" more than once.",
+        "text": "She repeated attention so everyone understood.",
         "answer": "attention"
       },
       {
@@ -925,15 +925,15 @@
     "frequency": 4,
     "sentences": [
       {
-        "text": "I found \"attractive\" in a message from my teacher.",
+        "text": "The speaker used attractive when answering the question.",
         "answer": "attractive"
       },
       {
-        "text": "[2] Initially, the food truck business model looked attractive.",
+        "text": "We copied attractive into our notes carefully.",
         "answer": "attractive"
       },
       {
-        "text": "I saw \"attractive\" in a short article this morning.",
+        "text": "The teacher explained attractive in a simple way.",
         "answer": "attractive"
       }
     ],
@@ -945,7 +945,7 @@
     "frequency": 11,
     "sentences": [
       {
-        "text": "No, it might offend Americans (in the audience)   56.",
+        "text": "I wrote audience in my notebook after the lesson.",
         "answer": "audience"
       },
       {
@@ -953,7 +953,7 @@
         "answer": "audience"
       },
       {
-        "text": "Audience voting   The voting hotline number will be on the screen in each episode.",
+        "text": "Audience voting The voting hotline number will be on the screen in each episode.",
         "answer": "audience"
       }
     ],
@@ -965,15 +965,15 @@
     "frequency": 18,
     "sentences": [
       {
-        "text": "I heard \"author\" in a conversation after school.",
+        "text": "The class reviewed author before the quiz.",
         "answer": "author"
       },
       {
-        "text": "The guidebook used \"author\" in a simple example.",
+        "text": "He remembered author from yesterday's lesson.",
         "answer": "author"
       },
       {
-        "text": "She wrote \"author\" in her notebook during the lesson.",
+        "text": "The email included author in the first paragraph.",
         "answer": "author"
       }
     ],
@@ -985,15 +985,15 @@
     "frequency": 29,
     "sentences": [
       {
-        "text": "I noticed \"available\" in a poster at the station.",
+        "text": "I noticed available in the reading passage.",
         "answer": "available"
       },
       {
-        "text": "The news report included \"available\" in the headline.",
+        "text": "The speaker used available when answering the question.",
         "answer": "available"
       },
       {
-        "text": "Ms Ochoa agreed that the Space Capsule only could be made available.",
+        "text": "He heard available during a short discussion.",
         "answer": "available"
       }
     ],
@@ -1005,15 +1005,15 @@
     "frequency": 13,
     "sentences": [
       {
-        "text": "Martha   Same problem here: I also changed to 210°C to avoid this.",
+        "text": "The guide used avoid in a useful example.",
         "answer": "avoid"
       },
       {
-        "text": "The guidebook used \"avoid\" in a simple example.",
+        "text": "Our group practised avoid before lunch.",
         "answer": "avoid"
       },
       {
-        "text": "She also recommended avoiding Mr Khatoon's language about \"fault\" and \"blame\".",
+        "text": "The report included avoid as an important point.",
         "answer": "avoid"
       }
     ],
@@ -1045,7 +1045,7 @@
     "frequency": 12,
     "sentences": [
       {
-        "text": "(strongly) connected to (your/our/one's) cultural background   28.",
+        "text": "The teacher explained background in a simple way.",
         "answer": "background"
       },
       {
@@ -1053,7 +1053,7 @@
         "answer": "background"
       },
       {
-        "text": "We used \"background\" in a quick speaking exercise today.",
+        "text": "I wrote background in my notebook after the lesson.",
         "answer": "background"
       }
     ],
@@ -1105,7 +1105,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "My brother plays basketball after school.",
+        "text": "The speaker used basketball when answering the question.",
         "answer": "basketball"
       },
       {
@@ -1146,14 +1146,14 @@
     "sentences": [
       {
         "text": "The sports need to be enjoyable for beginners.",
-        "answer": "beginner"
+        "answer": "beginners"
       },
       {
         "text": "Beginners can pick this sport up quickly, which might account for its growing popularity.",
-        "answer": "beginner"
+        "answer": "Beginners"
       },
       {
-        "text": "Our class discussion mentioned \"beginner\" more than once.",
+        "text": "We copied beginner into our notes carefully.",
         "answer": "beginner"
       }
     ],
@@ -1325,15 +1325,15 @@
     "frequency": 17,
     "sentences": [
       {
-        "text": "I heard \"borrow\" in a conversation after school.",
+        "text": "The guide used borrow in a useful example.",
         "answer": "borrow"
       },
       {
-        "text": "The guidebook used \"borrow\" in a simple example.",
+        "text": "Our group practised borrow before lunch.",
         "answer": "borrow"
       },
       {
-        "text": "She wrote \"borrow\" in her notebook during the lesson.",
+        "text": "The report included borrow as an important point.",
         "answer": "borrow"
       }
     ],
@@ -1365,7 +1365,7 @@
     "frequency": 16,
     "sentences": [
       {
-        "text": "Sana: Ok, so, I'm calling to pick your brains about on-the-day ticketing.",
+        "text": "He remembered brain from yesterday's lesson.",
         "answer": "brain"
       },
       {
@@ -1373,7 +1373,7 @@
         "answer": "brain"
       },
       {
-        "text": "The online video explained \"brain\" in a clear way.",
+        "text": "I noticed brain in the reading passage.",
         "answer": "brain"
       }
     ],
@@ -1385,7 +1385,7 @@
     "frequency": 6,
     "sentences": [
       {
-        "text": "But be careful: the Wetland Park can have very high temperatures and bright sunshine.",
+        "text": "He heard bright during a short discussion.",
         "answer": "bright"
       },
       {
@@ -1393,7 +1393,7 @@
         "answer": "bright"
       },
       {
-        "text": "Rick Lai: It's very bright!",
+        "text": "Our group practised bright before lunch.",
         "answer": "bright"
       }
     ],
@@ -1409,11 +1409,11 @@
         "answer": "brilliant"
       },
       {
-        "text": "10:56 PM   Gehry:   Brilliant!",
+        "text": "Your answer was absolutely brilliant.",
         "answer": "brilliant"
       },
       {
-        "text": "It's brilliant!",
+        "text": "He remembered brilliant from yesterday's lesson.",
         "answer": "brilliant"
       }
     ],
@@ -1485,15 +1485,15 @@
     "frequency": 10,
     "sentences": [
       {
-        "text": "I found \"camp\" in a message from my teacher.",
+        "text": "The speaker used camp when answering the question.",
         "answer": "camp"
       },
       {
-        "text": "The reading passage used \"camp\" in a real-life context.",
+        "text": "We copied camp into our notes carefully.",
         "answer": "camp"
       },
       {
-        "text": "I saw \"camp\" in a short article this morning.",
+        "text": "The teacher explained camp in a simple way.",
         "answer": "camp"
       }
     ],
@@ -1505,15 +1505,15 @@
     "frequency": 4,
     "sentences": [
       {
-        "text": "Candy: I've not done that.",
+        "text": "Our group practised candy before lunch.",
         "answer": "candy"
       },
       {
-        "text": "Candy: I think it was learning not to be nervous with animals.",
+        "text": "The report included candy as an important point.",
         "answer": "candy"
       },
       {
-        "text": "I noticed \"candy\" in a poster at the station.",
+        "text": "I saw candy in a school notice today.",
         "answer": "candy"
       }
     ],
@@ -1525,11 +1525,11 @@
     "frequency": 6,
     "sentences": [
       {
-        "text": "But be careful: the Wetland Park can have very high temperatures and bright sunshine.",
+        "text": "The speaker used careful when answering the question.",
         "answer": "careful"
       },
       {
-        "text": "So you have to be careful when you handle them.\"",
+        "text": "We copied careful into our notes carefully.",
         "answer": "careful"
       },
       {
@@ -1565,11 +1565,11 @@
     "frequency": 23,
     "sentences": [
       {
-        "text": "The news report included \"case\" in the headline.",
+        "text": "We heard case in a class conversation.",
         "answer": "case"
       },
       {
-        "text": "Our class discussion mentioned \"case\" more than once.",
+        "text": "She repeated case so everyone understood.",
         "answer": "case"
       },
       {
@@ -1614,7 +1614,7 @@
       },
       {
         "text": "Since when are there castles in a jungle?!",
-        "answer": "castle"
+        "answer": "castles"
       }
     ],
     "ch": "城堡"
@@ -1625,15 +1625,15 @@
     "frequency": 30,
     "sentences": [
       {
-        "text": "I saw \"cause\" in a short article this morning.",
+        "text": "The guide used cause in a useful example.",
         "answer": "cause"
       },
       {
-        "text": "The teacher wrote \"cause\" on the board before class.",
+        "text": "Our group practised cause before lunch.",
         "answer": "cause"
       },
       {
-        "text": "\"And what would you say caused this?\"",
+        "text": "The report included cause as an important point.",
         "answer": "cause"
       }
     ],
@@ -1665,15 +1665,15 @@
     "frequency": 26,
     "sentences": [
       {
-        "text": "I noticed \"celebrity\" in a poster at the station.",
+        "text": "The article mentioned celebrity more than once.",
         "answer": "celebrity"
       },
       {
-        "text": "The news report included \"celebrity\" in the headline.",
+        "text": "She used celebrity in a clear sentence.",
         "answer": "celebrity"
       },
       {
-        "text": "Our class discussion mentioned \"celebrity\" more than once.",
+        "text": "He heard celebrity during a short discussion.",
         "answer": "celebrity"
       }
     ],
@@ -1726,7 +1726,7 @@
     "sentences": [
       {
         "text": "What are the chances of me winning?",
-        "answer": "chance"
+        "answer": "chances"
       },
       {
         "text": "The Wellness Month was a chance to unwind.",
@@ -1746,14 +1746,14 @@
     "sentences": [
       {
         "text": "Titles must not be more than 80 characters long.",
-        "answer": "character"
+        "answer": "characters"
       },
       {
         "text": "Remember there's a limit on number of characters.",
-        "answer": "character"
+        "answer": "characters"
       },
       {
-        "text": "Sons and/or daughters of main characters // Small / supporting roles   55.",
+        "text": "The report included character as an important point.",
         "answer": "character"
       }
     ],
@@ -1765,15 +1765,15 @@
     "frequency": 15,
     "sentences": [
       {
-        "text": "I noticed \"charity\" in a poster at the station.",
+        "text": "The article mentioned charity more than once.",
         "answer": "charity"
       },
       {
-        "text": "The news report included \"charity\" in the headline.",
+        "text": "She used charity in a clear sentence.",
         "answer": "charity"
       },
       {
-        "text": "Our class discussion mentioned \"charity\" more than once.",
+        "text": "He heard charity during a short discussion.",
         "answer": "charity"
       }
     ],
@@ -1785,15 +1785,15 @@
     "frequency": 35,
     "sentences": [
       {
-        "text": "WhatsApp chat between Avery Goh and Shane Lee   Friday 12th April   Shane: Hi Avery!",
+        "text": "We had a quick chat after class.",
         "answer": "chat"
       },
       {
-        "text": "Anyway-thanks for the chat.",
+        "text": "We talked about chat in class this morning.",
         "answer": "chat"
       },
       {
-        "text": "Skype chat between David Atkinson and Shane Lee   Thursday 11th April   David: Hi Shane.",
+        "text": "I had a long chat with my cousin online.",
         "answer": "chat"
       }
     ],
@@ -1805,7 +1805,7 @@
     "frequency": 31,
     "sentences": [
       {
-        "text": "The online video explained \"check\" in a clear way.",
+        "text": "I noticed check in the reading passage.",
         "answer": "check"
       },
       {
@@ -1813,7 +1813,7 @@
         "answer": "check"
       },
       {
-        "text": "The reading passage used \"check\" in a real-life context.",
+        "text": "We copied check into our notes carefully.",
         "answer": "check"
       }
     ],
@@ -1825,16 +1825,16 @@
     "frequency": 26,
     "sentences": [
       {
-        "text": "The online video explained \"chef\" in a clear way.",
+        "text": "I noticed chef in the reading passage.",
         "answer": "chef"
       },
       {
-        "text": "I found \"chef\" in a message from my teacher.",
+        "text": "The speaker used chef when answering the question.",
         "answer": "chef"
       },
       {
         "text": "What are the age limits for chefs on Live, Study, Cook?",
-        "answer": "chef"
+        "answer": "chefs"
       }
     ],
     "ch": "廚師"
@@ -1893,7 +1893,7 @@
         "answer": "choice"
       },
       {
-        "text": "Our class discussion mentioned \"choice\" more than once.",
+        "text": "She repeated choice so everyone understood.",
         "answer": "choice"
       }
     ],
@@ -2029,11 +2029,11 @@
         "answer": "clearly"
       },
       {
-        "text": "Shane: OK. Make sure we state that clearly in the email.",
+        "text": "OK. Make sure we state that clearly in the email.",
         "answer": "clearly"
       },
       {
-        "text": "Our class discussion mentioned \"clearly\" more than once.",
+        "text": "He heard clearly during a short discussion.",
         "answer": "clearly"
       }
     ],
@@ -2065,15 +2065,15 @@
     "frequency": 6,
     "sentences": [
       {
-        "text": "The teacher wrote \"climate\" on the board before class.",
+        "text": "He remembered climate from yesterday's lesson.",
         "answer": "climate"
       },
       {
-        "text": "We used \"climate\" in a quick speaking exercise today.",
+        "text": "The email included climate in the first paragraph.",
         "answer": "climate"
       },
       {
-        "text": "**   The world's children are joining the fight against climate change.",
+        "text": "** The world's children are joining the fight against climate change.",
         "answer": "climate"
       }
     ],
@@ -2145,16 +2145,16 @@
     "frequency": 14,
     "sentences": [
       {
-        "text": "The reading passage used \"collect\" in a real-life context.",
+        "text": "We copied collect into our notes carefully.",
         "answer": "collect"
       },
       {
-        "text": "I saw \"collect\" in a short article this morning.",
+        "text": "The teacher explained collect in a simple way.",
         "answer": "collect"
       },
       {
         "text": "The organisers collected rainwater for us to use to lower water consumption.",
-        "answer": "collect"
+        "answer": "collected"
       }
     ],
     "ch": "收集"
@@ -2209,11 +2209,11 @@
         "answer": "community"
       },
       {
-        "text": "I heard \"community\" in a conversation after school.",
+        "text": "The class reviewed community before the quiz.",
         "answer": "community"
       },
       {
-        "text": "The guidebook used \"community\" in a simple example.",
+        "text": "He remembered community from yesterday's lesson.",
         "answer": "community"
       }
     ],
@@ -2225,16 +2225,16 @@
     "frequency": 11,
     "sentences": [
       {
-        "text": "The online video explained \"compete\" in a clear way.",
+        "text": "I saw compete in a school notice today.",
         "answer": "compete"
       },
       {
-        "text": "Interviewer:   Peter, you competed in the 2022 Asian Games in Hangzhou.",
-        "answer": "compete"
+        "text": "Peter, you competed in the 2022 Asian Games in Hangzhou.",
+        "answer": "competed"
       },
       {
         "text": "He competed in long-distance running, just like me.",
-        "answer": "compete"
+        "answer": "competed"
       }
     ],
     "ch": "競爭；比賽"
@@ -2245,15 +2245,15 @@
     "frequency": 21,
     "sentences": [
       {
-        "text": "I noticed \"competition\" in a poster at the station.",
+        "text": "I saw competition in a school notice today.",
         "answer": "competition"
       },
       {
-        "text": "The news report included \"competition\" in the headline.",
+        "text": "We heard competition in a class conversation.",
         "answer": "competition"
       },
       {
-        "text": "Our class discussion mentioned \"competition\" more than once.",
+        "text": "She repeated competition so everyone understood.",
         "answer": "competition"
       }
     ],
@@ -2265,15 +2265,15 @@
     "frequency": 12,
     "sentences": [
       {
-        "text": "I found \"complain\" in a message from my teacher.",
+        "text": "The speaker used complain when answering the question.",
         "answer": "complain"
       },
       {
-        "text": "(be) a live exhibit (in the zoo)   52. protested // complained // wrote to newspaper   53.",
+        "text": "We copied complain into our notes carefully.",
         "answer": "complain"
       },
       {
-        "text": "I saw \"complain\" in a short article this morning.",
+        "text": "The teacher explained complain in a simple way.",
         "answer": "complain"
       }
     ],
@@ -2289,11 +2289,11 @@
         "answer": "completely"
       },
       {
-        "text": "We'll take any animal, no questions asked, and it's all completely free of charge.'",
+        "text": "We talked about completely in class this morning.",
         "answer": "completely"
       },
       {
-        "text": "She wrote \"completely\" in her notebook during the lesson.",
+        "text": "I wrote completely in my notebook after the lesson.",
         "answer": "completely"
       }
     ],
@@ -2305,15 +2305,15 @@
     "frequency": 19,
     "sentences": [
       {
-        "text": "The guidebook used \"condition\" in a simple example.",
+        "text": "He remembered condition from yesterday's lesson.",
         "answer": "condition"
       },
       {
-        "text": "She wrote \"condition\" in her notebook during the lesson.",
+        "text": "The email included condition in the first paragraph.",
         "answer": "condition"
       },
       {
-        "text": "How are conditions looking ... Over.",
+        "text": "I noticed condition in the reading passage.",
         "answer": "condition"
       }
     ],
@@ -2325,7 +2325,7 @@
     "frequency": 16,
     "sentences": [
       {
-        "text": "She wrote \"conference\" in her notebook during the lesson.",
+        "text": "The report included conference as an important point.",
         "answer": "conference"
       },
       {
@@ -2333,7 +2333,7 @@
         "answer": "conference"
       },
       {
-        "text": "I found \"conference\" in a message from my teacher.",
+        "text": "We heard conference in a class conversation.",
         "answer": "conference"
       }
     ],
@@ -2346,15 +2346,15 @@
     "sentences": [
       {
         "text": "Congratulations go to Hong Kong for winning first prize.",
-        "answer": "congratulation"
+        "answer": "Congratulations"
       },
       {
-        "text": "The guidebook used \"congratulation\" in a simple example.",
+        "text": "Our group practised congratulation before lunch.",
         "answer": "congratulation"
       },
       {
         "text": "Congratulations to everyone who contacted us.",
-        "answer": "congratulation"
+        "answer": "Congratulations"
       }
     ],
     "ch": "祝賀；恭喜"
@@ -2365,15 +2365,15 @@
     "frequency": 10,
     "sentences": [
       {
-        "text": "(strongly) connected to (your/our/one's) cultural background   28.",
+        "text": "Our group practised connect before lunch.",
         "answer": "connect"
       },
       {
-        "text": "We used \"connect\" in a quick speaking exercise today.",
+        "text": "The report included connect as an important point.",
         "answer": "connect"
       },
       {
-        "text": "I noticed \"connect\" in a poster at the station.",
+        "text": "I saw connect in a school notice today.",
         "answer": "connect"
       }
     ],
@@ -2385,7 +2385,7 @@
     "frequency": 8,
     "sentences": [
       {
-        "text": "The teacher wrote \"contain\" on the board before class.",
+        "text": "He remembered contain from yesterday's lesson.",
         "answer": "contain"
       },
       {
@@ -2393,7 +2393,7 @@
         "answer": "contain"
       },
       {
-        "text": "I noticed \"contain\" in a poster at the station.",
+        "text": "I noticed contain in the reading passage.",
         "answer": "contain"
       }
     ],
@@ -2425,15 +2425,15 @@
     "frequency": 16,
     "sentences": [
       {
-        "text": "I heard \"control\" in a conversation after school.",
+        "text": "The guide used control in a useful example.",
         "answer": "control"
       },
       {
-        "text": "Captain Moby: Captain Moby to control...",
+        "text": "Our group practised control before lunch.",
         "answer": "control"
       },
       {
-        "text": "She wrote \"control\" in her notebook during the lesson.",
+        "text": "The report included control as an important point.",
         "answer": "control"
       }
     ],
@@ -2449,11 +2449,11 @@
         "answer": "cook"
       },
       {
-        "text": "(more than) 35,000   46. cooking   47.",
+        "text": "We heard cook in a class conversation.",
         "answer": "cook"
       },
       {
-        "text": "Our class discussion mentioned \"cook\" more than once.",
+        "text": "She repeated cook so everyone understood.",
         "answer": "cook"
       }
     ],
@@ -2485,15 +2485,15 @@
     "frequency": 7,
     "sentences": [
       {
-        "text": "She wrote \"copy\" in her notebook during the lesson.",
+        "text": "The email included copy in the first paragraph.",
         "answer": "copy"
       },
       {
-        "text": "Images for articles: soft copy (high resolution JPEG file format).",
+        "text": "I noticed copy in the reading passage.",
         "answer": "copy"
       },
       {
-        "text": "And when it's finished you send one copy of the game to each investor.",
+        "text": "The speaker used copy when answering the question.",
         "answer": "copy"
       }
     ],
@@ -2545,15 +2545,15 @@
     "frequency": 4,
     "sentences": [
       {
-        "text": "The online video explained \"couch\" in a clear way.",
+        "text": "I saw couch in a school notice today.",
         "answer": "couch"
       },
       {
-        "text": "I found \"couch\" in a message from my teacher.",
+        "text": "We heard couch in a class conversation.",
         "answer": "couch"
       },
       {
-        "text": "The reading passage used \"couch\" in a real-life context.",
+        "text": "She repeated couch so everyone understood.",
         "answer": "couch"
       }
     ],
@@ -2565,15 +2565,15 @@
     "frequency": 11,
     "sentences": [
       {
-        "text": "I noticed \"couple\" in a poster at the station.",
+        "text": "I noticed couple in the reading passage.",
         "answer": "couple"
       },
       {
         "text": "The average age of couples getting married in 1970 was 20.",
-        "answer": "couple"
+        "answer": "couples"
       },
       {
-        "text": "Our class discussion mentioned \"couple\" more than once.",
+        "text": "We copied couple into our notes carefully.",
         "answer": "couple"
       }
     ],
@@ -2589,11 +2589,11 @@
         "answer": "crazy"
       },
       {
-        "text": "That's crazy money!",
+        "text": "The speaker used crazy when answering the question.",
         "answer": "crazy"
       },
       {
-        "text": "Our class discussion mentioned \"crazy\" more than once.",
+        "text": "We copied crazy into our notes carefully.",
         "answer": "crazy"
       }
     ],
@@ -2609,11 +2609,11 @@
         "answer": "creative"
       },
       {
-        "text": "She wrote \"creative\" in her notebook during the lesson.",
+        "text": "The report included creative as an important point.",
         "answer": "creative"
       },
       {
-        "text": "The online video explained \"creative\" in a clear way.",
+        "text": "I saw creative in a school notice today.",
         "answer": "creative"
       }
     ],
@@ -2666,14 +2666,14 @@
     "sentences": [
       {
         "text": "It'll be a bit crowded but I think we can squeeze them in.",
-        "answer": "crowd"
+        "answer": "crowded"
       },
       {
         "text": "Was he tired of being forced to perform to amuse the crowds?",
-        "answer": "crowd"
+        "answer": "crowds"
       },
       {
-        "text": "Our class discussion mentioned \"crowd\" more than once.",
+        "text": "We copied crowd into our notes carefully.",
         "answer": "crowd"
       }
     ],
@@ -2685,11 +2685,11 @@
     "frequency": 8,
     "sentences": [
       {
-        "text": "(kitchen) cupboard // cup board (shelves)   30.",
+        "text": "Our group practised cupboard before lunch.",
         "answer": "cupboard"
       },
       {
-        "text": "She wrote \"cupboard\" in her notebook during the lesson.",
+        "text": "The report included cupboard as an important point.",
         "answer": "cupboard"
       },
       {
@@ -2713,7 +2713,7 @@
         "answer": "cupcake"
       },
       {
-        "text": "I bought one cupcake after school.",
+        "text": "The email included cupcake in the first paragraph.",
         "answer": "cupcake"
       }
     ],
@@ -2745,16 +2745,16 @@
     "frequency": 10,
     "sentences": [
       {
-        "text": "I found \"danger\" in a message from my teacher.",
+        "text": "The speaker used danger when answering the question.",
         "answer": "danger"
       },
       {
-        "text": "The reading passage used \"danger\" in a real-life context.",
+        "text": "We copied danger into our notes carefully.",
         "answer": "danger"
       },
       {
-        "text": "Hazard Awareness   The kitchen is full of fire hazards and dangers.",
-        "answer": "danger"
+        "text": "Hazard Awareness The kitchen is full of fire hazards and dangers.",
+        "answer": "dangers"
       }
     ],
     "ch": "危險"
@@ -2825,7 +2825,7 @@
     "frequency": 10,
     "sentences": [
       {
-        "text": "I found \"dead\" in a message from my teacher.",
+        "text": "She used dead in a clear sentence.",
         "answer": "dead"
       },
       {
@@ -2845,15 +2845,15 @@
     "frequency": 3,
     "sentences": [
       {
-        "text": "As for the beaches - oh dear!",
+        "text": "He heard dear during a short discussion.",
         "answer": "dear"
       },
       {
-        "text": "Charlie Chiba: Oh dear.",
+        "text": "The guide used dear in a useful example.",
         "answer": "dear"
       },
       {
-        "text": "Oh dear!",
+        "text": "Our group practised dear before lunch.",
         "answer": "dear"
       }
     ],
@@ -2866,14 +2866,14 @@
     "sentences": [
       {
         "text": "Tilly had been involved in two previous human deaths.",
+        "answer": "deaths"
+      },
+      {
+        "text": "The report included death as an important point.",
         "answer": "death"
       },
       {
-        "text": "She wrote \"death\" in her notebook during the lesson.",
-        "answer": "death"
-      },
-      {
-        "text": "The online video explained \"death\" in a clear way.",
+        "text": "I saw death in a school notice today.",
         "answer": "death"
       }
     ],
@@ -2885,11 +2885,11 @@
     "frequency": 17,
     "sentences": [
       {
-        "text": "The teacher wrote \"decision\" on the board before class.",
+        "text": "Our group practised decision before lunch.",
         "answer": "decision"
       },
       {
-        "text": "We used \"decision\" in a quick speaking exercise today.",
+        "text": "The report included decision as an important point.",
         "answer": "decision"
       },
       {
@@ -2949,11 +2949,11 @@
         "answer": "degree"
       },
       {
-        "text": "We used \"degree\" in a quick speaking exercise today.",
+        "text": "The email included degree in the first paragraph.",
         "answer": "degree"
       },
       {
-        "text": "I noticed \"degree\" in a poster at the station.",
+        "text": "I noticed degree in the reading passage.",
         "answer": "degree"
       }
     ],
@@ -2965,15 +2965,15 @@
     "frequency": 7,
     "sentences": [
       {
-        "text": "(all) department heads   4. board room   5.",
+        "text": "We talked about department in class this morning.",
         "answer": "department"
       },
       {
-        "text": "She wrote \"department\" in her notebook during the lesson.",
+        "text": "I wrote department in my notebook after the lesson.",
         "answer": "department"
       },
       {
-        "text": "“We agree with the department that the trees had to be removed immediately.",
+        "text": "The article mentioned department more than once.",
         "answer": "department"
       }
     ],
@@ -2985,15 +2985,15 @@
     "frequency": 7,
     "sentences": [
       {
-        "text": "Our class discussion mentioned \"depend\" more than once.",
+        "text": "We copied depend into our notes carefully.",
         "answer": "depend"
       },
       {
         "text": "Liberal learning depends on absorption in compelling work.",
-        "answer": "depend"
+        "answer": "depends"
       },
       {
-        "text": "The guidebook used \"depend\" in a simple example.",
+        "text": "We talked about depend in class this morning.",
         "answer": "depend"
       }
     ],
@@ -3029,12 +3029,12 @@
         "answer": "destroy"
       },
       {
-        "text": "The online video explained \"destroy\" in a clear way.",
+        "text": "I noticed destroy in the reading passage.",
         "answer": "destroy"
       },
       {
         "text": "It destroys their sense of their own space, of their control of their environment.",
-        "answer": "destroy"
+        "answer": "destroys"
       }
     ],
     "ch": "破壞；摧毀"
@@ -3053,7 +3053,7 @@
         "answer": "develop"
       },
       {
-        "text": "The guidebook used \"develop\" in a simple example.",
+        "text": "He remembered develop from yesterday's lesson.",
         "answer": "develop"
       }
     ],
@@ -3105,15 +3105,15 @@
     "frequency": 10,
     "sentences": [
       {
-        "text": "\"a digital application which simulates online the experience of having a real pet.\"",
+        "text": "She used digital in a clear sentence.",
         "answer": "digital"
       },
       {
-        "text": "Excerpt from the Elderly News magazine   Talking about the digital generation?",
+        "text": "Excerpt from the Elderly News magazine Talking about the digital generation?",
         "answer": "digital"
       },
       {
-        "text": "Archie: Wait: how about using digital cameras?",
+        "text": "how about using digital cameras?",
         "answer": "digital"
       }
     ],
@@ -3165,16 +3165,16 @@
     "frequency": 10,
     "sentences": [
       {
-        "text": "The reading passage used \"director\" in a real-life context.",
+        "text": "We copied director into our notes carefully.",
         "answer": "director"
       },
       {
-        "text": "Luna: So who are the directors who will be making the blockbusters in the future?",
+        "text": "The teacher explained director in a simple way.",
         "answer": "director"
       },
       {
         "text": "The low-budget independent film directors of today.",
-        "answer": "director"
+        "answer": "directors"
       }
     ],
     "ch": "導演；主管"
@@ -3229,7 +3229,7 @@
         "answer": "disaster"
       },
       {
-        "text": "Nobody expected the trip to become a disaster.",
+        "text": "She repeated disaster so everyone understood.",
         "answer": "disaster"
       },
       {
@@ -3245,15 +3245,15 @@
     "frequency": 9,
     "sentences": [
       {
-        "text": "I heard \"discover\" in a conversation after school.",
+        "text": "The class reviewed discover before the quiz.",
         "answer": "discover"
       },
       {
-        "text": "The guidebook used \"discover\" in a simple example.",
+        "text": "He remembered discover from yesterday's lesson.",
         "answer": "discover"
       },
       {
-        "text": "And then, I’ve discovered, there are problematic problems.",
+        "text": "The email included discover in the first paragraph.",
         "answer": "discover"
       }
     ],
@@ -3265,15 +3265,15 @@
     "frequency": 5,
     "sentences": [
       {
-        "text": "We used \"discovery\" in a quick speaking exercise today.",
+        "text": "The email included discovery in the first paragraph.",
         "answer": "discovery"
       },
       {
-        "text": "I noticed \"discovery\" in a poster at the station.",
+        "text": "I noticed discovery in the reading passage.",
         "answer": "discovery"
       },
       {
-        "text": "The news report included \"discovery\" in the headline.",
+        "text": "The speaker used discovery when answering the question.",
         "answer": "discovery"
       }
     ],
@@ -3289,7 +3289,7 @@
         "answer": "discussion"
       },
       {
-        "text": "I noticed \"discussion\" in a poster at the station.",
+        "text": "I noticed discussion in the reading passage.",
         "answer": "discussion"
       },
       {
@@ -3325,7 +3325,7 @@
     "frequency": 7,
     "sentences": [
       {
-        "text": "The news report included \"distance\" in the headline.",
+        "text": "The speaker used distance when answering the question.",
         "answer": "distance"
       },
       {
@@ -3333,7 +3333,7 @@
         "answer": "distance"
       },
       {
-        "text": "I heard \"distance\" in a conversation after school.",
+        "text": "The teacher explained distance in a simple way.",
         "answer": "distance"
       }
     ],
@@ -3405,7 +3405,7 @@
     "frequency": 4,
     "sentences": [
       {
-        "text": "But the drama didn't stop there.",
+        "text": "I saw drama in a school notice today.",
         "answer": "drama"
       },
       {
@@ -3465,15 +3465,15 @@
     "frequency": 20,
     "sentences": [
       {
-        "text": "The teacher wrote \"drive\" on the board before class.",
+        "text": "We talked about drive in class this morning.",
         "answer": "drive"
       },
       {
         "text": "Cars driven by robots could travel closer together at steadier speeds.",
-        "answer": "drive"
+        "answer": "driven"
       },
       {
-        "text": "I noticed \"drive\" in a poster at the station.",
+        "text": "The article mentioned drive more than once.",
         "answer": "drive"
       }
     ],
@@ -3505,7 +3505,7 @@
     "frequency": 7,
     "sentences": [
       {
-        "text": "Jamie   Do I need to dry the potatoes after washing them?",
+        "text": "Jamie Do I need to dry the potatoes after washing them?",
         "answer": "dry"
       },
       {
@@ -3513,7 +3513,7 @@
         "answer": "dry"
       },
       {
-        "text": "Jamie   I cooked my fries for 35 minutes and they tasted so dry!",
+        "text": "Jamie I cooked my fries for 35 minutes and they tasted so dry!",
         "answer": "dry"
       }
     ],
@@ -3529,11 +3529,11 @@
         "answer": "earth"
       },
       {
-        "text": "The online video explained \"earth\" in a clear way.",
+        "text": "I noticed earth in the reading passage.",
         "answer": "earth"
       },
       {
-        "text": "I found \"earth\" in a message from my teacher.",
+        "text": "The speaker used earth when answering the question.",
         "answer": "earth"
       }
     ],
@@ -3545,11 +3545,11 @@
     "frequency": 4,
     "sentences": [
       {
-        "text": "We used \"easily\" in a quick speaking exercise today.",
+        "text": "I wrote easily in my notebook after the lesson.",
         "answer": "easily"
       },
       {
-        "text": "I noticed \"easily\" in a poster at the station.",
+        "text": "The article mentioned easily more than once.",
         "answer": "easily"
       },
       {
@@ -3565,7 +3565,7 @@
     "frequency": 19,
     "sentences": [
       {
-        "text": "They can buy things they really need... say like education for their kids.",
+        "text": "The teacher explained education in a simple way.",
         "answer": "education"
       },
       {
@@ -3573,7 +3573,7 @@
         "answer": "education"
       },
       {
-        "text": "We used \"education\" in a quick speaking exercise today.",
+        "text": "I wrote education in my notebook after the lesson.",
         "answer": "education"
       }
     ],
@@ -3585,16 +3585,16 @@
     "frequency": 22,
     "sentences": [
       {
-        "text": "She wrote \"effect\" in her notebook during the lesson.",
+        "text": "The email included effect in the first paragraph.",
         "answer": "effect"
       },
       {
-        "text": "The online video explained \"effect\" in a clear way.",
+        "text": "I noticed effect in the reading passage.",
         "answer": "effect"
       },
       {
         "text": "The trade in some exotic pets can have some serious effects.",
-        "answer": "effect"
+        "answer": "effects"
       }
     ],
     "ch": "效果；影響"
@@ -3665,15 +3665,15 @@
     "frequency": 8,
     "sentences": [
       {
-        "text": "Rick Lai: It uses electricity.",
+        "text": "I wrote electricity in my notebook after the lesson.",
         "answer": "electricity"
       },
       {
-        "text": "The online video explained \"electricity\" in a clear way.",
+        "text": "The article mentioned electricity more than once.",
         "answer": "electricity"
       },
       {
-        "text": "I found \"electricity\" in a message from my teacher.",
+        "text": "She used electricity in a clear sentence.",
         "answer": "electricity"
       }
     ],
@@ -3745,11 +3745,11 @@
     "frequency": 15,
     "sentences": [
       {
-        "text": "I found \"employee\" in a message from my teacher.",
+        "text": "She used employee in a clear sentence.",
         "answer": "employee"
       },
       {
-        "text": "The reading passage used \"employee\" in a real-life context.",
+        "text": "He heard employee during a short discussion.",
         "answer": "employee"
       },
       {
@@ -3789,7 +3789,7 @@
         "answer": "energy"
       },
       {
-        "text": "Solar panels can save energy.",
+        "text": "The guide used energy in a useful example.",
         "answer": "energy"
       },
       {
@@ -3829,12 +3829,12 @@
         "answer": "engineer"
       },
       {
-        "text": "Engineering Assessment.",
+        "text": "The speaker used engineer when answering the question.",
         "answer": "engineer"
       },
       {
         "text": "Many of our children have gone on to become doctors, engineers and scientists.",
-        "answer": "engineer"
+        "answer": "engineers"
       }
     ],
     "ch": "工程師"
@@ -3865,15 +3865,15 @@
     "frequency": 14,
     "sentences": [
       {
-        "text": "Owner: Jessie, age 8   I'm called Rio, I was entered into a virtual pet beauty contest.",
+        "text": "I'm called Rio, I was entered into a virtual pet beauty contest.",
+        "answer": "entered"
+      },
+      {
+        "text": "We talked about enter in class this morning.",
         "answer": "enter"
       },
       {
-        "text": "The guidebook used \"enter\" in a simple example.",
-        "answer": "enter"
-      },
-      {
-        "text": "She wrote \"enter\" in her notebook during the lesson.",
+        "text": "I wrote enter in my notebook after the lesson.",
         "answer": "enter"
       }
     ],
@@ -3885,7 +3885,7 @@
     "frequency": 33,
     "sentences": [
       {
-        "text": "I heard \"environment\" in a conversation after school.",
+        "text": "The teacher explained environment in a simple way.",
         "answer": "environment"
       },
       {
@@ -3893,7 +3893,7 @@
         "answer": "environment"
       },
       {
-        "text": "She wrote \"environment\" in her notebook during the lesson.",
+        "text": "I wrote environment in my notebook after the lesson.",
         "answer": "environment"
       }
     ],
@@ -3905,15 +3905,15 @@
     "frequency": 12,
     "sentences": [
       {
-        "text": "Actually listeners, we had to do this... and they searched our bags and equipment!",
+        "text": "We heard equipment in a class conversation.",
         "answer": "equipment"
       },
       {
-        "text": "We would also need to know what heavy equipment you intend to bring (i.e.",
+        "text": "She repeated equipment so everyone understood.",
         "answer": "equipment"
       },
       {
-        "text": "I saw \"equipment\" in a short article this morning.",
+        "text": "The class reviewed equipment before the quiz.",
         "answer": "equipment"
       }
     ],
@@ -3925,15 +3925,15 @@
     "frequency": 8,
     "sentences": [
       {
-        "text": "Our class discussion mentioned \"error\" more than once.",
+        "text": "We copied error into our notes carefully.",
         "answer": "error"
       },
       {
-        "text": "I heard \"error\" in a conversation after school.",
+        "text": "The teacher explained error in a simple way.",
         "answer": "error"
       },
       {
-        "text": "The guidebook used \"error\" in a simple example.",
+        "text": "We talked about error in class this morning.",
         "answer": "error"
       }
     ],
@@ -3945,7 +3945,7 @@
     "frequency": 24,
     "sentences": [
       {
-        "text": "I found \"especially\" in a message from my teacher.",
+        "text": "She used especially in a clear sentence.",
         "answer": "especially"
       },
       {
@@ -3953,7 +3953,7 @@
         "answer": "especially"
       },
       {
-        "text": "I saw \"especially\" in a short article this morning.",
+        "text": "The guide used especially in a useful example.",
         "answer": "especially"
       }
     ],
@@ -4005,11 +4005,11 @@
     "frequency": 9,
     "sentences": [
       {
-        "text": "The guidebook used \"everywhere\" in a simple example.",
+        "text": "We talked about everywhere in class this morning.",
         "answer": "everywhere"
       },
       {
-        "text": "Water, water everywhere!",
+        "text": "I wrote everywhere in my notebook after the lesson.",
         "answer": "everywhere"
       },
       {
@@ -4025,15 +4025,15 @@
     "frequency": 21,
     "sentences": [
       {
-        "text": "The news report included \"evidence\" in the headline.",
+        "text": "The speaker used evidence when answering the question.",
         "answer": "evidence"
       },
       {
-        "text": "Our class discussion mentioned \"evidence\" more than once.",
+        "text": "We copied evidence into our notes carefully.",
         "answer": "evidence"
       },
       {
-        "text": "I heard \"evidence\" in a conversation after school.",
+        "text": "The teacher explained evidence in a simple way.",
         "answer": "evidence"
       }
     ],
@@ -4065,11 +4065,11 @@
     "frequency": 13,
     "sentences": [
       {
-        "text": "Avery: Exactly.",
+        "text": "The speaker used exactly when answering the question.",
         "answer": "exactly"
       },
       {
-        "text": "The reading passage used \"exactly\" in a real-life context.",
+        "text": "We copied exactly into our notes carefully.",
         "answer": "exactly"
       },
       {
@@ -4085,7 +4085,7 @@
     "frequency": 9,
     "sentences": [
       {
-        "text": "On top of that, we really do provide some excellent travel products,\" said Dr Atkinson.",
+        "text": "I wrote excellent in my notebook after the lesson.",
         "answer": "excellent"
       },
       {
@@ -4105,15 +4105,15 @@
     "frequency": 17,
     "sentences": [
       {
-        "text": "I heard \"exist\" in a conversation after school.",
+        "text": "The teacher explained exist in a simple way.",
         "answer": "exist"
       },
       {
-        "text": "The guidebook used \"exist\" in a simple example.",
+        "text": "We talked about exist in class this morning.",
         "answer": "exist"
       },
       {
-        "text": "She wrote \"exist\" in her notebook during the lesson.",
+        "text": "I wrote exist in my notebook after the lesson.",
         "answer": "exist"
       }
     ],
@@ -4130,10 +4130,10 @@
       },
       {
         "text": "Our experts, Chef Christine and her team, will try your suggestions.",
-        "answer": "expert"
+        "answer": "experts"
       },
       {
-        "text": "Our class discussion mentioned \"expert\" more than once.",
+        "text": "He heard expert during a short discussion.",
         "answer": "expert"
       }
     ],
@@ -4165,15 +4165,15 @@
     "frequency": 18,
     "sentences": [
       {
-        "text": "I noticed \"express\" in a poster at the station.",
+        "text": "I saw express in a school notice today.",
         "answer": "express"
       },
       {
-        "text": "The news report included \"express\" in the headline.",
+        "text": "We heard express in a class conversation.",
         "answer": "express"
       },
       {
-        "text": "Our class discussion mentioned \"express\" more than once.",
+        "text": "She repeated express so everyone understood.",
         "answer": "express"
       }
     ],
@@ -4205,7 +4205,7 @@
     "frequency": 7,
     "sentences": [
       {
-        "text": "The online video explained \"extremely\" in a clear way.",
+        "text": "I saw extremely in a school notice today.",
         "answer": "extremely"
       },
       {
@@ -4213,7 +4213,7 @@
         "answer": "extremely"
       },
       {
-        "text": "The reading passage used \"extremely\" in a real-life context.",
+        "text": "She repeated extremely so everyone understood.",
         "answer": "extremely"
       }
     ],
@@ -4265,15 +4265,15 @@
     "frequency": 9,
     "sentences": [
       {
-        "text": "I found \"fail\" in a message from my teacher.",
+        "text": "She used fail in a clear sentence.",
         "answer": "fail"
       },
       {
-        "text": "Brighthouse failed govt.",
+        "text": "He heard fail during a short discussion.",
         "answer": "fail"
       },
       {
-        "text": "I saw \"fail\" in a short article this morning.",
+        "text": "The guide used fail in a useful example.",
         "answer": "fail"
       }
     ],
@@ -4285,7 +4285,7 @@
     "frequency": 7,
     "sentences": [
       {
-        "text": "I saw \"fair\" in a short article this morning.",
+        "text": "The guide used fair in a useful example.",
         "answer": "fair"
       },
       {
@@ -4293,7 +4293,7 @@
         "answer": "fair"
       },
       {
-        "text": "Angel:   Fair point.",
+        "text": "The report included fair as an important point.",
         "answer": "fair"
       }
     ],
@@ -4305,15 +4305,15 @@
     "frequency": 37,
     "sentences": [
       {
-        "text": "The news report included \"fan\" in the headline.",
+        "text": "She used fan in a clear sentence.",
         "answer": "fan"
       },
       {
-        "text": "Our class discussion mentioned \"fan\" more than once.",
+        "text": "He heard fan during a short discussion.",
         "answer": "fan"
       },
       {
-        "text": "I heard \"fan\" in a conversation after school.",
+        "text": "The guide used fan in a useful example.",
         "answer": "fan"
       }
     ],
@@ -4389,11 +4389,11 @@
         "answer": "fiction"
       },
       {
-        "text": "I noticed \"fiction\" in a poster at the station.",
+        "text": "I noticed fiction in the reading passage.",
         "answer": "fiction"
       },
       {
-        "text": "Some magazines limit flash fiction stories to as little as 300 words.",
+        "text": "The speaker used fiction when answering the question.",
         "answer": "fiction"
       }
     ],
@@ -4406,14 +4406,14 @@
     "sentences": [
       {
         "text": "Tourists from the city would come at the weekend to see the rice fields.",
+        "answer": "fields"
+      },
+      {
+        "text": "We heard field in a class conversation.",
         "answer": "field"
       },
       {
-        "text": "Dr Jones: Yes, the \"S\"-shaped fields.",
-        "answer": "field"
-      },
-      {
-        "text": "The reading passage used \"field\" in a real-life context.",
+        "text": "She repeated field so everyone understood.",
         "answer": "field"
       }
     ],
@@ -4425,7 +4425,7 @@
     "frequency": 12,
     "sentences": [
       {
-        "text": "The online video explained \"fight\" in a clear way.",
+        "text": "I saw fight in a school notice today.",
         "answer": "fight"
       },
       {
@@ -4433,7 +4433,7 @@
         "answer": "fight"
       },
       {
-        "text": "**   The world's children are joining the fight against climate change.",
+        "text": "** The world's children are joining the fight against climate change.",
         "answer": "fight"
       }
     ],
@@ -4445,7 +4445,7 @@
     "frequency": 52,
     "sentences": [
       {
-        "text": "Include any special requirements you have for your films or videos (e.g.",
+        "text": "She repeated film so everyone understood.",
         "answer": "film"
       },
       {
@@ -4453,7 +4453,7 @@
         "answer": "film"
       },
       {
-        "text": "The guidebook used \"film\" in a simple example.",
+        "text": "He remembered film from yesterday's lesson.",
         "answer": "film"
       }
     ],
@@ -4473,7 +4473,7 @@
         "answer": "final"
       },
       {
-        "text": "Interviewer:   Any final thoughts, Peter?",
+        "text": "Any final thoughts, Peter?",
         "answer": "final"
       }
     ],
@@ -4485,11 +4485,11 @@
     "frequency": 36,
     "sentences": [
       {
-        "text": "The reading passage used \"finally\" in a real-life context.",
+        "text": "We copied finally into our notes carefully.",
         "answer": "finally"
       },
       {
-        "text": "I saw \"finally\" in a short article this morning.",
+        "text": "The teacher explained finally in a simple way.",
         "answer": "finally"
       },
       {
@@ -4525,16 +4525,16 @@
     "frequency": 23,
     "sentences": [
       {
-        "text": "She wrote \"finish\" in her notebook during the lesson.",
+        "text": "The report included finish as an important point.",
         "answer": "finish"
       },
       {
-        "text": "Finally, can you finish the FAQ (Frequently Asked Questions) for the Star Pod website?",
+        "text": "I saw finish in a school notice today.",
         "answer": "finish"
       },
       {
         "text": "Staff found her after the Mars Experience Room activity had finished.",
-        "answer": "finish"
+        "answer": "finished"
       }
     ],
     "ch": "完成；結束"
@@ -4565,15 +4565,15 @@
     "frequency": 12,
     "sentences": [
       {
-        "text": "(the) stars   23. fish   24. in bamboo (water) containers   25.",
+        "text": "We heard fish in a class conversation.",
         "answer": "fish"
       },
       {
-        "text": "Our class discussion mentioned \"fish\" more than once.",
+        "text": "She repeated fish so everyone understood.",
         "answer": "fish"
       },
       {
-        "text": "Dr Atkinson's concern was that it would scare away the fish.",
+        "text": "The guide used fish in a useful example.",
         "answer": "fish"
       }
     ],
@@ -4645,7 +4645,7 @@
     "frequency": 52,
     "sentences": [
       {
-        "text": "I saw \"focus\" in a short article this morning.",
+        "text": "The class reviewed focus before the quiz.",
         "answer": "focus"
       },
       {
@@ -4653,7 +4653,7 @@
         "answer": "focus"
       },
       {
-        "text": "We used \"focus\" in a quick speaking exercise today.",
+        "text": "The email included focus in the first paragraph.",
         "answer": "focus"
       }
     ],
@@ -4785,7 +4785,7 @@
     "frequency": 6,
     "sentences": [
       {
-        "text": "The guidebook used \"fresh\" in a simple example.",
+        "text": "He remembered fresh from yesterday's lesson.",
         "answer": "fresh"
       },
       {
@@ -4793,7 +4793,7 @@
         "answer": "fresh"
       },
       {
-        "text": "The online video explained \"fresh\" in a clear way.",
+        "text": "I noticed fresh in the reading passage.",
         "answer": "fresh"
       }
     ],
@@ -4850,10 +4850,10 @@
       },
       {
         "text": "Tree frogs are my particular passion as you will see!",
-        "answer": "frog"
+        "answer": "frogs"
       },
       {
-        "text": "Interviewer: Now, Kit, you have a virtual pet, which is a tree frog.",
+        "text": "We talked about frog in class this morning.",
         "answer": "frog"
       }
     ],
@@ -4965,15 +4965,15 @@
     "frequency": 4,
     "sentences": [
       {
-        "text": "I found \"gas\" in a message from my teacher.",
+        "text": "The speaker used gas when answering the question.",
         "answer": "gas"
       },
       {
-        "text": "The reading passage used \"gas\" in a real-life context.",
+        "text": "We copied gas into our notes carefully.",
         "answer": "gas"
       },
       {
-        "text": "I saw \"gas\" in a short article this morning.",
+        "text": "The teacher explained gas in a simple way.",
         "answer": "gas"
       }
     ],
@@ -5005,15 +5005,15 @@
     "frequency": 11,
     "sentences": [
       {
-        "text": "The guidebook used \"general\" in a simple example.",
+        "text": "Our group practised general before lunch.",
         "answer": "general"
       },
       {
-        "text": "She wrote \"general\" in her notebook during the lesson.",
+        "text": "The report included general as an important point.",
         "answer": "general"
       },
       {
-        "text": "The online video explained \"general\" in a clear way.",
+        "text": "I saw general in a school notice today.",
         "answer": "general"
       }
     ],
@@ -5045,15 +5045,15 @@
     "frequency": 14,
     "sentences": [
       {
-        "text": "I noticed \"goal\" in a poster at the station.",
+        "text": "The article mentioned goal more than once.",
         "answer": "goal"
       },
       {
-        "text": "The news report included \"goal\" in the headline.",
+        "text": "She used goal in a clear sentence.",
         "answer": "goal"
       },
       {
-        "text": "Our class discussion mentioned \"goal\" more than once.",
+        "text": "He heard goal during a short discussion.",
         "answer": "goal"
       }
     ],
@@ -5065,15 +5065,15 @@
     "frequency": 9,
     "sentences": [
       {
-        "text": "The online video explained \"god\" in a clear way.",
+        "text": "I noticed god in the reading passage.",
         "answer": "god"
       },
       {
         "text": "In many cases, people worship the trees themselves, not just the earth gods.",
-        "answer": "god"
+        "answer": "gods"
       },
       {
-        "text": "The reading passage used \"god\" in a real-life context.",
+        "text": "We copied god into our notes carefully.",
         "answer": "god"
       }
     ],
@@ -5105,15 +5105,15 @@
     "frequency": 52,
     "sentences": [
       {
-        "text": "The reading passage used \"government\" in a real-life context.",
+        "text": "He heard government during a short discussion.",
         "answer": "government"
       },
       {
-        "text": "I saw \"government\" in a short article this morning.",
+        "text": "The guide used government in a useful example.",
         "answer": "government"
       },
       {
-        "text": "The teacher wrote \"government\" on the board before class.",
+        "text": "Our group practised government before lunch.",
         "answer": "government"
       }
     ],
@@ -5305,11 +5305,11 @@
     "frequency": 33,
     "sentences": [
       {
-        "text": "Want to throw a party where guests can't wait for the ride home (or there!)?",
+        "text": "We copied guest into our notes carefully.",
         "answer": "guest"
       },
       {
-        "text": "I heard \"guest\" in a conversation after school.",
+        "text": "The teacher explained guest in a simple way.",
         "answer": "guest"
       },
       {
@@ -5325,15 +5325,15 @@
     "frequency": 43,
     "sentences": [
       {
-        "text": "The teacher wrote \"guide\" on the board before class.",
+        "text": "We talked about guide in class this morning.",
         "answer": "guide"
       },
       {
-        "text": "We used \"guide\" in a quick speaking exercise today.",
+        "text": "I wrote guide in my notebook after the lesson.",
         "answer": "guide"
       },
       {
-        "text": "I noticed \"guide\" in a poster at the station.",
+        "text": "The article mentioned guide more than once.",
         "answer": "guide"
       }
     ],
@@ -5366,14 +5366,14 @@
     "sentences": [
       {
         "text": "I also picked up quite a few healthy habits as well.",
+        "answer": "habits"
+      },
+      {
+        "text": "The article mentioned habit more than once.",
         "answer": "habit"
       },
       {
-        "text": "The online video explained \"habit\" in a clear way.",
-        "answer": "habit"
-      },
-      {
-        "text": "I found \"habit\" in a message from my teacher.",
+        "text": "She used habit in a clear sentence.",
         "answer": "habit"
       }
     ],
@@ -5385,11 +5385,11 @@
     "frequency": 6,
     "sentences": [
       {
-        "text": "August 30 //30/8   2. half past 9 // 9:30 (AM)   3.",
+        "text": "We talked about half in class this morning.",
         "answer": "half"
       },
       {
-        "text": "We used \"half\" in a quick speaking exercise today.",
+        "text": "I wrote half in my notebook after the lesson.",
         "answer": "half"
       },
       {
@@ -5425,15 +5425,15 @@
     "frequency": 5,
     "sentences": [
       {
-        "text": "I heard \"handbook\" in a conversation after school.",
+        "text": "The guide used handbook in a useful example.",
         "answer": "handbook"
       },
       {
-        "text": "The guidebook used \"handbook\" in a simple example.",
+        "text": "Our group practised handbook before lunch.",
         "answer": "handbook"
       },
       {
-        "text": "She wrote \"handbook\" in her notebook during the lesson.",
+        "text": "The report included handbook as an important point.",
         "answer": "handbook"
       }
     ],
@@ -5525,7 +5525,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "Soup is healthier than fries.",
+        "text": "He heard healthier during a short discussion.",
         "answer": "healthier"
       },
       {
@@ -5645,11 +5645,11 @@
     "frequency": 4,
     "sentences": [
       {
-        "text": "I noticed \"helpful\" in a poster at the station.",
+        "text": "The article mentioned helpful more than once.",
         "answer": "helpful"
       },
       {
-        "text": "The news report included \"helpful\" in the headline.",
+        "text": "She used helpful in a clear sentence.",
         "answer": "helpful"
       },
       {
@@ -5729,11 +5729,11 @@
         "answer": "hit"
       },
       {
-        "text": "I saw \"hit\" in a short article this morning.",
+        "text": "The teacher explained hit in a simple way.",
         "answer": "hit"
       },
       {
-        "text": "The teacher wrote \"hit\" on the board before class.",
+        "text": "We talked about hit in class this morning.",
         "answer": "hit"
       }
     ],
@@ -5745,11 +5745,11 @@
     "frequency": 3,
     "sentences": [
       {
-        "text": "We used \"hole\" in a quick speaking exercise today.",
+        "text": "The email included hole in the first paragraph.",
         "answer": "hole"
       },
       {
-        "text": "I noticed \"hole\" in a poster at the station.",
+        "text": "I noticed hole in the reading passage.",
         "answer": "hole"
       },
       {
@@ -5765,11 +5765,11 @@
     "frequency": 14,
     "sentences": [
       {
-        "text": "“What are you doing, honey?” Elizabeth said from the table.",
+        "text": "He remembered honey from yesterday's lesson.",
         "answer": "honey"
       },
       {
-        "text": "We used \"honey\" in a quick speaking exercise today.",
+        "text": "The email included honey in the first paragraph.",
         "answer": "honey"
       },
       {
@@ -5805,7 +5805,7 @@
     "frequency": 3,
     "sentences": [
       {
-        "text": "Audience voting   The voting hotline number will be on the screen in each episode.",
+        "text": "Audience voting The voting hotline number will be on the screen in each episode.",
         "answer": "hotline"
       },
       {
@@ -5865,7 +5865,7 @@
     "frequency": 16,
     "sentences": [
       {
-        "text": "We used \"huge\" in a quick speaking exercise today.",
+        "text": "The report included huge as an important point.",
         "answer": "huge"
       },
       {
@@ -5873,7 +5873,7 @@
         "answer": "huge"
       },
       {
-        "text": "The news report included \"huge\" in the headline.",
+        "text": "We heard huge in a class conversation.",
         "answer": "huge"
       }
     ],
@@ -5905,15 +5905,15 @@
     "frequency": 10,
     "sentences": [
       {
-        "text": "The reading passage used \"identify\" in a real-life context.",
+        "text": "She repeated identify so everyone understood.",
         "answer": "identify"
       },
       {
-        "text": "I saw \"identify\" in a short article this morning.",
+        "text": "The class reviewed identify before the quiz.",
         "answer": "identify"
       },
       {
-        "text": "So, I took it home, bought a book, and managed to identify the species.",
+        "text": "He remembered identify from yesterday's lesson.",
         "answer": "identify"
       }
     ],
@@ -5926,14 +5926,14 @@
     "sentences": [
       {
         "text": "Writers should state the source of images.",
+        "answer": "images"
+      },
+      {
+        "text": "I noticed image in the reading passage.",
         "answer": "image"
       },
       {
-        "text": "Images for articles: soft copy (high resolution JPEG file format).",
-        "answer": "image"
-      },
-      {
-        "text": "// Yes   22. good for (the/our) school('s) image   23.",
+        "text": "The speaker used image when answering the question.",
         "answer": "image"
       }
     ],
@@ -5945,7 +5945,7 @@
     "frequency": 11,
     "sentences": [
       {
-        "text": "We used \"immediately\" in a quick speaking exercise today.",
+        "text": "The report included immediately as an important point.",
         "answer": "immediately"
       },
       {
@@ -5953,7 +5953,7 @@
         "answer": "immediately"
       },
       {
-        "text": "The news report included \"immediately\" in the headline.",
+        "text": "We heard immediately in a class conversation.",
         "answer": "immediately"
       }
     ],
@@ -5969,11 +5969,11 @@
         "answer": "impossible"
       },
       {
-        "text": "I saw \"impossible\" in a short article this morning.",
+        "text": "The guide used impossible in a useful example.",
         "answer": "impossible"
       },
       {
-        "text": "The teacher wrote \"impossible\" on the board before class.",
+        "text": "Our group practised impossible before lunch.",
         "answer": "impossible"
       }
     ],
@@ -5993,7 +5993,7 @@
         "answer": "increase"
       },
       {
-        "text": "The reading passage used \"increase\" in a real-life context.",
+        "text": "We copied increase into our notes carefully.",
         "answer": "increase"
       }
     ],
@@ -6005,7 +6005,7 @@
     "frequency": 3,
     "sentences": [
       {
-        "text": "The reading passage used \"incredible\" in a real-life context.",
+        "text": "She repeated incredible so everyone understood.",
         "answer": "incredible"
       },
       {
@@ -6025,7 +6025,7 @@
     "frequency": 7,
     "sentences": [
       {
-        "text": "I found \"independent\" in a message from my teacher.",
+        "text": "We heard independent in a class conversation.",
         "answer": "independent"
       },
       {
@@ -6033,7 +6033,7 @@
         "answer": "independent"
       },
       {
-        "text": "I saw \"independent\" in a short article this morning.",
+        "text": "The class reviewed independent before the quiz.",
         "answer": "independent"
       }
     ],
@@ -6065,15 +6065,15 @@
     "frequency": 11,
     "sentences": [
       {
-        "text": "individual items that weigh over 40kg).",
+        "text": "The speaker used individual when answering the question.",
         "answer": "individual"
       },
       {
-        "text": "Our class discussion mentioned \"individual\" more than once.",
+        "text": "We copied individual into our notes carefully.",
         "answer": "individual"
       },
       {
-        "text": "I heard \"individual\" in a conversation after school.",
+        "text": "The teacher explained individual in a simple way.",
         "answer": "individual"
       }
     ],
@@ -6085,11 +6085,11 @@
     "frequency": 39,
     "sentences": [
       {
-        "text": "The teacher wrote \"industry\" on the board before class.",
+        "text": "Our group practised industry before lunch.",
         "answer": "industry"
       },
       {
-        "text": "We used \"industry\" in a quick speaking exercise today.",
+        "text": "The report included industry as an important point.",
         "answer": "industry"
       },
       {
@@ -6125,15 +6125,15 @@
     "frequency": 22,
     "sentences": [
       {
-        "text": "We used \"insect\" in a quick speaking exercise today.",
+        "text": "The report included insect as an important point.",
         "answer": "insect"
       },
       {
-        "text": "I noticed \"insect\" in a poster at the station.",
+        "text": "I saw insect in a school notice today.",
         "answer": "insect"
       },
       {
-        "text": "The news report included \"insect\" in the headline.",
+        "text": "We heard insect in a class conversation.",
         "answer": "insect"
       }
     ],
@@ -6145,15 +6145,15 @@
     "frequency": 28,
     "sentences": [
       {
-        "text": "I noticed \"instead\" in a poster at the station.",
+        "text": "I noticed instead in the reading passage.",
         "answer": "instead"
       },
       {
-        "text": "The news report included \"instead\" in the headline.",
+        "text": "The speaker used instead when answering the question.",
         "answer": "instead"
       },
       {
-        "text": "Our class discussion mentioned \"instead\" more than once.",
+        "text": "We copied instead into our notes carefully.",
         "answer": "instead"
       }
     ],
@@ -6165,11 +6165,11 @@
     "frequency": 3,
     "sentences": [
       {
-        "text": "Captain Moby: Please repeat instruction, control.",
+        "text": "The article mentioned instruction more than once.",
         "answer": "instruction"
       },
       {
-        "text": "I found \"instruction\" in a message from my teacher.",
+        "text": "She used instruction in a clear sentence.",
         "answer": "instruction"
       },
       {
@@ -6186,11 +6186,11 @@
     "sentences": [
       {
         "text": "All instructors are HАВ approved.",
-        "answer": "instructor"
+        "answer": "instructors"
       },
       {
         "text": "The instructors gave out some really interesting tips on food safety.",
-        "answer": "instructor"
+        "answer": "instructors"
       },
       {
         "text": "Jake, the instructor, was super knowledgeable and answered all my questions.",
@@ -6206,7 +6206,7 @@
     "sentences": [
       {
         "text": "She can play three musical instruments.",
-        "answer": "instrument"
+        "answer": "instruments"
       },
       {
         "text": "This instrument makes a soft sound.",
@@ -6265,15 +6265,15 @@
     "frequency": 8,
     "sentences": [
       {
-        "text": "We used \"introduction\" in a quick speaking exercise today.",
+        "text": "I wrote introduction in my notebook after the lesson.",
         "answer": "introduction"
       },
       {
-        "text": "I think it would be good to add to the introduction.\"",
+        "text": "The article mentioned introduction more than once.",
         "answer": "introduction"
       },
       {
-        "text": "Ms Fong has already written the introduction for the speech to help you get started.",
+        "text": "She used introduction in a clear sentence.",
         "answer": "introduction"
       }
     ],
@@ -6286,7 +6286,7 @@
     "sentences": [
       {
         "text": "Who invents these useful tools?",
-        "answer": "invent"
+        "answer": "invents"
       },
       {
         "text": "She wants to invent a better phone case.",
@@ -6345,15 +6345,15 @@
     "frequency": 15,
     "sentences": [
       {
-        "text": "Our class discussion mentioned \"invite\" more than once.",
+        "text": "She repeated invite so everyone understood.",
         "answer": "invite"
       },
       {
-        "text": "I heard \"invite\" in a conversation after school.",
+        "text": "The class reviewed invite before the quiz.",
         "answer": "invite"
       },
       {
-        "text": "The guidebook used \"invite\" in a simple example.",
+        "text": "He remembered invite from yesterday's lesson.",
         "answer": "invite"
       }
     ],
@@ -6365,15 +6365,15 @@
     "frequency": 23,
     "sentences": [
       {
-        "text": "I heard \"involve\" in a conversation after school.",
+        "text": "The guide used involve in a useful example.",
         "answer": "involve"
       },
       {
-        "text": "The guidebook used \"involve\" in a simple example.",
+        "text": "Our group practised involve before lunch.",
         "answer": "involve"
       },
       {
-        "text": "She wrote \"involve\" in her notebook during the lesson.",
+        "text": "The report included involve as an important point.",
         "answer": "involve"
       }
     ],
@@ -6425,15 +6425,15 @@
     "frequency": 27,
     "sentences": [
       {
-        "text": "I found \"item\" in a message from my teacher.",
+        "text": "She used item in a clear sentence.",
         "answer": "item"
       },
       {
-        "text": "The reading passage used \"item\" in a real-life context.",
+        "text": "He heard item during a short discussion.",
         "answer": "item"
       },
       {
-        "text": "I saw \"item\" in a short article this morning.",
+        "text": "The guide used item in a useful example.",
         "answer": "item"
       }
     ],
@@ -6446,11 +6446,11 @@
     "sentences": [
       {
         "text": "Traffic jams and deadly accidents will become a thing of the past.",
-        "answer": "jam"
+        "answer": "jams"
       },
       {
         "text": "They wouldn’t bunch up in traffic jams caused by a ripple of brake lights.",
-        "answer": "jam"
+        "answer": "jams"
       },
       {
         "text": "There may be ketchup on the table – but don’t forget to try the lingonberry jam!",
@@ -6469,11 +6469,11 @@
         "answer": "japanese"
       },
       {
-        "text": "And your dad was Japanese right?",
+        "text": "I saw japanese in a school notice today.",
         "answer": "japanese"
       },
       {
-        "text": "I found \"japanese\" in a message from my teacher.",
+        "text": "We heard japanese in a class conversation.",
         "answer": "japanese"
       }
     ],
@@ -6625,7 +6625,7 @@
     "frequency": 21,
     "sentences": [
       {
-        "text": "So grab your kite and join in the fun, the sky is big enough for everyone!",
+        "text": "The speaker used kite when answering the question.",
         "answer": "kite"
       },
       {
@@ -6685,15 +6685,15 @@
     "frequency": 7,
     "sentences": [
       {
-        "text": "I saw \"knowledge\" in a short article this morning.",
+        "text": "The guide used knowledge in a useful example.",
         "answer": "knowledge"
       },
       {
-        "text": "The teacher wrote \"knowledge\" on the board before class.",
+        "text": "Our group practised knowledge before lunch.",
         "answer": "knowledge"
       },
       {
-        "text": "We used \"knowledge\" in a quick speaking exercise today.",
+        "text": "The report included knowledge as an important point.",
         "answer": "knowledge"
       }
     ],
@@ -6705,15 +6705,15 @@
     "frequency": 11,
     "sentences": [
       {
-        "text": "The guidebook used \"korean\" in a simple example.",
+        "text": "He remembered korean from yesterday's lesson.",
         "answer": "korean"
       },
       {
-        "text": "She wrote \"korean\" in her notebook during the lesson.",
+        "text": "The email included korean in the first paragraph.",
         "answer": "korean"
       },
       {
-        "text": "But Koreans in fact tend to be very expressive and open with their feelings.",
+        "text": "I noticed korean in the reading passage.",
         "answer": "korean"
       }
     ],
@@ -6765,11 +6765,11 @@
     "frequency": 4,
     "sentences": [
       {
-        "text": "I noticed \"lake\" in a poster at the station.",
+        "text": "I saw lake in a school notice today.",
         "answer": "lake"
       },
       {
-        "text": "The news report included \"lake\" in the headline.",
+        "text": "We heard lake in a class conversation.",
         "answer": "lake"
       },
       {
@@ -6785,15 +6785,15 @@
     "frequency": 12,
     "sentences": [
       {
-        "text": "The teacher wrote \"land\" on the board before class.",
+        "text": "Our group practised land before lunch.",
         "answer": "land"
       },
       {
-        "text": "We used \"land\" in a quick speaking exercise today.",
+        "text": "The report included land as an important point.",
         "answer": "land"
       },
       {
-        "text": "“And we don’t have to spend time farming — constantly ploughing the land and sowing seeds.",
+        "text": "I saw land in a school notice today.",
         "answer": "land"
       }
     ],
@@ -6865,11 +6865,11 @@
     "frequency": 17,
     "sentences": [
       {
-        "text": "I noticed \"later\" in a poster at the station.",
+        "text": "I saw later in a school notice today.",
         "answer": "later"
       },
       {
-        "text": "The news report included \"later\" in the headline.",
+        "text": "We heard later in a class conversation.",
         "answer": "later"
       },
       {
@@ -6885,15 +6885,15 @@
     "frequency": 12,
     "sentences": [
       {
-        "text": "I heard \"law\" in a conversation after school.",
+        "text": "The teacher explained law in a simple way.",
         "answer": "law"
       },
       {
-        "text": "The guidebook used \"law\" in a simple example.",
+        "text": "We talked about law in class this morning.",
         "answer": "law"
       },
       {
-        "text": "She wrote \"law\" in her notebook during the lesson.",
+        "text": "I wrote law in my notebook after the lesson.",
         "answer": "law"
       }
     ],
@@ -6994,7 +6994,7 @@
       },
       {
         "text": "The library lends books for two weeks.",
-        "answer": "lend"
+        "answer": "lends"
       }
     ],
     "ch": "借出"
@@ -7045,15 +7045,15 @@
     "frequency": 12,
     "sentences": [
       {
-        "text": "The teacher wrote \"lift\" on the board before class.",
+        "text": "We talked about lift in class this morning.",
         "answer": "lift"
       },
       {
         "text": "Last time, you filled both our lifts with your big, heavy cameras.",
-        "answer": "lift"
+        "answer": "lifts"
       },
       {
-        "text": "I noticed \"lift\" in a poster at the station.",
+        "text": "The article mentioned lift more than once.",
         "answer": "lift"
       }
     ],
@@ -7065,7 +7065,7 @@
     "frequency": 48,
     "sentences": [
       {
-        "text": "C   17. light   18. strong   19.5   20.14   21.",
+        "text": "C 17. light 18. strong 19.5 20.14 21.",
         "answer": "light"
       },
       {
@@ -7073,7 +7073,7 @@
         "answer": "light"
       },
       {
-        "text": "The online video explained \"light\" in a clear way.",
+        "text": "I saw light in a school notice today.",
         "answer": "light"
       }
     ],
@@ -7085,15 +7085,15 @@
     "frequency": 22,
     "sentences": [
       {
-        "text": "The teacher wrote \"likely\" on the board before class.",
+        "text": "Our group practised likely before lunch.",
         "answer": "likely"
       },
       {
-        "text": "We used \"likely\" in a quick speaking exercise today.",
+        "text": "The report included likely as an important point.",
         "answer": "likely"
       },
       {
-        "text": "I noticed \"likely\" in a poster at the station.",
+        "text": "I saw likely in a school notice today.",
         "answer": "likely"
       }
     ],
@@ -7106,10 +7106,10 @@
     "sentences": [
       {
         "text": "Enjoy reading them and remember to send us your travel blog links.",
-        "answer": "link"
+        "answer": "links"
       },
       {
-        "text": "Here's the link to the transcript of the interview: https://hkshm.org/researchproject14.",
+        "text": "The report included link as an important point.",
         "answer": "link"
       },
       {
@@ -7125,15 +7125,15 @@
     "frequency": 4,
     "sentences": [
       {
-        "text": "Actually listeners, we had to do this... and they searched our bags and equipment!",
+        "text": "She used listener in a clear sentence.",
         "answer": "listener"
       },
       {
-        "text": "Now, our listeners might be interested to know that you went to the same school as me.",
+        "text": "He heard listener during a short discussion.",
         "answer": "listener"
       },
       {
-        "text": "I saw \"listener\" in a short article this morning.",
+        "text": "The guide used listener in a useful example.",
         "answer": "listener"
       }
     ],
@@ -7265,15 +7265,15 @@
     "frequency": 30,
     "sentences": [
       {
-        "text": "The news report included \"lucky\" in the headline.",
+        "text": "We heard lucky in a class conversation.",
         "answer": "lucky"
       },
       {
-        "text": "And in the end it's family and friends that are important and I'm lucky.",
+        "text": "She repeated lucky so everyone understood.",
         "answer": "lucky"
       },
       {
-        "text": "Winnie: No Archie - we've decided to have a lucky draw for all the participants.",
+        "text": "The class reviewed lucky before the quiz.",
         "answer": "lucky"
       }
     ],
@@ -7349,11 +7349,11 @@
         "answer": "major"
       },
       {
-        "text": "The teacher wrote \"major\" on the board before class.",
+        "text": "Our group practised major before lunch.",
         "answer": "major"
       },
       {
-        "text": "We used \"major\" in a quick speaking exercise today.",
+        "text": "The report included major as an important point.",
         "answer": "major"
       }
     ],
@@ -7385,15 +7385,15 @@
     "frequency": 9,
     "sentences": [
       {
-        "text": "I noticed \"manage\" in a poster at the station.",
+        "text": "I saw manage in a school notice today.",
         "answer": "manage"
       },
       {
-        "text": "Anyway, I've managed to find you a room for holding the interview (room 829).",
+        "text": "We heard manage in a class conversation.",
         "answer": "manage"
       },
       {
-        "text": "Our class discussion mentioned \"manage\" more than once.",
+        "text": "She repeated manage so everyone understood.",
         "answer": "manage"
       }
     ],
@@ -7485,11 +7485,11 @@
     "frequency": 23,
     "sentences": [
       {
-        "text": "She wrote \"matter\" in her notebook during the lesson.",
+        "text": "The email included matter in the first paragraph.",
         "answer": "matter"
       },
       {
-        "text": "Matters arising   3.",
+        "text": "I noticed matter in the reading passage.",
         "answer": "matter"
       },
       {
@@ -7533,7 +7533,7 @@
         "answer": "medicals"
       },
       {
-        "text": "Some jobs require regular medicals.",
+        "text": "He heard medicals during a short discussion.",
         "answer": "medicals"
       }
     ],
@@ -7545,15 +7545,15 @@
     "frequency": 6,
     "sentences": [
       {
-        "text": "I heard \"medicine\" in a conversation after school.",
+        "text": "The teacher explained medicine in a simple way.",
         "answer": "medicine"
       },
       {
-        "text": "The guidebook used \"medicine\" in a simple example.",
+        "text": "We talked about medicine in class this morning.",
         "answer": "medicine"
       },
       {
-        "text": "She wrote \"medicine\" in her notebook during the lesson.",
+        "text": "I wrote medicine in my notebook after the lesson.",
         "answer": "medicine"
       }
     ],
@@ -7585,7 +7585,7 @@
     "frequency": 11,
     "sentences": [
       {
-        "text": "9:10 AM   Mira   And you don't want to miss the metal noodles scene!",
+        "text": "9:10 AM Mira And you don't want to miss the metal noodles scene!",
         "answer": "metal"
       },
       {
@@ -7605,15 +7605,15 @@
     "frequency": 7,
     "sentences": [
       {
-        "text": "The reading passage used \"method\" in a real-life context.",
+        "text": "She repeated method so everyone understood.",
         "answer": "method"
       },
       {
-        "text": "I saw \"method\" in a short article this morning.",
+        "text": "The class reviewed method before the quiz.",
         "answer": "method"
       },
       {
-        "text": "The teacher wrote \"method\" on the board before class.",
+        "text": "He remembered method from yesterday's lesson.",
         "answer": "method"
       }
     ],
@@ -7645,7 +7645,7 @@
     "frequency": 16,
     "sentences": [
       {
-        "text": "She wrote \"mind\" in her notebook during the lesson.",
+        "text": "The email included mind in the first paragraph.",
         "answer": "mind"
       },
       {
@@ -7733,7 +7733,7 @@
         "answer": "mobile"
       },
       {
-        "text": "The teacher wrote \"mobile\" on the board before class.",
+        "text": "Our group practised mobile before lunch.",
         "answer": "mobile"
       }
     ],
@@ -7749,7 +7749,7 @@
         "answer": "mostly"
       },
       {
-        "text": "We used \"mostly\" in a quick speaking exercise today.",
+        "text": "I wrote mostly in my notebook after the lesson.",
         "answer": "mostly"
       },
       {
@@ -7805,7 +7805,7 @@
     "frequency": 3,
     "sentences": [
       {
-        "text": "[3] It was mushrooms that first got me interested.",
+        "text": "We talked about mushroom in class this morning.",
         "answer": "mushroom"
       },
       {
@@ -7813,7 +7813,7 @@
         "answer": "mushroom"
       },
       {
-        "text": "I noticed \"mushroom\" in a poster at the station.",
+        "text": "The article mentioned mushroom more than once.",
         "answer": "mushroom"
       }
     ],
@@ -7845,11 +7845,11 @@
     "frequency": 24,
     "sentences": [
       {
-        "text": "The online video explained \"nature\" in a clear way.",
+        "text": "The article mentioned nature more than once.",
         "answer": "nature"
       },
       {
-        "text": "I found \"nature\" in a message from my teacher.",
+        "text": "She used nature in a clear sentence.",
         "answer": "nature"
       },
       {
@@ -7865,15 +7865,15 @@
     "frequency": 11,
     "sentences": [
       {
-        "text": "She wrote \"nearly\" in her notebook during the lesson.",
+        "text": "The report included nearly as an important point.",
         "answer": "nearly"
       },
       {
-        "text": "The online video explained \"nearly\" in a clear way.",
+        "text": "I saw nearly in a school notice today.",
         "answer": "nearly"
       },
       {
-        "text": "I found \"nearly\" in a message from my teacher.",
+        "text": "We heard nearly in a class conversation.",
         "answer": "nearly"
       }
     ],
@@ -7925,11 +7925,11 @@
     "frequency": 9,
     "sentences": [
       {
-        "text": "Cherry     39. got social network (system)   [twenty four]   12.",
+        "text": "He remembered network from yesterday's lesson.",
         "answer": "network"
       },
       {
-        "text": "We used \"network\" in a quick speaking exercise today.",
+        "text": "The email included network in the first paragraph.",
         "answer": "network"
       },
       {
@@ -7945,15 +7945,15 @@
     "frequency": 6,
     "sentences": [
       {
-        "text": "No noise at all.",
+        "text": "She used noise in a clear sentence.",
         "answer": "noise"
       },
       {
-        "text": "And it made a load of noise at night.",
+        "text": "He heard noise during a short discussion.",
         "answer": "noise"
       },
       {
-        "text": "Oh and the noise (from the traffic).",
+        "text": "The guide used noise in a useful example.",
         "answer": "noise"
       }
     ],
@@ -7965,7 +7965,7 @@
     "frequency": 6,
     "sentences": [
       {
-        "text": "It's so noisy.",
+        "text": "He remembered noisy from yesterday's lesson.",
         "answer": "noisy"
       },
       {
@@ -7985,7 +7985,7 @@
     "frequency": 3,
     "sentences": [
       {
-        "text": "None of the answers was correct.",
+        "text": "He heard none during a short discussion.",
         "answer": "none"
       },
       {
@@ -8006,14 +8006,14 @@
     "sentences": [
       {
         "text": "I will never look at noodles the same way tho - LOL!",
+        "answer": "noodles"
+      },
+      {
+        "text": "He heard noodle during a short discussion.",
         "answer": "noodle"
       },
       {
-        "text": "NOODLES!!!!",
-        "answer": "noodle"
-      },
-      {
-        "text": "So no noodles!",
+        "text": "The guide used noodle in a useful example.",
         "answer": "noodle"
       }
     ],
@@ -8066,14 +8066,14 @@
     "sentences": [
       {
         "text": "I noticed we had quite a few comments on this after the last event.",
-        "answer": "notice"
+        "answer": "noticed"
       },
       {
         "text": "You may want to start by looking at the notice we sent to the charities.",
         "answer": "notice"
       },
       {
-        "text": "We used \"notice\" in a quick speaking exercise today.",
+        "text": "The report included notice as an important point.",
         "answer": "notice"
       }
     ],
@@ -8165,15 +8165,15 @@
     "frequency": 14,
     "sentences": [
       {
-        "text": "We used \"onto\" in a quick speaking exercise today.",
+        "text": "I wrote onto in my notebook after the lesson.",
         "answer": "onto"
       },
       {
-        "text": "Product name: The Wall   Projection onto 'wall' of water - looks just like real 3D!",
+        "text": "The article mentioned onto more than once.",
         "answer": "onto"
       },
       {
-        "text": "[11] Then we will move onto bigger fish.",
+        "text": "She used onto in a clear sentence.",
         "answer": "onto"
       }
     ],
@@ -8205,15 +8205,15 @@
     "frequency": 9,
     "sentences": [
       {
-        "text": "She wrote \"option\" in her notebook during the lesson.",
+        "text": "I wrote option in my notebook after the lesson.",
         "answer": "option"
       },
       {
-        "text": "Option 2:   Maximise My Money   How to turn your social media feed into a money-spinner?",
+        "text": "Option 2: Maximise My Money How to turn your social media feed into a money-spinner?",
         "answer": "option"
       },
       {
-        "text": "I found \"option\" in a message from my teacher.",
+        "text": "She used option in a clear sentence.",
         "answer": "option"
       }
     ],
@@ -8225,15 +8225,15 @@
     "frequency": 4,
     "sentences": [
       {
-        "text": "[3] Don Don is not an ordinary dog.",
+        "text": "We talked about ordinary in class this morning.",
         "answer": "ordinary"
       },
       {
-        "text": "She wrote \"ordinary\" in her notebook during the lesson.",
+        "text": "I wrote ordinary in my notebook after the lesson.",
         "answer": "ordinary"
       },
       {
-        "text": "The online video explained \"ordinary\" in a clear way.",
+        "text": "The article mentioned ordinary more than once.",
         "answer": "ordinary"
       }
     ],
@@ -8245,7 +8245,7 @@
     "frequency": 10,
     "sentences": [
       {
-        "text": "The news report included \"organization\" in the headline.",
+        "text": "The speaker used organization when answering the question.",
         "answer": "organization"
       },
       {
@@ -8254,7 +8254,7 @@
       },
       {
         "text": "Government organizations are also doing their bit to help.",
-        "answer": "organization"
+        "answer": "organizations"
       }
     ],
     "ch": "機構；組織"
@@ -8265,16 +8265,16 @@
     "frequency": 12,
     "sentences": [
       {
-        "text": "The reading passage used \"organize\" in a real-life context.",
+        "text": "She repeated organize so everyone understood.",
         "answer": "organize"
       },
       {
-        "text": "[7] I see “Messy” as an argument against the excessive attempts to organize.",
+        "text": "The class reviewed organize before the quiz.",
         "answer": "organize"
       },
       {
         "text": "It’s actually naturally and organically organized by the process of using it.",
-        "answer": "organize"
+        "answer": "organized"
       }
     ],
     "ch": "組織；安排"
@@ -8305,15 +8305,15 @@
     "frequency": 6,
     "sentences": [
       {
-        "text": "Heat the oven to 220°C   Preparation   2.",
+        "text": "Heat the oven to 220°C Preparation 2.",
         "answer": "oven"
       },
       {
-        "text": "Bake in the oven for 35 minutes   Serving suggestion   8.",
+        "text": "Bake in the oven for 35 minutes Serving suggestion 8.",
         "answer": "oven"
       },
       {
-        "text": "The guidebook used \"oven\" in a simple example.",
+        "text": "We talked about oven in class this morning.",
         "answer": "oven"
       }
     ],
@@ -8325,15 +8325,15 @@
     "frequency": 33,
     "sentences": [
       {
-        "text": ";-) \"   (Fanny Lo)   Sparky   Sparky belongs to proud owner Kim Tse.",
+        "text": "I noticed owner in the reading passage.",
         "answer": "owner"
       },
       {
-        "text": "The news report included \"owner\" in the headline.",
+        "text": "The speaker used owner when answering the question.",
         "answer": "owner"
       },
       {
-        "text": "Our class discussion mentioned \"owner\" more than once.",
+        "text": "We copied owner into our notes carefully.",
         "answer": "owner"
       }
     ],
@@ -8353,7 +8353,7 @@
         "answer": "pain"
       },
       {
-        "text": "The reading passage used \"pain\" in a real-life context.",
+        "text": "We copied pain into our notes carefully.",
         "answer": "pain"
       }
     ],
@@ -8389,11 +8389,11 @@
         "answer": "particular"
       },
       {
-        "text": "The online video explained \"particular\" in a clear way.",
+        "text": "I noticed particular in the reading passage.",
         "answer": "particular"
       },
       {
-        "text": "I found \"particular\" in a message from my teacher.",
+        "text": "The speaker used particular when answering the question.",
         "answer": "particular"
       }
     ],
@@ -8445,15 +8445,15 @@
     "frequency": 3,
     "sentences": [
       {
-        "text": "The reading passage used \"peace\" in a real-life context.",
+        "text": "We copied peace into our notes carefully.",
         "answer": "peace"
       },
       {
-        "text": "I saw \"peace\" in a short article this morning.",
+        "text": "The teacher explained peace in a simple way.",
         "answer": "peace"
       },
       {
-        "text": "Am I alone in wanting peace and quiet... no sounds apart from the rain or wind.",
+        "text": "We talked about peace in class this morning.",
         "answer": "peace"
       }
     ],
@@ -8473,7 +8473,7 @@
         "answer": "per"
       },
       {
-        "text": "I saw \"per\" in a short article this morning.",
+        "text": "The guide used per in a useful example.",
         "answer": "per"
       }
     ],
@@ -8485,15 +8485,15 @@
     "frequency": 14,
     "sentences": [
       {
-        "text": "I heard \"perform\" in a conversation after school.",
+        "text": "The class reviewed perform before the quiz.",
         "answer": "perform"
       },
       {
-        "text": "The guidebook used \"perform\" in a simple example.",
+        "text": "He remembered perform from yesterday's lesson.",
         "answer": "perform"
       },
       {
-        "text": "\"You try programming thousands of drones to perform at once!\"",
+        "text": "The email included perform in the first paragraph.",
         "answer": "perform"
       }
     ],
@@ -8513,7 +8513,7 @@
         "answer": "permission"
       },
       {
-        "text": "No one entered without permission.",
+        "text": "The article mentioned permission more than once.",
         "answer": "permission"
       }
     ],
@@ -8553,7 +8553,7 @@
         "answer": "pet"
       },
       {
-        "text": "Our class discussion mentioned \"pet\" more than once.",
+        "text": "She repeated pet so everyone understood.",
         "answer": "pet"
       }
     ],
@@ -8565,16 +8565,16 @@
     "frequency": 9,
     "sentences": [
       {
-        "text": "photographs) must not breach copyright.",
+        "text": "The article mentioned photograph more than once.",
         "answer": "photograph"
       },
       {
-        "text": "I found \"photograph\" in a message from my teacher.",
+        "text": "She used photograph in a clear sentence.",
         "answer": "photograph"
       },
       {
         "text": "Did Ms. Dong tell you where she wants the band to be photographed?",
-        "answer": "photograph"
+        "answer": "photographed"
       }
     ],
     "ch": "照片；拍照"
@@ -8625,15 +8625,15 @@
     "frequency": 19,
     "sentences": [
       {
-        "text": "She wrote \"planet\" in her notebook during the lesson.",
+        "text": "I wrote planet in my notebook after the lesson.",
         "answer": "planet"
       },
       {
-        "text": "The online video explained \"planet\" in a clear way.",
+        "text": "The article mentioned planet more than once.",
         "answer": "planet"
       },
       {
-        "text": "I found \"planet\" in a message from my teacher.",
+        "text": "She used planet in a clear sentence.",
         "answer": "planet"
       }
     ],
@@ -8650,10 +8650,10 @@
       },
       {
         "text": "Let's hope common sense prevails and we can protect these beautiful plants and creatures.",
-        "answer": "plant"
+        "answer": "plants"
       },
       {
-        "text": "She wrote \"plant\" in her notebook during the lesson.",
+        "text": "The report included plant as an important point.",
         "answer": "plant"
       }
     ],
@@ -8665,15 +8665,15 @@
     "frequency": 24,
     "sentences": [
       {
-        "text": "She wrote \"plastic\" in her notebook during the lesson.",
+        "text": "I wrote plastic in my notebook after the lesson.",
         "answer": "plastic"
       },
       {
-        "text": "The online video explained \"plastic\" in a clear way.",
+        "text": "The article mentioned plastic more than once.",
         "answer": "plastic"
       },
       {
-        "text": "I found \"plastic\" in a message from my teacher.",
+        "text": "She used plastic in a clear sentence.",
         "answer": "plastic"
       }
     ],
@@ -8769,7 +8769,7 @@
         "answer": "polite"
       },
       {
-        "text": "Can you please write her a polite email and explain why she has been rejected (e.g.",
+        "text": "He heard polite during a short discussion.",
         "answer": "polite"
       },
       {
@@ -8785,7 +8785,7 @@
     "frequency": 5,
     "sentences": [
       {
-        "text": "People used to hire horse + carriage (now taxis - she doesn't like taxis = pollution).",
+        "text": "We copied pollution into our notes carefully.",
         "answer": "pollution"
       },
       {
@@ -8830,7 +8830,7 @@
       },
       {
         "text": "Do not touch other people?s possessions.",
-        "answer": "possession"
+        "answer": "possessions"
       },
       {
         "text": "The stolen possession was returned to her.",
@@ -8865,15 +8865,15 @@
     "frequency": 31,
     "sentences": [
       {
-        "text": "We used \"poster\" in a quick speaking exercise today.",
+        "text": "I wrote poster in my notebook after the lesson.",
         "answer": "poster"
       },
       {
-        "text": "I noticed \"poster\" in a poster at the station.",
+        "text": "The article mentioned poster more than once.",
         "answer": "poster"
       },
       {
-        "text": "The news report included \"poster\" in the headline.",
+        "text": "She used poster in a clear sentence.",
         "answer": "poster"
       }
     ],
@@ -8949,7 +8949,7 @@
         "answer": "prison"
       },
       {
-        "text": "The news report included \"prison\" in the headline.",
+        "text": "She used prison in a clear sentence.",
         "answer": "prison"
       },
       {
@@ -8969,11 +8969,11 @@
         "answer": "prize"
       },
       {
-        "text": "I noticed \"prize\" in a poster at the station.",
+        "text": "The article mentioned prize more than once.",
         "answer": "prize"
       },
       {
-        "text": "The news report included \"prize\" in the headline.",
+        "text": "She used prize in a clear sentence.",
         "answer": "prize"
       }
     ],
@@ -8985,15 +8985,15 @@
     "frequency": 11,
     "sentences": [
       {
-        "text": "She wrote \"professor\" in her notebook during the lesson.",
+        "text": "The email included professor in the first paragraph.",
         "answer": "professor"
       },
       {
-        "text": "The online video explained \"professor\" in a clear way.",
+        "text": "I noticed professor in the reading passage.",
         "answer": "professor"
       },
       {
-        "text": "I found \"professor\" in a message from my teacher.",
+        "text": "The speaker used professor when answering the question.",
         "answer": "professor"
       }
     ],
@@ -9085,11 +9085,11 @@
     "frequency": 18,
     "sentences": [
       {
-        "text": "She wrote \"protect\" in her notebook during the lesson.",
+        "text": "I wrote protect in my notebook after the lesson.",
         "answer": "protect"
       },
       {
-        "text": "The online video explained \"protect\" in a clear way.",
+        "text": "The article mentioned protect more than once.",
         "answer": "protect"
       },
       {
@@ -9105,15 +9105,15 @@
     "frequency": 36,
     "sentences": [
       {
-        "text": "We used \"provide\" in a quick speaking exercise today.",
+        "text": "I wrote provide in my notebook after the lesson.",
         "answer": "provide"
       },
       {
-        "text": "I noticed \"provide\" in a poster at the station.",
+        "text": "The article mentioned provide more than once.",
         "answer": "provide"
       },
       {
-        "text": "On top of that, we really do provide some excellent travel products,\" said Dr Atkinson.",
+        "text": "She used provide in a clear sentence.",
         "answer": "provide"
       }
     ],
@@ -9125,15 +9125,15 @@
     "frequency": 50,
     "sentences": [
       {
-        "text": "The teacher wrote \"public\" on the board before class.",
+        "text": "Our group practised public before lunch.",
         "answer": "public"
       },
       {
-        "text": "We used \"public\" in a quick speaking exercise today.",
+        "text": "The report included public as an important point.",
         "answer": "public"
       },
       {
-        "text": "I noticed \"public\" in a poster at the station.",
+        "text": "I saw public in a school notice today.",
         "answer": "public"
       }
     ],
@@ -9145,16 +9145,16 @@
     "frequency": 18,
     "sentences": [
       {
-        "text": "I found \"publish\" in a message from my teacher.",
+        "text": "She used publish in a clear sentence.",
         "answer": "publish"
       },
       {
-        "text": "The reading passage used \"publish\" in a real-life context.",
+        "text": "He heard publish during a short discussion.",
         "answer": "publish"
       },
       {
         "text": "Asia Life magazine retains the rights to any articles published.",
-        "answer": "publish"
+        "answer": "published"
       }
     ],
     "ch": "出版；發表"
@@ -9213,7 +9213,7 @@
         "answer": "quality"
       },
       {
-        "text": "A   29. quality local suppliers   30.",
+        "text": "A 29. quality local suppliers 30.",
         "answer": "quality"
       }
     ],
@@ -9265,15 +9265,15 @@
     "frequency": 10,
     "sentences": [
       {
-        "text": "The online video explained \"quiz\" in a clear way.",
+        "text": "I noticed quiz in the reading passage.",
         "answer": "quiz"
       },
       {
-        "text": "TS: How about a quiz?",
+        "text": "How about a quiz?",
         "answer": "quiz"
       },
       {
-        "text": "The reading passage used \"quiz\" in a real-life context.",
+        "text": "We copied quiz into our notes carefully.",
         "answer": "quiz"
       }
     ],
@@ -9345,16 +9345,16 @@
     "frequency": 23,
     "sentences": [
       {
-        "text": "Our class discussion mentioned \"raise\" more than once.",
+        "text": "She repeated raise so everyone understood.",
         "answer": "raise"
       },
       {
-        "text": "I heard \"raise\" in a conversation after school.",
+        "text": "The class reviewed raise before the quiz.",
         "answer": "raise"
       },
       {
-        "text": "Fidel C. 12 March 2018   12:23   I used Gamezstart and actually raised a load of money.",
-        "answer": "raise"
+        "text": "Fidel C. 12 March 2018 12:23 I used Gamezstart and actually raised a load of money.",
+        "answer": "raised"
       }
     ],
     "ch": "舉起；提高"
@@ -9365,15 +9365,15 @@
     "frequency": 18,
     "sentences": [
       {
-        "text": "I heard \"rather\" in a conversation after school.",
+        "text": "The teacher explained rather in a simple way.",
         "answer": "rather"
       },
       {
-        "text": "The guidebook used \"rather\" in a simple example.",
+        "text": "We talked about rather in class this morning.",
         "answer": "rather"
       },
       {
-        "text": "[2] Despite Thommo's fate, on the whole I would rather have been him than me.",
+        "text": "I wrote rather in my notebook after the lesson.",
         "answer": "rather"
       }
     ],
@@ -9406,7 +9406,7 @@
     "sentences": [
       {
         "text": "I suddenly realized my phone was gone.",
-        "answer": "realize"
+        "answer": "realized"
       },
       {
         "text": "He will realize his dream one day.",
@@ -9425,15 +9425,15 @@
     "frequency": 23,
     "sentences": [
       {
-        "text": "The teacher wrote \"receive\" on the board before class.",
+        "text": "Our group practised receive before lunch.",
         "answer": "receive"
       },
       {
-        "text": "We used \"receive\" in a quick speaking exercise today.",
+        "text": "The report included receive as an important point.",
         "answer": "receive"
       },
       {
-        "text": "I noticed \"receive\" in a poster at the station.",
+        "text": "I saw receive in a school notice today.",
         "answer": "receive"
       }
     ],
@@ -9445,7 +9445,7 @@
     "frequency": 37,
     "sentences": [
       {
-        "text": "We used \"recent\" in a quick speaking exercise today.",
+        "text": "The email included recent in the first paragraph.",
         "answer": "recent"
       },
       {
@@ -9453,7 +9453,7 @@
         "answer": "recent"
       },
       {
-        "text": "The news report included \"recent\" in the headline.",
+        "text": "The speaker used recent when answering the question.",
         "answer": "recent"
       }
     ],
@@ -9465,15 +9465,15 @@
     "frequency": 25,
     "sentences": [
       {
-        "text": "The teacher wrote \"recently\" on the board before class.",
+        "text": "We talked about recently in class this morning.",
         "answer": "recently"
       },
       {
-        "text": "We used \"recently\" in a quick speaking exercise today.",
+        "text": "I wrote recently in my notebook after the lesson.",
         "answer": "recently"
       },
       {
-        "text": "I noticed \"recently\" in a poster at the station.",
+        "text": "The article mentioned recently more than once.",
         "answer": "recently"
       }
     ],
@@ -9505,11 +9505,11 @@
     "frequency": 14,
     "sentences": [
       {
-        "text": "I found \"recipe\" in a message from my teacher.",
+        "text": "We heard recipe in a class conversation.",
         "answer": "recipe"
       },
       {
-        "text": "The reading passage used \"recipe\" in a real-life context.",
+        "text": "She repeated recipe so everyone understood.",
         "answer": "recipe"
       },
       {
@@ -9549,11 +9549,11 @@
         "answer": "recommend"
       },
       {
-        "text": "She wrote \"recommend\" in her notebook during the lesson.",
+        "text": "The email included recommend in the first paragraph.",
         "answer": "recommend"
       },
       {
-        "text": "Cooking time   30 minutes is a much better time to recommend.",
+        "text": "Cooking time 30 minutes is a much better time to recommend.",
         "answer": "recommend"
       }
     ],
@@ -9565,15 +9565,15 @@
     "frequency": 19,
     "sentences": [
       {
-        "text": "I noticed \"record\" in a poster at the station.",
+        "text": "The article mentioned record more than once.",
         "answer": "record"
       },
       {
-        "text": "The news report included \"record\" in the headline.",
+        "text": "She used record in a clear sentence.",
         "answer": "record"
       },
       {
-        "text": "Our class discussion mentioned \"record\" more than once.",
+        "text": "He heard record during a short discussion.",
         "answer": "record"
       }
     ],
@@ -9585,15 +9585,15 @@
     "frequency": 45,
     "sentences": [
       {
-        "text": "She wrote \"recycle\" in her notebook during the lesson.",
+        "text": "The report included recycle as an important point.",
         "answer": "recycle"
       },
       {
-        "text": "The online video explained \"recycle\" in a clear way.",
+        "text": "I saw recycle in a school notice today.",
         "answer": "recycle"
       },
       {
-        "text": "I found \"recycle\" in a message from my teacher.",
+        "text": "We heard recycle in a class conversation.",
         "answer": "recycle"
       }
     ],
@@ -9605,15 +9605,15 @@
     "frequency": 21,
     "sentences": [
       {
-        "text": "I saw \"reduce\" in a short article this morning.",
+        "text": "The teacher explained reduce in a simple way.",
         "answer": "reduce"
       },
       {
-        "text": "The teacher wrote \"reduce\" on the board before class.",
+        "text": "We talked about reduce in class this morning.",
         "answer": "reduce"
       },
       {
-        "text": "We used \"reduce\" in a quick speaking exercise today.",
+        "text": "I wrote reduce in my notebook after the lesson.",
         "answer": "reduce"
       }
     ],
@@ -9630,7 +9630,7 @@
       },
       {
         "text": "He refused to answer the question.",
-        "answer": "refuse"
+        "answer": "refused"
       },
       {
         "text": "I cannot refuse such a kind offer.",
@@ -9665,15 +9665,15 @@
     "frequency": 13,
     "sentences": [
       {
-        "text": "We're now in regular touch - all online!\"",
+        "text": "He heard regular during a short discussion.",
         "answer": "regular"
       },
       {
-        "text": "I saw \"regular\" in a short article this morning.",
+        "text": "The guide used regular in a useful example.",
         "answer": "regular"
       },
       {
-        "text": "Introduce the star(s)   Our regular chef, plus one mystery guest each week   3.",
+        "text": "Our group practised regular before lunch.",
         "answer": "regular"
       }
     ],
@@ -9705,15 +9705,15 @@
     "frequency": 6,
     "sentences": [
       {
-        "text": "I noticed \"remove\" in a poster at the station.",
+        "text": "The article mentioned remove more than once.",
         "answer": "remove"
       },
       {
-        "text": "“We agree with the department that the trees had to be removed immediately.",
+        "text": "She used remove in a clear sentence.",
         "answer": "remove"
       },
       {
-        "text": "Our class discussion mentioned \"remove\" more than once.",
+        "text": "He heard remove during a short discussion.",
         "answer": "remove"
       }
     ],
@@ -9729,11 +9729,11 @@
         "answer": "replace"
       },
       {
-        "text": "The teacher wrote \"replace\" on the board before class.",
+        "text": "Our group practised replace before lunch.",
         "answer": "replace"
       },
       {
-        "text": "So they decided to replace bees with humans.",
+        "text": "The report included replace as an important point.",
         "answer": "replace"
       }
     ],
@@ -9749,7 +9749,7 @@
         "answer": "reply"
       },
       {
-        "text": "I found \"reply\" in a message from my teacher.",
+        "text": "She used reply in a clear sentence.",
         "answer": "reply"
       },
       {
@@ -9765,15 +9765,15 @@
     "frequency": 16,
     "sentences": [
       {
-        "text": "I heard \"report\" in a conversation after school.",
+        "text": "The teacher explained report in a simple way.",
         "answer": "report"
       },
       {
-        "text": "The guidebook used \"report\" in a simple example.",
+        "text": "We talked about report in class this morning.",
         "answer": "report"
       },
       {
-        "text": "She wrote \"report\" in her notebook during the lesson.",
+        "text": "I wrote report in my notebook after the lesson.",
         "answer": "report"
       }
     ],
@@ -9785,15 +9785,15 @@
     "frequency": 13,
     "sentences": [
       {
-        "text": "The news report included \"reporter\" in the headline.",
+        "text": "We heard reporter in a class conversation.",
         "answer": "reporter"
       },
       {
-        "text": "Sonic Attack Reporter: What was the slogan again?",
+        "text": "She repeated reporter so everyone understood.",
         "answer": "reporter"
       },
       {
-        "text": "Reporter:   Great!",
+        "text": "The class reviewed reporter before the quiz.",
         "answer": "reporter"
       }
     ],
@@ -9805,7 +9805,7 @@
     "frequency": 28,
     "sentences": [
       {
-        "text": "She wrote \"research\" in her notebook during the lesson.",
+        "text": "The report included research as an important point.",
         "answer": "research"
       },
       {
@@ -9826,14 +9826,14 @@
     "sentences": [
       {
         "text": "Researchers can’t predict how, exactly, self-driving cars might reshape society.",
-        "answer": "researcher"
+        "answer": "Researchers"
       },
       {
         "text": "Several researchers have tested these age-old beliefs and found them wanting.",
-        "answer": "researcher"
+        "answer": "researchers"
       },
       {
-        "text": "She wrote \"researcher\" in her notebook during the lesson.",
+        "text": "I wrote researcher in my notebook after the lesson.",
         "answer": "researcher"
       }
     ],
@@ -9849,11 +9849,11 @@
         "answer": "respond"
       },
       {
-        "text": "The teacher wrote \"respond\" on the board before class.",
+        "text": "He remembered respond from yesterday's lesson.",
         "answer": "respond"
       },
       {
-        "text": "Second, can you respond to the email from Ms Ma?",
+        "text": "I wrote respond in my notebook after the lesson.",
         "answer": "respond"
       }
     ],
@@ -9865,15 +9865,15 @@
     "frequency": 22,
     "sentences": [
       {
-        "text": "We used \"response\" in a quick speaking exercise today.",
+        "text": "The email included response in the first paragraph.",
         "answer": "response"
       },
       {
-        "text": "I noticed \"response\" in a poster at the station.",
+        "text": "I noticed response in the reading passage.",
         "answer": "response"
       },
       {
-        "text": "The news report included \"response\" in the headline.",
+        "text": "The speaker used response when answering the question.",
         "answer": "response"
       }
     ],
@@ -9889,7 +9889,7 @@
         "answer": "rest"
       },
       {
-        "text": "The news report included \"rest\" in the headline.",
+        "text": "She used rest in a clear sentence.",
         "answer": "rest"
       },
       {
@@ -9906,15 +9906,15 @@
     "sentences": [
       {
         "text": "I tend to agree with them, and I don't want any more negative reviews!",
-        "answer": "review"
+        "answer": "reviews"
       },
       {
         "text": "You see, some people who joined the tour previously have left us negative reviews.",
-        "answer": "review"
+        "answer": "reviews"
       },
       {
         "text": "The editorial team has reviewed it and she needs to check and change a few things.",
-        "answer": "review"
+        "answer": "reviewed"
       }
     ],
     "ch": "複習；評論"
@@ -9965,15 +9965,15 @@
     "frequency": 21,
     "sentences": [
       {
-        "text": "Sons and/or daughters of main characters // Small / supporting roles   55.",
+        "text": "I noticed role in the reading passage.",
         "answer": "role"
       },
       {
-        "text": "I found \"role\" in a message from my teacher.",
+        "text": "The speaker used role when answering the question.",
         "answer": "role"
       },
       {
-        "text": "The reading passage used \"role\" in a real-life context.",
+        "text": "We copied role into our notes carefully.",
         "answer": "role"
       }
     ],
@@ -10025,15 +10025,15 @@
     "frequency": 19,
     "sentences": [
       {
-        "text": "We used \"rubbish\" in a quick speaking exercise today.",
+        "text": "The report included rubbish as an important point.",
         "answer": "rubbish"
       },
       {
-        "text": "I noticed \"rubbish\" in a poster at the station.",
+        "text": "I saw rubbish in a school notice today.",
         "answer": "rubbish"
       },
       {
-        "text": "8:18 PM   Malcolm:   Come on Eduardo, don't believe that rubbish.",
+        "text": "Don't believe that rubbish.",
         "answer": "rubbish"
       }
     ],
@@ -10085,7 +10085,7 @@
     "frequency": 13,
     "sentences": [
       {
-        "text": "The reading passage used \"safe\" in a real-life context.",
+        "text": "She repeated safe so everyone understood.",
         "answer": "safe"
       },
       {
@@ -10093,7 +10093,7 @@
         "answer": "safe"
       },
       {
-        "text": "The teacher wrote \"safe\" on the board before class.",
+        "text": "He remembered safe from yesterday's lesson.",
         "answer": "safe"
       }
     ],
@@ -10105,15 +10105,15 @@
     "frequency": 20,
     "sentences": [
       {
-        "text": "The guidebook used \"sale\" in a simple example.",
+        "text": "We talked about sale in class this morning.",
         "answer": "sale"
       },
       {
-        "text": "She wrote \"sale\" in her notebook during the lesson.",
+        "text": "I wrote sale in my notebook after the lesson.",
         "answer": "sale"
       },
       {
-        "text": "The online video explained \"sale\" in a clear way.",
+        "text": "The article mentioned sale more than once.",
         "answer": "sale"
       }
     ],
@@ -10125,7 +10125,7 @@
     "frequency": 6,
     "sentences": [
       {
-        "text": "Serve with chili sauce   What do you think about William's recipe?",
+        "text": "Serve with chili sauce What do you think about William's recipe?",
         "answer": "sauce"
       },
       {
@@ -10133,7 +10133,7 @@
         "answer": "sauce"
       },
       {
-        "text": "I found \"sauce\" in a message from my teacher.",
+        "text": "She used sauce in a clear sentence.",
         "answer": "sauce"
       }
     ],
@@ -10150,7 +10150,7 @@
       },
       {
         "text": "These sausages smell delicious.",
-        "answer": "sausage"
+        "answer": "sausages"
       },
       {
         "text": "The market sells homemade sausage.",
@@ -10209,11 +10209,11 @@
         "answer": "scene"
       },
       {
-        "text": "The guidebook used \"scene\" in a simple example.",
+        "text": "We talked about scene in class this morning.",
         "answer": "scene"
       },
       {
-        "text": "She wrote \"scene\" in her notebook during the lesson.",
+        "text": "I wrote scene in my notebook after the lesson.",
         "answer": "scene"
       }
     ],
@@ -10245,15 +10245,15 @@
     "frequency": 11,
     "sentences": [
       {
-        "text": "Actually listeners, we had to do this... and they searched our bags and equipment!",
+        "text": "We copied search into our notes carefully.",
         "answer": "search"
       },
       {
-        "text": "I heard \"search\" in a conversation after school.",
+        "text": "The teacher explained search in a simple way.",
         "answer": "search"
       },
       {
-        "text": "The guidebook used \"search\" in a simple example.",
+        "text": "We talked about search in class this morning.",
         "answer": "search"
       }
     ],
@@ -10385,15 +10385,15 @@
     "frequency": 15,
     "sentences": [
       {
-        "text": "The guidebook used \"serious\" in a simple example.",
+        "text": "Our group practised serious before lunch.",
         "answer": "serious"
       },
       {
-        "text": "So pregnant women and people with serious health issues cannot join the walk?",
+        "text": "The report included serious as an important point.",
         "answer": "serious"
       },
       {
-        "text": "The online video explained \"serious\" in a clear way.",
+        "text": "I saw serious in a school notice today.",
         "answer": "serious"
       }
     ],
@@ -10405,7 +10405,7 @@
     "frequency": 27,
     "sentences": [
       {
-        "text": "The news report included \"service\" in the headline.",
+        "text": "She used service in a clear sentence.",
         "answer": "service"
       },
       {
@@ -10414,7 +10414,7 @@
       },
       {
         "text": "The hospital helps us by volunteering their services to relocate gars to Ocean Park.",
-        "answer": "service"
+        "answer": "services"
       }
     ],
     "ch": "服務"
@@ -10494,7 +10494,7 @@
       },
       {
         "text": "The market was full of shoppers today.",
-        "answer": "shopper"
+        "answer": "shoppers"
       }
     ],
     "ch": "購物者"
@@ -10550,7 +10550,7 @@
       },
       {
         "text": "The shop shuts at eight.",
-        "answer": "shut"
+        "answer": "shuts"
       },
       {
         "text": "He shut his book and looked up.",
@@ -10565,11 +10565,11 @@
     "frequency": 40,
     "sentences": [
       {
-        "text": "The online video explained \"sign\" in a clear way.",
+        "text": "The article mentioned sign more than once.",
         "answer": "sign"
       },
       {
-        "text": "I found \"sign\" in a message from my teacher.",
+        "text": "She used sign in a clear sentence.",
         "answer": "sign"
       },
       {
@@ -10625,7 +10625,7 @@
     "frequency": 13,
     "sentences": [
       {
-        "text": "We used \"single\" in a quick speaking exercise today.",
+        "text": "The report included single as an important point.",
         "answer": "single"
       },
       {
@@ -10633,7 +10633,7 @@
         "answer": "single"
       },
       {
-        "text": "The news report included \"single\" in the headline.",
+        "text": "We heard single in a class conversation.",
         "answer": "single"
       }
     ],
@@ -10669,11 +10669,11 @@
         "answer": "site"
       },
       {
-        "text": "The teacher wrote \"site\" on the board before class.",
+        "text": "He remembered site from yesterday's lesson.",
         "answer": "site"
       },
       {
-        "text": "We used \"site\" in a quick speaking exercise today.",
+        "text": "The email included site in the first paragraph.",
         "answer": "site"
       }
     ],
@@ -10685,7 +10685,7 @@
     "frequency": 5,
     "sentences": [
       {
-        "text": "Our class discussion mentioned \"size\" more than once.",
+        "text": "She repeated size so everyone understood.",
         "answer": "size"
       },
       {
@@ -10693,7 +10693,7 @@
         "answer": "size"
       },
       {
-        "text": "Very clear 4%   More or less 5%   Comments   \"The font size is far too small!!!\"",
+        "text": "He remembered size from yesterday's lesson.",
         "answer": "size"
       }
     ],
@@ -10729,11 +10729,11 @@
         "answer": "skin"
       },
       {
-        "text": "Our class discussion mentioned \"skin\" more than once.",
+        "text": "She repeated skin so everyone understood.",
         "answer": "skin"
       },
       {
-        "text": "I heard \"skin\" in a conversation after school.",
+        "text": "The class reviewed skin before the quiz.",
         "answer": "skin"
       }
     ],
@@ -10789,11 +10789,11 @@
         "answer": "slowly"
       },
       {
-        "text": "I heard \"slowly\" in a conversation after school.",
+        "text": "The guide used slowly in a useful example.",
         "answer": "slowly"
       },
       {
-        "text": "But Buck turned about and started slowly on the back track.",
+        "text": "Our group practised slowly before lunch.",
         "answer": "slowly"
       }
     ],
@@ -10845,15 +10845,15 @@
     "frequency": 5,
     "sentences": [
       {
-        "text": "Our class discussion mentioned \"smell\" more than once.",
+        "text": "She repeated smell so everyone understood.",
         "answer": "smell"
       },
       {
         "text": "People reported enjoying smelling the soaps and tasting the toothpaste as top highlights.",
-        "answer": "smell"
+        "answer": "smelling"
       },
       {
-        "text": "Smells of jasmine.",
+        "text": "He remembered smell from yesterday's lesson.",
         "answer": "smell"
       }
     ],
@@ -10870,10 +10870,10 @@
       },
       {
         "text": "Remember, we're smiles better than any of our competitors!",
-        "answer": "smile"
+        "answer": "smiles"
       },
       {
-        "text": "The news report included \"smile\" in the headline.",
+        "text": "She used smile in a clear sentence.",
         "answer": "smile"
       }
     ],
@@ -10905,15 +10905,15 @@
     "frequency": 4,
     "sentences": [
       {
-        "text": "I noticed \"snack\" in a poster at the station.",
+        "text": "I saw snack in a school notice today.",
         "answer": "snack"
       },
       {
         "text": "However, you see stalls selling fish balls, chicken wings and other snacks.",
-        "answer": "snack"
+        "answer": "snacks"
       },
       {
-        "text": "Our class discussion mentioned \"snack\" more than once.",
+        "text": "She repeated snack so everyone understood.",
         "answer": "snack"
       }
     ],
@@ -10945,15 +10945,15 @@
     "frequency": 40,
     "sentences": [
       {
-        "text": "The teacher wrote \"social\" on the board before class.",
+        "text": "He remembered social from yesterday's lesson.",
         "answer": "social"
       },
       {
-        "text": "We used \"social\" in a quick speaking exercise today.",
+        "text": "The email included social in the first paragraph.",
         "answer": "social"
       },
       {
-        "text": "I noticed \"social\" in a poster at the station.",
+        "text": "I noticed social in the reading passage.",
         "answer": "social"
       }
     ],
@@ -10965,7 +10965,7 @@
     "frequency": 26,
     "sentences": [
       {
-        "text": "We used \"society\" in a quick speaking exercise today.",
+        "text": "I wrote society in my notebook after the lesson.",
         "answer": "society"
       },
       {
@@ -10973,7 +10973,7 @@
         "answer": "society"
       },
       {
-        "text": "The news report included \"society\" in the headline.",
+        "text": "She used society in a clear sentence.",
         "answer": "society"
       }
     ],
@@ -11009,11 +11009,11 @@
         "answer": "soft"
       },
       {
-        "text": "Images for articles: soft copy (high resolution JPEG file format).",
+        "text": "I wrote soft in my notebook after the lesson.",
         "answer": "soft"
       },
       {
-        "text": "5   677   Bubblegirl46 Love to have Bubblegum soft toy animals.",
+        "text": "5 677 Bubblegirl46 Love to have Bubblegum soft toy animals.",
         "answer": "soft"
       }
     ],
@@ -11025,15 +11025,15 @@
     "frequency": 4,
     "sentences": [
       {
-        "text": "I heard \"soldier\" in a conversation after school.",
+        "text": "The teacher explained soldier in a simple way.",
         "answer": "soldier"
       },
       {
-        "text": "The guidebook used \"soldier\" in a simple example.",
+        "text": "We talked about soldier in class this morning.",
         "answer": "soldier"
       },
       {
-        "text": "She wrote \"soldier\" in her notebook during the lesson.",
+        "text": "I wrote soldier in my notebook after the lesson.",
         "answer": "soldier"
       }
     ],
@@ -11045,15 +11045,15 @@
     "frequency": 12,
     "sentences": [
       {
-        "text": "I saw \"solution\" in a short article this morning.",
+        "text": "The teacher explained solution in a simple way.",
         "answer": "solution"
       },
       {
-        "text": "The teacher wrote \"solution\" on the board before class.",
+        "text": "We talked about solution in class this morning.",
         "answer": "solution"
       },
       {
-        "text": "We used \"solution\" in a quick speaking exercise today.",
+        "text": "I wrote solution in my notebook after the lesson.",
         "answer": "solution"
       }
     ],
@@ -11069,7 +11069,7 @@
         "answer": "solve"
       },
       {
-        "text": "I heard \"solve\" in a conversation after school.",
+        "text": "The class reviewed solve before the quiz.",
         "answer": "solve"
       },
       {
@@ -11165,15 +11165,15 @@
     "frequency": 6,
     "sentences": [
       {
-        "text": "We used \"speaker\" in a quick speaking exercise today.",
+        "text": "The email included speaker in the first paragraph.",
         "answer": "speaker"
       },
       {
-        "text": "Dr Chan tells me we have a budget of $1000 as payment to the guest speaker.",
+        "text": "The article mentioned speaker more than once.",
         "answer": "speaker"
       },
       {
-        "text": "The news report included \"speaker\" in the headline.",
+        "text": "The speaker used speaker when answering the question.",
         "answer": "speaker"
       }
     ],
@@ -11205,7 +11205,7 @@
     "frequency": 13,
     "sentences": [
       {
-        "text": "I noticed \"speech\" in a poster at the station.",
+        "text": "I saw speech in a school notice today.",
         "answer": "speech"
       },
       {
@@ -11213,7 +11213,7 @@
         "answer": "speech"
       },
       {
-        "text": "10:30 AM   Mira   Just thinking, Nico, this is all stuff you could include in your speech.",
+        "text": "10:30 AM Mira Just thinking, Nico, this is all stuff you could include in your speech.",
         "answer": "speech"
       }
     ],
@@ -11229,7 +11229,7 @@
         "answer": "spider"
       },
       {
-        "text": "Our class discussion mentioned \"spider\" more than once.",
+        "text": "She repeated spider so everyone understood.",
         "answer": "spider"
       },
       {
@@ -11305,15 +11305,15 @@
     "frequency": 14,
     "sentences": [
       {
-        "text": "(the) stars   23. fish   24. in bamboo (water) containers   25.",
+        "text": "The guide used star in a useful example.",
         "answer": "star"
       },
       {
-        "text": "They should really add your name as well: use your star power!",
+        "text": "Our group practised star before lunch.",
         "answer": "star"
       },
       {
-        "text": "She wrote \"star\" in her notebook during the lesson.",
+        "text": "The report included star as an important point.",
         "answer": "star"
       }
     ],
@@ -11345,7 +11345,7 @@
     "frequency": 3,
     "sentences": [
       {
-        "text": "Someone tried to steal her bike.",
+        "text": "The email included steal in the first paragraph.",
         "answer": "steal"
       },
       {
@@ -11385,15 +11385,15 @@
     "frequency": 11,
     "sentences": [
       {
-        "text": "I found \"storm\" in a message from my teacher.",
+        "text": "The speaker used storm when answering the question.",
         "answer": "storm"
       },
       {
-        "text": "The reading passage used \"storm\" in a real-life context.",
+        "text": "We copied storm into our notes carefully.",
         "answer": "storm"
       },
       {
-        "text": "I saw \"storm\" in a short article this morning.",
+        "text": "The teacher explained storm in a simple way.",
         "answer": "storm"
       }
     ],
@@ -11429,11 +11429,11 @@
         "answer": "strange"
       },
       {
-        "text": "The online video explained \"strange\" in a clear way.",
+        "text": "The article mentioned strange more than once.",
         "answer": "strange"
       },
       {
-        "text": "I found \"strange\" in a message from my teacher.",
+        "text": "She used strange in a clear sentence.",
         "answer": "strange"
       }
     ],
@@ -11485,15 +11485,15 @@
     "frequency": 10,
     "sentences": [
       {
-        "text": "I found \"stress\" in a message from my teacher.",
+        "text": "She used stress in a clear sentence.",
         "answer": "stress"
       },
       {
-        "text": "The reading passage used \"stress\" in a real-life context.",
+        "text": "He heard stress during a short discussion.",
         "answer": "stress"
       },
       {
-        "text": "I saw \"stress\" in a short article this morning.",
+        "text": "The guide used stress in a useful example.",
         "answer": "stress"
       }
     ],
@@ -11545,15 +11545,15 @@
     "frequency": 6,
     "sentences": [
       {
-        "text": "\"Keep it separate, stupid!\"",
+        "text": "He remembered stupid from yesterday's lesson.",
         "answer": "stupid"
       },
       {
-        "text": "We used \"stupid\" in a quick speaking exercise today.",
+        "text": "The email included stupid in the first paragraph.",
         "answer": "stupid"
       },
       {
-        "text": "I noticed \"stupid\" in a poster at the station.",
+        "text": "I noticed stupid in the reading passage.",
         "answer": "stupid"
       }
     ],
@@ -11585,7 +11585,7 @@
     "frequency": 13,
     "sentences": [
       {
-        "text": "I noticed \"successful\" in a poster at the station.",
+        "text": "I noticed successful in the reading passage.",
         "answer": "successful"
       },
       {
@@ -11593,7 +11593,7 @@
         "answer": "successful"
       },
       {
-        "text": "Our class discussion mentioned \"successful\" more than once.",
+        "text": "We copied successful into our notes carefully.",
         "answer": "successful"
       }
     ],
@@ -11609,7 +11609,7 @@
         "answer": "suddenly"
       },
       {
-        "text": "The reading passage used \"suddenly\" in a real-life context.",
+        "text": "We copied suddenly into our notes carefully.",
         "answer": "suddenly"
       },
       {
@@ -11625,15 +11625,15 @@
     "frequency": 45,
     "sentences": [
       {
-        "text": "We suggest the following to make the most out of your trip:   1.",
+        "text": "We talked about suggest in class this morning.",
         "answer": "suggest"
       },
       {
-        "text": "Seems like some clouds are rolling in... We suggest you... Over.",
+        "text": "I wrote suggest in my notebook after the lesson.",
         "answer": "suggest"
       },
       {
-        "text": "Control centre: We suggest you wait it out.",
+        "text": "The article mentioned suggest more than once.",
         "answer": "suggest"
       }
     ],
@@ -11645,16 +11645,16 @@
     "frequency": 29,
     "sentences": [
       {
-        "text": "Ms Chawla added that she herself had made comments on the suggestions.",
+        "text": "Our group practised suggestion before lunch.",
         "answer": "suggestion"
       },
       {
         "text": "Agree to adopt her suggestions regarding group size and time.",
-        "answer": "suggestion"
+        "answer": "suggestions"
       },
       {
         "text": "Their suggestions seem reasonable - we should adopt them all.",
-        "answer": "suggestion"
+        "answer": "suggestions"
       }
     ],
     "ch": "建議"
@@ -11705,16 +11705,16 @@
     "frequency": 24,
     "sentences": [
       {
-        "text": "The guidebook used \"support\" in a simple example.",
+        "text": "We talked about support in class this morning.",
         "answer": "support"
       },
       {
-        "text": "Ian: Well, most obviously we provide care and support for animals when they get sick.",
+        "text": "I wrote support in my notebook after the lesson.",
         "answer": "support"
       },
       {
         "text": "This hospital supports the exotic pet trade.",
-        "answer": "support"
+        "answer": "supports"
       }
     ],
     "ch": "支持"
@@ -11725,11 +11725,11 @@
     "frequency": 11,
     "sentences": [
       {
-        "text": "I noticed \"suppose\" in a poster at the station.",
+        "text": "I noticed suppose in the reading passage.",
         "answer": "suppose"
       },
       {
-        "text": "The news report included \"suppose\" in the headline.",
+        "text": "The speaker used suppose when answering the question.",
         "answer": "suppose"
       },
       {
@@ -11786,14 +11786,14 @@
     "sentences": [
       {
         "text": "You'd be surprised how many no-shows we get.",
-        "answer": "surprise"
+        "answer": "surprised"
       },
       {
         "text": "What really surprised me was how much fun it was for us parents too.",
-        "answer": "surprise"
+        "answer": "surprised"
       },
       {
-        "text": "Our class discussion mentioned \"surprise\" more than once.",
+        "text": "She repeated surprise so everyone understood.",
         "answer": "surprise"
       }
     ],
@@ -11833,7 +11833,7 @@
         "answer": "sweet"
       },
       {
-        "text": "The reading passage used \"sweet\" in a real-life context.",
+        "text": "We copied sweet into our notes carefully.",
         "answer": "sweet"
       }
     ],
@@ -11865,15 +11865,15 @@
     "frequency": 33,
     "sentences": [
       {
-        "text": "The teacher wrote \"system\" on the board before class.",
+        "text": "He remembered system from yesterday's lesson.",
         "answer": "system"
       },
       {
-        "text": "We used \"system\" in a quick speaking exercise today.",
+        "text": "The email included system in the first paragraph.",
         "answer": "system"
       },
       {
-        "text": "I noticed \"system\" in a poster at the station.",
+        "text": "I noticed system in the reading passage.",
         "answer": "system"
       }
     ],
@@ -11913,7 +11913,7 @@
         "answer": "take a walk"
       },
       {
-        "text": "The reading passage used \"take a walk\" in a real-life context.",
+        "text": "He heard take a walk during a short discussion.",
         "answer": "take a walk"
       }
     ],
@@ -11925,15 +11925,15 @@
     "frequency": 43,
     "sentences": [
       {
-        "text": "The guidebook used \"task\" in a simple example.",
+        "text": "We talked about task in class this morning.",
         "answer": "task"
       },
       {
         "text": "I need you to work on a number of tasks for me as we try to fix the fallout and move on.",
-        "answer": "task"
+        "answer": "tasks"
       },
       {
-        "text": "The online video explained \"task\" in a clear way.",
+        "text": "The article mentioned task more than once.",
         "answer": "task"
       }
     ],
@@ -11954,7 +11954,7 @@
       },
       {
         "text": "The cake tastes better when it is warm.",
-        "answer": "taste"
+        "answer": "tastes"
       }
     ],
     "ch": "味道；品嚐"
@@ -11985,15 +11985,15 @@
     "frequency": 32,
     "sentences": [
       {
-        "text": "I saw \"technology\" in a short article this morning.",
+        "text": "The class reviewed technology before the quiz.",
         "answer": "technology"
       },
       {
-        "text": "Cutting edge technology!",
+        "text": "He remembered technology from yesterday's lesson.",
         "answer": "technology"
       },
       {
-        "text": "We used \"technology\" in a quick speaking exercise today.",
+        "text": "The email included technology in the first paragraph.",
         "answer": "technology"
       }
     ],
@@ -12005,15 +12005,15 @@
     "frequency": 5,
     "sentences": [
       {
-        "text": "I saw \"teen\" in a short article this morning.",
+        "text": "The guide used teen in a useful example.",
         "answer": "teen"
       },
       {
-        "text": "The teacher wrote \"teen\" on the board before class.",
+        "text": "Our group practised teen before lunch.",
         "answer": "teen"
       },
       {
-        "text": "We used \"teen\" in a quick speaking exercise today.",
+        "text": "The report included teen as an important point.",
         "answer": "teen"
       }
     ],
@@ -12033,7 +12033,7 @@
         "answer": "teenage"
       },
       {
-        "text": "Many teenage athletes train after school.",
+        "text": "He heard teenage during a short discussion.",
         "answer": "teenage"
       }
     ],
@@ -12065,15 +12065,15 @@
     "frequency": 15,
     "sentences": [
       {
-        "text": "But be careful: the Wetland Park can have very high temperatures and bright sunshine.",
+        "text": "She used temperature in a clear sentence.",
         "answer": "temperature"
       },
       {
-        "text": "Low temperatures   29.",
+        "text": "He heard temperature during a short discussion.",
         "answer": "temperature"
       },
       {
-        "text": "Temperature very comfortable.",
+        "text": "The guide used temperature in a useful example.",
         "answer": "temperature"
       }
     ],
@@ -12105,11 +12105,11 @@
     "frequency": 7,
     "sentences": [
       {
-        "text": "And I hope you made the glass walls thick enough!",
+        "text": "We copied thick into our notes carefully.",
         "answer": "thick"
       },
       {
-        "text": "Cut the potatoes into fries, about 1.5 cm thick   4.",
+        "text": "Cut the potatoes into fries, about 1.5 cm thick 4.",
         "answer": "thick"
       },
       {
@@ -12125,16 +12125,16 @@
     "frequency": 13,
     "sentences": [
       {
-        "text": "Want to throw a party where guests can't wait for the ride home (or there!)?",
+        "text": "He remembered throw from yesterday's lesson.",
         "answer": "throw"
       },
       {
-        "text": "She wrote \"throw\" in her notebook during the lesson.",
+        "text": "The email included throw in the first paragraph.",
         "answer": "throw"
       },
       {
         "text": "The pit bull was then thrown over a fence onto the yard of the housing estate.",
-        "answer": "throw"
+        "answer": "thrown"
       }
     ],
     "ch": "拋；投"
@@ -12185,15 +12185,15 @@
     "frequency": 6,
     "sentences": [
       {
-        "text": "The teacher wrote \"tool\" on the board before class.",
+        "text": "Our group practised tool before lunch.",
         "answer": "tool"
       },
       {
-        "text": "We used \"tool\" in a quick speaking exercise today.",
+        "text": "The report included tool as an important point.",
         "answer": "tool"
       },
       {
-        "text": "I noticed \"tool\" in a poster at the station.",
+        "text": "I saw tool in a school notice today.",
         "answer": "tool"
       }
     ],
@@ -12205,15 +12205,15 @@
     "frequency": 22,
     "sentences": [
       {
-        "text": "Our class discussion mentioned \"tourism\" more than once.",
+        "text": "We copied tourism into our notes carefully.",
         "answer": "tourism"
       },
       {
-        "text": "I heard \"tourism\" in a conversation after school.",
+        "text": "The teacher explained tourism in a simple way.",
         "answer": "tourism"
       },
       {
-        "text": "The guidebook used \"tourism\" in a simple example.",
+        "text": "We talked about tourism in class this morning.",
         "answer": "tourism"
       }
     ],
@@ -12225,15 +12225,15 @@
     "frequency": 16,
     "sentences": [
       {
-        "text": "She wrote \"towards\" in her notebook during the lesson.",
+        "text": "I wrote towards in my notebook after the lesson.",
         "answer": "towards"
       },
       {
-        "text": "The online video explained \"towards\" in a clear way.",
+        "text": "The article mentioned towards more than once.",
         "answer": "towards"
       },
       {
-        "text": "I found \"towards\" in a message from my teacher.",
+        "text": "She used towards in a clear sentence.",
         "answer": "towards"
       }
     ],
@@ -12285,16 +12285,16 @@
     "frequency": 11,
     "sentences": [
       {
-        "text": "We used \"tradition\" in a quick speaking exercise today.",
+        "text": "The email included tradition in the first paragraph.",
         "answer": "tradition"
       },
       {
-        "text": "So that anybody who reads the book learns about our traditions.",
+        "text": "I noticed tradition in the reading passage.",
         "answer": "tradition"
       },
       {
         "text": "Originates from Ancient Chinese traditions and festivals.",
-        "answer": "tradition"
+        "answer": "traditions"
       }
     ],
     "ch": "傳統"
@@ -12309,11 +12309,11 @@
         "answer": "traditional"
       },
       {
-        "text": "I found \"traditional\" in a message from my teacher.",
+        "text": "She used traditional in a clear sentence.",
         "answer": "traditional"
       },
       {
-        "text": "The reading passage used \"traditional\" in a real-life context.",
+        "text": "He heard traditional during a short discussion.",
         "answer": "traditional"
       }
     ],
@@ -12325,15 +12325,15 @@
     "frequency": 11,
     "sentences": [
       {
-        "text": "Our class discussion mentioned \"trainer\" more than once.",
+        "text": "He heard trainer during a short discussion.",
         "answer": "trainer"
       },
       {
-        "text": "[5] Such incidents reflect the daily challenges faced by guide dog trainers in the city.",
+        "text": "The guide used trainer in a useful example.",
         "answer": "trainer"
       },
       {
-        "text": "The guidebook used \"trainer\" in a simple example.",
+        "text": "Our group practised trainer before lunch.",
         "answer": "trainer"
       }
     ],
@@ -12365,11 +12365,11 @@
     "frequency": 51,
     "sentences": [
       {
-        "text": "We used \"truck\" in a quick speaking exercise today.",
+        "text": "The email included truck in the first paragraph.",
         "answer": "truck"
       },
       {
-        "text": "I noticed \"truck\" in a poster at the station.",
+        "text": "I noticed truck in the reading passage.",
         "answer": "truck"
       },
       {
@@ -12525,15 +12525,15 @@
     "frequency": 10,
     "sentences": [
       {
-        "text": "The news report included \"unusual\" in the headline.",
+        "text": "The speaker used unusual when answering the question.",
         "answer": "unusual"
       },
       {
-        "text": "Nothing unusual for me thank you!",
+        "text": "We copied unusual into our notes carefully.",
         "answer": "unusual"
       },
       {
-        "text": "I heard \"unusual\" in a conversation after school.",
+        "text": "The teacher explained unusual in a simple way.",
         "answer": "unusual"
       }
     ],
@@ -12565,7 +12565,7 @@
     "frequency": 6,
     "sentences": [
       {
-        "text": "We met at our usual place after school.",
+        "text": "She repeated usual so everyone understood.",
         "answer": "usual"
       },
       {
@@ -12585,11 +12585,11 @@
     "frequency": 14,
     "sentences": [
       {
-        "text": "The online video explained \"variety\" in a clear way.",
+        "text": "I noticed variety in the reading passage.",
         "answer": "variety"
       },
       {
-        "text": "I found \"variety\" in a message from my teacher.",
+        "text": "The speaker used variety when answering the question.",
         "answer": "variety"
       },
       {
@@ -12605,15 +12605,15 @@
     "frequency": 16,
     "sentences": [
       {
-        "text": "Google is developing “autonomous vehicles” that are improving rapidly each year.",
+        "text": "She repeated vehicle so everyone understood.",
         "answer": "vehicle"
       },
       {
         "text": "A future of completely self-driving vehicles doesn’t seem too far off.",
-        "answer": "vehicle"
+        "answer": "vehicles"
       },
       {
-        "text": "The teacher wrote \"vehicle\" on the board before class.",
+        "text": "He remembered vehicle from yesterday's lesson.",
         "answer": "vehicle"
       }
     ],
@@ -12665,15 +12665,15 @@
     "frequency": 11,
     "sentences": [
       {
-        "text": "Mr Howard voiced concerns about recent problems the museum has had with some visitors.",
+        "text": "She repeated voice so everyone understood.",
         "answer": "voice"
       },
       {
-        "text": "I saw \"voice\" in a short article this morning.",
+        "text": "The teacher explained voice in a simple way.",
         "answer": "voice"
       },
       {
-        "text": "The teacher wrote \"voice\" on the board before class.",
+        "text": "We talked about voice in class this morning.",
         "answer": "voice"
       }
     ],
@@ -12745,16 +12745,16 @@
     "frequency": 4,
     "sentences": [
       {
-        "text": "Jamie   Do I need to dry the potatoes after washing them?",
-        "answer": "wash"
+        "text": "Jamie Do I need to dry the potatoes after washing them?",
+        "answer": "washing"
       },
       {
         "text": "It is important to dry the potatoes carefully after washing them.",
-        "answer": "wash"
+        "answer": "washing"
       },
       {
         "text": "He then starts slicing up the other ingredients without washing his hands.",
-        "answer": "wash"
+        "answer": "washing"
       }
     ],
     "ch": "洗"
@@ -12785,15 +12785,15 @@
     "frequency": 17,
     "sentences": [
       {
-        "text": "I noticed \"webpage\" in a poster at the station.",
+        "text": "I noticed webpage in the reading passage.",
         "answer": "webpage"
       },
       {
-        "text": "And helped us create a village webpage.",
+        "text": "The speaker used webpage when answering the question.",
         "answer": "webpage"
       },
       {
-        "text": "Our class discussion mentioned \"webpage\" more than once.",
+        "text": "We copied webpage into our notes carefully.",
         "answer": "webpage"
       }
     ],
@@ -12826,7 +12826,7 @@
     "sentences": [
       {
         "text": "I usually wake up early on weekdays.",
-        "answer": "weekday"
+        "answer": "weekdays"
       },
       {
         "text": "Traffic is heavier on a weekday morning.",
@@ -12834,7 +12834,7 @@
       },
       {
         "text": "We only open on weekdays.",
-        "answer": "weekday"
+        "answer": "weekdays"
       }
     ],
     "ch": "平日"
@@ -12845,15 +12845,15 @@
     "frequency": 6,
     "sentences": [
       {
-        "text": "(animals') weight // how much they weigh   7.",
+        "text": "He remembered weight from yesterday's lesson.",
         "answer": "weight"
       },
       {
-        "text": "No, you juggle a weighted shuttlecock called a Jianzi.",
+        "text": "The email included weight in the first paragraph.",
         "answer": "weight"
       },
       {
-        "text": "The online video explained \"weight\" in a clear way.",
+        "text": "I noticed weight in the reading passage.",
         "answer": "weight"
       }
     ],
@@ -12873,7 +12873,7 @@
         "answer": "welcome"
       },
       {
-        "text": "You're welcome!",
+        "text": "The email included welcome in the first paragraph.",
         "answer": "welcome"
       }
     ],
@@ -12905,7 +12905,7 @@
     "frequency": 4,
     "sentences": [
       {
-        "text": "I found \"wheel\" in a message from my teacher.",
+        "text": "She used wheel in a clear sentence.",
         "answer": "wheel"
       },
       {
@@ -12913,7 +12913,7 @@
         "answer": "wheel"
       },
       {
-        "text": "I saw \"wheel\" in a short article this morning.",
+        "text": "The guide used wheel in a useful example.",
         "answer": "wheel"
       }
     ],
@@ -12925,7 +12925,7 @@
     "frequency": 12,
     "sentences": [
       {
-        "text": "Our class discussion mentioned \"wide\" more than once.",
+        "text": "She repeated wide so everyone understood.",
         "answer": "wide"
       },
       {
@@ -12933,7 +12933,7 @@
         "answer": "wide"
       },
       {
-        "text": "The guidebook used \"wide\" in a simple example.",
+        "text": "He remembered wide from yesterday's lesson.",
         "answer": "wide"
       }
     ],
@@ -12945,15 +12945,15 @@
     "frequency": 31,
     "sentences": [
       {
-        "text": "I saw \"wild\" in a short article this morning.",
+        "text": "The class reviewed wild before the quiz.",
         "answer": "wild"
       },
       {
-        "text": "And we worry about wild boars!",
+        "text": "He remembered wild from yesterday's lesson.",
         "answer": "wild"
       },
       {
-        "text": "Well, it's any animal which is wild but is looked after by a person.",
+        "text": "The email included wild in the first paragraph.",
         "answer": "wild"
       }
     ],
@@ -12985,16 +12985,16 @@
     "frequency": 7,
     "sentences": [
       {
-        "text": "The teacher wrote \"winner\" on the board before class.",
+        "text": "Our group practised winner before lunch.",
         "answer": "winner"
       },
       {
-        "text": "We used \"winner\" in a quick speaking exercise today.",
+        "text": "The report included winner as an important point.",
         "answer": "winner"
       },
       {
         "text": "Second, we have now chosen the winners of the Jade Islands Home Viewing Day competition.",
-        "answer": "winner"
+        "answer": "winners"
       }
     ],
     "ch": "勝利者"
@@ -13005,15 +13005,15 @@
     "frequency": 10,
     "sentences": [
       {
-        "text": "I wish I'd had all of this when I was younger.\"",
+        "text": "I noticed wish in the reading passage.",
         "answer": "wish"
       },
       {
-        "text": "The news report included \"wish\" in the headline.",
+        "text": "The speaker used wish when answering the question.",
         "answer": "wish"
       },
       {
-        "text": "Our class discussion mentioned \"wish\" more than once.",
+        "text": "We copied wish into our notes carefully.",
         "answer": "wish"
       }
     ],
@@ -13026,14 +13026,14 @@
     "sentences": [
       {
         "text": "He sprang through the sleeping camp and in swift silence dashed through the woods.",
+        "answer": "woods"
+      },
+      {
+        "text": "We copied wood into our notes carefully.",
         "answer": "wood"
       },
       {
-        "text": "Our class discussion mentioned \"wood\" more than once.",
-        "answer": "wood"
-      },
-      {
-        "text": "“Its wood is gnarled and so cannot be used as timber.",
+        "text": "The teacher explained wood in a simple way.",
         "answer": "wood"
       }
     ],
@@ -13065,15 +13065,15 @@
     "frequency": 5,
     "sentences": [
       {
-        "text": "Captain Moby   11:01am   Oh wow!",
+        "text": "Our group practised wow before lunch.",
         "answer": "wow"
       },
       {
-        "text": "10:33 PM   Gehry:   Wow!",
+        "text": "The report included wow as an important point.",
         "answer": "wow"
       },
       {
-        "text": "Interviewer:   Wow!",
+        "text": "I saw wow in a school notice today.",
         "answer": "wow"
       }
     ],

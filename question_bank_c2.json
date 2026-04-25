@@ -85,7 +85,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "Some artists tried to africanize imported styles with local themes.",
+        "text": "He heard africanize during a short discussion.",
         "answer": "africanize"
       },
       {
@@ -289,7 +289,7 @@
         "answer": "apocalypse"
       },
       {
-        "text": "Some headlines described the storm as an apocalypse.",
+        "text": "She used apocalypse in a clear sentence.",
         "answer": "apocalypse"
       },
       {
@@ -450,7 +450,7 @@
       },
       {
         "text": "She averted her eyes when the lights came on.",
-        "answer": "avert"
+        "answer": "averted"
       },
       {
         "text": "Leaders met to avert a wider conflict.",
@@ -626,7 +626,7 @@
     "sentences": [
       {
         "text": "His calm voice belied his fear.",
-        "answer": "belie"
+        "answer": "belied"
       },
       {
         "text": "The cheerful colors belie the sadness of the story.",
@@ -634,7 +634,7 @@
       },
       {
         "text": "Her smile belied the pain she was feeling.",
-        "answer": "belie"
+        "answer": "belied"
       }
     ],
     "ch": "掩飾／與…不符"
@@ -750,11 +750,11 @@
       },
       {
         "text": "Her dress billowed in the sea breeze.",
-        "answer": "billow"
+        "answer": "billowed"
       },
       {
         "text": "Dark clouds billowed across the horizon.",
-        "answer": "billow"
+        "answer": "billowed"
       }
     ],
     "ch": "翻騰／巨浪"
@@ -774,7 +774,7 @@
       },
       {
         "text": "Car horns blared in the traffic jam.",
-        "answer": "blare"
+        "answer": "blared"
       }
     ],
     "ch": "刺耳地響"
@@ -930,7 +930,7 @@
       },
       {
         "text": "The brush had stiff bristles made of wire.",
-        "answer": "bristle"
+        "answer": "bristles"
       },
       {
         "text": "She saw his beard bristle when he got angry.",
@@ -969,7 +969,7 @@
         "answer": "burrow"
       },
       {
-        "text": "Some animals burrow underground for safety.",
+        "text": "The teacher explained burrow in a simple way.",
         "answer": "burrow"
       },
       {
@@ -994,7 +994,7 @@
       },
       {
         "text": "Bees buzzed around the flowers all afternoon.",
-        "answer": "buzz"
+        "answer": "buzzed"
       }
     ],
     "ch": "嗡嗡聲／熱議"
@@ -1034,7 +1034,7 @@
       },
       {
         "text": "The lab technician carefully calibrated each instrument.",
-        "answer": "calibrate"
+        "answer": "calibrated"
       }
     ],
     "ch": "校準"
@@ -1070,7 +1070,7 @@
       },
       {
         "text": "Mechanics cannibalized one engine to repair another.",
-        "answer": "cannibalize"
+        "answer": "cannibalized"
       },
       {
         "text": "The larger chain began to cannibalize its own market.",
@@ -1194,7 +1194,7 @@
       },
       {
         "text": "He was chastened by the public criticism.",
-        "answer": "chasten"
+        "answer": "chastened"
       }
     ],
     "ch": "懲戒／使收斂"
@@ -1206,7 +1206,7 @@
     "sentences": [
       {
         "text": "The ceiling was painted with tiny cherubs.",
-        "answer": "cherub"
+        "answer": "cherubs"
       },
       {
         "text": "The baby looked like a little cherub in the photo.",
@@ -1226,7 +1226,7 @@
     "sentences": [
       {
         "text": "She gently chided him for being late again.",
-        "answer": "chide"
+        "answer": "chided"
       },
       {
         "text": "Teachers should correct, not publicly chide, their students.",
@@ -1234,7 +1234,7 @@
       },
       {
         "text": "He was chided for wasting company resources.",
-        "answer": "chide"
+        "answer": "chided"
       }
     ],
     "ch": "責罵／斥責"
@@ -1250,7 +1250,7 @@
       },
       {
         "text": "Your idea chimes with what I was thinking.",
-        "answer": "chime"
+        "answer": "chimes"
       },
       {
         "text": "A soft chime announced the elevator's arrival.",
@@ -1290,7 +1290,7 @@
       },
       {
         "text": "He sounded quite chuffed with his exam result.",
-        "answer": "chuff"
+        "answer": "chuffed"
       },
       {
         "text": "Steam engines used to chuff through the valley.",
@@ -1330,11 +1330,11 @@
       },
       {
         "text": "The company churns out cheap products every month.",
-        "answer": "churn"
+        "answer": "churns"
       },
       {
         "text": "Her stomach churned with anxiety before the speech.",
-        "answer": "churn"
+        "answer": "churned"
       }
     ],
     "ch": "攪動／翻騰"
@@ -1410,11 +1410,11 @@
       },
       {
         "text": "Traffic quickly clogged the main road.",
-        "answer": "clog"
+        "answer": "clogged"
       },
       {
         "text": "Wet leaves clogged the gutters after the storm.",
-        "answer": "clog"
+        "answer": "clogged"
       }
     ],
     "ch": "阻塞／木底鞋"
@@ -1425,7 +1425,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "No one should coerce staff into unpaid work.",
+        "text": "The guide used coerce in a useful example.",
         "answer": "coerce"
       },
       {
@@ -1450,11 +1450,11 @@
       },
       {
         "text": "The editor collated several versions of the manuscript.",
-        "answer": "collate"
+        "answer": "collated"
       },
       {
         "text": "Researchers collated the data into one report.",
-        "answer": "collate"
+        "answer": "collated"
       }
     ],
     "ch": "整理／校對"
@@ -1529,7 +1529,7 @@
         "answer": "confucian"
       },
       {
-        "text": "Some schools still reflect Confucian values.",
+        "text": "He remembered confucian from yesterday's lesson.",
         "answer": "confucian"
       },
       {
@@ -1690,7 +1690,7 @@
       },
       {
         "text": "He craned his neck to see over the crowd.",
-        "answer": "crane"
+        "answer": "craned"
       },
       {
         "text": "A white crane stood motionless by the lake.",
@@ -1726,15 +1726,15 @@
     "sentences": [
       {
         "text": "After the hike, we all craved cold water.",
-        "answer": "crave"
+        "answer": "craved"
       },
       {
-        "text": "Some people crave attention more than success.",
+        "text": "We copied crave into our notes carefully.",
         "answer": "crave"
       },
       {
         "text": "She craved a quiet life far from the city.",
-        "answer": "crave"
+        "answer": "craved"
       }
     ],
     "ch": "渴望"
@@ -1753,7 +1753,7 @@
         "answer": "credence"
       },
       {
-        "text": "No serious historian gives credence to that myth.",
+        "text": "The article mentioned credence more than once.",
         "answer": "credence"
       }
     ],
@@ -1825,7 +1825,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "Some strange little critter had eaten the tomatoes.",
+        "text": "The email included critter in the first paragraph.",
         "answer": "critter"
       },
       {
@@ -1974,7 +1974,7 @@
       },
       {
         "text": "Online debunkers quickly challenged the false claim.",
-        "answer": "debunker"
+        "answer": "debunkers"
       }
     ],
     "ch": "揭穿真相的人"
@@ -2045,7 +2045,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "Someone tried to deface the statue with spray paint.",
+        "text": "The guide used deface in a useful example.",
         "answer": "deface"
       },
       {
@@ -2054,7 +2054,7 @@
       },
       {
         "text": "The mural was defaced only days after it was completed.",
-        "answer": "deface"
+        "answer": "defaced"
       }
     ],
     "ch": "污損／損毀外觀"
@@ -2165,7 +2165,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "Some critics argued that violent media could deprave young minds.",
+        "text": "He heard deprave during a short discussion.",
         "answer": "deprave"
       },
       {
@@ -2229,7 +2229,7 @@
         "answer": "destine"
       },
       {
-        "text": "No one can say what will destine a person for greatness.",
+        "text": "I wrote destine in my notebook after the lesson.",
         "answer": "destine"
       },
       {
@@ -2270,7 +2270,7 @@
       },
       {
         "text": "Property developers showed interest in the abandoned site.",
-        "answer": "developer"
+        "answer": "developers"
       },
       {
         "text": "The developer promised to fix the bug quickly.",
@@ -2365,7 +2365,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "Some readers found the novel too didactic.",
+        "text": "We heard didactic in a class conversation.",
         "answer": "didactic"
       },
       {
@@ -2529,7 +2529,7 @@
         "answer": "dissociate"
       },
       {
-        "text": "Some people dissociate during moments of extreme stress.",
+        "text": "The report included dissociate as an important point.",
         "answer": "dissociate"
       },
       {
@@ -2730,7 +2730,7 @@
       },
       {
         "text": "Online support emboldened her to speak publicly.",
-        "answer": "embolden"
+        "answer": "emboldened"
       },
       {
         "text": "A weak response can embolden further attacks.",
@@ -2754,7 +2754,7 @@
       },
       {
         "text": "The flower emits a strong scent at night.",
-        "answer": "emit"
+        "answer": "emits"
       }
     ],
     "ch": "發出／排放"
@@ -2814,7 +2814,7 @@
       },
       {
         "text": "The message was encoded to keep it secret.",
-        "answer": "encode"
+        "answer": "encoded"
       }
     ],
     "ch": "編碼"
@@ -2874,7 +2874,7 @@
       },
       {
         "text": "Success often entails long hours of practice.",
-        "answer": "entail"
+        "answer": "entails"
       }
     ],
     "ch": "需要／牽涉"
@@ -2894,7 +2894,7 @@
       },
       {
         "text": "Fans enthused over the band's surprise return.",
-        "answer": "enthuse"
+        "answer": "enthused"
       }
     ],
     "ch": "熱情談論／使熱衷"
@@ -2965,12 +2965,12 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "Some students excel in mathematics but struggle in writing.",
+        "text": "The email included excel in the first paragraph.",
         "answer": "excel"
       },
       {
         "text": "She excelled at solving complex problems.",
-        "answer": "excel"
+        "answer": "excelled"
       },
       {
         "text": "The school helps gifted children excel further.",
@@ -3026,15 +3026,15 @@
     "sentences": [
       {
         "text": "The article extols the benefits of daily exercise.",
-        "answer": "extol"
+        "answer": "extols"
       },
       {
         "text": "Supporters extolled her honesty and courage.",
-        "answer": "extol"
+        "answer": "extolled"
       },
       {
         "text": "The guidebook extols the beauty of the coastline.",
-        "answer": "extol"
+        "answer": "extols"
       }
     ],
     "ch": "頌揚／讚美"
@@ -3129,7 +3129,7 @@
         "answer": "fad"
       },
       {
-        "text": "Some diets are little more than a short-lived fad.",
+        "text": "We talked about fad in class this morning.",
         "answer": "fad"
       },
       {
@@ -3309,7 +3309,7 @@
         "answer": "fetishist"
       },
       {
-        "text": "Some critics accused the designer of being a technology fetishist.",
+        "text": "We heard fetishist in a class conversation.",
         "answer": "fetishist"
       },
       {
@@ -3345,7 +3345,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "We learned the word \"fiddle\" in class today.",
+        "text": "She repeated fiddle so everyone understood.",
         "answer": "fiddle"
       },
       {
@@ -3394,7 +3394,7 @@
       },
       {
         "text": "Finches often gather near the bird feeder.",
-        "answer": "finch"
+        "answer": "Finches"
       }
     ],
     "ch": "雀科小鳥"
@@ -3470,7 +3470,7 @@
       },
       {
         "text": "The rule was openly flaunted by several shops.",
-        "answer": "flaunt"
+        "answer": "flaunted"
       },
       {
         "text": "She refused to flaunt her wealth.",
@@ -3485,7 +3485,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "Someone slipped a flier under the front door.",
+        "text": "I wrote flier in my notebook after the lesson.",
         "answer": "flier"
       },
       {
@@ -3514,7 +3514,7 @@
       },
       {
         "text": "She flirted with danger by ignoring the warning signs.",
-        "answer": "flirt"
+        "answer": "flirted"
       }
     ],
     "ch": "調情／輕率對待"
@@ -3550,7 +3550,7 @@
       },
       {
         "text": "His calm reply completely flummoxed the interviewer.",
-        "answer": "flummox"
+        "answer": "flummoxed"
       },
       {
         "text": "The puzzle is designed to flummox even experienced players.",
@@ -3566,7 +3566,7 @@
     "sentences": [
       {
         "text": "The account has gained a million followers online.",
-        "answer": "follower"
+        "answer": "followers"
       },
       {
         "text": "He is more of a follower than a leader.",
@@ -3613,7 +3613,7 @@
         "answer": "forage"
       },
       {
-        "text": "My teacher used \"forage\" in an example.",
+        "text": "She used forage in a clear sentence.",
         "answer": "forage"
       }
     ],
@@ -3646,15 +3646,15 @@
     "sentences": [
       {
         "text": "The letter was written by one of her forebears.",
-        "answer": "forebear"
+        "answer": "forebears"
       },
       {
         "text": "He felt a strong connection to his forebears.",
-        "answer": "forebear"
+        "answer": "forebears"
       },
       {
         "text": "The museum honors the forebears of the community.",
-        "answer": "forebear"
+        "answer": "forebears"
       }
     ],
     "ch": "祖先／前人"
@@ -3830,11 +3830,11 @@
       },
       {
         "text": "The goalkeeper fumbled the ball at the worst moment.",
-        "answer": "fumble"
+        "answer": "fumbled"
       },
       {
         "text": "She fumbled through her speech notes nervously.",
-        "answer": "fumble"
+        "answer": "fumbled"
       }
     ],
     "ch": "笨拙地摸索／失手"
@@ -3990,7 +3990,7 @@
       },
       {
         "text": "Her eyes glistened with tears.",
-        "answer": "glisten"
+        "answer": "glistened"
       },
       {
         "text": "Fresh snow made the rooftops glisten.",
@@ -4069,12 +4069,12 @@
         "answer": "grapple"
       },
       {
-        "text": "Please remember \"grapple\" for the quiz.",
+        "text": "We talked about grapple in class this morning.",
         "answer": "grapple"
       },
       {
         "text": "He grappled with the ethical implications of the choice.",
-        "answer": "grapple"
+        "answer": "grappled"
       }
     ],
     "ch": "搏鬥／努力解決"
@@ -4149,7 +4149,7 @@
         "answer": "harbinger"
       },
       {
-        "text": "Some saw the small protest as a harbinger of wider unrest.",
+        "text": "I wrote harbinger in my notebook after the lesson.",
         "answer": "harbinger"
       },
       {
@@ -4306,7 +4306,7 @@
     "sentences": [
       {
         "text": "The cafe was full of hipsters with vintage cameras.",
-        "answer": "hipster"
+        "answer": "hipsters"
       },
       {
         "text": "He mocked the neighborhood for becoming too hipster.",
@@ -4430,7 +4430,7 @@
       },
       {
         "text": "The nest turned out to belong to hornets, not bees.",
-        "answer": "hornet"
+        "answer": "hornets"
       },
       {
         "text": "He was stung by a hornet while trimming the hedge.",
@@ -4454,7 +4454,7 @@
       },
       {
         "text": "The audience howled with laughter at the final joke.",
-        "answer": "howl"
+        "answer": "howled"
       }
     ],
     "ch": "嚎叫／呼嘯"
@@ -4553,7 +4553,7 @@
         "answer": "ignorant"
       },
       {
-        "text": "No one should be mocked for being ignorant and willing to learn.",
+        "text": "The speaker used ignorant when answering the question.",
         "answer": "ignorant"
       }
     ],
@@ -5014,7 +5014,7 @@
       },
       {
         "text": "Her unusual research topic intrigued the committee.",
-        "answer": "intrigue"
+        "answer": "intrigued"
       }
     ],
     "ch": "陰謀／引起興趣"
@@ -5134,7 +5134,7 @@
       },
       {
         "text": "The app improved after several quick iterations.",
-        "answer": "iteration"
+        "answer": "iterations"
       }
     ],
     "ch": "反覆／迭代"
@@ -5430,7 +5430,7 @@
       },
       {
         "text": "Several landowners opposed the new highway.",
-        "answer": "landowner"
+        "answer": "landowners"
       },
       {
         "text": "The estate has belonged to the same landowner for decades.",
@@ -5454,7 +5454,7 @@
       },
       {
         "text": "The prisoner languished in jail awaiting trial.",
-        "answer": "languish"
+        "answer": "languished"
       }
     ],
     "ch": "衰弱／萎靡不振"
@@ -5554,7 +5554,7 @@
       },
       {
         "text": "A piece of glass lodged in the tire.",
-        "answer": "lodge"
+        "answer": "lodged"
       }
     ],
     "ch": "小屋／正式提出"
@@ -5573,7 +5573,7 @@
         "answer": "long for"
       },
       {
-        "text": "My teacher used \"long for\" in an example.",
+        "text": "The email included long for in the first paragraph.",
         "answer": "long for"
       }
     ],
@@ -5653,7 +5653,7 @@
         "answer": "lunatic"
       },
       {
-        "text": "Some thought his plan sounded utterly lunatic at first.",
+        "text": "The speaker used lunatic when answering the question.",
         "answer": "lunatic"
       }
     ],
@@ -5694,7 +5694,7 @@
       },
       {
         "text": "Magpies can be surprisingly bold around people.",
-        "answer": "magpie"
+        "answer": "Magpies"
       }
     ],
     "ch": "喜鵲"
@@ -5754,7 +5754,7 @@
       },
       {
         "text": "The wall was marred by deep scratches.",
-        "answer": "mar"
+        "answer": "marred"
       }
     ],
     "ch": "損害／玷污"
@@ -5950,11 +5950,11 @@
       },
       {
         "text": "The smell of coffee mingled with fresh bread.",
-        "answer": "mingle"
+        "answer": "mingled"
       },
       {
         "text": "Excitement and fear mingled in her mind.",
-        "answer": "mingle"
+        "answer": "mingled"
       }
     ],
     "ch": "混合／交際"
@@ -6030,7 +6030,7 @@
       },
       {
         "text": "The film follows a group of lovable misfits.",
-        "answer": "misfit"
+        "answer": "misfits"
       },
       {
         "text": "That strange chair looks like a misfit in the modern room.",
@@ -6213,7 +6213,7 @@
         "answer": "nauseate"
       },
       {
-        "text": "Some medicines may nauseate patients at first.",
+        "text": "The report included nauseate as an important point.",
         "answer": "nauseate"
       }
     ],
@@ -6334,7 +6334,7 @@
       },
       {
         "text": "Her meaning was obscured by vague language.",
-        "answer": "obscure"
+        "answer": "obscured"
       }
     ],
     "ch": "模糊的／鮮為人知的"
@@ -6414,7 +6414,7 @@
       },
       {
         "text": "Experts opined that the policy would fail.",
-        "answer": "opine"
+        "answer": "opined"
       }
     ],
     "ch": "發表意見"
@@ -6614,7 +6614,7 @@
       },
       {
         "text": "The show panders to easy jokes rather than deeper ideas.",
-        "answer": "pander"
+        "answer": "panders"
       }
     ],
     "ch": "迎合／縱容"
@@ -6686,7 +6686,7 @@
     "sentences": [
       {
         "text": "The microscope detected tiny dust particles in the air.",
-        "answer": "particle"
+        "answer": "particles"
       },
       {
         "text": "Scientists studied how each particle moved through the liquid.",
@@ -6849,7 +6849,7 @@
         "answer": "personhood"
       },
       {
-        "text": "Some philosophers link memory closely to personhood.",
+        "text": "She used personhood in a clear sentence.",
         "answer": "personhood"
       },
       {
@@ -6910,7 +6910,7 @@
       },
       {
         "text": "She perused the report before the meeting.",
-        "answer": "peruse"
+        "answer": "perused"
       },
       {
         "text": "Customers were invited to peruse the exhibition at their own pace.",
@@ -6926,15 +6926,15 @@
     "sentences": [
       {
         "text": "A sense of tension pervaded the room.",
-        "answer": "pervade"
+        "answer": "pervaded"
       },
       {
         "text": "The smell of smoke pervaded the building.",
-        "answer": "pervade"
+        "answer": "pervaded"
       },
       {
         "text": "Hope still pervades the community despite the loss.",
-        "answer": "pervade"
+        "answer": "pervades"
       }
     ],
     "ch": "瀰漫／充斥"
@@ -7034,7 +7034,7 @@
       },
       {
         "text": "He ploughed through the report in one evening.",
-        "answer": "plough"
+        "answer": "ploughed"
       }
     ],
     "ch": "犁／耕作"
@@ -7054,7 +7054,7 @@
       },
       {
         "text": "The song was played on a plucked instrument.",
-        "answer": "pluck"
+        "answer": "plucked"
       }
     ],
     "ch": "拔／勇氣"
@@ -7094,7 +7094,7 @@
       },
       {
         "text": "He seemed poised between laughter and anger.",
-        "answer": "poise"
+        "answer": "poised"
       }
     ],
     "ch": "鎮定／優雅"
@@ -7114,7 +7114,7 @@
       },
       {
         "text": "She sat by the window and pondered her next move.",
-        "answer": "ponder"
+        "answer": "pondered"
       }
     ],
     "ch": "沉思／仔細考慮"
@@ -7146,15 +7146,15 @@
     "sentences": [
       {
         "text": "The theory posits that memory is shaped by emotion.",
-        "answer": "posit"
+        "answer": "posits"
       },
       {
-        "text": "Some scientists posit a link between the two events.",
+        "text": "The guide used posit in a useful example.",
         "answer": "posit"
       },
       {
         "text": "The article posits a very different account of history.",
-        "answer": "posit"
+        "answer": "posits"
       }
     ],
     "ch": "假定／提出"
@@ -7206,7 +7206,7 @@
     "sentences": [
       {
         "text": "Police believe the attack was carefully premeditated.",
-        "answer": "premeditate"
+        "answer": "premeditated"
       },
       {
         "text": "He did not premeditate the remark; it just slipped out.",
@@ -7214,7 +7214,7 @@
       },
       {
         "text": "The law treats premeditated violence more severely.",
-        "answer": "premeditate"
+        "answer": "premeditated"
       }
     ],
     "ch": "預先策劃"
@@ -7290,7 +7290,7 @@
       },
       {
         "text": "The engine propels the boat through shallow water.",
-        "answer": "propel"
+        "answer": "propels"
       },
       {
         "text": "A strong wind can propel the fire across the valley.",
@@ -7554,7 +7554,7 @@
       },
       {
         "text": "The leaves quivered in the evening wind.",
-        "answer": "quiver"
+        "answer": "quivered"
       }
     ],
     "ch": "顫抖／箭袋"
@@ -7613,7 +7613,7 @@
         "answer": "rake in"
       },
       {
-        "text": "My teacher used \"rake in\" in an example.",
+        "text": "I noticed rake in in the reading passage.",
         "answer": "rake in"
       }
     ],
@@ -7734,7 +7734,7 @@
       },
       {
         "text": "Oil must be refined before it can be used widely.",
-        "answer": "refine"
+        "answer": "refined"
       }
     ],
     "ch": "改進／提煉"
@@ -7806,7 +7806,7 @@
     "sentences": [
       {
         "text": "She always relishes a difficult challenge.",
-        "answer": "relish"
+        "answer": "relishes"
       },
       {
         "text": "The burger was served with a sweet onion relish.",
@@ -7814,7 +7814,7 @@
       },
       {
         "text": "He relished the chance to prove his critics wrong.",
-        "answer": "relish"
+        "answer": "relished"
       }
     ],
     "ch": "享受／滋味"
@@ -7990,7 +7990,7 @@
       },
       {
         "text": "Online retailers now dominate the market.",
-        "answer": "retailer"
+        "answer": "retailers"
       },
       {
         "text": "A major retailer agreed to stock the new product.",
@@ -8054,7 +8054,7 @@
       },
       {
         "text": "Many readers were revolted by the cruelty in the story.",
-        "answer": "revolt"
+        "answer": "revolted"
       }
     ],
     "ch": "叛亂／反抗"
@@ -8094,7 +8094,7 @@
       },
       {
         "text": "Political rifts weakened the coalition.",
-        "answer": "rift"
+        "answer": "rifts"
       }
     ],
     "ch": "裂痕／分歧"
@@ -8130,7 +8130,7 @@
       },
       {
         "text": "Ancient spring rites were once held on the hilltop.",
-        "answer": "rite"
+        "answer": "rites"
       },
       {
         "text": "Graduation felt like a modern rite of passage.",
@@ -8230,7 +8230,7 @@
       },
       {
         "text": "The child rummaged in the box for a missing toy.",
-        "answer": "rummage"
+        "answer": "rummaged"
       },
       {
         "text": "Please do not rummage through my desk without asking.",
@@ -8286,7 +8286,7 @@
     "sentences": [
       {
         "text": "It saddens me to see the old cinema abandoned.",
-        "answer": "sadden"
+        "answer": "saddens"
       },
       {
         "text": "The news would sadden anyone who cared about the town.",
@@ -8294,7 +8294,7 @@
       },
       {
         "text": "She was saddened by the loss of the library.",
-        "answer": "sadden"
+        "answer": "saddened"
       }
     ],
     "ch": "使悲傷"
@@ -8350,11 +8350,11 @@
       },
       {
         "text": "We scrambled up the rocky slope before sunrise.",
-        "answer": "scramble"
+        "answer": "scrambled"
       },
       {
         "text": "The company scrambled to answer the allegations.",
-        "answer": "scramble"
+        "answer": "scrambled"
       }
     ],
     "ch": "爭先恐後／攀爬"
@@ -8426,7 +8426,7 @@
     "sentences": [
       {
         "text": "He scribbled a note on the back of the receipt.",
-        "answer": "scribble"
+        "answer": "scribbled"
       },
       {
         "text": "The child began to scribble all over the wall.",
@@ -8446,7 +8446,7 @@
     "sentences": [
       {
         "text": "He kept scrolling through the news late into the night.",
-        "answer": "scroll"
+        "answer": "scrolling"
       },
       {
         "text": "The museum displayed an ancient scroll from the dynasty.",
@@ -8485,7 +8485,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "We learned the word \"scurry\" in class today.",
+        "text": "He remembered scurry from yesterday's lesson.",
         "answer": "scurry"
       },
       {
@@ -8509,12 +8509,12 @@
         "answer": "seethe"
       },
       {
-        "text": "Please remember \"seethe\" for the quiz.",
+        "text": "I wrote seethe in my notebook after the lesson.",
         "answer": "seethe"
       },
       {
         "text": "Hot springs seethed beneath the mountain soil.",
-        "answer": "seethe"
+        "answer": "seethed"
       }
     ],
     "ch": "翻騰／怒不可遏"
@@ -8550,7 +8550,7 @@
       },
       {
         "text": "A fallen branch severed the power line.",
-        "answer": "sever"
+        "answer": "severed"
       },
       {
         "text": "He could not completely sever his connection to the town.",
@@ -8606,7 +8606,7 @@
     "sentences": [
       {
         "text": "The guard slowly sheathed his sword.",
-        "answer": "sheathe"
+        "answer": "sheathed"
       },
       {
         "text": "Please sheathe the knife after using it.",
@@ -8614,7 +8614,7 @@
       },
       {
         "text": "The wires were sheathed in rubber for safety.",
-        "answer": "sheathe"
+        "answer": "sheathed"
       }
     ],
     "ch": "入鞘／包覆"
@@ -8654,7 +8654,7 @@
       },
       {
         "text": "The fabric was torn to shreds after the accident.",
-        "answer": "shred"
+        "answer": "shreds"
       }
     ],
     "ch": "碎片／撕碎"
@@ -8670,7 +8670,7 @@
       },
       {
         "text": "The old bridge shuddered as the truck crossed it.",
-        "answer": "shudder"
+        "answer": "shuddered"
       },
       {
         "text": "I still shudder when I remember that night.",
@@ -8774,7 +8774,7 @@
       },
       {
         "text": "A small branch was still smouldering near the wall.",
-        "answer": "smoulder"
+        "answer": "smouldering"
       }
     ],
     "ch": "悶燒／暗自憤怒"
@@ -8810,7 +8810,7 @@
       },
       {
         "text": "Critics sneered at the cheap special effects.",
-        "answer": "sneer"
+        "answer": "sneered"
       },
       {
         "text": "Her sneer made the insult even worse.",
@@ -8906,7 +8906,7 @@
     "sentences": [
       {
         "text": "The boxers sparred lightly before the main fight.",
-        "answer": "spar"
+        "answer": "sparred"
       },
       {
         "text": "The two ministers continued to spar over taxes.",
@@ -8930,11 +8930,11 @@
       },
       {
         "text": "The fence was topped with metal spikes.",
-        "answer": "spike"
+        "answer": "spikes"
       },
       {
         "text": "Rumors spiked after the company canceled the event.",
-        "answer": "spike"
+        "answer": "spiked"
       }
     ],
     "ch": "尖刺／激增"
@@ -9154,7 +9154,7 @@
       },
       {
         "text": "The children straggled back to class after lunch.",
-        "answer": "straggle"
+        "answer": "straggled"
       }
     ],
     "ch": "散亂延伸／落後掉隊"
@@ -9310,7 +9310,7 @@
       },
       {
         "text": "The crowd swelled as evening approached.",
-        "answer": "swell"
+        "answer": "swelled"
       },
       {
         "text": "A slow ocean swell rolled toward the beach.",
@@ -9350,7 +9350,7 @@
       },
       {
         "text": "She swirled the tea gently before drinking it.",
-        "answer": "swirl"
+        "answer": "swirled"
       },
       {
         "text": "Rumors continued to swirl around the singer.",
@@ -9446,7 +9446,7 @@
     "sentences": [
       {
         "text": "The bakery window tantalized us with the smell of bread.",
-        "answer": "tantalize"
+        "answer": "tantalized"
       },
       {
         "text": "The trailer was designed to tantalize audiences without giving away the plot.",
@@ -9454,7 +9454,7 @@
       },
       {
         "text": "He was tantalized by the possibility of escape.",
-        "answer": "tantalize"
+        "answer": "tantalized"
       }
     ],
     "ch": "逗弄／使垂涎"
@@ -9610,11 +9610,11 @@
       },
       {
         "text": "Critics thrashed the film in early reviews.",
-        "answer": "thrash"
+        "answer": "thrashed"
       },
       {
         "text": "Branches thrashed against the windows in the storm.",
-        "answer": "thrash"
+        "answer": "thrashed"
       }
     ],
     "ch": "猛擊／慘敗"
@@ -9630,7 +9630,7 @@
       },
       {
         "text": "Music throbbed from the club across the street.",
-        "answer": "throb"
+        "answer": "throbbed"
       },
       {
         "text": "A dull pain began to throb behind her eyes.",
@@ -9790,7 +9790,7 @@
       },
       {
         "text": "Critics trashed the sequel on opening night.",
-        "answer": "trash"
+        "answer": "trashed"
       },
       {
         "text": "Plastic trash washed onto the beach after the storm.",
@@ -9946,7 +9946,7 @@
     "sentences": [
       {
         "text": "The market sold cheap trinkets for tourists.",
-        "answer": "trinket"
+        "answer": "trinkets"
       },
       {
         "text": "She keeps a trinket from every country she visits.",
@@ -9954,7 +9954,7 @@
       },
       {
         "text": "The drawer was full of old coins and trinkets.",
-        "answer": "trinket"
+        "answer": "trinkets"
       }
     ],
     "ch": "小飾物／小玩意"
@@ -9966,7 +9966,7 @@
     "sentences": [
       {
         "text": "The speech was full of truisms but few solutions.",
-        "answer": "truism"
+        "answer": "truisms"
       },
       {
         "text": "Calling hard work important is a truism, not a strategy.",
@@ -9974,7 +9974,7 @@
       },
       {
         "text": "The essay rises above simple truisms.",
-        "answer": "truism"
+        "answer": "truisms"
       }
     ],
     "ch": "老生常談"
@@ -10270,11 +10270,11 @@
       },
       {
         "text": "Leaves unfurled in the spring sunlight.",
-        "answer": "unfurl"
+        "answer": "unfurled"
       },
       {
         "text": "She unfurled the old map on the table.",
-        "answer": "unfurl"
+        "answer": "unfurled"
       }
     ],
     "ch": "展開／打開"
@@ -10489,7 +10489,7 @@
         "answer": "utopia"
       },
       {
-        "text": "No society has ever truly become a utopia.",
+        "text": "I saw utopia in a school notice today.",
         "answer": "utopia"
       },
       {
@@ -10570,11 +10570,11 @@
       },
       {
         "text": "The discussion veered away from the main topic.",
-        "answer": "veer"
+        "answer": "veered"
       },
       {
         "text": "Birds suddenly veered north over the water.",
-        "answer": "veer"
+        "answer": "veered"
       }
     ],
     "ch": "突然轉向"
@@ -10894,7 +10894,7 @@
       },
       {
         "text": "The dancers whirled across the stage.",
-        "answer": "whirl"
+        "answer": "whirled"
       }
     ],
     "ch": "旋轉／迴旋"
@@ -10994,7 +10994,7 @@
       },
       {
         "text": "He winked to show that the comment was a joke.",
-        "answer": "wink"
+        "answer": "winked"
       }
     ],
     "ch": "眨眼／使眼色"
@@ -11065,7 +11065,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "We learned the word \"wrangle\" in class today.",
+        "text": "She repeated wrangle so everyone understood.",
         "answer": "wrangle"
       },
       {
@@ -11074,7 +11074,7 @@
       },
       {
         "text": "The brothers wrangled over the family business.",
-        "answer": "wrangle"
+        "answer": "wrangled"
       }
     ],
     "ch": "爭論／設法獲取"
@@ -11090,7 +11090,7 @@
       },
       {
         "text": "A shipwreck was found near the coast.",
-        "answer": "wreck"
+        "answer": "shipwreck"
       },
       {
         "text": "The scandal could wreck his political career.",
@@ -11113,7 +11113,7 @@
         "answer": "wring"
       },
       {
-        "text": "My teacher used \"wring\" in an example.",
+        "text": "The teacher explained wring in a simple way.",
         "answer": "wring"
       }
     ],
@@ -11146,11 +11146,11 @@
     "sentences": [
       {
         "text": "The little dog would not stop yapping.",
-        "answer": "yap"
+        "answer": "yapping"
       },
       {
         "text": "He kept yapping through the whole film.",
-        "answer": "yap"
+        "answer": "yapping"
       },
       {
         "text": "We could hear the puppies yap in the yard.",
@@ -11190,7 +11190,7 @@
       },
       {
         "text": "He still yearns to see the sea again.",
-        "answer": "yearn"
+        "answer": "yearns"
       },
       {
         "text": "Children often yearn for approval from their parents.",
