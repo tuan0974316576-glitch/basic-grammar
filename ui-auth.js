@@ -1,5 +1,8 @@
 let authOverlayTimeout = null;
 window.pendingAuthFlowPatch = window.pendingAuthFlowPatch || null;
+if (typeof window.firebaseAuthResolved !== 'boolean') {
+    window.firebaseAuthResolved = false;
+}
 window.authFlowState = window.authFlowState || {
     started: false,
     resolved: false,
@@ -8,6 +11,44 @@ window.authFlowState = window.authFlowState || {
     displayName: null,
     currentView: null
 };
+
+function setSplashLoadingState() {
+    const splash = document.getElementById('splash-screen');
+    const gameWrapper = document.getElementById('game-content-wrapper');
+    const actionText = document.getElementById('splash-action-text');
+    const statusText = document.getElementById('splash-status-text');
+
+    if (actionText) {
+        actionText.innerText = '>> INITIALIZING... <<';
+    }
+    if (statusText) {
+        statusText.innerText = 'ESTABLISHING LINK...';
+    }
+    if (splash) {
+        splash.style.opacity = '1';
+        splash.style.display = 'flex';
+    }
+    if (gameWrapper) {
+        gameWrapper.style.display = 'none';
+    }
+}
+
+function dismissSplashToAuthUI() {
+    const splash = document.getElementById('splash-screen');
+    const gameWrapper = document.getElementById('game-content-wrapper');
+    const startScreen = document.getElementById('start-screen');
+
+    if (splash && splash.style.display !== 'none') {
+        splash.style.opacity = '0';
+        splash.style.display = 'none';
+    }
+    if (gameWrapper) {
+        gameWrapper.style.display = 'block';
+    }
+    if (startScreen) {
+        startScreen.style.display = 'flex';
+    }
+}
 
 function hideMainMenuChrome() {
     const carousel = document.getElementById('main-menu-carousel');
@@ -33,9 +74,6 @@ window.applyAuthFlowState = function(patch = {}) {
     const regModal = document.getElementById('registration-modal');
     const overlay = document.getElementById('login-overlay');
 
-    if (startScreen) startScreen.style.display = 'flex';
-    if (overlay) overlay.style.display = 'none';
-
     let nextView = 'login';
     if (!window.authFlowState.resolved) {
         nextView = 'connecting';
@@ -50,6 +88,15 @@ window.applyAuthFlowState = function(patch = {}) {
         return;
     }
     window.authFlowState.currentView = nextView;
+
+    if (nextView === 'connecting') {
+        setSplashLoadingState();
+    } else {
+        dismissSplashToAuthUI();
+    }
+
+    if (startScreen) startScreen.style.display = 'flex';
+    if (overlay) overlay.style.display = 'none';
 
     if (nextView === 'main') {
         if (regModal) regModal.style.display = 'none';
@@ -88,6 +135,17 @@ window.reconcileAuthFlowState = function(force = false) {
         const pendingPatch = { ...window.pendingAuthFlowPatch, force: true };
         window.pendingAuthFlowPatch = null;
         window.applyAuthFlowState(pendingPatch);
+        return;
+    }
+
+    if (!window.firebaseAuthResolved) {
+        window.applyAuthFlowState({
+            resolved: false,
+            authenticated: false,
+            needsRegistration: false,
+            displayName: null,
+            force
+        });
         return;
     }
 
@@ -742,63 +800,20 @@ window.startExperience = function() {
         suppliesDisplay.style.display = 'none';
     }
 
-    const cachedName = localStorage.getItem('battleship_username');
-    const cachedUid = localStorage.getItem('battleship_auth_uid');
-    const shouldWaitForFirebase = !!((cachedName && cachedUid) || window.isFirebaseAuthenticated);
+    setSplashLoadingState();
 
-        if (typeof window.applyAuthFlowState === 'function') {
-            window.authFlowState.started = true;
-            if (shouldWaitForFirebase) {
-                window.applyAuthFlowState({
-                    resolved: false,
-                    authenticated: true,
-                    needsRegistration: false,
-                    displayName: null
-                });
-            } else {
-                window.applyAuthFlowState({
-                    resolved: true,
-                    authenticated: false,
-                    needsRegistration: false,
-                    displayName: null
-                });
-            }
-            if (typeof window.reconcileAuthFlowState === 'function') {
-                window.reconcileAuthFlowState(false);
-            }
+    if (typeof window.applyAuthFlowState === 'function') {
+        window.authFlowState.started = true;
+        window.applyAuthFlowState({
+            resolved: false,
+            authenticated: false,
+            needsRegistration: false,
+            displayName: null,
+            force: true
+        });
+        if (typeof window.reconcileAuthFlowState === 'function') {
+            window.reconcileAuthFlowState(false);
         }
-
-    const splash = document.getElementById('splash-screen');
-    splash.style.opacity = '0';
-    setTimeout(() => {
-        splash.style.display = 'none';
-
-        if (window.isFirebaseAuthenticated && window.myPlayerId) {
-            const nextSuppliesDisplay = document.getElementById('coins-display');
-            if (nextSuppliesDisplay) {
-                nextSuppliesDisplay.style.display = 'block';
-                if (typeof updateSuppliesDisplay === 'function') {
-                    updateSuppliesDisplay();
-                }
-            }
-        }
-
-        if (typeof window.applyAuthFlowState === 'function') {
-            window.applyAuthFlowState({
-                started: true,
-                ...(window.authFlowState.resolved ? {} : shouldWaitForFirebase
-                    ? { resolved: false, authenticated: true, needsRegistration: false, displayName: null }
-                    : { resolved: true, authenticated: false, needsRegistration: false, displayName: null })
-            });
-            if (typeof window.reconcileAuthFlowState === 'function') {
-                window.reconcileAuthFlowState(false);
-            }
-        }
-    }, 500);
-
-    const gameWrapper = document.getElementById('game-content-wrapper');
-    if (gameWrapper) {
-        gameWrapper.style.display = 'block';
     }
 };
 

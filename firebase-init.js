@@ -26,6 +26,9 @@ window.firebaseModules = {
     window.db = db;
     window.auth = auth;
 console.log("Firebase Modules Loaded Successfully");
+if (typeof window.firebaseAuthResolved !== 'boolean') {
+    window.firebaseAuthResolved = false;
+}
 
 function syncPublicUserProfile(uid, payload) {
     return update(ref(db, 'users_public/' + uid), payload).catch(err => {
@@ -35,6 +38,7 @@ function syncPublicUserProfile(uid, payload) {
     // --- 1. 登入狀態監聽 (包含 Guest 自動派名) ---
     onAuthStateChanged(auth, (u) => {
         console.log('[Auth] onAuthStateChanged triggered, user:', u ? u.uid : 'null');
+        window.firebaseAuthResolved = true;
         const overlay = document.getElementById('login-overlay');
         console.log('[Auth] login-overlay element:', overlay);
         // 清除 auth overlay timeout (如果有)
