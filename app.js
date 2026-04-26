@@ -1007,30 +1007,30 @@ let isTargeting = false;
     // ���� RANK TABLE & XP SYSTEM ����
     // =========================================
     const RANK_TABLE = [
-        { minXP: 0, name: 'RECRUIT', iconFile: '01_recruit.png' },
-        { minXP: 3000, name: 'CADET', iconFile: '02_cadet.png' },
-        { minXP: 8000, name: 'PRIVATE', iconFile: '03_private.png' },
-        { minXP: 15000, name: 'TROOPER', iconFile: '04_trooper.png' },
-        { minXP: 25000, name: 'CORPORAL', iconFile: '05_corporal.png' },
-        { minXP: 38000, name: 'SERGEANT', iconFile: '06_sergeant.png' },
-        { minXP: 55000, name: 'CHIEF', iconFile: '07_chief.png' },
-        { minXP: 75000, name: 'ENSIGN', iconFile: '08_ensign.png' },
-        { minXP: 100000, name: 'WARRANT', iconFile: '09_warrant.png' },
-        { minXP: 130000, name: 'LIEUTENANT', iconFile: '10_lieutenant.png' },
-        { minXP: 165000, name: 'CAPTAIN', iconFile: '11_captain.png' },
-        { minXP: 205000, name: 'MAJOR', iconFile: '12_major.png' },
-        { minXP: 250000, name: 'COLONEL', iconFile: '13_colonel.png' },
-        { minXP: 300000, name: 'COMMANDER', iconFile: '14_commander.png' },
-        { minXP: 360000, name: 'BRIGADIER', iconFile: '15_brigadier.png' },
-        { minXP: 430000, name: 'COMMODORE', iconFile: '16_commodore.png' },
-        { minXP: 510000, name: 'GENERAL', iconFile: '17_general.png' },
-        { minXP: 600000, name: 'ADMIRAL', iconFile: '18_admiral.png' },
-        { minXP: 700000, name: 'MARSHAL', iconFile: '19_marshal.png' },
-        { minXP: 820000, name: 'WARLORD', iconFile: '20_warlord.png' },
-        { minXP: 960000, name: 'ARCHON', iconFile: '21_archon.png' },
-        { minXP: 1120000, name: 'TITAN', iconFile: '22_titan.png' },
-        { minXP: 1300000, name: 'OVERLORD', iconFile: '23_overlord.png' },
-        { minXP: 1500000, name: 'LEGEND', iconFile: '24_legend.png' }
+        { minXP: 0, name: 'RECRUIT', zh: '新兵', iconFile: '01_recruit.png' },
+        { minXP: 3000, name: 'CADET', zh: '軍校生', iconFile: '02_cadet.png' },
+        { minXP: 8000, name: 'PRIVATE', zh: '列兵', iconFile: '03_private.png' },
+        { minXP: 15000, name: 'TROOPER', zh: '士兵', iconFile: '04_trooper.png' },
+        { minXP: 25000, name: 'CORPORAL', zh: '下士', iconFile: '05_corporal.png' },
+        { minXP: 38000, name: 'SERGEANT', zh: '中士', iconFile: '06_sergeant.png' },
+        { minXP: 55000, name: 'CHIEF', zh: '軍士長', iconFile: '07_chief.png' },
+        { minXP: 75000, name: 'ENSIGN', zh: '少尉', iconFile: '08_ensign.png' },
+        { minXP: 100000, name: 'WARRANT', zh: '准尉', iconFile: '09_warrant.png' },
+        { minXP: 130000, name: 'LIEUTENANT', zh: '中尉', iconFile: '10_lieutenant.png' },
+        { minXP: 165000, name: 'CAPTAIN', zh: '上尉', iconFile: '11_captain.png' },
+        { minXP: 205000, name: 'MAJOR', zh: '少校', iconFile: '12_major.png' },
+        { minXP: 250000, name: 'COLONEL', zh: '上校', iconFile: '13_colonel.png' },
+        { minXP: 300000, name: 'COMMANDER', zh: '指揮官', iconFile: '14_commander.png' },
+        { minXP: 360000, name: 'BRIGADIER', zh: '准將', iconFile: '15_brigadier.png' },
+        { minXP: 430000, name: 'COMMODORE', zh: '準將提督', iconFile: '16_commodore.png' },
+        { minXP: 510000, name: 'GENERAL', zh: '將軍', iconFile: '17_general.png' },
+        { minXP: 600000, name: 'ADMIRAL', zh: '海軍上將', iconFile: '18_admiral.png' },
+        { minXP: 700000, name: 'MARSHAL', zh: '元帥', iconFile: '19_marshal.png' },
+        { minXP: 820000, name: 'WARLORD', zh: '戰王', iconFile: '20_warlord.png' },
+        { minXP: 960000, name: 'ARCHON', zh: '大執政官', iconFile: '21_archon.png' },
+        { minXP: 1120000, name: 'TITAN', zh: '泰坦', iconFile: '22_titan.png' },
+        { minXP: 1300000, name: 'OVERLORD', zh: '霸王', iconFile: '23_overlord.png' },
+        { minXP: 1500000, name: 'LEGEND', zh: '傳奇', iconFile: '24_legend.png' }
     ];
 
     // ���� Dynamic Color Helper for Leaderboard Icons ����
@@ -1052,7 +1052,7 @@ let isTargeting = false;
             }
         }
         const nextXP = (level < RANK_TABLE.length) ? RANK_TABLE[level].minXP : null;
-        return { level, name: rank.name, minXP: rank.minXP, nextXP, iconFile: rank.iconFile };
+        return { level, name: rank.name, zh: rank.zh, minXP: rank.minXP, nextXP, iconFile: rank.iconFile };
     }
 
     function getCurrentUserXPValue() {
@@ -1085,7 +1085,7 @@ let isTargeting = false;
         const listEl = document.getElementById('rank-info-list');
         if (!currentLabelEl || !listEl) return;
 
-        currentLabelEl.innerText = `CURRENT: ${currentRank.name} // ${currentXP.toLocaleString()} XP`;
+        currentLabelEl.innerText = `CURRENT: ${currentRank.name} [${currentRank.zh}] // ${currentXP.toLocaleString()} XP`;
         listEl.innerHTML = RANK_TABLE.map((rank, index) => {
             const isCurrent = currentRank.name === rank.name;
             const nextMinXP = RANK_TABLE[index + 1]?.minXP ?? null;
@@ -1099,7 +1099,7 @@ let isTargeting = false;
                     <div class="rank-info-threshold">${rangeLabel}</div>
                     <div class="rank-info-main">
                         <img class="rank-info-icon" src="${iconPath}" alt="${rank.name} icon" onerror="this.style.display='none'">
-                        <div class="rank-info-name">${rank.name}</div>
+                        <div class="rank-info-name">${rank.name} <span class="rank-info-name-zh">[${rank.zh}]</span></div>
                     </div>
                     <div class="rank-info-badge${isCurrent ? ' current' : ''}">${isCurrent ? 'YOU' : `R${index + 1}`}</div>
                 </div>

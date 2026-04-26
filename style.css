@@ -3051,9 +3051,24 @@ body {
     min-width: 0;
 }
 
+.rank-info-name-zh {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: rgba(226, 232, 240, 0.78);
+    text-shadow: none;
+    margin-left: 4px;
+    white-space: nowrap;
+}
+
 .rank-info-row.current .rank-info-name {
     color: #67e8f9;
     text-shadow: 0 0 12px rgba(103, 232, 249, 0.28);
+}
+
+.rank-info-row.current .rank-info-name-zh {
+    color: rgba(103, 232, 249, 0.82);
 }
 
 .rank-info-row.current .rank-info-icon {
@@ -3120,6 +3135,10 @@ body {
 
     .rank-info-name {
         font-size: 16px;
+    }
+
+    .rank-info-name-zh {
+        font-size: 9px;
     }
 
     .rank-info-badge {
