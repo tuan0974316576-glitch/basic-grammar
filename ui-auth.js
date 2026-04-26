@@ -3,6 +3,9 @@ window.pendingAuthFlowPatch = window.pendingAuthFlowPatch || null;
 if (typeof window.firebaseAuthResolved !== 'boolean') {
     window.firebaseAuthResolved = false;
 }
+if (typeof window.firebaseProfileResolved !== 'boolean') {
+    window.firebaseProfileResolved = false;
+}
 window.authFlowState = window.authFlowState || {
     started: false,
     resolved: false,
@@ -138,7 +141,7 @@ window.reconcileAuthFlowState = function(force = false) {
         return;
     }
 
-    if (!window.firebaseAuthResolved) {
+    if (!window.firebaseAuthResolved || !window.firebaseProfileResolved) {
         window.applyAuthFlowState({
             resolved: false,
             authenticated: false,

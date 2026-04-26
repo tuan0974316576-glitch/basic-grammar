@@ -29,6 +29,9 @@ console.log("Firebase Modules Loaded Successfully");
 if (typeof window.firebaseAuthResolved !== 'boolean') {
     window.firebaseAuthResolved = false;
 }
+if (typeof window.firebaseProfileResolved !== 'boolean') {
+    window.firebaseProfileResolved = false;
+}
 
 function syncPublicUserProfile(uid, payload) {
     return update(ref(db, 'users_public/' + uid), payload).catch(err => {
@@ -39,6 +42,7 @@ function syncPublicUserProfile(uid, payload) {
     onAuthStateChanged(auth, (u) => {
         console.log('[Auth] onAuthStateChanged triggered, user:', u ? u.uid : 'null');
         window.firebaseAuthResolved = true;
+        window.firebaseProfileResolved = false;
         const overlay = document.getElementById('login-overlay');
         console.log('[Auth] login-overlay element:', overlay);
         // 清除 auth overlay timeout (如果有)
@@ -229,6 +233,7 @@ function syncPublicUserProfile(uid, payload) {
                     // ★★★ Firebase 驗證成功，現在才顯示 MAIN MENU ★★★
                     console.log('[Auth] Firebase validation complete, auth flow ready');
                     if (typeof window.applyAuthFlowState === 'function') {
+                        window.firebaseProfileResolved = true;
                         window.applyAuthFlowState({
                             resolved: true,
                             authenticated: true,
@@ -237,6 +242,7 @@ function syncPublicUserProfile(uid, payload) {
                             force: true
                         });
                     } else {
+                        window.firebaseProfileResolved = true;
                         window.pendingAuthFlowPatch = {
                             resolved: true,
                             authenticated: true,
@@ -281,6 +287,7 @@ function syncPublicUserProfile(uid, payload) {
                                 }
                             });
                             if (typeof window.applyAuthFlowState === 'function') {
+                                window.firebaseProfileResolved = true;
                                 window.applyAuthFlowState({
                                     resolved: true,
                                     authenticated: true,
@@ -289,6 +296,7 @@ function syncPublicUserProfile(uid, payload) {
                                     force: true
                                 });
                             } else {
+                                window.firebaseProfileResolved = true;
                                 window.pendingAuthFlowPatch = {
                                     resolved: true,
                                     authenticated: true,
@@ -304,6 +312,7 @@ function syncPublicUserProfile(uid, payload) {
                         // Google/Apple 新人
                         console.log('[Auth] Google/Apple new user, showing registration');
                         if (typeof window.applyAuthFlowState === 'function') {
+                            window.firebaseProfileResolved = true;
                             window.applyAuthFlowState({
                                 resolved: true,
                                 authenticated: true,
@@ -312,6 +321,7 @@ function syncPublicUserProfile(uid, payload) {
                                 force: true
                             });
                         } else {
+                            window.firebaseProfileResolved = true;
                             window.pendingAuthFlowPatch = {
                                 resolved: true,
                                 authenticated: true,
@@ -336,6 +346,7 @@ function syncPublicUserProfile(uid, payload) {
                 }
                 if (typeof window.applyAuthFlowState === 'function') {
                     console.log('[Auth] Falling back to cached auth state after Firebase error');
+                    window.firebaseProfileResolved = true;
                     window.applyAuthFlowState({
                         resolved: true,
                         authenticated: true,
@@ -344,6 +355,7 @@ function syncPublicUserProfile(uid, payload) {
                         force: true
                     });
                 } else {
+                    window.firebaseProfileResolved = true;
                     window.pendingAuthFlowPatch = {
                         resolved: true,
                         authenticated: true,
@@ -364,6 +376,7 @@ function syncPublicUserProfile(uid, payload) {
             console.log('[Auth] Stack trace:', new Error().stack);
 
             window.isFirebaseAuthenticated = false;
+            window.firebaseProfileResolved = true;
 
             // ★★★ SESSION TRACKING: 停止監聽 activeSession ★★★
             if (window.sessionListener) {
