@@ -5478,7 +5478,7 @@ body {
         transform: translate(-50%, -50%) scale(1);
     }
     50% {
-        opacity: 0.28;
+        opacity: 0.18;
         transform: translate(-50%, -50%) scale(1.06);
     }
 }
