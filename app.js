@@ -8750,7 +8750,7 @@ function startCountdownTimer() {
     const timerBar = document.getElementById('timer-bar');
     
     // Ӌ��r�g (߉݋ͬԭ��һ��)
-    let timeMultiplier = 0.5;
+    let timeMultiplier = 1.0;
     let baseTime = 3;
     if (currentPracticeMode === 'LISTENING') {
         timeMultiplier = 1.1;
