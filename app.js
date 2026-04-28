@@ -3414,7 +3414,7 @@ if (currentPracticeMode === 'SPEAKING') {
         // 1. �@ʾ������� (����о���)
         if (currentVocab.sent) {
             const displayHTML = replaceListeningAnswerWithBlank(currentVocab.sent, targetWord);
-            contentHTML += `<div class="sentence-container">${displayHTML}<span class="cyber-speaker-btn cyber-speaker-btn-small listening-replay-btn" onclick="speakText('${safeText}', null, false)" role="button" aria-label="Replay audio"></span></div>`;
+            contentHTML += `<div class="sentence-container">${displayHTML}<span class="cyber-speaker-btn cyber-speaker-btn-small listening-replay-btn" onclick="speakText('${safeText}', null, true)" role="button" aria-label="Replay audio"></span></div>`;
         } else {
             contentHTML += `<div style="font-family:'Orbitron'; font-size:14px; color:#d946ef; margin-bottom:15px; letter-spacing:2px;">// AUDIO INTERCEPTED //</div>`;
         }
@@ -3422,7 +3422,7 @@ if (currentPracticeMode === 'SPEAKING') {
         // 2. ����߿Ƽ����ȳ� (ʹ���㮋�� PNG)
         if (!currentVocab.sent) {
             contentHTML += `
-                <div class="cyber-speaker-btn" onclick="speakText('${safeText}', null, false)"></div>
+                <div class="cyber-speaker-btn" onclick="speakText('${safeText}', null, true)"></div>
             `;
         }
 
