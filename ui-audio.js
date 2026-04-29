@@ -18,7 +18,7 @@ function normalizeVolume(value, fallback) {
     return Math.max(0, Math.min(1, parsed));
 }
 
-const BGM_MAX_GAIN = 0.57;
+const BGM_MAX_GAIN = 0.59;
 
 function playBgm() {
     const bgm = document.getElementById('bgm');
