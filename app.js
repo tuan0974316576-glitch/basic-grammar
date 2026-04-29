@@ -959,8 +959,7 @@ let isTargeting = false;
         'explosion-c_gold.png',
         'close.png',
         'nuke_1.png',
-        'nuke_2.png',
-        'nuke explosion.png'
+        'nuke_2.png'
     ];
 
     const BATTLE_EFFECT_AUDIO_IDS = [
@@ -999,6 +998,8 @@ let isTargeting = false;
                 audio.load();
             } catch (_) {}
         });
+
+        preloadEffekseerEffect('vanguardsNuke');
     }
 
    
@@ -9172,6 +9173,17 @@ const NUKE_EXPLOSION_COLUMNS = 5;
 const NUKE_EXPLOSION_ROWS = 5;
 const NUKE_EXPLOSION_FRAMES = 25;
 const NUKE_LOCK_ON_DURATION = 1000;
+const EFFEKSEER_RUNTIME_SCRIPT_PATH = 'vendor/effekseer/effekseer.min.js';
+const EFFEKSEER_RUNTIME_WASM_PATH = 'vendor/effekseer/effekseer.wasm';
+const EFFEKSEER_EFFECTS = {
+    vanguardsNuke: {
+        path: 'effects/vanguards/firepunch/FirePunch.efkefc',
+        loadScale: 1,
+        playScale: 0.28,
+        speed: 1,
+        duration: 1500
+    }
+};
 const DEFAULT_INSTRUCTION = {
     name: 'SINGLE SHOT',
     desc: 'TAP A CELL TO FIRE',
@@ -9929,6 +9941,222 @@ function animateImageSequence(element, frames, frameDuration) {
     }, frameDuration);
 }
 
+const effekseerEffectState = {
+    canvas: null,
+    gl: null,
+    context: null,
+    runtimePromise: null,
+    effects: new Map(),
+    activeHandles: [],
+    animationFrameId: null,
+    lastFrameTime: 0,
+    pixelRatio: 1
+};
+
+function ensureEffekseerCanvas() {
+    if (effekseerEffectState.canvas) return effekseerEffectState.canvas;
+
+    const canvas = document.createElement('canvas');
+    canvas.className = 'effekseer-effects-canvas';
+    canvas.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(canvas);
+    effekseerEffectState.canvas = canvas;
+    resizeEffekseerCanvas();
+    window.addEventListener('resize', resizeEffekseerCanvas);
+    window.addEventListener('orientationchange', resizeEffekseerCanvas);
+    return canvas;
+}
+
+function resizeEffekseerCanvas() {
+    const canvas = effekseerEffectState.canvas;
+    if (!canvas) return;
+
+    const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+    const width = Math.max(1, Math.round(window.innerWidth * pixelRatio));
+    const height = Math.max(1, Math.round(window.innerHeight * pixelRatio));
+
+    effekseerEffectState.pixelRatio = pixelRatio;
+    if (canvas.width !== width || canvas.height !== height) {
+        canvas.width = width;
+        canvas.height = height;
+        if (effekseerEffectState.gl) {
+            effekseerEffectState.gl.viewport(0, 0, width, height);
+        }
+    }
+
+    if (effekseerEffectState.context) {
+        setEffekseerScreenMatrices();
+    }
+}
+
+function setEffekseerScreenMatrices() {
+    const canvas = effekseerEffectState.canvas;
+    const context = effekseerEffectState.context;
+    if (!canvas || !context) return;
+
+    const width = canvas.width;
+    const height = canvas.height;
+    context.setProjectionMatrix([
+        2 / width, 0, 0, 0,
+        0, -2 / height, 0, 0,
+        0, 0, 1, 0,
+        -1, 1, 0, 1
+    ]);
+    context.setCameraMatrix([
+        1, 0, 0, 0,
+        0, 1, 0, 0,
+        0, 0, 1, 0,
+        0, 0, -10, 1
+    ]);
+}
+
+function initEffekseerRuntime() {
+    if (effekseerEffectState.runtimePromise) return effekseerEffectState.runtimePromise;
+
+    effekseerEffectState.runtimePromise = new Promise((resolve, reject) => {
+        if (!window.effekseer || typeof window.effekseer.initRuntime !== 'function') {
+            reject(new Error(`Effekseer runtime script not loaded: ${EFFEKSEER_RUNTIME_SCRIPT_PATH}`));
+            return;
+        }
+
+        window.effekseer.initRuntime(EFFEKSEER_RUNTIME_WASM_PATH, () => {
+            try {
+                const canvas = ensureEffekseerCanvas();
+                const gl = canvas.getContext('webgl', {
+                    alpha: true,
+                    antialias: true,
+                    premultipliedAlpha: false,
+                    preserveDrawingBuffer: false
+                });
+
+                if (!gl) {
+                    throw new Error('WebGL is unavailable for Effekseer');
+                }
+
+                const context = window.effekseer.createContext();
+                if (!context) {
+                    throw new Error('Effekseer context creation failed');
+                }
+
+                context.init(gl, {
+                    instanceMaxCount: 4096,
+                    squareMaxCount: 4096
+                });
+                context.setRestorationOfStatesFlag(false);
+
+                effekseerEffectState.gl = gl;
+                effekseerEffectState.context = context;
+                resizeEffekseerCanvas();
+                resolve(context);
+            } catch (error) {
+                reject(error);
+            }
+        }, reject);
+    }).catch(error => {
+        console.warn('[Effekseer] Runtime initialization failed:', error);
+        effekseerEffectState.runtimePromise = null;
+        throw error;
+    });
+
+    return effekseerEffectState.runtimePromise;
+}
+
+async function loadEffekseerEffect(effectKey) {
+    const config = EFFEKSEER_EFFECTS[effectKey];
+    if (!config) throw new Error(`Unknown Effekseer effect: ${effectKey}`);
+
+    const cached = effekseerEffectState.effects.get(effectKey);
+    if (cached) return cached;
+
+    const context = await initEffekseerRuntime();
+    const effectPromise = new Promise((resolve, reject) => {
+        const effect = context.loadEffect(config.path, config.loadScale || 1, () => {
+            resolve(effect);
+        }, reject);
+    });
+
+    effekseerEffectState.effects.set(effectKey, effectPromise);
+    return effectPromise;
+}
+
+function preloadEffekseerEffect(effectKey) {
+    loadEffekseerEffect(effectKey).catch(error => {
+        console.warn(`[Effekseer] Failed to preload ${effectKey}:`, error);
+    });
+}
+
+function playEffekseerEffect(effectKey, screenX, screenY, options = {}) {
+    const config = EFFEKSEER_EFFECTS[effectKey];
+    if (!config) return Promise.resolve(null);
+
+    return loadEffekseerEffect(effectKey).then(effect => {
+        const context = effekseerEffectState.context;
+        if (!context || !effect) return null;
+
+        const pixelRatio = effekseerEffectState.pixelRatio || 1;
+        const handle = context.play(effect, screenX * pixelRatio, screenY * pixelRatio, 0);
+        if (!handle) return null;
+
+        const playScale = (options.scale || config.playScale || 1) * pixelRatio;
+        handle.setScale(playScale, playScale, playScale);
+        handle.setSpeed(options.speed || config.speed || 1);
+
+        effekseerEffectState.activeHandles.push(handle);
+        startEffekseerRenderLoop();
+
+        window.setTimeout(() => {
+            if (handle.exists) handle.stopRoot();
+        }, options.duration || config.duration || 1600);
+
+        return handle;
+    }).catch(error => {
+        console.warn(`[Effekseer] Failed to play ${effectKey}:`, error);
+        return null;
+    });
+}
+
+function startEffekseerRenderLoop() {
+    if (effekseerEffectState.animationFrameId) return;
+
+    effekseerEffectState.lastFrameTime = performance.now();
+    const render = now => {
+        const context = effekseerEffectState.context;
+        const gl = effekseerEffectState.gl;
+        const canvas = effekseerEffectState.canvas;
+
+        if (!context || !gl || !canvas) {
+            effekseerEffectState.animationFrameId = null;
+            return;
+        }
+
+        const elapsedMs = Math.min(64, now - effekseerEffectState.lastFrameTime);
+        effekseerEffectState.lastFrameTime = now;
+        const deltaFrames = Math.max(1, Math.round(elapsedMs / (1000 / 60)));
+
+        gl.viewport(0, 0, canvas.width, canvas.height);
+        gl.clearColor(0, 0, 0, 0);
+        gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+        setEffekseerScreenMatrices();
+        context.update(deltaFrames);
+        context.beginDraw();
+        effekseerEffectState.activeHandles = effekseerEffectState.activeHandles.filter(handle => {
+            if (!handle || !handle.exists) return false;
+            context.drawHandle(handle);
+            return true;
+        });
+        context.endDraw();
+
+        if (effekseerEffectState.activeHandles.length > 0) {
+            effekseerEffectState.animationFrameId = requestAnimationFrame(render);
+        } else {
+            gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+            effekseerEffectState.animationFrameId = null;
+        }
+    };
+
+    effekseerEffectState.animationFrameId = requestAnimationFrame(render);
+}
+
 function playNukeStrikeAnimation(boardId, topLeftIndex, lockOverlay, onImpact, onComplete) {
     const grid = document.getElementById(boardId);
     const cells = getExplosionAreaIndices(topLeftIndex, 4).map(index => grid ? grid.children[index] : null).filter(Boolean);
@@ -9955,7 +10183,8 @@ function playNukeStrikeAnimation(boardId, topLeftIndex, lockOverlay, onImpact, o
     const travelDistance = Math.abs(impactTop - startTop);
     const flightDuration = Math.max(900, Math.round(travelDistance / 0.95));
     const fadeStart = flightDuration + NUKE_WHITEOUT_HOLD;
-    const totalDuration = fadeStart + Math.max(NUKE_SHAKE_DURATION, NUKE_WHITEOUT_FADE, NUKE_EXPLOSION_DURATION);
+    const effekseerDuration = EFFEKSEER_EFFECTS.vanguardsNuke.duration;
+    const totalDuration = fadeStart + Math.max(NUKE_SHAKE_DURATION, NUKE_WHITEOUT_FADE, effekseerDuration);
 
     const overlay = document.createElement('div');
     overlay.className = 'missile-strike-overlay';
@@ -9968,13 +10197,6 @@ function playNukeStrikeAnimation(boardId, topLeftIndex, lockOverlay, onImpact, o
     missile.style.setProperty('--missile-start-top', `${startTop}px`);
     missile.style.setProperty('--missile-impact-top', `${impactTop}px`);
     missile.style.setProperty('--missile-flight-duration', `${flightDuration}ms`);
-
-    const explosion = document.createElement('div');
-    explosion.className = 'nuke-explosion';
-    explosion.style.left = `${centerX}px`;
-    explosion.style.top = `${centerY}px`;
-    explosion.style.width = `${impactWidth}px`;
-    explosion.style.height = `${impactHeight}px`;
 
     overlay.appendChild(missile);
     grid.appendChild(overlay);
@@ -9996,15 +10218,7 @@ function playNukeStrikeAnimation(boardId, topLeftIndex, lockOverlay, onImpact, o
             setTimeout(() => document.body.classList.remove('screen-shake-nuke'), NUKE_SHAKE_DURATION);
 
             playSound('destroy-sfx');
-            overlay.appendChild(explosion);
-            animateSpriteSheet(
-                explosion,
-                NUKE_EXPLOSION_COLUMNS,
-                NUKE_EXPLOSION_ROWS,
-                NUKE_EXPLOSION_FRAMES,
-                NUKE_EXPLOSION_DURATION,
-                () => explosion.remove()
-            );
+            playEffekseerEffect('vanguardsNuke', impactX, impactY);
             if (onImpact) onImpact();
         }, NUKE_WHITEOUT_HOLD);
     }, flightDuration);

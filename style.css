@@ -5206,6 +5206,15 @@ body {
     overflow: visible;
 }
 
+.effekseer-effects-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 55;
+}
+
 .missile-sprite {
     position: absolute;
     top: var(--missile-start-top, -92px);
@@ -5252,19 +5261,6 @@ body {
     filter:
         drop-shadow(0 0 10px rgba(255, 180, 180, 0.26))
         drop-shadow(0 0 22px rgba(239, 68, 68, 0.28));
-}
-
-.nuke-explosion {
-    position: absolute;
-    transform: translate(-50%, -50%);
-    background-image: url('nuke explosion.png');
-    background-repeat: no-repeat;
-    background-size: 500% 500%;
-    background-position: 0 0;
-    image-rendering: auto;
-    filter:
-        drop-shadow(0 0 26px rgba(255, 255, 255, 0.66))
-        drop-shadow(0 0 34px rgba(239, 68, 68, 0.42));
 }
 
 .nuke-flash-overlay {
