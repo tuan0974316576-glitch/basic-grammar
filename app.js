@@ -1248,13 +1248,15 @@ function recordStageSessionMiss(wordEn) {
     stageSessionMissCounts[wordEn] = (stageSessionMissCounts[wordEn] || 0) + 1;
 }
 
-function buildPvpQuestionPayload(word) {
+function buildPvpQuestionPayload(word, voiceProfile = null) {
     if (!word || !word.en) return null;
     return {
         en: word.en,
         ch: word.ch || '',
         sent: word.sent || word.en,
         listeningAnswer: word.listeningAnswer || null,
+        listeningVoiceName: voiceProfile?.voiceName || null,
+        listeningAccentLocale: voiceProfile?.accentLocale || null,
         sentenceIndex: Number.isInteger(word.sentenceIndex) ? word.sentenceIndex : 0,
         timestamp: Date.now()
     };
@@ -1270,6 +1272,8 @@ function hydrateCurrentVocabFromPvpQuestion(payload) {
         ch: payload.ch || baseWord.ch || '',
         sent: payload.sent || baseWord.sent || baseWord.en,
         listeningAnswer: payload.listeningAnswer || null,
+        listeningVoiceName: payload.listeningVoiceName || null,
+        listeningAccentLocale: payload.listeningAccentLocale || null,
         sentenceIndex: Number.isInteger(payload.sentenceIndex) ? payload.sentenceIndex : 0
     };
 
@@ -1288,9 +1292,81 @@ function preloadPvpSharedListeningQuestion(questionPayload) {
     if ((currentPracticeMode || '').toUpperCase() !== 'LISTENING') return;
     const text = String(questionPayload?.sent || questionPayload?.en || '').trim();
     if (!text) return;
-    preloadListeningAzureAudio(text).then(() => {
+    const voiceProfile = questionPayload?.listeningVoiceName
+        ? {
+            label: 'PVP Shared',
+            voiceName: questionPayload.listeningVoiceName,
+            accentLocale: questionPayload.listeningAccentLocale || 'en-US'
+        }
+        : null;
+    preloadListeningAzureAudio(text, 'en-US', selectedLevel || 'L1', voiceProfile).then(() => {
         console.log(`[PVP Listening Preload] Ready: ${text}`);
     }).catch(() => {});
+}
+
+function getCurrentListeningVoiceProfile(text, levelKey = '') {
+    if (
+        gameMode === 'PVP' &&
+        currentVocab?.listeningVoiceName
+    ) {
+        return {
+            label: 'PVP Shared',
+            voiceName: currentVocab.listeningVoiceName,
+            accentLocale: currentVocab.listeningAccentLocale || 'en-US'
+        };
+    }
+    return ensureListeningPromptVoiceProfile(text, levelKey);
+}
+
+async function primePvpSharedQuestionIfNeeded() {
+    if (gameMode !== 'PVP' || currentPracticeMode !== 'LISTENING' || playerRole !== 'host' || !currentRoomId) {
+        return false;
+    }
+
+    const currentPending = latestPVPSetupData?.currentQuestionPending || {};
+    const currentQuestion = latestPVPSetupData?.currentQuestion || null;
+    const bothConsumed = !!currentQuestion && currentPending.host === false && currentPending.guest === false;
+
+    if (currentQuestion && !bothConsumed) {
+        return false;
+    }
+
+    if (!Array.isArray(activeVocabList) || activeVocabList.length === 0) {
+        return false;
+    }
+
+    const previousCurrentVocab = currentVocab;
+    const pickedWord = pickBattleUniqueWord(activeVocabList);
+    if (!pickedWord) {
+        return false;
+    }
+
+    currentVocab = { ...pickedWord };
+    assignSentenceForCurrentVocab();
+    const preparedWord = { ...currentVocab };
+    const voiceProfile = getCurrentListeningVoiceProfile(preparedWord.sent || preparedWord.en, selectedLevel || 'L1');
+    currentVocab = previousCurrentVocab;
+
+    markBattleWordUsed(preparedWord);
+    const payload = buildPvpQuestionPayload(preparedWord, voiceProfile);
+    if (!payload) {
+        return false;
+    }
+
+    const { ref, update } = window.firebaseModules;
+    await update(ref(db, 'rooms/' + currentRoomId), {
+        currentQuestion: payload,
+        currentQuestionPending: { host: true, guest: true }
+    });
+
+    preloadPvpSharedListeningQuestion(payload);
+    latestPVPSetupData = {
+        ...(latestPVPSetupData || {}),
+        currentQuestion: payload,
+        currentQuestionPending: { host: true, guest: true }
+    };
+    console.log(`[PVP Listening Prime] Shared question primed: ${preparedWord.en}`);
+    return true;
 }
 
 async function resolvePvpSharedQuestion() {
@@ -1324,7 +1400,8 @@ async function resolvePvpSharedQuestion() {
         assignSentenceForCurrentVocab();
         markBattleWordUsed(currentVocab);
 
-        const payload = buildPvpQuestionPayload(currentVocab);
+        const voiceProfile = getCurrentListeningVoiceProfile(currentVocab.sent || currentVocab.en, selectedLevel || 'L1');
+        const payload = buildPvpQuestionPayload(currentVocab, voiceProfile);
         if (!payload) return false;
 
         const { ref, update } = window.firebaseModules;
@@ -3801,7 +3878,7 @@ function preloadCurrentListeningPrompt() {
     if (currentPracticeMode !== 'LISTENING' || !currentVocab) return;
     const textToRead = (currentVocab.sent || currentVocab.en || '').trim();
     if (!textToRead) return;
-    const voiceProfile = ensureListeningPromptVoiceProfile(textToRead, selectedLevel || 'L1');
+    const voiceProfile = getCurrentListeningVoiceProfile(textToRead, selectedLevel || 'L1');
     preloadListeningAzureAudio(
         textToRead,
         'en-US',
@@ -3820,7 +3897,7 @@ async function playListeningAzureText(text, element = null, startListeningTimer 
     stopListeningPlayback();
     const playbackToken = ++listeningPlaybackToken;
 
-    const voiceProfile = ensureListeningPromptVoiceProfile(text, selectedLevel || 'L1');
+    const voiceProfile = getCurrentListeningVoiceProfile(text, selectedLevel || 'L1');
     const result = await preloadListeningAzureAudio(text, 'en-US', selectedLevel || 'L1', voiceProfile);
     if (playbackToken !== listeningPlaybackToken) return true;
 
@@ -5005,6 +5082,12 @@ function startPlayerTurn() {
         // �ГQ����
         currentPhase = 'PLAYER_TURN';
         switchScene('PLAYER');
+
+        if (gameMode === 'PVP' && currentPracticeMode === 'LISTENING' && playerRole === 'host') {
+            primePvpSharedQuestionIfNeeded().catch(error => {
+                console.warn('[PVP Listening Prime] Failed to prime shared question:', error);
+            });
+        }
 
         // --- 10���xλ���� ---
         startTurnSelectionTimer(true);
