@@ -98,8 +98,10 @@ const listeningTtsCache = new Map();
 const listeningPreparedAudioCache = new Map();
 let listeningPlaybackAudio = null;
 let listeningPlaybackObjectUrl = '';
+let listeningPlaybackBoost = null;
 let listeningPlaybackToken = 0;
 let listeningTimerStartTimeout = null;
+const LISTENING_VOICE_GAIN = 1.2;
 const LISTENING_VOICE_ROTATION = [
     {
         label: 'Ava (Canada)',
@@ -3610,6 +3612,54 @@ function clearListeningTimerStartTimeout() {
     }
 }
 
+function getListeningVoiceVolume() {
+    const baseVolume = (typeof gameVolume !== 'undefined' && Number.isFinite(gameVolume.voice))
+        ? gameVolume.voice
+        : 1.0;
+    return Math.max(0, Math.min(1, baseVolume));
+}
+
+function getBoostedListeningVoiceVolume() {
+    return Math.max(0, Math.min(1, getListeningVoiceVolume() * LISTENING_VOICE_GAIN));
+}
+
+function clearListeningPlaybackBoost() {
+    if (!listeningPlaybackBoost) return;
+    const boost = listeningPlaybackBoost;
+    listeningPlaybackBoost = null;
+
+    try {
+        boost.source?.disconnect();
+    } catch (_error) {}
+    try {
+        boost.gain?.disconnect();
+    } catch (_error) {}
+    try {
+        boost.context?.close();
+    } catch (_error) {}
+}
+
+function applyListeningPlaybackBoost(audio) {
+    audio.volume = getListeningVoiceVolume();
+
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContextClass) return null;
+
+    try {
+        const context = new AudioContextClass();
+        const source = context.createMediaElementSource(audio);
+        const gain = context.createGain();
+        gain.gain.value = LISTENING_VOICE_GAIN;
+        source.connect(gain);
+        gain.connect(context.destination);
+        listeningPlaybackBoost = { context, source, gain };
+        return context;
+    } catch (error) {
+        console.warn('[Listening TTS] Playback boost unavailable:', error);
+        return null;
+    }
+}
+
 function getListeningTtsCacheKey(text, locale = 'en-US', levelKey = '') {
     return `${locale}::${levelKey || ''}::${(text || '').trim()}`;
 }
@@ -3726,6 +3776,7 @@ function stopListeningPlayback() {
     clearListeningTimerStartTimeout();
     listeningPlaybackToken++;
     window.speechSynthesis.cancel();
+    clearListeningPlaybackBoost();
     if (!listeningPlaybackAudio) return;
     try {
         listeningPlaybackAudio.pause();
@@ -3988,13 +4039,13 @@ async function playListeningAzureText(text, element = null, startListeningTimer 
 
     const objectUrl = result.objectUrl;
     const audio = new Audio(objectUrl);
-    const voiceVolume = (typeof gameVolume !== 'undefined' && Number.isFinite(gameVolume.voice))
-        ? Math.max(0, Math.min(1, gameVolume.voice))
-        : 1.0;
-    audio.volume = voiceVolume;
+    const audioContext = applyListeningPlaybackBoost(audio);
     audio.preload = 'auto';
 
     const cleanup = () => {
+        if (listeningPlaybackAudio === audio) {
+            clearListeningPlaybackBoost();
+        }
         if (listeningPlaybackObjectUrl === objectUrl) {
             listeningPlaybackObjectUrl = '';
         }
@@ -4071,6 +4122,9 @@ async function playListeningAzureText(text, element = null, startListeningTimer 
 
     listeningPlaybackAudio = audio;
     listeningPlaybackObjectUrl = objectUrl;
+    if (audioContext?.state === 'suspended') {
+        await audioContext.resume().catch(() => {});
+    }
     await audio.play();
     return true;
 }
@@ -9053,10 +9107,7 @@ async function speakText(text, element = null, startListeningTimer = false) {
 
     // 3. �O���Z�􅢔� (���������O��)
     // ��ʹ��δ�������O�����@�δ��aҲ���Ԅ����A�Oֵ���������e
-    const voiceVolume = (typeof gameVolume !== 'undefined' && Number.isFinite(gameVolume.voice))
-        ? Math.max(0, Math.min(1, gameVolume.voice))
-        : 1.0;
-    utterance.volume = voiceVolume;
+    utterance.volume = getBoostedListeningVoiceVolume();
 
     // �Lԇ���� Google Voice ������Ӣ��
     if (typeof techVoice !== 'undefined' && techVoice) {
