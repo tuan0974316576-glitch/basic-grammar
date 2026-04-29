@@ -955,7 +955,6 @@ let isTargeting = false;
 
     const BATTLE_EFFECT_IMAGE_SOURCES = [
         'missile_sprite.png',
-        'turret_02_explosion_01_anim.png',
         'close.png',
         'nuke_1.png',
         'nuke_2.png'
@@ -1000,6 +999,7 @@ let isTargeting = false;
 
         preloadEffekseerEffect('vanguardsNuke');
         preloadEffekseerEffect('missileImpact');
+        preloadEffekseerEffect('vanguardsNormalStrike');
         preloadEffekseerEffect('normalAttack');
         preloadEffekseerEffect('aureliansNormalAttack');
     }
@@ -5502,7 +5502,13 @@ function triggerAnimation(cell, type) {
             );
             return;
         } else {
-            d.classList.add('anim-blue');
+            const rect = cell.getBoundingClientRect();
+            playEffekseerEffect(
+                'vanguardsNormalStrike',
+                rect.left + rect.width / 2,
+                rect.top + rect.height / 2
+            );
+            return;
         }
     }
     // �� �P�I�޸� 1�����Ӯ��ӵ� Board (����)�������� Cell (�ӌ�) ��
@@ -9256,6 +9262,14 @@ const EFFEKSEER_EFFECTS = {
         playScale: 0.34,
         speed: 1.08,
         duration: 820,
+        viewportSize: 4096
+    },
+    vanguardsNormalStrike: {
+        path: 'effects/vanguards/normal_strike/Strike2_Lv1_Blue_Vanguards.efkefc',
+        loadScale: 1,
+        playScale: 0.22,
+        speed: 1.12,
+        duration: 620,
         viewportSize: 4096
     },
     normalAttack: {

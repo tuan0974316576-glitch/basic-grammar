@@ -470,17 +470,6 @@ body {
             filter: drop-shadow(0 0 5px #00f0ff);
         }
 
-        /* --- 動畫特效 --- */
-        .anim-blue {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 20;
-            background-image: url('turret_02_explosion_01_anim.png');
-            background-repeat: no-repeat;
-            background-size: 700% 100%; /* 7格圖 */
-            animation: playBlue 0.5s steps(6) forwards;
-            image-rendering: pixelated; pointer-events: none;
-        }
-        @keyframes playBlue { from { background-position: 0 0; } to { background-position: 100% 0; } }
-
         /* --- Modal (解碼視窗) --- */
 /* --- Modal (解碼視窗) - 電腦版預設 (保持置中) --- */
     #launch-modal { 
