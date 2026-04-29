@@ -3329,6 +3329,7 @@ async function openLaunchModal(index) {
     if (gameMode !== 'PVP') {
         assignSentenceForCurrentVocab();
     }
+    preloadCurrentListeningPrompt();
     preloadLikelyNextListeningPrompt();
     
     // �@ȡ����Ԫ��
@@ -3434,9 +3435,11 @@ if (currentPracticeMode === 'SPEAKING') {
         qDisplay.innerHTML = renderListeningAnswerDisplay(targetWord, "");
         qDisplay.style.color = "var(--primary)";
 
-        // �Ԅ��x���������
-        preloadListeningAzureAudio(textToRead).catch(() => {});
-        setTimeout(() => speakText(textToRead, null, true), 300);
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                speakText(textToRead, null, true);
+            });
+        });
 
     } else {
         qDisplay.style.display = 'block';
@@ -3751,6 +3754,19 @@ function preloadLikelyNextListeningPrompt() {
             peekNextListeningVoiceProfile()
         ).catch(() => {});
     }
+}
+
+function preloadCurrentListeningPrompt() {
+    if (currentPracticeMode !== 'LISTENING' || !currentVocab) return;
+    const textToRead = (currentVocab.sent || currentVocab.en || '').trim();
+    if (!textToRead) return;
+    const voiceProfile = ensureListeningPromptVoiceProfile(textToRead, selectedLevel || 'L1');
+    preloadListeningAzureAudio(
+        textToRead,
+        'en-US',
+        selectedLevel || 'L1',
+        voiceProfile
+    ).catch(() => {});
 }
 
 async function playListeningAzureText(text, element = null, startListeningTimer = false) {
