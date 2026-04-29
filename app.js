@@ -95,6 +95,7 @@ let speakingDebriefPlaybackAudio = null;
 let speakingDebriefPlaybackObjectUrl = '';
 let speakingDebriefBgmRestoreVolume = null;
 const listeningTtsCache = new Map();
+const listeningPreparedAudioCache = new Map();
 let listeningPlaybackAudio = null;
 let listeningPlaybackObjectUrl = '';
 let listeningPlaybackToken = 0;
@@ -3237,6 +3238,7 @@ function handleEnemyGridClick(index) {
 
 // �����i���Ӯ��������� (�ӑB�r�L��)
 function runTargetLockAnimation(index, onComplete) {
+    warmListeningPlaybackDuringTargetLock();
     const grid = document.getElementById('enemy-grid');
     const cell = grid.children[index];
     
@@ -3676,6 +3678,42 @@ function preloadListeningAzureAudio(text, locale = 'en-US', levelKey = '', voice
     return request;
 }
 
+function prepareListeningPlaybackAsset(text, locale = 'en-US', levelKey = '', voiceProfile = null) {
+    const cleanText = (text || '').trim();
+    if (!cleanText) return Promise.reject(new Error('Text is required for prepared listening audio.'));
+
+    const cacheKey = `${getListeningTtsCacheKey(cleanText, locale, levelKey)}::${buildListeningVoiceCacheKey(voiceProfile)}`;
+    const cached = listeningPreparedAudioCache.get(cacheKey);
+    if (cached) return cached;
+
+    const request = preloadListeningAzureAudio(cleanText, locale, levelKey, voiceProfile)
+        .then((result) => {
+            const binary = atob(result.audioBase64 || '');
+            const bytes = new Uint8Array(binary.length);
+            for (let i = 0; i < binary.length; i++) {
+                bytes[i] = binary.charCodeAt(i);
+            }
+
+            const objectUrl = URL.createObjectURL(new Blob([bytes], { type: result.format || 'audio/mpeg' }));
+            const warmAudio = new Audio(objectUrl);
+            warmAudio.preload = 'auto';
+            warmAudio.load();
+
+            return {
+                ...result,
+                objectUrl,
+                cacheKey
+            };
+        })
+        .catch((error) => {
+            listeningPreparedAudioCache.delete(cacheKey);
+            throw error;
+        });
+
+    listeningPreparedAudioCache.set(cacheKey, request);
+    return request;
+}
+
 function stopListeningPlayback() {
     clearListeningTimerStartTimeout();
     listeningPlaybackToken++;
@@ -3887,6 +3925,45 @@ function preloadCurrentListeningPrompt() {
     ).catch(() => {});
 }
 
+function warmListeningPlaybackDuringTargetLock() {
+    if (currentPracticeMode !== 'LISTENING') return;
+
+    let textToRead = '';
+    let voiceProfile = null;
+
+    if (gameMode === 'PVP') {
+        const questionPayload = latestPVPSetupData?.currentQuestion || null;
+        textToRead = String(questionPayload?.sent || questionPayload?.en || '').trim();
+        if (questionPayload?.listeningVoiceName) {
+            voiceProfile = {
+                label: 'PVP Shared',
+                voiceName: questionPayload.listeningVoiceName,
+                accentLocale: questionPayload.listeningAccentLocale || 'en-US'
+            };
+        }
+    } else if (pendingBattleVocab) {
+        const preview = getPreviewSentenceForWord(pendingBattleVocab, 'listening', selectedLevel || 'L1');
+        textToRead = String(preview?.text || '').trim();
+        if (textToRead) {
+            voiceProfile = ensureListeningPromptVoiceProfile(textToRead, selectedLevel || 'L1');
+        }
+    } else if (currentVocab) {
+        textToRead = String(currentVocab.sent || currentVocab.en || '').trim();
+        if (textToRead) {
+            voiceProfile = getCurrentListeningVoiceProfile(textToRead, selectedLevel || 'L1');
+        }
+    }
+
+    if (!textToRead) return;
+
+    prepareListeningPlaybackAsset(
+        textToRead,
+        'en-US',
+        selectedLevel || 'L1',
+        voiceProfile
+    ).catch(() => {});
+}
+
 async function playListeningAzureText(text, element = null, startListeningTimer = false) {
     const hiddenInput = document.getElementById('hidden-input');
     const shouldMaintainFocus = hiddenInput && hiddenInput.style.display !== 'none' &&
@@ -3898,16 +3975,10 @@ async function playListeningAzureText(text, element = null, startListeningTimer 
     const playbackToken = ++listeningPlaybackToken;
 
     const voiceProfile = getCurrentListeningVoiceProfile(text, selectedLevel || 'L1');
-    const result = await preloadListeningAzureAudio(text, 'en-US', selectedLevel || 'L1', voiceProfile);
+    const result = await prepareListeningPlaybackAsset(text, 'en-US', selectedLevel || 'L1', voiceProfile);
     if (playbackToken !== listeningPlaybackToken) return true;
 
-    const binary = atob(result.audioBase64 || '');
-    const bytes = new Uint8Array(binary.length);
-    for (let i = 0; i < binary.length; i++) {
-        bytes[i] = binary.charCodeAt(i);
-    }
-
-    const objectUrl = URL.createObjectURL(new Blob([bytes], { type: result.format || 'audio/mpeg' }));
+    const objectUrl = result.objectUrl;
     const audio = new Audio(objectUrl);
     const voiceVolume = (typeof gameVolume !== 'undefined' && Number.isFinite(gameVolume.voice))
         ? Math.max(0, Math.min(1, gameVolume.voice))
@@ -3917,7 +3988,6 @@ async function playListeningAzureText(text, element = null, startListeningTimer 
 
     const cleanup = () => {
         if (listeningPlaybackObjectUrl === objectUrl) {
-            URL.revokeObjectURL(objectUrl);
             listeningPlaybackObjectUrl = '';
         }
         if (listeningPlaybackAudio === audio) {
