@@ -9268,14 +9268,14 @@ const EFFEKSEER_EFFECTS = {
         path: 'effects/vanguards/normal_strike/Strike2_Lv1_Blue_Vanguards.efkefc',
         loadScale: 1,
         playScale: 0.22,
-        speed: 1.12,
-        duration: 620,
+        speed: 0.67,
+        duration: 1030,
         viewportSize: 4096
     },
     normalAttack: {
         path: 'effects/vanguards/normal_explosion/normal_explosion.efkefc',
         loadScale: 1,
-        playScale: 0.2,
+        playScale: 0.17,
         speed: 1.15,
         duration: 520,
         viewportSize: 4096
@@ -9283,7 +9283,7 @@ const EFFEKSEER_EFFECTS = {
     aureliansNormalAttack: {
         path: 'effects/aurelians/normal_attack/Circular Impact_Aurelians.efkefc',
         loadScale: 1,
-        playScale: 0.2,
+        playScale: 0.06,
         speed: 1.12,
         duration: 620,
         viewportSize: 4096
