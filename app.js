@@ -953,7 +953,6 @@ let isTargeting = false;
 
     const BATTLE_EFFECT_IMAGE_SOURCES = [
         'missile_sprite.png',
-        'Explosion-A.png',
         'turret_02_explosion_01_anim.png',
         'turret_01_explosion.png',
         'explosion-c_gold.png',
@@ -1000,6 +999,7 @@ let isTargeting = false;
         });
 
         preloadEffekseerEffect('vanguardsNuke');
+        preloadEffekseerEffect('missileImpact');
     }
 
    
@@ -9183,6 +9183,14 @@ const EFFEKSEER_EFFECTS = {
         speed: 1,
         duration: 1500,
         viewportSize: 4096
+    },
+    missileImpact: {
+        path: 'effects/vanguards/missile_fire_punch/Fire Punch.efkefc',
+        loadScale: 1,
+        playScale: 0.34,
+        speed: 1.08,
+        duration: 820,
+        viewportSize: 4096
     }
 };
 const DEFAULT_INSTRUCTION = {
@@ -9756,15 +9764,13 @@ function playMissileStrikeAnimation(boardId, topLeftIndex, lockOverlay, onComple
     const bottom = Math.max(...cells.map(cell => cell.offsetTop + cell.offsetHeight));
     const centerX = (left + right) / 2;
     const centerY = (top + bottom) / 2;
-    const impactWidth = (right - left) + 44;
-    const impactHeight = (bottom - top) + 44;
     const gridRect = grid.getBoundingClientRect();
     const missileHeight = 73;
     const impactTop = centerY - missileHeight;
     const startTop = -(gridRect.top + missileHeight + 12);
     const travelDistance = Math.abs(impactTop - startTop);
     const flightDuration = Math.max(620, Math.round(travelDistance / 1.2));
-    const totalDuration = flightDuration + MISSILE_EXPLOSION_DURATION;
+    const totalDuration = flightDuration + Math.max(MISSILE_EXPLOSION_DURATION, EFFEKSEER_EFFECTS.missileImpact.duration);
 
     const overlay = document.createElement('div');
     overlay.className = 'missile-strike-overlay';
@@ -9776,21 +9782,17 @@ function playMissileStrikeAnimation(boardId, topLeftIndex, lockOverlay, onComple
     missile.style.setProperty('--missile-impact-top', `${impactTop}px`);
     missile.style.setProperty('--missile-flight-duration', `${flightDuration}ms`);
 
-    const explosion = document.createElement('div');
-    explosion.className = 'missile-explosion';
-    explosion.style.left = `${centerX}px`;
-    explosion.style.top = `${centerY}px`;
-    explosion.style.width = `${impactWidth}px`;
-    explosion.style.height = `${impactHeight}px`;
-
     overlay.appendChild(missile);
     grid.appendChild(overlay);
 
     setTimeout(() => {
+        const impactX = gridRect.left + centerX;
+        const impactY = gridRect.top + centerY;
+
         if (lockOverlay) lockOverlay.remove();
         missile.remove();
         playSound('destroy-sfx');
-        overlay.appendChild(explosion);
+        playEffekseerEffect('missileImpact', impactX, impactY);
     }, flightDuration);
 
     setTimeout(() => {

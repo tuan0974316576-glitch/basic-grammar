@@ -5236,21 +5236,6 @@ body {
         drop-shadow(0 0 16px rgba(255, 122, 32, 0.16));
 }
 
-.missile-explosion {
-    position: absolute;
-    width: 116px;
-    height: 116px;
-    transform: translate(-50%, -50%);
-    background-image: url('Explosion-A.png');
-    background-repeat: no-repeat;
-    background-size: 1100% 100%;
-    animation: explosionFrames 0.72s steps(10) forwards;
-    image-rendering: pixelated;
-    filter:
-        drop-shadow(0 0 16px rgba(255, 220, 120, 0.46))
-        drop-shadow(0 0 24px rgba(255, 122, 30, 0.28));
-}
-
 .nuke-sprite {
     position: absolute;
     top: var(--missile-start-top, -120px);
