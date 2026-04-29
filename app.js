@@ -3903,6 +3903,14 @@ function takeNextAiBattleVocab() {
         }
     }
 
+    if (stageReviewPool.length > 0) {
+        const pickedWord = pickBattleWordWithCooldown(stageReviewPool);
+        if (pickedWord) {
+            console.log(`[Pool 3 - Legacy Review] Review word: ${pickedWord.en} (${stageReviewPool.length} prior-stage words available)`);
+            return pickedWord;
+        }
+    }
+
     const masteredWords = primaryWordPool.filter(word => {
         if (!userMastery[masteryKey]) return false;
         if (!userMastery[masteryKey][selectedLevel]) return false;
@@ -3913,15 +3921,7 @@ function takeNextAiBattleVocab() {
         const pickedWord = pickBattleWordWithCooldown(masteredWords);
         if (pickedWord) {
             const masteryData = userMastery[masteryKey][selectedLevel][pickedWord.en];
-            console.log(`[Pool 3 - Stage Review] Mastered word: ${pickedWord.en} (count: ${masteryData.count})`);
-            return pickedWord;
-        }
-    }
-
-    if (stageReviewPool.length > 0) {
-        const pickedWord = pickBattleWordWithCooldown(stageReviewPool);
-        if (pickedWord) {
-            console.log(`[Pool 4 - Legacy Review] Review word: ${pickedWord.en} (${stageReviewPool.length} prior-stage words available)`);
+            console.log(`[Pool 4 - Stage Review] Mastered word: ${pickedWord.en} (count: ${masteryData.count})`);
             return pickedWord;
         }
     }
