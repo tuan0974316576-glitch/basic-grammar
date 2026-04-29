@@ -18,6 +18,7 @@ function closeVocabScreen() {
     const backButton = document.querySelector('#vocab-screen > .btn');
 
     if (vocabScreenMode === 'stage-preview') {
+        if (typeof restoreStageVocabBgm === 'function') restoreStageVocabBgm();
         vocabScreen.classList.remove('stage-preview');
         if (title) title.innerText = 'CODE LIST';
         if (subtitle) subtitle.innerText = 'CLASSIFIED VOCABULARY DATABASE';
@@ -370,6 +371,7 @@ function filterVocabList() {
 
 function openVocabScreen() {
     playSound('open-room-sfx');
+    if (typeof restoreStageVocabBgm === 'function') restoreStageVocabBgm();
 
     const suppliesDisplay = document.getElementById('coins-display');
     if (suppliesDisplay) {
@@ -385,6 +387,7 @@ function openVocabScreen() {
 
 function openStageVocabPreview(levelKey, stageWords, previewTitle) {
     playSound('open-room-sfx');
+    if (typeof duckStageVocabBgm === 'function') duckStageVocabBgm();
 
     const suppliesDisplay = document.getElementById('coins-display');
     if (suppliesDisplay) {

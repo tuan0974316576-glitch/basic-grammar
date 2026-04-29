@@ -1,4 +1,5 @@
 let bgmFadeInterval = null;
+let stageVocabBgmRestoreVolume = null;
 
 const alertSfx = new Audio('your-fleet-is-under-attack.mp3');
 alertSfx.volume = 1.0;
@@ -56,6 +57,24 @@ function fadeBgm(targetVol, duration = 800) {
     }, stepTime);
 }
 
+function duckStageVocabBgm(targetVolume = 0.08) {
+    const bgm = document.getElementById('bgm');
+    if (!bgm || bgm.paused) return;
+    if (stageVocabBgmRestoreVolume === null) {
+        stageVocabBgmRestoreVolume = bgm.volume;
+    }
+    bgm.volume = Math.max(0, Math.min(1, targetVolume));
+}
+
+function restoreStageVocabBgm() {
+    const bgm = document.getElementById('bgm');
+    if (!bgm || stageVocabBgmRestoreVolume === null) return;
+    bgm.volume = (gameVolume && Number.isFinite(gameVolume.bgm))
+        ? gameVolume.bgm * BGM_MAX_GAIN
+        : stageVocabBgmRestoreVolume;
+    stageVocabBgmRestoreVolume = null;
+}
+
 function playUnderAttackAlert() {
     const now = Date.now();
     if (now - lastAlertTime > 8000) {
@@ -108,7 +127,7 @@ function updateVolume(type, val) {
     if (type === 'bgm') {
         const bgm = document.getElementById('bgm');
         if (bgm) {
-            bgm.volume = v * BGM_MAX_GAIN;
+            bgm.volume = stageVocabBgmRestoreVolume === null ? v * BGM_MAX_GAIN : 0.08;
         }
     }
 
