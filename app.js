@@ -5249,7 +5249,10 @@ function triggerAnimation(cell, type) {
 function playSound(id) {
     const s = document.getElementById(id);
     if(s) {
-        s.volume = (typeof gameVolume !== 'undefined' && isFinite(gameVolume.sfx)) ? gameVolume.sfx : 0.5;
+        const baseVolume = (typeof gameVolume !== 'undefined' && isFinite(gameVolume.sfx)) ? gameVolume.sfx : 0.5;
+        s.volume = id === 'enter-sfx'
+            ? Math.min(1, Math.max(0.42, baseVolume * 1.35))
+            : baseVolume;
         s.currentTime = 0;
         s.play().catch(e=>{});
     }
@@ -8728,7 +8731,7 @@ const checkInputInterval = setInterval(() => {
             // ÿ�δ��֣����� enter_word.mp3
             // ��������Ч������_���B��r���ԯB����
             const sound = new Audio('enter_word.mp3'); 
-            sound.volume = 0.3; // 30% �������M��̫��
+            sound.volume = 0.45; // boost typing sound slightly
             
             // ���� (�� catch ��ֹ�g�[�����)
             sound.play().catch(() => {}); 
