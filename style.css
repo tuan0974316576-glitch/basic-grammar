@@ -5261,7 +5261,7 @@ body {
     background-repeat: no-repeat;
     background-size: 500% 500%;
     background-position: 0 0;
-    image-rendering: pixelated;
+    image-rendering: auto;
     filter:
         drop-shadow(0 0 26px rgba(255, 255, 255, 0.66))
         drop-shadow(0 0 34px rgba(239, 68, 68, 0.42));
