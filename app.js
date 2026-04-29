@@ -6201,7 +6201,7 @@ function isElementActuallyVisible(elementId) {
     return styles.display !== 'none' && styles.visibility !== 'hidden' && styles.opacity !== '0';
 }
 
-async function respondToIncomingInvite(invite, status) {
+async function respondToIncomingInvite(invite, status, reason = null) {
     if (!invite || !window.db || !window.firebaseModules) return;
     const { ref, set, remove } = window.firebaseModules;
     const myId = window.myPlayerId || myPlayerId;
@@ -6211,6 +6211,7 @@ async function respondToIncomingInvite(invite, status) {
         inviteId: invite.inviteId,
         roomId: invite.roomId,
         status,
+        reason,
         by: myId,
         byName: myName,
         createdAt: Date.now()
@@ -6231,11 +6232,11 @@ async function acceptIncomingInvite() {
     }
 }
 
-async function declineIncomingInvite(autoReason = false) {
+async function declineIncomingInvite(autoReason = false, declineReason = null) {
     if (!currentIncomingInvite) return;
     const invite = currentIncomingInvite;
     closeIncomingInviteModal();
-    await respondToIncomingInvite(invite, 'declined');
+    await respondToIncomingInvite(invite, 'declined', declineReason);
     if (!autoReason) {
         showNotification('PVP INVITE DECLINED', 'warning', 2200);
     }
@@ -6261,7 +6262,7 @@ function handleIncomingInviteSnapshot(snapshot) {
             ageMs: invite.createdAt ? now - invite.createdAt : null
         });
         currentIncomingInvite = invite;
-        declineIncomingInvite(true);
+        declineIncomingInvite(true, 'expired');
         return;
     }
 
@@ -6272,7 +6273,7 @@ function handleIncomingInviteSnapshot(snapshot) {
             popupEnabled: false
         });
         currentIncomingInvite = invite;
-        declineIncomingInvite(true);
+        declineIncomingInvite(true, 'popup_disabled');
         return;
     }
 
@@ -6297,11 +6298,18 @@ function handleInviteResponseSnapshot(snapshot) {
     const { ref, remove } = window.firebaseModules;
     const status = response?.status;
     const name = response?.byName || 'COMMANDER';
+    const reason = response?.reason || null;
 
     if (status === 'accepted') {
         showNotification(`${name} ACCEPTED YOUR INVITE`, 'success', 2600);
     } else if (status === 'declined') {
-        showNotification(`${name} DECLINED YOUR INVITE`, 'warning', 2600);
+        let message = `${name} DECLINED YOUR INVITE`;
+        if (reason === 'popup_disabled') {
+            message = `${name} DECLINED // POPUPS DISABLED`;
+        } else if (reason === 'expired') {
+            message = `${name} DECLINED // INVITE EXPIRED`;
+        }
+        showNotification(message, 'warning', 2600);
     }
 
     remove(ref(window.db, `users/${window.myPlayerId}/pvpInbox/response`));
