@@ -956,7 +956,6 @@ let isTargeting = false;
     const BATTLE_EFFECT_IMAGE_SOURCES = [
         'missile_sprite.png',
         'turret_02_explosion_01_anim.png',
-        'explosion-c_gold.png',
         'close.png',
         'nuke_1.png',
         'nuke_2.png'
@@ -1002,6 +1001,7 @@ let isTargeting = false;
         preloadEffekseerEffect('vanguardsNuke');
         preloadEffekseerEffect('missileImpact');
         preloadEffekseerEffect('normalAttack');
+        preloadEffekseerEffect('aureliansNormalAttack');
     }
 
    
@@ -5494,7 +5494,13 @@ function triggerAnimation(cell, type) {
     if (type === 'blue') {
         // �z����ҷN��,Aurelians�ý�ɫ,�������{ɫ
         if (selectedRace === 'AURELIANS') {
-            d.classList.add('anim-gold');
+            const rect = cell.getBoundingClientRect();
+            playEffekseerEffect(
+                'aureliansNormalAttack',
+                rect.left + rect.width / 2,
+                rect.top + rect.height / 2
+            );
+            return;
         } else {
             d.classList.add('anim-blue');
         }
@@ -9258,6 +9264,14 @@ const EFFEKSEER_EFFECTS = {
         playScale: 0.2,
         speed: 1.15,
         duration: 520,
+        viewportSize: 4096
+    },
+    aureliansNormalAttack: {
+        path: 'effects/aurelians/normal_attack/Circular Impact_Aurelians.efkefc',
+        loadScale: 1,
+        playScale: 0.2,
+        speed: 1.12,
+        duration: 620,
         viewportSize: 4096
     }
 };
