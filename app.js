@@ -9179,9 +9179,10 @@ const EFFEKSEER_EFFECTS = {
     vanguardsNuke: {
         path: 'effects/vanguards/firepunch/FirePunch.efkefc',
         loadScale: 1,
-        playScale: 0.28,
+        playScale: 1,
         speed: 1,
-        duration: 1500
+        duration: 1500,
+        viewportSize: 4096
     }
 };
 const DEFAULT_INSTRUCTION = {
@@ -9989,18 +9990,18 @@ function resizeEffekseerCanvas() {
     }
 }
 
-function setEffekseerScreenMatrices() {
+function setEffekseerScreenMatrices(viewportSize) {
     const canvas = effekseerEffectState.canvas;
     const context = effekseerEffectState.context;
     if (!canvas || !context) return;
 
-    const width = canvas.width;
-    const height = canvas.height;
+    const projectionSize = viewportSize || Math.max(canvas.width, canvas.height, 1);
+    const depthScale = -(projectionSize / Math.max(canvas.height, 1));
     context.setProjectionMatrix([
-        2 / width, 0, 0, 0,
-        0, -2 / height, 0, 0,
-        0, 0, 1, 0,
-        -1, 1, 0, 1
+        1, 0, 0, 0,
+        0, -1, 0, 0,
+        0, 0, 1, depthScale,
+        0, 0, 0, 1
     ]);
     context.setCameraMatrix([
         1, 0, 0, 0,
@@ -10093,15 +10094,20 @@ function playEffekseerEffect(effectKey, screenX, screenY, options = {}) {
         const context = effekseerEffectState.context;
         if (!context || !effect) return null;
 
-        const pixelRatio = effekseerEffectState.pixelRatio || 1;
-        const handle = context.play(effect, screenX * pixelRatio, screenY * pixelRatio, 0);
+        const handle = context.play(effect);
         if (!handle) return null;
 
-        const playScale = (options.scale || config.playScale || 1) * pixelRatio;
+        const playScale = options.scale || config.playScale || 1;
         handle.setScale(playScale, playScale, playScale);
         handle.setSpeed(options.speed || config.speed || 1);
+        handle.setLocation(0, 0, 0);
 
-        effekseerEffectState.activeHandles.push(handle);
+        effekseerEffectState.activeHandles.push({
+            handle,
+            screenX,
+            screenY,
+            viewportSize: options.viewportSize || config.viewportSize || 4096
+        });
         startEffekseerRenderLoop();
 
         window.setTimeout(() => {
@@ -10136,15 +10142,25 @@ function startEffekseerRenderLoop() {
         gl.viewport(0, 0, canvas.width, canvas.height);
         gl.clearColor(0, 0, 0, 0);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-        setEffekseerScreenMatrices();
         context.update(deltaFrames);
-        context.beginDraw();
-        effekseerEffectState.activeHandles = effekseerEffectState.activeHandles.filter(handle => {
+        effekseerEffectState.activeHandles = effekseerEffectState.activeHandles.filter(entry => {
+            const handle = entry && entry.handle;
             if (!handle || !handle.exists) return false;
+            const viewportSize = entry.viewportSize || 4096;
+            const x = Math.round((entry.screenX || 0) * effekseerEffectState.pixelRatio);
+            const y = Math.round((entry.screenY || 0) * effekseerEffectState.pixelRatio);
+            gl.viewport(
+                x - Math.round(viewportSize / 2),
+                canvas.height - y - Math.round(viewportSize / 2),
+                viewportSize,
+                viewportSize
+            );
+            setEffekseerScreenMatrices(viewportSize);
+            context.beginDraw();
             context.drawHandle(handle);
+            context.endDraw();
             return true;
         });
-        context.endDraw();
 
         if (effekseerEffectState.activeHandles.length > 0) {
             effekseerEffectState.animationFrameId = requestAnimationFrame(render);
