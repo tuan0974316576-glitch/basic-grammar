@@ -9179,7 +9179,7 @@ const EFFEKSEER_EFFECTS = {
     vanguardsNuke: {
         path: 'effects/vanguards/firepunch/FirePunch.efkefc',
         loadScale: 1,
-        playScale: 1,
+        playScale: 0.72,
         speed: 1,
         duration: 1500,
         viewportSize: 4096
@@ -10026,7 +10026,7 @@ function initEffekseerRuntime() {
                 const gl = canvas.getContext('webgl', {
                     alpha: true,
                     antialias: true,
-                    premultipliedAlpha: false,
+                    premultipliedAlpha: true,
                     preserveDrawingBuffer: false
                 });
 

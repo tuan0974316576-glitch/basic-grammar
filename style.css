@@ -5213,6 +5213,8 @@ body {
     height: 100vh;
     pointer-events: none;
     z-index: 1301;
+    mix-blend-mode: screen;
+    opacity: 0.88;
 }
 
 .missile-sprite {
