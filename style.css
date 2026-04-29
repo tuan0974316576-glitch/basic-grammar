@@ -491,25 +491,6 @@ body {
         }
         @keyframes playGold { from { background-position: 0 0; } to { background-position: 100% 0; } }
 
-        .anim-orange {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 21;
-            background-image: url('turret_01_explosion.png');
-            background-repeat: no-repeat;
-            background-size: 500% 100%; /* 5格圖 */
-            animation: playOrange 0.5s steps(4) forwards;
-            image-rendering: pixelated; pointer-events: none;
-        }
-        @keyframes playOrange { from { background-position: 0 0; } to { background-position: 100% 0; } }
-        .anim-teal {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 21;
-            background-image: url('turret_01_explosion.png');
-            background-repeat: no-repeat;
-            background-size: 500% 100%;
-            animation: playOrange 0.5s steps(4) forwards;
-            image-rendering: pixelated; pointer-events: none;
-            filter: hue-rotate(140deg) saturate(1.15) brightness(1.15);
-        }
-
         /* --- Modal (解碼視窗) --- */
 /* --- Modal (解碼視窗) - 電腦版預設 (保持置中) --- */
     #launch-modal { 

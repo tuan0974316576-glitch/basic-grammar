@@ -954,7 +954,6 @@ let isTargeting = false;
     const BATTLE_EFFECT_IMAGE_SOURCES = [
         'missile_sprite.png',
         'turret_02_explosion_01_anim.png',
-        'turret_01_explosion.png',
         'explosion-c_gold.png',
         'close.png',
         'nuke_1.png',
@@ -1000,6 +999,7 @@ let isTargeting = false;
 
         preloadEffekseerEffect('vanguardsNuke');
         preloadEffekseerEffect('missileImpact');
+        preloadEffekseerEffect('normalAttack');
     }
 
    
@@ -5417,6 +5417,16 @@ function checkMyShipDestruction(hitIdx) {
 
     // --- �޸���ĄӮ����� (�_���Ӯ��ڑ�Ş����) ---
 function triggerAnimation(cell, type) {
+    if (type === 'orange') {
+        const rect = cell.getBoundingClientRect();
+        playEffekseerEffect(
+            'normalAttack',
+            rect.left + rect.width / 2,
+            rect.top + rect.height / 2
+        );
+        return;
+    }
+
     const d = document.createElement('div');
 
     // ���� �����N���x��explosion ����
@@ -5428,14 +5438,6 @@ function triggerAnimation(cell, type) {
             d.classList.add('anim-blue');
         }
     }
-    if (type === 'orange') {
-        if (selectedRace === 'AURELIANS') {
-            d.classList.add('anim-teal');
-        } else {
-            d.classList.add('anim-orange');
-        }
-    }
-    
     // �� �P�I�޸� 1�����Ӯ��ӵ� Board (����)�������� Cell (�ӌ�) ��
     // �@�ӄӮ��Ϳ��Ը���Ş (ship-overlay) ��ͬһ���Ӽ�����
     const board = cell.parentElement; 
@@ -9190,6 +9192,14 @@ const EFFEKSEER_EFFECTS = {
         playScale: 0.34,
         speed: 1.08,
         duration: 820,
+        viewportSize: 4096
+    },
+    normalAttack: {
+        path: 'effects/vanguards/normal_explosion/normal_explosion.efkefc',
+        loadScale: 1,
+        playScale: 0.2,
+        speed: 1.15,
+        duration: 520,
         viewportSize: 4096
     }
 };
