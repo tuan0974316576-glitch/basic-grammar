@@ -1265,14 +1265,16 @@ function buildPvpQuestionPayload(word, voiceProfile = null) {
 }
 
 function hydrateCurrentVocabFromPvpQuestion(payload) {
-    if (!payload?.en || !Array.isArray(activeVocabList)) return false;
-    const baseWord = activeVocabList.find(word => word.en === payload.en);
-    if (!baseWord) return false;
+    if (!payload?.en) return false;
+    const baseWord = Array.isArray(activeVocabList)
+        ? activeVocabList.find(word => word.en === payload.en)
+        : null;
 
     currentVocab = {
-        ...baseWord,
-        ch: payload.ch || baseWord.ch || '',
-        sent: payload.sent || baseWord.sent || baseWord.en,
+        ...(baseWord || {}),
+        en: payload.en,
+        ch: payload.ch || baseWord?.ch || '',
+        sent: payload.sent || baseWord?.sent || payload.en,
         listeningAnswer: payload.listeningAnswer || null,
         listeningVoiceName: payload.listeningVoiceName || null,
         listeningAccentLocale: payload.listeningAccentLocale || null,
@@ -2433,6 +2435,11 @@ function initPVPListeners() {
             playSound('wrong-sfx');
             setTimeout(() => resetGame(), 1500);
             return;
+        }
+
+        latestPVPSetupData = data;
+        if (data.currentQuestion) {
+            preloadPvpSharedListeningQuestion(data.currentQuestion);
         }
 
         // --- ����/ʧ�� �Д� (���ֲ�׃) ---
