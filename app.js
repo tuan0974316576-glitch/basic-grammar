@@ -1343,6 +1343,7 @@ async function ensurePvpQuestionDeckReady(roomData = latestPVPSetupData) {
         questionDeck: deck,
         questionDeckReady: true
     };
+    pvpQuestionDeck = deck;
     pvpLocalQuestionIndex = 0;
     preloadPvpSharedListeningQuestion(deck[0]);
     console.log(`[PVP Question Deck] Ready: ${deck.length} questions`);
@@ -1350,7 +1351,9 @@ async function ensurePvpQuestionDeckReady(roomData = latestPVPSetupData) {
 }
 
 function getPvpDeckQuestion(roomData = latestPVPSetupData, questionIndex = pvpLocalQuestionIndex) {
-    const deck = roomData?.questionDeck;
+    const deck = Array.isArray(pvpQuestionDeck) && pvpQuestionDeck.length > 0
+        ? pvpQuestionDeck
+        : roomData?.questionDeck;
     if (!Array.isArray(deck) || deck.length === 0) return null;
     const index = Number.isInteger(questionIndex) ? questionIndex : 0;
     return deck[((index % deck.length) + deck.length) % deck.length] || null;
@@ -1393,6 +1396,9 @@ async function refreshLatestPvpRoomData() {
     const data = snapshot.val();
     if (data) {
         latestPVPSetupData = data;
+        if (Array.isArray(data.questionDeck) && data.questionDeck.length > 0) {
+            pvpQuestionDeck = data.questionDeck;
+        }
         const nextDeckQuestion = getPvpDeckQuestion(data);
         if (nextDeckQuestion) {
             preloadPvpSharedListeningQuestion(nextDeckQuestion);
@@ -1412,7 +1418,16 @@ async function resolvePvpSharedQuestion() {
     }
 
     const question = getPvpDeckQuestion();
-    if (!question) return false;
+    if (!question) {
+        console.warn('[PVP Question Deck] Missing local deck question', {
+            localDeckSize: Array.isArray(pvpQuestionDeck) ? pvpQuestionDeck.length : 0,
+            remoteDeckSize: Array.isArray(latestPVPSetupData?.questionDeck) ? latestPVPSetupData.questionDeck.length : 0,
+            pvpLocalQuestionIndex,
+            roomId: currentRoomId,
+            role: playerRole
+        });
+        return false;
+    }
 
     const hydrated = hydrateCurrentVocabFromPvpQuestion(question);
     if (!hydrated) return false;
@@ -1493,6 +1508,7 @@ function startEnemyTurn() {
     let pvpBattleStartPending = false;
     let pvpBattleStarted = false;
     let pvpLocalQuestionIndex = 0;
+    let pvpQuestionDeck = [];
     let latestPVPSetupData = null;
     const lobbyProfileCache = new Map();
     let inviteListenerUnsubscribe = null;
@@ -2238,6 +2254,7 @@ function createRoom() {
         pvpRaceSelectionShown = false;
         isEnteringPVPDeploy = false;
         pvpLocalQuestionIndex = 0;
+        pvpQuestionDeck = [];
         pvpBattleStarted = false;
         latestPVPSetupData = null;
 
@@ -2297,6 +2314,7 @@ async function joinRoomById(inputId, viaInvite = false) {
     pvpRaceSelectionShown = false;
     isEnteringPVPDeploy = false;
     pvpLocalQuestionIndex = 0;
+    pvpQuestionDeck = [];
     pvpBattleStarted = false;
     latestPVPSetupData = null;
     gameMode = 'PVP';
@@ -2441,6 +2459,9 @@ function initPVPListeners() {
         }
 
         latestPVPSetupData = data;
+        if (Array.isArray(data.questionDeck) && data.questionDeck.length > 0) {
+            pvpQuestionDeck = data.questionDeck;
+        }
         const nextDeckQuestion = getPvpDeckQuestion(data);
         if (nextDeckQuestion) {
             preloadPvpSharedListeningQuestion(nextDeckQuestion);
@@ -3031,6 +3052,7 @@ function enterPvpBattleFromRoom(data) {
 
     pvpBattleStarted = true;
     latestPVPSetupData = data;
+    pvpQuestionDeck = data.questionDeck;
     pvpLocalQuestionIndex = 0;
 
     if (battleUnsubscribe) {
@@ -5995,6 +6017,7 @@ function resetGame() {
     pvpBattleStartPending = false;
     pvpBattleStarted = false;
     pvpLocalQuestionIndex = 0;
+    pvpQuestionDeck = [];
     latestPVPSetupData = null;
     selectedStageIndex = null;
     selectedStageLabel = '';
@@ -6998,6 +7021,9 @@ function handlePVPMatchSetupSnapshot(data) {
     }
 
     latestPVPSetupData = data;
+    if (Array.isArray(data.questionDeck) && data.questionDeck.length > 0) {
+        pvpQuestionDeck = data.questionDeck;
+    }
     syncPVPSetupFromRoom(data);
     updatePVPBriefingPanel(data);
 
