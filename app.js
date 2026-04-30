@@ -1289,13 +1289,6 @@ function hydrateCurrentVocabFromPvpQuestion(payload) {
     return true;
 }
 
-function buildPvpQuestionConsumePatch() {
-    if (!playerRole) return {};
-    return {
-        [`currentQuestionPending/${playerRole}`]: false
-    };
-}
-
 function buildPvpQuestionDeck(count = PVP_SHARED_QUESTION_DECK_SIZE) {
     if (!Array.isArray(activeVocabList) || activeVocabList.length === 0) return [];
 
@@ -1342,59 +1335,25 @@ async function ensurePvpQuestionDeckReady(roomData = latestPVPSetupData) {
     const { ref, update } = window.firebaseModules;
     await update(ref(db, 'rooms/' + currentRoomId), {
         questionDeck: deck,
-        questionDeckReady: true,
-        questionIndex: 0,
-        currentQuestion: deck[0],
-        currentQuestionPending: { host: true, guest: true }
+        questionDeckReady: true
     });
 
     latestPVPSetupData = {
         ...(latestPVPSetupData || {}),
         questionDeck: deck,
-        questionDeckReady: true,
-        questionIndex: 0,
-        currentQuestion: deck[0],
-        currentQuestionPending: { host: true, guest: true }
+        questionDeckReady: true
     };
+    pvpLocalQuestionIndex = 0;
     preloadPvpSharedListeningQuestion(deck[0]);
     console.log(`[PVP Question Deck] Ready: ${deck.length} questions`);
     return true;
 }
 
-function getPvpDeckQuestion(roomData = latestPVPSetupData) {
+function getPvpDeckQuestion(roomData = latestPVPSetupData, questionIndex = pvpLocalQuestionIndex) {
     const deck = roomData?.questionDeck;
     if (!Array.isArray(deck) || deck.length === 0) return null;
-    const index = Number.isInteger(roomData?.questionIndex) ? roomData.questionIndex : 0;
+    const index = Number.isInteger(questionIndex) ? questionIndex : 0;
     return deck[((index % deck.length) + deck.length) % deck.length] || null;
-}
-
-function buildPvpQuestionAdvancePatch(answeredIndex = currentVocab?.deckIndex) {
-    const deck = latestPVPSetupData?.questionDeck;
-    if (!Array.isArray(deck) || deck.length === 0) {
-        return buildPvpQuestionConsumePatch();
-    }
-
-    const latestIndex = Number.isInteger(latestPVPSetupData?.questionIndex)
-        ? latestPVPSetupData.questionIndex
-        : 0;
-    const currentIndex = Number.isInteger(answeredIndex)
-        ? Math.max(answeredIndex, latestIndex)
-        : latestIndex;
-    const nextIndex = currentIndex + 1;
-    const nextQuestion = deck[nextIndex % deck.length] || null;
-
-    latestPVPSetupData = {
-        ...(latestPVPSetupData || {}),
-        questionIndex: nextIndex,
-        currentQuestion: nextQuestion,
-        currentQuestionPending: { host: true, guest: true }
-    };
-
-    return {
-        questionIndex: nextIndex,
-        currentQuestion: nextQuestion,
-        currentQuestionPending: { host: true, guest: true }
-    };
 }
 
 function preloadPvpSharedListeningQuestion(questionPayload) {
@@ -1427,57 +1386,6 @@ function getCurrentListeningVoiceProfile(text, levelKey = '') {
     return ensureListeningPromptVoiceProfile(text, levelKey);
 }
 
-async function primePvpSharedQuestionIfNeeded() {
-    if (gameMode !== 'PVP' || currentPracticeMode !== 'LISTENING' || playerRole !== 'host' || !currentRoomId) {
-        return false;
-    }
-
-    const currentPending = latestPVPSetupData?.currentQuestionPending || {};
-    const currentQuestion = latestPVPSetupData?.currentQuestion || null;
-    const bothConsumed = !!currentQuestion && currentPending.host === false && currentPending.guest === false;
-
-    if (currentQuestion && !bothConsumed) {
-        return false;
-    }
-
-    if (!Array.isArray(activeVocabList) || activeVocabList.length === 0) {
-        return false;
-    }
-
-    const previousCurrentVocab = currentVocab;
-    const pickedWord = pickBattleUniqueWord(activeVocabList);
-    if (!pickedWord) {
-        return false;
-    }
-
-    currentVocab = { ...pickedWord };
-    assignSentenceForCurrentVocab();
-    const preparedWord = { ...currentVocab };
-    const voiceProfile = getCurrentListeningVoiceProfile(preparedWord.sent || preparedWord.en, selectedLevel || 'L1');
-    currentVocab = previousCurrentVocab;
-
-    markBattleWordUsed(preparedWord);
-    const payload = buildPvpQuestionPayload(preparedWord, voiceProfile);
-    if (!payload) {
-        return false;
-    }
-
-    const { ref, update } = window.firebaseModules;
-    await update(ref(db, 'rooms/' + currentRoomId), {
-        currentQuestion: payload,
-        currentQuestionPending: { host: true, guest: true }
-    });
-
-    preloadPvpSharedListeningQuestion(payload);
-    latestPVPSetupData = {
-        ...(latestPVPSetupData || {}),
-        currentQuestion: payload,
-        currentQuestionPending: { host: true, guest: true }
-    };
-    console.log(`[PVP Listening Prime] Shared question primed: ${preparedWord.en}`);
-    return true;
-}
-
 async function refreshLatestPvpRoomData() {
     if (gameMode !== 'PVP' || !currentRoomId || !window.firebaseModules) return null;
     const { ref, get } = window.firebaseModules;
@@ -1488,8 +1396,6 @@ async function refreshLatestPvpRoomData() {
         const nextDeckQuestion = getPvpDeckQuestion(data);
         if (nextDeckQuestion) {
             preloadPvpSharedListeningQuestion(nextDeckQuestion);
-        } else if (data.currentQuestion) {
-            preloadPvpSharedListeningQuestion(data.currentQuestion);
         }
     }
     return data;
@@ -1498,75 +1404,25 @@ async function refreshLatestPvpRoomData() {
 async function resolvePvpSharedQuestion() {
     if (gameMode !== 'PVP' || !currentRoomId) return false;
 
-    let currentPending = latestPVPSetupData?.currentQuestionPending || {};
-    let currentQuestion = latestPVPSetupData?.currentQuestion || null;
-    let myPending = currentPending[playerRole] !== false;
-    let bothConsumed = !!currentQuestion && currentPending.host === false && currentPending.guest === false;
-
-    if (currentQuestion && myPending) {
-        return hydrateCurrentVocabFromPvpQuestion(currentQuestion);
-    }
-
-    const freshData = await refreshLatestPvpRoomData().catch(error => {
-        console.warn('[PVP Shared Question] Failed to refresh room data:', error);
-        return null;
-    });
-    if (freshData) {
-        const freshDeckQuestion = getPvpDeckQuestion(freshData);
-        if (freshDeckQuestion) {
-            return hydrateCurrentVocabFromPvpQuestion(freshDeckQuestion);
-        }
-
-        currentPending = freshData.currentQuestionPending || {};
-        currentQuestion = freshData.currentQuestion || null;
-        myPending = currentPending[playerRole] !== false;
-        bothConsumed = !!currentQuestion && currentPending.host === false && currentPending.guest === false;
-
-        if (currentQuestion && myPending) {
-            return hydrateCurrentVocabFromPvpQuestion(currentQuestion);
-        }
-    }
-
-    const isMyTurn = !latestPVPSetupData?.turn || latestPVPSetupData.turn === playerRole;
-    if (isMyTurn && (!currentQuestion || bothConsumed || currentPending[playerRole] === false)) {
-        if (!Array.isArray(activeVocabList) || activeVocabList.length === 0) {
-            alert("Error: Database is empty!");
-            return false;
-        }
-
-        currentVocab = pickBattleUniqueWord(activeVocabList);
-        if (!currentVocab) {
-            alert("Error: Database is empty!");
-            return false;
-        }
-
-        assignSentenceForCurrentVocab();
-        markBattleWordUsed(currentVocab);
-
-        const voiceProfile = getCurrentListeningVoiceProfile(currentVocab.sent || currentVocab.en, selectedLevel || 'L1');
-        const payload = buildPvpQuestionPayload(currentVocab, voiceProfile);
-        if (!payload) return false;
-
-        const { ref, update } = window.firebaseModules;
-        await update(ref(db, 'rooms/' + currentRoomId), {
-            currentQuestion: payload,
-            currentQuestionPending: {
-                host: true,
-                guest: true
-            }
+    if (!Array.isArray(latestPVPSetupData?.questionDeck) || latestPVPSetupData.questionDeck.length === 0) {
+        await refreshLatestPvpRoomData().catch(error => {
+            console.warn('[PVP Question Deck] Failed to refresh room data:', error);
+            return null;
         });
-
-        preloadPvpSharedListeningQuestion(payload);
-
-        latestPVPSetupData = {
-            ...(latestPVPSetupData || {}),
-            currentQuestion: payload,
-            currentQuestionPending: { host: true, guest: true }
-        };
-        return true;
     }
 
-    return false;
+    const question = getPvpDeckQuestion();
+    if (!question) return false;
+
+    const hydrated = hydrateCurrentVocabFromPvpQuestion(question);
+    if (!hydrated) return false;
+
+    pvpLocalQuestionIndex++;
+    const nextQuestion = getPvpDeckQuestion();
+    if (nextQuestion) {
+        preloadPvpSharedListeningQuestion(nextQuestion);
+    }
+    return true;
 }
 
 function updateTurnTimerUI() {
@@ -1635,6 +1491,7 @@ function startEnemyTurn() {
     let pvpRaceSelectionShown = false;
     let isEnteringPVPDeploy = false;
     let pvpBattleStartPending = false;
+    let pvpLocalQuestionIndex = 0;
     let latestPVPSetupData = null;
     const lobbyProfileCache = new Map();
     let inviteListenerUnsubscribe = null;
@@ -2379,6 +2236,7 @@ function createRoom() {
         gameMode = 'PVP';
         pvpRaceSelectionShown = false;
         isEnteringPVPDeploy = false;
+        pvpLocalQuestionIndex = 0;
         latestPVPSetupData = null;
 
 set(ref(db, 'rooms/' + roomId), {
@@ -2392,9 +2250,7 @@ set(ref(db, 'rooms/' + roomId), {
             guestRace: null,
             questionDeck: null,
             questionDeckReady: false,
-            questionIndex: 0,
-            currentQuestion: null,
-            currentQuestionPending: { host: false, guest: false }
+            currentQuestion: null
         });
 const { onDisconnect, remove } = window.firebaseModules; // �_���õ�����
     onDisconnect(ref(db, 'rooms/' + roomId)).remove();        
@@ -2438,6 +2294,7 @@ async function joinRoomById(inputId, viaInvite = false) {
     tempGameMode = 'PVP';
     pvpRaceSelectionShown = false;
     isEnteringPVPDeploy = false;
+    pvpLocalQuestionIndex = 0;
     latestPVPSetupData = null;
     gameMode = 'PVP';
 
@@ -2584,8 +2441,6 @@ function initPVPListeners() {
         const nextDeckQuestion = getPvpDeckQuestion(data);
         if (nextDeckQuestion) {
             preloadPvpSharedListeningQuestion(nextDeckQuestion);
-        } else if (data.currentQuestion) {
-            preloadPvpSharedListeningQuestion(data.currentQuestion);
         }
 
         // --- ����/ʧ�� �Д� (���ֲ�׃) ---
@@ -3499,7 +3354,7 @@ async function openLaunchModal(index) {
         return;
     }
 
-// �ʂ��}Ŀ (AI: 3-Tier Spaced Repetition | PVP: Random)
+// �ʂ��}Ŀ (AI: 3-Tier Spaced Repetition | PVP: shared deck sequence)
 
     // ���� PVP ģʽ������ shared question ���^���S�C���� ����
     if (gameMode === 'PVP') {
@@ -4154,7 +4009,7 @@ function warmListeningPlaybackDuringTargetLock() {
     let voiceProfile = null;
 
     if (gameMode === 'PVP') {
-        const questionPayload = latestPVPSetupData?.currentQuestion || null;
+        const questionPayload = getPvpDeckQuestion() || null;
         textToRead = String(questionPayload?.sent || questionPayload?.en || '').trim();
         if (questionPayload?.listeningVoiceName) {
             voiceProfile = {
@@ -4412,8 +4267,7 @@ function handlePlayerTimeout() {
         const nextTurn = (playerRole === 'host') ? 'guest' : 'host';
         update(ref(db, 'rooms/' + currentRoomId), {
             lastMove: { attacker: playerRole, index: -1, timestamp: Date.now() },
-            turn: nextTurn,
-            ...buildPvpQuestionConsumePatch()
+            turn: nextTurn
         });
         setGameTimeout(() => {
             currentPhase = 'ENEMY_TURN';
@@ -4728,8 +4582,7 @@ function playerFire(success) {
             // 2. ���� Firebase (�ρ���һ�� Update)
             update(ref(db, 'rooms/' + currentRoomId), {
                 lastMove: { attacker: playerRole, index: currentTargetIndex, timestamp: Date.now() },
-                turn: nextTurn, // �� ���ƽ�����Ԓ� DB ֪����݆����һλ��
-                ...buildPvpQuestionAdvancePatch()
+                turn: nextTurn // �� ���ƽ�����Ԓ� DB ֪����݆����һλ��
             });
 
             // 3. ���Űl��Ӯ�
@@ -5377,12 +5230,6 @@ function startPlayerTurn() {
         // �ГQ����
         currentPhase = 'PLAYER_TURN';
         switchScene('PLAYER');
-
-        if (gameMode === 'PVP' && currentPracticeMode === 'LISTENING' && playerRole === 'host') {
-            primePvpSharedQuestionIfNeeded().catch(error => {
-                console.warn('[PVP Listening Prime] Failed to prime shared question:', error);
-            });
-        }
 
         // --- 10���xλ���� ---
         startTurnSelectionTimer(true);
@@ -6130,6 +5977,7 @@ function resetGame() {
     pvpRaceSelectionShown = false;
     isEnteringPVPDeploy = false;
     pvpBattleStartPending = false;
+    pvpLocalQuestionIndex = 0;
     latestPVPSetupData = null;
     selectedStageIndex = null;
     selectedStageLabel = '';
@@ -6194,9 +6042,7 @@ function resetGame() {
                     guestRace: null,
                     questionDeck: null,
                     questionDeckReady: false,
-                    questionIndex: 0,
                     currentQuestion: null,
-                    currentQuestionPending: { host: false, guest: false },
                     matchLimitWarning: null
                 });
             }
@@ -6320,8 +6166,7 @@ function handleTurnTimeout(skipRecoveryDelay = false) {
         // ֪ͨ������ Skip ��
         update(ref(db, 'rooms/' + currentRoomId), {
             lastMove: { attacker: playerRole, index: -1, timestamp: Date.now() },
-            turn: nextTurn,
-            ...buildPvpQuestionAdvancePatch()
+            turn: nextTurn
         });
         
         setGameTimeout(() => {
@@ -7142,8 +6987,6 @@ function handlePVPMatchSetupSnapshot(data) {
     const nextDeckQuestion = getPvpDeckQuestion(data);
     if (nextDeckQuestion) {
         preloadPvpSharedListeningQuestion(nextDeckQuestion);
-    } else if (data.currentQuestion) {
-        preloadPvpSharedListeningQuestion(data.currentQuestion);
     }
 
     if (!data.guest) {
