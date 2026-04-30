@@ -1382,8 +1382,8 @@ async function ensurePvpQuestionDeckReady(roomData = latestPVPSetupData) {
         return true;
     }
 
-    const deck = buildPvpQuestionDeck();
-    const matchId = `match_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+    const deck = pvpQuestionDeck.length > 0 ? pvpQuestionDeck : buildPvpQuestionDeck();
+    const matchId = roomData?.questionDeckMatchId || latestPVPSetupData?.questionDeckMatchId || `match_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
     if (deck.length === 0) {
         console.warn('[PVP Deck] Failed to build match deck', getPvpDeckTraceContext({
             action: 'build_failed',
@@ -1399,6 +1399,7 @@ async function ensurePvpQuestionDeckReady(roomData = latestPVPSetupData) {
         questionDeckReady: true,
         questionDeckMatchId: matchId,
         questionDeckCreatedAt: Date.now(),
+        deckRequest: null,
         lastMove: null,
         turn: 'host',
         winner: null,
@@ -1422,6 +1423,38 @@ async function ensurePvpQuestionDeckReady(roomData = latestPVPSetupData) {
         firstWord: deck[0]?.en || null
     }));
     return true;
+}
+
+async function requestPvpQuestionDeck(reason = 'unknown') {
+    if (gameMode !== 'PVP' || !currentRoomId || playerRole !== 'guest' || !window.firebaseModules) return;
+    const now = Date.now();
+    if (now - lastPvpDeckRequestAt < 800) return;
+    lastPvpDeckRequestAt = now;
+    const { ref, update } = window.firebaseModules;
+    const payload = {
+        by: playerRole,
+        playerId: myPlayerId || window.myPlayerId || null,
+        reason,
+        timestamp: Date.now()
+    };
+    console.log('[PVP Deck] Guest requesting match deck from host', getPvpDeckTraceContext({
+        action: 'request_deck',
+        reason
+    }));
+    await update(ref(db, 'rooms/' + currentRoomId), { deckRequest: payload });
+}
+
+async function respondToPvpDeckRequest(data, source = 'listener') {
+    if (playerRole !== 'host' || !data?.deckRequest) return;
+    const questionDeck = normalizePvpQuestionDeck(data.questionDeck);
+    if (data.questionDeckReady && questionDeck.length > 0) return;
+    console.log('[PVP Deck] Host responding to guest deck request', getPvpDeckTraceContext({
+        action: 'respond_deck_request',
+        source,
+        requestReason: data.deckRequest.reason || null,
+        requestTimestamp: data.deckRequest.timestamp || null
+    }));
+    await ensurePvpQuestionDeckReady(data);
 }
 
 function getPvpDeckQuestion(roomData = latestPVPSetupData, questionIndex = pvpLocalQuestionIndex) {
@@ -1506,6 +1539,11 @@ async function ensureLocalPvpQuestionDeckReady() {
     }
 
     for (let attempt = 0; attempt < 6; attempt++) {
+        if (attempt === 0) {
+            await requestPvpQuestionDeck('question_wait').catch(error => {
+                console.warn('[PVP Deck] Failed to request match deck before question:', error);
+            });
+        }
         console.log('[PVP Deck] Waiting for local deck before question', getPvpDeckTraceContext({
             action: 'question_wait',
             attempt: attempt + 1
@@ -1624,6 +1662,7 @@ function startEnemyTurn() {
     let pvpBattleStarted = false;
     let pvpLocalQuestionIndex = 0;
     let pvpQuestionDeck = [];
+    let lastPvpDeckRequestAt = 0;
     let latestPVPSetupData = null;
     const lobbyProfileCache = new Map();
     let inviteListenerUnsubscribe = null;
@@ -2370,6 +2409,7 @@ function createRoom() {
         isEnteringPVPDeploy = false;
         pvpLocalQuestionIndex = 0;
         pvpQuestionDeck = [];
+        lastPvpDeckRequestAt = 0;
         pvpBattleStarted = false;
         latestPVPSetupData = null;
 
@@ -2432,6 +2472,7 @@ async function joinRoomById(inputId, viaInvite = false) {
     isEnteringPVPDeploy = false;
     pvpLocalQuestionIndex = 0;
     pvpQuestionDeck = [];
+    lastPvpDeckRequestAt = 0;
     pvpBattleStarted = false;
     latestPVPSetupData = null;
     gameMode = 'PVP';
@@ -2579,6 +2620,9 @@ function initPVPListeners() {
         latestPVPSetupData = questionDeck.length > 0
             ? { ...data, questionDeck }
             : data;
+        respondToPvpDeckRequest(data, 'battle_listener').catch(error => {
+            console.warn('[PVP Deck] Failed to respond to deck request:', error);
+        });
         const nextDeckQuestion = getPvpDeckQuestion(data);
         if (nextDeckQuestion) {
             preloadPvpSharedListeningQuestion(nextDeckQuestion);
@@ -3188,6 +3232,11 @@ function startBattle() {
 
                 if (!data.questionDeckReady || roomQuestionDeck.length === 0) {
                     document.getElementById('game-status').innerHTML = "WAITING FOR QUESTION DECK...";
+                    if (playerRole === 'guest') {
+                        requestPvpQuestionDeck('battle_start_wait').catch(error => {
+                            console.warn('[PVP Deck] Failed to request match deck:', error);
+                        });
+                    }
                     console.log('[PVP Deck] Waiting for host match deck', getPvpDeckTraceContext({
                         action: 'wait_for_deck',
                         hostReady: !!data.hostReady,
@@ -6184,6 +6233,7 @@ function resetGame() {
     pvpBattleStarted = false;
     pvpLocalQuestionIndex = 0;
     pvpQuestionDeck = [];
+    lastPvpDeckRequestAt = 0;
     latestPVPSetupData = null;
     selectedStageIndex = null;
     selectedStageLabel = '';
@@ -7189,6 +7239,9 @@ async function handlePVPMatchSetupSnapshot(data) {
         ? { ...data, questionDeck }
         : data;
     syncPVPSetupFromRoom(data);
+    respondToPvpDeckRequest(data, 'setup_listener').catch(error => {
+        console.warn('[PVP Deck] Failed to respond to setup deck request:', error);
+    });
 
     if (playerRole === 'host' && data.guest && (!data.questionDeckReady || questionDeck.length === 0)) {
         console.log('[PVP Deck] Setup sees no match deck yet', getPvpDeckTraceContext({
