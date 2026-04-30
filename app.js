@@ -1267,6 +1267,36 @@ function buildPvpQuestionPayload(word, voiceProfile = null) {
     };
 }
 
+function normalizePvpQuestionDeck(deckData) {
+    if (Array.isArray(deckData)) {
+        return deckData.filter(question => question && question.en);
+    }
+
+    if (!deckData || typeof deckData !== 'object') {
+        return [];
+    }
+
+    return Object.keys(deckData)
+        .sort((a, b) => {
+            const aNumber = Number(a);
+            const bNumber = Number(b);
+            if (Number.isFinite(aNumber) && Number.isFinite(bNumber)) {
+                return aNumber - bNumber;
+            }
+            return String(a).localeCompare(String(b));
+        })
+        .map(key => deckData[key])
+        .filter(question => question && question.en);
+}
+
+function rememberPvpQuestionDeck(deckData) {
+    const deck = normalizePvpQuestionDeck(deckData);
+    if (deck.length > 0) {
+        pvpQuestionDeck = deck;
+    }
+    return deck;
+}
+
 function hydrateCurrentVocabFromPvpQuestion(payload) {
     if (!payload?.en) return false;
     const baseWord = Array.isArray(activeVocabList)
@@ -1325,7 +1355,8 @@ function buildPvpQuestionDeck(count = PVP_SHARED_QUESTION_DECK_SIZE) {
 
 async function ensurePvpQuestionDeckReady(roomData = latestPVPSetupData) {
     if (gameMode !== 'PVP' || !currentRoomId || playerRole !== 'host') return false;
-    if (roomData?.questionDeckReady && Array.isArray(roomData.questionDeck) && roomData.questionDeck.length > 0) {
+    const existingDeck = rememberPvpQuestionDeck(roomData?.questionDeck);
+    if (roomData?.questionDeckReady && existingDeck.length > 0) {
         return true;
     }
 
@@ -1353,7 +1384,7 @@ async function ensurePvpQuestionDeckReady(roomData = latestPVPSetupData) {
 function getPvpDeckQuestion(roomData = latestPVPSetupData, questionIndex = pvpLocalQuestionIndex) {
     const deck = Array.isArray(pvpQuestionDeck) && pvpQuestionDeck.length > 0
         ? pvpQuestionDeck
-        : roomData?.questionDeck;
+        : normalizePvpQuestionDeck(roomData?.questionDeck);
     if (!Array.isArray(deck) || deck.length === 0) return null;
     const index = Number.isInteger(questionIndex) ? questionIndex : 0;
     return deck[((index % deck.length) + deck.length) % deck.length] || null;
@@ -1395,10 +1426,10 @@ async function refreshLatestPvpRoomData() {
     const snapshot = await get(ref(db, 'rooms/' + currentRoomId));
     const data = snapshot.val();
     if (data) {
-        latestPVPSetupData = data;
-        if (Array.isArray(data.questionDeck) && data.questionDeck.length > 0) {
-            pvpQuestionDeck = data.questionDeck;
-        }
+        const questionDeck = rememberPvpQuestionDeck(data.questionDeck);
+        latestPVPSetupData = questionDeck.length > 0
+            ? { ...data, questionDeck }
+            : data;
         const nextDeckQuestion = getPvpDeckQuestion(data);
         if (nextDeckQuestion) {
             preloadPvpSharedListeningQuestion(nextDeckQuestion);
@@ -1407,21 +1438,46 @@ async function refreshLatestPvpRoomData() {
     return data;
 }
 
-async function resolvePvpSharedQuestion() {
-    if (gameMode !== 'PVP' || !currentRoomId) return false;
+function delayPvpQuestionDeckRetry(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
-    if (!Array.isArray(latestPVPSetupData?.questionDeck) || latestPVPSetupData.questionDeck.length === 0) {
+async function ensureLocalPvpQuestionDeckReady() {
+    if (pvpQuestionDeck.length > 0 || normalizePvpQuestionDeck(latestPVPSetupData?.questionDeck).length > 0) {
+        rememberPvpQuestionDeck(latestPVPSetupData?.questionDeck);
+        return true;
+    }
+
+    if (playerRole === 'host') {
+        await ensurePvpQuestionDeckReady(latestPVPSetupData);
+        if (pvpQuestionDeck.length > 0) return true;
+    }
+
+    for (let attempt = 0; attempt < 6; attempt++) {
         await refreshLatestPvpRoomData().catch(error => {
             console.warn('[PVP Question Deck] Failed to refresh room data:', error);
             return null;
         });
+        if (pvpQuestionDeck.length > 0 || normalizePvpQuestionDeck(latestPVPSetupData?.questionDeck).length > 0) {
+            rememberPvpQuestionDeck(latestPVPSetupData?.questionDeck);
+            return true;
+        }
+        await delayPvpQuestionDeckRetry(250);
     }
+
+    return false;
+}
+
+async function resolvePvpSharedQuestion() {
+    if (gameMode !== 'PVP' || !currentRoomId) return false;
+
+    await ensureLocalPvpQuestionDeckReady();
 
     const question = getPvpDeckQuestion();
     if (!question) {
         console.warn('[PVP Question Deck] Missing local deck question', {
             localDeckSize: Array.isArray(pvpQuestionDeck) ? pvpQuestionDeck.length : 0,
-            remoteDeckSize: Array.isArray(latestPVPSetupData?.questionDeck) ? latestPVPSetupData.questionDeck.length : 0,
+            remoteDeckSize: normalizePvpQuestionDeck(latestPVPSetupData?.questionDeck).length,
             pvpLocalQuestionIndex,
             roomId: currentRoomId,
             role: playerRole
@@ -2458,10 +2514,10 @@ function initPVPListeners() {
             return;
         }
 
-        latestPVPSetupData = data;
-        if (Array.isArray(data.questionDeck) && data.questionDeck.length > 0) {
-            pvpQuestionDeck = data.questionDeck;
-        }
+        const questionDeck = rememberPvpQuestionDeck(data.questionDeck);
+        latestPVPSetupData = questionDeck.length > 0
+            ? { ...data, questionDeck }
+            : data;
         const nextDeckQuestion = getPvpDeckQuestion(data);
         if (nextDeckQuestion) {
             preloadPvpSharedListeningQuestion(nextDeckQuestion);
@@ -3019,7 +3075,9 @@ function startBattle() {
             if (data.hostReady && data.guestReady) {
                 if (pvpBattleStarted || pvpBattleStartPending) return;
 
-                if (playerRole === 'host' && (!data.questionDeckReady || !Array.isArray(data.questionDeck) || data.questionDeck.length === 0)) {
+                const roomQuestionDeck = normalizePvpQuestionDeck(data.questionDeck);
+
+                if (playerRole === 'host' && (!data.questionDeckReady || roomQuestionDeck.length === 0)) {
                     pvpBattleStartPending = true;
                     document.getElementById('game-status').innerHTML = "SYNCING QUESTION DECK...";
                     try {
@@ -3035,12 +3093,12 @@ function startBattle() {
                     return;
                 }
 
-                if (!data.questionDeckReady || !Array.isArray(data.questionDeck) || data.questionDeck.length === 0) {
+                if (!data.questionDeckReady || roomQuestionDeck.length === 0) {
                     document.getElementById('game-status').innerHTML = "WAITING FOR QUESTION DECK...";
                     return;
                 }
 
-                enterPvpBattleFromRoom(data);
+                enterPvpBattleFromRoom({ ...data, questionDeck: roomQuestionDeck });
             }
         });
     }
@@ -3048,11 +3106,12 @@ function startBattle() {
 
 function enterPvpBattleFromRoom(data) {
     if (!data || pvpBattleStarted) return;
-    if (!data.questionDeckReady || !Array.isArray(data.questionDeck) || data.questionDeck.length === 0) return;
+    const questionDeck = normalizePvpQuestionDeck(data.questionDeck);
+    if (!data.questionDeckReady || questionDeck.length === 0) return;
 
     pvpBattleStarted = true;
-    latestPVPSetupData = data;
-    pvpQuestionDeck = data.questionDeck;
+    latestPVPSetupData = { ...data, questionDeck };
+    pvpQuestionDeck = questionDeck;
     pvpLocalQuestionIndex = 0;
 
     if (battleUnsubscribe) {
@@ -7020,10 +7079,10 @@ function handlePVPMatchSetupSnapshot(data) {
         return;
     }
 
-    latestPVPSetupData = data;
-    if (Array.isArray(data.questionDeck) && data.questionDeck.length > 0) {
-        pvpQuestionDeck = data.questionDeck;
-    }
+    const questionDeck = rememberPvpQuestionDeck(data.questionDeck);
+    latestPVPSetupData = questionDeck.length > 0
+        ? { ...data, questionDeck }
+        : data;
     syncPVPSetupFromRoom(data);
     updatePVPBriefingPanel(data);
 
