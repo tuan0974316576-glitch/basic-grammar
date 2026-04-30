@@ -1491,6 +1491,7 @@ function startEnemyTurn() {
     let pvpRaceSelectionShown = false;
     let isEnteringPVPDeploy = false;
     let pvpBattleStartPending = false;
+    let pvpBattleStarted = false;
     let pvpLocalQuestionIndex = 0;
     let latestPVPSetupData = null;
     const lobbyProfileCache = new Map();
@@ -2237,6 +2238,7 @@ function createRoom() {
         pvpRaceSelectionShown = false;
         isEnteringPVPDeploy = false;
         pvpLocalQuestionIndex = 0;
+        pvpBattleStarted = false;
         latestPVPSetupData = null;
 
 set(ref(db, 'rooms/' + roomId), {
@@ -2295,6 +2297,7 @@ async function joinRoomById(inputId, viaInvite = false) {
     pvpRaceSelectionShown = false;
     isEnteringPVPDeploy = false;
     pvpLocalQuestionIndex = 0;
+    pvpBattleStarted = false;
     latestPVPSetupData = null;
     gameMode = 'PVP';
 
@@ -2969,7 +2972,7 @@ function startBattle() {
         // ��ֹ���}�O 
         if (battleUnsubscribe) battleUnsubscribe();
 
-        battleUnsubscribe = onValue(ref(db, 'rooms/' + currentRoomId), (snapshot) => {
+        battleUnsubscribe = onValue(ref(db, 'rooms/' + currentRoomId), async (snapshot) => {
             const data = snapshot.val();
             
             // ���� �������z�y���g�Ƿ񱻄h�� (Host ����) ����
@@ -2993,17 +2996,21 @@ function startBattle() {
             
             // ���p�����ʂ��
             if (data.hostReady && data.guestReady) {
-                if (pvpBattleStartPending) return;
+                if (pvpBattleStarted || pvpBattleStartPending) return;
 
                 if (playerRole === 'host' && (!data.questionDeckReady || !Array.isArray(data.questionDeck) || data.questionDeck.length === 0)) {
                     pvpBattleStartPending = true;
                     document.getElementById('game-status').innerHTML = "SYNCING QUESTION DECK...";
-                    ensurePvpQuestionDeckReady(data).catch(error => {
+                    try {
+                        await ensurePvpQuestionDeckReady(data);
+                        const freshData = await refreshLatestPvpRoomData();
+                        enterPvpBattleFromRoom(freshData || latestPVPSetupData);
+                    } catch (error) {
                         console.warn('[PVP Question Deck] Failed to prepare:', error);
                         showNotification("QUESTION DECK SYNC FAILED", "error");
-                    }).finally(() => {
+                    } finally {
                         pvpBattleStartPending = false;
-                    });
+                    }
                     return;
                 }
 
@@ -3012,38 +3019,47 @@ function startBattle() {
                     return;
                 }
 
-                if (battleUnsubscribe) {
-                    battleUnsubscribe(); // ֹͣ�O  Ready ��B
-                    battleUnsubscribe = null;
-                }
-
-                // ���� Get opponent race and update label ����
-                const opponentRace = playerRole === 'host' ? data.guestRace : data.hostRace;
-                if (opponentRace) {
-                    enemyRace = opponentRace; // Store for later use
-                    updateEnemyBoardLabel(opponentRace);
-                }
-
-                // ���� Task 5: Get opponent ID and update their rank badge ����
-                const opponentId = playerRole === 'host' ? data.guest : data.host;
-                currentOpponentId = opponentId; // ���� Store for settlement ����
-                if (opponentId) {
-                    updateOpponentRankBadge(opponentId);
-                }
-
-                if (playerRole === 'host') {
-                    enemyGrid = data.guestBoard;
-                    processEnemyFleetData(data.guestBoardShips);
-                    startPlayerTurn();
-                } else {
-                    enemyGrid = data.hostBoard;
-                    processEnemyFleetData(data.hostBoardShips);
-                    currentPhase = 'ENEMY_TURN';
-                    document.getElementById('game-status').innerHTML = "OPPONENT'S TURN";
-                    switchScene('ENEMY');
-                }
+                enterPvpBattleFromRoom(data);
             }
         });
+    }
+}
+
+function enterPvpBattleFromRoom(data) {
+    if (!data || pvpBattleStarted) return;
+    if (!data.questionDeckReady || !Array.isArray(data.questionDeck) || data.questionDeck.length === 0) return;
+
+    pvpBattleStarted = true;
+    latestPVPSetupData = data;
+    pvpLocalQuestionIndex = 0;
+
+    if (battleUnsubscribe) {
+        battleUnsubscribe();
+        battleUnsubscribe = null;
+    }
+
+    const opponentRace = playerRole === 'host' ? data.guestRace : data.hostRace;
+    if (opponentRace) {
+        enemyRace = opponentRace;
+        updateEnemyBoardLabel(opponentRace);
+    }
+
+    const opponentId = playerRole === 'host' ? data.guest : data.host;
+    currentOpponentId = opponentId;
+    if (opponentId) {
+        updateOpponentRankBadge(opponentId);
+    }
+
+    if (playerRole === 'host') {
+        enemyGrid = data.guestBoard;
+        processEnemyFleetData(data.guestBoardShips);
+        startPlayerTurn();
+    } else {
+        enemyGrid = data.hostBoard;
+        processEnemyFleetData(data.hostBoardShips);
+        currentPhase = 'ENEMY_TURN';
+        document.getElementById('game-status').innerHTML = "OPPONENT'S TURN";
+        switchScene('ENEMY');
     }
 }
 
@@ -5977,6 +5993,7 @@ function resetGame() {
     pvpRaceSelectionShown = false;
     isEnteringPVPDeploy = false;
     pvpBattleStartPending = false;
+    pvpBattleStarted = false;
     pvpLocalQuestionIndex = 0;
     latestPVPSetupData = null;
     selectedStageIndex = null;
