@@ -5742,12 +5742,7 @@ function checkMyShipDestruction(hitIdx) {
     // --- �޸���ĄӮ����� (�_���Ӯ��ڑ�Ş����) ---
 function triggerAnimation(cell, type) {
     if (type === 'orange') {
-        const rect = cell.getBoundingClientRect();
-        playEffekseerEffect(
-            'normalAttack',
-            rect.left + rect.width / 2,
-            rect.top + rect.height / 2
-        );
+        playCellEffekseerEffect('normalAttack', cell);
         return;
     }
 
@@ -5757,20 +5752,10 @@ function triggerAnimation(cell, type) {
     if (type === 'blue') {
         // �z����ҷN��,Aurelians�ý�ɫ,�������{ɫ
         if (selectedRace === 'AURELIANS') {
-            const rect = cell.getBoundingClientRect();
-            playEffekseerEffect(
-                'aureliansNormalAttack',
-                rect.left + rect.width / 2,
-                rect.top + rect.height / 2
-            );
+            playCellEffekseerEffect('aureliansNormalAttack', cell);
             return;
         } else {
-            const rect = cell.getBoundingClientRect();
-            playEffekseerEffect(
-                'vanguardsNormalStrike',
-                rect.left + rect.width / 2,
-                rect.top + rect.height / 2
-            );
+            playCellEffekseerEffect('vanguardsNormalStrike', cell);
             return;
         }
     }
@@ -9568,7 +9553,8 @@ const EFFEKSEER_EFFECTS = {
         playScale: 0.22,
         speed: 0.47,
         duration: 1470,
-        viewportSize: 4096
+        viewportSize: 4096,
+        anchorCellOffsetX: -1
     },
     normalAttack: {
         path: 'effects/vanguards/normal_explosion/normal_explosion.efkefc',
@@ -9576,7 +9562,8 @@ const EFFEKSEER_EFFECTS = {
         playScale: 0.17,
         speed: 1.15,
         duration: 520,
-        viewportSize: 4096
+        viewportSize: 4096,
+        anchorCellOffsetX: -1
     },
     aureliansNormalAttack: {
         path: 'effects/aurelians/normal_attack/Circular Impact_Aurelians.efkefc',
@@ -10480,6 +10467,22 @@ function preloadEffekseerEffect(effectKey) {
     loadEffekseerEffect(effectKey).catch(error => {
         console.warn(`[Effekseer] Failed to preload ${effectKey}:`, error);
     });
+}
+
+function playCellEffekseerEffect(effectKey, cell, options = {}) {
+    if (!cell) return Promise.resolve(null);
+
+    const config = EFFEKSEER_EFFECTS[effectKey] || {};
+    const rect = cell.getBoundingClientRect();
+    const offsetX = ((config.anchorCellOffsetX || 0) * rect.width) + (config.anchorPxOffsetX || 0);
+    const offsetY = ((config.anchorCellOffsetY || 0) * rect.height) + (config.anchorPxOffsetY || 0);
+
+    return playEffekseerEffect(
+        effectKey,
+        rect.left + rect.width / 2 + offsetX,
+        rect.top + rect.height / 2 + offsetY,
+        options
+    );
 }
 
 function playEffekseerEffect(effectKey, screenX, screenY, options = {}) {
