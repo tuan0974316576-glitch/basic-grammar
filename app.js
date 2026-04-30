@@ -6150,8 +6150,6 @@ function resetGame() {
                     guestBoard: null,
                     guestBoardShips: null,
                     guestRace: null,
-                    questionDeck: null,
-                    questionDeckReady: false,
                     currentQuestion: null,
                     matchLimitWarning: null
                 });
@@ -7081,7 +7079,7 @@ async function updatePVPBriefingPanel(data) {
     }
 }
 
-function handlePVPMatchSetupSnapshot(data) {
+async function handlePVPMatchSetupSnapshot(data) {
     if (!data) {
         if (isEnteringPVPDeploy || currentPhase === 'GAME_OVER') return;
         showNotification('ROOM CLOSED', 'error');
@@ -7095,6 +7093,14 @@ function handlePVPMatchSetupSnapshot(data) {
         ? { ...data, questionDeck }
         : data;
     syncPVPSetupFromRoom(data);
+
+    if (playerRole === 'host' && data.guest && (!data.questionDeckReady || questionDeck.length === 0)) {
+        await ensurePvpQuestionDeckReady(latestPVPSetupData).catch(error => {
+            console.warn('[PVP Question Deck] Failed to repair setup deck:', error);
+            return false;
+        });
+    }
+
     updatePVPBriefingPanel(data);
 
     const nextDeckQuestion = getPvpDeckQuestion(data);
