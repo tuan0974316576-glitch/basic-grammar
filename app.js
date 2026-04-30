@@ -1281,6 +1281,7 @@ function hydrateCurrentVocabFromPvpQuestion(payload) {
         listeningAnswer: payload.listeningAnswer || null,
         listeningVoiceName: payload.listeningVoiceName || null,
         listeningAccentLocale: payload.listeningAccentLocale || null,
+        deckIndex: Number.isInteger(payload.deckIndex) ? payload.deckIndex : null,
         sentenceIndex: Number.isInteger(payload.sentenceIndex) ? payload.sentenceIndex : 0
     };
 
@@ -1367,15 +1368,18 @@ function getPvpDeckQuestion(roomData = latestPVPSetupData) {
     return deck[((index % deck.length) + deck.length) % deck.length] || null;
 }
 
-function buildPvpQuestionAdvancePatch() {
+function buildPvpQuestionAdvancePatch(answeredIndex = currentVocab?.deckIndex) {
     const deck = latestPVPSetupData?.questionDeck;
     if (!Array.isArray(deck) || deck.length === 0) {
         return buildPvpQuestionConsumePatch();
     }
 
-    const currentIndex = Number.isInteger(latestPVPSetupData?.questionIndex)
+    const latestIndex = Number.isInteger(latestPVPSetupData?.questionIndex)
         ? latestPVPSetupData.questionIndex
         : 0;
+    const currentIndex = Number.isInteger(answeredIndex)
+        ? Math.max(answeredIndex, latestIndex)
+        : latestIndex;
     const nextIndex = currentIndex + 1;
     const nextQuestion = deck[nextIndex % deck.length] || null;
 
@@ -1493,11 +1497,6 @@ async function refreshLatestPvpRoomData() {
 
 async function resolvePvpSharedQuestion() {
     if (gameMode !== 'PVP' || !currentRoomId) return false;
-
-    const deckQuestion = getPvpDeckQuestion();
-    if (deckQuestion) {
-        return hydrateCurrentVocabFromPvpQuestion(deckQuestion);
-    }
 
     let currentPending = latestPVPSetupData?.currentQuestionPending || {};
     let currentQuestion = latestPVPSetupData?.currentQuestion || null;
