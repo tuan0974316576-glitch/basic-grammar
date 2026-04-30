@@ -1159,6 +1159,7 @@ let isTargeting = false;
     let tempGameMode = 'AI';  // ����ģʽ�x��
     const STAGE_WORD_COUNT = 25;
     const STAGE_WORD_SESSION_MISS_LIMIT = 2;
+    const PVP_SHARED_QUESTION_DECK_SIZE = 100;
     let stageSessionMissCounts = {};
     let lastAskedWordKey = '';
 
@@ -1294,6 +1295,104 @@ function buildPvpQuestionConsumePatch() {
     };
 }
 
+function buildPvpQuestionDeck(count = PVP_SHARED_QUESTION_DECK_SIZE) {
+    if (!Array.isArray(activeVocabList) || activeVocabList.length === 0) return [];
+
+    const previousCurrentVocab = currentVocab;
+    const deck = [];
+    let pool = [];
+
+    for (let i = 0; i < count; i++) {
+        if (pool.length === 0) {
+            pool = shuffleArray(activeVocabList);
+        }
+
+        const sourceWord = pool.pop();
+        if (!sourceWord) break;
+
+        currentVocab = { ...sourceWord };
+        assignSentenceForCurrentVocab();
+        const preparedWord = { ...currentVocab };
+        const voiceProfile = currentPracticeMode === 'LISTENING'
+            ? getCurrentListeningVoiceProfile(preparedWord.sent || preparedWord.en, selectedLevel || 'L1')
+            : null;
+        const payload = buildPvpQuestionPayload(preparedWord, voiceProfile);
+        if (payload) {
+            deck.push({
+                ...payload,
+                deckIndex: deck.length
+            });
+        }
+    }
+
+    currentVocab = previousCurrentVocab;
+    return deck;
+}
+
+async function ensurePvpQuestionDeckReady(roomData = latestPVPSetupData) {
+    if (gameMode !== 'PVP' || !currentRoomId || playerRole !== 'host') return false;
+    if (roomData?.questionDeckReady && Array.isArray(roomData.questionDeck) && roomData.questionDeck.length > 0) {
+        return true;
+    }
+
+    const deck = buildPvpQuestionDeck();
+    if (deck.length === 0) return false;
+
+    const { ref, update } = window.firebaseModules;
+    await update(ref(db, 'rooms/' + currentRoomId), {
+        questionDeck: deck,
+        questionDeckReady: true,
+        questionIndex: 0,
+        currentQuestion: deck[0],
+        currentQuestionPending: { host: true, guest: true }
+    });
+
+    latestPVPSetupData = {
+        ...(latestPVPSetupData || {}),
+        questionDeck: deck,
+        questionDeckReady: true,
+        questionIndex: 0,
+        currentQuestion: deck[0],
+        currentQuestionPending: { host: true, guest: true }
+    };
+    preloadPvpSharedListeningQuestion(deck[0]);
+    console.log(`[PVP Question Deck] Ready: ${deck.length} questions`);
+    return true;
+}
+
+function getPvpDeckQuestion(roomData = latestPVPSetupData) {
+    const deck = roomData?.questionDeck;
+    if (!Array.isArray(deck) || deck.length === 0) return null;
+    const index = Number.isInteger(roomData?.questionIndex) ? roomData.questionIndex : 0;
+    return deck[((index % deck.length) + deck.length) % deck.length] || null;
+}
+
+function buildPvpQuestionAdvancePatch() {
+    const deck = latestPVPSetupData?.questionDeck;
+    if (!Array.isArray(deck) || deck.length === 0) {
+        return buildPvpQuestionConsumePatch();
+    }
+
+    const currentIndex = Number.isInteger(latestPVPSetupData?.questionIndex)
+        ? latestPVPSetupData.questionIndex
+        : 0;
+    const nextIndex = currentIndex + 1;
+    const nextQuestion = deck[nextIndex % deck.length] || null;
+
+    latestPVPSetupData = {
+        ...(latestPVPSetupData || {}),
+        questionIndex: nextIndex,
+        currentQuestion: nextQuestion,
+        currentQuestionPending: { host: true, guest: true }
+    };
+
+    return {
+        questionIndex: nextIndex,
+        currentQuestion: nextQuestion,
+        currentQuestionPending: { host: true, guest: true }
+    };
+}
+
 function preloadPvpSharedListeningQuestion(questionPayload) {
     if ((currentPracticeMode || '').toUpperCase() !== 'LISTENING') return;
     const text = String(questionPayload?.sent || questionPayload?.en || '').trim();
@@ -1382,7 +1481,10 @@ async function refreshLatestPvpRoomData() {
     const data = snapshot.val();
     if (data) {
         latestPVPSetupData = data;
-        if (data.currentQuestion) {
+        const nextDeckQuestion = getPvpDeckQuestion(data);
+        if (nextDeckQuestion) {
+            preloadPvpSharedListeningQuestion(nextDeckQuestion);
+        } else if (data.currentQuestion) {
             preloadPvpSharedListeningQuestion(data.currentQuestion);
         }
     }
@@ -1391,6 +1493,11 @@ async function refreshLatestPvpRoomData() {
 
 async function resolvePvpSharedQuestion() {
     if (gameMode !== 'PVP' || !currentRoomId) return false;
+
+    const deckQuestion = getPvpDeckQuestion();
+    if (deckQuestion) {
+        return hydrateCurrentVocabFromPvpQuestion(deckQuestion);
+    }
 
     let currentPending = latestPVPSetupData?.currentQuestionPending || {};
     let currentQuestion = latestPVPSetupData?.currentQuestion || null;
@@ -1406,6 +1513,11 @@ async function resolvePvpSharedQuestion() {
         return null;
     });
     if (freshData) {
+        const freshDeckQuestion = getPvpDeckQuestion(freshData);
+        if (freshDeckQuestion) {
+            return hydrateCurrentVocabFromPvpQuestion(freshDeckQuestion);
+        }
+
         currentPending = freshData.currentQuestionPending || {};
         currentQuestion = freshData.currentQuestion || null;
         myPending = currentPending[playerRole] !== false;
@@ -1523,6 +1635,7 @@ function startEnemyTurn() {
     let unsubscribeRoom = null; // �Á탦�� Firebase �O ��
     let pvpRaceSelectionShown = false;
     let isEnteringPVPDeploy = false;
+    let pvpBattleStartPending = false;
     let latestPVPSetupData = null;
     const lobbyProfileCache = new Map();
     let inviteListenerUnsubscribe = null;
@@ -2278,6 +2391,9 @@ set(ref(db, 'rooms/' + roomId), {
             practiceMode: currentPracticeMode,
             hostRace: null,
             guestRace: null,
+            questionDeck: null,
+            questionDeckReady: false,
+            questionIndex: 0,
             currentQuestion: null,
             currentQuestionPending: { host: false, guest: false }
         });
@@ -2466,7 +2582,10 @@ function initPVPListeners() {
         }
 
         latestPVPSetupData = data;
-        if (data.currentQuestion) {
+        const nextDeckQuestion = getPvpDeckQuestion(data);
+        if (nextDeckQuestion) {
+            preloadPvpSharedListeningQuestion(nextDeckQuestion);
+        } else if (data.currentQuestion) {
             preloadPvpSharedListeningQuestion(data.currentQuestion);
         }
 
@@ -3020,6 +3139,25 @@ function startBattle() {
             
             // ���p�����ʂ��
             if (data.hostReady && data.guestReady) {
+                if (pvpBattleStartPending) return;
+
+                if (playerRole === 'host' && (!data.questionDeckReady || !Array.isArray(data.questionDeck) || data.questionDeck.length === 0)) {
+                    pvpBattleStartPending = true;
+                    document.getElementById('game-status').innerHTML = "SYNCING QUESTION DECK...";
+                    ensurePvpQuestionDeckReady(data).catch(error => {
+                        console.warn('[PVP Question Deck] Failed to prepare:', error);
+                        showNotification("QUESTION DECK SYNC FAILED", "error");
+                    }).finally(() => {
+                        pvpBattleStartPending = false;
+                    });
+                    return;
+                }
+
+                if (!data.questionDeckReady || !Array.isArray(data.questionDeck) || data.questionDeck.length === 0) {
+                    document.getElementById('game-status').innerHTML = "WAITING FOR QUESTION DECK...";
+                    return;
+                }
+
                 if (battleUnsubscribe) {
                     battleUnsubscribe(); // ֹͣ�O  Ready ��B
                     battleUnsubscribe = null;
@@ -4592,7 +4730,7 @@ function playerFire(success) {
             update(ref(db, 'rooms/' + currentRoomId), {
                 lastMove: { attacker: playerRole, index: currentTargetIndex, timestamp: Date.now() },
                 turn: nextTurn, // �� ���ƽ�����Ԓ� DB ֪����݆����һλ��
-                ...buildPvpQuestionConsumePatch()
+                ...buildPvpQuestionAdvancePatch()
             });
 
             // 3. ���Űl��Ӯ�
@@ -5992,6 +6130,7 @@ function resetGame() {
     resetListeningVoiceCycle();
     pvpRaceSelectionShown = false;
     isEnteringPVPDeploy = false;
+    pvpBattleStartPending = false;
     latestPVPSetupData = null;
     selectedStageIndex = null;
     selectedStageLabel = '';
@@ -6054,6 +6193,9 @@ function resetGame() {
                     guestBoard: null,
                     guestBoardShips: null,
                     guestRace: null,
+                    questionDeck: null,
+                    questionDeckReady: false,
+                    questionIndex: 0,
                     currentQuestion: null,
                     currentQuestionPending: { host: false, guest: false },
                     matchLimitWarning: null
@@ -6175,9 +6317,12 @@ function handleTurnTimeout(skipRecoveryDelay = false) {
 
     if (gameMode === 'PVP') {
         const { ref, update } = window.firebaseModules;
+        const nextTurn = (playerRole === 'host') ? 'guest' : 'host';
         // ֪ͨ������ Skip ��
         update(ref(db, 'rooms/' + currentRoomId), {
-            lastMove: { attacker: playerRole, index: -1, timestamp: Date.now() }
+            lastMove: { attacker: playerRole, index: -1, timestamp: Date.now() },
+            turn: nextTurn,
+            ...buildPvpQuestionAdvancePatch()
         });
         
         setGameTimeout(() => {
@@ -6984,7 +7129,10 @@ function handlePVPMatchSetupSnapshot(data) {
     syncPVPSetupFromRoom(data);
     updatePVPBriefingPanel(data);
 
-    if (data.currentQuestion) {
+    const nextDeckQuestion = getPvpDeckQuestion(data);
+    if (nextDeckQuestion) {
+        preloadPvpSharedListeningQuestion(nextDeckQuestion);
+    } else if (data.currentQuestion) {
         preloadPvpSharedListeningQuestion(data.currentQuestion);
     }
 
