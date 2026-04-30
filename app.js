@@ -1375,23 +1375,49 @@ async function primePvpSharedQuestionIfNeeded() {
     return true;
 }
 
+async function refreshLatestPvpRoomData() {
+    if (gameMode !== 'PVP' || !currentRoomId || !window.firebaseModules) return null;
+    const { ref, get } = window.firebaseModules;
+    const snapshot = await get(ref(db, 'rooms/' + currentRoomId));
+    const data = snapshot.val();
+    if (data) {
+        latestPVPSetupData = data;
+        if (data.currentQuestion) {
+            preloadPvpSharedListeningQuestion(data.currentQuestion);
+        }
+    }
+    return data;
+}
+
 async function resolvePvpSharedQuestion() {
     if (gameMode !== 'PVP' || !currentRoomId) return false;
 
-    const currentPending = latestPVPSetupData?.currentQuestionPending || {};
-    const currentQuestion = latestPVPSetupData?.currentQuestion || null;
-    const myPending = currentPending[playerRole] !== false;
-    const bothConsumed = !!currentQuestion && currentPending.host === false && currentPending.guest === false;
+    let currentPending = latestPVPSetupData?.currentQuestionPending || {};
+    let currentQuestion = latestPVPSetupData?.currentQuestion || null;
+    let myPending = currentPending[playerRole] !== false;
+    let bothConsumed = !!currentQuestion && currentPending.host === false && currentPending.guest === false;
 
     if (currentQuestion && myPending) {
         return hydrateCurrentVocabFromPvpQuestion(currentQuestion);
     }
 
-    if (!currentQuestion || bothConsumed) {
-        if (playerRole !== 'host') {
-            return false;
-        }
+    const freshData = await refreshLatestPvpRoomData().catch(error => {
+        console.warn('[PVP Shared Question] Failed to refresh room data:', error);
+        return null;
+    });
+    if (freshData) {
+        currentPending = freshData.currentQuestionPending || {};
+        currentQuestion = freshData.currentQuestion || null;
+        myPending = currentPending[playerRole] !== false;
+        bothConsumed = !!currentQuestion && currentPending.host === false && currentPending.guest === false;
 
+        if (currentQuestion && myPending) {
+            return hydrateCurrentVocabFromPvpQuestion(currentQuestion);
+        }
+    }
+
+    const isMyTurn = !latestPVPSetupData?.turn || latestPVPSetupData.turn === playerRole;
+    if (isMyTurn && (!currentQuestion || bothConsumed || currentPending[playerRole] === false)) {
         if (!Array.isArray(activeVocabList) || activeVocabList.length === 0) {
             alert("Error: Database is empty!");
             return false;
@@ -9259,7 +9285,7 @@ const EFFEKSEER_EFFECTS = {
     missileImpact: {
         path: 'effects/vanguards/missile_fire_punch/Fire Punch.efkefc',
         loadScale: 1,
-        playScale: 0.34,
+        playScale: 0.238,
         speed: 1.08,
         duration: 820,
         viewportSize: 4096
@@ -9268,8 +9294,8 @@ const EFFEKSEER_EFFECTS = {
         path: 'effects/vanguards/normal_strike/Strike2_Lv1_Blue_Vanguards.efkefc',
         loadScale: 1,
         playScale: 0.22,
-        speed: 0.67,
-        duration: 1030,
+        speed: 0.47,
+        duration: 1470,
         viewportSize: 4096
     },
     normalAttack: {
