@@ -2557,7 +2557,7 @@ const VOCAB_DB = {
                     "answer": "glass"
                 },
                 {
-                    "text": "This glass is made of clear blue glass.",
+                    "text": "This vase is made of clear blue glass.",
                     "answer": "glass"
                 }
             ]
@@ -6099,7 +6099,7 @@ const VOCAB_DB = {
                     "answer": "teach"
                 },
                 {
-                    "text": "Good teachers teach with patience.",
+                    "text": "They teach with patience.",
                     "answer": "teach"
                 },
                 {
@@ -7151,7 +7151,7 @@ const VOCAB_DB = {
             "ch": "接受",
             "sents": [
                 {
-                    "text": "Were you to kindly accept our request, would the following details be acceptable to you?",
+                    "text": "Would you kindly accept our request?",
                     "answer": "accept"
                 },
                 {
@@ -7267,7 +7267,7 @@ const VOCAB_DB = {
                     "answer": "advantage"
                 },
                 {
-                    "text": "Summarize the advantages and disadvantages of each funding option.",
+                    "text": "Summarize the main advantages of each funding option.",
                     "answer": "advantages"
                 }
             ]
@@ -8469,7 +8469,7 @@ const VOCAB_DB = {
                     "answer": "careful"
                 },
                 {
-                    "text": "We copied careful into our notes carefully.",
+                    "text": "We copied careful into our notes.",
                     "answer": "careful"
                 },
                 {
@@ -13621,7 +13621,7 @@ const VOCAB_DB = {
                     "answer": "luck"
                 },
                 {
-                    "text": "THERE GOES A MAGPIE It’s bad luck to see one magpie, but it’s lucky to see two.",
+                    "text": "THERE GOES A MAGPIE It’s bad luck to see one magpie, but good fortune follows two.",
                     "answer": "luck"
                 }
             ]
@@ -17149,7 +17149,7 @@ const VOCAB_DB = {
                     "answer": "speaker"
                 },
                 {
-                    "text": "The speaker used speaker when answering the question.",
+                    "text": "The speaker answered the question confidently.",
                     "answer": "speaker"
                 }
             ]
@@ -19822,7 +19822,7 @@ const VOCAB_DB = {
                     "answer": "attract"
                 },
                 {
-                    "text": "This attracts investors to invest in your game.",
+                    "text": "The new design attracts many players.",
                     "answer": "attracts"
                 }
             ]
@@ -21542,7 +21542,7 @@ const VOCAB_DB = {
             "ch": "清楚的；清除",
             "sents": [
                 {
-                    "text": "She used clear in a clear sentence.",
+                    "text": "She wrote a clear sentence.",
                     "answer": "clear"
                 },
                 {
@@ -25830,7 +25830,7 @@ const VOCAB_DB = {
                     "answer": "imports"
                 },
                 {
-                    "text": "Rice is an important import for that country.",
+                    "text": "Rice is a key import for that country.",
                     "answer": "import"
                 },
                 {
@@ -26276,7 +26276,7 @@ const VOCAB_DB = {
             "ch": "投資",
             "sents": [
                 {
-                    "text": "This attracts investors to invest in your game.",
+                    "text": "Many people invest in your game.",
                     "answer": "invest"
                 },
                 {
@@ -28696,7 +28696,7 @@ const VOCAB_DB = {
                     "answer": "payment"
                 },
                 {
-                    "text": "Payment It was agreed that the payment to writers would be HKD 1000 per page.",
+                    "text": "The payment to writers would be HKD 1000 per page.",
                     "answer": "payment"
                 }
             ]
@@ -37302,7 +37302,7 @@ const VOCAB_DB = {
             "ch": "乞求；懇求",
             "sents": [
                 {
-                    "text": "The child began to beg for one more piece of cake.",
+                    "text": "The child started to beg for one more piece of cake.",
                     "answer": "beg"
                 },
                 {
@@ -42638,7 +42638,7 @@ const VOCAB_DB = {
                     "answer": "dived"
                 },
                 {
-                    "text": "We watched the divers dive from the high platform.",
+                    "text": "She plans to dive from the high platform.",
                     "answer": "dive"
                 }
             ]
@@ -46896,7 +46896,7 @@ const VOCAB_DB = {
             "ch": "駭入；砍",
             "sents": [
                 {
-                    "text": "A hacker tried to hack the company website.",
+                    "text": "Someone tried to hack the company website.",
                     "answer": "hack"
                 },
                 {
@@ -48160,7 +48160,7 @@ const VOCAB_DB = {
                     "answer": "inch"
                 },
                 {
-                    "text": "The box moved forward inch by inch.",
+                    "text": "The box moved forward an inch.",
                     "answer": "inch"
                 },
                 {
@@ -58262,7 +58262,7 @@ const VOCAB_DB = {
                     "answer": "self"
                 },
                 {
-                    "text": "She carried herself with confidence and self control.",
+                    "text": "The idea of self is hard to define.",
                     "answer": "self"
                 }
             ]
@@ -60008,7 +60008,7 @@ const VOCAB_DB = {
                     "answer": "step"
                 },
                 {
-                    "text": "He heard footsteps on the step outside.",
+                    "text": "He paused on the step outside.",
                     "answer": "step"
                 }
             ]
@@ -64014,7 +64014,7 @@ const VOCAB_DB = {
             "ch": "風；纏繞",
             "sents": [
                 {
-                    "text": "Strong wind shook the windows.",
+                    "text": "A strong wind shook the house.",
                     "answer": "wind"
                 },
                 {
@@ -85628,7 +85628,7 @@ const VOCAB_DB = {
                     "answer": "wit"
                 },
                 {
-                    "text": "He survived the interview with calm and wit.",
+                    "text": "Her wit impressed the whole room.",
                     "answer": "wit"
                 },
                 {
