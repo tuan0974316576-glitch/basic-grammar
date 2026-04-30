@@ -9568,7 +9568,7 @@ const EFFEKSEER_EFFECTS = {
     aureliansNormalAttack: {
         path: 'effects/aurelians/normal_attack/Circular Impact_Aurelians.efkefc',
         loadScale: 1,
-        playScale: 0.06,
+        playScale: 0.09,
         speed: 1.12,
         duration: 620,
         viewportSize: 4096
