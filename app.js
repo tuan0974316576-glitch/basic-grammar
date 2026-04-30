@@ -6982,6 +6982,17 @@ function showPVPWaitingState(message, color = 'var(--warning)') {
 function showPVPRaceSelectionScreen() {
     if (isEnteringPVPDeploy) return;
 
+    const startScreen = document.getElementById('start-screen');
+    if (startScreen) startScreen.style.display = 'none';
+    const carousel = document.getElementById('main-menu-carousel');
+    if (carousel) carousel.style.display = 'none';
+    const gameModeSelection = document.getElementById('game-mode-selection');
+    if (gameModeSelection) gameModeSelection.style.display = 'none';
+    ['connecting-panel', 'login-panel', 'user-profile-panel'].forEach(id => {
+        const panel = document.getElementById(id);
+        if (panel) panel.style.display = 'none';
+    });
+
     const lobbyScreen = document.getElementById('lobby-screen');
     if (lobbyScreen) lobbyScreen.style.display = 'none';
     showSelectionOverlay();
