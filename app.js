@@ -2314,6 +2314,17 @@ function createRoom() {
         pvpBattleStarted = false;
         latestPVPSetupData = null;
 
+        const openingQuestionDeck = buildPvpQuestionDeck();
+        pvpQuestionDeck = openingQuestionDeck;
+        console.log(`[PVP Question Deck] Opening room with ${openingQuestionDeck.length} questions`);
+        if (openingQuestionDeck.length === 0) {
+            console.warn('[PVP Question Deck] Opening room without questions', {
+                level: selectedLevel,
+                practiceMode: currentPracticeMode,
+                activeVocabSize: Array.isArray(activeVocabList) ? activeVocabList.length : 0
+            });
+        }
+
 set(ref(db, 'rooms/' + roomId), {
             host: myPlayerId, 
             guest: null, 
@@ -2323,8 +2334,8 @@ set(ref(db, 'rooms/' + roomId), {
             practiceMode: currentPracticeMode,
             hostRace: null,
             guestRace: null,
-            questionDeck: null,
-            questionDeckReady: false,
+            questionDeck: openingQuestionDeck,
+            questionDeckReady: openingQuestionDeck.length > 0,
             currentQuestion: null
         });
 const { onDisconnect, remove } = window.firebaseModules; // �_���õ�����
