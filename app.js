@@ -1310,6 +1310,10 @@ function getPvpDeckTraceContext(extra = {}) {
     };
 }
 
+function getCurrentPvpMatchId() {
+    return latestPVPSetupData?.questionDeckMatchId || null;
+}
+
 function hydrateCurrentVocabFromPvpQuestion(payload) {
     if (!payload?.en) return false;
     const baseWord = Array.isArray(activeVocabList)
@@ -1394,7 +1398,11 @@ async function ensurePvpQuestionDeckReady(roomData = latestPVPSetupData) {
         questionDeck: deck,
         questionDeckReady: true,
         questionDeckMatchId: matchId,
-        questionDeckCreatedAt: Date.now()
+        questionDeckCreatedAt: Date.now(),
+        lastMove: null,
+        turn: 'host',
+        winner: null,
+        endReason: null
     });
 
     latestPVPSetupData = {
@@ -2604,8 +2612,33 @@ function initPVPListeners() {
         }
 
         // --- ���Y߉݋ ---
+        if (!pvpBattleStarted || pvpQuestionDeck.length === 0) {
+            if (data.lastMove) {
+                console.log('[PVP Deck] Ignoring move before local battle deck is ready', getPvpDeckTraceContext({
+                    action: 'ignore_move_before_deck',
+                    moveTimestamp: data.lastMove.timestamp || null,
+                    moveAttacker: data.lastMove.attacker || null,
+                    remoteReady: !!data.questionDeckReady,
+                    remoteDeckSize: normalizePvpQuestionDeck(data.questionDeck).length,
+                    matchId: data.questionDeckMatchId || null
+                }));
+            }
+            return;
+        }
+
         if (!data.lastMove) return;
         const move = data.lastMove;
+        const currentMatchId = getCurrentPvpMatchId();
+        if (currentMatchId && move.matchId && move.matchId !== currentMatchId) {
+            console.log('[PVP Deck] Ignoring move from old match deck', getPvpDeckTraceContext({
+                action: 'ignore_old_match_move',
+                moveMatchId: move.matchId,
+                currentMatchId,
+                moveTimestamp: move.timestamp || null,
+                moveAttacker: move.attacker || null
+            }));
+            return;
+        }
         
         if (move.timestamp <= lastProcessedTimestamp) return;
         
@@ -4437,7 +4470,7 @@ function handlePlayerTimeout() {
         const { ref, update } = window.firebaseModules;
         const nextTurn = (playerRole === 'host') ? 'guest' : 'host';
         update(ref(db, 'rooms/' + currentRoomId), {
-            lastMove: { attacker: playerRole, index: -1, timestamp: Date.now() },
+            lastMove: { attacker: playerRole, index: -1, timestamp: Date.now(), matchId: getCurrentPvpMatchId() },
             turn: nextTurn
         });
         setGameTimeout(() => {
@@ -4752,7 +4785,7 @@ function playerFire(success) {
 
             // 2. ���� Firebase (�ρ���һ�� Update)
             update(ref(db, 'rooms/' + currentRoomId), {
-                lastMove: { attacker: playerRole, index: currentTargetIndex, timestamp: Date.now() },
+                lastMove: { attacker: playerRole, index: currentTargetIndex, timestamp: Date.now(), matchId: getCurrentPvpMatchId() },
                 turn: nextTurn // �� ���ƽ�����Ԓ� DB ֪����݆����һλ��
             });
 
@@ -6336,7 +6369,7 @@ function handleTurnTimeout(skipRecoveryDelay = false) {
         const nextTurn = (playerRole === 'host') ? 'guest' : 'host';
         // ֪ͨ������ Skip ��
         update(ref(db, 'rooms/' + currentRoomId), {
-            lastMove: { attacker: playerRole, index: -1, timestamp: Date.now() },
+            lastMove: { attacker: playerRole, index: -1, timestamp: Date.now(), matchId: getCurrentPvpMatchId() },
             turn: nextTurn
         });
         
@@ -10655,7 +10688,7 @@ function executeExplosionStrike(topLeftIndex) {
     if (gameMode === 'PVP') {
         const { ref, update } = window.firebaseModules;
         update(ref(db, 'rooms/' + currentRoomId), {
-            lastMove: { attacker: playerRole, type: 'explosion', indices, anchor: topLeftIndex, timestamp: Date.now() }
+            lastMove: { attacker: playerRole, type: 'explosion', indices, anchor: topLeftIndex, timestamp: Date.now(), matchId: getCurrentPvpMatchId() }
         });
     }
 
@@ -10695,7 +10728,7 @@ function executeNukeStrike(topLeftIndex) {
     if (gameMode === 'PVP') {
         const { ref, update } = window.firebaseModules;
         update(ref(db, 'rooms/' + currentRoomId), {
-            lastMove: { attacker: playerRole, type: 'nuke', indices, anchor: topLeftIndex, timestamp: Date.now() }
+            lastMove: { attacker: playerRole, type: 'nuke', indices, anchor: topLeftIndex, timestamp: Date.now(), matchId: getCurrentPvpMatchId() }
         });
     }
 
@@ -10745,7 +10778,7 @@ function executeRadarScan(centerIndex) {
     if (gameMode === 'PVP') {
         const { ref, update } = window.firebaseModules;
         update(ref(db, 'rooms/' + currentRoomId), {
-            lastMove: { attacker: playerRole, type: 'radar', centerIndex, timestamp: Date.now() }
+            lastMove: { attacker: playerRole, type: 'radar', centerIndex, timestamp: Date.now(), matchId: getCurrentPvpMatchId() }
         });
     }
 
