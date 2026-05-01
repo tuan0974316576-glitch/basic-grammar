@@ -9668,7 +9668,7 @@ const EFFEKSEER_EFFECTS = {
     aureliansShieldLoop: {
         path: 'effects/aurelians/aegis_shield/MGC_W2_Shield_Loop.efkefc',
         loadScale: 1,
-        playScale: 0.29,
+        playScale: 0.42,
         speed: 1,
         duration: 120000,
         viewportSize: 4096
@@ -9676,7 +9676,7 @@ const EFFEKSEER_EFFECTS = {
     aureliansShieldOnHit: {
         path: 'effects/aurelians/aegis_shield/MGC_W2_Shield_OnHit.efkefc',
         loadScale: 1,
-        playScale: 0.29,
+        playScale: 0.42,
         speed: 1,
         duration: 900,
         viewportSize: 4096
