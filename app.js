@@ -9637,8 +9637,7 @@ const EFFEKSEER_EFFECTS = {
         playScale: 0.22,
         speed: 0.47,
         duration: 1470,
-        viewportSize: 4096,
-        anchorCellOffsetX: -1
+        viewportSize: 4096
     },
     normalAttack: {
         path: 'effects/vanguards/normal_explosion/normal_explosion.efkefc',
@@ -9646,8 +9645,7 @@ const EFFEKSEER_EFFECTS = {
         playScale: 0.17,
         speed: 1.15,
         duration: 520,
-        viewportSize: 4096,
-        anchorCellOffsetX: -1
+        viewportSize: 4096
     },
     aureliansNormalAttack: {
         path: 'effects/aurelians/normal_attack/Circular Impact_Aurelians.efkefc',
@@ -9945,8 +9943,12 @@ function renderAegisShieldPreview(index) {
     clearRadarPreview();
     const anchor = getAegisShieldAnchor(index);
     const center = getAegisShieldCenterIndex(anchor);
+    const grid = document.getElementById('player-grid');
     const overlay = buildRadarOverlay(center, 'radar-preview-overlay aegis-shield-preview', true, getPlayerCell, 'player-grid');
-    if (overlay) radarPreviewIndex = anchor;
+    if (grid && overlay) {
+        grid.appendChild(overlay);
+        radarPreviewIndex = anchor;
+    }
 }
 
 function renderAegisShieldOverlay(shieldState = aegisShieldState) {
