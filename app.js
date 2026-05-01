@@ -9597,6 +9597,8 @@ const radarScannedCells = new Set();
 const AEGIS_SHIELD_COST = 3;
 const AEGIS_SHIELD_SIZE = 3;
 const AEGIS_SHIELD_ENERGY_GAIN = 5;
+const AEGIS_SHIELD_LOOP_FRAME = 44;
+const AEGIS_SHIELD_FRAME_MS = 1000 / 60;
 let aegisShieldState = null;
 let pvpOpponentAegisShieldState = null;
 const RADAR_SCAN_DURATION = 2200;
@@ -9966,18 +9968,37 @@ function clearAegisShieldOverlay() {
 function stopAegisShieldLoop(shieldState = aegisShieldState) {
     const handle = shieldState && shieldState.loopHandle;
     if (handle && handle.exists) handle.stopRoot();
+    if (shieldState && shieldState.loopTimer) clearInterval(shieldState.loopTimer);
     if (shieldState) shieldState.loopHandle = null;
+    if (shieldState) shieldState.loopTimer = null;
 }
 
 function startAegisShieldLoop() {
-    if (!aegisShieldState || !aegisShieldState.active || aegisShieldState.loopHandle) return;
-    playAreaEffekseerEffect('aureliansShieldLoop', 'player-grid', aegisShieldState.indices).then(handle => {
+    if (!aegisShieldState || !aegisShieldState.active || aegisShieldState.loopTimer) return;
+
+    const loopMs = Math.round(AEGIS_SHIELD_LOOP_FRAME * AEGIS_SHIELD_FRAME_MS);
+    const playLoop = () => {
+        if (!aegisShieldState || !aegisShieldState.active) return;
+        stopAegisShieldLoop({ loopHandle: aegisShieldState.loopHandle });
+        playAreaEffekseerEffect('aureliansShieldLoop', 'player-grid', aegisShieldState.indices, {
+            duration: loopMs + 80
+        }).then(handle => {
+            if (aegisShieldState && aegisShieldState.active) {
+                aegisShieldState.loopHandle = handle;
+            } else if (handle && handle.exists) {
+                handle.stopRoot();
+            }
+        });
+    };
+
+    playLoop();
+    aegisShieldState.loopTimer = setInterval(() => {
         if (aegisShieldState && aegisShieldState.active) {
-            aegisShieldState.loopHandle = handle;
-        } else if (handle && handle.exists) {
-            handle.stopRoot();
+            playLoop();
+        } else {
+            stopAegisShieldLoop(aegisShieldState);
         }
-    });
+    }, loopMs);
 }
 
 function clearAegisShieldState() {
