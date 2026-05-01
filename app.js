@@ -11167,6 +11167,9 @@ function executeAegisShield(anchorIndex) {
     if (indices.length !== AEGIS_SHIELD_SIZE * AEGIS_SHIELD_SIZE) return;
 
     stopTurnSelectionTimer();
+    const timerContainer = document.getElementById('turn-timer-container');
+    if (timerContainer) timerContainer.style.visibility = 'hidden';
+
     clearRadarPreview();
     radarLockedIndex = null;
     resetSkillSelectionUI();
