@@ -1002,6 +1002,9 @@ let isTargeting = false;
         preloadEffekseerEffect('vanguardsNormalStrike');
         preloadEffekseerEffect('normalAttack');
         preloadEffekseerEffect('aureliansNormalAttack');
+        preloadEffekseerEffect('aureliansShieldApply');
+        preloadEffekseerEffect('aureliansShieldLoop');
+        preloadEffekseerEffect('aureliansShieldOnHit');
     }
 
    
@@ -2620,6 +2623,20 @@ function initPVPListeners() {
         latestPVPSetupData = questionDeck.length > 0
             ? { ...data, questionDeck }
             : data;
+        const opponentShield = data.shields ? data.shields[getPvpOpponentRole()] : null;
+        if (opponentShield && opponentShield.active && Array.isArray(opponentShield.indices)) {
+            pvpOpponentAegisShieldState = {
+                active: true,
+                used: false,
+                anchor: opponentShield.anchor,
+                centerIndex: opponentShield.centerIndex,
+                indices: opponentShield.indices,
+                owner: getPvpOpponentRole(),
+                createdAt: opponentShield.timestamp || Date.now()
+            };
+        } else if (pvpOpponentAegisShieldState && pvpOpponentAegisShieldState.owner === getPvpOpponentRole()) {
+            clearOpponentAegisShieldState();
+        }
         respondToPvpDeckRequest(data, 'battle_listener').catch(error => {
             console.warn('[PVP Deck] Failed to respond to deck request:', error);
         });
@@ -2695,6 +2712,7 @@ function initPVPListeners() {
                 status.innerHTML = `OPPONENT TIMED OUT!`;
                 status.style.color = "var(--success)";
                 playSound('time_out'); 
+                expireAegisShieldAfterEnemyAttack();
                 setGameTimeout(startPlayerTurn, 1500);
                 return;
             }
@@ -2704,7 +2722,7 @@ function initPVPListeners() {
                 setGameTimeout(() => {
                     playSound('missile-flying-sfx');
                     playMissileStrikeAnimation('player-grid', move.anchor ?? move.indices[0], lockOverlay, () => {
-                        applyExplosionDamageToPlayer(move.indices);
+                        applyExplosionDamageToPlayer(move.indices, { forceShieldBlocked: move.shieldBlocked === true });
                     });
                 }, MISSILE_LOCK_ON_DURATION);
                 return;
@@ -2716,9 +2734,14 @@ function initPVPListeners() {
                 setGameTimeout(() => {
                     playSound('missile-flying-sfx');
                     playNukeStrikeAnimation('player-grid', move.anchor ?? move.indices[0], lockOverlay, () => {
-                        applyExplosionDamageToPlayer(move.indices);
+                        applyExplosionDamageToPlayer(move.indices, { forceShieldBlocked: move.shieldBlocked === true });
                     });
                 }, NUKE_LOCK_ON_DURATION);
+                return;
+            }
+
+            if (move.type === 'shield' && Array.isArray(move.indices) && move.indices.length > 0) {
+                rememberOpponentAegisShield(move);
                 return;
             }
 
@@ -2744,12 +2767,17 @@ function initPVPListeners() {
             
             if (cell.classList.contains('revealed')) return;
 
-            cell.classList.add('revealed');
+            const shieldOverlap = getAegisShieldOverlap([idx]);
+            const isShieldBlocked = shieldOverlap.length > 0 || move.shieldBlocked === true;
+
             playSound('laser-sfx');
             triggerAnimation(cell, 'blue');
             
             setGameTimeout(() => {
-                if (myGrid[idx] === 1) {
+                if (isShieldBlocked) {
+                    triggerAegisShieldHit(shieldOverlap.length > 0 ? shieldOverlap : [idx]);
+                } else if (myGrid[idx] === 1) {
+                    cell.classList.add('revealed');
                     // --- Hit Logic ---
                     cell.classList.add('hit');
                     playSound('hit-sfx');
@@ -2778,10 +2806,12 @@ function initPVPListeners() {
 
                     if (checkGameOver()) return;
                 } else {
+                    cell.classList.add('revealed');
                     // --- Miss Logic ---
                     cell.classList.add('miss');
                     cell.innerHTML = '<img src="close.png" class="miss-icon">';
                 }
+                if (!isShieldBlocked) expireAegisShieldAfterEnemyAttack();
             }, 500);
             
             setGameTimeout(() => {
@@ -2940,6 +2970,10 @@ function createPositionedShipImage(boardId, idx, conf, v, options = {}) {
     }
 
     function handleHover(index) {
+        if (isAegisShieldSkillSelected() && currentPhase === 'PLAYER_TURN') {
+            if (isAegisShieldSelectable(index)) renderAegisShieldPreview(index);
+            return;
+        }
         if (currentPhase !== 'DEPLOY') return;
         clearPreview();
         if (deployIndex >= FLEET.length) return;
@@ -2957,6 +2991,9 @@ function createPositionedShipImage(boardId, idx, conf, v, options = {}) {
     }
 
     function clearPreview() { 
+        if (isAegisShieldSkillSelected() && radarLockedIndex === null) {
+            clearRadarPreview();
+        }
         document.querySelectorAll('.cell').forEach(c => c.classList.remove('valid-hover', 'invalid-hover')); 
     }
 
@@ -2966,6 +3003,16 @@ function createPositionedShipImage(boardId, idx, conf, v, options = {}) {
     function handleClick(index) {
         // 1. �ǲ����A�� -> ̎��l��
         if (currentPhase !== 'DEPLOY') {
+            if (isAegisShieldSkillSelected() && currentPhase === 'PLAYER_TURN') {
+                if (!isAegisShieldSelectable(index)) {
+                    playSound('wrong-sfx');
+                    return;
+                }
+                radarLockedIndex = getAegisShieldAnchor(index);
+                renderAegisShieldPreview(index);
+                setInstructionPanel('AEGIS', 'ZONE LOCKED. PRESS TICK TO SHIELD', 'aurelians_shield.png');
+                return;
+            }
             if (currentPhase === 'PLAYER_TURN') {
                 const cell = document.getElementById('enemy-grid').children[index];
                 if (!cell.classList.contains('revealed')) openLaunchModal(index);
@@ -3384,6 +3431,7 @@ function switchScene(sceneName) {
         const instrContainer = document.getElementById('instruction-container');
 
         if (sceneName === 'PLAYER') {
+            stopAegisShieldLoop();
             document.getElementById('enemy-board').classList.add('active');
             document.getElementById('game-status').innerHTML = `PHASE: <span style="color:var(--success)">YOUR TURN</span>`;
             document.getElementById('control-panel').style.borderColor = selectedRace === 'AURELIANS' ? "#2dd4bf" : "var(--success)";
@@ -3428,6 +3476,8 @@ function switchScene(sceneName) {
                 instrContainer.style.visibility = 'hidden';
                 instrContainer.style.display = 'none';
             }
+            renderAegisShieldOverlay();
+            startAegisShieldLoop();
         }
 
         renderBattleMinimap(sceneName);
@@ -4831,22 +4881,38 @@ function playerFire(success) {
 
             // 1. Ӌ����һλ�S߅��
             const nextTurn = (playerRole === 'host') ? 'guest' : 'host';
+            const shieldOverlap = getOpponentAegisShieldOverlap([currentTargetIndex]);
+            const isShieldBlocked = shieldOverlap.length > 0;
+            const opponentShieldWasActive = !!(pvpOpponentAegisShieldState && pvpOpponentAegisShieldState.active);
+            const opponentShieldIndices = pvpOpponentAegisShieldState?.indices
+                ? [...pvpOpponentAegisShieldState.indices]
+                : shieldOverlap;
+            const roomUpdate = {
+                lastMove: {
+                    attacker: playerRole,
+                    index: currentTargetIndex,
+                    timestamp: Date.now(),
+                    matchId: getCurrentPvpMatchId(),
+                    shieldBlocked: isShieldBlocked
+                },
+                turn: nextTurn
+            };
 
             // 2. ���� Firebase (�ρ���һ�� Update)
-            update(ref(db, 'rooms/' + currentRoomId), {
-                lastMove: { attacker: playerRole, index: currentTargetIndex, timestamp: Date.now(), matchId: getCurrentPvpMatchId() },
-                turn: nextTurn // �� ���ƽ�����Ԓ� DB ֪����݆����һλ��
-            });
+            update(ref(db, 'rooms/' + currentRoomId), roomUpdate);
 
             // 3. ���Űl��Ӯ�
             const cell = document.getElementById('enemy-grid').children[currentTargetIndex];
-            cell.classList.add('revealed');
             playSound('laser-sfx');
             triggerAnimation(cell, 'blue');
 
             // 4. ���t 0.5�� �@ʾ�Y�� (�Ȱl��Ӯ���һ�)
             setGameTimeout(() => {
-                if (enemyGrid[currentTargetIndex] === 1) {
+                if (isShieldBlocked) {
+                    playAreaEffekseerEffect('aureliansShieldOnHit', 'enemy-grid', opponentShieldIndices);
+                    clearOpponentAegisShieldState();
+                } else if (enemyGrid[currentTargetIndex] === 1) {
+                    cell.classList.add('revealed');
                     // --- ���� (HIT) ---
                     cell.classList.add('hit');
                     triggerAnimation(cell, 'orange');
@@ -4859,10 +4925,12 @@ function playerFire(success) {
 
                     if (checkGameOver()) return; // ����A����ͣ
                 } else {
+                    cell.classList.add('revealed');
                     // --- ��ʧ (MISS) ---
                     cell.classList.add('miss');
                     cell.innerHTML = '<img src="close.png" class="miss-icon">';
                 }
+                if (!isShieldBlocked && opponentShieldWasActive) clearOpponentAegisShieldState();
 
                 refreshRadarScanDisplays();
 
@@ -5256,7 +5324,9 @@ function performAiMissileStrike(topLeftIndex) {
         return;
     }
 
+    const shieldProtected = new Set(getAegisShieldOverlap(indices));
     indices.forEach(index => {
+        if (shieldProtected.has(index)) return;
         if (!enemyShots.includes(index)) enemyShots.push(index);
     });
 
@@ -5269,7 +5339,7 @@ function performAiMissileStrike(topLeftIndex) {
     setGameTimeout(() => {
         playSound('missile-flying-sfx');
         playMissileStrikeAnimation('player-grid', topLeftIndex, lockOverlay, () => {
-            const isGameOver = applyExplosionDamageToPlayer(indices);
+            const isGameOver = applyExplosionDamageToPlayer(indices, { expireShieldOnMiss: true });
             document.getElementById('warning-overlay').style.display = 'none';
             refreshAiRadarIntel();
 
@@ -5292,7 +5362,9 @@ function performAiNukeStrike(topLeftIndex) {
         return;
     }
 
+    const shieldProtected = new Set(getAegisShieldOverlap(indices));
     indices.forEach(index => {
+        if (shieldProtected.has(index)) return;
         if (!enemyShots.includes(index)) enemyShots.push(index);
     });
 
@@ -5309,7 +5381,7 @@ function performAiNukeStrike(topLeftIndex) {
         let isGameOver = false;
 
         playNukeStrikeAnimation('player-grid', topLeftIndex, lockOverlay, () => {
-            isGameOver = applyExplosionDamageToPlayer(indices);
+            isGameOver = applyExplosionDamageToPlayer(indices, { expireShieldOnMiss: true });
             refreshAiRadarIntel();
         }, () => {
             document.getElementById('warning-overlay').style.display = 'none';
@@ -5409,17 +5481,20 @@ function aiFire() {
         t = remainingTargets[Math.floor(Math.random() * remainingTargets.length)];
     }
 
-    enemyShots.push(t);
-    
     // --- 2. ���й��� ---
     const cell = document.getElementById('player-grid').children[t];
-    cell.classList.add('revealed');
+    const shieldOverlap = getAegisShieldOverlap([t]);
+    const isShieldBlocked = shieldOverlap.length > 0;
+    if (!isShieldBlocked) enemyShots.push(t);
     triggerAnimation(cell, 'blue');
     
     setGameTimeout(() => {
         let isGameOver = false; 
 
-        if (myGrid[t] === 1) { // �� �����ˣ�
+        if (isShieldBlocked) {
+            triggerAegisShieldHit(shieldOverlap);
+        } else if (myGrid[t] === 1) { // �� �����ˣ�
+            cell.classList.add('revealed');
             cell.classList.add('hit');
             playSound('hit-sfx');
             triggerAnimation(cell, 'orange');
@@ -5454,9 +5529,11 @@ function aiFire() {
             }
         } else {
             // ��ʧ
+            cell.classList.add('revealed');
             cell.classList.add('miss'); 
             cell.innerHTML = '<img src="close.png" class="miss-icon">';
         }
+        if (!isShieldBlocked) expireAegisShieldAfterEnemyAttack();
 
         document.getElementById('warning-overlay').style.display = 'none';
         renderBattleMinimap('ENEMY');
@@ -6337,6 +6414,8 @@ function resetGame() {
     pvpOpponentRadarScannedCenters.clear();
     aiRadarIntel = [];
     radarScannedCells.clear();
+    clearAegisShieldState();
+    clearOpponentAegisShieldState();
     lastRadarResultShownAt = 0;
     clearRadarScannedOverlays();
     clearActiveSkillState();
@@ -9515,6 +9594,11 @@ let missilePreviewIndex = null;
 let missileLockedIndex = null;
 let lastRadarResultShownAt = 0;
 const radarScannedCells = new Set();
+const AEGIS_SHIELD_COST = 3;
+const AEGIS_SHIELD_SIZE = 3;
+const AEGIS_SHIELD_ENERGY_GAIN = 5;
+let aegisShieldState = null;
+let pvpOpponentAegisShieldState = null;
 const RADAR_SCAN_DURATION = 2200;
 const RADAR_RESULT_DISPLAY_DURATION = 1500;
 const AI_RADAR_ATTACK_DELAY = 500;
@@ -9572,6 +9656,30 @@ const EFFEKSEER_EFFECTS = {
         speed: 1.12,
         duration: 620,
         viewportSize: 4096
+    },
+    aureliansShieldApply: {
+        path: 'effects/aurelians/aegis_shield/MGC_W2_Shield_Apply.efkefc',
+        loadScale: 1,
+        playScale: 0.42,
+        speed: 1,
+        duration: 900,
+        viewportSize: 4096
+    },
+    aureliansShieldLoop: {
+        path: 'effects/aurelians/aegis_shield/MGC_W2_Shield_Loop.efkefc',
+        loadScale: 1,
+        playScale: 0.42,
+        speed: 1,
+        duration: 120000,
+        viewportSize: 4096
+    },
+    aureliansShieldOnHit: {
+        path: 'effects/aurelians/aegis_shield/MGC_W2_Shield_OnHit.efkefc',
+        loadScale: 1,
+        playScale: 0.42,
+        speed: 1,
+        duration: 900,
+        viewportSize: 4096
     }
 };
 const DEFAULT_INSTRUCTION = {
@@ -9587,7 +9695,7 @@ const SKILL_INFO = {
 };
 
 const AURELIANS_SKILL_INFO = {
-    radar:     { name: 'AEGIS',    desc: 'SELECT A SHIELDED 4X4 ZONE', icon: 'aurelians_shield.png', title: 'Aegis (4?)' },
+    radar:     { name: 'AEGIS',    desc: 'SELECT A SHIELDED 3X3 ZONE', icon: 'aurelians_shield.png', title: 'Aegis (3)' },
     explosion: { name: 'TELEPORT', desc: 'SELECT A TELEPORT ZONE', icon: 'aurelians_teleport.png', title: 'Teleport (7?)' },
     nuke:      { name: 'JUDGMENT', desc: 'SELECT A 4X4 JUDGMENT ZONE', icon: 'aurelians_judgment.png', title: 'Judgment (20?)' }
 };
@@ -9739,9 +9847,12 @@ function updateBattleRaceUiTheme() {
         const icon = diamond.querySelector('.skill-icon');
         if (!info || !icon) return;
 
+        if (skill === 'radar') {
+            diamond.dataset.cost = String(isAurelians ? AEGIS_SHIELD_COST : 4);
+        }
         icon.src = info.icon;
         icon.alt = info.name;
-        diamond.title = info.title || `${info.name}`;
+        diamond.title = info.title || `${info.name} (${diamond.dataset.cost})`;
     });
 }
 
@@ -9782,6 +9893,167 @@ function getRadarAreaIndices(centerIndex) {
     }
 
     return indices;
+}
+
+function getAegisShieldAnchor(index) {
+    return getExplosionAnchor(index, AEGIS_SHIELD_SIZE);
+}
+
+function getAegisShieldCenterIndex(anchorIndex) {
+    return anchorIndex + GRID_SIZE + 1;
+}
+
+function getAegisShieldAreaIndices(anchorIndex) {
+    return getExplosionAreaIndices(anchorIndex, AEGIS_SHIELD_SIZE);
+}
+
+function isAegisShieldSkillSelected() {
+    return selectedRace === 'AURELIANS' && selectedSkill === 'radar';
+}
+
+function isAegisShieldSelectable(index) {
+    const anchor = getAegisShieldAnchor(index);
+    return getAegisShieldAreaIndices(anchor).length === AEGIS_SHIELD_SIZE * AEGIS_SHIELD_SIZE;
+}
+
+function getAegisShieldOverlap(indices, shieldState = aegisShieldState) {
+    if (!shieldState || !shieldState.active || !Array.isArray(indices)) return [];
+    const protectedSet = new Set(shieldState.indices || []);
+    return indices.filter(index => protectedSet.has(index));
+}
+
+function showAegisPlacementBoard() {
+    document.getElementById('enemy-board').classList.remove('active');
+    document.getElementById('player-board').classList.add('active');
+    const status = document.getElementById('game-status');
+    if (status) status.innerHTML = `PHASE: <span style="color:#2dd4bf">AEGIS PLACEMENT</span>`;
+    setInstructionPanel('AEGIS', 'SELECT A 3X3 SHIELD ZONE', 'aurelians_shield.png');
+    renderBattleMinimap('ENEMY');
+}
+
+function returnFromAegisPlacement() {
+    document.getElementById('player-board').classList.remove('active');
+    document.getElementById('enemy-board').classList.add('active');
+    const status = document.getElementById('game-status');
+    if (status && currentPhase === 'PLAYER_TURN') {
+        status.innerHTML = `PHASE: <span style="color:var(--success)">YOUR TURN</span>`;
+    }
+    renderBattleMinimap('PLAYER');
+}
+
+function renderAegisShieldPreview(index) {
+    clearRadarPreview();
+    const anchor = getAegisShieldAnchor(index);
+    const center = getAegisShieldCenterIndex(anchor);
+    const overlay = buildRadarOverlay(center, 'radar-preview-overlay aegis-shield-preview', true, getPlayerCell, 'player-grid');
+    if (overlay) radarPreviewIndex = anchor;
+}
+
+function renderAegisShieldOverlay(shieldState = aegisShieldState) {
+    if (!shieldState || !shieldState.active) return;
+    clearAegisShieldOverlay();
+    const center = getAegisShieldCenterIndex(shieldState.anchor);
+    const overlay = buildRadarOverlay(center, 'radar-scanned-overlay aegis-shield-active-overlay', false, getPlayerCell, 'player-grid');
+    if (overlay) overlay.dataset.aegisShield = 'active';
+}
+
+function clearAegisShieldOverlay() {
+    document.querySelectorAll('.aegis-shield-active-overlay').forEach(el => el.remove());
+}
+
+function stopAegisShieldLoop(shieldState = aegisShieldState) {
+    const handle = shieldState && shieldState.loopHandle;
+    if (handle && handle.exists) handle.stopRoot();
+    if (shieldState) shieldState.loopHandle = null;
+}
+
+function startAegisShieldLoop() {
+    if (!aegisShieldState || !aegisShieldState.active || aegisShieldState.loopHandle) return;
+    playAreaEffekseerEffect('aureliansShieldLoop', 'player-grid', aegisShieldState.indices).then(handle => {
+        if (aegisShieldState && aegisShieldState.active) {
+            aegisShieldState.loopHandle = handle;
+        } else if (handle && handle.exists) {
+            handle.stopRoot();
+        }
+    });
+}
+
+function clearAegisShieldState() {
+    stopAegisShieldLoop(aegisShieldState);
+    aegisShieldState = null;
+    clearAegisShieldOverlay();
+}
+
+function clearOwnAegisShieldInRoom() {
+    if (gameMode !== 'PVP' || !currentRoomId || !playerRole || !window.firebaseModules) return;
+    const { ref, update } = window.firebaseModules;
+    update(ref(db, 'rooms/' + currentRoomId), {
+        [`shields/${playerRole}`]: null
+    }).catch(error => {
+        console.warn('[AEGIS] Failed to clear room shield state:', error);
+    });
+}
+
+function activateAegisShield(anchorIndex) {
+    const indices = getAegisShieldAreaIndices(anchorIndex);
+    if (indices.length !== AEGIS_SHIELD_SIZE * AEGIS_SHIELD_SIZE) return;
+
+    clearAegisShieldState();
+    aegisShieldState = {
+        active: true,
+        used: false,
+        anchor: anchorIndex,
+        centerIndex: getAegisShieldCenterIndex(anchorIndex),
+        indices,
+        owner: playerRole || 'player',
+        createdAt: Date.now()
+    };
+
+    renderAegisShieldOverlay(aegisShieldState);
+    playAreaEffekseerEffect('aureliansShieldApply', 'player-grid', indices);
+}
+
+function triggerAegisShieldHit(overlapIndices) {
+    if (!aegisShieldState || !aegisShieldState.active || aegisShieldState.used) return false;
+
+    aegisShieldState.used = true;
+    const indices = aegisShieldState.indices || overlapIndices || [];
+    playAreaEffekseerEffect('aureliansShieldOnHit', 'player-grid', indices);
+    addEnergy(AEGIS_SHIELD_ENERGY_GAIN, 'AEGIS ABSORB');
+    clearAegisShieldState();
+    clearOwnAegisShieldInRoom();
+    return true;
+}
+
+function expireAegisShieldAfterEnemyAttack() {
+    if (!aegisShieldState || !aegisShieldState.active) return;
+    clearAegisShieldState();
+    clearOwnAegisShieldInRoom();
+}
+
+function rememberOpponentAegisShield(move) {
+    if (!move || !Array.isArray(move.indices)) return;
+    pvpOpponentAegisShieldState = {
+        active: true,
+        used: false,
+        anchor: move.anchor,
+        centerIndex: move.centerIndex,
+        indices: move.indices,
+        owner: move.attacker,
+        createdAt: move.timestamp || Date.now()
+    };
+}
+
+function clearOpponentAegisShieldState() {
+    pvpOpponentAegisShieldState = null;
+}
+
+function getOpponentAegisShieldOverlap(indices) {
+    return getAegisShieldOverlap(indices, pvpOpponentAegisShieldState);
+}
+
+function getPvpOpponentRole() {
+    return playerRole === 'host' ? 'guest' : 'host';
 }
 
 function isRadarSelectable(index) {
@@ -10485,6 +10757,27 @@ function playCellEffekseerEffect(effectKey, cell, options = {}) {
     );
 }
 
+function playAreaEffekseerEffect(effectKey, gridId, indices, options = {}) {
+    const grid = document.getElementById(gridId);
+    const cells = Array.isArray(indices)
+        ? indices.map(index => grid ? grid.children[index] : null).filter(Boolean)
+        : [];
+    if (!grid || cells.length === 0) return Promise.resolve(null);
+
+    const left = Math.min(...cells.map(cell => cell.offsetLeft));
+    const top = Math.min(...cells.map(cell => cell.offsetTop));
+    const right = Math.max(...cells.map(cell => cell.offsetLeft + cell.offsetWidth));
+    const bottom = Math.max(...cells.map(cell => cell.offsetTop + cell.offsetHeight));
+    const gridRect = grid.getBoundingClientRect();
+
+    return playEffekseerEffect(
+        effectKey,
+        gridRect.left + ((left + right) / 2),
+        gridRect.top + ((top + bottom) / 2),
+        options
+    );
+}
+
 function playEffekseerEffect(effectKey, screenX, screenY, options = {}) {
     const config = EFFEKSEER_EFFECTS[effectKey];
     if (!config) return Promise.resolve(null);
@@ -10646,13 +10939,18 @@ function playNukeStrikeAnimation(boardId, topLeftIndex, lockOverlay, onImpact, o
     }, totalDuration);
 }
 
-function applyExplosionDamageToEnemy(indices) {
+function applyExplosionDamageToEnemy(indices, options = {}) {
     let isGameOver = false;
     const hitIndices = [];
+    const shieldState = options.opponentShieldState || pvpOpponentAegisShieldState;
+    const shieldOverlap = getAegisShieldOverlap(indices, shieldState);
+    const shieldProtected = new Set(shieldOverlap);
+    const isShieldBlocked = shieldOverlap.length > 0;
 
     indices.forEach(index => {
         const cell = getEnemyCell(index);
         if (!cell || cell.classList.contains('revealed')) return;
+        if (shieldProtected.has(index)) return;
 
         cell.classList.add('revealed');
 
@@ -10666,6 +10964,11 @@ function applyExplosionDamageToEnemy(indices) {
         }
     });
 
+    if (isShieldBlocked) {
+        playAreaEffekseerEffect('aureliansShieldOnHit', 'enemy-grid', shieldState?.indices || shieldOverlap);
+        clearOpponentAegisShieldState();
+    }
+
     if (hitIndices.length > 0) {
         [...new Set(hitIndices)].forEach(index => checkEnemyShipDestruction(index));
         if (checkGameOver()) isGameOver = true;
@@ -10675,13 +10978,17 @@ function applyExplosionDamageToEnemy(indices) {
     return isGameOver;
 }
 
-function applyExplosionDamageToPlayer(indices) {
+function applyExplosionDamageToPlayer(indices, options = {}) {
     const grid = document.getElementById('player-grid');
     const hitIndices = [];
+    const shieldOverlap = getAegisShieldOverlap(indices);
+    const isShieldBlocked = shieldOverlap.length > 0 || options.forceShieldBlocked === true;
+    const shieldProtected = new Set(shieldOverlap.length > 0 ? shieldOverlap : (isShieldBlocked ? indices : []));
 
     indices.forEach(index => {
         const cell = grid ? grid.children[index] : null;
         if (!cell || cell.classList.contains('revealed')) return;
+        if (shieldProtected.has(index)) return;
 
         cell.classList.add('revealed');
 
@@ -10698,6 +11005,12 @@ function applyExplosionDamageToPlayer(indices) {
             cell.innerHTML = '<img src="close.png" class="miss-icon">';
         }
     });
+
+    if (isShieldBlocked) {
+        triggerAegisShieldHit(shieldOverlap.length > 0 ? shieldOverlap : indices);
+    } else if (options.expireShieldOnMiss) {
+        expireAegisShieldAfterEnemyAttack();
+    }
 
     renderBattleMinimap('ENEMY');
 
@@ -10726,6 +11039,9 @@ function applyExplosionDamageToPlayer(indices) {
 function executeExplosionStrike(topLeftIndex) {
     const indices = getExplosionAreaIndices(topLeftIndex);
     if (indices.length !== 4) return;
+    const opponentShieldSnapshot = pvpOpponentAegisShieldState
+        ? { ...pvpOpponentAegisShieldState, indices: [...(pvpOpponentAegisShieldState.indices || [])] }
+        : null;
 
     stopTurnSelectionTimer();
     const timerContainer = document.getElementById('turn-timer-container');
@@ -10743,9 +11059,10 @@ function executeExplosionStrike(topLeftIndex) {
 
     if (gameMode === 'PVP') {
         const { ref, update } = window.firebaseModules;
-        update(ref(db, 'rooms/' + currentRoomId), {
-            lastMove: { attacker: playerRole, type: 'explosion', indices, anchor: topLeftIndex, timestamp: Date.now(), matchId: getCurrentPvpMatchId() }
-        });
+        const roomUpdate = {
+            lastMove: { attacker: playerRole, type: 'explosion', indices, anchor: topLeftIndex, timestamp: Date.now(), matchId: getCurrentPvpMatchId(), shieldBlocked: getOpponentAegisShieldOverlap(indices).length > 0 }
+        };
+        update(ref(db, 'rooms/' + currentRoomId), roomUpdate);
     }
 
     const lockOverlay = createMissileLockOverlay('enemy-grid', topLeftIndex);
@@ -10753,7 +11070,7 @@ function executeExplosionStrike(topLeftIndex) {
     setTimeout(() => {
         playSound('missile-flying-sfx');
         playMissileStrikeAnimation('enemy-grid', topLeftIndex, lockOverlay, () => {
-            const isGameOver = applyExplosionDamageToEnemy(indices);
+            const isGameOver = applyExplosionDamageToEnemy(indices, { opponentShieldState: opponentShieldSnapshot });
             finishPlayerSkillMode();
 
             if (!isGameOver) {
@@ -10766,6 +11083,9 @@ function executeExplosionStrike(topLeftIndex) {
 function executeNukeStrike(topLeftIndex) {
     const indices = getExplosionAreaIndices(topLeftIndex, 4);
     if (indices.length !== 16) return;
+    const opponentShieldSnapshot = pvpOpponentAegisShieldState
+        ? { ...pvpOpponentAegisShieldState, indices: [...(pvpOpponentAegisShieldState.indices || [])] }
+        : null;
 
     stopTurnSelectionTimer();
     const timerContainer = document.getElementById('turn-timer-container');
@@ -10783,9 +11103,10 @@ function executeNukeStrike(topLeftIndex) {
 
     if (gameMode === 'PVP') {
         const { ref, update } = window.firebaseModules;
-        update(ref(db, 'rooms/' + currentRoomId), {
-            lastMove: { attacker: playerRole, type: 'nuke', indices, anchor: topLeftIndex, timestamp: Date.now(), matchId: getCurrentPvpMatchId() }
-        });
+        const roomUpdate = {
+            lastMove: { attacker: playerRole, type: 'nuke', indices, anchor: topLeftIndex, timestamp: Date.now(), matchId: getCurrentPvpMatchId(), shieldBlocked: getOpponentAegisShieldOverlap(indices).length > 0 }
+        };
+        update(ref(db, 'rooms/' + currentRoomId), roomUpdate);
     }
 
     let isGameOver = false;
@@ -10794,7 +11115,7 @@ function executeNukeStrike(topLeftIndex) {
     setTimeout(() => {
         playSound('missile-flying-sfx');
         playNukeStrikeAnimation('enemy-grid', topLeftIndex, lockOverlay, () => {
-            isGameOver = applyExplosionDamageToEnemy(indices);
+            isGameOver = applyExplosionDamageToEnemy(indices, { opponentShieldState: opponentShieldSnapshot });
         }, () => {
             finishPlayerSkillMode();
 
@@ -10816,6 +11137,48 @@ function showRadarResult(centerIndex) {
         getCell: getEnemyCell,
         countTargets: countRadarTargets
     });
+}
+
+function executeAegisShield(anchorIndex) {
+    const indices = getAegisShieldAreaIndices(anchorIndex);
+    if (indices.length !== AEGIS_SHIELD_SIZE * AEGIS_SHIELD_SIZE) return;
+
+    stopTurnSelectionTimer();
+    clearRadarPreview();
+    radarLockedIndex = null;
+    resetSkillSelectionUI();
+    document.querySelectorAll('.skill-diamond').forEach(d => d.classList.remove('skill-selected'));
+    setRadarEligibleCells(false);
+    activeSkill = 'radar';
+    setInstructionPanel('AEGIS', 'SHIELD ONLINE', 'aurelians_shield.png');
+    activateAegisShield(anchorIndex);
+
+    if (gameMode === 'PVP') {
+        const { ref, update } = window.firebaseModules;
+        update(ref(db, 'rooms/' + currentRoomId), {
+            lastMove: {
+                attacker: playerRole,
+                type: 'shield',
+                anchor: anchorIndex,
+                centerIndex: getAegisShieldCenterIndex(anchorIndex),
+                indices,
+                timestamp: Date.now(),
+                matchId: getCurrentPvpMatchId()
+            },
+            [`shields/${playerRole}`]: {
+                active: true,
+                anchor: anchorIndex,
+                centerIndex: getAegisShieldCenterIndex(anchorIndex),
+                indices,
+                timestamp: Date.now()
+            }
+        });
+    }
+
+    setGameTimeout(() => {
+        finishPlayerSkillMode();
+        returnFromAegisPlacement();
+    }, EFFEKSEER_EFFECTS.aureliansShieldApply.duration);
 }
 
 function executeRadarScan(centerIndex) {
@@ -10994,6 +11357,11 @@ function onSkillClick(e) {
         radarLockedIndex = null;
         missileLockedIndex = null;
         clearMissilePreview();
+        if (selectedRace === 'AURELIANS') {
+            setRadarEligibleCells(false);
+            showAegisPlacementBoard();
+            return;
+        }
         setRadarEligibleCells(true);
         setExplosionEligibleCells(false);
         const radarInfo = getSkillInfo('radar');
@@ -11023,6 +11391,7 @@ function onSkillClick(e) {
 }
 
 function cancelSkillSelection() {
+    const wasAegisPlacement = isAegisShieldSkillSelected();
     selectedSkill = null;
     radarLockedIndex = null;
     missileLockedIndex = null;
@@ -11035,6 +11404,9 @@ function cancelSkillSelection() {
 
     // ߀ԭ instruction panel
     setInstructionPanel(DEFAULT_INSTRUCTION.name, DEFAULT_INSTRUCTION.desc, DEFAULT_INSTRUCTION.icon);
+    if (wasAegisPlacement && currentPhase === 'PLAYER_TURN') {
+        returnFromAegisPlacement();
+    }
 }
 
 function confirmSkillSelection() {
@@ -11049,6 +11421,18 @@ function confirmSkillSelection() {
     }
 
     if (selectedSkill === 'radar') {
+        if (selectedRace === 'AURELIANS') {
+            if (radarLockedIndex === null || getAegisShieldAreaIndices(radarLockedIndex).length !== AEGIS_SHIELD_SIZE * AEGIS_SHIELD_SIZE) {
+                playSound('wrong-sfx');
+                setInstructionPanel('AEGIS', 'SELECT A 3X3 ZONE FIRST', 'aurelians_shield.png');
+                return;
+            }
+            addEnergy(-cost, 'AEGIS');
+            executeAegisShield(radarLockedIndex);
+            updateSkillStates();
+            return;
+        }
+
         if (radarLockedIndex === null || !isRadarSelectable(radarLockedIndex)) {
             playSound('wrong-sfx');
             setInstructionPanel('RADAR', 'SELECT A MISSED CELL FIRST', 'radar.png');
