@@ -2769,9 +2769,10 @@ function initPVPListeners() {
 
             const shieldOverlap = getAegisShieldOverlap([idx]);
             const isShieldBlocked = shieldOverlap.length > 0 || move.shieldBlocked === true;
+            const attackerRace = getPvpRoleRace(move.attacker) || 'VANGUARDS';
 
             playSound('laser-sfx');
-            triggerAnimation(cell, 'blue');
+            triggerAnimation(cell, 'blue', { race: attackerRace });
             
             setGameTimeout(() => {
                 if (isShieldBlocked) {
@@ -5486,7 +5487,7 @@ function aiFire() {
     const shieldOverlap = getAegisShieldOverlap([t]);
     const isShieldBlocked = shieldOverlap.length > 0;
     if (!isShieldBlocked) enemyShots.push(t);
-    triggerAnimation(cell, 'blue');
+    triggerAnimation(cell, 'blue', { race: enemyRace || 'VANGUARDS' });
     
     setGameTimeout(() => {
         let isGameOver = false; 
@@ -5817,7 +5818,12 @@ function checkMyShipDestruction(hitIdx) {
     }
 
     // --- �޸���ĄӮ����� (�_���Ӯ��ڑ�Ş����) ---
-function triggerAnimation(cell, type) {
+function getPvpRoleRace(role) {
+    if (!role || !latestPVPSetupData) return null;
+    return role === 'host' ? latestPVPSetupData.hostRace : latestPVPSetupData.guestRace;
+}
+
+function triggerAnimation(cell, type, options = {}) {
     if (type === 'orange') {
         playCellEffekseerEffect('normalAttack', cell);
         return;
@@ -5827,8 +5833,9 @@ function triggerAnimation(cell, type) {
 
     // ���� �����N���x��explosion ����
     if (type === 'blue') {
+        const attackRace = options.race || selectedRace;
         // �z����ҷN��,Aurelians�ý�ɫ,�������{ɫ
-        if (selectedRace === 'AURELIANS') {
+        if (attackRace === 'AURELIANS') {
             playCellEffekseerEffect('aureliansNormalAttack', cell);
             return;
         } else {
