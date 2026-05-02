@@ -9675,7 +9675,7 @@ const EFFEKSEER_EFFECTS = {
     aureliansShieldLoop: {
         path: 'effects/aurelians/aegis_shield/MGC_W2_Shield_Loop.efkefc',
         loadScale: 1,
-        playScale: 0.42,
+        playScale: 0.29,
         speed: 1,
         duration: 120000,
         viewportSize: 4096
@@ -9980,6 +9980,12 @@ function stopAegisShieldLoop(shieldState = aegisShieldState) {
     if (shieldState) shieldState.loopTimer = null;
 }
 
+function stopAegisShieldApply(shieldState = aegisShieldState) {
+    const handle = shieldState && shieldState.applyHandle;
+    if (handle && handle.exists) handle.stopRoot();
+    if (shieldState) shieldState.applyHandle = null;
+}
+
 function startAegisShieldLoop() {
     if (!aegisShieldState || !aegisShieldState.active || aegisShieldState.loopTimer) return;
 
@@ -10009,6 +10015,7 @@ function startAegisShieldLoop() {
 }
 
 function clearAegisShieldState() {
+    stopAegisShieldApply(aegisShieldState);
     stopAegisShieldLoop(aegisShieldState);
     aegisShieldState = null;
     clearAegisShieldOverlay();
@@ -10040,7 +10047,13 @@ function activateAegisShield(anchorIndex) {
     };
 
     renderAegisShieldOverlay(aegisShieldState);
-    playAreaEffekseerEffect('aureliansShieldApply', 'player-grid', indices);
+    playAreaEffekseerEffect('aureliansShieldApply', 'player-grid', indices).then(handle => {
+        if (aegisShieldState && aegisShieldState.anchor === anchorIndex) {
+            aegisShieldState.applyHandle = handle;
+        } else if (handle && handle.exists) {
+            handle.stopRoot();
+        }
+    });
 }
 
 function triggerAegisShieldHit(overlapIndices) {
@@ -11209,6 +11222,7 @@ function executeAegisShield(anchorIndex) {
     }
 
     setGameTimeout(() => {
+        stopAegisShieldApply();
         finishPlayerSkillMode();
         returnFromAegisPlacement();
     }, EFFEKSEER_EFFECTS.aureliansShieldApply.duration);
