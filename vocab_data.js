@@ -782,7 +782,7 @@ const VOCAB_DB = {
         },
         {
             "en": "bottom",
-            "ch": "底部",
+            "ch": "底部 (n.)",
             "sents": [
                 {
                     "text": "Your socks are in the bottom drawer.",
@@ -962,7 +962,7 @@ const VOCAB_DB = {
         },
         {
             "en": "cafe",
-            "ch": "咖啡店",
+            "ch": "咖啡店 (n.)",
             "sents": [
                 {
                     "text": "The report included cafe as an important point.",
@@ -980,7 +980,7 @@ const VOCAB_DB = {
         },
         {
             "en": "cake",
-            "ch": "蛋糕",
+            "ch": "蛋糕 (n.)",
             "sents": [
                 {
                     "text": "She baked a chocolate cake for my birthday.",
@@ -998,7 +998,7 @@ const VOCAB_DB = {
         },
         {
             "en": "camera",
-            "ch": "相機",
+            "ch": "相機 (n.)",
             "sents": [
                 {
                     "text": "Please bring your camera to the park.",
@@ -1016,7 +1016,7 @@ const VOCAB_DB = {
         },
         {
             "en": "capital",
-            "ch": "首都",
+            "ch": "首都 (n.)",
             "sents": [
                 {
                     "text": "Bangkok is the capital of Thailand.",
@@ -1034,7 +1034,7 @@ const VOCAB_DB = {
         },
         {
             "en": "career",
-            "ch": "事業",
+            "ch": "事業 (n.)",
             "sents": [
                 {
                     "text": "She wants a career in medicine.",
@@ -1052,7 +1052,7 @@ const VOCAB_DB = {
         },
         {
             "en": "carry",
-            "ch": "攜帶",
+            "ch": "攜帶 (v.)",
             "sents": [
                 {
                     "text": "Can you carry this bag for me?",
@@ -1070,7 +1070,7 @@ const VOCAB_DB = {
         },
         {
             "en": "century",
-            "ch": "世紀",
+            "ch": "世紀 (n.)",
             "sents": [
                 {
                     "text": "This old church was built a century ago.",
@@ -1088,7 +1088,7 @@ const VOCAB_DB = {
         },
         {
             "en": "cheap",
-            "ch": "便宜的",
+            "ch": "便宜的 (adj.)",
             "sents": [
                 {
                     "text": "This bag is cheap and useful.",
@@ -1106,7 +1106,7 @@ const VOCAB_DB = {
         },
         {
             "en": "cheaper",
-            "ch": "較便宜",
+            "ch": "較便宜 (adj.)",
             "sents": [
                 {
                     "text": "This bag is cheaper than that one.",
@@ -1124,7 +1124,7 @@ const VOCAB_DB = {
         },
         {
             "en": "cheese",
-            "ch": "芝士",
+            "ch": "芝士 (n.)",
             "sents": [
                 {
                     "text": "I like cheese on my pizza.",
@@ -1142,7 +1142,7 @@ const VOCAB_DB = {
         },
         {
             "en": "chicken",
-            "ch": "雞肉",
+            "ch": "雞肉 (n.)",
             "sents": [
                 {
                     "text": "We had rice and chicken for dinner.",
@@ -1160,7 +1160,7 @@ const VOCAB_DB = {
         },
         {
             "en": "cinema",
-            "ch": "電影院",
+            "ch": "電影院 (n.)",
             "sents": [
                 {
                     "text": "We are going to the cinema tonight.",
@@ -1178,7 +1178,7 @@ const VOCAB_DB = {
         },
         {
             "en": "class",
-            "ch": "班別",
+            "ch": "班別 (n.)",
             "sents": [
                 {
                     "text": "Our class starts at eight o clock.",
@@ -1196,7 +1196,7 @@ const VOCAB_DB = {
         },
         {
             "en": "classroom",
-            "ch": "課室",
+            "ch": "課室 (n.)",
             "sents": [
                 {
                     "text": "Please keep the classroom clean.",
@@ -1214,7 +1214,7 @@ const VOCAB_DB = {
         },
         {
             "en": "clever",
-            "ch": "聰明的",
+            "ch": "聰明的 (adj.)",
             "sents": [
                 {
                     "text": "She is a clever student.",
@@ -1232,7 +1232,7 @@ const VOCAB_DB = {
         },
         {
             "en": "club",
-            "ch": "俱樂部",
+            "ch": "俱樂部 (n.)",
             "sents": [
                 {
                     "text": "I joined the school chess club.",
@@ -1250,7 +1250,7 @@ const VOCAB_DB = {
         },
         {
             "en": "coat",
-            "ch": "外套",
+            "ch": "外套 (n.)",
             "sents": [
                 {
                     "text": "Please wear your coat before you go outside.",
@@ -1268,7 +1268,7 @@ const VOCAB_DB = {
         },
         {
             "en": "coffee",
-            "ch": "咖啡",
+            "ch": "咖啡 (n.)",
             "sents": [
                 {
                     "text": "My father drinks coffee every morning.",
@@ -1286,7 +1286,7 @@ const VOCAB_DB = {
         },
         {
             "en": "college",
-            "ch": "學院",
+            "ch": "學院 (n.)",
             "sents": [
                 {
                     "text": "My sister is studying at college now.",
@@ -1304,7 +1304,7 @@ const VOCAB_DB = {
         },
         {
             "en": "colour",
-            "ch": "顏色",
+            "ch": "顏色 (n.)",
             "sents": [
                 {
                     "text": "Blue is my favourite colour.",
@@ -1322,7 +1322,7 @@ const VOCAB_DB = {
         },
         {
             "en": "common",
-            "ch": "常見的",
+            "ch": "常見的 (adj.)",
             "sents": [
                 {
                     "text": "It is common to take photos here.",
@@ -1340,7 +1340,7 @@ const VOCAB_DB = {
         },
         {
             "en": "company",
-            "ch": "公司",
+            "ch": "公司 (n.)",
             "sents": [
                 {
                     "text": "My uncle works for a large company.",
@@ -1358,7 +1358,7 @@ const VOCAB_DB = {
         },
         {
             "en": "compare",
-            "ch": "比較",
+            "ch": "比較 (v.)",
             "sents": [
                 {
                     "text": "Please compare these two pictures.",
@@ -1376,7 +1376,7 @@ const VOCAB_DB = {
         },
         {
             "en": "conversation",
-            "ch": "對話",
+            "ch": "對話 (n.)",
             "sents": [
                 {
                     "text": "I had a long conversation with my teacher.",
@@ -1394,7 +1394,7 @@ const VOCAB_DB = {
         },
         {
             "en": "corner",
-            "ch": "角落",
+            "ch": "角落 (n.)",
             "sents": [
                 {
                     "text": "The bookstore is on the corner of the street.",
@@ -1412,7 +1412,7 @@ const VOCAB_DB = {
         },
         {
             "en": "correct",
-            "ch": "正確的",
+            "ch": "正確的 (adj.)",
             "sents": [
                 {
                     "text": "Your answer is correct.",
@@ -1430,7 +1430,7 @@ const VOCAB_DB = {
         },
         {
             "en": "corridor",
-            "ch": "走廊",
+            "ch": "走廊 (n.)",
             "sents": [
                 {
                     "text": "Please do not run in the corridor.",
@@ -1448,7 +1448,7 @@ const VOCAB_DB = {
         },
         {
             "en": "cost",
-            "ch": "花費",
+            "ch": "花費 (v./n.)",
             "sents": [
                 {
                     "text": "How much does this book cost?",
@@ -1466,7 +1466,7 @@ const VOCAB_DB = {
         },
         {
             "en": "course",
-            "ch": "課程",
+            "ch": "課程 (n.)",
             "sents": [
                 {
                     "text": "She is taking an English course this summer.",
@@ -1484,7 +1484,7 @@ const VOCAB_DB = {
         },
         {
             "en": "cousin",
-            "ch": "表親",
+            "ch": "表親 (n.)",
             "sents": [
                 {
                     "text": "My cousin is one year older than me.",
@@ -1502,7 +1502,7 @@ const VOCAB_DB = {
         },
         {
             "en": "cow",
-            "ch": "牛",
+            "ch": "牛 (n.)",
             "sents": [
                 {
                     "text": "The cow is eating grass in the field.",
@@ -1520,7 +1520,7 @@ const VOCAB_DB = {
         },
         {
             "en": "cross",
-            "ch": "橫過",
+            "ch": "橫過 (v.)",
             "sents": [
                 {
                     "text": "Please cross the road carefully.",
@@ -1538,7 +1538,7 @@ const VOCAB_DB = {
         },
         {
             "en": "culture",
-            "ch": "文化",
+            "ch": "文化 (n.)",
             "sents": [
                 {
                     "text": "We learned about Japanese culture in class.",
@@ -1556,7 +1556,7 @@ const VOCAB_DB = {
         },
         {
             "en": "cup",
-            "ch": "杯",
+            "ch": "杯 (n.)",
             "sents": [
                 {
                     "text": "She poured tea into a cup.",
@@ -1574,7 +1574,7 @@ const VOCAB_DB = {
         },
         {
             "en": "customer",
-            "ch": "顧客",
+            "ch": "顧客 (n.)",
             "sents": [
                 {
                     "text": "The shop assistant smiled at the customer.",
@@ -1592,7 +1592,7 @@ const VOCAB_DB = {
         },
         {
             "en": "dance",
-            "ch": "跳舞",
+            "ch": "跳舞 (v./n.)",
             "sents": [
                 {
                     "text": "They love to dance at parties.",
@@ -1610,7 +1610,7 @@ const VOCAB_DB = {
         },
         {
             "en": "dancer",
-            "ch": "舞者",
+            "ch": "舞者 (n.)",
             "sents": [
                 {
                     "text": "The dancer moved gracefully across the stage.",
@@ -1628,7 +1628,7 @@ const VOCAB_DB = {
         },
         {
             "en": "dangerous",
-            "ch": "危險的",
+            "ch": "危險的 (adj.)",
             "sents": [
                 {
                     "text": "It is dangerous to swim there.",
@@ -1646,7 +1646,7 @@ const VOCAB_DB = {
         },
         {
             "en": "December",
-            "ch": "十二月",
+            "ch": "十二月 (n.)",
             "sents": [
                 {
                     "text": "My birthday is in December.",
@@ -1664,7 +1664,7 @@ const VOCAB_DB = {
         },
         {
             "en": "decide",
-            "ch": "決定",
+            "ch": "決定 (v.)",
             "sents": [
                 {
                     "text": "We need to decide before noon.",
@@ -1682,7 +1682,7 @@ const VOCAB_DB = {
         },
         {
             "en": "describe",
-            "ch": "描述",
+            "ch": "描述 (v.)",
             "sents": [
                 {
                     "text": "Can you describe your new teacher?",
@@ -1700,7 +1700,7 @@ const VOCAB_DB = {
         },
         {
             "en": "description",
-            "ch": "描述",
+            "ch": "描述 (n.)",
             "sents": [
                 {
                     "text": "The description of the hotel was accurate.",
@@ -1718,7 +1718,7 @@ const VOCAB_DB = {
         },
         {
             "en": "design",
-            "ch": "設計",
+            "ch": "設計 (v./n.)",
             "sents": [
                 {
                     "text": "I like the design of this poster.",
@@ -1736,7 +1736,7 @@ const VOCAB_DB = {
         },
         {
             "en": "desk",
-            "ch": "書桌",
+            "ch": "書桌 (n.)",
             "sents": [
                 {
                     "text": "My books are on the desk.",
@@ -1754,7 +1754,7 @@ const VOCAB_DB = {
         },
         {
             "en": "dictionary",
-            "ch": "字典",
+            "ch": "字典 (n.)",
             "sents": [
                 {
                     "text": "Please look up the word in the dictionary.",
@@ -1772,7 +1772,7 @@ const VOCAB_DB = {
         },
         {
             "en": "diet",
-            "ch": "飲食",
+            "ch": "飲食 (n.)",
             "sents": [
                 {
                     "text": "Fruit and vegetables are part of a healthy diet.",
@@ -1790,7 +1790,7 @@ const VOCAB_DB = {
         },
         {
             "en": "difference",
-            "ch": "分別",
+            "ch": "分別 (n.)",
             "sents": [
                 {
                     "text": "Can you see the difference between these two pictures?",
@@ -1808,7 +1808,7 @@ const VOCAB_DB = {
         },
         {
             "en": "different",
-            "ch": "不同的",
+            "ch": "不同的 (adj.)",
             "sents": [
                 {
                     "text": "My brother and I like different sports.",
@@ -1826,7 +1826,7 @@ const VOCAB_DB = {
         },
         {
             "en": "dinner",
-            "ch": "晚餐",
+            "ch": "晚餐 (n.)",
             "sents": [
                 {
                     "text": "We had fish and rice for dinner.",
@@ -1844,7 +1844,7 @@ const VOCAB_DB = {
         },
         {
             "en": "discuss",
-            "ch": "討論",
+            "ch": "討論 (v.)",
             "sents": [
                 {
                     "text": "Let us discuss the problem together.",
@@ -1862,7 +1862,7 @@ const VOCAB_DB = {
         },
         {
             "en": "dish",
-            "ch": "菜式",
+            "ch": "菜式 (n.)",
             "sents": [
                 {
                     "text": "This noodle dish is very popular.",
@@ -1880,7 +1880,7 @@ const VOCAB_DB = {
         },
         {
             "en": "draw",
-            "ch": "畫",
+            "ch": "畫 (v.)",
             "sents": [
                 {
                     "text": "I like to draw animals in my notebook.",
@@ -1898,7 +1898,7 @@ const VOCAB_DB = {
         },
         {
             "en": "dress",
-            "ch": "連身裙",
+            "ch": "連身裙 (n.)",
             "sents": [
                 {
                     "text": "She wore a blue dress to the party.",
@@ -1916,7 +1916,7 @@ const VOCAB_DB = {
         },
         {
             "en": "drink",
-            "ch": "飲品",
+            "ch": "飲品 (n./v.)",
             "sents": [
                 {
                     "text": "Do not forget to drink more water.",
@@ -1934,7 +1934,7 @@ const VOCAB_DB = {
         },
         {
             "en": "ear",
-            "ch": "耳朵",
+            "ch": "耳朵 (n.)",
             "sents": [
                 {
                     "text": "My left ear hurts a little.",
@@ -1952,7 +1952,7 @@ const VOCAB_DB = {
         },
         {
             "en": "easier",
-            "ch": "較容易",
+            "ch": "較容易 (adj.)",
             "sents": [
                 {
                     "text": "This question is easier than the last one.",
@@ -1970,7 +1970,7 @@ const VOCAB_DB = {
         },
         {
             "en": "elephant",
-            "ch": "大象",
+            "ch": "大象 (n.)",
             "sents": [
                 {
                     "text": "The elephant is the largest animal in the zoo.",
@@ -1988,7 +1988,7 @@ const VOCAB_DB = {
         },
         {
             "en": "email",
-            "ch": "電郵",
+            "ch": "電郵 (n.)",
             "sents": [
                 {
                     "text": "Please send me an email tonight.",
@@ -2006,7 +2006,7 @@ const VOCAB_DB = {
         },
         {
             "en": "enjoy",
-            "ch": "享受",
+            "ch": "享受 (v.)",
             "sents": [
                 {
                     "text": "I enjoy reading before bed.",
@@ -2024,7 +2024,7 @@ const VOCAB_DB = {
         },
         {
             "en": "event",
-            "ch": "活動",
+            "ch": "活動 (n.)",
             "sents": [
                 {
                     "text": "The school event starts at two o clock.",
@@ -2042,7 +2042,7 @@ const VOCAB_DB = {
         },
         {
             "en": "every",
-            "ch": "每一個",
+            "ch": "每一個 (det.)",
             "sents": [
                 {
                     "text": "I go to school every weekday.",
@@ -2060,7 +2060,7 @@ const VOCAB_DB = {
         },
         {
             "en": "everybody",
-            "ch": "每個人",
+            "ch": "每個人 (pron.)",
             "sents": [
                 {
                     "text": "Everybody was excited about the trip.",
@@ -2078,7 +2078,7 @@ const VOCAB_DB = {
         },
         {
             "en": "everyone",
-            "ch": "每個人",
+            "ch": "每個人 (pron.)",
             "sents": [
                 {
                     "text": "Everyone in the class finished the work.",
@@ -2096,7 +2096,7 @@ const VOCAB_DB = {
         },
         {
             "en": "exam",
-            "ch": "考試",
+            "ch": "考試 (n.)",
             "sents": [
                 {
                     "text": "We have an English exam tomorrow.",
@@ -2114,7 +2114,7 @@ const VOCAB_DB = {
         },
         {
             "en": "exercise",
-            "ch": "運動",
+            "ch": "運動 (n./v.)",
             "sents": [
                 {
                     "text": "Daily exercise is good for your health.",
@@ -2132,7 +2132,7 @@ const VOCAB_DB = {
         },
         {
             "en": "expensive",
-            "ch": "昂貴的",
+            "ch": "昂貴的 (adj.)",
             "sents": [
                 {
                     "text": "That watch is too expensive for me.",
@@ -2150,7 +2150,7 @@ const VOCAB_DB = {
         },
         {
             "en": "explain",
-            "ch": "解釋",
+            "ch": "解釋 (v.)",
             "sents": [
                 {
                     "text": "Can you explain this answer to me?",
@@ -2168,7 +2168,7 @@ const VOCAB_DB = {
         },
         {
             "en": "fact",
-            "ch": "事實",
+            "ch": "事實 (n.)",
             "sents": [
                 {
                     "text": "It is a fact that water is important.",
@@ -2186,7 +2186,7 @@ const VOCAB_DB = {
         },
         {
             "en": "famous",
-            "ch": "著名的",
+            "ch": "著名的 (adj.)",
             "sents": [
                 {
                     "text": "This restaurant is famous for seafood.",
@@ -2204,7 +2204,7 @@ const VOCAB_DB = {
         },
         {
             "en": "fantastic",
-            "ch": "極好的",
+            "ch": "極好的 (adj.)",
             "sents": [
                 {
                     "text": "The fireworks show was fantastic.",
@@ -2222,7 +2222,7 @@ const VOCAB_DB = {
         },
         {
             "en": "farmer",
-            "ch": "農夫",
+            "ch": "農夫 (n.)",
             "sents": [
                 {
                     "text": "The farmer fed the chickens early in the morning.",
@@ -2240,7 +2240,7 @@ const VOCAB_DB = {
         },
         {
             "en": "faster",
-            "ch": "較快",
+            "ch": "較快 (adj./adv.)",
             "sents": [
                 {
                     "text": "This train is faster than the bus.",
@@ -2258,7 +2258,7 @@ const VOCAB_DB = {
         },
         {
             "en": "favourite",
-            "ch": "最喜愛的",
+            "ch": "最喜愛的 (adj./n.)",
             "sents": [
                 {
                     "text": "Blue is my favourite colour.",
@@ -2276,7 +2276,7 @@ const VOCAB_DB = {
         },
         {
             "en": "February",
-            "ch": "二月",
+            "ch": "二月 (n.)",
             "sents": [
                 {
                     "text": "My cousin was born in February.",
@@ -2294,7 +2294,7 @@ const VOCAB_DB = {
         },
         {
             "en": "festival",
-            "ch": "節日",
+            "ch": "節日 (n.)",
             "sents": [
                 {
                     "text": "We visited the food festival on Sunday.",
@@ -2312,7 +2312,7 @@ const VOCAB_DB = {
         },
         {
             "en": "flight",
-            "ch": "航班",
+            "ch": "航班 (n.)",
             "sents": [
                 {
                     "text": "Our flight leaves at six in the morning.",
@@ -2330,7 +2330,7 @@ const VOCAB_DB = {
         },
         {
             "en": "floor",
-            "ch": "地板",
+            "ch": "地板 (n.)",
             "sents": [
                 {
                     "text": "My classroom is on the third floor.",
@@ -2348,7 +2348,7 @@ const VOCAB_DB = {
         },
         {
             "en": "flower",
-            "ch": "花",
+            "ch": "花 (n.)",
             "sents": [
                 {
                     "text": "That pink flower smells sweet.",
@@ -2366,7 +2366,7 @@ const VOCAB_DB = {
         },
         {
             "en": "foot",
-            "ch": "腳",
+            "ch": "腳 (n.)",
             "sents": [
                 {
                     "text": "My left foot hurts after the game.",
@@ -2384,7 +2384,7 @@ const VOCAB_DB = {
         },
         {
             "en": "football",
-            "ch": "足球",
+            "ch": "足球 (n.)",
             "sents": [
                 {
                     "text": "The boys are playing football in the park.",
@@ -2402,7 +2402,7 @@ const VOCAB_DB = {
         },
         {
             "en": "forget",
-            "ch": "忘記",
+            "ch": "忘記 (v.)",
             "sents": [
                 {
                     "text": "Do not forget your homework again.",
@@ -2420,7 +2420,7 @@ const VOCAB_DB = {
         },
         {
             "en": "form",
-            "ch": "表格",
+            "ch": "表格 (n.)",
             "sents": [
                 {
                     "text": "Please fill in the form carefully.",
@@ -2438,7 +2438,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Friday",
-            "ch": "星期五",
+            "ch": "星期五 (n.)",
             "sents": [
                 {
                     "text": "We have PE on Friday.",
@@ -2456,7 +2456,7 @@ const VOCAB_DB = {
         },
         {
             "en": "friendly",
-            "ch": "友善的",
+            "ch": "友善的 (adj.)",
             "sents": [
                 {
                     "text": "Our new teacher is very friendly.",
@@ -2474,7 +2474,7 @@ const VOCAB_DB = {
         },
         {
             "en": "fruit",
-            "ch": "水果",
+            "ch": "水果 (n.)",
             "sents": [
                 {
                     "text": "Eating fruit every day is healthy.",
@@ -2492,7 +2492,7 @@ const VOCAB_DB = {
         },
         {
             "en": "funny",
-            "ch": "有趣的",
+            "ch": "有趣的 (adj.)",
             "sents": [
                 {
                     "text": "That joke is really funny.",
@@ -2510,7 +2510,7 @@ const VOCAB_DB = {
         },
         {
             "en": "garden",
-            "ch": "花園",
+            "ch": "花園 (n.)",
             "sents": [
                 {
                     "text": "My grandmother grows flowers in the garden.",
@@ -2528,7 +2528,7 @@ const VOCAB_DB = {
         },
         {
             "en": "girlfriend",
-            "ch": "女朋友",
+            "ch": "女朋友 (n.)",
             "sents": [
                 {
                     "text": "He went to the concert with his girlfriend.",
@@ -2546,7 +2546,7 @@ const VOCAB_DB = {
         },
         {
             "en": "glass",
-            "ch": "玻璃杯",
+            "ch": "玻璃杯 (n.)",
             "sents": [
                 {
                     "text": "Please pour some water into the glass.",
@@ -2564,7 +2564,7 @@ const VOCAB_DB = {
         },
         {
             "en": "go past",
-            "ch": "經過",
+            "ch": "經過 (phr. v.)",
             "sents": [
                 {
                     "text": "Go past the bank and turn left.",
@@ -2582,7 +2582,7 @@ const VOCAB_DB = {
         },
         {
             "en": "go straight ahead",
-            "ch": "一直向前",
+            "ch": "一直向前 (phr.)",
             "sents": [
                 {
                     "text": "Go straight ahead and you will find the station.",
@@ -2600,7 +2600,7 @@ const VOCAB_DB = {
         },
         {
             "en": "goodbye",
-            "ch": "再見",
+            "ch": "再見 (interj.)",
             "sents": [
                 {
                     "text": "She waved goodbye to her classmates.",
@@ -2618,7 +2618,7 @@ const VOCAB_DB = {
         },
         {
             "en": "grandfather",
-            "ch": "祖父",
+            "ch": "祖父 (n.)",
             "sents": [
                 {
                     "text": "My grandfather tells great stories.",
@@ -2636,7 +2636,7 @@ const VOCAB_DB = {
         },
         {
             "en": "grandmother",
-            "ch": "祖母",
+            "ch": "祖母 (n.)",
             "sents": [
                 {
                     "text": "My grandmother makes delicious soup.",
@@ -2654,7 +2654,7 @@ const VOCAB_DB = {
         },
         {
             "en": "grandparent",
-            "ch": "祖父母",
+            "ch": "祖父母 (n.)",
             "sents": [
                 {
                     "text": "Each grandparent came to the school show.",
@@ -2672,7 +2672,7 @@ const VOCAB_DB = {
         },
         {
             "en": "great",
-            "ch": "很棒的",
+            "ch": "很棒的 (adj.)",
             "sents": [
                 {
                     "text": "You did a great job in the test.",
@@ -2690,7 +2690,7 @@ const VOCAB_DB = {
         },
         {
             "en": "green",
-            "ch": "綠色",
+            "ch": "綠色 (adj.)",
             "sents": [
                 {
                     "text": "The leaves are bright green in spring.",
@@ -2708,7 +2708,7 @@ const VOCAB_DB = {
         },
         {
             "en": "grey",
-            "ch": "灰色",
+            "ch": "灰色 (adj.)",
             "sents": [
                 {
                     "text": "The sky looks grey today.",
@@ -2726,7 +2726,7 @@ const VOCAB_DB = {
         },
         {
             "en": "group",
-            "ch": "小組",
+            "ch": "小組 (n.)",
             "sents": [
                 {
                     "text": "We worked in a group of four.",
@@ -2744,7 +2744,7 @@ const VOCAB_DB = {
         },
         {
             "en": "guess",
-            "ch": "猜測",
+            "ch": "猜測 (v./n.)",
             "sents": [
                 {
                     "text": "Can you guess the answer?",
@@ -2762,7 +2762,7 @@ const VOCAB_DB = {
         },
         {
             "en": "guitar",
-            "ch": "結他",
+            "ch": "結他 (n.)",
             "sents": [
                 {
                     "text": "My brother plays the guitar every night.",
@@ -2780,7 +2780,7 @@ const VOCAB_DB = {
         },
         {
             "en": "hair",
-            "ch": "頭髮",
+            "ch": "頭髮 (n.)",
             "sents": [
                 {
                     "text": "She has long black hair.",
@@ -2798,7 +2798,7 @@ const VOCAB_DB = {
         },
         {
             "en": "happier",
-            "ch": "較開心",
+            "ch": "較開心 (adj.)",
             "sents": [
                 {
                     "text": "She looks happier today.",
@@ -2816,7 +2816,7 @@ const VOCAB_DB = {
         },
         {
             "en": "hat",
-            "ch": "帽子",
+            "ch": "帽子 (n.)",
             "sents": [
                 {
                     "text": "He wore a hat in the hot sun.",
@@ -2834,7 +2834,7 @@ const VOCAB_DB = {
         },
         {
             "en": "health",
-            "ch": "健康",
+            "ch": "健康 (n.)",
             "sents": [
                 {
                     "text": "Good food is important for your health.",
@@ -2852,7 +2852,7 @@ const VOCAB_DB = {
         },
         {
             "en": "healthy",
-            "ch": "健康的",
+            "ch": "健康的 (adj.)",
             "sents": [
                 {
                     "text": "Fruit is a healthy snack.",
@@ -2870,7 +2870,7 @@ const VOCAB_DB = {
         },
         {
             "en": "help",
-            "ch": "幫助",
+            "ch": "幫助 (v./n.)",
             "sents": [
                 {
                     "text": "Can you help me with my homework?",
@@ -2888,7 +2888,7 @@ const VOCAB_DB = {
         },
         {
             "en": "hike",
-            "ch": "遠足",
+            "ch": "遠足 (v./n.)",
             "sents": [
                 {
                     "text": "We went on a hike in the morning.",
@@ -2906,7 +2906,7 @@ const VOCAB_DB = {
         },
         {
             "en": "history",
-            "ch": "歷史",
+            "ch": "歷史 (n.)",
             "sents": [
                 {
                     "text": "History is my favourite subject.",
@@ -2924,7 +2924,7 @@ const VOCAB_DB = {
         },
         {
             "en": "hobby",
-            "ch": "嗜好",
+            "ch": "嗜好 (n.)",
             "sents": [
                 {
                     "text": "Drawing is my favourite hobby.",
@@ -2942,7 +2942,7 @@ const VOCAB_DB = {
         },
         {
             "en": "holiday",
-            "ch": "假期",
+            "ch": "假期 (n.)",
             "sents": [
                 {
                     "text": "We went to Japan during the holiday.",
@@ -2960,7 +2960,7 @@ const VOCAB_DB = {
         },
         {
             "en": "homework",
-            "ch": "家課",
+            "ch": "家課 (n.)",
             "sents": [
                 {
                     "text": "I finished my homework after dinner.",
@@ -2978,7 +2978,7 @@ const VOCAB_DB = {
         },
         {
             "en": "horse",
-            "ch": "馬",
+            "ch": "馬 (n.)",
             "sents": [
                 {
                     "text": "The horse ran across the field.",
@@ -2996,7 +2996,7 @@ const VOCAB_DB = {
         },
         {
             "en": "hospital",
-            "ch": "醫院",
+            "ch": "醫院 (n.)",
             "sents": [
                 {
                     "text": "My uncle works in a hospital.",
@@ -3014,7 +3014,7 @@ const VOCAB_DB = {
         },
         {
             "en": "hotel",
-            "ch": "酒店",
+            "ch": "酒店 (n.)",
             "sents": [
                 {
                     "text": "We stayed in a hotel near the beach.",
@@ -3032,7 +3032,7 @@ const VOCAB_DB = {
         },
         {
             "en": "however",
-            "ch": "但是",
+            "ch": "但是 (adv.)",
             "sents": [
                 {
                     "text": "I wanted to go; however, it was raining.",
@@ -3050,7 +3050,7 @@ const VOCAB_DB = {
         },
         {
             "en": "hungry",
-            "ch": "肚餓的",
+            "ch": "肚餓的 (adj.)",
             "sents": [
                 {
                     "text": "I am hungry after the game.",
@@ -3068,7 +3068,7 @@ const VOCAB_DB = {
         },
         {
             "en": "husband",
-            "ch": "丈夫",
+            "ch": "丈夫 (n.)",
             "sents": [
                 {
                     "text": "Her husband works in an office.",
@@ -3086,7 +3086,7 @@ const VOCAB_DB = {
         },
         {
             "en": "ice",
-            "ch": "冰",
+            "ch": "冰 (n.)",
             "sents": [
                 {
                     "text": "Please put some ice in my drink.",
@@ -3104,7 +3104,7 @@ const VOCAB_DB = {
         },
         {
             "en": "ice cream",
-            "ch": "雪糕",
+            "ch": "雪糕 (n.)",
             "sents": [
                 {
                     "text": "We ate ice cream after lunch.",
@@ -3122,7 +3122,7 @@ const VOCAB_DB = {
         },
         {
             "en": "idea",
-            "ch": "主意",
+            "ch": "主意 (n.)",
             "sents": [
                 {
                     "text": "That is a good idea.",
@@ -3140,7 +3140,7 @@ const VOCAB_DB = {
         },
         {
             "en": "imagine",
-            "ch": "想像",
+            "ch": "想像 (v.)",
             "sents": [
                 {
                     "text": "Can you imagine living on the moon?",
@@ -3158,7 +3158,7 @@ const VOCAB_DB = {
         },
         {
             "en": "important",
-            "ch": "重要的",
+            "ch": "重要的 (adj.)",
             "sents": [
                 {
                     "text": "Sleep is important for students.",
@@ -3176,7 +3176,7 @@ const VOCAB_DB = {
         },
         {
             "en": "improve",
-            "ch": "改善",
+            "ch": "改善 (v.)",
             "sents": [
                 {
                     "text": "Reading every day can improve your English.",
@@ -3194,7 +3194,7 @@ const VOCAB_DB = {
         },
         {
             "en": "in front of",
-            "ch": "在…前面",
+            "ch": "在…前面 (prep.)",
             "sents": [
                 {
                     "text": "Please wait in front of the school gate.",
@@ -3212,7 +3212,7 @@ const VOCAB_DB = {
         },
         {
             "en": "information",
-            "ch": "資訊",
+            "ch": "資訊 (n.)",
             "sents": [
                 {
                     "text": "You can find more information on the website.",
@@ -3230,7 +3230,7 @@ const VOCAB_DB = {
         },
         {
             "en": "interest",
-            "ch": "興趣",
+            "ch": "興趣 (n.)",
             "sents": [
                 {
                     "text": "Music is one of my main interests.",
@@ -3248,7 +3248,7 @@ const VOCAB_DB = {
         },
         {
             "en": "internet",
-            "ch": "互聯網",
+            "ch": "互聯網 (n.)",
             "sents": [
                 {
                     "text": "I use the internet to do my homework.",
@@ -3266,7 +3266,7 @@ const VOCAB_DB = {
         },
         {
             "en": "interview",
-            "ch": "面試",
+            "ch": "面試 (n./v.)",
             "sents": [
                 {
                     "text": "She has a job interview tomorrow.",
@@ -3284,7 +3284,7 @@ const VOCAB_DB = {
         },
         {
             "en": "introduce",
-            "ch": "介紹",
+            "ch": "介紹 (v.)",
             "sents": [
                 {
                     "text": "Let me introduce my new classmate.",
@@ -3302,7 +3302,7 @@ const VOCAB_DB = {
         },
         {
             "en": "island",
-            "ch": "島",
+            "ch": "島 (n.)",
             "sents": [
                 {
                     "text": "We took a boat to the small island.",
@@ -3320,7 +3320,7 @@ const VOCAB_DB = {
         },
         {
             "en": "jacket",
-            "ch": "外套",
+            "ch": "外套 (n.)",
             "sents": [
                 {
                     "text": "Please wear your jacket before you go out.",
@@ -3338,7 +3338,7 @@ const VOCAB_DB = {
         },
         {
             "en": "January",
-            "ch": "一月",
+            "ch": "一月 (n.)",
             "sents": [
                 {
                     "text": "School starts again in January.",
@@ -3356,7 +3356,7 @@ const VOCAB_DB = {
         },
         {
             "en": "join",
-            "ch": "參加",
+            "ch": "參加 (v.)",
             "sents": [
                 {
                     "text": "Do you want to join our basketball team?",
@@ -3374,7 +3374,7 @@ const VOCAB_DB = {
         },
         {
             "en": "journey",
-            "ch": "旅程",
+            "ch": "旅程 (n.)",
             "sents": [
                 {
                     "text": "The train journey was long but comfortable.",
@@ -3392,7 +3392,7 @@ const VOCAB_DB = {
         },
         {
             "en": "juice",
-            "ch": "果汁",
+            "ch": "果汁 (n.)",
             "sents": [
                 {
                     "text": "Would you like some orange juice?",
@@ -3410,7 +3410,7 @@ const VOCAB_DB = {
         },
         {
             "en": "July",
-            "ch": "七月",
+            "ch": "七月 (n.)",
             "sents": [
                 {
                     "text": "We will travel in July.",
@@ -3428,7 +3428,7 @@ const VOCAB_DB = {
         },
         {
             "en": "June",
-            "ch": "六月",
+            "ch": "六月 (n.)",
             "sents": [
                 {
                     "text": "The school term ends in June.",
@@ -3446,7 +3446,7 @@ const VOCAB_DB = {
         },
         {
             "en": "kitchen",
-            "ch": "廚房",
+            "ch": "廚房 (n.)",
             "sents": [
                 {
                     "text": "My mother is cooking in the kitchen.",
@@ -3464,7 +3464,7 @@ const VOCAB_DB = {
         },
         {
             "en": "laugh",
-            "ch": "笑",
+            "ch": "笑 (v./n.)",
             "sents": [
                 {
                     "text": "The joke made everyone laugh.",
@@ -3482,7 +3482,7 @@ const VOCAB_DB = {
         },
         {
             "en": "lesson",
-            "ch": "課堂",
+            "ch": "課堂 (n.)",
             "sents": [
                 {
                     "text": "Our English lesson starts at nine.",
@@ -3500,7 +3500,7 @@ const VOCAB_DB = {
         },
         {
             "en": "letter",
-            "ch": "信件",
+            "ch": "信件 (n.)",
             "sents": [
                 {
                     "text": "I wrote a letter to my grandmother.",
@@ -3518,7 +3518,7 @@ const VOCAB_DB = {
         },
         {
             "en": "library",
-            "ch": "圖書館",
+            "ch": "圖書館 (n.)",
             "sents": [
                 {
                     "text": "We borrowed three books from the library.",
@@ -3536,7 +3536,7 @@ const VOCAB_DB = {
         },
         {
             "en": "lion",
-            "ch": "獅子",
+            "ch": "獅子 (n.)",
             "sents": [
                 {
                     "text": "The lion was sleeping in the zoo.",
@@ -3554,7 +3554,7 @@ const VOCAB_DB = {
         },
         {
             "en": "list",
-            "ch": "清單",
+            "ch": "清單 (n./v.)",
             "sents": [
                 {
                     "text": "Please write your name on the list.",
@@ -3572,7 +3572,7 @@ const VOCAB_DB = {
         },
         {
             "en": "listen",
-            "ch": "聆聽",
+            "ch": "聆聽 (v.)",
             "sents": [
                 {
                     "text": "Please listen to the teacher carefully.",
@@ -3590,7 +3590,7 @@ const VOCAB_DB = {
         },
         {
             "en": "longer",
-            "ch": "較長",
+            "ch": "較長 (adj.)",
             "sents": [
                 {
                     "text": "This road is longer than that one.",
@@ -3608,7 +3608,7 @@ const VOCAB_DB = {
         },
         {
             "en": "lunch",
-            "ch": "午餐",
+            "ch": "午餐 (n.)",
             "sents": [
                 {
                     "text": "We had noodles for lunch.",
@@ -3626,7 +3626,7 @@ const VOCAB_DB = {
         },
         {
             "en": "machine",
-            "ch": "機器",
+            "ch": "機器 (n.)",
             "sents": [
                 {
                     "text": "This washing machine is very quiet.",
@@ -3644,7 +3644,7 @@ const VOCAB_DB = {
         },
         {
             "en": "magazine",
-            "ch": "雜誌",
+            "ch": "雜誌 (n.)",
             "sents": [
                 {
                     "text": "She bought a fashion magazine at the station.",
@@ -3662,7 +3662,7 @@ const VOCAB_DB = {
         },
         {
             "en": "main",
-            "ch": "主要的",
+            "ch": "主要的 (adj.)",
             "sents": [
                 {
                     "text": "The main door is still open.",
@@ -3680,7 +3680,7 @@ const VOCAB_DB = {
         },
         {
             "en": "March",
-            "ch": "三月",
+            "ch": "三月 (n.)",
             "sents": [
                 {
                     "text": "The school picnic will be in March.",
@@ -3698,7 +3698,7 @@ const VOCAB_DB = {
         },
         {
             "en": "match",
-            "ch": "比賽",
+            "ch": "比賽 (n.)",
             "sents": [
                 {
                     "text": "We watched a football match on TV.",
@@ -3716,7 +3716,7 @@ const VOCAB_DB = {
         },
         {
             "en": "May",
-            "ch": "五月",
+            "ch": "五月 (n.)",
             "sents": [
                 {
                     "text": "My exams start in May.",
@@ -3734,7 +3734,7 @@ const VOCAB_DB = {
         },
         {
             "en": "meal",
-            "ch": "一餐",
+            "ch": "一餐 (n.)",
             "sents": [
                 {
                     "text": "Breakfast is my favourite meal of the day.",
@@ -3752,7 +3752,7 @@ const VOCAB_DB = {
         },
         {
             "en": "meat",
-            "ch": "肉",
+            "ch": "肉 (n.)",
             "sents": [
                 {
                     "text": "We bought some meat for dinner.",
@@ -3770,7 +3770,7 @@ const VOCAB_DB = {
         },
         {
             "en": "member",
-            "ch": "成員",
+            "ch": "成員 (n.)",
             "sents": [
                 {
                     "text": "Every member of the team was ready.",
@@ -3788,7 +3788,7 @@ const VOCAB_DB = {
         },
         {
             "en": "menu",
-            "ch": "餐牌",
+            "ch": "餐牌 (n.)",
             "sents": [
                 {
                     "text": "Please look at the menu before ordering.",
@@ -3806,7 +3806,7 @@ const VOCAB_DB = {
         },
         {
             "en": "message",
-            "ch": "訊息",
+            "ch": "訊息 (n.)",
             "sents": [
                 {
                     "text": "I left a message for my mother.",
@@ -3824,7 +3824,7 @@ const VOCAB_DB = {
         },
         {
             "en": "metre",
-            "ch": "米",
+            "ch": "米 (n.)",
             "sents": [
                 {
                     "text": "The table is one metre long.",
@@ -3842,7 +3842,7 @@ const VOCAB_DB = {
         },
         {
             "en": "midnight",
-            "ch": "午夜",
+            "ch": "午夜 (n.)",
             "sents": [
                 {
                     "text": "The party ended at midnight.",
@@ -3860,7 +3860,7 @@ const VOCAB_DB = {
         },
         {
             "en": "mile",
-            "ch": "英里",
+            "ch": "英里 (n.)",
             "sents": [
                 {
                     "text": "They walked a mile to school.",
@@ -3878,7 +3878,7 @@ const VOCAB_DB = {
         },
         {
             "en": "milk",
-            "ch": "牛奶",
+            "ch": "牛奶 (n.)",
             "sents": [
                 {
                     "text": "I drink a glass of milk every morning.",
@@ -3896,7 +3896,7 @@ const VOCAB_DB = {
         },
         {
             "en": "modern",
-            "ch": "現代的",
+            "ch": "現代的 (adj.)",
             "sents": [
                 {
                     "text": "The library has a modern design.",
@@ -3914,7 +3914,7 @@ const VOCAB_DB = {
         },
         {
             "en": "moment",
-            "ch": "時刻",
+            "ch": "時刻 (n.)",
             "sents": [
                 {
                     "text": "Please wait a moment.",
@@ -3932,7 +3932,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Monday",
-            "ch": "星期一",
+            "ch": "星期一 (n.)",
             "sents": [
                 {
                     "text": "We have a quiz on Monday.",
@@ -3950,7 +3950,7 @@ const VOCAB_DB = {
         },
         {
             "en": "mountain",
-            "ch": "山",
+            "ch": "山 (n.)",
             "sents": [
                 {
                     "text": "We climbed a mountain during the holiday.",
@@ -3968,7 +3968,7 @@ const VOCAB_DB = {
         },
         {
             "en": "movie",
-            "ch": "電影",
+            "ch": "電影 (n.)",
             "sents": [
                 {
                     "text": "We watched a funny movie last night.",
@@ -3986,7 +3986,7 @@ const VOCAB_DB = {
         },
         {
             "en": "museum",
-            "ch": "博物館",
+            "ch": "博物館 (n.)",
             "sents": [
                 {
                     "text": "The museum was full of visitors.",
@@ -4004,7 +4004,7 @@ const VOCAB_DB = {
         },
         {
             "en": "music",
-            "ch": "音樂",
+            "ch": "音樂 (n.)",
             "sents": [
                 {
                     "text": "I listen to music while doing homework.",
@@ -4022,7 +4022,7 @@ const VOCAB_DB = {
         },
         {
             "en": "natural",
-            "ch": "自然的",
+            "ch": "自然的 (adj.)",
             "sents": [
                 {
                     "text": "This soap is made from natural ingredients.",
@@ -4040,7 +4040,7 @@ const VOCAB_DB = {
         },
         {
             "en": "near",
-            "ch": "近的／在附近",
+            "ch": "近的／在附近 (prep./adj.)",
             "sents": [
                 {
                     "text": "The shop is near the station.",
@@ -4058,7 +4058,7 @@ const VOCAB_DB = {
         },
         {
             "en": "news",
-            "ch": "新聞",
+            "ch": "新聞 (n.)",
             "sents": [
                 {
                     "text": "Did you hear the news this morning?",
@@ -4076,7 +4076,7 @@ const VOCAB_DB = {
         },
         {
             "en": "newspaper",
-            "ch": "報紙",
+            "ch": "報紙 (n.)",
             "sents": [
                 {
                     "text": "My grandfather reads the newspaper every day.",
@@ -4094,7 +4094,7 @@ const VOCAB_DB = {
         },
         {
             "en": "nobody",
-            "ch": "沒有人",
+            "ch": "沒有人 (pron.)",
             "sents": [
                 {
                     "text": "The teacher explained nobody in a simple way.",
@@ -4112,7 +4112,7 @@ const VOCAB_DB = {
         },
         {
             "en": "north",
-            "ch": "北面",
+            "ch": "北面 (n./adj./adv.)",
             "sents": [
                 {
                     "text": "The wind is coming from the north.",
@@ -4130,7 +4130,7 @@ const VOCAB_DB = {
         },
         {
             "en": "nose",
-            "ch": "鼻子",
+            "ch": "鼻子 (n.)",
             "sents": [
                 {
                     "text": "My nose is red because of my cold.",
@@ -4148,7 +4148,7 @@ const VOCAB_DB = {
         },
         {
             "en": "November",
-            "ch": "十一月",
+            "ch": "十一月 (n.)",
             "sents": [
                 {
                     "text": "The weather is cool in November.",
@@ -4166,7 +4166,7 @@ const VOCAB_DB = {
         },
         {
             "en": "nurse",
-            "ch": "護士",
+            "ch": "護士 (n.)",
             "sents": [
                 {
                     "text": "The nurse helped the little boy.",
@@ -4184,7 +4184,7 @@ const VOCAB_DB = {
         },
         {
             "en": "October",
-            "ch": "十月",
+            "ch": "十月 (n.)",
             "sents": [
                 {
                     "text": "The weather is nice in October.",
@@ -4202,7 +4202,7 @@ const VOCAB_DB = {
         },
         {
             "en": "older",
-            "ch": "較年長",
+            "ch": "較年長 (adj.)",
             "sents": [
                 {
                     "text": "My brother is two years older than me.",
@@ -4220,7 +4220,7 @@ const VOCAB_DB = {
         },
         {
             "en": "oldest",
-            "ch": "最年長",
+            "ch": "最年長 (adj.)",
             "sents": [
                 {
                     "text": "He is the oldest child in the family.",
@@ -4238,7 +4238,7 @@ const VOCAB_DB = {
         },
         {
             "en": "onion",
-            "ch": "洋蔥",
+            "ch": "洋蔥 (n.)",
             "sents": [
                 {
                     "text": "My mother cut an onion for the soup.",
@@ -4256,7 +4256,7 @@ const VOCAB_DB = {
         },
         {
             "en": "online",
-            "ch": "網上",
+            "ch": "網上 (adj./adv.)",
             "sents": [
                 {
                     "text": "I bought the book online yesterday.",
@@ -4274,7 +4274,7 @@ const VOCAB_DB = {
         },
         {
             "en": "opinion",
-            "ch": "意見",
+            "ch": "意見 (n.)",
             "sents": [
                 {
                     "text": "What is your opinion on this idea?",
@@ -4292,7 +4292,7 @@ const VOCAB_DB = {
         },
         {
             "en": "opposite",
-            "ch": "對面",
+            "ch": "對面 (prep./adj.)",
             "sents": [
                 {
                     "text": "The bank is opposite the supermarket.",
@@ -4310,7 +4310,7 @@ const VOCAB_DB = {
         },
         {
             "en": "orange",
-            "ch": "橙色",
+            "ch": "橙色 (adj./n.)",
             "sents": [
                 {
                     "text": "I ate an orange after lunch.",
@@ -4328,7 +4328,7 @@ const VOCAB_DB = {
         },
         {
             "en": "order",
-            "ch": "點餐",
+            "ch": "點餐 (v./n.)",
             "sents": [
                 {
                     "text": "I would like to order a sandwich.",
@@ -4346,7 +4346,7 @@ const VOCAB_DB = {
         },
         {
             "en": "pair",
-            "ch": "一對",
+            "ch": "一對 (n.)",
             "sents": [
                 {
                     "text": "I bought a new pair of shoes.",
@@ -4364,7 +4364,7 @@ const VOCAB_DB = {
         },
         {
             "en": "panda",
-            "ch": "熊貓",
+            "ch": "熊貓 (n.)",
             "sents": [
                 {
                     "text": "The panda was eating bamboo in the zoo.",
@@ -4382,7 +4382,7 @@ const VOCAB_DB = {
         },
         {
             "en": "partner",
-            "ch": "拍檔",
+            "ch": "拍檔 (n.)",
             "sents": [
                 {
                     "text": "Please talk to your partner about the question.",
@@ -4400,7 +4400,7 @@ const VOCAB_DB = {
         },
         {
             "en": "party",
-            "ch": "派對",
+            "ch": "派對 (n.)",
             "sents": [
                 {
                     "text": "We had a birthday party on Saturday.",
@@ -4418,7 +4418,7 @@ const VOCAB_DB = {
         },
         {
             "en": "passport",
-            "ch": "護照",
+            "ch": "護照 (n.)",
             "sents": [
                 {
                     "text": "Do not forget your passport at the airport.",
@@ -4436,7 +4436,7 @@ const VOCAB_DB = {
         },
         {
             "en": "pencil",
-            "ch": "鉛筆",
+            "ch": "鉛筆 (n.)",
             "sents": [
                 {
                     "text": "Please use a pencil to do the exercise.",
@@ -4454,7 +4454,7 @@ const VOCAB_DB = {
         },
         {
             "en": "people",
-            "ch": "人們",
+            "ch": "人們 (n.)",
             "sents": [
                 {
                     "text": "Many people take the train every day.",
@@ -4472,7 +4472,7 @@ const VOCAB_DB = {
         },
         {
             "en": "pepper",
-            "ch": "胡椒",
+            "ch": "胡椒 (n.)",
             "sents": [
                 {
                     "text": "Please add some pepper to the soup.",
@@ -4490,7 +4490,7 @@ const VOCAB_DB = {
         },
         {
             "en": "perfect",
-            "ch": "完美的",
+            "ch": "完美的 (adj.)",
             "sents": [
                 {
                     "text": "This weather is perfect for a picnic.",
@@ -4508,7 +4508,7 @@ const VOCAB_DB = {
         },
         {
             "en": "period",
-            "ch": "時期",
+            "ch": "時期 (n.)",
             "sents": [
                 {
                     "text": "The lesson is in the second period.",
@@ -4526,7 +4526,7 @@ const VOCAB_DB = {
         },
         {
             "en": "personal",
-            "ch": "個人的",
+            "ch": "個人的 (adj.)",
             "sents": [
                 {
                     "text": "That is my personal opinion.",
@@ -4544,7 +4544,7 @@ const VOCAB_DB = {
         },
         {
             "en": "photo",
-            "ch": "照片",
+            "ch": "照片 (n.)",
             "sents": [
                 {
                     "text": "We took a photo in front of the tower.",
@@ -4562,7 +4562,7 @@ const VOCAB_DB = {
         },
         {
             "en": "phrase",
-            "ch": "片語",
+            "ch": "片語 (n.)",
             "sents": [
                 {
                     "text": "Please copy this phrase into your notebook.",
@@ -4580,7 +4580,7 @@ const VOCAB_DB = {
         },
         {
             "en": "piano",
-            "ch": "鋼琴",
+            "ch": "鋼琴 (n.)",
             "sents": [
                 {
                     "text": "My sister plays the piano every evening.",
@@ -4598,7 +4598,7 @@ const VOCAB_DB = {
         },
         {
             "en": "piece",
-            "ch": "一件",
+            "ch": "一件 (n.)",
             "sents": [
                 {
                     "text": "Would you like another piece of cake?",
@@ -4616,7 +4616,7 @@ const VOCAB_DB = {
         },
         {
             "en": "plan",
-            "ch": "計劃",
+            "ch": "計劃 (n./v.)",
             "sents": [
                 {
                     "text": "We need a plan for the project.",
@@ -4634,7 +4634,7 @@ const VOCAB_DB = {
         },
         {
             "en": "plane",
-            "ch": "飛機",
+            "ch": "飛機 (n.)",
             "sents": [
                 {
                     "text": "The plane landed safely in Hong Kong.",
@@ -4652,7 +4652,7 @@ const VOCAB_DB = {
         },
         {
             "en": "player",
-            "ch": "球員",
+            "ch": "球員 (n.)",
             "sents": [
                 {
                     "text": "The football player scored a goal.",
@@ -4670,7 +4670,7 @@ const VOCAB_DB = {
         },
         {
             "en": "pool",
-            "ch": "泳池",
+            "ch": "泳池 (n.)",
             "sents": [
                 {
                     "text": "The children are swimming in the pool.",
@@ -4688,7 +4688,7 @@ const VOCAB_DB = {
         },
         {
             "en": "popular",
-            "ch": "受歡迎的",
+            "ch": "受歡迎的 (adj.)",
             "sents": [
                 {
                     "text": "Bubble tea is popular with students.",
@@ -4706,7 +4706,7 @@ const VOCAB_DB = {
         },
         {
             "en": "possible",
-            "ch": "可能的",
+            "ch": "可能的 (adj.)",
             "sents": [
                 {
                     "text": "Is it possible to finish today?",
@@ -4724,7 +4724,7 @@ const VOCAB_DB = {
         },
         {
             "en": "post",
-            "ch": "郵件",
+            "ch": "郵件 (n./v.)",
             "sents": [
                 {
                     "text": "She repeated post so everyone understood.",
@@ -4742,7 +4742,7 @@ const VOCAB_DB = {
         },
         {
             "en": "potato",
-            "ch": "薯仔",
+            "ch": "薯仔 (n.)",
             "sents": [
                 {
                     "text": "We had potato soup for lunch.",
@@ -4760,7 +4760,7 @@ const VOCAB_DB = {
         },
         {
             "en": "pound",
-            "ch": "磅",
+            "ch": "磅 (n.)",
             "sents": [
                 {
                     "text": "This cake costs two pounds.",
@@ -4778,7 +4778,7 @@ const VOCAB_DB = {
         },
         {
             "en": "practice",
-            "ch": "練習",
+            "ch": "練習 (n.)",
             "sents": [
                 {
                     "text": "Football practice starts at four o clock.",
@@ -4796,7 +4796,7 @@ const VOCAB_DB = {
         },
         {
             "en": "practise",
-            "ch": "練習",
+            "ch": "練習 (v.)",
             "sents": [
                 {
                     "text": "I practise the piano every day.",
@@ -4814,7 +4814,7 @@ const VOCAB_DB = {
         },
         {
             "en": "prefer",
-            "ch": "較喜歡",
+            "ch": "較喜歡 (v.)",
             "sents": [
                 {
                     "text": "I prefer tea to coffee.",
@@ -4832,7 +4832,7 @@ const VOCAB_DB = {
         },
         {
             "en": "prepare",
-            "ch": "準備",
+            "ch": "準備 (v.)",
             "sents": [
                 {
                     "text": "Please prepare your books before class.",
@@ -4850,7 +4850,7 @@ const VOCAB_DB = {
         },
         {
             "en": "pretty",
-            "ch": "漂亮的",
+            "ch": "漂亮的 (adj.)",
             "sents": [
                 {
                     "text": "The flower is very pretty.",
@@ -4868,7 +4868,7 @@ const VOCAB_DB = {
         },
         {
             "en": "product",
-            "ch": "產品",
+            "ch": "產品 (n.)",
             "sents": [
                 {
                     "text": "This product is safe for children.",
@@ -4886,7 +4886,7 @@ const VOCAB_DB = {
         },
         {
             "en": "programme",
-            "ch": "節目",
+            "ch": "節目 (n.)",
             "sents": [
                 {
                     "text": "I watched a science programme on TV.",
@@ -4904,7 +4904,7 @@ const VOCAB_DB = {
         },
         {
             "en": "purple",
-            "ch": "紫色",
+            "ch": "紫色 (adj./n.)",
             "sents": [
                 {
                     "text": "She wore a purple scarf to school.",
@@ -4922,7 +4922,7 @@ const VOCAB_DB = {
         },
         {
             "en": "quick",
-            "ch": "快的",
+            "ch": "快的 (adj.)",
             "sents": [
                 {
                     "text": "We need a quick answer.",
@@ -4940,7 +4940,7 @@ const VOCAB_DB = {
         },
         {
             "en": "quickly",
-            "ch": "很快地",
+            "ch": "很快地 (adv.)",
             "sents": [
                 {
                     "text": "Please finish your work quickly.",
@@ -4958,7 +4958,7 @@ const VOCAB_DB = {
         },
         {
             "en": "quiet",
-            "ch": "安靜的",
+            "ch": "安靜的 (adj.)",
             "sents": [
                 {
                     "text": "Please be quiet in the library.",
@@ -4976,7 +4976,7 @@ const VOCAB_DB = {
         },
         {
             "en": "radio",
-            "ch": "收音機",
+            "ch": "收音機 (n.)",
             "sents": [
                 {
                     "text": "My grandfather listens to the radio every morning.",
@@ -4994,7 +4994,7 @@ const VOCAB_DB = {
         },
         {
             "en": "reader",
-            "ch": "讀者",
+            "ch": "讀者 (n.)",
             "sents": [
                 {
                     "text": "She is a careful reader.",
@@ -5012,7 +5012,7 @@ const VOCAB_DB = {
         },
         {
             "en": "ready",
-            "ch": "準備好",
+            "ch": "準備好 (adj.)",
             "sents": [
                 {
                     "text": "Are you ready to go now?",
@@ -5030,7 +5030,7 @@ const VOCAB_DB = {
         },
         {
             "en": "real",
-            "ch": "真實的",
+            "ch": "真實的 (adj.)",
             "sents": [
                 {
                     "text": "Is that story real?",
@@ -5048,7 +5048,7 @@ const VOCAB_DB = {
         },
         {
             "en": "reason",
-            "ch": "原因",
+            "ch": "原因 (n.)",
             "sents": [
                 {
                     "text": "What is the reason for your choice?",
@@ -5066,7 +5066,7 @@ const VOCAB_DB = {
         },
         {
             "en": "red",
-            "ch": "紅色",
+            "ch": "紅色 (adj./n.)",
             "sents": [
                 {
                     "text": "She wore a red hat to school.",
@@ -5084,7 +5084,7 @@ const VOCAB_DB = {
         },
         {
             "en": "relax",
-            "ch": "放鬆",
+            "ch": "放鬆 (v.)",
             "sents": [
                 {
                     "text": "I like to relax by listening to music.",
@@ -5102,7 +5102,7 @@ const VOCAB_DB = {
         },
         {
             "en": "restaurant",
-            "ch": "餐廳",
+            "ch": "餐廳 (n.)",
             "sents": [
                 {
                     "text": "We ate dinner at a small restaurant.",
@@ -5120,7 +5120,7 @@ const VOCAB_DB = {
         },
         {
             "en": "return",
-            "ch": "返回",
+            "ch": "返回 (v./n.)",
             "sents": [
                 {
                     "text": "Please return the book to the library.",
@@ -5138,7 +5138,7 @@ const VOCAB_DB = {
         },
         {
             "en": "rice",
-            "ch": "米飯",
+            "ch": "米飯 (n.)",
             "sents": [
                 {
                     "text": "We had chicken and rice for dinner.",
@@ -5156,7 +5156,7 @@ const VOCAB_DB = {
         },
         {
             "en": "road",
-            "ch": "道路",
+            "ch": "道路 (n.)",
             "sents": [
                 {
                     "text": "Please cross the road carefully.",
@@ -5174,7 +5174,7 @@ const VOCAB_DB = {
         },
         {
             "en": "safer",
-            "ch": "較安全",
+            "ch": "較安全 (adj.)",
             "sents": [
                 {
                     "text": "It is safer to use the bridge.",
@@ -5192,7 +5192,7 @@ const VOCAB_DB = {
         },
         {
             "en": "salt",
-            "ch": "鹽",
+            "ch": "鹽 (n.)",
             "sents": [
                 {
                     "text": "Please add a little salt to the soup.",
@@ -5210,7 +5210,7 @@ const VOCAB_DB = {
         },
         {
             "en": "sandwich",
-            "ch": "三文治",
+            "ch": "三文治 (n.)",
             "sents": [
                 {
                     "text": "I made a cheese sandwich for lunch.",
@@ -5228,7 +5228,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Saturday",
-            "ch": "星期六",
+            "ch": "星期六 (n.)",
             "sents": [
                 {
                     "text": "We play football every Saturday.",
@@ -5246,7 +5246,7 @@ const VOCAB_DB = {
         },
         {
             "en": "schoolmate",
-            "ch": "同學",
+            "ch": "同學 (n.)",
             "sents": [
                 {
                     "text": "I met an old schoolmate on the bus.",
@@ -5264,7 +5264,7 @@ const VOCAB_DB = {
         },
         {
             "en": "science",
-            "ch": "科學",
+            "ch": "科學 (n.)",
             "sents": [
                 {
                     "text": "Science is my favourite subject.",
@@ -5282,7 +5282,7 @@ const VOCAB_DB = {
         },
         {
             "en": "scientist",
-            "ch": "科學家",
+            "ch": "科學家 (n.)",
             "sents": [
                 {
                     "text": "The scientist worked in a large laboratory.",
@@ -5300,7 +5300,7 @@ const VOCAB_DB = {
         },
         {
             "en": "sea",
-            "ch": "海",
+            "ch": "海 (n.)",
             "sents": [
                 {
                     "text": "We swim in the sea every summer.",
@@ -5318,7 +5318,7 @@ const VOCAB_DB = {
         },
         {
             "en": "sell",
-            "ch": "賣",
+            "ch": "賣 (v.)",
             "sents": [
                 {
                     "text": "They sell fruit at the market.",
@@ -5336,7 +5336,7 @@ const VOCAB_DB = {
         },
         {
             "en": "September",
-            "ch": "九月",
+            "ch": "九月 (n.)",
             "sents": [
                 {
                     "text": "The new school year starts in September.",
@@ -5354,7 +5354,7 @@ const VOCAB_DB = {
         },
         {
             "en": "shirt",
-            "ch": "襯衫",
+            "ch": "襯衫 (n.)",
             "sents": [
                 {
                     "text": "He wore a white shirt to the party.",
@@ -5372,7 +5372,7 @@ const VOCAB_DB = {
         },
         {
             "en": "shoe",
-            "ch": "鞋",
+            "ch": "鞋 (n.)",
             "sents": [
                 {
                     "text": "One shoe is under the bed.",
@@ -5390,7 +5390,7 @@ const VOCAB_DB = {
         },
         {
             "en": "shorter",
-            "ch": "較短",
+            "ch": "較短 (adj.)",
             "sents": [
                 {
                     "text": "This pencil is shorter than that one.",
@@ -5408,7 +5408,7 @@ const VOCAB_DB = {
         },
         {
             "en": "shower",
-            "ch": "淋浴",
+            "ch": "淋浴 (n./v.)",
             "sents": [
                 {
                     "text": "I take a shower every morning.",
@@ -5426,7 +5426,7 @@ const VOCAB_DB = {
         },
         {
             "en": "sick",
-            "ch": "生病的",
+            "ch": "生病的 (adj.)",
             "sents": [
                 {
                     "text": "He stayed home because he was sick.",
@@ -5444,7 +5444,7 @@ const VOCAB_DB = {
         },
         {
             "en": "similar",
-            "ch": "相似的",
+            "ch": "相似的 (adj.)",
             "sents": [
                 {
                     "text": "These two bags are very similar.",
@@ -5462,7 +5462,7 @@ const VOCAB_DB = {
         },
         {
             "en": "sing",
-            "ch": "唱歌",
+            "ch": "唱歌 (v.)",
             "sents": [
                 {
                     "text": "I like to sing in music class.",
@@ -5480,7 +5480,7 @@ const VOCAB_DB = {
         },
         {
             "en": "singer",
-            "ch": "歌手",
+            "ch": "歌手 (n.)",
             "sents": [
                 {
                     "text": "The singer waved to the fans.",
@@ -5498,7 +5498,7 @@ const VOCAB_DB = {
         },
         {
             "en": "situation",
-            "ch": "情況",
+            "ch": "情況 (n.)",
             "sents": [
                 {
                     "text": "It was a difficult situation for everyone.",
@@ -5516,7 +5516,7 @@ const VOCAB_DB = {
         },
         {
             "en": "skill",
-            "ch": "技能",
+            "ch": "技能 (n.)",
             "sents": [
                 {
                     "text": "Reading is an important skill.",
@@ -5534,7 +5534,7 @@ const VOCAB_DB = {
         },
         {
             "en": "skirt",
-            "ch": "裙子",
+            "ch": "裙子 (n.)",
             "sents": [
                 {
                     "text": "She wore a blue skirt to school.",
@@ -5552,7 +5552,7 @@ const VOCAB_DB = {
         },
         {
             "en": "small",
-            "ch": "小的",
+            "ch": "小的 (adj.)",
             "sents": [
                 {
                     "text": "This cup is small.",
@@ -5570,7 +5570,7 @@ const VOCAB_DB = {
         },
         {
             "en": "smaller",
-            "ch": "較小",
+            "ch": "較小 (adj.)",
             "sents": [
                 {
                     "text": "This room is smaller than the other one.",
@@ -5588,7 +5588,7 @@ const VOCAB_DB = {
         },
         {
             "en": "snake",
-            "ch": "蛇",
+            "ch": "蛇 (n.)",
             "sents": [
                 {
                     "text": "We saw a snake in the zoo.",
@@ -5606,7 +5606,7 @@ const VOCAB_DB = {
         },
         {
             "en": "soda",
-            "ch": "汽水",
+            "ch": "汽水 (n.)",
             "sents": [
                 {
                     "text": "He drank a can of soda after lunch.",
@@ -5624,7 +5624,7 @@ const VOCAB_DB = {
         },
         {
             "en": "somebody",
-            "ch": "某人",
+            "ch": "某人 (pron.)",
             "sents": [
                 {
                     "text": "He remembered somebody from yesterday's lesson.",
@@ -5642,7 +5642,7 @@ const VOCAB_DB = {
         },
         {
             "en": "someone",
-            "ch": "某人",
+            "ch": "某人 (pron.)",
             "sents": [
                 {
                     "text": "She used someone in a clear sentence.",
@@ -5660,7 +5660,7 @@ const VOCAB_DB = {
         },
         {
             "en": "song",
-            "ch": "歌曲",
+            "ch": "歌曲 (n.)",
             "sents": [
                 {
                     "text": "That song is very easy to sing.",
@@ -5678,7 +5678,7 @@ const VOCAB_DB = {
         },
         {
             "en": "soup",
-            "ch": "湯",
+            "ch": "湯 (n.)",
             "sents": [
                 {
                     "text": "The soup is hot, so be careful.",
@@ -5696,7 +5696,7 @@ const VOCAB_DB = {
         },
         {
             "en": "south",
-            "ch": "南面",
+            "ch": "南面 (n./adj./adv.)",
             "sents": [
                 {
                     "text": "The wind is coming from the south.",
@@ -5714,7 +5714,7 @@ const VOCAB_DB = {
         },
         {
             "en": "space",
-            "ch": "太空",
+            "ch": "太空 (n.)",
             "sents": [
                 {
                     "text": "There is not enough space in my bag.",
@@ -5732,7 +5732,7 @@ const VOCAB_DB = {
         },
         {
             "en": "special",
-            "ch": "特別的",
+            "ch": "特別的 (adj.)",
             "sents": [
                 {
                     "text": "Today is a special day for our family.",
@@ -5750,7 +5750,7 @@ const VOCAB_DB = {
         },
         {
             "en": "sport",
-            "ch": "運動",
+            "ch": "運動 (n.)",
             "sents": [
                 {
                     "text": "Football is my favourite sport.",
@@ -5768,7 +5768,7 @@ const VOCAB_DB = {
         },
         {
             "en": "statement",
-            "ch": "陳述",
+            "ch": "陳述 (n.)",
             "sents": [
                 {
                     "text": "The teacher wrote a statement on the board.",
@@ -5786,7 +5786,7 @@ const VOCAB_DB = {
         },
         {
             "en": "station",
-            "ch": "車站",
+            "ch": "車站 (n.)",
             "sents": [
                 {
                     "text": "The station is near my home.",
@@ -5804,7 +5804,7 @@ const VOCAB_DB = {
         },
         {
             "en": "story",
-            "ch": "故事",
+            "ch": "故事 (n.)",
             "sents": [
                 {
                     "text": "My grandfather told me a funny story.",
@@ -5822,7 +5822,7 @@ const VOCAB_DB = {
         },
         {
             "en": "street",
-            "ch": "街道",
+            "ch": "街道 (n.)",
             "sents": [
                 {
                     "text": "The children crossed the street carefully.",
@@ -5840,7 +5840,7 @@ const VOCAB_DB = {
         },
         {
             "en": "strong",
-            "ch": "強壯的",
+            "ch": "強壯的 (adj.)",
             "sents": [
                 {
                     "text": "The boy is strong enough to carry the box.",
@@ -5858,7 +5858,7 @@ const VOCAB_DB = {
         },
         {
             "en": "student",
-            "ch": "學生",
+            "ch": "學生 (n.)",
             "sents": [
                 {
                     "text": "Every student must bring a pencil.",
@@ -5876,7 +5876,7 @@ const VOCAB_DB = {
         },
         {
             "en": "study",
-            "ch": "學習",
+            "ch": "學習 (v./n.)",
             "sents": [
                 {
                     "text": "I need to study for the test tonight.",
@@ -5894,7 +5894,7 @@ const VOCAB_DB = {
         },
         {
             "en": "style",
-            "ch": "風格",
+            "ch": "風格 (n.)",
             "sents": [
                 {
                     "text": "I like the style of this dress.",
@@ -5912,7 +5912,7 @@ const VOCAB_DB = {
         },
         {
             "en": "subway",
-            "ch": "地鐵",
+            "ch": "地鐵 (n.)",
             "sents": [
                 {
                     "text": "We took the subway to the city centre.",
@@ -5930,7 +5930,7 @@ const VOCAB_DB = {
         },
         {
             "en": "success",
-            "ch": "成功",
+            "ch": "成功 (n.)",
             "sents": [
                 {
                     "text": "Hard work can lead to success.",
@@ -5948,7 +5948,7 @@ const VOCAB_DB = {
         },
         {
             "en": "sugar",
-            "ch": "糖",
+            "ch": "糖 (n.)",
             "sents": [
                 {
                     "text": "Please add some sugar to my tea.",
@@ -5966,7 +5966,7 @@ const VOCAB_DB = {
         },
         {
             "en": "summer",
-            "ch": "夏天",
+            "ch": "夏天 (n.)",
             "sents": [
                 {
                     "text": "We go swimming every summer.",
@@ -5984,7 +5984,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Sunday",
-            "ch": "星期日",
+            "ch": "星期日 (n.)",
             "sents": [
                 {
                     "text": "We visit my grandparents every Sunday.",
@@ -6002,7 +6002,7 @@ const VOCAB_DB = {
         },
         {
             "en": "supermarket",
-            "ch": "超級市場",
+            "ch": "超級市場 (n.)",
             "sents": [
                 {
                     "text": "My mother bought vegetables at the supermarket.",
@@ -6020,7 +6020,7 @@ const VOCAB_DB = {
         },
         {
             "en": "sweeter",
-            "ch": "較甜",
+            "ch": "較甜 (adj.)",
             "sents": [
                 {
                     "text": "This mango is sweeter than that one.",
@@ -6038,7 +6038,7 @@ const VOCAB_DB = {
         },
         {
             "en": "tall",
-            "ch": "高的",
+            "ch": "高的 (adj.)",
             "sents": [
                 {
                     "text": "He is tall for his age.",
@@ -6056,7 +6056,7 @@ const VOCAB_DB = {
         },
         {
             "en": "taxi",
-            "ch": "的士",
+            "ch": "的士 (n.)",
             "sents": [
                 {
                     "text": "We took a taxi to the airport.",
@@ -6074,7 +6074,7 @@ const VOCAB_DB = {
         },
         {
             "en": "tea",
-            "ch": "茶",
+            "ch": "茶 (n.)",
             "sents": [
                 {
                     "text": "My grandmother drinks tea every afternoon.",
@@ -6092,7 +6092,7 @@ const VOCAB_DB = {
         },
         {
             "en": "teach",
-            "ch": "教導",
+            "ch": "教導 (v.)",
             "sents": [
                 {
                     "text": "My mother can teach me how to cook.",
@@ -6110,7 +6110,7 @@ const VOCAB_DB = {
         },
         {
             "en": "team",
-            "ch": "隊伍",
+            "ch": "隊伍 (n.)",
             "sents": [
                 {
                     "text": "Our team won the football match.",
@@ -6128,7 +6128,7 @@ const VOCAB_DB = {
         },
         {
             "en": "teenager",
-            "ch": "青少年",
+            "ch": "青少年 (n.)",
             "sents": [
                 {
                     "text": "The magazine is for teenagers.",
@@ -6146,7 +6146,7 @@ const VOCAB_DB = {
         },
         {
             "en": "telephone",
-            "ch": "電話",
+            "ch": "電話 (n.)",
             "sents": [
                 {
                     "text": "The old telephone is on the desk.",
@@ -6164,7 +6164,7 @@ const VOCAB_DB = {
         },
         {
             "en": "television",
-            "ch": "電視",
+            "ch": "電視 (n.)",
             "sents": [
                 {
                     "text": "We watched a movie on television.",
@@ -6182,7 +6182,7 @@ const VOCAB_DB = {
         },
         {
             "en": "ten",
-            "ch": "十",
+            "ch": "十 (num.)",
             "sents": [
                 {
                     "text": "There are ten apples in the basket.",
@@ -6200,7 +6200,7 @@ const VOCAB_DB = {
         },
         {
             "en": "tennis",
-            "ch": "網球",
+            "ch": "網球 (n.)",
             "sents": [
                 {
                     "text": "We play tennis on Saturday mornings.",
@@ -6218,7 +6218,7 @@ const VOCAB_DB = {
         },
         {
             "en": "terrible",
-            "ch": "可怕的",
+            "ch": "可怕的 (adj.)",
             "sents": [
                 {
                     "text": "The weather was terrible yesterday.",
@@ -6236,7 +6236,7 @@ const VOCAB_DB = {
         },
         {
             "en": "test",
-            "ch": "測驗",
+            "ch": "測驗 (n./v.)",
             "sents": [
                 {
                     "text": "We have a spelling test tomorrow.",
@@ -6254,7 +6254,7 @@ const VOCAB_DB = {
         },
         {
             "en": "theatre",
-            "ch": "劇院",
+            "ch": "劇院 (n.)",
             "sents": [
                 {
                     "text": "We watched a play in the theatre.",
@@ -6272,7 +6272,7 @@ const VOCAB_DB = {
         },
         {
             "en": "third",
-            "ch": "第三",
+            "ch": "第三 (num./adj.)",
             "sents": [
                 {
                     "text": "He finished in third place.",
@@ -6290,7 +6290,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Thursday",
-            "ch": "星期四",
+            "ch": "星期四 (n.)",
             "sents": [
                 {
                     "text": "Our music lesson is on Thursday.",
@@ -6308,7 +6308,7 @@ const VOCAB_DB = {
         },
         {
             "en": "ticket",
-            "ch": "門票",
+            "ch": "門票 (n.)",
             "sents": [
                 {
                     "text": "I bought a train ticket at the station.",
@@ -6326,7 +6326,7 @@ const VOCAB_DB = {
         },
         {
             "en": "together",
-            "ch": "一起",
+            "ch": "一起 (adv.)",
             "sents": [
                 {
                     "text": "The teacher explained together in a simple way.",
@@ -6344,7 +6344,7 @@ const VOCAB_DB = {
         },
         {
             "en": "toilet",
-            "ch": "洗手間",
+            "ch": "洗手間 (n.)",
             "sents": [
                 {
                     "text": "Excuse me, where is the toilet?",
@@ -6362,7 +6362,7 @@ const VOCAB_DB = {
         },
         {
             "en": "top",
-            "ch": "頂部",
+            "ch": "頂部 (n.)",
             "sents": [
                 {
                     "text": "The book is on the top shelf.",
@@ -6380,7 +6380,7 @@ const VOCAB_DB = {
         },
         {
             "en": "topic",
-            "ch": "題目",
+            "ch": "題目 (n.)",
             "sents": [
                 {
                     "text": "The topic of today?s lesson is travel.",
@@ -6398,7 +6398,7 @@ const VOCAB_DB = {
         },
         {
             "en": "tourist",
-            "ch": "遊客",
+            "ch": "遊客 (n.)",
             "sents": [
                 {
                     "text": "Many tourists visit Hong Kong every year.",
@@ -6416,7 +6416,7 @@ const VOCAB_DB = {
         },
         {
             "en": "traffic",
-            "ch": "交通",
+            "ch": "交通 (n.)",
             "sents": [
                 {
                     "text": "There is heavy traffic this morning.",
@@ -6434,7 +6434,7 @@ const VOCAB_DB = {
         },
         {
             "en": "travel",
-            "ch": "旅行",
+            "ch": "旅行 (v./n.)",
             "sents": [
                 {
                     "text": "I love to travel with my family.",
@@ -6452,7 +6452,7 @@ const VOCAB_DB = {
         },
         {
             "en": "tree",
-            "ch": "樹",
+            "ch": "樹 (n.)",
             "sents": [
                 {
                     "text": "There is a tall tree in the park.",
@@ -6470,7 +6470,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Tuesday",
-            "ch": "星期二",
+            "ch": "星期二 (n.)",
             "sents": [
                 {
                     "text": "We have English on Tuesday.",
@@ -6488,7 +6488,7 @@ const VOCAB_DB = {
         },
         {
             "en": "turn left",
-            "ch": "向左轉",
+            "ch": "向左轉 (phr. v.)",
             "sents": [
                 {
                     "text": "Turn left at the traffic lights.",
@@ -6506,7 +6506,7 @@ const VOCAB_DB = {
         },
         {
             "en": "turn right",
-            "ch": "向右轉",
+            "ch": "向右轉 (phr. v.)",
             "sents": [
                 {
                     "text": "Turn right at the next corner.",
@@ -6524,7 +6524,7 @@ const VOCAB_DB = {
         },
         {
             "en": "twice",
-            "ch": "兩次",
+            "ch": "兩次 (adv.)",
             "sents": [
                 {
                     "text": "I brush my teeth twice a day.",
@@ -6542,7 +6542,7 @@ const VOCAB_DB = {
         },
         {
             "en": "umbrella",
-            "ch": "雨傘",
+            "ch": "雨傘 (n.)",
             "sents": [
                 {
                     "text": "Take an umbrella because it may rain.",
@@ -6560,7 +6560,7 @@ const VOCAB_DB = {
         },
         {
             "en": "university",
-            "ch": "大學",
+            "ch": "大學 (n.)",
             "sents": [
                 {
                     "text": "My sister studies at a university in Hong Kong.",
@@ -6578,7 +6578,7 @@ const VOCAB_DB = {
         },
         {
             "en": "useful",
-            "ch": "有用的",
+            "ch": "有用的 (adj.)",
             "sents": [
                 {
                     "text": "This dictionary is very useful.",
@@ -6596,7 +6596,7 @@ const VOCAB_DB = {
         },
         {
             "en": "vacation",
-            "ch": "假期",
+            "ch": "假期 (n.)",
             "sents": [
                 {
                     "text": "We went to Japan during the summer vacation.",
@@ -6614,7 +6614,7 @@ const VOCAB_DB = {
         },
         {
             "en": "vegetable",
-            "ch": "蔬菜",
+            "ch": "蔬菜 (n.)",
             "sents": [
                 {
                     "text": "Carrot is my favourite vegetable.",
@@ -6632,7 +6632,7 @@ const VOCAB_DB = {
         },
         {
             "en": "video",
-            "ch": "影片",
+            "ch": "影片 (n.)",
             "sents": [
                 {
                     "text": "I watched a funny video online.",
@@ -6650,7 +6650,7 @@ const VOCAB_DB = {
         },
         {
             "en": "village",
-            "ch": "村莊",
+            "ch": "村莊 (n.)",
             "sents": [
                 {
                     "text": "My grandparents live in a small village.",
@@ -6668,7 +6668,7 @@ const VOCAB_DB = {
         },
         {
             "en": "visit",
-            "ch": "參觀",
+            "ch": "參觀 (v./n.)",
             "sents": [
                 {
                     "text": "We will visit our cousins this weekend.",
@@ -6686,7 +6686,7 @@ const VOCAB_DB = {
         },
         {
             "en": "visitor",
-            "ch": "訪客",
+            "ch": "訪客 (n.)",
             "sents": [
                 {
                     "text": "Every visitor must sign in at the office.",
@@ -6704,7 +6704,7 @@ const VOCAB_DB = {
         },
         {
             "en": "wake",
-            "ch": "醒來",
+            "ch": "醒來 (v.)",
             "sents": [
                 {
                     "text": "I wake up at seven every morning.",
@@ -6722,7 +6722,7 @@ const VOCAB_DB = {
         },
         {
             "en": "walk along",
-            "ch": "沿著…走",
+            "ch": "沿著…走 (phr. v.)",
             "sents": [
                 {
                     "text": "Walk along the road until you see the park.",
@@ -6740,7 +6740,7 @@ const VOCAB_DB = {
         },
         {
             "en": "warmer",
-            "ch": "較暖",
+            "ch": "較暖 (adj.)",
             "sents": [
                 {
                     "text": "Today is warmer than yesterday.",
@@ -6758,7 +6758,7 @@ const VOCAB_DB = {
         },
         {
             "en": "wear",
-            "ch": "穿著",
+            "ch": "穿著 (v.)",
             "sents": [
                 {
                     "text": "Please wear your school uniform tomorrow.",
@@ -6776,7 +6776,7 @@ const VOCAB_DB = {
         },
         {
             "en": "weather",
-            "ch": "天氣",
+            "ch": "天氣 (n.)",
             "sents": [
                 {
                     "text": "The weather is sunny today.",
@@ -6794,7 +6794,7 @@ const VOCAB_DB = {
         },
         {
             "en": "website",
-            "ch": "網站",
+            "ch": "網站 (n.)",
             "sents": [
                 {
                     "text": "You can find the homework on the website.",
@@ -6812,7 +6812,7 @@ const VOCAB_DB = {
         },
         {
             "en": "Wednesday",
-            "ch": "星期三",
+            "ch": "星期三 (n.)",
             "sents": [
                 {
                     "text": "We have science on Wednesday.",
@@ -6830,7 +6830,7 @@ const VOCAB_DB = {
         },
         {
             "en": "west",
-            "ch": "西面",
+            "ch": "西面 (n./adj./adv.)",
             "sents": [
                 {
                     "text": "The sun sets in the west.",
@@ -6848,7 +6848,7 @@ const VOCAB_DB = {
         },
         {
             "en": "white",
-            "ch": "白色",
+            "ch": "白色 (adj./n.)",
             "sents": [
                 {
                     "text": "She wore a white shirt today.",
@@ -6866,7 +6866,7 @@ const VOCAB_DB = {
         },
         {
             "en": "wife",
-            "ch": "妻子",
+            "ch": "妻子 (n.)",
             "sents": [
                 {
                     "text": "His wife works in a hospital.",
@@ -6884,7 +6884,7 @@ const VOCAB_DB = {
         },
         {
             "en": "window",
-            "ch": "窗",
+            "ch": "窗 (n.)",
             "sents": [
                 {
                     "text": "Please open the window.",
@@ -6902,7 +6902,7 @@ const VOCAB_DB = {
         },
         {
             "en": "wine",
-            "ch": "葡萄酒",
+            "ch": "葡萄酒 (n.)",
             "sents": [
                 {
                     "text": "The restaurant serves red wine.",
@@ -6920,7 +6920,7 @@ const VOCAB_DB = {
         },
         {
             "en": "winter",
-            "ch": "冬天",
+            "ch": "冬天 (n.)",
             "sents": [
                 {
                     "text": "It is cold in winter.",
@@ -6938,7 +6938,7 @@ const VOCAB_DB = {
         },
         {
             "en": "without",
-            "ch": "沒有",
+            "ch": "沒有 (prep.)",
             "sents": [
                 {
                     "text": "I cannot go out without my keys.",
@@ -6956,7 +6956,7 @@ const VOCAB_DB = {
         },
         {
             "en": "wonderful",
-            "ch": "精彩的",
+            "ch": "精彩的 (adj.)",
             "sents": [
                 {
                     "text": "We had a wonderful time at the beach.",
@@ -6974,7 +6974,7 @@ const VOCAB_DB = {
         },
         {
             "en": "worker",
-            "ch": "工人",
+            "ch": "工人 (n.)",
             "sents": [
                 {
                     "text": "The worker fixed the broken door.",
@@ -6992,7 +6992,7 @@ const VOCAB_DB = {
         },
         {
             "en": "worksheet",
-            "ch": "工作紙",
+            "ch": "工作紙 (n.)",
             "sents": [
                 {
                     "text": "Please complete the worksheet in class.",
@@ -7010,7 +7010,7 @@ const VOCAB_DB = {
         },
         {
             "en": "writer",
-            "ch": "作家",
+            "ch": "作家 (n.)",
             "sents": [
                 {
                     "text": "The writer signed his new book.",
@@ -7028,7 +7028,7 @@ const VOCAB_DB = {
         },
         {
             "en": "year",
-            "ch": "年",
+            "ch": "年 (n.)",
             "sents": [
                 {
                     "text": "This year feels very busy.",
@@ -7046,7 +7046,7 @@ const VOCAB_DB = {
         },
         {
             "en": "yellow",
-            "ch": "黃色",
+            "ch": "黃色 (adj./n.)",
             "sents": [
                 {
                     "text": "The sunflowers are bright yellow.",
@@ -7064,7 +7064,7 @@ const VOCAB_DB = {
         },
         {
             "en": "zoo",
-            "ch": "動物園",
+            "ch": "動物園 (n.)",
             "sents": [
                 {
                     "text": "We visited the zoo on Sunday.",
