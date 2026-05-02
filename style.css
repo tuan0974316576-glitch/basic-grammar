@@ -1668,6 +1668,15 @@ body {
     cursor: pointer;
 }
 
+.vocab-row-entrance {
+    opacity: 0;
+    animation: fadeIn 0.3s ease-out var(--vocab-row-delay, 0s) forwards;
+}
+
+.vocab-row-entrance.speaking {
+    opacity: 1;
+}
+
 /* Hover 時的效果 */
 .vocab-row:hover {
     background: rgba(217, 70, 239, 0.15); /* 紫色背景 */
@@ -1898,12 +1907,41 @@ body {
     100% { border-left-color: #e879f9; background: rgba(232, 121, 249, 0.1); }
 }
 
+@keyframes tech-row-pulse-stage-blue {
+    0% {
+        border-left-color: #38bdf8;
+        background: rgba(14, 165, 233, 0.12);
+        box-shadow: 0 0 10px rgba(14, 165, 233, 0.18);
+    }
+    50% {
+        border-left-color: #ffffff;
+        background: rgba(56, 189, 248, 0.28);
+        box-shadow: 0 0 22px rgba(56, 189, 248, 0.45), inset 0 0 14px rgba(14, 165, 233, 0.2);
+    }
+    100% {
+        border-left-color: #38bdf8;
+        background: rgba(14, 165, 233, 0.12);
+        box-shadow: 0 0 10px rgba(14, 165, 233, 0.18);
+    }
+}
+
 /* 當整行被加上 .speaking 時 */
 .vocab-row.speaking {
     animation: tech-row-pulse 0.5s infinite alternate; /* 快速閃動 */
     border-left: 5px solid #e879f9; /* 左邊加一條粗光條 */
     background: rgba(232, 121, 249, 0.2); /* 整行背景變紫 */
     transform: scale(1.02); /* 稍微放大一點點，增加動感 */
+}
+
+#vocab-screen.stage-preview .vocab-row.speaking {
+    animation: tech-row-pulse-stage-blue 0.5s infinite alternate;
+    border-left: 5px solid #38bdf8;
+    background: rgba(14, 165, 233, 0.18);
+}
+
+#vocab-screen.stage-preview .vocab-row.speaking .vocab-en {
+    color: #7dd3fc;
+    text-shadow: 0 0 8px rgba(125, 211, 252, 0.85), 0 0 18px rgba(14, 165, 233, 0.55);
 }
 .vocab-search-container {
     width: 90%;

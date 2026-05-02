@@ -298,10 +298,12 @@ function renderVocabList(level, isSilent = false) {
         row.classList.add('vocab-row');
 
         if (index < 20) {
-            row.style.animation = `fadeIn 0.3s ease-out ${index * 0.05}s forwards`;
-            row.style.opacity = '0';
-        } else {
-            row.style.opacity = '1';
+            row.classList.add('vocab-row-entrance');
+            row.style.setProperty('--vocab-row-delay', `${index * 0.05}s`);
+            row.addEventListener('animationend', () => {
+                row.classList.remove('vocab-row-entrance');
+                row.style.removeProperty('--vocab-row-delay');
+            }, { once: true });
         }
 
         const safeText = item.en.replace(/'/g, '&apos;');
@@ -334,10 +336,12 @@ function renderCustomVocabList(rows) {
         row.classList.add('vocab-row');
 
         if (index < 20) {
-            row.style.animation = `fadeIn 0.3s ease-out ${index * 0.05}s forwards`;
-            row.style.opacity = '0';
-        } else {
-            row.style.opacity = '1';
+            row.classList.add('vocab-row-entrance');
+            row.style.setProperty('--vocab-row-delay', `${index * 0.05}s`);
+            row.addEventListener('animationend', () => {
+                row.classList.remove('vocab-row-entrance');
+                row.style.removeProperty('--vocab-row-delay');
+            }, { once: true });
         }
 
         const safeText = item.en.replace(/'/g, '&apos;');
