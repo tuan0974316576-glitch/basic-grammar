@@ -1978,6 +1978,35 @@ body {
     box-shadow: 0 0 15px rgba(238, 232, 170, 0.4), inset 0 0 10px rgba(238, 232, 170, 0.2);
 }
 
+.vocab-virtual-keyboard {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 520;
+    background: rgba(0, 0, 0, 0.62);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(14, 165, 233, 0.32);
+    box-shadow: 0 -12px 28px rgba(0, 0, 0, 0.36), 0 0 26px rgba(14, 165, 233, 0.14);
+    padding: 12px 10px calc(10px + env(safe-area-inset-bottom));
+    box-sizing: border-box;
+    font-family: 'Orbitron', monospace;
+}
+
+#vocab-screen.vocab-keyboard-open {
+    justify-content: flex-start;
+    padding-top: 24px;
+    box-sizing: border-box;
+}
+
+#vocab-screen.vocab-keyboard-open .vocab-container {
+    height: 34vh;
+}
+
+#vocab-screen.vocab-keyboard-open .vocab-search-container {
+    margin-bottom: 8px;
+}
 /* --- 搜尋框右邊的特效 (改做閃爍光標) --- */
 .search-icon {
     position: absolute;

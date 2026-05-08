@@ -4,9 +4,69 @@ let vocabPreviewRows = [];
 let vocabPreviewReturnScreen = 'start';
 let vocabPreviewTitle = 'CODE LIST';
 let vocabPreviewSubtitle = 'CLASSIFIED VOCABULARY DATABASE';
+let vocabSearchKeyboardActive = false;
+
+function getVocabSearchInput() {
+    return document.getElementById('vocab-search-input');
+}
+
+function getVocabKeyboard() {
+    return document.getElementById('vocab-virtual-keyboard');
+}
+
+function showVocabSearchKeyboard() {
+    const keyboard = getVocabKeyboard();
+    const input = getVocabSearchInput();
+    const vocabScreen = document.getElementById('vocab-screen');
+    if (!keyboard || !input || !vocabScreen || vocabScreen.style.display === 'none') return;
+
+    vocabSearchKeyboardActive = true;
+    input.setAttribute('readonly', 'readonly');
+    input.setAttribute('inputmode', 'none');
+    input.blur();
+    keyboard.style.display = 'block';
+    vocabScreen.classList.add('vocab-keyboard-open');
+}
+
+function hideVocabSearchKeyboard() {
+    const keyboard = getVocabKeyboard();
+    const vocabScreen = document.getElementById('vocab-screen');
+    vocabSearchKeyboardActive = false;
+    if (keyboard) keyboard.style.display = 'none';
+    if (vocabScreen) vocabScreen.classList.remove('vocab-keyboard-open');
+}
+
+function setVocabSearchValue(value) {
+    const input = getVocabSearchInput();
+    if (!input) return;
+    input.value = String(value || '').slice(0, 40);
+    filterVocabList();
+}
+
+function handleVocabKeyboardInput(keyValue) {
+    const input = getVocabSearchInput();
+    if (!input) return;
+
+    if (keyValue === 'ENTER') {
+        hideVocabSearchKeyboard();
+        return;
+    }
+    if (keyValue === 'BACKSPACE') {
+        setVocabSearchValue(input.value.slice(0, -1));
+        return;
+    }
+    if (keyValue === 'CLEAR') {
+        setVocabSearchValue('');
+        return;
+    }
+    if (typeof keyValue === 'string' && keyValue.length === 1) {
+        setVocabSearchValue(input.value + keyValue.toLowerCase());
+    }
+}
 
 function closeVocabScreen() {
     playSound('delete-sfx');
+    hideVocabSearchKeyboard();
     const vocabScreen = document.getElementById('vocab-screen');
     vocabScreen.style.display = 'none';
     const returnScreen = vocabPreviewReturnScreen;
@@ -287,6 +347,7 @@ function renderVocabList(level, isSilent = false) {
 
     const searchInput = document.getElementById('vocab-search-input');
     if (searchInput) searchInput.value = '';
+    hideVocabSearchKeyboard();
 
     const data = VOCAB_DB[level];
     if (!data) return;
@@ -328,6 +389,7 @@ function renderCustomVocabList(rows) {
 
     const searchInput = document.getElementById('vocab-search-input');
     if (searchInput) searchInput.value = '';
+    hideVocabSearchKeyboard();
 
     const fragment = document.createDocumentFragment();
 
@@ -366,7 +428,7 @@ function filterVocabList() {
         const chText = row.querySelector('.vocab-ch').innerText.toLowerCase();
 
         if (enText.includes(filter) || chText.includes(filter)) {
-            row.style.display = 'flex';
+            row.style.display = '';
         } else {
             row.style.display = 'none';
         }
@@ -387,6 +449,7 @@ function openVocabScreen() {
     if (vocabScreen) vocabScreen.classList.remove('stage-preview');
     document.getElementById('vocab-screen').style.display = 'flex';
     renderVocabList('L1', true);
+    setupVocabSearchKeyboard();
 }
 
 function openStageVocabPreview(levelKey, stageWords, previewTitle) {
@@ -429,6 +492,75 @@ function openStageVocabPreview(levelKey, stageWords, previewTitle) {
         vocabScreen.style.display = 'flex';
     }
     renderCustomVocabList(vocabPreviewRows);
+    setupVocabSearchKeyboard();
 }
 
 window.openStageVocabPreview = openStageVocabPreview;
+
+
+function setupVocabSearchKeyboard() {
+    const input = getVocabSearchInput();
+    const keyboard = getVocabKeyboard();
+    if (!input || !keyboard) return;
+
+    input.setAttribute('readonly', 'readonly');
+    input.setAttribute('inputmode', 'none');
+
+    if (keyboard.dataset.bound === 'true') return;
+    keyboard.dataset.bound = 'true';
+
+    input.addEventListener('focus', showVocabSearchKeyboard);
+    input.addEventListener('click', showVocabSearchKeyboard);
+    input.addEventListener('touchstart', (event) => {
+        event.preventDefault();
+        showVocabSearchKeyboard();
+    }, { passive: false });
+
+    keyboard.addEventListener('click', (event) => {
+        const key = event.target.closest('.kb-key');
+        if (!key) return;
+        event.preventDefault();
+        event.stopPropagation();
+        handleVocabKeyboardInput(key.getAttribute('data-vocab-key'));
+    });
+
+    keyboard.addEventListener('touchstart', (event) => {
+        const key = event.target.closest('.kb-key');
+        if (!key) return;
+        key.classList.add('kb-active');
+    }, { passive: true });
+
+    keyboard.addEventListener('touchend', (event) => {
+        const key = event.target.closest('.kb-key');
+        if (!key) return;
+        setTimeout(() => key.classList.remove('kb-active'), 100);
+    }, { passive: true });
+
+    keyboard.addEventListener('touchcancel', (event) => {
+        const key = event.target.closest('.kb-key');
+        if (!key) return;
+        key.classList.remove('kb-active');
+    }, { passive: true });
+}
+
+document.addEventListener('DOMContentLoaded', setupVocabSearchKeyboard);
+
+document.addEventListener('keydown', (event) => {
+    if (!vocabSearchKeyboardActive) return;
+    const vocabScreen = document.getElementById('vocab-screen');
+    if (!vocabScreen || vocabScreen.style.display === 'none') return;
+
+    if (/^[a-z0-9]$/i.test(event.key)) {
+        event.preventDefault();
+        handleVocabKeyboardInput(event.key);
+    } else if (event.key === ' ') {
+        event.preventDefault();
+        handleVocabKeyboardInput(' ');
+    } else if (event.key === 'Backspace') {
+        event.preventDefault();
+        handleVocabKeyboardInput('BACKSPACE');
+    } else if (event.key === 'Enter' || event.key === 'Escape') {
+        event.preventDefault();
+        handleVocabKeyboardInput('ENTER');
+    }
+});

@@ -18,7 +18,7 @@
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 let refreshing = false;
-                navigator.serviceWorker.register('./sw.js?v=20260508-055').then(reg => {
+                navigator.serviceWorker.register('./sw.js?v=20260508-056').then(reg => {
                     console.log('SW registered!', reg);
                     reg.update();
 
@@ -48,8 +48,8 @@
         }
     </script>
 
-    <script type="module" src="firebase-init.js?v=0.55"></script>
-    <link rel="stylesheet" href="style.css?v=0.55">
+    <script type="module" src="firebase-init.js?v=0.56"></script>
+    <link rel="stylesheet" href="style.css?v=0.56">
 
 </head>
 <body>
@@ -78,7 +78,7 @@
     <div class="game-footer splash-footer">
         <span class="brand">Enguistics Learning Centre</span> 2026
         <br>
-        v0.55
+        v0.56
     </div>
 </div>
 <div id="game-content-wrapper" style="display: none;">
@@ -221,8 +221,48 @@
     </div>
 
     <div class="vocab-search-container">
-        <input type="text" id="vocab-search-input" placeholder=">> INPUT_KEYWORD..." onkeyup="filterVocabList()">
-        <div class="search-icon"></div> 
+        <input type="text" id="vocab-search-input" placeholder=">> INPUT_KEYWORD..." readonly inputmode="none" autocomplete="off" spellcheck="false">
+        <div class="search-icon"></div>
+    </div>
+
+    <div id="vocab-virtual-keyboard" class="vocab-virtual-keyboard" style="display: none;">
+        <div class="kb-row">
+            <button class="kb-key" data-vocab-key="Q">Q</button>
+            <button class="kb-key" data-vocab-key="W">W</button>
+            <button class="kb-key" data-vocab-key="E">E</button>
+            <button class="kb-key" data-vocab-key="R">R</button>
+            <button class="kb-key" data-vocab-key="T">T</button>
+            <button class="kb-key" data-vocab-key="Y">Y</button>
+            <button class="kb-key" data-vocab-key="U">U</button>
+            <button class="kb-key" data-vocab-key="I">I</button>
+            <button class="kb-key" data-vocab-key="O">O</button>
+            <button class="kb-key" data-vocab-key="P">P</button>
+        </div>
+        <div class="kb-row">
+            <button class="kb-key" data-vocab-key="A">A</button>
+            <button class="kb-key" data-vocab-key="S">S</button>
+            <button class="kb-key" data-vocab-key="D">D</button>
+            <button class="kb-key" data-vocab-key="F">F</button>
+            <button class="kb-key" data-vocab-key="G">G</button>
+            <button class="kb-key" data-vocab-key="H">H</button>
+            <button class="kb-key" data-vocab-key="J">J</button>
+            <button class="kb-key" data-vocab-key="K">K</button>
+            <button class="kb-key" data-vocab-key="L">L</button>
+        </div>
+        <div class="kb-row">
+            <button class="kb-key" data-vocab-key="Z">Z</button>
+            <button class="kb-key" data-vocab-key="X">X</button>
+            <button class="kb-key" data-vocab-key="C">C</button>
+            <button class="kb-key" data-vocab-key="V">V</button>
+            <button class="kb-key" data-vocab-key="B">B</button>
+            <button class="kb-key" data-vocab-key="N">N</button>
+            <button class="kb-key" data-vocab-key="M">M</button>
+            <button class="kb-key kb-backspace" data-vocab-key="BACKSPACE">⌫</button>
+        </div>
+        <div class="kb-row">
+            <button class="kb-key kb-space" data-vocab-key=" ">SPACE</button>
+            <button class="kb-key kb-enter" data-vocab-key="ENTER">DONE</button>
+        </div>
     </div>
 
     <button class="btn" onclick="closeVocabScreen()" style="margin-top: 20px; width: 150px; border-color: #EEE8AA; color: #EEE8AA; background: rgba(238, 232, 170, 0.15);">&lt; BACK</button>
@@ -743,13 +783,13 @@
 <audio id="ship-voice-4"><source src="ship_4_spectre.mp3" type="audio/mpeg"></audio>
     <audio id="unit-lost-sfx"><source src="unit_lost.mp3" type="audio/mpeg"></audio>
 </div>
-<script src="vocab_data.js?v=0.55"></script>
-<script src="app-config.js?v=0.55"></script>
-<script src="vendor/effekseer/effekseer.min.js?v=0.55"></script>
-<script src="app.js?v=0.55"></script>
-<script src="ui-screens.js?v=0.55"></script>
-<script src="ui-auth.js?v=0.55"></script>
-<script src="ui-audio.js?v=0.55"></script>
+<script src="vocab_data.js?v=0.56"></script>
+<script src="app-config.js?v=0.56"></script>
+<script src="vendor/effekseer/effekseer.min.js?v=0.56"></script>
+<script src="app.js?v=0.56"></script>
+<script src="ui-screens.js?v=0.56"></script>
+<script src="ui-auth.js?v=0.56"></script>
+<script src="ui-audio.js?v=0.56"></script>
 <div id="registration-modal" class="registration-modal" style="display: none;">
     
     <div class="registration-scanlines"></div>
