@@ -20,6 +20,7 @@ function showVocabSearchKeyboard() {
     const vocabScreen = document.getElementById('vocab-screen');
     if (!keyboard || !input || !vocabScreen || vocabScreen.style.display === 'none') return;
 
+    if (!vocabSearchKeyboardActive && typeof playSound === 'function') playSound('deploy-sfx');
     vocabSearchKeyboardActive = true;
     input.setAttribute('readonly', 'readonly');
     input.setAttribute('inputmode', 'none');
@@ -33,9 +34,11 @@ window.showVocabSearchKeyboard = showVocabSearchKeyboard;
 function hideVocabSearchKeyboard() {
     const keyboard = getVocabKeyboard();
     const vocabScreen = document.getElementById('vocab-screen');
+    const wasActive = vocabSearchKeyboardActive;
     vocabSearchKeyboardActive = false;
     if (keyboard) keyboard.style.display = 'none';
     if (vocabScreen) vocabScreen.classList.remove('vocab-keyboard-open');
+    if (wasActive && typeof playSound === 'function') playSound('delete-sfx');
 }
 
 function setVocabSearchValue(value) {
@@ -54,14 +57,17 @@ function handleVocabKeyboardInput(keyValue) {
         return;
     }
     if (keyValue === 'BACKSPACE') {
+        if (typeof playSound === 'function') playSound('delete-sfx');
         setVocabSearchValue(input.value.slice(0, -1));
         return;
     }
     if (keyValue === 'CLEAR') {
+        if (typeof playSound === 'function') playSound('delete-sfx');
         setVocabSearchValue('');
         return;
     }
     if (typeof keyValue === 'string' && keyValue.length === 1) {
+        if (typeof playSound === 'function') playSound('enter-sfx');
         setVocabSearchValue(input.value + keyValue.toLowerCase());
     }
 }
