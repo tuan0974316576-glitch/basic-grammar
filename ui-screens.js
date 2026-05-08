@@ -27,9 +27,30 @@ function showVocabSearchKeyboard() {
     input.blur();
     keyboard.style.display = 'block';
     vocabScreen.classList.add('vocab-keyboard-open');
+    updateVocabKeyboardLayout();
 }
 
 window.showVocabSearchKeyboard = showVocabSearchKeyboard;
+
+function updateVocabKeyboardLayout() {
+    const keyboard = getVocabKeyboard();
+    const vocabScreen = document.getElementById('vocab-screen');
+    const header = document.querySelector('#vocab-screen .tech-header');
+    const searchContainer = document.querySelector('.vocab-search-container');
+    if (!keyboard || !vocabScreen || !vocabSearchKeyboardActive) return;
+
+    const viewportHeight = window.visualViewport?.height || window.innerHeight || document.documentElement.clientHeight;
+    const keyboardHeight = keyboard.getBoundingClientRect().height || 220;
+    const headerHeight = header && header.offsetParent !== null ? header.getBoundingClientRect().height : 0;
+    const searchHeight = searchContainer && searchContainer.offsetParent !== null ? searchContainer.getBoundingClientRect().height : 0;
+    const topGap = 16;
+    const betweenGap = 18;
+    const bottomGap = 8;
+    const listHeight = Math.max(180, Math.floor(viewportHeight - keyboardHeight - headerHeight - searchHeight - topGap - betweenGap - bottomGap));
+
+    vocabScreen.style.setProperty('--vocab-keyboard-height', `${Math.ceil(keyboardHeight)}px`);
+    vocabScreen.style.setProperty('--vocab-list-height', `${listHeight}px`);
+}
 
 function hideVocabSearchKeyboard() {
     const keyboard = getVocabKeyboard();
@@ -37,7 +58,11 @@ function hideVocabSearchKeyboard() {
     const wasActive = vocabSearchKeyboardActive;
     vocabSearchKeyboardActive = false;
     if (keyboard) keyboard.style.display = 'none';
-    if (vocabScreen) vocabScreen.classList.remove('vocab-keyboard-open');
+    if (vocabScreen) {
+        vocabScreen.classList.remove('vocab-keyboard-open');
+        vocabScreen.style.removeProperty('--vocab-keyboard-height');
+        vocabScreen.style.removeProperty('--vocab-list-height');
+    }
     if (wasActive && typeof playSound === 'function') playSound('delete-sfx');
 }
 
@@ -564,6 +589,16 @@ function setupVocabSearchKeyboard() {
 }
 
 document.addEventListener('DOMContentLoaded', setupVocabSearchKeyboard);
+
+window.addEventListener('resize', () => {
+    if (vocabSearchKeyboardActive) updateVocabKeyboardLayout();
+});
+
+if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', () => {
+        if (vocabSearchKeyboardActive) updateVocabKeyboardLayout();
+    });
+}
 
 document.addEventListener('keydown', (event) => {
     if (!vocabSearchKeyboardActive) return;

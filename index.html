@@ -18,7 +18,7 @@
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 let refreshing = false;
-                navigator.serviceWorker.register('./sw.js?v=20260508-060').then(reg => {
+                navigator.serviceWorker.register('./sw.js?v=20260508-061').then(reg => {
                     console.log('SW registered!', reg);
                     reg.update();
 
@@ -48,8 +48,8 @@
         }
     </script>
 
-    <script type="module" src="firebase-init.js?v=0.60"></script>
-    <link rel="stylesheet" href="style.css?v=0.60">
+    <script type="module" src="firebase-init.js?v=0.61"></script>
+    <link rel="stylesheet" href="style.css?v=0.61">
 
 </head>
 <body>
@@ -78,7 +78,7 @@
     <div class="game-footer splash-footer">
         <span class="brand">Enguistics Learning Centre</span> 2026
         <br>
-        v0.60
+        v0.61
     </div>
 </div>
 <div id="game-content-wrapper" style="display: none;">
@@ -782,13 +782,13 @@
 <audio id="ship-voice-4"><source src="ship_4_spectre.mp3" type="audio/mpeg"></audio>
     <audio id="unit-lost-sfx"><source src="unit_lost.mp3" type="audio/mpeg"></audio>
 </div>
-<script src="vocab_data.js?v=0.60"></script>
-<script src="app-config.js?v=0.60"></script>
-<script src="vendor/effekseer/effekseer.min.js?v=0.60"></script>
-<script src="app.js?v=0.60"></script>
-<script src="ui-screens.js?v=0.60"></script>
-<script src="ui-auth.js?v=0.60"></script>
-<script src="ui-audio.js?v=0.60"></script>
+<script src="vocab_data.js?v=0.61"></script>
+<script src="app-config.js?v=0.61"></script>
+<script src="vendor/effekseer/effekseer.min.js?v=0.61"></script>
+<script src="app.js?v=0.61"></script>
+<script src="ui-screens.js?v=0.61"></script>
+<script src="ui-auth.js?v=0.61"></script>
+<script src="ui-audio.js?v=0.61"></script>
 <div id="registration-modal" class="registration-modal" style="display: none;">
     
     <div class="registration-scanlines"></div>
