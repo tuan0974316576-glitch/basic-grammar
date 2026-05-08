@@ -18,7 +18,7 @@
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 let refreshing = false;
-                navigator.serviceWorker.register('./sw.js?v=20260508-058').then(reg => {
+                navigator.serviceWorker.register('./sw.js?v=20260508-059').then(reg => {
                     console.log('SW registered!', reg);
                     reg.update();
 
@@ -48,8 +48,8 @@
         }
     </script>
 
-    <script type="module" src="firebase-init.js?v=0.58"></script>
-    <link rel="stylesheet" href="style.css?v=0.58">
+    <script type="module" src="firebase-init.js?v=0.59"></script>
+    <link rel="stylesheet" href="style.css?v=0.59">
 
 </head>
 <body>
@@ -78,7 +78,7 @@
     <div class="game-footer splash-footer">
         <span class="brand">Enguistics Learning Centre</span> 2026
         <br>
-        v0.58
+        v0.59
     </div>
 </div>
 <div id="game-content-wrapper" style="display: none;">
@@ -225,11 +225,7 @@
         <div class="search-icon"></div>
     </div>
 
-    <div id="vocab-virtual-keyboard" class="vocab-virtual-keyboard" style="display: none;">
-        <div class="vocab-keyboard-header">
-            <span>SEARCH INPUT</span>
-            <button class="kb-key vocab-keyboard-close" data-vocab-key="ENTER">HIDE</button>
-        </div>
+    <div id="vocab-virtual-keyboard" class="vocab-virtual-keyboard kb-aurelians" style="display: none;">
         <div class="kb-row">
             <button class="kb-key" data-vocab-key="Q">Q</button>
             <button class="kb-key" data-vocab-key="W">W</button>
@@ -264,8 +260,7 @@
             <button class="kb-key kb-backspace" data-vocab-key="BACKSPACE">⌫</button>
         </div>
         <div class="kb-row">
-            <button class="kb-key kb-space" data-vocab-key=" ">SPACE</button>
-            <button class="kb-key kb-enter" data-vocab-key="ENTER">DONE</button>
+            <button class="kb-key kb-space" data-vocab-key="ENTER">CLOSE</button>
         </div>
     </div>
 
@@ -787,13 +782,13 @@
 <audio id="ship-voice-4"><source src="ship_4_spectre.mp3" type="audio/mpeg"></audio>
     <audio id="unit-lost-sfx"><source src="unit_lost.mp3" type="audio/mpeg"></audio>
 </div>
-<script src="vocab_data.js?v=0.58"></script>
-<script src="app-config.js?v=0.58"></script>
-<script src="vendor/effekseer/effekseer.min.js?v=0.58"></script>
-<script src="app.js?v=0.58"></script>
-<script src="ui-screens.js?v=0.58"></script>
-<script src="ui-auth.js?v=0.58"></script>
-<script src="ui-audio.js?v=0.58"></script>
+<script src="vocab_data.js?v=0.59"></script>
+<script src="app-config.js?v=0.59"></script>
+<script src="vendor/effekseer/effekseer.min.js?v=0.59"></script>
+<script src="app.js?v=0.59"></script>
+<script src="ui-screens.js?v=0.59"></script>
+<script src="ui-auth.js?v=0.59"></script>
+<script src="ui-audio.js?v=0.59"></script>
 <div id="registration-modal" class="registration-modal" style="display: none;">
     
     <div class="registration-scanlines"></div>
