@@ -18,7 +18,7 @@
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 let refreshing = false;
-                navigator.serviceWorker.register('./sw.js?v=20260508-061').then(reg => {
+                navigator.serviceWorker.register('./sw.js?v=20260508-062').then(reg => {
                     console.log('SW registered!', reg);
                     reg.update();
 
@@ -48,8 +48,8 @@
         }
     </script>
 
-    <script type="module" src="firebase-init.js?v=0.61"></script>
-    <link rel="stylesheet" href="style.css?v=0.61">
+    <script type="module" src="firebase-init.js?v=0.62"></script>
+    <link rel="stylesheet" href="style.css?v=0.62">
 
 </head>
 <body>
@@ -264,7 +264,7 @@
         </div>
     </div>
 
-    <button class="btn" onclick="closeVocabScreen()" style="margin-top: 20px; width: 150px; border-color: #EEE8AA; color: #EEE8AA; background: rgba(238, 232, 170, 0.15);">&lt; BACK</button>
+    <button class="btn vocab-back-btn" onclick="closeVocabScreen()">&lt; BACK</button>
 </div>
 
 <!-- ★★★ RANKING SCREEN ★★★ -->
@@ -782,13 +782,13 @@
 <audio id="ship-voice-4"><source src="ship_4_spectre.mp3" type="audio/mpeg"></audio>
     <audio id="unit-lost-sfx"><source src="unit_lost.mp3" type="audio/mpeg"></audio>
 </div>
-<script src="vocab_data.js?v=0.61"></script>
-<script src="app-config.js?v=0.61"></script>
-<script src="vendor/effekseer/effekseer.min.js?v=0.61"></script>
-<script src="app.js?v=0.61"></script>
-<script src="ui-screens.js?v=0.61"></script>
-<script src="ui-auth.js?v=0.61"></script>
-<script src="ui-audio.js?v=0.61"></script>
+<script src="vocab_data.js?v=0.62"></script>
+<script src="app-config.js?v=0.62"></script>
+<script src="vendor/effekseer/effekseer.min.js?v=0.62"></script>
+<script src="app.js?v=0.62"></script>
+<script src="ui-screens.js?v=0.62"></script>
+<script src="ui-auth.js?v=0.62"></script>
+<script src="ui-audio.js?v=0.62"></script>
 <div id="registration-modal" class="registration-modal" style="display: none;">
     
     <div class="registration-scanlines"></div>

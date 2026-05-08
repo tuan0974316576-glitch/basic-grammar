@@ -2012,6 +2012,32 @@ body {
 #vocab-screen.vocab-keyboard-open > .btn {
     display: none;
 }
+
+.vocab-back-btn {
+    margin-top: 20px;
+    width: 150px;
+    border-color: #EEE8AA;
+    color: #EEE8AA;
+    background: rgba(238, 232, 170, 0.15);
+}
+
+.vocab-back-btn:hover {
+    background: #EEE8AA;
+    color: #000;
+    box-shadow: 0 0 14px rgba(238, 232, 170, 0.65);
+}
+
+#vocab-screen.stage-preview > .vocab-back-btn {
+    border-color: #ffffff;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+#vocab-screen.stage-preview > .vocab-back-btn:hover {
+    background: rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+    box-shadow: 0 0 14px rgba(255, 255, 255, 0.45);
+}
 /* --- 搜尋框右邊的特效 (改做閃爍光標) --- */
 .search-icon {
     position: absolute;

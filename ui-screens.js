@@ -108,7 +108,6 @@ function closeVocabScreen() {
     const searchContainer = document.querySelector('.vocab-search-container');
     const title = document.querySelector('#vocab-screen .tech-title');
     const subtitle = document.querySelector('#vocab-screen .tech-subtitle');
-    const backButton = document.querySelector('#vocab-screen > .btn');
 
     if (vocabScreenMode === 'stage-preview') {
         if (typeof restoreStageVocabBgm === 'function') restoreStageVocabBgm();
@@ -117,7 +116,6 @@ function closeVocabScreen() {
         if (subtitle) subtitle.innerText = 'CLASSIFIED VOCABULARY DATABASE';
         if (tabs) tabs.style.display = 'flex';
         if (searchContainer) searchContainer.style.display = 'flex';
-        if (backButton) backButton.removeAttribute('style');
         vocabScreenMode = 'default';
         vocabPreviewRows = [];
         vocabPreviewReturnScreen = 'start';
@@ -502,7 +500,6 @@ function openStageVocabPreview(levelKey, stageWords, previewTitle) {
     const searchContainer = document.querySelector('.vocab-search-container');
     const title = document.querySelector('#vocab-screen .tech-title');
     const subtitle = document.querySelector('#vocab-screen .tech-subtitle');
-    const backButton = document.querySelector('#vocab-screen > .btn');
 
     vocabScreenMode = 'stage-preview';
     vocabPreviewRows = Array.isArray(stageWords) ? [...stageWords] : [];
@@ -514,12 +511,6 @@ function openStageVocabPreview(levelKey, stageWords, previewTitle) {
     if (subtitle) subtitle.innerText = vocabPreviewSubtitle;
     if (tabs) tabs.style.display = 'none';
     if (searchContainer) searchContainer.style.display = 'none';
-    if (backButton) {
-        backButton.style.borderColor = '#ffffff';
-        backButton.style.color = '#ffffff';
-        backButton.style.background = 'rgba(255, 255, 255, 0.06)';
-    }
-
     if (vocabScreen) {
         vocabScreen.classList.add('stage-preview');
         vocabScreen.style.display = 'flex';
