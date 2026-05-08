@@ -28,6 +28,8 @@ function showVocabSearchKeyboard() {
     vocabScreen.classList.add('vocab-keyboard-open');
 }
 
+window.showVocabSearchKeyboard = showVocabSearchKeyboard;
+
 function hideVocabSearchKeyboard() {
     const keyboard = getVocabKeyboard();
     const vocabScreen = document.getElementById('vocab-screen');
@@ -501,6 +503,7 @@ window.openStageVocabPreview = openStageVocabPreview;
 function setupVocabSearchKeyboard() {
     const input = getVocabSearchInput();
     const keyboard = getVocabKeyboard();
+    const searchContainer = document.querySelector('.vocab-search-container');
     if (!input || !keyboard) return;
 
     input.setAttribute('readonly', 'readonly');
@@ -511,10 +514,21 @@ function setupVocabSearchKeyboard() {
 
     input.addEventListener('focus', showVocabSearchKeyboard);
     input.addEventListener('click', showVocabSearchKeyboard);
+    input.addEventListener('pointerdown', (event) => {
+        event.preventDefault();
+        showVocabSearchKeyboard();
+    });
     input.addEventListener('touchstart', (event) => {
         event.preventDefault();
         showVocabSearchKeyboard();
     }, { passive: false });
+
+    if (searchContainer) {
+        searchContainer.addEventListener('pointerdown', (event) => {
+            event.preventDefault();
+            showVocabSearchKeyboard();
+        });
+    }
 
     keyboard.addEventListener('click', (event) => {
         const key = event.target.closest('.kb-key');
