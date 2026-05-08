@@ -3138,12 +3138,24 @@ body {
 }
 
 .rank-info-name {
+    display: grid;
+    grid-template-columns: 142px max-content;
+    align-items: baseline;
+    column-gap: 8px;
     color: #e2e8f0;
     font-family: 'Black Ops One', cursive;
     font-size: 20px;
     letter-spacing: 1px;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.12);
     min-width: 0;
+    white-space: nowrap;
+}
+
+.rank-info-name-en {
+    min-width: 0;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: clip;
 }
 
 .rank-info-name-zh {
@@ -3153,7 +3165,6 @@ body {
     letter-spacing: 0.5px;
     color: rgba(226, 232, 240, 0.78);
     text-shadow: none;
-    margin-left: 4px;
     white-space: nowrap;
 }
 
@@ -3202,9 +3213,9 @@ body {
     }
 
     .rank-info-row {
-        grid-template-columns: 82px 1fr 56px;
-        gap: 8px;
-        padding: 9px 10px;
+        grid-template-columns: 76px minmax(0, 1fr) 42px;
+        gap: 6px;
+        padding: 9px 8px;
     }
 
     .rank-info-close {
@@ -3230,6 +3241,8 @@ body {
 
     .rank-info-name {
         font-size: 16px;
+        grid-template-columns: 108px max-content;
+        column-gap: 6px;
     }
 
     .rank-info-name-zh {

@@ -1107,7 +1107,10 @@ let isTargeting = false;
                     <div class="rank-info-threshold">${rangeLabel}</div>
                     <div class="rank-info-main">
                         <img class="rank-info-icon" src="${iconPath}" alt="${rank.name} icon" onerror="this.style.display='none'">
-                        <div class="rank-info-name">${rank.name} <span class="rank-info-name-zh">[${rank.zh}]</span></div>
+                        <div class="rank-info-name">
+                            <span class="rank-info-name-en">${rank.name}</span>
+                            <span class="rank-info-name-zh">[${rank.zh}]</span>
+                        </div>
                     </div>
                     <div class="rank-info-badge${isCurrent ? ' current' : ''}">${isCurrent ? 'YOU' : `R${index + 1}`}</div>
                 </div>
