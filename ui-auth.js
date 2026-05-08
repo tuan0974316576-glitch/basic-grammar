@@ -538,8 +538,17 @@ async function revealMainMenuWhenHudReady(name) {
 async function checkGlobalRankAndUpdateIcon(rankEl, rank) {
     console.log('[HUD] checkGlobalRankAndUpdateIcon called for player:', window.myPlayerId);
 
+    const renderHudRank = (iconPath) => {
+        const zhLabel = rank.zh ? `<span class="hud-rank-zh">[${rank.zh}]</span>` : '';
+        rankEl.innerHTML = `
+            <span class="hud-rank-name">${rank.name}</span>
+            ${zhLabel}
+            <img src="${iconPath}" class="hud-rank-icon" onerror="this.style.display='none'">
+        `;
+    };
+
     const defaultIconPath = `ranking_icon/white/${rank.iconFile}`;
-    rankEl.innerHTML = `${rank.name} <img src="${defaultIconPath}" style="width: 24px; height: 24px; vertical-align: middle; margin-left: 4px;" onerror="this.style.display='none'">`;
+    renderHudRank(defaultIconPath);
 
     if (!window.myPlayerId) {
         console.log('[HUD] Player ID not ready yet, skipping rank check');
@@ -588,7 +597,7 @@ async function checkGlobalRankAndUpdateIcon(rankEl, rank) {
         const colorPriority = { gold: 4, silver: 3, bronze: 2, white: 1 };
         const bestColor = colorPriority[xpColor] > colorPriority[pvpColor] ? xpColor : pvpColor;
         const iconPath = `ranking_icon/${bestColor}/${rank.iconFile}`;
-        rankEl.innerHTML = `${rank.name} <img src="${iconPath}" style="width: 24px; height: 24px; vertical-align: middle; margin-left: 4px;" onerror="this.style.display='none'">`;
+        renderHudRank(iconPath);
     } catch (error) {
         console.error('[HUD] Error checking ranks:', error);
     }

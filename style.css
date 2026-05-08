@@ -2202,6 +2202,34 @@ body {
     gap: 8px;
 }
 
+#hud-rank-title {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.hud-rank-name {
+    line-height: 1;
+}
+
+.hud-rank-zh {
+    color: #ffffff;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.55);
+}
+
+.hud-rank-icon {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    margin-left: 1px;
+    align-self: center;
+}
+
 .current-rank-label-row {
     display: inline-flex;
     align-items: center;
