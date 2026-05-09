@@ -101,6 +101,10 @@ let listeningPlaybackObjectUrl = '';
 let listeningPlaybackBoost = null;
 let listeningPlaybackToken = 0;
 let listeningTimerStartTimeout = null;
+let listeningTtsDbPromise = null;
+const LISTENING_TTS_DB_NAME = 'vocabConquerorListeningTts';
+const LISTENING_TTS_DB_VERSION = 1;
+const LISTENING_TTS_STORE_NAME = 'audio';
 const LISTENING_VOICE_GAIN = 1.2;
 const LISTENING_VOICE_ROTATION = [
     {
@@ -3989,6 +3993,87 @@ function getListeningTtsCacheKey(text, locale = 'en-US', levelKey = '') {
     return `${locale}::${levelKey || ''}::${(text || '').trim()}`;
 }
 
+function getListeningTtsDb() {
+    if (!('indexedDB' in window)) return Promise.resolve(null);
+    if (listeningTtsDbPromise) return listeningTtsDbPromise;
+
+    listeningTtsDbPromise = new Promise((resolve) => {
+        const request = indexedDB.open(LISTENING_TTS_DB_NAME, LISTENING_TTS_DB_VERSION);
+
+        request.onupgradeneeded = () => {
+            const db = request.result;
+            if (!db.objectStoreNames.contains(LISTENING_TTS_STORE_NAME)) {
+                db.createObjectStore(LISTENING_TTS_STORE_NAME, { keyPath: 'cacheKey' });
+            }
+        };
+
+        request.onsuccess = () => resolve(request.result);
+        request.onerror = () => {
+            console.warn('[Listening TTS Cache] IndexedDB unavailable:', request.error);
+            resolve(null);
+        };
+        request.onblocked = () => {
+            console.warn('[Listening TTS Cache] IndexedDB upgrade blocked.');
+            resolve(null);
+        };
+    });
+
+    return listeningTtsDbPromise;
+}
+
+async function getListeningTtsPersistentCache(cacheKey) {
+    const db = await getListeningTtsDb();
+    if (!db) return null;
+
+    return new Promise((resolve) => {
+        const transaction = db.transaction(LISTENING_TTS_STORE_NAME, 'readonly');
+        const store = transaction.objectStore(LISTENING_TTS_STORE_NAME);
+        const request = store.get(cacheKey);
+
+        request.onsuccess = () => {
+            const cached = request.result;
+            if (!cached?.audioBase64) {
+                resolve(null);
+                return;
+            }
+            resolve({
+                audioBase64: cached.audioBase64,
+                format: cached.format || 'audio/mpeg',
+                durationMs: cached.durationMs || null,
+                cached: true
+            });
+        };
+        request.onerror = () => {
+            console.warn('[Listening TTS Cache] Read failed:', request.error);
+            resolve(null);
+        };
+    });
+}
+
+async function saveListeningTtsPersistentCache(cacheKey, result) {
+    if (!result?.audioBase64) return;
+    const db = await getListeningTtsDb();
+    if (!db) return;
+
+    return new Promise((resolve) => {
+        const transaction = db.transaction(LISTENING_TTS_STORE_NAME, 'readwrite');
+        const store = transaction.objectStore(LISTENING_TTS_STORE_NAME);
+        const request = store.put({
+            cacheKey,
+            audioBase64: result.audioBase64,
+            format: result.format || 'audio/mpeg',
+            durationMs: result.durationMs || null,
+            createdAt: Date.now()
+        });
+
+        request.onsuccess = () => resolve();
+        request.onerror = () => {
+            console.warn('[Listening TTS Cache] Save failed:', request.error);
+            resolve();
+        };
+    });
+}
+
 function buildListeningVoiceCacheKey(voiceProfile) {
     if (!voiceProfile) return 'default';
     return `${voiceProfile.voiceName || 'default'}::${voiceProfile.accentLocale || ''}`;
@@ -4040,14 +4125,29 @@ function preloadListeningAzureAudio(text, locale = 'en-US', levelKey = '', voice
 
     const cacheKey = `${getListeningTtsCacheKey(cleanText, locale, levelKey)}::${buildListeningVoiceCacheKey(voiceProfile)}`;
     const cached = listeningTtsCache.get(cacheKey);
-    if (cached) return cached;
+    if (cached) {
+        console.log('[Listening TTS Cache] Memory hit', { chars: cleanText.length, cacheKey });
+        return cached;
+    }
 
-    const request = fetchSpeakingDebriefReferenceAudio(cleanText, locale, {
-        mode: 'listening',
-        level: levelKey || selectedLevel || 'L1',
-        voiceName: voiceProfile?.voiceName || null,
-        accentLocale: voiceProfile?.accentLocale || null
-    })
+    const request = getListeningTtsPersistentCache(cacheKey)
+        .then((persistentResult) => {
+            if (persistentResult) {
+                console.log('[Listening TTS Cache] IndexedDB hit', { chars: cleanText.length, cacheKey });
+                return persistentResult;
+            }
+
+            console.log('[Listening TTS Azure] Fetching', { chars: cleanText.length, cacheKey });
+            return fetchSpeakingDebriefReferenceAudio(cleanText, locale, {
+                mode: 'listening',
+                level: levelKey || selectedLevel || 'L1',
+                voiceName: voiceProfile?.voiceName || null,
+                accentLocale: voiceProfile?.accentLocale || null
+            }).then(async (result) => {
+                await saveListeningTtsPersistentCache(cacheKey, result);
+                return result;
+            });
+        })
         .then((result) => {
             listeningTtsCache.set(cacheKey, Promise.resolve(result));
             return result;
@@ -4107,7 +4207,7 @@ function stopListeningPlayback() {
         listeningPlaybackAudio.pause();
     } catch (_error) {}
     if (listeningPlaybackObjectUrl) {
-        URL.revokeObjectURL(listeningPlaybackObjectUrl);
+        // Prepared listening audio object URLs are cached for replay during this session.
         listeningPlaybackObjectUrl = '';
     }
     listeningPlaybackAudio = null;
