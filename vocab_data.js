@@ -64762,7 +64762,7 @@ const VOCAB_DB = {
             "ch": "令人上癮的",
             "sents": [
                 {
-                    "text": "We copied addictive into our notes carefully.",
+                    "text": "Social media apps can become addictive if they are designed to reward constant checking.",
                     "answer": "addictive"
                 },
                 {
@@ -65158,7 +65158,7 @@ const VOCAB_DB = {
             "ch": "空運的／空中的",
             "sents": [
                 {
-                    "text": "The speaker used airborne when answering the question.",
+                    "text": "The infection became airborne, so the school improved ventilation in every classroom.",
                     "answer": "airborne"
                 },
                 {
@@ -65306,7 +65306,7 @@ const VOCAB_DB = {
                     "answer": "altruistic"
                 },
                 {
-                    "text": "We copied altruistic into our notes carefully.",
+                    "text": "Her altruistic decision to donate the prize money inspired the whole community.",
                     "answer": "altruistic"
                 },
                 {
@@ -65378,7 +65378,7 @@ const VOCAB_DB = {
                     "answer": "amazonian"
                 },
                 {
-                    "text": "The guide used amazonian in a useful example.",
+                    "text": "Scientists warned that amazonian forests are disappearing faster than many people expected.",
                     "answer": "amazonian"
                 },
                 {
@@ -65558,7 +65558,7 @@ const VOCAB_DB = {
                     "answer": "applicable"
                 },
                 {
-                    "text": "She used applicable in a clear sentence.",
+                    "text": "The new safety rules are applicable to all laboratories, including temporary research rooms.",
                     "answer": "applicable"
                 },
                 {
@@ -66152,7 +66152,7 @@ const VOCAB_DB = {
                     "answer": "averse"
                 },
                 {
-                    "text": "He heard averse during a short discussion.",
+                    "text": "Many parents are averse to excessive screen time because it may affect sleep and attention.",
                     "answer": "averse"
                 },
                 {
@@ -66354,7 +66354,7 @@ const VOCAB_DB = {
                     "answer": "beast"
                 },
                 {
-                    "text": "We talked about beast in class this morning.",
+                    "text": "In the old legend, the beast guarded the mountain pass and frightened nearby villagers.",
                     "answer": "beast"
                 }
             ]
@@ -66382,7 +66382,7 @@ const VOCAB_DB = {
             "ch": "降臨於／發生在",
             "sents": [
                 {
-                    "text": "The speaker used befall when answering the question.",
+                    "text": "No serious harm should befall the hikers if they follow the rescue team's instructions.",
                     "answer": "befall"
                 },
                 {
@@ -66498,7 +66498,7 @@ const VOCAB_DB = {
                     "answer": "beneath"
                 },
                 {
-                    "text": "She repeated beneath so everyone understood.",
+                    "text": "The evidence lay hidden beneath layers of political pressure and public fear.",
                     "answer": "beneath"
                 }
             ]
@@ -67016,7 +67016,7 @@ const VOCAB_DB = {
                     "answer": "butt"
                 },
                 {
-                    "text": "The guide used butt in a useful example.",
+                    "text": "The child fell on his butt after slipping on the wet classroom floor.",
                     "answer": "butt"
                 },
                 {
@@ -67164,7 +67164,7 @@ const VOCAB_DB = {
                     "answer": "capitalist"
                 },
                 {
-                    "text": "I saw capitalist in a school notice today.",
+                    "text": "A capitalist economy often encourages private ownership, competition, and profit-making.",
                     "answer": "capitalist"
                 }
             ]
@@ -67214,7 +67214,7 @@ const VOCAB_DB = {
                     "answer": "captivity"
                 },
                 {
-                    "text": "She used captivity in a clear sentence.",
+                    "text": "The animal refused to eat during its first few days in captivity.",
                     "answer": "captivity"
                 },
                 {
@@ -67664,7 +67664,7 @@ const VOCAB_DB = {
                     "answer": "cling"
                 },
                 {
-                    "text": "The speaker used cling when answering the question.",
+                    "text": "Some people cling to familiar routines because change makes them feel insecure.",
                     "answer": "cling"
                 },
                 {
@@ -67678,7 +67678,7 @@ const VOCAB_DB = {
             "ch": "堅守／緊抓住",
             "sents": [
                 {
-                    "text": "We heard cling to in a class conversation.",
+                    "text": "Even after moving abroad, she continued to cling to her childhood traditions.",
                     "answer": "cling to"
                 },
                 {
@@ -67740,7 +67740,7 @@ const VOCAB_DB = {
                     "answer": "clover"
                 },
                 {
-                    "text": "The guide used clover in a useful example.",
+                    "text": "The farmer planted clover to improve the soil and feed the grazing cattle.",
                     "answer": "clover"
                 }
             ]
@@ -67948,7 +67948,7 @@ const VOCAB_DB = {
             "ch": "可商品化的",
             "sents": [
                 {
-                    "text": "The class reviewed commodifiable before the quiz.",
+                    "text": "Personal data has become commodifiable, raising serious questions about privacy and consent.",
                     "answer": "commodifiable"
                 },
                 {
@@ -67956,7 +67956,7 @@ const VOCAB_DB = {
                     "answer": "commodifiable"
                 },
                 {
-                    "text": "The email included commodifiable in the first paragraph.",
+                    "text": "Not every human experience should be treated as commodifiable in a profit-driven market.",
                     "answer": "commodifiable"
                 }
             ]
@@ -68064,7 +68064,7 @@ const VOCAB_DB = {
                     "answer": "compensation"
                 },
                 {
-                    "text": "The class reviewed compensation before the quiz.",
+                    "text": "Workers demanded fair compensation after the factory closed without warning.",
                     "answer": "compensation"
                 }
             ]
@@ -68510,7 +68510,7 @@ const VOCAB_DB = {
                     "answer": "console"
                 },
                 {
-                    "text": "She repeated console so everyone understood.",
+                    "text": "The nurse tried to console the frightened child before the operation began.",
                     "answer": "console"
                 },
                 {
@@ -68596,7 +68596,7 @@ const VOCAB_DB = {
             "ch": "主張／競爭",
             "sents": [
                 {
-                    "text": "The speaker used contend when answering the question.",
+                    "text": "Critics contend that the policy benefits large companies more than ordinary families.",
                     "answer": "contend"
                 },
                 {
@@ -69000,7 +69000,7 @@ const VOCAB_DB = {
                     "answer": "counteract"
                 },
                 {
-                    "text": "I saw counteract in a school notice today.",
+                    "text": "Regular exercise can help counteract the negative effects of sitting for long hours.",
                     "answer": "counteract"
                 }
             ]
@@ -69288,7 +69288,7 @@ const VOCAB_DB = {
                     "answer": "curse"
                 },
                 {
-                    "text": "The report included curse as an important point.",
+                    "text": "The villagers believed the drought was a curse, but scientists blamed climate change.",
                     "answer": "curse"
                 }
             ]
@@ -69662,7 +69662,7 @@ const VOCAB_DB = {
                     "answer": "deprive"
                 },
                 {
-                    "text": "The email included deprive in the first paragraph.",
+                    "text": "Poor internet access can deprive rural students of equal learning opportunities.",
                     "answer": "deprive"
                 },
                 {
@@ -69860,7 +69860,7 @@ const VOCAB_DB = {
                     "answer": "diminish"
                 },
                 {
-                    "text": "I saw diminish in a school notice today.",
+                    "text": "Public trust may diminish when leaders fail to explain important decisions clearly.",
                     "answer": "diminish"
                 },
                 {
@@ -70184,7 +70184,7 @@ const VOCAB_DB = {
                     "answer": "dispute"
                 },
                 {
-                    "text": "We heard dispute in a class conversation.",
+                    "text": "The two countries entered a long dispute over fishing rights near the border.",
                     "answer": "dispute"
                 },
                 {
@@ -70314,7 +70314,7 @@ const VOCAB_DB = {
                     "answer": "distraction"
                 },
                 {
-                    "text": "She repeated distraction so everyone understood.",
+                    "text": "Checking messages during revision can become a major distraction from serious study.",
                     "answer": "distraction"
                 }
             ]
@@ -70612,7 +70612,7 @@ const VOCAB_DB = {
             "ch": "溺死",
             "sents": [
                 {
-                    "text": "The email included drown in the first paragraph.",
+                    "text": "Without quick action, the child could drown in the deep end of the pool.",
                     "answer": "drown"
                 },
                 {
@@ -70792,7 +70792,7 @@ const VOCAB_DB = {
             "ch": "塵世的",
             "sents": [
                 {
-                    "text": "The class reviewed earthly before the quiz.",
+                    "text": "The monk gave up earthly comforts in order to live a simpler spiritual life.",
                     "answer": "earthly"
                 },
                 {
@@ -71430,7 +71430,7 @@ const VOCAB_DB = {
                     "answer": "escalate"
                 },
                 {
-                    "text": "He heard escalate during a short discussion.",
+                    "text": "A minor argument can escalate into violence when nobody is willing to listen.",
                     "answer": "escalate"
                 }
             ]
@@ -72070,7 +72070,7 @@ const VOCAB_DB = {
             "ch": "命運",
             "sents": [
                 {
-                    "text": "We talked about fate in class this morning.",
+                    "text": "The novel suggests that people can challenge fate through courage and persistence.",
                     "answer": "fate"
                 },
                 {
@@ -72362,7 +72362,7 @@ const VOCAB_DB = {
                     "answer": "flank"
                 },
                 {
-                    "text": "I wrote flank in my notebook after the lesson.",
+                    "text": "Soldiers moved along the enemy's flank to avoid a direct attack.",
                     "answer": "flank"
                 },
                 {
@@ -72402,7 +72402,7 @@ const VOCAB_DB = {
                     "answer": "flaw"
                 },
                 {
-                    "text": "The report included flaw as an important point.",
+                    "text": "The main flaw in the experiment was that the sample size was too small.",
                     "answer": "flaw"
                 }
             ]
@@ -72646,7 +72646,7 @@ const VOCAB_DB = {
             "ch": "預見",
             "sents": [
                 {
-                    "text": "The report included foresee as an important point.",
+                    "text": "Few analysts could foresee how quickly the small protest would become a national movement.",
                     "answer": "foresee"
                 },
                 {
@@ -73050,7 +73050,7 @@ const VOCAB_DB = {
                     "answer": "glory"
                 },
                 {
-                    "text": "The speaker used glory when answering the question.",
+                    "text": "The athlete enjoyed a moment of glory after winning the final race.",
                     "answer": "glory"
                 }
             ]
@@ -73662,7 +73662,7 @@ const VOCAB_DB = {
                     "answer": "herd"
                 },
                 {
-                    "text": "I saw herd in a school notice today.",
+                    "text": "A herd of elephants crossed the river while tourists watched quietly from the bank.",
                     "answer": "herd"
                 }
             ]
@@ -74004,7 +74004,7 @@ const VOCAB_DB = {
                     "answer": "illuminate"
                 },
                 {
-                    "text": "We talked about illuminate in class this morning.",
+                    "text": "The documentary helped illuminate the causes of poverty in the region.",
                     "answer": "illuminate"
                 }
             ]
@@ -74490,7 +74490,7 @@ const VOCAB_DB = {
                     "answer": "individualistic"
                 },
                 {
-                    "text": "She repeated individualistic so everyone understood.",
+                    "text": "An individualistic culture may value personal freedom more than group expectations.",
                     "answer": "individualistic"
                 }
             ]
@@ -74508,7 +74508,7 @@ const VOCAB_DB = {
                     "answer": "induce"
                 },
                 {
-                    "text": "I noticed induce in the reading passage.",
+                    "text": "The advertisement was designed to induce shoppers to buy more than they needed.",
                     "answer": "induce"
                 }
             ]
@@ -74616,7 +74616,7 @@ const VOCAB_DB = {
                     "answer": "ingrain"
                 },
                 {
-                    "text": "He heard ingrain during a short discussion.",
+                    "text": "Schools can ingrain healthy habits by making exercise part of daily routines.",
                     "answer": "ingrain"
                 }
             ]
@@ -75188,7 +75188,7 @@ const VOCAB_DB = {
                     "answer": "invisible"
                 },
                 {
-                    "text": "We talked about invisible in class this morning.",
+                    "text": "Care work often remains invisible because it is unpaid and done inside the home.",
                     "answer": "invisible"
                 },
                 {
@@ -75220,7 +75220,7 @@ const VOCAB_DB = {
             "ch": "無懈可擊的／刀槍不入的",
             "sents": [
                 {
-                    "text": "The email included invulnerable in the first paragraph.",
+                    "text": "No computer system is completely invulnerable to cyberattacks.",
                     "answer": "invulnerable"
                 },
                 {
@@ -76128,7 +76128,7 @@ const VOCAB_DB = {
                     "answer": "manipulate"
                 },
                 {
-                    "text": "I saw manipulate in a school notice today.",
+                    "text": "Some websites manipulate users by hiding cancellation buttons and highlighting paid options.",
                     "answer": "manipulate"
                 }
             ]
@@ -76200,7 +76200,7 @@ const VOCAB_DB = {
                     "answer": "martian"
                 },
                 {
-                    "text": "He heard martian during a short discussion.",
+                    "text": "The film imagines a martian colony struggling to survive without supplies from Earth.",
                     "answer": "martian"
                 }
             ]
@@ -76232,7 +76232,7 @@ const VOCAB_DB = {
                     "answer": "mask"
                 },
                 {
-                    "text": "The email included mask in the first paragraph.",
+                    "text": "Politicians sometimes mask weak arguments with emotional language and dramatic promises.",
                     "answer": "mask"
                 },
                 {
@@ -76880,7 +76880,7 @@ const VOCAB_DB = {
                     "answer": "morality"
                 },
                 {
-                    "text": "Our group practised morality before lunch.",
+                    "text": "The debate raised difficult questions about morality, punishment, and forgiveness.",
                     "answer": "morality"
                 },
                 {
@@ -77190,7 +77190,7 @@ const VOCAB_DB = {
                     "answer": "nocturnal"
                 },
                 {
-                    "text": "The report included nocturnal as an important point.",
+                    "text": "Owls are nocturnal hunters, so they rely heavily on sound in the dark.",
                     "answer": "nocturnal"
                 }
             ]
@@ -77510,7 +77510,7 @@ const VOCAB_DB = {
                     "answer": "offspring"
                 },
                 {
-                    "text": "We copied offspring into our notes carefully.",
+                    "text": "Many animals protect their offspring until they can find food by themselves.",
                     "answer": "offspring"
                 },
                 {
@@ -77622,7 +77622,7 @@ const VOCAB_DB = {
                     "answer": "opt"
                 },
                 {
-                    "text": "The teacher explained opt in a simple way.",
+                    "text": "Students may opt for online lessons if they cannot attend school in person.",
                     "answer": "opt"
                 }
             ]
@@ -78010,7 +78010,7 @@ const VOCAB_DB = {
             "ch": "反應過度",
             "sents": [
                 {
-                    "text": "We copied overreaction into our notes carefully.",
+                    "text": "Closing the entire school because of one broken window seemed like an overreaction.",
                     "answer": "overreaction"
                 },
                 {
@@ -78410,7 +78410,7 @@ const VOCAB_DB = {
                     "answer": "perfection"
                 },
                 {
-                    "text": "The speaker used perfection when answering the question.",
+                    "text": "The pursuit of perfection can motivate students, but it can also cause anxiety.",
                     "answer": "perfection"
                 },
                 {
@@ -78554,7 +78554,7 @@ const VOCAB_DB = {
                     "answer": "piercings"
                 },
                 {
-                    "text": "The email included piercings in the first paragraph.",
+                    "text": "Some employers still judge applicants unfairly because of tattoos or piercings.",
                     "answer": "piercings"
                 },
                 {
@@ -79454,7 +79454,7 @@ const VOCAB_DB = {
                     "answer": "problematic"
                 },
                 {
-                    "text": "The article mentioned problematic more than once.",
+                    "text": "It is problematic to measure success only by exam scores.",
                     "answer": "problematic"
                 },
                 {
@@ -80102,7 +80102,7 @@ const VOCAB_DB = {
                     "answer": "reactionary"
                 },
                 {
-                    "text": "The teacher explained reactionary in a simple way.",
+                    "text": "The party promoted reactionary ideas that opposed equal rights and social reform.",
                     "answer": "reactionary"
                 },
                 {
@@ -82150,7 +82150,7 @@ const VOCAB_DB = {
             "ch": "安撫",
             "sents": [
                 {
-                    "text": "She used soothe in a clear sentence.",
+                    "text": "Soft music can soothe nervous patients while they wait for medical results.",
                     "answer": "soothe"
                 },
                 {
@@ -83198,7 +83198,7 @@ const VOCAB_DB = {
                     "answer": "superstitious"
                 },
                 {
-                    "text": "He remembered superstitious from yesterday's lesson.",
+                    "text": "Even highly educated people may become superstitious before important exams.",
                     "answer": "superstitious"
                 },
                 {
@@ -83522,8 +83522,8 @@ const VOCAB_DB = {
                     "answer": "synthetic"
                 },
                 {
-                    "text": "The article mentioned synthetic more than once.",
-                    "answer": "synthetic"
+                    "text": "Synthetic fabrics are cheap to produce, but they may release plastic fibres when washed.",
+                    "answer": "Synthetic"
                 },
                 {
                     "text": "The lab created a synthetic version of the chemical.",
@@ -83972,7 +83972,7 @@ const VOCAB_DB = {
                     "answer": "tolerate"
                 },
                 {
-                    "text": "We copied tolerate into our notes carefully.",
+                    "text": "A democratic society should not tolerate violence against minority groups.",
                     "answer": "tolerate"
                 },
                 {
@@ -84030,8 +84030,8 @@ const VOCAB_DB = {
                     "answer": "toxic"
                 },
                 {
-                    "text": "She used toxic in a clear sentence.",
-                    "answer": "toxic"
+                    "text": "Toxic chemicals from the factory polluted the river and harmed local wildlife.",
+                    "answer": "Toxic"
                 }
             ]
         },
@@ -84314,7 +84314,7 @@ const VOCAB_DB = {
                     "answer": "trip over"
                 },
                 {
-                    "text": "I noticed trip over in the reading passage.",
+                    "text": "Tourists may trip over loose stones on the narrow path.",
                     "answer": "trip over"
                 },
                 {
@@ -84706,7 +84706,7 @@ const VOCAB_DB = {
             "ch": "不值得的",
             "sents": [
                 {
-                    "text": "The speaker used undeserving when answering the question.",
+                    "text": "Critics argued that innocent families were undeserving of such harsh treatment.",
                     "answer": "undeserving"
                 },
                 {
@@ -84728,8 +84728,8 @@ const VOCAB_DB = {
                     "answer": "undocumented"
                 },
                 {
-                    "text": "I saw undocumented in a school notice today.",
-                    "answer": "undocumented"
+                    "text": "Undocumented workers often avoid hospitals because they fear being reported.",
+                    "answer": "Undocumented"
                 },
                 {
                     "text": "The system failed because of an undocumented feature.",
@@ -84980,7 +84980,7 @@ const VOCAB_DB = {
                     "answer": "unquantifiable"
                 },
                 {
-                    "text": "I wrote unquantifiable in my notebook after the lesson.",
+                    "text": "The emotional value of family support is unquantifiable, even though it matters deeply.",
                     "answer": "unquantifiable"
                 },
                 {
@@ -85556,7 +85556,7 @@ const VOCAB_DB = {
                     "answer": "whilst"
                 },
                 {
-                    "text": "The guide used whilst in a useful example.",
+                    "text": "Some students prefer silent study, whilst others learn better through discussion.",
                     "answer": "whilst"
                 },
                 {
@@ -85704,7 +85704,7 @@ const VOCAB_DB = {
                     "answer": "worship"
                 },
                 {
-                    "text": "I wrote worship in my notebook after the lesson.",
+                    "text": "Ancient communities gathered at the temple to worship their gods and ask for protection.",
                     "answer": "worship"
                 }
             ]
