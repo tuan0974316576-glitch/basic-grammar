@@ -51,11 +51,11 @@ const VOCAB_DB = {
                     "answer": "activity"
                 },
                 {
-                    "text": "The class reviewed activity before the quiz.",
+                    "text": "The school activity starts after lunch.",
                     "answer": "activity"
                 },
                 {
-                    "text": "He remembered activity from yesterday's lesson.",
+                    "text": "Reading is a quiet activity for rainy days.",
                     "answer": "activity"
                 }
             ]
@@ -4097,7 +4097,7 @@ const VOCAB_DB = {
             "ch": "沒有人 (pron.)",
             "sents": [
                 {
-                    "text": "The teacher explained nobody in a simple way.",
+                    "text": "Nobody answered the question at first.",
                     "answer": "nobody"
                 },
                 {
@@ -4105,7 +4105,7 @@ const VOCAB_DB = {
                     "answer": "nobody"
                 },
                 {
-                    "text": "I wrote nobody in my notebook after the lesson.",
+                    "text": "Nobody knew the answer to the last question.",
                     "answer": "nobody"
                 }
             ]
@@ -5627,7 +5627,7 @@ const VOCAB_DB = {
             "ch": "某人 (pron.)",
             "sents": [
                 {
-                    "text": "He remembered somebody from yesterday's lesson.",
+                    "text": "Somebody left a school bag on the bus.",
                     "answer": "somebody"
                 },
                 {
@@ -5635,7 +5635,7 @@ const VOCAB_DB = {
                     "answer": "somebody"
                 },
                 {
-                    "text": "I noticed somebody in the reading passage.",
+                    "text": "Somebody should tell the teacher about the broken chair.",
                     "answer": "somebody"
                 }
             ]
@@ -5645,7 +5645,7 @@ const VOCAB_DB = {
             "ch": "某人 (pron.)",
             "sents": [
                 {
-                    "text": "She used someone in a clear sentence.",
+                    "text": "Someone called my name from the playground.",
                     "answer": "someone"
                 },
                 {
@@ -6329,7 +6329,7 @@ const VOCAB_DB = {
             "ch": "一起 (adv.)",
             "sents": [
                 {
-                    "text": "The teacher explained together in a simple way.",
+                    "text": "The students solved the problem together.",
                     "answer": "together"
                 },
                 {
