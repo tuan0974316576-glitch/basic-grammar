@@ -34916,8 +34916,8 @@ const VOCAB_DB = {
                     "answer": "accompany"
                 },
                 {
-                    "text": "The report included accompany as an important point.",
-                    "answer": "accompany"
+                    "text": "My father accompanied me to the interview.",
+                    "answer": "accompanied"
                 }
             ]
         },
@@ -35434,7 +35434,7 @@ const VOCAB_DB = {
                     "answer": "adulthood"
                 },
                 {
-                    "text": "We heard adulthood in a class conversation.",
+                    "text": "Many habits formed in childhood continue into adulthood.",
                     "answer": "adulthood"
                 },
                 {
@@ -35546,7 +35546,7 @@ const VOCAB_DB = {
                     "answer": "affordable"
                 },
                 {
-                    "text": "The speaker used affordable when answering the question.",
+                    "text": "The government should provide more affordable housing.",
                     "answer": "affordable"
                 }
             ]
@@ -35942,8 +35942,8 @@ const VOCAB_DB = {
                     "answer": "ancestor"
                 },
                 {
-                    "text": "The teacher explained ancestor in a simple way.",
-                    "answer": "ancestor"
+                    "text": "Many families honour their ancestors during traditional festivals.",
+                    "answer": "ancestors"
                 }
             ]
         },
@@ -36874,7 +36874,7 @@ const VOCAB_DB = {
                     "answer": "automobile"
                 },
                 {
-                    "text": "The class reviewed automobile before the quiz.",
+                    "text": "The invention of the automobile changed modern transport.",
                     "answer": "automobile"
                 },
                 {
@@ -36896,8 +36896,8 @@ const VOCAB_DB = {
                     "answer": "autonomous"
                 },
                 {
-                    "text": "He heard autonomous during a short discussion.",
-                    "answer": "autonomous"
+                    "text": "Autonomous vehicles may reduce accidents in the future.",
+                    "answer": "Autonomous"
                 }
             ]
         },
@@ -36960,15 +36960,15 @@ const VOCAB_DB = {
             "ch": "細菌",
             "sents": [
                 {
-                    "text": "The report included bacteria as an important point.",
-                    "answer": "bacteria"
+                    "text": "Bacteria can grow quickly if food is not stored properly.",
+                    "answer": "Bacteria"
                 },
                 {
                     "text": "The test showed that the water contained harmful bacteria.",
                     "answer": "bacteria"
                 },
                 {
-                    "text": "We heard bacteria in a class conversation.",
+                    "text": "Washing hands helps remove harmful bacteria.",
                     "answer": "bacteria"
                 }
             ]
@@ -37324,7 +37324,7 @@ const VOCAB_DB = {
                     "answer": "behavioral"
                 },
                 {
-                    "text": "I wrote behavioral in my notebook after the lesson.",
+                    "text": "The school recorded several behavioral changes after the new policy.",
                     "answer": "behavioral"
                 },
                 {
@@ -37540,7 +37540,7 @@ const VOCAB_DB = {
                     "answer": "biological"
                 },
                 {
-                    "text": "He remembered biological from yesterday's lesson.",
+                    "text": "The medicine affects several biological processes in the body.",
                     "answer": "biological"
                 },
                 {
@@ -38624,7 +38624,7 @@ const VOCAB_DB = {
                     "answer": "Causeway Bay"
                 },
                 {
-                    "text": "We copied Causeway Bay into our notes carefully.",
+                    "text": "Causeway Bay is crowded during weekend shopping hours.",
                     "answer": "Causeway Bay"
                 }
             ]
@@ -38984,7 +38984,7 @@ const VOCAB_DB = {
                     "answer": "chew"
                 },
                 {
-                    "text": "The teacher explained chew in a simple way.",
+                    "text": "You should chew your food slowly before swallowing.",
                     "answer": "chew"
                 }
             ]
@@ -39182,8 +39182,8 @@ const VOCAB_DB = {
                     "answer": "civilization"
                 },
                 {
-                    "text": "He heard civilization during a short discussion.",
-                    "answer": "civilization"
+                    "text": "Ancient civilizations developed writing systems to keep records.",
+                    "answer": "civilizations"
                 }
             ]
         },
@@ -39452,8 +39452,8 @@ const VOCAB_DB = {
                     "answer": "collectible"
                 },
                 {
-                    "text": "The report included collectible as an important point.",
-                    "answer": "collectible"
+                    "text": "Old stamps can become valuable collectibles.",
+                    "answer": "collectibles"
                 }
             ]
         },
@@ -39858,7 +39858,7 @@ const VOCAB_DB = {
             "ch": "專注；濃度",
             "sents": [
                 {
-                    "text": "The class reviewed concentration before the quiz.",
+                    "text": "Noise outside the classroom affected my concentration.",
                     "answer": "concentration"
                 },
                 {
@@ -40006,7 +40006,7 @@ const VOCAB_DB = {
                     "answer": "conform"
                 },
                 {
-                    "text": "The article mentioned conform more than once.",
+                    "text": "Students do not always have to conform to peer pressure.",
                     "answer": "conform"
                 },
                 {
@@ -40204,7 +40204,7 @@ const VOCAB_DB = {
                     "answer": "construction"
                 },
                 {
-                    "text": "The class reviewed construction before the quiz.",
+                    "text": "The construction of the new bridge will take two years.",
                     "answer": "construction"
                 },
                 {
@@ -40488,7 +40488,7 @@ const VOCAB_DB = {
             "ch": "應付／處理（C開頭）",
             "sents": [
                 {
-                    "text": "We heard cope in a class conversation.",
+                    "text": "Teenagers need healthy ways to cope with stress.",
                     "answer": "cope"
                 },
                 {
@@ -40514,7 +40514,7 @@ const VOCAB_DB = {
                     "answer": "cope with"
                 },
                 {
-                    "text": "He remembered cope with from yesterday's lesson.",
+                    "text": "She found it hard to cope with the heavy workload.",
                     "answer": "cope with"
                 }
             ]
@@ -40658,7 +40658,7 @@ const VOCAB_DB = {
                     "answer": "courage"
                 },
                 {
-                    "text": "I wrote courage in my notebook after the lesson.",
+                    "text": "It takes courage to admit a mistake in public.",
                     "answer": "courage"
                 }
             ]
@@ -40748,7 +40748,7 @@ const VOCAB_DB = {
                     "answer": "craze"
                 },
                 {
-                    "text": "I wrote craze in my notebook after the lesson.",
+                    "text": "The bubble tea craze spread quickly among teenagers.",
                     "answer": "craze"
                 }
             ]
@@ -41104,7 +41104,7 @@ const VOCAB_DB = {
                     "answer": "culinary"
                 },
                 {
-                    "text": "I wrote culinary in my notebook after the lesson.",
+                    "text": "The culinary course teaches students basic cooking skills.",
                     "answer": "culinary"
                 },
                 {
@@ -41320,8 +41320,8 @@ const VOCAB_DB = {
                     "answer": "darwinian"
                 },
                 {
-                    "text": "I saw darwinian in a school notice today.",
-                    "answer": "darwinian"
+                    "text": "The article discusses Darwinian ideas about natural selection.",
+                    "answer": "Darwinian"
                 },
                 {
                     "text": "The article gives a simple Darwinian explanation.",
@@ -41554,8 +41554,8 @@ const VOCAB_DB = {
                     "answer": "decompose"
                 },
                 {
-                    "text": "The teacher explained decompose in a simple way.",
-                    "answer": "decompose"
+                    "text": "Food waste decomposes faster in warm weather.",
+                    "answer": "decomposes"
                 },
                 {
                     "text": "Food waste can decompose into useful compost.",
@@ -41626,8 +41626,8 @@ const VOCAB_DB = {
                     "answer": "defeat"
                 },
                 {
-                    "text": "The teacher explained defeat in a simple way.",
-                    "answer": "defeat"
+                    "text": "The team was defeated in the final match.",
+                    "answer": "defeated"
                 },
                 {
                     "text": "The film treats defeat as a chance to grow.",
@@ -41792,7 +41792,7 @@ const VOCAB_DB = {
                     "answer": "delivery"
                 },
                 {
-                    "text": "He heard delivery during a short discussion.",
+                    "text": "The delivery arrived later than expected.",
                     "answer": "delivery"
                 }
             ]
@@ -41914,8 +41914,8 @@ const VOCAB_DB = {
                     "answer": "deny"
                 },
                 {
-                    "text": "The class reviewed deny before the quiz.",
-                    "answer": "deny"
+                    "text": "He denied breaking the classroom window.",
+                    "answer": "denied"
                 },
                 {
                     "text": "It is hard to deny the importance of clear rules.",
@@ -42224,8 +42224,8 @@ const VOCAB_DB = {
                     "answer": "disability"
                 },
                 {
-                    "text": "The class reviewed disability before the quiz.",
-                    "answer": "disability"
+                    "text": "Public buildings should support people with disabilities.",
+                    "answer": "disabilities"
                 }
             ]
         },
@@ -42540,7 +42540,7 @@ const VOCAB_DB = {
             "ch": "分散注意力；使分心",
             "sents": [
                 {
-                    "text": "He heard distract during a short discussion.",
+                    "text": "Loud music can distract students from their revision.",
                     "answer": "distract"
                 },
                 {
@@ -42832,7 +42832,7 @@ const VOCAB_DB = {
                     "answer": "doze"
                 },
                 {
-                    "text": "We talked about doze in class this morning.",
+                    "text": "I started to doze during the long bus ride.",
                     "answer": "doze"
                 },
                 {
@@ -44114,8 +44114,8 @@ const VOCAB_DB = {
                     "answer": "evolved"
                 },
                 {
-                    "text": "The speaker used evolve when answering the question.",
-                    "answer": "evolve"
+                    "text": "Language evolves as people create new words.",
+                    "answer": "evolves"
                 }
             ]
         },
@@ -44268,7 +44268,7 @@ const VOCAB_DB = {
             "ch": "存在；生活",
             "sents": [
                 {
-                    "text": "I noticed existence in the reading passage.",
+                    "text": "The discovery proved the existence of water under the ground.",
                     "answer": "existence"
                 },
                 {
@@ -44618,8 +44618,8 @@ const VOCAB_DB = {
                     "answer": "facility"
                 },
                 {
-                    "text": "The teacher explained facility in a simple way.",
-                    "answer": "facility"
+                    "text": "The sports centre has excellent facilities for students.",
+                    "answer": "facilities"
                 }
             ]
         },
@@ -44866,7 +44866,7 @@ const VOCAB_DB = {
                     "answer": "fault"
                 },
                 {
-                    "text": "We copied fault into our notes carefully.",
+                    "text": "It was not entirely his fault that the plan failed.",
                     "answer": "fault"
                 },
                 {
@@ -45298,7 +45298,7 @@ const VOCAB_DB = {
                     "answer": "fishy"
                 },
                 {
-                    "text": "The speaker used fishy when answering the question.",
+                    "text": "The excuse sounded fishy, so the teacher asked more questions.",
                     "answer": "fishy"
                 },
                 {
@@ -45446,8 +45446,8 @@ const VOCAB_DB = {
                     "answer": "flyer"
                 },
                 {
-                    "text": "The class reviewed flyer before the quiz.",
-                    "answer": "flyer"
+                    "text": "Volunteers handed out flyers for the charity concert.",
+                    "answer": "flyers"
                 }
             ]
         },
@@ -45608,7 +45608,7 @@ const VOCAB_DB = {
                     "answer": "forgive"
                 },
                 {
-                    "text": "She used forgive in a clear sentence.",
+                    "text": "It is not easy to forgive someone who has lied to you.",
                     "answer": "forgive"
                 }
             ]
@@ -46212,7 +46212,7 @@ const VOCAB_DB = {
             "ch": "產生；生成",
             "sents": [
                 {
-                    "text": "The email included generate in the first paragraph.",
+                    "text": "Solar panels generate electricity from sunlight.",
                     "answer": "generate"
                 },
                 {
@@ -46522,7 +46522,7 @@ const VOCAB_DB = {
                     "answer": "goody"
                 },
                 {
-                    "text": "He heard goody during a short discussion.",
+                    "text": "Each child received a goody bag after the party.",
                     "answer": "goody"
                 },
                 {
@@ -46630,8 +46630,8 @@ const VOCAB_DB = {
                     "answer": "grade"
                 },
                 {
-                    "text": "She used grade in a clear sentence.",
-                    "answer": "grade"
+                    "text": "Her grades improved after she changed her study habits.",
+                    "answer": "grades"
                 },
                 {
                     "text": "Her grade improved after weeks of practice.",
@@ -46666,8 +46666,8 @@ const VOCAB_DB = {
                     "answer": "graffiti"
                 },
                 {
-                    "text": "The speaker used graffiti when answering the question.",
-                    "answer": "graffiti"
+                    "text": "Graffiti on public walls can make a district look untidy.",
+                    "answer": "Graffiti"
                 },
                 {
                     "text": "The city removed graffiti from the station entrance.",
@@ -46954,7 +46954,7 @@ const VOCAB_DB = {
                     "answer": "harm"
                 },
                 {
-                    "text": "The email included harm in the first paragraph.",
+                    "text": "Too much screen time can harm your sleep quality.",
                     "answer": "harm"
                 },
                 {
@@ -47462,7 +47462,7 @@ const VOCAB_DB = {
                     "answer": "horseshoe"
                 },
                 {
-                    "text": "Our group practised horseshoe before lunch.",
+                    "text": "The blacksmith fixed a horseshoe onto the horse.",
                     "answer": "horseshoe"
                 }
             ]
@@ -48002,8 +48002,8 @@ const VOCAB_DB = {
                     "answer": "imply"
                 },
                 {
-                    "text": "We talked about imply in class this morning.",
-                    "answer": "imply"
+                    "text": "The writer implies that money cannot solve every problem.",
+                    "answer": "implies"
                 }
             ]
         },
@@ -48124,7 +48124,7 @@ const VOCAB_DB = {
                     "answer": "inaccessible"
                 },
                 {
-                    "text": "The report included inaccessible as an important point.",
+                    "text": "The village became inaccessible after the landslide.",
                     "answer": "inaccessible"
                 },
                 {
@@ -49366,7 +49366,7 @@ const VOCAB_DB = {
                     "answer": "justify"
                 },
                 {
-                    "text": "The report included justify as an important point.",
+                    "text": "You need evidence to justify your opinion in an essay.",
                     "answer": "justify"
                 },
                 {
@@ -49830,7 +49830,7 @@ const VOCAB_DB = {
             "ch": "說謊者",
             "sents": [
                 {
-                    "text": "Our group practised liar before lunch.",
+                    "text": "Nobody trusted him because he was known as a liar.",
                     "answer": "liar"
                 },
                 {
@@ -50792,7 +50792,7 @@ const VOCAB_DB = {
                     "answer": "medium"
                 },
                 {
-                    "text": "The speaker used medium when answering the question.",
+                    "text": "The internet is a powerful medium for sharing information.",
                     "answer": "medium"
                 }
             ]
@@ -51310,8 +51310,8 @@ const VOCAB_DB = {
                     "answer": "modify"
                 },
                 {
-                    "text": "She repeated modify so everyone understood.",
-                    "answer": "modify"
+                    "text": "The teacher modified the task for younger students.",
+                    "answer": "modified"
                 },
                 {
                     "text": "Please modify the form to include a phone number.",
@@ -51854,7 +51854,7 @@ const VOCAB_DB = {
                     "answer": "necessity"
                 },
                 {
-                    "text": "We talked about necessity in class this morning.",
+                    "text": "Clean water is a necessity, not a luxury.",
                     "answer": "necessity"
                 }
             ]
@@ -52052,7 +52052,7 @@ const VOCAB_DB = {
                     "answer": "North Point"
                 },
                 {
-                    "text": "We copied North Point into our notes carefully.",
+                    "text": "North Point is a busy area on Hong Kong Island.",
                     "answer": "North Point"
                 }
             ]
@@ -52210,8 +52210,8 @@ const VOCAB_DB = {
                     "answer": "object"
                 },
                 {
-                    "text": "He heard object during a short discussion.",
-                    "answer": "object"
+                    "text": "Several parents objected to the plan for shorter lunch breaks.",
+                    "answer": "objected"
                 },
                 {
                     "text": "Please place each object back in the box.",
@@ -52390,8 +52390,8 @@ const VOCAB_DB = {
                     "answer": "occupy"
                 },
                 {
-                    "text": "I wrote occupy in my notebook after the lesson.",
-                    "answer": "occupy"
+                    "text": "The sofa occupies too much space in the small room.",
+                    "answer": "occupies"
                 },
                 {
                     "text": "Two tables occupy the corner of the room.",
@@ -52782,7 +52782,7 @@ const VOCAB_DB = {
             "ch": "起源；來源",
             "sents": [
                 {
-                    "text": "The speaker used origin when answering the question.",
+                    "text": "The origin of the festival is explained in the article.",
                     "answer": "origin"
                 },
                 {
@@ -52836,7 +52836,7 @@ const VOCAB_DB = {
             "ch": "結果；成果",
             "sents": [
                 {
-                    "text": "Our group practised outcome before lunch.",
+                    "text": "The outcome of the debate was announced after lunch.",
                     "answer": "outcome"
                 },
                 {
@@ -52858,7 +52858,7 @@ const VOCAB_DB = {
                     "answer": "outdated"
                 },
                 {
-                    "text": "He heard outdated during a short discussion.",
+                    "text": "The computer system is outdated and needs replacing.",
                     "answer": "outdated"
                 },
                 {
@@ -52984,8 +52984,8 @@ const VOCAB_DB = {
                     "answer": "overcome"
                 },
                 {
-                    "text": "I saw overcome in a school notice today.",
-                    "answer": "overcome"
+                    "text": "She overcame her fear of public speaking through practice.",
+                    "answer": "overcame"
                 },
                 {
                     "text": "She worked hard to overcome her weakness in math.",
@@ -53384,7 +53384,7 @@ const VOCAB_DB = {
                     "answer": "pass on"
                 },
                 {
-                    "text": "We talked about pass on in class this morning.",
+                    "text": "Please pass on this message to your parents.",
                     "answer": "pass on"
                 }
             ]
@@ -53618,7 +53618,7 @@ const VOCAB_DB = {
                     "answer": "permanent"
                 },
                 {
-                    "text": "We heard permanent in a class conversation.",
+                    "text": "The accident left a permanent mark on the wall.",
                     "answer": "permanent"
                 }
             ]
@@ -54132,7 +54132,7 @@ const VOCAB_DB = {
             "ch": "玩伴",
             "sents": [
                 {
-                    "text": "The class reviewed playmates before the quiz.",
+                    "text": "Children learn to share when playing with their playmates.",
                     "answer": "playmates"
                 },
                 {
@@ -54230,7 +54230,7 @@ const VOCAB_DB = {
                     "answer": "poke"
                 },
                 {
-                    "text": "We heard poke in a class conversation.",
+                    "text": "Do not poke the animal through the cage.",
                     "answer": "poke"
                 }
             ]
@@ -54910,7 +54910,7 @@ const VOCAB_DB = {
                     "answer": "prior"
                 },
                 {
-                    "text": "The article mentioned prior more than once.",
+                    "text": "Students need prior permission to leave school early.",
                     "answer": "prior"
                 },
                 {
@@ -56210,8 +56210,8 @@ const VOCAB_DB = {
                     "answer": "recyclers"
                 },
                 {
-                    "text": "He remembered recyclers from yesterday's lesson.",
-                    "answer": "recyclers"
+                    "text": "Recyclers collect paper and plastic from the housing estate.",
+                    "answer": "Recyclers"
                 }
             ]
         },
@@ -56696,8 +56696,8 @@ const VOCAB_DB = {
                     "answer": "relocate"
                 },
                 {
-                    "text": "The class reviewed relocate before the quiz.",
-                    "answer": "relocate"
+                    "text": "The family relocated to a quieter district last year.",
+                    "answer": "relocated"
                 }
             ]
         },
@@ -56732,7 +56732,7 @@ const VOCAB_DB = {
                     "answer": "rely on"
                 },
                 {
-                    "text": "I wrote rely on in my notebook after the lesson.",
+                    "text": "Students should not rely on online answers all the time.",
                     "answer": "rely on"
                 }
             ]
@@ -56944,8 +56944,8 @@ const VOCAB_DB = {
                     "answer": "resist"
                 },
                 {
-                    "text": "The teacher explained resist in a simple way.",
-                    "answer": "resist"
+                    "text": "He resisted the temptation to check his phone during study time.",
+                    "answer": "resisted"
                 },
                 {
                     "text": "He tried to resist the pressure to give up.",
@@ -56966,7 +56966,7 @@ const VOCAB_DB = {
                     "answer": "resistant"
                 },
                 {
-                    "text": "I saw resistant in a school notice today.",
+                    "text": "Some bacteria are resistant to common medicines.",
                     "answer": "resistant"
                 }
             ]
@@ -57250,7 +57250,7 @@ const VOCAB_DB = {
                     "answer": "revolution"
                 },
                 {
-                    "text": "We heard revolution in a class conversation.",
+                    "text": "The digital revolution has changed how people communicate.",
                     "answer": "revolution"
                 },
                 {
@@ -57736,7 +57736,7 @@ const VOCAB_DB = {
                     "answer": "sap"
                 },
                 {
-                    "text": "She repeated sap so everyone understood.",
+                    "text": "The tree sap stuck to my fingers.",
                     "answer": "sap"
                 },
                 {
@@ -57812,7 +57812,7 @@ const VOCAB_DB = {
                     "answer": "satisfy"
                 },
                 {
-                    "text": "We talked about satisfy in class this morning.",
+                    "text": "The ending did not satisfy readers who expected a clear answer.",
                     "answer": "satisfy"
                 }
             ]
@@ -58020,7 +58020,7 @@ const VOCAB_DB = {
             "ch": "潦草寫；潦草字跡",
             "sents": [
                 {
-                    "text": "We heard scrawl in a class conversation.",
+                    "text": "Please do not scrawl your name on the desk.",
                     "answer": "scrawl"
                 },
                 {
@@ -58402,7 +58402,7 @@ const VOCAB_DB = {
                     "answer": "session"
                 },
                 {
-                    "text": "We talked about session in class this morning.",
+                    "text": "The revision session lasted for ninety minutes.",
                     "answer": "session"
                 },
                 {
@@ -59320,7 +59320,7 @@ const VOCAB_DB = {
                     "answer": "South Korea"
                 },
                 {
-                    "text": "He heard South Korea during a short discussion.",
+                    "text": "South Korea is famous for technology and pop culture.",
                     "answer": "South Korea"
                 },
                 {
@@ -59352,8 +59352,8 @@ const VOCAB_DB = {
             "ch": "專門從事；專攻",
             "sents": [
                 {
-                    "text": "She used specialise in a clear sentence.",
-                    "answer": "specialise"
+                    "text": "The doctor specialises in children’s health.",
+                    "answer": "specialises"
                 },
                 {
                     "text": "This store specialises in handmade shoes.",
@@ -60224,7 +60224,7 @@ const VOCAB_DB = {
                     "answer": "strike"
                 },
                 {
-                    "text": "I noticed strike in the reading passage.",
+                    "text": "Workers went on strike to demand safer conditions.",
                     "answer": "strike"
                 }
             ]
@@ -60508,7 +60508,7 @@ const VOCAB_DB = {
                     "answer": "supernatural"
                 },
                 {
-                    "text": "I noticed supernatural in the reading passage.",
+                    "text": "The novel includes several supernatural events.",
                     "answer": "supernatural"
                 },
                 {
@@ -60656,7 +60656,7 @@ const VOCAB_DB = {
                     "answer": "swear"
                 },
                 {
-                    "text": "She used swear in a clear sentence.",
+                    "text": "Students should not swear in the classroom.",
                     "answer": "swear"
                 }
             ]
@@ -60670,8 +60670,8 @@ const VOCAB_DB = {
                     "answer": "sweep"
                 },
                 {
-                    "text": "The guide used sweep in a useful example.",
-                    "answer": "sweep"
+                    "text": "The cleaner swept the leaves away from the entrance.",
+                    "answer": "swept"
                 },
                 {
                     "text": "The team managed a clean sweep of the prizes.",
@@ -60864,7 +60864,7 @@ const VOCAB_DB = {
             "ch": "太古",
             "sents": [
                 {
-                    "text": "He remembered Tai Koo from yesterday's lesson.",
+                    "text": "Tai Koo has many shops and office buildings.",
                     "answer": "Tai Koo"
                 },
                 {
@@ -60940,7 +60940,7 @@ const VOCAB_DB = {
                     "answer": "talentless"
                 },
                 {
-                    "text": "She used talentless in a clear sentence.",
+                    "text": "He felt talentless at first, but practice changed everything.",
                     "answer": "talentless"
                 },
                 {
@@ -61534,8 +61534,8 @@ const VOCAB_DB = {
                     "answer": "threaten"
                 },
                 {
-                    "text": "Our group practised threaten before lunch.",
-                    "answer": "threaten"
+                    "text": "Heavy rain threatened to cancel the outdoor concert.",
+                    "answer": "threatened"
                 },
                 {
                     "text": "The cuts could threaten the future of the project.",
@@ -61588,7 +61588,7 @@ const VOCAB_DB = {
                     "answer": "thus"
                 },
                 {
-                    "text": "She repeated thus so everyone understood.",
+                    "text": "The road was flooded; thus, the bus route was changed.",
                     "answer": "thus"
                 },
                 {
@@ -62042,7 +62042,7 @@ const VOCAB_DB = {
                     "answer": "tricky"
                 },
                 {
-                    "text": "The teacher explained tricky in a simple way.",
+                    "text": "The final question was tricky but fair.",
                     "answer": "tricky"
                 }
             ]
@@ -62322,7 +62322,7 @@ const VOCAB_DB = {
             "ch": "導師；私人教師",
             "sents": [
                 {
-                    "text": "Our group practised tutor before lunch.",
+                    "text": "Her tutor helped her prepare for the speaking exam.",
                     "answer": "tutor"
                 },
                 {
@@ -62510,7 +62510,7 @@ const VOCAB_DB = {
                     "answer": "undergo"
                 },
                 {
-                    "text": "We talked about undergo in class this morning.",
+                    "text": "The old theatre will undergo major repairs this summer.",
                     "answer": "undergo"
                 }
             ]
@@ -62614,7 +62614,7 @@ const VOCAB_DB = {
                     "answer": "unfairly"
                 },
                 {
-                    "text": "We heard unfairly in a class conversation.",
+                    "text": "The player felt he had been treated unfairly.",
                     "answer": "unfairly"
                 },
                 {
@@ -62762,7 +62762,7 @@ const VOCAB_DB = {
                     "answer": "universe"
                 },
                 {
-                    "text": "I wrote universe in my notebook after the lesson.",
+                    "text": "Scientists still have many questions about the universe.",
                     "answer": "universe"
                 }
             ]
@@ -62870,7 +62870,7 @@ const VOCAB_DB = {
                     "answer": "unpopular"
                 },
                 {
-                    "text": "I noticed unpopular in the reading passage.",
+                    "text": "The new rule was unpopular with many students.",
                     "answer": "unpopular"
                 }
             ]
@@ -63744,8 +63744,8 @@ const VOCAB_DB = {
             "ch": "較富有的",
             "sents": [
                 {
-                    "text": "She used wealthier in a clear sentence.",
-                    "answer": "wealthier"
+                    "text": "Wealthier countries should help poorer ones during crises.",
+                    "answer": "Wealthier"
                 },
                 {
                     "text": "The company became wealthier after the merger.",
@@ -64112,8 +64112,8 @@ const VOCAB_DB = {
                     "answer": "withdraw"
                 },
                 {
-                    "text": "Our group practised withdraw before lunch.",
-                    "answer": "withdraw"
+                    "text": "She withdrew her application after receiving another offer.",
+                    "answer": "withdrew"
                 }
             ]
         },
