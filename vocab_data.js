@@ -85922,7 +85922,7 @@ const VOCAB_DB = {
             "ch": "使非洲化",
             "sents": [
                 {
-                    "text": "He heard africanize during a short discussion.",
+                    "text": "The campaign was criticised for trying to africanize its branding without understanding local cultures.",
                     "answer": "africanize"
                 },
                 {
@@ -86106,7 +86106,7 @@ const VOCAB_DB = {
                     "answer": "apocalypse"
                 },
                 {
-                    "text": "She used apocalypse in a clear sentence.",
+                    "text": "The film imagines an apocalypse caused not by war, but by society's refusal to face climate change.",
                     "answer": "apocalypse"
                 },
                 {
@@ -86718,7 +86718,7 @@ const VOCAB_DB = {
                     "answer": "burrow"
                 },
                 {
-                    "text": "The teacher explained burrow in a simple way.",
+                    "text": "Small animals may burrow under the snow to escape predators and extreme cold.",
                     "answer": "burrow"
                 },
                 {
@@ -87128,7 +87128,7 @@ const VOCAB_DB = {
             "ch": "脅迫／強迫",
             "sents": [
                 {
-                    "text": "The guide used coerce in a useful example.",
+                    "text": "Authorities must not coerce witnesses into changing their statements.",
                     "answer": "coerce"
                 },
                 {
@@ -87222,8 +87222,8 @@ const VOCAB_DB = {
                     "answer": "confucian"
                 },
                 {
-                    "text": "He remembered confucian from yesterday's lesson.",
-                    "answer": "confucian"
+                    "text": "Confucian values still influence family duties, education, and respect for elders in many communities.",
+                    "answer": "Confucian"
                 },
                 {
                     "text": "The book compares Confucian and Western traditions.",
@@ -87402,7 +87402,7 @@ const VOCAB_DB = {
                     "answer": "craved"
                 },
                 {
-                    "text": "We copied crave into our notes carefully.",
+                    "text": "After months of isolation, many people began to crave ordinary face-to-face conversation.",
                     "answer": "crave"
                 },
                 {
@@ -87424,7 +87424,7 @@ const VOCAB_DB = {
                     "answer": "credence"
                 },
                 {
-                    "text": "The article mentioned credence more than once.",
+                    "text": "The leaked documents gave credence to claims that officials had ignored early warnings.",
                     "answer": "credence"
                 }
             ]
@@ -87488,7 +87488,7 @@ const VOCAB_DB = {
             "ch": "小生物",
             "sents": [
                 {
-                    "text": "The email included critter in the first paragraph.",
+                    "text": "The strange little critter survived in the desert by hiding beneath rocks during the day.",
                     "answer": "critter"
                 },
                 {
@@ -87686,7 +87686,7 @@ const VOCAB_DB = {
             "ch": "污損／損毀外觀",
             "sents": [
                 {
-                    "text": "The guide used deface in a useful example.",
+                    "text": "Vandals tried to deface the statue, but volunteers cleaned it before the ceremony.",
                     "answer": "deface"
                 },
                 {
@@ -87794,7 +87794,7 @@ const VOCAB_DB = {
             "ch": "使墮落",
             "sents": [
                 {
-                    "text": "He heard deprave during a short discussion.",
+                    "text": "The novel argues that unchecked power can deprave even people who begin with good intentions.",
                     "answer": "deprave"
                 },
                 {
@@ -87852,7 +87852,7 @@ const VOCAB_DB = {
                     "answer": "destine"
                 },
                 {
-                    "text": "I wrote destine in my notebook after the lesson.",
+                    "text": "Poverty should not destine a child to a life with fewer choices.",
                     "answer": "destine"
                 },
                 {
@@ -87974,7 +87974,7 @@ const VOCAB_DB = {
             "ch": "說教的／教學的",
             "sents": [
                 {
-                    "text": "We heard didactic in a class conversation.",
+                    "text": "The story becomes too didactic when every character pauses to explain the moral lesson.",
                     "answer": "didactic"
                 },
                 {
@@ -88122,7 +88122,7 @@ const VOCAB_DB = {
                     "answer": "dissociate"
                 },
                 {
-                    "text": "The report included dissociate as an important point.",
+                    "text": "The company tried to dissociate itself from the supplier accused of using forced labour.",
                     "answer": "dissociate"
                 },
                 {
@@ -88514,7 +88514,7 @@ const VOCAB_DB = {
             "ch": "擅長／優於",
             "sents": [
                 {
-                    "text": "The email included excel in the first paragraph.",
+                    "text": "Students who excel at memorisation may still struggle with open-ended discussion.",
                     "answer": "excel"
                 },
                 {
@@ -88662,7 +88662,7 @@ const VOCAB_DB = {
                     "answer": "fad"
                 },
                 {
-                    "text": "We talked about fad in class this morning.",
+                    "text": "The fitness app became a fad for a few months before most users abandoned it.",
                     "answer": "fad"
                 },
                 {
@@ -88824,7 +88824,7 @@ const VOCAB_DB = {
                     "answer": "fetishist"
                 },
                 {
-                    "text": "We heard fetishist in a class conversation.",
+                    "text": "The article describes the collector as a fetishist who values rare objects more than human relationships.",
                     "answer": "fetishist"
                 },
                 {
@@ -88856,7 +88856,7 @@ const VOCAB_DB = {
             "ch": "小提琴／擺弄",
             "sents": [
                 {
-                    "text": "She repeated fiddle so everyone understood.",
+                    "text": "He began to fiddle with the settings instead of reading the instructions carefully.",
                     "answer": "fiddle"
                 },
                 {
@@ -88982,7 +88982,7 @@ const VOCAB_DB = {
             "ch": "傳單／飛行者",
             "sents": [
                 {
-                    "text": "I wrote flier in my notebook after the lesson.",
+                    "text": "The charity handed out a flier explaining where families could receive free meals.",
                     "answer": "flier"
                 },
                 {
@@ -89098,7 +89098,7 @@ const VOCAB_DB = {
                     "answer": "forage"
                 },
                 {
-                    "text": "She used forage in a clear sentence.",
+                    "text": "When food prices rose, some families learned to forage for edible plants nearby.",
                     "answer": "forage"
                 }
             ]
@@ -89508,7 +89508,7 @@ const VOCAB_DB = {
                     "answer": "grapple"
                 },
                 {
-                    "text": "We talked about grapple in class this morning.",
+                    "text": "Governments must grapple with the ethical risks of artificial intelligence.",
                     "answer": "grapple"
                 },
                 {
@@ -89580,7 +89580,7 @@ const VOCAB_DB = {
                     "answer": "harbinger"
                 },
                 {
-                    "text": "I wrote harbinger in my notebook after the lesson.",
+                    "text": "The unusually warm winter was seen as a harbinger of more unstable weather patterns.",
                     "answer": "harbinger"
                 },
                 {
@@ -89944,7 +89944,7 @@ const VOCAB_DB = {
                     "answer": "ignorant"
                 },
                 {
-                    "text": "The speaker used ignorant when answering the question.",
+                    "text": "It is dangerous to remain ignorant of how algorithms shape the news we see.",
                     "answer": "ignorant"
                 }
             ]
@@ -90862,7 +90862,7 @@ const VOCAB_DB = {
                     "answer": "long for"
                 },
                 {
-                    "text": "The email included long for in the first paragraph.",
+                    "text": "Refugees often long for the familiar streets and voices of the homes they left behind.",
                     "answer": "long for"
                 }
             ]
@@ -90934,7 +90934,7 @@ const VOCAB_DB = {
                     "answer": "lunatic"
                 },
                 {
-                    "text": "The speaker used lunatic when answering the question.",
+                    "text": "Calling every opponent a lunatic makes serious political debate almost impossible.",
                     "answer": "lunatic"
                 }
             ]
@@ -91438,7 +91438,7 @@ const VOCAB_DB = {
                     "answer": "nauseate"
                 },
                 {
-                    "text": "The report included nauseate as an important point.",
+                    "text": "The smell from the polluted river was strong enough to nauseate nearby residents.",
                     "answer": "nauseate"
                 }
             ]
@@ -92010,7 +92010,7 @@ const VOCAB_DB = {
                     "answer": "personhood"
                 },
                 {
-                    "text": "She used personhood in a clear sentence.",
+                    "text": "The debate over artificial intelligence forced lawmakers to reconsider the meaning of personhood.",
                     "answer": "personhood"
                 },
                 {
@@ -92280,7 +92280,7 @@ const VOCAB_DB = {
                     "answer": "posits"
                 },
                 {
-                    "text": "The guide used posit in a useful example.",
+                    "text": "Some philosophers posit that consciousness cannot be explained by brain chemistry alone.",
                     "answer": "posit"
                 },
                 {
@@ -92698,7 +92698,7 @@ const VOCAB_DB = {
                     "answer": "rake in"
                 },
                 {
-                    "text": "I noticed rake in in the reading passage.",
+                    "text": "The streaming platform continued to rake in profits while many artists earned very little.",
                     "answer": "rake in"
                 }
             ]
@@ -93482,7 +93482,7 @@ const VOCAB_DB = {
             "ch": "急跑／匆匆走動",
             "sents": [
                 {
-                    "text": "He remembered scurry from yesterday's lesson.",
+                    "text": "Office workers began to scurry toward the exits when the alarm sounded.",
                     "answer": "scurry"
                 },
                 {
@@ -93504,7 +93504,7 @@ const VOCAB_DB = {
                     "answer": "seethe"
                 },
                 {
-                    "text": "I wrote seethe in my notebook after the lesson.",
+                    "text": "The crowd began to seethe with anger after the verdict was announced.",
                     "answer": "seethe"
                 },
                 {
@@ -95286,7 +95286,7 @@ const VOCAB_DB = {
                     "answer": "utopia"
                 },
                 {
-                    "text": "I saw utopia in a school notice today.",
+                    "text": "The plan promised a technological utopia, but it ignored inequality and political conflict.",
                     "answer": "utopia"
                 },
                 {
@@ -95804,7 +95804,7 @@ const VOCAB_DB = {
             "ch": "爭論／設法獲取",
             "sents": [
                 {
-                    "text": "She repeated wrangle so everyone understood.",
+                    "text": "Lawyers continued to wrangle over the wording of the settlement for weeks.",
                     "answer": "wrangle"
                 },
                 {
@@ -95848,7 +95848,7 @@ const VOCAB_DB = {
                     "answer": "wring"
                 },
                 {
-                    "text": "The teacher explained wring in a simple way.",
+                    "text": "The charity campaign was designed to wring donations from wealthy supporters through emotional stories.",
                     "answer": "wring"
                 }
             ]
