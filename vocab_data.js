@@ -18900,11 +18900,11 @@ const VOCAB_DB = {
                     "answer": "absolutely"
                 },
                 {
-                    "text": "We copied absolutely into our notes carefully.",
+                    "text": "I absolutely agree with your opinion about school uniforms.",
                     "answer": "absolutely"
                 },
                 {
-                    "text": "The teacher explained absolutely in a simple way.",
+                    "text": "The instructions were absolutely clear to everyone.",
                     "answer": "absolutely"
                 }
             ]
@@ -18914,15 +18914,15 @@ const VOCAB_DB = {
             "ch": "使用權；通道",
             "sents": [
                 {
-                    "text": "I noticed access in the reading passage.",
+                    "text": "Students need a password to access the online platform.",
                     "answer": "access"
                 },
                 {
-                    "text": "The speaker used access when answering the question.",
+                    "text": "The new ramp gives wheelchair users access to the library.",
                     "answer": "access"
                 },
                 {
-                    "text": "We copied access into our notes carefully.",
+                    "text": "Only staff can access these private records.",
                     "answer": "access"
                 }
             ]
@@ -18950,15 +18950,15 @@ const VOCAB_DB = {
             "ch": "成就",
             "sents": [
                 {
-                    "text": "The article mentioned achievement more than once.",
+                    "text": "Winning the writing prize was a great achievement.",
                     "answer": "achievement"
                 },
                 {
-                    "text": "She used achievement in a clear sentence.",
+                    "text": "Her biggest achievement was improving from a fail to a pass.",
                     "answer": "achievement"
                 },
                 {
-                    "text": "He heard achievement during a short discussion.",
+                    "text": "The school celebrated every student achievement at assembly.",
                     "answer": "achievement"
                 }
             ]
@@ -18968,15 +18968,15 @@ const VOCAB_DB = {
             "ch": "行動；表演",
             "sents": [
                 {
-                    "text": "We heard act in a class conversation.",
+                    "text": "We must act quickly when a fire alarm rings.",
                     "answer": "act"
                 },
                 {
-                    "text": "She repeated act so everyone understood.",
+                    "text": "He can act confidently on stage.",
                     "answer": "act"
                 },
                 {
-                    "text": "The class reviewed act before the quiz.",
+                    "text": "It is wrong to act without thinking about others.",
                     "answer": "act"
                 }
             ]
@@ -18986,15 +18986,15 @@ const VOCAB_DB = {
             "ch": "增加；加法",
             "sents": [
                 {
-                    "text": "I noticed addition in the reading passage.",
+                    "text": "In addition to homework, students should read every day.",
                     "answer": "addition"
                 },
                 {
-                    "text": "The speaker used addition when answering the question.",
+                    "text": "The new sports hall is a useful addition to the school.",
                     "answer": "addition"
                 },
                 {
-                    "text": "We copied addition into our notes carefully.",
+                    "text": "In addition, the report gives two clear examples.",
                     "answer": "addition"
                 }
             ]
@@ -19076,15 +19076,15 @@ const VOCAB_DB = {
             "ch": "廣告",
             "sents": [
                 {
-                    "text": "I wrote advert in my notebook after the lesson.",
+                    "text": "The advert shows a family using the new phone.",
                     "answer": "advert"
                 },
                 {
-                    "text": "The article mentioned advert more than once.",
+                    "text": "This advert is aimed at teenagers.",
                     "answer": "advert"
                 },
                 {
-                    "text": "She used advert in a clear sentence.",
+                    "text": "The company placed an advert in the local newspaper.",
                     "answer": "advert"
                 }
             ]
@@ -19094,11 +19094,11 @@ const VOCAB_DB = {
             "ch": "廣告商",
             "sents": [
                 {
-                    "text": "We talked about advertiser in class this morning.",
+                    "text": "The advertiser chose bright colours to attract young people.",
                     "answer": "advertiser"
                 },
                 {
-                    "text": "I wrote advertiser in my notebook after the lesson.",
+                    "text": "A responsible advertiser should not give false information.",
                     "answer": "advertiser"
                 },
                 {
@@ -19112,11 +19112,11 @@ const VOCAB_DB = {
             "ch": "建議；勸告",
             "sents": [
                 {
-                    "text": "We heard advise in a class conversation.",
+                    "text": "Doctors advise people to drink more water.",
                     "answer": "advise"
                 },
                 {
-                    "text": "She repeated advise so everyone understood.",
+                    "text": "I advise you to check your work before submission.",
                     "answer": "advise"
                 },
                 {
@@ -19166,11 +19166,11 @@ const VOCAB_DB = {
             "ch": "年齡；時代",
             "sents": [
                 {
-                    "text": "The article mentioned age more than once.",
+                    "text": "Children under the age of twelve can enter free.",
                     "answer": "age"
                 },
                 {
-                    "text": "She used age in a clear sentence.",
+                    "text": "People of every age can learn a new skill.",
                     "answer": "age"
                 },
                 {
@@ -19184,15 +19184,15 @@ const VOCAB_DB = {
             "ch": "代理人；特工",
             "sents": [
                 {
-                    "text": "The guide used agent in a useful example.",
+                    "text": "The travel agent helped us book the flight.",
                     "answer": "agent"
                 },
                 {
-                    "text": "Our group practised agent before lunch.",
+                    "text": "The secret agent followed the suspect quietly.",
                     "answer": "agent"
                 },
                 {
-                    "text": "The report included agent as an important point.",
+                    "text": "A good agent protects the customer’s interests.",
                     "answer": "agent"
                 }
             ]
@@ -19220,7 +19220,7 @@ const VOCAB_DB = {
             "ch": "在前面；提前",
             "sents": [
                 {
-                    "text": "He heard ahead during a short discussion.",
+                    "text": "Finish your revision ahead of the exam week.",
                     "answer": "ahead"
                 },
                 {
@@ -19228,7 +19228,7 @@ const VOCAB_DB = {
                     "answer": "ahead"
                 },
                 {
-                    "text": "Our group practised ahead before lunch.",
+                    "text": "Walk ahead and I will follow you.",
                     "answer": "ahead"
                 }
             ]
@@ -19238,7 +19238,7 @@ const VOCAB_DB = {
             "ch": "目標；旨在",
             "sents": [
                 {
-                    "text": "The teacher explained aim in a simple way.",
+                    "text": "The aim of the survey is to understand students’ habits.",
                     "answer": "aim"
                 },
                 {
@@ -19246,7 +19246,7 @@ const VOCAB_DB = {
                     "answer": "aims"
                 },
                 {
-                    "text": "I wrote aim in my notebook after the lesson.",
+                    "text": "Our school aims to reduce food waste this year.",
                     "answer": "aim"
                 }
             ]
@@ -19274,15 +19274,15 @@ const VOCAB_DB = {
             "ch": "酒精",
             "sents": [
                 {
-                    "text": "We heard alcohol in a class conversation.",
+                    "text": "The sign warns drivers not to drink alcohol.",
                     "answer": "alcohol"
                 },
                 {
-                    "text": "She repeated alcohol so everyone understood.",
+                    "text": "Some medicines should not be taken with alcohol.",
                     "answer": "alcohol"
                 },
                 {
-                    "text": "The class reviewed alcohol before the quiz.",
+                    "text": "Too much alcohol can damage your health.",
                     "answer": "alcohol"
                 }
             ]
@@ -19292,7 +19292,7 @@ const VOCAB_DB = {
             "ch": "替代方案；另類的",
             "sents": [
                 {
-                    "text": "The article mentioned alternative more than once.",
+                    "text": "Cycling is a healthy alternative to taking the bus.",
                     "answer": "alternative"
                 },
                 {
@@ -19300,7 +19300,7 @@ const VOCAB_DB = {
                     "answer": "alternative"
                 },
                 {
-                    "text": "He heard alternative during a short discussion.",
+                    "text": "We need an alternative plan if it rains.",
                     "answer": "alternative"
                 }
             ]
@@ -19418,15 +19418,15 @@ const VOCAB_DB = {
             "ch": "宣布",
             "sents": [
                 {
-                    "text": "I wrote announce in my notebook after the lesson.",
+                    "text": "The principal will announce the result after lunch.",
                     "answer": "announce"
                 },
                 {
-                    "text": "The article mentioned announce more than once.",
+                    "text": "The airline announced a delay because of bad weather.",
                     "answer": "announce"
                 },
                 {
-                    "text": "She used announce in a clear sentence.",
+                    "text": "Please announce the winner clearly on stage.",
                     "answer": "announce"
                 }
             ]
@@ -19436,11 +19436,11 @@ const VOCAB_DB = {
             "ch": "通告；宣布",
             "sents": [
                 {
-                    "text": "I saw announcement in a school notice today.",
+                    "text": "The announcement reminded students about the exam rules.",
                     "answer": "announcement"
                 },
                 {
-                    "text": "We heard announcement in a class conversation.",
+                    "text": "Everyone listened carefully to the announcement.",
                     "answer": "announcement"
                 },
                 {
@@ -19498,7 +19498,7 @@ const VOCAB_DB = {
                     "answer": "apart"
                 },
                 {
-                    "text": "He heard apart during a short discussion.",
+                    "text": "The two buildings are only ten metres apart.",
                     "answer": "apart"
                 }
             ]
@@ -19566,7 +19566,7 @@ const VOCAB_DB = {
                     "answer": "apologize"
                 },
                 {
-                    "text": "The email included apologize in the first paragraph.",
+                    "text": "You should apologize when you hurt someone’s feelings.",
                     "answer": "apologize"
                 },
                 {
@@ -19580,7 +19580,7 @@ const VOCAB_DB = {
             "ch": "申請；應用程式",
             "sents": [
                 {
-                    "text": "The class reviewed application before the quiz.",
+                    "text": "Her university application was accepted last week.",
                     "answer": "application"
                 },
                 {
@@ -19588,7 +19588,7 @@ const VOCAB_DB = {
                     "answer": "application"
                 },
                 {
-                    "text": "The email included application in the first paragraph.",
+                    "text": "This application helps students practise vocabulary.",
                     "answer": "application"
                 }
             ]
@@ -19598,15 +19598,15 @@ const VOCAB_DB = {
             "ch": "約會；任命",
             "sents": [
                 {
-                    "text": "We talked about appointment in class this morning.",
+                    "text": "I have a dentist appointment at four o’clock.",
                     "answer": "appointment"
                 },
                 {
-                    "text": "I wrote appointment in my notebook after the lesson.",
+                    "text": "Please make an appointment before visiting the office.",
                     "answer": "appointment"
                 },
                 {
-                    "text": "The article mentioned appointment more than once.",
+                    "text": "She missed her appointment because the bus was late.",
                     "answer": "appointment"
                 }
             ]
@@ -19616,7 +19616,7 @@ const VOCAB_DB = {
             "ch": "欣賞；感激",
             "sents": [
                 {
-                    "text": "I wrote appreciate in my notebook after the lesson.",
+                    "text": "I really appreciate your help with the project.",
                     "answer": "appreciate"
                 },
                 {
@@ -19674,11 +19674,11 @@ const VOCAB_DB = {
                     "answer": "arrival"
                 },
                 {
-                    "text": "The email included arrival in the first paragraph.",
+                    "text": "The arrival of the rescue team gave everyone hope.",
                     "answer": "arrival"
                 },
                 {
-                    "text": "I noticed arrival in the reading passage.",
+                    "text": "Please check the arrival time before going to the airport.",
                     "answer": "arrival"
                 }
             ]
@@ -19706,7 +19706,7 @@ const VOCAB_DB = {
             "ch": "協助",
             "sents": [
                 {
-                    "text": "I saw assist in a school notice today.",
+                    "text": "Older students assist younger children with reading.",
                     "answer": "assist"
                 },
                 {
@@ -19714,7 +19714,7 @@ const VOCAB_DB = {
                     "answer": "assist"
                 },
                 {
-                    "text": "She repeated assist so everyone understood.",
+                    "text": "This machine can assist people who cannot walk easily.",
                     "answer": "assist"
                 }
             ]
@@ -19724,7 +19724,7 @@ const VOCAB_DB = {
             "ch": "氣氛；大氣層",
             "sents": [
                 {
-                    "text": "The article mentioned atmosphere more than once.",
+                    "text": "The restaurant has a warm and friendly atmosphere.",
                     "answer": "atmosphere"
                 },
                 {
@@ -19732,7 +19732,7 @@ const VOCAB_DB = {
                     "answer": "atmosphere"
                 },
                 {
-                    "text": "He heard atmosphere during a short discussion.",
+                    "text": "Pollution in the atmosphere affects the climate.",
                     "answer": "atmosphere"
                 }
             ]
@@ -19742,11 +19742,11 @@ const VOCAB_DB = {
             "ch": "附上；連接",
             "sents": [
                 {
-                    "text": "We talked about attach in class this morning.",
+                    "text": "Please attach your photo to the application form.",
                     "answer": "attach"
                 },
                 {
-                    "text": "I wrote attach in my notebook after the lesson.",
+                    "text": "Attach the file before you send the email.",
                     "answer": "attach"
                 },
                 {
@@ -19804,7 +19804,7 @@ const VOCAB_DB = {
                     "answer": "attitude"
                 },
                 {
-                    "text": "We heard attitude in a class conversation.",
+                    "text": "A positive attitude helps you learn from mistakes.",
                     "answer": "attitude"
                 }
             ]
@@ -19814,7 +19814,7 @@ const VOCAB_DB = {
             "ch": "吸引",
             "sents": [
                 {
-                    "text": "He heard attract during a short discussion.",
+                    "text": "The colourful poster can attract more visitors.",
                     "answer": "attract"
                 },
                 {
@@ -19872,11 +19872,11 @@ const VOCAB_DB = {
                     "answer": "average"
                 },
                 {
-                    "text": "She used average in a clear sentence.",
+                    "text": "The average mark of the class rose this term.",
                     "answer": "average"
                 },
                 {
-                    "text": "He heard average during a short discussion.",
+                    "text": "On average, students spend two hours on homework.",
                     "answer": "average"
                 }
             ]
@@ -19922,7 +19922,7 @@ const VOCAB_DB = {
             "ch": "知道的；意識到的",
             "sents": [
                 {
-                    "text": "The report included aware as an important point.",
+                    "text": "Drivers must be aware of children crossing the road.",
                     "answer": "aware"
                 },
                 {
@@ -19930,7 +19930,7 @@ const VOCAB_DB = {
                     "answer": "aware"
                 },
                 {
-                    "text": "She used aware in a clear sentence.",
+                    "text": "Many students are aware of the dangers of online scams.",
                     "answer": "aware"
                 }
             ]
@@ -20012,15 +20012,15 @@ const VOCAB_DB = {
             "ch": "平衡；餘額",
             "sents": [
                 {
-                    "text": "I noticed balance in the reading passage.",
+                    "text": "A good student needs to balance study and rest.",
                     "answer": "balance"
                 },
                 {
-                    "text": "The speaker used balance when answering the question.",
+                    "text": "She lost her balance on the wet floor.",
                     "answer": "balance"
                 },
                 {
-                    "text": "We copied balance into our notes carefully.",
+                    "text": "Check your bank balance before buying the ticket.",
                     "answer": "balance"
                 }
             ]
@@ -20088,7 +20088,7 @@ const VOCAB_DB = {
                     "answer": "ban"
                 },
                 {
-                    "text": "I wrote ban in my notebook after the lesson.",
+                    "text": "The school will ban plastic straws in the canteen.",
                     "answer": "ban"
                 },
                 {
@@ -20102,15 +20102,15 @@ const VOCAB_DB = {
             "ch": "銀行；河岸",
             "sents": [
                 {
-                    "text": "I saw bank in a school notice today.",
+                    "text": "I put my savings in the bank.",
                     "answer": "bank"
                 },
                 {
-                    "text": "We heard bank in a class conversation.",
+                    "text": "The river bank was covered with grass.",
                     "answer": "bank"
                 },
                 {
-                    "text": "She repeated bank so everyone understood.",
+                    "text": "The bank closes at five in the afternoon.",
                     "answer": "bank"
                 }
             ]
@@ -20138,11 +20138,11 @@ const VOCAB_DB = {
             "ch": "基礎；基地",
             "sents": [
                 {
-                    "text": "I wrote base in my notebook after the lesson.",
+                    "text": "The team set up a base near the mountain.",
                     "answer": "base"
                 },
                 {
-                    "text": "The article mentioned base more than once.",
+                    "text": "Evidence should form the base of your argument.",
                     "answer": "base"
                 },
                 {
@@ -20156,15 +20156,15 @@ const VOCAB_DB = {
             "ch": "基本的",
             "sents": [
                 {
-                    "text": "Our group practised basic before lunch.",
+                    "text": "Everyone should learn basic first aid.",
                     "answer": "basic"
                 },
                 {
-                    "text": "The report included basic as an important point.",
+                    "text": "The course teaches basic computer skills.",
                     "answer": "basic"
                 },
                 {
-                    "text": "I saw basic in a school notice today.",
+                    "text": "Clean water is a basic human need.",
                     "answer": "basic"
                 }
             ]
@@ -20250,7 +20250,7 @@ const VOCAB_DB = {
                     "answer": "beauty"
                 },
                 {
-                    "text": "We heard beauty in a class conversation.",
+                    "text": "Many visitors admire the beauty of the old garden.",
                     "answer": "beauty"
                 },
                 {
@@ -20282,11 +20282,11 @@ const VOCAB_DB = {
             "ch": "信念；相信",
             "sents": [
                 {
-                    "text": "She repeated belief so everyone understood.",
+                    "text": "Her belief in herself helped her succeed.",
                     "answer": "belief"
                 },
                 {
-                    "text": "The class reviewed belief before the quiz.",
+                    "text": "People should respect each other’s beliefs.",
                     "answer": "belief"
                 },
                 {
@@ -20354,15 +20354,15 @@ const VOCAB_DB = {
             "ch": "好處；使受益",
             "sents": [
                 {
-                    "text": "I noticed benefit in the reading passage.",
+                    "text": "Regular exercise can benefit your health.",
                     "answer": "benefit"
                 },
                 {
-                    "text": "The speaker used benefit when answering the question.",
+                    "text": "One benefit of reading is better vocabulary.",
                     "answer": "benefit"
                 },
                 {
-                    "text": "We copied benefit into our notes carefully.",
+                    "text": "Students benefit from clear feedback.",
                     "answer": "benefit"
                 }
             ]
@@ -20394,7 +20394,7 @@ const VOCAB_DB = {
                     "answer": "better"
                 },
                 {
-                    "text": "I wrote better in my notebook after the lesson.",
+                    "text": "You will write better essays if you plan first.",
                     "answer": "better"
                 },
                 {
@@ -20498,15 +20498,15 @@ const VOCAB_DB = {
             "ch": "板；董事會；登上",
             "sents": [
                 {
-                    "text": "I wrote board in my notebook after the lesson.",
+                    "text": "The teacher wrote the answer on the board.",
                     "answer": "board"
                 },
                 {
-                    "text": "I noticed board in the reading passage.",
+                    "text": "Passengers must board the plane before three.",
                     "answer": "board"
                 },
                 {
-                    "text": "The speaker used board when answering the question.",
+                    "text": "The board will discuss the new school rules.",
                     "answer": "board"
                 }
             ]
@@ -20624,15 +20624,15 @@ const VOCAB_DB = {
             "ch": "樹枝；分部",
             "sents": [
                 {
-                    "text": "The speaker used branch when answering the question.",
+                    "text": "A bird was sitting on a branch outside my window.",
                     "answer": "branch"
                 },
                 {
-                    "text": "We copied branch into our notes carefully.",
+                    "text": "The bank opened a new branch near our school.",
                     "answer": "branch"
                 },
                 {
-                    "text": "The teacher explained branch in a simple way.",
+                    "text": "This road branches off towards the beach.",
                     "answer": "branch"
                 }
             ]
@@ -20642,7 +20642,7 @@ const VOCAB_DB = {
             "ch": "品牌",
             "sents": [
                 {
-                    "text": "I saw brand in a school notice today.",
+                    "text": "This brand is popular because it is cheap and reliable.",
                     "answer": "brand"
                 },
                 {
@@ -20822,15 +20822,15 @@ const VOCAB_DB = {
             "ch": "公牛",
             "sents": [
                 {
-                    "text": "We talked about bull in class this morning.",
+                    "text": "The angry bull ran across the field.",
                     "answer": "bull"
                 },
                 {
-                    "text": "I wrote bull in my notebook after the lesson.",
+                    "text": "A bull is much larger than a calf.",
                     "answer": "bull"
                 },
                 {
-                    "text": "The article mentioned bull more than once.",
+                    "text": "The farmer kept the bull away from visitors.",
                     "answer": "bull"
                 }
             ]
@@ -20848,7 +20848,7 @@ const VOCAB_DB = {
                     "answer": "bury"
                 },
                 {
-                    "text": "The article mentioned bury more than once.",
+                    "text": "The children decided to bury the time capsule under a tree.",
                     "answer": "bury"
                 }
             ]
@@ -20912,11 +20912,11 @@ const VOCAB_DB = {
             "ch": "籠子",
             "sents": [
                 {
-                    "text": "She repeated cage so everyone understood.",
+                    "text": "The rabbit escaped from its cage.",
                     "answer": "cage"
                 },
                 {
-                    "text": "The class reviewed cage before the quiz.",
+                    "text": "The zoo keeper cleaned the cage before feeding time.",
                     "answer": "cage"
                 },
                 {
@@ -20974,7 +20974,7 @@ const VOCAB_DB = {
                     "answer": "campaign"
                 },
                 {
-                    "text": "We talked about campaign in class this morning.",
+                    "text": "The recycling campaign encouraged students to bring fewer plastic bottles.",
                     "answer": "campaign"
                 }
             ]
@@ -20992,7 +20992,7 @@ const VOCAB_DB = {
                     "answer": "campfire"
                 },
                 {
-                    "text": "He heard campfire during a short discussion.",
+                    "text": "We sat around the campfire and told stories.",
                     "answer": "campfire"
                 }
             ]
@@ -21002,15 +21002,15 @@ const VOCAB_DB = {
             "ch": "校園",
             "sents": [
                 {
-                    "text": "The article mentioned campus more than once.",
+                    "text": "The university campus has a large library.",
                     "answer": "campus"
                 },
                 {
-                    "text": "She used campus in a clear sentence.",
+                    "text": "Students walked across campus after the lecture.",
                     "answer": "campus"
                 },
                 {
-                    "text": "He heard campus during a short discussion.",
+                    "text": "Visitors must wear a pass on campus.",
                     "answer": "campus"
                 }
             ]
@@ -21056,15 +21056,15 @@ const VOCAB_DB = {
             "ch": "帽子",
             "sents": [
                 {
-                    "text": "We heard cap in a class conversation.",
+                    "text": "He wore a cap to protect himself from the sun.",
                     "answer": "cap"
                 },
                 {
-                    "text": "She repeated cap so everyone understood.",
+                    "text": "Put the cap back on the bottle.",
                     "answer": "cap"
                 },
                 {
-                    "text": "The class reviewed cap before the quiz.",
+                    "text": "The school team wore red caps during the race.",
                     "answer": "cap"
                 }
             ]
@@ -21128,15 +21128,15 @@ const VOCAB_DB = {
             "ch": "中心的；中央的",
             "sents": [
                 {
-                    "text": "We copied central into our notes carefully.",
+                    "text": "The library is in the central part of the city.",
                     "answer": "central"
                 },
                 {
-                    "text": "The teacher explained central in a simple way.",
+                    "text": "Honesty is central to a good friendship.",
                     "answer": "central"
                 },
                 {
-                    "text": "We talked about central in class this morning.",
+                    "text": "The central idea of the passage is easy to find.",
                     "answer": "central"
                 }
             ]
@@ -21146,15 +21146,15 @@ const VOCAB_DB = {
             "ch": "中心",
             "sents": [
                 {
-                    "text": "Our group practised centre before lunch.",
+                    "text": "The shopping centre is crowded on Sundays.",
                     "answer": "centre"
                 },
                 {
-                    "text": "The report included centre as an important point.",
+                    "text": "Please stand in the centre of the circle.",
                     "answer": "centre"
                 },
                 {
-                    "text": "I saw centre in a school notice today.",
+                    "text": "The community centre offers free art classes.",
                     "answer": "centre"
                 }
             ]
@@ -21182,11 +21182,11 @@ const VOCAB_DB = {
             "ch": "典禮；儀式",
             "sents": [
                 {
-                    "text": "I wrote ceremony in my notebook after the lesson.",
+                    "text": "The graduation ceremony lasted two hours.",
                     "answer": "ceremony"
                 },
                 {
-                    "text": "The article mentioned ceremony more than once.",
+                    "text": "Parents took photos after the ceremony.",
                     "answer": "ceremony"
                 },
                 {
@@ -21272,15 +21272,15 @@ const VOCAB_DB = {
             "ch": "收費；充電；指控",
             "sents": [
                 {
-                    "text": "She used charge in a clear sentence.",
+                    "text": "The shop will charge ten dollars for delivery.",
                     "answer": "charge"
                 },
                 {
-                    "text": "He heard charge during a short discussion.",
+                    "text": "Remember to charge your phone before the trip.",
                     "answer": "charge"
                 },
                 {
-                    "text": "The guide used charge in a useful example.",
+                    "text": "The police may charge him with dangerous driving.",
                     "answer": "charge"
                 }
             ]
@@ -21352,7 +21352,7 @@ const VOCAB_DB = {
                     "answer": "checkpoint"
                 },
                 {
-                    "text": "She used checkpoint in a clear sentence.",
+                    "text": "The bus stopped at a checkpoint near the border.",
                     "answer": "checkpoint"
                 }
             ]
@@ -21384,7 +21384,7 @@ const VOCAB_DB = {
                     "answer": "chemical"
                 },
                 {
-                    "text": "The guide used chemical in a useful example.",
+                    "text": "The science teacher handled the chemical carefully.",
                     "answer": "chemical"
                 },
                 {
@@ -21434,15 +21434,15 @@ const VOCAB_DB = {
             "ch": "童年",
             "sents": [
                 {
-                    "text": "The class reviewed childhood before the quiz.",
+                    "text": "My childhood was full of happy memories.",
                     "answer": "childhood"
                 },
                 {
-                    "text": "He remembered childhood from yesterday's lesson.",
+                    "text": "She spent most of her childhood in Hong Kong.",
                     "answer": "childhood"
                 },
                 {
-                    "text": "The email included childhood in the first paragraph.",
+                    "text": "Childhood habits can affect adult health.",
                     "answer": "childhood"
                 }
             ]
@@ -21492,11 +21492,11 @@ const VOCAB_DB = {
                     "answer": "Circuses"
                 },
                 {
-                    "text": "We heard circus in a class conversation.",
+                    "text": "The circus performance amazed the children.",
                     "answer": "circus"
                 },
                 {
-                    "text": "She repeated circus so everyone understood.",
+                    "text": "We saw a clown at the circus.",
                     "answer": "circus"
                 }
             ]
@@ -21510,11 +21510,11 @@ const VOCAB_DB = {
                     "answer": "claims"
                 },
                 {
-                    "text": "I wrote claim in my notebook after the lesson.",
+                    "text": "The writer makes a strong claim in the first paragraph.",
                     "answer": "claim"
                 },
                 {
-                    "text": "The article mentioned claim more than once.",
+                    "text": "You need evidence to support your claim.",
                     "answer": "claim"
                 }
             ]
@@ -21550,7 +21550,7 @@ const VOCAB_DB = {
                     "answer": "clear"
                 },
                 {
-                    "text": "The guide used clear in a useful example.",
+                    "text": "Please clear the table after dinner.",
                     "answer": "clear"
                 }
             ]
@@ -21614,7 +21614,7 @@ const VOCAB_DB = {
             "ch": "攀爬",
             "sents": [
                 {
-                    "text": "Our group practised climb before lunch.",
+                    "text": "We had to climb many steps to reach the temple.",
                     "answer": "climb"
                 },
                 {
@@ -21622,7 +21622,7 @@ const VOCAB_DB = {
                     "answer": "climbed"
                 },
                 {
-                    "text": "I saw climb in a school notice today.",
+                    "text": "Do not climb over the school fence.",
                     "answer": "climb"
                 }
             ]
@@ -21668,11 +21668,11 @@ const VOCAB_DB = {
             "ch": "線索",
             "sents": [
                 {
-                    "text": "I noticed clue in the reading passage.",
+                    "text": "The first clue helped us solve the mystery.",
                     "answer": "clue"
                 },
                 {
-                    "text": "The speaker used clue when answering the question.",
+                    "text": "There is a clue in the title of the passage.",
                     "answer": "clue"
                 },
                 {
@@ -21690,11 +21690,11 @@ const VOCAB_DB = {
                     "answer": "coaching"
                 },
                 {
-                    "text": "We talked about coach in class this morning.",
+                    "text": "The coach told the players to warm up first.",
                     "answer": "coach"
                 },
                 {
-                    "text": "I wrote coach in my notebook after the lesson.",
+                    "text": "We travelled to Macau by coach.",
                     "answer": "coach"
                 }
             ]
@@ -21798,11 +21798,11 @@ const VOCAB_DB = {
                     "answer": "comments"
                 },
                 {
-                    "text": "The teacher explained comment in a simple way.",
+                    "text": "Please write one useful comment under your classmate’s work.",
                     "answer": "comment"
                 },
                 {
-                    "text": "Our group practised comment before lunch.",
+                    "text": "The teacher asked us to comment on the ending of the story.",
                     "answer": "comment"
                 }
             ]
@@ -21812,15 +21812,15 @@ const VOCAB_DB = {
             "ch": "商業的；廣告",
             "sents": [
                 {
-                    "text": "The email included commercial in the first paragraph.",
+                    "text": "The commercial tried to sell a new drink.",
                     "answer": "commercial"
                 },
                 {
-                    "text": "I noticed commercial in the reading passage.",
+                    "text": "Commercial areas are usually busy during lunch time.",
                     "answer": "commercial"
                 },
                 {
-                    "text": "The speaker used commercial when answering the question.",
+                    "text": "The film was interrupted by a long commercial.",
                     "answer": "commercial"
                 }
             ]
@@ -21834,11 +21834,11 @@ const VOCAB_DB = {
                     "answer": "committed"
                 },
                 {
-                    "text": "She repeated commit so everyone understood.",
+                    "text": "You should not commit a crime for money.",
                     "answer": "commit"
                 },
                 {
-                    "text": "The class reviewed commit before the quiz.",
+                    "text": "If you join the team, you must commit to every practice.",
                     "answer": "commit"
                 }
             ]
@@ -21848,7 +21848,7 @@ const VOCAB_DB = {
             "ch": "溝通；通信",
             "sents": [
                 {
-                    "text": "The guide used communication in a useful example.",
+                    "text": "Good communication can prevent many arguments.",
                     "answer": "communication"
                 },
                 {
@@ -21856,7 +21856,7 @@ const VOCAB_DB = {
                     "answer": "communications"
                 },
                 {
-                    "text": "The report included communication as an important point.",
+                    "text": "Online communication is convenient but not always clear.",
                     "answer": "communication"
                 }
             ]
@@ -21920,15 +21920,15 @@ const VOCAB_DB = {
             "ch": "投訴；抱怨",
             "sents": [
                 {
-                    "text": "The teacher explained complaint in a simple way.",
+                    "text": "The manager listened to the customer’s complaint.",
                     "answer": "complaint"
                 },
                 {
-                    "text": "We talked about complaint in class this morning.",
+                    "text": "We made a complaint about the broken air conditioner.",
                     "answer": "complaint"
                 },
                 {
-                    "text": "I wrote complaint in my notebook after the lesson.",
+                    "text": "A polite complaint is more effective than shouting.",
                     "answer": "complaint"
                 }
             ]
@@ -21956,7 +21956,7 @@ const VOCAB_DB = {
             "ch": "集中；專心",
             "sents": [
                 {
-                    "text": "We heard concentrate in a class conversation.",
+                    "text": "It is easier to concentrate in a quiet room.",
                     "answer": "concentrate"
                 },
                 {
@@ -21964,7 +21964,7 @@ const VOCAB_DB = {
                     "answer": "concentrate"
                 },
                 {
-                    "text": "The class reviewed concentrate before the quiz.",
+                    "text": "Please concentrate on the listening task.",
                     "answer": "concentrate"
                 }
             ]
@@ -21992,15 +21992,15 @@ const VOCAB_DB = {
             "ch": "結論",
             "sents": [
                 {
-                    "text": "The speaker used conclusion when answering the question.",
+                    "text": "The conclusion should summarize your main points.",
                     "answer": "conclusion"
                 },
                 {
-                    "text": "She repeated conclusion so everyone understood.",
+                    "text": "I reached the conclusion that more revision was needed.",
                     "answer": "conclusion"
                 },
                 {
-                    "text": "The teacher explained conclusion in a simple way.",
+                    "text": "The conclusion of the report is convincing.",
                     "answer": "conclusion"
                 }
             ]
@@ -22036,7 +22036,7 @@ const VOCAB_DB = {
                     "answer": "confirmed"
                 },
                 {
-                    "text": "The guide used confirm in a useful example.",
+                    "text": "Please confirm your booking by email.",
                     "answer": "confirm"
                 }
             ]
@@ -22064,15 +22064,15 @@ const VOCAB_DB = {
             "ch": "連接；關係",
             "sents": [
                 {
-                    "text": "The article mentioned connection more than once.",
+                    "text": "There is a strong connection between sleep and learning.",
                     "answer": "connection"
                 },
                 {
-                    "text": "She used connection in a clear sentence.",
+                    "text": "The internet connection was too weak for the video call.",
                     "answer": "connection"
                 },
                 {
-                    "text": "He heard connection during a short discussion.",
+                    "text": "He has a personal connection with the old village.",
                     "answer": "connection"
                 }
             ]
@@ -22082,15 +22082,15 @@ const VOCAB_DB = {
             "ch": "結果；後果",
             "sents": [
                 {
-                    "text": "We heard consequence in a class conversation.",
+                    "text": "Missing the deadline may have a serious consequence.",
                     "answer": "consequence"
                 },
                 {
-                    "text": "She repeated consequence so everyone understood.",
+                    "text": "Every action has a consequence.",
                     "answer": "consequence"
                 },
                 {
-                    "text": "The class reviewed consequence before the quiz.",
+                    "text": "He accepted the consequence of his mistake.",
                     "answer": "consequence"
                 }
             ]
@@ -22136,15 +22136,15 @@ const VOCAB_DB = {
             "ch": "消費者",
             "sents": [
                 {
-                    "text": "He heard consumer during a short discussion.",
+                    "text": "A smart consumer compares prices before buying.",
                     "answer": "consumer"
                 },
                 {
-                    "text": "The guide used consumer in a useful example.",
+                    "text": "The law protects the rights of every consumer.",
                     "answer": "consumer"
                 },
                 {
-                    "text": "Our group practised consumer before lunch.",
+                    "text": "Consumer choices can affect the environment.",
                     "answer": "consumer"
                 }
             ]
@@ -22154,15 +22154,15 @@ const VOCAB_DB = {
             "ch": "聯絡；接觸",
             "sents": [
                 {
-                    "text": "The report included contact as an important point.",
+                    "text": "Please contact the school office if you are absent.",
                     "answer": "contact"
                 },
                 {
-                    "text": "I saw contact in a school notice today.",
+                    "text": "Keep emergency contact numbers in your phone.",
                     "answer": "contact"
                 },
                 {
-                    "text": "We heard contact in a class conversation.",
+                    "text": "The website gives contact details for parents.",
                     "answer": "contact"
                 }
             ]
@@ -22172,7 +22172,7 @@ const VOCAB_DB = {
             "ch": "容器",
             "sents": [
                 {
-                    "text": "We talked about container in class this morning.",
+                    "text": "Put the soup in a plastic container.",
                     "answer": "container"
                 },
                 {
@@ -22180,7 +22180,7 @@ const VOCAB_DB = {
                     "answer": "container"
                 },
                 {
-                    "text": "The article mentioned container more than once.",
+                    "text": "The container was too small for all the toys.",
                     "answer": "container"
                 }
             ]
@@ -22190,11 +22190,11 @@ const VOCAB_DB = {
             "ch": "對比；差異",
             "sents": [
                 {
-                    "text": "We talked about contrast in class this morning.",
+                    "text": "The essay shows a clear contrast between city and country life.",
                     "answer": "contrast"
                 },
                 {
-                    "text": "I wrote contrast in my notebook after the lesson.",
+                    "text": "In contrast, the second student gave a shorter answer.",
                     "answer": "contrast"
                 },
                 {
@@ -22352,15 +22352,15 @@ const VOCAB_DB = {
             "ch": "計算；數目",
             "sents": [
                 {
-                    "text": "She used count in a clear sentence.",
+                    "text": "Please count the number of people in the room.",
                     "answer": "count"
                 },
                 {
-                    "text": "He heard count during a short discussion.",
+                    "text": "Every mark can count in a close competition.",
                     "answer": "count"
                 },
                 {
-                    "text": "The guide used count in a useful example.",
+                    "text": "The final count showed that twenty students agreed.",
                     "answer": "count"
                 }
             ]
@@ -22442,15 +22442,15 @@ const VOCAB_DB = {
             "ch": "覆蓋；封面",
             "sents": [
                 {
-                    "text": "The teacher explained cover in a simple way.",
+                    "text": "Use a lid to cover the hot soup.",
                     "answer": "cover"
                 },
                 {
-                    "text": "We talked about cover in class this morning.",
+                    "text": "The magazine cover shows a famous singer.",
                     "answer": "cover"
                 },
                 {
-                    "text": "I wrote cover in my notebook after the lesson.",
+                    "text": "The course will cover reading, writing and speaking.",
                     "answer": "cover"
                 }
             ]
@@ -22550,7 +22550,7 @@ const VOCAB_DB = {
             "ch": "文化的",
             "sents": [
                 {
-                    "text": "He heard cultural during a short discussion.",
+                    "text": "The cultural festival introduced food from many countries.",
                     "answer": "cultural"
                 },
                 {
@@ -22586,15 +22586,15 @@ const VOCAB_DB = {
             "ch": "目前；現時",
             "sents": [
                 {
-                    "text": "He heard currently during a short discussion.",
+                    "text": "The library is currently closed for repairs.",
                     "answer": "currently"
                 },
                 {
-                    "text": "The guide used currently in a useful example.",
+                    "text": "She is currently preparing for her final exams.",
                     "answer": "currently"
                 },
                 {
-                    "text": "Our group practised currently before lunch.",
+                    "text": "This rule is currently under review.",
                     "answer": "currently"
                 }
             ]
@@ -22658,15 +22658,15 @@ const VOCAB_DB = {
             "ch": "損壞；損害",
             "sents": [
                 {
-                    "text": "The class reviewed damage before the quiz.",
+                    "text": "The storm caused serious damage to the roof.",
                     "answer": "damage"
                 },
                 {
-                    "text": "He remembered damage from yesterday's lesson.",
+                    "text": "Smoking can damage your health.",
                     "answer": "damage"
                 },
                 {
-                    "text": "The email included damage in the first paragraph.",
+                    "text": "The school repaired the damage after the flood.",
                     "answer": "damage"
                 }
             ]
@@ -22694,7 +22694,7 @@ const VOCAB_DB = {
             "ch": "處理；交易",
             "sents": [
                 {
-                    "text": "The guide used deal in a useful example.",
+                    "text": "Teachers have to deal with many problems every day.",
                     "answer": "deal"
                 },
                 {
@@ -22702,7 +22702,7 @@ const VOCAB_DB = {
                     "answer": "deal"
                 },
                 {
-                    "text": "The report included deal as an important point.",
+                    "text": "The shop offered a good deal on school bags.",
                     "answer": "deal"
                 }
             ]
@@ -22712,15 +22712,15 @@ const VOCAB_DB = {
             "ch": "十年",
             "sents": [
                 {
-                    "text": "The guide used decade in a useful example.",
+                    "text": "The city has changed a lot in the past decade.",
                     "answer": "decade"
                 },
                 {
-                    "text": "Our group practised decade before lunch.",
+                    "text": "Over the next decade, technology will develop quickly.",
                     "answer": "decade"
                 },
                 {
-                    "text": "The report included decade as an important point.",
+                    "text": "My grandfather has lived here for a decade.",
                     "answer": "decade"
                 }
             ]
@@ -22730,15 +22730,15 @@ const VOCAB_DB = {
             "ch": "深的",
             "sents": [
                 {
-                    "text": "Our group practised deep before lunch.",
+                    "text": "The water is too deep for young children.",
                     "answer": "deep"
                 },
                 {
-                    "text": "I wrote deep in my notebook after the lesson.",
+                    "text": "Take a deep breath before you speak.",
                     "answer": "deep"
                 },
                 {
-                    "text": "I saw deep in a school notice today.",
+                    "text": "The cave was dark and deep.",
                     "answer": "deep"
                 }
             ]
@@ -22784,11 +22784,11 @@ const VOCAB_DB = {
             "ch": "定義",
             "sents": [
                 {
-                    "text": "I saw definition in a school notice today.",
+                    "text": "Write the definition of the word in your own sentence.",
                     "answer": "definition"
                 },
                 {
-                    "text": "We heard definition in a class conversation.",
+                    "text": "A clear definition helps readers understand the topic.",
                     "answer": "definition"
                 },
                 {
@@ -22802,7 +22802,7 @@ const VOCAB_DB = {
             "ch": "派送；發表",
             "sents": [
                 {
-                    "text": "I noticed deliver in the reading passage.",
+                    "text": "The courier will deliver the books tomorrow.",
                     "answer": "deliver"
                 },
                 {
@@ -22810,7 +22810,7 @@ const VOCAB_DB = {
                     "answer": "deliver"
                 },
                 {
-                    "text": "We copied deliver into our notes carefully.",
+                    "text": "The student delivered a confident speech.",
                     "answer": "deliver"
                 }
             ]
@@ -22820,15 +22820,15 @@ const VOCAB_DB = {
             "ch": "雖然（+名詞／V-ing）",
             "sents": [
                 {
-                    "text": "The email included despite in the first paragraph.",
+                    "text": "Despite the rain, the match continued.",
                     "answer": "despite"
                 },
                 {
-                    "text": "I noticed despite in the reading passage.",
+                    "text": "She passed the exam despite feeling nervous.",
                     "answer": "despite"
                 },
                 {
-                    "text": "The speaker used despite when answering the question.",
+                    "text": "Despite his injury, he finished the race.",
                     "answer": "despite"
                 }
             ]
@@ -22874,15 +22874,15 @@ const VOCAB_DB = {
             "ch": "發展",
             "sents": [
                 {
-                    "text": "He heard development during a short discussion.",
+                    "text": "The development of the area brought more jobs.",
                     "answer": "development"
                 },
                 {
-                    "text": "The guide used development in a useful example.",
+                    "text": "Reading supports the development of language skills.",
                     "answer": "development"
                 },
                 {
-                    "text": "Our group practised development before lunch.",
+                    "text": "The development plan includes a new park.",
                     "answer": "development"
                 }
             ]
@@ -23130,11 +23130,11 @@ const VOCAB_DB = {
                     "answer": "doubt"
                 },
                 {
-                    "text": "We copied doubt into our notes carefully.",
+                    "text": "I doubt that the shop is still open.",
                     "answer": "doubt"
                 },
                 {
-                    "text": "The teacher explained doubt in a simple way.",
+                    "text": "There is no doubt that practice improves performance.",
                     "answer": "doubt"
                 }
             ]
@@ -23148,7 +23148,7 @@ const VOCAB_DB = {
                     "answer": "dropped"
                 },
                 {
-                    "text": "I saw drop in a school notice today.",
+                    "text": "Do not drop glass bottles on the floor.",
                     "answer": "drop"
                 },
                 {
@@ -23180,7 +23180,7 @@ const VOCAB_DB = {
             "ch": "到期的；應得的",
             "sents": [
                 {
-                    "text": "The class reviewed due before the quiz.",
+                    "text": "The homework is due on Friday.",
                     "answer": "due"
                 },
                 {
@@ -23198,15 +23198,15 @@ const VOCAB_DB = {
             "ch": "由於／因為（+名詞）",
             "sents": [
                 {
-                    "text": "The class reviewed due to before the quiz.",
+                    "text": "The picnic was cancelled due to heavy rain.",
                     "answer": "due to"
                 },
                 {
-                    "text": "He remembered due to from yesterday's lesson.",
+                    "text": "Many flights were delayed due to the storm.",
                     "answer": "due to"
                 },
                 {
-                    "text": "The email included due to in the first paragraph.",
+                    "text": "The road was closed due to an accident.",
                     "answer": "due to"
                 }
             ]
@@ -23216,7 +23216,7 @@ const VOCAB_DB = {
             "ch": "榴槤",
             "sents": [
                 {
-                    "text": "The article mentioned durian more than once.",
+                    "text": "Durian has a strong smell that some people dislike.",
                     "answer": "durian"
                 },
                 {
@@ -23234,15 +23234,15 @@ const VOCAB_DB = {
             "ch": "灰塵",
             "sents": [
                 {
-                    "text": "We copied dust into our notes carefully.",
+                    "text": "Dust covered the old books on the shelf.",
                     "answer": "dust"
                 },
                 {
-                    "text": "The teacher explained dust in a simple way.",
+                    "text": "Please wipe the dust off the table.",
                     "answer": "dust"
                 },
                 {
-                    "text": "We talked about dust in class this morning.",
+                    "text": "The worker wore a mask because of the dust.",
                     "answer": "dust"
                 }
             ]
@@ -23324,15 +23324,15 @@ const VOCAB_DB = {
             "ch": "經濟的",
             "sents": [
                 {
-                    "text": "He remembered economic from yesterday's lesson.",
+                    "text": "The city faces serious economic problems.",
                     "answer": "economic"
                 },
                 {
-                    "text": "The email included economic in the first paragraph.",
+                    "text": "Tourism brings economic benefits to small towns.",
                     "answer": "economic"
                 },
                 {
-                    "text": "I noticed economic in the reading passage.",
+                    "text": "The economic situation affected many families.",
                     "answer": "economic"
                 }
             ]
@@ -23342,15 +23342,15 @@ const VOCAB_DB = {
             "ch": "經濟",
             "sents": [
                 {
-                    "text": "The speaker used economy when answering the question.",
+                    "text": "The local economy depends on tourism.",
                     "answer": "economy"
                 },
                 {
-                    "text": "We copied economy into our notes carefully.",
+                    "text": "A strong economy creates more jobs.",
                     "answer": "economy"
                 },
                 {
-                    "text": "The teacher explained economy in a simple way.",
+                    "text": "The economy improved after new businesses opened.",
                     "answer": "economy"
                 }
             ]
@@ -23382,11 +23382,11 @@ const VOCAB_DB = {
                     "answer": "editor"
                 },
                 {
-                    "text": "We heard editor in a class conversation.",
+                    "text": "The editor checked the article before printing.",
                     "answer": "editor"
                 },
                 {
-                    "text": "She repeated editor so everyone understood.",
+                    "text": "A good editor helps writers improve their work.",
                     "answer": "editor"
                 }
             ]
@@ -23400,11 +23400,11 @@ const VOCAB_DB = {
                     "answer": "educated"
                 },
                 {
-                    "text": "He heard educate during a short discussion.",
+                    "text": "Schools should educate students about online safety.",
                     "answer": "educate"
                 },
                 {
-                    "text": "The guide used educate in a useful example.",
+                    "text": "Parents and teachers educate children in different ways.",
                     "answer": "educate"
                 }
             ]
@@ -23414,7 +23414,7 @@ const VOCAB_DB = {
             "ch": "教育的；有教育意義的",
             "sents": [
                 {
-                    "text": "The teacher explained educational in a simple way.",
+                    "text": "The museum visit was both fun and educational.",
                     "answer": "educational"
                 },
                 {
@@ -23432,15 +23432,15 @@ const VOCAB_DB = {
             "ch": "有效的",
             "sents": [
                 {
-                    "text": "I wrote effective in my notebook after the lesson.",
+                    "text": "This is an effective way to remember new words.",
                     "answer": "effective"
                 },
                 {
-                    "text": "The article mentioned effective more than once.",
+                    "text": "Clear examples make the lesson more effective.",
                     "answer": "effective"
                 },
                 {
-                    "text": "She used effective in a clear sentence.",
+                    "text": "The new medicine was effective within two days.",
                     "answer": "effective"
                 }
             ]
@@ -23504,7 +23504,7 @@ const VOCAB_DB = {
             "ch": "緊急情況",
             "sents": [
                 {
-                    "text": "I wrote emergency in my notebook after the lesson.",
+                    "text": "Call 999 in an emergency.",
                     "answer": "emergency"
                 },
                 {
@@ -23512,7 +23512,7 @@ const VOCAB_DB = {
                     "answer": "emergency"
                 },
                 {
-                    "text": "She used emergency in a clear sentence.",
+                    "text": "The school held an emergency drill.",
                     "answer": "emergency"
                 }
             ]
@@ -23558,7 +23558,7 @@ const VOCAB_DB = {
             "ch": "鼓勵",
             "sents": [
                 {
-                    "text": "I wrote encourage in my notebook after the lesson.",
+                    "text": "Parents should encourage children to read more.",
                     "answer": "encourage"
                 },
                 {
@@ -23566,7 +23566,7 @@ const VOCAB_DB = {
                     "answer": "encouraged"
                 },
                 {
-                    "text": "She used encourage in a clear sentence.",
+                    "text": "The coach tried to encourage the tired runners.",
                     "answer": "encourage"
                 }
             ]
@@ -23576,7 +23576,7 @@ const VOCAB_DB = {
             "ch": "危害",
             "sents": [
                 {
-                    "text": "I saw endanger in a school notice today.",
+                    "text": "Plastic waste can endanger sea animals.",
                     "answer": "endanger"
                 },
                 {
@@ -23584,7 +23584,7 @@ const VOCAB_DB = {
                     "answer": "endangered"
                 },
                 {
-                    "text": "She repeated endanger so everyone understood.",
+                    "text": "Driving too fast can endanger other people.",
                     "answer": "endanger"
                 }
             ]
@@ -23648,7 +23648,7 @@ const VOCAB_DB = {
             "ch": "入口",
             "sents": [
                 {
-                    "text": "Our group practised entrance before lunch.",
+                    "text": "Meet me at the entrance of the cinema.",
                     "answer": "entrance"
                 },
                 {
@@ -23656,7 +23656,7 @@ const VOCAB_DB = {
                     "answer": "entrance"
                 },
                 {
-                    "text": "I saw entrance in a school notice today.",
+                    "text": "The entrance fee is twenty dollars.",
                     "answer": "entrance"
                 }
             ]
@@ -23674,7 +23674,7 @@ const VOCAB_DB = {
                     "answer": "entry"
                 },
                 {
-                    "text": "I saw entry in a school notice today.",
+                    "text": "Late entry is not allowed after the exam starts.",
                     "answer": "entry"
                 }
             ]
@@ -23692,7 +23692,7 @@ const VOCAB_DB = {
                     "answer": "environmental"
                 },
                 {
-                    "text": "He remembered environmental from yesterday's lesson.",
+                    "text": "The group discussed environmental problems in the city.",
                     "answer": "environmental"
                 }
             ]
@@ -23756,15 +23756,15 @@ const VOCAB_DB = {
             "ch": "必要的；本質的",
             "sents": [
                 {
-                    "text": "She used essential in a clear sentence.",
+                    "text": "Water is essential for all living things.",
                     "answer": "essential"
                 },
                 {
-                    "text": "He heard essential during a short discussion.",
+                    "text": "It is essential to check your answers.",
                     "answer": "essential"
                 },
                 {
-                    "text": "The guide used essential in a useful example.",
+                    "text": "Good planning is essential for a successful trip.",
                     "answer": "essential"
                 }
             ]
@@ -23796,11 +23796,11 @@ const VOCAB_DB = {
                     "answer": "eventually"
                 },
                 {
-                    "text": "We copied eventually into our notes carefully.",
+                    "text": "After many tries, he eventually solved the puzzle.",
                     "answer": "eventually"
                 },
                 {
-                    "text": "The teacher explained eventually in a simple way.",
+                    "text": "The lost child was eventually found near the station.",
                     "answer": "eventually"
                 }
             ]
@@ -23828,15 +23828,15 @@ const VOCAB_DB = {
             "ch": "除了…之外（不包括）",
             "sents": [
                 {
-                    "text": "Our group practised except before lunch.",
+                    "text": "Everyone joined the trip except Tom.",
                     "answer": "except"
                 },
                 {
-                    "text": "The email included except in the first paragraph.",
+                    "text": "The shop opens every day except Monday.",
                     "answer": "except"
                 },
                 {
-                    "text": "I noticed except in the reading passage.",
+                    "text": "I like all fruit except durian.",
                     "answer": "except"
                 }
             ]
@@ -23846,7 +23846,7 @@ const VOCAB_DB = {
             "ch": "交換；交流",
             "sents": [
                 {
-                    "text": "We talked about exchange in class this morning.",
+                    "text": "Students can exchange books after the reading lesson.",
                     "answer": "exchange"
                 },
                 {
@@ -23854,7 +23854,7 @@ const VOCAB_DB = {
                     "answer": "exchange"
                 },
                 {
-                    "text": "The article mentioned exchange more than once.",
+                    "text": "The exchange student stayed with my family for a week.",
                     "answer": "exchange"
                 }
             ]
@@ -23868,7 +23868,7 @@ const VOCAB_DB = {
                     "answer": "excited"
                 },
                 {
-                    "text": "The article mentioned excite more than once.",
+                    "text": "The news will excite many young football fans.",
                     "answer": "excite"
                 },
                 {
@@ -23904,7 +23904,7 @@ const VOCAB_DB = {
                     "answer": "exhibition"
                 },
                 {
-                    "text": "The class reviewed exhibition before the quiz.",
+                    "text": "The art exhibition opens next Friday.",
                     "answer": "exhibition"
                 },
                 {
@@ -23926,7 +23926,7 @@ const VOCAB_DB = {
                     "answer": "expand"
                 },
                 {
-                    "text": "He remembered expand from yesterday's lesson.",
+                    "text": "The company plans to expand its online service.",
                     "answer": "expand"
                 }
             ]
@@ -23944,7 +23944,7 @@ const VOCAB_DB = {
                     "answer": "experience"
                 },
                 {
-                    "text": "We copied experience into our notes carefully.",
+                    "text": "Working as a volunteer gave me useful experience.",
                     "answer": "experience"
                 }
             ]
@@ -23954,15 +23954,15 @@ const VOCAB_DB = {
             "ch": "實驗",
             "sents": [
                 {
-                    "text": "We heard experiment in a class conversation.",
+                    "text": "The science experiment showed how plants grow.",
                     "answer": "experiment"
                 },
                 {
-                    "text": "She repeated experiment so everyone understood.",
+                    "text": "Do not touch the chemicals during the experiment.",
                     "answer": "experiment"
                 },
                 {
-                    "text": "The class reviewed experiment before the quiz.",
+                    "text": "The experiment failed because the water was too hot.",
                     "answer": "experiment"
                 }
             ]
@@ -23998,7 +23998,7 @@ const VOCAB_DB = {
                     "answer": "explore"
                 },
                 {
-                    "text": "I noticed explore in the reading passage.",
+                    "text": "We will explore the old village during the field trip.",
                     "answer": "explore"
                 }
             ]
@@ -24062,7 +24062,7 @@ const VOCAB_DB = {
             "ch": "額外的；額外地",
             "sents": [
                 {
-                    "text": "The teacher explained extra in a simple way.",
+                    "text": "I need extra time to finish the report.",
                     "answer": "extra"
                 },
                 {
@@ -24070,7 +24070,7 @@ const VOCAB_DB = {
                     "answer": "extra"
                 },
                 {
-                    "text": "I wrote extra in my notebook after the lesson.",
+                    "text": "The hotel charged extra for breakfast.",
                     "answer": "extra"
                 }
             ]
@@ -24116,15 +24116,15 @@ const VOCAB_DB = {
             "ch": "相當；公平地",
             "sents": [
                 {
-                    "text": "We copied fairly into our notes carefully.",
+                    "text": "The teacher treated every student fairly.",
                     "answer": "fairly"
                 },
                 {
-                    "text": "The teacher explained fairly in a simple way.",
+                    "text": "The test was fairly difficult.",
                     "answer": "fairly"
                 },
                 {
-                    "text": "We talked about fairly in class this morning.",
+                    "text": "Share the work fairly among group members.",
                     "answer": "fairly"
                 }
             ]
@@ -24170,11 +24170,11 @@ const VOCAB_DB = {
             "ch": "遠地；很大程度上",
             "sents": [
                 {
-                    "text": "She used far in a clear sentence.",
+                    "text": "My new school is far from home.",
                     "answer": "far"
                 },
                 {
-                    "text": "He heard far during a short discussion.",
+                    "text": "This answer is far better than the first one.",
                     "answer": "far"
                 },
                 {
@@ -24188,15 +24188,15 @@ const VOCAB_DB = {
             "ch": "農舍",
             "sents": [
                 {
-                    "text": "Our group practised farmhouse before lunch.",
+                    "text": "The old farmhouse stood beside a rice field.",
                     "answer": "farmhouse"
                 },
                 {
-                    "text": "The report included farmhouse as an important point.",
+                    "text": "We stayed in a farmhouse during the holiday.",
                     "answer": "farmhouse"
                 },
                 {
-                    "text": "I saw farmhouse in a school notice today.",
+                    "text": "The farmhouse kitchen was warm and bright.",
                     "answer": "farmhouse"
                 }
             ]
@@ -24260,15 +24260,15 @@ const VOCAB_DB = {
             "ch": "特色；特徵",
             "sents": [
                 {
-                    "text": "The article mentioned feature more than once.",
+                    "text": "The best feature of the app is its clear design.",
                     "answer": "feature"
                 },
                 {
-                    "text": "She used feature in a clear sentence.",
+                    "text": "The article will feature three young inventors.",
                     "answer": "feature"
                 },
                 {
-                    "text": "He heard feature during a short discussion.",
+                    "text": "Safety is an important feature of this car.",
                     "answer": "feature"
                 }
             ]
