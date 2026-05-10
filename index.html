@@ -18,7 +18,7 @@
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 let refreshing = false;
-                navigator.serviceWorker.register('./sw.js?v=20260510-074').then(reg => {
+                navigator.serviceWorker.register('./sw.js?v=20260510-075').then(reg => {
                     console.log('SW registered!', reg);
                     reg.update();
 
@@ -48,8 +48,8 @@
         }
     </script>
 
-    <script type="module" src="firebase-init.js?v=0.74"></script>
-    <link rel="stylesheet" href="style.css?v=0.74">
+    <script type="module" src="firebase-init.js?v=0.75"></script>
+    <link rel="stylesheet" href="style.css?v=0.75">
 
 </head>
 <body>
@@ -78,7 +78,7 @@
     <div class="game-footer splash-footer">
         <span class="brand">Enguistics Learning Centre</span> 2026
         <br>
-        v0.74
+        v0.75
     </div>
 </div>
 <div id="game-content-wrapper" style="display: none;">
@@ -768,6 +768,7 @@
 <audio id="speaking-wrong-sfx"><source src="speaking_wrong.mp3" type="audio/mpeg"></audio>
 <audio id="skill-select-sfx"><source src="skill_select.mp3" type="audio/mpeg"></audio>
 <audio id="radar-sfx"><source src="radar_sfx.mp3" type="audio/mpeg"></audio>
+<audio id="aurelians-shield-sfx" preload="auto"><source src="Aurelians_shield.mp3" type="audio/mpeg"></audio>
 <audio id="missile-flying-sfx"><source src="missile_flying.mp3" type="audio/mpeg"></audio>
 <audio id="nuke-ready-sfx"><source src="nuclear_missile_ready.mp3" type="audio/mpeg"></audio>
 <audio id="nuke-launch-sfx"><source src="nuclear_missile_launched.mp3" type="audio/mpeg"></audio>
@@ -782,13 +783,13 @@
 <audio id="ship-voice-4"><source src="ship_4_spectre.mp3" type="audio/mpeg"></audio>
     <audio id="unit-lost-sfx"><source src="unit_lost.mp3" type="audio/mpeg"></audio>
 </div>
-<script src="vocab_data.js?v=0.74"></script>
-<script src="app-config.js?v=0.74"></script>
-<script src="vendor/effekseer/effekseer.min.js?v=0.74"></script>
-<script src="app.js?v=0.74"></script>
-<script src="ui-screens.js?v=0.74"></script>
-<script src="ui-auth.js?v=0.74"></script>
-<script src="ui-audio.js?v=0.74"></script>
+<script src="vocab_data.js?v=0.75"></script>
+<script src="app-config.js?v=0.75"></script>
+<script src="vendor/effekseer/effekseer.min.js?v=0.75"></script>
+<script src="app.js?v=0.75"></script>
+<script src="ui-screens.js?v=0.75"></script>
+<script src="ui-auth.js?v=0.75"></script>
+<script src="ui-audio.js?v=0.75"></script>
 <div id="registration-modal" class="registration-modal" style="display: none;">
     
     <div class="registration-scanlines"></div>

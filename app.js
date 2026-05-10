@@ -996,14 +996,7 @@ let isTargeting = false;
             }
         });
 
-        BATTLE_EFFECT_AUDIO_IDS.forEach(id => {
-            const audio = document.getElementById(id);
-            if (!audio) return;
-            audio.preload = 'auto';
-            try {
-                audio.load();
-            } catch (_) {}
-        });
+        BATTLE_EFFECT_AUDIO_IDS.forEach(preloadAudioElementById);
 
         preloadEffekseerEffect('vanguardsNuke');
         preloadEffekseerEffect('missileImpact');
@@ -1013,6 +1006,19 @@ let isTargeting = false;
         preloadEffekseerEffect('aureliansShieldApply');
         preloadEffekseerEffect('aureliansShieldLoop');
         preloadEffekseerEffect('aureliansShieldOnHit');
+    }
+
+    function preloadAudioElementById(id) {
+        const audio = document.getElementById(id);
+        if (!audio) return;
+        audio.preload = 'auto';
+        try {
+            audio.load();
+        } catch (_) {}
+    }
+
+    function preloadAureliansShieldAudio() {
+        preloadAudioElementById('aurelians-shield-sfx');
     }
 
    
@@ -3337,6 +3343,9 @@ function enterPvpBattleFromRoom(data) {
     const opponentRace = playerRole === 'host' ? data.guestRace : data.hostRace;
     if (opponentRace) {
         enemyRace = opponentRace;
+        if (opponentRace === 'AURELIANS' || selectedRace === 'AURELIANS') {
+            preloadAureliansShieldAudio();
+        }
         updateEnemyBoardLabel(opponentRace);
     }
 
@@ -8225,6 +8234,7 @@ function confirmRaceSelection(race) {
     selectedRace = race;
     console.log("Race Selected:", race);
     playSound('deploy-sfx');
+    if (race === 'AURELIANS') preloadAureliansShieldAudio();
     updateBattleRaceUiTheme();
 
     // ���� �����d�댦���N��đ�Ş���� ����
@@ -8258,6 +8268,9 @@ function confirmRaceSelection(race) {
         const availableRaces = ['VANGUARDS', 'AURELIANS'];
         enemyRace = availableRaces[Math.floor(Math.random() * availableRaces.length)];
         console.log('[AI Race] Enemy race selected:', enemyRace);
+        if (enemyRace === 'AURELIANS' || selectedRace === 'AURELIANS') {
+            preloadAureliansShieldAudio();
+        }
 
         // ���� �d�� AI ���ֵ��ܓp�DƬ ����
         ENEMY_DAMAGED_IMAGES = getDamagedImages(enemyRace);
@@ -10205,6 +10218,7 @@ function activateAegisShield(anchorIndex) {
     };
 
     renderAegisShieldOverlay(aegisShieldState);
+    playSound('aurelians-shield-sfx');
     playAreaEffekseerEffect('aureliansShieldApply', 'player-grid', indices).then(handle => {
         if (aegisShieldState && aegisShieldState.anchor === anchorIndex) {
             aegisShieldState.applyHandle = handle;
@@ -10243,6 +10257,11 @@ function rememberOpponentAegisShield(move) {
         owner: move.attacker,
         createdAt: move.timestamp || Date.now()
     };
+    if (getPvpRoleRace(move.attacker) === 'AURELIANS') {
+        preloadAureliansShieldAudio();
+        playSound('aurelians-shield-sfx');
+        playAreaEffekseerEffect('aureliansShieldApply', 'enemy-grid', move.indices);
+    }
 }
 
 function clearOpponentAegisShieldState() {
