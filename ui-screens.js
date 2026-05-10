@@ -398,8 +398,7 @@ function renderVocabList(level, isSilent = false) {
             }, { once: true });
         }
 
-        const safeText = item.en.replace(/'/g, '&apos;');
-        row.setAttribute('onclick', `speakText('${safeText}', this)`);
+        row.addEventListener('click', () => speakVocabText(item.en, row));
 
         row.innerHTML = `
             <span class="vocab-ch">${item.ch}</span>
@@ -437,8 +436,7 @@ function renderCustomVocabList(rows) {
             }, { once: true });
         }
 
-        const safeText = item.en.replace(/'/g, '&apos;');
-        row.setAttribute('onclick', `speakText('${safeText}', this)`);
+        row.addEventListener('click', () => speakVocabText(item.en, row));
         row.innerHTML = `
             <span class="vocab-ch">${item.ch}</span>
             <span class="vocab-en">${item.en}</span>

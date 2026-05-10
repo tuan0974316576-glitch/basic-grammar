@@ -106,6 +106,10 @@ const LISTENING_TTS_DB_NAME = 'vocabConquerorListeningTts';
 const LISTENING_TTS_DB_VERSION = 1;
 const LISTENING_TTS_STORE_NAME = 'audio';
 const LISTENING_VOICE_GAIN = 1.2;
+const VOCAB_PREVIEW_VOICE_PROFILE = {
+    voiceName: 'en-US-AndrewMultilingualNeural',
+    accentLocale: 'en-US'
+};
 const LISTENING_VOICE_ROTATION = [
     {
         label: 'Ava (Canada)',
@@ -4552,6 +4556,56 @@ async function playListeningAzureText(text, element = null, startListeningTimer 
     }
     await audio.play();
     return true;
+}
+
+async function speakVocabText(text, element = null) {
+    const cleanText = (text || '').trim();
+    if (!cleanText) return;
+
+    try {
+        window.speechSynthesis.cancel();
+        document.querySelectorAll('.vocab-row.speaking').forEach(el => el.classList.remove('speaking'));
+        stopListeningPlayback();
+
+        const result = await prepareListeningPlaybackAsset(
+            cleanText,
+            'en-US',
+            selectedLevel || 'VOCAB',
+            VOCAB_PREVIEW_VOICE_PROFILE
+        );
+        const audio = new Audio(result.objectUrl);
+        const audioContext = applyListeningPlaybackBoost(audio);
+        audio.preload = 'auto';
+        audio.onplay = () => {
+            if (element) element.classList.add('speaking');
+        };
+        audio.onended = () => {
+            if (element) element.classList.remove('speaking');
+            if (listeningPlaybackAudio === audio) {
+                listeningPlaybackAudio = null;
+                listeningPlaybackObjectUrl = '';
+                clearListeningPlaybackBoost();
+            }
+        };
+        audio.onerror = () => {
+            if (element) element.classList.remove('speaking');
+            if (listeningPlaybackAudio === audio) {
+                listeningPlaybackAudio = null;
+                listeningPlaybackObjectUrl = '';
+                clearListeningPlaybackBoost();
+            }
+        };
+
+        listeningPlaybackAudio = audio;
+        listeningPlaybackObjectUrl = result.objectUrl;
+        if (audioContext?.state === 'suspended') {
+            await audioContext.resume().catch(() => {});
+        }
+        await audio.play();
+    } catch (error) {
+        console.warn('[Vocab Audio] Azure playback failed, falling back to browser speech:', error);
+        await speakText(cleanText, element, false);
+    }
 }
 
 function closeLaunchModalUI() {
