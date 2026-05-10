@@ -141,7 +141,7 @@ let battleLog = [];
 let battleUsedWordKeys = new Set();
 let attackResolutionLocked = false;
 const DEFAULT_SPEAKING_ASSESSMENT_BASE = 'http://localhost:8787';
-const SPEAKING_PASS_SCORE = 70;
+const SPEAKING_PASS_SCORE = 75;
 
 function isCoarseTouchDevice() {
     return window.matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0;
@@ -9058,7 +9058,8 @@ function checkSpeakingAssessment(result) {
     setSpeakingUiState('analyzing', 'ASSESSMENT LOCKED', `${finalScore}`);
     renderSpeakingAssessmentDetail(targetWordAssessment, targetContext.matchType, sentenceScore);
 
-    const isCorrect = finalScore >= SPEAKING_PASS_SCORE && !targetMissing;
+    const targetPassed = targetScore >= SPEAKING_PASS_SCORE;
+    const isCorrect = finalScore >= SPEAKING_PASS_SCORE && targetPassed && !targetMissing;
 
     if (isCorrect) {
         if (typeof timerInterval !== 'undefined') clearInterval(timerInterval);
@@ -9100,7 +9101,7 @@ function checkSpeakingAssessment(result) {
         msgArea.innerText = `${targetWord.toUpperCase()} ${finalScore} // TRY AGAIN`;
         msgArea.style.color = getSpeakingAssessmentColor(targetScore, targetWordAssessment?.errorType);
     }
-    setSpeakingUiState('error', targetMissing ? 'MISPRONUNCIATION // TRY AGAIN' : 'UNCLEAR // ADJUST PRONUNCIATION', `${finalScore}`);
+    setSpeakingUiState('error', (targetMissing || !targetPassed) ? 'TARGET WORD LOW // TRY AGAIN' : 'UNCLEAR // ADJUST PRONUNCIATION', `${finalScore}`);
     playSound('speaking-wrong-sfx');
 }
 
