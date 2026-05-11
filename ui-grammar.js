@@ -1,0 +1,595 @@
+const GRAMMAR_VERB_TIME_LIMIT = 30;
+const GRAMMAR_VERB_QUESTION_COUNT = 20;
+const GRAMMAR_VERB_FIELD_ORDER = ['present', 'past', 'pg', 'pp'];
+const GRAMMAR_VERB_FIELD_LABELS = {
+    present: 'PRESENT',
+    past: 'PAST',
+    pg: 'ING',
+    pp: 'PP'
+};
+const GRAMMAR_VERB_FIELD_INDEX = {
+    present: 1,
+    past: 2,
+    pg: 4,
+    pp: 3
+};
+
+const grammarVerbState = {
+    questions: [],
+    wrongQuestions: [],
+    history: [],
+    currentQuestionIndex: 0,
+    score: 0,
+    checked: false,
+    timeLeft: GRAMMAR_VERB_TIME_LIMIT,
+    timerInterval: null,
+    activeFieldIndex: 0,
+    referenceRendered: false
+};
+
+function grammarUsesGameKeyboard() {
+    return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ||
+        window.matchMedia('(pointer: coarse)').matches ||
+        navigator.maxTouchPoints > 0;
+}
+
+function getGrammarVerbScreen() {
+    return document.getElementById('grammar-verb-screen');
+}
+
+function getGrammarVerbFieldInput(fieldKey) {
+    return document.getElementById(`grammar-verb-input-${fieldKey}`);
+}
+
+function getGrammarVerbFieldContainer(fieldKey) {
+    const input = getGrammarVerbFieldInput(fieldKey);
+    return input ? input.closest('.grammar-verb-field') : null;
+}
+
+function getCurrentGrammarQuestion() {
+    return grammarVerbState.questions[grammarVerbState.currentQuestionIndex] || null;
+}
+
+function shuffleGrammarArray(items) {
+    const clone = [...items];
+    for (let i = clone.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [clone[i], clone[j]] = [clone[j], clone[i]];
+    }
+    return clone;
+}
+
+function showGrammarScreenWithAnimation(screenId) {
+    const screen = document.getElementById(screenId);
+    if (!screen) return;
+    screen.style.display = 'flex';
+    const wrapper = screen.querySelector('.panel-content-wrapper');
+    if (wrapper) {
+        wrapper.style.animation = 'none';
+        setTimeout(() => {
+            wrapper.style.animation = 'holoAppear 0.25s ease-out forwards';
+        }, 10);
+    }
+}
+
+function openGrammarTopicScreen() {
+    playSound('deploy-sfx');
+    const levelScreen = document.getElementById('level-screen');
+    if (levelScreen) levelScreen.style.display = 'none';
+    showSelectionOverlay();
+    showGrammarScreenWithAnimation('grammar-topic-screen');
+}
+
+function closeGrammarTopicScreen() {
+    const topicScreen = document.getElementById('grammar-topic-screen');
+    if (topicScreen) topicScreen.style.display = 'none';
+    showGrammarScreenWithAnimation('level-screen');
+}
+
+function renderGrammarVerbReference() {
+    if (grammarVerbState.referenceRendered) return;
+
+    const tbody = document.getElementById('grammar-verb-reference-body');
+    if (!tbody || !Array.isArray(window.GRAMMAR_VERB_BANK)) return;
+
+    tbody.innerHTML = window.GRAMMAR_VERB_BANK.map((verb) => `
+        <tr>
+            <td>${verb[0]}</td>
+            <td>${verb[1]}</td>
+            <td>${verb[2]}</td>
+            <td>${verb[4]}</td>
+            <td>${verb[3]}</td>
+        </tr>
+    `).join('');
+
+    grammarVerbState.referenceRendered = true;
+}
+
+function toggleGrammarVerbReference() {
+    const reference = document.getElementById('grammar-verb-reference');
+    if (!reference) return;
+    if (reference.style.display === 'none') {
+        renderGrammarVerbReference();
+        reference.style.display = 'block';
+    } else {
+        reference.style.display = 'none';
+    }
+}
+
+function configureGrammarKeyboard() {
+    const keyboard = document.getElementById('grammar-virtual-keyboard');
+    if (!keyboard) return;
+
+    if (!grammarUsesGameKeyboard()) {
+        keyboard.style.display = 'none';
+        keyboard.style.visibility = 'hidden';
+        return;
+    }
+
+    const screen = document.getElementById('grammar-verb-screen');
+    if (screen) {
+        screen.classList.add('grammar-keyboard-open');
+    }
+    keyboard.style.display = 'block';
+    keyboard.style.visibility = 'visible';
+}
+
+function hideGrammarKeyboard() {
+    const keyboard = document.getElementById('grammar-virtual-keyboard');
+    if (!keyboard) return;
+    keyboard.style.display = 'none';
+    keyboard.style.visibility = 'hidden';
+    const screen = document.getElementById('grammar-verb-screen');
+    if (screen) {
+        screen.classList.remove('grammar-keyboard-open');
+    }
+}
+
+function setGrammarVerbActiveField(index) {
+    const safeIndex = Math.max(0, Math.min(GRAMMAR_VERB_FIELD_ORDER.length - 1, index));
+    grammarVerbState.activeFieldIndex = safeIndex;
+
+    GRAMMAR_VERB_FIELD_ORDER.forEach((fieldKey, fieldIndex) => {
+        const container = getGrammarVerbFieldContainer(fieldKey);
+        const input = getGrammarVerbFieldInput(fieldKey);
+        if (container) {
+            container.classList.toggle('is-active', fieldIndex === safeIndex);
+        }
+        if (!input || grammarUsesGameKeyboard()) return;
+        if (fieldIndex === safeIndex && document.getElementById('grammar-verb-screen')?.style.display === 'flex') {
+            input.focus();
+            input.select();
+        }
+    });
+}
+
+function moveGrammarVerbField(direction) {
+    const nextIndex = (grammarVerbState.activeFieldIndex + direction + GRAMMAR_VERB_FIELD_ORDER.length) % GRAMMAR_VERB_FIELD_ORDER.length;
+    setGrammarVerbActiveField(nextIndex);
+}
+
+function stopGrammarVerbTimer() {
+    if (grammarVerbState.timerInterval) {
+        clearInterval(grammarVerbState.timerInterval);
+        grammarVerbState.timerInterval = null;
+    }
+}
+
+function updateGrammarVerbTimerUI() {
+    const timerText = document.getElementById('grammar-verb-timer-text');
+    const timerBar = document.getElementById('grammar-verb-timer-bar');
+    if (timerText) timerText.innerText = grammarVerbState.timeLeft.toFixed(1);
+    if (timerBar) {
+        timerBar.style.width = `${(grammarVerbState.timeLeft / GRAMMAR_VERB_TIME_LIMIT) * 100}%`;
+        timerBar.style.background = grammarVerbState.timeLeft <= 5
+            ? 'linear-gradient(90deg, rgba(239, 68, 68, 0.95), rgba(248, 113, 113, 0.8))'
+            : 'linear-gradient(90deg, rgba(14, 165, 233, 0.95), rgba(34, 211, 238, 0.8))';
+    }
+}
+
+function startGrammarVerbTimer() {
+    stopGrammarVerbTimer();
+    grammarVerbState.timeLeft = GRAMMAR_VERB_TIME_LIMIT;
+    updateGrammarVerbTimerUI();
+    grammarVerbState.timerInterval = setInterval(() => {
+        grammarVerbState.timeLeft = Math.max(0, grammarVerbState.timeLeft - 0.1);
+        updateGrammarVerbTimerUI();
+        if (grammarVerbState.timeLeft <= 0) {
+            stopGrammarVerbTimer();
+            checkGrammarVerbAnswer(true);
+        }
+    }, 100);
+}
+
+function resetGrammarVerbHints() {
+    document.querySelectorAll('.grammar-answer-hint').forEach((hint) => hint.remove());
+}
+
+function resetGrammarVerbInputs() {
+    resetGrammarVerbHints();
+
+    GRAMMAR_VERB_FIELD_ORDER.forEach((fieldKey) => {
+        const input = getGrammarVerbFieldInput(fieldKey);
+        if (!input) return;
+        input.value = '';
+        input.disabled = false;
+        input.classList.remove('is-correct', 'is-wrong');
+        if (grammarUsesGameKeyboard()) {
+            input.setAttribute('readonly', 'readonly');
+            input.classList.add('grammar-readonly');
+        } else {
+            input.removeAttribute('readonly');
+            input.classList.remove('grammar-readonly');
+        }
+    });
+}
+
+function updateGrammarVerbHeader() {
+    const qNum = document.getElementById('grammar-verb-q-num');
+    const qTotal = document.getElementById('grammar-verb-q-total');
+    const score = document.getElementById('grammar-verb-score');
+    if (qNum) qNum.innerText = String(grammarVerbState.currentQuestionIndex + 1);
+    if (qTotal) qTotal.innerText = String(grammarVerbState.questions.length);
+    if (score) score.innerText = String(grammarVerbState.score);
+}
+
+function loadGrammarVerbQuestion() {
+    const question = getCurrentGrammarQuestion();
+    if (!question) {
+        endGrammarVerbChallenge();
+        return;
+    }
+
+    const prompt = document.getElementById('grammar-verb-prompt');
+    const message = document.getElementById('grammar-verb-message');
+    const checkBtn = document.getElementById('grammar-verb-check-btn');
+    const nextBtn = document.getElementById('grammar-verb-next-btn');
+
+    grammarVerbState.checked = false;
+    resetGrammarVerbInputs();
+    updateGrammarVerbHeader();
+    if (prompt) prompt.innerText = question[0];
+    if (message) message.innerText = '';
+    if (checkBtn) checkBtn.style.display = 'inline-flex';
+    if (nextBtn) nextBtn.style.display = 'none';
+
+    setGrammarVerbActiveField(0);
+    configureGrammarKeyboard();
+    startGrammarVerbTimer();
+}
+
+function initGrammarVerbChallenge(useWrongQuestions = false) {
+    const source = useWrongQuestions && grammarVerbState.wrongQuestions.length
+        ? grammarVerbState.wrongQuestions
+        : (window.GRAMMAR_VERB_BANK || []);
+
+    grammarVerbState.questions = shuffleGrammarArray(source).slice(0, Math.min(GRAMMAR_VERB_QUESTION_COUNT, source.length));
+    grammarVerbState.currentQuestionIndex = 0;
+    grammarVerbState.score = 0;
+    grammarVerbState.history = [];
+    if (!useWrongQuestions) {
+        grammarVerbState.wrongQuestions = [];
+    }
+
+    const result = document.getElementById('grammar-verb-result');
+    const game = document.getElementById('grammar-verb-game');
+    const actions = document.querySelector('.grammar-verb-actions');
+    if (result) {
+        result.style.display = 'none';
+        result.innerHTML = '';
+    }
+    if (game) game.style.display = 'flex';
+    if (actions) actions.style.display = 'flex';
+
+    loadGrammarVerbQuestion();
+}
+
+function openGrammarVerbTableScreen() {
+    playSound('deploy-sfx');
+    const topicScreen = document.getElementById('grammar-topic-screen');
+    if (topicScreen) topicScreen.style.display = 'none';
+    showGrammarScreenWithAnimation('grammar-verb-screen');
+    renderGrammarVerbReference();
+    initGrammarVerbChallenge(false);
+}
+
+function returnFromGrammarVerbScreen() {
+    stopGrammarVerbTimer();
+    hideGrammarKeyboard();
+    const grammarScreen = getGrammarVerbScreen();
+    if (grammarScreen) grammarScreen.style.display = 'none';
+    const reference = document.getElementById('grammar-verb-reference');
+    if (reference) reference.style.display = 'none';
+    showGrammarScreenWithAnimation('grammar-topic-screen');
+}
+
+function buildGrammarAnswerMap(question) {
+    return {
+        present: question[GRAMMAR_VERB_FIELD_INDEX.present],
+        past: question[GRAMMAR_VERB_FIELD_INDEX.past],
+        pg: question[GRAMMAR_VERB_FIELD_INDEX.pg],
+        pp: question[GRAMMAR_VERB_FIELD_INDEX.pp]
+    };
+}
+
+function addGrammarAnswerHint(fieldKey, answerText) {
+    const container = getGrammarVerbFieldContainer(fieldKey);
+    if (!container) return;
+    const hint = document.createElement('div');
+    hint.className = 'grammar-answer-hint';
+    hint.innerText = answerText;
+    container.appendChild(hint);
+}
+
+function grammarValueMatches(userValue, answerText) {
+    const normalizedUser = userValue.trim().toLowerCase();
+    if (!normalizedUser) return false;
+    return answerText
+        .toLowerCase()
+        .split('/')
+        .map((part) => part.trim())
+        .some((part) => part === normalizedUser);
+}
+
+function checkGrammarVerbAnswer(isTimeout = false) {
+    if (grammarVerbState.checked) return;
+
+    const question = getCurrentGrammarQuestion();
+    if (!question) return;
+
+    stopGrammarVerbTimer();
+    grammarVerbState.checked = true;
+
+    const answers = buildGrammarAnswerMap(question);
+    const errors = [];
+    let allCorrect = true;
+
+    GRAMMAR_VERB_FIELD_ORDER.forEach((fieldKey) => {
+        const input = getGrammarVerbFieldInput(fieldKey);
+        if (!input) return;
+
+        const isCorrect = grammarValueMatches(input.value, answers[fieldKey]);
+        input.disabled = true;
+
+        if (isCorrect && !isTimeout) {
+            input.classList.add('is-correct');
+            grammarVerbState.score += 1;
+        } else {
+            allCorrect = false;
+            input.classList.add('is-wrong');
+            addGrammarAnswerHint(fieldKey, answers[fieldKey]);
+            errors.push({
+                label: GRAMMAR_VERB_FIELD_LABELS[fieldKey],
+                user: input.value.trim(),
+                correct: answers[fieldKey]
+            });
+        }
+    });
+
+    const score = document.getElementById('grammar-verb-score');
+    const message = document.getElementById('grammar-verb-message');
+    const checkBtn = document.getElementById('grammar-verb-check-btn');
+    const nextBtn = document.getElementById('grammar-verb-next-btn');
+
+    if (score) score.innerText = String(grammarVerbState.score);
+    if (message) {
+        message.innerText = allCorrect && !isTimeout
+            ? 'ALL FORMS CONFIRMED'
+            : (isTimeout ? 'TIME OUT // REVIEW ANSWERS' : 'REVIEW THE CORRECT FORMS');
+    }
+    if (checkBtn) checkBtn.style.display = 'none';
+    if (nextBtn) nextBtn.style.display = 'inline-flex';
+
+    if (!allCorrect && !grammarVerbState.wrongQuestions.includes(question)) {
+        grammarVerbState.wrongQuestions.push(question);
+    }
+
+    if (!allCorrect) {
+        grammarVerbState.history.push({
+            chinese: question[0],
+            errors
+        });
+    }
+}
+
+function advanceGrammarVerbQuestion() {
+    if (!grammarVerbState.checked) return;
+    grammarVerbState.currentQuestionIndex += 1;
+    if (grammarVerbState.currentQuestionIndex >= grammarVerbState.questions.length) {
+        endGrammarVerbChallenge();
+        return;
+    }
+    loadGrammarVerbQuestion();
+}
+
+function endGrammarVerbChallenge() {
+    stopGrammarVerbTimer();
+    hideGrammarKeyboard();
+
+    const result = document.getElementById('grammar-verb-result');
+    const game = document.getElementById('grammar-verb-game');
+    const actions = document.querySelector('.grammar-verb-actions');
+    if (!result || !game || !actions) return;
+
+    const maxScore = grammarVerbState.questions.length * GRAMMAR_VERB_FIELD_ORDER.length;
+    const percent = maxScore > 0 ? Math.round((grammarVerbState.score / maxScore) * 100) : 0;
+    const errorHtml = grammarVerbState.history.length
+        ? grammarVerbState.history.map((item) => `
+            <div class="grammar-verb-error-item">
+                <div class="grammar-verb-error-title">${item.chinese}</div>
+                ${item.errors.map((error) => `
+                    <div class="grammar-verb-error-row">
+                        <span>${error.label}</span>
+                        <span>${error.user || '(blank)'} -> ${error.correct}</span>
+                    </div>
+                `).join('')}
+            </div>
+        `).join('')
+        : '<div class="grammar-verb-result-score">PERFECT RUN // NO ERRORS</div>';
+
+    result.innerHTML = `
+        <div class="grammar-verb-result-title">CHALLENGE COMPLETE</div>
+        <div class="grammar-verb-result-score">${grammarVerbState.score} / ${maxScore} // ${percent}%</div>
+        ${errorHtml}
+        <div class="grammar-verb-result-actions">
+            <button class="grammar-ghost-btn" onclick="returnFromGrammarVerbScreen()">&lt; TOPICS</button>
+            ${grammarVerbState.wrongQuestions.length ? '<button class="grammar-action-btn grammar-action-btn-secondary" onclick="retryGrammarVerbWrongQuestions()">RETRY WRONG</button>' : ''}
+            <button class="grammar-action-btn grammar-action-btn-primary" onclick="restartGrammarVerbChallenge()">RESTART</button>
+        </div>
+    `;
+
+    game.style.display = 'none';
+    actions.style.display = 'none';
+    result.style.display = 'block';
+}
+
+function restartGrammarVerbChallenge() {
+    playSound('deploy-sfx');
+    initGrammarVerbChallenge(false);
+}
+
+function retryGrammarVerbWrongQuestions() {
+    if (!grammarVerbState.wrongQuestions.length) return;
+    playSound('deploy-sfx');
+    initGrammarVerbChallenge(true);
+}
+
+function handleGrammarKeyboardKey(keyValue, keyElement) {
+    if (getGrammarVerbScreen()?.style.display !== 'flex') return;
+
+    if (keyValue === 'PREV_FIELD') {
+        moveGrammarVerbField(-1);
+        return;
+    }
+
+    if (keyValue === 'NEXT_FIELD') {
+        moveGrammarVerbField(1);
+        return;
+    }
+
+    if (keyValue === 'ENTER') {
+        if (grammarVerbState.checked) {
+            advanceGrammarVerbQuestion();
+        } else {
+            checkGrammarVerbAnswer();
+        }
+        return;
+    }
+
+    if (grammarVerbState.checked) return;
+
+    const fieldKey = GRAMMAR_VERB_FIELD_ORDER[grammarVerbState.activeFieldIndex];
+    const input = getGrammarVerbFieldInput(fieldKey);
+    if (!input) return;
+
+    if (keyValue === 'BACKSPACE') {
+        input.value = input.value.slice(0, -1);
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+        return;
+    }
+
+    if (keyElement) {
+        lastVirtualKeyboardKey = keyElement;
+    }
+    input.value += keyValue;
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+}
+
+function attachGrammarInputBehaviors() {
+    GRAMMAR_VERB_FIELD_ORDER.forEach((fieldKey, index) => {
+        const input = getGrammarVerbFieldInput(fieldKey);
+        if (!input) return;
+
+        input.addEventListener('focus', () => {
+            setGrammarVerbActiveField(index);
+            if (grammarUsesGameKeyboard()) {
+                configureGrammarKeyboard();
+                input.blur();
+            }
+        });
+
+        input.addEventListener('click', () => {
+            setGrammarVerbActiveField(index);
+            if (grammarUsesGameKeyboard()) {
+                configureGrammarKeyboard();
+                input.blur();
+            }
+        });
+
+        input.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowLeft') {
+                event.preventDefault();
+                moveGrammarVerbField(-1);
+            } else if (event.key === 'ArrowRight') {
+                event.preventDefault();
+                moveGrammarVerbField(1);
+            } else if (event.key === 'Enter') {
+                event.preventDefault();
+                if (grammarVerbState.checked) {
+                    advanceGrammarVerbQuestion();
+                } else {
+                    checkGrammarVerbAnswer();
+                }
+            }
+        });
+
+        input.addEventListener('input', () => {
+            input.classList.remove('is-correct', 'is-wrong');
+            const container = getGrammarVerbFieldContainer(fieldKey);
+            if (container) {
+                const hint = container.querySelector('.grammar-answer-hint');
+                if (hint) hint.remove();
+            }
+        });
+    });
+}
+
+function teardownGrammarScreens() {
+    stopGrammarVerbTimer();
+    hideGrammarKeyboard();
+    const reference = document.getElementById('grammar-verb-reference');
+    if (reference) reference.style.display = 'none';
+}
+
+window.openGrammarTopicScreen = openGrammarTopicScreen;
+window.closeGrammarTopicScreen = closeGrammarTopicScreen;
+window.openGrammarVerbTableScreen = openGrammarVerbTableScreen;
+window.returnFromGrammarVerbScreen = returnFromGrammarVerbScreen;
+window.toggleGrammarVerbReference = toggleGrammarVerbReference;
+window.checkGrammarVerbAnswer = checkGrammarVerbAnswer;
+window.advanceGrammarVerbQuestion = advanceGrammarVerbQuestion;
+window.restartGrammarVerbChallenge = restartGrammarVerbChallenge;
+window.retryGrammarVerbWrongQuestions = retryGrammarVerbWrongQuestions;
+window.teardownGrammarScreens = teardownGrammarScreens;
+document.addEventListener('DOMContentLoaded', () => {
+    attachGrammarInputBehaviors();
+
+    const keyboard = document.getElementById('grammar-virtual-keyboard');
+    if (!keyboard) return;
+
+    keyboard.addEventListener('click', (event) => {
+        const key = event.target.closest('.kb-key');
+        if (!key) return;
+        event.preventDefault();
+        event.stopPropagation();
+        handleGrammarKeyboardKey(key.getAttribute('data-grammar-key'), key);
+    });
+
+    keyboard.addEventListener('touchstart', (event) => {
+        const key = event.target.closest('.kb-key');
+        if (!key) return;
+        key.classList.add('kb-active');
+    }, { passive: true });
+
+    keyboard.addEventListener('touchend', (event) => {
+        const key = event.target.closest('.kb-key');
+        if (!key) return;
+        setTimeout(() => key.classList.remove('kb-active'), 100);
+    }, { passive: true });
+
+    keyboard.addEventListener('touchcancel', (event) => {
+        const key = event.target.closest('.kb-key');
+        if (!key) return;
+        key.classList.remove('kb-active');
+    }, { passive: true });
+});

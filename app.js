@@ -7246,7 +7246,7 @@ let synth = window.speechSynthesis;
 let techVoice = null;
 
 function hideMenuOverlayScreens() {
-    const ids = ['level-screen', 'skill-screen', 'race-screen', 'lobby-screen', 'ranking-screen', 'vocab-screen'];
+    const ids = ['level-screen', 'skill-screen', 'race-screen', 'lobby-screen', 'ranking-screen', 'vocab-screen', 'grammar-topic-screen', 'grammar-verb-screen'];
     ids.forEach(id => {
         const el = document.getElementById(id);
         if (el) el.style.display = 'none';
@@ -7254,6 +7254,9 @@ function hideMenuOverlayScreens() {
 
     const overlay = document.getElementById('selection-overlay');
     if (overlay) overlay.style.display = 'none';
+    if (typeof window.teardownGrammarScreens === 'function') {
+        window.teardownGrammarScreens();
+    }
 }
 
 function showSelectionOverlay() {

@@ -7282,3 +7282,499 @@ body {
 .incoming-invite-accept-btn:hover {
     box-shadow: 0 0 18px rgba(34, 197, 94, 0.32), inset 0 0 12px rgba(34, 197, 94, 0.12);
 }
+
+.level-btn-grammar {
+    border-color: rgba(255, 255, 255, 0.9);
+    color: #ffffff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+    box-shadow: 0 0 14px rgba(255, 255, 255, 0.2);
+}
+
+.level-btn-grammar:hover {
+    box-shadow: 0 0 24px rgba(255, 255, 255, 0.45);
+}
+
+.grammar-screen-title {
+    font-family: 'Black Ops One';
+    color: #ffffff;
+    font-size: 40px;
+    margin: 0 0 10px;
+    text-align: center;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.35);
+}
+
+.grammar-screen-subtitle {
+    color: #94a3b8;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.grammar-topic-panel {
+    width: min(420px, calc(100% - 40px));
+}
+
+.grammar-topic-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 100%;
+}
+
+.grammar-topic-btn {
+    width: 100%;
+    min-height: 92px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: 'Orbitron', sans-serif;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    box-shadow: 0 0 16px rgba(255, 255, 255, 0.14);
+}
+
+.grammar-topic-btn:hover {
+    transform: scale(1.04);
+    box-shadow: 0 0 26px rgba(255, 255, 255, 0.28);
+}
+
+.grammar-topic-name {
+    font-family: 'Black Ops One';
+    font-size: 26px;
+    letter-spacing: 1px;
+}
+
+.grammar-topic-desc {
+    font-size: 11px;
+    letter-spacing: 2px;
+    opacity: 0.72;
+}
+
+.grammar-verb-panel {
+    width: min(980px, calc(100% - 28px));
+    max-height: calc(100vh - 28px);
+    overflow: hidden;
+    padding: 22px 22px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.grammar-verb-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.grammar-verb-title {
+    text-align: left;
+    margin-bottom: 6px;
+}
+
+.grammar-ghost-btn {
+    align-self: center;
+    padding: 10px 16px;
+    background: rgba(15, 23, 42, 0.68);
+    border: 1px solid rgba(148, 163, 184, 0.45);
+    color: #cbd5e1;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.grammar-ghost-btn:hover {
+    border-color: rgba(255, 255, 255, 0.7);
+    color: #ffffff;
+    box-shadow: 0 0 14px rgba(255, 255, 255, 0.15);
+}
+
+.grammar-verb-statusbar {
+    display: grid;
+    grid-template-columns: 130px 1fr 130px;
+    align-items: center;
+    gap: 12px;
+}
+
+.grammar-verb-statuschip {
+    color: #e2e8f0;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    padding: 10px 12px;
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    background: rgba(15, 23, 42, 0.55);
+    text-align: center;
+}
+
+.grammar-verb-timer-wrap {
+    position: relative;
+}
+
+.grammar-verb-timer-track {
+    position: relative;
+    height: 20px;
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    background: rgba(15, 23, 42, 0.55);
+    overflow: hidden;
+}
+
+.grammar-verb-timer-bar {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 100%;
+    background: linear-gradient(90deg, rgba(14, 165, 233, 0.95), rgba(34, 211, 238, 0.8));
+    transition: width 0.1s linear;
+}
+
+.grammar-verb-timer-text {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+}
+
+.grammar-verb-reference {
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    background: rgba(2, 6, 23, 0.72);
+    padding: 14px;
+}
+
+.grammar-verb-reference-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    color: #f8fafc;
+    font-family: 'Black Ops One';
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+.grammar-verb-reference-sub {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: #94a3b8;
+}
+
+.grammar-verb-reference-wrap {
+    max-height: 44vh;
+    overflow: auto;
+    border: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.grammar-verb-reference-table {
+    width: 100%;
+    min-width: 720px;
+    border-collapse: collapse;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 13px;
+}
+
+.grammar-verb-reference-table th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: rgba(15, 23, 42, 0.96);
+    color: #f8fafc;
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.28);
+}
+
+.grammar-verb-reference-table td {
+    padding: 10px;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+    color: #cbd5e1;
+}
+
+.grammar-verb-reference-table tr:nth-child(even) td {
+    background: rgba(15, 23, 42, 0.28);
+}
+
+.grammar-verb-game {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+}
+
+.grammar-verb-prompt-label {
+    color: #94a3b8;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.grammar-verb-prompt {
+    min-height: 78px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px 20px;
+    background: rgba(15, 23, 42, 0.72);
+    border-left: 4px solid #ffffff;
+    color: #ffffff;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: clamp(26px, 3.2vw, 34px);
+    font-weight: 700;
+    text-align: center;
+}
+
+.grammar-verb-instruction {
+    color: #ef4444;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.grammar-verb-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.grammar-verb-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 14px;
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    background: rgba(15, 23, 42, 0.55);
+}
+
+.grammar-verb-field.is-active {
+    border-color: rgba(255, 255, 255, 0.88);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2), 0 0 18px rgba(255, 255, 255, 0.12);
+}
+
+.grammar-verb-field-label {
+    color: #e2e8f0;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.grammar-verb-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    background: rgba(2, 6, 23, 0.88);
+    color: #ffffff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 18px;
+    text-align: center;
+    outline: none;
+}
+
+.grammar-verb-input.grammar-readonly {
+    caret-color: transparent;
+}
+
+.grammar-verb-input.is-correct {
+    border-color: rgba(34, 197, 94, 0.95);
+    color: #86efac;
+    box-shadow: 0 0 14px rgba(34, 197, 94, 0.18);
+}
+
+.grammar-verb-input.is-wrong {
+    border-color: rgba(239, 68, 68, 0.95);
+    color: #fca5a5;
+    box-shadow: 0 0 14px rgba(239, 68, 68, 0.16);
+}
+
+.grammar-answer-hint {
+    margin-top: 6px;
+    color: #fca5a5;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    text-align: center;
+}
+
+.grammar-verb-message {
+    min-height: 20px;
+    color: #f59e0b;
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.grammar-verb-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.grammar-action-btn {
+    min-width: 140px;
+    padding: 12px 16px;
+    border: 1px solid transparent;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.grammar-action-btn:hover {
+    transform: translateY(-1px);
+}
+
+.grammar-action-btn-primary {
+    background: rgba(14, 165, 233, 0.14);
+    border-color: rgba(14, 165, 233, 0.5);
+    color: #38bdf8;
+    box-shadow: 0 0 14px rgba(14, 165, 233, 0.12);
+}
+
+.grammar-action-btn-secondary {
+    background: rgba(34, 197, 94, 0.14);
+    border-color: rgba(34, 197, 94, 0.5);
+    color: #86efac;
+    box-shadow: 0 0 14px rgba(34, 197, 94, 0.12);
+}
+
+.grammar-verb-result {
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    background: rgba(2, 6, 23, 0.72);
+    padding: 18px;
+    overflow: auto;
+    max-height: 42vh;
+}
+
+.grammar-verb-result-title {
+    font-family: 'Black Ops One';
+    color: #ffffff;
+    font-size: 28px;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.grammar-verb-result-score {
+    color: #38bdf8;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 14px;
+}
+
+.grammar-verb-result-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.grammar-verb-error-item {
+    padding: 10px 12px;
+    border-left: 3px solid rgba(239, 68, 68, 0.9);
+    background: rgba(127, 29, 29, 0.15);
+    margin-bottom: 10px;
+}
+
+.grammar-verb-error-title {
+    color: #ffffff;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.grammar-verb-error-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    color: #cbd5e1;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+.kb-nav-key {
+    display: none;
+    flex: 0.82 1 0;
+    min-width: 0;
+    background: linear-gradient(135deg, rgba(148, 163, 184, 0.15), rgba(100, 116, 139, 0.1));
+    border-color: rgba(148, 163, 184, 0.4);
+    color: #e2e8f0;
+    text-shadow: 0 0 5px rgba(148, 163, 184, 0.5);
+}
+
+#virtual-keyboard.kb-grammar-nav .kb-nav-key {
+    display: flex;
+}
+
+#virtual-keyboard.kb-grammar-nav .kb-enter {
+    flex: 1.35 1 0;
+}
+
+.grammar-keyboard-open .grammar-verb-panel {
+    padding-bottom: calc(250px + env(safe-area-inset-bottom));
+}
+
+.grammar-virtual-keyboard .kb-nav-key {
+    display: flex;
+}
+
+.grammar-virtual-keyboard .kb-enter {
+    flex: 1.35 1 0;
+}
+
+@media (max-width: 760px) {
+    .grammar-verb-panel {
+        width: calc(100% - 18px);
+        max-height: calc(100vh - 18px);
+        padding: 18px 14px 14px;
+    }
+
+    .grammar-screen-title {
+        font-size: 32px;
+    }
+
+    .grammar-verb-header,
+    .grammar-verb-statusbar,
+    .grammar-verb-actions {
+        grid-template-columns: 1fr;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .grammar-verb-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .grammar-verb-prompt {
+        min-height: 64px;
+        font-size: 24px;
+    }
+
+    .grammar-action-btn,
+    .grammar-ghost-btn {
+        width: 100%;
+    }
+
+    .grammar-keyboard-open .grammar-verb-panel {
+        padding-bottom: calc(270px + env(safe-area-inset-bottom));
+    }
+}

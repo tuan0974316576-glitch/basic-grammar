@@ -18,7 +18,7 @@
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 let refreshing = false;
-                navigator.serviceWorker.register('./sw.js?v=20260511-078').then(reg => {
+                navigator.serviceWorker.register('./sw.js?v=20260511-079').then(reg => {
                     console.log('SW registered!', reg);
                     reg.update();
 
@@ -48,8 +48,8 @@
         }
     </script>
 
-    <script type="module" src="firebase-init.js?v=0.78"></script>
-    <link rel="stylesheet" href="style.css?v=0.78">
+    <script type="module" src="firebase-init.js?v=0.79"></script>
+    <link rel="stylesheet" href="style.css?v=0.79">
 
 </head>
 <body>
@@ -78,7 +78,7 @@
     <div class="game-footer splash-footer">
         <span class="brand">Enguistics Learning Centre</span> 2026
         <br>
-        v0.78
+        v0.79
     </div>
 </div>
 <div id="game-content-wrapper" style="display: none;">
@@ -384,9 +384,144 @@
             <button class="level-btn" onclick="selectLevel('L4')">LEVEL 4</button>
             <button class="level-btn" onclick="selectLevel('L5')">LEVEL 5</button>
             <button class="level-btn" onclick="selectLevel('L5_STAR')">LEVEL 5*</button>
+            <button class="level-btn level-btn-grammar" onclick="openGrammarTopicScreen()">GRAMMAR</button>
         </div>
 
         <button class="btn" onclick="playSound('delete-sfx'); closeLevelScreen()" style="margin-top: 30px;">&lt; BACK</button>
+    </div>
+</div>
+<div id="grammar-topic-screen" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 255; flex-direction: column; align-items: center; justify-content: center;">
+    <div class="panel-content-wrapper grammar-topic-panel">
+        <h2 class="grammar-screen-title">SELECT TOPIC</h2>
+        <div class="grammar-screen-subtitle">GRAMMAR TRAINING MODULE</div>
+
+        <div class="grammar-topic-grid">
+            <button class="grammar-topic-btn" onclick="openGrammarVerbTableScreen()">
+                <div class="grammar-topic-name">VERB TABLE</div>
+                <div class="grammar-topic-desc">FOUR-FORM DRILL</div>
+            </button>
+        </div>
+
+        <button class="btn" onclick="playSound('delete-sfx'); closeGrammarTopicScreen()" style="margin-top: 30px;">&lt; BACK</button>
+    </div>
+</div>
+<div id="grammar-verb-screen" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 256; flex-direction: column; align-items: center; justify-content: center;">
+    <div class="panel-content-wrapper grammar-verb-panel">
+        <div class="grammar-verb-header">
+            <div>
+                <h2 class="grammar-screen-title grammar-verb-title">VERB TABLE</h2>
+                <div class="grammar-screen-subtitle">FOUR-FORM CHALLENGE</div>
+            </div>
+            <button class="grammar-ghost-btn" onclick="toggleGrammarVerbReference()">REFERENCE TABLE</button>
+        </div>
+
+        <div class="grammar-verb-statusbar">
+            <div class="grammar-verb-statuschip">Q <span id="grammar-verb-q-num">1</span>/<span id="grammar-verb-q-total">20</span></div>
+            <div class="grammar-verb-timer-wrap">
+                <div class="grammar-verb-timer-track">
+                    <div id="grammar-verb-timer-bar" class="grammar-verb-timer-bar"></div>
+                </div>
+                <div id="grammar-verb-timer-text" class="grammar-verb-timer-text">30.0</div>
+            </div>
+            <div class="grammar-verb-statuschip">SCORE <span id="grammar-verb-score">0</span></div>
+        </div>
+
+        <div id="grammar-verb-reference" class="grammar-verb-reference" style="display: none;">
+            <div class="grammar-verb-reference-head">
+                <div>REFERENCE TABLE</div>
+                <div class="grammar-verb-reference-sub">CHINESE // PRESENT // PAST // ING // PP</div>
+            </div>
+            <div class="grammar-verb-reference-wrap">
+                <table class="grammar-verb-reference-table">
+                    <thead>
+                        <tr>
+                            <th>CHINESE</th>
+                            <th>PRESENT</th>
+                            <th>PAST</th>
+                            <th>ING</th>
+                            <th>PP</th>
+                        </tr>
+                    </thead>
+                    <tbody id="grammar-verb-reference-body"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="grammar-verb-game" class="grammar-verb-game">
+            <div class="grammar-verb-prompt-label">CHINESE MEANING</div>
+            <div id="grammar-verb-prompt" class="grammar-verb-prompt">LOADING...</div>
+            <div class="grammar-verb-instruction">FILL ALL FOUR FORMS // USE FIRE TO CHECK</div>
+
+            <div class="grammar-verb-grid">
+                <label class="grammar-verb-field">
+                    <span class="grammar-verb-field-label">PRESENT</span>
+                    <input id="grammar-verb-input-present" class="grammar-verb-input" data-grammar-field="present" autocomplete="off" spellcheck="false">
+                </label>
+                <label class="grammar-verb-field">
+                    <span class="grammar-verb-field-label">PAST</span>
+                    <input id="grammar-verb-input-past" class="grammar-verb-input" data-grammar-field="past" autocomplete="off" spellcheck="false">
+                </label>
+                <label class="grammar-verb-field">
+                    <span class="grammar-verb-field-label">ING</span>
+                    <input id="grammar-verb-input-pg" class="grammar-verb-input" data-grammar-field="pg" autocomplete="off" spellcheck="false">
+                </label>
+                <label class="grammar-verb-field">
+                    <span class="grammar-verb-field-label">PP</span>
+                    <input id="grammar-verb-input-pp" class="grammar-verb-input" data-grammar-field="pp" autocomplete="off" spellcheck="false">
+                </label>
+            </div>
+
+            <div id="grammar-verb-message" class="grammar-verb-message"></div>
+        </div>
+
+        <div class="grammar-verb-actions">
+            <button class="grammar-ghost-btn" onclick="returnFromGrammarVerbScreen()">&lt; TOPICS</button>
+            <button id="grammar-verb-check-btn" class="grammar-action-btn grammar-action-btn-primary" onclick="checkGrammarVerbAnswer()">CHECK</button>
+            <button id="grammar-verb-next-btn" class="grammar-action-btn grammar-action-btn-secondary" style="display: none;" onclick="advanceGrammarVerbQuestion()">NEXT</button>
+        </div>
+
+        <div id="grammar-verb-result" class="grammar-verb-result" style="display: none;"></div>
+
+        <div id="grammar-virtual-keyboard" class="vocab-virtual-keyboard grammar-virtual-keyboard kb-aurelians" style="display: none;">
+            <div class="kb-row">
+                <button class="kb-key" data-grammar-key="Q">Q</button>
+                <button class="kb-key" data-grammar-key="W">W</button>
+                <button class="kb-key" data-grammar-key="E">E</button>
+                <button class="kb-key" data-grammar-key="R">R</button>
+                <button class="kb-key" data-grammar-key="T">T</button>
+                <button class="kb-key" data-grammar-key="Y">Y</button>
+                <button class="kb-key" data-grammar-key="U">U</button>
+                <button class="kb-key" data-grammar-key="I">I</button>
+                <button class="kb-key" data-grammar-key="O">O</button>
+                <button class="kb-key" data-grammar-key="P">P</button>
+            </div>
+            <div class="kb-row">
+                <button class="kb-key" data-grammar-key="A">A</button>
+                <button class="kb-key" data-grammar-key="S">S</button>
+                <button class="kb-key" data-grammar-key="D">D</button>
+                <button class="kb-key" data-grammar-key="F">F</button>
+                <button class="kb-key" data-grammar-key="G">G</button>
+                <button class="kb-key" data-grammar-key="H">H</button>
+                <button class="kb-key" data-grammar-key="J">J</button>
+                <button class="kb-key" data-grammar-key="K">K</button>
+                <button class="kb-key" data-grammar-key="L">L</button>
+            </div>
+            <div class="kb-row">
+                <button class="kb-key" data-grammar-key="Z">Z</button>
+                <button class="kb-key" data-grammar-key="X">X</button>
+                <button class="kb-key" data-grammar-key="C">C</button>
+                <button class="kb-key" data-grammar-key="V">V</button>
+                <button class="kb-key" data-grammar-key="B">B</button>
+                <button class="kb-key" data-grammar-key="N">N</button>
+                <button class="kb-key" data-grammar-key="M">M</button>
+                <button class="kb-key kb-backspace" data-grammar-key="BACKSPACE">⌫</button>
+            </div>
+            <div class="kb-row">
+                <button class="kb-key kb-nav-key" data-grammar-key="PREV_FIELD">←</button>
+                <button class="kb-key kb-nav-key" data-grammar-key="NEXT_FIELD">→</button>
+                <button class="kb-key kb-enter" data-grammar-key="ENTER">FIRE</button>
+            </div>
+        </div>
     </div>
 </div>
 <div id="stage-screen" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 255; flex-direction: column; align-items: center; justify-content: center;">
@@ -642,6 +777,8 @@
                 <button class="kb-key kb-backspace" data-key="BACKSPACE">⌫</button>
             </div>
             <div class="kb-row">
+                <button class="kb-key kb-nav-key kb-nav-prev" data-key="PREV_FIELD">←</button>
+                <button class="kb-key kb-nav-key kb-nav-next" data-key="NEXT_FIELD">→</button>
                 <button class="kb-key kb-enter" data-key="ENTER">FIRE</button>
             </div>
         </div>
@@ -783,13 +920,15 @@
 <audio id="ship-voice-4"><source src="ship_4_spectre.mp3" type="audio/mpeg"></audio>
     <audio id="unit-lost-sfx"><source src="unit_lost.mp3" type="audio/mpeg"></audio>
 </div>
-<script src="vocab_data.js?v=0.78"></script>
-<script src="app-config.js?v=0.78"></script>
-<script src="vendor/effekseer/effekseer.min.js?v=0.78"></script>
-<script src="app.js?v=0.78"></script>
-<script src="ui-screens.js?v=0.78"></script>
-<script src="ui-auth.js?v=0.78"></script>
-<script src="ui-audio.js?v=0.78"></script>
+<script src="vocab_data.js?v=0.79"></script>
+<script src="app-config.js?v=0.79"></script>
+<script src="vendor/effekseer/effekseer.min.js?v=0.79"></script>
+<script src="app.js?v=0.79"></script>
+<script src="grammar_verb_table_data.js?v=0.79"></script>
+<script src="ui-grammar.js?v=0.79"></script>
+<script src="ui-screens.js?v=0.79"></script>
+<script src="ui-auth.js?v=0.79"></script>
+<script src="ui-audio.js?v=0.79"></script>
 <div id="registration-modal" class="registration-modal" style="display: none;">
     
     <div class="registration-scanlines"></div>
