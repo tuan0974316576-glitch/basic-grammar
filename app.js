@@ -2043,6 +2043,10 @@ function openStageInfo(stageIndex, event) {
         event.stopPropagation();
     }
 
+    if (typeof playSound === 'function') {
+        playSound('enter-number-sfx');
+    }
+
     const stageWords = getStageBaseWords(selectedLevel, stageIndex);
     const previewTitle = `${getStageLabel(selectedLevel, stageIndex)} // VOCAB`;
     if (typeof window.openStageVocabPreview === 'function') {

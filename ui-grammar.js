@@ -163,6 +163,9 @@ function renderGrammarTopicReference() {
 }
 
 function toggleGrammarVerbReference() {
+    if (typeof playSound === 'function') {
+        playSound('enter-number-sfx');
+    }
     const reference = document.getElementById('grammar-verb-reference');
     if (!reference) return;
     if (reference.style.display === 'none') {
@@ -174,6 +177,9 @@ function toggleGrammarVerbReference() {
 }
 
 function toggleGrammarTopicReference() {
+    if (typeof playSound === 'function') {
+        playSound('enter-number-sfx');
+    }
     const reference = document.getElementById('grammar-topic-reference');
     const title = document.getElementById('grammar-topic-title');
     const subtitle = document.getElementById('grammar-topic-subtitle');
@@ -216,6 +222,9 @@ function renderLaunchGrammarReference() {
 }
 
 function toggleLaunchGrammarReference() {
+    if (typeof playSound === 'function') {
+        playSound('enter-number-sfx');
+    }
     const reference = document.getElementById('launch-grammar-reference');
     if (!reference) return;
 
