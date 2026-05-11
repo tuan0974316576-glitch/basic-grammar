@@ -4392,7 +4392,11 @@ function takeNextAiBattleVocab() {
     }
 
     if (activeVocabList.length === 0) {
-        alert("Error: Database is empty!");
+        if (typeof window.isGrammarBattleMode === 'function' && window.isGrammarBattleMode()) {
+            alert("Error: Grammar database is empty!");
+        } else {
+            alert("Error: Database is empty!");
+        }
         return null;
     }
 

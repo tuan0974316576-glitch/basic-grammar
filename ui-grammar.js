@@ -106,6 +106,8 @@ function openGrammarTopicScreen() {
 function closeGrammarTopicScreen() {
     const topicScreen = document.getElementById('grammar-topic-screen');
     if (topicScreen) topicScreen.style.display = 'none';
+    const reference = document.getElementById('grammar-topic-reference');
+    if (reference) reference.style.display = 'none';
     window.selectedGrammarTopic = null;
     showGrammarScreenWithAnimation('level-screen');
 }
@@ -129,11 +131,38 @@ function renderGrammarVerbReference() {
     grammarVerbState.referenceRendered = true;
 }
 
+function renderGrammarTopicReference() {
+    const tbody = document.getElementById('grammar-topic-reference-body');
+    if (!tbody || !Array.isArray(window.GRAMMAR_VERB_BANK)) return;
+
+    tbody.innerHTML = window.GRAMMAR_VERB_BANK.map((verb) => `
+        <tr>
+            <td>${verb[0]}</td>
+            <td>${verb[1]}</td>
+            <td>${verb[2]}</td>
+            <td>${verb[4]}</td>
+            <td>${verb[3]}</td>
+        </tr>
+    `).join('');
+}
+
 function toggleGrammarVerbReference() {
     const reference = document.getElementById('grammar-verb-reference');
     if (!reference) return;
     if (reference.style.display === 'none') {
         renderGrammarVerbReference();
+        reference.style.display = 'block';
+    } else {
+        reference.style.display = 'none';
+    }
+}
+
+function toggleGrammarTopicReference() {
+    const reference = document.getElementById('grammar-topic-reference');
+    if (!reference) return;
+
+    if (reference.style.display === 'none') {
+        renderGrammarTopicReference();
         reference.style.display = 'block';
     } else {
         reference.style.display = 'none';
@@ -509,6 +538,15 @@ function openGrammarVerbTableScreen() {
     selectedStageIndex = null;
     selectedStageLabel = 'VERB TABLE';
     activeVocabList = buildGrammarBattleDeck();
+    if (!activeVocabList.length) {
+        if (typeof showNotification === 'function') {
+            showNotification('GRAMMAR DATABASE NOT LOADED', 'error', 4000);
+        } else {
+            alert('Grammar database not loaded.');
+        }
+        if (topicScreen) topicScreen.style.display = 'flex';
+        return;
+    }
     sessionDeck = [...activeVocabList];
 
     if (typeof loadMissedWordsToPriorityDeck === 'function') {
@@ -836,6 +874,7 @@ window.closeGrammarTopicScreen = closeGrammarTopicScreen;
 window.openGrammarVerbTableScreen = openGrammarVerbTableScreen;
 window.returnFromGrammarVerbScreen = returnFromGrammarVerbScreen;
 window.toggleGrammarVerbReference = toggleGrammarVerbReference;
+window.toggleGrammarTopicReference = toggleGrammarTopicReference;
 window.checkGrammarVerbAnswer = checkGrammarVerbAnswer;
 window.advanceGrammarVerbQuestion = advanceGrammarVerbQuestion;
 window.restartGrammarVerbChallenge = restartGrammarVerbChallenge;
