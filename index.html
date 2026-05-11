@@ -18,7 +18,7 @@
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 let refreshing = false;
-                navigator.serviceWorker.register('./sw.js?v=20260511-082').then(reg => {
+                navigator.serviceWorker.register('./sw.js?v=20260511-083').then(reg => {
                     console.log('SW registered!', reg);
                     reg.update();
 
@@ -48,8 +48,8 @@
         }
     </script>
 
-    <script type="module" src="firebase-init.js?v=0.82"></script>
-    <link rel="stylesheet" href="style.css?v=0.82">
+    <script type="module" src="firebase-init.js?v=0.83"></script>
+    <link rel="stylesheet" href="style.css?v=0.83">
 
 </head>
 <body>
@@ -78,7 +78,7 @@
     <div class="game-footer splash-footer">
         <span class="brand">Enguistics Learning Centre</span> 2026
         <br>
-        v0.82
+        v0.83
     </div>
 </div>
 <div id="game-content-wrapper" style="display: none;">
@@ -392,8 +392,8 @@
 </div>
 <div id="grammar-topic-screen" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 255; flex-direction: column; align-items: center; justify-content: center;">
     <div class="panel-content-wrapper grammar-topic-panel">
-        <h2 class="grammar-screen-title">SELECT TOPIC</h2>
-        <div class="grammar-screen-subtitle">GRAMMAR TRAINING MODULE</div>
+        <h2 id="grammar-topic-title" class="grammar-screen-title">SELECT TOPIC</h2>
+        <div id="grammar-topic-subtitle" class="grammar-screen-subtitle">GRAMMAR TRAINING MODULE</div>
 
         <div class="grammar-topic-grid">
             <div class="grammar-topic-card">
@@ -401,7 +401,7 @@
                     <div class="grammar-topic-name">VERB TABLE</div>
                     <div class="grammar-topic-desc">FOUR-FORM DRILL</div>
                 </button>
-                <button class="rank-info-trigger grammar-topic-info" onclick="toggleGrammarTopicReference(); event.stopPropagation();" aria-label="Open verb table topic reference"><span>i</span></button>
+                <button class="stage-info-btn grammar-topic-info" onclick="toggleGrammarTopicReference(); event.stopPropagation();" aria-label="Open verb table topic reference">i</button>
             </div>
             <div id="grammar-topic-reference" class="grammar-verb-reference grammar-topic-reference" style="display: none;">
                 <div class="grammar-verb-reference-head">
@@ -425,7 +425,7 @@
             </div>
         </div>
 
-        <button class="btn" onclick="playSound('delete-sfx'); closeGrammarTopicScreen()" style="margin-top: 30px;">&lt; BACK</button>
+        <button id="grammar-topic-back-btn" class="btn" onclick="playSound('delete-sfx'); closeGrammarTopicScreen()" style="margin-top: 30px;">&lt; BACK</button>
     </div>
 </div>
 <div id="grammar-verb-screen" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 256; flex-direction: column; align-items: center; justify-content: center;">
@@ -986,15 +986,15 @@
 <audio id="ship-voice-4"><source src="ship_4_spectre.mp3" type="audio/mpeg"></audio>
     <audio id="unit-lost-sfx"><source src="unit_lost.mp3" type="audio/mpeg"></audio>
 </div>
-<script src="vocab_data.js?v=0.82"></script>
-<script src="app-config.js?v=0.82"></script>
-<script src="vendor/effekseer/effekseer.min.js?v=0.82"></script>
-<script src="app.js?v=0.82"></script>
-<script src="grammar_verb_table_data.js?v=0.82"></script>
-<script src="ui-grammar.js?v=0.82"></script>
-<script src="ui-screens.js?v=0.82"></script>
-<script src="ui-auth.js?v=0.82"></script>
-<script src="ui-audio.js?v=0.82"></script>
+<script src="vocab_data.js?v=0.83"></script>
+<script src="app-config.js?v=0.83"></script>
+<script src="vendor/effekseer/effekseer.min.js?v=0.83"></script>
+<script src="app.js?v=0.83"></script>
+<script src="grammar_verb_table_data.js?v=0.83"></script>
+<script src="ui-grammar.js?v=0.83"></script>
+<script src="ui-screens.js?v=0.83"></script>
+<script src="ui-auth.js?v=0.83"></script>
+<script src="ui-audio.js?v=0.83"></script>
 <div id="registration-modal" class="registration-modal" style="display: none;">
     
     <div class="registration-scanlines"></div>

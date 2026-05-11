@@ -105,9 +105,18 @@ function openGrammarTopicScreen() {
 
 function closeGrammarTopicScreen() {
     const topicScreen = document.getElementById('grammar-topic-screen');
-    if (topicScreen) topicScreen.style.display = 'none';
     const reference = document.getElementById('grammar-topic-reference');
-    if (reference) reference.style.display = 'none';
+    if (reference && reference.style.display !== 'none') {
+        reference.style.display = 'none';
+        const title = document.getElementById('grammar-topic-title');
+        const subtitle = document.getElementById('grammar-topic-subtitle');
+        const card = document.querySelector('.grammar-topic-card');
+        if (title) title.innerText = 'SELECT TOPIC';
+        if (subtitle) subtitle.style.display = 'block';
+        if (card) card.style.display = 'block';
+        return;
+    }
+    if (topicScreen) topicScreen.style.display = 'none';
     window.selectedGrammarTopic = null;
     showGrammarScreenWithAnimation('level-screen');
 }
@@ -159,12 +168,21 @@ function toggleGrammarVerbReference() {
 
 function toggleGrammarTopicReference() {
     const reference = document.getElementById('grammar-topic-reference');
+    const title = document.getElementById('grammar-topic-title');
+    const subtitle = document.getElementById('grammar-topic-subtitle');
+    const card = document.querySelector('.grammar-topic-card');
     if (!reference) return;
 
     if (reference.style.display === 'none') {
         renderGrammarTopicReference();
+        if (title) title.innerText = 'VERB TABLE REFERENCE';
+        if (subtitle) subtitle.style.display = 'none';
+        if (card) card.style.display = 'none';
         reference.style.display = 'block';
     } else {
+        if (title) title.innerText = 'SELECT TOPIC';
+        if (subtitle) subtitle.style.display = 'block';
+        if (card) card.style.display = 'block';
         reference.style.display = 'none';
     }
 }
