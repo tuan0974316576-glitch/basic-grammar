@@ -9371,6 +9371,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const keyValue = key.getAttribute('data-key');
 
+            if (typeof window.isGrammarBattleMode === 'function' && window.isGrammarBattleMode()) {
+                if (typeof window.handleLaunchGrammarKey === 'function') {
+                    window.handleLaunchGrammarKey(keyValue, key);
+                }
+                return;
+            }
+
             if (keyValue === 'ENTER') {
                 // Fire button - submit answer
                 checkAnswer();

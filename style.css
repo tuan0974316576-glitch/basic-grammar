@@ -7915,7 +7915,21 @@ body {
 
 @media (max-width: 760px) {
     .launch-grammar-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    .launch-grammar-field {
+        padding: 8px;
+    }
+
+    .launch-grammar-label {
+        font-size: 9px;
+    }
+
+    .launch-grammar-input {
+        padding: 9px 10px;
+        font-size: 14px;
     }
 }
 
