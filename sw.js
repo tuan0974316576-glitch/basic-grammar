@@ -1,4 +1,4 @@
-self.APP_CACHE_VERSION = 'v0.76-20260511';
+self.APP_CACHE_VERSION = 'v0.77-20260511';
 
 self.addEventListener('install', (event) => {
   console.log('[Service Worker] Install', self.APP_CACHE_VERSION);

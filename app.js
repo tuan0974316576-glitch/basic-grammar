@@ -10112,6 +10112,7 @@ function showAegisPlacementBoard() {
 }
 
 function returnFromAegisPlacement() {
+    stopAegisShieldApply();
     document.getElementById('player-board').classList.remove('active');
     document.getElementById('enemy-board').classList.add('active');
     const status = document.getElementById('game-status');
@@ -10147,7 +10148,7 @@ function clearAegisShieldOverlay() {
 
 function stopAegisShieldLoop(shieldState = aegisShieldState) {
     const handle = shieldState && shieldState.loopHandle;
-    if (handle && handle.exists) handle.stopRoot();
+    stopEffekseerHandle(handle);
     if (shieldState && shieldState.loopTimer) clearInterval(shieldState.loopTimer);
     if (shieldState) shieldState.loopHandle = null;
     if (shieldState) shieldState.loopTimer = null;
@@ -10155,7 +10156,8 @@ function stopAegisShieldLoop(shieldState = aegisShieldState) {
 
 function stopAegisShieldApply(shieldState = aegisShieldState) {
     const handle = shieldState && shieldState.applyHandle;
-    if (handle && handle.exists) handle.stopRoot();
+    if (shieldState) shieldState.applyStopped = true;
+    stopEffekseerHandle(handle);
     if (shieldState) shieldState.applyHandle = null;
 }
 
@@ -10212,6 +10214,7 @@ function activateAegisShield(anchorIndex) {
     aegisShieldState = {
         active: true,
         used: false,
+        applyStopped: false,
         anchor: anchorIndex,
         centerIndex: getAegisShieldCenterIndex(anchorIndex),
         indices,
@@ -10222,12 +10225,42 @@ function activateAegisShield(anchorIndex) {
     renderAegisShieldOverlay(aegisShieldState);
     playSound('aurelians-shield-sfx');
     playAreaEffekseerEffect('aureliansShieldApply', 'player-grid', indices).then(handle => {
-        if (aegisShieldState && aegisShieldState.anchor === anchorIndex) {
+        if (aegisShieldState && aegisShieldState.anchor === anchorIndex && !aegisShieldState.applyStopped) {
             aegisShieldState.applyHandle = handle;
         } else if (handle && handle.exists) {
-            handle.stopRoot();
+            stopEffekseerHandle(handle);
         }
     });
+}
+
+function showAegisEnergyGainPopup(indices, amount = AEGIS_SHIELD_ENERGY_GAIN) {
+    const grid = document.getElementById('player-grid');
+    const cells = Array.isArray(indices)
+        ? indices.map(index => grid ? grid.children[index] : null).filter(Boolean)
+        : [];
+    if (!grid || cells.length === 0) return;
+
+    const left = Math.min(...cells.map(cell => cell.offsetLeft));
+    const top = Math.min(...cells.map(cell => cell.offsetTop));
+    const right = Math.max(...cells.map(cell => cell.offsetLeft + cell.offsetWidth));
+    const gridRect = grid.getBoundingClientRect();
+    const popup = document.createElement('div');
+    popup.innerText = `+${amount}`;
+    popup.style.cssText = `
+        position: fixed;
+        left: ${gridRect.left + ((left + right) / 2)}px;
+        top: ${gridRect.top + top - 8}px;
+        transform: translate(-50%, -50%);
+        font-size: 24px;
+        font-weight: 900;
+        color: #2dd4bf;
+        text-shadow: 0 0 8px #2dd4bf, 0 0 18px rgba(45, 212, 191, 0.9);
+        pointer-events: none;
+        animation: energyPop 0.9s ease-out forwards;
+        z-index: 12000;
+    `;
+    document.body.appendChild(popup);
+    setTimeout(() => popup.remove(), 900);
 }
 
 function triggerAegisShieldHit(overlapIndices) {
@@ -10237,6 +10270,7 @@ function triggerAegisShieldHit(overlapIndices) {
     const indices = aegisShieldState.indices || overlapIndices || [];
     playSound('aurelians-shield-break-sfx');
     playAreaEffekseerEffect('aureliansShieldOnHit', 'player-grid', indices);
+    showAegisEnergyGainPopup(indices);
     addEnergy(AEGIS_SHIELD_ENERGY_GAIN, 'AEGIS ABSORB');
     clearAegisShieldState();
     clearOwnAegisShieldInRoom();
@@ -11034,6 +11068,14 @@ function playEffekseerEffect(effectKey, screenX, screenY, options = {}) {
         console.warn(`[Effekseer] Failed to play ${effectKey}:`, error);
         return null;
     });
+}
+
+function stopEffekseerHandle(handle) {
+    if (!handle) return;
+    if (handle.exists) {
+        handle.stopRoot();
+    }
+    effekseerEffectState.activeHandles = effekseerEffectState.activeHandles.filter(entry => entry && entry.handle !== handle);
 }
 
 function startEffekseerRenderLoop() {
