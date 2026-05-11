@@ -811,7 +811,9 @@ function setSpeakingUiState(state = 'idle', statusText = 'VOICE LINK STANDBY', s
         if (!wrongWordsDB[skill] || !wrongWordsDB[skill][level]) return [];
         const wrongKeys = Object.keys(wrongWordsDB[skill][level]);
         if (wrongKeys.length === 0) return [];
-        const levelVocab = VOCAB_DB[level];
+        const levelVocab = (skill === 'GRAMMAR' && typeof window.getGrammarBattleDeckSnapshot === 'function')
+            ? window.getGrammarBattleDeckSnapshot()
+            : VOCAB_DB[level];
         if (!levelVocab) return [];
         return levelVocab.filter(v => wrongKeys.includes(v.en));
     }
@@ -1172,6 +1174,7 @@ let isTargeting = false;
     let sessionAnsweringXP = 0; // Tracks XP gained from answering questions in current match
     let sessionSupplies = 0; // Tracks supplies gained from answering questions in current match
 
+    window.selectedGrammarTopic = window.selectedGrammarTopic || null;
     let activeVocabList = [];
     let sessionDeck = [];
     let selectedLevel = 'L1'; // �A�O
@@ -3667,6 +3670,7 @@ async function openLaunchModal(index) {
     let statusText = "DECRYPTING...";
     if (currentPracticeMode === 'SPEAKING') statusText = "VOICE UPLINK...";
     if (currentPracticeMode === 'LISTENING') statusText = "INCOMING TRANSMISSION...";
+    if (typeof window.isGrammarBattleMode === 'function' && window.isGrammarBattleMode()) statusText = "GRAMMAR UPLINK...";
     
     document.getElementById('game-status').innerHTML = `PHASE: <span style="color:var(--warning)">${statusText}</span>`;
 
@@ -3706,7 +3710,7 @@ async function openLaunchModal(index) {
         markBattleWordUsed(currentVocab);
     }
 
-    if (gameMode !== 'PVP') {
+    if (gameMode !== 'PVP' && !(typeof window.isGrammarBattleMode === 'function' && window.isGrammarBattleMode())) {
         assignSentenceForCurrentVocab();
     }
     preloadCurrentListeningPrompt();
@@ -3751,7 +3755,18 @@ async function openLaunchModal(index) {
     setSpeakingUiState();
 
     // ���� ���ģ�����ģʽ�ГQ���� ����
-if (currentPracticeMode === 'SPEAKING') {
+if (typeof window.isGrammarBattleMode === 'function' && window.isGrammarBattleMode()) {
+    qDisplay.style.display = 'none';
+    if (modeLabel) modeLabel.innerText = "Complete the verb table.";
+    qText.innerText = currentVocab.ch;
+    qText.style.fontSize = "";
+    qText.style.cursor = "default";
+    qText.onclick = null;
+    if (typeof window.prepareLaunchGrammarQuestion === 'function') {
+        window.prepareLaunchGrammarQuestion(currentVocab);
+    }
+    input.style.display = 'none';
+} else if (currentPracticeMode === 'SPEAKING') {
     if (modeLabel) modeLabel.innerText = "READ IT ALOUD.";
     const textToRead = currentVocab.sent ? currentVocab.sent : currentVocab.en;
     qText.innerText = `READ: ${textToRead}`;
@@ -3844,7 +3859,7 @@ if (currentPracticeMode === 'SPEAKING') {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ||
                      (navigator.maxTouchPoints > 0 && !window.matchMedia('(pointer: fine)').matches);
 
-    if (isMobile && (currentPracticeMode === 'READING' || currentPracticeMode === 'LISTENING')) {
+    if (isMobile && (currentPracticeMode === 'READING' || currentPracticeMode === 'LISTENING' || currentPracticeMode === 'GRAMMAR')) {
         const screenWidth = window.innerWidth || screen.width;
         const isTablet = screenWidth >= 768;
 
@@ -3859,6 +3874,7 @@ if (currentPracticeMode === 'SPEAKING') {
         input.style.position = 'absolute';
         input.style.left = '-9999px';
         input.blur();
+        virtualKeyboard.classList.toggle('kb-grammar-nav', currentPracticeMode === 'GRAMMAR');
 
         // ���� Apply Aurelians theme if player is using Aurelians ����
         if (selectedRace === 'AURELIANS') {
@@ -3890,19 +3906,29 @@ if (currentPracticeMode === 'SPEAKING') {
         // Force layout once with the final tablet/mobile classes, then reveal.
         virtualKeyboard.offsetHeight;
         virtualKeyboard.style.visibility = 'visible';
-    } else if (!isMobile && (currentPracticeMode === 'READING' || currentPracticeMode === 'LISTENING')) {
+    } else if (!isMobile && (currentPracticeMode === 'READING' || currentPracticeMode === 'LISTENING' || currentPracticeMode === 'GRAMMAR')) {
         // Desktop: Hide virtual keyboard, show and focus input
         virtualKeyboard.style.display = 'none';
         virtualKeyboard.style.visibility = 'hidden';
-        virtualKeyboard.classList.remove('kb-tablet-size');
-        input.removeAttribute('readonly');
-        input.style.position = 'static';
-        input.style.left = 'auto';
-        setTimeout(() => input.focus(), 10);
+        virtualKeyboard.classList.remove('kb-tablet-size', 'kb-grammar-nav');
+        if (currentPracticeMode === 'GRAMMAR') {
+            input.setAttribute('readonly', 'readonly');
+            input.style.position = 'absolute';
+            input.style.left = '-9999px';
+            if (typeof window.focusLaunchGrammarField === 'function') {
+                setTimeout(() => window.focusLaunchGrammarField(), 10);
+            }
+        } else {
+            input.removeAttribute('readonly');
+            input.style.position = 'static';
+            input.style.left = 'auto';
+            setTimeout(() => input.focus(), 10);
+        }
     } else {
         // SPEAKING mode: hide virtual keyboard, hide input
         virtualKeyboard.style.display = 'none';
         virtualKeyboard.style.visibility = 'hidden';
+        virtualKeyboard.classList.remove('kb-grammar-nav');
         input.setAttribute('readonly', 'readonly');
         input.style.position = 'absolute';
         input.style.left = '-9999px';
@@ -4655,7 +4681,11 @@ function closeLaunchModalUI() {
     if (virtualKeyboard) {
         virtualKeyboard.style.display = 'none';
         virtualKeyboard.style.visibility = 'hidden';
-        virtualKeyboard.classList.remove('kb-aurelians', 'kb-tablet-size');
+        virtualKeyboard.classList.remove('kb-aurelians', 'kb-tablet-size', 'kb-grammar-nav');
+    }
+
+    if (typeof window.resetLaunchGrammarQuestion === 'function') {
+        window.resetLaunchGrammarQuestion();
     }
 
     if (hiddenInput) {
@@ -4754,6 +4784,12 @@ function handlePlayerTimeout() {
 
 // --- 1. Focus Input (Desktop/Mobile Hybrid) ---
     function focusInput() {
+        if (typeof window.isGrammarBattleMode === 'function' && window.isGrammarBattleMode()) {
+            if (typeof window.focusLaunchGrammarField === 'function') {
+                window.focusLaunchGrammarField();
+            }
+            return;
+        }
         const input = document.getElementById('hidden-input');
         const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
@@ -4773,6 +4809,7 @@ function handlePlayerTimeout() {
 
 // --- 2. ݔ��O �� (�����棺����ո��c��̖) ---
     document.getElementById('hidden-input').oninput = (e) => {
+        if (typeof window.isGrammarBattleMode === 'function' && window.isGrammarBattleMode()) return;
         // A. �@ȡԭʼݔ�� (�D��)
         let rawVal = e.target.value.toUpperCase();
         
@@ -4826,6 +4863,7 @@ function handlePlayerTimeout() {
     };
     // --- 3. Enter �I�O  (��ȫ�����f�й���) ---
     document.getElementById('hidden-input').onkeydown = (e) => {
+        if (typeof window.isGrammarBattleMode === 'function' && window.isGrammarBattleMode()) return;
         if (e.key === 'Enter') checkAnswer();
     };
 
@@ -4966,6 +5004,23 @@ function handleCorrectAnswer() {
 
 // --- �����棺�ˌ��� (���ܟoҕ��̖) ---
 function checkAnswer() {
+    if (typeof window.isGrammarBattleMode === 'function' && window.isGrammarBattleMode()) {
+        const isCorrect = typeof window.checkGrammarBattleAnswer === 'function'
+            ? window.checkGrammarBattleAnswer()
+            : false;
+
+        if (isCorrect) {
+            removeWrongWord(currentPracticeMode, selectedLevel, currentVocab.en);
+            handleCorrectAnswer();
+            playerFire(true);
+        } else {
+            saveWrongWord(currentPracticeMode, selectedLevel, currentVocab.en);
+            playSound('wrong-sfx');
+            document.getElementById('msg-area').innerText = "TABLE INCOMPLETE!";
+        }
+        return;
+    }
+
     const input = document.getElementById('hidden-input');
 
     // 1. ���ݔ�룺�D�� + �Ƴ����пո�ͬ���c (ֻ�� A-Z ͬ 0-9)
@@ -6474,6 +6529,7 @@ function resetGame() {
     latestPVPSetupData = null;
     selectedStageIndex = null;
     selectedStageLabel = '';
+    window.selectedGrammarTopic = null;
     gameMode = 'AI';
     tempGameMode = 'AI';
     currentPracticeMode = 'READING';
@@ -8148,6 +8204,7 @@ function renderListeningAnswerDisplay(text, inputVal) {
 // --- ��K�����棺�x���� (PVP ����) ---
 async function selectSkill(skill) {
     console.log("Skill Selected:", skill);
+    window.selectedGrammarTopic = null;
     currentPracticeMode = skill;
     if (tempGameMode === 'AI') {
         activeVocabList = buildStageVocabListForMode(skill.toLowerCase());
@@ -8485,6 +8542,10 @@ function handleRaceBack() {
         return;
     }
     document.getElementById('race-screen').style.display = 'none';
+    if (tempGameMode === 'AI' && currentPracticeMode === 'GRAMMAR' && window.selectedGrammarTopic === 'VERB_TABLE') {
+        showGrammarScreenWithAnimation('grammar-topic-screen');
+        return;
+    }
     const skillScreen = document.getElementById('skill-screen');
     skillScreen.style.display = 'flex';
     // ���� Trigger holoAppear animation ����
@@ -9595,13 +9656,22 @@ function startCountdownTimer() {
     // Ӌ��r�g (߉݋ͬԭ��һ��)
     let timeMultiplier = 1.0;
     let baseTime = 3;
-    if (currentPracticeMode === 'LISTENING') {
-        timeMultiplier = 1.1;
-    } else if (currentPracticeMode === 'SPEAKING') {
-        baseTime = 4;
-        timeMultiplier = 0.8;
+    let totalTime = 0;
+    if (typeof window.isGrammarBattleMode === 'function' && window.isGrammarBattleMode() && currentVocab?.grammarForms) {
+        const grammarLength = Object.values(currentVocab.grammarForms)
+            .join('')
+            .replace(/[^A-Z]/gi, '')
+            .length;
+        totalTime = 10 + Math.min(18, grammarLength * 0.2);
+    } else {
+        if (currentPracticeMode === 'LISTENING') {
+            timeMultiplier = 1.1;
+        } else if (currentPracticeMode === 'SPEAKING') {
+            baseTime = 4;
+            timeMultiplier = 0.8;
+        }
+        totalTime = baseTime + (currentVocab.en.length * timeMultiplier);
     }
-    const totalTime = baseTime + (currentVocab.en.length * timeMultiplier);
     launchTimerTotal = currentPracticeMode === 'SPEAKING' ? totalTime * 2 : totalTime;
     launchTimerTimeLeft = launchTimerTotal;
     launchTimerPaused = false;
