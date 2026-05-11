@@ -1019,6 +1019,7 @@ let isTargeting = false;
 
     function preloadAureliansShieldAudio() {
         preloadAudioElementById('aurelians-shield-sfx');
+        preloadAudioElementById('aurelians-shield-break-sfx');
     }
 
    
@@ -5076,6 +5077,7 @@ function playerFire(success) {
             // 4. ���t 0.5�� �@ʾ�Y�� (�Ȱl��Ӯ���һ�)
             setGameTimeout(() => {
                 if (isShieldBlocked) {
+                    playSound('aurelians-shield-break-sfx');
                     playAreaEffekseerEffect('aureliansShieldOnHit', 'enemy-grid', opponentShieldIndices);
                     clearOpponentAegisShieldState();
                 } else if (enemyGrid[currentTargetIndex] === 1) {
@@ -10233,6 +10235,7 @@ function triggerAegisShieldHit(overlapIndices) {
 
     aegisShieldState.used = true;
     const indices = aegisShieldState.indices || overlapIndices || [];
+    playSound('aurelians-shield-break-sfx');
     playAreaEffekseerEffect('aureliansShieldOnHit', 'player-grid', indices);
     addEnergy(AEGIS_SHIELD_ENERGY_GAIN, 'AEGIS ABSORB');
     clearAegisShieldState();
@@ -11185,6 +11188,7 @@ function applyExplosionDamageToEnemy(indices, options = {}) {
     });
 
     if (isShieldBlocked) {
+        playSound('aurelians-shield-break-sfx');
         playAreaEffekseerEffect('aureliansShieldOnHit', 'enemy-grid', shieldState?.indices || shieldOverlap);
         clearOpponentAegisShieldState();
     }
