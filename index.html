@@ -18,7 +18,7 @@
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 let refreshing = false;
-                navigator.serviceWorker.register('./sw.js?v=20260511-087').then(reg => {
+                navigator.serviceWorker.register('./sw.js?v=20260511-088').then(reg => {
                     console.log('SW registered!', reg);
                     reg.update();
 
@@ -48,8 +48,8 @@
         }
     </script>
 
-    <script type="module" src="firebase-init.js?v=0.87"></script>
-    <link rel="stylesheet" href="style.css?v=0.87">
+    <script type="module" src="firebase-init.js?v=0.88"></script>
+    <link rel="stylesheet" href="style.css?v=0.88">
 
 </head>
 <body>
@@ -78,7 +78,7 @@
     <div class="game-footer splash-footer">
         <span class="brand">Enguistics Learning Centre</span> 2026
         <br>
-        v0.87
+        v0.88
     </div>
 </div>
 <div id="game-content-wrapper" style="display: none;">
@@ -423,12 +423,51 @@
 
         <div id="grammar-topic-search-wrap" class="grammar-topic-search-wrap" style="display: none;">
             <div class="grammar-topic-search-container">
-                <input type="text" id="grammar-topic-search-input" placeholder=">> INPUT_KEYWORD..." oninput="filterGrammarTopicReference()" autocomplete="off" spellcheck="false">
+                <input type="text" id="grammar-topic-search-input" placeholder=">> INPUT_KEYWORD..." oninput="filterGrammarTopicReference()" onclick="showGrammarTopicSearchKeyboard()" onfocus="showGrammarTopicSearchKeyboard()" autocomplete="off" spellcheck="false" readonly inputmode="none">
                 <div class="search-icon grammar-topic-search-icon"></div>
             </div>
         </div>
 
         <button id="grammar-topic-back-btn" class="btn" onclick="playSound('delete-sfx'); closeGrammarTopicScreen()" style="margin-top: 30px;">&lt; BACK</button>
+
+        <div id="grammar-topic-virtual-keyboard" class="vocab-virtual-keyboard grammar-topic-virtual-keyboard" style="display: none;">
+            <div class="kb-row">
+                <button class="kb-key" data-grammar-topic-key="Q">Q</button>
+                <button class="kb-key" data-grammar-topic-key="W">W</button>
+                <button class="kb-key" data-grammar-topic-key="E">E</button>
+                <button class="kb-key" data-grammar-topic-key="R">R</button>
+                <button class="kb-key" data-grammar-topic-key="T">T</button>
+                <button class="kb-key" data-grammar-topic-key="Y">Y</button>
+                <button class="kb-key" data-grammar-topic-key="U">U</button>
+                <button class="kb-key" data-grammar-topic-key="I">I</button>
+                <button class="kb-key" data-grammar-topic-key="O">O</button>
+                <button class="kb-key" data-grammar-topic-key="P">P</button>
+            </div>
+            <div class="kb-row">
+                <button class="kb-key" data-grammar-topic-key="A">A</button>
+                <button class="kb-key" data-grammar-topic-key="S">S</button>
+                <button class="kb-key" data-grammar-topic-key="D">D</button>
+                <button class="kb-key" data-grammar-topic-key="F">F</button>
+                <button class="kb-key" data-grammar-topic-key="G">G</button>
+                <button class="kb-key" data-grammar-topic-key="H">H</button>
+                <button class="kb-key" data-grammar-topic-key="J">J</button>
+                <button class="kb-key" data-grammar-topic-key="K">K</button>
+                <button class="kb-key" data-grammar-topic-key="L">L</button>
+            </div>
+            <div class="kb-row">
+                <button class="kb-key" data-grammar-topic-key="Z">Z</button>
+                <button class="kb-key" data-grammar-topic-key="X">X</button>
+                <button class="kb-key" data-grammar-topic-key="C">C</button>
+                <button class="kb-key" data-grammar-topic-key="V">V</button>
+                <button class="kb-key" data-grammar-topic-key="B">B</button>
+                <button class="kb-key" data-grammar-topic-key="N">N</button>
+                <button class="kb-key" data-grammar-topic-key="M">M</button>
+                <button class="kb-key kb-backspace" data-grammar-topic-key="BACKSPACE">⌫</button>
+            </div>
+            <div class="kb-row">
+                <button class="kb-key kb-space" data-grammar-topic-key="ENTER">CLOSE</button>
+            </div>
+        </div>
     </div>
 </div>
 <div id="grammar-verb-screen" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 256; flex-direction: column; align-items: center; justify-content: center;">
@@ -985,15 +1024,15 @@
 <audio id="ship-voice-4"><source src="ship_4_spectre.mp3" type="audio/mpeg"></audio>
     <audio id="unit-lost-sfx"><source src="unit_lost.mp3" type="audio/mpeg"></audio>
 </div>
-<script src="vocab_data.js?v=0.87"></script>
-<script src="app-config.js?v=0.87"></script>
-<script src="vendor/effekseer/effekseer.min.js?v=0.87"></script>
-<script src="app.js?v=0.87"></script>
-<script src="grammar_verb_table_data.js?v=0.87"></script>
-<script src="ui-grammar.js?v=0.87"></script>
-<script src="ui-screens.js?v=0.87"></script>
-<script src="ui-auth.js?v=0.87"></script>
-<script src="ui-audio.js?v=0.87"></script>
+<script src="vocab_data.js?v=0.88"></script>
+<script src="app-config.js?v=0.88"></script>
+<script src="vendor/effekseer/effekseer.min.js?v=0.88"></script>
+<script src="app.js?v=0.88"></script>
+<script src="grammar_verb_table_data.js?v=0.88"></script>
+<script src="ui-grammar.js?v=0.88"></script>
+<script src="ui-screens.js?v=0.88"></script>
+<script src="ui-auth.js?v=0.88"></script>
+<script src="ui-audio.js?v=0.88"></script>
 <div id="registration-modal" class="registration-modal" style="display: none;">
     
     <div class="registration-scanlines"></div>

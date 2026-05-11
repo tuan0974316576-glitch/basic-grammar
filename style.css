@@ -7389,6 +7389,14 @@ body {
     margin-top: 4px;
 }
 
+#grammar-topic-screen.grammar-topic-keyboard-open .grammar-topic-search-wrap {
+    margin-bottom: calc(var(--grammar-topic-keyboard-height, 220px) + 8px);
+}
+
+#grammar-topic-screen.grammar-topic-keyboard-open #grammar-topic-back-btn {
+    display: none;
+}
+
 .grammar-topic-search-container {
     width: 100%;
     max-width: 600px;
@@ -7423,6 +7431,34 @@ body {
 .grammar-topic-search-icon {
     background: rgba(255, 255, 255, 0.9);
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.45);
+}
+
+.grammar-topic-virtual-keyboard .kb-key {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(226, 232, 240, 0.06));
+    border: 1px solid rgba(255, 255, 255, 0.42);
+    color: #ffffff;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.55);
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.grammar-topic-virtual-keyboard .kb-key:hover,
+.grammar-topic-virtual-keyboard .kb-key.kb-active,
+.grammar-topic-virtual-keyboard .kb-key:active {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.28), rgba(226, 232, 240, 0.18));
+    border-color: rgba(255, 255, 255, 0.8);
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.88);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.grammar-topic-virtual-keyboard .kb-backspace {
+    color: #fca5a5;
+    border-color: rgba(248, 113, 113, 0.5);
+}
+
+.grammar-topic-virtual-keyboard .kb-space {
+    color: #e2e8f0;
+    border-color: rgba(255, 255, 255, 0.45);
 }
 
 .grammar-topic-name {
@@ -7607,8 +7643,9 @@ body {
 }
 
 .grammar-reference-row.speaking td {
-    background: rgba(232, 121, 249, 0.18);
-    box-shadow: inset 4px 0 0 #e879f9;
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: inset 4px 0 0 #ffffff;
+    color: #ffffff;
 }
 
 .grammar-verb-game {

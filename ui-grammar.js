@@ -99,10 +99,47 @@ function buildGrammarReferenceRows(bodyId) {
 function speakGrammarReferenceSequence(text, rowElement) {
     if (!text) return;
     if (typeof playSound === 'function') {
-        playSound('enter-sfx');
+        playSound('enter-number-sfx');
     }
     document.querySelectorAll('.grammar-reference-row.speaking').forEach((row) => row.classList.remove('speaking'));
-    speakText(text, rowElement, false);
+    if (!('speechSynthesis' in window)) return;
+
+    window.speechSynthesis.cancel();
+    activeGrammarReferenceUtterances = [];
+    rowElement.classList.add('speaking');
+
+    const parts = String(text || '').split(/\s+/).filter(Boolean);
+    const baseRate = 0.855;
+    const voice = typeof techVoice !== 'undefined' ? techVoice : null;
+    const volume = typeof getBoostedListeningVoiceVolume === 'function' ? getBoostedListeningVoiceVolume() : 1;
+
+    const speakPart = (index) => {
+        if (index >= parts.length) {
+            rowElement.classList.remove('speaking');
+            return;
+        }
+
+        const utterance = new SpeechSynthesisUtterance(parts[index]);
+        utterance.lang = 'en-US';
+        utterance.rate = baseRate;
+        utterance.pitch = 1.0;
+        utterance.volume = volume;
+        if (voice) utterance.voice = voice;
+        utterance.onend = () => {
+            if (index === parts.length - 1) {
+                rowElement.classList.remove('speaking');
+            } else {
+                setTimeout(() => speakPart(index + 1), 500);
+            }
+        };
+        utterance.onerror = () => {
+            rowElement.classList.remove('speaking');
+        };
+        activeGrammarReferenceUtterances.push(utterance);
+        window.speechSynthesis.speak(utterance);
+    };
+
+    speakPart(0);
 }
 
 function isGrammarBattleMode() {
@@ -137,6 +174,7 @@ function closeGrammarTopicScreen() {
     const searchInput = document.getElementById('grammar-topic-search-input');
     if (reference && reference.style.display !== 'none') {
         reference.style.display = 'none';
+        hideGrammarTopicSearchKeyboard();
         const title = document.getElementById('grammar-topic-title');
         const subtitle = document.getElementById('grammar-topic-subtitle');
         const card = document.querySelector('.grammar-topic-card');
@@ -148,6 +186,7 @@ function closeGrammarTopicScreen() {
         return;
     }
     if (topicScreen) topicScreen.style.display = 'none';
+    hideGrammarTopicSearchKeyboard();
     window.selectedGrammarTopic = null;
     showGrammarScreenWithAnimation('level-screen');
 }
@@ -196,6 +235,7 @@ function toggleGrammarTopicReference() {
         if (searchWrap) searchWrap.style.display = 'block';
         reference.style.display = 'block';
     } else {
+        hideGrammarTopicSearchKeyboard();
         if (title) title.innerText = 'SELECT TOPIC';
         if (subtitle) subtitle.style.display = 'block';
         if (card) card.style.display = 'block';
@@ -213,6 +253,66 @@ function filterGrammarTopicReference() {
         const haystack = row.getAttribute('data-grammar-search') || '';
         row.style.display = !filter || haystack.includes(filter) ? '' : 'none';
     });
+}
+
+function showGrammarTopicSearchKeyboard() {
+    const screen = document.getElementById('grammar-topic-screen');
+    const input = document.getElementById('grammar-topic-search-input');
+    const keyboard = document.getElementById('grammar-topic-virtual-keyboard');
+    if (!screen || screen.style.display === 'none' || !input || !keyboard) return;
+
+    if (!grammarTopicKeyboardActive && typeof playSound === 'function') {
+        playSound('deploy-sfx');
+    }
+    grammarTopicKeyboardActive = true;
+    input.setAttribute('readonly', 'readonly');
+    input.setAttribute('inputmode', 'none');
+    input.blur();
+    keyboard.style.display = 'block';
+    screen.classList.add('grammar-topic-keyboard-open');
+    const keyboardHeight = keyboard.getBoundingClientRect().height || 220;
+    screen.style.setProperty('--grammar-topic-keyboard-height', `${Math.ceil(keyboardHeight)}px`);
+}
+
+function hideGrammarTopicSearchKeyboard() {
+    const screen = document.getElementById('grammar-topic-screen');
+    const keyboard = document.getElementById('grammar-topic-virtual-keyboard');
+    const wasActive = grammarTopicKeyboardActive;
+    grammarTopicKeyboardActive = false;
+    if (keyboard) keyboard.style.display = 'none';
+    if (screen) {
+        screen.classList.remove('grammar-topic-keyboard-open');
+        screen.style.removeProperty('--grammar-topic-keyboard-height');
+    }
+    if (wasActive && typeof playSound === 'function') {
+        playSound('delete-sfx');
+    }
+}
+
+function setGrammarTopicSearchValue(value) {
+    const input = document.getElementById('grammar-topic-search-input');
+    if (!input) return;
+    input.value = String(value || '').slice(0, 40);
+    filterGrammarTopicReference();
+}
+
+function handleGrammarTopicKeyboardInput(keyValue) {
+    const input = document.getElementById('grammar-topic-search-input');
+    if (!input) return;
+
+    if (keyValue === 'ENTER') {
+        hideGrammarTopicSearchKeyboard();
+        return;
+    }
+    if (keyValue === 'BACKSPACE') {
+        if (typeof playSound === 'function') playSound('delete-sfx');
+        setGrammarTopicSearchValue(input.value.slice(0, -1));
+        return;
+    }
+    if (typeof keyValue === 'string' && keyValue.length === 1) {
+        if (typeof playSound === 'function') playSound('enter-sfx');
+        setGrammarTopicSearchValue(input.value + keyValue.toLowerCase());
+    }
 }
 
 function renderLaunchGrammarReference() {
@@ -930,6 +1030,7 @@ window.checkGrammarBattleAnswer = checkGrammarBattleAnswer;
 window.toggleLaunchGrammarReference = toggleLaunchGrammarReference;
 window.getGrammarBattleDeckSnapshot = buildGrammarBattleDeck;
 window.filterGrammarTopicReference = filterGrammarTopicReference;
+window.showGrammarTopicSearchKeyboard = showGrammarTopicSearchKeyboard;
 document.addEventListener('DOMContentLoaded', () => {
     attachGrammarInputBehaviors();
     attachLaunchGrammarInputBehaviors();
@@ -969,4 +1070,33 @@ document.addEventListener('DOMContentLoaded', () => {
         const speakTextValue = row.getAttribute('data-grammar-speak') || '';
         speakGrammarReferenceSequence(speakTextValue, row);
     });
+
+    const topicKeyboard = document.getElementById('grammar-topic-virtual-keyboard');
+    if (topicKeyboard) {
+        topicKeyboard.addEventListener('click', (event) => {
+            const key = event.target.closest('.kb-key');
+            if (!key) return;
+            event.preventDefault();
+            event.stopPropagation();
+            handleGrammarTopicKeyboardInput(key.getAttribute('data-grammar-topic-key'));
+        });
+
+        topicKeyboard.addEventListener('touchstart', (event) => {
+            const key = event.target.closest('.kb-key');
+            if (!key) return;
+            key.classList.add('kb-active');
+        }, { passive: true });
+
+        topicKeyboard.addEventListener('touchend', (event) => {
+            const key = event.target.closest('.kb-key');
+            if (!key) return;
+            setTimeout(() => key.classList.remove('kb-active'), 100);
+        }, { passive: true });
+
+        topicKeyboard.addEventListener('touchcancel', (event) => {
+            const key = event.target.closest('.kb-key');
+            if (!key) return;
+            key.classList.remove('kb-active');
+        }, { passive: true });
+    }
 });
