@@ -7374,9 +7374,19 @@ body {
     gap: 16px;
 }
 
+.grammar-title-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
 .grammar-verb-title {
     text-align: left;
     margin-bottom: 6px;
+}
+
+.grammar-reference-trigger {
+    margin-top: -4px;
 }
 
 .grammar-ghost-btn {

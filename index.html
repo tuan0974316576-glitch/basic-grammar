@@ -18,7 +18,7 @@
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 let refreshing = false;
-                navigator.serviceWorker.register('./sw.js?v=20260511-079').then(reg => {
+                navigator.serviceWorker.register('./sw.js?v=20260511-080').then(reg => {
                     console.log('SW registered!', reg);
                     reg.update();
 
@@ -48,8 +48,8 @@
         }
     </script>
 
-    <script type="module" src="firebase-init.js?v=0.79"></script>
-    <link rel="stylesheet" href="style.css?v=0.79">
+    <script type="module" src="firebase-init.js?v=0.80"></script>
+    <link rel="stylesheet" href="style.css?v=0.80">
 
 </head>
 <body>
@@ -78,7 +78,7 @@
     <div class="game-footer splash-footer">
         <span class="brand">Enguistics Learning Centre</span> 2026
         <br>
-        v0.79
+        v0.80
     </div>
 </div>
 <div id="game-content-wrapper" style="display: none;">
@@ -409,10 +409,12 @@
     <div class="panel-content-wrapper grammar-verb-panel">
         <div class="grammar-verb-header">
             <div>
-                <h2 class="grammar-screen-title grammar-verb-title">VERB TABLE</h2>
+                <div class="grammar-title-row">
+                    <h2 class="grammar-screen-title grammar-verb-title">VERB TABLE</h2>
+                    <button class="rank-info-trigger grammar-reference-trigger" onclick="toggleGrammarVerbReference()" aria-label="Open verb table reference"><span>i</span></button>
+                </div>
                 <div class="grammar-screen-subtitle">FOUR-FORM CHALLENGE</div>
             </div>
-            <button class="grammar-ghost-btn" onclick="toggleGrammarVerbReference()">REFERENCE TABLE</button>
         </div>
 
         <div class="grammar-verb-statusbar">
@@ -920,15 +922,15 @@
 <audio id="ship-voice-4"><source src="ship_4_spectre.mp3" type="audio/mpeg"></audio>
     <audio id="unit-lost-sfx"><source src="unit_lost.mp3" type="audio/mpeg"></audio>
 </div>
-<script src="vocab_data.js?v=0.79"></script>
-<script src="app-config.js?v=0.79"></script>
-<script src="vendor/effekseer/effekseer.min.js?v=0.79"></script>
-<script src="app.js?v=0.79"></script>
-<script src="grammar_verb_table_data.js?v=0.79"></script>
-<script src="ui-grammar.js?v=0.79"></script>
-<script src="ui-screens.js?v=0.79"></script>
-<script src="ui-auth.js?v=0.79"></script>
-<script src="ui-audio.js?v=0.79"></script>
+<script src="vocab_data.js?v=0.80"></script>
+<script src="app-config.js?v=0.80"></script>
+<script src="vendor/effekseer/effekseer.min.js?v=0.80"></script>
+<script src="app.js?v=0.80"></script>
+<script src="grammar_verb_table_data.js?v=0.80"></script>
+<script src="ui-grammar.js?v=0.80"></script>
+<script src="ui-screens.js?v=0.80"></script>
+<script src="ui-auth.js?v=0.80"></script>
+<script src="ui-audio.js?v=0.80"></script>
 <div id="registration-modal" class="registration-modal" style="display: none;">
     
     <div class="registration-scanlines"></div>
