@@ -7384,6 +7384,47 @@ body {
     margin-top: -6px;
 }
 
+.grammar-topic-search-wrap {
+    width: 100%;
+    margin-top: 4px;
+}
+
+.grammar-topic-search-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.grammar-topic-search-container input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    color: #ffffff;
+    padding: 10px 15px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 16px;
+    letter-spacing: 1px;
+    outline: none;
+    box-sizing: border-box;
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.08);
+}
+
+.grammar-topic-search-container input::placeholder {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.grammar-topic-search-container input:focus {
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.18), inset 0 0 10px rgba(255, 255, 255, 0.08);
+}
+
+.grammar-topic-search-icon {
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.45);
+}
+
 .grammar-topic-name {
     font-family: 'Black Ops One';
     font-size: 26px;

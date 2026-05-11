@@ -1,17 +1,17 @@
 const GRAMMAR_VERB_TIME_LIMIT = 30;
 const GRAMMAR_VERB_QUESTION_COUNT = 20;
-const GRAMMAR_VERB_FIELD_ORDER = ['present', 'past', 'pg', 'pp'];
+const GRAMMAR_VERB_FIELD_ORDER = ['present', 'past', 'pp', 'pg'];
 const GRAMMAR_VERB_FIELD_LABELS = {
     present: 'PRESENT',
     past: 'PAST',
-    pg: 'ING',
-    pp: 'PP'
+    pp: 'PP',
+    pg: 'ING'
 };
 const GRAMMAR_VERB_FIELD_INDEX = {
     present: 1,
     past: 2,
-    pg: 4,
-    pp: 3
+    pp: 3,
+    pg: 4
 };
 
 const grammarVerbState = {
@@ -83,14 +83,14 @@ function buildGrammarReferenceRows(bodyId) {
     if (!tbody || !Array.isArray(window.GRAMMAR_VERB_BANK)) return;
 
     tbody.innerHTML = window.GRAMMAR_VERB_BANK.map((verb) => {
-        const speakTextValue = [verb[1], verb[2], verb[4], verb[3]].join(' ');
+        const speakTextValue = [verb[1], verb[2], verb[3], verb[4]].join(' ');
         return `
-            <tr class="grammar-reference-row" data-grammar-speak="${speakTextValue}">
+            <tr class="grammar-reference-row" data-grammar-speak="${speakTextValue}" data-grammar-search="${[verb[0], verb[1], verb[2], verb[3], verb[4]].join(' ').toLowerCase()}">
                 <td>${verb[0]}</td>
                 <td>${verb[1]}</td>
                 <td>${verb[2]}</td>
-                <td>${verb[4]}</td>
                 <td>${verb[3]}</td>
+                <td>${verb[4]}</td>
             </tr>
         `;
     }).join('');
@@ -98,6 +98,9 @@ function buildGrammarReferenceRows(bodyId) {
 
 function speakGrammarReferenceSequence(text, rowElement) {
     if (!text) return;
+    if (typeof playSound === 'function') {
+        playSound('enter-sfx');
+    }
     document.querySelectorAll('.grammar-reference-row.speaking').forEach((row) => row.classList.remove('speaking'));
     speakText(text, rowElement, false);
 }
@@ -130,6 +133,8 @@ function openGrammarTopicScreen() {
 function closeGrammarTopicScreen() {
     const topicScreen = document.getElementById('grammar-topic-screen');
     const reference = document.getElementById('grammar-topic-reference');
+    const searchWrap = document.getElementById('grammar-topic-search-wrap');
+    const searchInput = document.getElementById('grammar-topic-search-input');
     if (reference && reference.style.display !== 'none') {
         reference.style.display = 'none';
         const title = document.getElementById('grammar-topic-title');
@@ -138,6 +143,8 @@ function closeGrammarTopicScreen() {
         if (title) title.innerText = 'SELECT TOPIC';
         if (subtitle) subtitle.style.display = 'block';
         if (card) card.style.display = 'block';
+        if (searchWrap) searchWrap.style.display = 'none';
+        if (searchInput) searchInput.value = '';
         return;
     }
     if (topicScreen) topicScreen.style.display = 'none';
@@ -171,6 +178,8 @@ function toggleGrammarTopicReference() {
     const title = document.getElementById('grammar-topic-title');
     const subtitle = document.getElementById('grammar-topic-subtitle');
     const card = document.querySelector('.grammar-topic-card');
+    const searchWrap = document.getElementById('grammar-topic-search-wrap');
+    const searchInput = document.getElementById('grammar-topic-search-input');
     if (!reference) return;
 
     if (reference.style.display === 'none') {
@@ -178,13 +187,26 @@ function toggleGrammarTopicReference() {
         if (title) title.innerText = 'VERB TABLE REFERENCE';
         if (subtitle) subtitle.style.display = 'none';
         if (card) card.style.display = 'none';
+        if (searchWrap) searchWrap.style.display = 'block';
         reference.style.display = 'block';
     } else {
         if (title) title.innerText = 'SELECT TOPIC';
         if (subtitle) subtitle.style.display = 'block';
         if (card) card.style.display = 'block';
+        if (searchWrap) searchWrap.style.display = 'none';
+        if (searchInput) searchInput.value = '';
         reference.style.display = 'none';
     }
+}
+
+function filterGrammarTopicReference() {
+    const input = document.getElementById('grammar-topic-search-input');
+    if (!input) return;
+    const filter = input.value.trim().toLowerCase();
+    document.querySelectorAll('#grammar-topic-reference .grammar-reference-row').forEach((row) => {
+        const haystack = row.getAttribute('data-grammar-search') || '';
+        row.style.display = !filter || haystack.includes(filter) ? '' : 'none';
+    });
 }
 
 function renderLaunchGrammarReference() {
@@ -311,16 +333,19 @@ function handleLaunchGrammarKey(keyValue, keyElement) {
     if (!isGrammarBattleMode()) return;
 
     if (keyValue === 'PREV_FIELD') {
+        if (typeof playSound === 'function') playSound('enter-sfx');
         moveLaunchGrammarField(-1);
         return;
     }
 
     if (keyValue === 'NEXT_FIELD') {
+        if (typeof playSound === 'function') playSound('enter-sfx');
         moveLaunchGrammarField(1);
         return;
     }
 
     if (keyValue === 'ENTER') {
+        if (typeof playSound === 'function') playSound('deploy-sfx');
         checkAnswer();
         return;
     }
@@ -330,6 +355,7 @@ function handleLaunchGrammarKey(keyValue, keyElement) {
     if (!input || input.disabled) return;
 
     if (keyValue === 'BACKSPACE') {
+        if (typeof playSound === 'function') playSound('delete-sfx');
         input.value = input.value.slice(0, -1);
         return;
     }
@@ -337,6 +363,7 @@ function handleLaunchGrammarKey(keyValue, keyElement) {
     if (keyElement) {
         lastVirtualKeyboardKey = keyElement;
     }
+    if (typeof playSound === 'function') playSound('enter-sfx');
     input.value += keyValue;
 }
 
@@ -893,6 +920,7 @@ window.handleLaunchGrammarKey = handleLaunchGrammarKey;
 window.checkGrammarBattleAnswer = checkGrammarBattleAnswer;
 window.toggleLaunchGrammarReference = toggleLaunchGrammarReference;
 window.getGrammarBattleDeckSnapshot = buildGrammarBattleDeck;
+window.filterGrammarTopicReference = filterGrammarTopicReference;
 document.addEventListener('DOMContentLoaded', () => {
     attachGrammarInputBehaviors();
     attachLaunchGrammarInputBehaviors();

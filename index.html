@@ -18,7 +18,7 @@
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 let refreshing = false;
-                navigator.serviceWorker.register('./sw.js?v=20260511-085').then(reg => {
+                navigator.serviceWorker.register('./sw.js?v=20260511-086').then(reg => {
                     console.log('SW registered!', reg);
                     reg.update();
 
@@ -48,8 +48,8 @@
         }
     </script>
 
-    <script type="module" src="firebase-init.js?v=0.85"></script>
-    <link rel="stylesheet" href="style.css?v=0.85">
+    <script type="module" src="firebase-init.js?v=0.86"></script>
+    <link rel="stylesheet" href="style.css?v=0.86">
 
 </head>
 <body>
@@ -78,7 +78,7 @@
     <div class="game-footer splash-footer">
         <span class="brand">Enguistics Learning Centre</span> 2026
         <br>
-        v0.85
+        v0.86
     </div>
 </div>
 <div id="game-content-wrapper" style="display: none;">
@@ -404,10 +404,6 @@
                 <button class="stage-info-btn grammar-topic-info" onclick="toggleGrammarTopicReference(); event.stopPropagation();" aria-label="Open verb table topic reference">i</button>
             </div>
             <div id="grammar-topic-reference" class="grammar-verb-reference grammar-topic-reference" style="display: none;">
-                <div class="grammar-verb-reference-head">
-                    <div>VERB TABLE REFERENCE</div>
-                    <div class="grammar-verb-reference-sub">CHINESE // PRESENT // PAST // ING // PP</div>
-                </div>
                 <div class="grammar-verb-reference-wrap">
                     <table class="grammar-verb-reference-table">
                         <thead>
@@ -415,13 +411,20 @@
                                 <th>CHINESE</th>
                                 <th>PRESENT</th>
                                 <th>PAST</th>
-                                <th>ING</th>
                                 <th>PP</th>
+                                <th>ING</th>
                             </tr>
                         </thead>
                         <tbody id="grammar-topic-reference-body"></tbody>
                     </table>
                 </div>
+            </div>
+        </div>
+
+        <div id="grammar-topic-search-wrap" class="grammar-topic-search-wrap" style="display: none;">
+            <div class="grammar-topic-search-container">
+                <input type="text" id="grammar-topic-search-input" placeholder=">> INPUT_KEYWORD..." oninput="filterGrammarTopicReference()" autocomplete="off" spellcheck="false">
+                <div class="search-icon grammar-topic-search-icon"></div>
             </div>
         </div>
 
@@ -457,17 +460,17 @@
                 <div class="grammar-verb-reference-sub">CHINESE // PRESENT // PAST // ING // PP</div>
             </div>
             <div class="grammar-verb-reference-wrap">
-                <table class="grammar-verb-reference-table">
-                    <thead>
-                        <tr>
-                            <th>CHINESE</th>
-                            <th>PRESENT</th>
-                            <th>PAST</th>
-                            <th>ING</th>
-                            <th>PP</th>
-                        </tr>
-                    </thead>
-                    <tbody id="grammar-verb-reference-body"></tbody>
+                    <table class="grammar-verb-reference-table">
+                        <thead>
+                            <tr>
+                                <th>CHINESE</th>
+                                <th>PRESENT</th>
+                                <th>PAST</th>
+                                <th>PP</th>
+                                <th>ING</th>
+                            </tr>
+                        </thead>
+                        <tbody id="grammar-verb-reference-body"></tbody>
                 </table>
             </div>
         </div>
@@ -482,19 +485,19 @@
                     <span class="grammar-verb-field-label">PRESENT</span>
                     <input id="grammar-verb-input-present" class="grammar-verb-input" data-grammar-field="present" autocomplete="off" spellcheck="false">
                 </label>
-                <label class="grammar-verb-field">
-                    <span class="grammar-verb-field-label">PAST</span>
-                    <input id="grammar-verb-input-past" class="grammar-verb-input" data-grammar-field="past" autocomplete="off" spellcheck="false">
-                </label>
-                <label class="grammar-verb-field">
-                    <span class="grammar-verb-field-label">ING</span>
-                    <input id="grammar-verb-input-pg" class="grammar-verb-input" data-grammar-field="pg" autocomplete="off" spellcheck="false">
-                </label>
-                <label class="grammar-verb-field">
-                    <span class="grammar-verb-field-label">PP</span>
-                    <input id="grammar-verb-input-pp" class="grammar-verb-input" data-grammar-field="pp" autocomplete="off" spellcheck="false">
-                </label>
-            </div>
+                    <label class="grammar-verb-field">
+                        <span class="grammar-verb-field-label">PAST</span>
+                        <input id="grammar-verb-input-past" class="grammar-verb-input" data-grammar-field="past" autocomplete="off" spellcheck="false">
+                    </label>
+                    <label class="grammar-verb-field">
+                        <span class="grammar-verb-field-label">PP</span>
+                        <input id="grammar-verb-input-pp" class="grammar-verb-input" data-grammar-field="pp" autocomplete="off" spellcheck="false">
+                    </label>
+                    <label class="grammar-verb-field">
+                        <span class="grammar-verb-field-label">ING</span>
+                        <input id="grammar-verb-input-pg" class="grammar-verb-input" data-grammar-field="pg" autocomplete="off" spellcheck="false">
+                    </label>
+                </div>
 
             <div id="grammar-verb-message" class="grammar-verb-message"></div>
         </div>
@@ -760,13 +763,13 @@
                         <span class="launch-grammar-label">PAST</span>
                         <input id="launch-grammar-input-past" class="launch-grammar-input" autocomplete="off" spellcheck="false">
                     </label>
-                    <label class="launch-grammar-field" id="launch-grammar-field-pg">
-                        <span class="launch-grammar-label">ING</span>
-                        <input id="launch-grammar-input-pg" class="launch-grammar-input" autocomplete="off" spellcheck="false">
-                    </label>
                     <label class="launch-grammar-field" id="launch-grammar-field-pp">
                         <span class="launch-grammar-label">PP</span>
                         <input id="launch-grammar-input-pp" class="launch-grammar-input" autocomplete="off" spellcheck="false">
+                    </label>
+                    <label class="launch-grammar-field" id="launch-grammar-field-pg">
+                        <span class="launch-grammar-label">ING</span>
+                        <input id="launch-grammar-input-pg" class="launch-grammar-input" autocomplete="off" spellcheck="false">
                     </label>
                 </div>
                 <div id="launch-grammar-reference" class="launch-grammar-reference" style="display: none;">
@@ -778,8 +781,8 @@
                                     <th>CHINESE</th>
                                     <th>PRESENT</th>
                                     <th>PAST</th>
-                                    <th>ING</th>
                                     <th>PP</th>
+                                    <th>ING</th>
                                 </tr>
                             </thead>
                             <tbody id="launch-grammar-reference-body"></tbody>
@@ -982,15 +985,15 @@
 <audio id="ship-voice-4"><source src="ship_4_spectre.mp3" type="audio/mpeg"></audio>
     <audio id="unit-lost-sfx"><source src="unit_lost.mp3" type="audio/mpeg"></audio>
 </div>
-<script src="vocab_data.js?v=0.85"></script>
-<script src="app-config.js?v=0.85"></script>
-<script src="vendor/effekseer/effekseer.min.js?v=0.85"></script>
-<script src="app.js?v=0.85"></script>
-<script src="grammar_verb_table_data.js?v=0.85"></script>
-<script src="ui-grammar.js?v=0.85"></script>
-<script src="ui-screens.js?v=0.85"></script>
-<script src="ui-auth.js?v=0.85"></script>
-<script src="ui-audio.js?v=0.85"></script>
+<script src="vocab_data.js?v=0.86"></script>
+<script src="app-config.js?v=0.86"></script>
+<script src="vendor/effekseer/effekseer.min.js?v=0.86"></script>
+<script src="app.js?v=0.86"></script>
+<script src="grammar_verb_table_data.js?v=0.86"></script>
+<script src="ui-grammar.js?v=0.86"></script>
+<script src="ui-screens.js?v=0.86"></script>
+<script src="ui-auth.js?v=0.86"></script>
+<script src="ui-audio.js?v=0.86"></script>
 <div id="registration-modal" class="registration-modal" style="display: none;">
     
     <div class="registration-scanlines"></div>
