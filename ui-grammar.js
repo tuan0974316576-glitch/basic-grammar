@@ -78,6 +78,30 @@ function buildGrammarBattleDeck() {
     }));
 }
 
+function buildGrammarReferenceRows(bodyId) {
+    const tbody = document.getElementById(bodyId);
+    if (!tbody || !Array.isArray(window.GRAMMAR_VERB_BANK)) return;
+
+    tbody.innerHTML = window.GRAMMAR_VERB_BANK.map((verb) => {
+        const speakTextValue = [verb[1], verb[2], verb[4], verb[3]].join(' ');
+        return `
+            <tr class="grammar-reference-row" data-grammar-speak="${speakTextValue}">
+                <td>${verb[0]}</td>
+                <td>${verb[1]}</td>
+                <td>${verb[2]}</td>
+                <td>${verb[4]}</td>
+                <td>${verb[3]}</td>
+            </tr>
+        `;
+    }).join('');
+}
+
+function speakGrammarReferenceSequence(text, rowElement) {
+    if (!text) return;
+    document.querySelectorAll('.grammar-reference-row.speaking').forEach((row) => row.classList.remove('speaking'));
+    speakText(text, rowElement, false);
+}
+
 function isGrammarBattleMode() {
     return window.selectedGrammarTopic === 'VERB_TABLE' && currentPracticeMode === 'GRAMMAR';
 }
@@ -123,36 +147,12 @@ function closeGrammarTopicScreen() {
 
 function renderGrammarVerbReference() {
     if (grammarVerbState.referenceRendered) return;
-
-    const tbody = document.getElementById('grammar-verb-reference-body');
-    if (!tbody || !Array.isArray(window.GRAMMAR_VERB_BANK)) return;
-
-    tbody.innerHTML = window.GRAMMAR_VERB_BANK.map((verb) => `
-        <tr>
-            <td>${verb[0]}</td>
-            <td>${verb[1]}</td>
-            <td>${verb[2]}</td>
-            <td>${verb[4]}</td>
-            <td>${verb[3]}</td>
-        </tr>
-    `).join('');
-
+    buildGrammarReferenceRows('grammar-verb-reference-body');
     grammarVerbState.referenceRendered = true;
 }
 
 function renderGrammarTopicReference() {
-    const tbody = document.getElementById('grammar-topic-reference-body');
-    if (!tbody || !Array.isArray(window.GRAMMAR_VERB_BANK)) return;
-
-    tbody.innerHTML = window.GRAMMAR_VERB_BANK.map((verb) => `
-        <tr>
-            <td>${verb[0]}</td>
-            <td>${verb[1]}</td>
-            <td>${verb[2]}</td>
-            <td>${verb[4]}</td>
-            <td>${verb[3]}</td>
-        </tr>
-    `).join('');
+    buildGrammarReferenceRows('grammar-topic-reference-body');
 }
 
 function toggleGrammarVerbReference() {
@@ -189,20 +189,7 @@ function toggleGrammarTopicReference() {
 
 function renderLaunchGrammarReference() {
     if (grammarLaunchState.referenceRendered) return;
-
-    const tbody = document.getElementById('launch-grammar-reference-body');
-    if (!tbody || !Array.isArray(window.GRAMMAR_VERB_BANK)) return;
-
-    tbody.innerHTML = window.GRAMMAR_VERB_BANK.map((verb) => `
-        <tr>
-            <td>${verb[0]}</td>
-            <td>${verb[1]}</td>
-            <td>${verb[2]}</td>
-            <td>${verb[4]}</td>
-            <td>${verb[3]}</td>
-        </tr>
-    `).join('');
-
+    buildGrammarReferenceRows('launch-grammar-reference-body');
     grammarLaunchState.referenceRendered = true;
 }
 
@@ -938,4 +925,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!key) return;
         key.classList.remove('kb-active');
     }, { passive: true });
+
+    document.addEventListener('click', (event) => {
+        const row = event.target.closest('.grammar-reference-row');
+        if (!row) return;
+        const speakTextValue = row.getAttribute('data-grammar-speak') || '';
+        speakGrammarReferenceSequence(speakTextValue, row);
+    });
 });
