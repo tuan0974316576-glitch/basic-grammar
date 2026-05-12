@@ -7403,13 +7403,13 @@ body {
     display: none;
 }
 
-#grammar-topic-screen.grammar-topic-reference-mode #grammar-topic-back-btn {
+#grammar-topic-back-btn {
     border-color: #ffffff;
     color: #ffffff;
     background: rgba(255, 255, 255, 0.06);
 }
 
-#grammar-topic-screen.grammar-topic-reference-mode #grammar-topic-back-btn:hover {
+#grammar-topic-back-btn:hover {
     background: rgba(255, 255, 255, 0.18);
     color: #ffffff;
     box-shadow: 0 0 14px rgba(255, 255, 255, 0.45);

@@ -177,10 +177,22 @@ function closeGrammarTopicScreen() {
     }
 
     const topicScreen = document.getElementById('grammar-topic-screen');
+    setGrammarTopicReferenceMode(false);
     if (topicScreen) topicScreen.style.display = 'none';
-    hideGrammarTopicSearchKeyboard();
     window.selectedGrammarTopic = null;
-    showGrammarScreenWithAnimation('level-screen');
+
+    showSelectionOverlay();
+    const levelScreen = document.getElementById('level-screen');
+    if (levelScreen) {
+        levelScreen.style.display = 'flex';
+        const wrapper = levelScreen.querySelector('.panel-content-wrapper');
+        if (wrapper) {
+            wrapper.style.animation = 'none';
+            setTimeout(() => {
+                wrapper.style.animation = 'holoAppear 0.25s ease-out forwards';
+            }, 10);
+        }
+    }
 }
 
 function renderGrammarVerbReference() {
