@@ -32,6 +32,8 @@ const grammarLaunchState = {
     referenceRendered: false
 };
 
+let grammarTopicScreenMode = 'default';
+
 function grammarUsesGameKeyboard() {
     return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ||
         window.matchMedia('(pointer: coarse)').matches ||
@@ -164,29 +166,17 @@ function openGrammarTopicScreen() {
     const levelScreen = document.getElementById('level-screen');
     if (levelScreen) levelScreen.style.display = 'none';
     showSelectionOverlay();
+    setGrammarTopicReferenceMode(false);
     showGrammarScreenWithAnimation('grammar-topic-screen');
 }
 
 function closeGrammarTopicScreen() {
-    const topicScreen = document.getElementById('grammar-topic-screen');
-    const reference = document.getElementById('grammar-topic-reference');
-    const searchWrap = document.getElementById('grammar-topic-search-wrap');
-    const searchInput = document.getElementById('grammar-topic-search-input');
-    if (reference && reference.style.display !== 'none') {
-        reference.style.display = 'none';
-        hideGrammarTopicSearchKeyboard();
-        const title = document.getElementById('grammar-topic-title');
-        const subtitle = document.getElementById('grammar-topic-subtitle');
-        const card = document.querySelector('.grammar-topic-card');
-        const panel = document.querySelector('.grammar-topic-panel');
-        if (title) title.innerText = 'SELECT TOPIC';
-        if (subtitle) subtitle.style.display = 'block';
-        if (card) card.style.display = 'block';
-        if (panel) panel.classList.remove('is-reference-open');
-        if (searchWrap) searchWrap.style.display = 'none';
-        if (searchInput) searchInput.value = '';
+    if (grammarTopicScreenMode === 'reference') {
+        setGrammarTopicReferenceMode(false);
         return;
     }
+
+    const topicScreen = document.getElementById('grammar-topic-screen');
     if (topicScreen) topicScreen.style.display = 'none';
     hideGrammarTopicSearchKeyboard();
     window.selectedGrammarTopic = null;
@@ -201,6 +191,45 @@ function renderGrammarVerbReference() {
 
 function renderGrammarTopicReference() {
     buildGrammarReferenceRows('grammar-topic-reference-body');
+}
+
+function setGrammarTopicReferenceMode(isReferenceMode) {
+    const topicScreen = document.getElementById('grammar-topic-screen');
+    const reference = document.getElementById('grammar-topic-reference');
+    const title = document.getElementById('grammar-topic-title');
+    const subtitle = document.getElementById('grammar-topic-subtitle');
+    const card = document.querySelector('.grammar-topic-card');
+    const panel = document.querySelector('.grammar-topic-panel');
+    const searchWrap = document.getElementById('grammar-topic-search-wrap');
+    const searchInput = document.getElementById('grammar-topic-search-input');
+
+    grammarTopicScreenMode = isReferenceMode ? 'reference' : 'default';
+
+    if (isReferenceMode) {
+        renderGrammarTopicReference();
+        if (topicScreen) topicScreen.classList.add('grammar-topic-reference-mode');
+        if (title) title.innerText = 'VERB TABLE REFERENCE';
+        if (subtitle) subtitle.style.display = 'none';
+        if (card) card.style.display = 'none';
+        if (searchWrap) searchWrap.style.display = 'block';
+        if (panel) panel.classList.add('is-reference-open');
+        if (reference) reference.style.display = 'block';
+        setTimeout(showGrammarTopicSearchKeyboard, 0);
+        return;
+    }
+
+    hideGrammarTopicSearchKeyboard();
+    if (topicScreen) topicScreen.classList.remove('grammar-topic-reference-mode');
+    if (title) title.innerText = 'SELECT TOPIC';
+    if (subtitle) subtitle.style.display = 'block';
+    if (card) card.style.display = 'block';
+    if (searchWrap) searchWrap.style.display = 'none';
+    if (searchInput) {
+        searchInput.value = '';
+        filterGrammarTopicReference();
+    }
+    if (panel) panel.classList.remove('is-reference-open');
+    if (reference) reference.style.display = 'none';
 }
 
 function toggleGrammarVerbReference() {
@@ -221,34 +250,7 @@ function toggleGrammarTopicReference() {
     if (typeof playSound === 'function') {
         playSound('enter-number-sfx');
     }
-    const reference = document.getElementById('grammar-topic-reference');
-    const title = document.getElementById('grammar-topic-title');
-    const subtitle = document.getElementById('grammar-topic-subtitle');
-    const card = document.querySelector('.grammar-topic-card');
-    const panel = document.querySelector('.grammar-topic-panel');
-    const searchWrap = document.getElementById('grammar-topic-search-wrap');
-    const searchInput = document.getElementById('grammar-topic-search-input');
-    if (!reference) return;
-
-    if (reference.style.display === 'none') {
-        renderGrammarTopicReference();
-        if (title) title.innerText = 'VERB TABLE REFERENCE';
-        if (subtitle) subtitle.style.display = 'none';
-        if (card) card.style.display = 'none';
-        if (searchWrap) searchWrap.style.display = 'block';
-        if (panel) panel.classList.add('is-reference-open');
-        reference.style.display = 'block';
-        setTimeout(showGrammarTopicSearchKeyboard, 0);
-    } else {
-        hideGrammarTopicSearchKeyboard();
-        if (title) title.innerText = 'SELECT TOPIC';
-        if (subtitle) subtitle.style.display = 'block';
-        if (card) card.style.display = 'block';
-        if (searchWrap) searchWrap.style.display = 'none';
-        if (searchInput) searchInput.value = '';
-        if (panel) panel.classList.remove('is-reference-open');
-        reference.style.display = 'none';
-    }
+    setGrammarTopicReferenceMode(grammarTopicScreenMode !== 'reference');
 }
 
 function filterGrammarTopicReference() {
