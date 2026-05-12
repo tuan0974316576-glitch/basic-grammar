@@ -15,15 +15,17 @@ const azureSpeechKey = defineSecret('AZURE_SPEECH_KEY');
 const azureSpeechRegion = defineString('AZURE_SPEECH_REGION', {
   default: 'eastasia'
 });
-const firebaseStorageBucket = defineString('FIREBASE_STORAGE_BUCKET', {
-  default: 'battleship-game-c0909.firebasestorage.app'
-});
 
 const app = express();
 const corsMiddleware = cors({ origin: true });
 const VERB_TABLE_AUDIO_VERSION = 'v1';
 const VERB_TABLE_AUDIO_BREAK_MS = 150;
 const VERB_TABLE_AUDIO_VOICE = 'en-US-AndrewMultilingualNeural';
+const VERB_TABLE_AUDIO_BUCKET_FALLBACKS = [
+  'battleship-game-c0909-verb-audio',
+  'battleship-game-c0909.firebasestorage.app',
+  'battleship-game-c0909.appspot.com'
+];
 
 app.use(corsMiddleware);
 app.options('*', corsMiddleware);
@@ -155,23 +157,47 @@ function getVerbTableAudioSlug(forms) {
   return slug.slice(0, 72) || 'verb-table-row';
 }
 
-function getFirebaseStorageDownloadUrl(bucketName, filePath, token) {
-  return `https://firebasestorage.googleapis.com/v0/b/${bucketName}/o/${encodeURIComponent(filePath)}?alt=media&token=${token}`;
+function getPublicStorageUrl(bucketName, filePath) {
+  const encodedPath = filePath.split('/').map(part => encodeURIComponent(part)).join('/');
+  return `https://storage.googleapis.com/${bucketName}/${encodedPath}`;
+}
+
+function getStorageBucketCandidates() {
+  let configuredBucket = '';
+  try {
+    configuredBucket = JSON.parse(process.env.FIREBASE_CONFIG || '{}')?.storageBucket || '';
+  } catch (_error) {
+    configuredBucket = '';
+  }
+  return [...new Set([configuredBucket, ...VERB_TABLE_AUDIO_BUCKET_FALLBACKS].filter(Boolean))];
+}
+
+async function getVerbTableStorageBucket() {
+  const candidates = getStorageBucketCandidates();
+  let lastError = null;
+
+  for (const bucketName of candidates) {
+    const bucket = admin.storage().bucket(bucketName);
+    try {
+      await bucket.getMetadata();
+      return bucket;
+    } catch (error) {
+      lastError = error;
+      const code = error?.code || error?.statusCode || error?.errors?.[0]?.reason;
+      if (code !== 404 && code !== 'notFound') {
+        throw error;
+      }
+    }
+  }
+
+  throw new Error(
+    `No Firebase Storage bucket found. Tried: ${candidates.join(', ')}. ${lastError?.message || ''}`.trim()
+  );
 }
 
 async function getExistingFileDownloadUrl(file, filePath) {
-  const [metadata] = await file.getMetadata();
-  let token = metadata?.metadata?.firebaseStorageDownloadTokens || '';
-  if (!token) {
-    token = crypto.randomUUID();
-    await file.setMetadata({
-      metadata: {
-        ...(metadata.metadata || {}),
-        firebaseStorageDownloadTokens: token
-      }
-    });
-  }
-  return getFirebaseStorageDownloadUrl(file.bucket.name, filePath, token);
+  await file.makePublic();
+  return getPublicStorageUrl(file.bucket.name, filePath);
 }
 
 app.post('/api/verb-table-audio', async (req, res) => {
@@ -203,7 +229,7 @@ app.post('/api/verb-table-audio', async (req, res) => {
       VERB_TABLE_AUDIO_VERSION,
       `${getVerbTableAudioSlug(forms)}-${getVerbTableAudioHash(cacheKey)}.mp3`
     ].join('/');
-    const bucket = admin.storage().bucket(firebaseStorageBucket.value());
+    const bucket = await getVerbTableStorageBucket();
     const file = bucket.file(filePath);
     const [exists] = await file.exists();
 
@@ -239,14 +265,12 @@ app.post('/api/verb-table-audio', async (req, res) => {
       throw new Error('Azure returned empty audio.');
     }
 
-    const downloadToken = crypto.randomUUID();
     await file.save(audioBuffer, {
       resumable: false,
       metadata: {
         contentType: 'audio/mpeg',
         cacheControl: 'public,max-age=31536000,immutable',
         metadata: {
-          firebaseStorageDownloadTokens: downloadToken,
           cacheKey,
           forms: forms.join('|'),
           voiceName,
@@ -255,8 +279,9 @@ app.post('/api/verb-table-audio', async (req, res) => {
         }
       }
     });
+    await file.makePublic();
 
-    const audioUrl = getFirebaseStorageDownloadUrl(bucket.name, filePath, downloadToken);
+    const audioUrl = getPublicStorageUrl(bucket.name, filePath);
     res.json({
       ok: true,
       cached: false,
