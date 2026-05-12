@@ -690,7 +690,7 @@ function openGrammarVerbTableScreen() {
 
     window.selectedGrammarTopic = 'VERB_TABLE';
     currentPracticeMode = 'GRAMMAR';
-    selectedLevel = 'GRAMMAR';
+    selectedLevel = 'VERB_TABLE';
     selectedStageIndex = null;
     selectedStageLabel = 'VERB TABLE';
     activeVocabList = buildGrammarBattleDeck();

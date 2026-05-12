@@ -797,12 +797,28 @@ function setSpeakingUiState(state = 'idle', statusText = 'VOICE LINK STANDBY', s
         syncWrongWordsToFirebase();
     }
 
+    function getWrongWordLevelKeys(skill, level) {
+        const keys = [level];
+        if (skill === 'GRAMMAR') {
+            ['VERB_TABLE', 'GRAMMAR'].forEach((legacyKey) => {
+                if (!keys.includes(legacyKey)) keys.push(legacyKey);
+            });
+        }
+        return keys.filter(Boolean);
+    }
+
     // �Ƴ�һ���e�� (�����)
     function removeWrongWord(skill, level, wordEn) {
-        if (wrongWordsDB[skill] && wrongWordsDB[skill][level] && wrongWordsDB[skill][level][wordEn]) {
-            delete wrongWordsDB[skill][level][wordEn];
-            // ��������
-            if (Object.keys(wrongWordsDB[skill][level]).length === 0) delete wrongWordsDB[skill][level];
+        if (!wrongWordsDB[skill]) return;
+        let removed = false;
+        getWrongWordLevelKeys(skill, level).forEach((levelKey) => {
+            if (wrongWordsDB[skill]?.[levelKey]?.[wordEn]) {
+                delete wrongWordsDB[skill][levelKey][wordEn];
+                if (Object.keys(wrongWordsDB[skill][levelKey]).length === 0) delete wrongWordsDB[skill][levelKey];
+                removed = true;
+            }
+        });
+        if (removed) {
             if (Object.keys(wrongWordsDB[skill]).length === 0) delete wrongWordsDB[skill];
             saveWrongWordsToLocal();
             syncWrongWordsToFirebase();
@@ -811,14 +827,22 @@ function setSpeakingUiState(state = 'idle', statusText = 'VOICE LINK STANDBY', s
 
     // �@ȡ��ǰ skill+level ���e�� vocab ����б�
     function getWrongWordsForSession(skill, level) {
-        if (!wrongWordsDB[skill] || !wrongWordsDB[skill][level]) return [];
-        const wrongKeys = Object.keys(wrongWordsDB[skill][level]);
-        if (wrongKeys.length === 0) return [];
+        if (!wrongWordsDB[skill]) return [];
+        const wrongEntries = new Map();
+        getWrongWordLevelKeys(skill, level).forEach((levelKey) => {
+            const levelWrongWords = wrongWordsDB[skill]?.[levelKey] || {};
+            Object.entries(levelWrongWords).forEach(([wordKey, count]) => {
+                wrongEntries.set(wordKey, Math.max(Number(count) || 1, wrongEntries.get(wordKey) || 0));
+            });
+        });
+        if (wrongEntries.size === 0) return [];
         const levelVocab = (skill === 'GRAMMAR' && typeof window.getGrammarBattleDeckSnapshot === 'function')
             ? window.getGrammarBattleDeckSnapshot()
             : VOCAB_DB[level];
         if (!levelVocab) return [];
-        return levelVocab.filter(v => wrongKeys.includes(v.en));
+        return levelVocab
+            .filter(v => wrongEntries.has(v.en))
+            .sort((a, b) => (wrongEntries.get(b.en) || 0) - (wrongEntries.get(a.en) || 0));
     }
 
     // ���� CRITICAL FIX: Declare variables BEFORE calling loadWrongWordsFromLocal ����
@@ -1264,6 +1288,14 @@ function markBattleWordUsed(word) {
         battleUsedWordKeys.add(wordKey);
         lastAskedWordKey = wordKey;
     }
+}
+
+function getWordMasteryEntry(masteryKey, levelKey, wordEn) {
+    if (!wordEn) return null;
+    const modeMastery = userMastery?.[masteryKey] || {};
+    return modeMastery[levelKey]?.[wordEn]
+        || (masteryKey === 'grammar' ? modeMastery.GRAMMAR?.[wordEn] : null)
+        || null;
 }
 
 function isCurrentStagePrimaryWord(word) {
@@ -4321,16 +4353,12 @@ function getLikelyNextBattleWord() {
     }
 
     const newWords = primaryWordPool.filter(word => {
-        if (!userMastery[masteryKey]) return true;
-        if (!userMastery[masteryKey][selectedLevel]) return true;
-        return !userMastery[masteryKey][selectedLevel][word.en];
+        return !getWordMasteryEntry(masteryKey, selectedLevel, word.en);
     });
     if (newWords.length > 0) return newWords[0];
 
     const masteredWords = primaryWordPool.filter(word => {
-        if (!userMastery[masteryKey]) return false;
-        if (!userMastery[masteryKey][selectedLevel]) return false;
-        return userMastery[masteryKey][selectedLevel][word.en];
+        return !!getWordMasteryEntry(masteryKey, selectedLevel, word.en);
     });
     if (masteredWords.length > 0) return masteredWords[0];
 
@@ -4361,9 +4389,7 @@ function takeNextAiBattleVocab() {
     }
 
     const newWords = primaryWordPool.filter(word => {
-        if (!userMastery[masteryKey]) return true;
-        if (!userMastery[masteryKey][selectedLevel]) return true;
-        if (userMastery[masteryKey][selectedLevel][word.en]) return false;
+        if (getWordMasteryEntry(masteryKey, selectedLevel, word.en)) return false;
         return getStageSessionMissCount(word.en) < STAGE_WORD_SESSION_MISS_LIMIT;
     });
 
@@ -4384,15 +4410,13 @@ function takeNextAiBattleVocab() {
     }
 
     const masteredWords = primaryWordPool.filter(word => {
-        if (!userMastery[masteryKey]) return false;
-        if (!userMastery[masteryKey][selectedLevel]) return false;
-        return userMastery[masteryKey][selectedLevel][word.en];
+        return !!getWordMasteryEntry(masteryKey, selectedLevel, word.en);
     });
 
     if (masteredWords.length > 0) {
         const pickedWord = pickBattleWordWithCooldown(masteredWords);
         if (pickedWord) {
-            const masteryData = userMastery[masteryKey][selectedLevel][pickedWord.en];
+            const masteryData = getWordMasteryEntry(masteryKey, selectedLevel, pickedWord.en);
             console.log(`[Pool 4 - Stage Review] Mastered word: ${pickedWord.en} (count: ${masteryData.count})`);
             return pickedWord;
         }
