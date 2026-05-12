@@ -363,7 +363,8 @@ function setLaunchGrammarActiveField(index) {
             input.blur();
         } else if (fieldIndex === safeIndex && document.getElementById('launch-modal')?.style.display === 'flex') {
             input.focus();
-            input.select();
+            const endPosition = input.value.length;
+            input.setSelectionRange(endPosition, endPosition);
         }
     });
 }
@@ -371,6 +372,10 @@ function setLaunchGrammarActiveField(index) {
 function moveLaunchGrammarField(direction) {
     const nextIndex = (grammarLaunchState.activeFieldIndex + direction + GRAMMAR_VERB_FIELD_ORDER.length) % GRAMMAR_VERB_FIELD_ORDER.length;
     setLaunchGrammarActiveField(nextIndex);
+}
+
+function getLaunchGrammarPresentClue(question = currentVocab) {
+    return String(question?.grammarForms?.present || '').charAt(0).toLowerCase();
 }
 
 function prepareLaunchGrammarQuestion(question) {
@@ -395,7 +400,7 @@ function prepareLaunchGrammarQuestion(question) {
     GRAMMAR_VERB_FIELD_ORDER.forEach((fieldKey) => {
         const input = getLaunchGrammarInput(fieldKey);
         if (!input) return;
-        input.value = '';
+        input.value = fieldKey === 'present' ? getLaunchGrammarPresentClue(question) : '';
         input.disabled = false;
         input.classList.remove('is-correct', 'is-wrong');
         if (grammarUsesGameKeyboard()) {
@@ -454,7 +459,6 @@ function handleLaunchGrammarKey(keyValue, keyElement) {
     }
 
     if (keyValue === 'ENTER') {
-        if (typeof playSound === 'function') playSound('deploy-sfx');
         checkAnswer();
         return;
     }
@@ -464,6 +468,8 @@ function handleLaunchGrammarKey(keyValue, keyElement) {
     if (!input || input.disabled) return;
 
     if (keyValue === 'BACKSPACE') {
+        const presentClue = getLaunchGrammarPresentClue();
+        if (fieldKey === 'present' && input.value.length <= presentClue.length) return;
         if (typeof playSound === 'function') playSound('delete-sfx');
         input.value = input.value.slice(0, -1);
         return;
@@ -493,7 +499,6 @@ function checkGrammarBattleAnswer() {
         } else {
             allCorrect = false;
             input.classList.add('is-wrong');
-            addLaunchGrammarHint(fieldKey, answers[fieldKey]);
         }
     });
 
@@ -993,6 +998,10 @@ function attachLaunchGrammarInputBehaviors() {
         });
 
         input.addEventListener('input', () => {
+            const presentClue = getLaunchGrammarPresentClue();
+            if (fieldKey === 'present' && presentClue && !input.value) {
+                input.value = presentClue;
+            }
             input.classList.remove('is-correct', 'is-wrong');
             const field = getLaunchGrammarField(fieldKey);
             if (field) {

@@ -2739,7 +2739,7 @@ function initPVPListeners() {
                 const status = document.getElementById('game-status');
                 status.innerHTML = `OPPONENT TIMED OUT!`;
                 status.style.color = "var(--success)";
-                playSound('time_out'); 
+                playSound('timeout-sfx');
                 expireAegisShieldAfterEnemyAttack();
                 setGameTimeout(startPlayerTurn, 1500);
                 return;
@@ -5021,12 +5021,13 @@ function checkAnswer() {
             : false;
 
         if (isCorrect) {
+            playSound('speaking-green-sfx');
             removeWrongWord(currentPracticeMode, selectedLevel, currentVocab.en);
             handleCorrectAnswer();
             playerFire(true);
         } else {
             saveWrongWord(currentPracticeMode, selectedLevel, currentVocab.en);
-            playSound('wrong-sfx');
+            playSound('speaking-wrong-sfx');
             document.getElementById('msg-area').innerText = "TABLE INCOMPLETE!";
         }
         return;
