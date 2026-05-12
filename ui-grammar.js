@@ -33,6 +33,7 @@ const grammarLaunchState = {
 };
 
 let grammarTopicScreenMode = 'default';
+let grammarTopicKeyboardActive = false;
 
 function grammarUsesGameKeyboard() {
     return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ||
