@@ -7318,6 +7318,12 @@ body {
     width: min(420px, calc(100% - 40px));
 }
 
+.grammar-topic-panel.is-reference-open {
+    width: min(980px, calc(100% - 24px));
+    max-height: calc(100svh - var(--grammar-topic-keyboard-height, 0px) - 18px);
+    transform: translateY(-10px);
+}
+
 .grammar-topic-grid {
     display: flex;
     flex-direction: column;
@@ -7381,12 +7387,12 @@ body {
 }
 
 .grammar-topic-reference {
-    margin-top: -6px;
+    margin-top: -12px;
 }
 
 .grammar-topic-search-wrap {
     width: 100%;
-    margin-top: 4px;
+    margin-top: 6px;
 }
 
 #grammar-topic-screen.grammar-topic-keyboard-open .grammar-topic-search-wrap {
@@ -7575,9 +7581,8 @@ body {
 }
 
 .grammar-verb-reference {
-    border: 1px solid rgba(148, 163, 184, 0.22);
-    background: rgba(2, 6, 23, 0.72);
-    padding: 14px;
+    padding: 0;
+    background: transparent;
 }
 
 .grammar-verb-reference-head {
@@ -7588,7 +7593,7 @@ body {
     color: #f8fafc;
     font-family: 'Black Ops One';
     font-size: 20px;
-    margin-bottom: 12px;
+    margin-bottom: 6px;
 }
 
 .grammar-verb-reference-sub {
@@ -7599,52 +7604,109 @@ body {
 }
 
 .grammar-verb-reference-wrap {
-    max-height: 44vh;
-    overflow: auto;
-    border: 1px solid rgba(148, 163, 184, 0.18);
+    max-height: min(68vh, 620px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    border: 0;
 }
 
 .grammar-verb-reference-table {
     width: 100%;
-    min-width: 720px;
+    min-width: 0;
     border-collapse: collapse;
     font-family: 'Orbitron', sans-serif;
-    font-size: 13px;
+    font-size: 12px;
+    table-layout: fixed;
 }
 
-.grammar-verb-reference-table th {
-    position: sticky;
-    top: 0;
-    z-index: 1;
-    background: rgba(15, 23, 42, 0.96);
-    color: #f8fafc;
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid rgba(148, 163, 184, 0.28);
+.grammar-verb-reference-table thead {
+    display: none;
+}
+
+.grammar-verb-reference-table tbody {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
 .grammar-verb-reference-table td {
-    padding: 10px;
-    border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+    min-width: 0;
+    padding: 6px 8px;
+    border-bottom: 0;
     color: #cbd5e1;
 }
 
-.grammar-verb-reference-table tr:nth-child(even) td {
-    background: rgba(15, 23, 42, 0.28);
+.grammar-verb-reference-table td::before {
+    content: attr(data-reference-label);
+    display: block;
+    margin-bottom: 2px;
+    color: #64748b;
+    font-size: 8px;
+    letter-spacing: 0.8px;
 }
 
-.grammar-reference-row {
+.grammar-verb-reference-table td:first-child::before {
+    display: none;
+}
+
+.grammar-verb-reference-table .grammar-reference-row {
+    display: grid;
+    grid-template-columns: minmax(0, 32%) minmax(0, 34%) minmax(0, 34%);
+    grid-template-areas:
+        "ch present past"
+        "ch pp ing";
+    align-items: stretch;
+    column-gap: 6px;
+    row-gap: 4px;
+    padding: 6px;
+    background: rgba(15, 23, 42, 0.52);
+    border: 1px solid rgba(148, 163, 184, 0.12);
     cursor: pointer;
     transition: background 0.18s ease, box-shadow 0.18s ease;
 }
 
-.grammar-reference-row:hover td {
+.grammar-verb-reference-table .grammar-reference-row td:nth-child(1) {
+    grid-area: ch;
+    display: flex;
+    align-items: center;
+    background: rgba(2, 6, 23, 0.42);
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.28;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.grammar-verb-reference-table .grammar-reference-row td:nth-child(2) {
+    grid-area: present;
+}
+
+.grammar-verb-reference-table .grammar-reference-row td:nth-child(3) {
+    grid-area: past;
+}
+
+.grammar-verb-reference-table .grammar-reference-row td:nth-child(4) {
+    grid-area: pp;
+}
+
+.grammar-verb-reference-table .grammar-reference-row td:nth-child(5) {
+    grid-area: ing;
+}
+
+.grammar-verb-reference-table .grammar-reference-row:hover {
     background: rgba(148, 163, 184, 0.09);
 }
 
-.grammar-reference-row.speaking td {
+.grammar-verb-reference-table .grammar-reference-row.speaking {
     background: rgba(255, 255, 255, 0.12);
     box-shadow: inset 4px 0 0 #ffffff;
+}
+
+.grammar-verb-reference-table .grammar-reference-row.speaking td {
     color: #ffffff;
 }
 

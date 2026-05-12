@@ -86,11 +86,11 @@ function buildGrammarReferenceRows(bodyId) {
         const speakTextValue = [verb[1], verb[2], verb[3], verb[4]].join(' ');
         return `
             <tr class="grammar-reference-row" data-grammar-speak="${speakTextValue}" data-grammar-search="${[verb[0], verb[1], verb[2], verb[3], verb[4]].join(' ').toLowerCase()}">
-                <td>${verb[0]}</td>
-                <td>${verb[1]}</td>
-                <td>${verb[2]}</td>
-                <td>${verb[3]}</td>
-                <td>${verb[4]}</td>
+                <td data-reference-label="CHINESE">${verb[0]}</td>
+                <td data-reference-label="PRESENT">${verb[1]}</td>
+                <td data-reference-label="PAST">${verb[2]}</td>
+                <td data-reference-label="PP">${verb[3]}</td>
+                <td data-reference-label="ING">${verb[4]}</td>
             </tr>
         `;
     }).join('');
@@ -178,9 +178,11 @@ function closeGrammarTopicScreen() {
         const title = document.getElementById('grammar-topic-title');
         const subtitle = document.getElementById('grammar-topic-subtitle');
         const card = document.querySelector('.grammar-topic-card');
+        const panel = document.querySelector('.grammar-topic-panel');
         if (title) title.innerText = 'SELECT TOPIC';
         if (subtitle) subtitle.style.display = 'block';
         if (card) card.style.display = 'block';
+        if (panel) panel.classList.remove('is-reference-open');
         if (searchWrap) searchWrap.style.display = 'none';
         if (searchInput) searchInput.value = '';
         return;
@@ -223,6 +225,7 @@ function toggleGrammarTopicReference() {
     const title = document.getElementById('grammar-topic-title');
     const subtitle = document.getElementById('grammar-topic-subtitle');
     const card = document.querySelector('.grammar-topic-card');
+    const panel = document.querySelector('.grammar-topic-panel');
     const searchWrap = document.getElementById('grammar-topic-search-wrap');
     const searchInput = document.getElementById('grammar-topic-search-input');
     if (!reference) return;
@@ -233,7 +236,9 @@ function toggleGrammarTopicReference() {
         if (subtitle) subtitle.style.display = 'none';
         if (card) card.style.display = 'none';
         if (searchWrap) searchWrap.style.display = 'block';
+        if (panel) panel.classList.add('is-reference-open');
         reference.style.display = 'block';
+        setTimeout(showGrammarTopicSearchKeyboard, 0);
     } else {
         hideGrammarTopicSearchKeyboard();
         if (title) title.innerText = 'SELECT TOPIC';
@@ -241,6 +246,7 @@ function toggleGrammarTopicReference() {
         if (card) card.style.display = 'block';
         if (searchWrap) searchWrap.style.display = 'none';
         if (searchInput) searchInput.value = '';
+        if (panel) panel.classList.remove('is-reference-open');
         reference.style.display = 'none';
     }
 }
@@ -269,6 +275,7 @@ function showGrammarTopicSearchKeyboard() {
     input.setAttribute('inputmode', 'none');
     input.blur();
     keyboard.style.display = 'block';
+    keyboard.style.visibility = 'visible';
     screen.classList.add('grammar-topic-keyboard-open');
     const keyboardHeight = keyboard.getBoundingClientRect().height || 220;
     screen.style.setProperty('--grammar-topic-keyboard-height', `${Math.ceil(keyboardHeight)}px`);
@@ -279,7 +286,10 @@ function hideGrammarTopicSearchKeyboard() {
     const keyboard = document.getElementById('grammar-topic-virtual-keyboard');
     const wasActive = grammarTopicKeyboardActive;
     grammarTopicKeyboardActive = false;
-    if (keyboard) keyboard.style.display = 'none';
+    if (keyboard) {
+        keyboard.style.display = 'none';
+        keyboard.style.visibility = 'hidden';
+    }
     if (screen) {
         screen.classList.remove('grammar-topic-keyboard-open');
         screen.style.removeProperty('--grammar-topic-keyboard-height');
