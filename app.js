@@ -153,9 +153,12 @@ function isTabletLikeDevice() {
     return isCoarseTouchDevice() && (shortestSide >= 768 || longestSide >= 1024);
 }
 
+function isPhoneLikeDevice() {
+    return isCoarseTouchDevice() && !isTabletLikeDevice();
+}
+
 function getDesiredOrientationMode() {
-    if (!isCoarseTouchDevice()) return null;
-    return isTabletLikeDevice() ? 'landscape' : 'portrait';
+    return isPhoneLikeDevice() ? 'portrait' : 'landscape';
 }
 
 function tryLockOrientation(mode) {
@@ -180,7 +183,7 @@ function updateOrientationGuard() {
     const currentMode = window.innerWidth > window.innerHeight ? 'landscape' : 'portrait';
     const isValid = currentMode === desiredMode;
     guardMsg.textContent = desiredMode === 'landscape'
-        ? 'LANDSCAPE MODE REQUIRED FOR TABLETS'
+        ? 'LANDSCAPE MODE REQUIRED'
         : 'PORTRAIT MODE REQUIRED FOR PHONES';
     guard.style.display = isValid ? 'none' : 'flex';
 }
