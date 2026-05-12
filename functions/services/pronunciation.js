@@ -110,6 +110,8 @@ async function synthesizeSpeech({
   speechKey,
   speechRegion,
   text,
+  segments = null,
+  breakMs = 0,
   locale = 'en-US',
   mode = 'default',
   level = '',
@@ -122,12 +124,20 @@ async function synthesizeSpeech({
   speechConfig.speechSynthesisOutputFormat = sdk.SpeechSynthesisOutputFormat.Audio16Khz32KBitRateMonoMp3;
 
   const synthesizer = new sdk.SpeechSynthesizer(speechConfig);
-  const escapedText = String(text || '')
+
+  const escapeSsmlText = (value) => String(value || '')
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&apos;');
+
+  const cleanSegments = Array.isArray(segments)
+    ? segments.map(segment => String(segment || '').trim()).filter(Boolean)
+    : [];
+  const safeBreakMs = Math.max(0, Math.min(1200, Number(breakMs) || 0));
+  const spokenText = cleanSegments.length ? cleanSegments.join(' ') : String(text || '').trim();
+  const escapedText = escapeSsmlText(spokenText);
   const listeningRateByLevel = {
     L1: '-10%',
     L2: '-8%',
@@ -138,13 +148,21 @@ async function synthesizeSpeech({
     L5_STAR: '0%'
   };
   const isListening = mode === 'listening';
-  const rate = isListening ? (listeningRateByLevel[level] || '0%') : '0%';
+  const isVerbTable = mode === 'verb-table';
+  const rate = isListening ? (listeningRateByLevel[level] || '0%') : (isVerbTable ? '-8%' : '0%');
   const volume = '+10%';
   const langLocale = accentLocale || locale;
+  const speechBody = cleanSegments.length
+    ? cleanSegments.map((segment, index) => {
+        const part = `<lang xml:lang="${langLocale}">${escapeSsmlText(segment)}</lang>`;
+        if (index >= cleanSegments.length - 1 || safeBreakMs <= 0) return part;
+        return `${part}<break time="${safeBreakMs}ms"/>`;
+      }).join('')
+    : `<lang xml:lang="${langLocale}">${escapedText}</lang>`;
   const ssml = [
     `<speak version="1.0" xml:lang="${locale}">`,
     `  <voice name="${speechConfig.speechSynthesisVoiceName}">`,
-    `    <prosody rate="${rate}" volume="${volume}"><lang xml:lang="${langLocale}">${escapedText}</lang></prosody>`,
+    `    <prosody rate="${rate}" volume="${volume}">${speechBody}</prosody>`,
     '  </voice>',
     '</speak>'
   ].join('');
@@ -163,6 +181,9 @@ async function synthesizeSpeech({
             locale,
             mode,
             level,
+            text: spokenText,
+            segments: cleanSegments,
+            breakMs: safeBreakMs,
             voiceName: speechConfig.speechSynthesisVoiceName,
             accentLocale: langLocale,
             format: 'audio/mpeg',

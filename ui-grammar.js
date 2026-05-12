@@ -1,6 +1,7 @@
 const GRAMMAR_VERB_TIME_LIMIT = 30;
 const GRAMMAR_VERB_QUESTION_COUNT = 20;
 const GRAMMAR_REFERENCE_SPEAK_GAP_MS = 150;
+const GRAMMAR_REFERENCE_AUDIO_VOICE = 'en-US-AndrewMultilingualNeural';
 const GRAMMAR_VERB_FIELD_ORDER = ['present', 'past', 'pp', 'pg'];
 const GRAMMAR_VERB_FIELD_LABELS = {
     present: 'PRESENT',
@@ -35,6 +36,10 @@ const grammarLaunchState = {
 
 let grammarTopicScreenMode = 'default';
 let grammarTopicKeyboardActive = false;
+let activeGrammarReferenceUtterances = [];
+let activeGrammarReferenceAudio = null;
+let activeGrammarReferenceAudioToken = 0;
+const grammarReferenceAudioRuntimeCache = new Map();
 
 function grammarUsesGameKeyboard() {
     return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ||
@@ -87,9 +92,11 @@ function buildGrammarReferenceRows(bodyId) {
     if (!tbody || !Array.isArray(window.GRAMMAR_VERB_BANK)) return;
 
     tbody.innerHTML = window.GRAMMAR_VERB_BANK.map((verb) => {
-        const speakTextValue = [verb[1], verb[2], verb[3], verb[4]].join(' ');
+        const forms = [verb[1], verb[2], verb[3], verb[4]];
+        const speakTextValue = forms.join(' ');
+        const audioKey = forms.map(part => String(part || '').trim().toLowerCase()).join('|');
         return `
-            <tr class="grammar-reference-row" data-grammar-speak="${speakTextValue}" data-grammar-search="${[verb[0], verb[1], verb[2], verb[3], verb[4]].join(' ').toLowerCase()}">
+            <tr class="grammar-reference-row" data-grammar-speak="${speakTextValue}" data-grammar-audio-key="${audioKey}" data-grammar-search="${[verb[0], verb[1], verb[2], verb[3], verb[4]].join(' ').toLowerCase()}">
                 <td data-reference-label="CHINESE">${verb[0]}</td>
                 <td data-reference-label="PRESENT">${verb[1]}</td>
                 <td data-reference-label="PAST">${verb[2]}</td>
@@ -100,19 +107,136 @@ function buildGrammarReferenceRows(bodyId) {
     }).join('');
 }
 
-function speakGrammarReferenceSequence(text, rowElement) {
-    if (!text) return;
-    if (typeof playSound === 'function') {
-        playSound('enter-number-sfx');
+function getGrammarReferenceAudioBaseUrl() {
+    if (typeof getSpeakingAssessmentBaseUrl === 'function') {
+        return getSpeakingAssessmentBaseUrl();
     }
-    document.querySelectorAll('.grammar-reference-row.speaking').forEach((row) => row.classList.remove('speaking'));
+    const configBase = (window.APP_CONFIG && window.APP_CONFIG.SPEAKING_API_BASE || '').trim();
+    if (configBase) return configBase.replace(/\/$/, '');
+    const explicitBase = (localStorage.getItem('speaking_api_base') || '').trim();
+    if (explicitBase) return explicitBase.replace(/\/$/, '');
+    return '';
+}
+
+function getGrammarReferenceForms(text, rowElement) {
+    const key = rowElement?.getAttribute('data-grammar-audio-key') || '';
+    const forms = key.split('|').map(part => part.trim()).filter(Boolean);
+    if (forms.length === 4) return forms;
+    return String(text || '').split(/\s+/).map(part => part.trim()).filter(Boolean).slice(0, 4);
+}
+
+function stopGrammarReferenceAudioPlayback() {
+    activeGrammarReferenceAudioToken++;
+    if (activeGrammarReferenceAudio) {
+        try {
+            activeGrammarReferenceAudio.pause();
+        } catch (_error) {}
+        activeGrammarReferenceAudio = null;
+    }
+}
+
+function getGrammarReferenceManifestUrl(audioKey) {
+    const manifest = window.GRAMMAR_VERB_AUDIO_MANIFEST || {};
+    return typeof manifest[audioKey] === 'string' ? manifest[audioKey] : '';
+}
+
+function fetchGrammarReferenceAudio(forms) {
+    const audioKey = forms.join('|');
+    const manifestUrl = getGrammarReferenceManifestUrl(audioKey);
+    if (manifestUrl) {
+        return Promise.resolve({
+            ok: true,
+            cached: true,
+            audioUrl: manifestUrl,
+            forms
+        });
+    }
+
+    if (grammarReferenceAudioRuntimeCache.has(audioKey)) {
+        return grammarReferenceAudioRuntimeCache.get(audioKey);
+    }
+
+    const baseUrl = getGrammarReferenceAudioBaseUrl();
+    if (!baseUrl) return Promise.reject(new Error('Speech backend is not configured.'));
+
+    const request = fetch(`${baseUrl}/api/verb-table-audio`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            forms,
+            locale: 'en-US',
+            accentLocale: 'en-US',
+            voiceName: GRAMMAR_REFERENCE_AUDIO_VOICE,
+            breakMs: GRAMMAR_REFERENCE_SPEAK_GAP_MS
+        })
+    }).then(async (response) => {
+        const rawText = await response.text();
+        let result = null;
+        try {
+            result = rawText ? JSON.parse(rawText) : null;
+        } catch (_error) {
+            throw new Error(rawText || 'Verb table audio failed.');
+        }
+        if (!response.ok || !result?.audioUrl) {
+            throw new Error((result && (result.message || result.error)) || 'Verb table audio failed.');
+        }
+        return result;
+    }).catch((error) => {
+        grammarReferenceAudioRuntimeCache.delete(audioKey);
+        throw error;
+    });
+
+    grammarReferenceAudioRuntimeCache.set(audioKey, request);
+    return request;
+}
+
+async function playGrammarReferenceStoredAudio(forms, rowElement) {
+    const audioKey = forms.join('|');
+    if (forms.length !== 4) return false;
+
+    const playbackToken = ++activeGrammarReferenceAudioToken;
+    rowElement.classList.add('speaking');
+
+    try {
+        const result = await fetchGrammarReferenceAudio(forms);
+        if (playbackToken !== activeGrammarReferenceAudioToken) return true;
+        const audioUrl = result?.audioUrl || getGrammarReferenceManifestUrl(audioKey);
+        if (!audioUrl) return false;
+
+        const audio = new Audio(audioUrl);
+        activeGrammarReferenceAudio = audio;
+        audio.volume = typeof getListeningVoiceVolume === 'function' ? getListeningVoiceVolume() : 1;
+        audio.preload = 'auto';
+
+        audio.onended = () => {
+            if (activeGrammarReferenceAudio === audio) activeGrammarReferenceAudio = null;
+            rowElement.classList.remove('speaking');
+        };
+        audio.onerror = () => {
+            if (activeGrammarReferenceAudio === audio) activeGrammarReferenceAudio = null;
+            rowElement.classList.remove('speaking');
+        };
+
+        await audio.play();
+        return true;
+    } catch (error) {
+        console.warn('[Verb Table Audio] Stored audio failed, falling back to browser speech:', error);
+        if (playbackToken === activeGrammarReferenceAudioToken) {
+            rowElement.classList.remove('speaking');
+        }
+        return false;
+    }
+}
+
+function speakGrammarReferenceFallback(parts, rowElement) {
     if (!('speechSynthesis' in window)) return;
 
     window.speechSynthesis.cancel();
     activeGrammarReferenceUtterances = [];
     rowElement.classList.add('speaking');
 
-    const parts = String(text || '').split(/\s+/).filter(Boolean);
     const baseRate = 0.855;
     const voice = typeof techVoice !== 'undefined' ? techVoice : null;
     const volume = typeof getBoostedListeningVoiceVolume === 'function' ? getBoostedListeningVoiceVolume() : 1;
@@ -144,6 +268,20 @@ function speakGrammarReferenceSequence(text, rowElement) {
     };
 
     speakPart(0);
+}
+
+async function speakGrammarReferenceSequence(text, rowElement) {
+    const parts = getGrammarReferenceForms(text, rowElement);
+    if (!parts.length) return;
+    if (typeof playSound === 'function') {
+        playSound('enter-number-sfx');
+    }
+    document.querySelectorAll('.grammar-reference-row.speaking').forEach((row) => row.classList.remove('speaking'));
+    stopGrammarReferenceAudioPlayback();
+    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+
+    const played = await playGrammarReferenceStoredAudio(parts, rowElement);
+    if (!played) speakGrammarReferenceFallback(parts, rowElement);
 }
 
 function isGrammarBattleMode() {
