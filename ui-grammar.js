@@ -227,7 +227,6 @@ function setGrammarTopicReferenceMode(isReferenceMode) {
         if (searchWrap) searchWrap.style.display = 'block';
         if (panel) panel.classList.add('is-reference-open');
         if (reference) reference.style.display = 'block';
-        setTimeout(showGrammarTopicSearchKeyboard, 0);
         return;
     }
 
