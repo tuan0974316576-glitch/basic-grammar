@@ -7324,6 +7324,28 @@ body {
     transform: translateY(-10px);
 }
 
+#grammar-topic-screen.grammar-topic-reference-mode {
+    justify-content: flex-start !important;
+    overflow: hidden;
+    padding: clamp(12px, 4svh, 42px) 12px 14px;
+    box-sizing: border-box;
+}
+
+#grammar-topic-screen.grammar-topic-reference-mode .grammar-topic-panel.is-reference-open {
+    max-height: calc(100svh - 24px);
+}
+
+#grammar-topic-screen.grammar-topic-keyboard-open {
+    padding-top: 10px;
+    padding-bottom: calc(var(--grammar-topic-keyboard-height, 220px) + 8px);
+}
+
+#grammar-topic-screen.grammar-topic-keyboard-open .grammar-topic-panel.is-reference-open {
+    max-height: calc(100svh - var(--grammar-topic-keyboard-height, 220px) - 18px);
+    overflow: hidden;
+    transform: none;
+}
+
 .grammar-topic-grid {
     display: flex;
     flex-direction: column;
@@ -7396,7 +7418,8 @@ body {
 }
 
 #grammar-topic-screen.grammar-topic-keyboard-open .grammar-topic-search-wrap {
-    margin-bottom: calc(var(--grammar-topic-keyboard-height, 220px) + 8px);
+    margin-top: 8px;
+    margin-bottom: 0;
 }
 
 #grammar-topic-screen.grammar-topic-keyboard-open #grammar-topic-back-btn {
@@ -7620,6 +7643,10 @@ body {
     overflow-y: auto;
     overflow-x: hidden;
     border: 0;
+}
+
+#grammar-topic-screen.grammar-topic-reference-mode #grammar-topic-reference .grammar-verb-reference-wrap {
+    max-height: var(--grammar-topic-reference-height, min(72svh, 720px));
 }
 
 .grammar-verb-reference-table {

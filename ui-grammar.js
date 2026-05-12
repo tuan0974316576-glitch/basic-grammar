@@ -1,5 +1,6 @@
 const GRAMMAR_VERB_TIME_LIMIT = 30;
 const GRAMMAR_VERB_QUESTION_COUNT = 20;
+const GRAMMAR_REFERENCE_SPEAK_GAP_MS = 150;
 const GRAMMAR_VERB_FIELD_ORDER = ['present', 'past', 'pp', 'pg'];
 const GRAMMAR_VERB_FIELD_LABELS = {
     present: 'PRESENT',
@@ -132,7 +133,7 @@ function speakGrammarReferenceSequence(text, rowElement) {
             if (index === parts.length - 1) {
                 rowElement.classList.remove('speaking');
             } else {
-                setTimeout(() => speakPart(index + 1), 500);
+                setTimeout(() => speakPart(index + 1), GRAMMAR_REFERENCE_SPEAK_GAP_MS);
             }
         };
         utterance.onerror = () => {
@@ -219,6 +220,7 @@ function setGrammarTopicReferenceMode(isReferenceMode) {
     grammarTopicScreenMode = isReferenceMode ? 'reference' : 'default';
 
     if (isReferenceMode) {
+        if (typeof duckStageVocabBgm === 'function') duckStageVocabBgm();
         renderGrammarTopicReference();
         if (topicScreen) topicScreen.classList.add('grammar-topic-reference-mode');
         if (title) title.innerText = 'VERB TABLE REFERENCE';
@@ -231,6 +233,7 @@ function setGrammarTopicReferenceMode(isReferenceMode) {
     }
 
     hideGrammarTopicSearchKeyboard();
+    if (typeof restoreStageVocabBgm === 'function') restoreStageVocabBgm();
     if (topicScreen) topicScreen.classList.remove('grammar-topic-reference-mode');
     if (title) title.innerText = 'SELECT TOPIC';
     if (subtitle) subtitle.style.display = 'block';
@@ -291,8 +294,32 @@ function showGrammarTopicSearchKeyboard() {
     keyboard.style.display = 'block';
     keyboard.style.visibility = 'visible';
     screen.classList.add('grammar-topic-keyboard-open');
+    updateGrammarTopicKeyboardLayout();
+    requestAnimationFrame(updateGrammarTopicKeyboardLayout);
+}
+
+function updateGrammarTopicKeyboardLayout() {
+    const screen = document.getElementById('grammar-topic-screen');
+    const keyboard = document.getElementById('grammar-topic-virtual-keyboard');
+    const title = document.getElementById('grammar-topic-title');
+    const searchWrap = document.getElementById('grammar-topic-search-wrap');
+    if (!screen || !keyboard || !grammarTopicKeyboardActive) return;
+
+    const viewportHeight = window.visualViewport?.height || window.innerHeight || document.documentElement.clientHeight;
     const keyboardHeight = keyboard.getBoundingClientRect().height || 220;
     screen.style.setProperty('--grammar-topic-keyboard-height', `${Math.ceil(keyboardHeight)}px`);
+    const titleHeight = title && title.offsetParent !== null ? title.getBoundingClientRect().height : 0;
+    const searchHeight = searchWrap && searchWrap.offsetParent !== null ? searchWrap.getBoundingClientRect().height : 0;
+    const referenceHeight = Math.max(180, Math.floor(viewportHeight - keyboardHeight - titleHeight - searchHeight - 46));
+    screen.style.setProperty('--grammar-topic-reference-height', `${referenceHeight}px`);
+}
+
+function mountGrammarTopicKeyboardToScreen() {
+    const screen = document.getElementById('grammar-topic-screen');
+    const keyboard = document.getElementById('grammar-topic-virtual-keyboard');
+    if (screen && keyboard && keyboard.parentElement !== screen) {
+        screen.appendChild(keyboard);
+    }
 }
 
 function hideGrammarTopicSearchKeyboard() {
@@ -307,6 +334,7 @@ function hideGrammarTopicSearchKeyboard() {
     if (screen) {
         screen.classList.remove('grammar-topic-keyboard-open');
         screen.style.removeProperty('--grammar-topic-keyboard-height');
+        screen.style.removeProperty('--grammar-topic-reference-height');
     }
     if (wasActive && typeof playSound === 'function') {
         playSound('delete-sfx');
@@ -1067,6 +1095,7 @@ window.showGrammarTopicSearchKeyboard = showGrammarTopicSearchKeyboard;
 document.addEventListener('DOMContentLoaded', () => {
     attachGrammarInputBehaviors();
     attachLaunchGrammarInputBehaviors();
+    mountGrammarTopicKeyboardToScreen();
 
     const keyboard = document.getElementById('grammar-virtual-keyboard');
     if (!keyboard) return;
@@ -1133,3 +1162,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { passive: true });
     }
 });
+
+window.addEventListener('resize', () => {
+    if (grammarTopicKeyboardActive) updateGrammarTopicKeyboardLayout();
+});
+
+if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', () => {
+        if (grammarTopicKeyboardActive) updateGrammarTopicKeyboardLayout();
+    });
+}
