@@ -6,6 +6,7 @@
   "scripts": {
     "server": "node server/index.js",
     "warm:verb-audio": "node scripts/warm-verb-table-audio.js",
+    "warm:listening-audio": "node scripts/warm-listening-audio.js",
     "build:ios": "npx cap add ios && npx cap sync ios && npx cap open ios",
     "build:android": "npx cap add android && npx cap sync android && npx cap open android",
     "sync": "npx cap sync"

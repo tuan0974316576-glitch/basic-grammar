@@ -4158,6 +4158,32 @@ function buildListeningVoiceCacheKey(voiceProfile) {
     return `${voiceProfile.voiceName || 'default'}::${voiceProfile.accentLocale || ''}`;
 }
 
+function getListeningManifestKey(text, locale = 'en-US', levelKey = '', voiceProfile = null) {
+    const voiceKey = buildListeningVoiceCacheKey(voiceProfile);
+    return [
+        levelKey || selectedLevel || 'L1',
+        locale || 'en-US',
+        voiceKey,
+        (text || '').trim()
+    ].join('|');
+}
+
+function getListeningManifestAudioUrl(text, locale = 'en-US', levelKey = '', voiceProfile = null) {
+    const manifest = window.LISTENING_AUDIO_MANIFEST || {};
+    const manifestKey = getListeningManifestKey(text, locale, levelKey, voiceProfile);
+    return typeof manifest[manifestKey] === 'string' ? manifest[manifestKey] : '';
+}
+
+function getListeningVoiceProfileForSentence(word, levelKey = '', sentenceIndex = 0) {
+    if (!LISTENING_VOICE_ROTATION.length) return null;
+    const levelWords = (typeof VOCAB_DB !== 'undefined' && VOCAB_DB[levelKey || selectedLevel || 'L1']) || [];
+    const wordIndex = levelWords.findIndex(entry => entry?.en === word?.en);
+    const safeWordIndex = wordIndex >= 0 ? wordIndex : 0;
+    const safeSentenceIndex = Number.isInteger(sentenceIndex) ? sentenceIndex : 0;
+    const voiceIndex = Math.abs((safeWordIndex * 3) + safeSentenceIndex) % LISTENING_VOICE_ROTATION.length;
+    return { ...LISTENING_VOICE_ROTATION[voiceIndex] };
+}
+
 function getListeningPromptVoiceKey(text, levelKey = '') {
     return `${levelKey || ''}::${(text || '').trim()}`;
 }
@@ -4203,6 +4229,25 @@ function preloadListeningAzureAudio(text, locale = 'en-US', levelKey = '', voice
     if (!cleanText) return Promise.reject(new Error('Text is required for listening TTS.'));
 
     const cacheKey = `${getListeningTtsCacheKey(cleanText, locale, levelKey)}::${buildListeningVoiceCacheKey(voiceProfile)}`;
+    const manifestUrl = getListeningManifestAudioUrl(cleanText, locale, levelKey, voiceProfile);
+    if (manifestUrl) {
+        const result = {
+            ok: true,
+            cached: true,
+            audioUrl: manifestUrl,
+            format: 'audio/mpeg',
+            text: cleanText,
+            locale,
+            mode: 'listening',
+            level: levelKey || selectedLevel || 'L1',
+            voiceName: voiceProfile?.voiceName || null,
+            accentLocale: voiceProfile?.accentLocale || null
+        };
+        const resolved = Promise.resolve(result);
+        listeningTtsCache.set(cacheKey, resolved);
+        return resolved;
+    }
+
     const cached = listeningTtsCache.get(cacheKey);
     if (cached) {
         console.log('[Listening TTS Cache] Memory hit', { chars: cleanText.length, cacheKey });
@@ -4250,6 +4295,18 @@ function prepareListeningPlaybackAsset(text, locale = 'en-US', levelKey = '', vo
 
     const request = preloadListeningAzureAudio(cleanText, locale, levelKey, voiceProfile)
         .then((result) => {
+            if (result.audioUrl) {
+                const warmAudio = new Audio(result.audioUrl);
+                warmAudio.preload = 'auto';
+                warmAudio.load();
+
+                return {
+                    ...result,
+                    objectUrl: result.audioUrl,
+                    cacheKey
+                };
+            }
+
             const binary = atob(result.audioBase64 || '');
             const bytes = new Uint8Array(binary.length);
             for (let i = 0; i < binary.length; i++) {
@@ -10075,6 +10132,16 @@ function applySelectedSentenceToCurrentVocab(selectedSent) {
         currentVocab.sent = selectedSent;
         currentVocab.listeningAnswer = null;
         console.log(`[Vocab] Using old format - Sentence: "${selectedSent}"`);
+    }
+
+    if ((currentPracticeMode || '').toLowerCase() === 'listening') {
+        const voiceProfile = getListeningVoiceProfileForSentence(
+            currentVocab,
+            selectedLevel || 'L1',
+            currentVocab.sentenceIndex || 0
+        );
+        currentVocab.listeningVoiceName = voiceProfile?.voiceName || null;
+        currentVocab.listeningAccentLocale = voiceProfile?.accentLocale || null;
     }
 }
 

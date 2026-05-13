@@ -4,7 +4,7 @@ const crypto = require('crypto');
 const admin = require('firebase-admin');
 const logger = require('firebase-functions/logger');
 const { onRequest } = require('firebase-functions/v2/https');
-const { defineSecret, defineString } = require('firebase-functions/params');
+const { defineSecret } = require('firebase-functions/params');
 const { assessPronunciation, synthesizeSpeech } = require('./services/pronunciation');
 
 if (!admin.apps.length) {
@@ -12,15 +12,14 @@ if (!admin.apps.length) {
 }
 
 const azureSpeechKey = defineSecret('AZURE_SPEECH_KEY');
-const azureSpeechRegion = defineString('AZURE_SPEECH_REGION', {
-  default: 'eastasia'
-});
+const azureSpeechRegion = defineSecret('AZURE_SPEECH_REGION');
 
 const app = express();
 const corsMiddleware = cors({ origin: true });
 const VERB_TABLE_AUDIO_VERSION = 'v1';
 const VERB_TABLE_AUDIO_BREAK_MS = 150;
 const VERB_TABLE_AUDIO_VOICE = 'en-US-AndrewMultilingualNeural';
+const LISTENING_AUDIO_VERSION = 'v1';
 const VERB_TABLE_AUDIO_BUCKET_FALLBACKS = [
   'battleship-game-c0909-verb-audio',
   'battleship-game-c0909.firebasestorage.app',
@@ -152,9 +151,18 @@ function getVerbTableAudioHash(cacheKey) {
   return crypto.createHash('sha1').update(cacheKey).digest('hex').slice(0, 16);
 }
 
+function getAudioHash(cacheKey) {
+  return crypto.createHash('sha1').update(cacheKey).digest('hex').slice(0, 16);
+}
+
 function getVerbTableAudioSlug(forms) {
   const slug = forms.join('-').replace(/[^a-z0-9-]+/g, '-').replace(/^-+|-+$/g, '');
   return slug.slice(0, 72) || 'verb-table-row';
+}
+
+function getAudioSlug(text, fallback = 'audio') {
+  const slug = String(text || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  return slug.slice(0, 72) || fallback;
 }
 
 function getPublicStorageUrl(bucketName, filePath) {
@@ -172,7 +180,7 @@ function getStorageBucketCandidates() {
   return [...new Set([configuredBucket, ...VERB_TABLE_AUDIO_BUCKET_FALLBACKS].filter(Boolean))];
 }
 
-async function getVerbTableStorageBucket() {
+async function getAudioStorageBucket() {
   const candidates = getStorageBucketCandidates();
   let lastError = null;
 
@@ -193,6 +201,10 @@ async function getVerbTableStorageBucket() {
   throw new Error(
     `No Firebase Storage bucket found. Tried: ${candidates.join(', ')}. ${lastError?.message || ''}`.trim()
   );
+}
+
+async function getVerbTableStorageBucket() {
+  return getAudioStorageBucket();
 }
 
 async function getExistingFileDownloadUrl(file, filePath) {
@@ -302,13 +314,130 @@ app.post('/api/verb-table-audio', async (req, res) => {
   }
 });
 
+app.post('/api/listening-audio', async (req, res) => {
+  try {
+    const text = String(req.body.text || '').trim();
+    const locale = (req.body.locale || 'en-US').trim();
+    const level = (req.body.level || 'L1').trim();
+    const sentenceIndex = Number.isInteger(req.body.sentenceIndex) ? req.body.sentenceIndex : null;
+    const word = String(req.body.word || '').trim();
+    const accentLocale = (req.body.accentLocale || locale).trim();
+    const voiceName = String(req.body.voiceName || '').trim();
+
+    if (!text) {
+      return res.status(400).json({
+        error: 'missing_text',
+        message: 'text is required.'
+      });
+    }
+
+    if (!voiceName) {
+      return res.status(400).json({
+        error: 'missing_voice',
+        message: 'voiceName is required for listening audio.'
+      });
+    }
+
+    const cacheKey = [
+      LISTENING_AUDIO_VERSION,
+      level,
+      locale,
+      accentLocale,
+      voiceName,
+      text
+    ].join('|');
+    const filePath = [
+      'tts',
+      'listening',
+      level.toLowerCase(),
+      LISTENING_AUDIO_VERSION,
+      `${getAudioSlug(word || text, 'listening')}-${getAudioHash(cacheKey)}.mp3`
+    ].join('/');
+    const bucket = await getAudioStorageBucket();
+    const file = bucket.file(filePath);
+    const [exists] = await file.exists();
+
+    if (exists) {
+      const audioUrl = await getExistingFileDownloadUrl(file, filePath);
+      return res.json({
+        ok: true,
+        cached: true,
+        audioUrl,
+        storagePath: filePath,
+        text,
+        word,
+        level,
+        sentenceIndex,
+        format: 'audio/mpeg',
+        voiceName,
+        accentLocale
+      });
+    }
+
+    const result = await synthesizeSpeech({
+      speechKey: azureSpeechKey.value(),
+      speechRegion: azureSpeechRegion.value(),
+      text,
+      locale,
+      mode: 'listening',
+      level,
+      voiceName,
+      accentLocale
+    });
+
+    const audioBuffer = Buffer.from(result.audioBase64 || '', 'base64');
+    if (!audioBuffer.length) {
+      throw new Error('Azure returned empty audio.');
+    }
+
+    await file.save(audioBuffer, {
+      resumable: false,
+      metadata: {
+        contentType: 'audio/mpeg',
+        cacheControl: 'public,max-age=31536000,immutable',
+        metadata: {
+          cacheKey,
+          text,
+          word,
+          level,
+          sentenceIndex: sentenceIndex === null ? '' : String(sentenceIndex),
+          voiceName,
+          accentLocale
+        }
+      }
+    });
+    await file.makePublic();
+
+    const audioUrl = getPublicStorageUrl(bucket.name, filePath);
+    res.json({
+      ok: true,
+      cached: false,
+      audioUrl,
+      storagePath: filePath,
+      text,
+      word,
+      level,
+      sentenceIndex,
+      format: 'audio/mpeg',
+      voiceName,
+      accentLocale
+    });
+  } catch (error) {
+    logger.error('[ListeningAudio] Failed', error);
+    res.status(500).json({
+      error: 'listening_tts_failed',
+      message: error.message || 'Listening audio generation failed.'
+    });
+  }
+});
+
 exports.speakingApi = onRequest(
   {
     region: 'asia-east2',
     cors: true,
     timeoutSeconds: 60,
     memory: '512MiB',
-    secrets: [azureSpeechKey]
+    secrets: [azureSpeechKey, azureSpeechRegion]
   },
   app
 );
