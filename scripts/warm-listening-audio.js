@@ -92,6 +92,13 @@ function getListeningManifestKey(row) {
 }
 
 async function warmOne(apiBase, row, index, total) {
+  return retryAsync(
+    () => warmOneAttempt(apiBase, row, index, total),
+    `row ${index + 1}/${total} ${row.level} ${row.word} S${row.sentenceIndex + 1}`
+  );
+}
+
+async function warmOneAttempt(apiBase, row, index, total) {
   const response = await fetch(`${apiBase}/api/listening-audio`, {
     method: 'POST',
     headers: {
@@ -125,6 +132,26 @@ async function warmOne(apiBase, row, index, total) {
   return [getListeningManifestKey(row), result.audioUrl];
 }
 
+async function retryAsync(task, label, attempts = 4) {
+  let lastError = null;
+  for (let attempt = 1; attempt <= attempts; attempt++) {
+    try {
+      return await task();
+    } catch (error) {
+      lastError = error;
+      if (attempt >= attempts) break;
+      const delayMs = 750 * attempt;
+      console.warn(`[retry ${attempt}/${attempts - 1}] ${label}: ${error.message || error}`);
+      await delay(delayMs);
+    }
+  }
+  throw lastError;
+}
+
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 async function runPool(rows, concurrency, task) {
   const results = new Array(rows.length);
   let nextIndex = 0;
@@ -142,7 +169,7 @@ async function runPool(rows, concurrency, task) {
 }
 
 function writeManifest(entries, manifestPath) {
-  const manifest = {};
+  const manifest = loadExistingManifest(manifestPath);
   entries.forEach(([key, url]) => {
     manifest[key] = url;
   });
@@ -155,6 +182,20 @@ function writeManifest(entries, manifestPath) {
 
   fs.writeFileSync(manifestPath, content, 'utf8');
   console.log(`Wrote ${Object.keys(manifest).length} audio URLs to ${manifestPath}`);
+}
+
+function loadExistingManifest(manifestPath) {
+  if (!fs.existsSync(manifestPath)) return {};
+
+  const source = fs.readFileSync(manifestPath, 'utf8');
+  const match = source.match(/window\.LISTENING_AUDIO_MANIFEST\s*=\s*(\{[\s\S]*\})\s*;/);
+  if (!match) return {};
+
+  try {
+    return JSON.parse(match[1]);
+  } catch (error) {
+    throw new Error(`Existing manifest is not valid JSON: ${error.message}`);
+  }
 }
 
 async function main() {
