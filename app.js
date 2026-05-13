@@ -4596,7 +4596,11 @@ async function playListeningAzureText(text, element = null, startListeningTimer 
 
     const objectUrl = result.objectUrl;
     const audio = new Audio(objectUrl);
-    const audioContext = applyListeningPlaybackBoost(audio);
+    const isRemoteAudioUrl = /^https?:\/\//i.test(objectUrl);
+    const audioContext = isRemoteAudioUrl ? null : applyListeningPlaybackBoost(audio);
+    if (isRemoteAudioUrl) {
+        audio.volume = getBoostedListeningVoiceVolume();
+    }
     audio.preload = 'auto';
 
     const cleanup = () => {
