@@ -4298,10 +4298,13 @@ function prepareListeningPlaybackAsset(text, locale = 'en-US', levelKey = '', vo
             if (result.audioUrl) {
                 const warmAudio = new Audio(result.audioUrl);
                 warmAudio.preload = 'auto';
+                warmAudio.playsInline = true;
+                warmAudio.setAttribute('playsinline', '');
                 warmAudio.load();
 
                 return {
                     ...result,
+                    audioElement: warmAudio,
                     objectUrl: result.audioUrl,
                     cacheKey
                 };
@@ -4595,13 +4598,21 @@ async function playListeningAzureText(text, element = null, startListeningTimer 
     if (playbackToken !== listeningPlaybackToken) return true;
 
     const objectUrl = result.objectUrl;
-    const audio = new Audio(objectUrl);
+    const audio = result.audioElement || new Audio(objectUrl);
+    if (audio !== result.audioElement) {
+        audio.src = objectUrl;
+    }
     const isRemoteAudioUrl = /^https?:\/\//i.test(objectUrl);
     const audioContext = isRemoteAudioUrl ? null : applyListeningPlaybackBoost(audio);
     if (isRemoteAudioUrl) {
         audio.volume = getBoostedListeningVoiceVolume();
     }
     audio.preload = 'auto';
+    audio.playsInline = true;
+    audio.setAttribute('playsinline', '');
+    try {
+        audio.currentTime = 0;
+    } catch (_error) {}
 
     const cleanup = () => {
         if (listeningPlaybackAudio === audio) {
@@ -6185,9 +6196,12 @@ function triggerAnimation(cell, type, options = {}) {
 }
 
 function playSound(id) {
-    const s = document.getElementById(id);
+    const s = typeof window.getPooledSfxAudio === 'function'
+        ? window.getPooledSfxAudio(id)
+        : document.getElementById(id);
     if(s) {
         const baseVolume = (typeof gameVolume !== 'undefined' && isFinite(gameVolume.sfx)) ? gameVolume.sfx : 0.5;
+        s.muted = false;
         s.volume = id === 'enter-sfx'
             ? Math.min(1, Math.max(0.42, baseVolume * 1.35))
             : baseVolume;

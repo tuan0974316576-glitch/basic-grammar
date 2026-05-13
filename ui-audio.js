@@ -12,11 +12,130 @@ let gameVolume = {
     voice: 1.0
 };
 
+const IOS_AUDIO_DEVICE = /iPad|iPhone|iPod/.test(navigator.userAgent)
+    || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+const SFX_POOL_SIZE = IOS_AUDIO_DEVICE ? 2 : 1;
+const sfxAudioPools = new Map();
+let gameAudioUnlocked = false;
+
+const POOLED_SFX_IDS = [
+    'deploy-sfx',
+    'enter-sfx',
+    'enter-number-sfx',
+    'delete-sfx',
+    'wrong-sfx',
+    'laser-sfx',
+    'hit-sfx',
+    'timeout-sfx',
+    'open-room-sfx',
+    'destroy-sfx',
+    'level-select-sfx',
+    'speaking-open-sfx',
+    'speaking-green-sfx',
+    'speaking-wrong-sfx',
+    'skill-select-sfx',
+    'radar-sfx',
+    'aurelians-shield-sfx',
+    'aurelians-shield-break-sfx',
+    'missile-flying-sfx',
+    'nuke-ready-sfx',
+    'nuke-launch-sfx',
+    'nuke-detected-sfx',
+    'victory-sfx',
+    'lose-sfx',
+    'new-commander-sfx',
+    'ship-voice-0',
+    'ship-voice-1',
+    'ship-voice-2',
+    'ship-voice-3',
+    'ship-voice-4',
+    'unit-lost-sfx'
+];
+
 function normalizeVolume(value, fallback) {
     const parsed = parseFloat(value);
     if (!Number.isFinite(parsed)) return fallback;
     return Math.max(0, Math.min(1, parsed));
 }
+
+function prepareAudioElementForIos(audio) {
+    if (!audio) return;
+    audio.preload = 'auto';
+    audio.playsInline = true;
+    audio.setAttribute('playsinline', '');
+    try {
+        audio.load();
+    } catch (_error) {}
+}
+
+function getSfxPool(id) {
+    if (sfxAudioPools.has(id)) return sfxAudioPools.get(id);
+
+    const original = document.getElementById(id);
+    if (!original) return null;
+
+    prepareAudioElementForIos(original);
+    const pool = {
+        index: 0,
+        items: [original]
+    };
+
+    for (let i = 1; i < SFX_POOL_SIZE; i++) {
+        const clone = original.cloneNode(true);
+        clone.removeAttribute('id');
+        prepareAudioElementForIos(clone);
+        pool.items.push(clone);
+    }
+
+    sfxAudioPools.set(id, pool);
+    return pool;
+}
+
+window.getPooledSfxAudio = function(id) {
+    const pool = getSfxPool(id);
+    if (!pool || !pool.items.length) return document.getElementById(id);
+
+    const audio = pool.items[pool.index % pool.items.length];
+    pool.index = (pool.index + 1) % pool.items.length;
+    return audio;
+};
+
+window.warmGameAudioForInteraction = function() {
+    if (gameAudioUnlocked) return;
+    gameAudioUnlocked = true;
+
+    POOLED_SFX_IDS.forEach(id => {
+        const pool = getSfxPool(id);
+        if (!pool) return;
+
+        pool.items.forEach(audio => {
+            prepareAudioElementForIos(audio);
+            if (!IOS_AUDIO_DEVICE) return;
+
+            const previousMuted = audio.muted;
+            const previousVolume = audio.volume;
+            audio.muted = true;
+            audio.volume = 0;
+            const unlockPromise = audio.play();
+            if (unlockPromise && typeof unlockPromise.then === 'function') {
+                unlockPromise
+                    .then(() => {
+                        audio.pause();
+                        audio.currentTime = 0;
+                        audio.muted = previousMuted;
+                        audio.volume = previousVolume;
+                    })
+                    .catch(() => {
+                        audio.muted = previousMuted;
+                        audio.volume = previousVolume;
+                    });
+            } else {
+                audio.muted = previousMuted;
+                audio.volume = previousVolume;
+            }
+        });
+    });
+};
 
 const BGM_MAX_GAIN = 0.59;
 

@@ -195,6 +195,9 @@ function startAuthOverlayTimeout() {
 
 window.playAsGuest = function() {
     const { getAuth, signInAnonymously } = window.firebaseModules;
+    if (typeof window.warmGameAudioForInteraction === 'function') {
+        window.warmGameAudioForInteraction();
+    }
     if (typeof playSound === 'function') playSound('deploy-sfx');
 
     document.getElementById('login-overlay').style.display = 'flex';
@@ -801,6 +804,9 @@ window.startExperience = function() {
         }
     }
 
+    if (typeof window.warmGameAudioForInteraction === 'function') {
+        window.warmGameAudioForInteraction();
+    }
     playBgm();
     if (typeof playSound === 'function') playSound('deploy-sfx');
     if (typeof window.requestLandscapeForTablet === 'function') {
