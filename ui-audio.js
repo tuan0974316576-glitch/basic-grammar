@@ -16,7 +16,10 @@ const IOS_AUDIO_DEVICE = /iPad|iPhone|iPod/.test(navigator.userAgent)
     || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 const SFX_POOL_SIZE = IOS_AUDIO_DEVICE ? 2 : 1;
 const sfxAudioPools = new Map();
+const sfxBufferPromises = new Map();
+const sfxAudioBuffers = new Map();
 let gameAudioUnlocked = false;
+let sfxAudioContext = null;
 
 const POOLED_SFX_IDS = [
     'deploy-sfx',
@@ -68,6 +71,103 @@ function prepareAudioElementForIos(audio) {
     } catch (_error) {}
 }
 
+function getSfxAudioContext() {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContextClass) return null;
+    if (!sfxAudioContext) {
+        sfxAudioContext = new AudioContextClass();
+    }
+    return sfxAudioContext;
+}
+
+function getAudioElementSource(id) {
+    const audio = document.getElementById(id);
+    if (!audio) return '';
+    const source = audio.currentSrc
+        || audio.src
+        || audio.querySelector('source')?.src
+        || audio.querySelector('source')?.getAttribute('src')
+        || '';
+    return source;
+}
+
+async function unlockSfxAudioContext() {
+    const context = getSfxAudioContext();
+    if (!context) return false;
+
+    if (context.state === 'suspended') {
+        await context.resume();
+    }
+
+    const buffer = context.createBuffer(1, 1, context.sampleRate || 22050);
+    const source = context.createBufferSource();
+    const gain = context.createGain();
+    gain.gain.value = 0;
+    source.buffer = buffer;
+    source.connect(gain);
+    gain.connect(context.destination);
+    source.start(0);
+    return true;
+}
+
+async function loadSfxBuffer(id) {
+    if (sfxAudioBuffers.has(id)) return sfxAudioBuffers.get(id);
+    if (sfxBufferPromises.has(id)) return sfxBufferPromises.get(id);
+
+    const context = getSfxAudioContext();
+    const url = getAudioElementSource(id);
+    if (!context || !url) return null;
+
+    const promise = fetch(url)
+        .then(response => {
+            if (!response.ok) throw new Error(`Failed to fetch ${id}: ${response.status}`);
+            return response.arrayBuffer();
+        })
+        .then(arrayBuffer => context.decodeAudioData(arrayBuffer))
+        .then(buffer => {
+            sfxAudioBuffers.set(id, buffer);
+            return buffer;
+        })
+        .catch(error => {
+            sfxBufferPromises.delete(id);
+            throw error;
+        });
+
+    sfxBufferPromises.set(id, promise);
+    return promise;
+}
+
+function preloadSfxBuffersInBackground() {
+    POOLED_SFX_IDS.forEach(id => {
+        loadSfxBuffer(id).catch(() => {});
+    });
+}
+
+window.playBufferedSfx = async function(id, volume = 0.5) {
+    const context = getSfxAudioContext();
+    if (!context) return false;
+
+    try {
+        if (context.state === 'suspended') {
+            await context.resume();
+        }
+
+        const buffer = await loadSfxBuffer(id);
+        if (!buffer) return false;
+
+        const source = context.createBufferSource();
+        const gain = context.createGain();
+        gain.gain.value = Math.max(0, Math.min(1, volume));
+        source.buffer = buffer;
+        source.connect(gain);
+        gain.connect(context.destination);
+        source.start(0);
+        return true;
+    } catch (_error) {
+        return false;
+    }
+};
+
 function getSfxPool(id) {
     if (sfxAudioPools.has(id)) return sfxAudioPools.get(id);
 
@@ -110,32 +210,24 @@ window.warmGameAudioForInteraction = function() {
 
         pool.items.forEach(audio => {
             prepareAudioElementForIos(audio);
-            if (!IOS_AUDIO_DEVICE) return;
-
-            const previousMuted = audio.muted;
-            const previousVolume = audio.volume;
-            audio.muted = true;
-            audio.volume = 0;
-            const unlockPromise = audio.play();
-            if (unlockPromise && typeof unlockPromise.then === 'function') {
-                unlockPromise
-                    .then(() => {
-                        audio.pause();
-                        audio.currentTime = 0;
-                        audio.muted = previousMuted;
-                        audio.volume = previousVolume;
-                    })
-                    .catch(() => {
-                        audio.muted = previousMuted;
-                        audio.volume = previousVolume;
-                    });
-            } else {
-                audio.muted = previousMuted;
-                audio.volume = previousVolume;
-            }
         });
     });
+
+    unlockSfxAudioContext()
+        .then(() => preloadSfxBuffersInBackground())
+        .catch(() => preloadSfxBuffersInBackground());
 };
+
+document.addEventListener('pointerdown', () => {
+    if (!sfxAudioContext || sfxAudioContext.state !== 'suspended') return;
+    sfxAudioContext.resume().catch(() => {});
+}, { passive: true });
+
+document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && sfxAudioContext?.state === 'suspended') {
+        gameAudioUnlocked = false;
+    }
+});
 
 const BGM_MAX_GAIN = 0.59;
 

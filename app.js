@@ -6196,15 +6196,27 @@ function triggerAnimation(cell, type, options = {}) {
 }
 
 function playSound(id) {
+    const baseVolume = (typeof gameVolume !== 'undefined' && isFinite(gameVolume.sfx)) ? gameVolume.sfx : 0.5;
+    const volume = id === 'enter-sfx'
+        ? Math.min(1, Math.max(0.42, baseVolume * 1.35))
+        : baseVolume;
+    if (typeof window.playBufferedSfx === 'function') {
+        window.playBufferedSfx(id, volume).then(played => {
+            if (played) return;
+            playHtmlAudioSfx(id, volume);
+        });
+        return;
+    }
+    playHtmlAudioSfx(id, volume);
+}
+
+function playHtmlAudioSfx(id, volume) {
     const s = typeof window.getPooledSfxAudio === 'function'
         ? window.getPooledSfxAudio(id)
         : document.getElementById(id);
     if(s) {
-        const baseVolume = (typeof gameVolume !== 'undefined' && isFinite(gameVolume.sfx)) ? gameVolume.sfx : 0.5;
         s.muted = false;
-        s.volume = id === 'enter-sfx'
-            ? Math.min(1, Math.max(0.42, baseVolume * 1.35))
-            : baseVolume;
+        s.volume = volume;
         s.currentTime = 0;
         s.play().catch(e=>{});
     }
