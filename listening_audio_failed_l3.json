@@ -1,0 +1,713 @@
+[
+  {
+    "level": "L3",
+    "word": "It is undeniable that",
+    "sentenceIndex": 0,
+    "text": "It is undeniable that exercise is good for our health.",
+    "voiceName": "en-US-AvaMultilingualNeural",
+    "accentLocale": "en-CA",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "irregular",
+    "sentenceIndex": 0,
+    "text": "The patient had an irregular heartbeat.",
+    "voiceName": "de-DE-FlorianMultilingualNeural",
+    "accentLocale": "en-GB",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "irregular",
+    "sentenceIndex": 2,
+    "text": "His working hours are very irregular.",
+    "voiceName": "en-US-AndrewMultilingualNeural",
+    "accentLocale": "en-US",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "journal",
+    "sentenceIndex": 1,
+    "text": "The article was published in a science journal.",
+    "voiceName": "en-US-AvaMultilingualNeural",
+    "accentLocale": "en-CA",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "journal",
+    "sentenceIndex": 2,
+    "text": "Keep a journal to record your ideas.",
+    "voiceName": "en-US-AndrewMultilingualNeural",
+    "accentLocale": "en-US",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "jungle",
+    "sentenceIndex": 0,
+    "text": "The explorers moved through the dense jungle.",
+    "voiceName": "en-US-AndrewMultilingualNeural",
+    "accentLocale": "en-US",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "jungle",
+    "sentenceIndex": 2,
+    "text": "The film was set in a tropical jungle.",
+    "voiceName": "de-DE-FlorianMultilingualNeural",
+    "accentLocale": "en-GB",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "keen",
+    "sentenceIndex": 0,
+    "text": "She is keen to join the drama club.",
+    "voiceName": "en-US-AvaMultilingualNeural",
+    "accentLocale": "en-CA",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "keen",
+    "sentenceIndex": 1,
+    "text": "He is keen on learning new languages.",
+    "voiceName": "en-US-AndrewMultilingualNeural",
+    "accentLocale": "en-US",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "key",
+    "sentenceIndex": 1,
+    "text": "Planning is the key to a successful project.",
+    "voiceName": "en-US-AvaMultilingualNeural",
+    "accentLocale": "en-CA",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "killer",
+    "sentenceIndex": 0,
+    "text": "The story is about a dangerous killer.",
+    "voiceName": "en-US-AndrewMultilingualNeural",
+    "accentLocale": "en-US",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "kindergarten",
+    "sentenceIndex": 1,
+    "text": "Her son walks to kindergarten every day.",
+    "voiceName": "en-US-AndrewMultilingualNeural",
+    "accentLocale": "en-US",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "kindergarten",
+    "sentenceIndex": 2,
+    "text": "The kindergarten has a bright play area.",
+    "voiceName": "de-DE-SeraphinaMultilingualNeural",
+    "accentLocale": "en-AU",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "kindly",
+    "sentenceIndex": 2,
+    "text": "He spoke kindly to the nervous child.",
+    "voiceName": "en-US-AndrewMultilingualNeural",
+    "accentLocale": "en-US",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "knock",
+    "sentenceIndex": 2,
+    "text": "The wind may knock the sign over.",
+    "voiceName": "en-US-AvaMultilingualNeural",
+    "accentLocale": "en-CA",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "labor",
+    "sentenceIndex": 0,
+    "text": "The factory depends on cheap labor.",
+    "voiceName": "en-US-AndrewMultilingualNeural",
+    "accentLocale": "en-US",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "labor",
+    "sentenceIndex": 1,
+    "text": "Labor costs have risen this year.",
+    "voiceName": "de-DE-SeraphinaMultilingualNeural",
+    "accentLocale": "en-AU",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "labor",
+    "sentenceIndex": 2,
+    "text": "The workers demanded fair pay for their labor.",
+    "voiceName": "de-DE-FlorianMultilingualNeural",
+    "accentLocale": "en-GB",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "laboratory",
+    "sentenceIndex": 0,
+    "text": "The samples were tested in a laboratory.",
+    "voiceName": "en-US-AvaMultilingualNeural",
+    "accentLocale": "en-CA",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "laboratory",
+    "sentenceIndex": 1,
+    "text": "She works in a medical laboratory.",
+    "voiceName": "en-US-AndrewMultilingualNeural",
+    "accentLocale": "en-US",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "lack",
+    "sentenceIndex": 0,
+    "text": "Many students lack confidence when speaking English.",
+    "voiceName": "de-DE-FlorianMultilingualNeural",
+    "accentLocale": "en-GB",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "lack",
+    "sentenceIndex": 1,
+    "text": "A lack of sleep can affect your memory.",
+    "voiceName": "en-US-AvaMultilingualNeural",
+    "accentLocale": "en-CA",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "lack",
+    "sentenceIndex": 2,
+    "text": "The team lost because they lacked practice.",
+    "voiceName": "en-US-AndrewMultilingualNeural",
+    "accentLocale": "en-US",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "lag",
+    "sentenceIndex": 0,
+    "text": "There may be a short lag in the video call.",
+    "voiceName": "de-DE-SeraphinaMultilingualNeural",
+    "accentLocale": "en-AU",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "lag",
+    "sentenceIndex": 2,
+    "text": "A system lag slowed the game down.",
+    "voiceName": "en-US-AvaMultilingualNeural",
+    "accentLocale": "en-CA",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "lamb",
+    "sentenceIndex": 0,
+    "text": "They served roasted lamb for dinner.",
+    "voiceName": "en-US-AndrewMultilingualNeural",
+    "accentLocale": "en-US",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "lamb",
+    "sentenceIndex": 1,
+    "text": "A lamb was sleeping in the field.",
+    "voiceName": "de-DE-SeraphinaMultilingualNeural",
+    "accentLocale": "en-AU",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "lamb",
+    "sentenceIndex": 2,
+    "text": "The farmer carried a young lamb.",
+    "voiceName": "de-DE-FlorianMultilingualNeural",
+    "accentLocale": "en-GB",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "lay",
+    "sentenceIndex": 0,
+    "text": "Please lay the books on the table.",
+    "voiceName": "en-US-AvaMultilingualNeural",
+    "accentLocale": "en-CA",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "layer",
+    "sentenceIndex": 0,
+    "text": "Add one more layer of paint.",
+    "voiceName": "de-DE-FlorianMultilingualNeural",
+    "accentLocale": "en-GB",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "layer",
+    "sentenceIndex": 1,
+    "text": "Clouds formed a thick layer over the hills.",
+    "voiceName": "en-US-AvaMultilingualNeural",
+    "accentLocale": "en-CA",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "layer",
+    "sentenceIndex": 2,
+    "text": "The cake has a layer of cream inside.",
+    "voiceName": "en-US-AndrewMultilingualNeural",
+    "accentLocale": "en-US",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "leaf",
+    "sentenceIndex": 0,
+    "text": "A red leaf fell onto the path.",
+    "voiceName": "de-DE-SeraphinaMultilingualNeural",
+    "accentLocale": "en-AU",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "leaf",
+    "sentenceIndex": 1,
+    "text": "The plant grew a new leaf.",
+    "voiceName": "de-DE-FlorianMultilingualNeural",
+    "accentLocale": "en-GB",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "leaf",
+    "sentenceIndex": 2,
+    "text": "Each leaf was covered with rain.",
+    "voiceName": "en-US-AvaMultilingualNeural",
+    "accentLocale": "en-CA",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "leather",
+    "sentenceIndex": 0,
+    "text": "This bag is made of leather.",
+    "voiceName": "en-US-AndrewMultilingualNeural",
+    "accentLocale": "en-US",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "leather",
+    "sentenceIndex": 1,
+    "text": "He wore a black leather jacket.",
+    "voiceName": "de-DE-SeraphinaMultilingualNeural",
+    "accentLocale": "en-AU",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "leather",
+    "sentenceIndex": 2,
+    "text": "The old chair had cracked leather.",
+    "voiceName": "de-DE-FlorianMultilingualNeural",
+    "accentLocale": "en-GB",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "legal",
+    "sentenceIndex": 0,
+    "text": "You need legal permission to use the photo.",
+    "voiceName": "en-US-AvaMultilingualNeural",
+    "accentLocale": "en-CA",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "legal",
+    "sentenceIndex": 1,
+    "text": "The company gave legal advice to its workers.",
+    "voiceName": "en-US-AndrewMultilingualNeural",
+    "accentLocale": "en-US",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "legal",
+    "sentenceIndex": 2,
+    "text": "It is legal to park here after six o’clock.",
+    "voiceName": "de-DE-SeraphinaMultilingualNeural",
+    "accentLocale": "en-AU",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "leisure",
+    "sentenceIndex": 0,
+    "text": "Reading is one of her leisure activities.",
+    "voiceName": "de-DE-FlorianMultilingualNeural",
+    "accentLocale": "en-GB",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "leisure",
+    "sentenceIndex": 1,
+    "text": "Reading is my favourite leisure activity.",
+    "voiceName": "en-US-AvaMultilingualNeural",
+    "accentLocale": "en-CA",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "leisure",
+    "sentenceIndex": 2,
+    "text": "He finally had some leisure time.",
+    "voiceName": "en-US-AndrewMultilingualNeural",
+    "accentLocale": "en-US",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "length",
+    "sentenceIndex": 0,
+    "text": "The length of time given to the children is to be extended to 15 minutes.",
+    "voiceName": "de-DE-SeraphinaMultilingualNeural",
+    "accentLocale": "en-AU",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "length",
+    "sentenceIndex": 1,
+    "text": "The length of the essay should be about 300 words.",
+    "voiceName": "de-DE-FlorianMultilingualNeural",
+    "accentLocale": "en-GB",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "lie",
+    "sentenceIndex": 0,
+    "text": "Please do not lie to me.",
+    "voiceName": "en-US-AndrewMultilingualNeural",
+    "accentLocale": "en-US",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "lie",
+    "sentenceIndex": 2,
+    "text": "The papers lie on the desk.",
+    "voiceName": "de-DE-FlorianMultilingualNeural",
+    "accentLocale": "en-GB",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "lighter",
+    "sentenceIndex": 1,
+    "text": "Do you have a lighter for the candles?",
+    "voiceName": "en-US-AndrewMultilingualNeural",
+    "accentLocale": "en-US",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "lighthouse",
+    "sentenceIndex": 0,
+    "text": "The lighthouse guided ships at night.",
+    "voiceName": "de-DE-FlorianMultilingualNeural",
+    "accentLocale": "en-GB",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "lighthouse",
+    "sentenceIndex": 1,
+    "text": "We climbed the steps inside the lighthouse.",
+    "voiceName": "en-US-AvaMultilingualNeural",
+    "accentLocale": "en-CA",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "lightning",
+    "sentenceIndex": 1,
+    "text": "The storm brought heavy rain and lightning.",
+    "voiceName": "de-DE-FlorianMultilingualNeural",
+    "accentLocale": "en-GB",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "lightning",
+    "sentenceIndex": 2,
+    "text": "We counted the seconds after the lightning.",
+    "voiceName": "en-US-AvaMultilingualNeural",
+    "accentLocale": "en-CA",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "lime",
+    "sentenceIndex": 0,
+    "text": "Add some lime to the drink.",
+    "voiceName": "en-US-AndrewMultilingualNeural",
+    "accentLocale": "en-US",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "limit",
+    "sentenceIndex": 0,
+    "text": "There is a time limit for each question.",
+    "voiceName": "en-US-AvaMultilingualNeural",
+    "accentLocale": "en-CA",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "limit",
+    "sentenceIndex": 1,
+    "text": "Parents should limit children’s screen time.",
+    "voiceName": "en-US-AndrewMultilingualNeural",
+    "accentLocale": "en-US",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "lip",
+    "sentenceIndex": 0,
+    "text": "She put red color on her lip.",
+    "voiceName": "de-DE-FlorianMultilingualNeural",
+    "accentLocale": "en-GB",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "lip",
+    "sentenceIndex": 2,
+    "text": "The cup touched the lip of the sink.",
+    "voiceName": "en-US-AndrewMultilingualNeural",
+    "accentLocale": "en-US",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "lipstick",
+    "sentenceIndex": 0,
+    "text": "234 3 Zombiegirlz How about some lipstick for all us girl fans?",
+    "voiceName": "de-DE-SeraphinaMultilingualNeural",
+    "accentLocale": "en-AU",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "lipstick",
+    "sentenceIndex": 2,
+    "text": "Nancy Kipkirui Bubblegum lipstick - horrible!",
+    "voiceName": "en-US-AvaMultilingualNeural",
+    "accentLocale": "en-CA",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "liquid",
+    "sentenceIndex": 1,
+    "text": "This medicine is in liquid form.",
+    "voiceName": "de-DE-SeraphinaMultilingualNeural",
+    "accentLocale": "en-AU",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "liquid",
+    "sentenceIndex": 2,
+    "text": "The heat changed the solid into a liquid.",
+    "voiceName": "de-DE-FlorianMultilingualNeural",
+    "accentLocale": "en-GB",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "literature",
+    "sentenceIndex": 2,
+    "text": "Literature helps us understand different lives.",
+    "voiceName": "de-DE-SeraphinaMultilingualNeural",
+    "accentLocale": "en-AU",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "livelier",
+    "sentenceIndex": 2,
+    "text": "Her second speech was much livelier.",
+    "voiceName": "en-US-AndrewMultilingualNeural",
+    "accentLocale": "en-US",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "local",
+    "sentenceIndex": 1,
+    "text": "Local people complained about the noise.",
+    "voiceName": "de-DE-FlorianMultilingualNeural",
+    "accentLocale": "en-GB",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "locally",
+    "sentenceIndex": 0,
+    "text": "The vegetables are grown locally.",
+    "voiceName": "en-US-AndrewMultilingualNeural",
+    "accentLocale": "en-US",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "locally",
+    "sentenceIndex": 2,
+    "text": "People prefer to shop locally when possible.",
+    "voiceName": "de-DE-FlorianMultilingualNeural",
+    "accentLocale": "en-GB",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "locate",
+    "sentenceIndex": 0,
+    "text": "Manaslu, meaning 'mountain of the spirit', is located in the Nepalese Himalayas.",
+    "voiceName": "en-US-AvaMultilingualNeural",
+    "accentLocale": "en-CA",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "locate",
+    "sentenceIndex": 1,
+    "text": "The map helps tourists locate the museum.",
+    "voiceName": "en-US-AndrewMultilingualNeural",
+    "accentLocale": "en-US",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "locate",
+    "sentenceIndex": 2,
+    "text": "Conveniently located in Wan Chai.",
+    "voiceName": "de-DE-SeraphinaMultilingualNeural",
+    "accentLocale": "en-AU",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "location",
+    "sentenceIndex": 0,
+    "text": "The location of the hotel is convenient.",
+    "voiceName": "de-DE-FlorianMultilingualNeural",
+    "accentLocale": "en-GB",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "location",
+    "sentenceIndex": 1,
+    "text": "Choose a safe location for the picnic.",
+    "voiceName": "en-US-AvaMultilingualNeural",
+    "accentLocale": "en-CA",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "location",
+    "sentenceIndex": 2,
+    "text": "It'll all be very secret - no one will know about the location apart from us.",
+    "voiceName": "en-US-AndrewMultilingualNeural",
+    "accentLocale": "en-US",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "log in",
+    "sentenceIndex": 0,
+    "text": "Please log in before using the app.",
+    "voiceName": "de-DE-SeraphinaMultilingualNeural",
+    "accentLocale": "en-AU",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "log in",
+    "sentenceIndex": 1,
+    "text": "He forgot how to log in to the system.",
+    "voiceName": "de-DE-FlorianMultilingualNeural",
+    "accentLocale": "en-GB",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "log in",
+    "sentenceIndex": 2,
+    "text": "You must log in with your student account.",
+    "voiceName": "en-US-AvaMultilingualNeural",
+    "accentLocale": "en-CA",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "lonely",
+    "sentenceIndex": 0,
+    "text": "She felt lonely after moving to a new school.",
+    "voiceName": "en-US-AndrewMultilingualNeural",
+    "accentLocale": "en-US",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "lonely",
+    "sentenceIndex": 1,
+    "text": "A lonely elderly man lived next door.",
+    "voiceName": "de-DE-SeraphinaMultilingualNeural",
+    "accentLocale": "en-AU",
+    "error": "Azure returned empty audio."
+  },
+  {
+    "level": "L3",
+    "word": "Long gone are the days when",
+    "sentenceIndex": 0,
+    "text": "Long gone are the days when we wrote every letter by hand.",
+    "voiceName": "en-US-AvaMultilingualNeural",
+    "accentLocale": "en-CA",
+    "error": "Azure returned empty audio."
+  }
+]

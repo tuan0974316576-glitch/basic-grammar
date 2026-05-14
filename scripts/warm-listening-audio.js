@@ -91,16 +91,22 @@ function getListeningManifestKey(row) {
   ].join('|');
 }
 
-async function warmOne(apiBase, row, index, total) {
+async function warmOne(apiBase, row, index, total, requestTimeoutMs) {
   return retryAsync(
-    () => warmOneAttempt(apiBase, row, index, total),
+    () => warmOneAttempt(apiBase, row, index, total, requestTimeoutMs),
     `row ${index + 1}/${total} ${row.level} ${row.word} S${row.sentenceIndex + 1}`
   );
 }
 
-async function warmOneAttempt(apiBase, row, index, total) {
+async function warmOneAttempt(apiBase, row, index, total, requestTimeoutMs) {
+  const controller = new AbortController();
+  const timeout = requestTimeoutMs
+    ? setTimeout(() => controller.abort(), requestTimeoutMs)
+    : null;
+
   const response = await fetch(`${apiBase}/api/listening-audio`, {
     method: 'POST',
+    signal: controller.signal,
     headers: {
       'Content-Type': 'application/json'
     },
@@ -113,6 +119,8 @@ async function warmOneAttempt(apiBase, row, index, total) {
       voiceName: row.voice.voiceName,
       accentLocale: row.voice.accentLocale
     })
+  }).finally(() => {
+    if (timeout) clearTimeout(timeout);
   });
 
   const rawText = await response.text();
@@ -168,6 +176,18 @@ async function runPool(rows, concurrency, task) {
   return results;
 }
 
+function writeFailedRows(failedRows, manifestPath, level) {
+  if (!failedRows.length) return null;
+
+  const failedPath = path.resolve(
+    path.dirname(manifestPath),
+    `listening_audio_failed_${level.toLowerCase()}.json`
+  );
+  fs.writeFileSync(failedPath, JSON.stringify(failedRows, null, 2), 'utf8');
+  console.warn(`Wrote ${failedRows.length} failed rows to ${failedPath}`);
+  return failedPath;
+}
+
 function writeManifest(entries, manifestPath) {
   const manifest = loadExistingManifest(manifestPath);
   entries.forEach(([key, url]) => {
@@ -203,17 +223,32 @@ async function main() {
   const concurrency = Number(getArgValue('concurrency', process.env.CONCURRENCY || '3')) || 3;
   const manifestPath = path.resolve(getArgValue('manifest', DEFAULT_MANIFEST_PATH));
   const level = getArgValue('level', process.env.LEVEL || DEFAULT_LEVEL);
+  const checkpointEvery = Number(getArgValue('checkpoint-every', process.env.CHECKPOINT_EVERY || '25')) || 25;
+  const delayMs = Math.max(0, Number(getArgValue('delay-ms', process.env.DELAY_MS || '0')) || 0);
+  const maxRows = Math.max(0, Number(getArgValue('max-rows', process.env.MAX_ROWS || '0')) || 0);
+  const requestTimeoutMs = Math.max(0, Number(getArgValue('request-timeout-ms', process.env.REQUEST_TIMEOUT_MS || '30000')) || 0);
+  const continueOnError = hasArg('continue-on-error');
   const dryRun = hasArg('dry-run');
   const rows = loadListeningRows(level);
   const totalChars = rows.reduce((sum, row) => sum + row.text.length, 0);
+  const existingManifest = loadExistingManifest(manifestPath);
+  const allRowsToWarm = rows.filter(row => !existingManifest[getListeningManifestKey(row)]);
+  const rowsToWarm = maxRows ? allRowsToWarm.slice(0, maxRows) : allRowsToWarm;
+  const existingCount = rows.length - rowsToWarm.length;
 
   if (!rows.length) throw new Error(`No listening rows found for ${level}.`);
 
   console.log(`Listening rows: ${rows.length}`);
+  console.log(`Already in manifest: ${rows.length - allRowsToWarm.length}`);
+  console.log(`Rows to warm: ${rowsToWarm.length}${maxRows ? ` of ${allRowsToWarm.length}` : ''}`);
   console.log(`Level: ${level}`);
   console.log(`API base: ${apiBase}`);
   console.log(`Voices: ${LISTENING_VOICES.map(voice => voice.label).join(', ')}`);
   console.log(`Estimated Azure chars: ${totalChars}`);
+  if (delayMs) console.log(`Delay between requests: ${delayMs}ms`);
+  if (maxRows) console.log(`Max rows this run: ${maxRows}`);
+  if (requestTimeoutMs) console.log(`Request timeout: ${requestTimeoutMs}ms`);
+  if (continueOnError) console.log('Continue on error: enabled');
 
   if (dryRun) {
     rows.slice(0, 12).forEach((row, index) => {
@@ -222,8 +257,46 @@ async function main() {
     return;
   }
 
-  const entries = await runPool(rows, concurrency, (row, index) => warmOne(apiBase, row, index, rows.length));
-  writeManifest(entries, manifestPath);
+  if (!rowsToWarm.length) {
+    console.log(`Manifest already contains all ${level} audio URLs.`);
+    return;
+  }
+
+  const checkpointEntries = [];
+  const failedRows = [];
+  let completed = 0;
+  const entries = await runPool(rowsToWarm, concurrency, async (row, index) => {
+    let entry = null;
+    try {
+      entry = await warmOne(apiBase, row, index, rowsToWarm.length, requestTimeoutMs);
+      checkpointEntries[index] = entry;
+    } catch (error) {
+      if (!continueOnError) throw error;
+      failedRows.push({
+        level: row.level,
+        word: row.word,
+        sentenceIndex: row.sentenceIndex,
+        text: row.text,
+        voiceName: row.voice.voiceName,
+        accentLocale: row.voice.accentLocale,
+        error: error.message || String(error)
+      });
+      console.warn(`[${index + 1}/${rowsToWarm.length}] failed: ${row.level} ${row.word} S${row.sentenceIndex + 1} ${row.voice.label}: ${error.message || error}`);
+    }
+    completed++;
+    if (checkpointEvery > 0 && completed % checkpointEvery === 0) {
+      writeManifest(checkpointEntries.filter(Boolean), manifestPath);
+      console.log(`Checkpoint saved: ${completed}/${rowsToWarm.length} new URLs`);
+      writeFailedRows(failedRows, manifestPath, level);
+    }
+    if (delayMs) await delay(delayMs);
+    return entry;
+  });
+  writeManifest(entries.filter(Boolean), manifestPath);
+  writeFailedRows(failedRows, manifestPath, level);
+  if (failedRows.length) {
+    console.warn(`Completed with ${failedRows.length} failed rows. Re-run later to retry skipped rows.`);
+  }
 }
 
 main().catch(error => {
