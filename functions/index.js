@@ -423,10 +423,14 @@ app.post('/api/listening-audio', async (req, res) => {
       accentLocale
     });
   } catch (error) {
-    logger.error('[ListeningAudio] Failed', error);
+    logger.error('[ListeningAudio] Failed', {
+      message: error.message || String(error),
+      azure: error.azure || null
+    });
     res.status(500).json({
       error: 'listening_tts_failed',
-      message: error.message || 'Listening audio generation failed.'
+      message: error.message || 'Listening audio generation failed.',
+      azure: error.azure || null
     });
   }
 });

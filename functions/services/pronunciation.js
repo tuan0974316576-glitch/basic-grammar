@@ -51,6 +51,12 @@ function normalizeAssessmentResponse(recognitionResult, rawJson, expectedText, l
   };
 }
 
+function createSpeechSynthesisError(message, details = {}) {
+  const error = new Error(message);
+  error.azure = details;
+  return error;
+}
+
 async function assessPronunciation({
   speechKey,
   speechRegion,
@@ -172,9 +178,49 @@ async function synthesizeSpeech({
       ssml,
       (result) => {
         try {
+          const reasonName = sdk.ResultReason[result.reason] || String(result.reason);
+          const cancellation = result.reason === sdk.ResultReason.Canceled
+            ? sdk.CancellationDetails.fromResult(result)
+            : null;
+          const cancellationReason = cancellation
+            ? (sdk.CancellationReason[cancellation.reason] || String(cancellation.reason))
+            : '';
+          const cancellationErrorCode = cancellation
+            ? (sdk.CancellationErrorCode[cancellation.ErrorCode] || String(cancellation.ErrorCode || ''))
+            : '';
+          const audioLength = result.audioData?.byteLength || result.audioData?.length || 0;
+
+          if (result.reason !== sdk.ResultReason.SynthesizingAudioCompleted) {
+            throw createSpeechSynthesisError('Azure speech synthesis did not complete.', {
+              resultReason: reasonName,
+              cancellationReason,
+              cancellationErrorCode,
+              cancellationErrorDetails: cancellation?.errorDetails || '',
+              voiceName: speechConfig.speechSynthesisVoiceName,
+              locale,
+              accentLocale: langLocale,
+              mode,
+              level,
+              textLength: spokenText.length,
+              audioLength
+            });
+          }
+
           const audioData = result.audioData instanceof ArrayBuffer
             ? Buffer.from(result.audioData)
             : Buffer.from(result.audioData || []);
+          if (!audioData.length) {
+            throw createSpeechSynthesisError('Azure returned empty audio.', {
+              resultReason: reasonName,
+              voiceName: speechConfig.speechSynthesisVoiceName,
+              locale,
+              accentLocale: langLocale,
+              mode,
+              level,
+              textLength: spokenText.length,
+              audioLength
+            });
+          }
           synthesizer.close();
           resolve({
             ok: true,
@@ -196,7 +242,15 @@ async function synthesizeSpeech({
       },
       (error) => {
         synthesizer.close();
-        reject(error);
+        reject(createSpeechSynthesisError(error?.message || String(error), {
+          sdkError: String(error || ''),
+          voiceName: speechConfig.speechSynthesisVoiceName,
+          locale,
+          accentLocale: langLocale,
+          mode,
+          level,
+          textLength: spokenText.length
+        }));
       }
     );
   });

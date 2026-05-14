@@ -132,7 +132,9 @@ async function warmOneAttempt(apiBase, row, index, total, requestTimeoutMs) {
   }
 
   if (!response.ok || !result?.audioUrl) {
-    throw new Error((result && (result.message || result.error)) || `Failed row ${index + 1}`);
+    const error = new Error((result && (result.message || result.error)) || `Failed row ${index + 1}`);
+    if (result?.azure) error.azure = result.azure;
+    throw error;
   }
 
   const status = result.cached ? 'cached' : 'created';
@@ -279,9 +281,13 @@ async function main() {
         text: row.text,
         voiceName: row.voice.voiceName,
         accentLocale: row.voice.accentLocale,
-        error: error.message || String(error)
+        error: error.message || String(error),
+        azure: error.azure || null
       });
-      console.warn(`[${index + 1}/${rowsToWarm.length}] failed: ${row.level} ${row.word} S${row.sentenceIndex + 1} ${row.voice.label}: ${error.message || error}`);
+      const azureSummary = error.azure
+        ? ` (${error.azure.cancellationErrorCode || error.azure.resultReason || 'azure detail'})`
+        : '';
+      console.warn(`[${index + 1}/${rowsToWarm.length}] failed: ${row.level} ${row.word} S${row.sentenceIndex + 1} ${row.voice.label}: ${error.message || error}${azureSummary}`);
     }
     completed++;
     if (checkpointEvery > 0 && completed % checkpointEvery === 0) {
