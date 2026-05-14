@@ -2340,8 +2340,10 @@ function selectLevel(level) {
 }
 
 function enterGameUI() {
-    const bgm = document.getElementById('bgm');
-    if (bgm) { bgm.volume = 0.5; bgm.play().then(()=>isMusicPlaying=true).catch(e=>{}); }
+    if (typeof playBgm === 'function') {
+        playBgm();
+        isMusicPlaying = true;
+    }
 
     // �� PHASE 5: Reset session XP counter
     sessionAnsweringXP = 0;
@@ -3782,6 +3784,11 @@ async function openLaunchModal(index) {
 
     // ���� �P�I�����@ʾҕ�����و�������� focus���_���I�P���� ����
     modal.style.display = "flex";
+    if (currentPracticeMode === 'LISTENING' || currentPracticeMode === 'SPEAKING') {
+        if (typeof requestBgmDuck === 'function') requestBgmDuck('battle-answer', 450);
+    } else if (typeof releaseBgmDuck === 'function') {
+        releaseBgmDuck('battle-answer', 250);
+    }
 
     // ���� Apply Aurelians theme if player is using Aurelians ����
     if (selectedRace === 'AURELIANS') {
@@ -3838,7 +3845,6 @@ if (typeof window.isGrammarBattleMode === 'function' && window.isGrammarBattleMo
         qDisplay.style.display = 'block';
         if (modeLabel) modeLabel.innerText = "Translate to English:";
         // --- B.  ��ģʽ (Listening) ---
-        fadeBgm(0.1, 800);
         let contentHTML = '';
 
         // ���� Use listeningAnswer if available (new format), otherwise use base form (old format) ����
@@ -3971,7 +3977,6 @@ if (typeof window.isGrammarBattleMode === 'function' && window.isGrammarBattleMo
         input.setAttribute('readonly', 'readonly');
         input.style.position = 'absolute';
         input.style.left = '-9999px';
-        if (typeof fadeBgm === 'function') fadeBgm(0.05, 450);
     }
 
 // --- �Ӯ��c���� (������) ---
@@ -4810,16 +4815,13 @@ function closeLaunchModalUI() {
     document.body.style.position = '';
     document.body.style.width = '';
 
-    if (currentPracticeMode === 'SPEAKING' && typeof fadeBgm === 'function') {
-        fadeBgm(0.5, 700);
-    }
+    if (typeof releaseBgmDuck === 'function') releaseBgmDuck('battle-answer', 450);
 
     stopMatrixEffect();
 }
     
 // --- �����棺̎��ݔ�볬�r ---
 function handlePlayerTimeout() {
-    if(typeof fadeBgm === 'function') fadeBgm(0.5, 1000);
     attackResolutionLocked = false;
     isTargeting = false;
     closeLaunchModalUI();
@@ -5195,7 +5197,6 @@ function checkAnswer() {
 
     // --- 10. ������� ---
 function playerFire(success) {
-    fadeBgm(0.5, 1000);
     // 1. ���������ͣӋ�r�����P�]����
     closeLaunchModalUI();
 
@@ -6232,7 +6233,13 @@ function isElementVisible(el) {
         if (isMusicPlaying) {
             bgm.pause(); btn.innerText = " BGM: OFF"; btn.style.background = "";
         } else {
-            bgm.play().then(() => { btn.innerText = " BGM: ON"; btn.style.background = "var(--success)"; });
+            if (typeof playBgm === 'function') {
+                playBgm();
+                btn.innerText = " BGM: ON";
+                btn.style.background = "var(--success)";
+            } else {
+                bgm.play().then(() => { btn.innerText = " BGM: ON"; btn.style.background = "var(--success)"; });
+            }
         }
         isMusicPlaying = !isMusicPlaying;
     }

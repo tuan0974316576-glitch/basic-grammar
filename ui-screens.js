@@ -134,6 +134,8 @@ function closeVocabScreen() {
             }
             return;
         }
+    } else if (typeof releaseBgmDuck === 'function') {
+        releaseBgmDuck('code-list', 250);
     }
 
     document.getElementById('start-screen').style.display = 'flex';
@@ -467,6 +469,7 @@ function filterVocabList() {
 function openVocabScreen() {
     playSound('open-room-sfx');
     if (typeof restoreStageVocabBgm === 'function') restoreStageVocabBgm();
+    if (typeof requestBgmDuck === 'function') requestBgmDuck('code-list', 250);
 
     const suppliesDisplay = document.getElementById('coins-display');
     if (suppliesDisplay) {

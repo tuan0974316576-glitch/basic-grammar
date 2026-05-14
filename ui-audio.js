@@ -1,5 +1,5 @@
 let bgmFadeInterval = null;
-let stageVocabBgmRestoreVolume = null;
+const bgmDuckReasons = new Set();
 
 const alertSfx = new Audio('your-fleet-is-under-attack.mp3');
 alertSfx.volume = 1.0;
@@ -230,11 +230,36 @@ document.addEventListener('visibilitychange', () => {
 });
 
 const BGM_MAX_GAIN = 0.59;
+const BGM_DUCK_VOLUME = 0.08;
+
+function getNormalBgmVolume() {
+    return ((gameVolume && Number.isFinite(gameVolume.bgm)) ? gameVolume.bgm : 0.5) * BGM_MAX_GAIN;
+}
+
+function getCurrentBgmTargetVolume() {
+    return bgmDuckReasons.size > 0 ? BGM_DUCK_VOLUME : getNormalBgmVolume();
+}
+
+function setBgmVolume(volume) {
+    const bgm = document.getElementById('bgm');
+    if (!bgm) return;
+    bgm.volume = Math.max(0, Math.min(1, volume));
+}
+
+function applyBgmTargetVolume(duration = 0) {
+    const targetVolume = getCurrentBgmTargetVolume();
+    if (duration > 0) {
+        fadeBgm(targetVolume, duration);
+    } else {
+        setBgmVolume(targetVolume);
+    }
+}
 
 function playBgm() {
     const bgm = document.getElementById('bgm');
-    if (bgm && bgm.paused) {
-        bgm.volume = gameVolume.bgm * BGM_MAX_GAIN;
+    if (bgm) {
+        applyBgmTargetVolume();
+        if (!bgm.paused) return;
         bgm.play().catch(() => console.log('BGM waiting for interaction'));
     }
 }
@@ -268,35 +293,35 @@ function fadeBgm(targetVol, duration = 800) {
     }, stepTime);
 }
 
-function duckStageVocabBgm(targetVolume = 0.08) {
-    const bgm = document.getElementById('bgm');
-    if (!bgm || bgm.paused) return;
-    if (stageVocabBgmRestoreVolume === null) {
-        stageVocabBgmRestoreVolume = bgm.volume;
-    }
-    bgm.volume = Math.max(0, Math.min(1, targetVolume));
+function requestBgmDuck(reason = 'default', duration = 250) {
+    bgmDuckReasons.add(reason);
+    applyBgmTargetVolume(duration);
+}
+
+function releaseBgmDuck(reason = 'default', duration = 250) {
+    bgmDuckReasons.delete(reason);
+    applyBgmTargetVolume(duration);
+}
+
+function duckStageVocabBgm() {
+    requestBgmDuck('stage-vocab', 250);
 }
 
 function restoreStageVocabBgm() {
-    const bgm = document.getElementById('bgm');
-    if (!bgm || stageVocabBgmRestoreVolume === null) return;
-    bgm.volume = (gameVolume && Number.isFinite(gameVolume.bgm))
-        ? gameVolume.bgm * BGM_MAX_GAIN
-        : stageVocabBgmRestoreVolume;
-    stageVocabBgmRestoreVolume = null;
+    releaseBgmDuck('stage-vocab', 250);
 }
 
 function playUnderAttackAlert() {
     const now = Date.now();
     if (now - lastAlertTime > 8000) {
-        const bgm = document.getElementById('bgm-audio');
+        const bgm = document.getElementById('bgm');
         if (bgm) bgm.volume = 0.1;
 
         alertSfx.play().catch(error => console.log(error));
         lastAlertTime = now;
 
         setTimeout(() => {
-            if (bgm) bgm.volume = 0.3;
+            applyBgmTargetVolume(250);
         }, 3000);
     }
 }
@@ -336,10 +361,7 @@ function updateVolume(type, val) {
     gameVolume[type] = v;
 
     if (type === 'bgm') {
-        const bgm = document.getElementById('bgm');
-        if (bgm) {
-            bgm.volume = stageVocabBgmRestoreVolume === null ? v * BGM_MAX_GAIN : 0.08;
-        }
+        applyBgmTargetVolume();
     }
 
     localStorage.setItem(`setting_${type}`, v);
@@ -362,5 +384,5 @@ function loadSavedAudioSettings() {
     }
 
     const bgm = document.getElementById('bgm');
-    if (bgm) bgm.volume = gameVolume.bgm * BGM_MAX_GAIN;
+    if (bgm) applyBgmTargetVolume();
 }
