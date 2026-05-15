@@ -1,5 +1,7 @@
 let bgmFadeInterval = null;
 const bgmDuckReasons = new Set();
+let bgmPlayRequested = false;
+let bgmPlayInFlight = false;
 
 const alertSfx = new Audio('your-fleet-is-under-attack.mp3');
 alertSfx.volume = 1.0;
@@ -219,14 +221,17 @@ window.warmGameAudioForInteraction = function() {
 };
 
 document.addEventListener('pointerdown', () => {
-    if (!sfxAudioContext || sfxAudioContext.state !== 'suspended') return;
-    sfxAudioContext.resume().catch(() => {});
+    if (sfxAudioContext?.state === 'suspended') {
+        sfxAudioContext.resume().catch(() => {});
+    }
+    retryRequestedBgm();
 }, { passive: true });
 
 document.addEventListener('visibilitychange', () => {
     if (!document.hidden && sfxAudioContext?.state === 'suspended') {
         gameAudioUnlocked = false;
     }
+    if (!document.hidden) retryRequestedBgm();
 });
 
 const BGM_MAX_GAIN = 0.59;
@@ -255,14 +260,49 @@ function applyBgmTargetVolume(duration = 0) {
     }
 }
 
+function prepareBgmElement(bgm) {
+    if (!bgm) return;
+    bgm.loop = true;
+    bgm.preload = 'auto';
+    bgm.playsInline = true;
+    bgm.setAttribute('playsinline', '');
+    try {
+        bgm.load();
+    } catch (_error) {}
+}
+
+function retryRequestedBgm() {
+    if (!bgmPlayRequested || bgmPlayInFlight) return;
+    playBgm();
+}
+
 function playBgm() {
     const bgm = document.getElementById('bgm');
-    if (bgm) {
-        applyBgmTargetVolume();
-        if (!bgm.paused) return;
-        bgm.play().catch(() => console.log('BGM waiting for interaction'));
+    if (!bgm) return Promise.resolve(false);
+
+    bgmPlayRequested = true;
+    prepareBgmElement(bgm);
+    applyBgmTargetVolume();
+
+    if (!bgm.paused) {
+        return Promise.resolve(true);
     }
+
+    bgmPlayInFlight = true;
+    return bgm.play()
+        .then(() => {
+            bgmPlayInFlight = false;
+            return true;
+        })
+        .catch(error => {
+            bgmPlayInFlight = false;
+            console.log('BGM waiting for interaction', error?.name || error?.message || error);
+            return false;
+        });
 }
+
+document.addEventListener('touchend', retryRequestedBgm, { passive: true });
+window.addEventListener('pageshow', retryRequestedBgm);
 
 function fadeBgm(targetVol, duration = 800) {
     const bgm = document.getElementById('bgm');
@@ -384,5 +424,8 @@ function loadSavedAudioSettings() {
     }
 
     const bgm = document.getElementById('bgm');
-    if (bgm) applyBgmTargetVolume();
+    if (bgm) {
+        prepareBgmElement(bgm);
+        applyBgmTargetVolume();
+    }
 }
