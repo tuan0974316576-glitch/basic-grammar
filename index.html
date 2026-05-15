@@ -18,7 +18,7 @@
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 let refreshing = false;
-                navigator.serviceWorker.register('./sw.js?v=20260515-088r').then(reg => {
+                navigator.serviceWorker.register('./sw.js?v=20260515-088s').then(reg => {
                     console.log('SW registered!', reg);
                     reg.update();
 
@@ -39,7 +39,7 @@
                     navigator.serviceWorker.addEventListener('controllerchange', () => {
                         if (refreshing) return;
                         refreshing = true;
-                        window.location.reload();
+                        console.log('SW controller changed; update will apply on next normal launch.');
                     });
                 }).catch(err => {
                     console.log('SW registration failed: ', err);
@@ -48,8 +48,8 @@
         }
     </script>
 
-    <script type="module" src="firebase-init.js?v=0.88r"></script>
-    <link rel="stylesheet" href="style.css?v=0.88r">
+    <script type="module" src="firebase-init.js?v=0.88s"></script>
+    <link rel="stylesheet" href="style.css?v=0.88s">
 
 </head>
 <body>
@@ -78,7 +78,7 @@
     <div class="game-footer splash-footer">
         <span class="brand">Enguistics Learning Centre</span> 2026
         <br>
-        v0.88r
+        v0.88s
     </div>
 </div>
 <div id="game-content-wrapper" style="display: none;">
@@ -1024,17 +1024,17 @@
 <audio id="ship-voice-4"><source src="ship_4_spectre.mp3" type="audio/mpeg"></audio>
     <audio id="unit-lost-sfx"><source src="unit_lost.mp3" type="audio/mpeg"></audio>
 </div>
-<script src="vocab_data.js?v=0.88r"></script>
-<script src="app-config.js?v=0.88r"></script>
-<script src="listening_audio_manifest.js?v=0.88r"></script>
-<script src="vendor/effekseer/effekseer.min.js?v=0.88r"></script>
-<script src="app.js?v=0.88r"></script>
-<script src="grammar_verb_table_data.js?v=0.88r"></script>
-<script src="grammar_verb_table_audio_manifest.js?v=0.88r"></script>
-<script src="ui-grammar.js?v=0.88r"></script>
-<script src="ui-screens.js?v=0.88r"></script>
-<script src="ui-auth.js?v=0.88r"></script>
-<script src="ui-audio.js?v=0.88r"></script>
+<script src="vocab_data.js?v=0.88s"></script>
+<script src="app-config.js?v=0.88s"></script>
+<script src="listening_audio_manifest.js?v=0.88s"></script>
+<script src="vendor/effekseer/effekseer.min.js?v=0.88s"></script>
+<script src="app.js?v=0.88s"></script>
+<script src="grammar_verb_table_data.js?v=0.88s"></script>
+<script src="grammar_verb_table_audio_manifest.js?v=0.88s"></script>
+<script src="ui-grammar.js?v=0.88s"></script>
+<script src="ui-screens.js?v=0.88s"></script>
+<script src="ui-auth.js?v=0.88s"></script>
+<script src="ui-audio.js?v=0.88s"></script>
 <div id="registration-modal" class="registration-modal" style="display: none;">
     
     <div class="registration-scanlines"></div>
