@@ -2,6 +2,7 @@ let bgmFadeInterval = null;
 const bgmDuckReasons = new Set();
 let bgmPlayRequested = false;
 let bgmPlayInFlight = false;
+let bgmPrepared = false;
 
 const alertSfx = new Audio('your-fleet-is-under-attack.mp3');
 alertSfx.volume = 1.0;
@@ -261,7 +262,7 @@ function applyBgmTargetVolume(duration = 0) {
 }
 
 function prepareBgmElement(bgm) {
-    if (!bgm) return;
+    if (!bgm || bgmPrepared) return;
     bgm.loop = true;
     bgm.preload = 'auto';
     bgm.playsInline = true;
@@ -269,6 +270,7 @@ function prepareBgmElement(bgm) {
     try {
         bgm.load();
     } catch (_error) {}
+    bgmPrepared = true;
 }
 
 function retryRequestedBgm() {
