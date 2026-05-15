@@ -7,6 +7,8 @@
     "server": "node server/index.js",
     "warm:verb-audio": "node scripts/warm-verb-table-audio.js",
     "warm:listening-audio": "node scripts/warm-listening-audio.js",
+    "native:audio-assets": "node scripts/sync-native-audio-assets.js",
+    "native:sync": "npm run native:audio-assets && npx cap sync",
     "build:ios": "npx cap add ios && npx cap sync ios && npx cap open ios",
     "build:android": "npx cap add android && npx cap sync android && npx cap open android",
     "sync": "npx cap sync"
@@ -18,6 +20,7 @@
     "@capacitor/cli": "^5.5.1"
   },
   "dependencies": {
+    "@capacitor-community/native-audio": "^5.0.1",
     "@capacitor/core": "^5.5.1",
     "@capacitor/ios": "^5.5.1",
     "@capacitor/android": "^5.5.1",

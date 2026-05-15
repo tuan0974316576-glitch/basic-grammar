@@ -3,6 +3,11 @@ const bgmDuckReasons = new Set();
 let bgmPlayRequested = false;
 let bgmPlayInFlight = false;
 let bgmPrepared = false;
+let currentBgmVolume = 0;
+let nativeAudioConfigured = false;
+let nativeBgmActive = false;
+let nativeBgmStarting = false;
+const nativeAudioPreloads = new Map();
 
 const alertSfx = new Audio('your-fleet-is-under-attack.mp3');
 alertSfx.volume = 1.0;
@@ -57,6 +62,105 @@ const POOLED_SFX_IDS = [
     'ship-voice-4',
     'unit-lost-sfx'
 ];
+
+function isCapacitorNativeRuntime() {
+    if (!window.Capacitor) return false;
+    if (typeof window.Capacitor.isNativePlatform === 'function') {
+        return window.Capacitor.isNativePlatform();
+    }
+    return !!window.Capacitor.Plugins;
+}
+
+function getNativeAudioPlugin() {
+    if (!isCapacitorNativeRuntime()) return null;
+    return window.Capacitor?.Plugins?.NativeAudio || null;
+}
+
+function getNativeAudioSource(id) {
+    if (id === 'bgm') return 'bgm.mp3';
+    const source = getAudioElementSource(id);
+    if (!source) return '';
+    try {
+        return new URL(source, window.location.href).pathname.split('/').pop() || source;
+    } catch (_error) {
+        return source.split('/').pop() || source;
+    }
+}
+
+async function configureNativeAudio() {
+    const nativeAudio = getNativeAudioPlugin();
+    if (!nativeAudio || nativeAudioConfigured) return !!nativeAudio;
+    nativeAudioConfigured = true;
+    if (typeof nativeAudio.configure === 'function') {
+        await nativeAudio.configure({ fade: false, focus: true }).catch(() => {});
+    }
+    return true;
+}
+
+async function preloadNativeAudio(id, options = {}) {
+    const nativeAudio = getNativeAudioPlugin();
+    if (!nativeAudio) return false;
+
+    await configureNativeAudio();
+    if (nativeAudioPreloads.has(id)) return nativeAudioPreloads.get(id);
+
+    const assetPath = options.assetPath || getNativeAudioSource(id);
+    if (!assetPath) return false;
+
+    const preloadPromise = nativeAudio.preload({
+        assetId: id,
+        assetPath,
+        audioChannelNum: options.audioChannelNum || 1,
+        isUrl: false,
+        volume: options.volume ?? 1
+    })
+        .then(() => true)
+        .catch(error => {
+            nativeAudioPreloads.delete(id);
+            console.log('[NativeAudio] preload failed', id, error?.message || error);
+            return false;
+        });
+
+    nativeAudioPreloads.set(id, preloadPromise);
+    return preloadPromise;
+}
+
+function preloadNativeAudioInBackground() {
+    if (!getNativeAudioPlugin()) return;
+    preloadNativeAudio('bgm', { assetPath: 'bgm.mp3', audioChannelNum: 1, volume: getCurrentBgmTargetVolume() }).catch(() => {});
+    POOLED_SFX_IDS.forEach(id => {
+        preloadNativeAudio(id, { audioChannelNum: 4, volume: gameVolume.sfx }).catch(() => {});
+    });
+}
+
+window.playNativeSfx = async function(id, volume = 0.5) {
+    const nativeAudio = getNativeAudioPlugin();
+    if (!nativeAudio) return false;
+
+    const loaded = await preloadNativeAudio(id, { audioChannelNum: 4, volume });
+    if (!loaded) return false;
+
+    try {
+        await nativeAudio.setVolume({ assetId: id, volume: Math.max(0.01, Math.min(1, volume)) }).catch(() => {});
+        await nativeAudio.play({ assetId: id });
+        return true;
+    } catch (error) {
+        console.log('[NativeAudio] play failed', id, error?.message || error);
+        return false;
+    }
+};
+
+window.pauseBgm = async function() {
+    bgmPlayRequested = false;
+    const nativeAudio = getNativeAudioPlugin();
+    if (nativeAudio && nativeBgmActive) {
+        await nativeAudio.pause({ assetId: 'bgm' }).catch(() => {});
+        nativeBgmActive = false;
+    }
+
+    const bgm = document.getElementById('bgm');
+    if (bgm) bgm.pause();
+};
 
 function normalizeVolume(value, fallback) {
     const parsed = parseFloat(value);
@@ -217,8 +321,14 @@ window.warmGameAudioForInteraction = function() {
     });
 
     unlockSfxAudioContext()
-        .then(() => preloadSfxBuffersInBackground())
-        .catch(() => preloadSfxBuffersInBackground());
+        .then(() => {
+            preloadSfxBuffersInBackground();
+            preloadNativeAudioInBackground();
+        })
+        .catch(() => {
+            preloadSfxBuffersInBackground();
+            preloadNativeAudioInBackground();
+        });
 };
 
 document.addEventListener('pointerdown', () => {
@@ -247,9 +357,17 @@ function getCurrentBgmTargetVolume() {
 }
 
 function setBgmVolume(volume) {
+    currentBgmVolume = Math.max(0, Math.min(1, volume));
     const bgm = document.getElementById('bgm');
-    if (!bgm) return;
-    bgm.volume = Math.max(0, Math.min(1, volume));
+    if (bgm) bgm.volume = currentBgmVolume;
+
+    const nativeAudio = getNativeAudioPlugin();
+    if (nativeAudio && (nativeBgmActive || nativeAudioPreloads.has('bgm'))) {
+        nativeAudio.setVolume({
+            assetId: 'bgm',
+            volume: Math.max(0.01, currentBgmVolume)
+        }).catch(() => {});
+    }
 }
 
 function applyBgmTargetVolume(duration = 0) {
@@ -279,6 +397,36 @@ function retryRequestedBgm() {
 }
 
 function playBgm() {
+    const nativeAudio = getNativeAudioPlugin();
+    if (nativeAudio) {
+        bgmPlayRequested = true;
+        applyBgmTargetVolume();
+
+        if (nativeBgmActive || nativeBgmStarting) {
+            return Promise.resolve(true);
+        }
+
+        nativeBgmStarting = true;
+        return preloadNativeAudio('bgm', { assetPath: 'bgm.mp3', audioChannelNum: 1, volume: getCurrentBgmTargetVolume() })
+            .then(loaded => {
+                if (!loaded) return false;
+                return nativeAudio.setVolume({ assetId: 'bgm', volume: Math.max(0.01, getCurrentBgmTargetVolume()) })
+                    .catch(() => {})
+                    .then(() => nativeAudio.loop({ assetId: 'bgm' }))
+                    .then(() => {
+                        nativeBgmActive = true;
+                        return true;
+                    });
+            })
+            .catch(error => {
+                console.log('[NativeAudio] BGM waiting for interaction', error?.message || error);
+                return false;
+            })
+            .finally(() => {
+                nativeBgmStarting = false;
+            });
+    }
+
     const bgm = document.getElementById('bgm');
     if (!bgm) return Promise.resolve(false);
 
@@ -308,11 +456,11 @@ window.addEventListener('pageshow', retryRequestedBgm);
 
 function fadeBgm(targetVol, duration = 800) {
     const bgm = document.getElementById('bgm');
-    if (!bgm || bgm.paused) return;
+    if ((!bgm || bgm.paused) && !nativeBgmActive) return;
 
     if (bgmFadeInterval) clearInterval(bgmFadeInterval);
 
-    const startVol = bgm.volume;
+    const startVol = nativeBgmActive ? currentBgmVolume : bgm.volume;
     const stepTime = 50;
     const steps = duration / stepTime;
     const volStep = (targetVol - startVol) / steps;
@@ -326,11 +474,11 @@ function fadeBgm(targetVol, duration = 800) {
         if (newVol < 0) newVol = 0;
         if (newVol > 1) newVol = 1;
 
-        bgm.volume = newVol;
+        setBgmVolume(newVol);
 
         if (currentStep >= steps) {
             clearInterval(bgmFadeInterval);
-            bgm.volume = targetVol;
+            setBgmVolume(targetVol);
         }
     }, stepTime);
 }
@@ -356,8 +504,7 @@ function restoreStageVocabBgm() {
 function playUnderAttackAlert() {
     const now = Date.now();
     if (now - lastAlertTime > 8000) {
-        const bgm = document.getElementById('bgm');
-        if (bgm) bgm.volume = 0.1;
+        setBgmVolume(0.1);
 
         alertSfx.play().catch(error => console.log(error));
         lastAlertTime = now;

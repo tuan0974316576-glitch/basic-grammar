@@ -6201,6 +6201,17 @@ function playSound(id) {
     const volume = id === 'enter-sfx'
         ? Math.min(1, Math.max(0.42, baseVolume * 1.35))
         : baseVolume;
+    if (typeof window.playNativeSfx === 'function') {
+        window.playNativeSfx(id, volume).then(played => {
+            if (played) return;
+            playSoundViaWebAudio(id, volume);
+        });
+        return;
+    }
+    playSoundViaWebAudio(id, volume);
+}
+
+function playSoundViaWebAudio(id, volume) {
     if (typeof window.playBufferedSfx === 'function') {
         window.playBufferedSfx(id, volume).then(played => {
             if (played) return;
@@ -6231,7 +6242,9 @@ function isElementVisible(el) {
         const bgm = document.getElementById('bgm');
         const btn = document.getElementById('music-btn');
         if (isMusicPlaying) {
-            bgm.pause(); btn.innerText = " BGM: OFF"; btn.style.background = "";
+            if (typeof pauseBgm === 'function') pauseBgm();
+            else bgm.pause();
+            btn.innerText = " BGM: OFF"; btn.style.background = "";
         } else {
             if (typeof playBgm === 'function') {
                 playBgm();
@@ -8873,6 +8886,10 @@ function stopSpeakingDebriefPlayback() {
 }
 
 function duckSpeakingDebriefBgm(targetVolume = 0.08) {
+    if (typeof requestBgmDuck === 'function') {
+        requestBgmDuck('speaking-debrief', 250);
+        return;
+    }
     const bgm = document.getElementById('bgm');
     if (!bgm || bgm.paused) return;
     if (speakingDebriefBgmRestoreVolume === null) {
@@ -8882,6 +8899,10 @@ function duckSpeakingDebriefBgm(targetVolume = 0.08) {
 }
 
 function restoreSpeakingDebriefBgm() {
+    if (typeof releaseBgmDuck === 'function') {
+        releaseBgmDuck('speaking-debrief', 250);
+        return;
+    }
     const bgm = document.getElementById('bgm');
     if (!bgm || speakingDebriefBgmRestoreVolume === null) return;
     bgm.volume = speakingDebriefBgmRestoreVolume;
