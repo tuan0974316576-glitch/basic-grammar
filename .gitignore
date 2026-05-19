@@ -1,4 +1,5 @@
 node_modules/
+www/
 ios/App/Pods/
 ios/App/build/
 android/.gradle/
@@ -9,6 +10,18 @@ android/app/build/
 server/.env
 server/.env.*
 !server/.env.example
+.env
+.env.*
+*.p8
 .firebase/
 firebase-debug.log
 firebase-debug.*.log
+.tmp/
+*.tgz
+*.jks
+*.keystore
+android/app/keystore/
+android/keystore.properties
+GoogleService-Info*.plist
+google-services*.json
+functions/.env.*

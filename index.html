@@ -1,6 +1,6 @@
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>ENGLISH CONQUEROR - Command Center</title>
 
     <link rel="manifest" href="manifest.json">
@@ -9,7 +9,14 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="English Conqueror">
     <link rel="apple-touch-icon" href="icon.png"> <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-    
+
+    <script>
+        if (window.location.protocol === 'capacitor:') {
+            document.documentElement.classList.add('capacitor-native');
+            document.documentElement.classList.add(/Android/i.test(navigator.userAgent) ? 'capacitor-android' : 'capacitor-ios');
+        }
+    </script>
+
     <script>
         window.startExperience = window.startExperience || function() {
             window.pendingStartExperience = true;
@@ -53,6 +60,9 @@
 
 </head>
 <body>
+<div id="company-logo-splash" class="company-logo-splash" aria-hidden="true">
+    <img src="Enguistics Redefine English Learning.png" alt="">
+</div>
 <div id="orientation-guard" class="orientation-guard" style="display:none;">
     <div class="orientation-guard-box">
         <div class="orientation-guard-title">ROTATE DEVICE</div>
@@ -81,6 +91,27 @@
         v0.88v
     </div>
 </div>
+<script>
+    window.companyLogoSplashDone = false;
+    window.addEventListener('load', () => {
+        const logoSplash = document.getElementById('company-logo-splash');
+        const finishCompanyLogoSplash = () => {
+            window.companyLogoSplashDone = true;
+            window.dispatchEvent(new Event('company-logo-splash-done'));
+        };
+        if (!logoSplash) {
+            finishCompanyLogoSplash();
+            return;
+        }
+        setTimeout(() => {
+            logoSplash.classList.add('done');
+            setTimeout(() => {
+                logoSplash.style.display = 'none';
+                finishCompanyLogoSplash();
+            }, 520);
+        }, 1600);
+    });
+</script>
 <div id="game-content-wrapper" style="display: none;">
 <div id="start-screen" class="screen active" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
     
@@ -338,7 +369,7 @@
             </button>
         </div>
 
-        <button class="btn" onclick="playSound('delete-sfx'); backToMainMenu()" style="margin-top: 30px;">&lt; BACK</button>
+        <button class="btn" onclick="backToMainMenu()" style="margin-top: 30px;">&lt; BACK</button>
     </div>
 </div>
 
@@ -370,7 +401,7 @@
             </button>
         </div>
 
-        <button class="btn" onclick="playSound('delete-sfx'); handleRaceBack()" style="margin-top: 30px;">&lt; BACK</button>
+        <button class="btn" onclick="handleRaceBack()" style="margin-top: 30px;">&lt; BACK</button>
     </div>
 </div>
 <div id="level-screen" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 250; flex-direction: column; align-items: center; justify-content: center;">
@@ -387,7 +418,7 @@
             <button class="level-btn level-btn-grammar" onclick="openGrammarTopicScreen()">GRAMMAR</button>
         </div>
 
-        <button class="btn" onclick="playSound('delete-sfx'); closeLevelScreen()" style="margin-top: 30px;">&lt; BACK</button>
+        <button class="btn" onclick="closeLevelScreen()" style="margin-top: 30px;">&lt; BACK</button>
     </div>
 </div>
 <div id="grammar-topic-screen" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 255; flex-direction: column; align-items: center; justify-content: center;">
@@ -1027,10 +1058,11 @@
 <script src="vocab_data.js?v=0.88v"></script>
 <script src="app-config.js?v=0.88v"></script>
 <script src="listening_audio_manifest.js?v=0.88v"></script>
+<script src="vocab_word_audio_manifest.js?v=0.89v"></script>
 <script src="vendor/effekseer/effekseer.min.js?v=0.88v"></script>
 <script src="app.js?v=0.88v"></script>
 <script src="grammar_verb_table_data.js?v=0.88v"></script>
-<script src="grammar_verb_table_audio_manifest.js?v=0.88v"></script>
+<script src="grammar_verb_table_audio_manifest.js?v=0.89v"></script>
 <script src="ui-grammar.js?v=0.88v"></script>
 <script src="ui-screens.js?v=0.88v"></script>
 <script src="ui-auth.js?v=0.88v"></script>

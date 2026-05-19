@@ -7,6 +7,9 @@ let currentBgmVolume = 0;
 let nativeAudioConfigured = false;
 let nativeBgmActive = false;
 let nativeBgmStarting = false;
+let gameAudioBgmActive = false;
+let gameAudioBgmStarting = false;
+let bgmWaitingForLogoSplash = false;
 const nativeAudioPreloads = new Map();
 
 const alertSfx = new Audio('your-fleet-is-under-attack.mp3');
@@ -60,8 +63,13 @@ const POOLED_SFX_IDS = [
     'ship-voice-2',
     'ship-voice-3',
     'ship-voice-4',
-    'unit-lost-sfx'
+    'unit-lost-sfx',
+    'under-attack-sfx'
 ];
+
+const AUDIO_ID_FILE_OVERRIDES = {
+    'under-attack-sfx': 'your-fleet-is-under-attack.mp3'
+};
 
 function isCapacitorNativeRuntime() {
     if (!window.Capacitor) return false;
@@ -76,8 +84,44 @@ function getNativeAudioPlugin() {
     return window.Capacitor?.Plugins?.NativeAudio || null;
 }
 
-function getNativeAudioSource(id) {
-    if (id === 'bgm') return 'bgm.mp3';
+function getGameAudioPlugin() {
+    if (!isCapacitorNativeRuntime()) return null;
+    return window.Capacitor?.Plugins?.GameAudio || null;
+}
+
+function getAndroidBgmPlugin() {
+    if (!isCapacitorNativeRuntime() || getCapacitorPlatform() !== 'android') return null;
+    return window.Capacitor?.Plugins?.AndroidBgm || null;
+}
+
+function getCapacitorPlatform() {
+    if (!window.Capacitor) return '';
+    if (typeof window.Capacitor.getPlatform === 'function') {
+        return window.Capacitor.getPlatform();
+    }
+    return '';
+}
+
+function getNativeAudioAssetPath(fileName) {
+    if (!fileName) return '';
+    return getCapacitorPlatform() === 'ios' ? `sounds/${fileName}` : fileName;
+}
+
+function shouldUseNativeBgm() {
+    return getCapacitorPlatform() !== 'ios';
+}
+
+function shouldUseNativeSfx() {
+    return getCapacitorPlatform() !== 'ios';
+}
+
+function getNativeBgmFileName() {
+    return getCapacitorPlatform() === 'ios' ? 'bgm_native.m4a' : 'bgm.mp3';
+}
+
+function getAudioFileNameForId(id) {
+    if (id === 'bgm') return getNativeBgmFileName();
+    if (AUDIO_ID_FILE_OVERRIDES[id]) return AUDIO_ID_FILE_OVERRIDES[id];
     const source = getAudioElementSource(id);
     if (!source) return '';
     try {
@@ -86,6 +130,131 @@ function getNativeAudioSource(id) {
         return source.split('/').pop() || source;
     }
 }
+
+function getNativeAudioSource(id) {
+    const fileName = getAudioFileNameForId(id);
+    if (!fileName) return '';
+    return getNativeAudioAssetPath(fileName);
+}
+
+function startGameAudioBgm() {
+    const gameAudio = getGameAudioPlugin();
+    if (!gameAudio) return Promise.resolve(false);
+    if (gameAudioBgmActive || gameAudioBgmStarting) {
+        gameAudio.setBgmVolume({ volume: getCurrentBgmTargetVolume() }).catch(() => {});
+        return Promise.resolve(true);
+    }
+    gameAudioBgmStarting = true;
+    return gameAudio.start({ bgmVolume: getCurrentBgmTargetVolume() })
+        .then(() => {
+            gameAudioBgmActive = true;
+            return true;
+        })
+        .catch(error => {
+            console.log('[GameAudio] BGM start failed', error?.message || error);
+            return false;
+        })
+        .finally(() => {
+            gameAudioBgmStarting = false;
+        });
+}
+
+function isCompanyLogoSplashActive() {
+    const logoSplash = document.getElementById('company-logo-splash');
+    return !!logoSplash &&
+        logoSplash.style.display !== 'none' &&
+        window.companyLogoSplashDone !== true;
+}
+
+function getIosBundleAudioRelativePath(source) {
+    if (getCapacitorPlatform() !== 'ios' || !source) return '';
+    if (/^(https?:|blob:|data:)/i.test(source)) return '';
+
+    let pathname = source;
+    try {
+        pathname = new URL(source, window.location.href).pathname;
+    } catch (_error) {
+        pathname = String(source || '').split(/[?#]/)[0];
+    }
+
+    pathname = pathname.replace(/^\/+/, '');
+    if (!pathname || pathname.includes('..')) return '';
+    return pathname.startsWith('public/') ? pathname : `public/${pathname}`;
+}
+
+window.playIosNativeAudioSource = async function(source, volume = 1) {
+    if (getCapacitorPlatform() !== 'ios') return false;
+
+    const gameAudio = getGameAudioPlugin();
+    if (!gameAudio) return false;
+
+    if (/^https?:\/\//i.test(source || '')) {
+        if (typeof gameAudio.playRemoteAudio !== 'function') return false;
+        try {
+            const result = await gameAudio.playRemoteAudio({
+                url: source,
+                volume: Math.max(0, Math.min(1, volume))
+            });
+            return result?.played !== false;
+        } catch (error) {
+            console.log('[GameAudio] remote audio failed', error?.message || error);
+            return false;
+        }
+    }
+
+    if (typeof gameAudio.playBundleAudio !== 'function') return false;
+
+    const relativePath = getIosBundleAudioRelativePath(source);
+    if (!relativePath) return false;
+
+    try {
+        const result = await gameAudio.playBundleAudio({
+            relativePath,
+            volume: Math.max(0, Math.min(1, volume))
+        });
+        return result?.played !== false;
+    } catch (error) {
+        console.log('[GameAudio] bundled audio failed', relativePath, error?.message || error);
+        return false;
+    }
+};
+
+window.playIosBundleAudio = window.playIosNativeAudioSource;
+
+window.preloadIosNativeAudioSource = async function(source) {
+    if (getCapacitorPlatform() !== 'ios') return false;
+    if (!/^https?:\/\//i.test(source || '')) return false;
+
+    const gameAudio = getGameAudioPlugin();
+    if (!gameAudio || typeof gameAudio.preloadRemoteAudio !== 'function') return false;
+
+    try {
+        const result = await gameAudio.preloadRemoteAudio({ url: source });
+        return result?.preloaded !== false;
+    } catch (error) {
+        console.log('[GameAudio] remote audio preload failed', error?.message || error);
+        return false;
+    }
+};
+
+window.stopIosBundleAudio = async function() {
+    if (getCapacitorPlatform() !== 'ios') return false;
+
+    const gameAudio = getGameAudioPlugin();
+    if (!gameAudio) return false;
+
+    try {
+        if (typeof gameAudio.stopBundleAudio === 'function') {
+            await gameAudio.stopBundleAudio();
+        }
+        if (typeof gameAudio.stopRemoteAudio === 'function') {
+            await gameAudio.stopRemoteAudio();
+        }
+        return true;
+    } catch (_error) {
+        return false;
+    }
+};
 
 async function configureNativeAudio() {
     const nativeAudio = getNativeAudioPlugin();
@@ -110,6 +279,7 @@ async function preloadNativeAudio(id, options = {}) {
     const preloadPromise = nativeAudio.preload({
         assetId: id,
         assetPath,
+        channels: options.audioChannelNum || 1,
         audioChannelNum: options.audioChannelNum || 1,
         isUrl: false,
         volume: options.volume ?? 1
@@ -125,17 +295,64 @@ async function preloadNativeAudio(id, options = {}) {
     return preloadPromise;
 }
 
+window.preloadNativeSfx = async function(id, volume = gameVolume.sfx) {
+    if (getCapacitorPlatform() === 'ios') {
+        const gameAudio = getGameAudioPlugin();
+        if (!gameAudio || typeof gameAudio.preloadSfx !== 'function') return false;
+
+        const fileName = getAudioFileNameForId(id);
+        if (!fileName) return false;
+
+        try {
+            await gameAudio.preloadSfx({ assetId: id, fileName, volume });
+            return true;
+        } catch (error) {
+            console.log('[GameAudio] SFX preload failed', id, error?.message || error);
+            return false;
+        }
+    }
+
+    return preloadNativeAudio(id, { audioChannelNum: 4, volume });
+};
+
 function preloadNativeAudioInBackground() {
+    if (getCapacitorPlatform() === 'ios') {
+        playBgm().catch(() => {});
+        POOLED_SFX_IDS.forEach(id => {
+            window.preloadNativeSfx(id, gameVolume.sfx).catch(() => {});
+        });
+        return;
+    }
+
     if (!getNativeAudioPlugin()) return;
-    preloadNativeAudio('bgm', { assetPath: 'bgm.mp3', audioChannelNum: 1, volume: getCurrentBgmTargetVolume() }).catch(() => {});
+    if (!shouldUseNativeSfx()) return;
     POOLED_SFX_IDS.forEach(id => {
         preloadNativeAudio(id, { audioChannelNum: 4, volume: gameVolume.sfx }).catch(() => {});
     });
 }
 
+function shouldMuteWebSfxForNativeTest() {
+    return getCapacitorPlatform() === 'ios';
+}
+
 window.playNativeSfx = async function(id, volume = 0.5) {
+    if (getCapacitorPlatform() === 'ios') {
+        const gameAudio = getGameAudioPlugin();
+        if (!gameAudio) return true;
+
+        const fileName = getAudioFileNameForId(id);
+        if (!fileName) return true;
+
+        try {
+            await gameAudio.playSfx({ assetId: id, fileName, volume });
+        } catch (error) {
+            console.log('[GameAudio] SFX failed', id, error?.message || error);
+        }
+        return true;
+    }
+
     const nativeAudio = getNativeAudioPlugin();
-    if (!nativeAudio) return false;
+    if (!nativeAudio || !shouldUseNativeSfx()) return false;
 
     const loaded = await preloadNativeAudio(id, { audioChannelNum: 4, volume });
     if (!loaded) return false;
@@ -152,6 +369,17 @@ window.playNativeSfx = async function(id, volume = 0.5) {
 
 window.pauseBgm = async function() {
     bgmPlayRequested = false;
+    const androidBgm = getAndroidBgmPlugin();
+    if (androidBgm) {
+        await androidBgm.pause().catch(() => {});
+    }
+
+    const gameAudio = getGameAudioPlugin();
+    if (getCapacitorPlatform() === 'ios' && gameAudio) {
+        await gameAudio.pauseBgm().catch(() => {});
+        gameAudioBgmActive = false;
+    }
+
     const nativeAudio = getNativeAudioPlugin();
     if (nativeAudio && nativeBgmActive) {
         await nativeAudio.pause({ assetId: 'bgm' }).catch(() => {});
@@ -251,6 +479,8 @@ function preloadSfxBuffersInBackground() {
 }
 
 window.playBufferedSfx = async function(id, volume = 0.5) {
+    if (shouldMuteWebSfxForNativeTest()) return true;
+
     const context = getSfxAudioContext();
     if (!context) return false;
 
@@ -307,9 +537,19 @@ window.getPooledSfxAudio = function(id) {
     return audio;
 };
 
+window.shouldMuteWebSfxForNativeTest = shouldMuteWebSfxForNativeTest;
+
 window.warmGameAudioForInteraction = function() {
     if (gameAudioUnlocked) return;
     gameAudioUnlocked = true;
+
+    if (getCapacitorPlatform() === 'ios') {
+        playBgm().catch(() => {});
+        POOLED_SFX_IDS.forEach(id => {
+            window.preloadNativeSfx(id, gameVolume.sfx).catch(() => {});
+        });
+        return;
+    }
 
     POOLED_SFX_IDS.forEach(id => {
         const pool = getSfxPool(id);
@@ -331,11 +571,11 @@ window.warmGameAudioForInteraction = function() {
         });
 };
 
-document.addEventListener('pointerdown', () => {
+document.addEventListener('pointerdown', (event) => {
     if (sfxAudioContext?.state === 'suspended') {
         sfxAudioContext.resume().catch(() => {});
     }
-    retryRequestedBgm();
+    retryRequestedBgm(event);
 }, { passive: true });
 
 document.addEventListener('visibilitychange', () => {
@@ -345,7 +585,7 @@ document.addEventListener('visibilitychange', () => {
     if (!document.hidden) retryRequestedBgm();
 });
 
-const BGM_MAX_GAIN = 0.59;
+const BGM_MAX_GAIN = 0.9;
 const BGM_DUCK_VOLUME = 0.08;
 
 function getNormalBgmVolume() {
@@ -356,13 +596,35 @@ function getCurrentBgmTargetVolume() {
     return bgmDuckReasons.size > 0 ? BGM_DUCK_VOLUME : getNormalBgmVolume();
 }
 
+window.resetBgmDucks = function(duration = 180) {
+    if (bgmDuckReasons.size > 0) {
+        bgmDuckReasons.clear();
+    }
+    applyBgmTargetVolume(duration);
+    if (getCapacitorPlatform() === 'ios') {
+        startGameAudioBgm().catch(() => {});
+    }
+};
+
 function setBgmVolume(volume) {
     currentBgmVolume = Math.max(0, Math.min(1, volume));
     const bgm = document.getElementById('bgm');
     if (bgm) bgm.volume = currentBgmVolume;
 
+    const androidBgm = getAndroidBgmPlugin();
+    if (androidBgm) {
+        androidBgm.setVolume({ volume: currentBgmVolume }).catch(() => {});
+        return;
+    }
+
+    const gameAudio = getGameAudioPlugin();
+    if (getCapacitorPlatform() === 'ios' && gameAudio) {
+        gameAudio.setBgmVolume({ volume: currentBgmVolume }).catch(() => {});
+        return;
+    }
+
     const nativeAudio = getNativeAudioPlugin();
-    if (nativeAudio && (nativeBgmActive || nativeAudioPreloads.has('bgm'))) {
+    if (nativeAudio && shouldUseNativeBgm() && (nativeBgmActive || nativeAudioPreloads.has('bgm'))) {
         nativeAudio.setVolume({
             assetId: 'bgm',
             volume: Math.max(0.01, currentBgmVolume)
@@ -391,42 +653,13 @@ function prepareBgmElement(bgm) {
     bgmPrepared = true;
 }
 
-function retryRequestedBgm() {
+function retryRequestedBgm(event = null) {
+    if (event?.target?.closest?.('[data-listening-replay]')) return;
     if (!bgmPlayRequested || bgmPlayInFlight) return;
     playBgm();
 }
 
-function playBgm() {
-    const nativeAudio = getNativeAudioPlugin();
-    if (nativeAudio) {
-        bgmPlayRequested = true;
-        applyBgmTargetVolume();
-
-        if (nativeBgmActive || nativeBgmStarting) {
-            return Promise.resolve(true);
-        }
-
-        nativeBgmStarting = true;
-        return preloadNativeAudio('bgm', { assetPath: 'bgm.mp3', audioChannelNum: 1, volume: getCurrentBgmTargetVolume() })
-            .then(loaded => {
-                if (!loaded) return false;
-                return nativeAudio.setVolume({ assetId: 'bgm', volume: Math.max(0.01, getCurrentBgmTargetVolume()) })
-                    .catch(() => {})
-                    .then(() => nativeAudio.loop({ assetId: 'bgm' }))
-                    .then(() => {
-                        nativeBgmActive = true;
-                        return true;
-                    });
-            })
-            .catch(error => {
-                console.log('[NativeAudio] BGM waiting for interaction', error?.message || error);
-                return false;
-            })
-            .finally(() => {
-                nativeBgmStarting = false;
-            });
-    }
-
+function playHtmlBgm() {
     const bgm = document.getElementById('bgm');
     if (!bgm) return Promise.resolve(false);
 
@@ -451,16 +684,92 @@ function playBgm() {
         });
 }
 
+function playNativeBgm() {
+    const nativeAudio = getNativeAudioPlugin();
+    if (!nativeAudio || !shouldUseNativeBgm()) return Promise.resolve(false);
+
+    if (nativeBgmActive || nativeBgmStarting) {
+        return Promise.resolve(true);
+    }
+
+    nativeBgmStarting = true;
+    return preloadNativeAudio('bgm', { assetPath: getNativeAudioAssetPath(getNativeBgmFileName()), audioChannelNum: 1, volume: getCurrentBgmTargetVolume() })
+        .then(loaded => {
+            if (!loaded) return false;
+            return nativeAudio.setVolume({ assetId: 'bgm', volume: Math.max(0.01, getCurrentBgmTargetVolume()) })
+                .catch(() => {})
+                .then(() => nativeAudio.play({ assetId: 'bgm' }))
+                .then(() => {
+                    nativeAudio.loop({ assetId: 'bgm' }).catch(() => {});
+                    nativeBgmActive = true;
+                    return true;
+                });
+        })
+        .catch(error => {
+            console.log('[NativeAudio] BGM waiting for interaction', error?.message || error);
+            return false;
+        })
+        .finally(() => {
+            nativeBgmStarting = false;
+        });
+}
+
+function playBgm() {
+    bgmPlayRequested = true;
+
+    if (isCompanyLogoSplashActive()) {
+        if (!bgmWaitingForLogoSplash) {
+            bgmWaitingForLogoSplash = true;
+            window.addEventListener('company-logo-splash-done', () => {
+                bgmWaitingForLogoSplash = false;
+                retryRequestedBgm();
+            }, { once: true });
+        }
+        return Promise.resolve(false);
+    }
+
+    applyBgmTargetVolume();
+
+    const androidBgm = getAndroidBgmPlugin();
+    if (androidBgm) {
+        return androidBgm.start()
+            .then(() => true)
+            .catch(error => {
+                console.log('[AndroidBgm] start failed', error?.message || error);
+                return playHtmlBgm();
+            });
+    }
+
+    if (getCapacitorPlatform() === 'ios') {
+        return startGameAudioBgm();
+    }
+
+    if (getCapacitorPlatform() === 'android') {
+        return playHtmlBgm()
+            .then(played => {
+                if (played) return true;
+                return playNativeBgm();
+            });
+    }
+
+    return playNativeBgm()
+        .then(played => {
+            if (played) return true;
+            return playHtmlBgm();
+        });
+}
+
 document.addEventListener('touchend', retryRequestedBgm, { passive: true });
 window.addEventListener('pageshow', retryRequestedBgm);
 
 function fadeBgm(targetVol, duration = 800) {
     const bgm = document.getElementById('bgm');
-    if ((!bgm || bgm.paused) && !nativeBgmActive) return;
+    const gameAudioBgmActive = getCapacitorPlatform() === 'ios' && !!getGameAudioPlugin();
+    if ((!bgm || bgm.paused) && !nativeBgmActive && !gameAudioBgmActive) return;
 
     if (bgmFadeInterval) clearInterval(bgmFadeInterval);
 
-    const startVol = nativeBgmActive ? currentBgmVolume : bgm.volume;
+    const startVol = (nativeBgmActive || gameAudioBgmActive) ? currentBgmVolume : bgm.volume;
     const stepTime = 50;
     const steps = duration / stepTime;
     const volStep = (targetVol - startVol) / steps;
@@ -506,7 +815,11 @@ function playUnderAttackAlert() {
     if (now - lastAlertTime > 8000) {
         setBgmVolume(0.1);
 
-        alertSfx.play().catch(error => console.log(error));
+        if (getCapacitorPlatform() === 'ios' && typeof window.playNativeSfx === 'function') {
+            window.playNativeSfx('under-attack-sfx', 1).catch(error => console.log(error));
+        } else {
+            alertSfx.play().catch(error => console.log(error));
+        }
         lastAlertTime = now;
 
         setTimeout(() => {

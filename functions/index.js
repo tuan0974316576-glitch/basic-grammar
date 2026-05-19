@@ -20,6 +20,9 @@ const VERB_TABLE_AUDIO_VERSION = 'v1';
 const VERB_TABLE_AUDIO_BREAK_MS = 150;
 const VERB_TABLE_AUDIO_VOICE = 'en-US-AndrewMultilingualNeural';
 const LISTENING_AUDIO_VERSION = 'v1';
+const BATCH_SYNTHESIS_API_VERSION = '2024-04-01';
+const BATCH_SYNTHESIS_MAX_INPUTS = 1000;
+const BATCH_SYNTHESIS_OUTPUT_FORMAT = 'audio-16khz-32kbitrate-mono-mp3';
 const VERB_TABLE_AUDIO_BUCKET_FALLBACKS = [
   'battleship-game-c0909-verb-audio',
   'battleship-game-c0909.firebasestorage.app',
@@ -212,6 +215,131 @@ async function getExistingFileDownloadUrl(file, filePath) {
   return getPublicStorageUrl(file.bucket.name, filePath);
 }
 
+function normalizeBatchJobId(value, fallbackSeed = '') {
+  const clean = String(value || '')
+    .trim()
+    .replace(/[^A-Za-z0-9._-]+/g, '-')
+    .replace(/^[^A-Za-z0-9]+|[^A-Za-z0-9]+$/g, '')
+    .slice(0, 64);
+
+  if (/^[A-Za-z0-9][A-Za-z0-9._-]{1,62}[A-Za-z0-9]$/.test(clean)) return clean;
+
+  const hash = getAudioHash(`${Date.now()}|${fallbackSeed}`);
+  return `vocab-${hash}`;
+}
+
+function validateBatchJobId(jobId) {
+  return /^[A-Za-z0-9][A-Za-z0-9._-]{1,62}[A-Za-z0-9]$/.test(jobId || '');
+}
+
+function normalizeBatchTexts(value) {
+  if (!Array.isArray(value)) return [];
+  const seen = new Set();
+  const rows = [];
+
+  for (const item of value) {
+    const text = String(typeof item === 'string' ? item : (item?.text || item?.content || '')).trim();
+    if (!text) continue;
+    const key = text.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    rows.push(text);
+    if (rows.length >= BATCH_SYNTHESIS_MAX_INPUTS) break;
+  }
+
+  return rows;
+}
+
+function escapeSsmlText(value) {
+  return String(value || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
+}
+
+function buildBatchWordSsml(text, locale, voiceName, accentLocale) {
+  const langLocale = accentLocale || locale;
+  return [
+    `<speak version="1.0" xml:lang="${locale}">`,
+    `  <voice name="${voiceName}">`,
+    `    <prosody rate="0%" volume="+10%"><lang xml:lang="${langLocale}">${escapeSsmlText(text)}</lang></prosody>`,
+    '  </voice>',
+    '</speak>'
+  ].join('');
+}
+
+function shouldUsePlainTextVocabBatch(reqBody, locale, accentLocale) {
+  if (reqBody.forceSsml) return false;
+  if (String(reqBody.inputKind || '').trim().toLowerCase() === 'ssml') return false;
+  return !accentLocale || accentLocale === locale;
+}
+
+function getBatchSynthesisUrl(region, jobId = '') {
+  const safeRegion = String(region || '').trim();
+  const path = jobId ? `/${encodeURIComponent(jobId)}` : '';
+  return `https://${safeRegion}.api.cognitive.microsoft.com/texttospeech/batchsyntheses${path}?api-version=${BATCH_SYNTHESIS_API_VERSION}`;
+}
+
+async function callAzureBatchSynthesis(method, jobId = '', body = null) {
+  const speechKey = azureSpeechKey.value();
+  const speechRegion = azureSpeechRegion.value();
+  const headers = {
+    'Ocp-Apim-Subscription-Key': speechKey
+  };
+  const options = { method, headers };
+
+  if (body) {
+    headers['Content-Type'] = 'application/json';
+    options.body = JSON.stringify(body);
+  }
+
+  const response = await fetch(getBatchSynthesisUrl(speechRegion, jobId), options);
+  const rawText = await response.text();
+  let result = null;
+
+  try {
+    result = rawText ? JSON.parse(rawText) : null;
+  } catch (_error) {
+    result = rawText || null;
+  }
+
+  if (!response.ok) {
+    const message = typeof result === 'object'
+      ? (result?.error?.message || result?.message || `Azure batch synthesis HTTP ${response.status}`)
+      : (result || `Azure batch synthesis HTTP ${response.status}`);
+    const error = new Error(message);
+    error.status = response.status;
+    error.retryAfter = response.headers.get('retry-after') || '';
+    error.azure = result;
+    throw error;
+  }
+
+  return {
+    statusCode: response.status,
+    retryAfter: response.headers.get('retry-after') || '',
+    body: result
+  };
+}
+
+function getBatchUnavailableHint(error) {
+  const status = Number(error?.status || 0);
+  const code = String(error?.azure?.error?.code || error?.azure?.code || '').trim();
+  const payload = JSON.stringify(error?.azure || {});
+  const message = String(error?.message || '');
+  if (
+    status === 401
+    || status === 403
+    || code === '401'
+    || code === '403'
+    || /invalid subscription key|wrong API endpoint|access denied/i.test(`${message} ${payload}`)
+  ) {
+    return 'Azure accepted this Speech key for realtime TTS, but rejected the Batch Synthesis REST endpoint. Check that the Azure resource, region, and pricing tier support Batch Synthesis, or use the realtime warming fallback.';
+  }
+  return '';
+}
+
 app.post('/api/verb-table-audio', async (req, res) => {
   try {
     const forms = normalizeVerbTableForms(req.body.forms);
@@ -374,12 +502,13 @@ app.post('/api/listening-audio', async (req, res) => {
       });
     }
 
+    const synthesisMode = level.toUpperCase() === 'VOCAB' ? 'vocab-word' : 'listening';
     const result = await synthesizeSpeech({
       speechKey: azureSpeechKey.value(),
       speechRegion: azureSpeechRegion.value(),
       text,
       locale,
-      mode: 'listening',
+      mode: synthesisMode,
       level,
       voiceName,
       accentLocale
@@ -435,12 +564,213 @@ app.post('/api/listening-audio', async (req, res) => {
   }
 });
 
+app.post('/api/vocab-word-batch/create', async (req, res) => {
+  try {
+    const texts = normalizeBatchTexts(req.body.inputs || req.body.texts);
+    const locale = String(req.body.locale || 'en-US').trim();
+    const accentLocale = String(req.body.accentLocale || locale).trim();
+    const voiceName = String(req.body.voiceName || VERB_TABLE_AUDIO_VOICE).trim();
+    const outputFormat = String(req.body.outputFormat || BATCH_SYNTHESIS_OUTPUT_FORMAT).trim();
+    const description = String(req.body.description || 'Vocab Conqueror word audio batch').trim().slice(0, 240);
+    const jobId = normalizeBatchJobId(req.body.jobId, texts.join('|'));
+
+    if (!texts.length) {
+      return res.status(400).json({
+        error: 'missing_inputs',
+        message: 'inputs must contain at least one text item.'
+      });
+    }
+
+    if (texts.length > BATCH_SYNTHESIS_MAX_INPUTS) {
+      return res.status(400).json({
+        error: 'too_many_inputs',
+        message: `Batch synthesis accepts at most ${BATCH_SYNTHESIS_MAX_INPUTS} inputs per job.`
+      });
+    }
+
+    const usePlainText = shouldUsePlainTextVocabBatch(req.body, locale, accentLocale);
+    const payload = {
+      description,
+      inputKind: usePlainText ? 'PlainText' : 'SSML',
+      ...(usePlainText ? {
+        synthesisConfig: {
+          voice: voiceName
+        }
+      } : {}),
+      inputs: texts.map(text => ({
+        content: usePlainText ? text : buildBatchWordSsml(text, locale, voiceName, accentLocale)
+      })),
+      properties: {
+        outputFormat,
+        concatenateResult: false,
+        wordBoundaryEnabled: false,
+        sentenceBoundaryEnabled: false,
+        timeToLiveInHours: 48
+      }
+    };
+
+    const result = await callAzureBatchSynthesis('PUT', jobId, payload);
+    res.status(result.statusCode === 201 ? 201 : 200).json({
+      ok: true,
+      jobId,
+      inputCount: texts.length,
+      locale,
+      accentLocale,
+      voiceName,
+      outputFormat,
+      inputKind: payload.inputKind,
+      azure: result.body
+    });
+  } catch (error) {
+    logger.error('[VocabWordBatchCreate] Failed', {
+      message: error.message || String(error),
+      status: error.status || null,
+      retryAfter: error.retryAfter || '',
+      azure: error.azure || null
+    });
+    res.status(error.status || 500).json({
+      error: 'vocab_word_batch_create_failed',
+      message: error.message || 'Batch synthesis create failed.',
+      hint: getBatchUnavailableHint(error),
+      retryAfter: error.retryAfter || '',
+      azure: error.azure || null
+    });
+  }
+});
+
+app.get('/api/vocab-word-batch/status/:jobId', async (req, res) => {
+  try {
+    const jobId = String(req.params.jobId || '').trim();
+    if (!validateBatchJobId(jobId)) {
+      return res.status(400).json({
+        error: 'invalid_job_id',
+        message: 'Invalid batch synthesis job id.'
+      });
+    }
+
+    const result = await callAzureBatchSynthesis('GET', jobId);
+    res.json({
+      ok: true,
+      jobId,
+      retryAfter: result.retryAfter,
+      azure: result.body
+    });
+  } catch (error) {
+    logger.error('[VocabWordBatchStatus] Failed', {
+      message: error.message || String(error),
+      status: error.status || null,
+      retryAfter: error.retryAfter || '',
+      azure: error.azure || null
+    });
+    res.status(error.status || 500).json({
+      error: 'vocab_word_batch_status_failed',
+      message: error.message || 'Batch synthesis status failed.',
+      hint: getBatchUnavailableHint(error),
+      retryAfter: error.retryAfter || '',
+      azure: error.azure || null
+    });
+  }
+});
+
+app.get('/api/vocab-word-batch/result/:jobId', async (req, res) => {
+  try {
+    const jobId = String(req.params.jobId || '').trim();
+    if (!validateBatchJobId(jobId)) {
+      return res.status(400).json({
+        error: 'invalid_job_id',
+        message: 'Invalid batch synthesis job id.'
+      });
+    }
+
+    const statusResult = await callAzureBatchSynthesis('GET', jobId);
+    const azureJob = statusResult.body || {};
+    const status = azureJob.status || azureJob.properties?.status || '';
+    const resultUrl = azureJob.outputs?.result || azureJob.properties?.outputs?.result || azureJob.resultUrl || '';
+
+    if (!/Succeeded/i.test(status) || !resultUrl) {
+      return res.status(409).json({
+        error: 'batch_not_ready',
+        message: 'Batch synthesis result is not ready.',
+        jobId,
+        status,
+        azure: azureJob
+      });
+    }
+
+    const response = await fetch(resultUrl, {
+      headers: {
+        'Ocp-Apim-Subscription-Key': azureSpeechKey.value()
+      }
+    });
+    if (!response.ok) {
+      const errorText = await response.text().catch(() => '');
+      return res.status(response.status).json({
+        error: 'batch_result_download_failed',
+        message: errorText || `Azure result download failed with HTTP ${response.status}.`,
+        jobId
+      });
+    }
+
+    const buffer = Buffer.from(await response.arrayBuffer());
+    res.set('Content-Type', response.headers.get('content-type') || 'application/zip');
+    res.set('Content-Disposition', `attachment; filename="${jobId}.zip"`);
+    res.send(buffer);
+  } catch (error) {
+    logger.error('[VocabWordBatchResult] Failed', {
+      message: error.message || String(error),
+      status: error.status || null,
+      retryAfter: error.retryAfter || '',
+      azure: error.azure || null
+    });
+    res.status(error.status || 500).json({
+      error: 'vocab_word_batch_result_failed',
+      message: error.message || 'Batch synthesis result failed.',
+      hint: getBatchUnavailableHint(error),
+      retryAfter: error.retryAfter || '',
+      azure: error.azure || null
+    });
+  }
+});
+
+app.delete('/api/vocab-word-batch/:jobId', async (req, res) => {
+  try {
+    const jobId = String(req.params.jobId || '').trim();
+    if (!validateBatchJobId(jobId)) {
+      return res.status(400).json({
+        error: 'invalid_job_id',
+        message: 'Invalid batch synthesis job id.'
+      });
+    }
+
+    const result = await callAzureBatchSynthesis('DELETE', jobId);
+    res.json({
+      ok: true,
+      jobId,
+      azure: result.body
+    });
+  } catch (error) {
+    logger.error('[VocabWordBatchDelete] Failed', {
+      message: error.message || String(error),
+      status: error.status || null,
+      retryAfter: error.retryAfter || '',
+      azure: error.azure || null
+    });
+    res.status(error.status || 500).json({
+      error: 'vocab_word_batch_delete_failed',
+      message: error.message || 'Batch synthesis delete failed.',
+      hint: getBatchUnavailableHint(error),
+      retryAfter: error.retryAfter || '',
+      azure: error.azure || null
+    });
+  }
+});
+
 exports.speakingApi = onRequest(
   {
     region: 'asia-east2',
     cors: true,
-    timeoutSeconds: 60,
-    memory: '512MiB',
+    timeoutSeconds: 300,
+    memory: '1GiB',
     secrets: [azureSpeechKey, azureSpeechRegion]
   },
   app

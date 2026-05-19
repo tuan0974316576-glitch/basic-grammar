@@ -127,6 +127,9 @@ function getGrammarReferenceForms(text, rowElement) {
 
 function stopGrammarReferenceAudioPlayback() {
     activeGrammarReferenceAudioToken++;
+    if (typeof window.stopIosBundleAudio === 'function') {
+        window.stopIosBundleAudio().catch(() => {});
+    }
     if (activeGrammarReferenceAudio) {
         try {
             activeGrammarReferenceAudio.pause();
@@ -205,6 +208,18 @@ async function playGrammarReferenceStoredAudio(forms, rowElement) {
         const audioUrl = result?.audioUrl || getGrammarReferenceManifestUrl(audioKey);
         if (!audioUrl) return false;
 
+        const shouldUseIosBundleAudio = window.Capacitor?.getPlatform?.() === 'ios'
+            && typeof window.playIosBundleAudio === 'function';
+        if (shouldUseIosBundleAudio) {
+            const playedNatively = await window.playIosBundleAudio(
+                audioUrl,
+                typeof getListeningVoiceVolume === 'function' ? getListeningVoiceVolume() : 1
+            );
+            if (playbackToken !== activeGrammarReferenceAudioToken) return true;
+            rowElement.classList.remove('speaking');
+            if (playedNatively) return true;
+        }
+
         const audio = new Audio(audioUrl);
         activeGrammarReferenceAudio = audio;
         audio.volume = typeof getListeningVoiceVolume === 'function' ? getListeningVoiceVolume() : 1;
@@ -231,9 +246,9 @@ async function playGrammarReferenceStoredAudio(forms, rowElement) {
 }
 
 function speakGrammarReferenceFallback(parts, rowElement) {
-    if (!('speechSynthesis' in window)) return;
+    if (!window.speechSynthesis || typeof window.speechSynthesis.speak !== 'function' || typeof SpeechSynthesisUtterance === 'undefined') return;
 
-    window.speechSynthesis.cancel();
+    if (typeof window.speechSynthesis.cancel === 'function') window.speechSynthesis.cancel();
     activeGrammarReferenceUtterances = [];
     rowElement.classList.add('speaking');
 
@@ -278,7 +293,7 @@ async function speakGrammarReferenceSequence(text, rowElement) {
     }
     document.querySelectorAll('.grammar-reference-row.speaking').forEach((row) => row.classList.remove('speaking'));
     stopGrammarReferenceAudioPlayback();
-    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+    if (window.speechSynthesis && typeof window.speechSynthesis.cancel === 'function') window.speechSynthesis.cancel();
 
     const played = await playGrammarReferenceStoredAudio(parts, rowElement);
     if (!played) speakGrammarReferenceFallback(parts, rowElement);

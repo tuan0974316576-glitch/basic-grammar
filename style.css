@@ -15,12 +15,106 @@ input, textarea {
 
 /* ★★★ iOS Safari scroll lock for html ★★★ */
 html {
+    background: #000;
     overflow: hidden;
     overscroll-behavior: none;
     touch-action: none;
     position: fixed;
     width: 100%;
     height: 100%;
+    min-height: 100%;
+}
+
+/* Capacitor iOS uses a native full-screen shell; let game content occupy the
+   physical top edge instead of reserving iOS safe-area/status-bar space. */
+html.capacitor-native,
+html.capacitor-native body {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    min-height: 100dvh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    background: #000 !important;
+}
+
+html.capacitor-native #splash-screen,
+html.capacitor-native #start-screen,
+html.capacitor-native #game-content-wrapper,
+html.capacitor-native #game-ui,
+html.capacitor-native #vocab-screen,
+html.capacitor-native #game-mode-selection,
+html.capacitor-native #main-menu-carousel {
+    top: 0 !important;
+}
+
+/* iOS/WKWebView renders text-shadow much heavier than Android Chrome.
+   Keep the neon style, but tighten the halo so text stays crisp on iPad. */
+@keyframes xcom-current-glitch-ios {
+    0%, 75% {
+        opacity: 1;
+        transform: scale(1) skew(0deg);
+        filter: none;
+        text-shadow:
+            0 0 5px rgba(14, 165, 233, 0.58),
+            0 0 13px rgba(14, 165, 233, 0.28),
+            0 0 24px rgba(14, 165, 233, 0.12);
+    }
+    76% { opacity: 0.86; transform: skew(-2deg); }
+    77% {
+        opacity: 1;
+        transform: scale(1.025) skew(1deg);
+        filter: none;
+        text-shadow:
+            -2px 0 0 rgba(255, 255, 255, 0.55),
+            2px 0 0 rgba(14, 165, 233, 0.65),
+            0 0 16px rgba(14, 165, 233, 0.24);
+    }
+    78% { opacity: 0.35; transform: scale(0.985); }
+    79% {
+        opacity: 1;
+        transform: skew(-0.5deg);
+        filter: none;
+        text-shadow:
+            2px 0 0 rgba(255, 255, 255, 0.45),
+            -2px 0 0 rgba(14, 165, 233, 0.55);
+    }
+    80% {
+        transform: scale(1) skew(0deg);
+        filter: none;
+        text-shadow:
+            0 0 10px rgba(14, 165, 233, 0.42),
+            0 0 20px rgba(14, 165, 233, 0.16);
+    }
+    82% { transform: translate(1px, 0); }
+    84% { transform: translate(-1px, 0); }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        filter: none;
+        text-shadow:
+            0 0 5px rgba(14, 165, 233, 0.55),
+            0 0 12px rgba(14, 165, 233, 0.26),
+            0 0 22px rgba(14, 165, 233, 0.11);
+    }
+}
+
+html.capacitor-ios.speaking-capture-active body,
+html.capacitor-ios.speaking-capture-active body::before {
+    animation-play-state: paused !important;
+}
+
+html.capacitor-ios.speaking-capture-active .speaking-status.recording,
+html.capacitor-ios.speaking-capture-active .mic-btn.recording {
+    animation: none !important;
+}
+
+html.capacitor-ios.speaking-capture-active .speaking-wave::before,
+html.capacitor-ios.speaking-capture-active .speaking-wave::after {
+    filter: none !important;
 }
 
         :root {
@@ -60,6 +154,7 @@ body {
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
+    min-height: 100dvh;
     margin: 0;
     overflow: hidden;
     position: relative;
@@ -107,6 +202,35 @@ body {
                 opacity: 0;
             }
         }
+
+/* --- Native-style company logo screen --- */
+.company-logo-splash {
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    transition: opacity 0.5s ease;
+}
+
+.company-logo-splash.done {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.company-logo-splash img {
+    width: min(78vw, 620px);
+    height: auto;
+    display: block;
+    animation: companyLogoIntro 0.75s ease-out both;
+}
+
+@keyframes companyLogoIntro {
+    0% { opacity: 0; transform: scale(0.96); }
+    100% { opacity: 1; transform: scale(1); }
+}
 
 /* --- 標題畫面 (Start Screen) --- */
 #start-screen {
@@ -876,10 +1000,14 @@ body {
             display: none; /* 預設隱藏 */
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.85); z-index: 3000; /* 最最頂層 */
-            align-items: center; justify-content: center; 
+            align-items: center; justify-content: center;
             backdrop-filter: blur(5px);
             padding: 16px;
             box-sizing: border-box;
+        }
+
+        #confirm-modal {
+            z-index: 10004;
         }
 
         .tech-modal-box {
@@ -5606,12 +5734,14 @@ body {
 /* 2. 橫線 (Horizontal Line) */
 .aim-line-h {
     position: absolute;
+    top: 0;
     left: 0;
     width: 100%;
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--warning), transparent); /* 橙色漸變線 */
     box-shadow: 0 0 8px var(--warning);
     opacity: 0;
+    will-change: transform, opacity;
     animation: scanH calc(var(--anim-duration) * 0.6) cubic-bezier(0.2, 0.8, 0.2, 1) forwards !important;
 }
 
@@ -5619,19 +5749,22 @@ body {
 .aim-line-v {
     position: absolute;
     top: 0;
+    left: 0;
     height: 100%;
     width: 1px;
     background: linear-gradient(180deg, transparent, var(--warning), transparent);
     box-shadow: 0 0 8px var(--warning);
     opacity: 0;
+    will-change: transform, opacity;
     animation: scanV calc(var(--anim-duration) * 0.6) cubic-bezier(0.2, 0.8, 0.2, 1) forwards !important;
-    
+
 }
 
 /* 4. 鎖定框 (Reticle) - 圓形狙擊鏡版 */
 .aim-reticle {
     animation: lockOn calc(var(--anim-duration) - 0.1s) cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards !important;
     position: absolute;
+    will-change: transform, opacity;
     /* 變成圓形 */
     border-radius: 50%; 
     border: 2px solid var(--warning);
@@ -5684,16 +5817,16 @@ body {
 
 /* 橫線掃描：由上而下衝落去目標位置 */
 @keyframes scanH {
-    0% { top: 0; opacity: 0; }
+    0% { transform: translateY(0); opacity: 0; }
     20% { opacity: 1; }
-    100% { top: var(--target-y); opacity: 0.5; }
+    100% { transform: translateY(var(--target-y)); opacity: 0.5; }
 }
 
 /* 直線掃描：由左而右衝過去目標位置 */
 @keyframes scanV {
-    0% { left: 0; opacity: 0; }
+    0% { transform: translateX(0); opacity: 0; }
     20% { opacity: 1; }
-    100% { left: var(--target-x); opacity: 0.5; }
+    100% { transform: translateX(var(--target-x)); opacity: 0.5; }
 }
 
 /* 鎖定框：放大縮細 (Lock-on) */
@@ -8194,4 +8327,104 @@ body {
     .grammar-keyboard-open .grammar-verb-panel {
         padding-bottom: calc(270px + env(safe-area-inset-bottom));
     }
+}
+
+/* Final native iOS full-screen override. Keep this at the end so older mobile
+   layout rules cannot reintroduce a top inset. */
+html.capacitor-native,
+html.capacitor-native body {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    min-height: 100dvh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    background: #000 !important;
+}
+
+html.capacitor-native #splash-screen,
+html.capacitor-native #start-screen,
+html.capacitor-native #game-content-wrapper,
+html.capacitor-native #game-ui,
+html.capacitor-native #vocab-screen,
+html.capacitor-native #game-mode-selection,
+html.capacitor-native #main-menu-carousel {
+    top: 0 !important;
+}
+
+/* Final iOS glow calibration. WKWebView blooms text-shadow more strongly than
+   Android Chrome, so keep this after every older mobile rule. */
+html.capacitor-ios .main-title {
+    animation: xcom-current-glitch-ios 5s infinite, text-scan 6s linear infinite !important;
+    filter: none !important;
+    -webkit-font-smoothing: antialiased;
+}
+
+html.capacitor-ios .blink-text,
+html.capacitor-ios .tech-title,
+html.capacitor-ios #ranking-screen .tech-title,
+html.capacitor-ios .tech-warning-title,
+html.capacitor-ios .vocab-hint,
+html.capacitor-ios .vocab-ch,
+html.capacitor-ios .vocab-en,
+html.capacitor-ios #q-text,
+html.capacitor-ios #q-display,
+html.capacitor-ios #msg-area,
+html.capacitor-ios #hud-player-name,
+html.capacitor-ios #hud-rank-title,
+html.capacitor-ios .speaking-status,
+html.capacitor-ios .speaking-score-word,
+html.capacitor-ios .speaking-chip-score,
+html.capacitor-ios .speaking-debrief-title,
+html.capacitor-ios .speaking-debrief-close,
+html.capacitor-ios .kb-key,
+html.capacitor-ios [style*="text-shadow"] {
+    -webkit-font-smoothing: antialiased;
+    text-shadow: 0 0 5px currentColor !important;
+}
+
+@supports (color: color-mix(in srgb, white 50%, transparent)) {
+    html.capacitor-ios .blink-text,
+    html.capacitor-ios .tech-title,
+    html.capacitor-ios #ranking-screen .tech-title,
+    html.capacitor-ios .tech-warning-title,
+    html.capacitor-ios .vocab-hint,
+    html.capacitor-ios .vocab-ch,
+    html.capacitor-ios .vocab-en,
+    html.capacitor-ios #q-text,
+    html.capacitor-ios #q-display,
+    html.capacitor-ios #msg-area,
+    html.capacitor-ios #hud-player-name,
+    html.capacitor-ios #hud-rank-title,
+    html.capacitor-ios .speaking-status,
+    html.capacitor-ios .speaking-score-word,
+    html.capacitor-ios .speaking-chip-score,
+    html.capacitor-ios .speaking-debrief-title,
+    html.capacitor-ios .speaking-debrief-close,
+    html.capacitor-ios .kb-key,
+    html.capacitor-ios [style*="text-shadow"] {
+        text-shadow:
+            0 0 4px color-mix(in srgb, currentColor 52%, transparent),
+            0 0 11px color-mix(in srgb, currentColor 26%, transparent),
+            0 0 18px color-mix(in srgb, currentColor 11%, transparent) !important;
+    }
+}
+
+html.capacitor-ios .mic-btn,
+html.capacitor-ios .cyber-speaker-btn,
+html.capacitor-ios .ship-image,
+html.capacitor-ios .rank-icon,
+html.capacitor-ios .hud-rank-icon {
+    filter:
+        drop-shadow(0 0 4px rgba(255, 255, 255, 0.34))
+        drop-shadow(0 0 9px rgba(56, 189, 248, 0.16)) !important;
+}
+
+html.capacitor-ios .speaking-wave {
+    --wave-glow: 10px;
+    --speaking-wave-main-glow: rgba(56, 189, 248, 0.38);
+    --speaking-wave-accent-glow: rgba(255, 255, 255, 0.32);
 }

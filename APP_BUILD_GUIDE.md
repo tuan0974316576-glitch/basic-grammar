@@ -28,7 +28,7 @@ This will:
 
 #### In Xcode:
 1. Select your Team (Apple Developer Account) in Signing & Capabilities
-2. Change Bundle Identifier if needed: `com.vocabconqueror.battleship`
+2. Change Bundle Identifier if needed: `com.enguistics.vocabconqueror`
 3. Connect your iPhone or use Simulator
 4. Click Run (▶️) button
 

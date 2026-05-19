@@ -155,6 +155,7 @@ async function synthesizeSpeech({
   };
   const isListening = mode === 'listening';
   const isVerbTable = mode === 'verb-table';
+  const isVocabWord = mode === 'vocab-word';
   const rate = isListening ? (listeningRateByLevel[level] || '0%') : (isVerbTable ? '-8%' : '0%');
   const volume = '+10%';
   const langLocale = accentLocale || locale;
@@ -164,11 +165,11 @@ async function synthesizeSpeech({
         if (index >= cleanSegments.length - 1 || safeBreakMs <= 0) return part;
         return `${part}<break time="${safeBreakMs}ms"/>`;
       }).join('')
-    : `<lang xml:lang="${langLocale}">${escapedText}</lang>`;
+    : (isVocabWord && langLocale === locale ? escapedText : `<lang xml:lang="${langLocale}">${escapedText}</lang>`);
   const ssml = [
     `<speak version="1.0" xml:lang="${locale}">`,
     `  <voice name="${speechConfig.speechSynthesisVoiceName}">`,
-    `    <prosody rate="${rate}" volume="${volume}">${speechBody}</prosody>`,
+    isVocabWord ? `    ${speechBody}` : `    <prosody rate="${rate}" volume="${volume}">${speechBody}</prosody>`,
     '  </voice>',
     '</speak>'
   ].join('');

@@ -193,6 +193,90 @@ function startAuthOverlayTimeout() {
     }, 30000);
 }
 
+function isNativeAuthPlatform() {
+    return !!(window.Capacitor && typeof window.Capacitor.isNativePlatform === 'function' && window.Capacitor.isNativePlatform());
+}
+
+function getCapacitorPlugin(name) {
+    return window.Capacitor && window.Capacitor.Plugins ? window.Capacitor.Plugins[name] : null;
+}
+
+function beginAuthAttempt() {
+    if (typeof window.warmGameAudioForInteraction === 'function') {
+        window.warmGameAudioForInteraction();
+    }
+    if (typeof playSound === 'function') playSound('deploy-sfx');
+
+    const overlay = document.getElementById('login-overlay');
+    if (overlay) overlay.style.display = 'flex';
+    startAuthOverlayTimeout();
+
+    if (typeof playBgm === 'function') playBgm();
+}
+
+function isUserCancelledAuth(error) {
+    const code = error && (error.code || error.error || error.type);
+    const message = String((error && (error.message || error.localizedDescription)) || '');
+    return code === 'auth/popup-closed-by-user'
+        || code === 'auth/cancelled-popup-request'
+        || code === 'userCancelled'
+        || code === 'userLoggedOut'
+        || message.includes('AuthorizationError error 1001')
+        || message.toLowerCase().includes('cancel');
+}
+
+function showAuthFailure(providerName, error) {
+    cancelAuthOverlay();
+
+    if (isUserCancelledAuth(error)) {
+        console.log(`[${providerName} Login] User cancelled login.`);
+        return;
+    }
+
+    if (error && error.code === 'auth/unauthorized-domain') {
+        alert('System Error: Unauthorized Domain (Check Firebase Console)');
+        return;
+    }
+
+    const message = (error && (error.message || error.errorMessage || error.localizedDescription)) || String(error);
+    alert(`${providerName.toUpperCase()} LOGIN FAILED: ${message}`);
+}
+
+async function signInOrLinkWithCredential(auth, credential) {
+    const { signInWithCredential, linkWithCredential } = window.firebaseModules;
+
+    if (auth.currentUser && auth.currentUser.isAnonymous) {
+        try {
+            return await linkWithCredential(auth.currentUser, credential);
+        } catch (error) {
+            if (error && (
+                error.code === 'auth/credential-already-in-use'
+                || error.code === 'auth/email-already-in-use'
+                || error.code === 'auth/provider-already-linked'
+            )) {
+                console.log('[Auth] Provider already has an account, signing into it instead of linking guest.');
+                return signInWithCredential(auth, credential);
+            }
+            throw error;
+        }
+    }
+
+    return signInWithCredential(auth, credential);
+}
+
+function randomNonce(length = 32) {
+    const charset = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-._';
+    const randomValues = new Uint8Array(length);
+    crypto.getRandomValues(randomValues);
+    return Array.from(randomValues).map(value => charset[value % charset.length]).join('');
+}
+
+async function sha256Hex(input) {
+    const data = new TextEncoder().encode(input);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    return Array.from(new Uint8Array(hashBuffer)).map(byte => byte.toString(16).padStart(2, '0')).join('');
+}
+
 window.playAsGuest = function() {
     const { getAuth, signInAnonymously } = window.firebaseModules;
     if (typeof window.warmGameAudioForInteraction === 'function') {
@@ -210,17 +294,36 @@ window.playAsGuest = function() {
     });
 };
 
-window.loginWithGoogle = function() {
+window.loginWithGoogle = async function() {
     const { getAuth, GoogleAuthProvider, signInWithPopup, linkWithPopup } = window.firebaseModules;
-    if (typeof playSound === 'function') playSound('deploy-sfx');
-
-    const overlay = document.getElementById('login-overlay');
-    if (overlay) overlay.style.display = 'flex';
-    startAuthOverlayTimeout();
-
-    if (typeof playBgm === 'function') playBgm();
-
     const auth = getAuth();
+
+    beginAuthAttempt();
+
+    if (isNativeAuthPlatform()) {
+        try {
+            const GoogleAuth = getCapacitorPlugin('GoogleAuth');
+            if (!GoogleAuth || typeof GoogleAuth.signIn !== 'function') {
+                throw new Error('Native GoogleAuth plugin is not available in this build.');
+            }
+
+            const googleUser = await GoogleAuth.signIn();
+            const idToken = googleUser?.authentication?.idToken || googleUser?.idToken;
+            const accessToken = googleUser?.authentication?.accessToken || googleUser?.accessToken;
+
+            if (!idToken && !accessToken) {
+                throw new Error('Google did not return an auth token. Check the native Google OAuth client ID setup.');
+            }
+
+            const credential = GoogleAuthProvider.credential(idToken || null, accessToken || null);
+            await signInOrLinkWithCredential(auth, credential);
+            console.log('[Google Login] Auth success, waiting for onAuthStateChanged...');
+        } catch (error) {
+            showAuthFailure('Google', error);
+        }
+        return;
+    }
+
     const provider = new GoogleAuthProvider();
     const authAction = auth.currentUser && auth.currentUser.isAnonymous
         ? linkWithPopup(auth.currentUser, provider)
@@ -230,37 +333,66 @@ window.loginWithGoogle = function() {
         .then(() => {
             console.log('[Google Login] Auth success, waiting for onAuthStateChanged...');
         })
-        .catch(error => {
-            cancelAuthOverlay();
-
-            if (error.code === 'auth/popup-closed-by-user' || error.code === 'auth/cancelled-popup-request') {
-                console.log('User cancelled login.');
-                return;
-            }
-
-            if (error.code === 'auth/unauthorized-domain') {
-                alert('System Error: Unauthorized Domain (Check Firebase Console)');
-            } else {
-                alert('LOGIN FAILED: ' + error.message);
-            }
-        });
+        .catch(error => showAuthFailure('Google', error));
 };
 
-window.loginWithApple = function() {
-    const { getAuth, OAuthProvider, signInWithPopup, linkWithPopup } = window.firebaseModules;
-    if (typeof playSound === 'function') playSound('deploy-sfx');
-
-    const overlay = document.getElementById('login-overlay');
-    if (overlay) overlay.style.display = 'flex';
-    startAuthOverlayTimeout();
-
-    if (typeof playBgm === 'function') playBgm();
-
+window.loginWithApple = async function() {
+    const { getAuth, OAuthProvider, signInWithPopup, linkWithPopup, signInWithRedirect, linkWithRedirect } = window.firebaseModules;
+    const auth = getAuth();
     const provider = new OAuthProvider('apple.com');
     provider.addScope('email');
     provider.addScope('name');
 
-    const auth = getAuth();
+    if (isNativeAuthPlatform() && typeof getCapacitorPlatform === 'function' && getCapacitorPlatform() !== 'ios') {
+        alert('Apple login is available in the iOS app. Please use Google login on Android.');
+        return;
+    }
+
+    beginAuthAttempt();
+
+    if (typeof getCapacitorPlatform === 'function' && getCapacitorPlatform() === 'ios') {
+        try {
+            const SignInWithApple = getCapacitorPlugin('SignInWithApple');
+            if (!SignInWithApple || typeof SignInWithApple.authorize !== 'function') {
+                throw new Error('Native Sign in with Apple plugin is not available in this build.');
+            }
+
+            const rawNonce = randomNonce();
+            const hashedNonce = await sha256Hex(rawNonce);
+            const result = await SignInWithApple.authorize({
+                clientId: 'com.enguistics.vocabconqueror',
+                redirectURI: 'https://battleship-game-c0909.firebaseapp.com/__/auth/handler',
+                scopes: 'email name',
+                state: 'vocab-conqueror',
+                nonce: hashedNonce
+            });
+            const idToken = result?.response?.identityToken;
+
+            if (!idToken) {
+                throw new Error('Apple did not return an identity token. Check Sign in with Apple capability setup.');
+            }
+
+            const credential = provider.credential({
+                idToken,
+                rawNonce
+            });
+            await signInOrLinkWithCredential(auth, credential);
+            console.log('[Apple Login] Auth success, waiting for onAuthStateChanged...');
+        } catch (error) {
+            showAuthFailure('Apple', error);
+        }
+        return;
+    }
+
+    if (isNativeAuthPlatform()) {
+        const authAction = auth.currentUser && auth.currentUser.isAnonymous
+            ? linkWithRedirect(auth.currentUser, provider)
+            : signInWithRedirect(auth, provider);
+
+        authAction.catch(error => showAuthFailure('Apple', error));
+        return;
+    }
+
     const authAction = auth.currentUser && auth.currentUser.isAnonymous
         ? linkWithPopup(auth.currentUser, provider)
         : signInWithPopup(auth, provider);
@@ -269,27 +401,28 @@ window.loginWithApple = function() {
         .then(() => {
             console.log('[Apple Login] Auth success, waiting for onAuthStateChanged...');
         })
-        .catch(error => {
-            cancelAuthOverlay();
-
-            if (error.code === 'auth/popup-closed-by-user' || error.code === 'auth/cancelled-popup-request') {
-                console.log('User cancelled Apple login.');
-                return;
-            }
-
-            if (error.code === 'auth/unauthorized-domain') {
-                alert('System Error: Unauthorized Domain (Check Firebase Console)');
-            } else {
-                alert('APPLE LOGIN FAILED: ' + error.message);
-            }
-        });
+        .catch(error => showAuthFailure('Apple', error));
 };
+
+function configureNativeLoginButtons() {
+    const appleButton = document.getElementById('apple-login-btn');
+    if (!appleButton) return;
+    if (isNativeAuthPlatform() && typeof getCapacitorPlatform === 'function' && getCapacitorPlatform() !== 'ios') {
+        appleButton.style.display = 'none';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', configureNativeLoginButtons);
 
 window.logout = function() {
     const { getAuth, signOut } = window.firebaseModules;
     if (typeof playSound === 'function') playSound('delete-sfx');
 
     localStorage.removeItem('battleship_username');
+    const GoogleAuth = getCapacitorPlugin('GoogleAuth');
+    if (GoogleAuth && typeof GoogleAuth.signOut === 'function') {
+        GoogleAuth.signOut().catch(error => console.log('[Google Login] Native sign out skipped:', error));
+    }
 
     signOut(getAuth()).then(() => {
         localStorage.removeItem('battleship_auth_uid');
@@ -720,6 +853,23 @@ function revealAuthenticatedMainMenu() {
 }
 
 function showMainMenu() {
+    if (typeof window.resetBgmDucks === 'function') {
+        window.resetBgmDucks(180);
+    }
+
+    const splash = document.getElementById('splash-screen');
+    const gameWrapper = document.getElementById('game-content-wrapper');
+    const startScreen = document.getElementById('start-screen');
+    const gameUi = document.getElementById('game-ui');
+    if (!splash || splash.style.display === 'none') {
+        if (gameWrapper) gameWrapper.style.display = 'block';
+        if (startScreen) {
+            startScreen.style.display = 'flex';
+            startScreen.style.opacity = '1';
+        }
+        if (gameUi) gameUi.style.display = 'none';
+    }
+
     const overlay = document.getElementById('login-overlay');
     if (overlay) {
         overlay.style.display = 'none';
@@ -734,6 +884,10 @@ function showMainMenu() {
         hideMenuOverlayScreens();
     }
 
+    if (typeof playBgm === 'function') {
+        playBgm();
+    }
+
     switchHudPanel('user-profile-panel');
 
     const gameModeSelect = document.getElementById('game-mode-selection');
@@ -746,7 +900,6 @@ function showMainMenu() {
         carouselWrapper.style.animation = 'fadeIn 0.5s';
     }
 
-    const splash = document.getElementById('splash-screen');
     const suppliesDisplay = document.getElementById('coins-display');
     if (suppliesDisplay) {
         if (!splash || splash.style.display === 'none') {
@@ -763,7 +916,6 @@ function showMainMenu() {
         statusText.style.color = '#0ea5e9';
     }
 
-    playBgm();
     initCarouselControl();
     if (typeof window.requestLandscapeForTablet === 'function') {
         window.requestLandscapeForTablet();
@@ -796,19 +948,35 @@ window.startExperience = function() {
         try {
             const { Keyboard } = window.Capacitor.Plugins;
             if (Keyboard) {
-                Keyboard.setAccessoryBarVisible({ isVisible: false });
-                Keyboard.setScroll({ isDisabled: true });
+                Keyboard.setAccessoryBarVisible({ isVisible: false }).catch(() => {});
+                Keyboard.setScroll({ isDisabled: true }).catch(() => {});
             }
         } catch (error) {
             console.log('Keyboard config error:', error);
         }
     }
 
+    const platform = window.Capacitor?.getPlatform?.() || '';
+    const sfxVolume = (typeof gameVolume !== 'undefined' && isFinite(gameVolume.sfx)) ? gameVolume.sfx : 0.5;
+    console.log(`[Audio Debug] startExperience audio path platform=${platform || 'web'}`);
+    if (platform === 'android' && typeof window.playImmediateWebSfx === 'function') {
+        window.playImmediateWebSfx('deploy-sfx', sfxVolume);
+    } else if (typeof playSound === 'function') {
+        playSound('deploy-sfx');
+    }
+
     if (typeof window.warmGameAudioForInteraction === 'function') {
         window.warmGameAudioForInteraction();
     }
-    playBgm();
-    if (typeof playSound === 'function') playSound('deploy-sfx');
+
+    const startRequestedBgm = () => {
+        playBgm();
+    };
+    if (platform === 'android') {
+        setTimeout(startRequestedBgm, 120);
+    } else {
+        startRequestedBgm();
+    }
     if (typeof window.requestLandscapeForTablet === 'function') {
         window.requestLandscapeForTablet();
     }

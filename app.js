@@ -53,6 +53,10 @@ function getNextTargetVoice() {
     return selectedVoice;
 }
 let currentPracticeMode = 'READING'; // �A�Oģʽ
+let selectedRace = 'VANGUARDS'; // �A�O�N�壨��ң�
+let enemyRace = 'VANGUARDS'; // AI ���ַN��
+let unlockedRaces = ['VANGUARDS']; // �A�O���i Vanguards
+window.unlockedRaces = unlockedRaces;
 let recognition = null; // �Z���R�e���
 let speakingMediaRecorder = null;
 let speakingRecordedChunks = [];
@@ -78,17 +82,22 @@ let speakingRecordingTimeout = null;
 let speakingTailStopTimeout = null;
 let speakingWaveLevel = 0;
 let speakingWaveVisualLevel = 0;
+let speakingWaveUpdatePending = false;
+let speakingWaveQueuedLevel = 0;
+let speakingLastWaveUpdateAt = 0;
 let speakingLatestRms = 0;
 let speakingLastSampleAt = 0;
 let speakingNoiseFloorRms = 0.006;
 let speakingNoiseSampleCount = 0;
 let speakingSilenceMs = 1000;
 let speakingTailBufferMs = 450;
-let speakingSilenceThreshold = 0.018;
+let speakingSilenceThreshold = 0.014;
 let speakingMaxRecordingMs = 10000;
 let speakingUseAzureAssessment = true;
 let speakingNoVoiceTimeout = null;
 let speakingNoVoiceTimeoutMs = 5000;
+let speakingNativeAudioPrepared = false;
+let speakingShouldResumeNativeBgm = true;
 let speakingLastRecordedAudioBase64 = '';
 let speakingDebriefActiveLogIndex = null;
 let speakingDebriefPlaybackAudio = null;
@@ -230,13 +239,90 @@ window.addEventListener('orientationchange', updateOrientationGuard);
     }
 
 function canUseAzureSpeakingAssessment() {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
         return Boolean(
             speakingUseAzureAssessment &&
             getSpeakingAssessmentBaseUrl() &&
             navigator.mediaDevices &&
             typeof navigator.mediaDevices.getUserMedia === 'function' &&
-            window.MediaRecorder
+            AudioCtx
         );
+    }
+
+    function getNativePlatformName() {
+        try {
+            return window.Capacitor?.getPlatform?.() || '';
+        } catch (_error) {
+            return '';
+        }
+    }
+
+    function getSpeakingMonitorGain() {
+        const platform = getNativePlatformName();
+        if (platform === 'android') return 2.3;
+        if (platform === 'ios') return 1.8;
+        return 1.35;
+    }
+
+    function getSpeakingNormalizeTarget() {
+        const platform = getNativePlatformName();
+        if (platform === 'android') return { targetRms: 0.09, maxGain: 6 };
+        if (platform === 'ios') return { targetRms: 0.085, maxGain: 4 };
+        return { targetRms: 0.08, maxGain: 3 };
+    }
+
+    async function prepareNativeAudioForSpeakingCapture() {
+        if (getNativePlatformName() !== 'ios') return;
+
+        speakingShouldResumeNativeBgm = typeof isMusicPlaying === 'boolean' ? isMusicPlaying : true;
+        speakingNativeAudioPrepared = true;
+        document.documentElement.classList.add('speaking-capture-active');
+
+        const gameAudio = window.Capacitor?.Plugins?.GameAudio;
+        if (gameAudio && typeof gameAudio.prepareForRecording === 'function') {
+            await gameAudio.prepareForRecording({ resumeBgm: speakingShouldResumeNativeBgm }).catch(error => {
+                console.log('[Speaking Debug] Native audio prepare skipped:', error?.message || error);
+            });
+            return;
+        }
+
+        if (typeof pauseBgm === 'function') {
+            await pauseBgm().catch(() => {});
+        }
+    }
+
+    function restoreNativeAudioAfterSpeakingCapture() {
+        if (!speakingNativeAudioPrepared) return;
+
+        const shouldResume = speakingShouldResumeNativeBgm;
+        speakingNativeAudioPrepared = false;
+        document.documentElement.classList.remove('speaking-capture-active');
+
+        const gameAudio = window.Capacitor?.Plugins?.GameAudio;
+        if (gameAudio && typeof gameAudio.finishRecording === 'function') {
+            gameAudio.finishRecording({ resumeBgm: shouldResume }).catch(error => {
+                console.log('[Speaking Debug] Native audio restore skipped:', error?.message || error);
+            });
+            return;
+        }
+
+        if (shouldResume && typeof playBgm === 'function') {
+            setTimeout(() => playBgm(), 120);
+        }
+    }
+
+    function describeJsError(error) {
+        if (!error) return 'Unknown error';
+        if (typeof error === 'string') return error;
+
+        const parts = [];
+        if (error.name) parts.push(error.name);
+        if (error.message) parts.push(error.message);
+        if (error.constraint) parts.push(`constraint=${error.constraint}`);
+        if (error.code) parts.push(`code=${error.code}`);
+        if (error.status) parts.push(`status=${error.status}`);
+        if (error.body) parts.push(`body=${String(error.body).slice(0, 240)}`);
+        return parts.length ? parts.join(' | ') : String(error);
     }
 
     function normalizeAssessmentWord(word) {
@@ -358,6 +444,36 @@ function canUseAzureSpeakingAssessment() {
         return new Blob([buffer], { type: 'audio/wav' });
     }
 
+    function normalizeSpeakingPcmSamples(samples) {
+        if (!samples || !samples.length) return samples;
+
+        let peak = 0;
+        let sum = 0;
+        for (let i = 0; i < samples.length; i++) {
+            const value = samples[i];
+            const abs = Math.abs(value);
+            if (abs > peak) peak = abs;
+            sum += value * value;
+        }
+
+        const rms = Math.sqrt(sum / samples.length);
+        if (!Number.isFinite(rms) || rms < 0.0002 || peak < 0.001) return samples;
+
+        const { targetRms, maxGain } = getSpeakingNormalizeTarget();
+        const rmsGain = targetRms / rms;
+        const peakGain = peak > 0 ? 0.92 / peak : maxGain;
+        const gain = Math.min(maxGain, rmsGain, peakGain);
+
+        if (!Number.isFinite(gain) || gain <= 1.05) return samples;
+
+        const boosted = new Float32Array(samples.length);
+        for (let i = 0; i < samples.length; i++) {
+            boosted[i] = Math.max(-1, Math.min(1, samples[i] * gain));
+        }
+        console.log(`[Speaking Debug] PCM normalized rms=${rms.toFixed(4)} peak=${peak.toFixed(4)} gain=${gain.toFixed(2)}`);
+        return boosted;
+    }
+
     async function convertBlobToMonoWav(blob, targetSampleRate = 16000) {
         const arrayBuffer = await blob.arrayBuffer();
         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -445,7 +561,8 @@ function canUseAzureSpeakingAssessment() {
         }
         speakingPcmSampleRate = speakingPcmAudioContext.sampleRate || 44100;
         speakingPcmSource = speakingPcmAudioContext.createMediaStreamSource(speakingAudioStream);
-        speakingPcmProcessor = speakingPcmAudioContext.createScriptProcessor(2048, 1, 1);
+        const processorBufferSize = getNativePlatformName() === 'ios' ? 4096 : 2048;
+        speakingPcmProcessor = speakingPcmAudioContext.createScriptProcessor(processorBufferSize, 1, 1);
         speakingPcmSilenceGain = speakingPcmAudioContext.createGain();
         speakingPcmSilenceGain.gain.value = 0;
 
@@ -474,9 +591,9 @@ function canUseAzureSpeakingAssessment() {
                 const alpha = speakingNoiseSampleCount <= 1 ? 1 : 0.18;
                 speakingNoiseFloorRms = (speakingNoiseFloorRms * (1 - alpha)) + (rawRms * alpha);
             }
-            speakingLatestRms = Math.max(0, rawRms - (speakingNoiseFloorRms * 1.1));
+            speakingLatestRms = Math.max(0, (rawRms - (speakingNoiseFloorRms * 0.85)) * getSpeakingMonitorGain());
             speakingWaveLevel = speakingLatestRms;
-            updateSpeakingWave(Math.min(1, speakingLatestRms / 0.045));
+            scheduleSpeakingWaveUpdate(Math.min(1, speakingLatestRms / 0.045));
             speakingPcmChunks.push(monoChunk);
         };
 
@@ -500,7 +617,7 @@ function canUseAzureSpeakingAssessment() {
             offset += chunk.length;
         }
 
-        return encodeWavFromMonoFloat(combined, speakingPcmSampleRate || 16000);
+        return encodeWavFromMonoFloat(normalizeSpeakingPcmSamples(combined), speakingPcmSampleRate || 16000);
     }
 
     function stopSpeakingSilenceMonitor() {
@@ -545,11 +662,11 @@ function canUseAzureSpeakingAssessment() {
             if (speakingLastSampleAt && (now - speakingLastSampleAt > 250)) {
                 speakingLatestRms = 0;
                 speakingWaveLevel = 0;
-                updateSpeakingWave(0);
+                scheduleSpeakingWaveUpdate(0);
             }
 
-            const voiceGate = Math.max(speakingSilenceThreshold * 0.45, 0.0065);
-            const sustainedVoiceGate = Math.max(voiceGate * 0.72, 0.0045);
+            const voiceGate = Math.max(speakingSilenceThreshold * 0.45, 0.0048);
+            const sustainedVoiceGate = Math.max(voiceGate * 0.72, 0.0035);
             if (rms >= voiceGate) {
                 speakingVoiceDetectionFrames += 1;
             } else if (!speakingSilenceDetectedVoice && speakingVoiceDetectionFrames > 0) {
@@ -621,9 +738,12 @@ function canUseAzureSpeakingAssessment() {
             speakingAudioStream.getTracks().forEach(track => track.stop());
             speakingAudioStream = null;
         }
+        restoreNativeAudioAfterSpeakingCapture();
     }
 
 function updateSpeakingWave(level = 0) {
+    speakingWaveQueuedLevel = Math.max(0, Math.min(1, level));
+    speakingLastWaveUpdateAt = Date.now();
     const waveEl = document.getElementById('speaking-wave');
     if (!waveEl) return;
     const clamped = Math.max(0, Math.min(1, level));
@@ -638,6 +758,33 @@ function updateSpeakingWave(level = 0) {
     waveEl.style.setProperty('--wave-offset', `${visual * 7}px`);
     waveEl.style.setProperty('--wave-main-opacity', (0.52 + visual * 0.28).toFixed(3));
     waveEl.style.setProperty('--wave-accent-opacity', (0.42 + visual * 0.26).toFixed(3));
+}
+
+function scheduleSpeakingWaveUpdate(level = 0) {
+    speakingWaveQueuedLevel = Math.max(0, Math.min(1, level));
+    if (speakingWaveUpdatePending) return;
+
+    const updateInterval = getNativePlatformName() === 'ios' ? 120 : 70;
+    const waitMs = Math.max(0, updateInterval - (Date.now() - speakingLastWaveUpdateAt));
+    speakingWaveUpdatePending = true;
+
+    const runUpdate = () => {
+        const applyUpdate = () => {
+            speakingWaveUpdatePending = false;
+            updateSpeakingWave(speakingWaveQueuedLevel);
+        };
+        if (typeof requestAnimationFrame === 'function') {
+            requestAnimationFrame(applyUpdate);
+        } else {
+            applyUpdate();
+        }
+    };
+
+    if (waitMs > 0) {
+        setTimeout(runUpdate, waitMs);
+    } else {
+        runUpdate();
+    }
 }
 function showSpeakingAzureUnavailable(message) {
     launchTimerPaused = false;
@@ -1026,15 +1173,11 @@ let isTargeting = false;
         });
 
         BATTLE_EFFECT_AUDIO_IDS.forEach(preloadAudioElementById);
+        if (typeof window.preloadNativeSfx === 'function') {
+            BATTLE_EFFECT_AUDIO_IDS.forEach(id => window.preloadNativeSfx(id));
+        }
 
-        preloadEffekseerEffect('vanguardsNuke');
-        preloadEffekseerEffect('missileImpact');
-        preloadEffekseerEffect('vanguardsNormalStrike');
-        preloadEffekseerEffect('normalAttack');
-        preloadEffekseerEffect('aureliansNormalAttack');
-        preloadEffekseerEffect('aureliansShieldApply');
-        preloadEffekseerEffect('aureliansShieldLoop');
-        preloadEffekseerEffect('aureliansShieldOnHit');
+        preloadBattleEffekseerEffectsInBackground();
     }
 
     function preloadAudioElementById(id) {
@@ -1536,18 +1679,20 @@ function preloadPvpSharedListeningQuestion(questionPayload) {
             accentLocale: questionPayload.listeningAccentLocale || 'en-US'
         }
         : null;
-    preloadListeningAzureAudio(text, 'en-US', selectedLevel || 'L1', voiceProfile).then(() => {
+    preloadListeningAzureAudio(text, 'en-US', selectedLevel || 'L1', voiceProfile, {
+        word: questionPayload.en,
+        sentenceIndex: Number.isInteger(questionPayload.sentenceIndex) ? questionPayload.sentenceIndex : 0
+    }).then(() => {
         console.log(`[PVP Listening Preload] Ready: ${text}`);
     }).catch(() => {});
 }
 
 function getCurrentListeningVoiceProfile(text, levelKey = '') {
-    if (
-        gameMode === 'PVP' &&
-        currentVocab?.listeningVoiceName
-    ) {
+    const cleanText = (text || '').trim();
+    const currentText = String(currentVocab?.sent || currentVocab?.en || '').trim();
+    if (currentVocab?.listeningVoiceName && (!cleanText || !currentText || cleanText === currentText)) {
         return {
-            label: 'PVP Shared',
+            label: gameMode === 'PVP' ? 'PVP Shared' : 'Listening Fixed',
             voiceName: currentVocab.listeningVoiceName,
             accentLocale: currentVocab.listeningAccentLocale || 'en-US'
         };
@@ -1732,6 +1877,7 @@ function startEnemyTurn() {
     // --- 5. ���̿��� ---
 function selectMode(mode) {
     tempGameMode = mode;
+    if (typeof window.resetBgmDucks === 'function') window.resetBgmDucks(180);
     hideMenuOverlayScreens();
 
     // ���� �[�� Supplies �@ʾ (�x���[��ģʽ��) ����
@@ -1813,6 +1959,7 @@ function selectMode(mode) {
 
 function closeLevelScreen() {
     playSound('delete-sfx');
+    if (typeof window.resetBgmDucks === 'function') window.resetBgmDucks(180);
     document.getElementById('level-screen').style.display = 'none';
 
     if (tempGameMode === 'AI') {
@@ -1973,6 +2120,8 @@ function getScopedMasteryCountForMode(modeKey) {
 }
 
 function showStageScreen() {
+    if (typeof window.resetBgmDucks === 'function') window.resetBgmDucks(180);
+    showSelectionOverlay();
     const stageScreen = document.getElementById('stage-screen');
     if (!stageScreen) return;
     stageScreen.style.display = 'flex';
@@ -1984,6 +2133,44 @@ function showStageScreen() {
             wrapper.style.animation = 'holoAppear 0.25s ease-out forwards';
         }, 10);
     }
+}
+
+function showSkillScreen(options = {}) {
+    if (typeof window.resetBgmDucks === 'function') window.resetBgmDucks(180);
+    showSelectionOverlay();
+
+    ['level-screen', 'stage-screen', 'race-screen', 'lobby-screen'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+    });
+
+    const gameWrapper = document.getElementById('game-content-wrapper');
+    if (gameWrapper) gameWrapper.style.display = 'block';
+
+    const skillScreen = document.getElementById('skill-screen');
+    if (!skillScreen) return;
+    skillScreen.style.display = 'flex';
+    skillScreen.style.visibility = 'visible';
+    skillScreen.style.opacity = '1';
+    skillScreen.style.pointerEvents = 'auto';
+    skillScreen.style.animation = 'none';
+
+    const wrapper = skillScreen.querySelector('.panel-content-wrapper');
+    if (wrapper) {
+        wrapper.style.opacity = '1';
+        wrapper.style.transform = 'scale(1)';
+        wrapper.style.animation = 'none';
+        requestAnimationFrame(() => {
+            wrapper.style.animation = 'holoAppear 0.25s ease-out forwards';
+            setTimeout(() => {
+                wrapper.style.opacity = '1';
+                wrapper.style.transform = 'scale(1)';
+            }, 280);
+        });
+    }
+
+    const speakBtn = document.getElementById('btn-skill-speaking');
+    if (speakBtn) speakBtn.style.display = options.hideSpeaking ? 'none' : 'flex';
 }
 
 function renderStageScreen(levelKey) {
@@ -2016,11 +2203,13 @@ function renderStageScreen(levelKey) {
 }
 
 function closeStageScreen() {
+    if (typeof window.resetBgmDucks === 'function') window.resetBgmDucks(180);
     const stageScreen = document.getElementById('stage-screen');
     if (stageScreen) stageScreen.style.display = 'none';
 
     const levelScreen = document.getElementById('level-screen');
     if (levelScreen) {
+        showSelectionOverlay();
         levelScreen.style.display = 'flex';
         const wrapper = levelScreen.querySelector('.panel-content-wrapper');
         if (wrapper) {
@@ -2043,6 +2232,7 @@ function selectStage(stageIndex) {
         return;
     }
 
+    if (typeof window.resetBgmDucks === 'function') window.resetBgmDucks(180);
     playSound('deploy-sfx');
     selectedStageIndex = stageIndex;
     selectedStageLabel = getStageLabel(selectedLevel, stageIndex);
@@ -2055,21 +2245,7 @@ function selectStage(stageIndex) {
     if (stageScreen) stageScreen.style.display = 'none';
 
     updateSkillButtonsProgress();
-
-    const skillScreen = document.getElementById('skill-screen');
-    if (skillScreen) {
-        skillScreen.style.display = 'flex';
-        const wrapper = skillScreen.querySelector('.panel-content-wrapper');
-        if (wrapper) {
-            wrapper.style.animation = 'none';
-            setTimeout(() => {
-                wrapper.style.animation = 'holoAppear 0.25s ease-out forwards';
-            }, 10);
-        }
-    }
-
-    const speakBtn = document.getElementById('btn-skill-speaking');
-    if (speakBtn) speakBtn.style.display = 'flex';
+    showSkillScreen({ hideSpeaking: false });
 }
 
 function openStageInfo(stageIndex, event) {
@@ -2288,6 +2464,7 @@ function updateLevelProgress() {
 
 // --- �����棺�x��ȼ� (PVP �Ğ�ȥ�x Skill) ---
 function selectLevel(level) {
+    if (typeof window.resetBgmDucks === 'function') window.resetBgmDucks(180);
     selectedLevel = level;
     selectedStageIndex = null;
     selectedStageLabel = '';
@@ -2317,25 +2494,7 @@ function selectLevel(level) {
         // --- PVP ģʽ��Level -> Skill -> Lobby ---
         // ���� PVP ���@ʾ�M�ȣ����÷�ԭ�������� ����
         resetSkillButtonsToDefault();
-        showSelectionOverlay();
-        const lobbyScreen = document.getElementById('lobby-screen');
-        if (lobbyScreen) lobbyScreen.style.display = 'none';
-
-        // �@ʾ Skill �x��
-        const skillScreen = document.getElementById('skill-screen');
-        skillScreen.style.display = 'flex';
-        // ���� Trigger holoAppear animation on content wrapper ����
-        const wrapper = skillScreen.querySelector('.panel-content-wrapper');
-        if (wrapper) {
-            wrapper.style.animation = 'none';
-            setTimeout(() => {
-                wrapper.style.animation = 'holoAppear 0.25s ease-out forwards';
-            }, 10);
-        }
-
-        // PVP ���r�[�� Speaking Mode (����Ҫ)
-        const speakBtn = document.getElementById('btn-skill-speaking');
-        if (speakBtn) speakBtn.style.display = 'none';
+        showSkillScreen({ hideSpeaking: true });
     }
 }
 
@@ -3689,10 +3848,13 @@ function runTargetLockAnimation(index, onComplete) {
     overlay.appendChild(reticle);
 
     // --- 3. ���ų鵽���� ---
-    // ���O����һ��ͨ�ò��ź���������]�У������ú��ε� Audio �����
-    const sfx = new Audio(voiceObj.file);
-    sfx.volume = 0.8; // �{������
-    sfx.play().catch(e => console.log("Audio play error:", e));
+    if (window.Capacitor?.getPlatform?.() === 'ios' && typeof window.playIosBundleAudio === 'function') {
+        window.playIosBundleAudio(voiceObj.file, 0.8).catch(e => console.log("Audio play error:", e));
+    } else {
+        const sfx = new Audio(voiceObj.file);
+        sfx.volume = 0.8; // �{������
+        sfx.play().catch(e => console.log("Audio play error:", e));
+    }
 
     // --- 4. �ȴ��������ГQ���� ---
     setTimeout(() => {
@@ -3784,11 +3946,7 @@ async function openLaunchModal(index) {
 
     // ���� �P�I�����@ʾҕ�����و�������� focus���_���I�P���� ����
     modal.style.display = "flex";
-    if (currentPracticeMode === 'LISTENING' || currentPracticeMode === 'SPEAKING') {
-        if (typeof requestBgmDuck === 'function') requestBgmDuck('battle-answer', 450);
-    } else if (typeof releaseBgmDuck === 'function') {
-        releaseBgmDuck('battle-answer', 250);
-    }
+    if (typeof releaseBgmDuck === 'function') releaseBgmDuck('battle-answer', 250);
 
     // ���� Apply Aurelians theme if player is using Aurelians ����
     if (selectedRace === 'AURELIANS') {
@@ -3850,13 +4008,12 @@ if (typeof window.isGrammarBattleMode === 'function' && window.isGrammarBattleMo
         // ���� Use listeningAnswer if available (new format), otherwise use base form (old format) ����
         const targetWord = currentVocab.listeningAnswer || currentVocab.en;
         const textToRead = currentVocab.sent ? currentVocab.sent : currentVocab.en;
-        const safeText = textToRead.replace(/'/g, "\\'");
         console.log(`[Listening Display] Using target word: "${targetWord}"`);
 
         // 1. �@ʾ������� (����о���)
         if (currentVocab.sent) {
             const displayHTML = replaceListeningAnswerWithBlank(currentVocab.sent, targetWord);
-            contentHTML += `<div class="sentence-container">${displayHTML}<span class="cyber-speaker-btn cyber-speaker-btn-small listening-replay-btn" onclick="speakText('${safeText}', null, true)" role="button" aria-label="Replay audio"></span></div>`;
+            contentHTML += `<div class="sentence-container">${displayHTML}<span class="cyber-speaker-btn cyber-speaker-btn-small listening-replay-btn" data-listening-replay role="button" aria-label="Replay audio"></span></div>`;
         } else {
             contentHTML += `<div style="font-family:'Orbitron'; font-size:14px; color:#d946ef; margin-bottom:15px; letter-spacing:2px;">// AUDIO INTERCEPTED //</div>`;
         }
@@ -3864,11 +4021,14 @@ if (typeof window.isGrammarBattleMode === 'function' && window.isGrammarBattleMo
         // 2. ����߿Ƽ����ȳ� (ʹ���㮋�� PNG)
         if (!currentVocab.sent) {
             contentHTML += `
-                <div class="cyber-speaker-btn" onclick="speakText('${safeText}', null, true)"></div>
+                <div class="cyber-speaker-btn" data-listening-replay role="button" aria-label="Replay audio"></div>
             `;
         }
 
         qText.innerHTML = contentHTML;
+        qText.querySelectorAll('[data-listening-replay]').forEach(button => {
+            button.onclick = (event) => replayListeningAudio(textToRead, event);
+        });
         qText.style.cursor = "default";
         qText.onclick = null;
 
@@ -4007,9 +4167,25 @@ if (typeof window.isGrammarBattleMode === 'function' && window.isGrammarBattleMo
 
 } // <--- ӛ�ñ����@�������Y����̖
 // --- 0. �Z���A��ϵ�y (��Q���t) ---
-function warmUpVoiceEngine() {
-    if ('speechSynthesis' in window) {
+function cancelSpeechSynthesisIfAvailable() {
+    if (window.speechSynthesis && typeof window.speechSynthesis.cancel === 'function') {
         window.speechSynthesis.cancel();
+    }
+}
+
+function isNativeAppRuntime() {
+    return !!(window.Capacitor && typeof window.Capacitor.isNativePlatform === 'function' && window.Capacitor.isNativePlatform());
+}
+
+function isTouchKeyboardRuntime() {
+    return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ||
+        (navigator.maxTouchPoints > 0 && typeof window.matchMedia === 'function' && !window.matchMedia('(pointer: fine)').matches);
+}
+
+function warmUpVoiceEngine() {
+    if (isNativeAppRuntime()) return;
+    if (window.speechSynthesis && typeof window.speechSynthesis.speak === 'function' && typeof SpeechSynthesisUtterance !== 'undefined') {
+        cancelSpeechSynthesisIfAvailable();
         // ��һ�Οo���հ�������������т� Engine
         const emptyMsg = new SpeechSynthesisUtterance(" "); 
         emptyMsg.volume = 0; 
@@ -4158,6 +4334,44 @@ async function saveListeningTtsPersistentCache(cacheKey, result) {
     });
 }
 
+async function fetchListeningAudioAsset(text, locale = 'en-US', options = {}) {
+    const baseUrl = getSpeakingAssessmentBaseUrl();
+    if (!baseUrl) throw new Error('Speaking assessment backend is not configured.');
+
+    const response = await fetch(`${baseUrl}/api/listening-audio`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            text,
+            locale,
+            level: options.level || selectedLevel || 'L1',
+            word: options.word || '',
+            sentenceIndex: Number.isInteger(options.sentenceIndex) ? options.sentenceIndex : null,
+            voiceName: options.voiceName || null,
+            accentLocale: options.accentLocale || null
+        })
+    });
+
+    const rawText = await response.text();
+    let result = null;
+
+    try {
+        result = rawText ? JSON.parse(rawText) : null;
+    } catch (_error) {
+        throw new Error(rawText || 'Listening audio failed.');
+    }
+
+    if (!response.ok) {
+        const error = new Error((result && (result.message || result.error)) || 'Listening audio failed.');
+        if (result?.azure) error.azure = result.azure;
+        throw error;
+    }
+
+    return result;
+}
+
 function buildListeningVoiceCacheKey(voiceProfile) {
     if (!voiceProfile) return 'default';
     return `${voiceProfile.voiceName || 'default'}::${voiceProfile.accentLocale || ''}`;
@@ -4176,7 +4390,26 @@ function getListeningManifestKey(text, locale = 'en-US', levelKey = '', voicePro
 function getListeningManifestAudioUrl(text, locale = 'en-US', levelKey = '', voiceProfile = null) {
     const manifest = window.LISTENING_AUDIO_MANIFEST || {};
     const manifestKey = getListeningManifestKey(text, locale, levelKey, voiceProfile);
-    return typeof manifest[manifestKey] === 'string' ? manifest[manifestKey] : '';
+    if (typeof manifest[manifestKey] === 'string') return manifest[manifestKey];
+
+    const cleanText = (text || '').trim();
+    if (!cleanText) return '';
+
+    const fallbackPrefix = `${levelKey || selectedLevel || 'L1'}|${locale || 'en-US'}|`;
+    const fallbackSuffix = `|${cleanText}`;
+    const fallbackKey = Object.keys(manifest).find(key => {
+        return key.startsWith(fallbackPrefix) && key.endsWith(fallbackSuffix);
+    });
+
+    if (fallbackKey && typeof manifest[fallbackKey] === 'string') {
+        console.warn('[Listening TTS Manifest] Voice fallback hit', {
+            requested: manifestKey,
+            matched: fallbackKey
+        });
+        return manifest[fallbackKey];
+    }
+
+    return '';
 }
 
 function getListeningVoiceProfileForSentence(word, levelKey = '', sentenceIndex = 0) {
@@ -4187,6 +4420,19 @@ function getListeningVoiceProfileForSentence(word, levelKey = '', sentenceIndex 
     const safeSentenceIndex = Number.isInteger(sentenceIndex) ? sentenceIndex : 0;
     const voiceIndex = Math.abs((safeWordIndex * 3) + safeSentenceIndex) % LISTENING_VOICE_ROTATION.length;
     return { ...LISTENING_VOICE_ROTATION[voiceIndex] };
+}
+
+function getPreviewSentenceIndex(word, preview = null) {
+    if (Number.isInteger(preview?.sentenceIndex)) return preview.sentenceIndex;
+    if (Number.isInteger(word?.sentenceIndex)) return word.sentenceIndex;
+    return 0;
+}
+
+function getListeningVoiceProfileForPreview(word, levelKey = '', preview = null) {
+    const sentenceIndex = getPreviewSentenceIndex(word, preview);
+    const voiceProfile = getListeningVoiceProfileForSentence(word, levelKey, sentenceIndex);
+    if (voiceProfile) return voiceProfile;
+    return ensureListeningPromptVoiceProfile(preview?.text || word?.sent || word?.en || '', levelKey);
 }
 
 function getListeningPromptVoiceKey(text, levelKey = '') {
@@ -4229,7 +4475,7 @@ function peekNextListeningVoiceProfile() {
     return { ...LISTENING_VOICE_ROTATION[nextIndex] };
 }
 
-function preloadListeningAzureAudio(text, locale = 'en-US', levelKey = '', voiceProfile = null) {
+function preloadListeningAzureAudio(text, locale = 'en-US', levelKey = '', voiceProfile = null, requestMeta = {}) {
     const cleanText = (text || '').trim();
     if (!cleanText) return Promise.reject(new Error('Text is required for listening TTS.'));
 
@@ -4266,12 +4512,13 @@ function preloadListeningAzureAudio(text, locale = 'en-US', levelKey = '', voice
                 return persistentResult;
             }
 
-            console.log('[Listening TTS Azure] Fetching', { chars: cleanText.length, cacheKey });
-            return fetchSpeakingDebriefReferenceAudio(cleanText, locale, {
-                mode: 'listening',
+            console.log('[Listening TTS Storage] Fetching', { chars: cleanText.length, cacheKey });
+            return fetchListeningAudioAsset(cleanText, locale, {
                 level: levelKey || selectedLevel || 'L1',
                 voiceName: voiceProfile?.voiceName || null,
-                accentLocale: voiceProfile?.accentLocale || null
+                accentLocale: voiceProfile?.accentLocale || null,
+                word: requestMeta.word || '',
+                sentenceIndex: Number.isInteger(requestMeta.sentenceIndex) ? requestMeta.sentenceIndex : null
             }).then(async (result) => {
                 await saveListeningTtsPersistentCache(cacheKey, result);
                 return result;
@@ -4290,7 +4537,7 @@ function preloadListeningAzureAudio(text, locale = 'en-US', levelKey = '', voice
     return request;
 }
 
-function prepareListeningPlaybackAsset(text, locale = 'en-US', levelKey = '', voiceProfile = null) {
+function prepareListeningPlaybackAsset(text, locale = 'en-US', levelKey = '', voiceProfile = null, requestMeta = {}) {
     const cleanText = (text || '').trim();
     if (!cleanText) return Promise.reject(new Error('Text is required for prepared listening audio.'));
 
@@ -4298,9 +4545,23 @@ function prepareListeningPlaybackAsset(text, locale = 'en-US', levelKey = '', vo
     const cached = listeningPreparedAudioCache.get(cacheKey);
     if (cached) return cached;
 
-    const request = preloadListeningAzureAudio(cleanText, locale, levelKey, voiceProfile)
+    const request = preloadListeningAzureAudio(cleanText, locale, levelKey, voiceProfile, requestMeta)
         .then((result) => {
             if (result.audioUrl) {
+                if (shouldUseIosNativeAudioSource(result.audioUrl)) {
+                    return Promise.resolve(
+                        typeof window.preloadIosNativeAudioSource === 'function'
+                            ? window.preloadIosNativeAudioSource(result.audioUrl)
+                            : false
+                    ).catch(() => false).then(() => ({
+                        ...result,
+                        audioElement: null,
+                        objectUrl: result.audioUrl,
+                        cacheKey,
+                        nativeAudioSource: true
+                    }));
+                }
+
                 const warmAudio = new Audio(result.audioUrl);
                 warmAudio.preload = 'auto';
                 warmAudio.playsInline = true;
@@ -4341,11 +4602,53 @@ function prepareListeningPlaybackAsset(text, locale = 'en-US', levelKey = '', vo
     return request;
 }
 
+function isIosNativeAudioPlaybackAvailable() {
+    return window.Capacitor?.getPlatform?.() === 'ios'
+        && typeof window.playIosNativeAudioSource === 'function';
+}
+
+function shouldUseIosNativeAudioSource(source) {
+    if (!isIosNativeAudioPlaybackAvailable() || !source) return false;
+    return !/^(blob:|data:)/i.test(String(source));
+}
+
+function normalizeVocabWordAudioText(text) {
+    return (text || '').trim().toLowerCase();
+}
+
+function getVocabWordAudioManifestKey(text, locale = 'en-US', voiceProfile = VOCAB_PREVIEW_VOICE_PROFILE) {
+    return [
+        locale || 'en-US',
+        buildListeningVoiceCacheKey(voiceProfile || VOCAB_PREVIEW_VOICE_PROFILE),
+        normalizeVocabWordAudioText(text)
+    ].join('|');
+}
+
+function getVocabWordManifestAudioUrl(text, locale = 'en-US', voiceProfile = VOCAB_PREVIEW_VOICE_PROFILE) {
+    const manifest = window.VOCAB_WORD_AUDIO_MANIFEST || {};
+    const manifestKey = getVocabWordAudioManifestKey(text, locale, voiceProfile);
+    if (typeof manifest[manifestKey] === 'string') return manifest[manifestKey];
+
+    const cleanText = normalizeVocabWordAudioText(text);
+    if (!cleanText) return '';
+
+    const fallbackSuffix = `|${cleanText}`;
+    const fallbackKey = Object.keys(manifest).find(key => key.endsWith(fallbackSuffix));
+    return fallbackKey && typeof manifest[fallbackKey] === 'string' ? manifest[fallbackKey] : '';
+}
+
 function stopListeningPlayback() {
     clearListeningTimerStartTimeout();
     listeningPlaybackToken++;
-    window.speechSynthesis.cancel();
+    cancelSpeechSynthesisIfAvailable();
     clearListeningPlaybackBoost();
+    if (typeof releaseBgmDuck === 'function') {
+        releaseBgmDuck('listening-voice', 180);
+        releaseBgmDuck('vocab-voice', 180);
+    }
+    if (typeof window.stopIosBundleAudio === 'function') {
+        window.stopIosBundleAudio().catch(() => {});
+    }
     if (!listeningPlaybackAudio) return;
     try {
         listeningPlaybackAudio.pause();
@@ -4376,23 +4679,24 @@ function getPreviewSentenceForWord(word, modeKey, levelKey) {
     if (!word?.sents || word.sents.length === 0) {
         return {
             text: word?.sent || word?.en || '',
-            answer: word?.listeningAnswer || null
+            answer: word?.listeningAnswer || null,
+            sentenceIndex: Number.isInteger(word?.sentenceIndex) ? word.sentenceIndex : 0
         };
     }
 
     if (modeKey !== 'listening' && modeKey !== 'speaking') {
         const firstSentence = word.sents[0];
         return typeof firstSentence === 'object' && firstSentence?.text
-            ? { text: firstSentence.text, answer: firstSentence.answer || null }
-            : { text: firstSentence, answer: null };
+            ? { text: firstSentence.text, answer: firstSentence.answer || null, sentenceIndex: 0 }
+            : { text: firstSentence, answer: null, sentenceIndex: 0 };
     }
 
     const entry = ensureSentenceProgressEntry(modeKey, levelKey, word.en, word.sents.length);
     const previewIndex = entry.queue[0] ?? 0;
     const selected = word.sents[previewIndex];
     return typeof selected === 'object' && selected?.text
-        ? { text: selected.text, answer: selected.answer || null }
-        : { text: selected, answer: null };
+        ? { text: selected.text, answer: selected.answer || null, sentenceIndex: previewIndex }
+        : { text: selected, answer: null, sentenceIndex: previewIndex };
 }
 
 function getLikelyNextBattleWord() {
@@ -4510,13 +4814,12 @@ function primePendingListeningQuestion() {
     pendingBattleVocab = previewWord;
     const preview = getPreviewSentenceForWord(previewWord, 'listening', selectedLevel || 'L1');
     if (preview?.text) {
-        const voiceProfile = ensureListeningPromptVoiceProfile(preview.text, selectedLevel || 'L1');
-        preloadListeningAzureAudio(
-            preview.text,
-            'en-US',
-            selectedLevel || 'L1',
-            voiceProfile
-        ).catch(() => {});
+        const sentenceIndex = getPreviewSentenceIndex(previewWord, preview);
+        const voiceProfile = getListeningVoiceProfileForPreview(previewWord, selectedLevel || 'L1', preview);
+        preloadListeningAzureAudio(preview.text, 'en-US', selectedLevel || 'L1', voiceProfile, {
+            word: previewWord.en,
+            sentenceIndex
+        }).catch(() => {});
     }
 }
 
@@ -4527,12 +4830,12 @@ function preloadLikelyNextListeningPrompt() {
     if (!previewWord) return;
     const preview = getPreviewSentenceForWord(previewWord, 'listening', selectedLevel || 'L1');
     if (preview?.text) {
-        preloadListeningAzureAudio(
-            preview.text,
-            'en-US',
-            selectedLevel || 'L1',
-            peekNextListeningVoiceProfile()
-        ).catch(() => {});
+        const sentenceIndex = getPreviewSentenceIndex(previewWord, preview);
+        const voiceProfile = getListeningVoiceProfileForPreview(previewWord, selectedLevel || 'L1', preview);
+        preloadListeningAzureAudio(preview.text, 'en-US', selectedLevel || 'L1', voiceProfile, {
+            word: previewWord.en,
+            sentenceIndex
+        }).catch(() => {});
     }
 }
 
@@ -4541,12 +4844,10 @@ function preloadCurrentListeningPrompt() {
     const textToRead = (currentVocab.sent || currentVocab.en || '').trim();
     if (!textToRead) return;
     const voiceProfile = getCurrentListeningVoiceProfile(textToRead, selectedLevel || 'L1');
-    preloadListeningAzureAudio(
-        textToRead,
-        'en-US',
-        selectedLevel || 'L1',
-        voiceProfile
-    ).catch(() => {});
+    preloadListeningAzureAudio(textToRead, 'en-US', selectedLevel || 'L1', voiceProfile, {
+        word: currentVocab.en,
+        sentenceIndex: Number.isInteger(currentVocab.sentenceIndex) ? currentVocab.sentenceIndex : 0
+    }).catch(() => {});
 }
 
 function warmListeningPlaybackDuringTargetLock() {
@@ -4554,10 +4855,15 @@ function warmListeningPlaybackDuringTargetLock() {
 
     let textToRead = '';
     let voiceProfile = null;
+    let requestMeta = {};
 
     if (gameMode === 'PVP') {
         const questionPayload = getPvpDeckQuestion() || null;
         textToRead = String(questionPayload?.sent || questionPayload?.en || '').trim();
+        requestMeta = {
+            word: questionPayload?.en || '',
+            sentenceIndex: Number.isInteger(questionPayload?.sentenceIndex) ? questionPayload.sentenceIndex : 0
+        };
         if (questionPayload?.listeningVoiceName) {
             voiceProfile = {
                 label: 'PVP Shared',
@@ -4567,12 +4873,21 @@ function warmListeningPlaybackDuringTargetLock() {
         }
     } else if (pendingBattleVocab) {
         const preview = getPreviewSentenceForWord(pendingBattleVocab, 'listening', selectedLevel || 'L1');
+        const sentenceIndex = getPreviewSentenceIndex(pendingBattleVocab, preview);
         textToRead = String(preview?.text || '').trim();
+        requestMeta = {
+            word: pendingBattleVocab.en || '',
+            sentenceIndex
+        };
         if (textToRead) {
-            voiceProfile = ensureListeningPromptVoiceProfile(textToRead, selectedLevel || 'L1');
+            voiceProfile = getListeningVoiceProfileForPreview(pendingBattleVocab, selectedLevel || 'L1', preview);
         }
     } else if (currentVocab) {
         textToRead = String(currentVocab.sent || currentVocab.en || '').trim();
+        requestMeta = {
+            word: currentVocab.en || '',
+            sentenceIndex: Number.isInteger(currentVocab.sentenceIndex) ? currentVocab.sentenceIndex : 0
+        };
         if (textToRead) {
             voiceProfile = getCurrentListeningVoiceProfile(textToRead, selectedLevel || 'L1');
         }
@@ -4580,29 +4895,110 @@ function warmListeningPlaybackDuringTargetLock() {
 
     if (!textToRead) return;
 
-    prepareListeningPlaybackAsset(
-        textToRead,
-        'en-US',
-        selectedLevel || 'L1',
-        voiceProfile
-    ).catch(() => {});
+    prepareListeningPlaybackAsset(textToRead, 'en-US', selectedLevel || 'L1', voiceProfile, requestMeta).catch(() => {});
 }
 
 async function playListeningAzureText(text, element = null, startListeningTimer = false) {
     const hiddenInput = document.getElementById('hidden-input');
     const shouldMaintainFocus = hiddenInput && hiddenInput.style.display !== 'none' &&
-                                 typeof currentPracticeMode !== 'undefined' && currentPracticeMode === 'LISTENING';
+                                 typeof currentPracticeMode !== 'undefined' && currentPracticeMode === 'LISTENING' &&
+                                 !isTouchKeyboardRuntime();
 
-    window.speechSynthesis.cancel();
+    cancelSpeechSynthesisIfAvailable();
     document.querySelectorAll('.vocab-row.speaking').forEach(el => el.classList.remove('speaking'));
     stopListeningPlayback();
     const playbackToken = ++listeningPlaybackToken;
 
     const voiceProfile = getCurrentListeningVoiceProfile(text, selectedLevel || 'L1');
-    const result = await prepareListeningPlaybackAsset(text, 'en-US', selectedLevel || 'L1', voiceProfile);
+    const result = await prepareListeningPlaybackAsset(text, 'en-US', selectedLevel || 'L1', voiceProfile, {
+        word: currentVocab?.en || '',
+        sentenceIndex: Number.isInteger(currentVocab?.sentenceIndex) ? currentVocab.sentenceIndex : 0
+    });
     if (playbackToken !== listeningPlaybackToken) return true;
 
-    const objectUrl = result.objectUrl;
+    const objectUrl = result.objectUrl || result.audioUrl;
+    if (shouldUseIosNativeAudioSource(objectUrl)) {
+        let listeningCountdownScheduled = false;
+        let listeningCountdownStarted = false;
+        const scheduleNativeListeningCountdown = () => {
+            if (!startListeningTimer || listeningCountdownScheduled) return;
+
+            const durationMs = Number.isFinite(result?.durationMs) && result.durationMs > 0
+                ? Math.round(result.durationMs)
+                : 0;
+
+            if (!durationMs) return;
+
+            const listeningTarget = currentVocab?.listeningAnswer || currentVocab?.en || '';
+            const estimatedMs = estimateListeningTargetFinishMs(
+                currentVocab?.sent ? currentVocab.sent : text,
+                listeningTarget,
+                durationMs
+            );
+
+            listeningCountdownScheduled = true;
+            clearListeningTimerStartTimeout();
+            listeningTimerStartTimeout = setTimeout(() => {
+                listeningTimerStartTimeout = null;
+                const modal = document.getElementById('launch-modal');
+                if (modal && modal.style.display === 'flex' && typeof startCountdownTimer === 'function' && !timerInterval) {
+                    listeningCountdownStarted = true;
+                    console.log(`[Listening Debug] Estimated target finished at ${estimatedMs}ms, starting timer.`);
+                    startCountdownTimer();
+                }
+            }, Math.max(250, estimatedMs));
+        };
+
+        const finishNativeListeningPlayback = () => {
+            if (shouldMaintainFocus && hiddenInput) {
+                setTimeout(() => hiddenInput.focus(), 50);
+            }
+            if (startListeningTimer &&
+                typeof currentPracticeMode !== 'undefined' &&
+                currentPracticeMode === 'LISTENING' &&
+                !listeningCountdownStarted) {
+                const modal = document.getElementById('launch-modal');
+                if (modal && modal.style.display === 'flex' && typeof startCountdownTimer === 'function' && !timerInterval) {
+                    listeningCountdownStarted = true;
+                    startCountdownTimer();
+                }
+            }
+        };
+
+        const cleanupNativeListeningPlayback = () => {
+            clearListeningTimerStartTimeout();
+            if (element) element.classList.remove('speaking');
+            if (listeningPlaybackObjectUrl === objectUrl) {
+                listeningPlaybackObjectUrl = '';
+            }
+            if (typeof releaseBgmDuck === 'function') releaseBgmDuck('listening-voice', 250);
+        };
+
+        try {
+            listeningPlaybackAudio = null;
+            listeningPlaybackObjectUrl = objectUrl;
+            if (typeof requestBgmDuck === 'function') requestBgmDuck('listening-voice', 220);
+            if (element) element.classList.add('speaking');
+            scheduleNativeListeningCountdown();
+
+            const playedNatively = await window.playIosNativeAudioSource(
+                objectUrl,
+                typeof getBoostedListeningVoiceVolume === 'function' ? getBoostedListeningVoiceVolume() : 1
+            );
+
+            if (playbackToken !== listeningPlaybackToken) return true;
+            cleanupNativeListeningPlayback();
+            if (playedNatively) {
+                finishNativeListeningPlayback();
+                return true;
+            }
+        } catch (error) {
+            if (playbackToken !== listeningPlaybackToken) return true;
+            cleanupNativeListeningPlayback();
+            console.warn('[Listening Audio] iOS native playback failed; falling back to web audio:', error);
+        }
+    }
+
     const audio = result.audioElement || new Audio(objectUrl);
     if (audio !== result.audioElement) {
         audio.src = objectUrl;
@@ -4630,6 +5026,7 @@ async function playListeningAzureText(text, element = null, startListeningTimer 
             listeningPlaybackAudio = null;
         }
         if (element) element.classList.remove('speaking');
+        if (typeof releaseBgmDuck === 'function') releaseBgmDuck('listening-voice', 250);
     };
 
     let listeningCountdownScheduled = false;
@@ -4666,6 +5063,7 @@ async function playListeningAzureText(text, element = null, startListeningTimer 
     };
 
     audio.onplay = () => {
+        if (typeof requestBgmDuck === 'function') requestBgmDuck('listening-voice', 220);
         if (element) element.classList.add('speaking');
         scheduleListeningCountdown();
     };
@@ -4711,20 +5109,79 @@ async function speakVocabText(text, element = null) {
     if (!cleanText) return;
 
     try {
-        window.speechSynthesis.cancel();
+        cancelSpeechSynthesisIfAvailable();
         document.querySelectorAll('.vocab-row.speaking').forEach(el => el.classList.remove('speaking'));
         stopListeningPlayback();
 
-        const result = await prepareListeningPlaybackAsset(
-            cleanText,
-            'en-US',
-            selectedLevel || 'VOCAB',
-            VOCAB_PREVIEW_VOICE_PROFILE
-        );
+        const localAudioUrl = getVocabWordManifestAudioUrl(cleanText, 'en-US', VOCAB_PREVIEW_VOICE_PROFILE);
+        const shouldUseIosBundleAudio = window.Capacitor?.getPlatform?.() === 'ios'
+            && typeof window.playIosBundleAudio === 'function';
+        let attemptedNativeVocabAudio = false;
+        if (localAudioUrl && shouldUseIosBundleAudio) {
+            attemptedNativeVocabAudio = true;
+            const nativePlaybackToken = ++listeningPlaybackToken;
+            listeningPlaybackAudio = null;
+            listeningPlaybackObjectUrl = localAudioUrl;
+            if (typeof requestBgmDuck === 'function') requestBgmDuck('vocab-voice', 220);
+            if (element) element.classList.add('speaking');
+
+            const playedNatively = await window.playIosBundleAudio(
+                localAudioUrl,
+                typeof getBoostedListeningVoiceVolume === 'function' ? getBoostedListeningVoiceVolume() : 1
+            );
+
+            if (nativePlaybackToken !== listeningPlaybackToken) return;
+            if (element) element.classList.remove('speaking');
+            if (typeof releaseBgmDuck === 'function') releaseBgmDuck('vocab-voice', 250);
+            listeningPlaybackObjectUrl = '';
+            if (playedNatively) return;
+        }
+
+        const result = localAudioUrl
+            ? {
+                ok: true,
+                cached: true,
+                objectUrl: localAudioUrl,
+                audioUrl: localAudioUrl,
+                format: 'audio/mpeg',
+                text: cleanText,
+                mode: 'vocab-word-local'
+            }
+            : await prepareListeningPlaybackAsset(cleanText, 'en-US', selectedLevel || 'VOCAB', VOCAB_PREVIEW_VOICE_PROFILE, {
+                word: cleanText,
+                sentenceIndex: null
+            });
+        const nativeVocabSource = result.objectUrl || result.audioUrl;
+        if (!attemptedNativeVocabAudio && shouldUseIosNativeAudioSource(nativeVocabSource)) {
+            const nativePlaybackToken = ++listeningPlaybackToken;
+            listeningPlaybackAudio = null;
+            listeningPlaybackObjectUrl = nativeVocabSource;
+            if (typeof requestBgmDuck === 'function') requestBgmDuck('vocab-voice', 220);
+            if (element) element.classList.add('speaking');
+
+            let playedNatively = false;
+            try {
+                playedNatively = await window.playIosNativeAudioSource(
+                    nativeVocabSource,
+                    typeof getBoostedListeningVoiceVolume === 'function' ? getBoostedListeningVoiceVolume() : 1
+                );
+            } catch (error) {
+                console.warn('[Vocab Audio] iOS native playback failed; falling back to web audio:', error);
+            }
+
+            if (nativePlaybackToken !== listeningPlaybackToken) return;
+            if (element) element.classList.remove('speaking');
+            if (typeof releaseBgmDuck === 'function') releaseBgmDuck('vocab-voice', 250);
+            listeningPlaybackObjectUrl = '';
+            if (playedNatively) return;
+        }
         const audio = new Audio(result.objectUrl);
         const audioContext = applyListeningPlaybackBoost(audio);
         audio.preload = 'auto';
+        audio.playsInline = true;
+        audio.setAttribute('playsinline', '');
         audio.onplay = () => {
+            if (typeof requestBgmDuck === 'function') requestBgmDuck('vocab-voice', 220);
             if (element) element.classList.add('speaking');
         };
         audio.onended = () => {
@@ -4734,6 +5191,7 @@ async function speakVocabText(text, element = null) {
                 listeningPlaybackObjectUrl = '';
                 clearListeningPlaybackBoost();
             }
+            if (typeof releaseBgmDuck === 'function') releaseBgmDuck('vocab-voice', 250);
         };
         audio.onerror = () => {
             if (element) element.classList.remove('speaking');
@@ -4742,6 +5200,7 @@ async function speakVocabText(text, element = null) {
                 listeningPlaybackObjectUrl = '';
                 clearListeningPlaybackBoost();
             }
+            if (typeof releaseBgmDuck === 'function') releaseBgmDuck('vocab-voice', 250);
         };
 
         listeningPlaybackAudio = audio;
@@ -4981,7 +5440,7 @@ function handlePlayerTimeout() {
         if (currentPracticeMode === 'LISTENING') {
             const targetWord = currentVocab.listeningAnswer || currentVocab.en;
             const formattedVal = formatInputForTarget(inputVal, targetWord);
-            document.getElementById('q-display').innerHTML = renderListeningAnswerDisplay(targetWord, formattedVal);
+            updateListeningAnswerDisplay(targetWord, formattedVal);
             return;
         }
 
@@ -5113,6 +5572,15 @@ function handleCorrectAnswer() {
 
 // --- �����棺�ˌ��� (���ܟoҕ��̖) ---
 function checkAnswer() {
+    if (attackResolutionLocked !== true || currentTargetIndex === null || currentTargetIndex === undefined) {
+        const modal = document.getElementById('launch-modal');
+        if (modal && modal.style.display === 'flex') {
+            playSound('wrong-sfx');
+            document.getElementById('msg-area').innerText = "TARGET LOCK LOST!";
+        }
+        return;
+    }
+
     if (typeof window.isGrammarBattleMode === 'function' && window.isGrammarBattleMode()) {
         const isCorrect = typeof window.checkGrammarBattleAnswer === 'function'
             ? window.checkGrammarBattleAnswer()
@@ -5197,6 +5665,18 @@ function checkAnswer() {
 
     // --- 10. ������� ---
 function playerFire(success) {
+    const enemyGridEl = document.getElementById('enemy-grid');
+    const cell = enemyGridEl && currentTargetIndex !== null && currentTargetIndex !== undefined
+        ? enemyGridEl.children[currentTargetIndex]
+        : null;
+    if (!cell) {
+        attackResolutionLocked = false;
+        isTargeting = false;
+        playSound('wrong-sfx');
+        document.getElementById('msg-area').innerText = "TARGET LOCK LOST!";
+        return;
+    }
+
     // 1. ���������ͣӋ�r�����P�]����
     closeLaunchModalUI();
 
@@ -5234,7 +5714,6 @@ function playerFire(success) {
             update(ref(db, 'rooms/' + currentRoomId), roomUpdate);
 
             // 3. ���Űl��Ӯ�
-            const cell = document.getElementById('enemy-grid').children[currentTargetIndex];
             playSound('laser-sfx');
             triggerAnimation(cell, 'blue');
 
@@ -5282,7 +5761,6 @@ function playerFire(success) {
         // ============================
         else {
             playSound('laser-sfx');
-            const cell = document.getElementById('enemy-grid').children[currentTargetIndex];
             cell.classList.add('revealed');
             triggerAnimation(cell, 'blue');
             
@@ -6212,6 +6690,8 @@ function playSound(id) {
 }
 
 function playSoundViaWebAudio(id, volume) {
+    if (typeof window.shouldMuteWebSfxForNativeTest === 'function' && window.shouldMuteWebSfxForNativeTest()) return;
+
     if (typeof window.playBufferedSfx === 'function') {
         window.playBufferedSfx(id, volume).then(played => {
             if (played) return;
@@ -6223,6 +6703,8 @@ function playSoundViaWebAudio(id, volume) {
 }
 
 function playHtmlAudioSfx(id, volume) {
+    if (typeof window.shouldMuteWebSfxForNativeTest === 'function' && window.shouldMuteWebSfxForNativeTest()) return;
+
     const s = typeof window.getPooledSfxAudio === 'function'
         ? window.getPooledSfxAudio(id)
         : document.getElementById(id);
@@ -6230,9 +6712,58 @@ function playHtmlAudioSfx(id, volume) {
         s.muted = false;
         s.volume = volume;
         s.currentTime = 0;
-        s.play().catch(e=>{});
+        const playPromise = s.play();
+        if (playPromise && typeof playPromise.then === 'function') {
+            playPromise
+                .then(() => {
+                    if (id === 'deploy-sfx') {
+                        console.log('[Audio Debug] HTML deploy-sfx played');
+                    }
+                })
+                .catch(error => {
+                    console.warn(`[Audio Debug] HTML SFX failed ${id}: ${error?.name || ''} ${error?.message || error}`);
+                });
+        }
     }
 }
+
+window.playImmediateWebSfx = function(id, volume = 0.5) {
+    if (id === 'deploy-sfx') {
+        console.log('[Audio Debug] Immediate web deploy-sfx requested');
+    }
+
+    const source = document.getElementById(id)?.querySelector('source')?.getAttribute('src')
+        || document.getElementById(id)?.currentSrc
+        || document.getElementById(id)?.src
+        || '';
+    if (!source) {
+        playHtmlAudioSfx(id, volume);
+        return true;
+    }
+
+    const audio = new Audio(source);
+    window.__immediateSfxRefs = window.__immediateSfxRefs || new Set();
+    window.__immediateSfxRefs.add(audio);
+    audio.preload = 'auto';
+    audio.playsInline = true;
+    audio.setAttribute('playsinline', '');
+    audio.volume = volume;
+    audio.onended = () => window.__immediateSfxRefs.delete(audio);
+    audio.onerror = () => window.__immediateSfxRefs.delete(audio);
+    const playPromise = audio.play();
+    if (playPromise && typeof playPromise.then === 'function') {
+        playPromise
+            .then(() => {
+                if (id === 'deploy-sfx') console.log('[Audio Debug] Immediate deploy-sfx played');
+            })
+            .catch(error => {
+                window.__immediateSfxRefs.delete(audio);
+                console.warn(`[Audio Debug] Immediate SFX failed ${id}: ${error?.name || ''} ${error?.message || error}`);
+                playHtmlAudioSfx(id, volume);
+            });
+    }
+    return true;
+};
 
 function isElementVisible(el) {
     return !!(el && el.offsetParent !== null);
@@ -6931,8 +7462,6 @@ function handleDeploymentTimeout() {
 
 // ���� AUTO DEPLOY FUNCTION ����
 function autoDeployFleet() {
-    playSound('deploy-sfx');
-
     // Clear all existing ships from grid data
     for (let i = 0; i < myGrid.length; i++) {
         myGrid[i] = 0;
@@ -7441,11 +7970,11 @@ function revealEnemyShip(ship) {
     }
 }
 
-let synth = window.speechSynthesis;
+let synth = window.speechSynthesis || null;
 let techVoice = null;
 
 function hideMenuOverlayScreens() {
-    const ids = ['level-screen', 'skill-screen', 'race-screen', 'lobby-screen', 'ranking-screen', 'vocab-screen', 'grammar-topic-screen', 'grammar-verb-screen'];
+    const ids = ['level-screen', 'stage-screen', 'skill-screen', 'race-screen', 'lobby-screen', 'ranking-screen', 'vocab-screen', 'grammar-topic-screen', 'grammar-verb-screen'];
     ids.forEach(id => {
         const el = document.getElementById(id);
         if (el) el.style.display = 'none';
@@ -7466,6 +7995,15 @@ function showSelectionOverlay() {
 function showLobbyScreen() {
     const lobbyScreen = document.getElementById('lobby-screen');
     if (!lobbyScreen) return;
+
+    ['level-screen', 'stage-screen', 'skill-screen', 'race-screen'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+    });
+    const gameWrapper = document.getElementById('game-content-wrapper');
+    if (gameWrapper) gameWrapper.style.display = 'block';
+    const startScreen = document.getElementById('start-screen');
+    if (startScreen) startScreen.style.display = 'none';
 
     resetLobbyScreenState();
     const overlay = document.getElementById('selection-overlay');
@@ -7748,6 +8286,7 @@ function abolishRoom() {
 
 // A. �A���d���n
 function loadVoices() {
+    if (!synth) return;
     const voices = synth.getVoices();
     // �� �����x��Ӣ���Z�������ϵ�y�Z�Ըɔ_ ��
     techVoice = voices.find(v => v.lang === 'en-US') ||
@@ -7762,8 +8301,8 @@ function loadVoices() {
     }
 }
 
-if (speechSynthesis.onvoiceschanged !== undefined) {
-    speechSynthesis.onvoiceschanged = loadVoices;
+if (synth && synth.onvoiceschanged !== undefined) {
+    synth.onvoiceschanged = loadVoices;
 }
 
 
@@ -8314,26 +8853,9 @@ function renderListeningAnswerDisplay(text, inputVal) {
 
     const rowMarkup = rows.map((row, index) => {
         const typedText = escapeHtml(typedRows[index] || '');
-        const lengthBasis = Math.max((typedRows[index] || '').length, row.length);
-        let fontSize = 24;
-        let letterSpacing = 3;
-
-        if (lengthBasis >= 24) {
-            fontSize = 12;
-            letterSpacing = 0.4;
-        } else if (lengthBasis >= 20) {
-            fontSize = 14;
-            letterSpacing = 0.6;
-        } else if (lengthBasis >= 17) {
-            fontSize = 16;
-            letterSpacing = 0.8;
-        } else if (lengthBasis >= 14) {
-            fontSize = 18;
-            letterSpacing = 1.2;
-        } else if (lengthBasis >= 10) {
-            fontSize = 22;
-            letterSpacing = 2.4;
-        }
+        const { fontSize, letterSpacing } = getListeningAnswerTextStyle(
+            Math.max((typedRows[index] || '').length, row.length)
+        );
 
         return `
             <div class="listening-answer-row">
@@ -8344,9 +8866,43 @@ function renderListeningAnswerDisplay(text, inputVal) {
 
     return `<div class="${rowClass}">${rowMarkup}</div>`;
 }
+
+function getListeningAnswerTextStyle(lengthBasis) {
+    if (lengthBasis >= 24) return { fontSize: 12, letterSpacing: 0.4 };
+    if (lengthBasis >= 20) return { fontSize: 14, letterSpacing: 0.6 };
+    if (lengthBasis >= 17) return { fontSize: 16, letterSpacing: 0.8 };
+    if (lengthBasis >= 14) return { fontSize: 18, letterSpacing: 1.2 };
+    if (lengthBasis >= 10) return { fontSize: 22, letterSpacing: 2.4 };
+    return { fontSize: 24, letterSpacing: 3 };
+}
+
+function updateListeningAnswerDisplay(text, inputVal) {
+    const qDisplay = document.getElementById('q-display');
+    if (!qDisplay) return;
+
+    const rows = getListeningAnswerRows(text);
+    const typedRows = splitListeningInputByRows(inputVal, rows);
+    const typedEls = qDisplay.querySelectorAll('.listening-answer-typed');
+
+    if (typedEls.length !== rows.length) {
+        qDisplay.innerHTML = renderListeningAnswerDisplay(text, inputVal);
+        return;
+    }
+
+    typedEls.forEach((typedEl, index) => {
+        const typedText = typedRows[index] || '';
+        const { fontSize, letterSpacing } = getListeningAnswerTextStyle(
+            Math.max(typedText.length, rows[index].length)
+        );
+        typedEl.textContent = typedText || '\u00a0';
+        typedEl.style.fontSize = `${fontSize}px`;
+        typedEl.style.letterSpacing = `${letterSpacing}px`;
+    });
+}
 // --- ��K�����棺�x���� (PVP ����) ---
 async function selectSkill(skill) {
     console.log("Skill Selected:", skill);
+    if (typeof window.resetBgmDucks === 'function') window.resetBgmDucks(180);
     window.selectedGrammarTopic = null;
     currentPracticeMode = skill;
     if (tempGameMode === 'AI') {
@@ -8396,12 +8952,6 @@ async function selectSkill(skill) {
         createRoom();
     }
 }
-
-// ���� �������N���x�񺯔� ����
-let selectedRace = 'VANGUARDS'; // �A�O�N�壨��ң�
-let enemyRace = 'VANGUARDS'; // AI ���ַN��
-let unlockedRaces = ['VANGUARDS']; // �A�O���i Vanguards
-window.unlockedRaces = unlockedRaces;
 
 function selectRace(race) {
     const btn = document.getElementById(`race-btn-${race.toLowerCase()}`);
@@ -8679,6 +9229,7 @@ function showSuppliesNeededAnimation(race) {
 // ���� ���ذ��o̎�� ����
 function handleRaceBack() {
     playSound('delete-sfx');
+    if (typeof window.resetBgmDucks === 'function') window.resetBgmDucks(180);
     if (tempGameMode === 'PVP' && currentRoomId) {
         showNotification('PVP LINK ABORTED', 'warning', 2000);
         resetGame();
@@ -8689,13 +9240,7 @@ function handleRaceBack() {
         showGrammarScreenWithAnimation('grammar-topic-screen');
         return;
     }
-    const skillScreen = document.getElementById('skill-screen');
-    skillScreen.style.display = 'flex';
-    // ���� Trigger holoAppear animation ����
-    skillScreen.style.animation = 'none';
-    setTimeout(() => {
-        skillScreen.style.animation = 'holoAppear 0.4s forwards';
-    }, 10);
+    showSkillScreen({ hideSpeaking: false });
 }
 
 function handleSkillBack() {
@@ -8801,7 +9346,7 @@ async function submitSpeakingAudioForAssessment(blob) {
     if (!baseUrl) throw new Error('Speaking assessment backend is not configured.');
 
     const wavBlob = /wav/i.test(blob.type || '') ? blob : await convertBlobToMonoWav(blob);
-    console.log(`[Speaking Debug] Submitting assessment (${Math.round(wavBlob.size / 1024)} KB WAV)`);
+    console.log(`[Speaking Debug] Submitting assessment (${Math.round(wavBlob.size / 1024)} KB WAV) -> ${baseUrl}`);
     const audioBase64 = await blobToBase64(wavBlob);
     speakingLastRecordedAudioBase64 = audioBase64;
     const payload = {
@@ -8826,15 +9371,51 @@ async function submitSpeakingAudioForAssessment(blob) {
     try {
         result = rawText ? JSON.parse(rawText) : null;
     } catch (_error) {
-        throw new Error(rawText || 'Pronunciation assessment failed.');
+        const error = new Error(rawText || 'Pronunciation assessment failed.');
+        error.status = response.status;
+        error.body = rawText;
+        throw error;
     }
 
     if (!response.ok) {
-        throw new Error((result && (result.message || result.error)) || 'Pronunciation assessment failed.');
+        const error = new Error((result && (result.message || result.error)) || 'Pronunciation assessment failed.');
+        error.status = response.status;
+        error.body = rawText;
+        throw error;
     }
 
     console.log('[Speaking Debug] Assessment response received');
     return result;
+}
+
+async function requestSpeakingAudioStream() {
+    const platform = getNativePlatformName();
+    const simpleNativeCapture = platform === 'android' || platform === 'ios';
+    const preferredConstraints = {
+        audio: {
+            channelCount: { ideal: 1 },
+            echoCancellation: { ideal: false },
+            noiseSuppression: { ideal: false },
+            autoGainControl: { ideal: false }
+        }
+    };
+    const simpleConstraints = { audio: true };
+    const firstConstraints = simpleNativeCapture ? simpleConstraints : preferredConstraints;
+    const fallbackConstraints = simpleNativeCapture ? preferredConstraints : simpleConstraints;
+
+    try {
+        const stream = await navigator.mediaDevices.getUserMedia(firstConstraints);
+        console.log(`[Speaking Debug] getUserMedia ready (${platform || 'web'}, simple=${simpleNativeCapture})`);
+        return stream;
+    } catch (error) {
+        console.warn(`[Speaking Debug] getUserMedia primary failed: ${describeJsError(error)}`);
+        if (/notallowed|permission/i.test(String(error?.name || error?.message || ''))) {
+            throw error;
+        }
+        const stream = await navigator.mediaDevices.getUserMedia(fallbackConstraints);
+        console.log(`[Speaking Debug] getUserMedia fallback ready (${platform || 'web'})`);
+        return stream;
+    }
 }
 
 async function fetchSpeakingDebriefReferenceAudio(text, locale = 'en-US', options = {}) {
@@ -9049,14 +9630,13 @@ async function startAzureSpeakingAssessment() {
     speakingManualStopMinMs = Math.max(1500, Math.min(6000, sentenceWordCount * 500));
     speakingNoVoiceTimeoutMs = Math.max(5000, Math.min(9000, sentenceWordCount * 500));
     console.log('[Speaking Debug] Azure speaking capture started');
-    speakingAudioStream = await navigator.mediaDevices.getUserMedia({
-        audio: {
-            channelCount: 1,
-            echoCancellation: false,
-            noiseSuppression: false,
-            autoGainControl: false
-        }
-    });
+    await prepareNativeAudioForSpeakingCapture();
+    try {
+        speakingAudioStream = await requestSpeakingAudioStream();
+    } catch (error) {
+        restoreNativeAudioAfterSpeakingCapture();
+        throw error;
+    }
 
     const stopRecording = async () => {
         if (!speakingMediaRecorder || speakingMediaRecorder.state !== 'recording') return;
@@ -9093,7 +9673,7 @@ async function startAzureSpeakingAssessment() {
             const assessment = await submitSpeakingAudioForAssessment(recordedBlob);
             checkSpeakingAssessment(assessment);
         } catch (error) {
-            console.warn('[Speaking Debug] Assessment request failed:', error);
+            console.warn(`[Speaking Debug] Assessment request failed: ${describeJsError(error)}`);
             console.warn('Azure speaking assessment failed:', error);
             showSpeakingAzureUnavailable("AZURE OFFLINE // CHECK BACKEND");
         }
@@ -9186,7 +9766,7 @@ function startListening() {
         }
 
         startAzureSpeakingAssessment().catch((error) => {
-            console.warn('Azure speaking start failed:', error);
+            console.warn(`Azure speaking start failed: ${describeJsError(error)}`);
             showSpeakingAzureUnavailable("AZURE START FAILED");
         });
         return;
@@ -9404,14 +9984,23 @@ function checkSpeakingResult(spokenText) {
 // ������һ� (Back ��)
 function backToMainMenu() {
     playSound('delete-sfx');
-    document.getElementById('skill-screen').style.display = 'none';
+    if (typeof window.resetBgmDucks === 'function') window.resetBgmDucks(180);
+    const skillScreen = document.getElementById('skill-screen');
+    if (skillScreen) skillScreen.style.display = 'none';
 
     if (tempGameMode === 'AI') {
-        // AI ģʽ��Skill �S�ڶ�����Back ���� Level �x��
-        document.getElementById('level-screen').style.display = 'flex';
+        const levelScreen = document.getElementById('level-screen');
+        if (levelScreen) levelScreen.style.display = 'none';
+        if (selectedLevel) {
+            renderStageScreen(selectedLevel);
+            showStageScreen();
+        } else {
+            showMainMenu();
+        }
     } else {
-        // ����ģʽ�������x��
-        showMainMenu();
+        showSelectionOverlay();
+        const levelScreen = document.getElementById('level-screen');
+        if (levelScreen) levelScreen.style.display = 'flex';
     }
 }
 /* =========================================
@@ -9484,8 +10073,9 @@ function startMatrixEffect() {
         }
     }
 
+    const isIosNative = window.Capacitor?.getPlatform?.() === 'ios';
     if (matrixInterval) clearInterval(matrixInterval);
-    matrixInterval = setInterval(draw, 33); // 30 FPS
+    matrixInterval = setInterval(draw, isIosNative ? 66 : 33);
 }
 
 // ҕ����С��׃�r����
@@ -9531,35 +10121,25 @@ document.addEventListener('DOMContentLoaded', function() {
             } else if (keyValue === 'BACKSPACE') {
                 lastVirtualKeyboardKey = null;
                 // Backspace - remove last character
-                // Temporarily remove readonly to modify value
-                const wasReadonly = hiddenInput.hasAttribute('readonly');
-                if (wasReadonly) hiddenInput.removeAttribute('readonly');
-
                 const currentValue = hiddenInput.value;
                 hiddenInput.value = currentValue.slice(0, -1);
 
                 // Trigger input event to update display
-                const inputEvent = new Event('input', { bubbles: true });
+                const inputEvent = typeof InputEvent === 'function'
+                    ? new InputEvent('input', { bubbles: true, inputType: 'deleteContentBackward' })
+                    : new Event('input', { bubbles: true });
                 hiddenInput.dispatchEvent(inputEvent);
-
-                // Restore readonly
-                if (wasReadonly) hiddenInput.setAttribute('readonly', 'readonly');
 
             } else {
                 lastVirtualKeyboardKey = key;
                 // Regular key or space - add character
-                // Temporarily remove readonly to modify value
-                const wasReadonly = hiddenInput.hasAttribute('readonly');
-                if (wasReadonly) hiddenInput.removeAttribute('readonly');
-
                 hiddenInput.value += keyValue;
 
                 // Trigger input event to update display
-                const inputEvent = new Event('input', { bubbles: true });
+                const inputEvent = typeof InputEvent === 'function'
+                    ? new InputEvent('input', { bubbles: true, inputType: 'insertText', data: keyValue })
+                    : new Event('input', { bubbles: true });
                 hiddenInput.dispatchEvent(inputEvent);
-
-                // Restore readonly
-                if (wasReadonly) hiddenInput.setAttribute('readonly', 'readonly');
 
             }
         });
@@ -9706,6 +10286,7 @@ window.onload = function() {
 };
 function handleSkillBack() {
     playSound('delete-sfx');
+    if (typeof window.resetBgmDucks === 'function') window.resetBgmDucks(180);
     if (tempGameMode === 'PVP' && currentRoomId) {
         showNotification('PVP LINK ABORTED', 'warning', 2000);
         resetGame();
@@ -9722,6 +10303,7 @@ function handleSkillBack() {
         }
     } else {
         // PVP: ���� Level �x�� (��������� Level -> Skill)
+        showSelectionOverlay();
         document.getElementById('level-screen').style.display = 'flex';
     }
 }
@@ -9858,6 +10440,21 @@ function startCountdownTimer() {
    ���� ADVANCED VOICE ENGINE (Smart Timing) ����
    ========================================= */
 
+async function replayListeningAudio(text, event = null) {
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+
+    requestAnimationFrame(() => {
+        setTimeout(() => {
+            speakText(text, null, true).catch(error => {
+                console.warn('[Listening Replay] Failed:', error);
+            });
+        }, 0);
+    });
+}
+
 async function speakText(text, element = null, startListeningTimer = false) {
     if (!text) return;
 
@@ -9873,16 +10470,17 @@ async function speakText(text, element = null, startListeningTimer = false) {
     // �� ���殔ǰfocus��B��LISTENING mode��Ҫ��
     const hiddenInput = document.getElementById('hidden-input');
     const shouldMaintainFocus = hiddenInput && hiddenInput.style.display !== 'none' &&
-                                 typeof currentPracticeMode !== 'undefined' && currentPracticeMode === 'LISTENING';
+                                 typeof currentPracticeMode !== 'undefined' && currentPracticeMode === 'LISTENING' &&
+                                 !isTouchKeyboardRuntime();
 
     // 1. �z��֧Ԯ��
-    if (!('speechSynthesis' in window)) {
+    if (!window.speechSynthesis || typeof window.speechSynthesis.speak !== 'function' || typeof SpeechSynthesisUtterance === 'undefined') {
         console.error("Browser does not support Speech Synthesis");
         return;
     }
 
     // 2. ֹͣ�f�Z�� & ����f��Ч
-    window.speechSynthesis.cancel();
+    cancelSpeechSynthesisIfAvailable();
     document.querySelectorAll('.vocab-row.speaking').forEach(el => el.classList.remove('speaking'));
 
     const utterance = new SpeechSynthesisUtterance(text);
@@ -9927,6 +10525,9 @@ async function speakText(text, element = null, startListeningTimer = false) {
 
     // A. �_ʼ�x (ҕ�X��Ч)
     utterance.onstart = () => {
+        if (typeof requestBgmDuck === 'function') {
+            requestBgmDuck(startListeningTimer ? 'listening-voice' : 'vocab-voice', 220);
+        }
         if (element) element.classList.add('speaking');
     };
 
@@ -9947,6 +10548,9 @@ async function speakText(text, element = null, startListeningTimer = false) {
 
     // C. �x�� (Fallback ���U��)
     utterance.onend = () => {
+        if (typeof releaseBgmDuck === 'function') {
+            releaseBgmDuck(startListeningTimer ? 'listening-voice' : 'vocab-voice', 250);
+        }
         if (element) element.classList.remove('speaking');
 
         // �� LISTENING mode������focus input
@@ -9970,11 +10574,21 @@ async function speakText(text, element = null, startListeningTimer = false) {
         }
     };
 
+    utterance.onerror = () => {
+        if (typeof releaseBgmDuck === 'function') {
+            releaseBgmDuck(startListeningTimer ? 'listening-voice' : 'vocab-voice', 250);
+        }
+        if (element) element.classList.remove('speaking');
+    };
+
     // 5. ��ʽ�l
     try {
         window.speechSynthesis.speak(utterance);
     } catch (error) {
         console.error('Speech synthesis failed:', error);
+        if (typeof releaseBgmDuck === 'function') {
+            releaseBgmDuck(startListeningTimer ? 'listening-voice' : 'vocab-voice', 250);
+        }
 
         if (element) element.classList.remove('speaking');
 
@@ -10025,8 +10639,21 @@ const NUKE_EXPLOSION_COLUMNS = 5;
 const NUKE_EXPLOSION_ROWS = 5;
 const NUKE_EXPLOSION_FRAMES = 25;
 const NUKE_LOCK_ON_DURATION = 1000;
+const EFFEKSEER_FRAME_MS = 1000 / 60;
+const EFFEKSEER_MAX_CATCHUP_FRAMES = 2;
+const EFFEKSEER_WARMUP_VIEWPORT_SIZE = 64;
 const EFFEKSEER_RUNTIME_SCRIPT_PATH = 'vendor/effekseer/effekseer.min.js';
 const EFFEKSEER_RUNTIME_WASM_PATH = 'vendor/effekseer/effekseer.wasm';
+const BATTLE_EFFEKSEER_EFFECT_KEYS = [
+    'normalAttack',
+    'vanguardsNormalStrike',
+    'aureliansNormalAttack',
+    'missileImpact',
+    'vanguardsNuke',
+    'aureliansShieldApply',
+    'aureliansShieldLoop',
+    'aureliansShieldOnHit'
+];
 const EFFEKSEER_EFFECTS = {
     vanguardsNuke: {
         path: 'effects/vanguards/firepunch/FirePunch.efkefc',
@@ -11104,8 +11731,31 @@ const effekseerEffectState = {
     activeHandles: [],
     animationFrameId: null,
     lastFrameTime: 0,
-    pixelRatio: 1
+    frameAccumulatorMs: 0,
+    pixelRatio: 1,
+    warmedEffects: new Set(),
+    preloadQueueStarted: false
 };
+
+function getEffekseerNativePlatform() {
+    try {
+        return window.Capacitor?.getPlatform?.() || '';
+    } catch (_error) {
+        return '';
+    }
+}
+
+function isNativeEffekseerPlatform() {
+    const platform = getEffekseerNativePlatform();
+    return platform === 'ios' || platform === 'android';
+}
+
+function getEffekseerPixelRatioLimit() {
+    const platform = getEffekseerNativePlatform();
+    if (platform === 'ios') return 1;
+    if (platform === 'android') return 1.5;
+    return 2;
+}
 
 function ensureEffekseerCanvas() {
     if (effekseerEffectState.canvas) return effekseerEffectState.canvas;
@@ -11125,7 +11775,7 @@ function resizeEffekseerCanvas() {
     const canvas = effekseerEffectState.canvas;
     if (!canvas) return;
 
-    const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+    const pixelRatio = Math.min(window.devicePixelRatio || 1, getEffekseerPixelRatioLimit());
     const width = Math.max(1, Math.round(window.innerWidth * pixelRatio));
     const height = Math.max(1, Math.round(window.innerHeight * pixelRatio));
 
@@ -11178,9 +11828,11 @@ function initEffekseerRuntime() {
                 const canvas = ensureEffekseerCanvas();
                 const gl = canvas.getContext('webgl', {
                     alpha: true,
-                    antialias: true,
+                    antialias: !isNativeEffekseerPlatform(),
                     premultipliedAlpha: true,
-                    preserveDrawingBuffer: false
+                    preserveDrawingBuffer: false,
+                    desynchronized: true,
+                    powerPreference: 'high-performance'
                 });
 
                 if (!gl) {
@@ -11193,8 +11845,8 @@ function initEffekseerRuntime() {
                 }
 
                 context.init(gl, {
-                    instanceMaxCount: 4096,
-                    squareMaxCount: 4096
+                    instanceMaxCount: isNativeEffekseerPlatform() ? 1536 : 4096,
+                    squareMaxCount: isNativeEffekseerPlatform() ? 1536 : 4096
                 });
                 context.setRestorationOfStatesFlag(false);
 
@@ -11227,6 +11879,9 @@ async function loadEffekseerEffect(effectKey) {
         const effect = context.loadEffect(config.path, config.loadScale || 1, () => {
             resolve(effect);
         }, reject);
+    }).then(effect => {
+        warmEffekseerEffectForNative(effectKey, effect);
+        return effect;
     });
 
     effekseerEffectState.effects.set(effectKey, effectPromise);
@@ -11234,9 +11889,77 @@ async function loadEffekseerEffect(effectKey) {
 }
 
 function preloadEffekseerEffect(effectKey) {
-    loadEffekseerEffect(effectKey).catch(error => {
+    return loadEffekseerEffect(effectKey).catch(error => {
         console.warn(`[Effekseer] Failed to preload ${effectKey}:`, error);
     });
+}
+
+function scheduleEffekseerBackgroundTask(task, delay = 80) {
+    if (typeof window.requestIdleCallback === 'function') {
+        window.requestIdleCallback(task, { timeout: Math.max(250, delay * 4) });
+        return;
+    }
+    window.setTimeout(task, delay);
+}
+
+function preloadBattleEffekseerEffectsInBackground() {
+    if (effekseerEffectState.preloadQueueStarted) return;
+    effekseerEffectState.preloadQueueStarted = true;
+
+    const queue = [...BATTLE_EFFEKSEER_EFFECT_KEYS];
+    const loadNext = () => {
+        const effectKey = queue.shift();
+        if (!effectKey) return;
+
+        preloadEffekseerEffect(effectKey).finally(() => {
+            scheduleEffekseerBackgroundTask(loadNext, isNativeEffekseerPlatform() ? 140 : 40);
+        });
+    };
+
+    scheduleEffekseerBackgroundTask(loadNext, 40);
+}
+
+function warmEffekseerEffectForNative(effectKey, effect, attempt = 0) {
+    if (!isNativeEffekseerPlatform()) return;
+    if (!effect || effekseerEffectState.warmedEffects.has(effectKey)) return;
+
+    effekseerEffectState.warmedEffects.add(effectKey);
+    scheduleEffekseerBackgroundTask(() => {
+        const context = effekseerEffectState.context;
+        const gl = effekseerEffectState.gl;
+        const canvas = effekseerEffectState.canvas;
+        if (!context || !gl || !canvas) return;
+        if (effekseerEffectState.activeHandles.length > 0) {
+            if (attempt < 5) {
+                effekseerEffectState.warmedEffects.delete(effectKey);
+                window.setTimeout(() => warmEffekseerEffectForNative(effectKey, effect, attempt + 1), 180);
+            }
+            return;
+        }
+
+        try {
+            const handle = context.play(effect);
+            if (!handle) return;
+
+            handle.setScale(0.001, 0.001, 0.001);
+            handle.setSpeed(8);
+            handle.setLocation(0, 0, 0);
+
+            gl.viewport(0, 0, 1, 1);
+            setEffekseerScreenMatrices(EFFEKSEER_WARMUP_VIEWPORT_SIZE);
+            context.update(1);
+            context.beginDraw();
+            context.drawHandle(handle);
+            context.endDraw();
+
+            if (handle.exists) handle.stopRoot();
+            gl.clearColor(0, 0, 0, 0);
+            gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+            resizeEffekseerCanvas();
+        } catch (error) {
+            console.warn(`[Effekseer] Warmup skipped for ${effectKey}:`, error);
+        }
+    }, 120);
 }
 
 function playCellEffekseerEffect(effectKey, cell, options = {}) {
@@ -11323,6 +12046,7 @@ function startEffekseerRenderLoop() {
     if (effekseerEffectState.animationFrameId) return;
 
     effekseerEffectState.lastFrameTime = performance.now();
+    effekseerEffectState.frameAccumulatorMs = 0;
     const render = now => {
         const context = effekseerEffectState.context;
         const gl = effekseerEffectState.gl;
@@ -11333,14 +12057,24 @@ function startEffekseerRenderLoop() {
             return;
         }
 
-        const elapsedMs = Math.min(64, now - effekseerEffectState.lastFrameTime);
+        const elapsedMs = Math.max(0, Math.min(50, now - effekseerEffectState.lastFrameTime));
         effekseerEffectState.lastFrameTime = now;
-        const deltaFrames = Math.max(1, Math.round(elapsedMs / (1000 / 60)));
+        effekseerEffectState.frameAccumulatorMs = Math.min(
+            EFFEKSEER_FRAME_MS * EFFEKSEER_MAX_CATCHUP_FRAMES,
+            effekseerEffectState.frameAccumulatorMs + elapsedMs
+        );
+        const deltaFrames = Math.min(
+            EFFEKSEER_MAX_CATCHUP_FRAMES,
+            Math.floor(effekseerEffectState.frameAccumulatorMs / EFFEKSEER_FRAME_MS)
+        );
 
         gl.viewport(0, 0, canvas.width, canvas.height);
         gl.clearColor(0, 0, 0, 0);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-        context.update(deltaFrames);
+        if (deltaFrames > 0) {
+            context.update(deltaFrames);
+            effekseerEffectState.frameAccumulatorMs -= deltaFrames * EFFEKSEER_FRAME_MS;
+        }
         effekseerEffectState.activeHandles = effekseerEffectState.activeHandles.filter(entry => {
             const handle = entry && entry.handle;
             if (!handle || !handle.exists) return false;
@@ -11365,6 +12099,7 @@ function startEffekseerRenderLoop() {
         } else {
             gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
             effekseerEffectState.animationFrameId = null;
+            effekseerEffectState.frameAccumulatorMs = 0;
         }
     };
 
@@ -12004,5 +12739,3 @@ document.addEventListener('DOMContentLoaded', () => {
         enemyGridEl.addEventListener('mouseleave', onEnemyGridLeave);
     }
 });
-
-

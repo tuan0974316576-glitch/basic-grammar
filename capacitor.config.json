@@ -1,8 +1,7 @@
 {
-  "appId": "com.vocabconqueror.battleship",
+  "appId": "com.enguistics.vocabconqueror",
   "appName": "Vocab Conqueror",
-  "webDir": ".",
-  "bundledWebRuntime": false,
+  "webDir": "www",
   "plugins": {
     "Keyboard": {
       "resize": "body",
@@ -10,17 +9,27 @@
       "resizeOnFullScreen": true
     },
     "SplashScreen": {
-      "launchShowDuration": 2000,
-      "backgroundColor": "#0a0e1a",
+      "launchShowDuration": 300,
+      "backgroundColor": "#ffffff",
       "showSpinner": false
     },
     "StatusBar": {
       "style": "dark",
-      "backgroundColor": "#0a0e1a"
+      "backgroundColor": "#000000",
+      "overlaysWebView": true
+    },
+    "GoogleAuth": {
+      "iosClientId": "199612407738-ecd7g7pl59jcuken8jlnip75npd6d1c5.apps.googleusercontent.com",
+      "androidClientId": "199612407738-8k2pfso6h07jr4gpcone1ukjkhtm4k9l.apps.googleusercontent.com",
+      "scopes": [
+        "profile",
+        "email"
+      ],
+      "forceCodeForRefreshToken": true
     }
   },
   "ios": {
-    "contentInset": "always"
+    "contentInset": "never"
   },
   "android": {
     "allowMixedContent": true

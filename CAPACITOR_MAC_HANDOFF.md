@@ -9,7 +9,7 @@ Build the Capacitor iOS app and test native audio on iPad/iPhone.
 The latest pushed commit should be:
 
 ```bash
-3d18e49 Add Capacitor native audio adapter
+8332c6c Add Capacitor Mac handoff notes
 ```
 
 ## First Steps On MacBook
@@ -20,19 +20,27 @@ Open Terminal or VS Code terminal inside the `battleship` repo:
 git pull origin main
 git log -1 --oneline
 npm install
+npm run native:web-assets
 ```
 
-Confirm the latest commit is `3d18e49`.
+Confirm the latest commit is `8332c6c`. If you see `3d18e49`, pull once more; that commit has the native audio adapter, and `8332c6c` adds these Mac handoff notes.
 
 ## Create iOS Project
 
 Run:
 
 ```bash
+npm run native:web-assets
 npx cap add ios
 npm run native:audio-assets
 npx cap sync ios
 npx cap open ios
+```
+
+Shortcut:
+
+```bash
+npm run build:ios
 ```
 
 `npm run native:audio-assets` copies BGM/SFX files into:
@@ -51,6 +59,8 @@ Use:
 npm run native:sync
 npx cap open ios
 ```
+
+`www/` is generated from the shared web code and is ignored by git. Edit the root files, then run `npm run native:sync` before opening Xcode again.
 
 ## Xcode Test
 

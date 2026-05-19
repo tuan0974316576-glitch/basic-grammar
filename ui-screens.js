@@ -361,11 +361,7 @@ function renderVocabList(level, isSilent = false) {
     const isFirstLoad = listBody.innerHTML === '';
 
     if (!isFirstLoad && !isSilent) {
-        const levelSfx = document.getElementById('level-select-sfx');
-        if (levelSfx) {
-            levelSfx.currentTime = 0;
-            levelSfx.play().catch(error => console.log('Audio play prevented:', error));
-        }
+        if (typeof playSound === 'function') playSound('level-select-sfx');
     }
 
     document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
