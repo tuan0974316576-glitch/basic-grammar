@@ -167,6 +167,81 @@
         ["order", "order_not_to", "改成 reported order/request（用 not to）：'Don't play near the lift,' the security guard told the children.", "The security guard told the children not to play near the lift .", ["don't", "played", "that"]]
     ];
 
+    function normalizeDirectSpeechText(value) {
+        const text = String(value || '').trim();
+        if (!text) return '';
+        return text.replace(/,\s*$/, '.');
+    }
+
+    function cleanReporterText(value) {
+        return String(value || '')
+            .trim()
+            .replace(/[.?!]\s*$/, '')
+            .trim();
+    }
+
+    function capitalizePromptSpeaker(value) {
+        const text = String(value || '').trim();
+        if (!text) return '';
+        return text.replace(/^[a-z]/, char => char.toUpperCase());
+    }
+
+    function parseReporterParts(reporterText) {
+        const reporter = cleanReporterText(reporterText);
+        if (!reporter) return { speaker: '', target: '' };
+
+        let match = reporter.match(/^(.+?)\s+said\s+to\s+(.+)$/i);
+        if (match) {
+            return {
+                speaker: capitalizePromptSpeaker(match[1]),
+                target: String(match[2] || '').trim()
+            };
+        }
+
+        match = reporter.match(/^(.+?)\s+(asked|told|warned|advised|reminded|ordered)\s+(.+)$/i);
+        if (match) {
+            return {
+                speaker: capitalizePromptSpeaker(match[1]),
+                target: String(match[3] || '').trim()
+            };
+        }
+
+        match = reporter.match(/^(.+?)\s+(said|suggested|promised|replied)$/i);
+        if (match) {
+            return {
+                speaker: capitalizePromptSpeaker(match[1]),
+                target: ''
+            };
+        }
+
+        return {
+            speaker: capitalizePromptSpeaker(reporter),
+            target: ''
+        };
+    }
+
+    function formatReportedSpeechPrompt(sourcePrompt) {
+        const text = String(sourcePrompt || '').trim();
+        const match = text.match(/：'([^']+)'\s*(.*)$/u);
+        if (!match) return text;
+
+        const directSpeech = normalizeDirectSpeechText(match[1]);
+        const { speaker, target } = parseReporterParts(match[2]);
+        if (!speaker) return directSpeech;
+        return `${speaker}${target ? ` -> ${target}` : ''}：${directSpeech}`;
+    }
+
+    function inferIntrinsicTokens(sourcePrompt) {
+        const match = String(sourcePrompt || '').match(/：'[^']+'\s*(.*)$/u);
+        const reporter = cleanReporterText(match ? match[1] : '');
+        const tokens = new Set();
+        reporter.replace(/[A-Za-z][A-Za-z'’.-]*/g, token => {
+            if (/[A-Z]/.test(token)) tokens.add(token);
+            return token;
+        });
+        return Array.from(tokens);
+    }
+
     function tokenizeAnswer(answer) {
         return String(answer || '').trim().split(/\s+/).filter(Boolean);
     }
@@ -177,8 +252,10 @@
             id: `reported_speech_${String(index + 1).padStart(3, '0')}`,
             type,
             rule,
-            chinese,
+            chinese: formatReportedSpeechPrompt(chinese),
+            source_prompt: chinese,
             correct_tokens: tokenizeAnswer(answer),
+            intrinsic_tokens: inferIntrinsicTokens(chinese),
             distractors: Array.isArray(distractors) ? distractors : []
         };
     });

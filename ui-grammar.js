@@ -2456,7 +2456,13 @@ function getGrammarIntrinsicCapitalTokenSet() {
         window.GRAMMAR_REPORTED_SPEECH_BANK
     ].forEach((bank) => {
         (Array.isArray(bank) ? bank : []).forEach((question) => {
-            (Array.isArray(question.correct_tokens) ? question.correct_tokens : []).forEach((tokens) => {
+            (Array.isArray(question.intrinsic_tokens) ? question.intrinsic_tokens : []).forEach((token) => {
+                if (hasGrammarTokenUppercase(token)) intrinsicKeys.add(getGrammarTokenKey(token));
+            });
+
+            const rawAnswers = Array.isArray(question.correct_tokens) ? question.correct_tokens : [];
+            const answerSets = Array.isArray(rawAnswers[0]) ? rawAnswers : (rawAnswers.length ? [rawAnswers] : []);
+            answerSets.forEach((tokens) => {
                 (Array.isArray(tokens) ? tokens : []).forEach((token, index) => {
                     const lettersOnly = String(token || '').replace(/[^A-Za-z]/g, '');
                     const isAcronym = lettersOnly.length > 1 && lettersOnly === lettersOnly.toUpperCase();
