@@ -11,7 +11,8 @@ const GRAMMAR_IT_IS_TOPIC = 'IT_IS';
 const GRAMMAR_INFINITIVE_GERUND_TOPIC = 'INFINITIVE_GERUND';
 const GRAMMAR_PREPOSITION_PLACE_TOPIC = 'PREPOSITION_OF_PLACE';
 const GRAMMAR_PREPOSITION_TIME_TOPIC = 'PREPOSITION_OF_TIME';
-const GRAMMAR_REARRANGE_TOPICS = [GRAMMAR_DIRECT_TOPIC, GRAMMAR_INDIRECT_TOPIC, GRAMMAR_IT_IS_TOPIC, GRAMMAR_CONDITIONAL_TOPIC];
+const GRAMMAR_REPORTED_SPEECH_TOPIC = 'REPORTED_SPEECH';
+const GRAMMAR_REARRANGE_TOPICS = [GRAMMAR_DIRECT_TOPIC, GRAMMAR_INDIRECT_TOPIC, GRAMMAR_IT_IS_TOPIC, GRAMMAR_CONDITIONAL_TOPIC, GRAMMAR_REPORTED_SPEECH_TOPIC];
 const GRAMMAR_FILL_IN_TOPICS = [GRAMMAR_TENSE_TOPIC, GRAMMAR_INFINITIVE_GERUND_TOPIC];
 const GRAMMAR_CHOICE_TOPICS = [GRAMMAR_PREPOSITION_PLACE_TOPIC, GRAMMAR_PREPOSITION_TIME_TOPIC];
 const GRAMMAR_DIRECT_BASE_TIME = 15;
@@ -19,6 +20,7 @@ const GRAMMAR_DIRECT_SECONDS_PER_TOKEN = 3;
 const GRAMMAR_CHOICE_BASE_TIME = 10;
 const GRAMMAR_TENSE_SELECTION_STORAGE_KEY = 'grammar_tense_selection_v1';
 const GRAMMAR_CONDITIONAL_SELECTION_STORAGE_KEY = 'grammar_conditional_selection_v1';
+const GRAMMAR_REPORTED_SPEECH_SELECTION_STORAGE_KEY = 'grammar_reported_speech_selection_v1';
 const GRAMMAR_REFERENCE_SPEAK_GAP_MS = 150;
 const GRAMMAR_REFERENCE_AUDIO_VOICE = 'en-US-AndrewMultilingualNeural';
 const GRAMMAR_VERB_FIELD_ORDER = ['present', 'past', 'pp', 'pg'];
@@ -60,6 +62,11 @@ const GRAMMAR_CONDITIONAL_DEFINITIONS = [
     { id: '2', label: 'TYPE 2' },
     { id: '3', label: 'TYPE 3' }
 ];
+const GRAMMAR_REPORTED_SPEECH_DEFINITIONS = [
+    { id: 'statement', label: 'REPORTED STATEMENT' },
+    { id: 'question', label: 'REPORTED QUESTION' },
+    { id: 'order', label: 'REPORTED ORDERS' }
+];
 
 const grammarVerbState = {
     questions: [],
@@ -96,6 +103,11 @@ const grammarTenseSelectionState = {
 };
 
 const grammarConditionalSelectionState = {
+    selectedTypes: new Set(),
+    loaded: false
+};
+
+const grammarReportedSpeechSelectionState = {
     selectedTypes: new Set(),
     loaded: false
 };
@@ -300,6 +312,10 @@ function getGrammarConditionalQuestionBank() {
     return Array.isArray(window.GRAMMAR_CONDITIONAL_BANK) ? window.GRAMMAR_CONDITIONAL_BANK : [];
 }
 
+function getGrammarReportedSpeechBank() {
+    return Array.isArray(window.GRAMMAR_REPORTED_SPEECH_BANK) ? window.GRAMMAR_REPORTED_SPEECH_BANK : [];
+}
+
 function getGrammarTenseLabel(tenseId) {
     return GRAMMAR_TENSE_DEFINITIONS.find(item => item.id === tenseId)?.label || String(tenseId || '').replace(/_/g, ' ');
 }
@@ -310,6 +326,10 @@ function getGrammarVoiceLabel(voiceId) {
 
 function getGrammarConditionalTypeLabel(typeId) {
     return GRAMMAR_CONDITIONAL_DEFINITIONS.find(item => item.id === String(typeId))?.label || `TYPE ${typeId}`;
+}
+
+function getGrammarReportedSpeechTypeLabel(typeId) {
+    return GRAMMAR_REPORTED_SPEECH_DEFINITIONS.find(item => item.id === String(typeId))?.label || String(typeId || '').toUpperCase();
 }
 
 function loadGrammarTenseSelectionState() {
@@ -370,6 +390,34 @@ function saveGrammarConditionalSelectionState() {
         }));
     } catch (error) {
         console.warn('[Grammar Conditional] Failed to save selection:', error);
+    }
+}
+
+function loadGrammarReportedSpeechSelectionState() {
+    if (grammarReportedSpeechSelectionState.loaded) return;
+    grammarReportedSpeechSelectionState.loaded = true;
+
+    try {
+        const rawValue = localStorage.getItem(GRAMMAR_REPORTED_SPEECH_SELECTION_STORAGE_KEY);
+        if (!rawValue) return;
+
+        const saved = JSON.parse(rawValue);
+        const validTypes = new Set(GRAMMAR_REPORTED_SPEECH_DEFINITIONS.map(item => item.id));
+        grammarReportedSpeechSelectionState.selectedTypes = new Set(
+            Array.isArray(saved?.types) ? saved.types.map(String).filter(id => validTypes.has(id)) : []
+        );
+    } catch (error) {
+        console.warn('[Grammar Reported Speech] Failed to load saved selection:', error);
+    }
+}
+
+function saveGrammarReportedSpeechSelectionState() {
+    try {
+        localStorage.setItem(GRAMMAR_REPORTED_SPEECH_SELECTION_STORAGE_KEY, JSON.stringify({
+            types: Array.from(grammarReportedSpeechSelectionState.selectedTypes)
+        }));
+    } catch (error) {
+        console.warn('[Grammar Reported Speech] Failed to save selection:', error);
     }
 }
 
@@ -513,6 +561,8 @@ function createGrammarDirectQuestionBattleItem(question, index = 0, options = {}
             ? 'it_is'
             : topic === GRAMMAR_CONDITIONAL_TOPIC
             ? 'conditional'
+            : topic === GRAMMAR_REPORTED_SPEECH_TOPIC
+            ? 'reported_speech'
             : 'direct_question'
     );
     const rawAnswers = Array.isArray(question.correct_tokens) ? question.correct_tokens : [];
@@ -594,6 +644,41 @@ function buildGrammarConditionalBattleDeck() {
     return deck;
 }
 
+function buildGrammarReportedSpeechBattleDeck() {
+    loadGrammarReportedSpeechSelectionState();
+    const selectedTypes = Array.from(grammarReportedSpeechSelectionState.selectedTypes);
+    const buckets = new Map();
+
+    getGrammarReportedSpeechBank().forEach((question) => {
+        const type = String(question.type ?? question.rule ?? '');
+        if (!selectedTypes.includes(type)) return;
+        if (!buckets.has(type)) buckets.set(type, []);
+        buckets.get(type).push(question);
+    });
+
+    const bucketKeys = shuffleGrammarArray(Array.from(buckets.keys()));
+    bucketKeys.forEach((key) => {
+        buckets.set(key, shuffleGrammarArray(buckets.get(key)));
+    });
+
+    const deck = [];
+    let hasMore = true;
+    while (hasMore) {
+        hasMore = false;
+        shuffleGrammarArray(bucketKeys).forEach((key) => {
+            const bucket = buckets.get(key);
+            if (!bucket || bucket.length === 0) return;
+            deck.push(createGrammarDirectQuestionBattleItem(bucket.pop(), deck.length, {
+                topic: GRAMMAR_REPORTED_SPEECH_TOPIC,
+                idPrefix: 'reported_speech'
+            }));
+            hasMore = true;
+        });
+    }
+
+    return deck;
+}
+
 function getGrammarBattleDeckSnapshot() {
     if (window.selectedGrammarTopic === GRAMMAR_TENSE_TOPIC ||
         (typeof selectedLevel !== 'undefined' && selectedLevel === GRAMMAR_TENSE_TOPIC)) {
@@ -602,6 +687,10 @@ function getGrammarBattleDeckSnapshot() {
     if (window.selectedGrammarTopic === GRAMMAR_CONDITIONAL_TOPIC ||
         (typeof selectedLevel !== 'undefined' && selectedLevel === GRAMMAR_CONDITIONAL_TOPIC)) {
         return buildGrammarConditionalBattleDeck();
+    }
+    if (window.selectedGrammarTopic === GRAMMAR_REPORTED_SPEECH_TOPIC ||
+        (typeof selectedLevel !== 'undefined' && selectedLevel === GRAMMAR_REPORTED_SPEECH_TOPIC)) {
+        return buildGrammarReportedSpeechBattleDeck();
     }
     if (window.selectedGrammarTopic === GRAMMAR_DIRECT_TOPIC ||
         (typeof selectedLevel !== 'undefined' && selectedLevel === GRAMMAR_DIRECT_TOPIC)) {
@@ -948,6 +1037,8 @@ function getGrammarDirectQuestionTopicProgress(topic = GRAMMAR_DIRECT_TOPIC) {
         ? getGrammarItIsQuestionBank().length
         : topic === GRAMMAR_CONDITIONAL_TOPIC
         ? getGrammarConditionalQuestionBank().length
+        : topic === GRAMMAR_REPORTED_SPEECH_TOPIC
+        ? getGrammarReportedSpeechBank().length
         : getGrammarDirectQuestionBank().length;
     const masteryRoot = (typeof userMastery !== 'undefined' ? userMastery : window.userMastery) || {};
     const grammarMastery = masteryRoot.grammar || {};
@@ -962,6 +1053,7 @@ function updateGrammarTopicProgress() {
     const verbProgress = getGrammarVerbTopicProgress();
     const tenseProgress = getGrammarTenseTopicProgress();
     const conditionalProgress = getGrammarDirectQuestionTopicProgress(GRAMMAR_CONDITIONAL_TOPIC);
+    const reportedSpeechProgress = getGrammarDirectQuestionTopicProgress(GRAMMAR_REPORTED_SPEECH_TOPIC);
     const directProgress = getGrammarDirectQuestionTopicProgress();
     const indirectProgress = getGrammarDirectQuestionTopicProgress(GRAMMAR_INDIRECT_TOPIC);
     const itIsProgress = getGrammarDirectQuestionTopicProgress(GRAMMAR_IT_IS_TOPIC);
@@ -971,6 +1063,7 @@ function updateGrammarTopicProgress() {
     const progressEl = document.getElementById('grammar-topic-progress');
     const tenseProgressEl = document.getElementById('grammar-tense-topic-progress');
     const conditionalProgressEl = document.getElementById('grammar-conditional-topic-progress');
+    const reportedSpeechProgressEl = document.getElementById('grammar-reported-speech-topic-progress');
     const directProgressEl = document.getElementById('grammar-direct-topic-progress');
     const indirectProgressEl = document.getElementById('grammar-indirect-topic-progress');
     const itIsProgressEl = document.getElementById('grammar-it-is-topic-progress');
@@ -980,6 +1073,7 @@ function updateGrammarTopicProgress() {
     const topicBtn = document.querySelector('.grammar-topic-btn:not(.grammar-topic-btn-tense)');
     const tenseTopicBtn = document.querySelector('.grammar-topic-btn-tense');
     const conditionalTopicBtn = document.querySelector('.grammar-topic-btn-conditional');
+    const reportedSpeechTopicBtn = document.querySelector('.grammar-topic-btn-reported-speech');
     const directTopicBtn = document.querySelector('.grammar-topic-btn-direct');
     const indirectTopicBtn = document.querySelector('.grammar-topic-btn-indirect');
     const itIsTopicBtn = document.querySelector('.grammar-topic-btn-it-is');
@@ -1004,6 +1098,12 @@ function updateGrammarTopicProgress() {
     }
     if (conditionalTopicBtn) {
         conditionalTopicBtn.classList.toggle('completed', conditionalProgress.total > 0 && conditionalProgress.mastered >= conditionalProgress.total);
+    }
+    if (reportedSpeechProgressEl) {
+        reportedSpeechProgressEl.textContent = `${reportedSpeechProgress.mastered}/${reportedSpeechProgress.total}`;
+    }
+    if (reportedSpeechTopicBtn) {
+        reportedSpeechTopicBtn.classList.toggle('completed', reportedSpeechProgress.total > 0 && reportedSpeechProgress.mastered >= reportedSpeechProgress.total);
     }
     if (directProgressEl) {
         directProgressEl.textContent = `${directProgress.mastered}/${directProgress.total}`;
@@ -1066,7 +1166,7 @@ function closeGrammarTopicScreen() {
         setGrammarTopicReferenceMode(false);
         return;
     }
-    if (grammarTopicScreenMode === 'tense' || grammarTopicScreenMode === 'conditional') {
+    if (grammarTopicScreenMode === 'tense' || grammarTopicScreenMode === 'conditional' || grammarTopicScreenMode === 'reported') {
         returnToGrammarTopicList();
         return;
     }
@@ -1114,6 +1214,7 @@ function setGrammarTopicReferenceMode(isReferenceMode) {
     const grid = document.getElementById('grammar-topic-grid');
     const tenseSetup = document.getElementById('grammar-tense-setup');
     const conditionalSetup = document.getElementById('grammar-conditional-setup');
+    const reportedSpeechSetup = document.getElementById('grammar-reported-speech-setup');
     const panel = document.querySelector('.grammar-topic-panel');
     const searchWrap = document.getElementById('grammar-topic-search-wrap');
     const searchInput = document.getElementById('grammar-topic-search-input');
@@ -1130,6 +1231,7 @@ function setGrammarTopicReferenceMode(isReferenceMode) {
         setGrammarTopicCardsVisible(false);
         if (tenseSetup) tenseSetup.style.display = 'none';
         if (conditionalSetup) conditionalSetup.style.display = 'none';
+        if (reportedSpeechSetup) reportedSpeechSetup.style.display = 'none';
         if (searchWrap) searchWrap.style.display = 'block';
         if (panel) {
             panel.classList.add('is-reference-open');
@@ -1151,6 +1253,7 @@ function setGrammarTopicReferenceMode(isReferenceMode) {
     setGrammarTopicCardsVisible(true);
     if (tenseSetup) tenseSetup.style.display = 'none';
     if (conditionalSetup) conditionalSetup.style.display = 'none';
+    if (reportedSpeechSetup) reportedSpeechSetup.style.display = 'none';
     if (searchWrap) searchWrap.style.display = 'none';
     if (searchInput) {
         searchInput.value = '';
@@ -1241,6 +1344,7 @@ function openGrammarTenseSetupScreen(options = {}) {
     const grid = document.getElementById('grammar-topic-grid');
     const tenseSetup = document.getElementById('grammar-tense-setup');
     const conditionalSetup = document.getElementById('grammar-conditional-setup');
+    const reportedSpeechSetup = document.getElementById('grammar-reported-speech-setup');
     const panel = document.querySelector('.grammar-topic-panel');
 
     grammarTopicScreenMode = 'tense';
@@ -1252,6 +1356,7 @@ function openGrammarTenseSetupScreen(options = {}) {
     if (grid) grid.style.display = 'none';
     if (tenseSetup) tenseSetup.style.display = 'flex';
     if (conditionalSetup) conditionalSetup.style.display = 'none';
+    if (reportedSpeechSetup) reportedSpeechSetup.style.display = 'none';
     if (panel) panel.classList.add('is-tense-open');
     updateGrammarTenseSetupUI();
 }
@@ -1393,6 +1498,7 @@ function openGrammarConditionalSetupScreen(options = {}) {
     const grid = document.getElementById('grammar-topic-grid');
     const tenseSetup = document.getElementById('grammar-tense-setup');
     const conditionalSetup = document.getElementById('grammar-conditional-setup');
+    const reportedSpeechSetup = document.getElementById('grammar-reported-speech-setup');
     const panel = document.querySelector('.grammar-topic-panel');
 
     grammarTopicScreenMode = 'conditional';
@@ -1404,6 +1510,7 @@ function openGrammarConditionalSetupScreen(options = {}) {
     if (grid) grid.style.display = 'none';
     if (tenseSetup) tenseSetup.style.display = 'none';
     if (conditionalSetup) conditionalSetup.style.display = 'flex';
+    if (reportedSpeechSetup) reportedSpeechSetup.style.display = 'none';
     if (panel) panel.classList.add('is-tense-open');
     updateGrammarConditionalSetupUI();
 }
@@ -1458,6 +1565,149 @@ function confirmGrammarConditionalSetup() {
     selectedLevel = GRAMMAR_CONDITIONAL_TOPIC;
     selectedStageIndex = null;
     selectedStageLabel = 'CONDITIONAL';
+    activeVocabList = deck;
+    sessionDeck = [...activeVocabList];
+
+    if (typeof loadMissedWordsToPriorityDeck === 'function') {
+        loadMissedWordsToPriorityDeck('GRAMMAR');
+    }
+
+    updateRaceButtons();
+    const raceScreen = document.getElementById('race-screen');
+    if (raceScreen) {
+        raceScreen.style.display = 'flex';
+        const wrapper = raceScreen.querySelector('.panel-content-wrapper');
+        if (wrapper) {
+            wrapper.style.animation = 'none';
+            setTimeout(() => {
+                wrapper.style.animation = 'holoAppear 0.4s forwards';
+            }, 10);
+        }
+    }
+}
+
+function renderGrammarReportedSpeechSetupOptions() {
+    const typeGrid = document.getElementById('grammar-reported-speech-option-grid');
+    if (typeGrid && !typeGrid.dataset.rendered) {
+        typeGrid.innerHTML = GRAMMAR_REPORTED_SPEECH_DEFINITIONS.map((item) => `
+            <button type="button" class="grammar-tense-option grammar-reported-speech-option" data-grammar-reported-speech-type="${item.id}" onclick="toggleGrammarReportedSpeechOption('${item.id}')">${item.label}</button>
+        `).join('');
+        typeGrid.dataset.rendered = 'true';
+    }
+}
+
+function getSelectedGrammarReportedSpeechQuestionCount() {
+    const selectedTypes = grammarReportedSpeechSelectionState.selectedTypes;
+    return getGrammarReportedSpeechBank().filter(question =>
+        selectedTypes.has(String(question.type ?? question.rule ?? ''))
+    ).length;
+}
+
+function updateGrammarReportedSpeechSetupUI() {
+    loadGrammarReportedSpeechSelectionState();
+    document.querySelectorAll('[data-grammar-reported-speech-type]').forEach((button) => {
+        const typeId = button.getAttribute('data-grammar-reported-speech-type');
+        const selected = grammarReportedSpeechSelectionState.selectedTypes.has(typeId);
+        button.classList.toggle('is-selected', selected);
+        button.setAttribute('aria-pressed', selected ? 'true' : 'false');
+    });
+
+    const selectedCount = getSelectedGrammarReportedSpeechQuestionCount();
+    const selectedTypeCount = grammarReportedSpeechSelectionState.selectedTypes.size;
+    const summary = document.getElementById('grammar-reported-speech-selection-summary');
+    const confirmBtn = document.getElementById('grammar-reported-speech-confirm-btn');
+    const isReady = selectedTypeCount > 0 && selectedCount > 0;
+
+    if (summary) {
+        const labels = Array.from(grammarReportedSpeechSelectionState.selectedTypes)
+            .sort()
+            .map(getGrammarReportedSpeechTypeLabel)
+            .join(' / ');
+        summary.innerText = isReady
+            ? `已選 ${selectedCount} 題 // ${labels}`
+            : '請選擇至少一種 Reported Speech 類型';
+    }
+    if (confirmBtn) confirmBtn.disabled = !isReady;
+}
+
+function openGrammarReportedSpeechSetupScreen(options = {}) {
+    if (!options.silent && typeof playSound === 'function') playSound('deploy-sfx');
+    loadGrammarReportedSpeechSelectionState();
+    renderGrammarReportedSpeechSetupOptions();
+    setGrammarTopicReferenceMode(false);
+
+    const title = document.getElementById('grammar-topic-title');
+    const subtitle = document.getElementById('grammar-topic-subtitle');
+    const grid = document.getElementById('grammar-topic-grid');
+    const tenseSetup = document.getElementById('grammar-tense-setup');
+    const conditionalSetup = document.getElementById('grammar-conditional-setup');
+    const reportedSpeechSetup = document.getElementById('grammar-reported-speech-setup');
+    const panel = document.querySelector('.grammar-topic-panel');
+
+    grammarTopicScreenMode = 'reported';
+    if (title) title.innerText = 'REPORTED SPEECH';
+    if (subtitle) {
+        subtitle.innerText = 'SELECT REPORTING CHANNELS';
+        subtitle.style.display = 'block';
+    }
+    if (grid) grid.style.display = 'none';
+    if (tenseSetup) tenseSetup.style.display = 'none';
+    if (conditionalSetup) conditionalSetup.style.display = 'none';
+    if (reportedSpeechSetup) reportedSpeechSetup.style.display = 'flex';
+    if (panel) panel.classList.add('is-tense-open');
+    updateGrammarReportedSpeechSetupUI();
+}
+
+function toggleGrammarReportedSpeechOption(typeId) {
+    loadGrammarReportedSpeechSelectionState();
+    if (typeof playSound === 'function') playSound('enter-sfx');
+    const normalizedType = String(typeId);
+    if (grammarReportedSpeechSelectionState.selectedTypes.has(normalizedType)) {
+        grammarReportedSpeechSelectionState.selectedTypes.delete(normalizedType);
+    } else {
+        grammarReportedSpeechSelectionState.selectedTypes.add(normalizedType);
+    }
+    saveGrammarReportedSpeechSelectionState();
+    updateGrammarReportedSpeechSetupUI();
+}
+
+function selectAllGrammarReportedSpeechTypes() {
+    loadGrammarReportedSpeechSelectionState();
+    if (typeof playSound === 'function') playSound('enter-sfx');
+    grammarReportedSpeechSelectionState.selectedTypes = new Set(GRAMMAR_REPORTED_SPEECH_DEFINITIONS.map(item => item.id));
+    saveGrammarReportedSpeechSelectionState();
+    updateGrammarReportedSpeechSetupUI();
+}
+
+function clearGrammarReportedSpeechTypes() {
+    loadGrammarReportedSpeechSelectionState();
+    if (typeof playSound === 'function') playSound('delete-sfx');
+    grammarReportedSpeechSelectionState.selectedTypes.clear();
+    saveGrammarReportedSpeechSelectionState();
+    updateGrammarReportedSpeechSetupUI();
+}
+
+function confirmGrammarReportedSpeechSetup() {
+    loadGrammarReportedSpeechSelectionState();
+    const deck = buildGrammarReportedSpeechBattleDeck();
+    if (!deck.length) {
+        if (typeof playSound === 'function') playSound('wrong-sfx');
+        if (typeof showNotification === 'function') {
+            showNotification('NO REPORTED SPEECH TYPES SELECTED', 'warning', 2500);
+        }
+        return;
+    }
+
+    saveGrammarReportedSpeechSelectionState();
+    if (typeof playSound === 'function') playSound('deploy-sfx');
+    const topicScreen = document.getElementById('grammar-topic-screen');
+    if (topicScreen) topicScreen.style.display = 'none';
+
+    window.selectedGrammarTopic = GRAMMAR_REPORTED_SPEECH_TOPIC;
+    currentPracticeMode = 'GRAMMAR';
+    selectedLevel = GRAMMAR_REPORTED_SPEECH_TOPIC;
+    selectedStageIndex = null;
+    selectedStageLabel = 'REPORTED SPEECH';
     activeVocabList = deck;
     sessionDeck = [...activeVocabList];
 
@@ -2202,7 +2452,8 @@ function getGrammarIntrinsicCapitalTokenSet() {
         window.GRAMMAR_DIRECT_QUESTION_BANK,
         window.GRAMMAR_INDIRECT_QUESTION_BANK,
         window.GRAMMAR_IT_IS_BANK,
-        window.GRAMMAR_CONDITIONAL_BANK
+        window.GRAMMAR_CONDITIONAL_BANK,
+        window.GRAMMAR_REPORTED_SPEECH_BANK
     ].forEach((bank) => {
         (Array.isArray(bank) ? bank : []).forEach((question) => {
             (Array.isArray(question.correct_tokens) ? question.correct_tokens : []).forEach((tokens) => {
@@ -2256,6 +2507,8 @@ function getGrammarDirectRuleText(question = currentVocab) {
         ? (window.GRAMMAR_IT_IS_RULES || {})
         : topic === GRAMMAR_CONDITIONAL_TOPIC
         ? (window.GRAMMAR_CONDITIONAL_RULES || {})
+        : topic === GRAMMAR_REPORTED_SPEECH_TOPIC
+        ? (window.GRAMMAR_REPORTED_SPEECH_RULES || {})
         : (window.GRAMMAR_DIRECT_QUESTION_RULES || {});
     return rules[ruleId] || '';
 }
@@ -2466,6 +2719,8 @@ function prepareLaunchGrammarDirectQuestion(question) {
             ? 'REARRANGE IT IS PATTERN'
             : question.grammarTopic === GRAMMAR_CONDITIONAL_TOPIC
             ? 'REARRANGE CONDITIONAL'
+            : question.grammarTopic === GRAMMAR_REPORTED_SPEECH_TOPIC
+            ? 'REARRANGE REPORTED SPEECH'
             : 'REARRANGE THE QUESTION';
         modeLabel.style.display = '';
     }
@@ -2981,6 +3236,7 @@ function getGrammarBattleModeLabel(question = currentVocab) {
     if (question?.grammarTopic === GRAMMAR_TENSE_TOPIC) return 'Complete the tense code.';
     if (question?.grammarTopic === GRAMMAR_INFINITIVE_GERUND_TOPIC) return 'Complete the infinitive or gerund form.';
     if (question?.grammarTopic === GRAMMAR_CONDITIONAL_TOPIC) return 'Reconstruct the conditional sentence.';
+    if (question?.grammarTopic === GRAMMAR_REPORTED_SPEECH_TOPIC) return 'Reconstruct the reported speech.';
     if (question?.grammarTopic === GRAMMAR_IT_IS_TOPIC) return 'Reconstruct the It is pattern.';
     if (question?.grammarTopic === GRAMMAR_INDIRECT_TOPIC) return 'Reconstruct the indirect question.';
     if (question?.grammarTopic === GRAMMAR_DIRECT_TOPIC) return 'Reconstruct the question.';
@@ -2997,6 +3253,7 @@ function getGrammarBattleErrorMessage(question = currentVocab) {
     if (question?.grammarTopic === GRAMMAR_TENSE_TOPIC) return 'TENSE CODE INVALID!';
     if (question?.grammarTopic === GRAMMAR_INFINITIVE_GERUND_TOPIC) return 'FORM CODE INVALID!';
     if (question?.grammarTopic === GRAMMAR_CONDITIONAL_TOPIC) return 'CONDITIONAL SEQUENCE INVALID!';
+    if (question?.grammarTopic === GRAMMAR_REPORTED_SPEECH_TOPIC) return 'REPORTED SEQUENCE INVALID!';
     if (isGrammarQuestionRearrangeTopic(question?.grammarTopic)) return 'QUESTION SEQUENCE INVALID!';
     return 'TABLE INCOMPLETE!';
 }
@@ -3997,6 +4254,7 @@ window.openGrammarPrepositionPlaceScreen = openGrammarPrepositionPlaceScreen;
 window.openGrammarPrepositionTimeScreen = openGrammarPrepositionTimeScreen;
 window.openGrammarTenseSetupScreen = openGrammarTenseSetupScreen;
 window.openGrammarConditionalSetupScreen = openGrammarConditionalSetupScreen;
+window.openGrammarReportedSpeechSetupScreen = openGrammarReportedSpeechSetupScreen;
 window.returnToGrammarTopicList = returnToGrammarTopicList;
 window.toggleGrammarTenseOption = toggleGrammarTenseOption;
 window.toggleGrammarVoiceOption = toggleGrammarVoiceOption;
@@ -4007,6 +4265,10 @@ window.toggleGrammarConditionalOption = toggleGrammarConditionalOption;
 window.selectAllGrammarConditionals = selectAllGrammarConditionals;
 window.clearGrammarConditionals = clearGrammarConditionals;
 window.confirmGrammarConditionalSetup = confirmGrammarConditionalSetup;
+window.toggleGrammarReportedSpeechOption = toggleGrammarReportedSpeechOption;
+window.selectAllGrammarReportedSpeechTypes = selectAllGrammarReportedSpeechTypes;
+window.clearGrammarReportedSpeechTypes = clearGrammarReportedSpeechTypes;
+window.confirmGrammarReportedSpeechSetup = confirmGrammarReportedSpeechSetup;
 window.returnFromGrammarVerbScreen = returnFromGrammarVerbScreen;
 window.toggleGrammarVerbReference = toggleGrammarVerbReference;
 window.toggleGrammarTopicReference = toggleGrammarTopicReference;
@@ -4040,6 +4302,8 @@ document.addEventListener('DOMContentLoaded', () => {
     updateGrammarTenseSetupUI();
     renderGrammarConditionalSetupOptions();
     updateGrammarConditionalSetupUI();
+    renderGrammarReportedSpeechSetupOptions();
+    updateGrammarReportedSpeechSetupUI();
     attachGrammarInputBehaviors();
     attachLaunchGrammarInputBehaviors();
     mountGrammarTopicKeyboardToScreen();

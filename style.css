@@ -8347,10 +8347,12 @@ body {
     opacity: 0.72;
 }
 
-.grammar-topic-btn:not(.grammar-topic-btn-tense):not(.grammar-topic-btn-conditional):not(.grammar-topic-btn-direct):not(.grammar-topic-btn-indirect):not(.grammar-topic-btn-it-is):not(.grammar-topic-btn-infinitive-gerund):not(.grammar-topic-btn-preposition-place):not(.grammar-topic-btn-preposition-time) .grammar-topic-name,
-.grammar-topic-btn:not(.grammar-topic-btn-tense):not(.grammar-topic-btn-conditional):not(.grammar-topic-btn-direct):not(.grammar-topic-btn-indirect):not(.grammar-topic-btn-it-is):not(.grammar-topic-btn-infinitive-gerund):not(.grammar-topic-btn-preposition-place):not(.grammar-topic-btn-preposition-time) .grammar-topic-progress,
+.grammar-topic-btn:not(.grammar-topic-btn-tense):not(.grammar-topic-btn-conditional):not(.grammar-topic-btn-reported-speech):not(.grammar-topic-btn-direct):not(.grammar-topic-btn-indirect):not(.grammar-topic-btn-it-is):not(.grammar-topic-btn-infinitive-gerund):not(.grammar-topic-btn-preposition-place):not(.grammar-topic-btn-preposition-time) .grammar-topic-name,
+.grammar-topic-btn:not(.grammar-topic-btn-tense):not(.grammar-topic-btn-conditional):not(.grammar-topic-btn-reported-speech):not(.grammar-topic-btn-direct):not(.grammar-topic-btn-indirect):not(.grammar-topic-btn-it-is):not(.grammar-topic-btn-infinitive-gerund):not(.grammar-topic-btn-preposition-place):not(.grammar-topic-btn-preposition-time) .grammar-topic-progress,
 .grammar-topic-btn-conditional .grammar-topic-name,
 .grammar-topic-btn-conditional .grammar-topic-progress,
+.grammar-topic-btn-reported-speech .grammar-topic-name,
+.grammar-topic-btn-reported-speech .grammar-topic-progress,
 .grammar-topic-btn-direct .grammar-topic-name,
 .grammar-topic-btn-direct .grammar-topic-progress,
 .grammar-topic-btn-indirect .grammar-topic-name,
@@ -8368,6 +8370,7 @@ body {
 }
 
 .grammar-topic-btn-conditional .grammar-topic-name,
+.grammar-topic-btn-reported-speech .grammar-topic-name,
 .grammar-topic-btn-direct .grammar-topic-name,
 .grammar-topic-btn-indirect .grammar-topic-name,
 .grammar-topic-btn-it-is .grammar-topic-name {

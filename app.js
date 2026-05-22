@@ -5775,7 +5775,7 @@ function takeNextAiBattleVocab() {
         }
     }
 
-    if (currentPracticeMode === 'GRAMMAR' && ['TENSES', 'CONDITIONAL'].includes(window.selectedGrammarTopic) && Array.isArray(sessionDeck) && sessionDeck.length > 0) {
+    if (currentPracticeMode === 'GRAMMAR' && ['TENSES', 'CONDITIONAL', 'REPORTED_SPEECH'].includes(window.selectedGrammarTopic) && Array.isArray(sessionDeck) && sessionDeck.length > 0) {
         let nextIndex = sessionDeck.findIndex(word => !battleUsedWordKeys.has(getBattleWordKey(word)));
         if (nextIndex < 0) nextIndex = 0;
         const pickedGrammarQuestion = sessionDeck.splice(nextIndex, 1)[0];
@@ -6333,7 +6333,7 @@ function handlePlayerTimeout() {
         let timeoutUserOverride = "(TIMEOUT)";
         if (typeof window.getGrammarBattleReviewEntry === 'function') {
             const reviewEntry = window.getGrammarBattleReviewEntry(currentVocab);
-            const hasPartialDirectAnswer = ['DIRECT_QUESTION', 'INDIRECT_QUESTION', 'IT_IS', 'CONDITIONAL', 'INFINITIVE_GERUND', 'PREPOSITION_OF_PLACE', 'PREPOSITION_OF_TIME'].includes(reviewEntry?.grammarTopic)
+            const hasPartialDirectAnswer = ['DIRECT_QUESTION', 'INDIRECT_QUESTION', 'IT_IS', 'CONDITIONAL', 'REPORTED_SPEECH', 'INFINITIVE_GERUND', 'PREPOSITION_OF_PLACE', 'PREPOSITION_OF_TIME'].includes(reviewEntry?.grammarTopic)
                 && reviewEntry.user
                 && reviewEntry.user !== '(blank)';
             if (hasPartialDirectAnswer) timeoutUserOverride = reviewEntry.user;
@@ -10716,6 +10716,9 @@ function handleRaceBack() {
         }
         if (window.selectedGrammarTopic === 'CONDITIONAL' && typeof window.openGrammarConditionalSetupScreen === 'function') {
             window.openGrammarConditionalSetupScreen({ silent: true });
+        }
+        if (window.selectedGrammarTopic === 'REPORTED_SPEECH' && typeof window.openGrammarReportedSpeechSetupScreen === 'function') {
+            window.openGrammarReportedSpeechSetupScreen({ silent: true });
         }
         return;
     }

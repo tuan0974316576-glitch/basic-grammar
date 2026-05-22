@@ -473,6 +473,13 @@
                     <div id="grammar-conditional-topic-progress" class="grammar-topic-progress">0/0</div>
                 </button>
             </div>
+            <div class="grammar-topic-card grammar-topic-card-reported-speech">
+                <button class="grammar-topic-btn grammar-topic-btn-reported-speech" onclick="openGrammarReportedSpeechSetupScreen()">
+                    <div class="grammar-topic-name">REPORTED SPEECH</div>
+                    <div class="grammar-topic-desc">間接引語重組特訓</div>
+                    <div id="grammar-reported-speech-topic-progress" class="grammar-topic-progress">0/0</div>
+                </button>
+            </div>
             <div class="grammar-topic-card grammar-topic-card-direct">
                 <button class="grammar-topic-btn grammar-topic-btn-direct" onclick="openGrammarDirectQuestionScreen()">
                     <div class="grammar-topic-name">DIRECT QUESTION</div>
@@ -570,6 +577,23 @@
             <div id="grammar-conditional-selection-summary" class="grammar-tense-selection-summary">0 SIGNALS READY</div>
             <div class="grammar-tense-actions">
                 <button type="button" id="grammar-conditional-confirm-btn" class="grammar-tense-confirm-btn" onclick="confirmGrammarConditionalSetup()">CONFIRM</button>
+            </div>
+        </div>
+
+        <div id="grammar-reported-speech-setup" class="grammar-tense-setup" style="display: none;">
+            <div class="grammar-tense-section">
+                <div class="grammar-tense-section-head">
+                    <span>要訓練的間接引語類型</span>
+                    <div class="grammar-tense-tools">
+                        <button type="button" onclick="selectAllGrammarReportedSpeechTypes()">ALL</button>
+                        <button type="button" onclick="clearGrammarReportedSpeechTypes()">CLEAR</button>
+                    </div>
+                </div>
+                <div id="grammar-reported-speech-option-grid" class="grammar-tense-option-grid grammar-reported-speech-option-grid"></div>
+            </div>
+            <div id="grammar-reported-speech-selection-summary" class="grammar-tense-selection-summary">0 SIGNALS READY</div>
+            <div class="grammar-tense-actions">
+                <button type="button" id="grammar-reported-speech-confirm-btn" class="grammar-tense-confirm-btn" onclick="confirmGrammarReportedSpeechSetup()">CONFIRM</button>
             </div>
         </div>
 
@@ -1273,6 +1297,7 @@
 <script src="grammar_conditional_data.js?v=1.00v"></script>
 <script src="grammar_conditional_extra_data.js?v=1.01v"></script>
 <script src="grammar_conditional_more_data.js?v=1.02v"></script>
+<script src="grammar_reported_speech_data.js?v=1.03v"></script>
 <script src="ui-grammar.js?v=1.01v"></script>
 <script src="ui-screens.js?v=0.88v"></script>
 <script src="ui-auth.js?v=0.88v"></script>
