@@ -20,15 +20,15 @@ PODS:
     - Capacitor
   - CodetrixStudioCapacitorGoogleAuth (0.0.1):
     - Capacitor
-    - GoogleSignIn (~> 6.2.4)
-  - GoogleSignIn (6.2.4):
-    - AppAuth (~> 1.5)
-    - GTMAppAuth (~> 1.3)
-    - GTMSessionFetcher/Core (< 3.0, >= 1.1)
-  - GTMAppAuth (1.3.1):
-    - AppAuth/Core (~> 1.6)
-    - GTMSessionFetcher/Core (< 3.0, >= 1.5)
-  - GTMSessionFetcher/Core (2.3.0)
+    - GoogleSignIn (~> 7.1.0)
+  - GoogleSignIn (7.1.0):
+    - AppAuth (< 2.0, >= 1.7.3)
+    - GTMAppAuth (< 5.0, >= 4.1.1)
+    - GTMSessionFetcher/Core (~> 3.3)
+  - GTMAppAuth (4.1.1):
+    - AppAuth/Core (~> 1.7)
+    - GTMSessionFetcher/Core (< 4.0, >= 3.3)
+  - GTMSessionFetcher/Core (3.5.0)
 
 DEPENDENCIES:
   - "Capacitor (from `../../node_modules/@capacitor/ios`)"
@@ -38,7 +38,7 @@ DEPENDENCIES:
   - "CapacitorKeyboard (from `../../node_modules/@capacitor/keyboard`)"
   - "CapacitorSplashScreen (from `../../node_modules/@capacitor/splash-screen`)"
   - "CapacitorStatusBar (from `../../node_modules/@capacitor/status-bar`)"
-  - "CodetrixStudioCapacitorGoogleAuth (from `../../node_modules/@codetrix-studio/capacitor-google-auth`)"
+  - CodetrixStudioCapacitorGoogleAuth (from `../LocalPods/CodetrixStudioCapacitorGoogleAuth`)
 
 SPEC REPOS:
   trunk:
@@ -63,22 +63,22 @@ EXTERNAL SOURCES:
   CapacitorStatusBar:
     :path: "../../node_modules/@capacitor/status-bar"
   CodetrixStudioCapacitorGoogleAuth:
-    :path: "../../node_modules/@codetrix-studio/capacitor-google-auth"
+    :path: "../LocalPods/CodetrixStudioCapacitorGoogleAuth"
 
 SPEC CHECKSUMS:
   AppAuth: d4f13a8fe0baf391b2108511793e4b479691fb73
-  Capacitor: 747aadb4fa786f460d8cd9d0557cb81440a13747
-  CapacitorCommunityAppleSignIn: eafdd59b18b38161fa5cceee7b0e31312b122958
-  CapacitorCommunityNativeAudio: 1a4d5490acb59f155602c0b6bcf1b42ee4efe91b
+  Capacitor: 9686e5711b48a1aa84671ede795d0175848abcba
+  CapacitorCommunityAppleSignIn: 72676596c6ff57fce8f687365dfc5d8395bb45ac
+  CapacitorCommunityNativeAudio: 242e305c1d7bf6e3f26c3c110807d1582bcf69e5
   CapacitorCordova: 31ab98dca2ddcee051027a1afe7e8c85c82f7297
-  CapacitorKeyboard: f2e78b60a5cb981b4ea9e511e80693ca355169bb
-  CapacitorSplashScreen: 7a69e693bc1ef83e4bd3fb073bd8c8fa33e9059e
-  CapacitorStatusBar: 51af549cfcf35aac3ab072b062967ae5971ee485
-  CodetrixStudioCapacitorGoogleAuth: fcce058390347c1ce5d8ac4764bdf1f5c1ee233b
-  GoogleSignIn: 5651ce3a61e56ca864160e79b484cd9ed3f49b7a
-  GTMAppAuth: 0ff230db599948a9ad7470ca667337803b3fc4dd
-  GTMSessionFetcher: 3a63d75eecd6aa32c2fc79f578064e1214dfdec2
+  CapacitorKeyboard: 38db46e3e9a8024814994b5a909f102f3d27c207
+  CapacitorSplashScreen: 0b962a2bee014151569dc59b089ba0e93daeeaf0
+  CapacitorStatusBar: 8e0a8f213504695505dc8c4f808dffbe03aa0e0f
+  CodetrixStudioCapacitorGoogleAuth: ceeb6436768a7c6588fcd51c1e317b1eee0256c9
+  GoogleSignIn: d4281ab6cf21542b1cfaff85c191f230b399d2db
+  GTMAppAuth: f69bd07d68cd3b766125f7e072c45d7340dea0de
+  GTMSessionFetcher: 5aea5ba6bd522a239e236100971f10cb71b96ab6
 
-PODFILE CHECKSUM: 0efb042f7f5ba194aafe5f6c17dd68ec66e6f090
+PODFILE CHECKSUM: d3e35af21d1dba0095482c450b23c02502c92103
 
 COCOAPODS: 1.16.2
