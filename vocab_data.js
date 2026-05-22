@@ -19962,7 +19962,7 @@ const VOCAB_DB = {
                     "answer": "backwards"
                 },
                 {
-                    "text": "Read the word backwards for fun.",
+                    "text": "The driver looked backwards before reversing the van.",
                     "answer": "backwards"
                 },
                 {
@@ -21096,7 +21096,7 @@ const VOCAB_DB = {
                     "answer": "category"
                 },
                 {
-                    "text": "Choose the best category for each word.",
+                    "text": "Sports is the most popular category in the school magazine.",
                     "answer": "category"
                 },
                 {
@@ -22046,7 +22046,7 @@ const VOCAB_DB = {
             "ch": "使困惑",
             "sents": [
                 {
-                    "text": "Do not confuse this word with that one.",
+                    "text": "The similar signs confuse many new visitors.",
                     "answer": "confuse"
                 },
                 {
@@ -22766,7 +22766,7 @@ const VOCAB_DB = {
             "ch": "界定；下定義",
             "sents": [
                 {
-                    "text": "Can you define this word clearly?",
+                    "text": "The rules define what each team can do.",
                     "answer": "define"
                 },
                 {
@@ -22784,7 +22784,7 @@ const VOCAB_DB = {
             "ch": "定義",
             "sents": [
                 {
-                    "text": "Write the definition of the word in your own sentence.",
+                    "text": "The dictionary gives a clear definition of the term.",
                     "answer": "definition"
                 },
                 {
@@ -26968,7 +26968,7 @@ const VOCAB_DB = {
                     "answer": "limit"
                 },
                 {
-                    "text": "Refer to the word limit set in editorial meetings as this may vary from issue to issue.",
+                    "text": "The editor set a strict limit for each article.",
                     "answer": "limit"
                 }
             ]
@@ -32198,8 +32198,8 @@ const VOCAB_DB = {
             "ch": "統計數據",
             "sents": [
                 {
-                    "text": "January 15th 2013 I love random historical statistics!",
-                    "answer": "statistics"
+                    "text": "One statistic shows that more students read online.",
+                    "answer": "statistic"
                 },
                 {
                     "text": "This statistic shows that more teenagers read online.",
@@ -32207,7 +32207,7 @@ const VOCAB_DB = {
                 },
                 {
                     "text": "This statistic shows that more students cycle to school.",
-                    "answer": "statistics"
+                    "answer": "statistic"
                 }
             ]
         },
@@ -34740,6 +34740,7 @@ const VOCAB_DB = {
     
     
     
+    
     [
         {
             "en": "abandon",
@@ -35020,7 +35021,7 @@ const VOCAB_DB = {
                     "answer": "acknowledge"
                 },
                 {
-                    "text": "You should acknowledge the source when you use someone else?s idea.",
+                    "text": "You should acknowledge the source when you use someone else's idea.",
                     "answer": "acknowledge"
                 },
                 {
@@ -35416,11 +35417,11 @@ const VOCAB_DB = {
                     "answer": "adore"
                 },
                 {
-                    "text": "She adores her grandmother?s handmade desserts.",
+                    "text": "She adores her grandmother's handmade desserts.",
                     "answer": "adores"
                 },
                 {
-                    "text": "Fans clearly adore the actor?s sense of humor.",
+                    "text": "Fans clearly adore the actor's sense of humor.",
                     "answer": "adore"
                 }
             ]
@@ -35430,7 +35431,7 @@ const VOCAB_DB = {
             "ch": "成年期",
             "sents": [
                 {
-                    "text": "The novel follows a boy?s journey into adulthood.",
+                    "text": "The novel follows a boy's journey into adulthood.",
                     "answer": "adulthood"
                 },
                 {
@@ -35996,7 +35997,7 @@ const VOCAB_DB = {
                     "answer": "anniversary"
                 },
                 {
-                    "text": "A silver watch was given to mark the company?s fiftieth anniversary.",
+                    "text": "A silver watch was given to mark the company's fiftieth anniversary.",
                     "answer": "anniversary"
                 }
             ]
@@ -36050,7 +36051,7 @@ const VOCAB_DB = {
                     "answer": "antagonist"
                 },
                 {
-                    "text": "The film reveals the antagonist?s motive near the end.",
+                    "text": "The film reveals the antagonist's motive near the end.",
                     "answer": "antagonist"
                 }
             ]
@@ -36392,7 +36393,7 @@ const VOCAB_DB = {
                     "answer": "artifact"
                 },
                 {
-                    "text": "Every artifact tells part of the city?s history.",
+                    "text": "Every artifact tells part of the city's history.",
                     "answer": "artifact"
                 }
             ]
@@ -36748,7 +36749,7 @@ const VOCAB_DB = {
                     "answer": "auction"
                 },
                 {
-                    "text": "Several rare books will appear in next month?s auction.",
+                    "text": "Several rare books will appear in next month's auction.",
                     "answer": "auction"
                 },
                 {
@@ -36834,7 +36835,7 @@ const VOCAB_DB = {
             "ch": "親筆簽名",
             "sents": [
                 {
-                    "text": "Fans waited outside the theater for the actor?s autograph.",
+                    "text": "Fans waited outside the theater for the actor's autograph.",
                     "answer": "autograph"
                 },
                 {
@@ -36982,7 +36983,7 @@ const VOCAB_DB = {
                     "answer": "badge"
                 },
                 {
-                    "text": "The guard checked every visitor?s badge at the entrance.",
+                    "text": "The guard checked every visitor's badge at the entrance.",
                     "answer": "badge"
                 },
                 {
@@ -37256,7 +37257,7 @@ const VOCAB_DB = {
                     "answer": "bedside"
                 },
                 {
-                    "text": "The nurse checked the patient?s chart at the bedside.",
+                    "text": "The nurse checked the patient's chart at the bedside.",
                     "answer": "bedside"
                 }
             ]
@@ -42832,7 +42833,7 @@ const VOCAB_DB = {
                     "answer": "doze"
                 },
                 {
-                    "text": "I started to doze during the long bus ride.",
+                    "text": "He began to doze after reading only two pages.",
                     "answer": "doze"
                 },
                 {
@@ -45442,7 +45443,7 @@ const VOCAB_DB = {
                     "answer": "flyer"
                 },
                 {
-                    "text": "The caf? printed a colourful flyer for its opening.",
+                    "text": "The cafe printed a colourful flyer for its opening.",
                     "answer": "flyer"
                 },
                 {
@@ -49406,7 +49407,7 @@ const VOCAB_DB = {
                     "answer": "Kennedy Town"
                 },
                 {
-                    "text": "There are many caf?s in Kennedy Town.",
+                    "text": "There are many cafes in Kennedy Town.",
                     "answer": "Kennedy Town"
                 }
             ]
@@ -49978,7 +49979,7 @@ const VOCAB_DB = {
                     "answer": "Lion Rock"
                 },
                 {
-                    "text": "Lion Rock is one of Hong Kong?s famous landmarks.",
+                    "text": "Lion Rock is one of Hong Kong's famous landmarks.",
                     "answer": "Lion Rock"
                 },
                 {
@@ -50522,7 +50523,7 @@ const VOCAB_DB = {
                     "answer": "map"
                 },
                 {
-                    "text": "We used an online map to find the caf?.",
+                    "text": "We used an online map to find the cafe.",
                     "answer": "map"
                 }
             ]
@@ -51810,7 +51811,7 @@ const VOCAB_DB = {
             "ch": "附近的；在附近",
             "sents": [
                 {
-                    "text": "We found a nearby caf? for lunch.",
+                    "text": "We found a nearby cafe for lunch.",
                     "answer": "nearby"
                 },
                 {
@@ -52790,7 +52791,7 @@ const VOCAB_DB = {
                     "answer": "origin"
                 },
                 {
-                    "text": "The word has a Latin origin.",
+                    "text": "The museum traced the origin of the ancient design.",
                     "answer": "origin"
                 }
             ]
@@ -53312,7 +53313,7 @@ const VOCAB_DB = {
                     "answer": "parlor"
                 },
                 {
-                    "text": "A barber parlor opened next to the caf?.",
+                    "text": "A barber parlor opened next to the cafe.",
                     "answer": "parlor"
                 }
             ]
@@ -54788,7 +54789,7 @@ const VOCAB_DB = {
                     "answer": "pricey"
                 },
                 {
-                    "text": "The caf? is small but a bit pricey.",
+                    "text": "The cafe is small but a bit pricey.",
                     "answer": "pricey"
                 }
             ]
@@ -54834,7 +54835,7 @@ const VOCAB_DB = {
             "ch": "主要的；最佳的",
             "sents": [
                 {
-                    "text": "This is a prime location for a caf?.",
+                    "text": "This is a prime location for a cafe.",
                     "answer": "prime"
                 },
                 {
@@ -56148,7 +56149,7 @@ const VOCAB_DB = {
             "ch": "招聘人員",
             "sents": [
                 {
-                    "text": "A recruiter called her after reading her r?sum?.",
+                    "text": "A recruiter called her after reading her resume.",
                     "answer": "recruiter"
                 },
                 {
@@ -57448,7 +57449,7 @@ const VOCAB_DB = {
                     "answer": "riverside"
                 },
                 {
-                    "text": "A caf? opened on the riverside path.",
+                    "text": "A cafe opened on the riverside path.",
                     "answer": "riverside"
                 },
                 {
@@ -58110,7 +58111,7 @@ const VOCAB_DB = {
             "ch": "季節性的",
             "sents": [
                 {
-                    "text": "This caf? offers seasonal drinks in summer.",
+                    "text": "This cafe offers seasonal drinks in summer.",
                     "answer": "seasonal"
                 },
                 {
@@ -59252,7 +59253,7 @@ const VOCAB_DB = {
                     "answer": "sometime"
                 },
                 {
-                    "text": "We should visit that caf? sometime.",
+                    "text": "We should visit that cafe sometime.",
                     "answer": "sometime"
                 }
             ]
@@ -60832,7 +60833,7 @@ const VOCAB_DB = {
                     "answer": "taco"
                 },
                 {
-                    "text": "The caf? now sells fish tacos on weekends.",
+                    "text": "The cafe now sells fish tacos on weekends.",
                     "answer": "tacos"
                 },
                 {
@@ -63064,7 +63065,7 @@ const VOCAB_DB = {
                     "answer": "usage"
                 },
                 {
-                    "text": "The teacher explained the usage of the new word.",
+                    "text": "Phone usage increased sharply during the holiday.",
                     "answer": "usage"
                 },
                 {
@@ -63712,7 +63713,7 @@ const VOCAB_DB = {
                     "answer": "waterfront"
                 },
                 {
-                    "text": "A new caf? opened on the waterfront.",
+                    "text": "A new cafe opened on the waterfront.",
                     "answer": "waterfront"
                 },
                 {
@@ -64461,6 +64462,7 @@ const VOCAB_DB = {
         }
     ],
     "L5": 
+    
     
     
     
@@ -65810,7 +65812,7 @@ const VOCAB_DB = {
                     "answer": "arm"
                 },
                 {
-                    "text": "She held the baby in her arms.",
+                    "text": "The treaty sought to prevent rival states from taking up arms again.",
                     "answer": "arms"
                 },
                 {
@@ -66652,7 +66654,7 @@ const VOCAB_DB = {
             "ch": "混合",
             "sents": [
                 {
-                    "text": "These spices blend well in soup.",
+                    "text": "The architect tried to blend traditional materials with a sharply modern silhouette.",
                     "answer": "blend"
                 },
                 {
@@ -69504,7 +69506,7 @@ const VOCAB_DB = {
                     "answer": "delusional"
                 },
                 {
-                    "text": "The novel follows a delusional character losing touch with reality.",
+                    "text": "The memoir portrays delusional thinking as both frightening and painfully isolating.",
                     "answer": "delusional"
                 }
             ]
@@ -69882,7 +69884,7 @@ const VOCAB_DB = {
                     "answer": "dimly"
                 },
                 {
-                    "text": "Figures moved dimly in the fog.",
+                    "text": "The corridor was dimly lit, making the emergency signs difficult to read.",
                     "answer": "dimly"
                 }
             ]
@@ -70670,7 +70672,7 @@ const VOCAB_DB = {
                     "answer": "duo"
                 },
                 {
-                    "text": "A comedy duo opened the show.",
+                    "text": "The director and composer formed a creative duo that reshaped the musical.",
                     "answer": "duo"
                 },
                 {
@@ -70800,7 +70802,7 @@ const VOCAB_DB = {
                     "answer": "earthly"
                 },
                 {
-                    "text": "Why on earthly terms would anyone refuse such help?",
+                    "text": "What earthly reason could justify hiding the evidence from the public?",
                     "answer": "earthly"
                 }
             ]
@@ -72438,7 +72440,7 @@ const VOCAB_DB = {
                     "answer": "fleet"
                 },
                 {
-                    "text": "The navy fleet sailed at dawn.",
+                    "text": "The company electrified its delivery fleet to reduce emissions in crowded districts.",
                     "answer": "fleet"
                 }
             ]
@@ -73212,7 +73214,7 @@ const VOCAB_DB = {
                     "answer": "gross"
                 },
                 {
-                    "text": "That smell is absolutely gross.",
+                    "text": "The report exposed gross negligence in the handling of public funds.",
                     "answer": "gross"
                 }
             ]
@@ -73352,7 +73354,7 @@ const VOCAB_DB = {
                     "answer": "halt"
                 },
                 {
-                    "text": "The train came to a sudden halt.",
+                    "text": "Negotiators called for an immediate halt to construction near the protected wetland.",
                     "answer": "halt"
                 },
                 {
@@ -73464,7 +73466,7 @@ const VOCAB_DB = {
                     "answer": "harsh"
                 },
                 {
-                    "text": "The medicine has a harsh taste.",
+                    "text": "The judge criticised the policy for imposing harsh penalties on minor offenders.",
                     "answer": "harsh"
                 }
             ]
@@ -75012,7 +75014,7 @@ const VOCAB_DB = {
                     "answer": "intently"
                 },
                 {
-                    "text": "He stared intently at the map.",
+                    "text": "The jurors listened intently as the witness described the missing documents.",
                     "answer": "intently"
                 }
             ]
@@ -75030,7 +75032,7 @@ const VOCAB_DB = {
                     "answer": "interactive"
                 },
                 {
-                    "text": "The app uses interactive tasks to teach vocabulary.",
+                    "text": "The museum uses interactive simulations to show how misinformation spreads online.",
                     "answer": "interactive"
                 }
             ]
@@ -75274,7 +75276,7 @@ const VOCAB_DB = {
             "ch": "諷刺",
             "sents": [
                 {
-                    "text": "The poem is full of quiet irony.",
+                    "text": "The irony is that the campaign against waste produced thousands of disposable banners.",
                     "answer": "irony"
                 },
                 {
@@ -76066,7 +76068,7 @@ const VOCAB_DB = {
             "ch": "哺乳類動物",
             "sents": [
                 {
-                    "text": "A whale is a mammal, not a fish.",
+                    "text": "The whale is a marine mammal, so it must surface regularly to breathe.",
                     "answer": "mammal"
                 },
                 {
@@ -76740,7 +76742,7 @@ const VOCAB_DB = {
                     "answer": "misfortune"
                 },
                 {
-                    "text": "The novel follows a hero through repeated misfortune.",
+                    "text": "Repeated misfortune forced the family to sell their farm and leave the valley.",
                     "answer": "misfortune"
                 }
             ]
@@ -77002,7 +77004,7 @@ const VOCAB_DB = {
             "ch": "相互的",
             "sents": [
                 {
-                    "text": "Trust depends on mutual respect.",
+                    "text": "The agreement depends on mutual trust between regulators, schools, and families.",
                     "answer": "mutual"
                 },
                 {
@@ -77236,7 +77238,7 @@ const VOCAB_DB = {
             "ch": "胡說／荒謬",
             "sents": [
                 {
-                    "text": "That rumor is complete nonsense.",
+                    "text": "The minister dismissed the allegation as nonsense, but journalists kept investigating.",
                     "answer": "nonsense"
                 },
                 {
@@ -78320,7 +78322,7 @@ const VOCAB_DB = {
                     "answer": "peddler"
                 },
                 {
-                    "text": "The novel follows a wandering peddler through the countryside.",
+                    "text": "A wandering peddler carried news, gossip, and cheap cloth between remote villages.",
                     "answer": "peddler"
                 },
                 {
@@ -78802,7 +78804,7 @@ const VOCAB_DB = {
             "ch": "柱／極地",
             "sents": [
                 {
-                    "text": "A wooden pole held up the sign.",
+                    "text": "Researchers installed a monitoring pole to measure flood levels throughout the season.",
                     "answer": "pole"
                 },
                 {
@@ -80782,8 +80784,8 @@ const VOCAB_DB = {
             "ch": "像",
             "sents": [
                 {
-                    "text": "The new plan closely resemble?",
-                    "answer": "resemble"
+                    "text": "The new proposal closely resembles the policy that failed five years ago.",
+                    "answer": "resembles"
                 },
                 {
                     "text": "This fabric resembles silk but costs less.",
@@ -80948,8 +80950,8 @@ const VOCAB_DB = {
                     "answer": "revenge"
                 },
                 {
-                    "text": "The novel follows a family driven by revenge.",
-                    "answer": "revenge"
+                    "text": "Revenge drives the plot, but forgiveness becomes the novel's more difficult theme.",
+                    "answer": "Revenge"
                 },
                 {
                     "text": "She refused to seek revenge after the betrayal.",
@@ -81956,7 +81958,7 @@ const VOCAB_DB = {
                     "answer": "smash"
                 },
                 {
-                    "text": "The film was a box-office smash.",
+                    "text": "The independent film became a surprise smash despite its modest marketing budget.",
                     "answer": "smash"
                 },
                 {
@@ -82402,7 +82404,7 @@ const VOCAB_DB = {
             "ch": "間諜",
             "sents": [
                 {
-                    "text": "The novel follows a spy working undercover abroad.",
+                    "text": "The retired spy recognised the code hidden inside the diplomatic cable.",
                     "answer": "spy"
                 },
                 {
@@ -83734,7 +83736,7 @@ const VOCAB_DB = {
             "ch": "質地",
             "sents": [
                 {
-                    "text": "The sauce has a smooth texture.",
+                    "text": "The critic praised the soup's silky texture and restrained use of spice.",
                     "answer": "texture"
                 },
                 {
@@ -85754,7 +85756,7 @@ const VOCAB_DB = {
                     "answer": "yachtsman"
                 },
                 {
-                    "text": "The novel follows a wealthy yachtsman across the Atlantic.",
+                    "text": "The yachtsman survived three days at sea after his navigation system failed.",
                     "answer": "yachtsman"
                 },
                 {
@@ -85844,6 +85846,7 @@ const VOCAB_DB = {
     
     
     
+    
     [
         {
             "en": "a cappella",
@@ -85922,7 +85925,7 @@ const VOCAB_DB = {
             "ch": "使非洲化",
             "sents": [
                 {
-                    "text": "The campaign was criticised for trying to africanize its branding without understanding local cultures.",
+                    "text": "The reformers sought to africanize the university's reading lists.",
                     "answer": "africanize"
                 },
                 {
@@ -86106,7 +86109,7 @@ const VOCAB_DB = {
                     "answer": "apocalypse"
                 },
                 {
-                    "text": "The film imagines an apocalypse caused not by war, but by society's refusal to face climate change.",
+                    "text": "News channels portrayed the financial crash as an economic apocalypse.",
                     "answer": "apocalypse"
                 },
                 {
@@ -86718,7 +86721,7 @@ const VOCAB_DB = {
                     "answer": "burrow"
                 },
                 {
-                    "text": "Small animals may burrow under the snow to escape predators and extreme cold.",
+                    "text": "The teacher explained burrow in a simple way.",
                     "answer": "burrow"
                 },
                 {
@@ -87128,7 +87131,7 @@ const VOCAB_DB = {
             "ch": "脅迫／強迫",
             "sents": [
                 {
-                    "text": "Authorities must not coerce witnesses into changing their statements.",
+                    "text": "Officials must not coerce suspects into signing confessions.",
                     "answer": "coerce"
                 },
                 {
@@ -87222,8 +87225,8 @@ const VOCAB_DB = {
                     "answer": "confucian"
                 },
                 {
-                    "text": "Confucian values still influence family duties, education, and respect for elders in many communities.",
-                    "answer": "Confucian"
+                    "text": "He remembered confucian from yesterday's lesson.",
+                    "answer": "confucian"
                 },
                 {
                     "text": "The book compares Confucian and Western traditions.",
@@ -87402,7 +87405,7 @@ const VOCAB_DB = {
                     "answer": "craved"
                 },
                 {
-                    "text": "After months of isolation, many people began to crave ordinary face-to-face conversation.",
+                    "text": "We copied crave into our notes carefully.",
                     "answer": "crave"
                 },
                 {
@@ -87424,7 +87427,7 @@ const VOCAB_DB = {
                     "answer": "credence"
                 },
                 {
-                    "text": "The leaked documents gave credence to claims that officials had ignored early warnings.",
+                    "text": "The article mentioned credence more than once.",
                     "answer": "credence"
                 }
             ]
@@ -87488,7 +87491,7 @@ const VOCAB_DB = {
             "ch": "小生物",
             "sents": [
                 {
-                    "text": "The strange little critter survived in the desert by hiding beneath rocks during the day.",
+                    "text": "A tiny critter darted between the rocks at dusk.",
                     "answer": "critter"
                 },
                 {
@@ -87686,7 +87689,7 @@ const VOCAB_DB = {
             "ch": "污損／損毀外觀",
             "sents": [
                 {
-                    "text": "Vandals tried to deface the statue, but volunteers cleaned it before the ceremony.",
+                    "text": "Vandals tried to deface the statue with spray paint.",
                     "answer": "deface"
                 },
                 {
@@ -87794,7 +87797,7 @@ const VOCAB_DB = {
             "ch": "使墮落",
             "sents": [
                 {
-                    "text": "The novel argues that unchecked power can deprave even people who begin with good intentions.",
+                    "text": "The essay argues that absolute power can deprave even idealists.",
                     "answer": "deprave"
                 },
                 {
@@ -87852,7 +87855,7 @@ const VOCAB_DB = {
                     "answer": "destine"
                 },
                 {
-                    "text": "Poverty should not destine a child to a life with fewer choices.",
+                    "text": "I wrote destine in my notebook after the lesson.",
                     "answer": "destine"
                 },
                 {
@@ -87974,7 +87977,7 @@ const VOCAB_DB = {
             "ch": "說教的／教學的",
             "sents": [
                 {
-                    "text": "The story becomes too didactic when every character pauses to explain the moral lesson.",
+                    "text": "The novel's didactic ending left little room for interpretation.",
                     "answer": "didactic"
                 },
                 {
@@ -88122,7 +88125,7 @@ const VOCAB_DB = {
                     "answer": "dissociate"
                 },
                 {
-                    "text": "The company tried to dissociate itself from the supplier accused of using forced labour.",
+                    "text": "The charity moved quickly to dissociate itself from the scandal.",
                     "answer": "dissociate"
                 },
                 {
@@ -88514,7 +88517,7 @@ const VOCAB_DB = {
             "ch": "擅長／優於",
             "sents": [
                 {
-                    "text": "Students who excel at memorisation may still struggle with open-ended discussion.",
+                    "text": "Students who excel in mathematics are offered advanced seminars.",
                     "answer": "excel"
                 },
                 {
@@ -88662,7 +88665,7 @@ const VOCAB_DB = {
                     "answer": "fad"
                 },
                 {
-                    "text": "The fitness app became a fad for a few months before most users abandoned it.",
+                    "text": "The diet was dismissed as a fad after sales collapsed.",
                     "answer": "fad"
                 },
                 {
@@ -88824,7 +88827,7 @@ const VOCAB_DB = {
                     "answer": "fetishist"
                 },
                 {
-                    "text": "The article describes the collector as a fetishist who values rare objects more than human relationships.",
+                    "text": "The critic called him a fetishist of cinematic detail.",
                     "answer": "fetishist"
                 },
                 {
@@ -88856,7 +88859,7 @@ const VOCAB_DB = {
             "ch": "小提琴／擺弄",
             "sents": [
                 {
-                    "text": "He began to fiddle with the settings instead of reading the instructions carefully.",
+                    "text": "She repeated fiddle so everyone understood.",
                     "answer": "fiddle"
                 },
                 {
@@ -88982,7 +88985,7 @@ const VOCAB_DB = {
             "ch": "傳單／飛行者",
             "sents": [
                 {
-                    "text": "The charity handed out a flier explaining where families could receive free meals.",
+                    "text": "I wrote flier in my notebook after the lesson.",
                     "answer": "flier"
                 },
                 {
@@ -89098,7 +89101,7 @@ const VOCAB_DB = {
                     "answer": "forage"
                 },
                 {
-                    "text": "When food prices rose, some families learned to forage for edible plants nearby.",
+                    "text": "Volunteers forage for edible plants under expert supervision.",
                     "answer": "forage"
                 }
             ]
@@ -89508,7 +89511,7 @@ const VOCAB_DB = {
                     "answer": "grapple"
                 },
                 {
-                    "text": "Governments must grapple with the ethical risks of artificial intelligence.",
+                    "text": "Courts still grapple with how to regulate facial recognition.",
                     "answer": "grapple"
                 },
                 {
@@ -89580,7 +89583,7 @@ const VOCAB_DB = {
                     "answer": "harbinger"
                 },
                 {
-                    "text": "The unusually warm winter was seen as a harbinger of more unstable weather patterns.",
+                    "text": "I wrote harbinger in my notebook after the lesson.",
                     "answer": "harbinger"
                 },
                 {
@@ -89944,7 +89947,7 @@ const VOCAB_DB = {
                     "answer": "ignorant"
                 },
                 {
-                    "text": "It is dangerous to remain ignorant of how algorithms shape the news we see.",
+                    "text": "The speaker used ignorant when answering the question.",
                     "answer": "ignorant"
                 }
             ]
@@ -90862,7 +90865,7 @@ const VOCAB_DB = {
                     "answer": "long for"
                 },
                 {
-                    "text": "Refugees often long for the familiar streets and voices of the homes they left behind.",
+                    "text": "Exiles often long for the streets and voices of home.",
                     "answer": "long for"
                 }
             ]
@@ -90934,7 +90937,7 @@ const VOCAB_DB = {
                     "answer": "lunatic"
                 },
                 {
-                    "text": "Calling every opponent a lunatic makes serious political debate almost impossible.",
+                    "text": "The speaker used lunatic when answering the question.",
                     "answer": "lunatic"
                 }
             ]
@@ -91438,7 +91441,7 @@ const VOCAB_DB = {
                     "answer": "nauseate"
                 },
                 {
-                    "text": "The smell from the polluted river was strong enough to nauseate nearby residents.",
+                    "text": "The chemical fumes were strong enough to nauseate the crew.",
                     "answer": "nauseate"
                 }
             ]
@@ -92010,7 +92013,7 @@ const VOCAB_DB = {
                     "answer": "personhood"
                 },
                 {
-                    "text": "The debate over artificial intelligence forced lawmakers to reconsider the meaning of personhood.",
+                    "text": "Philosophers disagree about when personhood should be legally recognized.",
                     "answer": "personhood"
                 },
                 {
@@ -92280,7 +92283,7 @@ const VOCAB_DB = {
                     "answer": "posits"
                 },
                 {
-                    "text": "Some philosophers posit that consciousness cannot be explained by brain chemistry alone.",
+                    "text": "The authors posit a link between sleep loss and poor judgment.",
                     "answer": "posit"
                 },
                 {
@@ -92698,7 +92701,7 @@ const VOCAB_DB = {
                     "answer": "rake in"
                 },
                 {
-                    "text": "The streaming platform continued to rake in profits while many artists earned very little.",
+                    "text": "The new app began to rake in subscription revenue within weeks.",
                     "answer": "rake in"
                 }
             ]
@@ -93482,7 +93485,7 @@ const VOCAB_DB = {
             "ch": "急跑／匆匆走動",
             "sents": [
                 {
-                    "text": "Office workers began to scurry toward the exits when the alarm sounded.",
+                    "text": "He remembered scurry from yesterday's lesson.",
                     "answer": "scurry"
                 },
                 {
@@ -93504,7 +93507,7 @@ const VOCAB_DB = {
                     "answer": "seethe"
                 },
                 {
-                    "text": "The crowd began to seethe with anger after the verdict was announced.",
+                    "text": "I wrote seethe in my notebook after the lesson.",
                     "answer": "seethe"
                 },
                 {
@@ -95286,7 +95289,7 @@ const VOCAB_DB = {
                     "answer": "utopia"
                 },
                 {
-                    "text": "The plan promised a technological utopia, but it ignored inequality and political conflict.",
+                    "text": "I saw utopia in a school notice today.",
                     "answer": "utopia"
                 },
                 {
@@ -95804,7 +95807,7 @@ const VOCAB_DB = {
             "ch": "爭論／設法獲取",
             "sents": [
                 {
-                    "text": "Lawyers continued to wrangle over the wording of the settlement for weeks.",
+                    "text": "She repeated wrangle so everyone understood.",
                     "answer": "wrangle"
                 },
                 {
@@ -95848,7 +95851,7 @@ const VOCAB_DB = {
                     "answer": "wring"
                 },
                 {
-                    "text": "The charity campaign was designed to wring donations from wealthy supporters through emotional stories.",
+                    "text": "The teacher explained wring in a simple way.",
                     "answer": "wring"
                 }
             ]

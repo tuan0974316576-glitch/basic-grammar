@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>英文條件句重組遊戲 (Conditionals)</title>
+    <style>
+        /* CSS 樣式區域 */
+        
+        :root {
+            --base-bg: #F1F3F3;       
+            --primary-color: #0a9396;   
+            --primary-dark: #005f73;    
+            --secondary-color: #0a9396; 
+            --secondary-dark: #005f73;  
+            --light-bg-1: #e6eaea;      
+            --light-bg-2: #e6f1f0;      
+            --text-color: #212529;      
+            --border-color: #ced4da;     
+            --danger-color: #dc3545;     
+            --danger-dark: #a42631;    
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--base-bg); 
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        #game-container {
+            width: 100%;
+            max-width: 800px;
+            background-color: #ffffff;
+            border-radius: 12px; 
+            border: 2px solid var(--border-color);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            padding: 24px 32px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary-dark); 
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        /* --- 選擇介面樣式 --- */
+        #topic-selection {
+            text-align: center;
+            padding: 30px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .selection-title {
+            font-size: 24px;
+            color: var(--secondary-dark);
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+        .selection-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 30px;
+        }
+        .topic-btn {
+            padding: 15px 25px;
+            background-color: var(--primary-color);
+            color: white;
+            border: 2px solid var(--primary-dark);
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.1s, background-color 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .topic-btn:hover {
+            background-color: var(--primary-dark);
+        }
+        .topic-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* 返回遊戲大廳按鈕 (Teal Outline) */
+        .back-to-hall-btn {
+            padding: 12px 30px;
+            background-color: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s;
+            font-size: 16px;
+        }
+        .back-to-hall-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* 進度追蹤器樣式 */
+        #progress-tracker {
+            text-align: right;
+            font-size: 16px;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 20px; 
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+        }
+        .score-display {
+            color: var(--secondary-dark); 
+            flex-basis: 33%; 
+            text-align: left;
+        }
+
+        /* Timer 樣式 */
+        .timer-container {
+            flex-basis: 33%; 
+            text-align: center;
+            position: relative; 
+            height: 35px; 
+            border-radius: 4px;
+            background-color: #e9ecef; 
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border-color);
+        }
+
+        #timer-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%; 
+            height: 100%;
+            background-color: var(--primary-color); 
+            transition: width 0.1s linear; 
+            z-index: 1;
+        }
+
+        .timer-display {
+            font-size: 20px; 
+            font-weight: bold;
+            font-family: 'Consolas', 'Courier New', monospace;
+            color: white; 
+            position: relative;
+            z-index: 2; 
+            text-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+        }
+        
+        .timer-warning #timer-bar {
+            background-color: var(--danger-color); 
+        }
+
+        .question-number {
+            color: var(--primary-dark);
+            flex-basis: 33%; 
+            text-align: right;
+        }
+        
+        #chinese-prompt {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 20px;
+            padding: 16px;
+            background-color: var(--light-bg-1); 
+            border-radius: 4px;
+            border-left: 5px solid var(--primary-color);
+            text-align: center; 
+        }
+
+        .area-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #888;
+            margin-top: 16px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        #delete-btn {
+            background: #ffffff;
+            color: var(--danger-color);
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-radius: 4px;
+            border: 2px solid var(--danger-color);
+            padding: 4px 12px;
+        }
+        #delete-btn:hover {
+            background: var(--danger-color);
+            color: white;
+        }
+        
+        #answer-area {
+            min-height: 60px;
+            background-color: var(--light-bg-2); 
+            border-radius: 4px;
+            border: 2px dashed var(--secondary-color);
+            padding: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center; 
+            align-content: center; 
+        }
+
+        #token-pool {
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            border: 2px solid var(--border-color);
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: flex-start; 
+        }
+
+        .token {
+            padding: 10px 16px;
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            user-select: none;
+            background-color: var(--primary-color);
+            border: 2px solid var(--primary-dark);
+            border-radius: 4px; 
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .token:hover {
+            background-color: var(--primary-dark);
+        }
+
+        #answer-area .token {
+            background-color: var(--secondary-color); 
+            border-color: var(--secondary-dark);
+        }
+        
+        /* 控制按鈕樣式 */
+        #controls {
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .game-btn {
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            min-width: 120px;
+        }
+
+        #check-btn {
+            background-color: var(--primary-color); 
+            border-color: var(--primary-dark);
+            color: white;
+            border: none;
+        }
+        
+        /* 遊戲中的返回選單 (Teal Outline) */
+        #menu-btn {
+            background-color: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            transition: all 0.2s;
+        }
+        #menu-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        #feedback {
+            margin-top: 16px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            min-height: 24px;
+        }
+        .feedback-correct { color: var(--secondary-dark); }
+        .feedback-incorrect { color: var(--danger-color); }
+        .feedback-rule {
+            font-size: 18px; 
+            color: var(--primary-dark);
+            font-weight: bolder; 
+            margin-top: 8px;
+            padding: 5px 0;
+            border-top: 1px solid #ddd;
+        }
+        .feedback-specific-hint {
+            font-size: 18px; 
+            color: var(--danger-dark);
+            font-weight: bolder; 
+            margin-top: 8px;
+        }
+        .feedback-answer {
+             font-size: 18px; 
+            color: var(--primary-dark);
+            font-weight: bolder;
+            margin-top: 5px;
+        }
+        
+        /* --- Result Page Styles (New) --- */
+        #end-screen {
+            display: none;
+            text-align: center;
+            width: 100%;
+        }
+        .end-game-container {
+            text-align: center;
+            padding: 10px;
+        }
+        .final-score {
+            font-size: 40px;
+            font-weight: 900;
+            color: var(--secondary-dark);
+            margin: 20px 0;
+            border: 4px solid var(--secondary-color);
+            padding: 20px;
+            display: inline-block;
+            border-radius: 8px;
+            background-color: var(--light-bg-2);
+        }
+        .error-analysis {
+            margin-top: 20px;
+            text-align: left;
+            border-top: 2px solid var(--border-color);
+            padding-top: 20px;
+            max-height: 45vh;
+            overflow-y: auto;
+            width: 100%;
+        }
+        .error-item {
+            margin-bottom: 15px;
+            padding: 12px;
+            border-left: 4px solid var(--danger-color);
+            background-color: #fff5f5;
+            border-radius: 4px;
+        }
+        .error-item .err-q { font-weight: bold; color: #333; margin-bottom: 4px; }
+        .error-item .wrong-answer { color: var(--danger-color); display: block; margin-bottom: 2px; }
+        .error-item .correct-answer { color: var(--secondary-dark); font-weight: bold; display: block; }
+        .error-item .rule-explanation { font-size: 14px; color: #666; margin-top: 4px; display: block; font-style: italic;}
+
+        /* Result Page Buttons */
+        .result-controls {
+            display: flex; 
+            gap: 10px; 
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .result-btn {
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            min-width: 120px;
+            border: 2px solid transparent;
+        }
+        /* Teal Outline */
+        .btn-menu-teal {
+            background-color: white;
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        .btn-menu-teal:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        /* Orange/Yellow */
+        .btn-retry-wrong {
+            background-color: #e9c46a;
+            color: #333;
+            border-color: #d4a373;
+        }
+        .btn-retry-wrong:hover {
+            background-color: #e76f51;
+            color: white;
+            border-color: #e76f51;
+        }
+        /* Dark Green */
+        .btn-restart {
+            background-color: var(--secondary-dark);
+            color: white;
+            border-color: var(--secondary-dark);
+        }
+        .btn-restart:hover {
+            background-color: var(--secondary-color);
+        }
+/* ------------------------------------------- */
+        /* 📱 手機版專用樣式 (新增於 style 標籤最後方) */
+        /* ------------------------------------------- */
+        @media (max-width: 600px) {
+            .result-controls {
+                flex-wrap: nowrap !important; /* 強制不換行 */
+                gap: 5px !important;          /* 縮小間距，確保放得下 */
+            }
+            
+            .result-btn {
+                min-width: auto !important;   /* 移除最小寬度限制 */
+                flex: 1;                      /* 讓三個按鈕平均分配寬度 */
+                padding: 12px 0 !important;   /* 移除左右內距，騰出空間給文字 */
+                font-size: 13px !important;   /* 稍微縮小字體以防溢出 */
+                white-space: nowrap;          /* 防止按鈕文字換行 */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="game-container">
+        <h1>英文條件句重組遊戲</h1>
+        
+        <div id="topic-selection">
+            <div class="selection-title">請選擇你要練習的條件句類型：</div>
+            <div class="selection-grid">
+                <button class="topic-btn" onclick="selectTopic('01')">
+                    Conditional 0 and 1
+                </button>
+                <button class="topic-btn" onclick="selectTopic('012')">
+                    Conditional 0, 1 and 2
+                </button>
+                <button class="topic-btn" onclick="selectTopic('all')">
+                    Conditional 0, 1, 2 and 3
+                </button>
+            </div>
+            <button class="back-to-hall-btn" onclick="location.href='eng_game123.html'">返回遊戲大廳</button>
+        </div>
+        
+        <div id="game-area" style="display:none;">
+            <div id="progress-tracker">
+                <span class="score-display"></span>
+                
+                <span class="timer-container">
+                    <div id="timer-bar"></div>
+                    <span class="timer-display"></span>
+                </span>
+                
+                <span class="question-number"></span>
+            </div>
+            <div id="chinese-prompt">中文題目會顯示在這裡...</div> 
+            <div class="area-label">
+                <span>你的答案：</span>
+                <button id="delete-btn">← 刪除</button>
+            </div>
+            <div id="answer-area"></div>
+            <div class="area-label">詞塊池 (點擊下方詞塊移至答案區)：</div>
+            <div id="token-pool"></div>
+            <div id="feedback"></div>
+            
+            <div id="controls">
+                <button id="menu-btn" class="game-btn">返回選單</button>
+                <button id="check-btn" class="game-btn">檢查答案</button>
+            </div>
+        </div>
+        
+        <div id="end-screen">
+            </div>
+
+    </div>
+
+    <script>
+        // ------------------------------------------------------------------
+        // 音效
+        // ------------------------------------------------------------------
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        
+        function playTone(frequency, type, duration, volume = 0.1) {
+            if (!audioContext) return;
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            oscillator.type = type;
+            oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
+            gainNode.gain.setValueAtTime(volume, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + duration);
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + duration);
+        }
+        
+        const audioClick = () => playTone(600, 'triangle', 0.1);
+        const audioDelete = () => playTone(400, 'square', 0.1);
+        
+        const audioCorrect = () => { 
+            playTone(660, 'square', 0.08, 0.2); 
+            setTimeout(() => playTone(880, 'square', 0.1, 0.25), 90); 
+            setTimeout(() => playTone(1320, 'sine', 0.15, 0.3), 200); 
+        };
+        
+        const audioIncorrect = () => { playTone(200, 'sawtooth', 0.2); };
+        const audioCountdown = () => playTone(880, 'sine', 0.05);
+
+
+        // ------------------------------------------------------------------
+        // 變數
+        // ------------------------------------------------------------------
+        let promptEl, answerAreaEl, tokenPoolEl, checkBtn, menuBtn, feedbackEl, progressEl, scoreDisplayEl, questionNumberEl, timerDisplayEl, deleteBtn, gameContainer; 
+        let timerBarEl; 
+        let currentGameQuestions = []; 
+        let currentQuestionIndex = 0; 
+        let score = 0; 
+        let totalQuestionsPerGame = 0; 
+        let isAnswerChecked = false; 
+        let isAnimating = false; 
+        let gameHistory = []; 
+        let wrongQuestions = []; // 儲存錯題物件以便重做
+        
+        let timerInterval;
+        const TIME_LIMIT_SECONDS = 45; 
+        const TIME_LIMIT_MS = TIME_LIMIT_SECONDS * 1000;
+        let timeLeft = TIME_LIMIT_MS; 
+        let isCountingDown = false;
+        
+        const topicSelectionEl = document.getElementById('topic-selection');
+        const gameAreaEl = document.getElementById('game-area');
+        const endScreenEl = document.getElementById('end-screen');
+
+
+        // ------------------------------------------------------------------
+        // Timer 核心功能 
+        // ------------------------------------------------------------------
+        function startTimer() {
+             stopTimer(); 
+             timeLeft = TIME_LIMIT_MS;
+             isCountingDown = true;
+             
+             timerBarEl.style.width = '100%';
+             timerDisplayEl.innerText = (timeLeft / 1000).toFixed(1); 
+             timerDisplayEl.parentElement.classList.remove('timer-warning');
+
+             timerInterval = setInterval(() => {
+                 timeLeft -= 100; 
+                 
+                 const seconds = (timeLeft / 1000);
+                 const percentage = (timeLeft / TIME_LIMIT_MS) * 100;
+
+                 timerDisplayEl.innerText = seconds > 0 ? seconds.toFixed(1) : '0.0'; 
+                 timerBarEl.style.width = `${percentage}%`;
+
+                 if (timeLeft <= 3000 && timeLeft > 0) {
+                     if (timeLeft >= 2950 && timeLeft <= 3050 || 
+                         timeLeft >= 1950 && timeLeft <= 2050 || 
+                         timeLeft >= 950 && timeLeft <= 1050) {
+                         audioCountdown(); 
+                     }
+                     timerDisplayEl.parentElement.classList.add('timer-warning');
+
+                 } else if (timeLeft <= 0) {
+                     timerBarEl.style.width = '0%';
+                     timerDisplayEl.innerText = '0.0';
+                     handleTimeOut();
+                 }
+             }, 100);
+        }
+
+        function stopTimer() {
+             clearInterval(timerInterval);
+             isCountingDown = false;
+             if (timerDisplayEl && timerDisplayEl.parentElement) {
+                 timerDisplayEl.parentElement.classList.remove('timer-warning');
+             }
+        }
+
+        function handleTimeOut() {
+             stopTimer();
+             isAnswerChecked = true;
+             
+             const q = currentGameQuestions[currentQuestionIndex];
+             
+             // 記錄錯誤 (包含原始題目物件)
+             wrongQuestions.push(q);
+             
+             gameHistory.push({
+                 chinese: q.chinese,
+                 userAnswer: '[時間到]',
+                 correctAnswer: q.correct_tokens.join(' ').replace(/ \.$/, '.'),
+                 rule: q.type, 
+                 ruleText: rules[q.type],
+                 isCorrect: false
+             });
+
+             audioIncorrect();
+             
+             feedbackEl.innerHTML = `
+                 <div class="feedback-incorrect" style="font-size: 20px;">
+                     ⏰ **時間到！** 這題視為錯誤。
+                 </div>
+                 <div class="feedback-rule" style="font-size: 14px; font-weight: normal; color: #555;">
+                     正確答案：${q.correct_tokens.join(' ').replace(/ \.$/, '.')}
+                 </div>
+             `;
+             
+             Array.from(answerAreaEl.children).forEach(el => el.style.pointerEvents = 'none');
+             Array.from(tokenPoolEl.children).forEach(el => el.style.pointerEvents = 'none');
+
+             checkBtn.innerText = "下一題";
+             checkBtn.disabled = false;
+        }
+
+
+        // ------------------------------------------------------------------
+        // 規則與題庫 (Conditional)
+        // ------------------------------------------------------------------
+        const rules = { 
+            '0': "Conditional 0 (零級條件句): 描述普遍事實或科學事實。結構：If + Simple Present, Simple Present。",
+            '1': "Conditional 1 (一級條件句): 描述未來可能發生的事情。結構：If + Simple Present, Future Simple (will + Base Verb)。",
+            '2': "Conditional 2 (二級條件句): 描述與現在或未來事實相反的假設或不真實情況。結構：If + Simple Past (was/were), would + Base Verb。",
+            '3': "Conditional 3 (三級條件句): 描述與過去事實相反的假設情況 (後悔或批評)。結構：If + Past Perfect (had + P.P.), would have + P.P.。",
+        };
+
+        const conditionalBank = [
+            // --- Conditional 0 (20 題) ---
+            { type: '0', chinese: "如果我發燒，我會感到疲倦。", correct_tokens: ["If", "I", "have", "a", "fever", ",", "I", "feel", "tired", "."], distractors: ["would", "will", "am", "had"] },
+            { type: '0', chinese: "如果水加熱到 100 度，它就會沸騰。", correct_tokens: ["If", "water", "heats", "to", "100", "degrees", ",", "it", "boils", "."], distractors: ["will", "would", "is", "heated"] },
+            { type: '0', chinese: "如果下雨，草地就會變濕。", correct_tokens: ["If", "it", "rains", ",", "the", "grass", "gets", "wet", "."], distractors: ["will", "would", "is", "got"] },
+            { type: '0', chinese: "如果我吃太多糖，我的胃就會痛。", correct_tokens: ["If", "I", "eat", "too", "much", "sugar", ",", "my", "stomach", "hurts", "."], distractors: ["would", "will", "ate", "is"] },
+            { type: '0', chinese: "如果植物得不到水，它們就會死亡。", correct_tokens: ["If", "plants", "do", "not", "get", "water", ",", "they", "die", "."], distractors: ["will", "would", "did", "died"] },
+            { type: '0', chinese: "如果太晚睡，第二天我會很難集中精神。", correct_tokens: ["If", "I", "sleep", "late", ",", "I", "have", "trouble", "concentrating", "."], distractors: ["will", "would", "am", "slept"] },
+            { type: '0', chinese: "如果陽光照射到冰塊，冰塊就會融化。", correct_tokens: ["If", "the", "sun", "shines", "on", "ice", ",", "it", "melts", "."], distractors: ["will", "would", "shone", "is"] },
+            { type: '0', chinese: "如果人們運動，他們的健康就會改善。", correct_tokens: ["If", "people", "exercise", ",", "their", "health", "improves", "."], distractors: ["will", "would", "exercised", "is"] },
+            { type: '0', chinese: "如果按下這個按鈕，燈就會亮。", correct_tokens: ["If", "you", "press", "this", "button", ",", "the", "light", "comes", "on", "."], distractors: ["will", "would", "pressed", "is"] },
+            { type: '0', chinese: "如果狗感到飢餓，它們就會吠叫。", correct_tokens: ["If", "dogs", "are", "hungry", ",", "they", "bark", "."], distractors: ["will", "would", "feel", "were"] },
+            { type: '0', chinese: "如果我累了，我就會休息。", correct_tokens: ["If", "I", "am", "tired", ",", "I", "take", "a", "rest", "."], distractors: ["will", "would", "was", "took"] },
+            { type: '0', chinese: "如果我們加熱金屬，金屬就會膨脹。", correct_tokens: ["If", "we", "heat", "metal", ",", "it", "expands", "."], distractors: ["will", "would", "heated", "is"] },
+            { type: '0', chinese: "如果寶寶哭，通常是因為餓了。", correct_tokens: ["If", "the", "baby", "cries", ",", "it", "is", "usually", "hungry", "."], distractors: ["will", "would", "cried", "was"] },
+            { type: '0', chinese: "如果我將紅色和藍色混合，我會得到紫色。", correct_tokens: ["If", "I", "mix", "red", "and", "blue", ",", "I", "get", "purple", "."], distractors: ["will", "would", "mixed", "am"] },
+            { type: '0', chinese: "如果我看恐怖片，我會睡不著覺。", correct_tokens: ["If", "I", "watch", "horror", "movies", ",", "I", "cannot", "sleep", "."], distractors: ["will", "would", "watched", "am"] },
+            { type: '0', chinese: "如果太陽下山，天色就會變黑。", correct_tokens: ["If", "the", "sun", "goes", "down", ",", "it", "gets", "dark", "."], distractors: ["will", "would", "went", "is"] },
+            { type: '0', chinese: "如果他對你微笑，他喜歡你。", correct_tokens: ["If", "he", "smiles", "at", "you", ",", "he", "likes", "you", "."], distractors: ["will", "would", "smiled", "is"] },
+            { type: '0', chinese: "如果油浮在水上，它就不會溶解。", correct_tokens: ["If", "oil", "floats", "on", "water", ",", "it", "does", "not", "dissolve", "."], distractors: ["will", "would", "did", "is"] },
+            { type: '0', chinese: "如果我長時間看電腦，我的眼睛會痛。", correct_tokens: ["If", "I", "look", "at", "the", "computer", "long", ",", "my", "eyes", "hurt", "."], distractors: ["will", "would", "looked", "are"] },
+            { type: '0', chinese: "如果溫度下降，水就會結冰。", correct_tokens: ["If", "the", "temperature", "drops", ",", "water", "freezes", "."], distractors: ["will", "would", "dropped", "is"] },
+
+            // --- Conditional 1 (20 題) ---
+            { type: '1', chinese: "如果下雨，我們將會留在家裡。", correct_tokens: ["If", "it", "rains", ",", "we", "will", "stay", "home", "."], distractors: ["would", "is", "stayed", "had"] },
+            { type: '1', chinese: "如果他努力學習，他將會通過考試。", correct_tokens: ["If", "he", "studies", "hard", ",", "he", "will", "pass", "the", "exam", "."], distractors: ["would", "is", "passed", "had"] },
+            { type: '1', chinese: "如果你不快點，你會遲到。", correct_tokens: ["If", "you", "do", "not", "hurry", ",", "you", "will", "be", "late", "."], distractors: ["would", "are", "were", "had"] },
+            { type: '1', chinese: "如果她來了，我會打電話給你。", correct_tokens: ["If", "she", "comes", ",", "I", "will", "call", "you", "."], distractors: ["would", "is", "called", "had"] },
+            { type: '1', chinese: "如果天氣好，我們就會去野餐。", correct_tokens: ["If", "the", "weather", "is", "nice", ",", "we", "will", "go", "for", "a", "picnic", "."], distractors: ["would", "are", "went", "had"] },
+            { type: '1', chinese: "如果他們贏了比賽，他們會很開心。", correct_tokens: ["If", "they", "win", "the", "match", ",", "they", "will", "be", "happy", "."], distractors: ["would", "are", "won", "had"] },
+            { type: '1', chinese: "如果我找到她的地址，我會寄信給她。", correct_tokens: ["If", "I", "find", "her", "address", ",", "I", "will", "send", "her", "a", "letter", "."], distractors: ["would", "am", "found", "had"] },
+            { type: '1', chinese: "如果你現在不吃晚餐，你會感到餓。", correct_tokens: ["If", "you", "do", "not", "eat", "dinner", "now", ",", "you", "will", "feel", "hungry", "."], distractors: ["would", "are", "ate", "had"] },
+            { type: '1', chinese: "如果他錯過了巴士，他會遲到上班。", correct_tokens: ["If", "he", "misses", "the", "bus", ",", "he", "will", "be", "late", "for", "work", "."], distractors: ["would", "is", "missed", "had"] },
+            { type: '1', chinese: "如果你告訴我真相，我會原諒你。", correct_tokens: ["If", "you", "tell", "me", "the", "truth", ",", "I", "will", "forgive", "you", "."], distractors: ["would", "am", "told", "had"] },
+            { type: '1', chinese: "如果我們看到她，我們就會打招呼。", correct_tokens: ["If", "we", "see", "her", ",", "we", "will", "say", "hello", "."], distractors: ["would", "are", "saw", "had"] },
+            { type: '1', chinese: "如果他們不邀請我，我將不會去派對。", correct_tokens: ["If", "they", "do", "not", "invite", "me", ",", "I", "will", "not", "go", "to", "the", "party", "."], distractors: ["would", "am", "invited", "had"] },
+            { type: '1', chinese: "如果你幫我，我會給你錢。", correct_tokens: ["If", "you", "help", "me", ",", "I", "will", "give", "you", "some", "money", "."], distractors: ["would", "am", "helped", "had"] },
+            { type: '1', chinese: "如果她需要幫助，她會打電話給我。", correct_tokens: ["If", "she", "needs", "help", ",", "she", "will", "call", "me", "."], distractors: ["would", "is", "called", "had"] },
+            { type: '1', chinese: "如果電腦當機，我會重啟它。", correct_tokens: ["If", "the", "computer", "crashes", ",", "I", "will", "restart", "it", "."], distractors: ["would", "is", "crashed", "had"] },
+            { type: '1', chinese: "如果你錯了，她會生氣。", correct_tokens: ["If", "you", "are", "wrong", ",", "she", "will", "be", "angry", "."], distractors: ["would", "do", "were", "had"] },
+            { type: '1', chinese: "如果我們現在去，我們將會在八點前到達。", correct_tokens: ["If", "we", "go", "now", ",", "we", "will", "get", "there", "by", "eight", "."], distractors: ["would", "are", "went", "had"] },
+            { type: '1', chinese: "如果我贏了彩票，我會環遊世界。", correct_tokens: ["If", "I", "win", "the", "lottery", ",", "I", "will", "travel", "the", "world", "."], distractors: ["would", "am", "won", "had"] },
+            { type: '1', chinese: "如果他們發現真相，他們會感到驚訝。", correct_tokens: ["If", "they", "discover", "the", "truth", ",", "they", "will", "be", "surprised", "."], distractors: ["would", "are", "discovered", "had"] },
+            { type: '1', chinese: "如果雪下得很大，學校將會關閉。", correct_tokens: ["If", "it", "snows", "heavily", ",", "the", "school", "will", "close", "."], distractors: ["would", "is", "closed", "had"] },
+
+            // --- Conditional 2 (20 題) ---
+            { type: '2', chinese: "如果我是你，我就不會這樣做。", correct_tokens: ["If", "I", "were", "you", ",", "I", "would", "not", "do", "that", "."], distractors: ["was", "will", "did", "have"] },
+            { type: '2', chinese: "如果我有錢，我會買一間大房子。", correct_tokens: ["If", "I", "had", "money", ",", "I", "would", "buy", "a", "big", "house", "."], distractors: ["have", "will", "buyed", "were"] },
+            { type: '2', chinese: "如果他知道答案，他會告訴我們。", correct_tokens: ["If", "he", "knew", "the", "answer", ",", "he", "would", "tell", "us", "."], distractors: ["knows", "will", "told", "have"] },
+            { type: '2', chinese: "如果她能飛，她會環遊世界。", correct_tokens: ["If", "she", "could", "fly", ",", "she", "would", "travel", "the", "world", "."], distractors: ["can", "will", "travelled", "have"] },
+            { type: '2', chinese: "如果天氣好，我們就會去沙灘。", correct_tokens: ["If", "the", "weather", "was", "nice", ",", "we", "would", "go", "to", "the", "beach", "."], distractors: ["is", "will", "went", "have"] },
+            { type: '2', chinese: "如果我中了彩票，我就會辭職。", correct_tokens: ["If", "I", "won", "the", "lottery", ",", "I", "would", "quit", "my", "job", "."], distractors: ["win", "will", "quitted", "have"] },
+            { type: '2', chinese: "如果你不那麼忙，你會來幫我嗎？", correct_tokens: ["If", "you", "were", "not", "so", "busy", ",", "would", "you", "come", "and", "help", "me", "?"], distractors: ["are", "will", "came", "have"] },
+            { type: '2', chinese: "如果我有一輛車，我就不會每天坐巴士。", correct_tokens: ["If", "I", "had", "a", "car", ",", "I", "would", "not", "take", "the", "bus", "every", "day", "."], distractors: ["have", "will", "took", "were"] },
+            { type: '2', chinese: "如果他住得近，我們會更常見面。", correct_tokens: ["If", "he", "lived", "closer", ",", "we", "would", "see", "each", "other", "more", "often", "."], distractors: ["lives", "will", "saw", "have"] },
+            { type: '2', chinese: "如果她是總統，她會改變法律。", correct_tokens: ["If", "she", "were", "president", ",", "she", "would", "change", "the", "law", "."], distractors: ["was", "will", "changed", "have"] },
+            { type: '2', chinese: "如果我記得，我會打電話給你。", correct_tokens: ["If", "I", "remembered", ",", "I", "would", "call", "you", "."], distractors: ["remember", "will", "called", "have"] },
+            { type: '2', chinese: "如果你邀請她，她會參加派對。", correct_tokens: ["If", "you", "invited", "her", ",", "she", "would", "come", "to", "the", "party", "."], distractors: ["invite", "will", "came", "have"] },
+            { type: '2', chinese: "如果我的電腦工作正常，我會完成我的功課。", correct_tokens: ["If", "my", "computer", "worked", ",", "I", "would", "finish", "my", "homework", "."], distractors: ["works", "will", "finished", "have"] },
+            { type: '2', chinese: "如果我們有時間，我們就會去旅行。", correct_tokens: ["If", "we", "had", "time", ",", "we", "would", "travel", "."], distractors: ["have", "will", "travelled", "were"] },
+            { type: '2', chinese: "如果那不是真的，我會相信你。", correct_tokens: ["If", "it", "was", "not", "true", ",", "I", "would", "believe", "you", "."], distractors: ["is", "will", "believed", "have"] },
+            { type: '2', chinese: "如果他是一個好的領導者，團隊會成功。", correct_tokens: ["If", "he", "was", "a", "good", "leader", ",", "the", "team", "would", "succeed", "."], distractors: ["is", "will", "succeeded", "have"] },
+            { type: '2', chinese: "如果我是一名醫生，我會幫助病人。", correct_tokens: ["If", "I", "were", "a", "doctor", ",", "I", "would", "help", "patients", "."], distractors: ["was", "will", "helped", "have"] },
+            { type: '2', chinese: "如果我們早點走，我們就不會遲到。", correct_tokens: ["If", "we", "left", "earlier", ",", "we", "would", "not", "be", "late", "."], distractors: ["leave", "will", "was", "have"] },
+            { type: '2', chinese: "如果她能彈鋼琴，她會為我們演奏。", correct_tokens: ["If", "she", "could", "play", "the", "piano", ",", "she", "would", "play", "for", "us", "."], distractors: ["can", "will", "played", "has"] },
+            { type: '2', chinese: "如果他看到我，他會向我揮手。", correct_tokens: ["If", "he", "saw", "me", ",", "he", "would", "wave", "at", "me", "."], distractors: ["sees", "will", "waved", "have"] },
+
+            // --- Conditional 3 (20 題) ---
+            { type: '3', chinese: "如果我們早點離開，我們就不會錯過火車。", correct_tokens: ["If", "we", "had", "left", "earlier", ",", "we", "would", "not", "have", "missed", "the", "train", "."], distractors: ["leave", "will", "did", "miss"] },
+            { type: '3', chinese: "如果你當時告訴我，我就會幫你。", correct_tokens: ["If", "you", "had", "told", "me", ",", "I", "would", "have", "helped", "you", "."], distractors: ["tell", "will", "did", "help"] },
+            { type: '3', chinese: "如果她沒有生病，她就會參加派對。", correct_tokens: ["If", "she", "had", "not", "been", "sick", ",", "she", "would", "have", "come", "to", "the", "party", "."], distractors: ["is", "will", "was", "come"] },
+            { type: '3', chinese: "如果我那天見到他，我會給他那本書。", correct_tokens: ["If", "I", "had", "seen", "him", "that", "day", ",", "I", "would", "have", "given", "him", "the", "book", "."], distractors: ["see", "will", "gave", "give"] },
+            { type: '3', chinese: "如果他們努力學習，他們就會通過考試。", correct_tokens: ["If", "they", "had", "studied", "harder", ",", "they", "would", "have", "passed", "the", "exam", "."], distractors: ["study", "will", "did", "pass"] },
+            { type: '3', chinese: "如果天氣一直不好，我們就不會去野餐。", correct_tokens: ["If", "the", "weather", "had", "been", "bad", ",", "we", "would", "not", "have", "gone", "for", "a", "picnic", "."], distractors: ["is", "will", "was", "go"] },
+            { type: '3', chinese: "如果我贏了彩票，我會買下那輛車。", correct_tokens: ["If", "I", "had", "won", "the", "lottery", ",", "I", "would", "have", "bought", "that", "car", "."], distractors: ["win", "will", "did", "buy"] },
+            { type: '3', chinese: "如果他沒有遲到，他就能趕上飛機。", correct_tokens: ["If", "he", "had", "not", "been", "late", ",", "he", "would", "have", "caught", "the", "plane", "."], distractors: ["is", "will", "did", "catch"] },
+            { type: '3', chinese: "如果電腦沒有當機，我早就完成了我的功課。", correct_tokens: ["If", "the", "computer", "had", "not", "crashed", ",", "I", "would", "have", "finished", "my", "homework", "."], distractors: ["crashes", "will", "did", "finish"] },
+            { type: '3', chinese: "如果你早點打電話給我，我就會知道。", correct_tokens: ["If", "you", "had", "called", "me", "earlier", ",", "I", "would", "have", "known", "."], distractors: ["call", "will", "did", "know"] },
+            { type: '3', chinese: "如果她沒有幫忙，我們就不會成功。", correct_tokens: ["If", "she", "had", "not", "helped", ",", "we", "would", "not", "have", "succeeded", "."], distractors: ["help", "will", "did", "succeed"] },
+            { type: '3', chinese: "如果我當時知道，我會告訴你的。", correct_tokens: ["If", "I", "had", "known", ",", "I", "would", "have", "told", "you", "."], distractors: ["know", "will", "did", "tell"] },
+            { type: '3', chinese: "如果他們邀請了他，他就會來。", correct_tokens: ["If", "they", "had", "invited", "him", ",", "he", "would", "have", "come", "."], distractors: ["invite", "will", "did", "came"] },
+            { type: '3', chinese: "如果我們沒有帶傘，我們就會濕透。", correct_tokens: ["If", "we", "had", "not", "brought", "an", "umbrella", ",", "we", "would", "have", "gotten", "wet", "."], distractors: ["bring", "will", "did", "get"] },
+            { type: '3', chinese: "如果我沒有錯過巴士，我就會準時。", correct_tokens: ["If", "I", "had", "not", "missed", "the", "bus", ",", "I", "would", "have", "been", "on", "time", "."], distractors: ["miss", "will", "did", "am"] },
+            { type: '3', chinese: "如果她穿了外套，她就不會感冒。", correct_tokens: ["If", "she", "had", "worn", "a", "coat", ",", "she", "would", "not", "have", "caught", "a", "cold", "."], distractors: ["wear", "will", "did", "catch"] },
+            { type: '3', chinese: "如果他接受了提議，他會很富有。", correct_tokens: ["If", "he", "had", "accepted", "the", "offer", ",", "he", "would", "have", "been", "rich", "."], distractors: ["accept", "will", "did", "is"] },
+            { type: '3', chinese: "如果你沒有犯這個錯誤，你就會成功。", correct_tokens: ["If", "you", "had", "not", "made", "that", "mistake", ",", "you", "would", "have", "succeeded", "."], distractors: ["make", "will", "did", "succeed"] },
+            { type: '3', chinese: "如果她畢業了，她會找到一份好工作。", correct_tokens: ["If", "she", "had", "graduated", ",", "she", "would", "have", "found", "a", "good", "job", "."], distractors: ["graduate", "will", "did", "find"] },
+            { type: '3', chinese: "如果我沒有睡過頭，我會早點完成。", correct_tokens: ["If", "I", "had", "not", "overslept", ",", "I", "would", "have", "finished", "earlier", "."], distractors: ["oversleep", "will", "did", "finish"] },
+
+        ];
+
+        // ------------------------------------------------------------------
+        // 遊戲核心邏輯 
+        // ------------------------------------------------------------------
+        
+        function getDOMElements() { 
+            gameContainer = document.getElementById('game-container');
+            promptEl = document.getElementById('chinese-prompt');
+            answerAreaEl = document.getElementById('answer-area');
+            tokenPoolEl = document.getElementById('token-pool');
+            checkBtn = document.getElementById('check-btn');
+            menuBtn = document.getElementById('menu-btn'); 
+            feedbackEl = document.getElementById('feedback');
+            progressEl = document.getElementById('progress-tracker');
+            scoreDisplayEl = progressEl ? progressEl.querySelector('.score-display') : null;
+            timerDisplayEl = progressEl ? progressEl.querySelector('.timer-display') : null; 
+            timerBarEl = progressEl ? document.getElementById('timer-bar') : null;
+            questionNumberEl = progressEl ? progressEl.querySelector('.question-number') : null;
+            deleteBtn = document.getElementById('delete-btn');
+        } 
+
+        // --- 選擇主題功能 ---
+        function selectTopic(topic) {
+            let filteredQuestions = [];
+            let typesToInclude = [];
+            
+            // 設定總題數為 20
+            totalQuestionsPerGame = 20;
+
+            if (topic === '01') {
+                typesToInclude = ['0', '1'];
+            } else if (topic === '012') {
+                typesToInclude = ['0', '1', '2'];
+            } else if (topic === 'all') {
+                typesToInclude = ['0', '1', '2', '3'];
+            }
+            
+            // 1. 收集所有選定類型中的題目
+            typesToInclude.forEach(type => {
+                const typeQuestions = conditionalBank.filter(q => q.type === type);
+                filteredQuestions = filteredQuestions.concat(typeQuestions);
+            });
+
+            // 2. 將所有收集到的題目隨機排序
+            const shuffledQuestions = filteredQuestions.sort(() => 0.5 - Math.random());
+            
+            // 3. 從隨機排序後的列表中，只取前 20 題
+            currentGameQuestions = shuffledQuestions.slice(0, totalQuestionsPerGame);
+
+            if (currentGameQuestions.length < totalQuestionsPerGame) {
+                 totalQuestionsPerGame = currentGameQuestions.length;
+            }
+
+            // 隱藏選擇畫面，顯示遊戲區
+            topicSelectionEl.style.display = 'none';
+            gameAreaEl.style.display = 'block';
+            endScreenEl.style.display = 'none';
+
+            getDOMElements(); 
+            startGame();
+        }
+        
+        // --- 遊戲開始 ---
+        function startGame() { 
+            stopTimer(); 
+            // 確保遊戲介面可見
+            topicSelectionEl.style.display = 'none';
+            gameAreaEl.style.display = 'block';
+            endScreenEl.style.display = 'none';
+            
+            score = 0;
+            currentQuestionIndex = 0;
+            gameHistory = [];
+            wrongQuestions = []; // 重置錯題
+            
+            deleteBtn.removeEventListener('click', deleteLastToken);
+            checkBtn.removeEventListener('click', handleCheckOrNext);
+            menuBtn.removeEventListener('click', navigateToMenu);
+
+            deleteBtn.addEventListener('click', deleteLastToken); 
+            checkBtn.addEventListener('click', handleCheckOrNext); 
+            menuBtn.addEventListener('click', navigateToMenu); 
+
+            checkBtn.style.display = 'block';
+            menuBtn.style.display = 'block'; 
+
+            loadQuestion();
+        } 
+
+        // --- 重做錯題模式 ---
+        function retryWrongQuestions() {
+            if (wrongQuestions.length === 0) {
+                alert("沒有錯題可以重做！");
+                return;
+            }
+            
+            stopTimer();
+            topicSelectionEl.style.display = 'none';
+            gameAreaEl.style.display = 'block';
+            endScreenEl.style.display = 'none';
+            
+            // 設定題目為錯題集，並打亂順序
+            currentGameQuestions = [...wrongQuestions].sort(() => 0.5 - Math.random());
+            totalQuestionsPerGame = currentGameQuestions.length;
+            
+            score = 0;
+            currentQuestionIndex = 0;
+            gameHistory = [];
+            wrongQuestions = []; // 重置錯題記錄 (新的一輪產生的錯題會再被加入)
+            
+            getDOMElements(); // 重新獲取 DOM，因為可能剛從 End Screen 回來
+            
+            deleteBtn.removeEventListener('click', deleteLastToken);
+            checkBtn.removeEventListener('click', handleCheckOrNext);
+            menuBtn.removeEventListener('click', navigateToMenu);
+
+            deleteBtn.addEventListener('click', deleteLastToken); 
+            checkBtn.addEventListener('click', handleCheckOrNext); 
+            menuBtn.addEventListener('click', navigateToMenu); 
+            
+            loadQuestion();
+        }
+
+        function loadQuestion() { 
+            stopTimer(); 
+            isAnswerChecked = false; 
+            isAnimating = false; 
+            answerAreaEl.innerHTML = ""; 
+            tokenPoolEl.innerHTML = ""; 
+            feedbackEl.innerHTML = ""; 
+            checkBtn.innerText = "檢查答案"; 
+            checkBtn.disabled = false; 
+
+            if (currentQuestionIndex >= totalQuestionsPerGame) { 
+                endGame(); 
+                return; 
+            } 
+
+            const answeredCount = currentQuestionIndex;
+            const correctCount = score;
+            const percentage = answeredCount > 0 ? Math.round((correctCount / answeredCount) * 100) : 0;
+            scoreDisplayEl.innerHTML = answeredCount > 0 ? `✓ ${correctCount}/${answeredCount} (${percentage}%)` : '✓ 0/0';
+            questionNumberEl.innerText = `${currentQuestionIndex + 1} / ${totalQuestionsPerGame}`;
+
+            const q = currentGameQuestions[currentQuestionIndex]; 
+            promptEl.innerText = q.chinese;
+            
+            const neededTokens = q.correct_tokens; 
+            const conditionalDistractors = ["will", "would", "had", "have", "been", "was", "were", "is", "do", "did", "are", "wouldn't"];
+            
+            const tokenMap = new Map();
+
+            // 1. 統計正確答案中所有詞塊
+            neededTokens.forEach(token => {
+                tokenMap.set(token, (tokenMap.get(token) || 0) + 1);
+            });
+
+            // 2. 添加 Distractors
+            const uniqueDistractors = new Set([...q.distractors, ...conditionalDistractors]);
+            
+            uniqueDistractors.forEach(token => {
+                if (!tokenMap.has(token)) {
+                    tokenMap.set(token, 1);
+                }
+            });
+            
+            const allTokensWithDuplicates = [];
+            tokenMap.forEach((count, token) => {
+                for (let i = 0; i < count; i++) {
+                    allTokensWithDuplicates.push(token);
+                }
+            });
+
+            const shuffledTokens = allTokensWithDuplicates.sort(() => 0.5 - Math.random()); 
+
+            shuffledTokens.forEach(tokenText => { 
+                createToken(tokenText, tokenPoolEl); 
+            }); 
+            
+            startTimer(); 
+        }
+        
+        function createToken(text, destination) { 
+             const token = document.createElement('div'); 
+             token.className = 'token'; 
+             token.innerText = text; 
+             token.addEventListener('click', handleTokenClick); 
+             destination.appendChild(token); 
+        } 
+
+        function deleteLastToken() { 
+             if (isAnswerChecked || isAnimating || !isCountingDown) return; 
+             const lastToken = answerAreaEl.lastChild;
+             if (lastToken) {
+                 audioDelete();
+                 animateToken(lastToken, tokenPoolEl);
+             }
+        }
+
+        function animateToken(token, destination) { 
+             if (isAnimating) return; 
+             isAnimating = true; 
+             
+             const startRect = token.getBoundingClientRect(); 
+             
+             token.style.transition = 'none'; 
+             destination.appendChild(token);
+             
+             const endRect = token.getBoundingClientRect(); 
+             
+             const deltaX = startRect.left - endRect.left; 
+             const deltaY = startRect.top - endRect.top; 
+             token.style.transform = `translate(${deltaX}px, ${deltaY}px)`; 
+             
+             token.offsetHeight; 
+             
+             token.style.transition = 'transform 0.3s ease-out'; 
+             token.style.transform = 'translate(0, 0)'; 
+             
+             token.addEventListener('transitionend', () => {
+                 isAnimating = false;
+                 token.removeEventListener('click', handleTokenClick);
+                 token.addEventListener('click', handleTokenClick);
+             }, { once: true });
+        } 
+
+        function handleTokenClick(event) { 
+             if (isAnswerChecked || isAnimating || !isCountingDown) return; 
+
+             const token = event.currentTarget; 
+             const currentParent = token.parentElement;
+             
+             if (currentParent === tokenPoolEl) {
+                 audioClick();
+                 animateToken(token, answerAreaEl);
+             } else if (currentParent === answerAreaEl) {
+                 audioDelete();
+                 animateToken(token, tokenPoolEl);
+             }
+        } 
+
+        function checkAnswer() {
+            if (isAnswerChecked) return;
+            
+            stopTimer(); 
+            isAnswerChecked = true;
+
+            const q = currentGameQuestions[currentQuestionIndex];
+            const studentTokens = Array.from(answerAreaEl.children).map(el => el.innerText);
+            
+            const userAnswer = studentTokens.join(' ').replace(/ \.$/, '.'); 
+            const correctAnswerText = q.correct_tokens.join(' ').replace(/ \.$/, '.');
+            const isCorrect = userAnswer.toLowerCase() === correctAnswerText.toLowerCase();
+
+            const ruleText = rules[q.type];
+            gameHistory.push({
+                chinese: q.chinese,
+                userAnswer: userAnswer,
+                correctAnswer: correctAnswerText,
+                rule: q.type,
+                ruleText: ruleText,
+                isCorrect: isCorrect
+            });
+
+            if (isCorrect) {
+                audioCorrect();
+                score++;
+                feedbackEl.innerHTML = `
+                    <div class="feedback-correct">🎉 **太棒了！** 條件句結構完全正確！🎉</div>
+                    <div class="feedback-rule">⭐ 規則：Conditional ${q.type} - ${ruleText}</div>
+                `;
+                checkBtn.innerText = "下一題";
+            } else {
+                audioIncorrect();
+                
+                // 記錄錯題
+                wrongQuestions.push(q);
+                
+                let specificHint = "";
+                const ifClause = studentTokens.join(' ').toLowerCase().split(',')[0] || '';
+                const mainClause = studentTokens.join(' ').toLowerCase().split(',')[1] || '';
+                
+                if (!ifClause.startsWith('if') && studentTokens[0].toLowerCase() !== 'if') {
+                     specificHint = "❌ **結構錯誤：** 條件句必須以 `If` 開頭（或將 `If` 子句放後面）。";
+                } else if (ifClause.includes('would') || ifClause.includes('will')) {
+                     specificHint = "❌ **結構錯誤：** `If` 子句中不能使用 `will` 或 `would`！";
+                } else if (q.type === '2' && !ifClause.includes('were') && !ifClause.includes('was') && !ifClause.includes('had')) {
+                     specificHint = "❌ **時態錯誤：** Conditional 2 的 `If` 子句需要使用**過去式動詞** (Simple Past) 或 `were/had`。";
+                } else if (q.type === '3' && !ifClause.includes('had')) {
+                     specificHint = "❌ **時態錯誤：** Conditional 3 的 `If` 子句需要使用 **Past Perfect** (`had + P.P.`)。";
+                } else if (q.type === '3' && !mainClause.includes('would have')) {
+                     specificHint = "❌ **主要子句錯誤：** Conditional 3 的主要子句需要使用 **`would have + P.P.`**。";
+                } else if (q.type === '1' && !mainClause.includes('will') && !mainClause.includes('can')) {
+                     specificHint = "❌ **主要子句錯誤：** Conditional 1 的主要子句通常需要使用 **Future Simple** (`will + Base Verb`)。";
+                } else {
+                    specificHint = "❌ **詞塊順序錯誤：** 句子順序不正確，請檢查 `If` 子句和主要子句的**內部順序和時態**。";
+                }
+                
+                feedbackEl.innerHTML = `
+                    <div class="feedback-incorrect">
+                        😭 **錯誤！** 請再仔細檢查結構和時態。
+                    </div>
+                    <div class="feedback-specific-hint">
+                        ${specificHint}
+                    </div>
+                    <div class="feedback-rule" style="font-size: 14px; font-weight: normal; color: #555;">
+                        **本題所屬規則：** ${ruleText}
+                    </div>
+                    <div class="feedback-answer">正確答案是：${correctAnswerText}</div>
+                `;
+            }
+            
+            Array.from(answerAreaEl.children).forEach(el => el.style.pointerEvents = 'none');
+            Array.from(tokenPoolEl.children).forEach(el => el.style.pointerEvents = 'none');
+            
+            checkBtn.innerText = "下一題";
+            checkBtn.disabled = false;
+        }
+
+        function endGame() {
+            stopTimer(); 
+            gameAreaEl.style.display = 'none'; 
+            endScreenEl.style.display = 'block';
+
+            const total = totalQuestionsPerGame;
+            const finalScore = score;
+            const percentage = total > 0 ? Math.round((finalScore / total) * 100) : 0;
+            const wrongAnswers = gameHistory.filter(item => !item.isCorrect);
+
+            let analysisHtml = ''; 
+            if (wrongAnswers.length > 0) {
+                analysisHtml = ` 
+                    <div class="error-analysis"> 
+                        <h3>🧐 錯誤分析 (${wrongAnswers.length} 題):</h3> 
+                        ${wrongAnswers.map((item, index) => ` 
+                            <div class="error-item"> 
+                                <span class="err-q">題目: ${item.chinese}</span> 
+                                <span class="wrong-answer">你的答案: ${item.userAnswer || '[沒有作答]'}</span> 
+                                <span class="correct-answer">正確答案: ${item.correctAnswer}</span>
+                                <span class="rule-explanation">規則：Conditional ${item.rule} - ${item.ruleText}</span>
+                            </div> 
+                        `).join('')}
+                    </div>
+                `;
+            } else {
+                analysisHtml = `<h3 style="color:var(--secondary-dark); margin-top:30px;">完美！全對！🎉</h3>`;
+            }
+            
+            const retryStyle = wrongAnswers.length > 0 ? "display:block;" : "display:none;";
+            
+            endScreenEl.innerHTML = `
+                <div class="end-game-container">
+                    <h1>Challenge Complete!</h1>
+                    <div class="final-score">
+                        得分: ${finalScore} / ${total} (${percentage}%)
+                    </div>
+                    
+                    ${analysisHtml}
+                    
+                    <div class="result-controls">
+                        <button class="result-btn btn-menu-teal" onclick="navigateToMenu()">返回選單</button>
+                        <button class="result-btn btn-retry-wrong" style="${retryStyle}" onclick="retryWrongQuestions()">重做錯題</button>
+                        <button class="result-btn btn-restart" onclick="initializeGame()">再來一次</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function handleCheckOrNext() {
+            if (checkBtn.innerText === "檢查答案") {
+                if (answerAreaEl.children.length > 0) {
+                    checkAnswer();
+                } else {
+                    feedbackEl.innerHTML = `<div class=\"feedback-incorrect\">請先組合答案！</div>`;
+                }
+            } 
+            else if (checkBtn.innerText === "下一題") {
+                audioClick();
+                currentQuestionIndex++;
+                loadQuestion();
+            }
+        }
+        
+        function navigateToMenu() {
+            initializeGame();
+        }
+
+        function initializeGame() {
+            stopTimer();
+            topicSelectionEl.style.display = 'flex'; // Use flex to center items
+            gameAreaEl.style.display = 'none';
+            endScreenEl.style.display = 'none';
+            totalQuestionsPerGame = 0; 
+            currentGameQuestions = [];
+        }
+
+        // --- 遊戲啟動 ---
+        document.addEventListener('DOMContentLoaded', () => {
+             gameContainer = document.getElementById('game-container');
+             initializeGame();
+        });
+
+    </script>
+</body>
+</html>

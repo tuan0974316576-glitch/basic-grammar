@@ -7,6 +7,7 @@
     "server": "node server/index.js",
     "warm:verb-audio": "node scripts/warm-verb-table-audio.js",
     "warm:listening-audio": "node scripts/warm-listening-audio.js",
+    "warm:listening-audio-batch": "node scripts/warm-listening-audio-batch.js",
     "warm:vocab-audio": "node scripts/warm-vocab-word-audio.js",
     "native:web-assets": "node scripts/sync-capacitor-web.js",
     "native:audio-assets": "node scripts/sync-native-audio-assets.js",

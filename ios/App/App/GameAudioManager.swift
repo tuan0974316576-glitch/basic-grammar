@@ -1,7 +1,13 @@
 import AVFoundation
+import Darwin
 
 final class GameAudioManager: NSObject, AVAudioPlayerDelegate {
     static let shared = GameAudioManager()
+
+    private enum BoostedAudioKind {
+        case bundle
+        case remote
+    }
 
     private var bgmPlayer: AVAudioPlayer?
     private var bgmVolume: Float = 0.3
@@ -11,10 +17,37 @@ final class GameAudioManager: NSObject, AVAudioPlayerDelegate {
     private var bundleAudioCompletion: ((Bool) -> Void)?
     private var remoteAudioPlayer: AVAudioPlayer?
     private var remoteAudioCompletion: ((Bool) -> Void)?
+    private var boostedAudioEngine: AVAudioEngine?
+    private var boostedAudioPlayerNode: AVAudioPlayerNode?
+    private var boostedAudioFile: AVAudioFile?
+    private var boostedAudioKind: BoostedAudioKind?
+    private var boostedAudioCompletion: ((Bool) -> Void)?
+    private var boostedAudioStopWorkItem: DispatchWorkItem?
     private let remoteAudioDataCache = NSCache<NSString, NSData>()
     private var recordingSessionActive = false
+    private var webManagedRecordingSession = false
+    private var allowBgmDuringRecording = false
     private var shouldResumeBgmAfterRecording = true
     private var sessionConfigured = false
+    private var speechRecorder: AVAudioRecorder?
+    private var speechCaptureURL: URL?
+    private var speechCaptureCompletion: ((Result<[String: Any], Error>) -> Void)?
+    private var speechCaptureTimer: Timer?
+    private var speechCaptureStopWorkItem: DispatchWorkItem?
+    private var speechCaptureStartedAt = Date()
+    private var speechCaptureVoiceStartedAt: Date?
+    private var speechCaptureLastVoiceAt: Date?
+    private var speechCaptureMaxDurationMs = 10000
+    private var speechCaptureNoVoiceTimeoutMs = 5000
+    private var speechCaptureMinVoiceWindowMs = 2200
+    private var speechCaptureSilenceMs = 1000
+    private var speechCaptureTailBufferMs = 450
+    private var speechCaptureMeterFrames = 0
+    private var speechCaptureActiveFrames = 0
+    private var speechCaptureLevelTotal: Double = 0
+    private var speechCapturePeakLevel: Double = 0
+    private var speechCaptureDetectedVoice = false
+    private var speechCaptureLevelHandler: (([String: Any]) -> Void)?
 
     private override init() {
         super.init()
@@ -43,10 +76,14 @@ final class GameAudioManager: NSObject, AVAudioPlayerDelegate {
     }
 
     func configureSession() {
+        if webManagedRecordingSession {
+            return
+        }
+
         do {
             let session = AVAudioSession.sharedInstance()
             if recordingSessionActive {
-                try session.setCategory(.playAndRecord, mode: .measurement, options: [.defaultToSpeaker])
+                try session.setCategory(.playAndRecord, mode: .default, options: [.defaultToSpeaker])
             } else {
                 try session.setCategory(.playback, mode: .default, options: [])
             }
@@ -58,34 +95,337 @@ final class GameAudioManager: NSObject, AVAudioPlayerDelegate {
         }
     }
 
-    func prepareForRecording(resumeBgm: Bool) {
+    func prepareForRecording(resumeBgm: Bool, keepBgm: Bool = false, webManaged: Bool = false) {
         performOnMainSync {
             self.recordingSessionActive = true
+            self.webManagedRecordingSession = webManaged
+            self.allowBgmDuringRecording = keepBgm
             self.shouldResumeBgmAfterRecording = resumeBgm
-            self.bgmPlayer?.pause()
+            if !keepBgm {
+                self.bgmPlayer?.pause()
+            }
+            self.stopBundleAudioLocked(completed: false)
+            self.stopRemoteAudioLocked(completed: false)
+            self.stopBoostedAudioLocked(completed: false)
+            if webManaged {
+                return
+            }
             self.configureSession()
-        }
-    }
-
-    func finishRecording(resumeBgm: Bool) {
-        performOnMainSync {
-            self.recordingSessionActive = false
-            let shouldResume = self.shouldResumeBgmAfterRecording && resumeBgm
-            self.shouldResumeBgmAfterRecording = true
-            self.configureSession()
-            if shouldResume {
+            if keepBgm && resumeBgm {
                 self.startBgm()
             }
         }
     }
 
-    func startBgm() {
+    func finishRecording(resumeBgm: Bool, keepBgm: Bool = false, webManaged: Bool = false) {
+        performOnMainSync {
+            let wasWebManaged = self.webManagedRecordingSession || webManaged
+            self.recordingSessionActive = false
+            let shouldResume = self.shouldResumeBgmAfterRecording && resumeBgm
+            self.webManagedRecordingSession = false
+            self.allowBgmDuringRecording = false
+            self.shouldResumeBgmAfterRecording = true
+
+            if wasWebManaged {
+                if shouldResume {
+                    self.startBgm()
+                } else if !keepBgm {
+                    self.bgmPlayer?.pause()
+                }
+                return
+            }
+
+            self.configureSession()
+            if shouldResume {
+                self.startBgm()
+            } else if !keepBgm {
+                self.bgmPlayer?.pause()
+            }
+        }
+    }
+
+    func startSpeechCapture(
+        maxDurationMs: Int,
+        noVoiceTimeoutMs: Int,
+        minVoiceWindowMs: Int,
+        silenceMs: Int,
+        tailBufferMs: Int,
+        resumeBgm: Bool,
+        onLevel: (([String: Any]) -> Void)? = nil,
+        completion: @escaping (Result<[String: Any], Error>) -> Void
+    ) {
         DispatchQueue.main.async {
-            guard !self.recordingSessionActive else { return }
+            guard self.speechRecorder == nil else {
+                completion(.failure(self.makeError("Speech capture is already active.")))
+                return
+            }
+
+            AVAudioSession.sharedInstance().requestRecordPermission { granted in
+                DispatchQueue.main.async {
+                    guard granted else {
+                        completion(.failure(self.makeError("Microphone permission was denied.")))
+                        return
+                    }
+
+                    self.beginSpeechCapture(
+                        maxDurationMs: maxDurationMs,
+                        noVoiceTimeoutMs: noVoiceTimeoutMs,
+                        minVoiceWindowMs: minVoiceWindowMs,
+                        silenceMs: silenceMs,
+                        tailBufferMs: tailBufferMs,
+                        resumeBgm: resumeBgm,
+                        onLevel: onLevel,
+                        completion: completion
+                    )
+                }
+            }
+        }
+    }
+
+    func stopSpeechCapture(reason: String = "manual") {
+        DispatchQueue.main.async {
+            self.finishSpeechCapture(reason: reason)
+        }
+    }
+
+    private func beginSpeechCapture(
+        maxDurationMs: Int,
+        noVoiceTimeoutMs: Int,
+        minVoiceWindowMs: Int,
+        silenceMs: Int,
+        tailBufferMs: Int,
+        resumeBgm: Bool,
+        onLevel: (([String: Any]) -> Void)?,
+        completion: @escaping (Result<[String: Any], Error>) -> Void
+    ) {
+        speechCaptureMaxDurationMs = max(1200, maxDurationMs)
+        speechCaptureNoVoiceTimeoutMs = max(1200, noVoiceTimeoutMs)
+        speechCaptureMinVoiceWindowMs = max(500, minVoiceWindowMs)
+        speechCaptureSilenceMs = max(350, silenceMs)
+        speechCaptureTailBufferMs = max(120, tailBufferMs)
+        speechCaptureCompletion = completion
+        speechCaptureStartedAt = Date()
+        speechCaptureVoiceStartedAt = nil
+        speechCaptureLastVoiceAt = nil
+        speechCaptureMeterFrames = 0
+        speechCaptureActiveFrames = 0
+        speechCaptureLevelTotal = 0
+        speechCapturePeakLevel = 0
+        speechCaptureDetectedVoice = false
+        speechCaptureLevelHandler = onLevel
+        speechCaptureStopWorkItem?.cancel()
+        speechCaptureStopWorkItem = nil
+
+        recordingSessionActive = true
+        webManagedRecordingSession = false
+        allowBgmDuringRecording = true
+        shouldResumeBgmAfterRecording = resumeBgm
+        stopBundleAudioLocked(completed: false)
+        stopRemoteAudioLocked(completed: false)
+        stopBoostedAudioLocked(completed: false)
+        configureSession()
+
+        let fileName = "speech-capture-\(UUID().uuidString).wav"
+        let url = FileManager.default.temporaryDirectory.appendingPathComponent(fileName)
+        speechCaptureURL = url
+
+        let settings: [String: Any] = [
+            AVFormatIDKey: kAudioFormatLinearPCM,
+            AVSampleRateKey: 16000,
+            AVNumberOfChannelsKey: 1,
+            AVLinearPCMBitDepthKey: 16,
+            AVLinearPCMIsFloatKey: false,
+            AVLinearPCMIsBigEndianKey: false
+        ]
+
+        do {
+            let recorder = try AVAudioRecorder(url: url, settings: settings)
+            recorder.isMeteringEnabled = true
+            recorder.prepareToRecord()
+            guard recorder.record() else {
+                throw makeError("Unable to start microphone recording.")
+            }
+            speechRecorder = recorder
+            speechCaptureTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] _ in
+                self?.pollSpeechCapture()
+            }
+        } catch {
+            cleanupSpeechCaptureSession()
+            completion(.failure(error))
+        }
+    }
+
+    private func pollSpeechCapture() {
+        guard let recorder = speechRecorder else { return }
+        recorder.updateMeters()
+
+        let averagePower = recorder.averagePower(forChannel: 0)
+        let peakPower = recorder.peakPower(forChannel: 0)
+        let level = max(0.0, min(1.0, pow(10.0, Double(averagePower) / 20.0)))
+        let peakLevel = max(0.0, min(1.0, pow(10.0, Double(peakPower) / 20.0)))
+        let averageCurve = max(0.0, min(1.0, (Double(averagePower) + 54.0) / 36.0))
+        let peakCurve = max(0.0, min(1.0, (Double(peakPower) + 48.0) / 34.0))
+        let meterLevel = max(averageCurve, peakCurve * 0.9)
+        let now = Date()
+        let elapsedMs = Int(now.timeIntervalSince(speechCaptureStartedAt) * 1000)
+
+        speechCaptureMeterFrames += 1
+        speechCaptureLevelTotal += level
+        speechCapturePeakLevel = max(speechCapturePeakLevel, peakLevel)
+
+        let voiceDetectedThisFrame = averagePower > -42 || peakPower > -34 || peakLevel > 0.018
+        speechCaptureLevelHandler?([
+            "level": meterLevel,
+            "rawLevel": level,
+            "peak": peakLevel,
+            "averagePower": averagePower,
+            "peakPower": peakPower,
+            "elapsedMs": elapsedMs
+        ])
+        if voiceDetectedThisFrame {
+            speechCaptureDetectedVoice = true
+            speechCaptureActiveFrames += 1
+            if speechCaptureVoiceStartedAt == nil {
+                speechCaptureVoiceStartedAt = now
+            }
+            speechCaptureLastVoiceAt = now
+            speechCaptureStopWorkItem?.cancel()
+            speechCaptureStopWorkItem = nil
+        }
+
+        if !speechCaptureDetectedVoice && elapsedMs >= speechCaptureNoVoiceTimeoutMs {
+            finishSpeechCapture(reason: "noVoice")
+            return
+        }
+
+        if elapsedMs >= speechCaptureMaxDurationMs {
+            finishSpeechCapture(reason: "maxDuration")
+            return
+        }
+
+        guard
+            speechCaptureDetectedVoice,
+            let voiceStartedAt = speechCaptureVoiceStartedAt,
+            let lastVoiceAt = speechCaptureLastVoiceAt
+        else {
+            return
+        }
+
+        let voiceWindowMs = Int(now.timeIntervalSince(voiceStartedAt) * 1000)
+        let silenceMs = Int(now.timeIntervalSince(lastVoiceAt) * 1000)
+        if voiceWindowMs >= speechCaptureMinVoiceWindowMs && silenceMs >= speechCaptureSilenceMs && speechCaptureStopWorkItem == nil {
+            let stopWorkItem = DispatchWorkItem { [weak self] in
+                self?.finishSpeechCapture(reason: "silence")
+            }
+            speechCaptureStopWorkItem = stopWorkItem
+            DispatchQueue.main.asyncAfter(
+                deadline: .now() + Double(speechCaptureTailBufferMs) / 1000.0,
+                execute: stopWorkItem
+            )
+        }
+    }
+
+    private func finishSpeechCapture(reason: String) {
+        guard let recorder = speechRecorder else { return }
+        let completion = speechCaptureCompletion
+        speechCaptureCompletion = nil
+        speechCaptureTimer?.invalidate()
+        speechCaptureTimer = nil
+        speechCaptureStopWorkItem?.cancel()
+        speechCaptureStopWorkItem = nil
+
+        let durationMs = max(0, Int(recorder.currentTime * 1000))
+        let url = speechCaptureURL
+        recorder.stop()
+        speechRecorder = nil
+
+        let payload: [String: Any]
+        do {
+            let audioData = try url.map { try Data(contentsOf: $0) } ?? Data()
+            payload = [
+                "ok": true,
+                "reason": reason,
+                "mimeType": "audio/wav",
+                "audioBase64": reason == "noVoice" ? "" : audioData.base64EncodedString(),
+                "metrics": buildSpeechCaptureMetrics(durationMs: durationMs)
+            ]
+        } catch {
+            cleanupSpeechCaptureSession()
+            completion?(.failure(error))
+            return
+        }
+
+        cleanupSpeechCaptureSession()
+        completion?(.success(payload))
+    }
+
+    private func buildSpeechCaptureMetrics(durationMs: Int) -> [String: Any] {
+        let frames = max(1, speechCaptureMeterFrames)
+        let rms = speechCaptureLevelTotal / Double(frames)
+        let activeRatio = Double(speechCaptureActiveFrames) / Double(frames)
+        let volumeScore = min(100.0, max(0.0, rms / 0.055 * 100.0))
+        let activityScore = min(100.0, max(0.0, activeRatio * 180.0))
+        let hasVoice = speechCaptureDetectedVoice && durationMs >= 350
+        let quality = hasVoice
+            ? min(96, max(25, Int(round((volumeScore * 0.45) + (activityScore * 0.35) + 20.0))))
+            : 0
+
+        return [
+            "sampleRate": 16000,
+            "durationMs": durationMs,
+            "rms": rms,
+            "peak": speechCapturePeakLevel,
+            "activeRatio": activeRatio,
+            "hasVoice": hasVoice,
+            "quality": quality
+        ]
+    }
+
+    private func cleanupSpeechCaptureSession() {
+        speechCaptureTimer?.invalidate()
+        speechCaptureTimer = nil
+        speechCaptureStopWorkItem?.cancel()
+        speechCaptureStopWorkItem = nil
+        if let recorder = speechRecorder {
+            recorder.stop()
+        }
+        speechRecorder = nil
+        speechCaptureCompletion = nil
+        speechCaptureLevelHandler = nil
+
+        if let url = speechCaptureURL {
+            try? FileManager.default.removeItem(at: url)
+        }
+        speechCaptureURL = nil
+
+        recordingSessionActive = false
+        webManagedRecordingSession = false
+        allowBgmDuringRecording = false
+        let shouldResume = shouldResumeBgmAfterRecording
+        shouldResumeBgmAfterRecording = true
+        configureSession()
+        if shouldResume {
+            startBgm()
+        } else {
+            bgmPlayer?.pause()
+        }
+    }
+
+    private func makeError(_ message: String) -> NSError {
+        NSError(domain: "GameAudio", code: 2, userInfo: [NSLocalizedDescriptionKey: message])
+    }
+
+    func startBgm(completion: ((Bool) -> Void)? = nil) {
+        DispatchQueue.main.async {
+            guard !self.recordingSessionActive || self.allowBgmDuringRecording else {
+                completion?(false)
+                return
+            }
             self.configureSession()
             if self.bgmPlayer == nil {
                 guard let url = Bundle.main.url(forResource: "bgm_native", withExtension: "m4a", subdirectory: "sounds") else {
                     print("[GameAudio] BGM file not found")
+                    completion?(false)
                     return
                 }
 
@@ -97,13 +437,15 @@ final class GameAudioManager: NSObject, AVAudioPlayerDelegate {
                     self.bgmPlayer = player
                 } catch {
                     print("[GameAudio] BGM load failed: \(error)")
+                    completion?(false)
                     return
                 }
             }
 
             self.bgmPlayer?.volume = self.bgmVolume
-            self.bgmPlayer?.play()
-            print("[GameAudio] BGM playing")
+            let started = self.bgmPlayer?.play() ?? false
+            print(started ? "[GameAudio] BGM playing" : "[GameAudio] BGM play returned false")
+            completion?(started)
         }
     }
 
@@ -122,7 +464,7 @@ final class GameAudioManager: NSObject, AVAudioPlayerDelegate {
 
     func playSfx(assetId: String, fileName: String, volume: Float) {
         DispatchQueue.main.async {
-            guard !self.recordingSessionActive else { return }
+            guard !self.recordingSessionActive || self.webManagedRecordingSession || self.allowBgmDuringRecording else { return }
             if !self.sessionConfigured {
                 self.configureSession()
             }
@@ -167,6 +509,24 @@ final class GameAudioManager: NSObject, AVAudioPlayerDelegate {
             }
 
             do {
+                if volume > 1 {
+                    DispatchQueue.main.async {
+                        guard !self.recordingSessionActive else {
+                            completion(false)
+                            return
+                        }
+
+                        if !self.sessionConfigured {
+                            self.configureSession()
+                        }
+
+                        self.stopBundleAudioLocked(completed: false)
+                        self.stopRemoteAudioLocked(completed: false)
+                        self.startBoostedAudioLocked(url: url, volume: volume, kind: .bundle, completion: completion)
+                    }
+                    return
+                }
+
                 let player = try AVAudioPlayer(contentsOf: url)
                 player.prepareToPlay()
 
@@ -255,6 +615,25 @@ final class GameAudioManager: NSObject, AVAudioPlayerDelegate {
     private func playRemoteAudioData(_ data: Data, cacheKey: String, volume: Float, completion: @escaping (Bool) -> Void) {
         DispatchQueue.global(qos: .userInitiated).async {
             do {
+                if volume > 1 {
+                    let tempUrl = try self.writeRemoteAudioTempFile(data, cacheKey: cacheKey)
+                    DispatchQueue.main.async {
+                        guard !self.recordingSessionActive else {
+                            completion(false)
+                            return
+                        }
+
+                        if !self.sessionConfigured {
+                            self.configureSession()
+                        }
+
+                        self.stopBundleAudioLocked(completed: false)
+                        self.stopRemoteAudioLocked(completed: false)
+                        self.startBoostedAudioLocked(url: tempUrl, volume: volume, kind: .remote, completion: completion)
+                    }
+                    return
+                }
+
                 let player = try AVAudioPlayer(data: data)
                 player.prepareToPlay()
 
@@ -286,6 +665,73 @@ final class GameAudioManager: NSObject, AVAudioPlayerDelegate {
         }
     }
 
+    private func writeRemoteAudioTempFile(_ data: Data, cacheKey: String) throws -> URL {
+        let pathExtension = URL(string: cacheKey)?.pathExtension ?? ""
+        let ext = pathExtension.isEmpty ? "mp3" : pathExtension
+        let fileName = "game-audio-\(String(cacheKey.hashValue, radix: 16)).\(ext)"
+        let url = FileManager.default.temporaryDirectory.appendingPathComponent(fileName)
+        if !FileManager.default.fileExists(atPath: url.path) {
+            try data.write(to: url, options: [.atomic])
+        }
+        return url
+    }
+
+    private func boostedGainDecibels(for volume: Float) -> Float {
+        let safeVolume = min(3.0, max(1.0, volume))
+        return min(9.5, max(0.0, 20.0 * Float(log10(Double(safeVolume)))))
+    }
+
+    private func startBoostedAudioLocked(
+        url: URL,
+        volume: Float,
+        kind: BoostedAudioKind,
+        completion: @escaping (Bool) -> Void
+    ) {
+        do {
+            let file = try AVAudioFile(forReading: url)
+            let engine = AVAudioEngine()
+            let playerNode = AVAudioPlayerNode()
+            let eq = AVAudioUnitEQ(numberOfBands: 1)
+            eq.globalGain = boostedGainDecibels(for: volume)
+
+            engine.attach(playerNode)
+            engine.attach(eq)
+            engine.connect(playerNode, to: eq, format: file.processingFormat)
+            engine.connect(eq, to: engine.mainMixerNode, format: file.processingFormat)
+
+            boostedAudioEngine = engine
+            boostedAudioPlayerNode = playerNode
+            boostedAudioFile = file
+            boostedAudioKind = kind
+            boostedAudioCompletion = completion
+            boostedAudioStopWorkItem?.cancel()
+            boostedAudioStopWorkItem = nil
+
+            try engine.start()
+            playerNode.scheduleFile(file, at: nil, completionHandler: nil)
+            playerNode.play()
+
+            let sampleRate = file.processingFormat.sampleRate
+            let duration = sampleRate > 0 ? Double(file.length) / sampleRate : 0
+            let stopDelay = max(0.35, duration + 0.35)
+            let stopWorkItem = DispatchWorkItem { [weak self] in
+                guard let self else { return }
+                if self.boostedAudioKind == kind {
+                    self.stopBoostedAudioLocked(kind: kind, completed: true)
+                }
+            }
+            boostedAudioStopWorkItem = stopWorkItem
+            DispatchQueue.main.asyncAfter(deadline: .now() + stopDelay, execute: stopWorkItem)
+        } catch {
+            print("[GameAudio] boosted audio failed: \(error)")
+            if boostedAudioCompletion != nil && boostedAudioKind == kind {
+                stopBoostedAudioLocked(kind: kind, completed: false)
+            } else {
+                completion(false)
+            }
+        }
+    }
+
     func stopBundleAudio() {
         DispatchQueue.main.async {
             self.stopBundleAudioLocked(completed: false)
@@ -301,6 +747,7 @@ final class GameAudioManager: NSObject, AVAudioPlayerDelegate {
             player.delegate = nil
         }
         bundleAudioPlayer = nil
+        stopBoostedAudioLocked(kind: .bundle, completed: completed)
         completion?(completed)
     }
 
@@ -318,12 +765,33 @@ final class GameAudioManager: NSObject, AVAudioPlayerDelegate {
             player.delegate = nil
         }
         remoteAudioPlayer = nil
+        stopBoostedAudioLocked(kind: .remote, completed: completed)
+        completion?(completed)
+    }
+
+    private func stopBoostedAudioLocked(kind: BoostedAudioKind? = nil, completed: Bool) {
+        guard let activeKind = boostedAudioKind, kind == nil || activeKind == kind else {
+            return
+        }
+
+        let completion = boostedAudioCompletion
+        boostedAudioCompletion = nil
+        boostedAudioKind = nil
+        boostedAudioStopWorkItem?.cancel()
+        boostedAudioStopWorkItem = nil
+
+        boostedAudioPlayerNode?.stop()
+        boostedAudioEngine?.stop()
+        boostedAudioPlayerNode = nil
+        boostedAudioEngine = nil
+        boostedAudioFile = nil
+
         completion?(completed)
     }
 
     func preloadSfx(assetId: String, fileName: String, volume: Float = 1, completion: ((Bool) -> Void)? = nil) {
         DispatchQueue.main.async {
-            guard !self.recordingSessionActive else {
+            guard !self.recordingSessionActive || self.webManagedRecordingSession || self.allowBgmDuringRecording else {
                 completion?(false)
                 return
             }
@@ -401,7 +869,9 @@ final class GameAudioManager: NSObject, AVAudioPlayerDelegate {
 
         if recordingSessionActive {
             if type == .ended {
-                configureSession()
+                if !webManagedRecordingSession {
+                    configureSession()
+                }
             }
             return
         }
@@ -413,6 +883,10 @@ final class GameAudioManager: NSObject, AVAudioPlayerDelegate {
     }
 
     @objc private func handleAudioRouteChange(_ notification: Notification) {
+        if webManagedRecordingSession {
+            return
+        }
+
         if recordingSessionActive {
             configureSession()
             return

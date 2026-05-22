@@ -8,7 +8,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="English Conqueror">
-    <link rel="apple-touch-icon" href="icon.png"> <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" href="icon.png">
 
     <script>
         if (window.location.protocol === 'capacitor:') {
@@ -56,7 +56,7 @@
     </script>
 
     <script type="module" src="firebase-init.js?v=0.88v"></script>
-    <link rel="stylesheet" href="style.css?v=0.88v">
+    <link rel="stylesheet" href="style.css?v=1.02v">
 
 </head>
 <body>
@@ -93,11 +93,25 @@
 </div>
 <script>
     window.companyLogoSplashDone = false;
-    window.addEventListener('load', () => {
+    window.bgmAfterCompanyLogoSplashRequested = false;
+    const hideNativeSplashOverlay = () => {
+        const nativeSplash = window.Capacitor?.Plugins?.SplashScreen;
+        if (nativeSplash && typeof nativeSplash.hide === 'function') {
+            nativeSplash.hide().catch(() => {});
+        }
+    };
+    const startCompanyLogoSplashTimer = () => {
+        hideNativeSplashOverlay();
         const logoSplash = document.getElementById('company-logo-splash');
         const finishCompanyLogoSplash = () => {
             window.companyLogoSplashDone = true;
+            window.bgmAfterCompanyLogoSplashRequested = true;
             window.dispatchEvent(new Event('company-logo-splash-done'));
+            if (typeof window.requestBgmAfterCompanyLogoSplash === 'function') {
+                window.requestBgmAfterCompanyLogoSplash();
+            } else if (typeof window.playBgm === 'function') {
+                window.playBgm();
+            }
         };
         if (!logoSplash) {
             finishCompanyLogoSplash();
@@ -109,8 +123,11 @@
                 logoSplash.style.display = 'none';
                 finishCompanyLogoSplash();
             }, 520);
-        }, 1600);
-    });
+        }, 1350);
+    };
+    setTimeout(startCompanyLogoSplashTimer, 0);
+    document.addEventListener('DOMContentLoaded', hideNativeSplashOverlay, { once: true });
+    window.addEventListener('load', hideNativeSplashOverlay, { once: true });
 </script>
 <div id="game-content-wrapper" style="display: none;">
 <div id="start-screen" class="screen active" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
@@ -347,9 +364,16 @@
 
         <div style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
 
-            <button id="skill-btn-reading" class="skill-btn" onclick="selectSkill('READING')" style="border-color: #0ea5e9; color: #0ea5e9; width: 300px; height: 80px;">
+            <button id="skill-btn-reading-choice" class="skill-btn" onclick="selectSkill('READING_CHOICE')" style="border-color: #38bdf8; color: #38bdf8; width: 300px; height: 80px;">
                 <div style="display:flex; flex-direction:column; align-items:center;">
                     <span style="font-size:24px;">READING</span>
+                    <span style="font-size:10px; opacity:0.7;">MEANING SCAN</span>
+                </div>
+            </button>
+
+            <button id="skill-btn-reading" class="skill-btn" onclick="selectSkill('READING')" style="border-color: #0abdc6; color: #0abdc6; width: 300px; height: 80px;">
+                <div style="display:flex; flex-direction:column; align-items:center;">
+                    <span style="font-size:24px;">SPELLING</span>
                     <span style="font-size:10px; opacity:0.7;">DECRYPT CODE</span>
                 </div>
             </button>
@@ -382,21 +406,21 @@
             <button id="race-btn-vanguards" class="race-btn" onclick="selectRace('VANGUARDS')" style="border-color: #ffffff; color: #ffffff; width: 300px; height: 80px;">
                 <div style="display:flex; flex-direction:column; align-items:center;">
                     <span style="font-size:24px;">VANGUARDS</span>
-                    <span style="font-size:10px; opacity:0.7;">ELITE STRIKE FORCE</span>
+                    <span style="font-size:10px; opacity:0.7;">人類的最後守護者</span>
                 </div>
             </button>
 
             <button id="race-btn-aurelians" class="race-btn" onclick="selectRace('AURELIANS')" style="border-color: #EEE8AA; color: #EEE8AA; width: 300px; height: 80px;">
                 <div style="display:flex; flex-direction:column; align-items:center;">
                     <span style="font-size:24px;">AURELIANS</span>
-                    <span style="font-size:10px; opacity:0.7;">GOLDEN EMPIRE</span>
+                    <span style="font-size:10px; opacity:0.7;">為榮耀而戰的神聖放明</span>
                 </div>
             </button>
 
             <button id="race-btn-caustics" class="race-btn" onclick="selectRace('CAUSTICS')" style="border-color: #c084fc; color: #c084fc; width: 300px; height: 80px;">
                 <div style="display:flex; flex-direction:column; align-items:center;">
                     <span style="font-size:24px;">CAUSTICS</span>
-                    <span style="font-size:10px; opacity:0.7;">VOID HUNTERS</span>
+                    <span style="font-size:10px; opacity:0.7;">腐蝕宇宙萬物的力量</span>
                 </div>
             </button>
         </div>
@@ -426,13 +450,70 @@
         <h2 id="grammar-topic-title" class="grammar-screen-title">SELECT TOPIC</h2>
         <div id="grammar-topic-subtitle" class="grammar-screen-subtitle">GRAMMAR TRAINING MODULE</div>
 
-        <div class="grammar-topic-grid">
+        <div id="grammar-topic-grid" class="grammar-topic-grid">
             <div class="grammar-topic-card">
                 <button class="grammar-topic-btn" onclick="openGrammarVerbTableScreen()">
                     <div class="grammar-topic-name">VERB TABLE</div>
-                    <div class="grammar-topic-desc">FOUR-FORM DRILL</div>
+                    <div class="grammar-topic-desc">動詞四式特訓</div>
+                    <div id="grammar-topic-progress" class="grammar-topic-progress">0/0</div>
                 </button>
                 <button class="stage-info-btn grammar-topic-info" onclick="toggleGrammarTopicReference(); event.stopPropagation();" aria-label="Open verb table topic reference">i</button>
+            </div>
+            <div class="grammar-topic-card grammar-topic-card-tense">
+                <button class="grammar-topic-btn grammar-topic-btn-tense" onclick="openGrammarTenseSetupScreen()">
+                    <div class="grammar-topic-name">TENSES</div>
+                    <div class="grammar-topic-desc">時態主被動特訓</div>
+                    <div id="grammar-tense-topic-progress" class="grammar-topic-progress">0/0</div>
+                </button>
+            </div>
+            <div class="grammar-topic-card grammar-topic-card-conditional">
+                <button class="grammar-topic-btn grammar-topic-btn-conditional" onclick="openGrammarConditionalSetupScreen()">
+                    <div class="grammar-topic-name">CONDITIONAL</div>
+                    <div class="grammar-topic-desc">條件句重組特訓</div>
+                    <div id="grammar-conditional-topic-progress" class="grammar-topic-progress">0/0</div>
+                </button>
+            </div>
+            <div class="grammar-topic-card grammar-topic-card-direct">
+                <button class="grammar-topic-btn grammar-topic-btn-direct" onclick="openGrammarDirectQuestionScreen()">
+                    <div class="grammar-topic-name">DIRECT QUESTION</div>
+                    <div class="grammar-topic-desc">真問句重組特訓</div>
+                    <div id="grammar-direct-topic-progress" class="grammar-topic-progress">0/0</div>
+                </button>
+            </div>
+            <div class="grammar-topic-card grammar-topic-card-indirect">
+                <button class="grammar-topic-btn grammar-topic-btn-indirect" onclick="openGrammarIndirectQuestionScreen()">
+                    <div class="grammar-topic-name">INDIRECT QUESTION</div>
+                    <div class="grammar-topic-desc">假問句重組特訓</div>
+                    <div id="grammar-indirect-topic-progress" class="grammar-topic-progress">0/0</div>
+                </button>
+            </div>
+            <div class="grammar-topic-card grammar-topic-card-it-is">
+                <button class="grammar-topic-btn grammar-topic-btn-it-is" onclick="openGrammarItIsScreen()">
+                    <div class="grammar-topic-name">IT IS</div>
+                    <div class="grammar-topic-desc">形容詞句式重組特訓</div>
+                    <div id="grammar-it-is-topic-progress" class="grammar-topic-progress">0/0</div>
+                </button>
+            </div>
+            <div class="grammar-topic-card grammar-topic-card-infinitive-gerund">
+                <button class="grammar-topic-btn grammar-topic-btn-infinitive-gerund" onclick="openGrammarInfinitiveGerundScreen()">
+                    <div class="grammar-topic-name">INFINITIVE / GERUND</div>
+                    <div class="grammar-topic-desc">不定詞動名詞填充特訓</div>
+                    <div id="grammar-infinitive-gerund-topic-progress" class="grammar-topic-progress">0/0</div>
+                </button>
+            </div>
+            <div class="grammar-topic-card grammar-topic-card-preposition-place">
+                <button class="grammar-topic-btn grammar-topic-btn-preposition-place" onclick="openGrammarPrepositionPlaceScreen()">
+                    <div class="grammar-topic-name">PREPOSITION OF PLACE</div>
+                    <div class="grammar-topic-desc">地方移動介詞五選一</div>
+                    <div id="grammar-preposition-place-topic-progress" class="grammar-topic-progress">0/0</div>
+                </button>
+            </div>
+            <div class="grammar-topic-card grammar-topic-card-preposition-time">
+                <button class="grammar-topic-btn grammar-topic-btn-preposition-time" onclick="openGrammarPrepositionTimeScreen()">
+                    <div class="grammar-topic-name">PREPOSITION OF TIME</div>
+                    <div class="grammar-topic-desc">時間介詞五選一</div>
+                    <div id="grammar-preposition-time-topic-progress" class="grammar-topic-progress">0/0</div>
+                </button>
             </div>
             <div id="grammar-topic-reference" class="grammar-verb-reference grammar-topic-reference" style="display: none;">
                 <div class="grammar-verb-reference-wrap">
@@ -449,6 +530,46 @@
                         <tbody id="grammar-topic-reference-body"></tbody>
                     </table>
                 </div>
+            </div>
+        </div>
+
+        <div id="grammar-tense-setup" class="grammar-tense-setup" style="display: none;">
+            <div class="grammar-tense-section">
+                <div class="grammar-tense-section-head">
+                    <span>要訓練的時態</span>
+                    <div class="grammar-tense-tools">
+                        <button type="button" onclick="selectAllGrammarTenses()">ALL</button>
+                        <button type="button" onclick="clearGrammarTenses()">CLEAR</button>
+                    </div>
+                </div>
+                <div id="grammar-tense-option-grid" class="grammar-tense-option-grid"></div>
+            </div>
+            <div class="grammar-tense-section">
+                <div class="grammar-tense-section-head">
+                    <span>主動/被動</span>
+                </div>
+                <div id="grammar-voice-option-grid" class="grammar-voice-option-grid"></div>
+            </div>
+            <div id="grammar-tense-selection-summary" class="grammar-tense-selection-summary">0 SIGNALS READY</div>
+            <div class="grammar-tense-actions">
+                <button type="button" id="grammar-tense-confirm-btn" class="grammar-tense-confirm-btn" onclick="confirmGrammarTenseSetup()">CONFIRM</button>
+            </div>
+        </div>
+
+        <div id="grammar-conditional-setup" class="grammar-tense-setup" style="display: none;">
+            <div class="grammar-tense-section">
+                <div class="grammar-tense-section-head">
+                    <span>要訓練的條件句類型</span>
+                    <div class="grammar-tense-tools">
+                        <button type="button" onclick="selectAllGrammarConditionals()">ALL</button>
+                        <button type="button" onclick="clearGrammarConditionals()">CLEAR</button>
+                    </div>
+                </div>
+                <div id="grammar-conditional-option-grid" class="grammar-tense-option-grid grammar-conditional-option-grid"></div>
+            </div>
+            <div id="grammar-conditional-selection-summary" class="grammar-tense-selection-summary">0 SIGNALS READY</div>
+            <div class="grammar-tense-actions">
+                <button type="button" id="grammar-conditional-confirm-btn" class="grammar-tense-confirm-btn" onclick="confirmGrammarConditionalSetup()">CONFIRM</button>
             </div>
         </div>
 
@@ -824,40 +945,62 @@
             <div id="speaking-wave" class="speaking-wave" style="display: none;"></div>
             <div class="vocab-hint" id="q-display">_ _ _ _ _</div>
             <div id="launch-grammar-panel" class="launch-grammar-panel" style="display: none;">
-                <div class="launch-grammar-grid">
-                    <label class="launch-grammar-field" id="launch-grammar-field-present">
-                        <span class="launch-grammar-label">PRESENT</span>
-                        <input id="launch-grammar-input-present" class="launch-grammar-input" autocomplete="off" spellcheck="false">
-                    </label>
-                    <label class="launch-grammar-field" id="launch-grammar-field-past">
-                        <span class="launch-grammar-label">PAST</span>
-                        <input id="launch-grammar-input-past" class="launch-grammar-input" autocomplete="off" spellcheck="false">
-                    </label>
-                    <label class="launch-grammar-field" id="launch-grammar-field-pp">
-                        <span class="launch-grammar-label">PP</span>
-                        <input id="launch-grammar-input-pp" class="launch-grammar-input" autocomplete="off" spellcheck="false">
-                    </label>
-                    <label class="launch-grammar-field" id="launch-grammar-field-pg">
-                        <span class="launch-grammar-label">ING</span>
-                        <input id="launch-grammar-input-pg" class="launch-grammar-input" autocomplete="off" spellcheck="false">
-                    </label>
-                </div>
-                <div id="launch-grammar-reference" class="launch-grammar-reference" style="display: none;">
-                    <div class="launch-grammar-reference-head">VERB TABLE REFERENCE</div>
-                    <div class="launch-grammar-reference-wrap">
-                        <table class="launch-grammar-reference-table">
-                            <thead>
-                                <tr>
-                                    <th>CHINESE</th>
-                                    <th>PRESENT</th>
-                                    <th>PAST</th>
-                                    <th>PP</th>
-                                    <th>ING</th>
-                                </tr>
-                            </thead>
-                            <tbody id="launch-grammar-reference-body"></tbody>
-                        </table>
+                <div id="launch-grammar-verb-wrap">
+                    <div class="launch-grammar-grid">
+                        <label class="launch-grammar-field" id="launch-grammar-field-present">
+                            <span class="launch-grammar-label">PRESENT</span>
+                            <input id="launch-grammar-input-present" class="launch-grammar-input" autocomplete="off" spellcheck="false">
+                        </label>
+                        <label class="launch-grammar-field" id="launch-grammar-field-past">
+                            <span class="launch-grammar-label">PAST</span>
+                            <input id="launch-grammar-input-past" class="launch-grammar-input" autocomplete="off" spellcheck="false">
+                        </label>
+                        <label class="launch-grammar-field" id="launch-grammar-field-pp">
+                            <span class="launch-grammar-label">PP</span>
+                            <input id="launch-grammar-input-pp" class="launch-grammar-input" autocomplete="off" spellcheck="false">
+                        </label>
+                        <label class="launch-grammar-field" id="launch-grammar-field-pg">
+                            <span class="launch-grammar-label">ING</span>
+                            <input id="launch-grammar-input-pg" class="launch-grammar-input" autocomplete="off" spellcheck="false">
+                        </label>
                     </div>
+                    <div id="launch-grammar-reference" class="launch-grammar-reference" style="display: none;">
+                        <div class="launch-grammar-reference-head">VERB TABLE REFERENCE</div>
+                        <div class="launch-grammar-reference-wrap">
+                            <table class="launch-grammar-reference-table">
+                                <thead>
+                                    <tr>
+                                        <th>CHINESE</th>
+                                        <th>PRESENT</th>
+                                        <th>PAST</th>
+                                        <th>PP</th>
+                                        <th>ING</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="launch-grammar-reference-body"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div id="launch-grammar-tense-wrap" class="launch-grammar-tense-wrap" style="display: none;">
+                    <div id="launch-tense-meta" class="launch-tense-meta"></div>
+                    <div id="launch-tense-sentence" class="launch-tense-sentence"></div>
+                    <div id="launch-tense-answer-grid" class="launch-tense-answer-grid"></div>
+                    <div id="launch-tense-feedback" class="launch-tense-feedback"></div>
+                </div>
+                <div id="launch-grammar-direct-wrap" class="launch-grammar-direct-wrap" style="display: none;">
+                    <div id="launch-direct-command" class="launch-direct-command">RECONSTRUCT DIRECT QUESTION</div>
+                    <div id="launch-direct-answer-zone" class="launch-direct-answer-zone"></div>
+                    <div id="launch-direct-token-pool" class="launch-direct-token-pool"></div>
+                    <button id="launch-direct-fire-btn" class="launch-direct-fire-btn" onclick="event.stopPropagation(); checkAnswer();">FIRE</button>
+                    <div id="launch-direct-feedback" class="launch-direct-feedback"></div>
+                </div>
+                <div id="launch-grammar-choice-wrap" class="launch-grammar-choice-wrap" style="display: none;">
+                    <div id="launch-choice-command" class="launch-choice-command">5 OPTION SIGNALS</div>
+                    <div id="launch-choice-sentence" class="launch-choice-sentence"></div>
+                    <div id="launch-choice-options" class="launch-choice-options"></div>
+                    <button id="launch-choice-fire-btn" class="launch-choice-fire-btn" onclick="event.stopPropagation(); checkAnswer();" disabled>FIRE</button>
+                    <div id="launch-choice-feedback" class="launch-choice-feedback"></div>
                 </div>
             </div>
             <div id="launch-subhint" style="color: #64748b; font-size: 12px;">TYPE TO DECRYPT // ENTER TO FIRE</div>
@@ -914,60 +1057,110 @@
             <div class="kb-row">
                 <button class="kb-key kb-nav-key kb-nav-prev" data-key="PREV_FIELD">←</button>
                 <button class="kb-key kb-nav-key kb-nav-next" data-key="NEXT_FIELD">→</button>
+                <button class="kb-key kb-space kb-tense-space-key" data-key="SPACE" aria-label="Space">SPACE</button>
                 <button class="kb-key kb-enter" data-key="ENTER">FIRE</button>
             </div>
         </div>
     </div>
 
     <div id="warning-overlay"></div>
-<div id="end-screen" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 300; background: rgba(0,0,0,0.95); flex-direction: column; align-items: center; justify-content: center; backdrop-filter: blur(10px); overflow: hidden; padding: 12px 0; box-sizing: border-box;">
+<div id="end-screen" class="settlement-screen" style="display: none;">
+    <div id="end-screen-panel" class="settlement-panel">
+        <section id="settlement-page-battle" class="settlement-page active" data-settlement-page="battle">
+            <div class="settlement-kicker">BATTLE RESULT</div>
+            <h1 id="end-title" class="settlement-title">VICTORY</h1>
+            <div id="end-msg" class="settlement-subtitle">ENEMY FLEET ELIMINATED</div>
 
-    <!-- Content container - no scrolling, centered -->
-    <div style="width: 100%; max-width: 600px; max-height: calc(100vh - 24px); display: flex; flex-direction: column; align-items: center; padding: 10px 20px 12px; box-sizing: border-box;">
-        <h1 id="end-title" style="font-family: 'Black Ops One'; font-size: 60px; margin-bottom: 10px; text-shadow: 0 0 30px currentColor;">VICTORY</h1>
-        <div id="end-msg" style="color: #94a3b8; margin-bottom: 20px; font-size: 18px;">ENEMY FLEET ELIMINATED</div>
+            <div class="battle-result-board">
+                <div class="mission-debrief-header">BATTLE RESULT</div>
+                <div class="battle-commanders">
+                    <div class="battle-commander">
+                        <span>YOU</span>
+                        <strong id="settlement-player-name">COMMANDER [VANGUARDS]</strong>
+                    </div>
+                    <div class="battle-turns">
+                        <span>TURNS</span>
+                        <strong id="settlement-turns">0</strong>
+                    </div>
+                    <div class="battle-commander battle-commander-enemy">
+                        <span>ENEMY</span>
+                        <strong id="settlement-enemy-name">AI COMMANDER [VANGUARDS]</strong>
+                    </div>
+                </div>
 
-        <!-- ★★★ PHASE 5: BATTLE RESULT ★★★ -->
-        <div id="settlement-summary" style="width: 100%; background: rgba(15, 23, 42, 0.9); border: 2px solid var(--warning); border-radius: 10px; padding: 15px; margin-bottom: 15px; display: flex; flex-direction: column; box-shadow: 0 0 20px rgba(251, 191, 36, 0.3); box-sizing: border-box;">
-            <div style="font-family: 'Black Ops One'; color: var(--warning); font-size: 20px; margin-bottom: 10px; text-align: center; letter-spacing: 2px; text-shadow: 0 0 10px var(--warning);">⚡ BATTLE RESULT ⚡</div>
-
-            <div style="display: flex; flex-direction: column; gap: 6px; font-family: 'Orbitron'; font-size: 16px;">
-                <div style="display: flex; justify-content: space-between; padding: 6px 8px; background: rgba(0,0,0,0.3); border-radius: 5px;">
-                    <span style="color: #94a3b8;">Supplies Earned:</span>
-                    <span id="settlement-supplies" style="color: #fbbf24; font-weight: bold;">+0</span>
-                </div>
-                <div style="display: flex; justify-content: space-between; padding: 6px 8px; background: rgba(0,0,0,0.3); border-radius: 5px;">
-                    <span style="color: #94a3b8;">Answering XP:</span>
-                    <span id="settlement-answering-xp" style="color: #0ea5e9; font-weight: bold;">+0</span>
-                </div>
-                <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 6px 8px; background: rgba(0,0,0,0.3); border-radius: 5px;">
-                    <span id="settlement-match-bonus-label" style="color: #94a3b8;">Match Bonus:</span>
-                    <span id="settlement-match-bonus" style="color: #22c55e; font-weight: bold; white-space: nowrap; text-align: right; flex-shrink: 0; min-width: max-content;">+0</span>
-                </div>
-                <div style="display: flex; justify-content: space-between; padding: 8px; background: rgba(251, 191, 36, 0.1); border: 1px solid var(--warning); border-radius: 5px; margin-top: 3px;">
-                    <span style="color: var(--warning); font-weight: bold;">TOTAL SESSION XP:</span>
-                    <span id="settlement-total-xp" style="color: var(--warning); font-weight: bold; font-size: 18px;">+0</span>
+                <div class="battle-result-stats">
+                    <div class="battle-stat-row">
+                        <span>CORRECT ANSWER %</span>
+                        <strong id="settlement-correct-percent">0%</strong>
+                    </div>
+                    <div class="battle-stat-row">
+                        <span>UNITS DESTROYED</span>
+                        <strong id="settlement-units-destroyed">0 / 0</strong>
+                    </div>
+                    <div class="battle-stat-row">
+                        <span>HITS</span>
+                        <strong id="settlement-hits">0</strong>
+                    </div>
+                    <div class="battle-stat-row">
+                        <span>MISSED</span>
+                        <strong id="settlement-missed">0</strong>
+                    </div>
+                    <div class="battle-stat-row">
+                        <span>ACCURACY</span>
+                        <strong id="settlement-shot-accuracy">0%</strong>
+                    </div>
+                    <div class="battle-stat-row">
+                        <span>BEST HIT STREAK</span>
+                        <strong id="settlement-best-hit-streak">0</strong>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Mission Debrief - Hidden to prevent scrolling -->
-        <div id="review-container" style="display: none; width: 100%; background: rgba(15, 23, 42, 0.8); border: 1px solid #334155; border-radius: 10px; padding: 15px; margin-bottom: 15px; flex-direction: column; flex: 1 1 auto; min-height: 0;">
-            <div style="font-family: 'Orbitron'; color: #0ea5e9; font-size: 16px; margin-bottom: 10px; text-align: center; letter-spacing: 2px;">>> MISSION DEBRIEF <<</div>
+            <button class="start-btn-large settlement-next-btn" onclick="playSound('deploy-sfx'); showSettlementPage('rewards')">NEXT</button>
+        </section>
 
-            <div style="display: grid; grid-template-columns: 0.5fr 0.8fr 1.2fr 1.5fr; border-bottom: 1px solid #475569; padding-bottom: 5px; margin-bottom: 10px; color: #94a3b8; font-size: 12px; font-weight: bold;">
-                <span>TURN</span>
-                <span>MEANING</span>
-                <span>YOUR INPUT</span>
-                <span>CORRECT CODE</span>
+        <section id="settlement-page-rewards" class="settlement-page" data-settlement-page="rewards">
+            <div class="settlement-kicker">XP &amp; SUPPLIES</div>
+            <div id="settlement-summary" class="settlement-summary">
+                <div class="mission-debrief-header">XP &amp; SUPPLIES</div>
+                <div class="settlement-reward-row">
+                    <span>Supplies Earned:</span>
+                    <strong id="settlement-supplies">+0</strong>
+                </div>
+                <div class="settlement-reward-row">
+                    <span>Answering XP:</span>
+                    <strong id="settlement-answering-xp">+0</strong>
+                </div>
+                <div class="settlement-reward-row">
+                    <span id="settlement-match-bonus-label">Match Bonus:</span>
+                    <strong id="settlement-match-bonus">+0</strong>
+                </div>
+                <div class="settlement-reward-row settlement-total-row">
+                    <span>TOTAL SESSION XP:</span>
+                    <strong id="settlement-total-xp">+0</strong>
+                </div>
             </div>
 
-            <div id="review-list" style="overflow-y: auto; max-height: min(300px, 26vh); padding-right: 5px; min-height: 0;">
-            </div>
-        </div>
+            <button class="start-btn-large settlement-next-btn" onclick="playSound('deploy-sfx'); showSettlementPage('debrief')">NEXT</button>
+        </section>
 
-        <!-- Button -->
-        <button class="start-btn-large" onclick="playSound('deploy-sfx'); resetGame()" style="margin-top: 0; margin-bottom: 4px;">RETURN TO BASE</button>
+        <section id="settlement-page-debrief" class="settlement-page settlement-page-debrief" data-settlement-page="debrief">
+            <div id="review-container" class="mission-debrief-panel" style="display: none;">
+                <div class="mission-debrief-header">MISSION DEBRIEF</div>
+
+                <div class="mission-debrief-grid-head">
+                    <span>TURN</span>
+                    <span>MEANING</span>
+                    <span>YOUR INPUT</span>
+                    <span>CORRECT CODE</span>
+                </div>
+
+                <div id="review-list" class="mission-debrief-list">
+                </div>
+            </div>
+
+            <button class="start-btn-large settlement-next-btn" onclick="playSound('deploy-sfx'); resetGame()">RETURN TO BASE</button>
+        </section>
     </div>
 </div>
 <div id="confirm-modal" class="tech-modal-overlay">
@@ -1060,10 +1253,27 @@
 <script src="listening_audio_manifest.js?v=0.88v"></script>
 <script src="vocab_word_audio_manifest.js?v=0.89v"></script>
 <script src="vendor/effekseer/effekseer.min.js?v=0.88v"></script>
-<script src="app.js?v=0.88v"></script>
+<script src="app.js?v=0.94v"></script>
 <script src="grammar_verb_table_data.js?v=0.88v"></script>
 <script src="grammar_verb_table_audio_manifest.js?v=0.89v"></script>
-<script src="ui-grammar.js?v=0.88v"></script>
+<script src="grammar_tenses_data.js?v=0.89v"></script>
+<script src="grammar_tenses_exam_data.js?v=0.89v"></script>
+<script src="grammar_tenses_extra_exam_data.js?v=0.90v"></script>
+<script src="grammar_tenses_more_exam_data.js?v=0.91v"></script>
+<script src="grammar_tenses_booster_data.js?v=0.92v"></script>
+<script src="grammar_tenses_reported_mix_data.js?v=0.93v"></script>
+<script src="grammar_direct_question_data.js?v=0.94v"></script>
+<script src="grammar_indirect_question_data.js?v=0.95v"></script>
+<script src="grammar_indirect_question_extra_data.js?v=0.96v"></script>
+<script src="grammar_it_is_data.js?v=0.97v"></script>
+<script src="grammar_it_is_extra_data.js?v=0.97v"></script>
+<script src="grammar_infinitive_gerund_data.js?v=0.98v"></script>
+<script src="grammar_preposition_place_data.js?v=0.99v"></script>
+<script src="grammar_preposition_time_data.js?v=1.00v"></script>
+<script src="grammar_conditional_data.js?v=1.00v"></script>
+<script src="grammar_conditional_extra_data.js?v=1.01v"></script>
+<script src="grammar_conditional_more_data.js?v=1.02v"></script>
+<script src="ui-grammar.js?v=1.01v"></script>
 <script src="ui-screens.js?v=0.88v"></script>
 <script src="ui-auth.js?v=0.88v"></script>
 <script src="ui-audio.js?v=0.88v"></script>
@@ -1175,17 +1385,35 @@
 
         <div class="setting-item">
             <label>BGM VOLUME</label>
-            <input type="range" id="vol-bgm" min="0" max="1" step="0.1" oninput="updateVolume('bgm', this.value)">
+            <div class="settings-range-control">
+                <input type="range" id="vol-bgm" min="0" max="1" step="0.1" oninput="updateVolume('bgm', this.value)">
+                <div class="settings-xp-range" aria-hidden="true">
+                    <div class="settings-xp-range-fill"><div class="settings-xp-range-glow"></div></div>
+                    <div class="settings-xp-range-marker"></div>
+                </div>
+            </div>
         </div>
         
         <div class="setting-item">
             <label>SFX VOLUME</label>
-            <input type="range" id="vol-sfx" min="0" max="1" step="0.1" oninput="updateVolume('sfx', this.value)">
+            <div class="settings-range-control">
+                <input type="range" id="vol-sfx" min="0" max="1" step="0.1" oninput="updateVolume('sfx', this.value)">
+                <div class="settings-xp-range" aria-hidden="true">
+                    <div class="settings-xp-range-fill"><div class="settings-xp-range-glow"></div></div>
+                    <div class="settings-xp-range-marker"></div>
+                </div>
+            </div>
         </div>
         
         <div class="setting-item">
-            <label>VOICE POWER (LISTENING)</label>
-            <input type="range" id="vol-voice" min="0" max="1" step="0.1" oninput="updateVolume('voice', this.value)">
+            <label>VOICE VOLUME (VOCAB / LISTENING)</label>
+            <div class="settings-range-control">
+                <input type="range" id="vol-voice" min="0" max="100" step="1" oninput="updateVolume('voice', this.value)">
+                <div class="settings-xp-range" aria-hidden="true">
+                    <div class="settings-xp-range-fill"><div class="settings-xp-range-glow"></div></div>
+                    <div class="settings-xp-range-marker"></div>
+                </div>
+            </div>
         </div>
 
         <div class="setting-item setting-item-toggle">
@@ -1210,7 +1438,57 @@
         <div class="hud-corner-br" style="border-color: var(--primary);"></div>
         <div class="tech-warning-title" style="color: var(--primary); text-shadow: 0 0 10px var(--primary); font-size: 24px;">SEND INVITE</div>
         <div style="font-family: 'Orbitron'; color: #a5f3fc; font-size: 10px; letter-spacing: 3px; margin-bottom: 18px; opacity: 0.6;">>> RECENT ONLINE COMMANDERS <<</div>
-        <input type="text" id="invite-player-search" placeholder="SEARCH PLAYER" class="invite-player-search" oninput="filterInvitePlayers(this.value)" autocomplete="off" spellcheck="false">
+        <input type="text" id="invite-player-search" placeholder="SEARCH PLAYER" class="invite-player-search" oninput="filterInvitePlayers(this.value)" onclick="showInviteSearchKeyboard()" onfocus="showInviteSearchKeyboard()" autocomplete="off" autocapitalize="characters" inputmode="none" spellcheck="false">
+        <div id="invite-search-keyboard" class="registration-keyboard invite-search-keyboard" style="display:none;">
+            <div class="reg-kb-row reg-kb-row-digits">
+                <button class="kb-key" data-invite-key="1">1</button>
+                <button class="kb-key" data-invite-key="2">2</button>
+                <button class="kb-key" data-invite-key="3">3</button>
+                <button class="kb-key" data-invite-key="4">4</button>
+                <button class="kb-key" data-invite-key="5">5</button>
+                <button class="kb-key" data-invite-key="6">6</button>
+                <button class="kb-key" data-invite-key="7">7</button>
+                <button class="kb-key" data-invite-key="8">8</button>
+                <button class="kb-key" data-invite-key="9">9</button>
+                <button class="kb-key" data-invite-key="0">0</button>
+            </div>
+            <div class="reg-kb-row">
+                <button class="kb-key" data-invite-key="Q">Q</button>
+                <button class="kb-key" data-invite-key="W">W</button>
+                <button class="kb-key" data-invite-key="E">E</button>
+                <button class="kb-key" data-invite-key="R">R</button>
+                <button class="kb-key" data-invite-key="T">T</button>
+                <button class="kb-key" data-invite-key="Y">Y</button>
+                <button class="kb-key" data-invite-key="U">U</button>
+                <button class="kb-key" data-invite-key="I">I</button>
+                <button class="kb-key" data-invite-key="O">O</button>
+                <button class="kb-key" data-invite-key="P">P</button>
+            </div>
+            <div class="reg-kb-row">
+                <button class="kb-key" data-invite-key="A">A</button>
+                <button class="kb-key" data-invite-key="S">S</button>
+                <button class="kb-key" data-invite-key="D">D</button>
+                <button class="kb-key" data-invite-key="F">F</button>
+                <button class="kb-key" data-invite-key="G">G</button>
+                <button class="kb-key" data-invite-key="H">H</button>
+                <button class="kb-key" data-invite-key="J">J</button>
+                <button class="kb-key" data-invite-key="K">K</button>
+                <button class="kb-key" data-invite-key="L">L</button>
+            </div>
+            <div class="reg-kb-row reg-kb-row-bottom">
+                <button class="kb-key" data-invite-key="Z">Z</button>
+                <button class="kb-key" data-invite-key="X">X</button>
+                <button class="kb-key" data-invite-key="C">C</button>
+                <button class="kb-key" data-invite-key="V">V</button>
+                <button class="kb-key" data-invite-key="B">B</button>
+                <button class="kb-key" data-invite-key="N">N</button>
+                <button class="kb-key" data-invite-key="M">M</button>
+                <button class="kb-key kb-backspace" data-invite-key="BACKSPACE">⌫</button>
+            </div>
+            <div class="reg-kb-row reg-kb-row-action">
+                <button class="kb-key kb-enter invite-search-done" data-invite-key="ENTER">DONE</button>
+            </div>
+        </div>
         <div id="invite-players-list" class="invite-players-list"></div>
         <button class="tech-btn cancel" onclick="closeInvitePlayersModal()" style="width: 100%; margin-top: 18px;">CLOSE</button>
     </div>

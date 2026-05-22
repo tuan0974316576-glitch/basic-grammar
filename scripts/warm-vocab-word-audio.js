@@ -112,7 +112,7 @@ function buildAzureWordSsml(text, locale, voiceName, accentLocale) {
   return [
     `<speak version="1.0" xml:lang="${safeLocale}">`,
     `  <voice name="${safeVoiceName}">`,
-    `    ${speechBody}`,
+    `    <prosody rate="0%" volume="+20%">${speechBody}</prosody>`,
     '  </voice>',
     '</speak>'
   ].join('');

@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Game: Gerund & Infinitive Challenge</title>
+    <style>
+        /* --- 變數與基礎設定 (維持原風格) --- */
+        :root {
+            --base-bg: #F1F3F3;       
+            --primary-color: #0a9396;   
+            --primary-dark: #005f73;    
+            --secondary-color: #0a9396; 
+            --secondary-dark: #005f73;  
+            --light-bg-1: #e6eaea;      
+            --light-bg-2: #e6f1f0;      
+            --text-color: #212529;      
+            --border-color: #ced4da;     
+            --danger-color: #dc3545;     
+            --danger-dark: #a42631;    
+        }
+
+        html, body {
+            min-height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-y: auto; /* 允許捲動，防止內容被截斷 */
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--base-bg); 
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* 改為靠上對齊 */
+            padding: 40px 0;
+        }
+
+        #game-container {
+            width: 100%;
+            max-width: 800px;
+            background-color: #ffffff;
+            border-radius: 12px; 
+            border: 2px solid var(--border-color);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            padding: 24px 32px;
+            box-sizing: border-box;
+            position: relative;
+            /* 高度自適應設定 */
+            height: auto;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            overflow: visible;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary-dark); 
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        /* --- 遊戲區域 --- */
+        #game-area {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            padding-bottom: 10px; 
+        }
+
+        /* 進度條與計時器 */
+        #progress-tracker {
+            font-size: 16px;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 20px; 
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+            flex-shrink: 0;
+        }
+        
+        .score-display {
+            color: var(--primary-dark); 
+            flex-basis: 30%; 
+            text-align: left;
+        }
+
+        .timer-container {
+            flex-grow: 1;
+            text-align: center;
+            position: relative; 
+            height: 35px; 
+            border-radius: 4px;
+            background-color: var(--base-bg); 
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border-color);
+            margin: 0 15px;
+        }
+
+        #timer-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%; 
+            height: 100%;
+            background-color: var(--primary-color); 
+            transition: width 0.1s linear; 
+            z-index: 1;
+        }
+
+        .timer-display {
+            font-size: 20px; 
+            font-weight: bold;
+            font-family: 'Consolas', 'Courier New', monospace;
+            color: white; 
+            position: relative;
+            z-index: 2; 
+            text-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .timer-warning #timer-bar {
+            background-color: var(--danger-color); 
+        }
+        .timer-warning .timer-display {
+            animation: pulse 0.5s infinite alternate; 
+        }
+
+        .question-number {
+            color: var(--primary-dark);
+            flex-basis: 30%; 
+            text-align: right;
+        }
+
+        /* 題目區 */
+        #question-area {
+            background-color: var(--light-bg-1);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 20px;
+            border: 2px solid #333; /* 黑色粗框 */
+            flex-shrink: 0;
+        }
+        
+        #chinese-sentence {
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+        }
+
+        #english-sentence {
+            font-size: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: #333;
+            letter-spacing: 0.5px;
+            line-height: 1.5;
+        }
+
+
+        .blank-filled {
+            color: var(--danger-color); /* 填入後顯示紅色突顯 */
+	    font-weight: bold;
+            border-bottom: none;
+        }
+
+        /* Grid 佈局 (改為 3 列以適應較長的單字) */
+        #grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 改為 3 列 */
+            gap: 15px;
+            padding: 5px;
+            margin-bottom: 15px; 
+            flex-shrink: 0;      
+        }
+
+        .grid-btn {
+            background-color: white;
+            color: var(--primary-dark);
+            border: 2px solid var(--primary-color); 
+            border-radius: 8px; 
+            padding: 12px 5px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            min-height: 55px; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .grid-btn:hover:not(:disabled) {
+            background-color: var(--light-bg-2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .grid-btn:disabled {
+            cursor: default;
+            opacity: 0.7;
+        }
+
+        .grid-btn.correct {
+            background-color: var(--secondary-color) !important;
+            color: white !important;
+            border-color: var(--secondary-dark) !important;
+        }
+        
+        .grid-btn.wrong {
+            background-color: var(--danger-color) !important;
+            color: white !important;
+            border-color: var(--danger-dark) !important;
+            opacity: 0.4;
+        }
+        
+        .grid-btn.dimmed {
+            opacity: 0.3;
+        }
+
+        /* 解析區 */
+        #feedback {
+            min-height: 60px;
+            text-align: center;
+            flex-shrink: 0;
+            margin-bottom: 10px;
+        }
+        .feedback-box {
+            padding: 10px;
+            border-radius: 6px;
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            animation: fadeIn 0.3s ease;
+        }
+        .feedback-status { font-size: 18px; font-weight: bold; margin-bottom: 5px; }
+        .feedback-correct .feedback-status { color: var(--primary-color); }
+        .feedback-incorrect .feedback-status { color: var(--danger-color); }
+        .category-tag {
+            display: inline-block;
+            padding: 2px 8px;
+            background-color: #eee;
+            border-radius: 4px;
+            font-size: 0.85em;
+            margin-bottom: 5px;
+            color: #555;
+            border: 1px solid #ddd;
+        }
+
+        /* 控制區 */
+        #controls {
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+            height: 60px; 
+            flex-shrink: 0;
+            margin-top: auto; 
+        }
+
+        #menu-btn {
+            padding: 10px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--primary-color); 
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+            border-radius: 8px; 
+            border: 2px solid var(--primary-color); 
+            background-color: white; 
+        }
+        #menu-btn:hover {
+            background-color: var(--primary-color); 
+            color: white; 
+        }
+
+        #next-btn {
+            padding: 10px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            border: 2px solid var(--primary-dark);
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            display: none; 
+            margin-left: auto;
+        }
+        #next-btn:hover { background-color: var(--primary-dark); }
+
+        /* --- 結束畫面 --- */
+        #end-screen-container {
+            height: 100%; 
+            display: none;
+            flex-direction: column;
+        }
+
+        .end-game-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            text-align: center;
+            overflow: visible;
+            padding: 10px 5px;
+            box-sizing: border-box;
+        }
+
+        .final-score {
+            font-size: 32px; 
+            font-weight: 900;
+            color: var(--secondary-dark);
+            margin: 10px 0;
+            border: 3px solid var(--secondary-color);
+            padding: 15px;
+            border-radius: 8px;
+            background-color: var(--light-bg-2);
+            flex-shrink: 0;
+        }
+
+        .error-analysis {
+            flex: 1;
+            overflow-y: auto;
+            margin: 10px 0;
+            border-top: 2px solid var(--border-color);
+            padding-top: 10px;
+            text-align: left;
+            width: 100%;
+            min-height: 0;
+            box-sizing: border-box;
+        }
+
+        .error-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-left: 4px solid var(--danger-color);
+            background-color: #fff5f5;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .end-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: auto; 
+            flex-shrink: 0;   
+            width: 100%;
+            background-color: #fff; 
+            box-sizing: border-box; 
+            padding: 10px 15px 30px 15px; 
+        }
+        
+        .end-btn {
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            min-width: 120px;
+        }
+
+        #end-menu-btn { background-color: white; color: var(--primary-color); border-color: var(--primary-color); }
+        #end-menu-btn:hover { background-color: var(--primary-color); color: white; }
+
+        #end-retry-btn { background-color: #e9c46a; color: #333; border-color: #d4a373; }
+        #end-retry-btn:hover { background-color: #e76f51; color: white; border-color: #e76f51; }
+
+        #end-restart-btn { background-color: var(--secondary-dark); color: white; border-color: var(--secondary-dark); }
+        #end-restart-btn:hover { background-color: var(--secondary-color); }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes pulse { from { opacity: 1; } to { opacity: 0.5; } }
+
+        /* RWD: 手機版 */
+        @media (max-width: 600px) {
+            body { 
+                padding: 0; 
+                background-color: #fff; 
+                align-items: flex-start;
+            }
+            #game-container {
+                height: auto;
+                min-height: 100vh;
+                padding: 15px 10px; 
+                border: none;
+                border-radius: 0;
+            }
+            #grid-container { 
+                gap: 8px; 
+                grid-template-columns: 1fr; /* 手機版改為單列，按鈕更大 */
+            }
+            .grid-btn { font-size: 16px; padding: 10px; min-height: 50px; }
+            #chinese-sentence { font-size: 18px; }
+            #english-sentence { font-size: 18px; }
+            
+            .final-score { font-size: 24px; padding: 10px; }
+            .end-controls {
+                flex-wrap: nowrap !important;
+                gap: 5px !important;    
+                padding: 10px 10px 40px 10px !important; 
+            }
+            .end-btn {
+                min-width: auto !important;   
+                flex: 1;                      
+                padding: 12px 0 !important;   
+                font-size: 13px !important;   
+                white-space: nowrap;          
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="game-container">
+        <h1>Gerund & Infinitive Challenge (動名詞與不定詞)</h1>
+        
+        <div id="game-area">
+            <div id="progress-tracker">
+                <span class="score-display">0 / 0 (0%)</span>
+                <span class="timer-container">
+                    <div id="timer-bar"></div>
+                    <span class="timer-display">20.0</span>
+                </span>
+                <span class="question-number">1/20</span>
+            </div>
+
+            <div id="question-area">
+                <div id="chinese-sentence">題目載入中...</div>
+                <div id="english-sentence"></div>
+            </div>
+            
+            <div id="grid-container"></div>
+            
+            <div id="feedback"></div>
+            
+            <div id="controls">
+                <button id="menu-btn">返回遊戲大廳</button>
+                <button id="next-btn">下一題</button>
+            </div>
+        </div>
+
+        <div id="end-screen-container"></div>
+    </div>
+
+    <script>
+        // 音效
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        function playTone(freq, type, duration, vol=0.1) {
+            if (!audioContext) return;
+            const osc = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+            osc.connect(gain);
+            gain.connect(audioContext.destination);
+            osc.type = type;
+            osc.frequency.setValueAtTime(freq, audioContext.currentTime);
+            gain.gain.setValueAtTime(vol, audioContext.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + duration);
+            osc.start();
+            osc.stop(audioContext.currentTime + duration);
+        }
+        const sndCorrect = () => { 
+            playTone(660, 'square', 0.08, 0.2); 
+            setTimeout(() => playTone(880, 'square', 0.1, 0.25), 90); 
+        };
+        const sndWrong = () => playTone(200, 'sawtooth', 0.3);
+        const sndClick = () => playTone(600, 'triangle', 0.05);
+
+        // 題目資料庫 (Gerunds, To-infinitives, Bare infinitives)
+        const questionBank = [
+            // 1. Gerund (V-ing)
+            { ch: "我喜歡在週末看書。", en_pre: "I enjoy", en_post: "books on weekends.", options: ["reading", "to read", "read"], ans: "reading", cat: "Gerund", hint: "Enjoy + V-ing (享受做某事)" },
+            { ch: "你介意打開窗戶嗎？", en_pre: "Do you mind", en_post: "the window?", options: ["opening", "to open", "open"], ans: "opening", cat: "Gerund", hint: "Mind + V-ing (介意做某事)" },
+            { ch: "他擅長游泳。", en_pre: "He is good at", en_post: ".", options: ["swimming", "to swim", "swim"], ans: "swimming", cat: "Gerund", hint: "Preposition (at) + V-ing (介系詞後接動名詞)" },
+            { ch: "我們應該避免吃太多糖。", en_pre: "We should avoid", en_post: "too much sugar.", options: ["eating", "to eat", "eat"], ans: "eating", cat: "Gerund", hint: "Avoid + V-ing (避免做某事)" },
+            { ch: "他建議去那家新餐廳。", en_pre: "He suggested", en_post: "to the new restaurant.", options: ["going", "to go", "go"], ans: "going", cat: "Gerund", hint: "Suggest + V-ing (建議做某事)" },
+            { ch: "她在完成作業後去睡覺了。", en_pre: "She finished", en_post: "her homework and went to bed.", options: ["doing", "to do", "do"], ans: "doing", cat: "Gerund", hint: "Finish + V-ing (完成做某事)" },
+            { ch: "繼續嘗試，你會成功的。", en_pre: "Keep", en_post: "and you will succeed.", options: ["trying", "to try", "try"], ans: "trying", cat: "Gerund", hint: "Keep + V-ing (持續做某事)" },
+            { ch: "我期待再次見到你。", en_pre: "I look forward to", en_post: "you again.", options: ["seeing", "to see", "see"], ans: "seeing", cat: "Gerund", hint: "Look forward to + V-ing (to 是介系詞，後接動名詞)" },
+            { ch: "你有興趣學習西班牙語嗎？", en_pre: "Are you interested in", en_post: "Spanish?", options: ["learning", "to learn", "learn"], ans: "learning", cat: "Gerund", hint: "Interested in + V-ing (介系詞後接動名詞)" },
+            { ch: "請停止說話。", en_pre: "Please stop", en_post: ".", options: ["talking", "to talk", "talk"], ans: "talking", cat: "Gerund", hint: "Stop + V-ing (停止正在做的動作)" },
+
+            // 2. To-Infinitive (to V)
+            { ch: "她決定去巴黎。", en_pre: "She decided", en_post: "to Paris.", options: ["to go", "going", "go"], ans: "to go", cat: "To-Inf", hint: "Decide + to V (決定去做某事)" },
+            { ch: "我想要買一台新車。", en_pre: "I want", en_post: "a new car.", options: ["to buy", "buying", "buy"], ans: "to buy", cat: "To-Inf", hint: "Want + to V (想要做某事)" },
+            { ch: "他承諾會幫助我。", en_pre: "He promised", en_post: "me.", options: ["to help", "helping", "help"], ans: "to help", cat: "To-Inf", hint: "Promise + to V (承諾去做某事)" },
+            { ch: "我希望很快見到你。", en_pre: "I hope", en_post: "you soon.", options: ["to see", "seeing", "see"], ans: "to see", cat: "To-Inf", hint: "Hope + to V (希望做某事)" },
+            { ch: "我們計畫下週去參觀博物館。", en_pre: "We plan", en_post: "the museum next week.", options: ["to visit", "visiting", "visit"], ans: "to visit", cat: "To-Inf", hint: "Plan + to V (計畫做某事)" },
+            { ch: "他拒絕加入我們。", en_pre: "He refused", en_post: "us.", options: ["to join", "joining", "join"], ans: "to join", cat: "To-Inf", hint: "Refuse + to V (拒絕做某事)" },
+            { ch: "我也許會去。", en_pre: "I would like", en_post: ".", options: ["to go", "going", "go"], ans: "to go", cat: "To-Inf", hint: "Would like + to V (想要...)" },
+            { ch: "學英文很有趣。", en_pre: "It is interesting", en_post: "English.", options: ["to learn", "learning", "learn"], ans: "to learn", cat: "To-Inf", hint: "It is + Adj + to V (虛主詞句型)" },
+
+            // 3. Bare Infinitive (V)
+            { ch: "讓我走！", en_pre: "Let me", en_post: "!", options: ["go", "to go", "going"], ans: "go", cat: "Bare Inf", hint: "Let + O + V (使役動詞接原形)" },
+            { ch: "這部電影讓我哭了。", en_pre: "The movie made me", en_post: ".", options: ["cry", "to cry", "crying"], ans: "cry", cat: "Bare Inf", hint: "Make + O + V (使役動詞接原形)" },
+            { ch: "你會游泳嗎？", en_pre: "Can you", en_post: "?", options: ["swim", "to swim", "swimming"], ans: "swim", cat: "Bare Inf", hint: "Can (助動詞) + V (原形)" },
+            { ch: "你應該努力讀書。", en_pre: "You should", en_post: "hard.", options: ["study", "to study", "studying"], ans: "study", cat: "Bare Inf", hint: "Should (助動詞) + V (原形)" },
+            { ch: "我們最好現在離開。", en_pre: "We had better", en_post: "now.", options: ["leave", "to leave", "leaving"], ans: "leave", cat: "Bare Inf", hint: "Had better + V (最好...)" },
+            { ch: "你看見他出去了嗎？", en_pre: "Did you see him", en_post: "out?", options: ["go", "to go", "went"], ans: "go", cat: "Bare Inf", hint: "See + O + V (感官動詞接原形，強調事實)" },
+	    { ch: "我們買不起這輛昂貴的車。", en_pre: "We can't afford", en_post: "this expensive car.", options: ["to buy", "buying", "buy"], ans: "to buy", cat: "To-Inf", hint: "Afford + to V (負擔得起)" },
+            { ch: "她同意借我那本書。", en_pre: "She agreed", en_post: "me the book.", options: ["to lend", "lending", "lend"], ans: "to lend", cat: "To-Inf", hint: "Agree + to V (同意)" },
+            { ch: "我們力求在五點前完成。", en_pre: "We aim", en_post: "by 5 o'clock.", options: ["to finish", "finishing", "finish"], ans: "to finish", cat: "To-Inf", hint: "Aim + to V (目標是)" },
+            { ch: "他似乎生病了。", en_pre: "He appears", en_post: "sick.", options: ["to be", "being", "be"], ans: "to be", cat: "To-Inf", hint: "Appear + to V (似乎)" },
+            { ch: "我會安排去機場接你。", en_pre: "I will arrange", en_post: "you up at the airport.", options: ["to pick", "picking", "pick"], ans: "to pick", cat: "To-Inf", hint: "Arrange + to V (安排)" },
+            { ch: "他要求離開房間。", en_pre: "He asked", en_post: "the room.", options: ["to leave", "leaving", "leave"], ans: "to leave", cat: "To-Inf", hint: "Ask + to V (要求)" },
+            { ch: "那乞丐乞求給點錢。", en_pre: "The beggar begged", en_post: "some money.", options: ["to have", "having", "have"], ans: "to have", cat: "To-Inf", hint: "Beg + to V (乞求)" },
+            { ch: "天開始下雨了。", en_pre: "It began", en_post: ".", options: ["to rain", "rain", "rained"], ans: "to rain", cat: "To-Inf", hint: "Begin + to V (開始 - 雖也可接 ing，但此處練 to V)" },
+            { ch: "我選擇留在家裡。", en_pre: "I chose", en_post: "at home.", options: ["to stay", "staying", "stay"], ans: "to stay", cat: "To-Inf", hint: "Choose + to V (選擇)" },
+            { ch: "他們決定去旅行。", en_pre: "They decided", en_post: "on a trip.", options: ["to go", "going", "go"], ans: "to go", cat: "To-Inf", hint: "Decide + to V (決定)" },
+            { ch: "我預計很快會收到他的來信。", en_pre: "I expect", en_post: "from him soon.", options: ["to hear", "hearing", "hear"], ans: "to hear", cat: "To-Inf", hint: "Expect + to V (預期)" },
+            { ch: "他未能通過考試。", en_pre: "He failed", en_post: "the exam.", options: ["to pass", "passing", "pass"], ans: "to pass", cat: "To-Inf", hint: "Fail + to V (未能/失敗)" },
+            { ch: "我剛好遇見她。", en_pre: "I happened", en_post: "her.", options: ["to meet", "meeting", "meet"], ans: "to meet", cat: "To-Inf", hint: "Happen + to V (剛好/碰巧)" },
+            { ch: "他幫忙修理那輛車。", en_pre: "He helped", en_post: "the car.", options: ["to fix", "fixing", "fixed"], ans: "to fix", cat: "To-Inf", hint: "Help + (to) V (幫忙)" },
+            { ch: "我希望能在派對見到你。", en_pre: "I hope", en_post: "you at the party.", options: ["to see", "seeing", "see"], ans: "to see", cat: "To-Inf", hint: "Hope + to V (希望)" },
+            { ch: "她學會了游泳。", en_pre: "She learnt", en_post: ".", options: ["to swim", "swimming", "swim"], ans: "to swim", cat: "To-Inf", hint: "Learn + to V (學習)" },
+            { ch: "我們設法準時到達。", en_pre: "We managed", en_post: "on time.", options: ["to arrive", "arriving", "arrive"], ans: "to arrive", cat: "To-Inf", hint: "Manage + to V (設法完成)" },
+            { ch: "我不是有意傷害你。", en_pre: "I didn't mean", en_post: "you.", options: ["to hurt", "hurting", "hurt"], ans: "to hurt", cat: "To-Inf", hint: "Mean + to V (意圖/打算)" },
+{ ch: "我需要休息。", en_pre: "I need", en_post: "a rest.", options: ["to take", "taking", "take"], ans: "to take", cat: "To-Inf", hint: "Need + to V (需要)" },
+            { ch: "他主動提出載我們一程。", en_pre: "He offered", en_post: "us a ride.", options: ["to give", "giving", "give"], ans: "to give", cat: "To-Inf", hint: "Offer + to V (主動提出)" },
+            { ch: "我們計劃參觀博物館。", en_pre: "We plan", en_post: "the museum.", options: ["to visit", "visiting", "visit"], ans: "to visit", cat: "To-Inf", hint: "Plan + to V (計劃)" },
+            { ch: "他們準備離開。", en_pre: "They prepared", en_post: ".", options: ["to leave", "leaving", "leave"], ans: "to leave", cat: "To-Inf", hint: "Prepare + to V (準備)" },
+            { ch: "他假裝睡著了。", en_pre: "He pretended", en_post: "asleep.", options: ["to be", "being", "be"], ans: "to be", cat: "To-Inf", hint: "Pretend + to V (假裝)" },
+            { ch: "他承諾會寫信給我。", en_pre: "He promised", en_post: "to me.", options: ["to write", "writing", "write"], ans: "to write", cat: "To-Inf", hint: "Promise + to V (承諾)" },
+            { ch: "她拒絕回答。", en_pre: "She refused", en_post: ".", options: ["to answer", "answering", "answer"], ans: "to answer", cat: "To-Inf", hint: "Refuse + to V (拒絕)" },
+            { ch: "這任務似乎很困難。", en_pre: "The task seems", en_post: "difficult.", options: ["to be", "being", "be"], ans: "to be", cat: "To-Inf", hint: "Seem + to V (似乎)" },
+            { ch: "他威脅要報警。", en_pre: "He threatened", en_post: "the police.", options: ["to call", "calling", "call"], ans: "to call", cat: "To-Inf", hint: "Threaten + to V (威脅)" },
+            { ch: "我自願幫忙洗碗。", en_pre: "I volunteered", en_post: "the dishes.", options: ["to wash", "washing", "wash"], ans: "to wash", cat: "To-Inf", hint: "Volunteer + to V (自願)" },
+            { ch: "我想回家。", en_pre: "I want", en_post: "home.", options: ["to go", "going", "go"], ans: "to go", cat: "To-Inf", hint: "Want + to V (想要)" },
+            { ch: "我希望能跟你談談。", en_pre: "I wish", en_post: "to you.", options: ["to speak", "speaking", "speak"], ans: "to speak", cat: "To-Inf", hint: "Wish + to V (希望)" },
+            { ch: "我想要一杯咖啡。", en_pre: "I would like", en_post: "a coffee.", options: ["to have", "having", "have"], ans: "to have", cat: "To-Inf", hint: "Would like + to V (想要)" },
+            { ch: "我很樂意參加。", en_pre: "I would love", en_post: ".", options: ["to come", "coming", "come"], ans: "to come", cat: "To-Inf", hint: "Would love + to V (很樂意)" },
+            { ch: "我寧願留下來。", en_pre: "I would prefer", en_post: ".", options: ["to stay", "staying", "stay"], ans: "to stay", cat: "To-Inf", hint: "Would prefer + to V (寧願)" },
+            { ch: "我無法忍受看到他在哭。(Note: bear 亦可接 ing)", en_pre: "I can't bear", en_post: "him cry.", options: ["to see", "see", "seen"], ans: "to see", cat: "To-Inf", hint: "Can't bear + to V / V-ing (無法忍受)" },
+            { ch: "別忘記鎖門。", en_pre: "Don't forget", en_post: "the door.", options: ["to lock", "locking", "lock"], ans: "to lock", cat: "To-Inf", hint: "Forget + to V (忘記去做某事-未做)" },
+
+            { ch: "醫生建議我多運動。", en_pre: "The doctor advised me", en_post: "more exercise.", options: ["to do", "doing", "do"], ans: "to do", cat: "Obj+To-Inf", hint: "Advise + Object + to V" },
+            { ch: "媽媽不允許我晚歸。", en_pre: "Mom doesn't allow me", en_post: "out late.", options: ["to stay", "staying", "stay"], ans: "to stay", cat: "Obj+To-Inf", hint: "Allow + Object + to V" },
+            { ch: "這意外導致交通停止。", en_pre: "The accident caused traffic", en_post: ".", options: ["to stop", "stopping", "stop"], ans: "to stop", cat: "Obj+To-Inf", hint: "Cause + Object + to V" },
+            { ch: "她鼓勵我嘗試。", en_pre: "She encouraged me", en_post: ".", options: ["to try", "trying", "try"], ans: "to try", cat: "Obj+To-Inf", hint: "Encourage + Object + to V" },
+            { ch: "眼鏡使我看以得更清楚。", en_pre: "Glasses enable me", en_post: "clearly.", options: ["to see", "seeing", "see"], ans: "to see", cat: "Obj+To-Inf", hint: "Enable + Object + to V" },
+            { ch: "我預期他會贏。", en_pre: "I expect him", en_post: ".", options: ["to win", "winning", "win"], ans: "to win", cat: "Obj+To-Inf", hint: "Expect + Object + to V" },
+            { ch: "我無法讓他聽話。", en_pre: "I can't get him", en_post: ".", options: ["to listen", "listening", "listen"], ans: "to listen", cat: "Obj+To-Inf", hint: "Get + Object + to V (使/讓)" },
+            { ch: "他們邀請我們加入。", en_pre: "They invited us", en_post: "them.", options: ["to join", "joining", "join"], ans: "to join", cat: "Obj+To-Inf", hint: "Invite + Object + to V" },
+            { ch: "我需要你幫忙。", en_pre: "I need you", en_post: "me.", options: ["to help", "helping", "help"], ans: "to help", cat: "Obj+To-Inf", hint: "Need + Object + to V" },
+            { ch: "軍官命令士兵開火。", en_pre: "The officer ordered the soldiers", en_post: ".", options: ["to fire", "firing", "fire"], ans: "to fire", cat: "Obj+To-Inf", hint: "Order + Object + to V" },
+            { ch: "他說服我買下它。", en_pre: "He persuaded me", en_post: "it.", options: ["to buy", "buying", "buy"], ans: "to buy", cat: "Obj+To-Inf", hint: "Persuade + Object + to V" },
+            { ch: "請提醒我打電話。", en_pre: "Please remind me", en_post: "the call.", options: ["to make", "making", "make"], ans: "to make", cat: "Obj+To-Inf", hint: "Remind + Object + to V" },
+            { ch: "她教我游泳。", en_pre: "She taught me", en_post: ".", options: ["to swim", "swimming", "swim"], ans: "to swim", cat: "Obj+To-Inf", hint: "Teach + Object + to V" },
+            { ch: "老師叫我們安靜。", en_pre: "The teacher told us", en_post: "quiet.", options: ["to be", "being", "be"], ans: "to be", cat: "Obj+To-Inf", hint: "Tell + Object + to V" },
+            { ch: "他們警告我們不要觸摸。", en_pre: "They warned us", en_post: "it.", options: ["not to touch", "not touching", "don't touch"], ans: "not to touch", cat: "Obj+To-Inf", hint: "Warn + Object + to V" },
+            { ch: "他承認偷了錢。", en_pre: "He admitted", en_post: "the money.", options: ["stealing", "to steal", "steal"], ans: "stealing", cat: "Gerund", hint: "Admit + V-ing (承認)" },
+            { ch: "你應該避免吃垃圾食物。", en_pre: "You should avoid", en_post: "junk food.", options: ["eating", "to eat", "eat"], ans: "eating", cat: "Gerund", hint: "Avoid + V-ing (避免)" },
+            { ch: "你有考慮搬家嗎？", en_pre: "Have you considered", en_post: "?", options: ["moving", "to move", "move"], ans: "moving", cat: "Gerund", hint: "Consider + V-ing (考慮)" },
+            { ch: "不要延遲發送電郵。", en_pre: "Don't delay", en_post: "the email.", options: ["sending", "to send", "send"], ans: "sending", cat: "Gerund", hint: "Delay + V-ing (延遲)" },
+            { ch: "他否認打破了花瓶。", en_pre: "He denied", en_post: "the vase.", options: ["breaking", "to break", "break"], ans: "breaking", cat: "Gerund", hint: "Deny + V-ing (否認)" },
+            { ch: "我討厭排隊。", en_pre: "I dislike", en_post: "in line.", options: ["waiting", "to wait", "wait"], ans: "waiting", cat: "Gerund", hint: "Dislike + V-ing (不喜歡)" },
+            { ch: "我們享受聽音樂。", en_pre: "We enjoy", en_post: "to music.", options: ["listening", "to listen", "listen"], ans: "listening", cat: "Gerund", hint: "Enjoy + V-ing (享受)" },
+            { ch: "他逃過了被罰。", en_pre: "He escaped", en_post: "punished.", options: ["being", "to be", "be"], ans: "being", cat: "Gerund", hint: "Escape + V-ing (逃過)" },
+            { ch: "我今天想去看電影。", en_pre: "I feel like", en_post: "a movie today.", options: ["watching", "to watch", "watch"], ans: "watching", cat: "Gerund", hint: "Feel like + V-ing (想要)" },
+            { ch: "你做完功課了嗎？", en_pre: "Have you finished", en_post: "your homework?", options: ["doing", "to do", "do"], ans: "doing", cat: "Gerund", hint: "Finish + V-ing (完成)" },
+            { ch: "我們去遠足吧。", en_pre: "Let's go", en_post: ".", options: ["hiking", "to hike", "hike"], ans: "hiking", cat: "Gerund", hint: "Go + V-ing (去從事活動)" },
+            { ch: "想像一下住在巴黎。", en_pre: "Imagine", en_post: "in Paris.", options: ["living", "to live", "live"], ans: "living", cat: "Gerund", hint: "Imagine + V-ing (想像)" },
+            { ch: "保持微笑！", en_pre: "Keep", en_post: "!", options: ["smiling", "to smile", "smile"], ans: "smiling", cat: "Gerund", hint: "Keep + V-ing (保持)" },
+            { ch: "你介意打開窗嗎？", en_pre: "Would you mind", en_post: "the window?", options: ["opening", "to open", "open"], ans: "opening", cat: "Gerund", hint: "Mind + V-ing (介意)" },
+            { ch: "我想念以前住這裡的日子。", en_pre: "I miss", en_post: "here.", options: ["living", "to live", "live"], ans: "living", cat: "Gerund", hint: "Miss + V-ing (想念/錯過)" },
+            { ch: "他們推遲了開會。", en_pre: "They postponed", en_post: "the meeting.", options: ["holding", "to hold", "hold"], ans: "holding", cat: "Gerund", hint: "Postpone + V-ing (推遲)" },
+            { ch: "她練習彈鋼琴。", en_pre: "She practises", en_post: "the piano.", options: ["playing", "to play", "play"], ans: "playing", cat: "Gerund", hint: "Practise + V-ing (練習)" },
+            { ch: "我無法抗拒買下它。", en_pre: "I couldn't resist", en_post: "it.", options: ["buying", "to buy", "buy"], ans: "buying", cat: "Gerund", hint: "Resist + V-ing (抗拒)" },
+            { ch: "不要冒險失去這機會。", en_pre: "Don't risk", en_post: "the chance.", options: ["losing", "to lose", "lose"], ans: "losing", cat: "Gerund", hint: "Risk + V-ing (冒險)" },
+            { ch: "他建議搭巴士。", en_pre: "He suggested", en_post: "the bus.", options: ["taking", "to take", "take"], ans: "taking", cat: "Gerund", hint: "Suggest + V-ing (建議)" },
+
+            // --- Part D: Phrasal Verbs & Expressions (Unit 2.6 & 13.2) ---
+            { ch: "他戒了煙。", en_pre: "He gave up", en_post: ".", options: ["smoking", "to smoke", "smoke"], ans: "smoking", cat: "Gerund", hint: "Give up + V-ing (放棄/戒除)" },
+            { ch: "繼續努力工作！", en_pre: "Keep on", en_post: "hard!", options: ["working", "to work", "work"], ans: "working", cat: "Gerund", hint: "Keep on + V-ing (繼續)" },
+            { ch: "看著那些鳥飛翔。", en_pre: "Look at the birds", en_post: ".", options: ["flying", "to fly", "fly"], ans: "flying", cat: "Gerund", hint: "Look at + Obj + V-ing (看著...正在做)" },
+            { ch: "不要拖延做功課。", en_pre: "Don't put off", en_post: "your homework.", options: ["doing", "to do", "do"], ans: "doing", cat: "Gerund", hint: "Put off + V-ing (拖延)" },
+            { ch: "我忍不住笑了。", en_pre: "I couldn't help", en_post: ".", options: ["laughing", "to laugh", "laugh"], ans: "laughing", cat: "Gerund", hint: "Can't help + V-ing (忍不住)" },
+            { ch: "我受不了排隊。", en_pre: "I can't stand", en_post: "in line.", options: ["waiting", "to wait", "wait"], ans: "waiting", cat: "Gerund", hint: "Can't stand + V-ing (受不了)" },
+            { ch: "我期待收到你的來信。", en_pre: "I look forward to", en_post: "from you.", options: ["hearing", "to hear", "hear"], ans: "hearing", cat: "Gerund", hint: "Look forward to + V-ing (to 是介詞)" },
+            { ch: "他們成功解決了問題。", en_pre: "They succeeded in", en_post: "the problem.", options: ["solving", "to solve", "solve"], ans: "solving", cat: "Gerund", hint: "Succeed in + V-ing (成功)" },
+            { ch: "我對去日本很興奮。", en_pre: "I am excited about", en_post: "to Japan.", options: ["going", "to go", "go"], ans: "going", cat: "Gerund", hint: "Excited about + V-ing (介詞後接V-ing)" },
+            { ch: "她喜歡畫畫。", en_pre: "She is fond of", en_post: ".", options: ["drawing", "to draw", "draw"], ans: "drawing", cat: "Gerund", hint: "Fond of + V-ing (喜歡)" },
+            { ch: "我對學英文有興趣。", en_pre: "I am interested in", en_post: "English.", options: ["learning", "to learn", "learn"], ans: "learning", cat: "Gerund", hint: "Interested in + V-ing (對...有興趣)" },
+
+            // --- Part E: Meaning Differences (Unit 13.4) ---
+            { ch: "請記得寄這封信 (未做)。", en_pre: "Please remember", en_post: "the letter.", options: ["to post", "posting", "post"], ans: "to post", cat: "To-Inf", hint: "Remember + to V (記得要去做)" },
+            { ch: "我記得寄過這封信了 (已做)。", en_pre: "I remember", en_post: "the letter.", options: ["posting", "to post", "post"], ans: "posting", cat: "Gerund", hint: "Remember + V-ing (記得做過某事)" },
+            { ch: "他停下來去買午餐 (目的)。", en_pre: "He stopped", en_post: "lunch.", options: ["to buy", "buying", "buy"], ans: "to buy", cat: "To-Inf", hint: "Stop + to V (停下手邊事去做另一事)" },
+            { ch: "請停止說話 (動作終止)。", en_pre: "Please stop", en_post: ".", options: ["talking", "to talk", "talk"], ans: "talking", cat: "Gerund", hint: "Stop + V-ing (停止做某事)" },
+            { ch: "試著按這個按鈕看看 (實驗)。", en_pre: "Try", en_post: "the button.", options: ["pressing", "to press", "press"], ans: "pressing", cat: "Gerund", hint: "Try + V-ing (試試看效果)" },
+            { ch: "我盡力去完成它 (努力)。", en_pre: "I tried", en_post: "it.", options: ["to finish", "finishing", "finish"], ans: "to finish", cat: "To-Inf", hint: "Try + to V (盡力/設法)" }
+        ];
+
+        let currentQIndex = 0;
+        let score = 0;
+        let timeLeft = 20000;
+        let timerInterval = null;
+        let isAnswering = false;
+        let shuffledQuestions = [];
+        let wrongAnswers = []; 
+        const QUESTIONS_PER_ROUND = 20;
+
+        // Elements
+        const elTimerBar = document.getElementById('timer-bar');
+        const elTimerDisplay = document.querySelector('.timer-display');
+        const elScore = document.querySelector('.score-display');
+        const elQNum = document.querySelector('.question-number');
+        const elChSent = document.getElementById('chinese-sentence');
+        const elEnSent = document.getElementById('english-sentence');
+        const elGridContainer = document.getElementById('grid-container'); // 放置按鈕的容器
+        const elFeedback = document.getElementById('feedback');
+        const elNextBtn = document.getElementById('next-btn');
+        const elMenuBtn = document.getElementById('menu-btn');
+        const elGameArea = document.getElementById('game-area');
+        const elEndScreen = document.getElementById('end-screen-container');
+
+        // Mode: 'new' or 'retry'
+        function initGame(mode = 'new') {
+            score = 0;
+            currentQIndex = 0;
+            
+            elGameArea.style.display = 'flex';
+            elEndScreen.style.display = 'none';
+
+            if (mode === 'retry' && wrongAnswers.length > 0) {
+                shuffledQuestions = [...wrongAnswers].sort(() => Math.random() - 0.5);
+            } else {
+                shuffledQuestions = [...questionBank].sort(() => Math.random() - 0.5).slice(0, QUESTIONS_PER_ROUND); 
+            }
+            
+            wrongAnswers = [];
+            
+            if(shuffledQuestions.length === 0) {
+                alert("沒有題目可供練習！");
+                return;
+            }
+            
+            updateStatus();
+            loadQuestion();
+        }
+
+        function updateStatus() {
+            let totalAnswered = currentQIndex; 
+            let pct = totalAnswered > 0 ? Math.round((score / totalAnswered) * 100) : 0;
+            elScore.innerText = `${score} / ${totalAnswered} (${pct}%)`;
+            elQNum.innerText = `${currentQIndex + 1} / ${shuffledQuestions.length}`;
+        }
+
+        function loadQuestion() {
+            if (currentQIndex >= shuffledQuestions.length) {
+                endGame();
+                return;
+            }
+
+            const q = shuffledQuestions[currentQIndex];
+            isAnswering = true;
+            elNextBtn.style.display = 'none';
+            elFeedback.innerHTML = '';
+            
+            updateStatus(); 
+
+            elChSent.innerText = q.ch;
+            
+            let html = '';
+            if (q.en_pre) html += `<span>${q.en_pre}</span> `;
+            html += `<span class="blank-space" id="blank-target">______</span> `;
+            html += `<span>${q.en_post}</span>`;
+            elEnSent.innerHTML = html;
+
+            // 動態生成按鈕
+            generateButtons(q.options);
+
+            startTimer();
+        }
+
+        function generateButtons(options) {
+            elGridContainer.innerHTML = ''; // 清空舊按鈕
+            // 隨機排列選項，避免答案位置固定
+            let shuffledOptions = [...options].sort(() => Math.random() - 0.5);
+
+            shuffledOptions.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'grid-btn';
+                btn.innerText = opt;
+                btn.dataset.word = opt;
+                btn.addEventListener('click', (e) => checkAnswer(opt, btn));
+                elGridContainer.appendChild(btn);
+            });
+        }
+
+        function startTimer() {
+            clearInterval(timerInterval);
+            timeLeft = 20000;
+            elTimerDisplay.parentElement.classList.remove('timer-warning');
+            updateTimerVisual();
+
+            timerInterval = setInterval(() => {
+                timeLeft -= 100;
+                updateTimerVisual();
+
+                if (timeLeft <= 5000) {
+                    elTimerDisplay.parentElement.classList.add('timer-warning');
+                }
+                if (timeLeft <= 0) {
+                    handleTimeOut();
+                }
+            }, 100);
+        }
+
+        function updateTimerVisual() {
+            const pct = (timeLeft / 20000) * 100;
+            elTimerBar.style.width = `${pct}%`;
+            elTimerDisplay.innerText = (timeLeft / 1000).toFixed(1);
+        }
+
+        function handleTimeOut() {
+            clearInterval(timerInterval);
+            isAnswering = false;
+            sndWrong();
+            const q = shuffledQuestions[currentQIndex];
+            
+            q.userAnswer = "Time's up";
+            wrongAnswers.push(q);
+
+            showFeedback(false, q.hint, q.cat, true);
+            revealAnswer(q.ans);
+            elNextBtn.style.display = 'block';
+            disableAllBtns();
+            
+            let totalAnswered = currentQIndex + 1; 
+            let pct = Math.round((score / totalAnswered) * 100);
+            elScore.innerText = `${score} / ${totalAnswered} (${pct}%)`;
+        }
+
+        function checkAnswer(selectedWord, btnElement) {
+            if (!isAnswering) return;
+            clearInterval(timerInterval);
+            isAnswering = false;
+            sndClick();
+
+            const q = shuffledQuestions[currentQIndex];
+            const isCorrect = (selectedWord.toLowerCase() === q.ans.toLowerCase());
+
+            if (isCorrect) {
+                score++;
+                sndCorrect();
+                btnElement.classList.add('correct');
+                const blank = document.getElementById('blank-target');
+                blank.innerText = selectedWord;
+                blank.classList.add('blank-filled');
+                showFeedback(true, q.hint, q.cat);
+            } else {
+                sndWrong();
+                btnElement.classList.add('wrong');
+                q.userAnswer = selectedWord;
+                wrongAnswers.push(q);
+                showFeedback(false, q.hint, q.cat);
+                revealAnswer(q.ans);
+            }
+            
+            let totalAnswered = currentQIndex + 1; 
+            let pct = Math.round((score / totalAnswered) * 100);
+            elScore.innerText = `${score} / ${totalAnswered} (${pct}%)`;
+
+            elNextBtn.style.display = 'block';
+            disableAllBtns(btnElement);
+        }
+
+        function disableAllBtns(exceptBtn) {
+            const btns = document.querySelectorAll('.grid-btn');
+            btns.forEach(btn => {
+                btn.disabled = true;
+                if (btn !== exceptBtn && !btn.classList.contains('correct')) {
+                    btn.classList.add('dimmed');
+                }
+            });
+        }
+
+        function revealAnswer(correctWord) {
+            const btns = document.querySelectorAll('.grid-btn');
+            btns.forEach(btn => {
+                if (btn.dataset.word === correctWord) {
+                    btn.classList.add('correct');
+                    btn.classList.remove('dimmed');
+                }
+            });
+            const blank = document.getElementById('blank-target');
+            blank.innerText = correctWord;
+            blank.style.color = 'var(--danger-color)';
+        }
+
+        function showFeedback(isCorrect, hint, cat, isTimeout=false) {
+            const statusClass = isCorrect ? 'feedback-correct' : 'feedback-incorrect';
+            const statusText = isCorrect ? 'Bingo! 答對了' : (isTimeout ? '時間到！' : 'Oops! 答錯了');
+
+            elFeedback.innerHTML = `
+                <div class="feedback-box ${statusClass}">
+                    <div class="feedback-status">${statusText}</div>
+                    <span class="category-tag">${cat}</span>
+                    <div style="margin-top:5px;">${hint}</div>
+                </div>
+            `;
+        }
+
+        function endGame() {
+            elGameArea.style.display = 'none';
+            elEndScreen.style.display = 'flex';
+
+            const percentage = Math.round((score / shuffledQuestions.length) * 100);
+            
+            let analysisHTML = '';
+            if (wrongAnswers.length > 0) {
+                analysisHTML = `
+                    <div class="error-analysis">
+                        <div style="font-weight:bold; color:#555; margin-bottom:10px;">錯題回顧 (${wrongAnswers.length}題):</div>`;
+                
+                wrongAnswers.forEach((item) => {
+                    let fullSentence = "";
+                    if(item.en_pre) fullSentence += item.en_pre + " ";
+                    fullSentence += "______";
+                    if(item.en_post) fullSentence += " " + item.en_post;
+
+                    analysisHTML += `
+                        <div class="error-item">
+                            <div style="font-weight:bold; margin-bottom:5px;">${item.ch}</div>
+                            <div style="margin-bottom:5px;">Q: ${fullSentence}</div>
+                            <div style="color:${'var(--danger-color)'}">你的答案: ${item.userAnswer}</div>
+                            <div style="color:${'var(--secondary-dark)'}">正確答案: ${item.ans}</div>
+                            <div style="font-size:0.9em; color:#666; margin-top:5px;">Hint: ${item.hint}</div>
+                        </div>
+                    `;
+                });
+                analysisHTML += `</div>`;
+            } else {
+                analysisHTML = `
+                    <div class="error-analysis" style="display:flex; align-items:center; justify-content:center;">
+                        <div style="color:var(--secondary-dark); font-size:1.2em; font-weight:bold;">完美！全對！🎉</div>
+                    </div>`;
+            }
+
+            const retryStyle = wrongAnswers.length > 0 ? "display:inline-block;" : "display:none;";
+
+            elEndScreen.innerHTML = `
+                <div class="end-game-container">
+                    <div class="final-score">得分: ${score} / ${shuffledQuestions.length} (${percentage}%)</div>
+                    
+                    ${analysisHTML}
+
+                    <div class="end-controls">
+                        <button id="end-menu-btn" class="end-btn" onclick="window.location.href='eng_game123.html'">返回選單</button>
+                        <button id="end-retry-btn" class="end-btn" style="${retryStyle}" onclick="initGame('retry')">重做錯題</button>
+                        <button id="end-restart-btn" class="end-btn" onclick="initGame('new')">重新挑戰</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Listeners
+        elNextBtn.addEventListener('click', () => {
+            currentQIndex++;
+            loadQuestion();
+        });
+
+elMenuBtn.addEventListener('click', () => {
+    // 檢查是否有父視窗 (Parent) 且父視窗有 closeGame 函數 (即 Game Hub)
+    if (window.parent && window.parent.closeGame) {
+        window.parent.closeGame(); 
+    } else {
+        // 如果單獨開啟 (Fallback)，就跳轉回你的大廳頁面
+        // 注意：這裡建議改成你 WordPress 遊戲大廳的「完整網址」
+        window.top.location.href = 'https://enguistics.com/grammar-games/'; 
+    }
+});
+        // Start
+        initGame('new');
+
+    </script>
+</body>
+</html>

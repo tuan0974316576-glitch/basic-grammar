@@ -325,7 +325,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "We copied addictive into our notes carefully.",
+        "text": "Social media apps can become addictive if they are designed to reward constant checking.",
         "answer": "addictive"
       },
       {
@@ -765,7 +765,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "The speaker used airborne when answering the question.",
+        "text": "The infection became airborne, so the school improved ventilation in every classroom.",
         "answer": "airborne"
       },
       {
@@ -929,7 +929,7 @@
         "answer": "altruistic"
       },
       {
-        "text": "We copied altruistic into our notes carefully.",
+        "text": "Her altruistic decision to donate the prize money inspired the whole community.",
         "answer": "altruistic"
       },
       {
@@ -1009,7 +1009,7 @@
         "answer": "amazonian"
       },
       {
-        "text": "The guide used amazonian in a useful example.",
+        "text": "Scientists warned that amazonian forests are disappearing faster than many people expected.",
         "answer": "amazonian"
       },
       {
@@ -1209,7 +1209,7 @@
         "answer": "applicable"
       },
       {
-        "text": "She used applicable in a clear sentence.",
+        "text": "The new safety rules are applicable to all laboratories, including temporary research rooms.",
         "answer": "applicable"
       },
       {
@@ -1489,7 +1489,7 @@
         "answer": "arm"
       },
       {
-        "text": "She held the baby in her arms.",
+        "text": "The treaty sought to prevent rival states from taking up arms again.",
         "answer": "arms"
       },
       {
@@ -1869,7 +1869,7 @@
         "answer": "averse"
       },
       {
-        "text": "He heard averse during a short discussion.",
+        "text": "Many parents are averse to excessive screen time because it may affect sleep and attention.",
         "answer": "averse"
       },
       {
@@ -2093,7 +2093,7 @@
         "answer": "beast"
       },
       {
-        "text": "We talked about beast in class this morning.",
+        "text": "In the old legend, the beast guarded the mountain pass and frightened nearby villagers.",
         "answer": "beast"
       }
     ],
@@ -2125,7 +2125,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "The speaker used befall when answering the question.",
+        "text": "No serious harm should befall the hikers if they follow the rescue team's instructions.",
         "answer": "befall"
       },
       {
@@ -2253,7 +2253,7 @@
         "answer": "beneath"
       },
       {
-        "text": "She repeated beneath so everyone understood.",
+        "text": "The evidence lay hidden beneath layers of political pressure and public fear.",
         "answer": "beneath"
       }
     ],
@@ -2425,7 +2425,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "These spices blend well in soup.",
+        "text": "The architect tried to blend traditional materials with a sharply modern silhouette.",
         "answer": "blend"
       },
       {
@@ -2829,7 +2829,7 @@
         "answer": "butt"
       },
       {
-        "text": "The guide used butt in a useful example.",
+        "text": "The child fell on his butt after slipping on the wet classroom floor.",
         "answer": "butt"
       },
       {
@@ -2993,7 +2993,7 @@
         "answer": "capitalist"
       },
       {
-        "text": "I saw capitalist in a school notice today.",
+        "text": "A capitalist economy often encourages private ownership, competition, and profit-making.",
         "answer": "capitalist"
       }
     ],
@@ -3049,7 +3049,7 @@
         "answer": "captivity"
       },
       {
-        "text": "She used captivity in a clear sentence.",
+        "text": "The animal refused to eat during its first few days in captivity.",
         "answer": "captivity"
       },
       {
@@ -3549,7 +3549,7 @@
         "answer": "cling"
       },
       {
-        "text": "The speaker used cling when answering the question.",
+        "text": "Some people cling to familiar routines because change makes them feel insecure.",
         "answer": "cling"
       },
       {
@@ -3565,7 +3565,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "We heard cling to in a class conversation.",
+        "text": "Even after moving abroad, she continued to cling to her childhood traditions.",
         "answer": "cling to"
       },
       {
@@ -3633,7 +3633,7 @@
         "answer": "clover"
       },
       {
-        "text": "The guide used clover in a useful example.",
+        "text": "The farmer planted clover to improve the soil and feed the grazing cattle.",
         "answer": "clover"
       }
     ],
@@ -3865,7 +3865,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "The class reviewed commodifiable before the quiz.",
+        "text": "Personal data has become commodifiable, raising serious questions about privacy and consent.",
         "answer": "commodifiable"
       },
       {
@@ -3873,7 +3873,7 @@
         "answer": "commodifiable"
       },
       {
-        "text": "The email included commodifiable in the first paragraph.",
+        "text": "Not every human experience should be treated as commodifiable in a profit-driven market.",
         "answer": "commodifiable"
       }
     ],
@@ -3993,7 +3993,7 @@
         "answer": "compensation"
       },
       {
-        "text": "The class reviewed compensation before the quiz.",
+        "text": "Workers demanded fair compensation after the factory closed without warning.",
         "answer": "compensation"
       }
     ],
@@ -4489,7 +4489,7 @@
         "answer": "console"
       },
       {
-        "text": "She repeated console so everyone understood.",
+        "text": "The nurse tried to console the frightened child before the operation began.",
         "answer": "console"
       },
       {
@@ -4585,7 +4585,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "The speaker used contend when answering the question.",
+        "text": "Critics contend that the policy benefits large companies more than ordinary families.",
         "answer": "contend"
       },
       {
@@ -5033,7 +5033,7 @@
         "answer": "counteract"
       },
       {
-        "text": "I saw counteract in a school notice today.",
+        "text": "Regular exercise can help counteract the negative effects of sitting for long hours.",
         "answer": "counteract"
       }
     ],
@@ -5353,7 +5353,7 @@
         "answer": "curse"
       },
       {
-        "text": "The report included curse as an important point.",
+        "text": "The villagers believed the drought was a curse, but scientists blamed climate change.",
         "answer": "curse"
       }
     ],
@@ -5593,7 +5593,7 @@
         "answer": "delusional"
       },
       {
-        "text": "The novel follows a delusional character losing touch with reality.",
+        "text": "The memoir portrays delusional thinking as both frightening and painfully isolating.",
         "answer": "delusional"
       }
     ],
@@ -5769,7 +5769,7 @@
         "answer": "deprive"
       },
       {
-        "text": "The email included deprive in the first paragraph.",
+        "text": "Poor internet access can deprive rural students of equal learning opportunities.",
         "answer": "deprive"
       },
       {
@@ -5989,7 +5989,7 @@
         "answer": "diminish"
       },
       {
-        "text": "I saw diminish in a school notice today.",
+        "text": "Public trust may diminish when leaders fail to explain important decisions clearly.",
         "answer": "diminish"
       },
       {
@@ -6013,7 +6013,7 @@
         "answer": "dimly"
       },
       {
-        "text": "Figures moved dimly in the fog.",
+        "text": "The corridor was dimly lit, making the emergency signs difficult to read.",
         "answer": "dimly"
       }
     ],
@@ -6349,7 +6349,7 @@
         "answer": "dispute"
       },
       {
-        "text": "We heard dispute in a class conversation.",
+        "text": "The two countries entered a long dispute over fishing rights near the border.",
         "answer": "dispute"
       },
       {
@@ -6493,7 +6493,7 @@
         "answer": "distraction"
       },
       {
-        "text": "She repeated distraction so everyone understood.",
+        "text": "Checking messages during revision can become a major distraction from serious study.",
         "answer": "distraction"
       }
     ],
@@ -6825,7 +6825,7 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "The email included drown in the first paragraph.",
+        "text": "Without quick action, the child could drown in the deep end of the pool.",
         "answer": "drown"
       },
       {
@@ -6889,7 +6889,7 @@
         "answer": "duo"
       },
       {
-        "text": "A comedy duo opened the show.",
+        "text": "The director and composer formed a creative duo that reshaped the musical.",
         "answer": "duo"
       },
       {
@@ -7025,7 +7025,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "The class reviewed earthly before the quiz.",
+        "text": "The monk gave up earthly comforts in order to live a simpler spiritual life.",
         "answer": "earthly"
       },
       {
@@ -7033,7 +7033,7 @@
         "answer": "earthly"
       },
       {
-        "text": "Why on earthly terms would anyone refuse such help?",
+        "text": "What earthly reason could justify hiding the evidence from the public?",
         "answer": "earthly"
       }
     ],
@@ -7733,7 +7733,7 @@
         "answer": "escalate"
       },
       {
-        "text": "He heard escalate during a short discussion.",
+        "text": "A minor argument can escalate into violence when nobody is willing to listen.",
         "answer": "escalate"
       }
     ],
@@ -8445,7 +8445,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "We talked about fate in class this morning.",
+        "text": "The novel suggests that people can challenge fate through courage and persistence.",
         "answer": "fate"
       },
       {
@@ -8769,7 +8769,7 @@
         "answer": "flank"
       },
       {
-        "text": "I wrote flank in my notebook after the lesson.",
+        "text": "Soldiers moved along the enemy's flank to avoid a direct attack.",
         "answer": "flank"
       },
       {
@@ -8813,7 +8813,7 @@
         "answer": "flaw"
       },
       {
-        "text": "The report included flaw as an important point.",
+        "text": "The main flaw in the experiment was that the sample size was too small.",
         "answer": "flaw"
       }
     ],
@@ -8853,7 +8853,7 @@
         "answer": "fleet"
       },
       {
-        "text": "The navy fleet sailed at dawn.",
+        "text": "The company electrified its delivery fleet to reduce emissions in crowded districts.",
         "answer": "fleet"
       }
     ],
@@ -9085,7 +9085,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "The report included foresee as an important point.",
+        "text": "Few analysts could foresee how quickly the small protest would become a national movement.",
         "answer": "foresee"
       },
       {
@@ -9533,7 +9533,7 @@
         "answer": "glory"
       },
       {
-        "text": "The speaker used glory when answering the question.",
+        "text": "The athlete enjoyed a moment of glory after winning the final race.",
         "answer": "glory"
       }
     ],
@@ -9713,7 +9713,7 @@
         "answer": "gross"
       },
       {
-        "text": "That smell is absolutely gross.",
+        "text": "The report exposed gross negligence in the handling of public funds.",
         "answer": "gross"
       }
     ],
@@ -9869,7 +9869,7 @@
         "answer": "halt"
       },
       {
-        "text": "The train came to a sudden halt.",
+        "text": "Negotiators called for an immediate halt to construction near the protected wetland.",
         "answer": "halt"
       },
       {
@@ -9993,7 +9993,7 @@
         "answer": "harsh"
       },
       {
-        "text": "The medicine has a harsh taste.",
+        "text": "The judge criticised the policy for imposing harsh penalties on minor offenders.",
         "answer": "harsh"
       }
     ],
@@ -10213,7 +10213,7 @@
         "answer": "herd"
       },
       {
-        "text": "I saw herd in a school notice today.",
+        "text": "A herd of elephants crossed the river while tourists watched quietly from the bank.",
         "answer": "herd"
       }
     ],
@@ -10593,7 +10593,7 @@
         "answer": "illuminate"
       },
       {
-        "text": "We talked about illuminate in class this morning.",
+        "text": "The documentary helped illuminate the causes of poverty in the region.",
         "answer": "illuminate"
       }
     ],
@@ -11133,7 +11133,7 @@
         "answer": "individualistic"
       },
       {
-        "text": "She repeated individualistic so everyone understood.",
+        "text": "An individualistic culture may value personal freedom more than group expectations.",
         "answer": "individualistic"
       }
     ],
@@ -11153,7 +11153,7 @@
         "answer": "induce"
       },
       {
-        "text": "I noticed induce in the reading passage.",
+        "text": "The advertisement was designed to induce shoppers to buy more than they needed.",
         "answer": "induce"
       }
     ],
@@ -11273,7 +11273,7 @@
         "answer": "ingrain"
       },
       {
-        "text": "He heard ingrain during a short discussion.",
+        "text": "Schools can ingrain healthy habits by making exercise part of daily routines.",
         "answer": "ingrain"
       }
     ],
@@ -11713,7 +11713,7 @@
         "answer": "intently"
       },
       {
-        "text": "He stared intently at the map.",
+        "text": "The jurors listened intently as the witness described the missing documents.",
         "answer": "intently"
       }
     ],
@@ -11733,7 +11733,7 @@
         "answer": "interactive"
       },
       {
-        "text": "The app uses interactive tasks to teach vocabulary.",
+        "text": "The museum uses interactive simulations to show how misinformation spreads online.",
         "answer": "interactive"
       }
     ],
@@ -11909,7 +11909,7 @@
         "answer": "invisible"
       },
       {
-        "text": "We talked about invisible in class this morning.",
+        "text": "Care work often remains invisible because it is unpaid and done inside the home.",
         "answer": "invisible"
       },
       {
@@ -11945,7 +11945,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "The email included invulnerable in the first paragraph.",
+        "text": "No computer system is completely invulnerable to cyberattacks.",
         "answer": "invulnerable"
       },
       {
@@ -12005,7 +12005,7 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "The poem is full of quiet irony.",
+        "text": "The irony is that the campaign against waste produced thousands of disposable banners.",
         "answer": "irony"
       },
       {
@@ -12885,7 +12885,7 @@
     "frequency": 3,
     "sentences": [
       {
-        "text": "A whale is a mammal, not a fish.",
+        "text": "The whale is a marine mammal, so it must surface regularly to breathe.",
         "answer": "mammal"
       },
       {
@@ -12953,7 +12953,7 @@
         "answer": "manipulate"
       },
       {
-        "text": "I saw manipulate in a school notice today.",
+        "text": "Some websites manipulate users by hiding cancellation buttons and highlighting paid options.",
         "answer": "manipulate"
       }
     ],
@@ -13033,7 +13033,7 @@
         "answer": "martian"
       },
       {
-        "text": "He heard martian during a short discussion.",
+        "text": "The film imagines a martian colony struggling to survive without supplies from Earth.",
         "answer": "martian"
       }
     ],
@@ -13069,7 +13069,7 @@
         "answer": "mask"
       },
       {
-        "text": "The email included mask in the first paragraph.",
+        "text": "Politicians sometimes mask weak arguments with emotional language and dramatic promises.",
         "answer": "mask"
       },
       {
@@ -13633,7 +13633,7 @@
         "answer": "misfortune"
       },
       {
-        "text": "The novel follows a hero through repeated misfortune.",
+        "text": "Repeated misfortune forced the family to sell their farm and leave the valley.",
         "answer": "misfortune"
       }
     ],
@@ -13789,7 +13789,7 @@
         "answer": "morality"
       },
       {
-        "text": "Our group practised morality before lunch.",
+        "text": "The debate raised difficult questions about morality, punishment, and forgiveness.",
         "answer": "morality"
       },
       {
@@ -13925,7 +13925,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "Trust depends on mutual respect.",
+        "text": "The agreement depends on mutual trust between regulators, schools, and families.",
         "answer": "mutual"
       },
       {
@@ -14133,7 +14133,7 @@
         "answer": "nocturnal"
       },
       {
-        "text": "The report included nocturnal as an important point.",
+        "text": "Owls are nocturnal hunters, so they rely heavily on sound in the dark.",
         "answer": "nocturnal"
       }
     ],
@@ -14185,7 +14185,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "That rumor is complete nonsense.",
+        "text": "The minister dismissed the allegation as nonsense, but journalists kept investigating.",
         "answer": "nonsense"
       },
       {
@@ -14489,7 +14489,7 @@
         "answer": "offspring"
       },
       {
-        "text": "We copied offspring into our notes carefully.",
+        "text": "Many animals protect their offspring until they can find food by themselves.",
         "answer": "offspring"
       },
       {
@@ -14613,7 +14613,7 @@
         "answer": "opt"
       },
       {
-        "text": "The teacher explained opt in a simple way.",
+        "text": "Students may opt for online lessons if they cannot attend school in person.",
         "answer": "opt"
       }
     ],
@@ -15045,7 +15045,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "We copied overreaction into our notes carefully.",
+        "text": "Closing the entire school because of one broken window seemed like an overreaction.",
         "answer": "overreaction"
       },
       {
@@ -15389,7 +15389,7 @@
         "answer": "peddler"
       },
       {
-        "text": "The novel follows a wandering peddler through the countryside.",
+        "text": "A wandering peddler carried news, gossip, and cheap cloth between remote villages.",
         "answer": "peddler"
       },
       {
@@ -15489,7 +15489,7 @@
         "answer": "perfection"
       },
       {
-        "text": "The speaker used perfection when answering the question.",
+        "text": "The pursuit of perfection can motivate students, but it can also cause anxiety.",
         "answer": "perfection"
       },
       {
@@ -15649,7 +15649,7 @@
         "answer": "piercings"
       },
       {
-        "text": "The email included piercings in the first paragraph.",
+        "text": "Some employers still judge applicants unfairly because of tattoos or piercings.",
         "answer": "piercings"
       },
       {
@@ -15925,7 +15925,7 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "A wooden pole held up the sign.",
+        "text": "Researchers installed a monitoring pole to measure flood levels throughout the season.",
         "answer": "pole"
       },
       {
@@ -16649,7 +16649,7 @@
         "answer": "problematic"
       },
       {
-        "text": "The article mentioned problematic more than once.",
+        "text": "It is problematic to measure success only by exam scores.",
         "answer": "problematic"
       },
       {
@@ -17369,7 +17369,7 @@
         "answer": "reactionary"
       },
       {
-        "text": "The teacher explained reactionary in a simple way.",
+        "text": "The party promoted reactionary ideas that opposed equal rights and social reform.",
         "answer": "reactionary"
       },
       {
@@ -18125,8 +18125,8 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "The new plan closely resemble?",
-        "answer": "resemble"
+        "text": "The new proposal closely resembles the policy that failed five years ago.",
+        "answer": "resembles"
       },
       {
         "text": "This fabric resembles silk but costs less.",
@@ -18309,8 +18309,8 @@
         "answer": "revenge"
       },
       {
-        "text": "The novel follows a family driven by revenge.",
-        "answer": "revenge"
+        "text": "Revenge drives the plot, but forgiveness becomes the novel's more difficult theme.",
+        "answer": "Revenge"
       },
       {
         "text": "She refused to seek revenge after the betrayal.",
@@ -19429,7 +19429,7 @@
         "answer": "smash"
       },
       {
-        "text": "The film was a box-office smash.",
+        "text": "The independent film became a surprise smash despite its modest marketing budget.",
         "answer": "smash"
       },
       {
@@ -19645,7 +19645,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "She used soothe in a clear sentence.",
+        "text": "Soft music can soothe nervous patients while they wait for medical results.",
         "answer": "soothe"
       },
       {
@@ -19925,7 +19925,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "The novel follows a spy working undercover abroad.",
+        "text": "The retired spy recognised the code hidden inside the diplomatic cable.",
         "answer": "spy"
       },
       {
@@ -20809,7 +20809,7 @@
         "answer": "superstitious"
       },
       {
-        "text": "He remembered superstitious from yesterday's lesson.",
+        "text": "Even highly educated people may become superstitious before important exams.",
         "answer": "superstitious"
       },
       {
@@ -21169,8 +21169,8 @@
         "answer": "synthetic"
       },
       {
-        "text": "The article mentioned synthetic more than once.",
-        "answer": "synthetic"
+        "text": "Synthetic fabrics are cheap to produce, but they may release plastic fibres when washed.",
+        "answer": "Synthetic"
       },
       {
         "text": "The lab created a synthetic version of the chemical.",
@@ -21405,7 +21405,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "The sauce has a smooth texture.",
+        "text": "The critic praised the soup's silky texture and restrained use of spice.",
         "answer": "texture"
       },
       {
@@ -21669,7 +21669,7 @@
         "answer": "tolerate"
       },
       {
-        "text": "We copied tolerate into our notes carefully.",
+        "text": "A democratic society should not tolerate violence against minority groups.",
         "answer": "tolerate"
       },
       {
@@ -21733,8 +21733,8 @@
         "answer": "toxic"
       },
       {
-        "text": "She used toxic in a clear sentence.",
-        "answer": "toxic"
+        "text": "Toxic chemicals from the factory polluted the river and harmed local wildlife.",
+        "answer": "Toxic"
       }
     ],
     "ch": "有毒的"
@@ -22049,7 +22049,7 @@
         "answer": "trip over"
       },
       {
-        "text": "I noticed trip over in the reading passage.",
+        "text": "Tourists may trip over loose stones on the narrow path.",
         "answer": "trip over"
       },
       {
@@ -22485,7 +22485,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "The speaker used undeserving when answering the question.",
+        "text": "Critics argued that innocent families were undeserving of such harsh treatment.",
         "answer": "undeserving"
       },
       {
@@ -22509,8 +22509,8 @@
         "answer": "undocumented"
       },
       {
-        "text": "I saw undocumented in a school notice today.",
-        "answer": "undocumented"
+        "text": "Undocumented workers often avoid hospitals because they fear being reported.",
+        "answer": "Undocumented"
       },
       {
         "text": "The system failed because of an undocumented feature.",
@@ -22789,7 +22789,7 @@
         "answer": "unquantifiable"
       },
       {
-        "text": "I wrote unquantifiable in my notebook after the lesson.",
+        "text": "The emotional value of family support is unquantifiable, even though it matters deeply.",
         "answer": "unquantifiable"
       },
       {
@@ -23429,7 +23429,7 @@
         "answer": "whilst"
       },
       {
-        "text": "The guide used whilst in a useful example.",
+        "text": "Some students prefer silent study, whilst others learn better through discussion.",
         "answer": "whilst"
       },
       {
@@ -23509,7 +23509,7 @@
         "answer": "wit"
       },
       {
-        "text": "He survived the interview with calm and wit.",
+        "text": "Her wit impressed the whole room.",
         "answer": "wit"
       },
       {
@@ -23593,7 +23593,7 @@
         "answer": "worship"
       },
       {
-        "text": "I wrote worship in my notebook after the lesson.",
+        "text": "Ancient communities gathered at the temple to worship their gods and ask for protection.",
         "answer": "worship"
       }
     ],
@@ -23649,7 +23649,7 @@
         "answer": "yachtsman"
       },
       {
-        "text": "The novel follows a wealthy yachtsman across the Atlantic.",
+        "text": "The yachtsman survived three days at sea after his navigation system failed.",
         "answer": "yachtsman"
       },
       {

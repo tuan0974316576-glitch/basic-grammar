@@ -1,4 +1,8 @@
 let authOverlayTimeout = null;
+let authResolveFallbackTimeout = null;
+let hudRankRefreshToken = 0;
+const AUTH_FLOW_FALLBACK_MS = 8000;
+const PLAYER_PROFILE_CACHE_KEY = 'battleship_player_profile_cache_v1';
 window.pendingAuthFlowPatch = window.pendingAuthFlowPatch || null;
 if (typeof window.firebaseAuthResolved !== 'boolean') {
     window.firebaseAuthResolved = false;
@@ -14,6 +18,194 @@ window.authFlowState = window.authFlowState || {
     displayName: null,
     currentView: null
 };
+
+function readPlayerProfileCacheStore() {
+    try {
+        const parsed = JSON.parse(localStorage.getItem(PLAYER_PROFILE_CACHE_KEY) || '{}');
+        return parsed && typeof parsed === 'object' ? parsed : {};
+    } catch (error) {
+        console.warn('[Profile Cache] Failed to read cache:', error);
+        return {};
+    }
+}
+
+function writePlayerProfileCacheStore(store) {
+    localStorage.setItem(PLAYER_PROFILE_CACHE_KEY, JSON.stringify(store));
+}
+
+function getCachedPlayerProfile(uid = localStorage.getItem('battleship_auth_uid')) {
+    if (!uid) return null;
+    const store = readPlayerProfileCacheStore();
+    const profile = store.profiles?.[uid];
+    if (!profile || profile.uid !== uid || !profile.displayName) return null;
+    if (typeof profile.xp !== 'number' || typeof profile.supplies !== 'number') return null;
+    return profile;
+}
+
+function cachePlayerProfile(uid, profilePatch = {}) {
+    if (!uid) return null;
+
+    const store = readPlayerProfileCacheStore();
+    const profiles = store.profiles && typeof store.profiles === 'object' ? store.profiles : {};
+    const existing = profiles[uid] || {};
+    const profile = {
+        ...existing,
+        uid,
+        displayName: profilePatch.displayName || existing.displayName || localStorage.getItem('battleship_username') || '',
+        xp: Number.isFinite(profilePatch.xp) ? profilePatch.xp : (Number.isFinite(existing.xp) ? existing.xp : 0),
+        supplies: Number.isFinite(profilePatch.supplies) ? profilePatch.supplies : (Number.isFinite(existing.supplies) ? existing.supplies : 0),
+        updatedAt: Date.now()
+    };
+
+    ['mastery', 'sentenceProgress', 'unlockedRaces'].forEach((key) => {
+        if (Object.prototype.hasOwnProperty.call(profilePatch, key)) {
+            profile[key] = profilePatch[key];
+        }
+    });
+
+    if (!profile.displayName) return null;
+
+    profiles[uid] = profile;
+    try {
+        writePlayerProfileCacheStore({ version: 1, profiles });
+    } catch (error) {
+        console.warn('[Profile Cache] Full cache write failed, saving core stats only:', error);
+        const slimProfiles = {
+            ...profiles,
+            [uid]: {
+                uid,
+                displayName: profile.displayName,
+                xp: profile.xp,
+                supplies: profile.supplies,
+                unlockedRaces: profile.unlockedRaces,
+                updatedAt: profile.updatedAt
+            }
+        };
+        try {
+            writePlayerProfileCacheStore({ version: 1, profiles: slimProfiles });
+        } catch (slimError) {
+            console.warn('[Profile Cache] Core cache write failed:', slimError);
+        }
+    }
+
+    localStorage.setItem('battleship_username', profile.displayName);
+    localStorage.setItem('battleship_auth_uid', uid);
+    return profile;
+}
+
+function applyCachedPlayerProfile(profile) {
+    if (!profile) return false;
+
+    window.userTotalXP = Number.isFinite(profile.xp) ? profile.xp : 0;
+    window.userSupplies = Number.isFinite(profile.supplies) ? profile.supplies : 0;
+    if (profile.mastery) window.userMastery = profile.mastery;
+    if (profile.sentenceProgress) window.userSentenceProgress = profile.sentenceProgress;
+    if (profile.unlockedRaces) window.unlockedRaces = profile.unlockedRaces;
+
+    if (typeof userTotalXP !== 'undefined') userTotalXP = window.userTotalXP;
+    if (typeof userSupplies !== 'undefined') userSupplies = window.userSupplies;
+    if (profile.mastery && typeof userMastery !== 'undefined') userMastery = window.userMastery;
+    if (profile.sentenceProgress && typeof userSentenceProgress !== 'undefined') userSentenceProgress = window.userSentenceProgress;
+    if (profile.unlockedRaces && typeof unlockedRaces !== 'undefined') unlockedRaces = window.unlockedRaces;
+    if (typeof normalizeSentenceProgressState === 'function') normalizeSentenceProgressState();
+
+    localStorage.setItem('battleship_username', profile.displayName);
+    localStorage.setItem('battleship_auth_uid', profile.uid);
+    return true;
+}
+
+function cacheCurrentPlayerProfile(profilePatch = {}) {
+    const uid = profilePatch.uid || window.myPlayerId || localStorage.getItem('battleship_auth_uid');
+    if (!uid) return null;
+    const payload = {
+        displayName: localStorage.getItem('battleship_username') || profilePatch.displayName,
+        xp: Number.isFinite(window.userTotalXP) ? window.userTotalXP : profilePatch.xp,
+        supplies: Number.isFinite(window.userSupplies) ? window.userSupplies : profilePatch.supplies,
+        ...profilePatch
+    };
+    ['mastery', 'sentenceProgress', 'unlockedRaces'].forEach((key) => {
+        if (!Object.prototype.hasOwnProperty.call(payload, key) && Object.prototype.hasOwnProperty.call(profilePatch, key)) {
+            payload[key] = profilePatch[key];
+        }
+    });
+    return cachePlayerProfile(uid, payload);
+}
+
+window.getCachedPlayerProfile = getCachedPlayerProfile;
+window.cachePlayerProfile = cachePlayerProfile;
+window.applyCachedPlayerProfile = applyCachedPlayerProfile;
+window.cacheCurrentPlayerProfile = cacheCurrentPlayerProfile;
+
+function clearAuthResolveFallback() {
+    if (!authResolveFallbackTimeout) return;
+    clearTimeout(authResolveFallbackTimeout);
+    authResolveFallbackTimeout = null;
+}
+
+function resolveAuthFlowFromTimeout() {
+    if (!window.authFlowState?.started || window.authFlowState.resolved) return;
+
+    const cachedName = localStorage.getItem('battleship_username');
+    const cachedUid = localStorage.getItem('battleship_auth_uid');
+    const hasVerifiedUser = !!(window.isFirebaseAuthenticated && window.myPlayerId);
+
+    console.warn('[Auth Flow] Startup auth fallback fired', {
+        firebaseAuthResolved: window.firebaseAuthResolved,
+        firebaseProfileResolved: window.firebaseProfileResolved,
+        hasVerifiedUser,
+        hasCachedName: !!cachedName
+    });
+
+    if (hasVerifiedUser) {
+        const cachedProfile = getCachedPlayerProfile(window.myPlayerId);
+        if (cachedProfile) {
+            applyCachedPlayerProfile(cachedProfile);
+            window.firebaseAuthResolved = true;
+            window.firebaseProfileResolved = true;
+            if (typeof updateHUD === 'function') {
+                Promise.resolve(updateHUD(cachedProfile.displayName)).catch(error => {
+                    console.error('[Auth Flow] Cached HUD update failed:', error);
+                });
+            }
+            window.applyAuthFlowState({
+                resolved: true,
+                authenticated: true,
+                needsRegistration: false,
+                displayName: cachedProfile.displayName,
+                force: true
+            });
+            return;
+        }
+
+        const actionText = document.getElementById('splash-action-text');
+        const statusText = document.getElementById('splash-status-text');
+        if (actionText) actionText.innerText = '>> SYNCING PROFILE <<';
+        if (statusText) statusText.innerText = 'ACCOUNT DATA LINK SLOW...';
+        if (cachedUid === window.myPlayerId && cachedName) {
+            console.warn('[Auth Flow] Profile cache missing; staying on sync screen to avoid rendering empty stats.');
+        }
+        return;
+    }
+
+    window.firebaseAuthResolved = true;
+    window.firebaseProfileResolved = true;
+    window.applyAuthFlowState({
+        resolved: true,
+        authenticated: false,
+        needsRegistration: false,
+        displayName: null,
+        force: true
+    });
+
+    if (typeof showNotification === 'function') {
+        showNotification('AUTH LINK SLOW - LOGIN READY', 'warning', 3000);
+    }
+}
+
+function scheduleAuthResolveFallback() {
+    clearAuthResolveFallback();
+    authResolveFallbackTimeout = setTimeout(resolveAuthFlowFromTimeout, AUTH_FLOW_FALLBACK_MS);
+}
 
 function setSplashLoadingState() {
     const splash = document.getElementById('splash-screen');
@@ -34,9 +226,11 @@ function setSplashLoadingState() {
     if (gameWrapper) {
         gameWrapper.style.display = 'none';
     }
+    scheduleAuthResolveFallback();
 }
 
 function dismissSplashToAuthUI() {
+    clearAuthResolveFallback();
     const splash = document.getElementById('splash-screen');
     const gameWrapper = document.getElementById('game-content-wrapper');
     const startScreen = document.getElementById('start-screen');
@@ -549,6 +743,16 @@ window.submitRegistration = function() {
     }).then(() => {
         localStorage.setItem('battleship_username', name);
         localStorage.setItem('battleship_auth_uid', user.uid);
+        if (typeof window.cachePlayerProfile === 'function') {
+            window.cachePlayerProfile(user.uid, {
+                displayName: name,
+                xp: 0,
+                supplies: 0,
+                mastery: window.userMastery,
+                sentenceProgress: window.userSentenceProgress,
+                unlockedRaces: window.unlockedRaces
+            });
+        }
         if (typeof playSound === 'function') playSound('deploy-sfx');
 
         const modal = document.getElementById('registration-modal');
@@ -648,7 +852,10 @@ async function updateHUD(name) {
         const rank = getRankForXP(xp);
         const rankEl = document.getElementById('hud-rank-title');
         if (rankEl) {
-            await checkGlobalRankAndUpdateIcon(rankEl, rank);
+            const refreshToken = ++hudRankRefreshToken;
+            checkGlobalRankAndUpdateIcon(rankEl, rank, refreshToken).catch(error => {
+                console.error('[HUD] Rank refresh failed:', error);
+            });
         }
         updateExpBar(xp, rank);
     }
@@ -671,7 +878,7 @@ async function revealMainMenuWhenHudReady(name) {
     }
 }
 
-async function checkGlobalRankAndUpdateIcon(rankEl, rank) {
+async function checkGlobalRankAndUpdateIcon(rankEl, rank, refreshToken = hudRankRefreshToken) {
     console.log('[HUD] checkGlobalRankAndUpdateIcon called for player:', window.myPlayerId);
 
     const renderHudRank = (iconPath) => {
@@ -712,21 +919,26 @@ async function checkGlobalRankAndUpdateIcon(rankEl, rank) {
         }
 
         let pvpRankIndex = -1;
-        const allUsersSnapshot = await get(usersRef);
-        if (allUsersSnapshot.exists()) {
-            const users = allUsersSnapshot.val();
-            const userArray = Object.keys(users)
-                .map(uid => ({
-                    uid,
-                    pvpWins: users[uid].pvpWins || 0
-                }))
-                .filter(user => user.pvpWins > 0);
+        const topPvpQuery = query(usersRef, orderByChild('pvpWins'), limitToLast(10));
+        const pvpSnapshot = await get(topPvpQuery);
+        if (pvpSnapshot.exists()) {
+            const top10PVP = [];
+            pvpSnapshot.forEach(childSnapshot => {
+                const pvpWins = childSnapshot.val().pvpWins || 0;
+                if (pvpWins > 0) {
+                    top10PVP.push({
+                        uid: childSnapshot.key,
+                        pvpWins
+                    });
+                }
+            });
 
-            userArray.sort((a, b) => b.pvpWins - a.pvpWins);
-            const top10PVP = userArray.slice(0, 10);
+            top10PVP.sort((a, b) => b.pvpWins - a.pvpWins);
             pvpRankIndex = top10PVP.findIndex(user => user.uid === window.myPlayerId);
             console.log('[HUD] My PVP rank index:', pvpRankIndex);
         }
+
+        if (refreshToken !== hudRankRefreshToken) return;
 
         const xpColor = xpRankIndex !== -1 ? getIconColor(xpRankIndex) : 'white';
         const pvpColor = pvpRankIndex !== -1 ? getIconColor(pvpRankIndex) : 'white';
@@ -959,8 +1171,16 @@ window.startExperience = function() {
     const platform = window.Capacitor?.getPlatform?.() || '';
     const sfxVolume = (typeof gameVolume !== 'undefined' && isFinite(gameVolume.sfx)) ? gameVolume.sfx : 0.5;
     console.log(`[Audio Debug] startExperience audio path platform=${platform || 'web'}`);
-    if (platform === 'android' && typeof window.playImmediateWebSfx === 'function') {
-        window.playImmediateWebSfx('deploy-sfx', sfxVolume);
+    if (platform === 'android' && typeof window.playNativeSfx === 'function') {
+        window.playNativeSfx('deploy-sfx', sfxVolume).then(played => {
+            if (!played && typeof window.playImmediateWebSfx === 'function') {
+                window.playImmediateWebSfx('deploy-sfx', sfxVolume);
+            }
+        }).catch(() => {
+            if (typeof window.playImmediateWebSfx === 'function') {
+                window.playImmediateWebSfx('deploy-sfx', sfxVolume);
+            }
+        });
     } else if (typeof playSound === 'function') {
         playSound('deploy-sfx');
     }

@@ -13,5 +13,7 @@ CAP_PLUGIN(GameAudioPlugin, "GameAudio",
            CAP_PLUGIN_METHOD(preloadRemoteAudio, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(stopBundleAudio, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(stopRemoteAudio, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(startSpeechCapture, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(stopSpeechCapture, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(preloadSfx, CAPPluginReturnPromise);
 )

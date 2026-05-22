@@ -1,5 +1,7 @@
 package com.enguistics.vocabconqueror;
 
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,19 +17,18 @@ import com.getcapacitor.BridgeActivity;
 public class MainActivity extends BridgeActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        applyNativeOrientationPreference();
         registerPlugin(AndroidBgmPlugin.class);
+        registerPlugin(GameAudioPlugin.class);
+        registerPlugin(VoskSpeechPlugin.class);
         super.onCreate(savedInstanceState);
         WebView.setWebContentsDebuggingEnabled(true);
         enableImmersiveMode();
-        AndroidBgmPlayer.start(this);
-        restartBgmAfterResume();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        AndroidBgmPlayer.start(this);
-        restartBgmAfterResume();
     }
 
     @Override
@@ -81,7 +82,14 @@ public class MainActivity extends BridgeActivity {
         );
     }
 
-    private void restartBgmAfterResume() {
-        getWindow().getDecorView().postDelayed(() -> AndroidBgmPlayer.start(this), 500);
+    private void applyNativeOrientationPreference() {
+        int smallestWidthDp = getResources().getConfiguration().smallestScreenWidthDp;
+        if (smallestWidthDp == Configuration.SMALLEST_SCREEN_WIDTH_DP_UNDEFINED || smallestWidthDp < 600) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            return;
+        }
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
     }
+
 }

@@ -9,10 +9,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         application.isStatusBarHidden = true
         GameAudioManager.shared.configureSession()
-        GameAudioManager.shared.startBgm()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            GameAudioManager.shared.startBgm()
-        }
         return true
     }
 
@@ -28,7 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-        GameAudioManager.shared.startBgm()
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {

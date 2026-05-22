@@ -13,8 +13,8 @@ final class AndroidBgmPlayer {
 
     private AndroidBgmPlayer() {}
 
-    static synchronized void start(Context context) {
-        if (context == null) return;
+    static synchronized boolean start(Context context) {
+        if (context == null) return false;
 
         try {
             if (player == null) {
@@ -38,9 +38,11 @@ final class AndroidBgmPlayer {
                 player.start();
                 Log.i(TAG, "BGM started");
             }
+            return player.isPlaying();
         } catch (Exception error) {
             Log.w(TAG, "Unable to start BGM", error);
             release();
+            return false;
         }
     }
 

@@ -213,6 +213,17 @@ function syncPublicUserProfile(uid, payload) {
                         unlockedRaces = window.unlockedRaces;
                     }
 
+                    if (typeof window.cachePlayerProfile === 'function') {
+                        window.cachePlayerProfile(u.uid, {
+                            displayName: realName,
+                            xp: window.userTotalXP,
+                            supplies: window.userSupplies,
+                            mastery: window.userMastery,
+                            sentenceProgress: window.userSentenceProgress,
+                            unlockedRaces: window.unlockedRaces
+                        });
+                    }
+
                     // ★★★ 重要：即使用咗 cached name，都要再 call updateHUD 更新 XP 顯示 ★★★
                     if(typeof updateHUD === 'function') await updateHUD(realName);
                     syncPublicUserProfile(u.uid, {
@@ -275,6 +286,16 @@ function syncPublicUserProfile(uid, payload) {
                             console.log('[Auth] Guest account created successfully');
                             localStorage.setItem('battleship_username', autoName);
                             localStorage.setItem('battleship_auth_uid', u.uid);
+                            if (typeof window.cachePlayerProfile === 'function') {
+                                window.cachePlayerProfile(u.uid, {
+                                    displayName: autoName,
+                                    xp: 0,
+                                    supplies: 0,
+                                    mastery: window.userMastery,
+                                    sentenceProgress: window.userSentenceProgress,
+                                    unlockedRaces: window.unlockedRaces
+                                });
+                            }
                             if(typeof updateHUD === 'function') await updateHUD(autoName);
                             syncPublicUserProfile(u.uid, {
                                 displayName: autoName,
@@ -337,30 +358,49 @@ function syncPublicUserProfile(uid, payload) {
                 // ★★★ 安全網：如果 Firebase 請求失敗，都要隱藏 overlay ★★★
                 if(overlay) overlay.style.display = 'none';
 
-                // ★★★ 關鍵修復：即使 Firebase 請求失敗，都要顯示主選單 ★★★
-                // 因為用戶其實已經 login 咗（onAuthStateChanged 已經觸發）
-                // 只係讀取 user data 失敗，唔應該卡住喺 LOGIN PANEL
-                const cachedName = localStorage.getItem('battleship_username');
-                if (cachedName && typeof updateHUD === 'function') {
-                    await updateHUD(cachedName);
-                }
-                if (typeof window.applyAuthFlowState === 'function') {
-                    console.log('[Auth] Falling back to cached auth state after Firebase error');
+                const cachedProfile = typeof window.getCachedPlayerProfile === 'function'
+                    ? window.getCachedPlayerProfile(u.uid)
+                    : null;
+                if (cachedProfile && typeof window.applyCachedPlayerProfile === 'function') {
+                    window.applyCachedPlayerProfile(cachedProfile);
+                    if (typeof updateHUD === 'function') await updateHUD(cachedProfile.displayName);
+                    if (typeof window.applyAuthFlowState === 'function') {
+                        console.log('[Auth] Using cached full profile after Firebase error');
+                        window.firebaseProfileResolved = true;
+                        window.applyAuthFlowState({
+                            resolved: true,
+                            authenticated: true,
+                            needsRegistration: false,
+                            displayName: cachedProfile.displayName,
+                            force: true
+                        });
+                    } else {
+                        window.firebaseProfileResolved = true;
+                        window.pendingAuthFlowPatch = {
+                            resolved: true,
+                            authenticated: true,
+                            needsRegistration: false,
+                            displayName: cachedProfile.displayName,
+                            force: true
+                        };
+                    }
+                } else if (typeof window.applyAuthFlowState === 'function') {
+                    console.warn('[Auth] Firebase profile failed and no full cache is available; returning to login view.');
                     window.firebaseProfileResolved = true;
                     window.applyAuthFlowState({
                         resolved: true,
-                        authenticated: true,
+                        authenticated: false,
                         needsRegistration: false,
-                        displayName: cachedName || null,
+                        displayName: null,
                         force: true
                     });
                 } else {
                     window.firebaseProfileResolved = true;
                     window.pendingAuthFlowPatch = {
                         resolved: true,
-                        authenticated: true,
+                        authenticated: false,
                         needsRegistration: false,
-                        displayName: cachedName || null,
+                        displayName: null,
                         force: true
                     };
                 }

@@ -32,6 +32,7 @@ const rootFileNames = new Set([
 ]);
 
 const directoriesToCopy = [
+  'assets',
   'audio',
   'effects',
   'ranking_icon',

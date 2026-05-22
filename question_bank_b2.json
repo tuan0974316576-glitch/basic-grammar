@@ -193,8 +193,8 @@
         "answer": "accompany"
       },
       {
-        "text": "The report included accompany as an important point.",
-        "answer": "accompany"
+        "text": "My father accompanied me to the interview.",
+        "answer": "accompanied"
       }
     ],
     "ch": "陪同；伴隨"
@@ -309,7 +309,7 @@
         "answer": "acknowledge"
       },
       {
-        "text": "You should acknowledge the source when you use someone else?s idea.",
+        "text": "You should acknowledge the source when you use someone else's idea.",
         "answer": "acknowledge"
       },
       {
@@ -749,11 +749,11 @@
         "answer": "adore"
       },
       {
-        "text": "She adores her grandmother?s handmade desserts.",
+        "text": "She adores her grandmother's handmade desserts.",
         "answer": "adores"
       },
       {
-        "text": "Fans clearly adore the actor?s sense of humor.",
+        "text": "Fans clearly adore the actor's sense of humor.",
         "answer": "adore"
       }
     ],
@@ -765,11 +765,11 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "The novel follows a boy?s journey into adulthood.",
+        "text": "The novel follows a boy's journey into adulthood.",
         "answer": "adulthood"
       },
       {
-        "text": "We heard adulthood in a class conversation.",
+        "text": "Many habits formed in childhood continue into adulthood.",
         "answer": "adulthood"
       },
       {
@@ -893,7 +893,7 @@
         "answer": "affordable"
       },
       {
-        "text": "The speaker used affordable when answering the question.",
+        "text": "The government should provide more affordable housing.",
         "answer": "affordable"
       }
     ],
@@ -1333,8 +1333,8 @@
         "answer": "ancestor"
       },
       {
-        "text": "The teacher explained ancestor in a simple way.",
-        "answer": "ancestor"
+        "text": "Many families honour their ancestors during traditional festivals.",
+        "answer": "ancestors"
       }
     ],
     "ch": "祖先；先人"
@@ -1393,7 +1393,7 @@
         "answer": "anniversary"
       },
       {
-        "text": "A silver watch was given to mark the company?s fiftieth anniversary.",
+        "text": "A silver watch was given to mark the company's fiftieth anniversary.",
         "answer": "anniversary"
       }
     ],
@@ -1453,7 +1453,7 @@
         "answer": "antagonist"
       },
       {
-        "text": "The film reveals the antagonist?s motive near the end.",
+        "text": "The film reveals the antagonist's motive near the end.",
         "answer": "antagonist"
       }
     ],
@@ -1833,7 +1833,7 @@
         "answer": "artifact"
       },
       {
-        "text": "Every artifact tells part of the city?s history.",
+        "text": "Every artifact tells part of the city's history.",
         "answer": "artifact"
       }
     ],
@@ -2229,7 +2229,7 @@
         "answer": "auction"
       },
       {
-        "text": "Several rare books will appear in next month?s auction.",
+        "text": "Several rare books will appear in next month's auction.",
         "answer": "auction"
       },
       {
@@ -2325,7 +2325,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "Fans waited outside the theater for the actor?s autograph.",
+        "text": "Fans waited outside the theater for the actor's autograph.",
         "answer": "autograph"
       },
       {
@@ -2369,7 +2369,7 @@
         "answer": "automobile"
       },
       {
-        "text": "The class reviewed automobile before the quiz.",
+        "text": "The invention of the automobile changed modern transport.",
         "answer": "automobile"
       },
       {
@@ -2393,8 +2393,8 @@
         "answer": "autonomous"
       },
       {
-        "text": "He heard autonomous during a short discussion.",
-        "answer": "autonomous"
+        "text": "Autonomous vehicles may reduce accidents in the future.",
+        "answer": "Autonomous"
       }
     ],
     "ch": "自主的；自治的"
@@ -2465,15 +2465,15 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "The report included bacteria as an important point.",
-        "answer": "bacteria"
+        "text": "Bacteria can grow quickly if food is not stored properly.",
+        "answer": "Bacteria"
       },
       {
         "text": "The test showed that the water contained harmful bacteria.",
         "answer": "bacteria"
       },
       {
-        "text": "We heard bacteria in a class conversation.",
+        "text": "Washing hands helps remove harmful bacteria.",
         "answer": "bacteria"
       }
     ],
@@ -2489,7 +2489,7 @@
         "answer": "badge"
       },
       {
-        "text": "The guard checked every visitor?s badge at the entrance.",
+        "text": "The guard checked every visitor's badge at the entrance.",
         "answer": "badge"
       },
       {
@@ -2793,7 +2793,7 @@
         "answer": "bedside"
       },
       {
-        "text": "The nurse checked the patient?s chart at the bedside.",
+        "text": "The nurse checked the patient's chart at the bedside.",
         "answer": "bedside"
       }
     ],
@@ -2845,7 +2845,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "The child began to beg for one more piece of cake.",
+        "text": "The child started to beg for one more piece of cake.",
         "answer": "beg"
       },
       {
@@ -2869,7 +2869,7 @@
         "answer": "behavioral"
       },
       {
-        "text": "I wrote behavioral in my notebook after the lesson.",
+        "text": "The school recorded several behavioral changes after the new policy.",
         "answer": "behavioral"
       },
       {
@@ -3109,7 +3109,7 @@
         "answer": "biological"
       },
       {
-        "text": "He remembered biological from yesterday's lesson.",
+        "text": "The medicine affects several biological processes in the body.",
         "answer": "biological"
       },
       {
@@ -4313,7 +4313,7 @@
         "answer": "Causeway Bay"
       },
       {
-        "text": "We copied Causeway Bay into our notes carefully.",
+        "text": "Causeway Bay is crowded during weekend shopping hours.",
         "answer": "Causeway Bay"
       }
     ],
@@ -4713,7 +4713,7 @@
         "answer": "chew"
       },
       {
-        "text": "The teacher explained chew in a simple way.",
+        "text": "You should chew your food slowly before swallowing.",
         "answer": "chew"
       }
     ],
@@ -4933,8 +4933,8 @@
         "answer": "civilization"
       },
       {
-        "text": "He heard civilization during a short discussion.",
-        "answer": "civilization"
+        "text": "Ancient civilizations developed writing systems to keep records.",
+        "answer": "civilizations"
       }
     ],
     "ch": "文明"
@@ -5233,8 +5233,8 @@
         "answer": "collectible"
       },
       {
-        "text": "The report included collectible as an important point.",
-        "answer": "collectible"
+        "text": "Old stamps can become valuable collectibles.",
+        "answer": "collectibles"
       }
     ],
     "ch": "可收藏的；收藏品"
@@ -5685,7 +5685,7 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "The class reviewed concentration before the quiz.",
+        "text": "Noise outside the classroom affected my concentration.",
         "answer": "concentration"
       },
       {
@@ -5849,7 +5849,7 @@
         "answer": "conform"
       },
       {
-        "text": "The article mentioned conform more than once.",
+        "text": "Students do not always have to conform to peer pressure.",
         "answer": "conform"
       },
       {
@@ -6069,7 +6069,7 @@
         "answer": "construction"
       },
       {
-        "text": "The class reviewed construction before the quiz.",
+        "text": "The construction of the new bridge will take two years.",
         "answer": "construction"
       },
       {
@@ -6385,7 +6385,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "We heard cope in a class conversation.",
+        "text": "Teenagers need healthy ways to cope with stress.",
         "answer": "cope"
       },
       {
@@ -6413,7 +6413,7 @@
         "answer": "cope with"
       },
       {
-        "text": "He remembered cope with from yesterday's lesson.",
+        "text": "She found it hard to cope with the heavy workload.",
         "answer": "cope with"
       }
     ],
@@ -6573,7 +6573,7 @@
         "answer": "courage"
       },
       {
-        "text": "I wrote courage in my notebook after the lesson.",
+        "text": "It takes courage to admit a mistake in public.",
         "answer": "courage"
       }
     ],
@@ -6673,7 +6673,7 @@
         "answer": "craze"
       },
       {
-        "text": "I wrote craze in my notebook after the lesson.",
+        "text": "The bubble tea craze spread quickly among teenagers.",
         "answer": "craze"
       }
     ],
@@ -7069,7 +7069,7 @@
         "answer": "culinary"
       },
       {
-        "text": "I wrote culinary in my notebook after the lesson.",
+        "text": "The culinary course teaches students basic cooking skills.",
         "answer": "culinary"
       },
       {
@@ -7309,8 +7309,8 @@
         "answer": "darwinian"
       },
       {
-        "text": "I saw darwinian in a school notice today.",
-        "answer": "darwinian"
+        "text": "The article discusses Darwinian ideas about natural selection.",
+        "answer": "Darwinian"
       },
       {
         "text": "The article gives a simple Darwinian explanation.",
@@ -7569,8 +7569,8 @@
         "answer": "decompose"
       },
       {
-        "text": "The teacher explained decompose in a simple way.",
-        "answer": "decompose"
+        "text": "Food waste decomposes faster in warm weather.",
+        "answer": "decomposes"
       },
       {
         "text": "Food waste can decompose into useful compost.",
@@ -7649,8 +7649,8 @@
         "answer": "defeat"
       },
       {
-        "text": "The teacher explained defeat in a simple way.",
-        "answer": "defeat"
+        "text": "The team was defeated in the final match.",
+        "answer": "defeated"
       },
       {
         "text": "The film treats defeat as a chance to grow.",
@@ -7833,7 +7833,7 @@
         "answer": "delivery"
       },
       {
-        "text": "He heard delivery during a short discussion.",
+        "text": "The delivery arrived later than expected.",
         "answer": "delivery"
       }
     ],
@@ -7969,8 +7969,8 @@
         "answer": "deny"
       },
       {
-        "text": "The class reviewed deny before the quiz.",
-        "answer": "deny"
+        "text": "He denied breaking the classroom window.",
+        "answer": "denied"
       },
       {
         "text": "It is hard to deny the importance of clear rules.",
@@ -8313,8 +8313,8 @@
         "answer": "disability"
       },
       {
-        "text": "The class reviewed disability before the quiz.",
-        "answer": "disability"
+        "text": "Public buildings should support people with disabilities.",
+        "answer": "disabilities"
       }
     ],
     "ch": "殘障；失能"
@@ -8665,7 +8665,7 @@
     "frequency": 6,
     "sentences": [
       {
-        "text": "He heard distract during a short discussion.",
+        "text": "Loud music can distract students from their revision.",
         "answer": "distract"
       },
       {
@@ -8773,7 +8773,7 @@
         "answer": "dived"
       },
       {
-        "text": "We watched the divers dive from the high platform.",
+        "text": "She plans to dive from the high platform.",
         "answer": "dive"
       }
     ],
@@ -8989,7 +8989,7 @@
         "answer": "doze"
       },
       {
-        "text": "We talked about doze in class this morning.",
+        "text": "He began to doze after reading only two pages.",
         "answer": "doze"
       },
       {
@@ -10413,8 +10413,8 @@
         "answer": "evolved"
       },
       {
-        "text": "The speaker used evolve when answering the question.",
-        "answer": "evolve"
+        "text": "Language evolves as people create new words.",
+        "answer": "evolves"
       }
     ],
     "ch": "演變；進化"
@@ -10585,7 +10585,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "I noticed existence in the reading passage.",
+        "text": "The discovery proved the existence of water under the ground.",
         "answer": "existence"
       },
       {
@@ -10973,8 +10973,8 @@
         "answer": "facility"
       },
       {
-        "text": "The teacher explained facility in a simple way.",
-        "answer": "facility"
+        "text": "The sports centre has excellent facilities for students.",
+        "answer": "facilities"
       }
     ],
     "ch": "設施；才能"
@@ -11249,7 +11249,7 @@
         "answer": "fault"
       },
       {
-        "text": "We copied fault into our notes carefully.",
+        "text": "It was not entirely his fault that the plan failed.",
         "answer": "fault"
       },
       {
@@ -11729,7 +11729,7 @@
         "answer": "fishy"
       },
       {
-        "text": "The speaker used fishy when answering the question.",
+        "text": "The excuse sounded fishy, so the teacher asked more questions.",
         "answer": "fishy"
       },
       {
@@ -11889,12 +11889,12 @@
         "answer": "flyer"
       },
       {
-        "text": "The caf? printed a colourful flyer for its opening.",
+        "text": "The cafe printed a colourful flyer for its opening.",
         "answer": "flyer"
       },
       {
-        "text": "The class reviewed flyer before the quiz.",
-        "answer": "flyer"
+        "text": "Volunteers handed out flyers for the charity concert.",
+        "answer": "flyers"
       }
     ],
     "ch": "傳單；飛行者"
@@ -12073,7 +12073,7 @@
         "answer": "forgive"
       },
       {
-        "text": "She used forgive in a clear sentence.",
+        "text": "It is not easy to forgive someone who has lied to you.",
         "answer": "forgive"
       }
     ],
@@ -12745,7 +12745,7 @@
     "frequency": 7,
     "sentences": [
       {
-        "text": "The email included generate in the first paragraph.",
+        "text": "Solar panels generate electricity from sunlight.",
         "answer": "generate"
       },
       {
@@ -13089,7 +13089,7 @@
         "answer": "goody"
       },
       {
-        "text": "He heard goody during a short discussion.",
+        "text": "Each child received a goody bag after the party.",
         "answer": "goody"
       },
       {
@@ -13209,8 +13209,8 @@
         "answer": "grade"
       },
       {
-        "text": "She used grade in a clear sentence.",
-        "answer": "grade"
+        "text": "Her grades improved after she changed her study habits.",
+        "answer": "grades"
       },
       {
         "text": "Her grade improved after weeks of practice.",
@@ -13249,8 +13249,8 @@
         "answer": "graffiti"
       },
       {
-        "text": "The speaker used graffiti when answering the question.",
-        "answer": "graffiti"
+        "text": "Graffiti on public walls can make a district look untidy.",
+        "answer": "Graffiti"
       },
       {
         "text": "The city removed graffiti from the station entrance.",
@@ -13505,7 +13505,7 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "A hacker tried to hack the company website.",
+        "text": "Someone tried to hack the company website.",
         "answer": "hack"
       },
       {
@@ -13569,7 +13569,7 @@
         "answer": "harm"
       },
       {
-        "text": "The email included harm in the first paragraph.",
+        "text": "Too much screen time can harm your sleep quality.",
         "answer": "harm"
       },
       {
@@ -14133,7 +14133,7 @@
         "answer": "horseshoe"
       },
       {
-        "text": "Our group practised horseshoe before lunch.",
+        "text": "The blacksmith fixed a horseshoe onto the horse.",
         "answer": "horseshoe"
       }
     ],
@@ -14733,8 +14733,8 @@
         "answer": "imply"
       },
       {
-        "text": "We talked about imply in class this morning.",
-        "answer": "imply"
+        "text": "The writer implies that money cannot solve every problem.",
+        "answer": "implies"
       }
     ],
     "ch": "暗示；意味著"
@@ -14869,7 +14869,7 @@
         "answer": "inaccessible"
       },
       {
-        "text": "The report included inaccessible as an important point.",
+        "text": "The village became inaccessible after the landslide.",
         "answer": "inaccessible"
       },
       {
@@ -14909,7 +14909,7 @@
         "answer": "inch"
       },
       {
-        "text": "The box moved forward inch by inch.",
+        "text": "The box moved forward an inch.",
         "answer": "inch"
       },
       {
@@ -16249,7 +16249,7 @@
         "answer": "justify"
       },
       {
-        "text": "The report included justify as an important point.",
+        "text": "You need evidence to justify your opinion in an essay.",
         "answer": "justify"
       },
       {
@@ -16293,7 +16293,7 @@
         "answer": "Kennedy Town"
       },
       {
-        "text": "There are many caf?s in Kennedy Town.",
+        "text": "There are many cafes in Kennedy Town.",
         "answer": "Kennedy Town"
       }
     ],
@@ -16765,7 +16765,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "Our group practised liar before lunch.",
+        "text": "Nobody trusted him because he was known as a liar.",
         "answer": "liar"
       },
       {
@@ -16929,7 +16929,7 @@
         "answer": "Lion Rock"
       },
       {
-        "text": "Lion Rock is one of Hong Kong?s famous landmarks.",
+        "text": "Lion Rock is one of Hong Kong's famous landmarks.",
         "answer": "Lion Rock"
       },
       {
@@ -17533,7 +17533,7 @@
         "answer": "map"
       },
       {
-        "text": "We used an online map to find the caf?.",
+        "text": "We used an online map to find the cafe.",
         "answer": "map"
       }
     ],
@@ -17833,7 +17833,7 @@
         "answer": "medium"
       },
       {
-        "text": "The speaker used medium when answering the question.",
+        "text": "The internet is a powerful medium for sharing information.",
         "answer": "medium"
       }
     ],
@@ -18409,8 +18409,8 @@
         "answer": "modify"
       },
       {
-        "text": "She repeated modify so everyone understood.",
-        "answer": "modify"
+        "text": "The teacher modified the task for younger students.",
+        "answer": "modified"
       },
       {
         "text": "Please modify the form to include a phone number.",
@@ -18965,7 +18965,7 @@
     "frequency": 6,
     "sentences": [
       {
-        "text": "We found a nearby caf? for lunch.",
+        "text": "We found a nearby cafe for lunch.",
         "answer": "nearby"
       },
       {
@@ -19013,7 +19013,7 @@
         "answer": "necessity"
       },
       {
-        "text": "We talked about necessity in class this morning.",
+        "text": "Clean water is a necessity, not a luxury.",
         "answer": "necessity"
       }
     ],
@@ -19233,7 +19233,7 @@
         "answer": "North Point"
       },
       {
-        "text": "We copied North Point into our notes carefully.",
+        "text": "North Point is a busy area on Hong Kong Island.",
         "answer": "North Point"
       }
     ],
@@ -19409,8 +19409,8 @@
         "answer": "object"
       },
       {
-        "text": "He heard object during a short discussion.",
-        "answer": "object"
+        "text": "Several parents objected to the plan for shorter lunch breaks.",
+        "answer": "objected"
       },
       {
         "text": "Please place each object back in the box.",
@@ -19609,8 +19609,8 @@
         "answer": "occupy"
       },
       {
-        "text": "I wrote occupy in my notebook after the lesson.",
-        "answer": "occupy"
+        "text": "The sofa occupies too much space in the small room.",
+        "answer": "occupies"
       },
       {
         "text": "Two tables occupy the corner of the room.",
@@ -20045,7 +20045,7 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "The speaker used origin when answering the question.",
+        "text": "The origin of the festival is explained in the article.",
         "answer": "origin"
       },
       {
@@ -20053,7 +20053,7 @@
         "answer": "origin"
       },
       {
-        "text": "The word has a Latin origin.",
+        "text": "The museum traced the origin of the ancient design.",
         "answer": "origin"
       }
     ],
@@ -20105,7 +20105,7 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "Our group practised outcome before lunch.",
+        "text": "The outcome of the debate was announced after lunch.",
         "answer": "outcome"
       },
       {
@@ -20129,7 +20129,7 @@
         "answer": "outdated"
       },
       {
-        "text": "He heard outdated during a short discussion.",
+        "text": "The computer system is outdated and needs replacing.",
         "answer": "outdated"
       },
       {
@@ -20269,8 +20269,8 @@
         "answer": "overcome"
       },
       {
-        "text": "I saw overcome in a school notice today.",
-        "answer": "overcome"
+        "text": "She overcame her fear of public speaking through practice.",
+        "answer": "overcame"
       },
       {
         "text": "She worked hard to overcome her weakness in math.",
@@ -20633,7 +20633,7 @@
         "answer": "parlor"
       },
       {
-        "text": "A barber parlor opened next to the caf?.",
+        "text": "A barber parlor opened next to the cafe.",
         "answer": "parlor"
       }
     ],
@@ -20713,7 +20713,7 @@
         "answer": "pass on"
       },
       {
-        "text": "We talked about pass on in class this morning.",
+        "text": "Please pass on this message to your parents.",
         "answer": "pass on"
       }
     ],
@@ -20973,7 +20973,7 @@
         "answer": "permanent"
       },
       {
-        "text": "We heard permanent in a class conversation.",
+        "text": "The accident left a permanent mark on the wall.",
         "answer": "permanent"
       }
     ],
@@ -21545,7 +21545,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "The class reviewed playmates before the quiz.",
+        "text": "Children learn to share when playing with their playmates.",
         "answer": "playmates"
       },
       {
@@ -21653,7 +21653,7 @@
         "answer": "poke"
       },
       {
-        "text": "We heard poke in a class conversation.",
+        "text": "Do not poke the animal through the cage.",
         "answer": "poke"
       }
     ],
@@ -22273,7 +22273,7 @@
         "answer": "pricey"
       },
       {
-        "text": "The caf? is small but a bit pricey.",
+        "text": "The cafe is small but a bit pricey.",
         "answer": "pricey"
       }
     ],
@@ -22325,7 +22325,7 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "This is a prime location for a caf?.",
+        "text": "This is a prime location for a cafe.",
         "answer": "prime"
       },
       {
@@ -22409,7 +22409,7 @@
         "answer": "prior"
       },
       {
-        "text": "The article mentioned prior more than once.",
+        "text": "Students need prior permission to leave school early.",
         "answer": "prior"
       },
       {
@@ -23785,7 +23785,7 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "A recruiter called her after reading her r?sum?.",
+        "text": "A recruiter called her after reading her resume.",
         "answer": "recruiter"
       },
       {
@@ -23853,8 +23853,8 @@
         "answer": "recyclers"
       },
       {
-        "text": "He remembered recyclers from yesterday's lesson.",
-        "answer": "recyclers"
+        "text": "Recyclers collect paper and plastic from the housing estate.",
+        "answer": "Recyclers"
       }
     ],
     "ch": "回收者；回收商"
@@ -24393,8 +24393,8 @@
         "answer": "relocate"
       },
       {
-        "text": "The class reviewed relocate before the quiz.",
-        "answer": "relocate"
+        "text": "The family relocated to a quieter district last year.",
+        "answer": "relocated"
       }
     ],
     "ch": "搬遷；重新安置"
@@ -24433,7 +24433,7 @@
         "answer": "rely on"
       },
       {
-        "text": "I wrote rely on in my notebook after the lesson.",
+        "text": "Students should not rely on online answers all the time.",
         "answer": "rely on"
       }
     ],
@@ -24669,8 +24669,8 @@
         "answer": "resist"
       },
       {
-        "text": "The teacher explained resist in a simple way.",
-        "answer": "resist"
+        "text": "He resisted the temptation to check his phone during study time.",
+        "answer": "resisted"
       },
       {
         "text": "He tried to resist the pressure to give up.",
@@ -24693,7 +24693,7 @@
         "answer": "resistant"
       },
       {
-        "text": "I saw resistant in a school notice today.",
+        "text": "Some bacteria are resistant to common medicines.",
         "answer": "resistant"
       }
     ],
@@ -25009,7 +25009,7 @@
         "answer": "revolution"
       },
       {
-        "text": "We heard revolution in a class conversation.",
+        "text": "The digital revolution has changed how people communicate.",
         "answer": "revolution"
       },
       {
@@ -25229,7 +25229,7 @@
         "answer": "riverside"
       },
       {
-        "text": "A caf? opened on the riverside path.",
+        "text": "A cafe opened on the riverside path.",
         "answer": "riverside"
       },
       {
@@ -25549,7 +25549,7 @@
         "answer": "sap"
       },
       {
-        "text": "She repeated sap so everyone understood.",
+        "text": "The tree sap stuck to my fingers.",
         "answer": "sap"
       },
       {
@@ -25633,7 +25633,7 @@
         "answer": "satisfy"
       },
       {
-        "text": "We talked about satisfy in class this morning.",
+        "text": "The ending did not satisfy readers who expected a clear answer.",
         "answer": "satisfy"
       }
     ],
@@ -25865,7 +25865,7 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "We heard scrawl in a class conversation.",
+        "text": "Please do not scrawl your name on the desk.",
         "answer": "scrawl"
       },
       {
@@ -25965,7 +25965,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "This caf? offers seasonal drinks in summer.",
+        "text": "This cafe offers seasonal drinks in summer.",
         "answer": "seasonal"
       },
       {
@@ -26133,7 +26133,7 @@
         "answer": "self"
       },
       {
-        "text": "She carried herself with confidence and self control.",
+        "text": "The idea of self is hard to define.",
         "answer": "self"
       }
     ],
@@ -26289,7 +26289,7 @@
         "answer": "session"
       },
       {
-        "text": "We talked about session in class this morning.",
+        "text": "The revision session lasted for ninety minutes.",
         "answer": "session"
       },
       {
@@ -27233,7 +27233,7 @@
         "answer": "sometime"
       },
       {
-        "text": "We should visit that caf? sometime.",
+        "text": "We should visit that cafe sometime.",
         "answer": "sometime"
       }
     ],
@@ -27309,7 +27309,7 @@
         "answer": "South Korea"
       },
       {
-        "text": "He heard South Korea during a short discussion.",
+        "text": "South Korea is famous for technology and pop culture.",
         "answer": "South Korea"
       },
       {
@@ -27345,8 +27345,8 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "She used specialise in a clear sentence.",
-        "answer": "specialise"
+        "text": "The doctor specialises in children’s health.",
+        "answer": "specialises"
       },
       {
         "text": "This store specialises in handmade shoes.",
@@ -28073,7 +28073,7 @@
         "answer": "step"
       },
       {
-        "text": "He heard footsteps on the step outside.",
+        "text": "He paused on the step outside.",
         "answer": "step"
       }
     ],
@@ -28313,7 +28313,7 @@
         "answer": "strike"
       },
       {
-        "text": "I noticed strike in the reading passage.",
+        "text": "Workers went on strike to demand safer conditions.",
         "answer": "strike"
       }
     ],
@@ -28629,7 +28629,7 @@
         "answer": "supernatural"
       },
       {
-        "text": "I noticed supernatural in the reading passage.",
+        "text": "The novel includes several supernatural events.",
         "answer": "supernatural"
       },
       {
@@ -28793,7 +28793,7 @@
         "answer": "swear"
       },
       {
-        "text": "She used swear in a clear sentence.",
+        "text": "Students should not swear in the classroom.",
         "answer": "swear"
       }
     ],
@@ -28809,8 +28809,8 @@
         "answer": "sweep"
       },
       {
-        "text": "The guide used sweep in a useful example.",
-        "answer": "sweep"
+        "text": "The cleaner swept the leaves away from the entrance.",
+        "answer": "swept"
       },
       {
         "text": "The team managed a clean sweep of the prizes.",
@@ -28989,7 +28989,7 @@
         "answer": "taco"
       },
       {
-        "text": "The caf? now sells fish tacos on weekends.",
+        "text": "The cafe now sells fish tacos on weekends.",
         "answer": "tacos"
       },
       {
@@ -29025,7 +29025,7 @@
     "frequency": null,
     "sentences": [
       {
-        "text": "He remembered Tai Koo from yesterday's lesson.",
+        "text": "Tai Koo has many shops and office buildings.",
         "answer": "Tai Koo"
       },
       {
@@ -29109,7 +29109,7 @@
         "answer": "talentless"
       },
       {
-        "text": "She used talentless in a clear sentence.",
+        "text": "He felt talentless at first, but practice changed everything.",
         "answer": "talentless"
       },
       {
@@ -29769,8 +29769,8 @@
         "answer": "threaten"
       },
       {
-        "text": "Our group practised threaten before lunch.",
-        "answer": "threaten"
+        "text": "Heavy rain threatened to cancel the outdoor concert.",
+        "answer": "threatened"
       },
       {
         "text": "The cuts could threaten the future of the project.",
@@ -29829,7 +29829,7 @@
         "answer": "thus"
       },
       {
-        "text": "She repeated thus so everyone understood.",
+        "text": "The road was flooded; thus, the bus route was changed.",
         "answer": "thus"
       },
       {
@@ -30333,7 +30333,7 @@
         "answer": "tricky"
       },
       {
-        "text": "The teacher explained tricky in a simple way.",
+        "text": "The final question was tricky but fair.",
         "answer": "tricky"
       }
     ],
@@ -30645,7 +30645,7 @@
     "frequency": 2,
     "sentences": [
       {
-        "text": "Our group practised tutor before lunch.",
+        "text": "Her tutor helped her prepare for the speaking exam.",
         "answer": "tutor"
       },
       {
@@ -30853,7 +30853,7 @@
         "answer": "undergo"
       },
       {
-        "text": "We talked about undergo in class this morning.",
+        "text": "The old theatre will undergo major repairs this summer.",
         "answer": "undergo"
       }
     ],
@@ -30969,7 +30969,7 @@
         "answer": "unfairly"
       },
       {
-        "text": "We heard unfairly in a class conversation.",
+        "text": "The player felt he had been treated unfairly.",
         "answer": "unfairly"
       },
       {
@@ -31133,7 +31133,7 @@
         "answer": "universe"
       },
       {
-        "text": "I wrote universe in my notebook after the lesson.",
+        "text": "Scientists still have many questions about the universe.",
         "answer": "universe"
       }
     ],
@@ -31253,7 +31253,7 @@
         "answer": "unpopular"
       },
       {
-        "text": "I noticed unpopular in the reading passage.",
+        "text": "The new rule was unpopular with many students.",
         "answer": "unpopular"
       }
     ],
@@ -31469,7 +31469,7 @@
         "answer": "usage"
       },
       {
-        "text": "The teacher explained the usage of the new word.",
+        "text": "Phone usage increased sharply during the holiday.",
         "answer": "usage"
       },
       {
@@ -32189,7 +32189,7 @@
         "answer": "waterfront"
       },
       {
-        "text": "A new caf? opened on the waterfront.",
+        "text": "A new cafe opened on the waterfront.",
         "answer": "waterfront"
       },
       {
@@ -32225,8 +32225,8 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "She used wealthier in a clear sentence.",
-        "answer": "wealthier"
+        "text": "Wealthier countries should help poorer ones during crises.",
+        "answer": "Wealthier"
       },
       {
         "text": "The company became wealthier after the merger.",
@@ -32525,7 +32525,7 @@
     "frequency": 13,
     "sentences": [
       {
-        "text": "Strong wind shook the windows.",
+        "text": "A strong wind shook the house.",
         "answer": "wind"
       },
       {
@@ -32633,8 +32633,8 @@
         "answer": "withdraw"
       },
       {
-        "text": "Our group practised withdraw before lunch.",
-        "answer": "withdraw"
+        "text": "She withdrew her application after receiving another offer.",
+        "answer": "withdrew"
       }
     ],
     "ch": "撤回；提款"

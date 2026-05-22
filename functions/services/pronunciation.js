@@ -145,19 +145,19 @@ async function synthesizeSpeech({
   const spokenText = cleanSegments.length ? cleanSegments.join(' ') : String(text || '').trim();
   const escapedText = escapeSsmlText(spokenText);
   const listeningRateByLevel = {
-    L1: '-10%',
-    L2: '-8%',
-    L3: '-6%',
-    L4: '-4%',
-    L5: '-2%',
-    'L5*': '0%',
-    L5_STAR: '0%'
+    L1: '-12%',
+    L2: '-10%',
+    L3: '-8%',
+    L4: '-6%',
+    L5: '-4%',
+    'L5*': '-4%',
+    L5_STAR: '-4%'
   };
   const isListening = mode === 'listening';
   const isVerbTable = mode === 'verb-table';
   const isVocabWord = mode === 'vocab-word';
   const rate = isListening ? (listeningRateByLevel[level] || '0%') : (isVerbTable ? '-8%' : '0%');
-  const volume = '+10%';
+  const volume = '+20%';
   const langLocale = accentLocale || locale;
   const speechBody = cleanSegments.length
     ? cleanSegments.map((segment, index) => {
@@ -169,7 +169,7 @@ async function synthesizeSpeech({
   const ssml = [
     `<speak version="1.0" xml:lang="${locale}">`,
     `  <voice name="${speechConfig.speechSynthesisVoiceName}">`,
-    isVocabWord ? `    ${speechBody}` : `    <prosody rate="${rate}" volume="${volume}">${speechBody}</prosody>`,
+    `    <prosody rate="${rate}" volume="${volume}">${speechBody}</prosody>`,
     '  </voice>',
     '</speak>'
   ].join('');

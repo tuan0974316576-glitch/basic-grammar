@@ -10,8 +10,8 @@ import com.getcapacitor.annotation.CapacitorPlugin;
 public class AndroidBgmPlugin extends Plugin {
     @PluginMethod
     public void start(PluginCall call) {
-        AndroidBgmPlayer.start(getContext());
-        call.resolve(new JSObject().put("started", true));
+        boolean started = AndroidBgmPlayer.start(getContext());
+        call.resolve(new JSObject().put("started", started));
     }
 
     @PluginMethod

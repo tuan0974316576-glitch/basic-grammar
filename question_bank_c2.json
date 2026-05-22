@@ -85,7 +85,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "He heard africanize during a short discussion.",
+        "text": "The reformers sought to africanize the university's reading lists.",
         "answer": "africanize"
       },
       {
@@ -289,7 +289,7 @@
         "answer": "apocalypse"
       },
       {
-        "text": "She used apocalypse in a clear sentence.",
+        "text": "News channels portrayed the financial crash as an economic apocalypse.",
         "answer": "apocalypse"
       },
       {
@@ -1425,7 +1425,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "The guide used coerce in a useful example.",
+        "text": "Officials must not coerce suspects into signing confessions.",
         "answer": "coerce"
       },
       {
@@ -1825,7 +1825,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "The email included critter in the first paragraph.",
+        "text": "A tiny critter darted between the rocks at dusk.",
         "answer": "critter"
       },
       {
@@ -2045,7 +2045,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "The guide used deface in a useful example.",
+        "text": "Vandals tried to deface the statue with spray paint.",
         "answer": "deface"
       },
       {
@@ -2165,7 +2165,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "He heard deprave during a short discussion.",
+        "text": "The essay argues that absolute power can deprave even idealists.",
         "answer": "deprave"
       },
       {
@@ -2365,7 +2365,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "We heard didactic in a class conversation.",
+        "text": "The novel's didactic ending left little room for interpretation.",
         "answer": "didactic"
       },
       {
@@ -2529,7 +2529,7 @@
         "answer": "dissociate"
       },
       {
-        "text": "The report included dissociate as an important point.",
+        "text": "The charity moved quickly to dissociate itself from the scandal.",
         "answer": "dissociate"
       },
       {
@@ -2965,7 +2965,7 @@
     "frequency": 1,
     "sentences": [
       {
-        "text": "The email included excel in the first paragraph.",
+        "text": "Students who excel in mathematics are offered advanced seminars.",
         "answer": "excel"
       },
       {
@@ -3129,7 +3129,7 @@
         "answer": "fad"
       },
       {
-        "text": "We talked about fad in class this morning.",
+        "text": "The diet was dismissed as a fad after sales collapsed.",
         "answer": "fad"
       },
       {
@@ -3309,7 +3309,7 @@
         "answer": "fetishist"
       },
       {
-        "text": "We heard fetishist in a class conversation.",
+        "text": "The critic called him a fetishist of cinematic detail.",
         "answer": "fetishist"
       },
       {
@@ -3613,7 +3613,7 @@
         "answer": "forage"
       },
       {
-        "text": "She used forage in a clear sentence.",
+        "text": "Volunteers forage for edible plants under expert supervision.",
         "answer": "forage"
       }
     ],
@@ -4069,7 +4069,7 @@
         "answer": "grapple"
       },
       {
-        "text": "We talked about grapple in class this morning.",
+        "text": "Courts still grapple with how to regulate facial recognition.",
         "answer": "grapple"
       },
       {
@@ -5573,7 +5573,7 @@
         "answer": "long for"
       },
       {
-        "text": "The email included long for in the first paragraph.",
+        "text": "Exiles often long for the streets and voices of home.",
         "answer": "long for"
       }
     ],
@@ -6213,7 +6213,7 @@
         "answer": "nauseate"
       },
       {
-        "text": "The report included nauseate as an important point.",
+        "text": "The chemical fumes were strong enough to nauseate the crew.",
         "answer": "nauseate"
       }
     ],
@@ -6849,7 +6849,7 @@
         "answer": "personhood"
       },
       {
-        "text": "She used personhood in a clear sentence.",
+        "text": "Philosophers disagree about when personhood should be legally recognized.",
         "answer": "personhood"
       },
       {
@@ -7149,7 +7149,7 @@
         "answer": "posits"
       },
       {
-        "text": "The guide used posit in a useful example.",
+        "text": "The authors posit a link between sleep loss and poor judgment.",
         "answer": "posit"
       },
       {
@@ -7613,7 +7613,7 @@
         "answer": "rake in"
       },
       {
-        "text": "I noticed rake in in the reading passage.",
+        "text": "The new app began to rake in subscription revenue within weeks.",
         "answer": "rake in"
       }
     ],

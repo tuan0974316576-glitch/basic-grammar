@@ -52,6 +52,22 @@ function getNextTargetVoice() {
     
     return selectedVoice;
 }
+const READING_CHOICE_MODE = 'READING_CHOICE';
+
+function preventGameNativeSelection(event) {
+    event.preventDefault();
+    return false;
+}
+
+['contextmenu', 'selectstart', 'dragstart'].forEach((eventName) => {
+    document.addEventListener(eventName, preventGameNativeSelection, { capture: true });
+});
+
+document.addEventListener('selectionchange', () => {
+    const selection = typeof window.getSelection === 'function' ? window.getSelection() : null;
+    if (selection && !selection.isCollapsed) selection.removeAllRanges();
+});
+
 let currentPracticeMode = 'READING'; // �A�Oģʽ
 let selectedRace = 'VANGUARDS'; // �A�O�N�壨��ң�
 let enemyRace = 'VANGUARDS'; // AI ���ַN��
@@ -65,6 +81,7 @@ let speakingPcmAudioContext = null;
 let speakingPcmSource = null;
 let speakingPcmProcessor = null;
 let speakingPcmSilenceGain = null;
+let speakingPcmSink = null;
 let speakingPcmChunks = [];
 let speakingPcmSampleRate = 16000;
 let speakingPcmClosePromise = Promise.resolve();
@@ -93,7 +110,7 @@ let speakingSilenceMs = 1000;
 let speakingTailBufferMs = 450;
 let speakingSilenceThreshold = 0.014;
 let speakingMaxRecordingMs = 10000;
-let speakingUseAzureAssessment = true;
+let speakingUseLocalAssessment = true;
 let speakingNoVoiceTimeout = null;
 let speakingNoVoiceTimeoutMs = 5000;
 let speakingNativeAudioPrepared = false;
@@ -103,6 +120,11 @@ let speakingDebriefActiveLogIndex = null;
 let speakingDebriefPlaybackAudio = null;
 let speakingDebriefPlaybackObjectUrl = '';
 let speakingDebriefBgmRestoreVolume = null;
+let speakingDebriefNativePlaybackActive = false;
+let speakingNativeCapturePromise = null;
+let speakingNativeWaveTimer = null;
+let speakingNativeLevelListener = null;
+let localSpeakingPreparePromise = null;
 const listeningTtsCache = new Map();
 const listeningPreparedAudioCache = new Map();
 let listeningPlaybackAudio = null;
@@ -114,7 +136,10 @@ let listeningTtsDbPromise = null;
 const LISTENING_TTS_DB_NAME = 'vocabConquerorListeningTts';
 const LISTENING_TTS_DB_VERSION = 1;
 const LISTENING_TTS_STORE_NAME = 'audio';
-const LISTENING_VOICE_GAIN = 1.2;
+const LISTENING_TTS_AUDIO_VERSION = 'v2';
+const LISTENING_TTS_MANIFEST_AUDIO_VERSIONS = new Set(['v1', LISTENING_TTS_AUDIO_VERSION]);
+const LISTENING_VOICE_DEFAULT_VOLUME = 1.8;
+const LISTENING_VOICE_MAX_VOLUME = 3.0;
 const VOCAB_PREVIEW_VOICE_PROFILE = {
     voiceName: 'en-US-AndrewMultilingualNeural',
     accentLocale: 'en-US'
@@ -131,14 +156,14 @@ const LISTENING_VOICE_ROTATION = [
         accentLocale: 'en-US'
     },
     {
-        label: 'Seraphina (Australia)',
-        voiceName: 'de-DE-SeraphinaMultilingualNeural',
-        accentLocale: 'en-AU'
+        label: 'Jenny (US)',
+        voiceName: 'en-US-JennyNeural',
+        accentLocale: 'en-US'
     },
     {
-        label: 'Florian (UK)',
-        voiceName: 'de-DE-FlorianMultilingualNeural',
-        accentLocale: 'en-GB'
+        label: 'Guy (US)',
+        voiceName: 'en-US-GuyNeural',
+        accentLocale: 'en-US'
     }
 ];
 let listeningVoiceCycleIndex = null;
@@ -147,10 +172,93 @@ let listeningPromptVoiceProfile = null;
 let pendingBattleVocab = null;
 let userSentenceProgress = { listening: {}, speaking: {} };
 let battleLog = [];
+let playerShotHistory = [];
 let battleUsedWordKeys = new Set();
 let attackResolutionLocked = false;
 const DEFAULT_SPEAKING_ASSESSMENT_BASE = 'http://localhost:8787';
-const SPEAKING_PASS_SCORE = 75;
+const SPEAKING_PASS_SCORE = 65;
+const SPEAKING_LEGACY_PASS_SIMILARITY = 0.7;
+const LOCAL_SPEAKING_ENGINE = 'vosk-local';
+const LOCAL_IPA_WORDS = {
+    a: ['ə'],
+    an: ['ən'],
+    the: ['ð', 'ə'],
+    to: ['t', 'uː'],
+    of: ['ə', 'v'],
+    and: ['æ', 'n', 'd'],
+    in: ['ɪ', 'n'],
+    on: ['ɒ', 'n'],
+    at: ['æ', 't'],
+    for: ['f', 'ɔːr'],
+    from: ['f', 'r', 'ʌ', 'm'],
+    with: ['w', 'ɪ', 'ð'],
+    is: ['ɪ', 'z'],
+    are: ['ɑːr'],
+    am: ['æ', 'm'],
+    was: ['w', 'ɒ', 'z'],
+    were: ['w', 'ɜːr'],
+    be: ['b', 'iː'],
+    been: ['b', 'ɪ', 'n'],
+    being: ['b', 'iː', 'ɪ', 'ŋ'],
+    i: ['aɪ'],
+    you: ['j', 'uː'],
+    he: ['h', 'iː'],
+    she: ['ʃ', 'iː'],
+    it: ['ɪ', 't'],
+    we: ['w', 'iː'],
+    they: ['ð', 'eɪ'],
+    my: ['m', 'aɪ'],
+    your: ['j', 'ɔːr'],
+    his: ['h', 'ɪ', 'z'],
+    her: ['h', 'ɜːr'],
+    our: ['aʊ', 'ər'],
+    their: ['ð', 'eər'],
+    this: ['ð', 'ɪ', 's'],
+    that: ['ð', 'æ', 't'],
+    these: ['ð', 'iː', 'z'],
+    those: ['ð', 'oʊ', 'z'],
+    not: ['n', 'ɒ', 't'],
+    no: ['n', 'oʊ'],
+    yes: ['j', 'e', 's'],
+    do: ['d', 'uː'],
+    does: ['d', 'ʌ', 'z'],
+    did: ['d', 'ɪ', 'd'],
+    have: ['h', 'æ', 'v'],
+    has: ['h', 'æ', 'z'],
+    had: ['h', 'æ', 'd'],
+    can: ['k', 'æ', 'n'],
+    could: ['k', 'ʊ', 'd'],
+    will: ['w', 'ɪ', 'l'],
+    would: ['w', 'ʊ', 'd'],
+    should: ['ʃ', 'ʊ', 'd'],
+    may: ['m', 'eɪ'],
+    might: ['m', 'aɪ', 't'],
+    must: ['m', 'ʌ', 's', 't'],
+    apple: ['æ', 'p', 'ə', 'l'],
+    pronunciation: ['p', 'r', 'ə', 'n', 'ʌ', 'n', 's', 'i', 'eɪ', 'ʃ', 'ə', 'n'],
+    activity: ['æ', 'k', 't', 'ɪ', 'v', 'ə', 't', 'i'],
+    action: ['æ', 'k', 'ʃ', 'ə', 'n'],
+    across: ['ə', 'k', 'r', 'ɒ', 's'],
+    because: ['b', 'ɪ', 'k', 'ɔː', 'z'],
+    beautiful: ['b', 'j', 'uː', 't', 'ɪ', 'f', 'ə', 'l'],
+    people: ['p', 'iː', 'p', 'ə', 'l'],
+    school: ['s', 'k', 'uː', 'l'],
+    english: ['ɪ', 'ŋ', 'g', 'l', 'ɪ', 'ʃ']
+};
+const LOCAL_IPA_RULES = [
+    ['tion', ['ʃ', 'ə', 'n']], ['sion', ['ʒ', 'ə', 'n']], ['cious', ['ʃ', 'ə', 's']], ['tious', ['ʃ', 'ə', 's']],
+    ['ough', ['ʌ', 'f']], ['igh', ['aɪ']], ['eigh', ['eɪ']], ['air', ['eər']], ['ear', ['ɪər']],
+    ['ure', ['j', 'ʊər']], ['qu', ['k', 'w']], ['ch', ['tʃ']], ['sh', ['ʃ']], ['th', ['θ']],
+    ['ph', ['f']], ['ng', ['ŋ']], ['ck', ['k']], ['wh', ['w']], ['wr', ['r']], ['kn', ['n']],
+    ['ee', ['iː']], ['ea', ['iː']], ['oo', ['uː']], ['ai', ['eɪ']], ['ay', ['eɪ']], ['oa', ['oʊ']],
+    ['ow', ['aʊ']], ['oy', ['ɔɪ']], ['oi', ['ɔɪ']], ['ou', ['aʊ']], ['er', ['ɜːr']], ['ir', ['ɜːr']],
+    ['ur', ['ɜːr']], ['ar', ['ɑːr']], ['or', ['ɔːr']], ['al', ['ɔː', 'l']], ['le', ['ə', 'l']]
+];
+const LOCAL_IPA_LETTERS = {
+    a: 'æ', b: 'b', c: 'k', d: 'd', e: 'e', f: 'f', g: 'g', h: 'h', i: 'ɪ', j: 'dʒ',
+    k: 'k', l: 'l', m: 'm', n: 'n', o: 'ɒ', p: 'p', q: 'k', r: 'r', s: 's', t: 't',
+    u: 'ʌ', v: 'v', w: 'w', x: 'k s', y: 'j', z: 'z'
+};
 
 function isCoarseTouchDevice() {
     return window.matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0;
@@ -188,6 +296,11 @@ function updateOrientationGuard() {
     }
 
     tryLockOrientation(desiredMode);
+
+    if (isPhoneLikeDevice()) {
+        guard.style.display = 'none';
+        return;
+    }
 
     const currentMode = window.innerWidth > window.innerHeight ? 'landscape' : 'portrait';
     const isValid = currentMode === desiredMode;
@@ -238,11 +351,13 @@ window.addEventListener('orientationchange', updateOrientationGuard);
         return '';
     }
 
-function canUseAzureSpeakingAssessment() {
+function canUseLocalSpeakingAssessment() {
+        if (isIosNativeRuntime() && getIosNativeSpeechCapturePlugin()) {
+            return true;
+        }
         const AudioCtx = window.AudioContext || window.webkitAudioContext;
         return Boolean(
-            speakingUseAzureAssessment &&
-            getSpeakingAssessmentBaseUrl() &&
+            speakingUseLocalAssessment &&
             navigator.mediaDevices &&
             typeof navigator.mediaDevices.getUserMedia === 'function' &&
             AudioCtx
@@ -255,6 +370,10 @@ function canUseAzureSpeakingAssessment() {
         } catch (_error) {
             return '';
         }
+    }
+
+    function isIosNativeRuntime() {
+        return getNativePlatformName() === 'ios';
     }
 
     function getSpeakingMonitorGain() {
@@ -272,41 +391,65 @@ function canUseAzureSpeakingAssessment() {
     }
 
     async function prepareNativeAudioForSpeakingCapture() {
-        if (getNativePlatformName() !== 'ios') return;
+        const platform = getNativePlatformName();
+        if (!platform) return;
+
+        if (platform === 'android' || platform === 'ios') {
+            if (typeof requestBgmDuck === 'function') requestBgmDuck('speaking-capture', 120);
+            document.documentElement.classList.add('speaking-capture-active');
+            // On iOS, WebKit owns getUserMedia's audio session. Letting the native
+            // audio plugin also enter recording mode can make later captures/SFX stall.
+            if (platform === 'android' || platform === 'ios') return;
+        }
 
         speakingShouldResumeNativeBgm = typeof isMusicPlaying === 'boolean' ? isMusicPlaying : true;
         speakingNativeAudioPrepared = true;
-        document.documentElement.classList.add('speaking-capture-active');
 
         const gameAudio = window.Capacitor?.Plugins?.GameAudio;
         if (gameAudio && typeof gameAudio.prepareForRecording === 'function') {
-            await gameAudio.prepareForRecording({ resumeBgm: speakingShouldResumeNativeBgm }).catch(error => {
+            await gameAudio.prepareForRecording({
+                resumeBgm: speakingShouldResumeNativeBgm,
+                keepBgm: platform === 'ios',
+                webManaged: platform === 'ios'
+            }).catch(error => {
                 console.log('[Speaking Debug] Native audio prepare skipped:', error?.message || error);
             });
             return;
         }
 
-        if (typeof pauseBgm === 'function') {
+        if (platform !== 'ios' && typeof pauseBgm === 'function') {
             await pauseBgm().catch(() => {});
         }
     }
 
     function restoreNativeAudioAfterSpeakingCapture() {
+        const platform = getNativePlatformName();
+        if (platform === 'android' || platform === 'ios') {
+            if (typeof releaseBgmDuck === 'function') releaseBgmDuck('speaking-capture', 120);
+            document.documentElement.classList.remove('speaking-capture-active');
+            return;
+        }
+
         if (!speakingNativeAudioPrepared) return;
 
         const shouldResume = speakingShouldResumeNativeBgm;
         speakingNativeAudioPrepared = false;
         document.documentElement.classList.remove('speaking-capture-active');
+        if (platform === 'ios' && typeof releaseBgmDuck === 'function') releaseBgmDuck('speaking-capture', 120);
 
         const gameAudio = window.Capacitor?.Plugins?.GameAudio;
         if (gameAudio && typeof gameAudio.finishRecording === 'function') {
-            gameAudio.finishRecording({ resumeBgm: shouldResume }).catch(error => {
+            gameAudio.finishRecording({
+                resumeBgm: shouldResume,
+                keepBgm: platform === 'ios',
+                webManaged: platform === 'ios'
+            }).catch(error => {
                 console.log('[Speaking Debug] Native audio restore skipped:', error?.message || error);
             });
             return;
         }
 
-        if (shouldResume && typeof playBgm === 'function') {
+        if (platform !== 'ios' && shouldResume && typeof playBgm === 'function') {
             setTimeout(() => playBgm(), 120);
         }
     }
@@ -407,6 +550,268 @@ function canUseAzureSpeakingAssessment() {
         if (score >= 80) return 'var(--success)';
         if (score >= 40) return '#fbbf24';
         return 'var(--danger)';
+    }
+
+    function clampNumber(value, min, max) {
+        const number = Number(value);
+        if (!Number.isFinite(number)) return min;
+        return Math.max(min, Math.min(max, number));
+    }
+
+    function getLocalVoskSpeechPlugin() {
+        return window.Capacitor?.Plugins?.VoskSpeech || null;
+    }
+
+    function prepareLocalSpeakingEngine() {
+        const plugin = getLocalVoskSpeechPlugin();
+        if (!plugin || typeof plugin.prepare !== 'function') {
+            return Promise.resolve({ ready: false, engine: 'local-acoustic' });
+        }
+        if (!localSpeakingPreparePromise) {
+            localSpeakingPreparePromise = plugin.prepare({})
+                .then(result => {
+                    console.log('[Speaking Debug] Local Vosk engine ready', result?.model || '');
+                    return result;
+                })
+                .catch(error => {
+                    localSpeakingPreparePromise = null;
+                    console.warn('[Speaking Debug] Local Vosk prepare failed:', describeJsError(error));
+                    throw error;
+                });
+        }
+        return localSpeakingPreparePromise;
+    }
+
+    function buildLocalSpeakingGrammar(expectedText, targetWord = '') {
+        const phrases = [];
+        const addPhrase = (phrase) => {
+            const clean = String(phrase || '').toLowerCase().replace(/[^a-z0-9'\s]/g, ' ').replace(/\s+/g, ' ').trim();
+            if (clean && !phrases.includes(clean)) phrases.push(clean);
+        };
+
+        addPhrase(expectedText);
+        addPhrase(targetWord);
+        splitSpeakingWords(expectedText).forEach(addPhrase);
+        phrases.push('[unk]');
+        return phrases.slice(0, 36);
+    }
+
+    function splitSpeakingWords(text) {
+        return String(text || '')
+            .toLowerCase()
+            .replace(/[^a-z0-9'\s-]/g, ' ')
+            .split(/\s+/)
+            .map(word => word.replace(/^-+|-+$/g, ''))
+            .filter(Boolean);
+    }
+
+    function getLocalWordIpaPhonemes(word) {
+        const normalized = normalizeAssessmentWord(word);
+        if (!normalized) return ['?'];
+        if (LOCAL_IPA_WORDS[normalized]) return [...LOCAL_IPA_WORDS[normalized]];
+
+        const phonemes = [];
+        let index = 0;
+        while (index < normalized.length) {
+            let matched = false;
+            for (const [pattern, sounds] of LOCAL_IPA_RULES) {
+                if (normalized.startsWith(pattern, index)) {
+                    phonemes.push(...sounds);
+                    index += pattern.length;
+                    matched = true;
+                    break;
+                }
+            }
+            if (matched) continue;
+
+            const letterSound = LOCAL_IPA_LETTERS[normalized[index]] || normalized[index];
+            phonemes.push(...String(letterSound).split(/\s+/).filter(Boolean));
+            index += 1;
+        }
+
+        if (normalized.endsWith('e') && phonemes.length > 2 && phonemes[phonemes.length - 1] === 'e') {
+            phonemes.pop();
+        }
+
+        return phonemes.length ? phonemes.slice(0, 14) : ['?'];
+    }
+
+    function getStableScoreJitter(seed, spread = 12) {
+        const source = String(seed || '');
+        let hash = 2166136261;
+        for (let i = 0; i < source.length; i++) {
+            hash ^= source.charCodeAt(i);
+            hash = Math.imul(hash, 16777619);
+        }
+        const normalized = ((hash >>> 0) % 1000) / 1000;
+        return Math.round((normalized - 0.5) * spread);
+    }
+
+    function buildLocalPhonemeScores(word, wordScore, options = {}) {
+        const phonemes = getLocalWordIpaPhonemes(word);
+        const missing = options.missing || wordScore <= 5;
+        return phonemes.map((phoneme, index) => {
+            const score = missing
+                ? 0
+                : clampNumber(Math.round(wordScore + getStableScoreJitter(`${word}:${phoneme}:${index}`, 16)), 18, 99);
+            return {
+                phoneme,
+                accuracy: score,
+                nBestPhonemes: [],
+                errorType: missing ? 'Omission' : (score < 40 ? 'Mispronunciation' : 'None')
+            };
+        });
+    }
+
+    function getSpeakingPcmMetrics(chunks, sampleRate = 16000) {
+        const safeSampleRate = sampleRate > 0 ? sampleRate : 16000;
+        let total = 0;
+        let sum = 0;
+        let peak = 0;
+        let active = 0;
+        const activeGate = 0.018;
+
+        for (const chunk of (chunks || [])) {
+            if (!chunk) continue;
+            total += chunk.length;
+            for (let i = 0; i < chunk.length; i++) {
+                const value = chunk[i] || 0;
+                const abs = Math.abs(value);
+                sum += value * value;
+                if (abs > peak) peak = abs;
+                if (abs >= activeGate) active += 1;
+            }
+        }
+
+        const rms = total ? Math.sqrt(sum / total) : 0;
+        const durationMs = total ? Math.round((total / safeSampleRate) * 1000) : 0;
+        const activeRatio = total ? active / total : 0;
+        const hasVoice = durationMs >= 350 && (peak >= 0.018 || rms >= 0.004);
+        const volumeScore = clampNumber((rms / 0.055) * 100, 0, 100);
+        const activityScore = clampNumber(activeRatio * 180, 0, 100);
+        const quality = hasVoice
+            ? clampNumber(Math.round((volumeScore * 0.45) + (activityScore * 0.35) + 20), 25, 96)
+            : 0;
+
+        return { sampleRate: safeSampleRate, durationMs, rms, peak, activeRatio, hasVoice, quality };
+    }
+
+    function buildLocalWordEntries(expectedText, nativeWords = [], metrics = {}) {
+        const expectedWords = splitSpeakingWords(expectedText);
+        const recognizedWords = (Array.isArray(nativeWords) ? nativeWords : [])
+            .map(entry => ({
+                word: String(entry?.word || '').toLowerCase(),
+                confidence: clampNumber(entry?.confidence ?? entry?.conf ?? 0, 0, 1),
+                start: Number(entry?.start ?? 0) || 0,
+                end: Number(entry?.end ?? 0) || 0
+            }))
+            .filter(entry => entry.word);
+
+        const used = new Set();
+        const acousticQuality = clampNumber(metrics?.quality ?? 0, 0, 100);
+        const hasNativeWords = recognizedWords.length > 0;
+
+        return expectedWords.map((expectedWord, expectedIndex) => {
+            let bestIndex = -1;
+            let bestScore = 0;
+            let bestSimilarity = 0;
+            for (let i = 0; i < recognizedWords.length; i++) {
+                if (used.has(i)) continue;
+                const candidate = recognizedWords[i];
+                const similarity = calculateSimilarity(normalizeAssessmentWord(expectedWord), normalizeAssessmentWord(candidate.word));
+                const positionPenalty = Math.min(0.22, Math.abs(i - expectedIndex) * 0.055);
+                const rankScore = (similarity * 0.74) + (candidate.confidence * 0.26) - positionPenalty;
+                if (rankScore > bestScore) {
+                    bestScore = rankScore;
+                    bestSimilarity = similarity;
+                    bestIndex = i;
+                }
+            }
+
+            const matched = bestIndex >= 0 && bestSimilarity >= 0.48;
+            if (matched) used.add(bestIndex);
+            const nativeWord = matched ? recognizedWords[bestIndex] : null;
+            const confidenceScore = nativeWord ? Math.round(nativeWord.confidence * 100) : 0;
+            const similarityScore = Math.round(bestSimilarity * 100);
+            let accuracy = matched
+                ? Math.round((confidenceScore * 0.62) + (similarityScore * 0.28) + (acousticQuality * 0.10))
+                : 0;
+
+            if (!hasNativeWords && metrics?.hasVoice) {
+                accuracy = Math.min(82, Math.max(28, Math.round((acousticQuality * 0.78) + 8)));
+            }
+            if (matched && bestSimilarity >= 0.92 && accuracy < 72) accuracy = 72;
+            if (matched && bestSimilarity < 0.7) accuracy = Math.min(accuracy, 58);
+            accuracy = clampNumber(accuracy, 0, 99);
+
+            const errorType = accuracy <= 5 ? 'Omission' : (accuracy < 40 ? 'Mispronunciation' : 'None');
+            return {
+                word: expectedWord,
+                accuracy,
+                errorType,
+                start: nativeWord?.start ?? null,
+                end: nativeWord?.end ?? null,
+                sourceWord: nativeWord?.word || '',
+                phonemes: buildLocalPhonemeScores(expectedWord, accuracy, { missing: accuracy <= 5 })
+            };
+        });
+    }
+
+    function buildLocalSpeakingAssessmentResult(nativeResult, expectedText, targetWord, metrics = {}) {
+        const nativeWords = Array.isArray(nativeResult?.words) ? nativeResult.words : [];
+        const words = buildLocalWordEntries(expectedText, nativeWords, metrics);
+        const recognizedText = String(nativeResult?.recognizedText || nativeWords.map(word => word.word).join(' ')).trim();
+        const wordScores = words.map(word => Math.round(word.accuracy || 0));
+        const averageScore = wordScores.length
+            ? Math.round(wordScores.reduce((sum, score) => sum + score, 0) / wordScores.length)
+            : 0;
+        const targetContext = resolveSpeakingTargetAssessment(words, targetWord);
+        const targetScore = Math.round(targetContext.wordAssessment?.accuracy ?? averageScore);
+        const completeness = words.length
+            ? Math.round((words.filter(word => (word.accuracy || 0) > 5).length / words.length) * 100)
+            : 0;
+        const fluency = metrics?.hasVoice
+            ? clampNumber(Math.round((metrics.quality || 0) * 0.82 + Math.min(18, (metrics.durationMs || 0) / 500)), 20, 98)
+            : 0;
+        const pronunciation = clampNumber(Math.round((averageScore * 0.72) + (targetScore * 0.18) + (fluency * 0.10)), 0, 99);
+
+        return {
+            ok: true,
+            engine: nativeResult?.engine || LOCAL_SPEAKING_ENGINE,
+            locale: 'en-US',
+            expectedText,
+            recognizedText,
+            overall: {
+                pronunciation,
+                accuracy: averageScore,
+                fluency,
+                completeness,
+                prosody: null
+            },
+            words,
+            raw: {
+                recognitionStatus: 'LocalOffline',
+                displayText: recognizedText,
+                engine: nativeResult?.engine || LOCAL_SPEAKING_ENGINE,
+                model: nativeResult?.model || '',
+                grammarApplied: !!nativeResult?.grammarApplied,
+                metrics
+            }
+        };
+    }
+
+    async function runNativeVoskSpeakingScan(audioBase64, expectedText, targetWord) {
+        const plugin = getLocalVoskSpeechPlugin();
+        if (!plugin || typeof plugin.assess !== 'function') {
+            return null;
+        }
+
+        const grammarJson = JSON.stringify(buildLocalSpeakingGrammar(expectedText, targetWord));
+        return await plugin.assess({
+            audioBase64,
+            expectedText,
+            grammarJson
+        });
     }
 
     function writeWavString(view, offset, string) {
@@ -530,6 +935,10 @@ function canUseAzureSpeakingAssessment() {
             try { speakingPcmSilenceGain.disconnect(); } catch (_error) {}
             speakingPcmSilenceGain = null;
         }
+        if (speakingPcmSink) {
+            try { speakingPcmSink.disconnect?.(); } catch (_error) {}
+            speakingPcmSink = null;
+        }
         if (speakingPcmAudioContext) {
             try {
                 const closingContext = speakingPcmAudioContext;
@@ -561,7 +970,7 @@ function canUseAzureSpeakingAssessment() {
         }
         speakingPcmSampleRate = speakingPcmAudioContext.sampleRate || 44100;
         speakingPcmSource = speakingPcmAudioContext.createMediaStreamSource(speakingAudioStream);
-        const processorBufferSize = getNativePlatformName() === 'ios' ? 4096 : 2048;
+        const processorBufferSize = isIosNativeRuntime() ? 4096 : 2048;
         speakingPcmProcessor = speakingPcmAudioContext.createScriptProcessor(processorBufferSize, 1, 1);
         speakingPcmSilenceGain = speakingPcmAudioContext.createGain();
         speakingPcmSilenceGain.gain.value = 0;
@@ -599,7 +1008,10 @@ function canUseAzureSpeakingAssessment() {
 
         speakingPcmSource.connect(speakingPcmProcessor);
         speakingPcmProcessor.connect(speakingPcmSilenceGain);
-        speakingPcmSilenceGain.connect(speakingPcmAudioContext.destination);
+        speakingPcmSink = typeof speakingPcmAudioContext.createMediaStreamDestination === 'function'
+            ? speakingPcmAudioContext.createMediaStreamDestination()
+            : null;
+        speakingPcmSilenceGain.connect(speakingPcmSink || speakingPcmAudioContext.destination);
         return true;
     }
 
@@ -645,7 +1057,7 @@ function canUseAzureSpeakingAssessment() {
             speakingTailStopTimeout = null;
         }
         speakingWaveLevel = 0;
-        updateSpeakingWave(0);
+        resetSpeakingWave();
     }
 
     function startSpeakingSilenceMonitor() {
@@ -752,12 +1164,30 @@ function updateSpeakingWave(level = 0) {
     const visual = Math.max(0, Math.min(1, speakingWaveVisualLevel));
     waveEl.style.display = 'block';
     waveEl.style.setProperty('--wave-opacity', (0.52 + visual * 0.12).toFixed(3));
-    waveEl.style.setProperty('--wave-height', `${18 + visual * 34}px`);
-    waveEl.style.setProperty('--wave-glow', `${7 + visual * 14}px`);
     waveEl.style.setProperty('--wave-scale', (0.015 + visual * 0.985).toFixed(3));
     waveEl.style.setProperty('--wave-offset', `${visual * 7}px`);
+    waveEl.style.setProperty('--wave-height', `${18 + visual * 34}px`);
+    waveEl.style.setProperty('--wave-glow', `${7 + visual * 14}px`);
     waveEl.style.setProperty('--wave-main-opacity', (0.52 + visual * 0.28).toFixed(3));
     waveEl.style.setProperty('--wave-accent-opacity', (0.42 + visual * 0.26).toFixed(3));
+}
+
+function resetSpeakingWave({ hide = true } = {}) {
+    speakingWaveLevel = 0;
+    speakingWaveQueuedLevel = 0;
+    speakingWaveVisualLevel = 0;
+    speakingWaveUpdatePending = false;
+    speakingLastWaveUpdateAt = 0;
+    const waveEl = document.getElementById('speaking-wave');
+    if (!waveEl) return;
+    waveEl.style.display = hide ? 'none' : 'block';
+    waveEl.style.setProperty('--wave-opacity', '0.52');
+    waveEl.style.setProperty('--wave-height', '18px');
+    waveEl.style.setProperty('--wave-glow', '7px');
+    waveEl.style.setProperty('--wave-scale', '0.015');
+    waveEl.style.setProperty('--wave-offset', '0px');
+    waveEl.style.setProperty('--wave-main-opacity', '0.52');
+    waveEl.style.setProperty('--wave-accent-opacity', '0.42');
 }
 
 function scheduleSpeakingWaveUpdate(level = 0) {
@@ -786,7 +1216,7 @@ function scheduleSpeakingWaveUpdate(level = 0) {
         runUpdate();
     }
 }
-function showSpeakingAzureUnavailable(message) {
+function showSpeakingLocalUnavailable(message) {
     launchTimerPaused = false;
     const qDisplay = document.getElementById('q-display');
     const msgArea = document.getElementById('msg-area');
@@ -794,15 +1224,15 @@ function showSpeakingAzureUnavailable(message) {
     if (micBtn) micBtn.classList.remove('recording');
     updateSpeakingWave(0);
     if (qDisplay) {
-        qDisplay.innerText = "(Azure pronunciation backend unavailable)";
+        qDisplay.innerText = "(Local voice scanner unavailable)";
         qDisplay.style.color = "#fbbf24";
         qDisplay.style.fontSize = "18px";
     }
     if (msgArea) {
-        msgArea.innerText = message || "AZURE LINK OFFLINE";
+        msgArea.innerText = message || "VOICE SCANNER OFFLINE";
         msgArea.style.color = "#f59e0b";
     }
-    setSpeakingUiState('error', message || "AZURE LINK OFFLINE", '--');
+    setSpeakingUiState('error', message || "VOICE SCANNER OFFLINE", '--');
 }
 function clearSpeakingAssessmentDetail() {
     const detailEl = document.getElementById('speaking-detail');
@@ -851,7 +1281,7 @@ function renderSpeakingAssessmentDetail(wordAssessment, matchType = 'exact', sen
     detailEl.style.display = 'block';
 }
 
-function setSpeakingUiState(state = 'idle', statusText = 'VOICE LINK STANDBY', scoreText = '--') {
+function setSpeakingUiState(state = 'idle', statusText = 'VOICE SCAN STANDBY', scoreText = '--') {
     const statusEl = document.getElementById('speaking-status');
     const waveEl = document.getElementById('speaking-wave');
     const subhintEl = document.getElementById('launch-subhint');
@@ -861,7 +1291,7 @@ function setSpeakingUiState(state = 'idle', statusText = 'VOICE LINK STANDBY', s
     if (!statusEl || !subhintEl || !scorebarEl || !scoreValueEl) return;
     if (!isSpeaking) {
         statusEl.style.display = 'none';
-        if (waveEl) waveEl.style.display = 'none';
+        resetSpeakingWave();
         subhintEl.style.display = '';
         scorebarEl.style.display = 'none';
         statusEl.className = 'speaking-status';
@@ -875,7 +1305,7 @@ function setSpeakingUiState(state = 'idle', statusText = 'VOICE LINK STANDBY', s
     scorebarEl.style.display = 'flex';
     statusEl.className = ('speaking-status ' + state).trim();
     statusEl.textContent = statusText;
-    statusEl.style.color = (state === 'recording' || (typeof statusText === 'string' && statusText.startsWith('VOICE LINK ACTIVE')))
+    statusEl.style.color = (state === 'recording' || (typeof statusText === 'string' && statusText.startsWith('VOICE SCAN ACTIVE')))
         ? '#ffffff'
         : '';
     scoreValueEl.textContent = scoreText;
@@ -1270,6 +1700,12 @@ let isTargeting = false;
     function syncUserProgressGlobals() {
         window.userTotalXP = userTotalXP;
         window.userSupplies = userSupplies;
+        if (typeof window.cacheCurrentPlayerProfile === 'function') {
+            window.cacheCurrentPlayerProfile({
+                xp: userTotalXP,
+                supplies: userSupplies
+            });
+        }
         refreshRankInfoModalIfOpen();
     }
 
@@ -1381,20 +1817,175 @@ const TURN_SELECTION_TIME = 10.0;
     let speakingProcessingTimeout = null;
     let isMusicPlaying = false;
     let gameTimeouts = [];
+    let nextGameTimeoutToken = 1;
+    const gamePauseReasons = new Set();
+    let turnTimerPausedByGamePause = false;
+    let launchTimerPausedByGamePause = false;
 
     // ���� PVP ANTI-FARMING: Track turn count ����
     let currentTurnCount = 0;
 
+function isGameLogicPaused() {
+    return gamePauseReasons.size > 0;
+}
+
+function isBattleScreenActive() {
+    const gameUi = document.getElementById('game-ui');
+    return !!(gameUi && gameUi.style.display !== 'none' && currentPhase !== 'GAME_OVER');
+}
+
+function scheduleGameTimeoutRecord(timeoutRecord) {
+    if (!timeoutRecord || timeoutRecord.cancelled || timeoutRecord.nativeId || isGameLogicPaused()) return;
+    timeoutRecord.startedAt = Date.now();
+    timeoutRecord.dueAt = timeoutRecord.startedAt + Math.max(0, timeoutRecord.remaining);
+    timeoutRecord.nativeId = setTimeout(() => {
+        timeoutRecord.nativeId = null;
+        if (timeoutRecord.cancelled) return;
+        if (isGameLogicPaused()) {
+            timeoutRecord.remaining = Math.max(0, timeoutRecord.dueAt - Date.now());
+            return;
+        }
+        gameTimeouts = gameTimeouts.filter(t => t !== timeoutRecord);
+        timeoutRecord.cancelled = true;
+        timeoutRecord.callback();
+    }, Math.max(0, timeoutRecord.remaining));
+}
+
 // �� �@��֮ǰ©�������������Ҫ�Ёڣ�VS AI ��������C ��
 function setGameTimeout(callback, delay) {
-    const id = setTimeout(() => {
-        callback();
-        // �������ᣬ���б����Ƴ��Լ� (�����������)
-        gameTimeouts = gameTimeouts.filter(t => t !== id);
-    }, delay);
-    gameTimeouts.push(id);
-    return id;
+    const timeoutRecord = {
+        token: nextGameTimeoutToken++,
+        callback,
+        remaining: Math.max(0, Number(delay) || 0),
+        startedAt: Date.now(),
+        dueAt: Date.now() + Math.max(0, Number(delay) || 0),
+        nativeId: null,
+        cancelled: false
+    };
+    gameTimeouts.push(timeoutRecord);
+    scheduleGameTimeoutRecord(timeoutRecord);
+    return timeoutRecord;
 }
+
+function clearGameTimeout(timeoutRecord) {
+    if (!timeoutRecord) return;
+    if (typeof timeoutRecord === 'number') {
+        clearTimeout(timeoutRecord);
+        gameTimeouts = gameTimeouts.filter(t => t !== timeoutRecord);
+        return;
+    }
+    timeoutRecord.cancelled = true;
+    if (timeoutRecord.nativeId) clearTimeout(timeoutRecord.nativeId);
+    timeoutRecord.nativeId = null;
+    gameTimeouts = gameTimeouts.filter(t => t !== timeoutRecord);
+}
+
+function clearAllGameTimeouts() {
+    gameTimeouts.slice().forEach(clearGameTimeout);
+    gameTimeouts = [];
+}
+
+function pauseGameTimeouts() {
+    const now = Date.now();
+    gameTimeouts.forEach(timeoutRecord => {
+        if (!timeoutRecord || timeoutRecord.cancelled || !timeoutRecord.nativeId) return;
+        timeoutRecord.remaining = Math.max(0, timeoutRecord.dueAt - now);
+        clearTimeout(timeoutRecord.nativeId);
+        timeoutRecord.nativeId = null;
+    });
+}
+
+function resumeGameTimeouts() {
+    gameTimeouts.slice().forEach(scheduleGameTimeoutRecord);
+}
+
+function pauseBattleIntervalsForGamePause() {
+    if (turnTimerInterval) {
+        clearInterval(turnTimerInterval);
+        turnTimerInterval = null;
+        turnTimerPausedByGamePause = currentPhase === 'PLAYER_TURN';
+    }
+    if (timerInterval && !launchTimerPaused) {
+        launchTimerPaused = true;
+        launchTimerPausedByGamePause = true;
+    }
+    if (typeof stopAegisShieldLoop === 'function') stopAegisShieldLoop();
+}
+
+function resumeBattleIntervalsFromGamePause() {
+    if (launchTimerPausedByGamePause && launchTimerPaused && timerInterval && currentPhase !== 'GAME_OVER') {
+        launchTimerPaused = false;
+    }
+    launchTimerPausedByGamePause = false;
+    if (turnTimerPausedByGamePause && currentPhase === 'PLAYER_TURN') {
+        turnTimerPausedByGamePause = false;
+        startTurnSelectionTimer(false);
+    } else {
+        turnTimerPausedByGamePause = false;
+    }
+    const playerBoardActive = document.getElementById('player-board')?.classList.contains('active');
+    if (playerBoardActive && aegisShieldState?.active && typeof startAegisShieldLoop === 'function') {
+        startAegisShieldLoop();
+    }
+}
+
+function requestGamePause(reason = 'system') {
+    const wasPaused = isGameLogicPaused();
+    gamePauseReasons.add(reason);
+    if (!wasPaused && isBattleScreenActive()) {
+        pauseGameTimeouts();
+        pauseBattleIntervalsForGamePause();
+    }
+}
+
+function releaseGamePause(reason = 'system') {
+    if (!gamePauseReasons.has(reason)) return;
+    gamePauseReasons.delete(reason);
+    if (!isGameLogicPaused()) {
+        resumeBattleIntervalsFromGamePause();
+        resumeGameTimeouts();
+    }
+}
+
+function clearGamePauseState() {
+    gamePauseReasons.clear();
+    turnTimerPausedByGamePause = false;
+    launchTimerPausedByGamePause = false;
+    launchTimerPaused = false;
+}
+
+window.requestGamePause = requestGamePause;
+window.releaseGamePause = releaseGamePause;
+window.isGameLogicPaused = isGameLogicPaused;
+
+document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+        requestGamePause('app-hidden');
+    } else {
+        releaseGamePause('app-hidden');
+    }
+});
+
+function registerNativeGamePauseLifecycle() {
+    const nativeApp = window.Capacitor?.Plugins?.App;
+    if (!nativeApp || typeof nativeApp.addListener !== 'function' || registerNativeGamePauseLifecycle.registered) return;
+    registerNativeGamePauseLifecycle.registered = true;
+    try {
+        const listener = nativeApp.addListener('appStateChange', ({ isActive }) => {
+            if (isActive) {
+                releaseGamePause('app-background');
+            } else {
+                requestGamePause('app-background');
+            }
+        });
+        if (listener && typeof listener.catch === 'function') listener.catch(() => {});
+    } catch (error) {
+        console.warn('[Game Pause] Native app state listener unavailable:', error);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', registerNativeGamePauseLifecycle);
+setTimeout(registerNativeGamePauseLifecycle, 0);
 
 function getBattleWordKey(word) {
     if (!word || !word.en) return '';
@@ -1406,6 +1997,41 @@ function pickBattleUniqueWord(wordList) {
     const unusedWords = wordList.filter(word => !battleUsedWordKeys.has(getBattleWordKey(word)));
     const pool = unusedWords.length > 0 ? unusedWords : wordList;
     return pool[Math.floor(Math.random() * pool.length)] || null;
+}
+
+function upsertGrammarBattleLogEntry(isCorrect, options = {}) {
+    if (typeof battleLog === 'undefined' || typeof currentVocab === 'undefined' || !currentVocab) return;
+
+    const reviewEntry = typeof window.getGrammarBattleReviewEntry === 'function'
+        ? window.getGrammarBattleReviewEntry(currentVocab)
+        : {
+            mode: 'GRAMMAR',
+            grammarTopic: currentVocab.grammarTopic || window.selectedGrammarTopic || 'VERB_TABLE',
+            user: '',
+            correct: currentVocab.en || '',
+            chinese: currentVocab.ch || ''
+        };
+    const turn = (typeof turnCounter !== 'undefined' ? turnCounter : 1);
+    const grammarEntry = {
+        turn,
+        mode: 'GRAMMAR',
+        grammarTopic: reviewEntry.grammarTopic || currentVocab.grammarTopic || window.selectedGrammarTopic || 'VERB_TABLE',
+        user: options.userOverride || reviewEntry.user || '(blank)',
+        correct: reviewEntry.correct || currentVocab.en || '',
+        chinese: reviewEntry.chinese || currentVocab.ch || '',
+        sentence: reviewEntry.sentence || null,
+        grammarAnswerSlots: Array.isArray(reviewEntry.grammarAnswerSlots) ? reviewEntry.grammarAnswerSlots : null,
+        grammarRuleText: reviewEntry.grammarRuleText || null,
+        isTimeout: Boolean(options.isTimeout),
+        isCorrect: Boolean(isCorrect)
+    };
+
+    const existingLogIndex = battleLog.findIndex(log => log.turn === turn);
+    if (existingLogIndex !== -1) {
+        battleLog[existingLogIndex] = { ...battleLog[existingLogIndex], ...grammarEntry };
+    } else {
+        battleLog.push(grammarEntry);
+    }
 }
 
 function pickBattleWordWithCooldown(wordList) {
@@ -1827,7 +2453,13 @@ function startTurnSelectionTimer(reset = false) {
     stopTurnSelectionTimer();
     updateTurnTimerUI();
 
+    if (isGameLogicPaused()) {
+        turnTimerPausedByGamePause = currentPhase === 'PLAYER_TURN';
+        return;
+    }
+
     turnTimerInterval = setInterval(() => {
+        if (isGameLogicPaused() || currentPhase === 'GAME_OVER') return;
         turnTimeLeft -= 0.1;
         updateTurnTimerUI();
 
@@ -1842,6 +2474,10 @@ function startTurnSelectionTimer(reset = false) {
 
 function startEnemyTurn() {
     if (currentPhase === 'GAME_OVER') return;
+    if (isGameLogicPaused()) {
+        setGameTimeout(startEnemyTurn, 0);
+        return;
+    }
     attackResolutionLocked = false;
     isTargeting = false;
     currentPhase = 'ENEMY_TURN';
@@ -1943,9 +2579,10 @@ function selectMode(mode) {
         const overlay = document.getElementById('selection-overlay');
         if (overlay) overlay.style.display = 'block';
 
-        // �@ʾ Level �x�� (�Ȓ� Level �ْ� Skill)
-        const levelScreen = document.getElementById('level-screen');
-        levelScreen.style.display = 'flex';
+	        // �@ʾ Level �x�� (�Ȓ� Level �ْ� Skill)
+	        const levelScreen = document.getElementById('level-screen');
+	        syncLevelScreenForMode();
+	        levelScreen.style.display = 'flex';
         // ���� Trigger holoAppear animation on content wrapper ����
         const wrapper = levelScreen.querySelector('.panel-content-wrapper');
         if (wrapper) {
@@ -2009,6 +2646,239 @@ function shuffleArray(items) {
         [arr[i], arr[j]] = [arr[j], arr[i]];
     }
     return arr;
+}
+
+function isReadingChoiceMode(mode = currentPracticeMode) {
+    return mode === READING_CHOICE_MODE;
+}
+
+function getPracticeModeLabel(mode = currentPracticeMode) {
+    if (mode === 'READING') return 'SPELLING';
+    if (mode === READING_CHOICE_MODE) return 'READING';
+    return String(mode || '--').replace(/_/g, ' ');
+}
+
+function getPracticeModeMasteryKey(mode = currentPracticeMode) {
+    return String(mode || 'READING').toLowerCase();
+}
+
+function getVocabPartOfSpeechLabel(word) {
+    const matches = [...String(word?.ch || '').matchAll(/\(([^)]+)\)/g)];
+    return matches.length ? matches[matches.length - 1][1].trim() : '';
+}
+
+function extractVocabPartOfSpeech(word) {
+    const raw = getVocabPartOfSpeechLabel(word);
+    return raw.toLowerCase().replace(/\s+/g, '').replace(/[^a-z./-]/g, '');
+}
+
+function stripVocabPartOfSpeech(value) {
+    return String(value || '')
+        .replace(/\s*\((?:adj\.|adj\.\/adv\.|adj\.\/n\.|adv\.|det\.|interj\.|n\.|n\.\/adj\.\/adv\.|n\.\/v\.|num\.|num\.\/adj\.|phr\.|phr\. v\.|prep\.|prep\.\/adj\.|pron\.|v\.|v\.\/n\.)\)\s*$/i, '')
+        .trim();
+}
+
+function getReadingChoicePromptText(word) {
+    const posLabel = getVocabPartOfSpeechLabel(word);
+    return posLabel ? `${word?.en || ''} (${posLabel})` : (word?.en || '');
+}
+
+function normalizeReadingChoiceMeaning(value) {
+    return String(value || '').trim().replace(/\s+/g, ' ');
+}
+
+function buildReadingChoiceOptions(targetWord) {
+    if (!targetWord?.ch) return [];
+    const levelWords = (VOCAB_DB[selectedLevel] || []).filter(word => word && word.en && word.ch);
+    const targetMeaning = normalizeReadingChoiceMeaning(stripVocabPartOfSpeech(targetWord.ch));
+    const targetPos = extractVocabPartOfSpeech(targetWord);
+    const uniqueByMeaning = (words) => {
+        const seen = new Set([targetMeaning]);
+        return words.filter(word => {
+            const meaning = normalizeReadingChoiceMeaning(stripVocabPartOfSpeech(word.ch));
+            if (!meaning || seen.has(meaning) || word.en === targetWord.en) return false;
+            seen.add(meaning);
+            return true;
+        });
+    };
+
+    const samePosPool = targetPos
+        ? uniqueByMeaning(levelWords.filter(word => extractVocabPartOfSpeech(word) === targetPos))
+        : [];
+    const fallbackPool = uniqueByMeaning(levelWords);
+    const distractorPool = samePosPool.length >= 4 ? samePosPool : fallbackPool;
+    const distractors = shuffleArray(distractorPool).slice(0, 4);
+    const options = [
+        { text: stripVocabPartOfSpeech(targetWord.ch), isCorrect: true },
+        ...distractors.map(word => ({ text: stripVocabPartOfSpeech(word.ch), isCorrect: false }))
+    ];
+
+    return shuffleArray(options).map((option, index) => ({
+        ...option,
+        index,
+        originalIndex: option.isCorrect ? 0 : index
+    }));
+}
+
+function resetReadingChoiceState() {
+    if (!currentVocab) return;
+    currentVocab.readingChoiceSelectedIndex = null;
+    currentVocab.readingChoiceSubmitting = false;
+    currentVocab.readingChoiceResolved = false;
+}
+
+function syncReadingChoiceOptionStates(isResolved = false) {
+    if (!currentVocab?.readingChoiceOptions) return;
+    const selectedIndex = currentVocab.readingChoiceSelectedIndex;
+    const isSubmitting = currentVocab.readingChoiceSubmitting;
+    document.querySelectorAll('.reading-choice-option').forEach(button => {
+        const optionIndex = Number(button.getAttribute('data-reading-choice-index'));
+        const option = currentVocab.readingChoiceOptions[optionIndex];
+        const isSelected = optionIndex === selectedIndex;
+        const isCorrect = Boolean(option?.isCorrect);
+        button.classList.toggle('is-selected', isSelected && !isResolved);
+        button.classList.toggle('is-correct', Boolean(isResolved && isCorrect));
+        button.classList.toggle('is-wrong', Boolean(isResolved && isSelected && !isCorrect));
+        button.classList.toggle('is-locked', Boolean(isResolved || isSubmitting));
+        button.disabled = Boolean(isResolved || isSubmitting);
+    });
+}
+
+function clearLaunchMessageState() {
+    const msgArea = document.getElementById('msg-area');
+    if (!msgArea) return;
+    msgArea.classList.remove('meaning-confirmed', 'meaning-rejected');
+    msgArea.style.color = '';
+}
+
+function isLaunchModalOpen() {
+    return document.getElementById('launch-modal')?.style.display === 'flex';
+}
+
+function setReadingChoiceMessage(text, state = '') {
+    const msgArea = document.getElementById('msg-area');
+    if (!msgArea) return;
+    clearLaunchMessageState();
+    if (state) msgArea.classList.add(state);
+    msgArea.innerText = text;
+}
+
+function selectReadingChoiceOption(optionIndex) {
+    if (!currentVocab || currentVocab.readingChoiceResolved || currentVocab.readingChoiceSubmitting) return;
+    currentVocab.readingChoiceSelectedIndex = optionIndex;
+    currentVocab.readingChoiceSubmitting = true;
+    setReadingChoiceMessage('ANALYSING MEANING...');
+    syncReadingChoiceOptionStates(false);
+    setGameTimeout(() => checkAnswer(), 70);
+}
+
+function prepareReadingChoiceQuestionUI() {
+    const qText = document.getElementById('q-text');
+    const qDisplay = document.getElementById('q-display');
+    if (!qText || !qDisplay || !currentVocab) return;
+
+    resetReadingChoiceState();
+    currentVocab.readingChoiceOptions = buildReadingChoiceOptions(currentVocab);
+
+    qText.innerText = getReadingChoicePromptText(currentVocab);
+    qText.dataset.readingChoiceWord = currentVocab.en || '';
+    qText.classList.add('reading-choice-word');
+    qText.style.fontSize = '';
+    qText.style.cursor = 'default';
+    qText.onclick = null;
+
+    qDisplay.innerHTML = '';
+    qDisplay.style.display = 'block';
+    qDisplay.style.color = '';
+    qDisplay.classList.add('reading-choice-display');
+
+    const optionWrap = document.createElement('div');
+    optionWrap.className = 'reading-choice-options';
+    currentVocab.readingChoiceOptions.forEach((option, index) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'reading-choice-option';
+        button.textContent = option.text;
+        button.setAttribute('data-reading-choice-index', String(index));
+        button.addEventListener('click', event => {
+            event.preventDefault();
+            event.stopPropagation();
+            selectReadingChoiceOption(index);
+        });
+        optionWrap.appendChild(button);
+    });
+
+    qDisplay.appendChild(optionWrap);
+
+    setGameTimeout(() => {
+        if (isReadingChoiceMode() && currentVocab?.en === qText.dataset.readingChoiceWord && isLaunchModalOpen()) {
+            speakVocabText(currentVocab.en, qText, { localOnly: true }).catch(() => {});
+        }
+    }, 180);
+}
+
+function upsertReadingChoiceBattleLogEntry(isCorrect, options = {}) {
+    if (typeof battleLog === 'undefined' || !currentVocab) return;
+    const selectedOption = currentVocab.readingChoiceOptions?.[currentVocab.readingChoiceSelectedIndex];
+    const turn = (typeof turnCounter !== 'undefined' ? turnCounter : 1);
+    const entry = {
+        turn,
+        mode: READING_CHOICE_MODE,
+        prompt: getReadingChoicePromptText(currentVocab),
+        user: options.userOverride || selectedOption?.text || '(blank)',
+        correct: stripVocabPartOfSpeech(currentVocab.ch),
+        sentence: null,
+        isTimeout: Boolean(options.isTimeout),
+        isCorrect: Boolean(isCorrect)
+    };
+    const existingLogIndex = battleLog.findIndex(log => log.turn === turn);
+    if (existingLogIndex !== -1) {
+        battleLog[existingLogIndex] = { ...battleLog[existingLogIndex], ...entry };
+    } else {
+        battleLog.push(entry);
+    }
+}
+
+function checkReadingChoiceBattleAnswer() {
+    if (!isReadingChoiceMode() || !currentVocab?.readingChoiceOptions) return false;
+    if (currentVocab.readingChoiceResolved) return null;
+
+    const selectedIndex = currentVocab.readingChoiceSelectedIndex;
+    if (!Number.isInteger(selectedIndex)) {
+        setReadingChoiceMessage('SELECT ONE MEANING FIRST');
+        return null;
+    }
+
+    const selectedOption = currentVocab.readingChoiceOptions[selectedIndex];
+    const isCorrect = Boolean(selectedOption?.isCorrect);
+    currentVocab.readingChoiceResolved = true;
+    currentVocab.readingChoiceSubmitting = false;
+    syncReadingChoiceOptionStates(true);
+    upsertReadingChoiceBattleLogEntry(isCorrect);
+
+    if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+    }
+    launchTimerPaused = false;
+
+    if (isCorrect) {
+        playSound('speaking-green-sfx');
+        removeWrongWord(currentPracticeMode, selectedLevel, currentVocab.en);
+        handleCorrectAnswer();
+        setReadingChoiceMessage('MEANING CONFIRMED!', 'meaning-confirmed');
+        setGameTimeout(() => playerFire(true), 1500);
+    } else {
+        saveWrongWord(currentPracticeMode, selectedLevel, currentVocab.en);
+        if (isCurrentStagePrimaryWord(currentVocab)) {
+            recordStageSessionMiss(currentVocab.en);
+        }
+        playSound('speaking-wrong-sfx');
+        setReadingChoiceMessage('MEANING REJECTED!', 'meaning-rejected');
+        setGameTimeout(() => finishGrammarChoiceWrongTurn(), 1500);
+    }
+
+    return isCorrect;
 }
 
 function getStageReviewWords(levelKey, modeKey, stageIndex) {
@@ -2207,10 +3077,11 @@ function closeStageScreen() {
     const stageScreen = document.getElementById('stage-screen');
     if (stageScreen) stageScreen.style.display = 'none';
 
-    const levelScreen = document.getElementById('level-screen');
-    if (levelScreen) {
-        showSelectionOverlay();
-        levelScreen.style.display = 'flex';
+	    const levelScreen = document.getElementById('level-screen');
+	    if (levelScreen) {
+	        showSelectionOverlay();
+	        syncLevelScreenForMode();
+	        levelScreen.style.display = 'flex';
         const wrapper = levelScreen.querySelector('.panel-content-wrapper');
         if (wrapper) {
             wrapper.style.animation = 'none';
@@ -2292,11 +3163,12 @@ function updateLevelProgressUI() {
 
     // Determine current mode and its display letter
     let modeKey = 'reading'; // default
-    let modeLetter = 'R';
+    let modeLetter = 'SP';
 
     if (typeof currentPracticeMode !== 'undefined' && currentPracticeMode) {
-        modeKey = currentPracticeMode.toLowerCase();
-        if (modeKey === 'reading') modeLetter = 'R';
+        modeKey = getPracticeModeMasteryKey(currentPracticeMode);
+        if (currentPracticeMode === READING_CHOICE_MODE) modeLetter = 'R';
+        else if (modeKey === 'reading') modeLetter = 'SP';
         else if (modeKey === 'listening') modeLetter = 'L';
         else if (modeKey === 'speaking') modeLetter = 'S';
     }
@@ -2339,6 +3211,7 @@ function updateSkillButtonsProgress() {
 
     const useStageScope = tempGameMode === 'AI' && selectedStageIndex !== null;
     const readingTotal = useStageScope ? getCurrentStagePrimaryWords('reading').length : VOCAB_DB[selectedLevel].length;
+    const readingChoiceTotal = useStageScope ? getCurrentStagePrimaryWords('reading_choice').length : VOCAB_DB[selectedLevel].length;
     const listeningTotal = useStageScope ? getCurrentStagePrimaryWords('listening').length : VOCAB_DB[selectedLevel].length;
     const speakingTotal = useStageScope ? getCurrentStagePrimaryWords('speaking').length : VOCAB_DB[selectedLevel].length;
 
@@ -2346,6 +3219,11 @@ function updateSkillButtonsProgress() {
         ? getScopedMasteryCountForMode('reading')
         : (userMastery.reading && userMastery.reading[selectedLevel]
             ? Object.values(userMastery.reading[selectedLevel]).filter(m => m.status === 1).length
+            : 0);
+    const readingChoiceCount = useStageScope
+        ? getScopedMasteryCountForMode('reading_choice')
+        : (userMastery.reading_choice && userMastery.reading_choice[selectedLevel]
+            ? Object.values(userMastery.reading_choice[selectedLevel]).filter(m => m.status === 1).length
             : 0);
     const listeningCount = useStageScope
         ? getScopedMasteryCountForMode('listening')
@@ -2358,13 +3236,24 @@ function updateSkillButtonsProgress() {
             ? Object.values(userMastery.speaking[selectedLevel]).filter(m => m.status === 1).length
             : 0);
 
-    // Update Reading button
+    // Update Spelling button
     const readingBtn = document.getElementById('skill-btn-reading');
     if (readingBtn) {
         readingBtn.innerHTML = `
             <div style="display:flex; flex-direction:column; align-items:center;">
-                <span style="font-size:24px;">READING</span>
+                <span style="font-size:24px;">SPELLING</span>
                 <span style="font-size:12px; opacity:0.8; font-family: 'Orbitron';">${readingCount}/${readingTotal}</span>
+            </div>
+        `;
+    }
+
+    // Update Reading button
+    const readingChoiceBtn = document.getElementById('skill-btn-reading-choice');
+    if (readingChoiceBtn) {
+        readingChoiceBtn.innerHTML = `
+            <div style="display:flex; flex-direction:column; align-items:center;">
+                <span style="font-size:24px;">READING</span>
+                <span style="font-size:12px; opacity:0.8; font-family: 'Orbitron';">${readingChoiceCount}/${readingChoiceTotal}</span>
             </div>
         `;
     }
@@ -2392,18 +3281,29 @@ function updateSkillButtonsProgress() {
     }
 
     const stageSuffix = useStageScope && selectedStageLabel ? ` [${selectedStageLabel}]` : '';
-    console.log(`[Skill Progress${stageSuffix}] R: ${readingCount}/${readingTotal} | L: ${listeningCount}/${listeningTotal} | S: ${speakingCount}/${speakingTotal}`);
+    console.log(`[Skill Progress${stageSuffix}] SP: ${readingCount}/${readingTotal} | R: ${readingChoiceCount}/${readingChoiceTotal} | L: ${listeningCount}/${listeningTotal} | S: ${speakingCount}/${speakingTotal}`);
 }
 
 // ���� RESET SKILL BUTTONS TO DEFAULT (FOR PVP) ����
 function resetSkillButtonsToDefault() {
-    // Reset Reading button
+    // Reset Spelling button
     const readingBtn = document.getElementById('skill-btn-reading');
     if (readingBtn) {
         readingBtn.innerHTML = `
             <div style="display:flex; flex-direction:column; align-items:center;">
-                <span style="font-size:24px;">READING</span>
+                <span style="font-size:24px;">SPELLING</span>
                 <span style="font-size:10px; opacity:0.7;">DECRYPT CODE</span>
+            </div>
+        `;
+    }
+
+    // Reset Reading button
+    const readingChoiceBtn = document.getElementById('skill-btn-reading-choice');
+    if (readingChoiceBtn) {
+        readingChoiceBtn.innerHTML = `
+            <div style="display:flex; flex-direction:column; align-items:center;">
+                <span style="font-size:24px;">READING</span>
+                <span style="font-size:10px; opacity:0.7;">MEANING SCAN</span>
             </div>
         `;
     }
@@ -2454,8 +3354,26 @@ function resetLevelButtonsToDefault() {
         `;
     });
 
-    console.log(`[Level Buttons] Reset to default (PVP mode)`);
-}
+	    console.log(`[Level Buttons] Reset to default (PVP mode)`);
+	    syncLevelScreenForMode();
+	}
+
+	function syncLevelScreenForMode() {
+	    const levelScreen = document.getElementById('level-screen');
+	    if (!levelScreen) return;
+
+	    const isPvpLevelSelect = tempGameMode === 'PVP';
+	    levelScreen.classList.toggle('pvp-level-select', isPvpLevelSelect);
+
+	    const grammarButton = levelScreen.querySelector('.level-btn-grammar');
+	    if (!grammarButton) return;
+
+	    grammarButton.style.display = isPvpLevelSelect ? 'none' : '';
+	    grammarButton.disabled = isPvpLevelSelect;
+	    grammarButton.setAttribute('aria-hidden', isPvpLevelSelect ? 'true' : 'false');
+	}
+
+	window.syncLevelScreenForMode = syncLevelScreenForMode;
 
 // Legacy function name for compatibility
 function updateLevelProgress() {
@@ -2771,7 +3689,7 @@ async function sendPvpInvite(targetId) {
     const { ref, set, remove } = window.firebaseModules;
     await remove(ref(window.db, `users/${payload.from}/pvpInbox/response`));
     await set(ref(window.db, `users/${targetId}/pvpInbox/invite`), payload);
-    closeInvitePlayersModal();
+    closeInvitePlayersModal({ silent: true });
     showNotification(`INVITE SENT TO ${targetPlayer?.name || 'COMMANDER'}`, 'success', 2600);
 }
 
@@ -2882,6 +3800,7 @@ function initPVPListeners() {
                 playSound('victory-sfx'); 
             } else {
                 renderReview();
+                calculateAndDisplaySettlement(false, false);
                 document.getElementById('end-title').innerText = "DEFEAT";
                 document.getElementById('end-title').style.color = "var(--warning)";
                 document.getElementById('end-title').style.textShadow = "0 0 30px var(--warning)";
@@ -3857,7 +4776,7 @@ function runTargetLockAnimation(index, onComplete) {
     }
 
     // --- 4. �ȴ��������ГQ���� ---
-    setTimeout(() => {
+    setGameTimeout(() => {
         overlay.remove();
         if (onComplete) onComplete();
     }, totalDuration); // �@�eֱ��ʹ������L��
@@ -3928,8 +4847,12 @@ async function openLaunchModal(index) {
     const input = document.getElementById('hidden-input');
     const msgArea = document.getElementById('msg-area');
     const timerBar = document.getElementById('timer-bar');
+    qText.classList.remove('reading-choice-word');
+    delete qText.dataset.readingChoiceWord;
+    qDisplay.classList.remove('reading-choice-display');
     
     // ���û�����B
+    clearLaunchMessageState();
     msgArea.innerText = "";
     input.value = "";
     
@@ -3947,6 +4870,11 @@ async function openLaunchModal(index) {
     // ���� �P�I�����@ʾҕ�����و�������� focus���_���I�P���� ����
     modal.style.display = "flex";
     if (typeof releaseBgmDuck === 'function') releaseBgmDuck('battle-answer', 250);
+    if (currentPracticeMode === 'SPEAKING') {
+        if (typeof requestBgmDuck === 'function') requestBgmDuck('speaking-panel', 180);
+    } else if (typeof releaseBgmDuck === 'function') {
+        releaseBgmDuck('speaking-panel', 180);
+    }
 
     // ���� Apply Aurelians theme if player is using Aurelians ����
     if (selectedRace === 'AURELIANS') {
@@ -3961,8 +4889,14 @@ async function openLaunchModal(index) {
     // ���� ���ģ�����ģʽ�ГQ���� ����
 if (typeof window.isGrammarBattleMode === 'function' && window.isGrammarBattleMode()) {
     qDisplay.style.display = 'none';
-    if (modeLabel) modeLabel.innerText = "Complete the verb table.";
-    qText.innerText = currentVocab.ch;
+    if (modeLabel) {
+        modeLabel.innerText = typeof window.getGrammarBattleModeLabel === 'function'
+            ? window.getGrammarBattleModeLabel(currentVocab)
+            : "Complete the verb table.";
+    }
+    qText.innerText = typeof window.getGrammarBattlePromptText === 'function'
+        ? window.getGrammarBattlePromptText(currentVocab)
+        : currentVocab.ch;
     qText.style.fontSize = "";
     qText.style.cursor = "default";
     qText.onclick = null;
@@ -3970,10 +4904,15 @@ if (typeof window.isGrammarBattleMode === 'function' && window.isGrammarBattleMo
         window.prepareLaunchGrammarQuestion(currentVocab);
     }
     input.style.display = 'none';
+} else if (isReadingChoiceMode()) {
+    if (modeLabel) modeLabel.innerText = "Choose the Chinese meaning:";
+    prepareReadingChoiceQuestionUI();
+    input.style.display = 'none';
 } else if (currentPracticeMode === 'SPEAKING') {
     if (modeLabel) modeLabel.innerText = "READ IT ALOUD.";
     const textToRead = currentVocab.sent ? currentVocab.sent : currentVocab.en;
     qText.innerText = `READ: ${textToRead}`;
+    prepareLocalSpeakingEngine().catch(() => {});
     
     // ���w�s�����٣������ӱ��^�L
     qText.style.fontSize = "22px"; 
@@ -3985,7 +4924,7 @@ if (typeof window.isGrammarBattleMode === 'function' && window.isGrammarBattleMo
         qDisplay.style.display = 'none';
         qDisplay.style.color = "var(--primary)";
         qDisplay.style.fontSize = "";
-        setSpeakingUiState('idle', 'VOICE LINK STANDBY', '--');
+        setSpeakingUiState('idle', 'VOICE SCAN STANDBY', '--');
         input.style.display = 'none'; 
 
         // �ӑB���� Mic ���o (ʹ���㮋�� PNG)
@@ -4046,8 +4985,8 @@ if (typeof window.isGrammarBattleMode === 'function' && window.isGrammarBattleMo
 
     } else {
         qDisplay.style.display = 'block';
-        if (modeLabel) modeLabel.innerText = "Translate to English:";
-        // --- C. ��xģʽ (Reading) ---
+        if (modeLabel) modeLabel.innerText = "Spell in English:";
+        // --- C. Spelling mode ---
         qText.innerText = currentVocab.ch;
         qText.style.fontSize = "";
         qText.style.cursor = "default";
@@ -4063,8 +5002,11 @@ if (typeof window.isGrammarBattleMode === 'function' && window.isGrammarBattleMo
     // �Ƴ� innerWidth �Д࣬�����ƽ�壨iPad Pro����sСҕ���r�`��
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ||
                      (navigator.maxTouchPoints > 0 && !window.matchMedia('(pointer: fine)').matches);
+    const grammarNeedsVirtualKeyboard = currentPracticeMode !== 'GRAMMAR' ||
+        typeof window.grammarBattleUsesVirtualKeyboard !== 'function' ||
+        window.grammarBattleUsesVirtualKeyboard(currentVocab) !== false;
 
-    if (isMobile && (currentPracticeMode === 'READING' || currentPracticeMode === 'LISTENING' || currentPracticeMode === 'GRAMMAR')) {
+    if (isMobile && (currentPracticeMode === 'READING' || currentPracticeMode === 'LISTENING' || (currentPracticeMode === 'GRAMMAR' && grammarNeedsVirtualKeyboard))) {
         const screenWidth = window.innerWidth || screen.width;
         const isTablet = screenWidth >= 768;
 
@@ -4115,7 +5057,7 @@ if (typeof window.isGrammarBattleMode === 'function' && window.isGrammarBattleMo
         // Desktop: Hide virtual keyboard, show and focus input
         virtualKeyboard.style.display = 'none';
         virtualKeyboard.style.visibility = 'hidden';
-        virtualKeyboard.classList.remove('kb-tablet-size', 'kb-grammar-nav');
+        virtualKeyboard.classList.remove('kb-tablet-size', 'kb-grammar-nav', 'kb-tense-space');
         if (currentPracticeMode === 'GRAMMAR') {
             input.setAttribute('readonly', 'readonly');
             input.style.position = 'absolute';
@@ -4133,7 +5075,7 @@ if (typeof window.isGrammarBattleMode === 'function' && window.isGrammarBattleMo
         // SPEAKING mode: hide virtual keyboard, hide input
         virtualKeyboard.style.display = 'none';
         virtualKeyboard.style.visibility = 'hidden';
-        virtualKeyboard.classList.remove('kb-grammar-nav');
+        virtualKeyboard.classList.remove('kb-grammar-nav', 'kb-tense-space');
         input.setAttribute('readonly', 'readonly');
         input.style.position = 'absolute';
         input.style.left = '-9999px';
@@ -4157,7 +5099,7 @@ if (typeof window.isGrammarBattleMode === 'function' && window.isGrammarBattleMo
         console.log("WAITING FOR AUDIO TO FINISH...");
     } else {
         // �� ����ģʽ (Reading/Speaking)�����t 0.5�� �ἴ���_ʼ ��
-        setTimeout(() => {
+        setGameTimeout(() => {
             // �_��ҕ�����_�o��Ӌ�r
             if (document.getElementById('launch-modal').style.display === 'flex') {
                 startCountdownTimer();
@@ -4196,7 +5138,7 @@ function warmUpVoiceEngine() {
 
 function clearListeningTimerStartTimeout() {
     if (listeningTimerStartTimeout) {
-        clearTimeout(listeningTimerStartTimeout);
+        clearGameTimeout(listeningTimerStartTimeout);
         listeningTimerStartTimeout = null;
     }
 }
@@ -4204,12 +5146,20 @@ function clearListeningTimerStartTimeout() {
 function getListeningVoiceVolume() {
     const baseVolume = (typeof gameVolume !== 'undefined' && Number.isFinite(gameVolume.voice))
         ? gameVolume.voice
-        : 1.0;
-    return Math.max(0, Math.min(1, baseVolume));
+        : LISTENING_VOICE_DEFAULT_VOLUME;
+    return Math.max(0, Math.min(LISTENING_VOICE_MAX_VOLUME, baseVolume));
 }
 
 function getBoostedListeningVoiceVolume() {
-    return Math.max(0, Math.min(1, getListeningVoiceVolume() * LISTENING_VOICE_GAIN));
+    return getListeningVoiceVolume();
+}
+
+function getHtmlListeningVoiceVolume() {
+    return Math.max(0, Math.min(1, getBoostedListeningVoiceVolume()));
+}
+
+function getWebAudioListeningVoiceGain() {
+    return Math.max(1, getBoostedListeningVoiceVolume());
 }
 
 function clearListeningPlaybackBoost() {
@@ -4229,7 +5179,7 @@ function clearListeningPlaybackBoost() {
 }
 
 function applyListeningPlaybackBoost(audio) {
-    audio.volume = getListeningVoiceVolume();
+    audio.volume = getHtmlListeningVoiceVolume();
 
     const AudioContextClass = window.AudioContext || window.webkitAudioContext;
     if (!AudioContextClass) return null;
@@ -4238,7 +5188,7 @@ function applyListeningPlaybackBoost(audio) {
         const context = new AudioContextClass();
         const source = context.createMediaElementSource(audio);
         const gain = context.createGain();
-        gain.gain.value = LISTENING_VOICE_GAIN;
+        gain.gain.value = getWebAudioListeningVoiceGain();
         source.connect(gain);
         gain.connect(context.destination);
         listeningPlaybackBoost = { context, source, gain };
@@ -4250,7 +5200,7 @@ function applyListeningPlaybackBoost(audio) {
 }
 
 function getListeningTtsCacheKey(text, locale = 'en-US', levelKey = '') {
-    return `${locale}::${levelKey || ''}::${(text || '').trim()}`;
+    return `${LISTENING_TTS_AUDIO_VERSION}::${locale}::${levelKey || ''}::${(text || '').trim()}`;
 }
 
 function getListeningTtsDb() {
@@ -4390,7 +5340,7 @@ function getListeningManifestKey(text, locale = 'en-US', levelKey = '', voicePro
 function getListeningManifestAudioUrl(text, locale = 'en-US', levelKey = '', voiceProfile = null) {
     const manifest = window.LISTENING_AUDIO_MANIFEST || {};
     const manifestKey = getListeningManifestKey(text, locale, levelKey, voiceProfile);
-    if (typeof manifest[manifestKey] === 'string') return manifest[manifestKey];
+    if (isCurrentListeningManifestAudioUrl(manifest[manifestKey])) return manifest[manifestKey];
 
     const cleanText = (text || '').trim();
     if (!cleanText) return '';
@@ -4401,7 +5351,7 @@ function getListeningManifestAudioUrl(text, locale = 'en-US', levelKey = '', voi
         return key.startsWith(fallbackPrefix) && key.endsWith(fallbackSuffix);
     });
 
-    if (fallbackKey && typeof manifest[fallbackKey] === 'string') {
+    if (fallbackKey && isCurrentListeningManifestAudioUrl(manifest[fallbackKey])) {
         console.warn('[Listening TTS Manifest] Voice fallback hit', {
             requested: manifestKey,
             matched: fallbackKey
@@ -4410,6 +5360,43 @@ function getListeningManifestAudioUrl(text, locale = 'en-US', levelKey = '', voi
     }
 
     return '';
+}
+
+function findListeningManifestAudioUrlByText(text, locale = 'en-US', levelKey = '') {
+    const manifest = window.LISTENING_AUDIO_MANIFEST || {};
+    const cleanText = (text || '').trim();
+    if (!cleanText) return '';
+
+    const fallbackSuffix = `|${cleanText}`;
+    const preferredLevel = (levelKey || selectedLevel || '').trim();
+    const preferredPrefix = preferredLevel ? `${preferredLevel}|${locale || 'en-US'}|` : '';
+    const keys = Object.keys(manifest);
+    const preferredKey = preferredPrefix
+        ? keys.find(key => key.startsWith(preferredPrefix) && key.endsWith(fallbackSuffix))
+        : '';
+    const fallbackKey = preferredKey || keys.find(key => {
+        if (!key.endsWith(fallbackSuffix)) return false;
+        return !locale || key.includes(`|${locale}|`);
+    });
+
+    return fallbackKey && isCurrentListeningManifestAudioUrl(manifest[fallbackKey])
+        ? manifest[fallbackKey]
+        : '';
+}
+
+function isCurrentListeningManifestAudioUrl(url) {
+    if (typeof url !== 'string') return false;
+    const normalizedUrl = url.trim();
+    if (!normalizedUrl) return false;
+
+    const versionMatch = normalizedUrl.match(/\/(v\d+)\//i);
+    if (!versionMatch) return false;
+
+    const audioVersion = versionMatch[1].toLowerCase();
+    const isListeningAudio = /^audio\/listening\//i.test(normalizedUrl) ||
+        /\/tts\/listening\//i.test(normalizedUrl);
+
+    return isListeningAudio && LISTENING_TTS_MANIFEST_AUDIO_VERSIONS.has(audioVersion);
 }
 
 function getListeningVoiceProfileForSentence(word, levelKey = '', sentenceIndex = 0) {
@@ -4546,7 +5533,7 @@ function prepareListeningPlaybackAsset(text, locale = 'en-US', levelKey = '', vo
     if (cached) return cached;
 
     const request = preloadListeningAzureAudio(cleanText, locale, levelKey, voiceProfile, requestMeta)
-        .then((result) => {
+        .then(async (result) => {
             if (result.audioUrl) {
                 if (shouldUseIosNativeAudioSource(result.audioUrl)) {
                     return Promise.resolve(
@@ -4562,7 +5549,9 @@ function prepareListeningPlaybackAsset(text, locale = 'en-US', levelKey = '', vo
                     }));
                 }
 
-                const warmAudio = new Audio(result.audioUrl);
+                const boostableObjectUrl = await createBoostableListeningObjectUrl(result.audioUrl);
+                const playbackUrl = boostableObjectUrl || result.audioUrl;
+                const warmAudio = new Audio(playbackUrl);
                 warmAudio.preload = 'auto';
                 warmAudio.playsInline = true;
                 warmAudio.setAttribute('playsinline', '');
@@ -4571,7 +5560,7 @@ function prepareListeningPlaybackAsset(text, locale = 'en-US', levelKey = '', vo
                 return {
                     ...result,
                     audioElement: warmAudio,
-                    objectUrl: result.audioUrl,
+                    objectUrl: playbackUrl,
                     cacheKey
                 };
             }
@@ -4603,13 +5592,42 @@ function prepareListeningPlaybackAsset(text, locale = 'en-US', levelKey = '', vo
 }
 
 function isIosNativeAudioPlaybackAvailable() {
-    return window.Capacitor?.getPlatform?.() === 'ios'
+    return !!(window.Capacitor && typeof window.Capacitor.isNativePlatform === 'function' && window.Capacitor.isNativePlatform())
         && typeof window.playIosNativeAudioSource === 'function';
 }
 
 function shouldUseIosNativeAudioSource(source) {
     if (!isIosNativeAudioPlaybackAvailable() || !source) return false;
     return !/^(blob:|data:)/i.test(String(source));
+}
+
+function getListeningAudioProxyUrl(audioUrl) {
+    if (!/^https:\/\/storage\.googleapis\.com\/battleship-game-c0909-verb-audio\/tts\/listening\//i.test(audioUrl || '')) {
+        return '';
+    }
+
+    const baseUrl = typeof getSpeakingAssessmentBaseUrl === 'function'
+        ? getSpeakingAssessmentBaseUrl()
+        : '';
+    if (!baseUrl) return '';
+
+    return `${baseUrl}/api/audio-proxy?url=${encodeURIComponent(audioUrl)}`;
+}
+
+async function createBoostableListeningObjectUrl(audioUrl) {
+    const proxyUrl = getListeningAudioProxyUrl(audioUrl);
+    if (!proxyUrl) return '';
+
+    try {
+        const response = await fetch(proxyUrl, { cache: 'force-cache' });
+        if (!response.ok) throw new Error(`Audio proxy failed: ${response.status}`);
+        const blob = await response.blob();
+        if (!blob.size) throw new Error('Audio proxy returned empty audio.');
+        return URL.createObjectURL(blob);
+    } catch (error) {
+        console.warn('[Listening Audio] Proxy boost unavailable; using direct audio:', error);
+        return '';
+    }
 }
 
 function normalizeVocabWordAudioText(text) {
@@ -4754,6 +5772,16 @@ function takeNextAiBattleVocab() {
             if (removeIndex >= 0) wrongWordsDeck.splice(removeIndex, 1);
             console.log(`[Pool 1 - Learning] Wrong word: ${pickedWrongWord.en} (${wrongWordsDeck.length} remaining)`);
             return pickedWrongWord;
+        }
+    }
+
+    if (currentPracticeMode === 'GRAMMAR' && ['TENSES', 'CONDITIONAL'].includes(window.selectedGrammarTopic) && Array.isArray(sessionDeck) && sessionDeck.length > 0) {
+        let nextIndex = sessionDeck.findIndex(word => !battleUsedWordKeys.has(getBattleWordKey(word)));
+        if (nextIndex < 0) nextIndex = 0;
+        const pickedGrammarQuestion = sessionDeck.splice(nextIndex, 1)[0];
+        if (pickedGrammarQuestion) {
+            console.log(`[Pool 2 - Grammar ${window.selectedGrammarTopic}] Balanced signal: ${pickedGrammarQuestion.en} (${sessionDeck.length} remaining)`);
+            return pickedGrammarQuestion;
         }
     }
 
@@ -4938,7 +5966,7 @@ async function playListeningAzureText(text, element = null, startListeningTimer 
 
             listeningCountdownScheduled = true;
             clearListeningTimerStartTimeout();
-            listeningTimerStartTimeout = setTimeout(() => {
+            listeningTimerStartTimeout = setGameTimeout(() => {
                 listeningTimerStartTimeout = null;
                 const modal = document.getElementById('launch-modal');
                 if (modal && modal.style.display === 'flex' && typeof startCountdownTimer === 'function' && !timerInterval) {
@@ -4995,18 +6023,15 @@ async function playListeningAzureText(text, element = null, startListeningTimer 
         } catch (error) {
             if (playbackToken !== listeningPlaybackToken) return true;
             cleanupNativeListeningPlayback();
-            console.warn('[Listening Audio] iOS native playback failed; falling back to web audio:', error);
+            console.warn('[Listening Audio] Native playback failed; falling back to web audio:', error);
         }
     }
 
-    const audio = result.audioElement || new Audio(objectUrl);
-    if (audio !== result.audioElement) {
-        audio.src = objectUrl;
-    }
+    const audio = new Audio(objectUrl);
     const isRemoteAudioUrl = /^https?:\/\//i.test(objectUrl);
     const audioContext = isRemoteAudioUrl ? null : applyListeningPlaybackBoost(audio);
     if (isRemoteAudioUrl) {
-        audio.volume = getBoostedListeningVoiceVolume();
+        audio.volume = getHtmlListeningVoiceVolume();
     }
     audio.preload = 'auto';
     audio.playsInline = true;
@@ -5051,7 +6076,7 @@ async function playListeningAzureText(text, element = null, startListeningTimer 
 
         listeningCountdownScheduled = true;
         clearListeningTimerStartTimeout();
-        listeningTimerStartTimeout = setTimeout(() => {
+        listeningTimerStartTimeout = setGameTimeout(() => {
             listeningTimerStartTimeout = null;
             const modal = document.getElementById('launch-modal');
             if (modal && modal.style.display === 'flex' && typeof startCountdownTimer === 'function' && !timerInterval) {
@@ -5104,9 +6129,10 @@ async function playListeningAzureText(text, element = null, startListeningTimer 
     return true;
 }
 
-async function speakVocabText(text, element = null) {
+async function speakVocabText(text, element = null, options = {}) {
     const cleanText = (text || '').trim();
     if (!cleanText) return;
+    const localOnly = Boolean(options?.localOnly);
 
     try {
         cancelSpeechSynthesisIfAvailable();
@@ -5114,7 +6140,8 @@ async function speakVocabText(text, element = null) {
         stopListeningPlayback();
 
         const localAudioUrl = getVocabWordManifestAudioUrl(cleanText, 'en-US', VOCAB_PREVIEW_VOICE_PROFILE);
-        const shouldUseIosBundleAudio = window.Capacitor?.getPlatform?.() === 'ios'
+        if (localOnly && !localAudioUrl) return;
+        const shouldUseIosBundleAudio = !!(window.Capacitor && typeof window.Capacitor.isNativePlatform === 'function' && window.Capacitor.isNativePlatform())
             && typeof window.playIosBundleAudio === 'function';
         let attemptedNativeVocabAudio = false;
         if (localAudioUrl && shouldUseIosBundleAudio) {
@@ -5166,7 +6193,7 @@ async function speakVocabText(text, element = null) {
                     typeof getBoostedListeningVoiceVolume === 'function' ? getBoostedListeningVoiceVolume() : 1
                 );
             } catch (error) {
-                console.warn('[Vocab Audio] iOS native playback failed; falling back to web audio:', error);
+                console.warn('[Vocab Audio] Native playback failed; falling back to web audio:', error);
             }
 
             if (nativePlaybackToken !== listeningPlaybackToken) return;
@@ -5210,6 +6237,10 @@ async function speakVocabText(text, element = null) {
         }
         await audio.play();
     } catch (error) {
+        if (localOnly) {
+            console.warn('[Vocab Audio] Local vocab playback failed:', error);
+            return;
+        }
         console.warn('[Vocab Audio] Azure playback failed, falling back to browser speech:', error);
         await speakText(cleanText, element, false);
     }
@@ -5226,6 +6257,7 @@ function closeLaunchModalUI() {
     }
     timerInterval = null;
     launchTimerPaused = false;
+    launchTimerPausedByGamePause = false;
     launchTimerTotal = 0;
     launchTimerTimeLeft = 0;
 
@@ -5237,6 +6269,7 @@ function closeLaunchModalUI() {
     if (speakingMediaRecorder && speakingMediaRecorder.state !== 'inactive') {
         speakingMediaRecorder.stop();
     }
+    stopNativeSpeakingWave();
     stopListeningPlayback();
     speakingMediaRecorder = null;
     speakingRecordedChunks = [];
@@ -5252,7 +6285,7 @@ function closeLaunchModalUI() {
     if (virtualKeyboard) {
         virtualKeyboard.style.display = 'none';
         virtualKeyboard.style.visibility = 'hidden';
-        virtualKeyboard.classList.remove('kb-aurelians', 'kb-tablet-size', 'kb-grammar-nav');
+        virtualKeyboard.classList.remove('kb-aurelians', 'kb-tablet-size', 'kb-grammar-nav', 'kb-tense-space');
     }
 
     if (typeof window.resetLaunchGrammarQuestion === 'function') {
@@ -5267,20 +6300,48 @@ function closeLaunchModalUI() {
         hiddenInput.style.left = '-9999px';
     }
 
-    if (msgArea) msgArea.innerText = '';
+    if (msgArea) {
+        clearLaunchMessageState();
+        msgArea.innerText = '';
+    }
+    const qText = document.getElementById('q-text');
+    const qDisplay = document.getElementById('q-display');
+    if (qText) {
+        qText.classList.remove('reading-choice-word');
+        delete qText.dataset.readingChoiceWord;
+    }
+    if (qDisplay) qDisplay.classList.remove('reading-choice-display');
 
     // Unlock body scroll / fixed positioning when modal closes
     document.body.style.overflow = '';
     document.body.style.position = '';
     document.body.style.width = '';
 
-    if (typeof releaseBgmDuck === 'function') releaseBgmDuck('battle-answer', 450);
+    if (typeof releaseBgmDuck === 'function') {
+        releaseBgmDuck('battle-answer', 450);
+        releaseBgmDuck('speaking-panel', 450);
+        releaseBgmDuck('speaking-capture', 180);
+    }
 
     stopMatrixEffect();
 }
     
 // --- �����棺̎��ݔ�볬�r ---
 function handlePlayerTimeout() {
+    const isGrammarTimeout = typeof window.isGrammarBattleMode === 'function' && window.isGrammarBattleMode();
+    if (isGrammarTimeout) {
+        let timeoutUserOverride = "(TIMEOUT)";
+        if (typeof window.getGrammarBattleReviewEntry === 'function') {
+            const reviewEntry = window.getGrammarBattleReviewEntry(currentVocab);
+            const hasPartialDirectAnswer = ['DIRECT_QUESTION', 'INDIRECT_QUESTION', 'IT_IS', 'CONDITIONAL', 'INFINITIVE_GERUND', 'PREPOSITION_OF_PLACE', 'PREPOSITION_OF_TIME'].includes(reviewEntry?.grammarTopic)
+                && reviewEntry.user
+                && reviewEntry.user !== '(blank)';
+            if (hasPartialDirectAnswer) timeoutUserOverride = reviewEntry.user;
+        }
+        upsertGrammarBattleLogEntry(false, { userOverride: timeoutUserOverride, isTimeout: true });
+        saveWrongWord(currentPracticeMode, selectedLevel, currentVocab.en);
+    }
+
     attackResolutionLocked = false;
     isTargeting = false;
     closeLaunchModalUI();
@@ -5296,12 +6357,15 @@ function handlePlayerTimeout() {
         ? "0 0 15px rgba(45, 212, 191, 0.3)"
         : "0 0 15px rgba(14, 165, 233, 0.3)";
     
-    if (typeof battleLog !== 'undefined' && typeof currentVocab !== 'undefined') {
+    if (!isGrammarTimeout && typeof battleLog !== 'undefined' && typeof currentVocab !== 'undefined') {
         const lastLog = battleLog[battleLog.length - 1];
         const currentTurn = (typeof turnCounter !== 'undefined' ? turnCounter : 1);
         
         let correctContent = currentVocab.en; 
         let sentenceContent = null;
+        if (isReadingChoiceMode()) {
+            correctContent = currentVocab.ch || currentVocab.en;
+        }
         if (currentPracticeMode === 'SPEAKING' && currentVocab.sent) {
             correctContent = currentVocab.sent;
         }
@@ -5316,14 +6380,22 @@ function handlePlayerTimeout() {
         const userDisplay = inputRaw.length > 0 ? inputRaw : "(TIMEOUT)";
 
         if (!lastLog || lastLog.turn !== currentTurn) {
+            if (isReadingChoiceMode()) {
+                upsertReadingChoiceBattleLogEntry(false, { userOverride: userDisplay, isTimeout: true });
+            } else {
             battleLog.push({
                 turn: currentTurn,
                 mode: currentPracticeMode,
                 user: userDisplay,    // �� ʹ�Ú�������
                 correct: correctContent,
                 sentence: sentenceContent,
+                isTimeout: true,
                 isCorrect: false
             });
+            }
+        } else {
+            lastLog.isTimeout = true;
+            lastLog.isCorrect = false;
         }
 
         // �� �e��ӛ䛣�Timeout ������e
@@ -5538,6 +6610,13 @@ function handleCorrectAnswer() {
         count: currentCount + 1,
         status: 1
     };
+    if (typeof window.cacheCurrentPlayerProfile === 'function') {
+        window.cacheCurrentPlayerProfile({
+            xp: userTotalXP,
+            supplies: userSupplies,
+            mastery: userMastery
+        });
+    }
 
     console.log(`[XP] +${xpGained} XP | Word: ${wordId} | Count: ${currentCount} -> ${currentCount + 1} | Total XP: ${userTotalXP}`);
 
@@ -5570,6 +6649,33 @@ function handleCorrectAnswer() {
     }
 }
 
+function finishGrammarChoiceWrongTurn() {
+    attackResolutionLocked = false;
+    isTargeting = false;
+    closeLaunchModalUI();
+    currentPhase = 'PHASE_SWITCH';
+
+    if (gameMode === 'PVP') {
+        const { ref, update } = window.firebaseModules;
+        const nextTurn = (playerRole === 'host') ? 'guest' : 'host';
+        update(ref(db, 'rooms/' + currentRoomId), {
+            lastMove: {
+                attacker: playerRole,
+                index: -1,
+                timestamp: Date.now(),
+                matchId: getCurrentPvpMatchId()
+            },
+            turn: nextTurn
+        });
+        currentPhase = 'ENEMY_TURN';
+        document.getElementById('game-status').innerHTML = "OPPONENT'S TURN";
+        switchScene('ENEMY');
+        return;
+    }
+
+    startEnemyTurn();
+}
+
 // --- �����棺�ˌ��� (���ܟoҕ��̖) ---
 function checkAnswer() {
     if (attackResolutionLocked !== true || currentTargetIndex === null || currentTargetIndex === undefined) {
@@ -5582,20 +6688,62 @@ function checkAnswer() {
     }
 
     if (typeof window.isGrammarBattleMode === 'function' && window.isGrammarBattleMode()) {
+        const isGrammarChoiceMode = typeof window.isGrammarChoiceBattleMode === 'function' &&
+            window.isGrammarChoiceBattleMode(currentVocab);
         const isCorrect = typeof window.checkGrammarBattleAnswer === 'function'
             ? window.checkGrammarBattleAnswer()
             : false;
+        if (isGrammarChoiceMode && isCorrect === null) return;
+
+        upsertGrammarBattleLogEntry(isCorrect);
+
+        if (isGrammarChoiceMode) {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+            launchTimerPaused = false;
+
+            if (isCorrect) {
+                playSound('speaking-green-sfx');
+                removeWrongWord(currentPracticeMode, selectedLevel, currentVocab.en);
+                handleCorrectAnswer();
+                document.getElementById('msg-area').innerText = "OPTION CONFIRMED!";
+                setGameTimeout(() => {
+                    playerFire(true);
+                }, 1500);
+            } else {
+                saveWrongWord(currentPracticeMode, selectedLevel, currentVocab.en);
+                playSound('speaking-wrong-sfx');
+                document.getElementById('msg-area').innerText = typeof window.getGrammarBattleErrorMessage === 'function'
+                    ? window.getGrammarBattleErrorMessage(currentVocab)
+                    : "OPTION INVALID!";
+                setGameTimeout(() => {
+                    finishGrammarChoiceWrongTurn();
+                }, 1500);
+            }
+            return;
+        }
 
         if (isCorrect) {
-            playSound('speaking-green-sfx');
+            if (!(typeof window.isGrammarTenseBattleMode === 'function' && window.isGrammarTenseBattleMode(currentVocab))) {
+                playSound('speaking-green-sfx');
+            }
             removeWrongWord(currentPracticeMode, selectedLevel, currentVocab.en);
             handleCorrectAnswer();
             playerFire(true);
         } else {
             saveWrongWord(currentPracticeMode, selectedLevel, currentVocab.en);
             playSound('speaking-wrong-sfx');
-            document.getElementById('msg-area').innerText = "TABLE INCOMPLETE!";
+            document.getElementById('msg-area').innerText = typeof window.getGrammarBattleErrorMessage === 'function'
+                ? window.getGrammarBattleErrorMessage(currentVocab)
+                : "TABLE INCOMPLETE!";
         }
+        return;
+    }
+
+    if (isReadingChoiceMode()) {
+        checkReadingChoiceBattleAnswer();
         return;
     }
 
@@ -5728,6 +6876,7 @@ function playerFire(success) {
                     // --- ���� (HIT) ---
                     cell.classList.add('hit');
                     triggerAnimation(cell, 'orange');
+                    recordPlayerShotOutcome(true);
                     
                     enemyDamage++;
                     
@@ -5740,6 +6889,7 @@ function playerFire(success) {
                     cell.classList.add('revealed');
                     // --- ��ʧ (MISS) ---
                     cell.classList.add('miss');
+                    recordPlayerShotOutcome(false);
                     cell.innerHTML = '<img src="close.png" class="miss-icon">';
                 }
                 if (!isShieldBlocked && opponentShieldWasActive) clearOpponentAegisShieldState();
@@ -5770,12 +6920,14 @@ function playerFire(success) {
                 if (enemyGrid[currentTargetIndex] === 1) {
                     cell.classList.add('hit');
                     triggerAnimation(cell, 'orange');
+                    recordPlayerShotOutcome(true);
                     enemyDamage++;
                     const isSunk = checkEnemyShipDestruction(currentTargetIndex);
                     if (!isSunk) playSound('hit-sfx');
                     if (checkGameOver()) isGameOver = true;
                 } else {
                     cell.classList.add('miss');
+                    recordPlayerShotOutcome(false);
                     cell.innerHTML = '<img src="close.png" class="miss-icon">';
                 }
 
@@ -5922,6 +7074,11 @@ function updateAiRadarIntel(centerIndex, result) {
 }
 
 function performAiRadarScan(centerIndex) {
+    if (currentPhase === 'GAME_OVER') return;
+    if (isGameLogicPaused()) {
+        setGameTimeout(() => performAiRadarScan(centerIndex), 0);
+        return;
+    }
     const status = document.getElementById('game-status');
     if (status) {
         status.innerHTML = `PHASE: <span style="color:var(--primary)">ENEMY RADAR SCAN</span>`;
@@ -5934,6 +7091,7 @@ function performAiRadarScan(centerIndex) {
         countTargets: countAiRadarTargets,
         scannedSet: aiRadarScannedCenters,
         onScanComplete: (result) => {
+            if (currentPhase === 'GAME_OVER') return;
             updateAiRadarIntel(centerIndex, result);
             setGameTimeout(aiFire, AI_RADAR_ATTACK_DELAY);
         }
@@ -6124,6 +7282,11 @@ function chooseBestAiNukeAnchor() {
 }
 
 function performAiMissileStrike(topLeftIndex) {
+    if (currentPhase === 'GAME_OVER') return;
+    if (isGameLogicPaused()) {
+        setGameTimeout(() => performAiMissileStrike(topLeftIndex), 0);
+        return;
+    }
     const indices = getExplosionAreaIndices(topLeftIndex, 2);
     if (indices.length !== 4) {
         aiFire();
@@ -6148,8 +7311,10 @@ function performAiMissileStrike(topLeftIndex) {
 
     const lockOverlay = createMissileLockOverlay('player-grid', topLeftIndex);
     setGameTimeout(() => {
+        if (currentPhase === 'GAME_OVER') return;
         playSound('missile-flying-sfx');
         playMissileStrikeAnimation('player-grid', topLeftIndex, lockOverlay, () => {
+            if (currentPhase === 'GAME_OVER') return;
             const isGameOver = applyExplosionDamageToPlayer(indices, { expireShieldOnMiss: true });
             document.getElementById('warning-overlay').style.display = 'none';
             refreshAiRadarIntel();
@@ -6162,6 +7327,11 @@ function performAiMissileStrike(topLeftIndex) {
 }
 
 function performAiNukeStrike(topLeftIndex) {
+    if (currentPhase === 'GAME_OVER') return;
+    if (isGameLogicPaused()) {
+        setGameTimeout(() => performAiNukeStrike(topLeftIndex), 0);
+        return;
+    }
     const indices = getExplosionAreaIndices(topLeftIndex, 4);
     if (indices.length !== 16) {
         aiFire();
@@ -6188,13 +7358,16 @@ function performAiNukeStrike(topLeftIndex) {
     const lockOverlay = createNukeLockOverlay('player-grid', topLeftIndex);
 
     setGameTimeout(() => {
+        if (currentPhase === 'GAME_OVER') return;
         playSound('missile-flying-sfx');
         let isGameOver = false;
 
         playNukeStrikeAnimation('player-grid', topLeftIndex, lockOverlay, () => {
+            if (currentPhase === 'GAME_OVER') return;
             isGameOver = applyExplosionDamageToPlayer(indices, { expireShieldOnMiss: true });
             refreshAiRadarIntel();
         }, () => {
+            if (currentPhase === 'GAME_OVER') return;
             document.getElementById('warning-overlay').style.display = 'none';
 
             if (!isGameOver) {
@@ -6206,6 +7379,10 @@ function performAiNukeStrike(topLeftIndex) {
 
 function aiTakeTurn() {
     if (currentPhase === 'GAME_OVER') return;
+    if (isGameLogicPaused()) {
+        setGameTimeout(aiTakeTurn, 0);
+        return;
+    }
 
     refreshAiRadarIntel();
 
@@ -6240,6 +7417,11 @@ function aiTakeTurn() {
 }
 
 function aiFire() {
+    if (currentPhase === 'GAME_OVER') return;
+    if (isGameLogicPaused()) {
+        setGameTimeout(aiFire, 0);
+        return;
+    }
     playSound('laser-sfx');
     let t;
     
@@ -6300,6 +7482,7 @@ function aiFire() {
     triggerAnimation(cell, 'blue', { race: enemyRace || 'VANGUARDS' });
     
     setGameTimeout(() => {
+        if (currentPhase === 'GAME_OVER') return;
         let isGameOver = false; 
 
         if (isShieldBlocked) {
@@ -6357,6 +7540,10 @@ function aiFire() {
 
 function startPlayerTurn() {
         if (currentPhase === 'GAME_OVER') return;
+        if (isGameLogicPaused()) {
+            setGameTimeout(startPlayerTurn, 0);
+            return;
+        }
         attackResolutionLocked = false;
         isTargeting = false;
         // �� �������غϔ� +1 ��
@@ -6679,6 +7866,9 @@ function playSound(id) {
     const volume = id === 'enter-sfx'
         ? Math.min(1, Math.max(0.42, baseVolume * 1.35))
         : baseVolume;
+    if (typeof window.playWebFirstSfx === 'function' && window.playWebFirstSfx(id, volume)) {
+        return;
+    }
     if (typeof window.playNativeSfx === 'function') {
         window.playNativeSfx(id, volume).then(played => {
             if (played) return;
@@ -6858,6 +8048,108 @@ function renderSidebar() {
         return FLEET.length;
     }
 
+function setSettlementText(id, value) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = value;
+}
+
+function showSettlementPage(pageName = 'battle') {
+    const validPages = new Set(['battle', 'rewards', 'debrief']);
+    const targetPage = validPages.has(pageName) ? pageName : 'battle';
+    const pages = document.querySelectorAll('#end-screen .settlement-page');
+
+    pages.forEach(page => {
+        const isActive = page.dataset.settlementPage === targetPage;
+        page.classList.toggle('active', isActive);
+        page.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+    });
+}
+
+window.showSettlementPage = showSettlementPage;
+
+function recordPlayerShotOutcome(isHit) {
+    playerShotHistory.push(Boolean(isHit));
+}
+
+function countGridCells(gridId, className) {
+    const grid = document.getElementById(gridId);
+    if (!grid) return 0;
+    return grid.querySelectorAll(`.cell.${className}`).length;
+}
+
+function getSettlementRaceLabel(race) {
+    return String(race || 'VANGUARDS').trim().toUpperCase() || 'VANGUARDS';
+}
+
+function formatSettlementCommander(name, race) {
+    const safeName = String(name || 'COMMANDER').trim().toUpperCase() || 'COMMANDER';
+    return `${safeName} [${getSettlementRaceLabel(race)}]`;
+}
+
+function getSettlementPlayerName() {
+    return localStorage.getItem('battleship_username')
+        || window.authFlowState?.displayName
+        || 'COMMANDER';
+}
+
+function getSettlementEnemyName() {
+    if (gameMode === 'PVP') {
+        const cachedProfile = currentOpponentId && lobbyProfileCache ? lobbyProfileCache.get(currentOpponentId) : null;
+        return cachedProfile?.name || (currentOpponentId ? currentOpponentId.substring(0, 8).toUpperCase() : 'OPPONENT');
+    }
+    return 'AI COMMANDER';
+}
+
+function getBestPlayerHitStreak() {
+    const source = playerShotHistory.length > 0
+        ? playerShotHistory
+        : battleLog.map(log => !!log.isCorrect);
+    let best = 0;
+    let current = 0;
+
+    source.forEach(hit => {
+        if (hit) {
+            current++;
+            best = Math.max(best, current);
+        } else {
+            current = 0;
+        }
+    });
+
+    return best;
+}
+
+function renderSettlementBattleResult(isVictory, correctAnswerPercent) {
+    const gridHits = countGridCells('enemy-grid', 'hit');
+    const gridMisses = countGridCells('enemy-grid', 'miss');
+    const hits = Math.max(enemyDamage || 0, gridHits);
+    const historyMisses = playerShotHistory.filter(hit => !hit).length;
+    const misses = Math.max(historyMisses, gridMisses);
+    const shots = hits + misses;
+    const shotAccuracy = shots > 0 ? Math.round((hits / shots) * 100) : 0;
+    const destroyedUnits = Array.isArray(enemyFleetData)
+        ? enemyFleetData.filter(ship => ship && ship.revealed).length
+        : 0;
+    const totalUnits = Array.isArray(enemyFleetData) && enemyFleetData.length > 0
+        ? enemyFleetData.length
+        : getFleetConfig(enemyRace || 'VANGUARDS').length;
+
+    setSettlementText('settlement-player-name', formatSettlementCommander(getSettlementPlayerName(), selectedRace));
+    setSettlementText('settlement-enemy-name', formatSettlementCommander(getSettlementEnemyName(), enemyRace));
+    setSettlementText('settlement-turns', String(Math.max(1, turnCounter || 0)));
+    setSettlementText('settlement-correct-percent', `${Math.round(correctAnswerPercent)}%`);
+    setSettlementText('settlement-units-destroyed', `${destroyedUnits} / ${totalUnits}`);
+    setSettlementText('settlement-hits', String(hits));
+    setSettlementText('settlement-missed', String(misses));
+    setSettlementText('settlement-shot-accuracy', `${shotAccuracy}%`);
+    setSettlementText('settlement-best-hit-streak', String(getBestPlayerHitStreak()));
+
+    const title = document.getElementById('end-title');
+    if (title) {
+        title.innerText = isVictory ? 'VICTORY' : 'DEFEAT';
+    }
+}
+
 // ���� PHASE 5: SETTLEMENT CALCULATION ����
 function calculateAndDisplaySettlement(isVictory, isSurrender = false) {
     // Calculate accuracy
@@ -6880,6 +8172,12 @@ function calculateAndDisplaySettlement(isVictory, isSurrender = false) {
     // Add match bonus to total XP
     userTotalXP += matchBonus;
     syncUserProgressGlobals();
+    if (typeof window.cacheCurrentPlayerProfile === 'function') {
+        window.cacheCurrentPlayerProfile({
+            xp: userTotalXP,
+            supplies: userSupplies
+        });
+    }
 
     // Calculate total session XP
     const totalSessionXP = sessionAnsweringXP + matchBonus;
@@ -6919,6 +8217,9 @@ function calculateAndDisplaySettlement(isVictory, isSurrender = false) {
         }
     }
     if (totalXpEl) totalXpEl.innerText = `+${totalSessionXP}`;
+
+    renderSettlementBattleResult(isVictory && !isSurrender, accuracy);
+    showSettlementPage('battle');
 
     // Sync to Firebase
     if (window.myPlayerId && window.db) {
@@ -7021,11 +8322,15 @@ function calculateAndDisplaySettlement(isVictory, isSurrender = false) {
 
         if (turnTimerInterval) clearInterval(turnTimerInterval);
         if (timerInterval) clearInterval(timerInterval);
+        turnTimerInterval = null;
+        timerInterval = null;
+        turnTimerPausedByGamePause = false;
+        launchTimerPausedByGamePause = false;
+        launchTimerPaused = false;
+        const warningOverlay = document.getElementById('warning-overlay');
+        if (warningOverlay) warningOverlay.style.display = 'none';
 
-        if (typeof gameTimeouts !== 'undefined') {
-            gameTimeouts.forEach(id => clearTimeout(id));
-            gameTimeouts = [];
-        }
+        clearAllGameTimeouts();
     }
 
    function checkGameOver() {
@@ -7117,6 +8422,7 @@ function confirmExit() {
 
     // 4. �@ʾҕ�� & ��
     document.getElementById('confirm-modal').style.display = 'flex';
+    requestGamePause('confirm-modal');
     playSound('wrong-sfx'); 
 }
 // �� �a���@����������t�ɂ����������� ��
@@ -7124,6 +8430,7 @@ function confirmExit() {
     function closeConfirmModal() {
         playSound('delete-sfx'); // �� Delete 
         document.getElementById('confirm-modal').style.display = 'none';
+        releaseGamePause('confirm-modal');
     }
 
 // �� �����棺���зŗ�/Ͷ�� (�^�� ������ vs ���Y��) ��
@@ -7133,6 +8440,7 @@ function executeAbort() {
     attackResolutionLocked = false;
     isTargeting = false;
     closeLaunchModalUI();
+    releaseGamePause('confirm-modal');
 
     // 2. �Дஔǰ�A��
     // ���߀�ڴ�d������߀�ڲ����b (DEPLOY)����ֱ������ (�����˳�)
@@ -7160,10 +8468,7 @@ function executeAbort() {
         if (timerInterval) clearInterval(timerInterval);
 
         // �� �P�I�����������������І� AI ���� (startEnemyTurn / aiFire ��)
-        if (typeof gameTimeouts !== 'undefined') {
-            gameTimeouts.forEach(id => clearTimeout(id));
-            gameTimeouts = [];
-        }
+        clearAllGameTimeouts();
         
         // 2. ���ɑ����� (�@������Ҫ�ģ�)
         if(typeof renderReview === 'function') renderReview();
@@ -7188,6 +8493,7 @@ function executeAbort() {
 
 function resetGame() {
     battleLog = [];
+    playerShotHistory = [];
     battleUsedWordKeys.clear();
     pendingBattleVocab = null;
     stageSessionMissCounts = {};
@@ -7225,7 +8531,7 @@ function resetGame() {
     if (roomInput) roomInput.value = ""; 
     closeLaunchModalUI();
     closeIncomingInviteModal();
-    closeInvitePlayersModal();
+    closeInvitePlayersModal({ silent: true });
     const confirmModal = document.getElementById('confirm-modal');
     if (confirmModal) confirmModal.style.display = 'none';
     const settingsModal = document.getElementById('settings-modal');
@@ -7281,13 +8587,12 @@ function resetGame() {
     if (turnTimerInterval) clearInterval(turnTimerInterval);
     if (timerInterval) clearInterval(timerInterval);
     if (deploymentTimerInterval) clearInterval(deploymentTimerInterval);
-    if (typeof gameTimeouts !== 'undefined') {
-            gameTimeouts.forEach(id => clearTimeout(id));
-            gameTimeouts = [];
-    }
+    clearAllGameTimeouts();
+    clearGamePauseState();
 
     document.getElementById('turn-timer-container').style.visibility = 'hidden';
     document.getElementById('end-screen').style.display = 'none';
+    showSettlementPage('battle');
     document.getElementById('game-ui').style.display = 'none';
     document.getElementById('lobby-screen').style.display = 'none';
     const reviewContainer = document.getElementById('review-container');
@@ -7584,9 +8889,111 @@ function updateInvitePopupSetting(enabled) {
 
 window.updateInvitePopupSetting = updateInvitePopupSetting;
 
-function closeInvitePlayersModal() {
+function closeInvitePlayersModal({ silent = false } = {}) {
     const modal = document.getElementById('invite-players-modal');
+    hideInviteSearchKeyboard({ silent: true });
     if (modal) modal.style.display = 'none';
+    if (!silent && typeof playSound === 'function') playSound('delete-sfx');
+}
+
+function isInvitePlayersModalVisible() {
+    const modal = document.getElementById('invite-players-modal');
+    return !!(modal && modal.style.display !== 'none');
+}
+
+function shouldUseInviteSearchGameKeyboard() {
+    if (typeof window.matchMedia !== 'function') return false;
+    return window.matchMedia('(hover: none), (pointer: coarse)').matches;
+}
+
+function syncInviteSearchInputMode() {
+    const searchInput = document.getElementById('invite-player-search');
+    const keyboard = document.getElementById('invite-search-keyboard');
+    const keyboardBox = keyboard ? keyboard.closest('.invite-modal-box') : null;
+    const useGameKeyboard = shouldUseInviteSearchGameKeyboard();
+
+    if (searchInput) {
+        if (useGameKeyboard) {
+            searchInput.setAttribute('readonly', 'readonly');
+            searchInput.setAttribute('inputmode', 'none');
+        } else {
+            searchInput.removeAttribute('readonly');
+            searchInput.setAttribute('inputmode', 'search');
+        }
+    }
+
+    if (!useGameKeyboard || !isInvitePlayersModalVisible()) {
+        if (keyboard) keyboard.style.display = 'none';
+        if (keyboardBox) keyboardBox.classList.remove('invite-keyboard-open');
+    }
+}
+
+function showInviteSearchKeyboard() {
+    const searchInput = document.getElementById('invite-player-search');
+    const keyboard = document.getElementById('invite-search-keyboard');
+    const keyboardBox = keyboard ? keyboard.closest('.invite-modal-box') : null;
+
+    if (!isInvitePlayersModalVisible()) return;
+
+    if (!shouldUseInviteSearchGameKeyboard()) {
+        if (searchInput) {
+            searchInput.removeAttribute('readonly');
+            searchInput.setAttribute('inputmode', 'search');
+        }
+        return;
+    }
+
+    if (searchInput) {
+        searchInput.setAttribute('readonly', 'readonly');
+        searchInput.setAttribute('inputmode', 'none');
+        searchInput.blur();
+    }
+
+    if (keyboard) keyboard.style.display = 'flex';
+    if (keyboardBox) keyboardBox.classList.add('invite-keyboard-open');
+}
+
+function hideInviteSearchKeyboard({ silent = false } = {}) {
+    const searchInput = document.getElementById('invite-player-search');
+    const keyboard = document.getElementById('invite-search-keyboard');
+    const keyboardBox = keyboard ? keyboard.closest('.invite-modal-box') : null;
+    const wasVisible = keyboard && keyboard.style.display !== 'none';
+
+    if (keyboard) keyboard.style.display = 'none';
+    if (keyboardBox) keyboardBox.classList.remove('invite-keyboard-open');
+    if (searchInput) searchInput.blur();
+
+    if (!silent && wasVisible && typeof playSound === 'function') playSound('delete-sfx');
+}
+
+function setInviteSearchValue(nextValue) {
+    const searchInput = document.getElementById('invite-player-search');
+    if (!searchInput) return;
+
+    searchInput.value = String(nextValue || '').toUpperCase().slice(0, 32);
+    filterInvitePlayers(searchInput.value);
+}
+
+function handleInviteSearchKeyInput(keyValue) {
+    if (!isInvitePlayersModalVisible()) return;
+
+    const searchInput = document.getElementById('invite-player-search');
+    if (!searchInput) return;
+
+    if (keyValue === 'BACKSPACE') {
+        setInviteSearchValue(searchInput.value.slice(0, -1));
+        if (typeof playSound === 'function') playSound('delete-sfx');
+        return;
+    }
+
+    if (keyValue === 'ENTER') {
+        hideInviteSearchKeyboard();
+        return;
+    }
+
+    if (!/^[A-Z0-9]$/.test(keyValue)) return;
+    setInviteSearchValue(searchInput.value + keyValue);
+    if (typeof playSound === 'function') playSound('enter-sfx');
 }
 
 function renderInvitePlayersList(players) {
@@ -7624,6 +9031,7 @@ function filterInvitePlayers(queryText = '') {
 }
 
 window.filterInvitePlayers = filterInvitePlayers;
+window.showInviteSearchKeyboard = showInviteSearchKeyboard;
 
 async function fetchRecentInviteCandidates() {
     const { ref, get } = window.firebaseModules;
@@ -7686,8 +9094,10 @@ async function openInvitePlayersModal() {
     const searchInput = document.getElementById('invite-player-search');
     if (!modal) return;
 
+    if (typeof playSound === 'function') playSound('deploy-sfx');
     modal.style.display = 'flex';
     if (searchInput) searchInput.value = '';
+    syncInviteSearchInputMode();
     renderInvitePlayersList([]);
 
     try {
@@ -8024,7 +9434,7 @@ function resetLobbyScreenState() {
     const briefing = document.getElementById('lobby-briefing');
     const lobbyMsg = document.getElementById('lobby-msg');
 
-    closeInvitePlayersModal();
+    closeInvitePlayersModal({ silent: true });
     closeIncomingInviteModal();
     recentInviteCandidates = [];
     if (lobbyControls) lobbyControls.style.display = 'block';
@@ -8111,7 +9521,7 @@ function formatLobbyLevel(level) {
 
 function formatLobbySkill(skill) {
     if (!skill) return '--';
-    return skill.replace(/_/g, ' ');
+    return getPracticeModeLabel(skill);
 }
 
 async function getLobbyPlayerProfile(playerId) {
@@ -8549,6 +9959,27 @@ function escapeHtml(value) {
     return String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
 }
 
+function renderGrammarTenseReviewAnswer(log) {
+    const sentence = String(log?.sentence || '').trim();
+    const fallbackAnswer = String(log?.correct || '').trim();
+    const answerSlots = Array.isArray(log?.grammarAnswerSlots) && log.grammarAnswerSlots.length
+        ? log.grammarAnswerSlots.map(slot => String(slot || '').trim())
+        : [fallbackAnswer];
+
+    if (!sentence) return escapeHtml(fallbackAnswer);
+
+    let slotIndex = 0;
+    const sentenceHtml = escapeHtml(sentence).replace(/_{2,}/g, () => {
+        const slotText = answerSlots[Math.min(slotIndex, answerSlots.length - 1)] || fallbackAnswer || '_';
+        slotIndex += 1;
+        return `<span class="review-grammar-answer-chip">${escapeHtml(slotText)}</span>`;
+    });
+
+    if (slotIndex > 0) return sentenceHtml;
+
+    return `${sentenceHtml}<br><span class="review-grammar-answer-chip">${escapeHtml(fallbackAnswer)}</span>`;
+}
+
 function buildSpeakingDebriefSentence(log) {
     const assessment = log?.speakingAssessment;
     const targetWord = (assessment?.targetWord || '').toLowerCase();
@@ -8646,6 +10077,17 @@ function upsertSpeakingBattleLogEntry(transcript, targetText, result, targetWord
     if (typeof battleLog === 'undefined') return;
 
     const turn = (typeof turnCounter !== 'undefined' ? turnCounter : 1);
+    const referenceLevel = selectedLevel || 'L1';
+    const referenceSentenceIndex = Number.isInteger(currentVocab?.sentenceIndex) ? currentVocab.sentenceIndex : 0;
+    const referenceVoiceProfile = getListeningVoiceProfileForSentence(currentVocab, referenceLevel, referenceSentenceIndex);
+    const referenceAudioUrl = getSpeakingReferenceManifestAudioUrl(targetText, 'en-US', {
+        speakingAssessment: {
+            level: referenceLevel,
+            sentenceIndex: referenceSentenceIndex,
+            referenceVoiceName: referenceVoiceProfile?.voiceName || null,
+            referenceAccentLocale: referenceVoiceProfile?.accentLocale || null
+        }
+    });
     const speakingEntry = {
         turn,
         user: transcript || '(no transcript)',
@@ -8660,7 +10102,12 @@ function upsertSpeakingBattleLogEntry(transcript, targetText, result, targetWord
             overall: result.overall || {},
             words: Array.isArray(result.words) ? result.words : [],
             playerAudioBase64: speakingLastRecordedAudioBase64 || '',
-            playerAudioMimeType: 'audio/wav'
+            playerAudioMimeType: 'audio/wav',
+            level: referenceLevel,
+            sentenceIndex: referenceSentenceIndex,
+            referenceVoiceName: referenceVoiceProfile?.voiceName || null,
+            referenceAccentLocale: referenceVoiceProfile?.accentLocale || null,
+            referenceAudioUrl: referenceAudioUrl || ''
         }
     };
 
@@ -8683,11 +10130,21 @@ function renderReview() {
     battleLog.forEach(log => {
         const item = document.createElement('div');
         item.className = 'review-item';
+        if (log.mode === 'GRAMMAR') item.classList.add('review-item-grammar');
+        item.classList.add(log.isCorrect ? 'review-item-correct' : 'review-item-wrong');
+
+        const isTimeoutLog = Boolean(log.isTimeout || log.user === "(TIMEOUT)");
+        const shouldDisplayTimeoutOnly = Boolean(log.user === "(TIMEOUT)" || (log.isTimeout && (!log.user || log.user === "(blank)")));
+        if (isTimeoutLog) item.classList.add('review-item-timeout');
         
         const userClass = log.isCorrect ? 'correct' : 'wrong';
         
         let chineseMeaning = "--";
-        if (typeof activeVocabList !== 'undefined') {
+        if (log.mode === READING_CHOICE_MODE && log.prompt) {
+            chineseMeaning = log.prompt;
+        } else if (log.mode === 'GRAMMAR' && log.chinese) {
+            chineseMeaning = log.chinese;
+        } else if (typeof activeVocabList !== 'undefined') {
             const foundWord = activeVocabList.find(w => w.en === log.correct || w.sent === log.correct);
             if (foundWord && foundWord.ch) {
                 chineseMeaning = foundWord.ch;
@@ -8695,9 +10152,15 @@ function renderReview() {
         }
 
         // �� ���� 2�������DС�� (���ǂS TIMEOUT ����) ��
-let displayUser = log.user;
-if (displayUser !== "(TIMEOUT)") {
-    if (log.mode === 'SPEAKING') {
+	let displayUser = log.user;
+	if (shouldDisplayTimeoutOnly) {
+	    displayUser = '<span class="review-timeout">TIMEOUT</span>';
+	} else {
+    if (log.mode === 'GRAMMAR') {
+        displayUser = escapeHtml(displayUser || '(blank)');
+    } else if (log.mode === READING_CHOICE_MODE) {
+        displayUser = escapeHtml(displayUser || '(blank)');
+    } else if (log.mode === 'SPEAKING') {
         displayUser = escapeHtml(displayUser);
     } else {
         displayUser = displayUser.toLowerCase();
@@ -8715,6 +10178,10 @@ if (displayUser !== "(TIMEOUT)") {
             const regex = new RegExp(`(${escapeRegExp(answerWord)})`, 'gi');
             const replacedSentence = sentence.replace(regex, '<span style="color: var(--warning);">$1</span>');
             correctDisplay = replacedSentence !== sentence ? replacedSentence : escapeHtml(answerWord);
+        } else if (log.mode === 'GRAMMAR' && log.sentence && Array.isArray(log.grammarAnswerSlots) && log.grammarAnswerSlots.length) {
+            correctDisplay = renderGrammarTenseReviewAnswer(log);
+        } else if (log.mode === 'GRAMMAR' || log.mode === READING_CHOICE_MODE) {
+            correctDisplay = escapeHtml(correctDisplay);
         }
 
         if (log.mode === 'SPEAKING' && log.speakingAssessment) {
@@ -8725,7 +10192,7 @@ if (displayUser !== "(TIMEOUT)") {
 
         item.innerHTML = `
             <div class="review-turn">T-${log.turn}</div>
-            <div class="review-meaning">${chineseMeaning}</div>
+            <div class="review-meaning">${escapeHtml(chineseMeaning)}</div>
             <div class="review-user ${userClass}">${displayUser}</div>
             <div class="review-answer">${correctDisplay}</div>
         `;
@@ -8906,7 +10373,7 @@ async function selectSkill(skill) {
     window.selectedGrammarTopic = null;
     currentPracticeMode = skill;
     if (tempGameMode === 'AI') {
-        activeVocabList = buildStageVocabListForMode(skill.toLowerCase());
+        activeVocabList = buildStageVocabListForMode(getPracticeModeMasteryKey(skill));
         sessionDeck = [...activeVocabList];
         if (selectedStageLabel) {
             console.log(`[Stage] ${selectedStageLabel} -> ${skill} deck size: ${sessionDeck.length}`);
@@ -9153,6 +10620,12 @@ function confirmRaceUnlock(race) {
         unlockedRaces.push(race);
         window.unlockedRaces = unlockedRaces;
     }
+    if (typeof window.cacheCurrentPlayerProfile === 'function') {
+        window.cacheCurrentPlayerProfile({
+            supplies: userSupplies,
+            unlockedRaces: unlockedRaces
+        });
+    }
 
     // ͬ���� Firebase
     const { ref, update } = window.firebaseModules;
@@ -9236,8 +10709,14 @@ function handleRaceBack() {
         return;
     }
     document.getElementById('race-screen').style.display = 'none';
-    if (tempGameMode === 'AI' && currentPracticeMode === 'GRAMMAR' && window.selectedGrammarTopic === 'VERB_TABLE') {
+    if (tempGameMode === 'AI' && currentPracticeMode === 'GRAMMAR' && window.selectedGrammarTopic) {
         showGrammarScreenWithAnimation('grammar-topic-screen');
+        if (window.selectedGrammarTopic === 'TENSES' && typeof window.openGrammarTenseSetupScreen === 'function') {
+            window.openGrammarTenseSetupScreen({ silent: true });
+        }
+        if (window.selectedGrammarTopic === 'CONDITIONAL' && typeof window.openGrammarConditionalSetupScreen === 'function') {
+            window.openGrammarConditionalSetupScreen({ silent: true });
+        }
         return;
     }
     showSkillScreen({ hideSpeaking: false });
@@ -9250,10 +10729,11 @@ function handleSkillBack() {
     if (tempGameMode === 'AI') {
         // AI: �������x��
         showMainMenu();
-    } else {
-        // PVP: ���� Level �x�� (��������� Level -> Skill)
-        const levelScreen = document.getElementById('level-screen');
-        levelScreen.style.display = 'flex';
+	    } else {
+	        // PVP: ���� Level �x�� (��������� Level -> Skill)
+	        const levelScreen = document.getElementById('level-screen');
+	        syncLevelScreenForMode();
+	        levelScreen.style.display = 'flex';
         // ���� Trigger holoAppear animation on content wrapper ����
         const wrapper = levelScreen.querySelector('.panel-content-wrapper');
         if (wrapper) {
@@ -9341,51 +10821,41 @@ function startLegacySpeechRecognition() {
     recognition.start();
 }
 
-async function submitSpeakingAudioForAssessment(blob) {
-    const baseUrl = getSpeakingAssessmentBaseUrl();
-    if (!baseUrl) throw new Error('Speaking assessment backend is not configured.');
+async function submitSpeakingAudioForAssessment(blob, scanContext = {}) {
+    let wavBlob = /wav/i.test(blob.type || '') ? blob : await convertBlobToMonoWav(blob);
+    try {
+        wavBlob = await convertBlobToMonoWav(wavBlob, 16000);
+    } catch (error) {
+        console.warn('[Speaking Debug] 16k WAV conversion skipped:', describeJsError(error));
+    }
 
-    const wavBlob = /wav/i.test(blob.type || '') ? blob : await convertBlobToMonoWav(blob);
-    console.log(`[Speaking Debug] Submitting assessment (${Math.round(wavBlob.size / 1024)} KB WAV) -> ${baseUrl}`);
+    console.log(`[Speaking Debug] Running local voice scan (${Math.round(wavBlob.size / 1024)} KB WAV)`);
     const audioBase64 = await blobToBase64(wavBlob);
     speakingLastRecordedAudioBase64 = audioBase64;
-    const payload = {
-        audioBase64,
-        expectedText: currentVocab.sent ? currentVocab.sent : currentVocab.en,
-        locale: 'en-US',
-        referenceId: `speaking-${Date.now()}`,
-        mimeType: 'audio/wav'
-    };
-
-    const response = await fetch(`${baseUrl}/api/pronunciation-assessment`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(payload)
-    });
-
-    const rawText = await response.text();
-    let result = null;
+    const expectedText = currentVocab.sent ? currentVocab.sent : currentVocab.en;
+    const targetWord = currentVocab.en;
+    let nativeResult = null;
 
     try {
-        result = rawText ? JSON.parse(rawText) : null;
-    } catch (_error) {
-        const error = new Error(rawText || 'Pronunciation assessment failed.');
-        error.status = response.status;
-        error.body = rawText;
-        throw error;
+        if (getLocalVoskSpeechPlugin()) {
+            await prepareLocalSpeakingEngine();
+        }
+        nativeResult = await runNativeVoskSpeakingScan(audioBase64, expectedText, targetWord);
+    } catch (error) {
+        console.warn('[Speaking Debug] Native Vosk scan unavailable; using local acoustic fallback:', describeJsError(error));
     }
 
-    if (!response.ok) {
-        const error = new Error((result && (result.message || result.error)) || 'Pronunciation assessment failed.');
-        error.status = response.status;
-        error.body = rawText;
-        throw error;
+    if (!nativeResult) {
+        nativeResult = {
+            ok: true,
+            engine: 'local-acoustic',
+            recognizedText: '',
+            words: []
+        };
     }
 
-    console.log('[Speaking Debug] Assessment response received');
-    return result;
+    console.log(`[Speaking Debug] Local scan response (${nativeResult.engine || 'local'})`, nativeResult.recognizedText || '(no transcript)');
+    return buildLocalSpeakingAssessmentResult(nativeResult, expectedText, targetWord, scanContext.metrics || {});
 }
 
 async function requestSpeakingAudioStream() {
@@ -9418,7 +10888,148 @@ async function requestSpeakingAudioStream() {
     }
 }
 
+function getIosNativeSpeechCapturePlugin() {
+    if (!isIosNativeRuntime()) return null;
+    const gameAudio = window.Capacitor?.Plugins?.GameAudio || null;
+    if (!gameAudio || typeof gameAudio.startSpeechCapture !== 'function') return null;
+    return gameAudio;
+}
+
+function base64ToBlob(base64, mimeType = 'audio/wav') {
+    const binary = atob(String(base64 || ''));
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) {
+        bytes[i] = binary.charCodeAt(i);
+    }
+    return new Blob([bytes], { type: mimeType });
+}
+
+function stopNativeSpeakingWave() {
+    if (speakingNativeWaveTimer) {
+        clearInterval(speakingNativeWaveTimer);
+        speakingNativeWaveTimer = null;
+    }
+    if (speakingNativeLevelListener) {
+        const listener = speakingNativeLevelListener;
+        speakingNativeLevelListener = null;
+        Promise.resolve(listener)
+            .then(handle => handle?.remove?.())
+            .catch(() => {});
+    }
+    resetSpeakingWave();
+}
+
+function startNativeSpeakingWave(gameAudio = null) {
+    stopNativeSpeakingWave();
+    const plugin = gameAudio || getIosNativeSpeechCapturePlugin();
+    if (plugin && typeof plugin.addListener === 'function') {
+        speakingNativeLevelListener = plugin.addListener('speechCaptureLevel', event => {
+            if (!speakingMediaRecorder || speakingMediaRecorder.state !== 'recording') return;
+            const level = clampNumber(event?.level ?? event?.meterLevel ?? 0, 0, 1);
+            scheduleSpeakingWaveUpdate(level);
+        });
+        return;
+    }
+
+    let tick = 0;
+    speakingNativeWaveTimer = setInterval(() => {
+        if (!speakingMediaRecorder || speakingMediaRecorder.state !== 'recording') return;
+        tick += 1;
+        const pulse = 0.28 + (Math.sin(tick * 0.74) + 1) * 0.16;
+        scheduleSpeakingWaveUpdate(pulse);
+    }, 140);
+}
+
+function getSpeakingReferenceVocabFromLog(log, text = '') {
+    const targetWord = String(log?.speakingAssessment?.targetWord || '').trim();
+    const cleanText = String(text || log?.sentence || log?.correct || '').trim();
+    if (currentVocab && (
+        (targetWord && currentVocab.en === targetWord) ||
+        (cleanText && (currentVocab.sent === cleanText || currentVocab.en === cleanText))
+    )) {
+        return currentVocab;
+    }
+
+    if (!Array.isArray(activeVocabList)) return null;
+    return activeVocabList.find(word => {
+        if (!word) return false;
+        if (targetWord && word.en === targetWord) return true;
+        if (cleanText && (word.sent === cleanText || word.en === cleanText)) return true;
+        if (Array.isArray(word.sents)) {
+            return word.sents.some(sentence => {
+                const sentenceText = typeof sentence === 'object' ? sentence?.text : sentence;
+                return sentenceText === cleanText;
+            });
+        }
+        return false;
+    }) || null;
+}
+
+function getSpeakingReferenceManifestAudioUrl(text, locale = 'en-US', log = null) {
+    const cleanText = (text || '').trim();
+    if (!cleanText) return '';
+
+    const assessment = log?.speakingAssessment || {};
+    if (isCurrentListeningManifestAudioUrl(assessment.referenceAudioUrl)) {
+        return assessment.referenceAudioUrl;
+    }
+
+    const levelKey = assessment.level || selectedLevel || 'L1';
+    const referenceVocab = getSpeakingReferenceVocabFromLog(log, cleanText);
+    const sentenceIndex = Number.isInteger(assessment.sentenceIndex)
+        ? assessment.sentenceIndex
+        : (Number.isInteger(referenceVocab?.sentenceIndex) ? referenceVocab.sentenceIndex : 0);
+    const voiceProfile = assessment.referenceVoiceName
+        ? {
+            label: 'Speaking Reference',
+            voiceName: assessment.referenceVoiceName,
+            accentLocale: assessment.referenceAccentLocale || locale || 'en-US'
+        }
+        : getListeningVoiceProfileForSentence(referenceVocab || currentVocab, levelKey, sentenceIndex);
+
+    const listeningAudioUrl = getListeningManifestAudioUrl(cleanText, locale, levelKey, voiceProfile)
+        || findListeningManifestAudioUrlByText(cleanText, locale, levelKey);
+    if (listeningAudioUrl) return listeningAudioUrl;
+
+    if (!/\s/.test(cleanText)) {
+        return getVocabWordManifestAudioUrl(cleanText, locale, VOCAB_PREVIEW_VOICE_PROFILE);
+    }
+
+    return '';
+}
+
+function getBundledListeningAudioUrlFromManifestUrl(audioUrl) {
+    const source = String(audioUrl || '').trim();
+    if (!source) return '';
+    if (/^audio\/listening\//i.test(source)) return source;
+
+    const match = source.match(/\/tts\/listening\/([^?#]+\.mp3)(?:[?#].*)?$/i);
+    if (!match) return '';
+    return `audio/listening/${match[1]}`;
+}
+
+function getSpeakingReferenceAudioSources(audioUrl) {
+    const sources = [];
+    const bundledUrl = getBundledListeningAudioUrlFromManifestUrl(audioUrl);
+    if (bundledUrl) sources.push(bundledUrl);
+    if (audioUrl && !sources.includes(audioUrl)) sources.push(audioUrl);
+    return sources;
+}
+
 async function fetchSpeakingDebriefReferenceAudio(text, locale = 'en-US', options = {}) {
+    const manifestAudioUrl = getSpeakingReferenceManifestAudioUrl(text, locale, options.log || null);
+    if (manifestAudioUrl) {
+        return {
+            ok: true,
+            cached: true,
+            audioUrl: manifestAudioUrl,
+            format: 'audio/mpeg',
+            text,
+            locale,
+            mode: 'speaking-reference-manifest'
+        };
+    }
+
     const baseUrl = getSpeakingAssessmentBaseUrl();
     if (!baseUrl) throw new Error('Speaking assessment backend is not configured.');
 
@@ -9454,10 +11065,18 @@ async function fetchSpeakingDebriefReferenceAudio(text, locale = 'en-US', option
 }
 
 function stopSpeakingDebriefPlayback() {
-    if (!speakingDebriefPlaybackAudio) return;
-    try {
-        speakingDebriefPlaybackAudio.pause();
-    } catch (_error) {}
+    if (speakingDebriefNativePlaybackActive && typeof window.stopIosBundleAudio === 'function') {
+        window.stopIosBundleAudio().catch(() => {});
+        speakingDebriefNativePlaybackActive = false;
+    }
+    if (speakingDebriefPlaybackAudio) {
+        try {
+            speakingDebriefPlaybackAudio.pause();
+        } catch (_error) {}
+        if (typeof clearListeningPlaybackBoost === 'function') {
+            clearListeningPlaybackBoost();
+        }
+    }
     if (speakingDebriefPlaybackObjectUrl) {
         URL.revokeObjectURL(speakingDebriefPlaybackObjectUrl);
         speakingDebriefPlaybackObjectUrl = '';
@@ -9588,14 +11207,81 @@ function playBase64Audio(base64Audio, mimeType = 'audio/mpeg', options = {}) {
     speakingDebriefPlaybackObjectUrl = objectUrl;
 }
 
+function playSpeakingDebriefHtmlAudioSource(sourceUrl) {
+    return new Promise((resolve) => {
+        const audio = new Audio(sourceUrl);
+        const isRemoteAudioUrl = /^https?:\/\//i.test(sourceUrl);
+        const audioContext = isRemoteAudioUrl ? null : applyListeningPlaybackBoost(audio);
+        if (isRemoteAudioUrl) {
+            audio.volume = typeof getHtmlListeningVoiceVolume === 'function' ? getHtmlListeningVoiceVolume() : 1;
+        }
+        audio.preload = 'auto';
+        audio.playsInline = true;
+        audio.setAttribute('playsinline', '');
+
+        const cleanup = (played) => {
+            if (audioContext && typeof clearListeningPlaybackBoost === 'function') {
+                clearListeningPlaybackBoost();
+            }
+            if (speakingDebriefPlaybackAudio === audio) {
+                speakingDebriefPlaybackAudio = null;
+            }
+            restoreSpeakingDebriefBgm();
+            resolve(played);
+        };
+
+        audio.onended = () => cleanup(true);
+        audio.onerror = () => cleanup(false);
+        speakingDebriefPlaybackAudio = audio;
+        duckSpeakingDebriefBgm();
+        audio.play().catch(() => cleanup(false));
+    });
+}
+
+async function playSpeakingDebriefAudioUrl(audioUrl) {
+    const sources = getSpeakingReferenceAudioSources(audioUrl);
+    if (!sources.length) return false;
+
+    stopSpeakingDebriefPlayback();
+    for (const source of sources) {
+        if (shouldUseIosNativeAudioSource(source)) {
+            try {
+                speakingDebriefNativePlaybackActive = true;
+                duckSpeakingDebriefBgm();
+                const played = await window.playIosNativeAudioSource(
+                    source,
+                    typeof getBoostedListeningVoiceVolume === 'function' ? getBoostedListeningVoiceVolume() : 1
+                );
+                speakingDebriefNativePlaybackActive = false;
+                restoreSpeakingDebriefBgm();
+                if (played) return true;
+            } catch (error) {
+                speakingDebriefNativePlaybackActive = false;
+                restoreSpeakingDebriefBgm();
+                console.warn('[Speaking Reference] Native playback failed; trying next source:', error);
+            }
+            continue;
+        }
+
+        const played = await playSpeakingDebriefHtmlAudioSource(source);
+        if (played) return true;
+    }
+
+    return false;
+}
+
 async function playSpeakingDebriefReference() {
     const log = battleLog[Number(speakingDebriefActiveLogIndex)];
     if (!log || !log.sentence) return;
     try {
-        const result = await fetchSpeakingDebriefReferenceAudio(log.sentence, 'en-US');
+        const result = await fetchSpeakingDebriefReferenceAudio(log.sentence, 'en-US', { log });
+        if (result.audioUrl) {
+            const played = await playSpeakingDebriefAudioUrl(result.audioUrl);
+            if (played) return;
+        }
         playBase64Audio(result.audioBase64, result.format || 'audio/mpeg');
     } catch (error) {
-        console.warn('Speaking debrief Azure reference playback failed:', error);
+        console.warn('Speaking debrief reference playback failed:', error);
     }
 }
 
@@ -9609,8 +11295,10 @@ function playSpeakingDebriefPlayer() {
     );
 }
 
-async function startAzureSpeakingAssessment() {
-    if (speakingMediaRecorder && speakingMediaRecorder.state !== 'inactive') return;
+async function startNativeIosSpeakingAssessment() {
+    const gameAudio = getIosNativeSpeechCapturePlugin();
+    if (!gameAudio) throw new Error('Native iOS speech capture unavailable.');
+    if (speakingNativeCapturePromise) return;
 
     const micBtn = document.getElementById('mic-btn');
     const msgArea = document.getElementById('msg-area');
@@ -9624,12 +11312,135 @@ async function startAzureSpeakingAssessment() {
     speakingVoiceStartedAt = 0;
     speakingNoiseFloorRms = 0.006;
     speakingNoiseSampleCount = 0;
+    resetSpeakingWave();
+
     const sentenceText = String((currentVocab && (currentVocab.sent || currentVocab.en)) || '').trim();
     const sentenceWordCount = sentenceText ? sentenceText.split(/\s+/).filter(Boolean).length : 1;
     speakingMinVoiceWindowMs = Math.max(2200, Math.min(3600, sentenceWordCount * 320));
     speakingManualStopMinMs = Math.max(1500, Math.min(6000, sentenceWordCount * 500));
     speakingNoVoiceTimeoutMs = Math.max(5000, Math.min(9000, sentenceWordCount * 500));
-    console.log('[Speaking Debug] Azure speaking capture started');
+
+    await prepareNativeAudioForSpeakingCapture();
+    speakingRecordingStartedAt = Date.now();
+    launchTimerPaused = false;
+    if (micBtn) micBtn.classList.add('recording');
+    if (msgArea) {
+        msgArea.innerText = "READ CLEARLY // TAP MIC AGAIN TO SEND";
+        msgArea.style.color = getSpeakingThemeColor();
+    }
+    if (qDisplay) {
+        qDisplay.style.color = "var(--primary)";
+        qDisplay.style.fontSize = "";
+    }
+    setSpeakingUiState('recording', 'LISTENING FOR VOICE...', '--');
+    clearSpeakingAssessmentDetail();
+
+    speakingMediaRecorder = {
+        state: 'recording',
+        stop: () => {
+            if (!speakingMediaRecorder || speakingMediaRecorder.state !== 'recording') return;
+            speakingMediaRecorder.state = 'stopping';
+            if (micBtn) micBtn.classList.remove('recording');
+            if (typeof gameAudio.stopSpeechCapture === 'function') {
+                gameAudio.stopSpeechCapture({ reason: 'manual' }).catch(error => {
+                    console.warn('[Speaking Debug] Native iOS stop failed:', describeJsError(error));
+                });
+            }
+        }
+    };
+
+    startNativeSpeakingWave(gameAudio);
+    speakingNativeCapturePromise = gameAudio.startSpeechCapture({
+        maxDurationMs: speakingMaxRecordingMs,
+        noVoiceTimeoutMs: speakingNoVoiceTimeoutMs,
+        minVoiceWindowMs: speakingMinVoiceWindowMs,
+        silenceMs: speakingSilenceMs,
+        tailBufferMs: speakingTailBufferMs,
+        resumeBgm: typeof isMusicPlaying === 'boolean' ? isMusicPlaying : true
+    });
+
+    try {
+        const capture = await speakingNativeCapturePromise;
+        if (!modal || modal.style.display !== 'flex') return;
+
+        if (micBtn) micBtn.classList.remove('recording');
+        const reason = String(capture?.reason || '').toLowerCase();
+        if (reason === 'novoice' || !capture?.audioBase64) {
+            if (msgArea) {
+                msgArea.innerText = "NO VOICE DETECTED // TRY AGAIN";
+                msgArea.style.color = "#fbbf24";
+            }
+            if (qDisplay) {
+                qDisplay.style.color = "var(--primary)";
+                qDisplay.style.fontSize = "";
+            }
+            setSpeakingUiState('error', 'NO VOICE DETECTED // TRY AGAIN', '--');
+            return;
+        }
+
+        launchTimerPaused = true;
+        if (msgArea) {
+            msgArea.innerText = "SCORING TARGET WORD // HOLD POSITION";
+            msgArea.style.color = "#fbbf24";
+        }
+        if (qDisplay) {
+            qDisplay.style.color = "var(--primary)";
+            qDisplay.style.fontSize = "";
+        }
+        setSpeakingUiState('analyzing', 'LOCAL PHONEME SCAN...', '--');
+        clearSpeakingAssessmentDetail();
+        await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+
+        const recordedBlob = base64ToBlob(capture.audioBase64, capture.mimeType || 'audio/wav');
+        const assessment = await submitSpeakingAudioForAssessment(recordedBlob, {
+            metrics: capture.metrics || {}
+        });
+        checkSpeakingAssessment(assessment);
+    } catch (error) {
+        console.warn(`[Speaking Debug] Native iOS capture failed: ${describeJsError(error)}`);
+        if (modal && modal.style.display === 'flex') {
+            showSpeakingLocalUnavailable("VOICE SCAN START FAILED");
+        }
+    } finally {
+        speakingNativeCapturePromise = null;
+        stopNativeSpeakingWave();
+        speakingMediaRecorder = null;
+        speakingPcmChunks = [];
+        restoreNativeAudioAfterSpeakingCapture();
+    }
+}
+
+async function startLocalSpeakingAssessment() {
+    if (speakingMediaRecorder && speakingMediaRecorder.state !== 'inactive') return;
+
+    if (getIosNativeSpeechCapturePlugin()) {
+        await startNativeIosSpeakingAssessment();
+        return;
+    }
+
+    const micBtn = document.getElementById('mic-btn');
+    const msgArea = document.getElementById('msg-area');
+    const qDisplay = document.getElementById('q-display');
+    const modal = document.getElementById('launch-modal');
+
+    speakingRecordedChunks = [];
+    speakingPcmChunks = [];
+    speakingSilenceDetectedVoice = false;
+    speakingVoiceDetectionFrames = 0;
+    speakingVoiceStartedAt = 0;
+    speakingNoiseFloorRms = 0.006;
+    speakingNoiseSampleCount = 0;
+    resetSpeakingWave();
+    if (speakingAudioStream) {
+        stopSpeakingAudioStream();
+    }
+    await speakingPcmClosePromise;
+    const sentenceText = String((currentVocab && (currentVocab.sent || currentVocab.en)) || '').trim();
+    const sentenceWordCount = sentenceText ? sentenceText.split(/\s+/).filter(Boolean).length : 1;
+    speakingMinVoiceWindowMs = Math.max(2200, Math.min(3600, sentenceWordCount * 320));
+    speakingManualStopMinMs = Math.max(1500, Math.min(6000, sentenceWordCount * 500));
+    speakingNoVoiceTimeoutMs = Math.max(5000, Math.min(9000, sentenceWordCount * 500));
+    console.log('[Speaking Debug] Local speaking capture started');
     await prepareNativeAudioForSpeakingCapture();
     try {
         speakingAudioStream = await requestSpeakingAudioStream();
@@ -9660,22 +11471,24 @@ async function startAzureSpeakingAssessment() {
             qDisplay.style.color = "var(--primary)";
             qDisplay.style.fontSize = "";
         }
-        setSpeakingUiState('analyzing', 'ANALYZING PRONUNCIATION...', '--');
+        setSpeakingUiState('analyzing', 'LOCAL PHONEME SCAN...', '--');
         clearSpeakingAssessmentDetail();
         await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
 
+        const scanContext = {
+            metrics: getSpeakingPcmMetrics(speakingPcmChunks, speakingPcmSampleRate)
+        };
         const recordedBlob = buildSpeakingPcmWavBlob();
         speakingMediaRecorder = null;
         speakingPcmChunks = [];
         stopSpeakingAudioStream();
 
         try {
-            const assessment = await submitSpeakingAudioForAssessment(recordedBlob);
+            const assessment = await submitSpeakingAudioForAssessment(recordedBlob, scanContext);
             checkSpeakingAssessment(assessment);
         } catch (error) {
-            console.warn(`[Speaking Debug] Assessment request failed: ${describeJsError(error)}`);
-            console.warn('Azure speaking assessment failed:', error);
-            showSpeakingAzureUnavailable("AZURE OFFLINE // CHECK BACKEND");
+            console.warn(`[Speaking Debug] Local assessment failed: ${describeJsError(error)}`);
+            showSpeakingLocalUnavailable("VOICE SCAN FAILED // TRY AGAIN");
         }
     };
 
@@ -9683,8 +11496,8 @@ async function startAzureSpeakingAssessment() {
         state: 'recording',
         stop: () => {
             stopRecording().catch((error) => {
-                console.warn('Azure speaking recorder stop failed:', error);
-                showSpeakingAzureUnavailable("AZURE START FAILED");
+                console.warn('Local speaking recorder stop failed:', error);
+                showSpeakingLocalUnavailable("VOICE SCAN FAILED");
             });
         }
     };
@@ -9754,20 +11567,14 @@ function startListening() {
         if (speakingMediaRecorder && speakingMediaRecorder.state !== 'inactive') return;
         if (statusEl && (statusEl.classList.contains('analyzing') || statusEl.classList.contains('success'))) return;
 
-        if (!canUseAzureSpeakingAssessment()) {
-            const baseUrl = getSpeakingAssessmentBaseUrl();
-            const blockedByMixedContent = window.isSecureContext && baseUrl && /^http:\/\//i.test(baseUrl) && !/^http:\/\/localhost(?::\d+)?$/i.test(baseUrl);
-            if (blockedByMixedContent) {
-                showSpeakingAzureUnavailable("AZURE NEEDS HTTPS BACKEND");
-            } else {
-                showSpeakingAzureUnavailable("AZURE BACKEND NOT READY");
-            }
+        if (!canUseLocalSpeakingAssessment()) {
+            showSpeakingLocalUnavailable("MICROPHONE UNAVAILABLE");
             return;
         }
 
-        startAzureSpeakingAssessment().catch((error) => {
-            console.warn(`Azure speaking start failed: ${describeJsError(error)}`);
-            showSpeakingAzureUnavailable("AZURE START FAILED");
+        startLocalSpeakingAssessment().catch((error) => {
+            console.warn(`Local speaking start failed: ${describeJsError(error)}`);
+            showSpeakingLocalUnavailable("VOICE SCAN START FAILED");
         });
         return;
     }
@@ -9793,7 +11600,7 @@ function handleSpeakingMicClick() {
                 qDisplay.style.fontSize = "18px";
             }
             if (statusEl && !statusEl.classList.contains('analyzing')) {
-                setSpeakingUiState('recording', `VOICE LINK ACTIVE // ${Math.ceil(remainingMs / 1000)}S TO SEND`, '--');
+                setSpeakingUiState('recording', `VOICE SCAN ACTIVE // ${Math.ceil(remainingMs / 1000)}S TO SEND`, '--');
             }
             return;
         }
@@ -9893,7 +11700,7 @@ function checkSpeakingAssessment(result) {
         }
         playSound('speaking-green-sfx');
         setSpeakingUiState('success', 'TARGET LOCKED // FIRE AUTHORIZED', `${finalScore}`);
-        setTimeout(() => playerFire(true), 1000);
+        setGameTimeout(() => playerFire(true), 1000);
         return;
     }
 
@@ -9938,7 +11745,7 @@ function checkSpeakingResult(spokenText) {
     // Ӌ�����ƶ�
     const similarity = calculateSimilarity(cleanSpoken, cleanTarget);
     
-    if (similarity >= 0.8) {
+    if (similarity >= SPEAKING_LEGACY_PASS_SIMILARITY) {
         // --- ���� �P�I���� 1������ֹͣ��������ֹ�`�� Timeout ���� ---
         if (typeof timerInterval !== 'undefined') clearInterval(timerInterval);
         timerInterval = null;
@@ -9967,7 +11774,7 @@ function checkSpeakingResult(spokenText) {
         document.getElementById('msg-area').style.color = "var(--success)";
 
         // ���t 1 ��l��
-        setTimeout(() => playerFire(true), 1000);
+        setGameTimeout(() => playerFire(true), 1000);
 
     } else {
         // --- �x�e ---
@@ -9997,10 +11804,13 @@ function backToMainMenu() {
         } else {
             showMainMenu();
         }
-    } else {
-        showSelectionOverlay();
-        const levelScreen = document.getElementById('level-screen');
-        if (levelScreen) levelScreen.style.display = 'flex';
+	    } else {
+	        showSelectionOverlay();
+	        const levelScreen = document.getElementById('level-screen');
+	        if (levelScreen) {
+	            syncLevelScreenForMode();
+	            levelScreen.style.display = 'flex';
+	        }
     }
 }
 /* =========================================
@@ -10238,6 +12048,63 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    const inviteSearchInput = document.getElementById('invite-player-search');
+    const inviteSearchKeyboard = document.getElementById('invite-search-keyboard');
+
+    if (inviteSearchInput) {
+        inviteSearchInput.addEventListener('focus', function() {
+            if (shouldUseInviteSearchGameKeyboard()) {
+                showInviteSearchKeyboard();
+            }
+        });
+
+        inviteSearchInput.addEventListener('click', function() {
+            if (shouldUseInviteSearchGameKeyboard()) {
+                showInviteSearchKeyboard();
+            }
+        });
+
+        inviteSearchInput.addEventListener('keydown', function(e) {
+            if (shouldUseInviteSearchGameKeyboard()) {
+                e.preventDefault();
+            }
+        });
+    }
+
+    if (inviteSearchKeyboard) {
+        inviteSearchKeyboard.addEventListener('click', function(e) {
+            const key = e.target.closest('[data-invite-key]');
+            if (!key) return;
+
+            e.preventDefault();
+            e.stopPropagation();
+            handleInviteSearchKeyInput(key.getAttribute('data-invite-key'));
+        });
+
+        inviteSearchKeyboard.addEventListener('touchstart', function(e) {
+            const key = e.target.closest('.kb-key');
+            if (!key) return;
+            key.classList.add('kb-active');
+        }, { passive: true });
+
+        inviteSearchKeyboard.addEventListener('touchend', function(e) {
+            const key = e.target.closest('.kb-key');
+            if (!key) return;
+            setTimeout(() => key.classList.remove('kb-active'), 100);
+        }, { passive: true });
+
+        inviteSearchKeyboard.addEventListener('touchcancel', function(e) {
+            const key = e.target.closest('.kb-key');
+            if (!key) return;
+            key.classList.remove('kb-active');
+        }, { passive: true });
+    }
+
+    syncInviteSearchInputMode();
+    window.addEventListener('resize', syncInviteSearchInputMode);
+});
+
 window.onload = function() {
     console.log("System Initializing...");
 
@@ -10301,11 +12168,12 @@ function handleSkillBack() {
         } else {
             showMainMenu();
         }
-    } else {
-        // PVP: ���� Level �x�� (��������� Level -> Skill)
-        showSelectionOverlay();
-        document.getElementById('level-screen').style.display = 'flex';
-    }
+	    } else {
+	        // PVP: ���� Level �x�� (��������� Level -> Skill)
+	        showSelectionOverlay();
+	        syncLevelScreenForMode();
+	        document.getElementById('level-screen').style.display = 'flex';
+	    }
 }
 // ���� ������Ӌ��ɂ��ִ������ƶ� (0.0 - 1.0) ����
 function calculateSimilarity(s1, s2) {
@@ -10397,12 +12265,18 @@ function startCountdownTimer() {
     let timeMultiplier = 1.0;
     let baseTime = 3;
     let totalTime = 0;
-    if (typeof window.isGrammarBattleMode === 'function' && window.isGrammarBattleMode() && currentVocab?.grammarForms) {
-        const grammarLength = Object.values(currentVocab.grammarForms)
-            .join('')
-            .replace(/[^A-Z]/gi, '')
-            .length;
-        totalTime = 10 + Math.min(18, grammarLength * 0.2);
+    if (typeof window.isGrammarBattleMode === 'function' && window.isGrammarBattleMode()) {
+        if (typeof window.getGrammarBattleAnswerTimeLimit === 'function') {
+            totalTime = window.getGrammarBattleAnswerTimeLimit(currentVocab);
+        } else if (typeof window.getGrammarVerbAnswerTimeLimit === 'function' && currentVocab?.grammarForms) {
+            totalTime = window.getGrammarVerbAnswerTimeLimit(currentVocab);
+        } else {
+            const grammarLength = Object.values(currentVocab?.grammarForms || {})
+                .join('')
+                .replace(/[^A-Z]/gi, '')
+                .length;
+            totalTime = 8 + (grammarLength * 0.3);
+        }
     } else {
         if (currentPracticeMode === 'LISTENING') {
             timeMultiplier = 1.1;
@@ -10415,6 +12289,11 @@ function startCountdownTimer() {
     launchTimerTotal = currentPracticeMode === 'SPEAKING' ? totalTime * 2 : totalTime;
     launchTimerTimeLeft = launchTimerTotal;
     launchTimerPaused = false;
+    launchTimerPausedByGamePause = false;
+    if (isGameLogicPaused()) {
+        launchTimerPaused = true;
+        launchTimerPausedByGamePause = true;
+    }
 
     // �_ʼ�Ӯ�
     timerBar.style.transition = 'width 0.1s linear';
@@ -10446,13 +12325,11 @@ async function replayListeningAudio(text, event = null) {
         event.stopPropagation();
     }
 
-    requestAnimationFrame(() => {
-        setTimeout(() => {
-            speakText(text, null, true).catch(error => {
-                console.warn('[Listening Replay] Failed:', error);
-            });
-        }, 0);
-    });
+    try {
+        await speakText(text, event?.currentTarget || null, true);
+    } catch (error) {
+        console.warn('[Listening Replay] Failed:', error);
+    }
 }
 
 async function speakText(text, element = null, startListeningTimer = false) {
@@ -10490,7 +12367,7 @@ async function speakText(text, element = null, startListeningTimer = false) {
 
     // 3. �O���Z�􅢔� (���������O��)
     // ��ʹ��δ�������O�����@�δ��aҲ���Ԅ����A�Oֵ���������e
-    utterance.volume = getBoostedListeningVoiceVolume();
+    utterance.volume = getHtmlListeningVoiceVolume();
 
     // �Lԇ���� Google Voice ������Ӣ��
     if (typeof techVoice !== 'undefined' && techVoice) {
@@ -11162,11 +13039,6 @@ function rememberOpponentAegisShield(move) {
         owner: move.attacker,
         createdAt: move.timestamp || Date.now()
     };
-    if (getPvpRoleRace(move.attacker) === 'AURELIANS') {
-        preloadAureliansShieldAudio();
-        playSound('aurelians-shield-sfx');
-        playAreaEffekseerEffect('aureliansShieldApply', 'enemy-grid', move.indices);
-    }
 }
 
 function clearOpponentAegisShieldState() {
@@ -11563,7 +13435,7 @@ function playMissileStrikeAnimation(boardId, topLeftIndex, lockOverlay, onComple
     overlay.appendChild(missile);
     grid.appendChild(overlay);
 
-    setTimeout(() => {
+    setGameTimeout(() => {
         const impactX = gridRect.left + centerX;
         const impactY = gridRect.top + centerY;
 
@@ -11573,7 +13445,7 @@ function playMissileStrikeAnimation(boardId, topLeftIndex, lockOverlay, onComple
         playEffekseerEffect('missileImpact', impactX, impactY);
     }, flightDuration);
 
-    setTimeout(() => {
+    setGameTimeout(() => {
         overlay.remove();
         if (onComplete) onComplete();
     }, totalDuration);
@@ -12151,7 +14023,7 @@ function playNukeStrikeAnimation(boardId, topLeftIndex, lockOverlay, onImpact, o
     grid.appendChild(overlay);
     const nukeFrameTimer = animateImageSequence(missile, ['nuke_1.png', 'nuke_2.png'], 180);
 
-    setTimeout(() => {
+    setGameTimeout(() => {
         const impactX = gridRect.left + centerX;
         const impactY = gridRect.top + centerY;
 
@@ -12160,7 +14032,7 @@ function playNukeStrikeAnimation(boardId, topLeftIndex, lockOverlay, onImpact, o
         missile.remove();
         triggerNukeWhiteout(impactX, impactY);
 
-        setTimeout(() => {
+        setGameTimeout(() => {
             document.body.classList.remove('screen-shake-nuke');
             void document.body.offsetWidth;
             document.body.classList.add('screen-shake-nuke');
@@ -12172,7 +14044,7 @@ function playNukeStrikeAnimation(boardId, topLeftIndex, lockOverlay, onImpact, o
         }, NUKE_WHITEOUT_HOLD);
     }, flightDuration);
 
-    setTimeout(() => {
+    setGameTimeout(() => {
         if (nukeFrameTimer) clearInterval(nukeFrameTimer);
         overlay.remove();
         clearNukeFlashEffects();
@@ -12197,10 +14069,12 @@ function applyExplosionDamageToEnemy(indices, options = {}) {
 
         if (enemyGrid[index] === 1) {
             cell.classList.add('hit');
+            recordPlayerShotOutcome(true);
             enemyDamage++;
             hitIndices.push(index);
         } else {
             cell.classList.add('miss');
+            recordPlayerShotOutcome(false);
             cell.innerHTML = '<img src="close.png" class="miss-icon">';
         }
     });
@@ -12401,15 +14275,6 @@ function executeAegisShield(anchorIndex) {
     if (gameMode === 'PVP') {
         const { ref, update } = window.firebaseModules;
         update(ref(db, 'rooms/' + currentRoomId), {
-            lastMove: {
-                attacker: playerRole,
-                type: 'shield',
-                anchor: anchorIndex,
-                centerIndex: getAegisShieldCenterIndex(anchorIndex),
-                indices,
-                timestamp: Date.now(),
-                matchId: getCurrentPvpMatchId()
-            },
             [`shields/${playerRole}`]: {
                 active: true,
                 anchor: anchorIndex,

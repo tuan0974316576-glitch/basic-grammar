@@ -19,7 +19,7 @@ const corsMiddleware = cors({ origin: true });
 const VERB_TABLE_AUDIO_VERSION = 'v1';
 const VERB_TABLE_AUDIO_BREAK_MS = 150;
 const VERB_TABLE_AUDIO_VOICE = 'en-US-AndrewMultilingualNeural';
-const LISTENING_AUDIO_VERSION = 'v1';
+const LISTENING_AUDIO_VERSION = 'v2';
 const BATCH_SYNTHESIS_API_VERSION = '2024-04-01';
 const BATCH_SYNTHESIS_MAX_INPUTS = 1000;
 const BATCH_SYNTHESIS_OUTPUT_FORMAT = 'audio-16khz-32kbitrate-mono-mp3';
@@ -138,6 +138,70 @@ app.post('/api/speak-text', async (req, res) => {
     res.status(500).json({
       error: 'tts_failed',
       message: error.message || 'Speech synthesis failed.'
+    });
+  }
+});
+
+app.get('/api/audio-proxy', async (req, res) => {
+  try {
+    const rawUrl = String(req.query.url || '').trim();
+    if (!rawUrl) {
+      return res.status(400).json({
+        error: 'missing_url',
+        message: 'url is required.'
+      });
+    }
+
+    let audioUrl;
+    try {
+      audioUrl = new URL(rawUrl);
+    } catch (_error) {
+      return res.status(400).json({
+        error: 'invalid_url',
+        message: 'url must be a valid URL.'
+      });
+    }
+
+    const pathParts = audioUrl.pathname.split('/').filter(Boolean);
+    const bucketName = pathParts[0] || '';
+    const objectPath = pathParts.slice(1).join('/');
+    const allowedBuckets = getStorageBucketCandidates();
+    const allowedObject = objectPath.startsWith('tts/listening/');
+
+    if (
+      audioUrl.protocol !== 'https:' ||
+      audioUrl.hostname !== 'storage.googleapis.com' ||
+      !allowedBuckets.includes(bucketName) ||
+      !allowedObject
+    ) {
+      return res.status(403).json({
+        error: 'unsupported_url',
+        message: 'Only this app audio bucket can be proxied.'
+      });
+    }
+
+    const upstream = await fetch(audioUrl);
+    if (!upstream.ok) {
+      return res.status(upstream.status).json({
+        error: 'audio_fetch_failed',
+        message: `Audio fetch failed with status ${upstream.status}.`
+      });
+    }
+
+    const contentType = upstream.headers.get('content-type') || 'audio/mpeg';
+    const audioBuffer = Buffer.from(await upstream.arrayBuffer());
+    res.set({
+      'Access-Control-Allow-Origin': '*',
+      'Cache-Control': 'public,max-age=31536000,immutable',
+      'Content-Type': contentType,
+      'Content-Length': String(audioBuffer.length)
+    });
+    res.send(audioBuffer);
+  } catch (error) {
+    logger.error('[AudioProxy] Failed', error);
+    res.status(500).json({
+      error: 'audio_proxy_failed',
+      message: error.message || 'Audio proxy failed.'
     });
   }
 });
@@ -264,7 +328,7 @@ function buildBatchWordSsml(text, locale, voiceName, accentLocale) {
   return [
     `<speak version="1.0" xml:lang="${locale}">`,
     `  <voice name="${voiceName}">`,
-    `    <prosody rate="0%" volume="+10%"><lang xml:lang="${langLocale}">${escapeSsmlText(text)}</lang></prosody>`,
+    `    <prosody rate="0%" volume="+20%"><lang xml:lang="${langLocale}">${escapeSsmlText(text)}</lang></prosody>`,
     '  </voice>',
     '</speak>'
   ].join('');

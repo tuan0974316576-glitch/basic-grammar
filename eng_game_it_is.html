@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>It is 萬能句式重組</title>
+    <style>
+        /* --- CSS 樣式 (保持不變) --- */
+        :root {
+            --base-bg: #F1F3F3;       
+            --primary-color: #0a9396;   
+            --primary-dark: #005f73;    
+            --secondary-color: #40916c; 
+            --secondary-dark: #2d6a4f;  
+            --light-bg-1: #e6eaea;      
+            --light-bg-2: #e6f1f0;      
+            --text-color: #212529;      
+            --border-color: #ced4da;     
+            --danger-color: #dc3545;     
+            --danger-dark: #a42631;    
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--base-bg); 
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        #game-container {
+            width: 100%;
+            max-width: 800px;
+            background-color: #ffffff;
+            border-radius: 6px; 
+            border: 2px solid var(--border-color);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            padding: 24px 32px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary-dark); 
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        #progress-tracker {
+            text-align: right;
+            font-size: 16px;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 20px; 
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+        }
+        .score-display {
+            color: var(--secondary-dark); 
+            flex-basis: 33%; 
+            text-align: left;
+        }
+
+        .timer-container {
+            flex-basis: 33%; 
+            text-align: center;
+            position: relative; 
+            height: 35px; 
+            border-radius: 4px;
+            background-color: var(--base-bg); 
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border-color);
+        }
+
+        #timer-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%; 
+            height: 100%;
+            background-color: var(--primary-color); 
+            transition: width 0.1s linear; 
+            z-index: 1;
+        }
+
+        .timer-display {
+            font-size: 20px; 
+            font-weight: bold;
+            font-family: 'Consolas', 'Courier New', monospace;
+            color: white; 
+            position: relative;
+            z-index: 2; 
+            text-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+        }
+        
+        .timer-warning #timer-bar {
+            background-color: var(--danger-color); 
+        }
+        .timer-warning .timer-display {
+            color: #ffffff; 
+            animation: pulse 0.5s infinite alternate; 
+        }
+
+        .question-number {
+            color: var(--primary-dark);
+            flex-basis: 33%; 
+            text-align: right;
+        }
+
+        #chinese-prompt {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 20px;
+            padding: 16px;
+            background-color: var(--light-bg-1); 
+            border-radius: 4px;
+            border-left: 5px solid var(--primary-color);
+            text-align: center; 
+            line-height: 1.5;
+        }
+
+        .area-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #888;
+            margin-top: 16px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        #delete-btn {
+            background: #ffffff;
+            color: var(--danger-color);
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-radius: 4px;
+            border: 2px solid var(--danger-color);
+            padding: 4px 12px;
+        }
+        #delete-btn:hover {
+            background: var(--danger-color);
+            color: white;
+        }
+        
+        #answer-area {
+            min-height: 70px;
+            background-color: var(--light-bg-2); 
+            border-radius: 4px;
+            border: 2px dashed var(--secondary-color);
+            padding: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center; 
+            align-content: center; 
+        }
+
+        #token-pool {
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            border: 2px solid var(--border-color);
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: flex-start; 
+        }
+
+        .token {
+            padding: 10px 16px;
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            user-select: none;
+            background-color: var(--primary-color);
+            border: 2px solid var(--primary-dark);
+            border-radius: 4px; 
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .token:hover {
+            background-color: var(--primary-dark);
+        }
+
+        #answer-area .token {
+            background-color: var(--secondary-color); 
+            border-color: var(--secondary-dark);
+        }
+        #answer-area .token:hover {
+            background-color: var(--secondary-dark);
+        }
+
+        #controls {
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+            margin-top: 20px;
+            position: relative; 
+            height: 48px; 
+        }
+
+        #menu-btn {
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--primary-color); 
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+            border-radius: 4px; 
+            border: 2px solid var(--primary-color); 
+            background-color: white; 
+            position: relative; 
+            left: 0;
+        }
+        #menu-btn:hover {
+            background-color: var(--primary-color); 
+            color: white; 
+        }
+
+        #check-btn, #restart-btn {
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s;
+            border-radius: 4px; 
+            border: 2px solid;
+            position: absolute; 
+            right: 0; 
+        }
+
+        #check-btn {
+            background-color: var(--primary-color); 
+            border-color: var(--primary-dark);
+        }
+        #check-btn:hover {
+            background-color: var(--primary-dark);
+        }
+        #check-btn:disabled {
+            background-color: #ccc;
+            border-color: #999;
+            cursor: not-allowed;
+        }
+
+        #restart-btn {
+            background-color: var(--danger-color);
+            border-color: var(--danger-dark);
+            display: none;
+        }
+        #restart-btn:hover {
+            background-color: var(--danger-dark);
+        }
+
+        #feedback {
+            margin-top: 16px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            min-height: 24px;
+        }
+        .feedback-correct {
+            color: var(--secondary-dark);
+        }
+        .feedback-incorrect {
+            color: var(--danger-color);
+        }
+        .feedback-rule {
+            font-size: 16px; 
+            color: var(--primary-dark);
+            font-weight: bolder; 
+            margin-top: 12px;
+            padding: 8px 0;
+            border-top: 1px solid #ddd;
+            text-align: left;
+            white-space: pre-wrap; 
+        }
+        .feedback-answer {
+             font-size: 16px;
+            color: #555;
+            font-weight: normal;
+            margin-top: 5px;
+            background: #eee;
+            padding: 5px;
+            border-radius: 4px;
+        }
+        
+        .end-game-container {
+            text-align: center;
+            padding: 20px;
+        }
+        .final-score {
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--secondary-dark);
+            margin: 20px 0;
+            border: 4px solid var(--secondary-color);
+            padding: 20px;
+            display: inline-block;
+            border-radius: 8px;
+            background-color: var(--light-bg-2);
+        }
+        .error-analysis {
+            margin-top: 30px;
+            text-align: left;
+            border-top: 2px solid var(--border-color);
+            padding-top: 20px;
+        }
+        .error-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #f8d7da; 
+            background-color: #fff0f3; 
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="game-container">
+        <h1>It is 萬能句式重組</h1>
+        <div id="progress-tracker">
+            <span class="score-display"></span>
+            
+            <span class="timer-container">
+                <div id="timer-bar"></div>
+                <span class="timer-display"></span>
+            </span>
+            
+            <span class="question-number"></span>
+        </div>
+        <div id="chinese-prompt"></div> 
+        
+        <div class="area-label">
+            <span>作答區：</span>
+            <button id="delete-btn">← 刪除</button>
+        </div>
+        <div id="answer-area"></div>
+        
+        <div class="area-label">詞塊池：</div>
+        <div id="token-pool"></div>
+        
+        <div id="feedback"></div>
+        
+        <div id="controls">
+            <button id="menu-btn">返回選單</button>
+            <button id="check-btn">檢查答案</button>
+            <button id="restart-btn" style="display: none;">再來一次</button>
+        </div>
+    </div>
+
+    <script>
+        // ------------------------------------------------------------------
+        // 音效系統
+        // ------------------------------------------------------------------
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        
+        function playTone(frequency, type, duration, volume = 0.1) {
+            if (!audioContext) return;
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            oscillator.type = type;
+            oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
+            gainNode.gain.setValueAtTime(volume, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + duration);
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + duration);
+        }
+        
+        const audioClick = () => playTone(600, 'triangle', 0.1);
+        const audioDelete = () => playTone(400, 'square', 0.1);
+        const audioCorrect = () => { 
+            playTone(660, 'square', 0.08, 0.2); 
+            setTimeout(() => playTone(880, 'square', 0.1, 0.25), 90); 
+            setTimeout(() => playTone(1320, 'sine', 0.15, 0.3), 200); 
+        };
+        const audioIncorrect = () => { playTone(200, 'sawtooth', 0.2); };
+        const audioCountdown = () => playTone(880, 'sine', 0.05);
+
+        // ------------------------------------------------------------------
+        // 遊戲變數
+        // ------------------------------------------------------------------
+        let promptEl, answerAreaEl, tokenPoolEl, checkBtn, restartBtn, menuBtn, feedbackEl, progressEl, scoreDisplayEl, questionNumberEl, timerDisplayEl, deleteBtn, gameContainer; 
+        let timerBarEl; 
+        let currentGameQuestions = []; 
+        let currentQuestionIndex = 0; 
+        let score = 0; 
+        const totalQuestionsPerGame = 10; 
+        let isAnswerChecked = false; 
+        let isAnimating = false; 
+        let gameHistory = []; 
+        let initialGameContainerHtml = ''; 
+        
+        let timerInterval;
+        const TIME_LIMIT_SECONDS = 30; // 句子較長且要加標點，時間設為30秒
+        const TIME_LIMIT_MS = TIME_LIMIT_SECONDS * 1000;
+        let timeLeft = TIME_LIMIT_MS; 
+        let isCountingDown = false;
+
+        // ------------------------------------------------------------------
+        // 規則與題庫
+        // ------------------------------------------------------------------
+        
+        const rules = {
+            1: "Rule 1: It is adj for 對象 to 行為\n形容事情的性質（如 easy, difficult, important, necessary, possible...）。\n結構：It is + 形容詞 + for + 人 + to + V...",
+            2: "Rule 2: It is adj of 對象 to 行為\n形容「人」的品格/性格（如 kind, stupid, smart, selfish, generous, nice）。\n結構：It is + 形容詞 + of + 人 + to + V...",
+            3: "Rule 3: It is ... that ...\n用於表示明顯、情感或傳聞（obvious, strange, important, said, believed...）。\n結構：It is + 形容詞/分詞 + that + 完整句子。",
+            4: "Rule 4: 固定加分句式 / 高階句式\n如：It turns out that, It goes without saying, It is no use crying, etc.",
+            5: "Rule 5: It is 句式的問句\n將 It is 倒裝為 Is it...?\n例如：Is it important for you to...?",
+            6: "Rule 6: 否定句 (Not)\n將 not 放在 to 之前 (not to V)。\n例如：It is difficult for me not to worry."
+        };
+
+        // 題目數據庫 (所有句子末端標點符號已獨立分開)
+        const questionBank = [
+            // ================= 原有題目 (補上標點) =================
+            { rule: 1, chinese: "小朋友好易失去信心。", correct: ["It", "is", "easy", "for", "children", "to", "lose", "confidence", "."], distractors: ["of", "that"] },
+            { rule: 1, chinese: "中國難以有足夠食物。", correct: ["It", "is", "difficult", "for", "China", "to", "have", "enough", "food", "."], distractors: ["of", "that"] },
+            { rule: 1, chinese: "本地學生普遍晚睡。", correct: ["It", "is", "common", "for", "local", "students", "to", "stay", "up", "late", "."], distractors: ["of", "that"] },
+            { rule: 1, chinese: "對我們來說, 保護環境是重要的。", correct: ["It", "is", "important", "for", "us", "to", "protect", "the", "environment", "."], distractors: ["of", "that"] },
+            { rule: 1, chinese: "學生必須專心上課。", correct: ["It", "is", "necessary", "for", "students", "to", "stay", "focused", "in", "class", "."], distractors: ["of", "that"] },
+            { rule: 1, chinese: "我們必須學好英文 (Essential)。", correct: ["It", "is", "essential", "for", "us", "to", "learn", "English", "well", "."], distractors: ["of", "that"] },
+            { rule: 1, chinese: "複製人類不是不可能的。", correct: ["It", "is", "not", "impossible", "to", "clone", "humans", "."], distractors: ["for", "that"] },
+            { rule: 1, chinese: "他現在好可能很沮喪 (Likely)。", correct: ["It", "is", "likely", "for", "him", "to", "be", "frustrated", "."], distractors: ["of", "that"] },
+            { rule: 1, chinese: "她不太可能成為一個歌手 (Unlikely)。", correct: ["It", "is", "unlikely", "for", "her", "to", "be", "a", "singer", "."], distractors: ["of", "that"] },
+            { rule: 1, chinese: "他有可能贏得比賽 (Possible)。", correct: ["It", "is", "possible", "for", "him", "to", "win", "the", "game", "."], distractors: ["of", "that"] },
+            { rule: 1, chinese: "本地餐廳難以有足夠顧客。", correct: ["It", "is", "difficult", "for", "local", "restaurants", "to", "have", "enough", "customers", "."], distractors: ["of", "consumer"] },
+            { rule: 1, chinese: "家長必須留意他們的小朋友的心理健康。", correct: ["It", "is", "necessary", "for", "parents", "to", "pay", "attention", "to", "their", "children's", "mental", "health", "."], distractors: ["of", "that"] },
+            { rule: 1, chinese: "香港學生不太可能敢於表達他們的想法。", correct: ["It", "is", "unlikely", "for", "Hong", "Kong", "students", "to", "voice", "their", "ideas", "."], distractors: ["of", "that"] },
+            { rule: 1, chinese: "我們不可能在5:00前到達機場。", correct: ["It", "is", "impossible", "for", "us", "to", "arrive", "at", "the", "airport", "by", "5:00", "."], distractors: ["of", "on"] },
+            
+            { rule: 2, chinese: "你不告訴他那個消息真的聰明。", correct: ["It", "is", "clever", "of", "you", "not", "to", "tell", "him", "the", "news", "."], distractors: ["for", "that"] },
+            { rule: 2, chinese: "你告訴他真相是愚蠢的。", correct: ["It", "is", "stupid", "of", "you", "to", "tell", "him", "the", "truth", "."], distractors: ["for", "that"] },
+            { rule: 2, chinese: "你借給我一把雨傘真好人 (Kind)。", correct: ["It", "is", "kind", "of", "you", "to", "lend", "me", "an", "umbrella", "."], distractors: ["for", "borrow"] },
+            { rule: 2, chinese: "你吃光所有蛋糕真自私。", correct: ["It", "is", "selfish", "of", "you", "to", "eat", "all", "the", "cakes", "."], distractors: ["for", "that"] },
+            { rule: 2, chinese: "你買禮物給她真好 (Nice)。", correct: ["It", "is", "nice", "of", "you", "to", "buy", "her", "a", "gift", "."], distractors: ["for", "that"] },
+
+            { rule: 3, chinese: "很明顯她還在睡覺。", correct: ["It", "is", "obvious", "that", "she", "is", "still", "sleeping", "."], distractors: ["to", "for"] },
+            { rule: 3, chinese: "據說肯德基用的雞有三隻腳。", correct: ["It", "is", "said", "that", "the", "chickens", "used", "by", "KFC", "have", "3", "legs", "."], distractors: ["to", "for"] },
+            { rule: 3, chinese: "有報導指香港是最難負擔的城市。", correct: ["It", "is", "reported", "that", "Hong", "Kong", "is", "the", "most", "unaffordable", "city", "."], distractors: ["to", "for"] },
+            { rule: 3, chinese: "可以預期的是很多餐廳今年將會倒閉。", correct: ["It", "is", "anticipated", "that", "many", "restaurants", "will", "close", "down", "this", "year", "."], distractors: ["to", "for"] },
+            { rule: 3, chinese: "可以預期的是越來越多學生將會到中國大陸讀大學。", correct: ["It", "is", "expected", "that", "a", "growing", "number", "of", "students", "are", "going", "to", "study", "university", "in", "China", "."], distractors: ["to", "anticipated"] },
+            { rule: 3, chinese: "據說美國正在研究一種可以令我們跑得更快的藥。", correct: ["It", "is", "said", "that", "the", "U.S", "is", "developing", "a", "kind", "of", "drug", "which", "enables", "us", "to", "run", "faster", "."], distractors: ["make", "can"] },
+
+            { rule: 4, chinese: "無可否認的是香港正在衰退 (falling)。", correct: ["It", "is", "undeniable", "that", "Hong", "Kong", "is", "falling", "."], distractors: ["to", "for"] },
+            { rule: 4, chinese: "不用多說，中國已經成為了其中一個最強大的國家。", correct: ["It", "goes", "without", "saying", "that", "China", "has", "become", "one", "of", "the", "most", "powerful", "countries", "."], distractors: ["is", "to"] },
+            { rule: 4, chinese: "毫不意外的是，整個IT部門被取消了。", correct: ["It", "should", "come", "as", "no", "surprise", "that", "the", "whole", "IT", "department", "is", "cancelled", "."], distractors: ["is", "to"] },
+            { rule: 4, chinese: "結果是那銀包是屬於Tom的。", correct: ["It", "turns", "out", "that", "the", "wallet", "belongs", "to", "Tom", "."], distractors: ["is", "of"] },
+            { rule: 4, chinese: "是時候我們要研究意外的原因了。", correct: ["It", "is", "time", "for", "us", "to", "look", "into", "the", "reasons", "for", "the", "accident", "."], distractors: ["that", "of"] },
+            { rule: 4, chinese: "毫不誇張地說，AI將在10年內取代大多數低質素設計師。", correct: ["It", "is", "no", "exaggeration", "that", "A.I.", "apps", "will", "replace", "most", "low-quality", "designers", "within", "10", "years", "."], distractors: ["to", "for"] },
+            { rule: 4, chinese: "眾所周知，這座城市正在衰退。", correct: ["It", "is", "widely", "acknowledged", "that", "this", "city", "is", "falling", "."], distractors: ["to", "for"] },
+
+            { rule: 5, chinese: "你說服她是容易的嗎?", correct: ["Is", "it", "easy", "for", "you", "to", "convince", "her", "?"], distractors: ["It", "is"] },
+            { rule: 5, chinese: "為甚麼我告訴他真相是笨的?", correct: ["Why", "is", "it", "stupid", "of", "me", "to", "tell", "him", "the", "truth", "?"], distractors: ["for", "it"] },
+            { rule: 5, chinese: "對你來說學習英文重要嗎?", correct: ["Is", "it", "important", "for", "you", "to", "learn", "English", "?"], distractors: ["It", "is"] },
+            { rule: 5, chinese: "對很多學生來說上課時不滑手機是困難的嗎?", correct: ["Is", "it", "difficult", "for", "many", "students", "not", "to", "play", "on", "phones", "?"], distractors: ["It", "is"] },
+
+            { rule: 6, chinese: "香港學生不可能不喜歡這遊戲。", correct: ["It", "is", "impossible", "for", "Hong", "Kong", "students", "not", "to", "like", "this", "game", "."], distractors: ["of", "that"] },
+            { rule: 6, chinese: "對我來說不擔心你是困難的。", correct: ["It", "is", "difficult", "for", "me", "not", "to", "worry", "about", "you", "."], distractors: ["of", "no"] },
+
+            // ================= 新增: +15 句 It is adj for... =================
+            { rule: 1, chinese: "對他來說戒煙是困難的。", correct: ["It", "is", "hard", "for", "him", "to", "quit", "smoking", "."], distractors: ["of", "that"] },
+            { rule: 1, chinese: "這裡下雪是不尋常的。", correct: ["It", "is", "unusual", "for", "it", "to", "snow", "here", "."], distractors: ["of", "that"] },
+            { rule: 1, chinese: "嬰兒在晚上哭是常見的。", correct: ["It", "is", "common", "for", "babies", "to", "cry", "at", "night", "."], distractors: ["of", "that"] },
+            { rule: 1, chinese: "小朋友玩火是危險的。", correct: ["It", "is", "dangerous", "for", "kids", "to", "play", "with", "fire", "."], distractors: ["of", "that"] },
+            { rule: 1, chinese: "學生閱讀書籍是重要的。", correct: ["It", "is", "important", "for", "students", "to", "read", "books", "."], distractors: ["of", "that"] },
+            { rule: 1, chinese: "我明天之前完成這件事是不可能的。", correct: ["It", "is", "impossible", "for", "me", "to", "finish", "this", "by", "tomorrow", "."], distractors: ["of", "that"] },
+            { rule: 1, chinese: "你戴口罩是必須的。", correct: ["It", "is", "necessary", "for", "you", "to", "wear", "a", "mask", "."], distractors: ["of", "that"] },
+            { rule: 1, chinese: "她結交新朋友很容易。", correct: ["It", "is", "easy", "for", "her", "to", "make", "new", "friends", "."], distractors: ["of", "that"] },
+            { rule: 1, chinese: "他們找到停車位很困難。", correct: ["It", "is", "difficult", "for", "them", "to", "find", "a", "parking", "space", "."], distractors: ["of", "that"] },
+            { rule: 1, chinese: "植物擁有陽光是必要的 (Essential)。", correct: ["It", "is", "essential", "for", "plants", "to", "have", "sunlight", "."], distractors: ["of", "that"] },
+            { rule: 1, chinese: "我們有一天去火星旅行是有可能的。", correct: ["It", "is", "possible", "for", "us", "to", "travel", "to", "Mars", "one", "day", "."], distractors: ["of", "that"] },
+            { rule: 1, chinese: "他遲到是很罕見的 (Rare)。", correct: ["It", "is", "rare", "for", "him", "to", "be", "late", "."], distractors: ["of", "that"] },
+            { rule: 1, chinese: "初學者觀看教學是有用的。", correct: ["It", "is", "useful", "for", "beginners", "to", "watch", "tutorials", "."], distractors: ["of", "that"] },
+            { rule: 1, chinese: "青少年尋求獨立是正常的。", correct: ["It", "is", "normal", "for", "teenagers", "to", "seek", "independence", "."], distractors: ["of", "that"] },
+            { rule: 1, chinese: "我搭地鐵是很方便的。", correct: ["It", "is", "convenient", "for", "me", "to", "take", "the", "subway", "."], distractors: ["of", "that"] },
+
+            // ================= 新增: +5 句 It is adj of... =================
+            { rule: 2, chinese: "他對侍應大叫是無禮的 (Rude)。", correct: ["It", "is", "rude", "of", "him", "to", "shout", "at", "the", "waiter", "."], distractors: ["for", "that"] },
+            { rule: 2, chinese: "你再次遺失鑰匙真粗心 (Careless)。", correct: ["It", "is", "careless", "of", "you", "to", "lose", "your", "keys", "again", "."], distractors: ["for", "that"] },
+            { rule: 2, chinese: "她挺身而出對抗不公是勇敢的 (Brave)。", correct: ["It", "is", "brave", "of", "her", "to", "speak", "out", "against", "injustice", "."], distractors: ["for", "that"] },
+            { rule: 2, chinese: "他們讓座是有禮貌的 (Polite)。", correct: ["It", "is", "polite", "of", "them", "to", "offer", "their", "seats", "."], distractors: ["for", "that"] },
+            { rule: 2, chinese: "你為未來儲蓄是明智的 (Wise)。", correct: ["It", "is", "wise", "of", "you", "to", "save", "money", "for", "the", "future", "."], distractors: ["for", "that"] },
+
+            // ================= 新增: +10 句 It 高階句式 =================
+            { rule: 4, chinese: "結果是那個傳聞是假的。", correct: ["It", "turns", "out", "that", "the", "rumor", "was", "false", "."], distractors: ["is", "of"] },
+            { rule: 4, chinese: "看來沒有人在家。", correct: ["It", "appears", "that", "no", "one", "is", "home", "."], distractors: ["is", "to"] },
+            { rule: 4, chinese: "為打翻的牛奶哭泣是沒有用的 (It is no use...)。", correct: ["It", "is", "no", "use", "crying", "over", "spilt", "milk", "."], distractors: ["to", "that"] },
+            { rule: 4, chinese: "你錯過了派對真可惜 (Pity)。", correct: ["It", "is", "a", "pity", "that", "you", "missed", "the", "party", "."], distractors: ["to", "for"] },
+            { rule: 4, chinese: "人們相信閱讀能改善記憶力。", correct: ["It", "is", "believed", "that", "reading", "improves", "memory", "."], distractors: ["to", "for"] },
+            { rule: 4, chinese: "據估計人口將會倍增。", correct: ["It", "is", "estimated", "that", "the", "population", "will", "double", "."], distractors: ["to", "for"] },
+            { rule: 4, chinese: "他能否成功是令人懷疑的 (Doubtful)。", correct: ["It", "is", "doubtful", "whether", "he", "can", "succeed", "."], distractors: ["that", "for"] },
+            { rule: 4, chinese: "你提早預訂門票是明智的 (Advisable)。", correct: ["It", "is", "advisable", "that", "you", "book", "the", "tickets", "early", "."], distractors: ["to", "for"] },
+            { rule: 4, chinese: "我突然想到我忘了關爐火 (It occurred to me...)。", correct: ["It", "occurred", "to", "me", "that", "I", "left", "the", "stove", "on", "."], distractors: ["for", "is"] },
+            { rule: 4, chinese: "看來我們迷路了 (Seems)。", correct: ["It", "seems", "that", "we", "have", "lost", "our", "way", "."], distractors: ["is", "to"] }
+        ];
+
+        // ------------------------------------------------------------------
+        // Timer
+        // ------------------------------------------------------------------
+        function startTimer() {
+            stopTimer(); 
+            timeLeft = TIME_LIMIT_MS;
+            isCountingDown = true;
+            
+            timerBarEl.style.width = '100%';
+            timerDisplayEl.innerText = (timeLeft / 1000).toFixed(1); 
+            timerDisplayEl.parentElement.classList.remove('timer-warning');
+
+            timerInterval = setInterval(() => {
+                timeLeft -= 100; 
+                
+                const seconds = (timeLeft / 1000);
+                const percentage = (timeLeft / TIME_LIMIT_MS) * 100;
+
+                timerDisplayEl.innerText = seconds > 0 ? seconds.toFixed(1) : '0.0'; 
+                timerBarEl.style.width = `${percentage}%`;
+
+                if (timeLeft <= 3000 && timeLeft > 0) {
+                    if (timeLeft >= 2950 && timeLeft <= 3050 || 
+                        timeLeft >= 1950 && timeLeft <= 2050 || 
+                        timeLeft >= 950 && timeLeft <= 1050) {
+                        audioCountdown(); 
+                    }
+                    timerDisplayEl.parentElement.classList.add('timer-warning');
+
+                } else if (timeLeft <= 0) {
+                    timerBarEl.style.width = '0%';
+                    timerDisplayEl.innerText = '0.0';
+                    handleTimeOut();
+                }
+            }, 100);
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval);
+            isCountingDown = false;
+            if (timerDisplayEl && timerDisplayEl.parentElement) {
+                timerDisplayEl.parentElement.classList.remove('timer-warning');
+            }
+        }
+
+        function handleTimeOut() {
+            stopTimer();
+            isAnswerChecked = true;
+            const q = currentGameQuestions[currentQuestionIndex];
+            
+            gameHistory.push({
+                chinese: q.chinese,
+                userAnswer: '[時間到]',
+                correctAnswer: q.correct.join(' '),
+                ruleText: rules[q.rule],
+                isCorrect: false
+            });
+
+            audioIncorrect();
+            feedbackEl.innerHTML = `
+                <div class="feedback-incorrect">⏰ 時間到！</div>
+                <div class="feedback-answer">正確答案：${q.correct.join(' ')}</div>
+                <div class="feedback-rule">${rules[q.rule]}</div>
+            `;
+            
+            lockBoard();
+            checkBtn.innerText = "下一題";
+            checkBtn.disabled = false;
+        }
+
+        // ------------------------------------------------------------------
+        // 核心邏輯
+        // ------------------------------------------------------------------
+        function getDOMElements() {
+            gameContainer = document.getElementById('game-container');
+            promptEl = document.getElementById('chinese-prompt');
+            answerAreaEl = document.getElementById('answer-area');
+            tokenPoolEl = document.getElementById('token-pool');
+            checkBtn = document.getElementById('check-btn');
+            restartBtn = document.getElementById('restart-btn');
+            menuBtn = document.getElementById('menu-btn'); 
+            feedbackEl = document.getElementById('feedback');
+            progressEl = document.getElementById('progress-tracker');
+            scoreDisplayEl = progressEl ? progressEl.querySelector('.score-display') : null;
+            timerDisplayEl = progressEl ? progressEl.querySelector('.timer-display') : null; 
+            timerBarEl = progressEl ? document.getElementById('timer-bar') : null;
+            questionNumberEl = progressEl ? progressEl.querySelector('.question-number') : null;
+            deleteBtn = document.getElementById('delete-btn');
+        }
+
+        function startGame() {
+            stopTimer();
+            gameContainer.innerHTML = initialGameContainerHtml;
+            getDOMElements();
+
+            score = 0;
+            currentQuestionIndex = 0;
+            gameHistory = [];
+            
+            // 隨機選題
+            currentGameQuestions = questionBank
+                .sort(() => 0.5 - Math.random())
+                .slice(0, totalQuestionsPerGame);
+
+            checkBtn.style.display = 'block';
+            restartBtn.style.display = 'none';
+            menuBtn.style.display = 'block';
+
+            deleteBtn.addEventListener('click', deleteLastToken); 
+            checkBtn.addEventListener('click', handleCheckOrNext); 
+            restartBtn.addEventListener('click', startGame); 
+            menuBtn.addEventListener('click', () => { window.location.href = 'eng_game123.html'; });
+            
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            stopTimer();
+            isAnswerChecked = false;
+            answerAreaEl.innerHTML = "";
+            tokenPoolEl.innerHTML = "";
+            feedbackEl.innerHTML = "";
+            checkBtn.innerText = "檢查答案";
+            checkBtn.disabled = false;
+            
+            menuBtn.style.display = 'block';
+            restartBtn.style.display = 'none';
+
+            if (currentQuestionIndex >= totalQuestionsPerGame) {
+                endGame();
+                return;
+            }
+
+            // 更新 UI
+            const answeredCount = currentQuestionIndex;
+            const correctCount = score;
+            const percentage = answeredCount > 0 ? Math.round((correctCount / answeredCount) * 100) : 0;
+            scoreDisplayEl.innerHTML = answeredCount > 0 ? `✓ ${correctCount}/${answeredCount} (${percentage}%)` : '✓ 0/0';
+            questionNumberEl.innerText = `${currentQuestionIndex + 1} / ${totalQuestionsPerGame}`;
+
+            const q = currentGameQuestions[currentQuestionIndex];
+            promptEl.innerText = q.chinese;
+
+            // 詞塊處理
+            const allTokens = [...q.correct, ...q.distractors];
+            const shuffledTokens = allTokens.sort(() => 0.5 - Math.random());
+
+            shuffledTokens.forEach(tokenText => {
+                createToken(tokenText, tokenPoolEl);
+            });
+
+            startTimer();
+        }
+
+        function createToken(text, destination) {
+            const token = document.createElement('div');
+            token.className = 'token';
+            token.innerText = text;
+            token.addEventListener('click', handleTokenClick);
+            destination.appendChild(token);
+        }
+
+        function handleTokenClick(event) {
+            if (isAnswerChecked || !isCountingDown) return;
+            const token = event.currentTarget;
+            const currentParent = token.parentElement;
+            
+            if (currentParent === tokenPoolEl) {
+                audioClick();
+                answerAreaEl.appendChild(token); 
+            } else if (currentParent === answerAreaEl) {
+                audioDelete();
+                tokenPoolEl.appendChild(token);
+            }
+        }
+
+        function deleteLastToken() {
+            if (isAnswerChecked || !isCountingDown) return;
+            const lastToken = answerAreaEl.lastChild;
+            if (lastToken) {
+                audioDelete();
+                tokenPoolEl.appendChild(lastToken);
+            }
+        }
+
+        function checkAnswer() {
+            if (isAnswerChecked) return;
+            stopTimer();
+            isAnswerChecked = true;
+
+            const q = currentGameQuestions[currentQuestionIndex];
+            const studentTokens = Array.from(answerAreaEl.children).map(el => el.innerText);
+            const studentAnswer = studentTokens.join(' ');
+            const correctAnswer = q.correct.join(' ');
+
+            const isCorrect = (studentAnswer === correctAnswer);
+
+            gameHistory.push({
+                chinese: q.chinese,
+                userAnswer: studentAnswer,
+                correctAnswer: correctAnswer,
+                ruleText: rules[q.rule],
+                isCorrect: isCorrect
+            });
+
+            if (isCorrect) {
+                audioCorrect();
+                score++;
+                feedbackEl.innerHTML = `
+                    <div class="feedback-correct">🎉 太棒了！答對了！</div>
+                    <div class="feedback-rule">${rules[q.rule]}</div>
+                `;
+            } else {
+                audioIncorrect();
+                feedbackEl.innerHTML = `
+                    <div class="feedback-incorrect">❌ 哎呀，答錯了。</div>
+                    <div class="feedback-answer">正確答案：${correctAnswer}</div>
+                    <div class="feedback-rule">${rules[q.rule]}</div>
+                `;
+            }
+
+            lockBoard();
+            checkBtn.innerText = "下一題";
+        }
+
+        function lockBoard() {
+            Array.from(answerAreaEl.children).forEach(el => el.style.pointerEvents = 'none');
+            Array.from(tokenPoolEl.children).forEach(el => el.style.pointerEvents = 'none');
+        }
+
+        function handleCheckOrNext() {
+            if (checkBtn.innerText === "檢查答案") {
+                if (answerAreaEl.children.length > 0) {
+                    checkAnswer();
+                } else {
+                    feedbackEl.innerHTML = `<div class="feedback-incorrect">請先組合答案！</div>`;
+                }
+            } else {
+                audioClick();
+                currentQuestionIndex++;
+                loadQuestion();
+            }
+        }
+
+        function endGame() {
+            stopTimer();
+            gameContainer.innerHTML = ''; 
+
+            const finalScore = score;
+            const total = totalQuestionsPerGame;
+            const percentage = Math.round((finalScore / total) * 100);
+            const wrongAnswers = gameHistory.filter(item => !item.isCorrect);
+
+            let analysisHtml = '';
+            if (wrongAnswers.length > 0) {
+                analysisHtml = `
+                    <div class="error-analysis">
+                        <h3>🧐 錯誤分析 (${wrongAnswers.length} 題):</h3>
+                        ${wrongAnswers.map((item, index) => `
+                            <div class="error-item">
+                                <strong>題目：${item.chinese}</strong>
+                                <span style="color:red; display:block;">你的答案: ${item.userAnswer || '[未作答]'}</span>
+                                <span style="color:green; display:block;">正確答案: ${item.correctAnswer}</span>
+                                <div style="margin-top:5px; font-size:14px; color:#555; white-space:pre-wrap;">${item.ruleText}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+
+            gameContainer.innerHTML = `
+                <div class="end-game-container">
+                    <h1>遊戲結束！</h1>
+                    <p style="font-size: 1.2em;">恭喜您完成了挑戰。</p>
+                    <div class="final-score">
+                        得分：${finalScore} / ${total} (${percentage}%)
+                    </div>
+                    ${analysisHtml}
+                    <div id="controls" style="justify-content: center; margin-top: 20px;">
+                        <button id="menu-btn" style="position:static; margin-right:10px;">返回選單</button>
+                        <button id="restart-btn" style="position:static; display:block;">再來一次</button>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('menu-btn').addEventListener('click', () => { window.location.href = 'eng_game123.html'; });
+            document.getElementById('restart-btn').addEventListener('click', startGame);
+        }
+
+        // --- 啟動 ---
+        document.addEventListener('DOMContentLoaded', () => {
+            getDOMElements();
+            initialGameContainerHtml = gameContainer.innerHTML;
+            
+            checkBtn.addEventListener('click', handleCheckOrNext);
+            restartBtn.addEventListener('click', startGame);
+            deleteBtn.addEventListener('click', deleteLastToken); 
+            if(menuBtn) menuBtn.addEventListener('click', () => { window.location.href = 'eng_game123.html'; });
+
+            startGame();
+        });
+
+    </script>
+</body>
+</html>

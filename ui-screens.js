@@ -356,6 +356,91 @@ async function loadPVPWinRateRanking() {
     }
 }
 
+let vocabRenderToken = 0;
+const VOCAB_IOS_INITIAL_RENDER_COUNT = 80;
+const VOCAB_IOS_RENDER_CHUNK_SIZE = 90;
+
+function isIosNativeVocabRuntime() {
+    return document.documentElement.classList.contains('capacitor-ios')
+        || window.Capacitor?.getPlatform?.() === 'ios';
+}
+
+function createVocabRow(item, index) {
+    const row = document.createElement('div');
+    row.classList.add('vocab-row');
+
+    if (index < 20) {
+        row.classList.add('vocab-row-entrance');
+        row.style.setProperty('--vocab-row-delay', `${index * 0.05}s`);
+        row.addEventListener('animationend', () => {
+            row.classList.remove('vocab-row-entrance');
+            row.style.removeProperty('--vocab-row-delay');
+        }, { once: true });
+    }
+
+    row.addEventListener('click', () => speakVocabText(item.en, row));
+    row.innerHTML = `
+        <span class="vocab-ch">${item.ch}</span>
+        <span class="vocab-en">${item.en}</span>
+    `;
+
+    const searchInput = document.getElementById('vocab-search-input');
+    const filter = (searchInput?.value || '').toLowerCase();
+    if (filter) {
+        const enText = String(item.en || '').toLowerCase();
+        const chText = String(item.ch || '').toLowerCase();
+        if (!enText.includes(filter) && !chText.includes(filter)) {
+            row.style.display = 'none';
+        }
+    }
+
+    return row;
+}
+
+function appendVocabRows(listBody, rows, renderToken) {
+    const sourceRows = Array.isArray(rows) ? rows : [];
+    const shouldChunk = isIosNativeVocabRuntime() && sourceRows.length > VOCAB_IOS_INITIAL_RENDER_COUNT;
+    const initialCount = shouldChunk ? VOCAB_IOS_INITIAL_RENDER_COUNT : sourceRows.length;
+
+    const appendRange = (start, end) => {
+        if (renderToken !== vocabRenderToken) return;
+        const fragment = document.createDocumentFragment();
+        for (let index = start; index < end; index++) {
+            fragment.appendChild(createVocabRow(sourceRows[index], index));
+        }
+        listBody.appendChild(fragment);
+    };
+
+    appendRange(0, initialCount);
+
+    if (!shouldChunk || initialCount >= sourceRows.length) return;
+
+    let nextIndex = initialCount;
+    const appendNextChunk = () => {
+        if (renderToken !== vocabRenderToken) return;
+        const end = Math.min(nextIndex + VOCAB_IOS_RENDER_CHUNK_SIZE, sourceRows.length);
+        appendRange(nextIndex, end);
+        nextIndex = end;
+        if (nextIndex < sourceRows.length) {
+            requestAnimationFrame(appendNextChunk);
+        }
+    };
+
+    requestAnimationFrame(appendNextChunk);
+}
+
+function prepareVocabListRender(listBody) {
+    const renderToken = ++vocabRenderToken;
+    listBody.innerHTML = '';
+    listBody.scrollTop = 0;
+
+    const searchInput = document.getElementById('vocab-search-input');
+    if (searchInput) searchInput.value = '';
+    hideVocabSearchKeyboard();
+
+    return renderToken;
+}
+
 function renderVocabList(level, isSilent = false) {
     const listBody = document.getElementById('vocab-list-body');
     const isFirstLoad = listBody.innerHTML === '';
@@ -372,77 +457,20 @@ function renderVocabList(level, isSilent = false) {
         }
     });
 
-    listBody.innerHTML = '';
-
-    const searchInput = document.getElementById('vocab-search-input');
-    if (searchInput) searchInput.value = '';
-    hideVocabSearchKeyboard();
+    const renderToken = prepareVocabListRender(listBody);
 
     const data = VOCAB_DB[level];
     if (!data) return;
 
-    const fragment = document.createDocumentFragment();
-
-    data.forEach((item, index) => {
-        const row = document.createElement('div');
-        row.classList.add('vocab-row');
-
-        if (index < 20) {
-            row.classList.add('vocab-row-entrance');
-            row.style.setProperty('--vocab-row-delay', `${index * 0.05}s`);
-            row.addEventListener('animationend', () => {
-                row.classList.remove('vocab-row-entrance');
-                row.style.removeProperty('--vocab-row-delay');
-            }, { once: true });
-        }
-
-        row.addEventListener('click', () => speakVocabText(item.en, row));
-
-        row.innerHTML = `
-            <span class="vocab-ch">${item.ch}</span>
-            <span class="vocab-en">${item.en}</span>
-        `;
-
-        fragment.appendChild(row);
-    });
-
-    listBody.appendChild(fragment);
+    appendVocabRows(listBody, data, renderToken);
 }
 
 function renderCustomVocabList(rows) {
     const listBody = document.getElementById('vocab-list-body');
     if (!listBody) return;
 
-    listBody.innerHTML = '';
-
-    const searchInput = document.getElementById('vocab-search-input');
-    if (searchInput) searchInput.value = '';
-    hideVocabSearchKeyboard();
-
-    const fragment = document.createDocumentFragment();
-
-    rows.forEach((item, index) => {
-        const row = document.createElement('div');
-        row.classList.add('vocab-row');
-
-        if (index < 20) {
-            row.classList.add('vocab-row-entrance');
-            row.style.setProperty('--vocab-row-delay', `${index * 0.05}s`);
-            row.addEventListener('animationend', () => {
-                row.classList.remove('vocab-row-entrance');
-                row.style.removeProperty('--vocab-row-delay');
-            }, { once: true });
-        }
-
-        row.addEventListener('click', () => speakVocabText(item.en, row));
-        row.innerHTML = `
-            <span class="vocab-ch">${item.ch}</span>
-            <span class="vocab-en">${item.en}</span>
-        `;
-        fragment.appendChild(row);
-    });
-
-    listBody.appendChild(fragment);
+    const renderToken = prepareVocabListRender(listBody);
+    appendVocabRows(listBody, rows, renderToken);
 }
 
 function filterVocabList() {

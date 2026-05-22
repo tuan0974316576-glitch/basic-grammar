@@ -62,8 +62,8 @@ The game rotates these 4 voices:
 
 - `en-US-AvaMultilingualNeural::en-CA`
 - `en-US-AndrewMultilingualNeural::en-US`
-- `de-DE-SeraphinaMultilingualNeural::en-AU`
-- `de-DE-FlorianMultilingualNeural::en-GB`
+- `en-US-JennyNeural::en-US`
+- `en-US-GuyNeural::en-US`
 
 The voice rotation key format is:
 

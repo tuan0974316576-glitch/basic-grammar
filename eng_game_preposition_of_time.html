@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>時間介系詞大挑戰</title>
+    <style>
+        /* --- CSS 樣式 --- */
+        :root {
+            --base-bg: #F1F3F3;       
+            --primary-color: #0a9396;   
+            --primary-dark: #005f73;    
+            --secondary-color: #40916c; 
+            --secondary-dark: #2d6a4f;  
+            --light-bg-1: #e6eaea;      
+            --light-bg-2: #e6f1f0;      
+            --text-color: #212529;      
+            --border-color: #ced4da;     
+            --danger-color: #dc3545;     
+            --danger-dark: #a42631;    
+            --correct-color: #2d6a4f;
+            --wrong-color: #dc3545;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--base-bg); 
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        #game-container {
+            width: 100%;
+            max-width: 800px;
+            background-color: #ffffff;
+            border-radius: 6px; 
+            border: 2px solid var(--border-color);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            padding: 24px 32px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary-dark); 
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        #progress-tracker {
+            text-align: right;
+            font-size: 16px;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 20px; 
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+        }
+        .score-display {
+            color: var(--secondary-dark); 
+            flex-basis: 33%; 
+            text-align: left;
+        }
+
+        .timer-container {
+            flex-basis: 33%; 
+            text-align: center;
+            position: relative; 
+            height: 35px; 
+            border-radius: 4px;
+            background-color: var(--base-bg); 
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border-color);
+        }
+
+        #timer-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%; 
+            height: 100%;
+            background-color: var(--primary-color); 
+            transition: width 0.1s linear; 
+            z-index: 1;
+        }
+
+        .timer-display {
+            font-size: 20px; 
+            font-weight: bold;
+            font-family: 'Consolas', 'Courier New', monospace;
+            color: white; 
+            position: relative;
+            z-index: 2; 
+            text-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+        }
+        
+        .timer-warning #timer-bar {
+            background-color: var(--danger-color); 
+        }
+        .timer-warning .timer-display {
+            color: #ffffff; 
+            animation: pulse 0.5s infinite alternate; 
+        }
+
+        .question-number {
+            color: var(--primary-dark);
+            flex-basis: 33%; 
+            text-align: right;
+        }
+
+        #question-display {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 25px;
+            padding: 20px;
+            background-color: var(--light-bg-1); 
+            border-radius: 4px;
+            border-left: 5px solid var(--primary-color);
+            text-align: center; 
+            line-height: 1.6;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ⭐ 修改: 強制垂直排列 (Single Column) ⭐ */
+        #options-container {
+            display: flex; 
+            flex-direction: column; /* 垂直堆疊 */
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .mc-btn {
+            background-color: white;
+            color: var(--primary-dark);
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            padding: 15px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            width: 100%; /* 佔滿寬度 */
+        }
+
+        .mc-btn:hover:not(:disabled) {
+            background-color: var(--light-bg-2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .mc-btn:active:not(:disabled) {
+            transform: translateY(0);
+        }
+
+        .mc-btn:disabled {
+            cursor: default;
+            opacity: 0.8;
+        }
+
+        .mc-btn.correct {
+            background-color: var(--secondary-color);
+            color: white;
+            border-color: var(--secondary-dark);
+        }
+        
+        .mc-btn.wrong {
+            background-color: var(--danger-color);
+            color: white;
+            border-color: var(--danger-dark);
+        }
+
+        #controls {
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+            margin-top: 20px;
+            height: 48px; 
+            position: relative;
+        }
+
+        #menu-btn {
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--primary-color); 
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+            border-radius: 4px; 
+            border: 2px solid var(--primary-color); 
+            background-color: white; 
+        }
+        #menu-btn:hover {
+            background-color: var(--primary-color); 
+            color: white; 
+        }
+
+        #next-btn, #restart-btn {
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s;
+            border-radius: 4px; 
+            border: 2px solid;
+            display: none; 
+            position: absolute;
+            right: 0;
+        }
+
+        #next-btn {
+            background-color: var(--primary-color); 
+            border-color: var(--primary-dark);
+        }
+        #next-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        #restart-btn {
+            background-color: var(--danger-color);
+            border-color: var(--danger-dark);
+        }
+        #restart-btn:hover {
+            background-color: var(--danger-dark);
+        }
+
+        #feedback {
+            margin-top: 16px;
+            min-height: 60px;
+            text-align: center;
+        }
+        .feedback-box {
+            padding: 15px;
+            border-radius: 6px;
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            animation: fadeIn 0.3s ease;
+        }
+        .feedback-status {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .feedback-correct .feedback-status { color: var(--secondary-dark); }
+        .feedback-incorrect .feedback-status { color: var(--danger-color); }
+        .feedback-explanation {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .end-game-container {
+            text-align: center;
+            padding: 20px;
+        }
+        .final-score {
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--secondary-dark);
+            margin: 20px 0;
+            border: 4px solid var(--secondary-color);
+            padding: 20px;
+            display: inline-block;
+            border-radius: 8px;
+            background-color: var(--light-bg-2);
+        }
+        .error-analysis {
+            margin-top: 30px;
+            text-align: left;
+            border-top: 2px solid var(--border-color);
+            padding-top: 20px;
+        }
+        .error-item {
+            margin-bottom: 15px;
+            padding: 12px;
+            border-left: 4px solid var(--danger-color);
+            background-color: #fff5f5;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="game-container">
+        <h1>時間介系詞大挑戰</h1>
+        
+        <div id="progress-tracker">
+            <span class="score-display"></span>
+            
+            <span class="timer-container">
+                <div id="timer-bar"></div>
+                <span class="timer-display"></span>
+            </span>
+            
+            <span class="question-number"></span>
+        </div>
+
+        <div id="question-display"></div> 
+        
+        <div id="options-container"></div>
+        
+        <div id="feedback"></div>
+        
+        <div id="controls">
+            <button id="menu-btn">返回選單</button>
+            <button id="next-btn">下一題</button>
+            <button id="restart-btn" style="display: none;">再來一次</button>
+        </div>
+    </div>
+
+    <script>
+        // ------------------------------------------------------------------
+        // 音效系統
+        // ------------------------------------------------------------------
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        
+        function playTone(frequency, type, duration, volume = 0.1) {
+            if (!audioContext) return;
+            if (audioContext.state === 'suspended') audioContext.resume();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            oscillator.type = type;
+            oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
+            gainNode.gain.setValueAtTime(volume, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + duration);
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + duration);
+        }
+        
+        const audioClick = () => playTone(600, 'triangle', 0.05); 
+        const audioCorrect = () => { 
+            playTone(660, 'square', 0.08, 0.2); 
+            setTimeout(() => playTone(880, 'square', 0.1, 0.25), 90); 
+            setTimeout(() => playTone(1320, 'sine', 0.15, 0.3), 200); 
+        };
+        const audioIncorrect = () => { playTone(200, 'sawtooth', 0.3); };
+        const audioCountdown = () => playTone(880, 'sine', 0.05);
+
+        // ------------------------------------------------------------------
+        // 題庫 (擴充至 65 題)
+        // ------------------------------------------------------------------
+        const questionBank = [
+            // --- 原始題目 ---
+            { question: "My father usually comes home late ______ night.", options: ["in", "at", "on", "by", "during"], correctIndex: 1, explanation: "⭐ 規則：Night 必須用 At (At night)，而 Morning/Afternoon/Evening 才用 In。" },
+            { question: "We are going to have a picnic ______ Sunday morning.", options: ["in", "at", "on", "by", "X (no word)"], correctIndex: 2, explanation: "⭐ 規則：雖然有 morning，但前面指定了 'Sunday' (日子)。凡是特定日子(Day)，必須用 On。" },
+            { question: "My cousins usually visit us ______ Chinese New Year.", options: ["on", "in", "at", "by", "from"], correctIndex: 2, explanation: "⭐ 規則：指「整個節日期間」用 At (At Christmas/At CNY)。如果是指 'Day' (e.g. CNY Day) 才用 On。" },
+            { question: "Don't worry! I will be ready ______ five minutes.", options: ["at", "on", "in", "during", "until"], correctIndex: 2, explanation: "⭐ 規則：在將來式中，In + 一段時間 = 「...之後」或「...之內」完成。" },
+            { question: "The party is ______ the evening of 31 October.", options: ["in", "at", "on", "by", "from"], correctIndex: 2, explanation: "⭐ 規則：只要見到「具體日期」(31 October)，即使是 evening，也要用 On。" },
+            { question: "Please submit your homework ______ Wednesday. (= on or before)", options: ["in", "on", "at", "by", "until"], correctIndex: 3, explanation: "⭐ 規則：By + 時間 = 限期 (Deadline)，意思是「不遲於」這一天。" },
+            { question: "We usually go hiking ______ the weekend.", options: ["in", "on", "at", "by", "from"], correctIndex: 2, explanation: "⭐ 規則：固定搭配 (Collocation)。英式英語/香港考試標準習慣用 At the weekend。" },
+            { question: "The train departed ______ 8:00 am sharp.", options: ["at", "on", "in", "by", "until"], correctIndex: 0, explanation: "⭐ 規則：具體鐘點(8:00 am)用 At。" },
+            { question: "I was born ______ 2012.", options: ["in", "on", "at", "by", "during"], correctIndex: 0, explanation: "⭐ 規則：年份(長時間)用 In。" },
+            { question: "Let's go to the cinema ______ this Friday evening.", options: ["in", "on", "at", "by", "X (no word)"], correctIndex: 4, explanation: "⭐ 規則：時間詞前有 This / Next / Last / Every 時，實行「零介詞規則」，不加 in/on/at。" },
+            { question: "I can finish reading this book ______ two weeks.", options: ["at", "on", "in", "by", "until"], correctIndex: 2, explanation: "⭐ 規則：In 也可用來表示「需時多久」才能完成某事 (Duration)。" },
+            { question: "We eat turkey ______ Christmas Day.", options: ["at", "on", "in", "by", "from"], correctIndex: 1, explanation: "⭐ 規則：有 'Day' 用 On (那一天)；指整個節日期間(沒Day) 用 At。" },
+            { question: "My holiday starts ______ July.", options: ["on", "in", "at", "by", "until"], correctIndex: 1, explanation: "⭐ 規則：月份(長時間)用 In。" },
+            { question: "Sorry, Mr. Chan is busy ______ the moment.", options: ["in", "at", "on", "by", "during"], correctIndex: 1, explanation: "⭐ 規則：固定搭配。At the moment (目前) 用 At。" },
+            { question: "I hate getting up early ______ cold winter mornings.", options: ["in", "at", "on", "by", "during"], correctIndex: 2, explanation: "⭐ 規則：雖然是 mornings，但形容詞(cold winter)將其特定化為「某種具體的早上」，通常視為 Day 的延伸，用 On。" },
+
+            // --- 新增題目 (Set 1: Basic In/On/At) ---
+            { question: "The shop closes ______ midnight.", options: ["in", "on", "at", "by", "during"], correctIndex: 2, explanation: "⭐ 規則：Midnight (午夜) 是一個具體時刻，必須用 At。" },
+            { question: "Birds fly south ______ winter.", options: ["at", "on", "in", "by", "until"], correctIndex: 2, explanation: "⭐ 規則：季節 (Winter, Summer...) 是長時間，用 In。" },
+            { question: "My birthday is ______ 22nd May.", options: ["in", "at", "on", "by", "from"], correctIndex: 2, explanation: "⭐ 規則：具體日期 (Date) 必須用 On。" },
+            { question: "We watch TV ______ the evening.", options: ["at", "on", "in", "by", "until"], correctIndex: 2, explanation: "⭐ 規則：時段 Morning / Afternoon / Evening 用 In。" },
+            { question: "He arrived ______ lunchtime.", options: ["in", "on", "at", "by", "until"], correctIndex: 2, explanation: "⭐ 規則：Lunchtime 視為一個具體時刻點，通常用 At。" },
+            { question: "The concert is ______ Friday night.", options: ["in", "at", "on", "by", "during"], correctIndex: 2, explanation: "⭐ 規則：雖然有 night，但前面指定了 'Friday' (日子)，所以用 On。" },
+            { question: "I will see you ______ 3 o'clock.", options: ["in", "on", "at", "by", "from"], correctIndex: 2, explanation: "⭐ 規則：鐘點 (Clock time) 用 At。" },
+            { question: "They got married ______ 2010.", options: ["at", "on", "in", "by", "during"], correctIndex: 2, explanation: "⭐ 規則：年份 (Year) 是長時間，用 In。" },
+            { question: "We have a meeting ______ Tuesday.", options: ["in", "at", "on", "by", "until"], correctIndex: 2, explanation: "⭐ 規則：星期 (Days of the week) 用 On。" },
+            { question: "She wakes up ______ sunrise.", options: ["in", "on", "at", "by", "during"], correctIndex: 2, explanation: "⭐ 規則：Sunrise / Sunset / Dawn 都是具體時刻，用 At。" },
+
+            // --- 新增題目 (Set 2: Future 'In' / Duration) ---
+            { question: "I'll be back ______ an hour. (Wait for me)", options: ["at", "on", "in", "by", "until"], correctIndex: 2, explanation: "⭐ 規則：In + 時間 (未來) = ...之後回來。" },
+            { question: "She learned to drive ______ four weeks. (Duration)", options: ["at", "on", "in", "by", "until"], correctIndex: 2, explanation: "⭐ 規則：In + 時間 = 花了多久時間完成。" },
+            { question: "The train leaves ______ a few minutes.", options: ["at", "on", "in", "by", "during"], correctIndex: 2, explanation: "⭐ 規則：In a few minutes = 幾分鐘之後 (Future)。" },
+            { question: "We completed the project ______ two days.", options: ["at", "on", "in", "by", "until"], correctIndex: 2, explanation: "⭐ 規則：表示完成某事「需時多久」，用 In。" },
+            { question: "Dinner will be ready ______ ten minutes.", options: ["at", "on", "in", "by", "during"], correctIndex: 2, explanation: "⭐ 規則：未來式，表示「10分鐘後」準備好，用 In。" },
+
+            // --- 新增題目 (Set 3: Other Prepositions - By, Until, During, From, Between) ---
+            { question: "I must finish this report ______ Friday. (Deadline)", options: ["in", "on", "at", "by", "until"], correctIndex: 3, explanation: "⭐ 規則：By 表示限期 (Deadline)，即「星期五或之前」。" },
+            { question: "Please wait ______ I come back.", options: ["by", "during", "until", "in", "at"], correctIndex: 2, explanation: "⭐ 規則：Until 表示動作持續「直到...為止」。" },
+            { question: "Don't talk ______ the movie.", options: ["in", "at", "on", "during", "by"], correctIndex: 3, explanation: "⭐ 規則：During + 名詞 = 在...期間。" },
+            { question: "The shop is open ______ 9 am to 6 pm.", options: ["at", "on", "from", "by", "between"], correctIndex: 2, explanation: "⭐ 規則：From ... to ... (從...到...)。" },
+            { question: "I lived in Japan ______ 2010 and 2015.", options: ["from", "to", "between", "in", "at"], correctIndex: 2, explanation: "⭐ 規則：Between ... and ... (在...和...之間)。" },
+            { question: "We slept ______ the flight.", options: ["in", "at", "on", "during", "by"], correctIndex: 3, explanation: "⭐ 規則：During the flight (在飛行期間)。" },
+            { question: "Can you wait ______ tomorrow?", options: ["by", "in", "on", "until", "at"], correctIndex: 3, explanation: "⭐ 規則：Wait until tomorrow (等到明天)。" },
+            { question: "The library closes ______ 8 pm.", options: ["on", "in", "during", "at", "between"], correctIndex: 3, explanation: "⭐ 規則：具體關門時間用 At。" },
+            { question: "You need to be home ______ 10 pm. (Not later than)", options: ["in", "on", "at", "by", "until"], correctIndex: 3, explanation: "⭐ 規則：By 10 pm (10點前回來)。" },
+            { question: "He works ______ Monday to Friday.", options: ["between", "from", "at", "on", "in"], correctIndex: 1, explanation: "⭐ 規則：From ... to ...。" },
+
+            // --- 新增題目 (Set 4: Zero Preposition / Tricky Ones) ---
+            { question: "I saw him ______ yesterday afternoon.", options: ["in", "on", "at", "by", "X (no word)"], correctIndex: 4, explanation: "⭐ 規則：Yesterday/Today/Tomorrow 前面不可加介詞。" },
+            { question: "We are going to Japan ______ next week.", options: ["in", "on", "at", "by", "X (no word)"], correctIndex: 4, explanation: "⭐ 規則：Next 前面實行零介詞規則。" },
+            { question: "I brush my teeth ______ every morning.", options: ["in", "on", "at", "by", "X (no word)"], correctIndex: 4, explanation: "⭐ 規則：Every 前面實行零介詞規則。" },
+            { question: "Did you go out ______ last night?", options: ["in", "on", "at", "by", "X (no word)"], correctIndex: 4, explanation: "⭐ 規則：Last 前面實行零介詞規則。" },
+            { question: "What are you doing ______ Christmas Eve?", options: ["in", "at", "on", "by", "during"], correctIndex: 2, explanation: "⭐ 規則：Eve 是前夕 (Day)，用 On。" },
+            { question: "I will visit you ______ the first day of May.", options: ["in", "at", "on", "by", "during"], correctIndex: 2, explanation: "⭐ 規則：Day 指定了某一天，用 On。" },
+            { question: "Leaves fall ______ autumn.", options: ["at", "on", "in", "by", "during"], correctIndex: 2, explanation: "⭐ 規則：季節用 In。" },
+            { question: "He runs ______ the morning.", options: ["at", "on", "in", "by", "until"], correctIndex: 2, explanation: "⭐ 規則：Morning 用 In。" },
+            { question: "He runs ______ night.", options: ["at", "on", "in", "by", "until"], correctIndex: 0, explanation: "⭐ 規則：Night 用 At。" },
+            { question: "We arrived ______ the same time.", options: ["in", "on", "at", "by", "during"], correctIndex: 2, explanation: "⭐ 規則：At the same time (同時) 是固定搭配。" },
+
+            // --- 新增題目 (Set 5: More Mix) ---
+            { question: "The bus arrived ______ time. (Not late)", options: ["in", "on", "at", "by", "during"], correctIndex: 1, explanation: "⭐ 規則：On time = 準時 (Punctual)。" },
+            { question: "We got to the station just ______ time. (Early enough)", options: ["in", "on", "at", "by", "during"], correctIndex: 0, explanation: "⭐ 規則：In time = 及時/趕得及 (Early enough)。" },
+            { question: "People give chocolate ______ Valentine's Day.", options: ["at", "on", "in", "by", "during"], correctIndex: 1, explanation: "⭐ 規則：有 Day 字眼用 On。" },
+            { question: "Technology advanced quickly ______ the 20th century.", options: ["at", "on", "in", "by", "during"], correctIndex: 2, explanation: "⭐ 規則：世紀 (Century) 是長時間，用 In。" },
+            { question: "I'll meet you ______ noon.", options: ["in", "on", "at", "by", "during"], correctIndex: 2, explanation: "⭐ 規則：Noon (正午) 是具體時刻，用 At。" },
+            { question: "We usually have lunch ______ 1:00 pm.", options: ["in", "on", "at", "by", "during"], correctIndex: 2, explanation: "⭐ 規則：鐘點用 At。" },
+            { question: "I don't work ______ Sundays.", options: ["in", "at", "on", "by", "during"], correctIndex: 2, explanation: "⭐ 規則：星期幾用 On。" },
+            { question: "It happened ______ April.", options: ["in", "at", "on", "by", "during"], correctIndex: 0, explanation: "⭐ 規則：月份用 In。" },
+            { question: "It happened ______ 15th April.", options: ["in", "at", "on", "by", "during"], correctIndex: 2, explanation: "⭐ 規則：日期用 On。" },
+            { question: "The school was built ______ 1990.", options: ["in", "at", "on", "by", "during"], correctIndex: 0, explanation: "⭐ 規則：年份用 In。" },
+            { question: "The film starts ______ 10 minutes.", options: ["at", "on", "in", "by", "until"], correctIndex: 2, explanation: "⭐ 規則：未來式 In + 時間 (10分鐘後)。" },
+            { question: "Please reply ______ Friday. (Deadline)", options: ["in", "on", "at", "by", "until"], correctIndex: 3, explanation: "⭐ 規則：限期用 By。" },
+            { question: "I am busy ______ present.", options: ["in", "on", "at", "by", "during"], correctIndex: 2, explanation: "⭐ 規則：At present (目前) 是固定搭配。" },
+            { question: "See you ______ Monday morning.", options: ["in", "at", "on", "by", "X (no word)"], correctIndex: 2, explanation: "⭐ 規則：因為有 Monday (日子)，即使有 morning 也要用 On。" },
+            { question: "I read a book ______ the flight.", options: ["in", "at", "on", "during", "by"], correctIndex: 3, explanation: "⭐ 規則：During + 事件 (在...期間)。" }
+        ];
+
+        // ------------------------------------------------------------------
+        // 遊戲核心變數
+        // ------------------------------------------------------------------
+        let currentQuestionIndex = 0;
+        let score = 0;
+        const totalQuestionsPerGame = 20; 
+        let timerInterval;
+        const TIME_LIMIT_SECONDS = 10; 
+        const TIME_LIMIT_MS = TIME_LIMIT_SECONDS * 1000;
+        let timeLeft = TIME_LIMIT_MS;
+        let isGameActive = false;
+        let shuffledQuestions = [];
+        let gameHistory = [];
+
+        // DOM 元素
+        let timerBarEl, timerDisplayEl, questionDisplayEl, optionsContainerEl, feedbackEl;
+        let nextBtn, restartBtn, menuBtn, scoreDisplayEl, questionNumberEl;
+
+        // ------------------------------------------------------------------
+        // 遊戲邏輯
+        // ------------------------------------------------------------------
+
+        function getDOMElements() {
+            timerBarEl = document.getElementById('timer-bar');
+            timerDisplayEl = document.querySelector('.timer-display');
+            questionDisplayEl = document.getElementById('question-display');
+            optionsContainerEl = document.getElementById('options-container');
+            feedbackEl = document.getElementById('feedback');
+            nextBtn = document.getElementById('next-btn');
+            restartBtn = document.getElementById('restart-btn');
+            menuBtn = document.getElementById('menu-btn');
+            scoreDisplayEl = document.querySelector('.score-display');
+            questionNumberEl = document.querySelector('.question-number');
+        }
+
+        function startGame() {
+            score = 0;
+            currentQuestionIndex = 0;
+            gameHistory = [];
+            isGameActive = true;
+            
+            shuffledQuestions = [...questionBank].sort(() => 0.5 - Math.random()).slice(0, totalQuestionsPerGame);
+            
+            document.getElementById('game-container').innerHTML = initialGameHTML; 
+            getDOMElements(); 
+            bindEvents(); 
+
+            nextBtn.style.display = 'none';
+            restartBtn.style.display = 'none';
+            
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            if (currentQuestionIndex >= shuffledQuestions.length) {
+                endGame();
+                return;
+            }
+
+            const q = shuffledQuestions[currentQuestionIndex];
+            isGameActive = true;
+            
+            scoreDisplayEl.innerText = `Score: ${score}`;
+            questionNumberEl.innerText = `Q: ${currentQuestionIndex + 1} / ${shuffledQuestions.length}`;
+            
+            questionDisplayEl.innerText = q.question;
+            
+            optionsContainerEl.innerHTML = '';
+            feedbackEl.innerHTML = '';
+            nextBtn.style.display = 'none';
+
+            q.options.forEach((optText, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'mc-btn';
+                btn.innerText = optText;
+                btn.onclick = () => checkAnswer(index);
+                optionsContainerEl.appendChild(btn);
+            });
+
+            startTimer();
+        }
+
+        function startTimer() {
+            clearInterval(timerInterval);
+            timeLeft = TIME_LIMIT_MS;
+            
+            timerBarEl.style.width = '100%';
+            timerDisplayEl.parentElement.classList.remove('timer-warning');
+            timerDisplayEl.innerText = (timeLeft / 1000).toFixed(1);
+
+            timerInterval = setInterval(() => {
+                if (!isGameActive) return;
+                
+                timeLeft -= 100;
+                const percentage = (timeLeft / TIME_LIMIT_MS) * 100;
+                const seconds = (timeLeft / 1000);
+                
+                timerBarEl.style.width = `${percentage}%`;
+                timerDisplayEl.innerText = seconds > 0 ? seconds.toFixed(1) : '0.0';
+
+                if (timeLeft <= 3000 && timeLeft > 0) {
+                    if (timeLeft <= 3000 && timeLeft % 1000 === 0) audioCountdown(); 
+                    timerDisplayEl.parentElement.classList.add('timer-warning');
+                }
+
+                if (timeLeft <= 0) {
+                    handleTimeout();
+                }
+            }, 100);
+        }
+
+        function handleTimeout() {
+            clearInterval(timerInterval);
+            isGameActive = false;
+            audioIncorrect();
+            
+            const q = shuffledQuestions[currentQuestionIndex];
+            showFeedback(false, -1, q.correctIndex, "⏰ 時間到！");
+            
+            recordHistory(q, "Timeout", false);
+            disableButtons();
+            nextBtn.style.display = 'block';
+        }
+
+        function checkAnswer(selectedIndex) {
+            if (!isGameActive) return;
+            clearInterval(timerInterval);
+            isGameActive = false;
+
+            const q = shuffledQuestions[currentQuestionIndex];
+            const isCorrect = (selectedIndex === q.correctIndex);
+            
+            if (isCorrect) {
+                audioCorrect();
+                score++;
+                showFeedback(true, selectedIndex, q.correctIndex, q.explanation);
+            } else {
+                audioIncorrect();
+                showFeedback(false, selectedIndex, q.correctIndex, q.explanation);
+            }
+
+            recordHistory(q, q.options[selectedIndex], isCorrect);
+            disableButtons(selectedIndex, q.correctIndex);
+            nextBtn.style.display = 'block';
+        }
+
+        function showFeedback(isCorrect, selectedIndex, correctIndex, explanation) {
+            const statusClass = isCorrect ? 'feedback-correct' : 'feedback-incorrect';
+            const statusText = isCorrect ? '🎉 答對了！' : '😢 答錯了';
+            
+            feedbackEl.innerHTML = `
+                <div class="feedback-box ${statusClass}">
+                    <div class="feedback-status">${statusText}</div>
+                    <div class="feedback-explanation">${explanation}</div>
+                </div>
+            `;
+        }
+
+        function disableButtons(selectedIndex = -1, correctIndex = -1) {
+            const buttons = optionsContainerEl.querySelectorAll('.mc-btn');
+            buttons.forEach((btn, index) => {
+                btn.disabled = true;
+                if (index === correctIndex) {
+                    btn.classList.add('correct');
+                } else if (index === selectedIndex && index !== correctIndex) {
+                    btn.classList.add('wrong');
+                }
+            });
+        }
+
+        function recordHistory(questionObj, userAnswer, isCorrect) {
+            gameHistory.push({
+                question: questionObj.question,
+                correctAnswer: questionObj.options[questionObj.correctIndex],
+                userAnswer: userAnswer,
+                isCorrect: isCorrect,
+                explanation: questionObj.explanation
+            });
+        }
+
+        function endGame() {
+            document.getElementById('game-container').innerHTML = ''; 
+            
+            const percentage = Math.round((score / shuffledQuestions.length) * 100);
+            
+            const wrongAnswers = gameHistory.filter(h => !h.isCorrect);
+            let analysisHTML = '';
+            
+            if (wrongAnswers.length > 0) {
+                analysisHTML = `
+                    <div class="error-analysis">
+                        <h3>🧐 錯誤分析 (${wrongAnswers.length} 題):</h3>
+                        ${wrongAnswers.map(item => `
+                            <div class="error-item">
+                                <div><strong>題目:</strong> ${item.question}</div>
+                                <div style="color:var(--danger-color)"><strong>你的答案:</strong> ${item.userAnswer}</div>
+                                <div style="color:var(--secondary-dark)"><strong>正確答案:</strong> ${item.correctAnswer}</div>
+                                <div style="font-size:0.9em; color:#666; margin-top:5px;">💡 ${item.explanation}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            } else {
+                analysisHTML = `<h3 style="color:var(--secondary-dark); margin-top:30px;">完美！全對！🎉</h3>`;
+            }
+
+            const endScreen = `
+                <div class="end-game-container">
+                    <h1>遊戲結束</h1>
+                    <div class="final-score">得分: ${score} / ${shuffledQuestions.length} (${percentage}%)</div>
+                    ${analysisHTML}
+                    <div id="controls" style="justify-content: center; margin-top: 30px;">
+                        <button id="menu-btn" style="position:static; margin-right:15px;">返回選單</button>
+                        <button id="restart-btn" style="position:static; display:block;">再來一次</button>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('game-container').innerHTML = endScreen;
+            
+            document.getElementById('menu-btn').onclick = () => window.location.href = 'eng_game123.html';
+            document.getElementById('restart-btn').onclick = startGame;
+        }
+
+        let initialGameHTML = '';
+        function bindEvents() {
+            if(nextBtn) nextBtn.onclick = () => {
+                currentQuestionIndex++;
+                loadQuestion();
+            };
+            if(menuBtn) menuBtn.onclick = () => window.location.href = 'eng_game123.html';
+        }
+
+        // --- 啟動 ---
+        document.addEventListener('DOMContentLoaded', () => {
+            initialGameHTML = document.getElementById('game-container').innerHTML;
+            getDOMElements();
+            bindEvents();
+            
+            timerDisplayEl.innerText = `${TIME_LIMIT_SECONDS}.0`;
+            startGame();
+        });
+
+    </script>
+</body>
+</html>
