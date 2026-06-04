@@ -275,14 +275,282 @@ async function requestJson(url, options = {}) {
 function loadVocabDb(dataPath) {
   const source = fs.readFileSync(dataPath, 'utf8');
   const context = {};
-  vm.runInNewContext(`${source}\nthis.VOCAB_DB = VOCAB_DB;`, context, { filename: dataPath });
+  vm.runInNewContext(`${source}\nthis.VOCAB_DB = typeof VOCAB_DB !== 'undefined' ? VOCAB_DB : this.VOCAB_DB;`, context, { filename: dataPath });
   if (!context.VOCAB_DB || typeof context.VOCAB_DB !== 'object') {
     throw new Error(`VOCAB_DB was not found in ${dataPath}`);
   }
   return context.VOCAB_DB;
 }
 
+function loadGrammarPhrasalVerbRows(dataPath) {
+  const source = fs.readFileSync(dataPath, 'utf8');
+  const context = { window: {} };
+  vm.runInNewContext(source, context, { filename: dataPath });
+  const bank = Array.isArray(context.window.GRAMMAR_PHRASAL_VERB_BANK)
+    ? context.window.GRAMMAR_PHRASAL_VERB_BANK
+    : [];
+  if (!bank.length) return null;
+
+  const byKey = new Map();
+  bank.forEach((entry, index) => {
+    const text = normalizeText(String(entry?.explanation || '').split('=')[0] || entry?.answer || '');
+    if (!text) return;
+    const key = normalizeKeyText(text);
+    if (byKey.has(key)) return;
+    byKey.set(key, {
+      text,
+      firstLevel: 'PHRASAL_VERB',
+      levels: ['PHRASAL_VERB'],
+      index
+    });
+  });
+
+  return Array.from(byKey.values()).sort((a, b) => normalizeKeyText(a.text).localeCompare(normalizeKeyText(b.text)));
+}
+
+const COMPOUND_ADJ_REFERENCE_MEANINGS = {
+  'absent from': '缺席',
+  'absorbed in': '全神貫注於',
+  'accustomed to': '習慣於',
+  'addicted to': '沉迷於',
+  'adjacent to': '鄰近 / 毗鄰',
+  'afraid of': '害怕',
+  'angry at/with sb': '對某人生氣',
+  'appropriate for': '適合',
+  'ashamed of': '為某事感到羞愧',
+  'associated with': '與某事有關聯',
+  'aware of': '意識到 / 知道',
+  'bad at': '不擅長',
+  'blind to': '對某事視而不見 / 不重視',
+  'capable of': '有能力做',
+  'careful with': '小心處理',
+  'cautious about': '對某事謹慎',
+  'certain about/of': '對某事確定',
+  'charged with': '被控告',
+  'clever at': '擅長',
+  'close to': '接近',
+  'committed to': '致力於 / 承諾',
+  'compatible with': '與某事相容',
+  'composed of': '由某物組成',
+  'concerned about': '關心 / 擔心',
+  'confident about/of': '對某事有信心',
+  'confronted with': '面對',
+  'connected to': '連接到',
+  'connected with': '與某事有關連',
+  'conscious of': '意識到',
+  'consistent with': '與某事一致',
+  'content with': '對某事滿意',
+  'crowded with': '擠滿',
+  'deaf to': '對某事充耳不聞',
+  'dedicated to': '獻身於 / 專注於',
+  'dependent on': '依賴',
+  'devoted to': '獻身於 / 深愛',
+  'different from': '與某事不同',
+  'eager for': '渴望',
+  'eligible for': '有資格',
+  'enthusiastic about': '對某事熱衷',
+  'envious of': '羨慕 / 嫉妒',
+  'equivalent to': '等同於',
+  'exposed to': '暴露於',
+  'faithful to': '對某人忠誠',
+  'familiar with': '熟悉',
+  'famous for': '因某事而聞名',
+  'fond of': '喜愛',
+  'free from': '免於 / 不受',
+  'friendly to': '對某人友善',
+  'full of': '充滿',
+  'furious at': '對某事狂怒',
+  'good at': '擅長',
+  'good for': '對某事有益',
+  'grateful to': '對某人感激',
+  'guilty of': '犯了某罪 / 對某事內疚',
+  'happy about/with': '對某事開心 / 滿意',
+  'ignorant of': '對某事無知',
+  'impatient with': '對某人不耐煩',
+  'indifferent to': '對某事冷漠 / 不關心',
+  'inferior to': '比某事差',
+  'innocent of': '無罪 / 無辜',
+  'interested in': '對某事感興趣',
+  'intolerant of': '不能容忍',
+  'irrelevant to': '與某事無關',
+  'jealous of': '嫉妒',
+  'keen on': '熱衷於',
+  'liable for': '對某事有責任',
+  'limited to': '限制在',
+  'loyal to': '對某人忠誠',
+  'made of': '由某物製成',
+  'married to': '與某人結婚',
+  'negligent in': '在某方面疏忽',
+  'opposed to': '反對',
+  'optimistic about': '對某事樂觀',
+  'patient with': '對某人有耐心',
+  'pessimistic about': '對某事悲觀',
+  'polite to': '對某人有禮貌',
+  'popular with': '受某人歡迎',
+  'prepared for': '為某事做好準備',
+  'proficient in/at': '精通',
+  'proud of': '為某事感到驕傲',
+  'qualified for': '有資格',
+  'ready for': '準備好',
+  'related to': '與某事有關',
+  'relevant to': '與某事有關 / 切題',
+  'responsible for': '對某事負責',
+  'rich in': '富含',
+  'scared of': '害怕',
+  'sick of': '對某事厭倦',
+  'similar to': '與某事相似',
+  'skilful in/at': '熟練於',
+  'sorry for/about': '對某事感到抱歉',
+  'subject to': '受某事影響 / 支配',
+  'successful in': '在某方面成功',
+  'suitable for': '適合',
+  'superior to': '優於',
+  'sure of': '對某事確定',
+  'suspicious of': '懷疑',
+  'sympathetic to': '對某事同情 / 支持',
+  'tired of': '對某事厭倦',
+  'used to (+ing)': '習慣於',
+  'useful to': '對某人有用',
+  'weak at/in': '不擅長',
+  'worried about': '擔心',
+  'useful for': '用於',
+  'angry with': '對某人生氣',
+  'grateful for': '感激某事',
+  'satisfied with': '對某事滿意',
+  'based on': '基於',
+  'bored with': '對某事感到無聊',
+  'excellent at': '非常擅長',
+  'terrible at': '很差 / 不擅長',
+  'late for': '遲到',
+  'rude to': '對某人粗魯',
+  'unkind to': '對某人不仁慈',
+  'surprised at/by': '對某事感到驚訝',
+  'amazed at/by': '對某事感到驚嘆',
+  'disappointed with': '對某事失望',
+  'fed up with': '受夠了',
+  'involved in': '參與',
+  'terrified of': '非常害怕',
+  'doubtful about': '懷疑',
+  'brilliant at': '非常擅長',
+  'hopeless at': '很差 / 不擅長',
+  'annoyed about (something)': '對某事惱怒',
+  'annoyed with (someone)': '對某人生氣',
+  'crazy about': '非常著迷於',
+  'serious about': '對某事認真',
+  'upset about': '對某事難過',
+  'nervous about': '對某事緊張',
+  'sure of/about': '對某事確定',
+  'certain of': '確信',
+  'safe from': '免受傷害 / 威脅',
+  'present at': '出席',
+  'grateful to (someone)': '感激某人',
+  'thankful for (something)': '感謝某事',
+  'delighted with': '對某事高興',
+  'impressed by/with': '對某事印象深刻',
+  'shocked at/by': '對某事震驚'
+};
+
+function getCompoundAdjReferenceKey(text) {
+  return normalizeKeyText(text).replace(/\s+/g, ' ');
+}
+
+function getCompoundAdjReferenceSpeakText(en) {
+  return normalizeText(en)
+    .replace(/\bsb\b/gi, 'someone')
+    .replace(/\((someone|something)\)/gi, '$1')
+    .replace(/\(\+ing\)/gi, 'plus ing')
+    .replace(/\//g, ' or ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function loadGrammarCompoundAdjRows(dataPath) {
+  const source = fs.readFileSync(dataPath, 'utf8');
+  const context = { window: {} };
+  vm.runInNewContext(source, context, { filename: dataPath });
+  const bank = Array.isArray(context.window.GRAMMAR_COMPOUND_ADJ_BANK)
+    ? context.window.GRAMMAR_COMPOUND_ADJ_BANK
+    : [];
+  if (!bank.length) return null;
+
+  const byKey = new Map();
+  bank.forEach((entry, index) => {
+    const explanation = normalizeText(entry?.explanation);
+    const [rawEn, ...rawChParts] = explanation.split(':');
+    const en = normalizeText(rawEn || String(entry?.question || '').replace(/_{2,}/g, String(entry?.answer || '')));
+    const ch = normalizeText(rawChParts.join(':') || entry?.chinese);
+    const cleanCh = COMPOUND_ADJ_REFERENCE_MEANINGS[getCompoundAdjReferenceKey(en)] || ch;
+    const text = getCompoundAdjReferenceSpeakText(en);
+    if (!text || !cleanCh) return;
+    const key = normalizeKeyText(text);
+    if (byKey.has(key)) return;
+    byKey.set(key, {
+      text,
+      firstLevel: 'COMPOUND_ADJ_REFERENCE',
+      levels: ['COMPOUND_ADJ_REFERENCE'],
+      index
+    });
+  });
+
+  return Array.from(byKey.values()).sort((a, b) => normalizeKeyText(a.text).localeCompare(normalizeKeyText(b.text)));
+}
+
+function getReferenceExampleEnglish(example) {
+  return normalizeText(example).replace(/\s*[（(][^（）()]*[）)]\s*$/u, '').trim();
+}
+
+function loadInfinitiveGerundReferenceRows(dataPath, levelArg) {
+  const source = fs.readFileSync(dataPath, 'utf8');
+  if (!source.includes('GRAMMAR_INFINITIVE_GERUND_REFERENCE_GROUPS')) return null;
+
+  const context = {
+    window: { addEventListener() {} },
+    document: { addEventListener() {} },
+    console
+  };
+  vm.runInNewContext(source, context, { filename: dataPath });
+  const groups = context.window.GRAMMAR_INFINITIVE_GERUND_REFERENCE_GROUPS;
+  if (!groups || typeof groups !== 'object') return null;
+
+  const wantedGroups = levelArg && levelArg.toLowerCase() !== 'all'
+    ? levelArg.split(',').map(part => part.trim()).filter(Boolean)
+    : Object.keys(groups);
+  const byKey = new Map();
+
+  wantedGroups.forEach(groupKey => {
+    const group = groups[groupKey];
+    if (!group || !Array.isArray(group.rows)) return;
+    group.rows.forEach((entry, index) => {
+      const text = getReferenceExampleEnglish(entry?.ex) || normalizeText(entry?.en);
+      if (!text) return;
+      const key = normalizeKeyText(text);
+      const existing = byKey.get(key);
+      if (existing) {
+        existing.levels.push(`INFINITIVE_GERUND_REFERENCE:${groupKey}`);
+        return;
+      }
+      byKey.set(key, {
+        text,
+        firstLevel: `INFINITIVE_GERUND_REFERENCE:${groupKey}`,
+        levels: [`INFINITIVE_GERUND_REFERENCE:${groupKey}`],
+        index
+      });
+    });
+  });
+
+  return Array.from(byKey.values()).sort((a, b) => normalizeKeyText(a.text).localeCompare(normalizeKeyText(b.text)));
+}
+
 function loadRows(dataPath, levelArg) {
+  const infinitiveGerundReferenceRows = loadInfinitiveGerundReferenceRows(dataPath, levelArg);
+  if (infinitiveGerundReferenceRows) return infinitiveGerundReferenceRows;
+
+  const phrasalVerbRows = loadGrammarPhrasalVerbRows(dataPath);
+  if (phrasalVerbRows) return phrasalVerbRows;
+
+  const compoundAdjRows = loadGrammarCompoundAdjRows(dataPath);
+  if (compoundAdjRows) return compoundAdjRows;
+
   const db = loadVocabDb(dataPath);
   const wantedLevels = levelArg && levelArg.toLowerCase() !== 'all'
     ? levelArg.split(',').map(part => part.trim()).filter(Boolean)
@@ -722,6 +990,60 @@ async function writeAzureRealtimeTtsFile(text, destination, options) {
   }
 }
 
+async function writeAzureRealtimeTtsFileWithCurl(text, destination, options) {
+  if (!options.azureSpeechKey) throw new Error('AZURE_SPEECH_KEY is required for --direct-azure.');
+
+  const tempPath = `${destination}.tmp-${process.pid}-${Date.now()}`;
+  fs.mkdirSync(path.dirname(destination), { recursive: true });
+
+  try {
+    const args = [
+      '-sS',
+      '-L',
+      '--http1.1',
+      '--max-time',
+      String(getTimeoutSeconds(options.requestTimeoutMs)),
+      '-X',
+      'POST',
+      '-H',
+      `Ocp-Apim-Subscription-Key: ${options.azureSpeechKey}`,
+      '-H',
+      'Content-Type: application/ssml+xml',
+      '-H',
+      `X-Microsoft-OutputFormat: ${options.azureTtsOutputFormat || DEFAULT_AZURE_TTS_OUTPUT_FORMAT}`,
+      '-H',
+      'User-Agent: vocab-conqueror-word-audio',
+      '--data-binary',
+      buildAzureWordSsml(text, options.locale, options.voiceName, options.accentLocale),
+      '-w',
+      '\n__HTTP_STATUS__:%{http_code}',
+      '-o',
+      tempPath,
+      getAzureRealtimeTtsUrl(options.azureSpeechRegion)
+    ];
+
+    const { stdout } = await execFileAsync('curl', args);
+    const marker = '\n__HTTP_STATUS__:';
+    const markerIndex = stdout.lastIndexOf(marker);
+    const status = markerIndex >= 0 ? Number(stdout.slice(markerIndex + marker.length).trim()) : 200;
+    if (status < 200 || status >= 300) {
+      let rawText = '';
+      if (fs.existsSync(tempPath)) rawText = fs.readFileSync(tempPath, 'utf8').slice(0, 500);
+      const error = new Error(rawText || `Azure realtime TTS failed with HTTP ${status}.`);
+      error.status = status;
+      error.azure = { status, message: rawText };
+      throw error;
+    }
+
+    const stats = fs.statSync(tempPath);
+    if (!stats.size) throw new Error('Azure returned empty audio.');
+    fs.renameSync(tempPath, destination);
+  } catch (error) {
+    if (fs.existsSync(tempPath)) fs.rmSync(tempPath, { force: true });
+    throw error;
+  }
+}
+
 async function retryAsync(task, label, attempts = 4) {
   let lastError = null;
   for (let attempt = 1; attempt <= attempts; attempt++) {
@@ -809,7 +1131,13 @@ async function warmOneDirectAzure(row, index, total, options, manifest) {
   }
 
   await retryAsync(async () => {
-    await writeAzureRealtimeTtsFile(row.text, localPath, options);
+    try {
+      await writeAzureRealtimeTtsFile(row.text, localPath, options);
+    } catch (error) {
+      if (!shouldUseCurlFallback(error)) throw error;
+      announceCurlFallback();
+      await writeAzureRealtimeTtsFileWithCurl(row.text, localPath, options);
+    }
   }, `direct word ${index + 1}/${total} ${row.text}`, options.attempts);
 
   console.log(`[${index + 1}/${total}] direct: ${row.text}`);

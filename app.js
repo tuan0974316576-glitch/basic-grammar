@@ -1319,6 +1319,1589 @@ function setSpeakingUiState(state = 'idle', statusText = 'VOICE SCAN STANDBY', s
     // =========================================
 
     const WRONG_WORDS_LS_KEY = 'battleship_wrongWords';
+    const TRAINING_PROGRESS_LS_KEY = 'battleship_trainingProgress_v1';
+    const DAILY_STREAK_LS_PREFIX = 'battleship_dailyStreak_v1';
+    const DAILY_MISSION_LS_PREFIX = 'battleship_dailyMissions_v1';
+    const HK_DAY_MS = 24 * 60 * 60 * 1000;
+    const HK_OFFSET_MS = 8 * 60 * 60 * 1000;
+    const DAILY_STREAK_DEFAULT_FREEZES = 1;
+    const DAILY_STREAK_MAX_FREEZES = 2;
+    const DAILY_STREAK_FREEZE_MILESTONE = 7;
+    const DAILY_MISSION_REWARD_BASE_SUPPLIES = 100;
+    const DAILY_MISSION_REWARD_BONUS_PER_DAY = 5;
+    const DAILY_MISSION_REWARD_MAX_SUPPLIES = 200;
+    const DAILY_MISSION_KEYS = ['SPELLING_WIN', 'READING_COMPLETE', 'GRAMMAR_COMPLETE'];
+    const LEVEL_ORDER = ['L1', 'L2', 'L3', 'L4', 'L5', 'L5_STAR'];
+    const ENTRY_TEST_LS_PREFIX = 'battleship_entryTest_v1';
+    let dailyStreakState = normalizeDailyStreakState(null);
+    let dailyMissionState = normalizeDailyMissionState(null);
+    let entryTestState = {
+        active: false,
+        questions: [],
+        index: 0,
+        correct: 0,
+        answered: 0
+    };
+    let dailyStreakLoadedUid = null;
+    let dailyStreakLoadPromise = null;
+    let dailyStreakSyncPromise = null;
+
+    function getHongKongDateString(timestamp = Date.now()) {
+        return new Date(timestamp + HK_OFFSET_MS).toISOString().slice(0, 10);
+    }
+
+    function parseDayString(dayString) {
+        const match = String(dayString || '').match(/^(\d{4})-(\d{2})-(\d{2})$/);
+        if (!match) return null;
+        return Date.UTC(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
+    }
+
+    function getDayDistance(fromDay, toDay) {
+        const fromTime = parseDayString(fromDay);
+        const toTime = parseDayString(toDay);
+        if (fromTime === null || toTime === null) return null;
+        return Math.round((toTime - fromTime) / HK_DAY_MS);
+    }
+
+    function normalizeDailyStreakState(data) {
+        const source = data && typeof data === 'object' ? data : {};
+        const current = Math.max(0, Math.floor(Number(source.current) || 0));
+        const best = Math.max(current, Math.floor(Number(source.best) || 0));
+        const totalActiveDays = Math.max(0, Math.floor(Number(source.totalActiveDays) || 0));
+        const lastStudyDate = /^\d{4}-\d{2}-\d{2}$/.test(String(source.lastStudyDate || ''))
+            ? source.lastStudyDate
+            : '';
+        const lastRewardDate = /^\d{4}-\d{2}-\d{2}$/.test(String(source.lastRewardDate || ''))
+            ? source.lastRewardDate
+            : '';
+        const hasFreezeValue = Object.prototype.hasOwnProperty.call(source, 'freezes');
+        const freezeHistory = Array.isArray(source.freezeHistory)
+            ? source.freezeHistory.filter(item => item && typeof item === 'object').slice(-20)
+            : [];
+        return {
+            version: 2,
+            current,
+            best,
+            lastStudyDate,
+            lastRewardDate,
+            lastRewardSupplies: Math.max(0, Math.floor(Number(source.lastRewardSupplies) || 0)),
+            totalRewardSupplies: Math.max(0, Math.floor(Number(source.totalRewardSupplies) || 0)),
+            lastClaimedAt: Number(source.lastClaimedAt) || 0,
+            totalActiveDays,
+            freezes: Math.min(
+                DAILY_STREAK_MAX_FREEZES,
+                Math.max(0, Math.floor(hasFreezeValue ? (Number(source.freezes) || 0) : DAILY_STREAK_DEFAULT_FREEZES))
+            ),
+            lastFreezeAwardedStreak: Math.max(0, Math.floor(Number(source.lastFreezeAwardedStreak) || 0)),
+            freezeHistory,
+            updatedAt: Number(source.updatedAt) || 0,
+            lastReason: source.lastReason || ''
+        };
+    }
+
+    function calculateDailyMissionReward(streakCount) {
+        const count = Math.max(1, Math.floor(Number(streakCount) || 1));
+        const reward = DAILY_MISSION_REWARD_BASE_SUPPLIES + ((count - 1) * DAILY_MISSION_REWARD_BONUS_PER_DAY);
+        return Math.min(DAILY_MISSION_REWARD_MAX_SUPPLIES, reward);
+    }
+
+    function normalizeRecommendedLevel(level) {
+        const value = String(level || '').toUpperCase();
+        return LEVEL_ORDER.includes(value) ? value : 'L1';
+    }
+
+    function compareLevelRank(a, b) {
+        const ai = LEVEL_ORDER.indexOf(normalizeRecommendedLevel(a));
+        const bi = LEVEL_ORDER.indexOf(normalizeRecommendedLevel(b));
+        return ai - bi;
+    }
+
+    function getDailyMissionStorageKey(uid = window.myPlayerId || localStorage.getItem('battleship_auth_uid') || 'guest') {
+        return `${DAILY_MISSION_LS_PREFIX}:${uid || 'guest'}`;
+    }
+
+    function getRecommendedDailyMissionLevel() {
+        const stored = localStorage.getItem('battleship_recommended_level');
+        if (stored) return normalizeRecommendedLevel(stored);
+        let currentLevel = '';
+        try {
+            currentLevel = selectedLevel;
+        } catch (e) {
+            currentLevel = '';
+        }
+        if (currentLevel && LEVEL_ORDER.includes(currentLevel)) return currentLevel;
+        return 'L1';
+    }
+
+    function getEntryTestStorageKey(uid = window.myPlayerId || localStorage.getItem('battleship_auth_uid') || 'guest') {
+        return `${ENTRY_TEST_LS_PREFIX}:${uid || 'guest'}`;
+    }
+
+    function getEntryTestRecord() {
+        try {
+            const raw = localStorage.getItem(getEntryTestStorageKey());
+            return raw ? JSON.parse(raw) : null;
+        } catch (e) {
+            return null;
+        }
+    }
+
+    function saveEntryTestRecord(record) {
+        try {
+            localStorage.setItem(getEntryTestStorageKey(), JSON.stringify(record));
+            if (record?.recommendedLevel) {
+                localStorage.setItem('battleship_recommended_level', record.recommendedLevel);
+            }
+        } catch (e) {
+            console.warn('saveEntryTestRecord error:', e);
+        }
+    }
+
+    function syncEntryTestRecordToFirebase(record) {
+        if (!record || !window.myPlayerId || !window.db || !window.firebaseModules) return Promise.resolve(record);
+        const { ref, update } = window.firebaseModules;
+        if (typeof ref !== 'function' || typeof update !== 'function') return Promise.resolve(record);
+        return update(ref(window.db, 'users/' + window.myPlayerId), {
+            entryTest: record,
+            recommendedLevel: record.recommendedLevel
+        }).catch(e => console.warn('syncEntryTestRecordToFirebase error:', e));
+    }
+
+    function hasEntryTestRecommendation() {
+        const record = getEntryTestRecord();
+        return !!(record?.recommendedLevel || localStorage.getItem('battleship_recommended_level'));
+    }
+
+    const ENTRY_TEST_KEY_ROWS = [
+        ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
+        ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
+        ['Z', 'X', 'C', 'V', 'B', 'N', 'M', 'BACKSPACE'],
+        ['SPACE', 'ENTER']
+    ];
+
+    function buildEntryTestQuestions() {
+        return [
+            {
+                type: 'reading_choice',
+                skill: 'Q1 // LEVEL 1 READING',
+                level: 'L1',
+                prompt: 'borrow',
+                answer: '借入',
+                options: ['借入', '借出', '購買', '浪費']
+            },
+            {
+                type: 'listening_type',
+                skill: 'Q2 // LEVEL 1 LISTENING',
+                level: 'L1',
+                prompt: 'Listen and spell the word.',
+                answer: 'window',
+                audioText: 'window'
+            },
+            {
+                type: 'spelling_type',
+                skill: 'Q3 // LEVEL 2 SPELLING',
+                level: 'L2',
+                prompt: '環境',
+                answer: 'environment'
+            },
+            {
+                type: 'tense_fill',
+                skill: 'Q4 // PRESENT PERFECT',
+                level: 'L2',
+                prompt: '我已經完成我的功課。',
+                sentence: 'I ______ my homework.',
+                answer: 'have finished'
+            },
+            {
+                type: 'reading_choice',
+                skill: 'Q5 // LEVEL 3 READING',
+                level: 'L3',
+                prompt: 'consequence',
+                answer: '後果',
+                options: ['後果', '信心', '證據', '機會']
+            },
+            {
+                type: 'spelling_type',
+                skill: 'Q6 // LEVEL 4 SPELLING',
+                level: 'L4',
+                prompt: '尷尬的',
+                answer: 'embarrassed'
+            },
+            {
+                type: 'reorder',
+                skill: 'Q7 // IT IS REORDER',
+                level: 'L4',
+                prompt: '每天溫習是重要的。',
+                answer: 'It is important to revise every day.',
+                tokens: ['It', 'is', 'important', 'to', 'revise', 'every', 'day.']
+            },
+            {
+                type: 'reading_choice',
+                skill: 'Q8 // LEVEL 5 READING',
+                level: 'L5',
+                prompt: 'inevitable',
+                answer: '不可避免的',
+                options: ['不可避免的', '不負責任的', '不可見的', '不合理的']
+            },
+            {
+                type: 'spelling_type',
+                skill: 'Q9 // LEVEL 5* SPELLING',
+                level: 'L5_STAR',
+                prompt: '堅持不懈',
+                answer: 'perseverance'
+            },
+            {
+                type: 'reorder',
+                skill: 'Q10 // INVERSION',
+                level: 'L5_STAR',
+                prompt: '我從未見過這麼美麗的景色。',
+                answer: 'Never have I seen such a beautiful view.',
+                tokens: ['Never', 'have', 'I', 'seen', 'such', 'a', 'beautiful', 'view.']
+            }
+        ];
+    }
+
+    function calculateEntryTestLevel(correct, total) {
+        const ratio = total > 0 ? correct / total : 0;
+        if (total >= 10 && correct >= 10) return 'L5_STAR';
+        if (ratio >= 0.86) return 'L5';
+        if (ratio >= 0.71) return 'L4';
+        if (ratio >= 0.51) return 'L3';
+        if (ratio >= 0.31) return 'L2';
+        return 'L1';
+    }
+
+    function getEntryTestElements() {
+        return {
+            modal: document.getElementById('entry-test-modal'),
+            box: document.querySelector('#entry-test-modal .entry-test-box'),
+            launchTitle: document.getElementById('entry-test-launch-title'),
+            modeLabel: document.getElementById('entry-test-mode-label'),
+            qText: document.getElementById('entry-test-q-text'),
+            qDisplay: document.getElementById('entry-test-q-display'),
+            grammarPanel: document.getElementById('entry-test-grammar-panel'),
+            directWrap: document.getElementById('entry-test-direct-wrap'),
+            directCommand: document.getElementById('entry-test-direct-command'),
+            directAnswerZone: document.getElementById('entry-test-direct-answer-zone'),
+            directTokenPool: document.getElementById('entry-test-direct-token-pool'),
+            directFeedback: document.getElementById('entry-test-direct-feedback'),
+            choiceWrap: document.getElementById('entry-test-choice-wrap'),
+            choiceCommand: document.getElementById('entry-test-choice-command'),
+            choiceSentence: document.getElementById('entry-test-choice-sentence'),
+            choiceOptions: document.getElementById('entry-test-choice-options'),
+            choiceFeedback: document.getElementById('entry-test-choice-feedback'),
+            tenseWrap: document.getElementById('entry-test-tense-wrap'),
+            tenseMeta: document.getElementById('entry-test-tense-meta'),
+            tenseSentence: document.getElementById('entry-test-tense-sentence'),
+            tenseInput: document.getElementById('entry-test-tense-input'),
+            tenseFeedback: document.getElementById('entry-test-tense-feedback'),
+            hiddenInput: document.getElementById('entry-test-hidden-input'),
+            typeFireBtn: document.getElementById('entry-test-type-fire-btn'),
+            keyboard: document.getElementById('entry-test-keyboard'),
+            msgArea: document.getElementById('entry-test-msg-area'),
+            result: document.getElementById('entry-test-result')
+        };
+    }
+
+    function shuffleEntryTestArray(items) {
+        const arr = [...(items || [])];
+        for (let i = arr.length - 1; i > 0; i -= 1) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+    }
+
+    function normalizeEntryTestAnswer(value) {
+        return String(value || '')
+            .trim()
+            .replace(/[’]/g, "'")
+            .replace(/\s+([?.!,;:])/g, '$1')
+            .replace(/\s+/g, ' ')
+            .toLowerCase();
+    }
+
+    function normalizeEntryTestTypedAnswer(value) {
+        return String(value || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+    }
+
+    function isEntryTestMobileInputDevice() {
+        return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ||
+            (navigator.maxTouchPoints > 0 && !window.matchMedia('(pointer: fine)').matches);
+    }
+
+    function getEntryTestActiveInput(question = entryTestState.questions[entryTestState.index]) {
+        if (question?.type === 'tense_fill') return document.getElementById('entry-test-tense-input');
+        return document.getElementById('entry-test-hidden-input');
+    }
+
+    function focusEntryTestInput(input) {
+        if (!input || isEntryTestMobileInputDevice()) return;
+        input.focus();
+    }
+
+    function resetEntryTestQuestionUI() {
+        const els = getEntryTestElements();
+        if (els.qText) {
+            els.qText.className = 'entry-test-q-text';
+            els.qText.innerHTML = '';
+            els.qText.onclick = null;
+        }
+        if (els.qDisplay) {
+            els.qDisplay.className = 'vocab-hint entry-test-q-display';
+            els.qDisplay.style.display = 'block';
+            els.qDisplay.style.color = '';
+            els.qDisplay.innerHTML = '';
+        }
+        if (els.grammarPanel) els.grammarPanel.style.display = 'none';
+        if (els.directWrap) els.directWrap.style.display = 'none';
+        if (els.choiceWrap) els.choiceWrap.style.display = 'none';
+        if (els.tenseWrap) els.tenseWrap.style.display = 'none';
+        if (els.directAnswerZone) {
+            els.directAnswerZone.innerHTML = '';
+            els.directAnswerZone.classList.remove('is-correct', 'is-wrong');
+        }
+        if (els.directTokenPool) els.directTokenPool.innerHTML = '';
+        if (els.directFeedback) els.directFeedback.innerText = '';
+        if (els.choiceOptions) els.choiceOptions.innerHTML = '';
+        if (els.choiceSentence) els.choiceSentence.innerHTML = '';
+        if (els.choiceFeedback) els.choiceFeedback.innerText = '';
+        if (els.tenseSentence) els.tenseSentence.innerHTML = '';
+        if (els.tenseFeedback) els.tenseFeedback.innerText = '';
+        if (els.tenseInput) {
+            els.tenseInput.value = '';
+            els.tenseInput.classList.remove('is-correct', 'is-wrong');
+            els.tenseInput.oninput = null;
+            els.tenseInput.onkeydown = null;
+        }
+        if (els.hiddenInput) {
+            els.hiddenInput.value = '';
+            els.hiddenInput.oninput = null;
+            els.hiddenInput.onkeydown = null;
+        }
+        if (els.typeFireBtn) els.typeFireBtn.style.display = 'none';
+        if (els.keyboard) els.keyboard.style.display = 'none';
+        if (els.msgArea) {
+            els.msgArea.classList.remove('meaning-confirmed', 'meaning-rejected');
+            els.msgArea.innerText = '';
+        }
+    }
+
+    function setEntryTestMessage(text, state = '') {
+        const msgArea = document.getElementById('entry-test-msg-area');
+        if (!msgArea) return;
+        msgArea.classList.remove('meaning-confirmed', 'meaning-rejected');
+        if (state) msgArea.classList.add(state);
+        msgArea.innerText = text;
+    }
+
+    function buildEntryTestSmartDisplay(targetWord, inputVal) {
+        let html = '';
+        let inputIdx = 0;
+        const cleanInput = String(inputVal || '').replace(/[^A-Z0-9]/gi, '').toUpperCase();
+        for (const targetChar of String(targetWord || '')) {
+            if (targetChar === ' ') {
+                html += '<span style="display:inline-block; width:20px;"></span>';
+            } else if (targetChar === '-' || targetChar === "'") {
+                html += `<span style="color:var(--warning); font-weight:bold; margin:0 2px; font-size:24px;">${targetChar}</span>`;
+            } else if (inputIdx < cleanInput.length) {
+                html += `<span style="color:var(--primary); font-weight:bold;">${escapeHtml(cleanInput[inputIdx])}</span> `;
+                inputIdx += 1;
+            } else {
+                html += '_ ';
+            }
+        }
+        return html;
+    }
+
+    function updateEntryTestTypedDisplay(question = entryTestState.questions[entryTestState.index]) {
+        const els = getEntryTestElements();
+        if (!question || !els.qDisplay) return;
+        const rawInput = getEntryTestActiveInput(question)?.value || '';
+        if (question.type === 'listening_type') {
+            const formatted = formatInputForTarget(normalizeEntryTestTypedAnswer(rawInput), question.answer);
+            els.qDisplay.innerHTML = renderListeningAnswerDisplay(question.answer, formatted);
+            return;
+        }
+        els.qDisplay.innerHTML = buildEntryTestSmartDisplay(question.answer, rawInput);
+    }
+
+    function handleEntryTestTypedInput(event) {
+        const question = entryTestState.questions[entryTestState.index];
+        const input = event?.target || getEntryTestActiveInput(question);
+        if (!question || !input) return;
+        let logicVal = normalizeEntryTestTypedAnswer(input.value);
+        const targetClean = normalizeEntryTestTypedAnswer(question.answer);
+        if (logicVal.length > targetClean.length) {
+            logicVal = logicVal.slice(0, targetClean.length);
+            if (typeof playSound === 'function') playSound('wrong-sfx');
+        } else if (event?.inputType === 'deleteContentBackward') {
+            if (typeof playSound === 'function') playSound('delete-sfx');
+        } else if (event) {
+            if (typeof playSound === 'function') playSound('enter-sfx');
+        }
+
+        input.value = question.type === 'listening_type'
+            ? formatInputForTarget(logicVal, question.answer)
+            : logicVal;
+        updateEntryTestTypedDisplay();
+    }
+
+    function handleEntryTestTextAnswerInput(event) {
+        const question = entryTestState.questions[entryTestState.index];
+        const input = event?.target || getEntryTestActiveInput(question);
+        if (!question || !input) return;
+        const rawVal = String(input.value || '').replace(/[^A-Za-z0-9\s'’-]/g, '');
+        input.value = rawVal.replace(/[’]/g, "'");
+        if (event?.inputType === 'deleteContentBackward') {
+            if (typeof playSound === 'function') playSound('delete-sfx');
+        } else if (event) {
+            if (typeof playSound === 'function') playSound('enter-sfx');
+        }
+    }
+
+    function ensureEntryTestKeyboard() {
+        const keyboard = document.getElementById('entry-test-keyboard');
+        if (!keyboard) return;
+        if (!keyboard.children.length) {
+            keyboard.innerHTML = ENTRY_TEST_KEY_ROWS.map((row, rowIndex) => {
+                const rowClass = rowIndex === 3 ? 'kb-row kb-action-row' : `kb-row kb-letter-row-${rowIndex + 1}`;
+                const buttons = row.map(key => {
+                    const label = key === 'BACKSPACE' ? '⌫' : key === 'ENTER' ? 'FIRE' : key;
+                    const extraClass = key === 'BACKSPACE'
+                        ? ' kb-backspace'
+                        : key === 'ENTER'
+                        ? ' kb-enter'
+                        : key === 'SPACE'
+                        ? ' kb-space'
+                        : '';
+                    return `<button type="button" class="kb-key${extraClass}" data-entry-key="${key}">${label}</button>`;
+                }).join('');
+                return `<div class="${rowClass}">${buttons}</div>`;
+            }).join('');
+        }
+        if (keyboard.dataset.entryBound === '1') return;
+        keyboard.dataset.entryBound = '1';
+        keyboard.addEventListener('click', (event) => {
+            const key = event.target.closest('[data-entry-key]');
+            if (!key || !entryTestState.active) return;
+            event.preventDefault();
+            event.stopPropagation();
+            handleEntryTestKeyboardKey(key.getAttribute('data-entry-key'));
+        });
+        keyboard.addEventListener('touchstart', (event) => {
+            const key = event.target.closest('[data-entry-key]');
+            if (key) key.classList.add('kb-active');
+        }, { passive: true });
+        keyboard.addEventListener('touchend', (event) => {
+            const key = event.target.closest('[data-entry-key]');
+            if (key) setTimeout(() => key.classList.remove('kb-active'), 100);
+        }, { passive: true });
+    }
+
+    function handleEntryTestKeyboardKey(keyValue) {
+        const question = entryTestState.questions[entryTestState.index];
+        const input = getEntryTestActiveInput(question);
+        if (!question || !input) return;
+        if (keyValue === 'ENTER') {
+            submitEntryTestCurrentAnswer();
+            return;
+        }
+        if (keyValue === 'BACKSPACE') {
+            input.value = input.value.slice(0, -1);
+            if (question.type === 'tense_fill') {
+                handleEntryTestTextAnswerInput({ target: input, inputType: 'deleteContentBackward' });
+            } else {
+                handleEntryTestTypedInput({ target: input, inputType: 'deleteContentBackward' });
+            }
+            return;
+        }
+        input.value += keyValue === 'SPACE' ? ' ' : keyValue;
+        if (question.type === 'tense_fill') {
+            handleEntryTestTextAnswerInput({ target: input, inputType: 'insertText' });
+        } else {
+            handleEntryTestTypedInput({ target: input, inputType: 'insertText' });
+        }
+    }
+
+    function renderEntryTestReadingChoice(question) {
+        const els = getEntryTestElements();
+        if (!els.qText || !els.qDisplay) return;
+        if (els.modeLabel) els.modeLabel.innerText = 'Choose the Chinese meaning:';
+        if (els.launchTitle) els.launchTitle.innerText = '⚠️ MEANING SCAN ⚠️';
+        els.qText.innerText = question.prompt;
+        els.qText.classList.add('reading-choice-word');
+        els.qDisplay.classList.add('reading-choice-display');
+
+        const optionWrap = document.createElement('div');
+        optionWrap.className = 'reading-choice-options';
+        shuffleEntryTestArray(question.options).forEach((optionText, index) => {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'reading-choice-option';
+            button.textContent = optionText;
+            button.setAttribute('data-entry-option-index', String(index));
+            button.addEventListener('click', (event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                answerEntryTestQuestion(optionText);
+            });
+            optionWrap.appendChild(button);
+        });
+        els.qDisplay.appendChild(optionWrap);
+
+        setTimeout(() => {
+            if (entryTestState.active && entryTestState.questions[entryTestState.index] === question && typeof speakVocabText === 'function') {
+                speakVocabText(question.prompt, els.qText, { localOnly: true }).catch(() => {});
+            }
+        }, 180);
+    }
+
+    function renderEntryTestTypedQuestion(question) {
+        const els = getEntryTestElements();
+        if (!els.qText || !els.qDisplay || !els.hiddenInput) return;
+        const isListening = question.type === 'listening_type';
+        if (els.launchTitle) els.launchTitle.innerText = isListening ? '⚠️ AUDIO INTEL ⚠️' : '⚠️ DECRYPT CODE ⚠️';
+        if (els.modeLabel) els.modeLabel.innerText = isListening ? 'Translate to English:' : 'Spell in English:';
+        if (els.typeFireBtn) els.typeFireBtn.style.display = 'inline-flex';
+        ensureEntryTestKeyboard();
+        if (els.keyboard) els.keyboard.style.display = 'block';
+
+        if (isListening) {
+            els.qText.innerHTML = `
+                <div class="sentence-container">
+                    <span>// AUDIO INTERCEPTED //</span>
+                    <span class="cyber-speaker-btn cyber-speaker-btn-small listening-replay-btn" data-entry-listening-replay role="button" aria-label="Replay audio"></span>
+                </div>
+            `;
+            els.qText.querySelectorAll('[data-entry-listening-replay]').forEach(button => {
+                button.onclick = (event) => {
+                    event.stopPropagation();
+                    playEntryTestAudio();
+                };
+            });
+            els.qDisplay.innerHTML = renderListeningAnswerDisplay(question.answer, '');
+            setTimeout(() => playEntryTestAudio(), 260);
+        } else {
+            els.qText.innerText = question.prompt;
+            els.qDisplay.innerHTML = generateSmartBlanks(question.answer);
+        }
+
+        els.hiddenInput.oninput = handleEntryTestTypedInput;
+        els.hiddenInput.onkeydown = (event) => {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                submitEntryTestCurrentAnswer();
+            }
+        };
+        focusEntryTestInput(els.hiddenInput);
+    }
+
+    function renderEntryTestTenseQuestion(question) {
+        const els = getEntryTestElements();
+        if (!els.grammarPanel || !els.tenseWrap || !els.tenseInput) return;
+        if (els.launchTitle) els.launchTitle.innerText = '⚠️ GRAMMAR DRILL ⚠️';
+        if (els.modeLabel) els.modeLabel.innerText = 'Complete the sentence:';
+        if (els.qText) {
+            els.qText.innerText = question.prompt;
+            els.qText.classList.add('launch-tense-prompt');
+        }
+        if (els.qDisplay) els.qDisplay.style.display = 'none';
+        els.grammarPanel.style.display = 'block';
+        els.tenseWrap.style.display = 'flex';
+        if (els.tenseMeta) els.tenseMeta.innerText = 'PRESENT PERFECT';
+        if (els.tenseSentence) {
+            els.tenseSentence.innerHTML = escapeHtml(question.sentence).replace(/_{3,}/g, '<span class="launch-tense-blank is-active">______</span>');
+        }
+        els.tenseInput.value = '';
+        els.tenseInput.oninput = handleEntryTestTextAnswerInput;
+        els.tenseInput.onkeydown = (event) => {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                submitEntryTestCurrentAnswer();
+            }
+        };
+        ensureEntryTestKeyboard();
+        if (els.keyboard) els.keyboard.style.display = 'block';
+        focusEntryTestInput(els.tenseInput);
+    }
+
+    function createEntryTestDirectToken(tokenText, index) {
+        const token = document.createElement('button');
+        token.type = 'button';
+        token.className = 'launch-direct-token';
+        token.textContent = tokenText;
+        token.setAttribute('data-entry-direct-token', tokenText);
+        token.style.animationDelay = `${Math.min(index, 10) * 18}ms`;
+        token.addEventListener('click', (event) => {
+            event.stopPropagation();
+            if (token.classList.contains('is-locked')) return;
+            const els = getEntryTestElements();
+            const parent = token.parentElement;
+            if (els.directAnswerZone) els.directAnswerZone.classList.remove('is-correct', 'is-wrong');
+            if (els.directFeedback) els.directFeedback.innerText = '';
+            if (parent === els.directTokenPool) {
+                if (typeof playSound === 'function') playSound('enter-sfx');
+                els.directAnswerZone.appendChild(token);
+            } else if (parent === els.directAnswerZone) {
+                if (typeof playSound === 'function') playSound('delete-sfx');
+                els.directTokenPool.appendChild(token);
+            }
+        });
+        return token;
+    }
+
+    function renderEntryTestReorderQuestion(question) {
+        const els = getEntryTestElements();
+        if (!els.grammarPanel || !els.directWrap || !els.directTokenPool) return;
+        if (els.launchTitle) els.launchTitle.innerText = '⚠️ RECONSTRUCT SIGNAL ⚠️';
+        if (els.modeLabel) els.modeLabel.innerText = question.skill.includes('INVERSION')
+            ? 'REARRANGE INVERSION'
+            : 'REARRANGE IT IS PATTERN';
+        if (els.qText) els.qText.innerText = question.prompt;
+        if (els.qDisplay) els.qDisplay.style.display = 'none';
+        els.grammarPanel.style.display = 'block';
+        els.directWrap.style.display = 'flex';
+        if (els.directCommand) els.directCommand.innerText = `${question.tokens.length} BLOCKS REQUIRED`;
+        shuffleEntryTestArray(question.tokens).forEach((token, index) => {
+            els.directTokenPool.appendChild(createEntryTestDirectToken(token, index));
+        });
+    }
+
+    function syncEntryTestResolvedVisuals(isCorrect, userAnswer = '') {
+        const question = entryTestState.questions[entryTestState.index];
+        const els = getEntryTestElements();
+        if (!question) return;
+        if (question.type === 'reading_choice') {
+            document.querySelectorAll('#entry-test-modal .reading-choice-option').forEach(button => {
+                const text = button.textContent || '';
+                button.classList.toggle('is-correct', normalizeEntryTestAnswer(text) === normalizeEntryTestAnswer(question.answer));
+                button.classList.toggle('is-wrong', normalizeEntryTestAnswer(text) === normalizeEntryTestAnswer(userAnswer) && !isCorrect);
+                button.classList.add('is-locked');
+                button.disabled = true;
+            });
+        } else if (question.type === 'reorder') {
+            const zone = els.directAnswerZone;
+            if (zone) zone.classList.add(isCorrect ? 'is-correct' : 'is-wrong');
+            document.querySelectorAll('#entry-test-modal .launch-direct-token').forEach(token => token.classList.add('is-locked'));
+            if (els.directFeedback) els.directFeedback.innerText = isCorrect ? 'SIGNAL CONFIRMED!' : question.answer;
+        } else if (question.type === 'tense_fill') {
+            if (els.tenseInput) els.tenseInput.classList.add(isCorrect ? 'is-correct' : 'is-wrong');
+            if (els.tenseFeedback) els.tenseFeedback.innerText = isCorrect ? 'TENSE CONFIRMED!' : question.answer;
+        } else if (els.qDisplay && !isCorrect) {
+            els.qDisplay.style.color = 'var(--danger)';
+        }
+    }
+
+    function renderEntryTestQuestion() {
+        const els = getEntryTestElements();
+        const modal = els.modal;
+        const progressEl = document.getElementById('entry-test-progress-text');
+        const skillEl = document.getElementById('entry-test-skill');
+        const fillEl = document.getElementById('entry-test-bar-fill');
+        const resultEl = document.getElementById('entry-test-result');
+        if (!modal || !els.qText || !els.qDisplay) return;
+
+        const question = entryTestState.questions[entryTestState.index];
+        if (!question) {
+            finishEntryTest();
+            return;
+        }
+
+        modal.style.display = 'flex';
+        resetEntryTestQuestionUI();
+        entryTestState.resolving = false;
+        if (resultEl) resultEl.style.display = 'none';
+        if (progressEl) progressEl.innerText = `QUESTION ${entryTestState.index + 1} / ${entryTestState.questions.length}`;
+        if (skillEl) skillEl.innerText = question.skill;
+        if (fillEl) fillEl.style.width = `${Math.round((entryTestState.index / entryTestState.questions.length) * 100)}%`;
+
+        if (question.type === 'reading_choice') {
+            renderEntryTestReadingChoice(question);
+        } else if (question.type === 'listening_type' || question.type === 'spelling_type') {
+            renderEntryTestTypedQuestion(question);
+        } else if (question.type === 'tense_fill') {
+            renderEntryTestTenseQuestion(question);
+        } else if (question.type === 'reorder') {
+            renderEntryTestReorderQuestion(question);
+        }
+    }
+
+    function openEntryTestBriefingModal() {
+        const els = getEntryTestElements();
+        const modal = els.modal;
+        if (!modal || !els.qText || !els.qDisplay) return;
+
+        entryTestState = {
+            active: false,
+            questions: [],
+            index: 0,
+            correct: 0,
+            answered: 0,
+            resolving: false,
+            briefing: true
+        };
+
+        modal.style.display = 'flex';
+        resetEntryTestQuestionUI();
+
+        const progressEl = document.getElementById('entry-test-progress-text');
+        const skillEl = document.getElementById('entry-test-skill');
+        const fillEl = document.getElementById('entry-test-bar-fill');
+        const statusEl = document.getElementById('entry-test-status');
+        const skipBtn = document.getElementById('entry-test-skip-btn');
+
+        if (statusEl) statusEl.innerText = 'NEW RECRUIT CALIBRATION REQUIRED';
+        if (progressEl) progressEl.innerText = 'RECRUIT BRIEFING';
+        if (skillEl) skillEl.innerText = 'LEVEL SCAN';
+        if (fillEl) fillEl.style.width = '0%';
+        if (skipBtn) skipBtn.innerText = 'SKIP';
+        if (els.launchTitle) els.launchTitle.innerText = '⚠️ NEW RECRUIT TEST ⚠️';
+        if (els.modeLabel) els.modeLabel.innerText = 'Before your first mission:';
+        if (els.qText) {
+            els.qText.innerText = 'SYSTEM LEVEL SCAN';
+            els.qText.classList.add('reading-choice-word');
+        }
+        if (els.qDisplay) {
+            els.qDisplay.classList.add('entry-test-briefing-display');
+            els.qDisplay.innerHTML = `
+                <div class="entry-test-briefing-copy">
+                    <div>你係新兵，系統需要先做一個英文水平測試。</div>
+                    <span>完成 10 個訊號後，系統會設定你的 Recommended Level，之後每日任務會跟住你的程度調整。</span>
+                    <small>測試只用作分級，不會影響正式 VS A.I. 戰績。</small>
+                </div>
+                <div class="entry-test-complete-actions">
+                    <button class="launch-direct-fire-btn" onclick="event.stopPropagation(); startEntryTestFromBriefing()">START TEST</button>
+                </div>
+            `;
+        }
+        if (els.msgArea) els.msgArea.innerText = '10 SIGNALS // READING // LISTENING // SPELLING // GRAMMAR';
+        if (typeof playSound === 'function') playSound('deploy-sfx');
+    }
+
+    function startEntryTestFromBriefing() {
+        if (typeof playSound === 'function') playSound('skill-select-sfx');
+        openEntryTestModal();
+    }
+
+    function openEntryTestModal() {
+        entryTestState = {
+            active: true,
+            questions: buildEntryTestQuestions(),
+            index: 0,
+            correct: 0,
+            answered: 0,
+            resolving: false
+        };
+        if (!entryTestState.questions.length) {
+            skipEntryTest();
+            return;
+        }
+        renderEntryTestQuestion();
+    }
+
+    function closeEntryTestModal() {
+        const modal = document.getElementById('entry-test-modal');
+        if (modal) modal.style.display = 'none';
+        const keyboard = document.getElementById('entry-test-keyboard');
+        if (keyboard) keyboard.style.display = 'none';
+        entryTestState.active = false;
+    }
+
+    function playEntryTestAudio() {
+        const question = entryTestState.questions[entryTestState.index];
+        const text = question?.audioText || question?.answer || '';
+        if (!text) return;
+        if (typeof speakWord === 'function') {
+            speakWord(text);
+        } else if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+            window.speechSynthesis.speak(new SpeechSynthesisUtterance(text));
+        }
+    }
+
+    function answerEntryTestQuestion(option) {
+        const question = entryTestState.questions[entryTestState.index];
+        if (!question || entryTestState.resolving) return;
+        const isCorrect = String(option || '').trim() === String(question.answer || '').trim();
+        entryTestState.resolving = true;
+        entryTestState.answered += 1;
+        if (isCorrect) entryTestState.correct += 1;
+        if (typeof playSound === 'function') playSound(isCorrect ? 'enter-sfx' : 'wrong-sfx');
+        syncEntryTestResolvedVisuals(isCorrect, option);
+        setEntryTestMessage(isCorrect ? 'CONFIRMED!' : `REJECTED // ${question.answer}`, isCorrect ? 'meaning-confirmed' : 'meaning-rejected');
+        entryTestState.index += 1;
+        setTimeout(renderEntryTestQuestion, isCorrect ? 520 : 950);
+    }
+
+    function submitEntryTestCurrentAnswer() {
+        const question = entryTestState.questions[entryTestState.index];
+        if (!question || entryTestState.resolving) return;
+        let userAnswer = '';
+        if (question.type === 'reorder') {
+            const zone = document.getElementById('entry-test-direct-answer-zone');
+            userAnswer = Array.from(zone?.children || []).map(token => token.textContent || '').join(' ');
+            if (!userAnswer.trim()) {
+                setEntryTestMessage('TAP WORD BLOCKS FIRST');
+                if (typeof playSound === 'function') playSound('wrong-sfx');
+                return;
+            }
+            answerEntryTestQuestion(userAnswer);
+            return;
+        }
+        if (question.type === 'tense_fill') {
+            userAnswer = document.getElementById('entry-test-tense-input')?.value || '';
+            if (!userAnswer.trim()) {
+                setEntryTestMessage('TYPE THE ANSWER FIRST');
+                if (typeof playSound === 'function') playSound('wrong-sfx');
+                return;
+            }
+            const isCorrect = normalizeEntryTestAnswer(userAnswer) === normalizeEntryTestAnswer(question.answer);
+            answerEntryTestQuestion(isCorrect ? question.answer : userAnswer);
+            return;
+        }
+        userAnswer = document.getElementById('entry-test-hidden-input')?.value || '';
+        if (!normalizeEntryTestTypedAnswer(userAnswer)) {
+            setEntryTestMessage('TYPE THE ANSWER FIRST');
+            if (typeof playSound === 'function') playSound('wrong-sfx');
+            return;
+        }
+        const isCorrect = normalizeEntryTestTypedAnswer(userAnswer) === normalizeEntryTestTypedAnswer(question.answer);
+        answerEntryTestQuestion(isCorrect ? question.answer : userAnswer);
+    }
+
+    function finishEntryTest() {
+        const recommendedLevel = calculateEntryTestLevel(entryTestState.correct, entryTestState.questions.length);
+        const record = {
+            version: 1,
+            completedAt: Date.now(),
+            correct: entryTestState.correct,
+            total: entryTestState.questions.length,
+            recommendedLevel
+        };
+        saveEntryTestRecord(record);
+        syncEntryTestRecordToFirebase(record);
+        localStorage.setItem('battleship_recommended_level', recommendedLevel);
+        dailyMissionState = normalizeDailyMissionState({
+            ...getTodayDailyMissionState(),
+            recommendedLevel,
+            updatedAt: Date.now()
+        });
+        saveDailyMissionStateToLocal();
+        syncDailyMissionStateToFirebase();
+        const els = getEntryTestElements();
+        const fillEl = document.getElementById('entry-test-bar-fill');
+        resetEntryTestQuestionUI();
+        if (fillEl) fillEl.style.width = '100%';
+        if (els.launchTitle) els.launchTitle.innerText = '⚠️ CALIBRATION COMPLETE ⚠️';
+        if (els.modeLabel) els.modeLabel.innerText = 'Recommended Level:';
+        if (els.qText) {
+            els.qText.innerText = recommendedLevel;
+            els.qText.classList.add('reading-choice-word');
+        }
+        if (els.qDisplay) {
+            els.qDisplay.classList.add('reading-choice-display');
+            els.qDisplay.innerHTML = `
+                <div class="entry-test-complete-actions">
+                    <button class="launch-direct-fire-btn" onclick="event.stopPropagation(); closeEntryTestModal(); maybeShowDailyMissionChecklist()">CONTINUE</button>
+                </div>
+            `;
+        }
+        if (els.result) {
+            els.result.style.display = 'block';
+            els.result.innerText = `${entryTestState.correct}/${entryTestState.questions.length} correct`;
+        }
+        entryTestState.active = false;
+    }
+
+    function skipEntryTest() {
+        const recommendedLevel = getRecommendedDailyMissionLevel();
+        const record = {
+            version: 1,
+            skippedAt: Date.now(),
+            recommendedLevel
+        };
+        saveEntryTestRecord(record);
+        syncEntryTestRecordToFirebase(record);
+        closeEntryTestModal();
+        maybeShowDailyMissionChecklist();
+    }
+
+    function maybeShowEntryTest() {
+        if (hasEntryTestRecommendation()) return false;
+        setTimeout(() => openEntryTestBriefingModal(), 350);
+        return true;
+    }
+
+    function normalizeDailyMissionState(data) {
+        const source = data && typeof data === 'object' ? data : {};
+        const today = getHongKongDateString();
+        const date = /^\d{4}-\d{2}-\d{2}$/.test(String(source.date || '')) ? source.date : today;
+        const missions = source.missions && typeof source.missions === 'object' ? source.missions : {};
+        const normalizedMissions = {};
+        DAILY_MISSION_KEYS.forEach(key => {
+            normalizedMissions[key] = {
+                done: !!missions[key]?.done,
+                completedAt: Number(missions[key]?.completedAt) || 0,
+                detail: missions[key]?.detail || ''
+            };
+        });
+        return {
+            version: 1,
+            date,
+            recommendedLevel: normalizeRecommendedLevel(source.recommendedLevel || getRecommendedDailyMissionLevel()),
+            popupShownDate: /^\d{4}-\d{2}-\d{2}$/.test(String(source.popupShownDate || '')) ? source.popupShownDate : '',
+            missions: normalizedMissions,
+            rewardSecured: !!source.rewardSecured,
+            updatedAt: Number(source.updatedAt) || 0
+        };
+    }
+
+    function getTodayDailyMissionState() {
+        const today = getHongKongDateString();
+        const state = normalizeDailyMissionState(dailyMissionState);
+        if (state.date !== today) {
+            dailyMissionState = normalizeDailyMissionState({
+                date: today,
+                recommendedLevel: getRecommendedDailyMissionLevel()
+            });
+            saveDailyMissionStateToLocal();
+            return dailyMissionState;
+        }
+        dailyMissionState = state;
+        return dailyMissionState;
+    }
+
+    function loadDailyMissionStateFromLocal(uid) {
+        try {
+            const raw = localStorage.getItem(getDailyMissionStorageKey(uid));
+            dailyMissionState = normalizeDailyMissionState(raw ? JSON.parse(raw) : null);
+        } catch (e) {
+            console.warn('loadDailyMissionStateFromLocal error:', e);
+            dailyMissionState = normalizeDailyMissionState(null);
+        }
+        getTodayDailyMissionState();
+        renderDailyMissionChecklistButton();
+        return dailyMissionState;
+    }
+
+    function saveDailyMissionStateToLocal(uid = window.myPlayerId || localStorage.getItem('battleship_auth_uid')) {
+        try {
+            localStorage.setItem(getDailyMissionStorageKey(uid), JSON.stringify(dailyMissionState));
+        } catch (e) {
+            console.warn('saveDailyMissionStateToLocal error:', e);
+        }
+    }
+
+    function syncDailyMissionStateToFirebase() {
+        if (!window.myPlayerId || !window.db || !window.firebaseModules) return Promise.resolve(dailyMissionState);
+        const { ref, set } = window.firebaseModules;
+        if (typeof ref !== 'function' || typeof set !== 'function') return Promise.resolve(dailyMissionState);
+        return set(ref(window.db, 'users/' + window.myPlayerId + '/dailyMissions'), dailyMissionState)
+            .then(() => dailyMissionState)
+            .catch(e => {
+                console.warn('syncDailyMissionStateToFirebase error:', e);
+                return dailyMissionState;
+            });
+    }
+
+    function loadDailyMissionStateFromFirebase(force = false) {
+        const uid = window.myPlayerId || localStorage.getItem('battleship_auth_uid');
+        loadDailyMissionStateFromLocal(uid);
+        if (!uid || !window.db || !window.firebaseModules) return Promise.resolve(dailyMissionState);
+        const { ref, get } = window.firebaseModules;
+        if (typeof ref !== 'function' || typeof get !== 'function') return Promise.resolve(dailyMissionState);
+        return get(ref(window.db, 'users/' + uid + '/dailyMissions')).then(snapshot => {
+            const localState = normalizeDailyMissionState(dailyMissionState);
+            const remoteState = normalizeDailyMissionState(snapshot.exists() ? snapshot.val() : null);
+            dailyMissionState = remoteState.updatedAt > localState.updatedAt ? remoteState : localState;
+            getTodayDailyMissionState();
+            saveDailyMissionStateToLocal(uid);
+            renderDailyMissionChecklistButton();
+            return dailyMissionState;
+        }).catch(e => {
+            console.warn('loadDailyMissionStateFromFirebase error:', e);
+            return dailyMissionState;
+        });
+    }
+
+    function getDailyMissionDefinitions() {
+        const level = getTodayDailyMissionState().recommendedLevel;
+        return [
+            {
+                key: 'SPELLING_WIN',
+                title: 'SPELLING VICTORY',
+                body: `Win 1 VS A.I. Spelling stage at ${level} or above.`
+            },
+            {
+                key: 'READING_COMPLETE',
+                title: 'READING SCAN',
+                body: `Complete 1 Reading mission at ${level} or above.`
+            },
+            {
+                key: 'GRAMMAR_COMPLETE',
+                title: 'GRAMMAR DRILL',
+                body: 'Complete 1 Grammar mission or training topic.'
+            }
+        ];
+    }
+
+    function getDailyMissionProgress() {
+        const state = getTodayDailyMissionState();
+        const completed = DAILY_MISSION_KEYS.filter(key => state.missions[key]?.done).length;
+        return {
+            completed,
+            total: DAILY_MISSION_KEYS.length,
+            allDone: completed >= DAILY_MISSION_KEYS.length
+        };
+    }
+
+    function renderDailyMissionChecklistButton() {
+        const btn = document.getElementById('mission-checklist-btn');
+        if (!btn) return;
+        const progress = getDailyMissionProgress();
+        btn.classList.toggle('complete', progress.allDone);
+        btn.classList.toggle('incomplete', !progress.allDone);
+        btn.setAttribute('aria-label', `Open daily mission checklist: ${progress.completed}/${progress.total} complete`);
+    }
+
+    function renderDailyMissionChecklistModal() {
+        const modal = document.getElementById('daily-mission-checklist-modal');
+        const list = document.getElementById('daily-mission-checklist-list');
+        if (!modal || !list) return;
+
+        const state = getTodayDailyMissionState();
+        const progress = getDailyMissionProgress();
+        const recommendedEl = document.getElementById('daily-mission-recommended-level');
+        const progressEl = document.getElementById('daily-mission-progress-count');
+        const statusEl = document.getElementById('daily-mission-checklist-status');
+        const rewardEl = document.getElementById('daily-mission-checklist-reward');
+        if (recommendedEl) recommendedEl.innerText = state.recommendedLevel;
+        if (progressEl) progressEl.innerText = `${progress.completed}/${progress.total}`;
+        if (statusEl) statusEl.innerText = progress.allDone ? 'DAILY REWARD SECURED' : `${progress.total - progress.completed} MISSIONS REMAINING`;
+        if (rewardEl) {
+            rewardEl.innerText = progress.allDone
+                ? 'Daily reward secured. Come back tomorrow for a new checklist.'
+                : "Complete all missions to secure today's streak reward.";
+        }
+
+        list.innerHTML = '';
+        getDailyMissionDefinitions().forEach((mission, index) => {
+            const entry = state.missions[mission.key] || {};
+            const row = document.createElement('div');
+            row.className = `daily-mission-checklist-row${entry.done ? ' complete' : ''}`;
+            row.innerHTML = `
+                <div class="daily-mission-checklist-mark">${entry.done ? '✓' : String(index + 1)}</div>
+                <div class="daily-mission-checklist-copy">
+                    <div>${mission.title}</div>
+                    <span>${mission.body}</span>
+                    ${entry.detail ? `<small>${entry.detail}</small>` : ''}
+                </div>
+                <div class="daily-mission-checklist-state">${entry.done ? 'DONE' : 'OPEN'}</div>
+            `;
+            list.appendChild(row);
+        });
+    }
+
+    function openDailyMissionChecklistModal() {
+        renderDailyMissionChecklistModal();
+        const modal = document.getElementById('daily-mission-checklist-modal');
+        if (modal) modal.style.display = 'flex';
+        if (typeof playSound === 'function') playSound('deploy-sfx');
+    }
+
+    function closeDailyMissionChecklistModal() {
+        const modal = document.getElementById('daily-mission-checklist-modal');
+        if (modal) modal.style.display = 'none';
+    }
+
+    function maybeShowDailyMissionChecklist() {
+        loadDailyMissionStateFromFirebase(false).finally(() => {
+            const state = getTodayDailyMissionState();
+            const today = getHongKongDateString();
+            renderDailyMissionChecklistButton();
+            if (state.popupShownDate === today) return;
+            state.popupShownDate = today;
+            state.updatedAt = Date.now();
+            dailyMissionState = state;
+            saveDailyMissionStateToLocal();
+            syncDailyMissionStateToFirebase();
+            setTimeout(() => openDailyMissionChecklistModal(), 450);
+        });
+    }
+
+    function missionLevelQualifies(level, requiredLevel = getTodayDailyMissionState().recommendedLevel) {
+        return compareLevelRank(level || selectedLevel, requiredLevel) >= 0;
+    }
+
+    function recordDailyMissionProgress(type, context = {}) {
+        const state = getTodayDailyMissionState();
+        let key = '';
+        if (type === 'spelling-win' && missionLevelQualifies(context.level) && context.victory) {
+            key = 'SPELLING_WIN';
+        } else if (type === 'reading-complete' && missionLevelQualifies(context.level)) {
+            key = 'READING_COMPLETE';
+        } else if (type === 'grammar-complete') {
+            key = 'GRAMMAR_COMPLETE';
+        }
+        if (!key || state.missions[key]?.done) {
+            renderDailyMissionChecklistButton();
+            return Promise.resolve({ changed: false, allDone: getDailyMissionProgress().allDone });
+        }
+
+        state.missions[key] = {
+            done: true,
+            completedAt: Date.now(),
+            detail: context.detail || ''
+        };
+        state.updatedAt = Date.now();
+        dailyMissionState = state;
+        saveDailyMissionStateToLocal();
+        renderDailyMissionChecklistButton();
+        renderDailyMissionChecklistModal();
+
+        if (typeof showNotification === 'function') {
+            const progress = getDailyMissionProgress();
+            showNotification(`DAILY MISSION UPDATED // ${progress.completed}/${progress.total}`, 'success', 2600);
+        }
+
+        const syncPromise = syncDailyMissionStateToFirebase();
+        const progress = getDailyMissionProgress();
+        if (progress.allDone && !state.rewardSecured) {
+            state.rewardSecured = true;
+            state.updatedAt = Date.now();
+            dailyMissionState = state;
+            saveDailyMissionStateToLocal();
+            return syncPromise
+                .then(() => secureDailyStreak('daily-missions'))
+                .then(result => {
+                    renderDailyMissionChecklistButton();
+                    renderDailyMissionChecklistModal();
+                    return { changed: true, allDone: true, reward: result };
+                });
+        }
+        return syncPromise.then(() => ({ changed: true, allDone: progress.allDone }));
+    }
+
+    function getDailyMissionRewardLabel(streakNumber, dayNumber) {
+        const supplies = calculateDailyMissionReward(streakNumber);
+        if (dayNumber === DAILY_STREAK_FREEZE_MILESTONE) {
+            return `+${supplies} SUPPLIES + FREEZE`;
+        }
+        return `+${supplies} SUPPLIES`;
+    }
+
+    function getNumericUserSupplies() {
+        if (Number.isFinite(userSupplies)) return userSupplies;
+        if (Number.isFinite(window.userSupplies)) return window.userSupplies;
+        return 0;
+    }
+
+    function grantDailyMissionSupplies(amount) {
+        const reward = Math.max(0, Math.floor(Number(amount) || 0));
+        if (!reward) return 0;
+
+        userSupplies = getNumericUserSupplies() + reward;
+        window.userSupplies = userSupplies;
+        if (typeof syncUserProgressGlobals === 'function') {
+            syncUserProgressGlobals();
+        }
+        if (typeof updateSuppliesDisplay === 'function') {
+            updateSuppliesDisplay();
+        }
+        return reward;
+    }
+
+    function getDailyStreakStorageKey(uid = window.myPlayerId || localStorage.getItem('battleship_auth_uid') || 'guest') {
+        return `${DAILY_STREAK_LS_PREFIX}:${uid || 'guest'}`;
+    }
+
+    function getDisplayDailyStreak(state = dailyStreakState) {
+        const normalized = normalizeDailyStreakState(state);
+        const today = getHongKongDateString();
+        const gap = normalized.lastStudyDate ? getDayDistance(normalized.lastStudyDate, today) : null;
+        const securedToday = normalized.lastStudyDate === today;
+        const missedDays = gap !== null && gap > 1 ? gap - 1 : 0;
+        const freezeCanProtect = missedDays > 0 && normalized.freezes >= missedDays;
+        const current = missedDays > 0 && !freezeCanProtect ? 0 : normalized.current;
+        const status = securedToday
+            ? 'MISSION COMPLETE'
+            : (gap === 1 ? 'READY TO EXTEND' : (freezeCanProtect ? 'FREEZE ARMED' : 'MISSION READY'));
+        return {
+            ...normalized,
+            current,
+            securedToday,
+            status,
+            nextRewardSupplies: calculateDailyMissionReward(current > 0 ? current + 1 : 1),
+            missedDays,
+            freezeCanProtect
+        };
+    }
+
+    function loadDailyStreakFromLocal(uid) {
+        try {
+            const raw = localStorage.getItem(getDailyStreakStorageKey(uid));
+            if (raw) {
+                dailyStreakState = normalizeDailyStreakState(JSON.parse(raw));
+            } else {
+                dailyStreakState = normalizeDailyStreakState(null);
+            }
+        } catch (e) {
+            console.warn('loadDailyStreakFromLocal error:', e);
+            dailyStreakState = normalizeDailyStreakState(null);
+        }
+        window.dailyStreakState = dailyStreakState;
+        renderDailyStreakHud();
+        return dailyStreakState;
+    }
+
+    function saveDailyStreakToLocal(uid) {
+        try {
+            localStorage.setItem(getDailyStreakStorageKey(uid), JSON.stringify(dailyStreakState));
+        } catch (e) {
+            console.warn('saveDailyStreakToLocal error:', e);
+        }
+    }
+
+    function mergeDailyStreakState(localState, remoteState) {
+        const local = normalizeDailyStreakState(localState);
+        const remote = normalizeDailyStreakState(remoteState);
+        const localTime = parseDayString(local.lastStudyDate) || 0;
+        const remoteTime = parseDayString(remote.lastStudyDate) || 0;
+        const localRewardTime = parseDayString(local.lastRewardDate) || 0;
+        const remoteRewardTime = parseDayString(remote.lastRewardDate) || 0;
+        const sameStudyDate = local.lastStudyDate && local.lastStudyDate === remote.lastStudyDate;
+        const base = localTime > remoteTime
+            ? local
+            : (remoteTime > localTime ? remote : (local.updatedAt >= remote.updatedAt ? local : remote));
+        const rewardBase = localRewardTime > remoteRewardTime
+            ? local
+            : (remoteRewardTime > localRewardTime ? remote : (local.updatedAt >= remote.updatedAt ? local : remote));
+        const freezeHistory = [...local.freezeHistory, ...remote.freezeHistory]
+            .filter(item => item && typeof item === 'object')
+            .slice(-20);
+        const merged = {
+            ...base,
+            current: sameStudyDate ? Math.max(local.current, remote.current) : base.current,
+            best: Math.max(local.best, remote.best, base.best),
+            totalActiveDays: Math.max(local.totalActiveDays, remote.totalActiveDays, base.totalActiveDays),
+            freezes: base.freezes,
+            lastRewardDate: rewardBase.lastRewardDate,
+            lastRewardSupplies: rewardBase.lastRewardSupplies,
+            totalRewardSupplies: Math.max(local.totalRewardSupplies, remote.totalRewardSupplies, base.totalRewardSupplies),
+            lastFreezeAwardedStreak: Math.max(local.lastFreezeAwardedStreak, remote.lastFreezeAwardedStreak, base.lastFreezeAwardedStreak),
+            freezeHistory,
+            lastClaimedAt: Math.max(local.lastClaimedAt, remote.lastClaimedAt, base.lastClaimedAt),
+            updatedAt: Math.max(local.updatedAt, remote.updatedAt, base.updatedAt)
+        };
+        return normalizeDailyStreakState(merged);
+    }
+
+    function renderDailyStreakHud() {
+        const display = getDisplayDailyStreak();
+        const card = document.getElementById('daily-streak-card');
+        const countEl = document.getElementById('daily-streak-count');
+        const bestEl = document.getElementById('daily-streak-best');
+        const statusEl = document.getElementById('daily-streak-status');
+        const freezesEl = document.getElementById('daily-streak-freezes');
+        const rewardEl = document.getElementById('daily-streak-reward');
+        if (countEl) countEl.innerText = String(display.current);
+        if (bestEl) bestEl.innerText = String(display.best);
+        if (statusEl) statusEl.innerText = display.status;
+        if (freezesEl) freezesEl.innerText = String(display.freezes);
+        if (rewardEl) {
+            const reward = display.securedToday
+                ? (display.lastRewardSupplies || calculateDailyMissionReward(display.current || 1))
+                : display.nextRewardSupplies;
+            rewardEl.innerText = String(reward);
+        }
+        if (card) {
+            card.classList.toggle('secured', display.securedToday);
+            card.classList.toggle('ready', !display.securedToday);
+            card.classList.toggle('freeze-armed', !display.securedToday && display.freezeCanProtect);
+        }
+    }
+
+    function getDailyMissionCycleSnapshot() {
+        const display = getDisplayDailyStreak();
+        const current = Math.max(0, Math.floor(Number(display.current) || 0));
+        const securedToday = !!display.securedToday;
+        const activeDay = securedToday && current > 0
+            ? ((current - 1) % DAILY_STREAK_FREEZE_MILESTONE) + 1
+            : (current % DAILY_STREAK_FREEZE_MILESTONE) + 1;
+        const cycleBase = securedToday && current > 0
+            ? current - activeDay
+            : current - (activeDay - 1);
+        const claimedThrough = securedToday ? activeDay : activeDay - 1;
+        return {
+            display,
+            activeDay,
+            cycleBase: Math.max(0, cycleBase),
+            claimedThrough: Math.max(0, claimedThrough),
+            rewardedToday: display.lastRewardDate === getHongKongDateString()
+        };
+    }
+
+    function renderDailyMissionRewardsModal() {
+        const modal = document.getElementById('daily-mission-rewards-modal');
+        const list = document.getElementById('daily-mission-rewards-list');
+        if (!modal || !list) return;
+
+        const { display, activeDay, cycleBase, claimedThrough, rewardedToday } = getDailyMissionCycleSnapshot();
+        const statusEl = document.getElementById('daily-mission-rewards-status');
+        const currentEl = document.getElementById('daily-mission-rewards-current');
+        const bestEl = document.getElementById('daily-mission-rewards-best');
+        const freezesEl = document.getElementById('daily-mission-rewards-freezes');
+        if (statusEl) statusEl.innerText = display.status;
+        if (currentEl) currentEl.innerText = String(display.current);
+        if (bestEl) bestEl.innerText = String(display.best);
+        if (freezesEl) freezesEl.innerText = String(display.freezes);
+
+        list.innerHTML = '';
+        for (let day = 1; day <= DAILY_STREAK_FREEZE_MILESTONE; day += 1) {
+            const streakNumber = Math.max(1, cycleBase + day);
+            const isClaimed = day <= claimedThrough && (day !== activeDay || rewardedToday || !display.securedToday);
+            const isClaimable = display.securedToday && day === activeDay && !rewardedToday;
+            const isReady = !display.securedToday && day === activeDay;
+            const isLocked = !isClaimed && !isClaimable && !isReady;
+            const row = document.createElement('div');
+            row.className = [
+                'daily-mission-reward-row',
+                isClaimed ? 'claimed' : '',
+                isClaimable ? 'claimable' : '',
+                isReady ? 'ready' : '',
+                isLocked ? 'locked' : ''
+            ].filter(Boolean).join(' ');
+
+            const dayCode = String(day).padStart(2, '0');
+            const actionText = isClaimed ? 'CLAIMED' : (isClaimable ? 'CLAIM' : (isReady ? 'READY' : 'LOCKED'));
+            const actionAttr = isClaimable ? ' onclick="claimDailyMissionRewardFromModal()"' : '';
+            const actionDisabled = isClaimable ? '' : ' disabled';
+            const rewardCode = day === DAILY_STREAK_FREEZE_MILESTONE ? 'FRZ' : 'SUP';
+            row.innerHTML = `
+                <div class="daily-mission-node"><span></span></div>
+                <div class="daily-mission-day"><span>DAY</span><strong>${dayCode}</strong></div>
+                <div class="daily-mission-icon">${rewardCode}</div>
+                <div class="daily-mission-copy">
+                    <div>${day === DAILY_STREAK_FREEZE_MILESTONE ? 'WEEKLY FREEZE CACHE' : 'MISSION SUPPLY DROP'}</div>
+                    <span>${getDailyMissionRewardLabel(streakNumber, day)}</span>
+                </div>
+                <button class="daily-mission-action"${actionAttr}${actionDisabled}>${actionText}</button>
+            `;
+            list.appendChild(row);
+        }
+    }
+
+    function openDailyMissionRewardsModal() {
+        renderDailyMissionRewardsModal();
+        const modal = document.getElementById('daily-mission-rewards-modal');
+        if (modal) modal.style.display = 'flex';
+        if (typeof playSound === 'function') playSound('deploy-sfx');
+    }
+
+    function closeDailyMissionRewardsModal() {
+        const modal = document.getElementById('daily-mission-rewards-modal');
+        if (modal) modal.style.display = 'none';
+    }
+
+    function claimDailyMissionRewardFromModal() {
+        if (typeof secureDailyStreak !== 'function') return;
+        secureDailyStreak('manual-claim')
+            .then(() => {
+                renderDailyStreakHud();
+                renderDailyMissionRewardsModal();
+            })
+            .catch(e => console.warn('claimDailyMissionRewardFromModal error:', e));
+    }
+
+    function syncDailyStreakToFirebase() {
+        if (!window.myPlayerId || !window.db || !window.firebaseModules) return Promise.resolve(dailyStreakState);
+        const { ref, set, update } = window.firebaseModules;
+        if (typeof ref !== 'function') return Promise.resolve(dailyStreakState);
+
+        const uid = window.myPlayerId;
+        const userRef = ref(window.db, 'users/' + uid);
+        const updates = {
+            dailyStreak: dailyStreakState
+        };
+        if (Number.isFinite(userSupplies)) {
+            updates.supplies = userSupplies;
+        } else if (Number.isFinite(window.userSupplies)) {
+            updates.supplies = window.userSupplies;
+        }
+
+        const writePromise = typeof update === 'function'
+            ? update(userRef, updates)
+            : (typeof set === 'function'
+                ? set(ref(window.db, 'users/' + uid + '/dailyStreak'), dailyStreakState)
+                : Promise.resolve());
+
+        dailyStreakSyncPromise = writePromise
+            .then(() => dailyStreakState)
+            .catch(e => {
+                console.warn('syncDailyStreakToFirebase error:', e);
+                return dailyStreakState;
+            });
+        return dailyStreakSyncPromise;
+    }
+
+    function loadDailyStreakFromFirebase(force = false) {
+        const uid = window.myPlayerId || localStorage.getItem('battleship_auth_uid');
+        if (!force && dailyStreakLoadedUid === uid && dailyStreakLoadPromise) return dailyStreakLoadPromise;
+        loadDailyStreakFromLocal(uid);
+        if (!uid || !window.db || !window.firebaseModules) return Promise.resolve(dailyStreakState);
+
+        const { ref, get } = window.firebaseModules;
+        if (typeof ref !== 'function' || typeof get !== 'function') return Promise.resolve(dailyStreakState);
+
+        dailyStreakLoadedUid = uid;
+        dailyStreakLoadPromise = get(ref(window.db, 'users/' + uid + '/dailyStreak')).then((snapshot) => {
+            const localState = dailyStreakState;
+            const remoteState = snapshot.exists() ? snapshot.val() : null;
+            dailyStreakState = mergeDailyStreakState(localState, remoteState);
+            window.dailyStreakState = dailyStreakState;
+            saveDailyStreakToLocal(uid);
+            renderDailyStreakHud();
+            if (!snapshot.exists() && dailyStreakState.lastStudyDate) {
+                syncDailyStreakToFirebase();
+            }
+            return dailyStreakState;
+        }).catch(e => {
+            console.warn('loadDailyStreakFromFirebase error:', e);
+            return dailyStreakState;
+        });
+        return dailyStreakLoadPromise;
+    }
+
+    function applyDailyStreakCredit(reason = 'study') {
+        const uid = window.myPlayerId || localStorage.getItem('battleship_auth_uid');
+        const today = getHongKongDateString();
+        const previous = normalizeDailyStreakState(dailyStreakState);
+        const alreadyStudiedToday = previous.lastStudyDate === today;
+        const alreadyRewardedToday = previous.lastRewardDate === today;
+        if (alreadyStudiedToday && alreadyRewardedToday) {
+            renderDailyStreakHud();
+            return Promise.resolve({ changed: false, streak: previous.current, rewardSupplies: 0 });
+        }
+
+        const gap = previous.lastStudyDate ? getDayDistance(previous.lastStudyDate, today) : null;
+        const missedDays = gap !== null && gap > 1 ? gap - 1 : 0;
+        let freezes = previous.freezes;
+        let freezeUsed = false;
+        let resetByGap = false;
+        let nextCurrent = 1;
+        const freezeHistory = Array.isArray(previous.freezeHistory) ? previous.freezeHistory.slice(-20) : [];
+
+        if (alreadyStudiedToday) {
+            nextCurrent = previous.current || 1;
+        } else if (!previous.lastStudyDate) {
+            nextCurrent = 1;
+        } else if (gap === 1) {
+            nextCurrent = previous.current + 1;
+        } else if (missedDays > 0 && freezes >= missedDays) {
+            freezes -= missedDays;
+            freezeUsed = true;
+            nextCurrent = previous.current + 1;
+            freezeHistory.push({
+                date: today,
+                days: missedDays,
+                reason: 'auto-protect'
+            });
+        } else if (gap !== null && gap <= 0) {
+            nextCurrent = previous.current || 1;
+        } else {
+            resetByGap = missedDays > 0;
+            nextCurrent = 1;
+        }
+
+        const rewardSupplies = alreadyRewardedToday ? 0 : calculateDailyMissionReward(nextCurrent);
+        const grantedSupplies = grantDailyMissionSupplies(rewardSupplies);
+        let lastFreezeAwardedStreak = previous.lastFreezeAwardedStreak;
+        let freezeAwarded = false;
+        const reachedMilestone = Math.floor(nextCurrent / DAILY_STREAK_FREEZE_MILESTONE) * DAILY_STREAK_FREEZE_MILESTONE;
+        if (reachedMilestone > 0 && reachedMilestone > lastFreezeAwardedStreak) {
+            if (freezes < DAILY_STREAK_MAX_FREEZES) {
+                freezes += 1;
+                freezeAwarded = true;
+                freezeHistory.push({
+                    date: today,
+                    days: 0,
+                    reason: 'milestone',
+                    streak: reachedMilestone
+                });
+            }
+            lastFreezeAwardedStreak = reachedMilestone;
+        }
+
+        dailyStreakState = normalizeDailyStreakState({
+            ...previous,
+            current: nextCurrent,
+            best: Math.max(previous.best, nextCurrent),
+            lastStudyDate: today,
+            lastRewardDate: alreadyRewardedToday ? previous.lastRewardDate : today,
+            lastRewardSupplies: grantedSupplies || previous.lastRewardSupplies,
+            totalRewardSupplies: previous.totalRewardSupplies + grantedSupplies,
+            lastClaimedAt: Date.now(),
+            totalActiveDays: alreadyStudiedToday ? previous.totalActiveDays : previous.totalActiveDays + 1,
+            freezes,
+            lastFreezeAwardedStreak,
+            freezeHistory,
+            updatedAt: Date.now(),
+            lastReason: reason
+        });
+        window.dailyStreakState = dailyStreakState;
+        saveDailyStreakToLocal(uid);
+        renderDailyStreakHud();
+        if (typeof showNotification === 'function') {
+            const prefix = freezeUsed
+                ? 'STREAK FREEZE USED'
+                : (freezeAwarded ? 'STREAK FREEZE EARNED' : (resetByGap ? 'DAILY MISSION COMPLETE' : 'DAILY STREAK SECURED'));
+            const rewardText = grantedSupplies > 0 ? ` // +${grantedSupplies} SUPPLIES` : '';
+            showNotification(`${prefix} // ${dailyStreakState.current} DAYS${rewardText}`, 'success', 3200);
+        }
+        return syncDailyStreakToFirebase().then(() => ({
+            changed: true,
+            streak: dailyStreakState.current,
+            rewardSupplies: grantedSupplies,
+            freezeUsed,
+            freezeAwarded
+        }));
+    }
+
+    function secureDailyStreak(reason = 'study') {
+        const uid = window.myPlayerId || localStorage.getItem('battleship_auth_uid');
+        const canReadRemote = !!(uid && window.myPlayerId && window.db && window.firebaseModules);
+        if (!canReadRemote) {
+            return applyDailyStreakCredit(reason);
+        }
+        return loadDailyStreakFromFirebase(false)
+            .catch(e => {
+                console.warn('secureDailyStreak preload error:', e);
+                return dailyStreakState;
+            })
+            .then(() => applyDailyStreakCredit(reason));
+    }
+
+    window.loadDailyStreakFromFirebase = loadDailyStreakFromFirebase;
+    window.renderDailyStreakHud = renderDailyStreakHud;
+    window.secureDailyStreak = secureDailyStreak;
+    window.openDailyMissionRewardsModal = openDailyMissionRewardsModal;
+    window.closeDailyMissionRewardsModal = closeDailyMissionRewardsModal;
+    window.claimDailyMissionRewardFromModal = claimDailyMissionRewardFromModal;
+    window.loadDailyMissionStateFromFirebase = loadDailyMissionStateFromFirebase;
+    window.openDailyMissionChecklistModal = openDailyMissionChecklistModal;
+    window.closeDailyMissionChecklistModal = closeDailyMissionChecklistModal;
+    window.maybeShowDailyMissionChecklist = maybeShowDailyMissionChecklist;
+    window.recordDailyMissionProgress = recordDailyMissionProgress;
+    window.renderDailyMissionChecklistButton = renderDailyMissionChecklistButton;
+    window.openEntryTestModal = openEntryTestModal;
+    window.openEntryTestBriefingModal = openEntryTestBriefingModal;
+    window.closeEntryTestModal = closeEntryTestModal;
+    window.skipEntryTest = skipEntryTest;
+    window.playEntryTestAudio = playEntryTestAudio;
+    window.submitEntryTestCurrentAnswer = submitEntryTestCurrentAnswer;
+    window.startEntryTestFromBriefing = startEntryTestFromBriefing;
+    window.maybeShowEntryTest = maybeShowEntryTest;
 
     // �� localStorage �d���e��ӛ�
     function loadWrongWordsFromLocal() {
@@ -1413,8 +2996,12 @@ function setSpeakingUiState(state = 'idle', statusText = 'VOICE SCAN STANDBY', s
             });
         });
         if (wrongEntries.size === 0) return [];
-        const levelVocab = (skill === 'GRAMMAR' && typeof window.getGrammarBattleDeckSnapshot === 'function')
-            ? window.getGrammarBattleDeckSnapshot()
+        const levelVocab = skill === 'GRAMMAR'
+            ? (
+                Array.isArray(activeVocabList) && activeVocabList.length > 0
+                    ? activeVocabList
+                    : (typeof window.getGrammarBattleDeckSnapshot === 'function' ? window.getGrammarBattleDeckSnapshot() : [])
+            )
             : VOCAB_DB[level];
         if (!levelVocab) return [];
         return levelVocab
@@ -1425,9 +3012,1161 @@ function setSpeakingUiState(state = 'idle', statusText = 'VOICE SCAN STANDBY', s
     // ���� CRITICAL FIX: Declare variables BEFORE calling loadWrongWordsFromLocal ����
     let wrongWordsDB = {};   // { READING: { L1: { "apple": 1 }, ... }, LISTENING: {...}, SPEAKING: {...} }
     let wrongWordsDeck = []; // ���ȳ��e�� deck
+    let trainingProgress = { correct: {}, wrong: {}, stats: {} };
+    let trainingModeActive = false;
+    let trainingResolving = false;
+    let trainingStats = {
+        total: 0,
+        answered: 0,
+        correct: 0,
+        wrong: 0,
+        label: ''
+    };
+
+    function normalizeTrainingProgressShape(data) {
+        const root = data && typeof data === 'object' ? data : {};
+        return {
+            correct: root.correct && typeof root.correct === 'object' ? root.correct : {},
+            wrong: root.wrong && typeof root.wrong === 'object' ? root.wrong : {},
+            stats: root.stats && typeof root.stats === 'object' ? root.stats : {}
+        };
+    }
+
+    function loadTrainingProgressFromLocal() {
+        try {
+            const data = localStorage.getItem(TRAINING_PROGRESS_LS_KEY);
+            if (data) trainingProgress = normalizeTrainingProgressShape(JSON.parse(data));
+        } catch (e) {
+            console.warn('loadTrainingProgressFromLocal error:', e);
+        }
+    }
+
+    function saveTrainingProgressToLocal() {
+        try {
+            localStorage.setItem(TRAINING_PROGRESS_LS_KEY, JSON.stringify(trainingProgress));
+        } catch (e) {
+            console.warn('saveTrainingProgressToLocal error:', e);
+        }
+    }
+
+    function loadTrainingProgressFromFirebase() {
+        if (!window.myPlayerId || !window.db) return;
+        const { ref, get } = window.firebaseModules;
+        get(ref(window.db, 'users/' + window.myPlayerId + '/trainingProgress')).then((snapshot) => {
+            if (snapshot.exists()) {
+                trainingProgress = normalizeTrainingProgressShape(snapshot.val());
+                saveTrainingProgressToLocal();
+                console.log('Loaded training progress from Firebase:', trainingProgress);
+            }
+        }).catch(e => console.warn('loadTrainingProgressFromFirebase error:', e));
+    }
+
+    function syncTrainingProgressToFirebase() {
+        if (!window.myPlayerId || !window.db) return;
+        const { ref, set } = window.firebaseModules;
+        set(ref(window.db, 'users/' + window.myPlayerId + '/trainingProgress'), trainingProgress)
+            .catch(e => console.warn('syncTrainingProgressToFirebase error:', e));
+    }
+
+    function getTrainingScopeLevel(question = null) {
+        if (currentPracticeMode === 'GRAMMAR') {
+            return question?.grammarTopic || window.selectedGrammarTopic || selectedLevel || 'VERB_TABLE';
+        }
+        return selectedStageIndex !== null
+            ? `${selectedLevel}::${selectedStageIndex}`
+            : selectedLevel;
+    }
+
+    function getTrainingWordKey(question = currentVocab) {
+        return String(question?.en || '').trim();
+    }
+
+    function ensureTrainingBucket(rootName, skill, level) {
+        const root = trainingProgress[rootName] || (trainingProgress[rootName] = {});
+        if (!root[skill]) root[skill] = {};
+        if (!root[skill][level]) root[skill][level] = {};
+        return root[skill][level];
+    }
+
+    function getTrainingCorrectBucket(skill, level) {
+        return trainingProgress.correct?.[skill]?.[level] || {};
+    }
+
+    function getTrainingWrongBucket(skill, level) {
+        return trainingProgress.wrong?.[skill]?.[level] || {};
+    }
+
+    function hasTrainingCorrect(skill, level, wordKey) {
+        return !!getTrainingCorrectBucket(skill, level)?.[wordKey];
+    }
+
+    function recordTrainingAnswer(isCorrect, question = currentVocab) {
+        if (!question) return;
+        const skill = currentPracticeMode || 'READING';
+        const level = getTrainingScopeLevel(question);
+        const wordKey = getTrainingWordKey(question);
+        if (!wordKey) return;
+
+        const stats = ensureTrainingBucket('stats', skill, level);
+        const statEntry = stats[wordKey] || { attempts: 0, correct: 0, wrong: 0, lastCorrect: false, updatedAt: 0 };
+        statEntry.attempts += 1;
+        statEntry.updatedAt = Date.now();
+
+        if (isCorrect) {
+            statEntry.correct += 1;
+            statEntry.lastCorrect = true;
+            const correctBucket = ensureTrainingBucket('correct', skill, level);
+            correctBucket[wordKey] = {
+                count: (correctBucket[wordKey]?.count || 0) + 1,
+                status: 1,
+                updatedAt: Date.now()
+            };
+            const wrongBucket = getTrainingWrongBucket(skill, level);
+            if (wrongBucket[wordKey]) delete wrongBucket[wordKey];
+        } else {
+            statEntry.wrong += 1;
+            statEntry.lastCorrect = false;
+            const wrongBucket = ensureTrainingBucket('wrong', skill, level);
+            wrongBucket[wordKey] = (Number(wrongBucket[wordKey]) || 0) + 1;
+        }
+
+        stats[wordKey] = statEntry;
+        saveTrainingProgressToLocal();
+        syncTrainingProgressToFirebase();
+    }
+
+    function getTrainingWrongDeck(skill = currentPracticeMode, level = getTrainingScopeLevel()) {
+        const wrongBucket = getTrainingWrongBucket(skill, level);
+        const wrongKeys = new Set(Object.keys(wrongBucket || {}));
+        if (!wrongKeys.size || !Array.isArray(activeVocabList)) return [];
+        return activeVocabList
+            .filter(word => wrongKeys.has(getTrainingWordKey(word)))
+            .sort((a, b) => (wrongBucket[getTrainingWordKey(b)] || 0) - (wrongBucket[getTrainingWordKey(a)] || 0));
+    }
+
+    function getTrainingFreshDeck(skill = currentPracticeMode, level = getTrainingScopeLevel()) {
+        if (!Array.isArray(activeVocabList)) return [];
+        return activeVocabList.filter(word => !hasTrainingCorrect(skill, level, getTrainingWordKey(word)));
+    }
+
+    function resetTrainingState() {
+        trainingModeActive = false;
+        trainingResolving = false;
+        trainingStats = {
+            total: 0,
+            answered: 0,
+            correct: 0,
+            wrong: 0,
+            label: ''
+        };
+    }
+
+    function getCurrentBattleLogTurn() {
+        if (trainingModeActive) return (trainingStats.answered || 0) + 1;
+        if (revisionDrillActive) return (revisionDrillStats.answered || 0) + 1;
+        if (typeof turnCounter !== 'undefined' && Number(turnCounter) > 0) return turnCounter;
+        return (Array.isArray(battleLog) ? battleLog.length : 0) + 1;
+    }
 
     // ��ʼ�����ȏ� localStorage �d��
     loadWrongWordsFromLocal();
+    loadTrainingProgressFromLocal();
+    loadDailyStreakFromLocal();
+
+    const revisionState = {
+        activeTab: 'reading',
+        entries: [],
+        selectedIndex: 0
+    };
+    let revisionDrillActive = false;
+    let revisionDrillStats = {
+        total: 0,
+        answered: 0,
+        correct: 0,
+        wrong: 0,
+        label: ''
+    };
+    let revisionDrillResolving = false;
+
+    function normalizeRevisionCount(value) {
+        const count = Number(value);
+        return Number.isFinite(count) && count > 0 ? Math.floor(count) : 1;
+    }
+
+    function normalizeRevisionGrammarTopic(topicKey) {
+        const normalized = String(topicKey || '').trim();
+        if (!normalized || normalized === 'GRAMMAR') return 'VERB_TABLE';
+        return normalized;
+    }
+
+    function getRevisionLevelLabel(levelKey) {
+        const labelMap = {
+            L1: 'LEVEL 1',
+            L2: 'LEVEL 2',
+            L3: 'LEVEL 3',
+            L4: 'LEVEL 4',
+            L5: 'LEVEL 5',
+            L5_STAR: 'LEVEL 5*'
+        };
+        return labelMap[levelKey] || String(levelKey || '').replace(/_/g, ' ');
+    }
+
+    function getRevisionModeLabel(modeKey) {
+        if (typeof getPracticeModeLabel === 'function') {
+            return getPracticeModeLabel(modeKey);
+        }
+        return String(modeKey || '').replace(/_/g, ' ');
+    }
+
+    const REVISION_TABS = {
+        reading: { label: 'READING', mode: READING_CHOICE_MODE },
+        spelling: { label: 'SPELLING', mode: 'READING' },
+        listening: { label: 'LISTENING', mode: 'LISTENING' },
+        speaking: { label: 'SPEAKING', mode: 'SPEAKING' },
+        grammar: { label: 'GRAMMAR', mode: 'GRAMMAR' }
+    };
+
+    function normalizeRevisionTab(tab) {
+        const normalized = String(tab || '').trim().toLowerCase();
+        if (normalized === 'vocab') return 'spelling';
+        return REVISION_TABS[normalized] ? normalized : 'reading';
+    }
+
+    function getRevisionActiveTabConfig() {
+        return REVISION_TABS[revisionState.activeTab] || REVISION_TABS.reading;
+    }
+
+    function findRevisionVocabWord(levelKey, wordKey) {
+        const levelWords = (typeof VOCAB_DB !== 'undefined' && VOCAB_DB[levelKey]) || [];
+        const key = String(wordKey || '');
+        const keyLower = key.toLowerCase();
+        const matchesSentenceAnswer = (word) => Array.isArray(word?.sents) && word.sents.some(sentence => {
+            const answer = typeof sentence === 'object' ? sentence.answer : '';
+            return String(answer || '').toLowerCase() === keyLower;
+        });
+        return levelWords.find(word => String(word?.en || '') === key)
+            || levelWords.find(word => String(word?.en || '').toLowerCase() === keyLower)
+            || levelWords.find(matchesSentenceAnswer)
+            || null;
+    }
+
+    function getRevisionFallbackMeaning(wordKey) {
+        const key = String(wordKey || '').trim();
+        if (!key) return '';
+        const keyLower = key.toLowerCase();
+
+        if (typeof VOCAB_DB !== 'undefined') {
+            for (const words of Object.values(VOCAB_DB || {})) {
+                const match = (Array.isArray(words) ? words : []).find(word =>
+                    String(word?.en || '').toLowerCase() === keyLower ||
+                    (Array.isArray(word?.sents) && word.sents.some(sentence => String(sentence?.answer || '').toLowerCase() === keyLower))
+                );
+                if (match?.ch) return match.ch;
+            }
+        }
+
+        const grammarVerb = Array.isArray(window.GRAMMAR_VERB_BANK)
+            ? window.GRAMMAR_VERB_BANK.find(verb => String(verb?.[1] || '').toLowerCase() === keyLower)
+            : null;
+        if (grammarVerb?.[0]) return `${grammarVerb[0]} (v.)`;
+
+        if (/^begin$/i.test(key)) return '開始 (v.)';
+        if (/^bored$/i.test(key)) return '感到厭倦 (adj.)';
+        return '';
+    }
+
+    function getRevisionVocabularyEntries(modeFilter = null) {
+        const entries = [];
+        Object.entries(wrongWordsDB || {}).forEach(([skillKey, levelMap]) => {
+            if (skillKey === 'GRAMMAR' || !levelMap || typeof levelMap !== 'object') return;
+            if (modeFilter && skillKey !== modeFilter) return;
+            Object.entries(levelMap).forEach(([levelKey, words]) => {
+                if (!words || typeof words !== 'object') return;
+                Object.entries(words).forEach(([wordKey, countValue]) => {
+                    const vocab = findRevisionVocabWord(levelKey, wordKey);
+                    const fallbackMeaning = getRevisionFallbackMeaning(wordKey);
+                    const modeLabel = getRevisionModeLabel(skillKey);
+                    entries.push({
+                        type: 'vocab',
+                        mode: skillKey,
+                        level: levelKey,
+                        key: wordKey,
+                        sourceSkill: skillKey,
+                        sourceLevel: levelKey,
+                        count: normalizeRevisionCount(countValue),
+                        title: vocab?.en || wordKey,
+                        subtitle: vocab?.ch || fallbackMeaning || '中文解釋待補',
+                        area: `${modeLabel} // ${getRevisionLevelLabel(levelKey)}`
+                    });
+                });
+            });
+        });
+
+        return entries.sort((a, b) =>
+            (b.count - a.count) ||
+            a.area.localeCompare(b.area) ||
+            a.title.localeCompare(b.title)
+        );
+    }
+
+    function getRevisionGrammarEntries() {
+        const entries = [];
+        const grammarWrongMap = wrongWordsDB?.GRAMMAR || {};
+        Object.entries(grammarWrongMap).forEach(([topicKey, words]) => {
+            if (!words || typeof words !== 'object') return;
+            const topic = normalizeRevisionGrammarTopic(topicKey);
+            Object.entries(words).forEach(([wordKey, countValue]) => {
+                const info = typeof window.getGrammarRevisionItem === 'function'
+                    ? window.getGrammarRevisionItem(topic, wordKey)
+                    : null;
+                const topicLabel = info?.topicLabel
+                    || (typeof window.getGrammarTopicLabel === 'function' ? window.getGrammarTopicLabel(topic) : topic.replace(/_/g, ' '));
+                entries.push({
+                        type: 'grammar',
+                        topic,
+                        originalTopic: topicKey,
+                        key: wordKey,
+                        sourceSkill: 'GRAMMAR',
+                        sourceLevel: topic,
+                        count: normalizeRevisionCount(countValue),
+                        title: info?.title || wordKey,
+                        subtitle: info?.subtitle || topicLabel,
+                    area: topicLabel
+                });
+            });
+        });
+
+        return entries.sort((a, b) =>
+            (b.count - a.count) ||
+            a.area.localeCompare(b.area) ||
+            a.title.localeCompare(b.title)
+        );
+    }
+
+    function setRevisionSelectedIndex(index) {
+        revisionState.selectedIndex = Math.max(0, Math.min(index, revisionState.entries.length - 1));
+        document.querySelectorAll('.revision-row').forEach((row, rowIndex) => {
+            row.classList.toggle('selected', rowIndex === revisionState.selectedIndex);
+        });
+        const challengeBtn = document.getElementById('revision-challenge-btn');
+        if (challengeBtn) {
+            challengeBtn.disabled = revisionState.entries.length === 0;
+        }
+    }
+
+    function getRevisionEntrySpeakText(entry) {
+        if (!entry || entry.type !== 'vocab') return '';
+        return String(entry.title || entry.key || '').trim();
+    }
+
+    function playRevisionEntryAudio(entry, element = null) {
+        const speakTextValue = getRevisionEntrySpeakText(entry);
+        if (!speakTextValue) return;
+
+        if (typeof speakVocabText === 'function') {
+            speakVocabText(speakTextValue, element).catch(() => {});
+            return;
+        }
+        if (typeof window.speakText === 'function') {
+            window.speakText(speakTextValue, element);
+        }
+    }
+
+    function createRevisionRow(entry, index) {
+        const row = document.createElement('div');
+        row.className = `revision-row${index === revisionState.selectedIndex ? ' selected' : ''}`;
+        row.setAttribute('role', 'button');
+        row.setAttribute('tabindex', '0');
+
+        row.addEventListener('click', () => {
+            setRevisionSelectedIndex(index);
+            playRevisionEntryAudio(entry, row);
+        });
+        row.addEventListener('keydown', (event) => {
+            if (event.key !== 'Enter' && event.key !== ' ') return;
+            event.preventDefault();
+            setRevisionSelectedIndex(index);
+            playRevisionEntryAudio(entry, row);
+        });
+
+        const main = document.createElement('div');
+        main.className = 'revision-row-main';
+
+        const title = document.createElement('span');
+        title.className = 'revision-item-title';
+        title.textContent = entry.title || entry.key || 'UNKNOWN';
+
+        const subtitle = document.createElement('span');
+        subtitle.className = 'revision-item-subtitle';
+        subtitle.textContent = entry.subtitle || '';
+
+        main.appendChild(title);
+        main.appendChild(subtitle);
+
+        const area = document.createElement('div');
+        area.className = 'revision-area';
+        area.textContent = entry.area || '';
+
+        const count = document.createElement('div');
+        count.className = 'revision-count';
+        count.textContent = String(entry.count || 1);
+
+        row.appendChild(main);
+        row.appendChild(area);
+        row.appendChild(count);
+        return row;
+    }
+
+    function renderRevisionScreen(tab = revisionState.activeTab) {
+        revisionState.activeTab = normalizeRevisionTab(tab);
+        const tabConfig = getRevisionActiveTabConfig();
+        revisionState.entries = revisionState.activeTab === 'grammar'
+            ? getRevisionGrammarEntries()
+            : getRevisionVocabularyEntries(tabConfig.mode);
+        revisionState.selectedIndex = Math.min(revisionState.selectedIndex, Math.max(0, revisionState.entries.length - 1));
+
+        Object.keys(REVISION_TABS).forEach((tabKey) => {
+            const tabEl = document.getElementById(`revision-tab-${tabKey}`);
+            if (tabEl) tabEl.classList.toggle('active', revisionState.activeTab === tabKey);
+        });
+
+        const totalMisses = revisionState.entries.reduce((sum, entry) => sum + (entry.count || 0), 0);
+        const summary = document.getElementById('revision-summary');
+        if (summary) {
+            const tabLabel = tabConfig.label;
+            summary.textContent = revisionState.entries.length > 0
+                ? `${tabLabel} // ${revisionState.entries.length} ITEMS // ${totalMisses} MISSES`
+                : `${tabLabel} // 暫時未有錯題`;
+        }
+
+        const body = document.getElementById('revision-list-body');
+        if (!body) return;
+        body.innerHTML = '';
+
+        if (revisionState.entries.length === 0) {
+            const empty = document.createElement('div');
+            empty.className = 'revision-empty';
+            empty.textContent = `NO ${tabConfig.label} MISTAKES LOGGED`;
+            body.appendChild(empty);
+        } else {
+            revisionState.entries.forEach((entry, index) => {
+                body.appendChild(createRevisionRow(entry, index));
+            });
+        }
+
+        setRevisionSelectedIndex(revisionState.selectedIndex);
+    }
+
+    function switchRevisionTab(tab) {
+        if (typeof playSound === 'function') playSound('enter-number-sfx');
+        renderRevisionScreen(tab);
+    }
+
+    function openRevisionScreen() {
+        if (typeof playSound === 'function') playSound('open-room-sfx');
+        if (typeof requestBgmDuck === 'function') requestBgmDuck('revision-mode', 250);
+        if (typeof hideMenuOverlayScreens === 'function') hideMenuOverlayScreens();
+
+        const suppliesDisplay = document.getElementById('coins-display');
+        if (suppliesDisplay) suppliesDisplay.style.display = 'none';
+
+        const startScreen = document.getElementById('start-screen');
+        if (startScreen) startScreen.style.display = 'none';
+
+        const revisionScreen = document.getElementById('revision-screen');
+        if (revisionScreen) revisionScreen.style.display = 'flex';
+        renderRevisionScreen(revisionState.activeTab);
+    }
+
+    function closeRevisionScreen() {
+        if (typeof playSound === 'function') playSound('delete-sfx');
+        if (typeof releaseBgmDuck === 'function') releaseBgmDuck('revision-mode', 250);
+
+        const revisionScreen = document.getElementById('revision-screen');
+        if (revisionScreen) revisionScreen.style.display = 'none';
+
+        const startScreen = document.getElementById('start-screen');
+        if (startScreen) startScreen.style.display = 'flex';
+
+        const suppliesDisplay = document.getElementById('coins-display');
+        if (suppliesDisplay) {
+            suppliesDisplay.style.display = 'block';
+            if (typeof updateSuppliesDisplay === 'function') updateSuppliesDisplay();
+        }
+    }
+
+    function showRevisionRaceScreen() {
+        if (typeof showSelectionOverlay === 'function') showSelectionOverlay();
+        if (typeof updateRaceButtons === 'function') updateRaceButtons();
+        const raceScreen = document.getElementById('race-screen');
+        if (!raceScreen) return;
+        raceScreen.style.display = 'flex';
+        const wrapper = raceScreen.querySelector('.panel-content-wrapper');
+        if (wrapper) {
+            wrapper.style.animation = 'none';
+            setTimeout(() => {
+                wrapper.style.animation = 'holoAppear 0.4s forwards';
+            }, 10);
+        }
+    }
+
+    function getRevisionEntryLabel(entry) {
+        if (!entry) return 'REVISION';
+        return entry.type === 'grammar'
+            ? (entry.area || 'GRAMMAR')
+            : `${getRevisionModeLabel(entry.mode)} // ${getRevisionLevelLabel(entry.level)}`;
+    }
+
+    function revisionVocabMatchesEntry(item, entry) {
+        if (!item || !entry) return false;
+        const entryKey = String(entry.key || '').toLowerCase();
+        if (!entryKey) return false;
+        if (String(item.en || '').toLowerCase() === entryKey) return true;
+        return Array.isArray(item.sents) && item.sents.some(sentence =>
+            String(sentence?.answer || '').toLowerCase() === entryKey
+        );
+    }
+
+    function createRevisionFallbackVocabItem(entry) {
+        if (!entry || entry.type !== 'vocab') return null;
+        const answer = String(entry.key || entry.title || '').trim();
+        if (!answer) return null;
+        const meaning = String(entry.subtitle || getRevisionFallbackMeaning(answer) || '').trim();
+        if (!meaning || meaning === '中文解釋待補') return null;
+        return {
+            en: answer,
+            ch: meaning,
+            sents: [{ text: answer, answer }],
+            sent: answer,
+            listeningAnswer: answer
+        };
+    }
+
+    function tagRevisionDeckItem(item, entry) {
+        if (!item || !entry) return item;
+        const sourceSkill = entry.sourceSkill || entry.mode || (entry.type === 'grammar' ? 'GRAMMAR' : currentPracticeMode);
+        const sourceLevel = entry.sourceLevel || entry.topic || entry.level || selectedLevel;
+        return {
+            ...item,
+            revisionSkill: sourceSkill,
+            revisionLevel: sourceLevel,
+            revisionTopic: entry.type === 'grammar'
+                ? normalizeRevisionGrammarTopic(entry.topic || sourceLevel)
+                : null
+        };
+    }
+
+    function getRevisionDeckForEntry(entry) {
+        if (!entry) return [];
+
+        if (entry.type === 'grammar') {
+            const topic = normalizeRevisionGrammarTopic(entry.topic);
+            const fullDeck = typeof window.getGrammarRevisionDeck === 'function'
+                ? window.getGrammarRevisionDeck(topic)
+                : [];
+            return (Array.isArray(fullDeck) ? fullDeck : [])
+                .filter(item => item?.en === entry.key)
+                .map(item => tagRevisionDeckItem(item, entry));
+        }
+
+        const levelWords = (typeof VOCAB_DB !== 'undefined' && VOCAB_DB[entry.level]) ? VOCAB_DB[entry.level] : [];
+        const matchedDeck = levelWords
+            .filter(item => revisionVocabMatchesEntry(item, entry))
+            .map(item => tagRevisionDeckItem(item, entry));
+        if (matchedDeck.length > 0) return matchedDeck;
+
+        const fallbackItem = createRevisionFallbackVocabItem(entry);
+        return fallbackItem ? [tagRevisionDeckItem(fallbackItem, entry)] : [];
+    }
+
+    function buildRevisionDrillDeck(entries = revisionState.entries) {
+        return (Array.isArray(entries) ? entries : [])
+            .flatMap(entry => getRevisionDeckForEntry(entry))
+            .filter(item => item && item.en);
+    }
+
+    function applyRevisionQuestionContext(question) {
+        if (!question) return;
+        currentPracticeMode = question.revisionSkill || currentPracticeMode;
+        selectedLevel = question.revisionLevel || selectedLevel;
+        window.selectedGrammarTopic = currentPracticeMode === 'GRAMMAR'
+            ? normalizeRevisionGrammarTopic(question.revisionTopic || question.grammarTopic || selectedLevel)
+            : null;
+    }
+
+    function resetRevisionDrillState() {
+        revisionDrillActive = false;
+        revisionDrillResolving = false;
+        revisionDrillStats = {
+            total: 0,
+            answered: 0,
+            correct: 0,
+            wrong: 0,
+            label: ''
+        };
+    }
+
+    function restoreRevisionBgm() {
+        if (typeof window.resetBgmDucks === 'function') {
+            window.resetBgmDucks(180);
+        } else if (typeof resetBgmDucks === 'function') {
+            resetBgmDucks(180);
+        }
+
+        const resumeBgm = typeof window.playBgm === 'function'
+            ? window.playBgm
+            : (typeof playBgm === 'function' ? playBgm : null);
+        if (resumeBgm) {
+            setTimeout(() => resumeBgm(), 120);
+        }
+    }
+
+    function finishRevisionDrill() {
+        const completed = { ...revisionDrillStats };
+        if (completed.answered > 0 && typeof recordDailyMissionProgress === 'function') {
+            const missionType = currentPracticeMode === 'GRAMMAR' ? 'grammar-complete' : (currentPracticeMode === READING_CHOICE_MODE ? 'reading-complete' : '');
+            if (missionType) {
+                recordDailyMissionProgress(missionType, {
+                    level: selectedLevel,
+                    detail: `Revision: ${completed.correct}/${completed.total}`
+                }).catch(e => console.warn('recordDailyMissionProgress revision error:', e));
+            }
+        }
+        resetRevisionDrillState();
+        attackResolutionLocked = false;
+        isTargeting = false;
+        currentTargetIndex = null;
+        currentPhase = 'DEPLOY';
+        closeLaunchModalUI();
+        if (typeof showNotification === 'function') {
+            showNotification(`REVISION COMPLETE: ${completed.correct}/${completed.total} CORRECT`, 'success', 3000);
+        }
+        const revisionScreen = document.getElementById('revision-screen');
+        const startScreen = document.getElementById('start-screen');
+        if (startScreen) startScreen.style.display = 'none';
+        if (revisionScreen) revisionScreen.style.display = 'flex';
+        renderRevisionScreen(revisionState.activeTab);
+        restoreRevisionBgm();
+    }
+
+    function abandonRevisionTest() {
+        if (!revisionDrillActive) return;
+
+        if (timerInterval) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+        }
+        if (typeof stopTurnSelectionTimer === 'function') stopTurnSelectionTimer();
+        if (typeof clearAllGameTimeouts === 'function') clearAllGameTimeouts();
+        if (typeof clearGamePauseState === 'function') clearGamePauseState();
+
+        resetRevisionDrillState();
+        attackResolutionLocked = false;
+        isTargeting = false;
+        currentTargetIndex = null;
+        currentPhase = 'DEPLOY';
+        launchTimerPaused = false;
+        launchTimerPausedByGamePause = false;
+        closeLaunchModalUI();
+
+        const settingsModal = document.getElementById('settings-modal');
+        if (settingsModal) settingsModal.style.display = 'none';
+        const surrenderBtn = document.getElementById('settings-surrender-btn');
+        if (surrenderBtn) surrenderBtn.style.display = 'none';
+        const abandonBtn = document.getElementById('settings-abandon-revision-btn');
+        if (abandonBtn) abandonBtn.style.display = 'none';
+
+        const gameUi = document.getElementById('game-ui');
+        const revisionScreen = document.getElementById('revision-screen');
+        const startScreen = document.getElementById('start-screen');
+        const suppliesDisplay = document.getElementById('coins-display');
+        const turnTimerContainer = document.getElementById('turn-timer-container');
+        if (gameUi) gameUi.style.display = 'none';
+        if (startScreen) startScreen.style.display = 'none';
+        if (suppliesDisplay) suppliesDisplay.style.display = 'none';
+        if (turnTimerContainer) turnTimerContainer.style.visibility = 'hidden';
+        if (revisionScreen) revisionScreen.style.display = 'flex';
+
+        renderRevisionScreen(revisionState.activeTab);
+        restoreRevisionBgm();
+
+        if (typeof playSound === 'function') playSound('delete-sfx');
+        if (typeof showNotification === 'function') {
+            showNotification('TEST ABANDONED // BACK TO REVISION', 'warning', 2200);
+        }
+    }
+
+    function getRevisionCorrectAnswerText() {
+        if (!currentVocab) return '';
+        applyRevisionQuestionContext(currentVocab);
+        if (typeof window.isGrammarBattleMode === 'function' && window.isGrammarBattleMode()) {
+            const reviewEntry = typeof window.getGrammarBattleReviewEntry === 'function'
+                ? window.getGrammarBattleReviewEntry(currentVocab)
+                : null;
+            return reviewEntry?.correct || currentVocab.en || '';
+        }
+        if (isReadingChoiceMode()) return stripVocabPartOfSpeech(currentVocab.ch || '');
+        if (currentPracticeMode === 'LISTENING') return currentVocab.listeningAnswer || currentVocab.en || '';
+        if (currentPracticeMode === 'SPEAKING') return currentVocab.sent || currentVocab.en || '';
+        return currentVocab.en || '';
+    }
+
+    function scheduleNextRevisionDrillQuestion(delayMs = 900) {
+        setGameTimeout(() => {
+            if (!revisionDrillActive) return;
+            closeLaunchModalUI();
+            revisionDrillResolving = false;
+            if (revisionDrillStats.answered >= revisionDrillStats.total || wrongWordsDeck.length === 0) {
+                finishRevisionDrill();
+                return;
+            }
+            attackResolutionLocked = true;
+            isTargeting = false;
+            currentTargetIndex = 0;
+            currentPhase = 'PLAYER_TURN';
+            openLaunchModal(0);
+        }, delayMs);
+    }
+
+    function finishRevisionDrillAnswer(isCorrect, options = {}) {
+        if (!revisionDrillActive || !currentVocab) return;
+        if (revisionDrillResolving) return;
+        revisionDrillResolving = true;
+
+        if (timerInterval) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+        }
+        launchTimerPaused = false;
+        launchTimerPausedByGamePause = false;
+
+        const correctText = getRevisionCorrectAnswerText();
+        const msgArea = document.getElementById('msg-area');
+        const qDisplay = document.getElementById('q-display');
+        applyRevisionQuestionContext(currentVocab);
+
+        revisionDrillStats.answered += 1;
+        if (isCorrect) {
+            revisionDrillStats.correct += 1;
+            removeWrongWord(currentPracticeMode, selectedLevel, currentVocab.en);
+            handleCorrectAnswer();
+            if (typeof playSound === 'function') playSound('speaking-green-sfx');
+            if (msgArea) {
+                clearLaunchMessageState();
+                msgArea.classList.add('meaning-confirmed');
+                msgArea.innerText = `CORRECT // ${revisionDrillStats.answered}/${revisionDrillStats.total}`;
+            }
+        } else {
+            revisionDrillStats.wrong += 1;
+            saveWrongWord(currentPracticeMode, selectedLevel, currentVocab.en);
+            if (typeof playSound === 'function') playSound(options.isTimeout ? 'timeout-sfx' : 'speaking-wrong-sfx');
+            if (msgArea) {
+                clearLaunchMessageState();
+                msgArea.classList.add('meaning-rejected');
+                msgArea.innerText = `${options.isTimeout ? 'TIMEOUT' : 'WRONG'} // ${correctText}`;
+            }
+            if (qDisplay && currentPracticeMode !== 'GRAMMAR') {
+                qDisplay.style.color = 'var(--danger)';
+            }
+        }
+
+        scheduleNextRevisionDrillQuestion(isCorrect ? 760 : 1250);
+    }
+
+    function checkRevisionDrillAnswer() {
+        if (!revisionDrillActive || !currentVocab) return false;
+        if (revisionDrillResolving) return null;
+        applyRevisionQuestionContext(currentVocab);
+
+        if (typeof window.isGrammarBattleMode === 'function' && window.isGrammarBattleMode()) {
+            const isCorrect = typeof window.checkGrammarBattleAnswer === 'function'
+                ? window.checkGrammarBattleAnswer()
+                : false;
+            if (isCorrect === null) return null;
+            upsertGrammarBattleLogEntry(isCorrect);
+            finishRevisionDrillAnswer(Boolean(isCorrect));
+            return isCorrect;
+        }
+
+        if (isReadingChoiceMode()) {
+            if (!currentVocab?.readingChoiceOptions) return false;
+            if (currentVocab.readingChoiceResolved) return null;
+            const selectedIndex = currentVocab.readingChoiceSelectedIndex;
+            if (!Number.isInteger(selectedIndex)) {
+                setReadingChoiceMessage('SELECT ONE MEANING FIRST');
+                return null;
+            }
+            const selectedOption = currentVocab.readingChoiceOptions[selectedIndex];
+            const isCorrect = Boolean(selectedOption?.isCorrect);
+            currentVocab.readingChoiceResolved = true;
+            currentVocab.readingChoiceSubmitting = false;
+            syncReadingChoiceOptionStates(true);
+            upsertReadingChoiceBattleLogEntry(isCorrect);
+            setReadingChoiceMessage(isCorrect ? 'MEANING CONFIRMED!' : 'MEANING REJECTED!', isCorrect ? 'meaning-confirmed' : 'meaning-rejected');
+            finishRevisionDrillAnswer(isCorrect);
+            return isCorrect;
+        }
+
+        const input = document.getElementById('hidden-input');
+        const cleanInput = (input?.value || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+        const targetAnswer = currentPracticeMode === 'LISTENING' && currentVocab.listeningAnswer
+            ? currentVocab.listeningAnswer
+            : currentVocab.en;
+        const cleanTarget = String(targetAnswer || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+        const isCorrect = cleanInput === cleanTarget;
+
+        battleLog.push({
+            turn: revisionDrillStats.answered + 1,
+            user: input?.value || '',
+            correct: targetAnswer,
+            isCorrect,
+            mode: currentPracticeMode,
+            sentence: currentVocab.sent || null
+        });
+
+        finishRevisionDrillAnswer(isCorrect);
+        return isCorrect;
+    }
+
+    function finishTraining() {
+        const completed = { ...trainingStats };
+        if (typeof showNotification === 'function') {
+            showNotification(`TRAINING COMPLETE: ${completed.correct}/${completed.total} CORRECT`, 'success', 3200);
+        }
+        showTrainingReview(completed);
+    }
+
+    function showTrainingReview(completed = { correct: 0, total: 0 }, endedEarly = false) {
+        if ((Number(completed.answered) || 0) > 0 && typeof recordDailyMissionProgress === 'function') {
+            const missionType = currentPracticeMode === 'GRAMMAR' ? 'grammar-complete' : (currentPracticeMode === READING_CHOICE_MODE ? 'reading-complete' : '');
+            if (missionType) {
+                recordDailyMissionProgress(missionType, {
+                    level: selectedLevel,
+                    detail: `${endedEarly ? 'Training ended' : 'Training'}: ${completed.correct}/${completed.total}`
+                }).catch(e => console.warn('recordDailyMissionProgress training error:', e));
+            }
+        }
+        resetTrainingState();
+        attackResolutionLocked = false;
+        isTargeting = false;
+        currentTargetIndex = null;
+        currentPhase = 'GAME_OVER';
+        launchTimerPaused = false;
+        launchTimerPausedByGamePause = false;
+        closeLaunchModalUI();
+
+        const settingsModal = document.getElementById('settings-modal');
+        if (settingsModal) settingsModal.style.display = 'none';
+        const endTrainingBtn = document.getElementById('settings-abandon-training-btn');
+        if (endTrainingBtn) endTrainingBtn.style.display = 'none';
+
+        const gameUi = document.getElementById('game-ui');
+        const startScreen = document.getElementById('start-screen');
+        const suppliesDisplay = document.getElementById('coins-display');
+        const turnTimerContainer = document.getElementById('turn-timer-container');
+        const endScreen = document.getElementById('end-screen');
+        if (gameUi) gameUi.style.display = 'none';
+        if (startScreen) startScreen.style.display = 'none';
+        if (suppliesDisplay) suppliesDisplay.style.display = 'none';
+        if (turnTimerContainer) turnTimerContainer.style.visibility = 'hidden';
+
+        renderReview({
+            title: 'TRAINING REVIEW',
+            onlyWrong: true,
+            emptyMessage: completed.total > 0
+                ? 'NO WRONG ANSWERS THIS TRAINING'
+                : 'NO TRAINING ANSWERS RECORDED'
+        });
+        showSettlementPage('debrief');
+        if (endScreen) {
+            endScreen.style.display = 'flex';
+            endScreen.style.animation = 'fadeIn 0.5s ease-out';
+        }
+        restoreRevisionBgm();
+    }
+
+    function endTrainingMode() {
+        if (!trainingModeActive) return;
+
+        if (timerInterval) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+        }
+        if (typeof stopTurnSelectionTimer === 'function') stopTurnSelectionTimer();
+        if (typeof clearAllGameTimeouts === 'function') clearAllGameTimeouts();
+        if (typeof clearGamePauseState === 'function') clearGamePauseState();
+
+        const completed = { ...trainingStats };
+        showTrainingReview(completed, true);
+        if (typeof playSound === 'function') playSound('delete-sfx');
+        if (typeof showNotification === 'function') {
+            showNotification('TRAINING ENDED', 'warning', 2200);
+        }
+    }
+
+    function abandonTrainingMode() {
+        endTrainingMode();
+    }
+
+    function scheduleNextTrainingQuestion(delayMs = 850) {
+        setGameTimeout(() => {
+            if (!trainingModeActive) return;
+            closeLaunchModalUI();
+            trainingResolving = false;
+            if (trainingStats.answered >= trainingStats.total) {
+                finishTraining();
+                return;
+            }
+            attackResolutionLocked = true;
+            isTargeting = false;
+            currentTargetIndex = 0;
+            currentPhase = 'PLAYER_TURN';
+            openLaunchModal(0);
+        }, delayMs);
+    }
+
+    function finishTrainingAnswer(isCorrect, options = {}) {
+        if (!trainingModeActive || !currentVocab) return;
+        if (trainingResolving) return;
+        trainingResolving = true;
+
+        if (timerInterval) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+        }
+        launchTimerPaused = false;
+        launchTimerPausedByGamePause = false;
+
+        const correctText = getRevisionCorrectAnswerText();
+        const msgArea = document.getElementById('msg-area');
+        const qDisplay = document.getElementById('q-display');
+
+        ensureTrainingReviewLog(Boolean(isCorrect), options);
+        trainingStats.answered += 1;
+        recordTrainingAnswer(Boolean(isCorrect), currentVocab);
+
+        if (isCorrect) {
+            trainingStats.correct += 1;
+            if (typeof playSound === 'function') playSound('speaking-green-sfx');
+            if (msgArea) {
+                clearLaunchMessageState();
+                msgArea.classList.add('meaning-confirmed');
+                msgArea.innerText = `CORRECT // ${trainingStats.answered}/${trainingStats.total}`;
+            }
+        } else {
+            trainingStats.wrong += 1;
+            if (typeof playSound === 'function') playSound(options.isTimeout ? 'timeout-sfx' : 'speaking-wrong-sfx');
+            if (msgArea) {
+                clearLaunchMessageState();
+                msgArea.classList.add('meaning-rejected');
+                msgArea.innerText = `${options.isTimeout ? 'TIMEOUT' : 'WRONG'} // ${correctText}`;
+            }
+            if (qDisplay && currentPracticeMode !== 'GRAMMAR') {
+                qDisplay.style.color = 'var(--danger)';
+            }
+        }
+
+        scheduleNextTrainingQuestion(isCorrect ? 760 : 1250);
+    }
+
+    function checkTrainingAnswer() {
+        if (!trainingModeActive || !currentVocab) return false;
+        if (trainingResolving) return null;
+
+        if (typeof window.isGrammarBattleMode === 'function' && window.isGrammarBattleMode()) {
+            const isCorrect = typeof window.checkGrammarBattleAnswer === 'function'
+                ? window.checkGrammarBattleAnswer()
+                : false;
+            if (isCorrect === null) return null;
+            upsertGrammarBattleLogEntry(isCorrect);
+            finishTrainingAnswer(Boolean(isCorrect));
+            return isCorrect;
+        }
+
+        if (isReadingChoiceMode()) {
+            if (!currentVocab?.readingChoiceOptions) return false;
+            if (currentVocab.readingChoiceResolved) return null;
+            const selectedIndex = currentVocab.readingChoiceSelectedIndex;
+            if (!Number.isInteger(selectedIndex)) {
+                setReadingChoiceMessage('SELECT ONE MEANING FIRST');
+                return null;
+            }
+            const selectedOption = currentVocab.readingChoiceOptions[selectedIndex];
+            const isCorrect = Boolean(selectedOption?.isCorrect);
+            currentVocab.readingChoiceResolved = true;
+            currentVocab.readingChoiceSubmitting = false;
+            syncReadingChoiceOptionStates(true);
+            upsertReadingChoiceBattleLogEntry(isCorrect);
+            setReadingChoiceMessage(isCorrect ? 'MEANING CONFIRMED!' : 'MEANING REJECTED!', isCorrect ? 'meaning-confirmed' : 'meaning-rejected');
+            finishTrainingAnswer(isCorrect);
+            return isCorrect;
+        }
+
+        const input = document.getElementById('hidden-input');
+        const cleanInput = (input?.value || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+        const targetAnswer = currentPracticeMode === 'LISTENING' && currentVocab.listeningAnswer
+            ? currentVocab.listeningAnswer
+            : currentVocab.en;
+        const cleanTarget = String(targetAnswer || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+        const isCorrect = cleanInput === cleanTarget;
+
+        battleLog.push({
+            turn: trainingStats.answered + 1,
+            user: input?.value || '',
+            correct: targetAnswer,
+            isCorrect,
+            mode: currentPracticeMode,
+            sentence: currentVocab.sent || null
+        });
+
+        finishTrainingAnswer(isCorrect);
+        return isCorrect;
+    }
+
+    function startTrainingMode(options = {}) {
+        const scopeLevel = getTrainingScopeLevel();
+        const wrongDeck = getTrainingWrongDeck(currentPracticeMode, scopeLevel);
+        const freshDeck = getTrainingFreshDeck(currentPracticeMode, scopeLevel)
+            .filter(word => !wrongDeck.some(wrongWord => getTrainingWordKey(wrongWord) === getTrainingWordKey(word)));
+        const deck = [...wrongDeck, ...shuffleArray(freshDeck)];
+
+        if (!deck.length) {
+            if (typeof playSound === 'function') playSound('wrong-sfx');
+            if (typeof showNotification === 'function') {
+                showNotification('TRAINING STAGE COMPLETE', 'success', 2600);
+            }
+            return;
+        }
+
+        if (!options.silentStartSound && typeof playSound === 'function') playSound('deploy-sfx');
+        if (typeof resetBgmDucks === 'function') resetBgmDucks(180);
+
+        ['level-screen', 'stage-screen', 'skill-screen', 'race-screen', 'grammar-topic-screen'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.style.display = 'none';
+        });
+        const overlay = document.getElementById('selection-overlay');
+        const startScreen = document.getElementById('start-screen');
+        const gameUi = document.getElementById('game-ui');
+        const suppliesDisplay = document.getElementById('coins-display');
+        if (overlay) overlay.style.display = 'none';
+        if (startScreen) startScreen.style.display = 'none';
+        if (suppliesDisplay) suppliesDisplay.style.display = 'none';
+        if (gameUi) gameUi.style.display = 'none';
+
+        tempGameMode = 'TRAINING';
+        gameMode = 'TRAINING';
+        selectedRace = selectedRace || 'VANGUARDS';
+        currentPhase = 'PLAYER_TURN';
+        currentTargetIndex = 0;
+        attackResolutionLocked = true;
+        isTargeting = false;
+        enemyGrid = Array(GRID_SIZE * GRID_SIZE).fill(0);
+        battleUsedWordKeys.clear();
+        pendingBattleVocab = null;
+        stageSessionMissCounts = {};
+        wrongWordsDeck = [...deck];
+        activeVocabList = [...deck];
+        sessionDeck = [...deck];
+        trainingModeActive = true;
+        trainingResolving = false;
+        trainingStats = {
+            total: deck.length,
+            answered: 0,
+            correct: 0,
+            wrong: 0,
+            label: `${getPracticeModeLabel(currentPracticeMode)} ${selectedStageLabel || selectedLevel}`
+        };
+
+        if (currentPracticeMode === 'LISTENING' && typeof warmUpVoiceEngine === 'function') {
+            warmUpVoiceEngine();
+        }
+
+        openLaunchModal(0);
+    }
+
+    function startRevisionDrill() {
+        const tabConfig = getRevisionActiveTabConfig();
+        const entries = revisionState.entries;
+        const deck = buildRevisionDrillDeck(entries);
+        if (!deck.length) {
+            if (typeof playSound === 'function') playSound('wrong-sfx');
+            if (typeof showNotification === 'function') {
+                showNotification('NO REVISION QUESTIONS READY', 'warning', 2600);
+            }
+            return;
+        }
+
+        if (typeof playSound === 'function') playSound('deploy-sfx');
+        if (typeof resetBgmDucks === 'function') resetBgmDucks(180);
+        if (typeof releaseBgmDuck === 'function') releaseBgmDuck('revision-mode', 120);
+
+        const revisionScreen = document.getElementById('revision-screen');
+        const startScreen = document.getElementById('start-screen');
+        const suppliesDisplay = document.getElementById('coins-display');
+        const overlay = document.getElementById('selection-overlay');
+        if (revisionScreen) revisionScreen.style.display = 'none';
+        if (startScreen) startScreen.style.display = 'none';
+        if (suppliesDisplay) suppliesDisplay.style.display = 'none';
+        if (overlay) overlay.style.display = 'none';
+
+        tempGameMode = 'AI';
+        gameMode = 'AI';
+        selectedRace = selectedRace || 'VANGUARDS';
+        currentPracticeMode = tabConfig.mode;
+        selectedLevel = deck[0]?.revisionLevel || (tabConfig.mode === 'GRAMMAR' ? (deck[0]?.revisionTopic || 'VERB_TABLE') : (deck[0]?.level || 'L1'));
+        window.selectedGrammarTopic = tabConfig.mode === 'GRAMMAR'
+            ? normalizeRevisionGrammarTopic(deck[0]?.revisionTopic || selectedLevel)
+            : null;
+        currentPhase = 'PLAYER_TURN';
+        currentTargetIndex = 0;
+        attackResolutionLocked = true;
+        isTargeting = false;
+        enemyGrid = Array(GRID_SIZE * GRID_SIZE).fill(0);
+        battleUsedWordKeys.clear();
+        pendingBattleVocab = null;
+        stageSessionMissCounts = {};
+        wrongWordsDeck = [...deck];
+        activeVocabList = [...deck];
+        sessionDeck = [...deck];
+        revisionDrillActive = true;
+        revisionDrillResolving = false;
+        revisionDrillStats = {
+            total: deck.length,
+            answered: 0,
+            correct: 0,
+            wrong: 0,
+            label: tabConfig.label
+        };
+
+        if (currentPracticeMode === 'LISTENING' && typeof warmUpVoiceEngine === 'function') {
+            warmUpVoiceEngine();
+        }
+
+        openLaunchModal(0);
+    }
+
+    function startRevisionChallenge() {
+        if (!revisionState.entries.length) {
+            if (typeof playSound === 'function') playSound('wrong-sfx');
+            if (typeof showNotification === 'function') {
+                showNotification('NO REVISION QUESTIONS READY', 'warning', 2400);
+            }
+            return;
+        }
+        startRevisionDrill();
+    }
+
+    window.openRevisionScreen = openRevisionScreen;
+    window.closeRevisionScreen = closeRevisionScreen;
+    window.switchRevisionTab = switchRevisionTab;
+    window.startRevisionChallenge = startRevisionChallenge;
+    window.isRevisionDrillActive = () => revisionDrillActive;
+    window.abandonRevisionTest = abandonRevisionTest;
+    window.startTrainingMode = startTrainingMode;
+    window.endTrainingMode = endTrainingMode;
+    window.abandonTrainingMode = abandonTrainingMode;
+    window.isTrainingModeActive = () => trainingModeActive;
 
     // ���� �e��ӛ�ϵ�y�Y�� ����
 
@@ -1591,6 +4330,10 @@ let isTargeting = false;
         if (battleEffectAssetsPreloaded) return;
         battleEffectAssetsPreloaded = true;
 
+        if (isNativeEffekseerPlatform()) {
+            return;
+        }
+
         BATTLE_EFFECT_IMAGE_SOURCES.forEach(src => {
             const img = new Image();
             img.decoding = 'async';
@@ -1607,7 +4350,9 @@ let isTargeting = false;
             BATTLE_EFFECT_AUDIO_IDS.forEach(id => window.preloadNativeSfx(id));
         }
 
-        preloadBattleEffekseerEffectsInBackground();
+        if (shouldPreloadEffekseerEffectsInBackground()) {
+            preloadBattleEffekseerEffectsInBackground();
+        }
     }
 
     function preloadAudioElementById(id) {
@@ -1830,6 +4575,7 @@ function isGameLogicPaused() {
 }
 
 function isBattleScreenActive() {
+    if (typeof revisionDrillActive !== 'undefined' && revisionDrillActive) return true;
     const gameUi = document.getElementById('game-ui');
     return !!(gameUi && gameUi.style.display !== 'none' && currentPhase !== 'GAME_OVER');
 }
@@ -1883,6 +4629,11 @@ function clearGameTimeout(timeoutRecord) {
 function clearAllGameTimeouts() {
     gameTimeouts.slice().forEach(clearGameTimeout);
     gameTimeouts = [];
+}
+
+function clearNativeBattleEndTimers() {
+    document.body.classList.remove('screen-shake-hit', 'screen-shake-sunk', 'screen-shake-nuke');
+    document.querySelectorAll('.target-overlay, .radar-preview-overlay, .radar-scan-overlay, .explosion-preview-overlay, .missile-strike-overlay, .nuke-lock-overlay, .nuke-flash-overlay').forEach(el => el.remove());
 }
 
 function pauseGameTimeouts() {
@@ -1957,6 +4708,53 @@ function clearGamePauseState() {
 window.requestGamePause = requestGamePause;
 window.releaseGamePause = releaseGamePause;
 window.isGameLogicPaused = isGameLogicPaused;
+function clearDeploymentTimer() {
+    if (deploymentTimerInterval) {
+        clearInterval(deploymentTimerInterval);
+        deploymentTimerInterval = null;
+    }
+}
+window.getGameDebugState = function() {
+    return {
+        currentPracticeMode,
+        currentPhase,
+        gameMode,
+        tempGameMode,
+        trainingModeActive,
+        trainingStats,
+        attackResolutionLocked,
+        isTargeting,
+        currentTargetIndex,
+        currentVocab: currentVocab ? {
+            en: currentVocab.en || null,
+            ch: currentVocab.ch || null,
+            grammarTopic: currentVocab.grammarTopic || null,
+            revisionSkill: currentVocab.revisionSkill || null,
+            revisionLevel: currentVocab.revisionLevel || null
+        } : null,
+        selectedLevel,
+        selectedStageIndex,
+        selectedStageLabel,
+        selectedGrammarTopic: window.selectedGrammarTopic || null,
+        turnCounter,
+        currentTurnCount,
+        turnTimeLeft: Math.round((turnTimeLeft || 0) * 10) / 10,
+        launchTimerTimeLeft: Math.round((launchTimerTimeLeft || 0) * 10) / 10,
+        launchTimerTotal: Math.round((launchTimerTotal || 0) * 10) / 10,
+        launchTimerPaused,
+        launchTimerPausedByGamePause,
+        timerIntervalActive: !!timerInterval,
+        turnTimerIntervalActive: !!turnTimerInterval,
+        deploymentTimerIntervalActive: !!deploymentTimerInterval,
+        gamePauseReasons: Array.from(gamePauseReasons),
+        isGameLogicPaused: isGameLogicPaused(),
+        gameTimeoutCount: gameTimeouts.length,
+        currentRoomId: currentRoomId || null,
+        playerRole: playerRole || null,
+        enemyRace: enemyRace || null,
+        playerRace: typeof selectedRace !== 'undefined' ? selectedRace : null
+    };
+};
 
 document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
@@ -1987,10 +4785,12 @@ function registerNativeGamePauseLifecycle() {
 document.addEventListener('DOMContentLoaded', registerNativeGamePauseLifecycle);
 setTimeout(registerNativeGamePauseLifecycle, 0);
 
-function getBattleWordKey(word) {
-    if (!word || !word.en) return '';
-    return `${currentPracticeMode || 'UNKNOWN'}::${selectedLevel || 'L1'}::${word.en.toLowerCase()}`;
-}
+    function getBattleWordKey(word) {
+        if (!word || !word.en) return '';
+        const modeKey = word.revisionSkill || currentPracticeMode || 'UNKNOWN';
+        const levelKey = word.revisionLevel || selectedLevel || 'L1';
+        return `${modeKey}::${levelKey}::${word.en.toLowerCase()}`;
+    }
 
 function pickBattleUniqueWord(wordList) {
     if (!Array.isArray(wordList) || wordList.length === 0) return null;
@@ -2011,7 +4811,7 @@ function upsertGrammarBattleLogEntry(isCorrect, options = {}) {
             correct: currentVocab.en || '',
             chinese: currentVocab.ch || ''
         };
-    const turn = (typeof turnCounter !== 'undefined' ? turnCounter : 1);
+    const turn = options.turn || getCurrentBattleLogTurn();
     const grammarEntry = {
         turn,
         mode: 'GRAMMAR',
@@ -2083,7 +4883,7 @@ function recordStageSessionMiss(wordEn) {
 
 function buildPvpQuestionPayload(word, voiceProfile = null) {
     if (!word || !word.en) return null;
-    return {
+    const payload = {
         en: word.en,
         ch: word.ch || '',
         sent: word.sent || word.en,
@@ -2093,6 +4893,16 @@ function buildPvpQuestionPayload(word, voiceProfile = null) {
         sentenceIndex: Number.isInteger(word.sentenceIndex) ? word.sentenceIndex : 0,
         timestamp: Date.now()
     };
+
+    if (currentPracticeMode === 'GRAMMAR' || word.grammarTopic) {
+        payload.grammarTopic = word.grammarTopic || window.selectedGrammarTopic || selectedLevel || 'VERB_TABLE';
+        if (word.grammarForms) payload.grammarForms = word.grammarForms;
+        if (word.grammarTense) payload.grammarTense = word.grammarTense;
+        if (word.grammarDirect) payload.grammarDirect = word.grammarDirect;
+        if (word.grammarChoice) payload.grammarChoice = word.grammarChoice;
+    }
+
+    return payload;
 }
 
 function normalizePvpQuestionDeck(deckData) {
@@ -2138,6 +4948,20 @@ function getPvpDeckTraceContext(extra = {}) {
     };
 }
 
+function buildGrammarPvpDeckFromRoom(data = {}) {
+    const topic = data.grammarTopic || data.level || window.selectedGrammarTopic;
+    if (!topic || typeof window.getGrammarBattleDeckSnapshot !== 'function') return [];
+
+    window.selectedGrammarTopic = topic;
+    selectedLevel = data.level || topic;
+    selectedStageIndex = null;
+    selectedStageLabel = data.grammarTopicLabel
+        || (typeof window.getGrammarTopicLabel === 'function' ? window.getGrammarTopicLabel(topic) : String(topic).replace(/_/g, ' '));
+
+    const deck = window.getGrammarBattleDeckSnapshot();
+    return Array.isArray(deck) ? deck : [];
+}
+
 function getCurrentPvpMatchId() {
     return latestPVPSetupData?.questionDeckMatchId || null;
 }
@@ -2157,8 +4981,17 @@ function hydrateCurrentVocabFromPvpQuestion(payload) {
         listeningVoiceName: payload.listeningVoiceName || null,
         listeningAccentLocale: payload.listeningAccentLocale || null,
         deckIndex: Number.isInteger(payload.deckIndex) ? payload.deckIndex : null,
-        sentenceIndex: Number.isInteger(payload.sentenceIndex) ? payload.sentenceIndex : 0
+        sentenceIndex: Number.isInteger(payload.sentenceIndex) ? payload.sentenceIndex : 0,
+        grammarTopic: payload.grammarTopic || baseWord?.grammarTopic,
+        grammarForms: payload.grammarForms || baseWord?.grammarForms,
+        grammarTense: payload.grammarTense || baseWord?.grammarTense,
+        grammarDirect: payload.grammarDirect || baseWord?.grammarDirect,
+        grammarChoice: payload.grammarChoice || baseWord?.grammarChoice
     };
+
+    if (currentPracticeMode === 'GRAMMAR' && currentVocab.grammarTopic) {
+        window.selectedGrammarTopic = currentVocab.grammarTopic;
+    }
 
     markBattleWordUsed(currentVocab);
     return true;
@@ -2231,7 +5064,9 @@ async function ensurePvpQuestionDeckReady(roomData = latestPVPSetupData) {
         lastMove: null,
         turn: 'host',
         winner: null,
-        endReason: null
+        endReason: null,
+        endedAt: null,
+        endedBy: null
     });
 
     latestPVPSetupData = {
@@ -2504,6 +5339,7 @@ function startEnemyTurn() {
     let pvpQuestionDeck = [];
     let lastPvpDeckRequestAt = 0;
     let latestPVPSetupData = null;
+    let pvpGameOverBroadcasted = false;
     const lobbyProfileCache = new Map();
     let inviteListenerUnsubscribe = null;
     let inviteResponseListenerUnsubscribe = null;
@@ -2599,7 +5435,7 @@ function closeLevelScreen() {
     if (typeof window.resetBgmDucks === 'function') window.resetBgmDucks(180);
     document.getElementById('level-screen').style.display = 'none';
 
-    if (tempGameMode === 'AI') {
+    if (tempGameMode === 'AI' || tempGameMode === 'TRAINING') {
         // AI ģʽ��Level �S��һ����Back �������x��
         // ���� �[�ع��ú�ɫ�׌� ����
         const overlay = document.getElementById('selection-overlay');
@@ -2820,7 +5656,7 @@ function prepareReadingChoiceQuestionUI() {
 function upsertReadingChoiceBattleLogEntry(isCorrect, options = {}) {
     if (typeof battleLog === 'undefined' || !currentVocab) return;
     const selectedOption = currentVocab.readingChoiceOptions?.[currentVocab.readingChoiceSelectedIndex];
-    const turn = (typeof turnCounter !== 'undefined' ? turnCounter : 1);
+    const turn = options.turn || getCurrentBattleLogTurn();
     const entry = {
         turn,
         mode: READING_CHOICE_MODE,
@@ -2837,6 +5673,50 @@ function upsertReadingChoiceBattleLogEntry(isCorrect, options = {}) {
     } else {
         battleLog.push(entry);
     }
+}
+
+function upsertSimpleBattleLogEntry(isCorrect, options = {}) {
+    if (typeof battleLog === 'undefined' || !currentVocab) return;
+    const turn = options.turn || getCurrentBattleLogTurn();
+    const input = document.getElementById('hidden-input');
+    const targetAnswer = currentPracticeMode === 'LISTENING' && currentVocab.listeningAnswer
+        ? currentVocab.listeningAnswer
+        : (currentPracticeMode === 'SPEAKING' ? (currentVocab.sent || currentVocab.en) : currentVocab.en);
+    const entry = {
+        turn,
+        user: options.userOverride || (options.isTimeout ? '(TIMEOUT)' : (input?.value || '')),
+        correct: targetAnswer || '',
+        isCorrect: Boolean(isCorrect),
+        isTimeout: Boolean(options.isTimeout),
+        mode: currentPracticeMode,
+        sentence: currentVocab.sent || null
+    };
+    const existingLogIndex = battleLog.findIndex(log => log.turn === turn);
+    if (existingLogIndex !== -1) {
+        battleLog[existingLogIndex] = { ...battleLog[existingLogIndex], ...entry };
+    } else {
+        battleLog.push(entry);
+    }
+}
+
+function ensureTrainingReviewLog(isCorrect, options = {}) {
+    if (!trainingModeActive || !currentVocab || !Array.isArray(battleLog)) return;
+    const turn = options.turn || getCurrentBattleLogTurn();
+    if (battleLog.some(log => log.turn === turn)) return;
+
+    if (typeof window.isGrammarBattleMode === 'function' && window.isGrammarBattleMode()) {
+        const timeoutUserOverride = options.isTimeout ? '(TIMEOUT)' : options.userOverride;
+        upsertGrammarBattleLogEntry(isCorrect, { ...options, turn, userOverride: timeoutUserOverride });
+        return;
+    }
+
+    if (isReadingChoiceMode()) {
+        const timeoutUserOverride = options.isTimeout ? '(TIMEOUT)' : options.userOverride;
+        upsertReadingChoiceBattleLogEntry(isCorrect, { ...options, turn, userOverride: timeoutUserOverride });
+        return;
+    }
+
+    upsertSimpleBattleLogEntry(isCorrect, { ...options, turn });
 }
 
 function checkReadingChoiceBattleAnswer() {
@@ -2890,6 +5770,10 @@ function getStageReviewWords(levelKey, modeKey, stageIndex) {
 
 function getStageProgressSummary(levelKey, stageIndex) {
     const stageWords = getStageBaseWords(levelKey, stageIndex);
+    if (tempGameMode === 'TRAINING') {
+        return getTrainingStageProgressSummary(levelKey, stageIndex, stageWords);
+    }
+
     const totalSlots = stageWords.length * 3;
     if (totalSlots === 0) {
         return { completedSlots: 0, totalSlots: 0, ratio: 0, percent: 0 };
@@ -2904,6 +5788,38 @@ function getStageProgressSummary(levelKey, stageIndex) {
                 completedSlots += 1;
             }
         });
+    });
+
+    const ratio = completedSlots / totalSlots;
+    return {
+        completedSlots,
+        totalSlots,
+        ratio,
+        percent: Math.round(ratio * 100)
+    };
+}
+
+function getTrainingStageProgressSummary(levelKey, stageIndex, stageWords = getStageBaseWords(levelKey, stageIndex)) {
+    const totalSlots = stageWords.length;
+    if (totalSlots === 0) {
+        return { completedSlots: 0, totalSlots: 0, ratio: 0, percent: 0 };
+    }
+
+    const scopeLevel = `${levelKey}::${stageIndex}`;
+    const skillKeys = [READING_CHOICE_MODE, 'READING', 'LISTENING', 'SPEAKING'];
+    const completedWords = new Set();
+
+    skillKeys.forEach(skillKey => {
+        const bucket = getTrainingCorrectBucket(skillKey, scopeLevel);
+        Object.entries(bucket || {}).forEach(([wordKey, entry]) => {
+            if (entry?.status === 1 || entry) completedWords.add(wordKey);
+        });
+    });
+
+    const stageWordSet = new Set(stageWords.map(word => word.en));
+    let completedSlots = 0;
+    completedWords.forEach(wordKey => {
+        if (stageWordSet.has(wordKey)) completedSlots += 1;
     });
 
     const ratio = completedSlots / totalSlots;
@@ -2945,14 +5861,14 @@ function hideStageScreenMessage() {
 
 function getCurrentStagePrimaryWords(modeKey) {
     const levelWords = VOCAB_DB[selectedLevel] || [];
-    if (tempGameMode !== 'AI' || selectedStageIndex === null) {
+    if (!['AI', 'TRAINING'].includes(tempGameMode) || selectedStageIndex === null) {
         return levelWords;
     }
     return getStageBaseWords(selectedLevel, selectedStageIndex);
 }
 
 function getCurrentStageReviewWords(modeKey) {
-    if (tempGameMode !== 'AI' || selectedStageIndex === null) {
+    if (!['AI', 'TRAINING'].includes(tempGameMode) || selectedStageIndex === null) {
         return [];
     }
     return getStageReviewWords(selectedLevel, modeKey, selectedStageIndex);
@@ -2960,7 +5876,7 @@ function getCurrentStageReviewWords(modeKey) {
 
 function buildStageVocabListForMode(modeKey) {
     const levelWords = VOCAB_DB[selectedLevel] || [];
-    if (tempGameMode !== 'AI' || selectedStageIndex === null) {
+    if (!['AI', 'TRAINING'].includes(tempGameMode) || selectedStageIndex === null) {
         return levelWords;
     }
 
@@ -2989,6 +5905,20 @@ function getScopedMasteryCountForMode(modeKey) {
     return masteryCount;
 }
 
+function getTrainingProgressCountForMode(modeKey) {
+    const level = selectedStageIndex !== null
+        ? `${selectedLevel}::${selectedStageIndex}`
+        : selectedLevel;
+    const skill = modeKey === 'reading_choice' ? READING_CHOICE_MODE : String(modeKey || '').toUpperCase();
+    const bucket = getTrainingCorrectBucket(skill, level);
+    const scopedWords = getScopedWordSetForMode(modeKey);
+    let count = 0;
+    scopedWords.forEach(wordEn => {
+        if (bucket[wordEn]?.status === 1 || bucket[wordEn]) count += 1;
+    });
+    return count;
+}
+
 function showStageScreen() {
     if (typeof window.resetBgmDucks === 'function') window.resetBgmDucks(180);
     showSelectionOverlay();
@@ -3009,7 +5939,7 @@ function showSkillScreen(options = {}) {
     if (typeof window.resetBgmDucks === 'function') window.resetBgmDucks(180);
     showSelectionOverlay();
 
-    ['level-screen', 'stage-screen', 'race-screen', 'lobby-screen'].forEach(id => {
+    ['level-screen', 'stage-screen', 'race-screen', 'lobby-screen', 'revision-screen'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.style.display = 'none';
     });
@@ -3209,28 +6139,36 @@ function updateSkillButtonsProgress() {
     // Only update if we have a selected level
     if (!selectedLevel || !VOCAB_DB[selectedLevel]) return;
 
-    const useStageScope = tempGameMode === 'AI' && selectedStageIndex !== null;
+    const useStageScope = ['AI', 'TRAINING'].includes(tempGameMode) && selectedStageIndex !== null;
     const readingTotal = useStageScope ? getCurrentStagePrimaryWords('reading').length : VOCAB_DB[selectedLevel].length;
     const readingChoiceTotal = useStageScope ? getCurrentStagePrimaryWords('reading_choice').length : VOCAB_DB[selectedLevel].length;
     const listeningTotal = useStageScope ? getCurrentStagePrimaryWords('listening').length : VOCAB_DB[selectedLevel].length;
     const speakingTotal = useStageScope ? getCurrentStagePrimaryWords('speaking').length : VOCAB_DB[selectedLevel].length;
 
-    const readingCount = useStageScope
+    const readingCount = tempGameMode === 'TRAINING'
+        ? getTrainingProgressCountForMode('reading')
+        : useStageScope
         ? getScopedMasteryCountForMode('reading')
         : (userMastery.reading && userMastery.reading[selectedLevel]
             ? Object.values(userMastery.reading[selectedLevel]).filter(m => m.status === 1).length
             : 0);
-    const readingChoiceCount = useStageScope
+    const readingChoiceCount = tempGameMode === 'TRAINING'
+        ? getTrainingProgressCountForMode('reading_choice')
+        : useStageScope
         ? getScopedMasteryCountForMode('reading_choice')
         : (userMastery.reading_choice && userMastery.reading_choice[selectedLevel]
             ? Object.values(userMastery.reading_choice[selectedLevel]).filter(m => m.status === 1).length
             : 0);
-    const listeningCount = useStageScope
+    const listeningCount = tempGameMode === 'TRAINING'
+        ? getTrainingProgressCountForMode('listening')
+        : useStageScope
         ? getScopedMasteryCountForMode('listening')
         : (userMastery.listening && userMastery.listening[selectedLevel]
             ? Object.values(userMastery.listening[selectedLevel]).filter(m => m.status === 1).length
             : 0);
-    const speakingCount = useStageScope
+    const speakingCount = tempGameMode === 'TRAINING'
+        ? getTrainingProgressCountForMode('speaking')
+        : useStageScope
         ? getScopedMasteryCountForMode('speaking')
         : (userMastery.speaking && userMastery.speaking[selectedLevel]
             ? Object.values(userMastery.speaking[selectedLevel]).filter(m => m.status === 1).length
@@ -3362,15 +6300,15 @@ function resetLevelButtonsToDefault() {
 	    const levelScreen = document.getElementById('level-screen');
 	    if (!levelScreen) return;
 
-	    const isPvpLevelSelect = tempGameMode === 'PVP';
+    const isPvpLevelSelect = tempGameMode === 'PVP';
 	    levelScreen.classList.toggle('pvp-level-select', isPvpLevelSelect);
 
 	    const grammarButton = levelScreen.querySelector('.level-btn-grammar');
 	    if (!grammarButton) return;
 
-	    grammarButton.style.display = isPvpLevelSelect ? 'none' : '';
-	    grammarButton.disabled = isPvpLevelSelect;
-	    grammarButton.setAttribute('aria-hidden', isPvpLevelSelect ? 'true' : 'false');
+	    grammarButton.style.display = '';
+	    grammarButton.disabled = false;
+	    grammarButton.setAttribute('aria-hidden', 'false');
 	}
 
 	window.syncLevelScreenForMode = syncLevelScreenForMode;
@@ -3384,6 +6322,18 @@ function updateLevelProgress() {
 function selectLevel(level) {
     if (typeof window.resetBgmDucks === 'function') window.resetBgmDucks(180);
     selectedLevel = level;
+    if (LEVEL_ORDER.includes(level)) {
+        localStorage.setItem('battleship_recommended_level', normalizeRecommendedLevel(level));
+        const missionState = typeof getTodayDailyMissionState === 'function' ? getTodayDailyMissionState() : null;
+        if (missionState && !missionState.rewardSecured) {
+            missionState.recommendedLevel = normalizeRecommendedLevel(level);
+            missionState.updatedAt = Date.now();
+            dailyMissionState = missionState;
+            saveDailyMissionStateToLocal();
+            renderDailyMissionChecklistButton();
+            syncDailyMissionStateToFirebase();
+        }
+    }
     selectedStageIndex = null;
     selectedStageLabel = '';
     activeVocabList = VOCAB_DB[level];
@@ -3405,7 +6355,7 @@ function selectLevel(level) {
     const carousel = document.getElementById('main-menu-carousel');
     if (carousel) carousel.style.display = 'none';
 
-    if (tempGameMode === 'AI') {
+    if (tempGameMode === 'AI' || tempGameMode === 'TRAINING') {
         renderStageScreen(level);
         showStageScreen();
     } else {
@@ -3428,6 +6378,7 @@ function enterGameUI() {
 
     // ���� ANTI-FARMING: Reset turn count ����
     currentTurnCount = 0;
+    pvpGameOverBroadcasted = false;
 
     // �� ��ʼ���e�փ��� deck����֮ǰ�e�^�������ȳ�
     wrongWordsDeck = getWrongWordsForSession(currentPracticeMode, selectedLevel);
@@ -3553,6 +6504,7 @@ function createRoom() {
         pvpQuestionDeck = [];
         lastPvpDeckRequestAt = 0;
         pvpBattleStarted = false;
+        pvpGameOverBroadcasted = false;
         latestPVPSetupData = null;
 
 set(ref(db, 'rooms/' + roomId), {
@@ -3562,13 +6514,19 @@ set(ref(db, 'rooms/' + roomId), {
             turn: 'host',
             level: selectedLevel,
             practiceMode: currentPracticeMode,
+            grammarTopic: currentPracticeMode === 'GRAMMAR' ? (window.selectedGrammarTopic || selectedLevel || null) : null,
+            grammarTopicLabel: currentPracticeMode === 'GRAMMAR' ? (selectedStageLabel || null) : null,
             hostRace: null,
             guestRace: null,
-            questionDeck: null,
-            questionDeckReady: false,
-            questionDeckMatchId: null,
-            questionDeckCreatedAt: null,
-            currentQuestion: null
+        questionDeck: null,
+        questionDeckReady: false,
+        questionDeckMatchId: null,
+        questionDeckCreatedAt: null,
+        currentQuestion: null,
+        winner: null,
+        endReason: null,
+        endedAt: null,
+        endedBy: null
         });
 const { onDisconnect, remove } = window.firebaseModules; // �_���õ�����
     onDisconnect(ref(db, 'rooms/' + roomId)).remove();        
@@ -3616,10 +6574,16 @@ async function joinRoomById(inputId, viaInvite = false) {
     pvpQuestionDeck = [];
     lastPvpDeckRequestAt = 0;
     pvpBattleStarted = false;
+    pvpGameOverBroadcasted = false;
     latestPVPSetupData = null;
     gameMode = 'PVP';
 
-    if (data.level && VOCAB_DB[data.level]) {
+    if (data.practiceMode === 'GRAMMAR') {
+        currentPracticeMode = 'GRAMMAR';
+        activeVocabList = buildGrammarPvpDeckFromRoom(data);
+        sessionDeck = [...activeVocabList];
+        showNotification(`SYNCED: ${selectedStageLabel || 'GRAMMAR'}`, 'success');
+    } else if (data.level && VOCAB_DB[data.level]) {
         selectedLevel = data.level;
         activeVocabList = VOCAB_DB[data.level];
         showNotification(`SYNCED: ${data.level}`, 'success');
@@ -3750,6 +6714,12 @@ function initPVPListeners() {
             setTimeout(() => resetGame(), 1500);
             return; 
         }
+
+        if (data.winner) {
+            finishPvpGameFromRoom(data);
+            return;
+        }
+
         if (playerRole === 'host' && !data.guest) {
             if (currentPhase === 'GAME_OVER') return;
             showNotification("OPPONENT DISCONNECTED", "error");
@@ -3782,34 +6752,6 @@ function initPVPListeners() {
         const nextDeckQuestion = getPvpDeckQuestion(data);
         if (nextDeckQuestion) {
             preloadPvpSharedListeningQuestion(nextDeckQuestion);
-        }
-
-        // --- ����/ʧ�� �Д� (���ֲ�׃) ---
-        if (data.winner) {
-            if (currentPhase === 'GAME_OVER') return; 
-            if (data.winner === playerRole) {
-                renderReview();
-                calculateAndDisplaySettlement(true, false);
-                document.getElementById('end-title').innerText = "VICTORY";
-                document.getElementById('end-title').style.color = "var(--success)";
-                document.getElementById('end-title').style.textShadow = "0 0 30px var(--success)";
-                const reason = data.endReason === 'disconnected' ? "CONNECTION LOST" : 
-                               data.endReason === 'surrendered' ? "SURRENDERED" : "DESTROYED";
-                document.getElementById('end-msg').innerText = `ENEMY ${reason}`;
-                document.getElementById('end-screen').style.display = "flex";
-                playSound('victory-sfx'); 
-            } else {
-                renderReview();
-                calculateAndDisplaySettlement(false, false);
-                document.getElementById('end-title').innerText = "DEFEAT";
-                document.getElementById('end-title').style.color = "var(--warning)";
-                document.getElementById('end-title').style.textShadow = "0 0 30px var(--warning)";
-                document.getElementById('end-msg').innerText = "FLEET DESTROYED";
-                document.getElementById('end-screen').style.display = "flex";
-                playSound('lose-sfx');
-            }
-            currentPhase = 'GAME_OVER';
-            return; 
         }
 
         // --- ���Y߉݋ ---
@@ -4306,7 +7248,7 @@ function createPositionedShipImage(boardId, idx, conf, v, options = {}) {
 
     // --- 8. ���Y���� ---
 function startBattle() {
-    if (deploymentTimerInterval) clearInterval(deploymentTimerInterval);
+    clearDeploymentTimer();
     document.getElementById('turn-timer-container').style.visibility = 'hidden';
 
     // �� PHASE 5: Reset session XP counter (in case not reset in enterGameUI)
@@ -4632,11 +7574,26 @@ function switchScene(sceneName) {
    ========================================= */
 
 function handleEnemyGridClick(index) {
+    if (currentPhase === 'GAME_OVER') {
+        return;
+    }
+
     if (isBattleInteractionLocked()) {
         return;
     }
 
+    if (currentPhase !== 'PLAYER_TURN') {
+        if (selectedSkill || activeSkill) clearExpiredSkillSelection();
+        return;
+    }
+
     if (selectedSkill && !activeSkill) {
+        if (isAegisShieldSkillSelected()) return;
+        if (!isBattleSkillActionWindowOpen(selectedSkill)) {
+            clearExpiredSkillSelection();
+            return;
+        }
+
         if (selectedSkill === 'radar') {
             if (!isRadarSelectable(index)) {
                 playSound('wrong-sfx');
@@ -4668,12 +7625,12 @@ function handleEnemyGridClick(index) {
         return;
     }
 
-    if (activeSkill === 'radar') {
+    if (activeSkill) {
         return;
     }
 
     // 1. �z���i����������������(isTargeting)�����ߡ�������һغϡ���ֱ�ӟoҕ�c��
-    if (isTargeting || currentPhase !== 'PLAYER_TURN') {
+    if (isTargeting) {
         return; 
     }
 
@@ -4793,6 +7750,8 @@ async function openLaunchModal(index) {
     if (currentPracticeMode === 'SPEAKING') statusText = "VOICE UPLINK...";
     if (currentPracticeMode === 'LISTENING') statusText = "INCOMING TRANSMISSION...";
     if (typeof window.isGrammarBattleMode === 'function' && window.isGrammarBattleMode()) statusText = "GRAMMAR UPLINK...";
+    if (trainingModeActive) statusText = "TRAINING...";
+    if (revisionDrillActive) statusText = "REVISION DRILL...";
     
     document.getElementById('game-status').innerHTML = `PHASE: <span style="color:var(--warning)">${statusText}</span>`;
 
@@ -4801,9 +7760,34 @@ async function openLaunchModal(index) {
     // ����C��
     const enemyShip = enemyGrid[index];
     if (enemyShip === 'hit' || enemyShip === 'miss') {
+        attackResolutionLocked = false;
+        isTargeting = false;
+        currentTargetIndex = null;
         playSound('wrong-sfx');
         return;
     }
+
+    if (!trainingModeActive && !revisionDrillActive) {
+        const enemyGridEl = document.getElementById('enemy-grid');
+        const targetCell = enemyGridEl && Number.isInteger(index) ? enemyGridEl.children[index] : null;
+        if (!targetCell || targetCell.classList.contains('revealed')) {
+            attackResolutionLocked = false;
+            isTargeting = false;
+            currentTargetIndex = null;
+            playSound('wrong-sfx');
+            showNotification("TARGET LOCK LOST", "error", 1800);
+            console.warn('[Launch Modal] Invalid target before question opened', {
+                index,
+                phase: currentPhase,
+                mode: currentPracticeMode,
+                gameMode
+            });
+            return;
+        }
+    }
+
+    attackResolutionLocked = true;
+    isTargeting = true;
 
 // �ʂ��}Ŀ (AI: 3-Tier Spaced Repetition | PVP: shared deck sequence)
 
@@ -4811,6 +7795,9 @@ async function openLaunchModal(index) {
     if (gameMode === 'PVP') {
         const resolved = await resolvePvpSharedQuestion();
         if (!resolved || !currentVocab) {
+            attackResolutionLocked = false;
+            isTargeting = false;
+            currentTargetIndex = null;
             showNotification("QUESTION LINK LOST", "error");
             return;
         }
@@ -4823,13 +7810,31 @@ async function openLaunchModal(index) {
         } else {
             currentVocab = takeNextAiBattleVocab();
             if (!currentVocab) {
+                attackResolutionLocked = false;
+                isTargeting = false;
+                currentTargetIndex = null;
+                showNotification("QUESTION DECK EMPTY", "warning", 1800);
+                console.warn('[Launch Modal] No question available for target', {
+                    index,
+                    phase: currentPhase,
+                    mode: currentPracticeMode,
+                    level: selectedLevel
+                });
                 return;
             }
         }
     }
 
     if (currentVocab && currentVocab.en) {
+        if (revisionDrillActive) applyRevisionQuestionContext(currentVocab);
         markBattleWordUsed(currentVocab);
+    }
+
+    if (revisionDrillActive) applyRevisionQuestionContext(currentVocab);
+
+    if (trainingModeActive && currentPracticeMode === 'GRAMMAR' && currentVocab?.grammarTopic) {
+        window.selectedGrammarTopic = currentVocab.grammarTopic;
+        selectedLevel = currentVocab.grammarTopic;
     }
 
     if (gameMode !== 'PVP' && !(typeof window.isGrammarBattleMode === 'function' && window.isGrammarBattleMode())) {
@@ -4847,9 +7852,19 @@ async function openLaunchModal(index) {
     const input = document.getElementById('hidden-input');
     const msgArea = document.getElementById('msg-area');
     const timerBar = document.getElementById('timer-bar');
+    const launchTitle = document.getElementById('launch-modal-title');
     qText.classList.remove('reading-choice-word');
     delete qText.dataset.readingChoiceWord;
     qDisplay.classList.remove('reading-choice-display');
+    if (launchTitle) {
+        launchTitle.innerText = trainingModeActive
+            ? `TRAINING ${trainingStats.answered + 1}/${trainingStats.total}`
+            : revisionDrillActive
+            ? `REVISION DRILL ${revisionDrillStats.answered + 1}/${revisionDrillStats.total}`
+            : '⚠️ DECRYPT CODE ⚠️';
+        launchTitle.style.color = (trainingModeActive || revisionDrillActive) ? '#67e8f9' : 'var(--danger)';
+        launchTitle.style.textShadow = (trainingModeActive || revisionDrillActive) ? '0 0 14px rgba(103, 232, 249, 0.65)' : '';
+    }
     
     // ���û�����B
     clearLaunchMessageState();
@@ -5721,6 +8736,11 @@ function getLikelyNextBattleWord() {
     if (pendingBattleVocab) return pendingBattleVocab;
     if (!Array.isArray(activeVocabList) || activeVocabList.length === 0) return null;
 
+    if (trainingModeActive) {
+        const availableTrainingWords = wrongWordsDeck.filter(word => !battleUsedWordKeys.has(getBattleWordKey(word)));
+        return (availableTrainingWords.length > 0 ? availableTrainingWords : wrongWordsDeck)[0] || activeVocabList[0] || null;
+    }
+
     if (gameMode === 'PVP') {
         const previewPool = activeVocabList.filter(word => !battleUsedWordKeys.has(getBattleWordKey(word)));
         return (previewPool.length > 0 ? previewPool : activeVocabList)[0] || null;
@@ -5755,6 +8775,23 @@ function getLikelyNextBattleWord() {
 }
 
 function takeNextAiBattleVocab() {
+    if (trainingModeActive) {
+        const pickedTrainingWord = wrongWordsDeck.shift() || null;
+        if (pickedTrainingWord) {
+            console.log(`[Training] ${currentPracticeMode}/${getTrainingScopeLevel(pickedTrainingWord)}: ${pickedTrainingWord.en} (${wrongWordsDeck.length} remaining)`);
+        }
+        return pickedTrainingWord;
+    }
+
+    if (revisionDrillActive) {
+        const pickedRevisionWord = wrongWordsDeck.shift() || null;
+        if (pickedRevisionWord) {
+            applyRevisionQuestionContext(pickedRevisionWord);
+            console.log(`[Revision] ${currentPracticeMode}/${selectedLevel}: ${pickedRevisionWord.en} (${wrongWordsDeck.length} remaining)`);
+        }
+        return pickedRevisionWord;
+    }
+
     const masteryKey = currentPracticeMode.toLowerCase();
     const primaryWordPool = (tempGameMode === 'AI' && selectedStageIndex !== null)
         ? getCurrentStagePrimaryWords(masteryKey)
@@ -5775,7 +8812,7 @@ function takeNextAiBattleVocab() {
         }
     }
 
-    if (currentPracticeMode === 'GRAMMAR' && ['TENSES', 'CONDITIONAL', 'REPORTED_SPEECH'].includes(window.selectedGrammarTopic) && Array.isArray(sessionDeck) && sessionDeck.length > 0) {
+    if (currentPracticeMode === 'GRAMMAR' && ['TENSES', 'CONDITIONAL', 'REPORTED_SPEECH', 'PARTICIPLE_PHRASES', 'INVERSION'].includes(window.selectedGrammarTopic) && Array.isArray(sessionDeck) && sessionDeck.length > 0) {
         let nextIndex = sessionDeck.findIndex(word => !battleUsedWordKeys.has(getBattleWordKey(word)));
         if (nextIndex < 0) nextIndex = 0;
         const pickedGrammarQuestion = sessionDeck.splice(nextIndex, 1)[0];
@@ -5836,7 +8873,7 @@ function takeNextAiBattleVocab() {
 }
 
 function primePendingListeningQuestion() {
-    if (gameMode === 'PVP' || currentPracticeMode !== 'LISTENING' || pendingBattleVocab) return;
+    if (revisionDrillActive || trainingModeActive || gameMode === 'PVP' || currentPracticeMode !== 'LISTENING' || pendingBattleVocab) return;
     const previewWord = takeNextAiBattleVocab();
     if (!previewWord) return;
     pendingBattleVocab = previewWord;
@@ -5853,6 +8890,8 @@ function primePendingListeningQuestion() {
 
 function preloadLikelyNextListeningPrompt() {
     if (currentPracticeMode !== 'LISTENING') return;
+    if (revisionDrillActive) return;
+    if (trainingModeActive) return;
     if (pendingBattleVocab) return;
     const previewWord = getLikelyNextBattleWord();
     if (!previewWord) return;
@@ -6251,6 +9290,7 @@ function closeLaunchModalUI() {
     const virtualKeyboard = document.getElementById('virtual-keyboard');
     const hiddenInput = document.getElementById('hidden-input');
     const msgArea = document.getElementById('msg-area');
+    const launchTitle = document.getElementById('launch-modal-title');
 
     if (typeof timerInterval !== 'undefined' && timerInterval) {
         clearInterval(timerInterval);
@@ -6304,6 +9344,11 @@ function closeLaunchModalUI() {
         clearLaunchMessageState();
         msgArea.innerText = '';
     }
+    if (launchTitle) {
+        launchTitle.innerText = '⚠️ DECRYPT CODE ⚠️';
+        launchTitle.style.color = 'var(--danger)';
+        launchTitle.style.textShadow = '';
+    }
     const qText = document.getElementById('q-text');
     const qDisplay = document.getElementById('q-display');
     if (qText) {
@@ -6328,12 +9373,22 @@ function closeLaunchModalUI() {
     
 // --- �����棺̎��ݔ�볬�r ---
 function handlePlayerTimeout() {
+    if (trainingModeActive) {
+        finishTrainingAnswer(false, { isTimeout: true });
+        return;
+    }
+
+    if (revisionDrillActive) {
+        finishRevisionDrillAnswer(false, { isTimeout: true });
+        return;
+    }
+
     const isGrammarTimeout = typeof window.isGrammarBattleMode === 'function' && window.isGrammarBattleMode();
     if (isGrammarTimeout) {
         let timeoutUserOverride = "(TIMEOUT)";
         if (typeof window.getGrammarBattleReviewEntry === 'function') {
             const reviewEntry = window.getGrammarBattleReviewEntry(currentVocab);
-            const hasPartialDirectAnswer = ['DIRECT_QUESTION', 'INDIRECT_QUESTION', 'IT_IS', 'CONDITIONAL', 'REPORTED_SPEECH', 'INFINITIVE_GERUND', 'PREPOSITION_OF_PLACE', 'PREPOSITION_OF_TIME'].includes(reviewEntry?.grammarTopic)
+            const hasPartialDirectAnswer = ['DIRECT_QUESTION', 'INDIRECT_QUESTION', 'IT_IS', 'CONDITIONAL', 'REPORTED_SPEECH', 'PARTICIPLE_PHRASES', 'INVERSION', 'PRONOUN', 'COMPARATIVE_SUPERLATIVE', 'INFINITIVE_GERUND', 'PREPOSITION_OF_PLACE', 'PREPOSITION_OF_TIME'].includes(reviewEntry?.grammarTopic)
                 && reviewEntry.user
                 && reviewEntry.user !== '(blank)';
             if (hasPartialDirectAnswer) timeoutUserOverride = reviewEntry.user;
@@ -6345,6 +9400,7 @@ function handlePlayerTimeout() {
     attackResolutionLocked = false;
     isTargeting = false;
     closeLaunchModalUI();
+    clearExpiredSkillSelection();
 
     playSound('timeout-sfx');
     
@@ -6653,6 +9709,7 @@ function finishGrammarChoiceWrongTurn() {
     attackResolutionLocked = false;
     isTargeting = false;
     closeLaunchModalUI();
+    clearExpiredSkillSelection();
     currentPhase = 'PHASE_SWITCH';
 
     if (gameMode === 'PVP') {
@@ -6678,12 +9735,22 @@ function finishGrammarChoiceWrongTurn() {
 
 // --- �����棺�ˌ��� (���ܟoҕ��̖) ---
 function checkAnswer() {
+    if (trainingModeActive) {
+        checkTrainingAnswer();
+        return;
+    }
+
     if (attackResolutionLocked !== true || currentTargetIndex === null || currentTargetIndex === undefined) {
         const modal = document.getElementById('launch-modal');
         if (modal && modal.style.display === 'flex') {
             playSound('wrong-sfx');
             document.getElementById('msg-area').innerText = "TARGET LOCK LOST!";
         }
+        return;
+    }
+
+    if (revisionDrillActive) {
+        checkRevisionDrillAnswer();
         return;
     }
 
@@ -6813,6 +9880,12 @@ function checkAnswer() {
 
     // --- 10. ������� ---
 function playerFire(success) {
+    if (currentPhase === 'GAME_OVER') {
+        attackResolutionLocked = false;
+        isTargeting = false;
+        return;
+    }
+
     const enemyGridEl = document.getElementById('enemy-grid');
     const cell = enemyGridEl && currentTargetIndex !== null && currentTargetIndex !== undefined
         ? enemyGridEl.children[currentTargetIndex]
@@ -8097,7 +11170,7 @@ function getSettlementEnemyName() {
         const cachedProfile = currentOpponentId && lobbyProfileCache ? lobbyProfileCache.get(currentOpponentId) : null;
         return cachedProfile?.name || (currentOpponentId ? currentOpponentId.substring(0, 8).toUpperCase() : 'OPPONENT');
     }
-    return 'AI COMMANDER';
+    return 'AI';
 }
 
 function getBestPlayerHitStreak() {
@@ -8150,13 +11223,46 @@ function renderSettlementBattleResult(isVictory, correctAnswerPercent) {
     }
 }
 
+function restoreSettlementBgm() {
+    if (typeof window.resetBgmDucks === 'function') {
+        window.resetBgmDucks(180);
+    }
+
+    if (isMusicPlaying && typeof playBgm === 'function') {
+        setTimeout(() => playBgm(), 120);
+    }
+}
+
 // ���� PHASE 5: SETTLEMENT CALCULATION ����
 function calculateAndDisplaySettlement(isVictory, isSurrender = false) {
+    restoreSettlementBgm();
+
     // Calculate accuracy
     const totalAnswers = battleLog.length;
     const correctAnswers = battleLog.filter(log => log.isCorrect).length;
     const accuracy = totalAnswers > 0 ? (correctAnswers / totalAnswers) * 100 : 0;
     const isPerfect = accuracy === 100 && totalAnswers > 0;
+    if (totalAnswers > 0 && !isSurrender && typeof recordDailyMissionProgress === 'function') {
+        if (gameMode === 'AI' && currentPracticeMode === 'READING' && isVictory) {
+            recordDailyMissionProgress('spelling-win', {
+                level: selectedLevel,
+                victory: true,
+                detail: `${selectedStageLabel || selectedLevel} victory`
+            }).catch(e => console.warn('recordDailyMissionProgress spelling error:', e));
+        }
+        if (currentPracticeMode === READING_CHOICE_MODE) {
+            recordDailyMissionProgress('reading-complete', {
+                level: selectedLevel,
+                detail: `${selectedStageLabel || selectedLevel}: ${correctAnswers}/${totalAnswers}`
+            }).catch(e => console.warn('recordDailyMissionProgress reading battle error:', e));
+        }
+        if (currentPracticeMode === 'GRAMMAR') {
+            recordDailyMissionProgress('grammar-complete', {
+                level: selectedLevel,
+                detail: `${selectedStageLabel || window.selectedGrammarTopic || 'Grammar'}: ${correctAnswers}/${totalAnswers}`
+            }).catch(e => console.warn('recordDailyMissionProgress grammar battle error:', e));
+        }
+    }
 
     // Calculate match bonus
     let matchBonus = 0;
@@ -8319,6 +11425,8 @@ function calculateAndDisplaySettlement(isVictory, isSurrender = false) {
         if (currentPhase === 'GAME_OVER') return;
 
         currentPhase = 'GAME_OVER';
+        attackResolutionLocked = false;
+        isTargeting = false;
 
         if (turnTimerInterval) clearInterval(turnTimerInterval);
         if (timerInterval) clearInterval(timerInterval);
@@ -8331,6 +11439,7 @@ function calculateAndDisplaySettlement(isVictory, isSurrender = false) {
         if (warningOverlay) warningOverlay.style.display = 'none';
 
         clearAllGameTimeouts();
+        clearNativeBattleEndTimers();
     }
 
    function checkGameOver() {
@@ -8340,6 +11449,9 @@ function calculateAndDisplaySettlement(isVictory, isSurrender = false) {
 
         // --- ��r A������ (Victory) ---
         if (enemyDamage >= TOTAL_HP) {
+            if (gameMode === 'PVP') {
+                broadcastPvpGameOver(playerRole, 'destroyed');
+            }
             enterGameOverState();
             title.innerText = "VICTORY";
             title.style.color = "var(--success)";
@@ -8365,6 +11477,9 @@ function calculateAndDisplaySettlement(isVictory, isSurrender = false) {
         
         // --- ��r B���� (Defeat) ---
         if (myDamage >= TOTAL_HP) {
+            if (gameMode === 'PVP') {
+                broadcastPvpGameOver(getPvpOpponentRole(), 'destroyed');
+            }
             enterGameOverState();
             title.innerText = "DEFEAT";
             title.style.color = "var(--danger)";
@@ -8453,12 +11568,8 @@ function executeAbort() {
         
         // A. ̎�� PVP ���� (֪ͨ������Ͷ��)
         if (gameMode === 'PVP' && currentRoomId) {
-            const { ref, update } = window.firebaseModules;
             const opponentRole = (playerRole === 'host') ? 'guest' : 'host';
-            update(ref(db, 'rooms/' + currentRoomId), {
-                winner: opponentRole,
-                endReason: 'surrendered'
-            });
+            broadcastPvpGameOver(opponentRole, 'surrendered');
         }
 
         // B. �|�l���ؑ����� (��� Reset ס��)
@@ -8506,7 +11617,10 @@ function resetGame() {
     pvpLocalQuestionIndex = 0;
     pvpQuestionDeck = [];
     lastPvpDeckRequestAt = 0;
+    pvpGameOverBroadcasted = false;
     latestPVPSetupData = null;
+    resetRevisionDrillState();
+    resetTrainingState();
     selectedStageIndex = null;
     selectedStageLabel = '';
     window.selectedGrammarTopic = null;
@@ -8586,7 +11700,7 @@ function resetGame() {
     // --- (���±��ֲ�׃) ---
     if (turnTimerInterval) clearInterval(turnTimerInterval);
     if (timerInterval) clearInterval(timerInterval);
-    if (deploymentTimerInterval) clearInterval(deploymentTimerInterval);
+    clearDeploymentTimer();
     clearAllGameTimeouts();
     clearGamePauseState();
 
@@ -8680,6 +11794,7 @@ function resetGame() {
 function handleTurnTimeout(skipRecoveryDelay = false) {
     // ���� �P�I������һ���r�����i����B����ֹ������D�����g͵�u�ٴ� ����
     currentPhase = 'TIMEOUT_LOCKED'; 
+    clearExpiredSkillSelection();
 
     document.getElementById('turn-timer-container').style.visibility = 'hidden';
     playSound('timeout-sfx');
@@ -8720,7 +11835,7 @@ function startDeploymentTimer() {
         
         let timeLeft = 60.0; 
         
-        if (deploymentTimerInterval) clearInterval(deploymentTimerInterval);
+        clearDeploymentTimer();
         
         deploymentTimerInterval = setInterval(() => {
             timeLeft -= 0.1;
@@ -8735,7 +11850,7 @@ function startDeploymentTimer() {
             status.innerHTML = `DEPLOY: SHIP ${currentShipNum}/${FLEET.length} <span style="color:var(--warning); margin-left:10px;">[ ${timeStr}s ]</span>`;
 
             if (timeLeft <= 0) {
-                clearInterval(deploymentTimerInterval);
+                clearDeploymentTimer();
                 handleDeploymentTimeout(); 
             }
         }, 100);
@@ -9120,7 +12235,7 @@ function openIncomingInviteModal(invite) {
     if (!modal || !summary || !detail) return;
 
     summary.innerText = `${invite.fromName || 'COMMANDER'} IS CALLING YOU`;
-    detail.innerHTML = `ROOM ${invite.roomId} // ${formatLobbyLevel(invite.level)} // ${formatLobbySkill(invite.practiceMode)}<br>ACCEPT TO LINK DIRECTLY INTO PVP`;
+    detail.innerHTML = `ROOM ${invite.roomId} // ${formatLobbyLevel(invite.level, invite.practiceMode)} // ${formatLobbySkill(invite.practiceMode)}<br>ACCEPT TO LINK DIRECTLY INTO PVP`;
     modal.style.display = 'flex';
 }
 
@@ -9289,7 +12404,10 @@ if (window.pendingInviteListenerUid) {
         // �O�� onDisconnect������Ҕྀ��Update ���g�������Ќ����A
         onDisconnect(roomRef).update({
             winner: opponentRole,
-            endReason: 'disconnected'
+            endReason: 'disconnected',
+            endedAt: Date.now(),
+            endedBy: playerRole,
+            turn: null
         });
     }
 // 1. ̎�� PVP �յ��Ĕ���Şꠔ���
@@ -9373,7 +12491,6 @@ function revealEnemyShip(ship) {
     board.appendChild(img);
     
     playSound('destroy-sfx'); 
-    showNotification("ENEMY SHIP DESTROYED!", "success");
     
     if(typeof updateEnemyIndicator === 'function') {
             updateEnemyIndicator(ship.shipId);
@@ -9384,7 +12501,7 @@ let synth = window.speechSynthesis || null;
 let techVoice = null;
 
 function hideMenuOverlayScreens() {
-    const ids = ['level-screen', 'stage-screen', 'skill-screen', 'race-screen', 'lobby-screen', 'ranking-screen', 'vocab-screen', 'grammar-topic-screen', 'grammar-verb-screen'];
+    const ids = ['level-screen', 'stage-screen', 'skill-screen', 'race-screen', 'lobby-screen', 'ranking-screen', 'vocab-screen', 'revision-screen', 'grammar-topic-screen', 'grammar-verb-screen'];
     ids.forEach(id => {
         const el = document.getElementById(id);
         if (el) el.style.display = 'none';
@@ -9406,7 +12523,7 @@ function showLobbyScreen() {
     const lobbyScreen = document.getElementById('lobby-screen');
     if (!lobbyScreen) return;
 
-    ['level-screen', 'stage-screen', 'skill-screen', 'race-screen'].forEach(id => {
+    ['level-screen', 'stage-screen', 'skill-screen', 'race-screen', 'revision-screen'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.style.display = 'none';
     });
@@ -9503,26 +12620,45 @@ function showPVPRaceSelectionScreen() {
 function syncPVPSetupFromRoom(data) {
     if (!data) return;
 
+    if (data.practiceMode) {
+        currentPracticeMode = data.practiceMode;
+    }
+
+    if (data.practiceMode === 'GRAMMAR') {
+        activeVocabList = buildGrammarPvpDeckFromRoom(data);
+        sessionDeck = [...activeVocabList];
+        return;
+    }
+
     if (data.level && VOCAB_DB[data.level]) {
         selectedLevel = data.level;
         activeVocabList = VOCAB_DB[data.level];
         sessionDeck = [...activeVocabList];
     }
-
-    if (data.practiceMode) {
-        currentPracticeMode = data.practiceMode;
-    }
 }
 
-function formatLobbyLevel(level) {
+function formatLobbyLevel(level, skill = currentPracticeMode) {
     if (!level) return '--';
-    return level === 'L5_STAR' ? 'LEVEL 5*' : level.replace('L', 'LEVEL ');
+    if (level === 'L5_STAR') return 'LEVEL 5*';
+    if (typeof window.getGrammarTopicLabel === 'function' && skill === 'GRAMMAR') {
+        return window.getGrammarTopicLabel(level);
+    }
+    return level.replace('L', 'LEVEL ');
 }
 
 function formatLobbySkill(skill) {
     if (!skill) return '--';
     return getPracticeModeLabel(skill);
 }
+
+window.openPvpGrammarRoomAfterTopic = function() {
+    gameMode = 'PVP';
+    tempGameMode = 'PVP';
+    showPVPWaitingState('OPENING GRAMMAR ROOM...', 'var(--warning)');
+    if (typeof createRoom === 'function') {
+        createRoom();
+    }
+};
 
 async function getLobbyPlayerProfile(playerId) {
     if (!playerId) return null;
@@ -9581,7 +12717,7 @@ async function updatePVPBriefingPanel(data) {
     const inviteBtn = document.getElementById('lobby-invite-btn');
 
     if (roomEl) roomEl.innerText = currentRoomId || '----';
-    if (levelEl) levelEl.innerText = formatLobbyLevel(data.level || selectedLevel);
+    if (levelEl) levelEl.innerText = formatLobbyLevel(data.level || selectedLevel, data.practiceMode || currentPracticeMode);
     if (skillEl) skillEl.innerText = formatLobbySkill(data.practiceMode || currentPracticeMode);
 
     const myId = myPlayerId || window.myPlayerId;
@@ -9773,6 +12909,7 @@ window.addEventListener('load', () => {
                     userSentenceProgress = window.userSentenceProgress || { listening: {}, speaking: {} };
                     normalizeSentenceProgressState();
                     userSupplies = window.userSupplies || 0;
+                    loadTrainingProgressFromFirebase();
                 } else {
                     myPlayerId = null;
                     userTotalXP = 0;
@@ -9780,6 +12917,7 @@ window.addEventListener('load', () => {
                     userSentenceProgress = { listening: {}, speaking: {} };
                     normalizeSentenceProgressState();
                     userSupplies = 0;
+                    loadTrainingProgressFromLocal();
                 }
             });
     }
@@ -10076,7 +13214,7 @@ function openSpeakingDebriefModal(logIndex) {
 function upsertSpeakingBattleLogEntry(transcript, targetText, result, targetWord, targetScore, isCorrect) {
     if (typeof battleLog === 'undefined') return;
 
-    const turn = (typeof turnCounter !== 'undefined' ? turnCounter : 1);
+    const turn = getCurrentBattleLogTurn();
     const referenceLevel = selectedLevel || 'L1';
     const referenceSentenceIndex = Number.isInteger(currentVocab?.sentenceIndex) ? currentVocab.sentenceIndex : 0;
     const referenceVoiceProfile = getListeningVoiceProfileForSentence(currentVocab, referenceLevel, referenceSentenceIndex);
@@ -10119,15 +13257,32 @@ function upsertSpeakingBattleLogEntry(transcript, targetText, result, targetWord
     }
 }
 
-function renderReview() {
+function renderReview(options = {}) {
     const container = document.getElementById('review-container');
     const list = document.getElementById('review-list');
     if (!container || !list) return;
 
-    list.innerHTML = ""; 
-    container.style.display = battleLog.length > 0 ? 'flex' : 'none';
+    const header = document.getElementById('review-title') || container.querySelector('.mission-debrief-header');
+    if (header) header.innerText = options.title || 'MISSION DEBRIEF';
 
-    battleLog.forEach(log => {
+    const sourceLog = Array.isArray(battleLog) ? battleLog : [];
+    const reviewLogs = options.onlyWrong ? sourceLog.filter(log => !log.isCorrect) : sourceLog;
+
+    list.innerHTML = "";
+    container.style.display = (reviewLogs.length > 0 || options.emptyMessage) ? 'flex' : 'none';
+
+    if (!reviewLogs.length && options.emptyMessage) {
+        const emptyItem = document.createElement('div');
+        emptyItem.className = 'review-item review-item-correct';
+        emptyItem.innerHTML = `
+            <div class="review-turn">--</div>
+            <div class="review-meaning" style="grid-column: 2 / 5; text-align: center;">${escapeHtml(options.emptyMessage)}</div>
+        `;
+        list.appendChild(emptyItem);
+        return;
+    }
+
+    reviewLogs.forEach(log => {
         const item = document.createElement('div');
         item.className = 'review-item';
         if (log.mode === 'GRAMMAR') item.classList.add('review-item-grammar');
@@ -10260,9 +13415,9 @@ function getSentenceSurfaceAnswer(sentence, answer) {
     const target = String(answer || '').trim();
     if (!source || !target) return target;
 
-    const exactRegex = new RegExp(`(?<![A-Za-z0-9])${escapeRegExp(target)}(?![A-Za-z0-9])`, 'i');
+    const exactRegex = new RegExp(`(^|[^A-Za-z0-9])(${escapeRegExp(target)})(?![A-Za-z0-9])`, 'i');
     const exactMatch = source.match(exactRegex);
-    if (exactMatch && exactMatch[0]) return exactMatch[0];
+    if (exactMatch && exactMatch[2]) return exactMatch[2];
 
     const tokenMatches = source.match(/[A-Za-z]+(?:['’-][A-Za-z]+)*/g) || [];
     const lowerTarget = target.toLowerCase();
@@ -10372,7 +13527,7 @@ async function selectSkill(skill) {
     if (typeof window.resetBgmDucks === 'function') window.resetBgmDucks(180);
     window.selectedGrammarTopic = null;
     currentPracticeMode = skill;
-    if (tempGameMode === 'AI') {
+    if (tempGameMode === 'AI' || tempGameMode === 'TRAINING') {
         activeVocabList = buildStageVocabListForMode(getPracticeModeMasteryKey(skill));
         sessionDeck = [...activeVocabList];
         if (selectedStageLabel) {
@@ -10396,6 +13551,11 @@ async function selectSkill(skill) {
 
     // 3. �[�� Skill ����
     document.getElementById('skill-screen').style.display = 'none';
+
+    if (tempGameMode === 'TRAINING') {
+        startTrainingMode({ silentStartSound: true });
+        return;
+    }
 
     if (tempGameMode === 'AI') {
         // 4. ���� AI ���̣���ȥ�N���x���� ����
@@ -11694,6 +14854,16 @@ function checkSpeakingAssessment(result) {
             true
         );
 
+        if (revisionDrillActive) {
+            finishRevisionDrillAnswer(true);
+            return;
+        }
+
+        if (trainingModeActive) {
+            finishTrainingAnswer(true);
+            return;
+        }
+
         removeWrongWord(currentPracticeMode, selectedLevel, currentVocab.en);
         if (typeof handleCorrectAnswer === 'function') handleCorrectAnswer();
 
@@ -11715,6 +14885,16 @@ function checkSpeakingAssessment(result) {
         finalScore,
         false
     );
+
+    if (revisionDrillActive) {
+        finishRevisionDrillAnswer(false);
+        return;
+    }
+
+    if (trainingModeActive) {
+        finishTrainingAnswer(false);
+        return;
+    }
 
     saveWrongWord(currentPracticeMode, selectedLevel, currentVocab.en);
     if (msgArea) {
@@ -11763,6 +14943,16 @@ function checkSpeakingResult(spokenText) {
             });
         }
 
+        if (revisionDrillActive) {
+            finishRevisionDrillAnswer(true);
+            return;
+        }
+
+        if (trainingModeActive) {
+            finishTrainingAnswer(true);
+            return;
+        }
+
         // �� �e��ӛ䛣�������Ƴ�
         removeWrongWord(currentPracticeMode, selectedLevel, currentVocab.en);
 
@@ -11780,6 +14970,16 @@ function checkSpeakingResult(spokenText) {
         setGameTimeout(() => playerFire(true), 1000);
 
     } else {
+        if (revisionDrillActive) {
+            finishRevisionDrillAnswer(false);
+            return;
+        }
+
+        if (trainingModeActive) {
+            finishTrainingAnswer(false);
+            return;
+        }
+
         // --- �x�e ---
         // �� �e��ӛ䛣����e��ӛ�
         saveWrongWord(currentPracticeMode, selectedLevel, currentVocab.en);
@@ -12164,7 +15364,7 @@ function handleSkillBack() {
     }
     document.getElementById('skill-screen').style.display = 'none';
     
-    if (tempGameMode === 'AI') {
+    if (tempGameMode === 'AI' || tempGameMode === 'TRAINING') {
         if (selectedLevel) {
             renderStageScreen(selectedLevel);
             showStageScreen();
@@ -12486,6 +15686,8 @@ async function speakText(text, element = null, startListeningTimer = false) {
         }
     }
 }
+
+window.speakText = speakText;
 
 /* =========================================
    ���� SKILL SYSTEM ����
@@ -13056,6 +16258,112 @@ function getPvpOpponentRole() {
     return playerRole === 'host' ? 'guest' : 'host';
 }
 
+function getPvpEndReasonLabel(reason, isVictory) {
+    if (reason === 'disconnected') return isVictory ? 'ENEMY CONNECTION LOST' : 'CONNECTION LOST';
+    if (reason === 'surrendered') return isVictory ? 'ENEMY SURRENDERED' : 'MISSION ABORTED // SURRENDERED';
+    if (reason === 'destroyed') return isVictory ? 'ENEMY FLEET ELIMINATED' : 'FLEET DESTROYED';
+    return isVictory ? 'ENEMY DESTROYED' : 'FLEET DESTROYED';
+}
+
+function queuePvpGameOverDisconnectFallback(winnerRole, endReason = 'destroyed', endedAt = Date.now(), endedBy = playerRole || null) {
+    if (gameMode !== 'PVP' || !currentRoomId || !winnerRole || !window.firebaseModules?.onDisconnect) return;
+    const { ref, onDisconnect } = window.firebaseModules;
+    const disconnect = onDisconnect(ref(db, 'rooms/' + currentRoomId));
+    const fallbackPayload = {
+        winner: winnerRole,
+        endReason,
+        endedAt,
+        endedBy,
+        turn: null
+    };
+    const queueFallback = () => disconnect.update(fallbackPayload).catch(error => {
+        console.warn('[PVP] Game-over disconnect fallback could not be queued:', error);
+    });
+    if (typeof disconnect.cancel === 'function') {
+        disconnect.cancel().then(queueFallback).catch(queueFallback);
+    } else {
+        queueFallback();
+    }
+}
+
+function broadcastPvpGameOver(winnerRole, endReason = 'destroyed', extra = {}) {
+    if (gameMode !== 'PVP' || !currentRoomId || !winnerRole || !window.firebaseModules) return;
+    if (pvpGameOverBroadcasted) return;
+    pvpGameOverBroadcasted = true;
+
+    const { ref, update } = window.firebaseModules;
+    const now = Date.now();
+    queuePvpGameOverDisconnectFallback(winnerRole, endReason, now, playerRole || null);
+    update(ref(db, 'rooms/' + currentRoomId), {
+        winner: winnerRole,
+        endReason,
+        endedAt: now,
+        endedBy: playerRole || null,
+        turn: null,
+        ...extra
+    }).catch(error => {
+        pvpGameOverBroadcasted = false;
+        console.warn('[PVP] Failed to broadcast game over:', error);
+    });
+}
+
+function finishPvpGameFromRoom(data) {
+    if (!data || !data.winner || currentPhase === 'GAME_OVER') return;
+
+    pvpGameOverBroadcasted = true;
+    queuePvpGameOverDisconnectFallback(data.winner, data.endReason || 'destroyed', data.endedAt || Date.now(), data.endedBy || null);
+    const isVictory = data.winner === playerRole;
+    const title = document.getElementById('end-title');
+    const msg = document.getElementById('end-msg');
+    const screen = document.getElementById('end-screen');
+    const warningOverlay = document.getElementById('warning-overlay');
+    const timerContainer = document.getElementById('turn-timer-container');
+    const confirmModal = document.getElementById('confirm-modal');
+
+    const isFleetDestroyedEnd = !data.endReason || data.endReason === 'destroyed';
+    if (isFleetDestroyedEnd && isVictory) {
+        enemyDamage = Math.max(enemyDamage, TOTAL_HP);
+    } else if (isFleetDestroyedEnd) {
+        myDamage = Math.max(myDamage, TOTAL_HP);
+    }
+
+    enterGameOverState();
+    attackResolutionLocked = false;
+    isTargeting = false;
+    activeSkill = null;
+    selectedSkill = null;
+    radarLockedIndex = null;
+    missileLockedIndex = null;
+    clearRadarEffects();
+    clearNativeBattleEndTimers();
+    closeLaunchModalUI();
+    clearAegisShieldState();
+    clearOpponentAegisShieldState();
+    stopTurnSelectionTimer();
+    clearDeploymentTimer();
+    clearGamePauseState();
+
+    if (warningOverlay) warningOverlay.style.display = 'none';
+    if (timerContainer) timerContainer.style.visibility = 'hidden';
+    if (confirmModal) confirmModal.style.display = 'none';
+
+    renderReview();
+    calculateAndDisplaySettlement(isVictory, data.endReason === 'surrendered' && !isVictory);
+
+    if (title) {
+        title.innerText = isVictory ? "VICTORY" : "DEFEAT";
+        title.style.color = isVictory ? "var(--success)" : "var(--danger)";
+        title.style.textShadow = isVictory ? "0 0 30px var(--success)" : "0 0 30px var(--danger)";
+    }
+    if (msg) msg.innerText = getPvpEndReasonLabel(data.endReason, isVictory);
+    if (screen) {
+        screen.style.display = "flex";
+        screen.style.animation = "fadeIn 0.5s ease-out";
+    }
+
+    playSound(isVictory ? 'victory-sfx' : 'lose-sfx');
+}
+
 function isRadarSelectable(index) {
     const cell = getEnemyCell(index);
     return !!cell && cell.classList.contains('miss') && !radarScannedCells.has(index);
@@ -13403,6 +16711,46 @@ function finishPlayerSkillMode() {
     }
 }
 
+function isBoardActive(boardId) {
+    const board = document.getElementById(boardId);
+    return !!board && board.classList.contains('active');
+}
+
+function clearExpiredSkillSelection() {
+    selectedSkill = null;
+    activeSkill = null;
+    radarLockedIndex = null;
+    missileLockedIndex = null;
+    resetSkillSelectionUI();
+    clearRadarEffects();
+    setRadarEligibleCells(false);
+    setExplosionEligibleCells(false);
+    document.querySelectorAll('.skill-diamond').forEach(d => d.classList.remove('skill-selected'));
+    if (currentPhase === 'PLAYER_TURN' && !isBoardActive('enemy-board') && typeof returnFromAegisPlacement === 'function') {
+        returnFromAegisPlacement();
+    }
+}
+
+function isBattleSkillActionWindowOpen(skill = selectedSkill) {
+    if (currentPhase !== 'PLAYER_TURN') return false;
+    if (isGameLogicPaused()) return false;
+    if (isBattleInteractionLocked()) return false;
+    if (activeSkill) return false;
+    if (skill === 'radar' && selectedRace === 'AURELIANS') {
+        return isBoardActive('player-board');
+    }
+    return isBoardActive('enemy-board');
+}
+
+function isSkillExecutionStillCurrent(skill) {
+    if (currentPhase !== 'PLAYER_TURN') return false;
+    if (activeSkill !== skill) return false;
+    if (skill === 'radar' && selectedRace === 'AURELIANS') {
+        return isBoardActive('player-board');
+    }
+    return isBoardActive('enemy-board');
+}
+
 function playMissileStrikeAnimation(boardId, topLeftIndex, lockOverlay, onComplete) {
     const grid = document.getElementById(boardId);
     const cells = getExplosionAreaIndices(topLeftIndex).map(index => grid ? grid.children[index] : null).filter(Boolean);
@@ -13609,7 +16957,20 @@ const effekseerEffectState = {
     frameAccumulatorMs: 0,
     pixelRatio: 1,
     warmedEffects: new Set(),
-    preloadQueueStarted: false
+    preloadQueueStarted: false,
+    idleReleaseTimer: null
+};
+window.getEffectDebugState = function() {
+    return {
+        matrixIntervalActive: !!matrixInterval,
+        effekseerCanvasReady: !!effekseerEffectState.canvas,
+        effekseerActiveHandles: effekseerEffectState.activeHandles.length,
+        effekseerAnimationFrameActive: !!effekseerEffectState.animationFrameId,
+        effekseerLoadedEffects: effekseerEffectState.effects.size,
+        effekseerWarmedEffects: effekseerEffectState.warmedEffects.size,
+        aegisShieldActive: !!(aegisShieldState && aegisShieldState.active),
+        aegisShieldLoopActive: !!(aegisShieldState && aegisShieldState.loopTimer)
+    };
 };
 
 function getEffekseerNativePlatform() {
@@ -13623,6 +16984,66 @@ function getEffekseerNativePlatform() {
 function isNativeEffekseerPlatform() {
     const platform = getEffekseerNativePlatform();
     return platform === 'ios' || platform === 'android';
+}
+
+function shouldPreloadEffekseerEffectsInBackground() {
+    return !isNativeEffekseerPlatform();
+}
+
+function clearEffekseerIdleReleaseTimer() {
+    if (effekseerEffectState.idleReleaseTimer) {
+        clearTimeout(effekseerEffectState.idleReleaseTimer);
+        effekseerEffectState.idleReleaseTimer = null;
+    }
+}
+
+function scheduleEffekseerIdleReleaseForNative() {
+    if (!isNativeEffekseerPlatform()) return;
+    if (!effekseerEffectState.context || effekseerEffectState.activeHandles.length > 0) return;
+    clearEffekseerIdleReleaseTimer();
+    effekseerEffectState.idleReleaseTimer = window.setTimeout(releaseIdleEffekseerForNative, 12000);
+}
+
+async function releaseIdleEffekseerForNative() {
+    if (!isNativeEffekseerPlatform()) return;
+    if (effekseerEffectState.activeHandles.length > 0 || effekseerEffectState.animationFrameId) return;
+
+    clearEffekseerIdleReleaseTimer();
+    const context = effekseerEffectState.context;
+    if (!context) return;
+
+    try {
+        if (typeof context.stopAll === 'function') context.stopAll();
+        await Promise.allSettled([...effekseerEffectState.effects.values()].map(effectPromise =>
+            Promise.resolve(effectPromise).then(effect => {
+                if (effect && typeof context.releaseEffect === 'function') {
+                    context.releaseEffect(effect);
+                }
+            })
+        ));
+        if (window.effekseer && typeof window.effekseer.releaseContext === 'function') {
+            window.effekseer.releaseContext(context);
+        } else if (typeof context.release === 'function') {
+            context.release();
+        }
+    } catch (error) {
+        console.warn('[Effekseer] Idle release skipped:', error);
+    }
+
+    if (effekseerEffectState.canvas) {
+        window.removeEventListener('resize', resizeEffekseerCanvas);
+        window.removeEventListener('orientationchange', resizeEffekseerCanvas);
+        effekseerEffectState.canvas.remove();
+    }
+
+    effekseerEffectState.canvas = null;
+    effekseerEffectState.gl = null;
+    effekseerEffectState.context = null;
+    effekseerEffectState.runtimePromise = null;
+    effekseerEffectState.effects.clear();
+    effekseerEffectState.warmedEffects.clear();
+    effekseerEffectState.preloadQueueStarted = false;
+    effekseerEffectState.frameAccumulatorMs = 0;
 }
 
 function getEffekseerPixelRatioLimit() {
@@ -13690,6 +17111,7 @@ function setEffekseerScreenMatrices(viewportSize) {
 }
 
 function initEffekseerRuntime() {
+    clearEffekseerIdleReleaseTimer();
     if (effekseerEffectState.runtimePromise) return effekseerEffectState.runtimePromise;
 
     effekseerEffectState.runtimePromise = new Promise((resolve, reject) => {
@@ -13707,7 +17129,7 @@ function initEffekseerRuntime() {
                     premultipliedAlpha: true,
                     preserveDrawingBuffer: false,
                     desynchronized: true,
-                    powerPreference: 'high-performance'
+                    powerPreference: isNativeEffekseerPlatform() ? 'low-power' : 'high-performance'
                 });
 
                 if (!gl) {
@@ -13796,6 +17218,7 @@ function preloadBattleEffekseerEffectsInBackground() {
 
 function warmEffekseerEffectForNative(effectKey, effect, attempt = 0) {
     if (!isNativeEffekseerPlatform()) return;
+    if (!shouldPreloadEffekseerEffectsInBackground()) return;
     if (!effect || effekseerEffectState.warmedEffects.has(effectKey)) return;
 
     effekseerEffectState.warmedEffects.add(effectKey);
@@ -13877,6 +17300,7 @@ function playAreaEffekseerEffect(effectKey, gridId, indices, options = {}) {
 function playEffekseerEffect(effectKey, screenX, screenY, options = {}) {
     const config = EFFEKSEER_EFFECTS[effectKey];
     if (!config) return Promise.resolve(null);
+    clearEffekseerIdleReleaseTimer();
 
     return loadEffekseerEffect(effectKey).then(effect => {
         const context = effekseerEffectState.context;
@@ -13914,7 +17338,10 @@ function stopEffekseerHandle(handle) {
     if (handle.exists) {
         handle.stopRoot();
     }
-    effekseerEffectState.activeHandles = effekseerEffectState.activeHandles.filter(entry => entry && entry.handle !== handle);
+        effekseerEffectState.activeHandles = effekseerEffectState.activeHandles.filter(entry => entry && entry.handle !== handle);
+        if (effekseerEffectState.activeHandles.length === 0) {
+            scheduleEffekseerIdleReleaseForNative();
+        }
 }
 
 function startEffekseerRenderLoop() {
@@ -13975,6 +17402,7 @@ function startEffekseerRenderLoop() {
             gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
             effekseerEffectState.animationFrameId = null;
             effekseerEffectState.frameAccumulatorMs = 0;
+            scheduleEffekseerIdleReleaseForNative();
         }
     };
 
@@ -14156,8 +17584,12 @@ function applyExplosionDamageToPlayer(indices, options = {}) {
 }
 
 function executeExplosionStrike(topLeftIndex) {
+    if (!isBattleSkillActionWindowOpen('explosion')) {
+        clearExpiredSkillSelection();
+        return false;
+    }
     const indices = getExplosionAreaIndices(topLeftIndex);
-    if (indices.length !== 4) return;
+    if (indices.length !== 4) return false;
     const opponentShieldSnapshot = pvpOpponentAegisShieldState
         ? { ...pvpOpponentAegisShieldState, indices: [...(pvpOpponentAegisShieldState.indices || [])] }
         : null;
@@ -14187,8 +17619,14 @@ function executeExplosionStrike(topLeftIndex) {
     const lockOverlay = createMissileLockOverlay('enemy-grid', topLeftIndex);
 
     setTimeout(() => {
+        if (!isSkillExecutionStillCurrent('explosion')) {
+            clearExpiredSkillSelection();
+            if (lockOverlay) lockOverlay.remove();
+            return;
+        }
         playSound('missile-flying-sfx');
         playMissileStrikeAnimation('enemy-grid', topLeftIndex, lockOverlay, () => {
+            if (currentPhase !== 'PLAYER_TURN') return;
             const isGameOver = applyExplosionDamageToEnemy(indices, { opponentShieldState: opponentShieldSnapshot });
             finishPlayerSkillMode();
 
@@ -14197,11 +17635,16 @@ function executeExplosionStrike(topLeftIndex) {
             }
         });
     }, MISSILE_LOCK_ON_DURATION);
+    return true;
 }
 
 function executeNukeStrike(topLeftIndex) {
+    if (!isBattleSkillActionWindowOpen('nuke')) {
+        clearExpiredSkillSelection();
+        return false;
+    }
     const indices = getExplosionAreaIndices(topLeftIndex, 4);
-    if (indices.length !== 16) return;
+    if (indices.length !== 16) return false;
     const opponentShieldSnapshot = pvpOpponentAegisShieldState
         ? { ...pvpOpponentAegisShieldState, indices: [...(pvpOpponentAegisShieldState.indices || [])] }
         : null;
@@ -14232,8 +17675,14 @@ function executeNukeStrike(topLeftIndex) {
     const lockOverlay = createNukeLockOverlay('enemy-grid', topLeftIndex);
 
     setTimeout(() => {
+        if (!isSkillExecutionStillCurrent('nuke')) {
+            clearExpiredSkillSelection();
+            if (lockOverlay) lockOverlay.remove();
+            return;
+        }
         playSound('missile-flying-sfx');
         playNukeStrikeAnimation('enemy-grid', topLeftIndex, lockOverlay, () => {
+            if (currentPhase !== 'PLAYER_TURN') return;
             isGameOver = applyExplosionDamageToEnemy(indices, { opponentShieldState: opponentShieldSnapshot });
         }, () => {
             finishPlayerSkillMode();
@@ -14243,6 +17692,7 @@ function executeNukeStrike(topLeftIndex) {
             }
         });
     }, NUKE_LOCK_ON_DURATION);
+    return true;
 }
 
 function lockRadarTarget(index) {
@@ -14259,8 +17709,12 @@ function showRadarResult(centerIndex) {
 }
 
 function executeAegisShield(anchorIndex) {
+    if (!isBattleSkillActionWindowOpen('radar')) {
+        clearExpiredSkillSelection();
+        return false;
+    }
     const indices = getAegisShieldAreaIndices(anchorIndex);
-    if (indices.length !== AEGIS_SHIELD_SIZE * AEGIS_SHIELD_SIZE) return;
+    if (indices.length !== AEGIS_SHIELD_SIZE * AEGIS_SHIELD_SIZE) return false;
 
     stopTurnSelectionTimer();
     const timerContainer = document.getElementById('turn-timer-container');
@@ -14293,11 +17747,16 @@ function executeAegisShield(anchorIndex) {
         finishPlayerSkillMode();
         returnFromAegisPlacement();
     }, EFFEKSEER_EFFECTS.aureliansShieldApply.duration);
+    return true;
 }
 
 function executeRadarScan(centerIndex) {
+    if (!isBattleSkillActionWindowOpen('radar')) {
+        clearExpiredSkillSelection();
+        return false;
+    }
     const grid = document.getElementById('enemy-grid');
-    if (!grid || !isRadarSelectable(centerIndex)) return;
+    if (!grid || !isRadarSelectable(centerIndex)) return false;
 
     stopTurnSelectionTimer();
     clearRadarPreview();
@@ -14333,6 +17792,7 @@ function executeRadarScan(centerIndex) {
         }
         }
     });
+    return true;
 }
 
 function onEnemyGridHover(event) {
@@ -14525,7 +17985,13 @@ function cancelSkillSelection() {
 
 function confirmSkillSelection() {
     if (!selectedSkill) return;
-    const diamond = document.querySelector(`.skill-diamond[data-skill="${selectedSkill}"]`);
+    if (activeSkill) return;
+    const skill = selectedSkill;
+    if (!isBattleSkillActionWindowOpen(skill)) {
+        clearExpiredSkillSelection();
+        return;
+    }
+    const diamond = document.querySelector(`.skill-diamond[data-skill="${skill}"]`);
     if (!diamond) return;
     const cost = parseInt(diamond.dataset.cost) || 0;
 
@@ -14534,15 +18000,20 @@ function confirmSkillSelection() {
         return;
     }
 
-    if (selectedSkill === 'radar') {
+    if (skill === 'radar') {
         if (selectedRace === 'AURELIANS') {
             if (radarLockedIndex === null || getAegisShieldAreaIndices(radarLockedIndex).length !== AEGIS_SHIELD_SIZE * AEGIS_SHIELD_SIZE) {
                 playSound('wrong-sfx');
                 setInstructionPanel('AEGIS', 'SELECT A 3X3 ZONE FIRST', 'aurelians_shield.png');
                 return;
             }
+            if (!isBattleSkillActionWindowOpen(skill)) {
+                clearExpiredSkillSelection();
+                return;
+            }
+            const executed = executeAegisShield(radarLockedIndex);
+            if (!executed) return;
             addEnergy(-cost, 'AEGIS');
-            executeAegisShield(radarLockedIndex);
             updateSkillStates();
             return;
         }
@@ -14553,41 +18024,56 @@ function confirmSkillSelection() {
             return;
         }
         playSound('radar-sfx');
-        addEnergy(-cost, selectedSkill.toUpperCase());
-        executeRadarScan(radarLockedIndex);
+        if (!isBattleSkillActionWindowOpen(skill)) {
+            clearExpiredSkillSelection();
+            return;
+        }
+        const executed = executeRadarScan(radarLockedIndex);
+        if (!executed) return;
+        addEnergy(-cost, skill.toUpperCase());
         updateSkillStates();
         return;
     }
 
-    if (selectedSkill === 'explosion') {
+    if (skill === 'explosion') {
         if (missileLockedIndex === null || !isExplosionSelectable(missileLockedIndex)) {
             playSound('wrong-sfx');
             setInstructionPanel('MISSILE', 'SELECT A 2X2 TARGET AREA FIRST', 'explosion.png');
             return;
         }
-        addEnergy(-cost, selectedSkill.toUpperCase());
-        executeExplosionStrike(missileLockedIndex);
+        if (!isBattleSkillActionWindowOpen(skill)) {
+            clearExpiredSkillSelection();
+            return;
+        }
+        const executed = executeExplosionStrike(missileLockedIndex);
+        if (!executed) return;
+        addEnergy(-cost, skill.toUpperCase());
         updateSkillStates();
         return;
     }
 
-    if (selectedSkill === 'nuke') {
+    if (skill === 'nuke') {
         if (missileLockedIndex === null || !isNukeSelectable(missileLockedIndex)) {
             playSound('wrong-sfx');
             setInstructionPanel('NUKE', 'SELECT A 4X4 TARGET AREA FIRST', 'nuclear_bomb.png');
             return;
         }
         playSound('nuke-launch-sfx');
-        addEnergy(-cost, selectedSkill.toUpperCase());
-        executeNukeStrike(missileLockedIndex);
+        if (!isBattleSkillActionWindowOpen(skill)) {
+            clearExpiredSkillSelection();
+            return;
+        }
+        const executed = executeNukeStrike(missileLockedIndex);
+        if (!executed) return;
+        addEnergy(-cost, skill.toUpperCase());
         updateSkillStates();
         return;
     }
 
     // �� energy
-    addEnergy(-cost, selectedSkill.toUpperCase());
+    addEnergy(-cost, skill.toUpperCase());
 
-    console.log(`�� SKILL ACTIVATED: ${selectedSkill} (cost: ${cost})`);
+    console.log(`�� SKILL ACTIVATED: ${skill} (cost: ${cost})`);
     cancelSkillSelection();
     updateSkillStates();
 }

@@ -26,6 +26,9 @@ let gameVolume = {
     voice: 1.8
 };
 
+window.__englishConquerorDebug = window.__englishConquerorDebug || {};
+window.__englishConquerorDebug.audio = window.__englishConquerorDebug.audio || {};
+
 const VOICE_VOLUME_MAX = 3.0;
 const VOICE_VOLUME_DEFAULT = 1.8;
 const VOICE_VOLUME_SETTING_VERSION = '4';
@@ -760,10 +763,33 @@ function getCurrentBgmTargetVolume() {
     return bgmDuckReasons.size > 0 ? BGM_DUCK_VOLUME : getNormalBgmVolume();
 }
 
+function updateAudioDebugState(reason = 'audio') {
+    window.__englishConquerorDebug = window.__englishConquerorDebug || {};
+    window.__englishConquerorDebug.audio = {
+        reason,
+        bgmDuckReasons: Array.from(bgmDuckReasons),
+        bgmPlayRequested,
+        bgmPlayInFlight,
+        bgmPrepared,
+        currentBgmVolume,
+        nativeBgmActive,
+        nativeBgmStarting,
+        gameAudioBgmActive,
+        gameAudioBgmStarting,
+        androidBgmActive,
+        bgmRetryAttempts,
+        bgmFadeActive: !!bgmFadeInterval,
+        gameVolume: { ...gameVolume }
+    };
+    window.__bgmDuckReasons = Array.from(bgmDuckReasons);
+}
+updateAudioDebugState('init');
+
 window.resetBgmDucks = function(duration = 180) {
     if (bgmDuckReasons.size > 0) {
         bgmDuckReasons.clear();
     }
+    updateAudioDebugState('reset-ducks');
     applyBgmTargetVolume(duration);
     if (getCapacitorPlatform() === 'ios') {
         startGameAudioBgm().catch(() => {});
@@ -772,6 +798,7 @@ window.resetBgmDucks = function(duration = 180) {
 
 function setBgmVolume(volume) {
     currentBgmVolume = Math.max(0, Math.min(1, volume));
+    updateAudioDebugState('set-bgm-volume');
     const bgm = document.getElementById('bgm');
     if (bgm) bgm.volume = currentBgmVolume;
 
@@ -1012,11 +1039,13 @@ function fadeBgm(targetVol, duration = 800) {
 
 function requestBgmDuck(reason = 'default', duration = 250) {
     bgmDuckReasons.add(reason);
+    updateAudioDebugState(`duck:${reason}`);
     applyBgmTargetVolume(duration);
 }
 
 function releaseBgmDuck(reason = 'default', duration = 250) {
     bgmDuckReasons.delete(reason);
+    updateAudioDebugState(`release-duck:${reason}`);
     applyBgmTargetVolume(duration);
 }
 
@@ -1043,6 +1072,8 @@ function playUnderAttackAlert() {
 function toggleSettingsModal() {
     const modal = document.getElementById('settings-modal');
     const surrenderBtn = document.getElementById('settings-surrender-btn');
+    const abandonRevisionBtn = document.getElementById('settings-abandon-revision-btn');
+    const abandonTrainingBtn = document.getElementById('settings-abandon-training-btn');
     const isHidden = modal.style.display === 'none' || getComputedStyle(modal).display === 'none';
 
     if (isHidden) {
@@ -1065,12 +1096,21 @@ function toggleSettingsModal() {
             && currentPhase !== 'DEPLOY'
             && gameUi
             && gameUi.style.display !== 'none';
-        if (surrenderBtn) surrenderBtn.style.display = inBattle ? 'block' : 'none';
+        const inRevisionTest = typeof window.isRevisionDrillActive === 'function' && window.isRevisionDrillActive();
+        const inTraining = typeof window.isTrainingModeActive === 'function' && window.isTrainingModeActive();
+        if (surrenderBtn) surrenderBtn.style.display = inBattle && !inRevisionTest && !inTraining ? 'block' : 'none';
+        if (abandonRevisionBtn) abandonRevisionBtn.style.display = inRevisionTest ? 'block' : 'none';
+        if (abandonTrainingBtn) abandonTrainingBtn.style.display = inTraining ? 'block' : 'none';
+        if (typeof window.battleDiagnostics?.powerSample === 'function') {
+            window.battleDiagnostics.powerSample('settings-open');
+        }
 
         if (typeof playSound === 'function') playSound('open-room-sfx');
     } else {
         modal.style.display = 'none';
         if (surrenderBtn) surrenderBtn.style.display = 'none';
+        if (abandonRevisionBtn) abandonRevisionBtn.style.display = 'none';
+        if (abandonTrainingBtn) abandonTrainingBtn.style.display = 'none';
         if (typeof window.releaseGamePause === 'function') window.releaseGamePause('settings-modal');
         if (typeof playSound === 'function') playSound('delete-sfx');
     }

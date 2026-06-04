@@ -364,12 +364,12 @@
             },
             {
                     "id": "infinitive_gerund_041",
-                    "chinese": "我們設法準時到達。",
+                    "chinese": "我們能夠準時到達。",
                     "en_pre": "We managed",
                     "en_post": "on time.",
                     "answer": "to arrive",
                     "category": "To-Inf",
-                    "hint": "Manage + to V (設法完成)"
+                    "hint": "Manage + to V (能夠完成困難的事)"
             },
             {
                     "id": "infinitive_gerund_042",
@@ -1000,6 +1000,132 @@
                     "answer": "to finish",
                     "category": "To-Inf",
                     "hint": "Try + to V (盡力/設法)"
+            },
+            {
+                    "id": "infinitive_gerund_112",
+                    "chinese": "我記得離開時關了燈。",
+                    "en_pre": "I remember",
+                    "en_post": "off the light when I left.",
+                    "answer": "turning",
+                    "category": "Gerund",
+                    "hint": "Remember + V-ing (記得做過某事)"
+            },
+            {
+                    "id": "infinitive_gerund_113",
+                    "chinese": "離開時請記得關燈。",
+                    "en_pre": "Please remember",
+                    "en_post": "off the light when you leave.",
+                    "answer": "to turn",
+                    "category": "To-Inf",
+                    "hint": "Remember + to V (記得要去做某事)"
+            },
+            {
+                    "id": "infinitive_gerund_114",
+                    "chinese": "她聽到有人叫她名字時停止看畫。",
+                    "en_pre": "She stopped",
+                    "en_post": "at the painting when she heard someone call her name.",
+                    "answer": "looking",
+                    "category": "Gerund",
+                    "hint": "Stop + V-ing (停止正在做的事)"
+            },
+            {
+                    "id": "infinitive_gerund_115",
+                    "chinese": "她在走廊停下來看那幅畫。",
+                    "en_pre": "She stopped",
+                    "en_post": "at the painting in the corridor.",
+                    "answer": "to look",
+                    "category": "To-Inf",
+                    "hint": "Stop + to V (停下來去做另一件事)"
+            },
+            {
+                    "id": "infinitive_gerund_116",
+                    "chinese": "車子發動不了，所以他們試著推它。",
+                    "en_pre": "The car would not start, so they tried",
+                    "en_post": "it.",
+                    "answer": "pushing",
+                    "category": "Gerund",
+                    "hint": "Try + V-ing (試做看看會有甚麼效果)"
+            },
+            {
+                    "id": "infinitive_gerund_117",
+                    "chinese": "她努力把車推到路邊。",
+                    "en_pre": "She tried",
+                    "en_post": "the car to the roadside.",
+                    "answer": "to push",
+                    "category": "To-Inf",
+                    "hint": "Try + to V (努力/設法去做)"
+            },
+            {
+                    "id": "infinitive_gerund_118",
+                    "chinese": "我後悔對他說了那句話。",
+                    "en_pre": "I regret",
+                    "en_post": "that to him.",
+                    "answer": "saying",
+                    "category": "Gerund",
+                    "hint": "Regret + V-ing (後悔已做的事)"
+            },
+            {
+                    "id": "infinitive_gerund_119",
+                    "chinese": "我們很遺憾通知你，我們不能聘用你。",
+                    "en_pre": "We regret",
+                    "en_post": "you that we cannot offer you the job.",
+                    "answer": "to inform",
+                    "category": "To-Inf",
+                    "hint": "Regret + to V (遺憾要通知/告知)"
+            },
+            {
+                    "id": "infinitive_gerund_120",
+                    "chinese": "陳太整晚繼續談論她兒子。",
+                    "en_pre": "Mrs Chan went on",
+                    "en_post": "about how wonderful her son was all evening.",
+                    "answer": "talking",
+                    "category": "Gerund",
+                    "hint": "Go on + V-ing (繼續同一件事)"
+            },
+            {
+                    "id": "infinitive_gerund_121",
+                    "chinese": "談完兒子後，陳太接著談她女兒。",
+                    "en_pre": "Mrs Chan went on",
+                    "en_post": "about her daughter after telling us about her son.",
+                    "answer": "to talk",
+                    "category": "To-Inf",
+                    "hint": "Go on + to V (接著做另一件事)"
+            },
+            {
+                    "id": "infinitive_gerund_122",
+                    "chinese": "陳太不允許在屋內吸煙。",
+                    "en_pre": "Mrs Chan does not allow",
+                    "en_post": "in the house.",
+                    "answer": "smoking",
+                    "category": "Gerund",
+                    "hint": "Allow + V-ing (規則/一般情況)"
+            },
+            {
+                    "id": "infinitive_gerund_123",
+                    "chinese": "陳太不允許她丈夫在屋內吸煙。",
+                    "en_pre": "Mrs Chan does not allow her husband",
+                    "en_post": "in the house.",
+                    "answer": "to smoke",
+                    "category": "Obj+To-Inf",
+                    "hint": "Allow + Object + to V"
+            },
+            {
+                    "id": "infinitive_gerund_124",
+                    "chinese": "我們不准在這裡泊車。",
+                    "en_pre": "We do not permit",
+                    "en_post": "here.",
+                    "answer": "parking",
+                    "category": "Gerund",
+                    "hint": "Permit + V-ing (規則/一般情況)"
+            },
+            {
+                    "id": "infinitive_gerund_125",
+                    "chinese": "我們不准學生在這裡泊車。",
+                    "en_pre": "We do not permit students",
+                    "en_post": "here.",
+                    "answer": "to park",
+                    "category": "Obj+To-Inf",
+                    "hint": "Permit + Object + to V"
             }
     ];
 
@@ -1008,18 +1134,79 @@
                     "to rain",
                     "raining"
             ],
-            "infinitive_gerund_037": [
+            "infinitive_gerund_038": [
                     "to fix",
                     "fix"
             ],
-            "infinitive_gerund_060": [
+            "infinitive_gerund_058": [
                     "to see",
                     "seeing"
             ]
     };
 
+    const BASE_VERB_OVERRIDES = {
+        being: 'be',
+        breaking: 'break',
+        buying: 'buy',
+        doing: 'do',
+        drawing: 'draw',
+        eating: 'eat',
+        flying: 'fly',
+        going: 'go',
+        hearing: 'hear',
+        hiking: 'hike',
+        holding: 'hold',
+        learning: 'learn',
+        living: 'live',
+        losing: 'lose',
+        moving: 'move',
+        opening: 'open',
+        parking: 'park',
+        playing: 'play',
+        pressing: 'press',
+        pushing: 'push',
+        reading: 'read',
+        saying: 'say',
+        seeing: 'see',
+        sending: 'send',
+        smiling: 'smile',
+        smoking: 'smoke',
+        solving: 'solve',
+        stealing: 'steal',
+        swimming: 'swim',
+        taking: 'take',
+        talking: 'talk',
+        turning: 'turn',
+        trying: 'try',
+        waiting: 'wait',
+        watching: 'watch',
+        working: 'work'
+    };
+
+    function inferInfinitiveGerundBaseVerb(answer) {
+        const cleanAnswer = String(answer || '')
+            .trim()
+            .toLowerCase()
+            .replace(/^not\s+to\s+/, '')
+            .replace(/^to\s+/, '');
+        const verb = cleanAnswer.split(/\s+/).filter(Boolean)[0] || '';
+        if (!verb) return '';
+        if (BASE_VERB_OVERRIDES[verb]) return BASE_VERB_OVERRIDES[verb];
+        if (verb.endsWith('ying')) return `${verb.slice(0, -4)}y`;
+        if (verb.endsWith('ing')) {
+            const stem = verb.slice(0, -3);
+            if (/([b-df-hj-np-tv-z])\1$/i.test(stem) && !/(ss|ll|zz)$/i.test(stem)) {
+                return stem.slice(0, -1);
+            }
+            return stem;
+        }
+        return verb;
+    }
+
     function buildInfinitiveGerundSentence(item) {
-        return `${item.en_pre} ______ ${item.en_post}`
+        const promptVerb = item.baseVerb || inferInfinitiveGerundBaseVerb(item.answer);
+        const blankPrompt = promptVerb ? `______ (${promptVerb})` : '______';
+        return `${item.en_pre} ${blankPrompt} ${item.en_post}`
             .replace(/\s+([?.!,;:])/g, '$1')
             .replace(/\s+/g, ' ')
             .trim();

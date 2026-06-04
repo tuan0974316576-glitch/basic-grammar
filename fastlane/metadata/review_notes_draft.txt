@@ -1,0 +1,5 @@
+This app is intended for unlisted App Store distribution. Its audience is limited to students, parents, teachers, school partners, and English-learning users who receive the direct app link from us.
+
+The app can be reviewed without a paid account. Reviewers may use guest play from the start screen, or sign in with Apple/Google if preferred.
+
+This is an educational English learning game. It does not contain gambling, real-money rewards, third-party advertising, user-generated public content, or in-app purchases.

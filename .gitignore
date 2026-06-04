@@ -26,4 +26,7 @@ android/app/keystore/
 android/keystore.properties
 GoogleService-Info*.plist
 google-services*.json
+fastlane/play-store-credentials.json
 functions/.env.*
+.bundle/
+vendor/bundle/

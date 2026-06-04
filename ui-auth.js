@@ -396,6 +396,12 @@ function getCapacitorPlugin(name) {
 }
 
 function beginAuthAttempt() {
+    console.log('[Auth Trace] beginAuthAttempt', {
+        platform: window.Capacitor?.getPlatform?.() || 'web',
+        native: !!window.Capacitor?.isNativePlatform?.(),
+        hasFirebaseModules: !!window.firebaseModules,
+        hasAuth: !!window.auth
+    });
     if (typeof window.warmGameAudioForInteraction === 'function') {
         window.warmGameAudioForInteraction();
     }
@@ -438,10 +444,22 @@ function showAuthFailure(providerName, error) {
 
 async function signInOrLinkWithCredential(auth, credential) {
     const { signInWithCredential, linkWithCredential } = window.firebaseModules;
+    console.log('[Auth Trace] signInOrLinkWithCredential start', {
+        hasCurrentUser: !!auth.currentUser,
+        currentUserAnonymous: !!auth.currentUser?.isAnonymous,
+        providerId: credential?.providerId || null,
+        signInWithCredentialType: typeof signInWithCredential,
+        linkWithCredentialType: typeof linkWithCredential
+    });
 
     if (auth.currentUser && auth.currentUser.isAnonymous) {
         try {
-            return await linkWithCredential(auth.currentUser, credential);
+            const result = await linkWithCredential(auth.currentUser, credential);
+            console.log('[Auth Trace] linkWithCredential resolved', {
+                uid: result?.user?.uid || null,
+                anonymous: !!result?.user?.isAnonymous
+            });
+            return result;
         } catch (error) {
             if (error && (
                 error.code === 'auth/credential-already-in-use'
@@ -449,13 +467,24 @@ async function signInOrLinkWithCredential(auth, credential) {
                 || error.code === 'auth/provider-already-linked'
             )) {
                 console.log('[Auth] Provider already has an account, signing into it instead of linking guest.');
-                return signInWithCredential(auth, credential);
+                const result = await signInWithCredential(auth, credential);
+                console.log('[Auth Trace] signInWithCredential resolved after link conflict', {
+                    uid: result?.user?.uid || null,
+                    anonymous: !!result?.user?.isAnonymous
+                });
+                return result;
             }
+            console.error('[Auth Trace] linkWithCredential failed', error);
             throw error;
         }
     }
 
-    return signInWithCredential(auth, credential);
+    const result = await signInWithCredential(auth, credential);
+    console.log('[Auth Trace] signInWithCredential resolved', {
+        uid: result?.user?.uid || null,
+        anonymous: !!result?.user?.isAnonymous
+    });
+    return result;
 }
 
 function randomNonce(length = 32) {
@@ -473,6 +502,12 @@ async function sha256Hex(input) {
 
 window.playAsGuest = function() {
     const { getAuth, signInAnonymously } = window.firebaseModules;
+    const auth = getAuth();
+    console.log('[Guest Login] Starting anonymous sign-in', {
+        hasCurrentUser: !!auth.currentUser,
+        currentUserAnonymous: !!auth.currentUser?.isAnonymous,
+        signInAnonymouslyType: typeof signInAnonymously
+    });
     if (typeof window.warmGameAudioForInteraction === 'function') {
         window.warmGameAudioForInteraction();
     }
@@ -482,7 +517,13 @@ window.playAsGuest = function() {
     startAuthOverlayTimeout();
     playBgm();
 
-    signInAnonymously(getAuth()).catch(error => {
+    signInAnonymously(auth).then(result => {
+        console.log('[Guest Login] Anonymous sign-in resolved', {
+            uid: result?.user?.uid || null,
+            anonymous: !!result?.user?.isAnonymous
+        });
+    }).catch(error => {
+        console.error('[Guest Login] Anonymous sign-in failed', error);
         alert(error.message);
         cancelAuthOverlay();
     });
@@ -491,6 +532,11 @@ window.playAsGuest = function() {
 window.loginWithGoogle = async function() {
     const { getAuth, GoogleAuthProvider, signInWithPopup, linkWithPopup } = window.firebaseModules;
     const auth = getAuth();
+    console.log('[Google Login] Start', {
+        native: isNativeAuthPlatform(),
+        hasCurrentUser: !!auth.currentUser,
+        currentUserAnonymous: !!auth.currentUser?.isAnonymous
+    });
 
     beginAuthAttempt();
 
@@ -501,9 +547,14 @@ window.loginWithGoogle = async function() {
                 throw new Error('Native GoogleAuth plugin is not available in this build.');
             }
 
+            console.log('[Google Login] Native sign-in starting.');
             const googleUser = await GoogleAuth.signIn();
             const idToken = googleUser?.authentication?.idToken || googleUser?.idToken;
             const accessToken = googleUser?.authentication?.accessToken || googleUser?.accessToken;
+            console.log('[Google Login] Native sign-in returned tokens:', {
+                hasIdToken: !!idToken,
+                hasAccessToken: !!accessToken
+            });
 
             if (!idToken && !accessToken) {
                 throw new Error('Google did not return an auth token. Check the native Google OAuth client ID setup.');
@@ -543,6 +594,12 @@ window.loginWithApple = async function() {
     }
 
     beginAuthAttempt();
+    console.log('[Apple Login] Start', {
+        native: isNativeAuthPlatform(),
+        platform: typeof getCapacitorPlatform === 'function' ? getCapacitorPlatform() : 'unknown',
+        hasCurrentUser: !!auth.currentUser,
+        currentUserAnonymous: !!auth.currentUser?.isAnonymous
+    });
 
     if (typeof getCapacitorPlatform === 'function' && getCapacitorPlatform() === 'ios') {
         try {
@@ -553,6 +610,7 @@ window.loginWithApple = async function() {
 
             const rawNonce = randomNonce();
             const hashedNonce = await sha256Hex(rawNonce);
+            console.log('[Apple Login] Native sign-in starting.');
             const result = await SignInWithApple.authorize({
                 clientId: 'com.enguistics.vocabconqueror',
                 redirectURI: 'https://battleship-game-c0909.firebaseapp.com/__/auth/handler',
@@ -561,6 +619,9 @@ window.loginWithApple = async function() {
                 nonce: hashedNonce
             });
             const idToken = result?.response?.identityToken;
+            console.log('[Apple Login] Native sign-in returned token:', {
+                hasIdToken: !!idToken
+            });
 
             if (!idToken) {
                 throw new Error('Apple did not return an identity token. Check Sign in with Apple capability setup.');
@@ -847,6 +908,15 @@ async function updateHUD(name) {
     const hudName = document.getElementById('hud-player-name');
     if (hudName) hudName.innerText = name;
 
+    if (typeof window.renderDailyStreakHud === 'function') {
+        window.renderDailyStreakHud();
+    }
+    if (typeof window.loadDailyStreakFromFirebase === 'function') {
+        window.loadDailyStreakFromFirebase().catch(error => {
+            console.warn('[HUD] Daily streak refresh failed:', error);
+        });
+    }
+
     const xp = userTotalXP || window.userTotalXP || 0;
     if (typeof getRankForXP === 'function') {
         const rank = getRankForXP(xp);
@@ -1131,6 +1201,12 @@ function showMainMenu() {
     initCarouselControl();
     if (typeof window.requestLandscapeForTablet === 'function') {
         window.requestLandscapeForTablet();
+    }
+    if (typeof window.maybeShowEntryTest === 'function' && window.maybeShowEntryTest()) {
+        return;
+    }
+    if (typeof window.maybeShowDailyMissionChecklist === 'function') {
+        window.maybeShowDailyMissionChecklist();
     }
 }
 

@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>形容詞搭配詞大挑戰</title>
+    <style>
+        /* --- CSS 樣式 --- */
+        :root {
+            --base-bg: #F1F3F3;       
+            --primary-color: #0a9396;   
+            --primary-dark: #005f73;    
+            --secondary-color: #40916c; 
+            --secondary-dark: #2d6a4f;  
+            --light-bg-1: #e6eaea;      
+            --light-bg-2: #e6f1f0;      
+            --text-color: #212529;      
+            --border-color: #ced4da;     
+            --danger-color: #dc3545;     
+            --danger-dark: #a42631;    
+            --correct-color: #2d6a4f;
+            --wrong-color: #dc3545;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; 
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--base-bg); 
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #game-container {
+            width: 100%;
+            max-width: 850px;
+            background-color: #ffffff;
+            border-radius: 12px; 
+            border: 2px solid var(--border-color);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            padding: 24px 32px;
+            box-sizing: border-box;
+            position: relative;
+            height: 85vh; 
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden; 
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary-dark); 
+            margin-top: 0;
+            margin-bottom: 15px;
+            flex-shrink: 0;
+        }
+
+        /* --- 遊戲中樣式 --- */
+        #game-area {
+            display: flex; 
+            width: 100%;
+            height: 100%;
+            flex-direction: column;
+        }
+
+        #progress-tracker {
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+            margin-bottom: 15px; 
+            font-size: 16px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .score-display {
+            color: #005f73;
+            flex-basis: 33%; 
+            text-align: left;
+            font-weight: 800;
+        }
+
+        .timer-container {
+            flex-basis: 33%; 
+            text-align: center;
+            position: relative; 
+            height: 30px; 
+            border-radius: 4px;
+            background-color: var(--base-bg); 
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border-color);
+        }
+
+        #timer-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%; 
+            height: 100%;
+            background-color: var(--primary-color); 
+            transition: width 0.1s linear; 
+            z-index: 1;
+        }
+
+        .timer-display {
+            font-size: 18px; 
+            font-weight: bold;
+            font-family: 'Consolas', 'Courier New', monospace;
+            color: white; 
+            position: relative;
+            z-index: 2; 
+            text-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+        }
+        
+        .timer-warning #timer-bar { background-color: var(--danger-color); }
+        .timer-warning .timer-display { color: #ffffff; animation: pulse 0.5s infinite alternate; }
+
+        @keyframes pulse {
+            from { opacity: 1; }
+            to { opacity: 0.7; }
+        }
+
+        .question-number {
+            color: var(--primary-dark);
+            flex-basis: 33%; 
+            text-align: right;
+        }
+
+        /* 題目區域 */
+        #question-display {
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--text-color);
+            margin-bottom: 15px;
+            padding: 20px;
+            background-color: var(--light-bg-1); 
+            border-radius: 8px;
+            border-left: 6px solid var(--primary-color);
+            text-align: center; 
+            line-height: 1.6;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .chinese-text {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        
+        .english-text {
+            font-size: 22px;
+            font-weight: bold;
+            color: #222;
+        }
+
+        /* 選項區域：可捲動 */
+        #options-scroll-area {
+            flex-grow: 1;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            padding-right: 5px;
+        }
+
+        #options-container {
+            display: flex; 
+            flex-direction: column; 
+            gap: 10px;
+        }
+
+        .mc-btn {
+            background-color: white;
+            color: var(--primary-dark);
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            padding: 15px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            width: 100%; 
+        }
+
+        .mc-btn:hover:not(:disabled) {
+            background-color: var(--light-bg-2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .mc-btn.correct {
+            background-color: var(--secondary-color);
+            color: white;
+            border-color: var(--secondary-dark);
+        }
+        
+        .mc-btn.wrong {
+            background-color: var(--danger-color);
+            color: white;
+            border-color: var(--danger-dark);
+        }
+
+        #feedback {
+            min-height: 60px;
+            text-align: center;
+            flex-shrink: 0;
+            margin-bottom: 10px;
+        }
+        .feedback-box {
+            padding: 10px;
+            border-radius: 6px;
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            animation: fadeIn 0.3s ease;
+        }
+        .feedback-status {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .feedback-correct .feedback-status { color: var(--secondary-dark); }
+        .feedback-incorrect .feedback-status { color: var(--danger-color); }
+        .feedback-explanation {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.4;
+            white-space: pre-wrap;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 遊戲控制按鈕區 */
+        #controls {
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+            height: 60px; 
+            flex-shrink: 0;
+            margin-top: auto;
+        }
+
+        #game-menu-btn {
+            padding: 10px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--primary-color);
+            cursor: pointer;
+            border-radius: 8px; 
+            border: 2px solid var(--primary-color);
+            background-color: white;
+            transition: all 0.2s;
+        }
+        #game-menu-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        #next-btn {
+            padding: 10px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            border-radius: 8px; 
+            border: none;
+            background-color: var(--primary-color); 
+            display: none; 
+            margin-left: auto;
+        }
+        #next-btn:hover { background-color: var(--primary-dark); }
+
+        /* --- 結束畫面 (Layout 更新) --- */
+        #end-screen-container {
+            height: 100%; 
+            display: none;
+        }
+
+        .end-game-container {
+            text-align: center;
+            padding: 10px 5px; 
+            width: 100%;
+            height: 100%; 
+            box-sizing: border-box;
+            display: flex;        
+            flex-direction: column; 
+            align-items: center;
+        }
+
+        .final-score {
+            font-size: 32px; 
+            font-weight: 900;
+            color: var(--secondary-dark);
+            margin: 10px 0; 
+            border: 3px solid var(--secondary-color);
+            padding: 15px;
+            border-radius: 8px;
+            background-color: var(--light-bg-2);
+            flex-shrink: 0; 
+        }
+
+        /* 錯誤列表 */
+        .error-analysis {
+            margin-top: 10px;
+            text-align: left;
+            border-top: 2px solid var(--border-color);
+            padding-top: 10px;
+            flex-grow: 1;      
+            overflow-y: auto;  
+            min-height: 0;     
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 10px; 
+        }
+
+        .error-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-left: 4px solid var(--danger-color);
+            background-color: #fff5f5;
+            border-radius: 4px;
+            font-size: 14px; 
+        }
+        
+        /* ====== 結算頁按鈕群組 (重點修正區) ====== 
+           1. 增加 padding: 上10 右15 下30 左15 -> 確保四周有空隙，不會貼邊。
+           2. 增加 box-sizing: border-box -> 確保 padding 不會撐爆寬度。
+        */
+        .end-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: auto; 
+            flex-shrink: 0;   
+            
+            width: 100%;
+            background-color: #fff; 
+            
+            /* [關鍵修正] */
+            box-sizing: border-box; 
+            padding: 10px 15px 30px 15px; 
+        }
+        
+        .end-btn {
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            min-width: 120px;
+        }
+
+        #end-menu-btn { background-color: white; color: var(--primary-color); border-color: var(--primary-color); }
+        #end-menu-btn:hover { background-color: var(--primary-color); color: white; }
+
+        #end-retry-btn { background-color: #e9c46a; color: #333; border-color: #d4a373; }
+        #end-retry-btn:hover { background-color: #e76f51; color: white; border-color: #e76f51; }
+
+        #end-reselect-btn { background-color: var(--secondary-dark); color: white; border-color: var(--secondary-dark); }
+        #end-reselect-btn:hover { background-color: var(--secondary-color); }
+
+        /* --- 手機版優化 --- */
+        @media (max-width: 600px) {
+            body { padding: 0; background-color: #fff; }
+            
+            #game-container {
+                height: 98dvh; 
+                padding: 15px 10px; 
+                border: none;
+                border-radius: 0;
+            }
+
+            .final-score {
+                font-size: 24px; 
+                padding: 10px;
+            }
+
+            /* 手機版按鈕容器特別設定 */
+            .end-controls {
+                flex-wrap: nowrap !important; /* 強制不換行 */
+                gap: 5px !important;    
+                /* 手機版底部留更多空間 (40px) 避開 Home Bar，左右留 10px */
+                padding: 10px 10px 40px 10px !important; 
+            }
+            
+            .end-btn {
+                min-width: auto !important;   
+                flex: 1;                      
+                padding: 12px 0 !important;   
+                font-size: 13px !important;   
+                white-space: nowrap;          
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="game-container">
+        <h1>形容詞搭配詞大挑戰</h1>
+        
+        <div id="game-area">
+            <div id="progress-tracker">
+                <span class="score-display">0 / 0 (0%)</span>
+                <span class="timer-container">
+                    <div id="timer-bar"></div>
+                    <span class="timer-display">20.0</span>
+                </span>
+                <span class="question-number">Q: 1 / 20</span>
+            </div>
+
+            <div id="question-display"></div> 
+            
+            <div id="options-scroll-area">
+                <div id="options-container"></div>
+            </div>
+
+            <div id="feedback"></div>
+            
+            <div id="controls">
+                <button id="game-menu-btn" onclick="returnToMenu()">返回遊戲大廳</button>
+                <button id="next-btn">下一題</button>
+            </div>
+        </div>
+        
+        <div id="end-screen-container"></div>
+    </div>
+
+    <script>
+        // ------------------------------------------------------------------
+        // 音效
+        // ------------------------------------------------------------------
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        function playTone(freq, type, duration) {
+            if (!audioContext) return;
+            const osc = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+            osc.connect(gain);
+            gain.connect(audioContext.destination);
+            osc.type = type;
+            osc.frequency.value = freq;
+            gain.gain.setValueAtTime(0.1, audioContext.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + duration);
+            osc.start();
+            osc.stop(audioContext.currentTime + duration);
+        }
+        const sfx = {
+            click: () => playTone(600, 'triangle', 0.1),
+            correct: () => { playTone(660, 'square', 0.1); setTimeout(() => playTone(880, 'square', 0.2), 100); },
+            wrong: () => playTone(200, 'sawtooth', 0.3),
+            countdown: () => playTone(880, 'sine', 0.05)
+        };
+
+        // ------------------------------------------------------------------
+        // 題庫
+        // ------------------------------------------------------------------
+        const fullQuestionBank = [
+            { question: "Danny has been absent ______ school for a week.", options: ["from", "of", "to", "in", "with"], correctIndex: 0, explanation: "Absent from: 缺席於...", translation: "Danny 已經缺課一個星期了。" },
+            { question: "The audience was so absorbed ______ my speech.", options: ["in", "at", "with", "on", "for"], correctIndex: 0, explanation: "Absorbed in: 全神貫注於...", translation: "觀眾全神貫注於我的演講。" },
+            { question: "I am accustomed ______ staying up until midnight.", options: ["to", "in", "with", "of", "for"], correctIndex: 0, explanation: "Accustomed to: 習慣於...", translation: "我習慣熬夜到午夜。" },
+            { question: "Teenagers are addicted ______ online games these days.", options: ["to", "on", "with", "in", "at"], correctIndex: 0, explanation: "Addicted to: 沈迷於...", translation: "現今的青少年沈迷於網絡遊戲。" },
+            { question: "The post office is located adjacent ______ the park.", options: ["to", "with", "by", "near", "on"], correctIndex: 0, explanation: "Adjacent to: 鄰接/靠近...", translation: "郵局位於公園旁邊。" },
+            { question: "Most children are afraid ______ ghosts.", options: ["of", "to", "with", "at", "about"], correctIndex: 0, explanation: "Afraid of: 害怕...", translation: "大多數孩子都怕鬼。" },
+            { question: "Why are you angry ______ me? It's not my fault.", options: ["at", "to", "on", "of", "by"], correctIndex: 0, explanation: "Angry at/with sb: 對某人生氣。", translation: "這不是我的錯，你為什麼對我生氣？" },
+            { question: "This book is appropriate ______ all English learners.", options: ["for", "to", "with", "at", "on"], correctIndex: 0, explanation: "Appropriate for: 適合於...", translation: "這本書適合所有英語學習者。" },
+            { question: "I am ashamed ______ your irresponsible act.", options: ["of", "with", "at", "for", "to"], correctIndex: 0, explanation: "Ashamed of: 對...感到羞恥。", translation: "我為你不負責任的行為感到羞恥。" },
+            { question: "The popularity of a film is associated ______ its publicity.", options: ["with", "to", "for", "in", "on"], correctIndex: 0, explanation: "Associated with: 與...有關聯。", translation: "電影的受歡迎程度與其宣傳有關。" },
+            { question: "People are now aware ______ the importance of hygiene.", options: ["of", "for", "about", "with", "to"], correctIndex: 0, explanation: "Aware of: 意識到/知道...", translation: "人們現在意識到衛生的重要性。" },
+            { question: "My maid is bad ______ cooking.", options: ["at", "in", "with", "of", "on"], correctIndex: 0, explanation: "Bad at: 不擅長於...", translation: "我的傭人不擅長烹飪。" },
+            { question: "Americans are blind ______ the importance of a healthy diet.", options: ["to", "of", "at", "with", "for"], correctIndex: 0, explanation: "Blind to: 對...視而不見/不重視。", translation: "美國人忽視均衡健康飲食的重要性。" },
+            { question: "I am capable ______ speaking five languages.", options: ["of", "to", "in", "at", "for"], correctIndex: 0, explanation: "Capable of: 有能力做...", translation: "我有能力說五種語言。" },
+            { question: "Please be careful ______ the hot water.", options: ["with", "of", "at", "to", "for"], correctIndex: 0, explanation: "Careful with: 小心處理...", translation: "請小心熱水。" },
+            { question: "Pregnant women should be cautious ______ food they eat.", options: ["about", "with", "of", "for", "to"], correctIndex: 0, explanation: "Cautious about: 對...謹慎。", translation: "孕婦應該對她們吃的食物更加謹慎。" },
+            { question: "I am certain ______ my ability in teaching English.", options: ["about", "with", "to", "in", "for"], correctIndex: 0, explanation: "Certain about/of: 對...確定。", translation: "我對我教好英語的能力很有信心。" },
+            { question: "The man was charged ______ armed robbery.", options: ["with", "of", "for", "in", "at"], correctIndex: 0, explanation: "Charged with: 被控告...", translation: "該男子被控持械搶劫。" },
+            { question: "May is clever ______ making people laugh.", options: ["at", "in", "with", "of", "to"], correctIndex: 0, explanation: "Clever at: 擅長於...", translation: "May 很擅長讓人發笑。" },
+            { question: "The construction work is close ______ completion.", options: ["to", "at", "with", "of", "in"], correctIndex: 0, explanation: "Close to: 接近...", translation: "建築工程已接近完工。" },
+            { question: "I was committed ______ providing an English training course.", options: ["to", "in", "with", "for", "at"], correctIndex: 0, explanation: "Committed to: 致力於/承諾...", translation: "我致力於為高管提供英語培訓課程。" },
+            { question: "The new software may not be compatible ______ your old computer.", options: ["with", "to", "of", "for", "at"], correctIndex: 0, explanation: "Compatible with: 與...相容。", translation: "新軟件可能與您的舊電腦不相容。" },
+            { question: "Success is composed ______ effort, diligence and luck.", options: ["of", "by", "with", "in", "from"], correctIndex: 0, explanation: "Composed of: 由...組成。", translation: "成功由持續的努力、勤奮和運氣組成。" },
+            { question: "The public are very concerned ______ the tax policy.", options: ["about", "with", "to", "of", "in"], correctIndex: 0, explanation: "Concerned about: 關心/掛慮...", translation: "公眾非常關注稅收政策。" },
+            { question: "Tom is highly confident ______ his grades.", options: ["about", "with", "to", "for", "in"], correctIndex: 0, explanation: "Confident about/of: 對...有信心。", translation: "Tom 對他的成績非常有信心。" },
+            { question: "A politician was suddenly confronted ______ a group of protesters.", options: ["with", "to", "at", "by", "in"], correctIndex: 0, explanation: "Confronted with: 面臨/面對...", translation: "一位政治家突然面對一群抗議者。" },
+            { question: "All the computers are connected ______ a laser printer.", options: ["to", "with", "in", "at", "by"], correctIndex: 0, explanation: "Connected to: 連接到...", translation: "這房間裡的所有電腦都連接到一部雷射打印機。" },
+            { question: "The high crime rate is closely connected ______ high unemployment.", options: ["with", "to", "in", "at", "by"], correctIndex: 0, explanation: "Connected with: 與...有關連。", translation: "高犯罪率與高失業率密切相關。" },
+            { question: "The world is now conscious ______ the threat of terrorism.", options: ["of", "with", "about", "to", "for"], correctIndex: 0, explanation: "Conscious of: 意識到...", translation: "世界現在意識到恐怖主義的威脅。" },
+            { question: "The economic growth is consistent ______ the government's prediction.", options: ["with", "to", "in", "of", "at"], correctIndex: 0, explanation: "Consistent with: 與...一致。", translation: "經濟增長與政府的預測一致。" },
+            { question: "She seems content ______ her salary.", options: ["with", "of", "about", "to", "for"], correctIndex: 0, explanation: "Content with: 對...滿意。", translation: "她似乎對她的薪水很滿意。" },
+            { question: "The food court is crowded ______ diners.", options: ["with", "of", "by", "in", "at"], correctIndex: 0, explanation: "Crowded with: 擠滿了...", translation: "美食廣場擠滿了食客。" },
+            { question: "The government is deaf ______ the voices from the public.", options: ["to", "of", "with", "at", "in"], correctIndex: 0, explanation: "Deaf to: 對...充耳不聞。", translation: "政府對公眾的聲音充耳不聞。" },
+            { question: "Ivan is completely dedicated ______ his career.", options: ["to", "in", "with", "for", "at"], correctIndex: 0, explanation: "Dedicated to: 獻身於/專注於...", translation: "Ivan 完全致力於他的事業。" },
+            { question: "My mother-in-law has been dependent ______ sleeping pills.", options: ["on", "in", "to", "with", "of"], correctIndex: 0, explanation: "Dependent on: 依賴...", translation: "我的岳母多年來一直依賴安眠藥。" },
+            { question: "Mandy is so devoted ______ her pets.", options: ["to", "with", "in", "for", "at"], correctIndex: 0, explanation: "Devoted to: 獻身於/深愛...", translation: "Mandy 非常愛她的寵物。" },
+            { question: "Tom's personality is totally different ______ his brother's.", options: ["from", "to", "with", "than", "of"], correctIndex: 0, explanation: "Different from: 與...不同。", translation: "Tom 的性格與他哥哥完全不同。" },
+            { question: "My parents are eager ______ a granddaughter.", options: ["for", "to", "with", "of", "about"], correctIndex: 0, explanation: "Eager for: 渴望...", translation: "我的父母渴望有一個孫女。" },
+            { question: "Are you sure you are eligible ______ this job?", options: ["for", "to", "in", "with", "at"], correctIndex: 0, explanation: "Eligible for: 有資格...", translation: "你確定你有資格做這份工作嗎？" },
+            { question: "David wasn't very enthusiastic ______ the Olympic Games.", options: ["about", "with", "for", "to", "of"], correctIndex: 0, explanation: "Enthusiastic about: 對...熱衷。", translation: "David 對奧運會不是很熱衷。" },
+            { question: "Joe is quite envious ______ Patrick's new apartment.", options: ["of", "to", "with", "for", "about"], correctIndex: 0, explanation: "Envious of: 羨慕/嫉妒...", translation: "Joe 很羨慕 Patrick 的新公寓。" },
+            { question: "A high diploma is roughly equivalent ______ an associate degree.", options: ["to", "of", "with", "for", "in"], correctIndex: 0, explanation: "Equivalent to: 等同於...", translation: "高級文憑大致相當於副學士學位。" },
+            { question: "You are exposed ______ poisonous gas in the laboratory.", options: ["to", "with", "in", "of", "at"], correctIndex: 0, explanation: "Exposed to: 暴露於...", translation: "你在實驗室裡暴露於有毒氣體中。" },
+            { question: "My father has been faithful ______ my mother.", options: ["to", "with", "for", "of", "at"], correctIndex: 0, explanation: "Faithful to: 對...忠誠。", translation: "我父親婚後一直對我母親忠誠。" },
+            { question: "Jacky is familiar ______ the building.", options: ["with", "to", "of", "about", "in"], correctIndex: 0, explanation: "Familiar with: 對...熟悉。", translation: "Jacky 對他工作多年的大樓很熟悉。" },
+            { question: "J.K. Rowling is famous ______ her book 'Harry Potter'.", options: ["for", "of", "to", "with", "in"], correctIndex: 0, explanation: "Famous for: 以...聞名。", translation: "J.K. Rowling 因她的書《哈利波特》而聞名。" },
+            { question: "He is very fond ______ reading comic books.", options: ["of", "in", "with", "to", "about"], correctIndex: 0, explanation: "Fond of: 喜愛...", translation: "他非常喜歡看漫畫書。" },
+            { question: "Nobody can be free ______ worries.", options: ["from", "of", "with", "to", "about"], correctIndex: 0, explanation: "Free from: 免於/不受...", translation: "沒有人可以無憂無慮。" },
+            { question: "Macau citizens are friendly ______ tourists.", options: ["to", "with", "for", "at", "about"], correctIndex: 0, explanation: "Friendly to: 對...友善。", translation: "澳門市民對遊客很友善。" },
+            { question: "The shelves are full ______ books.", options: ["of", "with", "in", "by", "to"], correctIndex: 0, explanation: "Full of: 充滿...", translation: "架子上放滿了書。" },
+            { question: "David is furious ______ his son's misbehaviour.", options: ["at", "to", "with", "of", "on"], correctIndex: 0, explanation: "Furious at: 對...狂怒。", translation: "David 對他兒子的不當行為感到憤怒。" },
+            { question: "My mother is good ______ oil painting.", options: ["at", "in", "with", "of", "on"], correctIndex: 0, explanation: "Good at: 擅長於...", translation: "我母親擅長油畫。" },
+            { question: "Milk is good ______ children.", options: ["for", "to", "with", "at", "of"], correctIndex: 0, explanation: "Good for: 對...有益。", translation: "牛奶對孩子有益。" },
+            { question: "I am grateful ______ my readers for their support.", options: ["to", "for", "with", "at", "of"], correctIndex: 0, explanation: "Grateful to: 對...感激。", translation: "我感謝讀者們的長期支持。" },
+            { question: "The person was found guilty ______ having sex with a minor.", options: ["of", "with", "for", "in", "to"], correctIndex: 0, explanation: "Guilty of: 犯了...罪。", translation: "該人被判與未成年人發生性行為有罪。" },
+            { question: "I am so happy ______ my baby.", options: ["about", "to", "of", "for", "in"], correctIndex: 0, explanation: "Happy about/with: 對...感到快樂/滿意。", translation: "我對我的寶寶感到非常快樂。" },
+            { question: "Many students are ignorant ______ political issues.", options: ["of", "to", "with", "about", "for"], correctIndex: 0, explanation: "Ignorant of: 對...無知。", translation: "許多年輕學生對政治議題一無所知。" },
+            { question: "My uncle is a little bit impatient ______ children.", options: ["with", "to", "of", "at", "about"], correctIndex: 0, explanation: "Impatient with: 對...不耐煩。", translation: "我的叔叔對孩子有點不耐煩。" },
+            { question: "Most teenagers are indifferent ______ politics.", options: ["to", "with", "of", "about", "for"], correctIndex: 0, explanation: "Indifferent to: 對...冷漠/不關心。", translation: "大多數青少年對政治漠不關心。" },
+            { question: "Products from China are expected to be inferior ______ those from Japan.", options: ["to", "than", "with", "of", "from"], correctIndex: 0, explanation: "Inferior to: 比...差/次級。", translation: "預計中國產品不如日本產品。" },
+            { question: "Mary is innocent ______ bribery.", options: ["of", "to", "with", "for", "in"], correctIndex: 0, explanation: "Innocent of: 無...罪/無辜。", translation: "Mary 沒有受賄。" },
+            { question: "Citizens are more interested ______ politics now.", options: ["in", "on", "at", "with", "to"], correctIndex: 0, explanation: "Interested in: 對...感興趣。", translation: "現在市民對政治更感興趣。" },
+            { question: "The government was intolerant ______ the terrorist attack.", options: ["of", "to", "with", "at", "about"], correctIndex: 0, explanation: "Intolerant of: 不能容忍...", translation: "政府不能容忍恐怖襲擊。" },
+            { question: "One's appearance is irrelevant ______ one's ability.", options: ["to", "with", "of", "for", "in"], correctIndex: 0, explanation: "Irrelevant to: 與...無關。", translation: "一個人的外表與能力無關。" },
+            { question: "Mandy is so jealous ______ her sister's boyfriend.", options: ["of", "to", "with", "at", "about"], correctIndex: 0, explanation: "Jealous of: 嫉妒...", translation: "Mandy 非常嫉妒她姐姐的男朋友。" },
+            { question: "Janet is very keen ______ helping the elderly.", options: ["on", "in", "with", "at", "to"], correctIndex: 0, explanation: "Keen on: 熱衷於...", translation: "Janet 非常熱衷於幫助老人。" },
+            { question: "We are liable ______ the road damage caused by us.", options: ["for", "to", "of", "with", "in"], correctIndex: 0, explanation: "Liable for: 對...有責任。", translation: "我們要對我們造成的道路損壞負責。" },
+            { question: "The height of buildings is limited ______ 200 meters.", options: ["to", "at", "by", "in", "for"], correctIndex: 0, explanation: "Limited to: 限制在...", translation: "這座城市的建築高度限制在200米以內。" },
+            { question: "Nancy is definitely loyal ______ her boss.", options: ["to", "with", "for", "at", "of"], correctIndex: 0, explanation: "Loyal to: 對...忠誠。", translation: "Nancy 對她的老闆絕對忠誠。" },
+            { question: "The door is made ______ glass.", options: ["of", "from", "by", "with", "in"], correctIndex: 0, explanation: "Made of: 由...製成 (物理變化)。", translation: "這扇門是玻璃做的。" },
+            { question: "Mary will be married ______ Gary next month.", options: ["to", "with", "by", "for", "at"], correctIndex: 0, explanation: "Married to: 與...結婚。", translation: "Mary 下個月將與 Gary 結婚。" },
+            { question: "The doctor was found negligent ______ prescribing drugs.", options: ["in", "at", "of", "with", "to"], correctIndex: 0, explanation: "Negligent in: 在...方面疏忽。", translation: "醫生被發現在開藥方面有疏忽。" },
+            { question: "The workers are opposed ______ the new salary scheme.", options: ["to", "with", "for", "at", "on"], correctIndex: 0, explanation: "Opposed to: 反對...", translation: "工人們反對上週提出的新薪酬方案。" },
+            { question: "The government is too optimistic ______ the economic growth.", options: ["about", "with", "to", "for", "in"], correctIndex: 0, explanation: "Optimistic about: 對...樂觀。", translation: "政府對經濟增長過於樂觀。" },
+            { question: "Teachers should be patient ______ slow learners.", options: ["with", "to", "for", "at", "about"], correctIndex: 0, explanation: "Patient with: 對...有耐心。", translation: "老師應該對學習緩慢的學生有耐心。" },
+            { question: "He is quite pessimistic ______ his chance of entering university.", options: ["about", "with", "for", "to", "of"], correctIndex: 0, explanation: "Pessimistic about: 對...悲觀。", translation: "他對自己進入大學的機會相當悲觀。" },
+            { question: "Students must be polite ______ teachers.", options: ["to", "with", "for", "at", "about"], correctIndex: 0, explanation: "Polite to: 對...有禮貌。", translation: "學生必須對老師有禮貌。" },
+            { question: "Disco music has been popular ______ teenagers for years.", options: ["with", "to", "for", "among", "in"], correctIndex: 0, explanation: "Popular with: 受...歡迎。", translation: "迪斯科音樂多年來一直受青少年歡迎。" },
+            { question: "The speaker was prepared ______ questions from the audience.", options: ["for", "to", "with", "at", "about"], correctIndex: 0, explanation: "Prepared for: 為...做好準備。", translation: "演講者已準備好回答觀眾的提問。" },
+            { question: "Charles is highly proficient ______ French.", options: ["in", "at", "with", "on", "to"], correctIndex: 0, explanation: "Proficient in/at: 精通...", translation: "Charles 非常精通法語。" },
+            { question: "I am proud ______ my works.", options: ["of", "with", "for", "about", "to"], correctIndex: 0, explanation: "Proud of: 為...感到驕傲。", translation: "我為我的作品感到驕傲。" },
+            { question: "Are you qualified ______ the post of CEO?", options: ["for", "to", "in", "with", "at"], correctIndex: 0, explanation: "Qualified for: 有...的資格。", translation: "你有資格擔任首席執行官一職嗎？" },
+            { question: "Is the soup ready ______ dinner?", options: ["for", "to", "with", "at", "in"], correctIndex: 0, explanation: "Ready for: 準備好...", translation: "晚飯的湯準備好了嗎？" },
+            { question: "The problem is related ______ water pollution.", options: ["to", "with", "for", "in", "at"], correctIndex: 0, explanation: "Related to: 與...有關。", translation: "河裡魚類的消失一定與水污染有關。" },
+            { question: "The contents are relevant ______ the needs of learners.", options: ["to", "with", "for", "of", "in"], correctIndex: 0, explanation: "Relevant to: 與...有關/切題。", translation: "所有內容都與學習者的需求相關。" },
+            { question: "The officer is responsible ______ handling complaints.", options: ["for", "to", "with", "of", "in"], correctIndex: 0, explanation: "Responsible for: 對...負責。", translation: "客戶服務主任負責處理投訴。" },
+            { question: "Carrots are rich ______ vitamin A.", options: ["in", "of", "with", "at", "for"], correctIndex: 0, explanation: "Rich in: 富含...", translation: "胡蘿蔔富含維生素A。" },
+            { question: "Susan is scared ______ asking questions.", options: ["of", "to", "with", "for", "at"], correctIndex: 0, explanation: "Scared of: 害怕...", translation: "Susan 害怕在眾多學生面前提問。" },
+            { question: "I am sick ______ eating fast food.", options: ["of", "with", "for", "about", "to"], correctIndex: 0, explanation: "Sick of: 對...厭倦。", translation: "我厭倦了吃快餐。" },
+            { question: "Your face shape is similar ______ your mother's.", options: ["to", "with", "of", "for", "as"], correctIndex: 0, explanation: "Similar to: 與...相似。", translation: "你的臉型和你母親的相似。" },
+            { question: "James is very skilful ______ graphic design.", options: ["in", "at", "on", "with", "of"], correctIndex: 0, explanation: "Skilful in/at: 熟練於...", translation: "James 非常熟練於平面設計。" },
+            { question: "We are deeply sorry ______ the inconvenience caused.", options: ["for", "about", "with", "to", "of"], correctIndex: 0, explanation: "Sorry for/about: 對...感到抱歉。", translation: "我們對造成的不便深感抱歉。" },
+            { question: "People in cities are subject ______ noise pollution.", options: ["to", "with", "for", "of", "in"], correctIndex: 0, explanation: "Subject to: 受...影響/支配。", translation: "住在城市的人們受噪音和空氣污染影響。" },
+            { question: "Henry is successful ______ improving the economy.", options: ["in", "at", "on", "with", "for"], correctIndex: 0, explanation: "Successful in: 在...方面成功。", translation: "Henry 在改善香港經濟方面相當成功。" },
+            { question: "This film is not suitable ______ children.", options: ["for", "to", "with", "of", "at"], correctIndex: 0, explanation: "Suitable for: 適合...", translation: "這部電影不適合十二歲以下的兒童。" },
+            { question: "IBM computers are superior ______ others.", options: ["to", "than", "with", "for", "of"], correctIndex: 0, explanation: "Superior to: 優於...", translation: "IBM 電腦的性能遠優於 Gateway 電腦。" },
+            { question: "You need to be sure ______ the correct route.", options: ["of", "about", "to", "for", "with"], correctIndex: 0, explanation: "Sure of: 對...確定。", translation: "你需要確定去機場的正確路線。" },
+            { question: "The jury is suspicious ______ the statements.", options: ["of", "about", "to", "with", "for"], correctIndex: 0, explanation: "Suspicious of: 懷疑...", translation: "陪審團懷疑證人的陳述。" },
+            { question: "The students are sympathetic ______ the proposal.", options: ["to", "with", "for", "of", "at"], correctIndex: 0, explanation: "Sympathetic to: 對...贊同/支持。", translation: "所有學生都贊成擬議的歌唱比賽。" },
+            { question: "Susan was tired ______ cold callings.", options: ["of", "with", "about", "for", "to"], correctIndex: 0, explanation: "Tired of: 對...厭倦。", translation: "Susan 厭倦了推銷電話。" },
+            { question: "Hong Kong people are used ______ working under pressure.", options: ["to", "with", "for", "in", "of"], correctIndex: 0, explanation: "Used to (+ing): 習慣於...", translation: "香港人習慣在壓力下工作。" },
+            { question: "The software is useful ______ web designers.", options: ["to", "for", "with", "at", "of"], correctIndex: 0, explanation: "Useful to: 對...有用。", translation: "這個軟件對網頁設計師建立即時網站很有用。" },
+            { question: "Alan is weak ______ socializing.", options: ["at", "in", "with", "of", "to"], correctIndex: 0, explanation: "Weak at/in: 不擅長...", translation: "Alan 不擅長與其他同事社交。" },
+            { question: "Sandy is always worried ______ her finances.", options: ["about", "for", "with", "of", "to"], correctIndex: 0, explanation: "Worried about: 擔心...", translation: "Sandy 總是擔心她的財務狀況。" },
+            { question: "Are you interested ______ joining us?", options: ["in", "on", "at", "with", "to"], correctIndex: 0, explanation: "Interested in: 感興趣。", translation: "你有興趣加入我們嗎？" },
+            { question: "She is afraid ______ the dark.", options: ["of", "to", "with", "for", "at"], correctIndex: 0, explanation: "Afraid of: 害怕。", translation: "她怕黑。" },
+            { question: "He is famous ______ his paintings.", options: ["for", "of", "to", "with", "in"], correctIndex: 0, explanation: "Famous for: 因...而聞名。", translation: "他因他的畫作而聞名。" },
+            { question: "I am tired ______ waiting.", options: ["of", "with", "about", "for", "to"], correctIndex: 0, explanation: "Tired of: 厭倦。", translation: "我厭倦了等待。" },
+            { question: "This tool is useful ______ fixing cars.", options: ["for", "to", "with", "at", "of"], correctIndex: 0, explanation: "Useful for: 用於...。", translation: "這個工具對修理汽車很有用。" },
+            { question: "She is good ______ math.", options: ["at", "in", "with", "of", "on"], correctIndex: 0, explanation: "Good at: 擅長。", translation: "她擅長數學。" },
+            { question: "He is bad ______ drawing.", options: ["at", "in", "with", "of", "on"], correctIndex: 0, explanation: "Bad at: 不擅長。", translation: "他不擅長畫畫。" },
+            { question: "They are excited ______ the trip.", options: ["about", "with", "for", "to", "of"], correctIndex: 0, explanation: "Excited about: 對...感到興奮。", translation: "他們對這次旅行感到興奮。" },
+            { question: "I am responsible ______ this project.", options: ["for", "to", "with", "of"], correctIndex: 0, explanation: "Responsible for: 負責。", translation: "我負責這個項目。" },
+            { question: "This bag is full ______ clothes.", options: ["of", "with", "in", "by"], correctIndex: 0, explanation: "Full of: 充滿。", translation: "這個袋子裝滿了衣服。" },
+            { question: "He is angry ______ his brother.", options: ["with", "to", "on", "of"], correctIndex: 0, explanation: "Angry with: 對...生氣。", translation: "他對他的兄弟生氣。" },
+            { question: "She is proud ______ her son.", options: ["of", "with", "for", "about"], correctIndex: 0, explanation: "Proud of: 為...驕傲。", translation: "她為她的兒子感到驕傲。" },
+            { question: "你準備好考試了嗎？<br>Are you ready ______ the test?", options: ["for", "to", "with", "at"], correctIndex: 0, explanation: "Ready for: 準備好。" },
+            { question: "他有能力獨自完成。<br>He is capable ______ doing it alone.", options: ["of", "to", "in", "at"], correctIndex: 0, explanation: "Capable of: 有能力。" },
+            { question: "我意識到了這個問題。<br>I am aware ______ the problem.", options: ["of", "for", "about", "with"], correctIndex: 0, explanation: "Aware of: 意識到。" },
+            { question: "這把椅子是木頭做的。<br>This chair is made ______ wood.", options: ["of", "from", "by", "with"], correctIndex: 0, explanation: "Made of: 由...製成。" },
+            { question: "他與一位醫生結婚了。<br>He is married ______ a doctor.", options: ["to", "with", "by", "for"], correctIndex: 0, explanation: "Married to: 與...結婚。" },
+            { question: "她喜愛音樂。<br>She is fond ______ music.", options: ["of", "in", "with", "to"], correctIndex: 0, explanation: "Fond of: 喜愛。" },
+            { question: "我遲到了，很抱歉。<br>I am sorry ______ being late.", options: ["for", "about", "with", "to"], correctIndex: 0, explanation: "Sorry for: 抱歉。" },
+            { question: "他很像他的父親。<br>He is similar ______ his father.", options: ["to", "with", "of", "for"], correctIndex: 0, explanation: "Similar to: 相似。" },
+            { question: "我們感謝你的幫助。<br>We are grateful ______ your help.", options: ["for", "to", "with", "at"], correctIndex: 0, explanation: "Grateful for: 感激。" },
+            { question: "她熱衷於學習英語。<br>She is keen ______ learning English.", options: ["on", "in", "with", "at"], correctIndex: 0, explanation: "Keen on: 熱衷。" },
+            { question: "我習慣了炎熱的天氣。<br>I am accustomed ______ the hot weather.", options: ["to", "in", "with", "of"], correctIndex: 0, explanation: "Accustomed to: 習慣。" },
+            { question: "他沈迷於吸煙。<br>He is addicted ______ smoking.", options: ["to", "on", "with", "in"], correctIndex: 0, explanation: "Addicted to: 沈迷。" },
+            { question: "你對結果滿意嗎？<br>Are you satisfied ______ the result?", options: ["with", "of", "about", "to"], correctIndex: 0, explanation: "Satisfied with: 滿意。" },
+            { question: "這個城市擠滿了人。<br>The city is crowded ______ people.", options: ["with", "of", "by", "in"], correctIndex: 0, explanation: "Crowded with: 擠滿。" },
+            { question: "他嫉妒我的成功。<br>He is jealous ______ my success.", options: ["of", "to", "with", "at"], correctIndex: 0, explanation: "Jealous of: 嫉妒。" },
+            { question: "這部電影是基於一個真實故事。<br>The movie is based ______ a true story.", options: ["on", "in", "at", "to"], correctIndex: 0, explanation: "Based on: 基於。" },
+            { question: "她對每個人都很友善。<br>She is friendly ______ everyone.", options: ["to", "with", "for", "at"], correctIndex: 0, explanation: "Friendly to: 友善。" },
+            { question: "我對這個遊戲感到無聊。<br>I am bored ______ this game.", options: ["with", "about", "of", "at"], correctIndex: 0, explanation: "Bored with: 感到無聊。" },
+            { question: "他對這個消息感到興奮。<br>He is excited ______ the news.", options: ["about", "with", "for", "to"], correctIndex: 0, explanation: "Excited about: 興奮。" },
+            { question: "我們擔心這次考試。<br>We are worried ______ the test.", options: ["about", "for", "with", "of"], correctIndex: 0, explanation: "Worried about: 擔心。" },
+            { question: "她精通舞蹈。<br>She is excellent ______ dancing.", options: ["at", "in", "with", "of"], correctIndex: 0, explanation: "Excellent at: 精通。" },
+            { question: "他唱歌很差。<br>He is terrible ______ singing.", options: ["at", "in", "with", "of"], correctIndex: 0, explanation: "Terrible at: 很差。" },
+            { question: "盒子裡裝滿了玩具。<br>The box is full ______ toys.", options: ["of", "with", "in", "by"], correctIndex: 0, explanation: "Full of: 裝滿。" },
+            { question: "我上學遲到了。<br>I am late ______ school.", options: ["for", "to", "at", "in"], correctIndex: 0, explanation: "Late for: 遲到。" },
+            { question: "他對長輩很有禮貌。<br>He is polite ______ his elders.", options: ["to", "with", "for", "at"], correctIndex: 0, explanation: "Polite to: 有禮貌。" },
+            { question: "她對我很粗魯。<br>She is rude ______ me.", options: ["to", "with", "for", "at"], correctIndex: 0, explanation: "Rude to: 粗魯。" },
+            { question: "他們對動物不仁慈。<br>They are unkind ______ animals.", options: ["to", "with", "for", "at"], correctIndex: 0, explanation: "Unkind to: 不仁慈。" },
+            { question: "我對這個消息感到驚訝。<br>I am surprised ______ the news.", options: ["at", "by", "with", "of"], correctIndex: 0, explanation: "Surprised at/by: 驚訝。" },
+            { question: "他對她的才華感到驚嘆。<br>He is amazed ______ her talent.", options: ["at", "by", "with", "of"], correctIndex: 0, explanation: "Amazed at/by: 驚嘆。" },
+            { question: "她對結果感到失望。<br>She is disappointed ______ the result.", options: ["with", "in", "at", "of"], correctIndex: 0, explanation: "Disappointed with: 失望。" },
+            { question: "我受夠了這天氣。<br>I am fed up ______ this weather.", options: ["with", "about", "of", "at"], correctIndex: 0, explanation: "Fed up with: 受夠了。" },
+            { question: "他對歷史有興趣。<br>He is interested ______ history.", options: ["in", "on", "at", "with"], correctIndex: 0, explanation: "Interested in: 有興趣。" },
+            { question: "她參與了許多項目。<br>She is involved ______ many projects.", options: ["in", "at", "on", "with"], correctIndex: 0, explanation: "Involved in: 參與。" },
+            { question: "他們非常害怕蜘蛛。<br>They are terrified ______ spiders.", options: ["of", "to", "with", "at"], correctIndex: 0, explanation: "Terrified of: 恐懼。" },
+            { question: "我為我的行為感到羞愧。<br>I am ashamed ______ my behavior.", options: ["of", "with", "at", "for"], correctIndex: 0, explanation: "Ashamed of: 羞愧。" },
+            { question: "他懷疑她的動機。<br>He is suspicious ______ her motives.", options: ["of", "about", "to", "with"], correctIndex: 0, explanation: "Suspicious of: 懷疑。" },
+            { question: "她羨慕我的新車。<br>She is envious ______ my new car.", options: ["of", "to", "with", "for"], correctIndex: 0, explanation: "Envious of: 羨慕。" },
+            { question: "我懷疑他的能力。<br>I am doubtful ______ his ability.", options: ["about", "of", "to", "for"], correctIndex: 0, explanation: "Doubtful about: 懷疑。" },
+            { question: "他數學極好。<br>He is brilliant ______ math.", options: ["at", "in", "with", "of"], correctIndex: 0, explanation: "Brilliant at: 極好。" },
+            { question: "她烹飪很差。<br>She is hopeless ______ cooking.", options: ["at", "in", "with", "of"], correctIndex: 0, explanation: "Hopeless at: 毫無希望/很差。" },
+            { question: "我們對假期感到興奮。<br>We are excited ______ the holiday.", options: ["about", "with", "for", "to"], correctIndex: 0, explanation: "Excited about: 興奮。" },
+            { question: "他們對噪音感到惱怒。<br>They are annoyed ______ the noise.", options: ["about", "with", "at", "of"], correctIndex: 0, explanation: "Annoyed about (something): 惱怒。" },
+            { question: "他對我生氣。<br>He is annoyed ______ me.", options: ["with", "about", "at", "of"], correctIndex: 0, explanation: "Annoyed with (someone): 生氣。" },
+            { question: "她對貓著迷。<br>She is crazy ______ cats.", options: ["about", "with", "for", "of"], correctIndex: 0, explanation: "Crazy about: 瘋狂/著迷。" },
+            { question: "我是認真想搬家的。<br>I am serious ______ moving.", options: ["about", "with", "for", "of"], correctIndex: 0, explanation: "Serious about: 認真。" },
+            { question: "他對損失感到難過。<br>He is upset ______ the loss.", options: ["about", "with", "for", "of"], correctIndex: 0, explanation: "Upset about: 難過。" },
+            { question: "她對考試感到緊張。<br>She is nervous ______ the exam.", options: ["about", "with", "for", "of"], correctIndex: 0, explanation: "Nervous about: 緊張。" },
+            { question: "我確定這個答案。<br>I am sure ______ the answer.", options: ["of", "about", "to", "for"], correctIndex: 0, explanation: "Sure of/about: 確定。" },
+            { question: "他確信會成功。<br>He is certain ______ success.", options: ["of", "about", "to", "for"], correctIndex: 0, explanation: "Certain of: 確信。" },
+            { question: "她脫離了危險。<br>She is safe ______ danger.", options: ["from", "of", "with", "to"], correctIndex: 0, explanation: "Safe from: 安全/免於。" },
+            { question: "我無債一身輕。<br>I am free ______ debt.", options: ["from", "of", "with", "to"], correctIndex: 0, explanation: "Free from: 無/免於。" },
+            { question: "他缺勤。<br>He is absent ______ work.", options: ["from", "of", "to", "in"], correctIndex: 0, explanation: "Absent from: 缺席。" },
+            { question: "她出席了會議。<br>She is present ______ the meeting.", options: ["at", "in", "on", "to"], correctIndex: 0, explanation: "Present at: 出席。" },
+            { question: "他們反對這個計劃。<br>They are opposed ______ the plan.", options: ["to", "with", "for", "at"], correctIndex: 0, explanation: "Opposed to: 反對。" },
+            { question: "我很感激你。<br>I am grateful ______ you.", options: ["to", "for", "with", "at"], correctIndex: 0, explanation: "Grateful to (someone): 感激某人。" },
+            { question: "他感謝這份禮物。<br>He is thankful ______ the gift.", options: ["for", "to", "with", "at"], correctIndex: 0, explanation: "Thankful for (something): 感謝某事。" },
+            { question: "她對這個消息感到高興。<br>She is delightful ______ the news.", options: ["with", "about", "at", "of"], correctIndex: 0, explanation: "Delighted with: 高興。" },
+            { question: "我對他的工作印象深刻。<br>I am impressed ______ his work.", options: ["by", "with", "at", "of"], correctIndex: 0, explanation: "Impressed by/with: 印象深刻。" },
+            { question: "他對這個價格感到震驚。<br>He is shocked ______ the price.", options: ["at", "by", "with", "of"], correctIndex: 0, explanation: "Shocked at/by: 震驚。" }
+        ];
+
+        // ------------------------------------------------------------------
+        // 2. 遊戲變數與核心邏輯
+        // ------------------------------------------------------------------
+        let gameQuestions = [];
+        let currentQuestionIndex = 0;
+        let correctCount = 0;
+        let timerInterval;
+        let timeLeft;
+        let wrongAnswers = [];
+        const TIME_PER_QUESTION = 20;
+
+        function startGame(isRetry = false) {
+            if (!isRetry) {
+                // 直接載入所有題目，隨機選 20 題
+                gameQuestions = shuffleArray([...fullQuestionBank]).slice(0, 20);
+                wrongAnswers = []; 
+            }
+            
+            // 初始化變數
+            currentQuestionIndex = 0;
+            correctCount = 0;
+
+            document.getElementById('end-screen-container').style.display = 'none';
+            document.getElementById('game-area').style.display = 'flex';
+            
+            updateScoreDisplay();
+            loadQuestion();
+        }
+
+        function updateScoreDisplay() {
+            let totalAnswered = currentQuestionIndex; 
+            let pct = totalAnswered > 0 ? Math.round((correctCount / totalAnswered) * 100) : 0;
+            document.querySelector('.score-display').textContent = `${correctCount} / ${totalAnswered} (${pct}%)`;
+        }
+
+        function loadQuestion() {
+            const currentQ = gameQuestions[currentQuestionIndex];
+            
+            document.querySelector('.question-number').textContent = `Q: ${currentQuestionIndex + 1} / ${gameQuestions.length}`;
+            updateScoreDisplay();
+            
+            document.getElementById('next-btn').style.display = 'none';
+            document.getElementById('feedback').innerHTML = '';
+            
+            // 題目顯示：將中文和英文整合
+            const qContainer = document.getElementById('question-display');
+            qContainer.innerHTML = `
+                <div class="chinese-text">${currentQ.translation || ""}</div>
+                <div class="english-text">${currentQ.question.replace('______', '<span style="color:var(--primary-color);">______</span>')}</div>
+            `;
+
+            // 選項顯示
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+            
+            const correctOptionText = currentQ.options[currentQ.correctIndex];
+            
+            // 打亂選項順序，並保留原始索引以判斷對錯
+            let randomizedOptions = currentQ.options.map((opt, index) => ({ text: opt, originalIndex: index }));
+            randomizedOptions = shuffleArray(randomizedOptions);
+
+            randomizedOptions.forEach(optObj => {
+                const btn = document.createElement('button');
+                btn.className = 'mc-btn';
+                btn.textContent = optObj.text;
+                btn.onclick = () => checkAnswer(optObj.originalIndex, btn, correctOptionText);
+                optionsContainer.appendChild(btn);
+            });
+
+            startTimer();
+        }
+
+        function startTimer() {
+            clearInterval(timerInterval);
+            timeLeft = TIME_PER_QUESTION;
+            updateTimerUI();
+            
+            const timerContainer = document.querySelector('.timer-container');
+            timerContainer.classList.remove('timer-warning');
+
+            timerInterval = setInterval(() => {
+                timeLeft -= 0.1;
+                if (timeLeft <= 5) {
+                    timerContainer.classList.add('timer-warning');
+                    if (Math.floor(timeLeft * 10) % 10 === 0) sfx.countdown();
+                }
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    timeLeft = 0;
+                    handleTimeUp();
+                }
+                updateTimerUI();
+            }, 100);
+        }
+
+        function updateTimerUI() {
+            const percentage = (timeLeft / TIME_PER_QUESTION) * 100;
+            document.getElementById('timer-bar').style.width = `${percentage}%`;
+            document.querySelector('.timer-display').textContent = timeLeft.toFixed(1);
+        }
+
+        function handleTimeUp() {
+            disableOptions();
+            showFeedback(false, "時間到！");
+            
+            wrongAnswers.push({
+                question: gameQuestions[currentQuestionIndex],
+                userAnswer: "Time's up",
+                correctAnswer: gameQuestions[currentQuestionIndex].options[gameQuestions[currentQuestionIndex].correctIndex]
+            });
+
+            document.getElementById('next-btn').style.display = 'block';
+            document.getElementById('next-btn').onclick = nextQuestion;
+            sfx.wrong();
+        }
+
+        function checkAnswer(selectedIndex, btnElement, correctText) {
+            clearInterval(timerInterval);
+            disableOptions();
+
+            const currentQ = gameQuestions[currentQuestionIndex];
+            const isCorrect = (selectedIndex === currentQ.correctIndex);
+
+            if (isCorrect) {
+                btnElement.classList.add('correct');
+                correctCount++;
+                sfx.correct();
+                showFeedback(true);
+            } else {
+                btnElement.classList.add('wrong');
+                // 標示正確答案
+                const buttons = document.querySelectorAll('.mc-btn');
+                buttons.forEach(b => {
+                    if (b.textContent === correctText) {
+                        b.classList.add('correct');
+                    }
+                });
+                sfx.wrong();
+                showFeedback(false);
+                
+                wrongAnswers.push({
+                    question: currentQ,
+                    userAnswer: btnElement.textContent,
+                    correctAnswer: correctText
+                });
+            }
+            
+            let totalSoFar = currentQuestionIndex + 1;
+            let pct = Math.round((correctCount / totalSoFar) * 100);
+            document.querySelector('.score-display').textContent = `${correctCount} / ${totalSoFar} (${pct}%)`;
+
+            document.getElementById('next-btn').style.display = 'block';
+            document.getElementById('next-btn').onclick = nextQuestion;
+        }
+
+        function disableOptions() {
+            const buttons = document.querySelectorAll('.mc-btn');
+            buttons.forEach(btn => btn.disabled = true);
+        }
+
+        function showFeedback(isCorrect, customMsg) {
+            const currentQ = gameQuestions[currentQuestionIndex];
+            const feedbackDiv = document.getElementById('feedback');
+            
+            let status = customMsg ? customMsg : (isCorrect ? 'Correct! 答對了！' : 'Wrong! 答錯了！');
+            
+            let html = `<div class="feedback-box ${isCorrect ? 'feedback-correct' : 'feedback-incorrect'}">`;
+            html += `<div class="feedback-status">${status}</div>`;
+            html += `<div class="feedback-explanation">${currentQ.explanation}</div>`;
+            html += `</div>`;
+            
+            feedbackDiv.innerHTML = html;
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < gameQuestions.length) {
+                loadQuestion();
+            } else {
+                endGame();
+            }
+        }
+
+        function retryWrongQuestions() {
+            if (wrongAnswers.length === 0) return;
+            
+            // 將錯題設為下一輪的題目
+            gameQuestions = wrongAnswers.map(item => item.question);
+            wrongAnswers = [];
+            
+            // 使用重做模式啟動
+            startGame(true);
+        }
+
+        function endGame() {
+            document.getElementById('game-area').style.display = 'none';
+            const endContainer = document.getElementById('end-screen-container');
+            endContainer.style.display = 'block';
+
+            const totalQ = gameQuestions.length;
+            const percentage = totalQ > 0 ? Math.round((correctCount / totalQ) * 100) : 0;
+
+            let html = `
+                <div class="end-game-container">
+                    <div class="final-score">得分: ${correctCount} / ${totalQ} (${percentage}%)</div>
+            `;
+
+            if (wrongAnswers.length > 0) {
+                html += `<div class="error-analysis">`;
+                html += `<div style="font-weight:bold; color:#555; margin-bottom:10px;">錯題回顧 (${wrongAnswers.length}題):</div>`;
+                
+                wrongAnswers.forEach((item, index) => {
+                    // 題目顯示優化：移除 HTML tag 和底線替換
+                    const cleanQ = item.question.question.replace(/<br>/g, " ").replace('______', '___');
+                    const translation = item.question.translation || "";
+                    html += `
+                        <div class="error-item">
+                            <div style="font-weight:bold; margin-bottom:5px;">${translation}</div>
+                            <div style="margin-bottom:5px;">Q: ${cleanQ}</div>
+                            <div style="color:${'var(--danger-color)'}">你的答案: ${item.userAnswer}</div>
+                            <div style="color:${'var(--secondary-dark)'}">正確答案: ${item.correctAnswer}</div>
+                            <div style="font-size:0.9em; color:#666; margin-top:5px;">${item.question.explanation}</div>
+                        </div>
+                    `;
+                });
+                html += `</div>`;
+            } else {
+                html += `
+                    <div class="error-analysis" style="display:flex; align-items:center; justify-content:center;">
+                        <div style="color:var(--secondary-dark); font-size:1.2em; font-weight:bold;">完美！全對！🎉</div>
+                    </div>`;
+            }
+
+            const retryStyle = wrongAnswers.length > 0 ? "display:inline-block;" : "display:none;";
+
+            html += `
+                    <div class="end-controls">
+                        <button id="end-menu-btn" class="end-btn" onclick="returnToMenu()">返回主選單</button>
+                        <button id="end-retry-btn" class="end-btn" style="${retryStyle}" onclick="retryWrongQuestions()">重做錯題</button>
+                        <button id="end-reselect-btn" class="end-btn" onclick="startGame()">重新挑戰</button>
+                    </div>
+                </div>
+            `;
+            
+            endContainer.innerHTML = html;
+        }
+
+        function returnToMenu() {
+            window.location.href = 'eng_game123.html';
+        }
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // --- 啟動 ---
+        // 因為沒有選單頁面，直接開始遊戲
+        document.addEventListener('DOMContentLoaded', () => {
+            startGame();
+        });
+
+    </script>
+</body>
+</html>

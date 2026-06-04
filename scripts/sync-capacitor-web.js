@@ -48,6 +48,10 @@ const excludedRootFiles = new Set([
   'render.yaml'
 ]);
 
+const excludedDirectories = new Set([
+  'vendor/bundle'
+]);
+
 function copyFile(source, destination) {
   fs.mkdirSync(path.dirname(destination), { recursive: true });
   fs.copyFileSync(source, destination);
@@ -55,6 +59,8 @@ function copyFile(source, destination) {
 
 function copyDirectory(source, destination) {
   if (!fs.existsSync(source)) return 0;
+  const relativeSource = path.relative(projectRoot, source).split(path.sep).join('/');
+  if (excludedDirectories.has(relativeSource)) return 0;
 
   let copied = 0;
   fs.mkdirSync(destination, { recursive: true });

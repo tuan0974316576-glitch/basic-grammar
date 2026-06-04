@@ -4,17 +4,52 @@ const GRAMMAR_VERB_QUESTION_COUNT = 20;
 const GRAMMAR_TENSE_BASE_TIME = 8;
 const GRAMMAR_TENSE_SECONDS_PER_LETTER = 0.8;
 const GRAMMAR_TENSE_TOPIC = 'TENSES';
+const GRAMMAR_PRONOUN_TOPIC = 'PRONOUN';
+const GRAMMAR_PRONOUN_ALLOWED_ANSWERS = new Set([
+    'i', 'me', 'you', 'he', 'him', 'she', 'her', 'it',
+    'we', 'us', 'they', 'them', 'my', 'your', 'his',
+    'its', 'our', 'their', 'mine', 'yours', 'ours',
+    'theirs', 'hers', 'myself', 'yourself', 'ourselves',
+    'themselves', 'himself', 'herself', 'itself'
+]);
+const GRAMMAR_COMPARATIVE_SUPERLATIVE_TOPIC = 'COMPARATIVE_SUPERLATIVE';
 const GRAMMAR_CONDITIONAL_TOPIC = 'CONDITIONAL';
 const GRAMMAR_DIRECT_TOPIC = 'DIRECT_QUESTION';
 const GRAMMAR_INDIRECT_TOPIC = 'INDIRECT_QUESTION';
 const GRAMMAR_IT_IS_TOPIC = 'IT_IS';
 const GRAMMAR_INFINITIVE_GERUND_TOPIC = 'INFINITIVE_GERUND';
+const GRAMMAR_QUESTION_TAG_TOPIC = 'QUESTION_TAG';
+const GRAMMAR_DE_STRUCTURE_TOPIC = 'DE_STRUCTURE';
 const GRAMMAR_PREPOSITION_PLACE_TOPIC = 'PREPOSITION_OF_PLACE';
 const GRAMMAR_PREPOSITION_TIME_TOPIC = 'PREPOSITION_OF_TIME';
+const GRAMMAR_COMPOUND_ADJ_TOPIC = 'COMPOUND_ADJ';
+const GRAMMAR_PHRASAL_VERB_TOPIC = 'PHRASAL_VERB';
 const GRAMMAR_REPORTED_SPEECH_TOPIC = 'REPORTED_SPEECH';
-const GRAMMAR_REARRANGE_TOPICS = [GRAMMAR_DIRECT_TOPIC, GRAMMAR_INDIRECT_TOPIC, GRAMMAR_IT_IS_TOPIC, GRAMMAR_CONDITIONAL_TOPIC, GRAMMAR_REPORTED_SPEECH_TOPIC];
-const GRAMMAR_FILL_IN_TOPICS = [GRAMMAR_TENSE_TOPIC, GRAMMAR_INFINITIVE_GERUND_TOPIC];
-const GRAMMAR_CHOICE_TOPICS = [GRAMMAR_PREPOSITION_PLACE_TOPIC, GRAMMAR_PREPOSITION_TIME_TOPIC];
+const GRAMMAR_PARTICIPLE_PHRASES_TOPIC = 'PARTICIPLE_PHRASES';
+const GRAMMAR_INVERSION_TOPIC = 'INVERSION';
+const GRAMMAR_REARRANGE_TOPICS = [GRAMMAR_DIRECT_TOPIC, GRAMMAR_INDIRECT_TOPIC, GRAMMAR_IT_IS_TOPIC, GRAMMAR_CONDITIONAL_TOPIC, GRAMMAR_REPORTED_SPEECH_TOPIC, GRAMMAR_PARTICIPLE_PHRASES_TOPIC, GRAMMAR_INVERSION_TOPIC];
+const GRAMMAR_FILL_IN_TOPICS = [GRAMMAR_TENSE_TOPIC, GRAMMAR_PRONOUN_TOPIC, GRAMMAR_COMPARATIVE_SUPERLATIVE_TOPIC, GRAMMAR_INFINITIVE_GERUND_TOPIC, GRAMMAR_QUESTION_TAG_TOPIC, GRAMMAR_DE_STRUCTURE_TOPIC];
+const GRAMMAR_CHOICE_TOPICS = [GRAMMAR_PREPOSITION_PLACE_TOPIC, GRAMMAR_PREPOSITION_TIME_TOPIC, GRAMMAR_COMPOUND_ADJ_TOPIC, GRAMMAR_PHRASAL_VERB_TOPIC];
+const GRAMMAR_TOPIC_LABELS = {
+    VERB_TABLE: 'VERB TABLE',
+    [GRAMMAR_TENSE_TOPIC]: 'TENSES',
+    [GRAMMAR_PRONOUN_TOPIC]: 'PRONOUN',
+    [GRAMMAR_COMPARATIVE_SUPERLATIVE_TOPIC]: 'COMPARATIVE AND SUPERLATIVE',
+    [GRAMMAR_CONDITIONAL_TOPIC]: 'CONDITIONAL',
+    [GRAMMAR_DIRECT_TOPIC]: 'DIRECT QUESTION',
+    [GRAMMAR_INDIRECT_TOPIC]: 'INDIRECT QUESTION',
+    [GRAMMAR_IT_IS_TOPIC]: 'IT IS',
+    [GRAMMAR_INFINITIVE_GERUND_TOPIC]: 'INFINITIVE / GERUND',
+    [GRAMMAR_QUESTION_TAG_TOPIC]: 'QUESTION TAG',
+    [GRAMMAR_DE_STRUCTURE_TOPIC]: 'WAYS TO DESCRIBE NOUNS',
+    [GRAMMAR_PREPOSITION_PLACE_TOPIC]: 'PREPOSITION OF PLACE',
+    [GRAMMAR_PREPOSITION_TIME_TOPIC]: 'PREPOSITION OF TIME',
+    [GRAMMAR_COMPOUND_ADJ_TOPIC]: 'COMPOUND ADJ',
+    [GRAMMAR_PHRASAL_VERB_TOPIC]: 'PHRASAL VERB',
+    [GRAMMAR_REPORTED_SPEECH_TOPIC]: 'REPORTED SPEECH',
+    [GRAMMAR_PARTICIPLE_PHRASES_TOPIC]: 'PARTICIPLE PHRASES',
+    [GRAMMAR_INVERSION_TOPIC]: 'INVERSION'
+};
 const GRAMMAR_DIRECT_BASE_TIME = 15;
 const GRAMMAR_DIRECT_SECONDS_PER_TOKEN = 3;
 const GRAMMAR_CHOICE_BASE_TIME = 10;
@@ -130,6 +165,62 @@ function isGrammarFillInTopic(topic) {
 
 function isGrammarChoiceTopic(topic) {
     return GRAMMAR_CHOICE_TOPICS.includes(topic);
+}
+
+function getGrammarTopicLabel(topic) {
+    return GRAMMAR_TOPIC_LABELS[topic] || String(topic || '').replace(/_/g, ' ');
+}
+
+function showGrammarRaceScreen() {
+    updateRaceButtons();
+    const raceScreen = document.getElementById('race-screen');
+    if (raceScreen) {
+        raceScreen.style.display = 'flex';
+        const wrapper = raceScreen.querySelector('.panel-content-wrapper');
+        if (wrapper) {
+            wrapper.style.animation = 'none';
+            setTimeout(() => {
+                wrapper.style.animation = 'holoAppear 0.4s forwards';
+            }, 10);
+        }
+    }
+}
+
+function finishGrammarBattleSetup(topic, label, deck) {
+    const topicScreen = document.getElementById('grammar-topic-screen');
+    if (topicScreen) topicScreen.style.display = 'none';
+
+    const topicLabel = label || getGrammarTopicLabel(topic);
+    window.selectedGrammarTopic = topic;
+    currentPracticeMode = 'GRAMMAR';
+    selectedLevel = topic;
+    selectedStageIndex = null;
+    selectedStageLabel = topicLabel;
+    activeVocabList = Array.isArray(deck) ? deck : [];
+    sessionDeck = [...activeVocabList];
+
+    if (typeof loadMissedWordsToPriorityDeck === 'function') {
+        loadMissedWordsToPriorityDeck('GRAMMAR');
+    }
+
+    if (typeof tempGameMode !== 'undefined' && tempGameMode === 'PVP') {
+        if (typeof window.openPvpGrammarRoomAfterTopic === 'function') {
+            window.openPvpGrammarRoomAfterTopic();
+        } else if (typeof createRoom === 'function') {
+            gameMode = 'PVP';
+            createRoom();
+        }
+        return;
+    }
+
+    if (typeof tempGameMode !== 'undefined' && tempGameMode === 'TRAINING') {
+        if (typeof window.startTrainingMode === 'function') {
+            window.startTrainingMode({ silentStartSound: true });
+        }
+        return;
+    }
+
+    showGrammarRaceScreen();
 }
 
 function grammarUsesGameKeyboard() {
@@ -274,6 +365,24 @@ function shuffleGrammarArray(items) {
     return clone;
 }
 
+function createGrammarQuestionStableId(prefix, question, index = 0) {
+    const source = JSON.stringify([
+        question?.id || '',
+        question?.chinese || '',
+        question?.question || '',
+        question?.correct_tokens || '',
+        question?.options || '',
+        question?.correctIndex ?? ''
+    ]);
+    let hash = 0;
+    for (let i = 0; i < source.length; i++) {
+        hash = ((hash << 5) - hash + source.charCodeAt(i)) | 0;
+    }
+    return hash
+        ? `${prefix}_${Math.abs(hash).toString(36)}`
+        : `${prefix}_${index + 1}`;
+}
+
 function buildGrammarBattleDeck() {
     return (window.GRAMMAR_VERB_BANK || []).map((verb) => ({
         ch: verb[0],
@@ -296,8 +405,36 @@ function getGrammarMixedTenseBank() {
     return Array.isArray(window.GRAMMAR_MIXED_TENSE_BANK) ? window.GRAMMAR_MIXED_TENSE_BANK : [];
 }
 
+function getGrammarPronounBank() {
+    return Array.isArray(window.GRAMMAR_PRONOUN_BANK) ? window.GRAMMAR_PRONOUN_BANK : [];
+}
+
+function isGrammarPurePronounQuestion(question) {
+    const slots = Array.isArray(question?.answerSlots) ? question.answerSlots : [];
+    return slots.length > 0 && slots.every((slot) => {
+        const answer = String(slot || '').trim().toLowerCase();
+        return GRAMMAR_PRONOUN_ALLOWED_ANSWERS.has(answer);
+    });
+}
+
+function getGrammarPurePronounBank() {
+    return getGrammarPronounBank().filter(isGrammarPurePronounQuestion);
+}
+
+function getGrammarComparativeSuperlativeBank() {
+    return Array.isArray(window.GRAMMAR_COMPARATIVE_SUPERLATIVE_BANK) ? window.GRAMMAR_COMPARATIVE_SUPERLATIVE_BANK : [];
+}
+
 function getGrammarInfinitiveGerundBank() {
     return Array.isArray(window.GRAMMAR_INFINITIVE_GERUND_BANK) ? window.GRAMMAR_INFINITIVE_GERUND_BANK : [];
+}
+
+function getGrammarQuestionTagBank() {
+    return Array.isArray(window.GRAMMAR_QUESTION_TAG_BANK) ? window.GRAMMAR_QUESTION_TAG_BANK : [];
+}
+
+function getGrammarDeStructureBank() {
+    return Array.isArray(window.GRAMMAR_DE_STRUCTURE_BANK) ? window.GRAMMAR_DE_STRUCTURE_BANK : [];
 }
 
 function getGrammarPrepositionPlaceBank() {
@@ -308,12 +445,28 @@ function getGrammarPrepositionTimeBank() {
     return Array.isArray(window.GRAMMAR_PREPOSITION_TIME_BANK) ? window.GRAMMAR_PREPOSITION_TIME_BANK : [];
 }
 
+function getGrammarCompoundAdjBank() {
+    return Array.isArray(window.GRAMMAR_COMPOUND_ADJ_BANK) ? window.GRAMMAR_COMPOUND_ADJ_BANK : [];
+}
+
+function getGrammarPhrasalVerbBank() {
+    return Array.isArray(window.GRAMMAR_PHRASAL_VERB_BANK) ? window.GRAMMAR_PHRASAL_VERB_BANK : [];
+}
+
 function getGrammarConditionalQuestionBank() {
     return Array.isArray(window.GRAMMAR_CONDITIONAL_BANK) ? window.GRAMMAR_CONDITIONAL_BANK : [];
 }
 
 function getGrammarReportedSpeechBank() {
     return Array.isArray(window.GRAMMAR_REPORTED_SPEECH_BANK) ? window.GRAMMAR_REPORTED_SPEECH_BANK : [];
+}
+
+function getGrammarParticiplePhrasesBank() {
+    return Array.isArray(window.GRAMMAR_PARTICIPLE_PHRASES_BANK) ? window.GRAMMAR_PARTICIPLE_PHRASES_BANK : [];
+}
+
+function getGrammarInversionBank() {
+    return Array.isArray(window.GRAMMAR_INVERSION_BANK) ? window.GRAMMAR_INVERSION_BANK : [];
 }
 
 function getGrammarTenseLabel(tenseId) {
@@ -502,17 +655,46 @@ function buildGrammarInfinitiveGerundBattleDeck() {
         }));
 }
 
+function buildGrammarPronounBattleDeck() {
+    return shuffleGrammarArray(getGrammarPurePronounBank())
+        .map((question) => createGrammarTenseBattleItem(question, {
+            topic: GRAMMAR_PRONOUN_TOPIC
+        }));
+}
+
+function buildGrammarComparativeSuperlativeBattleDeck() {
+    return shuffleGrammarArray(getGrammarComparativeSuperlativeBank())
+        .map((question) => createGrammarTenseBattleItem(question, {
+            topic: GRAMMAR_COMPARATIVE_SUPERLATIVE_TOPIC
+        }));
+}
+
+function buildGrammarQuestionTagBattleDeck() {
+    return shuffleGrammarArray(getGrammarQuestionTagBank())
+        .map((question) => createGrammarTenseBattleItem(question, {
+            topic: GRAMMAR_QUESTION_TAG_TOPIC
+        }));
+}
+
+function buildGrammarDeStructureBattleDeck() {
+    return shuffleGrammarArray(getGrammarDeStructureBank())
+        .map((question) => createGrammarTenseBattleItem(question, {
+            topic: GRAMMAR_DE_STRUCTURE_TOPIC
+        }));
+}
+
 function createGrammarChoiceBattleItem(question, index = 0, options = {}) {
     const topic = options.topic || GRAMMAR_PREPOSITION_PLACE_TOPIC;
     const idPrefix = options.idPrefix || 'preposition_place';
     const choiceOptions = Array.isArray(question.options) ? question.options.map(option => String(option || '').trim()) : [];
     const correctIndex = Number.isInteger(question.correctIndex) ? question.correctIndex : 0;
+    const questionId = question.id || createGrammarQuestionStableId(idPrefix, question, index);
     return {
         ch: question.chinese,
-        en: question.id || `${idPrefix}_${index + 1}`,
+        en: questionId,
         grammarTopic: topic,
         grammarChoice: {
-            id: question.id || `${idPrefix}_${index + 1}`,
+            id: questionId,
             topic,
             chinese: question.chinese,
             question: question.question,
@@ -540,6 +722,22 @@ function buildGrammarPrepositionTimeBattleDeck() {
         }));
 }
 
+function buildGrammarCompoundAdjBattleDeck() {
+    return shuffleGrammarArray(getGrammarCompoundAdjBank())
+        .map((question, index) => createGrammarChoiceBattleItem(question, index, {
+            topic: GRAMMAR_COMPOUND_ADJ_TOPIC,
+            idPrefix: 'compound_adj'
+        }));
+}
+
+function buildGrammarPhrasalVerbBattleDeck() {
+    return shuffleGrammarArray(getGrammarPhrasalVerbBank())
+        .map((question, index) => createGrammarChoiceBattleItem(question, index, {
+            topic: GRAMMAR_PHRASAL_VERB_TOPIC,
+            idPrefix: 'phrasal_verb'
+        }));
+}
+
 function getGrammarDirectQuestionBank() {
     return Array.isArray(window.GRAMMAR_DIRECT_QUESTION_BANK) ? window.GRAMMAR_DIRECT_QUESTION_BANK : [];
 }
@@ -550,6 +748,63 @@ function getGrammarIndirectQuestionBank() {
 
 function getGrammarItIsQuestionBank() {
     return Array.isArray(window.GRAMMAR_IT_IS_BANK) ? window.GRAMMAR_IT_IS_BANK : [];
+}
+
+function normalizeGrammarAnswerTokenSets(rawValue) {
+    if (!Array.isArray(rawValue)) return [];
+    if (!rawValue.length) return [];
+    if (rawValue.every(token => !Array.isArray(token))) return [rawValue];
+    return rawValue.filter(tokens => Array.isArray(tokens));
+}
+
+function dedupeGrammarAnswerTokenSets(answerSets) {
+    const seen = new Set();
+    return answerSets
+        .map(tokens => Array.isArray(tokens) ? tokens.map(token => String(token || '').trim()).filter(Boolean) : [])
+        .filter(tokens => tokens.length)
+        .filter((tokens) => {
+            const key = normalizeGrammarDirectAnswer(formatGrammarDirectTokens(tokens));
+            if (seen.has(key)) return false;
+            seen.add(key);
+            return true;
+        });
+}
+
+function getGrammarConditionalNowVariants(tokens, question = {}) {
+    if (!Array.isArray(tokens) || String(question?.type ?? question?.rule ?? '') !== '2') return [];
+
+    const nowIndex = tokens.findIndex(token => getGrammarTokenKey(token) === 'now');
+    const commaIndex = tokens.findIndex(token => token === ',');
+    if (nowIndex < 0 || commaIndex < 0) return [];
+
+    const baseTokens = tokens.slice();
+    baseTokens.splice(nowIndex, 1);
+
+    const variants = [];
+    if (nowIndex < commaIndex) {
+        const endIndex = baseTokens.findIndex(token => token === '.');
+        const insertIndex = endIndex < 0 ? baseTokens.length : endIndex;
+        variants.push([...baseTokens.slice(0, insertIndex), tokens[nowIndex], ...baseTokens.slice(insertIndex)]);
+    } else {
+        const newCommaIndex = baseTokens.findIndex(token => token === ',');
+        variants.push([...baseTokens.slice(0, newCommaIndex), tokens[nowIndex], ...baseTokens.slice(newCommaIndex)]);
+    }
+
+    return variants;
+}
+
+function getGrammarDirectAnswerTokenSets(question = {}, options = {}) {
+    const answerSets = [
+        ...normalizeGrammarAnswerTokenSets(question.correct_tokens),
+        ...normalizeGrammarAnswerTokenSets(question.accepted),
+        ...normalizeGrammarAnswerTokenSets(question.accepted_tokens)
+    ];
+
+    if (options.topic === GRAMMAR_CONDITIONAL_TOPIC) {
+        answerSets.push(...answerSets.flatMap(tokens => getGrammarConditionalNowVariants(tokens, question)));
+    }
+
+    return dedupeGrammarAnswerTokenSets(answerSets);
 }
 
 function createGrammarDirectQuestionBattleItem(question, index = 0, options = {}) {
@@ -563,18 +818,22 @@ function createGrammarDirectQuestionBattleItem(question, index = 0, options = {}
             ? 'conditional'
             : topic === GRAMMAR_REPORTED_SPEECH_TOPIC
             ? 'reported_speech'
+            : topic === GRAMMAR_PARTICIPLE_PHRASES_TOPIC
+            ? 'participle_phrases'
+            : topic === GRAMMAR_INVERSION_TOPIC
+            ? 'inversion'
             : 'direct_question'
     );
-    const rawAnswers = Array.isArray(question.correct_tokens) ? question.correct_tokens : [];
-    const answers = Array.isArray(rawAnswers[0]) ? rawAnswers : (rawAnswers.length ? [rawAnswers] : []);
+    const answers = getGrammarDirectAnswerTokenSets(question, { topic });
     const primaryTokens = Array.isArray(answers[0]) ? answers[0] : [];
     const answerText = formatGrammarDirectTokens(primaryTokens);
+    const questionId = question.id || createGrammarQuestionStableId(idPrefix, question, index);
     return {
         ch: question.chinese,
-        en: question.id || `${idPrefix}_${index + 1}`,
+        en: questionId,
         grammarTopic: topic,
         grammarDirect: {
-            id: question.id || `${idPrefix}_${index + 1}`,
+            id: questionId,
             topic,
             rule: question.rule ?? question.type,
             chinese: question.chinese,
@@ -679,6 +938,22 @@ function buildGrammarReportedSpeechBattleDeck() {
     return deck;
 }
 
+function buildGrammarParticiplePhrasesBattleDeck() {
+    return shuffleGrammarArray(getGrammarParticiplePhrasesBank())
+        .map((question, index) => createGrammarDirectQuestionBattleItem(question, index, {
+            topic: GRAMMAR_PARTICIPLE_PHRASES_TOPIC,
+            idPrefix: 'participle_phrases'
+        }));
+}
+
+function buildGrammarInversionBattleDeck() {
+    return shuffleGrammarArray(getGrammarInversionBank())
+        .map((question, index) => createGrammarDirectQuestionBattleItem(question, index, {
+            topic: GRAMMAR_INVERSION_TOPIC,
+            idPrefix: 'inversion'
+        }));
+}
+
 function getGrammarBattleDeckSnapshot() {
     if (window.selectedGrammarTopic === GRAMMAR_TENSE_TOPIC ||
         (typeof selectedLevel !== 'undefined' && selectedLevel === GRAMMAR_TENSE_TOPIC)) {
@@ -692,6 +967,14 @@ function getGrammarBattleDeckSnapshot() {
         (typeof selectedLevel !== 'undefined' && selectedLevel === GRAMMAR_REPORTED_SPEECH_TOPIC)) {
         return buildGrammarReportedSpeechBattleDeck();
     }
+    if (window.selectedGrammarTopic === GRAMMAR_PARTICIPLE_PHRASES_TOPIC ||
+        (typeof selectedLevel !== 'undefined' && selectedLevel === GRAMMAR_PARTICIPLE_PHRASES_TOPIC)) {
+        return buildGrammarParticiplePhrasesBattleDeck();
+    }
+    if (window.selectedGrammarTopic === GRAMMAR_INVERSION_TOPIC ||
+        (typeof selectedLevel !== 'undefined' && selectedLevel === GRAMMAR_INVERSION_TOPIC)) {
+        return buildGrammarInversionBattleDeck();
+    }
     if (window.selectedGrammarTopic === GRAMMAR_DIRECT_TOPIC ||
         (typeof selectedLevel !== 'undefined' && selectedLevel === GRAMMAR_DIRECT_TOPIC)) {
         return buildGrammarDirectQuestionBattleDeck();
@@ -704,9 +987,25 @@ function getGrammarBattleDeckSnapshot() {
         (typeof selectedLevel !== 'undefined' && selectedLevel === GRAMMAR_IT_IS_TOPIC)) {
         return buildGrammarItIsQuestionBattleDeck();
     }
+    if (window.selectedGrammarTopic === GRAMMAR_PRONOUN_TOPIC ||
+        (typeof selectedLevel !== 'undefined' && selectedLevel === GRAMMAR_PRONOUN_TOPIC)) {
+        return buildGrammarPronounBattleDeck();
+    }
+    if (window.selectedGrammarTopic === GRAMMAR_COMPARATIVE_SUPERLATIVE_TOPIC ||
+        (typeof selectedLevel !== 'undefined' && selectedLevel === GRAMMAR_COMPARATIVE_SUPERLATIVE_TOPIC)) {
+        return buildGrammarComparativeSuperlativeBattleDeck();
+    }
     if (window.selectedGrammarTopic === GRAMMAR_INFINITIVE_GERUND_TOPIC ||
         (typeof selectedLevel !== 'undefined' && selectedLevel === GRAMMAR_INFINITIVE_GERUND_TOPIC)) {
         return buildGrammarInfinitiveGerundBattleDeck();
+    }
+    if (window.selectedGrammarTopic === GRAMMAR_QUESTION_TAG_TOPIC ||
+        (typeof selectedLevel !== 'undefined' && selectedLevel === GRAMMAR_QUESTION_TAG_TOPIC)) {
+        return buildGrammarQuestionTagBattleDeck();
+    }
+    if (window.selectedGrammarTopic === GRAMMAR_DE_STRUCTURE_TOPIC ||
+        (typeof selectedLevel !== 'undefined' && selectedLevel === GRAMMAR_DE_STRUCTURE_TOPIC)) {
+        return buildGrammarDeStructureBattleDeck();
     }
     if (window.selectedGrammarTopic === GRAMMAR_PREPOSITION_PLACE_TOPIC ||
         (typeof selectedLevel !== 'undefined' && selectedLevel === GRAMMAR_PREPOSITION_PLACE_TOPIC)) {
@@ -716,7 +1015,142 @@ function getGrammarBattleDeckSnapshot() {
         (typeof selectedLevel !== 'undefined' && selectedLevel === GRAMMAR_PREPOSITION_TIME_TOPIC)) {
         return buildGrammarPrepositionTimeBattleDeck();
     }
+    if (window.selectedGrammarTopic === GRAMMAR_COMPOUND_ADJ_TOPIC ||
+        (typeof selectedLevel !== 'undefined' && selectedLevel === GRAMMAR_COMPOUND_ADJ_TOPIC)) {
+        return buildGrammarCompoundAdjBattleDeck();
+    }
+    if (window.selectedGrammarTopic === GRAMMAR_PHRASAL_VERB_TOPIC ||
+        (typeof selectedLevel !== 'undefined' && selectedLevel === GRAMMAR_PHRASAL_VERB_TOPIC)) {
+        return buildGrammarPhrasalVerbBattleDeck();
+    }
     return buildGrammarBattleDeck();
+}
+
+const grammarRevisionLookupCache = new Map();
+
+function normalizeGrammarRevisionTopic(topic) {
+    const topicKey = String(topic || '').trim();
+    if (!topicKey || topicKey === 'GRAMMAR') return 'VERB_TABLE';
+    return topicKey;
+}
+
+function buildAllGrammarTenseBattleDeck() {
+    return shuffleGrammarArray([
+        ...getGrammarTenseBank(),
+        ...getGrammarMixedTenseBank()
+    ]).map((question) => createGrammarTenseBattleItem(question));
+}
+
+function buildAllGrammarConditionalBattleDeck() {
+    return shuffleGrammarArray(getGrammarConditionalQuestionBank())
+        .map((question, index) => createGrammarDirectQuestionBattleItem(question, index, {
+            topic: GRAMMAR_CONDITIONAL_TOPIC,
+            idPrefix: 'conditional'
+        }));
+}
+
+function buildAllGrammarReportedSpeechBattleDeck() {
+    return shuffleGrammarArray(getGrammarReportedSpeechBank())
+        .map((question, index) => createGrammarDirectQuestionBattleItem(question, index, {
+            topic: GRAMMAR_REPORTED_SPEECH_TOPIC,
+            idPrefix: 'reported_speech'
+        }));
+}
+
+function buildGrammarRevisionDeck(topic) {
+    const topicKey = normalizeGrammarRevisionTopic(topic);
+    if (topicKey === GRAMMAR_TENSE_TOPIC) return buildAllGrammarTenseBattleDeck();
+    if (topicKey === GRAMMAR_CONDITIONAL_TOPIC) return buildAllGrammarConditionalBattleDeck();
+    if (topicKey === GRAMMAR_REPORTED_SPEECH_TOPIC) return buildAllGrammarReportedSpeechBattleDeck();
+    if (topicKey === GRAMMAR_PARTICIPLE_PHRASES_TOPIC) return buildGrammarParticiplePhrasesBattleDeck();
+    if (topicKey === GRAMMAR_INVERSION_TOPIC) return buildGrammarInversionBattleDeck();
+    if (topicKey === GRAMMAR_DIRECT_TOPIC) return buildGrammarDirectQuestionBattleDeck();
+    if (topicKey === GRAMMAR_INDIRECT_TOPIC) return buildGrammarIndirectQuestionBattleDeck();
+    if (topicKey === GRAMMAR_IT_IS_TOPIC) return buildGrammarItIsQuestionBattleDeck();
+    if (topicKey === GRAMMAR_PRONOUN_TOPIC) return buildGrammarPronounBattleDeck();
+    if (topicKey === GRAMMAR_COMPARATIVE_SUPERLATIVE_TOPIC) return buildGrammarComparativeSuperlativeBattleDeck();
+    if (topicKey === GRAMMAR_INFINITIVE_GERUND_TOPIC) return buildGrammarInfinitiveGerundBattleDeck();
+    if (topicKey === GRAMMAR_QUESTION_TAG_TOPIC) return buildGrammarQuestionTagBattleDeck();
+    if (topicKey === GRAMMAR_DE_STRUCTURE_TOPIC) return buildGrammarDeStructureBattleDeck();
+    if (topicKey === GRAMMAR_PREPOSITION_PLACE_TOPIC) return buildGrammarPrepositionPlaceBattleDeck();
+    if (topicKey === GRAMMAR_PREPOSITION_TIME_TOPIC) return buildGrammarPrepositionTimeBattleDeck();
+    if (topicKey === GRAMMAR_COMPOUND_ADJ_TOPIC) return buildGrammarCompoundAdjBattleDeck();
+    if (topicKey === GRAMMAR_PHRASAL_VERB_TOPIC) return buildGrammarPhrasalVerbBattleDeck();
+    return buildGrammarBattleDeck();
+}
+
+function getGrammarRevisionLookup(topic) {
+    const topicKey = normalizeGrammarRevisionTopic(topic);
+    if (!grammarRevisionLookupCache.has(topicKey)) {
+        const lookup = new Map();
+        buildGrammarRevisionDeck(topicKey).forEach((item) => {
+            const itemKey = String(item?.en || '');
+            if (!itemKey) return;
+            lookup.set(itemKey, item);
+            lookup.set(itemKey.toLowerCase(), item);
+        });
+        grammarRevisionLookupCache.set(topicKey, lookup);
+    }
+    return grammarRevisionLookupCache.get(topicKey);
+}
+
+function getGrammarRevisionItem(topic, wordKey) {
+    const topicKey = normalizeGrammarRevisionTopic(topic);
+    const itemKey = String(wordKey || '');
+    const lookup = getGrammarRevisionLookup(topicKey);
+    const item = lookup.get(itemKey) || lookup.get(itemKey.toLowerCase());
+    const topicLabel = getGrammarTopicLabel(topicKey);
+
+    if (!item) {
+        return {
+            id: itemKey,
+            topic: topicKey,
+            topicLabel,
+            title: itemKey || 'UNKNOWN SIGNAL',
+            subtitle: topicLabel
+        };
+    }
+
+    let title = item.en || itemKey;
+    let subtitle = item.ch || topicLabel;
+
+    if (item.grammarForms) {
+        title = item.en || itemKey;
+        subtitle = item.ch ? `${item.ch} // VERB TABLE` : topicLabel;
+    } else if (item.grammarTense) {
+        title = item.grammarTense.question || item.en || itemKey;
+        subtitle = item.grammarTense.chinese || item.ch || topicLabel;
+    } else if (item.grammarDirect) {
+        title = item.grammarDirect.correctText || item.en || itemKey;
+        subtitle = item.grammarDirect.chinese || item.ch || topicLabel;
+    } else if (item.grammarChoice) {
+        title = item.grammarChoice.question || item.en || itemKey;
+        subtitle = item.grammarChoice.chinese
+            ? `${item.grammarChoice.chinese} // ${item.grammarChoice.correctText || ''}`
+            : (item.grammarChoice.correctText || topicLabel);
+    }
+
+    return {
+        id: item.en || itemKey,
+        topic: topicKey,
+        topicLabel,
+        title,
+        subtitle
+    };
+}
+
+function startGrammarRevisionChallenge(topic) {
+    const topicKey = normalizeGrammarRevisionTopic(topic);
+    const deck = buildGrammarRevisionDeck(topicKey);
+    if (!deck.length) {
+        if (typeof playSound === 'function') playSound('wrong-sfx');
+        if (typeof showNotification === 'function') {
+            showNotification('GRAMMAR REVISION DATABASE NOT LOADED', 'error', 3500);
+        }
+        return false;
+    }
+    finishGrammarBattleSetup(topicKey, getGrammarTopicLabel(topicKey), deck);
+    return true;
 }
 
 function buildGrammarReferenceRows(bodyId) {
@@ -997,6 +1431,29 @@ function getGrammarTenseTopicProgress() {
     return { mastered, total };
 }
 
+function getGrammarPronounTopicProgress() {
+    const validIds = new Set(getGrammarPurePronounBank().map(question => question.id));
+    const total = validIds.size;
+    const masteryRoot = (typeof userMastery !== 'undefined' ? userMastery : window.userMastery) || {};
+    const grammarMastery = masteryRoot.grammar || {};
+    const mastered = Object.entries(grammarMastery[GRAMMAR_PRONOUN_TOPIC] || {})
+        .filter(([questionId, entry]) => validIds.has(questionId) && entry?.status === 1)
+        .length;
+
+    return { mastered, total };
+}
+
+function getGrammarComparativeSuperlativeTopicProgress() {
+    const total = getGrammarComparativeSuperlativeBank().length;
+    const masteryRoot = (typeof userMastery !== 'undefined' ? userMastery : window.userMastery) || {};
+    const grammarMastery = masteryRoot.grammar || {};
+    const mastered = Object.values(grammarMastery[GRAMMAR_COMPARATIVE_SUPERLATIVE_TOPIC] || {})
+        .filter(entry => entry?.status === 1)
+        .length;
+
+    return { mastered, total };
+}
+
 function getGrammarInfinitiveGerundTopicProgress() {
     const total = getGrammarInfinitiveGerundBank().length;
     const masteryRoot = (typeof userMastery !== 'undefined' ? userMastery : window.userMastery) || {};
@@ -1008,15 +1465,43 @@ function getGrammarInfinitiveGerundTopicProgress() {
     return { mastered, total };
 }
 
-function getGrammarPrepositionPlaceTopicProgress() {
-    const total = getGrammarPrepositionPlaceBank().length;
+function getGrammarQuestionTagTopicProgress() {
+    const total = getGrammarQuestionTagBank().length;
     const masteryRoot = (typeof userMastery !== 'undefined' ? userMastery : window.userMastery) || {};
     const grammarMastery = masteryRoot.grammar || {};
-    const mastered = Object.values(grammarMastery[GRAMMAR_PREPOSITION_PLACE_TOPIC] || {})
+    const mastered = Object.values(grammarMastery[GRAMMAR_QUESTION_TAG_TOPIC] || {})
         .filter(entry => entry?.status === 1)
         .length;
 
     return { mastered, total };
+}
+
+function getGrammarDeStructureTopicProgress() {
+    const total = getGrammarDeStructureBank().length;
+    const masteryRoot = (typeof userMastery !== 'undefined' ? userMastery : window.userMastery) || {};
+    const grammarMastery = masteryRoot.grammar || {};
+    const mastered = Object.values(grammarMastery[GRAMMAR_DE_STRUCTURE_TOPIC] || {})
+        .filter(entry => entry?.status === 1)
+        .length;
+
+    return { mastered, total };
+}
+
+function getGrammarPrepositionPlaceTopicProgress() {
+    const total = getGrammarPrepositionPlaceBank().length;
+    const masteryRoot = (typeof userMastery !== 'undefined' ? userMastery : window.userMastery) || {};
+    const grammarMastery = masteryRoot.grammar || {};
+    const masteredIds = new Set();
+    [
+        grammarMastery[GRAMMAR_PREPOSITION_PLACE_TOPIC],
+        grammarMastery.PREPOSITION_OF_MOVEMENT
+    ].forEach((topicMastery) => {
+        Object.entries(topicMastery || {}).forEach(([wordKey, entry]) => {
+            if (entry?.status === 1) masteredIds.add(String(wordKey).toLowerCase());
+        });
+    });
+
+    return { mastered: Math.min(masteredIds.size, total), total };
 }
 
 function getGrammarPrepositionTimeTopicProgress() {
@@ -1024,6 +1509,28 @@ function getGrammarPrepositionTimeTopicProgress() {
     const masteryRoot = (typeof userMastery !== 'undefined' ? userMastery : window.userMastery) || {};
     const grammarMastery = masteryRoot.grammar || {};
     const mastered = Object.values(grammarMastery[GRAMMAR_PREPOSITION_TIME_TOPIC] || {})
+        .filter(entry => entry?.status === 1)
+        .length;
+
+    return { mastered, total };
+}
+
+function getGrammarCompoundAdjTopicProgress() {
+    const total = getGrammarCompoundAdjBank().length;
+    const masteryRoot = (typeof userMastery !== 'undefined' ? userMastery : window.userMastery) || {};
+    const grammarMastery = masteryRoot.grammar || {};
+    const mastered = Object.values(grammarMastery[GRAMMAR_COMPOUND_ADJ_TOPIC] || {})
+        .filter(entry => entry?.status === 1)
+        .length;
+
+    return { mastered, total };
+}
+
+function getGrammarPhrasalVerbTopicProgress() {
+    const total = getGrammarPhrasalVerbBank().length;
+    const masteryRoot = (typeof userMastery !== 'undefined' ? userMastery : window.userMastery) || {};
+    const grammarMastery = masteryRoot.grammar || {};
+    const mastered = Object.values(grammarMastery[GRAMMAR_PHRASAL_VERB_TOPIC] || {})
         .filter(entry => entry?.status === 1)
         .length;
 
@@ -1039,6 +1546,10 @@ function getGrammarDirectQuestionTopicProgress(topic = GRAMMAR_DIRECT_TOPIC) {
         ? getGrammarConditionalQuestionBank().length
         : topic === GRAMMAR_REPORTED_SPEECH_TOPIC
         ? getGrammarReportedSpeechBank().length
+        : topic === GRAMMAR_PARTICIPLE_PHRASES_TOPIC
+        ? getGrammarParticiplePhrasesBank().length
+        : topic === GRAMMAR_INVERSION_TOPIC
+        ? getGrammarInversionBank().length
         : getGrammarDirectQuestionBank().length;
     const masteryRoot = (typeof userMastery !== 'undefined' ? userMastery : window.userMastery) || {};
     const grammarMastery = masteryRoot.grammar || {};
@@ -1052,34 +1563,58 @@ function getGrammarDirectQuestionTopicProgress(topic = GRAMMAR_DIRECT_TOPIC) {
 function updateGrammarTopicProgress() {
     const verbProgress = getGrammarVerbTopicProgress();
     const tenseProgress = getGrammarTenseTopicProgress();
+    const pronounProgress = getGrammarPronounTopicProgress();
+    const comparativeSuperlativeProgress = getGrammarComparativeSuperlativeTopicProgress();
     const conditionalProgress = getGrammarDirectQuestionTopicProgress(GRAMMAR_CONDITIONAL_TOPIC);
     const reportedSpeechProgress = getGrammarDirectQuestionTopicProgress(GRAMMAR_REPORTED_SPEECH_TOPIC);
+    const participlePhrasesProgress = getGrammarDirectQuestionTopicProgress(GRAMMAR_PARTICIPLE_PHRASES_TOPIC);
+    const inversionProgress = getGrammarDirectQuestionTopicProgress(GRAMMAR_INVERSION_TOPIC);
     const directProgress = getGrammarDirectQuestionTopicProgress();
     const indirectProgress = getGrammarDirectQuestionTopicProgress(GRAMMAR_INDIRECT_TOPIC);
     const itIsProgress = getGrammarDirectQuestionTopicProgress(GRAMMAR_IT_IS_TOPIC);
     const infinitiveGerundProgress = getGrammarInfinitiveGerundTopicProgress();
+    const questionTagProgress = getGrammarQuestionTagTopicProgress();
+    const deStructureProgress = getGrammarDeStructureTopicProgress();
     const prepositionPlaceProgress = getGrammarPrepositionPlaceTopicProgress();
     const prepositionTimeProgress = getGrammarPrepositionTimeTopicProgress();
+    const compoundAdjProgress = getGrammarCompoundAdjTopicProgress();
+    const phrasalVerbProgress = getGrammarPhrasalVerbTopicProgress();
     const progressEl = document.getElementById('grammar-topic-progress');
     const tenseProgressEl = document.getElementById('grammar-tense-topic-progress');
+    const pronounProgressEl = document.getElementById('grammar-pronoun-topic-progress');
+    const comparativeSuperlativeProgressEl = document.getElementById('grammar-comparative-superlative-topic-progress');
     const conditionalProgressEl = document.getElementById('grammar-conditional-topic-progress');
     const reportedSpeechProgressEl = document.getElementById('grammar-reported-speech-topic-progress');
+    const participlePhrasesProgressEl = document.getElementById('grammar-participle-phrases-topic-progress');
+    const inversionProgressEl = document.getElementById('grammar-inversion-topic-progress');
     const directProgressEl = document.getElementById('grammar-direct-topic-progress');
     const indirectProgressEl = document.getElementById('grammar-indirect-topic-progress');
     const itIsProgressEl = document.getElementById('grammar-it-is-topic-progress');
     const infinitiveGerundProgressEl = document.getElementById('grammar-infinitive-gerund-topic-progress');
+    const questionTagProgressEl = document.getElementById('grammar-question-tag-topic-progress');
+    const deStructureProgressEl = document.getElementById('grammar-de-structure-topic-progress');
     const prepositionPlaceProgressEl = document.getElementById('grammar-preposition-place-topic-progress');
     const prepositionTimeProgressEl = document.getElementById('grammar-preposition-time-topic-progress');
+    const compoundAdjProgressEl = document.getElementById('grammar-compound-adj-topic-progress');
+    const phrasalVerbProgressEl = document.getElementById('grammar-phrasal-verb-topic-progress');
     const topicBtn = document.querySelector('.grammar-topic-btn:not(.grammar-topic-btn-tense)');
     const tenseTopicBtn = document.querySelector('.grammar-topic-btn-tense');
+    const pronounTopicBtn = document.querySelector('.grammar-topic-btn-pronoun');
+    const comparativeSuperlativeTopicBtn = document.querySelector('.grammar-topic-btn-comparative-superlative');
     const conditionalTopicBtn = document.querySelector('.grammar-topic-btn-conditional');
     const reportedSpeechTopicBtn = document.querySelector('.grammar-topic-btn-reported-speech');
+    const participlePhrasesTopicBtn = document.querySelector('.grammar-topic-btn-participle-phrases');
+    const inversionTopicBtn = document.querySelector('.grammar-topic-btn-inversion');
     const directTopicBtn = document.querySelector('.grammar-topic-btn-direct');
     const indirectTopicBtn = document.querySelector('.grammar-topic-btn-indirect');
     const itIsTopicBtn = document.querySelector('.grammar-topic-btn-it-is');
     const infinitiveGerundTopicBtn = document.querySelector('.grammar-topic-btn-infinitive-gerund');
+    const questionTagTopicBtn = document.querySelector('.grammar-topic-btn-question-tag');
+    const deStructureTopicBtn = document.querySelector('.grammar-topic-btn-de-structure');
     const prepositionPlaceTopicBtn = document.querySelector('.grammar-topic-btn-preposition-place');
     const prepositionTimeTopicBtn = document.querySelector('.grammar-topic-btn-preposition-time');
+    const compoundAdjTopicBtn = document.querySelector('.grammar-topic-btn-compound-adj');
+    const phrasalVerbTopicBtn = document.querySelector('.grammar-topic-btn-phrasal-verb');
 
     if (progressEl) {
         progressEl.textContent = `${verbProgress.mastered}/${verbProgress.total}`;
@@ -1093,6 +1628,18 @@ function updateGrammarTopicProgress() {
     if (tenseTopicBtn) {
         tenseTopicBtn.classList.toggle('completed', tenseProgress.total > 0 && tenseProgress.mastered >= tenseProgress.total);
     }
+    if (pronounProgressEl) {
+        pronounProgressEl.textContent = `${pronounProgress.mastered}/${pronounProgress.total}`;
+    }
+    if (pronounTopicBtn) {
+        pronounTopicBtn.classList.toggle('completed', pronounProgress.total > 0 && pronounProgress.mastered >= pronounProgress.total);
+    }
+    if (comparativeSuperlativeProgressEl) {
+        comparativeSuperlativeProgressEl.textContent = `${comparativeSuperlativeProgress.mastered}/${comparativeSuperlativeProgress.total}`;
+    }
+    if (comparativeSuperlativeTopicBtn) {
+        comparativeSuperlativeTopicBtn.classList.toggle('completed', comparativeSuperlativeProgress.total > 0 && comparativeSuperlativeProgress.mastered >= comparativeSuperlativeProgress.total);
+    }
     if (conditionalProgressEl) {
         conditionalProgressEl.textContent = `${conditionalProgress.mastered}/${conditionalProgress.total}`;
     }
@@ -1104,6 +1651,18 @@ function updateGrammarTopicProgress() {
     }
     if (reportedSpeechTopicBtn) {
         reportedSpeechTopicBtn.classList.toggle('completed', reportedSpeechProgress.total > 0 && reportedSpeechProgress.mastered >= reportedSpeechProgress.total);
+    }
+    if (participlePhrasesProgressEl) {
+        participlePhrasesProgressEl.textContent = `${participlePhrasesProgress.mastered}/${participlePhrasesProgress.total}`;
+    }
+    if (participlePhrasesTopicBtn) {
+        participlePhrasesTopicBtn.classList.toggle('completed', participlePhrasesProgress.total > 0 && participlePhrasesProgress.mastered >= participlePhrasesProgress.total);
+    }
+    if (inversionProgressEl) {
+        inversionProgressEl.textContent = `${inversionProgress.mastered}/${inversionProgress.total}`;
+    }
+    if (inversionTopicBtn) {
+        inversionTopicBtn.classList.toggle('completed', inversionProgress.total > 0 && inversionProgress.mastered >= inversionProgress.total);
     }
     if (directProgressEl) {
         directProgressEl.textContent = `${directProgress.mastered}/${directProgress.total}`;
@@ -1129,6 +1688,18 @@ function updateGrammarTopicProgress() {
     if (infinitiveGerundTopicBtn) {
         infinitiveGerundTopicBtn.classList.toggle('completed', infinitiveGerundProgress.total > 0 && infinitiveGerundProgress.mastered >= infinitiveGerundProgress.total);
     }
+    if (questionTagProgressEl) {
+        questionTagProgressEl.textContent = `${questionTagProgress.mastered}/${questionTagProgress.total}`;
+    }
+    if (questionTagTopicBtn) {
+        questionTagTopicBtn.classList.toggle('completed', questionTagProgress.total > 0 && questionTagProgress.mastered >= questionTagProgress.total);
+    }
+    if (deStructureProgressEl) {
+        deStructureProgressEl.textContent = `${deStructureProgress.mastered}/${deStructureProgress.total}`;
+    }
+    if (deStructureTopicBtn) {
+        deStructureTopicBtn.classList.toggle('completed', deStructureProgress.total > 0 && deStructureProgress.mastered >= deStructureProgress.total);
+    }
     if (prepositionPlaceProgressEl) {
         prepositionPlaceProgressEl.textContent = `${prepositionPlaceProgress.mastered}/${prepositionPlaceProgress.total}`;
     }
@@ -1141,17 +1712,21 @@ function updateGrammarTopicProgress() {
     if (prepositionTimeTopicBtn) {
         prepositionTimeTopicBtn.classList.toggle('completed', prepositionTimeProgress.total > 0 && prepositionTimeProgress.mastered >= prepositionTimeProgress.total);
     }
+    if (compoundAdjProgressEl) {
+        compoundAdjProgressEl.textContent = `${compoundAdjProgress.mastered}/${compoundAdjProgress.total}`;
+    }
+    if (compoundAdjTopicBtn) {
+        compoundAdjTopicBtn.classList.toggle('completed', compoundAdjProgress.total > 0 && compoundAdjProgress.mastered >= compoundAdjProgress.total);
+    }
+    if (phrasalVerbProgressEl) {
+        phrasalVerbProgressEl.textContent = `${phrasalVerbProgress.mastered}/${phrasalVerbProgress.total}`;
+    }
+    if (phrasalVerbTopicBtn) {
+        phrasalVerbTopicBtn.classList.toggle('completed', phrasalVerbProgress.total > 0 && phrasalVerbProgress.mastered >= phrasalVerbProgress.total);
+    }
 }
 
 function openGrammarTopicScreen() {
-    if (typeof tempGameMode !== 'undefined' && tempGameMode === 'PVP') {
-        if (typeof playSound === 'function') playSound('wrong-sfx');
-        if (typeof showNotification === 'function') {
-            showNotification('GRAMMAR NOT AVAILABLE IN MULTIPLAYER', 'warning', 2500);
-        }
-        return;
-    }
-
     playSound('deploy-sfx');
     const levelScreen = document.getElementById('level-screen');
     if (levelScreen) levelScreen.style.display = 'none';
@@ -1414,33 +1989,7 @@ function confirmGrammarTenseSetup() {
 
     saveGrammarTenseSelectionState();
     if (typeof playSound === 'function') playSound('deploy-sfx');
-    const topicScreen = document.getElementById('grammar-topic-screen');
-    if (topicScreen) topicScreen.style.display = 'none';
-
-    window.selectedGrammarTopic = GRAMMAR_TENSE_TOPIC;
-    currentPracticeMode = 'GRAMMAR';
-    selectedLevel = GRAMMAR_TENSE_TOPIC;
-    selectedStageIndex = null;
-    selectedStageLabel = 'TENSES';
-    activeVocabList = deck;
-    sessionDeck = [...activeVocabList];
-
-    if (typeof loadMissedWordsToPriorityDeck === 'function') {
-        loadMissedWordsToPriorityDeck('GRAMMAR');
-    }
-
-    updateRaceButtons();
-    const raceScreen = document.getElementById('race-screen');
-    if (raceScreen) {
-        raceScreen.style.display = 'flex';
-        const wrapper = raceScreen.querySelector('.panel-content-wrapper');
-        if (wrapper) {
-            wrapper.style.animation = 'none';
-            setTimeout(() => {
-                wrapper.style.animation = 'holoAppear 0.4s forwards';
-            }, 10);
-        }
-    }
+    finishGrammarBattleSetup(GRAMMAR_TENSE_TOPIC, 'TENSES', deck);
 }
 
 function renderGrammarConditionalSetupOptions() {
@@ -1557,33 +2106,7 @@ function confirmGrammarConditionalSetup() {
 
     saveGrammarConditionalSelectionState();
     if (typeof playSound === 'function') playSound('deploy-sfx');
-    const topicScreen = document.getElementById('grammar-topic-screen');
-    if (topicScreen) topicScreen.style.display = 'none';
-
-    window.selectedGrammarTopic = GRAMMAR_CONDITIONAL_TOPIC;
-    currentPracticeMode = 'GRAMMAR';
-    selectedLevel = GRAMMAR_CONDITIONAL_TOPIC;
-    selectedStageIndex = null;
-    selectedStageLabel = 'CONDITIONAL';
-    activeVocabList = deck;
-    sessionDeck = [...activeVocabList];
-
-    if (typeof loadMissedWordsToPriorityDeck === 'function') {
-        loadMissedWordsToPriorityDeck('GRAMMAR');
-    }
-
-    updateRaceButtons();
-    const raceScreen = document.getElementById('race-screen');
-    if (raceScreen) {
-        raceScreen.style.display = 'flex';
-        const wrapper = raceScreen.querySelector('.panel-content-wrapper');
-        if (wrapper) {
-            wrapper.style.animation = 'none';
-            setTimeout(() => {
-                wrapper.style.animation = 'holoAppear 0.4s forwards';
-            }, 10);
-        }
-    }
+    finishGrammarBattleSetup(GRAMMAR_CONDITIONAL_TOPIC, 'CONDITIONAL', deck);
 }
 
 function renderGrammarReportedSpeechSetupOptions() {
@@ -1700,33 +2223,7 @@ function confirmGrammarReportedSpeechSetup() {
 
     saveGrammarReportedSpeechSelectionState();
     if (typeof playSound === 'function') playSound('deploy-sfx');
-    const topicScreen = document.getElementById('grammar-topic-screen');
-    if (topicScreen) topicScreen.style.display = 'none';
-
-    window.selectedGrammarTopic = GRAMMAR_REPORTED_SPEECH_TOPIC;
-    currentPracticeMode = 'GRAMMAR';
-    selectedLevel = GRAMMAR_REPORTED_SPEECH_TOPIC;
-    selectedStageIndex = null;
-    selectedStageLabel = 'REPORTED SPEECH';
-    activeVocabList = deck;
-    sessionDeck = [...activeVocabList];
-
-    if (typeof loadMissedWordsToPriorityDeck === 'function') {
-        loadMissedWordsToPriorityDeck('GRAMMAR');
-    }
-
-    updateRaceButtons();
-    const raceScreen = document.getElementById('race-screen');
-    if (raceScreen) {
-        raceScreen.style.display = 'flex';
-        const wrapper = raceScreen.querySelector('.panel-content-wrapper');
-        if (wrapper) {
-            wrapper.style.animation = 'none';
-            setTimeout(() => {
-                wrapper.style.animation = 'holoAppear 0.4s forwards';
-            }, 10);
-        }
-    }
+    finishGrammarBattleSetup(GRAMMAR_REPORTED_SPEECH_TOPIC, 'REPORTED SPEECH', deck);
 }
 
 function toggleGrammarVerbReference() {
@@ -2102,11 +2599,22 @@ function renderGrammarTenseSentence(questionText, expectedSlots = []) {
     let blankIndex = 0;
     return escapeGrammarHtml(questionText).replace(/______/g, () => {
         const slotText = expectedSlots[blankIndex] || '';
-        const width = Math.max(6, Math.min(24, slotText.length + 2));
-        const html = `<span class="launch-tense-blank" data-launch-tense-blank="${blankIndex}" style="--tense-blank-ch: ${width}ch;"><span class="launch-tense-typed"></span></span>`;
+        const isLongAnswer = slotText.length > 32;
+        const width = Math.max(6, Math.min(isLongAnswer ? 62 : 24, slotText.length + 2));
+        const longClass = isLongAnswer ? ' is-long-answer' : '';
+        const html = `<span class="launch-tense-blank${longClass}" data-launch-tense-blank="${blankIndex}" style="--tense-blank-ch: ${width}ch;"><span class="launch-tense-typed"></span></span>`;
         blankIndex += 1;
         return html;
     });
+}
+
+function grammarFillInQuestionNeedsApostrophe(question = currentVocab) {
+    if (!isGrammarBattleMode() || !question?.grammarTense) return false;
+    const tenseQuestion = question.grammarTense;
+    return [
+        ...(Array.isArray(tenseQuestion.answers) ? tenseQuestion.answers : []),
+        ...(Array.isArray(tenseQuestion.answerSlots) ? tenseQuestion.answerSlots : [])
+    ].some(value => String(value || '').includes("'") || String(value || '').includes("’"));
 }
 
 function configureLaunchTenseKeyboard(isTenseMode) {
@@ -2117,6 +2625,9 @@ function configureLaunchTenseKeyboard(isTenseMode) {
     const nextKey = keyboard.querySelector('.kb-nav-next');
     const spaceKey = keyboard.querySelector('.kb-tense-space-key');
     keyboard.classList.toggle('kb-tense-space', Boolean(isTenseMode));
+    keyboard.classList.toggle('kb-show-apostrophe', Boolean(isTenseMode && grammarFillInQuestionNeedsApostrophe(currentVocab)));
+    keyboard.classList.toggle('kb-show-hyphen', Boolean(isTenseMode && grammarFillInQuestionNeedsHyphen(currentVocab)));
+    keyboard.classList.toggle('kb-show-numbers', Boolean(isTenseMode && grammarFillInQuestionNeedsNumber(currentVocab)));
 
     if (prevKey) {
         prevKey.setAttribute('data-key', 'PREV_FIELD');
@@ -2137,6 +2648,24 @@ function configureLaunchTenseKeyboard(isTenseMode) {
         spaceKey.textContent = 'SPACE';
         spaceKey.setAttribute('aria-label', 'Space');
     }
+}
+
+function grammarFillInQuestionNeedsHyphen(question = currentVocab) {
+    if (!isGrammarBattleMode() || !question?.grammarTense) return false;
+    const tenseQuestion = question.grammarTense;
+    return [
+        ...(Array.isArray(tenseQuestion.answers) ? tenseQuestion.answers : []),
+        ...(Array.isArray(tenseQuestion.answerSlots) ? tenseQuestion.answerSlots : [])
+    ].some(value => String(value || '').includes('-'));
+}
+
+function grammarFillInQuestionNeedsNumber(question = currentVocab) {
+    if (!isGrammarBattleMode() || !question?.grammarTense) return false;
+    const tenseQuestion = question.grammarTense;
+    return [
+        ...(Array.isArray(tenseQuestion.answers) ? tenseQuestion.answers : []),
+        ...(Array.isArray(tenseQuestion.answerSlots) ? tenseQuestion.answerSlots : [])
+    ].some(value => /\d/.test(String(value || '')));
 }
 
 function prepareLaunchGrammarQuestion(question) {
@@ -2453,7 +2982,9 @@ function getGrammarIntrinsicCapitalTokenSet() {
         window.GRAMMAR_INDIRECT_QUESTION_BANK,
         window.GRAMMAR_IT_IS_BANK,
         window.GRAMMAR_CONDITIONAL_BANK,
-        window.GRAMMAR_REPORTED_SPEECH_BANK
+        window.GRAMMAR_REPORTED_SPEECH_BANK,
+        window.GRAMMAR_PARTICIPLE_PHRASES_BANK,
+        window.GRAMMAR_INVERSION_BANK
     ].forEach((bank) => {
         (Array.isArray(bank) ? bank : []).forEach((question) => {
             (Array.isArray(question.intrinsic_tokens) ? question.intrinsic_tokens : []).forEach((token) => {
@@ -2515,6 +3046,10 @@ function getGrammarDirectRuleText(question = currentVocab) {
         ? (window.GRAMMAR_CONDITIONAL_RULES || {})
         : topic === GRAMMAR_REPORTED_SPEECH_TOPIC
         ? (window.GRAMMAR_REPORTED_SPEECH_RULES || {})
+        : topic === GRAMMAR_PARTICIPLE_PHRASES_TOPIC
+        ? (window.GRAMMAR_PARTICIPLE_PHRASES_RULES || {})
+        : topic === GRAMMAR_INVERSION_TOPIC
+        ? (window.GRAMMAR_INVERSION_RULES || {})
         : (window.GRAMMAR_DIRECT_QUESTION_RULES || {});
     return rules[ruleId] || '';
 }
@@ -2727,6 +3262,10 @@ function prepareLaunchGrammarDirectQuestion(question) {
             ? 'REARRANGE CONDITIONAL'
             : question.grammarTopic === GRAMMAR_REPORTED_SPEECH_TOPIC
             ? 'REARRANGE REPORTED SPEECH'
+            : question.grammarTopic === GRAMMAR_PARTICIPLE_PHRASES_TOPIC
+            ? 'REARRANGE PARTICIPLE PHRASES'
+            : question.grammarTopic === GRAMMAR_INVERSION_TOPIC
+            ? 'REARRANGE INVERSION'
             : 'REARRANGE THE QUESTION';
         modeLabel.style.display = '';
     }
@@ -3178,14 +3717,21 @@ function normalizeGrammarAnswerValue(value) {
         .trim();
 }
 
+function normalizeGrammarAnswerForComparison(value, topic = currentVocab?.grammarTopic) {
+    const normalizedValue = normalizeGrammarAnswerValue(value);
+    if (topic === GRAMMAR_QUESTION_TAG_TOPIC) return normalizedValue;
+    if (topic === GRAMMAR_DE_STRUCTURE_TOPIC) return normalizedValue.replace(/[.?!。！？]+$/g, '').replace(/'/g, '');
+    return normalizedValue.replace(/'/g, '');
+}
+
 function checkGrammarTenseBattleAnswer() {
     if (!isGrammarBattleMode() || !currentVocab?.grammarTense) return false;
 
     const question = currentVocab.grammarTense;
     const input = getLaunchTenseInput();
     const userAnswerText = grammarLaunchState.tenseAnswerText || input?.value || '';
-    const userAnswer = normalizeGrammarAnswerValue(userAnswerText);
-    const isCorrect = question.answers.some(answer => normalizeGrammarAnswerValue(answer) === userAnswer);
+    const userAnswer = normalizeGrammarAnswerForComparison(userAnswerText, question.topic);
+    const isCorrect = question.answers.some(answer => normalizeGrammarAnswerForComparison(answer, question.topic) === userAnswer);
 
     if (input) input.disabled = isCorrect;
     document.querySelectorAll('[data-launch-tense-blank]').forEach((blank) => {
@@ -3237,12 +3783,20 @@ function checkGrammarDirectBattleAnswer() {
 }
 
 function getGrammarBattleModeLabel(question = currentVocab) {
-    if (question?.grammarTopic === GRAMMAR_PREPOSITION_PLACE_TOPIC) return 'Select the correct preposition.';
+    if (question?.grammarTopic === GRAMMAR_PREPOSITION_PLACE_TOPIC) return 'Select the correct place preposition.';
     if (question?.grammarTopic === GRAMMAR_PREPOSITION_TIME_TOPIC) return 'Select the correct time preposition.';
+    if (question?.grammarTopic === GRAMMAR_COMPOUND_ADJ_TOPIC) return 'Select the correct adjective preposition.';
+    if (question?.grammarTopic === GRAMMAR_PHRASAL_VERB_TOPIC) return 'Select the correct phrasal verb.';
     if (question?.grammarTopic === GRAMMAR_TENSE_TOPIC) return 'Complete the tense code.';
+    if (question?.grammarTopic === GRAMMAR_PRONOUN_TOPIC) return 'Complete the pronoun code.';
+    if (question?.grammarTopic === GRAMMAR_COMPARATIVE_SUPERLATIVE_TOPIC) return 'Complete the comparison code.';
     if (question?.grammarTopic === GRAMMAR_INFINITIVE_GERUND_TOPIC) return 'Complete the infinitive or gerund form.';
+    if (question?.grammarTopic === GRAMMAR_QUESTION_TAG_TOPIC) return 'Complete the question tag.';
+    if (question?.grammarTopic === GRAMMAR_DE_STRUCTURE_TOPIC) return 'Translate the 的 structure.';
     if (question?.grammarTopic === GRAMMAR_CONDITIONAL_TOPIC) return 'Reconstruct the conditional sentence.';
     if (question?.grammarTopic === GRAMMAR_REPORTED_SPEECH_TOPIC) return 'Reconstruct the reported speech.';
+    if (question?.grammarTopic === GRAMMAR_PARTICIPLE_PHRASES_TOPIC) return 'Reconstruct the participle phrase.';
+    if (question?.grammarTopic === GRAMMAR_INVERSION_TOPIC) return 'Reconstruct the inversion sentence.';
     if (question?.grammarTopic === GRAMMAR_IT_IS_TOPIC) return 'Reconstruct the It is pattern.';
     if (question?.grammarTopic === GRAMMAR_INDIRECT_TOPIC) return 'Reconstruct the indirect question.';
     if (question?.grammarTopic === GRAMMAR_DIRECT_TOPIC) return 'Reconstruct the question.';
@@ -3256,10 +3810,18 @@ function getGrammarBattlePromptText(question = currentVocab) {
 function getGrammarBattleErrorMessage(question = currentVocab) {
     if (question?.grammarTopic === GRAMMAR_PREPOSITION_PLACE_TOPIC) return 'PREPOSITION LOCK INVALID!';
     if (question?.grammarTopic === GRAMMAR_PREPOSITION_TIME_TOPIC) return 'TIME PREPOSITION LOCK INVALID!';
+    if (question?.grammarTopic === GRAMMAR_COMPOUND_ADJ_TOPIC) return 'COMPOUND ADJ LOCK INVALID!';
+    if (question?.grammarTopic === GRAMMAR_PHRASAL_VERB_TOPIC) return 'PHRASAL VERB LOCK INVALID!';
     if (question?.grammarTopic === GRAMMAR_TENSE_TOPIC) return 'TENSE CODE INVALID!';
+    if (question?.grammarTopic === GRAMMAR_PRONOUN_TOPIC) return 'PRONOUN CODE INVALID!';
+    if (question?.grammarTopic === GRAMMAR_COMPARATIVE_SUPERLATIVE_TOPIC) return 'COMPARISON CODE INVALID!';
     if (question?.grammarTopic === GRAMMAR_INFINITIVE_GERUND_TOPIC) return 'FORM CODE INVALID!';
+    if (question?.grammarTopic === GRAMMAR_QUESTION_TAG_TOPIC) return 'QUESTION TAG INVALID!';
+    if (question?.grammarTopic === GRAMMAR_DE_STRUCTURE_TOPIC) return 'WAYS TO DESCRIBE NOUNS INVALID!';
     if (question?.grammarTopic === GRAMMAR_CONDITIONAL_TOPIC) return 'CONDITIONAL SEQUENCE INVALID!';
     if (question?.grammarTopic === GRAMMAR_REPORTED_SPEECH_TOPIC) return 'REPORTED SEQUENCE INVALID!';
+    if (question?.grammarTopic === GRAMMAR_PARTICIPLE_PHRASES_TOPIC) return 'PARTICIPLE SEQUENCE INVALID!';
+    if (question?.grammarTopic === GRAMMAR_INVERSION_TOPIC) return 'INVERSION SEQUENCE INVALID!';
     if (isGrammarQuestionRearrangeTopic(question?.grammarTopic)) return 'QUESTION SEQUENCE INVALID!';
     return 'TABLE INCOMPLETE!';
 }
@@ -3524,15 +4086,8 @@ function initGrammarVerbChallenge(useWrongQuestions = false) {
 function openGrammarVerbTableScreen() {
     playSound('deploy-sfx');
     const topicScreen = document.getElementById('grammar-topic-screen');
-    if (topicScreen) topicScreen.style.display = 'none';
-
-    window.selectedGrammarTopic = 'VERB_TABLE';
-    currentPracticeMode = 'GRAMMAR';
-    selectedLevel = 'VERB_TABLE';
-    selectedStageIndex = null;
-    selectedStageLabel = 'VERB TABLE';
-    activeVocabList = buildGrammarBattleDeck();
-    if (!activeVocabList.length) {
+    const deck = buildGrammarBattleDeck();
+    if (!deck.length) {
         if (typeof showNotification === 'function') {
             showNotification('GRAMMAR DATABASE NOT LOADED', 'error', 4000);
         } else {
@@ -3541,38 +4096,14 @@ function openGrammarVerbTableScreen() {
         if (topicScreen) topicScreen.style.display = 'flex';
         return;
     }
-    sessionDeck = [...activeVocabList];
-
-    if (typeof loadMissedWordsToPriorityDeck === 'function') {
-        loadMissedWordsToPriorityDeck('GRAMMAR');
-    }
-
-    updateRaceButtons();
-    const raceScreen = document.getElementById('race-screen');
-    if (raceScreen) {
-        raceScreen.style.display = 'flex';
-        const wrapper = raceScreen.querySelector('.panel-content-wrapper');
-        if (wrapper) {
-            wrapper.style.animation = 'none';
-            setTimeout(() => {
-                wrapper.style.animation = 'holoAppear 0.4s forwards';
-            }, 10);
-        }
-    }
+    finishGrammarBattleSetup('VERB_TABLE', 'VERB TABLE', deck);
 }
 
 function openGrammarDirectQuestionScreen() {
     playSound('deploy-sfx');
     const topicScreen = document.getElementById('grammar-topic-screen');
-    if (topicScreen) topicScreen.style.display = 'none';
-
-    window.selectedGrammarTopic = GRAMMAR_DIRECT_TOPIC;
-    currentPracticeMode = 'GRAMMAR';
-    selectedLevel = GRAMMAR_DIRECT_TOPIC;
-    selectedStageIndex = null;
-    selectedStageLabel = 'DIRECT QUESTION';
-    activeVocabList = buildGrammarDirectQuestionBattleDeck();
-    if (!activeVocabList.length) {
+    const deck = buildGrammarDirectQuestionBattleDeck();
+    if (!deck.length) {
         if (typeof showNotification === 'function') {
             showNotification('DIRECT QUESTION DATABASE NOT LOADED', 'error', 4000);
         } else {
@@ -3581,38 +4112,14 @@ function openGrammarDirectQuestionScreen() {
         if (topicScreen) topicScreen.style.display = 'flex';
         return;
     }
-    sessionDeck = [...activeVocabList];
-
-    if (typeof loadMissedWordsToPriorityDeck === 'function') {
-        loadMissedWordsToPriorityDeck('GRAMMAR');
-    }
-
-    updateRaceButtons();
-    const raceScreen = document.getElementById('race-screen');
-    if (raceScreen) {
-        raceScreen.style.display = 'flex';
-        const wrapper = raceScreen.querySelector('.panel-content-wrapper');
-        if (wrapper) {
-            wrapper.style.animation = 'none';
-            setTimeout(() => {
-                wrapper.style.animation = 'holoAppear 0.4s forwards';
-            }, 10);
-        }
-    }
+    finishGrammarBattleSetup(GRAMMAR_DIRECT_TOPIC, 'DIRECT QUESTION', deck);
 }
 
 function openGrammarIndirectQuestionScreen() {
     playSound('deploy-sfx');
     const topicScreen = document.getElementById('grammar-topic-screen');
-    if (topicScreen) topicScreen.style.display = 'none';
-
-    window.selectedGrammarTopic = GRAMMAR_INDIRECT_TOPIC;
-    currentPracticeMode = 'GRAMMAR';
-    selectedLevel = GRAMMAR_INDIRECT_TOPIC;
-    selectedStageIndex = null;
-    selectedStageLabel = 'INDIRECT QUESTION';
-    activeVocabList = buildGrammarIndirectQuestionBattleDeck();
-    if (!activeVocabList.length) {
+    const deck = buildGrammarIndirectQuestionBattleDeck();
+    if (!deck.length) {
         if (typeof showNotification === 'function') {
             showNotification('INDIRECT QUESTION DATABASE NOT LOADED', 'error', 4000);
         } else {
@@ -3621,38 +4128,14 @@ function openGrammarIndirectQuestionScreen() {
         if (topicScreen) topicScreen.style.display = 'flex';
         return;
     }
-    sessionDeck = [...activeVocabList];
-
-    if (typeof loadMissedWordsToPriorityDeck === 'function') {
-        loadMissedWordsToPriorityDeck('GRAMMAR');
-    }
-
-    updateRaceButtons();
-    const raceScreen = document.getElementById('race-screen');
-    if (raceScreen) {
-        raceScreen.style.display = 'flex';
-        const wrapper = raceScreen.querySelector('.panel-content-wrapper');
-        if (wrapper) {
-            wrapper.style.animation = 'none';
-            setTimeout(() => {
-                wrapper.style.animation = 'holoAppear 0.4s forwards';
-            }, 10);
-        }
-    }
+    finishGrammarBattleSetup(GRAMMAR_INDIRECT_TOPIC, 'INDIRECT QUESTION', deck);
 }
 
 function openGrammarItIsScreen() {
     playSound('deploy-sfx');
     const topicScreen = document.getElementById('grammar-topic-screen');
-    if (topicScreen) topicScreen.style.display = 'none';
-
-    window.selectedGrammarTopic = GRAMMAR_IT_IS_TOPIC;
-    currentPracticeMode = 'GRAMMAR';
-    selectedLevel = GRAMMAR_IT_IS_TOPIC;
-    selectedStageIndex = null;
-    selectedStageLabel = 'IT IS';
-    activeVocabList = buildGrammarItIsQuestionBattleDeck();
-    if (!activeVocabList.length) {
+    const deck = buildGrammarItIsQuestionBattleDeck();
+    if (!deck.length) {
         if (typeof showNotification === 'function') {
             showNotification('IT IS DATABASE NOT LOADED', 'error', 4000);
         } else {
@@ -3661,38 +4144,14 @@ function openGrammarItIsScreen() {
         if (topicScreen) topicScreen.style.display = 'flex';
         return;
     }
-    sessionDeck = [...activeVocabList];
-
-    if (typeof loadMissedWordsToPriorityDeck === 'function') {
-        loadMissedWordsToPriorityDeck('GRAMMAR');
-    }
-
-    updateRaceButtons();
-    const raceScreen = document.getElementById('race-screen');
-    if (raceScreen) {
-        raceScreen.style.display = 'flex';
-        const wrapper = raceScreen.querySelector('.panel-content-wrapper');
-        if (wrapper) {
-            wrapper.style.animation = 'none';
-            setTimeout(() => {
-                wrapper.style.animation = 'holoAppear 0.4s forwards';
-            }, 10);
-        }
-    }
+    finishGrammarBattleSetup(GRAMMAR_IT_IS_TOPIC, 'IT IS', deck);
 }
 
 function openGrammarInfinitiveGerundScreen() {
     playSound('deploy-sfx');
     const topicScreen = document.getElementById('grammar-topic-screen');
-    if (topicScreen) topicScreen.style.display = 'none';
-
-    window.selectedGrammarTopic = GRAMMAR_INFINITIVE_GERUND_TOPIC;
-    currentPracticeMode = 'GRAMMAR';
-    selectedLevel = GRAMMAR_INFINITIVE_GERUND_TOPIC;
-    selectedStageIndex = null;
-    selectedStageLabel = 'INFINITIVE / GERUND';
-    activeVocabList = buildGrammarInfinitiveGerundBattleDeck();
-    if (!activeVocabList.length) {
+    const deck = buildGrammarInfinitiveGerundBattleDeck();
+    if (!deck.length) {
         if (typeof showNotification === 'function') {
             showNotification('INFINITIVE / GERUND DATABASE NOT LOADED', 'error', 4000);
         } else {
@@ -3701,38 +4160,78 @@ function openGrammarInfinitiveGerundScreen() {
         if (topicScreen) topicScreen.style.display = 'flex';
         return;
     }
-    sessionDeck = [...activeVocabList];
+    finishGrammarBattleSetup(GRAMMAR_INFINITIVE_GERUND_TOPIC, 'INFINITIVE / GERUND', deck);
+}
 
-    if (typeof loadMissedWordsToPriorityDeck === 'function') {
-        loadMissedWordsToPriorityDeck('GRAMMAR');
-    }
-
-    updateRaceButtons();
-    const raceScreen = document.getElementById('race-screen');
-    if (raceScreen) {
-        raceScreen.style.display = 'flex';
-        const wrapper = raceScreen.querySelector('.panel-content-wrapper');
-        if (wrapper) {
-            wrapper.style.animation = 'none';
-            setTimeout(() => {
-                wrapper.style.animation = 'holoAppear 0.4s forwards';
-            }, 10);
+function openGrammarPronounScreen() {
+    playSound('deploy-sfx');
+    const topicScreen = document.getElementById('grammar-topic-screen');
+    const deck = buildGrammarPronounBattleDeck();
+    if (!deck.length) {
+        if (typeof showNotification === 'function') {
+            showNotification('PRONOUN DATABASE NOT LOADED', 'error', 4000);
+        } else {
+            alert('Pronoun database not loaded.');
         }
+        if (topicScreen) topicScreen.style.display = 'flex';
+        return;
     }
+    finishGrammarBattleSetup(GRAMMAR_PRONOUN_TOPIC, 'PRONOUN', deck);
+}
+
+function openGrammarComparativeSuperlativeScreen() {
+    playSound('deploy-sfx');
+    const topicScreen = document.getElementById('grammar-topic-screen');
+    const deck = buildGrammarComparativeSuperlativeBattleDeck();
+    if (!deck.length) {
+        if (typeof showNotification === 'function') {
+            showNotification('COMPARATIVE AND SUPERLATIVE DATABASE NOT LOADED', 'error', 4000);
+        } else {
+            alert('Comparative and Superlative database not loaded.');
+        }
+        if (topicScreen) topicScreen.style.display = 'flex';
+        return;
+    }
+    finishGrammarBattleSetup(GRAMMAR_COMPARATIVE_SUPERLATIVE_TOPIC, 'COMPARATIVE AND SUPERLATIVE', deck);
+}
+
+function openGrammarQuestionTagScreen() {
+    playSound('deploy-sfx');
+    const topicScreen = document.getElementById('grammar-topic-screen');
+    const deck = buildGrammarQuestionTagBattleDeck();
+    if (!deck.length) {
+        if (typeof showNotification === 'function') {
+            showNotification('QUESTION TAG DATABASE NOT LOADED', 'error', 4000);
+        } else {
+            alert('Question Tag database not loaded.');
+        }
+        if (topicScreen) topicScreen.style.display = 'flex';
+        return;
+    }
+    finishGrammarBattleSetup(GRAMMAR_QUESTION_TAG_TOPIC, 'QUESTION TAG', deck);
+}
+
+function openGrammarDeStructureScreen() {
+    playSound('deploy-sfx');
+    const topicScreen = document.getElementById('grammar-topic-screen');
+    const deck = buildGrammarDeStructureBattleDeck();
+    if (!deck.length) {
+        if (typeof showNotification === 'function') {
+            showNotification('WAYS TO DESCRIBE NOUNS DATABASE NOT LOADED', 'error', 4000);
+        } else {
+            alert('Ways to describe nouns database not loaded.');
+        }
+        if (topicScreen) topicScreen.style.display = 'flex';
+        return;
+    }
+    finishGrammarBattleSetup(GRAMMAR_DE_STRUCTURE_TOPIC, 'WAYS TO DESCRIBE NOUNS', deck);
 }
 
 function openGrammarPrepositionPlaceScreen() {
     playSound('deploy-sfx');
     const topicScreen = document.getElementById('grammar-topic-screen');
-    if (topicScreen) topicScreen.style.display = 'none';
-
-    window.selectedGrammarTopic = GRAMMAR_PREPOSITION_PLACE_TOPIC;
-    currentPracticeMode = 'GRAMMAR';
-    selectedLevel = GRAMMAR_PREPOSITION_PLACE_TOPIC;
-    selectedStageIndex = null;
-    selectedStageLabel = 'PREPOSITION OF PLACE';
-    activeVocabList = buildGrammarPrepositionPlaceBattleDeck();
-    if (!activeVocabList.length) {
+    const deck = buildGrammarPrepositionPlaceBattleDeck();
+    if (!deck.length) {
         if (typeof showNotification === 'function') {
             showNotification('PREPOSITION OF PLACE DATABASE NOT LOADED', 'error', 4000);
         } else {
@@ -3741,38 +4240,14 @@ function openGrammarPrepositionPlaceScreen() {
         if (topicScreen) topicScreen.style.display = 'flex';
         return;
     }
-    sessionDeck = [...activeVocabList];
-
-    if (typeof loadMissedWordsToPriorityDeck === 'function') {
-        loadMissedWordsToPriorityDeck('GRAMMAR');
-    }
-
-    updateRaceButtons();
-    const raceScreen = document.getElementById('race-screen');
-    if (raceScreen) {
-        raceScreen.style.display = 'flex';
-        const wrapper = raceScreen.querySelector('.panel-content-wrapper');
-        if (wrapper) {
-            wrapper.style.animation = 'none';
-            setTimeout(() => {
-                wrapper.style.animation = 'holoAppear 0.4s forwards';
-            }, 10);
-        }
-    }
+    finishGrammarBattleSetup(GRAMMAR_PREPOSITION_PLACE_TOPIC, 'PREPOSITION OF PLACE', deck);
 }
 
 function openGrammarPrepositionTimeScreen() {
     playSound('deploy-sfx');
     const topicScreen = document.getElementById('grammar-topic-screen');
-    if (topicScreen) topicScreen.style.display = 'none';
-
-    window.selectedGrammarTopic = GRAMMAR_PREPOSITION_TIME_TOPIC;
-    currentPracticeMode = 'GRAMMAR';
-    selectedLevel = GRAMMAR_PREPOSITION_TIME_TOPIC;
-    selectedStageIndex = null;
-    selectedStageLabel = 'PREPOSITION OF TIME';
-    activeVocabList = buildGrammarPrepositionTimeBattleDeck();
-    if (!activeVocabList.length) {
+    const deck = buildGrammarPrepositionTimeBattleDeck();
+    if (!deck.length) {
         if (typeof showNotification === 'function') {
             showNotification('PREPOSITION OF TIME DATABASE NOT LOADED', 'error', 4000);
         } else {
@@ -3781,24 +4256,71 @@ function openGrammarPrepositionTimeScreen() {
         if (topicScreen) topicScreen.style.display = 'flex';
         return;
     }
-    sessionDeck = [...activeVocabList];
+    finishGrammarBattleSetup(GRAMMAR_PREPOSITION_TIME_TOPIC, 'PREPOSITION OF TIME', deck);
+}
 
-    if (typeof loadMissedWordsToPriorityDeck === 'function') {
-        loadMissedWordsToPriorityDeck('GRAMMAR');
-    }
-
-    updateRaceButtons();
-    const raceScreen = document.getElementById('race-screen');
-    if (raceScreen) {
-        raceScreen.style.display = 'flex';
-        const wrapper = raceScreen.querySelector('.panel-content-wrapper');
-        if (wrapper) {
-            wrapper.style.animation = 'none';
-            setTimeout(() => {
-                wrapper.style.animation = 'holoAppear 0.4s forwards';
-            }, 10);
+function openGrammarCompoundAdjScreen() {
+    playSound('deploy-sfx');
+    const topicScreen = document.getElementById('grammar-topic-screen');
+    const deck = buildGrammarCompoundAdjBattleDeck();
+    if (!deck.length) {
+        if (typeof showNotification === 'function') {
+            showNotification('COMPOUND ADJ DATABASE NOT LOADED', 'error', 4000);
+        } else {
+            alert('Compound Adj database not loaded.');
         }
+        if (topicScreen) topicScreen.style.display = 'flex';
+        return;
     }
+    finishGrammarBattleSetup(GRAMMAR_COMPOUND_ADJ_TOPIC, 'COMPOUND ADJ', deck);
+}
+
+function openGrammarPhrasalVerbScreen() {
+    playSound('deploy-sfx');
+    const topicScreen = document.getElementById('grammar-topic-screen');
+    const deck = buildGrammarPhrasalVerbBattleDeck();
+    if (!deck.length) {
+        if (typeof showNotification === 'function') {
+            showNotification('PHRASAL VERB DATABASE NOT LOADED', 'error', 4000);
+        } else {
+            alert('Phrasal Verb database not loaded.');
+        }
+        if (topicScreen) topicScreen.style.display = 'flex';
+        return;
+    }
+    finishGrammarBattleSetup(GRAMMAR_PHRASAL_VERB_TOPIC, 'PHRASAL VERB', deck);
+}
+
+function openGrammarParticiplePhrasesScreen() {
+    playSound('deploy-sfx');
+    const topicScreen = document.getElementById('grammar-topic-screen');
+    const deck = buildGrammarParticiplePhrasesBattleDeck();
+    if (!deck.length) {
+        if (typeof showNotification === 'function') {
+            showNotification('PARTICIPLE PHRASES DATABASE NOT LOADED', 'error', 4000);
+        } else {
+            alert('Participle Phrases database not loaded.');
+        }
+        if (topicScreen) topicScreen.style.display = 'flex';
+        return;
+    }
+    finishGrammarBattleSetup(GRAMMAR_PARTICIPLE_PHRASES_TOPIC, 'PARTICIPLE PHRASES', deck);
+}
+
+function openGrammarInversionScreen() {
+    playSound('deploy-sfx');
+    const topicScreen = document.getElementById('grammar-topic-screen');
+    const deck = buildGrammarInversionBattleDeck();
+    if (!deck.length) {
+        if (typeof showNotification === 'function') {
+            showNotification('INVERSION DATABASE NOT LOADED', 'error', 4000);
+        } else {
+            alert('Inversion database not loaded.');
+        }
+        if (topicScreen) topicScreen.style.display = 'flex';
+        return;
+    }
+    finishGrammarBattleSetup(GRAMMAR_INVERSION_TOPIC, 'INVERSION', deck);
 }
 
 function returnFromGrammarVerbScreen() {
@@ -4255,9 +4777,16 @@ window.openGrammarVerbTableScreen = openGrammarVerbTableScreen;
 window.openGrammarDirectQuestionScreen = openGrammarDirectQuestionScreen;
 window.openGrammarIndirectQuestionScreen = openGrammarIndirectQuestionScreen;
 window.openGrammarItIsScreen = openGrammarItIsScreen;
+window.openGrammarPronounScreen = openGrammarPronounScreen;
+window.openGrammarComparativeSuperlativeScreen = openGrammarComparativeSuperlativeScreen;
 window.openGrammarInfinitiveGerundScreen = openGrammarInfinitiveGerundScreen;
+window.openGrammarQuestionTagScreen = openGrammarQuestionTagScreen;
+window.openGrammarDeStructureScreen = openGrammarDeStructureScreen;
 window.openGrammarPrepositionPlaceScreen = openGrammarPrepositionPlaceScreen;
 window.openGrammarPrepositionTimeScreen = openGrammarPrepositionTimeScreen;
+window.openGrammarCompoundAdjScreen = openGrammarCompoundAdjScreen;
+window.openGrammarPhrasalVerbScreen = openGrammarPhrasalVerbScreen;
+window.openGrammarParticiplePhrasesScreen = openGrammarParticiplePhrasesScreen;
 window.openGrammarTenseSetupScreen = openGrammarTenseSetupScreen;
 window.openGrammarConditionalSetupScreen = openGrammarConditionalSetupScreen;
 window.openGrammarReportedSpeechSetupScreen = openGrammarReportedSpeechSetupScreen;
@@ -4301,6 +4830,10 @@ window.getGrammarBattleErrorMessage = getGrammarBattleErrorMessage;
 window.getGrammarBattleReviewEntry = getGrammarBattleReviewEntry;
 window.toggleLaunchGrammarReference = toggleLaunchGrammarReference;
 window.getGrammarBattleDeckSnapshot = getGrammarBattleDeckSnapshot;
+window.getGrammarTopicLabel = getGrammarTopicLabel;
+window.getGrammarRevisionItem = getGrammarRevisionItem;
+window.getGrammarRevisionDeck = buildGrammarRevisionDeck;
+window.startGrammarRevisionChallenge = startGrammarRevisionChallenge;
 window.filterGrammarTopicReference = filterGrammarTopicReference;
 window.showGrammarTopicSearchKeyboard = showGrammarTopicSearchKeyboard;
 document.addEventListener('DOMContentLoaded', () => {

@@ -1,6 +1,6 @@
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
   import { getDatabase, ref, set, onValue, update, push, child, get, onDisconnect, off, remove, query, orderByChild, limitToLast } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
-  import { getAuth, signInAnonymously, onAuthStateChanged, GoogleAuthProvider, OAuthProvider, signInWithPopup, linkWithPopup, signInWithRedirect, linkWithRedirect, signInWithCredential, linkWithCredential, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+  import { getAuth, initializeAuth, browserLocalPersistence, signInAnonymously, onAuthStateChanged, GoogleAuthProvider, OAuthProvider, signInWithPopup, linkWithPopup, signInWithRedirect, linkWithRedirect, signInWithCredential, linkWithCredential, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
     const firebaseConfig = {
         apiKey: "AIzaSyCfo5jxY1zvkRJPuPtZOMYj1V0kT7Te11A",
@@ -15,13 +15,26 @@
     // 初始化
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
-    const auth = getAuth(app);
+    const isCapacitorIOS = window.location.protocol === 'capacitor:' && /iPad|iPhone|iPod/i.test(navigator.userAgent);
+    let auth;
+    try {
+        auth = isCapacitorIOS
+            ? initializeAuth(app, { persistence: browserLocalPersistence })
+            : getAuth(app);
+        console.log('[Auth Init] Firebase Auth initialized', {
+            platform: isCapacitorIOS ? 'capacitor-ios' : 'default',
+            persistence: isCapacitorIOS ? 'browserLocalPersistence' : 'default'
+        });
+    } catch (error) {
+        console.warn('[Auth Init] initializeAuth fallback to getAuth:', error);
+        auth = getAuth(app);
+    }
 
     // 掛載到 window 供 onclick 使用
 window.firebaseModules = {
       initializeApp,
       getDatabase, ref, set, onValue, update, push, child, get, onDisconnect, off, remove, query, orderByChild, limitToLast,
-      getAuth, signInAnonymously, onAuthStateChanged, GoogleAuthProvider, OAuthProvider, signInWithPopup, linkWithPopup, signInWithRedirect, linkWithRedirect, signInWithCredential, linkWithCredential, signOut
+      getAuth, initializeAuth, browserLocalPersistence, signInAnonymously, onAuthStateChanged, GoogleAuthProvider, OAuthProvider, signInWithPopup, linkWithPopup, signInWithRedirect, linkWithRedirect, signInWithCredential, linkWithCredential, signOut
   };
     window.db = db;
     window.auth = auth;

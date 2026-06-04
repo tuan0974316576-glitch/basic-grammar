@@ -11,6 +11,11 @@
     <link rel="apple-touch-icon" href="icon.png">
 
     <script>
+        window.ENGLISH_CONQUEROR_BUILD = '1.0.3-build39-entry-briefing';
+    </script>
+    <script src="diagnostics.js?v=1.04v"></script>
+
+    <script>
         if (window.location.protocol === 'capacitor:') {
             document.documentElement.classList.add('capacitor-native');
             document.documentElement.classList.add(/Android/i.test(navigator.userAgent) ? 'capacitor-android' : 'capacitor-ios');
@@ -55,8 +60,8 @@
         }
     </script>
 
-    <script type="module" src="firebase-init.js?v=0.88v"></script>
-    <link rel="stylesheet" href="style.css?v=1.02v">
+    <script type="module" src="firebase-init.js?v=0.92v"></script>
+    <link rel="stylesheet" href="style.css?v=1.31v">
 
 </head>
 <body>
@@ -70,6 +75,10 @@
     </div>
 </div>
 <img src="option.png" id="main-settings-btn" onclick="event.stopPropagation(); toggleSettingsModal()" alt="Settings">
+<button id="mission-checklist-btn" class="mission-checklist-btn incomplete" onclick="event.stopPropagation(); openDailyMissionChecklistModal()" aria-label="Open daily mission checklist">
+    <span class="mission-checklist-icon">M</span>
+    <span class="mission-checklist-dot"></span>
+</button>
 <!-- Supplies Display -->
 <div id="coins-display">
     <span class="coins-amount" id="coins-amount">SUPPLIES: 0</span>
@@ -141,6 +150,7 @@
             <div style="margin-top: 15px; color: #f59e0b; font-family: 'Orbitron'; letter-spacing: 2px; font-size: 12px; font-weight: bold;">
                 ESTABLISHING LINK...
             </div>
+            <button type="button" class="diagnostic-log-btn" onclick="window.battleDiagnostics?.open()">DIAGNOSTIC LOG</button>
         </div>
 
         <div id="login-panel" style="position: relative; display: none;">
@@ -162,11 +172,13 @@
             <button class="logout-link" onclick="playAsGuest()" style="color: #64748b; font-size: 10px; margin-top: 5px;">
                &gt; BYPASS SECURITY (GUEST MODE)
             </button>
+            <button type="button" class="diagnostic-log-btn" onclick="window.battleDiagnostics?.open()">DIAGNOSTIC LOG</button>
 
             <div id="login-overlay" onclick="cancelAuthOverlay()">
                 <div class="login-spinner"></div>
                 <div class="login-loading-text">AUTHENTICATING...</div>
                 <div style="margin-top: 15px; color: #64748b; font-family: 'Orbitron'; font-size: 10px; letter-spacing: 2px; opacity: 0.7;">TAP TO CANCEL</div>
+                <button type="button" class="diagnostic-log-btn diagnostic-log-overlay-btn" onclick="event.stopPropagation(); window.battleDiagnostics?.open()">DIAGNOSTIC LOG</button>
             </div>
         </div>
 
@@ -226,8 +238,16 @@
             <div class="mode-title">VS PLAYER</div>
         </button>
 
+        <button class="start-btn-large btn-training carousel-item" onclick="selectMode('TRAINING')">
+            <div class="mode-title">TRAINING</div>
+        </button>
+
         <button class="start-btn-large btn-code-list carousel-item" onclick="openVocabScreen()">
-            <div class="mode-title">CODE LIST</div>
+            <div class="mode-title">VOCAB LIST</div>
+        </button>
+
+        <button class="start-btn-large btn-revision carousel-item" onclick="openRevisionScreen()">
+            <div class="mode-title">REVISION</div>
         </button>
 
         <button class="start-btn-large btn-ranking carousel-item" onclick="openRankingScreen()">
@@ -246,7 +266,7 @@
 
 <div id="vocab-screen">
     <div class="tech-header">
-        <h2 class="tech-title">CODE LIST</h2> 
+        <h2 class="tech-title">VOCAB LIST</h2> 
         <div class="tech-subtitle">CLASSIFIED VOCABULARY DATABASE</div>
     </div>
 
@@ -263,6 +283,7 @@
         <div class="vocab-list-header">
             <span>TARGET (CH)</span>
             <span>CODE (EN)</span>
+            <span></span>
         </div>
         <div id="vocab-list-body" class="vocab-list-body">
             </div>
@@ -313,6 +334,37 @@
     </div>
 
     <button class="btn vocab-back-btn" onclick="closeVocabScreen()">&lt; BACK</button>
+</div>
+
+<div id="revision-screen">
+    <div class="tech-header">
+        <h2 class="tech-title">REVISION MODE</h2>
+        <div class="tech-subtitle">TARGETED MISTAKE REVIEW</div>
+    </div>
+
+    <div class="revision-tabs">
+        <button id="revision-tab-reading" class="revision-tab active" onclick="switchRevisionTab('reading')">READING</button>
+        <button id="revision-tab-spelling" class="revision-tab" onclick="switchRevisionTab('spelling')">SPELLING</button>
+        <button id="revision-tab-listening" class="revision-tab" onclick="switchRevisionTab('listening')">LISTENING</button>
+        <button id="revision-tab-speaking" class="revision-tab" onclick="switchRevisionTab('speaking')">SPEAKING</button>
+        <button id="revision-tab-grammar" class="revision-tab" onclick="switchRevisionTab('grammar')">GRAMMAR</button>
+    </div>
+
+    <div id="revision-summary" class="revision-summary">--</div>
+
+    <div class="revision-container">
+        <div class="revision-list-header">
+            <span>ITEM</span>
+            <span>AREA</span>
+            <span>MISSES</span>
+        </div>
+        <div id="revision-list-body" class="revision-list-body"></div>
+    </div>
+
+    <div class="revision-actions">
+        <button id="revision-challenge-btn" class="revision-challenge-btn" onclick="startRevisionChallenge()">CHALLENGE AGAIN</button>
+        <button class="btn revision-back-btn" onclick="closeRevisionScreen()">&lt; BACK</button>
+    </div>
 </div>
 
 <!-- ★★★ RANKING SCREEN ★★★ -->
@@ -465,55 +517,31 @@
                     <div class="grammar-topic-desc">時態主被動特訓</div>
                     <div id="grammar-tense-topic-progress" class="grammar-topic-progress">0/0</div>
                 </button>
+                <button class="stage-info-btn grammar-topic-info" onclick="openGrammarTenseReferenceScreen(); event.stopPropagation();" aria-label="Open tenses reference">i</button>
             </div>
-            <div class="grammar-topic-card grammar-topic-card-conditional">
-                <button class="grammar-topic-btn grammar-topic-btn-conditional" onclick="openGrammarConditionalSetupScreen()">
-                    <div class="grammar-topic-name">CONDITIONAL</div>
-                    <div class="grammar-topic-desc">條件句重組特訓</div>
-                    <div id="grammar-conditional-topic-progress" class="grammar-topic-progress">0/0</div>
+            <div class="grammar-topic-card grammar-topic-card-pronoun">
+                <button class="grammar-topic-btn grammar-topic-btn-pronoun" onclick="openGrammarPronounScreen()">
+                    <div class="grammar-topic-name">PRONOUN</div>
+                    <div class="grammar-topic-desc">代名詞填充特訓</div>
+                    <div id="grammar-pronoun-topic-progress" class="grammar-topic-progress">0/0</div>
                 </button>
+                <button class="stage-info-btn grammar-topic-info" onclick="openGrammarPronounReferenceScreen(); event.stopPropagation();" aria-label="Open pronoun reference">i</button>
             </div>
-            <div class="grammar-topic-card grammar-topic-card-reported-speech">
-                <button class="grammar-topic-btn grammar-topic-btn-reported-speech" onclick="openGrammarReportedSpeechSetupScreen()">
-                    <div class="grammar-topic-name">REPORTED SPEECH</div>
-                    <div class="grammar-topic-desc">間接引語重組特訓</div>
-                    <div id="grammar-reported-speech-topic-progress" class="grammar-topic-progress">0/0</div>
+            <div class="grammar-topic-card grammar-topic-card-comparative-superlative">
+                <button class="grammar-topic-btn grammar-topic-btn-comparative-superlative" onclick="openGrammarComparativeSuperlativeScreen()">
+                    <div class="grammar-topic-name">COMPARATIVE AND SUPERLATIVE</div>
+                    <div class="grammar-topic-desc">比較級最高級填充特訓</div>
+                    <div id="grammar-comparative-superlative-topic-progress" class="grammar-topic-progress">0/0</div>
                 </button>
-            </div>
-            <div class="grammar-topic-card grammar-topic-card-direct">
-                <button class="grammar-topic-btn grammar-topic-btn-direct" onclick="openGrammarDirectQuestionScreen()">
-                    <div class="grammar-topic-name">DIRECT QUESTION</div>
-                    <div class="grammar-topic-desc">真問句重組特訓</div>
-                    <div id="grammar-direct-topic-progress" class="grammar-topic-progress">0/0</div>
-                </button>
-            </div>
-            <div class="grammar-topic-card grammar-topic-card-indirect">
-                <button class="grammar-topic-btn grammar-topic-btn-indirect" onclick="openGrammarIndirectQuestionScreen()">
-                    <div class="grammar-topic-name">INDIRECT QUESTION</div>
-                    <div class="grammar-topic-desc">假問句重組特訓</div>
-                    <div id="grammar-indirect-topic-progress" class="grammar-topic-progress">0/0</div>
-                </button>
-            </div>
-            <div class="grammar-topic-card grammar-topic-card-it-is">
-                <button class="grammar-topic-btn grammar-topic-btn-it-is" onclick="openGrammarItIsScreen()">
-                    <div class="grammar-topic-name">IT IS</div>
-                    <div class="grammar-topic-desc">形容詞句式重組特訓</div>
-                    <div id="grammar-it-is-topic-progress" class="grammar-topic-progress">0/0</div>
-                </button>
-            </div>
-            <div class="grammar-topic-card grammar-topic-card-infinitive-gerund">
-                <button class="grammar-topic-btn grammar-topic-btn-infinitive-gerund" onclick="openGrammarInfinitiveGerundScreen()">
-                    <div class="grammar-topic-name">INFINITIVE / GERUND</div>
-                    <div class="grammar-topic-desc">不定詞動名詞填充特訓</div>
-                    <div id="grammar-infinitive-gerund-topic-progress" class="grammar-topic-progress">0/0</div>
-                </button>
+                <button class="stage-info-btn grammar-topic-info" onclick="openGrammarComparativeSuperlativeReferenceScreen(); event.stopPropagation();" aria-label="Open comparative and superlative reference">i</button>
             </div>
             <div class="grammar-topic-card grammar-topic-card-preposition-place">
                 <button class="grammar-topic-btn grammar-topic-btn-preposition-place" onclick="openGrammarPrepositionPlaceScreen()">
                     <div class="grammar-topic-name">PREPOSITION OF PLACE</div>
-                    <div class="grammar-topic-desc">地方移動介詞五選一</div>
+                    <div class="grammar-topic-desc">地方介詞五選一</div>
                     <div id="grammar-preposition-place-topic-progress" class="grammar-topic-progress">0/0</div>
                 </button>
+                <button class="stage-info-btn grammar-topic-info" onclick="openGrammarPrepositionPlaceReferenceScreen(); event.stopPropagation();" aria-label="Open preposition of place reference">i</button>
             </div>
             <div class="grammar-topic-card grammar-topic-card-preposition-time">
                 <button class="grammar-topic-btn grammar-topic-btn-preposition-time" onclick="openGrammarPrepositionTimeScreen()">
@@ -521,6 +549,103 @@
                     <div class="grammar-topic-desc">時間介詞五選一</div>
                     <div id="grammar-preposition-time-topic-progress" class="grammar-topic-progress">0/0</div>
                 </button>
+                <button class="stage-info-btn grammar-topic-info" onclick="openGrammarPrepositionTimeReferenceScreen(); event.stopPropagation();" aria-label="Open preposition of time reference">i</button>
+            </div>
+            <div class="grammar-topic-card grammar-topic-card-infinitive-gerund">
+                <button class="grammar-topic-btn grammar-topic-btn-infinitive-gerund" onclick="openGrammarInfinitiveGerundScreen()">
+                    <div class="grammar-topic-name">INFINITIVE AND GERUND</div>
+                    <div class="grammar-topic-desc">不定詞動名詞填充特訓</div>
+                    <div id="grammar-infinitive-gerund-topic-progress" class="grammar-topic-progress">0/0</div>
+                </button>
+                <button class="stage-info-btn grammar-topic-info" onclick="openGrammarInfinitiveGerundReferenceScreen(); event.stopPropagation();" aria-label="Open infinitive and gerund reference">i</button>
+            </div>
+            <div class="grammar-topic-card grammar-topic-card-direct">
+                <button class="grammar-topic-btn grammar-topic-btn-direct" onclick="openGrammarDirectQuestionScreen()">
+                    <div class="grammar-topic-name">DIRECT QUESTION</div>
+                    <div class="grammar-topic-desc">真問句重組特訓</div>
+                    <div id="grammar-direct-topic-progress" class="grammar-topic-progress">0/0</div>
+                </button>
+                <button class="stage-info-btn grammar-topic-info" onclick="openGrammarDirectQuestionReferenceScreen(); event.stopPropagation();" aria-label="Open direct question reference">i</button>
+            </div>
+            <div class="grammar-topic-card grammar-topic-card-indirect">
+                <button class="grammar-topic-btn grammar-topic-btn-indirect" onclick="openGrammarIndirectQuestionScreen()">
+                    <div class="grammar-topic-name">INDIRECT QUESTION</div>
+                    <div class="grammar-topic-desc">假問句重組特訓</div>
+                    <div id="grammar-indirect-topic-progress" class="grammar-topic-progress">0/0</div>
+                </button>
+                <button class="stage-info-btn grammar-topic-info" onclick="openGrammarIndirectQuestionReferenceScreen(); event.stopPropagation();" aria-label="Open indirect question reference">i</button>
+            </div>
+            <div class="grammar-topic-card grammar-topic-card-it-is">
+                <button class="grammar-topic-btn grammar-topic-btn-it-is" onclick="openGrammarItIsScreen()">
+                    <div class="grammar-topic-name">IT IS</div>
+                    <div class="grammar-topic-desc">形容詞句式重組特訓</div>
+                    <div id="grammar-it-is-topic-progress" class="grammar-topic-progress">0/0</div>
+                </button>
+                <button class="stage-info-btn grammar-topic-info" onclick="openGrammarItIsReferenceScreen(); event.stopPropagation();" aria-label="Open It is reference">i</button>
+            </div>
+            <div class="grammar-topic-card grammar-topic-card-conditional">
+                <button class="grammar-topic-btn grammar-topic-btn-conditional" onclick="openGrammarConditionalSetupScreen()">
+                    <div class="grammar-topic-name">CONDITIONALS</div>
+                    <div class="grammar-topic-desc">條件句重組特訓</div>
+                    <div id="grammar-conditional-topic-progress" class="grammar-topic-progress">0/0</div>
+                </button>
+                <button class="stage-info-btn grammar-topic-info" onclick="openGrammarConditionalReferenceScreen(); event.stopPropagation();" aria-label="Open conditionals reference">i</button>
+            </div>
+            <div class="grammar-topic-card grammar-topic-card-reported-speech">
+                <button class="grammar-topic-btn grammar-topic-btn-reported-speech" onclick="openGrammarReportedSpeechSetupScreen()">
+                    <div class="grammar-topic-name">REPORTED SPEECH</div>
+                    <div class="grammar-topic-desc">間接引語重組特訓</div>
+                    <div id="grammar-reported-speech-topic-progress" class="grammar-topic-progress">0/0</div>
+                </button>
+                <button class="stage-info-btn grammar-topic-info" onclick="openGrammarReportedSpeechReferenceScreen(); event.stopPropagation();" aria-label="Open reported speech reference">i</button>
+            </div>
+            <div class="grammar-topic-card grammar-topic-card-participle-phrases">
+                <button class="grammar-topic-btn grammar-topic-btn-participle-phrases" onclick="openGrammarParticiplePhrasesScreen()">
+                    <div class="grammar-topic-name">PARTICIPLE PHRASES</div>
+                    <div class="grammar-topic-desc">分詞片語重組特訓</div>
+                    <div id="grammar-participle-phrases-topic-progress" class="grammar-topic-progress">0/0</div>
+                </button>
+                <button class="stage-info-btn grammar-topic-info" onclick="openGrammarParticiplePhrasesReferenceScreen(); event.stopPropagation();" aria-label="Open participle phrases reference">i</button>
+            </div>
+            <div class="grammar-topic-card grammar-topic-card-inversion">
+                <button class="grammar-topic-btn grammar-topic-btn-inversion" onclick="openGrammarInversionScreen()">
+                    <div class="grammar-topic-name">INVERSION</div>
+                    <div class="grammar-topic-desc">倒裝句重組特訓</div>
+                    <div id="grammar-inversion-topic-progress" class="grammar-topic-progress">0/0</div>
+                </button>
+                <button class="stage-info-btn grammar-topic-info" onclick="openGrammarInversionReferenceScreen(); event.stopPropagation();" aria-label="Open inversion reference">i</button>
+            </div>
+            <div class="grammar-topic-card grammar-topic-card-question-tag">
+                <button class="grammar-topic-btn grammar-topic-btn-question-tag" onclick="openGrammarQuestionTagScreen()">
+                    <div class="grammar-topic-name">QUESTION TAG</div>
+                    <div class="grammar-topic-desc">附加問句填充特訓</div>
+                    <div id="grammar-question-tag-topic-progress" class="grammar-topic-progress">0/0</div>
+                </button>
+                <button class="stage-info-btn grammar-topic-info" onclick="openGrammarQuestionTagReferenceScreen(); event.stopPropagation();" aria-label="Open question tag reference">i</button>
+            </div>
+            <div class="grammar-topic-card grammar-topic-card-de-structure">
+                <button class="grammar-topic-btn grammar-topic-btn-de-structure" onclick="openGrammarDeStructureScreen()">
+                    <div class="grammar-topic-name">WAYS TO DESCRIBE NOUNS</div>
+                    <div class="grammar-topic-desc">中文「的」句型轉換</div>
+                    <div id="grammar-de-structure-topic-progress" class="grammar-topic-progress">0/0</div>
+                </button>
+                <button class="stage-info-btn grammar-topic-info" onclick="openGrammarDeStructureReferenceScreen(); event.stopPropagation();" aria-label="Open ways to describe nouns reference">i</button>
+            </div>
+            <div class="grammar-topic-card grammar-topic-card-compound-adj">
+                <button class="grammar-topic-btn grammar-topic-btn-compound-adj" onclick="openGrammarCompoundAdjScreen()">
+                    <div class="grammar-topic-name">COMPOUND ADJ</div>
+                    <div class="grammar-topic-desc">複合形容詞配搭</div>
+                    <div id="grammar-compound-adj-topic-progress" class="grammar-topic-progress">0/0</div>
+                </button>
+                <button class="stage-info-btn grammar-topic-info" onclick="openGrammarCompoundAdjReferenceScreen(); event.stopPropagation();" aria-label="Open compound adjective reference">i</button>
+            </div>
+            <div class="grammar-topic-card grammar-topic-card-phrasal-verb">
+                <button class="grammar-topic-btn grammar-topic-btn-phrasal-verb" onclick="openGrammarPhrasalVerbScreen()">
+                    <div class="grammar-topic-name">PHRASAL VERB</div>
+                    <div class="grammar-topic-desc">片語動詞五選一</div>
+                    <div id="grammar-phrasal-verb-topic-progress" class="grammar-topic-progress">0/0</div>
+                </button>
+                <button class="stage-info-btn grammar-topic-info" onclick="openGrammarPhrasalVerbReferenceScreen(); event.stopPropagation();" aria-label="Open phrasal verb reference">i</button>
             </div>
             <div id="grammar-topic-reference" class="grammar-verb-reference grammar-topic-reference" style="display: none;">
                 <div class="grammar-verb-reference-wrap">
@@ -757,6 +882,7 @@
                 <button class="kb-key" data-grammar-key="B">B</button>
                 <button class="kb-key" data-grammar-key="N">N</button>
                 <button class="kb-key" data-grammar-key="M">M</button>
+                <button class="kb-key kb-apostrophe" data-grammar-key="'">'</button>
                 <button class="kb-key kb-backspace" data-grammar-key="BACKSPACE">⌫</button>
             </div>
             <div class="kb-row">
@@ -962,7 +1088,7 @@
     <div id="launch-modal" onclick="focusInput()">
         <canvas id="matrix-bg"></canvas>
         <div class="modal-content">
-            <div style="color: var(--danger); font-family: 'Black Ops One'; font-size: 22px;">⚠️ DECRYPT CODE ⚠️</div>
+            <div id="launch-modal-title" style="color: var(--danger); font-family: 'Black Ops One'; font-size: 22px;">⚠️ DECRYPT CODE ⚠️</div>
             <div id="launch-mode-label" style="font-size: 18px; margin-top: 10px; color: #94a3b8;">Translate to English:</div>
             <div style="font-size: 24px; margin: 10px 0; color: #fff; font-weight: bold;" id="q-text">...</div>
             <div id="speaking-status" class="speaking-status" style="display: none;">VOICE LINK STANDBY</div>
@@ -1045,7 +1171,19 @@
 
         <!-- ★★★ VIRTUAL KEYBOARD (Outside modal-content, slightly above bottom) ★★★ -->
         <div id="virtual-keyboard" style="display: none; position: fixed; bottom: 50px; left: 0; width: 100%; background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 15px 10px; box-sizing: border-box; z-index: 1000; border-radius: 10px 10px 0 0;">
-            <div class="kb-row">
+            <div class="kb-row kb-number-row">
+                <button class="kb-key" data-key="1">1</button>
+                <button class="kb-key" data-key="2">2</button>
+                <button class="kb-key" data-key="3">3</button>
+                <button class="kb-key" data-key="4">4</button>
+                <button class="kb-key" data-key="5">5</button>
+                <button class="kb-key" data-key="6">6</button>
+                <button class="kb-key" data-key="7">7</button>
+                <button class="kb-key" data-key="8">8</button>
+                <button class="kb-key" data-key="9">9</button>
+                <button class="kb-key" data-key="0">0</button>
+            </div>
+            <div class="kb-row kb-letter-row-1">
                 <button class="kb-key" data-key="Q">Q</button>
                 <button class="kb-key" data-key="W">W</button>
                 <button class="kb-key" data-key="E">E</button>
@@ -1057,7 +1195,7 @@
                 <button class="kb-key" data-key="O">O</button>
                 <button class="kb-key" data-key="P">P</button>
             </div>
-            <div class="kb-row">
+            <div class="kb-row kb-letter-row-2">
                 <button class="kb-key" data-key="A">A</button>
                 <button class="kb-key" data-key="S">S</button>
                 <button class="kb-key" data-key="D">D</button>
@@ -1068,7 +1206,7 @@
                 <button class="kb-key" data-key="K">K</button>
                 <button class="kb-key" data-key="L">L</button>
             </div>
-            <div class="kb-row">
+            <div class="kb-row kb-letter-row-3">
                 <button class="kb-key" data-key="Z">Z</button>
                 <button class="kb-key" data-key="X">X</button>
                 <button class="kb-key" data-key="C">C</button>
@@ -1076,9 +1214,11 @@
                 <button class="kb-key" data-key="B">B</button>
                 <button class="kb-key" data-key="N">N</button>
                 <button class="kb-key" data-key="M">M</button>
+                <button class="kb-key kb-hyphen" data-key="-">-</button>
+                <button class="kb-key kb-apostrophe" data-key="'">'</button>
                 <button class="kb-key kb-backspace" data-key="BACKSPACE">⌫</button>
             </div>
-            <div class="kb-row">
+            <div class="kb-row kb-action-row">
                 <button class="kb-key kb-nav-key kb-nav-prev" data-key="PREV_FIELD">←</button>
                 <button class="kb-key kb-nav-key kb-nav-next" data-key="NEXT_FIELD">→</button>
                 <button class="kb-key kb-space kb-tense-space-key" data-key="SPACE" aria-label="Space">SPACE</button>
@@ -1091,7 +1231,6 @@
 <div id="end-screen" class="settlement-screen" style="display: none;">
     <div id="end-screen-panel" class="settlement-panel">
         <section id="settlement-page-battle" class="settlement-page active" data-settlement-page="battle">
-            <div class="settlement-kicker">BATTLE RESULT</div>
             <h1 id="end-title" class="settlement-title">VICTORY</h1>
             <div id="end-msg" class="settlement-subtitle">ENEMY FLEET ELIMINATED</div>
 
@@ -1108,7 +1247,7 @@
                     </div>
                     <div class="battle-commander battle-commander-enemy">
                         <span>ENEMY</span>
-                        <strong id="settlement-enemy-name">AI COMMANDER [VANGUARDS]</strong>
+                        <strong id="settlement-enemy-name">AI [VANGUARDS]</strong>
                     </div>
                 </div>
 
@@ -1170,7 +1309,7 @@
 
         <section id="settlement-page-debrief" class="settlement-page settlement-page-debrief" data-settlement-page="debrief">
             <div id="review-container" class="mission-debrief-panel" style="display: none;">
-                <div class="mission-debrief-header">MISSION DEBRIEF</div>
+                <div id="review-title" class="mission-debrief-header">MISSION DEBRIEF</div>
 
                 <div class="mission-debrief-grid-head">
                     <span>TURN</span>
@@ -1232,6 +1371,95 @@
         </div>
     </div>
 
+<div id="daily-mission-rewards-modal" class="tech-modal-overlay daily-mission-rewards-overlay" onclick="if(event.target===this) closeDailyMissionRewardsModal()">
+        <div class="daily-mission-rewards-box">
+            <div class="daily-mission-rewards-header">
+                <div>
+                    <div class="daily-mission-rewards-title">DAILY MISSION REWARDS</div>
+                    <div id="daily-mission-rewards-status" class="daily-mission-rewards-status">MISSION READY</div>
+                </div>
+                <button class="daily-mission-rewards-close" aria-label="Close daily mission rewards" onclick="closeDailyMissionRewardsModal()">&times;</button>
+            </div>
+            <div class="daily-mission-rewards-stats">
+                <div><span>STREAK</span><strong id="daily-mission-rewards-current">0</strong></div>
+                <div><span>BEST</span><strong id="daily-mission-rewards-best">0</strong></div>
+                <div><span>FREEZE</span><strong id="daily-mission-rewards-freezes">1</strong></div>
+            </div>
+            <div id="daily-mission-rewards-list" class="daily-mission-rewards-list"></div>
+        </div>
+    </div>
+
+<div id="daily-mission-checklist-modal" class="tech-modal-overlay daily-mission-checklist-overlay" onclick="if(event.target===this) closeDailyMissionChecklistModal()">
+        <div class="daily-mission-checklist-box">
+            <div class="daily-mission-checklist-header">
+                <div>
+                    <div class="daily-mission-checklist-title">DAILY MISSION CHECKLIST</div>
+                    <div id="daily-mission-checklist-status" class="daily-mission-checklist-status">3 MISSIONS TO CLAIM DAILY REWARD</div>
+                </div>
+                <button class="daily-mission-checklist-close" aria-label="Close daily mission checklist" onclick="closeDailyMissionChecklistModal()">&times;</button>
+            </div>
+            <div class="daily-mission-checklist-summary">
+                <div><span>RECOMMENDED</span><strong id="daily-mission-recommended-level">L1</strong></div>
+                <div><span>PROGRESS</span><strong id="daily-mission-progress-count">0/3</strong></div>
+                <div><span>REWARD</span><strong>SUPPLIES</strong></div>
+            </div>
+            <div id="daily-mission-checklist-list" class="daily-mission-checklist-list"></div>
+            <div id="daily-mission-checklist-reward" class="daily-mission-checklist-reward">Complete all missions to secure today&apos;s streak reward.</div>
+        </div>
+    </div>
+
+<div id="entry-test-modal" class="tech-modal-overlay entry-test-overlay">
+        <div class="entry-test-box">
+            <div class="entry-test-header">
+                <div>
+                    <div class="entry-test-title">ENTRY TEST</div>
+                    <div id="entry-test-status" class="entry-test-status">CALIBRATING YOUR RECOMMENDED LEVEL</div>
+                </div>
+                <button id="entry-test-skip-btn" class="entry-test-skip" onclick="skipEntryTest()">SKIP</button>
+            </div>
+            <div class="entry-test-progress">
+                <span id="entry-test-progress-text">QUESTION 1 / 10</span>
+                <span id="entry-test-skill">READING</span>
+            </div>
+            <div class="entry-test-bar"><div id="entry-test-bar-fill"></div></div>
+            <div class="entry-test-game-panel">
+                <div id="entry-test-launch-title" class="entry-test-launch-title">⚠️ DECRYPT CODE ⚠️</div>
+                <div id="entry-test-mode-label" class="entry-test-mode-label">Translate to English:</div>
+                <div id="entry-test-q-text" class="entry-test-q-text">...</div>
+                <div id="entry-test-q-display" class="vocab-hint entry-test-q-display">_ _ _ _ _</div>
+                <div id="entry-test-grammar-panel" class="launch-grammar-panel entry-test-grammar-panel" style="display:none;">
+                    <div id="entry-test-direct-wrap" class="launch-grammar-direct-wrap" style="display:none;">
+                        <div id="entry-test-direct-command" class="launch-direct-command">RECONSTRUCT SIGNAL</div>
+                        <div id="entry-test-direct-answer-zone" class="launch-direct-answer-zone"></div>
+                        <div id="entry-test-direct-token-pool" class="launch-direct-token-pool"></div>
+                        <button id="entry-test-direct-fire-btn" class="launch-direct-fire-btn" onclick="event.stopPropagation(); submitEntryTestCurrentAnswer();">FIRE</button>
+                        <div id="entry-test-direct-feedback" class="launch-direct-feedback"></div>
+                    </div>
+                    <div id="entry-test-choice-wrap" class="launch-grammar-choice-wrap" style="display:none;">
+                        <div id="entry-test-choice-command" class="launch-choice-command">SELECT ONE SIGNAL</div>
+                        <div id="entry-test-choice-sentence" class="launch-choice-sentence"></div>
+                        <div id="entry-test-choice-options" class="launch-choice-options"></div>
+                        <div id="entry-test-choice-feedback" class="launch-choice-feedback"></div>
+                    </div>
+                    <div id="entry-test-tense-wrap" class="launch-grammar-tense-wrap" style="display:none;">
+                        <div id="entry-test-tense-meta" class="launch-tense-meta"></div>
+                        <div id="entry-test-tense-sentence" class="launch-tense-sentence"></div>
+                        <div class="launch-tense-answer-grid">
+                            <input id="entry-test-tense-input" class="launch-tense-input" autocomplete="off" inputmode="none" autocapitalize="none" spellcheck="false">
+                        </div>
+                        <button id="entry-test-tense-fire-btn" class="launch-direct-fire-btn entry-test-inline-fire" onclick="event.stopPropagation(); submitEntryTestCurrentAnswer();">FIRE</button>
+                        <div id="entry-test-tense-feedback" class="launch-tense-feedback"></div>
+                    </div>
+                </div>
+                <input id="entry-test-hidden-input" class="entry-test-hidden-input" autocomplete="off" inputmode="none" autocapitalize="none" spellcheck="false">
+                <button id="entry-test-type-fire-btn" class="launch-direct-fire-btn entry-test-inline-fire" onclick="event.stopPropagation(); submitEntryTestCurrentAnswer();">FIRE</button>
+                <div id="entry-test-msg-area" class="entry-test-msg-area"></div>
+            </div>
+            <div id="entry-test-keyboard" class="vocab-virtual-keyboard entry-test-keyboard" style="display:none;"></div>
+            <div id="entry-test-result" class="entry-test-result" style="display:none;"></div>
+        </div>
+    </div>
+
 <div id="tech-notification">
         <div id="notif-title">SYSTEM MESSAGE</div>
         <div id="notif-content">...</div>
@@ -1275,9 +1503,9 @@
 <script src="vocab_data.js?v=0.88v"></script>
 <script src="app-config.js?v=0.88v"></script>
 <script src="listening_audio_manifest.js?v=0.88v"></script>
-<script src="vocab_word_audio_manifest.js?v=0.89v"></script>
+<script src="vocab_word_audio_manifest.js?v=0.90v"></script>
 <script src="vendor/effekseer/effekseer.min.js?v=0.88v"></script>
-<script src="app.js?v=0.94v"></script>
+<script src="app.js?v=1.13v"></script>
 <script src="grammar_verb_table_data.js?v=0.88v"></script>
 <script src="grammar_verb_table_audio_manifest.js?v=0.89v"></script>
 <script src="grammar_tenses_data.js?v=0.89v"></script>
@@ -1291,17 +1519,25 @@
 <script src="grammar_indirect_question_extra_data.js?v=0.96v"></script>
 <script src="grammar_it_is_data.js?v=0.97v"></script>
 <script src="grammar_it_is_extra_data.js?v=0.97v"></script>
-<script src="grammar_infinitive_gerund_data.js?v=0.98v"></script>
+<script src="grammar_pronoun_data.js?v=1.03v"></script>
+<script src="grammar_comparative_superlative_data.js?v=1.01v"></script>
+<script src="grammar_infinitive_gerund_data.js?v=1.02v"></script>
+<script src="grammar_question_tag_data.js?v=1.00v"></script>
+<script src="grammar_de_structure_data.js?v=1.02v"></script>
 <script src="grammar_preposition_place_data.js?v=0.99v"></script>
 <script src="grammar_preposition_time_data.js?v=1.00v"></script>
-<script src="grammar_conditional_data.js?v=1.00v"></script>
-<script src="grammar_conditional_extra_data.js?v=1.01v"></script>
-<script src="grammar_conditional_more_data.js?v=1.02v"></script>
+<script src="grammar_compound_adj_data.js?v=1.00v"></script>
+<script src="grammar_phrasal_verb_data.js?v=1.00v"></script>
+<script src="grammar_conditional_data.js?v=1.02v"></script>
+<script src="grammar_conditional_extra_data.js?v=1.03v"></script>
+<script src="grammar_conditional_more_data.js?v=1.04v"></script>
 <script src="grammar_reported_speech_data.js?v=1.04v"></script>
-<script src="ui-grammar.js?v=1.02v"></script>
-<script src="ui-screens.js?v=0.88v"></script>
-<script src="ui-auth.js?v=0.88v"></script>
-<script src="ui-audio.js?v=0.88v"></script>
+<script src="grammar_participle_phrases_data.js?v=1.00v"></script>
+<script src="grammar_inversion_data.js?v=1.00v"></script>
+<script src="ui-grammar.js?v=1.21v"></script>
+<script src="ui-screens.js?v=1.13v"></script>
+<script src="ui-auth.js?v=0.93v"></script>
+<script src="ui-audio.js?v=0.89v"></script>
 <div id="registration-modal" class="registration-modal" style="display: none;">
     
     <div class="registration-scanlines"></div>
@@ -1451,6 +1687,18 @@
 
         <button id="settings-surrender-btn" class="tech-btn confirm" onclick="toggleSettingsModal(); confirmExit()" style="display:none; width: 100%; margin-top: 18px; border-color: var(--danger); color: var(--danger); background: rgba(127, 29, 29, 0.18);">
             SURRENDER
+        </button>
+
+        <button id="settings-abandon-revision-btn" class="tech-btn confirm" onclick="abandonRevisionTest()" style="display:none; width: 100%; margin-top: 18px; border-color: var(--danger); color: var(--danger); background: rgba(127, 29, 29, 0.18);">
+            ABANDON TEST
+        </button>
+
+        <button id="settings-abandon-training-btn" class="tech-btn confirm" onclick="endTrainingMode()" style="display:none; width: 100%; margin-top: 18px; border-color: var(--danger); color: var(--danger); background: rgba(127, 29, 29, 0.18);">
+            END TRAINING
+        </button>
+
+        <button type="button" class="tech-btn settings-diagnostic-btn" onclick="window.battleDiagnostics?.open()">
+            DIAGNOSTIC LOG
         </button>
 
         <button class="tech-btn cancel" onclick="toggleSettingsModal()" style="width: 100%; margin-top: 20px;">CLOSE CONFIG</button>

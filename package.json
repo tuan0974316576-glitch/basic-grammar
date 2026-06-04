@@ -12,11 +12,16 @@
     "native:web-assets": "node scripts/sync-capacitor-web.js",
     "native:audio-assets": "node scripts/sync-native-audio-assets.js",
     "native:prepare": "npm run native:web-assets && npm run native:audio-assets && npm run store:assets",
-    "native:sync": "npm run native:prepare && npx cap sync",
+    "ios:patch-google-auth": "node scripts/patch-ios-google-auth-pod.js",
+    "native:sync": "npm run native:prepare && npx cap sync && npm run ios:patch-google-auth",
     "store:assets": "swift scripts/generate-store-assets.swift",
-    "build:ios": "npm run native:web-assets && npx cap add ios && npm run native:audio-assets && npx cap sync ios && npx cap open ios",
+    "store:screenshots": "node scripts/generate-store-screenshots.js",
+    "build:ios": "npm run native:web-assets && npx cap add ios && npm run native:audio-assets && npx cap sync ios && npm run ios:patch-google-auth && npx cap open ios",
     "build:android": "npm run native:web-assets && npx cap add android && npm run native:audio-assets && npx cap sync android && npx cap open android",
-    "sync": "npx cap sync"
+    "android:play-upload": "bundle exec fastlane android play_upload",
+    "android:play-upload-chunked": "node scripts/upload-play-aab.js",
+    "android:play-build-upload": "bundle exec fastlane android play_build_and_upload",
+    "sync": "npx cap sync && npm run ios:patch-google-auth"
   },
   "keywords": [
     "vocabulary",
@@ -26,7 +31,8 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@capacitor/cli": "^5.5.1"
+    "@capacitor/cli": "^5.5.1",
+    "playwright": "^1.60.0"
   },
   "dependencies": {
     "@capacitor-community/apple-sign-in": "^5.0.0",
