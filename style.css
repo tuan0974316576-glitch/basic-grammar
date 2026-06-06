@@ -573,6 +573,7 @@ input[type="range"]::-moz-range-thumb {
 
 .symbol-btn {
   min-height: 126px;
+  border-radius: 26px;
   font-size: clamp(68px, 12vw, 98px);
   line-height: 1;
 }
@@ -688,6 +689,22 @@ input[type="range"]::-moz-range-thumb {
 
 .feedback.error {
   color: var(--danger-dark);
+}
+
+.feedback-line {
+  display: block;
+}
+
+.feedback-line + .feedback-line {
+  margin-top: 6px;
+}
+
+.feedback .answer-line {
+  color: var(--correct-dark);
+}
+
+.feedback.success .feedback-line:not(.answer-line) {
+  color: #5d4037;
 }
 
 .result-panel {

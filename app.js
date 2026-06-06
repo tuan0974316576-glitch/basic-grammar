@@ -148,6 +148,92 @@ const VERB_COUNT_QUESTIONS = [
   { id: "vc40", sentence: "The dog is runs fast.", isCorrect: false, verbCount: 2, verbIndexes: [2, 3], explanation: "is 是 be 動詞，runs 是現在式動詞，所以句子有 2 個動詞。" }
 ];
 
+const LESSON2_TRANSLATIONS = {
+  vc01: "她煮得好。",
+  vc02: "我吃早餐。",
+  vc03: "他踢足球。",
+  vc04: "他們很開心。",
+  vc05: "我們回家了。",
+  vc06: "Tom 跑得快。",
+  vc07: "Mary 遲到了。",
+  vc08: "狗睡了。",
+  vc09: "我很累。",
+  vc10: "他們正在踢足球。",
+  vc11: "她正在閱讀。",
+  vc12: "我們在學校。",
+  vc13: "他吃了午餐。",
+  vc14: "我每天游泳。",
+  vc15: "他們早到了。",
+  vc16: "你很友善。",
+  vc17: "爸爸慢慢開車。",
+  vc18: "媽媽煮了晚餐。",
+  vc19: "寶寶哭了。",
+  vc20: "我們唱歌。",
+  vc21: "我每天游泳。",
+  vc22: "他們現在來了。",
+  vc23: "我遲到了。",
+  vc24: "她今天很開心。",
+  vc25: "我們放學後很累。",
+  vc26: "他吃了午餐。",
+  vc27: "他們回家了。",
+  vc28: "貓正在睡覺。",
+  vc29: "我很悶。",
+  vc30: "Mary 跑得快。",
+  vc31: "我每天踢足球。",
+  vc32: "他踢足球踢得好。",
+  vc33: "她煮得好。",
+  vc34: "他們現在來了。",
+  vc35: "我們吃午餐。",
+  vc36: "Tom 跑得快。",
+  vc37: "你回家。",
+  vc38: "他吃飯。",
+  vc39: "他們踢足球。",
+  vc40: "狗跑得快。"
+};
+
+const LESSON2_CORRECTIONS = {
+  vc01: "句子正確，不用改。動詞是 cooks。",
+  vc02: "句子正確，不用改。動詞是 eat。",
+  vc03: "句子正確，不用改。動詞是 plays。",
+  vc04: "句子正確，不用改。動詞是 are。",
+  vc05: "句子正確，不用改。動詞是 went。",
+  vc06: "句子正確，不用改。動詞是 runs。",
+  vc07: "句子正確，不用改。動詞是 is。",
+  vc08: "句子正確，不用改。動詞是 slept。",
+  vc09: "句子正確，不用改。動詞是 was。",
+  vc10: "句子正確，不用改。動詞是 are；playing 是 ING。",
+  vc11: "句子正確，不用改。動詞是 is；reading 是 ING。",
+  vc12: "句子正確，不用改。動詞是 were。",
+  vc13: "句子正確，不用改。動詞是 ate。",
+  vc14: "句子正確，不用改。動詞是 swim。",
+  vc15: "句子正確，不用改。動詞是 came。",
+  vc16: "句子正確，不用改。動詞是 are。",
+  vc17: "句子正確，不用改。動詞是 drives。",
+  vc18: "句子正確，不用改。動詞是 cooked。",
+  vc19: "句子正確，不用改。動詞是 cried。",
+  vc20: "句子正確，不用改。動詞是 sing。",
+  vc21: "正確寫法：I swim every day.",
+  vc22: "正確寫法：They are coming now.",
+  vc23: "正確寫法：I am late.",
+  vc24: "正確寫法：She is happy today.",
+  vc25: "正確寫法：We are tired after school.",
+  vc26: "正確寫法：He ate lunch.",
+  vc27: "正確寫法：They went home.",
+  vc28: "正確寫法：The cat is sleeping.",
+  vc29: "正確寫法：I am bored.",
+  vc30: "正確寫法：Mary is running fast.",
+  vc31: "am 是多餘的，應寫 I play football every day.",
+  vc32: "is 是多餘的，play 要改成 plays，應寫 He plays football well.",
+  vc33: "is 是多餘的，應寫 She cooks well.",
+  vc34: "are 是多餘的，應寫 They come now.",
+  vc35: "were 是多餘的，應寫 We eat lunch.",
+  vc36: "was 是多餘的，應寫 Tom runs fast.",
+  vc37: "are 是多餘的，應寫 You go home.",
+  vc38: "is 是多餘的，應寫 He eats rice.",
+  vc39: "were 是多餘的，應寫 They play football.",
+  vc40: "is 是多餘的，應寫 The dog runs fast."
+};
+
 const LESSON1_ID = "lesson1";
 const LESSON2_ID = "lesson2";
 const LESSON_PROGRESS_KEYS = {
@@ -552,8 +638,20 @@ function updateLiveStats() {
 }
 
 function setFeedback(message = "", type = "") {
-  el.feedback.textContent = message;
   el.feedback.className = `feedback${type ? ` ${type}` : ""}`;
+  el.feedback.replaceChildren();
+
+  if (Array.isArray(message)) {
+    message.forEach((part) => {
+      const line = document.createElement("span");
+      line.className = `feedback-line${part.className ? ` ${part.className}` : ""}`;
+      line.textContent = part.text;
+      el.feedback.append(line);
+    });
+    return;
+  }
+
+  el.feedback.textContent = message;
 }
 
 function showOnlyChoice(choice) {
@@ -684,7 +782,7 @@ function renderVerbCountQuestion(question) {
   el.categoryPill.textContent = "One verb rule";
   el.categoryPill.dataset.type = "verb-count";
   el.chinesePrompt.textContent = question.sentence;
-  el.guidance.textContent = "一句句子只可以有一個動詞。先判斷句子正確定錯誤。";
+  el.guidance.textContent = getLesson2Translation(question);
   showOnlyChoice("judgment");
 }
 
@@ -808,11 +906,24 @@ function getSentenceTokens(question) {
   return question.sentence.replace(/[.?!]/g, "").split(" ");
 }
 
-function getVerbCountExplanation(question) {
-  const tokens = getSentenceTokens(question);
-  const verbWords = question.verbIndexes.map((index) => tokens[index]).join("、") || "沒有動詞";
-  const correctness = question.isCorrect ? "句子正確" : "句子錯誤";
-  return `${question.explanation} 正確答案：${correctness}，有 ${question.verbCount} 個動詞（${verbWords}）。`;
+function getLesson2Translation(question) {
+  return LESSON2_TRANSLATIONS[question.id] || "";
+}
+
+function getLesson2Correction(question) {
+  return LESSON2_CORRECTIONS[question.id] || "句子正確，不用改。";
+}
+
+function getVerbCountReason(question) {
+  const baseExplanation = question.explanation.replace(/。$/, "");
+  return `${baseExplanation}，所以${question.isCorrect ? "正確" : "錯誤"}。`;
+}
+
+function getVerbCountFeedback(question) {
+  return [
+    { text: getVerbCountReason(question) },
+    { text: `正確答案：${getLesson2Correction(question)}`, className: "answer-line" }
+  ];
 }
 
 function completeVerbLessonQuestion(message) {
@@ -845,7 +956,7 @@ function answerSentenceJudgment(choice) {
 
   const pickedCorrect = choice === "correct";
   if (pickedCorrect !== question.isCorrect) {
-    recordWrong(getVerbCountExplanation(question));
+    recordWrong(getVerbCountFeedback(question));
     return;
   }
 
@@ -861,12 +972,12 @@ function answerVerbCount(count) {
 
   const pickedCount = Number(count);
   if (pickedCount !== question.verbCount) {
-    recordWrong(getVerbCountExplanation(question));
+    recordWrong(getVerbCountFeedback(question));
     return;
   }
 
   if (question.isCorrect || question.verbCount === 0) {
-    completeVerbLessonQuestion(`正確。${getVerbCountExplanation(question)}`);
+    completeVerbLessonQuestion(getVerbCountFeedback(question));
     return;
   }
 
@@ -914,11 +1025,11 @@ function submitVerbTokens() {
   const matched = picked.length === expected.length && picked.every((index, position) => index === expected[position]);
 
   if (!matched) {
-    recordWrong(getVerbCountExplanation(question));
+    recordWrong(getVerbCountFeedback(question));
     return;
   }
 
-  completeVerbLessonQuestion(`正確。${getVerbCountExplanation(question)}`);
+  completeVerbLessonQuestion(getVerbCountFeedback(question));
 }
 
 function nextQuestion() {
