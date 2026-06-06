@@ -103,136 +103,166 @@ const QUESTIONS = [
   { id: "a20", type: "adjective", zh: "他們很安靜。", beForm: "are", english: "They are quiet.", subjectZh: "他們", subjectEn: "They", subjectRole: "眾數代名詞", pronoun: "They" }
 ];
 
+let verbCountQuestionNumber = 0;
+
+function makeVerbCountQuestion(sentence, zh, isCorrect, verbCount, verbIndexes, explanation, correction) {
+  verbCountQuestionNumber += 1;
+  return {
+    id: `vc${String(verbCountQuestionNumber).padStart(3, "0")}`,
+    sentence,
+    zh,
+    isCorrect,
+    verbCount,
+    verbIndexes,
+    explanation,
+    correction
+  };
+}
+
+function verbKindText(kind) {
+  return kind === "be" ? "be 動詞" : `${kind}動詞`;
+}
+
+function oneVerb(sentence, zh, verbIndex, verb, kind = "現在式") {
+  return makeVerbCountQuestion(
+    sentence,
+    zh,
+    true,
+    1,
+    [verbIndex],
+    `${verb} 是${verbKindText(kind)}，所以句子有 1 個動詞。`,
+    `句子正確，不用改。動詞是 ${verb}。`
+  );
+}
+
+function zeroVerb(sentence, zh, reason, correction) {
+  return makeVerbCountQuestion(
+    sentence,
+    zh,
+    false,
+    0,
+    [],
+    `${reason}，所以句子沒有動詞。`,
+    correction
+  );
+}
+
+function twoVerbs(sentence, zh, verbIndexes, beVerb, mainVerb, kind, correctionSentence) {
+  return makeVerbCountQuestion(
+    sentence,
+    zh,
+    false,
+    2,
+    verbIndexes,
+    `${beVerb} 是 be 動詞，${mainVerb} 是${verbKindText(kind)}，所以句子有 2 個動詞。`,
+    `${beVerb} 是多餘的，應寫 ${correctionSentence}`
+  );
+}
+
 const VERB_COUNT_QUESTIONS = [
-  { id: "vc01", sentence: "She cooks well.", isCorrect: true, verbCount: 1, verbIndexes: [1], explanation: "cooks 是現在式動詞，所以句子有 1 個動詞。" },
-  { id: "vc02", sentence: "I eat breakfast.", isCorrect: true, verbCount: 1, verbIndexes: [1], explanation: "eat 是現在式動詞，所以句子有 1 個動詞。" },
-  { id: "vc03", sentence: "He plays football.", isCorrect: true, verbCount: 1, verbIndexes: [1], explanation: "plays 是現在式動詞，所以句子有 1 個動詞。" },
-  { id: "vc04", sentence: "They are happy.", isCorrect: true, verbCount: 1, verbIndexes: [1], explanation: "are 是 be 動詞，所以句子有 1 個動詞。" },
-  { id: "vc05", sentence: "We went home.", isCorrect: true, verbCount: 1, verbIndexes: [1], explanation: "went 是過去式動詞，所以句子有 1 個動詞。" },
-  { id: "vc06", sentence: "Tom runs fast.", isCorrect: true, verbCount: 1, verbIndexes: [1], explanation: "runs 是現在式動詞，所以句子有 1 個動詞。" },
-  { id: "vc07", sentence: "Mary is late.", isCorrect: true, verbCount: 1, verbIndexes: [1], explanation: "is 是 be 動詞，所以句子有 1 個動詞。" },
-  { id: "vc08", sentence: "The dog slept.", isCorrect: true, verbCount: 1, verbIndexes: [2], explanation: "slept 是過去式動詞，所以句子有 1 個動詞。" },
-  { id: "vc09", sentence: "I was tired.", isCorrect: true, verbCount: 1, verbIndexes: [1], explanation: "was 是 be 動詞，所以句子有 1 個動詞。" },
-  { id: "vc10", sentence: "They are playing football.", isCorrect: true, verbCount: 1, verbIndexes: [1], explanation: "are 是 be 動詞；playing 是 ING，不當動詞，所以句子只有 1 個動詞。" },
-  { id: "vc11", sentence: "She is reading now.", isCorrect: true, verbCount: 1, verbIndexes: [1], explanation: "is 是 be 動詞；reading 是 ING，不當動詞，所以句子只有 1 個動詞。" },
-  { id: "vc12", sentence: "We were at school.", isCorrect: true, verbCount: 1, verbIndexes: [1], explanation: "were 是 be 動詞，所以句子有 1 個動詞。" },
-  { id: "vc13", sentence: "He ate lunch.", isCorrect: true, verbCount: 1, verbIndexes: [1], explanation: "ate 是過去式動詞，所以句子有 1 個動詞。" },
-  { id: "vc14", sentence: "I swim every day.", isCorrect: true, verbCount: 1, verbIndexes: [1], explanation: "swim 是現在式動詞，所以句子有 1 個動詞。" },
-  { id: "vc15", sentence: "They came early.", isCorrect: true, verbCount: 1, verbIndexes: [1], explanation: "came 是過去式動詞，所以句子有 1 個動詞。" },
-  { id: "vc16", sentence: "You are kind.", isCorrect: true, verbCount: 1, verbIndexes: [1], explanation: "are 是 be 動詞，所以句子有 1 個動詞。" },
-  { id: "vc17", sentence: "Dad drives slowly.", isCorrect: true, verbCount: 1, verbIndexes: [1], explanation: "drives 是現在式動詞，所以句子有 1 個動詞。" },
-  { id: "vc18", sentence: "Mum cooked dinner.", isCorrect: true, verbCount: 1, verbIndexes: [1], explanation: "cooked 是過去式動詞，所以句子有 1 個動詞。" },
-  { id: "vc19", sentence: "The baby cried.", isCorrect: true, verbCount: 1, verbIndexes: [2], explanation: "cried 是過去式動詞，所以句子有 1 個動詞。" },
-  { id: "vc20", sentence: "We sing songs.", isCorrect: true, verbCount: 1, verbIndexes: [1], explanation: "sing 是現在式動詞，所以句子有 1 個動詞。" },
+  oneVerb("I eat breakfast.", "我吃早餐。", 1, "eat"),
+  oneVerb("You go home.", "你回家。", 1, "go"),
+  oneVerb("He plays football.", "他踢足球。", 1, "plays"),
+  oneVerb("She reads books.", "她看書。", 1, "reads"),
+  oneVerb("We sing songs.", "我們唱歌。", 1, "sing"),
+  oneVerb("They run fast.", "他們跑得快。", 1, "run"),
+  oneVerb("Tom cooks dinner.", "Tom 煮晚餐。", 1, "cooks"),
+  oneVerb("Mary writes words.", "Mary 寫字。", 1, "writes"),
+  oneVerb("Dad drives slowly.", "爸爸慢慢開車。", 1, "drives"),
+  oneVerb("Mum washes dishes.", "媽媽洗碗。", 1, "washes"),
+  oneVerb("The dog sleeps.", "狗睡覺。", 2, "sleeps"),
+  oneVerb("The cat jumps.", "貓跳。", 2, "jumps"),
+  oneVerb("I swam yesterday.", "我昨天游泳。", 1, "swam", "過去式"),
+  oneVerb("He ate lunch.", "他吃了午餐。", 1, "ate", "過去式"),
+  oneVerb("They came early.", "他們早到了。", 1, "came", "過去式"),
+  oneVerb("We saw birds.", "我們看見鳥。", 1, "saw", "過去式"),
+  oneVerb("She made a cake.", "她做了一個蛋糕。", 1, "made", "過去式"),
+  oneVerb("You opened the door.", "你打開了門。", 1, "opened", "過去式"),
+  oneVerb("I am happy.", "我很開心。", 1, "am", "be"),
+  oneVerb("You are late.", "你遲到了。", 1, "are", "be"),
+  oneVerb("He is tired.", "他很累。", 1, "is", "be"),
+  oneVerb("She is ready.", "她準備好了。", 1, "is", "be"),
+  oneVerb("They are kind.", "他們很友善。", 1, "are", "be"),
+  oneVerb("We are at school.", "我們在學校。", 1, "are", "be"),
+  oneVerb("The apple is red.", "蘋果是紅色的。", 2, "is", "be"),
+  oneVerb("The boys are noisy.", "男孩們很嘈。", 2, "are", "be"),
+  oneVerb("I am reading now.", "我現在正在閱讀。", 1, "am", "be"),
+  oneVerb("They are playing football.", "他們正在踢足球。", 1, "are", "be"),
+  oneVerb("She is drawing.", "她正在畫畫。", 1, "is", "be"),
+  oneVerb("We are eating lunch.", "我們正在吃午餐。", 1, "are", "be"),
+  oneVerb("Tom is running.", "Tom 正在跑步。", 1, "is", "be"),
+  oneVerb("Mary is singing.", "Mary 正在唱歌。", 1, "is", "be"),
+  oneVerb("The dog is sleeping.", "狗正在睡覺。", 2, "is", "be"),
 
-  { id: "vc21", sentence: "I swimming every day.", isCorrect: false, verbCount: 0, verbIndexes: [], explanation: "swimming 是 ING，不當動詞，所以句子沒有動詞。" },
-  { id: "vc22", sentence: "They coming now.", isCorrect: false, verbCount: 0, verbIndexes: [], explanation: "coming 是 ING，不當動詞，所以句子沒有動詞。" },
-  { id: "vc23", sentence: "I will late.", isCorrect: false, verbCount: 0, verbIndexes: [], explanation: "will 不是這課要數的現在式/過去式動詞，late 是形容詞，所以句子沒有動詞。" },
-  { id: "vc24", sentence: "She happy today.", isCorrect: false, verbCount: 0, verbIndexes: [], explanation: "happy 是形容詞，句子沒有現在式/過去式動詞。" },
-  { id: "vc25", sentence: "We tired after school.", isCorrect: false, verbCount: 0, verbIndexes: [], explanation: "tired 是形容詞，句子沒有現在式/過去式動詞。" },
-  { id: "vc26", sentence: "He eaten lunch.", isCorrect: false, verbCount: 0, verbIndexes: [], explanation: "eaten 是 PP，不當動詞，所以句子沒有動詞。" },
-  { id: "vc27", sentence: "They gone home.", isCorrect: false, verbCount: 0, verbIndexes: [], explanation: "gone 是 PP，不當動詞，所以句子沒有動詞。" },
-  { id: "vc28", sentence: "The cat sleeping.", isCorrect: false, verbCount: 0, verbIndexes: [], explanation: "sleeping 是 ING，不當動詞，所以句子沒有動詞。" },
-  { id: "vc29", sentence: "I bored.", isCorrect: false, verbCount: 0, verbIndexes: [], explanation: "bored 是形容詞，句子沒有現在式/過去式動詞。" },
-  { id: "vc30", sentence: "Mary running fast.", isCorrect: false, verbCount: 0, verbIndexes: [], explanation: "running 是 ING，不當動詞，所以句子沒有動詞。" },
+  zeroVerb("I swimming every day.", "我每天游泳。", "swimming 是 ING，不當動詞", "正確寫法：I swim every day."),
+  zeroVerb("You going home.", "你回家。", "going 是 ING，不當動詞", "正確寫法：You go home."),
+  zeroVerb("He playing football.", "他踢足球。", "playing 是 ING，不當動詞", "正確寫法：He plays football."),
+  zeroVerb("She reading books.", "她看書。", "reading 是 ING，不當動詞", "正確寫法：She reads books."),
+  zeroVerb("We singing songs.", "我們唱歌。", "singing 是 ING，不當動詞", "正確寫法：We sing songs."),
+  zeroVerb("They running fast.", "他們跑得快。", "running 是 ING，不當動詞", "正確寫法：They run fast."),
+  zeroVerb("Tom cooking dinner.", "Tom 煮晚餐。", "cooking 是 ING，不當動詞", "正確寫法：Tom cooks dinner."),
+  zeroVerb("Mary writing words.", "Mary 寫字。", "writing 是 ING，不當動詞", "正確寫法：Mary writes words."),
+  zeroVerb("Dad driving slowly.", "爸爸慢慢開車。", "driving 是 ING，不當動詞", "正確寫法：Dad drives slowly."),
+  zeroVerb("Mum washing dishes.", "媽媽洗碗。", "washing 是 ING，不當動詞", "正確寫法：Mum washes dishes."),
+  zeroVerb("The dog sleeping.", "狗睡覺。", "sleeping 是 ING，不當動詞", "正確寫法：The dog sleeps."),
+  zeroVerb("The cat jumping.", "貓跳。", "jumping 是 ING，不當動詞", "正確寫法：The cat jumps."),
+  zeroVerb("I happy.", "我很開心。", "happy 是形容詞", "正確寫法：I am happy."),
+  zeroVerb("You late.", "你遲到了。", "late 是形容詞", "正確寫法：You are late."),
+  zeroVerb("He tired.", "他很累。", "tired 是形容詞", "正確寫法：He is tired."),
+  zeroVerb("She ready.", "她準備好了。", "ready 是形容詞", "正確寫法：She is ready."),
+  zeroVerb("They kind.", "他們很友善。", "kind 是形容詞", "正確寫法：They are kind."),
+  zeroVerb("We at school.", "我們在學校。", "at school 不是動詞", "正確寫法：We are at school."),
+  zeroVerb("The apple red.", "蘋果是紅色的。", "red 是形容詞", "正確寫法：The apple is red."),
+  zeroVerb("The boys noisy.", "男孩們很嘈。", "noisy 是形容詞", "正確寫法：The boys are noisy."),
+  zeroVerb("I eaten breakfast.", "我吃了早餐。", "eaten 是 PP，不當動詞", "正確寫法：I ate breakfast."),
+  zeroVerb("He eaten lunch.", "他吃了午餐。", "eaten 是 PP，不當動詞", "正確寫法：He ate lunch."),
+  zeroVerb("They gone home.", "他們回家了。", "gone 是 PP，不當動詞", "正確寫法：They went home."),
+  zeroVerb("She seen birds.", "她看見鳥。", "seen 是 PP，不當動詞", "正確寫法：She saw birds."),
+  zeroVerb("We been there.", "我們去過那裡。", "been 是 PP，不當動詞", "正確寫法：We went there."),
+  zeroVerb("Tom taken a book.", "Tom 拿了一本書。", "taken 是 PP，不當動詞", "正確寫法：Tom took a book."),
+  zeroVerb("Mary written words.", "Mary 寫了字。", "written 是 PP，不當動詞", "正確寫法：Mary wrote words."),
+  zeroVerb("The cake eaten.", "蛋糕被吃了。", "eaten 是 PP，不當動詞", "正確寫法：The cake is eaten."),
+  zeroVerb("My bag gone.", "我的書包不見了。", "gone 是 PP，不當動詞", "正確寫法：My bag is gone."),
+  zeroVerb("The children swimming now.", "小朋友們正在游泳。", "swimming 是 ING，不當動詞", "正確寫法：The children are swimming now."),
+  zeroVerb("The baby crying.", "寶寶正在哭。", "crying 是 ING，不當動詞", "正確寫法：The baby is crying."),
+  zeroVerb("The birds flying.", "鳥正在飛。", "flying 是 ING，不當動詞", "正確寫法：The birds are flying."),
+  zeroVerb("I will late.", "我將會遲到。", "will 不是這課要數的現在式/過去式動詞，late 是形容詞", "正確寫法：I will be late."),
+  zeroVerb("We very happy.", "我們很開心。", "very happy 是形容詞短語", "正確寫法：We are very happy."),
 
-  { id: "vc31", sentence: "I am play football every day.", isCorrect: false, verbCount: 2, verbIndexes: [1, 2], explanation: "am 是 be 動詞，play 是現在式動詞，所以句子有 2 個動詞。" },
-  { id: "vc32", sentence: "He is play football well.", isCorrect: false, verbCount: 2, verbIndexes: [1, 2], explanation: "is 是 be 動詞，play 是現在式動詞，所以句子有 2 個動詞。" },
-  { id: "vc33", sentence: "She is cooks well.", isCorrect: false, verbCount: 2, verbIndexes: [1, 2], explanation: "is 是 be 動詞，cooks 是現在式動詞，所以句子有 2 個動詞。" },
-  { id: "vc34", sentence: "They are come now.", isCorrect: false, verbCount: 2, verbIndexes: [1, 2], explanation: "are 是 be 動詞，come 是現在式動詞，所以句子有 2 個動詞。" },
-  { id: "vc35", sentence: "We were eat lunch.", isCorrect: false, verbCount: 2, verbIndexes: [1, 2], explanation: "were 是 be 動詞，eat 是現在式動詞，所以句子有 2 個動詞。" },
-  { id: "vc36", sentence: "Tom was run fast.", isCorrect: false, verbCount: 2, verbIndexes: [1, 2], explanation: "was 是 be 動詞，run 是現在式動詞，所以句子有 2 個動詞。" },
-  { id: "vc37", sentence: "You are go home.", isCorrect: false, verbCount: 2, verbIndexes: [1, 2], explanation: "are 是 be 動詞，go 是現在式動詞，所以句子有 2 個動詞。" },
-  { id: "vc38", sentence: "He is eats rice.", isCorrect: false, verbCount: 2, verbIndexes: [1, 2], explanation: "is 是 be 動詞，eats 是現在式動詞，所以句子有 2 個動詞。" },
-  { id: "vc39", sentence: "They were play football.", isCorrect: false, verbCount: 2, verbIndexes: [1, 2], explanation: "were 是 be 動詞，play 是現在式動詞，所以句子有 2 個動詞。" },
-  { id: "vc40", sentence: "The dog is runs fast.", isCorrect: false, verbCount: 2, verbIndexes: [2, 3], explanation: "is 是 be 動詞，runs 是現在式動詞，所以句子有 2 個動詞。" }
+  twoVerbs("I am eat breakfast.", "我吃早餐。", [1, 2], "am", "eat", "現在式", "I eat breakfast."),
+  twoVerbs("You are go home.", "你回家。", [1, 2], "are", "go", "現在式", "You go home."),
+  twoVerbs("He is plays football.", "他踢足球。", [1, 2], "is", "plays", "現在式", "He plays football."),
+  twoVerbs("She is reads books.", "她看書。", [1, 2], "is", "reads", "現在式", "She reads books."),
+  twoVerbs("We are sing songs.", "我們唱歌。", [1, 2], "are", "sing", "現在式", "We sing songs."),
+  twoVerbs("They are run fast.", "他們跑得快。", [1, 2], "are", "run", "現在式", "They run fast."),
+  twoVerbs("Tom is cooks dinner.", "Tom 煮晚餐。", [1, 2], "is", "cooks", "現在式", "Tom cooks dinner."),
+  twoVerbs("Mary is writes words.", "Mary 寫字。", [1, 2], "is", "writes", "現在式", "Mary writes words."),
+  twoVerbs("Dad is drives slowly.", "爸爸慢慢開車。", [1, 2], "is", "drives", "現在式", "Dad drives slowly."),
+  twoVerbs("Mum is washes dishes.", "媽媽洗碗。", [1, 2], "is", "washes", "現在式", "Mum washes dishes."),
+  twoVerbs("The dog is sleeps.", "狗睡覺。", [2, 3], "is", "sleeps", "現在式", "The dog sleeps."),
+  twoVerbs("The cat is jumps.", "貓跳。", [2, 3], "is", "jumps", "現在式", "The cat jumps."),
+  twoVerbs("I am swam yesterday.", "我昨天游泳。", [1, 2], "am", "swam", "過去式", "I swam yesterday."),
+  twoVerbs("He is ate lunch.", "他吃了午餐。", [1, 2], "is", "ate", "過去式", "He ate lunch."),
+  twoVerbs("They are came early.", "他們早到了。", [1, 2], "are", "came", "過去式", "They came early."),
+  twoVerbs("We are saw birds.", "我們看見鳥。", [1, 2], "are", "saw", "過去式", "We saw birds."),
+  twoVerbs("She is made a cake.", "她做了一個蛋糕。", [1, 2], "is", "made", "過去式", "She made a cake."),
+  twoVerbs("You are opened the door.", "你打開了門。", [1, 2], "are", "opened", "過去式", "You opened the door."),
+  twoVerbs("I am read books.", "我看書。", [1, 2], "am", "read", "現在式", "I read books."),
+  twoVerbs("You are eat noodles.", "你吃麵。", [1, 2], "are", "eat", "現在式", "You eat noodles."),
+  twoVerbs("He is runs home.", "他跑回家。", [1, 2], "is", "runs", "現在式", "He runs home."),
+  twoVerbs("She is jumps high.", "她跳得高。", [1, 2], "is", "jumps", "現在式", "She jumps high."),
+  twoVerbs("We are play games.", "我們玩遊戲。", [1, 2], "are", "play", "現在式", "We play games."),
+  twoVerbs("They are watch TV.", "他們看電視。", [1, 2], "are", "watch", "現在式", "They watch TV."),
+  twoVerbs("Tom is opens the window.", "Tom 打開窗。", [1, 2], "is", "opens", "現在式", "Tom opens the window."),
+  twoVerbs("Mary is closes the door.", "Mary 關門。", [1, 2], "is", "closes", "現在式", "Mary closes the door."),
+  twoVerbs("Dad is buys bread.", "爸爸買麵包。", [1, 2], "is", "buys", "現在式", "Dad buys bread."),
+  twoVerbs("Mum is makes tea.", "媽媽泡茶。", [1, 2], "is", "makes", "現在式", "Mum makes tea."),
+  twoVerbs("The baby is cries.", "寶寶哭。", [2, 3], "is", "cries", "現在式", "The baby cries."),
+  twoVerbs("The birds are fly.", "鳥飛。", [2, 3], "are", "fly", "現在式", "The birds fly."),
+  twoVerbs("The children are play outside.", "小朋友們在外面玩。", [2, 3], "are", "play", "現在式", "The children play outside."),
+  twoVerbs("The teacher is teaches English.", "老師教英文。", [2, 3], "is", "teaches", "現在式", "The teacher teaches English."),
+  twoVerbs("The student is writes words.", "學生寫字。", [2, 3], "is", "writes", "現在式", "The student writes words.")
 ];
-
-const LESSON2_TRANSLATIONS = {
-  vc01: "她煮得好。",
-  vc02: "我吃早餐。",
-  vc03: "他踢足球。",
-  vc04: "他們很開心。",
-  vc05: "我們回家了。",
-  vc06: "Tom 跑得快。",
-  vc07: "Mary 遲到了。",
-  vc08: "狗睡了。",
-  vc09: "我很累。",
-  vc10: "他們正在踢足球。",
-  vc11: "她正在閱讀。",
-  vc12: "我們在學校。",
-  vc13: "他吃了午餐。",
-  vc14: "我每天游泳。",
-  vc15: "他們早到了。",
-  vc16: "你很友善。",
-  vc17: "爸爸慢慢開車。",
-  vc18: "媽媽煮了晚餐。",
-  vc19: "寶寶哭了。",
-  vc20: "我們唱歌。",
-  vc21: "我每天游泳。",
-  vc22: "他們現在來了。",
-  vc23: "我遲到了。",
-  vc24: "她今天很開心。",
-  vc25: "我們放學後很累。",
-  vc26: "他吃了午餐。",
-  vc27: "他們回家了。",
-  vc28: "貓正在睡覺。",
-  vc29: "我很悶。",
-  vc30: "Mary 跑得快。",
-  vc31: "我每天踢足球。",
-  vc32: "他踢足球踢得好。",
-  vc33: "她煮得好。",
-  vc34: "他們現在來了。",
-  vc35: "我們吃午餐。",
-  vc36: "Tom 跑得快。",
-  vc37: "你回家。",
-  vc38: "他吃飯。",
-  vc39: "他們踢足球。",
-  vc40: "狗跑得快。"
-};
-
-const LESSON2_CORRECTIONS = {
-  vc01: "句子正確，不用改。動詞是 cooks。",
-  vc02: "句子正確，不用改。動詞是 eat。",
-  vc03: "句子正確，不用改。動詞是 plays。",
-  vc04: "句子正確，不用改。動詞是 are。",
-  vc05: "句子正確，不用改。動詞是 went。",
-  vc06: "句子正確，不用改。動詞是 runs。",
-  vc07: "句子正確，不用改。動詞是 is。",
-  vc08: "句子正確，不用改。動詞是 slept。",
-  vc09: "句子正確，不用改。動詞是 was。",
-  vc10: "句子正確，不用改。動詞是 are；playing 是 ING。",
-  vc11: "句子正確，不用改。動詞是 is；reading 是 ING。",
-  vc12: "句子正確，不用改。動詞是 were。",
-  vc13: "句子正確，不用改。動詞是 ate。",
-  vc14: "句子正確，不用改。動詞是 swim。",
-  vc15: "句子正確，不用改。動詞是 came。",
-  vc16: "句子正確，不用改。動詞是 are。",
-  vc17: "句子正確，不用改。動詞是 drives。",
-  vc18: "句子正確，不用改。動詞是 cooked。",
-  vc19: "句子正確，不用改。動詞是 cried。",
-  vc20: "句子正確，不用改。動詞是 sing。",
-  vc21: "正確寫法：I swim every day.",
-  vc22: "正確寫法：They are coming now.",
-  vc23: "正確寫法：I am late.",
-  vc24: "正確寫法：She is happy today.",
-  vc25: "正確寫法：We are tired after school.",
-  vc26: "正確寫法：He ate lunch.",
-  vc27: "正確寫法：They went home.",
-  vc28: "正確寫法：The cat is sleeping.",
-  vc29: "正確寫法：I am bored.",
-  vc30: "正確寫法：Mary is running fast.",
-  vc31: "am 是多餘的，應寫 I play football every day.",
-  vc32: "is 是多餘的，play 要改成 plays，應寫 He plays football well.",
-  vc33: "is 是多餘的，應寫 She cooks well.",
-  vc34: "are 是多餘的，應寫 They come now.",
-  vc35: "were 是多餘的，應寫 We eat lunch.",
-  vc36: "was 是多餘的，應寫 Tom runs fast.",
-  vc37: "are 是多餘的，應寫 You go home.",
-  vc38: "is 是多餘的，應寫 He eats rice.",
-  vc39: "were 是多餘的，應寫 They play football.",
-  vc40: "is 是多餘的，應寫 The dog runs fast."
-};
 
 const LESSON1_ID = "lesson1";
 const LESSON2_ID = "lesson2";
@@ -907,11 +937,11 @@ function getSentenceTokens(question) {
 }
 
 function getLesson2Translation(question) {
-  return LESSON2_TRANSLATIONS[question.id] || "";
+  return question.zh || "";
 }
 
 function getLesson2Correction(question) {
-  return LESSON2_CORRECTIONS[question.id] || "句子正確，不用改。";
+  return question.correction || "句子正確，不用改。";
 }
 
 function getVerbCountReason(question) {

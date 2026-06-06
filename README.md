@@ -17,7 +17,7 @@ Current modules:
 - Result page shows first-try score, mistake count, and accuracy.
 - Result page can launch a focused mistake review round for any questions missed in the last practice.
 - Lesson 02: 一句句子必須只有一個動詞.
-- 40 Lesson 02 questions ask students to judge whether an English sentence is correct, count 0/1/2/3 verbs, and identify the verbs in wrong two-verb sentences.
+- 100 Lesson 02 questions ask students to judge whether an English sentence is correct, count 0/1/2 verbs, and identify the verbs in wrong two-verb sentences.
 
 Published with GitHub Pages:
 
