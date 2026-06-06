@@ -432,12 +432,14 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .step-label {
+  display: none;
   color: var(--primary-dark);
   text-align: center;
   text-transform: uppercase;
 }
 
 .category-pill {
+  display: none;
   width: fit-content;
   margin: 10px auto 0;
   padding: 6px 16px;
@@ -471,12 +473,12 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .chinese-prompt {
-  min-height: 150px;
+  min-height: 124px;
   display: grid;
   place-items: center;
   padding: 12px 6px;
   color: var(--primary-dark);
-  font-size: clamp(42px, 8vw, 72px);
+  font-size: clamp(32px, 6vw, 54px);
   font-weight: 900;
   line-height: 1.14;
   text-align: center;
@@ -819,7 +821,7 @@ input[type="range"]::-moz-range-thumb {
   }
 
   .chinese-prompt {
-    min-height: 126px;
+    min-height: 108px;
   }
 
   .lesson-actions {

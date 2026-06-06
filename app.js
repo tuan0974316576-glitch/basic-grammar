@@ -586,15 +586,26 @@ function completeQuestion(message) {
 
 function recordWrong(message) {
   const question = currentQuestion();
+  if (!question || state.resolved) return;
+
   if (state.questionMistakes === 0) {
     state.streak = 0;
   }
-  if (question && !state.missedQuestionIds.includes(question.id)) {
+  if (!state.missedQuestionIds.includes(question.id)) {
     state.missedQuestionIds.push(question.id);
   }
   state.mistakes += 1;
   state.questionMistakes += 1;
+  state.resolved = true;
+  if (state.mode === "practice") {
+    saveProgress(state.index + 1);
+  }
   updateLiveStats();
+  showOnlyChoice("");
+  el.guidance.textContent = "睇完解釋，按「下一題」繼續。";
+  el.englishText.textContent = question.english;
+  el.englishCard.classList.remove("hidden");
+  el.nextBtn.classList.remove("hidden");
   setFeedback(message, "error");
   playUiSound("wrong");
 }
