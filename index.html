@@ -14,6 +14,14 @@
       <p class="subtitle">日系貼紙風 grammar 小遊戲：先睇中文，再判斷英文句子要點砌。</p>
 
       <div class="lesson-list">
+        <div class="practice-control">
+          <label class="slider-label" for="practice-count">
+            <span>練習題數</span>
+            <output id="practice-count-output" for="practice-count">20 題</output>
+          </label>
+          <input id="practice-count" type="range" min="10" max="50" step="5" value="20">
+        </div>
+
         <button class="lesson-card" type="button" data-start-lesson>
           <span class="lesson-kicker">Lesson 01</span>
           <strong>分辨句子是否有動詞</strong>
@@ -72,6 +80,38 @@
       <footer class="lesson-actions">
         <button id="next-btn" class="primary-btn hidden" type="button">Next</button>
         <button id="restart-btn" class="primary-btn hidden" type="button">Restart</button>
+      </footer>
+    </section>
+
+    <section id="result-screen" class="screen" aria-labelledby="result-title">
+      <div class="topline">Lesson 01 Result</div>
+      <h2 id="result-title">練習完成</h2>
+
+      <div class="result-panel">
+        <div class="result-score">
+          <span id="result-score">0/20</span>
+          <small>First try</small>
+        </div>
+        <div class="result-grid">
+          <div>
+            <span id="result-total">20</span>
+            <small>題數</small>
+          </div>
+          <div>
+            <span id="result-mistakes">0</span>
+            <small>錯誤次數</small>
+          </div>
+          <div>
+            <span id="result-percent">100%</span>
+            <small>準確率</small>
+          </div>
+        </div>
+        <p id="result-message" class="result-message">做得好！</p>
+      </div>
+
+      <footer class="lesson-actions">
+        <button class="ghost-btn" type="button" data-result-menu>Menu</button>
+        <button class="primary-btn" type="button" data-restart-lesson>Restart</button>
       </footer>
     </section>
   </main>

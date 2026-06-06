@@ -55,6 +55,7 @@ const QUESTIONS = [
 
 const STORAGE_KEY = "basic_grammar_lesson_01_progress_v2";
 const SOUND_KEY = "basic_grammar_sound_enabled_v1";
+const PRACTICE_COUNT_KEY = "basic_grammar_practice_count_v1";
 const CATEGORY_LABELS = {
   action: "動作動詞",
   be: "「是」句",
@@ -97,14 +98,21 @@ let audioContext = null;
 const state = {
   index: 0,
   score: 0,
+  mistakes: 0,
+  questionMistakes: 0,
   resolved: false,
+  questions: [],
+  practiceCount: getSavedPracticeCount(),
   soundEnabled: getSavedSoundEnabled()
 };
 
 const el = {
   menuScreen: document.querySelector("#menu-screen"),
   lessonScreen: document.querySelector("#lesson-screen"),
+  resultScreen: document.querySelector("#result-screen"),
   menuProgress: document.querySelector("#menu-progress"),
+  practiceCountInput: document.querySelector("#practice-count"),
+  practiceCountOutput: document.querySelector("#practice-count-output"),
   questionNumber: document.querySelector("#question-number"),
   questionTotal: document.querySelector("#question-total"),
   stepLabel: document.querySelector("#step-label"),
@@ -119,8 +127,90 @@ const el = {
   feedback: document.querySelector("#feedback"),
   nextBtn: document.querySelector("#next-btn"),
   restartBtn: document.querySelector("#restart-btn"),
-  soundToggle: document.querySelector("#sound-toggle")
+  soundToggle: document.querySelector("#sound-toggle"),
+  resultScore: document.querySelector("#result-score"),
+  resultTotal: document.querySelector("#result-total"),
+  resultMistakes: document.querySelector("#result-mistakes"),
+  resultPercent: document.querySelector("#result-percent"),
+  resultMessage: document.querySelector("#result-message")
 };
+
+function getSavedPracticeCount() {
+  try {
+    const rawValue = localStorage.getItem(PRACTICE_COUNT_KEY);
+    if (rawValue === null) return 20;
+
+    const saved = Number(rawValue);
+    if (Number.isFinite(saved)) {
+      return Math.max(10, Math.min(QUESTIONS.length, saved));
+    }
+  } catch (_error) {
+    // Fall back to a short mixed practice if storage is unavailable.
+  }
+  return 20;
+}
+
+function savePracticeCount() {
+  try {
+    localStorage.setItem(PRACTICE_COUNT_KEY, String(state.practiceCount));
+  } catch (_error) {
+    // The chosen count still works during the current session.
+  }
+}
+
+function syncPracticeCount() {
+  el.practiceCountInput.value = String(state.practiceCount);
+  el.practiceCountOutput.textContent = `${state.practiceCount} 題`;
+}
+
+function updatePracticeCount() {
+  state.practiceCount = Number(el.practiceCountInput.value);
+  savePracticeCount();
+  syncPracticeCount();
+}
+
+function shuffle(items) {
+  const copy = [...items];
+  for (let index = copy.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [copy[index], copy[randomIndex]] = [copy[randomIndex], copy[index]];
+  }
+  return copy;
+}
+
+function getQuestionQuotas(count) {
+  const action = Math.min(25, Math.round(count * 0.5));
+  const adjective = Math.min(10, Math.max(1, Math.round(count * 0.2)));
+  const be = Math.min(15, count - action - adjective);
+  return {
+    action,
+    be,
+    adjective: count - action - be
+  };
+}
+
+function pickPracticeQuestions(count) {
+  const quotas = getQuestionQuotas(count);
+  const buckets = Object.fromEntries(
+    Object.entries(quotas).map(([type, quota]) => [
+      type,
+      shuffle(QUESTIONS.filter((question) => question.type === type)).slice(0, quota)
+    ])
+  );
+  const mixed = [];
+  let previousType = "";
+
+  while (mixed.length < count) {
+    const availableTypes = Object.keys(buckets).filter((type) => buckets[type].length > 0);
+    const choices = availableTypes.filter((type) => type !== previousType);
+    const pool = choices.length ? choices : availableTypes;
+    const nextType = pool[Math.floor(Math.random() * pool.length)];
+    mixed.push(buckets[nextType].pop());
+    previousType = nextType;
+  }
+
+  return mixed;
+}
 
 function getSavedSoundEnabled() {
   try {
@@ -221,6 +311,7 @@ function updateMenuProgress() {
 function showScreen(screen) {
   el.menuScreen.classList.toggle("active", screen === "menu");
   el.lessonScreen.classList.toggle("active", screen === "lesson");
+  el.resultScreen.classList.toggle("active", screen === "result");
 }
 
 function setFeedback(message = "", type = "") {
@@ -235,7 +326,7 @@ function showOnlyChoice(choice) {
 }
 
 function currentQuestion() {
-  return QUESTIONS[state.index] || null;
+  return state.questions[state.index] || null;
 }
 
 function questionHasVerb(question) {
@@ -245,7 +336,10 @@ function questionHasVerb(question) {
 function startLesson() {
   state.index = 0;
   state.score = 0;
+  state.mistakes = 0;
+  state.questionMistakes = 0;
   showScreen("lesson");
+  state.questions = pickPracticeQuestions(state.practiceCount);
   renderQuestion();
   playUiSound("start");
 }
@@ -264,8 +358,9 @@ function renderQuestion() {
   }
 
   state.resolved = false;
+  state.questionMistakes = 0;
   el.questionNumber.textContent = String(state.index + 1);
-  el.questionTotal.textContent = String(QUESTIONS.length);
+  el.questionTotal.textContent = String(state.questions.length);
   el.stepLabel.textContent = "中文句子";
   el.categoryPill.textContent = CATEGORY_LABELS[question.type];
   el.categoryPill.dataset.type = question.type;
@@ -284,7 +379,9 @@ function completeQuestion(message) {
 
   if (!state.resolved) {
     state.resolved = true;
-    state.score += 1;
+    if (state.questionMistakes === 0) {
+      state.score += 1;
+    }
     saveProgress(state.index + 1);
   }
 
@@ -294,7 +391,14 @@ function completeQuestion(message) {
   el.englishCard.classList.remove("hidden");
   el.nextBtn.classList.remove("hidden");
   setFeedback(message || "正確！", "success");
-  playUiSound(state.index === QUESTIONS.length - 1 ? "complete" : "correct");
+  playUiSound("correct");
+}
+
+function recordWrong(message) {
+  state.mistakes += 1;
+  state.questionMistakes += 1;
+  setFeedback(message, "error");
+  playUiSound("wrong");
 }
 
 function askBeForm(message) {
@@ -311,8 +415,7 @@ function answerVerbChoice(choice) {
 
   const hasVerbChoice = choice === "true";
   if (questionHasVerb(question) !== hasVerbChoice) {
-    setFeedback(hasVerbChoice ? "再睇一次：形容詞句中文未有動詞，所以先按 CROSS。" : "再睇一次：呢句有動詞或「是」，所以應該按 TICK。", "error");
-    playUiSound("wrong");
+    recordWrong(hasVerbChoice ? "再睇一次：形容詞句中文未有動詞，所以先按 CROSS。" : "再睇一次：呢句有動詞或「是」，所以應該按 TICK。");
     return;
   }
 
@@ -339,8 +442,7 @@ function answerNeedsBe(choice) {
 
   const needsBeChoice = choice === "true";
   if (!needsBeChoice) {
-    setFeedback("形容詞句要補 be verb，例如：I am tired.", "error");
-    playUiSound("wrong");
+    recordWrong("形容詞句要補 be verb，例如：I am tired.");
     return;
   }
 
@@ -352,8 +454,7 @@ function answerBeForm(form) {
   if (!question || state.resolved) return;
 
   if (form !== question.beForm) {
-    setFeedback(`未啱，再諗吓主語應該配 is / am / are 邊個。`, "error");
-    playUiSound("wrong");
+    recordWrong(`未啱，再諗吓主語應該配 is / am / are 邊個。`);
     return;
   }
 
@@ -362,25 +463,29 @@ function answerBeForm(form) {
 
 function nextQuestion() {
   cancelSpeech();
+  const wasLastQuestion = state.index >= state.questions.length - 1;
   state.index += 1;
   renderQuestion();
-  playUiSound("next");
+  playUiSound(wasLastQuestion ? "complete" : "next");
 }
 
 function renderComplete() {
-  saveProgress(QUESTIONS.length);
-  el.questionNumber.textContent = String(QUESTIONS.length);
-  el.questionTotal.textContent = String(QUESTIONS.length);
-  el.stepLabel.textContent = "Lesson complete";
-  el.categoryPill.textContent = "完成";
-  el.categoryPill.dataset.type = "done";
-  el.chinesePrompt.textContent = "完成第一課";
-  el.guidance.textContent = `Score ${state.score}/${QUESTIONS.length}`;
-  showOnlyChoice("");
-  el.englishCard.classList.add("hidden");
-  el.nextBtn.classList.add("hidden");
-  el.restartBtn.classList.remove("hidden");
-  setFeedback("你已完成 50 題：25 動詞 + 15「是」+ 10 形容詞。", "success");
+  const total = state.questions.length;
+  const percent = total ? Math.round((state.score / total) * 100) : 0;
+  saveProgress(total);
+  el.resultScore.textContent = `${state.score}/${total}`;
+  el.resultTotal.textContent = String(total);
+  el.resultMistakes.textContent = String(state.mistakes);
+  el.resultPercent.textContent = `${percent}%`;
+  el.resultMessage.textContent = getResultMessage(percent, state.mistakes);
+  showScreen("result");
+}
+
+function getResultMessage(percent, mistakes) {
+  if (percent === 100 && mistakes === 0) return "滿分！你第一次就全部答啱。";
+  if (percent >= 80) return "好穩陣！再玩一次可以挑戰更高準確率。";
+  if (percent >= 60) return "有進步空間，留意形容詞句要補 be verb。";
+  return "慢慢嚟，先分清動作動詞、「是」同形容詞句。";
 }
 
 function cancelSpeech() {
@@ -406,10 +511,13 @@ function speakCurrentEnglish() {
 
 document.querySelector("[data-start-lesson]").addEventListener("click", startLesson);
 document.querySelector("[data-back-menu]").addEventListener("click", backToMenu);
+document.querySelector("[data-result-menu]").addEventListener("click", backToMenu);
+document.querySelector("[data-restart-lesson]").addEventListener("click", startLesson);
 el.nextBtn.addEventListener("click", nextQuestion);
 el.restartBtn.addEventListener("click", startLesson);
 el.englishCard.addEventListener("click", speakCurrentEnglish);
 el.soundToggle.addEventListener("click", toggleSound);
+el.practiceCountInput.addEventListener("input", updatePracticeCount);
 
 document.querySelectorAll("[data-verb-choice]").forEach((button) => {
   button.addEventListener("click", () => answerVerbChoice(button.dataset.verbChoice));
@@ -424,4 +532,5 @@ document.querySelectorAll("[data-be-form]").forEach((button) => {
 });
 
 updateMenuProgress();
+syncPracticeCount();
 syncSoundToggle();
