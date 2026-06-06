@@ -330,7 +330,7 @@ function currentQuestion() {
 }
 
 function questionHasVerb(question) {
-  return question.type === "action" || question.type === "be";
+  return question.type === "action";
 }
 
 function startLesson() {
@@ -365,7 +365,7 @@ function renderQuestion() {
   el.categoryPill.textContent = CATEGORY_LABELS[question.type];
   el.categoryPill.dataset.type = question.type;
   el.chinesePrompt.textContent = question.zh;
-  el.guidance.textContent = "分析句子有沒有動詞：有就 TICK，冇就 CROSS。";
+  el.guidance.textContent = "分析句子有沒有動作動詞：有就 TICK，冇就 CROSS。";
   el.englishCard.classList.add("hidden");
   el.nextBtn.classList.add("hidden");
   el.restartBtn.classList.add("hidden");
@@ -415,7 +415,7 @@ function answerVerbChoice(choice) {
 
   const hasVerbChoice = choice === "true";
   if (questionHasVerb(question) !== hasVerbChoice) {
-    recordWrong(hasVerbChoice ? "再睇一次：形容詞句中文未有動詞，所以先按 CROSS。" : "再睇一次：呢句有動詞或「是」，所以應該按 TICK。");
+    recordWrong(hasVerbChoice ? "再睇一次：「是」句或形容詞句不是動作動詞，所以先按 CROSS。" : "再睇一次：呢句有動作動詞，所以應該按 TICK。");
     return;
   }
 
@@ -424,29 +424,26 @@ function answerVerbChoice(choice) {
     return;
   }
 
-  if (question.type === "be") {
-    askBeForm("正確，「是」要轉成英文 be verb。");
-    return;
-  }
-
   el.stepLabel.textContent = "Be verb check";
-  el.guidance.textContent = "中文形容詞句沒有明顯動詞，英文要不要補 is / am / are？";
+  el.guidance.textContent = question.type === "be"
+    ? "中文「是」不當動作動詞，英文要不要用 is / am / are？"
+    : "中文形容詞句沒有動作動詞，英文要不要補 is / am / are？";
   showOnlyChoice("needsBe");
-  setFeedback("正確，呢句中文沒有動詞。", "success");
+  setFeedback(question.type === "be" ? "正確，「是」句先按 CROSS。" : "正確，呢句中文沒有動作動詞。", "success");
   playUiSound("step");
 }
 
 function answerNeedsBe(choice) {
   const question = currentQuestion();
-  if (!question || question.type !== "adjective" || state.resolved) return;
+  if (!question || !["be", "adjective"].includes(question.type) || state.resolved) return;
 
   const needsBeChoice = choice === "true";
   if (!needsBeChoice) {
-    recordWrong("形容詞句要補 be verb，例如：I am tired.");
+    recordWrong(question.type === "be" ? "「是」句英文要用 be verb，例如：I am a student." : "形容詞句要補 be verb，例如：I am tired.");
     return;
   }
 
-  askBeForm("正確，形容詞句英文要補 be verb。");
+  askBeForm(question.type === "be" ? "正確，「是」句英文要用 be verb。" : "正確，形容詞句英文要補 be verb。");
 }
 
 function answerBeForm(form) {
