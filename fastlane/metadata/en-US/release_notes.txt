@@ -1,3 +1,0 @@
-Added and refined Grammar Topic notes and question banks, including Tenses, Pronouns, Question Tags, Reported Speech, Conditionals, Inversion, Prepositions, and Comparative and Superlative.
-
-Improved Grammar PVP, battle result display, audio playback, diagnostics and store screenshots.
