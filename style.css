@@ -411,7 +411,7 @@ input[type="range"]::-moz-range-thumb {
   box-shadow: 0 4px 0 rgba(255, 183, 3, 0.22);
 }
 
-.status-strip span {
+.status-strip > div > span {
   color: var(--muted);
   font-size: 12px;
   font-weight: 900;

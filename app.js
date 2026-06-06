@@ -274,7 +274,7 @@ const LESSONS = {
   [LESSON1_ID]: {
     id: LESSON1_ID,
     kicker: "Lesson 01",
-    title: "分辨句子是否有動作動詞",
+    title: "分辨句子是否有主動動詞",
     questions: QUESTIONS
   },
   [LESSON2_ID]: {

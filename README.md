@@ -4,7 +4,7 @@ A standalone beginner grammar game for students, styled after the Japanese stati
 
 Current modules:
 
-- Lesson 01: 分辨句子是否有動作動詞
+- Lesson 01: 分辨句子是否有主動動詞
 - 100 questions total: 50 action-verb sentences, 30 `是` sentences, and 20 adjective sentences.
 - Students choose the practice length from 10 to 100 questions.
 - Each practice randomly samples and interleaves action, `是`, and adjective questions.
