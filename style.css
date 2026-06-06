@@ -65,6 +65,10 @@ button {
   flex-direction: column;
 }
 
+#lesson-screen.active {
+  overflow: hidden;
+}
+
 @keyframes pop-in {
   from {
     opacity: 0;
@@ -244,7 +248,7 @@ input[type="range"]::-moz-range-thumb {
 
 .lesson-card {
   width: 100%;
-  min-height: 180px;
+  min-height: 160px;
   padding: 24px;
   color: var(--ink);
   text-align: left;
@@ -422,6 +426,15 @@ input[type="range"]::-moz-range-thumb {
   line-height: 1;
 }
 
+.lesson-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0 4px 4px;
+  scrollbar-color: var(--primary-color) transparent;
+}
+
 .prompt-panel {
   position: relative;
   padding: 22px;
@@ -492,6 +505,29 @@ input[type="range"]::-moz-range-thumb {
   line-height: 1.45;
 }
 
+.rule-card {
+  display: grid;
+  gap: 6px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  color: #5d4037;
+  background: var(--soft-yellow);
+  border: 2px dashed var(--secondary-dark);
+  border-radius: 18px;
+  box-shadow: 0 4px 0 rgba(255, 183, 3, 0.22);
+}
+
+.rule-card strong,
+.rule-card span {
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1.45;
+}
+
+.rule-card strong {
+  color: var(--primary-dark);
+}
+
 .choice-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -503,8 +539,13 @@ input[type="range"]::-moz-range-thumb {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.count-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 .symbol-btn,
-.option-btn {
+.option-btn,
+.token-btn {
   background: #ffffff;
   border: 3px dashed var(--border-color);
   box-shadow: 0 4px 0 #e9ecef;
@@ -513,7 +554,8 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .symbol-btn:hover,
-.option-btn:hover {
+.option-btn:hover,
+.token-btn:hover {
   background: var(--soft-blue);
   border-color: var(--primary-color);
   color: var(--primary-dark);
@@ -523,6 +565,7 @@ input[type="range"]::-moz-range-thumb {
 
 .symbol-btn:active,
 .option-btn:active,
+.token-btn:active,
 .primary-btn:active {
   transform: translateY(4px);
   box-shadow: 0 0 0 transparent;
@@ -566,6 +609,34 @@ input[type="range"]::-moz-range-thumb {
   min-height: 74px;
   padding: 14px 18px;
   font-size: clamp(18px, 4vw, 25px);
+}
+
+.verb-token-choice {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.token-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 12px;
+}
+
+.token-btn {
+  min-height: 62px;
+  padding: 10px 12px;
+  cursor: pointer;
+  border-radius: 18px;
+  font-size: clamp(17px, 3vw, 23px);
+  transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease, background 120ms ease, color 120ms ease;
+}
+
+.token-btn.selected {
+  color: #ffffff;
+  background: var(--primary-color);
+  border-color: var(--primary-dark);
+  box-shadow: 0 5px 0 var(--primary-dark);
 }
 
 .english-card {

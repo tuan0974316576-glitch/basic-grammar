@@ -29,12 +29,21 @@
           <input id="practice-count" type="range" min="10" max="100" step="5" value="20">
         </div>
 
-        <button class="lesson-card" type="button" data-start-lesson>
+        <button class="lesson-card" type="button" data-start-lesson="lesson1">
           <span class="lesson-kicker">Lesson 01</span>
           <strong>分辨句子是否有動作動詞</strong>
           <span class="lesson-meta">
             <span>分辨句子何時要 is/am/are</span>
-            <span id="menu-progress">0/50</span>
+            <span id="menu-progress-lesson1">0/100</span>
+          </span>
+        </button>
+
+        <button class="lesson-card" type="button" data-start-lesson="lesson2">
+          <span class="lesson-kicker">Lesson 02</span>
+          <strong>一句句子必須只有一個動詞</strong>
+          <span class="lesson-meta">
+            <span>分辨正確句、沒有動詞、兩個動詞</span>
+            <span id="menu-progress-lesson2">0/40</span>
           </span>
         </button>
       </div>
@@ -53,51 +62,76 @@
         </div>
       </header>
 
-      <div class="status-strip">
-        <div>
-          <span>First try</span>
-          <strong><span id="live-score">0</span>/<span id="live-total">0</span></strong>
+      <div id="lesson-scroll" class="lesson-scroll">
+        <div class="status-strip">
+          <div>
+            <span>First try</span>
+            <strong><span id="live-score">0</span>/<span id="live-total">0</span></strong>
+          </div>
+          <div>
+            <span>Streak</span>
+            <strong id="live-streak">0</strong>
+          </div>
+          <div>
+            <span>Best</span>
+            <strong id="best-streak">0</strong>
+          </div>
         </div>
-        <div>
-          <span>Streak</span>
-          <strong id="live-streak">0</strong>
+
+        <div class="prompt-panel">
+          <div id="step-label" class="step-label">中文句子</div>
+          <div id="category-pill" class="category-pill">--</div>
+          <div id="chinese-prompt" class="chinese-prompt">--</div>
+          <div id="guidance" class="guidance">分析句子有沒有動作動詞</div>
         </div>
-        <div>
-          <span>Best</span>
-          <strong id="best-streak">0</strong>
+
+        <div id="rule-card" class="rule-card hidden">
+          <strong>動詞要訣</strong>
+          <span>現在式 / 過去式先算動詞；PP / ING 不當動詞。</span>
+          <span>is / am / are / was / were 是動詞；有其他動詞時不要再加 be。</span>
         </div>
+
+        <div id="verb-choice" class="choice-grid symbol-grid">
+          <button class="symbol-btn tick" type="button" data-verb-choice="true" aria-label="有動詞">✓</button>
+          <button class="symbol-btn cross" type="button" data-verb-choice="false" aria-label="冇動詞">×</button>
+        </div>
+
+        <div id="be-need-choice" class="choice-grid hidden">
+          <button class="option-btn" type="button" data-needs-be="true">要用 is / am / are</button>
+          <button class="option-btn" type="button" data-needs-be="false">不用 is / am / are</button>
+        </div>
+
+        <div id="be-form-choice" class="choice-grid be-grid hidden">
+          <button class="option-btn" type="button" data-be-form="is">is</button>
+          <button class="option-btn" type="button" data-be-form="am">am</button>
+          <button class="option-btn" type="button" data-be-form="are">are</button>
+        </div>
+
+        <div id="judgment-choice" class="choice-grid hidden">
+          <button class="option-btn" type="button" data-sentence-judgment="correct">正確</button>
+          <button class="option-btn" type="button" data-sentence-judgment="wrong">錯誤</button>
+        </div>
+
+        <div id="verb-count-choice" class="choice-grid count-grid hidden">
+          <button class="option-btn" type="button" data-verb-count="0">0</button>
+          <button class="option-btn" type="button" data-verb-count="1">1</button>
+          <button class="option-btn" type="button" data-verb-count="2">2</button>
+          <button class="option-btn" type="button" data-verb-count="3">3</button>
+        </div>
+
+        <div id="verb-token-choice" class="verb-token-choice hidden">
+          <div id="verb-token-grid" class="token-grid"></div>
+          <button id="submit-verbs-btn" class="primary-btn" type="button">確認動詞</button>
+        </div>
+
+        <button id="english-card" class="english-card hidden" type="button">
+          <span>English sentence</span>
+          <strong id="english-text">--</strong>
+          <small>Click to read</small>
+        </button>
+
+        <div id="feedback" class="feedback" aria-live="polite"></div>
       </div>
-
-      <div class="prompt-panel">
-        <div id="step-label" class="step-label">中文句子</div>
-        <div id="category-pill" class="category-pill">--</div>
-        <div id="chinese-prompt" class="chinese-prompt">--</div>
-        <div id="guidance" class="guidance">分析句子有沒有動作動詞</div>
-      </div>
-
-      <div id="verb-choice" class="choice-grid symbol-grid">
-        <button class="symbol-btn tick" type="button" data-verb-choice="true" aria-label="有動詞">✓</button>
-        <button class="symbol-btn cross" type="button" data-verb-choice="false" aria-label="冇動詞">×</button>
-      </div>
-
-      <div id="be-need-choice" class="choice-grid hidden">
-        <button class="option-btn" type="button" data-needs-be="true">要用 is / am / are</button>
-        <button class="option-btn" type="button" data-needs-be="false">不用 is / am / are</button>
-      </div>
-
-      <div id="be-form-choice" class="choice-grid be-grid hidden">
-        <button class="option-btn" type="button" data-be-form="is">is</button>
-        <button class="option-btn" type="button" data-be-form="am">am</button>
-        <button class="option-btn" type="button" data-be-form="are">are</button>
-      </div>
-
-      <button id="english-card" class="english-card hidden" type="button">
-        <span>English sentence</span>
-        <strong id="english-text">--</strong>
-        <small>Click to read</small>
-      </button>
-
-      <div id="feedback" class="feedback" aria-live="polite"></div>
 
       <footer class="lesson-actions">
         <button id="next-btn" class="primary-btn hidden" type="button">下一題</button>

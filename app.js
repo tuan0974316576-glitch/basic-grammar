@@ -103,7 +103,72 @@ const QUESTIONS = [
   { id: "a20", type: "adjective", zh: "他們很安靜。", beForm: "are", english: "They are quiet.", subjectZh: "他們", subjectEn: "They", subjectRole: "眾數代名詞", pronoun: "They" }
 ];
 
-const STORAGE_KEY = "basic_grammar_lesson_01_progress_v2";
+const VERB_COUNT_QUESTIONS = [
+  { id: "vc01", sentence: "She cooks well.", isCorrect: true, verbCount: 1, verbIndexes: [1], explanation: "cooks 是現在式動詞，所以句子有 1 個動詞。" },
+  { id: "vc02", sentence: "I eat breakfast.", isCorrect: true, verbCount: 1, verbIndexes: [1], explanation: "eat 是現在式動詞，所以句子有 1 個動詞。" },
+  { id: "vc03", sentence: "He plays football.", isCorrect: true, verbCount: 1, verbIndexes: [1], explanation: "plays 是現在式動詞，所以句子有 1 個動詞。" },
+  { id: "vc04", sentence: "They are happy.", isCorrect: true, verbCount: 1, verbIndexes: [1], explanation: "are 是 be 動詞，所以句子有 1 個動詞。" },
+  { id: "vc05", sentence: "We went home.", isCorrect: true, verbCount: 1, verbIndexes: [1], explanation: "went 是過去式動詞，所以句子有 1 個動詞。" },
+  { id: "vc06", sentence: "Tom runs fast.", isCorrect: true, verbCount: 1, verbIndexes: [1], explanation: "runs 是現在式動詞，所以句子有 1 個動詞。" },
+  { id: "vc07", sentence: "Mary is late.", isCorrect: true, verbCount: 1, verbIndexes: [1], explanation: "is 是 be 動詞，所以句子有 1 個動詞。" },
+  { id: "vc08", sentence: "The dog slept.", isCorrect: true, verbCount: 1, verbIndexes: [2], explanation: "slept 是過去式動詞，所以句子有 1 個動詞。" },
+  { id: "vc09", sentence: "I was tired.", isCorrect: true, verbCount: 1, verbIndexes: [1], explanation: "was 是 be 動詞，所以句子有 1 個動詞。" },
+  { id: "vc10", sentence: "They are playing football.", isCorrect: true, verbCount: 1, verbIndexes: [1], explanation: "are 是 be 動詞；playing 是 ING，不當動詞，所以句子只有 1 個動詞。" },
+  { id: "vc11", sentence: "She is reading now.", isCorrect: true, verbCount: 1, verbIndexes: [1], explanation: "is 是 be 動詞；reading 是 ING，不當動詞，所以句子只有 1 個動詞。" },
+  { id: "vc12", sentence: "We were at school.", isCorrect: true, verbCount: 1, verbIndexes: [1], explanation: "were 是 be 動詞，所以句子有 1 個動詞。" },
+  { id: "vc13", sentence: "He ate lunch.", isCorrect: true, verbCount: 1, verbIndexes: [1], explanation: "ate 是過去式動詞，所以句子有 1 個動詞。" },
+  { id: "vc14", sentence: "I swim every day.", isCorrect: true, verbCount: 1, verbIndexes: [1], explanation: "swim 是現在式動詞，所以句子有 1 個動詞。" },
+  { id: "vc15", sentence: "They came early.", isCorrect: true, verbCount: 1, verbIndexes: [1], explanation: "came 是過去式動詞，所以句子有 1 個動詞。" },
+  { id: "vc16", sentence: "You are kind.", isCorrect: true, verbCount: 1, verbIndexes: [1], explanation: "are 是 be 動詞，所以句子有 1 個動詞。" },
+  { id: "vc17", sentence: "Dad drives slowly.", isCorrect: true, verbCount: 1, verbIndexes: [1], explanation: "drives 是現在式動詞，所以句子有 1 個動詞。" },
+  { id: "vc18", sentence: "Mum cooked dinner.", isCorrect: true, verbCount: 1, verbIndexes: [1], explanation: "cooked 是過去式動詞，所以句子有 1 個動詞。" },
+  { id: "vc19", sentence: "The baby cried.", isCorrect: true, verbCount: 1, verbIndexes: [2], explanation: "cried 是過去式動詞，所以句子有 1 個動詞。" },
+  { id: "vc20", sentence: "We sing songs.", isCorrect: true, verbCount: 1, verbIndexes: [1], explanation: "sing 是現在式動詞，所以句子有 1 個動詞。" },
+
+  { id: "vc21", sentence: "I swimming every day.", isCorrect: false, verbCount: 0, verbIndexes: [], explanation: "swimming 是 ING，不當動詞，所以句子沒有動詞。" },
+  { id: "vc22", sentence: "They coming now.", isCorrect: false, verbCount: 0, verbIndexes: [], explanation: "coming 是 ING，不當動詞，所以句子沒有動詞。" },
+  { id: "vc23", sentence: "I will late.", isCorrect: false, verbCount: 0, verbIndexes: [], explanation: "will 不是這課要數的現在式/過去式動詞，late 是形容詞，所以句子沒有動詞。" },
+  { id: "vc24", sentence: "She happy today.", isCorrect: false, verbCount: 0, verbIndexes: [], explanation: "happy 是形容詞，句子沒有現在式/過去式動詞。" },
+  { id: "vc25", sentence: "We tired after school.", isCorrect: false, verbCount: 0, verbIndexes: [], explanation: "tired 是形容詞，句子沒有現在式/過去式動詞。" },
+  { id: "vc26", sentence: "He eaten lunch.", isCorrect: false, verbCount: 0, verbIndexes: [], explanation: "eaten 是 PP，不當動詞，所以句子沒有動詞。" },
+  { id: "vc27", sentence: "They gone home.", isCorrect: false, verbCount: 0, verbIndexes: [], explanation: "gone 是 PP，不當動詞，所以句子沒有動詞。" },
+  { id: "vc28", sentence: "The cat sleeping.", isCorrect: false, verbCount: 0, verbIndexes: [], explanation: "sleeping 是 ING，不當動詞，所以句子沒有動詞。" },
+  { id: "vc29", sentence: "I bored.", isCorrect: false, verbCount: 0, verbIndexes: [], explanation: "bored 是形容詞，句子沒有現在式/過去式動詞。" },
+  { id: "vc30", sentence: "Mary running fast.", isCorrect: false, verbCount: 0, verbIndexes: [], explanation: "running 是 ING，不當動詞，所以句子沒有動詞。" },
+
+  { id: "vc31", sentence: "I am play football every day.", isCorrect: false, verbCount: 2, verbIndexes: [1, 2], explanation: "am 是 be 動詞，play 是現在式動詞，所以句子有 2 個動詞。" },
+  { id: "vc32", sentence: "He is play football well.", isCorrect: false, verbCount: 2, verbIndexes: [1, 2], explanation: "is 是 be 動詞，play 是現在式動詞，所以句子有 2 個動詞。" },
+  { id: "vc33", sentence: "She is cooks well.", isCorrect: false, verbCount: 2, verbIndexes: [1, 2], explanation: "is 是 be 動詞，cooks 是現在式動詞，所以句子有 2 個動詞。" },
+  { id: "vc34", sentence: "They are come now.", isCorrect: false, verbCount: 2, verbIndexes: [1, 2], explanation: "are 是 be 動詞，come 是現在式動詞，所以句子有 2 個動詞。" },
+  { id: "vc35", sentence: "We were eat lunch.", isCorrect: false, verbCount: 2, verbIndexes: [1, 2], explanation: "were 是 be 動詞，eat 是現在式動詞，所以句子有 2 個動詞。" },
+  { id: "vc36", sentence: "Tom was run fast.", isCorrect: false, verbCount: 2, verbIndexes: [1, 2], explanation: "was 是 be 動詞，run 是現在式動詞，所以句子有 2 個動詞。" },
+  { id: "vc37", sentence: "You are go home.", isCorrect: false, verbCount: 2, verbIndexes: [1, 2], explanation: "are 是 be 動詞，go 是現在式動詞，所以句子有 2 個動詞。" },
+  { id: "vc38", sentence: "He is eats rice.", isCorrect: false, verbCount: 2, verbIndexes: [1, 2], explanation: "is 是 be 動詞，eats 是現在式動詞，所以句子有 2 個動詞。" },
+  { id: "vc39", sentence: "They were play football.", isCorrect: false, verbCount: 2, verbIndexes: [1, 2], explanation: "were 是 be 動詞，play 是現在式動詞，所以句子有 2 個動詞。" },
+  { id: "vc40", sentence: "The dog is runs fast.", isCorrect: false, verbCount: 2, verbIndexes: [2, 3], explanation: "is 是 be 動詞，runs 是現在式動詞，所以句子有 2 個動詞。" }
+];
+
+const LESSON1_ID = "lesson1";
+const LESSON2_ID = "lesson2";
+const LESSON_PROGRESS_KEYS = {
+  [LESSON1_ID]: "basic_grammar_lesson_01_progress_v2",
+  [LESSON2_ID]: "basic_grammar_lesson_02_progress_v1"
+};
+const LESSONS = {
+  [LESSON1_ID]: {
+    id: LESSON1_ID,
+    kicker: "Lesson 01",
+    title: "分辨句子是否有動作動詞",
+    questions: QUESTIONS
+  },
+  [LESSON2_ID]: {
+    id: LESSON2_ID,
+    kicker: "Lesson 02",
+    title: "一句句子必須只有一個動詞",
+    questions: VERB_COUNT_QUESTIONS
+  }
+};
+
 const SOUND_KEY = "basic_grammar_sound_enabled_v1";
 const PRACTICE_COUNT_KEY = "basic_grammar_practice_count_v1";
 const BEST_STREAK_KEY = "basic_grammar_best_streak_v1";
@@ -152,6 +217,7 @@ const SOUND_PATTERNS = {
 let audioContext = null;
 
 const state = {
+  lessonId: LESSON1_ID,
   mode: "practice",
   index: 0,
   score: 0,
@@ -161,6 +227,7 @@ const state = {
   questions: [],
   missedQuestionIds: [],
   reviewQuestions: [],
+  selectedVerbIndexes: [],
   streak: 0,
   bestStreak: getSavedBestStreak(),
   practiceCount: getSavedPracticeCount(),
@@ -171,7 +238,8 @@ const el = {
   menuScreen: document.querySelector("#menu-screen"),
   lessonScreen: document.querySelector("#lesson-screen"),
   resultScreen: document.querySelector("#result-screen"),
-  menuProgress: document.querySelector("#menu-progress"),
+  menuProgressLesson1: document.querySelector("#menu-progress-lesson1"),
+  menuProgressLesson2: document.querySelector("#menu-progress-lesson2"),
   menuCoachLine: document.querySelector("#menu-coach-line"),
   practiceCountInput: document.querySelector("#practice-count"),
   practiceCountOutput: document.querySelector("#practice-count-output"),
@@ -187,9 +255,15 @@ const el = {
   categoryPill: document.querySelector("#category-pill"),
   chinesePrompt: document.querySelector("#chinese-prompt"),
   guidance: document.querySelector("#guidance"),
+  ruleCard: document.querySelector("#rule-card"),
   verbChoice: document.querySelector("#verb-choice"),
   beNeedChoice: document.querySelector("#be-need-choice"),
   beFormChoice: document.querySelector("#be-form-choice"),
+  judgmentChoice: document.querySelector("#judgment-choice"),
+  verbCountChoice: document.querySelector("#verb-count-choice"),
+  verbTokenChoice: document.querySelector("#verb-token-choice"),
+  verbTokenGrid: document.querySelector("#verb-token-grid"),
+  submitVerbsBtn: document.querySelector("#submit-verbs-btn"),
   englishCard: document.querySelector("#english-card"),
   englishText: document.querySelector("#english-text"),
   feedback: document.querySelector("#feedback"),
@@ -206,6 +280,10 @@ const el = {
   reviewMistakesBtn: document.querySelector("#review-mistakes-btn")
 };
 
+function getMaxPracticeCount() {
+  return Math.max(...Object.values(LESSONS).map((lesson) => lesson.questions.length));
+}
+
 function getSavedPracticeCount() {
   try {
     const rawValue = localStorage.getItem(PRACTICE_COUNT_KEY);
@@ -213,7 +291,7 @@ function getSavedPracticeCount() {
 
     const saved = Number(rawValue);
     if (Number.isFinite(saved)) {
-      return Math.max(10, Math.min(QUESTIONS.length, saved));
+      return Math.max(10, Math.min(getMaxPracticeCount(), saved));
     }
   } catch (_error) {
     // Fall back to a short mixed practice if storage is unavailable.
@@ -247,6 +325,7 @@ function saveBestStreak() {
 }
 
 function syncPracticeCount() {
+  el.practiceCountInput.max = String(getMaxPracticeCount());
   el.practiceCountInput.value = String(state.practiceCount);
   el.practiceCountOutput.textContent = `${state.practiceCount} 題`;
 }
@@ -322,6 +401,17 @@ function pickPracticeQuestions(count) {
   return mixed;
 }
 
+function pickQuestionsForLesson(lessonId, count) {
+  const lesson = LESSONS[lessonId] || LESSONS[LESSON1_ID];
+  const cappedCount = Math.min(count, lesson.questions.length);
+
+  if (lessonId === LESSON1_ID) {
+    return pickPracticeQuestions(cappedCount);
+  }
+
+  return shuffle(lesson.questions).slice(0, cappedCount);
+}
+
 function getSavedSoundEnabled() {
   try {
     return localStorage.getItem(SOUND_KEY) !== "off";
@@ -395,31 +485,44 @@ function playUiSound(kind) {
   });
 }
 
-function getProgress() {
+function currentLesson() {
+  return LESSONS[state.lessonId] || LESSONS[LESSON1_ID];
+}
+
+function getLessonTotal(lessonId) {
+  return LESSONS[lessonId]?.questions.length || 0;
+}
+
+function getProgress(lessonId = state.lessonId) {
   try {
-    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
-    return Math.max(0, Math.min(QUESTIONS.length, Number(saved.completed) || 0));
+    const saved = JSON.parse(localStorage.getItem(LESSON_PROGRESS_KEYS[lessonId]) || "{}");
+    return Math.max(0, Math.min(getLessonTotal(lessonId), Number(saved.completed) || 0));
   } catch (_error) {
     return 0;
   }
 }
 
-function saveProgress(completed) {
-  const nextCompleted = Math.max(getProgress(), Math.min(QUESTIONS.length, completed));
-  localStorage.setItem(STORAGE_KEY, JSON.stringify({
+function saveProgress(completed, lessonId = state.lessonId) {
+  const total = getLessonTotal(lessonId);
+  const nextCompleted = Math.max(getProgress(lessonId), Math.min(total, completed));
+  localStorage.setItem(LESSON_PROGRESS_KEYS[lessonId], JSON.stringify({
     completed: nextCompleted,
-    total: QUESTIONS.length,
+    total,
     updatedAt: Date.now()
   }));
   updateMenuProgress();
 }
 
 function updateMenuProgress() {
-  const progress = getProgress();
-  el.menuProgress.textContent = `${progress}/${QUESTIONS.length}`;
+  const lesson1Progress = getProgress(LESSON1_ID);
+  const lesson2Progress = getProgress(LESSON2_ID);
+  el.menuProgressLesson1.textContent = `${lesson1Progress}/${getLessonTotal(LESSON1_ID)}`;
+  el.menuProgressLesson2.textContent = `${lesson2Progress}/${getLessonTotal(LESSON2_ID)}`;
 
-  if (progress >= QUESTIONS.length) {
-    el.menuCoachLine.textContent = "Lesson 01 已完成，可以挑戰滿分。";
+  if (lesson2Progress >= getLessonTotal(LESSON2_ID)) {
+    el.menuCoachLine.textContent = "Lesson 02 已完成，可以挑戰滿分。";
+  } else if (lesson1Progress >= getLessonTotal(LESSON1_ID)) {
+    el.menuCoachLine.textContent = "Lesson 01 已完成，可以挑戰 Lesson 02。";
   } else if (state.bestStreak >= 8) {
     el.menuCoachLine.textContent = `最佳連勝 ${state.bestStreak} 題，節奏好穩。`;
   } else {
@@ -434,10 +537,11 @@ function showScreen(screen) {
 }
 
 function updateLessonChrome() {
+  const lesson = currentLesson();
   const reviewing = state.mode === "review";
-  el.lessonKicker.textContent = reviewing ? "Mistake Review" : "Lesson 01";
-  el.lessonTitle.textContent = reviewing ? "錯題重練" : "分辨句子是否有動作動詞";
-  el.resultKicker.textContent = reviewing ? "Mistake Review Result" : "Lesson 01 Result";
+  el.lessonKicker.textContent = reviewing ? "Mistake Review" : lesson.kicker;
+  el.lessonTitle.textContent = reviewing ? "錯題重練" : lesson.title;
+  el.resultKicker.textContent = reviewing ? "Mistake Review Result" : `${lesson.kicker} Result`;
 }
 
 function updateLiveStats() {
@@ -456,6 +560,9 @@ function showOnlyChoice(choice) {
   el.verbChoice.classList.toggle("hidden", choice !== "verb");
   el.beNeedChoice.classList.toggle("hidden", choice !== "needsBe");
   el.beFormChoice.classList.toggle("hidden", choice !== "beForm");
+  el.judgmentChoice.classList.toggle("hidden", choice !== "judgment");
+  el.verbCountChoice.classList.toggle("hidden", choice !== "verbCount");
+  el.verbTokenChoice.classList.toggle("hidden", choice !== "verbTokens");
 }
 
 function currentQuestion() {
@@ -499,7 +606,8 @@ function getWrongBeFormExplanation(question, pickedForm) {
   return `你揀咗 ${pickedForm}，但${getBeRuleExplanation(question)}`;
 }
 
-function prepareRun(mode, questions) {
+function prepareRun(mode, lessonId, questions) {
+  state.lessonId = lessonId;
   state.mode = mode;
   state.index = 0;
   state.score = 0;
@@ -507,6 +615,7 @@ function prepareRun(mode, questions) {
   state.questionMistakes = 0;
   state.streak = 0;
   state.missedQuestionIds = [];
+  state.selectedVerbIndexes = [];
   state.resolved = false;
   state.questions = questions;
   updateLessonChrome();
@@ -516,13 +625,14 @@ function prepareRun(mode, questions) {
   playUiSound("start");
 }
 
-function startLesson() {
-  prepareRun("practice", pickPracticeQuestions(state.practiceCount));
+function startLesson(lessonId = state.lessonId) {
+  const nextLessonId = LESSONS[lessonId] ? lessonId : LESSON1_ID;
+  prepareRun("practice", nextLessonId, pickQuestionsForLesson(nextLessonId, state.practiceCount));
 }
 
 function startMistakeReview() {
   if (!state.reviewQuestions.length) return;
-  prepareRun("review", shuffle(state.reviewQuestions));
+  prepareRun("review", state.lessonId, shuffle(state.reviewQuestions));
 }
 
 function backToMenu() {
@@ -540,19 +650,42 @@ function renderQuestion() {
 
   state.resolved = false;
   state.questionMistakes = 0;
+  state.selectedVerbIndexes = [];
   el.questionNumber.textContent = String(state.index + 1);
   el.questionTotal.textContent = String(state.questions.length);
   updateLiveStats();
+  el.englishCard.classList.add("hidden");
+  el.nextBtn.classList.add("hidden");
+  el.restartBtn.classList.add("hidden");
+  el.chinesePrompt.classList.toggle("english-prompt", state.lessonId === LESSON2_ID);
+  el.ruleCard.classList.toggle("hidden", state.lessonId !== LESSON2_ID);
+  el.verbTokenGrid.replaceChildren();
+  setFeedback();
+
+  if (state.lessonId === LESSON2_ID) {
+    renderVerbCountQuestion(question);
+    return;
+  }
+
+  renderGrammarQuestion(question);
+}
+
+function renderGrammarQuestion(question) {
   el.stepLabel.textContent = "中文句子";
   el.categoryPill.textContent = CATEGORY_LABELS[question.type];
   el.categoryPill.dataset.type = question.type;
   el.chinesePrompt.textContent = question.zh;
   el.guidance.textContent = "分析句子有沒有動作動詞：有就 TICK，冇就 CROSS。";
-  el.englishCard.classList.add("hidden");
-  el.nextBtn.classList.add("hidden");
-  el.restartBtn.classList.add("hidden");
   showOnlyChoice("verb");
-  setFeedback();
+}
+
+function renderVerbCountQuestion(question) {
+  el.stepLabel.textContent = "English sentence";
+  el.categoryPill.textContent = "One verb rule";
+  el.categoryPill.dataset.type = "verb-count";
+  el.chinesePrompt.textContent = question.sentence;
+  el.guidance.textContent = "一句句子只可以有一個動詞。先判斷句子正確定錯誤。";
+  showOnlyChoice("judgment");
 }
 
 function completeQuestion(message) {
@@ -603,8 +736,12 @@ function recordWrong(message) {
   updateLiveStats();
   showOnlyChoice("");
   el.guidance.textContent = "睇完解釋，按「下一題」繼續。";
-  el.englishText.textContent = question.english;
-  el.englishCard.classList.remove("hidden");
+  if (question.english) {
+    el.englishText.textContent = question.english;
+    el.englishCard.classList.remove("hidden");
+  } else {
+    el.englishCard.classList.add("hidden");
+  }
   el.nextBtn.classList.remove("hidden");
   setFeedback(message, "error");
   playUiSound("wrong");
@@ -667,6 +804,123 @@ function answerBeForm(form) {
   completeQuestion(`正確，${getBeRuleExplanation(question)}`);
 }
 
+function getSentenceTokens(question) {
+  return question.sentence.replace(/[.?!]/g, "").split(" ");
+}
+
+function getVerbCountExplanation(question) {
+  const tokens = getSentenceTokens(question);
+  const verbWords = question.verbIndexes.map((index) => tokens[index]).join("、") || "沒有動詞";
+  const correctness = question.isCorrect ? "句子正確" : "句子錯誤";
+  return `${question.explanation} 正確答案：${correctness}，有 ${question.verbCount} 個動詞（${verbWords}）。`;
+}
+
+function completeVerbLessonQuestion(message) {
+  const question = currentQuestion();
+  if (!question || state.resolved) return;
+
+  state.resolved = true;
+  state.score += 1;
+  state.streak += 1;
+  if (state.streak > state.bestStreak) {
+    state.bestStreak = state.streak;
+    saveBestStreak();
+  }
+  if (state.mode === "practice") {
+    saveProgress(state.index + 1);
+  }
+
+  updateLiveStats();
+  showOnlyChoice("");
+  el.guidance.textContent = "睇完解釋，按「下一題」繼續。";
+  el.englishCard.classList.add("hidden");
+  el.nextBtn.classList.remove("hidden");
+  setFeedback(message, "success");
+  playUiSound("correct");
+}
+
+function answerSentenceJudgment(choice) {
+  const question = currentQuestion();
+  if (!question || state.lessonId !== LESSON2_ID || state.resolved) return;
+
+  const pickedCorrect = choice === "correct";
+  if (pickedCorrect !== question.isCorrect) {
+    recordWrong(getVerbCountExplanation(question));
+    return;
+  }
+
+  el.guidance.textContent = "正確。下一步揀句子有幾多個動詞。";
+  showOnlyChoice("verbCount");
+  setFeedback("正確，繼續數動詞。", "success");
+  playUiSound("step");
+}
+
+function answerVerbCount(count) {
+  const question = currentQuestion();
+  if (!question || state.lessonId !== LESSON2_ID || state.resolved) return;
+
+  const pickedCount = Number(count);
+  if (pickedCount !== question.verbCount) {
+    recordWrong(getVerbCountExplanation(question));
+    return;
+  }
+
+  if (question.isCorrect || question.verbCount === 0) {
+    completeVerbLessonQuestion(`正確。${getVerbCountExplanation(question)}`);
+    return;
+  }
+
+  renderVerbTokenButtons(question);
+  el.guidance.textContent = "數目正確。再揀出句子入面邊啲字係動詞。";
+  showOnlyChoice("verbTokens");
+  setFeedback("數目正確，請揀動詞。", "success");
+  playUiSound("step");
+}
+
+function renderVerbTokenButtons(question) {
+  el.verbTokenGrid.replaceChildren();
+  getSentenceTokens(question).forEach((token, index) => {
+    const button = document.createElement("button");
+    button.className = "token-btn";
+    button.type = "button";
+    button.textContent = token;
+    button.dataset.tokenIndex = String(index);
+    button.setAttribute("aria-pressed", "false");
+    button.addEventListener("click", () => toggleVerbToken(index, button));
+    el.verbTokenGrid.append(button);
+  });
+}
+
+function toggleVerbToken(index, button) {
+  if (state.resolved) return;
+
+  if (state.selectedVerbIndexes.includes(index)) {
+    state.selectedVerbIndexes = state.selectedVerbIndexes.filter((selectedIndex) => selectedIndex !== index);
+  } else {
+    state.selectedVerbIndexes.push(index);
+  }
+
+  const selected = state.selectedVerbIndexes.includes(index);
+  button.classList.toggle("selected", selected);
+  button.setAttribute("aria-pressed", String(selected));
+}
+
+function submitVerbTokens() {
+  const question = currentQuestion();
+  if (!question || state.lessonId !== LESSON2_ID || state.resolved) return;
+
+  const picked = [...state.selectedVerbIndexes].sort((left, right) => left - right);
+  const expected = [...question.verbIndexes].sort((left, right) => left - right);
+  const matched = picked.length === expected.length && picked.every((index, position) => index === expected[position]);
+
+  if (!matched) {
+    recordWrong(getVerbCountExplanation(question));
+    return;
+  }
+
+  completeVerbLessonQuestion(`正確。${getVerbCountExplanation(question)}`);
+}
+
 function nextQuestion() {
   cancelSpeech();
   const wasLastQuestion = state.index >= state.questions.length - 1;
@@ -709,7 +963,7 @@ function renderReviewSummary() {
 
   state.reviewQuestions.slice(0, 6).forEach((question) => {
     const chip = document.createElement("span");
-    chip.textContent = question.zh;
+    chip.textContent = getQuestionPrompt(question);
     el.reviewSummary.append(chip);
   });
 
@@ -720,9 +974,16 @@ function renderReviewSummary() {
   }
 }
 
+function getQuestionPrompt(question) {
+  return question.zh || question.sentence || "";
+}
+
 function getResultMessage(percent, mistakes, mode) {
   if (mode === "review" && mistakes === 0) return "錯題已清晒，返去挑戰新一輪。";
   if (mode === "review") return "差少少，再重練今輪錯題就得。";
+  if (state.lessonId === LESSON2_ID && percent === 100 && mistakes === 0) return "滿分！你記得一句句子只可以有一個動詞。";
+  if (state.lessonId === LESSON2_ID && percent >= 80) return "好穩陣！繼續留意 ING / PP 不當動詞。";
+  if (state.lessonId === LESSON2_ID) return "慢慢嚟，先數現在式、過去式同 be 動詞。";
   if (percent === 100 && mistakes === 0) return "滿分！你第一次就全部答啱。";
   if (percent >= 80) return "好穩陣！再玩一次可以挑戰更高準確率。";
   if (percent >= 60) return "有進步空間，留意形容詞句要補 be verb。";
@@ -738,7 +999,7 @@ function cancelSpeech() {
 
 function speakCurrentEnglish() {
   const question = currentQuestion();
-  if (!question || !window.speechSynthesis || typeof SpeechSynthesisUtterance === "undefined") return;
+  if (!question?.english || !window.speechSynthesis || typeof SpeechSynthesisUtterance === "undefined") return;
 
   cancelSpeech();
   const utterance = new SpeechSynthesisUtterance(question.english);
@@ -750,13 +1011,15 @@ function speakCurrentEnglish() {
   window.speechSynthesis.speak(utterance);
 }
 
-document.querySelector("[data-start-lesson]").addEventListener("click", startLesson);
+document.querySelectorAll("[data-start-lesson]").forEach((button) => {
+  button.addEventListener("click", () => startLesson(button.dataset.startLesson));
+});
 document.querySelector("[data-back-menu]").addEventListener("click", backToMenu);
 document.querySelector("[data-result-menu]").addEventListener("click", backToMenu);
-document.querySelector("[data-restart-lesson]").addEventListener("click", startLesson);
+document.querySelector("[data-restart-lesson]").addEventListener("click", () => startLesson(state.lessonId));
 el.reviewMistakesBtn.addEventListener("click", startMistakeReview);
 el.nextBtn.addEventListener("click", nextQuestion);
-el.restartBtn.addEventListener("click", startLesson);
+el.restartBtn.addEventListener("click", () => startLesson(state.lessonId));
 el.englishCard.addEventListener("click", speakCurrentEnglish);
 el.soundToggle.addEventListener("click", toggleSound);
 el.practiceCountInput.addEventListener("input", updatePracticeCount);
@@ -772,6 +1035,16 @@ document.querySelectorAll("[data-needs-be]").forEach((button) => {
 document.querySelectorAll("[data-be-form]").forEach((button) => {
   button.addEventListener("click", () => answerBeForm(button.dataset.beForm));
 });
+
+document.querySelectorAll("[data-sentence-judgment]").forEach((button) => {
+  button.addEventListener("click", () => answerSentenceJudgment(button.dataset.sentenceJudgment));
+});
+
+document.querySelectorAll("[data-verb-count]").forEach((button) => {
+  button.addEventListener("click", () => answerVerbCount(button.dataset.verbCount));
+});
+
+el.submitVerbsBtn.addEventListener("click", submitVerbTokens);
 
 updateMenuProgress();
 syncPracticeCount();

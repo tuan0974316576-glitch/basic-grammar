@@ -2,7 +2,7 @@
 
 A standalone beginner grammar game for students, styled after the Japanese stationery look of the N4 practice app.
 
-Current module:
+Current modules:
 
 - Lesson 01: 分辨句子是否有動作動詞
 - 100 questions total: 50 action-verb sentences, 30 `是` sentences, and 20 adjective sentences.
@@ -16,6 +16,8 @@ Current module:
 - A coach mascot, live first-try score, current streak, and saved best streak keep the practice loop more game-like.
 - Result page shows first-try score, mistake count, and accuracy.
 - Result page can launch a focused mistake review round for any questions missed in the last practice.
+- Lesson 02: 一句句子必須只有一個動詞.
+- 40 Lesson 02 questions ask students to judge whether an English sentence is correct, count 0/1/2/3 verbs, and identify the verbs in wrong two-verb sentences.
 
 Published with GitHub Pages:
 
