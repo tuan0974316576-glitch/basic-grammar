@@ -24,6 +24,31 @@ const QUESTIONS = [
   { id: "v23", type: "action", zh: "哥哥打籃球。", english: "My older brother plays basketball.", note: "「打」是動作動詞。" },
   { id: "v24", type: "action", zh: "姐姐跳舞。", english: "My older sister dances.", note: "「跳舞」是動作動詞。" },
   { id: "v25", type: "action", zh: "我們玩遊戲。", english: "We play games.", note: "「玩」是動作動詞。" },
+  { id: "v26", type: "action", zh: "我洗臉。", english: "I wash my face.", note: "「洗」是動作動詞。" },
+  { id: "v27", type: "action", zh: "你刷牙。", english: "You brush your teeth.", note: "「刷」是動作動詞。" },
+  { id: "v28", type: "action", zh: "他吃飯。", english: "He eats rice.", note: "「吃」是動作動詞。" },
+  { id: "v29", type: "action", zh: "她喝牛奶。", english: "She drinks milk.", note: "「喝」是動作動詞。" },
+  { id: "v30", type: "action", zh: "我們看電視。", english: "We watch TV.", note: "「看」是動作動詞。" },
+  { id: "v31", type: "action", zh: "他們讀書。", english: "They read books.", note: "「讀」是動作動詞。" },
+  { id: "v32", type: "action", zh: "爺爺散步。", english: "Grandpa takes a walk.", note: "「散步」是動作動詞。" },
+  { id: "v33", type: "action", zh: "奶奶買菜。", english: "Grandma buys vegetables.", note: "「買」是動作動詞。" },
+  { id: "v34", type: "action", zh: "小貓叫。", english: "The kitten meows.", note: "「叫」是動作動詞。" },
+  { id: "v35", type: "action", zh: "小狗跑。", english: "The puppy runs.", note: "「跑」是動作動詞。" },
+  { id: "v36", type: "action", zh: "弟弟笑。", english: "My younger brother smiles.", note: "「笑」是動作動詞。" },
+  { id: "v37", type: "action", zh: "姐姐做蛋糕。", english: "My older sister makes a cake.", note: "「做」是動作動詞。" },
+  { id: "v38", type: "action", zh: "老師寫字。", english: "The teacher writes words.", note: "「寫」是動作動詞。" },
+  { id: "v39", type: "action", zh: "學生舉手。", english: "The student raises a hand.", note: "「舉」是動作動詞。" },
+  { id: "v40", type: "action", zh: "我拿鉛筆。", english: "I take a pencil.", note: "「拿」是動作動詞。" },
+  { id: "v41", type: "action", zh: "你關門。", english: "You close the door.", note: "「關」是動作動詞。" },
+  { id: "v42", type: "action", zh: "他開燈。", english: "He turns on the light.", note: "「開」是動作動詞。" },
+  { id: "v43", type: "action", zh: "她畫星星。", english: "She draws stars.", note: "「畫」是動作動詞。" },
+  { id: "v44", type: "action", zh: "我們唱英文歌。", english: "We sing an English song.", note: "「唱」是動作動詞。" },
+  { id: "v45", type: "action", zh: "他們跳繩。", english: "They skip rope.", note: "「跳繩」是動作動詞。" },
+  { id: "v46", type: "action", zh: "媽媽洗碗。", english: "Mum washes the dishes.", note: "「洗」是動作動詞。" },
+  { id: "v47", type: "action", zh: "爸爸看報紙。", english: "Dad reads a newspaper.", note: "「看」是動作動詞。" },
+  { id: "v48", type: "action", zh: "小明踢球。", english: "Siu Ming kicks a ball.", note: "「踢」是動作動詞。" },
+  { id: "v49", type: "action", zh: "妹妹玩積木。", english: "My younger sister plays with blocks.", note: "「玩」是動作動詞。" },
+  { id: "v50", type: "action", zh: "我聽音樂。", english: "I listen to music.", note: "「聽」是動作動詞。" },
 
   { id: "b01", type: "be", zh: "我是學生。", beForm: "am", english: "I am a student.", subjectZh: "我", subjectEn: "I", subjectRole: "第一身單數", pronoun: "I" },
   { id: "b02", type: "be", zh: "你是老師。", beForm: "are", english: "You are a teacher.", subjectZh: "你", subjectEn: "You", subjectRole: "第二身", pronoun: "You" },
@@ -40,6 +65,21 @@ const QUESTIONS = [
   { id: "b13", type: "be", zh: "媽媽是廚師。", beForm: "is", english: "Mum is a cook.", subjectZh: "媽媽", subjectEn: "Mum", subjectRole: "女性單數名詞", pronoun: "She" },
   { id: "b14", type: "be", zh: "這些是蘋果。", beForm: "are", english: "These are apples.", subjectZh: "這些", subjectEn: "These", subjectRole: "眾數指示代名詞", pronoun: "They" },
   { id: "b15", type: "be", zh: "那些是椅子。", beForm: "are", english: "Those are chairs.", subjectZh: "那些", subjectEn: "Those", subjectRole: "眾數指示代名詞", pronoun: "They" },
+  { id: "b16", type: "be", zh: "我是男孩。", beForm: "am", english: "I am a boy.", subjectZh: "我", subjectEn: "I", subjectRole: "第一身單數", pronoun: "I" },
+  { id: "b17", type: "be", zh: "你是女孩。", beForm: "are", english: "You are a girl.", subjectZh: "你", subjectEn: "You", subjectRole: "第二身", pronoun: "You" },
+  { id: "b18", type: "be", zh: "他是哥哥。", beForm: "is", english: "He is my older brother.", subjectZh: "他", subjectEn: "He", subjectRole: "男性代名詞", pronoun: "He" },
+  { id: "b19", type: "be", zh: "她是姐姐。", beForm: "is", english: "She is my older sister.", subjectZh: "她", subjectEn: "She", subjectRole: "女性代名詞", pronoun: "She" },
+  { id: "b20", type: "be", zh: "它是一隻狗。", beForm: "is", english: "It is a dog.", subjectZh: "它", subjectEn: "It", subjectRole: "單數事物或動物", pronoun: "It" },
+  { id: "b21", type: "be", zh: "我們是同學。", beForm: "are", english: "We are classmates.", subjectZh: "我們", subjectEn: "We", subjectRole: "第一身眾數", pronoun: "We" },
+  { id: "b22", type: "be", zh: "他們是朋友。", beForm: "are", english: "They are friends.", subjectZh: "他們", subjectEn: "They", subjectRole: "眾數代名詞", pronoun: "They" },
+  { id: "b23", type: "be", zh: "這是書包。", beForm: "is", english: "This is a school bag.", subjectZh: "這", subjectEn: "This", subjectRole: "單數指示代名詞", pronoun: "This" },
+  { id: "b24", type: "be", zh: "那是尺。", beForm: "is", english: "That is a ruler.", subjectZh: "那", subjectEn: "That", subjectRole: "單數指示代名詞", pronoun: "That" },
+  { id: "b25", type: "be", zh: "Tom是男孩。", beForm: "is", english: "Tom is a boy.", subjectZh: "Tom", subjectEn: "Tom", subjectRole: "男性名字", pronoun: "He" },
+  { id: "b26", type: "be", zh: "Mary是女孩。", beForm: "is", english: "Mary is a girl.", subjectZh: "Mary", subjectEn: "Mary", subjectRole: "女性名字", pronoun: "She" },
+  { id: "b27", type: "be", zh: "這些是鉛筆。", beForm: "are", english: "These are pencils.", subjectZh: "這些", subjectEn: "These", subjectRole: "眾數指示代名詞", pronoun: "They" },
+  { id: "b28", type: "be", zh: "那些是橡皮。", beForm: "are", english: "Those are erasers.", subjectZh: "那些", subjectEn: "Those", subjectRole: "眾數指示代名詞", pronoun: "They" },
+  { id: "b29", type: "be", zh: "蘋果是水果。", beForm: "are", english: "Apples are fruit.", subjectZh: "蘋果", subjectEn: "Apples", subjectRole: "眾數名詞", pronoun: "They" },
+  { id: "b30", type: "be", zh: "香蕉是水果。", beForm: "are", english: "Bananas are fruit.", subjectZh: "香蕉", subjectEn: "Bananas", subjectRole: "眾數名詞", pronoun: "They" },
 
   { id: "a01", type: "adjective", zh: "我很累。", beForm: "am", english: "I am tired.", subjectZh: "我", subjectEn: "I", subjectRole: "第一身單數", pronoun: "I" },
   { id: "a02", type: "adjective", zh: "你很開心。", beForm: "are", english: "You are happy.", subjectZh: "你", subjectEn: "You", subjectRole: "第二身", pronoun: "You" },
@@ -50,7 +90,17 @@ const QUESTIONS = [
   { id: "a07", type: "adjective", zh: "他們很友善。", beForm: "are", english: "They are kind.", subjectZh: "他們", subjectEn: "They", subjectRole: "眾數代名詞", pronoun: "They" },
   { id: "a08", type: "adjective", zh: "天氣很熱。", beForm: "is", english: "The weather is hot.", subjectZh: "天氣", subjectEn: "The weather", subjectRole: "單數名詞", pronoun: "It" },
   { id: "a09", type: "adjective", zh: "這本書很有趣。", beForm: "is", english: "This book is interesting.", subjectZh: "這本書", subjectEn: "This book", subjectRole: "單數名詞", pronoun: "It" },
-  { id: "a10", type: "adjective", zh: "房間很乾淨。", beForm: "is", english: "The room is clean.", subjectZh: "房間", subjectEn: "The room", subjectRole: "單數名詞", pronoun: "It" }
+  { id: "a10", type: "adjective", zh: "房間很乾淨。", beForm: "is", english: "The room is clean.", subjectZh: "房間", subjectEn: "The room", subjectRole: "單數名詞", pronoun: "It" },
+  { id: "a11", type: "adjective", zh: "Tom很累。", beForm: "is", english: "Tom is tired.", subjectZh: "Tom", subjectEn: "Tom", subjectRole: "男性名字", pronoun: "He" },
+  { id: "a12", type: "adjective", zh: "Mary很開心。", beForm: "is", english: "Mary is happy.", subjectZh: "Mary", subjectEn: "Mary", subjectRole: "女性名字", pronoun: "She" },
+  { id: "a13", type: "adjective", zh: "小狗很小。", beForm: "is", english: "The puppy is small.", subjectZh: "小狗", subjectEn: "The puppy", subjectRole: "單數動物名詞", pronoun: "It" },
+  { id: "a14", type: "adjective", zh: "小貓很白。", beForm: "is", english: "The kitten is white.", subjectZh: "小貓", subjectEn: "The kitten", subjectRole: "單數動物名詞", pronoun: "It" },
+  { id: "a15", type: "adjective", zh: "蘋果很甜。", beForm: "are", english: "Apples are sweet.", subjectZh: "蘋果", subjectEn: "Apples", subjectRole: "眾數名詞", pronoun: "They" },
+  { id: "a16", type: "adjective", zh: "香蕉很長。", beForm: "are", english: "Bananas are long.", subjectZh: "香蕉", subjectEn: "Bananas", subjectRole: "眾數名詞", pronoun: "They" },
+  { id: "a17", type: "adjective", zh: "我的書很新。", beForm: "is", english: "My book is new.", subjectZh: "我的書", subjectEn: "My book", subjectRole: "單數名詞", pronoun: "It" },
+  { id: "a18", type: "adjective", zh: "你的筆很短。", beForm: "is", english: "Your pencil is short.", subjectZh: "你的筆", subjectEn: "Your pencil", subjectRole: "單數名詞", pronoun: "It" },
+  { id: "a19", type: "adjective", zh: "我們很高興。", beForm: "are", english: "We are glad.", subjectZh: "我們", subjectEn: "We", subjectRole: "第一身眾數", pronoun: "We" },
+  { id: "a20", type: "adjective", zh: "他們很安靜。", beForm: "are", english: "They are quiet.", subjectZh: "他們", subjectEn: "They", subjectRole: "眾數代名詞", pronoun: "They" }
 ];
 
 const STORAGE_KEY = "basic_grammar_lesson_01_progress_v2";
@@ -61,6 +111,11 @@ const CATEGORY_LABELS = {
   action: "動作動詞",
   be: "「是」句",
   adjective: "形容詞句"
+};
+const QUESTION_WEIGHTS = {
+  action: 0.5,
+  be: 0.3,
+  adjective: 0.2
 };
 
 const SOUND_PATTERNS = {
@@ -212,14 +267,36 @@ function shuffle(items) {
 }
 
 function getQuestionQuotas(count) {
-  const action = Math.min(25, Math.round(count * 0.5));
-  const adjective = Math.min(10, Math.max(1, Math.round(count * 0.2)));
-  const be = Math.min(15, count - action - adjective);
-  return {
-    action,
-    be,
-    adjective: count - action - be
-  };
+  const types = Object.keys(QUESTION_WEIGHTS);
+  const availableCounts = Object.fromEntries(
+    types.map((type) => [type, QUESTIONS.filter((question) => question.type === type).length])
+  );
+  const quotas = Object.fromEntries(types.map((type) => [type, 0]));
+  const weightedTypes = types.map((type) => {
+    const exactQuota = count * QUESTION_WEIGHTS[type];
+    const baseQuota = Math.min(availableCounts[type], Math.floor(exactQuota));
+    quotas[type] = baseQuota;
+    return {
+      type,
+      remainder: exactQuota - baseQuota
+    };
+  });
+  let assigned = Object.values(quotas).reduce((total, quota) => total + quota, 0);
+
+  while (assigned < count) {
+    const nextType = weightedTypes
+      .filter(({ type }) => quotas[type] < availableCounts[type])
+      .sort((left, right) => {
+        if (right.remainder !== left.remainder) return right.remainder - left.remainder;
+        return QUESTION_WEIGHTS[right.type] - QUESTION_WEIGHTS[left.type];
+      })[0]?.type;
+
+    if (!nextType) break;
+    quotas[nextType] += 1;
+    assigned += 1;
+  }
+
+  return quotas;
 }
 
 function pickPracticeQuestions(count) {
