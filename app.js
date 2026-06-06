@@ -1,68 +1,64 @@
 const QUESTIONS = [
-  {
-    id: "eat-apple",
-    zh: "我吃蘋果。",
-    hasVerb: true,
-    english: "I eat an apple.",
-    note: "正確，「吃」是動詞。"
-  },
-  {
-    id: "go-school",
-    zh: "他去學校。",
-    hasVerb: true,
-    english: "He goes to school.",
-    note: "正確，「去」是動詞。"
-  },
-  {
-    id: "i-tired",
-    zh: "我很累。",
-    hasVerb: false,
-    needsBe: true,
-    beForm: "am",
-    english: "I am tired."
-  },
-  {
-    id: "she-tall",
-    zh: "她很高。",
-    hasVerb: false,
-    needsBe: true,
-    beForm: "is",
-    english: "She is tall."
-  },
-  {
-    id: "we-happy",
-    zh: "我們很開心。",
-    hasVerb: false,
-    needsBe: true,
-    beForm: "are",
-    english: "We are happy."
-  },
-  {
-    id: "they-play",
-    zh: "他們踢足球。",
-    hasVerb: true,
-    english: "They play football.",
-    note: "正確，「踢」是動詞。"
-  },
-  {
-    id: "red-bag",
-    zh: "我的紅色書包",
-    hasVerb: false,
-    needsBe: false,
-    beForm: "",
-    english: "my red school bag"
-  },
-  {
-    id: "you-kind",
-    zh: "你很友善。",
-    hasVerb: false,
-    needsBe: true,
-    beForm: "are",
-    english: "You are kind."
-  }
+  { id: "v01", type: "action", zh: "我吃蘋果。", english: "I eat an apple.", note: "「吃」是動作動詞。" },
+  { id: "v02", type: "action", zh: "他去學校。", english: "He goes to school.", note: "「去」是動作動詞。" },
+  { id: "v03", type: "action", zh: "她看書。", english: "She reads a book.", note: "「看」是動作動詞。" },
+  { id: "v04", type: "action", zh: "我們踢足球。", english: "We play football.", note: "「踢」是動作動詞。" },
+  { id: "v05", type: "action", zh: "你喝水。", english: "You drink water.", note: "「喝」是動作動詞。" },
+  { id: "v06", type: "action", zh: "他們唱歌。", english: "They sing songs.", note: "「唱」是動作動詞。" },
+  { id: "v07", type: "action", zh: "媽媽煮飯。", english: "Mum cooks dinner.", note: "「煮」是動作動詞。" },
+  { id: "v08", type: "action", zh: "爸爸開車。", english: "Dad drives a car.", note: "「開」是動作動詞。" },
+  { id: "v09", type: "action", zh: "小明寫字。", english: "Siu Ming writes words.", note: "「寫」是動作動詞。" },
+  { id: "v10", type: "action", zh: "妹妹畫畫。", english: "My younger sister draws pictures.", note: "「畫」是動作動詞。" },
+  { id: "v11", type: "action", zh: "老師教英文。", english: "The teacher teaches English.", note: "「教」是動作動詞。" },
+  { id: "v12", type: "action", zh: "學生聽故事。", english: "The students listen to a story.", note: "「聽」是動作動詞。" },
+  { id: "v13", type: "action", zh: "我買麵包。", english: "I buy bread.", note: "「買」是動作動詞。" },
+  { id: "v14", type: "action", zh: "你打開門。", english: "You open the door.", note: "「打開」是動作動詞。" },
+  { id: "v15", type: "action", zh: "他關上窗。", english: "He closes the window.", note: "「關上」是動作動詞。" },
+  { id: "v16", type: "action", zh: "她洗手。", english: "She washes her hands.", note: "「洗」是動作動詞。" },
+  { id: "v17", type: "action", zh: "我們跑步。", english: "We run.", note: "「跑」是動作動詞。" },
+  { id: "v18", type: "action", zh: "他們游泳。", english: "They swim.", note: "「游泳」是動作動詞。" },
+  { id: "v19", type: "action", zh: "小狗睡覺。", english: "The dog sleeps.", note: "「睡覺」是動作動詞。" },
+  { id: "v20", type: "action", zh: "小鳥飛。", english: "The bird flies.", note: "「飛」是動作動詞。" },
+  { id: "v21", type: "action", zh: "我做功課。", english: "I do my homework.", note: "「做」是動作動詞。" },
+  { id: "v22", type: "action", zh: "你讀英文。", english: "You read English.", note: "「讀」是動作動詞。" },
+  { id: "v23", type: "action", zh: "哥哥打籃球。", english: "My older brother plays basketball.", note: "「打」是動作動詞。" },
+  { id: "v24", type: "action", zh: "姐姐跳舞。", english: "My older sister dances.", note: "「跳舞」是動作動詞。" },
+  { id: "v25", type: "action", zh: "我們玩遊戲。", english: "We play games.", note: "「玩」是動作動詞。" },
+
+  { id: "b01", type: "be", zh: "我是學生。", beForm: "am", english: "I am a student." },
+  { id: "b02", type: "be", zh: "你是老師。", beForm: "are", english: "You are a teacher." },
+  { id: "b03", type: "be", zh: "他是醫生。", beForm: "is", english: "He is a doctor." },
+  { id: "b04", type: "be", zh: "她是護士。", beForm: "is", english: "She is a nurse." },
+  { id: "b05", type: "be", zh: "它是一隻貓。", beForm: "is", english: "It is a cat." },
+  { id: "b06", type: "be", zh: "我們是朋友。", beForm: "are", english: "We are friends." },
+  { id: "b07", type: "be", zh: "他們是學生。", beForm: "are", english: "They are students." },
+  { id: "b08", type: "be", zh: "這是我的書。", beForm: "is", english: "This is my book." },
+  { id: "b09", type: "be", zh: "那是你的筆。", beForm: "is", english: "That is your pen." },
+  { id: "b10", type: "be", zh: "小明是男孩。", beForm: "is", english: "Siu Ming is a boy." },
+  { id: "b11", type: "be", zh: "妹妹是女孩。", beForm: "is", english: "My younger sister is a girl." },
+  { id: "b12", type: "be", zh: "爸爸是司機。", beForm: "is", english: "Dad is a driver." },
+  { id: "b13", type: "be", zh: "媽媽是廚師。", beForm: "is", english: "Mum is a cook." },
+  { id: "b14", type: "be", zh: "這些是蘋果。", beForm: "are", english: "These are apples." },
+  { id: "b15", type: "be", zh: "那些是椅子。", beForm: "are", english: "Those are chairs." },
+
+  { id: "a01", type: "adjective", zh: "我很累。", beForm: "am", english: "I am tired." },
+  { id: "a02", type: "adjective", zh: "你很開心。", beForm: "are", english: "You are happy." },
+  { id: "a03", type: "adjective", zh: "他很高。", beForm: "is", english: "He is tall." },
+  { id: "a04", type: "adjective", zh: "她很聰明。", beForm: "is", english: "She is smart." },
+  { id: "a05", type: "adjective", zh: "它很可愛。", beForm: "is", english: "It is cute." },
+  { id: "a06", type: "adjective", zh: "我們很忙。", beForm: "are", english: "We are busy." },
+  { id: "a07", type: "adjective", zh: "他們很友善。", beForm: "are", english: "They are kind." },
+  { id: "a08", type: "adjective", zh: "天氣很熱。", beForm: "is", english: "The weather is hot." },
+  { id: "a09", type: "adjective", zh: "這本書很有趣。", beForm: "is", english: "This book is interesting." },
+  { id: "a10", type: "adjective", zh: "房間很乾淨。", beForm: "is", english: "The room is clean." }
 ];
 
-const STORAGE_KEY = "basic_grammar_lesson_01_progress";
+const STORAGE_KEY = "basic_grammar_lesson_01_progress_v2";
+const CATEGORY_LABELS = {
+  action: "動作動詞",
+  be: "「是」句",
+  adjective: "形容詞句"
+};
 
 const state = {
   index: 0,
@@ -77,6 +73,7 @@ const el = {
   questionNumber: document.querySelector("#question-number"),
   questionTotal: document.querySelector("#question-total"),
   stepLabel: document.querySelector("#step-label"),
+  categoryPill: document.querySelector("#category-pill"),
   chinesePrompt: document.querySelector("#chinese-prompt"),
   guidance: document.querySelector("#guidance"),
   verbChoice: document.querySelector("#verb-choice"),
@@ -132,6 +129,10 @@ function currentQuestion() {
   return QUESTIONS[state.index] || null;
 }
 
+function questionHasVerb(question) {
+  return question.type === "action" || question.type === "be";
+}
+
 function startLesson() {
   state.index = 0;
   state.score = 0;
@@ -156,8 +157,10 @@ function renderQuestion() {
   el.questionNumber.textContent = String(state.index + 1);
   el.questionTotal.textContent = String(QUESTIONS.length);
   el.stepLabel.textContent = "中文句子";
+  el.categoryPill.textContent = CATEGORY_LABELS[question.type];
+  el.categoryPill.dataset.type = question.type;
   el.chinesePrompt.textContent = question.zh;
-  el.guidance.textContent = "分析句子有沒有動詞";
+  el.guidance.textContent = "分析句子有沒有動詞：有就 TICK，冇就 CROSS。";
   el.englishCard.classList.add("hidden");
   el.nextBtn.classList.add("hidden");
   el.restartBtn.classList.add("hidden");
@@ -176,11 +179,18 @@ function completeQuestion(message) {
   }
 
   showOnlyChoice("");
-  el.guidance.textContent = "英文句子已解鎖";
+  el.guidance.textContent = "英文句子已解鎖，按一下可以聽讀音。";
   el.englishText.textContent = question.english;
   el.englishCard.classList.remove("hidden");
   el.nextBtn.classList.remove("hidden");
-  setFeedback(message || "正確。按英文句子可以聽讀音。", "success");
+  setFeedback(message || "正確！", "success");
+}
+
+function askBeForm(message) {
+  el.stepLabel.textContent = "is / am / are";
+  el.guidance.textContent = "揀正確的 be verb。";
+  showOnlyChoice("beForm");
+  setFeedback(message, "success");
 }
 
 function answerVerbChoice(choice) {
@@ -188,41 +198,38 @@ function answerVerbChoice(choice) {
   if (!question || state.resolved) return;
 
   const hasVerbChoice = choice === "true";
-  if (question.hasVerb !== hasVerbChoice) {
-    setFeedback(hasVerbChoice ? "再睇一次：呢句未有動作字，所以先按 CROSS。" : "再睇一次：呢句有動詞，所以應該按 TICK。", "error");
+  if (questionHasVerb(question) !== hasVerbChoice) {
+    setFeedback(hasVerbChoice ? "再睇一次：形容詞句中文未有動詞，所以先按 CROSS。" : "再睇一次：呢句有動詞或「是」，所以應該按 TICK。", "error");
     return;
   }
 
-  if (question.hasVerb) {
-    completeQuestion(question.note || "正確，呢句有動詞。");
+  if (question.type === "action") {
+    completeQuestion(`正確，${question.note}`);
+    return;
+  }
+
+  if (question.type === "be") {
+    askBeForm("正確，「是」要轉成英文 be verb。");
     return;
   }
 
   el.stepLabel.textContent = "Be verb check";
-  el.guidance.textContent = "中文沒有明顯動詞，英文要不要補 is / am / are？";
+  el.guidance.textContent = "中文形容詞句沒有明顯動詞，英文要不要補 is / am / are？";
   showOnlyChoice("needsBe");
   setFeedback("正確，呢句中文沒有動詞。", "success");
 }
 
 function answerNeedsBe(choice) {
   const question = currentQuestion();
-  if (!question || question.hasVerb || state.resolved) return;
+  if (!question || question.type !== "adjective" || state.resolved) return;
 
   const needsBeChoice = choice === "true";
-  if (question.needsBe !== needsBeChoice) {
-    setFeedback(needsBeChoice ? "呢句只係名詞短語，暫時不用 is / am / are。" : "英文完整句要補 be verb。", "error");
+  if (!needsBeChoice) {
+    setFeedback("形容詞句要補 be verb，例如：I am tired.", "error");
     return;
   }
 
-  if (!question.needsBe) {
-    completeQuestion("正確，呢句不用補 is / am / are。");
-    return;
-  }
-
-  el.stepLabel.textContent = "is / am / are";
-  el.guidance.textContent = "揀正確的 be verb";
-  showOnlyChoice("beForm");
-  setFeedback("正確，要補 be verb。", "success");
+  askBeForm("正確，形容詞句英文要補 be verb。");
 }
 
 function answerBeForm(form) {
@@ -230,7 +237,7 @@ function answerBeForm(form) {
   if (!question || state.resolved) return;
 
   if (form !== question.beForm) {
-    setFeedback("未啱，再揀一次 is / am / are。", "error");
+    setFeedback(`未啱，再諗吓主語應該配 is / am / are 邊個。`, "error");
     return;
   }
 
@@ -248,13 +255,15 @@ function renderComplete() {
   el.questionNumber.textContent = String(QUESTIONS.length);
   el.questionTotal.textContent = String(QUESTIONS.length);
   el.stepLabel.textContent = "Lesson complete";
+  el.categoryPill.textContent = "完成";
+  el.categoryPill.dataset.type = "done";
   el.chinesePrompt.textContent = "完成第一課";
   el.guidance.textContent = `Score ${state.score}/${QUESTIONS.length}`;
   showOnlyChoice("");
   el.englishCard.classList.add("hidden");
   el.nextBtn.classList.add("hidden");
   el.restartBtn.classList.remove("hidden");
-  setFeedback("你已完成「分辨句子是否有動詞」。", "success");
+  setFeedback("你已完成 50 題：25 動詞 + 15「是」+ 10 形容詞。", "success");
 }
 
 function cancelSpeech() {

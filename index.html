@@ -9,17 +9,17 @@
 <body>
   <main class="app-shell">
     <section id="menu-screen" class="screen active" aria-labelledby="app-title">
-      <div class="topline">Beginner Grammar Console</div>
-      <h1 id="app-title">Basic English<br>Grammar Game</h1>
-      <p class="subtitle">由中文句子入手，學識英文初階句子結構。</p>
+      <div class="topline">English Grammar Practice</div>
+      <h1 id="app-title">🎌 Basic English<br>Grammar Game 🎌</h1>
+      <p class="subtitle">日系貼紙風 grammar 小遊戲：先睇中文，再判斷英文句子要點砌。</p>
 
       <div class="lesson-list">
         <button class="lesson-card" type="button" data-start-lesson>
           <span class="lesson-kicker">Lesson 01</span>
           <strong>分辨句子是否有動詞</strong>
           <span class="lesson-meta">
-            <span>Tick / Cross</span>
-            <span id="menu-progress">0/8</span>
+            <span>25 動詞 + 15「是」+ 10 形容詞</span>
+            <span id="menu-progress">0/50</span>
           </span>
         </button>
       </div>
@@ -32,11 +32,12 @@
           <div class="topline">Lesson 01</div>
           <h2 id="lesson-title">分辨句子是否有動詞</h2>
         </div>
-        <div class="counter">Q <span id="question-number">1</span>/<span id="question-total">8</span></div>
+        <div class="counter">Q <span id="question-number">1</span>/<span id="question-total">50</span></div>
       </header>
 
       <div class="prompt-panel">
         <div id="step-label" class="step-label">中文句子</div>
+        <div id="category-pill" class="category-pill">--</div>
         <div id="chinese-prompt" class="chinese-prompt">--</div>
         <div id="guidance" class="guidance">分析句子有沒有動詞</div>
       </div>
