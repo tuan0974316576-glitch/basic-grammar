@@ -13,7 +13,9 @@ Current module:
 - `是` sentences are not counted as action-verb sentences, so students press Cross first, then choose whether `is / am / are` is needed.
 - Adjective sentences also ask whether `is / am / are` is needed, then ask students to pick the correct be verb.
 - Cute browser-generated sound effects for start, correct, wrong, next, and complete states, with a small sound toggle.
+- A coach mascot, live first-try score, current streak, and saved best streak keep the practice loop more game-like.
 - Result page shows first-try score, mistake count, and accuracy.
+- Result page can launch a focused mistake review round for any questions missed in the last practice.
 
 Published with GitHub Pages:
 

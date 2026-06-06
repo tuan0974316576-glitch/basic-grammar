@@ -13,6 +13,14 @@
       <h1 id="app-title">Basic English Grammar Game</h1>
 
       <div class="lesson-list">
+        <div class="coach-card" aria-label="Grammar coach">
+          <img src="assets/grammar-coach.svg" alt="">
+          <div>
+            <span>Coach</span>
+            <strong id="menu-coach-line">今日由句子分析開始。</strong>
+          </div>
+        </div>
+
         <div class="practice-control">
           <label class="slider-label" for="practice-count">
             <span>練習題數</span>
@@ -36,7 +44,7 @@
       <header class="lesson-header">
         <button class="ghost-btn" type="button" data-back-menu>&lt; Menu</button>
         <div>
-          <div class="topline">Lesson 01</div>
+          <div id="lesson-kicker" class="topline">Lesson 01</div>
           <h2 id="lesson-title">分辨句子是否有動作動詞</h2>
         </div>
         <div class="header-tools">
@@ -44,6 +52,21 @@
           <div class="counter">Q <span id="question-number">1</span>/<span id="question-total">50</span></div>
         </div>
       </header>
+
+      <div class="status-strip">
+        <div>
+          <span>First try</span>
+          <strong><span id="live-score">0</span>/<span id="live-total">0</span></strong>
+        </div>
+        <div>
+          <span>Streak</span>
+          <strong id="live-streak">0</strong>
+        </div>
+        <div>
+          <span>Best</span>
+          <strong id="best-streak">0</strong>
+        </div>
+      </div>
 
       <div class="prompt-panel">
         <div id="step-label" class="step-label">中文句子</div>
@@ -83,7 +106,7 @@
     </section>
 
     <section id="result-screen" class="screen" aria-labelledby="result-title">
-      <div class="topline">Lesson 01 Result</div>
+      <div id="result-kicker" class="topline">Lesson 01 Result</div>
       <h2 id="result-title">練習完成</h2>
 
       <div class="result-panel">
@@ -106,10 +129,12 @@
           </div>
         </div>
         <p id="result-message" class="result-message">做得好！</p>
+        <div id="review-summary" class="review-summary hidden"></div>
       </div>
 
       <footer class="lesson-actions">
         <button class="ghost-btn" type="button" data-result-menu>Menu</button>
+        <button id="review-mistakes-btn" class="primary-btn hidden" type="button" data-review-mistakes>重練錯題</button>
         <button class="primary-btn" type="button" data-restart-lesson>Restart</button>
       </footer>
     </section>

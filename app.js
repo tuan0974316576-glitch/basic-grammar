@@ -25,37 +25,38 @@ const QUESTIONS = [
   { id: "v24", type: "action", zh: "姐姐跳舞。", english: "My older sister dances.", note: "「跳舞」是動作動詞。" },
   { id: "v25", type: "action", zh: "我們玩遊戲。", english: "We play games.", note: "「玩」是動作動詞。" },
 
-  { id: "b01", type: "be", zh: "我是學生。", beForm: "am", english: "I am a student." },
-  { id: "b02", type: "be", zh: "你是老師。", beForm: "are", english: "You are a teacher." },
-  { id: "b03", type: "be", zh: "他是醫生。", beForm: "is", english: "He is a doctor." },
-  { id: "b04", type: "be", zh: "她是護士。", beForm: "is", english: "She is a nurse." },
-  { id: "b05", type: "be", zh: "它是一隻貓。", beForm: "is", english: "It is a cat." },
-  { id: "b06", type: "be", zh: "我們是朋友。", beForm: "are", english: "We are friends." },
-  { id: "b07", type: "be", zh: "他們是學生。", beForm: "are", english: "They are students." },
-  { id: "b08", type: "be", zh: "這是我的書。", beForm: "is", english: "This is my book." },
-  { id: "b09", type: "be", zh: "那是你的筆。", beForm: "is", english: "That is your pen." },
-  { id: "b10", type: "be", zh: "小明是男孩。", beForm: "is", english: "Siu Ming is a boy." },
-  { id: "b11", type: "be", zh: "妹妹是女孩。", beForm: "is", english: "My younger sister is a girl." },
-  { id: "b12", type: "be", zh: "爸爸是司機。", beForm: "is", english: "Dad is a driver." },
-  { id: "b13", type: "be", zh: "媽媽是廚師。", beForm: "is", english: "Mum is a cook." },
-  { id: "b14", type: "be", zh: "這些是蘋果。", beForm: "are", english: "These are apples." },
-  { id: "b15", type: "be", zh: "那些是椅子。", beForm: "are", english: "Those are chairs." },
+  { id: "b01", type: "be", zh: "我是學生。", beForm: "am", english: "I am a student.", subjectZh: "我", subjectEn: "I", subjectRole: "第一身單數", pronoun: "I" },
+  { id: "b02", type: "be", zh: "你是老師。", beForm: "are", english: "You are a teacher.", subjectZh: "你", subjectEn: "You", subjectRole: "第二身", pronoun: "You" },
+  { id: "b03", type: "be", zh: "他是醫生。", beForm: "is", english: "He is a doctor.", subjectZh: "他", subjectEn: "He", subjectRole: "男性代名詞", pronoun: "He" },
+  { id: "b04", type: "be", zh: "她是護士。", beForm: "is", english: "She is a nurse.", subjectZh: "她", subjectEn: "She", subjectRole: "女性代名詞", pronoun: "She" },
+  { id: "b05", type: "be", zh: "它是一隻貓。", beForm: "is", english: "It is a cat.", subjectZh: "它", subjectEn: "It", subjectRole: "單數事物或動物", pronoun: "It" },
+  { id: "b06", type: "be", zh: "我們是朋友。", beForm: "are", english: "We are friends.", subjectZh: "我們", subjectEn: "We", subjectRole: "第一身眾數", pronoun: "We" },
+  { id: "b07", type: "be", zh: "他們是學生。", beForm: "are", english: "They are students.", subjectZh: "他們", subjectEn: "They", subjectRole: "眾數代名詞", pronoun: "They" },
+  { id: "b08", type: "be", zh: "這是我的書。", beForm: "is", english: "This is my book.", subjectZh: "這", subjectEn: "This", subjectRole: "單數指示代名詞", pronoun: "This" },
+  { id: "b09", type: "be", zh: "那是你的筆。", beForm: "is", english: "That is your pen.", subjectZh: "那", subjectEn: "That", subjectRole: "單數指示代名詞", pronoun: "That" },
+  { id: "b10", type: "be", zh: "小明是男孩。", beForm: "is", english: "Siu Ming is a boy.", subjectZh: "小明", subjectEn: "Siu Ming", subjectRole: "男性名字", pronoun: "He" },
+  { id: "b11", type: "be", zh: "妹妹是女孩。", beForm: "is", english: "My younger sister is a girl.", subjectZh: "妹妹", subjectEn: "My younger sister", subjectRole: "女性單數名詞", pronoun: "She" },
+  { id: "b12", type: "be", zh: "爸爸是司機。", beForm: "is", english: "Dad is a driver.", subjectZh: "爸爸", subjectEn: "Dad", subjectRole: "男性單數名詞", pronoun: "He" },
+  { id: "b13", type: "be", zh: "媽媽是廚師。", beForm: "is", english: "Mum is a cook.", subjectZh: "媽媽", subjectEn: "Mum", subjectRole: "女性單數名詞", pronoun: "She" },
+  { id: "b14", type: "be", zh: "這些是蘋果。", beForm: "are", english: "These are apples.", subjectZh: "這些", subjectEn: "These", subjectRole: "眾數指示代名詞", pronoun: "They" },
+  { id: "b15", type: "be", zh: "那些是椅子。", beForm: "are", english: "Those are chairs.", subjectZh: "那些", subjectEn: "Those", subjectRole: "眾數指示代名詞", pronoun: "They" },
 
-  { id: "a01", type: "adjective", zh: "我很累。", beForm: "am", english: "I am tired." },
-  { id: "a02", type: "adjective", zh: "你很開心。", beForm: "are", english: "You are happy." },
-  { id: "a03", type: "adjective", zh: "他很高。", beForm: "is", english: "He is tall." },
-  { id: "a04", type: "adjective", zh: "她很聰明。", beForm: "is", english: "She is smart." },
-  { id: "a05", type: "adjective", zh: "它很可愛。", beForm: "is", english: "It is cute." },
-  { id: "a06", type: "adjective", zh: "我們很忙。", beForm: "are", english: "We are busy." },
-  { id: "a07", type: "adjective", zh: "他們很友善。", beForm: "are", english: "They are kind." },
-  { id: "a08", type: "adjective", zh: "天氣很熱。", beForm: "is", english: "The weather is hot." },
-  { id: "a09", type: "adjective", zh: "這本書很有趣。", beForm: "is", english: "This book is interesting." },
-  { id: "a10", type: "adjective", zh: "房間很乾淨。", beForm: "is", english: "The room is clean." }
+  { id: "a01", type: "adjective", zh: "我很累。", beForm: "am", english: "I am tired.", subjectZh: "我", subjectEn: "I", subjectRole: "第一身單數", pronoun: "I" },
+  { id: "a02", type: "adjective", zh: "你很開心。", beForm: "are", english: "You are happy.", subjectZh: "你", subjectEn: "You", subjectRole: "第二身", pronoun: "You" },
+  { id: "a03", type: "adjective", zh: "他很高。", beForm: "is", english: "He is tall.", subjectZh: "他", subjectEn: "He", subjectRole: "男性代名詞", pronoun: "He" },
+  { id: "a04", type: "adjective", zh: "她很聰明。", beForm: "is", english: "She is smart.", subjectZh: "她", subjectEn: "She", subjectRole: "女性代名詞", pronoun: "She" },
+  { id: "a05", type: "adjective", zh: "它很可愛。", beForm: "is", english: "It is cute.", subjectZh: "它", subjectEn: "It", subjectRole: "單數事物或動物", pronoun: "It" },
+  { id: "a06", type: "adjective", zh: "我們很忙。", beForm: "are", english: "We are busy.", subjectZh: "我們", subjectEn: "We", subjectRole: "第一身眾數", pronoun: "We" },
+  { id: "a07", type: "adjective", zh: "他們很友善。", beForm: "are", english: "They are kind.", subjectZh: "他們", subjectEn: "They", subjectRole: "眾數代名詞", pronoun: "They" },
+  { id: "a08", type: "adjective", zh: "天氣很熱。", beForm: "is", english: "The weather is hot.", subjectZh: "天氣", subjectEn: "The weather", subjectRole: "單數名詞", pronoun: "It" },
+  { id: "a09", type: "adjective", zh: "這本書很有趣。", beForm: "is", english: "This book is interesting.", subjectZh: "這本書", subjectEn: "This book", subjectRole: "單數名詞", pronoun: "It" },
+  { id: "a10", type: "adjective", zh: "房間很乾淨。", beForm: "is", english: "The room is clean.", subjectZh: "房間", subjectEn: "The room", subjectRole: "單數名詞", pronoun: "It" }
 ];
 
 const STORAGE_KEY = "basic_grammar_lesson_01_progress_v2";
 const SOUND_KEY = "basic_grammar_sound_enabled_v1";
 const PRACTICE_COUNT_KEY = "basic_grammar_practice_count_v1";
+const BEST_STREAK_KEY = "basic_grammar_best_streak_v1";
 const CATEGORY_LABELS = {
   action: "動作動詞",
   be: "「是」句",
@@ -96,12 +97,17 @@ const SOUND_PATTERNS = {
 let audioContext = null;
 
 const state = {
+  mode: "practice",
   index: 0,
   score: 0,
   mistakes: 0,
   questionMistakes: 0,
   resolved: false,
   questions: [],
+  missedQuestionIds: [],
+  reviewQuestions: [],
+  streak: 0,
+  bestStreak: getSavedBestStreak(),
   practiceCount: getSavedPracticeCount(),
   soundEnabled: getSavedSoundEnabled()
 };
@@ -111,8 +117,15 @@ const el = {
   lessonScreen: document.querySelector("#lesson-screen"),
   resultScreen: document.querySelector("#result-screen"),
   menuProgress: document.querySelector("#menu-progress"),
+  menuCoachLine: document.querySelector("#menu-coach-line"),
   practiceCountInput: document.querySelector("#practice-count"),
   practiceCountOutput: document.querySelector("#practice-count-output"),
+  lessonKicker: document.querySelector("#lesson-kicker"),
+  lessonTitle: document.querySelector("#lesson-title"),
+  liveScore: document.querySelector("#live-score"),
+  liveTotal: document.querySelector("#live-total"),
+  liveStreak: document.querySelector("#live-streak"),
+  bestStreak: document.querySelector("#best-streak"),
   questionNumber: document.querySelector("#question-number"),
   questionTotal: document.querySelector("#question-total"),
   stepLabel: document.querySelector("#step-label"),
@@ -128,11 +141,14 @@ const el = {
   nextBtn: document.querySelector("#next-btn"),
   restartBtn: document.querySelector("#restart-btn"),
   soundToggle: document.querySelector("#sound-toggle"),
+  resultKicker: document.querySelector("#result-kicker"),
   resultScore: document.querySelector("#result-score"),
   resultTotal: document.querySelector("#result-total"),
   resultMistakes: document.querySelector("#result-mistakes"),
   resultPercent: document.querySelector("#result-percent"),
-  resultMessage: document.querySelector("#result-message")
+  resultMessage: document.querySelector("#result-message"),
+  reviewSummary: document.querySelector("#review-summary"),
+  reviewMistakesBtn: document.querySelector("#review-mistakes-btn")
 };
 
 function getSavedPracticeCount() {
@@ -155,6 +171,23 @@ function savePracticeCount() {
     localStorage.setItem(PRACTICE_COUNT_KEY, String(state.practiceCount));
   } catch (_error) {
     // The chosen count still works during the current session.
+  }
+}
+
+function getSavedBestStreak() {
+  try {
+    const saved = Number(localStorage.getItem(BEST_STREAK_KEY));
+    return Number.isFinite(saved) ? Math.max(0, saved) : 0;
+  } catch (_error) {
+    return 0;
+  }
+}
+
+function saveBestStreak() {
+  try {
+    localStorage.setItem(BEST_STREAK_KEY, String(state.bestStreak));
+  } catch (_error) {
+    // The best streak still updates during the current session.
   }
 }
 
@@ -305,13 +338,36 @@ function saveProgress(completed) {
 }
 
 function updateMenuProgress() {
-  el.menuProgress.textContent = `${getProgress()}/${QUESTIONS.length}`;
+  const progress = getProgress();
+  el.menuProgress.textContent = `${progress}/${QUESTIONS.length}`;
+
+  if (progress >= QUESTIONS.length) {
+    el.menuCoachLine.textContent = "Lesson 01 已完成，可以挑戰滿分。";
+  } else if (state.bestStreak >= 8) {
+    el.menuCoachLine.textContent = `最佳連勝 ${state.bestStreak} 題，節奏好穩。`;
+  } else {
+    el.menuCoachLine.textContent = "今日由句子分析開始。";
+  }
 }
 
 function showScreen(screen) {
   el.menuScreen.classList.toggle("active", screen === "menu");
   el.lessonScreen.classList.toggle("active", screen === "lesson");
   el.resultScreen.classList.toggle("active", screen === "result");
+}
+
+function updateLessonChrome() {
+  const reviewing = state.mode === "review";
+  el.lessonKicker.textContent = reviewing ? "Mistake Review" : "Lesson 01";
+  el.lessonTitle.textContent = reviewing ? "錯題重練" : "分辨句子是否有動作動詞";
+  el.resultKicker.textContent = reviewing ? "Mistake Review Result" : "Lesson 01 Result";
+}
+
+function updateLiveStats() {
+  el.liveScore.textContent = String(state.score);
+  el.liveTotal.textContent = String(state.questions.length);
+  el.liveStreak.textContent = String(state.streak);
+  el.bestStreak.textContent = String(state.bestStreak);
 }
 
 function setFeedback(message = "", type = "") {
@@ -333,15 +389,63 @@ function questionHasVerb(question) {
   return question.type === "action";
 }
 
-function startLesson() {
+function getVerbChoiceExplanation(question, pickedHasActionVerb) {
+  if (question.type === "action") {
+    return `${question.note} 所以呢句有動作動詞，應該按 TICK。`;
+  }
+
+  if (question.type === "be") {
+    return `「${question.zh}」入面中文「是」用來連接主語和身份，不是動作動詞，所以應該先按 CROSS。`;
+  }
+
+  if (pickedHasActionVerb) {
+    return `「${question.zh}」是形容詞句，是在形容主語，沒有動作動詞，所以應該先按 CROSS。`;
+  }
+
+  return "再睇一次句子類型，先分清楚有沒有動作動詞。";
+}
+
+function getBeRuleExplanation(question) {
+  if (!question.subjectZh || !question.subjectEn || !question.subjectRole || !question.pronoun) {
+    return `主語要配 ${question.beForm}。`;
+  }
+
+  return `因為主語是${question.subjectZh}（英文是 ${question.subjectEn}），即是${question.subjectRole}（${question.pronoun}），所以應該用 ${question.beForm}。`;
+}
+
+function getNeedsBeExplanation(question) {
+  const sentenceType = question.type === "be" ? "「是」句" : "形容詞句";
+  return `${sentenceType}英文要用 be verb。${getBeRuleExplanation(question)}`;
+}
+
+function getWrongBeFormExplanation(question, pickedForm) {
+  return `你揀咗 ${pickedForm}，但${getBeRuleExplanation(question)}`;
+}
+
+function prepareRun(mode, questions) {
+  state.mode = mode;
   state.index = 0;
   state.score = 0;
   state.mistakes = 0;
   state.questionMistakes = 0;
+  state.streak = 0;
+  state.missedQuestionIds = [];
+  state.resolved = false;
+  state.questions = questions;
+  updateLessonChrome();
+  updateLiveStats();
   showScreen("lesson");
-  state.questions = pickPracticeQuestions(state.practiceCount);
   renderQuestion();
   playUiSound("start");
+}
+
+function startLesson() {
+  prepareRun("practice", pickPracticeQuestions(state.practiceCount));
+}
+
+function startMistakeReview() {
+  if (!state.reviewQuestions.length) return;
+  prepareRun("review", shuffle(state.reviewQuestions));
 }
 
 function backToMenu() {
@@ -361,6 +465,7 @@ function renderQuestion() {
   state.questionMistakes = 0;
   el.questionNumber.textContent = String(state.index + 1);
   el.questionTotal.textContent = String(state.questions.length);
+  updateLiveStats();
   el.stepLabel.textContent = "中文句子";
   el.categoryPill.textContent = CATEGORY_LABELS[question.type];
   el.categoryPill.dataset.type = question.type;
@@ -381,8 +486,16 @@ function completeQuestion(message) {
     state.resolved = true;
     if (state.questionMistakes === 0) {
       state.score += 1;
+      state.streak += 1;
+      if (state.streak > state.bestStreak) {
+        state.bestStreak = state.streak;
+        saveBestStreak();
+      }
     }
-    saveProgress(state.index + 1);
+    if (state.mode === "practice") {
+      saveProgress(state.index + 1);
+    }
+    updateLiveStats();
   }
 
   showOnlyChoice("");
@@ -395,8 +508,16 @@ function completeQuestion(message) {
 }
 
 function recordWrong(message) {
+  const question = currentQuestion();
+  if (state.questionMistakes === 0) {
+    state.streak = 0;
+  }
+  if (question && !state.missedQuestionIds.includes(question.id)) {
+    state.missedQuestionIds.push(question.id);
+  }
   state.mistakes += 1;
   state.questionMistakes += 1;
+  updateLiveStats();
   setFeedback(message, "error");
   playUiSound("wrong");
 }
@@ -415,7 +536,7 @@ function answerVerbChoice(choice) {
 
   const hasVerbChoice = choice === "true";
   if (questionHasVerb(question) !== hasVerbChoice) {
-    recordWrong(hasVerbChoice ? "再睇一次：「是」句或形容詞句不是動作動詞，所以先按 CROSS。" : "再睇一次：呢句有動作動詞，所以應該按 TICK。");
+    recordWrong(getVerbChoiceExplanation(question, hasVerbChoice));
     return;
   }
 
@@ -439,7 +560,7 @@ function answerNeedsBe(choice) {
 
   const needsBeChoice = choice === "true";
   if (!needsBeChoice) {
-    recordWrong(question.type === "be" ? "「是」句英文要用 be verb，例如：I am a student." : "形容詞句要補 be verb，例如：I am tired.");
+    recordWrong(getNeedsBeExplanation(question));
     return;
   }
 
@@ -451,11 +572,11 @@ function answerBeForm(form) {
   if (!question || state.resolved) return;
 
   if (form !== question.beForm) {
-    recordWrong(`未啱，再諗吓主語應該配 is / am / are 邊個。`);
+    recordWrong(getWrongBeFormExplanation(question, form));
     return;
   }
 
-  completeQuestion(`正確，今句用 ${question.beForm}。`);
+  completeQuestion(`正確，${getBeRuleExplanation(question)}`);
 }
 
 function nextQuestion() {
@@ -469,16 +590,51 @@ function nextQuestion() {
 function renderComplete() {
   const total = state.questions.length;
   const percent = total ? Math.round((state.score / total) * 100) : 0;
-  saveProgress(total);
+  state.reviewQuestions = state.questions.filter((question) => state.missedQuestionIds.includes(question.id));
+
+  if (state.mode === "practice") {
+    saveProgress(total);
+  }
+
+  updateLessonChrome();
+  updateLiveStats();
   el.resultScore.textContent = `${state.score}/${total}`;
   el.resultTotal.textContent = String(total);
   el.resultMistakes.textContent = String(state.mistakes);
   el.resultPercent.textContent = `${percent}%`;
-  el.resultMessage.textContent = getResultMessage(percent, state.mistakes);
+  el.resultMessage.textContent = getResultMessage(percent, state.mistakes, state.mode);
+  renderReviewSummary();
   showScreen("result");
 }
 
-function getResultMessage(percent, mistakes) {
+function renderReviewSummary() {
+  el.reviewSummary.replaceChildren();
+  const hasReviewQuestions = state.reviewQuestions.length > 0;
+
+  el.reviewSummary.classList.toggle("hidden", !hasReviewQuestions);
+  el.reviewMistakesBtn.classList.toggle("hidden", !hasReviewQuestions);
+  el.reviewMistakesBtn.textContent = hasReviewQuestions
+    ? `重練 ${state.reviewQuestions.length} 條錯題`
+    : "重練錯題";
+
+  if (!hasReviewQuestions) return;
+
+  state.reviewQuestions.slice(0, 6).forEach((question) => {
+    const chip = document.createElement("span");
+    chip.textContent = question.zh;
+    el.reviewSummary.append(chip);
+  });
+
+  if (state.reviewQuestions.length > 6) {
+    const chip = document.createElement("span");
+    chip.textContent = `+${state.reviewQuestions.length - 6}`;
+    el.reviewSummary.append(chip);
+  }
+}
+
+function getResultMessage(percent, mistakes, mode) {
+  if (mode === "review" && mistakes === 0) return "錯題已清晒，返去挑戰新一輪。";
+  if (mode === "review") return "差少少，再重練今輪錯題就得。";
   if (percent === 100 && mistakes === 0) return "滿分！你第一次就全部答啱。";
   if (percent >= 80) return "好穩陣！再玩一次可以挑戰更高準確率。";
   if (percent >= 60) return "有進步空間，留意形容詞句要補 be verb。";
@@ -510,6 +666,7 @@ document.querySelector("[data-start-lesson]").addEventListener("click", startLes
 document.querySelector("[data-back-menu]").addEventListener("click", backToMenu);
 document.querySelector("[data-result-menu]").addEventListener("click", backToMenu);
 document.querySelector("[data-restart-lesson]").addEventListener("click", startLesson);
+el.reviewMistakesBtn.addEventListener("click", startMistakeReview);
 el.nextBtn.addEventListener("click", nextQuestion);
 el.restartBtn.addEventListener("click", startLesson);
 el.englishCard.addEventListener("click", speakCurrentEnglish);
@@ -531,3 +688,4 @@ document.querySelectorAll("[data-be-form]").forEach((button) => {
 updateMenuProgress();
 syncPracticeCount();
 syncSoundToggle();
+updateLiveStats();

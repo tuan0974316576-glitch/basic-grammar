@@ -119,7 +119,45 @@ h2 {
 
 .lesson-list {
   width: min(560px, 100%);
-  margin: 0 auto;
+  margin: 22px auto 0;
+}
+
+.coach-card {
+  min-height: 108px;
+  display: grid;
+  grid-template-columns: 86px 1fr;
+  gap: 16px;
+  align-items: center;
+  padding: 14px 18px;
+  margin-bottom: 18px;
+  background: var(--soft-blue);
+  border: 3px dashed var(--primary-color);
+  border-radius: 24px;
+  box-shadow: 0 5px 0 #bde0e1;
+}
+
+.coach-card img {
+  width: 86px;
+  height: 86px;
+  display: block;
+}
+
+.coach-card span {
+  display: block;
+  color: var(--primary-dark);
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.coach-card strong {
+  display: block;
+  margin-top: 6px;
+  color: #5d4037;
+  font-size: clamp(18px, 3.5vw, 24px);
+  font-weight: 900;
+  line-height: 1.25;
 }
 
 .practice-control {
@@ -347,6 +385,41 @@ input[type="range"]::-moz-range-thumb {
   background: #fff5f5;
   border-color: var(--danger-color);
   transform: translateY(-2px);
+}
+
+.status-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.status-strip div {
+  min-height: 74px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 3px;
+  text-align: center;
+  background: var(--soft-yellow);
+  border: 2px dashed var(--secondary-dark);
+  border-radius: 18px;
+  box-shadow: 0 4px 0 rgba(255, 183, 3, 0.22);
+}
+
+.status-strip span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.status-strip strong {
+  color: #5d4037;
+  font-size: clamp(24px, 5vw, 34px);
+  font-weight: 900;
+  line-height: 1;
 }
 
 .prompt-panel {
@@ -620,6 +693,26 @@ input[type="range"]::-moz-range-thumb {
   text-align: center;
 }
 
+.review-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 18px;
+}
+
+.review-summary span {
+  max-width: 100%;
+  padding: 7px 12px;
+  color: #5d4037;
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1.25;
+  background: var(--soft-red);
+  border: 2px dashed var(--danger-color);
+  border-radius: 999px;
+}
+
 .lesson-actions {
   display: flex;
   justify-content: center;
@@ -627,6 +720,7 @@ input[type="range"]::-moz-range-thumb {
   margin-top: auto;
   padding-top: 18px;
   border-top: 2px dashed #f0f0f0;
+  flex-wrap: wrap;
 }
 
 .primary-btn {
@@ -681,6 +775,16 @@ input[type="range"]::-moz-range-thumb {
     justify-self: stretch;
   }
 
+  .coach-card {
+    grid-template-columns: 70px 1fr;
+    padding: 12px 14px;
+  }
+
+  .coach-card img {
+    width: 70px;
+    height: 70px;
+  }
+
   .header-tools {
     align-items: start;
     flex-direction: row;
@@ -699,6 +803,15 @@ input[type="range"]::-moz-range-thumb {
   .be-grid,
   .result-grid {
     grid-template-columns: 1fr;
+  }
+
+  .status-strip {
+    gap: 8px;
+  }
+
+  .status-strip div {
+    min-height: 64px;
+    border-radius: 16px;
   }
 
   .symbol-btn {
