@@ -102,6 +102,70 @@ const GRAMMAR_REPORTED_SPEECH_DEFINITIONS = [
     { id: 'question', label: 'REPORTED QUESTION' },
     { id: 'order', label: 'REPORTED ORDERS' }
 ];
+const BASIC_GRAMMAR_LESSON_ONE_STORAGE_KEY = 'basic_grammar_lesson_one_progress_v1';
+const BASIC_GRAMMAR_LESSON_ONE_QUESTIONS = [
+    {
+        id: 'eat_apple',
+        zh: '我吃蘋果。',
+        hasVerb: true,
+        english: 'I eat an apple.',
+        verbNote: '「吃」是動詞。'
+    },
+    {
+        id: 'go_school',
+        zh: '他去學校。',
+        hasVerb: true,
+        english: 'He goes to school.',
+        verbNote: '「去」是動詞。'
+    },
+    {
+        id: 'i_tired',
+        zh: '我很累。',
+        hasVerb: false,
+        needsBe: true,
+        beForm: 'am',
+        english: 'I am tired.'
+    },
+    {
+        id: 'she_tall',
+        zh: '她很高。',
+        hasVerb: false,
+        needsBe: true,
+        beForm: 'is',
+        english: 'She is tall.'
+    },
+    {
+        id: 'we_happy',
+        zh: '我們很開心。',
+        hasVerb: false,
+        needsBe: true,
+        beForm: 'are',
+        english: 'We are happy.'
+    },
+    {
+        id: 'they_play',
+        zh: '他們踢足球。',
+        hasVerb: true,
+        english: 'They play football.',
+        verbNote: '「踢」是動詞。'
+    },
+    {
+        id: 'my_red_bag',
+        zh: '我的紅色書包',
+        hasVerb: false,
+        needsBe: false,
+        beForm: '',
+        english: 'my red school bag'
+    },
+    {
+        id: 'you_kind',
+        zh: '你很友善。',
+        hasVerb: false,
+        needsBe: true,
+        beForm: 'are',
+        english: 'You are kind.'
+    }
+];
 
 const grammarVerbState = {
     questions: [],
@@ -129,6 +193,12 @@ const grammarLaunchState = {
     choiceSelectedText: '',
     choiceSubmitting: false,
     choiceResolved: false
+};
+
+const basicGrammarLessonState = {
+    currentQuestionIndex: 0,
+    score: 0,
+    resolved: false
 };
 
 const grammarTenseSelectionState = {
@@ -1403,6 +1473,298 @@ function showGrammarScreenWithAnimation(screenId) {
             wrapper.style.animation = 'holoAppear 0.25s ease-out forwards';
         }, 10);
     }
+}
+
+function getBasicGrammarLessonOneProgress() {
+    const total = BASIC_GRAMMAR_LESSON_ONE_QUESTIONS.length;
+    try {
+        const saved = JSON.parse(localStorage.getItem(BASIC_GRAMMAR_LESSON_ONE_STORAGE_KEY) || '{}');
+        const completed = Math.max(0, Math.min(total, Number(saved.completed) || 0));
+        return { completed, total };
+    } catch (_error) {
+        return { completed: 0, total };
+    }
+}
+
+function saveBasicGrammarLessonOneProgress(completed) {
+    const total = BASIC_GRAMMAR_LESSON_ONE_QUESTIONS.length;
+    const progress = getBasicGrammarLessonOneProgress();
+    const nextCompleted = Math.max(progress.completed, Math.min(total, completed));
+    try {
+        localStorage.setItem(BASIC_GRAMMAR_LESSON_ONE_STORAGE_KEY, JSON.stringify({
+            completed: nextCompleted,
+            total,
+            updatedAt: Date.now()
+        }));
+    } catch (_error) {}
+}
+
+function updateBasicGrammarMenuProgress() {
+    const progress = getBasicGrammarLessonOneProgress();
+    const progressEl = document.getElementById('basic-grammar-lesson-one-progress');
+    if (progressEl) progressEl.innerText = `${progress.completed}/${progress.total}`;
+}
+
+function hideBasicGrammarScreens() {
+    ['basic-grammar-menu-screen', 'basic-grammar-verb-lesson-screen'].forEach((id) => {
+        const screen = document.getElementById(id);
+        if (screen) screen.style.display = 'none';
+    });
+}
+
+function openBasicGrammarMenu() {
+    if (typeof playSound === 'function') playSound('deploy-sfx');
+    if (typeof window.resetBgmDucks === 'function') window.resetBgmDucks(180);
+    hideBasicGrammarScreens();
+
+    const gameWrapper = document.getElementById('game-content-wrapper');
+    const startScreen = document.getElementById('start-screen');
+    const splash = document.getElementById('splash-screen');
+    const carousel = document.getElementById('main-menu-carousel');
+    const gameModeSelect = document.getElementById('game-mode-selection');
+    const statusText = document.getElementById('system-status-text');
+    if (splash) splash.style.display = 'none';
+    if (gameWrapper) gameWrapper.style.display = 'block';
+    if (startScreen) {
+        startScreen.style.display = 'flex';
+        startScreen.style.opacity = '1';
+    }
+    if (carousel) carousel.style.display = 'none';
+    if (gameModeSelect) gameModeSelect.style.display = 'none';
+    if (statusText) statusText.innerText = 'BASIC GRAMMAR MODULE READY';
+    if (typeof showSelectionOverlay === 'function') showSelectionOverlay();
+    if (typeof window.setMissionChecklistButtonVisible === 'function') {
+        window.setMissionChecklistButtonVisible(false);
+    }
+
+    updateBasicGrammarMenuProgress();
+    showGrammarScreenWithAnimation('basic-grammar-menu-screen');
+}
+
+function closeBasicGrammarMenu() {
+    if (typeof playSound === 'function') playSound('delete-sfx');
+    hideBasicGrammarScreens();
+    const overlay = document.getElementById('selection-overlay');
+    if (overlay) overlay.style.display = 'none';
+    if (typeof showMainMenu === 'function') {
+        showMainMenu();
+        return;
+    }
+
+    const carousel = document.getElementById('main-menu-carousel');
+    const gameModeSelect = document.getElementById('game-mode-selection');
+    if (carousel) carousel.style.display = 'flex';
+    if (gameModeSelect) gameModeSelect.style.display = 'flex';
+}
+
+function returnToBasicGrammarMenu() {
+    if (typeof playSound === 'function') playSound('delete-sfx');
+    const lessonScreen = document.getElementById('basic-grammar-verb-lesson-screen');
+    if (lessonScreen) lessonScreen.style.display = 'none';
+    updateBasicGrammarMenuProgress();
+    showGrammarScreenWithAnimation('basic-grammar-menu-screen');
+}
+
+function getCurrentBasicGrammarQuestion() {
+    return BASIC_GRAMMAR_LESSON_ONE_QUESTIONS[basicGrammarLessonState.currentQuestionIndex] || null;
+}
+
+function setBasicGrammarFeedback(message = '', type = '') {
+    const feedback = document.getElementById('basic-grammar-feedback');
+    if (!feedback) return;
+    feedback.innerText = message;
+    feedback.classList.remove('success', 'error');
+    if (type) feedback.classList.add(type);
+}
+
+function setBasicGrammarZoneVisibility(zone) {
+    const zones = {
+        verb: document.getElementById('basic-grammar-choice-zone'),
+        needsBe: document.getElementById('basic-grammar-be-need-zone'),
+        beForm: document.getElementById('basic-grammar-be-form-zone')
+    };
+    Object.entries(zones).forEach(([key, element]) => {
+        if (element) element.style.display = key === zone ? 'grid' : 'none';
+    });
+}
+
+function renderBasicGrammarQuestion() {
+    const question = getCurrentBasicGrammarQuestion();
+    const total = BASIC_GRAMMAR_LESSON_ONE_QUESTIONS.length;
+    if (!question) {
+        renderBasicGrammarLessonComplete();
+        return;
+    }
+
+    basicGrammarLessonState.resolved = false;
+    const qNum = document.getElementById('basic-grammar-q-num');
+    const qTotal = document.getElementById('basic-grammar-q-total');
+    const prompt = document.getElementById('basic-grammar-chinese-prompt');
+    const guidance = document.getElementById('basic-grammar-guidance');
+    const stepLabel = document.getElementById('basic-grammar-step-label');
+    const englishCard = document.getElementById('basic-grammar-english-card');
+    const nextBtn = document.getElementById('basic-grammar-next-btn');
+    const restartBtn = document.getElementById('basic-grammar-restart-btn');
+
+    if (qNum) qNum.innerText = String(basicGrammarLessonState.currentQuestionIndex + 1);
+    if (qTotal) qTotal.innerText = String(total);
+    if (prompt) prompt.innerText = question.zh;
+    if (stepLabel) stepLabel.innerText = '中文句子';
+    if (guidance) guidance.innerText = '分析句子有沒有動詞';
+    if (englishCard) englishCard.style.display = 'none';
+    if (nextBtn) nextBtn.style.display = 'none';
+    if (restartBtn) restartBtn.style.display = 'none';
+    setBasicGrammarZoneVisibility('verb');
+    setBasicGrammarFeedback('');
+}
+
+function openBasicGrammarVerbLesson() {
+    if (typeof playSound === 'function') playSound('deploy-sfx');
+    const menu = document.getElementById('basic-grammar-menu-screen');
+    if (menu) menu.style.display = 'none';
+    if (typeof showSelectionOverlay === 'function') showSelectionOverlay();
+    basicGrammarLessonState.currentQuestionIndex = 0;
+    basicGrammarLessonState.score = 0;
+    renderBasicGrammarQuestion();
+    showGrammarScreenWithAnimation('basic-grammar-verb-lesson-screen');
+}
+
+function revealBasicGrammarEnglish(message) {
+    const question = getCurrentBasicGrammarQuestion();
+    if (!question) return;
+
+    if (!basicGrammarLessonState.resolved) {
+        basicGrammarLessonState.score += 1;
+        basicGrammarLessonState.resolved = true;
+        saveBasicGrammarLessonOneProgress(basicGrammarLessonState.currentQuestionIndex + 1);
+    }
+
+    const englishCard = document.getElementById('basic-grammar-english-card');
+    const englishText = document.getElementById('basic-grammar-english-text');
+    const nextBtn = document.getElementById('basic-grammar-next-btn');
+    const guidance = document.getElementById('basic-grammar-guidance');
+    setBasicGrammarZoneVisibility('');
+    if (englishText) englishText.innerText = question.english;
+    if (englishCard) englishCard.style.display = 'flex';
+    if (nextBtn) nextBtn.style.display = 'inline-block';
+    if (guidance) guidance.innerText = '英文句子已解鎖';
+    setBasicGrammarFeedback(message || '正確。按英文句子可以聽讀音。', 'success');
+}
+
+function answerBasicGrammarVerbCheck(hasVerbChoice) {
+    const question = getCurrentBasicGrammarQuestion();
+    if (!question || basicGrammarLessonState.resolved) return;
+
+    if (question.hasVerb !== hasVerbChoice) {
+        if (typeof playSound === 'function') playSound('wrong-sfx');
+        setBasicGrammarFeedback(hasVerbChoice ? '再睇一次：呢句未有動作字，所以先按 CROSS。' : '再睇一次：呢句有動詞，所以應該按 TICK。', 'error');
+        return;
+    }
+
+    if (typeof playSound === 'function') playSound('enter-sfx');
+    if (question.hasVerb) {
+        revealBasicGrammarEnglish(question.verbNote || '正確，呢句有動詞。');
+        return;
+    }
+
+    const guidance = document.getElementById('basic-grammar-guidance');
+    const stepLabel = document.getElementById('basic-grammar-step-label');
+    if (guidance) guidance.innerText = '中文沒有明顯動詞，英文要不要補 is / am / are？';
+    if (stepLabel) stepLabel.innerText = 'BE VERB CHECK';
+    setBasicGrammarZoneVisibility('needsBe');
+    setBasicGrammarFeedback('正確，呢句中文沒有動詞。', 'success');
+}
+
+function answerBasicGrammarNeedsBe(needsBeChoice) {
+    const question = getCurrentBasicGrammarQuestion();
+    if (!question || question.hasVerb || basicGrammarLessonState.resolved) return;
+
+    if (Boolean(question.needsBe) !== Boolean(needsBeChoice)) {
+        if (typeof playSound === 'function') playSound('wrong-sfx');
+        setBasicGrammarFeedback(needsBeChoice ? '呢句只係名詞短語，暫時不用 is / am / are。' : '英文完整句要補 be verb。', 'error');
+        return;
+    }
+
+    if (typeof playSound === 'function') playSound('enter-sfx');
+    if (!question.needsBe) {
+        revealBasicGrammarEnglish('正確，呢句不用補 is / am / are。');
+        return;
+    }
+
+    const guidance = document.getElementById('basic-grammar-guidance');
+    const stepLabel = document.getElementById('basic-grammar-step-label');
+    if (guidance) guidance.innerText = '揀正確的 be verb';
+    if (stepLabel) stepLabel.innerText = 'is / am / are';
+    setBasicGrammarZoneVisibility('beForm');
+    setBasicGrammarFeedback('正確，要補 be verb。', 'success');
+}
+
+function answerBasicGrammarBeForm(form) {
+    const question = getCurrentBasicGrammarQuestion();
+    if (!question || basicGrammarLessonState.resolved) return;
+
+    if (String(form).toLowerCase() !== String(question.beForm).toLowerCase()) {
+        if (typeof playSound === 'function') playSound('wrong-sfx');
+        setBasicGrammarFeedback('未啱，再揀一次 is / am / are。', 'error');
+        return;
+    }
+
+    if (typeof playSound === 'function') playSound('enter-sfx');
+    revealBasicGrammarEnglish(`正確，今句用 ${question.beForm}。`);
+}
+
+function speakBasicGrammarCurrentEnglish() {
+    const question = getCurrentBasicGrammarQuestion();
+    if (!question?.english) return;
+    const englishCard = document.getElementById('basic-grammar-english-card');
+    if (typeof window.speakText === 'function') {
+        window.speakText(question.english, englishCard).catch(() => {});
+        return;
+    }
+    if (window.speechSynthesis && typeof SpeechSynthesisUtterance !== 'undefined') {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(question.english);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.9;
+        window.speechSynthesis.speak(utterance);
+    }
+}
+
+function nextBasicGrammarQuestion() {
+    if (typeof playSound === 'function') playSound('deploy-sfx');
+    basicGrammarLessonState.currentQuestionIndex += 1;
+    renderBasicGrammarQuestion();
+}
+
+function renderBasicGrammarLessonComplete() {
+    const total = BASIC_GRAMMAR_LESSON_ONE_QUESTIONS.length;
+    saveBasicGrammarLessonOneProgress(total);
+    const qNum = document.getElementById('basic-grammar-q-num');
+    const qTotal = document.getElementById('basic-grammar-q-total');
+    const prompt = document.getElementById('basic-grammar-chinese-prompt');
+    const guidance = document.getElementById('basic-grammar-guidance');
+    const stepLabel = document.getElementById('basic-grammar-step-label');
+    const englishCard = document.getElementById('basic-grammar-english-card');
+    const nextBtn = document.getElementById('basic-grammar-next-btn');
+    const restartBtn = document.getElementById('basic-grammar-restart-btn');
+
+    if (qNum) qNum.innerText = String(total);
+    if (qTotal) qTotal.innerText = String(total);
+    if (stepLabel) stepLabel.innerText = 'MISSION COMPLETE';
+    if (prompt) prompt.innerText = '完成第一課';
+    if (guidance) guidance.innerText = `SCORE ${basicGrammarLessonState.score}/${total}`;
+    if (englishCard) englishCard.style.display = 'none';
+    if (nextBtn) nextBtn.style.display = 'none';
+    if (restartBtn) restartBtn.style.display = 'inline-block';
+    setBasicGrammarZoneVisibility('');
+    setBasicGrammarFeedback('你已完成「分辨句子是否有動詞」。', 'success');
+}
+
+function restartBasicGrammarLesson() {
+    if (typeof playSound === 'function') playSound('deploy-sfx');
+    basicGrammarLessonState.currentQuestionIndex = 0;
+    basicGrammarLessonState.score = 0;
+    renderBasicGrammarQuestion();
 }
 
 function getGrammarVerbTopicProgress() {
@@ -4762,6 +5124,7 @@ function attachLaunchGrammarInputBehaviors() {
 function teardownGrammarScreens() {
     stopGrammarVerbTimer();
     hideGrammarKeyboard();
+    hideBasicGrammarScreens();
     const reference = document.getElementById('grammar-verb-reference');
     if (reference) reference.style.display = 'none';
     const tenseSetup = document.getElementById('grammar-tense-setup');
@@ -4771,6 +5134,16 @@ function teardownGrammarScreens() {
 }
 
 window.openGrammarTopicScreen = openGrammarTopicScreen;
+window.openBasicGrammarMenu = openBasicGrammarMenu;
+window.closeBasicGrammarMenu = closeBasicGrammarMenu;
+window.openBasicGrammarVerbLesson = openBasicGrammarVerbLesson;
+window.returnToBasicGrammarMenu = returnToBasicGrammarMenu;
+window.answerBasicGrammarVerbCheck = answerBasicGrammarVerbCheck;
+window.answerBasicGrammarNeedsBe = answerBasicGrammarNeedsBe;
+window.answerBasicGrammarBeForm = answerBasicGrammarBeForm;
+window.speakBasicGrammarCurrentEnglish = speakBasicGrammarCurrentEnglish;
+window.nextBasicGrammarQuestion = nextBasicGrammarQuestion;
+window.restartBasicGrammarLesson = restartBasicGrammarLesson;
 window.closeGrammarTopicScreen = closeGrammarTopicScreen;
 window.updateGrammarTopicProgress = updateGrammarTopicProgress;
 window.openGrammarVerbTableScreen = openGrammarVerbTableScreen;

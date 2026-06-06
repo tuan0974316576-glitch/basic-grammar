@@ -79,6 +79,8 @@ html.capacitor-native #game-content-wrapper,
 html.capacitor-native #game-ui,
 html.capacitor-native #vocab-screen,
 html.capacitor-native #revision-screen,
+html.capacitor-native #basic-grammar-menu-screen,
+html.capacitor-native #basic-grammar-verb-lesson-screen,
 html.capacitor-native #game-mode-selection,
 html.capacitor-native #main-menu-carousel {
     top: 0 !important;
@@ -10945,6 +10947,262 @@ body {
     margin-bottom: 4px;
 }
 
+.btn-basic-grammar {
+    border-color: rgba(34, 197, 94, 0.82) !important;
+    box-shadow: 0 0 18px rgba(34, 197, 94, 0.26), inset 0 0 18px rgba(14, 165, 233, 0.08) !important;
+}
+
+.btn-basic-grammar .mode-title {
+    color: #f8fafc;
+    text-shadow: 0 0 12px rgba(134, 239, 172, 0.58), 0 0 22px rgba(14, 165, 233, 0.24);
+}
+
+.basic-grammar-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 254;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.36);
+    backdrop-filter: blur(4px);
+}
+
+.basic-grammar-menu-panel,
+.basic-grammar-lesson-panel {
+    width: min(760px, calc(100% - 28px));
+    max-height: calc(100svh - 28px);
+    overflow: hidden;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.basic-grammar-menu-panel {
+    width: min(520px, calc(100% - 28px));
+}
+
+.basic-grammar-header {
+    text-align: center;
+}
+
+.basic-grammar-lesson-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: min(420px, 100%);
+    margin: 0 auto;
+}
+
+.basic-grammar-lesson-card {
+    position: relative;
+    min-height: 132px;
+    width: 100%;
+    border: 2px solid rgba(56, 189, 248, 0.82);
+    background: rgba(14, 165, 233, 0.07);
+    color: #ffffff;
+    cursor: pointer;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 0 18px rgba(14, 165, 233, 0.22), inset 0 0 14px rgba(14, 165, 233, 0.08);
+}
+
+.basic-grammar-lesson-card:hover {
+    transform: translateY(-1px);
+    border-color: #7dd3fc;
+    box-shadow: 0 0 28px rgba(14, 165, 233, 0.42), inset 0 0 16px rgba(14, 165, 233, 0.12);
+}
+
+.basic-grammar-lesson-index,
+.basic-grammar-step-label,
+.basic-grammar-guidance,
+.basic-grammar-feedback {
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 1px;
+}
+
+.basic-grammar-lesson-index {
+    color: #86efac;
+    font-size: 11px;
+}
+
+.basic-grammar-lesson-title {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: clamp(22px, 5vw, 30px);
+    font-weight: 800;
+    line-height: 1.22;
+    color: #f8fafc;
+}
+
+.basic-grammar-lesson-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    color: #94a3b8;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.basic-grammar-back-btn {
+    width: 150px;
+    margin: 10px auto 0;
+}
+
+.basic-grammar-lesson-topbar {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.basic-grammar-lesson-heading {
+    text-align: left;
+    margin-bottom: 6px;
+}
+
+.basic-grammar-prompt-zone {
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    background: rgba(15, 23, 42, 0.62);
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.basic-grammar-step-label {
+    color: #94a3b8;
+    font-size: 11px;
+}
+
+.basic-grammar-chinese-prompt {
+    min-height: 86px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: clamp(28px, 5.2vw, 42px);
+    font-weight: 900;
+    line-height: 1.18;
+    text-align: center;
+    text-shadow: 0 0 14px rgba(14, 165, 233, 0.28);
+}
+
+.basic-grammar-guidance {
+    color: #e2e8f0;
+    font-size: 12px;
+    text-align: center;
+}
+
+.basic-grammar-choice-zone {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.basic-grammar-symbol-btn,
+.basic-grammar-option-btn {
+    min-height: 76px;
+    border: 2px solid rgba(148, 163, 184, 0.26);
+    background: rgba(2, 6, 23, 0.76);
+    color: #ffffff;
+    font-family: 'Orbitron', sans-serif;
+    cursor: pointer;
+    transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.basic-grammar-symbol-btn {
+    font-size: clamp(52px, 10vw, 72px);
+    line-height: 1;
+}
+
+.basic-grammar-symbol-btn:hover,
+.basic-grammar-option-btn:hover {
+    transform: translateY(-1px);
+}
+
+.basic-grammar-tick {
+    border-color: rgba(34, 197, 94, 0.72);
+    color: #86efac;
+    text-shadow: 0 0 20px rgba(34, 197, 94, 0.46);
+}
+
+.basic-grammar-cross {
+    border-color: rgba(248, 113, 113, 0.72);
+    color: #fca5a5;
+    text-shadow: 0 0 20px rgba(239, 68, 68, 0.42);
+}
+
+.basic-grammar-option-btn {
+    padding: 12px 16px;
+    font-size: clamp(13px, 3.4vw, 18px);
+    letter-spacing: 1px;
+}
+
+.basic-grammar-be-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.basic-grammar-english-card {
+    width: 100%;
+    border: 1px solid rgba(34, 197, 94, 0.54);
+    background: rgba(20, 83, 45, 0.18);
+    color: #ffffff;
+    cursor: pointer;
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 0 18px rgba(34, 197, 94, 0.16), inset 0 0 12px rgba(34, 197, 94, 0.07);
+}
+
+.basic-grammar-english-card span,
+.basic-grammar-english-card small {
+    color: #86efac;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+.basic-grammar-english-card strong {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(24px, 4.4vw, 36px);
+    line-height: 1.18;
+    letter-spacing: 0;
+}
+
+.basic-grammar-english-card.speaking {
+    border-color: #ffffff;
+    box-shadow: 0 0 24px rgba(255, 255, 255, 0.32), inset 0 0 14px rgba(255, 255, 255, 0.1);
+}
+
+.basic-grammar-feedback {
+    min-height: 22px;
+    color: #fbbf24;
+    font-size: 12px;
+    text-align: center;
+}
+
+.basic-grammar-feedback.success {
+    color: #86efac;
+}
+
+.basic-grammar-feedback.error {
+    color: #fca5a5;
+}
+
+.basic-grammar-actions {
+    margin-top: auto;
+}
+
 .launch-grammar-panel {
     display: none;
     width: 100%;
@@ -12056,6 +12314,34 @@ body {
 }
 
 @media (max-width: 760px) {
+    .basic-grammar-menu-panel,
+    .basic-grammar-lesson-panel {
+        width: calc(100% - 18px);
+        max-height: calc(100svh - 18px);
+        padding: 18px 14px 14px;
+    }
+
+    .basic-grammar-lesson-topbar,
+    .basic-grammar-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .basic-grammar-choice-zone,
+    .basic-grammar-be-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .basic-grammar-symbol-btn,
+    .basic-grammar-option-btn {
+        min-height: 58px;
+    }
+
+    .basic-grammar-chinese-prompt {
+        min-height: 70px;
+    }
+
     .grammar-topic-panel.is-tense-open {
         width: calc(100% - 18px);
         max-height: calc(100svh - 18px);
@@ -12138,6 +12424,8 @@ html.capacitor-native #game-content-wrapper,
 html.capacitor-native #game-ui,
 html.capacitor-native #vocab-screen,
 html.capacitor-native #revision-screen,
+html.capacitor-native #basic-grammar-menu-screen,
+html.capacitor-native #basic-grammar-verb-lesson-screen,
 html.capacitor-native #game-mode-selection,
 html.capacitor-native #main-menu-carousel {
     top: 0 !important;

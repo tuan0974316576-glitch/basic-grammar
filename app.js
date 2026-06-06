@@ -4041,7 +4041,7 @@ function setSpeakingUiState(state = 'idle', statusText = 'VOICE SCAN STANDBY', s
         if (!options.silentStartSound && typeof playSound === 'function') playSound('deploy-sfx');
         if (typeof resetBgmDucks === 'function') resetBgmDucks(180);
 
-        ['level-screen', 'stage-screen', 'skill-screen', 'race-screen', 'grammar-topic-screen'].forEach(id => {
+        ['level-screen', 'stage-screen', 'skill-screen', 'race-screen', 'grammar-topic-screen', 'basic-grammar-menu-screen', 'basic-grammar-verb-lesson-screen'].forEach(id => {
             const el = document.getElementById(id);
             if (el) el.style.display = 'none';
         });
@@ -12501,7 +12501,7 @@ let synth = window.speechSynthesis || null;
 let techVoice = null;
 
 function hideMenuOverlayScreens() {
-    const ids = ['level-screen', 'stage-screen', 'skill-screen', 'race-screen', 'lobby-screen', 'ranking-screen', 'vocab-screen', 'revision-screen', 'grammar-topic-screen', 'grammar-verb-screen'];
+    const ids = ['level-screen', 'stage-screen', 'skill-screen', 'race-screen', 'lobby-screen', 'ranking-screen', 'vocab-screen', 'revision-screen', 'grammar-topic-screen', 'grammar-verb-screen', 'basic-grammar-menu-screen', 'basic-grammar-verb-lesson-screen'];
     ids.forEach(id => {
         const el = document.getElementById(id);
         if (el) el.style.display = 'none';

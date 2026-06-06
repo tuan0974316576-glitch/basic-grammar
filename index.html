@@ -11,7 +11,7 @@
     <link rel="apple-touch-icon" href="icon.png">
 
     <script>
-        window.ENGLISH_CONQUEROR_BUILD = '1.0.3-build39-entry-briefing';
+        window.ENGLISH_CONQUEROR_BUILD = '1.0.3-build44-basic-grammar-lesson-one';
     </script>
     <script src="diagnostics.js?v=1.04v"></script>
 
@@ -61,7 +61,7 @@
     </script>
 
     <script type="module" src="firebase-init.js?v=0.92v"></script>
-    <link rel="stylesheet" href="style.css?v=1.31v">
+    <link rel="stylesheet" href="style.css?v=1.34v">
 
 </head>
 <body>
@@ -242,6 +242,10 @@
             <div class="mode-title">TRAINING</div>
         </button>
 
+        <button class="start-btn-large btn-basic-grammar carousel-item" onclick="openBasicGrammarMenu()">
+            <div class="mode-title">BASIC<br>GRAMMAR</div>
+        </button>
+
         <button class="start-btn-large btn-code-list carousel-item" onclick="openVocabScreen()">
             <div class="mode-title">VOCAB LIST</div>
         </button>
@@ -364,6 +368,76 @@
     <div class="revision-actions">
         <button id="revision-challenge-btn" class="revision-challenge-btn" onclick="startRevisionChallenge()">CHALLENGE AGAIN</button>
         <button class="btn revision-back-btn" onclick="closeRevisionScreen()">&lt; BACK</button>
+    </div>
+</div>
+
+<div id="basic-grammar-menu-screen" class="basic-grammar-screen" style="display: none;">
+    <div class="panel-content-wrapper basic-grammar-menu-panel">
+        <div class="basic-grammar-header">
+            <h2 class="grammar-screen-title">BASIC ENGLISH<br>GRAMMAR</h2>
+            <div class="grammar-screen-subtitle">BEGINNER TRAINING MODULE</div>
+        </div>
+
+        <div class="basic-grammar-lesson-list">
+            <button class="basic-grammar-lesson-card" onclick="openBasicGrammarVerbLesson()">
+                <div class="basic-grammar-lesson-index">LESSON 01</div>
+                <div class="basic-grammar-lesson-title">分辨句子是否有動詞</div>
+                <div class="basic-grammar-lesson-meta">
+                    <span>TICK / CROSS</span>
+                    <span id="basic-grammar-lesson-one-progress">0/0</span>
+                </div>
+            </button>
+        </div>
+
+        <button class="btn basic-grammar-back-btn" onclick="closeBasicGrammarMenu()">&lt; BACK</button>
+    </div>
+</div>
+
+<div id="basic-grammar-verb-lesson-screen" class="basic-grammar-screen" style="display: none;">
+    <div class="panel-content-wrapper basic-grammar-lesson-panel">
+        <div class="basic-grammar-lesson-topbar">
+            <div>
+                <h2 class="grammar-screen-title basic-grammar-lesson-heading">LESSON 01</h2>
+                <div class="grammar-screen-subtitle">分辨句子是否有動詞</div>
+            </div>
+            <div class="grammar-verb-statuschip">Q <span id="basic-grammar-q-num">1</span>/<span id="basic-grammar-q-total">8</span></div>
+        </div>
+
+        <div class="basic-grammar-prompt-zone">
+            <div id="basic-grammar-step-label" class="basic-grammar-step-label">中文句子</div>
+            <div id="basic-grammar-chinese-prompt" class="basic-grammar-chinese-prompt">--</div>
+            <div id="basic-grammar-guidance" class="basic-grammar-guidance">分析句子有沒有動詞</div>
+        </div>
+
+        <div id="basic-grammar-choice-zone" class="basic-grammar-choice-zone">
+            <button class="basic-grammar-symbol-btn basic-grammar-tick" onclick="answerBasicGrammarVerbCheck(true)" aria-label="Has verb">✓</button>
+            <button class="basic-grammar-symbol-btn basic-grammar-cross" onclick="answerBasicGrammarVerbCheck(false)" aria-label="No verb">×</button>
+        </div>
+
+        <div id="basic-grammar-be-need-zone" class="basic-grammar-choice-zone" style="display: none;">
+            <button class="basic-grammar-option-btn" onclick="answerBasicGrammarNeedsBe(true)">要用 is / am / are</button>
+            <button class="basic-grammar-option-btn" onclick="answerBasicGrammarNeedsBe(false)">不用 is / am / are</button>
+        </div>
+
+        <div id="basic-grammar-be-form-zone" class="basic-grammar-choice-zone basic-grammar-be-grid" style="display: none;">
+            <button class="basic-grammar-option-btn" onclick="answerBasicGrammarBeForm('is')">is</button>
+            <button class="basic-grammar-option-btn" onclick="answerBasicGrammarBeForm('am')">am</button>
+            <button class="basic-grammar-option-btn" onclick="answerBasicGrammarBeForm('are')">are</button>
+        </div>
+
+        <button id="basic-grammar-english-card" class="basic-grammar-english-card" onclick="speakBasicGrammarCurrentEnglish()" style="display: none;">
+            <span>ENGLISH SENTENCE</span>
+            <strong id="basic-grammar-english-text">--</strong>
+            <small>CLICK TO READ</small>
+        </button>
+
+        <div id="basic-grammar-feedback" class="basic-grammar-feedback"></div>
+
+        <div class="grammar-verb-actions basic-grammar-actions">
+            <button class="grammar-ghost-btn" onclick="returnToBasicGrammarMenu()">&lt; MENU</button>
+            <button id="basic-grammar-next-btn" class="grammar-action-btn grammar-action-btn-secondary" onclick="nextBasicGrammarQuestion()" style="display: none;">NEXT</button>
+            <button id="basic-grammar-restart-btn" class="grammar-action-btn grammar-action-btn-primary" onclick="restartBasicGrammarLesson()" style="display: none;">RESTART</button>
+        </div>
     </div>
 </div>
 
@@ -1534,7 +1608,7 @@
 <script src="grammar_reported_speech_data.js?v=1.04v"></script>
 <script src="grammar_participle_phrases_data.js?v=1.00v"></script>
 <script src="grammar_inversion_data.js?v=1.00v"></script>
-<script src="ui-grammar.js?v=1.21v"></script>
+<script src="ui-grammar.js?v=1.22v"></script>
 <script src="ui-screens.js?v=1.13v"></script>
 <script src="ui-auth.js?v=0.93v"></script>
 <script src="ui-audio.js?v=0.89v"></script>
