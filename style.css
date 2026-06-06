@@ -98,12 +98,13 @@ h2 {
 
 h1 {
   margin-top: 10px;
-  font-size: clamp(40px, 8vw, 70px);
+  font-size: clamp(30px, 5vw, 44px);
+  white-space: nowrap;
 }
 
 h2 {
   margin-top: 4px;
-  font-size: clamp(25px, 5vw, 40px);
+  font-size: clamp(20px, 3.5vw, 30px);
 }
 
 .subtitle {
@@ -253,7 +254,7 @@ input[type="range"]::-moz-range-thumb {
 
 .lesson-card strong {
   color: var(--primary-dark);
-  font-size: clamp(28px, 6vw, 42px);
+  font-size: clamp(22px, 4.5vw, 32px);
   font-weight: 900;
   line-height: 1.18;
 }
@@ -662,7 +663,7 @@ input[type="range"]::-moz-range-thumb {
   }
 
   h1 {
-    font-size: clamp(34px, 11vw, 52px);
+    font-size: clamp(22px, 6vw, 28px);
   }
 
   .lesson-header {
