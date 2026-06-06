@@ -54,16 +54,51 @@ const QUESTIONS = [
 ];
 
 const STORAGE_KEY = "basic_grammar_lesson_01_progress_v2";
+const SOUND_KEY = "basic_grammar_sound_enabled_v1";
 const CATEGORY_LABELS = {
   action: "動作動詞",
   be: "「是」句",
   adjective: "形容詞句"
 };
 
+const SOUND_PATTERNS = {
+  start: [
+    { frequency: 523.25, delay: 0, duration: 0.07 },
+    { frequency: 659.25, delay: 0.08, duration: 0.08 },
+    { frequency: 783.99, delay: 0.16, duration: 0.1 }
+  ],
+  step: [
+    { frequency: 659.25, delay: 0, duration: 0.055 },
+    { frequency: 880, delay: 0.07, duration: 0.07 }
+  ],
+  correct: [
+    { frequency: 783.99, delay: 0, duration: 0.06 },
+    { frequency: 987.77, delay: 0.07, duration: 0.07 },
+    { frequency: 1318.51, delay: 0.15, duration: 0.09 }
+  ],
+  wrong: [
+    { frequency: 329.63, delay: 0, duration: 0.08, type: "sine" },
+    { frequency: 246.94, delay: 0.09, duration: 0.12, type: "sine" }
+  ],
+  next: [
+    { frequency: 587.33, delay: 0, duration: 0.055 },
+    { frequency: 739.99, delay: 0.06, duration: 0.055 }
+  ],
+  complete: [
+    { frequency: 523.25, delay: 0, duration: 0.07 },
+    { frequency: 659.25, delay: 0.08, duration: 0.07 },
+    { frequency: 783.99, delay: 0.16, duration: 0.07 },
+    { frequency: 1046.5, delay: 0.24, duration: 0.16 }
+  ]
+};
+
+let audioContext = null;
+
 const state = {
   index: 0,
   score: 0,
-  resolved: false
+  resolved: false,
+  soundEnabled: getSavedSoundEnabled()
 };
 
 const el = {
@@ -83,8 +118,82 @@ const el = {
   englishText: document.querySelector("#english-text"),
   feedback: document.querySelector("#feedback"),
   nextBtn: document.querySelector("#next-btn"),
-  restartBtn: document.querySelector("#restart-btn")
+  restartBtn: document.querySelector("#restart-btn"),
+  soundToggle: document.querySelector("#sound-toggle")
 };
+
+function getSavedSoundEnabled() {
+  try {
+    return localStorage.getItem(SOUND_KEY) !== "off";
+  } catch (_error) {
+    return true;
+  }
+}
+
+function saveSoundEnabled() {
+  try {
+    localStorage.setItem(SOUND_KEY, state.soundEnabled ? "on" : "off");
+  } catch (_error) {
+    // Sound still works during the current session if storage is unavailable.
+  }
+}
+
+function syncSoundToggle() {
+  el.soundToggle.classList.toggle("muted", !state.soundEnabled);
+  el.soundToggle.setAttribute("aria-label", state.soundEnabled ? "關閉音效" : "開啟音效");
+  el.soundToggle.setAttribute("aria-pressed", String(state.soundEnabled));
+}
+
+function toggleSound() {
+  state.soundEnabled = !state.soundEnabled;
+  saveSoundEnabled();
+  syncSoundToggle();
+  if (state.soundEnabled) {
+    playUiSound("start");
+  }
+}
+
+function getAudioContext() {
+  const AudioContextConstructor = window.AudioContext || window.webkitAudioContext;
+  if (!AudioContextConstructor) return null;
+
+  if (!audioContext) {
+    audioContext = new AudioContextConstructor();
+  }
+
+  if (audioContext.state === "suspended") {
+    audioContext.resume();
+  }
+
+  return audioContext;
+}
+
+function playUiSound(kind) {
+  if (!state.soundEnabled) return;
+
+  const context = getAudioContext();
+  const pattern = SOUND_PATTERNS[kind];
+  if (!context || !pattern) return;
+
+  const now = context.currentTime + 0.01;
+  pattern.forEach((note) => {
+    const oscillator = context.createOscillator();
+    const gain = context.createGain();
+    const startAt = now + note.delay;
+    const endAt = startAt + note.duration;
+
+    oscillator.type = note.type || "triangle";
+    oscillator.frequency.setValueAtTime(note.frequency, startAt);
+    gain.gain.setValueAtTime(0.0001, startAt);
+    gain.gain.exponentialRampToValueAtTime(note.gain || 0.065, startAt + 0.012);
+    gain.gain.exponentialRampToValueAtTime(0.0001, endAt);
+
+    oscillator.connect(gain);
+    gain.connect(context.destination);
+    oscillator.start(startAt);
+    oscillator.stop(endAt + 0.02);
+  });
+}
 
 function getProgress() {
   try {
@@ -138,6 +247,7 @@ function startLesson() {
   state.score = 0;
   showScreen("lesson");
   renderQuestion();
+  playUiSound("start");
 }
 
 function backToMenu() {
@@ -184,6 +294,7 @@ function completeQuestion(message) {
   el.englishCard.classList.remove("hidden");
   el.nextBtn.classList.remove("hidden");
   setFeedback(message || "正確！", "success");
+  playUiSound(state.index === QUESTIONS.length - 1 ? "complete" : "correct");
 }
 
 function askBeForm(message) {
@@ -191,6 +302,7 @@ function askBeForm(message) {
   el.guidance.textContent = "揀正確的 be verb。";
   showOnlyChoice("beForm");
   setFeedback(message, "success");
+  playUiSound("step");
 }
 
 function answerVerbChoice(choice) {
@@ -200,6 +312,7 @@ function answerVerbChoice(choice) {
   const hasVerbChoice = choice === "true";
   if (questionHasVerb(question) !== hasVerbChoice) {
     setFeedback(hasVerbChoice ? "再睇一次：形容詞句中文未有動詞，所以先按 CROSS。" : "再睇一次：呢句有動詞或「是」，所以應該按 TICK。", "error");
+    playUiSound("wrong");
     return;
   }
 
@@ -217,6 +330,7 @@ function answerVerbChoice(choice) {
   el.guidance.textContent = "中文形容詞句沒有明顯動詞，英文要不要補 is / am / are？";
   showOnlyChoice("needsBe");
   setFeedback("正確，呢句中文沒有動詞。", "success");
+  playUiSound("step");
 }
 
 function answerNeedsBe(choice) {
@@ -226,6 +340,7 @@ function answerNeedsBe(choice) {
   const needsBeChoice = choice === "true";
   if (!needsBeChoice) {
     setFeedback("形容詞句要補 be verb，例如：I am tired.", "error");
+    playUiSound("wrong");
     return;
   }
 
@@ -238,6 +353,7 @@ function answerBeForm(form) {
 
   if (form !== question.beForm) {
     setFeedback(`未啱，再諗吓主語應該配 is / am / are 邊個。`, "error");
+    playUiSound("wrong");
     return;
   }
 
@@ -248,6 +364,7 @@ function nextQuestion() {
   cancelSpeech();
   state.index += 1;
   renderQuestion();
+  playUiSound("next");
 }
 
 function renderComplete() {
@@ -292,6 +409,7 @@ document.querySelector("[data-back-menu]").addEventListener("click", backToMenu)
 el.nextBtn.addEventListener("click", nextQuestion);
 el.restartBtn.addEventListener("click", startLesson);
 el.englishCard.addEventListener("click", speakCurrentEnglish);
+el.soundToggle.addEventListener("click", toggleSound);
 
 document.querySelectorAll("[data-verb-choice]").forEach((button) => {
   button.addEventListener("click", () => answerVerbChoice(button.dataset.verbChoice));
@@ -306,3 +424,4 @@ document.querySelectorAll("[data-be-form]").forEach((button) => {
 });
 
 updateMenuProgress();
+syncSoundToggle();

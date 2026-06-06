@@ -10,6 +10,7 @@ Current module:
 - Action-verb sentences reveal the English sentence with browser speech playback.
 - `是` sentences ask students to pick `is / am / are`.
 - Adjective sentences ask whether `is / am / are` is needed, then ask students to pick the correct be verb.
+- Cute browser-generated sound effects for start, correct, wrong, next, and complete states, with a small sound toggle.
 
 Published with GitHub Pages:
 

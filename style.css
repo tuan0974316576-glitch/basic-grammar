@@ -195,14 +195,20 @@ h2 {
 
 .lesson-header {
   display: grid;
-  grid-template-columns: 112px 1fr 96px;
+  grid-template-columns: 112px 1fr 150px;
   gap: 16px;
   align-items: start;
   margin-bottom: 18px;
 }
 
-.counter {
+.header-tools {
   justify-self: end;
+  display: flex;
+  align-items: start;
+  gap: 8px;
+}
+
+.counter {
   min-width: 92px;
   padding: 10px 12px;
   color: var(--primary-dark);
@@ -214,12 +220,43 @@ h2 {
 }
 
 .ghost-btn,
+.sound-btn,
 .primary-btn,
 .option-btn,
 .symbol-btn {
   cursor: pointer;
   border-radius: 999px;
   transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease, background 120ms ease, color 120ms ease;
+}
+
+.sound-btn {
+  width: 46px;
+  min-width: 46px;
+  height: 46px;
+  color: #5d4037;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 1;
+  background: var(--secondary-color);
+  border: 0;
+  box-shadow: 0 4px 0 var(--secondary-dark);
+}
+
+.sound-btn:hover {
+  background: #ffeb85;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 var(--secondary-dark);
+}
+
+.sound-btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 transparent;
+}
+
+.sound-btn.muted {
+  color: #999999;
+  background: #f3f3f3;
+  box-shadow: 0 4px 0 #dddddd;
 }
 
 .ghost-btn {
@@ -490,8 +527,22 @@ h2 {
   }
 
   .ghost-btn,
-  .counter {
+  .header-tools {
     justify-self: stretch;
+  }
+
+  .header-tools {
+    align-items: start;
+    flex-direction: row;
+  }
+
+  .sound-btn {
+    width: 50px;
+    min-width: 50px;
+  }
+
+  .counter {
+    flex: 1;
   }
 
   .choice-grid,
