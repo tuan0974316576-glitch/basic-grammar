@@ -627,7 +627,7 @@ function answerVerbChoice(choice) {
     ? "中文「是」不當動作動詞，英文要不要用 is / am / are？"
     : "中文形容詞句沒有動作動詞，英文要不要補 is / am / are？";
   showOnlyChoice("needsBe");
-  setFeedback(question.type === "be" ? "正確，「是」句先按 CROSS。" : "正確，呢句中文沒有動作動詞。", "success");
+  setFeedback(question.type === "be" ? "正確，「是」不算動詞，所以要加is/am/are" : "正確，呢句中文沒有動作動詞。", "success");
   playUiSound("step");
 }
 
