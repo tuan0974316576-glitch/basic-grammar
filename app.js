@@ -503,7 +503,7 @@ const el = {
   resetBuilderBtn: document.querySelector("#reset-builder-btn"),
   confirmBuilderBtn: document.querySelector("#confirm-builder-btn"),
   sentenceUnderlineChoice: document.querySelector("#sentence-underline-choice"),
-  underlineBoard: document.querySelector("#underline-board"),
+  underlineBoard: document.querySelector("#chinese-prompt"),
   underlinePalette: document.querySelector("#underline-palette"),
   resetUnderlineBtn: document.querySelector("#reset-underline-btn"),
   confirmUnderlineBtn: document.querySelector("#confirm-underline-btn"),
@@ -974,6 +974,7 @@ function renderQuestion() {
   el.lessonScreen.classList.toggle("underline-screen", state.lessonId === SENTENCE_UNDERLINE_ID);
   el.chinesePrompt.classList.toggle("english-prompt", state.lessonId === LESSON2_ID);
   el.chinesePrompt.classList.toggle("builder-prompt", state.lessonId === QUIZ1_ID);
+  el.chinesePrompt.classList.toggle("underline-prompt", state.lessonId === SENTENCE_UNDERLINE_ID);
   el.ruleCard.classList.toggle("hidden", state.lessonId !== LESSON2_ID);
   el.verbTokenGrid.replaceChildren();
   el.sentenceSlots.replaceChildren();
@@ -1049,7 +1050,6 @@ function renderSentenceUnderlineQuestion(question) {
   el.stepLabel.textContent = "English sentence";
   el.categoryPill.textContent = "Sentence";
   el.categoryPill.dataset.type = "underline";
-  el.chinesePrompt.textContent = question.text;
   el.guidance.textContent = "用唔同顏色 underline 每個句子。";
   state.selectedUnderlineColor = 0;
 
