@@ -390,6 +390,7 @@ const SOUND_PATTERNS = {
     { frequency: 1046.5, delay: 0.24, duration: 0.16 }
   ]
 };
+const UI_SOUND_GAIN = 0.098;
 
 let audioContext = null;
 
@@ -618,10 +619,15 @@ function syncSoundToggle() {
 }
 
 function toggleSound() {
+  const wasEnabled = state.soundEnabled;
+  if (wasEnabled) {
+    playUiSound("step");
+  }
+
   state.soundEnabled = !state.soundEnabled;
   saveSoundEnabled();
   syncSoundToggle();
-  if (state.soundEnabled) {
+  if (!wasEnabled && state.soundEnabled) {
     playUiSound("start");
   }
 }
@@ -669,7 +675,7 @@ function scheduleUiSound(context, pattern) {
     oscillator.type = note.type || "triangle";
     oscillator.frequency.setValueAtTime(note.frequency, startAt);
     gain.gain.setValueAtTime(0.0001, startAt);
-    gain.gain.exponentialRampToValueAtTime(note.gain || 0.065, startAt + 0.012);
+    gain.gain.exponentialRampToValueAtTime(note.gain || UI_SOUND_GAIN, startAt + 0.012);
     gain.gain.exponentialRampToValueAtTime(0.0001, endAt);
 
     oscillator.connect(gain);
@@ -878,6 +884,7 @@ function backToMenu() {
   cancelSpeech();
   updateMenuProgress();
   showScreen("menu");
+  playUiSound("next");
 }
 
 function renderQuestion() {
@@ -1187,6 +1194,7 @@ function toggleVerbToken(index, button) {
   const selected = state.selectedVerbIndexes.includes(index);
   button.classList.toggle("selected", selected);
   button.setAttribute("aria-pressed", String(selected));
+  playUiSound("step");
 }
 
 function submitVerbTokens() {
@@ -1418,6 +1426,7 @@ function speakCurrentEnglish() {
   const question = currentQuestion();
   if (!question?.english || !window.speechSynthesis || typeof SpeechSynthesisUtterance === "undefined") return;
 
+  playUiSound("step");
   cancelSpeech();
   const utterance = new SpeechSynthesisUtterance(question.english);
   utterance.lang = "en-US";
@@ -1443,6 +1452,7 @@ el.restartBtn.addEventListener("click", () => startLesson(state.lessonId));
 el.englishCard.addEventListener("click", speakCurrentEnglish);
 el.soundToggle.addEventListener("click", toggleSound);
 el.practiceCountInput.addEventListener("input", updatePracticeCount);
+el.practiceCountInput.addEventListener("change", () => playUiSound("step"));
 
 document.querySelectorAll("[data-verb-choice]").forEach((button) => {
   button.addEventListener("click", () => answerVerbChoice(button.dataset.verbChoice));
