@@ -66,6 +66,8 @@ button {
 }
 
 #lesson-screen.active {
+  min-height: 0;
+  height: min(720px, calc(100svh - 60px));
   overflow: hidden;
 }
 
@@ -339,7 +341,8 @@ input[type="range"]::-moz-range-thumb {
 .sound-btn,
 .primary-btn,
 .option-btn,
-.symbol-btn {
+.symbol-btn,
+.word-block {
   cursor: pointer;
   border-radius: 999px;
   transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease, background 120ms ease, color 120ms ease;
@@ -479,6 +482,12 @@ input[type="range"]::-moz-range-thumb {
   box-shadow: 0 3px 0 #d1c4e9;
 }
 
+.category-pill[data-type="quiz1"] {
+  color: #176b5f;
+  background: #d8fbf8;
+  box-shadow: 0 3px 0 #a7e4df;
+}
+
 .category-pill[data-type="done"] {
   color: var(--correct-dark);
   background: var(--soft-green);
@@ -496,6 +505,11 @@ input[type="range"]::-moz-range-thumb {
   line-height: 1.14;
   text-align: center;
   text-shadow: 2px 2px 0 var(--soft-blue);
+}
+
+.chinese-prompt.builder-prompt {
+  min-height: 104px;
+  font-size: clamp(26px, 5vw, 42px);
 }
 
 .guidance {
@@ -545,7 +559,8 @@ input[type="range"]::-moz-range-thumb {
 
 .symbol-btn,
 .option-btn,
-.token-btn {
+.token-btn,
+.word-block {
   background: #ffffff;
   border: 3px dashed var(--border-color);
   box-shadow: 0 4px 0 #e9ecef;
@@ -555,7 +570,8 @@ input[type="range"]::-moz-range-thumb {
 
 .symbol-btn:hover,
 .option-btn:hover,
-.token-btn:hover {
+.token-btn:hover,
+.word-block:hover {
   background: var(--soft-blue);
   border-color: var(--primary-color);
   color: var(--primary-dark);
@@ -566,6 +582,7 @@ input[type="range"]::-moz-range-thumb {
 .symbol-btn:active,
 .option-btn:active,
 .token-btn:active,
+.word-block:active,
 .primary-btn:active {
   transform: translateY(4px);
   box-shadow: 0 0 0 transparent;
@@ -638,6 +655,78 @@ input[type="range"]::-moz-range-thumb {
   background: var(--primary-color);
   border-color: var(--primary-dark);
   box-shadow: 0 5px 0 var(--primary-dark);
+}
+
+.sentence-builder {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.sentence-slots {
+  min-height: 116px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(112px, 1fr));
+  gap: 10px;
+  padding: 14px;
+  background: #ffffff;
+  border: 3px dashed var(--primary-color);
+  border-radius: 22px;
+  box-shadow: 0 5px 0 rgba(78, 205, 196, 0.2);
+}
+
+.sentence-slot {
+  min-height: 64px;
+  display: grid;
+  place-items: center;
+  padding: 6px;
+  background: var(--soft-blue);
+  border: 2px dashed #9adfe0;
+  border-radius: 18px;
+}
+
+.sentence-slot:empty::before {
+  content: "";
+  width: 72%;
+  border-top: 3px dashed rgba(44, 181, 172, 0.55);
+}
+
+.word-bank {
+  min-height: 104px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-content: center;
+  justify-content: center;
+  padding: 14px;
+  background: var(--soft-yellow);
+  border: 3px dashed var(--secondary-dark);
+  border-radius: 22px;
+  box-shadow: 0 5px 0 rgba(255, 183, 3, 0.2);
+}
+
+.word-block {
+  min-height: 56px;
+  min-width: 92px;
+  padding: 10px 16px;
+  font-size: clamp(18px, 3.6vw, 25px);
+  line-height: 1.12;
+  touch-action: manipulation;
+}
+
+.word-block.placed {
+  width: 100%;
+  min-width: 0;
+  color: #5d4037;
+  background: #ffffff;
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 0 #bde0e1;
+}
+
+.builder-actions {
+  display: grid;
+  grid-template-columns: minmax(120px, 0.7fr) minmax(160px, 1fr);
+  gap: 12px;
 }
 
 .english-card {
@@ -830,6 +919,15 @@ input[type="range"]::-moz-range-thumb {
   box-shadow: 0 8px 0 var(--secondary-dark), 0 14px 14px rgba(255, 193, 7, 0.34);
 }
 
+.ghost-btn:disabled,
+.primary-btn:disabled {
+  cursor: not-allowed;
+  color: #aaaaaa;
+  background: #f3f3f3;
+  box-shadow: 0 4px 0 #dddddd;
+  transform: none;
+}
+
 .hidden {
   display: none !important;
 }
@@ -844,6 +942,10 @@ input[type="range"]::-moz-range-thumb {
     min-height: calc(100svh - 28px);
     padding: 20px 16px 22px;
     border-radius: 24px;
+  }
+
+  #lesson-screen.active {
+    height: calc(100svh - 28px);
   }
 
   h1 {
@@ -918,5 +1020,24 @@ input[type="range"]::-moz-range-thumb {
 
   .primary-btn {
     width: 100%;
+  }
+
+  .sentence-slots {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 10px;
+  }
+
+  .sentence-slot {
+    min-height: 58px;
+    padding: 5px;
+  }
+
+  .word-block {
+    min-width: 76px;
+    padding: 9px 12px;
+  }
+
+  .builder-actions {
+    grid-template-columns: 1fr;
   }
 }

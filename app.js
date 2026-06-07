@@ -264,11 +264,66 @@ const VERB_COUNT_QUESTIONS = [
   twoVerbs("The student is writes words.", "學生寫字。", [2, 3], "is", "writes", "現在式", "The student writes words.")
 ];
 
+const SENTENCE_BUILD_QUESTIONS = [
+  { id: "q101", zh: "我吃蘋果。", answer: ["I", "eat", "an", "apple."] },
+  { id: "q102", zh: "你喝水。", answer: ["You", "drink", "water."] },
+  { id: "q103", zh: "他踢足球。", answer: ["He", "plays", "football."] },
+  { id: "q104", zh: "她看書。", answer: ["She", "reads", "a", "book."] },
+  { id: "q105", zh: "我們上學。", answer: ["We", "go", "to", "school."] },
+  { id: "q106", zh: "他們唱歌。", answer: ["They", "sing", "songs."] },
+  { id: "q107", zh: "Tom 很累。", answer: ["Tom", "is", "tired."] },
+  { id: "q108", zh: "Mary 很開心。", answer: ["Mary", "is", "happy."] },
+  { id: "q109", zh: "我是學生。", answer: ["I", "am", "a", "student."] },
+  { id: "q110", zh: "你是老師。", answer: ["You", "are", "a", "teacher."] },
+  { id: "q111", zh: "他是男孩。", answer: ["He", "is", "a", "boy."] },
+  { id: "q112", zh: "她是女孩。", answer: ["She", "is", "a", "girl."] },
+  { id: "q113", zh: "我很高興。", answer: ["I", "am", "happy."] },
+  { id: "q114", zh: "你很遲。", answer: ["You", "are", "late."] },
+  { id: "q115", zh: "他很高。", answer: ["He", "is", "tall."] },
+  { id: "q116", zh: "她很聰明。", answer: ["She", "is", "smart."] },
+  { id: "q117", zh: "我喜歡牛奶。", answer: ["I", "like", "milk."] },
+  { id: "q118", zh: "你喜歡英文。", answer: ["You", "like", "English."] },
+  { id: "q119", zh: "我有一本書。", answer: ["I", "have", "a", "book."] },
+  { id: "q120", zh: "你有一支筆。", answer: ["You", "have", "a", "pen."] },
+  { id: "q121", zh: "我們玩遊戲。", answer: ["We", "play", "games."] },
+  { id: "q122", zh: "他們跑得快。", answer: ["They", "run", "fast."] },
+  { id: "q123", zh: "Tom 煮晚餐。", answer: ["Tom", "cooks", "dinner."] },
+  { id: "q124", zh: "Mary 寫字。", answer: ["Mary", "writes", "words."] },
+  { id: "q125", zh: "媽媽洗碗。", answer: ["Mum", "washes", "dishes."] },
+  { id: "q126", zh: "爸爸開車。", answer: ["Dad", "drives", "a", "car."] },
+  { id: "q127", zh: "這是我的書。", answer: ["This", "is", "my", "book."] },
+  { id: "q128", zh: "那是你的筆。", answer: ["That", "is", "your", "pen."] },
+  { id: "q129", zh: "這些是蘋果。", answer: ["These", "are", "apples."] },
+  { id: "q130", zh: "那些是椅子。", answer: ["Those", "are", "chairs."] },
+  { id: "q131", zh: "我在學校。", answer: ["I", "am", "at", "school."] },
+  { id: "q132", zh: "你在家。", answer: ["You", "are", "at", "home."] },
+  { id: "q133", zh: "他在公園。", answer: ["He", "is", "at", "the", "park."] },
+  { id: "q134", zh: "她在房間。", answer: ["She", "is", "in", "the", "room."] },
+  { id: "q135", zh: "我每天游泳。", answer: ["I", "swim", "every", "day."] },
+  { id: "q136", zh: "你每天跑步。", answer: ["You", "run", "every", "day."] },
+  { id: "q137", zh: "他每天讀書。", answer: ["He", "reads", "every", "day."] },
+  { id: "q138", zh: "她每天唱歌。", answer: ["She", "sings", "every", "day."] },
+  { id: "q139", zh: "我們吃午餐。", answer: ["We", "eat", "lunch."] },
+  { id: "q140", zh: "他們喝牛奶。", answer: ["They", "drink", "milk."] },
+  { id: "q141", zh: "我的書很新。", answer: ["My", "book", "is", "new."] },
+  { id: "q142", zh: "你的筆很短。", answer: ["Your", "pen", "is", "short."] },
+  { id: "q143", zh: "這個房間很乾淨。", answer: ["This", "room", "is", "clean."] },
+  { id: "q144", zh: "天氣很熱。", answer: ["The", "weather", "is", "hot."] },
+  { id: "q145", zh: "我打開門。", answer: ["I", "open", "the", "door."] },
+  { id: "q146", zh: "你關上窗。", answer: ["You", "close", "the", "window."] },
+  { id: "q147", zh: "他買麵包。", answer: ["He", "buys", "bread."] },
+  { id: "q148", zh: "她畫星星。", answer: ["She", "draws", "stars."] },
+  { id: "q149", zh: "我們聽音樂。", answer: ["We", "listen", "to", "music."] },
+  { id: "q150", zh: "他們看電視。", answer: ["They", "watch", "TV."] }
+];
+
 const LESSON1_ID = "lesson1";
 const LESSON2_ID = "lesson2";
+const QUIZ1_ID = "quiz1";
 const LESSON_PROGRESS_KEYS = {
   [LESSON1_ID]: "basic_grammar_lesson_01_progress_v2",
-  [LESSON2_ID]: "basic_grammar_lesson_02_progress_v1"
+  [LESSON2_ID]: "basic_grammar_lesson_02_progress_v1",
+  [QUIZ1_ID]: "basic_grammar_quiz_01_progress_v1"
 };
 const LESSONS = {
   [LESSON1_ID]: {
@@ -282,6 +337,12 @@ const LESSONS = {
     kicker: "Lesson 02",
     title: "一句句子必須只有一個動詞",
     questions: VERB_COUNT_QUESTIONS
+  },
+  [QUIZ1_ID]: {
+    id: QUIZ1_ID,
+    kicker: "Quiz 1",
+    title: "重組英文句子",
+    questions: SENTENCE_BUILD_QUESTIONS
   }
 };
 
@@ -356,6 +417,7 @@ const el = {
   resultScreen: document.querySelector("#result-screen"),
   menuProgressLesson1: document.querySelector("#menu-progress-lesson1"),
   menuProgressLesson2: document.querySelector("#menu-progress-lesson2"),
+  menuProgressQuiz1: document.querySelector("#menu-progress-quiz1"),
   menuCoachLine: document.querySelector("#menu-coach-line"),
   practiceCountInput: document.querySelector("#practice-count"),
   practiceCountOutput: document.querySelector("#practice-count-output"),
@@ -380,6 +442,11 @@ const el = {
   verbTokenChoice: document.querySelector("#verb-token-choice"),
   verbTokenGrid: document.querySelector("#verb-token-grid"),
   submitVerbsBtn: document.querySelector("#submit-verbs-btn"),
+  sentenceBuilderChoice: document.querySelector("#sentence-builder-choice"),
+  sentenceSlots: document.querySelector("#sentence-slots"),
+  wordBank: document.querySelector("#word-bank"),
+  resetBuilderBtn: document.querySelector("#reset-builder-btn"),
+  confirmBuilderBtn: document.querySelector("#confirm-builder-btn"),
   englishCard: document.querySelector("#english-card"),
   englishText: document.querySelector("#english-text"),
   feedback: document.querySelector("#feedback"),
@@ -567,19 +634,30 @@ function getAudioContext() {
     audioContext = new AudioContextConstructor();
   }
 
-  if (audioContext.state === "suspended") {
-    audioContext.resume();
-  }
-
   return audioContext;
 }
 
-function playUiSound(kind) {
-  if (!state.soundEnabled) return;
+function resumeAudioContext(context) {
+  if (!context || context.state !== "suspended") {
+    return Promise.resolve(context?.state !== "closed");
+  }
 
-  const context = getAudioContext();
-  const pattern = SOUND_PATTERNS[kind];
-  if (!context || !pattern) return;
+  try {
+    const resumeResult = context.resume();
+    if (resumeResult && typeof resumeResult.then === "function") {
+      return resumeResult
+        .then(() => context.state !== "suspended" && context.state !== "closed")
+        .catch(() => false);
+    }
+  } catch (_error) {
+    return Promise.resolve(false);
+  }
+
+  return Promise.resolve(context.state !== "suspended" && context.state !== "closed");
+}
+
+function scheduleUiSound(context, pattern) {
+  if (!context || context.state === "closed") return;
 
   const now = context.currentTime + 0.01;
   pattern.forEach((note) => {
@@ -599,6 +677,34 @@ function playUiSound(kind) {
     oscillator.start(startAt);
     oscillator.stop(endAt + 0.02);
   });
+}
+
+function playUiSound(kind) {
+  if (!state.soundEnabled) return;
+
+  const context = getAudioContext();
+  const pattern = SOUND_PATTERNS[kind];
+  if (!context || !pattern) return;
+
+  if (context.state === "suspended") {
+    resumeAudioContext(context).then((resumed) => {
+      if (resumed) {
+        scheduleUiSound(context, pattern);
+      }
+    });
+    return;
+  }
+
+  scheduleUiSound(context, pattern);
+}
+
+function unlockAudio() {
+  if (!state.soundEnabled) return;
+
+  const context = getAudioContext();
+  if (context?.state === "suspended") {
+    resumeAudioContext(context);
+  }
 }
 
 function currentLesson() {
@@ -632,11 +738,15 @@ function saveProgress(completed, lessonId = state.lessonId) {
 function updateMenuProgress() {
   const lesson1Progress = getProgress(LESSON1_ID);
   const lesson2Progress = getProgress(LESSON2_ID);
+  const quiz1Progress = getProgress(QUIZ1_ID);
   el.menuProgressLesson1.textContent = `${lesson1Progress}/${getLessonTotal(LESSON1_ID)}`;
   el.menuProgressLesson2.textContent = `${lesson2Progress}/${getLessonTotal(LESSON2_ID)}`;
+  el.menuProgressQuiz1.textContent = `${quiz1Progress}/${getLessonTotal(QUIZ1_ID)}`;
 
-  if (lesson2Progress >= getLessonTotal(LESSON2_ID)) {
-    el.menuCoachLine.textContent = "Lesson 02 已完成，可以挑戰滿分。";
+  if (quiz1Progress >= getLessonTotal(QUIZ1_ID)) {
+    el.menuCoachLine.textContent = "Quiz 1 已完成，可以再挑戰更快砌句子。";
+  } else if (lesson2Progress >= getLessonTotal(LESSON2_ID)) {
+    el.menuCoachLine.textContent = "Lesson 02 已完成，可以挑戰 Quiz 1。";
   } else if (lesson1Progress >= getLessonTotal(LESSON1_ID)) {
     el.menuCoachLine.textContent = "Lesson 01 已完成，可以挑戰 Lesson 02。";
   } else if (state.bestStreak >= 8) {
@@ -691,6 +801,7 @@ function showOnlyChoice(choice) {
   el.judgmentChoice.classList.toggle("hidden", choice !== "judgment");
   el.verbCountChoice.classList.toggle("hidden", choice !== "verbCount");
   el.verbTokenChoice.classList.toggle("hidden", choice !== "verbTokens");
+  el.sentenceBuilderChoice.classList.toggle("hidden", choice !== "builder");
 }
 
 function currentQuestion() {
@@ -786,12 +897,20 @@ function renderQuestion() {
   el.nextBtn.classList.add("hidden");
   el.restartBtn.classList.add("hidden");
   el.chinesePrompt.classList.toggle("english-prompt", state.lessonId === LESSON2_ID);
+  el.chinesePrompt.classList.toggle("builder-prompt", state.lessonId === QUIZ1_ID);
   el.ruleCard.classList.toggle("hidden", state.lessonId !== LESSON2_ID);
   el.verbTokenGrid.replaceChildren();
+  el.sentenceSlots.replaceChildren();
+  el.wordBank.replaceChildren();
   setFeedback();
 
   if (state.lessonId === LESSON2_ID) {
     renderVerbCountQuestion(question);
+    return;
+  }
+
+  if (state.lessonId === QUIZ1_ID) {
+    renderSentenceBuilderQuestion(question);
     return;
   }
 
@@ -814,6 +933,36 @@ function renderVerbCountQuestion(question) {
   el.chinesePrompt.textContent = question.sentence;
   el.guidance.textContent = getLesson2Translation(question);
   showOnlyChoice("judgment");
+}
+
+function renderSentenceBuilderQuestion(question) {
+  el.stepLabel.textContent = "中文句子";
+  el.categoryPill.textContent = "Quiz 1";
+  el.categoryPill.dataset.type = "quiz1";
+  el.chinesePrompt.textContent = question.zh;
+  el.guidance.textContent = "重組英文句子，完成後按確認。";
+
+  question.answer.forEach((_word, index) => {
+    const slot = document.createElement("div");
+    slot.className = "sentence-slot";
+    slot.dataset.slotIndex = String(index);
+    slot.setAttribute("aria-label", `第 ${index + 1} 個位置`);
+    el.sentenceSlots.append(slot);
+  });
+
+  const wordBlocks = question.answer.map((word, index) => ({ word, index }));
+  shuffle(wordBlocks).forEach(({ word, index }) => {
+    const button = document.createElement("button");
+    button.className = "word-block";
+    button.type = "button";
+    button.textContent = word;
+    button.dataset.wordIndex = String(index);
+    button.addEventListener("click", () => toggleBuilderWord(button));
+    el.wordBank.append(button);
+  });
+
+  updateBuilderControls();
+  showOnlyChoice("builder");
 }
 
 function completeQuestion(message) {
@@ -1062,6 +1211,131 @@ function submitVerbTokens() {
   completeVerbLessonQuestion(getVerbCountFeedback(question));
 }
 
+function getBuilderSlots() {
+  return [...el.sentenceSlots.querySelectorAll(".sentence-slot")];
+}
+
+function getPlacedBuilderWords() {
+  return getBuilderSlots().map((slot) => slot.querySelector(".word-block")?.textContent || "");
+}
+
+function getFirstEmptyBuilderSlot() {
+  return getBuilderSlots().find((slot) => !slot.querySelector(".word-block")) || null;
+}
+
+function moveBuilderBlock(button, target, beforeAppend = () => {}) {
+  const startRect = button.getBoundingClientRect();
+  beforeAppend();
+  target.append(button);
+  const endRect = button.getBoundingClientRect();
+  const deltaX = startRect.left - endRect.left;
+  const deltaY = startRect.top - endRect.top;
+
+  if (deltaX || deltaY) {
+    button.animate(
+      [
+        { transform: `translate(${deltaX}px, ${deltaY}px) scale(0.98)` },
+        { transform: "translate(0, 0) scale(1)" }
+      ],
+      {
+        duration: 280,
+        easing: "cubic-bezier(0.2, 0.8, 0.2, 1)"
+      }
+    );
+  }
+}
+
+function updateBuilderControls() {
+  const slots = getBuilderSlots();
+  const filledCount = getPlacedBuilderWords().filter(Boolean).length;
+  el.confirmBuilderBtn.disabled = filledCount !== slots.length;
+  el.resetBuilderBtn.disabled = filledCount === 0;
+}
+
+function placeBuilderWord(button) {
+  const targetSlot = getFirstEmptyBuilderSlot();
+  if (!targetSlot) return;
+
+  moveBuilderBlock(button, targetSlot, () => {
+    button.classList.add("placed");
+    button.setAttribute("aria-label", `${button.textContent} 已放入第 ${Number(targetSlot.dataset.slotIndex) + 1} 格`);
+  });
+  updateBuilderControls();
+  setFeedback();
+  playUiSound("step");
+}
+
+function returnBuilderWord(button) {
+  moveBuilderBlock(button, el.wordBank, () => {
+    button.classList.remove("placed");
+    button.removeAttribute("aria-label");
+  });
+  updateBuilderControls();
+  setFeedback();
+  playUiSound("next");
+}
+
+function toggleBuilderWord(button) {
+  if (state.resolved) return;
+
+  if (button.classList.contains("placed")) {
+    returnBuilderWord(button);
+    return;
+  }
+
+  placeBuilderWord(button);
+}
+
+function resetSentenceBuilder() {
+  if (state.resolved) return;
+
+  const placedButtons = getBuilderSlots()
+    .map((slot) => slot.querySelector(".word-block"))
+    .filter(Boolean);
+  placedButtons.forEach((button) => {
+    moveBuilderBlock(button, el.wordBank, () => {
+      button.classList.remove("placed");
+      button.removeAttribute("aria-label");
+    });
+  });
+  updateBuilderControls();
+  setFeedback();
+  if (placedButtons.length) {
+    playUiSound("next");
+  }
+}
+
+function getSentenceBuilderAnswer(question) {
+  return question.answer.join(" ");
+}
+
+function getSentenceBuilderFeedback(question, isCorrect) {
+  return [
+    { text: isCorrect ? "句子次序正確。" : "句子次序未正確。" },
+    { text: `正確答案：${getSentenceBuilderAnswer(question)}`, className: "answer-line" }
+  ];
+}
+
+function submitSentenceBuilder() {
+  const question = currentQuestion();
+  if (!question || state.lessonId !== QUIZ1_ID || state.resolved) return;
+
+  const pickedWords = getPlacedBuilderWords();
+  if (pickedWords.some((word) => !word)) {
+    setFeedback("先完成整句英文句子。", "error");
+    playUiSound("wrong");
+    return;
+  }
+
+  const matched = pickedWords.every((word, index) => word === question.answer[index]);
+  if (!matched) {
+    recordWrong(getSentenceBuilderFeedback(question, false));
+    return;
+  }
+
+  completeVerbLessonQuestion(getSentenceBuilderFeedback(question, true));
+}
+
 function nextQuestion() {
   cancelSpeech();
   const wasLastQuestion = state.index >= state.questions.length - 1;
@@ -1122,6 +1396,9 @@ function getQuestionPrompt(question) {
 function getResultMessage(percent, mistakes, mode) {
   if (mode === "review" && mistakes === 0) return "錯題已清晒，返去挑戰新一輪。";
   if (mode === "review") return "差少少，再重練今輪錯題就得。";
+  if (state.lessonId === QUIZ1_ID && percent === 100 && mistakes === 0) return "滿分！你可以由中文準確砌出英文句子。";
+  if (state.lessonId === QUIZ1_ID && percent >= 80) return "好穩陣！繼續練主語、動詞同句尾次序。";
+  if (state.lessonId === QUIZ1_ID) return "慢慢嚟，先搵主語，再搵動詞，最後補完整句。";
   if (state.lessonId === LESSON2_ID && percent === 100 && mistakes === 0) return "滿分！你記得一句句子只可以有一個動詞。";
   if (state.lessonId === LESSON2_ID && percent >= 80) return "好穩陣！繼續留意 ING / PP 不當動詞。";
   if (state.lessonId === LESSON2_ID) return "慢慢嚟，先數現在式、過去式同 be 動詞。";
@@ -1151,6 +1428,9 @@ function speakCurrentEnglish() {
   utterance.onerror = () => el.englishCard.classList.remove("speaking");
   window.speechSynthesis.speak(utterance);
 }
+
+document.addEventListener("pointerdown", unlockAudio, { passive: true });
+document.addEventListener("keydown", unlockAudio);
 
 document.querySelectorAll("[data-start-lesson]").forEach((button) => {
   button.addEventListener("click", () => startLesson(button.dataset.startLesson));
@@ -1186,6 +1466,8 @@ document.querySelectorAll("[data-verb-count]").forEach((button) => {
 });
 
 el.submitVerbsBtn.addEventListener("click", submitVerbTokens);
+el.resetBuilderBtn.addEventListener("click", resetSentenceBuilder);
+el.confirmBuilderBtn.addEventListener("click", submitSentenceBuilder);
 
 updateMenuProgress();
 syncPracticeCount();

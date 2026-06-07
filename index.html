@@ -46,6 +46,15 @@
             <span id="menu-progress-lesson2">0/100</span>
           </span>
         </button>
+
+        <button class="lesson-card" type="button" data-start-lesson="quiz1">
+          <span class="lesson-kicker">Quiz 1</span>
+          <strong>重組英文句子</strong>
+          <span class="lesson-meta">
+            <span>看中文，砌出正確英文句子</span>
+            <span id="menu-progress-quiz1">0/50</span>
+          </span>
+        </button>
       </div>
     </section>
 
@@ -121,6 +130,15 @@
         <div id="verb-token-choice" class="verb-token-choice hidden">
           <div id="verb-token-grid" class="token-grid"></div>
           <button id="submit-verbs-btn" class="primary-btn" type="button">確認動詞</button>
+        </div>
+
+        <div id="sentence-builder-choice" class="sentence-builder hidden">
+          <div id="sentence-slots" class="sentence-slots" aria-label="句子位置"></div>
+          <div id="word-bank" class="word-bank" aria-label="字塊"></div>
+          <div class="builder-actions">
+            <button id="reset-builder-btn" class="ghost-btn" type="button">重排</button>
+            <button id="confirm-builder-btn" class="primary-btn" type="button">確認</button>
+          </div>
         </div>
 
         <button id="english-card" class="english-card hidden" type="button">
