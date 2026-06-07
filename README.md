@@ -19,8 +19,8 @@ Current modules:
 - Lesson 02: 一句句子必須只有一個動詞.
 - 100 Lesson 02 questions ask students to judge whether an English sentence is correct, count 0/1/2 verbs, and identify the verbs in wrong two-verb sentences.
 - Quiz 1: 重組英文句子.
-- 50 Quiz 1 questions show a Chinese sentence, then ask students to tap word blocks into dashed sentence slots and confirm the rebuilt English sentence.
-- Word blocks animate into the next sentence slot, can be tapped again to return to the word bank, and show the correct answer after a wrong confirmation.
+- 50 Quiz 1 questions show a Chinese sentence, then ask students to tap word blocks onto one long dashed answer line and confirm the rebuilt English sentence.
+- Word blocks include distractors, animate into the answer line, can be tapped again to return to the word bank, and show the correct answer after a wrong confirmation.
 
 Published with GitHub Pages:
 

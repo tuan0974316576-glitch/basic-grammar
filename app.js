@@ -317,6 +317,33 @@ const SENTENCE_BUILD_QUESTIONS = [
   { id: "q150", zh: "他們看電視。", answer: ["They", "watch", "TV."] }
 ];
 
+const SENTENCE_BUILD_DISTRACTORS = [
+  "am",
+  "are",
+  "is",
+  "a",
+  "an",
+  "the",
+  "to",
+  "in",
+  "at",
+  "go",
+  "play",
+  "eat",
+  "read",
+  "happy.",
+  "late.",
+  "school.",
+  "water.",
+  "book.",
+  "football.",
+  "I",
+  "You",
+  "He",
+  "She",
+  "They"
+];
+
 const LESSON1_ID = "lesson1";
 const LESSON2_ID = "lesson2";
 const QUIZ1_ID = "quiz1";
@@ -896,6 +923,7 @@ function renderQuestion() {
   el.englishCard.classList.add("hidden");
   el.nextBtn.classList.add("hidden");
   el.restartBtn.classList.add("hidden");
+  el.lessonScreen.classList.toggle("quiz-screen", state.lessonId === QUIZ1_ID);
   el.chinesePrompt.classList.toggle("english-prompt", state.lessonId === LESSON2_ID);
   el.chinesePrompt.classList.toggle("builder-prompt", state.lessonId === QUIZ1_ID);
   el.ruleCard.classList.toggle("hidden", state.lessonId !== LESSON2_ID);
@@ -940,23 +968,16 @@ function renderSentenceBuilderQuestion(question) {
   el.categoryPill.textContent = "Quiz 1";
   el.categoryPill.dataset.type = "quiz1";
   el.chinesePrompt.textContent = question.zh;
-  el.guidance.textContent = "重組英文句子，完成後按確認。";
+  el.guidance.textContent = "";
+  el.sentenceSlots.setAttribute("aria-label", "答案區");
 
-  question.answer.forEach((_word, index) => {
-    const slot = document.createElement("div");
-    slot.className = "sentence-slot";
-    slot.dataset.slotIndex = String(index);
-    slot.setAttribute("aria-label", `第 ${index + 1} 個位置`);
-    el.sentenceSlots.append(slot);
-  });
-
-  const wordBlocks = question.answer.map((word, index) => ({ word, index }));
-  shuffle(wordBlocks).forEach(({ word, index }) => {
+  getSentenceBuilderWordBlocks(question).forEach(({ word, id, type }) => {
     const button = document.createElement("button");
     button.className = "word-block";
     button.type = "button";
     button.textContent = word;
-    button.dataset.wordIndex = String(index);
+    button.dataset.wordIndex = String(id);
+    button.dataset.wordType = type;
     button.addEventListener("click", () => toggleBuilderWord(button));
     el.wordBank.append(button);
   });
@@ -1211,16 +1232,26 @@ function submitVerbTokens() {
   completeVerbLessonQuestion(getVerbCountFeedback(question));
 }
 
-function getBuilderSlots() {
-  return [...el.sentenceSlots.querySelectorAll(".sentence-slot")];
+function getSentenceBuilderWordBlocks(question) {
+  const answerWords = question.answer.map((word, index) => ({
+    word,
+    id: `answer-${index}`,
+    type: "answer"
+  }));
+  const answerSet = new Set(question.answer.map((word) => word.toLowerCase()));
+  const extraWords = shuffle(SENTENCE_BUILD_DISTRACTORS.filter((word) => !answerSet.has(word.toLowerCase())))
+    .slice(0, 2)
+    .map((word, index) => ({
+      word,
+      id: `extra-${index}`,
+      type: "extra"
+    }));
+
+  return shuffle([...answerWords, ...extraWords]);
 }
 
 function getPlacedBuilderWords() {
-  return getBuilderSlots().map((slot) => slot.querySelector(".word-block")?.textContent || "");
-}
-
-function getFirstEmptyBuilderSlot() {
-  return getBuilderSlots().find((slot) => !slot.querySelector(".word-block")) || null;
+  return [...el.sentenceSlots.querySelectorAll(".word-block")].map((button) => button.textContent);
 }
 
 function moveBuilderBlock(button, target, beforeAppend = () => {}) {
@@ -1246,19 +1277,15 @@ function moveBuilderBlock(button, target, beforeAppend = () => {}) {
 }
 
 function updateBuilderControls() {
-  const slots = getBuilderSlots();
-  const filledCount = getPlacedBuilderWords().filter(Boolean).length;
-  el.confirmBuilderBtn.disabled = filledCount !== slots.length;
+  const filledCount = getPlacedBuilderWords().length;
+  el.confirmBuilderBtn.disabled = filledCount === 0;
   el.resetBuilderBtn.disabled = filledCount === 0;
 }
 
 function placeBuilderWord(button) {
-  const targetSlot = getFirstEmptyBuilderSlot();
-  if (!targetSlot) return;
-
-  moveBuilderBlock(button, targetSlot, () => {
+  moveBuilderBlock(button, el.sentenceSlots, () => {
     button.classList.add("placed");
-    button.setAttribute("aria-label", `${button.textContent} 已放入第 ${Number(targetSlot.dataset.slotIndex) + 1} 格`);
+    button.setAttribute("aria-label", `${button.textContent} 已放到答案區`);
   });
   updateBuilderControls();
   setFeedback();
@@ -1289,9 +1316,7 @@ function toggleBuilderWord(button) {
 function resetSentenceBuilder() {
   if (state.resolved) return;
 
-  const placedButtons = getBuilderSlots()
-    .map((slot) => slot.querySelector(".word-block"))
-    .filter(Boolean);
+  const placedButtons = [...el.sentenceSlots.querySelectorAll(".word-block")];
   placedButtons.forEach((button) => {
     moveBuilderBlock(button, el.wordBank, () => {
       button.classList.remove("placed");
@@ -1321,13 +1346,14 @@ function submitSentenceBuilder() {
   if (!question || state.lessonId !== QUIZ1_ID || state.resolved) return;
 
   const pickedWords = getPlacedBuilderWords();
-  if (pickedWords.some((word) => !word)) {
-    setFeedback("先完成整句英文句子。", "error");
+  if (!pickedWords.length) {
+    setFeedback("", "error");
     playUiSound("wrong");
     return;
   }
 
-  const matched = pickedWords.every((word, index) => word === question.answer[index]);
+  const matched = pickedWords.length === question.answer.length
+    && pickedWords.every((word, index) => word === question.answer[index]);
   if (!matched) {
     recordWrong(getSentenceBuilderFeedback(question, false));
     return;
