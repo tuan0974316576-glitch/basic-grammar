@@ -23,7 +23,7 @@ Current modules:
 - 50 Quiz 1 questions show a Chinese sentence, then ask students to tap word blocks onto one long dashed answer line and confirm the rebuilt English sentence.
 - Word blocks include question-specific distractors, animate into the answer line, can be tapped again to return to the word bank, and show the correct answer after a wrong confirmation.
 - Lesson 03: 何謂句子.
-- 30 Lesson 03 questions ask students to use different underline colours to group English words into sentence units.
+- 30 Lesson 03 questions ask students to drag crayon-like underline strokes across English sentence units.
 
 Published with GitHub Pages:
 

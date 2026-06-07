@@ -457,6 +457,8 @@ const state = {
   reviewQuestions: [],
   selectedVerbIndexes: [],
   selectedUnderlineColor: 0,
+  underlineDragActive: false,
+  underlineDragIndexes: [],
   streak: 0,
   bestStreak: getSavedBestStreak(),
   practiceCount: getSavedPracticeCount(),
@@ -924,6 +926,8 @@ function prepareRun(mode, lessonId, questions) {
   state.missedQuestionIds = [];
   state.selectedVerbIndexes = [];
   state.selectedUnderlineColor = 0;
+  state.underlineDragActive = false;
+  state.underlineDragIndexes = [];
   state.resolved = false;
   state.questions = questions;
   updateLessonChrome();
@@ -1050,25 +1054,20 @@ function renderSentenceUnderlineQuestion(question) {
   state.selectedUnderlineColor = 0;
 
   for (let index = 0; index < UNDERLINE_COLOR_COUNT; index += 1) {
-    const button = document.createElement("button");
-    button.className = "underline-color-btn";
-    button.type = "button";
-    button.textContent = String(index + 1);
-    button.dataset.colorIndex = String(index);
-    button.classList.toggle("selected", index === state.selectedUnderlineColor);
-    button.setAttribute("aria-pressed", String(index === state.selectedUnderlineColor));
-    button.addEventListener("click", () => selectUnderlineColor(index));
-    el.underlinePalette.append(button);
+    const chip = document.createElement("span");
+    chip.className = "underline-color-btn";
+    chip.textContent = String(index + 1);
+    chip.dataset.colorIndex = String(index);
+    chip.classList.toggle("selected", index === state.selectedUnderlineColor);
+    el.underlinePalette.append(chip);
   }
 
   getUnderlineTokens(question).forEach((token, index) => {
-    const button = document.createElement("button");
-    button.className = "underline-token";
-    button.type = "button";
-    button.textContent = token;
-    button.dataset.tokenIndex = String(index);
-    button.addEventListener("click", () => toggleUnderlineToken(button));
-    el.underlineBoard.append(button);
+    const word = document.createElement("span");
+    word.className = "underline-token";
+    word.textContent = token;
+    word.dataset.tokenIndex = String(index);
+    el.underlineBoard.append(word);
   });
 
   updateUnderlineControls();
@@ -1452,31 +1451,108 @@ function submitSentenceBuilder() {
   completeVerbLessonQuestion(getSentenceBuilderFeedback(question, true));
 }
 
-function selectUnderlineColor(colorIndex) {
-  if (state.resolved) return;
-
-  state.selectedUnderlineColor = colorIndex;
-  el.underlinePalette.querySelectorAll(".underline-color-btn").forEach((button) => {
-    const selected = Number(button.dataset.colorIndex) === colorIndex;
-    button.classList.toggle("selected", selected);
-    button.setAttribute("aria-pressed", String(selected));
+function updateUnderlinePalette() {
+  el.underlinePalette.querySelectorAll(".underline-color-btn").forEach((chip) => {
+    chip.classList.toggle("selected", Number(chip.dataset.colorIndex) === state.selectedUnderlineColor);
   });
+}
+
+function getUnderlineTokenFromPoint(event) {
+  const target = document.elementFromPoint(event.clientX, event.clientY);
+  return target?.closest?.(".underline-token") || null;
+}
+
+function markUnderlineDraft(token) {
+  const index = Number(token?.dataset.tokenIndex);
+  if (!Number.isFinite(index) || state.underlineDragIndexes.includes(index)) return;
+
+  state.underlineDragIndexes.push(index);
+  renderUnderlineDraft();
+}
+
+function renderUnderlineDraft() {
+  el.underlineBoard.querySelectorAll(".underline-token").forEach((token) => {
+    delete token.dataset.draft;
+  });
+  if (!state.underlineDragIndexes.length) return;
+
+  const start = Math.min(...state.underlineDragIndexes);
+  const end = Math.max(...state.underlineDragIndexes);
+  for (let index = start; index <= end; index += 1) {
+    const token = el.underlineBoard.querySelector(`.underline-token[data-token-index="${index}"]`);
+    if (token) {
+      token.dataset.draft = String(state.selectedUnderlineColor);
+    }
+  }
+}
+
+function startUnderlineDrag(event) {
+  if (state.resolved || state.lessonId !== SENTENCE_UNDERLINE_ID) return;
+
+  const token = getUnderlineTokenFromPoint(event);
+  if (!token) return;
+
+  event.preventDefault();
+  state.underlineDragActive = true;
+  state.underlineDragIndexes = [];
+  el.underlineBoard.setPointerCapture?.(event.pointerId);
+  markUnderlineDraft(token);
   playUiSound("step");
 }
 
-function toggleUnderlineToken(button) {
-  if (state.resolved) return;
+function moveUnderlineDrag(event) {
+  if (!state.underlineDragActive || state.resolved) return;
 
-  const selectedColor = String(state.selectedUnderlineColor);
-  const alreadySelected = button.dataset.group === selectedColor;
-  if (alreadySelected) {
-    delete button.dataset.group;
-  } else {
-    button.dataset.group = selectedColor;
+  event.preventDefault();
+  const token = getUnderlineTokenFromPoint(event);
+  if (token) {
+    markUnderlineDraft(token);
+  }
+}
+
+function clearUnderlineDraft() {
+  el.underlineBoard.querySelectorAll(".underline-token").forEach((token) => {
+    delete token.dataset.draft;
+  });
+}
+
+function finishUnderlineDrag(event) {
+  if (!state.underlineDragActive) return;
+
+  event.preventDefault();
+  const token = getUnderlineTokenFromPoint(event);
+  if (token) {
+    markUnderlineDraft(token);
   }
 
+  const indexes = state.underlineDragIndexes;
+  state.underlineDragActive = false;
+  state.underlineDragIndexes = [];
+  clearUnderlineDraft();
+  if (!indexes.length) return;
+
+  const start = Math.min(...indexes);
+  const end = Math.max(...indexes);
+  const group = String(state.selectedUnderlineColor);
+  for (let index = start; index <= end; index += 1) {
+    const underlineToken = el.underlineBoard.querySelector(`.underline-token[data-token-index="${index}"]`);
+    if (underlineToken) {
+      underlineToken.dataset.group = group;
+    }
+  }
+
+  state.selectedUnderlineColor = (state.selectedUnderlineColor + 1) % UNDERLINE_COLOR_COUNT;
+  updateUnderlinePalette();
   updateUnderlineControls();
   playUiSound("step");
+}
+
+function cancelUnderlineDrag() {
+  if (!state.underlineDragActive) return;
+
+  state.underlineDragActive = false;
+  state.underlineDragIndexes = [];
+  clearUnderlineDraft();
 }
 
 function resetSentenceUnderline() {
@@ -1485,6 +1561,8 @@ function resetSentenceUnderline() {
   el.underlineBoard.querySelectorAll(".underline-token").forEach((button) => {
     delete button.dataset.group;
   });
+  state.selectedUnderlineColor = 0;
+  updateUnderlinePalette();
   updateUnderlineControls();
   playUiSound("next");
 }
@@ -1649,6 +1727,7 @@ function speakCurrentEnglish() {
 
 document.addEventListener("pointerdown", unlockAudio, { passive: true });
 document.addEventListener("keydown", unlockAudio);
+document.addEventListener("contextmenu", (event) => event.preventDefault());
 
 document.querySelectorAll("[data-start-lesson]").forEach((button) => {
   button.addEventListener("click", () => startLesson(button.dataset.startLesson));
@@ -1687,6 +1766,10 @@ document.querySelectorAll("[data-verb-count]").forEach((button) => {
 el.submitVerbsBtn.addEventListener("click", submitVerbTokens);
 el.resetBuilderBtn.addEventListener("click", resetSentenceBuilder);
 el.confirmBuilderBtn.addEventListener("click", submitSentenceBuilder);
+el.underlineBoard.addEventListener("pointerdown", startUnderlineDrag);
+el.underlineBoard.addEventListener("pointermove", moveUnderlineDrag);
+el.underlineBoard.addEventListener("pointerup", finishUnderlineDrag);
+el.underlineBoard.addEventListener("pointercancel", cancelUnderlineDrag);
 el.resetUnderlineBtn.addEventListener("click", resetSentenceUnderline);
 el.confirmUnderlineBtn.addEventListener("click", submitSentenceUnderline);
 
