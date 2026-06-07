@@ -513,6 +513,12 @@ input[type="range"]::-moz-range-thumb {
   box-shadow: 0 3px 0 #a7e4df;
 }
 
+.category-pill[data-type="underline"] {
+  color: #174ea6;
+  background: #e8f0fe;
+  box-shadow: 0 3px 0 #c6dafc;
+}
+
 .category-pill[data-type="done"] {
   color: var(--correct-dark);
   background: var(--soft-green);
@@ -748,6 +754,109 @@ input[type="range"]::-moz-range-thumb {
   gap: 12px;
 }
 
+.sentence-underline {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.underline-board {
+  min-height: 138px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 8px;
+  align-content: center;
+  padding: 16px;
+  background: #f8f9fa;
+  border: 3px dashed #cfd4da;
+  border-radius: 20px;
+  box-shadow: inset 0 2px 0 #ffffff, 0 4px 0 #eceff3;
+}
+
+.underline-token,
+.underline-color-btn {
+  cursor: pointer;
+  font-weight: 900;
+  transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease, background 120ms ease;
+}
+
+.underline-token {
+  min-height: 44px;
+  padding: 6px 7px;
+  color: #5d4037;
+  font-size: clamp(20px, 3.4vw, 30px);
+  line-height: 1.1;
+  background: #ffffff;
+  border: 0;
+  border-bottom: 6px solid transparent;
+  border-radius: 10px 10px 6px 6px;
+  box-shadow: 0 2px 0 #eceff3;
+}
+
+.underline-token[data-group="0"] {
+  border-bottom-color: #ff6b6b;
+}
+
+.underline-token[data-group="1"] {
+  border-bottom-color: #4ecdc4;
+}
+
+.underline-token[data-group="2"] {
+  border-bottom-color: #ffb703;
+}
+
+.underline-token[data-group="3"] {
+  border-bottom-color: #6c63ff;
+}
+
+.underline-token:hover,
+.underline-color-btn:hover {
+  transform: translateY(-2px);
+}
+
+.underline-palette {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.underline-color-btn {
+  min-height: 48px;
+  color: #5d4037;
+  background: #ffffff;
+  border: 3px dashed var(--border-color);
+  border-bottom-width: 7px;
+  border-radius: 16px;
+  box-shadow: 0 4px 0 #e9ecef;
+}
+
+.underline-color-btn[data-color-index="0"] {
+  border-bottom-color: #ff6b6b;
+}
+
+.underline-color-btn[data-color-index="1"] {
+  border-bottom-color: #4ecdc4;
+}
+
+.underline-color-btn[data-color-index="2"] {
+  border-bottom-color: #ffb703;
+}
+
+.underline-color-btn[data-color-index="3"] {
+  border-bottom-color: #6c63ff;
+}
+
+.underline-color-btn.selected {
+  background: var(--soft-blue);
+  border-color: var(--primary-color);
+}
+
+.underline-actions {
+  display: grid;
+  grid-template-columns: minmax(120px, 0.7fr) minmax(160px, 1fr);
+  gap: 12px;
+}
+
 .quiz-screen .status-strip {
   margin-bottom: 10px;
 }
@@ -792,6 +901,24 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .quiz-screen .lesson-actions {
+  padding-top: 8px;
+}
+
+.underline-screen .status-strip {
+  margin-bottom: 10px;
+}
+
+.underline-screen .prompt-panel {
+  padding: 12px 16px;
+  margin-bottom: 10px;
+}
+
+.underline-screen .chinese-prompt {
+  min-height: 84px;
+  font-size: clamp(22px, 4.5vw, 36px);
+}
+
+.underline-screen .lesson-actions {
   padding-top: 8px;
 }
 
@@ -1053,41 +1180,48 @@ input[type="range"]::-moz-range-thumb {
     gap: 12px;
   }
 
-  .quiz-screen .lesson-header {
+  .quiz-screen .lesson-header,
+  .underline-screen .lesson-header {
     grid-template-columns: 74px minmax(0, 1fr) 122px;
     gap: 8px;
     align-items: center;
     margin-bottom: 10px;
   }
 
-  .quiz-screen .lesson-header h2 {
+  .quiz-screen .lesson-header h2,
+  .underline-screen .lesson-header h2 {
     font-size: clamp(17px, 4.5vw, 20px);
     text-align: left;
   }
 
-  .quiz-screen .lesson-header .topline {
+  .quiz-screen .lesson-header .topline,
+  .underline-screen .lesson-header .topline {
     font-size: 10px;
     text-align: left;
   }
 
-  .quiz-screen .ghost-btn {
+  .quiz-screen .ghost-btn,
+  .underline-screen .ghost-btn {
     min-height: 40px;
     padding: 0 9px;
   }
 
-  .quiz-screen .header-tools {
+  .quiz-screen .header-tools,
+  .underline-screen .header-tools {
     justify-self: end;
     align-items: center;
   }
 
-  .quiz-screen .sound-btn {
+  .quiz-screen .sound-btn,
+  .underline-screen .sound-btn {
     width: 42px;
     min-width: 42px;
     height: 42px;
     font-size: 21px;
   }
 
-  .quiz-screen .counter {
+  .quiz-screen .counter,
+  .underline-screen .counter {
     min-width: 72px;
     padding: 8px 7px;
   }
@@ -1176,6 +1310,22 @@ input[type="range"]::-moz-range-thumb {
   }
 
   .builder-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .underline-board {
+    min-height: 128px;
+    gap: 8px 6px;
+    padding: 12px;
+  }
+
+  .underline-token {
+    min-height: 40px;
+    padding: 5px 6px;
+    font-size: clamp(18px, 5vw, 24px);
+  }
+
+  .underline-actions {
     grid-template-columns: 1fr;
   }
 }

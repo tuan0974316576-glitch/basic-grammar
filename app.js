@@ -317,13 +317,56 @@ const SENTENCE_BUILD_QUESTIONS = [
   { id: "q150", zh: "他們看電視。", answer: ["They", "watch", "TV."], distractors: ["watches", "are"] }
 ];
 
+function makeUnderlineQuestion(id, segments) {
+  return {
+    id,
+    text: segments.flat().join(" "),
+    segments
+  };
+}
+
+const SENTENCE_UNDERLINE_QUESTIONS = [
+  makeUnderlineQuestion("su001", [["China", "is", "a", "good", "country."], ["I", "love", "it."]]),
+  makeUnderlineQuestion("su002", [["Tom", "is", "tired."], ["He", "wants", "to", "sleep."]]),
+  makeUnderlineQuestion("su003", [["I", "like", "English."], ["It", "is", "fun."]]),
+  makeUnderlineQuestion("su004", [["My", "mum", "cooks", "dinner."], ["We", "eat", "rice."]]),
+  makeUnderlineQuestion("su005", [["The", "weather", "is", "hot."], ["I", "drink", "water."]]),
+  makeUnderlineQuestion("su006", [["I", "think"], ["you", "are", "right."]]),
+  makeUnderlineQuestion("su007", [["She", "thinks"], ["Tom", "is", "kind."]]),
+  makeUnderlineQuestion("su008", [["We", "believe"], ["they", "can", "win."]]),
+  makeUnderlineQuestion("su009", [["Tom", "said"], ["Mary", "is", "late."]]),
+  makeUnderlineQuestion("su010", [["Mum", "said"], ["I", "can", "go."]]),
+  makeUnderlineQuestion("su011", [["I", "am", "happy", "that"], ["you", "can", "come."]]),
+  makeUnderlineQuestion("su012", [["She", "is", "sad", "that"], ["Tom", "cannot", "play."]]),
+  makeUnderlineQuestion("su013", [["He", "told", "me", "that"], ["he", "is", "busy."]]),
+  makeUnderlineQuestion("su014", [["We", "know", "that"], ["they", "like", "English."]]),
+  makeUnderlineQuestion("su015", [["I", "hope", "that"], ["you", "are", "ready."]]),
+  makeUnderlineQuestion("su016", [["I", "like", "tea", "and"], ["Mary", "likes", "coffee."]]),
+  makeUnderlineQuestion("su017", [["Tom", "is", "tired", "but"], ["he", "keeps", "working."]]),
+  makeUnderlineQuestion("su018", [["You", "should", "hurry", "or"], ["you", "will", "be", "late."]]),
+  makeUnderlineQuestion("su019", [["It", "is", "raining", "so"], ["we", "stay", "home."]]),
+  makeUnderlineQuestion("su020", [["I", "can", "sing", "and"], ["you", "can", "dance."]]),
+  makeUnderlineQuestion("su021", [["She", "likes", "dogs", "but"], ["Tom", "likes", "cats."]]),
+  makeUnderlineQuestion("su022", [["You", "should", "give", "me", "the", "password", "or"], ["you", "may", "lose", "all", "the", "money."]]),
+  makeUnderlineQuestion("su023", [["I", "think"], ["you", "are", "smart", "and"], ["you", "can", "help", "me."]]),
+  makeUnderlineQuestion("su024", [["Tom", "said"], ["Mary", "is", "happy", "but"], ["he", "is", "sad."]]),
+  makeUnderlineQuestion("su025", [["I", "am", "glad", "that"], ["you", "are", "here", "and"], ["we", "can", "start."]]),
+  makeUnderlineQuestion("su026", [["She", "believes"], ["I", "am", "right", "but"], ["you", "disagree."]]),
+  makeUnderlineQuestion("su027", [["I", "know", "that"], ["he", "likes", "music."]]),
+  makeUnderlineQuestion("su028", [["They", "said"], ["we", "are", "early."]]),
+  makeUnderlineQuestion("su029", [["I", "love", "Hong", "Kong."], ["It", "is", "my", "home."]]),
+  makeUnderlineQuestion("su030", [["You", "can", "take", "the", "bus", "or"], ["you", "can", "walk", "home."]])
+];
+
 const LESSON1_ID = "lesson1";
 const LESSON2_ID = "lesson2";
 const QUIZ1_ID = "quiz1";
+const SENTENCE_UNDERLINE_ID = "sentence-underline";
 const LESSON_PROGRESS_KEYS = {
   [LESSON1_ID]: "basic_grammar_lesson_01_progress_v2",
   [LESSON2_ID]: "basic_grammar_lesson_02_progress_v1",
-  [QUIZ1_ID]: "basic_grammar_quiz_01_progress_v1"
+  [QUIZ1_ID]: "basic_grammar_quiz_01_progress_v1",
+  [SENTENCE_UNDERLINE_ID]: "basic_grammar_sentence_underline_progress_v1"
 };
 const LESSONS = {
   [LESSON1_ID]: {
@@ -343,6 +386,12 @@ const LESSONS = {
     kicker: "Quiz 1",
     title: "重組英文句子",
     questions: SENTENCE_BUILD_QUESTIONS
+  },
+  [SENTENCE_UNDERLINE_ID]: {
+    id: SENTENCE_UNDERLINE_ID,
+    kicker: "Lesson 03",
+    title: "何謂句子",
+    questions: SENTENCE_UNDERLINE_QUESTIONS
   }
 };
 
@@ -354,6 +403,7 @@ const CATEGORY_LABELS = {
   be: "「是」句",
   adjective: "形容詞句"
 };
+const UNDERLINE_COLOR_COUNT = 4;
 const QUESTION_WEIGHTS = {
   action: 0.5,
   be: 0.3,
@@ -406,6 +456,7 @@ const state = {
   missedQuestionIds: [],
   reviewQuestions: [],
   selectedVerbIndexes: [],
+  selectedUnderlineColor: 0,
   streak: 0,
   bestStreak: getSavedBestStreak(),
   practiceCount: getSavedPracticeCount(),
@@ -419,6 +470,7 @@ const el = {
   menuProgressLesson1: document.querySelector("#menu-progress-lesson1"),
   menuProgressLesson2: document.querySelector("#menu-progress-lesson2"),
   menuProgressQuiz1: document.querySelector("#menu-progress-quiz1"),
+  menuProgressSentenceUnderline: document.querySelector("#menu-progress-sentence-underline"),
   menuCoachLine: document.querySelector("#menu-coach-line"),
   practiceCountInput: document.querySelector("#practice-count"),
   practiceCountOutput: document.querySelector("#practice-count-output"),
@@ -448,6 +500,11 @@ const el = {
   wordBank: document.querySelector("#word-bank"),
   resetBuilderBtn: document.querySelector("#reset-builder-btn"),
   confirmBuilderBtn: document.querySelector("#confirm-builder-btn"),
+  sentenceUnderlineChoice: document.querySelector("#sentence-underline-choice"),
+  underlineBoard: document.querySelector("#underline-board"),
+  underlinePalette: document.querySelector("#underline-palette"),
+  resetUnderlineBtn: document.querySelector("#reset-underline-btn"),
+  confirmUnderlineBtn: document.querySelector("#confirm-underline-btn"),
   englishCard: document.querySelector("#english-card"),
   englishText: document.querySelector("#english-text"),
   feedback: document.querySelector("#feedback"),
@@ -745,11 +802,15 @@ function updateMenuProgress() {
   const lesson1Progress = getProgress(LESSON1_ID);
   const lesson2Progress = getProgress(LESSON2_ID);
   const quiz1Progress = getProgress(QUIZ1_ID);
+  const underlineProgress = getProgress(SENTENCE_UNDERLINE_ID);
   el.menuProgressLesson1.textContent = `${lesson1Progress}/${getLessonTotal(LESSON1_ID)}`;
   el.menuProgressLesson2.textContent = `${lesson2Progress}/${getLessonTotal(LESSON2_ID)}`;
   el.menuProgressQuiz1.textContent = `${quiz1Progress}/${getLessonTotal(QUIZ1_ID)}`;
+  el.menuProgressSentenceUnderline.textContent = `${underlineProgress}/${getLessonTotal(SENTENCE_UNDERLINE_ID)}`;
 
-  if (quiz1Progress >= getLessonTotal(QUIZ1_ID)) {
+  if (underlineProgress >= getLessonTotal(SENTENCE_UNDERLINE_ID)) {
+    el.menuCoachLine.textContent = "Lesson 03 已完成，可以再挑戰分句速度。";
+  } else if (quiz1Progress >= getLessonTotal(QUIZ1_ID)) {
     el.menuCoachLine.textContent = "Quiz 1 已完成，可以再挑戰更快砌句子。";
   } else if (lesson2Progress >= getLessonTotal(LESSON2_ID)) {
     el.menuCoachLine.textContent = "Lesson 02 已完成，可以挑戰 Quiz 1。";
@@ -808,6 +869,7 @@ function showOnlyChoice(choice) {
   el.verbCountChoice.classList.toggle("hidden", choice !== "verbCount");
   el.verbTokenChoice.classList.toggle("hidden", choice !== "verbTokens");
   el.sentenceBuilderChoice.classList.toggle("hidden", choice !== "builder");
+  el.sentenceUnderlineChoice.classList.toggle("hidden", choice !== "underline");
 }
 
 function currentQuestion() {
@@ -861,6 +923,7 @@ function prepareRun(mode, lessonId, questions) {
   state.streak = 0;
   state.missedQuestionIds = [];
   state.selectedVerbIndexes = [];
+  state.selectedUnderlineColor = 0;
   state.resolved = false;
   state.questions = questions;
   updateLessonChrome();
@@ -904,12 +967,15 @@ function renderQuestion() {
   el.nextBtn.classList.add("hidden");
   el.restartBtn.classList.add("hidden");
   el.lessonScreen.classList.toggle("quiz-screen", state.lessonId === QUIZ1_ID);
+  el.lessonScreen.classList.toggle("underline-screen", state.lessonId === SENTENCE_UNDERLINE_ID);
   el.chinesePrompt.classList.toggle("english-prompt", state.lessonId === LESSON2_ID);
   el.chinesePrompt.classList.toggle("builder-prompt", state.lessonId === QUIZ1_ID);
   el.ruleCard.classList.toggle("hidden", state.lessonId !== LESSON2_ID);
   el.verbTokenGrid.replaceChildren();
   el.sentenceSlots.replaceChildren();
   el.wordBank.replaceChildren();
+  el.underlineBoard.replaceChildren();
+  el.underlinePalette.replaceChildren();
   setFeedback();
 
   if (state.lessonId === LESSON2_ID) {
@@ -919,6 +985,11 @@ function renderQuestion() {
 
   if (state.lessonId === QUIZ1_ID) {
     renderSentenceBuilderQuestion(question);
+    return;
+  }
+
+  if (state.lessonId === SENTENCE_UNDERLINE_ID) {
+    renderSentenceUnderlineQuestion(question);
     return;
   }
 
@@ -964,6 +1035,44 @@ function renderSentenceBuilderQuestion(question) {
 
   updateBuilderControls();
   showOnlyChoice("builder");
+}
+
+function getUnderlineTokens(question) {
+  return question.segments.flat();
+}
+
+function renderSentenceUnderlineQuestion(question) {
+  el.stepLabel.textContent = "English sentence";
+  el.categoryPill.textContent = "Sentence";
+  el.categoryPill.dataset.type = "underline";
+  el.chinesePrompt.textContent = question.text;
+  el.guidance.textContent = "用唔同顏色 underline 每個句子。";
+  state.selectedUnderlineColor = 0;
+
+  for (let index = 0; index < UNDERLINE_COLOR_COUNT; index += 1) {
+    const button = document.createElement("button");
+    button.className = "underline-color-btn";
+    button.type = "button";
+    button.textContent = String(index + 1);
+    button.dataset.colorIndex = String(index);
+    button.classList.toggle("selected", index === state.selectedUnderlineColor);
+    button.setAttribute("aria-pressed", String(index === state.selectedUnderlineColor));
+    button.addEventListener("click", () => selectUnderlineColor(index));
+    el.underlinePalette.append(button);
+  }
+
+  getUnderlineTokens(question).forEach((token, index) => {
+    const button = document.createElement("button");
+    button.className = "underline-token";
+    button.type = "button";
+    button.textContent = token;
+    button.dataset.tokenIndex = String(index);
+    button.addEventListener("click", () => toggleUnderlineToken(button));
+    el.underlineBoard.append(button);
+  });
+
+  updateUnderlineControls();
+  showOnlyChoice("underline");
 }
 
 function completeQuestion(message) {
@@ -1343,6 +1452,104 @@ function submitSentenceBuilder() {
   completeVerbLessonQuestion(getSentenceBuilderFeedback(question, true));
 }
 
+function selectUnderlineColor(colorIndex) {
+  if (state.resolved) return;
+
+  state.selectedUnderlineColor = colorIndex;
+  el.underlinePalette.querySelectorAll(".underline-color-btn").forEach((button) => {
+    const selected = Number(button.dataset.colorIndex) === colorIndex;
+    button.classList.toggle("selected", selected);
+    button.setAttribute("aria-pressed", String(selected));
+  });
+  playUiSound("step");
+}
+
+function toggleUnderlineToken(button) {
+  if (state.resolved) return;
+
+  const selectedColor = String(state.selectedUnderlineColor);
+  const alreadySelected = button.dataset.group === selectedColor;
+  if (alreadySelected) {
+    delete button.dataset.group;
+  } else {
+    button.dataset.group = selectedColor;
+  }
+
+  updateUnderlineControls();
+  playUiSound("step");
+}
+
+function resetSentenceUnderline() {
+  if (state.resolved) return;
+
+  el.underlineBoard.querySelectorAll(".underline-token").forEach((button) => {
+    delete button.dataset.group;
+  });
+  updateUnderlineControls();
+  playUiSound("next");
+}
+
+function updateUnderlineControls() {
+  const hasSelection = [...el.underlineBoard.querySelectorAll(".underline-token")]
+    .some((button) => button.dataset.group !== undefined);
+  el.resetUnderlineBtn.disabled = !hasSelection;
+  el.confirmUnderlineBtn.disabled = !hasSelection;
+}
+
+function getExpectedUnderlineGroups(question) {
+  return question.segments.flatMap((segment, segmentIndex) => segment.map(() => segmentIndex));
+}
+
+function getPickedUnderlineGroups() {
+  return [...el.underlineBoard.querySelectorAll(".underline-token")].map((button) => {
+    if (button.dataset.group === undefined) return null;
+    return Number(button.dataset.group);
+  });
+}
+
+function normalizePickedGroups(groups) {
+  const colorMap = new Map();
+  let nextGroup = 0;
+
+  return groups.map((group) => {
+    if (group === null) return null;
+    if (!colorMap.has(group)) {
+      colorMap.set(group, nextGroup);
+      nextGroup += 1;
+    }
+    return colorMap.get(group);
+  });
+}
+
+function getUnderlineFeedback(question, isCorrect) {
+  const count = question.segments.length;
+  const answer = question.segments
+    .map((segment, index) => `${index + 1}. ${segment.join(" ")}`)
+    .join("  ");
+
+  return [
+    { text: isCorrect ? `正確，這一句有 ${count} 個句子。` : `這一句有 ${count} 個句子。` },
+    { text: `正確答案：${answer}`, className: "answer-line" }
+  ];
+}
+
+function submitSentenceUnderline() {
+  const question = currentQuestion();
+  if (!question || state.lessonId !== SENTENCE_UNDERLINE_ID || state.resolved) return;
+
+  const expectedGroups = getExpectedUnderlineGroups(question);
+  const pickedGroups = normalizePickedGroups(getPickedUnderlineGroups());
+  const matched = pickedGroups.length === expectedGroups.length
+    && pickedGroups.every((group, index) => group !== null && group === expectedGroups[index]);
+
+  if (!matched) {
+    recordWrong(getUnderlineFeedback(question, false));
+    return;
+  }
+
+  completeVerbLessonQuestion(getUnderlineFeedback(question, true));
+}
+
 function nextQuestion() {
   cancelSpeech();
   const wasLastQuestion = state.index >= state.questions.length - 1;
@@ -1397,12 +1604,15 @@ function renderReviewSummary() {
 }
 
 function getQuestionPrompt(question) {
-  return question.zh || question.sentence || "";
+  return question.zh || question.sentence || question.text || "";
 }
 
 function getResultMessage(percent, mistakes, mode) {
   if (mode === "review" && mistakes === 0) return "錯題已清晒，返去挑戰新一輪。";
   if (mode === "review") return "差少少，再重練今輪錯題就得。";
+  if (state.lessonId === SENTENCE_UNDERLINE_ID && percent === 100 && mistakes === 0) return "滿分！你分到每個句子嘅邊界。";
+  if (state.lessonId === SENTENCE_UNDERLINE_ID && percent >= 80) return "好穩陣！繼續留意 that、and、but、so、or 後面。";
+  if (state.lessonId === SENTENCE_UNDERLINE_ID) return "慢慢嚟，先搵主語同動詞，再分顏色。";
   if (state.lessonId === QUIZ1_ID && percent === 100 && mistakes === 0) return "滿分！你可以由中文準確砌出英文句子。";
   if (state.lessonId === QUIZ1_ID && percent >= 80) return "好穩陣！繼續練主語、動詞同句尾次序。";
   if (state.lessonId === QUIZ1_ID) return "慢慢嚟，先搵主語，再搵動詞，最後補完整句。";
@@ -1477,6 +1687,8 @@ document.querySelectorAll("[data-verb-count]").forEach((button) => {
 el.submitVerbsBtn.addEventListener("click", submitVerbTokens);
 el.resetBuilderBtn.addEventListener("click", resetSentenceBuilder);
 el.confirmBuilderBtn.addEventListener("click", submitSentenceBuilder);
+el.resetUnderlineBtn.addEventListener("click", resetSentenceUnderline);
+el.confirmUnderlineBtn.addEventListener("click", submitSentenceUnderline);
 
 updateMenuProgress();
 syncPracticeCount();
