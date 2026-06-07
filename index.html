@@ -12,49 +12,53 @@
       <div class="topline">English Grammar Practice</div>
       <h1 id="app-title">Basic English Grammar Game</h1>
 
-      <div class="lesson-list">
-        <div class="coach-card" aria-label="Grammar coach">
-          <img src="assets/grammar-coach.svg" alt="">
-          <div>
-            <span>Coach</span>
-            <strong id="menu-coach-line">今日由句子分析開始。</strong>
+      <div class="menu-layout">
+        <div class="menu-control-panel">
+          <div class="coach-card" aria-label="Grammar coach">
+            <img src="assets/grammar-coach.svg" alt="">
+            <div>
+              <span>Coach</span>
+              <strong id="menu-coach-line">今日由句子分析開始。</strong>
+            </div>
+          </div>
+
+          <div class="practice-control">
+            <label class="slider-label" for="practice-count">
+              <span>練習題數</span>
+              <output id="practice-count-output" for="practice-count">20 題</output>
+            </label>
+            <input id="practice-count" type="range" min="10" max="100" step="5" value="20">
           </div>
         </div>
 
-        <div class="practice-control">
-          <label class="slider-label" for="practice-count">
-            <span>練習題數</span>
-            <output id="practice-count-output" for="practice-count">20 題</output>
-          </label>
-          <input id="practice-count" type="range" min="10" max="100" step="5" value="20">
+        <div class="lesson-picker" aria-label="課題">
+          <button class="lesson-card" type="button" data-start-lesson="lesson1">
+            <span class="lesson-kicker">Lesson 01</span>
+            <strong>分辨句子是否有主動動詞</strong>
+            <span class="lesson-meta">
+              <span>分辨句子何時要 is/am/are</span>
+              <span id="menu-progress-lesson1">0/100</span>
+            </span>
+          </button>
+
+          <button class="lesson-card" type="button" data-start-lesson="lesson2">
+            <span class="lesson-kicker">Lesson 02</span>
+            <strong>一句句子必須只有一個動詞</strong>
+            <span class="lesson-meta">
+              <span>分辨正確句、沒有動詞、兩個動詞</span>
+              <span id="menu-progress-lesson2">0/100</span>
+            </span>
+          </button>
+
+          <button class="lesson-card" type="button" data-start-lesson="quiz1">
+            <span class="lesson-kicker">Quiz 1</span>
+            <strong>重組英文句子</strong>
+            <span class="lesson-meta">
+              <span>看中文，砌出正確英文句子</span>
+              <span id="menu-progress-quiz1">0/50</span>
+            </span>
+          </button>
         </div>
-
-        <button class="lesson-card" type="button" data-start-lesson="lesson1">
-          <span class="lesson-kicker">Lesson 01</span>
-          <strong>分辨句子是否有主動動詞</strong>
-          <span class="lesson-meta">
-            <span>分辨句子何時要 is/am/are</span>
-            <span id="menu-progress-lesson1">0/100</span>
-          </span>
-        </button>
-
-        <button class="lesson-card" type="button" data-start-lesson="lesson2">
-          <span class="lesson-kicker">Lesson 02</span>
-          <strong>一句句子必須只有一個動詞</strong>
-          <span class="lesson-meta">
-            <span>分辨正確句、沒有動詞、兩個動詞</span>
-            <span id="menu-progress-lesson2">0/100</span>
-          </span>
-        </button>
-
-        <button class="lesson-card" type="button" data-start-lesson="quiz1">
-          <span class="lesson-kicker">Quiz 1</span>
-          <strong>重組英文句子</strong>
-          <span class="lesson-meta">
-            <span>看中文，砌出正確英文句子</span>
-            <span id="menu-progress-quiz1">0/50</span>
-          </span>
-        </button>
       </div>
     </section>
 
