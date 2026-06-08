@@ -1486,9 +1486,19 @@ input[type="range"]::-moz-range-thumb {
   }
 
   .choice-grid,
-  .be-grid,
   .result-grid {
     grid-template-columns: 1fr;
+  }
+
+  .be-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .be-grid .option-btn {
+    min-height: 60px;
+    padding: 8px 6px;
+    font-size: clamp(18px, 5vw, 22px);
   }
 
   .status-strip {
