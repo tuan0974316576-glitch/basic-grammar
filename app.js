@@ -404,6 +404,7 @@ const CATEGORY_LABELS = {
   adjective: "形容詞句"
 };
 const UNDERLINE_COLOR_COUNT = 4;
+const OPTIONAL_UNDERLINE_CONNECTORS = new Set(["and", "but", "so", "or", "that"]);
 const QUESTION_WEIGHTS = {
   action: 0.5,
   be: 0.3,
@@ -1574,8 +1575,21 @@ function updateUnderlineControls() {
   el.confirmUnderlineBtn.disabled = !hasSelection;
 }
 
-function getExpectedUnderlineGroups(question) {
-  return question.segments.flatMap((segment, segmentIndex) => segment.map(() => segmentIndex));
+function normalizeUnderlineToken(token) {
+  return token.toLowerCase().replace(/[^a-z]/g, "");
+}
+
+function getExpectedUnderlineTokens(question) {
+  return question.segments.flatMap((segment, segmentIndex) => {
+    const canStartNextSentence = segmentIndex < question.segments.length - 1;
+
+    return segment.map((token, tokenIndex) => ({
+      group: segmentIndex,
+      optional: canStartNextSentence
+        && tokenIndex === segment.length - 1
+        && OPTIONAL_UNDERLINE_CONNECTORS.has(normalizeUnderlineToken(token))
+    }));
+  });
 }
 
 function getPickedUnderlineGroups() {
@@ -1585,17 +1599,22 @@ function getPickedUnderlineGroups() {
   });
 }
 
-function normalizePickedGroups(groups) {
+function isUnderlineAnswerMatched(question, pickedGroups) {
+  const expectedTokens = getExpectedUnderlineTokens(question);
+  if (pickedGroups.length !== expectedTokens.length) return false;
+
   const colorMap = new Map();
   let nextGroup = 0;
 
-  return groups.map((group) => {
-    if (group === null) return null;
+  return pickedGroups.every((group, index) => {
+    const expected = expectedTokens[index];
+    if (expected.optional) return true;
+    if (group === null) return false;
     if (!colorMap.has(group)) {
       colorMap.set(group, nextGroup);
       nextGroup += 1;
     }
-    return colorMap.get(group);
+    return colorMap.get(group) === expected.group;
   });
 }
 
@@ -1615,10 +1634,8 @@ function submitSentenceUnderline() {
   const question = currentQuestion();
   if (!question || state.lessonId !== SENTENCE_UNDERLINE_ID || state.resolved) return;
 
-  const expectedGroups = getExpectedUnderlineGroups(question);
-  const pickedGroups = normalizePickedGroups(getPickedUnderlineGroups());
-  const matched = pickedGroups.length === expectedGroups.length
-    && pickedGroups.every((group, index) => group !== null && group === expectedGroups[index]);
+  const pickedGroups = getPickedUnderlineGroups();
+  const matched = isUnderlineAnswerMatched(question, pickedGroups);
 
   if (!matched) {
     recordWrong(getUnderlineFeedback(question, false));
