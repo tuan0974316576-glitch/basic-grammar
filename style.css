@@ -531,6 +531,12 @@ input[type="range"]::-moz-range-thumb {
   box-shadow: 0 3px 0 #c6dafc;
 }
 
+.category-pill[data-type="pronoun"] {
+  color: #176b5f;
+  background: #d8fbf8;
+  box-shadow: 0 3px 0 #a7e4df;
+}
+
 .category-pill[data-type="done"] {
   color: var(--correct-dark);
   background: var(--soft-green);
@@ -772,6 +778,122 @@ input[type="range"]::-moz-range-thumb {
   margin-bottom: 12px;
 }
 
+.pronoun-match {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.pronoun-match-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 12px;
+  align-items: stretch;
+}
+
+.pronoun-match-board,
+.pronoun-word-bank {
+  min-height: 244px;
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 22px;
+}
+
+.pronoun-match-board {
+  background: var(--soft-blue);
+  border: 3px dashed var(--primary-color);
+  box-shadow: 0 5px 0 #bde0e1;
+}
+
+.pronoun-word-bank {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-content: center;
+  background: var(--soft-yellow);
+  border: 3px dashed var(--secondary-dark);
+  box-shadow: 0 5px 0 rgba(255, 183, 3, 0.2);
+}
+
+.pronoun-slot {
+  min-height: 48px;
+  display: grid;
+  grid-template-columns: minmax(72px, 0.82fr) minmax(74px, 1fr);
+  gap: 8px;
+  align-items: center;
+  padding: 8px 10px;
+  color: #5d4037;
+  cursor: pointer;
+  background: #ffffff;
+  border: 3px dashed var(--border-color);
+  border-radius: 16px;
+  box-shadow: 0 4px 0 #e9ecef;
+  transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease, background 120ms ease, color 120ms ease;
+}
+
+.pronoun-slot:hover,
+.pronoun-slot.selected {
+  color: var(--primary-dark);
+  background: #ffffff;
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #bde0e1;
+}
+
+.pronoun-slot-label,
+.pronoun-slot-value {
+  min-width: 0;
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+.pronoun-slot-label {
+  font-size: 18px;
+  text-align: left;
+}
+
+.pronoun-slot-value {
+  min-height: 34px;
+  display: grid;
+  place-items: center;
+  padding: 4px 8px;
+  color: var(--primary-dark);
+  font-size: 21px;
+  background: #f8f9fa;
+  border: 2px dashed #cfd4da;
+  border-radius: 12px;
+}
+
+.pronoun-slot.filled .pronoun-slot-value {
+  color: #ffffff;
+  background: var(--primary-color);
+  border-color: var(--primary-dark);
+}
+
+.pronoun-word {
+  min-width: 0;
+  min-height: 58px;
+  padding: 8px 10px;
+  font-size: 22px;
+}
+
+.pronoun-word.selected {
+  color: #ffffff;
+  background: var(--primary-color);
+  border-color: var(--primary-dark);
+  box-shadow: 0 5px 0 var(--primary-dark);
+}
+
+.pronoun-word.placed {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.pronoun-actions {
+  display: grid;
+  grid-template-columns: minmax(120px, 0.7fr) minmax(160px, 1fr);
+  gap: 12px;
+}
+
 .chinese-prompt.underline-prompt {
   min-height: 118px;
   display: flex;
@@ -971,6 +1093,42 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .underline-screen .lesson-actions {
+  padding-top: 8px;
+}
+
+.pronoun-screen .status-strip {
+  margin-bottom: 8px;
+}
+
+.pronoun-screen .status-strip div {
+  min-height: 56px;
+}
+
+.pronoun-screen .status-strip > div > span {
+  font-size: 10px;
+}
+
+.pronoun-screen .status-strip strong {
+  font-size: 28px;
+}
+
+.pronoun-screen .prompt-panel {
+  padding: 10px 16px;
+  margin-bottom: 10px;
+}
+
+.chinese-prompt.pronoun-prompt {
+  min-height: 66px;
+  padding: 4px 6px;
+  font-size: 44px;
+}
+
+.pronoun-screen .guidance {
+  min-height: 20px;
+  font-size: 12px;
+}
+
+.pronoun-screen .lesson-actions {
   padding-top: 8px;
 }
 
@@ -1233,7 +1391,8 @@ input[type="range"]::-moz-range-thumb {
   }
 
   .quiz-screen .lesson-header,
-  .underline-screen .lesson-header {
+  .underline-screen .lesson-header,
+  .pronoun-screen .lesson-header {
     grid-template-columns: 74px minmax(0, 1fr) 122px;
     gap: 8px;
     align-items: center;
@@ -1241,31 +1400,36 @@ input[type="range"]::-moz-range-thumb {
   }
 
   .quiz-screen .lesson-header h2,
-  .underline-screen .lesson-header h2 {
+  .underline-screen .lesson-header h2,
+  .pronoun-screen .lesson-header h2 {
     font-size: clamp(17px, 4.5vw, 20px);
     text-align: left;
   }
 
   .quiz-screen .lesson-header .topline,
-  .underline-screen .lesson-header .topline {
+  .underline-screen .lesson-header .topline,
+  .pronoun-screen .lesson-header .topline {
     font-size: 10px;
     text-align: left;
   }
 
   .quiz-screen .ghost-btn,
-  .underline-screen .ghost-btn {
+  .underline-screen .ghost-btn,
+  .pronoun-screen .ghost-btn {
     min-height: 40px;
     padding: 0 9px;
   }
 
   .quiz-screen .header-tools,
-  .underline-screen .header-tools {
+  .underline-screen .header-tools,
+  .pronoun-screen .header-tools {
     justify-self: end;
     align-items: center;
   }
 
   .quiz-screen .sound-btn,
-  .underline-screen .sound-btn {
+  .underline-screen .sound-btn,
+  .pronoun-screen .sound-btn {
     width: 42px;
     min-width: 42px;
     height: 42px;
@@ -1273,7 +1437,8 @@ input[type="range"]::-moz-range-thumb {
   }
 
   .quiz-screen .counter,
-  .underline-screen .counter {
+  .underline-screen .counter,
+  .pronoun-screen .counter {
     min-width: 72px;
     padding: 8px 7px;
   }
@@ -1379,5 +1544,76 @@ input[type="range"]::-moz-range-thumb {
 
   .underline-actions {
     grid-template-columns: 1fr;
+  }
+
+  .pronoun-screen .status-strip {
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+
+  .pronoun-screen .status-strip div {
+    min-height: 54px;
+    border-radius: 14px;
+  }
+
+  .pronoun-screen .prompt-panel {
+    padding: 8px 12px;
+    margin-bottom: 8px;
+  }
+
+  .chinese-prompt.pronoun-prompt {
+    min-height: 54px;
+    font-size: 38px;
+  }
+
+  .pronoun-screen .guidance {
+    display: none;
+  }
+
+  .pronoun-match {
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .pronoun-match-grid {
+    gap: 8px;
+  }
+
+  .pronoun-match-board,
+  .pronoun-word-bank {
+    min-height: 214px;
+    gap: 8px;
+    padding: 9px;
+    border-radius: 18px;
+  }
+
+  .pronoun-slot {
+    min-height: 42px;
+    grid-template-columns: minmax(54px, 0.76fr) minmax(56px, 1fr);
+    gap: 5px;
+    padding: 6px;
+    border-radius: 14px;
+  }
+
+  .pronoun-slot-label {
+    font-size: 15px;
+  }
+
+  .pronoun-slot-value {
+    min-height: 30px;
+    padding: 3px 5px;
+    font-size: 17px;
+    border-radius: 10px;
+  }
+
+  .pronoun-word {
+    min-height: 48px;
+    padding: 6px;
+    font-size: 18px;
+  }
+
+  .pronoun-actions {
+    grid-template-columns: 1fr;
+    gap: 8px;
   }
 }

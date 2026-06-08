@@ -358,15 +358,62 @@ const SENTENCE_UNDERLINE_QUESTIONS = [
   makeUnderlineQuestion("su030", [["You", "can", "take", "the", "bus", "or"], ["you", "can", "walk", "home."]])
 ];
 
+const PRONOUN_CATEGORIES = [
+  { key: "subject", label: "主語" },
+  { key: "object", label: "非主語" },
+  { key: "possessiveAdjective", label: "的" },
+  { key: "possessivePronoun", label: "的東西" }
+];
+
+const PRONOUN_MATCH_QUESTIONS = [
+  {
+    id: "pm001",
+    zh: "我",
+    forms: { subject: "I", object: "me", possessiveAdjective: "my", possessivePronoun: "mine" }
+  },
+  {
+    id: "pm002",
+    zh: "你",
+    forms: { subject: "You", object: "you", possessiveAdjective: "your", possessivePronoun: "yours" }
+  },
+  {
+    id: "pm003",
+    zh: "我們",
+    forms: { subject: "We", object: "us", possessiveAdjective: "our", possessivePronoun: "ours" }
+  },
+  {
+    id: "pm004",
+    zh: "他們",
+    forms: { subject: "They", object: "them", possessiveAdjective: "their", possessivePronoun: "theirs" }
+  },
+  {
+    id: "pm005",
+    zh: "他",
+    forms: { subject: "He", object: "him", possessiveAdjective: "his", possessivePronoun: "his" }
+  },
+  {
+    id: "pm006",
+    zh: "她",
+    forms: { subject: "She", object: "her", possessiveAdjective: "her", possessivePronoun: "hers" }
+  },
+  {
+    id: "pm007",
+    zh: "它/牠",
+    forms: { subject: "It", object: "it", possessiveAdjective: "its", possessivePronoun: "its" }
+  }
+];
+
 const LESSON1_ID = "lesson1";
 const LESSON2_ID = "lesson2";
 const QUIZ1_ID = "quiz1";
 const SENTENCE_UNDERLINE_ID = "sentence-underline";
+const PRONOUN_MATCH_ID = "pronoun-match";
 const LESSON_PROGRESS_KEYS = {
   [LESSON1_ID]: "basic_grammar_lesson_01_progress_v2",
   [LESSON2_ID]: "basic_grammar_lesson_02_progress_v1",
   [QUIZ1_ID]: "basic_grammar_quiz_01_progress_v1",
-  [SENTENCE_UNDERLINE_ID]: "basic_grammar_sentence_underline_progress_v1"
+  [SENTENCE_UNDERLINE_ID]: "basic_grammar_sentence_underline_progress_v1",
+  [PRONOUN_MATCH_ID]: "basic_grammar_pronoun_match_progress_v1"
 };
 const LESSONS = {
   [LESSON1_ID]: {
@@ -392,6 +439,12 @@ const LESSONS = {
     kicker: "Lesson 03",
     title: "何謂句子",
     questions: SENTENCE_UNDERLINE_QUESTIONS
+  },
+  [PRONOUN_MATCH_ID]: {
+    id: PRONOUN_MATCH_ID,
+    kicker: "Lesson 04",
+    title: "代名詞",
+    questions: PRONOUN_MATCH_QUESTIONS
   }
 };
 
@@ -460,6 +513,9 @@ const state = {
   selectedUnderlineColor: 0,
   underlineDragActive: false,
   underlineDragIndexes: [],
+  pronounMatches: {},
+  selectedPronounWordId: "",
+  selectedPronounSlotKey: "",
   streak: 0,
   bestStreak: getSavedBestStreak(),
   practiceCount: getSavedPracticeCount(),
@@ -474,6 +530,7 @@ const el = {
   menuProgressLesson2: document.querySelector("#menu-progress-lesson2"),
   menuProgressQuiz1: document.querySelector("#menu-progress-quiz1"),
   menuProgressSentenceUnderline: document.querySelector("#menu-progress-sentence-underline"),
+  menuProgressPronounMatch: document.querySelector("#menu-progress-pronoun-match"),
   menuCoachLine: document.querySelector("#menu-coach-line"),
   practiceCountInput: document.querySelector("#practice-count"),
   practiceCountOutput: document.querySelector("#practice-count-output"),
@@ -508,6 +565,11 @@ const el = {
   underlinePalette: document.querySelector("#underline-palette"),
   resetUnderlineBtn: document.querySelector("#reset-underline-btn"),
   confirmUnderlineBtn: document.querySelector("#confirm-underline-btn"),
+  pronounMatchChoice: document.querySelector("#pronoun-match-choice"),
+  pronounMatchBoard: document.querySelector("#pronoun-match-board"),
+  pronounWordBank: document.querySelector("#pronoun-word-bank"),
+  resetPronounBtn: document.querySelector("#reset-pronoun-btn"),
+  confirmPronounBtn: document.querySelector("#confirm-pronoun-btn"),
   englishCard: document.querySelector("#english-card"),
   englishText: document.querySelector("#english-text"),
   feedback: document.querySelector("#feedback"),
@@ -806,13 +868,17 @@ function updateMenuProgress() {
   const lesson2Progress = getProgress(LESSON2_ID);
   const quiz1Progress = getProgress(QUIZ1_ID);
   const underlineProgress = getProgress(SENTENCE_UNDERLINE_ID);
+  const pronounProgress = getProgress(PRONOUN_MATCH_ID);
   el.menuProgressLesson1.textContent = `${lesson1Progress}/${getLessonTotal(LESSON1_ID)}`;
   el.menuProgressLesson2.textContent = `${lesson2Progress}/${getLessonTotal(LESSON2_ID)}`;
   el.menuProgressQuiz1.textContent = `${quiz1Progress}/${getLessonTotal(QUIZ1_ID)}`;
   el.menuProgressSentenceUnderline.textContent = `${underlineProgress}/${getLessonTotal(SENTENCE_UNDERLINE_ID)}`;
+  el.menuProgressPronounMatch.textContent = `${pronounProgress}/${getLessonTotal(PRONOUN_MATCH_ID)}`;
 
-  if (underlineProgress >= getLessonTotal(SENTENCE_UNDERLINE_ID)) {
-    el.menuCoachLine.textContent = "Lesson 03 已完成，可以再挑戰分句速度。";
+  if (pronounProgress >= getLessonTotal(PRONOUN_MATCH_ID)) {
+    el.menuCoachLine.textContent = "Lesson 04 已完成，可以再挑戰代名詞速度。";
+  } else if (underlineProgress >= getLessonTotal(SENTENCE_UNDERLINE_ID)) {
+    el.menuCoachLine.textContent = "Lesson 03 已完成，可以挑戰 Lesson 04 代名詞。";
   } else if (quiz1Progress >= getLessonTotal(QUIZ1_ID)) {
     el.menuCoachLine.textContent = "Quiz 1 已完成，可以再挑戰更快砌句子。";
   } else if (lesson2Progress >= getLessonTotal(LESSON2_ID)) {
@@ -873,6 +939,7 @@ function showOnlyChoice(choice) {
   el.verbTokenChoice.classList.toggle("hidden", choice !== "verbTokens");
   el.sentenceBuilderChoice.classList.toggle("hidden", choice !== "builder");
   el.sentenceUnderlineChoice.classList.toggle("hidden", choice !== "underline");
+  el.pronounMatchChoice.classList.toggle("hidden", choice !== "pronoun");
 }
 
 function currentQuestion() {
@@ -929,6 +996,9 @@ function prepareRun(mode, lessonId, questions) {
   state.selectedUnderlineColor = 0;
   state.underlineDragActive = false;
   state.underlineDragIndexes = [];
+  state.pronounMatches = {};
+  state.selectedPronounWordId = "";
+  state.selectedPronounSlotKey = "";
   state.resolved = false;
   state.questions = questions;
   updateLessonChrome();
@@ -965,6 +1035,9 @@ function renderQuestion() {
   state.resolved = false;
   state.questionMistakes = 0;
   state.selectedVerbIndexes = [];
+  state.pronounMatches = {};
+  state.selectedPronounWordId = "";
+  state.selectedPronounSlotKey = "";
   el.questionNumber.textContent = String(state.index + 1);
   el.questionTotal.textContent = String(state.questions.length);
   updateLiveStats();
@@ -973,15 +1046,19 @@ function renderQuestion() {
   el.restartBtn.classList.add("hidden");
   el.lessonScreen.classList.toggle("quiz-screen", state.lessonId === QUIZ1_ID);
   el.lessonScreen.classList.toggle("underline-screen", state.lessonId === SENTENCE_UNDERLINE_ID);
+  el.lessonScreen.classList.toggle("pronoun-screen", state.lessonId === PRONOUN_MATCH_ID);
   el.chinesePrompt.classList.toggle("english-prompt", state.lessonId === LESSON2_ID);
   el.chinesePrompt.classList.toggle("builder-prompt", state.lessonId === QUIZ1_ID);
   el.chinesePrompt.classList.toggle("underline-prompt", state.lessonId === SENTENCE_UNDERLINE_ID);
+  el.chinesePrompt.classList.toggle("pronoun-prompt", state.lessonId === PRONOUN_MATCH_ID);
   el.ruleCard.classList.toggle("hidden", state.lessonId !== LESSON2_ID);
   el.verbTokenGrid.replaceChildren();
   el.sentenceSlots.replaceChildren();
   el.wordBank.replaceChildren();
   el.underlineBoard.replaceChildren();
   el.underlinePalette.replaceChildren();
+  el.pronounMatchBoard.replaceChildren();
+  el.pronounWordBank.replaceChildren();
   setFeedback();
 
   if (state.lessonId === LESSON2_ID) {
@@ -996,6 +1073,11 @@ function renderQuestion() {
 
   if (state.lessonId === SENTENCE_UNDERLINE_ID) {
     renderSentenceUnderlineQuestion(question);
+    return;
+  }
+
+  if (state.lessonId === PRONOUN_MATCH_ID) {
+    renderPronounMatchQuestion(question);
     return;
   }
 
@@ -1073,6 +1155,38 @@ function renderSentenceUnderlineQuestion(question) {
 
   updateUnderlineControls();
   showOnlyChoice("underline");
+}
+
+function renderPronounMatchQuestion(question) {
+  el.stepLabel.textContent = "中文代名詞";
+  el.categoryPill.textContent = "代名詞";
+  el.categoryPill.dataset.type = "pronoun";
+  el.chinesePrompt.textContent = question.zh;
+  el.guidance.textContent = "左邊中文用途，右邊英文代名詞。";
+
+  PRONOUN_CATEGORIES.forEach(({ key, label }) => {
+    const slot = document.createElement("button");
+    slot.className = "pronoun-slot";
+    slot.type = "button";
+    slot.dataset.pronounSlot = key;
+    slot.innerHTML = `<span class="pronoun-slot-label"></span><span class="pronoun-slot-value"></span>`;
+    slot.querySelector(".pronoun-slot-label").textContent = label;
+    slot.addEventListener("click", () => selectPronounSlot(key));
+    el.pronounMatchBoard.append(slot);
+  });
+
+  getPronounWordBlocks(question).forEach(({ id, text }) => {
+    const button = document.createElement("button");
+    button.className = "pronoun-word word-block";
+    button.type = "button";
+    button.textContent = text;
+    button.dataset.pronounWordId = id;
+    button.addEventListener("click", () => selectPronounWord(id));
+    el.pronounWordBank.append(button);
+  });
+
+  updatePronounMatchView();
+  showOnlyChoice("pronoun");
 }
 
 function completeQuestion(message) {
@@ -1452,6 +1566,145 @@ function submitSentenceBuilder() {
   completeVerbLessonQuestion(getSentenceBuilderFeedback(question, true));
 }
 
+function getPronounWordBlocks(question) {
+  return shuffle(PRONOUN_CATEGORIES.map(({ key }) => ({
+    id: key,
+    text: question.forms[key]
+  })));
+}
+
+function getPronounWordText(question, wordId) {
+  return PRONOUN_CATEGORIES.find(({ key }) => key === wordId)
+    ? question.forms[wordId]
+    : "";
+}
+
+function getPronounPlacedSlot(wordId) {
+  return Object.entries(state.pronounMatches)
+    .find(([, placedWordId]) => placedWordId === wordId)?.[0] || "";
+}
+
+function placePronounWord(wordId, slotKey) {
+  const previousSlot = getPronounPlacedSlot(wordId);
+  if (previousSlot) {
+    delete state.pronounMatches[previousSlot];
+  }
+  state.pronounMatches[slotKey] = wordId;
+  state.selectedPronounWordId = "";
+  state.selectedPronounSlotKey = "";
+  updatePronounMatchView();
+  setFeedback();
+  playUiSound("step");
+}
+
+function selectPronounWord(wordId) {
+  if (state.resolved) return;
+
+  if (state.selectedPronounSlotKey) {
+    placePronounWord(wordId, state.selectedPronounSlotKey);
+    return;
+  }
+
+  state.selectedPronounWordId = state.selectedPronounWordId === wordId ? "" : wordId;
+  updatePronounMatchView();
+  setFeedback();
+  playUiSound("step");
+}
+
+function selectPronounSlot(slotKey) {
+  if (state.resolved) return;
+
+  if (state.selectedPronounWordId) {
+    placePronounWord(state.selectedPronounWordId, slotKey);
+    return;
+  }
+
+  if (state.pronounMatches[slotKey]) {
+    delete state.pronounMatches[slotKey];
+    state.selectedPronounSlotKey = "";
+    updatePronounMatchView();
+    setFeedback();
+    playUiSound("next");
+    return;
+  }
+
+  state.selectedPronounSlotKey = state.selectedPronounSlotKey === slotKey ? "" : slotKey;
+  updatePronounMatchView();
+  setFeedback();
+  playUiSound("step");
+}
+
+function updatePronounMatchView() {
+  const question = currentQuestion();
+  if (!question) return;
+
+  el.pronounMatchBoard.querySelectorAll(".pronoun-slot").forEach((slot) => {
+    const slotKey = slot.dataset.pronounSlot;
+    const wordId = state.pronounMatches[slotKey] || "";
+    const value = slot.querySelector(".pronoun-slot-value");
+    slot.classList.toggle("selected", state.selectedPronounSlotKey === slotKey);
+    slot.classList.toggle("filled", Boolean(wordId));
+    value.textContent = wordId ? getPronounWordText(question, wordId) : "";
+  });
+
+  const placedWordIds = new Set(Object.values(state.pronounMatches));
+  el.pronounWordBank.querySelectorAll(".pronoun-word").forEach((button) => {
+    const wordId = button.dataset.pronounWordId;
+    button.classList.toggle("selected", state.selectedPronounWordId === wordId);
+    button.classList.toggle("placed", placedWordIds.has(wordId));
+  });
+
+  const placedCount = Object.keys(state.pronounMatches).length;
+  el.resetPronounBtn.disabled = placedCount === 0;
+  el.confirmPronounBtn.disabled = placedCount < PRONOUN_CATEGORIES.length;
+}
+
+function resetPronounMatch() {
+  if (state.resolved) return;
+
+  const hadMatches = Object.keys(state.pronounMatches).length > 0
+    || state.selectedPronounWordId
+    || state.selectedPronounSlotKey;
+  state.pronounMatches = {};
+  state.selectedPronounWordId = "";
+  state.selectedPronounSlotKey = "";
+  updatePronounMatchView();
+  setFeedback();
+  if (hadMatches) {
+    playUiSound("next");
+  }
+}
+
+function getPronounAnswerLine(question) {
+  return PRONOUN_CATEGORIES
+    .map(({ key, label }) => `${label} ${question.forms[key]}`)
+    .join(" / ");
+}
+
+function getPronounMatchFeedback(question, isCorrect) {
+  return [
+    { text: isCorrect ? `${question.zh}的代名詞配對正確。` : `${question.zh}的代名詞配對未正確。` },
+    { text: `正確答案：${getPronounAnswerLine(question)}`, className: "answer-line" }
+  ];
+}
+
+function submitPronounMatch() {
+  const question = currentQuestion();
+  if (!question || state.lessonId !== PRONOUN_MATCH_ID || state.resolved) return;
+
+  const matched = PRONOUN_CATEGORIES.every(({ key }) => {
+    const placedWordId = state.pronounMatches[key];
+    return getPronounWordText(question, placedWordId) === question.forms[key];
+  });
+
+  if (!matched) {
+    recordWrong(getPronounMatchFeedback(question, false));
+    return;
+  }
+
+  completeVerbLessonQuestion(getPronounMatchFeedback(question, true));
+}
+
 function updateUnderlinePalette() {
   el.underlinePalette.querySelectorAll(".underline-color-btn").forEach((chip) => {
     chip.classList.toggle("selected", Number(chip.dataset.colorIndex) === state.selectedUnderlineColor);
@@ -1705,6 +1958,9 @@ function getQuestionPrompt(question) {
 function getResultMessage(percent, mistakes, mode) {
   if (mode === "review" && mistakes === 0) return "錯題已清晒，返去挑戰新一輪。";
   if (mode === "review") return "差少少，再重練今輪錯題就得。";
+  if (state.lessonId === PRONOUN_MATCH_ID && percent === 100 && mistakes === 0) return "滿分！主語、非主語、的、的東西都配得好準。";
+  if (state.lessonId === PRONOUN_MATCH_ID && percent >= 80) return "好穩陣！繼續記住 my/mine、your/yours 呢類分別。";
+  if (state.lessonId === PRONOUN_MATCH_ID) return "慢慢嚟，先分清楚主語、非主語、的、的東西。";
   if (state.lessonId === SENTENCE_UNDERLINE_ID && percent === 100 && mistakes === 0) return "滿分！你分到每個句子嘅邊界。";
   if (state.lessonId === SENTENCE_UNDERLINE_ID && percent >= 80) return "好穩陣！繼續留意 that、and、but、so、or 後面。";
   if (state.lessonId === SENTENCE_UNDERLINE_ID) return "慢慢嚟，先搵主語同動詞，再分顏色。";
@@ -1789,6 +2045,8 @@ el.underlineBoard.addEventListener("pointerup", finishUnderlineDrag);
 el.underlineBoard.addEventListener("pointercancel", cancelUnderlineDrag);
 el.resetUnderlineBtn.addEventListener("click", resetSentenceUnderline);
 el.confirmUnderlineBtn.addEventListener("click", submitSentenceUnderline);
+el.resetPronounBtn.addEventListener("click", resetPronounMatch);
+el.confirmPronounBtn.addEventListener("click", submitPronounMatch);
 
 updateMenuProgress();
 syncPracticeCount();
