@@ -515,6 +515,7 @@ const state = {
   underlineDragActive: false,
   underlineDragIndexes: [],
   pronounMatches: {},
+  pronounWrongSlots: [],
   selectedPronounWordId: "",
   selectedPronounSlotKey: "",
   pronounAutoAdvanceTimer: 0,
@@ -1007,6 +1008,7 @@ function prepareRun(mode, lessonId, questions) {
   state.underlineDragActive = false;
   state.underlineDragIndexes = [];
   state.pronounMatches = {};
+  state.pronounWrongSlots = [];
   state.selectedPronounWordId = "";
   state.selectedPronounSlotKey = "";
   state.resolved = false;
@@ -1048,6 +1050,7 @@ function renderQuestion() {
   state.questionMistakes = 0;
   state.selectedVerbIndexes = [];
   state.pronounMatches = {};
+  state.pronounWrongSlots = [];
   state.selectedPronounWordId = "";
   state.selectedPronounSlotKey = "";
   el.questionNumber.textContent = String(state.index + 1);
@@ -1597,6 +1600,7 @@ function getPronounPlacedSlot(wordId) {
 }
 
 function placePronounWord(wordId, slotKey) {
+  state.pronounWrongSlots = [];
   const previousSlot = getPronounPlacedSlot(wordId);
   if (previousSlot) {
     delete state.pronounMatches[previousSlot];
@@ -1632,6 +1636,7 @@ function selectPronounSlot(slotKey) {
   }
 
   if (state.pronounMatches[slotKey]) {
+    state.pronounWrongSlots = [];
     delete state.pronounMatches[slotKey];
     state.selectedPronounSlotKey = "";
     updatePronounMatchView();
@@ -1656,6 +1661,7 @@ function updatePronounMatchView() {
     const value = slot.querySelector(".pronoun-slot-value");
     slot.classList.toggle("selected", state.selectedPronounSlotKey === slotKey);
     slot.classList.toggle("filled", Boolean(wordId));
+    slot.classList.toggle("wrong", state.pronounWrongSlots.includes(slotKey));
     value.textContent = wordId ? getPronounWordText(question, wordId) : "";
   });
 
@@ -1678,6 +1684,7 @@ function resetPronounMatch() {
     || state.selectedPronounWordId
     || state.selectedPronounSlotKey;
   state.pronounMatches = {};
+  state.pronounWrongSlots = [];
   state.selectedPronounWordId = "";
   state.selectedPronounSlotKey = "";
   updatePronounMatchView();
@@ -1704,6 +1711,9 @@ function recordPronounRetry() {
   const question = currentQuestion();
   if (!question || state.lessonId !== PRONOUN_MATCH_ID || state.resolved) return;
 
+  state.pronounWrongSlots = PRONOUN_CATEGORIES
+    .filter(({ key }) => getPronounWordText(question, state.pronounMatches[key]) !== question.forms[key])
+    .map(({ key }) => key);
   if (state.questionMistakes === 0) {
     state.streak = 0;
   }
@@ -1713,6 +1723,7 @@ function recordPronounRetry() {
   state.mistakes += 1;
   state.questionMistakes += 1;
   updateLiveStats();
+  updatePronounMatchView();
   setFeedback("配對未正確，再試一次。", "error");
   playUiSound("wrong");
 }

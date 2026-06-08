@@ -839,6 +839,17 @@ input[type="range"]::-moz-range-thumb {
   box-shadow: 0 6px 0 #bde0e1;
 }
 
+.pronoun-slot.wrong {
+  color: var(--danger-dark);
+  background: var(--soft-red);
+  border-color: var(--danger-color);
+  box-shadow: 0 0 0 5px rgba(255, 107, 107, 0.22), 0 5px 0 #ffc9c9;
+}
+
+.pronoun-slot.wrong .pronoun-slot-value {
+  border-color: var(--danger-color);
+}
+
 .pronoun-slot-label,
 .pronoun-slot-value {
   min-width: 0;
