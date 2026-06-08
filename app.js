@@ -458,6 +458,7 @@ const CATEGORY_LABELS = {
 };
 const UNDERLINE_COLOR_COUNT = 4;
 const OPTIONAL_UNDERLINE_CONNECTORS = new Set(["and", "but", "so", "or", "that"]);
+const PRONOUN_AUTO_ADVANCE_MS = 850;
 const QUESTION_WEIGHTS = {
   action: 0.5,
   be: 0.3,
@@ -516,6 +517,7 @@ const state = {
   pronounMatches: {},
   selectedPronounWordId: "",
   selectedPronounSlotKey: "",
+  pronounAutoAdvanceTimer: 0,
   streak: 0,
   bestStreak: getSavedBestStreak(),
   practiceCount: getSavedPracticeCount(),
@@ -946,6 +948,13 @@ function currentQuestion() {
   return state.questions[state.index] || null;
 }
 
+function clearPronounAutoAdvance() {
+  if (!state.pronounAutoAdvanceTimer) return;
+
+  clearTimeout(state.pronounAutoAdvanceTimer);
+  state.pronounAutoAdvanceTimer = 0;
+}
+
 function questionHasVerb(question) {
   return question.type === "action";
 }
@@ -984,6 +993,7 @@ function getWrongBeFormExplanation(question, pickedForm) {
 }
 
 function prepareRun(mode, lessonId, questions) {
+  clearPronounAutoAdvance();
   state.lessonId = lessonId;
   state.mode = mode;
   state.index = 0;
@@ -1019,6 +1029,7 @@ function startMistakeReview() {
 }
 
 function backToMenu() {
+  clearPronounAutoAdvance();
   cancelSpeech();
   updateMenuProgress();
   showScreen("menu");
@@ -1026,6 +1037,7 @@ function backToMenu() {
 }
 
 function renderQuestion() {
+  clearPronounAutoAdvance();
   const question = currentQuestion();
   if (!question) {
     renderComplete();
@@ -1688,6 +1700,67 @@ function getPronounMatchFeedback(question, isCorrect) {
   ];
 }
 
+function recordPronounRetry() {
+  const question = currentQuestion();
+  if (!question || state.lessonId !== PRONOUN_MATCH_ID || state.resolved) return;
+
+  if (state.questionMistakes === 0) {
+    state.streak = 0;
+  }
+  if (!state.missedQuestionIds.includes(question.id)) {
+    state.missedQuestionIds.push(question.id);
+  }
+  state.mistakes += 1;
+  state.questionMistakes += 1;
+  updateLiveStats();
+  setFeedback("配對未正確，再試一次。", "error");
+  playUiSound("wrong");
+}
+
+function completePronounMatchQuestion(message) {
+  const question = currentQuestion();
+  if (!question || state.lessonId !== PRONOUN_MATCH_ID || state.resolved) return;
+
+  state.resolved = true;
+  if (state.questionMistakes === 0) {
+    state.score += 1;
+    state.streak += 1;
+    if (state.streak > state.bestStreak) {
+      state.bestStreak = state.streak;
+      saveBestStreak();
+    }
+  }
+  if (state.mode === "practice") {
+    saveProgress(state.index + 1);
+  }
+
+  updateLiveStats();
+  el.guidance.textContent = state.index >= state.questions.length - 1
+    ? "配對完成。"
+    : "配對正確，自動去下一行。";
+  el.englishCard.classList.add("hidden");
+  el.nextBtn.classList.add("hidden");
+  el.resetPronounBtn.disabled = true;
+  el.confirmPronounBtn.disabled = true;
+  setFeedback(message, "success");
+  playUiSound("correct");
+
+  const expectedLessonId = state.lessonId;
+  const expectedMode = state.mode;
+  const expectedIndex = state.index;
+  clearPronounAutoAdvance();
+  state.pronounAutoAdvanceTimer = setTimeout(() => {
+    state.pronounAutoAdvanceTimer = 0;
+    const stillOnSameQuestion = state.lessonId === expectedLessonId
+      && state.mode === expectedMode
+      && state.index === expectedIndex
+      && el.lessonScreen.classList.contains("active");
+    if (stillOnSameQuestion) {
+      nextQuestion();
+    }
+  }, PRONOUN_AUTO_ADVANCE_MS);
+}
+
 function submitPronounMatch() {
   const question = currentQuestion();
   if (!question || state.lessonId !== PRONOUN_MATCH_ID || state.resolved) return;
@@ -1698,11 +1771,11 @@ function submitPronounMatch() {
   });
 
   if (!matched) {
-    recordWrong(getPronounMatchFeedback(question, false));
+    recordPronounRetry();
     return;
   }
 
-  completeVerbLessonQuestion(getPronounMatchFeedback(question, true));
+  completePronounMatchQuestion(getPronounMatchFeedback(question, true));
 }
 
 function updateUnderlinePalette() {
