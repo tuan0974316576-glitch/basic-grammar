@@ -458,8 +458,8 @@ const CATEGORY_LABELS = {
 };
 const UNDERLINE_COLOR_COUNT = 4;
 const OPTIONAL_UNDERLINE_CONNECTORS = new Set(["and", "but", "so", "or", "that"]);
-const PRONOUN_AUTO_ADVANCE_MS = 850;
-const PRONOUN_GRAND_ADVANCE_MS = 1350;
+const PRONOUN_AUTO_ADVANCE_MS = 1350;
+const PRONOUN_GRAND_ADVANCE_MS = 2600;
 const PRONOUN_DISTRACTOR_COUNT = 2;
 const FIREWORK_COLORS = ["#ff6b6b", "#ffe66d", "#4ecdc4", "#6bf178", "#74c0fc", "#f783ac"];
 const QUESTION_WEIGHTS = {
@@ -529,6 +529,8 @@ const SOUND_PATTERNS = {
 const UI_SOUND_GAIN = 0.098;
 
 let audioContext = null;
+let celebrationAnimation = null;
+let celebrationHideTimer = 0;
 
 const state = {
   lessonId: LESSON1_ID,
@@ -990,6 +992,15 @@ function clearPronounAutoAdvance() {
 }
 
 function clearCelebration() {
+  if (celebrationHideTimer) {
+    clearTimeout(celebrationHideTimer);
+    celebrationHideTimer = 0;
+  }
+  if (celebrationAnimation) {
+    celebrationAnimation.destroy();
+    celebrationAnimation = null;
+  }
+  el.celebrationLayer?.classList.remove("active", "grand");
   el.celebrationLayer?.replaceChildren();
 }
 
@@ -997,6 +1008,30 @@ function launchCelebration(kind = "small") {
   if (!el.celebrationLayer) return;
 
   const grand = kind === "grand";
+  clearCelebration();
+  el.celebrationLayer.classList.add("active");
+  el.celebrationLayer.classList.toggle("grand", grand);
+
+  if (window.lottie && window.CONFETTI_LOTTIE_DATA) {
+    const holder = document.createElement("div");
+    holder.className = "lottie-confetti";
+    el.celebrationLayer.append(holder);
+    celebrationAnimation = window.lottie.loadAnimation({
+      container: holder,
+      renderer: "svg",
+      loop: false,
+      autoplay: true,
+      animationData: JSON.parse(JSON.stringify(window.CONFETTI_LOTTIE_DATA)),
+      rendererSettings: {
+        preserveAspectRatio: "xMidYMid slice"
+      }
+    });
+    celebrationAnimation.setSpeed(grand ? 1.04 : 1.22);
+    celebrationAnimation.addEventListener("complete", clearCelebration);
+    celebrationHideTimer = setTimeout(clearCelebration, grand ? 3600 : 1900);
+    return;
+  }
+
   const burstCount = grand ? 5 : 2;
   const sparksPerBurst = grand ? 18 : 12;
   const lifetime = grand ? 1250 : 900;
@@ -1021,6 +1056,7 @@ function launchCelebration(kind = "small") {
       setTimeout(() => spark.remove(), lifetime);
     });
   });
+  celebrationHideTimer = setTimeout(clearCelebration, lifetime + 120);
 }
 
 function questionHasVerb(question) {

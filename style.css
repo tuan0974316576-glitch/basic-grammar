@@ -907,12 +907,28 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .celebration-layer {
-  position: absolute;
+  position: fixed;
   inset: 0;
-  z-index: 8;
+  z-index: 9999;
   pointer-events: none;
   overflow: hidden;
-  border-radius: inherit;
+  display: none;
+  place-items: center;
+}
+
+.celebration-layer.active {
+  display: grid;
+}
+
+.lottie-confetti {
+  width: 100vw;
+  height: 100vh;
+  transform: scale(1.28);
+  transform-origin: center;
+}
+
+.celebration-layer.grand .lottie-confetti {
+  transform: scale(1.48);
 }
 
 .firework-spark {
