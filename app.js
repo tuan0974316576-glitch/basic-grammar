@@ -1177,7 +1177,7 @@ function renderPronounMatchQuestion(question) {
   el.categoryPill.textContent = "代名詞";
   el.categoryPill.dataset.type = "pronoun";
   el.chinesePrompt.textContent = question.zh;
-  el.guidance.textContent = "左邊中文用途，右邊英文代名詞。";
+  el.guidance.textContent = "左邊中文用途，右邊英文代名詞，放齊自動檢查。";
 
   PRONOUN_CATEGORIES.forEach(({ key, label }) => {
     const slot = document.createElement("button");
@@ -1609,6 +1609,10 @@ function placePronounWord(wordId, slotKey) {
   state.selectedPronounWordId = "";
   state.selectedPronounSlotKey = "";
   updatePronounMatchView();
+  if (isPronounMatchReady()) {
+    submitPronounMatch();
+    return;
+  }
   setFeedback();
   playUiSound("step");
 }
@@ -1675,6 +1679,10 @@ function updatePronounMatchView() {
   const placedCount = Object.keys(state.pronounMatches).length;
   el.resetPronounBtn.disabled = placedCount === 0;
   el.confirmPronounBtn.disabled = placedCount < PRONOUN_CATEGORIES.length;
+}
+
+function isPronounMatchReady() {
+  return Object.keys(state.pronounMatches).length === PRONOUN_CATEGORIES.length;
 }
 
 function resetPronounMatch() {

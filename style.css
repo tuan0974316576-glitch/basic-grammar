@@ -900,7 +900,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .pronoun-actions {
-  display: grid;
+  display: none;
   grid-template-columns: minmax(120px, 0.7fr) minmax(160px, 1fr);
   gap: 12px;
 }
