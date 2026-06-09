@@ -61,6 +61,7 @@ button {
 }
 
 .screen {
+  position: relative;
   display: none;
   width: min(850px, 100%);
   min-height: min(720px, calc(100svh - 60px));
@@ -903,6 +904,47 @@ input[type="range"]::-moz-range-thumb {
   display: none;
   grid-template-columns: minmax(120px, 0.7fr) minmax(160px, 1fr);
   gap: 12px;
+}
+
+.celebration-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.firework-spark {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--spark-size, 10px);
+  height: var(--spark-size, 10px);
+  background: var(--spark-color);
+  border-radius: 999px;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.78), 0 0 14px var(--spark-color);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.3);
+  animation: firework-spark 820ms ease-out forwards;
+}
+
+.firework-spark.grand {
+  animation-duration: 1120ms;
+}
+
+@keyframes firework-spark {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.2);
+  }
+  14% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.08);
+  }
 }
 
 .chinese-prompt.underline-prompt {

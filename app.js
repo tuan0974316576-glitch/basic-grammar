@@ -459,6 +459,9 @@ const CATEGORY_LABELS = {
 const UNDERLINE_COLOR_COUNT = 4;
 const OPTIONAL_UNDERLINE_CONNECTORS = new Set(["and", "but", "so", "or", "that"]);
 const PRONOUN_AUTO_ADVANCE_MS = 850;
+const PRONOUN_GRAND_ADVANCE_MS = 1350;
+const PRONOUN_DISTRACTOR_COUNT = 2;
+const FIREWORK_COLORS = ["#ff6b6b", "#ffe66d", "#4ecdc4", "#6bf178", "#74c0fc", "#f783ac"];
 const QUESTION_WEIGHTS = {
   action: 0.5,
   be: 0.3,
@@ -488,6 +491,34 @@ const SOUND_PATTERNS = {
     { frequency: 587.33, delay: 0, duration: 0.055 },
     { frequency: 739.99, delay: 0.06, duration: 0.055 }
   ],
+  pronounPlace1: [
+    { frequency: 523.25, delay: 0, duration: 0.065 }
+  ],
+  pronounPlace2: [
+    { frequency: 659.25, delay: 0, duration: 0.065 }
+  ],
+  pronounPlace3: [
+    { frequency: 783.99, delay: 0, duration: 0.07 }
+  ],
+  pronounPlace4: [
+    { frequency: 987.77, delay: 0, duration: 0.08 },
+    { frequency: 1174.66, delay: 0.075, duration: 0.07 }
+  ],
+  pronounRowWin: [
+    { frequency: 783.99, delay: 0, duration: 0.07 },
+    { frequency: 987.77, delay: 0.08, duration: 0.07 },
+    { frequency: 1318.51, delay: 0.16, duration: 0.1 },
+    { frequency: 1567.98, delay: 0.28, duration: 0.16 }
+  ],
+  pronounGrandWin: [
+    { frequency: 523.25, delay: 0, duration: 0.08 },
+    { frequency: 659.25, delay: 0.08, duration: 0.08 },
+    { frequency: 783.99, delay: 0.16, duration: 0.08 },
+    { frequency: 1046.5, delay: 0.24, duration: 0.1 },
+    { frequency: 1318.51, delay: 0.36, duration: 0.12 },
+    { frequency: 1567.98, delay: 0.5, duration: 0.18 },
+    { frequency: 2093, delay: 0.7, duration: 0.22, gain: 0.12 }
+  ],
   complete: [
     { frequency: 523.25, delay: 0, duration: 0.07 },
     { frequency: 659.25, delay: 0.08, duration: 0.07 },
@@ -515,6 +546,7 @@ const state = {
   underlineDragActive: false,
   underlineDragIndexes: [],
   pronounMatches: {},
+  pronounWordTexts: {},
   pronounWrongSlots: [],
   selectedPronounWordId: "",
   selectedPronounSlotKey: "",
@@ -573,6 +605,7 @@ const el = {
   pronounWordBank: document.querySelector("#pronoun-word-bank"),
   resetPronounBtn: document.querySelector("#reset-pronoun-btn"),
   confirmPronounBtn: document.querySelector("#confirm-pronoun-btn"),
+  celebrationLayer: document.querySelector("#celebration-layer"),
   englishCard: document.querySelector("#english-card"),
   englishText: document.querySelector("#english-text"),
   feedback: document.querySelector("#feedback"),
@@ -956,6 +989,40 @@ function clearPronounAutoAdvance() {
   state.pronounAutoAdvanceTimer = 0;
 }
 
+function clearCelebration() {
+  el.celebrationLayer?.replaceChildren();
+}
+
+function launchCelebration(kind = "small") {
+  if (!el.celebrationLayer) return;
+
+  const grand = kind === "grand";
+  const burstCount = grand ? 5 : 2;
+  const sparksPerBurst = grand ? 18 : 12;
+  const lifetime = grand ? 1250 : 900;
+  const centers = Array.from({ length: burstCount }, (_, index) => ({
+    x: 24 + ((index * 17) % 54) + Math.random() * 8,
+    y: 28 + ((index * 11) % 30) + Math.random() * 6
+  }));
+
+  centers.forEach((center, burstIndex) => {
+    Array.from({ length: sparksPerBurst }, (_, sparkIndex) => {
+      const angle = (Math.PI * 2 * sparkIndex) / sparksPerBurst;
+      const distance = (grand ? 88 : 56) + Math.random() * (grand ? 54 : 30);
+      const spark = document.createElement("span");
+      spark.className = `firework-spark${grand ? " grand" : ""}`;
+      spark.style.setProperty("--x", `${center.x}%`);
+      spark.style.setProperty("--y", `${center.y}%`);
+      spark.style.setProperty("--dx", `${Math.cos(angle) * distance}px`);
+      spark.style.setProperty("--dy", `${Math.sin(angle) * distance}px`);
+      spark.style.setProperty("--spark-size", `${grand ? 12 : 9}px`);
+      spark.style.setProperty("--spark-color", FIREWORK_COLORS[(sparkIndex + burstIndex) % FIREWORK_COLORS.length]);
+      el.celebrationLayer.append(spark);
+      setTimeout(() => spark.remove(), lifetime);
+    });
+  });
+}
+
 function questionHasVerb(question) {
   return question.type === "action";
 }
@@ -1008,6 +1075,7 @@ function prepareRun(mode, lessonId, questions) {
   state.underlineDragActive = false;
   state.underlineDragIndexes = [];
   state.pronounMatches = {};
+  state.pronounWordTexts = {};
   state.pronounWrongSlots = [];
   state.selectedPronounWordId = "";
   state.selectedPronounSlotKey = "";
@@ -1032,6 +1100,7 @@ function startMistakeReview() {
 
 function backToMenu() {
   clearPronounAutoAdvance();
+  clearCelebration();
   cancelSpeech();
   updateMenuProgress();
   showScreen("menu");
@@ -1040,6 +1109,7 @@ function backToMenu() {
 
 function renderQuestion() {
   clearPronounAutoAdvance();
+  clearCelebration();
   const question = currentQuestion();
   if (!question) {
     renderComplete();
@@ -1050,6 +1120,7 @@ function renderQuestion() {
   state.questionMistakes = 0;
   state.selectedVerbIndexes = [];
   state.pronounMatches = {};
+  state.pronounWordTexts = {};
   state.pronounWrongSlots = [];
   state.selectedPronounWordId = "";
   state.selectedPronounSlotKey = "";
@@ -1191,6 +1262,7 @@ function renderPronounMatchQuestion(question) {
   });
 
   getPronounWordBlocks(question).forEach(({ id, text }) => {
+    state.pronounWordTexts[id] = text;
     const button = document.createElement("button");
     button.className = "pronoun-word word-block";
     button.type = "button";
@@ -1582,16 +1654,38 @@ function submitSentenceBuilder() {
 }
 
 function getPronounWordBlocks(question) {
-  return shuffle(PRONOUN_CATEGORIES.map(({ key }) => ({
+  const answerTexts = new Set(PRONOUN_CATEGORIES.map(({ key }) => question.forms[key]));
+  const correctBlocks = PRONOUN_CATEGORIES.map(({ key }) => ({
     id: key,
     text: question.forms[key]
-  })));
+  }));
+  const distractorBlocks = getPronounDistractorBlocks(question, answerTexts);
+  return shuffle([...correctBlocks, ...distractorBlocks]);
+}
+
+function getPronounDistractorBlocks(question, answerTexts) {
+  const seenTexts = new Set(answerTexts);
+  const candidates = PRONOUN_MATCH_QUESTIONS
+    .filter((item) => item.id !== question.id)
+    .flatMap((item) => PRONOUN_CATEGORIES.map(({ key }) => item.forms[key]))
+    .filter((text) => {
+      if (seenTexts.has(text)) return false;
+      seenTexts.add(text);
+      return true;
+    });
+
+  return shuffle(candidates)
+    .slice(0, PRONOUN_DISTRACTOR_COUNT)
+    .map((text, index) => ({
+      id: `distractor-${question.id}-${index}`,
+      text
+    }));
 }
 
 function getPronounWordText(question, wordId) {
   return PRONOUN_CATEGORIES.find(({ key }) => key === wordId)
     ? question.forms[wordId]
-    : "";
+    : state.pronounWordTexts[wordId] || "";
 }
 
 function getPronounPlacedSlot(wordId) {
@@ -1600,6 +1694,9 @@ function getPronounPlacedSlot(wordId) {
 }
 
 function placePronounWord(wordId, slotKey) {
+  const question = currentQuestion();
+  if (!question) return;
+
   state.pronounWrongSlots = [];
   const previousSlot = getPronounPlacedSlot(wordId);
   if (previousSlot) {
@@ -1609,12 +1706,20 @@ function placePronounWord(wordId, slotKey) {
   state.selectedPronounWordId = "";
   state.selectedPronounSlotKey = "";
   updatePronounMatchView();
+  const placedCorrectly = isPronounSlotCorrect(question, slotKey);
   if (isPronounMatchReady()) {
+    if (placedCorrectly && isPronounMatchCorrect(question)) {
+      playPronounPlacementSound(getPronounCorrectCount(question));
+    }
     submitPronounMatch();
     return;
   }
   setFeedback();
-  playUiSound("step");
+  if (placedCorrectly) {
+    playPronounPlacementSound(getPronounCorrectCount(question));
+  } else {
+    playUiSound("step");
+  }
 }
 
 function selectPronounWord(wordId) {
@@ -1683,6 +1788,26 @@ function updatePronounMatchView() {
 
 function isPronounMatchReady() {
   return Object.keys(state.pronounMatches).length === PRONOUN_CATEGORIES.length;
+}
+
+function isPronounMatchCorrect(question) {
+  return PRONOUN_CATEGORIES.every(({ key }) => isPronounSlotCorrect(question, key));
+}
+
+function isPronounSlotCorrect(question, slotKey) {
+  const wordId = state.pronounMatches[slotKey];
+  return Boolean(wordId) && getPronounWordText(question, wordId) === question.forms[slotKey];
+}
+
+function getPronounCorrectCount(question) {
+  return PRONOUN_CATEGORIES
+    .filter(({ key }) => isPronounSlotCorrect(question, key))
+    .length;
+}
+
+function playPronounPlacementSound(correctCount) {
+  const level = Math.max(1, Math.min(PRONOUN_CATEGORIES.length, correctCount));
+  playUiSound(`pronounPlace${level}`);
 }
 
 function resetPronounMatch() {
@@ -1762,7 +1887,9 @@ function completePronounMatchQuestion(message) {
   el.resetPronounBtn.disabled = true;
   el.confirmPronounBtn.disabled = true;
   setFeedback(message, "success");
-  playUiSound("correct");
+  const isLastQuestion = state.index >= state.questions.length - 1;
+  playUiSound(isLastQuestion && state.mode === "practice" ? "pronounGrandWin" : "pronounRowWin");
+  launchCelebration(isLastQuestion && state.mode === "practice" ? "grand" : "small");
 
   const expectedLessonId = state.lessonId;
   const expectedMode = state.mode;
@@ -1775,21 +1902,16 @@ function completePronounMatchQuestion(message) {
       && state.index === expectedIndex
       && el.lessonScreen.classList.contains("active");
     if (stillOnSameQuestion) {
-      nextQuestion();
+      nextQuestion({ playSound: false });
     }
-  }, PRONOUN_AUTO_ADVANCE_MS);
+  }, isLastQuestion && state.mode === "practice" ? PRONOUN_GRAND_ADVANCE_MS : PRONOUN_AUTO_ADVANCE_MS);
 }
 
 function submitPronounMatch() {
   const question = currentQuestion();
   if (!question || state.lessonId !== PRONOUN_MATCH_ID || state.resolved) return;
 
-  const matched = PRONOUN_CATEGORIES.every(({ key }) => {
-    const placedWordId = state.pronounMatches[key];
-    return getPronounWordText(question, placedWordId) === question.forms[key];
-  });
-
-  if (!matched) {
+  if (!isPronounMatchCorrect(question)) {
     recordPronounRetry();
     return;
   }
@@ -1990,12 +2112,14 @@ function submitSentenceUnderline() {
   completeVerbLessonQuestion(getUnderlineFeedback(question, true));
 }
 
-function nextQuestion() {
+function nextQuestion(options = {}) {
   cancelSpeech();
   const wasLastQuestion = state.index >= state.questions.length - 1;
   state.index += 1;
   renderQuestion();
-  playUiSound(wasLastQuestion ? "complete" : "next");
+  if (options.playSound !== false) {
+    playUiSound(wasLastQuestion ? "complete" : "next");
+  }
 }
 
 function renderComplete() {
