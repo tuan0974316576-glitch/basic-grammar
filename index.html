@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Basic English Grammar Game</title>
-  <link rel="stylesheet" href="style.css?v=20260609-pronoun-celebration">
+  <link rel="stylesheet" href="style.css?v=20260611-countable-nouns">
 </head>
 <body>
   <main class="app-shell">
@@ -74,6 +74,15 @@
             <span class="lesson-meta">
               <span>配對主語、非主語、的、的東西</span>
               <span id="menu-progress-pronoun-match">0/7</span>
+            </span>
+          </button>
+
+          <button class="lesson-card" type="button" data-start-lesson="countable-nouns">
+            <span class="lesson-kicker">Lesson 05</span>
+            <strong>可數名詞的使用要點</strong>
+            <span class="lesson-meta">
+              <span>判斷名詞單眾數，錯句要改正</span>
+              <span id="menu-progress-countable-nouns">0/100</span>
             </span>
           </button>
         </div>
@@ -152,6 +161,11 @@
         <div id="verb-token-choice" class="verb-token-choice hidden">
           <div id="verb-token-grid" class="token-grid"></div>
           <button id="submit-verbs-btn" class="primary-btn" type="button">確認動詞</button>
+        </div>
+
+        <div id="countable-correction-choice" class="countable-correction hidden">
+          <input id="countable-correction-input" type="text" autocomplete="off" autocapitalize="sentences" spellcheck="false" placeholder="Type the correct sentence">
+          <button id="submit-countable-correction-btn" class="primary-btn" type="button">確認</button>
         </div>
 
         <div id="sentence-builder-choice" class="sentence-builder hidden">
@@ -235,6 +249,6 @@
 
   <script src="assets/lottie.min.js?v=20260609-lottie"></script>
   <script src="assets/confetti-animation.js?v=20260609-lottie"></script>
-  <script src="app.js?v=20260609-lottie-fullscreen"></script>
+  <script src="app.js?v=20260611-countable-nouns"></script>
 </body>
 </html>

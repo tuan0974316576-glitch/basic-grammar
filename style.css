@@ -538,6 +538,12 @@ input[type="range"]::-moz-range-thumb {
   box-shadow: 0 3px 0 #a7e4df;
 }
 
+.category-pill[data-type="countable"] {
+  color: #7a3f00;
+  background: #fff3bf;
+  box-shadow: 0 3px 0 #ffd43b;
+}
+
 .category-pill[data-type="done"] {
   color: var(--correct-dark);
   background: var(--soft-green);
@@ -560,6 +566,13 @@ input[type="range"]::-moz-range-thumb {
 .chinese-prompt.builder-prompt {
   min-height: 86px;
   font-size: clamp(24px, 4.7vw, 38px);
+}
+
+.chinese-prompt.english-prompt {
+  min-height: 112px;
+  color: #5d4037;
+  font-size: clamp(28px, 5vw, 46px);
+  text-shadow: 2px 2px 0 #fff3bf;
 }
 
 .guidance {
@@ -906,6 +919,39 @@ input[type="range"]::-moz-range-thumb {
   gap: 12px;
 }
 
+.countable-correction {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(132px, auto);
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.countable-correction input {
+  width: 100%;
+  min-height: 58px;
+  padding: 10px 16px;
+  color: #5d4037;
+  font: inherit;
+  font-size: clamp(18px, 3.6vw, 24px);
+  font-weight: 900;
+  line-height: 1.15;
+  background: #ffffff;
+  border: 3px dashed var(--primary-color);
+  border-radius: 18px;
+  box-shadow: inset 0 2px 0 #ffffff, 0 4px 0 #bde0e1;
+  outline: 0;
+}
+
+.countable-correction input:focus {
+  border-color: var(--secondary-dark);
+  box-shadow: inset 0 2px 0 #ffffff, 0 0 0 5px rgba(255, 230, 109, 0.38), 0 5px 0 rgba(255, 183, 3, 0.38);
+}
+
+.countable-correction input::placeholder {
+  color: #a0a0a0;
+}
+
 .celebration-layer {
   position: fixed;
   inset: 0;
@@ -1201,6 +1247,37 @@ input[type="range"]::-moz-range-thumb {
   padding-top: 8px;
 }
 
+.countable-screen .status-strip {
+  margin-bottom: 10px;
+}
+
+.countable-screen .prompt-panel {
+  padding: 14px 18px;
+  margin-bottom: 12px;
+}
+
+.countable-screen .guidance {
+  min-height: 22px;
+  color: #5d4037;
+  font-size: 15px;
+}
+
+.countable-screen .choice-grid {
+  margin-bottom: 12px;
+}
+
+.countable-screen .symbol-btn {
+  min-height: 108px;
+}
+
+.countable-screen .feedback {
+  font-size: clamp(15px, 2.5vw, 18px);
+}
+
+.countable-screen .lesson-actions {
+  padding-top: 8px;
+}
+
 .english-card {
   width: 100%;
   padding: 18px 20px;
@@ -1461,7 +1538,8 @@ input[type="range"]::-moz-range-thumb {
 
   .quiz-screen .lesson-header,
   .underline-screen .lesson-header,
-  .pronoun-screen .lesson-header {
+  .pronoun-screen .lesson-header,
+  .countable-screen .lesson-header {
     grid-template-columns: 74px minmax(0, 1fr) 122px;
     gap: 8px;
     align-items: center;
@@ -1470,35 +1548,40 @@ input[type="range"]::-moz-range-thumb {
 
   .quiz-screen .lesson-header h2,
   .underline-screen .lesson-header h2,
-  .pronoun-screen .lesson-header h2 {
+  .pronoun-screen .lesson-header h2,
+  .countable-screen .lesson-header h2 {
     font-size: clamp(17px, 4.5vw, 20px);
     text-align: left;
   }
 
   .quiz-screen .lesson-header .topline,
   .underline-screen .lesson-header .topline,
-  .pronoun-screen .lesson-header .topline {
+  .pronoun-screen .lesson-header .topline,
+  .countable-screen .lesson-header .topline {
     font-size: 10px;
     text-align: left;
   }
 
   .quiz-screen .ghost-btn,
   .underline-screen .ghost-btn,
-  .pronoun-screen .ghost-btn {
+  .pronoun-screen .ghost-btn,
+  .countable-screen .ghost-btn {
     min-height: 40px;
     padding: 0 9px;
   }
 
   .quiz-screen .header-tools,
   .underline-screen .header-tools,
-  .pronoun-screen .header-tools {
+  .pronoun-screen .header-tools,
+  .countable-screen .header-tools {
     justify-self: end;
     align-items: center;
   }
 
   .quiz-screen .sound-btn,
   .underline-screen .sound-btn,
-  .pronoun-screen .sound-btn {
+  .pronoun-screen .sound-btn,
+  .countable-screen .sound-btn {
     width: 42px;
     min-width: 42px;
     height: 42px;
@@ -1507,7 +1590,8 @@ input[type="range"]::-moz-range-thumb {
 
   .quiz-screen .counter,
   .underline-screen .counter,
-  .pronoun-screen .counter {
+  .pronoun-screen .counter,
+  .countable-screen .counter {
     min-width: 72px;
     padding: 8px 7px;
   }
@@ -1694,5 +1778,39 @@ input[type="range"]::-moz-range-thumb {
   .pronoun-actions {
     grid-template-columns: 1fr;
     gap: 8px;
+  }
+
+  .countable-screen .status-strip {
+    margin-bottom: 8px;
+  }
+
+  .countable-screen .prompt-panel {
+    padding: 10px 12px;
+    margin-bottom: 10px;
+  }
+
+  .countable-screen .chinese-prompt.english-prompt {
+    min-height: 82px;
+    padding: 6px 2px;
+    font-size: clamp(23px, 7vw, 32px);
+  }
+
+  .countable-screen .guidance {
+    min-height: 20px;
+    font-size: 12px;
+  }
+
+  .countable-screen .symbol-btn {
+    min-height: 92px;
+  }
+
+  .countable-correction {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .countable-correction input {
+    min-height: 54px;
+    font-size: 18px;
   }
 }

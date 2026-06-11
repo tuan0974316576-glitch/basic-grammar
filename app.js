@@ -403,17 +403,198 @@ const PRONOUN_MATCH_QUESTIONS = [
   }
 ];
 
+function makeCountableNounQuestion({ id, sentence, zh, isCorrect, answer, explanation }) {
+  return {
+    id,
+    type: "countable",
+    sentence,
+    zh,
+    isCorrect,
+    answer,
+    english: answer,
+    acceptedAnswers: [answer],
+    explanation
+  };
+}
+
+function capitalizeWord(word) {
+  return `${word.charAt(0).toUpperCase()}${word.slice(1)}`;
+}
+
+function createCountableNounQuestions() {
+  const questions = [];
+  let nextId = 1;
+  const add = (question) => {
+    questions.push(makeCountableNounQuestion({
+      id: `cn${String(nextId).padStart(3, "0")}`,
+      ...question
+    }));
+    nextId += 1;
+  };
+
+  const genericItems = [
+    { zh: "蘋果是健康的。", cn: "蘋果", singular: "apple", plural: "Apples", adjective: "healthy" },
+    { zh: "狗很可愛。", cn: "狗", singular: "dog", plural: "Dogs", adjective: "cute" },
+    { zh: "貓很安靜。", cn: "貓", singular: "cat", plural: "Cats", adjective: "quiet" },
+    { zh: "學生很忙。", cn: "學生", singular: "student", plural: "Students", adjective: "busy" },
+    { zh: "老師很友善。", cn: "老師", singular: "teacher", plural: "Teachers", adjective: "kind" },
+    { zh: "書很有用。", cn: "書", singular: "book", plural: "Books", adjective: "useful" },
+    { zh: "汽車很昂貴。", cn: "汽車", singular: "car", plural: "Cars", adjective: "expensive" },
+    { zh: "雀鳥很漂亮。", cn: "雀鳥", singular: "bird", plural: "Birds", adjective: "beautiful" },
+    { zh: "香蕉很甜。", cn: "香蕉", singular: "banana", plural: "Bananas", adjective: "sweet" },
+    { zh: "橙很多汁。", cn: "橙", singular: "orange", plural: "Oranges", adjective: "juicy" },
+    { zh: "椅子很堅固。", cn: "椅子", singular: "chair", plural: "Chairs", adjective: "strong" },
+    { zh: "電腦很有用。", cn: "電腦", singular: "computer", plural: "Computers", adjective: "useful" },
+    { zh: "電話很昂貴。", cn: "電話", singular: "phone", plural: "Phones", adjective: "expensive" },
+    { zh: "花很漂亮。", cn: "花", singular: "flower", plural: "Flowers", adjective: "beautiful" },
+    { zh: "老虎很危險。", cn: "老虎", singular: "tiger", plural: "Tigers", adjective: "dangerous" },
+    { zh: "大象很大。", cn: "大象", singular: "elephant", plural: "Elephants", adjective: "big" },
+    { zh: "曲奇很甜。", cn: "曲奇", singular: "cookie", plural: "Cookies", adjective: "sweet" },
+    { zh: "雞蛋很健康。", cn: "雞蛋", singular: "egg", plural: "Eggs", adjective: "healthy" },
+    { zh: "玩具很好玩。", cn: "玩具", singular: "toy", plural: "Toys", adjective: "fun" },
+    { zh: "鯊魚很危險。", cn: "鯊魚", singular: "shark", plural: "Sharks", adjective: "dangerous" }
+  ];
+
+  genericItems.forEach((item, index) => {
+    const answer = `${item.plural} are ${item.adjective}.`;
+    const isCorrect = index % 2 === 1;
+    add({
+      sentence: isCorrect ? answer : `${capitalizeWord(item.singular)} is ${item.adjective}.`,
+      zh: item.zh,
+      isCorrect,
+      answer,
+      explanation: `中文「${item.cn}」是泛指整個類別；${item.singular} 是可數名詞，預設用眾數 ${item.plural}，所以用 are。`
+    });
+  });
+
+  [
+    { sentence: "A dog is sleeping.", zh: "有一隻狗在睡覺。", answer: "A dog is sleeping.", item: "dog", article: "A", isCorrect: true },
+    { sentence: "Dog is sleeping.", zh: "有一隻狗在睡覺。", answer: "A dog is sleeping.", item: "dog", article: "A", isCorrect: false },
+    { sentence: "An apple is red.", zh: "有一個蘋果是紅色的。", answer: "An apple is red.", item: "apple", article: "An", isCorrect: true },
+    { sentence: "Apple is red.", zh: "有一個蘋果是紅色的。", answer: "An apple is red.", item: "apple", article: "An", isCorrect: false },
+    { sentence: "A student is reading.", zh: "有一個學生在閱讀。", answer: "A student is reading.", item: "student", article: "A", isCorrect: true },
+    { sentence: "Student is reading.", zh: "有一個學生在閱讀。", answer: "A student is reading.", item: "student", article: "A", isCorrect: false },
+    { sentence: "A teacher is busy.", zh: "有一位老師很忙。", answer: "A teacher is busy.", item: "teacher", article: "A", isCorrect: true },
+    { sentence: "Teacher are busy.", zh: "有一位老師很忙。", answer: "A teacher is busy.", item: "teacher", article: "A", isCorrect: false },
+    { sentence: "A cat is hungry.", zh: "有一隻貓很餓。", answer: "A cat is hungry.", item: "cat", article: "A", isCorrect: true },
+    { sentence: "An cat is hungry.", zh: "有一隻貓很餓。", answer: "A cat is hungry.", item: "cat", article: "A", isCorrect: false },
+    { sentence: "An orange is sweet.", zh: "有一個橙很甜。", answer: "An orange is sweet.", item: "orange", article: "An", isCorrect: true },
+    { sentence: "A orange is sweet.", zh: "有一個橙很甜。", answer: "An orange is sweet.", item: "orange", article: "An", isCorrect: false },
+    { sentence: "A bird is flying.", zh: "有一隻雀鳥在飛。", answer: "A bird is flying.", item: "bird", article: "A", isCorrect: true },
+    { sentence: "Bird are flying.", zh: "有一隻雀鳥在飛。", answer: "A bird is flying.", item: "bird", article: "A", isCorrect: false },
+    { sentence: "A book is useful.", zh: "有一本書很有用。", answer: "A book is useful.", item: "book", article: "A", isCorrect: true },
+    { sentence: "Book is useful.", zh: "有一本書很有用。", answer: "A book is useful.", item: "book", article: "A", isCorrect: false },
+    { sentence: "An egg is small.", zh: "有一隻雞蛋很小。", answer: "An egg is small.", item: "egg", article: "An", isCorrect: true },
+    { sentence: "A egg is small.", zh: "有一隻雞蛋很小。", answer: "An egg is small.", item: "egg", article: "An", isCorrect: false },
+    { sentence: "A flower is beautiful.", zh: "有一朵花很漂亮。", answer: "A flower is beautiful.", item: "flower", article: "A", isCorrect: true },
+    { sentence: "Flower are beautiful.", zh: "有一朵花很漂亮。", answer: "A flower is beautiful.", item: "flower", article: "A", isCorrect: false }
+  ].forEach((item) => add({
+    sentence: item.sentence,
+    zh: item.zh,
+    isCorrect: item.isCorrect,
+    answer: item.answer,
+    explanation: `中文強調「只有一個/一隻」；${item.article} ${item.item} 是單數，所以用 is。`
+  }));
+
+  [
+    { sentence: "The dog is cute.", zh: "這隻狗很可愛。", answer: "The dog is cute.", subject: "The dog", quantity: "指定一隻", be: "is", isCorrect: true },
+    { sentence: "The dogs is barking.", zh: "那群狗在吠。", answer: "The dogs are barking.", subject: "The dogs", quantity: "指定一群", be: "are", isCorrect: false },
+    { sentence: "The apple is red.", zh: "這個蘋果是紅色的。", answer: "The apple is red.", subject: "The apple", quantity: "指定一個", be: "is", isCorrect: true },
+    { sentence: "The apples is fresh.", zh: "那些蘋果很新鮮。", answer: "The apples are fresh.", subject: "The apples", quantity: "指定一堆", be: "are", isCorrect: false },
+    { sentence: "The student is late.", zh: "這個學生遲到了。", answer: "The student is late.", subject: "The student", quantity: "指定一個", be: "is", isCorrect: true },
+    { sentence: "The students is noisy.", zh: "那些學生很嘈。", answer: "The students are noisy.", subject: "The students", quantity: "指定一班", be: "are", isCorrect: false },
+    { sentence: "The book is new.", zh: "這本書很新。", answer: "The book is new.", subject: "The book", quantity: "指定一本", be: "is", isCorrect: true },
+    { sentence: "The books is heavy.", zh: "那些書很重。", answer: "The books are heavy.", subject: "The books", quantity: "指定多本", be: "are", isCorrect: false },
+    { sentence: "The cat is sleeping.", zh: "這隻貓在睡覺。", answer: "The cat is sleeping.", subject: "The cat", quantity: "指定一隻", be: "is", isCorrect: true },
+    { sentence: "The cats is hungry.", zh: "那些貓很餓。", answer: "The cats are hungry.", subject: "The cats", quantity: "指定多隻", be: "are", isCorrect: false },
+    { sentence: "The pencil is sharp.", zh: "這支鉛筆很尖。", answer: "The pencil is sharp.", subject: "The pencil", quantity: "指定一支", be: "is", isCorrect: true },
+    { sentence: "The pencils is sharp.", zh: "那些鉛筆很尖。", answer: "The pencils are sharp.", subject: "The pencils", quantity: "指定多支", be: "are", isCorrect: false },
+    { sentence: "The birds are flying.", zh: "那些雀鳥在飛。", answer: "The birds are flying.", subject: "The birds", quantity: "指定多隻", be: "are", isCorrect: true },
+    { sentence: "The bird are flying.", zh: "這隻雀鳥在飛。", answer: "The bird is flying.", subject: "The bird", quantity: "指定一隻", be: "is", isCorrect: false },
+    { sentence: "The flowers are beautiful.", zh: "那些花很漂亮。", answer: "The flowers are beautiful.", subject: "The flowers", quantity: "指定多朵", be: "are", isCorrect: true },
+    { sentence: "The flower are beautiful.", zh: "這朵花很漂亮。", answer: "The flower is beautiful.", subject: "The flower", quantity: "指定一朵", be: "is", isCorrect: false },
+    { sentence: "The car is fast.", zh: "這架車很快。", answer: "The car is fast.", subject: "The car", quantity: "指定一架", be: "is", isCorrect: true },
+    { sentence: "The cars is fast.", zh: "那些車很快。", answer: "The cars are fast.", subject: "The cars", quantity: "指定多架", be: "are", isCorrect: false },
+    { sentence: "The chairs are clean.", zh: "那些椅子很乾淨。", answer: "The chairs are clean.", subject: "The chairs", quantity: "指定多張", be: "are", isCorrect: true },
+    { sentence: "The chair are clean.", zh: "這張椅子很乾淨。", answer: "The chair is clean.", subject: "The chair", quantity: "指定一張", be: "is", isCorrect: false }
+  ].forEach((item) => add({
+    sentence: item.sentence,
+    zh: item.zh,
+    isCorrect: item.isCorrect,
+    answer: item.answer,
+    explanation: `the 表示指定；${item.subject} 是${item.quantity}，所以用 ${item.be}。`
+  }));
+
+  [
+    { sentence: "Water is important.", zh: "水很重要。", answer: "Water is important.", noun: "water", isCorrect: true },
+    { sentence: "Waters are important.", zh: "水很重要。", answer: "Water is important.", noun: "water", isCorrect: false },
+    { sentence: "Homework is difficult.", zh: "功課很難。", answer: "Homework is difficult.", noun: "homework", isCorrect: true },
+    { sentence: "Homeworks are difficult.", zh: "功課很難。", answer: "Homework is difficult.", noun: "homework", isCorrect: false },
+    { sentence: "Information is useful.", zh: "資訊很有用。", answer: "Information is useful.", noun: "information", isCorrect: true },
+    { sentence: "An information is useful.", zh: "資訊很有用。", answer: "Information is useful.", noun: "information", isCorrect: false },
+    { sentence: "Knowledge is power.", zh: "知識就是力量。", answer: "Knowledge is power.", noun: "knowledge", isCorrect: true },
+    { sentence: "Knowledges are important.", zh: "知識很重要。", answer: "Knowledge is important.", noun: "knowledge", isCorrect: false },
+    { sentence: "Equipment is expensive.", zh: "器材很昂貴。", answer: "Equipment is expensive.", noun: "equipment", isCorrect: true },
+    { sentence: "Equipments are expensive.", zh: "器材很昂貴。", answer: "Equipment is expensive.", noun: "equipment", isCorrect: false },
+    { sentence: "Music is relaxing.", zh: "音樂令人放鬆。", answer: "Music is relaxing.", noun: "music", isCorrect: true },
+    { sentence: "A music is relaxing.", zh: "音樂令人放鬆。", answer: "Music is relaxing.", noun: "music", isCorrect: false },
+    { sentence: "Rice is tasty.", zh: "米飯很好吃。", answer: "Rice is tasty.", noun: "rice", isCorrect: true },
+    { sentence: "Rices are tasty.", zh: "米飯很好吃。", answer: "Rice is tasty.", noun: "rice", isCorrect: false },
+    { sentence: "Milk is healthy.", zh: "牛奶很健康。", answer: "Milk is healthy.", noun: "milk", isCorrect: true },
+    { sentence: "Milks are healthy.", zh: "牛奶很健康。", answer: "Milk is healthy.", noun: "milk", isCorrect: false },
+    { sentence: "Bread is fresh.", zh: "麵包很新鮮。", answer: "Bread is fresh.", noun: "bread", isCorrect: true },
+    { sentence: "Breads are fresh.", zh: "麵包很新鮮。", answer: "Bread is fresh.", noun: "bread", isCorrect: false },
+    { sentence: "Money is important.", zh: "金錢很重要。", answer: "Money is important.", noun: "money", isCorrect: true },
+    { sentence: "Moneys are important.", zh: "金錢很重要。", answer: "Money is important.", noun: "money", isCorrect: false }
+  ].forEach((item) => add({
+    sentence: item.sentence,
+    zh: item.zh,
+    isCorrect: item.isCorrect,
+    answer: item.answer,
+    explanation: `${item.noun} 是不可數名詞，沒有 s，也不用 a/an，當單一概念用 is。`
+  }));
+
+  [
+    { sentence: "A banana is yellow.", zh: "有一隻香蕉是黃色的。", answer: "A banana is yellow.", explanation: "中文強調一隻香蕉；A banana 是單數，所以用 is。", isCorrect: true },
+    { sentence: "An banana is yellow.", zh: "有一隻香蕉是黃色的。", answer: "A banana is yellow.", explanation: "banana 不是母音開頭；只有一隻時要用 A banana，後面用 is。", isCorrect: false },
+    { sentence: "Bananas are yellow.", zh: "香蕉是黃色的。", answer: "Bananas are yellow.", explanation: "中文「香蕉」是泛指整個類別；banana 是可數名詞，預設用眾數 Bananas，所以用 are。", isCorrect: true },
+    { sentence: "Banana is yellow.", zh: "香蕉是黃色的。", answer: "Bananas are yellow.", explanation: "中文「香蕉」是泛指整個類別；banana 是可數名詞，預設用眾數 Bananas，所以用 are。", isCorrect: false },
+    { sentence: "The banana is yellow.", zh: "這隻香蕉是黃色的。", answer: "The banana is yellow.", explanation: "the 表示指定；The banana 是指定一隻，所以用 is。", isCorrect: true },
+    { sentence: "The bananas is yellow.", zh: "那些香蕉是黃色的。", answer: "The bananas are yellow.", explanation: "the 表示指定；The bananas 是指定多隻，所以用 are。", isCorrect: false },
+    { sentence: "Ideas are powerful.", zh: "想法很有力量。", answer: "Ideas are powerful.", explanation: "中文「想法」是泛指整個類別；idea 是可數名詞，預設用眾數 Ideas，所以用 are。", isCorrect: true },
+    { sentence: "Idea is powerful.", zh: "想法很有力量。", answer: "Ideas are powerful.", explanation: "中文「想法」是泛指整個類別；idea 是可數名詞，預設用眾數 Ideas，所以用 are。", isCorrect: false },
+    { sentence: "A desk is clean.", zh: "有一張書桌很乾淨。", answer: "A desk is clean.", explanation: "中文強調一張書桌；A desk 是單數，所以用 is。", isCorrect: true },
+    { sentence: "Desk is clean.", zh: "有一張書桌很乾淨。", answer: "A desk is clean.", explanation: "中文強調一張書桌；desk 是可數名詞，單數前面要加 A，後面用 is。", isCorrect: false },
+    { sentence: "The desks are clean.", zh: "那些書桌很乾淨。", answer: "The desks are clean.", explanation: "the 表示指定；The desks 是指定多張，所以用 are。", isCorrect: true },
+    { sentence: "The desk are clean.", zh: "這張書桌很乾淨。", answer: "The desk is clean.", explanation: "the 表示指定；The desk 是指定一張，所以用 is。", isCorrect: false },
+    { sentence: "Sugar is sweet.", zh: "糖很甜。", answer: "Sugar is sweet.", explanation: "sugar 是不可數名詞，沒有 s，也不用 a/an，當單一概念用 is。", isCorrect: true },
+    { sentence: "Sugars are sweet.", zh: "糖很甜。", answer: "Sugar is sweet.", explanation: "sugar 是不可數名詞，沒有 s，也不用 a/an，當單一概念用 is。", isCorrect: false },
+    { sentence: "Air is clean.", zh: "空氣很乾淨。", answer: "Air is clean.", explanation: "air 是不可數名詞，沒有 s，也不用 a/an，當單一概念用 is。", isCorrect: true },
+    { sentence: "An air is clean.", zh: "空氣很乾淨。", answer: "Air is clean.", explanation: "air 是不可數名詞，沒有 s，也不用 a/an，當單一概念用 is。", isCorrect: false },
+    { sentence: "Lessons are important.", zh: "課堂很重要。", answer: "Lessons are important.", explanation: "中文「課堂」是泛指整個類別；lesson 是可數名詞，預設用眾數 Lessons，所以用 are。", isCorrect: true },
+    { sentence: "Lesson is important.", zh: "課堂很重要。", answer: "Lessons are important.", explanation: "中文「課堂」是泛指整個類別；lesson 是可數名詞，預設用眾數 Lessons，所以用 are。", isCorrect: false },
+    { sentence: "The lesson is important.", zh: "這堂課很重要。", answer: "The lesson is important.", explanation: "the 表示指定；The lesson 是指定一堂，所以用 is。", isCorrect: true },
+    { sentence: "The lessons is important.", zh: "那些課堂很重要。", answer: "The lessons are important.", explanation: "the 表示指定；The lessons 是指定多堂，所以用 are。", isCorrect: false }
+  ].forEach(add);
+
+  return questions;
+}
+
+const COUNTABLE_NOUN_QUESTIONS = createCountableNounQuestions();
+
 const LESSON1_ID = "lesson1";
 const LESSON2_ID = "lesson2";
 const QUIZ1_ID = "quiz1";
 const SENTENCE_UNDERLINE_ID = "sentence-underline";
 const PRONOUN_MATCH_ID = "pronoun-match";
+const COUNTABLE_NOUN_ID = "countable-nouns";
 const LESSON_PROGRESS_KEYS = {
   [LESSON1_ID]: "basic_grammar_lesson_01_progress_v2",
   [LESSON2_ID]: "basic_grammar_lesson_02_progress_v1",
   [QUIZ1_ID]: "basic_grammar_quiz_01_progress_v1",
   [SENTENCE_UNDERLINE_ID]: "basic_grammar_sentence_underline_progress_v1",
-  [PRONOUN_MATCH_ID]: "basic_grammar_pronoun_match_progress_v1"
+  [PRONOUN_MATCH_ID]: "basic_grammar_pronoun_match_progress_v1",
+  [COUNTABLE_NOUN_ID]: "basic_grammar_countable_nouns_progress_v1"
 };
 const LESSONS = {
   [LESSON1_ID]: {
@@ -445,6 +626,12 @@ const LESSONS = {
     kicker: "Lesson 04",
     title: "代名詞",
     questions: PRONOUN_MATCH_QUESTIONS
+  },
+  [COUNTABLE_NOUN_ID]: {
+    id: COUNTABLE_NOUN_ID,
+    kicker: "Lesson 05",
+    title: "可數名詞的使用要點",
+    questions: COUNTABLE_NOUN_QUESTIONS
   }
 };
 
@@ -568,6 +755,7 @@ const el = {
   menuProgressQuiz1: document.querySelector("#menu-progress-quiz1"),
   menuProgressSentenceUnderline: document.querySelector("#menu-progress-sentence-underline"),
   menuProgressPronounMatch: document.querySelector("#menu-progress-pronoun-match"),
+  menuProgressCountableNouns: document.querySelector("#menu-progress-countable-nouns"),
   menuCoachLine: document.querySelector("#menu-coach-line"),
   practiceCountInput: document.querySelector("#practice-count"),
   practiceCountOutput: document.querySelector("#practice-count-output"),
@@ -592,6 +780,9 @@ const el = {
   verbTokenChoice: document.querySelector("#verb-token-choice"),
   verbTokenGrid: document.querySelector("#verb-token-grid"),
   submitVerbsBtn: document.querySelector("#submit-verbs-btn"),
+  countableCorrectionChoice: document.querySelector("#countable-correction-choice"),
+  countableCorrectionInput: document.querySelector("#countable-correction-input"),
+  submitCountableCorrectionBtn: document.querySelector("#submit-countable-correction-btn"),
   sentenceBuilderChoice: document.querySelector("#sentence-builder-choice"),
   sentenceSlots: document.querySelector("#sentence-slots"),
   wordBank: document.querySelector("#word-bank"),
@@ -907,14 +1098,18 @@ function updateMenuProgress() {
   const quiz1Progress = getProgress(QUIZ1_ID);
   const underlineProgress = getProgress(SENTENCE_UNDERLINE_ID);
   const pronounProgress = getProgress(PRONOUN_MATCH_ID);
+  const countableProgress = getProgress(COUNTABLE_NOUN_ID);
   el.menuProgressLesson1.textContent = `${lesson1Progress}/${getLessonTotal(LESSON1_ID)}`;
   el.menuProgressLesson2.textContent = `${lesson2Progress}/${getLessonTotal(LESSON2_ID)}`;
   el.menuProgressQuiz1.textContent = `${quiz1Progress}/${getLessonTotal(QUIZ1_ID)}`;
   el.menuProgressSentenceUnderline.textContent = `${underlineProgress}/${getLessonTotal(SENTENCE_UNDERLINE_ID)}`;
   el.menuProgressPronounMatch.textContent = `${pronounProgress}/${getLessonTotal(PRONOUN_MATCH_ID)}`;
+  el.menuProgressCountableNouns.textContent = `${countableProgress}/${getLessonTotal(COUNTABLE_NOUN_ID)}`;
 
-  if (pronounProgress >= getLessonTotal(PRONOUN_MATCH_ID)) {
-    el.menuCoachLine.textContent = "Lesson 04 已完成，可以再挑戰代名詞速度。";
+  if (countableProgress >= getLessonTotal(COUNTABLE_NOUN_ID)) {
+    el.menuCoachLine.textContent = "Lesson 05 已完成，可數名詞同不可數名詞都分得好準。";
+  } else if (pronounProgress >= getLessonTotal(PRONOUN_MATCH_ID)) {
+    el.menuCoachLine.textContent = "Lesson 04 已完成，可以挑戰 Lesson 05 可數名詞。";
   } else if (underlineProgress >= getLessonTotal(SENTENCE_UNDERLINE_ID)) {
     el.menuCoachLine.textContent = "Lesson 03 已完成，可以挑戰 Lesson 04 代名詞。";
   } else if (quiz1Progress >= getLessonTotal(QUIZ1_ID)) {
@@ -975,6 +1170,7 @@ function showOnlyChoice(choice) {
   el.judgmentChoice.classList.toggle("hidden", choice !== "judgment");
   el.verbCountChoice.classList.toggle("hidden", choice !== "verbCount");
   el.verbTokenChoice.classList.toggle("hidden", choice !== "verbTokens");
+  el.countableCorrectionChoice.classList.toggle("hidden", choice !== "countableCorrection");
   el.sentenceBuilderChoice.classList.toggle("hidden", choice !== "builder");
   el.sentenceUnderlineChoice.classList.toggle("hidden", choice !== "underline");
   el.pronounMatchChoice.classList.toggle("hidden", choice !== "pronoun");
@@ -1169,12 +1365,14 @@ function renderQuestion() {
   el.lessonScreen.classList.toggle("quiz-screen", state.lessonId === QUIZ1_ID);
   el.lessonScreen.classList.toggle("underline-screen", state.lessonId === SENTENCE_UNDERLINE_ID);
   el.lessonScreen.classList.toggle("pronoun-screen", state.lessonId === PRONOUN_MATCH_ID);
-  el.chinesePrompt.classList.toggle("english-prompt", state.lessonId === LESSON2_ID);
+  el.lessonScreen.classList.toggle("countable-screen", state.lessonId === COUNTABLE_NOUN_ID);
+  el.chinesePrompt.classList.toggle("english-prompt", state.lessonId === LESSON2_ID || state.lessonId === COUNTABLE_NOUN_ID);
   el.chinesePrompt.classList.toggle("builder-prompt", state.lessonId === QUIZ1_ID);
   el.chinesePrompt.classList.toggle("underline-prompt", state.lessonId === SENTENCE_UNDERLINE_ID);
   el.chinesePrompt.classList.toggle("pronoun-prompt", state.lessonId === PRONOUN_MATCH_ID);
   el.ruleCard.classList.toggle("hidden", state.lessonId !== LESSON2_ID);
   el.verbTokenGrid.replaceChildren();
+  el.countableCorrectionInput.value = "";
   el.sentenceSlots.replaceChildren();
   el.wordBank.replaceChildren();
   el.underlineBoard.replaceChildren();
@@ -1200,6 +1398,11 @@ function renderQuestion() {
 
   if (state.lessonId === PRONOUN_MATCH_ID) {
     renderPronounMatchQuestion(question);
+    return;
+  }
+
+  if (state.lessonId === COUNTABLE_NOUN_ID) {
+    renderCountableNounQuestion(question);
     return;
   }
 
@@ -1310,6 +1513,15 @@ function renderPronounMatchQuestion(question) {
 
   updatePronounMatchView();
   showOnlyChoice("pronoun");
+}
+
+function renderCountableNounQuestion(question) {
+  el.stepLabel.textContent = "English sentence";
+  el.categoryPill.textContent = "可數名詞";
+  el.categoryPill.dataset.type = "countable";
+  el.chinesePrompt.textContent = question.sentence;
+  el.guidance.textContent = question.zh;
+  showOnlyChoice("judgment");
 }
 
 function completeQuestion(message) {
@@ -1452,6 +1664,73 @@ function getVerbCountFeedback(question) {
   ];
 }
 
+function getCountableNounFeedback(question, opening = "") {
+  return [
+    { text: `${opening}${question.explanation}` },
+    { text: `正確答案：${question.answer}`, className: "answer-line" }
+  ];
+}
+
+function normalizeTypedSentence(value) {
+  return value
+    .trim()
+    .replace(/[’‘]/g, "'")
+    .replace(/[“”]/g, "\"")
+    .replace(/\s+/g, " ")
+    .replace(/\s+([.,!?])/g, "$1")
+    .replace(/[.?!]+$/g, "")
+    .toLowerCase();
+}
+
+function isCountableTypedAnswerCorrect(question, value) {
+  const normalized = normalizeTypedSentence(value);
+  return question.acceptedAnswers.some((answer) => normalizeTypedSentence(answer) === normalized);
+}
+
+function askCountableCorrection() {
+  el.guidance.textContent = "輸入正確英文句子。";
+  showOnlyChoice("countableCorrection");
+  setFeedback("正確，呢句有問題，請改成正確英文。", "success");
+  playUiSound("step");
+  setTimeout(() => el.countableCorrectionInput.focus(), 0);
+}
+
+function answerCountableJudgment(choice) {
+  const question = currentQuestion();
+  if (!question || state.lessonId !== COUNTABLE_NOUN_ID || state.resolved) return;
+
+  const pickedCorrect = choice === "correct";
+  if (pickedCorrect !== question.isCorrect) {
+    recordWrong(getCountableNounFeedback(question, question.isCorrect ? "句子本身正確。" : "句子錯誤。"));
+    return;
+  }
+
+  if (question.isCorrect) {
+    completeVerbLessonQuestion(getCountableNounFeedback(question, "句子正確。"));
+    return;
+  }
+
+  askCountableCorrection();
+}
+
+function submitCountableCorrection() {
+  const question = currentQuestion();
+  if (!question || state.lessonId !== COUNTABLE_NOUN_ID || state.resolved) return;
+
+  if (!el.countableCorrectionInput.value.trim()) {
+    setFeedback("請輸入正確英文句子。", "error");
+    playUiSound("wrong");
+    return;
+  }
+
+  if (!isCountableTypedAnswerCorrect(question, el.countableCorrectionInput.value)) {
+    recordWrong(getCountableNounFeedback(question, "改寫未正確。"));
+    return;
+  }
+
+  completeVerbLessonQuestion(getCountableNounFeedback(question, "改寫正確。"));
+}
+
 function completeVerbLessonQuestion(message) {
   const question = currentQuestion();
   if (!question || state.resolved) return;
@@ -1478,7 +1757,14 @@ function completeVerbLessonQuestion(message) {
 
 function answerSentenceJudgment(choice) {
   const question = currentQuestion();
-  if (!question || state.lessonId !== LESSON2_ID || state.resolved) return;
+  if (!question || state.resolved) return;
+
+  if (state.lessonId === COUNTABLE_NOUN_ID) {
+    answerCountableJudgment(choice);
+    return;
+  }
+
+  if (state.lessonId !== LESSON2_ID) return;
 
   const pickedCorrect = choice === "correct";
   if (pickedCorrect !== question.isCorrect) {
@@ -2204,12 +2490,16 @@ function renderReviewSummary() {
 }
 
 function getQuestionPrompt(question) {
+  if (question.type === "countable") return question.sentence;
   return question.zh || question.sentence || question.text || "";
 }
 
 function getResultMessage(percent, mistakes, mode) {
   if (mode === "review" && mistakes === 0) return "錯題已清晒，返去挑戰新一輪。";
   if (mode === "review") return "差少少，再重練今輪錯題就得。";
+  if (state.lessonId === COUNTABLE_NOUN_ID && percent === 100 && mistakes === 0) return "滿分！可數名詞預設加 s 呢個盲點已經打通。";
+  if (state.lessonId === COUNTABLE_NOUN_ID && percent >= 80) return "好穩陣！繼續留意 a/an、the 同不可數名詞。";
+  if (state.lessonId === COUNTABLE_NOUN_ID) return "慢慢嚟，先問自己：泛指？一個？指定？不可數？";
   if (state.lessonId === PRONOUN_MATCH_ID && percent === 100 && mistakes === 0) return "滿分！主語、非主語、的、的東西都配得好準。";
   if (state.lessonId === PRONOUN_MATCH_ID && percent >= 80) return "好穩陣！繼續記住 my/mine、your/yours 呢類分別。";
   if (state.lessonId === PRONOUN_MATCH_ID) return "慢慢嚟，先分清楚主語、非主語、的、的東西。";
@@ -2289,6 +2579,13 @@ document.querySelectorAll("[data-verb-count]").forEach((button) => {
 });
 
 el.submitVerbsBtn.addEventListener("click", submitVerbTokens);
+el.submitCountableCorrectionBtn.addEventListener("click", submitCountableCorrection);
+el.countableCorrectionInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    submitCountableCorrection();
+  }
+});
 el.resetBuilderBtn.addEventListener("click", resetSentenceBuilder);
 el.confirmBuilderBtn.addEventListener("click", submitSentenceBuilder);
 el.underlineBoard.addEventListener("pointerdown", startUnderlineDrag);
