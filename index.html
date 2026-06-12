@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Basic English Grammar Game</title>
-  <link rel="stylesheet" href="style.css?v=20260612-verb-table-images">
+  <link rel="stylesheet" href="style.css?v=20260613-verb-table-reference">
 </head>
 <body>
   <main class="app-shell">
@@ -86,14 +86,19 @@
             </span>
           </button>
 
-          <button class="lesson-card" type="button" data-start-lesson="verb-table">
-            <span class="lesson-kicker">Lesson 06</span>
-            <strong>Verb Table 動詞四式</strong>
-            <span class="lesson-meta">
-              <span>現在式、過去式、PP、ING 配對</span>
-              <span id="menu-progress-verb-table">0/100</span>
-            </span>
-          </button>
+          <div class="lesson-card-wrap">
+            <button class="lesson-card lesson-card-with-info" type="button" data-start-lesson="verb-table">
+              <span class="lesson-kicker">Lesson 06</span>
+              <strong>Verb Table 動詞四式</strong>
+              <span class="lesson-meta">
+                <span>現在式、過去式、PP、ING 配對</span>
+                <span id="menu-progress-verb-table">0/100</span>
+              </span>
+            </button>
+            <button id="open-verb-table-reference" class="lesson-info-btn" type="button" aria-label="打開 Verb Table 溫習表" data-open-verb-table-reference>
+              <span>i</span>
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -265,11 +270,47 @@
       </footer>
     </section>
   </main>
+
+  <section id="verb-table-reference-modal" class="verb-table-reference-modal hidden" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="verb-table-reference-title">
+    <button class="verb-table-reference-backdrop" type="button" aria-label="關閉 Verb Table 溫習表" data-close-verb-table-reference></button>
+    <div class="verb-table-reference-panel">
+      <header class="verb-table-reference-header">
+        <div>
+          <div class="verb-table-reference-kicker">Lesson 06</div>
+          <h2 id="verb-table-reference-title">Verb Table 動詞四式</h2>
+        </div>
+        <button class="verb-table-reference-close" type="button" aria-label="關閉" data-close-verb-table-reference>×</button>
+      </header>
+
+      <div class="verb-table-reference-tools">
+        <label class="verb-table-reference-search">
+          <span>搜尋</span>
+          <input id="verb-table-reference-search" type="search" autocomplete="off" spellcheck="false" placeholder="中文 / present / past / PP / ING">
+        </label>
+        <div id="verb-table-reference-count" class="verb-table-reference-count">0 verbs</div>
+      </div>
+
+      <div class="verb-table-reference-list" aria-label="Verb Table reference">
+        <div class="verb-table-reference-list-head">
+          <span>中文</span>
+          <span>Present</span>
+          <span>Past</span>
+          <span>PP</span>
+          <span>ING</span>
+          <span>聽</span>
+        </div>
+        <div id="verb-table-reference-body" class="verb-table-reference-body"></div>
+      </div>
+    </div>
+  </section>
+
   <div id="celebration-layer" class="celebration-layer" aria-hidden="true"></div>
 
   <script src="assets/lottie.min.js?v=20260609-lottie"></script>
   <script src="assets/confetti-animation.js?v=20260609-lottie"></script>
-  <script src="grammar_verb_table_image_manifest.js?v=20260612-verb-table-images"></script>
-  <script src="app.js?v=20260612-verb-table-images"></script>
+  <script src="grammar_verb_table_data.js?v=20260613-verb-table-reference"></script>
+  <script src="grammar_verb_table_audio_manifest.js?v=20260613-verb-table-reference"></script>
+  <script src="grammar_verb_table_image_manifest.js?v=20260613-verb-table-reference"></script>
+  <script src="app.js?v=20260613-verb-table-reference"></script>
 </body>
 </html>

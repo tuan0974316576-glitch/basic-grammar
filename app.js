@@ -842,10 +842,14 @@ const SOUND_PATTERNS = {
   ]
 };
 const UI_SOUND_GAIN = 0.098;
+const VERB_TABLE_REFERENCE_SPEAK_GAP_MS = 180;
 
 let audioContext = null;
 let celebrationAnimation = null;
 let celebrationHideTimer = 0;
+let verbTableReferenceRendered = false;
+let activeVerbTableReferenceAudio = null;
+let activeVerbTableReferenceAudioToken = 0;
 
 const state = {
   lessonId: LESSON1_ID,
@@ -887,6 +891,11 @@ const el = {
   menuProgressPronounMatch: document.querySelector("#menu-progress-pronoun-match"),
   menuProgressCountableNouns: document.querySelector("#menu-progress-countable-nouns"),
   menuProgressVerbTable: document.querySelector("#menu-progress-verb-table"),
+  openVerbTableReferenceBtn: document.querySelector("#open-verb-table-reference"),
+  verbTableReferenceModal: document.querySelector("#verb-table-reference-modal"),
+  verbTableReferenceSearch: document.querySelector("#verb-table-reference-search"),
+  verbTableReferenceCount: document.querySelector("#verb-table-reference-count"),
+  verbTableReferenceBody: document.querySelector("#verb-table-reference-body"),
   menuCoachLine: document.querySelector("#menu-coach-line"),
   practiceCountInput: document.querySelector("#practice-count"),
   practiceCountOutput: document.querySelector("#practice-count-output"),
@@ -3017,6 +3026,198 @@ function speakCurrentEnglish() {
   window.speechSynthesis.speak(utterance);
 }
 
+function getVerbTableReferenceBank() {
+  return Array.isArray(window.GRAMMAR_VERB_BANK) ? window.GRAMMAR_VERB_BANK : [];
+}
+
+function getVerbTableReferenceKey(forms) {
+  return forms.map((part) => String(part || "").trim().toLowerCase()).join("|");
+}
+
+function getVerbTableReferenceAudioUrl(forms) {
+  return window.GRAMMAR_VERB_AUDIO_MANIFEST?.[getVerbTableReferenceKey(forms)] || "";
+}
+
+function stopVerbTableReferenceAudio() {
+  activeVerbTableReferenceAudioToken += 1;
+  if (activeVerbTableReferenceAudio) {
+    try {
+      activeVerbTableReferenceAudio.pause();
+      activeVerbTableReferenceAudio.currentTime = 0;
+    } catch (_error) {
+      // Audio may already be gone on some mobile browsers.
+    }
+    activeVerbTableReferenceAudio = null;
+  }
+  if (window.speechSynthesis) {
+    window.speechSynthesis.cancel();
+  }
+  document.querySelectorAll(".verb-table-reference-row.speaking").forEach((row) => {
+    row.classList.remove("speaking");
+  });
+}
+
+function createVerbTableReferenceCell(label, value, className = "") {
+  const cell = document.createElement("span");
+  cell.className = `verb-table-reference-cell${className ? ` ${className}` : ""}`;
+  cell.dataset.label = label;
+  cell.textContent = value;
+  return cell;
+}
+
+function createVerbTableReferenceRow(verb, index) {
+  const [zh, present, past, pp, ing] = verb;
+  const forms = [present, past, pp, ing];
+  const audioUrl = getVerbTableReferenceAudioUrl(forms);
+  const row = document.createElement("div");
+  row.className = "verb-table-reference-row";
+  row.dataset.referenceIndex = String(index);
+  row.dataset.forms = JSON.stringify(forms);
+  row.dataset.search = [zh, ...forms].join(" ").toLowerCase();
+  row.dataset.audioAvailable = audioUrl ? "true" : "false";
+
+  row.append(
+    createVerbTableReferenceCell("中文", zh, "chinese"),
+    createVerbTableReferenceCell("Present", present),
+    createVerbTableReferenceCell("Past", past),
+    createVerbTableReferenceCell("PP", pp),
+    createVerbTableReferenceCell("ING", ing)
+  );
+
+  const audioButton = document.createElement("button");
+  audioButton.className = "verb-table-reference-audio";
+  audioButton.type = "button";
+  audioButton.dataset.verbTableReferenceAudio = "true";
+  audioButton.setAttribute("aria-label", audioUrl ? `播放 ${present} 四式讀音` : `用瀏覽器讀出 ${present} 四式`);
+  audioButton.textContent = "♪";
+  row.append(audioButton);
+
+  return row;
+}
+
+function renderVerbTableReferenceRows() {
+  if (!el.verbTableReferenceBody || !el.verbTableReferenceCount) return;
+
+  if (verbTableReferenceRendered) {
+    stopVerbTableReferenceAudio();
+  }
+  const query = (el.verbTableReferenceSearch?.value || "").trim().toLowerCase();
+  const bank = getVerbTableReferenceBank();
+  const rows = bank.filter((verb) => !query || verb.join(" ").toLowerCase().includes(query));
+  el.verbTableReferenceBody.replaceChildren(...rows.map(createVerbTableReferenceRow));
+  el.verbTableReferenceCount.textContent = `${rows.length}/${bank.length} verbs`;
+  verbTableReferenceRendered = true;
+}
+
+function openVerbTableReference(event) {
+  event?.preventDefault();
+  event?.stopPropagation();
+  if (!el.verbTableReferenceModal) return;
+
+  renderVerbTableReferenceRows();
+  el.verbTableReferenceModal.classList.remove("hidden");
+  el.verbTableReferenceModal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("modal-open");
+  playUiSound("step");
+  setTimeout(() => el.verbTableReferenceSearch?.focus(), 0);
+}
+
+function closeVerbTableReference() {
+  if (!el.verbTableReferenceModal || el.verbTableReferenceModal.classList.contains("hidden")) return;
+
+  stopVerbTableReferenceAudio();
+  el.verbTableReferenceModal.classList.add("hidden");
+  el.verbTableReferenceModal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("modal-open");
+  playUiSound("next");
+}
+
+function getVerbTableReferenceForms(row) {
+  try {
+    const forms = JSON.parse(row?.dataset.forms || "[]");
+    return Array.isArray(forms) ? forms : [];
+  } catch (_error) {
+    return [];
+  }
+}
+
+function speakVerbTableReferenceFallback(forms, row, token) {
+  if (!window.speechSynthesis || typeof SpeechSynthesisUtterance === "undefined") {
+    row.classList.remove("speaking");
+    return;
+  }
+
+  const speakPart = (index) => {
+    if (token !== activeVerbTableReferenceAudioToken) return;
+    if (index >= forms.length) {
+      row.classList.remove("speaking");
+      return;
+    }
+
+    const utterance = new SpeechSynthesisUtterance(forms[index]);
+    utterance.lang = "en-US";
+    utterance.rate = 0.84;
+    utterance.pitch = 1;
+    utterance.onend = () => {
+      if (token !== activeVerbTableReferenceAudioToken) return;
+      if (index >= forms.length - 1) {
+        row.classList.remove("speaking");
+        return;
+      }
+      setTimeout(() => speakPart(index + 1), VERB_TABLE_REFERENCE_SPEAK_GAP_MS);
+    };
+    utterance.onerror = () => row.classList.remove("speaking");
+    window.speechSynthesis.speak(utterance);
+  };
+
+  speakPart(0);
+}
+
+async function speakVerbTableReferenceRow(row) {
+  if (!row) return;
+  const forms = getVerbTableReferenceForms(row);
+  if (forms.length !== 4) return;
+
+  stopVerbTableReferenceAudio();
+  const token = activeVerbTableReferenceAudioToken;
+  row.classList.add("speaking");
+  const audioUrl = getVerbTableReferenceAudioUrl(forms);
+
+  if (audioUrl) {
+    try {
+      const audio = new Audio(audioUrl);
+      activeVerbTableReferenceAudio = audio;
+      audio.volume = 1;
+      audio.preload = "auto";
+      audio.onended = () => {
+        if (token === activeVerbTableReferenceAudioToken) {
+          row.classList.remove("speaking");
+          activeVerbTableReferenceAudio = null;
+        }
+      };
+      audio.onerror = () => {
+        if (token === activeVerbTableReferenceAudioToken) {
+          activeVerbTableReferenceAudio = null;
+          speakVerbTableReferenceFallback(forms, row, token);
+        }
+      };
+      await audio.play();
+      return;
+    } catch (_error) {
+      if (token !== activeVerbTableReferenceAudioToken) return;
+    }
+  }
+
+  speakVerbTableReferenceFallback(forms, row, token);
+}
+
+function handleVerbTableReferenceBodyClick(event) {
+  const row = event.target.closest(".verb-table-reference-row");
+  if (!row || !el.verbTableReferenceBody?.contains(row)) return;
+  event.preventDefault();
+  speakVerbTableReferenceRow(row);
+}
+
 document.addEventListener("pointerdown", unlockAudio, { passive: true });
 document.addEventListener("keydown", unlockAudio);
 document.addEventListener("contextmenu", (event) => event.preventDefault());
@@ -3027,6 +3228,17 @@ document.querySelectorAll("[data-start-lesson]").forEach((button) => {
 document.querySelector("[data-back-menu]").addEventListener("click", backToMenu);
 document.querySelector("[data-result-menu]").addEventListener("click", backToMenu);
 document.querySelector("[data-restart-lesson]").addEventListener("click", () => startLesson(state.lessonId));
+el.openVerbTableReferenceBtn?.addEventListener("click", openVerbTableReference);
+document.querySelectorAll("[data-close-verb-table-reference]").forEach((button) => {
+  button.addEventListener("click", closeVerbTableReference);
+});
+el.verbTableReferenceSearch?.addEventListener("input", renderVerbTableReferenceRows);
+el.verbTableReferenceBody?.addEventListener("click", handleVerbTableReferenceBodyClick);
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeVerbTableReference();
+  }
+});
 el.reviewMistakesBtn.addEventListener("click", startMistakeReview);
 el.nextBtn.addEventListener("click", nextQuestion);
 el.restartBtn.addEventListener("click", () => startLesson(state.lessonId));
