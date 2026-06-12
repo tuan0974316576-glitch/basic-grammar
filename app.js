@@ -1695,6 +1695,10 @@ function renderVerbTableQuestion(question) {
     input.autocomplete = "off";
     input.autocapitalize = "none";
     input.spellcheck = false;
+    if (field.key === "present") {
+      input.value = getVerbTablePresentHint(question);
+      input.dataset.verbTableHint = input.value;
+    }
     input.addEventListener("input", () => handleVerbTableInput(field.key));
     input.addEventListener("keydown", (event) => handleVerbTableKeydown(event, field.key));
     el.verbTableSlots.append(slot);
@@ -1702,7 +1706,7 @@ function renderVerbTableQuestion(question) {
 
   updateVerbTableView();
   showOnlyChoice("verbTable");
-  setTimeout(() => el.verbTableSlots.querySelector(".verb-table-input")?.focus(), 0);
+  setTimeout(() => focusVerbTableInput("present"), 0);
 }
 
 function completeQuestion(message) {
@@ -2185,6 +2189,50 @@ function getVerbTableInputValue(slotKey) {
   return getVerbTableInput(slotKey)?.value || "";
 }
 
+function getVerbTablePresentHint(question) {
+  return String(question?.forms?.present || "").trim().charAt(0).toLowerCase();
+}
+
+function getVerbTableTypedValue(slotKey) {
+  const input = getVerbTableInput(slotKey);
+  if (!input) return "";
+  const value = input.value.trim();
+  if (slotKey === "present" && value === input.dataset.verbTableHint) return "";
+  return value;
+}
+
+function restoreVerbTablePresentHint(input) {
+  const hint = input?.dataset.verbTableHint || "";
+  if (!hint || input.value.trim()) return;
+
+  input.value = hint;
+}
+
+function tidyVerbTablePresentInput(input) {
+  if (!input) return;
+
+  restoreVerbTablePresentHint(input);
+  const question = currentQuestion();
+  const answer = question?.forms?.present || "";
+  const hint = input.dataset.verbTableHint || "";
+  if (answer && hint && normalizeVerbTableAnswer(input.value) === normalizeVerbTableAnswer(`${hint}${answer}`)) {
+    input.value = answer;
+  }
+}
+
+function focusVerbTableInput(slotKey) {
+  const input = getVerbTableInput(slotKey);
+  if (!input) return;
+
+  input.focus();
+  const end = input.value.length;
+  try {
+    input.setSelectionRange(end, end);
+  } catch (_error) {
+    // Some browsers may not support selection on every input state.
+  }
+}
+
 function normalizeVerbTableAnswer(value) {
   return String(value)
     .trim()
@@ -2197,6 +2245,9 @@ function normalizeVerbTableAnswer(value) {
 function handleVerbTableInput(slotKey) {
   if (state.resolved) return;
 
+  if (slotKey === "present") {
+    tidyVerbTablePresentInput(getVerbTableInput(slotKey));
+  }
   state.verbTableWrongSlots = state.verbTableWrongSlots.filter((wrongSlot) => wrongSlot !== slotKey);
   state.verbTableSubmitState = "";
   updateVerbTableView();
@@ -2213,10 +2264,10 @@ function handleVerbTableKeydown(event, slotKey) {
   const currentIndex = fields.indexOf(slotKey);
   const nextEmptyField = fields
     .slice(currentIndex + 1)
-    .find((fieldKey) => !getVerbTableInputValue(fieldKey).trim());
+    .find((fieldKey) => !getVerbTableTypedValue(fieldKey));
 
   if (nextEmptyField) {
-    getVerbTableInput(nextEmptyField)?.focus();
+    focusVerbTableInput(nextEmptyField);
     return;
   }
 
@@ -2230,7 +2281,7 @@ function updateVerbTableView() {
   el.verbTableSlots.querySelectorAll(".verb-table-slot").forEach((slot) => {
     const slotKey = slot.dataset.verbTableSlot;
     const input = slot.querySelector(".verb-table-input");
-    const hasValue = Boolean(input?.value.trim());
+    const hasValue = Boolean(getVerbTableTypedValue(slotKey));
     const isWrong = state.verbTableWrongSlots.includes(slotKey);
     const isCorrect = state.resolved && !isWrong && isVerbTableSlotCorrect(question, slotKey);
     slot.classList.toggle("filled", hasValue);
@@ -2243,7 +2294,7 @@ function updateVerbTableView() {
     }
   });
 
-  const filledCount = getVerbTableInputs().filter((input) => input.value.trim()).length;
+  const filledCount = VERB_TABLE_FIELDS.filter((field) => getVerbTableTypedValue(field.key)).length;
   el.resetVerbTableBtn.disabled = state.resolved || filledCount === 0;
   el.confirmVerbTableBtn.disabled = state.resolved;
   el.confirmVerbTableBtn.classList.toggle("is-wrong", state.verbTableSubmitState === "wrong" || state.verbTableSubmitState === "incomplete");
@@ -2263,9 +2314,9 @@ function getVerbTableWrongSlots(question) {
 function resetVerbTable() {
   if (state.resolved) return;
 
-  const hadInput = getVerbTableInputs().some((input) => input.value.trim());
+  const hadInput = VERB_TABLE_FIELDS.some((field) => getVerbTableTypedValue(field.key));
   getVerbTableInputs().forEach((input) => {
-    input.value = "";
+    input.value = input.dataset.verbTableHint || "";
   });
   state.verbTableWrongSlots = [];
   state.verbTableSubmitState = "";
@@ -2273,7 +2324,7 @@ function resetVerbTable() {
   setFeedback();
   if (hadInput) {
     playUiSound("next");
-    el.verbTableSlots.querySelector(".verb-table-input")?.focus();
+    focusVerbTableInput("present");
   }
 }
 
@@ -2336,7 +2387,7 @@ function submitVerbTable() {
   if (!question || state.lessonId !== VERB_TABLE_ID || state.resolved) return;
 
   const blankSlots = VERB_TABLE_FIELDS
-    .filter((field) => !getVerbTableInputValue(field.key).trim())
+    .filter((field) => !getVerbTableTypedValue(field.key))
     .map((field) => field.key);
 
   if (blankSlots.length) {
