@@ -868,11 +868,8 @@ const state = {
   selectedPronounWordId: "",
   selectedPronounSlotKey: "",
   pronounAutoAdvanceTimer: 0,
-  verbTablePlacements: {},
-  verbTableWordTexts: {},
-  selectedVerbTableWordId: "",
-  selectedVerbTableSlotKey: "",
   verbTableWrongSlots: [],
+  verbTableSubmitState: "",
   streak: 0,
   bestStreak: getSavedBestStreak(),
   practiceCount: getSavedPracticeCount(),
@@ -934,7 +931,6 @@ const el = {
   confirmPronounBtn: document.querySelector("#confirm-pronoun-btn"),
   verbTableChoice: document.querySelector("#verb-table-choice"),
   verbTableSlots: document.querySelector("#verb-table-slots"),
-  verbTableWordBank: document.querySelector("#verb-table-word-bank"),
   resetVerbTableBtn: document.querySelector("#reset-verb-table-btn"),
   confirmVerbTableBtn: document.querySelector("#confirm-verb-table-btn"),
   celebrationLayer: document.querySelector("#celebration-layer"),
@@ -1455,11 +1451,8 @@ function prepareRun(mode, lessonId, questions) {
   state.pronounWrongSlots = [];
   state.selectedPronounWordId = "";
   state.selectedPronounSlotKey = "";
-  state.verbTablePlacements = {};
-  state.verbTableWordTexts = {};
-  state.selectedVerbTableWordId = "";
-  state.selectedVerbTableSlotKey = "";
   state.verbTableWrongSlots = [];
+  state.verbTableSubmitState = "";
   state.resolved = false;
   state.questions = questions;
   updateLessonChrome();
@@ -1505,11 +1498,8 @@ function renderQuestion() {
   state.pronounWrongSlots = [];
   state.selectedPronounWordId = "";
   state.selectedPronounSlotKey = "";
-  state.verbTablePlacements = {};
-  state.verbTableWordTexts = {};
-  state.selectedVerbTableWordId = "";
-  state.selectedVerbTableSlotKey = "";
   state.verbTableWrongSlots = [];
+  state.verbTableSubmitState = "";
   el.questionNumber.textContent = String(state.index + 1);
   el.questionTotal.textContent = String(state.questions.length);
   updateLiveStats();
@@ -1536,7 +1526,6 @@ function renderQuestion() {
   el.pronounMatchBoard.replaceChildren();
   el.pronounWordBank.replaceChildren();
   el.verbTableSlots.replaceChildren();
-  el.verbTableWordBank.replaceChildren();
   setFeedback();
 
   if (state.lessonId === LESSON2_ID) {
@@ -1692,32 +1681,28 @@ function renderVerbTableQuestion(question) {
   el.categoryPill.textContent = "Verb Table";
   el.categoryPill.dataset.type = "verb-table";
   el.chinesePrompt.textContent = question.zh;
-  el.guidance.textContent = "將字塊放入現在式、過去式、PP、ING。";
+  el.guidance.textContent = "輸入現在式、過去式、PP、ING。";
 
   VERB_TABLE_FIELDS.forEach((field) => {
-    const slot = document.createElement("button");
-    slot.className = "verb-table-slot";
-    slot.type = "button";
+    const slot = document.createElement("label");
+    slot.className = "verb-table-slot verb-table-field";
     slot.dataset.verbTableSlot = field.key;
-    slot.innerHTML = `<span class="verb-table-slot-label"></span><span class="verb-table-slot-value"></span>`;
+    slot.innerHTML = `<span class="verb-table-slot-label"></span><input class="verb-table-input" type="text">`;
     slot.querySelector(".verb-table-slot-label").textContent = field.label;
-    slot.addEventListener("click", () => selectVerbTableSlot(field.key));
+    const input = slot.querySelector(".verb-table-input");
+    input.dataset.verbTableField = field.key;
+    input.placeholder = field.shortLabel;
+    input.autocomplete = "off";
+    input.autocapitalize = "none";
+    input.spellcheck = false;
+    input.addEventListener("input", () => handleVerbTableInput(field.key));
+    input.addEventListener("keydown", (event) => handleVerbTableKeydown(event, field.key));
     el.verbTableSlots.append(slot);
-  });
-
-  getVerbTableWordBlocks(question).forEach(({ id, text }) => {
-    state.verbTableWordTexts[id] = text;
-    const button = document.createElement("button");
-    button.className = "verb-table-word word-block";
-    button.type = "button";
-    button.textContent = text;
-    button.dataset.verbTableWordId = id;
-    button.addEventListener("click", () => selectVerbTableWord(id));
-    el.verbTableWordBank.append(button);
   });
 
   updateVerbTableView();
   showOnlyChoice("verbTable");
+  setTimeout(() => el.verbTableSlots.querySelector(".verb-table-input")?.focus(), 0);
 }
 
 function completeQuestion(message) {
@@ -2177,110 +2162,65 @@ function submitSentenceBuilder() {
 
 function getVerbTableAnswerLine(question) {
   return VERB_TABLE_FIELDS
-    .map((field) => `${field.shortLabel}: ${question.forms[field.key]}`)
+    .map((field) => `${field.label}：${question.forms[field.key]}`)
     .join(" / ");
 }
 
 function getVerbTableFeedback(question, isCorrect) {
   return [
-    { text: isCorrect ? "動詞四式全部配對正確。" : "有格未配對正確，紅色圈住嗰格要留意。" },
+    { text: isCorrect ? "動詞四式全部正確。" : "紅色圈住嗰格未正確。" },
     { text: `正確答案：${getVerbTableAnswerLine(question)}`, className: "answer-line" }
   ];
 }
 
-function getVerbTableWordBlocks(question) {
-  const correctBlocks = VERB_TABLE_FIELDS.map((field, index) => ({
-    id: `answer-${field.key}-${index}`,
-    text: question.forms[field.key]
-  }));
-  const answerCounts = correctBlocks.reduce((counts, block) => {
-    counts[block.text] = (counts[block.text] || 0) + 1;
-    return counts;
-  }, {});
-  const answerTexts = new Set(Object.keys(answerCounts));
-  const usedDistractors = new Set();
-  const distractorBlocks = shuffle(VERB_TABLE_QUESTIONS)
-    .filter((item) => item.id !== question.id)
-    .flatMap((item) => VERB_TABLE_FIELDS.map((field) => item.forms[field.key]))
-    .filter((text) => {
-      if (answerTexts.has(text) || usedDistractors.has(text)) return false;
-      usedDistractors.add(text);
-      return true;
-    })
-    .slice(0, 4)
-    .map((text, index) => ({
-      id: `extra-${question.id}-${index}`,
-      text
-    }));
-
-  return shuffle([...correctBlocks, ...distractorBlocks]);
+function getVerbTableInputs() {
+  return [...el.verbTableSlots.querySelectorAll(".verb-table-input")];
 }
 
-function getVerbTableWordText(wordId) {
-  return state.verbTableWordTexts[wordId] || "";
+function getVerbTableInput(slotKey) {
+  return el.verbTableSlots.querySelector(`.verb-table-input[data-verb-table-field="${slotKey}"]`);
 }
 
-function getVerbTablePlacedSlot(wordId) {
-  return Object.entries(state.verbTablePlacements)
-    .find(([, placedWordId]) => placedWordId === wordId)?.[0] || "";
+function getVerbTableInputValue(slotKey) {
+  return getVerbTableInput(slotKey)?.value || "";
 }
 
-function placeVerbTableWord(wordId, slotKey) {
+function normalizeVerbTableAnswer(value) {
+  return String(value)
+    .trim()
+    .replace(/[’‘]/g, "'")
+    .replace(/\s*\/\s*/g, "/")
+    .replace(/\s+/g, " ")
+    .toLowerCase();
+}
+
+function handleVerbTableInput(slotKey) {
   if (state.resolved) return;
 
-  state.verbTableWrongSlots = [];
-  const previousSlot = getVerbTablePlacedSlot(wordId);
-  if (previousSlot) {
-    delete state.verbTablePlacements[previousSlot];
-  }
-  const previousWordInSlot = state.verbTablePlacements[slotKey];
-  if (previousWordInSlot && previousWordInSlot !== wordId) {
-    delete state.verbTablePlacements[slotKey];
-  }
-  state.verbTablePlacements[slotKey] = wordId;
-  state.selectedVerbTableWordId = "";
-  state.selectedVerbTableSlotKey = "";
+  state.verbTableWrongSlots = state.verbTableWrongSlots.filter((wrongSlot) => wrongSlot !== slotKey);
+  state.verbTableSubmitState = "";
   updateVerbTableView();
   setFeedback();
-  playUiSound("step");
 }
 
-function selectVerbTableWord(wordId) {
+function handleVerbTableKeydown(event, slotKey) {
+  if (event.key !== "Enter") return;
+
+  event.preventDefault();
   if (state.resolved) return;
 
-  if (state.selectedVerbTableSlotKey) {
-    placeVerbTableWord(wordId, state.selectedVerbTableSlotKey);
+  const fields = VERB_TABLE_FIELDS.map((field) => field.key);
+  const currentIndex = fields.indexOf(slotKey);
+  const nextEmptyField = fields
+    .slice(currentIndex + 1)
+    .find((fieldKey) => !getVerbTableInputValue(fieldKey).trim());
+
+  if (nextEmptyField) {
+    getVerbTableInput(nextEmptyField)?.focus();
     return;
   }
 
-  state.selectedVerbTableWordId = state.selectedVerbTableWordId === wordId ? "" : wordId;
-  updateVerbTableView();
-  setFeedback();
-  playUiSound("step");
-}
-
-function selectVerbTableSlot(slotKey) {
-  if (state.resolved) return;
-
-  if (state.selectedVerbTableWordId) {
-    placeVerbTableWord(state.selectedVerbTableWordId, slotKey);
-    return;
-  }
-
-  if (state.verbTablePlacements[slotKey]) {
-    delete state.verbTablePlacements[slotKey];
-    state.verbTableWrongSlots = [];
-    state.selectedVerbTableSlotKey = "";
-    updateVerbTableView();
-    setFeedback();
-    playUiSound("next");
-    return;
-  }
-
-  state.selectedVerbTableSlotKey = state.selectedVerbTableSlotKey === slotKey ? "" : slotKey;
-  updateVerbTableView();
-  setFeedback();
-  playUiSound("step");
+  submitVerbTable();
 }
 
 function updateVerbTableView() {
@@ -2289,30 +2229,29 @@ function updateVerbTableView() {
 
   el.verbTableSlots.querySelectorAll(".verb-table-slot").forEach((slot) => {
     const slotKey = slot.dataset.verbTableSlot;
-    const wordId = state.verbTablePlacements[slotKey] || "";
-    const value = slot.querySelector(".verb-table-slot-value");
-    slot.classList.toggle("selected", state.selectedVerbTableSlotKey === slotKey);
-    slot.classList.toggle("filled", Boolean(wordId));
+    const input = slot.querySelector(".verb-table-input");
+    const hasValue = Boolean(input?.value.trim());
+    const isWrong = state.verbTableWrongSlots.includes(slotKey);
+    const isCorrect = state.resolved && !isWrong && isVerbTableSlotCorrect(question, slotKey);
+    slot.classList.toggle("filled", hasValue);
     slot.classList.toggle("wrong", state.verbTableWrongSlots.includes(slotKey));
-    slot.classList.toggle("correct", state.resolved && !state.verbTableWrongSlots.includes(slotKey) && Boolean(wordId));
-    value.textContent = wordId ? getVerbTableWordText(wordId) : "";
+    slot.classList.toggle("correct", isCorrect);
+    if (input) {
+      input.disabled = state.resolved;
+      input.classList.toggle("wrong", isWrong);
+      input.classList.toggle("correct", isCorrect);
+    }
   });
 
-  const placedWordIds = new Set(Object.values(state.verbTablePlacements));
-  el.verbTableWordBank.querySelectorAll(".verb-table-word").forEach((button) => {
-    const wordId = button.dataset.verbTableWordId;
-    button.classList.toggle("selected", state.selectedVerbTableWordId === wordId);
-    button.classList.toggle("placed", placedWordIds.has(wordId));
-  });
-
-  const placedCount = Object.keys(state.verbTablePlacements).length;
-  el.resetVerbTableBtn.disabled = state.resolved || placedCount === 0;
-  el.confirmVerbTableBtn.disabled = state.resolved || placedCount < VERB_TABLE_FIELDS.length;
+  const filledCount = getVerbTableInputs().filter((input) => input.value.trim()).length;
+  el.resetVerbTableBtn.disabled = state.resolved || filledCount === 0;
+  el.confirmVerbTableBtn.disabled = state.resolved;
+  el.confirmVerbTableBtn.classList.toggle("is-wrong", state.verbTableSubmitState === "wrong" || state.verbTableSubmitState === "incomplete");
+  el.confirmVerbTableBtn.classList.toggle("is-correct", state.verbTableSubmitState === "correct");
 }
 
 function isVerbTableSlotCorrect(question, slotKey) {
-  const wordId = state.verbTablePlacements[slotKey];
-  return Boolean(wordId) && getVerbTableWordText(wordId) === question.forms[slotKey];
+  return normalizeVerbTableAnswer(getVerbTableInputValue(slotKey)) === normalizeVerbTableAnswer(question.forms[slotKey]);
 }
 
 function getVerbTableWrongSlots(question) {
@@ -2324,17 +2263,17 @@ function getVerbTableWrongSlots(question) {
 function resetVerbTable() {
   if (state.resolved) return;
 
-  const hadPlacements = Object.keys(state.verbTablePlacements).length > 0
-    || state.selectedVerbTableWordId
-    || state.selectedVerbTableSlotKey;
-  state.verbTablePlacements = {};
+  const hadInput = getVerbTableInputs().some((input) => input.value.trim());
+  getVerbTableInputs().forEach((input) => {
+    input.value = "";
+  });
   state.verbTableWrongSlots = [];
-  state.selectedVerbTableWordId = "";
-  state.selectedVerbTableSlotKey = "";
+  state.verbTableSubmitState = "";
   updateVerbTableView();
   setFeedback();
-  if (hadPlacements) {
+  if (hadInput) {
     playUiSound("next");
+    el.verbTableSlots.querySelector(".verb-table-input")?.focus();
   }
 }
 
@@ -2354,18 +2293,22 @@ function completeVerbTableQuestion(message) {
   }
 
   updateLiveStats();
+  state.verbTableSubmitState = "correct";
   updateVerbTableView();
-  el.guidance.textContent = "睇完答案，按「下一題」繼續。";
+  el.guidance.textContent = "答啱！按「下一題」繼續。";
   el.englishCard.classList.add("hidden");
   el.nextBtn.classList.remove("hidden");
   setFeedback(message, "success");
-  playUiSound("correct");
+  const isLastQuestion = state.index >= state.questions.length - 1;
+  playUiSound(isLastQuestion && state.mode === "practice" ? "pronounGrandWin" : "pronounRowWin");
+  launchCelebration(isLastQuestion && state.mode === "practice" ? "grand" : "small");
 }
 
 function recordVerbTableWrong(question) {
   if (!question || state.resolved) return;
 
   state.verbTableWrongSlots = getVerbTableWrongSlots(question);
+  state.verbTableSubmitState = "wrong";
   if (state.questionMistakes === 0) {
     state.streak = 0;
   }
@@ -2392,8 +2335,15 @@ function submitVerbTable() {
   const question = currentQuestion();
   if (!question || state.lessonId !== VERB_TABLE_ID || state.resolved) return;
 
-  if (Object.keys(state.verbTablePlacements).length < VERB_TABLE_FIELDS.length) {
-    setFeedback("請先放齊四格。", "error");
+  const blankSlots = VERB_TABLE_FIELDS
+    .filter((field) => !getVerbTableInputValue(field.key).trim())
+    .map((field) => field.key);
+
+  if (blankSlots.length) {
+    state.verbTableWrongSlots = blankSlots;
+    state.verbTableSubmitState = "incomplete";
+    updateVerbTableView();
+    setFeedback("請先填齊四格。", "error");
     playUiSound("wrong");
     return;
   }
