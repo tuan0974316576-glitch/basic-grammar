@@ -1556,6 +1556,7 @@ function completeQuestion(message) {
 function recordWrong(message) {
   const question = currentQuestion();
   if (!question || state.resolved) return;
+  const isCountableLesson = state.lessonId === COUNTABLE_NOUN_ID;
 
   if (state.questionMistakes === 0) {
     state.streak = 0;
@@ -1571,8 +1572,8 @@ function recordWrong(message) {
   }
   updateLiveStats();
   showOnlyChoice("");
-  el.guidance.textContent = "睇完解釋，按「下一題」繼續。";
-  if (question.english) {
+  el.guidance.textContent = isCountableLesson ? question.zh : "睇完解釋，按「下一題」繼續。";
+  if (question.english && !isCountableLesson) {
     el.englishText.textContent = question.english;
     el.englishCard.classList.remove("hidden");
   } else {
@@ -1688,7 +1689,10 @@ function isCountableTypedAnswerCorrect(question, value) {
 }
 
 function askCountableCorrection() {
-  el.guidance.textContent = "輸入正確英文句子。";
+  const question = currentQuestion();
+  if (question?.zh) {
+    el.guidance.textContent = question.zh;
+  }
   showOnlyChoice("countableCorrection");
   setFeedback("正確，呢句有問題，請改成正確英文。", "success");
   playUiSound("step");
@@ -1748,7 +1752,7 @@ function completeVerbLessonQuestion(message) {
 
   updateLiveStats();
   showOnlyChoice("");
-  el.guidance.textContent = "睇完解釋，按「下一題」繼續。";
+  el.guidance.textContent = state.lessonId === COUNTABLE_NOUN_ID ? question.zh : "睇完解釋，按「下一題」繼續。";
   el.englishCard.classList.add("hidden");
   el.nextBtn.classList.remove("hidden");
   setFeedback(message, "success");

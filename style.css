@@ -1271,7 +1271,20 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .countable-screen .feedback {
+  display: grid;
+  gap: 6px;
+  min-height: 88px;
+  align-content: start;
+  padding: 10px 14px;
   font-size: clamp(15px, 2.5vw, 18px);
+  background: #fffdf2;
+  border: 2px dashed var(--secondary-dark);
+  border-radius: 18px;
+  box-shadow: 0 4px 0 rgba(255, 183, 3, 0.2);
+}
+
+.countable-screen .feedback:empty {
+  display: none;
 }
 
 .countable-screen .lesson-actions {
