@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Basic English Grammar Game</title>
-  <link rel="stylesheet" href="style.css?v=20260612-countable-feedback">
+  <link rel="stylesheet" href="style.css?v=20260612-verb-table">
 </head>
 <body>
   <main class="app-shell">
@@ -83,6 +83,15 @@
             <span class="lesson-meta">
               <span>判斷名詞單眾數，錯句要改正</span>
               <span id="menu-progress-countable-nouns">0/100</span>
+            </span>
+          </button>
+
+          <button class="lesson-card" type="button" data-start-lesson="verb-table">
+            <span class="lesson-kicker">Lesson 06</span>
+            <strong>Verb Table 動詞四式</strong>
+            <span class="lesson-meta">
+              <span>現在式、過去式、PP、ING 配對</span>
+              <span id="menu-progress-verb-table">0/100</span>
             </span>
           </button>
         </div>
@@ -196,6 +205,15 @@
           </div>
         </div>
 
+        <div id="verb-table-choice" class="verb-table-game hidden">
+          <div id="verb-table-slots" class="verb-table-slots" aria-label="Verb table answer"></div>
+          <div id="verb-table-word-bank" class="verb-table-word-bank" aria-label="Verb table word bank"></div>
+          <div class="verb-table-actions">
+            <button id="reset-verb-table-btn" class="ghost-btn" type="button">重排</button>
+            <button id="confirm-verb-table-btn" class="primary-btn" type="button">確認</button>
+          </div>
+        </div>
+
         <button id="english-card" class="english-card hidden" type="button">
           <span>English sentence</span>
           <strong id="english-text">--</strong>
@@ -249,6 +267,6 @@
 
   <script src="assets/lottie.min.js?v=20260609-lottie"></script>
   <script src="assets/confetti-animation.js?v=20260609-lottie"></script>
-  <script src="app.js?v=20260612-countable-feedback"></script>
+  <script src="app.js?v=20260612-verb-table"></script>
 </body>
 </html>

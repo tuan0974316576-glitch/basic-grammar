@@ -544,6 +544,12 @@ input[type="range"]::-moz-range-thumb {
   box-shadow: 0 3px 0 #ffd43b;
 }
 
+.category-pill[data-type="verb-table"] {
+  color: #176b5f;
+  background: #d8fbf8;
+  box-shadow: 0 3px 0 #a7e4df;
+}
+
 .category-pill[data-type="done"] {
   color: var(--correct-dark);
   background: var(--soft-green);
@@ -919,6 +925,142 @@ input[type="range"]::-moz-range-thumb {
   gap: 12px;
 }
 
+.verb-table-game {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.verb-table-slots {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  padding: 12px;
+  background: var(--soft-blue);
+  border: 3px dashed var(--primary-color);
+  border-radius: 22px;
+  box-shadow: 0 5px 0 #bde0e1;
+}
+
+.verb-table-slot {
+  min-height: 102px;
+  display: grid;
+  grid-template-rows: auto minmax(44px, 1fr);
+  gap: 8px;
+  align-items: stretch;
+  padding: 10px;
+  color: #5d4037;
+  cursor: pointer;
+  background: #ffffff;
+  border: 3px dashed var(--border-color);
+  border-radius: 18px;
+  box-shadow: 0 4px 0 #e9ecef;
+  transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease, background 120ms ease, color 120ms ease;
+}
+
+.verb-table-slot:hover,
+.verb-table-slot.selected {
+  color: var(--primary-dark);
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #bde0e1;
+}
+
+.verb-table-slot.wrong {
+  color: var(--danger-dark);
+  background: var(--soft-red);
+  border-style: solid;
+  border-color: var(--danger-color);
+  box-shadow: 0 0 0 5px rgba(255, 107, 107, 0.24), 0 5px 0 #ffc9c9;
+}
+
+.verb-table-slot.correct {
+  border-color: var(--correct-color);
+  background: var(--soft-green);
+  box-shadow: 0 4px 0 #b7e7bf;
+}
+
+.verb-table-slot-label,
+.verb-table-slot-value {
+  min-width: 0;
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+.verb-table-slot-label {
+  color: var(--primary-dark);
+  font-size: 15px;
+  text-align: center;
+}
+
+.verb-table-slot-value {
+  display: grid;
+  place-items: center;
+  padding: 6px 8px;
+  color: #5d4037;
+  font-size: clamp(18px, 3vw, 24px);
+  background: #f8f9fa;
+  border: 2px dashed #cfd4da;
+  border-radius: 13px;
+}
+
+.verb-table-slot.filled .verb-table-slot-value {
+  color: #ffffff;
+  background: var(--primary-color);
+  border-color: var(--primary-dark);
+}
+
+.verb-table-slot.wrong .verb-table-slot-value {
+  color: var(--danger-dark);
+  background: #ffffff;
+  border-color: var(--danger-color);
+}
+
+.verb-table-slot.correct .verb-table-slot-value {
+  color: var(--correct-dark);
+  background: #ffffff;
+  border-color: var(--correct-color);
+}
+
+.verb-table-word-bank {
+  min-height: 116px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-content: center;
+  justify-content: center;
+  padding: 12px;
+  background: var(--soft-yellow);
+  border: 3px dashed var(--secondary-dark);
+  border-radius: 22px;
+  box-shadow: 0 5px 0 rgba(255, 183, 3, 0.2);
+}
+
+.verb-table-word {
+  min-width: 96px;
+  min-height: 50px;
+  padding: 8px 13px;
+  font-size: clamp(17px, 3vw, 23px);
+}
+
+.verb-table-word.selected {
+  color: #ffffff;
+  background: var(--primary-color);
+  border-color: var(--primary-dark);
+  box-shadow: 0 5px 0 var(--primary-dark);
+}
+
+.verb-table-word.placed {
+  opacity: 0.34;
+  transform: scale(0.96);
+}
+
+.verb-table-actions {
+  display: grid;
+  grid-template-columns: minmax(120px, 0.7fr) minmax(160px, 1fr);
+  gap: 12px;
+}
+
 .countable-correction {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(132px, auto);
@@ -1238,6 +1380,13 @@ input[type="range"]::-moz-range-thumb {
   font-size: 44px;
 }
 
+.chinese-prompt.verb-table-prompt {
+  min-height: 78px;
+  color: #5d4037;
+  font-size: clamp(28px, 5vw, 44px);
+  text-shadow: 2px 2px 0 #fff3bf;
+}
+
 .pronoun-screen .guidance {
   min-height: 20px;
   font-size: 12px;
@@ -1288,6 +1437,53 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .countable-screen .lesson-actions {
+  padding-top: 8px;
+}
+
+.verb-table-screen .status-strip {
+  margin-bottom: 8px;
+}
+
+.verb-table-screen .status-strip div {
+  min-height: 56px;
+}
+
+.verb-table-screen .status-strip > div > span {
+  font-size: 10px;
+}
+
+.verb-table-screen .status-strip strong {
+  font-size: 28px;
+}
+
+.verb-table-screen .prompt-panel {
+  padding: 10px 16px;
+  margin-bottom: 10px;
+}
+
+.verb-table-screen .guidance {
+  min-height: 20px;
+  font-size: 13px;
+}
+
+.verb-table-screen .feedback {
+  display: grid;
+  gap: 6px;
+  min-height: 72px;
+  align-content: start;
+  padding: 10px 14px;
+  font-size: clamp(14px, 2.3vw, 17px);
+  background: #fffdf2;
+  border: 2px dashed var(--secondary-dark);
+  border-radius: 18px;
+  box-shadow: 0 4px 0 rgba(255, 183, 3, 0.2);
+}
+
+.verb-table-screen .feedback:empty {
+  display: none;
+}
+
+.verb-table-screen .lesson-actions {
   padding-top: 8px;
 }
 
@@ -1552,7 +1748,8 @@ input[type="range"]::-moz-range-thumb {
   .quiz-screen .lesson-header,
   .underline-screen .lesson-header,
   .pronoun-screen .lesson-header,
-  .countable-screen .lesson-header {
+  .countable-screen .lesson-header,
+  .verb-table-screen .lesson-header {
     grid-template-columns: 74px minmax(0, 1fr) 122px;
     gap: 8px;
     align-items: center;
@@ -1562,7 +1759,8 @@ input[type="range"]::-moz-range-thumb {
   .quiz-screen .lesson-header h2,
   .underline-screen .lesson-header h2,
   .pronoun-screen .lesson-header h2,
-  .countable-screen .lesson-header h2 {
+  .countable-screen .lesson-header h2,
+  .verb-table-screen .lesson-header h2 {
     font-size: clamp(17px, 4.5vw, 20px);
     text-align: left;
   }
@@ -1570,7 +1768,8 @@ input[type="range"]::-moz-range-thumb {
   .quiz-screen .lesson-header .topline,
   .underline-screen .lesson-header .topline,
   .pronoun-screen .lesson-header .topline,
-  .countable-screen .lesson-header .topline {
+  .countable-screen .lesson-header .topline,
+  .verb-table-screen .lesson-header .topline {
     font-size: 10px;
     text-align: left;
   }
@@ -1578,7 +1777,8 @@ input[type="range"]::-moz-range-thumb {
   .quiz-screen .ghost-btn,
   .underline-screen .ghost-btn,
   .pronoun-screen .ghost-btn,
-  .countable-screen .ghost-btn {
+  .countable-screen .ghost-btn,
+  .verb-table-screen .ghost-btn {
     min-height: 40px;
     padding: 0 9px;
   }
@@ -1586,7 +1786,8 @@ input[type="range"]::-moz-range-thumb {
   .quiz-screen .header-tools,
   .underline-screen .header-tools,
   .pronoun-screen .header-tools,
-  .countable-screen .header-tools {
+  .countable-screen .header-tools,
+  .verb-table-screen .header-tools {
     justify-self: end;
     align-items: center;
   }
@@ -1594,7 +1795,8 @@ input[type="range"]::-moz-range-thumb {
   .quiz-screen .sound-btn,
   .underline-screen .sound-btn,
   .pronoun-screen .sound-btn,
-  .countable-screen .sound-btn {
+  .countable-screen .sound-btn,
+  .verb-table-screen .sound-btn {
     width: 42px;
     min-width: 42px;
     height: 42px;
@@ -1604,7 +1806,8 @@ input[type="range"]::-moz-range-thumb {
   .quiz-screen .counter,
   .underline-screen .counter,
   .pronoun-screen .counter,
-  .countable-screen .counter {
+  .countable-screen .counter,
+  .verb-table-screen .counter {
     min-width: 72px;
     padding: 8px 7px;
   }
@@ -1825,5 +2028,79 @@ input[type="range"]::-moz-range-thumb {
   .countable-correction input {
     min-height: 54px;
     font-size: 18px;
+  }
+
+  .verb-table-screen .status-strip {
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+
+  .verb-table-screen .status-strip div {
+    min-height: 54px;
+    border-radius: 14px;
+  }
+
+  .verb-table-screen .prompt-panel {
+    padding: 8px 12px;
+    margin-bottom: 8px;
+  }
+
+  .chinese-prompt.verb-table-prompt {
+    min-height: 54px;
+    padding: 4px 2px;
+    font-size: clamp(24px, 7vw, 34px);
+  }
+
+  .verb-table-screen .guidance {
+    display: none;
+  }
+
+  .verb-table-game {
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .verb-table-slots {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    padding: 9px;
+    border-radius: 18px;
+  }
+
+  .verb-table-slot {
+    min-height: 78px;
+    gap: 5px;
+    padding: 7px;
+    border-radius: 15px;
+  }
+
+  .verb-table-slot-label {
+    font-size: 13px;
+  }
+
+  .verb-table-slot-value {
+    min-height: 34px;
+    padding: 4px 5px;
+    font-size: clamp(17px, 5vw, 21px);
+    border-radius: 10px;
+  }
+
+  .verb-table-word-bank {
+    min-height: 92px;
+    gap: 8px;
+    padding: 9px;
+    border-radius: 18px;
+  }
+
+  .verb-table-word {
+    min-width: 76px;
+    min-height: 44px;
+    padding: 6px 9px;
+    font-size: clamp(16px, 4.6vw, 19px);
+  }
+
+  .verb-table-actions {
+    grid-template-columns: 1fr;
+    gap: 8px;
   }
 }

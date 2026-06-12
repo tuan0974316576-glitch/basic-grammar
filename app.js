@@ -582,19 +582,141 @@ function createCountableNounQuestions() {
 
 const COUNTABLE_NOUN_QUESTIONS = createCountableNounQuestions();
 
+const VERB_TABLE_FIELDS = [
+  { key: "present", label: "現在式", shortLabel: "Present" },
+  { key: "past", label: "過去式", shortLabel: "Past" },
+  { key: "pp", label: "PP", shortLabel: "PP" },
+  { key: "ing", label: "ING", shortLabel: "ING" }
+];
+
+function makeVerbTableQuestion(item, index) {
+  const [zh, present, past, pp, ing] = item;
+  return {
+    id: `vt${String(index + 1).padStart(3, "0")}`,
+    type: "verb-table",
+    zh,
+    forms: { present, past, pp, ing }
+  };
+}
+
+const VERB_TABLE_QUESTIONS = [
+  ["成為；變成", "become", "became", "become", "becoming"],
+  ["開始", "begin", "began", "begun", "beginning"],
+  ["咬", "bite", "bit", "bitten", "biting"],
+  ["吹", "blow", "blew", "blown", "blowing"],
+  ["打破", "break", "broke", "broken", "breaking"],
+  ["帶來", "bring", "brought", "brought", "bringing"],
+  ["建造", "build", "built", "built", "building"],
+  ["買", "buy", "bought", "bought", "buying"],
+  ["捉住；趕上", "catch", "caught", "caught", "catching"],
+  ["選擇", "choose", "chose", "chosen", "choosing"],
+  ["來", "come", "came", "come", "coming"],
+  ["切", "cut", "cut", "cut", "cutting"],
+  ["做", "do", "did", "done", "doing"],
+  ["畫", "draw", "drew", "drawn", "drawing"],
+  ["喝", "drink", "drank", "drunk", "drinking"],
+  ["駕駛", "drive", "drove", "driven", "driving"],
+  ["吃", "eat", "ate", "eaten", "eating"],
+  ["跌下；落下", "fall", "fell", "fallen", "falling"],
+  ["餵", "feed", "fed", "fed", "feeding"],
+  ["感覺", "feel", "felt", "felt", "feeling"],
+  ["找到", "find", "found", "found", "finding"],
+  ["飛", "fly", "flew", "flown", "flying"],
+  ["忘記", "forget", "forgot", "forgotten", "forgetting"],
+  ["得到", "get", "got", "got", "getting"],
+  ["給", "give", "gave", "given", "giving"],
+  ["去", "go", "went", "gone", "going"],
+  ["生長", "grow", "grew", "grown", "growing"],
+  ["有；吃", "have", "had", "had", "having"],
+  ["聽見", "hear", "heard", "heard", "hearing"],
+  ["隱藏", "hide", "hid", "hidden", "hiding"],
+  ["打；擊中", "hit", "hit", "hit", "hitting"],
+  ["握住", "hold", "held", "held", "holding"],
+  ["受傷", "hurt", "hurt", "hurt", "hurting"],
+  ["保持", "keep", "kept", "kept", "keeping"],
+  ["知道", "know", "knew", "known", "knowing"],
+  ["離開", "leave", "left", "left", "leaving"],
+  ["借出", "lend", "lent", "lent", "lending"],
+  ["讓", "let", "let", "let", "letting"],
+  ["失去", "lose", "lost", "lost", "losing"],
+  ["製造；做", "make", "made", "made", "making"],
+  ["意思是", "mean", "meant", "meant", "meaning"],
+  ["遇見", "meet", "met", "met", "meeting"],
+  ["付款", "pay", "paid", "paid", "paying"],
+  ["放", "put", "put", "put", "putting"],
+  ["閱讀", "read", "read", "read", "reading"],
+  ["騎", "ride", "rode", "ridden", "riding"],
+  ["響鈴；打電話", "ring", "rang", "rung", "ringing"],
+  ["跑", "run", "ran", "run", "running"],
+  ["說", "say", "said", "said", "saying"],
+  ["看見", "see", "saw", "seen", "seeing"],
+  ["出售", "sell", "sold", "sold", "selling"],
+  ["發送", "send", "sent", "sent", "sending"],
+  ["設定；放置", "set", "set", "set", "setting"],
+  ["搖動", "shake", "shook", "shaken", "shaking"],
+  ["展示", "show", "showed", "shown", "showing"],
+  ["關上", "shut", "shut", "shut", "shutting"],
+  ["唱歌", "sing", "sang", "sung", "singing"],
+  ["坐", "sit", "sat", "sat", "sitting"],
+  ["睡覺", "sleep", "slept", "slept", "sleeping"],
+  ["說話", "speak", "spoke", "spoken", "speaking"],
+  ["花費", "spend", "spent", "spent", "spending"],
+  ["站立", "stand", "stood", "stood", "standing"],
+  ["偷", "steal", "stole", "stolen", "stealing"],
+  ["黏住", "stick", "stuck", "stuck", "sticking"],
+  ["游泳", "swim", "swam", "swum", "swimming"],
+  ["拿；帶走", "take", "took", "taken", "taking"],
+  ["教", "teach", "taught", "taught", "teaching"],
+  ["告訴", "tell", "told", "told", "telling"],
+  ["想；認為", "think", "thought", "thought", "thinking"],
+  ["扔", "throw", "threw", "thrown", "throwing"],
+  ["理解", "understand", "understood", "understood", "understanding"],
+  ["醒來", "wake", "woke", "woken", "waking"],
+  ["穿著", "wear", "wore", "worn", "wearing"],
+  ["贏", "win", "won", "won", "winning"],
+  ["寫", "write", "wrote", "written", "writing"],
+  ["回答", "answer", "answered", "answered", "answering"],
+  ["到達", "arrive", "arrived", "arrived", "arriving"],
+  ["問", "ask", "asked", "asked", "asking"],
+  ["相信", "believe", "believed", "believed", "believing"],
+  ["借入", "borrow", "borrowed", "borrowed", "borrowing"],
+  ["打電話；叫", "call", "called", "called", "calling"],
+  ["攜帶", "carry", "carried", "carried", "carrying"],
+  ["改變", "change", "changed", "changed", "changing"],
+  ["檢查", "check", "checked", "checked", "checking"],
+  ["打掃", "clean", "cleaned", "cleaned", "cleaning"],
+  ["關閉", "close", "closed", "closed", "closing"],
+  ["煮", "cook", "cooked", "cooked", "cooking"],
+  ["哭", "cry", "cried", "cried", "crying"],
+  ["跳舞", "dance", "danced", "danced", "dancing"],
+  ["掉下", "drop", "dropped", "dropped", "dropping"],
+  ["享受", "enjoy", "enjoyed", "enjoyed", "enjoying"],
+  ["幫助", "help", "helped", "helped", "helping"],
+  ["跳", "jump", "jumped", "jumped", "jumping"],
+  ["喜歡", "like", "liked", "liked", "liking"],
+  ["聆聽", "listen", "listened", "listened", "listening"],
+  ["居住", "live", "lived", "lived", "living"],
+  ["看", "look", "looked", "looked", "looking"],
+  ["玩", "play", "played", "played", "playing"],
+  ["觀看", "watch", "watched", "watched", "watching"],
+  ["行走", "walk", "walked", "walked", "walking"]
+].map(makeVerbTableQuestion);
+
 const LESSON1_ID = "lesson1";
 const LESSON2_ID = "lesson2";
 const QUIZ1_ID = "quiz1";
 const SENTENCE_UNDERLINE_ID = "sentence-underline";
 const PRONOUN_MATCH_ID = "pronoun-match";
 const COUNTABLE_NOUN_ID = "countable-nouns";
+const VERB_TABLE_ID = "verb-table";
 const LESSON_PROGRESS_KEYS = {
   [LESSON1_ID]: "basic_grammar_lesson_01_progress_v2",
   [LESSON2_ID]: "basic_grammar_lesson_02_progress_v1",
   [QUIZ1_ID]: "basic_grammar_quiz_01_progress_v1",
   [SENTENCE_UNDERLINE_ID]: "basic_grammar_sentence_underline_progress_v1",
   [PRONOUN_MATCH_ID]: "basic_grammar_pronoun_match_progress_v1",
-  [COUNTABLE_NOUN_ID]: "basic_grammar_countable_nouns_progress_v1"
+  [COUNTABLE_NOUN_ID]: "basic_grammar_countable_nouns_progress_v1",
+  [VERB_TABLE_ID]: "basic_grammar_verb_table_progress_v1"
 };
 const LESSONS = {
   [LESSON1_ID]: {
@@ -632,6 +754,12 @@ const LESSONS = {
     kicker: "Lesson 05",
     title: "可數名詞的使用要點",
     questions: COUNTABLE_NOUN_QUESTIONS
+  },
+  [VERB_TABLE_ID]: {
+    id: VERB_TABLE_ID,
+    kicker: "Lesson 06",
+    title: "Verb Table 動詞四式",
+    questions: VERB_TABLE_QUESTIONS
   }
 };
 
@@ -740,6 +868,11 @@ const state = {
   selectedPronounWordId: "",
   selectedPronounSlotKey: "",
   pronounAutoAdvanceTimer: 0,
+  verbTablePlacements: {},
+  verbTableWordTexts: {},
+  selectedVerbTableWordId: "",
+  selectedVerbTableSlotKey: "",
+  verbTableWrongSlots: [],
   streak: 0,
   bestStreak: getSavedBestStreak(),
   practiceCount: getSavedPracticeCount(),
@@ -756,6 +889,7 @@ const el = {
   menuProgressSentenceUnderline: document.querySelector("#menu-progress-sentence-underline"),
   menuProgressPronounMatch: document.querySelector("#menu-progress-pronoun-match"),
   menuProgressCountableNouns: document.querySelector("#menu-progress-countable-nouns"),
+  menuProgressVerbTable: document.querySelector("#menu-progress-verb-table"),
   menuCoachLine: document.querySelector("#menu-coach-line"),
   practiceCountInput: document.querySelector("#practice-count"),
   practiceCountOutput: document.querySelector("#practice-count-output"),
@@ -798,6 +932,11 @@ const el = {
   pronounWordBank: document.querySelector("#pronoun-word-bank"),
   resetPronounBtn: document.querySelector("#reset-pronoun-btn"),
   confirmPronounBtn: document.querySelector("#confirm-pronoun-btn"),
+  verbTableChoice: document.querySelector("#verb-table-choice"),
+  verbTableSlots: document.querySelector("#verb-table-slots"),
+  verbTableWordBank: document.querySelector("#verb-table-word-bank"),
+  resetVerbTableBtn: document.querySelector("#reset-verb-table-btn"),
+  confirmVerbTableBtn: document.querySelector("#confirm-verb-table-btn"),
   celebrationLayer: document.querySelector("#celebration-layer"),
   englishCard: document.querySelector("#english-card"),
   englishText: document.querySelector("#english-text"),
@@ -1099,15 +1238,19 @@ function updateMenuProgress() {
   const underlineProgress = getProgress(SENTENCE_UNDERLINE_ID);
   const pronounProgress = getProgress(PRONOUN_MATCH_ID);
   const countableProgress = getProgress(COUNTABLE_NOUN_ID);
+  const verbTableProgress = getProgress(VERB_TABLE_ID);
   el.menuProgressLesson1.textContent = `${lesson1Progress}/${getLessonTotal(LESSON1_ID)}`;
   el.menuProgressLesson2.textContent = `${lesson2Progress}/${getLessonTotal(LESSON2_ID)}`;
   el.menuProgressQuiz1.textContent = `${quiz1Progress}/${getLessonTotal(QUIZ1_ID)}`;
   el.menuProgressSentenceUnderline.textContent = `${underlineProgress}/${getLessonTotal(SENTENCE_UNDERLINE_ID)}`;
   el.menuProgressPronounMatch.textContent = `${pronounProgress}/${getLessonTotal(PRONOUN_MATCH_ID)}`;
   el.menuProgressCountableNouns.textContent = `${countableProgress}/${getLessonTotal(COUNTABLE_NOUN_ID)}`;
+  el.menuProgressVerbTable.textContent = `${verbTableProgress}/${getLessonTotal(VERB_TABLE_ID)}`;
 
-  if (countableProgress >= getLessonTotal(COUNTABLE_NOUN_ID)) {
-    el.menuCoachLine.textContent = "Lesson 05 已完成，可數名詞同不可數名詞都分得好準。";
+  if (verbTableProgress >= getLessonTotal(VERB_TABLE_ID)) {
+    el.menuCoachLine.textContent = "Lesson 06 已完成，Verb Table 四式記得好穩。";
+  } else if (countableProgress >= getLessonTotal(COUNTABLE_NOUN_ID)) {
+    el.menuCoachLine.textContent = "Lesson 05 已完成，可以挑戰 Lesson 06 Verb Table。";
   } else if (pronounProgress >= getLessonTotal(PRONOUN_MATCH_ID)) {
     el.menuCoachLine.textContent = "Lesson 04 已完成，可以挑戰 Lesson 05 可數名詞。";
   } else if (underlineProgress >= getLessonTotal(SENTENCE_UNDERLINE_ID)) {
@@ -1174,6 +1317,7 @@ function showOnlyChoice(choice) {
   el.sentenceBuilderChoice.classList.toggle("hidden", choice !== "builder");
   el.sentenceUnderlineChoice.classList.toggle("hidden", choice !== "underline");
   el.pronounMatchChoice.classList.toggle("hidden", choice !== "pronoun");
+  el.verbTableChoice.classList.toggle("hidden", choice !== "verbTable");
 }
 
 function currentQuestion() {
@@ -1311,6 +1455,11 @@ function prepareRun(mode, lessonId, questions) {
   state.pronounWrongSlots = [];
   state.selectedPronounWordId = "";
   state.selectedPronounSlotKey = "";
+  state.verbTablePlacements = {};
+  state.verbTableWordTexts = {};
+  state.selectedVerbTableWordId = "";
+  state.selectedVerbTableSlotKey = "";
+  state.verbTableWrongSlots = [];
   state.resolved = false;
   state.questions = questions;
   updateLessonChrome();
@@ -1356,6 +1505,11 @@ function renderQuestion() {
   state.pronounWrongSlots = [];
   state.selectedPronounWordId = "";
   state.selectedPronounSlotKey = "";
+  state.verbTablePlacements = {};
+  state.verbTableWordTexts = {};
+  state.selectedVerbTableWordId = "";
+  state.selectedVerbTableSlotKey = "";
+  state.verbTableWrongSlots = [];
   el.questionNumber.textContent = String(state.index + 1);
   el.questionTotal.textContent = String(state.questions.length);
   updateLiveStats();
@@ -1366,10 +1520,12 @@ function renderQuestion() {
   el.lessonScreen.classList.toggle("underline-screen", state.lessonId === SENTENCE_UNDERLINE_ID);
   el.lessonScreen.classList.toggle("pronoun-screen", state.lessonId === PRONOUN_MATCH_ID);
   el.lessonScreen.classList.toggle("countable-screen", state.lessonId === COUNTABLE_NOUN_ID);
+  el.lessonScreen.classList.toggle("verb-table-screen", state.lessonId === VERB_TABLE_ID);
   el.chinesePrompt.classList.toggle("english-prompt", state.lessonId === LESSON2_ID || state.lessonId === COUNTABLE_NOUN_ID);
   el.chinesePrompt.classList.toggle("builder-prompt", state.lessonId === QUIZ1_ID);
   el.chinesePrompt.classList.toggle("underline-prompt", state.lessonId === SENTENCE_UNDERLINE_ID);
   el.chinesePrompt.classList.toggle("pronoun-prompt", state.lessonId === PRONOUN_MATCH_ID);
+  el.chinesePrompt.classList.toggle("verb-table-prompt", state.lessonId === VERB_TABLE_ID);
   el.ruleCard.classList.toggle("hidden", state.lessonId !== LESSON2_ID);
   el.verbTokenGrid.replaceChildren();
   el.countableCorrectionInput.value = "";
@@ -1379,6 +1535,8 @@ function renderQuestion() {
   el.underlinePalette.replaceChildren();
   el.pronounMatchBoard.replaceChildren();
   el.pronounWordBank.replaceChildren();
+  el.verbTableSlots.replaceChildren();
+  el.verbTableWordBank.replaceChildren();
   setFeedback();
 
   if (state.lessonId === LESSON2_ID) {
@@ -1403,6 +1561,11 @@ function renderQuestion() {
 
   if (state.lessonId === COUNTABLE_NOUN_ID) {
     renderCountableNounQuestion(question);
+    return;
+  }
+
+  if (state.lessonId === VERB_TABLE_ID) {
+    renderVerbTableQuestion(question);
     return;
   }
 
@@ -1522,6 +1685,39 @@ function renderCountableNounQuestion(question) {
   el.chinesePrompt.textContent = question.sentence;
   el.guidance.textContent = question.zh;
   showOnlyChoice("judgment");
+}
+
+function renderVerbTableQuestion(question) {
+  el.stepLabel.textContent = "中文意思";
+  el.categoryPill.textContent = "Verb Table";
+  el.categoryPill.dataset.type = "verb-table";
+  el.chinesePrompt.textContent = question.zh;
+  el.guidance.textContent = "將字塊放入現在式、過去式、PP、ING。";
+
+  VERB_TABLE_FIELDS.forEach((field) => {
+    const slot = document.createElement("button");
+    slot.className = "verb-table-slot";
+    slot.type = "button";
+    slot.dataset.verbTableSlot = field.key;
+    slot.innerHTML = `<span class="verb-table-slot-label"></span><span class="verb-table-slot-value"></span>`;
+    slot.querySelector(".verb-table-slot-label").textContent = field.label;
+    slot.addEventListener("click", () => selectVerbTableSlot(field.key));
+    el.verbTableSlots.append(slot);
+  });
+
+  getVerbTableWordBlocks(question).forEach(({ id, text }) => {
+    state.verbTableWordTexts[id] = text;
+    const button = document.createElement("button");
+    button.className = "verb-table-word word-block";
+    button.type = "button";
+    button.textContent = text;
+    button.dataset.verbTableWordId = id;
+    button.addEventListener("click", () => selectVerbTableWord(id));
+    el.verbTableWordBank.append(button);
+  });
+
+  updateVerbTableView();
+  showOnlyChoice("verbTable");
 }
 
 function completeQuestion(message) {
@@ -1977,6 +2173,238 @@ function submitSentenceBuilder() {
   }
 
   completeVerbLessonQuestion(getSentenceBuilderFeedback(question, true));
+}
+
+function getVerbTableAnswerLine(question) {
+  return VERB_TABLE_FIELDS
+    .map((field) => `${field.shortLabel}: ${question.forms[field.key]}`)
+    .join(" / ");
+}
+
+function getVerbTableFeedback(question, isCorrect) {
+  return [
+    { text: isCorrect ? "動詞四式全部配對正確。" : "有格未配對正確，紅色圈住嗰格要留意。" },
+    { text: `正確答案：${getVerbTableAnswerLine(question)}`, className: "answer-line" }
+  ];
+}
+
+function getVerbTableWordBlocks(question) {
+  const correctBlocks = VERB_TABLE_FIELDS.map((field, index) => ({
+    id: `answer-${field.key}-${index}`,
+    text: question.forms[field.key]
+  }));
+  const answerCounts = correctBlocks.reduce((counts, block) => {
+    counts[block.text] = (counts[block.text] || 0) + 1;
+    return counts;
+  }, {});
+  const answerTexts = new Set(Object.keys(answerCounts));
+  const usedDistractors = new Set();
+  const distractorBlocks = shuffle(VERB_TABLE_QUESTIONS)
+    .filter((item) => item.id !== question.id)
+    .flatMap((item) => VERB_TABLE_FIELDS.map((field) => item.forms[field.key]))
+    .filter((text) => {
+      if (answerTexts.has(text) || usedDistractors.has(text)) return false;
+      usedDistractors.add(text);
+      return true;
+    })
+    .slice(0, 4)
+    .map((text, index) => ({
+      id: `extra-${question.id}-${index}`,
+      text
+    }));
+
+  return shuffle([...correctBlocks, ...distractorBlocks]);
+}
+
+function getVerbTableWordText(wordId) {
+  return state.verbTableWordTexts[wordId] || "";
+}
+
+function getVerbTablePlacedSlot(wordId) {
+  return Object.entries(state.verbTablePlacements)
+    .find(([, placedWordId]) => placedWordId === wordId)?.[0] || "";
+}
+
+function placeVerbTableWord(wordId, slotKey) {
+  if (state.resolved) return;
+
+  state.verbTableWrongSlots = [];
+  const previousSlot = getVerbTablePlacedSlot(wordId);
+  if (previousSlot) {
+    delete state.verbTablePlacements[previousSlot];
+  }
+  const previousWordInSlot = state.verbTablePlacements[slotKey];
+  if (previousWordInSlot && previousWordInSlot !== wordId) {
+    delete state.verbTablePlacements[slotKey];
+  }
+  state.verbTablePlacements[slotKey] = wordId;
+  state.selectedVerbTableWordId = "";
+  state.selectedVerbTableSlotKey = "";
+  updateVerbTableView();
+  setFeedback();
+  playUiSound("step");
+}
+
+function selectVerbTableWord(wordId) {
+  if (state.resolved) return;
+
+  if (state.selectedVerbTableSlotKey) {
+    placeVerbTableWord(wordId, state.selectedVerbTableSlotKey);
+    return;
+  }
+
+  state.selectedVerbTableWordId = state.selectedVerbTableWordId === wordId ? "" : wordId;
+  updateVerbTableView();
+  setFeedback();
+  playUiSound("step");
+}
+
+function selectVerbTableSlot(slotKey) {
+  if (state.resolved) return;
+
+  if (state.selectedVerbTableWordId) {
+    placeVerbTableWord(state.selectedVerbTableWordId, slotKey);
+    return;
+  }
+
+  if (state.verbTablePlacements[slotKey]) {
+    delete state.verbTablePlacements[slotKey];
+    state.verbTableWrongSlots = [];
+    state.selectedVerbTableSlotKey = "";
+    updateVerbTableView();
+    setFeedback();
+    playUiSound("next");
+    return;
+  }
+
+  state.selectedVerbTableSlotKey = state.selectedVerbTableSlotKey === slotKey ? "" : slotKey;
+  updateVerbTableView();
+  setFeedback();
+  playUiSound("step");
+}
+
+function updateVerbTableView() {
+  const question = currentQuestion();
+  if (!question) return;
+
+  el.verbTableSlots.querySelectorAll(".verb-table-slot").forEach((slot) => {
+    const slotKey = slot.dataset.verbTableSlot;
+    const wordId = state.verbTablePlacements[slotKey] || "";
+    const value = slot.querySelector(".verb-table-slot-value");
+    slot.classList.toggle("selected", state.selectedVerbTableSlotKey === slotKey);
+    slot.classList.toggle("filled", Boolean(wordId));
+    slot.classList.toggle("wrong", state.verbTableWrongSlots.includes(slotKey));
+    slot.classList.toggle("correct", state.resolved && !state.verbTableWrongSlots.includes(slotKey) && Boolean(wordId));
+    value.textContent = wordId ? getVerbTableWordText(wordId) : "";
+  });
+
+  const placedWordIds = new Set(Object.values(state.verbTablePlacements));
+  el.verbTableWordBank.querySelectorAll(".verb-table-word").forEach((button) => {
+    const wordId = button.dataset.verbTableWordId;
+    button.classList.toggle("selected", state.selectedVerbTableWordId === wordId);
+    button.classList.toggle("placed", placedWordIds.has(wordId));
+  });
+
+  const placedCount = Object.keys(state.verbTablePlacements).length;
+  el.resetVerbTableBtn.disabled = state.resolved || placedCount === 0;
+  el.confirmVerbTableBtn.disabled = state.resolved || placedCount < VERB_TABLE_FIELDS.length;
+}
+
+function isVerbTableSlotCorrect(question, slotKey) {
+  const wordId = state.verbTablePlacements[slotKey];
+  return Boolean(wordId) && getVerbTableWordText(wordId) === question.forms[slotKey];
+}
+
+function getVerbTableWrongSlots(question) {
+  return VERB_TABLE_FIELDS
+    .filter((field) => !isVerbTableSlotCorrect(question, field.key))
+    .map((field) => field.key);
+}
+
+function resetVerbTable() {
+  if (state.resolved) return;
+
+  const hadPlacements = Object.keys(state.verbTablePlacements).length > 0
+    || state.selectedVerbTableWordId
+    || state.selectedVerbTableSlotKey;
+  state.verbTablePlacements = {};
+  state.verbTableWrongSlots = [];
+  state.selectedVerbTableWordId = "";
+  state.selectedVerbTableSlotKey = "";
+  updateVerbTableView();
+  setFeedback();
+  if (hadPlacements) {
+    playUiSound("next");
+  }
+}
+
+function completeVerbTableQuestion(message) {
+  const question = currentQuestion();
+  if (!question || state.lessonId !== VERB_TABLE_ID || state.resolved) return;
+
+  state.resolved = true;
+  state.score += 1;
+  state.streak += 1;
+  if (state.streak > state.bestStreak) {
+    state.bestStreak = state.streak;
+    saveBestStreak();
+  }
+  if (state.mode === "practice") {
+    saveProgress(state.index + 1);
+  }
+
+  updateLiveStats();
+  updateVerbTableView();
+  el.guidance.textContent = "睇完答案，按「下一題」繼續。";
+  el.englishCard.classList.add("hidden");
+  el.nextBtn.classList.remove("hidden");
+  setFeedback(message, "success");
+  playUiSound("correct");
+}
+
+function recordVerbTableWrong(question) {
+  if (!question || state.resolved) return;
+
+  state.verbTableWrongSlots = getVerbTableWrongSlots(question);
+  if (state.questionMistakes === 0) {
+    state.streak = 0;
+  }
+  if (!state.missedQuestionIds.includes(question.id)) {
+    state.missedQuestionIds.push(question.id);
+  }
+  state.mistakes += 1;
+  state.questionMistakes += 1;
+  state.resolved = true;
+  if (state.mode === "practice") {
+    saveProgress(state.index + 1);
+  }
+
+  updateLiveStats();
+  updateVerbTableView();
+  el.guidance.textContent = "睇完答案，按「下一題」繼續。";
+  el.englishCard.classList.add("hidden");
+  el.nextBtn.classList.remove("hidden");
+  setFeedback(getVerbTableFeedback(question, false), "error");
+  playUiSound("wrong");
+}
+
+function submitVerbTable() {
+  const question = currentQuestion();
+  if (!question || state.lessonId !== VERB_TABLE_ID || state.resolved) return;
+
+  if (Object.keys(state.verbTablePlacements).length < VERB_TABLE_FIELDS.length) {
+    setFeedback("請先放齊四格。", "error");
+    playUiSound("wrong");
+    return;
+  }
+
+  const wrongSlots = getVerbTableWrongSlots(question);
+  if (wrongSlots.length) {
+    recordVerbTableWrong(question);
+    return;
+  }
+
+  completeVerbTableQuestion(getVerbTableFeedback(question, true));
 }
 
 function getPronounWordBlocks(question) {
@@ -2495,6 +2923,7 @@ function renderReviewSummary() {
 
 function getQuestionPrompt(question) {
   if (question.type === "countable") return question.sentence;
+  if (question.type === "verb-table") return question.zh;
   return question.zh || question.sentence || question.text || "";
 }
 
@@ -2504,6 +2933,9 @@ function getResultMessage(percent, mistakes, mode) {
   if (state.lessonId === COUNTABLE_NOUN_ID && percent === 100 && mistakes === 0) return "滿分！可數名詞預設加 s 呢個盲點已經打通。";
   if (state.lessonId === COUNTABLE_NOUN_ID && percent >= 80) return "好穩陣！繼續留意 a/an、the 同不可數名詞。";
   if (state.lessonId === COUNTABLE_NOUN_ID) return "慢慢嚟，先問自己：泛指？一個？指定？不可數？";
+  if (state.lessonId === VERB_TABLE_ID && percent === 100 && mistakes === 0) return "滿分！Verb Table 四格都配得好準。";
+  if (state.lessonId === VERB_TABLE_ID && percent >= 80) return "好穩陣！繼續記住過去式同 PP 嘅分別。";
+  if (state.lessonId === VERB_TABLE_ID) return "慢慢嚟，先讀現在式，再記過去式、PP、ING。";
   if (state.lessonId === PRONOUN_MATCH_ID && percent === 100 && mistakes === 0) return "滿分！主語、非主語、的、的東西都配得好準。";
   if (state.lessonId === PRONOUN_MATCH_ID && percent >= 80) return "好穩陣！繼續記住 my/mine、your/yours 呢類分別。";
   if (state.lessonId === PRONOUN_MATCH_ID) return "慢慢嚟，先分清楚主語、非主語、的、的東西。";
@@ -2600,6 +3032,8 @@ el.resetUnderlineBtn.addEventListener("click", resetSentenceUnderline);
 el.confirmUnderlineBtn.addEventListener("click", submitSentenceUnderline);
 el.resetPronounBtn.addEventListener("click", resetPronounMatch);
 el.confirmPronounBtn.addEventListener("click", submitPronounMatch);
+el.resetVerbTableBtn.addEventListener("click", resetVerbTable);
+el.confirmVerbTableBtn.addEventListener("click", submitVerbTable);
 
 updateMenuProgress();
 syncPracticeCount();
