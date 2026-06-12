@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Basic English Grammar Game</title>
-  <link rel="stylesheet" href="style.css?v=20260612-verb-table-present-hint">
+  <link rel="stylesheet" href="style.css?v=20260612-verb-table-images">
 </head>
 <body>
   <main class="app-shell">
@@ -131,6 +131,9 @@
           <div id="step-label" class="step-label">中文句子</div>
           <div id="category-pill" class="category-pill">--</div>
           <div id="chinese-prompt" class="chinese-prompt">--</div>
+          <div id="verb-table-visual" class="verb-table-visual hidden" aria-hidden="true">
+            <img id="verb-table-image" class="verb-table-image" alt="">
+          </div>
           <div id="guidance" class="guidance">分析句子有沒有動作動詞</div>
         </div>
 
@@ -266,6 +269,7 @@
 
   <script src="assets/lottie.min.js?v=20260609-lottie"></script>
   <script src="assets/confetti-animation.js?v=20260609-lottie"></script>
-  <script src="app.js?v=20260612-verb-table-present-hint"></script>
+  <script src="grammar_verb_table_image_manifest.js?v=20260612-verb-table-images"></script>
+  <script src="app.js?v=20260612-verb-table-images"></script>
 </body>
 </html>

@@ -1359,9 +1359,10 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .chinese-prompt.verb-table-prompt {
-  min-height: 78px;
+  min-height: 56px;
+  padding: 4px 6px 6px;
   color: #5d4037;
-  font-size: clamp(28px, 5vw, 44px);
+  font-size: clamp(25px, 4.5vw, 38px);
   text-shadow: 2px 2px 0 #fff3bf;
 }
 
@@ -1435,8 +1436,33 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .verb-table-screen .prompt-panel {
-  padding: 10px 16px;
-  margin-bottom: 10px;
+  padding: 8px 16px 10px;
+  margin-bottom: 8px;
+}
+
+.verb-table-visual {
+  position: relative;
+  width: min(160px, 42vw);
+  height: 112px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 6px;
+  padding: 0;
+  overflow: hidden;
+  background: #ffffff;
+  border: 2px dashed #bde0e1;
+  border-radius: 18px;
+  box-shadow: 0 4px 0 rgba(78, 205, 196, 0.18);
+}
+
+.verb-table-image {
+  position: absolute;
+  inset: 4px;
+  width: calc(100% - 8px);
+  height: calc(100% - 8px);
+  display: block;
+  object-fit: contain;
+  pointer-events: none;
 }
 
 .verb-table-screen .guidance {
@@ -2037,14 +2063,21 @@ input[type="range"]::-moz-range-thumb {
   }
 
   .verb-table-screen .prompt-panel {
-    padding: 8px 12px;
-    margin-bottom: 8px;
+    padding: 6px 12px 8px;
+    margin-bottom: 7px;
   }
 
   .chinese-prompt.verb-table-prompt {
-    min-height: 54px;
-    padding: 4px 2px;
-    font-size: clamp(24px, 7vw, 34px);
+    min-height: 40px;
+    padding: 2px 2px 4px;
+    font-size: clamp(21px, 5.8vw, 28px);
+  }
+
+  .verb-table-visual {
+    width: min(126px, 38vw);
+    height: 72px;
+    margin-bottom: 4px;
+    border-radius: 14px;
   }
 
   .verb-table-screen .guidance {

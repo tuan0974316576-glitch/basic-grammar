@@ -901,6 +901,8 @@ const el = {
   stepLabel: document.querySelector("#step-label"),
   categoryPill: document.querySelector("#category-pill"),
   chinesePrompt: document.querySelector("#chinese-prompt"),
+  verbTableVisual: document.querySelector("#verb-table-visual"),
+  verbTableImage: document.querySelector("#verb-table-image"),
   guidance: document.querySelector("#guidance"),
   ruleCard: document.querySelector("#rule-card"),
   verbChoice: document.querySelector("#verb-choice"),
@@ -1526,6 +1528,7 @@ function renderQuestion() {
   el.pronounMatchBoard.replaceChildren();
   el.pronounWordBank.replaceChildren();
   el.verbTableSlots.replaceChildren();
+  clearVerbTableImage();
   setFeedback();
 
   if (state.lessonId === LESSON2_ID) {
@@ -1681,6 +1684,7 @@ function renderVerbTableQuestion(question) {
   el.categoryPill.textContent = "Verb Table";
   el.categoryPill.dataset.type = "verb-table";
   el.chinesePrompt.textContent = question.zh;
+  renderVerbTableImage(question);
   el.guidance.textContent = "輸入現在式、過去式、PP、ING。";
 
   VERB_TABLE_FIELDS.forEach((field) => {
@@ -2162,6 +2166,42 @@ function submitSentenceBuilder() {
   }
 
   completeVerbLessonQuestion(getSentenceBuilderFeedback(question, true));
+}
+
+function getVerbTableImageKey(question) {
+  return VERB_TABLE_FIELDS
+    .map((field) => question?.forms?.[field.key])
+    .join("|");
+}
+
+function getVerbTableImageEntry(question) {
+  return window.GRAMMAR_VERB_IMAGE_MANIFEST?.[getVerbTableImageKey(question)] || null;
+}
+
+function clearVerbTableImage() {
+  if (el.verbTableImage) {
+    el.verbTableImage.removeAttribute("src");
+    el.verbTableImage.alt = "";
+  }
+
+  if (el.verbTableVisual) {
+    el.verbTableVisual.classList.add("hidden");
+    el.verbTableVisual.setAttribute("aria-hidden", "true");
+  }
+}
+
+function renderVerbTableImage(question) {
+  const entry = getVerbTableImageEntry(question);
+  if (!el.verbTableVisual || !el.verbTableImage || !entry?.src) {
+    clearVerbTableImage();
+    return;
+  }
+
+  el.verbTableImage.src = entry.src;
+  el.verbTableImage.alt = `${question.zh} 的圖片提示`;
+  el.verbTableImage.draggable = false;
+  el.verbTableVisual.classList.remove("hidden");
+  el.verbTableVisual.setAttribute("aria-hidden", "false");
 }
 
 function getVerbTableAnswerLine(question) {
