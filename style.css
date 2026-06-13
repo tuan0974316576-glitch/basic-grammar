@@ -1919,7 +1919,7 @@ body.modal-open {
 .verb-table-reference-list-head,
 .verb-table-reference-row {
   display: grid;
-  grid-template-columns: minmax(150px, 1.45fr) repeat(4, minmax(96px, 1fr)) 56px;
+  grid-template-columns: minmax(170px, 1.35fr) repeat(4, minmax(92px, 1fr));
   gap: 8px;
   align-items: center;
 }
@@ -1946,7 +1946,8 @@ body.modal-open {
 }
 
 .verb-table-reference-row {
-  min-height: 58px;
+  flex: 0 0 auto;
+  min-height: 92px;
   padding: 8px;
   cursor: pointer;
   background: #ffffff;
@@ -1957,11 +1958,17 @@ body.modal-open {
 }
 
 .verb-table-reference-row:hover,
+.verb-table-reference-row:focus-visible,
 .verb-table-reference-row.speaking {
   background: #fffdf2;
   border-color: var(--secondary-dark);
   transform: translateY(-1px);
   box-shadow: 0 4px 0 rgba(255, 183, 3, 0.28);
+}
+
+.verb-table-reference-row:focus-visible {
+  outline: 4px solid rgba(78, 205, 196, 0.24);
+  outline-offset: 2px;
 }
 
 .verb-table-reference-row.speaking {
@@ -1983,26 +1990,27 @@ body.modal-open {
   font-size: 14px;
 }
 
-.verb-table-reference-audio {
-  width: 42px;
-  height: 42px;
-  display: grid;
+.verb-table-reference-image-wrap {
+  width: 96px;
+  height: 66px;
+  display: flex;
   place-items: center;
-  justify-self: end;
-  color: #5d4037;
-  font-size: 20px;
-  font-weight: 900;
-  cursor: pointer;
-  background: var(--secondary-color);
-  border: 0;
+  align-items: center;
+  justify-content: center;
+  margin-top: 7px;
+  overflow: hidden;
+  background: #ffffff;
+  border: 2px dashed #bde0e1;
   border-radius: 14px;
-  box-shadow: 0 4px 0 var(--secondary-dark);
+  box-shadow: inset 0 -3px 0 rgba(78, 205, 196, 0.12);
 }
 
-.verb-table-reference-row.speaking .verb-table-reference-audio {
-  color: #14532d;
-  background: var(--correct-color);
-  box-shadow: 0 4px 0 var(--correct-dark);
+.verb-table-reference-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  pointer-events: none;
 }
 
 .hidden {
@@ -2480,12 +2488,12 @@ body.modal-open {
   }
 
   .verb-table-reference-row {
-    min-height: 142px;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 44px;
+    min-height: 0;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     grid-template-areas:
-      "ch ch audio"
-      "present past audio"
-      "pp ing audio";
+      "ch ch"
+      "present past"
+      "pp ing";
     gap: 6px;
     padding: 8px;
     border-radius: 15px;
@@ -2496,6 +2504,8 @@ body.modal-open {
     font-size: 14px;
     background: #fffdf2;
     border-radius: 10px;
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
 
   .verb-table-reference-cell::before {
@@ -2514,6 +2524,13 @@ body.modal-open {
     background: var(--soft-blue);
   }
 
+  .verb-table-reference-image-wrap {
+    width: 100%;
+    height: 104px;
+    margin-top: 7px;
+    border-radius: 12px;
+  }
+
   .verb-table-reference-cell:nth-child(2) {
     grid-area: present;
   }
@@ -2530,10 +2547,4 @@ body.modal-open {
     grid-area: ing;
   }
 
-  .verb-table-reference-audio {
-    grid-area: audio;
-    align-self: stretch;
-    height: auto;
-    min-height: 42px;
-  }
 }

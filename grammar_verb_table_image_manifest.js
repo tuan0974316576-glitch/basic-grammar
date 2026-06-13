@@ -128,11 +128,11 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "bring|brought|brought|bringing": {
-    "src": "assets/grammar-verbs/irasutoya/v1/bring-brought-brought-bringing-dc7b84c9d8.png",
-    "sourceUrl": "https://www.irasutoya.com/2013/09/blog-post_3043.html",
-    "sourceTitle": "槍を持った原住民のイラスト",
-    "searchTerm": "持ってくる",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiJkSNHbrTCsN1Injj-rN2iBLemFOZ_QibS9u0BCQh72HX06mLJ1sNKBXXKdbXm4DvZ7gvpmMhaqbt5kqCoj3_iw3DS4giL4UaBvDW6YiwlPf8KLLjav3myE9vmfMm8k6V72F7yEOnrMJMK/s1600/world_genjumin.png",
+    "src": "assets/grammar-verbs/irasutoya/v1/bring-brought-brought-bringing-620255f8c5.png",
+    "sourceUrl": "https://www.irasutoya.com/2013/02/blog-post_3141.html",
+    "sourceTitle": "宅配便のイラスト「男性配達員」",
+    "searchTerm": "届ける",
+    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgv2dIZX8Tif98_d7Q6O8smhCKAFJHSrlhqzjTFry57PrEeNBqJh5LWoC9O4ug68ubY6Cv3QYbfeIATH3NIvdAavQP1NmUXwDFmIjyUln4os_YCD-ITqOiFmUj1L_8tXnK4PSvEIR2e6trF/s800/yuubin_takuhaiin_man2.png",
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "broadcast|broadcast|broadcast|broadcasting": {
@@ -192,11 +192,11 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "choose|chose|chosen|choosing": {
-    "src": "assets/grammar-verbs/irasutoya/v1/choose-chose-chosen-choosing-1324c9d5c4.png",
-    "sourceUrl": "https://www.irasutoya.com/2016/03/blog-post_134.html",
-    "sourceTitle": "メニューを選ぶ家族のイラスト",
+    "src": "assets/grammar-verbs/irasutoya/v1/choose-chose-chosen-choosing-2135575c56.png",
+    "sourceUrl": "https://www.irasutoya.com/2016/02/blog-post_619.html",
+    "sourceTitle": "電力会社を選ぶ人のイラスト",
     "searchTerm": "選ぶ",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg-GNe8dZ2bEl7IDdL1eTYM5YCIwjZtfi5EWnzKRTRLLcZ4zWadNetIwgjvcFCQ7KmujRKZV8cDKhQxn8IrXUb6moulM2Q4-SOu7vIngTjjqCL-aPoK4sFhH7oOl7t5sBT1w5PKEq9SP-os/s1600/menu_chumon_family.png",
+    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhCs-PfxhR8rT26CETbxRkkHh26pfJQj9rdqXluWuvj4wGwNny1PE-rDZOKkbGGG8L6uLwEmLQK5USEhq1j8whL_CG1gT9EjgcqFMwuC56xqOHJuNyrdeYjNG_3SG8KJm5QfGZYC4X_KYd0/s800/denryoku_sentaku.png",
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "come|came|come|coming": {
@@ -248,11 +248,11 @@ window.GRAMMAR_VERB_IMAGE_MANIFEST = {
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "do|did|done|doing": {
-    "src": "assets/grammar-verbs/irasutoya/v1/do-did-done-doing-745fad1608.png",
-    "sourceUrl": "https://www.irasutoya.com/2016/02/blog-post_516.html",
-    "sourceTitle": "男性作業員の表情のイラスト「ひらめいた顔・焦った顔・驚いた顔・悩んだ顔」",
-    "searchTerm": "作業",
-    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZsdK-HEFt4oVOlK4Hwcdu5OVUIv3LZzv7e3thIMZ9AUv4sNuvTIM50Vw2BspxsMiCjY5h-cmM-lPB06BbKIwxKPfO89r7yTMPRSY9cqrNGLwZM4WQGYaHfWalrnF5DaNAKWIl3OPN0sIT/s1600/sagyouin_man05_idea.png",
+    "src": "assets/grammar-verbs/irasutoya/v1/do-did-done-doing-2aa085b750.png",
+    "sourceUrl": "https://www.irasutoya.com/2016/08/blog-post_932.html",
+    "sourceTitle": "夏休みの宿題をやる男の子のイラスト",
+    "searchTerm": "宿題をする",
+    "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiH_FpXMXFzbYeZ5-PXZIwNCO3N-SztiIDXOz7nDXyjxoRVkKuZxEt5X9w6BngVtndXLwzRGrWKr1t-JxhX9reBe0fVb-hE2XbTIylC9UKPfQpKV7INhyphenhyphenQ2x3dsZpbx-38vS4UkgbfUCde1/s800/syukudai_natsuyasumi_boy.png",
     "licenseUrl": "https://www.irasutoya.com/p/terms.html"
   },
   "draw|drew|drawn|drawing": {
