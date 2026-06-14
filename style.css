@@ -84,6 +84,10 @@ button {
   overflow: hidden;
 }
 
+#lesson-screen.active.keyboard-docked {
+  height: min(720px, calc(100svh - clamp(260px, 40svh, 350px)));
+}
+
 #menu-screen.active {
   min-height: 0;
   height: min(720px, calc(100svh - 60px));
@@ -533,7 +537,7 @@ input[type="range"]::-moz-range-thumb {
 
 #lesson-screen.keyboard-docked .lesson-scroll {
   overflow-y: auto;
-  padding-bottom: clamp(236px, 38svh, 330px);
+  padding-bottom: 4px;
 }
 
 .prompt-panel {
