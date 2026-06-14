@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Basic English Grammar Game</title>
-  <link rel="stylesheet" href="style.css?v=20260614-sticker-keyboard-v2">
+  <link rel="stylesheet" href="style.css?v=20260614-device-keyboards">
 </head>
 <body>
   <main class="app-shell">
@@ -190,8 +190,9 @@
         </div>
 
         <div id="countable-correction-choice" class="countable-correction hidden">
-          <input id="countable-correction-input" type="text" autocomplete="off" autocapitalize="sentences" spellcheck="false" placeholder="Type the correct sentence">
+          <button id="countable-correction-input" class="text-entry-field countable-correction-input" type="button" aria-label="輸入正確英文句子" data-placeholder="Type the correct sentence"></button>
           <button id="submit-countable-correction-btn" class="primary-btn" type="button">確認</button>
+          <div id="countable-correction-keyboard" class="verb-table-keyboard text-game-keyboard countable-correction-keyboard hidden" aria-label="Countable noun correction keyboard"></div>
         </div>
 
         <div id="sentence-builder-choice" class="sentence-builder hidden">
@@ -334,12 +335,13 @@
       </header>
 
       <div class="verb-table-reference-tools">
-        <label class="verb-table-reference-search">
+        <div class="verb-table-reference-search">
           <span>搜尋</span>
-          <input id="verb-table-reference-search" type="search" autocomplete="off" autocapitalize="none" spellcheck="false" inputmode="none" readonly disabled placeholder="中文 / present / past / PP / ING">
-        </label>
+          <button id="verb-table-reference-search" class="text-entry-field verb-table-reference-search-field" type="button" aria-label="搜尋 Verb Table" data-placeholder="present / past / PP / ING"></button>
+        </div>
         <button id="verb-table-reference-search-toggle" class="verb-table-reference-search-toggle" type="button">搜尋</button>
         <div id="verb-table-reference-count" class="verb-table-reference-count">0 verbs</div>
+        <div id="verb-table-reference-keyboard" class="verb-table-keyboard text-game-keyboard verb-table-reference-keyboard hidden" aria-label="Verb Table search keyboard"></div>
       </div>
 
       <div class="verb-table-reference-list" aria-label="Verb Table reference">
@@ -362,6 +364,6 @@
   <script src="grammar_verb_table_data.js?v=20260613-verb-table-reference"></script>
   <script src="grammar_verb_table_audio_manifest.js?v=20260613-verb-table-reference"></script>
   <script src="grammar_verb_table_image_manifest.js?v=20260613-verb-table-images-lite"></script>
-  <script src="app.js?v=20260614-sticker-keyboard-v2"></script>
+  <script src="app.js?v=20260614-device-keyboards"></script>
 </body>
 </html>

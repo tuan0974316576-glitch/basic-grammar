@@ -1084,6 +1084,7 @@ let celebrationHideTimer = 0;
 let verbTableReferenceRendered = false;
 let activeVerbTableReferenceAudio = null;
 let activeVerbTableReferenceAudioToken = 0;
+let activeTextEntryTarget = "";
 
 const state = {
   lessonId: LESSON1_ID,
@@ -1131,6 +1132,7 @@ const el = {
   verbTableReferenceModal: document.querySelector("#verb-table-reference-modal"),
   verbTableReferenceSearch: document.querySelector("#verb-table-reference-search"),
   verbTableReferenceSearchToggle: document.querySelector("#verb-table-reference-search-toggle"),
+  verbTableReferenceKeyboard: document.querySelector("#verb-table-reference-keyboard"),
   verbTableReferenceCount: document.querySelector("#verb-table-reference-count"),
   verbTableReferenceBody: document.querySelector("#verb-table-reference-body"),
   menuCoachLine: document.querySelector("#menu-coach-line"),
@@ -1161,6 +1163,7 @@ const el = {
   submitVerbsBtn: document.querySelector("#submit-verbs-btn"),
   countableCorrectionChoice: document.querySelector("#countable-correction-choice"),
   countableCorrectionInput: document.querySelector("#countable-correction-input"),
+  countableCorrectionKeyboard: document.querySelector("#countable-correction-keyboard"),
   submitCountableCorrectionBtn: document.querySelector("#submit-countable-correction-btn"),
   sentenceBuilderChoice: document.querySelector("#sentence-builder-choice"),
   sentenceSlots: document.querySelector("#sentence-slots"),
@@ -1569,6 +1572,254 @@ function showOnlyChoice(choice) {
   el.pronounMatchChoice.classList.toggle("hidden", choice !== "pronoun");
   el.pronounSentenceChoice.classList.toggle("hidden", choice !== "pronounSentence");
   el.verbTableChoice.classList.toggle("hidden", choice !== "verbTable");
+
+  if (choice !== "countableCorrection" && activeTextEntryTarget === "countable") {
+    deactivateTextEntryTarget("countable");
+  }
+}
+
+function isLikelyPhoneOrTablet() {
+  const userAgent = navigator.userAgent || "";
+  const platform = navigator.platform || "";
+  const touchPoints = navigator.maxTouchPoints || 0;
+  const hasFinePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const hasCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
+  const iPadLike = /Macintosh/.test(userAgent) && touchPoints > 1;
+  return /Android|webOS|iPhone|iPad|iPod|Mobile|Tablet/i.test(userAgent)
+    || /iPad|iPhone|iPod/i.test(platform)
+    || iPadLike
+    || (hasCoarsePointer && !hasFinePointer);
+}
+
+function isComputerKeyboardMode() {
+  return window.matchMedia("(hover: hover) and (pointer: fine)").matches && !isLikelyPhoneOrTablet();
+}
+
+function getTextEntryValue(field) {
+  return field?.dataset.value || "";
+}
+
+function setTextEntryValue(field, value) {
+  if (!field) return;
+
+  const nextValue = String(value || "");
+  field.dataset.value = nextValue;
+  field.textContent = nextValue;
+  field.classList.toggle("is-placeholder", !nextValue);
+  field.setAttribute("aria-valuetext", nextValue || field.dataset.placeholder || "");
+}
+
+function getTextEntryConfig(targetName = activeTextEntryTarget) {
+  const configs = {
+    countable: {
+      field: el.countableCorrectionInput,
+      keyboard: el.countableCorrectionKeyboard,
+      keys: [
+        ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
+        ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
+        ["z", "x", "c", "v", "b", "n", "m", "backspace"],
+        ["space", ".", "clear", "enter"]
+      ],
+      labels: {
+        backspace: "⌫",
+        clear: "清空",
+        enter: "確認",
+        space: "Space"
+      },
+      maxLength: 80,
+      onChange: () => setFeedback(),
+      onEnter: submitCountableCorrection
+    },
+    verbReference: {
+      field: el.verbTableReferenceSearch,
+      keyboard: el.verbTableReferenceKeyboard,
+      keys: [
+        ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
+        ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
+        ["z", "x", "c", "v", "b", "n", "m", "/", "backspace"],
+        ["space", "clear", "enter"]
+      ],
+      labels: {
+        backspace: "⌫",
+        clear: "清空",
+        enter: "完成",
+        space: "Space"
+      },
+      maxLength: 36,
+      onChange: renderVerbTableReferenceRows,
+      onEnter: hideVerbTableReferenceSearchKeyboard
+    }
+  };
+
+  return configs[targetName] || null;
+}
+
+function buildTextGameKeyboard(targetName) {
+  const config = getTextEntryConfig(targetName);
+  if (!config?.keyboard || config.keyboard.dataset.built === "true") return;
+
+  config.keyboard.replaceChildren();
+  config.keys.forEach((rowKeys) => {
+    const row = document.createElement("div");
+    row.className = "verb-table-key-row";
+
+    rowKeys.forEach((keyValue) => {
+      const button = document.createElement("button");
+      button.className = "verb-table-key";
+      button.type = "button";
+      button.dataset.textKeyboardKey = keyValue;
+      button.textContent = config.labels[keyValue] || keyValue.toUpperCase();
+
+      if (keyValue === "backspace") button.classList.add("verb-table-key-backspace");
+      if (keyValue === "enter") button.classList.add("verb-table-key-enter");
+      if (keyValue === "space") button.classList.add("text-key-space");
+      if (keyValue === "clear") button.classList.add("text-key-clear");
+
+      button.addEventListener("click", () => handleTextKeyboardKey(targetName, keyValue));
+      row.append(button);
+    });
+
+    config.keyboard.append(row);
+  });
+
+  config.keyboard.dataset.built = "true";
+}
+
+function setTextEntryKeyboardVisible(targetName, visible) {
+  const config = getTextEntryConfig(targetName);
+  if (!config?.keyboard) return;
+
+  buildTextGameKeyboard(targetName);
+  config.keyboard.classList.toggle("hidden", !visible);
+}
+
+function deactivateTextEntryTarget(targetName = activeTextEntryTarget) {
+  const config = getTextEntryConfig(targetName);
+  if (config?.field) {
+    config.field.classList.remove("is-active");
+  }
+  if (targetName) {
+    setTextEntryKeyboardVisible(targetName, false);
+  }
+  if (!targetName || activeTextEntryTarget === targetName) {
+    activeTextEntryTarget = "";
+  }
+  updateTextEntryToggleLabels();
+}
+
+function activateTextEntryTarget(targetName, options = {}) {
+  const config = getTextEntryConfig(targetName);
+  if (!config?.field) return;
+
+  if (activeTextEntryTarget && activeTextEntryTarget !== targetName) {
+    deactivateTextEntryTarget(activeTextEntryTarget);
+  }
+
+  activeTextEntryTarget = targetName;
+  buildTextGameKeyboard(targetName);
+  config.field.classList.add("is-active");
+  setTextEntryKeyboardVisible(targetName, options.showKeyboard ?? !isComputerKeyboardMode());
+  updateTextEntryToggleLabels();
+}
+
+function updateTextEntryToggleLabels() {
+  if (el.verbTableReferenceSearchToggle) {
+    el.verbTableReferenceSearchToggle.textContent = activeTextEntryTarget === "verbReference" ? "完成" : "搜尋";
+  }
+}
+
+function appendTextEntryValue(targetName, value) {
+  const config = getTextEntryConfig(targetName);
+  if (!config?.field) return;
+
+  const currentValue = getTextEntryValue(config.field);
+  if (currentValue.length >= config.maxLength) return;
+
+  setTextEntryValue(config.field, `${currentValue}${value}`);
+  config.onChange?.();
+}
+
+function backspaceTextEntryValue(targetName) {
+  const config = getTextEntryConfig(targetName);
+  if (!config?.field) return;
+
+  const currentValue = getTextEntryValue(config.field);
+  setTextEntryValue(config.field, currentValue.slice(0, -1));
+  config.onChange?.();
+}
+
+function clearTextEntryValue(targetName) {
+  const config = getTextEntryConfig(targetName);
+  if (!config?.field) return;
+
+  setTextEntryValue(config.field, "");
+  config.onChange?.();
+}
+
+function handleTextKeyboardKey(targetName, keyValue) {
+  activateTextEntryTarget(targetName, { showKeyboard: true });
+
+  if (keyValue === "backspace") {
+    backspaceTextEntryValue(targetName);
+    playUiSound("next");
+    return;
+  }
+
+  if (keyValue === "clear") {
+    clearTextEntryValue(targetName);
+    playUiSound("next");
+    return;
+  }
+
+  if (keyValue === "enter") {
+    getTextEntryConfig(targetName)?.onEnter?.();
+    return;
+  }
+
+  appendTextEntryValue(targetName, keyValue === "space" ? " " : keyValue);
+  playUiSound("step");
+}
+
+function handleTextEntryDocumentKeydown(event) {
+  if (!activeTextEntryTarget || !isComputerKeyboardMode()) return false;
+
+  const config = getTextEntryConfig(activeTextEntryTarget);
+  if (!config?.field || state.resolved && activeTextEntryTarget === "countable") return false;
+
+  if (event.key === "Escape") {
+    event.preventDefault();
+    deactivateTextEntryTarget(activeTextEntryTarget);
+    return true;
+  }
+
+  if (event.key === "Enter") {
+    event.preventDefault();
+    config.onEnter?.();
+    return true;
+  }
+
+  if (event.key === "Backspace") {
+    event.preventDefault();
+    backspaceTextEntryValue(activeTextEntryTarget);
+    playUiSound("next");
+    return true;
+  }
+
+  if (event.key === " ") {
+    event.preventDefault();
+    appendTextEntryValue(activeTextEntryTarget, " ");
+    playUiSound("step");
+    return true;
+  }
+
+  if (event.key.length === 1 && /^[a-zA-Z./]$/.test(event.key)) {
+    event.preventDefault();
+    appendTextEntryValue(activeTextEntryTarget, event.key.toLowerCase());
+    playUiSound("step");
+    return true;
+  }
+
+  return false;
 }
 
 function currentQuestion() {
@@ -1731,6 +1982,7 @@ function backToMenu() {
   clearPronounAutoAdvance();
   clearCelebration();
   cancelSpeech();
+  deactivateTextEntryTarget();
   updateMenuProgress();
   showScreen("menu");
   playUiSound("next");
@@ -1775,7 +2027,8 @@ function renderQuestion() {
   el.chinesePrompt.classList.toggle("verb-table-prompt", state.lessonId === VERB_TABLE_ID);
   el.ruleCard.classList.toggle("hidden", state.lessonId !== LESSON2_ID);
   el.verbTokenGrid.replaceChildren();
-  el.countableCorrectionInput.value = "";
+  setTextEntryValue(el.countableCorrectionInput, "");
+  deactivateTextEntryTarget("countable");
   el.sentenceSlots.replaceChildren();
   el.wordBank.replaceChildren();
   el.underlineBoard.replaceChildren();
@@ -2317,9 +2570,9 @@ function askCountableCorrection() {
     el.guidance.textContent = question.zh;
   }
   showOnlyChoice("countableCorrection");
+  activateTextEntryTarget("countable");
   setFeedback("正確，呢句有問題，請改成正確英文。", "success");
   playUiSound("step");
-  setTimeout(() => el.countableCorrectionInput.focus(), 0);
 }
 
 function answerCountableJudgment(choice) {
@@ -2343,14 +2596,15 @@ function answerCountableJudgment(choice) {
 function submitCountableCorrection() {
   const question = currentQuestion();
   if (!question || state.lessonId !== COUNTABLE_NOUN_ID || state.resolved) return;
+  const typedAnswer = getTextEntryValue(el.countableCorrectionInput);
 
-  if (!el.countableCorrectionInput.value.trim()) {
+  if (!typedAnswer.trim()) {
     setFeedback("請輸入正確英文句子。", "error");
     playUiSound("wrong");
     return;
   }
 
-  if (!isCountableTypedAnswerCorrect(question, el.countableCorrectionInput.value)) {
+  if (!isCountableTypedAnswerCorrect(question, typedAnswer)) {
     recordWrong(getCountableNounFeedback(question, "改寫未正確。"));
     return;
   }
@@ -2808,6 +3062,11 @@ function handleVerbTableKeyboardKey(keyValue) {
 }
 
 function handleVerbTableSlotKeydown(event, slotKey) {
+  if (!isComputerKeyboardMode()) {
+    event.preventDefault();
+    return;
+  }
+
   if (state.resolved) return;
 
   if (event.key === "Enter") {
@@ -3670,7 +3929,7 @@ function renderVerbTableReferenceRows() {
   if (verbTableReferenceRendered) {
     stopVerbTableReferenceAudio();
   }
-  const query = (el.verbTableReferenceSearch?.value || "").trim().toLowerCase();
+  const query = getTextEntryValue(el.verbTableReferenceSearch).trim().toLowerCase();
   const bank = getVerbTableReferenceBank();
   const rows = bank.filter((verb) => !query || verb.join(" ").toLowerCase().includes(query));
   el.verbTableReferenceBody.replaceChildren(...rows.map(createVerbTableReferenceRow));
@@ -3678,22 +3937,24 @@ function renderVerbTableReferenceRows() {
   verbTableReferenceRendered = true;
 }
 
-function lockVerbTableReferenceSearch() {
-  if (!el.verbTableReferenceSearch) return;
-  el.verbTableReferenceSearch.readOnly = true;
-  el.verbTableReferenceSearch.disabled = true;
-  el.verbTableReferenceSearch.inputMode = "none";
-  el.verbTableReferenceSearch.blur();
-  el.verbTableReferenceSearch.closest(".verb-table-reference-search")?.classList.remove("is-searching");
+function hideVerbTableReferenceSearchKeyboard() {
+  deactivateTextEntryTarget("verbReference");
+  el.verbTableReferenceSearch?.closest(".verb-table-reference-search")?.classList.remove("is-searching");
 }
 
-function unlockVerbTableReferenceSearch() {
+function showVerbTableReferenceSearchKeyboard() {
   if (!el.verbTableReferenceSearch) return;
-  el.verbTableReferenceSearch.disabled = false;
-  el.verbTableReferenceSearch.readOnly = false;
-  el.verbTableReferenceSearch.inputMode = "search";
+  activateTextEntryTarget("verbReference");
   el.verbTableReferenceSearch.closest(".verb-table-reference-search")?.classList.add("is-searching");
-  window.setTimeout(() => el.verbTableReferenceSearch.focus({ preventScroll: true }), 0);
+}
+
+function toggleVerbTableReferenceSearchKeyboard() {
+  if (activeTextEntryTarget === "verbReference") {
+    hideVerbTableReferenceSearchKeyboard();
+    return;
+  }
+
+  showVerbTableReferenceSearchKeyboard();
 }
 
 function openVerbTableReference(event) {
@@ -3701,16 +3962,11 @@ function openVerbTableReference(event) {
   event?.stopPropagation();
   if (!el.verbTableReferenceModal) return;
 
-  lockVerbTableReferenceSearch();
+  hideVerbTableReferenceSearchKeyboard();
   renderVerbTableReferenceRows();
   el.verbTableReferenceModal.classList.remove("hidden");
   el.verbTableReferenceModal.setAttribute("aria-hidden", "false");
   document.body.classList.add("modal-open");
-  window.setTimeout(() => {
-    if (document.activeElement === el.verbTableReferenceSearch) {
-      lockVerbTableReferenceSearch();
-    }
-  }, 0);
   playUiSound("step");
 }
 
@@ -3718,7 +3974,7 @@ function closeVerbTableReference() {
   if (!el.verbTableReferenceModal || el.verbTableReferenceModal.classList.contains("hidden")) return;
 
   stopVerbTableReferenceAudio();
-  lockVerbTableReferenceSearch();
+  hideVerbTableReferenceSearchKeyboard();
   el.verbTableReferenceModal.classList.add("hidden");
   el.verbTableReferenceModal.setAttribute("aria-hidden", "true");
   document.body.classList.remove("modal-open");
@@ -3844,11 +4100,13 @@ el.openVerbTableReferenceBtn?.addEventListener("click", openVerbTableReference);
 document.querySelectorAll("[data-close-verb-table-reference]").forEach((button) => {
   button.addEventListener("click", closeVerbTableReference);
 });
-el.verbTableReferenceSearch?.addEventListener("input", renderVerbTableReferenceRows);
-el.verbTableReferenceSearchToggle?.addEventListener("click", unlockVerbTableReferenceSearch);
+el.verbTableReferenceSearch?.addEventListener("click", showVerbTableReferenceSearchKeyboard);
+el.verbTableReferenceSearchToggle?.addEventListener("click", toggleVerbTableReferenceSearchKeyboard);
 el.verbTableReferenceBody?.addEventListener("click", handleVerbTableReferenceBodyClick);
 el.verbTableReferenceBody?.addEventListener("keydown", handleVerbTableReferenceBodyKeydown);
 document.addEventListener("keydown", (event) => {
+  if (handleTextEntryDocumentKeydown(event)) return;
+
   if (event.key === "Escape") {
     closeVerbTableReference();
   }
@@ -3883,12 +4141,7 @@ document.querySelectorAll("[data-verb-count]").forEach((button) => {
 
 el.submitVerbsBtn.addEventListener("click", submitVerbTokens);
 el.submitCountableCorrectionBtn.addEventListener("click", submitCountableCorrection);
-el.countableCorrectionInput.addEventListener("keydown", (event) => {
-  if (event.key === "Enter") {
-    event.preventDefault();
-    submitCountableCorrection();
-  }
-});
+el.countableCorrectionInput.addEventListener("click", () => activateTextEntryTarget("countable"));
 el.resetBuilderBtn.addEventListener("click", resetSentenceBuilder);
 el.confirmBuilderBtn.addEventListener("click", submitSentenceBuilder);
 el.underlineBoard.addEventListener("pointerdown", startUnderlineDrag);
@@ -3905,6 +4158,8 @@ el.verbTableKeyboard?.querySelectorAll("[data-verb-table-key]").forEach((button)
 el.resetVerbTableBtn.addEventListener("click", resetVerbTable);
 el.confirmVerbTableBtn.addEventListener("click", submitVerbTable);
 
+setTextEntryValue(el.countableCorrectionInput, "");
+setTextEntryValue(el.verbTableReferenceSearch, "");
 updateMenuProgress();
 syncPracticeCount();
 syncSoundToggle();
