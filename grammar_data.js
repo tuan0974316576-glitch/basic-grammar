@@ -669,150 +669,734 @@ function createCountableNounQuestions() {
     nextId += 1;
   };
 
-  const genericItems = [
-    { zh: "蘋果是健康的。", cn: "蘋果", singular: "apple", plural: "Apples", adjective: "healthy" },
-    { zh: "狗很可愛。", cn: "狗", singular: "dog", plural: "Dogs", adjective: "cute" },
-    { zh: "貓很安靜。", cn: "貓", singular: "cat", plural: "Cats", adjective: "quiet" },
-    { zh: "學生很忙。", cn: "學生", singular: "student", plural: "Students", adjective: "busy" },
-    { zh: "老師很友善。", cn: "老師", singular: "teacher", plural: "Teachers", adjective: "kind" },
-    { zh: "書很有用。", cn: "書", singular: "book", plural: "Books", adjective: "useful" },
-    { zh: "汽車很昂貴。", cn: "汽車", singular: "car", plural: "Cars", adjective: "expensive" },
-    { zh: "雀鳥很漂亮。", cn: "雀鳥", singular: "bird", plural: "Birds", adjective: "beautiful" },
-    { zh: "香蕉很甜。", cn: "香蕉", singular: "banana", plural: "Bananas", adjective: "sweet" },
-    { zh: "橙很多汁。", cn: "橙", singular: "orange", plural: "Oranges", adjective: "juicy" },
-    { zh: "椅子很堅固。", cn: "椅子", singular: "chair", plural: "Chairs", adjective: "strong" },
-    { zh: "電腦很有用。", cn: "電腦", singular: "computer", plural: "Computers", adjective: "useful" },
-    { zh: "電話很昂貴。", cn: "電話", singular: "phone", plural: "Phones", adjective: "expensive" },
-    { zh: "花很漂亮。", cn: "花", singular: "flower", plural: "Flowers", adjective: "beautiful" },
-    { zh: "老虎很危險。", cn: "老虎", singular: "tiger", plural: "Tigers", adjective: "dangerous" },
-    { zh: "大象很大。", cn: "大象", singular: "elephant", plural: "Elephants", adjective: "big" },
-    { zh: "曲奇很甜。", cn: "曲奇", singular: "cookie", plural: "Cookies", adjective: "sweet" },
-    { zh: "雞蛋很健康。", cn: "雞蛋", singular: "egg", plural: "Eggs", adjective: "healthy" },
-    { zh: "玩具很好玩。", cn: "玩具", singular: "toy", plural: "Toys", adjective: "fun" },
-    { zh: "鯊魚很危險。", cn: "鯊魚", singular: "shark", plural: "Sharks", adjective: "dangerous" }
-  ];
+  const addMany = (items) => items.forEach(add);
+  const pluralExplanation = (cue, noun, plural) =>
+    `${cue}；${noun} 是可數名詞，這裡不是單數，所以要用眾數 ${plural}。`;
+  const singleExplanation = (cue, nounPhrase) =>
+    `${cue}；要寫成 ${nounPhrase}。`;
+  const definiteExplanation = (subject, quantity, be) =>
+    `the 表示指定；${subject} 是${quantity}，所以用 ${be}。`;
+  const uncountableExplanation = (noun, useBe = true) =>
+    useBe
+      ? `${noun} 是不可數名詞，沒有 s，也不用 a/an；作主語時當單一概念，所以用 is。`
+      : `${noun} 是不可數名詞，沒有 s，也不用 a/an，所以直接寫 ${noun}。`;
+  const definiteUncountableExplanation = (noun) =>
+    `the 表示指定；${noun} 是不可數名詞，沒有 s，也不用 a/an，仍然當單一概念用 is。`;
 
-  genericItems.forEach((item, index) => {
-    const answer = `${item.plural} are ${item.adjective}.`;
-    const isCorrect = index % 2 === 1;
-    add({
-      sentence: isCorrect ? answer : `${capitalizeWord(item.singular)} is ${item.adjective}.`,
-      zh: item.zh,
-      isCorrect,
-      answer,
-      explanation: `中文「${item.cn}」是泛指整個類別；${item.singular} 是可數名詞，預設用眾數 ${item.plural}，所以用 are。`
-    });
-  });
+  addMany([
+    {
+      sentence: "I like apples.",
+      zh: "我喜歡蘋果。",
+      isCorrect: true,
+      answer: "I like apples.",
+      explanation: pluralExplanation("中文是一般地說喜歡蘋果，不是說一個蘋果", "apple", "apples")
+    },
+    {
+      sentence: "I like apple.",
+      zh: "我喜歡蘋果。",
+      isCorrect: false,
+      answer: "I like apples.",
+      explanation: pluralExplanation("中文是一般地說喜歡蘋果，不是說一個蘋果", "apple", "apples")
+    },
+    {
+      sentence: "She likes dogs.",
+      zh: "她喜歡狗。",
+      isCorrect: true,
+      answer: "She likes dogs.",
+      explanation: pluralExplanation("中文是一般地說喜歡狗，不是說一隻狗", "dog", "dogs")
+    },
+    {
+      sentence: "She likes dog.",
+      zh: "她喜歡狗。",
+      isCorrect: false,
+      answer: "She likes dogs.",
+      explanation: pluralExplanation("中文是一般地說喜歡狗，不是說一隻狗", "dog", "dogs")
+    },
+    {
+      sentence: "We need more teachers.",
+      zh: "我們需要更多老師。",
+      isCorrect: true,
+      answer: "We need more teachers.",
+      explanation: pluralExplanation("more 後面如果是可數名詞，要用眾數", "teacher", "teachers")
+    },
+    {
+      sentence: "We need more teacher.",
+      zh: "我們需要更多老師。",
+      isCorrect: false,
+      answer: "We need more teachers.",
+      explanation: pluralExplanation("more 後面如果是可數名詞，要用眾數", "teacher", "teachers")
+    },
+    {
+      sentence: "There are three books on the desk.",
+      zh: "桌上有三本書。",
+      isCorrect: true,
+      answer: "There are three books on the desk.",
+      explanation: pluralExplanation("three 表示三本", "book", "books")
+    },
+    {
+      sentence: "There are three book on the desk.",
+      zh: "桌上有三本書。",
+      isCorrect: false,
+      answer: "There are three books on the desk.",
+      explanation: pluralExplanation("three 表示三本", "book", "books")
+    },
+    {
+      sentence: "Many students are in the playground.",
+      zh: "很多學生在操場。",
+      isCorrect: true,
+      answer: "Many students are in the playground.",
+      explanation: pluralExplanation("many 後面如果是可數名詞，要用眾數", "student", "students")
+    },
+    {
+      sentence: "Many student are in the playground.",
+      zh: "很多學生在操場。",
+      isCorrect: false,
+      answer: "Many students are in the playground.",
+      explanation: pluralExplanation("many 後面如果是可數名詞，要用眾數", "student", "students")
+    },
+    {
+      sentence: "Tom has two pencils.",
+      zh: "Tom 有兩支鉛筆。",
+      isCorrect: true,
+      answer: "Tom has two pencils.",
+      explanation: pluralExplanation("two 表示兩支", "pencil", "pencils")
+    },
+    {
+      sentence: "Tom has two pencil.",
+      zh: "Tom 有兩支鉛筆。",
+      isCorrect: false,
+      answer: "Tom has two pencils.",
+      explanation: pluralExplanation("two 表示兩支", "pencil", "pencils")
+    },
+    {
+      sentence: "They eat bananas after school.",
+      zh: "他們放學後吃香蕉。",
+      isCorrect: true,
+      answer: "They eat bananas after school.",
+      explanation: pluralExplanation("中文沒有說只吃一隻香蕉", "banana", "bananas")
+    },
+    {
+      sentence: "They eat banana after school.",
+      zh: "他們放學後吃香蕉。",
+      isCorrect: false,
+      answer: "They eat bananas after school.",
+      explanation: pluralExplanation("中文沒有說只吃一隻香蕉", "banana", "bananas")
+    },
+    {
+      sentence: "I can see birds in the tree.",
+      zh: "我看見樹上有雀鳥。",
+      isCorrect: true,
+      answer: "I can see birds in the tree.",
+      explanation: pluralExplanation("中文沒有指定只得一隻雀鳥", "bird", "birds")
+    },
+    {
+      sentence: "I can see bird in the tree.",
+      zh: "我看見樹上有雀鳥。",
+      isCorrect: false,
+      answer: "I can see birds in the tree.",
+      explanation: pluralExplanation("中文沒有指定只得一隻雀鳥", "bird", "birds")
+    },
+    {
+      sentence: "My sister collects stamps.",
+      zh: "我姐姐收集郵票。",
+      isCorrect: true,
+      answer: "My sister collects stamps.",
+      explanation: pluralExplanation("收集郵票通常不是一張", "stamp", "stamps")
+    },
+    {
+      sentence: "My sister collects stamp.",
+      zh: "我姐姐收集郵票。",
+      isCorrect: false,
+      answer: "My sister collects stamps.",
+      explanation: pluralExplanation("收集郵票通常不是一張", "stamp", "stamps")
+    }
+  ]);
 
-  [
-    { sentence: "A dog is sleeping.", zh: "有一隻狗在睡覺。", answer: "A dog is sleeping.", item: "dog", article: "A", isCorrect: true },
-    { sentence: "Dog is sleeping.", zh: "有一隻狗在睡覺。", answer: "A dog is sleeping.", item: "dog", article: "A", isCorrect: false },
-    { sentence: "An apple is red.", zh: "有一個蘋果是紅色的。", answer: "An apple is red.", item: "apple", article: "An", isCorrect: true },
-    { sentence: "Apple is red.", zh: "有一個蘋果是紅色的。", answer: "An apple is red.", item: "apple", article: "An", isCorrect: false },
-    { sentence: "A student is reading.", zh: "有一個學生在閱讀。", answer: "A student is reading.", item: "student", article: "A", isCorrect: true },
-    { sentence: "Student is reading.", zh: "有一個學生在閱讀。", answer: "A student is reading.", item: "student", article: "A", isCorrect: false },
-    { sentence: "A teacher is busy.", zh: "有一位老師很忙。", answer: "A teacher is busy.", item: "teacher", article: "A", isCorrect: true },
-    { sentence: "Teacher are busy.", zh: "有一位老師很忙。", answer: "A teacher is busy.", item: "teacher", article: "A", isCorrect: false },
-    { sentence: "A cat is hungry.", zh: "有一隻貓很餓。", answer: "A cat is hungry.", item: "cat", article: "A", isCorrect: true },
-    { sentence: "An cat is hungry.", zh: "有一隻貓很餓。", answer: "A cat is hungry.", item: "cat", article: "A", isCorrect: false },
-    { sentence: "An orange is sweet.", zh: "有一個橙很甜。", answer: "An orange is sweet.", item: "orange", article: "An", isCorrect: true },
-    { sentence: "A orange is sweet.", zh: "有一個橙很甜。", answer: "An orange is sweet.", item: "orange", article: "An", isCorrect: false },
-    { sentence: "A bird is flying.", zh: "有一隻雀鳥在飛。", answer: "A bird is flying.", item: "bird", article: "A", isCorrect: true },
-    { sentence: "Bird are flying.", zh: "有一隻雀鳥在飛。", answer: "A bird is flying.", item: "bird", article: "A", isCorrect: false },
-    { sentence: "A book is useful.", zh: "有一本書很有用。", answer: "A book is useful.", item: "book", article: "A", isCorrect: true },
-    { sentence: "Book is useful.", zh: "有一本書很有用。", answer: "A book is useful.", item: "book", article: "A", isCorrect: false },
-    { sentence: "An egg is small.", zh: "有一隻雞蛋很小。", answer: "An egg is small.", item: "egg", article: "An", isCorrect: true },
-    { sentence: "A egg is small.", zh: "有一隻雞蛋很小。", answer: "An egg is small.", item: "egg", article: "An", isCorrect: false },
-    { sentence: "A flower is beautiful.", zh: "有一朵花很漂亮。", answer: "A flower is beautiful.", item: "flower", article: "A", isCorrect: true },
-    { sentence: "Flower are beautiful.", zh: "有一朵花很漂亮。", answer: "A flower is beautiful.", item: "flower", article: "A", isCorrect: false }
-  ].forEach((item) => add({
-    sentence: item.sentence,
-    zh: item.zh,
-    isCorrect: item.isCorrect,
-    answer: item.answer,
-    explanation: `中文強調「只有一個/一隻」；${item.article} ${item.item} 是單數，所以用 is。`
-  }));
+  addMany([
+    {
+      sentence: "I want an apple.",
+      zh: "我想要一個蘋果。",
+      isCorrect: true,
+      answer: "I want an apple.",
+      explanation: singleExplanation("中文強調一個蘋果；apple 以母音開頭，所以用 an", "an apple")
+    },
+    {
+      sentence: "I want apple.",
+      zh: "我想要一個蘋果。",
+      isCorrect: false,
+      answer: "I want an apple.",
+      explanation: singleExplanation("中文強調一個蘋果；apple 以母音開頭，所以用 an", "an apple")
+    },
+    {
+      sentence: "She has an orange.",
+      zh: "她有一個橙。",
+      isCorrect: true,
+      answer: "She has an orange.",
+      explanation: singleExplanation("中文強調一個橙；orange 以母音開頭，所以用 an", "an orange")
+    },
+    {
+      sentence: "She has a orange.",
+      zh: "她有一個橙。",
+      isCorrect: false,
+      answer: "She has an orange.",
+      explanation: singleExplanation("中文強調一個橙；orange 以母音開頭，所以用 an", "an orange")
+    },
+    {
+      sentence: "He needs a pencil.",
+      zh: "他需要一支鉛筆。",
+      isCorrect: true,
+      answer: "He needs a pencil.",
+      explanation: singleExplanation("中文強調一支鉛筆；pencil 不是母音開頭，所以用 a", "a pencil")
+    },
+    {
+      sentence: "He needs pencil.",
+      zh: "他需要一支鉛筆。",
+      isCorrect: false,
+      answer: "He needs a pencil.",
+      explanation: singleExplanation("中文強調一支鉛筆；pencil 不是母音開頭，所以用 a", "a pencil")
+    },
+    {
+      sentence: "I bought a book.",
+      zh: "我買了一本書。",
+      isCorrect: true,
+      answer: "I bought a book.",
+      explanation: singleExplanation("中文強調一本書；book 不是母音開頭，所以用 a", "a book")
+    },
+    {
+      sentence: "I bought book.",
+      zh: "我買了一本書。",
+      isCorrect: false,
+      answer: "I bought a book.",
+      explanation: singleExplanation("中文強調一本書；book 不是母音開頭，所以用 a", "a book")
+    },
+    {
+      sentence: "Mum made a card.",
+      zh: "媽媽做了一張卡。",
+      isCorrect: true,
+      answer: "Mum made a card.",
+      explanation: singleExplanation("中文強調一張卡；card 不是母音開頭，所以用 a", "a card")
+    },
+    {
+      sentence: "Mum made card.",
+      zh: "媽媽做了一張卡。",
+      isCorrect: false,
+      answer: "Mum made a card.",
+      explanation: singleExplanation("中文強調一張卡；card 不是母音開頭，所以用 a", "a card")
+    },
+    {
+      sentence: "Tom saw an elephant.",
+      zh: "Tom 看見一隻大象。",
+      isCorrect: true,
+      answer: "Tom saw an elephant.",
+      explanation: singleExplanation("中文強調一隻大象；elephant 以母音開頭，所以用 an", "an elephant")
+    },
+    {
+      sentence: "Tom saw a elephant.",
+      zh: "Tom 看見一隻大象。",
+      isCorrect: false,
+      answer: "Tom saw an elephant.",
+      explanation: singleExplanation("中文強調一隻大象；elephant 以母音開頭，所以用 an", "an elephant")
+    },
+    {
+      sentence: "We need an umbrella.",
+      zh: "我們需要一把傘。",
+      isCorrect: true,
+      answer: "We need an umbrella.",
+      explanation: singleExplanation("中文強調一把傘；umbrella 以母音開頭，所以用 an", "an umbrella")
+    },
+    {
+      sentence: "We need a umbrella.",
+      zh: "我們需要一把傘。",
+      isCorrect: false,
+      answer: "We need an umbrella.",
+      explanation: singleExplanation("中文強調一把傘；umbrella 以母音開頭，所以用 an", "an umbrella")
+    },
+    {
+      sentence: "She wants a banana.",
+      zh: "她想要一隻香蕉。",
+      isCorrect: true,
+      answer: "She wants a banana.",
+      explanation: singleExplanation("中文強調一隻香蕉；banana 不是母音開頭，所以用 a", "a banana")
+    },
+    {
+      sentence: "She wants banana.",
+      zh: "她想要一隻香蕉。",
+      isCorrect: false,
+      answer: "She wants a banana.",
+      explanation: singleExplanation("中文強調一隻香蕉；banana 不是母音開頭，所以用 a", "a banana")
+    },
+    {
+      sentence: "Dad has a car.",
+      zh: "爸爸有一架車。",
+      isCorrect: true,
+      answer: "Dad has a car.",
+      explanation: singleExplanation("中文強調一架車；car 不是母音開頭，所以用 a", "a car")
+    },
+    {
+      sentence: "Dad has car.",
+      zh: "爸爸有一架車。",
+      isCorrect: false,
+      answer: "Dad has a car.",
+      explanation: singleExplanation("中文強調一架車；car 不是母音開頭，所以用 a", "a car")
+    },
+    {
+      sentence: "I need a ruler.",
+      zh: "我需要一把間尺。",
+      isCorrect: true,
+      answer: "I need a ruler.",
+      explanation: singleExplanation("中文強調一把間尺；ruler 不是母音開頭，所以用 a", "a ruler")
+    },
+    {
+      sentence: "I need ruler.",
+      zh: "我需要一把間尺。",
+      isCorrect: false,
+      answer: "I need a ruler.",
+      explanation: singleExplanation("中文強調一把間尺；ruler 不是母音開頭，所以用 a", "a ruler")
+    }
+  ]);
 
-  [
-    { sentence: "The dog is cute.", zh: "這隻狗很可愛。", answer: "The dog is cute.", subject: "The dog", quantity: "指定一隻", be: "is", isCorrect: true },
-    { sentence: "The dogs is barking.", zh: "那群狗在吠。", answer: "The dogs are barking.", subject: "The dogs", quantity: "指定一群", be: "are", isCorrect: false },
-    { sentence: "The apple is red.", zh: "這個蘋果是紅色的。", answer: "The apple is red.", subject: "The apple", quantity: "指定一個", be: "is", isCorrect: true },
-    { sentence: "The apples is fresh.", zh: "那些蘋果很新鮮。", answer: "The apples are fresh.", subject: "The apples", quantity: "指定一堆", be: "are", isCorrect: false },
-    { sentence: "The student is late.", zh: "這個學生遲到了。", answer: "The student is late.", subject: "The student", quantity: "指定一個", be: "is", isCorrect: true },
-    { sentence: "The students is noisy.", zh: "那些學生很嘈。", answer: "The students are noisy.", subject: "The students", quantity: "指定一班", be: "are", isCorrect: false },
-    { sentence: "The book is new.", zh: "這本書很新。", answer: "The book is new.", subject: "The book", quantity: "指定一本", be: "is", isCorrect: true },
-    { sentence: "The books is heavy.", zh: "那些書很重。", answer: "The books are heavy.", subject: "The books", quantity: "指定多本", be: "are", isCorrect: false },
-    { sentence: "The cat is sleeping.", zh: "這隻貓在睡覺。", answer: "The cat is sleeping.", subject: "The cat", quantity: "指定一隻", be: "is", isCorrect: true },
-    { sentence: "The cats is hungry.", zh: "那些貓很餓。", answer: "The cats are hungry.", subject: "The cats", quantity: "指定多隻", be: "are", isCorrect: false },
-    { sentence: "The pencil is sharp.", zh: "這支鉛筆很尖。", answer: "The pencil is sharp.", subject: "The pencil", quantity: "指定一支", be: "is", isCorrect: true },
-    { sentence: "The pencils is sharp.", zh: "那些鉛筆很尖。", answer: "The pencils are sharp.", subject: "The pencils", quantity: "指定多支", be: "are", isCorrect: false },
-    { sentence: "The birds are flying.", zh: "那些雀鳥在飛。", answer: "The birds are flying.", subject: "The birds", quantity: "指定多隻", be: "are", isCorrect: true },
-    { sentence: "The bird are flying.", zh: "這隻雀鳥在飛。", answer: "The bird is flying.", subject: "The bird", quantity: "指定一隻", be: "is", isCorrect: false },
-    { sentence: "The flowers are beautiful.", zh: "那些花很漂亮。", answer: "The flowers are beautiful.", subject: "The flowers", quantity: "指定多朵", be: "are", isCorrect: true },
-    { sentence: "The flower are beautiful.", zh: "這朵花很漂亮。", answer: "The flower is beautiful.", subject: "The flower", quantity: "指定一朵", be: "is", isCorrect: false },
-    { sentence: "The car is fast.", zh: "這架車很快。", answer: "The car is fast.", subject: "The car", quantity: "指定一架", be: "is", isCorrect: true },
-    { sentence: "The cars is fast.", zh: "那些車很快。", answer: "The cars are fast.", subject: "The cars", quantity: "指定多架", be: "are", isCorrect: false },
-    { sentence: "The chairs are clean.", zh: "那些椅子很乾淨。", answer: "The chairs are clean.", subject: "The chairs", quantity: "指定多張", be: "are", isCorrect: true },
-    { sentence: "The chair are clean.", zh: "這張椅子很乾淨。", answer: "The chair is clean.", subject: "The chair", quantity: "指定一張", be: "is", isCorrect: false }
-  ].forEach((item) => add({
-    sentence: item.sentence,
-    zh: item.zh,
-    isCorrect: item.isCorrect,
-    answer: item.answer,
-    explanation: `the 表示指定；${item.subject} 是${item.quantity}，所以用 ${item.be}。`
-  }));
+  addMany([
+    {
+      sentence: "The dog is sleeping.",
+      zh: "這隻狗在睡覺。",
+      isCorrect: true,
+      answer: "The dog is sleeping.",
+      explanation: definiteExplanation("The dog", "指定一隻狗", "is")
+    },
+    {
+      sentence: "The dogs is barking.",
+      zh: "那些狗在吠。",
+      isCorrect: false,
+      answer: "The dogs are barking.",
+      explanation: definiteExplanation("The dogs", "指定多隻狗", "are")
+    },
+    {
+      sentence: "The apple is in my bag.",
+      zh: "這個蘋果在我的書包裏。",
+      isCorrect: true,
+      answer: "The apple is in my bag.",
+      explanation: definiteExplanation("The apple", "指定一個蘋果", "is")
+    },
+    {
+      sentence: "The apples is in the basket.",
+      zh: "那些蘋果在籃子裏。",
+      isCorrect: false,
+      answer: "The apples are in the basket.",
+      explanation: definiteExplanation("The apples", "指定多個蘋果", "are")
+    },
+    {
+      sentence: "The student is in the classroom.",
+      zh: "這個學生在課室裏。",
+      isCorrect: true,
+      answer: "The student is in the classroom.",
+      explanation: definiteExplanation("The student", "指定一個學生", "is")
+    },
+    {
+      sentence: "The students is in the hall.",
+      zh: "那些學生在禮堂裏。",
+      isCorrect: false,
+      answer: "The students are in the hall.",
+      explanation: definiteExplanation("The students", "指定多個學生", "are")
+    },
+    {
+      sentence: "The book is on the table.",
+      zh: "這本書在桌上。",
+      isCorrect: true,
+      answer: "The book is on the table.",
+      explanation: definiteExplanation("The book", "指定一本書", "is")
+    },
+    {
+      sentence: "The books is under the desk.",
+      zh: "那些書在書桌下。",
+      isCorrect: false,
+      answer: "The books are under the desk.",
+      explanation: definiteExplanation("The books", "指定多本書", "are")
+    },
+    {
+      sentence: "The cat is under the chair.",
+      zh: "這隻貓在椅子下。",
+      isCorrect: true,
+      answer: "The cat is under the chair.",
+      explanation: definiteExplanation("The cat", "指定一隻貓", "is")
+    },
+    {
+      sentence: "The cats is under the table.",
+      zh: "那些貓在桌下。",
+      isCorrect: false,
+      answer: "The cats are under the table.",
+      explanation: definiteExplanation("The cats", "指定多隻貓", "are")
+    },
+    {
+      sentence: "The pencil is in the box.",
+      zh: "這支鉛筆在盒子裏。",
+      isCorrect: true,
+      answer: "The pencil is in the box.",
+      explanation: definiteExplanation("The pencil", "指定一支鉛筆", "is")
+    },
+    {
+      sentence: "The pencils is in the box.",
+      zh: "那些鉛筆在盒子裏。",
+      isCorrect: false,
+      answer: "The pencils are in the box.",
+      explanation: definiteExplanation("The pencils", "指定多支鉛筆", "are")
+    },
+    {
+      sentence: "The flowers are for Mum.",
+      zh: "那些花是給媽媽的。",
+      isCorrect: true,
+      answer: "The flowers are for Mum.",
+      explanation: definiteExplanation("The flowers", "指定多朵花", "are")
+    },
+    {
+      sentence: "The flower are for Mum.",
+      zh: "這朵花是給媽媽的。",
+      isCorrect: false,
+      answer: "The flower is for Mum.",
+      explanation: definiteExplanation("The flower", "指定一朵花", "is")
+    },
+    {
+      sentence: "The car is outside.",
+      zh: "這架車在外面。",
+      isCorrect: true,
+      answer: "The car is outside.",
+      explanation: definiteExplanation("The car", "指定一架車", "is")
+    },
+    {
+      sentence: "The cars is outside.",
+      zh: "那些車在外面。",
+      isCorrect: false,
+      answer: "The cars are outside.",
+      explanation: definiteExplanation("The cars", "指定多架車", "are")
+    },
+    {
+      sentence: "The chair is broken.",
+      zh: "這張椅子壞了。",
+      isCorrect: true,
+      answer: "The chair is broken.",
+      explanation: definiteExplanation("The chair", "指定一張椅子", "is")
+    },
+    {
+      sentence: "The chairs is next to the door.",
+      zh: "那些椅子在門旁邊。",
+      isCorrect: false,
+      answer: "The chairs are next to the door.",
+      explanation: definiteExplanation("The chairs", "指定多張椅子", "are")
+    },
+    {
+      sentence: "The egg is on the plate.",
+      zh: "這隻雞蛋在碟上。",
+      isCorrect: true,
+      answer: "The egg is on the plate.",
+      explanation: definiteExplanation("The egg", "指定一隻雞蛋", "is")
+    },
+    {
+      sentence: "The eggs is on the plate.",
+      zh: "那些雞蛋在碟上。",
+      isCorrect: false,
+      answer: "The eggs are on the plate.",
+      explanation: definiteExplanation("The eggs", "指定多隻雞蛋", "are")
+    }
+  ]);
 
-  [
-    { sentence: "Water is important.", zh: "水很重要。", answer: "Water is important.", noun: "water", isCorrect: true },
-    { sentence: "Waters are important.", zh: "水很重要。", answer: "Water is important.", noun: "water", isCorrect: false },
-    { sentence: "Homework is difficult.", zh: "功課很難。", answer: "Homework is difficult.", noun: "homework", isCorrect: true },
-    { sentence: "Homeworks are difficult.", zh: "功課很難。", answer: "Homework is difficult.", noun: "homework", isCorrect: false },
-    { sentence: "Information is useful.", zh: "資訊很有用。", answer: "Information is useful.", noun: "information", isCorrect: true },
-    { sentence: "An information is useful.", zh: "資訊很有用。", answer: "Information is useful.", noun: "information", isCorrect: false },
-    { sentence: "Knowledge is power.", zh: "知識就是力量。", answer: "Knowledge is power.", noun: "knowledge", isCorrect: true },
-    { sentence: "Knowledges are important.", zh: "知識很重要。", answer: "Knowledge is important.", noun: "knowledge", isCorrect: false },
-    { sentence: "Equipment is expensive.", zh: "器材很昂貴。", answer: "Equipment is expensive.", noun: "equipment", isCorrect: true },
-    { sentence: "Equipments are expensive.", zh: "器材很昂貴。", answer: "Equipment is expensive.", noun: "equipment", isCorrect: false },
-    { sentence: "Music is relaxing.", zh: "音樂令人放鬆。", answer: "Music is relaxing.", noun: "music", isCorrect: true },
-    { sentence: "A music is relaxing.", zh: "音樂令人放鬆。", answer: "Music is relaxing.", noun: "music", isCorrect: false },
-    { sentence: "Rice is tasty.", zh: "米飯很好吃。", answer: "Rice is tasty.", noun: "rice", isCorrect: true },
-    { sentence: "Rices are tasty.", zh: "米飯很好吃。", answer: "Rice is tasty.", noun: "rice", isCorrect: false },
-    { sentence: "Milk is healthy.", zh: "牛奶很健康。", answer: "Milk is healthy.", noun: "milk", isCorrect: true },
-    { sentence: "Milks are healthy.", zh: "牛奶很健康。", answer: "Milk is healthy.", noun: "milk", isCorrect: false },
-    { sentence: "Bread is fresh.", zh: "麵包很新鮮。", answer: "Bread is fresh.", noun: "bread", isCorrect: true },
-    { sentence: "Breads are fresh.", zh: "麵包很新鮮。", answer: "Bread is fresh.", noun: "bread", isCorrect: false },
-    { sentence: "Money is important.", zh: "金錢很重要。", answer: "Money is important.", noun: "money", isCorrect: true },
-    { sentence: "Moneys are important.", zh: "金錢很重要。", answer: "Money is important.", noun: "money", isCorrect: false }
-  ].forEach((item) => add({
-    sentence: item.sentence,
-    zh: item.zh,
-    isCorrect: item.isCorrect,
-    answer: item.answer,
-    explanation: `${item.noun} 是不可數名詞，沒有 s，也不用 a/an，當單一概念用 is。`
-  }));
+  addMany([
+    {
+      sentence: "Water is important.",
+      zh: "水很重要。",
+      isCorrect: true,
+      answer: "Water is important.",
+      explanation: uncountableExplanation("water")
+    },
+    {
+      sentence: "Waters are important.",
+      zh: "水很重要。",
+      isCorrect: false,
+      answer: "Water is important.",
+      explanation: uncountableExplanation("water")
+    },
+    {
+      sentence: "I drink water every day.",
+      zh: "我每天喝水。",
+      isCorrect: true,
+      answer: "I drink water every day.",
+      explanation: uncountableExplanation("water", false)
+    },
+    {
+      sentence: "I drink waters every day.",
+      zh: "我每天喝水。",
+      isCorrect: false,
+      answer: "I drink water every day.",
+      explanation: uncountableExplanation("water", false)
+    },
+    {
+      sentence: "Homework is difficult.",
+      zh: "功課很難。",
+      isCorrect: true,
+      answer: "Homework is difficult.",
+      explanation: uncountableExplanation("homework")
+    },
+    {
+      sentence: "I have a homework today.",
+      zh: "我今天有功課。",
+      isCorrect: false,
+      answer: "I have homework today.",
+      explanation: uncountableExplanation("homework", false)
+    },
+    {
+      sentence: "Information is useful.",
+      zh: "資訊很有用。",
+      isCorrect: true,
+      answer: "Information is useful.",
+      explanation: uncountableExplanation("information")
+    },
+    {
+      sentence: "We need an information.",
+      zh: "我們需要資訊。",
+      isCorrect: false,
+      answer: "We need information.",
+      explanation: uncountableExplanation("information", false)
+    },
+    {
+      sentence: "Knowledge is important.",
+      zh: "知識很重要。",
+      isCorrect: true,
+      answer: "Knowledge is important.",
+      explanation: uncountableExplanation("knowledge")
+    },
+    {
+      sentence: "I want more knowledges.",
+      zh: "我想要更多知識。",
+      isCorrect: false,
+      answer: "I want more knowledge.",
+      explanation: uncountableExplanation("knowledge", false)
+    },
+    {
+      sentence: "The equipment is expensive.",
+      zh: "這批器材很貴。",
+      isCorrect: true,
+      answer: "The equipment is expensive.",
+      explanation: definiteUncountableExplanation("equipment")
+    },
+    {
+      sentence: "The equipments are in the room.",
+      zh: "這批器材在房間裏。",
+      isCorrect: false,
+      answer: "The equipment is in the room.",
+      explanation: definiteUncountableExplanation("equipment")
+    },
+    {
+      sentence: "Music is playing.",
+      zh: "音樂正在播放。",
+      isCorrect: true,
+      answer: "Music is playing.",
+      explanation: uncountableExplanation("music")
+    },
+    {
+      sentence: "I like a music.",
+      zh: "我喜歡音樂。",
+      isCorrect: false,
+      answer: "I like music.",
+      explanation: uncountableExplanation("music", false)
+    },
+    {
+      sentence: "I eat rice for lunch.",
+      zh: "我午餐吃飯。",
+      isCorrect: true,
+      answer: "I eat rice for lunch.",
+      explanation: uncountableExplanation("rice", false)
+    },
+    {
+      sentence: "I eat rices for lunch.",
+      zh: "我午餐吃飯。",
+      isCorrect: false,
+      answer: "I eat rice for lunch.",
+      explanation: uncountableExplanation("rice", false)
+    },
+    {
+      sentence: "The milk is in the fridge.",
+      zh: "牛奶在雪櫃裏。",
+      isCorrect: true,
+      answer: "The milk is in the fridge.",
+      explanation: definiteUncountableExplanation("milk")
+    },
+    {
+      sentence: "The breads are on the table.",
+      zh: "麵包在桌上。",
+      isCorrect: false,
+      answer: "The bread is on the table.",
+      explanation: definiteUncountableExplanation("bread")
+    },
+    {
+      sentence: "The money is in my bag.",
+      zh: "錢在我的書包裏。",
+      isCorrect: true,
+      answer: "The money is in my bag.",
+      explanation: definiteUncountableExplanation("money")
+    },
+    {
+      sentence: "A furniture is in the room.",
+      zh: "房間裏有家具。",
+      isCorrect: false,
+      answer: "Furniture is in the room.",
+      explanation: uncountableExplanation("furniture")
+    }
+  ]);
 
-  [
-    { sentence: "A banana is yellow.", zh: "有一隻香蕉是黃色的。", answer: "A banana is yellow.", explanation: "中文強調一隻香蕉；A banana 是單數，所以用 is。", isCorrect: true },
-    { sentence: "An banana is yellow.", zh: "有一隻香蕉是黃色的。", answer: "A banana is yellow.", explanation: "banana 不是母音開頭；只有一隻時要用 A banana，後面用 is。", isCorrect: false },
-    { sentence: "Bananas are yellow.", zh: "香蕉是黃色的。", answer: "Bananas are yellow.", explanation: "中文「香蕉」是泛指整個類別；banana 是可數名詞，預設用眾數 Bananas，所以用 are。", isCorrect: true },
-    { sentence: "Banana is yellow.", zh: "香蕉是黃色的。", answer: "Bananas are yellow.", explanation: "中文「香蕉」是泛指整個類別；banana 是可數名詞，預設用眾數 Bananas，所以用 are。", isCorrect: false },
-    { sentence: "The banana is yellow.", zh: "這隻香蕉是黃色的。", answer: "The banana is yellow.", explanation: "the 表示指定；The banana 是指定一隻，所以用 is。", isCorrect: true },
-    { sentence: "The bananas is yellow.", zh: "那些香蕉是黃色的。", answer: "The bananas are yellow.", explanation: "the 表示指定；The bananas 是指定多隻，所以用 are。", isCorrect: false },
-    { sentence: "Ideas are powerful.", zh: "想法很有力量。", answer: "Ideas are powerful.", explanation: "中文「想法」是泛指整個類別；idea 是可數名詞，預設用眾數 Ideas，所以用 are。", isCorrect: true },
-    { sentence: "Idea is powerful.", zh: "想法很有力量。", answer: "Ideas are powerful.", explanation: "中文「想法」是泛指整個類別；idea 是可數名詞，預設用眾數 Ideas，所以用 are。", isCorrect: false },
-    { sentence: "A desk is clean.", zh: "有一張書桌很乾淨。", answer: "A desk is clean.", explanation: "中文強調一張書桌；A desk 是單數，所以用 is。", isCorrect: true },
-    { sentence: "Desk is clean.", zh: "有一張書桌很乾淨。", answer: "A desk is clean.", explanation: "中文強調一張書桌；desk 是可數名詞，單數前面要加 A，後面用 is。", isCorrect: false },
-    { sentence: "The desks are clean.", zh: "那些書桌很乾淨。", answer: "The desks are clean.", explanation: "the 表示指定；The desks 是指定多張，所以用 are。", isCorrect: true },
-    { sentence: "The desk are clean.", zh: "這張書桌很乾淨。", answer: "The desk is clean.", explanation: "the 表示指定；The desk 是指定一張，所以用 is。", isCorrect: false },
-    { sentence: "Sugar is sweet.", zh: "糖很甜。", answer: "Sugar is sweet.", explanation: "sugar 是不可數名詞，沒有 s，也不用 a/an，當單一概念用 is。", isCorrect: true },
-    { sentence: "Sugars are sweet.", zh: "糖很甜。", answer: "Sugar is sweet.", explanation: "sugar 是不可數名詞，沒有 s，也不用 a/an，當單一概念用 is。", isCorrect: false },
-    { sentence: "Air is clean.", zh: "空氣很乾淨。", answer: "Air is clean.", explanation: "air 是不可數名詞，沒有 s，也不用 a/an，當單一概念用 is。", isCorrect: true },
-    { sentence: "An air is clean.", zh: "空氣很乾淨。", answer: "Air is clean.", explanation: "air 是不可數名詞，沒有 s，也不用 a/an，當單一概念用 is。", isCorrect: false },
-    { sentence: "Lessons are important.", zh: "課堂很重要。", answer: "Lessons are important.", explanation: "中文「課堂」是泛指整個類別；lesson 是可數名詞，預設用眾數 Lessons，所以用 are。", isCorrect: true },
-    { sentence: "Lesson is important.", zh: "課堂很重要。", answer: "Lessons are important.", explanation: "中文「課堂」是泛指整個類別；lesson 是可數名詞，預設用眾數 Lessons，所以用 are。", isCorrect: false },
-    { sentence: "The lesson is important.", zh: "這堂課很重要。", answer: "The lesson is important.", explanation: "the 表示指定；The lesson 是指定一堂，所以用 is。", isCorrect: true },
-    { sentence: "The lessons is important.", zh: "那些課堂很重要。", answer: "The lessons are important.", explanation: "the 表示指定；The lessons 是指定多堂，所以用 are。", isCorrect: false }
-  ].forEach(add);
+  addMany([
+    {
+      sentence: "I like mangoes.",
+      zh: "我喜歡芒果。",
+      isCorrect: true,
+      answer: "I like mangoes.",
+      explanation: pluralExplanation("中文是一般地說喜歡芒果，不是說一個芒果", "mango", "mangoes")
+    },
+    {
+      sentence: "I like mango.",
+      zh: "我喜歡芒果。",
+      isCorrect: false,
+      answer: "I like mangoes.",
+      explanation: pluralExplanation("中文是一般地說喜歡芒果，不是說一個芒果", "mango", "mangoes")
+    },
+    {
+      sentence: "She needs a notebook.",
+      zh: "她需要一本筆記簿。",
+      isCorrect: true,
+      answer: "She needs a notebook.",
+      explanation: singleExplanation("中文強調一本筆記簿；notebook 不是母音開頭，所以用 a", "a notebook")
+    },
+    {
+      sentence: "She needs notebook.",
+      zh: "她需要一本筆記簿。",
+      isCorrect: false,
+      answer: "She needs a notebook.",
+      explanation: singleExplanation("中文強調一本筆記簿；notebook 不是母音開頭，所以用 a", "a notebook")
+    },
+    {
+      sentence: "He has an eraser.",
+      zh: "他有一塊擦膠。",
+      isCorrect: true,
+      answer: "He has an eraser.",
+      explanation: singleExplanation("中文強調一塊擦膠；eraser 以母音開頭，所以用 an", "an eraser")
+    },
+    {
+      sentence: "He has a eraser.",
+      zh: "他有一塊擦膠。",
+      isCorrect: false,
+      answer: "He has an eraser.",
+      explanation: singleExplanation("中文強調一塊擦膠；eraser 以母音開頭，所以用 an", "an eraser")
+    },
+    {
+      sentence: "The toys are in the box.",
+      zh: "那些玩具在盒子裏。",
+      isCorrect: true,
+      answer: "The toys are in the box.",
+      explanation: definiteExplanation("The toys", "指定多件玩具", "are")
+    },
+    {
+      sentence: "The toy are in the box.",
+      zh: "這件玩具在盒子裏。",
+      isCorrect: false,
+      answer: "The toy is in the box.",
+      explanation: definiteExplanation("The toy", "指定一件玩具", "is")
+    },
+    {
+      sentence: "The juice is cold.",
+      zh: "這杯果汁很凍。",
+      isCorrect: true,
+      answer: "The juice is cold.",
+      explanation: definiteUncountableExplanation("juice")
+    },
+    {
+      sentence: "The juices are cold.",
+      zh: "這杯果汁很凍。",
+      isCorrect: false,
+      answer: "The juice is cold.",
+      explanation: definiteUncountableExplanation("juice")
+    },
+    {
+      sentence: "My brother wants a sandwich.",
+      zh: "我哥哥想要一份三文治。",
+      isCorrect: true,
+      answer: "My brother wants a sandwich.",
+      explanation: singleExplanation("中文強調一份三文治；sandwich 不是母音開頭，所以用 a", "a sandwich")
+    },
+    {
+      sentence: "My brother wants sandwich.",
+      zh: "我哥哥想要一份三文治。",
+      isCorrect: false,
+      answer: "My brother wants a sandwich.",
+      explanation: singleExplanation("中文強調一份三文治；sandwich 不是母音開頭，所以用 a", "a sandwich")
+    },
+    {
+      sentence: "We need more plates.",
+      zh: "我們需要更多碟。",
+      isCorrect: true,
+      answer: "We need more plates.",
+      explanation: pluralExplanation("more 後面如果是可數名詞，要用眾數", "plate", "plates")
+    },
+    {
+      sentence: "We need more plate.",
+      zh: "我們需要更多碟。",
+      isCorrect: false,
+      answer: "We need more plates.",
+      explanation: pluralExplanation("more 後面如果是可數名詞，要用眾數", "plate", "plates")
+    },
+    {
+      sentence: "The plate is dirty.",
+      zh: "這隻碟很污糟。",
+      isCorrect: true,
+      answer: "The plate is dirty.",
+      explanation: definiteExplanation("The plate", "指定一隻碟", "is")
+    },
+    {
+      sentence: "The plates is dirty.",
+      zh: "那些碟很污糟。",
+      isCorrect: false,
+      answer: "The plates are dirty.",
+      explanation: definiteExplanation("The plates", "指定多隻碟", "are")
+    },
+    {
+      sentence: "I drink milk in the morning.",
+      zh: "我早上喝牛奶。",
+      isCorrect: true,
+      answer: "I drink milk in the morning.",
+      explanation: uncountableExplanation("milk", false)
+    },
+    {
+      sentence: "I drink a milk in the morning.",
+      zh: "我早上喝牛奶。",
+      isCorrect: false,
+      answer: "I drink milk in the morning.",
+      explanation: uncountableExplanation("milk", false)
+    },
+    {
+      sentence: "She buys carrots.",
+      zh: "她買紅蘿蔔。",
+      isCorrect: true,
+      answer: "She buys carrots.",
+      explanation: pluralExplanation("中文沒有說只買一條紅蘿蔔", "carrot", "carrots")
+    },
+    {
+      sentence: "She buys carrot.",
+      zh: "她買紅蘿蔔。",
+      isCorrect: false,
+      answer: "She buys carrots.",
+      explanation: pluralExplanation("中文沒有說只買一條紅蘿蔔", "carrot", "carrots")
+    },
+    {
+      sentence: "We need cups for the party.",
+      zh: "派對要用杯。",
+      isCorrect: true,
+      answer: "We need cups for the party.",
+      explanation: pluralExplanation("派對通常需要不止一隻杯", "cup", "cups")
+    },
+    {
+      sentence: "We need cup for the party.",
+      zh: "派對要用杯。",
+      isCorrect: false,
+      answer: "We need cups for the party.",
+      explanation: pluralExplanation("派對通常需要不止一隻杯", "cup", "cups")
+    }
+  ]);
 
   return questions;
 }
