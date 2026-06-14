@@ -3,6 +3,10 @@ const core = require("../grammar_core.js");
 
 assert.strictEqual(core.normalizeTypedSentence("  Apples  are healthy!!! "), "apples are healthy");
 assert.strictEqual(core.normalizeTypedSentence("An apple ."), "an apple");
+assert.strictEqual(core.formatSentenceInputCharacter("a", ""), "A");
+assert.strictEqual(core.formatSentenceInputCharacter("b", "I like apples."), "B");
+assert.strictEqual(core.formatSentenceInputCharacter("c", "I like apples"), "c");
+assert.strictEqual(core.formatSentenceInputCharacter(".", "I like apples"), ".");
 
 assert.strictEqual(
   core.isCountableTypedAnswerCorrect({ acceptedAnswers: ["Air is clean."] }, "air is clean"),

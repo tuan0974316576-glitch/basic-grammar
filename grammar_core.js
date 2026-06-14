@@ -156,6 +156,18 @@
       .toLowerCase();
   }
 
+  function shouldAutoCapitalizeSentenceLetter(currentValue) {
+    const value = String(currentValue || "");
+    const trimmed = value.replace(/\s+$/g, "");
+    return !trimmed || /[.!?]$/.test(trimmed);
+  }
+
+  function formatSentenceInputCharacter(value, currentValue) {
+    const character = String(value || "");
+    if (!/^[a-z]$/.test(character)) return character;
+    return shouldAutoCapitalizeSentenceLetter(currentValue) ? character.toUpperCase() : character;
+  }
+
   function isCountableTypedAnswerCorrect(question, value) {
     const normalized = normalizeTypedSentence(value);
     return (question?.acceptedAnswers || [])
@@ -198,6 +210,7 @@
     getSentenceTokens,
     getVerbTableAnswerLine,
     getVerbTableWrongSlots,
+    formatSentenceInputCharacter,
     isCountableTypedAnswerCorrect,
     isVerbTableSlotCorrect,
     normalizeTypedSentence,

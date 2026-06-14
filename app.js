@@ -783,6 +783,16 @@ function updateTextEntryToggleLabels() {
   }
 }
 
+function formatTextEntryCharacter(targetName, value, currentValue) {
+  if (targetName !== "countable") return value;
+  if (window.GrammarCore?.formatSentenceInputCharacter) {
+    return window.GrammarCore.formatSentenceInputCharacter(value, currentValue);
+  }
+  if (!/^[a-z]$/.test(value)) return value;
+  const trimmed = String(currentValue || "").replace(/\s+$/g, "");
+  return !trimmed || /[.!?]$/.test(trimmed) ? value.toUpperCase() : value;
+}
+
 function appendTextEntryValue(targetName, value) {
   const config = getTextEntryConfig(targetName);
   if (!config?.field) return;
@@ -790,7 +800,8 @@ function appendTextEntryValue(targetName, value) {
   const currentValue = getTextEntryValue(config.field);
   if (currentValue.length >= config.maxLength) return;
 
-  setTextEntryValue(config.field, `${currentValue}${value}`);
+  const nextCharacter = formatTextEntryCharacter(targetName, value, currentValue);
+  setTextEntryValue(config.field, `${currentValue}${nextCharacter}`);
   config.onChange?.();
 }
 
