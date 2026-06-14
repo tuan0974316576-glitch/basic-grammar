@@ -1264,6 +1264,9 @@ function updatePracticeCount() {
 }
 
 function shuffle(items) {
+  if (window.GrammarCore?.shuffleItems) {
+    return window.GrammarCore.shuffleItems(items);
+  }
   const copy = [...items];
   for (let index = copy.length - 1; index > 0; index -= 1) {
     const randomIndex = Math.floor(Math.random() * (index + 1));
@@ -1273,6 +1276,9 @@ function shuffle(items) {
 }
 
 function getQuestionQuotas(count) {
+  if (window.GrammarCore?.getQuestionQuotas) {
+    return window.GrammarCore.getQuestionQuotas(count, QUESTIONS, QUESTION_WEIGHTS);
+  }
   const types = Object.keys(QUESTION_WEIGHTS);
   const availableCounts = Object.fromEntries(
     types.map((type) => [type, QUESTIONS.filter((question) => question.type === type).length])
@@ -1306,6 +1312,9 @@ function getQuestionQuotas(count) {
 }
 
 function pickPracticeQuestions(count) {
+  if (window.GrammarCore?.pickWeightedQuestions) {
+    return window.GrammarCore.pickWeightedQuestions(count, QUESTIONS, QUESTION_WEIGHTS);
+  }
   const quotas = getQuestionQuotas(count);
   const buckets = Object.fromEntries(
     Object.entries(quotas).map(([type, quota]) => [
@@ -1329,6 +1338,13 @@ function pickPracticeQuestions(count) {
 }
 
 function pickQuestionsForLesson(lessonId, count) {
+  if (window.GrammarCore?.pickLessonQuestions) {
+    return window.GrammarCore.pickLessonQuestions(lessonId, count, LESSONS, {
+      fallbackLessonId: LESSON1_ID,
+      weightedLessonId: LESSON1_ID,
+      weights: QUESTION_WEIGHTS
+    });
+  }
   const lesson = LESSONS[lessonId] || LESSONS[LESSON1_ID];
   const cappedCount = Math.min(count, lesson.questions.length);
 
@@ -1475,7 +1491,10 @@ function getProgress(lessonId = state.lessonId) {
 
 function saveProgress(completed, lessonId = state.lessonId) {
   const total = getLessonTotal(lessonId);
-  const nextCompleted = Math.max(getProgress(lessonId), Math.min(total, completed));
+  const previousCompleted = getProgress(lessonId);
+  const nextCompleted = window.GrammarCore?.getNextProgress
+    ? window.GrammarCore.getNextProgress(completed, total, previousCompleted)
+    : Math.max(previousCompleted, Math.min(total, completed));
   localStorage.setItem(LESSON_PROGRESS_KEYS[lessonId], JSON.stringify({
     completed: nextCompleted,
     total,
@@ -3765,8 +3784,12 @@ function nextQuestion(options = {}) {
 
 function renderComplete() {
   const total = state.questions.length;
-  const percent = total ? Math.round((state.score / total) * 100) : 0;
-  state.reviewQuestions = state.questions.filter((question) => state.missedQuestionIds.includes(question.id));
+  const percent = window.GrammarCore?.getScorePercent
+    ? window.GrammarCore.getScorePercent(state.score, total)
+    : total ? Math.round((state.score / total) * 100) : 0;
+  state.reviewQuestions = window.GrammarCore?.getReviewQuestions
+    ? window.GrammarCore.getReviewQuestions(state.questions, state.missedQuestionIds)
+    : state.questions.filter((question) => state.missedQuestionIds.includes(question.id));
 
   if (state.mode === "practice") {
     saveProgress(total);
