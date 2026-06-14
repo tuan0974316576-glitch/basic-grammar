@@ -1470,9 +1470,13 @@ function getPronounSentenceContext(question) {
   const afterBlank = question.sentence.split("___")[1]?.trim() || "";
   const firstWord = afterBlank.replace(/^[,.;:!?]+/, "").split(/\s+/)[0]?.replace(/[^A-Za-z]/g, "") || "";
   const secondWord = afterBlank.split(/\s+/)[1]?.replace(/[^A-Za-z]/g, "") || "";
+  const followingNoun = question.slotType === "possessiveAdjective"
+    ? firstWord
+    : secondWord;
   return {
     firstWord,
     secondWord,
+    followingNoun,
     hasNounAfterBlank: question.slotType === "possessiveAdjective"
   };
 }
@@ -1522,7 +1526,7 @@ function getPronounSentenceChoiceReason(question, choice) {
 
   if (choice === question.answer) {
     if (slotType === "possessiveAdjective") {
-      return `${prefix}：表示「${meaning}」，後面可接名詞 ${context.secondWord || ""}，所以正確。`;
+      return `${prefix}：表示「${meaning}」，後面可接名詞 ${context.followingNoun || ""}，所以正確。`;
     }
     if (slotType === "possessivePronoun") {
       return `${prefix}：表示「${meaning}」，本身已包含名詞意思，所以正確。`;
@@ -1596,6 +1600,7 @@ function getPronounSentenceChoiceFeedback(question) {
 
 function getPronounSentenceFeedback(question, isCorrect) {
   return [
+    { text: `中文：${question.zh}` },
     { text: `${isCorrect ? "正確。" : "未正確。"}${question.explanation}` },
     { text: `正確答案：${getPronounSentenceCompletedSentence(question)}`, className: "answer-line" },
     ...getPronounSentenceChoiceFeedback(question)

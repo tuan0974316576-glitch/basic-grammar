@@ -19,6 +19,13 @@ assert.strictEqual(data.LESSONS["verb-table"].questions, data.VERB_TABLE_QUESTIO
 assert.strictEqual(data.capitalizeWord("apple"), core.capitalizeWord("apple"));
 assert.strictEqual(data.PRONOUN_SENTENCE_FORMS.He.subject.present, "thirdSingular");
 assert.strictEqual(data.PRONOUN_SENTENCE_FORMS.him.roles.includes("object"), true);
+assert.strictEqual(data.PRONOUN_SENTENCE_QUESTION_BANK.length, 50);
+assert.strictEqual(data.PRONOUN_SENTENCE_QUESTION_BANK.every((question) => question.zh), true);
+assert.ok(data.PRONOUN_SENTENCE_QUESTION_BANK.some((question) => question.sentence === "He is waiting for ___."));
+assert.strictEqual(
+  data.PRONOUN_SENTENCE_QUESTION_BANK.some((question) => question.sentence === "Sam waits for ___."),
+  false
+);
 assert.strictEqual(data.COUNTABLE_NOUN_QUESTIONS[0].answer.length > 0, true);
 assert.strictEqual(data.COUNTABLE_NOUN_QUESTIONS.length, 100);
 assert.strictEqual(data.COUNTABLE_NOUN_QUESTIONS.filter((question) => question.isCorrect).length, 50);
