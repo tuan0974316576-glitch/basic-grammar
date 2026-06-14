@@ -1040,8 +1040,10 @@ input[type="range"]::-moz-range-thumb {
   transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease, background 120ms ease, color 120ms ease;
 }
 
-.verb-table-slot:focus-within {
+.verb-table-slot.active,
+.verb-table-slot:focus-visible {
   color: var(--primary-dark);
+  background: #ffffff;
   border-color: var(--primary-color);
   transform: translateY(-2px);
   box-shadow: 0 6px 0 #bde0e1;
@@ -1074,6 +1076,8 @@ input[type="range"]::-moz-range-thumb {
   width: 100%;
   min-width: 0;
   min-height: 50px;
+  display: grid;
+  place-items: center;
   padding: 6px 10px;
   color: #5d4037;
   font: inherit;
@@ -1085,14 +1089,17 @@ input[type="range"]::-moz-range-thumb {
   border: 2px dashed #cfd4da;
   border-radius: 13px;
   outline: none;
+  user-select: none;
   box-shadow: inset 0 -3px 0 rgba(255, 230, 109, 0.32);
   transition: border-color 120ms ease, background 120ms ease, box-shadow 120ms ease, color 120ms ease;
 }
 
-.verb-table-input::placeholder {
+.verb-table-input.is-placeholder::after {
+  content: attr(data-placeholder);
   color: #b4a47a;
 }
 
+.verb-table-input.active,
 .verb-table-input:focus {
   border-color: var(--primary-dark);
   background: #ffffff;
@@ -1119,6 +1126,71 @@ input[type="range"]::-moz-range-thumb {
   display: grid;
   grid-template-columns: minmax(120px, 0.7fr) minmax(160px, 1fr);
   gap: 12px;
+}
+
+.verb-table-keyboard {
+  display: grid;
+  gap: 6px;
+  padding: 10px;
+  background: #fff8d6;
+  border: 3px dashed var(--secondary-dark);
+  border-radius: 22px;
+  box-shadow: 0 5px 0 rgba(255, 183, 3, 0.22);
+  touch-action: manipulation;
+}
+
+.verb-table-key-row {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.verb-table-key {
+  min-width: 0;
+  min-height: 38px;
+  flex: 1 1 0;
+  padding: 6px 4px;
+  color: #5d4037;
+  font-size: clamp(15px, 2.6vw, 19px);
+  font-weight: 900;
+  line-height: 1;
+  background: #ffffff;
+  border: 2px dashed #d3bdf6;
+  border-radius: 12px;
+  box-shadow: 0 3px 0 #e5d6fb;
+  transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease, background 120ms ease, color 120ms ease;
+}
+
+.verb-table-key:hover {
+  color: #5b3b8a;
+  background: #f8f1ff;
+  border-color: #9c7fe8;
+  box-shadow: 0 4px 0 #d3bdf6;
+}
+
+.verb-table-key:active {
+  transform: translateY(3px);
+  box-shadow: 0 0 0 transparent;
+}
+
+.verb-table-key-backspace,
+.verb-table-key-nav {
+  flex: 1.25 1 0;
+}
+
+.verb-table-key-enter {
+  flex: 2.2 1 0;
+  color: #176b5f;
+  background: #d8fbf8;
+  border-color: var(--primary-color);
+  box-shadow: 0 3px 0 #a7e4df;
+}
+
+.verb-table-key:disabled {
+  cursor: default;
+  opacity: 0.55;
+  transform: none;
+  box-shadow: 0 2px 0 #e9ecef;
 }
 
 .countable-correction {
@@ -1927,7 +1999,7 @@ body.modal-open {
 
 .verb-table-reference-tools {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) auto auto;
   gap: 12px;
   align-items: end;
   padding: 12px 2px;
@@ -1965,10 +2037,35 @@ body.modal-open {
   box-shadow: inset 0 -3px 0 rgba(255, 230, 109, 0.28);
 }
 
+.verb-table-reference-search input[readonly] {
+  cursor: pointer;
+  color: #746b5b;
+  background: #f8fafc;
+}
+
 .verb-table-reference-search input:focus {
   background: #ffffff;
   border-color: var(--primary-color);
   box-shadow: 0 0 0 4px rgba(78, 205, 196, 0.16), inset 0 -3px 0 rgba(78, 205, 196, 0.18);
+}
+
+.verb-table-reference-search-toggle {
+  min-height: 46px;
+  padding: 0 16px;
+  color: #176b5f;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 900;
+  cursor: pointer;
+  background: #d8fbf8;
+  border: 2px dashed var(--primary-color);
+  border-radius: 16px;
+  box-shadow: 0 3px 0 #a7e4df;
+}
+
+.verb-table-reference-search-toggle:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 #a7e4df;
 }
 
 .verb-table-reference-count {
@@ -2556,6 +2653,29 @@ body.modal-open {
     gap: 8px;
   }
 
+  .verb-table-keyboard {
+    gap: 4px;
+    padding: 7px;
+    border-radius: 17px;
+  }
+
+  .verb-table-key-row {
+    gap: 3px;
+  }
+
+  .verb-table-key {
+    min-height: 30px;
+    padding: 4px 2px;
+    border-width: 2px;
+    border-radius: 9px;
+    font-size: clamp(12px, 3.3vw, 15px);
+    box-shadow: 0 2px 0 #e5d6fb;
+  }
+
+  .verb-table-key-enter {
+    flex: 1.8 1 0;
+  }
+
   .verb-table-reference-modal {
     padding: 10px;
   }
@@ -2587,11 +2707,14 @@ body.modal-open {
     padding: 10px 0;
   }
 
+  .verb-table-reference-search-toggle,
   .verb-table-reference-count {
-    width: fit-content;
+    width: 100%;
+  }
+
+  .verb-table-reference-count {
     min-height: 34px;
     padding: 0 12px;
-    justify-self: end;
   }
 
   .verb-table-reference-list-head {
