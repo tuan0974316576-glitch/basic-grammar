@@ -642,7 +642,11 @@ function makeCountableNounQuestion({ id, sentence, zh, isCorrect, answer, explan
 }
 
 function capitalizeWord(word) {
-  return `${word.charAt(0).toUpperCase()}${word.slice(1)}`;
+  if (window.GrammarCore?.capitalizeWord) {
+    return window.GrammarCore.capitalizeWord(word);
+  }
+  const value = String(word || "");
+  return `${value.charAt(0).toUpperCase()}${value.slice(1)}`;
 }
 
 function createCountableNounQuestions() {
@@ -806,7 +810,7 @@ function createCountableNounQuestions() {
 
 const COUNTABLE_NOUN_QUESTIONS = createCountableNounQuestions();
 
-const VERB_TABLE_FIELDS = [
+const VERB_TABLE_FIELDS = window.GrammarCore?.VERB_TABLE_FIELDS || [
   { key: "present", label: "現在式", shortLabel: "Present" },
   { key: "past", label: "過去式", shortLabel: "Past" },
   { key: "pp", label: "PP", shortLabel: "PP" },
@@ -1902,7 +1906,9 @@ function launchCelebration(kind = "small") {
 }
 
 function questionHasVerb(question) {
-  return question.type === "action";
+  return window.GrammarCore?.questionHasVerb
+    ? window.GrammarCore.questionHasVerb(question)
+    : question.type === "action";
 }
 
 function getVerbChoiceExplanation(question, pickedHasActionVerb) {
@@ -2366,7 +2372,9 @@ function answerBeForm(form) {
 }
 
 function getSentenceTokens(question) {
-  return question.sentence.replace(/[.?!]/g, "").split(" ");
+  return window.GrammarCore?.getSentenceTokens
+    ? window.GrammarCore.getSentenceTokens(question)
+    : question.sentence.replace(/[.?!]/g, "").split(" ");
 }
 
 function getLesson2Translation(question) {
@@ -2374,7 +2382,9 @@ function getLesson2Translation(question) {
 }
 
 function getLesson2Correction(question) {
-  return question.correction || "句子正確，不用改。";
+  return window.GrammarCore?.getLesson2Correction
+    ? window.GrammarCore.getLesson2Correction(question)
+    : question.correction || "句子正確，不用改。";
 }
 
 function getVerbCountReason(question) {
@@ -2549,7 +2559,10 @@ function answerPronounSentence(choice) {
 }
 
 function normalizeTypedSentence(value) {
-  return value
+  if (window.GrammarCore?.normalizeTypedSentence) {
+    return window.GrammarCore.normalizeTypedSentence(value);
+  }
+  return String(value || "")
     .trim()
     .replace(/[’‘]/g, "'")
     .replace(/[“”]/g, "\"")
@@ -2560,6 +2573,9 @@ function normalizeTypedSentence(value) {
 }
 
 function isCountableTypedAnswerCorrect(question, value) {
+  if (window.GrammarCore?.isCountableTypedAnswerCorrect) {
+    return window.GrammarCore.isCountableTypedAnswerCorrect(question, value);
+  }
   const normalized = normalizeTypedSentence(value);
   return question.acceptedAnswers.some((answer) => normalizeTypedSentence(answer) === normalized);
 }
@@ -2899,6 +2915,9 @@ function renderVerbTableImage(question) {
 }
 
 function getVerbTableAnswerLine(question) {
+  if (window.GrammarCore?.getVerbTableAnswerLine) {
+    return window.GrammarCore.getVerbTableAnswerLine(question, VERB_TABLE_FIELDS);
+  }
   return VERB_TABLE_FIELDS
     .map((field) => `${field.label}：${question.forms[field.key]}`)
     .join(" / ");
@@ -3102,6 +3121,9 @@ function handleVerbTableSlotKeydown(event, slotKey) {
 }
 
 function normalizeVerbTableAnswer(value) {
+  if (window.GrammarCore?.normalizeVerbTableAnswer) {
+    return window.GrammarCore.normalizeVerbTableAnswer(value);
+  }
   return String(value)
     .trim()
     .replace(/[’‘]/g, "'")
@@ -3157,10 +3179,19 @@ function updateVerbTableView() {
 }
 
 function isVerbTableSlotCorrect(question, slotKey) {
+  if (window.GrammarCore?.isVerbTableSlotCorrect) {
+    return window.GrammarCore.isVerbTableSlotCorrect(question, slotKey, getVerbTableInputValue(slotKey));
+  }
   return normalizeVerbTableAnswer(getVerbTableInputValue(slotKey)) === normalizeVerbTableAnswer(question.forms[slotKey]);
 }
 
 function getVerbTableWrongSlots(question) {
+  if (window.GrammarCore?.getVerbTableWrongSlots) {
+    const valuesBySlot = Object.fromEntries(
+      VERB_TABLE_FIELDS.map((field) => [field.key, getVerbTableInputValue(field.key)])
+    );
+    return window.GrammarCore.getVerbTableWrongSlots(question, valuesBySlot, VERB_TABLE_FIELDS);
+  }
   return VERB_TABLE_FIELDS
     .filter((field) => !isVerbTableSlotCorrect(question, field.key))
     .map((field) => field.key);
