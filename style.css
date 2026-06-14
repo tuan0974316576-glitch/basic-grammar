@@ -1156,7 +1156,6 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .verb-table-key {
-  --tilt: -1deg;
   position: relative;
   min-width: 0;
   min-height: 40px;
@@ -1170,7 +1169,6 @@ input[type="range"]::-moz-range-thumb {
   border: 3px solid #ffffff;
   border-radius: 14px;
   box-shadow: 0 4px 0 rgba(93, 64, 55, 0.12), 0 0 0 1px rgba(93, 64, 55, 0.04);
-  transform: rotate(var(--tilt));
   transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease, background 120ms ease, color 120ms ease, filter 120ms ease;
   overflow: hidden;
   isolation: isolate;
@@ -1184,22 +1182,6 @@ input[type="range"]::-moz-range-thumb {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0));
   pointer-events: none;
   z-index: -1;
-}
-
-.verb-table-key:nth-child(2n) {
-  --tilt: 1.2deg;
-}
-
-.verb-table-key:nth-child(3n) {
-  --tilt: -1.6deg;
-}
-
-.verb-table-key:nth-child(5n) {
-  --tilt: 0.9deg;
-}
-
-.verb-table-key:nth-child(6n) {
-  --tilt: -0.5deg;
 }
 
 .verb-table-key:nth-child(6n + 1) {
@@ -1237,12 +1219,12 @@ input[type="range"]::-moz-range-thumb {
   background: #ffffff;
   border-color: #ffffff;
   filter: saturate(1.06);
-  transform: rotate(var(--tilt)) translateY(-2px) scale(1.03);
+  transform: translateY(-2px) scale(1.03);
   box-shadow: 0 6px 0 rgba(93, 64, 55, 0.14), 0 0 0 1px rgba(93, 64, 55, 0.05);
 }
 
 .verb-table-key:active {
-  transform: rotate(var(--tilt)) translateY(2px) scale(0.99);
+  transform: translateY(2px) scale(0.99);
   box-shadow: 0 2px 0 rgba(93, 64, 55, 0.12), 0 0 0 1px rgba(93, 64, 55, 0.04);
 }
 
@@ -2123,6 +2105,13 @@ body.modal-open {
 .verb-table-reference-search input[readonly] {
   cursor: pointer;
   color: #746b5b;
+  background: #f8fafc;
+}
+
+.verb-table-reference-search input:disabled {
+  cursor: default;
+  color: #746b5b;
+  opacity: 1;
   background: #f8fafc;
 }
 

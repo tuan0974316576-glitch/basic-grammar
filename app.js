@@ -3681,6 +3681,7 @@ function renderVerbTableReferenceRows() {
 function lockVerbTableReferenceSearch() {
   if (!el.verbTableReferenceSearch) return;
   el.verbTableReferenceSearch.readOnly = true;
+  el.verbTableReferenceSearch.disabled = true;
   el.verbTableReferenceSearch.inputMode = "none";
   el.verbTableReferenceSearch.blur();
   el.verbTableReferenceSearch.closest(".verb-table-reference-search")?.classList.remove("is-searching");
@@ -3688,6 +3689,7 @@ function lockVerbTableReferenceSearch() {
 
 function unlockVerbTableReferenceSearch() {
   if (!el.verbTableReferenceSearch) return;
+  el.verbTableReferenceSearch.disabled = false;
   el.verbTableReferenceSearch.readOnly = false;
   el.verbTableReferenceSearch.inputMode = "search";
   el.verbTableReferenceSearch.closest(".verb-table-reference-search")?.classList.add("is-searching");
@@ -3843,11 +3845,6 @@ document.querySelectorAll("[data-close-verb-table-reference]").forEach((button) 
   button.addEventListener("click", closeVerbTableReference);
 });
 el.verbTableReferenceSearch?.addEventListener("input", renderVerbTableReferenceRows);
-el.verbTableReferenceSearch?.addEventListener("pointerdown", () => {
-  if (el.verbTableReferenceSearch?.readOnly) {
-    unlockVerbTableReferenceSearch();
-  }
-});
 el.verbTableReferenceSearchToggle?.addEventListener("click", unlockVerbTableReferenceSearch);
 el.verbTableReferenceBody?.addEventListener("click", handleVerbTableReferenceBodyClick);
 el.verbTableReferenceBody?.addEventListener("keydown", handleVerbTableReferenceBodyKeydown);
