@@ -1,0 +1,33 @@
+{
+  "name": "grammar-game",
+  "version": "1.0.0",
+  "description": "A standalone beginner grammar game for students, styled after the Japanese stationery look of the N4 practice app.",
+  "main": "app.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "node tests/grammar_core.test.js && node tests/grammar_data.test.js",
+    "check:js": "node --check grammar_core.js && node --check grammar_data.js && node --check app.js && node --check scripts/build-web.js",
+    "build:web": "node scripts/build-web.js",
+    "cap:sync": "npm run build:web && npx cap sync android",
+    "android:run": "npm run build:web && npx cap run android --target S2AIOC447307NGJ"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tuan0974316576-glitch/basic-grammar.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/tuan0974316576-glitch/basic-grammar/issues"
+  },
+  "homepage": "https://github.com/tuan0974316576-glitch/basic-grammar#readme",
+  "dependencies": {
+    "@capacitor/android": "^8.4.0",
+    "@capacitor/cli": "^8.4.0",
+    "@capacitor/core": "^8.4.0"
+  }
+}

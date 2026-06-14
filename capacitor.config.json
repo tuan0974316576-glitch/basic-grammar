@@ -1,0 +1,8 @@
+{
+  "appId": "com.enguistics.grammar",
+  "appName": "Enguistics Grammar",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  }
+}
