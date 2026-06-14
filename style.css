@@ -531,6 +531,11 @@ input[type="range"]::-moz-range-thumb {
   padding: 0 4px 4px;
 }
 
+#lesson-screen.keyboard-docked .lesson-scroll {
+  overflow-y: auto;
+  padding-bottom: clamp(224px, 36svh, 320px);
+}
+
 .prompt-panel {
   position: relative;
   padding: 22px;
@@ -1271,7 +1276,7 @@ input[type="range"]::-moz-range-thumb {
 
 .countable-correction {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(132px, auto);
+  grid-template-columns: minmax(0, 1fr);
   gap: 12px;
   align-items: center;
   margin-bottom: 16px;
@@ -1313,6 +1318,36 @@ input[type="range"]::-moz-range-thumb {
 
 .countable-correction-keyboard {
   grid-column: 1 / -1;
+}
+
+#lesson-screen.keyboard-docked #verb-table-keyboard,
+#lesson-screen.keyboard-docked #countable-correction-keyboard {
+  position: fixed;
+  left: max(10px, env(safe-area-inset-left));
+  right: max(10px, env(safe-area-inset-right));
+  bottom: max(8px, env(safe-area-inset-bottom));
+  z-index: 8000;
+  width: auto;
+  max-width: min(760px, calc(100vw - 20px));
+  margin: 0 auto;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 24px 24px 18px 18px;
+  box-shadow: 0 12px 0 rgba(162, 126, 92, 0.18), 0 0 0 2px rgba(93, 64, 55, 0.06);
+}
+
+#lesson-screen.keyboard-docked #verb-table-keyboard .verb-table-key-row,
+#lesson-screen.keyboard-docked #countable-correction-keyboard .verb-table-key-row {
+  gap: 6px;
+}
+
+#lesson-screen.keyboard-docked #verb-table-keyboard .verb-table-key,
+#lesson-screen.keyboard-docked #countable-correction-keyboard .verb-table-key {
+  min-height: clamp(44px, 8.8svh, 58px);
+  padding: 6px 4px;
+  border-width: 3px;
+  border-radius: 14px;
+  font-size: clamp(16px, 4.2vw, 22px);
 }
 
 .celebration-layer {

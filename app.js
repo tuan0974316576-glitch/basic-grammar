@@ -665,11 +665,10 @@ function getTextEntryConfig(targetName = activeTextEntryTarget) {
         ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
         ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
         ["z", "x", "c", "v", "b", "n", "m", "backspace"],
-        ["space", ".", "clear", "enter"]
+        ["space", ".", "enter"]
       ],
       labels: {
         backspace: "⌫",
-        clear: "清空",
         enter: "確認",
         space: "Space"
       },
@@ -738,6 +737,10 @@ function setTextEntryKeyboardVisible(targetName, visible) {
 
   buildTextGameKeyboard(targetName);
   config.keyboard.classList.toggle("hidden", !visible);
+  const isLessonKeyboard = targetName === "countable";
+  if (isLessonKeyboard) {
+    el.lessonScreen.classList.toggle("keyboard-docked", visible);
+  }
 }
 
 function deactivateTextEntryTarget(targetName = activeTextEntryTarget) {
@@ -767,6 +770,11 @@ function activateTextEntryTarget(targetName, options = {}) {
   config.field.classList.add("is-active");
   setTextEntryKeyboardVisible(targetName, options.showKeyboard ?? !isComputerKeyboardMode());
   updateTextEntryToggleLabels();
+}
+
+function setVerbTableKeyboardDocked(visible) {
+  el.verbTableKeyboard?.classList.toggle("hidden", !visible);
+  el.lessonScreen.classList.toggle("keyboard-docked", visible);
 }
 
 function updateTextEntryToggleLabels() {
@@ -1032,6 +1040,7 @@ function backToMenu() {
   clearCelebration();
   cancelSpeech();
   deactivateTextEntryTarget();
+  setVerbTableKeyboardDocked(false);
   updateMenuProgress();
   showScreen("menu");
   playUiSound("next");
@@ -1040,6 +1049,7 @@ function backToMenu() {
 function renderQuestion() {
   clearPronounAutoAdvance();
   clearCelebration();
+  setVerbTableKeyboardDocked(false);
   const question = currentQuestion();
   if (!question) {
     renderComplete();
@@ -1294,6 +1304,7 @@ function renderVerbTableQuestion(question) {
   });
 
   updateVerbTableView();
+  setVerbTableKeyboardDocked(!isComputerKeyboardMode());
   showOnlyChoice("verbTable");
 }
 
@@ -1318,6 +1329,7 @@ function completeQuestion(message) {
   }
 
   showOnlyChoice("");
+  setVerbTableKeyboardDocked(false);
   el.guidance.textContent = "英文句子已解鎖，按一下可以聽讀音。";
   el.englishText.textContent = question.english;
   el.englishCard.classList.remove("hidden");
@@ -1345,6 +1357,7 @@ function recordWrong(message) {
   }
   updateLiveStats();
   showOnlyChoice("");
+  setVerbTableKeyboardDocked(false);
   el.guidance.textContent = isCountableLesson ? question.zh : "睇完解釋，按「下一題」繼續。";
   if (question.english && !isCountableLesson) {
     el.englishText.textContent = question.english;
@@ -1688,6 +1701,7 @@ function completeVerbLessonQuestion(message) {
 
   updateLiveStats();
   showOnlyChoice("");
+  setVerbTableKeyboardDocked(false);
   el.guidance.textContent = state.lessonId === COUNTABLE_NOUN_ID ? question.zh : "睇完解釋，按「下一題」繼續。";
   el.englishCard.classList.add("hidden");
   el.nextBtn.classList.remove("hidden");
@@ -2214,11 +2228,15 @@ function updateVerbTableView() {
     button.disabled = state.resolved;
   });
 
-  const filledCount = VERB_TABLE_FIELDS.filter((field) => getVerbTableTypedValue(field.key)).length;
-  el.resetVerbTableBtn.disabled = state.resolved || filledCount === 0;
-  el.confirmVerbTableBtn.disabled = state.resolved;
-  el.confirmVerbTableBtn.classList.toggle("is-wrong", state.verbTableSubmitState === "wrong" || state.verbTableSubmitState === "incomplete");
-  el.confirmVerbTableBtn.classList.toggle("is-correct", state.verbTableSubmitState === "correct");
+  if (el.resetVerbTableBtn) {
+    const filledCount = VERB_TABLE_FIELDS.filter((field) => getVerbTableTypedValue(field.key)).length;
+    el.resetVerbTableBtn.disabled = state.resolved || filledCount === 0;
+  }
+  if (el.confirmVerbTableBtn) {
+    el.confirmVerbTableBtn.disabled = state.resolved;
+    el.confirmVerbTableBtn.classList.toggle("is-wrong", state.verbTableSubmitState === "wrong" || state.verbTableSubmitState === "incomplete");
+    el.confirmVerbTableBtn.classList.toggle("is-correct", state.verbTableSubmitState === "correct");
+  }
 }
 
 function isVerbTableSlotCorrect(question, slotKey) {
@@ -2273,6 +2291,7 @@ function completeVerbTableQuestion(message) {
   }
 
   updateLiveStats();
+  setVerbTableKeyboardDocked(false);
   state.verbTableSubmitState = "correct";
   updateVerbTableView();
   el.guidance.textContent = "答啱！按「下一題」繼續。";
@@ -2304,6 +2323,7 @@ function recordVerbTableWrong(question) {
 
   updateLiveStats();
   updateVerbTableView();
+  setVerbTableKeyboardDocked(false);
   el.guidance.textContent = "睇完答案，按「下一題」繼續。";
   el.englishCard.classList.add("hidden");
   el.nextBtn.classList.remove("hidden");
@@ -3218,7 +3238,7 @@ document.querySelectorAll("[data-verb-count]").forEach((button) => {
 });
 
 el.submitVerbsBtn.addEventListener("click", submitVerbTokens);
-el.submitCountableCorrectionBtn.addEventListener("click", submitCountableCorrection);
+el.submitCountableCorrectionBtn?.addEventListener("click", submitCountableCorrection);
 el.countableCorrectionInput.addEventListener("click", () => activateTextEntryTarget("countable"));
 el.resetBuilderBtn.addEventListener("click", resetSentenceBuilder);
 el.confirmBuilderBtn.addEventListener("click", submitSentenceBuilder);
@@ -3233,8 +3253,8 @@ el.confirmPronounBtn.addEventListener("click", submitPronounMatch);
 el.verbTableKeyboard?.querySelectorAll("[data-verb-table-key]").forEach((button) => {
   button.addEventListener("click", () => handleVerbTableKeyboardKey(button.dataset.verbTableKey));
 });
-el.resetVerbTableBtn.addEventListener("click", resetVerbTable);
-el.confirmVerbTableBtn.addEventListener("click", submitVerbTable);
+el.resetVerbTableBtn?.addEventListener("click", resetVerbTable);
+el.confirmVerbTableBtn?.addEventListener("click", submitVerbTable);
 
 setTextEntryValue(el.countableCorrectionInput, "");
 setTextEntryValue(el.verbTableReferenceSearch, "");
