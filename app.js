@@ -410,6 +410,7 @@ function makePronounSentenceQuestion({ id, sentence, answer, choices, explanatio
     sentence,
     answer,
     choices,
+    slotType: "",
     explanation
   };
 }
@@ -428,22 +429,22 @@ const PRONOUN_SENTENCE_QUESTIONS = [
   { id: "ps011", sentence: "___ goes to school by bus.", answer: "She", choices: ["She", "her", "hers", "we"], explanation: "空格在 goes 前面，是主語位置，所以要用主語代名詞 She。" },
   { id: "ps012", sentence: "___ are ready now.", answer: "You", choices: ["You", "your", "yours", "me"], explanation: "空格在 are 前面，是主語位置，所以要用主語代名詞 You。" },
   { id: "ps013", sentence: "___ is a small cat.", answer: "It", choices: ["It", "it", "its", "them"], explanation: "空格在 is 前面，是主語位置，所以要用主語代名詞 It。" },
-  { id: "ps014", sentence: "Tom likes ___.", answer: "her", choices: ["she", "her", "hers", "his"], explanation: "空格在 likes 後面，是非主語位置，所以要用非主語代名詞 her。" },
-  { id: "ps015", sentence: "Mary helps ___.", answer: "him", choices: ["he", "him", "his", "their"], explanation: "空格在 helps 後面，是非主語位置，所以要用非主語代名詞 him。" },
-  { id: "ps016", sentence: "The teacher sees ___.", answer: "us", choices: ["We", "us", "our", "ours"], explanation: "空格在 sees 後面，是非主語位置，所以要用非主語代名詞 us。" },
-  { id: "ps017", sentence: "This gift is for ___.", answer: "you", choices: ["you", "your", "yours", "we"], explanation: "空格在 for 後面，是非主語位置，所以要用非主語代名詞 you。" },
-  { id: "ps018", sentence: "Mum talks to ___.", answer: "me", choices: ["I", "me", "my", "mine"], explanation: "空格在 to 後面，是非主語位置，所以要用非主語代名詞 me。" },
-  { id: "ps019", sentence: "Dad calls ___.", answer: "them", choices: ["They", "them", "their", "theirs"], explanation: "空格在 calls 後面，是非主語位置，所以要用非主語代名詞 them。" },
-  { id: "ps020", sentence: "I sit with ___.", answer: "him", choices: ["he", "him", "his", "hers"], explanation: "空格在 with 後面，是非主語位置，所以要用非主語代名詞 him。" },
-  { id: "ps021", sentence: "Please listen to ___.", answer: "me", choices: ["I", "me", "my", "mine"], explanation: "空格在 to 後面，是非主語位置，所以要用非主語代名詞 me。" },
-  { id: "ps022", sentence: "The dog follows ___.", answer: "us", choices: ["We", "us", "our", "ours"], explanation: "空格在 follows 後面，是非主語位置，所以要用非主語代名詞 us。" },
-  { id: "ps023", sentence: "Sam waits for ___.", answer: "her", choices: ["she", "her", "hers", "his"], explanation: "空格在 for 後面，是非主語位置，所以要用非主語代名詞 her。" },
-  { id: "ps024", sentence: "Anna plays with ___.", answer: "them", choices: ["They", "them", "their", "theirs"], explanation: "空格在 with 後面，是非主語位置，所以要用非主語代名詞 them。" },
-  { id: "ps025", sentence: "The noise scares ___.", answer: "me", choices: ["I", "me", "my", "mine"], explanation: "空格在 scares 後面，是非主語位置，所以要用非主語代名詞 me。" },
+  { id: "ps014", sentence: "Tom likes ___.", answer: "her", choices: ["she", "her", "their", "We"], explanation: "空格在 likes 後面，是非主語位置，所以要用非主語代名詞 her。" },
+  { id: "ps015", sentence: "Mary helps ___.", answer: "him", choices: ["he", "him", "their", "They"], explanation: "空格在 helps 後面，是非主語位置，所以要用非主語代名詞 him。" },
+  { id: "ps016", sentence: "The teacher sees ___.", answer: "us", choices: ["We", "us", "our", "They"], explanation: "空格在 sees 後面，是非主語位置，所以要用非主語代名詞 us。" },
+  { id: "ps017", sentence: "This gift is for ___.", answer: "you", choices: ["you", "your", "we", "They"], explanation: "空格在 for 後面，是非主語位置，所以要用非主語代名詞 you。" },
+  { id: "ps018", sentence: "Mum talks to ___.", answer: "me", choices: ["I", "me", "my", "We"], explanation: "空格在 to 後面，是非主語位置，所以要用非主語代名詞 me。" },
+  { id: "ps019", sentence: "Dad calls ___.", answer: "them", choices: ["They", "them", "their", "We"], explanation: "空格在 calls 後面，是非主語位置，所以要用非主語代名詞 them。" },
+  { id: "ps020", sentence: "I sit with ___.", answer: "him", choices: ["he", "him", "their", "They"], explanation: "空格在 with 後面，是非主語位置，所以要用非主語代名詞 him。" },
+  { id: "ps021", sentence: "Please listen to ___.", answer: "me", choices: ["I", "me", "my", "We"], explanation: "空格在 to 後面，是非主語位置，所以要用非主語代名詞 me。" },
+  { id: "ps022", sentence: "The dog follows ___.", answer: "us", choices: ["We", "us", "our", "They"], explanation: "空格在 follows 後面，是非主語位置，所以要用非主語代名詞 us。" },
+  { id: "ps023", sentence: "Sam waits for ___.", answer: "her", choices: ["she", "her", "their", "We"], explanation: "空格在 for 後面，是非主語位置，所以要用非主語代名詞 her。" },
+  { id: "ps024", sentence: "Anna plays with ___.", answer: "them", choices: ["They", "them", "their", "We"], explanation: "空格在 with 後面，是非主語位置，所以要用非主語代名詞 them。" },
+  { id: "ps025", sentence: "The noise scares ___.", answer: "me", choices: ["I", "me", "my", "We"], explanation: "空格在 scares 後面，是非主語位置，所以要用非主語代名詞 me。" },
   { id: "ps026", sentence: "This is ___ book.", answer: "my", choices: ["I", "me", "my", "mine"], explanation: "空格後面有名詞 book，表示「我的」，所以要用 my。" },
   { id: "ps027", sentence: "That is ___ pencil.", answer: "your", choices: ["you", "your", "yours", "we"], explanation: "空格後面有名詞 pencil，表示「你的」，所以要用 your。" },
   { id: "ps028", sentence: "He is ___ brother.", answer: "her", choices: ["she", "her", "hers", "him"], explanation: "空格後面有名詞 brother，表示「她的」，所以要用 her。" },
-  { id: "ps029", sentence: "My mother is ___ sister.", answer: "your", choices: ["theirs", "its", "we", "your"], explanation: "空格後面有名詞 sister，表示「你的」，所以要用 your。" },
+  { id: "ps029", sentence: "My mother is ___ sister.", answer: "your", choices: ["theirs", "it", "we", "your"], explanation: "空格後面有名詞 sister，表示「你的」，所以要用 your。" },
   { id: "ps030", sentence: "They love ___ school.", answer: "their", choices: ["They", "them", "their", "theirs"], explanation: "空格後面有名詞 school，表示「他們的」，所以要用 their。" },
   { id: "ps031", sentence: "We clean ___ classroom.", answer: "our", choices: ["We", "us", "our", "ours"], explanation: "空格後面有名詞 classroom，表示「我們的」，所以要用 our。" },
   { id: "ps032", sentence: "The dog eats ___ food.", answer: "its", choices: ["It", "it", "its", "they"], explanation: "空格後面有名詞 food，表示「它的」，所以要用 its。" },
@@ -463,9 +464,168 @@ const PRONOUN_SENTENCE_QUESTIONS = [
   { id: "ps046", sentence: "The lunch is ___.", answer: "mine", choices: ["I", "me", "my", "mine"], explanation: "空格後面沒有名詞，表示「我的東西」，所以要用 mine。" },
   { id: "ps047", sentence: "The football is ___.", answer: "ours", choices: ["We", "us", "our", "ours"], explanation: "空格後面沒有名詞，表示「我們的東西」，所以要用 ours。" },
   { id: "ps048", sentence: "The pencils are ___.", answer: "theirs", choices: ["They", "them", "their", "theirs"], explanation: "空格後面沒有名詞，表示「他們的東西」，所以要用 theirs。" },
-  { id: "ps049", sentence: "The seat is ___.", answer: "his", choices: ["he", "him", "his", "hers"], explanation: "空格後面沒有名詞，表示「他的東西」，所以要用 his。" },
-  { id: "ps050", sentence: "The umbrella is ___.", answer: "hers", choices: ["she", "her", "hers", "his"], explanation: "空格後面沒有名詞，表示「她的東西」，所以要用 hers。" }
-].map(makePronounSentenceQuestion);
+  { id: "ps049", sentence: "The seat is ___.", answer: "his", choices: ["he", "him", "his", "her"], explanation: "空格後面沒有名詞，表示「他的東西」，所以要用 his。" },
+  { id: "ps050", sentence: "The umbrella is ___.", answer: "hers", choices: ["she", "her", "hers", "him"], explanation: "空格後面沒有名詞，表示「她的東西」，所以要用 hers。" }
+];
+
+const PRONOUN_SENTENCE_SLOT_TYPES = [
+  ...Array(13).fill("subject"),
+  ...Array(12).fill("object"),
+  ...Array(13).fill("possessiveAdjective"),
+  ...Array(12).fill("possessivePronoun")
+];
+
+PRONOUN_SENTENCE_QUESTIONS.forEach((question, index) => {
+  question.slotType = PRONOUN_SENTENCE_SLOT_TYPES[index] || "subject";
+});
+
+const PRONOUN_SENTENCE_QUESTION_BANK = PRONOUN_SENTENCE_QUESTIONS.map((question) =>
+  ({
+    ...makePronounSentenceQuestion(question),
+    slotType: question.slotType
+  })
+);
+
+const PRONOUN_SENTENCE_ROLE_LABELS = {
+  subject: "主語",
+  object: "非主語",
+  possessiveAdjective: "的",
+  possessivePronoun: "的東西"
+};
+
+const PRONOUN_SENTENCE_FORMS = {
+  I: {
+    roles: ["subject"],
+    meanings: { subject: "我" },
+    subject: { be: "am", has: "have", present: "base" }
+  },
+  me: {
+    roles: ["object"],
+    meanings: { object: "我" }
+  },
+  my: {
+    roles: ["possessiveAdjective"],
+    meanings: { possessiveAdjective: "我的" }
+  },
+  mine: {
+    roles: ["possessivePronoun"],
+    meanings: { possessivePronoun: "我的東西" }
+  },
+  You: {
+    roles: ["subject"],
+    meanings: { subject: "你" },
+    subject: { be: "are", has: "have", present: "base" }
+  },
+  you: {
+    roles: ["object"],
+    meanings: { object: "你" }
+  },
+  your: {
+    roles: ["possessiveAdjective"],
+    meanings: { possessiveAdjective: "你的" }
+  },
+  yours: {
+    roles: ["possessivePronoun"],
+    meanings: { possessivePronoun: "你的東西" }
+  },
+  We: {
+    roles: ["subject"],
+    meanings: { subject: "我們" },
+    subject: { be: "are", has: "have", present: "base" }
+  },
+  we: {
+    roles: ["subject"],
+    meanings: { subject: "我們" },
+    subject: { be: "are", has: "have", present: "base" }
+  },
+  us: {
+    roles: ["object"],
+    meanings: { object: "我們" }
+  },
+  our: {
+    roles: ["possessiveAdjective"],
+    meanings: { possessiveAdjective: "我們的" }
+  },
+  ours: {
+    roles: ["possessivePronoun"],
+    meanings: { possessivePronoun: "我們的東西" }
+  },
+  They: {
+    roles: ["subject"],
+    meanings: { subject: "他們" },
+    subject: { be: "are", has: "have", present: "base" }
+  },
+  they: {
+    roles: ["subject"],
+    meanings: { subject: "他們" },
+    subject: { be: "are", has: "have", present: "base" }
+  },
+  them: {
+    roles: ["object"],
+    meanings: { object: "他們" }
+  },
+  their: {
+    roles: ["possessiveAdjective"],
+    meanings: { possessiveAdjective: "他們的" }
+  },
+  theirs: {
+    roles: ["possessivePronoun"],
+    meanings: { possessivePronoun: "他們的東西" }
+  },
+  He: {
+    roles: ["subject"],
+    meanings: { subject: "他" },
+    subject: { be: "is", has: "has", present: "thirdSingular" }
+  },
+  he: {
+    roles: ["subject"],
+    meanings: { subject: "他" },
+    subject: { be: "is", has: "has", present: "thirdSingular" }
+  },
+  him: {
+    roles: ["object"],
+    meanings: { object: "他" }
+  },
+  His: {
+    roles: ["possessiveAdjective", "possessivePronoun"],
+    meanings: { possessiveAdjective: "他的", possessivePronoun: "他的東西" }
+  },
+  his: {
+    roles: ["possessiveAdjective", "possessivePronoun"],
+    meanings: { possessiveAdjective: "他的", possessivePronoun: "他的東西" }
+  },
+  She: {
+    roles: ["subject"],
+    meanings: { subject: "她" },
+    subject: { be: "is", has: "has", present: "thirdSingular" }
+  },
+  she: {
+    roles: ["subject"],
+    meanings: { subject: "她" },
+    subject: { be: "is", has: "has", present: "thirdSingular" }
+  },
+  her: {
+    roles: ["object", "possessiveAdjective"],
+    meanings: { object: "她", possessiveAdjective: "她的" }
+  },
+  hers: {
+    roles: ["possessivePronoun"],
+    meanings: { possessivePronoun: "她的東西" }
+  },
+  It: {
+    roles: ["subject"],
+    meanings: { subject: "它" },
+    subject: { be: "is", has: "has", present: "thirdSingular" }
+  },
+  it: {
+    roles: ["object"],
+    meanings: { object: "它" }
+  },
+  its: {
+    roles: ["possessiveAdjective", "possessivePronoun"],
+    meanings: { possessiveAdjective: "它的", possessivePronoun: "它的東西" }
+  }
+};
 
 function makeCountableNounQuestion({ id, sentence, zh, isCorrect, answer, explanation }) {
   return {
@@ -819,7 +979,7 @@ const LESSONS = {
     id: PRONOUN_SENTENCE_ID,
     kicker: "Lesson 05",
     title: "代名詞句子 MC",
-    questions: PRONOUN_SENTENCE_QUESTIONS
+    questions: PRONOUN_SENTENCE_QUESTION_BANK
   },
   [COUNTABLE_NOUN_ID]: {
     id: COUNTABLE_NOUN_ID,
@@ -1983,10 +2143,139 @@ function getPronounSentenceCompletedSentence(question) {
   return question.sentence.replace("___", question.answer);
 }
 
+function getPronounSentenceContext(question) {
+  const afterBlank = question.sentence.split("___")[1]?.trim() || "";
+  const firstWord = afterBlank.replace(/^[,.;:!?]+/, "").split(/\s+/)[0]?.replace(/[^A-Za-z]/g, "") || "";
+  const secondWord = afterBlank.split(/\s+/)[1]?.replace(/[^A-Za-z]/g, "") || "";
+  return {
+    firstWord,
+    secondWord,
+    hasNounAfterBlank: question.slotType === "possessiveAdjective"
+  };
+}
+
+function getPronounSentenceWordInfo(choice) {
+  return PRONOUN_SENTENCE_FORMS[choice] || PRONOUN_SENTENCE_FORMS[capitalizeWord(choice)] || null;
+}
+
+function getPronounSentenceMeaning(info, slotType) {
+  if (!info) return "";
+  return info.meanings?.[slotType]
+    || info.meanings?.[info.roles?.[0]]
+    || "";
+}
+
+function getPronounSentenceBeMismatch(info, context) {
+  if (!info?.roles?.includes("subject") || !context.firstWord) return "";
+  const nextWord = context.firstWord.toLowerCase();
+  if (!["is", "am", "are"].includes(nextWord)) return "";
+  const expectedBe = info.subject?.be || "";
+  return expectedBe && expectedBe !== nextWord
+    ? `雖然可做主語，但 ${getPronounSentenceMeaning(info, "subject")} 要配 ${expectedBe}，不配 ${context.firstWord}。`
+    : "";
+}
+
+function getPronounSentenceVerbMismatch(info, context) {
+  if (!info?.roles?.includes("subject") || !context.firstWord) return "";
+  const nextWord = context.firstWord.toLowerCase();
+  if (nextWord === "has") {
+    return info.subject?.has === "has" ? "" : `雖然可做主語，但 ${getPronounSentenceMeaning(info, "subject")} 要配 have，不配 has。`;
+  }
+  if (nextWord.endsWith("s") && info.subject?.present === "base") {
+    return `雖然可做主語，但 ${getPronounSentenceMeaning(info, "subject")} 後面的動詞不用加 s。`;
+  }
+  return "";
+}
+
+function getPronounSentenceChoiceReason(question, choice) {
+  const info = getPronounSentenceWordInfo(choice);
+  const slotType = question.slotType;
+  const roleLabel = PRONOUN_SENTENCE_ROLE_LABELS[slotType] || "這個";
+  const meaning = getPronounSentenceMeaning(info, slotType);
+  const prefix = choice === question.answer ? `${choice} ✓` : `${choice} ×`;
+  const context = getPronounSentenceContext(question);
+
+  if (!info) return `${prefix}：不是這課要用的代名詞。`;
+
+  if (choice === question.answer) {
+    if (slotType === "possessiveAdjective") {
+      return `${prefix}：表示「${meaning}」，後面可接名詞 ${context.secondWord || ""}，所以正確。`;
+    }
+    if (slotType === "possessivePronoun") {
+      return `${prefix}：表示「${meaning}」，本身已包含名詞意思，所以正確。`;
+    }
+    return `${prefix}：表示「${meaning}」，可放在${roleLabel}位置，所以正確。`;
+  }
+
+  const beMismatch = getPronounSentenceBeMismatch(info, context);
+  if (beMismatch) return `${prefix}：${beMismatch}`;
+
+  const verbMismatch = getPronounSentenceVerbMismatch(info, context);
+  if (verbMismatch) return `${prefix}：${verbMismatch}`;
+
+  if (slotType === "subject") {
+    if (info.roles.includes("object")) {
+      return `${prefix}：雖然意思是「${getPronounSentenceMeaning(info, "object")}」，但只可在不是主語的情況下使用。`;
+    }
+    if (info.roles.includes("possessiveAdjective")) {
+      return `${prefix}：表示「${getPronounSentenceMeaning(info, "possessiveAdjective")}」，後面要有名詞，不可放主語位置。`;
+    }
+    if (info.roles.includes("possessivePronoun")) {
+      return `${prefix}：表示「${getPronounSentenceMeaning(info, "possessivePronoun")}」，不是主語代名詞。`;
+    }
+  }
+
+  if (slotType === "object") {
+    if (info.roles.includes("subject")) {
+      return `${prefix}：雖然意思是「${getPronounSentenceMeaning(info, "subject")}」，但只可做主語，不可放在動詞或介詞後。`;
+    }
+    if (info.roles.includes("possessiveAdjective")) {
+      return `${prefix}：表示「${getPronounSentenceMeaning(info, "possessiveAdjective")}」，後面要有名詞，不可單獨放在這裡。`;
+    }
+    if (info.roles.includes("possessivePronoun")) {
+      return `${prefix}：表示「${getPronounSentenceMeaning(info, "possessivePronoun")}」，不是非主語代名詞。`;
+    }
+  }
+
+  if (slotType === "possessiveAdjective") {
+    if (info.roles.includes("possessivePronoun") && !info.roles.includes("possessiveAdjective")) {
+      return `${prefix}：表示「${getPronounSentenceMeaning(info, "possessivePronoun")}」，本身已包含名詞意思，後面不可再接名詞。`;
+    }
+    if (info.roles.includes("subject")) {
+      return `${prefix}：表示「${getPronounSentenceMeaning(info, "subject")}」，是主語代名詞，不可直接放在名詞前。`;
+    }
+    if (info.roles.includes("object")) {
+      return `${prefix}：雖然意思是「${getPronounSentenceMeaning(info, "object")}」，但只可在不是主語的情況下使用，不可直接放在名詞前。`;
+    }
+  }
+
+  if (slotType === "possessivePronoun") {
+    if (info.roles.includes("possessiveAdjective") && !info.roles.includes("possessivePronoun")) {
+      return `${prefix}：表示「${getPronounSentenceMeaning(info, "possessiveAdjective")}」，後面要有名詞；這裡後面沒有名詞。`;
+    }
+    if (info.roles.includes("subject")) {
+      return `${prefix}：表示「${getPronounSentenceMeaning(info, "subject")}」，是主語代名詞，不表示「${roleLabel}」。`;
+    }
+    if (info.roles.includes("object")) {
+      return `${prefix}：雖然意思是「${getPronounSentenceMeaning(info, "object")}」，但只可在不是主語的情況下使用，不表示「${roleLabel}」。`;
+    }
+  }
+
+  return `${prefix}：不是這個空格需要的${roleLabel}代名詞。`;
+}
+
+function getPronounSentenceChoiceFeedback(question) {
+  return question.choices.map((choice) => ({
+    text: getPronounSentenceChoiceReason(question, choice),
+    className: choice === question.answer ? "answer-line" : ""
+  }));
+}
+
 function getPronounSentenceFeedback(question, isCorrect) {
   return [
     { text: `${isCorrect ? "正確。" : "未正確。"}${question.explanation}` },
-    { text: `正確答案：${getPronounSentenceCompletedSentence(question)}`, className: "answer-line" }
+    { text: `正確答案：${getPronounSentenceCompletedSentence(question)}`, className: "answer-line" },
+    ...getPronounSentenceChoiceFeedback(question)
   ];
 }
 
