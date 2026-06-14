@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Basic English Grammar Game</title>
-  <link rel="stylesheet" href="style.css?v=20260613-verb-table-images-lite">
+  <link rel="stylesheet" href="style.css?v=20260614-pronoun-sentence">
 </head>
 <body>
   <main class="app-shell">
@@ -77,8 +77,17 @@
             </span>
           </button>
 
-          <button class="lesson-card" type="button" data-start-lesson="countable-nouns">
+          <button class="lesson-card" type="button" data-start-lesson="pronoun-sentence">
             <span class="lesson-kicker">Lesson 05</span>
+            <strong>代名詞句子 MC</strong>
+            <span class="lesson-meta">
+              <span>看英文空格，選正確代名詞</span>
+              <span id="menu-progress-pronoun-sentence">0/50</span>
+            </span>
+          </button>
+
+          <button class="lesson-card" type="button" data-start-lesson="countable-nouns">
+            <span class="lesson-kicker">Lesson 06</span>
             <strong>可數名詞的使用要點</strong>
             <span class="lesson-meta">
               <span>判斷名詞單眾數，錯句要改正</span>
@@ -88,7 +97,7 @@
 
           <div class="lesson-card-wrap">
             <button class="lesson-card lesson-card-with-info" type="button" data-start-lesson="verb-table">
-              <span class="lesson-kicker">Lesson 06</span>
+              <span class="lesson-kicker">Lesson 07</span>
               <strong>Verb Table 動詞四式</strong>
               <span class="lesson-meta">
                 <span>現在式、過去式、PP、ING 配對</span>
@@ -213,6 +222,8 @@
           </div>
         </div>
 
+        <div id="pronoun-sentence-choice" class="choice-grid pronoun-sentence-choice hidden" aria-label="代名詞選項"></div>
+
         <div id="verb-table-choice" class="verb-table-game hidden">
           <div id="verb-table-slots" class="verb-table-slots" aria-label="Verb table inputs"></div>
           <div class="verb-table-actions">
@@ -276,7 +287,7 @@
     <div class="verb-table-reference-panel">
       <header class="verb-table-reference-header">
         <div>
-          <div class="verb-table-reference-kicker">Lesson 06</div>
+          <div class="verb-table-reference-kicker">Lesson 07</div>
           <h2 id="verb-table-reference-title">Verb Table 動詞四式</h2>
         </div>
         <button class="verb-table-reference-close" type="button" aria-label="關閉" data-close-verb-table-reference>×</button>
@@ -310,6 +321,6 @@
   <script src="grammar_verb_table_data.js?v=20260613-verb-table-reference"></script>
   <script src="grammar_verb_table_audio_manifest.js?v=20260613-verb-table-reference"></script>
   <script src="grammar_verb_table_image_manifest.js?v=20260613-verb-table-images-lite"></script>
-  <script src="app.js?v=20260613-verb-table-images-lite"></script>
+  <script src="app.js?v=20260614-pronoun-sentence"></script>
 </body>
 </html>

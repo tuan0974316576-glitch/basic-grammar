@@ -403,6 +403,70 @@ const PRONOUN_MATCH_QUESTIONS = [
   }
 ];
 
+function makePronounSentenceQuestion({ id, sentence, answer, choices, explanation }) {
+  return {
+    id,
+    type: "pronoun-sentence",
+    sentence,
+    answer,
+    choices,
+    explanation
+  };
+}
+
+const PRONOUN_SENTENCE_QUESTIONS = [
+  { id: "ps001", sentence: "___ is a doctor.", answer: "He", choices: ["He", "him", "We", "His"], explanation: "空格在 is 前面，是主語位置，所以要用主語代名詞 He。" },
+  { id: "ps002", sentence: "___ am happy today.", answer: "I", choices: ["I", "me", "my", "mine"], explanation: "空格在 am 前面，是主語位置，所以要用主語代名詞 I。" },
+  { id: "ps003", sentence: "___ are my friends.", answer: "They", choices: ["They", "them", "their", "theirs"], explanation: "空格在 are 前面，是主語位置，所以要用主語代名詞 They。" },
+  { id: "ps004", sentence: "___ are in the classroom.", answer: "We", choices: ["We", "us", "our", "ours"], explanation: "空格在 are 前面，是主語位置，所以要用主語代名詞 We。" },
+  { id: "ps005", sentence: "___ is under the table.", answer: "It", choices: ["It", "it", "its", "They"], explanation: "空格在 is 前面，是主語位置，所以要用主語代名詞 It。" },
+  { id: "ps006", sentence: "___ is my sister.", answer: "She", choices: ["She", "her", "hers", "their"], explanation: "空格在 is 前面，是主語位置，所以要用主語代名詞 She。" },
+  { id: "ps007", sentence: "___ are very kind.", answer: "You", choices: ["You", "your", "yours", "us"], explanation: "空格在 are 前面，是主語位置，所以要用主語代名詞 You。" },
+  { id: "ps008", sentence: "___ can swim well.", answer: "We", choices: ["We", "us", "our", "ours"], explanation: "空格在 can 前面，是主語位置，所以要用主語代名詞 We。" },
+  { id: "ps009", sentence: "___ has a red bag.", answer: "He", choices: ["He", "him", "his", "they"], explanation: "空格在 has 前面，是主語位置，所以要用主語代名詞 He。" },
+  { id: "ps010", sentence: "___ like English.", answer: "They", choices: ["They", "them", "their", "theirs"], explanation: "空格在 like 前面，是主語位置，所以要用主語代名詞 They。" },
+  { id: "ps011", sentence: "___ goes to school by bus.", answer: "She", choices: ["She", "her", "hers", "we"], explanation: "空格在 goes 前面，是主語位置，所以要用主語代名詞 She。" },
+  { id: "ps012", sentence: "___ are ready now.", answer: "You", choices: ["You", "your", "yours", "me"], explanation: "空格在 are 前面，是主語位置，所以要用主語代名詞 You。" },
+  { id: "ps013", sentence: "___ is a small cat.", answer: "It", choices: ["It", "it", "its", "them"], explanation: "空格在 is 前面，是主語位置，所以要用主語代名詞 It。" },
+  { id: "ps014", sentence: "Tom likes ___.", answer: "her", choices: ["she", "her", "hers", "his"], explanation: "空格在 likes 後面，是非主語位置，所以要用非主語代名詞 her。" },
+  { id: "ps015", sentence: "Mary helps ___.", answer: "him", choices: ["he", "him", "his", "their"], explanation: "空格在 helps 後面，是非主語位置，所以要用非主語代名詞 him。" },
+  { id: "ps016", sentence: "The teacher sees ___.", answer: "us", choices: ["We", "us", "our", "ours"], explanation: "空格在 sees 後面，是非主語位置，所以要用非主語代名詞 us。" },
+  { id: "ps017", sentence: "This gift is for ___.", answer: "you", choices: ["you", "your", "yours", "we"], explanation: "空格在 for 後面，是非主語位置，所以要用非主語代名詞 you。" },
+  { id: "ps018", sentence: "Mum talks to ___.", answer: "me", choices: ["I", "me", "my", "mine"], explanation: "空格在 to 後面，是非主語位置，所以要用非主語代名詞 me。" },
+  { id: "ps019", sentence: "Dad calls ___.", answer: "them", choices: ["They", "them", "their", "theirs"], explanation: "空格在 calls 後面，是非主語位置，所以要用非主語代名詞 them。" },
+  { id: "ps020", sentence: "I sit with ___.", answer: "him", choices: ["he", "him", "his", "hers"], explanation: "空格在 with 後面，是非主語位置，所以要用非主語代名詞 him。" },
+  { id: "ps021", sentence: "Please listen to ___.", answer: "me", choices: ["I", "me", "my", "mine"], explanation: "空格在 to 後面，是非主語位置，所以要用非主語代名詞 me。" },
+  { id: "ps022", sentence: "The dog follows ___.", answer: "us", choices: ["We", "us", "our", "ours"], explanation: "空格在 follows 後面，是非主語位置，所以要用非主語代名詞 us。" },
+  { id: "ps023", sentence: "Sam waits for ___.", answer: "her", choices: ["she", "her", "hers", "his"], explanation: "空格在 for 後面，是非主語位置，所以要用非主語代名詞 her。" },
+  { id: "ps024", sentence: "Anna plays with ___.", answer: "them", choices: ["They", "them", "their", "theirs"], explanation: "空格在 with 後面，是非主語位置，所以要用非主語代名詞 them。" },
+  { id: "ps025", sentence: "The noise scares ___.", answer: "me", choices: ["I", "me", "my", "mine"], explanation: "空格在 scares 後面，是非主語位置，所以要用非主語代名詞 me。" },
+  { id: "ps026", sentence: "This is ___ book.", answer: "my", choices: ["I", "me", "my", "mine"], explanation: "空格後面有名詞 book，表示「我的」，所以要用 my。" },
+  { id: "ps027", sentence: "That is ___ pencil.", answer: "your", choices: ["you", "your", "yours", "we"], explanation: "空格後面有名詞 pencil，表示「你的」，所以要用 your。" },
+  { id: "ps028", sentence: "He is ___ brother.", answer: "her", choices: ["she", "her", "hers", "him"], explanation: "空格後面有名詞 brother，表示「她的」，所以要用 her。" },
+  { id: "ps029", sentence: "My mother is ___ sister.", answer: "your", choices: ["theirs", "its", "we", "your"], explanation: "空格後面有名詞 sister，表示「你的」，所以要用 your。" },
+  { id: "ps030", sentence: "They love ___ school.", answer: "their", choices: ["They", "them", "their", "theirs"], explanation: "空格後面有名詞 school，表示「他們的」，所以要用 their。" },
+  { id: "ps031", sentence: "We clean ___ classroom.", answer: "our", choices: ["We", "us", "our", "ours"], explanation: "空格後面有名詞 classroom，表示「我們的」，所以要用 our。" },
+  { id: "ps032", sentence: "The dog eats ___ food.", answer: "its", choices: ["It", "it", "its", "they"], explanation: "空格後面有名詞 food，表示「它的」，所以要用 its。" },
+  { id: "ps033", sentence: "Tom brings ___ bag.", answer: "his", choices: ["he", "him", "his", "hers"], explanation: "空格後面有名詞 bag，表示「他的」，所以要用 his。" },
+  { id: "ps034", sentence: "Mary opens ___ lunch box.", answer: "her", choices: ["she", "her", "hers", "him"], explanation: "空格後面有名詞 lunch box，表示「她的」，所以要用 her。" },
+  { id: "ps035", sentence: "I like ___ new shoes.", answer: "your", choices: ["you", "your", "yours", "them"], explanation: "空格後面有名詞 shoes，表示「你的」，所以要用 your。" },
+  { id: "ps036", sentence: "She reads ___ book.", answer: "her", choices: ["she", "her", "hers", "they"], explanation: "空格後面有名詞 book，表示「她的」，所以要用 her。" },
+  { id: "ps037", sentence: "We visit ___ grandparents.", answer: "our", choices: ["We", "us", "our", "ours"], explanation: "空格後面有名詞 grandparents，表示「我們的」，所以要用 our。" },
+  { id: "ps038", sentence: "The students raise ___ hands.", answer: "their", choices: ["They", "them", "their", "theirs"], explanation: "空格後面有名詞 hands，表示「他們的」，所以要用 their。" },
+  { id: "ps039", sentence: "This book is ___.", answer: "mine", choices: ["I", "me", "my", "mine"], explanation: "空格後面沒有名詞，表示「我的東西」，所以要用 mine。" },
+  { id: "ps040", sentence: "The blue pen is ___.", answer: "yours", choices: ["you", "your", "yours", "we"], explanation: "空格後面沒有名詞，表示「你的東西」，所以要用 yours。" },
+  { id: "ps041", sentence: "The red bag is ___.", answer: "his", choices: ["he", "him", "his", "her"], explanation: "空格後面沒有名詞，表示「他的東西」，所以要用 his。" },
+  { id: "ps042", sentence: "The pink ruler is ___.", answer: "hers", choices: ["she", "her", "hers", "him"], explanation: "空格後面沒有名詞，表示「她的東西」，所以要用 hers。" },
+  { id: "ps043", sentence: "This classroom is ___.", answer: "ours", choices: ["We", "us", "our", "ours"], explanation: "空格後面沒有名詞，表示「我們的東西」，所以要用 ours。" },
+  { id: "ps044", sentence: "Those toys are ___.", answer: "theirs", choices: ["They", "them", "their", "theirs"], explanation: "空格後面沒有名詞，表示「他們的東西」，所以要用 theirs。" },
+  { id: "ps045", sentence: "This little bed is ___.", answer: "its", choices: ["It", "it", "its", "they"], explanation: "空格後面沒有名詞，表示「它的東西」，所以要用 its。" },
+  { id: "ps046", sentence: "The lunch is ___.", answer: "mine", choices: ["I", "me", "my", "mine"], explanation: "空格後面沒有名詞，表示「我的東西」，所以要用 mine。" },
+  { id: "ps047", sentence: "The football is ___.", answer: "ours", choices: ["We", "us", "our", "ours"], explanation: "空格後面沒有名詞，表示「我們的東西」，所以要用 ours。" },
+  { id: "ps048", sentence: "The pencils are ___.", answer: "theirs", choices: ["They", "them", "their", "theirs"], explanation: "空格後面沒有名詞，表示「他們的東西」，所以要用 theirs。" },
+  { id: "ps049", sentence: "The seat is ___.", answer: "his", choices: ["he", "him", "his", "hers"], explanation: "空格後面沒有名詞，表示「他的東西」，所以要用 his。" },
+  { id: "ps050", sentence: "The umbrella is ___.", answer: "hers", choices: ["she", "her", "hers", "his"], explanation: "空格後面沒有名詞，表示「她的東西」，所以要用 hers。" }
+].map(makePronounSentenceQuestion);
+
 function makeCountableNounQuestion({ id, sentence, zh, isCorrect, answer, explanation }) {
   return {
     id,
@@ -707,6 +771,7 @@ const LESSON2_ID = "lesson2";
 const QUIZ1_ID = "quiz1";
 const SENTENCE_UNDERLINE_ID = "sentence-underline";
 const PRONOUN_MATCH_ID = "pronoun-match";
+const PRONOUN_SENTENCE_ID = "pronoun-sentence";
 const COUNTABLE_NOUN_ID = "countable-nouns";
 const VERB_TABLE_ID = "verb-table";
 const LESSON_PROGRESS_KEYS = {
@@ -715,6 +780,7 @@ const LESSON_PROGRESS_KEYS = {
   [QUIZ1_ID]: "basic_grammar_quiz_01_progress_v1",
   [SENTENCE_UNDERLINE_ID]: "basic_grammar_sentence_underline_progress_v1",
   [PRONOUN_MATCH_ID]: "basic_grammar_pronoun_match_progress_v1",
+  [PRONOUN_SENTENCE_ID]: "basic_grammar_pronoun_sentence_progress_v1",
   [COUNTABLE_NOUN_ID]: "basic_grammar_countable_nouns_progress_v1",
   [VERB_TABLE_ID]: "basic_grammar_verb_table_progress_v1"
 };
@@ -749,15 +815,21 @@ const LESSONS = {
     title: "代名詞",
     questions: PRONOUN_MATCH_QUESTIONS
   },
+  [PRONOUN_SENTENCE_ID]: {
+    id: PRONOUN_SENTENCE_ID,
+    kicker: "Lesson 05",
+    title: "代名詞句子 MC",
+    questions: PRONOUN_SENTENCE_QUESTIONS
+  },
   [COUNTABLE_NOUN_ID]: {
     id: COUNTABLE_NOUN_ID,
-    kicker: "Lesson 05",
+    kicker: "Lesson 06",
     title: "可數名詞的使用要點",
     questions: COUNTABLE_NOUN_QUESTIONS
   },
   [VERB_TABLE_ID]: {
     id: VERB_TABLE_ID,
-    kicker: "Lesson 06",
+    kicker: "Lesson 07",
     title: "Verb Table 動詞四式",
     questions: VERB_TABLE_QUESTIONS
   }
@@ -891,6 +963,7 @@ const el = {
   menuProgressQuiz1: document.querySelector("#menu-progress-quiz1"),
   menuProgressSentenceUnderline: document.querySelector("#menu-progress-sentence-underline"),
   menuProgressPronounMatch: document.querySelector("#menu-progress-pronoun-match"),
+  menuProgressPronounSentence: document.querySelector("#menu-progress-pronoun-sentence"),
   menuProgressCountableNouns: document.querySelector("#menu-progress-countable-nouns"),
   menuProgressVerbTable: document.querySelector("#menu-progress-verb-table"),
   openVerbTableReferenceBtn: document.querySelector("#open-verb-table-reference"),
@@ -942,6 +1015,7 @@ const el = {
   pronounWordBank: document.querySelector("#pronoun-word-bank"),
   resetPronounBtn: document.querySelector("#reset-pronoun-btn"),
   confirmPronounBtn: document.querySelector("#confirm-pronoun-btn"),
+  pronounSentenceChoice: document.querySelector("#pronoun-sentence-choice"),
   verbTableChoice: document.querySelector("#verb-table-choice"),
   verbTableSlots: document.querySelector("#verb-table-slots"),
   resetVerbTableBtn: document.querySelector("#reset-verb-table-btn"),
@@ -1246,6 +1320,7 @@ function updateMenuProgress() {
   const quiz1Progress = getProgress(QUIZ1_ID);
   const underlineProgress = getProgress(SENTENCE_UNDERLINE_ID);
   const pronounProgress = getProgress(PRONOUN_MATCH_ID);
+  const pronounSentenceProgress = getProgress(PRONOUN_SENTENCE_ID);
   const countableProgress = getProgress(COUNTABLE_NOUN_ID);
   const verbTableProgress = getProgress(VERB_TABLE_ID);
   el.menuProgressLesson1.textContent = `${lesson1Progress}/${getLessonTotal(LESSON1_ID)}`;
@@ -1253,15 +1328,18 @@ function updateMenuProgress() {
   el.menuProgressQuiz1.textContent = `${quiz1Progress}/${getLessonTotal(QUIZ1_ID)}`;
   el.menuProgressSentenceUnderline.textContent = `${underlineProgress}/${getLessonTotal(SENTENCE_UNDERLINE_ID)}`;
   el.menuProgressPronounMatch.textContent = `${pronounProgress}/${getLessonTotal(PRONOUN_MATCH_ID)}`;
+  el.menuProgressPronounSentence.textContent = `${pronounSentenceProgress}/${getLessonTotal(PRONOUN_SENTENCE_ID)}`;
   el.menuProgressCountableNouns.textContent = `${countableProgress}/${getLessonTotal(COUNTABLE_NOUN_ID)}`;
   el.menuProgressVerbTable.textContent = `${verbTableProgress}/${getLessonTotal(VERB_TABLE_ID)}`;
 
   if (verbTableProgress >= getLessonTotal(VERB_TABLE_ID)) {
-    el.menuCoachLine.textContent = "Lesson 06 已完成，Verb Table 四式記得好穩。";
+    el.menuCoachLine.textContent = "Lesson 07 已完成，Verb Table 四式記得好穩。";
   } else if (countableProgress >= getLessonTotal(COUNTABLE_NOUN_ID)) {
-    el.menuCoachLine.textContent = "Lesson 05 已完成，可以挑戰 Lesson 06 Verb Table。";
+    el.menuCoachLine.textContent = "Lesson 06 已完成，可以挑戰 Lesson 07 Verb Table。";
+  } else if (pronounSentenceProgress >= getLessonTotal(PRONOUN_SENTENCE_ID)) {
+    el.menuCoachLine.textContent = "Lesson 05 已完成，可以挑戰 Lesson 06 可數名詞。";
   } else if (pronounProgress >= getLessonTotal(PRONOUN_MATCH_ID)) {
-    el.menuCoachLine.textContent = "Lesson 04 已完成，可以挑戰 Lesson 05 可數名詞。";
+    el.menuCoachLine.textContent = "Lesson 04 已完成，可以挑戰 Lesson 05 代名詞句子 MC。";
   } else if (underlineProgress >= getLessonTotal(SENTENCE_UNDERLINE_ID)) {
     el.menuCoachLine.textContent = "Lesson 03 已完成，可以挑戰 Lesson 04 代名詞。";
   } else if (quiz1Progress >= getLessonTotal(QUIZ1_ID)) {
@@ -1326,6 +1404,7 @@ function showOnlyChoice(choice) {
   el.sentenceBuilderChoice.classList.toggle("hidden", choice !== "builder");
   el.sentenceUnderlineChoice.classList.toggle("hidden", choice !== "underline");
   el.pronounMatchChoice.classList.toggle("hidden", choice !== "pronoun");
+  el.pronounSentenceChoice.classList.toggle("hidden", choice !== "pronounSentence");
   el.verbTableChoice.classList.toggle("hidden", choice !== "verbTable");
 }
 
@@ -1522,12 +1601,14 @@ function renderQuestion() {
   el.lessonScreen.classList.toggle("quiz-screen", state.lessonId === QUIZ1_ID);
   el.lessonScreen.classList.toggle("underline-screen", state.lessonId === SENTENCE_UNDERLINE_ID);
   el.lessonScreen.classList.toggle("pronoun-screen", state.lessonId === PRONOUN_MATCH_ID);
+  el.lessonScreen.classList.toggle("pronoun-sentence-screen", state.lessonId === PRONOUN_SENTENCE_ID);
   el.lessonScreen.classList.toggle("countable-screen", state.lessonId === COUNTABLE_NOUN_ID);
   el.lessonScreen.classList.toggle("verb-table-screen", state.lessonId === VERB_TABLE_ID);
-  el.chinesePrompt.classList.toggle("english-prompt", state.lessonId === LESSON2_ID || state.lessonId === COUNTABLE_NOUN_ID);
+  el.chinesePrompt.classList.toggle("english-prompt", state.lessonId === LESSON2_ID || state.lessonId === PRONOUN_SENTENCE_ID || state.lessonId === COUNTABLE_NOUN_ID);
   el.chinesePrompt.classList.toggle("builder-prompt", state.lessonId === QUIZ1_ID);
   el.chinesePrompt.classList.toggle("underline-prompt", state.lessonId === SENTENCE_UNDERLINE_ID);
   el.chinesePrompt.classList.toggle("pronoun-prompt", state.lessonId === PRONOUN_MATCH_ID);
+  el.chinesePrompt.classList.toggle("pronoun-sentence-prompt", state.lessonId === PRONOUN_SENTENCE_ID);
   el.chinesePrompt.classList.toggle("verb-table-prompt", state.lessonId === VERB_TABLE_ID);
   el.ruleCard.classList.toggle("hidden", state.lessonId !== LESSON2_ID);
   el.verbTokenGrid.replaceChildren();
@@ -1538,6 +1619,7 @@ function renderQuestion() {
   el.underlinePalette.replaceChildren();
   el.pronounMatchBoard.replaceChildren();
   el.pronounWordBank.replaceChildren();
+  el.pronounSentenceChoice.replaceChildren();
   el.verbTableSlots.replaceChildren();
   clearVerbTableImage();
   setFeedback();
@@ -1559,6 +1641,11 @@ function renderQuestion() {
 
   if (state.lessonId === PRONOUN_MATCH_ID) {
     renderPronounMatchQuestion(question);
+    return;
+  }
+
+  if (state.lessonId === PRONOUN_SENTENCE_ID) {
+    renderPronounSentenceQuestion(question);
     return;
   }
 
@@ -1679,6 +1766,26 @@ function renderPronounMatchQuestion(question) {
 
   updatePronounMatchView();
   showOnlyChoice("pronoun");
+}
+
+function renderPronounSentenceQuestion(question) {
+  el.stepLabel.textContent = "English sentence";
+  el.categoryPill.textContent = "代名詞 MC";
+  el.categoryPill.dataset.type = "pronoun-sentence";
+  el.chinesePrompt.textContent = question.sentence;
+  el.guidance.textContent = "";
+
+  question.choices.forEach((choice) => {
+    const button = document.createElement("button");
+    button.className = "option-btn pronoun-sentence-btn";
+    button.type = "button";
+    button.textContent = choice;
+    button.dataset.pronounSentenceAnswer = choice;
+    button.addEventListener("click", () => answerPronounSentence(choice));
+    el.pronounSentenceChoice.append(button);
+  });
+
+  showOnlyChoice("pronounSentence");
 }
 
 function renderCountableNounQuestion(question) {
@@ -1870,6 +1977,29 @@ function getCountableNounFeedback(question, opening = "") {
     { text: `${opening}${question.explanation}` },
     { text: `正確答案：${question.answer}`, className: "answer-line" }
   ];
+}
+
+function getPronounSentenceCompletedSentence(question) {
+  return question.sentence.replace("___", question.answer);
+}
+
+function getPronounSentenceFeedback(question, isCorrect) {
+  return [
+    { text: `${isCorrect ? "正確。" : "未正確。"}${question.explanation}` },
+    { text: `正確答案：${getPronounSentenceCompletedSentence(question)}`, className: "answer-line" }
+  ];
+}
+
+function answerPronounSentence(choice) {
+  const question = currentQuestion();
+  if (!question || state.lessonId !== PRONOUN_SENTENCE_ID || state.resolved) return;
+
+  if (choice !== question.answer) {
+    recordWrong(getPronounSentenceFeedback(question, false));
+    return;
+  }
+
+  completeVerbLessonQuestion(getPronounSentenceFeedback(question, true));
 }
 
 function normalizeTypedSentence(value) {
@@ -2981,6 +3111,7 @@ function renderReviewSummary() {
 
 function getQuestionPrompt(question) {
   if (question.type === "countable") return question.sentence;
+  if (question.type === "pronoun-sentence") return question.sentence;
   if (question.type === "verb-table") return question.zh;
   return question.zh || question.sentence || question.text || "";
 }
@@ -2997,6 +3128,9 @@ function getResultMessage(percent, mistakes, mode) {
   if (state.lessonId === PRONOUN_MATCH_ID && percent === 100 && mistakes === 0) return "滿分！主語、非主語、的、的東西都配得好準。";
   if (state.lessonId === PRONOUN_MATCH_ID && percent >= 80) return "好穩陣！繼續記住 my/mine、your/yours 呢類分別。";
   if (state.lessonId === PRONOUN_MATCH_ID) return "慢慢嚟，先分清楚主語、非主語、的、的東西。";
+  if (state.lessonId === PRONOUN_SENTENCE_ID && percent === 100 && mistakes === 0) return "滿分！你可以直接用位置判斷代名詞。";
+  if (state.lessonId === PRONOUN_SENTENCE_ID && percent >= 80) return "好穩陣！繼續留意名詞前後有冇名詞。";
+  if (state.lessonId === PRONOUN_SENTENCE_ID) return "慢慢嚟，先分清主語、非主語、的、的東西。";
   if (state.lessonId === SENTENCE_UNDERLINE_ID && percent === 100 && mistakes === 0) return "滿分！你分到每個句子嘅邊界。";
   if (state.lessonId === SENTENCE_UNDERLINE_ID && percent >= 80) return "好穩陣！繼續留意 that、and、but、so、or 後面。";
   if (state.lessonId === SENTENCE_UNDERLINE_ID) return "慢慢嚟，先搵主語同動詞，再分顏色。";
