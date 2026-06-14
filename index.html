@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Basic English Grammar Game</title>
-  <link rel="stylesheet" href="style.css?v=20260615-docked-keyboard">
+  <link rel="stylesheet" href="style.css?v=20260615-app-keyboard-dock">
 </head>
 <body>
   <main class="app-shell">
@@ -191,7 +191,6 @@
 
         <div id="countable-correction-choice" class="countable-correction hidden">
           <button id="countable-correction-input" class="text-entry-field countable-correction-input" type="button" aria-label="輸入正確英文句子" data-placeholder="Type the correct sentence"></button>
-          <div id="countable-correction-keyboard" class="verb-table-keyboard text-game-keyboard countable-correction-keyboard hidden" aria-label="Countable noun correction keyboard"></div>
         </div>
 
         <div id="sentence-builder-choice" class="sentence-builder hidden">
@@ -226,46 +225,6 @@
 
         <div id="verb-table-choice" class="verb-table-game hidden">
           <div id="verb-table-slots" class="verb-table-slots" aria-label="Verb table inputs"></div>
-          <div id="verb-table-keyboard" class="verb-table-keyboard" aria-label="Verb Table keyboard">
-            <div class="verb-table-key-row">
-              <button class="verb-table-key" type="button" data-verb-table-key="q">Q</button>
-              <button class="verb-table-key" type="button" data-verb-table-key="w">W</button>
-              <button class="verb-table-key" type="button" data-verb-table-key="e">E</button>
-              <button class="verb-table-key" type="button" data-verb-table-key="r">R</button>
-              <button class="verb-table-key" type="button" data-verb-table-key="t">T</button>
-              <button class="verb-table-key" type="button" data-verb-table-key="y">Y</button>
-              <button class="verb-table-key" type="button" data-verb-table-key="u">U</button>
-              <button class="verb-table-key" type="button" data-verb-table-key="i">I</button>
-              <button class="verb-table-key" type="button" data-verb-table-key="o">O</button>
-              <button class="verb-table-key" type="button" data-verb-table-key="p">P</button>
-            </div>
-            <div class="verb-table-key-row">
-              <button class="verb-table-key" type="button" data-verb-table-key="a">A</button>
-              <button class="verb-table-key" type="button" data-verb-table-key="s">S</button>
-              <button class="verb-table-key" type="button" data-verb-table-key="d">D</button>
-              <button class="verb-table-key" type="button" data-verb-table-key="f">F</button>
-              <button class="verb-table-key" type="button" data-verb-table-key="g">G</button>
-              <button class="verb-table-key" type="button" data-verb-table-key="h">H</button>
-              <button class="verb-table-key" type="button" data-verb-table-key="j">J</button>
-              <button class="verb-table-key" type="button" data-verb-table-key="k">K</button>
-              <button class="verb-table-key" type="button" data-verb-table-key="l">L</button>
-            </div>
-            <div class="verb-table-key-row">
-              <button class="verb-table-key" type="button" data-verb-table-key="z">Z</button>
-              <button class="verb-table-key" type="button" data-verb-table-key="x">X</button>
-              <button class="verb-table-key" type="button" data-verb-table-key="c">C</button>
-              <button class="verb-table-key" type="button" data-verb-table-key="v">V</button>
-              <button class="verb-table-key" type="button" data-verb-table-key="b">B</button>
-              <button class="verb-table-key" type="button" data-verb-table-key="n">N</button>
-              <button class="verb-table-key" type="button" data-verb-table-key="m">M</button>
-              <button class="verb-table-key verb-table-key-backspace" type="button" data-verb-table-key="backspace">⌫</button>
-            </div>
-            <div class="verb-table-key-row verb-table-key-row-actions">
-              <button class="verb-table-key verb-table-key-nav" type="button" data-verb-table-key="prev">←</button>
-              <button class="verb-table-key verb-table-key-nav" type="button" data-verb-table-key="next">→</button>
-              <button class="verb-table-key verb-table-key-enter" type="button" data-verb-table-key="enter">確認</button>
-            </div>
-          </div>
         </div>
 
         <button id="english-card" class="english-card hidden" type="button">
@@ -318,6 +277,50 @@
     </section>
   </main>
 
+  <div id="app-keyboard-dock" class="app-keyboard-dock" aria-label="Game keyboard dock">
+    <div id="countable-correction-keyboard" class="verb-table-keyboard text-game-keyboard countable-correction-keyboard hidden" aria-label="Countable noun correction keyboard"></div>
+    <div id="verb-table-keyboard" class="verb-table-keyboard hidden" aria-label="Verb Table keyboard">
+      <div class="verb-table-key-row">
+        <button class="verb-table-key" type="button" data-verb-table-key="q">Q</button>
+        <button class="verb-table-key" type="button" data-verb-table-key="w">W</button>
+        <button class="verb-table-key" type="button" data-verb-table-key="e">E</button>
+        <button class="verb-table-key" type="button" data-verb-table-key="r">R</button>
+        <button class="verb-table-key" type="button" data-verb-table-key="t">T</button>
+        <button class="verb-table-key" type="button" data-verb-table-key="y">Y</button>
+        <button class="verb-table-key" type="button" data-verb-table-key="u">U</button>
+        <button class="verb-table-key" type="button" data-verb-table-key="i">I</button>
+        <button class="verb-table-key" type="button" data-verb-table-key="o">O</button>
+        <button class="verb-table-key" type="button" data-verb-table-key="p">P</button>
+      </div>
+      <div class="verb-table-key-row">
+        <button class="verb-table-key" type="button" data-verb-table-key="a">A</button>
+        <button class="verb-table-key" type="button" data-verb-table-key="s">S</button>
+        <button class="verb-table-key" type="button" data-verb-table-key="d">D</button>
+        <button class="verb-table-key" type="button" data-verb-table-key="f">F</button>
+        <button class="verb-table-key" type="button" data-verb-table-key="g">G</button>
+        <button class="verb-table-key" type="button" data-verb-table-key="h">H</button>
+        <button class="verb-table-key" type="button" data-verb-table-key="j">J</button>
+        <button class="verb-table-key" type="button" data-verb-table-key="k">K</button>
+        <button class="verb-table-key" type="button" data-verb-table-key="l">L</button>
+      </div>
+      <div class="verb-table-key-row">
+        <button class="verb-table-key" type="button" data-verb-table-key="z">Z</button>
+        <button class="verb-table-key" type="button" data-verb-table-key="x">X</button>
+        <button class="verb-table-key" type="button" data-verb-table-key="c">C</button>
+        <button class="verb-table-key" type="button" data-verb-table-key="v">V</button>
+        <button class="verb-table-key" type="button" data-verb-table-key="b">B</button>
+        <button class="verb-table-key" type="button" data-verb-table-key="n">N</button>
+        <button class="verb-table-key" type="button" data-verb-table-key="m">M</button>
+        <button class="verb-table-key verb-table-key-backspace" type="button" data-verb-table-key="backspace">⌫</button>
+      </div>
+      <div class="verb-table-key-row verb-table-key-row-actions">
+        <button class="verb-table-key verb-table-key-nav" type="button" data-verb-table-key="prev">←</button>
+        <button class="verb-table-key verb-table-key-nav" type="button" data-verb-table-key="next">→</button>
+        <button class="verb-table-key verb-table-key-enter" type="button" data-verb-table-key="enter">確認</button>
+      </div>
+    </div>
+  </div>
+
   <section id="verb-table-reference-modal" class="verb-table-reference-modal hidden" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="verb-table-reference-title">
     <button class="verb-table-reference-backdrop" type="button" aria-label="關閉 Verb Table 溫習表" data-close-verb-table-reference></button>
     <div class="verb-table-reference-panel">
@@ -361,6 +364,6 @@
   <script src="grammar_verb_table_image_manifest.js?v=20260613-verb-table-images-lite"></script>
   <script src="grammar_core.js?v=20260614-native-flow-core"></script>
   <script src="grammar_data.js?v=20260614-native-data-layer"></script>
-  <script src="app.js?v=20260615-docked-keyboard"></script>
+  <script src="app.js?v=20260615-app-keyboard-dock"></script>
 </body>
 </html>
