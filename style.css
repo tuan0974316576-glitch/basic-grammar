@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@200..900&family=M+PLUS+Rounded+1c:wght@400;700;800;900&family=Zen+Maru+Gothic:wght@500;700&display=swap");
 
 :root {
-  --base-bg: #fdfbf7;
+  --base-bg: #ffffff;
   --primary-color: #4ecdc4;
   --primary-dark: #2cb5ac;
   --secondary-color: #ffe66d;
@@ -85,7 +85,7 @@ button {
 }
 
 #lesson-screen.active.keyboard-docked {
-  height: min(720px, calc(100svh - clamp(260px, 40svh, 350px)));
+  height: min(720px, calc(100svh - clamp(260px, 36svh, 304px)));
 }
 
 #menu-screen.active {
