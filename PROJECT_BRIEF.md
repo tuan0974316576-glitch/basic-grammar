@@ -76,6 +76,14 @@ Keep the first version simple. Add the data model before adding complex UI.
 
 Long term, the app should save player records online so students can continue on another phone and teachers can review progress.
 
+### Firebase Project Migration Reminder
+
+Current temporary setup uses the Battleship-1 Firebase project (`battleship-game-c0909`) so login and progress sync can be tested quickly.
+
+Before any real student rollout, real `studentId + PIN` batch, App Store / Play Store release, teacher dashboard, paid class usage, or large vocab / scan sync feature, remind the user to move this app to its own Firebase project.
+
+Do not let real student records build up in the shared Battleship-1 project unless the user explicitly accepts that migration cost.
+
 Recommended direction:
 
 - Firebase Authentication with tutoring-centre student accounts
