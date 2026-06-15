@@ -12,6 +12,15 @@ function normalizeStudentId(value) {
   return String(value || "").trim().toUpperCase();
 }
 
+function makeStudentEmail(studentId) {
+  const projectId = process.env.GCLOUD_PROJECT || process.env.GOOGLE_CLOUD_PROJECT || "students";
+  return `${normalizeStudentId(studentId).toLowerCase()}@${projectId}.local`;
+}
+
+function makeStudentPassword(studentId, pin, salt) {
+  return `Gg-${normalizeStudentId(studentId)}-${hashPin(pin, salt).slice(0, 24)}`;
+}
+
 function hashPin(pin, salt) {
   return crypto
     .pbkdf2Sync(String(pin), String(salt), 120000, 32, "sha256")
@@ -59,19 +68,26 @@ exports.studentLogin = onCall(async (request) => {
   const uid = account.uid || `student_${studentId.toLowerCase()}`;
   const displayName = account.displayName || studentId;
   const classId = account.classId || "";
+  const email = account.email || makeStudentEmail(studentId);
+  const authPassword = makeStudentPassword(studentId, pin, salt);
 
   await admin.auth().updateUser(uid, {
+    email,
+    password: authPassword,
     displayName
   }).catch(async (error) => {
     if (error?.code !== "auth/user-not-found") throw error;
     await admin.auth().createUser({
       uid,
+      email,
+      password: authPassword,
       displayName
     });
   });
 
   await accountRef.set({
     uid,
+    email,
     displayName,
     classId,
     lastLoginAt: admin.firestore.FieldValue.serverTimestamp(),
@@ -85,16 +101,11 @@ exports.studentLogin = onCall(async (request) => {
     lastLoginAt: admin.firestore.FieldValue.serverTimestamp()
   }, { merge: true });
 
-  const token = await admin.auth().createCustomToken(uid, {
-    studentId,
-    classId
-  });
-
   return {
-    token,
+    email,
+    authPassword,
     studentId,
     displayName,
     classId
   };
 });
-

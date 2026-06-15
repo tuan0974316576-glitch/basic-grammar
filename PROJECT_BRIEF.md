@@ -76,19 +76,17 @@ Keep the first version simple. Add the data model before adding complex UI.
 
 Long term, the app should save player records online so students can continue on another phone and teachers can review progress.
 
-### Firebase Project Migration Reminder
+### Firebase Project Status
 
-Current temporary setup uses the Battleship-1 Firebase project (`battleship-game-c0909`) so login and progress sync can be tested quickly.
+Current setup uses the dedicated Grammar Game Firebase project (`enguistics-grammar-game`).
 
-Before any real student rollout, real `studentId + PIN` batch, App Store / Play Store release, teacher dashboard, paid class usage, or large vocab / scan sync feature, remind the user to move this app to its own Firebase project.
-
-Do not let real student records build up in the shared Battleship-1 project unless the user explicitly accepts that migration cost.
+Do not move real student records back into the shared Battleship-1 project.
 
 Recommended direction:
 
 - Firebase Authentication with tutoring-centre student accounts
 - Students log in with `studentId + PIN`
-- A Firebase Cloud Function verifies the PIN server-side and returns a Firebase custom token
+- A Firebase Cloud Function verifies the PIN server-side and provisions a generated Firebase Auth email/password account
 - PINs must never be stored in frontend code; store salted PIN hashes in protected Firestore documents
 - Firestore for progress, attempts, vocab items, achievements, and streaks
 - local/offline-first behaviour so students can still play without perfect internet

@@ -731,18 +731,18 @@ async function loginWithStudentPin() {
   setStudentLoginStatus("登入中...", "loading");
 
   try {
-    const { httpsCallable, signInWithCustomToken, doc, setDoc, serverTimestamp } = firebase.modules;
+    const { httpsCallable, signInWithEmailAndPassword, doc, setDoc, serverTimestamp } = firebase.modules;
     const studentLogin = httpsCallable(firebase.functions, "studentLogin");
     const result = await studentLogin({
       studentId,
       pin
     });
     const data = result?.data || {};
-    if (!data.token) {
-      throw new Error("Missing custom token.");
+    if (!data.email || !data.authPassword) {
+      throw new Error("Missing student auth credentials.");
     }
 
-    const credential = await signInWithCustomToken(firebase.auth, data.token);
+    const credential = await signInWithEmailAndPassword(firebase.auth, data.email, data.authPassword);
     const profile = {
       uid: credential.user.uid,
       studentId: data.studentId || studentId,

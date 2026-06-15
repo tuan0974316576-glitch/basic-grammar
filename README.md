@@ -26,7 +26,7 @@ Current modules:
 - Word blocks include question-specific distractors, animate into the answer line, can be tapped again to return to the word bank, and show the correct answer after a wrong confirmation.
 - Lesson 03: 何謂句子.
 - 30 Lesson 03 questions ask students to drag crayon-like underline strokes across English sentence units.
-- Student login scaffold supports centre-issued `studentId + PIN` accounts through Firebase custom tokens.
+- Student login scaffold supports centre-issued `studentId + PIN` accounts through server-verified PINs and generated Firebase Auth email/password accounts.
 - Progress still saves locally when Firebase is not configured, then queues grammar progress for Firestore sync after login.
 
 Published with GitHub Pages:
@@ -35,7 +35,7 @@ https://tuan0974316576-glitch.github.io/basic-grammar/
 
 ## Student Login Setup
 
-The current Firebase target is the Battleship-1 project (`battleship-game-c0909`) for quick testing only. Before real student rollout, a real `studentId + PIN` batch, teacher dashboard, app-store release, or major vocab / scan sync, move this app to its own Firebase project.
+The current Firebase target is the dedicated Grammar Game project (`enguistics-grammar-game`). Do not move it back to the shared Battleship-1 project.
 
 1. Copy `firebase_config.example.js` to `firebase_config.js` and fill in the Firebase web app config.
 2. Deploy the Firestore rules and callable function with `npm run firebase:deploy:login`.
@@ -45,8 +45,6 @@ The current Firebase target is the Battleship-1 project (`battleship-game-c0909`
 6. If Firebase deploy says credentials are invalid, run `npm run firebase:reauth` first.
 7. On this Mac, Firebase CLI commands run through `scripts/firebase-cli.js` so Node uses the Homebrew / system CA certificates.
 
-Firestore rules and the callable `studentLogin` function are currently deployed to the temporary Battleship-1 Firebase project and have been verified with sample student accounts. Keep using it only for testing.
-
-Before real student rollout, a real `studentId + PIN` batch, teacher dashboard, app-store release, or major vocab / scan sync, move this app to its own Firebase project.
+Firestore rules and the callable `studentLogin` function are currently deployed to `enguistics-grammar-game` and have been verified with sample student accounts.
 
 The app must never contain real student PINs. The seed script stores salted PIN hashes in Firestore.
