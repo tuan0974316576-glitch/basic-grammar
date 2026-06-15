@@ -1,0 +1,84 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    function userDocKeysAreSafe() {
+      return request.resource.data.keys().hasOnly([
+        "studentId",
+        "displayName",
+        "classId",
+        "lastLoginAt",
+        "bestStreak",
+        "updatedAt"
+      ]);
+    }
+
+    function studentIdMatchesToken() {
+      return !("studentId" in request.resource.data)
+        || request.resource.data.studentId == request.auth.token.studentId;
+    }
+
+    function classIdMatchesToken() {
+      return !("classId" in request.resource.data)
+        || !("classId" in request.auth.token)
+        || request.resource.data.classId == request.auth.token.classId;
+    }
+
+    function grammarProgressKeysAreSafe() {
+      return request.resource.data.keys().hasOnly([
+        "lessonId",
+        "completed",
+        "total",
+        "updatedAt",
+        "syncedAt"
+      ]);
+    }
+
+    match /studentAccounts/{studentId} {
+      allow read, write: if false;
+    }
+
+    match /users/{uid} {
+      allow read: if isOwner(uid);
+      allow create, update: if isOwner(uid)
+        && userDocKeysAreSafe()
+        && studentIdMatchesToken()
+        && classIdMatchesToken();
+      allow delete: if false;
+
+      match /grammarProgress/{lessonId} {
+        allow read: if isOwner(uid);
+        allow create, update: if isOwner(uid)
+          && grammarProgressKeysAreSafe()
+          && request.resource.data.lessonId == lessonId;
+        allow delete: if false;
+      }
+
+      match /vocabItems/{wordId} {
+        allow read, create, update, delete: if isOwner(uid);
+      }
+
+      match /attempts/{attemptId} {
+        allow read, create: if isOwner(uid);
+        allow update, delete: if false;
+      }
+
+      match /achievements/{achievementId} {
+        allow read, create, update: if isOwner(uid);
+        allow delete: if false;
+      }
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -8,10 +8,15 @@
   },
   "scripts": {
     "test": "node tests/grammar_core.test.js && node tests/grammar_data.test.js",
-    "check:js": "node --check grammar_core.js && node --check grammar_data.js && node --check app.js && node --check scripts/build-web.js",
+    "check:js": "node --check grammar_core.js && node --check grammar_data.js && node --check app.js && node --check firebase-init.js && node --check scripts/build-web.js && npm --prefix functions run lint && node --check functions/seed-students.js",
     "build:web": "node scripts/build-web.js",
     "cap:sync": "npm run build:web && npx cap sync android",
-    "android:run": "npm run build:web && npx cap run android --target S2AIOC447307NGJ"
+    "android:run": "npm run build:web && npx cap run android --target S2AIOC447307NGJ",
+    "firebase:deploy:functions": "npx firebase-tools deploy --only functions:grammar-game",
+    "firebase:deploy:firestore": "npx firebase-tools deploy --only firestore",
+    "firebase:deploy:login": "npx firebase-tools deploy --only functions:grammar-game,firestore",
+    "firebase:seed:students": "npm --prefix functions run seed:students -- students.json",
+    "firebase:reauth": "npx firebase-tools login --reauth"
   },
   "repository": {
     "type": "git",

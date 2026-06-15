@@ -35,9 +35,13 @@ https://tuan0974316576-glitch.github.io/basic-grammar/
 
 ## Student Login Setup
 
+The current Firebase target is the Battleship-1 project (`battleship-game-c0909`) for quick testing only. Before real student rollout, a real `studentId + PIN` batch, teacher dashboard, app-store release, or major vocab / scan sync, move this app to its own Firebase project.
+
 1. Copy `firebase_config.example.js` to `firebase_config.js` and fill in the Firebase web app config.
-2. Deploy `functions/index.js` so the callable function `studentLogin` can verify `studentId + PIN`.
+2. Deploy the Firestore rules and callable function with `npm run firebase:deploy:login`.
 3. Put student accounts in `functions/students.json`, using the same shape as `functions/students.sample.json`.
-4. Run `npm install` inside `functions/`, then run `npm run seed:students -- students.json` from the `functions/` folder.
+4. Run `npm install` inside `functions/` once, then run `npm run firebase:seed:students`.
+5. Test one account in the app before creating a full class batch.
+6. If Firebase deploy says credentials are invalid, run `npm run firebase:reauth` first.
 
 The app must never contain real student PINs. The seed script stores salted PIN hashes in Firestore.
