@@ -2,6 +2,8 @@
 
 A standalone beginner grammar game for students, styled after the Japanese stationery look of the N4 practice app.
 
+Long-term product direction is documented in [PROJECT_BRIEF.md](PROJECT_BRIEF.md).
+
 Current modules:
 
 - Lesson 01: 分辨句子是否有主動動詞
