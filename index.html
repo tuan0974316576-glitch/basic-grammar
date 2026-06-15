@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="style.css?v=20260615-white-bg-dock-tune">
 </head>
 <body>
-  <main class="app-shell">
+  <main id="app-shell" class="app-shell">
     <section id="menu-screen" class="screen active" aria-labelledby="app-title">
       <div class="topline">English Grammar Practice</div>
       <h1 id="app-title">Basic English Grammar Game</h1>
@@ -108,6 +108,83 @@
               <span>i</span>
             </button>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="vocab-screen" class="screen tab-screen" aria-labelledby="vocab-title">
+      <div class="topline">Vocabulary</div>
+      <h1 id="vocab-title">詞彙溫習</h1>
+
+      <div class="module-layout vocab-layout">
+        <div class="module-control-panel">
+          <div class="coach-card" aria-label="Vocabulary coach">
+            <img src="assets/grammar-coach.svg" alt="">
+            <div>
+              <span>Coach</span>
+              <strong>生字庫準備中。</strong>
+            </div>
+          </div>
+
+          <div class="module-stat-grid">
+            <div>
+              <span>Words</span>
+              <strong>0</strong>
+            </div>
+            <div>
+              <span>Review</span>
+              <strong>0</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="module-picker" aria-label="詞彙模式">
+          <button class="module-card" type="button" disabled>
+            <span class="lesson-kicker">Reading</span>
+            <strong>認字</strong>
+            <span class="module-card-meta">Coming soon</span>
+          </button>
+          <button class="module-card" type="button" disabled>
+            <span class="lesson-kicker">Spelling</span>
+            <strong>串字</strong>
+            <span class="module-card-meta">Coming soon</span>
+          </button>
+          <button class="module-card" type="button" disabled>
+            <span class="lesson-kicker">Listening</span>
+            <strong>聽字</strong>
+            <span class="module-card-meta">Coming soon</span>
+          </button>
+          <button class="module-card" type="button" disabled>
+            <span class="lesson-kicker">Speaking</span>
+            <strong>讀字</strong>
+            <span class="module-card-meta">Coming soon</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="scan-screen" class="screen tab-screen" aria-labelledby="scan-title">
+      <div class="topline">Scan Dictionary</div>
+      <h1 id="scan-title">Scan 查字</h1>
+
+      <div class="module-layout scan-layout">
+        <div class="module-control-panel">
+          <div class="coach-card" aria-label="Scan coach">
+            <img src="assets/grammar-coach.svg" alt="">
+            <div>
+              <span>Coach</span>
+              <strong>影相查字稍後合併。</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="scan-preview" aria-label="Scan preview">
+          <div class="scan-lens">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <button class="primary-btn scan-placeholder-btn" type="button" disabled>Scan</button>
         </div>
       </div>
     </section>
@@ -276,6 +353,21 @@
       </footer>
     </section>
   </main>
+
+  <nav id="app-tab-bar" class="app-tab-bar" aria-label="Main sections">
+    <button class="app-tab active" type="button" data-app-tab="grammar" aria-current="page">
+      <span class="app-tab-icon" aria-hidden="true">G</span>
+      <span>文法</span>
+    </button>
+    <button class="app-tab" type="button" data-app-tab="vocab">
+      <span class="app-tab-icon" aria-hidden="true">V</span>
+      <span>詞彙</span>
+    </button>
+    <button class="app-tab" type="button" data-app-tab="scan">
+      <span class="app-tab-icon" aria-hidden="true">S</span>
+      <span>Scan</span>
+    </button>
+  </nav>
 
   <div id="app-keyboard-dock" class="app-keyboard-dock" aria-label="Game keyboard dock">
     <div id="countable-correction-keyboard" class="verb-table-keyboard text-game-keyboard countable-correction-keyboard hidden" aria-label="Countable noun correction keyboard"></div>

@@ -145,7 +145,12 @@ const state = {
 };
 
 const el = {
+  appShell: document.querySelector("#app-shell"),
+  appTabBar: document.querySelector("#app-tab-bar"),
+  appTabs: [...document.querySelectorAll("[data-app-tab]")],
   menuScreen: document.querySelector("#menu-screen"),
+  vocabScreen: document.querySelector("#vocab-screen"),
+  scanScreen: document.querySelector("#scan-screen"),
   lessonScreen: document.querySelector("#lesson-screen"),
   resultScreen: document.querySelector("#result-screen"),
   menuProgressLesson1: document.querySelector("#menu-progress-lesson1"),
@@ -568,10 +573,46 @@ function updateMenuProgress() {
   }
 }
 
-function showScreen(screen) {
+function getScreenForTab(tabName) {
+  if (tabName === "vocab") return "vocab";
+  if (tabName === "scan") return "scan";
+  return "menu";
+}
+
+function updateAppTabs(activeTab, focusMode) {
+  el.appShell?.classList.toggle("focus-mode", focusMode);
+  el.appTabBar?.classList.toggle("hidden", focusMode);
+  el.appTabs.forEach((button) => {
+    const isActive = button.dataset.appTab === activeTab;
+    button.classList.toggle("active", isActive);
+    if (isActive) {
+      button.setAttribute("aria-current", "page");
+    } else {
+      button.removeAttribute("aria-current");
+    }
+  });
+}
+
+function showScreen(screen, options = {}) {
+  const activeTab = options.activeTab || (["vocab", "scan"].includes(screen) ? screen : "grammar");
+  const focusMode = screen === "lesson" || screen === "result";
   el.menuScreen.classList.toggle("active", screen === "menu");
+  el.vocabScreen.classList.toggle("active", screen === "vocab");
+  el.scanScreen.classList.toggle("active", screen === "scan");
   el.lessonScreen.classList.toggle("active", screen === "lesson");
   el.resultScreen.classList.toggle("active", screen === "result");
+  updateAppTabs(activeTab, focusMode);
+}
+
+function switchAppTab(tabName) {
+  clearPronounAutoAdvance();
+  clearCelebration();
+  cancelSpeech();
+  deactivateTextEntryTarget();
+  setVerbTableKeyboardDocked(false);
+  closeVerbTableReference();
+  showScreen(getScreenForTab(tabName), { activeTab: tabName });
+  playUiSound("next");
 }
 
 function updateLessonChrome() {
@@ -1052,8 +1093,9 @@ function backToMenu() {
   cancelSpeech();
   deactivateTextEntryTarget();
   setVerbTableKeyboardDocked(false);
+  closeVerbTableReference();
   updateMenuProgress();
-  showScreen("menu");
+  showScreen("menu", { activeTab: "grammar" });
   playUiSound("next");
 }
 
@@ -3206,6 +3248,9 @@ document.addEventListener("contextmenu", (event) => event.preventDefault());
 
 document.querySelectorAll("[data-start-lesson]").forEach((button) => {
   button.addEventListener("click", () => startLesson(button.dataset.startLesson));
+});
+el.appTabs.forEach((button) => {
+  button.addEventListener("click", () => switchAppTab(button.dataset.appTab));
 });
 document.querySelector("[data-back-menu]").addEventListener("click", backToMenu);
 document.querySelector("[data-result-menu]").addEventListener("click", backToMenu);
