@@ -1,0 +1,15 @@
+[
+  {
+    "studentId": "S001",
+    "pin": "1234",
+    "displayName": "S001",
+    "classId": "P3A"
+  },
+  {
+    "studentId": "S002",
+    "pin": "5678",
+    "displayName": "S002",
+    "classId": "P3A"
+  }
+]
+

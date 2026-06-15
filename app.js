@@ -26,6 +26,8 @@ const {
 const SOUND_KEY = "basic_grammar_sound_enabled_v1";
 const PRACTICE_COUNT_KEY = "basic_grammar_practice_count_v1";
 const BEST_STREAK_KEY = "basic_grammar_best_streak_v1";
+const STUDENT_PROFILE_KEY = "basic_grammar_student_profile_v1";
+const STUDENT_PROGRESS_SYNC_KEY = "basic_grammar_progress_sync_queue_v1";
 const CATEGORY_LABELS = {
   action: "動作動詞",
   be: "「是」句",
@@ -113,6 +115,14 @@ let verbTableReferenceRendered = false;
 let activeVerbTableReferenceAudio = null;
 let activeVerbTableReferenceAudioToken = 0;
 let activeTextEntryTarget = "";
+let studentAuthState = {
+  resolved: false,
+  available: false,
+  authenticated: false,
+  user: null,
+  profile: getSavedStudentProfile(),
+  message: ""
+};
 
 const state = {
   lessonId: LESSON1_ID,
@@ -161,6 +171,17 @@ const el = {
   menuProgressPronounSentence: document.querySelector("#menu-progress-pronoun-sentence"),
   menuProgressCountableNouns: document.querySelector("#menu-progress-countable-nouns"),
   menuProgressVerbTable: document.querySelector("#menu-progress-verb-table"),
+  accountWidget: document.querySelector("#account-widget"),
+  accountOpenBtn: document.querySelector("#account-open-btn"),
+  accountStatusDot: document.querySelector("#account-status-dot"),
+  accountLabel: document.querySelector("#account-label"),
+  studentLoginModal: document.querySelector("#student-login-modal"),
+  studentLoginStatus: document.querySelector("#student-login-status"),
+  studentIdInput: document.querySelector("#student-id-input"),
+  studentPinInput: document.querySelector("#student-pin-input"),
+  studentLoginKeyboard: document.querySelector("#student-login-keyboard"),
+  studentLoginSubmit: document.querySelector("#student-login-submit"),
+  studentLogoutBtn: document.querySelector("#student-logout-btn"),
   openVerbTableReferenceBtn: document.querySelector("#open-verb-table-reference"),
   verbTableReferenceModal: document.querySelector("#verb-table-reference-modal"),
   verbTableReferenceSearch: document.querySelector("#verb-table-reference-search"),
@@ -277,6 +298,51 @@ function saveBestStreak() {
     localStorage.setItem(BEST_STREAK_KEY, String(state.bestStreak));
   } catch (_error) {
     // The best streak still updates during the current session.
+  }
+  queuePlayerProfileSync();
+}
+
+function safeJsonParse(value, fallback) {
+  try {
+    return value ? JSON.parse(value) : fallback;
+  } catch (_error) {
+    return fallback;
+  }
+}
+
+function getSavedStudentProfile() {
+  try {
+    return safeJsonParse(localStorage.getItem(STUDENT_PROFILE_KEY), null);
+  } catch (_error) {
+    return null;
+  }
+}
+
+function saveStudentProfile(profile) {
+  try {
+    if (profile) {
+      localStorage.setItem(STUDENT_PROFILE_KEY, JSON.stringify(profile));
+    } else {
+      localStorage.removeItem(STUDENT_PROFILE_KEY);
+    }
+  } catch (_error) {
+    // Login still works during the current session.
+  }
+}
+
+function getProgressSyncQueue() {
+  try {
+    return safeJsonParse(localStorage.getItem(STUDENT_PROGRESS_SYNC_KEY), {});
+  } catch (_error) {
+    return {};
+  }
+}
+
+function setProgressSyncQueue(queue) {
+  try {
+    localStorage.setItem(STUDENT_PROGRESS_SYNC_KEY, JSON.stringify(queue || {}));
+  } catch (_error) {
+    // The next meaningful save will try again.
   }
 }
 
@@ -530,6 +596,269 @@ function saveProgress(completed, lessonId = state.lessonId) {
     updatedAt: Date.now()
   }));
   updateMenuProgress();
+  queueLessonProgressSync(lessonId, {
+    completed: nextCompleted,
+    total,
+    updatedAt: Date.now()
+  });
+}
+
+function tryRestoreStudentProfile() {
+  const saved = getSavedStudentProfile();
+  if (!saved) {
+    syncAccountWidget();
+    setStudentLoginStatus();
+    return;
+  }
+
+  studentAuthState.profile = saved;
+  syncAccountWidget();
+  setStudentLoginStatus();
+}
+
+function getStudentDisplayName() {
+  return studentAuthState.profile?.displayName
+    || studentAuthState.profile?.studentId
+    || studentAuthState.user?.displayName
+    || "";
+}
+
+function syncAccountWidget() {
+  const label = getStudentDisplayName();
+  const isOnlineStudent = Boolean(studentAuthState.authenticated && label);
+  el.accountLabel.textContent = isOnlineStudent ? label : "本機記錄";
+  el.accountStatusDot.classList.toggle("online", isOnlineStudent);
+  el.accountStatusDot.classList.toggle("offline", !isOnlineStudent);
+  el.accountOpenBtn?.setAttribute("aria-label", isOnlineStudent ? `${label} 已登入` : "學生登入");
+
+  if (el.studentLogoutBtn) {
+    el.studentLogoutBtn.classList.toggle("hidden", !studentAuthState.authenticated);
+  }
+}
+
+function setStudentLoginStatus(message = "", type = "") {
+  if (!el.studentLoginStatus) return;
+  el.studentLoginStatus.className = `student-login-status${type ? ` ${type}` : ""}`;
+  if (message) {
+    el.studentLoginStatus.textContent = message;
+    return;
+  }
+
+  if (!studentAuthState.available) {
+    el.studentLoginStatus.textContent = studentAuthState.message || "未連接 Firebase，暫時只會儲存在本機。";
+    return;
+  }
+
+  if (studentAuthState.authenticated) {
+    el.studentLoginStatus.textContent = `${getStudentDisplayName()} 已登入，練習紀錄會自動同步。`;
+    return;
+  }
+
+  el.studentLoginStatus.textContent = "輸入學號同 PIN，就可以同步練習紀錄。";
+}
+
+function openStudentLogin() {
+  if (!el.studentLoginModal) return;
+  el.studentLoginModal.classList.remove("hidden");
+  el.studentLoginModal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("modal-open");
+  setStudentLoginStatus();
+  if (!getTextEntryValue(el.studentIdInput)) {
+    activateTextEntryTarget("studentId");
+  }
+  playUiSound("step");
+}
+
+function closeStudentLogin() {
+  if (!el.studentLoginModal || el.studentLoginModal.classList.contains("hidden")) return;
+  deactivateTextEntryTarget("studentId");
+  deactivateTextEntryTarget("studentPin");
+  el.studentLoginModal.classList.add("hidden");
+  el.studentLoginModal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("modal-open");
+  playUiSound("next");
+}
+
+function applyStudentAuthState(patch = {}) {
+  studentAuthState = {
+    ...studentAuthState,
+    ...patch,
+    profile: patch.profile || studentAuthState.profile
+  };
+
+  if (patch.user && studentAuthState.profile?.uid && patch.user.uid !== studentAuthState.profile.uid) {
+    studentAuthState.profile = {
+      ...studentAuthState.profile,
+      uid: patch.user.uid
+    };
+    saveStudentProfile(studentAuthState.profile);
+  }
+
+  syncAccountWidget();
+  setStudentLoginStatus();
+
+  if (studentAuthState.authenticated) {
+    flushProgressSyncQueue();
+    queuePlayerProfileSync();
+  }
+}
+
+window.applyStudentAuthState = applyStudentAuthState;
+
+function getFirebaseBundle() {
+  return window.grammarFirebase || null;
+}
+
+async function loginWithStudentPin() {
+  const studentId = getTextEntryValue(el.studentIdInput).trim().toUpperCase();
+  const pin = getTextEntryValue(el.studentPinInput).trim();
+  const firebase = getFirebaseBundle();
+
+  if (!firebase || !studentAuthState.available) {
+    setStudentLoginStatus("未設定 Firebase，暫時未可以用學號登入。", "error");
+    playUiSound("wrong");
+    return;
+  }
+
+  if (!studentId || !pin) {
+    setStudentLoginStatus("請輸入學號同 PIN。", "error");
+    playUiSound("wrong");
+    return;
+  }
+
+  el.studentLoginSubmit.disabled = true;
+  setStudentLoginStatus("登入中...", "loading");
+
+  try {
+    const { httpsCallable, signInWithCustomToken, doc, setDoc, serverTimestamp } = firebase.modules;
+    const studentLogin = httpsCallable(firebase.functions, "studentLogin");
+    const result = await studentLogin({
+      studentId,
+      pin
+    });
+    const data = result?.data || {};
+    if (!data.token) {
+      throw new Error("Missing custom token.");
+    }
+
+    const credential = await signInWithCustomToken(firebase.auth, data.token);
+    const profile = {
+      uid: credential.user.uid,
+      studentId: data.studentId || studentId,
+      displayName: data.displayName || data.studentId || studentId,
+      classId: data.classId || "",
+      lastLoginAt: Date.now()
+    };
+
+    studentAuthState.profile = profile;
+    saveStudentProfile(profile);
+    await setDoc(doc(firebase.db, "users", credential.user.uid), {
+      studentId: profile.studentId,
+      displayName: profile.displayName,
+      classId: profile.classId,
+      lastLoginAt: serverTimestamp()
+    }, { merge: true });
+
+    applyStudentAuthState({
+      resolved: true,
+      available: true,
+      authenticated: true,
+      user: {
+        uid: credential.user.uid,
+        displayName: profile.displayName,
+        isAnonymous: false
+      },
+      profile
+    });
+    clearTextEntryValue("studentPin");
+    setStudentLoginStatus("登入成功，紀錄會自動同步。", "success");
+    playUiSound("correct");
+    setTimeout(closeStudentLogin, 520);
+  } catch (error) {
+    console.warn("Student login failed:", error);
+    setStudentLoginStatus("學號或 PIN 不正確，請再試一次。", "error");
+    clearTextEntryValue("studentPin");
+    activateTextEntryTarget("studentPin", { showKeyboard: true });
+    playUiSound("wrong");
+  } finally {
+    el.studentLoginSubmit.disabled = false;
+  }
+}
+
+async function logoutStudent() {
+  const firebase = getFirebaseBundle();
+  try {
+    if (firebase?.auth && firebase.modules?.signOut) {
+      await firebase.modules.signOut(firebase.auth);
+    }
+  } catch (error) {
+    console.warn("Student logout failed:", error);
+  }
+
+  studentAuthState = {
+    ...studentAuthState,
+    authenticated: false,
+    user: null,
+    profile: null
+  };
+  saveStudentProfile(null);
+  syncAccountWidget();
+  setStudentLoginStatus("已登出。");
+  playUiSound("next");
+}
+
+function queueLessonProgressSync(lessonId, progress) {
+  const queue = getProgressSyncQueue();
+  queue[lessonId] = {
+    ...progress,
+    lessonId
+  };
+  setProgressSyncQueue(queue);
+  flushProgressSyncQueue();
+}
+
+function queuePlayerProfileSync() {
+  flushPlayerProfileSync();
+}
+
+async function flushPlayerProfileSync() {
+  const firebase = getFirebaseBundle();
+  const uid = studentAuthState.profile?.uid || studentAuthState.user?.uid;
+  if (!uid || !firebase?.db || !firebase.modules?.doc || !firebase.modules?.setDoc) return;
+
+  try {
+    const { doc, setDoc, serverTimestamp } = firebase.modules;
+    await setDoc(doc(firebase.db, "users", uid), {
+      bestStreak: state.bestStreak,
+      updatedAt: serverTimestamp()
+    }, { merge: true });
+  } catch (error) {
+    console.warn("Player profile sync failed:", error);
+  }
+}
+
+async function flushProgressSyncQueue() {
+  const firebase = getFirebaseBundle();
+  const uid = studentAuthState.profile?.uid || studentAuthState.user?.uid;
+  if (!uid || !firebase?.db || !firebase.modules?.doc || !firebase.modules?.setDoc) return;
+
+  const queue = getProgressSyncQueue();
+  const entries = Object.entries(queue);
+  if (!entries.length) return;
+
+  try {
+    const { doc, setDoc, serverTimestamp } = firebase.modules;
+    for (const [lessonId, progress] of entries) {
+      await setDoc(doc(firebase.db, "users", uid, "grammarProgress", lessonId), {
+        ...progress,
+        syncedAt: serverTimestamp()
+      }, { merge: true });
+      delete queue[lessonId];
+    }
+    setProgressSyncQueue(queue);
+  } catch (error) {
+    console.warn("Progress sync failed:", error);
+  }
 }
 
 function updateMenuProgress() {
@@ -591,6 +920,11 @@ function updateAppTabs(activeTab, focusMode) {
       button.removeAttribute("aria-current");
     }
   });
+}
+
+function syncLoginKeyboardVisibility() {
+  const keyboardVisible = Boolean(el.studentLoginKeyboard && !el.studentLoginKeyboard.classList.contains("hidden"));
+  el.appShell?.classList.toggle("login-keyboard-docked", keyboardVisible);
 }
 
 function showScreen(screen, options = {}) {
@@ -692,7 +1026,9 @@ function setTextEntryValue(field, value) {
 
   const nextValue = String(value || "");
   field.dataset.value = nextValue;
-  field.textContent = nextValue;
+  field.textContent = field.dataset.mask === "true" && nextValue
+    ? "•".repeat(nextValue.length)
+    : nextValue;
   field.classList.toggle("is-placeholder", !nextValue);
   field.setAttribute("aria-valuetext", nextValue || field.dataset.placeholder || "");
 }
@@ -735,6 +1071,46 @@ function getTextEntryConfig(targetName = activeTextEntryTarget) {
       maxLength: 36,
       onChange: renderVerbTableReferenceRows,
       onEnter: hideVerbTableReferenceSearchKeyboard
+    },
+    studentId: {
+      field: el.studentIdInput,
+      keyboard: el.studentLoginKeyboard,
+      keys: [
+        ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
+        ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
+        ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
+        ["z", "x", "c", "v", "b", "n", "m", "backspace"],
+        ["clear", "enter"]
+      ],
+      labels: {
+        backspace: "⌫",
+        clear: "清空",
+        enter: "下一格"
+      },
+      maxLength: 16,
+      pattern: /^[a-zA-Z0-9_-]$/,
+      onChange: () => setStudentLoginStatus(),
+      onEnter: () => activateTextEntryTarget("studentPin")
+    },
+    studentPin: {
+      field: el.studentPinInput,
+      keyboard: el.studentLoginKeyboard,
+      keys: [
+        ["1", "2", "3"],
+        ["4", "5", "6"],
+        ["7", "8", "9"],
+        ["clear", "0", "backspace"],
+        ["enter"]
+      ],
+      labels: {
+        backspace: "⌫",
+        clear: "清空",
+        enter: "登入"
+      },
+      maxLength: 8,
+      pattern: /^[0-9]$/,
+      onChange: () => setStudentLoginStatus(),
+      onEnter: loginWithStudentPin
     }
   };
 
@@ -743,7 +1119,8 @@ function getTextEntryConfig(targetName = activeTextEntryTarget) {
 
 function buildTextGameKeyboard(targetName) {
   const config = getTextEntryConfig(targetName);
-  if (!config?.keyboard || config.keyboard.dataset.built === "true") return;
+  if (!config?.keyboard) return;
+  if (config.keyboard.dataset.built === "true" && config.keyboard.dataset.builtFor === targetName) return;
 
   config.keyboard.replaceChildren();
   config.keys.forEach((rowKeys) => {
@@ -770,6 +1147,7 @@ function buildTextGameKeyboard(targetName) {
   });
 
   config.keyboard.dataset.built = "true";
+  config.keyboard.dataset.builtFor = targetName;
 }
 
 function setTextEntryKeyboardVisible(targetName, visible) {
@@ -778,6 +1156,7 @@ function setTextEntryKeyboardVisible(targetName, visible) {
 
   buildTextGameKeyboard(targetName);
   config.keyboard.classList.toggle("hidden", !visible);
+  syncLoginKeyboardVisibility();
   const isLessonKeyboard = targetName === "countable";
   if (isLessonKeyboard) {
     el.lessonScreen.classList.toggle("keyboard-docked", visible);
@@ -795,6 +1174,7 @@ function deactivateTextEntryTarget(targetName = activeTextEntryTarget) {
   if (!targetName || activeTextEntryTarget === targetName) {
     activeTextEntryTarget = "";
   }
+  syncLoginKeyboardVisibility();
   updateTextEntryToggleLabels();
 }
 
@@ -810,6 +1190,7 @@ function activateTextEntryTarget(targetName, options = {}) {
   buildTextGameKeyboard(targetName);
   config.field.classList.add("is-active");
   setTextEntryKeyboardVisible(targetName, options.showKeyboard ?? !isComputerKeyboardMode());
+  syncLoginKeyboardVisibility();
   updateTextEntryToggleLabels();
 }
 
@@ -825,6 +1206,7 @@ function updateTextEntryToggleLabels() {
 }
 
 function formatTextEntryCharacter(targetName, value, currentValue) {
+  if (targetName === "studentId") return value.toUpperCase();
   if (targetName !== "countable") return value;
   if (window.GrammarCore?.formatSentenceInputCharacter) {
     return window.GrammarCore.formatSentenceInputCharacter(value, currentValue);
@@ -837,6 +1219,7 @@ function formatTextEntryCharacter(targetName, value, currentValue) {
 function appendTextEntryValue(targetName, value) {
   const config = getTextEntryConfig(targetName);
   if (!config?.field) return;
+  if (config.pattern && !config.pattern.test(value)) return;
 
   const currentValue = getTextEntryValue(config.field);
   if (currentValue.length >= config.maxLength) return;
@@ -919,7 +1302,7 @@ function handleTextEntryDocumentKeydown(event) {
     return true;
   }
 
-  if (event.key.length === 1 && /^[a-zA-Z./]$/.test(event.key)) {
+  if (event.key.length === 1 && (config.pattern ? config.pattern.test(event.key) : /^[a-zA-Z./]$/.test(event.key))) {
     event.preventDefault();
     appendTextEntryValue(activeTextEntryTarget, event.key.toLowerCase());
     playUiSound("step");
@@ -3259,6 +3642,14 @@ el.openVerbTableReferenceBtn?.addEventListener("click", openVerbTableReference);
 document.querySelectorAll("[data-close-verb-table-reference]").forEach((button) => {
   button.addEventListener("click", closeVerbTableReference);
 });
+el.accountOpenBtn?.addEventListener("click", openStudentLogin);
+document.querySelectorAll("[data-close-student-login]").forEach((button) => {
+  button.addEventListener("click", closeStudentLogin);
+});
+el.studentIdInput?.addEventListener("click", () => activateTextEntryTarget("studentId"));
+el.studentPinInput?.addEventListener("click", () => activateTextEntryTarget("studentPin"));
+el.studentLoginSubmit?.addEventListener("click", loginWithStudentPin);
+el.studentLogoutBtn?.addEventListener("click", logoutStudent);
 el.verbTableReferenceSearch?.addEventListener("click", showVerbTableReferenceSearchKeyboard);
 el.verbTableReferenceSearchToggle?.addEventListener("click", toggleVerbTableReferenceSearchKeyboard);
 el.verbTableReferenceBody?.addEventListener("click", handleVerbTableReferenceBodyClick);
@@ -3267,6 +3658,7 @@ document.addEventListener("keydown", (event) => {
   if (handleTextEntryDocumentKeydown(event)) return;
 
   if (event.key === "Escape") {
+    closeStudentLogin();
     closeVerbTableReference();
   }
 });
@@ -3319,6 +3711,13 @@ el.confirmVerbTableBtn?.addEventListener("click", submitVerbTable);
 
 setTextEntryValue(el.countableCorrectionInput, "");
 setTextEntryValue(el.verbTableReferenceSearch, "");
+setTextEntryValue(el.studentIdInput, "");
+setTextEntryValue(el.studentPinInput, "");
+tryRestoreStudentProfile();
+if (window.pendingStudentAuthState) {
+  applyStudentAuthState(window.pendingStudentAuthState);
+  window.pendingStudentAuthState = null;
+}
 updateMenuProgress();
 syncPracticeCount();
 syncSoundToggle();

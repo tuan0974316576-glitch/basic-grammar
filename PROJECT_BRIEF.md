@@ -78,13 +78,17 @@ Long term, the app should save player records online so students can continue on
 
 Recommended direction:
 
-- Firebase Authentication, starting with anonymous accounts
+- Firebase Authentication with tutoring-centre student accounts
+- Students log in with `studentId + PIN`
+- A Firebase Cloud Function verifies the PIN server-side and returns a Firebase custom token
+- PINs must never be stored in frontend code; store salted PIN hashes in protected Firestore documents
 - Firestore for progress, attempts, vocab items, achievements, and streaks
 - local/offline-first behaviour so students can still play without perfect internet
 
 Suggested collections:
 
 - `users/{uid}`
+- `studentAccounts/{studentId}` for server-side account lookup only
 - `users/{uid}/grammarProgress/{lessonId}`
 - `users/{uid}/vocabItems/{wordId}`
 - `users/{uid}/attempts/{attemptId}`
@@ -109,4 +113,3 @@ Do not write to Firebase on every tap. Prefer saving after a question, round, or
 - Avoid examples that are grammatically possible but semantically odd.
 - If a sentence is testing a specific grammar point, make the context natural enough that students focus on the grammar, not on guessing the teacher's intention.
 - Wrong-answer explanations should distinguish different types of mistakes.
-

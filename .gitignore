@@ -6,3 +6,6 @@ android/local.properties
 android/app/build/
 android/build/
 android/capacitor-cordova-android-plugins/build/
+firebase_config.local.js
+functions/students.json
+functions/service-account*.json

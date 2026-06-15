@@ -26,7 +26,18 @@ Current modules:
 - Word blocks include question-specific distractors, animate into the answer line, can be tapped again to return to the word bank, and show the correct answer after a wrong confirmation.
 - Lesson 03: 何謂句子.
 - 30 Lesson 03 questions ask students to drag crayon-like underline strokes across English sentence units.
+- Student login scaffold supports centre-issued `studentId + PIN` accounts through Firebase custom tokens.
+- Progress still saves locally when Firebase is not configured, then queues grammar progress for Firestore sync after login.
 
 Published with GitHub Pages:
 
 https://tuan0974316576-glitch.github.io/basic-grammar/
+
+## Student Login Setup
+
+1. Copy `firebase_config.example.js` to `firebase_config.js` and fill in the Firebase web app config.
+2. Deploy `functions/index.js` so the callable function `studentLogin` can verify `studentId + PIN`.
+3. Put student accounts in `functions/students.json`, using the same shape as `functions/students.sample.json`.
+4. Run `npm install` inside `functions/`, then run `npm run seed:students -- students.json` from the `functions/` folder.
+
+The app must never contain real student PINs. The seed script stores salted PIN hashes in Firestore.

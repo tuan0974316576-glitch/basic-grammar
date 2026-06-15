@@ -8,6 +8,13 @@
 </head>
 <body>
   <main id="app-shell" class="app-shell">
+    <div id="account-widget" class="account-widget" aria-live="polite">
+      <button id="account-open-btn" class="account-open-btn" type="button">
+        <span id="account-status-dot" class="account-status-dot" aria-hidden="true"></span>
+        <span id="account-label">本機記錄</span>
+      </button>
+    </div>
+
     <section id="menu-screen" class="screen active" aria-labelledby="app-title">
       <div class="topline">English Grammar Practice</div>
       <h1 id="app-title">Basic English Grammar Game</h1>
@@ -447,8 +454,43 @@
     </div>
   </section>
 
+  <section id="student-login-modal" class="student-login-modal hidden" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="student-login-title">
+    <button class="student-login-backdrop" type="button" aria-label="關閉登入" data-close-student-login></button>
+    <div class="student-login-panel">
+      <header class="student-login-header">
+        <div>
+          <div class="student-login-kicker">Student Account</div>
+          <h2 id="student-login-title">學生登入</h2>
+        </div>
+        <button class="student-login-close" type="button" aria-label="關閉" data-close-student-login>×</button>
+      </header>
+
+      <div id="student-login-status" class="student-login-status">輸入學號同 PIN，就可以同步練習紀錄。</div>
+
+      <div class="student-login-form">
+        <label class="student-login-field">
+          <span>學號</span>
+          <button id="student-id-input" class="text-entry-field student-login-input" type="button" role="textbox" aria-readonly="true" aria-label="輸入學號" data-placeholder="例如 S001"></button>
+        </label>
+        <label class="student-login-field">
+          <span>PIN</span>
+          <button id="student-pin-input" class="text-entry-field student-login-input" type="button" role="textbox" aria-readonly="true" aria-label="輸入 PIN" data-placeholder="4-6 位數字" data-mask="true"></button>
+        </label>
+      </div>
+
+      <div id="student-login-keyboard" class="verb-table-keyboard text-game-keyboard student-login-keyboard hidden" aria-label="Student login keyboard"></div>
+
+      <div class="student-login-actions">
+        <button id="student-login-submit" class="primary-btn" type="button">登入</button>
+        <button id="student-logout-btn" class="ghost-btn hidden" type="button">登出</button>
+      </div>
+    </div>
+  </section>
+
   <div id="celebration-layer" class="celebration-layer" aria-hidden="true"></div>
 
+  <script src="firebase_config.js?v=20260615-student-login-config"></script>
+  <script type="module" src="firebase-init.js?v=20260615-student-login"></script>
   <script src="assets/lottie.min.js?v=20260609-lottie"></script>
   <script src="assets/confetti-animation.js?v=20260609-lottie"></script>
   <script src="grammar_verb_table_data.js?v=20260613-verb-table-reference"></script>

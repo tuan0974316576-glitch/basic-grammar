@@ -1,0 +1,2 @@
+window.GRAMMAR_FIREBASE_CONFIG = window.GRAMMAR_FIREBASE_CONFIG || null;
+
