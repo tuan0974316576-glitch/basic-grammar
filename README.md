@@ -45,6 +45,8 @@ The current Firebase target is the Battleship-1 project (`battleship-game-c0909`
 6. If Firebase deploy says credentials are invalid, run `npm run firebase:reauth` first.
 7. On this Mac, Firebase CLI commands run through `scripts/firebase-cli.js` so Node uses the Homebrew / system CA certificates.
 
-Firestore rules have been deployed to the temporary Battleship-1 Firebase project. Deploying `studentLogin` still needs Cloud Functions write access on the Firebase project, which usually means upgrading / linking the project to the Blaze billing plan first. If we do not want to enable Blaze yet, switch the student login implementation to Firebase Auth email/password accounts using generated student emails and 6-digit PIN passwords.
+Firestore rules and the callable `studentLogin` function are currently deployed to the temporary Battleship-1 Firebase project and have been verified with sample student accounts. Keep using it only for testing.
+
+Before real student rollout, a real `studentId + PIN` batch, teacher dashboard, app-store release, or major vocab / scan sync, move this app to its own Firebase project.
 
 The app must never contain real student PINs. The seed script stores salted PIN hashes in Firestore.

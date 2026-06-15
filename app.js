@@ -115,6 +115,8 @@ let verbTableReferenceRendered = false;
 let activeVerbTableReferenceAudio = null;
 let activeVerbTableReferenceAudioToken = 0;
 let activeTextEntryTarget = "";
+let studentCloudSyncPromise = null;
+let studentCloudSyncUid = "";
 let studentAuthState = {
   resolved: false,
   available: false,
@@ -698,8 +700,7 @@ function applyStudentAuthState(patch = {}) {
   setStudentLoginStatus();
 
   if (studentAuthState.authenticated) {
-    flushProgressSyncQueue();
-    queuePlayerProfileSync();
+    void syncStudentCloudProgress();
   }
 }
 
@@ -819,6 +820,95 @@ function queueLessonProgressSync(lessonId, progress) {
 
 function queuePlayerProfileSync() {
   flushPlayerProfileSync();
+}
+
+function getMergedProgressValue(localCompleted, queuedCompleted, remoteCompleted) {
+  return Math.max(
+    Number(localCompleted) || 0,
+    Number(queuedCompleted) || 0,
+    Number(remoteCompleted) || 0
+  );
+}
+
+async function syncStudentCloudProgress() {
+  const firebase = getFirebaseBundle();
+  const uid = studentAuthState.profile?.uid || studentAuthState.user?.uid;
+  if (!uid || !firebase?.db || !firebase.modules?.doc || !firebase.modules?.getDoc) return;
+  if (studentCloudSyncPromise && studentCloudSyncUid === uid) return studentCloudSyncPromise;
+
+  studentCloudSyncUid = uid;
+  studentCloudSyncPromise = (async () => {
+    const { doc, getDoc } = firebase.modules;
+    const queue = getProgressSyncQueue();
+    const lessonIds = Object.keys(LESSON_PROGRESS_KEYS);
+    const userDocRef = doc(firebase.db, "users", uid);
+    const lessonDocRefs = lessonIds.map((lessonId) => ({
+      lessonId,
+      ref: doc(firebase.db, "users", uid, "grammarProgress", lessonId)
+    }));
+
+    const [userSnapshot, lessonSnapshots] = await Promise.all([
+      getDoc(userDocRef),
+      Promise.all(lessonDocRefs.map(({ ref }) => getDoc(ref)))
+    ]);
+
+    const cloudUser = userSnapshot.exists() ? (userSnapshot.data() || {}) : {};
+    let bestStreakChanged = false;
+    const remoteBestStreak = Math.max(0, Number(cloudUser.bestStreak) || 0);
+    if (remoteBestStreak > state.bestStreak) {
+      state.bestStreak = remoteBestStreak;
+      bestStreakChanged = true;
+    }
+
+    lessonDocRefs.forEach(({ lessonId }, index) => {
+      const lessonTotal = getLessonTotal(lessonId);
+      const localCompleted = getProgress(lessonId);
+      const queuedCompleted = Number(queue[lessonId]?.completed) || 0;
+      const lessonSnapshot = lessonSnapshots[index];
+      const remoteData = lessonSnapshot.exists() ? (lessonSnapshot.data() || {}) : {};
+      const remoteCompleted = Number(remoteData.completed) || 0;
+      const remoteTotal = Number(remoteData.total) || lessonTotal;
+      const mergedCompleted = getMergedProgressValue(localCompleted, queuedCompleted, remoteCompleted);
+      const nextProgress = {
+        completed: mergedCompleted,
+        total: remoteTotal || lessonTotal,
+        updatedAt: Date.now()
+      };
+
+      if (mergedCompleted !== localCompleted || (remoteTotal && remoteTotal !== lessonTotal)) {
+        localStorage.setItem(LESSON_PROGRESS_KEYS[lessonId], JSON.stringify(nextProgress));
+      }
+
+      if (mergedCompleted > 0) {
+        queue[lessonId] = {
+          lessonId,
+          completed: mergedCompleted,
+          total: nextProgress.total,
+          updatedAt: nextProgress.updatedAt
+        };
+      } else {
+        delete queue[lessonId];
+      }
+    });
+
+    setProgressSyncQueue(queue);
+    updateMenuProgress();
+    if (bestStreakChanged) {
+      saveBestStreak();
+    } else {
+      queuePlayerProfileSync();
+    }
+    await flushProgressSyncQueue();
+  })().catch((error) => {
+    console.warn("Cloud progress sync failed:", error);
+  }).finally(() => {
+    if (studentCloudSyncPromise && studentCloudSyncUid === uid) {
+      studentCloudSyncPromise = null;
+      studentCloudSyncUid = "";
+    }
+  });
+
+  return studentCloudSyncPromise;
 }
 
 async function flushPlayerProfileSync() {
