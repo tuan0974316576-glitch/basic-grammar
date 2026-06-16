@@ -9,6 +9,10 @@ const twoDaysAgo = now - (2 * scheduler.DAY_MS);
 assert.strictEqual(vocabData.normalizeWord("  Apple   Pie  "), "apple pie");
 assert.strictEqual(vocabData.normalizeMeaning("  紅色   蘋果  "), "紅色 蘋果");
 assert.strictEqual(vocabData.createId("School bag!"), "school-bag");
+assert.notStrictEqual(
+  vocabData.createMeaningId("secure", "安全的", "adjective"),
+  vocabData.createMeaningId("secure", "確保", "verb")
+);
 
 const localProgress = scheduler.updateProgressAfterAnswer(
   scheduler.getInitialProgress(twoDaysAgo),
@@ -39,6 +43,10 @@ const mergedWithRemote = vocabData.mergeItems(
       id: "apple",
       word: "apple",
       meaning: "紅蘋果",
+      pos: "noun",
+      type: "word",
+      source: "teacher",
+      teacherEntryId: "teacher-apple-noun",
       createdAt: twoDaysAgo,
       updatedAt: yesterday,
       progress: remoteProgress
@@ -58,6 +66,8 @@ const mergedWithRemote = vocabData.mergeItems(
 
 assert.deepStrictEqual(mergedWithRemote.items.map((item) => item.id), ["apple", "school"]);
 assert.strictEqual(mergedWithRemote.items[0].meaning, "紅蘋果");
+assert.strictEqual(mergedWithRemote.items[0].pos, "noun");
+assert.strictEqual(mergedWithRemote.items[0].teacherEntryId, "teacher-apple-noun");
 assert.strictEqual(mergedWithRemote.progressById.apple.totalCorrect, 2);
 
 const queuedLocalWins = vocabData.mergeItems(
@@ -140,6 +150,10 @@ const cloudDoc = vocabData.makeCloudDoc(
     id: "run",
     word: "run",
     meaning: "跑",
+    pos: "verb",
+    type: "word",
+    source: "teacher",
+    teacherEntryId: "teacher-run-verb",
     createdAt: twoDaysAgo,
     updatedAt: yesterday
   },
@@ -148,6 +162,8 @@ const cloudDoc = vocabData.makeCloudDoc(
 );
 
 assert.strictEqual(cloudDoc.word, "run");
+assert.strictEqual(cloudDoc.pos, "verb");
+assert.strictEqual(cloudDoc.teacherEntryId, "teacher-run-verb");
 assert.strictEqual(cloudDoc.progress.totalIncorrect, 1);
 assert.strictEqual(cloudDoc.deletedAt, 0);
 

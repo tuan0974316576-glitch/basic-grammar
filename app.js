@@ -13,6 +13,8 @@ if (!VOCAB_DATA) {
   throw new Error("VocabData failed to load.");
 }
 
+const TEACHER_VOCAB = window.TeacherVocab || null;
+
 const {
   QUESTIONS,
   PRONOUN_CATEGORIES,
@@ -202,6 +204,12 @@ let verbTableReferenceRendered = false;
 let activeVerbTableReferenceAudio = null;
 let activeVerbTableReferenceAudioToken = 0;
 let activeTextEntryTarget = "";
+let vocabEntryLookupState = {
+  word: "",
+  matches: [],
+  filterKey: "",
+  selectedEntry: null
+};
 let studentCloudSyncPromise = null;
 let studentCloudSyncUid = "";
 let vocabCloudSyncPromise = null;
@@ -293,6 +301,7 @@ const el = {
   vocabReviewCount: document.querySelector("#vocab-review-count"),
   vocabWordInput: document.querySelector("#vocab-word-input"),
   vocabMeaningInput: document.querySelector("#vocab-meaning-input"),
+  vocabMeaningSuggestions: document.querySelector("#vocab-meaning-suggestions"),
   vocabEntryKeyboard: document.querySelector("#vocab-entry-keyboard"),
   vocabAddBtn: document.querySelector("#vocab-add-btn"),
   vocabList: document.querySelector("#vocab-list"),
@@ -1442,6 +1451,172 @@ function updateVocabEntryState() {
   }
 }
 
+function getTeacherVocabMatches(word) {
+  if (!TEACHER_VOCAB?.lookup) return [];
+  return TEACHER_VOCAB.lookup(word, { exactOnly: true, limit: 10 });
+}
+
+function clearVocabMeaningSuggestions() {
+  vocabEntryLookupState = {
+    word: "",
+    matches: [],
+    filterKey: "",
+    selectedEntry: null
+  };
+  el.vocabMeaningSuggestions?.replaceChildren();
+  el.vocabMeaningSuggestions?.classList.add("hidden");
+}
+
+function getVocabEntryFilterKey(entry = {}) {
+  if (entry.pos) return `pos:${entry.pos}`;
+  if (entry.type === "pattern") return "type:pattern";
+  if (entry.type === "phrase") return "type:phrase";
+  return "type:word";
+}
+
+function getVocabEntryFilterLabel(filterKey = "") {
+  if (filterKey.startsWith("pos:")) {
+    return TEACHER_VOCAB?.formatPosLabel?.(filterKey.slice(4)) || filterKey.slice(4);
+  }
+  if (filterKey === "type:pattern") return "句式";
+  if (filterKey === "type:phrase") return "詞組";
+  return "字";
+}
+
+function getFilteredVocabMatches() {
+  const matches = vocabEntryLookupState.matches || [];
+  const filterKey = vocabEntryLookupState.filterKey || "";
+  return filterKey ? matches.filter((entry) => getVocabEntryFilterKey(entry) === filterKey) : matches;
+}
+
+function selectVocabMeaningFilter(filterKey) {
+  vocabEntryLookupState.filterKey = vocabEntryLookupState.filterKey === filterKey ? "" : filterKey;
+  const filtered = getFilteredVocabMatches();
+  vocabEntryLookupState.selectedEntry = TEACHER_VOCAB?.chooseAutoFillEntry?.(filtered) || null;
+  if (vocabEntryLookupState.selectedEntry) {
+    setTextEntryValue(el.vocabMeaningInput, vocabEntryLookupState.selectedEntry.meaning || "");
+  }
+  renderVocabMeaningSuggestions();
+  updateVocabEntryState();
+  playUiSound("click");
+}
+
+function selectVocabMeaningSuggestion(entry) {
+  if (!entry) return;
+  vocabEntryLookupState.selectedEntry = entry;
+  setTextEntryValue(el.vocabMeaningInput, entry.meaning || "");
+  updateVocabEntryState();
+  renderVocabMeaningSuggestions();
+  playUiSound("click");
+}
+
+function renderVocabMeaningSuggestions() {
+  if (!el.vocabMeaningSuggestions) return;
+  const matches = vocabEntryLookupState.matches || [];
+  if (!matches.length) {
+    el.vocabMeaningSuggestions.replaceChildren();
+    el.vocabMeaningSuggestions.classList.add("hidden");
+    return;
+  }
+
+  const filterKeys = Array.from(new Set(matches.map(getVocabEntryFilterKey)));
+  const filterButtons = filterKeys.length > 1
+    ? filterKeys.map((filterKey) => {
+      const button = document.createElement("button");
+      button.className = "vocab-filter-chip";
+      if (filterKey === vocabEntryLookupState.filterKey) button.classList.add("active");
+      button.type = "button";
+      button.textContent = getVocabEntryFilterLabel(filterKey);
+      button.addEventListener("click", () => selectVocabMeaningFilter(filterKey));
+      return button;
+    })
+    : [];
+
+  const filteredMatches = getFilteredVocabMatches();
+  const chips = filteredMatches.map((entry) => {
+    const button = document.createElement("button");
+    button.className = "vocab-meaning-chip";
+    if (entry.id && entry.id === vocabEntryLookupState.selectedEntry?.id) {
+      button.classList.add("active");
+    }
+    button.type = "button";
+    button.textContent = TEACHER_VOCAB.getEntryLabel?.(entry) || entry.meaning;
+
+    const meta = document.createElement("small");
+    const sourceText = entry.sourceCount > 1 ? `老師筆記 ${entry.sourceCount} 次` : "老師筆記";
+    meta.textContent = entry.type === "pattern" ? `句式 / ${sourceText}` : sourceText;
+    button.append(meta);
+
+    button.addEventListener("click", () => selectVocabMeaningSuggestion(entry));
+    return button;
+  });
+
+  if (filterButtons.length) {
+    const filterRow = document.createElement("div");
+    filterRow.className = "vocab-filter-row";
+    filterRow.append(...filterButtons);
+    el.vocabMeaningSuggestions.replaceChildren(filterRow, ...chips);
+  } else {
+    el.vocabMeaningSuggestions.replaceChildren(...chips);
+  }
+  el.vocabMeaningSuggestions.classList.remove("hidden");
+}
+
+function refreshVocabTeacherLookup(options = {}) {
+  const word = normalizeVocabWord(getTextEntryValue(el.vocabWordInput));
+  if (!word) {
+    clearVocabMeaningSuggestions();
+    return;
+  }
+  const previousWord = vocabEntryLookupState.word;
+  const wordChanged = word !== previousWord;
+  if (!wordChanged && !options.force) return;
+
+  const matches = getTeacherVocabMatches(word);
+  const autoEntry = TEACHER_VOCAB?.chooseAutoFillEntry?.(matches) || null;
+  vocabEntryLookupState = {
+    word,
+    matches,
+    filterKey: autoEntry ? getVocabEntryFilterKey(autoEntry) : "",
+    selectedEntry: autoEntry
+  };
+
+  if (wordChanged) {
+    setTextEntryValue(el.vocabMeaningInput, autoEntry?.meaning || "");
+  } else if (autoEntry && !normalizeVocabMeaning(getTextEntryValue(el.vocabMeaningInput))) {
+    setTextEntryValue(el.vocabMeaningInput, autoEntry.meaning || "");
+  }
+  renderVocabMeaningSuggestions();
+  updateVocabEntryState();
+}
+
+function getSelectedTeacherVocabEntryForSave(word, meaning) {
+  const normalizedWord = normalizeVocabWord(word);
+  const normalizedMeaning = normalizeVocabMeaning(meaning);
+  const selected = vocabEntryLookupState.selectedEntry;
+  if (selected && selected.word === normalizedWord && normalizeVocabMeaning(selected.meaning) === normalizedMeaning) {
+    return selected;
+  }
+  return (vocabEntryLookupState.matches || []).find((entry) => (
+    entry.word === normalizedWord && normalizeVocabMeaning(entry.meaning) === normalizedMeaning
+  )) || null;
+}
+
+function handleVocabWordEntryChange() {
+  refreshVocabTeacherLookup({ force: true });
+  updateVocabEntryState();
+}
+
+function handleVocabMeaningEntryChange() {
+  const meaning = normalizeVocabMeaning(getTextEntryValue(el.vocabMeaningInput));
+  const selectedMeaning = normalizeVocabMeaning(vocabEntryLookupState.selectedEntry?.meaning);
+  if (selectedMeaning && meaning !== selectedMeaning) {
+    vocabEntryLookupState.selectedEntry = null;
+    renderVocabMeaningSuggestions();
+  }
+  updateVocabEntryState();
+}
+
 function renderVocabList() {
   if (!el.vocabList) return;
 
@@ -1491,6 +1666,12 @@ function createVocabListRow(item) {
   meaning.textContent = item.meaning;
 
   text.append(word, meaning);
+  if (item.pos || item.type === "pattern" || item.type === "phrase") {
+    const meta = document.createElement("em");
+    const posLabel = TEACHER_VOCAB?.formatPosLabel?.(item.pos) || item.pos || item.type;
+    meta.textContent = posLabel || item.type;
+    text.append(meta);
+  }
 
   const progress = VOCAB_SCHEDULER.normalizeProgress(state.vocabProgress[item.id] || {});
   const stats = document.createElement("div");
@@ -1531,21 +1712,35 @@ function addVocabItemFromEntry() {
     return;
   }
 
-  const existingIndex = state.vocabWords.findIndex((item) => item.word === word);
+  const teacherEntry = getSelectedTeacherVocabEntryForSave(word, meaning);
+  const itemId = teacherEntry?.id
+    ? `teacher-${teacherEntry.id}`
+    : VOCAB_DATA.createMeaningId(word, meaning);
+  const extraFields = teacherEntry
+    ? {
+      pos: teacherEntry.pos || "",
+      type: teacherEntry.type || "word",
+      source: "teacher",
+      teacherEntryId: teacherEntry.id
+    }
+    : {};
+  const existingIndex = state.vocabWords.findIndex((item) => item.id === itemId);
   const now = Date.now();
   let savedItem = null;
   if (existingIndex >= 0) {
     state.vocabWords[existingIndex] = {
       ...state.vocabWords[existingIndex],
       meaning,
+      ...extraFields,
       updatedAt: now
     };
     savedItem = state.vocabWords[existingIndex];
   } else {
     savedItem = {
-      id: createVocabId(word),
+      id: itemId,
       word,
       meaning,
+      ...extraFields,
       createdAt: now,
       updatedAt: now
     };
@@ -1560,6 +1755,7 @@ function addVocabItemFromEntry() {
   queueVocabItemUpsert(savedItem, state.vocabProgress[savedItem.id]);
   setTextEntryValue(el.vocabWordInput, "");
   setTextEntryValue(el.vocabMeaningInput, "");
+  clearVocabMeaningSuggestions();
   activateTextEntryTarget("vocabWord", { showKeyboard: !isComputerKeyboardMode() });
   renderVocabList();
   playUiSound("correct");
@@ -2042,7 +2238,7 @@ function getTextEntryConfig(targetName = activeTextEntryTarget) {
       },
       maxLength: 42,
       pattern: /^[a-zA-Z '-]$/,
-      onChange: () => updateVocabEntryState(),
+      onChange: handleVocabWordEntryChange,
       onEnter: () => activateTextEntryTarget("vocabMeaning")
     },
     vocabMeaning: {
@@ -2062,7 +2258,7 @@ function getTextEntryConfig(targetName = activeTextEntryTarget) {
         space: "空格"
       },
       maxLength: 36,
-      onChange: () => updateVocabEntryState(),
+      onChange: handleVocabMeaningEntryChange,
       onEnter: addVocabItemFromEntry
     },
     vocabAnswer: {
@@ -2354,6 +2550,9 @@ function handleTextEntryDocumentKeydown(event) {
 }
 
 function openVocabEntryField(targetName) {
+  if (targetName === "vocabMeaning") {
+    refreshVocabTeacherLookup();
+  }
   activateTextEntryTarget(targetName, { showKeyboard: !isComputerKeyboardMode() });
 }
 

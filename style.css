@@ -378,6 +378,75 @@ h2 {
   align-items: center;
 }
 
+.vocab-meaning-suggestions {
+  max-height: 124px;
+  display: grid;
+  gap: 8px;
+  padding: 8px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: #fffdf7;
+  border: 2px dashed #f2c879;
+  border-radius: 18px;
+}
+
+.vocab-meaning-suggestions.hidden {
+  display: none;
+}
+
+.vocab-filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.vocab-filter-chip {
+  min-height: 30px;
+  padding: 5px 10px;
+  color: #5d4037;
+  font-size: 12px;
+  font-weight: 900;
+  cursor: pointer;
+  background: #eaf8f8;
+  border: 0;
+  border-radius: 999px;
+  box-shadow: 0 2px 0 #bde0e1;
+}
+
+.vocab-filter-chip.active {
+  color: #ffffff;
+  background: var(--primary-color);
+  box-shadow: 0 2px 0 var(--primary-dark);
+}
+
+.vocab-meaning-chip {
+  min-height: 38px;
+  padding: 7px 11px;
+  color: #5d4037;
+  font-size: 14px;
+  font-weight: 900;
+  text-align: left;
+  cursor: pointer;
+  background: #fff7cf;
+  border: 0;
+  border-radius: 13px;
+  box-shadow: 0 3px 0 #e5bd5f;
+}
+
+.vocab-meaning-chip.active {
+  color: #ffffff;
+  background: var(--primary-color);
+  box-shadow: 0 3px 0 var(--primary-dark);
+}
+
+.vocab-meaning-chip small {
+  display: block;
+  margin-top: 2px;
+  color: inherit;
+  font-size: 11px;
+  opacity: 0.82;
+}
+
 .vocab-entry-input {
   min-height: 50px;
   padding: 8px 12px;
@@ -460,6 +529,13 @@ h2 {
   font-size: 13px;
   font-weight: 900;
   line-height: 1.2;
+}
+
+.vocab-row-text em {
+  color: var(--primary-dark);
+  font-style: normal;
+  font-size: 12px;
+  font-weight: 900;
 }
 
 .vocab-row-stats {

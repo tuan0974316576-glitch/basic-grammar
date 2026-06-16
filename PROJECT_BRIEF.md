@@ -115,6 +115,25 @@ Each vocab item stores:
 
 Guest vocab may be backfilled into the first logged-in student account. If a different student logs in later, the app must not mix the previous student's cached vocab into the new account.
 
+### Teacher Vocab Bank
+
+Chinese meanings should prefer Austin Sir's notes / Excel vocab sheets over generic dictionaries.
+
+Current pipeline:
+
+- Run `npm run vocab:import -- "/path/to/vocab.xlsx"` to generate `teacher_vocab_bank.js`.
+- The importer reads side-by-side `English | Chinese` column pairs, including sheets with A/B and C/D pairs.
+- `teacher_vocab_conflicts.json` is generated for review when the same English word has multiple Chinese meanings or unclear POS.
+- POS belongs to a specific meaning, not only to the spelling of the English word. For example, `secure` can have separate adjective and verb entries.
+- Patterns such as `be+pp` and `as+名詞` are stored as `type: "pattern"`, not as normal POS.
+- If teacher notes do not contain a word, the future fallback can use an open dictionary by matching word + POS. If still unclear, mark it as `待老師確認` rather than guessing.
+
+Student vocab items can store optional metadata:
+
+- `pos`, `type`, `source`, `teacherEntryId`
+
+This lets the app remember which teacher-bank meaning the student selected, so multi-meaning words do not overwrite each other during local/Firebase sync.
+
 ## Development Priorities
 
 1. Keep improving the grammar lessons already in the app.

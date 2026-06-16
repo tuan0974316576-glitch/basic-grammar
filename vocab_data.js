@@ -12,6 +12,7 @@
   const MAX_WORD_LENGTH = 42;
   const MAX_MEANING_LENGTH = 80;
   const DELETE_GRACE_MS = 30 * 24 * 60 * 60 * 1000;
+  const EXTRA_TEXT_FIELDS = ["pos", "type", "source", "teacherEntryId"];
 
   function normalizeWord(value) {
     return String(value || "")
@@ -31,6 +32,25 @@
 
   function createId(word) {
     return normalizeWord(word).replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || `word-${Date.now()}`;
+  }
+
+  function stableHash(value) {
+    let hash = 2166136261;
+    const text = String(value || "");
+    for (let index = 0; index < text.length; index += 1) {
+      hash ^= text.charCodeAt(index);
+      hash += (hash << 1) + (hash << 4) + (hash << 7) + (hash << 8) + (hash << 24);
+    }
+    return (hash >>> 0).toString(36);
+  }
+
+  function createMeaningId(word, meaning, pos = "") {
+    const base = [word, pos, meaning]
+      .map((part) => normalizeWord(part).replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""))
+      .filter(Boolean)
+      .join("-");
+    const prefix = base.slice(0, 64) || createId(word);
+    return `${prefix}-${stableHash(`${word}|${pos}|${meaning}`)}`.slice(0, 80);
   }
 
   function safeTime(value, fallback = Date.now()) {
@@ -58,11 +78,17 @@
     const progress = VocabScheduler?.normalizeProgress
       ? VocabScheduler.normalizeProgress(item.progress || {})
       : (item.progress || {});
+    const extras = {};
+    EXTRA_TEXT_FIELDS.forEach((field) => {
+      const value = String(item[field] || "").trim().slice(0, 80);
+      if (value) extras[field] = value;
+    });
 
     return {
       id,
       word,
       meaning,
+      ...extras,
       createdAt,
       updatedAt,
       deletedAt,
@@ -77,6 +103,11 @@
       id: normalized.id,
       word: normalized.word,
       meaning: normalized.meaning,
+      ...Object.fromEntries(
+        EXTRA_TEXT_FIELDS
+          .filter((field) => normalized[field])
+          .map((field) => [field, normalized[field]])
+      ),
       createdAt: normalized.createdAt,
       updatedAt: normalized.updatedAt
     };
@@ -184,6 +215,11 @@
     return {
       word: normalized.word,
       meaning: normalized.meaning,
+      ...Object.fromEntries(
+        EXTRA_TEXT_FIELDS
+          .filter((field) => normalized[field])
+          .map((field) => [field, normalized[field]])
+      ),
       createdAt: normalized.createdAt,
       updatedAt: normalized.updatedAt,
       deletedAt: Number(options.deletedAt) || 0,
@@ -194,6 +230,7 @@
   return {
     DELETE_GRACE_MS,
     createId,
+    createMeaningId,
     makeCloudDoc,
     mergeItems,
     mergeProgress,
