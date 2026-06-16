@@ -17,12 +17,14 @@ service cloud.firestore {
         "classId",
         "lastLoginAt",
         "bestStreak",
+        "vocabCacheOwner",
         "updatedAt"
       ]);
     }
 
     function studentIdMatchesToken() {
       return !("studentId" in request.resource.data)
+        || !("studentId" in request.auth.token)
         || request.resource.data.studentId == request.auth.token.studentId;
     }
 
@@ -40,6 +42,44 @@ service cloud.firestore {
         "updatedAt",
         "syncedAt"
       ]);
+    }
+
+    function vocabProgressKeysAreSafe(progress) {
+      return progress.keys().hasOnly([
+        "lastSeenAt",
+        "totalSeen",
+        "totalCorrect",
+        "totalIncorrect",
+        "streakCorrect",
+        "mastery",
+        "nextDueAt",
+        "lastRecallProb",
+        "halfLifeDays",
+        "updatedAt"
+      ]);
+    }
+
+    function vocabItemKeysAreSafe() {
+      return request.resource.data.keys().hasOnly([
+        "word",
+        "meaning",
+        "createdAt",
+        "updatedAt",
+        "deletedAt",
+        "progress",
+        "ownerUid",
+        "syncedAt"
+      ]);
+    }
+
+    function vocabItemFieldsAreSafe() {
+      return (!("ownerUid" in request.resource.data) || request.resource.data.ownerUid == request.auth.uid)
+        && (!("word" in request.resource.data) || request.resource.data.word is string)
+        && (!("meaning" in request.resource.data) || request.resource.data.meaning is string)
+        && (!("createdAt" in request.resource.data) || request.resource.data.createdAt is number)
+        && (!("updatedAt" in request.resource.data) || request.resource.data.updatedAt is number)
+        && (!("deletedAt" in request.resource.data) || request.resource.data.deletedAt is number)
+        && (!("progress" in request.resource.data) || (request.resource.data.progress is map && vocabProgressKeysAreSafe(request.resource.data.progress)));
     }
 
     match /studentAccounts/{studentId} {
@@ -63,7 +103,11 @@ service cloud.firestore {
       }
 
       match /vocabItems/{wordId} {
-        allow read, create, update, delete: if isOwner(uid);
+        allow read: if isOwner(uid);
+        allow create, update: if isOwner(uid)
+          && vocabItemKeysAreSafe()
+          && vocabItemFieldsAreSafe();
+        allow delete: if false;
       }
 
       match /attempts/{attemptId} {

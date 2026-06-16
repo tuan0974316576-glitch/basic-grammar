@@ -102,6 +102,19 @@ Suggested collections:
 
 Do not write to Firebase on every tap. Prefer saving after a question, round, or meaningful progress event.
 
+### Vocabulary Sync Model
+
+Vocab is local-first and syncs through `users/{uid}/vocabItems/{wordId}` after student login.
+
+Each vocab item stores:
+
+- `word`, `meaning`, `createdAt`, `updatedAt`
+- `progress` with SRS fields: `lastSeenAt`, `totalSeen`, `totalCorrect`, `totalIncorrect`, `streakCorrect`, `mastery`, `nextDueAt`, `halfLifeDays`, `lastRecallProb`, `updatedAt`
+- `deletedAt` tombstones for cross-device deletion safety
+- `ownerUid` and `syncedAt` for sync bookkeeping
+
+Guest vocab may be backfilled into the first logged-in student account. If a different student logs in later, the app must not mix the previous student's cached vocab into the new account.
+
 ## Development Priorities
 
 1. Keep improving the grammar lessons already in the app.

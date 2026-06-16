@@ -8,6 +8,11 @@ if (!VOCAB_SCHEDULER) {
   throw new Error("VocabScheduler failed to load.");
 }
 
+const VOCAB_DATA = window.VocabData;
+if (!VOCAB_DATA) {
+  throw new Error("VocabData failed to load.");
+}
+
 const {
   QUESTIONS,
   PRONOUN_CATEGORIES,
@@ -35,7 +40,8 @@ const STUDENT_PROFILE_KEY = "basic_grammar_student_profile_v1";
 const STUDENT_PROGRESS_SYNC_KEY = "basic_grammar_progress_sync_queue_v1";
 const VOCAB_ITEMS_KEY = "basic_vocab_items_v1";
 const VOCAB_PROGRESS_KEY = "basic_vocab_progress_v1";
-const VOCAB_QUIZ_SETTINGS_KEY = "basic_vocab_quiz_settings_v1";
+const VOCAB_SYNC_QUEUE_KEY = "basic_vocab_sync_queue_v1";
+const VOCAB_CACHE_OWNER_KEY = "basic_vocab_cache_owner_v1";
 const VOCAB_STAGE_KIND_PATTERN = ["reading", "listening", "spelling", "reading", "listening", "spelling", "reading", "listening", "spelling", "reading"];
 const CATEGORY_LABELS = {
   action: "動作動詞",
@@ -187,6 +193,7 @@ const UI_SOUND_GAIN = 0.098;
 const VERB_TABLE_REFERENCE_SPEAK_GAP_MS = 180;
 const VERB_TABLE_REFERENCE_MIN_ACTIVE_MS = 700;
 const VERB_TABLE_IMAGE_VERSION = "20260613-lite";
+const VOCAB_CACHE_FALLBACK_OWNER = "guest";
 
 let audioContext = null;
 let celebrationAnimation = null;
@@ -197,6 +204,8 @@ let activeVerbTableReferenceAudioToken = 0;
 let activeTextEntryTarget = "";
 let studentCloudSyncPromise = null;
 let studentCloudSyncUid = "";
+let vocabCloudSyncPromise = null;
+let vocabCloudSyncUid = "";
 let vocabQuizState = null;
 let studentAuthState = {
   resolved: false,
@@ -233,7 +242,8 @@ const state = {
   verbTableActiveField: "present",
   vocabWords: getSavedVocabItems(),
   vocabProgress: getSavedVocabProgress(),
-  vocabQuizMode: getSavedVocabQuizMode(),
+  vocabSyncQueue: getSavedVocabSyncQueue(),
+  vocabCacheOwner: getSavedVocabCacheOwner(),
   streak: 0,
   bestStreak: getSavedBestStreak(),
   practiceCount: getSavedPracticeCount(),
@@ -286,7 +296,6 @@ const el = {
   vocabEntryKeyboard: document.querySelector("#vocab-entry-keyboard"),
   vocabAddBtn: document.querySelector("#vocab-add-btn"),
   vocabList: document.querySelector("#vocab-list"),
-  vocabModeCards: [...document.querySelectorAll("[data-vocab-mode]")],
   backVocabBtn: document.querySelector("[data-back-vocab]"),
   vocabQuizKicker: document.querySelector("#vocab-quiz-kicker"),
   vocabQuizTitle: document.querySelector("#vocab-quiz-title"),
@@ -447,21 +456,15 @@ function saveStudentProfile(profile) {
 }
 
 function normalizeVocabWord(value) {
-  return String(value || "")
-    .trim()
-    .replace(/[’‘]/g, "'")
-    .replace(/\s+/g, " ")
-    .toLowerCase();
+  return VOCAB_DATA.normalizeWord(value);
 }
 
 function normalizeVocabMeaning(value) {
-  return String(value || "")
-    .trim()
-    .replace(/\s+/g, " ");
+  return VOCAB_DATA.normalizeMeaning(value);
 }
 
 function createVocabId(word) {
-  return normalizeVocabWord(word).replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || `word-${Date.now()}`;
+  return VOCAB_DATA.createId(word);
 }
 
 function getSavedVocabItems() {
@@ -470,16 +473,8 @@ function getSavedVocabItems() {
     if (!Array.isArray(saved)) return [];
     return saved
       .map((item) => {
-        const word = normalizeVocabWord(item?.word);
-        const meaning = normalizeVocabMeaning(item?.meaning);
-        if (!word || !meaning) return null;
-        return {
-          id: item?.id || createVocabId(word),
-          word,
-          meaning,
-          createdAt: Number(item?.createdAt) || Date.now(),
-          updatedAt: Number(item?.updatedAt) || Number(item?.createdAt) || Date.now()
-        };
+        const normalized = VOCAB_DATA.normalizeItem(item, { id: item?.id });
+        return normalized ? VOCAB_DATA.stripItemForStorage(normalized) : null;
       })
       .filter(Boolean);
   } catch (_error) {
@@ -490,6 +485,7 @@ function getSavedVocabItems() {
 function saveVocabItems() {
   try {
     localStorage.setItem(VOCAB_ITEMS_KEY, JSON.stringify(state.vocabWords));
+    localStorage.setItem(VOCAB_CACHE_OWNER_KEY, state.vocabCacheOwner || VOCAB_CACHE_FALLBACK_OWNER);
   } catch (_error) {
     // Vocab still works during the current session.
   }
@@ -498,7 +494,10 @@ function saveVocabItems() {
 function getSavedVocabProgress() {
   try {
     const saved = safeJsonParse(localStorage.getItem(VOCAB_PROGRESS_KEY), {});
-    return saved && typeof saved === "object" && !Array.isArray(saved) ? saved : {};
+    if (!saved || typeof saved !== "object" || Array.isArray(saved)) return {};
+    return Object.fromEntries(
+      Object.entries(saved).map(([itemId, progress]) => [itemId, VOCAB_DATA.stripProgressForStorage(progress)])
+    );
   } catch (_error) {
     return {};
   }
@@ -507,25 +506,43 @@ function getSavedVocabProgress() {
 function saveVocabProgress() {
   try {
     localStorage.setItem(VOCAB_PROGRESS_KEY, JSON.stringify(state.vocabProgress || {}));
+    localStorage.setItem(VOCAB_CACHE_OWNER_KEY, state.vocabCacheOwner || VOCAB_CACHE_FALLBACK_OWNER);
   } catch (_error) {
     // Progress still updates during the current session.
   }
 }
 
-function getSavedVocabQuizMode() {
+function getSavedVocabCacheOwner() {
   try {
-    const mode = localStorage.getItem(VOCAB_QUIZ_SETTINGS_KEY);
-    return mode === "stage" ? mode : "stage";
+    return localStorage.getItem(VOCAB_CACHE_OWNER_KEY) || VOCAB_CACHE_FALLBACK_OWNER;
   } catch (_error) {
-    return "stage";
+    return VOCAB_CACHE_FALLBACK_OWNER;
   }
 }
 
-function saveVocabQuizMode(mode) {
+function saveVocabCacheOwner(owner) {
+  state.vocabCacheOwner = owner || VOCAB_CACHE_FALLBACK_OWNER;
   try {
-    localStorage.setItem(VOCAB_QUIZ_SETTINGS_KEY, mode === "stage" ? "stage" : "stage");
+    localStorage.setItem(VOCAB_CACHE_OWNER_KEY, state.vocabCacheOwner);
   } catch (_error) {
-    // The selected mode still works during this session.
+    // Owner only helps avoid mixing student caches.
+  }
+}
+
+function getSavedVocabSyncQueue() {
+  try {
+    const saved = safeJsonParse(localStorage.getItem(VOCAB_SYNC_QUEUE_KEY), {});
+    return saved && typeof saved === "object" && !Array.isArray(saved) ? saved : {};
+  } catch (_error) {
+    return {};
+  }
+}
+
+function saveVocabSyncQueue() {
+  try {
+    localStorage.setItem(VOCAB_SYNC_QUEUE_KEY, JSON.stringify(state.vocabSyncQueue || {}));
+  } catch (_error) {
+    // The next meaningful vocab save will try again.
   }
 }
 
@@ -898,6 +915,7 @@ function applyStudentAuthState(patch = {}) {
 
   if (studentAuthState.authenticated) {
     void syncStudentCloudProgress();
+    void syncStudentVocabCloud();
   }
 }
 
@@ -1017,6 +1035,224 @@ function queueLessonProgressSync(lessonId, progress) {
 
 function queuePlayerProfileSync() {
   flushPlayerProfileSync();
+}
+
+function queueVocabSync() {
+  saveVocabSyncQueue();
+  if (studentAuthState.authenticated) {
+    void flushVocabSyncQueue();
+  }
+}
+
+function getVocabCloudOwner() {
+  return studentAuthState.profile?.uid || studentAuthState.user?.uid || state.vocabCacheOwner || VOCAB_CACHE_FALLBACK_OWNER;
+}
+
+function getVocabItemProgressById(itemId) {
+  return state.vocabProgress[itemId] || VOCAB_SCHEDULER.getInitialProgress();
+}
+
+function updateLocalVocabCacheOwner() {
+  const owner = getVocabCloudOwner();
+  if (owner && owner !== state.vocabCacheOwner) {
+    saveVocabCacheOwner(owner);
+  }
+}
+
+function normalizeVocabSyncQueue(queue = {}) {
+  const normalized = {};
+  Object.entries(queue || {}).forEach(([itemId, entry]) => {
+    if (!itemId) return;
+    if (entry && entry.deletedAt) {
+      normalized[itemId] = {
+        id: itemId,
+        deletedAt: Number(entry.deletedAt) || Date.now(),
+        updatedAt: Number(entry.updatedAt) || Number(entry.deletedAt) || Date.now()
+      };
+      return;
+    }
+
+    const item = VOCAB_DATA.normalizeItem({
+      ...entry,
+      id: itemId
+    }, { id: itemId });
+    if (!item) return;
+    normalized[itemId] = {
+      ...VOCAB_DATA.stripItemForStorage(item),
+      progress: VOCAB_DATA.stripProgressForStorage(entry?.progress || {})
+    };
+  });
+  return normalized;
+}
+
+function queueVocabItemUpsert(item, progress) {
+  const normalized = VOCAB_DATA.normalizeItem(item, { id: item?.id });
+  if (!normalized) return;
+  updateLocalVocabCacheOwner();
+  state.vocabSyncQueue[normalized.id] = {
+    ...VOCAB_DATA.stripItemForStorage(normalized),
+    progress: VOCAB_DATA.stripProgressForStorage(progress || state.vocabProgress[normalized.id] || {})
+  };
+  queueVocabSync();
+}
+
+function queueVocabItemDelete(itemId) {
+  if (!itemId) return;
+  updateLocalVocabCacheOwner();
+  state.vocabSyncQueue[itemId] = {
+    id: itemId,
+    deletedAt: Date.now(),
+    updatedAt: Date.now()
+  };
+  queueVocabSync();
+}
+
+function prepareVocabCacheForStudent(uid) {
+  if (!uid) return;
+  const currentOwner = state.vocabCacheOwner || VOCAB_CACHE_FALLBACK_OWNER;
+  if (currentOwner !== VOCAB_CACHE_FALLBACK_OWNER && currentOwner !== uid) {
+    state.vocabWords = [];
+    state.vocabProgress = {};
+    state.vocabSyncQueue = {};
+    saveVocabItems();
+    saveVocabProgress();
+    saveVocabSyncQueue();
+  }
+  saveVocabCacheOwner(uid);
+}
+
+async function syncStudentVocabCloud() {
+  const firebase = getFirebaseBundle();
+  const uid = studentAuthState.profile?.uid || studentAuthState.user?.uid;
+  if (!uid || !firebase?.db || !firebase.modules?.doc || !firebase.modules?.getDoc || !firebase.modules?.collection || !firebase.modules?.getDocs) return;
+  if (vocabCloudSyncPromise && vocabCloudSyncUid === uid) return vocabCloudSyncPromise;
+
+  vocabCloudSyncUid = uid;
+  vocabCloudSyncPromise = (async () => {
+    const shouldBackfillLocalVocab = (state.vocabCacheOwner || VOCAB_CACHE_FALLBACK_OWNER) === VOCAB_CACHE_FALLBACK_OWNER
+      && state.vocabWords.length > 0;
+    prepareVocabCacheForStudent(uid);
+    const { collection, doc, getDoc, getDocs } = firebase.modules;
+    const userDocRef = doc(firebase.db, "users", uid);
+    const vocabCollectionRef = collection(firebase.db, "users", uid, "vocabItems");
+
+    const [userSnapshot, remoteSnapshot] = await Promise.all([
+      getDoc(userDocRef),
+      getDocs(vocabCollectionRef)
+    ]);
+
+    const cloudUser = userSnapshot.exists() ? (userSnapshot.data() || {}) : {};
+    const remoteItems = remoteSnapshot.docs.map((snapshot) => {
+      const base = snapshot.data() || {};
+      return {
+        id: snapshot.id,
+        ...base,
+        progress: base.progress || {}
+      };
+    });
+
+    const merged = VOCAB_DATA.mergeItems(
+      state.vocabWords,
+      state.vocabProgress,
+      remoteItems,
+      normalizeVocabSyncQueue(state.vocabSyncQueue),
+      { now: Date.now() }
+    );
+
+    state.vocabWords = merged.items;
+    state.vocabProgress = Object.fromEntries(
+      Object.entries(merged.progressById || {}).map(([itemId, progress]) => [
+        itemId,
+        VOCAB_SCHEDULER.normalizeProgress(progress)
+      ])
+    );
+    state.vocabSyncQueue = normalizeVocabSyncQueue(state.vocabSyncQueue);
+    if (shouldBackfillLocalVocab) {
+      state.vocabWords.forEach((item) => {
+        if (!state.vocabSyncQueue[item.id]) {
+          state.vocabSyncQueue[item.id] = {
+            ...item,
+            progress: state.vocabProgress[item.id] || VOCAB_SCHEDULER.getInitialProgress()
+          };
+        }
+      });
+    }
+
+    const remoteOwner = cloudUser.vocabCacheOwner || "";
+    const localOwner = state.vocabCacheOwner || "";
+    if (!localOwner && remoteOwner) {
+      saveVocabCacheOwner(remoteOwner);
+    } else if (remoteOwner && remoteOwner !== localOwner && merged.items.length) {
+      saveVocabCacheOwner(remoteOwner);
+    }
+
+    saveVocabItems();
+    saveVocabProgress();
+    renderVocabList();
+    await flushVocabSyncQueue();
+  })().catch((error) => {
+    console.warn("Vocab cloud sync failed:", error);
+  }).finally(() => {
+    if (vocabCloudSyncPromise && vocabCloudSyncUid === uid) {
+      vocabCloudSyncPromise = null;
+      vocabCloudSyncUid = "";
+    }
+  });
+
+  return vocabCloudSyncPromise;
+}
+
+async function flushVocabSyncQueue() {
+  const firebase = getFirebaseBundle();
+  const uid = studentAuthState.profile?.uid || studentAuthState.user?.uid;
+  if (!uid || !firebase?.db || !firebase.modules?.doc || !firebase.modules?.setDoc) return;
+
+  const queue = normalizeVocabSyncQueue(state.vocabSyncQueue);
+  const entries = Object.entries(queue);
+  if (!entries.length) return;
+
+  try {
+    const { doc, setDoc, serverTimestamp } = firebase.modules;
+    const owner = getVocabCloudOwner();
+    for (const [itemId, entry] of entries) {
+      const ref = doc(firebase.db, "users", uid, "vocabItems", itemId);
+      if (entry.deletedAt) {
+        await setDoc(ref, {
+          deletedAt: Number(entry.deletedAt) || Date.now(),
+          updatedAt: Number(entry.updatedAt) || Number(entry.deletedAt) || Date.now(),
+          ownerUid: owner,
+          syncedAt: serverTimestamp()
+        }, { merge: true });
+        delete queue[itemId];
+        continue;
+      }
+
+      const payload = VOCAB_DATA.makeCloudDoc(entry, entry.progress || state.vocabProgress[itemId], {
+        now: Date.now()
+      });
+      if (!payload) {
+        delete queue[itemId];
+        continue;
+      }
+
+      await setDoc(ref, {
+        ...payload,
+        ownerUid: owner,
+        syncedAt: serverTimestamp()
+      }, { merge: true });
+      delete queue[itemId];
+    }
+
+    await setDoc(doc(firebase.db, "users", uid), {
+      vocabCacheOwner: getVocabCloudOwner(),
+      updatedAt: serverTimestamp()
+    }, { merge: true });
+  } catch (error) {
+    console.warn("Vocab sync failed:", error);
+  } finally {
+    state.vocabSyncQueue = queue;
+    saveVocabSyncQueue();
+  }
 }
 
 function getMergedProgressValue(localCompleted, queuedCompleted, remoteCompleted) {
@@ -1297,23 +1533,31 @@ function addVocabItemFromEntry() {
 
   const existingIndex = state.vocabWords.findIndex((item) => item.word === word);
   const now = Date.now();
+  let savedItem = null;
   if (existingIndex >= 0) {
     state.vocabWords[existingIndex] = {
       ...state.vocabWords[existingIndex],
       meaning,
       updatedAt: now
     };
+    savedItem = state.vocabWords[existingIndex];
   } else {
-    state.vocabWords.unshift({
+    savedItem = {
       id: createVocabId(word),
       word,
       meaning,
       createdAt: now,
       updatedAt: now
-    });
+    };
+    state.vocabWords.unshift(savedItem);
   }
 
+  if (!state.vocabProgress[savedItem.id]) {
+    state.vocabProgress[savedItem.id] = VOCAB_SCHEDULER.getInitialProgress(now);
+    saveVocabProgress();
+  }
   saveVocabItems();
+  queueVocabItemUpsert(savedItem, state.vocabProgress[savedItem.id]);
   setTextEntryValue(el.vocabWordInput, "");
   setTextEntryValue(el.vocabMeaningInput, "");
   activateTextEntryTarget("vocabWord", { showKeyboard: !isComputerKeyboardMode() });
@@ -1324,20 +1568,21 @@ function addVocabItemFromEntry() {
 function deleteVocabItem(itemId) {
   state.vocabWords = state.vocabWords.filter((item) => item.id !== itemId);
   delete state.vocabProgress[itemId];
+  queueVocabItemDelete(itemId);
   saveVocabItems();
   saveVocabProgress();
   renderVocabList();
   playUiSound("next");
 }
 
-function getVocabModeLabel(mode = state.vocabQuizMode) {
+function getVocabModeLabel(mode = "stage") {
   if (mode === "spelling") return "Spelling";
   if (mode === "listening") return "Listening";
   if (mode === "reading") return "Reading";
   return "Stage";
 }
 
-function getVocabModeTitle(mode = state.vocabQuizMode) {
+function getVocabModeTitle(mode = "stage") {
   if (mode === "spelling") return "串字";
   if (mode === "listening") return "聽字";
   if (mode === "reading") return "認字";
@@ -1383,8 +1628,6 @@ function startVocabQuiz() {
     return;
   }
 
-  state.vocabQuizMode = "stage";
-  saveVocabQuizMode("stage");
   vocabQuizState = {
     mode: "stage",
     questions: buildVocabQuestions(),
@@ -1471,6 +1714,10 @@ function updateVocabProgress(itemId, correct) {
     correct
   );
   saveVocabProgress();
+  const item = state.vocabWords.find((vocabItem) => vocabItem.id === itemId);
+  if (item) {
+    queueVocabItemUpsert(item, state.vocabProgress[itemId]);
+  }
 }
 
 function answerVocabChoice(choice, button) {
@@ -4484,9 +4731,6 @@ el.vocabMeaningInput?.addEventListener("input", () => syncNativeTextEntryInput("
 el.vocabAnswerInput?.addEventListener("input", () => syncNativeTextEntryInput("vocabAnswer"));
 el.vocabAddBtn?.addEventListener("click", addVocabItemFromEntry);
 el.vocabTrainBtn?.addEventListener("click", startVocabQuiz);
-el.vocabModeCards.forEach((button) => {
-  button.addEventListener("click", () => startVocabQuiz(button.dataset.vocabMode));
-});
 el.backVocabBtn?.addEventListener("click", backToVocab);
 el.vocabSoundBtn?.addEventListener("click", () => speakVocabWord(currentVocabQuestion()?.item?.word));
 el.vocabSubmitAnswer?.addEventListener("click", submitVocabSpelling);

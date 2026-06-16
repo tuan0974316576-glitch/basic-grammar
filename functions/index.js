@@ -85,6 +85,12 @@ exports.studentLogin = onCall(async (request) => {
     });
   });
 
+  await admin.auth().setCustomUserClaims(uid, {
+    role: "student",
+    studentId,
+    classId
+  });
+
   await accountRef.set({
     uid,
     email,
