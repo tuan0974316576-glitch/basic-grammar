@@ -8,6 +8,7 @@ const sax = require("sax");
 
 const DEFAULT_OUTPUT = path.resolve(__dirname, "..", "teacher_vocab_bank.js");
 const DEFAULT_CONFLICTS = path.resolve(__dirname, "..", "teacher_vocab_conflicts.json");
+const DEFAULT_UPDATES = path.resolve(__dirname, "..", "teacher_vocab_manual_updates.json");
 const XML_MAIN_NS = "http://schemas.openxmlformats.org/spreadsheetml/2006/main";
 const XML_REL_NS = "http://schemas.openxmlformats.org/officeDocument/2006/relationships";
 
@@ -42,7 +43,7 @@ const POS_ALIASES = {
 function usage() {
   console.log([
     "Usage:",
-    "  node scripts/import-teacher-vocab.js <xlsx...> [--out teacher_vocab_bank.js] [--conflicts teacher_vocab_conflicts.json]",
+    "  node scripts/import-teacher-vocab.js <xlsx...> [--updates teacher_vocab_manual_updates.json] [--out teacher_vocab_bank.js] [--conflicts teacher_vocab_conflicts.json]",
     "",
     "Example:",
     "  node scripts/import-teacher-vocab.js ~/Downloads/RANDOMISABLE\\ VOCAB\\ \\(2\\).xlsx"
@@ -53,6 +54,7 @@ function parseArgs(argv) {
   const files = [];
   let out = DEFAULT_OUTPUT;
   let conflicts = DEFAULT_CONFLICTS;
+  let updateFiles = fs.existsSync(DEFAULT_UPDATES) ? [DEFAULT_UPDATES] : [];
 
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
@@ -70,6 +72,15 @@ function parseArgs(argv) {
       index += 1;
       continue;
     }
+    if (arg === "--updates") {
+      updateFiles.push(path.resolve(argv[index + 1] || ""));
+      index += 1;
+      continue;
+    }
+    if (arg === "--no-updates") {
+      updateFiles = [];
+      continue;
+    }
     files.push(path.resolve(arg));
   }
 
@@ -78,7 +89,7 @@ function parseArgs(argv) {
     process.exit(1);
   }
 
-  return { files, out, conflicts };
+  return { files, out, conflicts, updateFiles: Array.from(new Set(updateFiles)).filter(Boolean) };
 }
 
 function xmlLocalName(name = "") {
@@ -136,6 +147,12 @@ function detectType(word, explicitPos = "") {
   if (/\s/.test(normalized) || /[-/]/.test(normalized)) return "phrase";
   if (explicitPos === "phrase") return "phrase";
   return "word";
+}
+
+function normalizeManualType(value, word, explicitPos = "") {
+  const type = String(value || "").trim().toLowerCase();
+  if (type === "pattern" || type === "phrase" || type === "word") return type;
+  return detectType(word, explicitPos);
 }
 
 function splitPosFromWord(rawWord) {
@@ -386,6 +403,48 @@ function makeEntryId(word, pos, meaning, index) {
   return `${base}-${String(index + 1).padStart(4, "0")}`.slice(0, 96);
 }
 
+function createManualEntriesFromData(data = {}, sourceFile = "manual-updates") {
+  const lesson = data.meta?.lesson || data.lesson || "Manual updates";
+  const rows = Array.isArray(data.entries) ? data.entries : [];
+
+  return rows.map((row, index) => {
+    const word = normalizeWord(row.word || row.english || row.display);
+    const display = String(row.display || row.word || row.english || "").trim().replace(/\s+/g, " ");
+    const pos = normalizePos(row.pos);
+    const meaning = normalizeMeaning(row.meaning || row.chinese);
+    const type = normalizeManualType(row.type, word, pos);
+    if (!word || !meaning) return null;
+
+    return {
+      id: "",
+      word,
+      display: display || word,
+      meaning,
+      pos,
+      type,
+      source: "teacher",
+      sourceFile,
+      sheet: lesson,
+      row: index + 1,
+      columns: "manual",
+      needsReview: Boolean(row.needsReview),
+      notes: normalizeMeaning(row.notes || "老師指定更新"),
+      override: row.override !== false
+    };
+  }).filter(Boolean);
+}
+
+function readManualUpdateFile(filePath) {
+  if (!fs.existsSync(filePath)) {
+    throw new Error(`Manual update file not found: ${filePath}`);
+  }
+  const data = JSON.parse(fs.readFileSync(filePath, "utf8"));
+  return {
+    filePath,
+    entries: createManualEntriesFromData(data, path.basename(filePath))
+  };
+}
+
 function extractEntriesFromRows({ sourceFile, sheetName, rows }) {
   const entries = [];
   const blankChineseCandidates = [];
@@ -469,10 +528,46 @@ async function readWorkbook(filePath) {
   };
 }
 
+function overrideKey(entry) {
+  return [
+    normalizeWord(entry.word),
+    entry.type || detectType(entry.word, entry.pos),
+    normalizePos(entry.pos)
+  ].join("\u0001");
+}
+
+function wordTypeKey(entry) {
+  return [
+    normalizeWord(entry.word),
+    entry.type || detectType(entry.word, entry.pos)
+  ].join("\u0001");
+}
+
+function applyManualOverrides(rawEntries) {
+  const overrideKeys = new Set();
+  const overrideWordTypeKeys = new Set();
+
+  rawEntries.forEach((entry) => {
+    if (!entry.override) return;
+    overrideKeys.add(overrideKey(entry));
+    overrideWordTypeKeys.add(wordTypeKey(entry));
+  });
+
+  if (!overrideKeys.size) return rawEntries;
+
+  return rawEntries.filter((entry) => {
+    if (entry.override) return true;
+    const exactKey = overrideKey(entry);
+    if (overrideKeys.has(exactKey)) return false;
+    if (!entry.pos && overrideWordTypeKeys.has(wordTypeKey(entry))) return false;
+    return true;
+  });
+}
+
 function dedupeEntries(rawEntries) {
   const groups = new Map();
 
-  rawEntries.forEach((entry) => {
+  applyManualOverrides(rawEntries).forEach((entry) => {
     const key = [
       normalizeWord(entry.word),
       normalizePos(entry.pos),
@@ -489,7 +584,8 @@ function dedupeEntries(rawEntries) {
       sourceFile: entry.sourceFile,
       sheet: entry.sheet,
       row: entry.row,
-      columns: entry.columns
+      columns: entry.columns,
+      override: Boolean(entry.override)
     });
   });
 
@@ -506,7 +602,8 @@ function dedupeEntries(rawEntries) {
       needsReview: Boolean(entry.needsReview),
       notes: entry.notes,
       sourceCount,
-      sources: entry.sources.slice(0, 8)
+      sources: entry.sources.slice(0, 8),
+      override: Boolean(entry.override)
     };
   });
 
@@ -597,8 +694,15 @@ async function main() {
   for (const file of args.files) {
     workbooks.push(await readWorkbook(file));
   }
+  const manualUpdates = [];
+  for (const file of args.updateFiles) {
+    manualUpdates.push(readManualUpdateFile(file));
+  }
 
-  const rawEntries = workbooks.flatMap((workbook) => workbook.entries);
+  const rawEntries = [
+    ...workbooks.flatMap((workbook) => workbook.entries),
+    ...manualUpdates.flatMap((updateFile) => updateFile.entries)
+  ];
   const entries = dedupeEntries(rawEntries);
   const blankChineseCandidates = workbooks.flatMap((workbook) => workbook.blankChineseCandidates);
   const conflictReport = buildConflicts(entries, blankChineseCandidates);
@@ -616,6 +720,10 @@ async function main() {
         sheetCount: workbook.sheetCount,
         rawEntryCount: workbook.entries.length,
         sharedStringCount: workbook.sharedStringCount
+      })),
+      updateFiles: manualUpdates.map((updateFile) => ({
+        name: path.basename(updateFile.filePath),
+        rawEntryCount: updateFile.entries.length
       })),
       entryCount: entries.length,
       uniqueWordCount,
@@ -645,8 +753,10 @@ if (require.main === module) {
 
 module.exports = {
   detectType,
+  createManualEntriesFromData,
   dedupeEntries,
   extractEntriesFromRows,
+  readManualUpdateFile,
   normalizeMeaning,
   normalizePos,
   normalizeWord,

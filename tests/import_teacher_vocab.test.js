@@ -44,4 +44,51 @@ const deduped = importer.dedupeEntries([
 assert.strictEqual(deduped.length, 1);
 assert.strictEqual(deduped[0].sourceCount, 2);
 
+const manualEntries = importer.createManualEntriesFromData({
+  meta: { lesson: "Today" },
+  entries: [
+    { word: "appeal", meaning: "吸引力", pos: "noun" },
+    { word: "manage to", meaning: "能夠", type: "phrase" }
+  ]
+}, "manual.json");
+assert.strictEqual(manualEntries.length, 2);
+assert.strictEqual(manualEntries[0].override, true);
+assert.strictEqual(manualEntries[0].pos, "noun");
+
+const overridden = importer.dedupeEntries([
+  {
+    id: "",
+    word: "appeal",
+    display: "appeal",
+    meaning: "上訴",
+    pos: "noun",
+    type: "word",
+    source: "teacher",
+    sourceFile: "old.xlsx",
+    sheet: "Old",
+    row: 1,
+    columns: "A:B",
+    needsReview: false
+  },
+  {
+    id: "",
+    word: "appeal",
+    display: "appeal",
+    meaning: "吸引",
+    pos: "",
+    type: "word",
+    source: "teacher",
+    sourceFile: "old.xlsx",
+    sheet: "Old",
+    row: 2,
+    columns: "A:B",
+    needsReview: true
+  },
+  ...manualEntries.slice(0, 1)
+]);
+assert.strictEqual(overridden.length, 1);
+assert.strictEqual(overridden[0].word, "appeal");
+assert.strictEqual(overridden[0].meaning, "吸引力");
+assert.strictEqual(overridden[0].pos, "noun");
+
 console.log("import_teacher_vocab tests passed");

@@ -123,6 +123,7 @@ Current pipeline:
 
 - Run `npm run vocab:import -- "/path/to/vocab.xlsx"` to generate `teacher_vocab_bank.js`.
 - The importer reads side-by-side `English | Chinese` column pairs, including sheets with A/B and C/D pairs.
+- `teacher_vocab_manual_updates.json` stores Austin Sir's latest lesson meanings. Manual updates are applied after Excel import and override older entries with the same word / POS / type.
 - `teacher_vocab_conflicts.json` is generated for review when the same English word has multiple Chinese meanings or unclear POS.
 - POS belongs to a specific meaning, not only to the spelling of the English word. For example, `secure` can have separate adjective and verb entries.
 - Patterns such as `be+pp` and `as+名詞` are stored as `type: "pattern"`, not as normal POS.
