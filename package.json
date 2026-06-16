@@ -7,10 +7,11 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "node tests/grammar_core.test.js && node tests/grammar_data.test.js && node tests/vocab_scheduler.test.js && node tests/vocab_data.test.js && node tests/teacher_vocab.test.js && node tests/import_teacher_vocab.test.js",
-    "check:js": "node --check grammar_core.js && node --check grammar_data.js && node --check vocab_scheduler.js && node --check vocab_data.js && node --check teacher_vocab_bank.js && node --check teacher_vocab.js && node --check app.js && node --check firebase-init.js && node --check scripts/build-web.js && node --check scripts/firebase-cli.js && node --check scripts/import-teacher-vocab.js && npm --prefix functions run lint && node --check functions/seed-students.js",
+    "test": "node tests/grammar_core.test.js && node tests/grammar_data.test.js && node tests/vocab_scheduler.test.js && node tests/vocab_data.test.js && node tests/teacher_vocab.test.js && node tests/fallback_dictionary.test.js && node tests/import_teacher_vocab.test.js && node tests/import_offline_dictionary.test.js",
+    "check:js": "node --check grammar_core.js && node --check grammar_data.js && node --check vocab_scheduler.js && node --check vocab_data.js && node --check teacher_vocab_bank.js && node --check teacher_vocab.js && node --check fallback_dictionary.js && node --check app.js && node --check firebase-init.js && node --check scripts/build-web.js && node --check scripts/firebase-cli.js && node --check scripts/import-teacher-vocab.js && node --check scripts/import-offline-dictionary.js && npm --prefix functions run lint && node --check functions/seed-students.js",
     "build:web": "node scripts/build-web.js",
     "vocab:import": "node scripts/import-teacher-vocab.js",
+    "dict:import": "node scripts/import-offline-dictionary.js",
     "cap:sync": "npm run build:web && npx cap sync android",
     "android:run": "npm run build:web && npx cap run android --target S2AIOC447307NGJ",
     "firebase:deploy:functions": "node scripts/firebase-cli.js deploy --only functions:grammar-game",
@@ -37,6 +38,7 @@
     "@capacitor/core": "^8.4.0"
   },
   "devDependencies": {
+    "opencc-js": "^1.3.1",
     "sax": "^1.6.0",
     "yauzl": "^3.4.0"
   }

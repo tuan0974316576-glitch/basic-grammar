@@ -7,6 +7,7 @@ const outDir = path.join(rootDir, "www");
 const files = [
   ".htaccess",
   "app.js",
+  "fallback_dictionary.js",
   "firebase_config.js",
   "firebase-init.js",
   "grammar_core.js",

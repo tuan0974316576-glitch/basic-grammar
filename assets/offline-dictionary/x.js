@@ -1,0 +1,2 @@
+window.OFFLINE_DICTIONARY_SHARDS = window.OFFLINE_DICTIONARY_SHARDS || {};
+window.OFFLINE_DICTIONARY_SHARDS["x"] = {"shard":"x","entries":[{"id":"ecdict-xerox-verb","word":"xerox","pos":"verb","meaning":"靜電覆印","type":"word","rank":17172},{"id":"ecdict-xi-noun","word":"xi","pos":"noun","meaning":"希臘字母的第14個字母","type":"word","rank":10505},{"id":"ecdict-xv-noun","word":"xv","pos":"noun","meaning":"羅馬數字之十五","type":"word","rank":13038}]};

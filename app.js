@@ -14,6 +14,7 @@ if (!VOCAB_DATA) {
 }
 
 const TEACHER_VOCAB = window.TeacherVocab || null;
+const OFFLINE_VOCAB = window.FallbackDictionary || null;
 
 const {
   QUESTIONS,
@@ -1456,6 +1457,37 @@ function getTeacherVocabMatches(word) {
   return TEACHER_VOCAB.lookup(word, { exactOnly: true, limit: 10 });
 }
 
+function getOfflineVocabMatches(word, options = {}) {
+  if (!OFFLINE_VOCAB?.lookup) return [];
+  return OFFLINE_VOCAB.lookup(word, {
+    pos: options.pos || "",
+    limit: options.limit || 10
+  });
+}
+
+function buildVocabLookupMatches(word) {
+  const teacherMatches = getTeacherVocabMatches(word);
+  if (teacherMatches.length) {
+    return teacherMatches.map((entry) => ({
+      ...entry,
+      source: entry.source || "teacher"
+    }));
+  }
+
+  const offlineMatches = getOfflineVocabMatches(word);
+  return offlineMatches.map((entry) => ({
+    ...entry,
+    source: entry.source || "offline-dictionary",
+    sourceEntryId: entry.sourceEntryId || entry.id
+  }));
+}
+
+async function loadOfflineVocabMatches(word) {
+  if (!OFFLINE_VOCAB?.loadShardForWord) return [];
+  await OFFLINE_VOCAB.loadShardForWord(word);
+  return getOfflineVocabMatches(word);
+}
+
 function clearVocabMeaningSuggestions() {
   vocabEntryLookupState = {
     word: "",
@@ -1481,6 +1513,12 @@ function getVocabEntryFilterLabel(filterKey = "") {
   if (filterKey === "type:pattern") return "句式";
   if (filterKey === "type:phrase") return "詞組";
   return "字";
+}
+
+function getVocabEntrySourceLabel(entry = {}) {
+  if (entry.source === "offline-dictionary") return "離線字典";
+  if (entry.source === "teacher") return "老師筆記";
+  return "詞庫";
 }
 
 function getFilteredVocabMatches() {
@@ -1543,7 +1581,8 @@ function renderVocabMeaningSuggestions() {
     button.textContent = TEACHER_VOCAB.getEntryLabel?.(entry) || entry.meaning;
 
     const meta = document.createElement("small");
-    const sourceText = entry.sourceCount > 1 ? `老師筆記 ${entry.sourceCount} 次` : "老師筆記";
+    const sourceLabel = getVocabEntrySourceLabel(entry);
+    const sourceText = entry.sourceCount > 1 ? `${sourceLabel} ${entry.sourceCount} 次` : sourceLabel;
     meta.textContent = entry.type === "pattern" ? `句式 / ${sourceText}` : sourceText;
     button.append(meta);
 
@@ -1562,7 +1601,7 @@ function renderVocabMeaningSuggestions() {
   el.vocabMeaningSuggestions.classList.remove("hidden");
 }
 
-function refreshVocabTeacherLookup(options = {}) {
+async function refreshVocabTeacherLookup(options = {}) {
   const word = normalizeVocabWord(getTextEntryValue(el.vocabWordInput));
   if (!word) {
     clearVocabMeaningSuggestions();
@@ -1572,7 +1611,7 @@ function refreshVocabTeacherLookup(options = {}) {
   const wordChanged = word !== previousWord;
   if (!wordChanged && !options.force) return;
 
-  const matches = getTeacherVocabMatches(word);
+  const matches = buildVocabLookupMatches(word);
   const autoEntry = TEACHER_VOCAB?.chooseAutoFillEntry?.(matches) || null;
   vocabEntryLookupState = {
     word,
@@ -1588,6 +1627,23 @@ function refreshVocabTeacherLookup(options = {}) {
   }
   renderVocabMeaningSuggestions();
   updateVocabEntryState();
+
+  if (!matches.length) {
+    const loadedMatches = await loadOfflineVocabMatches(word);
+    if (normalizeVocabWord(getTextEntryValue(el.vocabWordInput)) !== word || !loadedMatches.length) return;
+    const loadedAutoEntry = TEACHER_VOCAB?.chooseAutoFillEntry?.(loadedMatches) || null;
+    vocabEntryLookupState = {
+      word,
+      matches: loadedMatches,
+      filterKey: loadedAutoEntry ? getVocabEntryFilterKey(loadedAutoEntry) : "",
+      selectedEntry: loadedAutoEntry
+    };
+    if (loadedAutoEntry && !normalizeVocabMeaning(getTextEntryValue(el.vocabMeaningInput))) {
+      setTextEntryValue(el.vocabMeaningInput, loadedAutoEntry.meaning || "");
+    }
+    renderVocabMeaningSuggestions();
+    updateVocabEntryState();
+  }
 }
 
 function getSelectedTeacherVocabEntryForSave(word, meaning) {
@@ -1602,8 +1658,18 @@ function getSelectedTeacherVocabEntryForSave(word, meaning) {
   )) || null;
 }
 
+function getSelectedVocabSourceEntry(word, meaning) {
+  const matches = vocabEntryLookupState.matches || [];
+  const normalizedWord = normalizeVocabWord(word);
+  const normalizedMeaning = normalizeVocabMeaning(meaning);
+  const exactMatch = matches.find((entry) => (
+    entry.word === normalizedWord && normalizeVocabMeaning(entry.meaning) === normalizedMeaning
+  ));
+  return exactMatch || null;
+}
+
 function handleVocabWordEntryChange() {
-  refreshVocabTeacherLookup({ force: true });
+  void refreshVocabTeacherLookup({ force: true });
   updateVocabEntryState();
 }
 
@@ -1713,9 +1779,12 @@ function addVocabItemFromEntry() {
   }
 
   const teacherEntry = getSelectedTeacherVocabEntryForSave(word, meaning);
+  const sourceEntry = getSelectedVocabSourceEntry(word, meaning);
   const itemId = teacherEntry?.id
     ? `teacher-${teacherEntry.id}`
-    : VOCAB_DATA.createMeaningId(word, meaning);
+    : sourceEntry?.source === "offline-dictionary"
+      ? `offline-${sourceEntry.id}`
+      : VOCAB_DATA.createMeaningId(word, meaning);
   const extraFields = teacherEntry
     ? {
       pos: teacherEntry.pos || "",
@@ -1723,6 +1792,13 @@ function addVocabItemFromEntry() {
       source: "teacher",
       teacherEntryId: teacherEntry.id
     }
+    : sourceEntry
+      ? {
+        pos: sourceEntry.pos || "",
+        type: sourceEntry.type || "word",
+        source: sourceEntry.source || "offline-dictionary",
+        sourceEntryId: sourceEntry.id || ""
+      }
     : {};
   const existingIndex = state.vocabWords.findIndex((item) => item.id === itemId);
   const now = Date.now();
@@ -2551,7 +2627,7 @@ function handleTextEntryDocumentKeydown(event) {
 
 function openVocabEntryField(targetName) {
   if (targetName === "vocabMeaning") {
-    refreshVocabTeacherLookup();
+    void refreshVocabTeacherLookup();
   }
   activateTextEntryTarget(targetName, { showKeyboard: !isComputerKeyboardMode() });
 }

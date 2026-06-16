@@ -126,7 +126,9 @@ Current pipeline:
 - `teacher_vocab_conflicts.json` is generated for review when the same English word has multiple Chinese meanings or unclear POS.
 - POS belongs to a specific meaning, not only to the spelling of the English word. For example, `secure` can have separate adjective and verb entries.
 - Patterns such as `be+pp` and `as+名詞` are stored as `type: "pattern"`, not as normal POS.
-- If teacher notes do not contain a word, the future fallback can use an open dictionary by matching word + POS. If still unclear, mark it as `待老師確認` rather than guessing.
+- If teacher notes do not contain a word, fallback must use a local offline dictionary by matching word + POS. Do not depend on live online lookup during class.
+- The offline dictionary should be split / lazy-loaded so the app stays fast on phones. Current generated shards use ECDICT data converted to Traditional Chinese at import time; the raw CSV is not committed, and only clear POS entries are included to reduce classroom noise.
+- If the offline dictionary is still unclear or has multiple unsuitable meanings, mark it as `待老師確認` rather than guessing.
 
 Student vocab items can store optional metadata:
 
