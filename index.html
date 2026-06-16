@@ -119,9 +119,14 @@
       </div>
     </section>
 
-    <section id="vocab-screen" class="screen tab-screen" aria-labelledby="vocab-title">
+    <section id="vocab-screen" class="screen tab-screen vocab-home-screen" aria-labelledby="vocab-title">
+      <button id="vocab-train-btn" class="vocab-train-btn" type="button" aria-label="開始詞彙溫習">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M3 8v8M7 6v12M17 6v12M21 8v8M5 12h14" />
+        </svg>
+      </button>
       <div class="topline">Vocabulary</div>
-      <h1 id="vocab-title">詞彙溫習</h1>
+      <h1 id="vocab-title">詞彙本</h1>
 
       <div class="module-layout vocab-layout">
         <div class="module-control-panel">
@@ -129,44 +134,74 @@
             <img src="assets/grammar-coach.svg" alt="">
             <div>
               <span>Coach</span>
-              <strong>生字庫準備中。</strong>
+              <strong id="vocab-coach-line">先加入上堂學過的生字。</strong>
             </div>
           </div>
 
           <div class="module-stat-grid">
             <div>
               <span>Words</span>
-              <strong>0</strong>
+              <strong id="vocab-word-count">0</strong>
             </div>
             <div>
               <span>Review</span>
-              <strong>0</strong>
+              <strong id="vocab-review-count">0</strong>
             </div>
+          </div>
+
+          <div class="vocab-entry-panel">
+            <input id="vocab-word-input" class="text-entry-field vocab-entry-input" type="text" inputmode="latin" autocomplete="off" autocapitalize="none" spellcheck="false" readonly placeholder="English word" aria-label="輸入英文生字" data-placeholder="English word">
+            <input id="vocab-meaning-input" class="text-entry-field vocab-entry-input" type="text" autocomplete="off" readonly placeholder="中文意思" aria-label="輸入中文意思" data-placeholder="中文意思">
+            <button id="vocab-add-btn" class="primary-btn vocab-add-btn" type="button">加入</button>
           </div>
         </div>
 
-        <div class="module-picker" aria-label="詞彙模式">
-          <button class="module-card" type="button" disabled>
-            <span class="lesson-kicker">Reading</span>
-            <strong>認字</strong>
-            <span class="module-card-meta">Coming soon</span>
-          </button>
-          <button class="module-card" type="button" disabled>
-            <span class="lesson-kicker">Spelling</span>
-            <strong>串字</strong>
-            <span class="module-card-meta">Coming soon</span>
-          </button>
-          <button class="module-card" type="button" disabled>
-            <span class="lesson-kicker">Listening</span>
-            <strong>聽字</strong>
-            <span class="module-card-meta">Coming soon</span>
-          </button>
-          <button class="module-card" type="button" disabled>
-            <span class="lesson-kicker">Speaking</span>
-            <strong>讀字</strong>
-            <span class="module-card-meta">Coming soon</span>
-          </button>
+        <div class="module-picker vocab-list-panel" aria-label="詞彙列表">
+          <div id="vocab-list" class="vocab-list" aria-label="已儲存生字"></div>
         </div>
+      </div>
+    </section>
+
+    <section id="vocab-quiz-screen" class="screen" aria-labelledby="vocab-quiz-title">
+      <header class="lesson-header">
+        <button class="ghost-btn" type="button" data-back-vocab>&lt; Vocab</button>
+        <div>
+          <div id="vocab-quiz-kicker" class="topline">Vocabulary</div>
+          <h2 id="vocab-quiz-title">詞彙溫習</h2>
+        </div>
+        <div class="header-tools">
+          <button id="vocab-sound-btn" class="sound-btn" type="button" aria-label="讀出生字">♪</button>
+          <div class="counter">Q <span id="vocab-question-number">1</span>/<span id="vocab-question-total">0</span></div>
+        </div>
+      </header>
+
+      <div class="vocab-quiz-body">
+        <div class="status-strip">
+          <div>
+            <span>Score</span>
+            <strong><span id="vocab-score">0</span>/<span id="vocab-total">0</span></strong>
+          </div>
+          <div>
+            <span>Mode</span>
+            <strong id="vocab-mode-label">Reading</strong>
+          </div>
+        </div>
+
+        <div class="prompt-panel vocab-prompt-panel">
+          <div id="vocab-step-label" class="step-label">英文生字</div>
+          <div id="vocab-prompt" class="vocab-prompt">--</div>
+          <div id="vocab-guidance" class="guidance">選出正確意思</div>
+        </div>
+
+        <div id="vocab-choice-grid" class="choice-grid vocab-choice-grid"></div>
+
+        <div id="vocab-spelling-panel" class="vocab-spelling-panel hidden">
+          <input id="vocab-answer-input" class="text-entry-field vocab-answer-input" type="text" inputmode="latin" autocomplete="off" autocapitalize="none" spellcheck="false" readonly placeholder="Type the word" aria-label="輸入英文答案" data-placeholder="Type the word">
+          <button id="vocab-submit-answer" class="primary-btn" type="button">確認</button>
+        </div>
+
+        <div id="vocab-feedback" class="feedback" aria-live="polite"></div>
+        <button id="vocab-next-btn" class="primary-btn next-btn hidden" type="button">下一題</button>
       </div>
     </section>
 
@@ -378,6 +413,8 @@
 
   <div id="app-keyboard-dock" class="app-keyboard-dock" aria-label="Game keyboard dock">
     <div id="countable-correction-keyboard" class="verb-table-keyboard text-game-keyboard countable-correction-keyboard hidden" aria-label="Countable noun correction keyboard"></div>
+    <div id="vocab-entry-keyboard" class="verb-table-keyboard text-game-keyboard vocab-entry-keyboard hidden" aria-label="Vocabulary entry keyboard"></div>
+    <div id="vocab-answer-keyboard" class="verb-table-keyboard text-game-keyboard vocab-answer-keyboard hidden" aria-label="Vocabulary answer keyboard"></div>
     <div id="verb-table-keyboard" class="verb-table-keyboard hidden" aria-label="Verb Table keyboard">
       <div class="verb-table-key-row">
         <button class="verb-table-key" type="button" data-verb-table-key="q">Q</button>
@@ -498,6 +535,7 @@
   <script src="grammar_verb_table_image_manifest.js?v=20260613-verb-table-images-lite"></script>
   <script src="grammar_core.js?v=20260614-native-flow-core"></script>
   <script src="grammar_data.js?v=20260614-native-data-layer"></script>
+  <script src="vocab_scheduler.js?v=20260616-srs"></script>
   <script src="app.js?v=20260615-app-keyboard-dock"></script>
 </body>
 </html>

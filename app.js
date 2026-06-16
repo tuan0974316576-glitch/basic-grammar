@@ -3,6 +3,11 @@ if (!GRAMMAR_DATA) {
   throw new Error("GrammarData failed to load.");
 }
 
+const VOCAB_SCHEDULER = window.VocabScheduler;
+if (!VOCAB_SCHEDULER) {
+  throw new Error("VocabScheduler failed to load.");
+}
+
 const {
   QUESTIONS,
   PRONOUN_CATEGORIES,
@@ -28,6 +33,10 @@ const PRACTICE_COUNT_KEY = "basic_grammar_practice_count_v1";
 const BEST_STREAK_KEY = "basic_grammar_best_streak_v1";
 const STUDENT_PROFILE_KEY = "basic_grammar_student_profile_v1";
 const STUDENT_PROGRESS_SYNC_KEY = "basic_grammar_progress_sync_queue_v1";
+const VOCAB_ITEMS_KEY = "basic_vocab_items_v1";
+const VOCAB_PROGRESS_KEY = "basic_vocab_progress_v1";
+const VOCAB_QUIZ_SETTINGS_KEY = "basic_vocab_quiz_settings_v1";
+const VOCAB_STAGE_KIND_PATTERN = ["reading", "listening", "spelling", "reading", "listening", "spelling", "reading", "listening", "spelling", "reading"];
 const CATEGORY_LABELS = {
   action: "動作動詞",
   be: "「是」句",
@@ -44,6 +53,77 @@ const QUESTION_WEIGHTS = {
   be: 0.3,
   adjective: 0.2
 };
+
+const DEFAULT_VOCAB_BANK = [
+  { word: "apple", meaning: "蘋果" },
+  { word: "apples", meaning: "蘋果" },
+  { word: "book", meaning: "書" },
+  { word: "books", meaning: "書" },
+  { word: "bag", meaning: "書包" },
+  { word: "school bag", meaning: "書包" },
+  { word: "pencil", meaning: "鉛筆" },
+  { word: "pen", meaning: "原子筆" },
+  { word: "eraser", meaning: "橡皮擦" },
+  { word: "ruler", meaning: "尺" },
+  { word: "desk", meaning: "書桌" },
+  { word: "chair", meaning: "椅子" },
+  { word: "teacher", meaning: "老師" },
+  { word: "student", meaning: "學生" },
+  { word: "class", meaning: "班級" },
+  { word: "classroom", meaning: "課室" },
+  { word: "friend", meaning: "朋友" },
+  { word: "mother", meaning: "媽媽" },
+  { word: "father", meaning: "爸爸" },
+  { word: "sister", meaning: "姐姐／妹妹" },
+  { word: "brother", meaning: "哥哥／弟弟" },
+  { word: "boy", meaning: "男孩" },
+  { word: "girl", meaning: "女孩" },
+  { word: "dog", meaning: "狗" },
+  { word: "dogs", meaning: "狗" },
+  { word: "cat", meaning: "貓" },
+  { word: "bird", meaning: "鳥" },
+  { word: "fish", meaning: "魚" },
+  { word: "water", meaning: "水" },
+  { word: "milk", meaning: "牛奶" },
+  { word: "rice", meaning: "飯" },
+  { word: "cake", meaning: "蛋糕" },
+  { word: "bread", meaning: "麵包" },
+  { word: "school", meaning: "學校" },
+  { word: "home", meaning: "家" },
+  { word: "park", meaning: "公園" },
+  { word: "car", meaning: "汽車" },
+  { word: "bus", meaning: "巴士" },
+  { word: "ball", meaning: "球" },
+  { word: "football", meaning: "足球" },
+  { word: "game", meaning: "遊戲" },
+  { word: "play", meaning: "玩" },
+  { word: "eat", meaning: "吃" },
+  { word: "go", meaning: "去" },
+  { word: "come", meaning: "來" },
+  { word: "see", meaning: "看見" },
+  { word: "buy", meaning: "買" },
+  { word: "make", meaning: "製作" },
+  { word: "take", meaning: "拿" },
+  { word: "open", meaning: "打開" },
+  { word: "close", meaning: "關上" },
+  { word: "drink", meaning: "喝" },
+  { word: "read", meaning: "閱讀" },
+  { word: "write", meaning: "寫" },
+  { word: "listen", meaning: "聽" },
+  { word: "sing", meaning: "唱歌" },
+  { word: "run", meaning: "跑" },
+  { word: "sleep", meaning: "睡覺" },
+  { word: "happy", meaning: "開心的" },
+  { word: "tired", meaning: "累的" },
+  { word: "kind", meaning: "友善的" },
+  { word: "big", meaning: "大的" },
+  { word: "small", meaning: "小的" },
+  { word: "red", meaning: "紅色的" },
+  { word: "hot", meaning: "熱的" },
+  { word: "cold", meaning: "冷的" },
+  { word: "clean", meaning: "乾淨的" },
+  { word: "new", meaning: "新的" }
+];
 
 const SOUND_PATTERNS = {
   start: [
@@ -117,6 +197,7 @@ let activeVerbTableReferenceAudioToken = 0;
 let activeTextEntryTarget = "";
 let studentCloudSyncPromise = null;
 let studentCloudSyncUid = "";
+let vocabQuizState = null;
 let studentAuthState = {
   resolved: false,
   available: false,
@@ -150,6 +231,9 @@ const state = {
   verbTableWrongSlots: [],
   verbTableSubmitState: "",
   verbTableActiveField: "present",
+  vocabWords: getSavedVocabItems(),
+  vocabProgress: getSavedVocabProgress(),
+  vocabQuizMode: getSavedVocabQuizMode(),
   streak: 0,
   bestStreak: getSavedBestStreak(),
   practiceCount: getSavedPracticeCount(),
@@ -162,6 +246,8 @@ const el = {
   appTabs: [...document.querySelectorAll("[data-app-tab]")],
   menuScreen: document.querySelector("#menu-screen"),
   vocabScreen: document.querySelector("#vocab-screen"),
+  vocabQuizScreen: document.querySelector("#vocab-quiz-screen"),
+  vocabTrainBtn: document.querySelector("#vocab-train-btn"),
   scanScreen: document.querySelector("#scan-screen"),
   lessonScreen: document.querySelector("#lesson-screen"),
   resultScreen: document.querySelector("#result-screen"),
@@ -192,6 +278,34 @@ const el = {
   verbTableReferenceCount: document.querySelector("#verb-table-reference-count"),
   verbTableReferenceBody: document.querySelector("#verb-table-reference-body"),
   menuCoachLine: document.querySelector("#menu-coach-line"),
+  vocabCoachLine: document.querySelector("#vocab-coach-line"),
+  vocabWordCount: document.querySelector("#vocab-word-count"),
+  vocabReviewCount: document.querySelector("#vocab-review-count"),
+  vocabWordInput: document.querySelector("#vocab-word-input"),
+  vocabMeaningInput: document.querySelector("#vocab-meaning-input"),
+  vocabEntryKeyboard: document.querySelector("#vocab-entry-keyboard"),
+  vocabAddBtn: document.querySelector("#vocab-add-btn"),
+  vocabList: document.querySelector("#vocab-list"),
+  vocabModeCards: [...document.querySelectorAll("[data-vocab-mode]")],
+  backVocabBtn: document.querySelector("[data-back-vocab]"),
+  vocabQuizKicker: document.querySelector("#vocab-quiz-kicker"),
+  vocabQuizTitle: document.querySelector("#vocab-quiz-title"),
+  vocabSoundBtn: document.querySelector("#vocab-sound-btn"),
+  vocabQuestionNumber: document.querySelector("#vocab-question-number"),
+  vocabQuestionTotal: document.querySelector("#vocab-question-total"),
+  vocabScore: document.querySelector("#vocab-score"),
+  vocabTotal: document.querySelector("#vocab-total"),
+  vocabModeLabel: document.querySelector("#vocab-mode-label"),
+  vocabStepLabel: document.querySelector("#vocab-step-label"),
+  vocabPrompt: document.querySelector("#vocab-prompt"),
+  vocabGuidance: document.querySelector("#vocab-guidance"),
+  vocabChoiceGrid: document.querySelector("#vocab-choice-grid"),
+  vocabSpellingPanel: document.querySelector("#vocab-spelling-panel"),
+  vocabAnswerInput: document.querySelector("#vocab-answer-input"),
+  vocabSubmitAnswer: document.querySelector("#vocab-submit-answer"),
+  vocabAnswerKeyboard: document.querySelector("#vocab-answer-keyboard"),
+  vocabFeedback: document.querySelector("#vocab-feedback"),
+  vocabNextBtn: document.querySelector("#vocab-next-btn"),
   practiceCountInput: document.querySelector("#practice-count"),
   practiceCountOutput: document.querySelector("#practice-count-output"),
   lessonKicker: document.querySelector("#lesson-kicker"),
@@ -329,6 +443,89 @@ function saveStudentProfile(profile) {
     }
   } catch (_error) {
     // Login still works during the current session.
+  }
+}
+
+function normalizeVocabWord(value) {
+  return String(value || "")
+    .trim()
+    .replace(/[’‘]/g, "'")
+    .replace(/\s+/g, " ")
+    .toLowerCase();
+}
+
+function normalizeVocabMeaning(value) {
+  return String(value || "")
+    .trim()
+    .replace(/\s+/g, " ");
+}
+
+function createVocabId(word) {
+  return normalizeVocabWord(word).replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || `word-${Date.now()}`;
+}
+
+function getSavedVocabItems() {
+  try {
+    const saved = safeJsonParse(localStorage.getItem(VOCAB_ITEMS_KEY), []);
+    if (!Array.isArray(saved)) return [];
+    return saved
+      .map((item) => {
+        const word = normalizeVocabWord(item?.word);
+        const meaning = normalizeVocabMeaning(item?.meaning);
+        if (!word || !meaning) return null;
+        return {
+          id: item?.id || createVocabId(word),
+          word,
+          meaning,
+          createdAt: Number(item?.createdAt) || Date.now(),
+          updatedAt: Number(item?.updatedAt) || Number(item?.createdAt) || Date.now()
+        };
+      })
+      .filter(Boolean);
+  } catch (_error) {
+    return [];
+  }
+}
+
+function saveVocabItems() {
+  try {
+    localStorage.setItem(VOCAB_ITEMS_KEY, JSON.stringify(state.vocabWords));
+  } catch (_error) {
+    // Vocab still works during the current session.
+  }
+}
+
+function getSavedVocabProgress() {
+  try {
+    const saved = safeJsonParse(localStorage.getItem(VOCAB_PROGRESS_KEY), {});
+    return saved && typeof saved === "object" && !Array.isArray(saved) ? saved : {};
+  } catch (_error) {
+    return {};
+  }
+}
+
+function saveVocabProgress() {
+  try {
+    localStorage.setItem(VOCAB_PROGRESS_KEY, JSON.stringify(state.vocabProgress || {}));
+  } catch (_error) {
+    // Progress still updates during the current session.
+  }
+}
+
+function getSavedVocabQuizMode() {
+  try {
+    const mode = localStorage.getItem(VOCAB_QUIZ_SETTINGS_KEY);
+    return mode === "stage" ? mode : "stage";
+  } catch (_error) {
+    return "stage";
+  }
+}
+
+function saveVocabQuizMode(mode) {
+  try {
+    localStorage.setItem(VOCAB_QUIZ_SETTINGS_KEY, mode === "stage" ? "stage" : "stage");
+  } catch (_error) {
+    // The selected mode still works during this session.
   }
 }
 
@@ -992,6 +1189,430 @@ function updateMenuProgress() {
   }
 }
 
+function getVocabReviewCount() {
+  return state.vocabWords.filter((item) => {
+    const progress = state.vocabProgress[item.id] || {};
+    const reviewState = VOCAB_SCHEDULER.getItemReviewState(item, state.vocabProgress);
+    return reviewState.due
+      || (Number(progress.totalIncorrect ?? progress.wrong) || 0) > (Number(progress.totalCorrect ?? progress.correct) || 0);
+  }).length;
+}
+
+function updateVocabEntryState() {
+  const word = normalizeVocabWord(getTextEntryValue(el.vocabWordInput));
+  const meaning = normalizeVocabMeaning(getTextEntryValue(el.vocabMeaningInput));
+  if (el.vocabAddBtn) {
+    el.vocabAddBtn.disabled = !word || !meaning;
+  }
+}
+
+function renderVocabList() {
+  if (!el.vocabList) return;
+
+  const words = state.vocabWords;
+  el.vocabWordCount.textContent = String(words.length);
+  el.vocabReviewCount.textContent = String(getVocabReviewCount());
+  if (el.vocabTrainBtn) {
+    el.vocabTrainBtn.disabled = words.length < 1;
+  }
+
+  if (!words.length) {
+    el.vocabCoachLine.textContent = "先加入上堂學過的生字，再撳右上角訓練。";
+    el.vocabList.replaceChildren(createVocabEmptyState());
+    updateVocabEntryState();
+    return;
+  }
+
+  const dueCount = getVocabReviewCount();
+  el.vocabCoachLine.textContent = dueCount > 0
+    ? `有 ${dueCount} 個生字要溫習，撳右上角啞鈴開始。`
+    : words.length >= 4
+      ? "右上角啞鈴可直接開始混合練習。"
+      : "先加入多幾個生字，溫習會更完整。";
+  el.vocabList.replaceChildren(...words.map(createVocabListRow));
+  updateVocabEntryState();
+}
+
+function createVocabEmptyState() {
+  const empty = document.createElement("div");
+  empty.className = "vocab-empty";
+  empty.textContent = "未有生字。先輸入英文同中文意思。";
+  return empty;
+}
+
+function createVocabListRow(item) {
+  const row = document.createElement("div");
+  row.className = "vocab-row";
+  row.dataset.vocabId = item.id;
+
+  const text = document.createElement("div");
+  text.className = "vocab-row-text";
+
+  const word = document.createElement("strong");
+  word.textContent = item.word;
+
+  const meaning = document.createElement("span");
+  meaning.textContent = item.meaning;
+
+  text.append(word, meaning);
+
+  const progress = VOCAB_SCHEDULER.normalizeProgress(state.vocabProgress[item.id] || {});
+  const stats = document.createElement("div");
+  stats.className = "vocab-row-stats";
+  stats.textContent = `${progress.totalCorrect}/${progress.totalSeen}`;
+
+  const speakBtn = document.createElement("button");
+  speakBtn.className = "vocab-row-btn";
+  speakBtn.type = "button";
+  speakBtn.setAttribute("aria-label", `讀出 ${item.word}`);
+  speakBtn.textContent = "♪";
+  speakBtn.addEventListener("click", (event) => {
+    event.stopPropagation();
+    speakVocabWord(item.word);
+  });
+
+  const deleteBtn = document.createElement("button");
+  deleteBtn.className = "vocab-row-btn danger";
+  deleteBtn.type = "button";
+  deleteBtn.setAttribute("aria-label", `刪除 ${item.word}`);
+  deleteBtn.textContent = "×";
+  deleteBtn.addEventListener("click", (event) => {
+    event.stopPropagation();
+    deleteVocabItem(item.id);
+  });
+
+  row.addEventListener("click", () => speakVocabWord(item.word));
+  row.append(text, stats, speakBtn, deleteBtn);
+  return row;
+}
+
+function addVocabItemFromEntry() {
+  const word = normalizeVocabWord(getTextEntryValue(el.vocabWordInput));
+  const meaning = normalizeVocabMeaning(getTextEntryValue(el.vocabMeaningInput));
+  if (!word || !meaning) {
+    playUiSound("wrong");
+    updateVocabEntryState();
+    return;
+  }
+
+  const existingIndex = state.vocabWords.findIndex((item) => item.word === word);
+  const now = Date.now();
+  if (existingIndex >= 0) {
+    state.vocabWords[existingIndex] = {
+      ...state.vocabWords[existingIndex],
+      meaning,
+      updatedAt: now
+    };
+  } else {
+    state.vocabWords.unshift({
+      id: createVocabId(word),
+      word,
+      meaning,
+      createdAt: now,
+      updatedAt: now
+    });
+  }
+
+  saveVocabItems();
+  setTextEntryValue(el.vocabWordInput, "");
+  setTextEntryValue(el.vocabMeaningInput, "");
+  activateTextEntryTarget("vocabWord", { showKeyboard: !isComputerKeyboardMode() });
+  renderVocabList();
+  playUiSound("correct");
+}
+
+function deleteVocabItem(itemId) {
+  state.vocabWords = state.vocabWords.filter((item) => item.id !== itemId);
+  delete state.vocabProgress[itemId];
+  saveVocabItems();
+  saveVocabProgress();
+  renderVocabList();
+  playUiSound("next");
+}
+
+function getVocabModeLabel(mode = state.vocabQuizMode) {
+  if (mode === "spelling") return "Spelling";
+  if (mode === "listening") return "Listening";
+  if (mode === "reading") return "Reading";
+  return "Stage";
+}
+
+function getVocabModeTitle(mode = state.vocabQuizMode) {
+  if (mode === "spelling") return "串字";
+  if (mode === "listening") return "聽字";
+  if (mode === "reading") return "認字";
+  return "詞彙訓練";
+}
+
+function getVocabChoicePool(correctItem) {
+  const fromSaved = state.vocabWords
+    .filter((item) => item.id !== correctItem.id)
+    .map((item) => item.meaning);
+  const fromDefault = DEFAULT_VOCAB_BANK
+    .filter((item) => item.meaning !== correctItem.meaning && item.word !== correctItem.word)
+    .map((item) => item.meaning);
+  return [...new Set([...fromSaved, ...fromDefault])].filter(Boolean);
+}
+
+function buildVocabQuestions() {
+  const questionCount = Math.min(VOCAB_SCHEDULER.DEFAULT_STAGE_SIZE, Math.max(1, state.vocabWords.length));
+  const stageKinds = VOCAB_STAGE_KIND_PATTERN.slice(0, questionCount);
+  const reviewItems = VOCAB_SCHEDULER.pickReviewItems(state.vocabWords, state.vocabProgress, {
+    limit: questionCount
+  });
+
+  return reviewItems.map((item, index) => {
+    const kind = stageKinds[index] || "reading";
+    const choices = kind === "spelling"
+      ? []
+      : shuffle([item.meaning, ...shuffle(getVocabChoicePool(item)).slice(0, 3)]);
+    return {
+      id: `${kind}-${item.id}-${Date.now()}`,
+      kind,
+      item,
+      choices,
+      answered: false
+    };
+  });
+}
+
+function startVocabQuiz() {
+  if (state.vocabWords.length < 1) {
+    el.vocabCoachLine.textContent = "先加入上堂學過的生字。";
+    playUiSound("wrong");
+    return;
+  }
+
+  state.vocabQuizMode = "stage";
+  saveVocabQuizMode("stage");
+  vocabQuizState = {
+    mode: "stage",
+    questions: buildVocabQuestions(),
+    index: 0,
+    score: 0,
+    locked: false
+  };
+  deactivateTextEntryTarget();
+  clearCelebration();
+  showScreen("vocabQuiz", { activeTab: "vocab" });
+  renderVocabQuestion();
+  playUiSound("start");
+  if (currentVocabQuestion()?.kind === "listening") {
+    setTimeout(() => speakVocabWord(currentVocabQuestion()?.item?.word), 220);
+  }
+}
+
+function currentVocabQuestion() {
+  return vocabQuizState?.questions?.[vocabQuizState.index] || null;
+}
+
+function renderVocabQuestion() {
+  const question = currentVocabQuestion();
+  if (!question) {
+    renderVocabComplete();
+    return;
+  }
+
+  const { mode, questions, index, score } = vocabQuizState;
+  el.vocabQuizKicker.textContent = "Vocabulary";
+  el.vocabQuizTitle.textContent = getVocabModeTitle(mode);
+  el.vocabQuestionNumber.textContent = String(index + 1);
+  el.vocabQuestionTotal.textContent = String(questions.length);
+  el.vocabScore.textContent = String(score);
+  el.vocabTotal.textContent = String(questions.length);
+  el.vocabModeLabel.textContent = getVocabModeLabel(question.kind);
+  el.vocabFeedback.textContent = "";
+  el.vocabFeedback.className = "feedback";
+  el.vocabNextBtn.textContent = "下一題";
+  el.vocabNextBtn.classList.add("hidden");
+  el.vocabChoiceGrid.replaceChildren();
+  el.vocabChoiceGrid.classList.toggle("hidden", question.kind === "spelling");
+  el.vocabSpellingPanel.classList.toggle("hidden", question.kind !== "spelling");
+  el.vocabSoundBtn.classList.toggle("hidden", question.kind !== "listening");
+  vocabQuizState.locked = false;
+
+  if (question.kind === "spelling") {
+    el.vocabStepLabel.textContent = "中文意思";
+    el.vocabPrompt.textContent = question.item.meaning;
+    el.vocabGuidance.textContent = "打出英文生字";
+    setTextEntryValue(el.vocabAnswerInput, "");
+    el.vocabSubmitAnswer.disabled = true;
+    el.vocabSubmitAnswer.classList.remove("is-wrong", "is-correct");
+    activateTextEntryTarget("vocabAnswer", { showKeyboard: !isComputerKeyboardMode() });
+  } else {
+    deactivateTextEntryTarget("vocabAnswer");
+    el.vocabStepLabel.textContent = question.kind === "listening" ? "聽讀音" : "英文生字";
+    el.vocabPrompt.textContent = question.kind === "listening" ? "♪" : question.item.word;
+    el.vocabGuidance.textContent = "選出正確中文意思";
+    renderVocabChoices(question);
+  }
+}
+
+function renderVocabChoices(question) {
+  const buttons = question.choices.map((choice) => {
+    const button = document.createElement("button");
+    button.className = "option-btn vocab-choice-btn";
+    button.type = "button";
+    button.textContent = choice;
+    button.addEventListener("click", () => answerVocabChoice(choice, button));
+    return button;
+  });
+  el.vocabChoiceGrid.replaceChildren(...buttons);
+}
+
+function setVocabFeedback(message = "", type = "") {
+  el.vocabFeedback.className = `feedback${type ? ` ${type}` : ""}`;
+  el.vocabFeedback.textContent = message;
+}
+
+function updateVocabProgress(itemId, correct) {
+  state.vocabProgress[itemId] = VOCAB_SCHEDULER.updateProgressAfterAnswer(
+    state.vocabProgress[itemId] || VOCAB_SCHEDULER.getInitialProgress(),
+    correct
+  );
+  saveVocabProgress();
+}
+
+function answerVocabChoice(choice, button) {
+  const question = currentVocabQuestion();
+  if (!question || vocabQuizState.locked) return;
+
+  const correct = choice === question.item.meaning;
+  vocabQuizState.locked = true;
+  question.answered = true;
+  el.vocabChoiceGrid.querySelectorAll("button").forEach((choiceButton) => {
+    choiceButton.disabled = true;
+    choiceButton.classList.toggle("correct", choiceButton.textContent === question.item.meaning);
+  });
+  button.classList.toggle("wrong", !correct);
+
+  updateVocabProgress(question.item.id, correct);
+  if (correct) {
+    vocabQuizState.score += 1;
+    el.vocabScore.textContent = String(vocabQuizState.score);
+    setVocabFeedback(`正確，${question.item.word} 是「${question.item.meaning}」。`, "success");
+    playUiSound("correct");
+    launchCelebration("small");
+  } else {
+    setVocabFeedback(`${question.item.word} 是「${question.item.meaning}」。`, "error");
+    playUiSound("wrong");
+  }
+  el.vocabNextBtn.classList.remove("hidden");
+}
+
+function updateVocabSpellingState() {
+  if (!el.vocabSubmitAnswer) return;
+  el.vocabSubmitAnswer.disabled = !normalizeVocabWord(getTextEntryValue(el.vocabAnswerInput)) || Boolean(vocabQuizState?.locked);
+  el.vocabSubmitAnswer.classList.remove("is-wrong", "is-correct");
+  if (vocabQuizState?.locked) return;
+  setVocabFeedback();
+}
+
+function submitVocabSpelling() {
+  const question = currentVocabQuestion();
+  if (!question || vocabQuizState.locked) return;
+
+  const answer = normalizeVocabWord(getTextEntryValue(el.vocabAnswerInput));
+  if (!answer) {
+    playUiSound("wrong");
+    return;
+  }
+
+  const correct = answer === normalizeVocabWord(question.item.word);
+  if (!correct) {
+    el.vocabSubmitAnswer.classList.add("is-wrong");
+    vocabQuizState.locked = true;
+    updateVocabProgress(question.item.id, false);
+    setVocabFeedback(`再檢查串法。正確答案係 ${question.item.word}，意思係「${question.item.meaning}」。`, "error");
+    el.vocabSubmitAnswer.disabled = true;
+    deactivateTextEntryTarget("vocabAnswer");
+    el.vocabNextBtn.classList.remove("hidden");
+    playUiSound("wrong");
+    return;
+  }
+
+  vocabQuizState.locked = true;
+  vocabQuizState.score += 1;
+  updateVocabProgress(question.item.id, true);
+  el.vocabScore.textContent = String(vocabQuizState.score);
+  el.vocabSubmitAnswer.disabled = true;
+  el.vocabSubmitAnswer.classList.add("is-correct");
+  setVocabFeedback(`正確，${question.item.word} 是「${question.item.meaning}」。`, "success");
+  el.vocabNextBtn.classList.remove("hidden");
+  deactivateTextEntryTarget("vocabAnswer");
+  playUiSound("correct");
+  launchCelebration("small");
+}
+
+function nextVocabQuestion() {
+  if (!vocabQuizState) return;
+  if (!vocabQuizState.locked && currentVocabQuestion()?.kind === "spelling") {
+    submitVocabSpelling();
+    return;
+  }
+
+  const wasLastQuestion = vocabQuizState.index >= vocabQuizState.questions.length - 1;
+  vocabQuizState.index += 1;
+  renderVocabQuestion();
+  playUiSound(wasLastQuestion ? "complete" : "next");
+  if (!wasLastQuestion && currentVocabQuestion()?.kind === "listening") {
+    setTimeout(() => speakVocabWord(currentVocabQuestion()?.item?.word), 220);
+  }
+}
+
+function renderVocabComplete() {
+  const total = vocabQuizState?.questions?.length || 0;
+  const score = vocabQuizState?.score || 0;
+  deactivateTextEntryTarget("vocabAnswer");
+  setVocabFeedback(`完成！今次答啱 ${score}/${total}。`, score === total ? "success" : "error");
+  el.vocabQuizTitle.textContent = "詞彙完成";
+  el.vocabPrompt.textContent = score === total ? "Full marks!" : "完成";
+  el.vocabGuidance.textContent = "返回詞彙本可再加入新生字。";
+  el.vocabChoiceGrid.replaceChildren();
+  el.vocabChoiceGrid.classList.add("hidden");
+  el.vocabSpellingPanel.classList.add("hidden");
+  el.vocabNextBtn.textContent = "返回詞彙";
+  el.vocabNextBtn.classList.remove("hidden");
+  vocabQuizState = {
+    ...vocabQuizState,
+    completed: true,
+    locked: true
+  };
+  renderVocabList();
+  playUiSound(score === total ? "pronounGrandWin" : "complete");
+  if (score === total) launchCelebration("grand");
+}
+
+function backToVocab() {
+  vocabQuizState = null;
+  deactivateTextEntryTarget("vocabAnswer");
+  renderVocabList();
+  showScreen("vocab", { activeTab: "vocab" });
+  playUiSound("next");
+}
+
+function handleVocabNextButton() {
+  if (vocabQuizState?.completed) {
+    el.vocabNextBtn.textContent = "下一題";
+    backToVocab();
+    return;
+  }
+  nextVocabQuestion();
+}
+
+function speakVocabWord(word) {
+  const text = String(word || "").trim();
+  if (!text || !window.speechSynthesis || typeof SpeechSynthesisUtterance === "undefined") return;
+
+  cancelSpeech();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "en-US";
+  utterance.rate = 0.86;
+  utterance.pitch = 1.03;
+  window.speechSynthesis.speak(utterance);
+  playUiSound("step");
+}
+
 function getScreenForTab(tabName) {
   if (tabName === "vocab") return "vocab";
   if (tabName === "scan") return "scan";
@@ -1013,15 +1634,20 @@ function updateAppTabs(activeTab, focusMode) {
 }
 
 function syncLoginKeyboardVisibility() {
-  const keyboardVisible = Boolean(el.studentLoginKeyboard && !el.studentLoginKeyboard.classList.contains("hidden"));
+  const keyboardVisible = [
+    el.studentLoginKeyboard,
+    el.vocabEntryKeyboard,
+    el.vocabAnswerKeyboard
+  ].some((keyboard) => keyboard && !keyboard.classList.contains("hidden"));
   el.appShell?.classList.toggle("login-keyboard-docked", keyboardVisible);
 }
 
 function showScreen(screen, options = {}) {
   const activeTab = options.activeTab || (["vocab", "scan"].includes(screen) ? screen : "grammar");
-  const focusMode = screen === "lesson" || screen === "result";
+  const focusMode = screen === "lesson" || screen === "result" || screen === "vocabQuiz";
   el.menuScreen.classList.toggle("active", screen === "menu");
   el.vocabScreen.classList.toggle("active", screen === "vocab");
+  el.vocabQuizScreen?.classList.toggle("active", screen === "vocabQuiz");
   el.scanScreen.classList.toggle("active", screen === "scan");
   el.lessonScreen.classList.toggle("active", screen === "lesson");
   el.resultScreen.classList.toggle("active", screen === "result");
@@ -1033,6 +1659,10 @@ function switchAppTab(tabName) {
   clearCelebration();
   cancelSpeech();
   deactivateTextEntryTarget();
+  if (vocabQuizState) {
+    vocabQuizState = null;
+    el.vocabNextBtn.textContent = "下一題";
+  }
   setVerbTableKeyboardDocked(false);
   closeVerbTableReference();
   showScreen(getScreenForTab(tabName), { activeTab: tabName });
@@ -1116,9 +1746,14 @@ function setTextEntryValue(field, value) {
 
   const nextValue = String(value || "");
   field.dataset.value = nextValue;
-  field.textContent = field.dataset.mask === "true" && nextValue
+  const displayValue = field.dataset.mask === "true" && nextValue
     ? "•".repeat(nextValue.length)
     : nextValue;
+  if ("value" in field) {
+    field.value = nextValue;
+  } else {
+    field.textContent = displayValue;
+  }
   field.classList.toggle("is-placeholder", !nextValue);
   field.setAttribute("aria-valuetext", nextValue || field.dataset.placeholder || "");
 }
@@ -1142,6 +1777,65 @@ function getTextEntryConfig(targetName = activeTextEntryTarget) {
       maxLength: 80,
       onChange: () => setFeedback(),
       onEnter: submitCountableCorrection
+    },
+    vocabWord: {
+      field: el.vocabWordInput,
+      keyboard: el.vocabEntryKeyboard,
+      keys: [
+        ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
+        ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
+        ["z", "x", "c", "v", "b", "n", "m", "backspace"],
+        ["space", "-", "'", "clear", "enter"]
+      ],
+      labels: {
+        backspace: "⌫",
+        clear: "清空",
+        enter: "下一格",
+        space: "Space"
+      },
+      maxLength: 42,
+      pattern: /^[a-zA-Z '-]$/,
+      onChange: () => updateVocabEntryState(),
+      onEnter: () => activateTextEntryTarget("vocabMeaning")
+    },
+    vocabMeaning: {
+      field: el.vocabMeaningInput,
+      keyboard: el.vocabEntryKeyboard,
+      keys: [
+        ["我", "你", "他", "她", "它", "的", "是", "不"],
+        ["人", "物", "事", "地方", "動作", "形容", "英文"],
+        ["蘋果", "書", "學校", "朋友", "老師", "學生"],
+        ["space", "、", "／", "backspace"],
+        ["clear", "enter"]
+      ],
+      labels: {
+        backspace: "⌫",
+        clear: "清空",
+        enter: "加入",
+        space: "空格"
+      },
+      maxLength: 36,
+      onChange: () => updateVocabEntryState(),
+      onEnter: addVocabItemFromEntry
+    },
+    vocabAnswer: {
+      field: el.vocabAnswerInput,
+      keyboard: el.vocabAnswerKeyboard,
+      keys: [
+        ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
+        ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
+        ["z", "x", "c", "v", "b", "n", "m", "backspace"],
+        ["space", "-", "'", "enter"]
+      ],
+      labels: {
+        backspace: "⌫",
+        enter: "確認",
+        space: "Space"
+      },
+      maxLength: 42,
+      pattern: /^[a-zA-Z '-]$/,
+      onChange: () => updateVocabSpellingState(),
+      onEnter: submitVocabSpelling
     },
     verbReference: {
       field: el.verbTableReferenceSearch,
@@ -1251,6 +1945,10 @@ function setTextEntryKeyboardVisible(targetName, visible) {
   if (isLessonKeyboard) {
     el.lessonScreen.classList.toggle("keyboard-docked", visible);
   }
+  const isVocabKeyboard = targetName === "vocabAnswer" || targetName === "vocabWord" || targetName === "vocabMeaning";
+  if (isVocabKeyboard) {
+    el.vocabQuizScreen?.classList.toggle("keyboard-docked", visible && targetName === "vocabAnswer");
+  }
 }
 
 function deactivateTextEntryTarget(targetName = activeTextEntryTarget) {
@@ -1279,7 +1977,11 @@ function activateTextEntryTarget(targetName, options = {}) {
   activeTextEntryTarget = targetName;
   buildTextGameKeyboard(targetName);
   config.field.classList.add("is-active");
-  setTextEntryKeyboardVisible(targetName, options.showKeyboard ?? !isComputerKeyboardMode());
+  const nativeUnlocked = "readOnly" in config.field && isComputerKeyboardMode();
+  setTextEntryKeyboardVisible(targetName, options.showKeyboard ?? !nativeUnlocked);
+  if (nativeUnlocked && typeof config.field.focus === "function") {
+    config.field.focus();
+  }
   syncLoginKeyboardVisibility();
   updateTextEntryToggleLabels();
 }
@@ -1297,6 +1999,7 @@ function updateTextEntryToggleLabels() {
 
 function formatTextEntryCharacter(targetName, value, currentValue) {
   if (targetName === "studentId") return value.toUpperCase();
+  if (targetName === "vocabWord" || targetName === "vocabAnswer") return value.toLowerCase();
   if (targetName !== "countable") return value;
   if (window.GrammarCore?.formatSentenceInputCharacter) {
     return window.GrammarCore.formatSentenceInputCharacter(value, currentValue);
@@ -1365,6 +2068,7 @@ function handleTextEntryDocumentKeydown(event) {
 
   const config = getTextEntryConfig(activeTextEntryTarget);
   if (!config?.field || state.resolved && activeTextEntryTarget === "countable") return false;
+  if ("readOnly" in config.field && config.field.readOnly === false) return false;
 
   if (event.key === "Escape") {
     event.preventDefault();
@@ -1400,6 +2104,37 @@ function handleTextEntryDocumentKeydown(event) {
   }
 
   return false;
+}
+
+function openVocabEntryField(targetName) {
+  activateTextEntryTarget(targetName, { showKeyboard: !isComputerKeyboardMode() });
+}
+
+function handleVocabEntryTap(targetName) {
+  if (!["vocabWord", "vocabMeaning", "vocabAnswer"].includes(targetName)) return;
+  openVocabEntryField(targetName);
+}
+
+function syncNativeTextEntryInput(targetName) {
+  const config = getTextEntryConfig(targetName);
+  if (!config?.field || !("value" in config.field)) return;
+  const rawValue = String(config.field.value || "").slice(0, config.maxLength);
+  const nextValue = targetName === "vocabWord" || targetName === "vocabAnswer"
+    ? rawValue.toLowerCase()
+    : rawValue;
+  setTextEntryValue(config.field, nextValue);
+  config.onChange?.();
+}
+
+function syncNativeInputMode() {
+  [
+    el.vocabWordInput,
+    el.vocabMeaningInput,
+    el.vocabAnswerInput
+  ].forEach((field) => {
+    if (!field || !("readOnly" in field)) return;
+    field.readOnly = !isComputerKeyboardMode();
+  });
 }
 
 function currentQuestion() {
@@ -3718,6 +4453,7 @@ function handleVerbTableReferenceBodyKeydown(event) {
 document.addEventListener("pointerdown", unlockAudio, { passive: true });
 document.addEventListener("keydown", unlockAudio);
 document.addEventListener("contextmenu", (event) => event.preventDefault());
+window.addEventListener("resize", syncNativeInputMode);
 
 document.querySelectorAll("[data-start-lesson]").forEach((button) => {
   button.addEventListener("click", () => startLesson(button.dataset.startLesson));
@@ -3740,6 +4476,21 @@ el.studentIdInput?.addEventListener("click", () => activateTextEntryTarget("stud
 el.studentPinInput?.addEventListener("click", () => activateTextEntryTarget("studentPin"));
 el.studentLoginSubmit?.addEventListener("click", loginWithStudentPin);
 el.studentLogoutBtn?.addEventListener("click", logoutStudent);
+el.vocabWordInput?.addEventListener("click", () => handleVocabEntryTap("vocabWord"));
+el.vocabMeaningInput?.addEventListener("click", () => handleVocabEntryTap("vocabMeaning"));
+el.vocabAnswerInput?.addEventListener("click", () => handleVocabEntryTap("vocabAnswer"));
+el.vocabWordInput?.addEventListener("input", () => syncNativeTextEntryInput("vocabWord"));
+el.vocabMeaningInput?.addEventListener("input", () => syncNativeTextEntryInput("vocabMeaning"));
+el.vocabAnswerInput?.addEventListener("input", () => syncNativeTextEntryInput("vocabAnswer"));
+el.vocabAddBtn?.addEventListener("click", addVocabItemFromEntry);
+el.vocabTrainBtn?.addEventListener("click", startVocabQuiz);
+el.vocabModeCards.forEach((button) => {
+  button.addEventListener("click", () => startVocabQuiz(button.dataset.vocabMode));
+});
+el.backVocabBtn?.addEventListener("click", backToVocab);
+el.vocabSoundBtn?.addEventListener("click", () => speakVocabWord(currentVocabQuestion()?.item?.word));
+el.vocabSubmitAnswer?.addEventListener("click", submitVocabSpelling);
+el.vocabNextBtn?.addEventListener("click", handleVocabNextButton);
 el.verbTableReferenceSearch?.addEventListener("click", showVerbTableReferenceSearchKeyboard);
 el.verbTableReferenceSearchToggle?.addEventListener("click", toggleVerbTableReferenceSearchKeyboard);
 el.verbTableReferenceBody?.addEventListener("click", handleVerbTableReferenceBodyClick);
@@ -3800,15 +4551,20 @@ el.resetVerbTableBtn?.addEventListener("click", resetVerbTable);
 el.confirmVerbTableBtn?.addEventListener("click", submitVerbTable);
 
 setTextEntryValue(el.countableCorrectionInput, "");
+setTextEntryValue(el.vocabWordInput, "");
+setTextEntryValue(el.vocabMeaningInput, "");
+setTextEntryValue(el.vocabAnswerInput, "");
 setTextEntryValue(el.verbTableReferenceSearch, "");
 setTextEntryValue(el.studentIdInput, "");
 setTextEntryValue(el.studentPinInput, "");
+syncNativeInputMode();
 tryRestoreStudentProfile();
 if (window.pendingStudentAuthState) {
   applyStudentAuthState(window.pendingStudentAuthState);
   window.pendingStudentAuthState = null;
 }
 updateMenuProgress();
+renderVocabList();
 syncPracticeCount();
 syncSoundToggle();
 updateLiveStats();

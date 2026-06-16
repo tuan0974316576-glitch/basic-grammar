@@ -15,7 +15,8 @@ const files = [
   "grammar_verb_table_data.js",
   "grammar_verb_table_image_manifest.js",
   "index.html",
-  "style.css"
+  "style.css",
+  "vocab_scheduler.js"
 ];
 
 const directories = [

@@ -140,6 +140,11 @@ button {
   height: min(720px, calc(100svh - clamp(260px, 36svh, 304px)));
 }
 
+.app-shell.login-keyboard-docked #menu-screen.active,
+.app-shell.login-keyboard-docked .tab-screen.active {
+  height: min(720px, calc(100svh - clamp(260px, 36svh, 304px) - 28px - env(safe-area-inset-bottom)));
+}
+
 #menu-screen.active {
   min-height: 0;
   height: min(720px, calc(100svh - 60px));
@@ -244,6 +249,46 @@ h2 {
   margin: 18px auto 0;
 }
 
+.vocab-home-screen {
+  overflow: hidden;
+}
+
+.vocab-home-screen .module-layout {
+  position: relative;
+}
+
+.vocab-train-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 2;
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  color: #5d4037;
+  background: #fff8d6;
+  border: 3px solid #ffcf66;
+  border-radius: 16px;
+  box-shadow: 0 5px 0 #e0b84f;
+}
+
+.vocab-train-btn svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.vocab-train-btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
 .module-control-panel {
   display: grid;
   gap: 14px;
@@ -296,6 +341,10 @@ h2 {
   scrollbar-color: var(--primary-color) transparent;
 }
 
+.vocab-list-panel {
+  padding-top: 2px;
+}
+
 .module-card {
   width: 100%;
   min-height: 92px;
@@ -320,6 +369,227 @@ h2 {
   color: #5d4037;
   font-size: clamp(18px, 3.2vw, 23px);
   font-weight: 900;
+}
+
+.vocab-entry-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.vocab-entry-input {
+  min-height: 50px;
+  padding: 8px 12px;
+  font-size: 16px;
+}
+
+.vocab-entry-input::placeholder,
+.vocab-answer-input::placeholder {
+  color: #a0a0a0;
+}
+
+.vocab-add-btn {
+  min-width: 86px;
+  min-height: 50px;
+  padding: 0 16px;
+}
+
+.vocab-list {
+  display: grid;
+  gap: 10px;
+  padding-top: 4px;
+}
+
+.vocab-empty {
+  min-height: 78px;
+  display: grid;
+  place-items: center;
+  padding: 14px;
+  color: var(--muted);
+  font-weight: 900;
+  line-height: 1.35;
+  text-align: center;
+  background: #fffdf2;
+  border: 2px dashed var(--secondary-dark);
+  border-radius: 18px;
+  box-shadow: 0 4px 0 rgba(255, 183, 3, 0.18);
+}
+
+.vocab-row {
+  min-height: 72px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto 42px 42px;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 12px;
+  cursor: pointer;
+  background: #ffffff;
+  border: 3px dashed var(--border-color);
+  border-radius: 20px;
+  box-shadow: 0 4px 0 #e9ecef;
+  transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease, background 120ms ease;
+}
+
+.vocab-row:hover {
+  background: var(--soft-blue);
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #bde0e1;
+}
+
+.vocab-row-text {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+}
+
+.vocab-row-text strong {
+  min-width: 0;
+  color: #5d4037;
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+
+.vocab-row-text span,
+.vocab-row-stats {
+  min-width: 0;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.vocab-row-stats {
+  padding: 6px 9px;
+  color: var(--primary-dark);
+  background: #f3fffe;
+  border: 2px dashed var(--primary-color);
+  border-radius: 999px;
+}
+
+.vocab-row-btn {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  color: #5d4037;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 1;
+  cursor: pointer;
+  background: var(--secondary-color);
+  border: 0;
+  border-radius: 14px;
+  box-shadow: 0 4px 0 var(--secondary-dark);
+}
+
+.vocab-row-btn.danger {
+  color: #ffffff;
+  background: var(--danger-color);
+  box-shadow: 0 4px 0 var(--danger-dark);
+}
+
+.vocab-mode-card.active {
+  border-color: var(--primary-color);
+  background: #f3fffe;
+  box-shadow: 0 5px 0 #bde0e1;
+}
+
+#vocab-quiz-screen.active {
+  min-height: 0;
+  height: min(720px, calc(100svh - 60px));
+  overflow: hidden;
+}
+
+#vocab-quiz-screen.active.keyboard-docked {
+  height: min(720px, calc(100svh - clamp(260px, 36svh, 304px)));
+}
+
+.vocab-quiz-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.vocab-prompt-panel {
+  padding: 18px 18px;
+  margin-bottom: 14px;
+}
+
+.vocab-prompt {
+  min-height: 86px;
+  display: grid;
+  place-items: center;
+  color: #5d4037;
+  font-size: clamp(34px, 8vw, 58px);
+  font-weight: 900;
+  line-height: 1.1;
+  text-align: center;
+  overflow-wrap: anywhere;
+  text-shadow: 2px 2px 0 #fff3bf;
+}
+
+.vocab-choice-grid {
+  margin-bottom: 14px;
+}
+
+.vocab-choice-btn {
+  min-height: 82px;
+}
+
+.vocab-choice-btn.correct {
+  color: var(--correct-dark);
+  background: var(--soft-green);
+  border-color: var(--correct-color);
+  box-shadow: 0 4px 0 #b7e7bf;
+}
+
+.vocab-choice-btn.wrong {
+  color: #ffffff;
+  background: var(--danger-color);
+  border-color: var(--danger-dark);
+  box-shadow: 0 4px 0 var(--danger-dark);
+}
+
+.vocab-spelling-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.vocab-answer-input {
+  min-height: 58px;
+}
+
+#vocab-quiz-screen .feedback {
+  display: grid;
+  min-height: 72px;
+  align-content: center;
+  padding: 10px 14px;
+  background: #fffdf2;
+  border: 2px dashed var(--secondary-dark);
+  border-radius: 18px;
+  box-shadow: 0 4px 0 rgba(255, 183, 3, 0.18);
+}
+
+#vocab-quiz-screen .feedback:empty {
+  display: none;
+}
+
+#vocab-screen.active {
+  min-height: 0;
+  height: min(720px, calc(100svh - 60px));
+  overflow: hidden;
+}
+
+#vocab-screen.active .module-layout {
+  min-height: 0;
 }
 
 .scan-layout {
@@ -1595,7 +1865,9 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .app-keyboard-dock #verb-table-keyboard,
-.app-keyboard-dock #countable-correction-keyboard {
+.app-keyboard-dock #countable-correction-keyboard,
+.app-keyboard-dock #vocab-entry-keyboard,
+.app-keyboard-dock #vocab-answer-keyboard {
   position: relative;
   width: calc(100vw - max(8px, env(safe-area-inset-left)) - max(8px, env(safe-area-inset-right)));
   max-width: 920px;
@@ -1614,12 +1886,16 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .app-keyboard-dock #verb-table-keyboard .verb-table-key-row,
-.app-keyboard-dock #countable-correction-keyboard .verb-table-key-row {
+.app-keyboard-dock #countable-correction-keyboard .verb-table-key-row,
+.app-keyboard-dock #vocab-entry-keyboard .verb-table-key-row,
+.app-keyboard-dock #vocab-answer-keyboard .verb-table-key-row {
   gap: 7px;
 }
 
 .app-keyboard-dock #verb-table-keyboard .verb-table-key,
-.app-keyboard-dock #countable-correction-keyboard .verb-table-key {
+.app-keyboard-dock #countable-correction-keyboard .verb-table-key,
+.app-keyboard-dock #vocab-entry-keyboard .verb-table-key,
+.app-keyboard-dock #vocab-answer-keyboard .verb-table-key {
   min-height: clamp(44px, 8.8svh, 58px);
   padding: 6px 4px;
   border-width: 3px;
@@ -2770,6 +3046,19 @@ body.modal-open {
     height: calc(100svh - 132px - env(safe-area-inset-bottom));
   }
 
+  #vocab-quiz-screen.active {
+    height: calc(100svh - 28px);
+  }
+
+  #vocab-quiz-screen.active.keyboard-docked {
+    height: calc(100svh - clamp(260px, 36svh, 304px));
+  }
+
+  .app-shell.login-keyboard-docked #menu-screen.active,
+  .app-shell.login-keyboard-docked .tab-screen.active {
+    height: calc(100svh - clamp(260px, 36svh, 304px) - 28px - env(safe-area-inset-bottom));
+  }
+
   h1 {
     font-size: clamp(22px, 6vw, 28px);
   }
@@ -2788,6 +3077,108 @@ body.modal-open {
   .lesson-picker {
     gap: 16px;
     padding: 2px 5px 10px;
+  }
+
+  .module-layout {
+    gap: 14px;
+    margin-top: 14px;
+  }
+
+  .vocab-home-screen .module-layout {
+    padding-top: 38px;
+  }
+
+  .vocab-train-btn {
+    top: 12px;
+    right: 12px;
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+  }
+
+  .module-control-panel {
+    gap: 10px;
+    padding: 12px;
+    border-radius: 20px;
+  }
+
+  .module-picker {
+    gap: 12px;
+    padding: 2px 5px 10px;
+  }
+
+  .module-card {
+    min-height: 78px;
+    padding: 12px 14px;
+    border-radius: 18px;
+  }
+
+  .vocab-list-panel {
+    padding-top: 0;
+  }
+
+  .vocab-entry-panel {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .vocab-entry-input {
+    min-height: 46px;
+  }
+
+  .vocab-add-btn {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  .vocab-row {
+    grid-template-columns: minmax(0, 1fr) auto 38px 38px;
+    gap: 7px;
+    min-height: 64px;
+    padding: 8px;
+    border-radius: 16px;
+  }
+
+  .vocab-row-text strong {
+    font-size: 18px;
+  }
+
+  .vocab-row-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+  }
+
+  .vocab-prompt-panel {
+    padding: 10px 12px;
+    margin-bottom: 10px;
+  }
+
+  .vocab-prompt {
+    min-height: 68px;
+    font-size: clamp(30px, 10vw, 42px);
+  }
+
+  .vocab-choice-grid {
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .vocab-choice-btn {
+    min-height: 68px;
+    padding: 10px;
+  }
+
+  .vocab-spelling-panel {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  #vocab-quiz-screen .feedback {
+    min-height: 56px;
+    padding: 8px 12px;
+    font-size: 14px;
   }
 
   .lesson-card {
