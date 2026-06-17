@@ -210,7 +210,7 @@ let vocabEntryLookupState = {
   word: "",
   matches: [],
   filterKey: "",
-  selectedEntry: null
+  selectedEntryIds: []
 };
 let studentCloudSyncPromise = null;
 let studentCloudSyncUid = "";
@@ -1478,9 +1478,10 @@ function getVocabReviewCount() {
 
 function updateVocabEntryState() {
   const word = normalizeVocabWord(getTextEntryValue(el.vocabWordInput));
-  const meaning = getSelectedVocabMeaning();
+  const selectedCount = getSelectedVocabEntries().length;
   if (el.vocabAddBtn) {
-    el.vocabAddBtn.disabled = !word || !meaning;
+    el.vocabAddBtn.disabled = !word || selectedCount < 1;
+    el.vocabAddBtn.textContent = selectedCount > 1 ? `加入 ${selectedCount} 個` : "加入";
   }
 }
 
@@ -1525,10 +1526,19 @@ function clearVocabMeaningSuggestions() {
     word: "",
     matches: [],
     filterKey: "",
-    selectedEntry: null
+    selectedEntryIds: []
   };
   el.vocabMeaningSuggestions?.replaceChildren();
   el.vocabMeaningSuggestions?.classList.add("hidden");
+}
+
+function getVocabEntrySelectionId(entry = {}) {
+  return String(entry.id || [
+    entry.word,
+    getVocabEntryPos(entry),
+    entry.type,
+    entry.meaning
+  ].map((part) => String(part || "").trim()).join("|"));
 }
 
 function getVocabEntryFilterKey(entry = {}) {
@@ -1571,12 +1581,22 @@ function getVocabEntryMetaLabel(entry = {}) {
   return TEACHER_VOCAB?.formatPosLabel?.(pos) || pos || "";
 }
 
+function formatVocabMeaningLine(entry = {}) {
+  const meaning = normalizeVocabMeaning(entry.meaning);
+  const metaLabel = getVocabEntryMetaLabel(entry);
+  return metaLabel ? `${metaLabel} ${meaning}` : meaning;
+}
+
 function needsFallbackPosLookup(matches = []) {
   return matches.some((entry) => entry.type !== "pattern" && entry.type !== "phrase" && !entry.pos);
 }
 
-function getSelectedVocabMeaning() {
-  return normalizeVocabMeaning(vocabEntryLookupState.selectedEntry?.meaning || "");
+function getSelectedVocabEntries() {
+  const selectedIds = new Set(vocabEntryLookupState.selectedEntryIds || []);
+  if (!selectedIds.size) return [];
+  return (vocabEntryLookupState.matches || []).filter((entry) => (
+    selectedIds.has(getVocabEntrySelectionId(entry))
+  ));
 }
 
 function getFilteredVocabMatches() {
@@ -1587,11 +1607,6 @@ function getFilteredVocabMatches() {
 
 function selectVocabMeaningFilter(filterKey) {
   vocabEntryLookupState.filterKey = vocabEntryLookupState.filterKey === filterKey ? "" : filterKey;
-  const selected = vocabEntryLookupState.selectedEntry;
-  const filtered = getFilteredVocabMatches();
-  vocabEntryLookupState.selectedEntry = selected && filtered.some((entry) => entry.id === selected.id)
-    ? selected
-    : null;
   renderVocabMeaningSuggestions();
   updateVocabEntryState();
   playUiSound("click");
@@ -1599,7 +1614,14 @@ function selectVocabMeaningFilter(filterKey) {
 
 function selectVocabMeaningSuggestion(entry) {
   if (!entry) return;
-  vocabEntryLookupState.selectedEntry = entry;
+  const selectedIds = new Set(vocabEntryLookupState.selectedEntryIds || []);
+  const entryId = getVocabEntrySelectionId(entry);
+  if (selectedIds.has(entryId)) {
+    selectedIds.delete(entryId);
+  } else {
+    selectedIds.add(entryId);
+  }
+  vocabEntryLookupState.selectedEntryIds = [...selectedIds];
   updateVocabEntryState();
   renderVocabMeaningSuggestions();
   playUiSound("click");
@@ -1614,7 +1636,8 @@ function renderVocabMeaningSuggestions() {
     return;
   }
 
-  const filterKeys = Array.from(new Set(matches.map(getVocabEntryFilterKey)));
+  const filterKeys = Array.from(new Set(matches.map(getVocabEntryFilterKey)))
+    .filter((filterKey) => getVocabEntryFilterLabel(filterKey));
   const filterButtons = filterKeys.length > 1
     ? filterKeys.map((filterKey) => {
       const button = document.createElement("button");
@@ -1630,16 +1653,13 @@ function renderVocabMeaningSuggestions() {
   const filteredMatches = getFilteredVocabMatches();
   const chips = filteredMatches.map((entry) => {
     const button = document.createElement("button");
+    const entryId = getVocabEntrySelectionId(entry);
     button.className = "vocab-meaning-chip";
-    if (entry.id && entry.id === vocabEntryLookupState.selectedEntry?.id) {
+    if ((vocabEntryLookupState.selectedEntryIds || []).includes(entryId)) {
       button.classList.add("active");
     }
     button.type = "button";
-    button.textContent = entry.meaning;
-
-    const meta = document.createElement("small");
-    meta.textContent = getVocabEntryMetaLabel(entry);
-    button.append(meta);
+    button.textContent = formatVocabMeaningLine(entry);
 
     button.addEventListener("click", () => selectVocabMeaningSuggestion(entry));
     return button;
@@ -1671,7 +1691,7 @@ async function refreshVocabTeacherLookup(options = {}) {
     word,
     matches,
     filterKey: "",
-    selectedEntry: null
+    selectedEntryIds: []
   };
 
   renderVocabMeaningSuggestions();
@@ -1693,32 +1713,10 @@ async function refreshVocabTeacherLookup(options = {}) {
     word,
     matches: loadedMatches,
     filterKey: "",
-    selectedEntry: null
+    selectedEntryIds: []
   };
   renderVocabMeaningSuggestions();
   updateVocabEntryState();
-}
-
-function getSelectedTeacherVocabEntryForSave(word, meaning) {
-  const normalizedWord = normalizeVocabWord(word);
-  const normalizedMeaning = normalizeVocabMeaning(meaning);
-  const selected = vocabEntryLookupState.selectedEntry;
-  if (selected && selected.word === normalizedWord && normalizeVocabMeaning(selected.meaning) === normalizedMeaning) {
-    return selected;
-  }
-  return (vocabEntryLookupState.matches || []).find((entry) => (
-    entry.word === normalizedWord && normalizeVocabMeaning(entry.meaning) === normalizedMeaning
-  )) || null;
-}
-
-function getSelectedVocabSourceEntry(word, meaning) {
-  const matches = vocabEntryLookupState.matches || [];
-  const normalizedWord = normalizeVocabWord(word);
-  const normalizedMeaning = normalizeVocabMeaning(meaning);
-  const exactMatch = matches.find((entry) => (
-    entry.word === normalizedWord && normalizeVocabMeaning(entry.meaning) === normalizedMeaning
-  ));
-  return exactMatch || null;
 }
 
 function handleVocabWordEntryChange() {
@@ -1813,30 +1811,14 @@ function createVocabListRow(item) {
   word.textContent = item.word;
 
   const meaning = document.createElement("span");
-  meaning.textContent = item.meaning;
+  meaning.textContent = formatVocabMeaningLine(item);
 
   text.append(word, meaning);
-  const metaLabel = getVocabEntryMetaLabel(item);
-  if (metaLabel) {
-    const meta = document.createElement("em");
-    meta.textContent = metaLabel;
-    text.append(meta);
-  }
 
   const progress = VOCAB_SCHEDULER.normalizeProgress(state.vocabProgress[item.id] || {});
   const stats = document.createElement("div");
   stats.className = "vocab-row-stats";
   stats.textContent = `${progress.totalCorrect}/${progress.totalSeen}`;
-
-  const speakBtn = document.createElement("button");
-  speakBtn.className = "vocab-row-btn";
-  speakBtn.type = "button";
-  speakBtn.setAttribute("aria-label", `讀出 ${item.word}`);
-  speakBtn.textContent = "♪";
-  speakBtn.addEventListener("click", (event) => {
-    event.stopPropagation();
-    speakVocabWord(item.word);
-  });
 
   const deleteBtn = document.createElement("button");
   deleteBtn.className = "vocab-row-btn danger";
@@ -1849,43 +1831,35 @@ function createVocabListRow(item) {
   });
 
   row.addEventListener("click", () => speakVocabWord(item.word));
-  row.append(text, stats, speakBtn, deleteBtn);
+  row.append(text, stats, deleteBtn);
   return row;
 }
 
-function addVocabItemFromEntry() {
-  const word = normalizeVocabWord(getTextEntryValue(el.vocabWordInput));
-  const meaning = getSelectedVocabMeaning();
-  if (!word || !meaning) {
-    playUiSound("wrong");
-    updateVocabEntryState();
-    return;
-  }
+function upsertVocabEntry(word, entry, now) {
+  const meaning = normalizeVocabMeaning(entry.meaning);
+  if (!word || !meaning) return null;
 
-  const teacherEntry = getSelectedTeacherVocabEntryForSave(word, meaning);
-  const sourceEntry = getSelectedVocabSourceEntry(word, meaning);
-  const itemId = teacherEntry?.id
-    ? `teacher-${teacherEntry.id}`
-    : sourceEntry?.source === "offline-dictionary"
-      ? `offline-${sourceEntry.id}`
-      : VOCAB_DATA.createMeaningId(word, meaning);
-  const extraFields = teacherEntry
+  const isTeacherEntry = entry.source === "teacher";
+  const isOfflineEntry = entry.source === "offline-dictionary";
+  const itemId = isTeacherEntry && entry.id
+    ? `teacher-${entry.id}`
+    : isOfflineEntry && entry.id
+      ? `offline-${entry.id}`
+      : VOCAB_DATA.createMeaningId(word, meaning, getVocabEntryPos(entry));
+  const extraFields = isTeacherEntry
     ? {
-      pos: getVocabEntryPos(teacherEntry),
-      type: teacherEntry.type || "word",
+      pos: getVocabEntryPos(entry),
+      type: entry.type || "word",
       source: "teacher",
-      teacherEntryId: teacherEntry.id
+      teacherEntryId: entry.id || ""
     }
-    : sourceEntry
-      ? {
-        pos: sourceEntry.pos || "",
-        type: sourceEntry.type || "word",
-        source: sourceEntry.source || "offline-dictionary",
-        sourceEntryId: sourceEntry.id || ""
-      }
-    : {};
+    : {
+      pos: getVocabEntryPos(entry),
+      type: entry.type || "word",
+      source: entry.source || "",
+      sourceEntryId: entry.sourceEntryId || entry.id || ""
+    };
   const existingIndex = state.vocabWords.findIndex((item) => item.id === itemId);
-  const now = Date.now();
   let savedItem = null;
   if (existingIndex >= 0) {
     state.vocabWords[existingIndex] = {
@@ -1909,10 +1883,36 @@ function addVocabItemFromEntry() {
 
   if (!state.vocabProgress[savedItem.id]) {
     state.vocabProgress[savedItem.id] = VOCAB_SCHEDULER.getInitialProgress(now);
-    saveVocabProgress();
   }
-  saveVocabItems();
   queueVocabItemUpsert(savedItem, state.vocabProgress[savedItem.id]);
+  return savedItem;
+}
+
+async function addVocabItemFromEntry() {
+  const word = normalizeVocabWord(getTextEntryValue(el.vocabWordInput));
+  if (needsFallbackPosLookup(getSelectedVocabEntries())) {
+    await loadOfflineVocabMatches(word);
+  }
+
+  const selectedEntries = getSelectedVocabEntries();
+  if (!word || !selectedEntries.length) {
+    playUiSound("wrong");
+    updateVocabEntryState();
+    return;
+  }
+
+  const now = Date.now();
+  const savedItems = selectedEntries
+    .map((entry) => upsertVocabEntry(word, entry, now))
+    .filter(Boolean);
+  if (!savedItems.length) {
+    playUiSound("wrong");
+    updateVocabEntryState();
+    return;
+  }
+
+  saveVocabItems();
+  saveVocabProgress();
   if (VOCAB_AUDIO) {
     VOCAB_AUDIO.queueEnsureAudio(word);
   }
@@ -2243,6 +2243,7 @@ function getScreenForTab(tabName) {
 
 function updateAppTabs(activeTab, focusMode) {
   el.appShell?.classList.toggle("focus-mode", focusMode);
+  el.appShell?.classList.toggle("section-mode", !focusMode && activeTab !== "grammar");
   el.appTabBar?.classList.toggle("hidden", focusMode || activeTab !== "grammar");
   el.appTabs.forEach((button) => {
     const isActive = button.dataset.appTab === activeTab;
@@ -2407,11 +2408,10 @@ function getTextEntryConfig(targetName = activeTextEntryTarget) {
         ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
         ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
         ["z", "x", "c", "v", "b", "n", "m", "backspace"],
-        ["space", "-", "'", "clear"]
+        ["-", "space", "'"]
       ],
       labels: {
         backspace: "⌫",
-        clear: "清空",
         space: "Space"
       },
       maxLength: 42,
@@ -2426,7 +2426,8 @@ function getTextEntryConfig(targetName = activeTextEntryTarget) {
         ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
         ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
         ["z", "x", "c", "v", "b", "n", "m", "backspace"],
-        ["space", "-", "'", "enter"]
+        ["-", "space", "'"],
+        ["enter"]
       ],
       labels: {
         backspace: "⌫",
@@ -2445,11 +2446,10 @@ function getTextEntryConfig(targetName = activeTextEntryTarget) {
         ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
         ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
         ["z", "x", "c", "v", "b", "n", "m", "/", "backspace"],
-        ["space", "clear", "enter"]
+        ["space", "enter"]
       ],
       labels: {
         backspace: "⌫",
-        clear: "清空",
         enter: "完成",
         space: "Space"
       },
@@ -2465,11 +2465,10 @@ function getTextEntryConfig(targetName = activeTextEntryTarget) {
         ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
         ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
         ["z", "x", "c", "v", "b", "n", "m", "backspace"],
-        ["clear", "enter"]
+        ["enter"]
       ],
       labels: {
         backspace: "⌫",
-        clear: "清空",
         enter: "下一格"
       },
       maxLength: 16,
@@ -2484,12 +2483,11 @@ function getTextEntryConfig(targetName = activeTextEntryTarget) {
         ["1", "2", "3"],
         ["4", "5", "6"],
         ["7", "8", "9"],
-        ["clear", "0", "backspace"],
+        ["0", "backspace"],
         ["enter"]
       ],
       labels: {
         backspace: "⌫",
-        clear: "清空",
         enter: "登入"
       },
       maxLength: 8,
@@ -2522,7 +2520,6 @@ function buildTextGameKeyboard(targetName) {
       if (keyValue === "backspace") button.classList.add("verb-table-key-backspace");
       if (keyValue === "enter") button.classList.add("verb-table-key-enter");
       if (keyValue === "space") button.classList.add("text-key-space");
-      if (keyValue === "clear") button.classList.add("text-key-clear");
 
       button.addEventListener("click", () => handleTextKeyboardKey(targetName, keyValue));
       row.append(button);
@@ -2646,12 +2643,6 @@ function handleTextKeyboardKey(targetName, keyValue) {
 
   if (keyValue === "backspace") {
     backspaceTextEntryValue(targetName);
-    playUiSound("next");
-    return;
-  }
-
-  if (keyValue === "clear") {
-    clearTextEntryValue(targetName);
     playUiSound("next");
     return;
   }
