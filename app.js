@@ -1680,7 +1680,7 @@ function renderVocabList() {
     return;
   }
 
-  el.vocabList.replaceChildren(...words.map(createVocabListRow));
+  el.vocabList.replaceChildren(...createVocabListItems(words));
   updateVocabEntryState();
 }
 
@@ -1689,6 +1689,54 @@ function createVocabEmptyState() {
   empty.className = "vocab-empty";
   empty.textContent = "未有生字。輸入英文，揀中文意思，再加入。";
   return empty;
+}
+
+function getVocabItemCreatedTime(item = {}) {
+  return Number(item.createdAt) || Number(item.updatedAt) || 0;
+}
+
+function getVocabDateKey(timestamp) {
+  const date = new Date(Number(timestamp) || Date.now());
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+function formatVocabDate(timestamp) {
+  return new Intl.DateTimeFormat("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric"
+  }).format(new Date(Number(timestamp) || Date.now()));
+}
+
+function createVocabDateDivider(timestamp) {
+  const divider = document.createElement("div");
+  divider.className = "vocab-date-divider";
+  divider.textContent = `---- ${formatVocabDate(timestamp)} ----`;
+  return divider;
+}
+
+function createVocabListItems(words = []) {
+  const sortedWords = [...words].sort((left, right) => {
+    const diff = getVocabItemCreatedTime(right) - getVocabItemCreatedTime(left);
+    return diff || String(left.word).localeCompare(String(right.word));
+  });
+  const nodes = [];
+  let currentDateKey = "";
+
+  sortedWords.forEach((item) => {
+    const createdTime = getVocabItemCreatedTime(item);
+    const dateKey = getVocabDateKey(createdTime);
+    if (dateKey !== currentDateKey) {
+      nodes.push(createVocabDateDivider(createdTime));
+      currentDateKey = dateKey;
+    }
+    nodes.push(createVocabListRow(item));
+  });
+
+  return nodes;
 }
 
 function createVocabListRow(item) {
