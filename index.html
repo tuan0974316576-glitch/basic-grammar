@@ -3,21 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Basic English Grammar Game</title>
-  <link rel="stylesheet" href="style.css?v=20260615-white-bg-dock-tune">
+  <title>Basic Grammar Game</title>
+  <link rel="stylesheet" href="style.css?v=20260617-sfx-volume">
 </head>
 <body>
   <main id="app-shell" class="app-shell">
-    <div id="account-widget" class="account-widget hidden" aria-live="polite">
-      <button id="account-open-btn" class="account-open-btn" type="button">
-        <span id="account-status-dot" class="account-status-dot" aria-hidden="true"></span>
-        <span id="account-label">學生登入</span>
-      </button>
-    </div>
-
     <section id="menu-screen" class="screen active" aria-labelledby="app-title">
-      <div class="topline">English Grammar Practice</div>
-      <h1 id="app-title">Basic English Grammar Game</h1>
+      <button id="menu-settings-btn" class="menu-settings-btn" type="button" aria-label="設定">
+        <img src="assets/setting-2.png" alt="">
+      </button>
+      <div class="topline">DOPE ENGLISH</div>
+      <h1 id="app-title">Basic Grammar Game</h1>
 
       <div class="menu-layout">
         <div class="menu-control-panel">
@@ -120,7 +116,9 @@
     </section>
 
     <section id="vocab-screen" class="screen tab-screen vocab-home-screen" aria-labelledby="vocab-title">
-      <button class="ghost-btn section-menu-btn" type="button" data-back-menu>&lt; Menu</button>
+      <button id="vocab-settings-btn" class="menu-settings-btn" type="button" aria-label="設定">
+        <img src="assets/setting-2.png" alt="">
+      </button>
       <button id="vocab-train-btn" class="vocab-train-btn" type="button" aria-label="開始詞彙溫習">
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <path d="M3 8v8M7 6v12M17 6v12M21 8v8M5 12h14" />
@@ -199,7 +197,6 @@
     </section>
 
     <section id="scan-screen" class="screen tab-screen" aria-labelledby="scan-title">
-      <button class="ghost-btn section-menu-btn" type="button" data-back-menu>&lt; Menu</button>
       <div class="topline">Scan Dictionary</div>
       <h1 id="scan-title">Scan 查字</h1>
 
@@ -392,15 +389,15 @@
 
   <nav id="app-tab-bar" class="app-tab-bar" aria-label="Main sections">
     <button class="app-tab active" type="button" data-app-tab="grammar" aria-current="page">
-      <span class="app-tab-icon" aria-hidden="true">G</span>
+      <span class="app-tab-icon" aria-hidden="true">文</span>
       <span>文法</span>
     </button>
     <button class="app-tab" type="button" data-app-tab="vocab">
-      <span class="app-tab-icon" aria-hidden="true">V</span>
+      <span class="app-tab-icon" aria-hidden="true">字</span>
       <span>詞彙</span>
     </button>
     <button class="app-tab" type="button" data-app-tab="scan">
-      <span class="app-tab-icon" aria-hidden="true">S</span>
+      <span class="app-tab-icon" aria-hidden="true">查</span>
       <span>Scan</span>
     </button>
   </nav>
@@ -518,6 +515,31 @@
     </div>
   </section>
 
+  <section id="settings-modal" class="settings-modal hidden" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="settings-title">
+    <button class="settings-backdrop" type="button" aria-label="關閉設定" data-close-settings></button>
+    <div class="settings-panel">
+      <header class="settings-header">
+        <div>
+          <div class="settings-kicker">Settings</div>
+          <h2 id="settings-title">設定</h2>
+        </div>
+        <button class="settings-close" type="button" aria-label="關閉" data-close-settings>×</button>
+      </header>
+
+      <div class="settings-section">
+        <label class="settings-row" for="sfx-volume">
+          <span>音量大小</span>
+          <strong id="sfx-volume-label">50%</strong>
+        </label>
+        <input id="sfx-volume" type="range" min="0" max="100" step="1" value="50" style="--range-fill: 50%;">
+      </div>
+
+      <button id="settings-logout-btn" class="ghost-btn settings-logout-btn" type="button">Log out</button>
+
+      <div class="settings-footer">All rights reserved by Enguistics Learning Centre 2026</div>
+    </div>
+  </section>
+
   <div id="celebration-layer" class="celebration-layer" aria-hidden="true"></div>
 
   <script src="firebase_config.js?v=20260615-student-login-config"></script>
@@ -530,12 +552,12 @@
   <script src="grammar_core.js?v=20260614-native-flow-core"></script>
   <script src="grammar_data.js?v=20260614-native-data-layer"></script>
   <script src="vocab_scheduler.js?v=20260616-srs"></script>
-  <script src="teacher_vocab_bank.js?v=20260616-teacher-vocab"></script>
-  <script src="teacher_vocab.js?v=20260616-teacher-vocab"></script>
-  <script src="fallback_dictionary.js?v=20260616-offline-dict"></script>
+  <script src="teacher_vocab_bank.js?v=20260617-vocab-pos"></script>
+  <script src="teacher_vocab.js?v=20260617-vocab-pos"></script>
+  <script src="fallback_dictionary.js?v=20260617-vocab-pos"></script>
   <script src="vocab_data.js?v=20260616-cloud-sync"></script>
   <script src="vocab_word_audio_manifest.js?v=20260617-vocab-audio"></script>
   <script src="vocab_audio.js?v=20260617-vocab-audio"></script>
-  <script src="app.js?v=20260616-offline-dict"></script>
+  <script src="app.js?v=20260617-sfx-volume"></script>
 </body>
 </html>

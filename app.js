@@ -2369,7 +2369,7 @@ function getScreenForTab(tabName) {
 function updateAppTabs(activeTab, focusMode) {
   el.appShell?.classList.toggle("focus-mode", focusMode);
   el.appShell?.classList.toggle("section-mode", !focusMode && activeTab !== "grammar");
-  el.appTabBar?.classList.toggle("hidden", focusMode || activeTab !== "grammar");
+  el.appTabBar?.classList.toggle("hidden", focusMode);
   el.appTabs.forEach((button) => {
     const isActive = button.dataset.appTab === activeTab;
     button.classList.toggle("active", isActive);

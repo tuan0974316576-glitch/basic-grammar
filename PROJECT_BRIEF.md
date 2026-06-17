@@ -82,6 +82,13 @@ Current setup uses the dedicated Grammar Game Firebase project (`enguistics-gram
 
 Do not move real student records back into the shared Battleship-1 project.
 
+Pending Azure Speech setup:
+
+- Azure Speech resource: `battleship-speech-hk`
+- Speech region: `eastasia`
+- On June 17, 2026 the Azure subscription was re-enabled after payment, but the resource still showed `ReadOnlyDisabledSubscription`.
+- Next step: after Azure finishes reactivating the subscription, open Azure `Keys and endpoint`, copy Key 1, then set Firebase secrets `AZURE_SPEECH_KEY` and `AZURE_SPEECH_REGION` before deploying `ensureVocabAudio`.
+
 Recommended direction:
 
 - Firebase Authentication with tutoring-centre student accounts
