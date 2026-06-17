@@ -257,6 +257,16 @@ h2 {
   position: relative;
 }
 
+.section-menu-btn {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  z-index: 2;
+  min-width: 92px;
+  min-height: 46px;
+  padding: 0 14px;
+}
+
 .vocab-train-btn {
   position: absolute;
   top: 18px;
@@ -3170,6 +3180,14 @@ body.modal-open {
 
   .vocab-home-screen .module-layout {
     padding-top: 38px;
+  }
+
+  .section-menu-btn {
+    top: 12px;
+    left: 12px;
+    min-width: 82px;
+    min-height: 42px;
+    padding: 0 12px;
   }
 
   .vocab-train-btn {

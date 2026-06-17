@@ -2133,7 +2133,7 @@ function getScreenForTab(tabName) {
 
 function updateAppTabs(activeTab, focusMode) {
   el.appShell?.classList.toggle("focus-mode", focusMode);
-  el.appTabBar?.classList.toggle("hidden", focusMode);
+  el.appTabBar?.classList.toggle("hidden", focusMode || activeTab !== "grammar");
   el.appTabs.forEach((button) => {
     const isActive = button.dataset.appTab === activeTab;
     button.classList.toggle("active", isActive);
@@ -4953,7 +4953,9 @@ document.querySelectorAll("[data-start-lesson]").forEach((button) => {
 el.appTabs.forEach((button) => {
   button.addEventListener("click", () => switchAppTab(button.dataset.appTab));
 });
-document.querySelector("[data-back-menu]").addEventListener("click", backToMenu);
+document.querySelectorAll("[data-back-menu]").forEach((button) => {
+  button.addEventListener("click", backToMenu);
+});
 document.querySelector("[data-result-menu]").addEventListener("click", backToMenu);
 document.querySelector("[data-restart-lesson]").addEventListener("click", () => startLesson(state.lessonId));
 el.openVerbTableReferenceBtn?.addEventListener("click", openVerbTableReference);
