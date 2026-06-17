@@ -38,6 +38,8 @@ const {
 } = GRAMMAR_DATA;
 
 const SOUND_KEY = "basic_grammar_sound_enabled_v1";
+const SFX_VOLUME_KEY = "basic_grammar_sfx_volume_v1";
+const SFX_VOLUME_TOUCHED_KEY = "basic_grammar_sfx_volume_touched_v1";
 const PRACTICE_COUNT_KEY = "basic_grammar_practice_count_v1";
 const BEST_STREAK_KEY = "basic_grammar_best_streak_v1";
 const STUDENT_PROFILE_KEY = "basic_grammar_student_profile_v1";
@@ -145,6 +147,10 @@ const SOUND_PATTERNS = {
     { frequency: 659.25, delay: 0, duration: 0.055 },
     { frequency: 880, delay: 0.07, duration: 0.07 }
   ],
+  click: [
+    { frequency: 587.33, delay: 0, duration: 0.045 },
+    { frequency: 783.99, delay: 0.045, duration: 0.045 }
+  ],
   correct: [
     { frequency: 783.99, delay: 0, duration: 0.06 },
     { frequency: 987.77, delay: 0.07, duration: 0.07 },
@@ -194,6 +200,8 @@ const SOUND_PATTERNS = {
   ]
 };
 const UI_SOUND_GAIN = 0.098;
+const SFX_OUTPUT_GAIN_MULTIPLIER = 3.2;
+const SFX_MAX_OUTPUT_GAIN = 0.82;
 const VERB_TABLE_REFERENCE_SPEAK_GAP_MS = 180;
 const VERB_TABLE_REFERENCE_MIN_ACTIVE_MS = 700;
 const VERB_TABLE_IMAGE_VERSION = "20260613-lite";
@@ -258,7 +266,8 @@ const state = {
   streak: 0,
   bestStreak: getSavedBestStreak(),
   practiceCount: getSavedPracticeCount(),
-  soundEnabled: getSavedSoundEnabled()
+  soundEnabled: getSavedSoundEnabled(),
+  sfxVolume: getSavedSfxVolume()
 };
 
 const el = {
@@ -280,10 +289,12 @@ const el = {
   menuProgressPronounSentence: document.querySelector("#menu-progress-pronoun-sentence"),
   menuProgressCountableNouns: document.querySelector("#menu-progress-countable-nouns"),
   menuProgressVerbTable: document.querySelector("#menu-progress-verb-table"),
-  accountWidget: document.querySelector("#account-widget"),
-  accountOpenBtn: document.querySelector("#account-open-btn"),
-  accountStatusDot: document.querySelector("#account-status-dot"),
-  accountLabel: document.querySelector("#account-label"),
+  menuSettingsBtn: document.querySelector("#menu-settings-btn"),
+  vocabSettingsBtn: document.querySelector("#vocab-settings-btn"),
+  settingsModal: document.querySelector("#settings-modal"),
+  sfxVolumeInput: document.querySelector("#sfx-volume"),
+  sfxVolumeLabel: document.querySelector("#sfx-volume-label"),
+  settingsLogoutBtn: document.querySelector("#settings-logout-btn"),
   studentLoginModal: document.querySelector("#student-login-modal"),
   studentLoginStatus: document.querySelector("#student-login-status"),
   studentIdInput: document.querySelector("#student-id-input"),
@@ -692,10 +703,46 @@ function saveSoundEnabled() {
   }
 }
 
+function getSavedSfxVolume() {
+  try {
+    if (localStorage.getItem(SFX_VOLUME_TOUCHED_KEY) !== "yes") {
+      return 0.5;
+    }
+    const saved = Number(localStorage.getItem(SFX_VOLUME_KEY));
+    if (Number.isFinite(saved)) {
+      return Math.min(1, Math.max(0, saved));
+    }
+  } catch (_error) {
+    // Use the default volume if storage is unavailable.
+  }
+  return 1;
+}
+
+function saveSfxVolume() {
+  try {
+    localStorage.setItem(SFX_VOLUME_KEY, String(state.sfxVolume));
+  } catch (_error) {
+    // Volume still applies during the current session if storage is unavailable.
+  }
+}
+
 function syncSoundToggle() {
-  el.soundToggle.classList.toggle("muted", !state.soundEnabled);
+  const audible = state.soundEnabled && state.sfxVolume > 0;
+  el.soundToggle.classList.toggle("muted", !audible);
   el.soundToggle.setAttribute("aria-label", state.soundEnabled ? "關閉音效" : "開啟音效");
   el.soundToggle.setAttribute("aria-pressed", String(state.soundEnabled));
+}
+
+function syncSettingsControls() {
+  const percent = Math.round(state.sfxVolume * 100);
+  if (el.sfxVolumeInput) {
+    el.sfxVolumeInput.value = String(percent);
+    el.sfxVolumeInput.style.setProperty("--range-fill", `${percent}%`);
+  }
+  if (el.sfxVolumeLabel) {
+    el.sfxVolumeLabel.textContent = `${percent}%`;
+  }
+  el.settingsLogoutBtn?.classList.toggle("hidden", !studentAuthState.authenticated);
 }
 
 function toggleSound() {
@@ -755,7 +802,11 @@ function scheduleUiSound(context, pattern) {
     oscillator.type = note.type || "triangle";
     oscillator.frequency.setValueAtTime(note.frequency, startAt);
     gain.gain.setValueAtTime(0.0001, startAt);
-    gain.gain.exponentialRampToValueAtTime(note.gain || UI_SOUND_GAIN, startAt + 0.012);
+    const outputGain = Math.min(
+      SFX_MAX_OUTPUT_GAIN,
+      (note.gain || UI_SOUND_GAIN) * state.sfxVolume * SFX_OUTPUT_GAIN_MULTIPLIER
+    );
+    gain.gain.exponentialRampToValueAtTime(outputGain, startAt + 0.012);
     gain.gain.exponentialRampToValueAtTime(0.0001, endAt);
 
     oscillator.connect(gain);
@@ -766,7 +817,7 @@ function scheduleUiSound(context, pattern) {
 }
 
 function playUiSound(kind) {
-  if (!state.soundEnabled) return;
+  if (!state.soundEnabled || state.sfxVolume <= 0) return;
 
   const context = getAudioContext();
   const pattern = SOUND_PATTERNS[kind];
@@ -785,7 +836,7 @@ function playUiSound(kind) {
 }
 
 function unlockAudio() {
-  if (!state.soundEnabled) return;
+  if (!state.soundEnabled || state.sfxVolume <= 0) return;
 
   const context = getAudioContext();
   if (context?.state === "suspended") {
@@ -852,17 +903,8 @@ function getStudentDisplayName() {
 }
 
 function syncAccountWidget() {
-  const label = getStudentDisplayName();
-  const isOnlineStudent = Boolean(studentAuthState.authenticated && label);
-  el.accountLabel.textContent = isOnlineStudent ? label : "學生登入";
-  el.accountStatusDot.classList.toggle("online", isOnlineStudent);
-  el.accountStatusDot.classList.toggle("offline", !isOnlineStudent);
-  el.accountOpenBtn?.setAttribute("aria-label", isOnlineStudent ? `${label} 已登入` : "學生登入");
-  el.accountWidget?.classList.toggle("hidden", !isOnlineStudent);
-
-  if (el.studentLogoutBtn) {
-    el.studentLogoutBtn.classList.toggle("hidden", !studentAuthState.authenticated);
-  }
+  el.studentLogoutBtn?.classList.toggle("hidden", !studentAuthState.authenticated);
+  syncSettingsControls();
 }
 
 function setStudentLoginStatus(message = "", type = "") {
@@ -891,6 +933,15 @@ function setStudentLoginStatus(message = "", type = "") {
   el.studentLoginStatus.textContent = "輸入學號同 PIN，就可以同步練習紀錄。";
 }
 
+function syncModalOpenClass() {
+  const hasOpenModal = Boolean(
+    document.body.classList.contains("student-login-open")
+      || document.body.classList.contains("settings-open")
+      || (el.verbTableReferenceModal && !el.verbTableReferenceModal.classList.contains("hidden"))
+  );
+  document.body.classList.toggle("modal-open", hasOpenModal);
+}
+
 function syncStudentLoginGate() {
   if (!el.studentLoginModal) return;
 
@@ -899,8 +950,9 @@ function syncStudentLoginGate() {
   el.studentLoginModal.classList.toggle("hidden", !shouldShow);
   el.studentLoginModal.classList.toggle("login-gate", shouldShow);
   el.studentLoginModal.setAttribute("aria-hidden", shouldShow ? "false" : "true");
-  document.body.classList.toggle("modal-open", shouldShow);
+  document.body.classList.toggle("student-login-open", shouldShow);
   document.body.classList.toggle("login-required", shouldShow);
+  syncModalOpenClass();
   setStudentLoginStatus();
   if (!shouldShow) {
     deactivateTextEntryTarget("studentId");
@@ -913,7 +965,8 @@ function openStudentLogin() {
   el.studentLoginModal.classList.remove("hidden");
   el.studentLoginModal.classList.remove("login-gate");
   el.studentLoginModal.setAttribute("aria-hidden", "false");
-  document.body.classList.add("modal-open");
+  document.body.classList.add("student-login-open");
+  syncModalOpenClass();
   studentAuthState.loginGateVisible = false;
   setStudentLoginStatus();
   playUiSound("step");
@@ -930,9 +983,29 @@ function closeStudentLogin() {
   el.studentLoginModal.classList.add("hidden");
   el.studentLoginModal.classList.remove("login-gate");
   el.studentLoginModal.setAttribute("aria-hidden", "true");
-  document.body.classList.remove("modal-open");
+  document.body.classList.remove("student-login-open");
   document.body.classList.remove("login-required");
+  syncModalOpenClass();
   studentAuthState.loginGateVisible = false;
+  playUiSound("next");
+}
+
+function openSettings() {
+  if (!el.settingsModal) return;
+  el.settingsModal.classList.remove("hidden");
+  el.settingsModal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("settings-open");
+  syncModalOpenClass();
+  syncSettingsControls();
+  playUiSound("step");
+}
+
+function closeSettings() {
+  if (!el.settingsModal || el.settingsModal.classList.contains("hidden")) return;
+  el.settingsModal.classList.add("hidden");
+  el.settingsModal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("settings-open");
+  syncModalOpenClass();
   playUiSound("next");
 }
 
@@ -958,6 +1031,7 @@ function applyStudentAuthState(patch = {}) {
   if (studentAuthState.authenticated) {
     void syncStudentCloudProgress();
     void syncStudentVocabCloud();
+    queueSavedVocabAudioDownloads();
   }
 }
 
@@ -1061,8 +1135,31 @@ async function logoutStudent() {
   saveStudentProfile(null);
   syncAccountWidget();
   setStudentLoginStatus("已登出。");
+  closeSettings();
   syncStudentLoginGate();
   playUiSound("next");
+}
+
+function updateSfxVolume(event) {
+  const value = Number(event.target?.value);
+  state.sfxVolume = Number.isFinite(value) ? Math.min(1, Math.max(0, value / 100)) : 1;
+  saveSfxVolume();
+  try {
+    localStorage.setItem(SFX_VOLUME_TOUCHED_KEY, "yes");
+  } catch (_error) {
+    // Ignore storage failures; the current session still keeps the value.
+  }
+  syncSoundToggle();
+  syncSettingsControls();
+}
+
+function previewSfxVolume() {
+  if (state.sfxVolume > 0) {
+    state.soundEnabled = true;
+    saveSoundEnabled();
+  }
+  syncSoundToggle();
+  playUiSound("step");
 }
 
 function queueLessonProgressSync(lessonId, progress) {
@@ -1231,6 +1328,7 @@ async function syncStudentVocabCloud() {
     saveVocabItems();
     saveVocabProgress();
     renderVocabList();
+    queueSavedVocabAudioDownloads();
     await flushVocabSyncQueue();
   })().catch((error) => {
     console.warn("Vocab cloud sync failed:", error);
@@ -1553,30 +1651,69 @@ function getVocabEntryFilterLabel(filterKey = "") {
   if (filterKey.startsWith("pos:")) {
     return TEACHER_VOCAB?.formatPosLabel?.(filterKey.slice(4)) || filterKey.slice(4);
   }
-  if (filterKey === "type:pattern") return "句式";
-  if (filterKey === "type:phrase") return "詞組";
+  if (filterKey === "type:pattern") return "pt.";
+  if (filterKey === "type:phrase") return "ph.";
   return "";
 }
 
-function getFallbackDictionaryUniquePos(word) {
+function normalizeVocabPos(value) {
+  return TEACHER_VOCAB?.normalizePos?.(value)
+    || OFFLINE_VOCAB?.normalizePos?.(value)
+    || String(value || "").trim().toLowerCase();
+}
+
+function getFallbackDictionaryUniquePos(word, options = {}) {
   if (!OFFLINE_VOCAB?.lookup) return "";
   const matches = OFFLINE_VOCAB.lookup(word, { limit: 10 });
+  const expectedMeaning = normalizeVocabMeaning(options.meaning);
+  const exactMeaningMatches = expectedMeaning
+    ? matches.filter((entry) => normalizeVocabMeaning(entry.meaning) === expectedMeaning)
+    : [];
+  const sourceMatches = exactMeaningMatches.length ? exactMeaningMatches : matches;
   const posSet = new Set(
-    matches
-      .map((entry) => OFFLINE_VOCAB.normalizePos?.(entry.pos) || entry.pos || "")
+    sourceMatches
+      .map((entry) => normalizeVocabPos(entry.pos))
       .filter(Boolean)
   );
   if (posSet.size !== 1) return "";
   return [...posSet][0] || "";
 }
 
+function inferVocabPosFromMeaning(word, meaning) {
+  const normalizedWord = normalizeVocabWord(word);
+  if (!normalizedWord || /\s/.test(normalizedWord)) return "";
+
+  const meaningParts = normalizeVocabMeaning(meaning)
+    .split(/\s*[/／]\s*/)
+    .map((part) => part.trim())
+    .filter(Boolean);
+
+  if (meaningParts.some((part) => /地$/.test(part))) return "adverb";
+  if (meaningParts.some((part) => /的$/.test(part))) return "adjective";
+  if (meaningParts.some((part) => /(?:人|者|員|師|徒|販|家|商|物|品|器|具|車|船|店|館|場|所|法|式|感|力|性|度|量|份|面|點|儀式)$/.test(part))) {
+    return "noun";
+  }
+
+  if (/(?:tion|sion|ment|ness|ity|ism|ship|age|ance|ence|cy|dom|hood|ture|logy|ist|ian|er|or)$/.test(normalizedWord)) {
+    return "noun";
+  }
+  if (/(?:ate|ize|ise|ify|en)$/.test(normalizedWord)) {
+    return "verb";
+  }
+  return "";
+}
+
 function getVocabEntryPos(entry = {}) {
-  return entry.pos || entry.inferredPos || getFallbackDictionaryUniquePos(entry.word);
+  if (entry.type === "pattern" || entry.type === "phrase") return "";
+  return normalizeVocabPos(entry.pos)
+    || normalizeVocabPos(entry.inferredPos)
+    || getFallbackDictionaryUniquePos(entry.word, { meaning: entry.meaning })
+    || inferVocabPosFromMeaning(entry.word, entry.meaning);
 }
 
 function getVocabEntryMetaLabel(entry = {}) {
-  if (entry.type === "pattern") return "句式";
-  if (entry.type === "phrase") return "詞組";
+  if (entry.type === "pattern") return "pt.";
+  if (entry.type === "phrase") return "ph.";
   const pos = getVocabEntryPos(entry);
   return TEACHER_VOCAB?.formatPosLabel?.(pos) || pos || "";
 }
@@ -1930,7 +2067,7 @@ function deleteVocabItem(itemId) {
   saveVocabItems();
   saveVocabProgress();
   renderVocabList();
-  playUiSound("next");
+  playUiSound("click");
 }
 
 function queueSavedVocabAudioDownloads() {
@@ -2215,24 +2352,12 @@ function speakVocabWord(word) {
   const text = String(word || "").trim();
   if (!text) return;
 
-  const playFallback = () => {
-    if (!window.speechSynthesis || typeof SpeechSynthesisUtterance === "undefined") return false;
-    cancelSpeech();
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = "en-US";
-    utterance.rate = 0.86;
-    utterance.pitch = 1.03;
-    window.speechSynthesis.speak(utterance);
-    return true;
-  };
-
   playUiSound("step");
   if (VOCAB_AUDIO) {
-    VOCAB_AUDIO.play(text).catch(() => playFallback());
-    return;
+    VOCAB_AUDIO.play(text).catch((error) => {
+      console.warn("Vocab audio playback failed:", error);
+    });
   }
-
-  playFallback();
 }
 
 function getScreenForTab(tabName) {
@@ -2372,7 +2497,8 @@ function setTextEntryValue(field, value) {
   const displayValue = field.dataset.mask === "true" && nextValue
     ? "•".repeat(nextValue.length)
     : nextValue;
-  if ("value" in field) {
+  const isTextInput = field.tagName === "INPUT" || field.tagName === "TEXTAREA";
+  if (isTextInput) {
     field.value = nextValue;
   } else {
     field.textContent = displayValue;
@@ -2483,12 +2609,10 @@ function getTextEntryConfig(targetName = activeTextEntryTarget) {
         ["1", "2", "3"],
         ["4", "5", "6"],
         ["7", "8", "9"],
-        ["0", "backspace"],
-        ["enter"]
+        ["0", "backspace"]
       ],
       labels: {
-        backspace: "⌫",
-        enter: "登入"
+        backspace: "⌫"
       },
       maxLength: 8,
       pattern: /^[0-9]$/,
@@ -2705,6 +2829,13 @@ function openVocabEntryField(targetName) {
 
 function handleVocabEntryTap(targetName) {
   if (!["vocabWord", "vocabAnswer"].includes(targetName)) return;
+  const config = getTextEntryConfig(targetName);
+  const keyboardVisible = config?.keyboard && !config.keyboard.classList.contains("hidden");
+  if (activeTextEntryTarget === targetName && keyboardVisible) {
+    deactivateTextEntryTarget(targetName);
+    playUiSound("next");
+    return;
+  }
   openVocabEntryField(targetName);
 }
 
@@ -4922,7 +5053,7 @@ function openVerbTableReference(event) {
   renderVerbTableReferenceRows();
   el.verbTableReferenceModal.classList.remove("hidden");
   el.verbTableReferenceModal.setAttribute("aria-hidden", "false");
-  document.body.classList.add("modal-open");
+  syncModalOpenClass();
   playUiSound("step");
 }
 
@@ -4933,7 +5064,7 @@ function closeVerbTableReference() {
   hideVerbTableReferenceSearchKeyboard();
   el.verbTableReferenceModal.classList.add("hidden");
   el.verbTableReferenceModal.setAttribute("aria-hidden", "true");
-  document.body.classList.remove("modal-open");
+  syncModalOpenClass();
   playUiSound("next");
 }
 
@@ -5062,7 +5193,11 @@ el.openVerbTableReferenceBtn?.addEventListener("click", openVerbTableReference);
 document.querySelectorAll("[data-close-verb-table-reference]").forEach((button) => {
   button.addEventListener("click", closeVerbTableReference);
 });
-el.accountOpenBtn?.addEventListener("click", openStudentLogin);
+el.menuSettingsBtn?.addEventListener("click", openSettings);
+el.vocabSettingsBtn?.addEventListener("click", openSettings);
+document.querySelectorAll("[data-close-settings]").forEach((button) => {
+  button.addEventListener("click", closeSettings);
+});
 document.querySelectorAll("[data-close-student-login]").forEach((button) => {
   button.addEventListener("click", closeStudentLogin);
 });
@@ -5070,6 +5205,9 @@ el.studentIdInput?.addEventListener("click", () => activateTextEntryTarget("stud
 el.studentPinInput?.addEventListener("click", () => activateTextEntryTarget("studentPin"));
 el.studentLoginSubmit?.addEventListener("click", loginWithStudentPin);
 el.studentLogoutBtn?.addEventListener("click", logoutStudent);
+el.settingsLogoutBtn?.addEventListener("click", logoutStudent);
+el.sfxVolumeInput?.addEventListener("input", updateSfxVolume);
+el.sfxVolumeInput?.addEventListener("change", previewSfxVolume);
 el.vocabWordInput?.addEventListener("click", () => handleVocabEntryTap("vocabWord"));
 el.vocabAnswerInput?.addEventListener("click", () => handleVocabEntryTap("vocabAnswer"));
 el.vocabWordInput?.addEventListener("input", () => syncNativeTextEntryInput("vocabWord"));
@@ -5088,6 +5226,7 @@ document.addEventListener("keydown", (event) => {
   if (handleTextEntryDocumentKeydown(event)) return;
 
   if (event.key === "Escape") {
+    closeSettings();
     closeStudentLogin();
     closeVerbTableReference();
   }
@@ -5156,4 +5295,5 @@ renderVocabList();
 queueSavedVocabAudioDownloads();
 syncPracticeCount();
 syncSoundToggle();
+syncSettingsControls();
 updateLiveStats();

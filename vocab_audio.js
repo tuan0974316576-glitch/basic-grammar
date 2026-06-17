@@ -1,21 +1,20 @@
 (function attachVocabAudio(root, factory) {
-  const api = factory(root.VOCAB_WORD_AUDIO_MANIFEST || {});
+  const api = factory(root.VOCAB_WORD_AUDIO_MANIFEST || {}, {
+    getFirebaseBundle: () => root.grammarFirebase || null
+  });
   if (typeof module !== "undefined" && module.exports) {
     module.exports = api;
   }
   root.VocabAudio = api;
-})(typeof globalThis !== "undefined" ? globalThis : window, function createVocabAudio(staticManifest) {
-  "use strict";
-
+})(typeof globalThis !== "undefined" ? globalThis : window, function createVocabAudio(staticManifest, options = {}) {
   const DB_NAME = "grammar-game-vocab-audio";
   const DB_VERSION = 1;
   const STORE_AUDIO = "audio";
   const STORE_META = "meta";
-  const COMMONS_API = "https://commons.wikimedia.org/w/api.php";
   const MAX_AUDIO_BYTES = 1024 * 1024;
   const FETCH_TIMEOUT_MS = 12000;
-  const CACHE_MISS_TTL_MS = 7 * 24 * 60 * 60 * 1000;
-  const ALLOWED_MIME_TYPES = new Set(["audio/mpeg", "audio/ogg", "application/ogg", "audio/wav", "audio/webm"]);
+  const CACHE_MISS_TTL_MS = 30 * 60 * 1000;
+  const ALLOWED_MIME_TYPES = new Set(["audio/mpeg", "audio/mp3"]);
 
   const staticAudioByWord = buildStaticAudioIndex(staticManifest);
   const pendingDownloads = new Map();
@@ -26,11 +25,14 @@
   let activeAudio = null;
   let activeObjectUrl = "";
   let activeToken = 0;
+  let sharedAudioCallable = null;
+  let sharedAudioCallableBundle = null;
 
   function normalizeWord(value) {
     return String(value || "")
       .trim()
       .replace(/[’‘]/g, "'")
+      .replace(/[‐‑‒–—―]/g, "-")
       .replace(/\s+/g, " ")
       .toLowerCase();
   }
@@ -120,7 +122,8 @@
   }
 
   async function hasAudio(word) {
-    return hasStaticAudio(word) || await hasCachedAudio(word);
+    if (hasStaticAudio(word)) return true;
+    return hasCachedAudio(word);
   }
 
   function getStaticAudioUrl(word) {
@@ -181,7 +184,14 @@
       return true;
     }
 
-    const cached = await getCachedRecord(key);
+    let cached = await getCachedRecord(key);
+    if (!cached?.blob && options.ensure !== false) {
+      const result = await ensureAudio(key);
+      if (result?.status === "ready") {
+        cached = await getCachedRecord(key);
+      }
+    }
+
     if (cached?.blob) {
       stop();
       activeObjectUrl = URL.createObjectURL(cached.blob);
@@ -194,132 +204,7 @@
 
   function isLikelyEnglishWordOrPhrase(word) {
     const text = getCacheKey(word);
-    return Boolean(text && /^[a-z][a-z' -]{0,60}$/.test(text));
-  }
-
-  function stripHtml(value) {
-    return String(value || "").replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
-  }
-
-  function titleScore(title, word) {
-    const cleanTitle = normalizeWord(title.replace(/^File:/i, "").replace(/\.(ogg|oga|mp3|wav|webm)$/i, ""));
-    const exactWord = getCacheKey(word);
-    let score = 0;
-    if (cleanTitle.includes(exactWord)) score += 25;
-    if (/\ben[-_ ]?us\b/.test(cleanTitle)) score += 18;
-    if (/\ben[-_ ]?uk\b|\ben[-_ ]?gb\b/.test(cleanTitle)) score += 10;
-    if (/lingua[_ -]?libre|pronunciation|audio/.test(cleanTitle)) score += 8;
-    if (/sentence|example|music|song|accent/i.test(title)) score -= 12;
-    if (!cleanTitle.includes(exactWord)) score -= 25;
-    return score;
-  }
-
-  function buildSearchQueries(word) {
-    const text = getCacheKey(word);
-    return [
-      `${text} pronunciation english`,
-      `en-us ${text} pronunciation`,
-      `lingua libre ${text} english`
-    ];
-  }
-
-  function buildCommonsApiUrl(params) {
-    const url = new URL(COMMONS_API);
-    Object.entries(params).forEach(([key, value]) => url.searchParams.set(key, value));
-    return url.toString();
-  }
-
-  function fetchJsonWithTimeout(url) {
-    const controller = typeof AbortController !== "undefined" ? new AbortController() : null;
-    const timer = controller ? setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS) : 0;
-    return fetch(url, {
-      cache: "force-cache",
-      signal: controller?.signal
-    }).then((response) => {
-      if (!response.ok) throw new Error(`Commons API failed: ${response.status}`);
-      return response.json();
-    }).finally(() => {
-      if (timer) clearTimeout(timer);
-    });
-  }
-
-  function getTranscodedMp3Url(fileUrl = "") {
-    try {
-      const url = new URL(fileUrl);
-      const filename = url.pathname.split("/").pop() || "";
-      if (!/\.ogg$/i.test(filename)) return "";
-      const basePath = url.pathname
-        .replace(/\/[^/]+$/, "")
-        .replace("/wikipedia/commons/", "/wikipedia/commons/transcoded/");
-      return `${url.origin}${basePath}/${filename}/${filename}.mp3`;
-    } catch (_error) {
-      return "";
-    }
-  }
-
-  function chooseAudioCandidate(pages, word) {
-    return pages
-      .map((page) => {
-        const info = page.imageinfo?.[0] || {};
-        const mime = String(info.mime || "").toLowerCase();
-        const categories = stripHtml(info.extmetadata?.Categories?.value || "").toLowerCase();
-        const isAudio = ALLOWED_MIME_TYPES.has(mime) || /^audio\//.test(mime) || /\.(ogg|oga|mp3|wav|webm)$/i.test(info.url || "");
-        const isEnglish = /english|eng\b|en-us|en-uk|en-gb|american|british/.test(`${page.title} ${categories}`.toLowerCase());
-        const isPronunciation = /pronunciation|lingua libre|spoken/.test(`${page.title} ${categories}`.toLowerCase());
-        return {
-          page,
-          info,
-          score: titleScore(page.title || "", word) + (isAudio ? 40 : -40) + (isEnglish ? 20 : -20) + (isPronunciation ? 16 : 0)
-        };
-      })
-      .filter((candidate) => candidate.info.url && candidate.score > 25)
-      .sort((left, right) => right.score - left.score)[0] || null;
-  }
-
-  async function findCommonsAudio(word) {
-    const text = getCacheKey(word);
-    if (!isLikelyEnglishWordOrPhrase(text)) return null;
-
-    for (const query of buildSearchQueries(text)) {
-      const url = buildCommonsApiUrl({
-        action: "query",
-        format: "json",
-        origin: "*",
-        generator: "search",
-        gsrnamespace: "6",
-        gsrsearch: query,
-        gsrlimit: "10",
-        prop: "imageinfo",
-        iiprop: "url|mime|size|user|extmetadata"
-      });
-      const data = await fetchJsonWithTimeout(url);
-      const pages = Object.values(data.query?.pages || {});
-      const candidate = chooseAudioCandidate(pages, text);
-      if (candidate) return candidate;
-    }
-    return null;
-  }
-
-  async function fetchAudioBlob(candidate) {
-    const sourceUrl = candidate?.info?.url;
-    if (!sourceUrl) return null;
-    const mp3Url = getTranscodedMp3Url(sourceUrl);
-    const urls = mp3Url ? [mp3Url, sourceUrl] : [sourceUrl];
-
-    for (const url of urls) {
-      try {
-        const response = await fetch(url, { cache: "force-cache" });
-        if (!response.ok) continue;
-        const blob = await response.blob();
-        const mime = String(blob.type || response.headers.get("content-type") || "").toLowerCase();
-        if (!blob.size || blob.size > MAX_AUDIO_BYTES) continue;
-        if (mime && !ALLOWED_MIME_TYPES.has(mime) && !/^audio\//.test(mime)) continue;
-        return { blob, url, originalUrl: sourceUrl };
-      } catch (_error) {
-        // Try the next URL form.
-      }
-    }
-    return null;
+    return Boolean(text && /^[a-z][a-z' -]{0,60}$/.test(text) && !/ {2,}|--|''/.test(text));
   }
 
   async function getMeta(word) {
@@ -337,9 +222,86 @@
     });
   }
 
+  function getSharedAudioCallable() {
+    if (typeof options.sharedAudioProvider === "function") {
+      return options.sharedAudioProvider;
+    }
+
+    const bundle = typeof options.getFirebaseBundle === "function" ? options.getFirebaseBundle() : null;
+    if (!bundle?.functions || !bundle.modules?.httpsCallable) return null;
+    if (bundle.auth && !bundle.auth.currentUser) return null;
+    if (!sharedAudioCallable || sharedAudioCallableBundle !== bundle) {
+      sharedAudioCallable = bundle.modules.httpsCallable(bundle.functions, "ensureVocabAudio");
+      sharedAudioCallableBundle = bundle;
+    }
+    return sharedAudioCallable;
+  }
+
+  async function requestSharedAudio(word) {
+    const callable = getSharedAudioCallable();
+    if (!callable) return null;
+    const result = await callable({ word: getCacheKey(word) });
+    return result?.data || result || null;
+  }
+
+  function fetchWithTimeout(url) {
+    const controller = typeof AbortController !== "undefined" ? new AbortController() : null;
+    const timer = controller ? setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS) : 0;
+    return fetch(url, {
+      cache: "force-cache",
+      signal: controller?.signal
+    }).finally(() => {
+      if (timer) clearTimeout(timer);
+    });
+  }
+
+  async function fetchSharedAudioBlob(audioData) {
+    const downloadUrl = String(audioData?.downloadUrl || "").trim();
+    if (!downloadUrl) return null;
+    const response = await fetchWithTimeout(downloadUrl);
+    if (!response.ok) return null;
+    const blob = await response.blob();
+    const mime = String(blob.type || response.headers.get("content-type") || "").split(";")[0].toLowerCase();
+    if (!blob.size || blob.size > MAX_AUDIO_BYTES) return null;
+    if (mime && !ALLOWED_MIME_TYPES.has(mime) && !/^audio\/mpeg$/.test(mime)) return null;
+    return {
+      blob,
+      playbackUrl: downloadUrl,
+      source: audioData.source || "firebase-shared",
+      audioId: audioData.audioId || "",
+      storagePath: audioData.storagePath || ""
+    };
+  }
+
+  async function saveSharedAudio(word, audio) {
+    const key = getCacheKey(word);
+    if (!key || !audio?.blob) return false;
+    const now = Date.now();
+    await writeStore(STORE_AUDIO, {
+      word: key,
+      blob: audio.blob,
+      source: audio.source || "firebase-shared",
+      playbackUrl: audio.playbackUrl || "",
+      audioId: audio.audioId || "",
+      storagePath: audio.storagePath || "",
+      createdAt: now,
+      updatedAt: now
+    });
+    await writeStore(STORE_META, {
+      word: key,
+      status: "ready",
+      source: audio.source || "firebase-shared",
+      audioId: audio.audioId || "",
+      storagePath: audio.storagePath || "",
+      updatedAt: now
+    });
+    return true;
+  }
+
   async function ensureAudio(word) {
     const key = getCacheKey(word);
     if (!key || hasStaticAudio(key)) return { status: "ready", source: "bundle" };
+    if (!isLikelyEnglishWordOrPhrase(key)) return { status: "skipped", source: "invalid" };
     if (pendingDownloads.has(key)) return pendingDownloads.get(key);
 
     const task = (async () => {
@@ -347,46 +309,35 @@
 
       const meta = await getMeta(key);
       if (meta?.status === "missing" && Date.now() - Number(meta.updatedAt || 0) < CACHE_MISS_TTL_MS) {
-        return { status: "missing", source: "cached-miss" };
+        return { status: "missing", source: "cached-miss", reason: meta.reason || "cached-miss" };
       }
 
       try {
-        const candidate = await findCommonsAudio(key);
-        if (!candidate) {
-          await markMiss(key, "not-found");
-          return { status: "missing", source: "commons" };
+        const shared = await requestSharedAudio(key);
+        if (!shared) {
+          return { status: "missing", source: "firebase-shared", reason: "login-required" };
         }
 
-        const audio = await fetchAudioBlob(candidate);
+        if (shared?.status !== "ready" || !shared.downloadUrl) {
+          await markMiss(key, shared?.reason || "not-ready");
+          return { status: "missing", source: shared?.source || "firebase-shared", reason: shared?.reason || "not-ready" };
+        }
+
+        const audio = await fetchSharedAudioBlob(shared);
         if (!audio?.blob) {
           await markMiss(key, "download-failed");
-          return { status: "missing", source: "commons" };
+          return { status: "missing", source: shared.source || "firebase-shared", reason: "download-failed" };
         }
 
-        const now = Date.now();
-        await writeStore(STORE_AUDIO, {
-          word: key,
-          blob: audio.blob,
-          source: "wikimedia-commons",
-          sourceUrl: audio.originalUrl,
-          playbackUrl: audio.url,
-          fileTitle: candidate.page?.title || "",
-          artist: stripHtml(candidate.info?.extmetadata?.Artist?.value || candidate.info?.user || ""),
-          license: stripHtml(candidate.info?.extmetadata?.LicenseShortName?.value || candidate.info?.extmetadata?.UsageTerms?.value || ""),
-          descriptionUrl: candidate.info?.descriptionurl || "",
-          createdAt: now,
-          updatedAt: now
-        });
-        await writeStore(STORE_META, {
-          word: key,
+        await saveSharedAudio(key, audio);
+        return {
           status: "ready",
-          source: "wikimedia-commons",
-          updatedAt: now
-        });
-        return { status: "ready", source: "wikimedia-commons" };
+          source: audio.source || "firebase-shared",
+          audioId: audio.audioId || ""
+        };
       } catch (_error) {
         await markMiss(key, "network-error");
-        return { status: "missing", source: "commons" };
+        return { status: "missing", source: "firebase-shared", reason: "network-error" };
       }
     })().finally(() => {
       pendingDownloads.delete(key);
@@ -406,7 +357,7 @@
       downloadQueue.push(key);
     }
     runQueue();
-    return Promise.resolve({ status: "queued", source: "commons" });
+    return Promise.resolve({ status: "queued", source: "firebase-shared" });
   }
 
   async function runQueue() {
@@ -433,9 +384,9 @@
     stop,
     _private: {
       buildStaticAudioIndex,
-      chooseAudioCandidate,
-      getTranscodedMp3Url,
-      titleScore
+      fetchSharedAudioBlob,
+      isLikelyEnglishWordOrPhrase,
+      requestSharedAudio
     }
   };
 });

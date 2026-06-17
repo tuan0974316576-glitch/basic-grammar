@@ -1,48 +1,68 @@
 const assert = require("assert");
 
-global.VOCAB_WORD_AUDIO_MANIFEST = {
-  "en-US|en-US-AndrewMultilingualNeural::en-US|affluent": "audio/vocab_words/v1/affluent-e9a686a3d67e6576.mp3",
-  "en-US|en-US-AndrewMultilingualNeural::en-US|take for granted": "audio/vocab_words/v1/take-for-granted-test.mp3"
-};
+async function main() {
+  global.VOCAB_WORD_AUDIO_MANIFEST = {
+    "en-US|en-US-AndrewMultilingualNeural::en-US|affluent": "audio/vocab_words/v1/affluent-e9a686a3d67e6576.mp3",
+    "en-US|en-US-AndrewMultilingualNeural::en-US|take for granted": "audio/vocab_words/v1/take-for-granted-test.mp3"
+  };
 
-delete require.cache[require.resolve("../vocab_audio.js")];
-const vocabAudio = require("../vocab_audio.js");
+  delete require.cache[require.resolve("../vocab_audio.js")];
+  const vocabAudio = require("../vocab_audio.js");
 
-assert.strictEqual(vocabAudio.normalizeWord("  Take   for  Granted "), "take for granted");
-assert.strictEqual(vocabAudio.hasStaticAudio("Affluent"), true);
-assert.strictEqual(vocabAudio.hasStaticAudio("unknown-word"), false);
-assert.strictEqual(
-  vocabAudio.getStaticAudioUrl("take for granted"),
-  "audio/vocab_words/v1/take-for-granted-test.mp3"
-);
+  assert.strictEqual(vocabAudio.normalizeWord("  Take   for  Granted "), "take for granted");
+  assert.strictEqual(vocabAudio.normalizeWord("look–for"), "look-for");
+  assert.strictEqual(vocabAudio.hasStaticAudio("Affluent"), true);
+  assert.strictEqual(vocabAudio.hasStaticAudio("unknown-word"), false);
+  assert.strictEqual(
+    vocabAudio.getStaticAudioUrl("take for granted"),
+    "audio/vocab_words/v1/take-for-granted-test.mp3"
+  );
 
-const mp3Url = vocabAudio._private.getTranscodedMp3Url(
-  "https://upload.wikimedia.org/wikipedia/commons/c/c5/En-uk-hello-1.ogg"
-);
-assert.strictEqual(
-  mp3Url,
-  "https://upload.wikimedia.org/wikipedia/commons/transcoded/c/c5/En-uk-hello-1.ogg/En-uk-hello-1.ogg.mp3"
-);
+  assert.strictEqual(vocabAudio._private.isLikelyEnglishWordOrPhrase("look for"), true);
+  assert.strictEqual(vocabAudio._private.isLikelyEnglishWordOrPhrase("take-for-granted"), true);
+  assert.strictEqual(vocabAudio._private.isLikelyEnglishWordOrPhrase("蘋果"), false);
+  assert.strictEqual(vocabAudio._private.isLikelyEnglishWordOrPhrase(""), false);
 
-const candidate = vocabAudio._private.chooseAudioCandidate([
-  {
-    title: "File:Something unrelated.jpg",
-    imageinfo: [{ mime: "image/jpeg", url: "https://example.test/nope.jpg", extmetadata: {} }]
-  },
-  {
-    title: "File:En-us-hello.ogg",
-    imageinfo: [{
-      mime: "application/ogg",
-      url: "https://upload.wikimedia.org/wikipedia/commons/example/En-us-hello.ogg",
-      extmetadata: {
-        Categories: { value: "American English pronunciation|Hello" }
+  let requestedWord = "";
+  global.VOCAB_WORD_AUDIO_MANIFEST = {};
+  global.grammarFirebase = {
+    auth: { currentUser: { uid: "student_test" } },
+    functions: {},
+    modules: {
+      httpsCallable: (_functions, name) => {
+        assert.strictEqual(name, "ensureVocabAudio");
+        return async (payload) => {
+          requestedWord = payload.word;
+          return {
+            data: {
+              status: "ready",
+              word: payload.word,
+              downloadUrl: "https://example.test/audio.mp3",
+              source: "firebase-shared",
+              audioId: "audio123",
+              storagePath: "vocab-audio/v1/example-audio123.mp3"
+            }
+          };
+        };
       }
-    }]
-  }
-], "hello");
+    }
+  };
 
-assert.strictEqual(candidate.page.title, "File:En-us-hello.ogg");
+  delete require.cache[require.resolve("../vocab_audio.js")];
+  const sharedVocabAudio = require("../vocab_audio.js");
+  const result = await sharedVocabAudio._private.requestSharedAudio("  Evaluate  ");
 
-delete global.VOCAB_WORD_AUDIO_MANIFEST;
+  assert.strictEqual(requestedWord, "evaluate");
+  assert.strictEqual(result.status, "ready");
+  assert.strictEqual(result.source, "firebase-shared");
 
-console.log("vocab_audio tests passed");
+  delete global.VOCAB_WORD_AUDIO_MANIFEST;
+  delete global.grammarFirebase;
+  console.log("vocab_audio tests passed");
+}
+
+main().catch((error) => {
+  delete global.VOCAB_WORD_AUDIO_MANIFEST;
+  delete global.grammarFirebase;
+  throw error;
+});
