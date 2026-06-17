@@ -221,6 +221,7 @@ let studentAuthState = {
   resolved: false,
   available: false,
   authenticated: false,
+  loginGateVisible: true,
   user: null,
   profile: getSavedStudentProfile(),
   message: ""
@@ -833,12 +834,14 @@ function tryRestoreStudentProfile() {
   if (!saved) {
     syncAccountWidget();
     setStudentLoginStatus();
+    syncStudentLoginGate();
     return;
   }
 
   studentAuthState.profile = saved;
   syncAccountWidget();
   setStudentLoginStatus();
+  syncStudentLoginGate();
 }
 
 function getStudentDisplayName() {
@@ -851,10 +854,11 @@ function getStudentDisplayName() {
 function syncAccountWidget() {
   const label = getStudentDisplayName();
   const isOnlineStudent = Boolean(studentAuthState.authenticated && label);
-  el.accountLabel.textContent = isOnlineStudent ? label : "本機記錄";
+  el.accountLabel.textContent = isOnlineStudent ? label : "學生登入";
   el.accountStatusDot.classList.toggle("online", isOnlineStudent);
   el.accountStatusDot.classList.toggle("offline", !isOnlineStudent);
   el.accountOpenBtn?.setAttribute("aria-label", isOnlineStudent ? `${label} 已登入` : "學生登入");
+  el.accountWidget?.classList.toggle("hidden", !isOnlineStudent);
 
   if (el.studentLogoutBtn) {
     el.studentLogoutBtn.classList.toggle("hidden", !studentAuthState.authenticated);
@@ -869,8 +873,13 @@ function setStudentLoginStatus(message = "", type = "") {
     return;
   }
 
+  if (!studentAuthState.resolved) {
+    el.studentLoginStatus.textContent = "正在檢查登入狀態...";
+    return;
+  }
+
   if (!studentAuthState.available) {
-    el.studentLoginStatus.textContent = studentAuthState.message || "未連接 Firebase，暫時只會儲存在本機。";
+    el.studentLoginStatus.textContent = studentAuthState.message || "暫時連不到登入系統，請稍後再試。";
     return;
   }
 
@@ -882,25 +891,48 @@ function setStudentLoginStatus(message = "", type = "") {
   el.studentLoginStatus.textContent = "輸入學號同 PIN，就可以同步練習紀錄。";
 }
 
+function syncStudentLoginGate() {
+  if (!el.studentLoginModal) return;
+
+  const shouldShow = !studentAuthState.authenticated;
+  studentAuthState.loginGateVisible = shouldShow;
+  el.studentLoginModal.classList.toggle("hidden", !shouldShow);
+  el.studentLoginModal.classList.toggle("login-gate", shouldShow);
+  el.studentLoginModal.setAttribute("aria-hidden", shouldShow ? "false" : "true");
+  document.body.classList.toggle("modal-open", shouldShow);
+  document.body.classList.toggle("login-required", shouldShow);
+  setStudentLoginStatus();
+  if (!shouldShow) {
+    deactivateTextEntryTarget("studentId");
+    deactivateTextEntryTarget("studentPin");
+  }
+}
+
 function openStudentLogin() {
   if (!el.studentLoginModal) return;
   el.studentLoginModal.classList.remove("hidden");
+  el.studentLoginModal.classList.remove("login-gate");
   el.studentLoginModal.setAttribute("aria-hidden", "false");
   document.body.classList.add("modal-open");
+  studentAuthState.loginGateVisible = false;
   setStudentLoginStatus();
-  if (!getTextEntryValue(el.studentIdInput)) {
-    activateTextEntryTarget("studentId");
-  }
   playUiSound("step");
 }
 
 function closeStudentLogin() {
   if (!el.studentLoginModal || el.studentLoginModal.classList.contains("hidden")) return;
+  if (!studentAuthState.authenticated) {
+    syncStudentLoginGate();
+    return;
+  }
   deactivateTextEntryTarget("studentId");
   deactivateTextEntryTarget("studentPin");
   el.studentLoginModal.classList.add("hidden");
+  el.studentLoginModal.classList.remove("login-gate");
   el.studentLoginModal.setAttribute("aria-hidden", "true");
   document.body.classList.remove("modal-open");
+  document.body.classList.remove("login-required");
+  studentAuthState.loginGateVisible = false;
   playUiSound("next");
 }
 
@@ -921,6 +953,7 @@ function applyStudentAuthState(patch = {}) {
 
   syncAccountWidget();
   setStudentLoginStatus();
+  syncStudentLoginGate();
 
   if (studentAuthState.authenticated) {
     void syncStudentCloudProgress();
@@ -998,7 +1031,6 @@ async function loginWithStudentPin() {
     clearTextEntryValue("studentPin");
     setStudentLoginStatus("登入成功，紀錄會自動同步。", "success");
     playUiSound("correct");
-    setTimeout(closeStudentLogin, 520);
   } catch (error) {
     console.warn("Student login failed:", error);
     setStudentLoginStatus("學號或 PIN 不正確，請再試一次。", "error");
@@ -1029,6 +1061,7 @@ async function logoutStudent() {
   saveStudentProfile(null);
   syncAccountWidget();
   setStudentLoginStatus("已登出。");
+  syncStudentLoginGate();
   playUiSound("next");
 }
 
@@ -1499,7 +1532,8 @@ function clearVocabMeaningSuggestions() {
 }
 
 function getVocabEntryFilterKey(entry = {}) {
-  if (entry.pos) return `pos:${entry.pos}`;
+  const pos = getVocabEntryPos(entry);
+  if (pos) return `pos:${pos}`;
   if (entry.type === "pattern") return "type:pattern";
   if (entry.type === "phrase") return "type:phrase";
   return "type:word";
@@ -1511,14 +1545,34 @@ function getVocabEntryFilterLabel(filterKey = "") {
   }
   if (filterKey === "type:pattern") return "句式";
   if (filterKey === "type:phrase") return "詞組";
-  return "字";
+  return "";
+}
+
+function getFallbackDictionaryUniquePos(word) {
+  if (!OFFLINE_VOCAB?.lookup) return "";
+  const matches = OFFLINE_VOCAB.lookup(word, { limit: 10 });
+  const posSet = new Set(
+    matches
+      .map((entry) => OFFLINE_VOCAB.normalizePos?.(entry.pos) || entry.pos || "")
+      .filter(Boolean)
+  );
+  if (posSet.size !== 1) return "";
+  return [...posSet][0] || "";
+}
+
+function getVocabEntryPos(entry = {}) {
+  return entry.pos || entry.inferredPos || getFallbackDictionaryUniquePos(entry.word);
 }
 
 function getVocabEntryMetaLabel(entry = {}) {
   if (entry.type === "pattern") return "句式";
   if (entry.type === "phrase") return "詞組";
-  const posLabel = TEACHER_VOCAB?.formatPosLabel?.(entry.pos) || entry.pos || "";
-  return posLabel || "字";
+  const pos = getVocabEntryPos(entry);
+  return TEACHER_VOCAB?.formatPosLabel?.(pos) || pos || "";
+}
+
+function needsFallbackPosLookup(matches = []) {
+  return matches.some((entry) => entry.type !== "pattern" && entry.type !== "phrase" && !entry.pos);
 }
 
 function getSelectedVocabMeaning() {
@@ -1623,18 +1677,26 @@ async function refreshVocabTeacherLookup(options = {}) {
   renderVocabMeaningSuggestions();
   updateVocabEntryState();
 
-  if (!matches.length) {
-    const loadedMatches = await loadOfflineVocabMatches(word);
-    if (normalizeVocabWord(getTextEntryValue(el.vocabWordInput)) !== word || !loadedMatches.length) return;
-    vocabEntryLookupState = {
-      word,
-      matches: loadedMatches,
-      filterKey: "",
-      selectedEntry: null
-    };
-    renderVocabMeaningSuggestions();
-    updateVocabEntryState();
+  if (matches.length) {
+    if (needsFallbackPosLookup(matches)) {
+      await loadOfflineVocabMatches(word);
+      if (normalizeVocabWord(getTextEntryValue(el.vocabWordInput)) !== word) return;
+      renderVocabMeaningSuggestions();
+      updateVocabEntryState();
+    }
+    return;
   }
+
+  const loadedMatches = await loadOfflineVocabMatches(word);
+  if (normalizeVocabWord(getTextEntryValue(el.vocabWordInput)) !== word || !loadedMatches.length) return;
+  vocabEntryLookupState = {
+    word,
+    matches: loadedMatches,
+    filterKey: "",
+    selectedEntry: null
+  };
+  renderVocabMeaningSuggestions();
+  updateVocabEntryState();
 }
 
 function getSelectedTeacherVocabEntryForSave(word, meaning) {
@@ -1754,10 +1816,10 @@ function createVocabListRow(item) {
   meaning.textContent = item.meaning;
 
   text.append(word, meaning);
-  if (item.pos || item.type === "pattern" || item.type === "phrase") {
+  const metaLabel = getVocabEntryMetaLabel(item);
+  if (metaLabel) {
     const meta = document.createElement("em");
-    const posLabel = TEACHER_VOCAB?.formatPosLabel?.(item.pos) || item.pos || item.type;
-    meta.textContent = posLabel || item.type;
+    meta.textContent = metaLabel;
     text.append(meta);
   }
 
@@ -1809,7 +1871,7 @@ function addVocabItemFromEntry() {
       : VOCAB_DATA.createMeaningId(word, meaning);
   const extraFields = teacherEntry
     ? {
-      pos: teacherEntry.pos || "",
+      pos: getVocabEntryPos(teacherEntry),
       type: teacherEntry.type || "word",
       source: "teacher",
       teacherEntryId: teacherEntry.id

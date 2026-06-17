@@ -2740,6 +2740,19 @@ body.modal-open {
   backdrop-filter: blur(8px);
 }
 
+.student-login-modal.login-gate {
+  z-index: 4600;
+}
+
+.student-login-modal.login-gate .student-login-backdrop,
+.student-login-modal.login-gate .student-login-close {
+  display: none;
+}
+
+body.login-required {
+  overflow: hidden;
+}
+
 .student-login-backdrop {
   position: absolute;
   inset: 0;

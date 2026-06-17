@@ -55,6 +55,12 @@ async function initializeGrammarFirebase() {
       }
     };
 
+    try {
+      await firebaseAuth.setPersistence(auth, firebaseAuth.browserLocalPersistence);
+    } catch (error) {
+      console.warn("Firebase persistence setup failed:", error);
+    }
+
     firebaseAuth.onAuthStateChanged(auth, (user) => {
       if (!user) {
         applyStudentAuthState({

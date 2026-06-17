@@ -8,10 +8,10 @@
 </head>
 <body>
   <main id="app-shell" class="app-shell">
-    <div id="account-widget" class="account-widget" aria-live="polite">
+    <div id="account-widget" class="account-widget hidden" aria-live="polite">
       <button id="account-open-btn" class="account-open-btn" type="button">
         <span id="account-status-dot" class="account-status-dot" aria-hidden="true"></span>
-        <span id="account-label">本機記錄</span>
+        <span id="account-label">學生登入</span>
       </button>
     </div>
 
@@ -485,7 +485,7 @@
     </div>
   </section>
 
-  <section id="student-login-modal" class="student-login-modal hidden" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="student-login-title">
+  <section id="student-login-modal" class="student-login-modal login-gate" role="dialog" aria-modal="true" aria-hidden="false" aria-labelledby="student-login-title">
     <button class="student-login-backdrop" type="button" aria-label="關閉登入" data-close-student-login></button>
     <div class="student-login-panel">
       <header class="student-login-header">
@@ -496,7 +496,7 @@
         <button class="student-login-close" type="button" aria-label="關閉" data-close-student-login>×</button>
       </header>
 
-      <div id="student-login-status" class="student-login-status">輸入學號同 PIN，就可以同步練習紀錄。</div>
+      <div id="student-login-status" class="student-login-status">正在檢查登入狀態...</div>
 
       <div class="student-login-form">
         <label class="student-login-field">
