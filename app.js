@@ -1808,7 +1808,7 @@ function addVocabItemFromEntry() {
   }
   setTextEntryValue(el.vocabWordInput, "");
   clearVocabMeaningSuggestions();
-  activateTextEntryTarget("vocabWord", { showKeyboard: !isComputerKeyboardMode() });
+  deactivateTextEntryTarget("vocabWord");
   renderVocabList();
   playUiSound("correct");
 }
@@ -2297,12 +2297,11 @@ function getTextEntryConfig(targetName = activeTextEntryTarget) {
         ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
         ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
         ["z", "x", "c", "v", "b", "n", "m", "backspace"],
-        ["space", "-", "'", "clear", "enter"]
+        ["space", "-", "'", "clear"]
       ],
       labels: {
         backspace: "⌫",
         clear: "清空",
-        enter: "下一格",
         space: "Space"
       },
       maxLength: 42,
