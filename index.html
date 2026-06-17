@@ -130,31 +130,22 @@
 
       <div class="module-layout vocab-layout">
         <div class="module-control-panel">
-          <div class="coach-card" aria-label="Vocabulary coach">
-            <img src="assets/grammar-coach.svg" alt="">
-            <div>
-              <span>Coach</span>
-              <strong id="vocab-coach-line">先加入上堂學過的生字。</strong>
-            </div>
-          </div>
-
           <div class="module-stat-grid">
             <div>
-              <span>Words</span>
+              <span>已加入</span>
               <strong id="vocab-word-count">0</strong>
             </div>
             <div>
-              <span>Review</span>
+              <span>待溫習</span>
               <strong id="vocab-review-count">0</strong>
             </div>
           </div>
 
           <div class="vocab-entry-panel">
             <input id="vocab-word-input" class="text-entry-field vocab-entry-input" type="text" inputmode="latin" autocomplete="off" autocapitalize="none" spellcheck="false" readonly placeholder="English word" aria-label="輸入英文生字" data-placeholder="English word">
-            <input id="vocab-meaning-input" class="text-entry-field vocab-entry-input" type="text" autocomplete="off" readonly placeholder="中文意思" aria-label="輸入中文意思" data-placeholder="中文意思">
+            <div id="vocab-meaning-suggestions" class="vocab-meaning-suggestions hidden" aria-label="中文意思選擇"></div>
             <button id="vocab-add-btn" class="primary-btn vocab-add-btn" type="button">加入</button>
           </div>
-          <div id="vocab-meaning-suggestions" class="vocab-meaning-suggestions hidden" aria-label="老師詞庫建議"></div>
         </div>
 
         <div class="module-picker vocab-list-panel" aria-label="詞彙列表">

@@ -373,13 +373,13 @@ h2 {
 
 .vocab-entry-panel {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
-  gap: 10px;
-  align-items: center;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 9px;
+  align-items: stretch;
 }
 
 .vocab-meaning-suggestions {
-  max-height: 124px;
+  max-height: clamp(92px, 18svh, 156px);
   display: grid;
   gap: 8px;
   padding: 8px;
@@ -662,6 +662,10 @@ h2 {
   min-height: 0;
   height: min(720px, calc(100svh - 60px));
   overflow: hidden;
+}
+
+#vocab-screen.active.keyboard-docked {
+  height: min(720px, calc(100svh - clamp(260px, 36svh, 304px)));
 }
 
 #vocab-screen.active .module-layout {
@@ -3130,6 +3134,10 @@ body.modal-open {
     height: calc(100svh - clamp(260px, 36svh, 304px));
   }
 
+  #vocab-screen.active.keyboard-docked {
+    height: calc(100svh - clamp(260px, 36svh, 304px));
+  }
+
   .app-shell.login-keyboard-docked #menu-screen.active,
   .app-shell.login-keyboard-docked .tab-screen.active {
     height: calc(100svh - clamp(260px, 36svh, 304px) - 28px - env(safe-area-inset-bottom));
@@ -3194,12 +3202,15 @@ body.modal-open {
   }
 
   .vocab-entry-panel {
-    grid-template-columns: 1fr;
     gap: 8px;
   }
 
   .vocab-entry-input {
     min-height: 46px;
+  }
+
+  .vocab-meaning-suggestions {
+    max-height: clamp(86px, 17svh, 132px);
   }
 
   .vocab-add-btn {

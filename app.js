@@ -298,11 +298,9 @@ const el = {
   verbTableReferenceCount: document.querySelector("#verb-table-reference-count"),
   verbTableReferenceBody: document.querySelector("#verb-table-reference-body"),
   menuCoachLine: document.querySelector("#menu-coach-line"),
-  vocabCoachLine: document.querySelector("#vocab-coach-line"),
   vocabWordCount: document.querySelector("#vocab-word-count"),
   vocabReviewCount: document.querySelector("#vocab-review-count"),
   vocabWordInput: document.querySelector("#vocab-word-input"),
-  vocabMeaningInput: document.querySelector("#vocab-meaning-input"),
   vocabMeaningSuggestions: document.querySelector("#vocab-meaning-suggestions"),
   vocabEntryKeyboard: document.querySelector("#vocab-entry-keyboard"),
   vocabAddBtn: document.querySelector("#vocab-add-btn"),
@@ -1447,7 +1445,7 @@ function getVocabReviewCount() {
 
 function updateVocabEntryState() {
   const word = normalizeVocabWord(getTextEntryValue(el.vocabWordInput));
-  const meaning = normalizeVocabMeaning(getTextEntryValue(el.vocabMeaningInput));
+  const meaning = getSelectedVocabMeaning();
   if (el.vocabAddBtn) {
     el.vocabAddBtn.disabled = !word || !meaning;
   }
@@ -1516,10 +1514,15 @@ function getVocabEntryFilterLabel(filterKey = "") {
   return "字";
 }
 
-function getVocabEntrySourceLabel(entry = {}) {
-  if (entry.source === "offline-dictionary") return "離線字典";
-  if (entry.source === "teacher") return "老師筆記";
-  return "詞庫";
+function getVocabEntryMetaLabel(entry = {}) {
+  if (entry.type === "pattern") return "句式";
+  if (entry.type === "phrase") return "詞組";
+  const posLabel = TEACHER_VOCAB?.formatPosLabel?.(entry.pos) || entry.pos || "";
+  return posLabel || "字";
+}
+
+function getSelectedVocabMeaning() {
+  return normalizeVocabMeaning(vocabEntryLookupState.selectedEntry?.meaning || "");
 }
 
 function getFilteredVocabMatches() {
@@ -1530,11 +1533,11 @@ function getFilteredVocabMatches() {
 
 function selectVocabMeaningFilter(filterKey) {
   vocabEntryLookupState.filterKey = vocabEntryLookupState.filterKey === filterKey ? "" : filterKey;
+  const selected = vocabEntryLookupState.selectedEntry;
   const filtered = getFilteredVocabMatches();
-  vocabEntryLookupState.selectedEntry = TEACHER_VOCAB?.chooseAutoFillEntry?.(filtered) || null;
-  if (vocabEntryLookupState.selectedEntry) {
-    setTextEntryValue(el.vocabMeaningInput, vocabEntryLookupState.selectedEntry.meaning || "");
-  }
+  vocabEntryLookupState.selectedEntry = selected && filtered.some((entry) => entry.id === selected.id)
+    ? selected
+    : null;
   renderVocabMeaningSuggestions();
   updateVocabEntryState();
   playUiSound("click");
@@ -1543,7 +1546,6 @@ function selectVocabMeaningFilter(filterKey) {
 function selectVocabMeaningSuggestion(entry) {
   if (!entry) return;
   vocabEntryLookupState.selectedEntry = entry;
-  setTextEntryValue(el.vocabMeaningInput, entry.meaning || "");
   updateVocabEntryState();
   renderVocabMeaningSuggestions();
   playUiSound("click");
@@ -1579,12 +1581,10 @@ function renderVocabMeaningSuggestions() {
       button.classList.add("active");
     }
     button.type = "button";
-    button.textContent = TEACHER_VOCAB.getEntryLabel?.(entry) || entry.meaning;
+    button.textContent = entry.meaning;
 
     const meta = document.createElement("small");
-    const sourceLabel = getVocabEntrySourceLabel(entry);
-    const sourceText = entry.sourceCount > 1 ? `${sourceLabel} ${entry.sourceCount} 次` : sourceLabel;
-    meta.textContent = entry.type === "pattern" ? `句式 / ${sourceText}` : sourceText;
+    meta.textContent = getVocabEntryMetaLabel(entry);
     button.append(meta);
 
     button.addEventListener("click", () => selectVocabMeaningSuggestion(entry));
@@ -1613,35 +1613,25 @@ async function refreshVocabTeacherLookup(options = {}) {
   if (!wordChanged && !options.force) return;
 
   const matches = buildVocabLookupMatches(word);
-  const autoEntry = TEACHER_VOCAB?.chooseAutoFillEntry?.(matches) || null;
   vocabEntryLookupState = {
     word,
     matches,
-    filterKey: autoEntry ? getVocabEntryFilterKey(autoEntry) : "",
-    selectedEntry: autoEntry
+    filterKey: "",
+    selectedEntry: null
   };
 
-  if (wordChanged) {
-    setTextEntryValue(el.vocabMeaningInput, autoEntry?.meaning || "");
-  } else if (autoEntry && !normalizeVocabMeaning(getTextEntryValue(el.vocabMeaningInput))) {
-    setTextEntryValue(el.vocabMeaningInput, autoEntry.meaning || "");
-  }
   renderVocabMeaningSuggestions();
   updateVocabEntryState();
 
   if (!matches.length) {
     const loadedMatches = await loadOfflineVocabMatches(word);
     if (normalizeVocabWord(getTextEntryValue(el.vocabWordInput)) !== word || !loadedMatches.length) return;
-    const loadedAutoEntry = TEACHER_VOCAB?.chooseAutoFillEntry?.(loadedMatches) || null;
     vocabEntryLookupState = {
       word,
       matches: loadedMatches,
-      filterKey: loadedAutoEntry ? getVocabEntryFilterKey(loadedAutoEntry) : "",
-      selectedEntry: loadedAutoEntry
+      filterKey: "",
+      selectedEntry: null
     };
-    if (loadedAutoEntry && !normalizeVocabMeaning(getTextEntryValue(el.vocabMeaningInput))) {
-      setTextEntryValue(el.vocabMeaningInput, loadedAutoEntry.meaning || "");
-    }
     renderVocabMeaningSuggestions();
     updateVocabEntryState();
   }
@@ -1674,16 +1664,6 @@ function handleVocabWordEntryChange() {
   updateVocabEntryState();
 }
 
-function handleVocabMeaningEntryChange() {
-  const meaning = normalizeVocabMeaning(getTextEntryValue(el.vocabMeaningInput));
-  const selectedMeaning = normalizeVocabMeaning(vocabEntryLookupState.selectedEntry?.meaning);
-  if (selectedMeaning && meaning !== selectedMeaning) {
-    vocabEntryLookupState.selectedEntry = null;
-    renderVocabMeaningSuggestions();
-  }
-  updateVocabEntryState();
-}
-
 function renderVocabList() {
   if (!el.vocabList) return;
 
@@ -1695,18 +1675,11 @@ function renderVocabList() {
   }
 
   if (!words.length) {
-    el.vocabCoachLine.textContent = "先加入上堂學過的生字，再撳右上角訓練。";
     el.vocabList.replaceChildren(createVocabEmptyState());
     updateVocabEntryState();
     return;
   }
 
-  const dueCount = getVocabReviewCount();
-  el.vocabCoachLine.textContent = dueCount > 0
-    ? `有 ${dueCount} 個生字要溫習，撳右上角啞鈴開始。`
-    : words.length >= 4
-      ? "右上角啞鈴可直接開始混合練習。"
-      : "先加入多幾個生字，溫習會更完整。";
   el.vocabList.replaceChildren(...words.map(createVocabListRow));
   updateVocabEntryState();
 }
@@ -1714,7 +1687,7 @@ function renderVocabList() {
 function createVocabEmptyState() {
   const empty = document.createElement("div");
   empty.className = "vocab-empty";
-  empty.textContent = "未有生字。先輸入英文同中文意思。";
+  empty.textContent = "未有生字。輸入英文，揀中文意思，再加入。";
   return empty;
 }
 
@@ -1772,7 +1745,7 @@ function createVocabListRow(item) {
 
 function addVocabItemFromEntry() {
   const word = normalizeVocabWord(getTextEntryValue(el.vocabWordInput));
-  const meaning = normalizeVocabMeaning(getTextEntryValue(el.vocabMeaningInput));
+  const meaning = getSelectedVocabMeaning();
   if (!word || !meaning) {
     playUiSound("wrong");
     updateVocabEntryState();
@@ -1834,7 +1807,6 @@ function addVocabItemFromEntry() {
     VOCAB_AUDIO.queueEnsureAudio(word);
   }
   setTextEntryValue(el.vocabWordInput, "");
-  setTextEntryValue(el.vocabMeaningInput, "");
   clearVocabMeaningSuggestions();
   activateTextEntryTarget("vocabWord", { showKeyboard: !isComputerKeyboardMode() });
   renderVocabList();
@@ -1906,7 +1878,6 @@ function buildVocabQuestions() {
 
 function startVocabQuiz() {
   if (state.vocabWords.length < 1) {
-    el.vocabCoachLine.textContent = "先加入上堂學過的生字。";
     playUiSound("wrong");
     return;
   }
@@ -2337,27 +2308,7 @@ function getTextEntryConfig(targetName = activeTextEntryTarget) {
       maxLength: 42,
       pattern: /^[a-zA-Z '-]$/,
       onChange: handleVocabWordEntryChange,
-      onEnter: () => activateTextEntryTarget("vocabMeaning")
-    },
-    vocabMeaning: {
-      field: el.vocabMeaningInput,
-      keyboard: el.vocabEntryKeyboard,
-      keys: [
-        ["我", "你", "他", "她", "它", "的", "是", "不"],
-        ["人", "物", "事", "地方", "動作", "形容", "英文"],
-        ["蘋果", "書", "學校", "朋友", "老師", "學生"],
-        ["space", "、", "／", "backspace"],
-        ["clear", "enter"]
-      ],
-      labels: {
-        backspace: "⌫",
-        clear: "清空",
-        enter: "加入",
-        space: "空格"
-      },
-      maxLength: 36,
-      onChange: handleVocabMeaningEntryChange,
-      onEnter: addVocabItemFromEntry
+      onEnter: () => refreshVocabTeacherLookup({ force: true })
     },
     vocabAnswer: {
       field: el.vocabAnswerInput,
@@ -2486,9 +2437,10 @@ function setTextEntryKeyboardVisible(targetName, visible) {
   if (isLessonKeyboard) {
     el.lessonScreen.classList.toggle("keyboard-docked", visible);
   }
-  const isVocabKeyboard = targetName === "vocabAnswer" || targetName === "vocabWord" || targetName === "vocabMeaning";
+  const isVocabKeyboard = targetName === "vocabAnswer" || targetName === "vocabWord";
   if (isVocabKeyboard) {
     el.vocabQuizScreen?.classList.toggle("keyboard-docked", visible && targetName === "vocabAnswer");
+    el.vocabScreen?.classList.toggle("keyboard-docked", visible && targetName === "vocabWord");
   }
 }
 
@@ -2648,14 +2600,11 @@ function handleTextEntryDocumentKeydown(event) {
 }
 
 function openVocabEntryField(targetName) {
-  if (targetName === "vocabMeaning") {
-    void refreshVocabTeacherLookup();
-  }
   activateTextEntryTarget(targetName, { showKeyboard: !isComputerKeyboardMode() });
 }
 
 function handleVocabEntryTap(targetName) {
-  if (!["vocabWord", "vocabMeaning", "vocabAnswer"].includes(targetName)) return;
+  if (!["vocabWord", "vocabAnswer"].includes(targetName)) return;
   openVocabEntryField(targetName);
 }
 
@@ -2673,7 +2622,6 @@ function syncNativeTextEntryInput(targetName) {
 function syncNativeInputMode() {
   [
     el.vocabWordInput,
-    el.vocabMeaningInput,
     el.vocabAnswerInput
   ].forEach((field) => {
     if (!field || !("readOnly" in field)) return;
@@ -5021,10 +4969,8 @@ el.studentPinInput?.addEventListener("click", () => activateTextEntryTarget("stu
 el.studentLoginSubmit?.addEventListener("click", loginWithStudentPin);
 el.studentLogoutBtn?.addEventListener("click", logoutStudent);
 el.vocabWordInput?.addEventListener("click", () => handleVocabEntryTap("vocabWord"));
-el.vocabMeaningInput?.addEventListener("click", () => handleVocabEntryTap("vocabMeaning"));
 el.vocabAnswerInput?.addEventListener("click", () => handleVocabEntryTap("vocabAnswer"));
 el.vocabWordInput?.addEventListener("input", () => syncNativeTextEntryInput("vocabWord"));
-el.vocabMeaningInput?.addEventListener("input", () => syncNativeTextEntryInput("vocabMeaning"));
 el.vocabAnswerInput?.addEventListener("input", () => syncNativeTextEntryInput("vocabAnswer"));
 el.vocabAddBtn?.addEventListener("click", addVocabItemFromEntry);
 el.vocabTrainBtn?.addEventListener("click", startVocabQuiz);
@@ -5093,7 +5039,6 @@ el.confirmVerbTableBtn?.addEventListener("click", submitVerbTable);
 
 setTextEntryValue(el.countableCorrectionInput, "");
 setTextEntryValue(el.vocabWordInput, "");
-setTextEntryValue(el.vocabMeaningInput, "");
 setTextEntryValue(el.vocabAnswerInput, "");
 setTextEntryValue(el.verbTableReferenceSearch, "");
 setTextEntryValue(el.studentIdInput, "");
