@@ -13,6 +13,7 @@ if (!VOCAB_DATA) {
   throw new Error("VocabData failed to load.");
 }
 
+const VOCAB_AUDIO = window.VocabAudio || null;
 const TEACHER_VOCAB = window.TeacherVocab || null;
 const OFFLINE_VOCAB = window.FallbackDictionary || null;
 
@@ -1829,6 +1830,9 @@ function addVocabItemFromEntry() {
   }
   saveVocabItems();
   queueVocabItemUpsert(savedItem, state.vocabProgress[savedItem.id]);
+  if (VOCAB_AUDIO) {
+    VOCAB_AUDIO.queueEnsureAudio(word);
+  }
   setTextEntryValue(el.vocabWordInput, "");
   setTextEntryValue(el.vocabMeaningInput, "");
   clearVocabMeaningSuggestions();
@@ -1845,6 +1849,13 @@ function deleteVocabItem(itemId) {
   saveVocabProgress();
   renderVocabList();
   playUiSound("next");
+}
+
+function queueSavedVocabAudioDownloads() {
+  if (!VOCAB_AUDIO) return;
+  state.vocabWords.forEach((item) => {
+    VOCAB_AUDIO.queueEnsureAudio(item.word);
+  });
 }
 
 function getVocabModeLabel(mode = "stage") {
@@ -2121,15 +2132,26 @@ function handleVocabNextButton() {
 
 function speakVocabWord(word) {
   const text = String(word || "").trim();
-  if (!text || !window.speechSynthesis || typeof SpeechSynthesisUtterance === "undefined") return;
+  if (!text) return;
 
-  cancelSpeech();
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = "en-US";
-  utterance.rate = 0.86;
-  utterance.pitch = 1.03;
-  window.speechSynthesis.speak(utterance);
+  const playFallback = () => {
+    if (!window.speechSynthesis || typeof SpeechSynthesisUtterance === "undefined") return false;
+    cancelSpeech();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "en-US";
+    utterance.rate = 0.86;
+    utterance.pitch = 1.03;
+    window.speechSynthesis.speak(utterance);
+    return true;
+  };
+
   playUiSound("step");
+  if (VOCAB_AUDIO) {
+    VOCAB_AUDIO.play(text).catch(() => playFallback());
+    return;
+  }
+
+  playFallback();
 }
 
 function getScreenForTab(tabName) {
@@ -5084,6 +5106,7 @@ if (window.pendingStudentAuthState) {
 }
 updateMenuProgress();
 renderVocabList();
+queueSavedVocabAudioDownloads();
 syncPracticeCount();
 syncSoundToggle();
 updateLiveStats();

@@ -19,6 +19,8 @@ const files = [
   "style.css",
   "teacher_vocab_bank.js",
   "teacher_vocab.js",
+  "vocab_audio.js",
+  "vocab_word_audio_manifest.js",
   "vocab_data.js",
   "vocab_scheduler.js"
 ];
