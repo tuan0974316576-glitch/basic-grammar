@@ -15,7 +15,6 @@ if (!VOCAB_DATA) {
 
 const VOCAB_AUDIO = window.VocabAudio || null;
 const TEACHER_VOCAB = window.TeacherVocab || null;
-const OFFLINE_VOCAB = window.FallbackDictionary || null;
 
 const {
   QUESTIONS,
@@ -1594,14 +1593,6 @@ function getTeacherVocabMatches(word) {
   return TEACHER_VOCAB.lookup(word, { exactOnly: true, limit: 10 });
 }
 
-function getOfflineVocabMatches(word, options = {}) {
-  if (!OFFLINE_VOCAB?.lookup) return [];
-  return OFFLINE_VOCAB.lookup(word, {
-    pos: options.pos || "",
-    limit: options.limit || 10
-  });
-}
-
 function getCloudVocabMeaningCallable() {
   const firebase = getFirebaseBundle();
   if (!firebase?.functions || !firebase.modules?.httpsCallable || !firebase.auth?.currentUser) return null;
@@ -1651,18 +1642,7 @@ function buildVocabLookupMatches(word) {
     }));
   }
 
-  const offlineMatches = getOfflineVocabMatches(word);
-  return offlineMatches.map((entry) => ({
-    ...entry,
-    source: entry.source || "offline-dictionary",
-    sourceEntryId: entry.sourceEntryId || entry.id
-  }));
-}
-
-async function loadOfflineVocabMatches(word) {
-  if (!OFFLINE_VOCAB?.loadShardForWord) return [];
-  await OFFLINE_VOCAB.loadShardForWord(word);
-  return getOfflineVocabMatches(word);
+  return [];
 }
 
 async function loadCloudVocabMatches(word) {
@@ -1722,25 +1702,7 @@ function getVocabEntryFilterLabel(filterKey = "") {
 
 function normalizeVocabPos(value) {
   return TEACHER_VOCAB?.normalizePos?.(value)
-    || OFFLINE_VOCAB?.normalizePos?.(value)
     || String(value || "").trim().toLowerCase();
-}
-
-function getFallbackDictionaryUniquePos(word, options = {}) {
-  if (!OFFLINE_VOCAB?.lookup) return "";
-  const matches = OFFLINE_VOCAB.lookup(word, { limit: 10 });
-  const expectedMeaning = normalizeVocabMeaning(options.meaning);
-  const exactMeaningMatches = expectedMeaning
-    ? matches.filter((entry) => normalizeVocabMeaning(entry.meaning) === expectedMeaning)
-    : [];
-  const sourceMatches = exactMeaningMatches.length ? exactMeaningMatches : matches;
-  const posSet = new Set(
-    sourceMatches
-      .map((entry) => normalizeVocabPos(entry.pos))
-      .filter(Boolean)
-  );
-  if (posSet.size !== 1) return "";
-  return [...posSet][0] || "";
 }
 
 function inferVocabPosFromMeaning(word, meaning) {
@@ -1771,7 +1733,6 @@ function getVocabEntryPos(entry = {}) {
   if (entry.type === "pattern") return "";
   return normalizeVocabPos(entry.pos)
     || normalizeVocabPos(entry.inferredPos)
-    || getFallbackDictionaryUniquePos(entry.word, { meaning: entry.meaning })
     || inferVocabPosFromMeaning(entry.word, entry.meaning);
 }
 
@@ -1790,7 +1751,12 @@ function formatVocabMeaningLine(entry = {}) {
 }
 
 function needsFallbackPosLookup(matches = []) {
-  return matches.some((entry) => entry.type !== "pattern" && entry.type !== "phrase" && !entry.pos);
+  return matches.some((entry) => (
+    entry.source === "offline-dictionary"
+    && entry.type !== "pattern"
+    && entry.type !== "phrase"
+    && !entry.pos
+  ));
 }
 
 function getSelectedVocabEntries() {
@@ -1913,30 +1879,7 @@ async function refreshVocabTeacherLookup(options = {}) {
   renderVocabMeaningSuggestions();
   updateVocabEntryState();
 
-  if (matches.length) {
-    if (needsFallbackPosLookup(matches)) {
-      await loadOfflineVocabMatches(word);
-      if (normalizeVocabWord(getTextEntryValue(el.vocabWordInput)) !== word) return;
-      renderVocabMeaningSuggestions();
-      updateVocabEntryState();
-    }
-    return;
-  }
-
-  const loadedMatches = await loadOfflineVocabMatches(word);
-  if (normalizeVocabWord(getTextEntryValue(el.vocabWordInput)) !== word) return;
-  if (loadedMatches.length) {
-    vocabEntryLookupState = {
-      word,
-      matches: loadedMatches,
-      filterKey: "",
-      selectedEntryIds: [],
-      loadingCloud: false
-    };
-    renderVocabMeaningSuggestions();
-    updateVocabEntryState();
-    return;
-  }
+  if (matches.length) return;
 
   const canLookupCloud = canUseCloudVocabLookup(word);
   vocabEntryLookupState = {
@@ -2160,10 +2103,6 @@ function upsertVocabEntry(word, entry, now) {
 
 async function addVocabItemFromEntry() {
   const word = normalizeVocabWord(getTextEntryValue(el.vocabWordInput));
-  if (needsFallbackPosLookup(getSelectedVocabEntries())) {
-    await loadOfflineVocabMatches(word);
-  }
-
   const selectedEntries = getSelectedVocabEntries();
   if (!word || !selectedEntries.length) {
     playUiSound("wrong");
