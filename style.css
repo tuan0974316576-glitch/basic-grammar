@@ -610,7 +610,7 @@ body.settings-open .menu-settings-btn img {
 
 .vocab-example-toggle {
   color: var(--primary-dark);
-  font-size: 25px;
+  font-size: 18px;
   background: #eaf8f8;
   box-shadow: 0 4px 0 #bde0e1;
   transition: transform 140ms ease, background 140ms ease;
@@ -618,7 +618,6 @@ body.settings-open .menu-settings-btn img {
 
 .vocab-row.expanded .vocab-example-toggle {
   background: #d6f2f2;
-  transform: rotate(180deg);
 }
 
 .vocab-examples-panel {

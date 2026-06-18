@@ -2492,7 +2492,7 @@ function createVocabListRow(item) {
   expandBtn.type = "button";
   expandBtn.setAttribute("aria-label", `${expandedVocabItemId === item.id ? "收起" : "打開"} ${item.word} 例句`);
   expandBtn.setAttribute("aria-expanded", expandedVocabItemId === item.id ? "true" : "false");
-  expandBtn.textContent = "⌄";
+  expandBtn.textContent = "例";
   expandBtn.addEventListener("click", (event) => {
     event.stopPropagation();
     toggleVocabExamples(item);
