@@ -206,7 +206,7 @@ const VERB_TABLE_REFERENCE_MIN_ACTIVE_MS = 700;
 const VERB_TABLE_IMAGE_VERSION = "20260613-lite";
 const VOCAB_CACHE_FALLBACK_OWNER = "guest";
 const VOCAB_CLOUD_LOOKUP_DEBOUNCE_MS = 1200;
-const VOCAB_CLOUD_LOOKUP_MIN_LETTERS = 5;
+const VOCAB_CLOUD_LOOKUP_MIN_LETTERS = 2;
 
 let audioContext = null;
 let celebrationAnimation = null;
