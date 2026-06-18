@@ -11,6 +11,7 @@
 
   const MAX_WORD_LENGTH = 42;
   const MAX_MEANING_LENGTH = 80;
+  const MAX_MEANING_ENTRIES = 8;
   const DELETE_GRACE_MS = 30 * 24 * 60 * 60 * 1000;
   const EXTRA_TEXT_FIELDS = ["pos", "type", "source", "teacherEntryId", "sourceEntryId"];
 
@@ -27,6 +28,51 @@
     return String(value || "")
       .trim()
       .replace(/\s+/g, " ")
+      .slice(0, MAX_MEANING_LENGTH);
+  }
+
+  function normalizeMeaningEntry(entry = {}) {
+    const meaning = normalizeMeaning(entry.meaning);
+    if (!meaning) return null;
+    const normalized = { meaning };
+    EXTRA_TEXT_FIELDS.forEach((field) => {
+      const value = String(entry[field] || "").trim().slice(0, 80);
+      if (value) normalized[field] = value;
+    });
+    return normalized;
+  }
+
+  function normalizeMeaningEntries(item = {}) {
+    const rawEntries = Array.isArray(item.meanings) ? item.meanings : [];
+    const entries = rawEntries
+      .map(normalizeMeaningEntry)
+      .filter(Boolean);
+
+    if (!entries.length) {
+      const primary = normalizeMeaningEntry(item);
+      if (primary) entries.unshift(primary);
+    }
+
+    const seen = new Set();
+    return entries.filter((entry) => {
+      const key = [
+        entry.meaning,
+        entry.pos || "",
+        entry.type || "",
+        entry.teacherEntryId || "",
+        entry.sourceEntryId || ""
+      ].join("|");
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    }).slice(0, MAX_MEANING_ENTRIES);
+  }
+
+  function summarizeMeaning(entries = []) {
+    return entries
+      .map((entry) => normalizeMeaning(entry.meaning))
+      .filter(Boolean)
+      .join(" / ")
       .slice(0, MAX_MEANING_LENGTH);
   }
 
@@ -67,7 +113,8 @@
 
   function normalizeItem(item = {}, options = {}) {
     const word = normalizeWord(item.word);
-    const meaning = normalizeMeaning(item.meaning);
+    const meanings = normalizeMeaningEntries(item);
+    const meaning = summarizeMeaning(meanings);
     if (!word || !meaning) return null;
 
     const now = Number(options.now) || Date.now();
@@ -88,6 +135,7 @@
       id,
       word,
       meaning,
+      meanings,
       ...extras,
       createdAt,
       updatedAt,
@@ -103,6 +151,7 @@
       id: normalized.id,
       word: normalized.word,
       meaning: normalized.meaning,
+      meanings: normalized.meanings,
       ...Object.fromEntries(
         EXTRA_TEXT_FIELDS
           .filter((field) => normalized[field])
@@ -215,6 +264,7 @@
     return {
       word: normalized.word,
       meaning: normalized.meaning,
+      meanings: normalized.meanings,
       ...Object.fromEntries(
         EXTRA_TEXT_FIELDS
           .filter((field) => normalized[field])
@@ -235,6 +285,8 @@
     mergeItems,
     mergeProgress,
     normalizeItem,
+    normalizeMeaningEntries,
+    normalizeMeaningEntry,
     normalizeMeaning,
     normalizeWord,
     stripItemForStorage,

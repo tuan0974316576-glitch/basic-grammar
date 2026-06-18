@@ -560,6 +560,10 @@ body.settings-open .menu-settings-btn img {
   line-height: 1.2;
 }
 
+.vocab-row-text .vocab-row-meanings {
+  white-space: pre-line;
+}
+
 .vocab-row-stats {
   padding: 6px 9px;
   color: var(--primary-dark);

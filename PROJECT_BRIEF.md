@@ -118,7 +118,8 @@ Vocab is local-first and syncs through `users/{uid}/vocabItems/{wordId}` after s
 
 Each vocab item stores:
 
-- `word`, `meaning`, `createdAt`, `updatedAt`
+- `word`, `meaning`, `meanings`, `createdAt`, `updatedAt`
+- `meanings` stores one or more meaning entries for the same English word, each with optional `pos`, `type`, `source`, `teacherEntryId`, and `sourceEntryId`; selecting two meanings should keep one vocab row, not create duplicate word rows.
 - `progress` with SRS fields: `lastSeenAt`, `totalSeen`, `totalCorrect`, `totalIncorrect`, `streakCorrect`, `mastery`, `nextDueAt`, `halfLifeDays`, `lastRecallProb`, `updatedAt`
 - `deletedAt` tombstones for cross-device deletion safety
 - `ownerUid` and `syncedAt` for sync bookkeeping

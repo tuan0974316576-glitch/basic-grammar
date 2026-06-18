@@ -1364,6 +1364,7 @@ async function syncStudentVocabCloud() {
 
     saveVocabItems();
     saveVocabProgress();
+    dedupeVocabWordsByWord();
     renderVocabList();
     queueSavedVocabAudioDownloads();
     await flushVocabSyncQueue();
@@ -1616,7 +1617,7 @@ function updateVocabEntryState() {
   const selectedCount = getSelectedVocabEntries().length;
   if (el.vocabAddBtn) {
     el.vocabAddBtn.disabled = !word || selectedCount < 1;
-    el.vocabAddBtn.textContent = selectedCount > 1 ? `加入 ${selectedCount} 個` : "加入";
+    el.vocabAddBtn.textContent = selectedCount > 1 ? `加入 ${selectedCount} 個意思` : "加入";
   }
 }
 
@@ -1780,6 +1781,23 @@ function formatVocabMeaningLine(entry = {}) {
   const meaning = normalizeVocabMeaning(entry.meaning);
   const metaLabel = getVocabEntryMetaLabel(entry);
   return metaLabel ? `${metaLabel} ${meaning}` : meaning;
+}
+
+function getVocabMeaningEntries(item = {}) {
+  const normalized = VOCAB_DATA.normalizeMeaningEntries(item);
+  return normalized.length ? normalized : [{
+    meaning: normalizeVocabMeaning(item.meaning),
+    pos: item.pos || "",
+    type: item.type || ""
+  }].filter((entry) => entry.meaning);
+}
+
+function getVocabMeaningLines(item = {}) {
+  return getVocabMeaningEntries(item).map(formatVocabMeaningLine).filter(Boolean);
+}
+
+function getVocabMeaningText(item = {}) {
+  return getVocabMeaningLines(item).join(" / ") || normalizeVocabMeaning(item.meaning);
 }
 
 function needsFallbackPosLookup(matches = []) {
@@ -2055,7 +2073,8 @@ function createVocabListRow(item) {
   word.textContent = item.word;
 
   const meaning = document.createElement("span");
-  meaning.textContent = formatVocabMeaningLine(item);
+  meaning.className = "vocab-row-meanings";
+  meaning.textContent = getVocabMeaningLines(item).join("\n");
 
   text.append(word, meaning);
 
@@ -2079,38 +2098,133 @@ function createVocabListRow(item) {
   return row;
 }
 
-function upsertVocabEntry(word, entry, now) {
-  const canonicalWord = normalizeVocabWord(entry.word || word);
-  const meaning = normalizeVocabMeaning(entry.meaning);
-  if (!canonicalWord || !meaning) return null;
-
+function makeVocabMeaningEntry(entry = {}) {
   const isTeacherEntry = entry.source === "teacher";
-  const isOfflineEntry = entry.source === "offline-dictionary";
-  const itemId = isTeacherEntry && entry.id
-    ? `teacher-${entry.id}`
-    : isOfflineEntry && entry.id
-      ? `offline-${entry.id}`
-      : VOCAB_DATA.createMeaningId(canonicalWord, meaning, getVocabEntryPos(entry));
-  const extraFields = isTeacherEntry
+  const meaningEntry = isTeacherEntry
     ? {
+      meaning: normalizeVocabMeaning(entry.meaning),
       pos: getVocabEntryPos(entry),
       type: entry.type || "word",
       source: "teacher",
       teacherEntryId: entry.id || ""
     }
     : {
+      meaning: normalizeVocabMeaning(entry.meaning),
       pos: getVocabEntryPos(entry),
       type: entry.type || "word",
       source: entry.source || "",
       sourceEntryId: entry.sourceEntryId || entry.id || ""
     };
-  const existingIndex = state.vocabWords.findIndex((item) => item.id === itemId);
+  return VOCAB_DATA.normalizeMeaningEntry(meaningEntry);
+}
+
+function mergeVocabMeaningEntries(entries = []) {
+  return VOCAB_DATA.normalizeMeaningEntries({ word: "merge", meanings: entries });
+}
+
+function mergeVocabProgress(targetProgress = {}, sourceProgress = {}) {
+  const target = VOCAB_SCHEDULER.normalizeProgress(targetProgress || {});
+  const source = VOCAB_SCHEDULER.normalizeProgress(sourceProgress || {});
+  return {
+    ...target,
+    lastSeenAt: Math.max(target.lastSeenAt || 0, source.lastSeenAt || 0),
+    totalSeen: (target.totalSeen || 0) + (source.totalSeen || 0),
+    totalCorrect: (target.totalCorrect || 0) + (source.totalCorrect || 0),
+    totalIncorrect: (target.totalIncorrect || 0) + (source.totalIncorrect || 0),
+    streakCorrect: Math.max(target.streakCorrect || 0, source.streakCorrect || 0),
+    mastery: Math.max(target.mastery || 0, source.mastery || 0),
+    nextDueAt: Math.min(target.nextDueAt || source.nextDueAt || Date.now(), source.nextDueAt || target.nextDueAt || Date.now()),
+    lastRecallProb: Math.max(target.lastRecallProb || 0, source.lastRecallProb || 0),
+    halfLifeDays: Math.max(target.halfLifeDays || 0, source.halfLifeDays || 0),
+    updatedAt: Math.max(target.updatedAt || 0, source.updatedAt || 0)
+  };
+}
+
+function dedupeVocabWordsByWord() {
+  const byWord = new Map();
+  const nextWords = [];
+  const deletedIds = [];
+  let changed = false;
+
+  state.vocabWords.forEach((rawItem) => {
+    const item = VOCAB_DATA.normalizeItem(rawItem, { id: rawItem?.id });
+    if (!item) return;
+    const word = normalizeVocabWord(item.word);
+    if (!word) return;
+
+    const existing = byWord.get(word);
+    if (!existing) {
+      const canonicalId = createVocabId(word);
+      const normalizedItem = {
+        ...item,
+        id: canonicalId,
+        word,
+        meanings: getVocabMeaningEntries(item),
+        meaning: getVocabMeaningEntries(item).map((entry) => entry.meaning).join(" / ")
+      };
+      if (item.id !== canonicalId) {
+        state.vocabProgress[canonicalId] = mergeVocabProgress(state.vocabProgress[canonicalId], state.vocabProgress[item.id]);
+        delete state.vocabProgress[item.id];
+        deletedIds.push(item.id);
+        changed = true;
+      }
+      byWord.set(word, normalizedItem);
+      nextWords.push(normalizedItem);
+      return;
+    }
+
+    existing.meanings = mergeVocabMeaningEntries([
+      ...getVocabMeaningEntries(existing),
+      ...getVocabMeaningEntries(item)
+    ]);
+    existing.meaning = existing.meanings.map((entry) => entry.meaning).join(" / ");
+    existing.updatedAt = Math.max(Number(existing.updatedAt) || 0, Number(item.updatedAt) || 0);
+    existing.createdAt = Math.min(Number(existing.createdAt) || Date.now(), Number(item.createdAt) || Date.now());
+    state.vocabProgress[existing.id] = mergeVocabProgress(state.vocabProgress[existing.id], state.vocabProgress[item.id]);
+    delete state.vocabProgress[item.id];
+    deletedIds.push(item.id);
+    changed = true;
+  });
+
+  if (!changed) return false;
+  state.vocabWords = nextWords;
+  deletedIds.filter((id) => id && !state.vocabWords.some((item) => item.id === id)).forEach(queueVocabItemDelete);
+  state.vocabWords.forEach((item) => queueVocabItemUpsert(item, state.vocabProgress[item.id]));
+  saveVocabItems();
+  saveVocabProgress();
+  return true;
+}
+
+function upsertVocabEntries(word, entries, now) {
+  const canonicalWord = normalizeVocabWord(word || entries?.[0]?.word);
+  const nextMeanings = mergeVocabMeaningEntries(entries.map(makeVocabMeaningEntry).filter(Boolean));
+  if (!canonicalWord || !nextMeanings.length) return null;
+
+  const itemId = createVocabId(canonicalWord);
+  const duplicateIndexes = state.vocabWords
+    .map((item, index) => ({ item, index }))
+    .filter(({ item }) => item.id === itemId || normalizeVocabWord(item.word) === canonicalWord);
+  const existingIndex = duplicateIndexes.length ? duplicateIndexes[0].index : -1;
+  const previousItem = existingIndex >= 0 ? state.vocabWords[existingIndex] : null;
+  const previousMeanings = previousItem ? getVocabMeaningEntries(previousItem) : [];
+  const meanings = mergeVocabMeaningEntries([...previousMeanings, ...nextMeanings]);
+  const primaryMeaning = meanings[0] || {};
+  const meaning = meanings.map((entry) => entry.meaning).filter(Boolean).join(" / ");
+  if (!meaning) return null;
+
   let savedItem = null;
   if (existingIndex >= 0) {
     state.vocabWords[existingIndex] = {
       ...state.vocabWords[existingIndex],
+      id: itemId,
+      word: canonicalWord,
       meaning,
-      ...extraFields,
+      meanings,
+      pos: primaryMeaning.pos || "",
+      type: primaryMeaning.type || "word",
+      source: primaryMeaning.source || "",
+      teacherEntryId: primaryMeaning.teacherEntryId || "",
+      sourceEntryId: primaryMeaning.sourceEntryId || "",
       updatedAt: now
     };
     savedItem = state.vocabWords[existingIndex];
@@ -2119,12 +2233,24 @@ function upsertVocabEntry(word, entry, now) {
       id: itemId,
       word: canonicalWord,
       meaning,
-      ...extraFields,
+      meanings,
+      pos: primaryMeaning.pos || "",
+      type: primaryMeaning.type || "word",
+      source: primaryMeaning.source || "",
+      teacherEntryId: primaryMeaning.teacherEntryId || "",
+      sourceEntryId: primaryMeaning.sourceEntryId || "",
       createdAt: now,
       updatedAt: now
     };
     state.vocabWords.unshift(savedItem);
   }
+
+  duplicateIndexes.slice(1).sort((left, right) => right.index - left.index).forEach(({ item, index }) => {
+    state.vocabProgress[itemId] = mergeVocabProgress(state.vocabProgress[itemId], state.vocabProgress[item.id]);
+    delete state.vocabProgress[item.id];
+    queueVocabItemDelete(item.id);
+    state.vocabWords.splice(index, 1);
+  });
 
   if (!state.vocabProgress[savedItem.id]) {
     state.vocabProgress[savedItem.id] = VOCAB_SCHEDULER.getInitialProgress(now);
@@ -2143,10 +2269,8 @@ async function addVocabItemFromEntry() {
   }
 
   const now = Date.now();
-  const savedItems = selectedEntries
-    .map((entry) => upsertVocabEntry(word, entry, now))
-    .filter(Boolean);
-  if (!savedItems.length) {
+  const savedItem = upsertVocabEntries(word, selectedEntries, now);
+  if (!savedItem) {
     playUiSound("wrong");
     updateVocabEntryState();
     return;
@@ -2155,7 +2279,7 @@ async function addVocabItemFromEntry() {
   saveVocabItems();
   saveVocabProgress();
   if (VOCAB_AUDIO) {
-    savedItems.forEach((item) => VOCAB_AUDIO.queueEnsureAudio(item.word));
+    VOCAB_AUDIO.queueEnsureAudio(savedItem.word);
   }
   setTextEntryValue(el.vocabWordInput, "");
   clearVocabMeaningSuggestions();
@@ -2196,11 +2320,12 @@ function getVocabModeTitle(mode = "stage") {
 }
 
 function getVocabChoicePool(correctItem) {
+  const correctMeaning = getVocabMeaningText(correctItem);
   const fromSaved = state.vocabWords
     .filter((item) => item.id !== correctItem.id)
-    .map((item) => item.meaning);
+    .map(getVocabMeaningText);
   const fromDefault = DEFAULT_VOCAB_BANK
-    .filter((item) => item.meaning !== correctItem.meaning && item.word !== correctItem.word)
+    .filter((item) => item.meaning !== correctMeaning && item.word !== correctItem.word)
     .map((item) => item.meaning);
   return [...new Set([...fromSaved, ...fromDefault])].filter(Boolean);
 }
@@ -2214,13 +2339,15 @@ function buildVocabQuestions() {
 
   return reviewItems.map((item, index) => {
     const kind = stageKinds[index] || "reading";
+    const correctMeaning = getVocabMeaningText(item);
     const choices = kind === "spelling"
       ? []
-      : shuffle([item.meaning, ...shuffle(getVocabChoicePool(item)).slice(0, 3)]);
+      : shuffle([correctMeaning, ...shuffle(getVocabChoicePool(item)).slice(0, 3)]);
     return {
       id: `${kind}-${item.id}-${Date.now()}`,
       kind,
       item,
+      correctMeaning,
       choices,
       answered: false
     };
@@ -2281,7 +2408,7 @@ function renderVocabQuestion() {
 
   if (question.kind === "spelling") {
     el.vocabStepLabel.textContent = "中文意思";
-    el.vocabPrompt.textContent = question.item.meaning;
+    el.vocabPrompt.textContent = question.correctMeaning || getVocabMeaningText(question.item);
     el.vocabGuidance.textContent = "打出英文生字";
     setTextEntryValue(el.vocabAnswerInput, "");
     el.vocabSubmitAnswer.disabled = true;
@@ -2329,12 +2456,13 @@ function answerVocabChoice(choice, button) {
   const question = currentVocabQuestion();
   if (!question || vocabQuizState.locked) return;
 
-  const correct = choice === question.item.meaning;
+  const correctMeaning = question.correctMeaning || getVocabMeaningText(question.item);
+  const correct = choice === correctMeaning;
   vocabQuizState.locked = true;
   question.answered = true;
   el.vocabChoiceGrid.querySelectorAll("button").forEach((choiceButton) => {
     choiceButton.disabled = true;
-    choiceButton.classList.toggle("correct", choiceButton.textContent === question.item.meaning);
+    choiceButton.classList.toggle("correct", choiceButton.textContent === correctMeaning);
   });
   button.classList.toggle("wrong", !correct);
 
@@ -2342,11 +2470,11 @@ function answerVocabChoice(choice, button) {
   if (correct) {
     vocabQuizState.score += 1;
     el.vocabScore.textContent = String(vocabQuizState.score);
-    setVocabFeedback(`正確，${question.item.word} 是「${question.item.meaning}」。`, "success");
+    setVocabFeedback(`正確，${question.item.word} 是「${correctMeaning}」。`, "success");
     playUiSound("correct");
     launchCelebration("small");
   } else {
-    setVocabFeedback(`${question.item.word} 是「${question.item.meaning}」。`, "error");
+    setVocabFeedback(`${question.item.word} 是「${correctMeaning}」。`, "error");
     playUiSound("wrong");
   }
   el.vocabNextBtn.classList.remove("hidden");
@@ -2371,11 +2499,12 @@ function submitVocabSpelling() {
   }
 
   const correct = answer === normalizeVocabWord(question.item.word);
+  const correctMeaning = question.correctMeaning || getVocabMeaningText(question.item);
   if (!correct) {
     el.vocabSubmitAnswer.classList.add("is-wrong");
     vocabQuizState.locked = true;
     updateVocabProgress(question.item.id, false);
-    setVocabFeedback(`再檢查串法。正確答案係 ${question.item.word}，意思係「${question.item.meaning}」。`, "error");
+    setVocabFeedback(`再檢查串法。正確答案係 ${question.item.word}，意思係「${correctMeaning}」。`, "error");
     el.vocabSubmitAnswer.disabled = true;
     deactivateTextEntryTarget("vocabAnswer");
     el.vocabNextBtn.classList.remove("hidden");
@@ -2389,7 +2518,7 @@ function submitVocabSpelling() {
   el.vocabScore.textContent = String(vocabQuizState.score);
   el.vocabSubmitAnswer.disabled = true;
   el.vocabSubmitAnswer.classList.add("is-correct");
-  setVocabFeedback(`正確，${question.item.word} 是「${question.item.meaning}」。`, "success");
+  setVocabFeedback(`正確，${question.item.word} 是「${correctMeaning}」。`, "success");
   el.vocabNextBtn.classList.remove("hidden");
   deactivateTextEntryTarget("vocabAnswer");
   playUiSound("correct");
@@ -5395,6 +5524,7 @@ if (window.pendingStudentAuthState) {
   window.pendingStudentAuthState = null;
 }
 updateMenuProgress();
+dedupeVocabWordsByWord();
 renderVocabList();
 queueSavedVocabAudioDownloads();
 syncPracticeCount();

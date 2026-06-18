@@ -14,6 +14,23 @@ assert.notStrictEqual(
   vocabData.createMeaningId("secure", "確保", "verb")
 );
 
+const multiMeaningItem = vocabData.normalizeItem({
+  id: "have",
+  word: "have",
+  meanings: [
+    { meaning: "有", pos: "verb", source: "azure-dictionary" },
+    { meaning: "擁有", pos: "verb", source: "azure-dictionary" }
+  ],
+  createdAt: now,
+  updatedAt: now
+}, { id: "have", now });
+
+assert.strictEqual(multiMeaningItem.meaning, "有 / 擁有");
+assert.strictEqual(multiMeaningItem.meanings.length, 2);
+assert.strictEqual(multiMeaningItem.meanings[0].pos, "verb");
+const multiMeaningStored = vocabData.stripItemForStorage(multiMeaningItem);
+assert.strictEqual(multiMeaningStored.meanings.length, 2);
+
 const localProgress = scheduler.updateProgressAfterAnswer(
   scheduler.getInitialProgress(twoDaysAgo),
   true,
@@ -166,5 +183,9 @@ assert.strictEqual(cloudDoc.pos, "verb");
 assert.strictEqual(cloudDoc.teacherEntryId, "teacher-run-verb");
 assert.strictEqual(cloudDoc.progress.totalIncorrect, 1);
 assert.strictEqual(cloudDoc.deletedAt, 0);
+
+const multiMeaningCloudDoc = vocabData.makeCloudDoc(multiMeaningStored, scheduler.getInitialProgress(now), { now });
+assert.strictEqual(multiMeaningCloudDoc.meaning, "有 / 擁有");
+assert.strictEqual(multiMeaningCloudDoc.meanings.length, 2);
 
 console.log("vocab_data tests passed");
