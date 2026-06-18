@@ -14,6 +14,12 @@
 
   const CURATED_ENTRIES = [
     { id: "curated-have-verb", word: "have", pos: "verb", meaning: "有", rank: 8 },
+    { id: "curated-have-eat-drink-verb", word: "have", pos: "verb", meaning: "食 / 飲", rank: 9 },
+    { id: "curated-has-verb", word: "has", pos: "verb", meaning: "有", rank: 8 },
+    { id: "curated-has-eat-drink-verb", word: "has", pos: "verb", meaning: "食 / 飲", rank: 9 },
+    { id: "curated-had-verb", word: "had", pos: "verb", meaning: "有過", rank: 8 },
+    { id: "curated-had-eat-drink-verb", word: "had", pos: "verb", meaning: "食咗 / 飲咗", rank: 9 },
+    { id: "curated-have-to-phrase", word: "have to", pos: "", meaning: "必須 / 要", type: "phrase", rank: 8 },
     { id: "curated-guts-noun", word: "guts", pos: "noun", meaning: "膽量", rank: 8700 }
   ];
 

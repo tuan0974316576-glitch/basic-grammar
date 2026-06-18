@@ -31,6 +31,11 @@ assert.strictEqual(presentVerb[0].meaning, "展示");
 const have = dictionary.lookup("have");
 assert.strictEqual(have[0].pos, "verb");
 assert.strictEqual(have[0].meaning, "有");
+assert.ok(have.some((entry) => entry.meaning === "食 / 飲"));
+
+const haveTo = dictionary.lookup("have to");
+assert.strictEqual(haveTo[0].type, "phrase");
+assert.strictEqual(haveTo[0].meaning, "必須 / 要");
 
 dictionary.seed([
   { id: "ecdict-guts-noun", word: "guts", pos: "noun", meaning: "飛碟遊戲（比賽雙方每組5人" }

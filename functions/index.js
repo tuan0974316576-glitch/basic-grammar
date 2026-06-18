@@ -26,6 +26,21 @@ const AZURE_DICTIONARY_TARGET = "zh-Hans";
 const AZURE_DICTIONARY_ENTRY_LIMIT = 8;
 
 const CURATED_VOCAB_MEANINGS = new Map([
+  ["have", [
+    { meaning: "有", pos: "verb" },
+    { meaning: "食 / 飲", pos: "verb" }
+  ]],
+  ["has", [
+    { meaning: "有", pos: "verb" },
+    { meaning: "食 / 飲", pos: "verb" }
+  ]],
+  ["had", [
+    { meaning: "有過", pos: "verb" },
+    { meaning: "食咗 / 飲咗", pos: "verb" }
+  ]],
+  ["have to", [{ meaning: "必須 / 要", type: "phrase" }]],
+  ["has to", [{ meaning: "必須 / 要", type: "phrase" }]],
+  ["had to", [{ meaning: "必須 / 要", type: "phrase" }]],
   ["egg tart", [{ meaning: "蛋撻", pos: "noun", type: "phrase" }]],
   ["look up", [{ meaning: "查閱 / 查字典", type: "phrase" }]],
   ["lung cancer", [{ meaning: "肺癌", pos: "noun", type: "phrase" }]]
@@ -292,25 +307,26 @@ async function getOrCreateVocabMeaning(word) {
   const normalizedWord = normalizeVocabWord(word);
   const meaningId = makeVocabMeaningId(normalizedWord);
   const docRef = db.collection("vocabMeaningCache").doc(meaningId);
-  const cachedSnap = await docRef.get();
-
-  if (cachedSnap.exists && shouldReuseCachedMeaning(cachedSnap.data() || {})) {
-    const cached = cachedSnap.data() || {};
-    const entries = normalizeMeaningEntries(normalizedWord, cached.entries || [], cached.source || "shared-cache");
-    if (entries.length) {
-      return {
-        meaningId,
-        word: normalizedWord,
-        entries,
-        cached: true,
-        source: cached.source || "shared-cache"
-      };
-    }
-  }
-
   const curated = CURATED_VOCAB_MEANINGS.get(normalizedWord);
   let rawEntries = curated;
   let source = curated ? "curated-cloud" : "azure-dictionary";
+
+  if (!rawEntries) {
+    const cachedSnap = await docRef.get();
+    if (cachedSnap.exists && shouldReuseCachedMeaning(cachedSnap.data() || {})) {
+      const cached = cachedSnap.data() || {};
+      const entries = normalizeMeaningEntries(normalizedWord, cached.entries || [], cached.source || "shared-cache");
+      if (entries.length) {
+        return {
+          meaningId,
+          word: normalizedWord,
+          entries,
+          cached: true,
+          source: cached.source || "shared-cache"
+        };
+      }
+    }
+  }
 
   if (!rawEntries) {
     try {

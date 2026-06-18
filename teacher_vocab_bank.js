@@ -17,15 +17,15 @@
     "updateFiles": [
       {
         "name": "teacher_vocab_manual_updates.json",
-        "rawEntryCount": 59
+        "rawEntryCount": 68
       }
     ],
-    "entryCount": 8855,
-    "uniqueWordCount": 4994,
+    "entryCount": 8862,
+    "uniqueWordCount": 4998,
     "conflictCount": 3731,
     "typeCounts": {
-      "phrase": 2574,
-      "word": 6221,
+      "phrase": 2576,
+      "word": 6226,
       "pattern": 60
     }
   },
@@ -38427,6 +38427,36 @@
       "sourceCount": 1
     },
     {
+      "id": "had-verb-entry-manual-has",
+      "word": "had",
+      "display": "had",
+      "meaning": "有過",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "had-verb-entry-manual-eat-drink",
+      "word": "had",
+      "display": "had",
+      "meaning": "食咗 / 飲咗",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "had-to-phrase-entry-manual-must",
+      "word": "had to",
+      "display": "had to",
+      "meaning": "必須 / 要",
+      "pos": "",
+      "type": "phrase",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
       "id": "habit-forming-any-entry-3623",
       "word": "habit-forming",
       "display": "habit-forming",
@@ -38987,6 +39017,26 @@
       "sourceCount": 1
     },
     {
+      "id": "has-verb-entry-manual-has",
+      "word": "has",
+      "display": "has",
+      "meaning": "有",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "has-verb-entry-manual-eat-drink",
+      "word": "has",
+      "display": "has",
+      "meaning": "食 / 飲",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
       "id": "has-something-to-do-with-any-entry-7850",
       "word": "has something to do with",
       "display": "has something to do with",
@@ -39005,6 +39055,16 @@
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 3
+    },
+    {
+      "id": "has-to-phrase-entry-manual-must",
+      "word": "has to",
+      "display": "has to",
+      "meaning": "必須 / 要",
+      "pos": "",
+      "type": "phrase",
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "hassle-any-entry-1379",
@@ -39077,14 +39137,24 @@
       "sourceCount": 1
     },
     {
-      "id": "have-any-entry-0457",
+      "id": "have-verb-entry-manual-has",
       "word": "have",
       "display": "have",
-      "meaning": "只好",
-      "pos": "",
+      "meaning": "有",
+      "pos": "verb",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 80
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "have-verb-entry-manual-eat-drink",
+      "word": "have",
+      "display": "have",
+      "meaning": "食 / 飲",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "have-pp-any-entry-5385",
@@ -39620,11 +39690,11 @@
       "id": "have-to-any-entry-5381",
       "word": "have to",
       "display": "have to",
-      "meaning": "需要",
+      "meaning": "必須 / 要",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
-      "sourceCount": 9
+      "sourceCount": 1
     },
     {
       "id": "have-to-bite-to-eat-any-entry-5494",

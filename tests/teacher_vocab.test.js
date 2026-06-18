@@ -43,12 +43,27 @@ global.TEACHER_VOCAB_BANK = {
       sourceCount: 1
     },
     {
-      id: "have-any-entry-0457",
+      id: "have-verb-entry-manual-has",
       word: "have",
-      meaning: "只好",
+      meaning: "有",
+      pos: "verb",
       type: "word",
-      needsReview: true,
-      sourceCount: 80
+      sourceCount: 1
+    },
+    {
+      id: "have-verb-entry-manual-eat-drink",
+      word: "have",
+      meaning: "食 / 飲",
+      pos: "verb",
+      type: "word",
+      sourceCount: 1
+    },
+    {
+      id: "have-to-phrase-entry-manual-must",
+      word: "have to",
+      meaning: "必須 / 要",
+      type: "phrase",
+      sourceCount: 1
     }
   ]
 };
@@ -81,8 +96,13 @@ assert.strictEqual(typoMatches.length, 1);
 assert.strictEqual(typoMatches[0].word, "curiosity");
 assert.strictEqual(teacherVocab.getEntryLabel(typoMatches[0]), "n. 好奇心");
 
-assert.strictEqual(teacherVocab.lookup("have").length, 0);
-assert.strictEqual(teacherVocab.lookup("have", { includeNeedsReview: true }).length, 1);
+const haveMatches = teacherVocab.lookup("have");
+assert.strictEqual(haveMatches.length, 2);
+assert.deepStrictEqual(haveMatches.map(teacherVocab.getEntryLabel), ["v. 有", "v. 食 / 飲"]);
+
+const haveToMatches = teacherVocab.lookup("have to");
+assert.strictEqual(haveToMatches.length, 1);
+assert.strictEqual(teacherVocab.getEntryLabel(haveToMatches[0]), "ph. 必須 / 要");
 
 delete global.TEACHER_VOCAB_BANK;
 
