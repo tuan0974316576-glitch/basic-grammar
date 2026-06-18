@@ -37,8 +37,32 @@
       .toLowerCase();
   }
 
-  function getCacheKey(word) {
-    return normalizeWord(word);
+  function normalizeAudioText(value, kind = "word") {
+    if (kind === "example") {
+      return String(value || "")
+        .trim()
+        .replace(/[’‘]/g, "'")
+        .replace(/[“”]/g, "\"")
+        .replace(/[‐‑‒–—―]/g, "-")
+        .replace(/\s+/g, " ")
+        .slice(0, 220);
+    }
+    return normalizeWord(value);
+  }
+
+  function getCacheKey(word, options = {}) {
+    const kind = options.kind === "example" ? "example" : "word";
+    if (kind === "example" && String(word || "").startsWith("example:")) {
+      return String(word || "").trim().toLowerCase();
+    }
+    const text = normalizeAudioText(word, kind);
+    return kind === "example" ? `example:${text.toLowerCase()}` : text;
+  }
+
+  function getRequestTextFromKey(key, kind = "word") {
+    const value = String(key || "");
+    if (kind === "example" && value.startsWith("example:")) return value.slice(8);
+    return value;
   }
 
   function buildStaticAudioIndex(manifest = {}) {
@@ -106,27 +130,29 @@
     }));
   }
 
-  function hasStaticAudio(word) {
+  function hasStaticAudio(word, options = {}) {
+    if (options.kind === "example") return false;
     return staticAudioByWord.has(getCacheKey(word));
   }
 
-  async function getCachedRecord(word) {
-    const key = getCacheKey(word);
+  async function getCachedRecord(word, options = {}) {
+    const key = getCacheKey(word, options);
     if (!key) return null;
     const record = await readStore(STORE_AUDIO, key);
     return record?.blob ? record : null;
   }
 
-  async function hasCachedAudio(word) {
-    return Boolean(await getCachedRecord(word));
+  async function hasCachedAudio(word, options = {}) {
+    return Boolean(await getCachedRecord(word, options));
   }
 
-  async function hasAudio(word) {
-    if (hasStaticAudio(word)) return true;
-    return hasCachedAudio(word);
+  async function hasAudio(word, options = {}) {
+    if (hasStaticAudio(word, options)) return true;
+    return hasCachedAudio(word, options);
   }
 
-  function getStaticAudioUrl(word) {
+  function getStaticAudioUrl(word, options = {}) {
+    if (options.kind === "example") return "";
     return staticAudioByWord.get(getCacheKey(word)) || "";
   }
 
@@ -175,20 +201,21 @@
   }
 
   async function play(word, options = {}) {
-    const key = getCacheKey(word);
+    const kind = options.kind === "example" ? "example" : "word";
+    const key = getCacheKey(word, { kind });
     if (!key) return false;
 
-    const staticUrl = getStaticAudioUrl(key);
+    const staticUrl = getStaticAudioUrl(key, { kind });
     if (staticUrl) {
       await playUrl(staticUrl, options);
       return true;
     }
 
-    let cached = await getCachedRecord(key);
+    let cached = await getCachedRecord(key, { kind });
     if (!cached?.blob && options.ensure !== false) {
-      const result = await ensureAudio(key, { force: options.forceEnsure === true });
+      const result = await ensureAudio(word, { force: options.forceEnsure === true, kind });
       if (result?.status === "ready") {
-        cached = await getCachedRecord(key);
+        cached = await getCachedRecord(key, { kind });
       }
     }
 
@@ -205,6 +232,18 @@
   function isLikelyEnglishWordOrPhrase(word) {
     const text = getCacheKey(word);
     return Boolean(text && /^[a-z][a-z' -]{0,60}$/.test(text) && !/ {2,}|--|''/.test(text));
+  }
+
+  function isLikelyEnglishAudioText(text, options = {}) {
+    if (options.kind !== "example") return isLikelyEnglishWordOrPhrase(text);
+    const value = normalizeAudioText(text, "example");
+    return Boolean(
+      value
+      && value.length <= 220
+      && /[a-z]/i.test(value)
+      && /^[a-z0-9][a-z0-9\s.,!?;:'"()/-]{0,219}$/i.test(value)
+      && !/ {2,}|--|''|""/.test(value)
+    );
   }
 
   async function getMeta(word) {
@@ -237,10 +276,12 @@
     return sharedAudioCallable;
   }
 
-  async function requestSharedAudio(word) {
+  async function requestSharedAudio(word, options = {}) {
     const callable = getSharedAudioCallable();
     if (!callable) return null;
-    const result = await callable({ word: getCacheKey(word) });
+    const kind = options.kind === "example" ? "example" : "word";
+    const text = kind === "example" ? normalizeAudioText(word, kind) : getCacheKey(word);
+    const result = await callable({ word: text, text, kind });
     return result?.data || result || null;
   }
 
@@ -273,12 +314,15 @@
     };
   }
 
-  async function saveSharedAudio(word, audio) {
-    const key = getCacheKey(word);
+  async function saveSharedAudio(word, audio, options = {}) {
+    const kind = options.kind === "example" ? "example" : "word";
+    const key = getCacheKey(word, { kind });
     if (!key || !audio?.blob) return false;
     const now = Date.now();
     await writeStore(STORE_AUDIO, {
       word: key,
+      text: normalizeAudioText(word, kind),
+      kind,
       blob: audio.blob,
       source: audio.source || "firebase-shared",
       playbackUrl: audio.playbackUrl || "",
@@ -289,6 +333,8 @@
     });
     await writeStore(STORE_META, {
       word: key,
+      text: normalizeAudioText(word, kind),
+      kind,
       status: "ready",
       source: audio.source || "firebase-shared",
       audioId: audio.audioId || "",
@@ -299,13 +345,17 @@
   }
 
   async function ensureAudio(word, options = {}) {
-    const key = getCacheKey(word);
-    if (!key || hasStaticAudio(key)) return { status: "ready", source: "bundle" };
-    if (!isLikelyEnglishWordOrPhrase(key)) return { status: "skipped", source: "invalid" };
+    const kind = options.kind === "example" ? "example" : "word";
+    const key = getCacheKey(word, { kind });
+    const requestText = kind === "example" && !String(word || "").startsWith("example:")
+      ? normalizeAudioText(word, kind)
+      : getRequestTextFromKey(key, kind);
+    if (!key || hasStaticAudio(key, { kind })) return { status: "ready", source: "bundle" };
+    if (!isLikelyEnglishAudioText(requestText, { kind })) return { status: "skipped", source: "invalid" };
     if (pendingDownloads.has(key)) return pendingDownloads.get(key);
 
     const task = (async () => {
-      if (await hasCachedAudio(key)) return { status: "ready", source: "cache" };
+      if (await hasCachedAudio(key, { kind })) return { status: "ready", source: "cache" };
 
       const meta = options.force ? null : await getMeta(key);
       if (meta?.status === "missing" && Date.now() - Number(meta.updatedAt || 0) < CACHE_MISS_TTL_MS) {
@@ -313,7 +363,7 @@
       }
 
       try {
-        const shared = await requestSharedAudio(key);
+        const shared = await requestSharedAudio(requestText, { kind });
         if (!shared) {
           return { status: "missing", source: "firebase-shared", reason: "login-required" };
         }
@@ -329,7 +379,7 @@
           return { status: "missing", source: shared.source || "firebase-shared", reason: "download-failed" };
         }
 
-        await saveSharedAudio(key, audio);
+        await saveSharedAudio(requestText, audio, { kind });
         return {
           status: "ready",
           source: audio.source || "firebase-shared",
@@ -350,10 +400,11 @@
     return task;
   }
 
-  function queueEnsureAudio(word) {
-    const key = getCacheKey(word);
-    if (!key || hasStaticAudio(key)) return Promise.resolve({ status: "ready", source: "bundle" });
-    if (!isLikelyEnglishWordOrPhrase(key)) return Promise.resolve({ status: "skipped", source: "invalid" });
+  function queueEnsureAudio(word, options = {}) {
+    const kind = options.kind === "example" ? "example" : "word";
+    const key = getCacheKey(word, { kind });
+    if (!key || hasStaticAudio(key, { kind })) return Promise.resolve({ status: "ready", source: "bundle" });
+    if (!isLikelyEnglishAudioText(getRequestTextFromKey(key, kind), { kind })) return Promise.resolve({ status: "skipped", source: "invalid" });
     if (pendingDownloads.has(key)) return pendingDownloads.get(key);
     if (!queuedWords.has(key)) {
       queuedWords.add(key);
@@ -369,7 +420,8 @@
     while (downloadQueue.length) {
       const key = downloadQueue.shift();
       queuedWords.delete(key);
-      await ensureAudio(key);
+      const kind = key.startsWith("example:") ? "example" : "word";
+      await ensureAudio(getRequestTextFromKey(key, kind), { kind });
     }
     queueRunning = false;
   }
@@ -382,6 +434,7 @@
     hasCachedAudio,
     hasStaticAudio,
     normalizeWord,
+    normalizeAudioText,
     play,
     queueEnsureAudio,
     stop,
@@ -389,6 +442,7 @@
       buildStaticAudioIndex,
       ensureAudio,
       fetchSharedAudioBlob,
+      isLikelyEnglishAudioText,
       isLikelyEnglishWordOrPhrase,
       markMiss,
       requestSharedAudio

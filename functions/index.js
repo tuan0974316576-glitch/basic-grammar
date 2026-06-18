@@ -18,6 +18,7 @@ const AZURE_TRANSLATOR_REGION = defineSecret("AZURE_TRANSLATOR_REGION");
 const DEFAULT_VOICE = "en-US-AndrewMultilingualNeural";
 const DEFAULT_OUTPUT_FORMAT = "audio-24khz-48kbitrate-mono-mp3";
 const MAX_WORD_LENGTH = 64;
+const MAX_AUDIO_TEXT_LENGTH = 220;
 const AZURE_TRANSLATOR_ENDPOINT = "https://api.cognitive.microsofttranslator.com";
 const AZURE_TRANSLATOR_API_VERSION = "3.0";
 const AZURE_TRANSLATOR_SOURCE = "en";
@@ -81,8 +82,36 @@ function isLikelyWordOrPhrase(value) {
   return Boolean(text && /^[a-z][a-z' -]{0,63}$/.test(text) && !/ {2,}|--|''/.test(text));
 }
 
+function normalizeAudioText(value, kind = "word") {
+  const text = String(value || "")
+    .trim()
+    .replace(/[’‘]/g, "'")
+    .replace(/[“”]/g, "\"")
+    .replace(/[‐‑‒–—―]/g, "-")
+    .replace(/\s+/g, " ")
+    .slice(0, MAX_AUDIO_TEXT_LENGTH);
+  return kind === "example" ? text : normalizeVocabWord(text);
+}
+
+function isLikelyAudioText(value, kind = "word") {
+  const text = normalizeAudioText(value, kind);
+  if (kind !== "example") return isLikelyWordOrPhrase(text);
+  return Boolean(
+    text
+    && text.length <= MAX_AUDIO_TEXT_LENGTH
+    && /[a-z]/i.test(text)
+    && /^[a-z0-9][a-z0-9\s.,!?;:'"()/-]{0,219}$/i.test(text)
+    && !/ {2,}|--|''|""/.test(text)
+  );
+}
+
 function makeAudioId(word) {
   return crypto.createHash("sha256").update(normalizeVocabWord(word)).digest("hex").slice(0, 24);
+}
+
+function makeAudioTextId(text, kind = "word") {
+  if (kind !== "example") return makeAudioId(text);
+  return crypto.createHash("sha256").update(`${kind}:${normalizeAudioText(text, kind)}`).digest("hex").slice(0, 24);
 }
 
 function makeVocabMeaningId(word) {
@@ -96,6 +125,17 @@ function makeStoragePath(word) {
     .replace(/^-+|-+$/g, "")
     .slice(0, 40) || "word";
   return `vocab-audio/v1/${slug}-${makeAudioId(text)}.mp3`;
+}
+
+function makeAudioStoragePath(text, kind = "word") {
+  if (kind !== "example") return makeStoragePath(text);
+  const cleanText = normalizeAudioText(text, kind);
+  const slug = cleanText
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 48) || "example";
+  return `vocab-example-audio/v1/${slug}-${makeAudioTextId(cleanText, kind)}.mp3`;
 }
 
 function escapeXml(value) {
@@ -550,11 +590,11 @@ async function getOrCreateDownloadUrl(file, storagePath) {
   return makeDownloadUrl(bucket.name, storagePath, token);
 }
 
-async function generateAzureTtsMp3(word, { speechKey, speechRegion }) {
+async function generateAzureTtsMp3(text, { speechKey, speechRegion }) {
   const endpoint = getAzureEndpoint(speechRegion);
   const ssml = [
     `<speak version="1.0" xml:lang="en-US">`,
-    `<voice name="${DEFAULT_VOICE}">${escapeXml(word)}</voice>`,
+    `<voice name="${DEFAULT_VOICE}">${escapeXml(text)}</voice>`,
     `</speak>`
   ].join("");
 
@@ -580,11 +620,13 @@ async function generateAzureTtsMp3(word, { speechKey, speechRegion }) {
   return buffer;
 }
 
-async function getOrCreateVocabAudio(word, context) {
-  const normalizedWord = normalizeVocabWord(word);
-  const audioId = makeAudioId(normalizedWord);
-  const storagePath = makeStoragePath(normalizedWord);
-  const docRef = db.collection("vocabAudio").doc(audioId);
+async function getOrCreateVocabAudio(text, context = {}) {
+  const kind = context.kind === "example" ? "example" : "word";
+  const normalizedText = normalizeAudioText(text, kind);
+  const audioId = makeAudioTextId(normalizedText, kind);
+  const storagePath = makeAudioStoragePath(normalizedText, kind);
+  const collectionName = kind === "example" ? "vocabExampleAudio" : "vocabAudio";
+  const docRef = db.collection(collectionName).doc(audioId);
   const [docSnap, existsResult] = await Promise.all([
     docRef.get(),
     bucket.file(storagePath).exists()
@@ -596,7 +638,9 @@ async function getOrCreateVocabAudio(word, context) {
     const data = docSnap.exists ? (docSnap.data() || {}) : {};
     const downloadUrl = await getOrCreateDownloadUrl(file, storagePath);
     await docRef.set({
-      word: normalizedWord,
+      text: normalizedText,
+      word: kind === "word" ? normalizedText : "",
+      kind,
       audioId,
       storagePath,
       source: data.source || "firebase-shared",
@@ -609,6 +653,7 @@ async function getOrCreateVocabAudio(word, context) {
       storagePath,
       downloadUrl,
       source: data.source || "firebase-shared",
+      kind,
       createdAt: data.createdAt || null,
       cached: true
     };
@@ -621,7 +666,7 @@ async function getOrCreateVocabAudio(word, context) {
     throw new HttpsError("failed-precondition", "Azure Speech secrets are not configured.");
   }
 
-  const audioBuffer = await generateAzureTtsMp3(normalizedWord, {
+  const audioBuffer = await generateAzureTtsMp3(normalizedText, {
     speechKey: key,
     speechRegion: region
   });
@@ -634,7 +679,9 @@ async function getOrCreateVocabAudio(word, context) {
       cacheControl: "public, max-age=31536000, immutable",
       metadata: {
         audioId,
-        word: normalizedWord,
+        text: normalizedText,
+        word: kind === "word" ? normalizedText : "",
+        kind,
         voice: DEFAULT_VOICE,
         source: "azure-tts",
         firebaseStorageDownloadTokens: downloadToken
@@ -645,7 +692,9 @@ async function getOrCreateVocabAudio(word, context) {
   const downloadUrl = makeDownloadUrl(bucket.name, storagePath, downloadToken);
 
   await docRef.set({
-    word: normalizedWord,
+    text: normalizedText,
+    word: kind === "word" ? normalizedText : "",
+    kind,
     audioId,
     storagePath,
     downloadUrl,
@@ -661,6 +710,7 @@ async function getOrCreateVocabAudio(word, context) {
     storagePath,
     downloadUrl,
     source: "azure-tts",
+    kind,
     cached: false
   };
 }
@@ -673,15 +723,18 @@ exports.ensureVocabAudio = onCall({
     throw new HttpsError("unauthenticated", "Please log in first.");
   }
 
-  const word = normalizeVocabWord(request.data?.word);
-  if (!isLikelyWordOrPhrase(word)) {
-    throw new HttpsError("invalid-argument", "Invalid vocabulary word.");
+  const kind = request.data?.kind === "example" ? "example" : "word";
+  const text = normalizeAudioText(request.data?.text || request.data?.word, kind);
+  if (!isLikelyAudioText(text, kind)) {
+    throw new HttpsError("invalid-argument", "Invalid audio text.");
   }
 
-  const result = await getOrCreateVocabAudio(word, request);
+  const result = await getOrCreateVocabAudio(text, { ...request, kind });
   return {
     status: "ready",
-    word,
+    word: kind === "word" ? text : "",
+    text,
+    kind,
     ...result
   };
 });

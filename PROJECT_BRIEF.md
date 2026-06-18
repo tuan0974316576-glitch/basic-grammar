@@ -90,6 +90,7 @@ Azure Speech / shared vocab audio:
 - Function `ensureVocabAudio` is deployed in `asia-east2`.
 - Default Firebase Storage bucket `enguistics-grammar-game.firebasestorage.app` is created in `ASIA-EAST2`.
 - New vocab audio flow: if the word is not in the bundled Battleship-1 audio manifest, the logged-in app calls `ensureVocabAudio`; the function generates Azure TTS MP3 once, saves it under `vocab-audio/v1/`, and later students reuse the shared Firebase audio file.
+- Vocab example audio uses the same callable with `kind: "example"` only when the student taps an English example sentence. It generates Azure TTS once, saves shared MP3 files under `vocab-example-audio/v1/`, records metadata in `vocabExampleAudio`, and the app caches the MP3 in IndexedDB for offline replay.
 - Cloud vocab meaning fallback should use Azure Translator, not Google Translate. Firebase secrets `AZURE_TRANSLATOR_KEY` and `AZURE_TRANSLATOR_REGION` must be set for `lookupVocabMeaning`.
 
 Recommended direction:

@@ -66,7 +66,10 @@ async function main() {
 
   assert.strictEqual(vocabAudio.normalizeWord("  Take   for  Granted "), "take for granted");
   assert.strictEqual(vocabAudio.normalizeWord("look–for"), "look-for");
+  assert.strictEqual(vocabAudio.normalizeAudioText("  I   eat an apple.  ", "example"), "I eat an apple.");
+  assert.strictEqual(vocabAudio.getCacheKey("I eat an apple.", { kind: "example" }), "example:i eat an apple.");
   assert.strictEqual(vocabAudio.hasStaticAudio("Affluent"), true);
+  assert.strictEqual(vocabAudio.hasStaticAudio("I eat an apple.", { kind: "example" }), false);
   assert.strictEqual(vocabAudio.hasStaticAudio("unknown-word"), false);
   assert.strictEqual(
     vocabAudio.getStaticAudioUrl("take for granted"),
@@ -75,10 +78,14 @@ async function main() {
 
   assert.strictEqual(vocabAudio._private.isLikelyEnglishWordOrPhrase("look for"), true);
   assert.strictEqual(vocabAudio._private.isLikelyEnglishWordOrPhrase("take-for-granted"), true);
+  assert.strictEqual(vocabAudio._private.isLikelyEnglishAudioText("I eat an apple.", { kind: "example" }), true);
+  assert.strictEqual(vocabAudio._private.isLikelyEnglishAudioText("我吃蘋果。", { kind: "example" }), false);
   assert.strictEqual(vocabAudio._private.isLikelyEnglishWordOrPhrase("蘋果"), false);
   assert.strictEqual(vocabAudio._private.isLikelyEnglishWordOrPhrase(""), false);
 
   let requestedWord = "";
+  let requestedKind = "";
+  let requestedText = "";
   installFakeIndexedDb();
   global.VOCAB_WORD_AUDIO_MANIFEST = {};
   global.grammarFirebase = {
@@ -89,14 +96,20 @@ async function main() {
         assert.strictEqual(name, "ensureVocabAudio");
         return async (payload) => {
           requestedWord = payload.word;
+          requestedKind = payload.kind;
+          requestedText = payload.text;
           return {
             data: {
               status: "ready",
-              word: payload.word,
+              word: payload.kind === "example" ? "" : payload.word,
+              text: payload.text || payload.word,
+              kind: payload.kind || "word",
               downloadUrl: "https://example.test/audio.mp3",
               source: "firebase-shared",
               audioId: "audio123",
-              storagePath: "vocab-audio/v1/example-audio123.mp3"
+              storagePath: payload.kind === "example"
+                ? "vocab-example-audio/v1/example-audio123.mp3"
+                : "vocab-audio/v1/example-audio123.mp3"
             }
           };
         };
@@ -109,8 +122,16 @@ async function main() {
   const result = await sharedVocabAudio._private.requestSharedAudio("  Evaluate  ");
 
   assert.strictEqual(requestedWord, "evaluate");
+  assert.strictEqual(requestedKind, "word");
+  assert.strictEqual(requestedText, "evaluate");
   assert.strictEqual(result.status, "ready");
   assert.strictEqual(result.source, "firebase-shared");
+
+  const exampleResult = await sharedVocabAudio._private.requestSharedAudio("I eat an apple.", { kind: "example" });
+  assert.strictEqual(requestedWord, "I eat an apple.");
+  assert.strictEqual(requestedText, "I eat an apple.");
+  assert.strictEqual(requestedKind, "example");
+  assert.strictEqual(exampleResult.kind, "example");
 
   global.fetch = async () => ({
     ok: false,

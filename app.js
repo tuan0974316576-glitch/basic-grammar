@@ -2413,7 +2413,16 @@ function renderExpandedVocabExamples(item = {}) {
 
     const english = document.createElement("div");
     english.className = "vocab-example-en";
+    english.setAttribute("role", "button");
+    english.tabIndex = 0;
+    english.setAttribute("aria-label", `讀出例句：${example.source}`);
     english.textContent = example.source;
+    english.addEventListener("click", () => speakVocabExample(example.source));
+    english.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      event.preventDefault();
+      speakVocabExample(example.source);
+    });
 
     const chinese = document.createElement("div");
     chinese.className = "vocab-example-zh";
@@ -3014,6 +3023,18 @@ function speakVocabWord(word) {
   if (VOCAB_AUDIO) {
     VOCAB_AUDIO.play(text, { forceEnsure: true }).catch((error) => {
       console.warn("Vocab audio playback failed:", error);
+    });
+  }
+}
+
+function speakVocabExample(sentence) {
+  const text = String(sentence || "").trim();
+  if (!text) return;
+
+  playUiSound("step");
+  if (VOCAB_AUDIO) {
+    VOCAB_AUDIO.play(text, { forceEnsure: true, kind: "example" }).catch((error) => {
+      console.warn("Vocab example audio playback failed:", error);
     });
   }
 }

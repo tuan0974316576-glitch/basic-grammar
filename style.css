@@ -643,8 +643,26 @@ body.settings-open .menu-settings-btn img {
 }
 
 .vocab-example-en {
+  display: inline-flex;
+  width: fit-content;
+  max-width: 100%;
+  padding: 2px 5px;
   color: #5d4037;
   font-size: 13px;
+  cursor: pointer;
+  border-radius: 8px;
+  text-decoration: underline;
+  text-decoration-color: rgba(73, 160, 159, 0.42);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  transition: background 120ms ease, color 120ms ease;
+}
+
+.vocab-example-en:hover,
+.vocab-example-en:focus-visible {
+  color: var(--primary-dark);
+  outline: none;
+  background: #eaf8f8;
 }
 
 .vocab-example-zh {
