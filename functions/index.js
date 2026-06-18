@@ -22,6 +22,8 @@ const AZURE_TRANSLATOR_ENDPOINT = "https://api.cognitive.microsofttranslator.com
 const AZURE_TRANSLATOR_API_VERSION = "3.0";
 const AZURE_TRANSLATOR_SOURCE = "en";
 const AZURE_TRANSLATOR_TARGET = "zh-Hant";
+const AZURE_DICTIONARY_TARGET = "zh-Hans";
+const AZURE_DICTIONARY_ENTRY_LIMIT = 8;
 
 const CURATED_VOCAB_MEANINGS = new Map([
   ["egg tart", [{ meaning: "蛋撻", pos: "noun", type: "phrase" }]],
@@ -113,7 +115,30 @@ function cleanCloudTranslation(value, word) {
   return text;
 }
 
-function normalizeMeaningEntries(word, entries = [], source = "azure-translator") {
+function normalizeAzureDictionaryPos(posTag, word) {
+  if (inferVocabType(word) === "phrase") return "";
+  const value = String(posTag || "").trim().toUpperCase();
+  const map = {
+    ADJ: "adjective",
+    ADJECTIVE: "adjective",
+    ADV: "adverb",
+    ADVERB: "adverb",
+    AUX: "auxiliary",
+    CONJ: "conjunction",
+    CONJUNCTION: "conjunction",
+    DET: "determiner",
+    NOUN: "noun",
+    NUM: "number",
+    PREP: "preposition",
+    PREPOSITION: "preposition",
+    PRON: "pronoun",
+    PRONOUN: "pronoun",
+    VERB: "verb"
+  };
+  return map[value] || "";
+}
+
+function normalizeMeaningEntries(word, entries = [], source = "azure-dictionary") {
   const normalizedWord = normalizeVocabWord(word);
   return entries
     .map((entry, index) => ({
@@ -130,29 +155,38 @@ function normalizeMeaningEntries(word, entries = [], source = "azure-translator"
 
 function shouldReuseCachedMeaning(cached = {}) {
   const source = String(cached.source || "").toLowerCase();
-  return Boolean(source && !source.includes("google"));
+  return Boolean(source && [
+    "azure-dictionary",
+    "azure-translate-fallback",
+    "curated-cloud",
+    "shared-cache"
+  ].includes(source));
 }
 
-async function translateVocabMeaningWithAzure(word, { translatorKey, translatorRegion }) {
+function getAzureTranslatorCredentials({ translatorKey, translatorRegion }) {
   const key = String(translatorKey || "").trim();
   const region = String(translatorRegion || "").trim();
   if (!key || !region) {
     throw new HttpsError("failed-precondition", "Azure Translator secrets are not configured.");
   }
+  return { key, region };
+}
 
-  const params = new URLSearchParams({
+async function postAzureTranslatorJson(path, params, items, credentials) {
+  const { key, region } = getAzureTranslatorCredentials(credentials);
+  const query = new URLSearchParams({
     "api-version": AZURE_TRANSLATOR_API_VERSION,
-    from: AZURE_TRANSLATOR_SOURCE,
-    to: AZURE_TRANSLATOR_TARGET
+    ...params
   });
-  const response = await fetch(`${AZURE_TRANSLATOR_ENDPOINT}/translate?${params.toString()}`, {
+
+  const response = await fetch(`${AZURE_TRANSLATOR_ENDPOINT}${path}?${query.toString()}`, {
     method: "POST",
     headers: {
       "Ocp-Apim-Subscription-Key": key,
       "Ocp-Apim-Subscription-Region": region,
       "Content-Type": "application/json"
     },
-    body: JSON.stringify([{ Text: word }])
+    body: JSON.stringify(items.map((text) => ({ Text: text })))
   });
 
   const body = await response.json().catch(async () => ({ raw: await response.text().catch(() => "") }));
@@ -160,10 +194,98 @@ async function translateVocabMeaningWithAzure(word, { translatorKey, translatorR
     const details = body?.error?.message || body?.raw || `HTTP ${response.status}`;
     throw new Error(`Azure Translator failed: ${details}`);
   }
+  return body;
+}
 
-  const translatedText = body?.[0]?.translations?.[0]?.text || "";
+async function translateTextItemsWithAzure(items, { from, to, translatorKey, translatorRegion }) {
+  if (!items.length) return [];
+  const body = await postAzureTranslatorJson("/translate", {
+    from,
+    to
+  }, items, { translatorKey, translatorRegion });
+
+  return items.map((original, index) => (
+    body?.[index]?.translations?.[0]?.text || original
+  ));
+}
+
+async function translateVocabMeaningWithAzure(word, { translatorKey, translatorRegion }) {
+  const [translatedText] = await translateTextItemsWithAzure([word], {
+    from: AZURE_TRANSLATOR_SOURCE,
+    to: AZURE_TRANSLATOR_TARGET,
+    translatorKey,
+    translatorRegion
+  });
   const meaning = cleanCloudTranslation(translatedText, word);
   return meaning ? [{ meaning, type: inferVocabType(word) }] : [];
+}
+
+async function lookupAzureDictionaryEntries(word, { translatorKey, translatorRegion }) {
+  const body = await postAzureTranslatorJson("/dictionary/lookup", {
+    from: AZURE_TRANSLATOR_SOURCE,
+    to: AZURE_DICTIONARY_TARGET
+  }, [word], { translatorKey, translatorRegion });
+
+  const rawTranslations = (body || [])
+    .flatMap((item) => Array.isArray(item?.translations) ? item.translations : [])
+    .map((item, index) => ({
+      text: normalizeCloudMeaning(item.displayTarget || item.normalizedTarget || ""),
+      pos: normalizeAzureDictionaryPos(item.posTag, word),
+      confidence: Number(item.confidence || 0),
+      sourceEntryId: `azure-dictionary-${index}`
+    }))
+    .filter((entry) => entry.text)
+    .sort((a, b) => b.confidence - a.confidence);
+
+  const deduped = [];
+  const seen = new Set();
+  for (const entry of rawTranslations) {
+    const key = `${entry.pos}:${entry.text}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    deduped.push(entry);
+    if (deduped.length >= AZURE_DICTIONARY_ENTRY_LIMIT) break;
+  }
+
+  const traditionalMeanings = await translateTextItemsWithAzure(
+    deduped.map((entry) => entry.text),
+    {
+      from: AZURE_DICTIONARY_TARGET,
+      to: AZURE_TRANSLATOR_TARGET,
+      translatorKey,
+      translatorRegion
+    }
+  ).catch((error) => {
+    console.error("Azure Dictionary zh-Hant conversion failed.", {
+      word,
+      message: error?.message || String(error)
+    });
+    return deduped.map((entry) => entry.text);
+  });
+
+  return deduped
+    .map((entry, index) => ({
+      meaning: cleanCloudTranslation(traditionalMeanings[index] || entry.text, word),
+      pos: entry.pos,
+      type: inferVocabType(word),
+      sourceEntryId: entry.sourceEntryId
+    }))
+    .filter((entry) => entry.meaning);
+}
+
+async function lookupVocabMeaningsWithAzure(word, credentials) {
+  const dictionaryEntries = await lookupAzureDictionaryEntries(word, credentials);
+  if (dictionaryEntries.length) {
+    return {
+      entries: dictionaryEntries,
+      source: "azure-dictionary"
+    };
+  }
+
+  return {
+    entries: await translateVocabMeaningWithAzure(word, credentials),
+    source: "azure-translate-fallback"
+  };
 }
 
 async function getOrCreateVocabMeaning(word) {
@@ -188,16 +310,18 @@ async function getOrCreateVocabMeaning(word) {
 
   const curated = CURATED_VOCAB_MEANINGS.get(normalizedWord);
   let rawEntries = curated;
-  const source = curated ? "curated-cloud" : "azure-translator";
+  let source = curated ? "curated-cloud" : "azure-dictionary";
 
   if (!rawEntries) {
     try {
-      rawEntries = await translateVocabMeaningWithAzure(normalizedWord, {
+      const result = await lookupVocabMeaningsWithAzure(normalizedWord, {
         translatorKey: AZURE_TRANSLATOR_KEY.value(),
         translatorRegion: AZURE_TRANSLATOR_REGION.value()
       });
+      rawEntries = result.entries;
+      source = result.source;
     } catch (error) {
-      console.error("Azure Translator lookup failed.", {
+      console.error("Azure vocab meaning lookup failed.", {
         word: normalizedWord,
         message: error?.message || String(error)
       });
