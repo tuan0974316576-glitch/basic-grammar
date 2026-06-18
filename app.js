@@ -42,6 +42,7 @@ const SFX_VOLUME_TOUCHED_KEY = "basic_grammar_sfx_volume_touched_v1";
 const PRACTICE_COUNT_KEY = "basic_grammar_practice_count_v1";
 const BEST_STREAK_KEY = "basic_grammar_best_streak_v1";
 const STUDY_STREAK_KEY = "basic_grammar_study_streak_v1";
+const STREAK_MODAL_DISMISSED_KEY = "basic_grammar_streak_modal_dismissed_v1";
 const STUDENT_PROFILE_KEY = "basic_grammar_student_profile_v1";
 const STUDENT_PROGRESS_SYNC_KEY = "basic_grammar_progress_sync_queue_v1";
 const STUDENT_LOGIN_GRACE_MS = 3500;
@@ -213,6 +214,7 @@ const VOCAB_CLOUD_LOOKUP_MIN_LETTERS = 2;
 let audioContext = null;
 let celebrationAnimation = null;
 let celebrationHideTimer = 0;
+let streakFireAnimation = null;
 let verbTableReferenceRendered = false;
 let activeVerbTableReferenceAudio = null;
 let activeVerbTableReferenceAudioToken = 0;
@@ -393,6 +395,11 @@ const el = {
   verbTableKeyboard: document.querySelector("#verb-table-keyboard"),
   resetVerbTableBtn: document.querySelector("#reset-verb-table-btn"),
   confirmVerbTableBtn: document.querySelector("#confirm-verb-table-btn"),
+  streakModal: document.querySelector("#streak-modal"),
+  streakFireAnimation: document.querySelector("#streak-fire-animation"),
+  streakDaysCount: document.querySelector("#streak-days-count"),
+  streakMessage: document.querySelector("#streak-message"),
+  streakContinueBtn: document.querySelector("#streak-continue-btn"),
   celebrationLayer: document.querySelector("#celebration-layer"),
   englishCard: document.querySelector("#english-card"),
   englishText: document.querySelector("#english-text"),
@@ -470,10 +477,11 @@ function getSavedStudyStreak() {
     return {
       days,
       lastDateKey: String(saved?.lastDateKey || ""),
+      lastCompletedDateKey: String(saved?.lastCompletedDateKey || ""),
       updatedAt: Number(saved?.updatedAt) || 0
     };
   } catch (_error) {
-    return { days: 0, lastDateKey: "", updatedAt: 0 };
+    return { days: 0, lastDateKey: "", lastCompletedDateKey: "", updatedAt: 0 };
   }
 }
 
@@ -495,21 +503,51 @@ function getPreviousDateKey(dateKey) {
 function touchStudyDay() {
   const todayKey = getLocalDateKey();
   const saved = getSavedStudyStreak();
-  if (saved.lastDateKey === todayKey) {
+  if (saved.lastCompletedDateKey === todayKey) {
     state.studyStreak = saved;
-    return saved;
+    return {
+      ...saved,
+      earnedToday: false
+    };
   }
 
   const yesterdayKey = getPreviousDateKey(todayKey);
-  const days = saved.lastDateKey === yesterdayKey ? saved.days + 1 : 1;
+  const days = saved.lastDateKey === todayKey
+    ? Math.max(1, saved.days)
+    : saved.lastDateKey === yesterdayKey ? saved.days + 1 : 1;
   const next = {
     days,
     lastDateKey: todayKey,
+    lastCompletedDateKey: todayKey,
     updatedAt: Date.now()
   };
   state.studyStreak = next;
   saveStudyStreak(next);
-  return next;
+  queuePlayerProfileSync();
+  return {
+    ...next,
+    earnedToday: true
+  };
+}
+
+function awardStudyStreakForCompletedRound() {
+  return touchStudyDay();
+}
+
+function wasStreakModalDismissed(dateKey = getLocalDateKey()) {
+  try {
+    return localStorage.getItem(STREAK_MODAL_DISMISSED_KEY) === dateKey;
+  } catch (_error) {
+    return false;
+  }
+}
+
+function saveStreakModalDismissed(dateKey = getLocalDateKey()) {
+  try {
+    localStorage.setItem(STREAK_MODAL_DISMISSED_KEY, dateKey);
+  } catch (_error) {
+    // The modal can still close during this session.
+  }
 }
 
 function safeJsonParse(value, fallback) {
@@ -926,7 +964,6 @@ function getProgress(lessonId = state.lessonId) {
 }
 
 function saveProgress(completed, lessonId = state.lessonId) {
-  touchStudyDay();
   const total = getLessonTotal(lessonId);
   const previousCompleted = getProgress(lessonId);
   const nextCompleted = window.GrammarCore?.getNextProgress
@@ -1013,6 +1050,7 @@ function syncModalOpenClass() {
   const hasOpenModal = Boolean(
     document.body.classList.contains("student-login-open")
       || document.body.classList.contains("settings-open")
+      || document.body.classList.contains("streak-open")
       || (el.verbTableReferenceModal && !el.verbTableReferenceModal.classList.contains("hidden"))
   );
   document.body.classList.toggle("modal-open", hasOpenModal);
@@ -1086,6 +1124,50 @@ function closeSettings() {
   el.settingsModal.classList.add("hidden");
   el.settingsModal.setAttribute("aria-hidden", "true");
   document.body.classList.remove("settings-open");
+  syncModalOpenClass();
+  playUiSound("next");
+}
+
+function renderStreakFireAnimation() {
+  if (streakFireAnimation || !el.streakFireAnimation || !window.lottie || !window.STREAK_FIRE_LOTTIE_DATA) return;
+
+  el.streakFireAnimation.replaceChildren();
+  streakFireAnimation = window.lottie.loadAnimation({
+    container: el.streakFireAnimation,
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    animationData: JSON.parse(JSON.stringify(window.STREAK_FIRE_LOTTIE_DATA)),
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid meet"
+    }
+  });
+  streakFireAnimation.setSpeed(1.04);
+}
+
+function openStreakModal(streak) {
+  if (!el.streakModal || !streak?.earnedToday || wasStreakModalDismissed(streak.lastDateKey)) return;
+
+  const days = Math.max(1, Number(streak.days) || 1);
+  clearCelebration();
+  el.streakDaysCount.textContent = String(days);
+  el.streakMessage.textContent = days === 1
+    ? "完成今日第一個練習，英文火苗已經點著。"
+    : `連續 ${days} 日完成練習，保持住呢個節奏。`;
+  el.streakModal.classList.remove("hidden");
+  el.streakModal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("streak-open");
+  syncModalOpenClass();
+  renderStreakFireAnimation();
+  playUiSound("pronounGrandWin");
+}
+
+function closeStreakModal() {
+  if (!el.streakModal || el.streakModal.classList.contains("hidden")) return;
+  saveStreakModalDismissed(String(state.studyStreak?.lastDateKey || getLocalDateKey()));
+  el.streakModal.classList.add("hidden");
+  el.streakModal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("streak-open");
   syncModalOpenClass();
   playUiSound("next");
 }
@@ -1534,6 +1616,7 @@ async function syncStudentCloudProgress() {
       state.studyStreak = {
         days: remoteStudyStreakDays,
         lastDateKey: String(cloudUser.studyStreak?.lastDateKey || state.studyStreak?.lastDateKey || ""),
+        lastCompletedDateKey: String(cloudUser.studyStreak?.lastCompletedDateKey || state.studyStreak?.lastCompletedDateKey || ""),
         updatedAt: Number(cloudUser.studyStreak?.updatedAt) || Date.now()
       };
       saveStudyStreak(state.studyStreak);
@@ -1602,6 +1685,7 @@ async function flushPlayerProfileSync() {
       studyStreak: {
         days: Math.max(0, Number(state.studyStreak?.days) || 0),
         lastDateKey: String(state.studyStreak?.lastDateKey || ""),
+        lastCompletedDateKey: String(state.studyStreak?.lastCompletedDateKey || ""),
         updatedAt: Number(state.studyStreak?.updatedAt) || Date.now()
       },
       updatedAt: serverTimestamp()
@@ -2416,7 +2500,6 @@ async function addVocabItemFromEntry() {
 
   saveVocabItems();
   saveVocabProgress();
-  touchStudyDay();
   if (VOCAB_AUDIO) {
     VOCAB_AUDIO.queueEnsureAudio(savedItem.word);
   }
@@ -2588,7 +2671,6 @@ function setVocabFeedback(message = "", type = "") {
 }
 
 function updateVocabProgress(itemId, correct) {
-  touchStudyDay();
   state.vocabProgress[itemId] = VOCAB_SCHEDULER.updateProgressAfterAnswer(
     state.vocabProgress[itemId] || VOCAB_SCHEDULER.getInitialProgress(),
     correct
@@ -2687,6 +2769,7 @@ function nextVocabQuestion() {
 function renderVocabComplete() {
   const total = vocabQuizState?.questions?.length || 0;
   const score = vocabQuizState?.score || 0;
+  const streakAward = awardStudyStreakForCompletedRound();
   deactivateTextEntryTarget("vocabAnswer");
   updateVocabQuizProgress(true);
   setVocabFeedback(`完成！今次答啱 ${score}/${total}。`, score === total ? "success" : "error");
@@ -2706,6 +2789,7 @@ function renderVocabComplete() {
   renderVocabList();
   playUiSound(score === total ? "pronounGrandWin" : "complete");
   if (score === total) launchCelebration("grand");
+  setTimeout(() => openStreakModal(streakAward), 420);
 }
 
 function backToVocab() {
@@ -5204,6 +5288,7 @@ function renderComplete() {
   if (state.mode === "practice") {
     saveProgress(total);
   }
+  const streakAward = state.mode === "practice" ? awardStudyStreakForCompletedRound() : null;
 
   updateLessonChrome();
   updateLiveStats();
@@ -5214,6 +5299,7 @@ function renderComplete() {
   el.resultMessage.textContent = getResultMessage(percent, state.mistakes, state.mode);
   renderReviewSummary();
   showScreen("result");
+  setTimeout(() => openStreakModal(streakAward), 420);
 }
 
 function renderReviewSummary() {
@@ -5603,12 +5689,14 @@ document.addEventListener("keydown", (event) => {
   if (handleTextEntryDocumentKeydown(event)) return;
 
   if (event.key === "Escape") {
+    closeStreakModal();
     closeSettings();
     closeStudentLogin();
     closeVerbTableReference();
   }
 });
 el.reviewMistakesBtn.addEventListener("click", startMistakeReview);
+el.streakContinueBtn?.addEventListener("click", closeStreakModal);
 el.nextBtn.addEventListener("click", nextQuestion);
 el.restartBtn.addEventListener("click", () => startLesson(state.lessonId));
 el.englishCard.addEventListener("click", speakCurrentEnglish);
@@ -5667,7 +5755,6 @@ if (window.pendingStudentAuthState) {
   applyStudentAuthState(window.pendingStudentAuthState);
   window.pendingStudentAuthState = null;
 }
-touchStudyDay();
 updateMenuProgress();
 dedupeVocabWordsByWord();
 renderVocabList();
