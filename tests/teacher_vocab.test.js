@@ -1,7 +1,7 @@
 const assert = require("assert");
 
 global.TEACHER_VOCAB_BANK = {
-  meta: { entryCount: 4 },
+  meta: { entryCount: 6 },
   entries: [
     {
       id: "secure-adj",
@@ -32,6 +32,15 @@ global.TEACHER_VOCAB_BANK = {
       meaning: "打算",
       type: "phrase",
       sourceCount: 3
+    },
+    {
+      id: "curiosity-noun",
+      word: "curiosity",
+      meaning: "好奇心",
+      pos: "noun",
+      type: "word",
+      aliases: ["curiosty"],
+      sourceCount: 1
     },
     {
       id: "have-any-entry-0457",
@@ -66,6 +75,11 @@ assert.strictEqual(teacherVocab.chooseAutoFillEntry(patternMatches).meaning, "�
 const phraseMatches = teacherVocab.lookup("intend to");
 assert.strictEqual(phraseMatches.length, 1);
 assert.strictEqual(phraseMatches[0].type, "phrase");
+
+const typoMatches = teacherVocab.lookup("curiosty");
+assert.strictEqual(typoMatches.length, 1);
+assert.strictEqual(typoMatches[0].word, "curiosity");
+assert.strictEqual(teacherVocab.getEntryLabel(typoMatches[0]), "n. 好奇心");
 
 assert.strictEqual(teacherVocab.lookup("have").length, 0);
 assert.strictEqual(teacherVocab.lookup("have", { includeNeedsReview: true }).length, 1);

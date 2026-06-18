@@ -155,6 +155,17 @@ function normalizeManualType(value, word, explicitPos = "") {
   return detectType(word, explicitPos);
 }
 
+function normalizeAliases(value) {
+  const aliases = Array.isArray(value)
+    ? value
+    : String(value || "").split(/[,，;；|]/);
+  return Array.from(new Set(
+    aliases
+      .map(normalizeWord)
+      .filter(Boolean)
+  ));
+}
+
 function splitPosFromWord(rawWord) {
   let word = String(rawWord || "").trim().replace(/\s+/g, " ");
   let pos = "";
@@ -429,6 +440,7 @@ function createManualEntriesFromData(data = {}, sourceFile = "manual-updates") {
       columns: "manual",
       needsReview: Boolean(row.needsReview),
       notes: normalizeMeaning(row.notes || "老師指定更新"),
+      aliases: normalizeAliases(row.aliases || row.alias),
       override: row.override !== false
     };
   }).filter(Boolean);
@@ -579,6 +591,9 @@ function dedupeEntries(rawEntries) {
         ...entry,
         sources: []
       });
+    } else if (entry.aliases?.length) {
+      const group = groups.get(key);
+      group.aliases = normalizeAliases([...(group.aliases || []), ...entry.aliases]);
     }
     groups.get(key).sources.push({
       sourceFile: entry.sourceFile,
@@ -601,6 +616,7 @@ function dedupeEntries(rawEntries) {
       source: entry.source,
       needsReview: Boolean(entry.needsReview),
       notes: entry.notes,
+      aliases: normalizeAliases(entry.aliases),
       sourceCount,
       sources: entry.sources.slice(0, 8),
       override: Boolean(entry.override)
@@ -641,6 +657,8 @@ function buildConflicts(entries, blankChineseCandidates) {
         meaning: entry.meaning,
         pos: entry.pos,
         type: entry.type,
+        aliases: entry.aliases,
+        notes: entry.notes,
         sourceCount: entry.sourceCount,
         sampleSources: entry.sources.slice(0, 4)
       }))
@@ -668,6 +686,7 @@ function slimEntryForBank(entry) {
     pos: entry.pos,
     type: entry.type,
     needsReview: entry.needsReview,
+    aliases: entry.aliases?.length ? entry.aliases : undefined,
     sourceCount: entry.sourceCount
   };
 }
@@ -757,6 +776,7 @@ module.exports = {
   dedupeEntries,
   extractEntriesFromRows,
   readManualUpdateFile,
+  normalizeAliases,
   normalizeMeaning,
   normalizePos,
   normalizeWord,

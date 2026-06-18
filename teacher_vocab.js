@@ -94,8 +94,27 @@
     return "word";
   }
 
+  function normalizeAliases(value) {
+    const aliases = Array.isArray(value)
+      ? value
+      : String(value || "")
+        .split(/[,，;；|]/);
+    return Array.from(new Set(
+      aliases
+        .map(normalizeWord)
+        .filter(Boolean)
+    ));
+  }
+
   function entrySearchKey(entry = {}) {
     return normalizeWord(entry.word || entry.english || entry.display || "");
+  }
+
+  function entrySearchKeys(entry = {}) {
+    return Array.from(new Set([
+      entrySearchKey(entry),
+      ...normalizeAliases(entry.aliases || entry.alias)
+    ].filter(Boolean)));
   }
 
   const entries = Array.isArray(bank.entries) ? bank.entries : [];
@@ -107,12 +126,14 @@
       word: normalizeWord(entry.word || entry.english || entry.display),
       meaning: normalizeMeaning(entry.meaning),
       pos: normalizePos(entry.pos),
-      type: normalizeType(entry.type, entry.word || entry.english || entry.display)
+      type: normalizeType(entry.type, entry.word || entry.english || entry.display),
+      aliases: normalizeAliases(entry.aliases || entry.alias)
     };
-    const key = entrySearchKey(normalized);
-    if (!key || !normalized.meaning) return;
-    if (!byWord.has(key)) byWord.set(key, []);
-    byWord.get(key).push(normalized);
+    if (!entrySearchKey(normalized) || !normalized.meaning) return;
+    entrySearchKeys(normalized).forEach((key) => {
+      if (!byWord.has(key)) byWord.set(key, []);
+      byWord.get(key).push(normalized);
+    });
   });
 
   byWord.forEach((items) => {
@@ -170,6 +191,7 @@
     getEntryLabel,
     lookup,
     chooseAutoFillEntry,
+    normalizeAliases,
     normalizeMeaning,
     normalizePos,
     normalizeType,

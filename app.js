@@ -2050,8 +2050,9 @@ function createVocabListRow(item) {
 }
 
 function upsertVocabEntry(word, entry, now) {
+  const canonicalWord = normalizeVocabWord(entry.word || word);
   const meaning = normalizeVocabMeaning(entry.meaning);
-  if (!word || !meaning) return null;
+  if (!canonicalWord || !meaning) return null;
 
   const isTeacherEntry = entry.source === "teacher";
   const isOfflineEntry = entry.source === "offline-dictionary";
@@ -2059,7 +2060,7 @@ function upsertVocabEntry(word, entry, now) {
     ? `teacher-${entry.id}`
     : isOfflineEntry && entry.id
       ? `offline-${entry.id}`
-      : VOCAB_DATA.createMeaningId(word, meaning, getVocabEntryPos(entry));
+      : VOCAB_DATA.createMeaningId(canonicalWord, meaning, getVocabEntryPos(entry));
   const extraFields = isTeacherEntry
     ? {
       pos: getVocabEntryPos(entry),
@@ -2086,7 +2087,7 @@ function upsertVocabEntry(word, entry, now) {
   } else {
     savedItem = {
       id: itemId,
-      word,
+      word: canonicalWord,
       meaning,
       ...extraFields,
       createdAt: now,
@@ -2128,7 +2129,7 @@ async function addVocabItemFromEntry() {
   saveVocabItems();
   saveVocabProgress();
   if (VOCAB_AUDIO) {
-    VOCAB_AUDIO.queueEnsureAudio(word);
+    savedItems.forEach((item) => VOCAB_AUDIO.queueEnsureAudio(item.word));
   }
   setTextEntryValue(el.vocabWordInput, "");
   clearVocabMeaningSuggestions();

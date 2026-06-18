@@ -48,12 +48,13 @@ const manualEntries = importer.createManualEntriesFromData({
   meta: { lesson: "Today" },
   entries: [
     { word: "appeal", meaning: "吸引力", pos: "noun" },
-    { word: "manage to", meaning: "能夠", type: "phrase" }
+    { word: "manage to", meaning: "能夠", type: "phrase", aliases: ["mange to"] }
   ]
 }, "manual.json");
 assert.strictEqual(manualEntries.length, 2);
 assert.strictEqual(manualEntries[0].override, true);
 assert.strictEqual(manualEntries[0].pos, "noun");
+assert.deepStrictEqual(manualEntries[1].aliases, ["mange to"]);
 
 const overridden = importer.dedupeEntries([
   {
@@ -90,5 +91,8 @@ assert.strictEqual(overridden.length, 1);
 assert.strictEqual(overridden[0].word, "appeal");
 assert.strictEqual(overridden[0].meaning, "吸引力");
 assert.strictEqual(overridden[0].pos, "noun");
+
+const slimPhrase = importer.slimEntryForBank(importer.dedupeEntries([manualEntries[1]])[0]);
+assert.deepStrictEqual(slimPhrase.aliases, ["mange to"]);
 
 console.log("import_teacher_vocab tests passed");

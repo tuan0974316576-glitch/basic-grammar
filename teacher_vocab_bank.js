@@ -15004,7 +15004,7 @@
       "id": "catch-on-any-entry-8838",
       "word": "catch on",
       "display": "catch on",
-      "meaning": "趕上",
+      "meaning": "流行起來 / 開始明白",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
@@ -20238,6 +20238,9 @@
       "pos": "noun",
       "type": "phrase",
       "needsReview": false,
+      "aliases": [
+        "converyor belt"
+      ],
       "sourceCount": 1
     },
     {
@@ -21798,6 +21801,9 @@
       "pos": "noun",
       "type": "word",
       "needsReview": false,
+      "aliases": [
+        "curiosty"
+      ],
       "sourceCount": 1
     },
     {
@@ -28144,7 +28150,7 @@
       "id": "embrace-verb-entry-8817",
       "word": "embrace",
       "display": "embrace",
-      "meaning": "擁有 / 支持",
+      "meaning": "接受 / 支持",
       "pos": "verb",
       "type": "word",
       "needsReview": false,
@@ -45328,6 +45334,9 @@
       "pos": "adjective",
       "type": "phrase",
       "needsReview": false,
+      "aliases": [
+        "intrumental in"
+      ],
       "sourceCount": 1
     },
     {
@@ -78148,6 +78157,9 @@
       "pos": "",
       "type": "phrase",
       "needsReview": false,
+      "aliases": [
+        "take into granted"
+      ],
       "sourceCount": 1
     },
     {
@@ -85804,7 +85816,7 @@
       "id": "vessel-noun-entry-8842",
       "word": "vessel",
       "display": "vessel",
-      "meaning": "載具",
+      "meaning": "器皿 / 船",
       "pos": "noun",
       "type": "word",
       "needsReview": false,

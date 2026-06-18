@@ -20,6 +20,15 @@ global.TEACHER_VOCAB_BANK = {
       sourceCount: 2
     },
     {
+      id: "instrumental-in-adj",
+      word: "instrumental in",
+      meaning: "有助於",
+      pos: "adjective",
+      type: "phrase",
+      aliases: ["intrumental in"],
+      sourceCount: 1
+    },
+    {
       id: "secure-adj",
       word: "secure",
       meaning: "安全的",
@@ -38,6 +47,8 @@ assert.strictEqual(teacherVocab.formatPosLabel("phrase"), "ph.");
 assert.strictEqual(teacherVocab.formatPosLabel("pattern"), "pt.");
 assert.strictEqual(teacherVocab.getEntryLabel(teacherVocab.lookup("hawker")[0]), "小販");
 assert.strictEqual(teacherVocab.getEntryLabel(teacherVocab.lookup("look for")[0]), "ph. 尋找");
+assert.strictEqual(teacherVocab.lookup("intrumental in")[0].word, "instrumental in");
+assert.strictEqual(teacherVocab.getEntryLabel(teacherVocab.lookup("intrumental in")[0]), "adj. 有助於");
 
 delete global.TEACHER_VOCAB_BANK;
 
