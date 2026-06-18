@@ -899,10 +899,12 @@ body.student-login-open .app-tab-bar {
   height: 72px;
   display: grid;
   place-items: center;
-  border: 3px solid #ffffff;
-  border-radius: 22px;
-  background: linear-gradient(180deg, #fff8db 0%, #ffe0a8 100%);
-  box-shadow: 0 6px 0 rgba(242, 162, 70, 0.34), 0 10px 20px rgba(133, 86, 44, 0.16);
+  border: 4px solid #ffffff;
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(255, 230, 109, 0.72) 0 20%, transparent 36%),
+    linear-gradient(180deg, #e0fbfc 0%, #c8f2ee 100%);
+  box-shadow: 0 5px 0 #9ed7d6, 0 8px 14px rgba(78, 205, 196, 0.18);
   overflow: hidden;
 }
 
@@ -910,17 +912,17 @@ body.student-login-open .app-tab-bar {
   content: "";
   position: absolute;
   inset: 7px;
-  border: 2px dashed rgba(255, 255, 255, 0.82);
-  border-radius: 16px;
+  border: 2px dashed rgba(44, 181, 172, 0.5);
+  border-radius: 14px;
   pointer-events: none;
 }
 
 .streak-animation {
   position: absolute;
-  inset: -9px -7px -3px;
+  inset: -8px -6px -3px;
   display: grid;
   place-items: center;
-  opacity: 0.96;
+  opacity: 0.92;
 }
 
 .streak-animation svg,
@@ -934,7 +936,7 @@ body.student-login-open .app-tab-bar {
   color: #f26b3a;
   font-size: 31px;
   font-weight: 900;
-  text-shadow: 0 2px 0 #ffffff;
+  text-shadow: 0 2px 0 #ffffff, 0 3px 8px rgba(255, 183, 3, 0.28);
 }
 
 .streak-count {
@@ -948,11 +950,11 @@ body.student-login-open .app-tab-bar {
   justify-content: center;
   gap: 1px;
   padding: 1px 7px 2px;
-  color: #8e4c18;
-  background: rgba(255, 255, 255, 0.9);
-  border: 2px solid rgba(255, 185, 87, 0.72);
+  color: var(--primary-dark);
+  background: rgba(255, 255, 255, 0.94);
+  border: 2px solid rgba(78, 205, 196, 0.58);
   border-radius: 999px;
-  box-shadow: 0 2px 0 rgba(204, 126, 42, 0.24);
+  box-shadow: 0 2px 0 rgba(44, 181, 172, 0.22);
   transform: translateX(-50%);
   z-index: 1;
 }
