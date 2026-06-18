@@ -1,5 +1,6 @@
 const crypto = require("crypto");
 const admin = require("firebase-admin");
+const { GoogleAuth } = require("google-auth-library");
 const { HttpsError, onCall } = require("firebase-functions/v2/https");
 const { setGlobalOptions } = require("firebase-functions/v2");
 const { defineSecret } = require("firebase-functions/params");
@@ -16,6 +17,18 @@ const AZURE_SPEECH_REGION = defineSecret("AZURE_SPEECH_REGION");
 const DEFAULT_VOICE = "en-US-AndrewMultilingualNeural";
 const DEFAULT_OUTPUT_FORMAT = "audio-24khz-48kbitrate-mono-mp3";
 const MAX_WORD_LENGTH = 64;
+const CLOUD_TRANSLATION_LOCATION = "global";
+const CLOUD_TRANSLATION_TARGET = "zh-TW";
+const CLOUD_TRANSLATION_SOURCE = "en";
+const vocabMeaningAuth = new GoogleAuth({
+  scopes: ["https://www.googleapis.com/auth/cloud-translation"]
+});
+
+const CURATED_VOCAB_MEANINGS = new Map([
+  ["egg tart", [{ meaning: "蛋撻", pos: "noun", type: "phrase" }]],
+  ["look up", [{ meaning: "查閱 / 查字典", type: "phrase" }]],
+  ["lung cancer", [{ meaning: "肺癌", pos: "noun", type: "phrase" }]]
+]);
 
 function normalizeStudentId(value) {
   return String(value || "").trim().toUpperCase();
@@ -54,6 +67,10 @@ function makeAudioId(word) {
   return crypto.createHash("sha256").update(normalizeVocabWord(word)).digest("hex").slice(0, 24);
 }
 
+function makeVocabMeaningId(word) {
+  return crypto.createHash("sha256").update(normalizeVocabWord(word)).digest("hex").slice(0, 24);
+}
+
 function makeStoragePath(word) {
   const text = normalizeVocabWord(word);
   const slug = text
@@ -74,6 +91,149 @@ function escapeXml(value) {
 
 function getAzureEndpoint(region) {
   return `https://${String(region || "").trim()}.tts.speech.microsoft.com/cognitiveservices/v1`;
+}
+
+function inferVocabType(word) {
+  return normalizeVocabWord(word).includes(" ") ? "phrase" : "word";
+}
+
+function normalizeCloudMeaning(value) {
+  return String(value || "")
+    .trim()
+    .replace(/\s+/g, " ")
+    .replace(/，/g, " / ")
+    .replace(/\s*\/\s*/g, " / ");
+}
+
+function cleanCloudTranslation(value, word) {
+  let text = normalizeCloudMeaning(value);
+  const normalizedWord = normalizeVocabWord(word);
+  if (normalizedWord === "look up" && /抬頭/.test(text)) {
+    text = "查閱 / 查字典";
+  }
+  return text;
+}
+
+function normalizeMeaningEntries(word, entries = [], source = "cloud-translation") {
+  const normalizedWord = normalizeVocabWord(word);
+  return entries
+    .map((entry, index) => ({
+      id: `${source}-${makeVocabMeaningId(`${normalizedWord}:${entry.meaning}:${index}`)}`,
+      word: normalizedWord,
+      meaning: normalizeCloudMeaning(entry.meaning),
+      pos: String(entry.pos || "").trim().toLowerCase(),
+      type: entry.type || inferVocabType(normalizedWord),
+      source,
+      sourceEntryId: entry.sourceEntryId || ""
+    }))
+    .filter((entry) => entry.meaning);
+}
+
+async function translateVocabMeaningWithGoogle(word) {
+  const projectId = process.env.GCLOUD_PROJECT || process.env.GOOGLE_CLOUD_PROJECT;
+  if (!projectId) {
+    throw new HttpsError("failed-precondition", "Google Cloud project is not available.");
+  }
+
+  const client = await vocabMeaningAuth.getClient();
+  const token = await client.getAccessToken();
+  const accessToken = typeof token === "string" ? token : token?.token;
+  if (!accessToken) {
+    throw new Error("Unable to get Google Cloud access token.");
+  }
+
+  const parent = `projects/${projectId}/locations/${CLOUD_TRANSLATION_LOCATION}`;
+  const response = await fetch(`https://translation.googleapis.com/v3/${parent}:translateText`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      contents: [word],
+      mimeType: "text/plain",
+      sourceLanguageCode: CLOUD_TRANSLATION_SOURCE,
+      targetLanguageCode: CLOUD_TRANSLATION_TARGET
+    })
+  });
+
+  const body = await response.json().catch(async () => ({ raw: await response.text().catch(() => "") }));
+  if (!response.ok) {
+    const details = body?.error?.message || body?.raw || `HTTP ${response.status}`;
+    throw new Error(`Google Translation failed: ${details}`);
+  }
+
+  const translatedText = body?.translations?.[0]?.translatedText || "";
+  const meaning = cleanCloudTranslation(translatedText, word);
+  return meaning ? [{ meaning, type: inferVocabType(word) }] : [];
+}
+
+async function getOrCreateVocabMeaning(word) {
+  const normalizedWord = normalizeVocabWord(word);
+  const meaningId = makeVocabMeaningId(normalizedWord);
+  const docRef = db.collection("vocabMeaningCache").doc(meaningId);
+  const cachedSnap = await docRef.get();
+
+  if (cachedSnap.exists) {
+    const cached = cachedSnap.data() || {};
+    const entries = normalizeMeaningEntries(normalizedWord, cached.entries || [], cached.source || "shared-cache");
+    if (entries.length) {
+      return {
+        meaningId,
+        word: normalizedWord,
+        entries,
+        cached: true,
+        source: cached.source || "shared-cache"
+      };
+    }
+  }
+
+  const curated = CURATED_VOCAB_MEANINGS.get(normalizedWord);
+  const rawEntries = curated || await translateVocabMeaningWithGoogle(normalizedWord);
+  const source = curated ? "curated-cloud" : "google-translation";
+  const entries = normalizeMeaningEntries(normalizedWord, rawEntries, source);
+
+  if (!entries.length) {
+    await docRef.set({
+      word: normalizedWord,
+      meaningId,
+      source,
+      status: "missing",
+      updatedAt: admin.firestore.FieldValue.serverTimestamp()
+    }, { merge: true });
+    return {
+      meaningId,
+      word: normalizedWord,
+      entries: [],
+      cached: false,
+      source,
+      status: "missing"
+    };
+  }
+
+  await docRef.set({
+    word: normalizedWord,
+    meaningId,
+    source,
+    status: "ready",
+    entries: entries.map((entry) => ({
+      meaning: entry.meaning,
+      pos: entry.pos,
+      type: entry.type,
+      sourceEntryId: entry.sourceEntryId || entry.id
+    })),
+    createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    updatedAt: admin.firestore.FieldValue.serverTimestamp()
+  }, { merge: true });
+
+  return {
+    meaningId,
+    word: normalizedWord,
+    entries,
+    cached: false,
+    source,
+    status: "ready"
+  };
 }
 
 function makeDownloadUrl(bucketName, storagePath, token) {
@@ -216,6 +376,7 @@ async function getOrCreateVocabAudio(word, context) {
 }
 
 exports.ensureVocabAudio = onCall({
+  invoker: "public",
   secrets: [AZURE_SPEECH_KEY, AZURE_SPEECH_REGION]
 }, async (request) => {
   if (!request.auth) {
@@ -235,7 +396,32 @@ exports.ensureVocabAudio = onCall({
   };
 });
 
-exports.studentLogin = onCall(async (request) => {
+exports.lookupVocabMeaning = onCall({
+  invoker: "public"
+}, async (request) => {
+  if (!request.auth) {
+    throw new HttpsError("unauthenticated", "Please log in first.");
+  }
+
+  const word = normalizeVocabWord(request.data?.word);
+  if (!isLikelyWordOrPhrase(word)) {
+    throw new HttpsError("invalid-argument", "Invalid vocabulary word.");
+  }
+
+  const result = await getOrCreateVocabMeaning(word);
+  return {
+    status: result.status || "ready",
+    word,
+    meaningId: result.meaningId,
+    entries: result.entries,
+    source: result.source,
+    cached: result.cached
+  };
+});
+
+exports.studentLogin = onCall({
+  invoker: "public"
+}, async (request) => {
   const studentId = normalizeStudentId(request.data?.studentId);
   const pin = String(request.data?.pin || "").trim();
 

@@ -409,6 +409,19 @@ body.settings-open .menu-settings-btn img {
   display: none;
 }
 
+.vocab-lookup-loading {
+  min-height: 36px;
+  display: grid;
+  place-items: center;
+  color: #8a6a32;
+  font-size: 13px;
+  font-weight: 900;
+  text-align: center;
+  background: #fff7cf;
+  border-radius: 13px;
+  box-shadow: inset 0 0 0 2px rgba(242, 200, 121, 0.45);
+}
+
 .vocab-filter-row {
   display: flex;
   flex-wrap: wrap;

@@ -218,7 +218,8 @@ let vocabEntryLookupState = {
   word: "",
   matches: [],
   filterKey: "",
-  selectedEntryIds: []
+  selectedEntryIds: [],
+  loadingCloud: false
 };
 let studentCloudSyncPromise = null;
 let studentCloudSyncUid = "";
@@ -1596,6 +1597,28 @@ function getOfflineVocabMatches(word, options = {}) {
   });
 }
 
+function getCloudVocabMeaningCallable() {
+  const firebase = getFirebaseBundle();
+  if (!firebase?.functions || !firebase.modules?.httpsCallable || !firebase.auth?.currentUser) return null;
+  return firebase.modules.httpsCallable(firebase.functions, "lookupVocabMeaning");
+}
+
+function normalizeCloudVocabEntries(word, data = {}) {
+  const normalizedWord = normalizeVocabWord(data.word || word);
+  const entries = Array.isArray(data.entries) ? data.entries : [];
+  return entries
+    .map((entry, index) => ({
+      id: entry.id || `cloud-${normalizedWord}-${index}`,
+      word: normalizedWord,
+      meaning: normalizeVocabMeaning(entry.meaning),
+      pos: normalizeVocabPos(entry.pos),
+      type: entry.type || (normalizedWord.includes(" ") ? "phrase" : "word"),
+      source: entry.source || data.source || "cloud-translation",
+      sourceEntryId: entry.sourceEntryId || data.meaningId || ""
+    }))
+    .filter((entry) => entry.word && entry.meaning);
+}
+
 function buildVocabLookupMatches(word) {
   const teacherMatches = getTeacherVocabMatches(word);
   if (teacherMatches.length) {
@@ -1619,12 +1642,25 @@ async function loadOfflineVocabMatches(word) {
   return getOfflineVocabMatches(word);
 }
 
+async function loadCloudVocabMatches(word) {
+  const callable = getCloudVocabMeaningCallable();
+  if (!callable) return [];
+  try {
+    const result = await callable({ word });
+    return normalizeCloudVocabEntries(word, result?.data || {});
+  } catch (error) {
+    console.warn("Cloud vocab lookup failed:", error);
+    return [];
+  }
+}
+
 function clearVocabMeaningSuggestions() {
   vocabEntryLookupState = {
     word: "",
     matches: [],
     filterKey: "",
-    selectedEntryIds: []
+    selectedEntryIds: [],
+    loadingCloud: false
   };
   el.vocabMeaningSuggestions?.replaceChildren();
   el.vocabMeaningSuggestions?.classList.add("hidden");
@@ -1712,6 +1748,7 @@ function getVocabEntryPos(entry = {}) {
 }
 
 function getVocabEntryMetaLabel(entry = {}) {
+  if (String(entry.source || "").includes("cloud") || String(entry.source || "").includes("translation")) return "AI 建議";
   if (entry.type === "pattern") return "pt.";
   if (entry.type === "phrase") return "ph.";
   const pos = getVocabEntryPos(entry);
@@ -1769,7 +1806,15 @@ function renderVocabMeaningSuggestions() {
   const matches = vocabEntryLookupState.matches || [];
   if (!matches.length) {
     el.vocabMeaningSuggestions.replaceChildren();
-    el.vocabMeaningSuggestions.classList.add("hidden");
+    if (vocabEntryLookupState.loadingCloud) {
+      const loading = document.createElement("div");
+      loading.className = "vocab-lookup-loading";
+      loading.textContent = "查緊意思...";
+      el.vocabMeaningSuggestions.replaceChildren(loading);
+      el.vocabMeaningSuggestions.classList.remove("hidden");
+    } else {
+      el.vocabMeaningSuggestions.classList.add("hidden");
+    }
     return;
   }
 
@@ -1828,7 +1873,8 @@ async function refreshVocabTeacherLookup(options = {}) {
     word,
     matches,
     filterKey: "",
-    selectedEntryIds: []
+    selectedEntryIds: [],
+    loadingCloud: false
   };
 
   renderVocabMeaningSuggestions();
@@ -1845,12 +1891,43 @@ async function refreshVocabTeacherLookup(options = {}) {
   }
 
   const loadedMatches = await loadOfflineVocabMatches(word);
-  if (normalizeVocabWord(getTextEntryValue(el.vocabWordInput)) !== word || !loadedMatches.length) return;
+  if (normalizeVocabWord(getTextEntryValue(el.vocabWordInput)) !== word) return;
+  if (loadedMatches.length) {
+    vocabEntryLookupState = {
+      word,
+      matches: loadedMatches,
+      filterKey: "",
+      selectedEntryIds: [],
+      loadingCloud: false
+    };
+    renderVocabMeaningSuggestions();
+    updateVocabEntryState();
+    return;
+  }
+
   vocabEntryLookupState = {
     word,
-    matches: loadedMatches,
+    matches: [],
     filterKey: "",
-    selectedEntryIds: []
+    selectedEntryIds: [],
+    loadingCloud: Boolean(getCloudVocabMeaningCallable())
+  };
+  renderVocabMeaningSuggestions();
+  updateVocabEntryState();
+
+  const cloudMatches = await loadCloudVocabMatches(word);
+  if (normalizeVocabWord(getTextEntryValue(el.vocabWordInput)) !== word || !cloudMatches.length) {
+    vocabEntryLookupState.loadingCloud = false;
+    renderVocabMeaningSuggestions();
+    updateVocabEntryState();
+    return;
+  }
+  vocabEntryLookupState = {
+    word,
+    matches: cloudMatches,
+    filterKey: "",
+    selectedEntryIds: [],
+    loadingCloud: false
   };
   renderVocabMeaningSuggestions();
   updateVocabEntryState();
