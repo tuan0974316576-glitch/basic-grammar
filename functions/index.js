@@ -24,6 +24,8 @@ const AZURE_TRANSLATOR_SOURCE = "en";
 const AZURE_TRANSLATOR_TARGET = "zh-Hant";
 const AZURE_DICTIONARY_TARGET = "zh-Hans";
 const AZURE_DICTIONARY_ENTRY_LIMIT = 8;
+const AZURE_DICTIONARY_EXAMPLE_PAIR_LIMIT = 6;
+const AZURE_DICTIONARY_EXAMPLE_LIMIT = 4;
 
 const CURATED_VOCAB_MEANINGS = new Map([
   ["have", [
@@ -201,7 +203,9 @@ async function postAzureTranslatorJson(path, params, items, credentials) {
       "Ocp-Apim-Subscription-Region": region,
       "Content-Type": "application/json"
     },
-    body: JSON.stringify(items.map((text) => ({ Text: text })))
+    body: JSON.stringify(items.map((item) => (
+      item && typeof item === "object" ? item : { Text: item }
+    )))
   });
 
   const body = await response.json().catch(async () => ({ raw: await response.text().catch(() => "") }));
@@ -210,6 +214,43 @@ async function postAzureTranslatorJson(path, params, items, credentials) {
     throw new Error(`Azure Translator failed: ${details}`);
   }
   return body;
+}
+
+function joinAzureExampleParts(example = {}, side = "source") {
+  const prefix = String(example[`${side}Prefix`] || "");
+  const term = String(example[`${side}Term`] || "");
+  const suffix = String(example[`${side}Suffix`] || "");
+  return `${prefix}${term}${suffix}`.trim().replace(/\s+/g, " ");
+}
+
+function normalizeVocabExample(value) {
+  return String(value || "")
+    .trim()
+    .replace(/\s+/g, " ")
+    .slice(0, 180);
+}
+
+function normalizeExampleEntries(word, examples = [], source = "azure-dictionary-examples") {
+  const normalizedWord = normalizeVocabWord(word);
+  const seen = new Set();
+  return examples
+    .map((example, index) => ({
+      id: `${source}-${makeVocabMeaningId(`${normalizedWord}:${example.source}:${index}`)}`,
+      word: normalizedWord,
+      source: normalizeVocabExample(example.source),
+      target: normalizeVocabExample(example.target),
+      meaning: normalizeCloudMeaning(example.meaning),
+      sourceEntryId: example.sourceEntryId || "",
+      provider: source
+    }))
+    .filter((example) => example.source && example.target)
+    .filter((example) => {
+      const key = `${example.source}|${example.target}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
+    .slice(0, AZURE_DICTIONARY_EXAMPLE_LIMIT);
 }
 
 async function translateTextItemsWithAzure(items, { from, to, translatorKey, translatorRegion }) {
@@ -235,35 +276,10 @@ async function translateVocabMeaningWithAzure(word, { translatorKey, translatorR
   return meaning ? [{ meaning, type: inferVocabType(word) }] : [];
 }
 
-async function lookupAzureDictionaryEntries(word, { translatorKey, translatorRegion }) {
-  const body = await postAzureTranslatorJson("/dictionary/lookup", {
-    from: AZURE_TRANSLATOR_SOURCE,
-    to: AZURE_DICTIONARY_TARGET
-  }, [word], { translatorKey, translatorRegion });
-
-  const rawTranslations = (body || [])
-    .flatMap((item) => Array.isArray(item?.translations) ? item.translations : [])
-    .map((item, index) => ({
-      text: normalizeCloudMeaning(item.displayTarget || item.normalizedTarget || ""),
-      pos: normalizeAzureDictionaryPos(item.posTag, word),
-      confidence: Number(item.confidence || 0),
-      sourceEntryId: `azure-dictionary-${index}`
-    }))
-    .filter((entry) => entry.text)
-    .sort((a, b) => b.confidence - a.confidence);
-
-  const deduped = [];
-  const seen = new Set();
-  for (const entry of rawTranslations) {
-    const key = `${entry.pos}:${entry.text}`;
-    if (seen.has(key)) continue;
-    seen.add(key);
-    deduped.push(entry);
-    if (deduped.length >= AZURE_DICTIONARY_ENTRY_LIMIT) break;
-  }
-
+async function translateDictionaryTargetsToTraditional(entries, { translatorKey, translatorRegion }) {
+  if (!entries.length) return [];
   const traditionalMeanings = await translateTextItemsWithAzure(
-    deduped.map((entry) => entry.text),
+    entries.map((entry) => entry.text),
     {
       from: AZURE_DICTIONARY_TARGET,
       to: AZURE_TRANSLATOR_TARGET,
@@ -272,20 +288,127 @@ async function lookupAzureDictionaryEntries(word, { translatorKey, translatorReg
     }
   ).catch((error) => {
     console.error("Azure Dictionary zh-Hant conversion failed.", {
-      word,
       message: error?.message || String(error)
     });
-    return deduped.map((entry) => entry.text);
+    return entries.map((entry) => entry.text);
   });
 
-  return deduped
-    .map((entry, index) => ({
-      meaning: cleanCloudTranslation(traditionalMeanings[index] || entry.text, word),
+  return entries.map((entry, index) => ({
+    ...entry,
+    meaning: cleanCloudTranslation(traditionalMeanings[index] || entry.text, entry.word || "")
+  }));
+}
+
+function extractAzureDictionaryTranslations(word, body) {
+  return (body || [])
+    .flatMap((item) => Array.isArray(item?.translations) ? item.translations : [])
+    .map((item, index) => ({
+      word,
+      text: normalizeCloudMeaning(item.normalizedTarget || item.displayTarget || ""),
+      displayText: normalizeCloudMeaning(item.displayTarget || item.normalizedTarget || ""),
+      pos: normalizeAzureDictionaryPos(item.posTag, word),
+      confidence: Number(item.confidence || 0),
+      sourceEntryId: `azure-dictionary-${index}`
+    }))
+    .filter((entry) => entry.text)
+    .sort((a, b) => b.confidence - a.confidence);
+}
+
+function dedupeAzureDictionaryTranslations(rawTranslations = [], limit = AZURE_DICTIONARY_ENTRY_LIMIT) {
+  const deduped = [];
+  const seen = new Set();
+  for (const entry of rawTranslations) {
+    const key = `${entry.pos}:${entry.text}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    deduped.push(entry);
+    if (deduped.length >= limit) break;
+  }
+  return deduped;
+}
+
+async function lookupAzureDictionaryEntries(word, { translatorKey, translatorRegion }) {
+  const body = await postAzureTranslatorJson("/dictionary/lookup", {
+    from: AZURE_TRANSLATOR_SOURCE,
+    to: AZURE_DICTIONARY_TARGET
+  }, [word], { translatorKey, translatorRegion });
+
+  const deduped = dedupeAzureDictionaryTranslations(
+    extractAzureDictionaryTranslations(word, body)
+  );
+  const translatedEntries = await translateDictionaryTargetsToTraditional(deduped, {
+    translatorKey,
+    translatorRegion
+  });
+
+  return translatedEntries
+    .map((entry) => ({
+      meaning: entry.meaning,
       pos: entry.pos,
       type: inferVocabType(word),
       sourceEntryId: entry.sourceEntryId
     }))
     .filter((entry) => entry.meaning);
+}
+
+async function lookupAzureDictionaryExamples(word, { translatorKey, translatorRegion }) {
+  const lookupBody = await postAzureTranslatorJson("/dictionary/lookup", {
+    from: AZURE_TRANSLATOR_SOURCE,
+    to: AZURE_DICTIONARY_TARGET
+  }, [word], { translatorKey, translatorRegion });
+  const lookupEntries = dedupeAzureDictionaryTranslations(
+    extractAzureDictionaryTranslations(word, lookupBody),
+    AZURE_DICTIONARY_EXAMPLE_PAIR_LIMIT
+  );
+  if (!lookupEntries.length) return [];
+
+  const body = await postAzureTranslatorJson("/dictionary/examples", {
+    from: AZURE_TRANSLATOR_SOURCE,
+    to: AZURE_DICTIONARY_TARGET
+  }, lookupEntries.map((entry) => ({
+    Text: normalizeVocabWord(word),
+    Translation: entry.text
+  })), { translatorKey, translatorRegion });
+
+  const rawExamples = [];
+  (body || []).forEach((item, itemIndex) => {
+    const lookupEntry = lookupEntries[itemIndex] || {};
+    (Array.isArray(item?.examples) ? item.examples : []).forEach((example) => {
+      rawExamples.push({
+        source: joinAzureExampleParts(example, "source"),
+        target: joinAzureExampleParts(example, "target"),
+        meaning: lookupEntry.displayText || lookupEntry.text || "",
+        sourceEntryId: lookupEntry.sourceEntryId || ""
+      });
+    });
+  });
+
+  const examples = normalizeExampleEntries(word, rawExamples);
+  if (!examples.length) return [];
+
+  const traditionalTargets = await translateTextItemsWithAzure(
+    examples.map((example) => example.target),
+    {
+      from: AZURE_DICTIONARY_TARGET,
+      to: AZURE_TRANSLATOR_TARGET,
+      translatorKey,
+      translatorRegion
+    }
+  ).catch((error) => {
+    console.error("Azure example zh-Hant conversion failed.", {
+      word,
+      message: error?.message || String(error)
+    });
+    return examples.map((example) => example.target);
+  });
+
+  return normalizeExampleEntries(
+    word,
+    examples.map((example, index) => ({
+      ...example,
+      target: traditionalTargets[index] || example.target
+    }))
+  );
 }
 
 async function lookupVocabMeaningsWithAzure(word, credentials) {
@@ -582,6 +705,92 @@ exports.lookupVocabMeaning = onCall({
     word,
     meaningId: result.meaningId,
     entries: result.entries,
+    source: result.source,
+    cached: result.cached
+  };
+});
+
+async function getOrCreateVocabExamples(word) {
+  const normalizedWord = normalizeVocabWord(word);
+  const exampleId = makeVocabMeaningId(normalizedWord);
+  const docRef = db.collection("vocabExampleCache").doc(exampleId);
+  const cachedSnap = await docRef.get();
+  if (cachedSnap.exists) {
+    const cached = cachedSnap.data() || {};
+    const examples = normalizeExampleEntries(normalizedWord, cached.examples || [], cached.source || "shared-cache");
+    if (examples.length || cached.status === "missing") {
+      return {
+        exampleId,
+        word: normalizedWord,
+        examples,
+        cached: true,
+        source: cached.source || "shared-cache",
+        status: cached.status || (examples.length ? "ready" : "missing")
+      };
+    }
+  }
+
+  let examples = [];
+  let status = "ready";
+  const source = "azure-dictionary-examples";
+  try {
+    examples = await lookupAzureDictionaryExamples(normalizedWord, {
+      translatorKey: AZURE_TRANSLATOR_KEY.value(),
+      translatorRegion: AZURE_TRANSLATOR_REGION.value()
+    });
+    status = examples.length ? "ready" : "missing";
+  } catch (error) {
+    console.error("Azure vocab example lookup failed.", {
+      word: normalizedWord,
+      message: error?.message || String(error)
+    });
+    status = "translator-error";
+  }
+
+  await docRef.set({
+    word: normalizedWord,
+    exampleId,
+    source,
+    status,
+    examples: examples.map((example) => ({
+      source: example.source,
+      target: example.target,
+      meaning: example.meaning || "",
+      sourceEntryId: example.sourceEntryId || ""
+    })),
+    createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    updatedAt: admin.firestore.FieldValue.serverTimestamp()
+  }, { merge: true });
+
+  return {
+    exampleId,
+    word: normalizedWord,
+    examples,
+    cached: false,
+    source,
+    status
+  };
+}
+
+exports.lookupVocabExamples = onCall({
+  invoker: "public",
+  secrets: [AZURE_TRANSLATOR_KEY, AZURE_TRANSLATOR_REGION]
+}, async (request) => {
+  if (!request.auth) {
+    throw new HttpsError("unauthenticated", "Please log in first.");
+  }
+
+  const word = normalizeVocabWord(request.data?.word);
+  if (!isLikelyWordOrPhrase(word)) {
+    throw new HttpsError("invalid-argument", "Invalid vocabulary word.");
+  }
+
+  const result = await getOrCreateVocabExamples(word);
+  return {
+    status: result.status || "ready",
+    word,
+    exampleId: result.exampleId,
+    examples: result.examples,
     source: result.source,
     cached: result.cached
   };

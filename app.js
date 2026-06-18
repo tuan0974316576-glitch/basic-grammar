@@ -50,6 +50,7 @@ const VOCAB_ITEMS_KEY = "basic_vocab_items_v1";
 const VOCAB_PROGRESS_KEY = "basic_vocab_progress_v1";
 const VOCAB_SYNC_QUEUE_KEY = "basic_vocab_sync_queue_v1";
 const VOCAB_CACHE_OWNER_KEY = "basic_vocab_cache_owner_v1";
+const VOCAB_EXAMPLES_CACHE_KEY = "basic_vocab_examples_cache_v1";
 const VOCAB_STAGE_KIND_PATTERN = ["reading", "listening", "spelling", "reading", "listening", "spelling", "reading", "listening", "spelling", "reading"];
 const CATEGORY_LABELS = {
   action: "動作動詞",
@@ -229,6 +230,10 @@ let vocabEntryLookupState = {
 let vocabCloudLookupTimer = 0;
 let vocabCloudLookupToken = 0;
 const vocabCloudLookupCache = new Map();
+let expandedVocabItemId = "";
+const vocabExampleCache = getSavedVocabExamplesCache();
+const vocabExampleRequests = new Map();
+const vocabExampleTransientState = new Map();
 let studentCloudSyncPromise = null;
 let studentCloudSyncUid = "";
 let vocabCloudSyncPromise = null;
@@ -666,6 +671,66 @@ function saveVocabSyncQueue() {
     localStorage.setItem(VOCAB_SYNC_QUEUE_KEY, JSON.stringify(state.vocabSyncQueue || {}));
   } catch (_error) {
     // The next meaningful vocab save will try again.
+  }
+}
+
+function normalizeVocabExampleEntry(entry = {}) {
+  const source = String(entry.source || "")
+    .trim()
+    .replace(/\s+/g, " ")
+    .slice(0, 180);
+  const target = String(entry.target || "")
+    .trim()
+    .replace(/\s+/g, " ")
+    .slice(0, 180);
+  if (!source || !target) return null;
+  return {
+    id: String(entry.id || `${source}|${target}`).slice(0, 120),
+    source,
+    target,
+    meaning: normalizeVocabMeaning(entry.meaning || "").slice(0, 80)
+  };
+}
+
+function normalizeVocabExamplesPayload(payload = {}) {
+  const examples = (Array.isArray(payload.examples) ? payload.examples : [])
+    .map(normalizeVocabExampleEntry)
+    .filter(Boolean)
+    .slice(0, 4);
+  return {
+    status: payload.status || (examples.length ? "ready" : "missing"),
+    source: payload.source || "",
+    examples,
+    updatedAt: Number(payload.updatedAt) || Date.now()
+  };
+}
+
+function isReusableVocabExamplesPayload(payload = {}) {
+  return payload.status === "ready" || payload.status === "missing";
+}
+
+function getSavedVocabExamplesCache() {
+  try {
+    const saved = safeJsonParse(localStorage.getItem(VOCAB_EXAMPLES_CACHE_KEY), {});
+    if (!saved || typeof saved !== "object" || Array.isArray(saved)) return {};
+    return Object.fromEntries(
+      Object.entries(saved)
+        .map(([word, payload]) => [
+          normalizeVocabWord(word),
+          normalizeVocabExamplesPayload(payload)
+        ])
+        .filter(([word, payload]) => word && isReusableVocabExamplesPayload(payload))
+    );
+  } catch (_error) {
+    return {};
+  }
+}
+
+function saveVocabExamplesCache() {
+  try {
+    localStorage.setItem(VOCAB_EXAMPLES_CACHE_KEY, JSON.stringify(vocabExampleCache));
+  } catch (_error) {
+    // Examples are a helpful cache only; the list still works without storage.
   }
 }
 
@@ -1858,6 +1923,12 @@ function getCloudVocabMeaningCallable() {
   return firebase.modules.httpsCallable(firebase.functions, "lookupVocabMeaning");
 }
 
+function getCloudVocabExamplesCallable() {
+  const firebase = getFirebaseBundle();
+  if (!firebase?.functions || !firebase.modules?.httpsCallable || !firebase.auth?.currentUser) return null;
+  return firebase.modules.httpsCallable(firebase.functions, "lookupVocabExamples");
+}
+
 function countVocabLetters(word) {
   return (String(word || "").match(/[a-z]/gi) || []).length;
 }
@@ -2262,6 +2333,113 @@ function createVocabDateDivider(timestamp) {
   return divider;
 }
 
+function getVocabExamplesForItem(item = {}) {
+  const word = normalizeVocabWord(item.word);
+  if (!word) return null;
+  return vocabExampleCache[word] || vocabExampleTransientState.get(word) || null;
+}
+
+async function loadVocabExamplesForItem(item = {}) {
+  const word = normalizeVocabWord(item.word);
+  if (!word) return null;
+  if (isReusableVocabExamplesPayload(vocabExampleCache[word])) return vocabExampleCache[word];
+  if (vocabExampleTransientState.has(word)) return vocabExampleTransientState.get(word);
+  if (vocabExampleRequests.has(word)) return vocabExampleRequests.get(word);
+
+  const callable = getCloudVocabExamplesCallable();
+  if (!callable) {
+    const payload = normalizeVocabExamplesPayload({
+      status: "login-required",
+      examples: []
+    });
+    vocabExampleTransientState.set(word, payload);
+    return payload;
+  }
+
+  const request = callable({ word })
+    .then((result) => {
+      const payload = normalizeVocabExamplesPayload(result?.data || {});
+      if (isReusableVocabExamplesPayload(payload)) {
+        vocabExampleCache[word] = payload;
+        saveVocabExamplesCache();
+      }
+      vocabExampleTransientState.set(word, payload);
+      return payload;
+    })
+    .catch((error) => {
+      console.warn("Cloud vocab examples failed:", error);
+      const payload = normalizeVocabExamplesPayload({
+        status: "error",
+        examples: []
+      });
+      vocabExampleTransientState.set(word, payload);
+      return payload;
+    })
+    .finally(() => {
+      vocabExampleRequests.delete(word);
+    });
+
+  vocabExampleRequests.set(word, request);
+  return request;
+}
+
+function renderExpandedVocabExamples(item = {}) {
+  const panel = document.createElement("div");
+  panel.className = "vocab-examples-panel";
+  panel.addEventListener("click", (event) => event.stopPropagation());
+
+  const payload = getVocabExamplesForItem(item);
+  const isLoading = vocabExampleRequests.has(normalizeVocabWord(item.word));
+  if (!payload && isLoading) {
+    panel.textContent = "例句載入中...";
+    return panel;
+  }
+
+  if (!payload) {
+    panel.textContent = "例句載入中...";
+    return panel;
+  }
+
+  if (!payload.examples.length) {
+    panel.textContent = payload.status === "login-required"
+      ? "登入後可以載入字典例句。"
+      : "字典暫時未有合適例句。";
+    return panel;
+  }
+
+  payload.examples.forEach((example) => {
+    const card = document.createElement("div");
+    card.className = "vocab-example-card";
+
+    const english = document.createElement("div");
+    english.className = "vocab-example-en";
+    english.textContent = example.source;
+
+    const chinese = document.createElement("div");
+    chinese.className = "vocab-example-zh";
+    chinese.textContent = example.target;
+
+    card.append(english, chinese);
+    panel.append(card);
+  });
+
+  return panel;
+}
+
+function toggleVocabExamples(item = {}) {
+  const nextId = expandedVocabItemId === item.id ? "" : item.id;
+  expandedVocabItemId = nextId;
+  renderVocabList();
+  playUiSound("click");
+
+  if (!nextId || getVocabExamplesForItem(item)) return;
+  void loadVocabExamplesForItem(item).then(() => {
+    if (expandedVocabItemId === item.id) {
+      renderVocabList();
+    }
+  });
+}
+
 function createVocabListItems(words = []) {
   const sortedWords = [...words].sort((left, right) => {
     const diff = getVocabItemCreatedTime(right) - getVocabItemCreatedTime(left);
@@ -2286,7 +2464,11 @@ function createVocabListItems(words = []) {
 function createVocabListRow(item) {
   const row = document.createElement("div");
   row.className = "vocab-row";
+  if (expandedVocabItemId === item.id) row.classList.add("expanded");
   row.dataset.vocabId = item.id;
+
+  const main = document.createElement("div");
+  main.className = "vocab-row-main";
 
   const text = document.createElement("div");
   text.className = "vocab-row-text";
@@ -2305,6 +2487,17 @@ function createVocabListRow(item) {
   stats.className = "vocab-row-stats";
   stats.textContent = `${progress.totalCorrect}/${progress.totalSeen}`;
 
+  const expandBtn = document.createElement("button");
+  expandBtn.className = "vocab-row-btn vocab-example-toggle";
+  expandBtn.type = "button";
+  expandBtn.setAttribute("aria-label", `${expandedVocabItemId === item.id ? "收起" : "打開"} ${item.word} 例句`);
+  expandBtn.setAttribute("aria-expanded", expandedVocabItemId === item.id ? "true" : "false");
+  expandBtn.textContent = "⌄";
+  expandBtn.addEventListener("click", (event) => {
+    event.stopPropagation();
+    toggleVocabExamples(item);
+  });
+
   const deleteBtn = document.createElement("button");
   deleteBtn.className = "vocab-row-btn danger";
   deleteBtn.type = "button";
@@ -2316,7 +2509,11 @@ function createVocabListRow(item) {
   });
 
   row.addEventListener("click", () => speakVocabWord(item.word));
-  row.append(text, stats, deleteBtn);
+  main.append(text, stats, expandBtn, deleteBtn);
+  row.append(main);
+  if (expandedVocabItemId === item.id) {
+    row.append(renderExpandedVocabExamples(item));
+  }
   return row;
 }
 
