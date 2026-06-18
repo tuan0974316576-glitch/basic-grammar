@@ -28,4 +28,15 @@ const presentVerb = dictionary.lookup("present", { pos: "verb" });
 assert.strictEqual(presentVerb.length, 1);
 assert.strictEqual(presentVerb[0].meaning, "展示");
 
+const have = dictionary.lookup("have");
+assert.strictEqual(have[0].pos, "verb");
+assert.strictEqual(have[0].meaning, "有");
+
+dictionary.seed([
+  { id: "ecdict-guts-noun", word: "guts", pos: "noun", meaning: "飛碟遊戲（比賽雙方每組5人" }
+]);
+const guts = dictionary.lookup("guts");
+assert.strictEqual(guts.length, 1);
+assert.strictEqual(guts[0].meaning, "膽量");
+
 console.log("fallback_dictionary tests passed");

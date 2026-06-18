@@ -12,6 +12,15 @@
   const LOADING_SHARDS = new Map();
   let loaded = false;
 
+  const CURATED_ENTRIES = [
+    { id: "curated-have-verb", word: "have", pos: "verb", meaning: "有", rank: 8 },
+    { id: "curated-guts-noun", word: "guts", pos: "noun", meaning: "膽量", rank: 8700 }
+  ];
+
+  const BLOCKED_MEANING_PATTERNS = [
+    /飛碟遊戲/
+  ];
+
   function normalizeWord(value) {
     return String(value || "")
       .trim()
@@ -36,21 +45,48 @@
 
   function seed(entries = []) {
     entries.forEach((entry) => {
+      if (shouldBlockEntry(entry)) return;
       const key = makeCacheKey(entry.word, entry.pos);
       const current = CACHE.get(key) || [];
-      current.push({
+      const normalizedEntry = {
         id: String(entry.id || key),
         word: normalizeWord(entry.word),
         meaning: normalizeMeaning(entry.meaning),
         pos: normalizePos(entry.pos),
         type: entry.type || "word",
-        source: "offline-dictionary",
+        source: entry.source || "offline-dictionary",
         sourceEntryId: String(entry.sourceEntryId || entry.id || key),
-        sourceCount: Number(entry.sourceCount) || 1
-      });
+        sourceCount: Number(entry.sourceCount) || 1,
+        rank: Number(entry.rank) || 999999
+      };
+      const duplicateIndex = current.findIndex((item) => (
+        item.word === normalizedEntry.word
+        && item.pos === normalizedEntry.pos
+        && item.meaning === normalizedEntry.meaning
+      ));
+      if (duplicateIndex >= 0) {
+        if ((current[duplicateIndex].rank || 999999) > normalizedEntry.rank) {
+          current[duplicateIndex] = normalizedEntry;
+        }
+      } else {
+        current.push(normalizedEntry);
+      }
+      current.sort(compareEntries);
       CACHE.set(key, current);
     });
     loaded = true;
+  }
+
+  function shouldBlockEntry(entry = {}) {
+    const meaning = normalizeMeaning(entry.meaning);
+    return BLOCKED_MEANING_PATTERNS.some((pattern) => pattern.test(meaning));
+  }
+
+  function compareEntries(left = {}, right = {}) {
+    const leftRank = Number(left.rank) || 999999;
+    const rightRank = Number(right.rank) || 999999;
+    return leftRank - rightRank
+      || String(left.meaning || "").localeCompare(String(right.meaning || ""));
   }
 
   function shardName(word) {
@@ -122,6 +158,13 @@
   function isLoaded() {
     return loaded;
   }
+
+  seed(CURATED_ENTRIES.map((entry) => ({
+    ...entry,
+    source: "curated-dictionary",
+    sourceEntryId: entry.id
+  })));
+  loaded = false;
 
   return {
     isLoaded,

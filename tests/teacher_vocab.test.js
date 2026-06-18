@@ -32,6 +32,14 @@ global.TEACHER_VOCAB_BANK = {
       meaning: "打算",
       type: "phrase",
       sourceCount: 3
+    },
+    {
+      id: "have-any-entry-0457",
+      word: "have",
+      meaning: "只好",
+      type: "word",
+      needsReview: true,
+      sourceCount: 80
     }
   ]
 };
@@ -42,6 +50,8 @@ const teacherVocab = require("../teacher_vocab.js");
 assert.strictEqual(teacherVocab.normalizePos("(n)"), "noun");
 assert.strictEqual(teacherVocab.normalizeType("", "be+pp"), "pattern");
 assert.strictEqual(teacherVocab.formatPosLabel("adjective"), "adj.");
+assert.strictEqual(teacherVocab.formatPosLabel("phrase"), "ph.");
+assert.strictEqual(teacherVocab.formatPosLabel("pattern"), "pt.");
 
 const secureMatches = teacherVocab.lookup(" secure ");
 assert.strictEqual(secureMatches.length, 2);
@@ -56,6 +66,9 @@ assert.strictEqual(teacherVocab.chooseAutoFillEntry(patternMatches).meaning, "�
 const phraseMatches = teacherVocab.lookup("intend to");
 assert.strictEqual(phraseMatches.length, 1);
 assert.strictEqual(phraseMatches[0].type, "phrase");
+
+assert.strictEqual(teacherVocab.lookup("have").length, 0);
+assert.strictEqual(teacherVocab.lookup("have", { includeNeedsReview: true }).length, 1);
 
 delete global.TEACHER_VOCAB_BANK;
 

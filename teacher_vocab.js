@@ -20,8 +20,8 @@
     conjunction: "conj.",
     pronoun: "pron.",
     determiner: "det.",
-    phrase: "phrase",
-    pattern: "pattern"
+    phrase: "ph.",
+    pattern: "pt."
   };
 
   const POS_ALIASES = {
@@ -123,20 +123,25 @@
     });
   });
 
+  function filterLookupItems(items = [], options = {}) {
+    if (options.includeNeedsReview) return items;
+    return items.filter((entry) => !entry.needsReview);
+  }
+
   function lookup(query, options = {}) {
     const key = normalizeWord(query);
     const limit = Number(options.limit) || 8;
     if (!key) return [];
 
-    const exactMatches = byWord.get(key) || [];
-    if (exactMatches.length || options.exactOnly !== false) {
+    const exactMatches = filterLookupItems(byWord.get(key) || [], options);
+    if ((byWord.has(key) && exactMatches.length) || options.exactOnly !== false) {
       return exactMatches.slice(0, limit);
     }
 
     const fuzzyMatches = [];
     byWord.forEach((items, wordKey) => {
       if (wordKey.startsWith(key)) {
-        fuzzyMatches.push(...items);
+        fuzzyMatches.push(...filterLookupItems(items, options));
       }
     });
     return fuzzyMatches.slice(0, limit);
@@ -154,7 +159,7 @@
   }
 
   function getEntryLabel(entry = {}) {
-    const posLabel = formatPosLabel(entry.pos);
+    const posLabel = formatPosLabel(entry.pos) || formatPosLabel(entry.type);
     const prefix = posLabel ? `${posLabel} ` : "";
     return `${prefix}${normalizeMeaning(entry.meaning)}`;
   }

@@ -15,3 +15,4 @@ functions/students.json
 functions/students.*.json
 !functions/students.sample.json
 functions/service-account*.json
+private_exports/
