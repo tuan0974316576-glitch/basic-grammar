@@ -213,7 +213,6 @@ const VOCAB_CLOUD_LOOKUP_MIN_LETTERS = 2;
 let audioContext = null;
 let celebrationAnimation = null;
 let celebrationHideTimer = 0;
-let streakFireAnimation = null;
 let verbTableReferenceRendered = false;
 let activeVerbTableReferenceAudio = null;
 let activeVerbTableReferenceAudioToken = 0;
@@ -319,9 +318,6 @@ const el = {
   verbTableReferenceKeyboard: document.querySelector("#verb-table-reference-keyboard"),
   verbTableReferenceCount: document.querySelector("#verb-table-reference-count"),
   verbTableReferenceBody: document.querySelector("#verb-table-reference-body"),
-  menuStreakBadge: document.querySelector("#menu-streak-badge"),
-  menuStreakAnimation: document.querySelector("#menu-streak-animation"),
-  menuStreakCount: document.querySelector("#menu-streak-count"),
   menuCoachLine: document.querySelector("#menu-coach-line"),
   vocabWordCount: document.querySelector("#vocab-word-count"),
   vocabReviewCount: document.querySelector("#vocab-review-count"),
@@ -1719,33 +1715,6 @@ function getMenuCoachMessage(progressByLesson) {
   return "今日由一小步開始，英文會一日一日變強。";
 }
 
-function renderStreakBadge() {
-  if (!el.menuStreakBadge) return;
-
-  const streakDays = Math.max(1, Number(state.studyStreak?.days) || 1);
-  if (el.menuStreakCount) {
-    el.menuStreakCount.textContent = String(streakDays);
-  }
-  el.menuStreakBadge.setAttribute("aria-label", `連續學習 ${streakDays} 日`);
-
-  if (streakFireAnimation || !el.menuStreakAnimation || !window.lottie || !window.STREAK_FIRE_LOTTIE_DATA) {
-    return;
-  }
-
-  el.menuStreakAnimation.replaceChildren();
-  streakFireAnimation = window.lottie.loadAnimation({
-    container: el.menuStreakAnimation,
-    renderer: "svg",
-    loop: true,
-    autoplay: true,
-    animationData: JSON.parse(JSON.stringify(window.STREAK_FIRE_LOTTIE_DATA)),
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid meet"
-    }
-  });
-  streakFireAnimation.setSpeed(0.92);
-}
-
 function updateMenuProgress() {
   const lesson1Progress = getProgress(LESSON1_ID);
   const lesson2Progress = getProgress(LESSON2_ID);
@@ -1764,7 +1733,6 @@ function updateMenuProgress() {
   el.menuProgressCountableNouns.textContent = `${countableProgress}/${getLessonTotal(COUNTABLE_NOUN_ID)}`;
   el.menuProgressVerbTable.textContent = `${verbTableProgress}/${getLessonTotal(VERB_TABLE_ID)}`;
 
-  renderStreakBadge();
   el.menuCoachLine.textContent = getMenuCoachMessage({
     [LESSON1_ID]: lesson1Progress,
     [LESSON2_ID]: lesson2Progress,

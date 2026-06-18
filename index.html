@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Basic Grammar Game</title>
-  <link rel="stylesheet" href="style.css?v=20260618-streak-fire">
+  <link rel="stylesheet" href="style.css?v=20260618-vocab-training-ui">
 </head>
 <body>
   <main id="app-shell" class="app-shell">
@@ -18,15 +18,7 @@
       <div class="menu-layout">
         <div class="menu-control-panel">
           <div class="coach-card" aria-label="Grammar coach">
-            <div id="menu-streak-badge" class="streak-badge" aria-label="連續學習日數">
-              <div id="menu-streak-animation" class="streak-animation" aria-hidden="true">
-                <span class="streak-fallback">火</span>
-              </div>
-              <div class="streak-count">
-                <strong id="menu-streak-count">1</strong>
-                <span>日</span>
-              </div>
-            </div>
+            <img src="assets/grammar-coach.svg" alt="">
             <div>
               <span>Coach</span>
               <strong id="menu-coach-line">今日由句子分析開始。</strong>
@@ -546,7 +538,6 @@
   <script type="module" src="firebase-init.js?v=20260618-login-restore"></script>
   <script src="assets/lottie.min.js?v=20260609-lottie"></script>
   <script src="assets/confetti-animation.js?v=20260609-lottie"></script>
-  <script src="assets/streak-fire-animation.js?v=20260618-streak-fire"></script>
   <script src="grammar_verb_table_data.js?v=20260613-verb-table-reference"></script>
   <script src="grammar_verb_table_audio_manifest.js?v=20260613-verb-table-reference"></script>
   <script src="grammar_verb_table_image_manifest.js?v=20260613-verb-table-images-lite"></script>
@@ -558,6 +549,6 @@
   <script src="vocab_data.js?v=20260618-multi-meaning"></script>
   <script src="vocab_word_audio_manifest.js?v=20260617-vocab-audio"></script>
   <script src="vocab_audio.js?v=20260617-vocab-audio"></script>
-  <script src="app.js?v=20260618-streak-fire"></script>
+  <script src="app.js?v=20260618-vocab-training-ui"></script>
 </body>
 </html>
