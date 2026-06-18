@@ -2354,7 +2354,7 @@ function speakVocabWord(word) {
 
   playUiSound("step");
   if (VOCAB_AUDIO) {
-    VOCAB_AUDIO.play(text).catch((error) => {
+    VOCAB_AUDIO.play(text, { forceEnsure: true }).catch((error) => {
       console.warn("Vocab audio playback failed:", error);
     });
   }

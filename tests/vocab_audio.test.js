@@ -1,6 +1,61 @@
 const assert = require("assert");
 
+function installFakeIndexedDb() {
+  const stores = new Map();
+
+  global.indexedDB = {
+    open: () => {
+      const request = {
+        result: null,
+        onblocked: null,
+        onerror: null,
+        onsuccess: null,
+        onupgradeneeded: null
+      };
+
+      setTimeout(() => {
+        const db = {
+          objectStoreNames: {
+            contains: (storeName) => stores.has(storeName)
+          },
+          createObjectStore: (storeName) => {
+            if (!stores.has(storeName)) stores.set(storeName, new Map());
+          },
+          transaction: (storeName) => ({
+            objectStore: () => ({
+              get: (key) => {
+                const storeRequest = { result: null, onerror: null, onsuccess: null };
+                setTimeout(() => {
+                  storeRequest.result = stores.get(storeName)?.get(key) || null;
+                  storeRequest.onsuccess?.();
+                }, 0);
+                return storeRequest;
+              },
+              put: (value) => {
+                const storeRequest = { onerror: null, onsuccess: null };
+                setTimeout(() => {
+                  stores.get(storeName)?.set(value.word, value);
+                  storeRequest.onsuccess?.();
+                }, 0);
+                return storeRequest;
+              }
+            })
+          })
+        };
+
+        request.result = db;
+        request.onupgradeneeded?.();
+        request.onsuccess?.();
+      }, 0);
+
+      return request;
+    }
+  };
+}
+
 async function main() {
+  const originalFetch = global.fetch;
+
   global.VOCAB_WORD_AUDIO_MANIFEST = {
     "en-US|en-US-AndrewMultilingualNeural::en-US|affluent": "audio/vocab_words/v1/affluent-e9a686a3d67e6576.mp3",
     "en-US|en-US-AndrewMultilingualNeural::en-US|take for granted": "audio/vocab_words/v1/take-for-granted-test.mp3"
@@ -24,6 +79,7 @@ async function main() {
   assert.strictEqual(vocabAudio._private.isLikelyEnglishWordOrPhrase(""), false);
 
   let requestedWord = "";
+  installFakeIndexedDb();
   global.VOCAB_WORD_AUDIO_MANIFEST = {};
   global.grammarFirebase = {
     auth: { currentUser: { uid: "student_test" } },
@@ -56,6 +112,22 @@ async function main() {
   assert.strictEqual(result.status, "ready");
   assert.strictEqual(result.source, "firebase-shared");
 
+  global.fetch = async () => ({
+    ok: false,
+    headers: { get: () => "" }
+  });
+  requestedWord = "";
+  await sharedVocabAudio._private.markMiss("Striker", "network-error");
+  const skippedResult = await sharedVocabAudio._private.ensureAudio("Striker");
+  assert.strictEqual(skippedResult.status, "missing");
+  assert.strictEqual(skippedResult.source, "cached-miss");
+
+  const retryResult = await sharedVocabAudio._private.ensureAudio("Striker", { force: true });
+  assert.strictEqual(requestedWord, "striker");
+  assert.strictEqual(retryResult.status, "missing");
+  assert.notStrictEqual(retryResult.source, "cached-miss");
+
+  global.fetch = originalFetch;
   delete global.VOCAB_WORD_AUDIO_MANIFEST;
   delete global.grammarFirebase;
   console.log("vocab_audio tests passed");

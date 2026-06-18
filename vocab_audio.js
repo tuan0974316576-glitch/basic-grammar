@@ -186,7 +186,7 @@
 
     let cached = await getCachedRecord(key);
     if (!cached?.blob && options.ensure !== false) {
-      const result = await ensureAudio(key);
+      const result = await ensureAudio(key, { force: options.forceEnsure === true });
       if (result?.status === "ready") {
         cached = await getCachedRecord(key);
       }
@@ -298,7 +298,7 @@
     return true;
   }
 
-  async function ensureAudio(word) {
+  async function ensureAudio(word, options = {}) {
     const key = getCacheKey(word);
     if (!key || hasStaticAudio(key)) return { status: "ready", source: "bundle" };
     if (!isLikelyEnglishWordOrPhrase(key)) return { status: "skipped", source: "invalid" };
@@ -307,7 +307,7 @@
     const task = (async () => {
       if (await hasCachedAudio(key)) return { status: "ready", source: "cache" };
 
-      const meta = await getMeta(key);
+      const meta = options.force ? null : await getMeta(key);
       if (meta?.status === "missing" && Date.now() - Number(meta.updatedAt || 0) < CACHE_MISS_TTL_MS) {
         return { status: "missing", source: "cached-miss", reason: meta.reason || "cached-miss" };
       }
@@ -335,8 +335,11 @@
           source: audio.source || "firebase-shared",
           audioId: audio.audioId || ""
         };
-      } catch (_error) {
-        await markMiss(key, "network-error");
+      } catch (error) {
+        console.warn("Shared vocab audio request failed:", error);
+        if (!options.force) {
+          await markMiss(key, "network-error");
+        }
         return { status: "missing", source: "firebase-shared", reason: "network-error" };
       }
     })().finally(() => {
@@ -384,8 +387,10 @@
     stop,
     _private: {
       buildStaticAudioIndex,
+      ensureAudio,
       fetchSharedAudioBlob,
       isLikelyEnglishWordOrPhrase,
+      markMiss,
       requestSharedAudio
     }
   };

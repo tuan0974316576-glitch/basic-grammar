@@ -82,12 +82,14 @@ Current setup uses the dedicated Grammar Game Firebase project (`enguistics-gram
 
 Do not move real student records back into the shared Battleship-1 project.
 
-Pending Azure Speech setup:
+Azure Speech / shared vocab audio:
 
 - Azure Speech resource: `battleship-speech-hk`
 - Speech region: `eastasia`
-- On June 17, 2026 the Azure subscription was re-enabled after payment, but the resource still showed `ReadOnlyDisabledSubscription`.
-- Next step: after Azure finishes reactivating the subscription, open Azure `Keys and endpoint`, copy Key 1, then set Firebase secrets `AZURE_SPEECH_KEY` and `AZURE_SPEECH_REGION` before deploying `ensureVocabAudio`.
+- Firebase secrets `AZURE_SPEECH_KEY` and `AZURE_SPEECH_REGION` are set.
+- Function `ensureVocabAudio` is deployed in `asia-east2`.
+- Default Firebase Storage bucket `enguistics-grammar-game.firebasestorage.app` is created in `ASIA-EAST2`.
+- New vocab audio flow: if the word is not in the bundled Battleship-1 audio manifest, the logged-in app calls `ensureVocabAudio`; the function generates Azure TTS MP3 once, saves it under `vocab-audio/v1/`, and later students reuse the shared Firebase audio file.
 
 Recommended direction:
 
