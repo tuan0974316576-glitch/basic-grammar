@@ -43,6 +43,7 @@ const PRACTICE_COUNT_KEY = "basic_grammar_practice_count_v1";
 const BEST_STREAK_KEY = "basic_grammar_best_streak_v1";
 const STUDENT_PROFILE_KEY = "basic_grammar_student_profile_v1";
 const STUDENT_PROGRESS_SYNC_KEY = "basic_grammar_progress_sync_queue_v1";
+const STUDENT_LOGIN_GRACE_MS = 3500;
 const VOCAB_ITEMS_KEY = "basic_vocab_items_v1";
 const VOCAB_PROGRESS_KEY = "basic_vocab_progress_v1";
 const VOCAB_SYNC_QUEUE_KEY = "basic_vocab_sync_queue_v1";
@@ -230,6 +231,7 @@ let studentCloudSyncUid = "";
 let vocabCloudSyncPromise = null;
 let vocabCloudSyncUid = "";
 let vocabQuizState = null;
+let studentLoginGraceTimer = 0;
 let studentAuthState = {
   resolved: false,
   available: false,
@@ -895,6 +897,17 @@ function tryRestoreStudentProfile() {
   }
 
   studentAuthState.profile = saved;
+  studentAuthState.restoringSavedProfile = true;
+  if (studentLoginGraceTimer) clearTimeout(studentLoginGraceTimer);
+  studentLoginGraceTimer = setTimeout(() => {
+    studentLoginGraceTimer = 0;
+    if (studentAuthState.authenticated || !studentAuthState.profile) return;
+    applyStudentAuthState({
+      resolved: true,
+      restoringSavedProfile: false,
+      forceLoginGate: true
+    });
+  }, STUDENT_LOGIN_GRACE_MS);
   syncAccountWidget();
   setStudentLoginStatus();
   syncStudentLoginGate();
@@ -950,7 +963,12 @@ function syncModalOpenClass() {
 function syncStudentLoginGate() {
   if (!el.studentLoginModal) return;
 
-  const shouldShow = !studentAuthState.authenticated;
+  const waitingForSavedProfile = Boolean(
+    studentAuthState.profile
+      && !studentAuthState.authenticated
+      && (!studentAuthState.resolved || studentAuthState.restoringSavedProfile)
+  );
+  const shouldShow = !studentAuthState.authenticated && !waitingForSavedProfile;
   studentAuthState.loginGateVisible = shouldShow;
   el.studentLoginModal.classList.toggle("hidden", !shouldShow);
   el.studentLoginModal.classList.toggle("login-gate", shouldShow);
@@ -1015,11 +1033,20 @@ function closeSettings() {
 }
 
 function applyStudentAuthState(patch = {}) {
+  if (studentLoginGraceTimer && (patch.authenticated || patch.forceLoginGate)) {
+    clearTimeout(studentLoginGraceTimer);
+    studentLoginGraceTimer = 0;
+  }
+
   studentAuthState = {
     ...studentAuthState,
     ...patch,
     profile: patch.profile || studentAuthState.profile
   };
+
+  if (patch.authenticated) {
+    studentAuthState.restoringSavedProfile = false;
+  }
 
   if (patch.user && studentAuthState.profile?.uid && patch.user.uid !== studentAuthState.profile.uid) {
     studentAuthState.profile = {
@@ -1135,8 +1162,13 @@ async function logoutStudent() {
     ...studentAuthState,
     authenticated: false,
     user: null,
-    profile: null
+    profile: null,
+    restoringSavedProfile: false
   };
+  if (studentLoginGraceTimer) {
+    clearTimeout(studentLoginGraceTimer);
+    studentLoginGraceTimer = 0;
+  }
   saveStudentProfile(null);
   syncAccountWidget();
   setStudentLoginStatus("已登出。");

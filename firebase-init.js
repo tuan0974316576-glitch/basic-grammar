@@ -10,6 +10,14 @@ function applyStudentAuthState(patch) {
   };
 }
 
+function hasSavedStudentProfile() {
+  try {
+    return Boolean(window.localStorage?.getItem("basic_grammar_student_profile_v1"));
+  } catch (_error) {
+    return false;
+  }
+}
+
 async function initializeGrammarFirebase() {
   const config = window.GRAMMAR_FIREBASE_CONFIG;
 
@@ -63,11 +71,13 @@ async function initializeGrammarFirebase() {
 
     firebaseAuth.onAuthStateChanged(auth, (user) => {
       if (!user) {
+        const hasSavedProfile = hasSavedStudentProfile();
         applyStudentAuthState({
-          resolved: true,
+          resolved: !hasSavedProfile,
           available: true,
           authenticated: false,
-          user: null
+          user: null,
+          restoringSavedProfile: hasSavedProfile
         });
         return;
       }
