@@ -328,10 +328,9 @@ const el = {
   vocabQuizKicker: document.querySelector("#vocab-quiz-kicker"),
   vocabQuizTitle: document.querySelector("#vocab-quiz-title"),
   vocabSoundBtn: document.querySelector("#vocab-sound-btn"),
+  vocabProgressFill: document.querySelector("#vocab-progress-fill"),
   vocabQuestionNumber: document.querySelector("#vocab-question-number"),
   vocabQuestionTotal: document.querySelector("#vocab-question-total"),
-  vocabScore: document.querySelector("#vocab-score"),
-  vocabTotal: document.querySelector("#vocab-total"),
   vocabModeLabel: document.querySelector("#vocab-mode-label"),
   vocabStepLabel: document.querySelector("#vocab-step-label"),
   vocabPrompt: document.querySelector("#vocab-prompt"),
@@ -339,7 +338,6 @@ const el = {
   vocabChoiceGrid: document.querySelector("#vocab-choice-grid"),
   vocabSpellingPanel: document.querySelector("#vocab-spelling-panel"),
   vocabAnswerInput: document.querySelector("#vocab-answer-input"),
-  vocabSubmitAnswer: document.querySelector("#vocab-submit-answer"),
   vocabAnswerKeyboard: document.querySelector("#vocab-answer-keyboard"),
   vocabFeedback: document.querySelector("#vocab-feedback"),
   vocabNextBtn: document.querySelector("#vocab-next-btn"),
@@ -2381,6 +2379,18 @@ function currentVocabQuestion() {
   return vocabQuizState?.questions?.[vocabQuizState.index] || null;
 }
 
+function updateVocabQuizProgress(completed = false) {
+  const total = vocabQuizState?.questions?.length || 0;
+  const index = Math.min(vocabQuizState?.index || 0, Math.max(0, total - 1));
+  const current = completed ? total : index + 1;
+  const answeredCount = completed ? total : Math.min(index, total);
+  const progressPercent = total ? Math.round((answeredCount / total) * 100) : 0;
+
+  if (el.vocabQuestionNumber) el.vocabQuestionNumber.textContent = String(current || 0);
+  if (el.vocabQuestionTotal) el.vocabQuestionTotal.textContent = String(total);
+  if (el.vocabProgressFill) el.vocabProgressFill.style.width = `${progressPercent}%`;
+}
+
 function renderVocabQuestion() {
   const question = currentVocabQuestion();
   if (!question) {
@@ -2388,13 +2398,10 @@ function renderVocabQuestion() {
     return;
   }
 
-  const { mode, questions, index, score } = vocabQuizState;
+  const { mode } = vocabQuizState;
   el.vocabQuizKicker.textContent = "Vocabulary";
   el.vocabQuizTitle.textContent = getVocabModeTitle(mode);
-  el.vocabQuestionNumber.textContent = String(index + 1);
-  el.vocabQuestionTotal.textContent = String(questions.length);
-  el.vocabScore.textContent = String(score);
-  el.vocabTotal.textContent = String(questions.length);
+  updateVocabQuizProgress(false);
   el.vocabModeLabel.textContent = getVocabModeLabel(question.kind);
   el.vocabFeedback.textContent = "";
   el.vocabFeedback.className = "feedback";
@@ -2411,8 +2418,7 @@ function renderVocabQuestion() {
     el.vocabPrompt.textContent = question.correctMeaning || getVocabMeaningText(question.item);
     el.vocabGuidance.textContent = "打出英文生字";
     setTextEntryValue(el.vocabAnswerInput, "");
-    el.vocabSubmitAnswer.disabled = true;
-    el.vocabSubmitAnswer.classList.remove("is-wrong", "is-correct");
+    el.vocabAnswerInput.classList.remove("is-wrong", "is-correct");
     activateTextEntryTarget("vocabAnswer", { showKeyboard: !isComputerKeyboardMode() });
   } else {
     deactivateTextEntryTarget("vocabAnswer");
@@ -2469,7 +2475,6 @@ function answerVocabChoice(choice, button) {
   updateVocabProgress(question.item.id, correct);
   if (correct) {
     vocabQuizState.score += 1;
-    el.vocabScore.textContent = String(vocabQuizState.score);
     setVocabFeedback(`正確，${question.item.word} 是「${correctMeaning}」。`, "success");
     playUiSound("correct");
     launchCelebration("small");
@@ -2481,9 +2486,8 @@ function answerVocabChoice(choice, button) {
 }
 
 function updateVocabSpellingState() {
-  if (!el.vocabSubmitAnswer) return;
-  el.vocabSubmitAnswer.disabled = !normalizeVocabWord(getTextEntryValue(el.vocabAnswerInput)) || Boolean(vocabQuizState?.locked);
-  el.vocabSubmitAnswer.classList.remove("is-wrong", "is-correct");
+  if (!el.vocabAnswerInput) return;
+  el.vocabAnswerInput.classList.remove("is-wrong", "is-correct");
   if (vocabQuizState?.locked) return;
   setVocabFeedback();
 }
@@ -2501,11 +2505,10 @@ function submitVocabSpelling() {
   const correct = answer === normalizeVocabWord(question.item.word);
   const correctMeaning = question.correctMeaning || getVocabMeaningText(question.item);
   if (!correct) {
-    el.vocabSubmitAnswer.classList.add("is-wrong");
+    el.vocabAnswerInput.classList.add("is-wrong");
     vocabQuizState.locked = true;
     updateVocabProgress(question.item.id, false);
     setVocabFeedback(`再檢查串法。正確答案係 ${question.item.word}，意思係「${correctMeaning}」。`, "error");
-    el.vocabSubmitAnswer.disabled = true;
     deactivateTextEntryTarget("vocabAnswer");
     el.vocabNextBtn.classList.remove("hidden");
     playUiSound("wrong");
@@ -2515,9 +2518,7 @@ function submitVocabSpelling() {
   vocabQuizState.locked = true;
   vocabQuizState.score += 1;
   updateVocabProgress(question.item.id, true);
-  el.vocabScore.textContent = String(vocabQuizState.score);
-  el.vocabSubmitAnswer.disabled = true;
-  el.vocabSubmitAnswer.classList.add("is-correct");
+  el.vocabAnswerInput.classList.add("is-correct");
   setVocabFeedback(`正確，${question.item.word} 是「${correctMeaning}」。`, "success");
   el.vocabNextBtn.classList.remove("hidden");
   deactivateTextEntryTarget("vocabAnswer");
@@ -2545,6 +2546,7 @@ function renderVocabComplete() {
   const total = vocabQuizState?.questions?.length || 0;
   const score = vocabQuizState?.score || 0;
   deactivateTextEntryTarget("vocabAnswer");
+  updateVocabQuizProgress(true);
   setVocabFeedback(`完成！今次答啱 ${score}/${total}。`, score === total ? "success" : "error");
   el.vocabQuizTitle.textContent = "詞彙完成";
   el.vocabPrompt.textContent = score === total ? "Full marks!" : "完成";
