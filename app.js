@@ -41,6 +41,7 @@ const SFX_VOLUME_KEY = "basic_grammar_sfx_volume_v1";
 const SFX_VOLUME_TOUCHED_KEY = "basic_grammar_sfx_volume_touched_v1";
 const PRACTICE_COUNT_KEY = "basic_grammar_practice_count_v1";
 const BEST_STREAK_KEY = "basic_grammar_best_streak_v1";
+const STUDY_STREAK_KEY = "basic_grammar_study_streak_v1";
 const STUDENT_PROFILE_KEY = "basic_grammar_student_profile_v1";
 const STUDENT_PROGRESS_SYNC_KEY = "basic_grammar_progress_sync_queue_v1";
 const STUDENT_LOGIN_GRACE_MS = 3500;
@@ -270,6 +271,7 @@ const state = {
   vocabProgress: getSavedVocabProgress(),
   vocabSyncQueue: getSavedVocabSyncQueue(),
   vocabCacheOwner: getSavedVocabCacheOwner(),
+  studyStreak: getSavedStudyStreak(),
   streak: 0,
   bestStreak: getSavedBestStreak(),
   practiceCount: getSavedPracticeCount(),
@@ -451,6 +453,63 @@ function saveBestStreak() {
     // The best streak still updates during the current session.
   }
   queuePlayerProfileSync();
+}
+
+function getLocalDateKey(time = Date.now()) {
+  const date = new Date(Number(time) || Date.now());
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+function getSavedStudyStreak() {
+  try {
+    const saved = safeJsonParse(localStorage.getItem(STUDY_STREAK_KEY), null);
+    const days = Math.max(0, Number(saved?.days) || 0);
+    return {
+      days,
+      lastDateKey: String(saved?.lastDateKey || ""),
+      updatedAt: Number(saved?.updatedAt) || 0
+    };
+  } catch (_error) {
+    return { days: 0, lastDateKey: "", updatedAt: 0 };
+  }
+}
+
+function saveStudyStreak(streak) {
+  try {
+    localStorage.setItem(STUDY_STREAK_KEY, JSON.stringify(streak || {}));
+  } catch (_error) {
+    // The encouraging coach message can still use this session's value.
+  }
+}
+
+function getPreviousDateKey(dateKey) {
+  const date = new Date(`${dateKey}T00:00:00`);
+  if (Number.isNaN(date.getTime())) return "";
+  date.setDate(date.getDate() - 1);
+  return getLocalDateKey(date.getTime());
+}
+
+function touchStudyDay() {
+  const todayKey = getLocalDateKey();
+  const saved = getSavedStudyStreak();
+  if (saved.lastDateKey === todayKey) {
+    state.studyStreak = saved;
+    return saved;
+  }
+
+  const yesterdayKey = getPreviousDateKey(todayKey);
+  const days = saved.lastDateKey === yesterdayKey ? saved.days + 1 : 1;
+  const next = {
+    days,
+    lastDateKey: todayKey,
+    updatedAt: Date.now()
+  };
+  state.studyStreak = next;
+  saveStudyStreak(next);
+  return next;
 }
 
 function safeJsonParse(value, fallback) {
@@ -867,6 +926,7 @@ function getProgress(lessonId = state.lessonId) {
 }
 
 function saveProgress(completed, lessonId = state.lessonId) {
+  touchStudyDay();
   const total = getLessonTotal(lessonId);
   const previousCompleted = getProgress(lessonId);
   const nextCompleted = window.GrammarCore?.getNextProgress
@@ -1468,6 +1528,16 @@ async function syncStudentCloudProgress() {
       state.bestStreak = remoteBestStreak;
       bestStreakChanged = true;
     }
+    const remoteStudyStreakDays = Math.max(0, Number(cloudUser.studyStreak?.days) || 0);
+    const localStudyStreakDays = Math.max(0, Number(state.studyStreak?.days) || 0);
+    if (remoteStudyStreakDays > localStudyStreakDays) {
+      state.studyStreak = {
+        days: remoteStudyStreakDays,
+        lastDateKey: String(cloudUser.studyStreak?.lastDateKey || state.studyStreak?.lastDateKey || ""),
+        updatedAt: Number(cloudUser.studyStreak?.updatedAt) || Date.now()
+      };
+      saveStudyStreak(state.studyStreak);
+    }
 
     lessonDocRefs.forEach(({ lessonId }, index) => {
       const lessonTotal = getLessonTotal(lessonId);
@@ -1529,6 +1599,11 @@ async function flushPlayerProfileSync() {
     const { doc, setDoc, serverTimestamp } = firebase.modules;
     await setDoc(doc(firebase.db, "users", uid), {
       bestStreak: state.bestStreak,
+      studyStreak: {
+        days: Math.max(0, Number(state.studyStreak?.days) || 0),
+        lastDateKey: String(state.studyStreak?.lastDateKey || ""),
+        updatedAt: Number(state.studyStreak?.updatedAt) || Date.now()
+      },
       updatedAt: serverTimestamp()
     }, { merge: true });
   } catch (error) {
@@ -1560,6 +1635,86 @@ async function flushProgressSyncQueue() {
   }
 }
 
+function getCompletedLessonCount(progressByLesson) {
+  return Object.entries(progressByLesson).filter(([lessonId, completed]) => (
+    completed >= getLessonTotal(lessonId)
+  )).length;
+}
+
+function getMasteredVocabCount() {
+  return state.vocabWords.filter((item) => {
+    const progress = VOCAB_SCHEDULER.normalizeProgress(state.vocabProgress[item.id] || {});
+    return progress.mastery >= 0.55 || progress.totalCorrect >= 3;
+  }).length;
+}
+
+function getReviewedVocabCount() {
+  return state.vocabWords.filter((item) => {
+    const progress = VOCAB_SCHEDULER.normalizeProgress(state.vocabProgress[item.id] || {});
+    return progress.totalSeen > 0;
+  }).length;
+}
+
+function getNextLessonCoachLine(progressByLesson) {
+  if (progressByLesson[VERB_TABLE_ID] >= getLessonTotal(VERB_TABLE_ID)) {
+    return "Lesson 07 已完成，Verb Table 四式記得好穩。";
+  }
+  if (progressByLesson[COUNTABLE_NOUN_ID] >= getLessonTotal(COUNTABLE_NOUN_ID)) {
+    return "Lesson 06 已完成，可以挑戰 Lesson 07 Verb Table。";
+  }
+  if (progressByLesson[PRONOUN_SENTENCE_ID] >= getLessonTotal(PRONOUN_SENTENCE_ID)) {
+    return "Lesson 05 已完成，可以挑戰 Lesson 06 可數名詞。";
+  }
+  if (progressByLesson[PRONOUN_MATCH_ID] >= getLessonTotal(PRONOUN_MATCH_ID)) {
+    return "Lesson 04 已完成，可以挑戰 Lesson 05 代名詞句子 MC。";
+  }
+  if (progressByLesson[SENTENCE_UNDERLINE_ID] >= getLessonTotal(SENTENCE_UNDERLINE_ID)) {
+    return "Lesson 03 已完成，可以挑戰 Lesson 04 代名詞。";
+  }
+  if (progressByLesson[QUIZ1_ID] >= getLessonTotal(QUIZ1_ID)) {
+    return "Quiz 1 已完成，可以再挑戰更快砌句子。";
+  }
+  if (progressByLesson[LESSON2_ID] >= getLessonTotal(LESSON2_ID)) {
+    return "Lesson 02 已完成，可以挑戰 Quiz 1。";
+  }
+  if (progressByLesson[LESSON1_ID] >= getLessonTotal(LESSON1_ID)) {
+    return "Lesson 01 已完成，可以挑戰 Lesson 02。";
+  }
+  return "今日由句子分析開始。";
+}
+
+function getMenuCoachMessage(progressByLesson) {
+  const streakDays = Math.max(0, Number(state.studyStreak?.days) || 0);
+  const vocabCount = state.vocabWords.length;
+  const masteredVocabCount = getMasteredVocabCount();
+  const reviewedVocabCount = getReviewedVocabCount();
+  const completedLessonCount = getCompletedLessonCount(progressByLesson);
+  const nextLessonLine = getNextLessonCoachLine(progressByLesson);
+
+  if (streakDays >= 2) {
+    return `真了不起！你已經連續學習英文 ${streakDays} 日。Keep fighting！`;
+  }
+  if (masteredVocabCount >= 5) {
+    return `強大！你已經掌握了 ${masteredVocabCount} 個新詞彙，英文腦正在升級。`;
+  }
+  if (vocabCount >= 10) {
+    return `好有火！你已經把 ${vocabCount} 個生字放入詞彙本，慢慢就會變成長期記憶。`;
+  }
+  if (reviewedVocabCount >= 3) {
+    return `做得好！你已經溫習過 ${reviewedVocabCount} 個詞彙，記憶開始變穩。`;
+  }
+  if (state.bestStreak >= 8) {
+    return `最佳連勝 ${state.bestStreak} 題，節奏好穩。Keep going！`;
+  }
+  if (completedLessonCount >= 1) {
+    return `漂亮！你已完成 ${completedLessonCount} 個課題。${nextLessonLine}`;
+  }
+  if (streakDays === 1) {
+    return "今日已經開始學習，這一步已經很重要。Keep fighting！";
+  }
+  return "今日由一小步開始，英文會一日一日變強。";
+}
+
 function updateMenuProgress() {
   const lesson1Progress = getProgress(LESSON1_ID);
   const lesson2Progress = getProgress(LESSON2_ID);
@@ -1578,27 +1733,16 @@ function updateMenuProgress() {
   el.menuProgressCountableNouns.textContent = `${countableProgress}/${getLessonTotal(COUNTABLE_NOUN_ID)}`;
   el.menuProgressVerbTable.textContent = `${verbTableProgress}/${getLessonTotal(VERB_TABLE_ID)}`;
 
-  if (verbTableProgress >= getLessonTotal(VERB_TABLE_ID)) {
-    el.menuCoachLine.textContent = "Lesson 07 已完成，Verb Table 四式記得好穩。";
-  } else if (countableProgress >= getLessonTotal(COUNTABLE_NOUN_ID)) {
-    el.menuCoachLine.textContent = "Lesson 06 已完成，可以挑戰 Lesson 07 Verb Table。";
-  } else if (pronounSentenceProgress >= getLessonTotal(PRONOUN_SENTENCE_ID)) {
-    el.menuCoachLine.textContent = "Lesson 05 已完成，可以挑戰 Lesson 06 可數名詞。";
-  } else if (pronounProgress >= getLessonTotal(PRONOUN_MATCH_ID)) {
-    el.menuCoachLine.textContent = "Lesson 04 已完成，可以挑戰 Lesson 05 代名詞句子 MC。";
-  } else if (underlineProgress >= getLessonTotal(SENTENCE_UNDERLINE_ID)) {
-    el.menuCoachLine.textContent = "Lesson 03 已完成，可以挑戰 Lesson 04 代名詞。";
-  } else if (quiz1Progress >= getLessonTotal(QUIZ1_ID)) {
-    el.menuCoachLine.textContent = "Quiz 1 已完成，可以再挑戰更快砌句子。";
-  } else if (lesson2Progress >= getLessonTotal(LESSON2_ID)) {
-    el.menuCoachLine.textContent = "Lesson 02 已完成，可以挑戰 Quiz 1。";
-  } else if (lesson1Progress >= getLessonTotal(LESSON1_ID)) {
-    el.menuCoachLine.textContent = "Lesson 01 已完成，可以挑戰 Lesson 02。";
-  } else if (state.bestStreak >= 8) {
-    el.menuCoachLine.textContent = `最佳連勝 ${state.bestStreak} 題，節奏好穩。`;
-  } else {
-    el.menuCoachLine.textContent = "今日由句子分析開始。";
-  }
+  el.menuCoachLine.textContent = getMenuCoachMessage({
+    [LESSON1_ID]: lesson1Progress,
+    [LESSON2_ID]: lesson2Progress,
+    [QUIZ1_ID]: quiz1Progress,
+    [SENTENCE_UNDERLINE_ID]: underlineProgress,
+    [PRONOUN_MATCH_ID]: pronounProgress,
+    [PRONOUN_SENTENCE_ID]: pronounSentenceProgress,
+    [COUNTABLE_NOUN_ID]: countableProgress,
+    [VERB_TABLE_ID]: verbTableProgress
+  });
 }
 
 function getVocabReviewCount() {
@@ -2016,11 +2160,7 @@ function getVocabItemCreatedTime(item = {}) {
 }
 
 function getVocabDateKey(timestamp) {
-  const date = new Date(Number(timestamp) || Date.now());
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`;
+  return getLocalDateKey(timestamp);
 }
 
 function formatVocabDate(timestamp) {
@@ -2276,6 +2416,7 @@ async function addVocabItemFromEntry() {
 
   saveVocabItems();
   saveVocabProgress();
+  touchStudyDay();
   if (VOCAB_AUDIO) {
     VOCAB_AUDIO.queueEnsureAudio(savedItem.word);
   }
@@ -2447,6 +2588,7 @@ function setVocabFeedback(message = "", type = "") {
 }
 
 function updateVocabProgress(itemId, correct) {
+  touchStudyDay();
   state.vocabProgress[itemId] = VOCAB_SCHEDULER.updateProgressAfterAnswer(
     state.vocabProgress[itemId] || VOCAB_SCHEDULER.getInitialProgress(),
     correct
@@ -5525,6 +5667,7 @@ if (window.pendingStudentAuthState) {
   applyStudentAuthState(window.pendingStudentAuthState);
   window.pendingStudentAuthState = null;
 }
+touchStudyDay();
 updateMenuProgress();
 dedupeVocabWordsByWord();
 renderVocabList();

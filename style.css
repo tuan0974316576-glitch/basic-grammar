@@ -879,7 +879,7 @@ body.student-login-open .app-tab-bar {
 }
 
 .coach-card {
-  min-height: 76px;
+  min-height: 84px;
   display: grid;
   grid-template-columns: 72px 1fr;
   gap: 14px;
@@ -906,7 +906,7 @@ body.student-login-open .app-tab-bar {
   display: block;
   margin-top: 6px;
   color: #5d4037;
-  font-size: clamp(17px, 3vw, 22px);
+  font-size: clamp(16px, 2.5vw, 20px);
   font-weight: 900;
   line-height: 1.25;
 }
