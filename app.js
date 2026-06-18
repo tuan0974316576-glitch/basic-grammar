@@ -206,6 +206,8 @@ const VERB_TABLE_REFERENCE_SPEAK_GAP_MS = 180;
 const VERB_TABLE_REFERENCE_MIN_ACTIVE_MS = 700;
 const VERB_TABLE_IMAGE_VERSION = "20260613-lite";
 const VOCAB_CACHE_FALLBACK_OWNER = "guest";
+const VOCAB_CLOUD_LOOKUP_DEBOUNCE_MS = 1200;
+const VOCAB_CLOUD_LOOKUP_MIN_LETTERS = 5;
 
 let audioContext = null;
 let celebrationAnimation = null;
@@ -221,6 +223,9 @@ let vocabEntryLookupState = {
   selectedEntryIds: [],
   loadingCloud: false
 };
+let vocabCloudLookupTimer = 0;
+let vocabCloudLookupToken = 0;
+const vocabCloudLookupCache = new Map();
 let studentCloudSyncPromise = null;
 let studentCloudSyncUid = "";
 let vocabCloudSyncPromise = null;
@@ -1603,6 +1608,24 @@ function getCloudVocabMeaningCallable() {
   return firebase.modules.httpsCallable(firebase.functions, "lookupVocabMeaning");
 }
 
+function countVocabLetters(word) {
+  return (String(word || "").match(/[a-z]/gi) || []).length;
+}
+
+function canUseCloudVocabLookup(word) {
+  return Boolean(
+    getCloudVocabMeaningCallable()
+    && countVocabLetters(word) >= VOCAB_CLOUD_LOOKUP_MIN_LETTERS
+  );
+}
+
+function clearVocabCloudLookupTimer() {
+  if (vocabCloudLookupTimer) {
+    clearTimeout(vocabCloudLookupTimer);
+    vocabCloudLookupTimer = 0;
+  }
+}
+
 function normalizeCloudVocabEntries(word, data = {}) {
   const normalizedWord = normalizeVocabWord(data.word || word);
   const entries = Array.isArray(data.entries) ? data.entries : [];
@@ -1643,11 +1666,14 @@ async function loadOfflineVocabMatches(word) {
 }
 
 async function loadCloudVocabMatches(word) {
+  if (vocabCloudLookupCache.has(word)) return vocabCloudLookupCache.get(word);
   const callable = getCloudVocabMeaningCallable();
   if (!callable) return [];
   try {
     const result = await callable({ word });
-    return normalizeCloudVocabEntries(word, result?.data || {});
+    const matches = normalizeCloudVocabEntries(word, result?.data || {});
+    vocabCloudLookupCache.set(word, matches);
+    return matches;
   } catch (error) {
     console.warn("Cloud vocab lookup failed:", error);
     return [];
@@ -1655,6 +1681,8 @@ async function loadCloudVocabMatches(word) {
 }
 
 function clearVocabMeaningSuggestions() {
+  clearVocabCloudLookupTimer();
+  vocabCloudLookupToken += 1;
   vocabEntryLookupState = {
     word: "",
     matches: [],
@@ -1740,7 +1768,7 @@ function inferVocabPosFromMeaning(word, meaning) {
 }
 
 function getVocabEntryPos(entry = {}) {
-  if (entry.type === "pattern" || entry.type === "phrase") return "";
+  if (entry.type === "pattern") return "";
   return normalizeVocabPos(entry.pos)
     || normalizeVocabPos(entry.inferredPos)
     || getFallbackDictionaryUniquePos(entry.word, { meaning: entry.meaning })
@@ -1748,10 +1776,10 @@ function getVocabEntryPos(entry = {}) {
 }
 
 function getVocabEntryMetaLabel(entry = {}) {
-  if (String(entry.source || "").includes("cloud") || String(entry.source || "").includes("translation")) return "AI 建議";
   if (entry.type === "pattern") return "pt.";
-  if (entry.type === "phrase") return "ph.";
   const pos = getVocabEntryPos(entry);
+  if (pos) return TEACHER_VOCAB?.formatPosLabel?.(pos) || pos;
+  if (entry.type === "phrase") return "ph.";
   return TEACHER_VOCAB?.formatPosLabel?.(pos) || pos || "";
 }
 
@@ -1860,6 +1888,11 @@ function renderVocabMeaningSuggestions() {
 
 async function refreshVocabTeacherLookup(options = {}) {
   const word = normalizeVocabWord(getTextEntryValue(el.vocabWordInput));
+  const forceCloud = Boolean(options.forceCloud);
+  clearVocabCloudLookupTimer();
+  vocabCloudLookupToken += 1;
+  const lookupToken = vocabCloudLookupToken;
+
   if (!word) {
     clearVocabMeaningSuggestions();
     return;
@@ -1905,21 +1938,43 @@ async function refreshVocabTeacherLookup(options = {}) {
     return;
   }
 
+  const canLookupCloud = canUseCloudVocabLookup(word);
   vocabEntryLookupState = {
     word,
     matches: [],
     filterKey: "",
     selectedEntryIds: [],
-    loadingCloud: Boolean(getCloudVocabMeaningCallable())
+    loadingCloud: canLookupCloud && forceCloud
   };
   renderVocabMeaningSuggestions();
   updateVocabEntryState();
 
+  if (!canLookupCloud) return;
+  if (!forceCloud) {
+    vocabCloudLookupTimer = setTimeout(() => {
+      if (normalizeVocabWord(getTextEntryValue(el.vocabWordInput)) === word) {
+        void refreshVocabTeacherLookup({ force: true, forceCloud: true });
+      }
+    }, VOCAB_CLOUD_LOOKUP_DEBOUNCE_MS);
+    return;
+  }
+
   const cloudMatches = await loadCloudVocabMatches(word);
-  if (normalizeVocabWord(getTextEntryValue(el.vocabWordInput)) !== word || !cloudMatches.length) {
-    vocabEntryLookupState.loadingCloud = false;
-    renderVocabMeaningSuggestions();
-    updateVocabEntryState();
+  if (
+    lookupToken !== vocabCloudLookupToken
+    || normalizeVocabWord(getTextEntryValue(el.vocabWordInput)) !== word
+  ) {
+    return;
+  }
+  if (!cloudMatches.length) {
+    if (vocabEntryLookupState.word === word) {
+      vocabEntryLookupState.loadingCloud = false;
+      renderVocabMeaningSuggestions();
+      updateVocabEntryState();
+    }
+    return;
+  }
+  if (vocabEntryLookupState.word !== word) {
     return;
   }
   vocabEntryLookupState = {
@@ -1934,7 +1989,7 @@ async function refreshVocabTeacherLookup(options = {}) {
 }
 
 function handleVocabWordEntryChange() {
-  void refreshVocabTeacherLookup({ force: true });
+  void refreshVocabTeacherLookup({ force: true, forceCloud: false });
   updateVocabEntryState();
 }
 
@@ -2621,7 +2676,7 @@ function getTextEntryConfig(targetName = activeTextEntryTarget) {
       maxLength: 42,
       pattern: /^[a-zA-Z '-]$/,
       onChange: handleVocabWordEntryChange,
-      onEnter: () => refreshVocabTeacherLookup({ force: true })
+      onEnter: () => refreshVocabTeacherLookup({ force: true, forceCloud: true })
     },
     vocabAnswer: {
       field: el.vocabAnswerInput,

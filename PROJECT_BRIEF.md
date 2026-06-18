@@ -139,7 +139,8 @@ Current pipeline:
 - Patterns such as `be+pp` and `as+名詞` are stored as `type: "pattern"`, not as normal POS.
 - If teacher notes do not contain a word, fallback must use a local offline dictionary by matching word + POS. Do not depend on live online lookup during class.
 - The offline dictionary should be split / lazy-loaded so the app stays fast on phones. Current generated shards use ECDICT data converted to Traditional Chinese at import time; the raw CSV is not committed, and only clear POS entries are included to reduce classroom noise.
-- If the offline dictionary is missing a word / phrase, the logged-in app may call Firebase Function `lookupVocabMeaning`. The function first checks shared Firestore cache `vocabMeaningCache`; if missing, it calls Google Cloud Translation v3 and saves an `AI 建議` result for reuse. Use this for coverage, not as higher authority than teacher notes.
+- If the offline dictionary is missing a word / phrase, the logged-in app may call Firebase Function `lookupVocabMeaning`. The function first checks shared Firestore cache `vocabMeaningCache`; if missing, it calls Google Cloud Translation v3 and saves a low-priority cloud fallback for reuse. The student UI should still show normal labels such as `n.`, `v.`, `adj.`, or `ph.`, not the source label.
+- Cloud fallback lookup should be debounced and cached on the client. Do not call Firebase / Google Translation on every typed letter.
 - If the offline / cloud dictionary is still unclear or has multiple unsuitable meanings, mark it as `待老師確認` rather than guessing.
 
 Student vocab items can store optional metadata:
