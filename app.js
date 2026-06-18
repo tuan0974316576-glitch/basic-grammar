@@ -1636,7 +1636,7 @@ function normalizeCloudVocabEntries(word, data = {}) {
       meaning: normalizeVocabMeaning(entry.meaning),
       pos: normalizeVocabPos(entry.pos),
       type: entry.type || (normalizedWord.includes(" ") ? "phrase" : "word"),
-      source: entry.source || data.source || "cloud-translation",
+      source: entry.source || data.source || "azure-translator",
       sourceEntryId: entry.sourceEntryId || data.meaningId || ""
     }))
     .filter((entry) => entry.word && entry.meaning);

@@ -90,6 +90,7 @@ Azure Speech / shared vocab audio:
 - Function `ensureVocabAudio` is deployed in `asia-east2`.
 - Default Firebase Storage bucket `enguistics-grammar-game.firebasestorage.app` is created in `ASIA-EAST2`.
 - New vocab audio flow: if the word is not in the bundled Battleship-1 audio manifest, the logged-in app calls `ensureVocabAudio`; the function generates Azure TTS MP3 once, saves it under `vocab-audio/v1/`, and later students reuse the shared Firebase audio file.
+- Cloud vocab meaning fallback should use Azure Translator, not Google Translate. Firebase secrets `AZURE_TRANSLATOR_KEY` and `AZURE_TRANSLATOR_REGION` must be set for `lookupVocabMeaning`.
 
 Recommended direction:
 
@@ -139,8 +140,8 @@ Current pipeline:
 - Patterns such as `be+pp` and `as+名詞` are stored as `type: "pattern"`, not as normal POS.
 - If teacher notes do not contain a word, fallback must use a local offline dictionary by matching word + POS. Do not depend on live online lookup during class.
 - The offline dictionary should be split / lazy-loaded so the app stays fast on phones. Current generated shards use ECDICT data converted to Traditional Chinese at import time; the raw CSV is not committed, and only clear POS entries are included to reduce classroom noise.
-- If the offline dictionary is missing a word / phrase, the logged-in app may call Firebase Function `lookupVocabMeaning`. The function first checks shared Firestore cache `vocabMeaningCache`; if missing, it calls Google Cloud Translation v3 and saves a low-priority cloud fallback for reuse. The student UI should still show normal labels such as `n.`, `v.`, `adj.`, or `ph.`, not the source label.
-- Cloud fallback lookup should be debounced and cached on the client. Do not call Firebase / Google Translation on every typed letter.
+- If the offline dictionary is missing a word / phrase, the logged-in app may call Firebase Function `lookupVocabMeaning`. The function first checks shared Firestore cache `vocabMeaningCache`; if missing, it calls Azure Translator and saves a low-priority cloud fallback for reuse. The student UI should still show normal labels such as `n.`, `v.`, `adj.`, or `ph.`, not the source label.
+- Cloud fallback lookup should be debounced and cached on the client. Do not call Firebase / Azure Translator on every typed letter.
 - If the offline / cloud dictionary is still unclear or has multiple unsuitable meanings, mark it as `待老師確認` rather than guessing.
 
 Student vocab items can store optional metadata:

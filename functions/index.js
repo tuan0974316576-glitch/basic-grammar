@@ -1,6 +1,5 @@
 const crypto = require("crypto");
 const admin = require("firebase-admin");
-const { GoogleAuth } = require("google-auth-library");
 const { HttpsError, onCall } = require("firebase-functions/v2/https");
 const { setGlobalOptions } = require("firebase-functions/v2");
 const { defineSecret } = require("firebase-functions/params");
@@ -13,16 +12,16 @@ const bucket = admin.storage().bucket();
 
 const AZURE_SPEECH_KEY = defineSecret("AZURE_SPEECH_KEY");
 const AZURE_SPEECH_REGION = defineSecret("AZURE_SPEECH_REGION");
+const AZURE_TRANSLATOR_KEY = defineSecret("AZURE_TRANSLATOR_KEY");
+const AZURE_TRANSLATOR_REGION = defineSecret("AZURE_TRANSLATOR_REGION");
 
 const DEFAULT_VOICE = "en-US-AndrewMultilingualNeural";
 const DEFAULT_OUTPUT_FORMAT = "audio-24khz-48kbitrate-mono-mp3";
 const MAX_WORD_LENGTH = 64;
-const CLOUD_TRANSLATION_LOCATION = "global";
-const CLOUD_TRANSLATION_TARGET = "zh-TW";
-const CLOUD_TRANSLATION_SOURCE = "en";
-const vocabMeaningAuth = new GoogleAuth({
-  scopes: ["https://www.googleapis.com/auth/cloud-translation"]
-});
+const AZURE_TRANSLATOR_ENDPOINT = "https://api.cognitive.microsofttranslator.com";
+const AZURE_TRANSLATOR_API_VERSION = "3.0";
+const AZURE_TRANSLATOR_SOURCE = "en";
+const AZURE_TRANSLATOR_TARGET = "zh-Hant";
 
 const CURATED_VOCAB_MEANINGS = new Map([
   ["egg tart", [{ meaning: "蛋撻", pos: "noun", type: "phrase" }]],
@@ -114,7 +113,7 @@ function cleanCloudTranslation(value, word) {
   return text;
 }
 
-function normalizeMeaningEntries(word, entries = [], source = "cloud-translation") {
+function normalizeMeaningEntries(word, entries = [], source = "azure-translator") {
   const normalizedWord = normalizeVocabWord(word);
   return entries
     .map((entry, index) => ({
@@ -129,41 +128,40 @@ function normalizeMeaningEntries(word, entries = [], source = "cloud-translation
     .filter((entry) => entry.meaning);
 }
 
-async function translateVocabMeaningWithGoogle(word) {
-  const projectId = process.env.GCLOUD_PROJECT || process.env.GOOGLE_CLOUD_PROJECT;
-  if (!projectId) {
-    throw new HttpsError("failed-precondition", "Google Cloud project is not available.");
+function shouldReuseCachedMeaning(cached = {}) {
+  const source = String(cached.source || "").toLowerCase();
+  return Boolean(source && !source.includes("google"));
+}
+
+async function translateVocabMeaningWithAzure(word, { translatorKey, translatorRegion }) {
+  const key = String(translatorKey || "").trim();
+  const region = String(translatorRegion || "").trim();
+  if (!key || !region) {
+    throw new HttpsError("failed-precondition", "Azure Translator secrets are not configured.");
   }
 
-  const client = await vocabMeaningAuth.getClient();
-  const token = await client.getAccessToken();
-  const accessToken = typeof token === "string" ? token : token?.token;
-  if (!accessToken) {
-    throw new Error("Unable to get Google Cloud access token.");
-  }
-
-  const parent = `projects/${projectId}/locations/${CLOUD_TRANSLATION_LOCATION}`;
-  const response = await fetch(`https://translation.googleapis.com/v3/${parent}:translateText`, {
+  const params = new URLSearchParams({
+    "api-version": AZURE_TRANSLATOR_API_VERSION,
+    from: AZURE_TRANSLATOR_SOURCE,
+    to: AZURE_TRANSLATOR_TARGET
+  });
+  const response = await fetch(`${AZURE_TRANSLATOR_ENDPOINT}/translate?${params.toString()}`, {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${accessToken}`,
+      "Ocp-Apim-Subscription-Key": key,
+      "Ocp-Apim-Subscription-Region": region,
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({
-      contents: [word],
-      mimeType: "text/plain",
-      sourceLanguageCode: CLOUD_TRANSLATION_SOURCE,
-      targetLanguageCode: CLOUD_TRANSLATION_TARGET
-    })
+    body: JSON.stringify([{ Text: word }])
   });
 
   const body = await response.json().catch(async () => ({ raw: await response.text().catch(() => "") }));
   if (!response.ok) {
     const details = body?.error?.message || body?.raw || `HTTP ${response.status}`;
-    throw new Error(`Google Translation failed: ${details}`);
+    throw new Error(`Azure Translator failed: ${details}`);
   }
 
-  const translatedText = body?.translations?.[0]?.translatedText || "";
+  const translatedText = body?.[0]?.translations?.[0]?.text || "";
   const meaning = cleanCloudTranslation(translatedText, word);
   return meaning ? [{ meaning, type: inferVocabType(word) }] : [];
 }
@@ -174,7 +172,7 @@ async function getOrCreateVocabMeaning(word) {
   const docRef = db.collection("vocabMeaningCache").doc(meaningId);
   const cachedSnap = await docRef.get();
 
-  if (cachedSnap.exists) {
+  if (cachedSnap.exists && shouldReuseCachedMeaning(cachedSnap.data() || {})) {
     const cached = cachedSnap.data() || {};
     const entries = normalizeMeaningEntries(normalizedWord, cached.entries || [], cached.source || "shared-cache");
     if (entries.length) {
@@ -189,8 +187,37 @@ async function getOrCreateVocabMeaning(word) {
   }
 
   const curated = CURATED_VOCAB_MEANINGS.get(normalizedWord);
-  const rawEntries = curated || await translateVocabMeaningWithGoogle(normalizedWord);
-  const source = curated ? "curated-cloud" : "google-translation";
+  let rawEntries = curated;
+  const source = curated ? "curated-cloud" : "azure-translator";
+
+  if (!rawEntries) {
+    try {
+      rawEntries = await translateVocabMeaningWithAzure(normalizedWord, {
+        translatorKey: AZURE_TRANSLATOR_KEY.value(),
+        translatorRegion: AZURE_TRANSLATOR_REGION.value()
+      });
+    } catch (error) {
+      console.error("Azure Translator lookup failed.", {
+        word: normalizedWord,
+        message: error?.message || String(error)
+      });
+      await docRef.set({
+        word: normalizedWord,
+        meaningId,
+        source,
+        status: "translator-error",
+        updatedAt: admin.firestore.FieldValue.serverTimestamp()
+      }, { merge: true });
+      return {
+        meaningId,
+        word: normalizedWord,
+        entries: [],
+        cached: false,
+        source,
+        status: "translator-error"
+      };
+    }
+  }
   const entries = normalizeMeaningEntries(normalizedWord, rawEntries, source);
 
   if (!entries.length) {
@@ -397,7 +424,8 @@ exports.ensureVocabAudio = onCall({
 });
 
 exports.lookupVocabMeaning = onCall({
-  invoker: "public"
+  invoker: "public",
+  secrets: [AZURE_TRANSLATOR_KEY, AZURE_TRANSLATOR_REGION]
 }, async (request) => {
   if (!request.auth) {
     throw new HttpsError("unauthenticated", "Please log in first.");
