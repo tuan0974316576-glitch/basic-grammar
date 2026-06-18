@@ -893,6 +893,85 @@ body.student-login-open .app-tab-bar {
   display: block;
 }
 
+.streak-badge {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  display: grid;
+  place-items: center;
+  border: 3px solid #ffffff;
+  border-radius: 22px;
+  background: linear-gradient(180deg, #fff8db 0%, #ffe0a8 100%);
+  box-shadow: 0 6px 0 rgba(242, 162, 70, 0.34), 0 10px 20px rgba(133, 86, 44, 0.16);
+  overflow: hidden;
+}
+
+.streak-badge::after {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 2px dashed rgba(255, 255, 255, 0.82);
+  border-radius: 16px;
+  pointer-events: none;
+}
+
+.streak-animation {
+  position: absolute;
+  inset: -9px -7px -3px;
+  display: grid;
+  place-items: center;
+  opacity: 0.96;
+}
+
+.streak-animation svg,
+.streak-animation canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.streak-fallback {
+  color: #f26b3a;
+  font-size: 31px;
+  font-weight: 900;
+  text-shadow: 0 2px 0 #ffffff;
+}
+
+.streak-count {
+  position: absolute;
+  left: 50%;
+  bottom: 5px;
+  min-width: 44px;
+  min-height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  padding: 1px 7px 2px;
+  color: #8e4c18;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(255, 185, 87, 0.72);
+  border-radius: 999px;
+  box-shadow: 0 2px 0 rgba(204, 126, 42, 0.24);
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.streak-count strong {
+  margin: 0;
+  color: inherit;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.streak-count span {
+  color: inherit;
+  font-size: 11px;
+  letter-spacing: 0;
+  line-height: 1;
+  text-transform: none;
+}
+
 .coach-card span {
   display: block;
   color: var(--primary-dark);
@@ -3722,6 +3801,36 @@ body.settings-open {
   .coach-card img {
     width: 58px;
     height: 58px;
+  }
+
+  .streak-badge {
+    width: 58px;
+    height: 58px;
+    border-radius: 18px;
+  }
+
+  .streak-badge::after {
+    inset: 6px;
+    border-radius: 13px;
+  }
+
+  .streak-animation {
+    inset: -8px -7px -4px;
+  }
+
+  .streak-count {
+    bottom: 3px;
+    min-width: 38px;
+    min-height: 19px;
+    padding: 1px 6px 2px;
+  }
+
+  .streak-count strong {
+    font-size: 14px;
+  }
+
+  .streak-count span {
+    font-size: 10px;
   }
 
   .coach-card strong {
