@@ -13,6 +13,7 @@
     "vocab:import": "node scripts/import-teacher-vocab.js",
     "vocab:import:oxford": "node scripts/import-oxford-cefr.js",
     "vocab:examples": "node scripts/generate-vocab-examples.js",
+    "vocab:examples:curated": "node scripts/seed-curated-vocab-examples.js",
     "vocab:examples:review": "node scripts/review-vocab-example-seed.js",
     "dict:import": "node scripts/import-offline-dictionary.js",
     "cap:sync": "npm run build:web && npx cap sync android",
