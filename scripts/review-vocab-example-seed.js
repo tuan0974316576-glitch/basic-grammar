@@ -29,6 +29,7 @@ function getMismatchReason(entry = {}) {
   const examplesText = (entry.examples || [])
     .map((example) => `${example.source || ""} ${example.target || ""}`)
     .join(" ");
+  if (entry.word === "cons" && meaning === "缺點") return "";
   if (SUSPICIOUS_MEANING_RE.test(meaning)) return "suspicious meaning";
   if (/\d$/.test(String(entry.word || ""))) return "word contains trailing number";
   if (/因為\+句子/.test(meaning) && entry.word !== "because") return "non-because causal phrase";

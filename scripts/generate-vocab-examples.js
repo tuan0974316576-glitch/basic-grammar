@@ -19,6 +19,26 @@ const FIREBASE_CONFIG_PATH = path.join(os.homedir(), ".config", "configstore", "
 const GEMINI_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta";
 const EXAMPLES_PER_ENTRY = 3;
 const LEVEL_ORDER = { A1: 1, A2: 2, B1: 3, B2: 4, C1: 5 };
+const INVALID_TEACHER_TASK_WORDS = new Set([
+  "adj",
+  "adjective",
+  "adv",
+  "adverb",
+  "conj",
+  "conjunction",
+  "det",
+  "n",
+  "noun",
+  "ph",
+  "phr",
+  "phrase",
+  "prep",
+  "preposition",
+  "pron",
+  "pronoun",
+  "v",
+  "verb"
+]);
 const LEVEL_GUIDES = {
   A1: "Hong Kong junior primary level. Use 4-7 words, present simple, daily life only.",
   A2: "Hong Kong senior primary level. Use 5-9 words and simple school/home contexts.",
@@ -232,6 +252,9 @@ function normalizeTeacherTask(entry = {}, oxfordLevelByWord = new Map()) {
   const word = VocabExampleUtils.normalizeWord(entry.word);
   const meaning = VocabExampleUtils.normalizeMeaning(entry.meaning);
   if (!word || !meaning || entry.type === "pattern") return null;
+  if (INVALID_TEACHER_TASK_WORDS.has(word)) return null;
+  if (word.length === 1 && !["i"].includes(word)) return null;
+  if (word.length === 2 && !oxfordLevelByWord.has(word) && entry.type !== "phrase") return null;
   const level = oxfordLevelByWord.get(word) || inferFallbackLevel(entry);
   const hints = VocabExampleUtils.normalizeHints([{
     meaning,
