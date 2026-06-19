@@ -32,7 +32,20 @@
     代名詞: "pronoun",
     det: "determiner",
     determiner: "determiner",
-    限定詞: "determiner"
+    限定詞: "determiner",
+    modal: "modal",
+    "modal v": "modal",
+    modalverb: "modal",
+    auxiliary: "auxiliary",
+    aux: "auxiliary",
+    "auxiliary v": "auxiliary",
+    auxiliaryverb: "auxiliary",
+    exclam: "exclamation",
+    exclamation: "exclamation",
+    interj: "exclamation",
+    interjection: "exclamation",
+    number: "number",
+    num: "number"
   };
 
   const INVALID_WORDS = new Set([
@@ -43,8 +56,14 @@
     "conj",
     "conjunction",
     "det",
+    "aux",
+    "auxiliary",
+    "exclam",
+    "exclamation",
+    "modal",
     "n",
     "noun",
+    "number",
     "ph",
     "phr",
     "phrase",

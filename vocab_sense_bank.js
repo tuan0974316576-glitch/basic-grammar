@@ -23,7 +23,17 @@
     pron: "pronoun",
     pronoun: "pronoun",
     det: "determiner",
-    determiner: "determiner"
+    determiner: "determiner",
+    modal: "modal",
+    "modal v": "modal",
+    auxiliary: "auxiliary",
+    aux: "auxiliary",
+    exclam: "exclamation",
+    exclamation: "exclamation",
+    interj: "exclamation",
+    interjection: "exclamation",
+    number: "number",
+    num: "number"
   };
 
   const ENTRIES = [
@@ -79,8 +89,10 @@
     ["play", "noun", "戲劇", { level: "B1" }],
     ["mean", "verb", "意思是"],
     ["mean", "adjective", "刻薄的", { level: "B1" }],
-    ["can", "verb", "能夠"],
+    ["can", "modal", "能夠"],
     ["can", "noun", "罐"],
+    ["cannot", "modal", "不能"],
+    ["bye", "exclamation", "再見"],
     ["like", "verb", "喜歡"],
     ["like", "preposition", "像"],
     ["well", "adverb", "好地"],

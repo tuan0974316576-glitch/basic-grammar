@@ -125,9 +125,11 @@ const CURATED_VOCAB_MEANINGS = new Map([
     { meaning: "刻薄的", pos: "adjective", level: "B1" }
   ]],
   ["can", [
-    { meaning: "能夠", pos: "verb" },
+    { meaning: "能夠", pos: "modal" },
     { meaning: "罐", pos: "noun" }
   ]],
+  ["cannot", [{ meaning: "不能", pos: "modal" }]],
+  ["bye", [{ meaning: "再見", pos: "exclamation" }]],
   ["like", [
     { meaning: "喜歡", pos: "verb" },
     { meaning: "像", pos: "preposition" }

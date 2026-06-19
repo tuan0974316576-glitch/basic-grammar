@@ -74,6 +74,11 @@ const teacherVocab = require("../teacher_vocab.js");
 assert.strictEqual(teacherVocab.normalizePos("(n)"), "noun");
 assert.strictEqual(teacherVocab.normalizeType("", "be+pp"), "pattern");
 assert.strictEqual(teacherVocab.formatPosLabel("adjective"), "adj.");
+assert.strictEqual(teacherVocab.normalizePos("modal v."), "modal");
+assert.strictEqual(teacherVocab.formatPosLabel("modal"), "modal v.");
+assert.strictEqual(teacherVocab.normalizePos("exclam."), "exclamation");
+assert.strictEqual(teacherVocab.formatPosLabel("exclamation"), "exclam.");
+assert.strictEqual(teacherVocab.formatPosLabel("number"), "num.");
 assert.strictEqual(teacherVocab.formatPosLabel("phrase"), "ph.");
 assert.strictEqual(teacherVocab.formatPosLabel("pattern"), "pt.");
 
