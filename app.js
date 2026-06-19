@@ -214,6 +214,7 @@ const VERB_TABLE_IMAGE_VERSION = "20260613-lite";
 const VOCAB_CACHE_FALLBACK_OWNER = "guest";
 const VOCAB_CLOUD_LOOKUP_DEBOUNCE_MS = 1200;
 const VOCAB_CLOUD_LOOKUP_MIN_LETTERS = 2;
+const VOCAB_EXAMPLE_LOAD_TIMEOUT_MS = 12000;
 
 let audioContext = null;
 let celebrationAnimation = null;
@@ -712,6 +713,17 @@ function isReusableVocabExamplesPayload(payload = {}) {
   if (payload.status !== "ready" && payload.status !== "missing") return false;
   if (payload.status === "ready" && payload.source === "azure-dictionary-examples") return false;
   return true;
+}
+
+function isDisplayableVocabExamplesPayload(payload = {}) {
+  return Boolean(payload && [
+    "ready",
+    "missing",
+    "login-required",
+    "error",
+    "ai-error",
+    "timeout"
+  ].includes(payload.status));
 }
 
 function stableVocabHash(value) {
@@ -2464,10 +2476,10 @@ function getVocabExamplesForItem(item = {}) {
   if (seedPayload) return seedPayload;
   const cacheKey = getVocabExampleCacheKey(item);
   const exactPayload = vocabExampleCache[cacheKey] || vocabExampleTransientState.get(cacheKey);
-  if (isReusableVocabExamplesPayload(exactPayload)) return exactPayload;
+  if (isDisplayableVocabExamplesPayload(exactPayload)) return exactPayload;
   if (getVocabExampleHints(item).length) return null;
   const wordPayload = cacheKey !== word ? vocabExampleCache[word] : null;
-  return isReusableVocabExamplesPayload(wordPayload) ? wordPayload : null;
+  return isDisplayableVocabExamplesPayload(wordPayload) ? wordPayload : null;
 }
 
 async function loadVocabExamplesForItem(item = {}) {
@@ -2476,7 +2488,7 @@ async function loadVocabExamplesForItem(item = {}) {
   const seedPayload = getSeedVocabExamplesForItem(item);
   if (seedPayload) return seedPayload;
   const cacheKey = getVocabExampleCacheKey(item);
-  if (isReusableVocabExamplesPayload(vocabExampleCache[cacheKey])) return vocabExampleCache[cacheKey];
+  if (isDisplayableVocabExamplesPayload(vocabExampleCache[cacheKey])) return vocabExampleCache[cacheKey];
   if (vocabExampleTransientState.has(cacheKey)) return vocabExampleTransientState.get(cacheKey);
   if (vocabExampleRequests.has(cacheKey)) return vocabExampleRequests.get(cacheKey);
 
@@ -2490,7 +2502,15 @@ async function loadVocabExamplesForItem(item = {}) {
     return payload;
   }
 
-  const request = callable({ word, meanings: getVocabExampleHints(item) })
+  const timeoutPayload = new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(normalizeVocabExamplesPayload({
+        status: "timeout",
+        examples: []
+      }));
+    }, VOCAB_EXAMPLE_LOAD_TIMEOUT_MS);
+  });
+  const cloudRequest = callable({ word, meanings: getVocabExampleHints(item) })
     .then((result) => {
       const payload = normalizeVocabExamplesPayload(result?.data || {});
       if (isReusableVocabExamplesPayload(payload)) {
@@ -2508,6 +2528,11 @@ async function loadVocabExamplesForItem(item = {}) {
       });
       vocabExampleTransientState.set(cacheKey, payload);
       return payload;
+    });
+  const request = Promise.race([cloudRequest, timeoutPayload])
+    .then((payload) => {
+      vocabExampleTransientState.set(cacheKey, payload);
+      return payload;
     })
     .finally(() => {
       vocabExampleRequests.delete(cacheKey);
@@ -2519,9 +2544,13 @@ async function loadVocabExamplesForItem(item = {}) {
 
 function appendVocabExamplePayload(container, payload) {
   if (!payload.examples.length) {
-    container.textContent = payload.status === "login-required"
-      ? "登入後可以載入例句。"
-      : "暫時未有合適例句。";
+    const messages = {
+      "login-required": "登入後可以載入例句。",
+      error: "暫時載入不到例句，請稍後再試。",
+      "ai-error": "AI 例句暫時生成不到，請稍後再試。",
+      timeout: "例句載入比較慢，請稍後再打開。"
+    };
+    container.textContent = messages[payload.status] || "暫時未有合適例句。";
     return;
   }
 
@@ -2575,7 +2604,7 @@ function renderExpandedVocabExamples(item = {}) {
     if (stateForEntry.payload) {
       appendVocabExamplePayload(body, stateForEntry.payload);
     } else {
-      body.textContent = stateForEntry.isLoading ? "例句載入中..." : "例句載入中...";
+      body.textContent = stateForEntry.isLoading ? "例句載入中..." : "準備載入例句...";
     }
 
     section.append(body);
