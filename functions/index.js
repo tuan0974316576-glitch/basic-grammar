@@ -309,11 +309,12 @@ function normalizeExampleHints(hints = []) {
     .map((hint) => ({
       meaning: normalizeCloudMeaning(hint?.meaning || ""),
       pos: String(hint?.pos || "").trim().toLowerCase().slice(0, 32),
-      type: String(hint?.type || "").trim().toLowerCase().slice(0, 32)
+      type: String(hint?.type || "").trim().toLowerCase().slice(0, 32),
+      level: String(hint?.level || "").trim().toUpperCase().slice(0, 2)
     }))
     .filter((hint) => hint.meaning)
     .filter((hint) => {
-      const key = `${hint.pos}:${hint.type}:${hint.meaning}`;
+      const key = `${hint.pos}:${hint.type}:${hint.meaning}:${hint.level}`;
       if (seen.has(key)) return false;
       seen.add(key);
       return true;
@@ -343,10 +344,20 @@ function getGeminiApiKey(value) {
 
 function buildGeminiExamplePrompt(word, hints = []) {
   const normalizedWord = normalizeVocabWord(word);
-  const hintLines = normalizeExampleHints(hints)
+  const normalizedHints = normalizeExampleHints(hints);
+  const cefrLevel = normalizedHints.find((hint) => hint.level)?.level || "";
+  const levelGuide = {
+    A1: "A1: Hong Kong junior primary level. Use 4-7 words, present simple, daily life only.",
+    A2: "A2: Hong Kong senior primary level. Use 5-9 words and simple school/home contexts.",
+    B1: "B1: Hong Kong Secondary 1 level. Use 7-12 words and simple because/when/if clauses when natural.",
+    B2: "B2: Hong Kong Secondary 2-3 level. Use 9-15 words, natural school or daily contexts.",
+    C1: "C1: Hong Kong DSE level. Use precise but still clear sentences; avoid obscure academic wording."
+  }[cefrLevel] || "Default: Hong Kong primary-friendly English. Keep sentences short and clear.";
+  const hintLines = normalizedHints
     .map((hint, index) => {
       const label = [hint.pos, hint.type].filter(Boolean).join(" / ");
-      return `${index + 1}. ${label ? `${label}: ` : ""}${hint.meaning}`;
+      const level = hint.level ? ` [${hint.level}]` : "";
+      return `${index + 1}. ${label ? `${label}: ` : ""}${hint.meaning}${level}`;
     })
     .join("\n");
 
@@ -356,6 +367,7 @@ function buildGeminiExamplePrompt(word, hints = []) {
     "",
     `Vocabulary item: ${normalizedWord}`,
     hintLines ? `Target meaning / part of speech hints:\n${hintLines}` : "Target meaning hint: choose the most common primary-level meaning.",
+    `Difficulty guide: ${levelGuide}`,
     "",
     "Rules:",
     "- Return JSON only. No markdown.",
@@ -363,6 +375,8 @@ function buildGeminiExamplePrompt(word, hints = []) {
     "- Each English sentence must be 4 to 10 words, natural, and primary-level.",
     "- Each English sentence must include the vocabulary item or a natural inflected form of it.",
     "- The Traditional Chinese must match the English sentence closely.",
+    "- The Traditional Chinese translation must be natural Cantonese-friendly Traditional Chinese, not word-for-word machine translation.",
+    "- Do not translate fixed chunks awkwardly. For example, translate 'talk about' as '談論', not '談論關於'.",
     "- Use Traditional Chinese, not Simplified Chinese.",
     "- Avoid strange, violent, adult, political, religious, or scary content.",
     "- Avoid rare names and idioms unless the vocabulary item itself is a phrase.",

@@ -7,10 +7,12 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "node tests/grammar_core.test.js && node tests/grammar_data.test.js && node tests/vocab_scheduler.test.js && node tests/vocab_data.test.js && node tests/teacher_vocab.test.js && node tests/fallback_dictionary.test.js && node tests/vocab_format.test.js && node tests/vocab_audio.test.js && node tests/vocab_examples_function.test.js && node tests/import_teacher_vocab.test.js && node tests/import_offline_dictionary.test.js",
-    "check:js": "node --check grammar_core.js && node --check grammar_data.js && node --check vocab_scheduler.js && node --check vocab_data.js && node --check teacher_vocab_bank.js && node --check teacher_vocab.js && node --check fallback_dictionary.js && node --check vocab_audio.js && node --check app.js && node --check firebase-init.js && node --check scripts/build-web.js && node --check scripts/firebase-cli.js && node --check scripts/import-teacher-vocab.js && node --check scripts/import-offline-dictionary.js && npm --prefix functions run lint && node --check functions/seed-students.js",
+    "test": "node tests/grammar_core.test.js && node tests/grammar_data.test.js && node tests/vocab_scheduler.test.js && node tests/vocab_data.test.js && node tests/teacher_vocab.test.js && node tests/fallback_dictionary.test.js && node tests/vocab_format.test.js && node tests/vocab_audio.test.js && node tests/vocab_examples_function.test.js && node tests/vocab_example_seed.test.js && node tests/import_teacher_vocab.test.js && node tests/import_offline_dictionary.test.js",
+    "check:js": "node --check grammar_core.js && node --check grammar_data.js && node --check vocab_scheduler.js && node --check vocab_data.js && node --check teacher_vocab_bank.js && node --check teacher_vocab.js && node --check fallback_dictionary.js && node --check vocab_audio.js && node --check vocab_example_utils.js && node --check vocab_example_seed.js && node --check app.js && node --check firebase-init.js && node --check scripts/build-web.js && node --check scripts/firebase-cli.js && node --check scripts/import-teacher-vocab.js && node --check scripts/import-offline-dictionary.js && node --check scripts/import-oxford-cefr.js && node --check scripts/generate-vocab-examples.js && node --check scripts/python-runner.js && npm --prefix functions run lint && node --check functions/seed-students.js",
     "build:web": "node scripts/build-web.js",
     "vocab:import": "node scripts/import-teacher-vocab.js",
+    "vocab:import:oxford": "node scripts/import-oxford-cefr.js",
+    "vocab:examples": "node scripts/generate-vocab-examples.js",
     "dict:import": "node scripts/import-offline-dictionary.js",
     "cap:sync": "npm run build:web && npx cap sync android",
     "android:run": "npm run build:web && npx cap run android --target S2AIOC447307NGJ",

@@ -145,6 +145,9 @@ Current pipeline:
 - Cloud fallback lookup should be debounced and cached on the client. Do not call Firebase / Azure Translator on every typed letter.
 - If the offline / cloud dictionary is still unclear or has multiple unsuitable meanings, mark it as `待老師確認` rather than guessing.
 - Vocab example sentences should be AI-generated, not pulled directly from dictionary examples. The app sends the selected meaning / POS hints to Firebase Function `lookupVocabExamples`; the function checks shared Firestore cache `vocabExampleCache` first, then uses Gemini to generate short, natural, primary-level English examples with tightly matched Traditional Chinese translations. Cache generated examples in Firestore for the whole class and in localStorage for offline / fast repeat viewing. Example audio still uses shared Azure TTS cache only when the student taps an English example sentence.
+- Pre-generated vocab examples may be bundled in `vocab_example_seed.js` after review. The app checks this seed before localStorage / Firestore / Gemini. Teacher vocab examples use a meaning-aware key (`word + POS/type/meaning`) so multi-meaning words such as `have` do not mix examples. CEFR level controls generation difficulty, but it is not part of the app lookup key because saved student vocab items may not always carry a level. Oxford-only examples use a bare word key.
+- Oxford 3000 / 5000 PDFs may be imported locally to `private_exports/oxford_cefr_vocab.js` to infer CEFR levels for example generation, but the full Oxford word list must not be committed or bundled into the app. Keep it as a private local reference only.
+- Example generation should be batched cautiously: dry-run first, generate a small sample, review the seed, then generate a larger batch. Avoid one giant uncontrolled Gemini run.
 
 Student vocab items can store optional metadata:
 

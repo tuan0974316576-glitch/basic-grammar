@@ -48,3 +48,41 @@ The current Firebase target is the dedicated Grammar Game project (`enguistics-g
 Firestore rules and the callable `studentLogin` function are currently deployed to `enguistics-grammar-game` and have been verified with sample student accounts.
 
 The app must never contain real student PINs. The seed script stores salted PIN hashes in Firestore.
+
+## Vocabulary Example Seed Workflow
+
+The app can use pre-generated AI example sentences before falling back to Firestore / Gemini. Teacher vocab stays the priority source. Oxford 3000 / 5000 PDFs are used only as a private CEFR level reference and must not be bundled into the app or committed.
+
+1. Import the Oxford PDFs into the ignored private export:
+
+   ```bash
+   npm run vocab:import:oxford -- "/path/The_Oxford_3000_by_CEFR_level.pdf" "/path/The_Oxford_5000_by_CEFR_level.pdf"
+   ```
+
+2. Check task counts without calling Gemini:
+
+   ```bash
+   npm run vocab:examples -- --dry-run
+   ```
+
+3. Generate a small review batch first:
+
+   ```bash
+   npm run vocab:examples -- --limit 20
+   ```
+
+4. Review `vocab_example_seed.js`, especially Chinese translations and words with multiple meanings.
+
+5. Generate larger batches only after the sample quality looks right:
+
+   ```bash
+   npm run vocab:examples -- --limit 300
+   ```
+
+6. Optionally upload reviewed seed entries to shared Firestore cache:
+
+   ```bash
+   npm run vocab:examples -- --upload --limit 300
+   ```
+
+The generated app seed file is `vocab_example_seed.js`. It should contain only reviewed examples that are safe to ship. The private Oxford export stays under `private_exports/`, which is ignored by Git.

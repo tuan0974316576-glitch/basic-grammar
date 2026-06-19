@@ -15,6 +15,8 @@ if (!VOCAB_DATA) {
 
 const VOCAB_AUDIO = window.VocabAudio || null;
 const TEACHER_VOCAB = window.TeacherVocab || null;
+const VOCAB_EXAMPLE_UTILS = window.VocabExampleUtils || null;
+const VOCAB_EXAMPLE_SEED = window.VOCAB_EXAMPLE_SEED || null;
 
 const {
   QUESTIONS,
@@ -712,6 +714,7 @@ function isReusableVocabExamplesPayload(payload = {}) {
 }
 
 function stableVocabHash(value) {
+  if (VOCAB_EXAMPLE_UTILS?.stableHash) return VOCAB_EXAMPLE_UTILS.stableHash(value);
   let hash = 2166136261;
   const text = String(value || "");
   for (let index = 0; index < text.length; index += 1) {
@@ -722,17 +725,22 @@ function stableVocabHash(value) {
 }
 
 function getVocabExampleHints(item = {}) {
-  return getVocabMeaningEntries(item)
+  const hints = getVocabMeaningEntries(item)
     .map((entry) => ({
       meaning: normalizeVocabMeaning(entry.meaning),
       pos: normalizeVocabPos(entry.pos),
-      type: String(entry.type || "").trim().toLowerCase()
+      type: String(entry.type || "").trim().toLowerCase(),
+      level: String(entry.level || item.level || "").trim().toUpperCase()
     }))
     .filter((entry) => entry.meaning)
     .slice(0, 4);
+  return VOCAB_EXAMPLE_UTILS?.normalizeHints ? VOCAB_EXAMPLE_UTILS.normalizeHints(hints) : hints;
 }
 
 function getVocabExampleCacheKey(item = {}) {
+  if (VOCAB_EXAMPLE_UTILS?.getLocalCacheKey) {
+    return VOCAB_EXAMPLE_UTILS.getLocalCacheKey(item.word, getVocabExampleHints(item));
+  }
   const word = normalizeVocabWord(item.word);
   const hintText = getVocabExampleHints(item)
     .map((entry) => [entry.pos, entry.type, entry.meaning].filter(Boolean).join(":"))
@@ -741,6 +749,7 @@ function getVocabExampleCacheKey(item = {}) {
 }
 
 function normalizeVocabExampleCacheStorageKey(value) {
+  if (VOCAB_EXAMPLE_UTILS?.normalizeStorageKey) return VOCAB_EXAMPLE_UTILS.normalizeStorageKey(value);
   return String(value || "")
     .trim()
     .replace(/[’‘]/g, "'")
@@ -772,6 +781,21 @@ function saveVocabExamplesCache() {
   } catch (_error) {
     // Examples are a helpful cache only; the list still works without storage.
   }
+}
+
+function getSeedVocabExamplesForItem(item = {}) {
+  const entries = VOCAB_EXAMPLE_SEED?.entries;
+  if (!entries || typeof entries !== "object") return null;
+  const cacheKey = getVocabExampleCacheKey(item);
+  const word = normalizeVocabWord(item.word);
+  const rawPayload = entries[cacheKey] || entries[word];
+  if (!rawPayload) return null;
+  const payload = normalizeVocabExamplesPayload({
+    ...rawPayload,
+    source: rawPayload.source || VOCAB_EXAMPLE_SEED?.meta?.source || "local-example-seed",
+    status: rawPayload.status || "ready"
+  });
+  return isReusableVocabExamplesPayload(payload) ? payload : null;
 }
 
 function getProgressSyncQueue() {
@@ -2376,6 +2400,8 @@ function createVocabDateDivider(timestamp) {
 function getVocabExamplesForItem(item = {}) {
   const word = normalizeVocabWord(item.word);
   if (!word) return null;
+  const seedPayload = getSeedVocabExamplesForItem(item);
+  if (seedPayload) return seedPayload;
   const cacheKey = getVocabExampleCacheKey(item);
   const exactPayload = vocabExampleCache[cacheKey] || vocabExampleTransientState.get(cacheKey);
   if (isReusableVocabExamplesPayload(exactPayload)) return exactPayload;
@@ -2386,6 +2412,8 @@ function getVocabExamplesForItem(item = {}) {
 async function loadVocabExamplesForItem(item = {}) {
   const word = normalizeVocabWord(item.word);
   if (!word) return null;
+  const seedPayload = getSeedVocabExamplesForItem(item);
+  if (seedPayload) return seedPayload;
   const cacheKey = getVocabExampleCacheKey(item);
   if (isReusableVocabExamplesPayload(vocabExampleCache[cacheKey])) return vocabExampleCache[cacheKey];
   if (vocabExampleTransientState.has(cacheKey)) return vocabExampleTransientState.get(cacheKey);

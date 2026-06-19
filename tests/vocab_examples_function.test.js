@@ -68,7 +68,7 @@ const haveFoodHints = helpers.normalizeExampleHints([
 ]);
 
 assert.deepStrictEqual(haveFoodHints, [
-  { meaning: "食 / 飲", pos: "verb", type: "word" }
+  { meaning: "食 / 飲", pos: "verb", type: "word", level: "" }
 ]);
 
 assert.notStrictEqual(
