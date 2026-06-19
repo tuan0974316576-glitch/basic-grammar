@@ -58,6 +58,11 @@ assert.strictEqual(
   null,
   "Teacher-bank words should win over Oxford-only tasks."
 );
+assert.strictEqual(
+  generator.normalizeOxfordTask({ word: "a, an", level: "A1" }, new Set()),
+  null,
+  "Combined Oxford entries are not useful as direct lookup seed keys."
+);
 
 assert.strictEqual(generator.inferFallbackLevel({ word: "go", type: "word" }), "A2");
 assert.strictEqual(generator.inferFallbackLevel({ word: "curious", type: "word" }), "B1");

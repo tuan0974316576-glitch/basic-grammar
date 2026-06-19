@@ -63,11 +63,13 @@ function usage() {
     "  --limit <n>            Generate only the first n missing tasks.",
     "  --word <word>          Generate only one word / phrase.",
     "  --level <A1-C1>        Generate only one CEFR level.",
+    "  --delay-ms <n>         Wait n milliseconds after each Gemini request.",
     "  --out <file>           Output seed JS file.",
     "  --model <model>        Gemini model name.",
     "  --upload               Upload generated / existing seed entries to Firestore.",
     "  --project <id>         Firebase project for upload.",
     "  --force                Regenerate entries that already exist in seed.",
+    "  --retries <n>          Retry each Gemini task n times before marking it failed.",
     "  --insecure             Disable TLS verification for local generation if macOS CA is broken.",
     "",
     "Examples:",
@@ -81,12 +83,14 @@ function usage() {
 function parseArgs(argv) {
   const options = {
     dryRun: false,
+    delayMs: 4500,
     force: false,
     insecure: false,
     limit: 0,
     model: DEFAULT_MODEL,
     out: DEFAULT_OUTPUT,
     project: "enguistics-grammar-game",
+    retries: 2,
     upload: false,
     word: "",
     level: ""
@@ -119,6 +123,11 @@ function parseArgs(argv) {
       index += 1;
       continue;
     }
+    if (arg === "--delay-ms") {
+      options.delayMs = Math.max(0, Number(argv[index + 1]) || 0);
+      index += 1;
+      continue;
+    }
     if (arg === "--model") {
       options.model = argv[index + 1] || options.model;
       index += 1;
@@ -131,6 +140,11 @@ function parseArgs(argv) {
     }
     if (arg === "--project") {
       options.project = argv[index + 1] || options.project;
+      index += 1;
+      continue;
+    }
+    if (arg === "--retries") {
+      options.retries = Math.max(0, Number(argv[index + 1]) || 0);
       index += 1;
       continue;
     }
@@ -241,6 +255,7 @@ function normalizeTeacherTask(entry = {}, oxfordLevelByWord = new Map()) {
 function normalizeOxfordTask(entry = {}, teacherWordSet = new Set()) {
   const word = VocabExampleUtils.normalizeWord(entry.word);
   if (!word || teacherWordSet.has(word)) return null;
+  if (word.includes(",")) return null;
   const level = String(entry.level || "").toUpperCase();
   if (!LEVEL_ORDER[level]) return null;
   const pos = Array.isArray(entry.pos) ? entry.pos[0] || "" : "";
@@ -404,6 +419,40 @@ async function callGemini(task, options) {
     throw new Error(`Gemini returned ${examples.length} examples for ${task.word}`);
   }
   return examples;
+}
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function getRetryDelayMs(error) {
+  const text = String(error?.message || "");
+  const match = text.match(/Please retry in\s+([0-9.]+)s/i);
+  if (match) {
+    return Math.ceil(Number(match[1]) * 1000) + 1500;
+  }
+  if (/quota|rate limit|resource exhausted/i.test(text)) {
+    return 65000;
+  }
+  return 1200;
+}
+
+async function callGeminiWithRetry(task, options) {
+  let lastError = null;
+  const attempts = Math.max(1, (Number(options.retries) || 0) + 1);
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      return await callGemini(task, options);
+    } catch (error) {
+      lastError = error;
+      if (attempt < attempts) {
+        const delayMs = getRetryDelayMs(error);
+        console.warn(`Retrying ${task.word} (${attempt}/${attempts - 1}) after ${Math.round(delayMs / 1000)}s: ${error.message}`);
+        await sleep(delayMs);
+      }
+    }
+  }
+  throw lastError || new Error(`Gemini failed for ${task.word}`);
 }
 
 function readGeminiSecret(project) {
@@ -642,7 +691,37 @@ async function main() {
   for (let index = 0; index < selectedTasks.length; index += 1) {
     const task = selectedTasks[index];
     console.log(`[${index + 1}/${selectedTasks.length}] ${task.word} ${task.level} ${task.meaning || ""}`.trim());
-    const examples = await callGemini(task, options);
+    let examples;
+    try {
+      examples = await callGeminiWithRetry(task, options);
+    } catch (error) {
+      seed.entries[task.localKey] = {
+        word: task.word,
+        display: task.display,
+        source: "local-seed-gemini",
+        status: "failed",
+        level: task.level,
+        meaning: task.meaning || "",
+        pos: task.pos || "",
+        type: task.type || "",
+        hints: task.hints,
+        error: error.message,
+        examples: []
+      };
+      console.warn(`Skipping ${task.word}: ${error.message}`);
+      writeSeed(options.out, {
+        ...seed,
+        meta: {
+          ...seed.meta,
+          generatedAt: new Date().toISOString(),
+          entryCount: Object.keys(seed.entries).length,
+          readyCount: Object.values(seed.entries).filter((entry) => entry.status !== "failed").length,
+          failedCount: Object.values(seed.entries).filter((entry) => entry.status === "failed").length,
+          exampleCount: Object.values(seed.entries).reduce((total, entry) => total + (entry.examples || []).length, 0)
+        }
+      });
+      continue;
+    }
     seed.entries[task.localKey] = {
       word: task.word,
       display: task.display,
@@ -661,9 +740,14 @@ async function main() {
         ...seed.meta,
         generatedAt: new Date().toISOString(),
         entryCount: Object.keys(seed.entries).length,
+        readyCount: Object.values(seed.entries).filter((entry) => entry.status !== "failed").length,
+        failedCount: Object.values(seed.entries).filter((entry) => entry.status === "failed").length,
         exampleCount: Object.values(seed.entries).reduce((total, entry) => total + (entry.examples || []).length, 0)
       }
     });
+    if (options.delayMs > 0 && index < selectedTasks.length - 1) {
+      await sleep(options.delayMs);
+    }
   }
 
   const tasksByLocalKey = new Map(tasks.map((task) => [task.localKey, task]));
@@ -695,5 +779,6 @@ module.exports = {
   normalizeOxfordTask,
   normalizeTeacherTask,
   parseArgs,
-  parseGeminiJsonText
+  parseGeminiJsonText,
+  callGeminiWithRetry
 };

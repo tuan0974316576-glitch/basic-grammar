@@ -79,6 +79,8 @@ The app can use pre-generated AI example sentences before falling back to Firest
    npm run vocab:examples -- --limit 300
    ```
 
+   The generator defaults to a short delay between Gemini requests. If the API returns `generate_content_free_tier_requests`, the API key's Google AI Studio project is still on the free tier; link billing / paid quota to that exact project before running large batches.
+
 6. Optionally upload reviewed seed entries to shared Firestore cache:
 
    ```bash
