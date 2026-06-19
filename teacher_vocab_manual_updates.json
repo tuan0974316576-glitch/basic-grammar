@@ -71,6 +71,7 @@
     { "word": "texture", "meaning": "質感", "pos": "noun" },
     { "word": "invention", "meaning": "發明", "pos": "noun" },
     { "word": "whisk", "meaning": "打發", "pos": "verb" },
-    { "word": "appeal", "meaning": "吸引力", "pos": "noun" }
+    { "word": "appeal", "meaning": "吸引力", "pos": "noun" },
+    { "word": "delicacy", "meaning": "佳餚", "pos": "noun", "notes": "確認：避免 cloud 字典拆成美味 / 美食 / 佳餚等近義重複選項。" }
   ]
 }

@@ -25711,9 +25711,10 @@
       "word": "delicacy",
       "display": "delicacy",
       "meaning": "佳餚",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
+      "notes": "確認：避免 cloud 字典拆成美味 / 美食 / 佳餚等近義重複選項。",
       "sourceCount": 6
     },
     {

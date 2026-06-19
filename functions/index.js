@@ -202,6 +202,7 @@ const CURATED_VOCAB_MEANINGS = new Map([
     { meaning: "分鐘", pos: "noun" },
     { meaning: "極小的", pos: "adjective", level: "C1" }
   ]],
+  ["delicacy", [{ meaning: "佳餚", pos: "noun" }]],
   ["hawker", [{ meaning: "小販", pos: "noun" }]],
   ["evaluate", [{ meaning: "評估", pos: "verb" }]],
   ["guts", [{ meaning: "膽量", pos: "noun" }]]

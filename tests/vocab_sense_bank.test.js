@@ -34,5 +34,9 @@ assert.deepStrictEqual(
   senseBank.lookup("ought to").map((entry) => `${entry.pos}:${entry.meaning}`),
   ["modal:應該"]
 );
+assert.deepStrictEqual(
+  senseBank.lookup("delicacy").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:佳餚"]
+);
 
 console.log("vocab_sense_bank tests passed");

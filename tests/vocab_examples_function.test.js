@@ -169,6 +169,25 @@ mockMeaningCacheData = {
     "adjective:迅速的"
   ]);
 
+  mockMeaningCacheWord = "delicacy";
+  mockMeaningCacheData = {
+    word: "delicacy",
+    source: "azure-dictionary",
+    status: "ready",
+    entries: [
+      { meaning: "美味 佳餚", pos: "noun", type: "word", sourceEntryId: "old-cache-0" },
+      { meaning: "美味", pos: "noun", type: "word", sourceEntryId: "old-cache-1" },
+      { meaning: "美食", pos: "noun", type: "word", sourceEntryId: "old-cache-2" },
+      { meaning: "佳餚", pos: "noun", type: "word", sourceEntryId: "old-cache-3" }
+    ]
+  };
+  const delicacy = await helpers.getOrCreateVocabMeaning("delicacy");
+  assert.strictEqual(delicacy.cached, false);
+  assert.strictEqual(delicacy.source, "curated-cloud");
+  assert.deepStrictEqual(delicacy.entries.map((entry) => `${entry.pos}:${entry.meaning}`), [
+    "noun:佳餚"
+  ]);
+
   console.log("vocab example function tests passed");
 })().catch((error) => {
   console.error(error);
