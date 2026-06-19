@@ -16,6 +16,7 @@ if (!VOCAB_DATA) {
 const VOCAB_AUDIO = window.VocabAudio || null;
 const VOCAB_SENSE_BANK = window.VocabSenseBank || null;
 const TEACHER_VOCAB = window.TeacherVocab || null;
+const VOCAB_POS_INFERENCE = window.VocabPosInference || null;
 const VOCAB_EXAMPLE_UTILS = window.VocabExampleUtils || null;
 const VOCAB_EXAMPLE_SEED = window.VOCAB_EXAMPLE_SEED || null;
 
@@ -761,6 +762,36 @@ function getVocabExampleCacheKey(item = {}) {
   return hintText ? `${word}|${stableVocabHash(hintText)}` : word;
 }
 
+function getVocabExampleSeedKeys(item = {}) {
+  const word = normalizeVocabWord(item.word);
+  const hints = getVocabExampleHints(item);
+  const keys = [getVocabExampleCacheKey(item)];
+  if (!word) return keys;
+
+  if (hints.length) {
+    const withoutPos = hints.map((hint) => ({ ...hint, pos: "" }));
+    const withoutPosKey = VOCAB_EXAMPLE_UTILS?.getLocalCacheKey
+      ? VOCAB_EXAMPLE_UTILS.getLocalCacheKey(word, withoutPos)
+      : `${word}|${stableVocabHash(withoutPos.map((entry) => [entry.type, entry.meaning].filter(Boolean).join(":")).join("|"))}`;
+    keys.push(withoutPosKey);
+
+    const meaningOnly = hints.map((hint) => ({
+      meaning: hint.meaning,
+      pos: "",
+      type: ""
+    }));
+    const meaningOnlyKey = VOCAB_EXAMPLE_UTILS?.getLocalCacheKey
+      ? VOCAB_EXAMPLE_UTILS.getLocalCacheKey(word, meaningOnly)
+      : `${word}|${stableVocabHash(meaningOnly.map((entry) => entry.meaning).join("|"))}`;
+    keys.push(meaningOnlyKey);
+  }
+
+  if (!hints.length) {
+    keys.push(word);
+  }
+  return Array.from(new Set(keys.filter(Boolean)));
+}
+
 function createVocabMeaningExampleItem(item = {}, meaningEntry = {}) {
   return {
     ...item,
@@ -813,10 +844,9 @@ function saveVocabExamplesCache() {
 function getSeedVocabExamplesForItem(item = {}) {
   const entries = VOCAB_EXAMPLE_SEED?.entries;
   if (!entries || typeof entries !== "object") return null;
-  const cacheKey = getVocabExampleCacheKey(item);
-  const word = normalizeVocabWord(item.word);
-  const hasMeaningHints = getVocabExampleHints(item).length > 0;
-  const rawPayload = entries[cacheKey] || (hasMeaningHints ? null : entries[word]);
+  const rawPayload = getVocabExampleSeedKeys(item)
+    .map((key) => entries[key])
+    .find(Boolean);
   if (!rawPayload) return null;
   const payload = normalizeVocabExamplesPayload({
     ...rawPayload,
@@ -2167,32 +2197,18 @@ function getVocabEntryFilterLabel(filterKey = "") {
 }
 
 function normalizeVocabPos(value) {
-  return TEACHER_VOCAB?.normalizePos?.(value)
+  return VOCAB_POS_INFERENCE?.normalizePos?.(value)
+    || TEACHER_VOCAB?.normalizePos?.(value)
     || String(value || "").trim().toLowerCase();
 }
 
 function inferVocabPosFromMeaning(word, meaning) {
-  const normalizedWord = normalizeVocabWord(word);
-  if (!normalizedWord || /\s/.test(normalizedWord)) return "";
-
-  const meaningParts = normalizeVocabMeaning(meaning)
-    .split(/\s*[/／]\s*/)
-    .map((part) => part.trim())
-    .filter(Boolean);
-
-  if (meaningParts.some((part) => /地$/.test(part))) return "adverb";
-  if (meaningParts.some((part) => /的$/.test(part))) return "adjective";
-  if (meaningParts.some((part) => /(?:人|者|員|師|徒|販|家|商|物|品|器|具|車|船|店|館|場|所|法|式|感|力|性|度|量|份|面|點|儀式)$/.test(part))) {
-    return "noun";
-  }
-
-  if (/(?:tion|sion|ment|ness|ity|ism|ship|age|ance|ence|cy|dom|hood|ture|logy|ist|ian|er|or)$/.test(normalizedWord)) {
-    return "noun";
-  }
-  if (/(?:ate|ize|ise|ify|en)$/.test(normalizedWord)) {
-    return "verb";
-  }
-  return "";
+  const inferred = VOCAB_POS_INFERENCE?.inferEntryPos?.({
+    word,
+    meaning,
+    type: normalizeVocabWord(word).includes(" ") ? "phrase" : "word"
+  }, { minConfidence: 84 });
+  return normalizeVocabPos(inferred?.pos);
 }
 
 function getVocabEntryPos(entry = {}) {

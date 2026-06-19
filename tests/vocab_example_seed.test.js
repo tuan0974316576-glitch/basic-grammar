@@ -48,6 +48,15 @@ const havePossessTask = generator.normalizeTeacherTask({
 assert.notStrictEqual(haveFoodTask.localKey, havePossessTask.localKey);
 assert.notStrictEqual(haveFoodTask.cloudKey, havePossessTask.cloudKey);
 
+const inferredPosTask = generator.normalizeTeacherTask({
+  word: "hawker",
+  meaning: "小販",
+  inferredPos: "noun",
+  type: "word"
+}, new Map());
+assert.strictEqual(inferredPosTask.pos, "noun");
+assert.strictEqual(inferredPosTask.hints[0].pos, "noun");
+
 const oxfordOnlyTask = generator.normalizeOxfordTask({
   word: "apple",
   display: "apple",

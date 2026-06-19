@@ -255,10 +255,11 @@ function normalizeTeacherTask(entry = {}, oxfordLevelByWord = new Map()) {
   if (INVALID_TEACHER_TASK_WORDS.has(word)) return null;
   if (word.length === 1 && !["i"].includes(word)) return null;
   if (word.length === 2 && !oxfordLevelByWord.has(word) && entry.type !== "phrase") return null;
+  const pos = entry.pos || entry.inferredPos || "";
   const level = oxfordLevelByWord.get(word) || inferFallbackLevel(entry);
   const hints = VocabExampleUtils.normalizeHints([{
     meaning,
-    pos: entry.pos || "",
+    pos,
     type: entry.type || "word",
     level
   }]);
@@ -270,7 +271,7 @@ function normalizeTeacherTask(entry = {}, oxfordLevelByWord = new Map()) {
     word,
     display: entry.display || entry.word,
     meaning,
-    pos: entry.pos || "",
+    pos,
     type: entry.type || "word",
     level,
     hints,

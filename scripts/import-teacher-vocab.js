@@ -5,6 +5,7 @@ const fs = require("fs");
 const path = require("path");
 const yauzl = require("yauzl");
 const sax = require("sax");
+const VocabPosInference = require("../vocab_pos_inference.js");
 
 const DEFAULT_OUTPUT = path.resolve(__dirname, "..", "teacher_vocab_bank.js");
 const DEFAULT_CONFLICTS = path.resolve(__dirname, "..", "teacher_vocab_conflicts.json");
@@ -118,6 +119,10 @@ function normalizePos(value) {
     .replace(/[().]/g, "")
     .toLowerCase();
   return POS_ALIASES[key] || "";
+}
+
+function inferEntryPos(entry, options = {}) {
+  return VocabPosInference.inferEntryPos(entry, options);
 }
 
 function slugify(value) {
@@ -677,15 +682,21 @@ function buildConflicts(entries, blankChineseCandidates) {
   };
 }
 
-function slimEntryForBank(entry) {
+function slimEntryForBank(entry, options = {}) {
+  const inferred = inferEntryPos(entry, options);
+  const inferredPos = !entry.pos && inferred.pos ? inferred.pos : "";
+  const inferredConfidence = Number(inferred.confidence) || 0;
   return {
     id: entry.id,
     word: entry.word,
     display: entry.display,
     meaning: entry.meaning,
     pos: entry.pos,
+    inferredPos: inferredPos || undefined,
+    posConfidence: inferredPos ? inferredConfidence : undefined,
+    posReason: inferredPos ? inferred.reason : undefined,
     type: entry.type,
-    needsReview: entry.needsReview,
+    needsReview: Boolean(entry.needsReview && !(inferredPos && inferredConfidence >= 84)),
     aliases: entry.aliases?.length ? entry.aliases : undefined,
     sourceCount: entry.sourceCount
   };
@@ -749,7 +760,7 @@ async function main() {
       conflictCount: conflictReport.conflicts.length,
       typeCounts
     },
-    entries: entries.map(slimEntryForBank)
+    entries: entries.map((entry) => slimEntryForBank(entry))
   };
 
   fs.writeFileSync(args.out, createBankJs(bank));
@@ -775,6 +786,7 @@ module.exports = {
   createManualEntriesFromData,
   dedupeEntries,
   extractEntriesFromRows,
+  inferEntryPos,
   readManualUpdateFile,
   normalizeAliases,
   normalizeMeaning,

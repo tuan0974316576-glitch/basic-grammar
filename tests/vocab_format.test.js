@@ -8,6 +8,7 @@ global.TEACHER_VOCAB_BANK = {
       word: "hawker",
       meaning: "小販",
       pos: "",
+      inferredPos: "noun",
       type: "word",
       sourceCount: 1
     },
@@ -45,7 +46,7 @@ const teacherVocab = require("../teacher_vocab.js");
 assert.strictEqual(teacherVocab.formatPosLabel("noun"), "n.");
 assert.strictEqual(teacherVocab.formatPosLabel("phrase"), "ph.");
 assert.strictEqual(teacherVocab.formatPosLabel("pattern"), "pt.");
-assert.strictEqual(teacherVocab.getEntryLabel(teacherVocab.lookup("hawker")[0]), "小販");
+assert.strictEqual(teacherVocab.getEntryLabel(teacherVocab.lookup("hawker")[0]), "n. 小販");
 assert.strictEqual(teacherVocab.getEntryLabel(teacherVocab.lookup("look for")[0]), "ph. 尋找");
 assert.strictEqual(teacherVocab.lookup("intrumental in")[0].word, "instrumental in");
 assert.strictEqual(teacherVocab.getEntryLabel(teacherVocab.lookup("intrumental in")[0]), "adj. 有助於");

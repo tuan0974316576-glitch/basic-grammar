@@ -126,6 +126,7 @@
       word: normalizeWord(entry.word || entry.english || entry.display),
       meaning: normalizeMeaning(entry.meaning),
       pos: normalizePos(entry.pos),
+      inferredPos: normalizePos(entry.inferredPos),
       type: normalizeType(entry.type, entry.word || entry.english || entry.display),
       aliases: normalizeAliases(entry.aliases || entry.alias)
     };
@@ -138,8 +139,8 @@
 
   byWord.forEach((items) => {
     items.sort((left, right) => {
-      const leftScore = (left.pos ? 0 : 1) + (left.needsReview ? 2 : 0);
-      const rightScore = (right.pos ? 0 : 1) + (right.needsReview ? 2 : 0);
+      const leftScore = ((left.pos || left.inferredPos) ? 0 : 1) + (left.needsReview ? 2 : 0);
+      const rightScore = ((right.pos || right.inferredPos) ? 0 : 1) + (right.needsReview ? 2 : 0);
       return leftScore - rightScore || String(left.meaning).localeCompare(String(right.meaning));
     });
   });
@@ -180,7 +181,7 @@
   }
 
   function getEntryLabel(entry = {}) {
-    const posLabel = formatPosLabel(entry.pos) || formatPosLabel(entry.type);
+    const posLabel = formatPosLabel(entry.pos || entry.inferredPos) || formatPosLabel(entry.type);
     const prefix = posLabel ? `${posLabel} ` : "";
     return `${prefix}${normalizeMeaning(entry.meaning)}`;
   }
