@@ -13,16 +13,19 @@ const tasks = generator.makeOxfordOnlyMeaningTasks({
     { word: "answer", display: "answer", level: "A1", pos: ["noun", "verb"] },
     { word: "answer", display: "answer", level: "B1", pos: ["noun"] },
     { word: "can", display: "can", level: "A1", pos: ["modal", "noun"] },
-    { word: "bye", display: "bye", level: "A1", pos: ["exclamation"] }
+    { word: "bye", display: "bye", level: "A1", pos: ["exclamation"] },
+    { word: "diplomatic", display: "diplomatic", level: "C1", pos: ["noun"], posRaw: "n." },
+    { word: "nction", display: "nction", level: "C1", pos: ["noun"] }
   ],
   curatedEntries: []
 });
 
-assert.deepStrictEqual(tasks.map((task) => task.word), ["answer", "apple", "bye", "can"]);
+assert.deepStrictEqual(tasks.map((task) => task.word), ["answer", "apple", "bye", "can", "diplomatic"]);
 assert.strictEqual(tasks[0].level, "A1");
 assert.deepStrictEqual(tasks[0].pos, ["noun", "verb"]);
 assert.deepStrictEqual(tasks.find((task) => task.word === "can").pos, ["modal", "noun"]);
 assert.deepStrictEqual(tasks.find((task) => task.word === "bye").pos, ["exclamation"]);
+assert.deepStrictEqual(tasks.find((task) => task.word === "diplomatic").pos, ["adjective"]);
 
 const posGapTasks = generator.makeOxfordOnlyMeaningTasks({
   teacherEntries: [

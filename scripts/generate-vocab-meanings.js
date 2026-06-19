@@ -20,6 +20,16 @@ const GEMINI_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta";
 const LEVEL_ORDER = { A1: 1, A2: 2, B1: 3, B2: 4, C1: 5 };
 const SOURCE = "local-meaning-gemini";
 const FIRESTORE_CACHE_SOURCE = "shared-cache";
+const INVALID_OXFORD_WORDS = new Set([
+  "nction",
+  "tlement"
+]);
+const OXFORD_ENTRY_OVERRIDES = {
+  diplomatic: {
+    pos: ["adjective"],
+    posRaw: "adj."
+  }
+};
 const ITEM_ARRAY_KEYS = [
   "items",
   "entries",
@@ -250,6 +260,7 @@ function isUsableOxfordWord(word) {
   const normalized = VocabPosInference.normalizeWord(word);
   return Boolean(
     normalized
+    && !INVALID_OXFORD_WORDS.has(normalized)
     && !normalized.includes(",")
     && /^[a-z][a-z' -]{0,63}$/.test(normalized)
     && !/ {2,}|--|''/.test(normalized)
@@ -294,7 +305,8 @@ function makeOxfordOnlyMeaningTasks(input = {}) {
     const word = VocabPosInference.normalizeWord(entry.word);
     const level = String(entry.level || "").trim().toUpperCase();
     if (!isUsableOxfordWord(word) || !LEVEL_ORDER[level]) return;
-    const oxfordPos = normalizePosList(entry.pos);
+    const override = OXFORD_ENTRY_OVERRIDES[word] || {};
+    const oxfordPos = normalizePosList(override.pos || entry.pos);
     const existingPos = existingPosByWord.get(word) || new Set();
     const missingPos = oxfordPos.filter((pos) => !existingPos.has(pos));
     if (!missingPos.length && oxfordPos.length) return;
@@ -311,8 +323,9 @@ function makeOxfordOnlyMeaningTasks(input = {}) {
     missingPos.forEach((pos) => {
       if (!existing.pos.includes(pos)) existing.pos.push(pos);
     });
-    if (entry.posRaw && !existing.posRaw.includes(entry.posRaw)) {
-      existing.posRaw.push(entry.posRaw);
+    const posRaw = override.posRaw || entry.posRaw;
+    if (posRaw && !existing.posRaw.includes(posRaw)) {
+      existing.posRaw.push(posRaw);
     }
     byWord.set(word, existing);
   });
