@@ -144,6 +144,7 @@ Current pipeline:
 - If teacher notes do not contain a word, the logged-in app may call Firebase Function `lookupVocabMeaning`. The function first checks shared Firestore cache `vocabMeaningCache`; if missing, it calls Azure Dictionary Lookup for multiple meaning / POS choices, then falls back to Azure Translate only when dictionary lookup has no useful entry. The student UI should still show normal labels such as `n.`, `v.`, `adj.`, or `ph.`, not the source label.
 - Cloud fallback lookup should be debounced and cached on the client. Do not call Firebase / Azure Translator on every typed letter.
 - If the offline / cloud dictionary is still unclear or has multiple unsuitable meanings, mark it as `待老師確認` rather than guessing.
+- Vocab example sentences should be AI-generated, not pulled directly from dictionary examples. The app sends the selected meaning / POS hints to Firebase Function `lookupVocabExamples`; the function checks shared Firestore cache `vocabExampleCache` first, then uses Gemini to generate short, natural, primary-level English examples with tightly matched Traditional Chinese translations. Cache generated examples in Firestore for the whole class and in localStorage for offline / fast repeat viewing. Example audio still uses shared Azure TTS cache only when the student taps an English example sentence.
 
 Student vocab items can store optional metadata:
 

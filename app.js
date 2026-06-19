@@ -706,7 +706,47 @@ function normalizeVocabExamplesPayload(payload = {}) {
 }
 
 function isReusableVocabExamplesPayload(payload = {}) {
-  return payload.status === "ready" || payload.status === "missing";
+  if (payload.status !== "ready" && payload.status !== "missing") return false;
+  if (payload.status === "ready" && payload.source === "azure-dictionary-examples") return false;
+  return true;
+}
+
+function stableVocabHash(value) {
+  let hash = 2166136261;
+  const text = String(value || "");
+  for (let index = 0; index < text.length; index += 1) {
+    hash ^= text.charCodeAt(index);
+    hash += (hash << 1) + (hash << 4) + (hash << 7) + (hash << 8) + (hash << 24);
+  }
+  return (hash >>> 0).toString(36);
+}
+
+function getVocabExampleHints(item = {}) {
+  return getVocabMeaningEntries(item)
+    .map((entry) => ({
+      meaning: normalizeVocabMeaning(entry.meaning),
+      pos: normalizeVocabPos(entry.pos),
+      type: String(entry.type || "").trim().toLowerCase()
+    }))
+    .filter((entry) => entry.meaning)
+    .slice(0, 4);
+}
+
+function getVocabExampleCacheKey(item = {}) {
+  const word = normalizeVocabWord(item.word);
+  const hintText = getVocabExampleHints(item)
+    .map((entry) => [entry.pos, entry.type, entry.meaning].filter(Boolean).join(":"))
+    .join("|");
+  return hintText ? `${word}|${stableVocabHash(hintText)}` : word;
+}
+
+function normalizeVocabExampleCacheStorageKey(value) {
+  return String(value || "")
+    .trim()
+    .replace(/[’‘]/g, "'")
+    .replace(/\s+/g, " ")
+    .toLowerCase()
+    .slice(0, 80);
 }
 
 function getSavedVocabExamplesCache() {
@@ -716,7 +756,7 @@ function getSavedVocabExamplesCache() {
     return Object.fromEntries(
       Object.entries(saved)
         .map(([word, payload]) => [
-          normalizeVocabWord(word),
+          normalizeVocabExampleCacheStorageKey(word),
           normalizeVocabExamplesPayload(payload)
         ])
         .filter(([word, payload]) => word && isReusableVocabExamplesPayload(payload))
@@ -2336,15 +2376,20 @@ function createVocabDateDivider(timestamp) {
 function getVocabExamplesForItem(item = {}) {
   const word = normalizeVocabWord(item.word);
   if (!word) return null;
-  return vocabExampleCache[word] || vocabExampleTransientState.get(word) || null;
+  const cacheKey = getVocabExampleCacheKey(item);
+  const exactPayload = vocabExampleCache[cacheKey] || vocabExampleTransientState.get(cacheKey);
+  if (isReusableVocabExamplesPayload(exactPayload)) return exactPayload;
+  const wordPayload = cacheKey !== word ? vocabExampleCache[word] : null;
+  return isReusableVocabExamplesPayload(wordPayload) ? wordPayload : null;
 }
 
 async function loadVocabExamplesForItem(item = {}) {
   const word = normalizeVocabWord(item.word);
   if (!word) return null;
-  if (isReusableVocabExamplesPayload(vocabExampleCache[word])) return vocabExampleCache[word];
-  if (vocabExampleTransientState.has(word)) return vocabExampleTransientState.get(word);
-  if (vocabExampleRequests.has(word)) return vocabExampleRequests.get(word);
+  const cacheKey = getVocabExampleCacheKey(item);
+  if (isReusableVocabExamplesPayload(vocabExampleCache[cacheKey])) return vocabExampleCache[cacheKey];
+  if (vocabExampleTransientState.has(cacheKey)) return vocabExampleTransientState.get(cacheKey);
+  if (vocabExampleRequests.has(cacheKey)) return vocabExampleRequests.get(cacheKey);
 
   const callable = getCloudVocabExamplesCallable();
   if (!callable) {
@@ -2352,18 +2397,18 @@ async function loadVocabExamplesForItem(item = {}) {
       status: "login-required",
       examples: []
     });
-    vocabExampleTransientState.set(word, payload);
+    vocabExampleTransientState.set(cacheKey, payload);
     return payload;
   }
 
-  const request = callable({ word })
+  const request = callable({ word, meanings: getVocabExampleHints(item) })
     .then((result) => {
       const payload = normalizeVocabExamplesPayload(result?.data || {});
       if (isReusableVocabExamplesPayload(payload)) {
-        vocabExampleCache[word] = payload;
+        vocabExampleCache[cacheKey] = payload;
         saveVocabExamplesCache();
       }
-      vocabExampleTransientState.set(word, payload);
+      vocabExampleTransientState.set(cacheKey, payload);
       return payload;
     })
     .catch((error) => {
@@ -2372,14 +2417,14 @@ async function loadVocabExamplesForItem(item = {}) {
         status: "error",
         examples: []
       });
-      vocabExampleTransientState.set(word, payload);
+      vocabExampleTransientState.set(cacheKey, payload);
       return payload;
     })
     .finally(() => {
-      vocabExampleRequests.delete(word);
+      vocabExampleRequests.delete(cacheKey);
     });
 
-  vocabExampleRequests.set(word, request);
+  vocabExampleRequests.set(cacheKey, request);
   return request;
 }
 
@@ -2389,7 +2434,7 @@ function renderExpandedVocabExamples(item = {}) {
   panel.addEventListener("click", (event) => event.stopPropagation());
 
   const payload = getVocabExamplesForItem(item);
-  const isLoading = vocabExampleRequests.has(normalizeVocabWord(item.word));
+  const isLoading = vocabExampleRequests.has(getVocabExampleCacheKey(item));
   if (!payload && isLoading) {
     panel.textContent = "例句載入中...";
     return panel;
@@ -2402,8 +2447,8 @@ function renderExpandedVocabExamples(item = {}) {
 
   if (!payload.examples.length) {
     panel.textContent = payload.status === "login-required"
-      ? "登入後可以載入字典例句。"
-      : "字典暫時未有合適例句。";
+      ? "登入後可以載入例句。"
+      : "暫時未有合適例句。";
     return panel;
   }
 

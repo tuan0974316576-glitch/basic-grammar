@@ -14,6 +14,7 @@ const AZURE_SPEECH_KEY = defineSecret("AZURE_SPEECH_KEY");
 const AZURE_SPEECH_REGION = defineSecret("AZURE_SPEECH_REGION");
 const AZURE_TRANSLATOR_KEY = defineSecret("AZURE_TRANSLATOR_KEY");
 const AZURE_TRANSLATOR_REGION = defineSecret("AZURE_TRANSLATOR_REGION");
+const GEMINI_API_KEY = defineSecret("GEMINI_API_KEY");
 
 const DEFAULT_VOICE = "en-US-AndrewMultilingualNeural";
 const DEFAULT_OUTPUT_FORMAT = "audio-24khz-48kbitrate-mono-mp3";
@@ -27,6 +28,10 @@ const AZURE_DICTIONARY_TARGET = "zh-Hans";
 const AZURE_DICTIONARY_ENTRY_LIMIT = 8;
 const AZURE_DICTIONARY_EXAMPLE_PAIR_LIMIT = 6;
 const AZURE_DICTIONARY_EXAMPLE_LIMIT = 4;
+const GEMINI_EXAMPLE_MODEL = "gemini-3.1-flash-lite";
+const GEMINI_EXAMPLE_SOURCE = "gemini-generated-examples";
+const GEMINI_EXAMPLE_LIMIT = 3;
+const GEMINI_API_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta";
 
 const CURATED_VOCAB_MEANINGS = new Map([
   ["have", [
@@ -291,6 +296,153 @@ function normalizeExampleEntries(word, examples = [], source = "azure-dictionary
       return true;
     })
     .slice(0, AZURE_DICTIONARY_EXAMPLE_LIMIT);
+}
+
+function shouldReuseCachedExamples(cached = {}) {
+  const source = String(cached.source || "").toLowerCase();
+  return source === GEMINI_EXAMPLE_SOURCE;
+}
+
+function normalizeExampleHints(hints = []) {
+  const seen = new Set();
+  return (Array.isArray(hints) ? hints : [])
+    .map((hint) => ({
+      meaning: normalizeCloudMeaning(hint?.meaning || ""),
+      pos: String(hint?.pos || "").trim().toLowerCase().slice(0, 32),
+      type: String(hint?.type || "").trim().toLowerCase().slice(0, 32)
+    }))
+    .filter((hint) => hint.meaning)
+    .filter((hint) => {
+      const key = `${hint.pos}:${hint.type}:${hint.meaning}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
+    .slice(0, 4);
+}
+
+function makeVocabExamplesCacheKey(word, hints = []) {
+  const normalizedWord = normalizeVocabWord(word);
+  const hintText = normalizeExampleHints(hints)
+    .map((hint) => [hint.pos, hint.type, hint.meaning].filter(Boolean).join(":"))
+    .join("|");
+  return hintText ? `${normalizedWord}|${hintText}` : normalizedWord;
+}
+
+function makeVocabExampleId(word, hints = []) {
+  return makeVocabMeaningId(makeVocabExamplesCacheKey(word, hints));
+}
+
+function getGeminiApiKey(value) {
+  const key = String(value || "").trim();
+  if (!key) {
+    throw new HttpsError("failed-precondition", "Gemini API key is not configured.");
+  }
+  return key;
+}
+
+function buildGeminiExamplePrompt(word, hints = []) {
+  const normalizedWord = normalizeVocabWord(word);
+  const hintLines = normalizeExampleHints(hints)
+    .map((hint, index) => {
+      const label = [hint.pos, hint.type].filter(Boolean).join(" / ");
+      return `${index + 1}. ${label ? `${label}: ` : ""}${hint.meaning}`;
+    })
+    .join("\n");
+
+  return [
+    "You are writing vocabulary example sentences for Hong Kong primary school students.",
+    "Create short, natural, safe English example sentences with matching Traditional Chinese translations.",
+    "",
+    `Vocabulary item: ${normalizedWord}`,
+    hintLines ? `Target meaning / part of speech hints:\n${hintLines}` : "Target meaning hint: choose the most common primary-level meaning.",
+    "",
+    "Rules:",
+    "- Return JSON only. No markdown.",
+    `- Return exactly ${GEMINI_EXAMPLE_LIMIT} examples.`,
+    "- Each English sentence must be 4 to 10 words, natural, and primary-level.",
+    "- Each English sentence must include the vocabulary item or a natural inflected form of it.",
+    "- The Traditional Chinese must match the English sentence closely.",
+    "- Use Traditional Chinese, not Simplified Chinese.",
+    "- Avoid strange, violent, adult, political, religious, or scary content.",
+    "- Avoid rare names and idioms unless the vocabulary item itself is a phrase.",
+    "- If the vocabulary item is a phrase, keep the phrase together in the English sentence.",
+    "",
+    "JSON shape:",
+    "{\"examples\":[{\"source\":\"English sentence.\",\"target\":\"繁體中文翻譯。\"}]}"
+  ].join("\n");
+}
+
+function parseGeminiJsonText(text) {
+  const raw = String(text || "").trim();
+  if (!raw) return null;
+  const fenced = raw.match(/```(?:json)?\s*([\s\S]*?)```/i);
+  const candidate = fenced ? fenced[1].trim() : raw;
+  try {
+    return JSON.parse(candidate);
+  } catch (_error) {
+    const start = candidate.indexOf("{");
+    const end = candidate.lastIndexOf("}");
+    if (start >= 0 && end > start) {
+      try {
+        return JSON.parse(candidate.slice(start, end + 1));
+      } catch (_innerError) {
+        return null;
+      }
+    }
+  }
+  return null;
+}
+
+function normalizeGeminiExamples(word, body, hints = []) {
+  const text = body?.candidates?.[0]?.content?.parts
+    ?.map((part) => part?.text || "")
+    .join("")
+    .trim();
+  const parsed = parseGeminiJsonText(text);
+  const examples = Array.isArray(parsed?.examples) ? parsed.examples : [];
+  const primaryMeaning = normalizeExampleHints(hints)[0]?.meaning || "";
+  return normalizeExampleEntries(
+    word,
+    examples.map((example, index) => ({
+      source: example.source || example.english || "",
+      target: example.target || example.chinese || example.translation || "",
+      meaning: example.meaning || primaryMeaning,
+      sourceEntryId: `gemini-example-${index}`
+    })),
+    GEMINI_EXAMPLE_SOURCE
+  ).slice(0, GEMINI_EXAMPLE_LIMIT);
+}
+
+async function generateVocabExamplesWithGemini(word, hints = [], apiKeyValue) {
+  const apiKey = getGeminiApiKey(apiKeyValue);
+  const endpoint = `${GEMINI_API_ENDPOINT}/models/${GEMINI_EXAMPLE_MODEL}:generateContent?key=${encodeURIComponent(apiKey)}`;
+  const response = await fetch(endpoint, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      contents: [{
+        role: "user",
+        parts: [{ text: buildGeminiExamplePrompt(word, hints) }]
+      }],
+      generationConfig: {
+        temperature: 0.45,
+        topP: 0.9,
+        maxOutputTokens: 512,
+        responseMimeType: "application/json"
+      }
+    })
+  });
+
+  const body = await response.json().catch(async () => ({ raw: await response.text().catch(() => "") }));
+  if (!response.ok) {
+    const details = body?.error?.message || body?.raw || `HTTP ${response.status}`;
+    throw new Error(`Gemini example generation failed: ${details}`);
+  }
+
+  return normalizeGeminiExamples(word, body, hints);
 }
 
 async function translateTextItemsWithAzure(items, { from, to, translatorKey, translatorRegion }) {
@@ -763,15 +915,16 @@ exports.lookupVocabMeaning = onCall({
   };
 });
 
-async function getOrCreateVocabExamples(word) {
+async function getOrCreateVocabExamples(word, hints = []) {
   const normalizedWord = normalizeVocabWord(word);
-  const exampleId = makeVocabMeaningId(normalizedWord);
+  const normalizedHints = normalizeExampleHints(hints);
+  const exampleId = makeVocabExampleId(normalizedWord, normalizedHints);
   const docRef = db.collection("vocabExampleCache").doc(exampleId);
   const cachedSnap = await docRef.get();
   if (cachedSnap.exists) {
     const cached = cachedSnap.data() || {};
     const examples = normalizeExampleEntries(normalizedWord, cached.examples || [], cached.source || "shared-cache");
-    if (examples.length || cached.status === "missing") {
+    if (shouldReuseCachedExamples(cached) && (examples.length || cached.status === "missing")) {
       return {
         exampleId,
         word: normalizedWord,
@@ -785,24 +938,23 @@ async function getOrCreateVocabExamples(word) {
 
   let examples = [];
   let status = "ready";
-  const source = "azure-dictionary-examples";
+  const source = GEMINI_EXAMPLE_SOURCE;
   try {
-    examples = await lookupAzureDictionaryExamples(normalizedWord, {
-      translatorKey: AZURE_TRANSLATOR_KEY.value(),
-      translatorRegion: AZURE_TRANSLATOR_REGION.value()
-    });
+    examples = await generateVocabExamplesWithGemini(normalizedWord, normalizedHints, GEMINI_API_KEY.value());
     status = examples.length ? "ready" : "missing";
   } catch (error) {
-    console.error("Azure vocab example lookup failed.", {
+    console.error("Gemini vocab example generation failed.", {
       word: normalizedWord,
       message: error?.message || String(error)
     });
-    status = "translator-error";
+    status = "ai-error";
   }
 
   await docRef.set({
     word: normalizedWord,
     exampleId,
+    cacheKey: makeVocabExamplesCacheKey(normalizedWord, normalizedHints),
+    hints: normalizedHints,
     source,
     status,
     examples: examples.map((example) => ({
@@ -827,7 +979,7 @@ async function getOrCreateVocabExamples(word) {
 
 exports.lookupVocabExamples = onCall({
   invoker: "public",
-  secrets: [AZURE_TRANSLATOR_KEY, AZURE_TRANSLATOR_REGION]
+  secrets: [GEMINI_API_KEY]
 }, async (request) => {
   if (!request.auth) {
     throw new HttpsError("unauthenticated", "Please log in first.");
@@ -838,7 +990,8 @@ exports.lookupVocabExamples = onCall({
     throw new HttpsError("invalid-argument", "Invalid vocabulary word.");
   }
 
-  const result = await getOrCreateVocabExamples(word);
+  const hints = normalizeExampleHints(request.data?.meanings || request.data?.hints || []);
+  const result = await getOrCreateVocabExamples(word, hints);
   return {
     status: result.status || "ready",
     word,
@@ -939,3 +1092,15 @@ exports.studentLogin = onCall({
     classId
   };
 });
+
+if (process.env.NODE_ENV === "test") {
+  module.exports._private = {
+    buildGeminiExamplePrompt,
+    makeVocabExamplesCacheKey,
+    makeVocabExampleId,
+    normalizeExampleHints,
+    normalizeGeminiExamples,
+    parseGeminiJsonText,
+    shouldReuseCachedExamples
+  };
+}
