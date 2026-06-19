@@ -1257,11 +1257,15 @@ exports.studentLogin = onCall({
 if (process.env.NODE_ENV === "test") {
   module.exports._private = {
     buildGeminiExamplePrompt,
+    getOrCreateVocabMeaning,
+    makeVocabMeaningId,
     makeVocabExamplesCacheKey,
     makeVocabExampleId,
+    normalizeMeaningEntries,
     normalizeExampleHints,
     normalizeGeminiExamples,
     parseGeminiJsonText,
+    shouldReuseCachedMeaning,
     shouldReuseCachedExamples
   };
 }

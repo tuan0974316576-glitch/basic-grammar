@@ -3,16 +3,30 @@ const Module = require("module");
 
 process.env.NODE_ENV = "test";
 
+let mockMeaningCacheData = null;
+let mockFirestoreSetCount = 0;
+
 const originalLoad = Module._load;
 Module._load = function loadMock(request, parent, isMain) {
   if (request === "firebase-admin") {
     return {
       initializeApp: () => {},
       firestore: () => ({
-        collection: () => ({
-          doc: () => ({
-            get: async () => ({ exists: false }),
-            set: async () => {}
+        collection: (collectionName) => ({
+          doc: (docId) => ({
+            get: async () => {
+              const expectedId = helpersForMock.makeVocabMeaningId("apple");
+              if (collectionName === "vocabMeaningCache" && docId === expectedId && mockMeaningCacheData) {
+                return {
+                  exists: true,
+                  data: () => mockMeaningCacheData
+                };
+              }
+              return { exists: false };
+            },
+            set: async () => {
+              mockFirestoreSetCount += 1;
+            }
           })
         })
       }),
@@ -59,6 +73,7 @@ const functions = require("../functions/index.js");
 Module._load = originalLoad;
 
 const helpers = functions._private;
+const helpersForMock = helpers;
 assert.ok(helpers, "Expected test helpers to be exported.");
 
 const haveFoodHints = helpers.normalizeExampleHints([
@@ -106,4 +121,27 @@ assert.strictEqual(examples.length, 2);
 assert.strictEqual(examples[0].meaning, "食 / 飲");
 assert.strictEqual(examples[0].provider, "gemini-generated-examples");
 
-console.log("vocab example function tests passed");
+mockMeaningCacheData = {
+  word: "apple",
+  source: "shared-cache",
+  status: "ready",
+  entries: [
+    { meaning: "蘋果", pos: "noun", type: "word", level: "A1", sourceEntryId: "seed-apple-noun" }
+  ]
+};
+
+(async () => {
+  const cachedMeaning = await helpers.getOrCreateVocabMeaning("apple");
+  assert.strictEqual(cachedMeaning.cached, true);
+  assert.strictEqual(cachedMeaning.source, "shared-cache");
+  assert.strictEqual(cachedMeaning.entries.length, 1);
+  assert.strictEqual(cachedMeaning.entries[0].meaning, "蘋果");
+  assert.strictEqual(cachedMeaning.entries[0].pos, "noun");
+  assert.strictEqual(cachedMeaning.entries[0].level, "A1");
+  assert.strictEqual(mockFirestoreSetCount, 0);
+
+  console.log("vocab example function tests passed");
+})().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});
