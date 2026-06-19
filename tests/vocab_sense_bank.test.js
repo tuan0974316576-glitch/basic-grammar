@@ -22,4 +22,17 @@ const hawker = senseBank.lookup("hawker");
 assert.strictEqual(hawker[0].pos, "noun");
 assert.strictEqual(hawker[0].meaning, "小販");
 
+assert.deepStrictEqual(
+  senseBank.lookup("swift").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["adjective:迅速的"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("won't").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["modal:不會"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("ought to").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["modal:應該"]
+);
+
 console.log("vocab_sense_bank tests passed");

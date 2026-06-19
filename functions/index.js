@@ -129,7 +129,15 @@ const CURATED_VOCAB_MEANINGS = new Map([
     { meaning: "罐", pos: "noun" }
   ]],
   ["cannot", [{ meaning: "不能", pos: "modal" }]],
+  ["won't", [{ meaning: "不會", pos: "modal" }]],
+  ["ought to", [{ meaning: "應該", pos: "modal" }]],
   ["bye", [{ meaning: "再見", pos: "exclamation" }]],
+  ["swift", [{ meaning: "迅速的", pos: "adjective" }]],
+  ["prompt", [
+    { meaning: "提示", pos: "noun" },
+    { meaning: "促使", pos: "verb" },
+    { meaning: "迅速的", pos: "adjective" }
+  ]],
   ["like", [
     { meaning: "喜歡", pos: "verb" },
     { meaning: "像", pos: "preposition" }
@@ -345,20 +353,74 @@ function normalizeAzureDictionaryPos(posTag, word) {
   return map[value] || "";
 }
 
+function normalizeCloudPos(pos, word) {
+  const normalizedWord = normalizeVocabWord(word);
+  const value = String(pos || "").trim().toLowerCase();
+  const modalWords = new Set([
+    "can",
+    "cannot",
+    "can't",
+    "could",
+    "may",
+    "might",
+    "must",
+    "ought to",
+    "shall",
+    "should",
+    "will",
+    "won't",
+    "would",
+    "used to"
+  ]);
+  if (modalWords.has(normalizedWord)) return "modal";
+  if (value === "verb" || value === "v") return "verb";
+  if (value === "adjective" || value === "adj") return "adjective";
+  if (value === "adverb" || value === "adv") return "adverb";
+  if (value === "noun" || value === "n") return "noun";
+  if (value === "preposition" || value === "prep") return "preposition";
+  if (value === "conjunction" || value === "conj") return "conjunction";
+  if (value === "pronoun" || value === "pron") return "pronoun";
+  if (value === "determiner" || value === "det") return "determiner";
+  if (value === "number" || value === "num") return "number";
+  if (value === "auxiliary" || value === "aux") return "auxiliary";
+  if (value === "exclamation" || value === "exclam" || value === "interjection") return "exclamation";
+  if (value === "modal" || value === "modal v") return "modal";
+  return value;
+}
+
+function normalizeMeaningKey(value) {
+  return normalizeCloudMeaning(value)
+    .replace(/[的地]$/g, "")
+    .replace(/[\s/／]+/g, "")
+    .toLowerCase();
+}
+
 function normalizeMeaningEntries(word, entries = [], source = "azure-dictionary") {
   const normalizedWord = normalizeVocabWord(word);
+  const seen = new Set();
   return entries
-    .map((entry, index) => ({
+    .map((entry, index) => {
+      const pos = normalizeCloudPos(entry.pos, normalizedWord);
+      const type = entry.type || inferVocabType(normalizedWord);
+      return {
       id: `${source}-${makeVocabMeaningId(`${normalizedWord}:${entry.meaning}:${index}`)}`,
       word: normalizedWord,
       meaning: normalizeCloudMeaning(entry.meaning),
-      pos: String(entry.pos || "").trim().toLowerCase(),
-      type: entry.type || inferVocabType(normalizedWord),
+      pos,
+      type: pos === "modal" ? "word" : type,
       source,
       sourceEntryId: entry.sourceEntryId || "",
       level: String(entry.level || "").trim().toUpperCase()
-    }))
-    .filter((entry) => entry.meaning);
+    };
+    })
+    .filter((entry) => entry.meaning)
+    .filter((entry) => {
+      const key = `${entry.pos || entry.type}:${normalizeMeaningKey(entry.meaning)}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
+    .slice(0, 8);
 }
 
 function shouldReuseCachedMeaning(cached = {}) {

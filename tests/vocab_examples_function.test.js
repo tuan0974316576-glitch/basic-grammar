@@ -5,31 +5,36 @@ process.env.NODE_ENV = "test";
 
 let mockMeaningCacheData = null;
 let mockFirestoreSetCount = 0;
+let mockMeaningCacheWord = "apple";
 
 const originalLoad = Module._load;
 Module._load = function loadMock(request, parent, isMain) {
   if (request === "firebase-admin") {
+    const firestore = () => ({
+      collection: (collectionName) => ({
+        doc: (docId) => ({
+          get: async () => {
+            const expectedId = helpersForMock.makeVocabMeaningId(mockMeaningCacheWord);
+            if (collectionName === "vocabMeaningCache" && docId === expectedId && mockMeaningCacheData) {
+              return {
+                exists: true,
+                data: () => mockMeaningCacheData
+              };
+            }
+            return { exists: false };
+          },
+          set: async () => {
+            mockFirestoreSetCount += 1;
+          }
+        })
+      })
+    });
+    firestore.FieldValue = {
+      serverTimestamp: () => ({ __type: "serverTimestamp" })
+    };
     return {
       initializeApp: () => {},
-      firestore: () => ({
-        collection: (collectionName) => ({
-          doc: (docId) => ({
-            get: async () => {
-              const expectedId = helpersForMock.makeVocabMeaningId("apple");
-              if (collectionName === "vocabMeaningCache" && docId === expectedId && mockMeaningCacheData) {
-                return {
-                  exists: true,
-                  data: () => mockMeaningCacheData
-                };
-              }
-              return { exists: false };
-            },
-            set: async () => {
-              mockFirestoreSetCount += 1;
-            }
-          })
-        })
-      }),
+      firestore,
       storage: () => ({
         bucket: () => ({
           file: () => ({
@@ -139,6 +144,30 @@ mockMeaningCacheData = {
   assert.strictEqual(cachedMeaning.entries[0].pos, "noun");
   assert.strictEqual(cachedMeaning.entries[0].level, "A1");
   assert.strictEqual(mockFirestoreSetCount, 0);
+
+  mockMeaningCacheWord = "won't";
+  mockMeaningCacheData = {
+    word: "won't",
+    source: "azure-dictionary",
+    status: "ready",
+    entries: [
+      { meaning: "不會", pos: "verb", type: "word", sourceEntryId: "old-cache-0" },
+      { meaning: "不會", pos: "verb", type: "word", sourceEntryId: "old-cache-1" }
+    ]
+  };
+  const cachedModal = await helpers.getOrCreateVocabMeaning("won't");
+  assert.strictEqual(cachedModal.cached, false);
+  assert.strictEqual(cachedModal.source, "curated-cloud");
+  assert.strictEqual(cachedModal.entries.length, 1);
+  assert.strictEqual(cachedModal.entries[0].pos, "modal");
+  assert.strictEqual(cachedModal.entries[0].meaning, "不會");
+
+  mockMeaningCacheData = null;
+  const swift = await helpers.getOrCreateVocabMeaning("swift");
+  assert.strictEqual(swift.source, "curated-cloud");
+  assert.deepStrictEqual(swift.entries.map((entry) => `${entry.pos}:${entry.meaning}`), [
+    "adjective:迅速的"
+  ]);
 
   console.log("vocab example function tests passed");
 })().catch((error) => {
