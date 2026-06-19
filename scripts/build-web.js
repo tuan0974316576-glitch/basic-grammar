@@ -19,6 +19,7 @@ const files = [
   "style.css",
   "teacher_vocab_bank.js",
   "teacher_vocab.js",
+  "vocab_sense_bank.js",
   "vocab_audio.js",
   "vocab_example_utils.js",
   "vocab_example_seed.js",

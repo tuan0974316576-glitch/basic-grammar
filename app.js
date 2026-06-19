@@ -14,6 +14,7 @@ if (!VOCAB_DATA) {
 }
 
 const VOCAB_AUDIO = window.VocabAudio || null;
+const VOCAB_SENSE_BANK = window.VocabSenseBank || null;
 const TEACHER_VOCAB = window.TeacherVocab || null;
 const VOCAB_EXAMPLE_UTILS = window.VocabExampleUtils || null;
 const VOCAB_EXAMPLE_SEED = window.VOCAB_EXAMPLE_SEED || null;
@@ -748,6 +749,20 @@ function getVocabExampleCacheKey(item = {}) {
   return hintText ? `${word}|${stableVocabHash(hintText)}` : word;
 }
 
+function createVocabMeaningExampleItem(item = {}, meaningEntry = {}) {
+  return {
+    ...item,
+    meaning: normalizeVocabMeaning(meaningEntry.meaning),
+    meanings: [meaningEntry],
+    pos: meaningEntry.pos || "",
+    type: meaningEntry.type || "",
+    source: meaningEntry.source || "",
+    teacherEntryId: meaningEntry.teacherEntryId || "",
+    sourceEntryId: meaningEntry.sourceEntryId || "",
+    level: meaningEntry.level || item.level || ""
+  };
+}
+
 function normalizeVocabExampleCacheStorageKey(value) {
   if (VOCAB_EXAMPLE_UTILS?.normalizeStorageKey) return VOCAB_EXAMPLE_UTILS.normalizeStorageKey(value);
   return String(value || "")
@@ -788,7 +803,8 @@ function getSeedVocabExamplesForItem(item = {}) {
   if (!entries || typeof entries !== "object") return null;
   const cacheKey = getVocabExampleCacheKey(item);
   const word = normalizeVocabWord(item.word);
-  const rawPayload = entries[cacheKey] || entries[word];
+  const hasMeaningHints = getVocabExampleHints(item).length > 0;
+  const rawPayload = entries[cacheKey] || (hasMeaningHints ? null : entries[word]);
   if (!rawPayload) return null;
   const payload = normalizeVocabExamplesPayload({
     ...rawPayload,
@@ -796,6 +812,17 @@ function getSeedVocabExamplesForItem(item = {}) {
     status: rawPayload.status || "ready"
   });
   return isReusableVocabExamplesPayload(payload) ? payload : null;
+}
+
+function getVocabMeaningExampleState(item = {}, meaningEntry = {}) {
+  const senseItem = createVocabMeaningExampleItem(item, meaningEntry);
+  const cacheKey = getVocabExampleCacheKey(senseItem);
+  return {
+    item: senseItem,
+    cacheKey,
+    payload: getVocabExamplesForItem(senseItem),
+    isLoading: vocabExampleRequests.has(cacheKey)
+  };
 }
 
 function getProgressSyncQueue() {
@@ -1981,6 +2008,14 @@ function getTeacherVocabMatches(word) {
   return TEACHER_VOCAB.lookup(word, { exactOnly: true, limit: 10 });
 }
 
+function getCuratedVocabSenseMatches(word) {
+  if (!VOCAB_SENSE_BANK?.lookup) return [];
+  return VOCAB_SENSE_BANK.lookup(word, { limit: 12 }).map((entry) => ({
+    ...entry,
+    source: entry.source || "curated-sense-bank"
+  }));
+}
+
 function getCloudVocabMeaningCallable() {
   const firebase = getFirebaseBundle();
   if (!firebase?.functions || !firebase.modules?.httpsCallable || !firebase.auth?.currentUser) return null;
@@ -2022,18 +2057,43 @@ function normalizeCloudVocabEntries(word, data = {}) {
       pos: normalizeVocabPos(entry.pos),
       type: entry.type || (normalizedWord.includes(" ") ? "phrase" : "word"),
       source: entry.source || data.source || "azure-dictionary",
-      sourceEntryId: entry.sourceEntryId || data.meaningId || ""
+      sourceEntryId: entry.sourceEntryId || data.meaningId || "",
+      level: String(entry.level || "").trim().toUpperCase()
     }))
     .filter((entry) => entry.word && entry.meaning);
 }
 
+function dedupeVocabLookupMatches(matches = []) {
+  const seen = new Set();
+  return matches.filter((entry) => {
+    const key = [
+      normalizeVocabWord(entry.word),
+      getVocabEntryPos(entry),
+      String(entry.type || "").trim().toLowerCase(),
+      normalizeVocabMeaning(entry.meaning)
+    ].join("|");
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
 function buildVocabLookupMatches(word) {
   const teacherMatches = getTeacherVocabMatches(word);
+  const curatedMatches = getCuratedVocabSenseMatches(word);
   if (teacherMatches.length) {
-    return teacherMatches.map((entry) => ({
+    const merged = [
+      ...teacherMatches.map((entry) => ({
       ...entry,
       source: entry.source || "teacher"
-    }));
+      })),
+      ...curatedMatches
+    ];
+    return dedupeVocabLookupMatches(merged).slice(0, 12);
+  }
+
+  if (curatedMatches.length) {
+    return dedupeVocabLookupMatches(curatedMatches).slice(0, 12);
   }
 
   return [];
@@ -2405,6 +2465,7 @@ function getVocabExamplesForItem(item = {}) {
   const cacheKey = getVocabExampleCacheKey(item);
   const exactPayload = vocabExampleCache[cacheKey] || vocabExampleTransientState.get(cacheKey);
   if (isReusableVocabExamplesPayload(exactPayload)) return exactPayload;
+  if (getVocabExampleHints(item).length) return null;
   const wordPayload = cacheKey !== word ? vocabExampleCache[word] : null;
   return isReusableVocabExamplesPayload(wordPayload) ? wordPayload : null;
 }
@@ -2456,28 +2517,12 @@ async function loadVocabExamplesForItem(item = {}) {
   return request;
 }
 
-function renderExpandedVocabExamples(item = {}) {
-  const panel = document.createElement("div");
-  panel.className = "vocab-examples-panel";
-  panel.addEventListener("click", (event) => event.stopPropagation());
-
-  const payload = getVocabExamplesForItem(item);
-  const isLoading = vocabExampleRequests.has(getVocabExampleCacheKey(item));
-  if (!payload && isLoading) {
-    panel.textContent = "例句載入中...";
-    return panel;
-  }
-
-  if (!payload) {
-    panel.textContent = "例句載入中...";
-    return panel;
-  }
-
+function appendVocabExamplePayload(container, payload) {
   if (!payload.examples.length) {
-    panel.textContent = payload.status === "login-required"
+    container.textContent = payload.status === "login-required"
       ? "登入後可以載入例句。"
       : "暫時未有合適例句。";
-    return panel;
+    return;
   }
 
   payload.examples.forEach((example) => {
@@ -2502,10 +2547,53 @@ function renderExpandedVocabExamples(item = {}) {
     chinese.textContent = example.target;
 
     card.append(english, chinese);
-    panel.append(card);
+    container.append(card);
+  });
+}
+
+function renderExpandedVocabExamples(item = {}) {
+  const panel = document.createElement("div");
+  panel.className = "vocab-examples-panel";
+  panel.addEventListener("click", (event) => event.stopPropagation());
+
+  const meaningEntries = getVocabMeaningEntries(item);
+  const entries = meaningEntries.length ? meaningEntries : [{ meaning: item.meaning, pos: item.pos, type: item.type }];
+  entries.forEach((entry) => {
+    const stateForEntry = getVocabMeaningExampleState(item, entry);
+    const section = document.createElement("section");
+    section.className = "vocab-example-sense";
+
+    if (entries.length > 1) {
+      const title = document.createElement("div");
+      title.className = "vocab-example-sense-title";
+      title.textContent = formatVocabMeaningLine(entry);
+      section.append(title);
+    }
+
+    const body = document.createElement("div");
+    body.className = "vocab-example-sense-body";
+    if (stateForEntry.payload) {
+      appendVocabExamplePayload(body, stateForEntry.payload);
+    } else {
+      body.textContent = stateForEntry.isLoading ? "例句載入中..." : "例句載入中...";
+    }
+
+    section.append(body);
+    panel.append(section);
   });
 
   return panel;
+}
+
+async function loadVocabExamplesForMeanings(item = {}) {
+  const entries = getVocabMeaningEntries(item);
+  const targets = entries.length ? entries : [{ meaning: item.meaning, pos: item.pos, type: item.type }];
+  const requests = targets
+    .map((entry) => getVocabMeaningExampleState(item, entry))
+    .filter((entryState) => !entryState.payload && !entryState.isLoading)
+    .map((entryState) => loadVocabExamplesForItem(entryState.item));
+  if (!requests.length) return [];
+  return Promise.all(requests);
 }
 
 function toggleVocabExamples(item = {}) {
@@ -2514,8 +2602,8 @@ function toggleVocabExamples(item = {}) {
   renderVocabList();
   playUiSound("click");
 
-  if (!nextId || getVocabExamplesForItem(item)) return;
-  void loadVocabExamplesForItem(item).then(() => {
+  if (!nextId) return;
+  void loadVocabExamplesForMeanings(item).then(() => {
     if (expandedVocabItemId === item.id) {
       renderVocabList();
     }
@@ -2607,14 +2695,16 @@ function makeVocabMeaningEntry(entry = {}) {
       pos: getVocabEntryPos(entry),
       type: entry.type || "word",
       source: "teacher",
-      teacherEntryId: entry.id || ""
+      teacherEntryId: entry.id || "",
+      level: entry.level || ""
     }
     : {
       meaning: normalizeVocabMeaning(entry.meaning),
       pos: getVocabEntryPos(entry),
       type: entry.type || "word",
       source: entry.source || "",
-      sourceEntryId: entry.sourceEntryId || entry.id || ""
+      sourceEntryId: entry.sourceEntryId || entry.id || "",
+      level: entry.level || ""
     };
   return VOCAB_DATA.normalizeMeaningEntry(meaningEntry);
 }

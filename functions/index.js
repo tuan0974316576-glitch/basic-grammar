@@ -36,7 +36,8 @@ const GEMINI_API_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta";
 const CURATED_VOCAB_MEANINGS = new Map([
   ["have", [
     { meaning: "有", pos: "verb" },
-    { meaning: "食 / 飲", pos: "verb" }
+    { meaning: "食 / 飲", pos: "verb" },
+    { meaning: "上 / 參加", pos: "verb", level: "A2" }
   ]],
   ["has", [
     { meaning: "有", pos: "verb" },
@@ -49,9 +50,151 @@ const CURATED_VOCAB_MEANINGS = new Map([
   ["have to", [{ meaning: "必須 / 要", type: "phrase" }]],
   ["has to", [{ meaning: "必須 / 要", type: "phrase" }]],
   ["had to", [{ meaning: "必須 / 要", type: "phrase" }]],
+  ["go", [
+    { meaning: "去", pos: "verb" },
+    { meaning: "變成", pos: "verb", level: "A2" },
+    { meaning: "運作 / 進行", pos: "verb", level: "B1" }
+  ]],
+  ["get", [
+    { meaning: "得到 / 取得", pos: "verb" },
+    { meaning: "到達", pos: "verb" },
+    { meaning: "變得", pos: "verb", level: "A2" }
+  ]],
+  ["make", [
+    { meaning: "製作", pos: "verb" },
+    { meaning: "使 / 令", pos: "verb", level: "A2" }
+  ]],
+  ["take", [
+    { meaning: "拿 / 取", pos: "verb" },
+    { meaning: "乘搭", pos: "verb" },
+    { meaning: "花費時間", pos: "verb", level: "A2" }
+  ]],
+  ["look", [
+    { meaning: "看", pos: "verb" },
+    { meaning: "看起來", pos: "verb", level: "A2" }
+  ]],
+  ["look for", [{ meaning: "尋找", type: "phrase" }]],
+  ["look after", [{ meaning: "照顧", type: "phrase" }]],
+  ["look at", [{ meaning: "看著", type: "phrase" }]],
   ["egg tart", [{ meaning: "蛋撻", pos: "noun", type: "phrase" }]],
   ["look up", [{ meaning: "查閱 / 查字典", type: "phrase" }]],
-  ["lung cancer", [{ meaning: "肺癌", pos: "noun", type: "phrase" }]]
+  ["lung cancer", [{ meaning: "肺癌", pos: "noun", type: "phrase" }]],
+  ["game", [
+    { meaning: "遊戲", pos: "noun" },
+    { meaning: "比賽", pos: "noun" },
+    { meaning: "野味", pos: "noun", level: "C1" }
+  ]],
+  ["right", [
+    { meaning: "正確的", pos: "adjective" },
+    { meaning: "右邊 / 右方", pos: "noun" },
+    { meaning: "權利", pos: "noun", level: "B1" }
+  ]],
+  ["left", [
+    { meaning: "左邊的", pos: "adjective" },
+    { meaning: "離開了", pos: "verb" }
+  ]],
+  ["light", [
+    { meaning: "光 / 燈", pos: "noun" },
+    { meaning: "輕的", pos: "adjective" },
+    { meaning: "淺色的", pos: "adjective" }
+  ]],
+  ["kind", [
+    { meaning: "友善的", pos: "adjective" },
+    { meaning: "種類", pos: "noun" }
+  ]],
+  ["present", [
+    { meaning: "禮物", pos: "noun" },
+    { meaning: "在場的", pos: "adjective", level: "B1" },
+    { meaning: "呈現 / 展示", pos: "verb" }
+  ]],
+  ["book", [
+    { meaning: "書", pos: "noun" },
+    { meaning: "預訂", pos: "verb", level: "A2" }
+  ]],
+  ["watch", [
+    { meaning: "觀看", pos: "verb" },
+    { meaning: "手錶", pos: "noun" }
+  ]],
+  ["play", [
+    { meaning: "玩", pos: "verb" },
+    { meaning: "演奏", pos: "verb" },
+    { meaning: "戲劇", pos: "noun", level: "B1" }
+  ]],
+  ["mean", [
+    { meaning: "意思是", pos: "verb" },
+    { meaning: "刻薄的", pos: "adjective", level: "B1" }
+  ]],
+  ["can", [
+    { meaning: "能夠", pos: "verb" },
+    { meaning: "罐", pos: "noun" }
+  ]],
+  ["like", [
+    { meaning: "喜歡", pos: "verb" },
+    { meaning: "像", pos: "preposition" }
+  ]],
+  ["well", [
+    { meaning: "好地", pos: "adverb" },
+    { meaning: "井", pos: "noun", level: "B1" }
+  ]],
+  ["class", [
+    { meaning: "班級 / 課堂", pos: "noun" },
+    { meaning: "種類 / 等級", pos: "noun", level: "B1" }
+  ]],
+  ["match", [
+    { meaning: "比賽", pos: "noun" },
+    { meaning: "配對 / 相襯", pos: "verb" }
+  ]],
+  ["hard", [
+    { meaning: "困難的", pos: "adjective" },
+    { meaning: "努力地", pos: "adverb" }
+  ]],
+  ["fine", [
+    { meaning: "好的 / 不錯的", pos: "adjective" },
+    { meaning: "罰款", pos: "noun", level: "B1" }
+  ]],
+  ["point", [
+    { meaning: "重點 / 分數", pos: "noun" },
+    { meaning: "指著", pos: "verb" }
+  ]],
+  ["park", [
+    { meaning: "公園", pos: "noun" },
+    { meaning: "泊車", pos: "verb" }
+  ]],
+  ["orange", [
+    { meaning: "橙", pos: "noun" },
+    { meaning: "橙色的", pos: "adjective" }
+  ]],
+  ["sound", [
+    { meaning: "聲音", pos: "noun" },
+    { meaning: "聽起來", pos: "verb" }
+  ]],
+  ["close", [
+    { meaning: "關上", pos: "verb" },
+    { meaning: "接近的 / 親近的", pos: "adjective" }
+  ]],
+  ["table", [
+    { meaning: "桌子", pos: "noun" },
+    { meaning: "表格", pos: "noun", level: "A2" }
+  ]],
+  ["date", [
+    { meaning: "日期", pos: "noun" },
+    { meaning: "約會", pos: "noun", level: "B1" }
+  ]],
+  ["story", [
+    { meaning: "故事", pos: "noun" },
+    { meaning: "樓層", pos: "noun", level: "B1" }
+  ]],
+  ["letter", [
+    { meaning: "信", pos: "noun" },
+    { meaning: "字母", pos: "noun" }
+  ]],
+  ["minute", [
+    { meaning: "分鐘", pos: "noun" },
+    { meaning: "極小的", pos: "adjective", level: "C1" }
+  ]],
+  ["hawker", [{ meaning: "小販", pos: "noun" }]],
+  ["evaluate", [{ meaning: "評估", pos: "verb" }]],
+  ["guts", [{ meaning: "膽量", pos: "noun" }]]
 ]);
 
 function normalizeStudentId(value) {
@@ -210,7 +353,8 @@ function normalizeMeaningEntries(word, entries = [], source = "azure-dictionary"
       pos: String(entry.pos || "").trim().toLowerCase(),
       type: entry.type || inferVocabType(normalizedWord),
       source,
-      sourceEntryId: entry.sourceEntryId || ""
+      sourceEntryId: entry.sourceEntryId || "",
+      level: String(entry.level || "").trim().toUpperCase()
     }))
     .filter((entry) => entry.meaning);
 }
@@ -716,7 +860,8 @@ async function getOrCreateVocabMeaning(word) {
       meaning: entry.meaning,
       pos: entry.pos,
       type: entry.type,
-      sourceEntryId: entry.sourceEntryId || entry.id
+      sourceEntryId: entry.sourceEntryId || entry.id,
+      level: entry.level || ""
     })),
     createdAt: admin.firestore.FieldValue.serverTimestamp(),
     updatedAt: admin.firestore.FieldValue.serverTimestamp()

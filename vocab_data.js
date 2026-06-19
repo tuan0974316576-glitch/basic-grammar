@@ -13,7 +13,7 @@
   const MAX_MEANING_LENGTH = 80;
   const MAX_MEANING_ENTRIES = 8;
   const DELETE_GRACE_MS = 30 * 24 * 60 * 60 * 1000;
-  const EXTRA_TEXT_FIELDS = ["pos", "type", "source", "teacherEntryId", "sourceEntryId"];
+  const EXTRA_TEXT_FIELDS = ["pos", "type", "source", "teacherEntryId", "sourceEntryId", "level"];
 
   function normalizeWord(value) {
     return String(value || "")

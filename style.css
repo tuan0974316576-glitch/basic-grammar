@@ -633,6 +633,32 @@ body.settings-open .menu-settings-btn img {
   border-radius: 16px;
 }
 
+.vocab-example-sense {
+  display: grid;
+  gap: 6px;
+}
+
+.vocab-example-sense + .vocab-example-sense {
+  padding-top: 8px;
+  border-top: 1px dashed rgba(242, 200, 121, 0.72);
+}
+
+.vocab-example-sense-title {
+  width: fit-content;
+  max-width: 100%;
+  padding: 3px 8px;
+  color: var(--primary-dark);
+  font-size: 12px;
+  font-weight: 900;
+  background: #eaf8f8;
+  border-radius: 9px;
+}
+
+.vocab-example-sense-body {
+  display: grid;
+  gap: 7px;
+}
+
 .vocab-example-card {
   display: grid;
   gap: 3px;
