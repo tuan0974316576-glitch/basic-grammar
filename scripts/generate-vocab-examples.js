@@ -175,6 +175,10 @@ function loadSeed(filePath = DEFAULT_OUTPUT) {
   return require(filePath);
 }
 
+function getBlockedSeedKeys(seed = {}) {
+  return new Set(Array.isArray(seed.meta?.blockedKeys) ? seed.meta.blockedKeys : []);
+}
+
 function loadOxfordEntries(filePath = DEFAULT_OXFORD_INPUT) {
   const resolvedPath = path.resolve(filePath);
   if (!fs.existsSync(resolvedPath)) {
@@ -666,11 +670,14 @@ async function main() {
     source: "local-seed-gemini"
   };
   seed.entries = seed.entries || {};
+  const blockedKeys = getBlockedSeedKeys(seed);
 
   const tasks = buildTasks()
     .filter((task) => !options.word || task.word === options.word)
     .filter((task) => !options.level || task.level === options.level);
-  const missingTasks = tasks.filter((task) => options.force || !seed.entries[task.localKey]);
+  const missingTasks = tasks.filter((task) => (
+    options.force || (!seed.entries[task.localKey] && !blockedKeys.has(task.localKey))
+  ));
   const selectedTasks = options.limit ? missingTasks.slice(0, options.limit) : missingTasks;
   const counts = tasks.reduce((acc, task) => {
     acc[task.level] = (acc[task.level] || 0) + 1;
@@ -680,6 +687,7 @@ async function main() {
   console.log(JSON.stringify({
     totalTasks: tasks.length,
     existingSeedEntries: Object.keys(seed.entries).length,
+    blockedSeedEntries: blockedKeys.size,
     missingTasks: missingTasks.length,
     selectedTasks: selectedTasks.length,
     levelCounts: counts,
@@ -774,6 +782,7 @@ module.exports = {
   buildTasks,
   inferFallbackLevel,
   loadOxfordEntries,
+  getBlockedSeedKeys,
   makeOxfordLevelLookup,
   normalizeGeneratedExamples,
   normalizeOxfordTask,

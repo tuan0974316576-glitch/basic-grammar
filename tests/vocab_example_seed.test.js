@@ -5,6 +5,13 @@ process.env.NODE_ENV = "test";
 const utils = require("../vocab_example_utils.js");
 const generator = require("../scripts/generate-vocab-examples.js");
 
+const blockedKeys = generator.getBlockedSeedKeys({
+  meta: { blockedKeys: ["drive|bad", "course|bad"] }
+});
+assert.strictEqual(blockedKeys.has("drive|bad"), true);
+assert.strictEqual(blockedKeys.has("course|bad"), true);
+assert.strictEqual(blockedKeys.has("drive|good"), false);
+
 const oxfordLevelByWord = new Map([
   ["have", "A1"],
   ["evaluate", "B2"]
