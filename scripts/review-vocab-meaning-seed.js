@@ -7,7 +7,7 @@ const VocabPosInference = require("../vocab_pos_inference.js");
 const ROOT_DIR = path.resolve(__dirname, "..");
 const DEFAULT_SEED = path.join(ROOT_DIR, "private_exports", "vocab_meaning_seed.js");
 const SIMPLIFIED_RE = /[这为个汉语龙门东车后发会学体国实对时过苹]/;
-const SUSPICIOUS_RE = /[A-Za-z]{2,}|例句|句子|意思是|翻譯|translation|undefined|null/i;
+const SUSPICIOUS_RE = /[A-Za-z]{2,}|例句|句子|意思是|翻譯[:：]|translation|undefined|null/i;
 
 function usage() {
   console.log([
