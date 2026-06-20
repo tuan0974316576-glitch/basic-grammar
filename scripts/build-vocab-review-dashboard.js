@@ -107,27 +107,35 @@ function summarizeQueue(queue = {}, options = {}) {
   const entryCount = batches.reduce((sum, batch) => sum + (Number(batch.entryCount) || 0), 0);
   const readyForReviewBatchCount = Number(meta.readyForReviewBatchCount) || batches.filter((batch) => batch.xlsxExists).length;
   const promotePlanBatchCount = Number(meta.promotePlanBatchCount) || batches.filter((batch) => batch.promotePlanExists).length;
+  const preflightFailedBatchCount = Number(meta.preflightFailedBatchCount) || batches.filter((batch) => batch.status === "preflight-failed").length;
+  const preflightPassedBatchCount = Number(meta.preflightPassedBatchCount) || batches.filter((batch) => batch.status === "preflight-passed").length;
   const needsXlsxBatchCount = batches.filter((batch) => batch.status === "needs-xlsx").length;
-  const readyButUnplannedCount = batches.filter((batch) => batch.xlsxExists && !batch.promotePlanExists).length;
+  const readyButUnplannedCount = batches.filter((batch) => batch.xlsxExists && !batch.promotePlanExists && batch.status !== "preflight-failed").length;
   const missingBatchCount = batches.filter((batch) => batch.status === "missing").length;
   const coverage = pct(coveredCount, totalCandidateCount);
   const reviewProgress = pct(reviewedEntryCount, entryCount);
   const status = missingBatchCount
     ? "has-missing-files"
-    : needsXlsxBatchCount
-      ? "needs-xlsx"
-      : coveredCount < totalCandidateCount
-        ? "needs-more-batches"
-        : promotePlanBatchCount > 0
-          ? "has-promote-plans"
-          : "ready-for-teacher-review";
+    : preflightFailedBatchCount
+      ? "has-preflight-errors"
+      : needsXlsxBatchCount
+        ? "needs-xlsx"
+        : coveredCount < totalCandidateCount
+          ? "needs-more-batches"
+          : promotePlanBatchCount > 0
+            ? "has-promote-plans"
+            : preflightPassedBatchCount > 0
+              ? "preflight-passed"
+              : "ready-for-teacher-review";
   const nextAction = status === "needs-more-batches"
     ? queue.command
-    : status === "needs-xlsx"
+    : status === "has-preflight-errors"
+      ? "Fix rows listed in *_preflight.csv, then rerun vocab:process-review"
+      : status === "needs-xlsx"
       ? "Generate XLSX for batches marked needs-xlsx"
       : readyButUnplannedCount
-        ? "Open private XLSX files and fill yellow review columns"
-        : "Build promote plans for reviewed batches";
+        ? "Run vocab:process-review after filling yellow review columns"
+        : "Dry-run apply-plan for promote plans, then write when checked";
 
   return {
     id: queue.id,
@@ -147,6 +155,8 @@ function summarizeQueue(queue = {}, options = {}) {
     readyForReviewBatchCount,
     readyButUnplannedCount,
     needsXlsxBatchCount,
+    preflightFailedBatchCount,
+    preflightPassedBatchCount,
     promotePlanBatchCount,
     reviewedEntryCount,
     reviewProgress,
@@ -166,6 +176,8 @@ function buildDashboard(options = {}) {
     acc.coveredCount += Number(queue.coveredCount) || 0;
     acc.batchCount += Number(queue.batchCount) || 0;
     acc.readyForReviewBatchCount += Number(queue.readyForReviewBatchCount) || 0;
+    acc.preflightFailedBatchCount += Number(queue.preflightFailedBatchCount) || 0;
+    acc.preflightPassedBatchCount += Number(queue.preflightPassedBatchCount) || 0;
     acc.promotePlanBatchCount += Number(queue.promotePlanBatchCount) || 0;
     acc.reviewedEntryCount += Number(queue.reviewedEntryCount) || 0;
     return acc;
@@ -174,6 +186,8 @@ function buildDashboard(options = {}) {
     coveredCount: 0,
     batchCount: 0,
     readyForReviewBatchCount: 0,
+    preflightFailedBatchCount: 0,
+    preflightPassedBatchCount: 0,
     promotePlanBatchCount: 0,
     reviewedEntryCount: 0
   });
@@ -209,6 +223,8 @@ function buildCsv(dashboard = {}) {
     "coverage",
     "ready_batches",
     "needs_xlsx_batches",
+    "preflight_failed_batches",
+    "preflight_passed_batches",
     "promote_plan_batches",
     "reviewed_entries",
     "review_progress",
@@ -228,6 +244,8 @@ function buildCsv(dashboard = {}) {
       coverage: queue.coverageLabel,
       ready_batches: queue.readyForReviewBatchCount,
       needs_xlsx_batches: queue.needsXlsxBatchCount,
+      preflight_failed_batches: queue.preflightFailedBatchCount,
+      preflight_passed_batches: queue.preflightPassedBatchCount,
       promote_plan_batches: queue.promotePlanBatchCount,
       reviewed_entries: queue.reviewedEntryCount,
       review_progress: queue.reviewProgressLabel,

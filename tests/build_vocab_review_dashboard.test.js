@@ -24,11 +24,12 @@ writeIndex("teacher_vocab_review_index.json", {
   coveredCount: 200,
   readyForReviewBatchCount: 2,
   promotePlanBatchCount: 0,
+  preflightFailedBatchCount: 1,
   nextOffset: 200,
   nextBatchId: "0200",
   nextXlsx: "private_exports/teacher_vocab_review_batch_highvalue_0200.xlsx"
 }, [
-  { id: "0000", entryCount: 100, reviewedEntryCount: 5, xlsxExists: true, status: "ready-for-teacher-review" },
+  { id: "0000", entryCount: 100, reviewedEntryCount: 5, xlsxExists: true, status: "preflight-failed", preflightErrorCount: 3 },
   { id: "0100", entryCount: 100, reviewedEntryCount: 0, xlsxExists: true, status: "ready-for-teacher-review" }
 ]);
 
@@ -64,16 +65,19 @@ const result = dashboard.buildDashboard({ dir: tmpDir });
 assert.strictEqual(result.queues.length, 3);
 assert.strictEqual(result.totals.totalCandidateCount, 550);
 assert.strictEqual(result.totals.coveredCount, 350);
-assert.strictEqual(result.queues.find((queue) => queue.id === "teacher").status, "ready-for-teacher-review");
+assert.strictEqual(result.queues.find((queue) => queue.id === "teacher").status, "has-preflight-errors");
 assert.strictEqual(result.queues.find((queue) => queue.id === "oxford").status, "needs-more-batches");
 assert.strictEqual(result.queues.find((queue) => queue.id === "supplement").status, "needs-xlsx");
 assert.strictEqual(result.queues.find((queue) => queue.id === "teacher").reviewedEntryCount, 5);
+assert.strictEqual(result.queues.find((queue) => queue.id === "teacher").preflightFailedBatchCount, 1);
+assert.ok(result.queues.find((queue) => queue.id === "teacher").nextAction.includes("*_preflight.csv"));
 assert.strictEqual(result.queues.find((queue) => queue.id === "teacher").reviewProgressLabel, "2.5%");
 
 const csv = dashboard.buildCsv(result);
 assert.ok(csv.includes("Teacher vocab cleanup"));
 assert.ok(csv.includes("needs-more-batches"));
-assert.ok(csv.includes("Open private XLSX files"));
+assert.ok(csv.includes("has-preflight-errors"));
+assert.ok(csv.includes("Fix rows listed"));
 
 const written = dashboard.writeDashboard({
   dir: tmpDir,

@@ -3,6 +3,7 @@
 
 const fs = require("fs");
 const path = require("path");
+const ReviewProcessor = require("./process-vocab-review.js");
 
 const ROOT_DIR = path.resolve(__dirname, "..");
 const PRIVATE_EXPORTS_DIR = path.join(ROOT_DIR, "private_exports");
@@ -60,6 +61,16 @@ function fileExists(filePath) {
   return fs.existsSync(filePath);
 }
 
+function readPreflightSummary(filePath) {
+  if (!fileExists(filePath)) return null;
+  try {
+    const payload = readJson(filePath);
+    return payload.summary || null;
+  } catch (_error) {
+    return null;
+  }
+}
+
 function csvEscape(value) {
   const text = String(value ?? "");
   if (!/[",\n]/.test(text)) return text;
@@ -69,6 +80,8 @@ function csvEscape(value) {
 function batchStatus(batch = {}) {
   if (batch.applyPlanExists) return "applied-or-ready-to-apply";
   if (batch.promotePlanExists) return "promote-plan-created";
+  if (batch.preflightExists && batch.preflightPass === false) return "preflight-failed";
+  if (batch.preflightExists && batch.preflightPass === true) return "preflight-passed";
   if (batch.xlsxExists) return "ready-for-teacher-review";
   if (batch.csvExists || batch.jsonExists) return "needs-xlsx";
   return "missing";
@@ -82,7 +95,12 @@ function buildBatchRecord(filePath, options = {}) {
   const meta = payload.meta || {};
   const basename = path.join(path.dirname(filePath), fileName.replace(/\.json$/i, ""));
   const suffix = match[2];
-  const promotePlanPath = path.join(path.dirname(filePath), `${options.prefix.replace("review_batch", "promote_plan")}_${suffix}.json`);
+  const xlsxPath = `${basename}.xlsx`;
+  const csvPath = `${basename}.csv`;
+  const reviewInputPath = fileExists(xlsxPath) ? xlsxPath : fileExists(csvPath) ? csvPath : filePath;
+  const promotePlanPath = ReviewProcessor.inferPromotePlanPath(reviewInputPath);
+  const preflightPath = ReviewProcessor.inferPreflightPath(reviewInputPath);
+  const preflightSummary = readPreflightSummary(preflightPath);
   const entryCount = Array.isArray(payload.entries) ? payload.entries.length : 0;
   const reviewedEntryCount = Array.isArray(payload.entries)
     ? payload.entries.filter((entry) => {
@@ -103,12 +121,17 @@ function buildBatchRecord(filePath, options = {}) {
     reviewedEntryCount,
     generatedAt: meta.generatedAt || "",
     json: path.relative(ROOT_DIR, filePath),
-    csv: path.relative(ROOT_DIR, `${basename}.csv`),
-    xlsx: path.relative(ROOT_DIR, `${basename}.xlsx`),
+    csv: path.relative(ROOT_DIR, csvPath),
+    xlsx: path.relative(ROOT_DIR, xlsxPath),
+    preflight: path.relative(ROOT_DIR, preflightPath),
     promotePlan: path.relative(ROOT_DIR, promotePlanPath),
     jsonExists: true,
-    csvExists: fileExists(`${basename}.csv`),
-    xlsxExists: fileExists(`${basename}.xlsx`),
+    csvExists: fileExists(csvPath),
+    xlsxExists: fileExists(xlsxPath),
+    preflightExists: fileExists(preflightPath),
+    preflightPass: preflightSummary ? Boolean(preflightSummary.pass) : null,
+    preflightErrorCount: preflightSummary ? Number(preflightSummary.errorCount) || 0 : 0,
+    preflightWarningCount: preflightSummary ? Number(preflightSummary.warningCount) || 0 : 0,
     promotePlanExists: fileExists(promotePlanPath),
     applyPlanExists: false
   };
@@ -134,6 +157,8 @@ function buildIndex(options = {}) {
   const nextId = String(nextOffset).padStart(4, "0");
   const readyForReviewBatchCount = batches.filter((batch) => batch.xlsxExists).length;
   const promotePlanBatchCount = batches.filter((batch) => batch.promotePlanExists).length;
+  const preflightFailedBatchCount = batches.filter((batch) => batch.status === "preflight-failed").length;
+  const preflightPassedBatchCount = batches.filter((batch) => batch.status === "preflight-passed").length;
 
   return {
     meta: {
@@ -144,6 +169,8 @@ function buildIndex(options = {}) {
       coveredCount,
       readyForReviewBatchCount,
       promotePlanBatchCount,
+      preflightFailedBatchCount,
+      preflightPassedBatchCount,
       nextOffset,
       nextBatchId: nextId,
       nextJson: path.relative(ROOT_DIR, path.join(dir, `${prefix}_${nextId}.json`)),
@@ -167,6 +194,9 @@ function buildCsv(index = {}) {
     "json",
     "csv",
     "xlsx",
+    "preflight",
+    "preflight_pass",
+    "preflight_errors",
     "promote_plan"
   ];
   const lines = [headers.join(",")];
@@ -183,6 +213,9 @@ function buildCsv(index = {}) {
       json: batch.json,
       csv: batch.csv,
       xlsx: batch.xlsx,
+      preflight: batch.preflight,
+      preflight_pass: batch.preflightPass,
+      preflight_errors: batch.preflightErrorCount,
       promote_plan: batch.promotePlan
     };
     lines.push(headers.map((header) => csvEscape(row[header])).join(","));
@@ -219,5 +252,6 @@ module.exports = {
   buildCsv,
   buildIndex,
   parseArgs,
+  readPreflightSummary,
   writeIndex
 };

@@ -30,6 +30,13 @@ writeBatch("0000");
 writeBatch("0100");
 fs.writeFileSync(path.join(tmpDir, "teacher_vocab_review_batch_highvalue_0000.xlsx"), "placeholder");
 fs.writeFileSync(path.join(tmpDir, "teacher_vocab_review_batch_highvalue_0100.csv"), "placeholder");
+fs.writeFileSync(path.join(tmpDir, "teacher_vocab_review_batch_highvalue_0000_preflight.json"), JSON.stringify({
+  summary: {
+    pass: false,
+    errorCount: 2,
+    warningCount: 1
+  }
+}, null, 2));
 
 const index = indexer.buildIndex({
   dir: tmpDir,
@@ -42,12 +49,15 @@ assert.strictEqual(index.meta.nextOffset, 200);
 assert.strictEqual(index.meta.nextBatchId, "0200");
 assert.strictEqual(index.meta.readyForReviewBatchCount, 1);
 assert.strictEqual(index.meta.promotePlanBatchCount, 0);
-assert.strictEqual(index.batches[0].status, "ready-for-teacher-review");
+assert.strictEqual(index.meta.preflightFailedBatchCount, 1);
+assert.strictEqual(index.batches[0].status, "preflight-failed");
+assert.strictEqual(index.batches[0].preflightErrorCount, 2);
 assert.strictEqual(index.batches[1].status, "needs-xlsx");
 assert.strictEqual(index.batches[0].reviewedEntryCount, 1);
 
 const csv = indexer.buildCsv(index);
 assert.ok(csv.includes("teacher_vocab_review_batch_highvalue_0000.xlsx"));
-assert.ok(csv.includes("ready-for-teacher-review"));
+assert.ok(csv.includes("preflight-failed"));
+assert.ok(csv.includes("teacher_vocab_review_batch_highvalue_0000_preflight.json"));
 
 console.log("build_vocab_review_index tests passed");
