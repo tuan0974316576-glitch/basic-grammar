@@ -53,14 +53,16 @@ const manualEntries = importer.createManualEntriesFromData({
   entries: [
     { word: "appeal", meaning: "吸引力", pos: "noun" },
     { word: "manage to", meaning: "能夠", type: "phrase", aliases: ["mange to"] },
-    { word: "will", meaning: "將會", pos: "modal" }
+    { word: "will", meaning: "將會", pos: "modal" },
+    { word: "swift", meaning: "迅速的", pos: "adjective", replaceType: true }
   ]
 }, "manual.json");
-assert.strictEqual(manualEntries.length, 3);
+assert.strictEqual(manualEntries.length, 4);
 assert.strictEqual(manualEntries[0].override, true);
 assert.strictEqual(manualEntries[0].pos, "noun");
 assert.deepStrictEqual(manualEntries[1].aliases, ["mange to"]);
 assert.strictEqual(manualEntries[2].pos, "modal");
+assert.strictEqual(manualEntries[3].replaceType, true);
 
 const overridden = importer.dedupeEntries([
   {
@@ -100,5 +102,41 @@ assert.strictEqual(overridden[0].pos, "noun");
 
 const slimPhrase = importer.slimEntryForBank(importer.dedupeEntries([manualEntries[1]])[0]);
 assert.deepStrictEqual(slimPhrase.aliases, ["mange to"]);
+
+const replaceTypeOverride = importer.dedupeEntries([
+  {
+    id: "",
+    word: "swift",
+    display: "swift",
+    meaning: "迅速地",
+    pos: "adverb",
+    type: "word",
+    source: "teacher",
+    sourceFile: "old.xlsx",
+    sheet: "Old",
+    row: 1,
+    columns: "A:B",
+    needsReview: false
+  },
+  {
+    id: "",
+    word: "swift",
+    display: "swift",
+    meaning: "快速",
+    pos: "",
+    type: "word",
+    source: "teacher",
+    sourceFile: "old.xlsx",
+    sheet: "Old",
+    row: 2,
+    columns: "A:B",
+    needsReview: true
+  },
+  manualEntries[3]
+]);
+assert.strictEqual(replaceTypeOverride.length, 1);
+assert.strictEqual(replaceTypeOverride[0].word, "swift");
+assert.strictEqual(replaceTypeOverride[0].meaning, "迅速的");
+assert.strictEqual(replaceTypeOverride[0].pos, "adjective");
 
 console.log("import_teacher_vocab tests passed");

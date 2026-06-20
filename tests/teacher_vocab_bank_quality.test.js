@@ -51,12 +51,93 @@ function assertIncludes(word, expected) {
   ["plant", "n. 工廠"],
   ["fall", "n. 秋天"],
   ["lie", "n. 謊言"],
-  ["permit", "n. 許可證"]
+  ["permit", "n. 許可證"],
+  ["abuse", "v. 濫用 / 虐待"],
+  ["access", "n. 使用權 / 途徑"],
+  ["account for", "ph. 佔 / 解釋 / 是...原因"],
+  ["acquaintance", "n. 熟人"],
+  ["advocate", "v. 提倡"],
+  ["adovcate", "v. 提倡"],
+  ["apparel", "n. 服裝 / 衣服"],
+  ["appetizer", "n. 前菜 / 開胃菜"],
+  ["as", "conj. 因為 / 當 / 正如"],
+  ["as + 句子", "pt. 因為 / 正如 / 當 / 隨著"],
+  ["as well as", "ph. 除了...之外"],
+  ["attribute", "v. 歸因於"],
+  ["backlash", "n. 強烈反對 / 反彈"],
+  ["bark", "v. 吠"],
+  ["batch", "n. 一批"],
+  ["be exposed to", "ph. 接觸 / 暴露於"],
+  ["boost", "v. 提升 / 促進"],
+  ["campaign", "v. 發起運動"],
+  ["cliche", "n. 陳腔濫調 / 老生常談"],
+  ["commitment", "n. 承諾 / 責任"],
+  ["committment", "n. 承諾 / 責任"],
+  ["concrete", "n. 混凝土"],
+  ["conspicuous", "adj. 顯眼的 / 明顯的"],
+  ["contribute to", "ph. 促成 / 導致 / 貢獻"],
+  ["craftsmanship", "n. 手藝 / 工藝"],
+  ["criteria", "n. 標準 / 準則"],
+  ["cuisine", "n. 菜式 / 菜系"],
+  ["customs", "n. 海關"],
+  ["customs", "n. 習俗"],
+  ["can", "modal v. 可以 / 能夠"],
+  ["could", "modal v. 可以 / 可能"],
+  ["must", "modal v. 必須"],
+  ["would", "modal v. 會 / 願意"],
+  ["might", "modal v. 可能"],
+  ["ought to", "modal v. 應該"],
+  ["won't", "modal v. 不會 / 將不會"],
+  ["wont", "modal v. 不會 / 將不會"],
+  ["swift", "adj. 迅速的 / 敏捷的"],
+  ["delicacy", "n. 佳餚"],
+  ["delicacy", "n. 精緻 / 微妙"],
+  ["game", "n. 遊戲 / 比賽"],
+  ["game", "n. 野味"],
+  ["guts", "n. 膽量 / 勇氣"],
+  ["deadly", "adj. 致命的"],
+  ["decent", "adj. 不錯的 / 體面的"],
+  ["decline", "v. 下降 / 衰退 / 拒絕"],
+  ["develop", "v. 發展 / 患上"],
+  ["diligent", "adj. 勤奮的"],
+  ["destination", "n. 目的地"],
+  ["domestic", "adj. 家庭的 / 本地的"],
+  ["elaborate", "v. 詳細說明"],
+  ["feature", "n. 特色 / 特徵"],
+  ["feature", "v. 以...為特色 / 由...主演"],
+  ["figure out", "ph. 理解 / 想出 / 找出"],
+  ["gather", "v. 聚集 / 收集"],
+  ["host", "n. 主持人 / 主人"],
+  ["host", "v. 主持 / 舉辦"]
 ].forEach(([word, expected]) => assertIncludes(word, expected));
 
 assert.ok(
   !labels("apply").some((label) => label.startsWith("adv.")),
   "apply should not be shown as an adverb"
+);
+assert.ok(
+  !labels("acquaintance").some((label) => label.includes("前所未有")),
+  "acquaintance should not show a whole example sentence as a meaning"
+);
+assert.ok(
+  !labels("swift").some((label) => label.startsWith("adv.")),
+  "swift should not be shown as an adverb"
+);
+assert.ok(
+  !labels("deadly").some((label) => label.startsWith("adv.")),
+  "deadly should not be shown as an adverb"
+);
+assert.ok(
+  !labels("destination").some((label) => label.startsWith("adv.")),
+  "destination should not be shown as an adverb"
+);
+assert.ok(
+  !labels("diligent").some((label) => label.startsWith("n.")),
+  "diligent should not be shown as a noun"
+);
+assert.ok(
+  !labels("game").every((label) => label.includes("野味")),
+  "game should include the common meaning, not only the rare meat meaning"
 );
 
 console.log("teacher_vocab_bank_quality tests passed");

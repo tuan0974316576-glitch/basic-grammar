@@ -461,7 +461,8 @@ function createManualEntriesFromData(data = {}, sourceFile = "manual-updates") {
       needsReview: Boolean(row.needsReview),
       notes: normalizeMeaning(row.notes || "老師指定更新"),
       aliases: normalizeAliases(row.aliases || row.alias),
-      override: row.override !== false
+      override: row.override !== false,
+      replaceType: Boolean(row.replaceType)
     };
   }).filter(Boolean);
 }
@@ -578,11 +579,13 @@ function wordTypeKey(entry) {
 function applyManualOverrides(rawEntries) {
   const overrideKeys = new Set();
   const overrideWordTypeKeys = new Set();
+  const replaceWordTypeKeys = new Set();
 
   rawEntries.forEach((entry) => {
     if (!entry.override) return;
     overrideKeys.add(overrideKey(entry));
     overrideWordTypeKeys.add(wordTypeKey(entry));
+    if (entry.replaceType) replaceWordTypeKeys.add(wordTypeKey(entry));
   });
 
   if (!overrideKeys.size) return rawEntries;
@@ -590,6 +593,7 @@ function applyManualOverrides(rawEntries) {
   return rawEntries.filter((entry) => {
     if (entry.override) return true;
     const exactKey = overrideKey(entry);
+    if (replaceWordTypeKeys.has(wordTypeKey(entry))) return false;
     if (overrideKeys.has(exactKey)) return false;
     if (!entry.pos && overrideWordTypeKeys.has(wordTypeKey(entry))) return false;
     return true;
@@ -639,7 +643,8 @@ function dedupeEntries(rawEntries) {
       aliases: normalizeAliases(entry.aliases),
       sourceCount,
       sources: entry.sources.slice(0, 8),
-      override: Boolean(entry.override)
+      override: Boolean(entry.override),
+      replaceType: Boolean(entry.replaceType)
     };
   });
 
