@@ -63,6 +63,7 @@ assert.strictEqual(promote.normalizeReviewType("word", "either...or", ""), "patt
 const csvEntries = promote.reviewedEntriesFromCsvRows([
   {
     word: "above",
+    display: "Above",
     level: "A1",
     type: "word",
     audit_reasons: "missing-pos / noisy-meaning",
@@ -110,7 +111,7 @@ const csvEntries = promote.reviewedEntriesFromCsvRows([
 assert.deepStrictEqual(csvEntries, [
   {
     word: "above",
-    display: "above",
+    display: "Above",
     meaning: "在...之上",
     pos: "preposition",
     type: "word",

@@ -165,7 +165,7 @@ function reviewedEntriesFromCsvRows(rows = []) {
   return rows
     .flatMap((row) => REVIEW_SENSES.map((sense) => normalizeReviewedEntry({
       word: row.word,
-      display: row.word,
+      display: row.display || row.word,
       level: row.level,
       type: row.type,
       pos: getRowValue(row, sense.posKey, sense.posLabel),

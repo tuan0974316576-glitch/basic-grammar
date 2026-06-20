@@ -295,6 +295,33 @@ function mergeTeacherUpdates(updateData = {}, entries = []) {
   };
 }
 
+function formatCompactJsonValue(value) {
+  if (Array.isArray(value)) return `[${value.map(formatCompactJsonValue).join(", ")}]`;
+  if (value && typeof value === "object") return formatCompactJsonObject(value);
+  return JSON.stringify(value);
+}
+
+function formatCompactJsonObject(object = {}) {
+  const entries = Object.entries(object)
+    .filter(([, value]) => value !== undefined)
+    .map(([key, value]) => `${JSON.stringify(key)}: ${formatCompactJsonValue(value)}`);
+  return `{ ${entries.join(", ")} }`;
+}
+
+function formatTeacherUpdatesJson(data = {}) {
+  const meta = data.meta || {};
+  const entries = Array.isArray(data.entries) ? data.entries : [];
+  const metaText = JSON.stringify(meta, null, 2).replace(/\n/g, "\n  ");
+  const entryText = entries.map((entry) => `    ${formatCompactJsonObject(entry)}`).join(",\n");
+  return `{
+  "meta": ${metaText},
+  "entries": [
+${entryText}
+  ]
+}
+`;
+}
+
 function curatedEntryKey(entry = {}) {
   return [
     normalizeWord(entry.word),
@@ -354,48 +381,121 @@ function mergeCuratedBank(sourceText = "", entries = []) {
   };
 }
 
-function createTeacherBankFromExistingAndUpdates(updateData = {}, options = {}) {
-  const ExistingBank = require("../teacher_vocab_bank.js");
-  const existingRaw = Array.isArray(ExistingBank.entries) ? ExistingBank.entries.map((entry, index) => ({
-    id: entry.id || "",
-    word: normalizeWord(entry.word || entry.display),
-    display: String(entry.display || entry.word || "").trim(),
+function loadTeacherBank(filePath = DEFAULT_TEACHER_BANK) {
+  const resolved = path.resolve(filePath || DEFAULT_TEACHER_BANK);
+  const target = fs.existsSync(resolved) ? resolved : DEFAULT_TEACHER_BANK;
+  delete require.cache[require.resolve(target)];
+  return require(target);
+}
+
+function slugify(value) {
+  return normalizeWord(value)
+    .replace(/\(([^)]+)\)/g, "$1")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "")
+    .slice(0, 48) || "entry";
+}
+
+function teacherBankEntryKey(entry = {}) {
+  return [
+    normalizeWord(entry.word),
+    normalizeType(entry.type, entry.word),
+    normalizePos(entry.pos || entry.inferredPos),
+    normalizeMeaning(entry.meaning)
+  ].join("\u0001");
+}
+
+function teacherBankWordTypeKey(entry = {}) {
+  return [
+    normalizeWord(entry.word),
+    normalizeType(entry.type, entry.word)
+  ].join("\u0001");
+}
+
+function shouldReplaceTeacherBankEntry(entry = {}, replacementEntries = []) {
+  if (!replacementEntries.length) return false;
+  const entryPos = normalizePos(entry.pos || entry.inferredPos);
+  if (!entryPos) return true;
+  return replacementEntries.some((replacement) => {
+    const replacementPos = normalizePos(replacement.pos);
+    return !replacementPos || replacementPos === entryPos;
+  });
+}
+
+function makeTeacherBankEntry(entry = {}, index = 0) {
+  const word = normalizeWord(entry.word);
+  const pos = normalizePos(entry.pos);
+  const type = normalizeType(entry.type, word);
+  return {
+    id: `${slugify(word)}-${pos || type || "any"}-entry-${String(index + 1).padStart(4, "0")}`.slice(0, 96),
+    word,
+    display: String(entry.display || entry.word || word).trim() || word,
     meaning: normalizeMeaning(entry.meaning),
-    pos: normalizePos(entry.pos),
-    type: normalizeType(entry.type, entry.word),
-    source: entry.source || "teacher",
-    sourceFile: "existing-teacher-vocab-bank.js",
-    sheet: "Existing generated bank",
-    row: index + 1,
-    columns: "bank",
-    needsReview: Boolean(entry.needsReview),
-    notes: normalizeMeaning(entry.notes || ""),
-    aliases: TeacherImporter.normalizeAliases(entry.aliases || entry.alias),
-    override: false,
-    replaceType: false
-  })) : [];
-  const manualRaw = TeacherImporter.createManualEntriesFromData(
-    updateData,
-    path.basename(options.teacherUpdates || DEFAULT_TEACHER_UPDATES)
-  );
-  const entries = TeacherImporter.dedupeEntries([...existingRaw, ...manualRaw]);
-  const bank = {
+    pos,
+    type,
+    needsReview: false,
+    aliases: entry.aliases?.length ? TeacherImporter.normalizeAliases(entry.aliases) : undefined,
+    sourceCount: 1
+  };
+}
+
+function mergeTeacherBank(existingBank = {}, additions = [], options = {}) {
+  const existingEntries = Array.isArray(existingBank.entries) ? existingBank.entries : [];
+  const replacementsByWordType = additions
+    .filter((entry) => entry.replaceType)
+    .reduce((map, entry) => {
+      const key = teacherBankWordTypeKey(entry);
+      if (!map.has(key)) map.set(key, []);
+      map.get(key).push(entry);
+      return map;
+    }, new Map());
+  const filteredEntries = existingEntries.filter((entry) => {
+    const replacements = replacementsByWordType.get(teacherBankWordTypeKey(entry)) || [];
+    return !shouldReplaceTeacherBankEntry(entry, replacements);
+  });
+  const removedEntryCount = existingEntries.length - filteredEntries.length;
+  const seen = new Set(filteredEntries.map(teacherBankEntryKey));
+  const addedEntries = [];
+
+  additions.forEach((entry) => {
+    const nextEntry = makeTeacherBankEntry(entry, filteredEntries.length + addedEntries.length);
+    const key = teacherBankEntryKey(nextEntry);
+    if (seen.has(key)) return;
+    seen.add(key);
+    addedEntries.push(nextEntry);
+  });
+
+  const entries = [...filteredEntries, ...addedEntries];
+  const updateFiles = [
+    ...(existingBank.meta?.updateFiles || []),
+    ...(additions.length ? [{
+      name: path.basename(options.teacherUpdates || DEFAULT_TEACHER_UPDATES),
+      addedEntryCount: additions.length
+    }] : [])
+  ];
+
+  return {
     meta: {
-      ...(ExistingBank.meta || {}),
+      ...(existingBank.meta || {}),
       generatedAt: new Date().toISOString(),
-      sourceFiles: ExistingBank.meta?.sourceFiles || [],
-      updateFiles: [
-        ...(ExistingBank.meta?.updateFiles || []),
-        {
-          name: path.basename(options.teacherUpdates || DEFAULT_TEACHER_UPDATES),
-          rawEntryCount: manualRaw.length
-        }
-      ],
+      sourceFiles: existingBank.meta?.sourceFiles || [],
+      updateFiles,
       entryCount: entries.length,
       uniqueWordCount: new Set(entries.map((entry) => normalizeWord(entry.word))).size
     },
-    entries: entries.map((entry) => TeacherImporter.slimEntryForBank(entry))
+    entries,
+    mergeSummary: {
+      addedEntryCount: addedEntries.length,
+      removedEntryCount,
+      netEntryCount: entries.length - existingEntries.length
+    }
   };
+}
+
+function createTeacherBankFromExistingAndAdditions(additions = [], options = {}) {
+  const existingBank = loadTeacherBank(options.teacherBank || DEFAULT_TEACHER_BANK);
+  const merged = mergeTeacherBank(existingBank, additions, options);
+  const { mergeSummary: _mergeSummary, ...bank } = merged;
   return TeacherImporter.createBankJs(bank);
 }
 
@@ -407,7 +507,14 @@ function applyPlan(plan, options = {}) {
     ? fs.readFileSync(options.curatedBank || DEFAULT_CURATED_BANK, "utf8")
     : "";
   const mergedCurated = mergeCuratedBank(curatedSource, split.curated);
-  const teacherBankSource = createTeacherBankFromExistingAndUpdates(mergedTeacher.data, options);
+  const existingTeacherBank = loadTeacherBank(options.teacherBank || DEFAULT_TEACHER_BANK);
+  const mergedTeacherBankPayload = mergeTeacherBank(
+    existingTeacherBank,
+    mergedTeacher.additions,
+    options
+  );
+  const { mergeSummary: teacherBankMergeSummary, ...mergedTeacherBank } = mergedTeacherBankPayload;
+  const teacherBankSource = TeacherImporter.createBankJs(mergedTeacherBank);
 
   const summary = {
     inputEntryCount: plan.entries.length,
@@ -416,13 +523,16 @@ function applyPlan(plan, options = {}) {
     teacherPlanCount: split.teacher.length,
     curatedPlanCount: split.curated.length,
     teacherAddCount: mergedTeacher.additions.length,
+    teacherBankAddCount: teacherBankMergeSummary.addedEntryCount,
+    teacherBankRemovedCount: teacherBankMergeSummary.removedEntryCount,
+    teacherBankNetCount: teacherBankMergeSummary.netEntryCount,
     curatedAddCount: mergedCurated.additions.length,
     write: Boolean(options.write),
     skipped: split.skipped
   };
 
   if (options.write) {
-    fs.writeFileSync(options.teacherUpdates || DEFAULT_TEACHER_UPDATES, `${JSON.stringify(mergedTeacher.data, null, 2)}\n`);
+    fs.writeFileSync(options.teacherUpdates || DEFAULT_TEACHER_UPDATES, formatTeacherUpdatesJson(mergedTeacher.data));
     fs.writeFileSync(options.curatedBank || DEFAULT_CURATED_BANK, mergedCurated.sourceText);
     fs.writeFileSync(options.teacherBank || DEFAULT_TEACHER_BANK, teacherBankSource);
     summary.applyReceipt = writeApplyReceipt(summary, options);
@@ -451,12 +561,15 @@ if (require.main === module) {
 module.exports = {
   applyPlan,
   buildCuratedInsertText,
+  createTeacherBankFromExistingAndAdditions,
   curatedEntryKey,
+  formatTeacherUpdatesJson,
   getReviewQueueForPlan,
   inferApplyReceiptPath,
   loadPlan,
   makeCuratedRawEntry,
   makeTeacherUpdateEntry,
+  mergeTeacherBank,
   mergeCuratedBank,
   mergeTeacherUpdates,
   parseArgs,

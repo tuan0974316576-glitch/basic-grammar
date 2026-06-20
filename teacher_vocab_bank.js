@@ -5,7 +5,7 @@
   root.TEACHER_VOCAB_BANK = bank;
 })(typeof globalThis !== "undefined" ? globalThis : window, {
   "meta": {
-    "generatedAt": "2026-06-20T06:40:02.177Z",
+    "generatedAt": "2026-06-20T22:44:56.194Z",
     "sourceFiles": [
       {
         "name": "Randomisable Vocab Test.xlsx",
@@ -18,10 +18,14 @@
       {
         "name": "teacher_vocab_manual_updates.json",
         "rawEntryCount": 1098
+      },
+      {
+        "name": "teacher_vocab_manual_updates.json",
+        "addedEntryCount": 53
       }
     ],
-    "entryCount": 8021,
-    "uniqueWordCount": 5057,
+    "entryCount": 8000,
+    "uniqueWordCount": 5058,
     "conflictCount": 3731,
     "typeCounts": {
       "phrase": 2369,
@@ -17674,16 +17678,6 @@
       "sourceCount": 6
     },
     {
-      "id": "diabetes-any-entry-1950",
-      "word": "diabetes",
-      "display": "diabetes",
-      "meaning": "糖尿病",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 24
-    },
-    {
       "id": "diagonal-any-entry-5616",
       "word": "diagonal",
       "display": "diagonal",
@@ -17896,16 +17890,6 @@
       "inferredPos": "verb",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "diploma-any-entry-2658",
-      "word": "diploma",
-      "display": "diploma",
-      "meaning": "文憑",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
     },
     {
       "id": "dire-any-dreadful-3580",
@@ -18193,46 +18177,6 @@
       "sourceCount": 1
     },
     {
-      "id": "discontent-any-entry-4377",
-      "word": "discontent",
-      "display": "discontent",
-      "meaning": "不滿",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "discontent-any-entry-4358",
-      "word": "discontent",
-      "display": "discontent",
-      "meaning": "不滿意",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "discouraging-any-entry-5421",
-      "word": "discouraging",
-      "display": "discouraging",
-      "meaning": "令人氣女",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "discouraging-any-entry-5445",
-      "word": "discouraging",
-      "display": "discouraging",
-      "meaning": "令人氣餒",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
       "id": "discourteous-any-entry-5530",
       "word": "discourteous",
       "display": "discourteous",
@@ -18411,16 +18355,6 @@
       "posReason": "chinese-noun-meaning"
     },
     {
-      "id": "dislike-any-entry-2500",
-      "word": "dislike",
-      "display": "dislike",
-      "meaning": "不喜歡",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "dismay-any-v-0711",
       "word": "dismay",
       "display": "dismay",
@@ -18579,16 +18513,6 @@
       "inferredPos": "verb",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "dispel-any-entry-5625",
-      "word": "dispel",
-      "display": "dispel",
-      "meaning": "驅散",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
     },
     {
       "id": "display-any-entry-8337",
@@ -19026,16 +18950,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "divorce-any-entry-5917",
-      "word": "divorce",
-      "display": "divorce",
-      "meaning": "離婚",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "dizzying-any-entry-0902",
       "word": "dizzying",
       "display": "dizzying",
@@ -19161,16 +19075,6 @@
       "word": "dodge",
       "display": "dodge",
       "meaning": "回避",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "dogma-any-entry-7820",
-      "word": "dogma",
-      "display": "dogma",
-      "meaning": "教條",
       "pos": "",
       "type": "word",
       "needsReview": true,
@@ -19307,16 +19211,6 @@
       "inferredPos": "noun",
       "posConfidence": 90,
       "posReason": "chinese-noun-meaning"
-    },
-    {
-      "id": "dormitory-any-entry-2406",
-      "word": "dormitory",
-      "display": "dormitory",
-      "meaning": "宿舍",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "doses-any-entry-8371",
@@ -19949,16 +19843,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "drowsy-any-entry-3676",
-      "word": "drowsy",
-      "display": "drowsy",
-      "meaning": "昏昏欲睡",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
       "id": "drug-any-entry-4712",
       "word": "drug",
       "display": "drug",
@@ -20013,29 +19897,6 @@
       "type": "word",
       "needsReview": true,
       "sourceCount": 1
-    },
-    {
-      "id": "dubious-any-entry-1178",
-      "word": "dubious",
-      "display": "dubious",
-      "meaning": "可疑",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "dubious-any-entry-1135",
-      "word": "dubious",
-      "display": "dubious",
-      "meaning": "懷疑的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
     },
     {
       "id": "due-adjective-entry-0459",
@@ -20187,49 +20048,6 @@
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 2
-    },
-    {
-      "id": "dutch-any-entry-6966",
-      "word": "dutch",
-      "display": "Dutch",
-      "meaning": "荷蘭",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "dutch-any-entry-4482",
-      "word": "dutch",
-      "display": "Dutch",
-      "meaning": "荷蘭的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "dwell-any-entry-1773",
-      "word": "dwell",
-      "display": "dwell",
-      "meaning": "居住",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 6
-    },
-    {
-      "id": "dweller-any-entry-6478",
-      "word": "dweller",
-      "display": "dweller",
-      "meaning": "居民",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "dwellers-any-entry-6544",
@@ -20799,36 +20617,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "ease-any-entry-1189",
-      "word": "ease",
-      "display": "ease",
-      "meaning": "減輕",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 5
-    },
-    {
-      "id": "ease-any-entry-2622",
-      "word": "ease",
-      "display": "ease",
-      "meaning": "緩解",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "ease-any-entry-1086",
-      "word": "ease",
-      "display": "ease",
-      "meaning": "舒緩",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 68
-    },
-    {
       "id": "east-meets-west-culture-any-entry-4693",
       "word": "east-meets-west culture",
       "display": "east-meets-west culture",
@@ -21116,16 +20904,6 @@
       "inferredPos": "adjective",
       "posConfidence": 90,
       "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "edible-any-entry-4949",
-      "word": "edible",
-      "display": "edible",
-      "meaning": "可食用",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "editorial-any-entry-2420",
@@ -21864,16 +21642,6 @@
       "sourceCount": 2
     },
     {
-      "id": "emblem-any-entry-5023",
-      "word": "emblem",
-      "display": "emblem",
-      "meaning": "象徵",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "embody-any-entry-6434",
       "word": "embody",
       "display": "Embody",
@@ -22146,16 +21914,6 @@
       "sourceCount": 9
     },
     {
-      "id": "emperor-any-entry-4963",
-      "word": "emperor",
-      "display": "emperor",
-      "meaning": "皇帝",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
       "id": "emphasis-any-entry-7510",
       "word": "emphasis",
       "display": "emphasis",
@@ -22180,26 +21938,6 @@
       "inferredPos": "noun",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "emphasise-any-entry-7881",
-      "word": "emphasise",
-      "display": "emphasise",
-      "meaning": "強調",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 55
-    },
-    {
-      "id": "emphasise-any-entry-1956",
-      "word": "emphasise",
-      "display": "emphasise",
-      "meaning": "重視",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
     },
     {
       "id": "emphasize-any-entry-2003",
@@ -23421,26 +23159,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "eradicate-any-entry-2743",
-      "word": "eradicate",
-      "display": "eradicate",
-      "meaning": "根除",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
-      "id": "eradicate-any-entry-5631",
-      "word": "eradicate",
-      "display": "eradicate",
-      "meaning": "消除",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
       "id": "erase-any-entry-1207",
       "word": "erase",
       "display": "erase",
@@ -24007,26 +23725,6 @@
       "sourceCount": 1
     },
     {
-      "id": "etiquette-any-entry-3540",
-      "word": "etiquette",
-      "display": "etiquette",
-      "meaning": "禮儀",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "europe-any-entry-8374",
-      "word": "europe",
-      "display": "Europe",
-      "meaning": "歐洲",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 25
-    },
-    {
       "id": "european-any-entry-8112",
       "word": "european",
       "display": "European",
@@ -24097,16 +23795,6 @@
       "inferredPos": "verb",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "evaporate-any-entry-6551",
-      "word": "evaporate",
-      "display": "evaporate",
-      "meaning": "蒸發",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
     },
     {
       "id": "evaproate-any-entry-5901",
@@ -24511,16 +24199,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "exaggeration-any-entry-8657",
-      "word": "exaggeration",
-      "display": "exaggeration",
-      "meaning": "誇張",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "examination-any-n-0764",
       "word": "examination",
       "display": "examination",
@@ -24854,26 +24532,6 @@
       "type": "word",
       "needsReview": true,
       "sourceCount": 1
-    },
-    {
-      "id": "exercise-any-entry-8029",
-      "word": "exercise",
-      "display": "exercise",
-      "meaning": "做運動",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "exercise-any-entry-8007",
-      "word": "exercise",
-      "display": "exercise",
-      "meaning": "運動",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
     },
     {
       "id": "exercise-any-entry-5122",
@@ -25348,16 +25006,6 @@
       "sourceCount": 1
     },
     {
-      "id": "export-any-entry-1668",
-      "word": "export",
-      "display": "export",
-      "meaning": "出口",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
       "id": "expose-verb-entry-0469",
       "word": "expose",
       "display": "expose",
@@ -25534,16 +25182,6 @@
       "type": "word",
       "needsReview": true,
       "sourceCount": 8
-    },
-    {
-      "id": "extract-any-entry-8771",
-      "word": "extract",
-      "display": "extract",
-      "meaning": "提取",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "extract-noun-entry-1195",
@@ -26077,16 +25715,6 @@
       "sourceCount": 28
     },
     {
-      "id": "fable-any-entry-3450",
-      "word": "fable",
-      "display": "fable",
-      "meaning": "寓言",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "fabric-any-entry-3881",
       "word": "fabric",
       "display": "fabric",
@@ -26574,16 +26202,6 @@
       "sourceCount": 7
     },
     {
-      "id": "famine-any-entry-6635",
-      "word": "famine",
-      "display": "famine",
-      "meaning": "饑荒",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "famous-for-any-entry-8434",
       "word": "famous for",
       "display": "famous for",
@@ -26966,16 +26584,6 @@
       "posReason": "chinese-adjective-meaning"
     },
     {
-      "id": "fear-any-entry-4774",
-      "word": "fear",
-      "display": "fear",
-      "meaning": "恐懼",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "fearful-of-any-entry-3905",
       "word": "fearful of",
       "display": "fearful of",
@@ -27337,16 +26945,6 @@
       "sourceCount": 5
     },
     {
-      "id": "fertilizer-any-entry-5841",
-      "word": "fertilizer",
-      "display": "fertilizer",
-      "meaning": "肥料",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
       "id": "festive-events-any-entry-0137",
       "word": "festive events",
       "display": "festive events",
@@ -27630,16 +27228,6 @@
       "inferredPos": "adjective",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "fig-any-entry-3198",
-      "word": "fig",
-      "display": "fig",
-      "meaning": "無花果",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
     },
     {
       "id": "fight-against-any-entry-3590",
@@ -28006,29 +27594,6 @@
       "sourceCount": 3
     },
     {
-      "id": "finite-any-entry-5834",
-      "word": "finite",
-      "display": "finite",
-      "meaning": "有限",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "finite-any-entry-5866",
-      "word": "finite",
-      "display": "finite",
-      "meaning": "有限的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
       "id": "firm-noun-entry-0475",
       "word": "firm",
       "display": "firm",
@@ -28077,16 +27642,6 @@
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 3
-    },
-    {
-      "id": "fist-any-entry-4733",
-      "word": "fist",
-      "display": "fist",
-      "meaning": "拳頭",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "fizzle-out-any-entry-0917",
@@ -28248,36 +27803,6 @@
       "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "flawless-any-entry-6773",
-      "word": "flawless",
-      "display": "flawless",
-      "meaning": "完美無暇",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "flawless-any-entry-3974",
-      "word": "flawless",
-      "display": "flawless",
-      "meaning": "完美無瑕",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "flawless-any-entry-6757",
-      "word": "flawless",
-      "display": "flawless",
-      "meaning": "無瑕疵",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
       "sourceCount": 1
     },
     {
@@ -28639,16 +28164,6 @@
       "sourceCount": 1
     },
     {
-      "id": "fluent-any-entry-8028",
-      "word": "fluent",
-      "display": "fluent",
-      "meaning": "流利",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
       "id": "fluid-any-entry-8142",
       "word": "fluid",
       "display": "fluid",
@@ -28700,16 +28215,6 @@
       "type": "word",
       "needsReview": true,
       "sourceCount": 2
-    },
-    {
-      "id": "foam-any-entry-4811",
-      "word": "foam",
-      "display": "foam",
-      "meaning": "泡沫",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 5
     },
     {
       "id": "focus-on-any-entry-2418",
@@ -28852,16 +28357,6 @@
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 3
-    },
-    {
-      "id": "font-any-entry-3060",
-      "word": "font",
-      "display": "font",
-      "meaning": "字體",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
     },
     {
       "id": "food-critics-any-entry-1852",
@@ -29117,36 +28612,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "force-any-entry-7444",
-      "word": "force",
-      "display": "force",
-      "meaning": "強迫",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "force-verb-entry-3923",
-      "word": "force",
-      "display": "force (v)",
-      "meaning": "強迫",
-      "pos": "verb",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 38
-    },
-    {
-      "id": "forecast-any-entry-3796",
-      "word": "forecast",
-      "display": "forecast",
-      "meaning": "預測",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "foreign-any-entry-8504",
       "word": "foreign",
       "display": "foreign",
@@ -29184,36 +28649,6 @@
       "inferredPos": "noun",
       "posConfidence": 90,
       "posReason": "chinese-noun-meaning"
-    },
-    {
-      "id": "foresee-any-entry-5167",
-      "word": "foresee",
-      "display": "foresee",
-      "meaning": "預期",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "foresee-any-entry-4746",
-      "word": "foresee",
-      "display": "foresee",
-      "meaning": "預見",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "foresee-any-entry-0977",
-      "word": "foresee",
-      "display": "foresee",
-      "meaning": "預計",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
     },
     {
       "id": "forge-any-entry-3372",
@@ -29550,16 +28985,6 @@
       "posReason": "chinese-adjective-meaning"
     },
     {
-      "id": "france-any-entry-7908",
-      "word": "france",
-      "display": "France",
-      "meaning": "法國",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
       "id": "franchise-any-entry-4808",
       "word": "franchise",
       "display": "franchise",
@@ -29594,16 +29019,6 @@
       "inferredPos": "noun",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "frenzy-any-entry-7867",
-      "word": "frenzy",
-      "display": "frenzy",
-      "meaning": "瘋狂",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 55
     },
     {
       "id": "frequenters-any-entry-2480",
@@ -30166,16 +29581,6 @@
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 1
-    },
-    {
-      "id": "further-any-entry-2892",
-      "word": "further",
-      "display": "further",
-      "meaning": "進一步",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
     },
     {
       "id": "furthermore-any-entry-6357",
@@ -32006,16 +31411,6 @@
       "sourceCount": 2
     },
     {
-      "id": "go-through-any-entry-2424",
-      "word": "go through",
-      "display": "go through",
-      "meaning": "穿過 / 仔細看",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "go-to-great-lengths-to-any-entry-6679",
       "word": "go to great lengths to",
       "display": "Go to great lengths to",
@@ -32087,26 +31482,6 @@
       "inferredPos": "noun",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "gobble-any-entry-6051",
-      "word": "gobble",
-      "display": "gobble",
-      "meaning": "狂食",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "gobble-any-entry-5971",
-      "word": "gobble",
-      "display": "gobble",
-      "meaning": "狼吞虎嚥",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 5
     },
     {
       "id": "gold-medals-any-entry-2772",
@@ -32224,16 +31599,6 @@
       "posReason": "english-adverb-suffix"
     },
     {
-      "id": "graduate-any-entry-2697",
-      "word": "graduate",
-      "display": "graduate",
-      "meaning": "畢業生",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "graduates-any-entry-3734",
       "word": "graduates",
       "display": "graduates",
@@ -32255,56 +31620,6 @@
       "inferredPos": "noun",
       "posConfidence": 90,
       "posReason": "chinese-noun-meaning"
-    },
-    {
-      "id": "granite-any-entry-5660",
-      "word": "granite",
-      "display": "granite",
-      "meaning": "花岡岩",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "granite-any-entry-5624",
-      "word": "granite",
-      "display": "granite",
-      "meaning": "花崗岩",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
-      "id": "grant-any-entry-2422",
-      "word": "grant",
-      "display": "grant",
-      "meaning": "提供",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "grant-any-entry-4366",
-      "word": "grant",
-      "display": "grant",
-      "meaning": "給予",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "grant-any-entry-4345",
-      "word": "grant",
-      "display": "grant",
-      "meaning": "給予 / 提予",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "granted-any-entry-1963",
@@ -32512,29 +31827,6 @@
       "sourceCount": 2
     },
     {
-      "id": "greasy-any-entry-3667",
-      "word": "greasy",
-      "display": "greasy",
-      "meaning": "油膩",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 5
-    },
-    {
-      "id": "greasy-any-entry-4922",
-      "word": "greasy",
-      "display": "greasy",
-      "meaning": "油膩的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
       "id": "green-any-entry-8308",
       "word": "green",
       "display": "green",
@@ -32552,26 +31844,6 @@
       "word": "greenery",
       "display": "greenery",
       "meaning": "綠化帶",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "grill-any-entry-5608",
-      "word": "grill",
-      "display": "grill",
-      "meaning": "烤",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "grill-any-entry-2462",
-      "word": "grill",
-      "display": "grill",
-      "meaning": "燒",
       "pos": "",
       "type": "word",
       "needsReview": true,
@@ -32601,26 +31873,6 @@
       "posReason": "chinese-adjective-meaning"
     },
     {
-      "id": "grin-any-entry-6709",
-      "word": "grin",
-      "display": "grin",
-      "meaning": "露齒笑",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "grin-any-entry-6697",
-      "word": "grin",
-      "display": "grin",
-      "meaning": "露齒而笑",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
       "id": "grind-any-entry-5991",
       "word": "grind",
       "display": "grind",
@@ -32645,16 +31897,6 @@
       "inferredPos": "verb",
       "posConfidence": 92,
       "posReason": "chinese-verb-meaning+oxford"
-    },
-    {
-      "id": "grip-any-entry-7814",
-      "word": "grip",
-      "display": "grip",
-      "meaning": "緊握",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
     },
     {
       "id": "groan-about-any-entry-0627",
@@ -88484,6 +87726,536 @@
       "meaning": "至少",
       "pos": "",
       "type": "phrase",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "diabetes-noun-entry-7948",
+      "word": "diabetes",
+      "display": "diabetes",
+      "meaning": "糖尿病",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "diploma-noun-entry-7949",
+      "word": "diploma",
+      "display": "diploma",
+      "meaning": "文憑",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "discontent-noun-entry-7950",
+      "word": "discontent",
+      "display": "discontent",
+      "meaning": "不滿",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "discouraging-adjective-entry-7951",
+      "word": "discouraging",
+      "display": "discouraging",
+      "meaning": "令人氣餒的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "dislike-verb-entry-7952",
+      "word": "dislike",
+      "display": "dislike",
+      "meaning": "不喜歡",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "dispel-verb-entry-7953",
+      "word": "dispel",
+      "display": "dispel",
+      "meaning": "驅散",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "divorce-noun-entry-7954",
+      "word": "divorce",
+      "display": "divorce",
+      "meaning": "離婚",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "dogma-noun-entry-7955",
+      "word": "dogma",
+      "display": "dogma",
+      "meaning": "教條",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "dormitory-noun-entry-7956",
+      "word": "dormitory",
+      "display": "dormitory",
+      "meaning": "宿舍",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "drowsy-adjective-entry-7957",
+      "word": "drowsy",
+      "display": "drowsy",
+      "meaning": "昏昏欲睡的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "dubious-adjective-entry-7958",
+      "word": "dubious",
+      "display": "dubious",
+      "meaning": "可疑的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "dutch-adjective-entry-7959",
+      "word": "dutch",
+      "display": "Dutch",
+      "meaning": "荷蘭的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "dwell-verb-entry-7960",
+      "word": "dwell",
+      "display": "dwell",
+      "meaning": "居住",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "dweller-noun-entry-7961",
+      "word": "dweller",
+      "display": "dweller",
+      "meaning": "居民",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "ease-verb-entry-7962",
+      "word": "ease",
+      "display": "ease",
+      "meaning": "減輕",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "edible-adjective-entry-7963",
+      "word": "edible",
+      "display": "edible",
+      "meaning": "可食用的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "emblem-noun-entry-7964",
+      "word": "emblem",
+      "display": "emblem",
+      "meaning": "象徵",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "emperor-noun-entry-7965",
+      "word": "emperor",
+      "display": "emperor",
+      "meaning": "皇帝",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "emphasise-verb-entry-7966",
+      "word": "emphasise",
+      "display": "emphasise",
+      "meaning": "強調",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "eradicate-verb-entry-7967",
+      "word": "eradicate",
+      "display": "eradicate",
+      "meaning": "根除",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "etiquette-noun-entry-7968",
+      "word": "etiquette",
+      "display": "etiquette",
+      "meaning": "禮儀",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "europe-noun-entry-7969",
+      "word": "europe",
+      "display": "Europe",
+      "meaning": "歐洲",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "evaporate-verb-entry-7970",
+      "word": "evaporate",
+      "display": "evaporate",
+      "meaning": "蒸發",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "exaggeration-noun-entry-7971",
+      "word": "exaggeration",
+      "display": "exaggeration",
+      "meaning": "誇張",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "exercise-noun-entry-7972",
+      "word": "exercise",
+      "display": "exercise",
+      "meaning": "運動",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "export-verb-entry-7973",
+      "word": "export",
+      "display": "export",
+      "meaning": "出口",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "extract-verb-entry-7974",
+      "word": "extract",
+      "display": "extract",
+      "meaning": "提取",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "fable-noun-entry-7975",
+      "word": "fable",
+      "display": "fable",
+      "meaning": "寓言",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "famine-noun-entry-7976",
+      "word": "famine",
+      "display": "famine",
+      "meaning": "饑荒",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "fear-noun-entry-7977",
+      "word": "fear",
+      "display": "fear",
+      "meaning": "恐懼",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "fertilizer-noun-entry-7978",
+      "word": "fertilizer",
+      "display": "fertilizer",
+      "meaning": "肥料",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "fig-noun-entry-7979",
+      "word": "fig",
+      "display": "fig",
+      "meaning": "無花果",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "finite-adjective-entry-7980",
+      "word": "finite",
+      "display": "finite",
+      "meaning": "有限的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "fist-noun-entry-7981",
+      "word": "fist",
+      "display": "fist",
+      "meaning": "拳頭",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "flawless-adjective-entry-7982",
+      "word": "flawless",
+      "display": "flawless",
+      "meaning": "無瑕疵的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "fluent-adjective-entry-7983",
+      "word": "fluent",
+      "display": "fluent",
+      "meaning": "流利的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "foam-noun-entry-7984",
+      "word": "foam",
+      "display": "foam",
+      "meaning": "泡沫",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "font-noun-entry-7985",
+      "word": "font",
+      "display": "font",
+      "meaning": "字體",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "force-verb-entry-7986",
+      "word": "force",
+      "display": "force",
+      "meaning": "強迫",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "forecast-noun-entry-7987",
+      "word": "forecast",
+      "display": "forecast",
+      "meaning": "預測",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "foresee-verb-entry-7988",
+      "word": "foresee",
+      "display": "foresee",
+      "meaning": "預見",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "france-noun-entry-7989",
+      "word": "france",
+      "display": "France",
+      "meaning": "法國",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "frenzy-noun-entry-7990",
+      "word": "frenzy",
+      "display": "frenzy",
+      "meaning": "瘋狂",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "further-adverb-entry-7991",
+      "word": "further",
+      "display": "further",
+      "meaning": "進一步",
+      "pos": "adverb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "go-through-verb-entry-7992",
+      "word": "go through",
+      "display": "go through",
+      "meaning": "穿過 / 仔細看",
+      "pos": "verb",
+      "type": "phrase",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "gobble-verb-entry-7993",
+      "word": "gobble",
+      "display": "gobble",
+      "meaning": "狼吞虎嚥",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "graduate-noun-entry-7994",
+      "word": "graduate",
+      "display": "graduate",
+      "meaning": "畢業生",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "granite-noun-entry-7995",
+      "word": "granite",
+      "display": "granite",
+      "meaning": "花崗岩",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "grant-verb-entry-7996",
+      "word": "grant",
+      "display": "grant",
+      "meaning": "給予",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "greasy-adjective-entry-7997",
+      "word": "greasy",
+      "display": "greasy",
+      "meaning": "油膩的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "grill-verb-entry-7998",
+      "word": "grill",
+      "display": "grill",
+      "meaning": "燒",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "grin-verb-entry-7999",
+      "word": "grin",
+      "display": "grin",
+      "meaning": "露齒而笑",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "grip-noun-entry-8000",
+      "word": "grip",
+      "display": "grip",
+      "meaning": "緊握",
+      "pos": "noun",
+      "type": "word",
       "needsReview": false,
       "sourceCount": 1
     }

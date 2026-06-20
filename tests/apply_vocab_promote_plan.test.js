@@ -95,6 +95,90 @@ fs.writeFileSync(curatedPath, `const ENTRIES = [
   ];
 `);
 
+const compactTeacherJson = apply.formatTeacherUpdatesJson({
+  meta: { lesson: "Test" },
+  entries: teacherAddition.additions
+});
+assert.ok(compactTeacherJson.includes("    { \"word\": \"almond\", \"meaning\": \"杏仁\", \"pos\": \"noun\", \"type\": \"word\", \"replaceType\": true }"));
+
+const existingBank = {
+  meta: {
+    generatedAt: "2026-01-01T00:00:00.000Z",
+    sourceFiles: [{ name: "old.xlsx" }],
+    updateFiles: [{ name: "old_updates.json", addedEntryCount: 1 }],
+    entryCount: 4,
+    uniqueWordCount: 3
+  },
+  entries: [
+    {
+      id: "almond-noisy-entry",
+      word: "almond",
+      display: "almond",
+      meaning: "幼 / 幼仔",
+      pos: "noun",
+      type: "word",
+      needsReview: true,
+      sourceCount: 9
+    },
+    {
+      id: "almond-phrase-entry",
+      word: "almond",
+      display: "almond",
+      meaning: "杏仁味",
+      pos: "",
+      type: "phrase",
+      needsReview: false,
+      sourceCount: 2
+    },
+    {
+      id: "almond-adjective-entry",
+      word: "almond",
+      display: "almond",
+      meaning: "杏仁色的",
+      pos: "adjective",
+      type: "word",
+      needsReview: false,
+      sourceCount: 3
+    },
+    {
+      id: "bacon-entry",
+      word: "bacon",
+      display: "bacon",
+      meaning: "煙肉",
+      pos: "noun",
+      type: "word",
+      needsReview: false,
+      sourceCount: 5
+    }
+  ]
+};
+const bankMerge = apply.mergeTeacherBank(existingBank, teacherAddition.additions, {
+  teacherUpdates: teacherUpdatesPath
+});
+assert.strictEqual(bankMerge.mergeSummary.addedEntryCount, 1);
+assert.strictEqual(bankMerge.mergeSummary.removedEntryCount, 1);
+assert.strictEqual(bankMerge.mergeSummary.netEntryCount, 0);
+assert.strictEqual(bankMerge.entries.length, 4);
+assert.strictEqual(bankMerge.entries.some((entry) => entry.id === "almond-noisy-entry"), false);
+assert.strictEqual(bankMerge.entries.find((entry) => entry.id === "almond-phrase-entry").sourceCount, 2);
+assert.strictEqual(bankMerge.entries.find((entry) => entry.id === "almond-adjective-entry").sourceCount, 3);
+assert.strictEqual(bankMerge.entries.find((entry) => entry.id === "bacon-entry").sourceCount, 5);
+assert.deepStrictEqual(
+  bankMerge.entries
+    .filter((entry) => entry.word === "almond")
+    .map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),
+  [
+    "phrase::杏仁味",
+    "word:adjective:杏仁色的",
+    "word:noun:杏仁"
+  ]
+);
+assert.strictEqual(bankMerge.meta.sourceFiles[0].name, "old.xlsx");
+assert.deepStrictEqual(bankMerge.meta.updateFiles.map((entry) => entry.name), [
+  "old_updates.json",
+  "teacher_vocab_manual_updates.json"
+]);
+
 const drySummary = apply.applyPlan({
   entries: split.accepted
 }, {
@@ -139,6 +223,36 @@ fs.writeFileSync(reviewBatchPath, JSON.stringify({
 fs.writeFileSync(path.join(tmpDir, "teacher_vocab_review_batch_highvalue_0000.xlsx"), "placeholder");
 const planPath = path.join(tmpDir, "teacher_vocab_promote_plan_highvalue_0000.json");
 fs.writeFileSync(planPath, JSON.stringify({ entries: split.accepted }, null, 2));
+
+const smallTeacherBankPath = path.join(tmpDir, "small_teacher_vocab_bank.js");
+fs.writeFileSync(smallTeacherBankPath, `module.exports = ${JSON.stringify(existingBank, null, 2)};\n`);
+const smallTeacherUpdatesPath = path.join(tmpDir, "small_teacher_vocab_manual_updates.json");
+fs.writeFileSync(smallTeacherUpdatesPath, JSON.stringify({ meta: { lesson: "Small" }, entries: [] }, null, 2));
+const smallCuratedPath = path.join(tmpDir, "small_vocab_sense_bank.js");
+fs.writeFileSync(smallCuratedPath, `const ENTRIES = [
+  ["game", "noun", "遊戲"]
+  ];
+`);
+const smallWriteSummary = apply.applyPlan({ entries: [split.teacher[0]] }, {
+  input: planPath,
+  teacherUpdates: smallTeacherUpdatesPath,
+  curatedBank: smallCuratedPath,
+  teacherBank: smallTeacherBankPath,
+  write: true,
+  refresh: false
+});
+assert.strictEqual(smallWriteSummary.teacherAddCount, 1);
+assert.strictEqual(smallWriteSummary.teacherBankAddCount, 1);
+assert.strictEqual(smallWriteSummary.teacherBankRemovedCount, 1);
+assert.strictEqual(smallWriteSummary.teacherBankNetCount, 0);
+const smallTeacherUpdatesText = fs.readFileSync(smallTeacherUpdatesPath, "utf8");
+assert.ok(smallTeacherUpdatesText.includes("    { \"word\": \"almond\", \"meaning\": \"杏仁\", \"pos\": \"noun\", \"type\": \"word\", \"replaceType\": true }"));
+delete require.cache[require.resolve(smallTeacherBankPath)];
+const smallBankAfterWrite = require(smallTeacherBankPath);
+assert.strictEqual(smallBankAfterWrite.entries.some((entry) => entry.id === "almond-noisy-entry"), false);
+assert.strictEqual(smallBankAfterWrite.entries.find((entry) => entry.id === "bacon-entry").sourceCount, 5);
+assert.strictEqual(smallBankAfterWrite.entries.find((entry) => entry.id === "almond-adjective-entry").sourceCount, 3);
+assert.ok(smallBankAfterWrite.entries.some((entry) => entry.word === "almond" && entry.meaning === "杏仁"));
 
 const writeSummary = apply.applyPlan({ entries: split.accepted }, {
   input: planPath,
