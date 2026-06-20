@@ -1,14 +1,13 @@
 #!/usr/bin/env node
 "use strict";
 
-const crypto = require("crypto");
 const fs = require("fs");
 const https = require("https");
 const os = require("os");
 const path = require("path");
 const { spawnSync } = require("child_process");
 const ApplyPlan = require("./apply-vocab-promote-plan.js");
-const VocabPosInference = require("../vocab_pos_inference.js");
+const TeacherLiveVocab = require("../teacher_live_vocab.js");
 
 const ROOT_DIR = path.resolve(__dirname, "..");
 const DEFAULT_INPUT = path.join(ROOT_DIR, "teacher_vocab_manual_updates.json");
@@ -65,82 +64,19 @@ function parseArgs(argv) {
   return options;
 }
 
-function normalizeWord(value) {
-  return VocabPosInference.normalizeWord(value);
-}
-
-function normalizeMeaning(value) {
-  return VocabPosInference.normalizeMeaning(value);
-}
-
-function normalizePos(value) {
-  return VocabPosInference.normalizePos(value);
-}
-
-function normalizeType(value, word = "") {
-  const typeKey = String(value || "").trim().replace(/[().]/g, "").toLowerCase();
-  if (["ph", "phr", "phrase"].includes(typeKey)) return "phrase";
-  if (["pt", "pattern"].includes(typeKey)) return "pattern";
-  if (["modal", "modal v", "aux", "auxiliary"].includes(typeKey)) return "word";
-  if (typeKey === "word") return "word";
-  if (/[+*=]|名詞|動詞|形容詞|副詞|\bpp\b/i.test(normalizeWord(word))) return "pattern";
-  return normalizeWord(word).includes(" ") ? "phrase" : "word";
-}
-
-function stableHash(value) {
-  return crypto.createHash("sha1").update(String(value || "")).digest("hex").slice(0, 10);
-}
-
 function makeTeacherLiveEntryId(entry = {}) {
-  const word = normalizeWord(entry.word || entry.display);
-  const meaning = normalizeMeaning(entry.meaning);
-  const pos = normalizePos(entry.pos);
-  const type = normalizeType(entry.type || entry.pos, word);
-  const slug = [word, pos || type || "entry", meaning]
-    .join("-")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "")
-    .slice(0, 52) || "teacher-vocab";
-  return `${slug}-${stableHash(`${word}|${pos}|${type}|${meaning}`)}`.slice(0, 80);
-}
-
-function normalizeAliases(value) {
-  if (Array.isArray(value)) {
-    return [...new Set(value.map(normalizeWord).filter(Boolean))];
-  }
-  return [...new Set(String(value || "")
-    .split(/[,，;；|]/)
-    .map(normalizeWord)
-    .filter(Boolean))];
+  return TeacherLiveVocab.makeEntryId(entry);
 }
 
 function normalizeTeacherEntry(raw = {}) {
-  const word = normalizeWord(raw.word || raw.display);
-  const meaning = normalizeMeaning(raw.meaning);
-  if (!word || !meaning) return null;
-  const pos = normalizePos(raw.pos);
-  const type = normalizeType(raw.type || raw.pos, word);
-  const display = String(raw.display || raw.word || word).trim() || word;
-  const entry = {
-    word,
-    display,
-    meaning,
-    pos,
-    type,
-    aliases: normalizeAliases(raw.aliases || raw.alias),
-    level: String(raw.level || "").trim().toUpperCase().slice(0, 2),
+  const entry = TeacherLiveVocab.normalizeEntry(raw, {
     source: "reviewed-teacher-bank",
-    notes: normalizeMeaning(raw.notes || "").slice(0, 120),
-    disabled: Boolean(raw.disabled)
-  };
-  const id = makeTeacherLiveEntryId(entry);
-  return {
-    id,
-    ...Object.fromEntries(Object.entries(entry).filter(([, value]) => (
-      !(typeof value === "string" && value === "")
-      && !(Array.isArray(value) && value.length === 0)
-    )))
-  };
+  });
+  return entry ? TeacherLiveVocab.compactEntry({
+    ...entry,
+    id: makeTeacherLiveEntryId(entry),
+    sourceEntryId: makeTeacherLiveEntryId(entry)
+  }) : null;
 }
 
 function loadJson(filePath) {

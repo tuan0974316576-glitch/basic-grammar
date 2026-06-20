@@ -18,6 +18,7 @@ const VOCAB_SENSE_BANK = window.VocabSenseBank || null;
 const CC_CEDICT_SUPPLEMENT = window.CcCedictSupplement || null;
 const CC_CEDICT_REVERSE = window.CcCedictReverse || null;
 const TEACHER_VOCAB = window.TeacherVocab || null;
+const TEACHER_LIVE_VOCAB = window.TeacherLiveVocab || null;
 const VOCAB_LOOKUP = window.VocabLookup || null;
 const VOCAB_POS_INFERENCE = window.VocabPosInference || null;
 const VOCAB_EXAMPLE_UTILS = window.VocabExampleUtils || null;
@@ -692,38 +693,31 @@ function stripObsoleteVocabPlaceholders(item = {}) {
 }
 
 function normalizeTeacherLiveType(value, word = "") {
-  const normalizedType = String(value || "").trim().toLowerCase();
-  if (normalizedType === "pattern" || normalizedType === "phrase" || normalizedType === "word") return normalizedType;
-  const normalizedWord = normalizeVocabWord(word);
-  if (/[+*=]|名詞|動詞|形容詞|副詞|\bpp\b/i.test(normalizedWord)) return "pattern";
-  return normalizedWord.includes(" ") ? "phrase" : "word";
+  return TEACHER_LIVE_VOCAB?.normalizeType?.(value, word)
+    || TEACHER_VOCAB?.normalizeType?.(value, word)
+    || (normalizeVocabWord(word).includes(" ") ? "phrase" : "word");
 }
 
 function normalizeTeacherLiveEntry(entry = {}) {
+  if (TEACHER_LIVE_VOCAB?.normalizeEntry) {
+    return TEACHER_LIVE_VOCAB.normalizeEntry(entry, { source: "teacher-live" });
+  }
   const word = normalizeVocabWord(entry.word || entry.display);
   const meaning = normalizeVocabMeaning(entry.meaning);
   if (!word || !meaning) return null;
-  const pos = normalizeVocabPos(entry.pos);
-  const type = normalizeTeacherLiveType(entry.type, word);
-  const aliases = Array.isArray(entry.aliases)
-    ? entry.aliases.map(normalizeVocabWord).filter(Boolean)
-    : String(entry.aliases || "")
-      .split(/[,，;；|]/)
-      .map(normalizeVocabWord)
-      .filter(Boolean);
-  const sourceEntryId = String(entry.sourceEntryId || entry.id || makeTeacherLiveEntryId({ word, meaning, pos, type })).trim();
+  const id = String(entry.sourceEntryId || entry.id || makeTeacherLiveEntryId({ word, meaning, pos: entry.pos, type: entry.type })).trim();
   return {
-    id: sourceEntryId,
+    id,
     word,
     display: String(entry.display || entry.word || word).trim() || word,
     meaning,
-    pos,
-    type,
-    aliases: [...new Set(aliases)],
+    pos: normalizeVocabPos(entry.pos),
+    type: normalizeTeacherLiveType(entry.type, word),
+    aliases: [],
     level: String(entry.level || "").trim().toUpperCase().slice(0, 2),
     notes: normalizeVocabMeaning(entry.notes || "").slice(0, 120),
     source: "teacher-live",
-    sourceEntryId,
+    sourceEntryId: id,
     updatedAt: Number(entry.updatedAt) || Date.now(),
     disabled: Boolean(entry.disabled)
   };
@@ -757,6 +751,7 @@ function saveTeacherLiveVocabEntries(entries = state.teacherLiveVocab) {
 }
 
 function makeTeacherLiveEntryId(entry = {}) {
+  if (TEACHER_LIVE_VOCAB?.makeEntryId) return TEACHER_LIVE_VOCAB.makeEntryId(entry);
   const word = normalizeVocabWord(entry.word || entry.display);
   const meaning = normalizeVocabMeaning(entry.meaning);
   const pos = normalizeVocabPos(entry.pos);
@@ -767,6 +762,11 @@ function makeTeacherLiveEntryId(entry = {}) {
     .replace(/^-+|-+$/g, "")
     .slice(0, 52) || "teacher-vocab";
   return `${slug}-${stableVocabHash(`${word}|${pos}|${type}|${meaning}`)}`.slice(0, 80);
+}
+
+function makeLegacyTeacherLiveEntryId(entry = {}) {
+  if (TEACHER_LIVE_VOCAB?.makeLegacyAppEntryId) return TEACHER_LIVE_VOCAB.makeLegacyAppEntryId(entry);
+  return makeTeacherLiveEntryId(entry);
 }
 
 function getTeacherLiveVocabMatches(word) {
@@ -2102,11 +2102,17 @@ async function saveTeacherLiveVocabEntry(rawEntry = {}) {
   const entry = normalizeTeacherLiveEntry(rawEntry);
   if (!entry) throw new Error("invalid-teacher-vocab-entry");
   const entryId = makeTeacherLiveEntryId(entry);
+  const legacyEntryId = makeLegacyTeacherLiveEntryId(entry);
   const existing = (state.teacherLiveVocab || []).find((item) => (
     item.id === entryId
     || item.sourceEntryId === entryId
+    || item.id === legacyEntryId
+    || item.sourceEntryId === legacyEntryId
     || (replaceEntryId && (item.id === replaceEntryId || item.sourceEntryId === replaceEntryId))
   )) || {};
+  const hasKnownLegacyEntry = legacyEntryId !== entryId && Boolean((state.teacherLiveVocab || []).find((item) => (
+    item.id === legacyEntryId || item.sourceEntryId === legacyEntryId
+  )));
   const payload = buildTeacherLiveVocabPayload({
     ...entry,
     sourceEntryId: entryId,
@@ -2120,14 +2126,18 @@ async function saveTeacherLiveVocabEntry(rawEntry = {}) {
     createdAt: existing.createdAt || serverTimestamp(),
     updatedAt: serverTimestamp()
   }, { merge: true });
-  if (replaceEntryId && replaceEntryId !== entryId) {
+  const disableIds = Array.from(new Set([
+    replaceEntryId,
+    hasKnownLegacyEntry ? legacyEntryId : ""
+  ].filter((id) => id && id !== entryId)));
+  if (disableIds.length) {
     const uid = studentAuthState.profile?.uid || studentAuthState.user?.uid || "";
-    await setDoc(doc(firebase.db, "teacherVocabLive", replaceEntryId), {
-      disabled: true,
-      replacedBy: entryId,
-      updatedAt: serverTimestamp(),
-      updatedBy: uid
-    }, { merge: true });
+    await Promise.all(disableIds.map((oldEntryId) => setDoc(doc(firebase.db, "teacherVocabLive", oldEntryId), {
+        disabled: true,
+        replacedBy: entryId,
+        updatedAt: serverTimestamp(),
+        updatedBy: uid
+      }, { merge: true })));
   }
 
   const localEntry = normalizeTeacherLiveEntry({
@@ -2141,7 +2151,7 @@ async function saveTeacherLiveVocabEntry(rawEntry = {}) {
     localEntry,
     ...(state.teacherLiveVocab || []).filter((item) => {
       const itemId = getTeacherLiveEntryKey(item);
-      return itemId !== entryId && (!replaceEntryId || itemId !== replaceEntryId);
+      return itemId !== entryId && !disableIds.includes(itemId);
     })
   ].filter(Boolean);
   saveTeacherLiveVocabEntries(state.teacherLiveVocab);

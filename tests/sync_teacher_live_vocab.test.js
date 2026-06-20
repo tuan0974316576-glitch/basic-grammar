@@ -65,11 +65,13 @@ assert.strictEqual(loadedManual.inputKind, "teacher-updates");
 assert.strictEqual(loadedManual.sourceEntryCount, 2);
 assert.strictEqual(loadedManual.entries.length, 1);
 assert.strictEqual(loadedManual.entries[0].type, "word");
+assert.strictEqual(loadedManual.entries[0].source, "reviewed-teacher-bank");
 assert.deepStrictEqual(loadedManual.entries[0].aliases, ["must"]);
 
 const idA = sync.makeTeacherLiveEntryId(loadedManual.entries[0]);
 const idB = sync.makeTeacherLiveEntryId({ ...loadedManual.entries[0] });
 assert.strictEqual(idA, idB);
+assert.ok(/-[a-f0-9]{10}$/.test(idA));
 
 const fields = sync.makeFirestoreFields(loadedManual.entries[0], new Date("2026-06-21T00:00:00.000Z"));
 assert.strictEqual(fields.word.stringValue, "have to");
