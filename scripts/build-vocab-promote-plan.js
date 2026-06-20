@@ -11,6 +11,11 @@ const ROOT_DIR = path.resolve(__dirname, "..");
 const DEFAULT_INPUT = path.join(ROOT_DIR, "private_exports", "vocab_review_batch_0000.json");
 const DEFAULT_OUTPUT = path.join(ROOT_DIR, "private_exports", "vocab_promote_plan.json");
 const ALLOWED_PROMOTE_TARGETS = new Set(["curated", "teacher", "skip", "needs class example"]);
+const REVIEW_SENSES = [
+  { suffix: "", posKey: "reviewed_pos", posLabel: "reviewed POS", meaningKey: "reviewed_meaning", meaningLabel: "reviewed meaning", targetKey: "promote_to", targetLabel: "promote to" },
+  { suffix: "_2", posKey: "reviewed_pos_2", posLabel: "reviewed POS 2", meaningKey: "reviewed_meaning_2", meaningLabel: "reviewed meaning 2", targetKey: "promote_to_2", targetLabel: "promote to 2" },
+  { suffix: "_3", posKey: "reviewed_pos_3", posLabel: "reviewed POS 3", meaningKey: "reviewed_meaning_3", meaningLabel: "reviewed meaning 3", targetKey: "promote_to_3", targetLabel: "promote to 3" }
+];
 
 function usage() {
   console.log([
@@ -152,21 +157,25 @@ function normalizeReviewedEntry(raw = {}, fallback = {}) {
   };
 }
 
+function getRowValue(row = {}, key = "", label = "") {
+  return row[key] || row[label] || "";
+}
+
 function reviewedEntriesFromCsvRows(rows = []) {
   return rows
-    .map((row) => normalizeReviewedEntry({
+    .flatMap((row) => REVIEW_SENSES.map((sense) => normalizeReviewedEntry({
       word: row.word,
       display: row.word,
       level: row.level,
       type: row.type,
-      pos: row.reviewed_pos || row["reviewed POS"],
-      meaning: row.reviewed_meaning || row["reviewed meaning"],
-      promoteTo: row.promote_to || row["promote to"],
+      pos: getRowValue(row, sense.posKey, sense.posLabel),
+      meaning: getRowValue(row, sense.meaningKey, sense.meaningLabel),
+      promoteTo: getRowValue(row, sense.targetKey, sense.targetLabel),
       notes: row.notes,
       audit_reasons: row.audit_reasons || row["audit reasons"],
       original_teacher_entry: row.original_teacher_entry || row["original teacher entry"],
       replace_type: row.replace_type || row["replace type"]
-    }))
+    })))
     .filter(Boolean);
 }
 

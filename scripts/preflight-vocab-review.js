@@ -12,6 +12,11 @@ const ROOT_DIR = path.resolve(__dirname, "..");
 const DEFAULT_OUTPUT = path.join(ROOT_DIR, "private_exports", "vocab_review_preflight.json");
 const ALLOWED_POS_LABELS = new Set(["n.", "v.", "adj.", "adv.", "prep.", "conj.", "pron.", "det.", "modal v.", "ph.", "pt."]);
 const ALLOWED_PROMOTE_TARGETS = new Set(["teacher", "curated", "skip", "needs class example"]);
+const REVIEW_SENSES = [
+  { number: 1, suffix: "", label: "" },
+  { number: 2, suffix: "_2", label: " 2" },
+  { number: 3, suffix: "_3", label: " 3" }
+];
 
 function usage() {
   console.log([
@@ -68,16 +73,17 @@ function normalizeHeaderValue(row = {}, ...keys) {
   return "";
 }
 
-function normalizeReviewRow(row = {}, index = 0, source = "") {
+function normalizeReviewRow(row = {}, index = 0, source = "", sense = REVIEW_SENSES[0]) {
   const word = normalizeWord(normalizeHeaderValue(row, "word"));
-  const reviewedPosRaw = normalizeHeaderValue(row, "reviewed_pos", "reviewed POS");
-  const reviewedMeaning = normalizeMeaning(normalizeHeaderValue(row, "reviewed_meaning", "reviewed meaning"));
-  const promoteToRaw = normalizeHeaderValue(row, "promote_to", "promote to");
+  const reviewedPosRaw = normalizeHeaderValue(row, `reviewed_pos${sense.suffix}`, `reviewed POS${sense.label}`);
+  const reviewedMeaning = normalizeMeaning(normalizeHeaderValue(row, `reviewed_meaning${sense.suffix}`, `reviewed meaning${sense.label}`));
+  const promoteToRaw = normalizeHeaderValue(row, `promote_to${sense.suffix}`, `promote to${sense.label}`);
   const promoteTo = PromotePlan.normalizePromoteTarget(promoteToRaw);
   const type = String(normalizeHeaderValue(row, "type") || "").trim().toLowerCase();
   return {
     index,
     rowNumber: index + 2,
+    senseNumber: sense.number,
     source,
     word,
     level: String(normalizeHeaderValue(row, "level") || "").trim().toUpperCase(),
@@ -103,6 +109,12 @@ function normalizeReviewRow(row = {}, index = 0, source = "") {
   };
 }
 
+function expandReviewRow(row = {}, index = 0, source = "") {
+  return REVIEW_SENSES
+    .map((sense) => normalizeReviewRow(row, index, source, sense))
+    .filter((normalized, senseIndex) => senseIndex === 0 || hasPromotableInput(normalized));
+}
+
 function readCsvRows(filePath) {
   return PromotePlan.readCsvRows(filePath);
 }
@@ -110,12 +122,12 @@ function readCsvRows(filePath) {
 async function readReviewRows(filePath) {
   const resolved = path.resolve(filePath);
   if (/\.csv$/i.test(resolved)) {
-    return readCsvRows(resolved).map((row, index) => normalizeReviewRow(row, index, path.basename(resolved)));
+    return readCsvRows(resolved).flatMap((row, index) => expandReviewRow(row, index, path.basename(resolved)));
   }
   if (/\.xlsx$/i.test(resolved)) {
     const workbook = await XlsxReader.readWorkbook(resolved);
     const reviewSheet = workbook.sheets.find((sheet) => sheet.name === "Review Batch") || workbook.sheets[0] || { objects: [] };
-    return (reviewSheet.objects || []).map((row, index) => normalizeReviewRow(row, index, `${path.basename(resolved)}:${reviewSheet.name}`));
+    return (reviewSheet.objects || []).flatMap((row, index) => expandReviewRow(row, index, `${path.basename(resolved)}:${reviewSheet.name}`));
   }
   const payload = JSON.parse(fs.readFileSync(resolved, "utf8"));
   const rows = Array.isArray(payload.entries) ? payload.entries.map((entry) => ({
@@ -137,7 +149,7 @@ async function readReviewRows(filePath) {
     replace_type: entry.replace_type || entry.replaceType || "",
     notes: entry.notes || ""
   })) : [];
-  return rows.map((row, index) => normalizeReviewRow(row, index, path.basename(resolved)));
+  return rows.flatMap((row, index) => expandReviewRow(row, index, path.basename(resolved)));
 }
 
 function hasAnyReviewInput(row = {}) {
@@ -194,7 +206,7 @@ function validateReviewedRow(row = {}, allRows = []) {
     && candidate.reviewedMeaning === row.reviewedMeaning
     && normalizePos(candidate.reviewedPos || candidate.reviewedPosRaw) === normalizePos(row.reviewedPos || row.reviewedPosRaw)
   ));
-  if (duplicate) findings.push(`duplicate reviewed sense with row ${duplicate.rowNumber}`);
+  if (duplicate) findings.push(`duplicate reviewed sense with row ${duplicate.rowNumber}${duplicate.senseNumber > 1 ? ` sense ${duplicate.senseNumber}` : ""}`);
 
   return findings;
 }
@@ -207,6 +219,7 @@ function buildReport(rows = [], options = {}) {
       findings.push({
         severity: message.startsWith("meaning may") ? "warning" : "error",
         rowNumber: row.rowNumber,
+        senseNumber: row.senseNumber,
         word: row.word,
         promoteTo: row.promoteToRaw,
         reviewedPos: row.reviewedPosRaw,
@@ -235,6 +248,7 @@ function buildReport(rows = [], options = {}) {
     findings,
     reviewedRows: reviewedRows.map((row) => ({
       rowNumber: row.rowNumber,
+      senseNumber: row.senseNumber,
       word: row.word,
       reviewedPos: row.reviewedPosRaw,
       reviewedMeaning: row.reviewedMeaning,
@@ -250,12 +264,13 @@ function csvEscape(value) {
 }
 
 function buildFindingsCsv(report = {}) {
-  const headers = ["severity", "row", "word", "promote_to", "reviewed_pos", "reviewed_meaning", "message"];
+  const headers = ["severity", "row", "sense", "word", "promote_to", "reviewed_pos", "reviewed_meaning", "message"];
   const lines = [headers.join(",")];
   (report.findings || []).forEach((finding) => {
     const row = {
       severity: finding.severity,
       row: finding.rowNumber,
+      sense: finding.senseNumber || 1,
       word: finding.word,
       promote_to: finding.promoteTo,
       reviewed_pos: finding.reviewedPos,
@@ -303,6 +318,7 @@ module.exports = {
   hasAnyReviewInput,
   hasPromotableInput,
   meaningLooksNoisy,
+  expandReviewRow,
   normalizeReviewRow,
   parseArgs,
   readReviewRows,

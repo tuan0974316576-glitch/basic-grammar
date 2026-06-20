@@ -62,6 +62,8 @@ assert.ok(rows[1].flags.includes("no-draft-meaning"));
 
 const csv = review.buildCsv(rows);
 assert.ok(csv.includes("reviewed_pos"));
+assert.ok(csv.includes("reviewed_pos_2"));
+assert.ok(csv.includes("reviewed_meaning_3"));
 assert.ok(csv.includes("audit_reasons"));
 assert.ok(csv.includes("original_teacher_entry"));
 assert.ok(csv.includes("reviewed_meaning"));

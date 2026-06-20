@@ -85,16 +85,55 @@ const cleanReport = preflight.buildReport([
 ]);
 assert.strictEqual(cleanReport.summary.pass, true);
 
+const multiSenseRows = preflight.expandReviewRow({
+  word: "work",
+  type: "word",
+  reviewed_pos: "n.",
+  reviewed_meaning: "工作",
+  promote_to: "curated",
+  reviewed_pos_2: "n.",
+  reviewed_meaning_2: "作品",
+  promote_to_2: "curated"
+}, 0, "unit");
+assert.strictEqual(multiSenseRows.length, 2);
+assert.strictEqual(multiSenseRows[1].senseNumber, 2);
+assert.strictEqual(preflight.buildReport(multiSenseRows).summary.pass, true);
+
+const notesOnlyRow = preflight.expandReviewRow({
+  word: "work",
+  type: "word",
+  reviewed_pos: "n.",
+  reviewed_meaning: "工作",
+  promote_to: "curated",
+  notes: "keep note on row"
+}, 0, "unit");
+assert.strictEqual(notesOnlyRow.length, 1);
+
+const badMultiSenseReport = preflight.buildReport(preflight.expandReviewRow({
+  word: "work",
+  type: "word",
+  reviewed_pos: "n.",
+  reviewed_meaning: "工作",
+  promote_to: "curated",
+  reviewed_pos_2: "",
+  reviewed_meaning_2: "作品",
+  promote_to_2: "curated"
+}, 0, "unit"));
+assert.ok(badMultiSenseReport.findings.some((finding) => (
+  finding.senseNumber === 2 && finding.message === "missing reviewed_pos"
+)));
+assert.ok(preflight.buildFindingsCsv(badMultiSenseReport).includes("error,2,2,work,curated,,作品,missing reviewed_pos"));
+
 const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "vocab-preflight-"));
 const csvPath = path.join(tmpDir, "review.csv");
 fs.writeFileSync(csvPath, [
-  "word,type,reviewed_pos,reviewed_meaning,promote_to",
-  "apple,word,n.,蘋果,curated",
-  "banana,word,,香蕉,curated"
+  "word,type,reviewed_pos,reviewed_meaning,promote_to,reviewed_pos_2,reviewed_meaning_2,promote_to_2",
+  "apple,word,n.,蘋果,curated,n.,水果,curated",
+  "banana,word,,香蕉,curated,,,"
 ].join("\n"));
 
 preflight.readReviewRows(csvPath).then((csvRows) => {
-  assert.strictEqual(csvRows.length, 2);
+  assert.strictEqual(csvRows.length, 3);
   const csvReport = preflight.buildReport(csvRows, { input: csvPath });
   assert.strictEqual(csvReport.summary.errorCount, 1);
   const outPath = path.join(tmpDir, "preflight.json");

@@ -636,6 +636,12 @@ function buildCsv(rows = []) {
     "reviewed_pos",
     "reviewed_meaning",
     "promote_to",
+    "reviewed_pos_2",
+    "reviewed_meaning_2",
+    "promote_to_2",
+    "reviewed_pos_3",
+    "reviewed_meaning_3",
+    "promote_to_3",
     "replace_type",
     "notes"
   ];
@@ -660,6 +666,12 @@ function buildCsv(rows = []) {
         reviewed_pos: "",
         reviewed_meaning: "",
         promote_to: "",
+        reviewed_pos_2: "",
+        reviewed_meaning_2: "",
+        promote_to_2: "",
+        reviewed_pos_3: "",
+        reviewed_meaning_3: "",
+        promote_to_3: "",
         replace_type: "",
         notes: ""
       }[header];

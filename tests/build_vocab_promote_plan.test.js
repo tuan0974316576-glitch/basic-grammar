@@ -89,6 +89,21 @@ const csvEntries = promote.reviewedEntriesFromCsvRows([
     reviewed_meaning: "查閱",
     promote_to: "teacher",
     notes: ""
+  },
+  {
+    word: "work",
+    level: "A1",
+    type: "word",
+    reviewed_pos: "n.",
+    reviewed_meaning: "工作",
+    promote_to: "curated",
+    reviewed_pos_2: "n.",
+    reviewed_meaning_2: "作品",
+    promote_to_2: "curated",
+    reviewed_pos_3: "v.",
+    reviewed_meaning_3: "工作 / 做事",
+    promote_to_3: "curated",
+    notes: "multi-sense"
   }
 ]);
 
@@ -118,6 +133,45 @@ assert.deepStrictEqual(csvEntries, [
     auditReasons: [],
     originalTeacherEntry: "",
     replaceType: false
+  },
+  {
+    word: "work",
+    display: "work",
+    meaning: "工作",
+    pos: "noun",
+    type: "word",
+    promoteTo: "curated",
+    level: "A1",
+    notes: "multi-sense",
+    auditReasons: [],
+    originalTeacherEntry: "",
+    replaceType: false
+  },
+  {
+    word: "work",
+    display: "work",
+    meaning: "作品",
+    pos: "noun",
+    type: "word",
+    promoteTo: "curated",
+    level: "A1",
+    notes: "multi-sense",
+    auditReasons: [],
+    originalTeacherEntry: "",
+    replaceType: false
+  },
+  {
+    word: "work",
+    display: "work",
+    meaning: "工作 / 做事",
+    pos: "verb",
+    type: "word",
+    promoteTo: "curated",
+    level: "A1",
+    notes: "multi-sense",
+    auditReasons: [],
+    originalTeacherEntry: "",
+    replaceType: false
   }
 ]);
 
@@ -125,10 +179,15 @@ const csvPlan = promote.buildPromotePlan({
   meta: { source: "review-csv" },
   entries: csvEntries
 });
-assert.strictEqual(csvPlan.meta.reviewedEntryCount, 2);
+assert.strictEqual(csvPlan.meta.reviewedEntryCount, 5);
 assert.strictEqual(csvPlan.entries[0].word, "above");
 assert.strictEqual(csvPlan.entries[1].word, "look up");
 assert.strictEqual(csvPlan.entries[1].promoteTo, "teacher");
+assert.deepStrictEqual(csvPlan.entries.filter((entry) => entry.word === "work").map((entry) => `${entry.pos}:${entry.meaning}`), [
+  "noun:工作",
+  "noun:作品",
+  "verb:工作 / 做事"
+]);
 
 const workbookEntries = promote.reviewedEntriesFromWorkbookRows([
   {

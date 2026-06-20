@@ -101,6 +101,12 @@ function buildRows(entries = []) {
     "",
     "",
     "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
     ""
   ]);
 }
@@ -119,12 +125,13 @@ function guideRows(source, entries) {
     ["reviewed POS", "填 n. / v. / adj. / adv. / prep. / conj. / pron. / det. / modal v. / ph. / pt."],
     ["reviewed meaning", "填學生應該見到的乾淨中文意思，短、自然、準確。"],
     ["promote to", "teacher = Austin Sir 上堂字庫；curated = 通用乾淨補充字典；skip = 不加入。"],
+    ["multi-meaning", "同一個字有多個常用意思時，可填 reviewed POS 2 / meaning 2 / promote to 2；最多 3 個意思。"],
     ["replace type", "普通新增可以留空。清走舊 teacher-bank 錯意思 / 垃圾資料時先填 yes。"],
     ["notes", "可留空。可寫 typo、alias、或者點解 skip。"],
     ["", ""],
     ["Examples", "如果 word 係 guility，應該修正 spelling / notes，再決定 promote 或 skip；錯串字不要直接畀學生見。"],
     ["Examples", "如果 ha = 只好 呢類明顯 spreadsheet junk，promote to 填 skip。"],
-    ["Examples", "如果一個字有兩個真正常用意思，而兩個都想畀學生揀，先保留兩行。"]
+    ["Examples", "如果一個字有兩三個真正常用意思，而都想畀學生揀，用 reviewed POS 2/3 同 meaning 2/3。"]
   ];
 }
 
@@ -150,6 +157,12 @@ async function buildWorkbook(source, options = {}) {
     "reviewed POS",
     "reviewed meaning",
     "promote to",
+    "reviewed POS 2",
+    "reviewed meaning 2",
+    "promote to 2",
+    "reviewed POS 3",
+    "reviewed meaning 3",
+    "promote to 3",
     "replace type",
     "notes"
   ];
@@ -181,7 +194,7 @@ async function buildWorkbook(source, options = {}) {
     verticalAlignment: "middle"
   };
 
-  sheet.getRangeByIndexes(1, 12, Math.max(1, rows.length), 5).format = {
+  sheet.getRangeByIndexes(1, 12, Math.max(1, rows.length), 11).format = {
     fill: "#FFF7D6",
     borders: { preset: "all", style: "thin", color: "#E8C65F" },
     wrapText: true,
@@ -202,7 +215,13 @@ async function buildWorkbook(source, options = {}) {
     ["N:N", 24],
     ["O:O", 16],
     ["P:P", 14],
-    ["Q:Q", 24]
+    ["Q:Q", 24],
+    ["R:R", 16],
+    ["S:S", 14],
+    ["T:T", 24],
+    ["U:U", 16],
+    ["V:V", 14],
+    ["W:W", 24]
   ].forEach(([range, width]) => {
     sheet.getRange(range).format.columnWidth = width;
   });
@@ -211,20 +230,24 @@ async function buildWorkbook(source, options = {}) {
   sheet.freezePanes.freezeColumns(1);
 
   if (rows.length) {
-    const tableRange = `A1:Q${rows.length + 1}`;
+    const tableRange = `A1:W${rows.length + 1}`;
     const table = sheet.tables.add(tableRange, true, "VocabReviewBatch");
     table.style = "TableStyleMedium4";
     table.showFilterButton = true;
-    sheet.dataValidations.add({
-      range: `M2:M${rows.length + 1}`,
-      rule: { type: "list", values: ["n.", "v.", "adj.", "adv.", "prep.", "conj.", "pron.", "det.", "modal v.", "ph.", "pt."] }
+    ["M", "P", "S"].forEach((column) => {
+      sheet.dataValidations.add({
+        range: `${column}2:${column}${rows.length + 1}`,
+        rule: { type: "list", values: ["n.", "v.", "adj.", "adv.", "prep.", "conj.", "pron.", "det.", "modal v.", "ph.", "pt."] }
+      });
+    });
+    ["O", "R", "U"].forEach((column) => {
+      sheet.dataValidations.add({
+        range: `${column}2:${column}${rows.length + 1}`,
+        rule: { type: "list", values: ["curated", "teacher", "skip", "needs class example"] }
+      });
     });
     sheet.dataValidations.add({
-      range: `O2:O${rows.length + 1}`,
-      rule: { type: "list", values: ["curated", "teacher", "skip", "needs class example"] }
-    });
-    sheet.dataValidations.add({
-      range: `P2:P${rows.length + 1}`,
+      range: `V2:V${rows.length + 1}`,
       rule: { type: "list", values: ["", "yes", "no"] }
     });
   }
@@ -249,10 +272,10 @@ async function buildWorkbook(source, options = {}) {
   if (options.inspect !== false) {
     const check = await workbook.inspect({
       kind: "table",
-      range: "Review Batch!A1:Q6",
+      range: "Review Batch!A1:W6",
       include: "values",
       tableMaxRows: 6,
-      tableMaxCols: 17,
+      tableMaxCols: 23,
       maxChars: 4000
     });
     console.log(check.ndjson);
