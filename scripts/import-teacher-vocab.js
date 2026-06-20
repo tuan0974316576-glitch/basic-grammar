@@ -442,7 +442,8 @@ function createManualEntriesFromData(data = {}, sourceFile = "manual-updates") {
     const word = normalizeWord(row.word || row.english || row.display);
     const display = String(row.display || row.word || row.english || "").trim().replace(/\s+/g, " ");
     const pos = normalizePos(row.pos);
-    const meaning = normalizeMeaning(row.meaning || row.chinese);
+    const suppress = Boolean(row.suppress);
+    const meaning = normalizeMeaning(row.meaning || row.chinese || (suppress ? "__SUPPRESS__" : ""));
     const type = normalizeManualType(row.type, word, pos);
     if (!word || !meaning) return null;
 
@@ -462,7 +463,8 @@ function createManualEntriesFromData(data = {}, sourceFile = "manual-updates") {
       notes: normalizeMeaning(row.notes || "老師指定更新"),
       aliases: normalizeAliases(row.aliases || row.alias),
       override: row.override !== false,
-      replaceType: Boolean(row.replaceType)
+      replaceType: Boolean(row.replaceType),
+      suppress
     };
   }).filter(Boolean);
 }
@@ -580,19 +582,23 @@ function applyManualOverrides(rawEntries) {
   const overrideKeys = new Set();
   const overrideWordTypeKeys = new Set();
   const replaceWordTypeKeys = new Set();
+  const suppressWordTypeKeys = new Set();
 
   rawEntries.forEach((entry) => {
     if (!entry.override) return;
     overrideKeys.add(overrideKey(entry));
     overrideWordTypeKeys.add(wordTypeKey(entry));
     if (entry.replaceType) replaceWordTypeKeys.add(wordTypeKey(entry));
+    if (entry.suppress) suppressWordTypeKeys.add(wordTypeKey(entry));
   });
 
   if (!overrideKeys.size) return rawEntries;
 
   return rawEntries.filter((entry) => {
+    if (entry.suppress) return false;
     if (entry.override) return true;
     const exactKey = overrideKey(entry);
+    if (suppressWordTypeKeys.has(wordTypeKey(entry))) return false;
     if (replaceWordTypeKeys.has(wordTypeKey(entry))) return false;
     if (overrideKeys.has(exactKey)) return false;
     if (!entry.pos && overrideWordTypeKeys.has(wordTypeKey(entry))) return false;

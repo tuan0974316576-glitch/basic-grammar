@@ -54,15 +54,17 @@ const manualEntries = importer.createManualEntriesFromData({
     { word: "appeal", meaning: "吸引力", pos: "noun" },
     { word: "manage to", meaning: "能夠", type: "phrase", aliases: ["mange to"] },
     { word: "will", meaning: "將會", pos: "modal" },
-    { word: "swift", meaning: "迅速的", pos: "adjective", replaceType: true }
+    { word: "swift", meaning: "迅速的", pos: "adjective", replaceType: true },
+    { word: "adj", type: "word", suppress: true }
   ]
 }, "manual.json");
-assert.strictEqual(manualEntries.length, 4);
+assert.strictEqual(manualEntries.length, 5);
 assert.strictEqual(manualEntries[0].override, true);
 assert.strictEqual(manualEntries[0].pos, "noun");
 assert.deepStrictEqual(manualEntries[1].aliases, ["mange to"]);
 assert.strictEqual(manualEntries[2].pos, "modal");
 assert.strictEqual(manualEntries[3].replaceType, true);
+assert.strictEqual(manualEntries[4].suppress, true);
 
 const overridden = importer.dedupeEntries([
   {
@@ -138,5 +140,24 @@ assert.strictEqual(replaceTypeOverride.length, 1);
 assert.strictEqual(replaceTypeOverride[0].word, "swift");
 assert.strictEqual(replaceTypeOverride[0].meaning, "迅速的");
 assert.strictEqual(replaceTypeOverride[0].pos, "adjective");
+
+const suppressed = importer.dedupeEntries([
+  {
+    id: "",
+    word: "adj",
+    display: "adj",
+    meaning: "巨大",
+    pos: "",
+    type: "word",
+    source: "teacher",
+    sourceFile: "old.xlsx",
+    sheet: "Old",
+    row: 1,
+    columns: "A:B",
+    needsReview: true
+  },
+  manualEntries[4]
+]);
+assert.strictEqual(suppressed.length, 0);
 
 console.log("import_teacher_vocab tests passed");

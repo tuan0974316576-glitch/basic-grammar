@@ -140,7 +140,27 @@ function assertIncludes(word, expected) {
   ["mention", "v. 提及"],
   ["model", "n. 模型 / 模特兒"],
   ["motivate", "v. 激勵 / 推動"],
-  ["movement", "n. 移動 / 運動"]
+  ["movement", "n. 移動 / 運動"],
+  ["a", "det. 一個 / 一位"],
+  ["an", "det. 一個 / 一位"],
+  ["abstract", "adj. 抽象的"],
+  ["abstact", "adj. 抽象的"],
+  ["accommodating", "adj. 樂於助人的 / 好相處的"],
+  ["accomodating", "adj. 樂於助人的 / 好相處的"],
+  ["accuracy", "n. 準確性"],
+  ["affect", "v. 影響"],
+  ["affordable", "adj. 負擔得起的 / 價格合理的"],
+  ["approach", "n. 方法 / 方式"],
+  ["approach", "v. 接近 / 處理"],
+  ["apporach", "n. 方法 / 方式"],
+  ["apparent", "adj. 明顯的"],
+  ["apparently", "adv. 顯然地 / 看來"],
+  ["assembly", "n. 集會 / 組裝"],
+  ["associate", "v. 聯想 / 聯繫"],
+  ["associate", "adj. 副的 / 相關的"],
+  ["at", "prep. 在 / 於"],
+  ["around", "adv. 大約 / 在周圍"],
+  ["aware of", "ph. 意識到 / 知道"]
 ].forEach(([word, expected]) => assertIncludes(word, expected));
 
 assert.ok(
@@ -186,6 +206,29 @@ assert.ok(
 assert.ok(
   !labels("motivate").some((label) => label.startsWith("n.")),
   "motivate should not be shown as a noun"
+);
+assert.deepStrictEqual(labels("adj"), [], "adj should not be exposed as a vocabulary word");
+assert.deepStrictEqual(labels("adv"), [], "adv should not be exposed as a vocabulary word");
+assert.deepStrictEqual(labels("a b"), [], "broken abbreviation a b should not be exposed");
+assert.ok(
+  !labels("a").some((label) => label.includes("提倡") || label.includes("顯然地")),
+  "a should not include meanings from broken Excel rows"
+);
+assert.ok(
+  !labels("affect").some((label) => label.startsWith("n.")),
+  "affect should not be shown as a noun for the common verb sense"
+);
+assert.ok(
+  !labels("accuracy").some((label) => label.startsWith("adj.")),
+  "accuracy should not be shown as an adjective"
+);
+assert.ok(
+  !labels("apparent").some((label) => label.startsWith("adv.")),
+  "apparent should not be shown as an adverb"
+);
+assert.ok(
+  !labels("assembly").some((label) => label.startsWith("adv.")),
+  "assembly should not be shown as an adverb"
 );
 
 console.log("teacher_vocab_bank_quality tests passed");

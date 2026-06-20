@@ -5,7 +5,7 @@
   root.TEACHER_VOCAB_BANK = bank;
 })(typeof globalThis !== "undefined" ? globalThis : window, {
   "meta": {
-    "generatedAt": "2026-06-20T02:19:21.150Z",
+    "generatedAt": "2026-06-20T02:43:14.092Z",
     "sourceFiles": [
       {
         "name": "Randomisable Vocab Test.xlsx",
@@ -17,15 +17,15 @@
     "updateFiles": [
       {
         "name": "teacher_vocab_manual_updates.json",
-        "rawEntryCount": 611
+        "rawEntryCount": 664
       }
     ],
-    "entryCount": 8638,
-    "uniqueWordCount": 5076,
+    "entryCount": 8410,
+    "uniqueWordCount": 5052,
     "conflictCount": 3731,
     "typeCounts": {
-      "phrase": 2538,
-      "word": 6042,
+      "phrase": 2483,
+      "word": 5869,
       "pattern": 58
     },
     "posInference": {
@@ -172,764 +172,14 @@
       "sourceCount": 1
     },
     {
-      "id": "a-any-entry-1122",
+      "id": "a-determiner-entry-0609",
       "word": "a",
       "display": "a",
-      "meaning": "一個很好的例子",
-      "pos": "",
+      "meaning": "一個 / 一位",
+      "pos": "determiner",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "a-any-entry-7247",
-      "word": "a",
-      "display": "a",
-      "meaning": "一連串的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "a-any-entry-6498",
-      "word": "a",
-      "display": "a",
-      "meaning": "以及",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 5
-    },
-    {
-      "id": "a-any-entry-6991",
-      "word": "a",
-      "display": "a",
-      "meaning": "伴隨著",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "a-any-entry-7422",
-      "word": "a",
-      "display": "a",
-      "meaning": "作為",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 8
-    },
-    {
-      "id": "a-any-entry-1636",
-      "word": "a",
-      "display": "a",
-      "meaning": "先進",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 8
-    },
-    {
-      "id": "a-any-entry-0490",
-      "word": "a",
-      "display": "a",
-      "meaning": "先進的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "a-any-entry-7215",
-      "word": "a",
-      "display": "a",
-      "meaning": "入學要求",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "a-any-entry-2242",
-      "word": "a",
-      "display": "a",
-      "meaning": "全世界",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "a-any-entry-1009",
-      "word": "a",
-      "display": "a",
-      "meaning": "全球",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 22
-    },
-    {
-      "id": "a-any-entry-1350",
-      "word": "a",
-      "display": "a",
-      "meaning": "全面的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 33
-    },
-    {
-      "id": "a-any-entry-1639",
-      "word": "a",
-      "display": "a",
-      "meaning": "其實",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 10
-    },
-    {
-      "id": "a-any-entry-7007",
-      "word": "a",
-      "display": "a",
-      "meaning": "加速",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "a-any-entry-1629",
-      "word": "a",
-      "display": "a",
-      "meaning": "及",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 8
-    },
-    {
-      "id": "a-any-entry-2227",
-      "word": "a",
-      "display": "a",
-      "meaning": "取得",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "a-any-entry-1341",
-      "word": "a",
-      "display": "a",
-      "meaning": "取得知識",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 33
-    },
-    {
-      "id": "a-any-entry-1632",
-      "word": "a",
-      "display": "a",
-      "meaning": "古老的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 8
-    },
-    {
-      "id": "a-any-entry-0719",
-      "word": "a",
-      "display": "a",
-      "meaning": "可怕的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "a-any-entry-2039",
-      "word": "a",
-      "display": "a",
-      "meaning": "可負擔的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 6
-    },
-    {
-      "id": "a-any-entry-7942",
-      "word": "a",
-      "display": "a",
-      "meaning": "吸引",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "a-any-entry-6099",
-      "word": "a",
-      "display": "a",
-      "meaning": "哮喘",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 11
-    },
-    {
-      "id": "a-any-entry-1043",
-      "word": "a",
-      "display": "A",
-      "meaning": "因為+句子",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 47
-    },
-    {
-      "id": "a-any-entry-7242",
-      "word": "a",
-      "display": "a",
-      "meaning": "困境",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "a-any-entry-2136",
-      "word": "a",
-      "display": "a",
-      "meaning": "在...之間",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 16
-    },
-    {
-      "id": "a-any-entry-2008",
-      "word": "a",
-      "display": "a",
-      "meaning": "增添色彩",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 6
-    },
-    {
-      "id": "a-any-entry-0874",
-      "word": "a",
-      "display": "a",
-      "meaning": "大約",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "a-any-entry-3232",
-      "word": "a",
-      "display": "a",
-      "meaning": "好好的例子",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "a-any-entry-2144",
-      "word": "a",
-      "display": "a",
-      "meaning": "學業表現",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 16
-    },
-    {
-      "id": "a-any-entry-6374",
-      "word": "a",
-      "display": "a",
-      "meaning": "對...的態度",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "a-any-entry-3212",
-      "word": "a",
-      "display": "a",
-      "meaning": "就我而言",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "a-any-entry-2260",
-      "word": "a",
-      "display": "a",
-      "meaning": "患上",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "a-any-adj-2152",
-      "word": "a",
-      "display": "a",
-      "meaning": "患上 (adj)",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 16
-    },
-    {
-      "id": "a-any-n-7223",
-      "word": "a",
-      "display": "a",
-      "meaning": "惡化 (n.)",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "a-any-adj-2120",
-      "word": "a",
-      "display": "a",
-      "meaning": "意識到 (adj)",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 16
-    },
-    {
-      "id": "a-any-entry-0732",
-      "word": "a",
-      "display": "a",
-      "meaning": "應付",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "a-any-entry-1357",
-      "word": "a",
-      "display": "a",
-      "meaning": "抱負",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 33
-    },
-    {
-      "id": "a-any-entry-2137",
-      "word": "a",
-      "display": "a",
-      "meaning": "持續地",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 16
-    },
-    {
-      "id": "a-any-entry-6085",
-      "word": "a",
-      "display": "A",
-      "meaning": "指控",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 11
-    },
-    {
-      "id": "a-any-entry-7957",
-      "word": "a",
-      "display": "a",
-      "meaning": "採用",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "a-any-entry-2042",
-      "word": "a",
-      "display": "a",
-      "meaning": "提倡",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 23
-    },
-    {
-      "id": "a-any-entry-6540",
-      "word": "a",
-      "display": "a",
-      "meaning": "改善",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 5
-    },
-    {
-      "id": "a-any-entry-6503",
-      "word": "a",
-      "display": "a",
-      "meaning": "改變",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 5
-    },
-    {
-      "id": "a-any-entry-6981",
-      "word": "a",
-      "display": "a",
-      "meaning": "斷言",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "a-any-entry-6412",
-      "word": "a",
-      "display": "a",
-      "meaning": "方法",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 5
-    },
-    {
-      "id": "a-any-entry-1369",
-      "word": "a",
-      "display": "a",
-      "meaning": "明顯",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 33
-    },
-    {
-      "id": "a-any-entry-0398",
-      "word": "a",
-      "display": "a",
-      "meaning": "明顯地",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 43
-    },
-    {
-      "id": "a-any-entry-6523",
-      "word": "a",
-      "display": "a",
-      "meaning": "有吸引力的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 5
-    },
-    {
-      "id": "a-any-entry-0866",
-      "word": "a",
-      "display": "a",
-      "meaning": "業餘",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "a-any-entry-0718",
-      "word": "a",
-      "display": "A",
-      "meaning": "正如你可能知道",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "a-any-entry-7935",
-      "word": "a",
-      "display": "A",
-      "meaning": "澳洲",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "a-any-entry-1625",
-      "word": "a",
-      "display": "a",
-      "meaning": "熟悉",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 10
-    },
-    {
-      "id": "a-any-entry-2150",
-      "word": "a",
-      "display": "a",
-      "meaning": "畢竟",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 19
-    },
-    {
-      "id": "a-any-entry-7949",
-      "word": "a",
-      "display": "a",
-      "meaning": "目標",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "a-any-entry-0520",
-      "word": "a",
-      "display": "a",
-      "meaning": "立志",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "a-any-entry-2133",
-      "word": "a",
-      "display": "a",
-      "meaning": "累積",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 16
-    },
-    {
-      "id": "a-any-entry-3237",
-      "word": "a",
-      "display": "a",
-      "meaning": "絕佳的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "a-any-entry-2230",
-      "word": "a",
-      "display": "a",
-      "meaning": "美學",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "a-any-entry-1105",
-      "word": "a",
-      "display": "a",
-      "meaning": "舒緩",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "a-any-entry-0841",
-      "word": "a",
-      "display": "a",
-      "meaning": "觀眾",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "a-any-entry-6065",
-      "word": "a",
-      "display": "A",
-      "meaning": "誘人的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 11
-    },
-    {
-      "id": "a-any-entry-1020",
-      "word": "a",
-      "display": "a",
-      "meaning": "課後活動",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 14
-    },
-    {
-      "id": "a-any-entry-6531",
-      "word": "a",
-      "display": "a",
-      "meaning": "負面影響",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 5
-    },
-    {
-      "id": "a-any-entry-2219",
-      "word": "a",
-      "display": "a",
-      "meaning": "遺棄",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "a-any-entry-1100",
-      "word": "a",
-      "display": "a",
-      "meaning": "重視",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 7
-    },
-    {
-      "id": "a-any-entry-7227",
-      "word": "a",
-      "display": "a",
-      "meaning": "除了",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 12
-    },
-    {
-      "id": "a-any-adj-1344",
-      "word": "a",
-      "display": "a",
-      "meaning": "雖然(+adj.)",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 33
-    },
-    {
-      "id": "a-any-adj-6506",
-      "word": "a",
-      "display": "a",
-      "meaning": "雖然+ADJ",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 5
-    },
-    {
-      "id": "a-any-entry-2127",
-      "word": "a",
-      "display": "a",
-      "meaning": "青少年",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 17
-    },
-    {
-      "id": "a-any-entry-7947",
-      "word": "a",
-      "display": "A",
-      "meaning": "非洲",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "a-any-entry-0735",
-      "word": "a",
-      "display": "a",
-      "meaning": "預期",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "a-any-entry-1012",
-      "word": "a",
-      "display": "a",
-      "meaning": "預計",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 19
-    },
-    {
-      "id": "a-any-entry-3223",
-      "word": "a",
-      "display": "a",
-      "meaning": "頭盤",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "a-any-entry-2231",
-      "word": "a",
-      "display": "a",
-      "meaning": "顯然地",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "a-any-entry-3213",
-      "word": "a",
-      "display": "a",
-      "meaning": "風靡一時",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "a-b-any-entry-3220",
-      "word": "a b",
-      "display": "a b",
-      "meaning": "多到眼花撩亂的",
-      "pos": "",
-      "type": "phrase",
       "needsReview": false,
       "sourceCount": 1
-    },
-    {
-      "id": "a-b-any-entry-1025",
-      "word": "a b",
-      "display": "a b",
-      "meaning": "許多(負面)",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 14
     },
     {
       "id": "a-bargain-any-entry-2301",
@@ -942,50 +192,10 @@
       "sourceCount": 2
     },
     {
-      "id": "a-barrage-of-any-entry-3607",
+      "id": "a-barrage-of-any-entry-0628",
       "word": "a barrage of",
       "display": "a barrage of",
-      "meaning": "一連串 (-)",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "a-barrage-of-any-entry-3206",
-      "word": "a barrage of",
-      "display": "a barrage of",
-      "meaning": "多(負面)",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 2
-    },
-    {
-      "id": "a-barrage-of-any-entry-1725",
-      "word": "a barrage of",
-      "display": "a barrage of",
-      "meaning": "好多(負面)",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "a-barrage-of-any-entry-6650",
-      "word": "a barrage of",
-      "display": "a barrage of",
-      "meaning": "許多(-)",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "a-barrage-of-any-entry-0999",
-      "word": "a barrage of",
-      "display": "a barrage of",
-      "meaning": "許多(負面)",
+      "meaning": "一連串 / 大量負面的",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
@@ -1002,124 +212,14 @@
       "sourceCount": 1
     },
     {
-      "id": "a-bewildering-range-of-any-entry-1864",
+      "id": "a-bewildering-range-of-any-entry-0629",
       "word": "a bewildering range of",
       "display": "a bewildering range of",
-      "meaning": "令人眼花撩亂的",
+      "meaning": "多到令人眼花撩亂的",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 1
-    },
-    {
-      "id": "a-bewildering-range-of-any-entry-1843",
-      "word": "a bewildering range of",
-      "display": "a bewildering range of",
-      "meaning": "多不勝數",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 3
-    },
-    {
-      "id": "a-bewildering-range-of-any-entry-1948",
-      "word": "a bewildering range of",
-      "display": "a bewildering range of",
-      "meaning": "多不勝數的",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "a-bewildering-range-of-any-entry-1941",
-      "word": "a bewildering range of",
-      "display": "a bewildering range of",
-      "meaning": "多不數勝的",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "a-bewildering-range-of-any-entry-3253",
-      "word": "a bewildering range of",
-      "display": "a bewildering range of",
-      "meaning": "多到眼花撩亂的",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "a-bewildering-range-of-any-entry-5665",
-      "word": "a bewildering range of",
-      "display": "a bewildering range of",
-      "meaning": "數之不盡的",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "a-bewildering-range-of-any-entry-1513",
-      "word": "a bewildering range of",
-      "display": "a bewildering range of",
-      "meaning": "眼花撩亂的",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 4
-    },
-    {
-      "id": "a-bewildering-range-of-any-entry-1916",
-      "word": "a bewildering range of",
-      "display": "a bewildering range of",
-      "meaning": "眼花瞭亂",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 3
-    },
-    {
-      "id": "a-bewildering-range-of-any-entry-0940",
-      "word": "a bewildering range of",
-      "display": "A bewildering range of",
-      "meaning": "眼花瞭亂的",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 6
-    },
-    {
-      "id": "a-bewildering-range-of-any-entry-3334",
-      "word": "a bewildering range of",
-      "display": "a bewildering range of",
-      "meaning": "眼花繚亂的",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "a-bewildering-range-of-any-entry-1893",
-      "word": "a bewildering range of",
-      "display": "a bewildering range of",
-      "meaning": "花多眼亂",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 2
-    },
-    {
-      "id": "a-bewildering-range-of-any-entry-1898",
-      "word": "a bewildering range of",
-      "display": "a bewildering range of",
-      "meaning": "花多眼亂的",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 4
     },
     {
       "id": "a-blessing-any-entry-7194",
@@ -1170,36 +270,6 @@
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 3
-    },
-    {
-      "id": "a-c-any-entry-0837",
-      "word": "a c",
-      "display": "a c",
-      "meaning": "一個好好的例子",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 17
-    },
-    {
-      "id": "a-c-any-entry-0373",
-      "word": "a c",
-      "display": "a c",
-      "meaning": "幾個",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 19
-    },
-    {
-      "id": "a-c-i-p-any-entry-2221",
-      "word": "a c i p",
-      "display": "a c i p",
-      "meaning": "一個很好的例子",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
     },
     {
       "id": "a-c-number-of-any-entry-7240",
@@ -1352,16 +422,6 @@
       "sourceCount": 1
     },
     {
-      "id": "a-d-of-any-entry-7232",
-      "word": "a d of",
-      "display": "A d of",
-      "meaning": "欠缺",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 4
-    },
-    {
       "id": "a-dearth-of-any-entry-7233",
       "word": "a dearth of",
       "display": "A dearth of",
@@ -1502,26 +562,6 @@
       "sourceCount": 2
     },
     {
-      "id": "a-g-any-entry-1032",
-      "word": "a g",
-      "display": "a g",
-      "meaning": "許多 (可數)",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 14
-    },
-    {
-      "id": "a-g-any-entry-5799",
-      "word": "a g",
-      "display": "a g",
-      "meaning": "越來越多",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 2
-    },
-    {
       "id": "a-good-cause-any-entry-2776",
       "word": "a good cause",
       "display": "a good cause",
@@ -1642,26 +682,6 @@
       "sourceCount": 3
     },
     {
-      "id": "a-h-any-entry-7894",
-      "word": "a h",
-      "display": "a h",
-      "meaning": "一大筆錢",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "a-h-any-entry-1004",
-      "word": "a h",
-      "display": "a h",
-      "meaning": "許多 (可數)",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 14
-    },
-    {
       "id": "a-handful-of-any-entry-0619",
       "word": "a handful of",
       "display": "a handful of",
@@ -1772,44 +792,14 @@
       "sourceCount": 1
     },
     {
-      "id": "a-i-any-entry-2140",
-      "word": "a i",
-      "display": "a i",
-      "meaning": "重視",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 16
-    },
-    {
-      "id": "a-little-any-entry-5514",
-      "word": "a little",
-      "display": "a little",
-      "meaning": "一些",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 31
-    },
-    {
-      "id": "a-little-any-entry-5521",
+      "id": "a-little-any-entry-0630",
       "word": "a little",
       "display": "a little",
       "meaning": "一些 / 少少",
       "pos": "",
       "type": "phrase",
-      "needsReview": true,
-      "sourceCount": 20
-    },
-    {
-      "id": "a-little-any-entry-3856",
-      "word": "a little",
-      "display": "a little",
-      "meaning": "少少",
-      "pos": "",
-      "type": "phrase",
       "needsReview": false,
-      "sourceCount": 6
+      "sourceCount": 1
     },
     {
       "id": "a-long-term-trend-any-entry-8117",
@@ -1832,36 +822,6 @@
       "sourceCount": 1
     },
     {
-      "id": "a-m-any-entry-2051",
-      "word": "a m",
-      "display": "a m",
-      "meaning": "眾多",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 22
-    },
-    {
-      "id": "a-m-a-any-entry-2246",
-      "word": "a m a",
-      "display": "a m a",
-      "meaning": "正如上述",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "a-m-of-any-entry-2236",
-      "word": "a m of",
-      "display": "a m of",
-      "meaning": "眾多",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
       "id": "a-matter-of-any-entry-4750",
       "word": "a matter of",
       "display": "a matter of",
@@ -1872,50 +832,10 @@
       "sourceCount": 1
     },
     {
-      "id": "a-multitude-of-any-entry-1888",
+      "id": "a-multitude-of-any-entry-0631",
       "word": "a multitude of",
       "display": "a multitude of",
-      "meaning": "大量",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 2
-    },
-    {
-      "id": "a-multitude-of-any-entry-1821",
-      "word": "a multitude of",
-      "display": "a multitude of",
-      "meaning": "很多",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 4
-    },
-    {
-      "id": "a-multitude-of-any-entry-1863",
-      "word": "a multitude of",
-      "display": "a multitude of",
-      "meaning": "眾多",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 31
-    },
-    {
-      "id": "a-multitude-of-any-reasons-causes-problems-2293",
-      "word": "a multitude of",
-      "display": "a multitude of",
-      "meaning": "眾多 (reasons / causes / problems)",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "a-multitude-of-any-entry-1847",
-      "word": "a multitude of",
-      "display": "a multitude of",
-      "meaning": "眾多的",
+      "meaning": "大量 / 眾多",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
@@ -1962,26 +882,6 @@
       "sourceCount": 34
     },
     {
-      "id": "a-o-any-entry-2234",
-      "word": "a o",
-      "display": "a o",
-      "meaning": "明白到",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "a-p-any-entry-2226",
-      "word": "a p",
-      "display": "a p",
-      "meaning": "學術表現",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
       "id": "a-passing-trend-any-entry-8098",
       "word": "a passing trend",
       "display": "a passing trend",
@@ -2012,44 +912,14 @@
       "sourceCount": 1
     },
     {
-      "id": "a-row-any-entry-8282",
+      "id": "a-row-any-entry-0632",
       "word": "a row",
       "display": "a row",
-      "meaning": "一排 / 爭吵",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "a-row-any-entry-8213",
-      "word": "a row",
-      "display": "a row",
-      "meaning": "爭吵",
+      "meaning": "一排",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 1
-    },
-    {
-      "id": "a-s-any-entry-3216",
-      "word": "a s",
-      "display": "a s",
-      "meaning": "令人驚訝的大",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "a-s-o-any-entry-6522",
-      "word": "a s o",
-      "display": "a s o",
-      "meaning": "一系列",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 5
     },
     {
       "id": "a-sense-of-accomplishment-any-entry-8269",
@@ -2272,16 +1142,6 @@
       "sourceCount": 1
     },
     {
-      "id": "a-v-any-entry-7418",
-      "word": "a v",
-      "display": "a v",
-      "meaning": "多種",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 8
-    },
-    {
       "id": "a-variety-of-any-entry-4489",
       "word": "a variety of",
       "display": "a variety of",
@@ -2302,57 +1162,7 @@
       "sourceCount": 1
     },
     {
-      "id": "a-w-any-entry-1010",
-      "word": "a w",
-      "display": "a w",
-      "meaning": "不同種類的",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 14
-    },
-    {
-      "id": "a-w-any-entry-3214",
-      "word": "a w",
-      "display": "a w",
-      "meaning": "令人驚訝的大",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "a-w-any-entry-2218",
-      "word": "a w",
-      "display": "a w",
-      "meaning": "對...熟悉",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "a-w-any-entry-1013",
-      "word": "a w",
-      "display": "a w",
-      "meaning": "豐富的知識",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 14
-    },
-    {
-      "id": "a-w-any-entry-1348",
-      "word": "a w",
-      "display": "a w",
-      "meaning": "豐富知識",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 33
-    },
-    {
-      "id": "a-wealth-of-knowledge-any-entry-0972",
+      "id": "a-wealth-of-knowledge-any-entry-0635",
       "word": "a wealth of knowledge",
       "display": "a wealth of knowledge",
       "meaning": "豐富的知識",
@@ -2360,16 +1170,6 @@
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 1
-    },
-    {
-      "id": "a-wealth-of-knowledge-any-entry-1050",
-      "word": "a wealth of knowledge",
-      "display": "a wealth of knowledge",
-      "meaning": "豐富知識",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 78
     },
     {
       "id": "a-whopping-any-entry-3247",
@@ -2834,16 +1634,6 @@
       "sourceCount": 1
     },
     {
-      "id": "abstact-adjective-entry-6343",
-      "word": "abstact",
-      "display": "abstact (adj.)",
-      "meaning": "抽象",
-      "pos": "adjective",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2
-    },
-    {
       "id": "abstain-from-any-entry-4952",
       "word": "abstain from",
       "display": "abstain from",
@@ -2854,27 +1644,17 @@
       "sourceCount": 1
     },
     {
-      "id": "abstract-adjective-entry-2965",
+      "id": "abstract-adjective-entry-0611",
       "word": "abstract",
-      "display": "abstract (adj)",
-      "meaning": "抽象",
+      "display": "abstract",
+      "meaning": "抽象的",
       "pos": "adjective",
       "type": "word",
       "needsReview": false,
+      "aliases": [
+        "abstact"
+      ],
       "sourceCount": 1
-    },
-    {
-      "id": "abstract-any-entry-4745",
-      "word": "abstract",
-      "display": "abstract",
-      "meaning": "抽象",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
     },
     {
       "id": "absurd-any-entry-0598",
@@ -3147,17 +1927,17 @@
       "sourceCount": 1
     },
     {
-      "id": "accomodating-any-entry-7073",
-      "word": "accomodating",
-      "display": "accomodating",
-      "meaning": "好客的",
-      "pos": "",
+      "id": "accommodating-adjective-entry-0612",
+      "word": "accommodating",
+      "display": "accommodating",
+      "meaning": "樂於助人的 / 好相處的",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
+      "aliases": [
+        "accomodating"
+      ],
+      "sourceCount": 1
     },
     {
       "id": "accompany-any-entry-0941",
@@ -3278,17 +2058,14 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "accuracy-any-entry-7268",
+      "id": "accuracy-noun-entry-0613",
       "word": "accuracy",
       "display": "accuracy",
-      "meaning": "準確",
-      "pos": "",
+      "meaning": "準確性",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
+      "sourceCount": 1
     },
     {
       "id": "accurate-any-entry-3137",
@@ -3870,756 +2647,6 @@
       "sourceCount": 3
     },
     {
-      "id": "adj-any-entry-4099",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "一堆",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adj-any-entry-4181",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "佔 / 解釋 / 負責",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
-      "id": "adj-any-entry-4059",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "保守",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adj-any-entry-4128",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "充滿",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 6
-    },
-    {
-      "id": "adj-any-entry-4041",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "先進的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adj-any-entry-4117",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "共同的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "adj-any-entry-4164",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "副",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 5
-    },
-    {
-      "id": "adj-any-associate-deputy-4130",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "副 associate / deputy",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adj-any-entry-4098",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "創新",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adj-any-entry-4088",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "創新的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "adj-any-entry-4050",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "劃時代的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adj-any-entry-4096",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "十分差的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adj-any-entry-4032",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "十分餓",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adj-any-entry-4163",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "即買即拎",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adj-any-entry-4063",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "反映",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adj-any-entry-4112",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "可持續",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adj-any-entry-4035",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "可持續的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "adj-any-entry-4018",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "合理的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adj-any-entry-4203",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "合適",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adj-any-entry-4160",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "合適的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 5
-    },
-    {
-      "id": "adj-any-entry-4043",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "吸引人的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 9
-    },
-    {
-      "id": "adj-any-entry-4055",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "吸引力的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adj-any-entry-4123",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "四層",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 7
-    },
-    {
-      "id": "adj-any-entry-4102",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "天真 / 無辜",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adj-any-entry-4115",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "好差",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adj-any-entry-4045",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "對...悲觀",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 8
-    },
-    {
-      "id": "adj-any-entry-4024",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "對...樂觀",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 8
-    },
-    {
-      "id": "adj-any-entry-4196",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "小眾市場",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adj-any-entry-4040",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "尖端",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adj-any-entry-4197",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "巨大",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adj-any-entry-4201",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "幾好",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adj-any-entry-4107",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "幾好 / 體面",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
-      "id": "adj-any-entry-4073",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "幾好, 體面",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adj-any-entry-4049",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "快節奏的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adj-any-entry-4036",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "悲劇的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adj-any-entry-4103",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "悲觀",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "adj-any-entry-4131",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "擠滿",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "adj-any-entry-4165",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "擠滿了",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "adj-any-entry-4176",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "暗淡的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "adj-any-entry-4191",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "有吸引力的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adj-any-entry-4086",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "極差",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adj-any-entry-4159",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "極差的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adj-any-entry-4109",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "樂觀",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "adj-any-entry-4198",
-      "word": "adj",
-      "display": "Adj",
-      "meaning": "灰暗",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adj-any-entry-4124",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "灰暗的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "adj-any-entry-4111",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "無處不在",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "adj-any-ubiquity-n-4177",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "無處不在 ubiquity (n)",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
-      "id": "adj-any-entry-4072",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "無處不在的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
-      "id": "adj-any-entry-4030",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "無辜 / 天真",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adj-any-entry-4066",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "無辜, 天真",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adj-any-entry-4169",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "理想",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "adj-any-entry-4158",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "理想的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "adj-any-entry-4202",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "生動",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adj-any-entry-4178",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "生動的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 8
-    },
-    {
-      "id": "adj-any-entry-4064",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "相似",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "adj-any-entry-4031",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "絕種",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adj-any-entry-0427",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "經濟實惠的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 16
-    },
-    {
-      "id": "adj-any-entry-0423",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "經濟的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 16
-    },
-    {
-      "id": "adj-any-entry-4174",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "肥沃",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "adj-any-entry-0264",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "肯定(預計)",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 31
-    },
-    {
-      "id": "adj-any-entry-4170",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "致命的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "adj-any-entry-4114",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "衛生",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "adj-any-entry-4083",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "衛生的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adj-any-entry-4058",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "複雜的(-)",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adj-any-entry-4042",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "謹慎",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adj-any-entry-4021",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "足夠",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 6
-    },
-    {
-      "id": "adj-any-sufficient-4175",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "足夠 sufficient",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
-      "id": "adj-any-entry-4097",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "迷人的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 8
-    },
-    {
-      "id": "adj-any-entry-4185",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "過多",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "adj-any-entry-4190",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "過度的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adj-any-entry-4166",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "過量的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adj-any-entry-4053",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "遙遠",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adj-any-entry-4161",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "集體的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "adj-any-entry-4100",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "類似",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adj-any-entry-4141",
-      "word": "adj",
-      "display": "adj",
-      "meaning": "鮮明的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
       "id": "adj-as-subj-be-any-entry-6962",
       "word": "adj + as + subj + be",
       "display": "adj + as + subj + be",
@@ -4845,96 +2872,6 @@
       "type": "word",
       "needsReview": false,
       "sourceCount": 1
-    },
-    {
-      "id": "adv-any-entry-4062",
-      "word": "adv",
-      "display": "adv",
-      "meaning": "一時衝動",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "adv-any-entry-4132",
-      "word": "adv",
-      "display": "adv",
-      "meaning": "偶爾",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adv-any-entry-4037",
-      "word": "adv",
-      "display": "adv",
-      "meaning": "在最壞的情況",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 7
-    },
-    {
-      "id": "adv-any-entry-4116",
-      "word": "adv",
-      "display": "adv",
-      "meaning": "在最壞的情況下",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "adv-any-entry-4168",
-      "word": "adv",
-      "display": "adv",
-      "meaning": "尤其是",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "adv-any-entry-4023",
-      "word": "adv",
-      "display": "adv",
-      "meaning": "徹底",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "adv-any-entry-4069",
-      "word": "adv",
-      "display": "adv",
-      "meaning": "徹底地",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 8
-    },
-    {
-      "id": "adv-any-entry-4080",
-      "word": "adv",
-      "display": "adv",
-      "meaning": "明顯地",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "adv-any-entry-0263",
-      "word": "adv",
-      "display": "adv",
-      "meaning": "肯定",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 31
     },
     {
       "id": "advance-verb-entry-0220",
@@ -5190,16 +3127,6 @@
       "sourceCount": 1
     },
     {
-      "id": "af-any-entry-2031",
-      "word": "af",
-      "display": "af",
-      "meaning": "畢竟",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 6
-    },
-    {
       "id": "affairs-noun-entry-0224",
       "word": "affairs",
       "display": "affairs",
@@ -5210,17 +3137,14 @@
       "sourceCount": 1
     },
     {
-      "id": "affect-any-entry-2428",
+      "id": "affect-verb-entry-0614",
       "word": "affect",
       "display": "affect",
       "meaning": "影響",
-      "pos": "",
+      "pos": "verb",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 4,
-      "inferredPos": "noun",
-      "posConfidence": 90,
-      "posReason": "chinese-noun-meaning"
+      "sourceCount": 1
     },
     {
       "id": "affectionate-any-entry-2967",
@@ -5305,69 +3229,14 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "affordable-any-entry-5225",
+      "id": "affordable-adjective-entry-0615",
       "word": "affordable",
       "display": "affordable",
-      "meaning": "價格合理的",
-      "pos": "",
+      "meaning": "負擔得起的 / 價格合理的",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "affordable-any-entry-5420",
-      "word": "affordable",
-      "display": "affordable",
-      "meaning": "可以負擔",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "affordable-any-entry-2294",
-      "word": "affordable",
-      "display": "affordable",
-      "meaning": "可以負擔的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "affordable-any-entry-1973",
-      "word": "affordable",
-      "display": "affordable",
-      "meaning": "可負擔的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 14,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "affordable-any-entry-6047",
-      "word": "affordable",
-      "display": "affordable",
-      "meaning": "負責得起",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
       "id": "aforementioned-any-entry-3746",
@@ -6936,6 +4805,16 @@
       "posReason": "chinese-adjective-meaning"
     },
     {
+      "id": "an-determiner-entry-0610",
+      "word": "an",
+      "display": "an",
+      "meaning": "一個 / 一位",
+      "pos": "determiner",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
       "id": "an-array-of-any-entry-3549",
       "word": "an array of",
       "display": "an array of",
@@ -7042,17 +4921,24 @@
       "sourceCount": 1
     },
     {
-      "id": "anchor-any-entry-2830",
+      "id": "anchor-verb-entry-0625",
       "word": "anchor",
-      "display": "anchor x2",
-      "meaning": "錨, 支持",
-      "pos": "",
+      "display": "anchor",
+      "meaning": "固定 / 主持",
+      "pos": "verb",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
+    },
+    {
+      "id": "anchor-noun-entry-0624",
+      "word": "anchor",
+      "display": "anchor",
+      "meaning": "錨 / 主持人",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "ancient-any-entry-0166",
@@ -7527,121 +5413,24 @@
       "sourceCount": 1
     },
     {
-      "id": "apparent-any-entry-1068",
-      "word": "apparent",
-      "display": "apparent",
-      "meaning": "明顯",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 89,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "apparent-any-entry-7024",
-      "word": "apparent",
-      "display": "apparent",
-      "meaning": "明顯地",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adverb",
-      "posConfidence": 92,
-      "posReason": "chinese-adverb-meaning"
-    },
-    {
-      "id": "apparent-any-entry-0945",
+      "id": "apparent-adjective-entry-0618",
       "word": "apparent",
       "display": "apparent",
       "meaning": "明顯的",
-      "pos": "",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 3,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
+      "sourceCount": 1
     },
     {
-      "id": "apparent-any-entry-4400",
-      "word": "apparent",
-      "display": "apparent",
-      "meaning": "顯然",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 3,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "apparent-any-entry-5635",
-      "word": "apparent",
-      "display": "apparent",
-      "meaning": "顯然地",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adverb",
-      "posConfidence": 92,
-      "posReason": "chinese-adverb-meaning"
-    },
-    {
-      "id": "apparently-any-entry-0637",
+      "id": "apparently-adverb-entry-0619",
       "word": "apparently",
       "display": "apparently",
-      "meaning": "明顯",
-      "pos": "",
+      "meaning": "顯然地 / 看來",
+      "pos": "adverb",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adverb",
-      "posConfidence": 94,
-      "posReason": "english-adverb-suffix"
-    },
-    {
-      "id": "apparently-any-entry-0353",
-      "word": "apparently",
-      "display": "apparently",
-      "meaning": "明顯地",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 64,
-      "inferredPos": "adverb",
-      "posConfidence": 94,
-      "posReason": "english-adverb-suffix"
-    },
-    {
-      "id": "apparently-any-obviously-evidently-1896",
-      "word": "apparently",
-      "display": "apparently",
-      "meaning": "明顯地 obviously / evidently",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 4,
-      "inferredPos": "adverb",
-      "posConfidence": 94,
-      "posReason": "english-adverb-suffix"
-    },
-    {
-      "id": "apparently-any-entry-0714",
-      "word": "apparently",
-      "display": "apparently",
-      "meaning": "顯然地",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 8,
-      "inferredPos": "adverb",
-      "posConfidence": 94,
-      "posReason": "english-adverb-suffix"
+      "sourceCount": 1
     },
     {
       "id": "appeal-noun-entry-0068",
@@ -7848,19 +5637,6 @@
       "sourceCount": 1
     },
     {
-      "id": "apporach-any-entry-8590",
-      "word": "apporach",
-      "display": "apporach",
-      "meaning": "方法",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 3,
-      "inferredPos": "noun",
-      "posConfidence": 90,
-      "posReason": "chinese-noun-meaning"
-    },
-    {
       "id": "appreciate-any-entry-1385",
       "word": "appreciate",
       "display": "appreciate",
@@ -7894,40 +5670,27 @@
       "sourceCount": 1
     },
     {
-      "id": "approach-any-entry-2583",
+      "id": "approach-verb-entry-0617",
       "word": "approach",
       "display": "approach",
-      "meaning": "方法",
-      "pos": "",
+      "meaning": "接近 / 處理",
+      "pos": "verb",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 49,
-      "inferredPos": "noun",
-      "posConfidence": 96,
-      "posReason": "chinese-noun-meaning+oxford"
+      "sourceCount": 1
     },
     {
-      "id": "approach-noun-entry-4465",
+      "id": "approach-noun-entry-0616",
       "word": "approach",
-      "display": "approach (n)",
-      "meaning": "方法",
+      "display": "approach",
+      "meaning": "方法 / 方式",
       "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 7
-    },
-    {
-      "id": "approach-any-entry-3959",
-      "word": "approach",
-      "display": "approach",
-      "meaning": "方法 / 接近",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 96,
-      "posReason": "chinese-noun-meaning+oxford"
+      "aliases": [
+        "apporach"
+      ],
+      "sourceCount": 1
     },
     {
       "id": "appropriate-any-entry-2454",
@@ -8240,13 +6003,13 @@
       "sourceCount": 1
     },
     {
-      "id": "around-any-entry-8077",
+      "id": "around-adverb-entry-0626",
       "word": "around",
       "display": "around",
-      "meaning": "大概",
-      "pos": "",
+      "meaning": "大約 / 在周圍",
+      "pos": "adverb",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
@@ -8544,16 +6307,6 @@
       "sourceCount": 3
     },
     {
-      "id": "as-e-any-entry-1002",
-      "word": "as e",
-      "display": "as e",
-      "meaning": "正如大家都知道",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 14
-    },
-    {
       "id": "as-everyone-knows-any-entry-0990",
       "word": "as everyone knows",
       "display": "as everyone knows",
@@ -8652,16 +6405,6 @@
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 5
-    },
-    {
-      "id": "as-m-any-entry-2153",
-      "word": "as m",
-      "display": "as m",
-      "meaning": "正如上述",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 16
     },
     {
       "id": "as-mentioned-above-any-entry-0806",
@@ -8834,16 +6577,6 @@
       "sourceCount": 7
     },
     {
-      "id": "as-well-s-any-entry-5851",
-      "word": "as well s",
-      "display": "as well s",
-      "meaning": "及",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
       "id": "as-you-may-know-any-entry-0748",
       "word": "as you may know",
       "display": "As you may know",
@@ -8892,16 +6625,6 @@
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 4
-    },
-    {
-      "id": "aside-from-a-any-entry-5498",
-      "word": "aside from a",
-      "display": "aside from A",
-      "meaning": "(有)",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 32
     },
     {
       "id": "asparagus-noun-entry-0291",
@@ -9032,17 +6755,14 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "assembly-any-entry-3807",
+      "id": "assembly-noun-entry-0620",
       "word": "assembly",
-      "display": "Assembly",
-      "meaning": "集會",
-      "pos": "",
+      "display": "assembly",
+      "meaning": "集會 / 組裝",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 6,
-      "inferredPos": "adverb",
-      "posConfidence": 94,
-      "posReason": "english-adverb-suffix"
+      "sourceCount": 1
     },
     {
       "id": "assert-any-entry-0651",
@@ -9146,40 +6866,24 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "associate-adjective-entry-7076",
+      "id": "associate-adjective-entry-0622",
       "word": "associate",
-      "display": "associate (adj)",
-      "meaning": "副",
+      "display": "associate",
+      "meaning": "副的 / 相關的",
       "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 2
+      "sourceCount": 1
     },
     {
-      "id": "associate-any-entry-4852",
+      "id": "associate-verb-entry-0621",
       "word": "associate",
       "display": "associate",
-      "meaning": "副",
-      "pos": "",
+      "meaning": "聯想 / 聯繫",
+      "pos": "verb",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "associate-any-entry-8793",
-      "word": "associate",
-      "display": "associate",
-      "meaning": "聯想",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
       "id": "associate-with-any-entry-6659",
@@ -9494,43 +7198,14 @@
       "sourceCount": 1
     },
     {
-      "id": "at-any-entry-6375",
+      "id": "at-preposition-entry-0623",
       "word": "at",
       "display": "at",
-      "meaning": "在這一刻",
-      "pos": "",
+      "meaning": "在 / 於",
+      "pos": "preposition",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "preposition",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "at-any-entry-0410",
-      "word": "at",
-      "display": "at",
-      "meaning": "歸根究底",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 13,
-      "inferredPos": "preposition",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "at-any-entry-0369",
-      "word": "at",
-      "display": "at",
-      "meaning": "達成",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 12,
-      "inferredPos": "preposition",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
       "id": "at-all-costs-any-entry-4508",
@@ -10325,50 +8000,10 @@
       "sourceCount": 1
     },
     {
-      "id": "aware-of-any-entry-2169",
+      "id": "aware-of-any-entry-0627",
       "word": "aware of",
       "display": "aware of",
-      "meaning": "意識到",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 3
-    },
-    {
-      "id": "aware-of-any-adj-2094",
-      "word": "aware of",
-      "display": "aware of",
-      "meaning": "意識到 (adj)",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 2
-    },
-    {
-      "id": "aware-of-any-entry-2185",
-      "word": "aware of",
-      "display": "aware of",
-      "meaning": "明白到",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 2
-    },
-    {
-      "id": "aware-of-any-entry-3647",
-      "word": "aware of",
-      "display": "aware of",
-      "meaning": "有意識...",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 2
-    },
-    {
-      "id": "aware-of-any-entry-2276",
-      "word": "aware of",
-      "display": "aware of",
-      "meaning": "留意到",
+      "meaning": "意識到 / 知道",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
@@ -73762,17 +71397,24 @@
       "sourceCount": 1
     },
     {
-      "id": "row-any-entry-3634",
+      "id": "row-noun-entry-0633",
       "word": "row",
       "display": "row",
-      "meaning": "列",
-      "pos": "",
+      "meaning": "一排",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
+    },
+    {
+      "id": "row-noun-entry-0634",
+      "word": "row",
+      "display": "row",
+      "meaning": "爭吵",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "royalty-any-entry-7648",
