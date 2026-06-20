@@ -9,6 +9,8 @@
 })(typeof globalThis !== "undefined" ? globalThis : window, function createTeacherLiveVocab(VocabPosInference) {
   "use strict";
 
+  const BATCH_NOUN_PHRASE_HINT = /(?:仔|撻|餅|糕|茶|飯|麵|粉|湯|包|果|糖|癌|病|帶|機|車|站|店|街|路|區|角|灣|山|河|湖|島|國|城|市|村|鎮|場|館|中心|機場|餐廳|公園|市場|學校|公司|節|術|器|具|物|品|人|者|員|師)$/;
+
   function normalizeWord(value) {
     if (VocabPosInference?.normalizeWord) return VocabPosInference.normalizeWord(value);
     return String(value || "")
@@ -29,7 +31,8 @@
   }
 
   function normalizePos(value) {
-    if (VocabPosInference?.normalizePos) return VocabPosInference.normalizePos(value);
+    const inferred = VocabPosInference?.normalizePos?.(value);
+    if (inferred) return inferred;
     const key = String(value || "").trim().replace(/[().]/g, "").toLowerCase();
     const aliases = {
       n: "noun",
@@ -45,7 +48,25 @@
       conj: "conjunction",
       conjunction: "conjunction",
       modal: "modal",
-      "modal v": "modal"
+      "modal v": "modal",
+      pron: "pronoun",
+      pronoun: "pronoun",
+      det: "determiner",
+      determiner: "determiner",
+      aux: "auxiliary",
+      auxiliary: "auxiliary",
+      "auxiliary v": "auxiliary",
+      exclam: "exclamation",
+      exclamation: "exclamation",
+      num: "number",
+      number: "number",
+      ph: "phrase",
+      phr: "phrase",
+      phrase: "phrase",
+      詞組: "phrase",
+      pt: "pattern",
+      pattern: "pattern",
+      句式: "pattern"
     };
     return aliases[key] || "";
   }
@@ -205,6 +226,101 @@
     };
   }
 
+  function parseBatchParts(parts = [], options = {}) {
+    const cleanParts = parts.map((part) => String(part || "").trim()).filter(Boolean);
+    if (cleanParts.length < 2) return null;
+
+    const possiblePos = normalizePos(cleanParts[1]);
+    if (cleanParts.length >= 3 && possiblePos) {
+      return {
+        word: cleanParts[0],
+        pos: possiblePos,
+        meaning: cleanParts.slice(2).join(" ")
+      };
+    }
+
+    const word = cleanParts[0];
+    const meaning = cleanParts.slice(1).join(" ");
+    return {
+      word,
+      pos: inferBatchPos({ word, meaning }, options),
+      meaning
+    };
+  }
+
+  function inferBatchPos(entry = {}, options = {}) {
+    const inferred = VocabPosInference?.inferEntryPos?.(entry, { minConfidence: 76 });
+    const word = normalizeWord(entry.word || entry.display);
+    if (inferred?.pos) return inferred.pos;
+    if (word.includes(" ")) return looksLikeBatchNounPhrase(entry) ? "noun" : "phrase";
+    return normalizePos(options.defaultPos) || "noun";
+  }
+
+  function looksLikeBatchNounPhrase(entry = {}) {
+    const meaning = normalizeMeaning(entry.meaning || entry.chinese);
+    return BATCH_NOUN_PHRASE_HINT.test(meaning);
+  }
+
+  function parseBatchLine(line = "", options = {}) {
+    const raw = String(line || "").trim();
+    const lineNumber = Number(options.lineNumber) || 0;
+    if (!raw || /^#/.test(raw)) return { skipped: true, lineNumber };
+
+    const cleaned = raw.replace(/^\s*(?:[-*•]|\d+[.)])\s*/, "").trim();
+    const delimitedParts = cleaned.includes("\t")
+      ? cleaned.split(/\t+/)
+      : cleaned.includes("|")
+        ? cleaned.split("|")
+        : null;
+    const fromDelimited = delimitedParts ? parseBatchParts(delimitedParts, options) : null;
+    const posPattern = /^(.*?)\s+(modal\s+v\.?|n\.?|noun|v\.?|verb|adj\.?|adjective|adv\.?|adverb|ph\.?|phrase|conj\.?|conjunction|prep\.?|preposition)\s+(.+)$/i;
+    const posMatch = fromDelimited ? null : cleaned.match(posPattern);
+    const colonMatch = fromDelimited || posMatch ? null : cleaned.match(/^(.+?)\s*(?:=|:|：)\s*(.+)$/);
+    const dashMatch = fromDelimited || posMatch || colonMatch ? null : cleaned.match(/^(.+?)\s+[-–—]\s+(.+)$/);
+    const cjkMatch = fromDelimited || posMatch || colonMatch || dashMatch ? null : cleaned.match(/^(.+?)\s+([\u3400-\u9FFF\uF900-\uFAFF].*)$/);
+    const parsed = fromDelimited
+      || (posMatch ? { word: posMatch[1], pos: normalizePos(posMatch[2]), meaning: posMatch[3] } : null)
+      || (colonMatch ? { word: colonMatch[1], meaning: colonMatch[2] } : null)
+      || (dashMatch ? { word: dashMatch[1], meaning: dashMatch[2] } : null)
+      || (cjkMatch ? { word: cjkMatch[1], meaning: cjkMatch[2] } : null);
+    if (parsed && !parsed.pos) {
+      parsed.pos = inferBatchPos(parsed, options);
+    }
+
+    const normalized = parsed ? normalizeEntry(parsed, { source: "teacher-live" }) : null;
+    if (!normalized) {
+      return {
+        error: true,
+        lineNumber,
+        raw,
+        message: "cannot-parse"
+      };
+    }
+
+    return {
+      entry: normalized,
+      lineNumber,
+      raw
+    };
+  }
+
+  function parseBatchText(text = "", options = {}) {
+    const entries = [];
+    const errors = [];
+    let skippedCount = 0;
+    String(text || "").split(/\r?\n/).forEach((line, index) => {
+      const result = parseBatchLine(line, { ...options, lineNumber: index + 1 });
+      if (result.skipped) {
+        skippedCount += 1;
+      } else if (result.error) {
+        errors.push(result);
+      } else if (result.entry) {
+        entries.push({ ...result.entry, lineNumber: result.lineNumber });
+      }
+    });
+    return { entries, errors, skippedCount };
+  }
+
   function compactEntry(entry = {}) {
     return Object.fromEntries(Object.entries(entry).filter(([, value]) => (
       !(typeof value === "string" && value === "")
@@ -222,6 +338,8 @@
     normalizePos,
     normalizeType,
     normalizeWord,
+    parseBatchLine,
+    parseBatchText,
     sha1Hex
   };
 });

@@ -51,4 +51,35 @@ assert.deepStrictEqual(compact, {
   type: "word"
 });
 
+const parsedBatch = teacherLive.parseBatchText([
+  "intense 強烈的",
+  "look for 尋找",
+  "hawker n. 小販",
+  "look for v. 尋找",
+  "customer-centric\tadj.\t以顧客為中心的",
+  "egg tart\t蛋撻",
+  "manage to 能夠",
+  "all the rage 大受歡迎",
+  "rise to fame 成名",
+  "lung cancer 肺癌",
+  "# note only",
+  "bad line"
+].join("\n"), { defaultPos: "noun" });
+assert.strictEqual(parsedBatch.entries.length, 10);
+assert.strictEqual(parsedBatch.errors.length, 1);
+assert.strictEqual(parsedBatch.skippedCount, 1);
+assert.deepStrictEqual(parsedBatch.entries.map((entry) => `${entry.word}:${entry.pos}:${entry.meaning}:${entry.type}`), [
+  "intense:adjective:強烈的:word",
+  "look for:verb:尋找:phrase",
+  "hawker:noun:小販:word",
+  "look for:verb:尋找:phrase",
+  "customer-centric:adjective:以顧客為中心的:word",
+  "egg tart:noun:蛋撻:phrase",
+  "manage to:verb:能夠:phrase",
+  "all the rage:phrase:大受歡迎:phrase",
+  "rise to fame:verb:成名:phrase",
+  "lung cancer:noun:肺癌:phrase"
+]);
+assert.strictEqual(parsedBatch.errors[0].lineNumber, 12);
+
 console.log("teacher_live_vocab tests passed");

@@ -339,6 +339,8 @@ const el = {
   teacherVocabMeaningInput: document.querySelector("#teacher-vocab-meaning-input"),
   teacherVocabSaveBtn: document.querySelector("#teacher-vocab-save-btn"),
   teacherVocabCancelBtn: document.querySelector("#teacher-vocab-cancel-btn"),
+  teacherVocabBatchInput: document.querySelector("#teacher-vocab-batch-input"),
+  teacherVocabBatchSaveBtn: document.querySelector("#teacher-vocab-batch-save-btn"),
   teacherVocabSearchInput: document.querySelector("#teacher-vocab-search-input"),
   teacherVocabCount: document.querySelector("#teacher-vocab-count"),
   teacherVocabRecentList: document.querySelector("#teacher-vocab-recent-list"),
@@ -1710,6 +1712,75 @@ async function submitTeacherVocabEntry() {
   } finally {
     if (el.teacherVocabSaveBtn) el.teacherVocabSaveBtn.disabled = false;
   }
+}
+
+function parseTeacherVocabBatchInput() {
+  const defaultPos = normalizeVocabPos(el.teacherVocabPosInput?.value) || "noun";
+  if (TEACHER_LIVE_VOCAB?.parseBatchText) {
+    return TEACHER_LIVE_VOCAB.parseBatchText(el.teacherVocabBatchInput?.value || "", { defaultPos });
+  }
+  return {
+    entries: [],
+    errors: [{ lineNumber: 1, message: "parser-unavailable" }],
+    skippedCount: 0
+  };
+}
+
+async function submitTeacherVocabBatch() {
+  const rawText = String(el.teacherVocabBatchInput?.value || "");
+  if (!rawText.trim()) {
+    setTeacherVocabStatus("請先貼上要加入的生字。", "error");
+    playUiSound("wrong");
+    return;
+  }
+
+  const parsed = parseTeacherVocabBatchInput();
+  if (parsed.errors?.length) {
+    const firstError = parsed.errors[0];
+    setTeacherVocabStatus(`第 ${firstError.lineNumber} 行格式未清楚，請改成 English POS 中文。`, "error");
+    playUiSound("wrong");
+    return;
+  }
+  if (!parsed.entries?.length) {
+    setTeacherVocabStatus("暫時未讀到可加入的生字。", "error");
+    playUiSound("wrong");
+    return;
+  }
+
+  if (el.teacherVocabBatchSaveBtn) el.teacherVocabBatchSaveBtn.disabled = true;
+  if (el.teacherVocabSaveBtn) el.teacherVocabSaveBtn.disabled = true;
+  setTeacherVocabStatus(`批量送出 ${parsed.entries.length} 個字中...`, "loading");
+
+  const saved = [];
+  const failed = [];
+  for (const entry of parsed.entries) {
+    try {
+      saved.push(await saveTeacherLiveVocabEntry(entry));
+    } catch (error) {
+      console.warn("Teacher vocab batch save failed:", entry, error);
+      failed.push(entry);
+      break;
+    }
+  }
+
+  if (saved.length) {
+    renderTeacherLiveVocabRecentList();
+    await refreshVocabTeacherLookup({ force: true, skipCloudRefresh: true }).catch((error) => {
+      console.warn("Teacher vocab lookup refresh failed after batch save:", error);
+    });
+  }
+
+  if (failed.length) {
+    setTeacherVocabStatus(`已加入 ${saved.length} 個，但第 ${failed[0].lineNumber || saved.length + 1} 行暫時儲存不到。`, "error");
+    playUiSound("wrong");
+  } else {
+    if (el.teacherVocabBatchInput) el.teacherVocabBatchInput.value = "";
+    setTeacherVocabStatus(`已加入 ${saved.length} 個字到老師字庫。`, "success");
+    playUiSound("correct");
+  }
+
+  if (el.teacherVocabBatchSaveBtn) el.teacherVocabBatchSaveBtn.disabled = false;
+  if (el.teacherVocabSaveBtn) el.teacherVocabSaveBtn.disabled = false;
 }
 
 function renderStreakFireAnimation() {
@@ -6604,6 +6675,7 @@ el.teacherVocabCancelBtn?.addEventListener("click", () => {
   renderTeacherLiveVocabRecentList();
   playUiSound("next");
 });
+el.teacherVocabBatchSaveBtn?.addEventListener("click", submitTeacherVocabBatch);
 el.teacherVocabSearchInput?.addEventListener("input", () => {
   teacherLiveVocabFilter = el.teacherVocabSearchInput?.value || "";
   renderTeacherLiveVocabRecentList();

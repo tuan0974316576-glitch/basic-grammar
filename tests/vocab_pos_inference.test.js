@@ -52,6 +52,12 @@ assert.strictEqual(inference.inferEntryPos({
 }).pos, "verb");
 
 assert.strictEqual(inference.inferEntryPos({
+  word: "rise to fame",
+  meaning: "成名",
+  type: "phrase"
+}).pos, "verb");
+
+assert.strictEqual(inference.inferEntryPos({
   word: "have to",
   meaning: "必須 / 要",
   type: "phrase"

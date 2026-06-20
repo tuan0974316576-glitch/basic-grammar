@@ -141,6 +141,7 @@
     "point",
     "pull",
     "put",
+    "rise",
     "rule",
     "run",
     "set",
