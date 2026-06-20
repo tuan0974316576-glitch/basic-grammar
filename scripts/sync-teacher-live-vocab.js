@@ -164,7 +164,7 @@ function refreshReviewStatusAfterLiveSync(input = "", options = {}) {
     out: dashboardOut
   });
   const planBaseName = ReviewPaths.stripReviewExtension(input);
-  const batchId = planBaseName.replace(`${queue.planPrefix}_`, "");
+  const batchId = ApplyPlan.normalizeReviewBatchId(planBaseName.replace(`${queue.planPrefix}_`, ""));
   return {
     queue: queue.reviewPrefix,
     indexOut,

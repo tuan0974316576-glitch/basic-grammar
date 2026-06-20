@@ -86,12 +86,16 @@ function getReviewQueueForInput(input = "") {
   return REVIEW_QUEUES.find((queue) => baseName.startsWith(`${queue.prefix}_`)) || null;
 }
 
+function normalizeReviewBatchId(batchId = "") {
+  return String(batchId || "").replace(/_(?:auto|codex)_review$/i, "");
+}
+
 function refreshReviewStatus(input = "", options = {}) {
   const queue = getReviewQueueForInput(input);
   if (!queue) return null;
   const dir = ReviewPaths.inferOutputDir(input);
   const inputBaseName = ReviewPaths.stripReviewExtension(input);
-  const batchId = inputBaseName.replace(`${queue.prefix}_`, "");
+  const batchId = normalizeReviewBatchId(inputBaseName.replace(`${queue.prefix}_`, ""));
   const indexOut = path.join(dir, queue.indexFile);
   const index = ReviewIndex.writeIndex({
     dir,
@@ -193,6 +197,7 @@ module.exports = {
   inferPromotePlanPath: ReviewPaths.inferPromotePlanPath,
   inferOutputDir: ReviewPaths.inferOutputDir,
   getReviewQueueForInput,
+  normalizeReviewBatchId,
   parseArgs,
   processReview,
   relativeSummary,

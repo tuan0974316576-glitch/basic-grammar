@@ -61,6 +61,10 @@ function fileExists(filePath) {
   return fs.existsSync(filePath);
 }
 
+function firstExistingPath(paths = [], fallback = "") {
+  return paths.find((filePath) => filePath && fileExists(filePath)) || fallback || paths.find(Boolean) || "";
+}
+
 function readPreflightSummary(filePath) {
   if (!fileExists(filePath)) return null;
   try {
@@ -108,11 +112,42 @@ function buildBatchRecord(filePath, options = {}) {
   const suffix = match[2];
   const xlsxPath = `${basename}.xlsx`;
   const csvPath = `${basename}.csv`;
-  const reviewInputPath = fileExists(xlsxPath) ? xlsxPath : fileExists(csvPath) ? csvPath : filePath;
-  const promotePlanPath = ReviewPaths.inferPromotePlanPath(reviewInputPath);
-  const preflightPath = ReviewPaths.inferPreflightPath(reviewInputPath);
-  const applyReceiptPath = ReviewPaths.inferApplyReceiptPath(promotePlanPath);
-  const liveSyncReceiptPath = ReviewPaths.inferLiveSyncReceiptPath(promotePlanPath);
+  const standardReviewInputPath = fileExists(xlsxPath) ? xlsxPath : fileExists(csvPath) ? csvPath : filePath;
+  const autoReviewCsvPath = `${basename}_auto_review.csv`;
+  const codexReviewCsvPath = `${basename}_codex_review.csv`;
+  const preferredReviewInputPath = fileExists(codexReviewCsvPath)
+    ? codexReviewCsvPath
+    : fileExists(autoReviewCsvPath)
+      ? autoReviewCsvPath
+      : standardReviewInputPath;
+  const standardPromotePlanPath = ReviewPaths.inferPromotePlanPath(standardReviewInputPath);
+  const autoReviewPromotePlanPath = ReviewPaths.inferPromotePlanPath(autoReviewCsvPath);
+  const codexReviewPromotePlanPath = ReviewPaths.inferPromotePlanPath(codexReviewCsvPath);
+  const promotePlanPath = firstExistingPath(
+    [codexReviewPromotePlanPath, autoReviewPromotePlanPath, standardPromotePlanPath],
+    ReviewPaths.inferPromotePlanPath(preferredReviewInputPath)
+  );
+  const standardPreflightPath = ReviewPaths.inferPreflightPath(standardReviewInputPath);
+  const autoReviewPreflightPath = ReviewPaths.inferPreflightPath(autoReviewCsvPath);
+  const codexReviewPreflightPath = ReviewPaths.inferPreflightPath(codexReviewCsvPath);
+  const preflightPath = firstExistingPath(
+    [codexReviewPreflightPath, autoReviewPreflightPath, standardPreflightPath],
+    ReviewPaths.inferPreflightPath(preferredReviewInputPath)
+  );
+  const standardApplyReceiptPath = ReviewPaths.inferApplyReceiptPath(standardPromotePlanPath);
+  const autoReviewApplyReceiptPath = ReviewPaths.inferApplyReceiptPath(autoReviewPromotePlanPath);
+  const codexReviewApplyReceiptPath = ReviewPaths.inferApplyReceiptPath(codexReviewPromotePlanPath);
+  const applyReceiptPath = firstExistingPath(
+    [codexReviewApplyReceiptPath, autoReviewApplyReceiptPath, standardApplyReceiptPath],
+    ReviewPaths.inferApplyReceiptPath(promotePlanPath)
+  );
+  const standardLiveSyncReceiptPath = ReviewPaths.inferLiveSyncReceiptPath(standardPromotePlanPath);
+  const autoReviewLiveSyncReceiptPath = ReviewPaths.inferLiveSyncReceiptPath(autoReviewPromotePlanPath);
+  const codexReviewLiveSyncReceiptPath = ReviewPaths.inferLiveSyncReceiptPath(codexReviewPromotePlanPath);
+  const liveSyncReceiptPath = firstExistingPath(
+    [codexReviewLiveSyncReceiptPath, autoReviewLiveSyncReceiptPath, standardLiveSyncReceiptPath],
+    ReviewPaths.inferLiveSyncReceiptPath(promotePlanPath)
+  );
   const preflightSummary = readPreflightSummary(preflightPath);
   const liveSyncSummary = readReceiptSummary(liveSyncReceiptPath);
   const entryCount = Array.isArray(payload.entries) ? payload.entries.length : 0;
@@ -137,6 +172,8 @@ function buildBatchRecord(filePath, options = {}) {
     json: path.relative(ROOT_DIR, filePath),
     csv: path.relative(ROOT_DIR, csvPath),
     xlsx: path.relative(ROOT_DIR, xlsxPath),
+    autoReviewCsv: path.relative(ROOT_DIR, autoReviewCsvPath),
+    codexReviewCsv: path.relative(ROOT_DIR, codexReviewCsvPath),
     preflight: path.relative(ROOT_DIR, preflightPath),
     promotePlan: path.relative(ROOT_DIR, promotePlanPath),
     applyReceipt: path.relative(ROOT_DIR, applyReceiptPath),
@@ -144,6 +181,8 @@ function buildBatchRecord(filePath, options = {}) {
     jsonExists: true,
     csvExists: fileExists(csvPath),
     xlsxExists: fileExists(xlsxPath),
+    autoReviewCsvExists: fileExists(autoReviewCsvPath),
+    codexReviewCsvExists: fileExists(codexReviewCsvPath),
     preflightExists: fileExists(preflightPath),
     preflightPass: preflightSummary ? Boolean(preflightSummary.pass) : null,
     preflightErrorCount: preflightSummary ? Number(preflightSummary.errorCount) || 0 : 0,
@@ -218,6 +257,8 @@ function buildCsv(index = {}) {
     "json",
     "csv",
     "xlsx",
+    "auto_review_csv",
+    "codex_review_csv",
     "preflight",
     "preflight_pass",
     "preflight_errors",
@@ -240,6 +281,8 @@ function buildCsv(index = {}) {
       json: batch.json,
       csv: batch.csv,
       xlsx: batch.xlsx,
+      auto_review_csv: batch.autoReviewCsv,
+      codex_review_csv: batch.codexReviewCsv,
       preflight: batch.preflight,
       preflight_pass: batch.preflightPass,
       preflight_errors: batch.preflightErrorCount,

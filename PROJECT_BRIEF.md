@@ -129,6 +129,14 @@ Guest vocab may be backfilled into the first logged-in student account. If a dif
 
 ### Teacher Vocab Bank
 
+Current vocab-bank goal:
+
+1. Add and keep improving the in-app teacher vocab page first. Austin Sir can type English / POS / Chinese meaning during class and save entries to the shared Firebase `teacherVocabLive` bank. Students should be able to find those teacher-approved meanings immediately.
+2. Build a clean student-facing vocab bank, not a noisy live dictionary. Oxford 3000 / Oxford 5000 / PDF lists are coverage checklists. ECDICT / CC-CEDICT / generated meanings / other sources are raw review material only, never automatic student-facing answers.
+3. Large-batch review is Codex's job, not Austin Sir's manual job. Auto-review may prepare conservative drafts, but Codex must inspect small batches, fix POS, improve Chinese meanings, remove duplicate or near-duplicate senses, add missing common meanings, handle phrases / phrasal verbs, and only then promote entries into the teacher / curated bank.
+4. Cleanup order: teacher live input page + Firebase shared bank, then the existing 4000-ish teacher bank, then Oxford / common basic vocabulary, then countries, cities, Hong Kong life words, and school vocabulary.
+5. Missing coverage should be fixed by improving the teacher / curated bank. Do not show placeholder meanings such as "待老師確認" in the student UI.
+
 Chinese meanings should prefer Austin Sir's notes / Excel vocab sheets over generic dictionaries.
 
 Current pipeline:
@@ -141,7 +149,7 @@ Current pipeline:
 - POS belongs to a specific meaning, not only to the spelling of the English word. For example, `secure` can have separate adjective and verb entries.
 - Patterns such as `be+pp` and `as+名詞` are stored as `type: "pattern"`, not as normal POS.
 - Do not show ECDICT / generated offline dictionary entries directly to students. It is too noisy for primary-level vocab and can surface misleading meanings. Keep it only as a developer/reference asset unless an entry is manually promoted into the curated bank.
-- Vocabulary bank cleanup should be review-first. Use `npm run vocab:review-batch -- --offset 0 --limit 100` to create private JSON/CSV batches in `private_exports/` from the Oxford checklist, existing teacher entries, curated entries, ECDICT material, generated meaning seeds, and CC-CEDICT reverse material. Austin Sir reviews POS, Chinese meanings, duplicate senses, multi-meaning words, and phrases before anything is promoted into `vocab_sense_bank.js`, `teacher_vocab_manual_updates.json`, or the cloud teacher bank.
+- Vocabulary bank cleanup should be review-first. Use `npm run vocab:review-batch -- --offset 0 --limit 100` to create private JSON/CSV batches in `private_exports/` from the Oxford checklist, existing teacher entries, curated entries, ECDICT material, generated meaning seeds, and CC-CEDICT reverse material. Codex reviews POS, Chinese meanings, duplicate senses, multi-meaning words, and phrases in small batches before anything is promoted into `vocab_sense_bank.js`, `teacher_vocab_manual_updates.json`, or the cloud teacher bank. Austin Sir may spot-check, but should not need to manually review thousands of rows.
 - For the existing teacher bank, use `npm run vocab:review-batch -- --source teacher-audit --skip-junk --offset 0 --limit 100 --out private_exports/teacher_vocab_review_batch_highvalue_0000.json` to produce the first high-value cleanup batch. Full audit mode keeps spreadsheet extraction fragments; `--skip-junk` hides obvious one-letter / malformed fragments so Austin Sir can clean real class vocabulary first.
 - Use `npm run vocab:review-index -- --out private_exports/teacher_vocab_review_index.json` after creating review batches. The private index tracks generated batch files, ready-for-review batches, current coverage, and the next offset so the 4000-word cleanup can continue in order. Do not treat "ready for review" as "already cleaned".
 - Use `npm run vocab:review-dashboard` to create a private `vocab_review_dashboard.json/csv` across teacher, Oxford, teacher-live, and supplement queues. It is a management view only; reviewed entries still need promote-plan / apply-plan before becoming student-facing.

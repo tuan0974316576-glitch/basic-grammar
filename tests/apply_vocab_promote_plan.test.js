@@ -12,6 +12,7 @@ const split = apply.splitEntries([
     type: "word",
     meaning: "杏仁",
     promoteTo: "teacher",
+    aliases: "almnd",
     replaceType: true
   },
   {
@@ -26,12 +27,22 @@ const split = apply.splitEntries([
     meaning: "English meaning",
     type: "word",
     promoteTo: "curated"
+  },
+  {
+    word: "almnd",
+    type: "word",
+    promoteTo: "teacher",
+    suppress: true,
+    replaceType: true,
+    notes: "typo kept as alias on almond"
   }
 ]);
 
-assert.strictEqual(split.accepted.length, 2);
+assert.strictEqual(split.accepted.length, 3);
 assert.strictEqual(split.skipped.length, 1);
 assert.strictEqual(split.teacher[0].pos, "noun");
+assert.deepStrictEqual(split.teacher[0].aliases, ["almnd"]);
+assert.strictEqual(split.teacher[1].suppress, true);
 assert.strictEqual(split.curated[0].type, "phrase");
 
 const mergedTeacher = apply.mergeTeacherUpdates({
@@ -39,19 +50,22 @@ const mergedTeacher = apply.mergeTeacherUpdates({
   entries: [
     { word: "almond", meaning: "杏仁", pos: "noun", type: "word" }
   ]
-}, split.teacher);
+}, [split.teacher[0]]);
 assert.strictEqual(mergedTeacher.additions.length, 0);
+assert.strictEqual(mergedTeacher.aliasUpdates.length, 1);
+assert.deepStrictEqual(mergedTeacher.data.entries[0].aliases, ["almnd"]);
 
 const teacherAddition = apply.mergeTeacherUpdates({
   meta: { lesson: "Test" },
   entries: []
-}, split.teacher);
+}, [split.teacher[0]]);
 assert.deepStrictEqual(teacherAddition.additions, [
   {
     word: "almond",
     meaning: "杏仁",
     pos: "noun",
     type: "word",
+    aliases: ["almnd"],
     replaceType: true
   }
 ]);
@@ -67,6 +81,20 @@ const normalTeacherAddition = apply.mergeTeacherUpdates({
   promoteTo: "teacher"
 }]).teacher[0]]);
 assert.strictEqual(normalTeacherAddition.additions[0].replaceType, false);
+
+const suppressTeacherAddition = apply.mergeTeacherUpdates({
+  meta: { lesson: "Test" },
+  entries: []
+}, [split.teacher[1]]);
+assert.deepStrictEqual(suppressTeacherAddition.additions, [
+  {
+    word: "almnd",
+    type: "word",
+    replaceType: true,
+    suppress: true,
+    notes: "typo kept as alias on almond"
+  }
+]);
 
 const rawCurated = apply.makeCuratedRawEntry(split.curated[0]);
 assert.deepStrictEqual(rawCurated, [
@@ -99,7 +127,7 @@ const compactTeacherJson = apply.formatTeacherUpdatesJson({
   meta: { lesson: "Test" },
   entries: teacherAddition.additions
 });
-assert.ok(compactTeacherJson.includes("    { \"word\": \"almond\", \"meaning\": \"杏仁\", \"pos\": \"noun\", \"type\": \"word\", \"replaceType\": true }"));
+assert.ok(compactTeacherJson.includes("    { \"word\": \"almond\", \"meaning\": \"杏仁\", \"pos\": \"noun\", \"type\": \"word\", \"replaceType\": true, \"aliases\": [\"almnd\"] }"));
 
 const existingBank = {
   meta: {
@@ -149,6 +177,16 @@ const existingBank = {
       type: "word",
       needsReview: false,
       sourceCount: 5
+    },
+    {
+      id: "almnd-typo-entry",
+      word: "almnd",
+      display: "almnd",
+      meaning: "杏仁",
+      pos: "",
+      type: "word",
+      needsReview: true,
+      sourceCount: 1
     }
   ]
 };
@@ -158,11 +196,12 @@ const bankMerge = apply.mergeTeacherBank(existingBank, teacherAddition.additions
 assert.strictEqual(bankMerge.mergeSummary.addedEntryCount, 1);
 assert.strictEqual(bankMerge.mergeSummary.removedEntryCount, 1);
 assert.strictEqual(bankMerge.mergeSummary.netEntryCount, 0);
-assert.strictEqual(bankMerge.entries.length, 4);
+assert.strictEqual(bankMerge.entries.length, 5);
 assert.strictEqual(bankMerge.entries.some((entry) => entry.id === "almond-noisy-entry"), false);
 assert.strictEqual(bankMerge.entries.find((entry) => entry.id === "almond-phrase-entry").sourceCount, 2);
 assert.strictEqual(bankMerge.entries.find((entry) => entry.id === "almond-adjective-entry").sourceCount, 3);
 assert.strictEqual(bankMerge.entries.find((entry) => entry.id === "bacon-entry").sourceCount, 5);
+assert.strictEqual(bankMerge.entries.find((entry) => entry.id === "almnd-typo-entry").sourceCount, 1);
 assert.deepStrictEqual(
   bankMerge.entries
     .filter((entry) => entry.word === "almond")
@@ -173,14 +212,26 @@ assert.deepStrictEqual(
     "word:noun:杏仁"
   ]
 );
+assert.deepStrictEqual(
+  bankMerge.entries.find((entry) => entry.word === "almond" && entry.meaning === "杏仁").aliases,
+  ["almnd"]
+);
 assert.strictEqual(bankMerge.meta.sourceFiles[0].name, "old.xlsx");
 assert.deepStrictEqual(bankMerge.meta.updateFiles.map((entry) => entry.name), [
   "old_updates.json",
   "teacher_vocab_manual_updates.json"
 ]);
 
+const suppressBankMerge = apply.mergeTeacherBank(existingBank, suppressTeacherAddition.additions, {
+  teacherUpdates: teacherUpdatesPath
+});
+assert.strictEqual(suppressBankMerge.mergeSummary.addedEntryCount, 0);
+assert.strictEqual(suppressBankMerge.mergeSummary.removedEntryCount, 1);
+assert.strictEqual(suppressBankMerge.entries.some((entry) => entry.id === "almnd-typo-entry"), false);
+assert.strictEqual(suppressBankMerge.entries.some((entry) => entry.word === "almnd"), false);
+
 const drySummary = apply.applyPlan({
-  entries: split.accepted
+  entries: split.accepted.filter((entry) => !entry.suppress)
 }, {
   input: path.join(tmpDir, "teacher_vocab_promote_plan_highvalue_0000.json"),
   teacherUpdates: teacherUpdatesPath,
@@ -207,6 +258,9 @@ assert.strictEqual(
   apply.inferApplyReceiptPath(path.join(tmpDir, "teacher_vocab_promote_plan_highvalue_0000.json")),
   path.join(tmpDir, "teacher_vocab_promote_plan_highvalue_0000_applied.json")
 );
+assert.strictEqual(apply.normalizeReviewBatchId("0400_auto_review"), "0400");
+assert.strictEqual(apply.normalizeReviewBatchId("0400_codex_review"), "0400");
+assert.strictEqual(apply.normalizeReviewBatchId("0400"), "0400");
 
 const reviewBatchPath = path.join(tmpDir, "teacher_vocab_review_batch_highvalue_0000.json");
 fs.writeFileSync(reviewBatchPath, JSON.stringify({
@@ -246,15 +300,39 @@ assert.strictEqual(smallWriteSummary.teacherBankAddCount, 1);
 assert.strictEqual(smallWriteSummary.teacherBankRemovedCount, 1);
 assert.strictEqual(smallWriteSummary.teacherBankNetCount, 0);
 const smallTeacherUpdatesText = fs.readFileSync(smallTeacherUpdatesPath, "utf8");
-assert.ok(smallTeacherUpdatesText.includes("    { \"word\": \"almond\", \"meaning\": \"杏仁\", \"pos\": \"noun\", \"type\": \"word\", \"replaceType\": true }"));
+assert.ok(smallTeacherUpdatesText.includes("    { \"word\": \"almond\", \"meaning\": \"杏仁\", \"pos\": \"noun\", \"type\": \"word\", \"replaceType\": true, \"aliases\": [\"almnd\"] }"));
 delete require.cache[require.resolve(smallTeacherBankPath)];
 const smallBankAfterWrite = require(smallTeacherBankPath);
 assert.strictEqual(smallBankAfterWrite.entries.some((entry) => entry.id === "almond-noisy-entry"), false);
 assert.strictEqual(smallBankAfterWrite.entries.find((entry) => entry.id === "bacon-entry").sourceCount, 5);
 assert.strictEqual(smallBankAfterWrite.entries.find((entry) => entry.id === "almond-adjective-entry").sourceCount, 3);
 assert.ok(smallBankAfterWrite.entries.some((entry) => entry.word === "almond" && entry.meaning === "杏仁"));
+assert.deepStrictEqual(
+  smallBankAfterWrite.entries.find((entry) => entry.word === "almond" && entry.meaning === "杏仁").aliases,
+  ["almnd"]
+);
 
-const writeSummary = apply.applyPlan({ entries: split.accepted }, {
+const smallSuppressBankPath = path.join(tmpDir, "small_suppress_teacher_vocab_bank.js");
+fs.writeFileSync(smallSuppressBankPath, `module.exports = ${JSON.stringify(existingBank, null, 2)};\n`);
+const smallSuppressUpdatesPath = path.join(tmpDir, "small_suppress_teacher_vocab_manual_updates.json");
+fs.writeFileSync(smallSuppressUpdatesPath, JSON.stringify({ meta: { lesson: "Suppress" }, entries: [] }, null, 2));
+const suppressWriteSummary = apply.applyPlan({ entries: [split.teacher[1]] }, {
+  input: planPath,
+  teacherUpdates: smallSuppressUpdatesPath,
+  curatedBank: smallCuratedPath,
+  teacherBank: smallSuppressBankPath,
+  write: true,
+  refresh: false
+});
+assert.strictEqual(suppressWriteSummary.teacherAddCount, 1);
+assert.strictEqual(suppressWriteSummary.teacherBankAddCount, 0);
+assert.strictEqual(suppressWriteSummary.teacherBankRemovedCount, 1);
+delete require.cache[require.resolve(smallSuppressBankPath)];
+const smallSuppressBankAfterWrite = require(smallSuppressBankPath);
+assert.strictEqual(smallSuppressBankAfterWrite.entries.some((entry) => entry.word === "almnd"), false);
+assert.ok(fs.readFileSync(smallSuppressUpdatesPath, "utf8").includes("\"suppress\": true"));
+
+const writeSummary = apply.applyPlan({ entries: split.accepted.filter((entry) => !entry.suppress) }, {
   input: planPath,
   teacherUpdates: teacherUpdatesPath,
   curatedBank: curatedPath,

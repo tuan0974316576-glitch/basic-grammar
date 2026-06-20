@@ -71,6 +71,7 @@ const csvEntries = promote.reviewedEntriesFromCsvRows([
     reviewed_pos: "prep.",
     reviewed_meaning: "在...之上",
     promote_to: "curated",
+    aliases: "abov",
     notes: "CSV reviewed"
   },
   {
@@ -105,6 +106,14 @@ const csvEntries = promote.reviewedEntriesFromCsvRows([
     reviewed_meaning_3: "工作 / 做事",
     promote_to_3: "curated",
     notes: "multi-sense"
+  },
+  {
+    word: "guility",
+    level: "",
+    type: "word",
+    promote_to: "teacher",
+    suppress: "yes",
+    notes: "typo kept as alias on guilty"
   }
 ]);
 
@@ -120,6 +129,7 @@ assert.deepStrictEqual(csvEntries, [
     notes: "CSV reviewed",
     auditReasons: ["missing-pos", "noisy-meaning"],
     originalTeacherEntry: "上面",
+    aliases: ["abov"],
     replaceType: true
   },
   {
@@ -173,6 +183,20 @@ assert.deepStrictEqual(csvEntries, [
     auditReasons: [],
     originalTeacherEntry: "",
     replaceType: false
+  },
+  {
+    word: "guility",
+    display: "guility",
+    meaning: "",
+    pos: "",
+    type: "word",
+    promoteTo: "teacher",
+    level: "",
+    notes: "typo kept as alias on guilty",
+    auditReasons: [],
+    originalTeacherEntry: "",
+    replaceType: true,
+    suppress: true
   }
 ]);
 
@@ -180,7 +204,7 @@ const csvPlan = promote.buildPromotePlan({
   meta: { source: "review-csv" },
   entries: csvEntries
 });
-assert.strictEqual(csvPlan.meta.reviewedEntryCount, 5);
+assert.strictEqual(csvPlan.meta.reviewedEntryCount, 6);
 assert.strictEqual(csvPlan.entries[0].word, "above");
 assert.strictEqual(csvPlan.entries[1].word, "look up");
 assert.strictEqual(csvPlan.entries[1].promoteTo, "teacher");
@@ -189,6 +213,7 @@ assert.deepStrictEqual(csvPlan.entries.filter((entry) => entry.word === "work").
   "noun:作品",
   "verb:工作 / 做事"
 ]);
+assert.strictEqual(csvPlan.entries.find((entry) => entry.word === "guility").suppress, true);
 
 const workbookEntries = promote.reviewedEntriesFromWorkbookRows([
   {

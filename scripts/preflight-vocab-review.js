@@ -80,6 +80,7 @@ function normalizeReviewRow(row = {}, index = 0, source = "", sense = REVIEW_SEN
   const promoteToRaw = normalizeHeaderValue(row, `promote_to${sense.suffix}`, `promote to${sense.label}`);
   const promoteTo = PromotePlan.normalizePromoteTarget(promoteToRaw);
   const type = String(normalizeHeaderValue(row, "type") || "").trim().toLowerCase();
+  const suppress = normalizeMeaning(normalizeHeaderValue(row, "suppress"));
   return {
     index,
     rowNumber: index + 2,
@@ -105,6 +106,7 @@ function normalizeReviewRow(row = {}, index = 0, source = "", sense = REVIEW_SEN
     promoteToRaw,
     promoteTo,
     replaceType: normalizeMeaning(normalizeHeaderValue(row, "replace_type", "replace type")),
+    suppress,
     notes: normalizeMeaning(normalizeHeaderValue(row, "notes"))
   };
 }
@@ -153,7 +155,7 @@ async function readReviewRows(filePath) {
 }
 
 function hasAnyReviewInput(row = {}) {
-  return Boolean(row.reviewedPosRaw || row.reviewedMeaning || row.promoteToRaw || row.replaceType || row.notes);
+  return Boolean(row.reviewedPosRaw || row.reviewedMeaning || row.promoteToRaw || row.replaceType || row.suppress || row.notes);
 }
 
 function hasPromotableInput(row = {}) {
@@ -176,11 +178,18 @@ function validateReviewedRow(row = {}, allRows = []) {
   const findings = [];
   const hasReview = hasPromotableInput(row);
   const isSkip = row.promoteTo === "skip";
+  const isSuppress = /^(?:true|yes|y|1|suppress)$/i.test(String(row.suppress || ""));
 
   if (!hasAnyReviewInput(row)) return findings;
   if (!row.word) findings.push("missing word");
   if (!row.promoteToRaw) findings.push("missing promote_to");
   if (row.promoteToRaw && !ALLOWED_PROMOTE_TARGETS.has(row.promoteTo)) findings.push("unsupported promote_to");
+
+  if (isSuppress) {
+    if (row.promoteTo !== "teacher") findings.push("suppress row should promote_to teacher");
+    if (row.reviewedMeaning || row.reviewedPosRaw) findings.push("suppress row should leave reviewed POS / meaning blank");
+    return findings;
+  }
 
   if (isSkip) {
     if (row.reviewedMeaning || row.reviewedPosRaw) findings.push("skip row should leave reviewed POS / meaning blank");

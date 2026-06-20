@@ -131,6 +131,10 @@ function getReviewQueueForPlan(input = "") {
   return queues.find((queue) => baseName.startsWith(`${queue.planPrefix}_`)) || null;
 }
 
+function normalizeReviewBatchId(batchId = "") {
+  return String(batchId || "").replace(/_(?:auto|codex)_review$/i, "");
+}
+
 function inferApplyReceiptPath(input = "") {
   return ReviewPaths.inferApplyReceiptPath(input);
 }
@@ -168,7 +172,7 @@ function refreshReviewStatusAfterApply(input = "", options = {}) {
     out: dashboardOut
   });
   const planBaseName = ReviewPaths.stripReviewExtension(input);
-  const batchId = planBaseName.replace(`${queue.planPrefix}_`, "");
+  const batchId = normalizeReviewBatchId(planBaseName.replace(`${queue.planPrefix}_`, ""));
   return {
     queue: queue.reviewPrefix,
     indexOut,
@@ -210,6 +214,7 @@ function splitEntries(entries = []) {
       type: normalizeType(entry.type || entry.pos, entry.word),
       level: String(entry.level || "").trim().toUpperCase(),
       notes: normalizeMeaning(entry.notes || ""),
+      aliases: TeacherImporter.normalizeAliases(entry.aliases || entry.alias || []),
       replaceType: Boolean(entry.replaceType)
     };
     const findings = PromotePlan.validatePlanEntry(normalized);
@@ -257,12 +262,15 @@ function loadTeacherUpdates(filePath) {
 }
 
 function makeTeacherUpdateEntry(entry = {}) {
+  const aliases = TeacherImporter.normalizeAliases(entry.aliases || entry.alias || []);
   const output = {
     word: normalizeWord(entry.word),
     meaning: normalizeMeaning(entry.meaning),
     pos: normalizePos(entry.pos) || undefined,
     type: normalizeType(entry.type, entry.word),
-    replaceType: Boolean(entry.replaceType)
+    replaceType: Boolean(entry.replaceType),
+    suppress: Boolean(entry.suppress) || undefined,
+    aliases: aliases.length ? aliases : undefined
   };
   if (entry.display && entry.display !== output.word) output.display = entry.display;
   if (entry.notes) output.notes = entry.notes;
@@ -271,16 +279,37 @@ function makeTeacherUpdateEntry(entry = {}) {
 
 function mergeTeacherUpdates(updateData = {}, entries = []) {
   const existingEntries = Array.isArray(updateData.entries) ? updateData.entries : [];
-  const seen = new Set(existingEntries.map(teacherUpdateKey));
+  const mergedExistingEntries = existingEntries.map((entry) => ({ ...entry }));
+  const existingKeyIndex = new Map(mergedExistingEntries.map((entry, index) => [teacherUpdateKey(entry), index]));
+  const aliasUpdatesByKey = new Map();
   const additions = [];
 
   entries.forEach((entry) => {
     const updateEntry = makeTeacherUpdateEntry(entry);
     const key = teacherUpdateKey(updateEntry);
-    if (seen.has(key)) return;
-    seen.add(key);
+    if (existingKeyIndex.has(key)) {
+      const existingIndex = existingKeyIndex.get(key);
+      const mergedAliases = TeacherImporter.normalizeAliases([
+        ...(mergedExistingEntries[existingIndex].aliases || []),
+        ...(updateEntry.aliases || [])
+      ]);
+      if (mergedAliases.length) {
+        const before = TeacherImporter.normalizeAliases(mergedExistingEntries[existingIndex].aliases || []);
+        mergedExistingEntries[existingIndex] = {
+          ...mergedExistingEntries[existingIndex],
+          aliases: mergedAliases
+        };
+        if (mergedAliases.join("\u0001") !== before.join("\u0001")) {
+          aliasUpdatesByKey.set(key, mergedExistingEntries[existingIndex]);
+        }
+      }
+      return;
+    }
+    existingKeyIndex.set(key, mergedExistingEntries.length + additions.length);
     additions.push(updateEntry);
   });
+
+  const aliasUpdates = Array.from(aliasUpdatesByKey.values());
 
   return {
     data: {
@@ -289,9 +318,11 @@ function mergeTeacherUpdates(updateData = {}, entries = []) {
         ...(updateData.meta || {}),
         notes: updateData.meta?.notes || "Austin Sir reviewed vocab meanings."
       },
-      entries: [...existingEntries, ...additions]
+      entries: [...mergedExistingEntries, ...additions]
     },
-    additions
+    additions,
+    aliasUpdates,
+    changedEntries: [...additions, ...aliasUpdates]
   };
 }
 
@@ -452,20 +483,30 @@ function mergeTeacherBank(existingBank = {}, additions = [], options = {}) {
   const filteredEntries = existingEntries.filter((entry) => {
     const replacements = replacementsByWordType.get(teacherBankWordTypeKey(entry)) || [];
     return !shouldReplaceTeacherBankEntry(entry, replacements);
-  });
+  }).map((entry) => ({ ...entry }));
   const removedEntryCount = existingEntries.length - filteredEntries.length;
-  const seen = new Set(filteredEntries.map(teacherBankEntryKey));
+  const entries = [...filteredEntries];
+  const seen = new Map(entries.map((entry, index) => [teacherBankEntryKey(entry), index]));
   const addedEntries = [];
 
   additions.forEach((entry) => {
-    const nextEntry = makeTeacherBankEntry(entry, filteredEntries.length + addedEntries.length);
+    if (entry.suppress) return;
+    const nextEntry = makeTeacherBankEntry(entry, entries.length);
     const key = teacherBankEntryKey(nextEntry);
-    if (seen.has(key)) return;
-    seen.add(key);
+    if (seen.has(key)) {
+      const existingIndex = seen.get(key);
+      const mergedAliases = TeacherImporter.normalizeAliases([
+        ...(entries[existingIndex].aliases || []),
+        ...(nextEntry.aliases || [])
+      ]);
+      if (mergedAliases.length) entries[existingIndex].aliases = mergedAliases;
+      return;
+    }
+    seen.set(key, entries.length);
     addedEntries.push(nextEntry);
+    entries.push(nextEntry);
   });
 
-  const entries = [...filteredEntries, ...addedEntries];
   const updateFiles = [
     ...(existingBank.meta?.updateFiles || []),
     ...(additions.length ? [{
@@ -510,7 +551,7 @@ function applyPlan(plan, options = {}) {
   const existingTeacherBank = loadTeacherBank(options.teacherBank || DEFAULT_TEACHER_BANK);
   const mergedTeacherBankPayload = mergeTeacherBank(
     existingTeacherBank,
-    mergedTeacher.additions,
+    mergedTeacher.changedEntries,
     options
   );
   const { mergeSummary: teacherBankMergeSummary, ...mergedTeacherBank } = mergedTeacherBankPayload;
@@ -523,6 +564,7 @@ function applyPlan(plan, options = {}) {
     teacherPlanCount: split.teacher.length,
     curatedPlanCount: split.curated.length,
     teacherAddCount: mergedTeacher.additions.length,
+    teacherAliasUpdateCount: mergedTeacher.aliasUpdates.length,
     teacherBankAddCount: teacherBankMergeSummary.addedEntryCount,
     teacherBankRemovedCount: teacherBankMergeSummary.removedEntryCount,
     teacherBankNetCount: teacherBankMergeSummary.netEntryCount,
@@ -572,6 +614,7 @@ module.exports = {
   mergeTeacherBank,
   mergeCuratedBank,
   mergeTeacherUpdates,
+  normalizeReviewBatchId,
   parseArgs,
   refreshReviewStatusAfterApply,
   splitEntries

@@ -125,7 +125,11 @@ function normalizeReviewedEntry(raw = {}, fallback = {}) {
   const pos = normalizePos(raw.pos || raw.reviewedPos);
   const type = normalizeReviewType(raw.type || fallback.type, word, raw.pos || raw.reviewedPos);
   const promoteTo = normalizePromoteTarget(raw.promoteTo || raw.promote_to || fallback.promoteTo);
-  if (!word || !meaning || !promoteTo) return null;
+  const suppressRaw = raw.suppress ?? fallback.suppress;
+  const suppress = typeof suppressRaw === "boolean"
+    ? suppressRaw
+    : /^(?:true|yes|y|1|suppress)$/i.test(String(suppressRaw || ""));
+  if (!word || !promoteTo) return null;
   const originalTeacherEntry = normalizeMeaning(
     raw.originalTeacherEntry
     || raw.original_teacher_entry
@@ -142,7 +146,25 @@ function normalizeReviewedEntry(raw = {}, fallback = {}) {
   const replaceType = typeof replaceTypeRaw === "boolean"
     ? replaceTypeRaw
     : /^(?:true|yes|y|1|replace)$/i.test(String(replaceTypeRaw || ""));
-  return {
+  const aliases = TeacherVocab.normalizeAliases(raw.aliases || raw.alias || fallback.aliases || fallback.alias || "");
+  if (suppress) {
+    return {
+      word,
+      display: String(raw.display || fallback.display || word).trim() || word,
+      meaning: "",
+      pos: "",
+      type,
+      promoteTo,
+      level: String(raw.level || fallback.level || "").trim().toUpperCase(),
+      notes: normalizeMeaning(raw.notes || fallback.notes || ""),
+      auditReasons,
+      originalTeacherEntry,
+      replaceType: true,
+      suppress: true
+    };
+  }
+  if (!meaning) return null;
+  const normalized = {
     word,
     display: String(raw.display || fallback.display || word).trim() || word,
     meaning,
@@ -155,6 +177,8 @@ function normalizeReviewedEntry(raw = {}, fallback = {}) {
     originalTeacherEntry,
     replaceType: replaceType || Boolean(originalTeacherEntry || auditReasons.length)
   };
+  if (aliases.length) normalized.aliases = aliases;
+  return normalized;
 }
 
 function getRowValue(row = {}, key = "", label = "") {
@@ -163,19 +187,36 @@ function getRowValue(row = {}, key = "", label = "") {
 
 function reviewedEntriesFromCsvRows(rows = []) {
   return rows
-    .flatMap((row) => REVIEW_SENSES.map((sense) => normalizeReviewedEntry({
-      word: row.word,
-      display: row.display || row.word,
-      level: row.level,
-      type: row.type,
-      pos: getRowValue(row, sense.posKey, sense.posLabel),
-      meaning: getRowValue(row, sense.meaningKey, sense.meaningLabel),
-      promoteTo: getRowValue(row, sense.targetKey, sense.targetLabel),
-      notes: row.notes,
-      audit_reasons: row.audit_reasons || row["audit reasons"],
-      original_teacher_entry: row.original_teacher_entry || row["original teacher entry"],
-      replace_type: row.replace_type || row["replace type"]
-    })))
+    .flatMap((row) => {
+      if (/^(?:true|yes|y|1|suppress)$/i.test(String(row.suppress || ""))) {
+        return [normalizeReviewedEntry({
+          word: row.word,
+          display: row.display || row.word,
+          level: row.level,
+          type: row.type,
+          promoteTo: row.promote_to || row["promote to"] || "teacher",
+          suppress: row.suppress,
+          notes: row.notes,
+          audit_reasons: row.audit_reasons || row["audit reasons"],
+          original_teacher_entry: row.original_teacher_entry || row["original teacher entry"],
+          replace_type: row.replace_type || row["replace type"] || "yes"
+        })];
+      }
+      return REVIEW_SENSES.map((sense) => normalizeReviewedEntry({
+        word: row.word,
+        display: row.display || row.word,
+        level: row.level,
+        type: row.type,
+        pos: getRowValue(row, sense.posKey, sense.posLabel),
+        meaning: getRowValue(row, sense.meaningKey, sense.meaningLabel),
+        promoteTo: getRowValue(row, sense.targetKey, sense.targetLabel),
+        notes: row.notes,
+        aliases: row.aliases || row.alias,
+        audit_reasons: row.audit_reasons || row["audit reasons"],
+        original_teacher_entry: row.original_teacher_entry || row["original teacher entry"],
+        replace_type: row.replace_type || row["replace type"]
+      }));
+    })
     .filter(Boolean);
 }
 
@@ -230,6 +271,10 @@ async function loadReviewInput(filePath) {
 function validatePlanEntry(entry = {}) {
   const findings = [];
   if (!entry.word) findings.push("missing word");
+  if (entry.suppress) {
+    if (entry.promoteTo !== "teacher") findings.push("suppress entries must promote to teacher");
+    return findings;
+  }
   if (!entry.meaning) findings.push("missing meaning");
   if (!entry.pos && entry.type !== "phrase" && entry.type !== "pattern") findings.push("missing POS");
   if (!ALLOWED_PROMOTE_TARGETS.has(entry.promoteTo)) findings.push("unsupported promote target");

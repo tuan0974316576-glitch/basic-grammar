@@ -46,6 +46,8 @@ assert.deepStrictEqual(processor.getReviewQueueForInput(path.join(tmpDir, "teach
   prefix: "teacher_live_vocab_review_batch",
   indexFile: "teacher_live_vocab_review_index.json"
 });
+assert.strictEqual(processor.normalizeReviewBatchId("0400_auto_review"), "0400");
+assert.strictEqual(processor.normalizeReviewBatchId("0400"), "0400");
 
 const dirtyReview = path.join(tmpDir, "teacher_vocab_review_batch_highvalue_0000.csv");
 fs.writeFileSync(dirtyReview, [

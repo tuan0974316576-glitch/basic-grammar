@@ -8,6 +8,8 @@ const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "teacher-live-sync-test-"))
 
 const promotePlanPath = path.join(tmpDir, "teacher_vocab_promote_plan_highvalue_0000.json");
 const reviewBatchPath = path.join(tmpDir, "teacher_vocab_review_batch_highvalue_0000.json");
+const codexPromotePlanPath = path.join(tmpDir, "teacher_vocab_promote_plan_highvalue_0100_codex_review.json");
+const codexReviewBatchPath = path.join(tmpDir, "teacher_vocab_review_batch_highvalue_0100.json");
 fs.writeFileSync(reviewBatchPath, JSON.stringify({
   meta: {
     source: "teacher-audit",
@@ -20,6 +22,21 @@ fs.writeFileSync(reviewBatchPath, JSON.stringify({
   entries: [{ word: "almond" }]
 }, null, 2));
 fs.writeFileSync(path.join(tmpDir, "teacher_vocab_review_batch_highvalue_0000.xlsx"), "placeholder");
+fs.writeFileSync(codexReviewBatchPath, JSON.stringify({
+  meta: {
+    source: "teacher-audit",
+    offset: 100,
+    limit: 100,
+    selectedCount: 1,
+    totalCandidateCount: 2,
+    nextOffset: 200
+  },
+  entries: [{ word: "guilty" }]
+}, null, 2));
+fs.writeFileSync(path.join(tmpDir, "teacher_vocab_review_batch_highvalue_0100_codex_review.csv"), "placeholder");
+fs.writeFileSync(path.join(tmpDir, "teacher_vocab_review_batch_highvalue_0100_codex_review_preflight.json"), JSON.stringify({
+  summary: { pass: true, errorCount: 0, warningCount: 0 }
+}, null, 2));
 fs.writeFileSync(promotePlanPath, JSON.stringify({
   meta: { source: "review-xlsx" },
   entries: [
@@ -38,6 +55,20 @@ fs.writeFileSync(promotePlanPath, JSON.stringify({
       type: "phrase",
       meaning: "跳過月亮",
       promoteTo: "curated"
+    }
+  ]
+}, null, 2));
+fs.writeFileSync(codexPromotePlanPath, JSON.stringify({
+  meta: { source: "review-csv" },
+  entries: [
+    {
+      word: "guilty",
+      display: "guilty",
+      pos: "adj.",
+      type: "word",
+      meaning: "內疚的 / 有罪的",
+      promoteTo: "teacher",
+      aliases: ["guility"]
     }
   ]
 }, null, 2));
@@ -131,6 +162,22 @@ sync.syncTeacherLiveVocab({
   assert.strictEqual(writeSummary.refreshed.status, "live-synced");
   assert.ok(fs.existsSync(path.join(tmpDir, "teacher_vocab_review_index.json")));
   assert.ok(fs.existsSync(path.join(tmpDir, "vocab_review_dashboard.json")));
+  return sync.syncTeacherLiveVocab({
+    input: codexPromotePlanPath,
+    project: "test-project",
+    write: true,
+    uploadTeacherLiveEntries: async (entries) => {
+      assert.strictEqual(entries.length, 1);
+      assert.strictEqual(entries[0].word, "guilty");
+      assert.deepStrictEqual(entries[0].aliases, ["guility"]);
+      return { uploaded: entries.length };
+    }
+  });
+}).then((codexWriteSummary) => {
+  assert.strictEqual(codexWriteSummary.write, true);
+  assert.ok(codexWriteSummary.liveSyncReceipt.endsWith("teacher_vocab_promote_plan_highvalue_0100_codex_review_live_synced.json"));
+  assert.ok(codexWriteSummary.refreshed);
+  assert.strictEqual(codexWriteSummary.refreshed.status, "live-synced");
   console.log("sync_teacher_live_vocab tests passed");
 }).catch((error) => {
   console.error(error);
