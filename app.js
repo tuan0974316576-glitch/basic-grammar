@@ -18,6 +18,7 @@ const VOCAB_SENSE_BANK = window.VocabSenseBank || null;
 const CC_CEDICT_SUPPLEMENT = window.CcCedictSupplement || null;
 const CC_CEDICT_REVERSE = window.CcCedictReverse || null;
 const TEACHER_VOCAB = window.TeacherVocab || null;
+const VOCAB_LOOKUP = window.VocabLookup || null;
 const VOCAB_POS_INFERENCE = window.VocabPosInference || null;
 const VOCAB_EXAMPLE_UTILS = window.VocabExampleUtils || null;
 const VOCAB_EXAMPLE_SEED = window.VOCAB_EXAMPLE_SEED || null;
@@ -2691,59 +2692,21 @@ function getCloudVocabExamplesCallable() {
   return firebase.modules.httpsCallable(firebase.functions, "lookupVocabExamples");
 }
 
-function dedupeVocabLookupMatches(matches = []) {
-  const seen = new Set();
-  return matches.filter((entry) => {
-    const key = [
-      normalizeVocabWord(entry.word),
-      getVocabEntryPos(entry),
-      String(entry.type || "").trim().toLowerCase(),
-      normalizeVocabMeaningGroupKey(entry.meaning)
-    ].join("|");
-    if (seen.has(key)) return false;
-    seen.add(key);
-    return true;
-  });
-}
-
 async function buildVocabLookupMatches(word) {
-  let liveTeacherMatches = getTeacherLiveVocabMatches(word);
-  if (!liveTeacherMatches.length && studentAuthState.authenticated) {
-    liveTeacherMatches = await fetchTeacherLiveVocabWord(word);
-  }
-  if (liveTeacherMatches.length) {
-    return dedupeVocabLookupMatches(liveTeacherMatches).slice(0, 12);
-  }
-
-  const curatedMatches = getCuratedVocabSenseMatches(word);
-  const curatedOverrideMatches = curatedMatches.filter((entry) => entry.overrideTeacher);
-  if (curatedOverrideMatches.length) {
-    return dedupeVocabLookupMatches(curatedOverrideMatches).slice(0, 12);
-  }
-
-  const teacherMatches = getTeacherVocabMatches(word);
-  if (teacherMatches.length) {
-    return dedupeVocabLookupMatches(teacherMatches.map((entry) => ({
-      ...entry,
-      source: entry.source || "teacher"
-    }))).slice(0, 12);
-  }
-
-  if (curatedMatches.length) {
-    return dedupeVocabLookupMatches(curatedMatches).slice(0, 12);
-  }
-
-  const cedictMatches = getCcCedictSupplementMatches(word);
-  if (cedictMatches.length) {
-    return dedupeVocabLookupMatches(cedictMatches).slice(0, 12);
-  }
-
-  const reverseCedictMatches = await getCcCedictReverseMatches(word);
-  if (reverseCedictMatches.length) {
-    return dedupeVocabLookupMatches(reverseCedictMatches).slice(0, 8);
-  }
-
-  return [];
+  if (!VOCAB_LOOKUP?.buildLookupMatches) return [];
+  return VOCAB_LOOKUP.buildLookupMatches(word, {
+    getLiveTeacherMatches: getTeacherLiveVocabMatches,
+    shouldFetchLiveTeacher: () => studentAuthState.authenticated,
+    fetchLiveTeacherMatches: fetchTeacherLiveVocabWord,
+    getCuratedMatches: getCuratedVocabSenseMatches,
+    getTeacherMatches: getTeacherVocabMatches,
+    getCcCedictSupplementMatches,
+    getCcCedictReverseMatches
+  }, {
+    normalizeWord: normalizeVocabWord,
+    normalizeMeaningGroupKey: normalizeVocabMeaningGroupKey,
+    getEntryPos: getVocabEntryPos
+  });
 }
 
 function clearVocabMeaningSuggestions() {
