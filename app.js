@@ -254,6 +254,7 @@ let teacherLiveVocabLastSyncAt = 0;
 const teacherLiveVocabLookupRequests = new Map();
 const teacherLiveVocabLookupCheckedAt = new Map();
 let teacherLiveVocabFilter = "";
+let teacherLiveVocabEditingEntryId = "";
 let vocabQuizState = null;
 let studentLoginGraceTimer = 0;
 let studentAuthState = {
@@ -335,6 +336,7 @@ const el = {
   teacherVocabPosInput: document.querySelector("#teacher-vocab-pos-input"),
   teacherVocabMeaningInput: document.querySelector("#teacher-vocab-meaning-input"),
   teacherVocabSaveBtn: document.querySelector("#teacher-vocab-save-btn"),
+  teacherVocabCancelBtn: document.querySelector("#teacher-vocab-cancel-btn"),
   teacherVocabSearchInput: document.querySelector("#teacher-vocab-search-input"),
   teacherVocabCount: document.querySelector("#teacher-vocab-count"),
   teacherVocabRecentList: document.querySelector("#teacher-vocab-recent-list"),
@@ -1520,6 +1522,27 @@ function setTeacherVocabStatus(message = "", type = "") {
   el.teacherVocabStatus.textContent = message || "輸入上堂生字，學生會優先見到呢個解釋。";
 }
 
+function getTeacherLiveEntryKey(entry = {}) {
+  return String(entry.sourceEntryId || entry.id || "").trim();
+}
+
+function setTeacherVocabEditMode(entry = null) {
+  const normalized = entry ? normalizeTeacherLiveEntry(entry) : null;
+  teacherLiveVocabEditingEntryId = normalized ? getTeacherLiveEntryKey(normalized) : "";
+  if (normalized) {
+    if (el.teacherVocabWordInput) el.teacherVocabWordInput.value = normalized.display || normalized.word;
+    if (el.teacherVocabMeaningInput) el.teacherVocabMeaningInput.value = normalized.meaning;
+    if (el.teacherVocabPosInput) el.teacherVocabPosInput.value = normalized.pos || "noun";
+    if (el.teacherVocabSaveBtn) el.teacherVocabSaveBtn.textContent = "更新雲端";
+    el.teacherVocabCancelBtn?.classList.remove("hidden");
+    setTeacherVocabStatus(`正在修改 ${normalized.display || normalized.word}。完成後按更新雲端。`, "loading");
+    el.teacherVocabMeaningInput?.focus();
+  } else {
+    if (el.teacherVocabSaveBtn) el.teacherVocabSaveBtn.textContent = "送上雲端";
+    el.teacherVocabCancelBtn?.classList.add("hidden");
+  }
+}
+
 function renderTeacherLiveVocabRecentList() {
   if (!el.teacherVocabRecentList) return;
   const filter = normalizeTeacherVocabSearchText(teacherLiveVocabFilter || el.teacherVocabSearchInput?.value || "");
@@ -1556,11 +1579,29 @@ function renderTeacherLiveVocabRecentList() {
   }
 
   el.teacherVocabRecentList.replaceChildren(...visibleEntries.map((entry) => {
+    const entryKey = getTeacherLiveEntryKey(entry);
     const row = document.createElement("div");
     row.className = "teacher-vocab-recent-row";
+    if (teacherLiveVocabEditingEntryId && entryKey === teacherLiveVocabEditingEntryId) {
+      row.classList.add("is-editing");
+    }
 
     const text = document.createElement("div");
     text.className = "teacher-vocab-recent-text";
+    text.setAttribute("role", "button");
+    text.setAttribute("tabindex", "0");
+    text.setAttribute("aria-label", `修改 ${entry.display || entry.word}`);
+    const loadForEdit = () => {
+      setTeacherVocabEditMode(entry);
+      playUiSound("click");
+      renderTeacherLiveVocabRecentList();
+    };
+    text.addEventListener("click", loadForEdit);
+    text.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      event.preventDefault();
+      loadForEdit();
+    });
 
     const word = document.createElement("strong");
     word.textContent = entry.display || entry.word;
@@ -1570,6 +1611,13 @@ function renderTeacherLiveVocabRecentList() {
 
     text.append(word, meaning);
 
+    const editButton = document.createElement("button");
+    editButton.className = "teacher-vocab-row-action teacher-vocab-row-edit";
+    editButton.type = "button";
+    editButton.textContent = "修改";
+    editButton.setAttribute("aria-label", `修改 ${entry.display || entry.word}`);
+    editButton.addEventListener("click", loadForEdit);
+
     const disableButton = document.createElement("button");
     disableButton.className = "teacher-vocab-row-action";
     disableButton.type = "button";
@@ -1577,7 +1625,11 @@ function renderTeacherLiveVocabRecentList() {
     disableButton.setAttribute("aria-label", `停用 ${entry.display || entry.word}`);
     disableButton.addEventListener("click", () => disableTeacherLiveVocabEntry(entry));
 
-    row.append(text, disableButton);
+    const actions = document.createElement("div");
+    actions.className = "teacher-vocab-row-actions";
+    actions.append(editButton, disableButton);
+
+    row.append(text, actions);
     return row;
   }));
 }
@@ -1596,6 +1648,7 @@ function openTeacherVocabModal() {
   document.body.classList.add("teacher-vocab-open");
   syncModalOpenClass();
   teacherLiveVocabFilter = "";
+  setTeacherVocabEditMode(null);
   if (el.teacherVocabSearchInput) el.teacherVocabSearchInput.value = "";
   setTeacherVocabStatus();
   renderTeacherLiveVocabRecentList();
@@ -1616,6 +1669,7 @@ function clearTeacherVocabForm() {
   if (el.teacherVocabWordInput) el.teacherVocabWordInput.value = "";
   if (el.teacherVocabMeaningInput) el.teacherVocabMeaningInput.value = "";
   if (el.teacherVocabPosInput) el.teacherVocabPosInput.value = "noun";
+  setTeacherVocabEditMode(null);
 }
 
 async function submitTeacherVocabEntry() {
@@ -1629,7 +1683,10 @@ async function submitTeacherVocabEntry() {
   }
 
   if (el.teacherVocabSaveBtn) el.teacherVocabSaveBtn.disabled = true;
-  setTeacherVocabStatus("送上雲端中...", "loading");
+  const editingEntry = teacherLiveVocabEditingEntryId
+    ? (state.teacherLiveVocab || []).find((entry) => getTeacherLiveEntryKey(entry) === teacherLiveVocabEditingEntryId)
+    : null;
+  setTeacherVocabStatus(editingEntry ? "更新雲端字庫中..." : "送上雲端中...", "loading");
   try {
     const type = pos === "modal" ? "word" : normalizeTeacherLiveType("", word);
     const savedEntry = await saveTeacherLiveVocabEntry({
@@ -1637,9 +1694,10 @@ async function submitTeacherVocabEntry() {
       display: el.teacherVocabWordInput?.value || word,
       meaning,
       pos,
-      type
+      type,
+      replaceEntryId: getTeacherLiveEntryKey(editingEntry)
     });
-    setTeacherVocabStatus(`${savedEntry.display || savedEntry.word} 已加入老師字庫。`, "success");
+    setTeacherVocabStatus(`${savedEntry.display || savedEntry.word} 已${editingEntry ? "更新" : "加入"}老師字庫。`, "success");
     clearTeacherVocabForm();
     renderTeacherLiveVocabRecentList();
     await refreshVocabTeacherLookup({ force: true, skipCloudRefresh: true });
@@ -2039,10 +2097,15 @@ async function saveTeacherLiveVocabEntry(rawEntry = {}) {
     throw new Error("teacher-auth-required");
   }
 
+  const replaceEntryId = String(rawEntry.replaceEntryId || "").trim();
   const entry = normalizeTeacherLiveEntry(rawEntry);
   if (!entry) throw new Error("invalid-teacher-vocab-entry");
   const entryId = makeTeacherLiveEntryId(entry);
-  const existing = (state.teacherLiveVocab || []).find((item) => item.id === entryId || item.sourceEntryId === entryId) || {};
+  const existing = (state.teacherLiveVocab || []).find((item) => (
+    item.id === entryId
+    || item.sourceEntryId === entryId
+    || (replaceEntryId && (item.id === replaceEntryId || item.sourceEntryId === replaceEntryId))
+  )) || {};
   const payload = buildTeacherLiveVocabPayload({
     ...entry,
     sourceEntryId: entryId,
@@ -2056,6 +2119,15 @@ async function saveTeacherLiveVocabEntry(rawEntry = {}) {
     createdAt: existing.createdAt || serverTimestamp(),
     updatedAt: serverTimestamp()
   }, { merge: true });
+  if (replaceEntryId && replaceEntryId !== entryId) {
+    const uid = studentAuthState.profile?.uid || studentAuthState.user?.uid || "";
+    await setDoc(doc(firebase.db, "teacherVocabLive", replaceEntryId), {
+      disabled: true,
+      replacedBy: entryId,
+      updatedAt: serverTimestamp(),
+      updatedBy: uid
+    }, { merge: true });
+  }
 
   const localEntry = normalizeTeacherLiveEntry({
     ...payload,
@@ -2066,7 +2138,10 @@ async function saveTeacherLiveVocabEntry(rawEntry = {}) {
   });
   state.teacherLiveVocab = [
     localEntry,
-    ...(state.teacherLiveVocab || []).filter((item) => item.id !== entryId && item.sourceEntryId !== entryId)
+    ...(state.teacherLiveVocab || []).filter((item) => {
+      const itemId = getTeacherLiveEntryKey(item);
+      return itemId !== entryId && (!replaceEntryId || itemId !== replaceEntryId);
+    })
   ].filter(Boolean);
   saveTeacherLiveVocabEntries(state.teacherLiveVocab);
   teacherLiveVocabLastSyncAt = Date.now();
@@ -6550,6 +6625,12 @@ el.studentLogoutBtn?.addEventListener("click", logoutStudent);
 el.settingsLogoutBtn?.addEventListener("click", logoutStudent);
 el.settingsTeacherVocabBtn?.addEventListener("click", openTeacherVocabModal);
 el.teacherVocabSaveBtn?.addEventListener("click", submitTeacherVocabEntry);
+el.teacherVocabCancelBtn?.addEventListener("click", () => {
+  clearTeacherVocabForm();
+  setTeacherVocabStatus();
+  renderTeacherLiveVocabRecentList();
+  playUiSound("next");
+});
 el.teacherVocabSearchInput?.addEventListener("input", () => {
   teacherLiveVocabFilter = el.teacherVocabSearchInput?.value || "";
   renderTeacherLiveVocabRecentList();

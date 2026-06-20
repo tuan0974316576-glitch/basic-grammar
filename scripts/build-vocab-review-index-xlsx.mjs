@@ -102,6 +102,22 @@ function fileYesNo(value) {
   return value ? "YES" : "NO";
 }
 
+function getReviewKind(index = {}) {
+  const prefix = String(index.meta?.prefix || "").trim();
+  if (/^oxford_/i.test(prefix)) {
+    return {
+      label: "Oxford Vocab",
+      tableName: "OxfordVocabReviewIndex",
+      purpose: "呢份係私有總覽，幫你管理 Oxford / common vocab review Excel。唔會放入 app，唔會 commit。"
+    };
+  }
+  return {
+    label: "Teacher Vocab",
+    tableName: "TeacherVocabReviewIndex",
+    purpose: "呢份係私有總覽，幫你管理 teacher vocab review Excel。唔會放入 app，唔會 commit。"
+  };
+}
+
 function buildBatchRows(index = {}) {
   return (index.batches || []).map((batch) => {
     const entryCount = Number(batch.entryCount) || 0;
@@ -156,9 +172,10 @@ function summaryRows(index = {}) {
   ];
 }
 
-function guideRows() {
+function guideRows(index = {}) {
+  const kind = getReviewKind(index);
   return [
-    ["Purpose", "呢份係私有總覽，幫你管理 40 份 teacher vocab review Excel。唔會放入 app，唔會 commit。"],
+    ["Purpose", kind.purpose],
     ["Step 1", "由 Batches 頁開對應 XLSX，逐行清理黃色欄位。"],
     ["Step 2", "每行填 reviewed POS、reviewed meaning、promote to。錯字 / 垃圾資料就 skip。"],
     ["Step 3", "清好一份後，用 promote-plan 工具建立 plan，再 apply-plan --write。"],
@@ -190,6 +207,7 @@ function styleHeader(range) {
 }
 
 async function buildWorkbook(index = {}, options = {}) {
+  const kind = getReviewKind(index);
   const workbook = Workbook.create();
   const summary = workbook.worksheets.add("Summary");
   const batches = workbook.worksheets.add("Batches");
@@ -199,7 +217,7 @@ async function buildWorkbook(index = {}, options = {}) {
     sheet.showGridLines = false;
   });
 
-  styleTitle(summary, "A1:D1", "Teacher Vocab Review Index");
+  styleTitle(summary, "A1:D1", `${kind.label} Review Index`);
   const summaryData = summaryRows(index);
   summary.getRangeByIndexes(2, 0, summaryData.length, 2).values = summaryData;
   summary.getRangeByIndexes(2, 0, summaryData.length, 1).format = {
@@ -241,7 +259,7 @@ async function buildWorkbook(index = {}, options = {}) {
     "generated at"
   ];
   const batchRows = buildBatchRows(index);
-  styleTitle(batches, "A1:Q1", "Review Batches");
+  styleTitle(batches, "A1:Q1", `${kind.label} Review Batches`);
   batches.getRangeByIndexes(2, 0, 1, batchHeaders.length).values = [batchHeaders];
   if (batchRows.length) {
     batches.getRangeByIndexes(3, 0, batchRows.length, batchHeaders.length).values = batchRows;
@@ -259,7 +277,7 @@ async function buildWorkbook(index = {}, options = {}) {
   };
   styleHeader(batches.getRangeByIndexes(2, 0, 1, batchHeaders.length));
   if (batchRows.length) {
-    const table = batches.tables.add(`A3:Q${batchRows.length + 3}`, true, "TeacherVocabReviewIndex");
+    const table = batches.tables.add(`A3:Q${batchRows.length + 3}`, true, kind.tableName);
     table.style = "TableStyleMedium4";
     table.showFilterButton = true;
     batches.getRange(`G4:G${batchRows.length + 3}`).format.numberFormat = "0.0%";
@@ -286,7 +304,7 @@ async function buildWorkbook(index = {}, options = {}) {
   batches.freezePanes.freezeColumns(1);
 
   styleTitle(guide, "A1:B1", "How To Use");
-  const guideData = guideRows();
+  const guideData = guideRows(index);
   guide.getRangeByIndexes(2, 0, guideData.length, 2).values = guideData;
   guide.getRangeByIndexes(2, 0, guideData.length, 1).format = {
     fill: "#E6F3EA",
