@@ -15,6 +15,7 @@ if (!VOCAB_DATA) {
 
 const VOCAB_AUDIO = window.VocabAudio || null;
 const VOCAB_SENSE_BANK = window.VocabSenseBank || null;
+const CC_CEDICT_SUPPLEMENT = window.CcCedictSupplement || null;
 const TEACHER_VOCAB = window.TeacherVocab || null;
 const VOCAB_POS_INFERENCE = window.VocabPosInference || null;
 const VOCAB_EXAMPLE_UTILS = window.VocabExampleUtils || null;
@@ -213,8 +214,6 @@ const VERB_TABLE_REFERENCE_SPEAK_GAP_MS = 180;
 const VERB_TABLE_REFERENCE_MIN_ACTIVE_MS = 700;
 const VERB_TABLE_IMAGE_VERSION = "20260613-lite";
 const VOCAB_CACHE_FALLBACK_OWNER = "guest";
-const VOCAB_CLOUD_LOOKUP_DEBOUNCE_MS = 1200;
-const VOCAB_CLOUD_LOOKUP_MIN_LETTERS = 2;
 const VOCAB_EXAMPLE_LOAD_TIMEOUT_MS = 12000;
 
 let audioContext = null;
@@ -229,12 +228,8 @@ let vocabEntryLookupState = {
   word: "",
   matches: [],
   filterKey: "",
-  selectedEntryIds: [],
-  loadingCloud: false
+  selectedEntryIds: []
 };
-let vocabCloudLookupTimer = 0;
-let vocabCloudLookupToken = 0;
-const vocabCloudLookupCache = new Map();
 let expandedVocabItemId = "";
 const vocabExampleCache = getSavedVocabExamplesCache();
 const vocabExampleRequests = new Map();
@@ -756,7 +751,8 @@ function isDisplayableVocabExamplesPayload(payload = {}) {
     "login-required",
     "error",
     "ai-error",
-    "timeout"
+    "timeout",
+    "teacher-review-required"
   ].includes(payload.status));
 }
 
@@ -773,6 +769,7 @@ function stableVocabHash(value) {
 
 function getVocabExampleHints(item = {}) {
   const hints = getVocabMeaningEntries(item)
+    .filter((entry) => !isPendingTeacherReviewEntry(entry))
     .map((entry) => ({
       meaning: normalizeVocabMeaning(entry.meaning),
       pos: normalizeVocabPos(entry.pos),
@@ -782,6 +779,18 @@ function getVocabExampleHints(item = {}) {
     .filter((entry) => entry.meaning)
     .slice(0, 4);
   return VOCAB_EXAMPLE_UTILS?.normalizeHints ? VOCAB_EXAMPLE_UTILS.normalizeHints(hints) : hints;
+}
+
+function isPendingTeacherReviewEntry(entry = {}) {
+  return entry.source === "pending-teacher-review"
+    || normalizeVocabMeaning(entry.meaning) === "待老師確認";
+}
+
+function isPendingTeacherReviewVocabItem(item = {}) {
+  const entries = getVocabMeaningEntries(item);
+  if (entries.length) return entries.every(isPendingTeacherReviewEntry);
+  return item.source === "pending-teacher-review"
+    || normalizeVocabMeaning(item.meaning) === "待老師確認";
 }
 
 function getVocabExampleCacheKey(item = {}) {
@@ -2091,55 +2100,34 @@ function getCuratedVocabSenseMatches(word) {
   }));
 }
 
-function getCloudVocabMeaningCallable() {
-  const firebase = getFirebaseBundle();
-  if (!firebase?.functions || !firebase.modules?.httpsCallable || !firebase.auth?.currentUser) return null;
-  return firebase.modules.httpsCallable(firebase.functions, "lookupVocabMeaning");
+function getCcCedictSupplementMatches(word) {
+  if (!CC_CEDICT_SUPPLEMENT?.lookup) return [];
+  return CC_CEDICT_SUPPLEMENT.lookup(word, { limit: 12 }).map((entry) => ({
+    ...entry,
+    source: entry.source || "cc-cedict-supplement"
+  }));
+}
+
+function createPendingTeacherReviewMatch(word) {
+  const normalizedWord = normalizeVocabWord(word);
+  if (!normalizedWord) return null;
+  const slug = normalizedWord.replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "word";
+  return {
+    id: `pending-teacher-review-${slug}`,
+    word: normalizedWord,
+    display: normalizedWord,
+    meaning: "待老師確認",
+    pos: "",
+    type: normalizedWord.includes(" ") ? "phrase" : "word",
+    source: "pending-teacher-review",
+    sourceEntryId: `pending-teacher-review-${slug}`
+  };
 }
 
 function getCloudVocabExamplesCallable() {
   const firebase = getFirebaseBundle();
   if (!firebase?.functions || !firebase.modules?.httpsCallable || !firebase.auth?.currentUser) return null;
   return firebase.modules.httpsCallable(firebase.functions, "lookupVocabExamples");
-}
-
-function countVocabLetters(word) {
-  return (String(word || "").match(/[a-z]/gi) || []).length;
-}
-
-function canUseCloudVocabLookup(word) {
-  return Boolean(
-    getCloudVocabMeaningCallable()
-    && countVocabLetters(word) >= VOCAB_CLOUD_LOOKUP_MIN_LETTERS
-  );
-}
-
-function clearVocabCloudLookupTimer() {
-  if (vocabCloudLookupTimer) {
-    clearTimeout(vocabCloudLookupTimer);
-    vocabCloudLookupTimer = 0;
-  }
-}
-
-function normalizeCloudVocabEntries(word, data = {}) {
-  const normalizedWord = normalizeVocabWord(data.word || word);
-  const entries = Array.isArray(data.entries) ? data.entries : [];
-  return entries
-    .map((entry, index) => {
-      const pos = normalizeVocabPos(entry.pos);
-      const meaning = normalizeVocabMeaning(entry.meaning);
-      return {
-        id: entry.id || `cloud-${normalizedWord}-${index}`,
-        word: normalizedWord,
-        meaning: canonicalizeVocabMeaningForGroup(meaning, pos),
-        pos,
-        type: entry.type || (normalizedWord.includes(" ") ? "phrase" : "word"),
-        source: entry.source || data.source || "azure-dictionary",
-        sourceEntryId: entry.sourceEntryId || data.meaningId || "",
-        level: String(entry.level || "").trim().toUpperCase()
-      };
-    })
-    .filter((entry) => entry.word && entry.meaning);
 }
 
 function dedupeVocabLookupMatches(matches = []) {
@@ -2159,49 +2147,33 @@ function dedupeVocabLookupMatches(matches = []) {
 
 function buildVocabLookupMatches(word) {
   const teacherMatches = getTeacherVocabMatches(word);
-  const curatedMatches = getCuratedVocabSenseMatches(word);
   if (teacherMatches.length) {
-    const merged = [
-      ...teacherMatches.map((entry) => ({
+    return dedupeVocabLookupMatches(teacherMatches.map((entry) => ({
       ...entry,
       source: entry.source || "teacher"
-      })),
-      ...curatedMatches
-    ];
-    return dedupeVocabLookupMatches(merged).slice(0, 12);
+    }))).slice(0, 12);
   }
 
+  const curatedMatches = getCuratedVocabSenseMatches(word);
   if (curatedMatches.length) {
     return dedupeVocabLookupMatches(curatedMatches).slice(0, 12);
   }
 
-  return [];
-}
-
-async function loadCloudVocabMatches(word) {
-  if (vocabCloudLookupCache.has(word)) return vocabCloudLookupCache.get(word);
-  const callable = getCloudVocabMeaningCallable();
-  if (!callable) return [];
-  try {
-    const result = await callable({ word });
-    const matches = normalizeCloudVocabEntries(word, result?.data || {});
-    vocabCloudLookupCache.set(word, matches);
-    return matches;
-  } catch (error) {
-    console.warn("Cloud vocab lookup failed:", error);
-    return [];
+  const cedictMatches = getCcCedictSupplementMatches(word);
+  if (cedictMatches.length) {
+    return dedupeVocabLookupMatches(cedictMatches).slice(0, 12);
   }
+
+  const pendingMatch = createPendingTeacherReviewMatch(word);
+  return pendingMatch ? [pendingMatch] : [];
 }
 
 function clearVocabMeaningSuggestions() {
-  clearVocabCloudLookupTimer();
-  vocabCloudLookupToken += 1;
   vocabEntryLookupState = {
     word: "",
     matches: [],
     filterKey: "",
-    selectedEntryIds: [],
-    loadingCloud: false
+    selectedEntryIds: []
   };
   el.vocabMeaningSuggestions?.replaceChildren();
   el.vocabMeaningSuggestions?.classList.add("hidden");
@@ -2256,6 +2228,7 @@ function getVocabEntryPos(entry = {}) {
 }
 
 function getVocabEntryMetaLabel(entry = {}) {
+  if (entry.source === "pending-teacher-review") return "";
   if (entry.type === "pattern") return "pt.";
   const pos = getVocabEntryPos(entry);
   if (pos) return TEACHER_VOCAB?.formatPosLabel?.(pos) || pos;
@@ -2336,15 +2309,7 @@ function renderVocabMeaningSuggestions() {
   const matches = vocabEntryLookupState.matches || [];
   if (!matches.length) {
     el.vocabMeaningSuggestions.replaceChildren();
-    if (vocabEntryLookupState.loadingCloud) {
-      const loading = document.createElement("div");
-      loading.className = "vocab-lookup-loading";
-      loading.textContent = "查緊意思...";
-      el.vocabMeaningSuggestions.replaceChildren(loading);
-      el.vocabMeaningSuggestions.classList.remove("hidden");
-    } else {
-      el.vocabMeaningSuggestions.classList.add("hidden");
-    }
+    el.vocabMeaningSuggestions.classList.add("hidden");
     return;
   }
 
@@ -2390,10 +2355,6 @@ function renderVocabMeaningSuggestions() {
 
 async function refreshVocabTeacherLookup(options = {}) {
   const word = normalizeVocabWord(getTextEntryValue(el.vocabWordInput));
-  const forceCloud = Boolean(options.forceCloud);
-  clearVocabCloudLookupTimer();
-  vocabCloudLookupToken += 1;
-  const lookupToken = vocabCloudLookupToken;
 
   if (!word) {
     clearVocabMeaningSuggestions();
@@ -2408,67 +2369,15 @@ async function refreshVocabTeacherLookup(options = {}) {
     word,
     matches,
     filterKey: "",
-    selectedEntryIds: [],
-    loadingCloud: false
+    selectedEntryIds: []
   };
 
-  renderVocabMeaningSuggestions();
-  updateVocabEntryState();
-
-  if (matches.length) return;
-
-  const canLookupCloud = canUseCloudVocabLookup(word);
-  vocabEntryLookupState = {
-    word,
-    matches: [],
-    filterKey: "",
-    selectedEntryIds: [],
-    loadingCloud: canLookupCloud && forceCloud
-  };
-  renderVocabMeaningSuggestions();
-  updateVocabEntryState();
-
-  if (!canLookupCloud) return;
-  if (!forceCloud) {
-    vocabCloudLookupTimer = setTimeout(() => {
-      if (normalizeVocabWord(getTextEntryValue(el.vocabWordInput)) === word) {
-        void refreshVocabTeacherLookup({ force: true, forceCloud: true });
-      }
-    }, VOCAB_CLOUD_LOOKUP_DEBOUNCE_MS);
-    return;
-  }
-
-  const cloudMatches = await loadCloudVocabMatches(word);
-  if (
-    lookupToken !== vocabCloudLookupToken
-    || normalizeVocabWord(getTextEntryValue(el.vocabWordInput)) !== word
-  ) {
-    return;
-  }
-  if (!cloudMatches.length) {
-    if (vocabEntryLookupState.word === word) {
-      vocabEntryLookupState.loadingCloud = false;
-      renderVocabMeaningSuggestions();
-      updateVocabEntryState();
-    }
-    return;
-  }
-  if (vocabEntryLookupState.word !== word) {
-    return;
-  }
-  vocabEntryLookupState = {
-    word,
-    matches: cloudMatches,
-    filterKey: "",
-    selectedEntryIds: [],
-    loadingCloud: false
-  };
   renderVocabMeaningSuggestions();
   updateVocabEntryState();
 }
 
 function handleVocabWordEntryChange() {
-  void refreshVocabTeacherLookup({ force: true, forceCloud: false });
+  void refreshVocabTeacherLookup({ force: true });
   updateVocabEntryState();
 }
 
@@ -2525,6 +2434,12 @@ function createVocabDateDivider(timestamp) {
 function getVocabExamplesForItem(item = {}) {
   const word = normalizeVocabWord(item.word);
   if (!word) return null;
+  if (isPendingTeacherReviewVocabItem(item)) {
+    return normalizeVocabExamplesPayload({
+      status: "teacher-review-required",
+      examples: []
+    });
+  }
   const seedPayload = getSeedVocabExamplesForItem(item);
   if (seedPayload) return seedPayload;
   const cacheKey = getVocabExampleCacheKey(item);
@@ -2538,6 +2453,14 @@ function getVocabExamplesForItem(item = {}) {
 async function loadVocabExamplesForItem(item = {}) {
   const word = normalizeVocabWord(item.word);
   if (!word) return null;
+  if (isPendingTeacherReviewVocabItem(item)) {
+    const payload = normalizeVocabExamplesPayload({
+      status: "teacher-review-required",
+      examples: []
+    });
+    vocabExampleTransientState.set(getVocabExampleCacheKey(item), payload);
+    return payload;
+  }
   const seedPayload = getSeedVocabExamplesForItem(item);
   if (seedPayload) return seedPayload;
   const cacheKey = getVocabExampleCacheKey(item);
@@ -2601,7 +2524,8 @@ function appendVocabExamplePayload(container, payload) {
       "login-required": "登入後可以載入例句。",
       error: "暫時載入不到例句，請稍後再試。",
       "ai-error": "AI 例句暫時生成不到，請稍後再試。",
-      timeout: "例句載入比較慢，請稍後再打開。"
+      timeout: "例句載入比較慢，請稍後再打開。",
+      "teacher-review-required": "老師確認意思後，才會加入例句。"
     };
     container.textContent = messages[payload.status] || "暫時未有合適例句。";
     return;
@@ -3467,7 +3391,7 @@ function getTextEntryConfig(targetName = activeTextEntryTarget) {
       maxLength: 42,
       pattern: /^[a-zA-Z '-]$/,
       onChange: handleVocabWordEntryChange,
-      onEnter: () => refreshVocabTeacherLookup({ force: true, forceCloud: true })
+      onEnter: () => refreshVocabTeacherLookup({ force: true })
     },
     vocabAnswer: {
       field: el.vocabAnswerInput,

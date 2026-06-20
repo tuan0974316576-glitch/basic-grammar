@@ -18,6 +18,19 @@ assert.strictEqual(lookUp.length, 1);
 assert.strictEqual(lookUp[0].type, "phrase");
 assert.strictEqual(lookUp[0].meaning, "查閱 / 查字典");
 
+assert.deepStrictEqual(
+  senseBank.lookup("work").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:工作", "noun:作品", "verb:工作 / 做事", "verb:運作 / 奏效"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("egg waffle").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:雞蛋仔"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("Octopus card").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:八達通"]
+);
+
 const hawker = senseBank.lookup("hawker");
 assert.strictEqual(hawker[0].pos, "noun");
 assert.strictEqual(hawker[0].meaning, "小販");
