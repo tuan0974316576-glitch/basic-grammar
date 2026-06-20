@@ -5,7 +5,7 @@
   root.TEACHER_VOCAB_BANK = bank;
 })(typeof globalThis !== "undefined" ? globalThis : window, {
   "meta": {
-    "generatedAt": "2026-06-20T04:52:16.054Z",
+    "generatedAt": "2026-06-20T05:30:17.616Z",
     "sourceFiles": [
       {
         "name": "Randomisable Vocab Test.xlsx",
@@ -17,16 +17,16 @@
     "updateFiles": [
       {
         "name": "teacher_vocab_manual_updates.json",
-        "rawEntryCount": 723
+        "rawEntryCount": 826
       }
     ],
-    "entryCount": 8277,
-    "uniqueWordCount": 5049,
+    "entryCount": 8217,
+    "uniqueWordCount": 5042,
     "conflictCount": 3731,
     "typeCounts": {
-      "phrase": 2417,
-      "word": 5802,
-      "pattern": 58
+      "phrase": 2388,
+      "word": 5770,
+      "pattern": 59
     },
     "posInference": {
       "generatedAt": "2026-06-19T10:18:06.955Z",
@@ -6518,176 +6518,6 @@
       "sourceCount": 1
     },
     {
-      "id": "b-any-entry-1375",
-      "word": "b",
-      "display": "b",
-      "meaning": "充滿",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 33
-    },
-    {
-      "id": "b-any-entry-7210",
-      "word": "b",
-      "display": "b",
-      "meaning": "埋頭於",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "b-any-entry-0453",
-      "word": "b",
-      "display": "b",
-      "meaning": "基於",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 7
-    },
-    {
-      "id": "b-any-entry-0390",
-      "word": "b",
-      "display": "b",
-      "meaning": "對...有益",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 12
-    },
-    {
-      "id": "b-any-entry-7926",
-      "word": "b",
-      "display": "B",
-      "meaning": "巴西",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "b-any-entry-1005",
-      "word": "b",
-      "display": "b",
-      "meaning": "極熱",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 28
-    },
-    {
-      "id": "b-any-entry-2043",
-      "word": "b",
-      "display": "b",
-      "meaning": "無可否認",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 6
-    },
-    {
-      "id": "b-any-entry-0063",
-      "word": "b",
-      "display": "b",
-      "meaning": "熾熱的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 5
-    },
-    {
-      "id": "b-any-entry-2129",
-      "word": "b",
-      "display": "b",
-      "meaning": "祝福",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 17
-    },
-    {
-      "id": "b-any-n-2055",
-      "word": "b",
-      "display": "b",
-      "meaning": "祝福 (n)",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 6
-    },
-    {
-      "id": "b-any-entry-6527",
-      "word": "b",
-      "display": "b",
-      "meaning": "經濟支柱",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 5
-    },
-    {
-      "id": "b-any-entry-0393",
-      "word": "b",
-      "display": "b",
-      "meaning": "緊記",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 13
-    },
-    {
-      "id": "b-any-entry-3224",
-      "word": "b",
-      "display": "b",
-      "meaning": "繁忙的 (地)",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "b-any-entry-6080",
-      "word": "b",
-      "display": "B",
-      "meaning": "繁忙的(地方)",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 11
-    },
-    {
-      "id": "b-any-entry-0450",
-      "word": "b",
-      "display": "b",
-      "meaning": "賣座電影",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 7
-    },
-    {
-      "id": "b-any-entry-6090",
-      "word": "b",
-      "display": "b",
-      "meaning": "飲料",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 11
-    },
-    {
-      "id": "b-any-entry-6384",
-      "word": "b",
-      "display": "b",
-      "meaning": "骨幹",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
       "id": "baby-boomers-any-entry-1413",
       "word": "baby boomers",
       "display": "baby boomers",
@@ -6870,109 +6700,34 @@
       "sourceCount": 1
     },
     {
-      "id": "barely-any-entry-3819",
+      "id": "barely-adverb-entry-0690",
       "word": "barely",
       "display": "barely",
-      "meaning": "勉強",
-      "pos": "",
+      "meaning": "幾乎不 / 勉強",
+      "pos": "adverb",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 7,
-      "inferredPos": "adverb",
-      "posConfidence": 94,
-      "posReason": "english-adverb-suffix"
+      "sourceCount": 1
     },
     {
-      "id": "bargain-any-entry-4567",
+      "id": "bargain-noun-entry-0691",
       "word": "bargain",
       "display": "bargain",
-      "meaning": "便宜貨",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "bargain-noun-entry-3911",
-      "word": "bargain",
-      "display": "bargain (n)",
-      "meaning": "便宜貨",
-      "pos": "noun",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 10
-    },
-    {
-      "id": "bargain-noun-entry-2797",
-      "word": "bargain",
-      "display": "bargain (n)",
-      "meaning": "抵買",
+      "meaning": "便宜貨 / 划算的交易",
       "pos": "noun",
       "type": "word",
       "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "bargain-any-entry-5556",
+      "id": "bargain-verb-entry-0692",
       "word": "bargain",
-      "display": "bargain x2",
-      "meaning": "抵買的東西",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "bargain-noun-entry-3879",
-      "word": "bargain",
-      "display": "bargain (n.)",
-      "meaning": "抵買的東西",
-      "pos": "noun",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2
-    },
-    {
-      "id": "bargain-any-entry-5555",
-      "word": "bargain",
-      "display": "bargain x2",
-      "meaning": "講價",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "bargain-verb-entry-2793",
-      "word": "bargain",
-      "display": "bargain (v)",
+      "display": "bargain",
       "meaning": "講價",
       "pos": "verb",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 3
-    },
-    {
-      "id": "bargain-any-entry-3909",
-      "word": "bargain",
-      "display": "bargain",
-      "meaning": "講價 / 便宜貨",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
       "id": "barista-any-entry-2460",
@@ -7008,17 +6763,14 @@
       "sourceCount": 1
     },
     {
-      "id": "barrel-any-entry-6732",
+      "id": "barrel-noun-entry-0693",
       "word": "barrel",
       "display": "barrel",
-      "meaning": "油筒",
-      "pos": "",
+      "meaning": "桶 / 圓桶",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
       "id": "barren-adjective-entry-0328",
@@ -7031,30 +6783,14 @@
       "sourceCount": 1
     },
     {
-      "id": "barrier-any-entry-5443",
+      "id": "barrier-noun-entry-0694",
       "word": "barrier",
       "display": "barrier",
-      "meaning": "屏障",
-      "pos": "",
+      "meaning": "屏障 / 障礙",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "barrier-any-entry-5414",
-      "word": "barrier",
-      "display": "barrier",
-      "meaning": "障礙",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 59,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
       "id": "bartender-any-entry-1685",
@@ -7070,17 +6806,14 @@
       "posReason": "chinese-noun-meaning"
     },
     {
-      "id": "base-any-entry-8267",
+      "id": "base-noun-entry-0695",
       "word": "base",
       "display": "base",
-      "meaning": "基地",
-      "pos": "",
+      "meaning": "基地 / 基礎",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adverb",
-      "posConfidence": 92,
-      "posReason": "chinese-adverb-meaning"
+      "sourceCount": 1
     },
     {
       "id": "based-on-any-entry-0431",
@@ -7103,40 +6836,14 @@
       "sourceCount": 1
     },
     {
-      "id": "be-any-entry-7438",
+      "id": "be-verb-entry-0696",
       "word": "be",
       "display": "be",
-      "meaning": "習慣",
-      "pos": "",
+      "meaning": "是 / 成為",
+      "pos": "verb",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 8,
-      "inferredPos": "noun",
-      "posConfidence": 90,
-      "posReason": "chinese-noun-meaning"
-    },
-    {
-      "id": "be-any-entry-1374",
-      "word": "be",
-      "display": "be",
-      "meaning": "話雖如此",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 33,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "be-a-to-any-entry-7429",
-      "word": "be a to",
-      "display": "be a to",
-      "meaning": "能夠",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 8
+      "sourceCount": 1
     },
     {
       "id": "be-able-to-any-entry-7415",
@@ -7149,63 +6856,33 @@
       "sourceCount": 4
     },
     {
-      "id": "be-about-to-any-entry-8075",
+      "id": "be-about-to-any-entry-0697",
       "word": "be about to",
       "display": "be about to",
-      "meaning": "大概",
+      "meaning": "即將 / 快將",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "be-about-to-any-entry-8455",
-      "word": "be about to",
-      "display": "be about to",
-      "meaning": "快將",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 3
-    },
-    {
-      "id": "be-absorbed-in-any-entry-6932",
+      "id": "be-absorbed-in-any-entry-0698",
       "word": "be absorbed in",
       "display": "be absorbed in",
-      "meaning": "全神貫注",
+      "meaning": "全神貫注於",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
-      "sourceCount": 7
+      "sourceCount": 1
     },
     {
-      "id": "be-afflicted-with-any-entry-1153",
+      "id": "be-afflicted-with-any-entry-0699",
       "word": "be afflicted with",
       "display": "be afflicted with",
-      "meaning": "患上",
+      "meaning": "患有 / 受...折磨",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
-      "sourceCount": 5
-    },
-    {
-      "id": "be-afflicted-with-any-entry-7052",
-      "word": "be afflicted with",
-      "display": "be afflicted with",
-      "meaning": "遭受",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 2
-    },
-    {
-      "id": "be-afflicted-with-any-entry-6854",
-      "word": "be afflicted with",
-      "display": "be afflicted with",
-      "meaning": "遭受 / 患上",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": true,
       "sourceCount": 1
     },
     {
@@ -7229,16 +6906,6 @@
       "sourceCount": 2
     },
     {
-      "id": "be-b-t-any-entry-6521",
-      "word": "be b t",
-      "display": "be b t",
-      "meaning": "肯定",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 5
-    },
-    {
       "id": "be-bound-to-any-entry-3406",
       "word": "be bound to",
       "display": "be bound to",
@@ -7249,74 +6916,34 @@
       "sourceCount": 14
     },
     {
-      "id": "be-c-of-any-entry-7419",
-      "word": "be c of",
-      "display": "be c of",
-      "meaning": "能夠",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 8
-    },
-    {
-      "id": "be-capable-of-any-entry-8479",
+      "id": "be-capable-of-any-entry-0700",
       "word": "be capable of",
       "display": "be capable of",
-      "meaning": "有能力",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 2
-    },
-    {
-      "id": "be-capable-of-any-entry-7417",
-      "word": "be capable of",
-      "display": "be capable of",
-      "meaning": "能夠",
+      "meaning": "有能力 / 能夠",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "be-committed-to-ving-any-entry-3828",
+      "id": "be-committed-to-ving-any-entry-0701",
       "word": "be committed to ving",
-      "display": "be committed to VING",
-      "meaning": "承諾",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 7
-    },
-    {
-      "id": "be-connected-with-nature-any-entry-4268",
-      "word": "be connected with nature",
-      "display": "be connected with nature",
-      "meaning": "接觸大自然",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 3
-    },
-    {
-      "id": "be-connected-with-nature-any-entry-4306",
-      "word": "be connected with nature",
-      "display": "be connected with nature",
-      "meaning": "與大自然接觸",
+      "display": "be committed to V-ing",
+      "meaning": "致力於 / 承諾",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "be-connected-with-nature-any-entry-4215",
+      "id": "be-connected-with-nature-any-entry-0702",
       "word": "be connected with nature",
       "display": "be connected with nature",
-      "meaning": "親親大自然",
+      "meaning": "接觸大自然 / 與大自然接觸",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
-      "sourceCount": 2
+      "sourceCount": 1
     },
     {
       "id": "be-considered-any-entry-3761",
@@ -7349,64 +6976,34 @@
       "sourceCount": 1
     },
     {
-      "id": "be-dedicated-to-any-entry-2878",
+      "id": "be-dedicated-to-any-entry-0703",
       "word": "be dedicated to",
       "display": "be dedicated to",
-      "meaning": "致力於 用於",
+      "meaning": "致力於 / 投入",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "be-destined-to-any-entry-3419",
+      "id": "be-destined-to-any-entry-0704",
       "word": "be destined to",
       "display": "be destined to",
-      "meaning": "註定",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 3
-    },
-    {
-      "id": "be-destined-to-any-entry-3405",
-      "word": "be destined to",
-      "display": "be destined to",
-      "meaning": "註定的",
+      "meaning": "註定會",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "be-drawn-to-any-entry-5566",
+      "id": "be-drawn-to-any-entry-0705",
       "word": "be drawn to",
       "display": "be drawn to",
-      "meaning": "對...著迷",
+      "meaning": "被...吸引 / 對...著迷",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 1
-    },
-    {
-      "id": "be-drawn-to-any-entry-5536",
-      "word": "be drawn to",
-      "display": "be drawn to",
-      "meaning": "被...吸引",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "be-drawn-to-any-entry-5522",
-      "word": "be drawn to",
-      "display": "be drawn to",
-      "meaning": "被吸引",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 22
     },
     {
       "id": "be-exposed-to-any-entry-0330",
@@ -7429,34 +7026,34 @@
       "sourceCount": 1
     },
     {
-      "id": "be-inclined-to-any-entry-4783",
+      "id": "be-inclined-to-any-entry-0706",
       "word": "be inclined to",
       "display": "be inclined to",
-      "meaning": "傾向",
+      "meaning": "傾向於",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "be-ingrained-in-any-entry-7048",
+      "id": "be-ingrained-in-any-entry-0707",
       "word": "be ingrained in",
       "display": "be ingrained in",
-      "meaning": "根深柢固",
+      "meaning": "根深蒂固於",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
-      "sourceCount": 2
+      "sourceCount": 1
     },
     {
-      "id": "be-poised-to-any-entry-3333",
+      "id": "be-poised-to-any-entry-0708",
       "word": "be poised to",
       "display": "be poised to",
-      "meaning": "快將",
+      "meaning": "即將 / 準備好",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
-      "sourceCount": 3
+      "sourceCount": 1
     },
     {
       "id": "be-pp-any-entry-8347",
@@ -7469,13 +7066,16 @@
       "sourceCount": 26
     },
     {
-      "id": "be-put-down-on-any-entry-7280",
-      "word": "be put down on",
-      "display": "be put down on",
+      "id": "be-put-down-to-any-entry-0709",
+      "word": "be put down to",
+      "display": "be put down to",
       "meaning": "歸因於",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
+      "aliases": [
+        "be put down on"
+      ],
       "sourceCount": 1
     },
     {
@@ -7519,30 +7119,10 @@
       "sourceCount": 29
     },
     {
-      "id": "be-wary-of-any-entry-5738",
+      "id": "be-wary-of-any-entry-0710",
       "word": "be wary of",
       "display": "be wary of",
-      "meaning": "提防",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "be-wary-of-any-entry-6830",
-      "word": "be wary of",
-      "display": "be wary of",
-      "meaning": "提防...",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "be-wary-of-any-entry-5763",
-      "word": "be wary of",
-      "display": "be wary of",
-      "meaning": "警惕",
+      "meaning": "提防 / 警惕",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
@@ -7708,30 +7288,27 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "beaver-any-entry-4890",
+      "id": "beaver-noun-entry-0711",
       "word": "beaver",
       "display": "beaver",
       "meaning": "海狸",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "because-any-entry-2661",
+      "id": "because-conjunction-entry-0712",
       "word": "because",
       "display": "because",
-      "meaning": "因為+句子",
-      "pos": "",
+      "meaning": "因為",
+      "pos": "conjunction",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "conjunction",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
-      "id": "because-of-any-entry-0053",
+      "id": "because-of-any-entry-0713",
       "word": "because of",
       "display": "because of",
       "meaning": "因為",
@@ -7741,40 +7318,10 @@
       "sourceCount": 1
     },
     {
-      "id": "because-of-any-entry-2703",
-      "word": "because of",
-      "display": "because of",
-      "meaning": "因為+非句子",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "beef-up-any-entry-3840",
+      "id": "beef-up-any-entry-0714",
       "word": "beef up",
       "display": "beef up",
-      "meaning": "增強",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 8
-    },
-    {
-      "id": "beef-up-any-entry-3810",
-      "word": "beef up",
-      "display": "beef up",
-      "meaning": "提升",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 2
-    },
-    {
-      "id": "beef-up-any-entry-3896",
-      "word": "beef up",
-      "display": "beef up",
-      "meaning": "落後",
+      "meaning": "加強 / 增強",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
@@ -7896,17 +7443,14 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "beneficial-any-entry-4555",
+      "id": "beneficial-adjective-entry-0715",
       "word": "beneficial",
       "display": "beneficial",
-      "meaning": "有益",
-      "pos": "",
+      "meaning": "有益的",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
       "id": "beneficial-to-any-entry-0351",
@@ -7939,34 +7483,44 @@
       "sourceCount": 1
     },
     {
-      "id": "benevolent-any-entry-3560",
+      "id": "benevolent-adjective-entry-0716",
       "word": "benevolent",
       "display": "benevolent",
-      "meaning": "慈悲",
-      "pos": "",
+      "meaning": "仁慈的 / 慈善的",
+      "pos": "adjective",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "besides-any-entry-5083",
+      "id": "besides-adverb-entry-0717",
       "word": "besides",
       "display": "besides",
-      "meaning": "除了",
-      "pos": "",
+      "meaning": "此外",
+      "pos": "adverb",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "bestie-any-entry-6876",
+      "id": "besides-preposition-entry-0718",
+      "word": "besides",
+      "display": "besides",
+      "meaning": "除了...之外",
+      "pos": "preposition",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "bestie-noun-entry-0719",
       "word": "bestie",
       "display": "bestie",
-      "meaning": "至友",
-      "pos": "",
+      "meaning": "好朋友 / 閨密",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "betray-any-entry-3497",
@@ -7982,13 +7536,13 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "between-and-any-entry-8544",
+      "id": "between-and-any-entry-0720",
       "word": "between...and...",
       "display": "between...and...",
       "meaning": "在...與...之間",
       "pos": "",
-      "type": "word",
-      "needsReview": true,
+      "type": "pattern",
+      "needsReview": false,
       "sourceCount": 1
     },
     {
@@ -8041,74 +7595,34 @@
       "posReason": "chinese-adjective-meaning"
     },
     {
-      "id": "beyond-any-entry-1285",
-      "word": "beyond",
-      "display": "beyond",
-      "meaning": "不單只",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 5
-    },
-    {
-      "id": "beyond-any-entry-1217",
+      "id": "beyond-adverb-entry-0722",
       "word": "beyond",
       "display": "beyond",
       "meaning": "不單止",
-      "pos": "",
+      "pos": "adverb",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "beyond-any-entry-4850",
-      "word": "beyond",
-      "display": "beyond x2",
-      "meaning": "超出",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "beyond-any-entry-4959",
+      "id": "beyond-preposition-entry-0721",
       "word": "beyond",
       "display": "beyond",
-      "meaning": "超越",
-      "pos": "",
+      "meaning": "超出 / 超越",
+      "pos": "preposition",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
-      "id": "beyond-a-shadow-of-a-doubt-any-entry-1914",
+      "id": "beyond-a-shadow-of-a-doubt-any-entry-0723",
       "word": "beyond a shadow of a doubt",
       "display": "beyond a shadow of a doubt",
-      "meaning": "毫無疑問",
+      "meaning": "毫無疑問 / 無可置疑",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
-      "sourceCount": 6
-    },
-    {
-      "id": "beyond-a-shadow-of-a-doubt-any-entry-1929",
-      "word": "beyond a shadow of a doubt",
-      "display": "beyond a shadow of a doubt",
-      "meaning": "無可否認",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 6
-    },
-    {
-      "id": "beyond-a-shadow-of-a-doubt-any-entry-2082",
-      "word": "beyond a shadow of a doubt",
-      "display": "beyond a shadow of a doubt",
-      "meaning": "無可置疑",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 2
+      "sourceCount": 1
     },
     {
       "id": "beyond-imagination-any-entry-5561",
@@ -8154,33 +7668,33 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "biceps-any-entry-3139",
+      "id": "biceps-noun-entry-0724",
       "word": "biceps",
       "display": "biceps",
       "meaning": "二頭肌",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
-      "id": "billboard-any-entry-1318",
+      "id": "billboard-noun-entry-0725",
       "word": "billboard",
       "display": "billboard",
       "meaning": "廣告牌",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
-      "id": "binary-any-entry-7752",
+      "id": "binary-adjective-entry-0726",
       "word": "binary",
       "display": "binary",
-      "meaning": "兩位數",
-      "pos": "",
+      "meaning": "二元的 / 二進制的",
+      "pos": "adjective",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
@@ -8217,17 +7731,14 @@
       "sourceCount": 1
     },
     {
-      "id": "biodiversity-any-entry-3831",
+      "id": "biodiversity-noun-entry-0727",
       "word": "biodiversity",
       "display": "biodiversity",
       "meaning": "生物多樣性",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 9,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
+      "sourceCount": 1
     },
     {
       "id": "biography-any-entry-4991",
@@ -8299,16 +7810,6 @@
       "sourceCount": 1
     },
     {
-      "id": "bland-new-any-entry-5512",
-      "word": "bland new",
-      "display": "bland new",
-      "meaning": "全新",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 20
-    },
-    {
       "id": "bleak-adjective-entry-0339",
       "word": "bleak",
       "display": "bleak",
@@ -8339,66 +7840,34 @@
       "sourceCount": 1
     },
     {
-      "id": "blender-any-entry-2894",
+      "id": "blender-noun-entry-0775",
       "word": "blender",
       "display": "blender",
       "meaning": "攪拌機",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "blessing-any-entry-2087",
+      "id": "blessing-noun-entry-0729",
       "word": "blessing",
       "display": "blessing",
       "meaning": "祝福",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 9,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
-      "id": "blessing-any-n-1994",
-      "word": "blessing",
-      "display": "blessing",
-      "meaning": "祝福 (n)",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 4,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "blind-any-entry-8244",
+      "id": "blind-adjective-entry-0730",
       "word": "blind",
       "display": "blind",
-      "meaning": "盲",
-      "pos": "",
+      "meaning": "盲的 / 失明的",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "blind-any-entry-8223",
-      "word": "blind",
-      "display": "blind",
-      "meaning": "盲的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
+      "sourceCount": 1
     },
     {
       "id": "blindly-any-entry-5264",
@@ -8414,67 +7883,34 @@
       "posReason": "english-adverb-suffix"
     },
     {
-      "id": "blip-any-entry-6442",
+      "id": "blip-noun-entry-0731",
       "word": "blip",
       "display": "blip",
-      "meaning": "雪花-> 短暫問題",
-      "pos": "",
+      "meaning": "短暫問題 / 小波動",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 90,
-      "posReason": "chinese-noun-meaning"
+      "sourceCount": 1
     },
     {
-      "id": "blistering-hot-any-entry-0998",
+      "id": "blistering-hot-any-entry-0732",
       "word": "blistering hot",
       "display": "blistering hot",
-      "meaning": "極熱",
+      "meaning": "酷熱的 / 極熱",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "blistering-hot-any-entry-2761",
-      "word": "blistering hot",
-      "display": "blistering hot",
-      "meaning": "灼熱",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "blistering-hot-any-entry-3273",
-      "word": "blistering hot",
-      "display": "blistering hot",
-      "meaning": "熾熱的",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "blistering-hot-any-entry-6598",
-      "word": "blistering hot",
-      "display": "blistering hot",
-      "meaning": "酷熱",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 2
-    },
-    {
-      "id": "blockbuster-any-entry-0439",
+      "id": "blockbuster-noun-entry-0733",
       "word": "blockbuster",
       "display": "blockbuster",
-      "meaning": "賣座電影",
-      "pos": "",
+      "meaning": "賣座電影 / 大片",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 6
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "blockbuster-box-office-hit-any-entry-0508",
@@ -8500,53 +7936,73 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "bloom-any-entry-7397",
+      "id": "bloom-verb-entry-0734",
       "word": "bloom",
       "display": "bloom",
       "meaning": "開花",
-      "pos": "",
+      "pos": "verb",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "blossom-any-entry-2493",
+      "id": "blossom-noun-entry-0736",
+      "word": "blossom",
+      "display": "blossom",
+      "meaning": "花朵",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "blossom-verb-entry-0735",
       "word": "blossom",
       "display": "blossom",
       "meaning": "開花",
-      "pos": "",
+      "pos": "verb",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 56
-    },
-    {
-      "id": "blouse-any-entry-7789",
-      "word": "blouse",
-      "display": "blouse",
-      "meaning": "女裝上衣",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "blue-any-entry-4901",
-      "word": "blue",
-      "display": "blue",
-      "meaning": "失落",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "blur-any-entry-4792",
+      "id": "blouse-noun-entry-0737",
+      "word": "blouse",
+      "display": "blouse",
+      "meaning": "女裝上衣",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "blue-adjective-entry-0739",
+      "word": "blue",
+      "display": "blue",
+      "meaning": "憂鬱的 / 失落的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "blue-adjective-entry-0738",
+      "word": "blue",
+      "display": "blue",
+      "meaning": "藍色的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "blur-verb-entry-0740",
       "word": "blur",
       "display": "blur",
-      "meaning": "模糊",
-      "pos": "",
+      "meaning": "使模糊 / 變模糊",
+      "pos": "verb",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
@@ -8570,43 +8026,14 @@
       "sourceCount": 2
     },
     {
-      "id": "boast-any-entry-6812",
+      "id": "boast-verb-entry-0741",
       "word": "boast",
       "display": "boast",
-      "meaning": "吹噓",
-      "pos": "",
+      "meaning": "吹噓 / 擁有",
+      "pos": "verb",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "boast-any-entry-0197",
-      "word": "boast",
-      "display": "boast",
-      "meaning": "擁有",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "boast-any-entry-0224",
-      "word": "boast",
-      "display": "boast",
-      "meaning": "擁有(地方)",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
       "id": "boast-about-any-entry-1827",
@@ -8655,24 +8082,24 @@
       "posReason": "chinese-adjective-meaning"
     },
     {
-      "id": "bolster-any-entry-4731",
+      "id": "bolster-verb-entry-0742",
       "word": "bolster",
       "display": "bolster",
-      "meaning": "支撐",
-      "pos": "",
+      "meaning": "支持 / 加強",
+      "pos": "verb",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "bombard-any-entry-3085",
+      "id": "bombard-verb-entry-0743",
       "word": "bombard",
       "display": "bombard",
-      "meaning": "轟炸",
-      "pos": "",
+      "meaning": "轟炸 / 不斷提問",
+      "pos": "verb",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 5
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "boom-any-entry-4945",
@@ -8748,13 +8175,13 @@
       "sourceCount": 1
     },
     {
-      "id": "booth-any-entry-3173",
+      "id": "booth-noun-entry-0744",
       "word": "booth",
       "display": "booth",
-      "meaning": "攤位",
-      "pos": "",
+      "meaning": "攤位 / 小隔間",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
@@ -8824,30 +8251,7 @@
       "pos": "",
       "type": "pattern",
       "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "both-and-any-entry-8120",
-      "word": "both...and",
-      "display": "both...and",
-      "meaning": "兩者",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 90,
-      "posReason": "chinese-noun-meaning"
-    },
-    {
-      "id": "both-and-any-entry-8104",
-      "word": "both...and",
-      "display": "both...and",
-      "meaning": "兩者也",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
+      "sourceCount": 2
     },
     {
       "id": "bounce-any-entry-6818",
@@ -8863,13 +8267,13 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "bouncy-any-entry-6819",
+      "id": "bouncy-adjective-entry-0776",
       "word": "bouncy",
       "display": "bouncy",
-      "meaning": "精力充沛",
-      "pos": "",
+      "meaning": "有彈性的 / 彈跳的",
+      "pos": "adjective",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
@@ -8922,95 +8326,66 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "branch-any-entry-4344",
-      "word": "branch",
-      "display": "branch x2",
-      "meaning": "分店",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 6,
-      "inferredPos": "noun",
-      "posConfidence": 90,
-      "posReason": "chinese-noun-meaning"
-    },
-    {
-      "id": "branch-any-entry-6301",
+      "id": "branch-noun-entry-0745",
       "word": "branch",
       "display": "branch",
-      "meaning": "分店 / 分枝",
-      "pos": "",
+      "meaning": "分店 / 分支 / 樹枝",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 90,
-      "posReason": "chinese-noun-meaning"
-    },
-    {
-      "id": "branch-any-entry-4365",
-      "word": "branch",
-      "display": "branch x2",
-      "meaning": "分支",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "branch-any-entry-4343",
-      "word": "branch",
-      "display": "branch x2",
-      "meaning": "樹枝",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "brand-any-entry-2693",
-      "word": "brand",
-      "display": "brand",
-      "meaning": "品牌",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "bravo-any-entry-4878",
-      "word": "bravo",
-      "display": "bravo",
-      "meaning": "好極了",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
       "sourceCount": 1
     },
     {
-      "id": "brazil-any-entry-7897",
+      "id": "brand-noun-entry-0746",
+      "word": "brand",
+      "display": "brand",
+      "meaning": "品牌",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "brand-new-any-entry-0728",
+      "word": "brand new",
+      "display": "brand new",
+      "meaning": "全新的",
+      "pos": "",
+      "type": "phrase",
+      "needsReview": false,
+      "aliases": [
+        "bland new"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "bravo-exclamation-entry-0747",
+      "word": "bravo",
+      "display": "bravo",
+      "meaning": "好極了",
+      "pos": "exclamation",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "brazil-noun-entry-0748",
       "word": "brazil",
       "display": "Brazil",
       "meaning": "巴西",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
-      "id": "breach-any-entry-7325",
+      "id": "breach-verb-entry-0749",
       "word": "breach",
       "display": "breach",
-      "meaning": "違反",
-      "pos": "",
+      "meaning": "違反 / 破壞",
+      "pos": "verb",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
@@ -9024,14 +8399,14 @@
       "sourceCount": 2
     },
     {
-      "id": "breadwinner-any-entry-4339",
+      "id": "breadwinner-noun-entry-0750",
       "word": "breadwinner",
       "display": "breadwinner",
-      "meaning": "經濟支柱",
-      "pos": "",
+      "meaning": "養家的人 / 經濟支柱",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "break-noun-entry-0158",
@@ -9064,23 +8439,16 @@
       "sourceCount": 8
     },
     {
-      "id": "break-your-bank-any-entry-4420",
-      "word": "break your bank",
-      "display": "break your bank",
-      "meaning": "要好多錢 / 好貴",
+      "id": "break-the-bank-any-entry-0751",
+      "word": "break the bank",
+      "display": "break the bank",
+      "meaning": "花很多錢 / 很貴",
       "pos": "",
       "type": "phrase",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "breakthough-any-entry-4739",
-      "word": "breakthough",
-      "display": "breakthough",
-      "meaning": "突破",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
+      "needsReview": false,
+      "aliases": [
+        "break your bank"
+      ],
       "sourceCount": 1
     },
     {
@@ -9091,7 +8459,10 @@
       "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1
+      "aliases": [
+        "breakthough"
+      ],
+      "sourceCount": 2
     },
     {
       "id": "breast-any-entry-7745",
@@ -9127,14 +8498,24 @@
       "sourceCount": 1
     },
     {
-      "id": "breed-any-entry-5791",
+      "id": "breed-noun-entry-0752",
       "word": "breed",
       "display": "breed",
       "meaning": "品種",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "breed-verb-entry-0753",
+      "word": "breed",
+      "display": "breed",
+      "meaning": "繁殖",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "breeding-ground-any-entry-6863",
@@ -9147,23 +8528,23 @@
       "sourceCount": 4
     },
     {
-      "id": "breeds-any-entry-5720",
+      "id": "breeds-noun-entry-0754",
       "word": "breeds",
       "display": "breeds",
       "meaning": "品種",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
-      "id": "breeze-any-entry-2861",
+      "id": "breeze-noun-entry-0755",
       "word": "breeze",
       "display": "breeze",
       "meaning": "微風",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
@@ -9177,40 +8558,20 @@
       "sourceCount": 1
     },
     {
-      "id": "bribery-any-entry-3649",
+      "id": "bribery-noun-entry-0756",
       "word": "bribery",
       "display": "bribery",
-      "meaning": "行賄",
-      "pos": "",
+      "meaning": "行賄 / 賄賂",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "brick-and-mortar-any-entry-1505",
-      "word": "brick-and mortar",
-      "display": "brick-and mortar",
-      "meaning": "實體店",
-      "pos": "",
-      "type": "phrase",
       "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "brick-and-mortar-any-entry-6125",
+      "id": "brick-and-mortar-any-entry-0757",
       "word": "brick-and-mortar",
       "display": "brick-and-mortar",
-      "meaning": "實體",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 2
-    },
-    {
-      "id": "brick-and-mortar-any-entry-6196",
-      "word": "brick-and-mortar",
-      "display": "brick-and-mortar",
-      "meaning": "實體店",
+      "meaning": "實體店的 / 實體的",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
@@ -9241,6 +8602,16 @@
       "word": "bricks and mortar",
       "display": "bricks and mortar",
       "meaning": "實體店",
+      "pos": "",
+      "type": "phrase",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "brim-with-any-entry-0758",
+      "word": "brim with",
+      "display": "brim with",
+      "meaning": "充滿",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
@@ -9290,34 +8661,44 @@
       "sourceCount": 2
     },
     {
-      "id": "brisk-any-entry-3704",
+      "id": "brisk-adjective-entry-0759",
       "word": "brisk",
       "display": "brisk",
-      "meaning": "輕快",
-      "pos": "",
+      "meaning": "輕快的 / 清爽的",
+      "pos": "adjective",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
-      "id": "broadcast-any-entry-6919",
+      "id": "broadcast-verb-entry-0760",
       "word": "broadcast",
       "display": "broadcast",
-      "meaning": "廣播",
-      "pos": "",
+      "meaning": "廣播 / 播放",
+      "pos": "verb",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
-      "id": "brochure-any-entry-4260",
-      "word": "brochure",
-      "display": "Brochure",
-      "meaning": "傳單",
-      "pos": "",
+      "id": "broadcast-noun-entry-0761",
+      "word": "broadcast",
+      "display": "broadcast",
+      "meaning": "廣播節目",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "brochure-noun-entry-0762",
+      "word": "brochure",
+      "display": "brochure",
+      "meaning": "小冊子 / 宣傳冊",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "broken-line-chart-any-entry-0134",
@@ -9330,37 +8711,44 @@
       "sourceCount": 8
     },
     {
-      "id": "bronze-any-entry-4507",
+      "id": "bronze-adjective-entry-0764",
       "word": "bronze",
       "display": "bronze",
-      "meaning": "黃銅",
-      "pos": "",
+      "meaning": "銅色的",
+      "pos": "adjective",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "browse-any-entry-5333",
+      "id": "bronze-noun-entry-0763",
+      "word": "bronze",
+      "display": "bronze",
+      "meaning": "青銅",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "browse-verb-entry-0765",
       "word": "browse",
       "display": "browse",
       "meaning": "瀏覽",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 6
-    },
-    {
-      "id": "brutal-any-entry-2803",
-      "word": "brutal",
-      "display": "brutal",
-      "meaning": "殘暴",
-      "pos": "",
+      "pos": "verb",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 4,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
+    },
+    {
+      "id": "brutal-adjective-entry-0766",
+      "word": "brutal",
+      "display": "brutal",
+      "meaning": "殘暴的 / 殘酷的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "bubble-tea-any-entry-8439",
@@ -9373,14 +8761,14 @@
       "sourceCount": 1
     },
     {
-      "id": "bucket-list-any-entry-8620",
+      "id": "bucket-list-any-entry-0767",
       "word": "bucket list",
       "display": "bucket list",
-      "meaning": "死前清單",
+      "meaning": "死前願望清單",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
-      "sourceCount": 2
+      "sourceCount": 1
     },
     {
       "id": "buddhist-noun-entry-0016",
@@ -9400,30 +8788,17 @@
       "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1
+      "sourceCount": 2
     },
     {
-      "id": "budding-aspiring-any-a-budding-director-6240",
-      "word": "budding / aspiring",
-      "display": "budding / aspiring",
-      "meaning": "新晉的 a budding director",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "buddy-any-entry-4880",
+      "id": "buddy-noun-entry-0768",
       "word": "buddy",
       "display": "buddy",
-      "meaning": "夥計",
-      "pos": "",
+      "meaning": "朋友 / 夥伴",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
       "id": "budget-any-entry-3919",
@@ -9449,23 +8824,23 @@
       "sourceCount": 1
     },
     {
-      "id": "buffet-any-entry-8529",
+      "id": "buffet-noun-entry-0769",
       "word": "buffet",
       "display": "buffet",
       "meaning": "自助餐",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "bulky-any-entry-4741",
+      "id": "bulky-adjective-entry-0770",
       "word": "bulky",
       "display": "bulky",
-      "meaning": "大舊",
-      "pos": "",
+      "meaning": "笨重的 / 大件的",
+      "pos": "adjective",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
@@ -9489,13 +8864,13 @@
       "sourceCount": 1
     },
     {
-      "id": "bureau-any-entry-5685",
+      "id": "bureau-noun-entry-0771",
       "word": "bureau",
       "display": "bureau",
-      "meaning": "局",
-      "pos": "",
+      "meaning": "局 / 辦事處",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
@@ -9552,14 +8927,14 @@
       "sourceCount": 1
     },
     {
-      "id": "burrito-any-entry-7880",
+      "id": "burrito-noun-entry-0772",
       "word": "burrito",
       "display": "burrito",
       "meaning": "墨西哥卷",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 55
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "bury-any-entry-7713",
@@ -9628,13 +9003,13 @@
       "sourceCount": 1
     },
     {
-      "id": "by-any-entry-2506",
+      "id": "by-preposition-entry-0777",
       "word": "by",
       "display": "by",
-      "meaning": "透過",
-      "pos": "",
+      "meaning": "由 / 被 / 靠近",
+      "pos": "preposition",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
@@ -9668,30 +9043,10 @@
       "sourceCount": 1
     },
     {
-      "id": "by-far-any-entry-5525",
+      "id": "by-far-any-entry-0773",
       "word": "by far",
       "display": "by far",
-      "meaning": "到目到為止",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 20
-    },
-    {
-      "id": "by-far-any-entry-7103",
-      "word": "by far",
-      "display": "by far",
-      "meaning": "到目前為止",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "by-far-any-entry-7084",
-      "word": "by far",
-      "display": "by far",
-      "meaning": "目前為止",
+      "meaning": "到目前為止 / 遠遠地",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
@@ -9708,40 +9063,10 @@
       "sourceCount": 1
     },
     {
-      "id": "by-leaps-and-bounds-any-entry-4346",
+      "id": "by-leaps-and-bounds-any-entry-0774",
       "word": "by leaps and bounds",
       "display": "by leaps and bounds",
-      "meaning": "快速",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 2
-    },
-    {
-      "id": "by-leaps-and-bounds-any-entry-4370",
-      "word": "by leaps and bounds",
-      "display": "by leaps and bounds",
-      "meaning": "快速地",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "by-leaps-and-bounds-any-entry-6766",
-      "word": "by leaps and bounds",
-      "display": "by leaps and bounds",
-      "meaning": "快速地(發展)",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "by-leaps-and-bounds-any-entry-3584",
-      "word": "by leaps and bounds",
-      "display": "by leaps and bounds",
-      "meaning": "突飛猛進",
+      "meaning": "突飛猛進 / 快速地",
       "pos": "",
       "type": "phrase",
       "needsReview": false,

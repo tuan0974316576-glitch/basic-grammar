@@ -216,7 +216,102 @@ function assertIncludes(word, expected) {
   ["at stake", "ph. 危在旦夕 / 有風險"],
   ["authority", "n. 權威 / 當局 / 權力"],
   ["authentic", "adj. 真正的 / 正宗的"],
-  ["axe", "v. 裁員 / 解僱"]
+  ["axe", "v. 裁員 / 解僱"],
+  ["barely", "adv. 幾乎不 / 勉強"],
+  ["bargain", "n. 便宜貨 / 划算的交易"],
+  ["bargain", "v. 講價"],
+  ["barrel", "n. 桶 / 圓桶"],
+  ["barrier", "n. 屏障 / 障礙"],
+  ["base", "n. 基地 / 基礎"],
+  ["be", "v. 是 / 成為"],
+  ["be about to", "ph. 即將 / 快將"],
+  ["be absorbed in", "ph. 全神貫注於"],
+  ["be afflicted with", "ph. 患有 / 受...折磨"],
+  ["be capable of", "ph. 有能力 / 能夠"],
+  ["be committed to ving", "ph. 致力於 / 承諾"],
+  ["be connected with nature", "ph. 接觸大自然 / 與大自然接觸"],
+  ["be dedicated to", "ph. 致力於 / 投入"],
+  ["be destined to", "ph. 註定會"],
+  ["be drawn to", "ph. 被...吸引 / 對...著迷"],
+  ["be inclined to", "ph. 傾向於"],
+  ["be ingrained in", "ph. 根深蒂固於"],
+  ["be poised to", "ph. 即將 / 準備好"],
+  ["be put down to", "ph. 歸因於"],
+  ["be put down on", "ph. 歸因於"],
+  ["be wary of", "ph. 提防 / 警惕"],
+  ["beaver", "n. 海狸"],
+  ["because", "conj. 因為"],
+  ["because of", "ph. 因為"],
+  ["beef up", "ph. 加強 / 增強"],
+  ["beneficial", "adj. 有益的"],
+  ["benevolent", "adj. 仁慈的 / 慈善的"],
+  ["besides", "adv. 此外"],
+  ["besides", "prep. 除了...之外"],
+  ["bestie", "n. 好朋友 / 閨密"],
+  ["between...and...", "pt. 在...與...之間"],
+  ["beyond", "prep. 超出 / 超越"],
+  ["beyond", "adv. 不單止"],
+  ["beyond a shadow of a doubt", "ph. 毫無疑問 / 無可置疑"],
+  ["biceps", "n. 二頭肌"],
+  ["billboard", "n. 廣告牌"],
+  ["binary", "adj. 二元的 / 二進制的"],
+  ["biodiversity", "n. 生物多樣性"],
+  ["brand new", "ph. 全新的"],
+  ["bland new", "ph. 全新的"],
+  ["blessing", "n. 祝福"],
+  ["blind", "adj. 盲的 / 失明的"],
+  ["blip", "n. 短暫問題 / 小波動"],
+  ["blistering hot", "ph. 酷熱的 / 極熱"],
+  ["blockbuster", "n. 賣座電影 / 大片"],
+  ["bloom", "v. 開花"],
+  ["blossom", "v. 開花"],
+  ["blossom", "n. 花朵"],
+  ["blouse", "n. 女裝上衣"],
+  ["blue", "adj. 藍色的"],
+  ["blue", "adj. 憂鬱的 / 失落的"],
+  ["blur", "v. 使模糊 / 變模糊"],
+  ["boast", "v. 吹噓 / 擁有"],
+  ["bolster", "v. 支持 / 加強"],
+  ["bombard", "v. 轟炸 / 不斷提問"],
+  ["booth", "n. 攤位 / 小隔間"],
+  ["both...and", "pt. 兩者都"],
+  ["branch", "n. 分店 / 分支 / 樹枝"],
+  ["brand", "n. 品牌"],
+  ["bravo", "exclam. 好極了"],
+  ["Brazil", "n. 巴西"],
+  ["breach", "v. 違反 / 破壞"],
+  ["breadwinner", "n. 養家的人 / 經濟支柱"],
+  ["break the bank", "ph. 花很多錢 / 很貴"],
+  ["break your bank", "ph. 花很多錢 / 很貴"],
+  ["breakthrough", "n. 突破"],
+  ["breakthough", "n. 突破"],
+  ["breed", "n. 品種"],
+  ["breed", "v. 繁殖"],
+  ["breeds", "n. 品種"],
+  ["breeze", "n. 微風"],
+  ["bribery", "n. 行賄 / 賄賂"],
+  ["brick-and-mortar", "ph. 實體店的 / 實體的"],
+  ["brim with", "ph. 充滿"],
+  ["brisk", "adj. 輕快的 / 清爽的"],
+  ["broadcast", "v. 廣播 / 播放"],
+  ["broadcast", "n. 廣播節目"],
+  ["brochure", "n. 小冊子 / 宣傳冊"],
+  ["bronze", "n. 青銅"],
+  ["bronze", "adj. 銅色的"],
+  ["browse", "v. 瀏覽"],
+  ["brutal", "adj. 殘暴的 / 殘酷的"],
+  ["bucket list", "ph. 死前願望清單"],
+  ["budding", "adj. 新晉的 / 發展中的"],
+  ["buddy", "n. 朋友 / 夥伴"],
+  ["buffet", "n. 自助餐"],
+  ["bulky", "adj. 笨重的 / 大件的"],
+  ["bureau", "n. 局 / 辦事處"],
+  ["burrito", "n. 墨西哥卷"],
+  ["blender", "n. 攪拌機"],
+  ["bouncy", "adj. 有彈性的 / 彈跳的"],
+  ["by", "prep. 由 / 被 / 靠近"],
+  ["by far", "ph. 到目前為止 / 遠遠地"],
+  ["by leaps and bounds", "ph. 突飛猛進 / 快速地"]
 ].forEach(([word, expected]) => assertIncludes(word, expected));
 
 assert.ok(
@@ -315,5 +410,39 @@ assert.ok(
   !labels("axe").some((label) => label.includes("解雇")),
   "axe should use Traditional Chinese 解僱"
 );
+assert.deepStrictEqual(labels("b"), [], "b should not be exposed as a vocabulary word");
+assert.deepStrictEqual(labels("be a to"), [], "broken abbreviation be a to should not be exposed");
+assert.deepStrictEqual(labels("be b t"), [], "broken abbreviation be b t should not be exposed");
+assert.deepStrictEqual(labels("be c of"), [], "broken abbreviation be c of should not be exposed");
+assert.deepStrictEqual(labels("be put down on").filter((label) => !label.includes("歸因於")), [], "be put down on should only resolve to the corrected phrase");
+assert.ok(
+  !labels("bargain").some((label) => label === "n. 講價"),
+  "bargain should not show verb meanings as noun-only choices"
+);
+assert.ok(
+  !labels("be").some((label) => label.includes("習慣") || label.includes("話雖如此")),
+  "be should not inherit phrase meanings from broken rows"
+);
+assert.ok(
+  !labels("base").some((label) => label.startsWith("adv.")),
+  "base should not be shown as an adverb"
+);
+assert.ok(
+  !labels("beef up").some((label) => label.includes("落後")),
+  "beef up should not show the opposite meaning"
+);
+assert.ok(
+  !labels("biodiversity").some((label) => label.startsWith("adj.")),
+  "biodiversity should be a noun"
+);
+assert.ok(
+  !labels("blip").some((label) => label.includes("雪花")),
+  "blip should not include noisy arrow notes"
+);
+assert.ok(
+  !labels("by far").some((label) => label.includes("到目到")),
+  "by far should not show typo meanings"
+);
+assert.deepStrictEqual(labels("budding / aspiring"), [], "combined example fragment should not be exposed");
 
 console.log("teacher_vocab_bank_quality tests passed");
