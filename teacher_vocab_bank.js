@@ -5,7 +5,7 @@
   root.TEACHER_VOCAB_BANK = bank;
 })(typeof globalThis !== "undefined" ? globalThis : window, {
   "meta": {
-    "generatedAt": "2026-06-20T05:30:17.616Z",
+    "generatedAt": "2026-06-20T06:40:02.177Z",
     "sourceFiles": [
       {
         "name": "Randomisable Vocab Test.xlsx",
@@ -17,15 +17,15 @@
     "updateFiles": [
       {
         "name": "teacher_vocab_manual_updates.json",
-        "rawEntryCount": 826
+        "rawEntryCount": 1057
       }
     ],
-    "entryCount": 8217,
-    "uniqueWordCount": 5042,
+    "entryCount": 7988,
+    "uniqueWordCount": 5023,
     "conflictCount": 3731,
     "typeCounts": {
-      "phrase": 2388,
-      "word": 5770,
+      "phrase": 2350,
+      "word": 5579,
       "pattern": 59
     },
     "posInference": {
@@ -9093,767 +9093,24 @@
       "sourceCount": 8
     },
     {
-      "id": "c-any-entry-7234",
-      "word": "c",
-      "display": "c",
-      "meaning": "主機遊戲",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "c-any-entry-0064",
-      "word": "c",
-      "display": "c",
-      "meaning": "令 (-)",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "c-any-entry-6064",
-      "word": "c",
-      "display": "C",
-      "meaning": "休黑",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 11
-    },
-    {
-      "id": "c-any-entry-6993",
-      "word": "c",
-      "display": "c",
-      "meaning": "伴隨著",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "c-any-entry-2038",
-      "word": "c",
-      "display": "c",
-      "meaning": "元兇",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 22
-    },
-    {
-      "id": "c-any-entry-3238",
-      "word": "c",
-      "display": "c",
-      "meaning": "充沛的 / 大量的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "c-any-entry-6371",
-      "word": "c",
-      "display": "c",
-      "meaning": "全面的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "c-any-entry-6408",
-      "word": "c",
-      "display": "c",
-      "meaning": "共同努力",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "c-any-entry-1648",
-      "word": "c",
-      "display": "c",
-      "meaning": "利用",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 8
-    },
-    {
-      "id": "c-any-entry-2262",
-      "word": "c",
-      "display": "c",
-      "meaning": "創意",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "c-any-entry-1635",
-      "word": "c",
-      "display": "c",
-      "meaning": "創造 (名詞)",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 8
-    },
-    {
-      "id": "c-any-entry-7216",
-      "word": "c",
-      "display": "c",
-      "meaning": "創造名詞",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "c-any-entry-0831",
-      "word": "c",
-      "display": "c",
-      "meaning": "劃時代的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "c-any-entry-7944",
-      "word": "c",
-      "display": "C",
-      "meaning": "加拿大",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "c-any-entry-0496",
-      "word": "c",
-      "display": "c",
-      "meaning": "勇敢的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 5
-    },
-    {
-      "id": "c-any-entry-2135",
-      "word": "c",
-      "display": "c",
-      "meaning": "原因 (-)",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 16
-    },
-    {
-      "id": "c-any-entry-6410",
-      "word": "c",
-      "display": "c",
-      "meaning": "合作",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "c-any-entry-6086",
-      "word": "c",
-      "display": "c",
-      "meaning": "同事",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 11
-    },
-    {
-      "id": "c-any-entry-2223",
-      "word": "c",
-      "display": "c",
-      "meaning": "吸引人的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "c-any-entry-2045",
-      "word": "c",
-      "display": "c",
-      "meaning": "咀咒",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 6
-    },
-    {
-      "id": "c-any-entry-6083",
-      "word": "c",
-      "display": "C",
-      "meaning": "噎住",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 11
-    },
-    {
-      "id": "c-any-entry-1339",
-      "word": "c",
-      "display": "c",
-      "meaning": "因為+句子",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 33
-    },
-    {
-      "id": "c-any-entry-7219",
-      "word": "c",
-      "display": "c",
-      "meaning": "因素",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "c-any-entry-7959",
-      "word": "c",
-      "display": "c",
-      "meaning": "國家",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "c-any-entry-7421",
-      "word": "c",
-      "display": "c",
-      "meaning": "培養",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 8
-    },
-    {
-      "id": "c-any-entry-0397",
-      "word": "c",
-      "display": "c",
-      "meaning": "大企業",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 18
-    },
-    {
-      "id": "c-any-entry-1650",
-      "word": "c",
-      "display": "c",
-      "meaning": "好可能",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 8
-    },
-    {
-      "id": "c-any-entry-2060",
-      "word": "c",
-      "display": "c",
-      "meaning": "好可能...",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "c-any-entry-1124",
-      "word": "c",
-      "display": "c",
-      "meaning": "實施",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "c-any-entry-2009",
-      "word": "c",
-      "display": "c",
-      "meaning": "對應物 / 人",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 6
-    },
-    {
-      "id": "c-any-entry-2141",
-      "word": "c",
-      "display": "c",
-      "meaning": "對抗",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 16
-    },
-    {
-      "id": "c-any-entry-0375",
-      "word": "c",
-      "display": "c",
-      "meaning": "對話",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 14
-    },
-    {
-      "id": "c-any-entry-0071",
-      "word": "c",
-      "display": "c",
-      "meaning": "導致 (中性)",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "c-any-entry-6502",
-      "word": "c",
-      "display": "c",
-      "meaning": "強制",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 5
-    },
-    {
-      "id": "c-any-entry-0399",
-      "word": "c",
-      "display": "c",
-      "meaning": "後果",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 22
-    },
-    {
-      "id": "c-any-entry-0731",
-      "word": "c",
-      "display": "c",
-      "meaning": "想出",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "c-any-entry-0418",
-      "word": "c",
-      "display": "c",
-      "meaning": "慢性病",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 26
-    },
-    {
-      "id": "c-any-entry-7228",
-      "word": "c",
-      "display": "c",
-      "meaning": "應付",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "c-any-entry-5800",
-      "word": "c",
-      "display": "c",
-      "meaning": "承諾",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "c-any-entry-1109",
-      "word": "c",
-      "display": "c",
-      "meaning": "抑制",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "c-any-entry-5089",
-      "word": "c",
-      "display": "c",
-      "meaning": "投訴",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "c-any-entry-2220",
-      "word": "c",
-      "display": "c",
-      "meaning": "持續地",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "c-any-entry-1030",
-      "word": "c",
-      "display": "c",
-      "meaning": "挑戰",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 14
-    },
-    {
-      "id": "c-any-entry-1120",
-      "word": "c",
-      "display": "c",
-      "meaning": "收費",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "c-any-entry-7008",
-      "word": "c",
-      "display": "c",
-      "meaning": "會議",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "c-any-entry-6494",
-      "word": "c",
-      "display": "c",
-      "meaning": "有吸引力的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 10
-    },
-    {
-      "id": "c-any-entry-1647",
-      "word": "c",
-      "display": "c",
-      "meaning": "某些",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 10
-    },
-    {
-      "id": "c-any-entry-1027",
-      "word": "c",
-      "display": "c",
-      "meaning": "氣候改變",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 14
-    },
-    {
-      "id": "c-any-entry-6405",
-      "word": "c",
-      "display": "c",
-      "meaning": "深思",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "c-any-entry-0368",
-      "word": "c",
-      "display": "c",
-      "meaning": "渴望",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 53
-    },
-    {
-      "id": "c-any-entry-7435",
-      "word": "c",
-      "display": "c",
-      "meaning": "渴求",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 8
-    },
-    {
-      "id": "c-any-entry-2229",
-      "word": "c",
-      "display": "c",
-      "meaning": "溝通",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "c-any-entry-5803",
-      "word": "c",
-      "display": "c",
-      "meaning": "犯案",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "c-any-entry-5801",
-      "word": "c",
-      "display": "c",
-      "meaning": "犯錯",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "c-any-entry-0077",
-      "word": "c",
-      "display": "c",
-      "meaning": "生物",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "c-any-entry-6376",
-      "word": "c",
-      "display": "c",
-      "meaning": "產品目錄",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "c-any-entry-0403",
-      "word": "c",
-      "display": "c",
-      "meaning": "考慮 / 視為",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 20
-    },
-    {
-      "id": "c-any-entry-5804",
-      "word": "c",
-      "display": "c",
-      "meaning": "自殺",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "c-any-entry-7882",
-      "word": "c",
-      "display": "c",
-      "meaning": "著名的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "c-any-entry-6066",
-      "word": "c",
-      "display": "c",
-      "meaning": "複雜的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 11
-    },
-    {
-      "id": "c-any-entry-6969",
-      "word": "c",
-      "display": "c",
-      "meaning": "貢獻",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "c-any-entry-2019",
-      "word": "c",
-      "display": "c",
-      "meaning": "迎合",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 7
-    },
-    {
-      "id": "c-any-entry-0829",
-      "word": "c",
-      "display": "c",
-      "meaning": "迷人的",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 6
-    },
-    {
-      "id": "c-any-entry-2228",
-      "word": "c",
-      "display": "c",
-      "meaning": "進行",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 7
-    },
-    {
-      "id": "c-any-entry-6980",
-      "word": "c",
-      "display": "c",
-      "meaning": "達到期望",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "c-any-entry-1634",
-      "word": "c",
-      "display": "c",
-      "meaning": "選項",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 8
-    },
-    {
-      "id": "c-any-entry-6504",
-      "word": "c",
-      "display": "c",
-      "meaning": "重要",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 7
-    },
-    {
-      "id": "c-any-entry-6401",
-      "word": "c",
-      "display": "c",
-      "meaning": "限制",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "c-a-any-adj-2240",
-      "word": "c a",
-      "display": "c a",
-      "meaning": "擔憂 (adj)",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "c-b-any-entry-6493",
-      "word": "c b",
-      "display": "c b",
-      "meaning": "主要因為",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 5
-    },
-    {
-      "id": "c-d-any-entry-2263",
-      "word": "c d",
-      "display": "c d",
-      "meaning": "認知障礙",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "c-t-any-entry-2254",
-      "word": "c t",
-      "display": "c t",
-      "meaning": "對...有利",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "c-w-any-entry-2241",
-      "word": "c w",
-      "display": "c w",
-      "meaning": "合作(達到共同目標)",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "ca-any-entry-0491",
-      "word": "ca",
-      "display": "ca",
-      "meaning": "不可能的事",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "cabbage-any-entry-8610",
+      "id": "cabbage-noun-entry-0778",
       "word": "cabbage",
       "display": "cabbage",
-      "meaning": "椰菜",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "cabin-any-entry-2376",
-      "word": "cabin",
-      "display": "cabin",
-      "meaning": "倉",
-      "pos": "",
+      "meaning": "椰菜 / 捲心菜",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
+    },
+    {
+      "id": "cabin-noun-entry-0779",
+      "word": "cabin",
+      "display": "cabin",
+      "meaning": "機艙 / 船艙 / 小屋",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "cabinet-any-entry-6306",
@@ -9882,14 +9139,14 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "cactus-any-entry-5844",
+      "id": "cactus-noun-entry-0780",
       "word": "cactus",
       "display": "cactus",
       "meaning": "仙人掌",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "call-for-any-entry-1494",
@@ -9902,17 +9159,7 @@
       "sourceCount": 11
     },
     {
-      "id": "call-into-question-any-entry-7347",
-      "word": "call into question",
-      "display": "call into question",
-      "meaning": "帶出問題",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "call-into-question-any-entry-7374",
+      "id": "call-into-question-any-entry-0781",
       "word": "call into question",
       "display": "call into question",
       "meaning": "質疑",
@@ -9922,23 +9169,23 @@
       "sourceCount": 1
     },
     {
-      "id": "called-any-entry-2686",
+      "id": "called-verb-entry-0782",
       "word": "called",
       "display": "called",
-      "meaning": "被稱為",
-      "pos": "",
+      "meaning": "叫做 / 稱為",
+      "pos": "verb",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "camel-any-entry-4934",
+      "id": "camel-noun-entry-0783",
       "word": "camel",
       "display": "camel",
       "meaning": "駱駝",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
@@ -9995,104 +9242,27 @@
       "sourceCount": 1
     },
     {
-      "id": "can-b-any-entry-2154",
-      "word": "can b",
-      "display": "can b",
-      "meaning": "可以歸因於",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 16
-    },
-    {
-      "id": "can-be-any-entry-7252",
-      "word": "can be",
-      "display": "Can be",
-      "meaning": "可被歸因於",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 3
-    },
-    {
-      "id": "can-be-as-any-entry-2044",
-      "word": "can be as",
-      "display": "can be as",
-      "meaning": "可被歸因於",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 2
-    },
-    {
-      "id": "can-be-ascribed-to-any-entry-1951",
+      "id": "can-be-ascribed-to-any-entry-0784",
       "word": "can be ascribed to",
       "display": "can be ascribed to",
-      "meaning": "可以歸因於",
+      "meaning": "可歸因於",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
-      "sourceCount": 5
+      "aliases": [
+        "can be ascribed to / can be attributed to"
+      ],
+      "sourceCount": 1
     },
     {
-      "id": "can-be-ascribed-to-any-entry-1972",
-      "word": "can be ascribed to",
-      "display": "can be ascribed to",
-      "meaning": "可被歸因於",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 5
-    },
-    {
-      "id": "can-be-ascribed-to-any-can-be-attributed-to-1985",
-      "word": "can be ascribed to",
-      "display": "can be ascribed to",
-      "meaning": "可被歸因於 can be attributed to",
+      "id": "can-be-attributed-to-any-entry-0785",
+      "word": "can be attributed to",
+      "display": "can be attributed to",
+      "meaning": "可歸因於",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 1
-    },
-    {
-      "id": "can-be-ascribed-to-can-be-attributed-to-any-entry-2086",
-      "word": "can be ascribed to / can be attributed to",
-      "display": "can be ascribed to / can be attributed to",
-      "meaning": "可被歸因於",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 2
-    },
-    {
-      "id": "can-be-attributed-to-any-entry-5350",
-      "word": "can be attributed to",
-      "display": "can be attributed to",
-      "meaning": "可以歸因於",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 3
-    },
-    {
-      "id": "can-be-attributed-to-any-entry-5344",
-      "word": "can be attributed to",
-      "display": "can be attributed to",
-      "meaning": "可被歸因於",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 2
-    },
-    {
-      "id": "can-be-attributed-to-any-entry-5324",
-      "word": "can be attributed to",
-      "display": "can be attributed to",
-      "meaning": "歸因於",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 7
     },
     {
       "id": "can-hardly-any-entry-5892",
@@ -10135,50 +9305,34 @@
       "sourceCount": 3
     },
     {
-      "id": "canada-any-entry-7912",
+      "id": "canada-noun-entry-0786",
       "word": "canada",
       "display": "Canada",
       "meaning": "加拿大",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "canal-any-entry-6956",
-      "word": "canal",
-      "display": "canal",
-      "meaning": "連河",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
-      "id": "canal-any-entry-6788",
+      "id": "canal-noun-entry-0787",
       "word": "canal",
       "display": "canal",
       "meaning": "運河",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 7,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
-      "id": "candidates-any-entry-2277",
+      "id": "candidates-noun-entry-0788",
       "word": "candidates",
       "display": "candidates",
-      "meaning": "考生",
-      "pos": "",
+      "meaning": "候選人 / 參加者",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "candle-any-entry-8592",
@@ -10224,14 +9378,14 @@
       "sourceCount": 1
     },
     {
-      "id": "cannabis-any-entry-3112",
+      "id": "cannabis-noun-entry-0789",
       "word": "cannabis",
       "display": "cannabis",
       "meaning": "大麻",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "canopy-noun-entry-0365",
@@ -10270,27 +9424,24 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "canyon-any-entry-2856",
+      "id": "canyon-noun-entry-0790",
       "word": "canyon",
       "display": "canyon",
       "meaning": "峽谷",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
-      "id": "cap-any-entry-0465",
-      "word": "cap",
-      "display": "cap",
-      "meaning": "迷人的",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 6,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
+      "sourceCount": 1
+    },
+    {
+      "id": "cap-noun-entry-0791",
+      "word": "cap",
+      "display": "cap",
+      "meaning": "帽子 / 上限",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "capability-any-entry-3596",
@@ -10326,17 +9477,14 @@
       "sourceCount": 1
     },
     {
-      "id": "capital-any-entry-7792",
+      "id": "capital-noun-entry-0792",
       "word": "capital",
       "display": "capital",
-      "meaning": "資金",
-      "pos": "",
+      "meaning": "首都 / 資本 / 資金",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 84,
-      "posReason": "english-adjective-suffix+oxford"
+      "sourceCount": 1
     },
     {
       "id": "capitalise-on-any-entry-1220",
@@ -10349,19 +9497,6 @@
       "sourceCount": 15
     },
     {
-      "id": "capitivating-any-entry-0473",
-      "word": "capitivating",
-      "display": "capitivating",
-      "meaning": "迷人的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
       "id": "capsule-coffee-any-entry-5938",
       "word": "capsule coffee",
       "display": "capsule coffee",
@@ -10372,66 +9507,27 @@
       "sourceCount": 2
     },
     {
-      "id": "captivate-any-entry-8672",
+      "id": "captivate-verb-entry-0793",
       "word": "captivate",
       "display": "captivate",
-      "meaning": "吸引",
-      "pos": "",
+      "meaning": "吸引 / 迷住",
+      "pos": "verb",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "captivating-any-entry-2210",
+      "id": "captivating-adjective-entry-0794",
       "word": "captivating",
       "display": "captivating",
-      "meaning": "吸引人的",
-      "pos": "",
+      "meaning": "迷人的 / 有吸引力的",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "captivating-any-entry-6485",
-      "word": "captivating",
-      "display": "captivating",
-      "meaning": "有吸引力的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "captivating-any-entry-0587",
-      "word": "captivating",
-      "display": "captivating",
-      "meaning": "迷人",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 4,
-      "inferredPos": "noun",
-      "posConfidence": 90,
-      "posReason": "chinese-noun-meaning"
-    },
-    {
-      "id": "captivating-any-entry-0430",
-      "word": "captivating",
-      "display": "captivating",
-      "meaning": "迷人的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 28,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
+      "aliases": [
+        "capitivating"
+      ],
+      "sourceCount": 1
     },
     {
       "id": "capture-the-hearts-and-minds-any-entry-4941",
@@ -10454,13 +9550,13 @@
       "sourceCount": 1
     },
     {
-      "id": "caramel-any-entry-4936",
+      "id": "caramel-noun-entry-0795",
       "word": "caramel",
       "display": "caramel",
       "meaning": "焦糖",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
@@ -10484,34 +9580,34 @@
       "sourceCount": 1
     },
     {
-      "id": "carcass-any-entry-6742",
+      "id": "carcass-noun-entry-0796",
       "word": "carcass",
       "display": "carcass",
       "meaning": "動物屍體",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "cardboard-any-entry-4472",
+      "id": "cardboard-noun-entry-0797",
       "word": "cardboard",
       "display": "cardboard",
-      "meaning": "紙皮",
-      "pos": "",
+      "meaning": "硬紙板",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
-      "id": "cardiovascular-any-entry-3144",
+      "id": "cardiovascular-adjective-entry-0798",
       "word": "cardiovascular",
       "display": "cardiovascular",
-      "meaning": "帶氧",
-      "pos": "",
+      "meaning": "心血管的",
+      "pos": "adjective",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "cardiovascular-disease-any-entry-1164",
@@ -10570,17 +9666,14 @@
       "sourceCount": 2
     },
     {
-      "id": "cargo-any-entry-6135",
+      "id": "cargo-noun-entry-0799",
       "word": "cargo",
       "display": "cargo",
-      "meaning": "貨櫃",
-      "pos": "",
+      "meaning": "貨物",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 6,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
       "id": "cargo-ship-any-entry-2849",
@@ -10593,13 +9686,13 @@
       "sourceCount": 1
     },
     {
-      "id": "carnival-any-entry-4005",
+      "id": "carnival-noun-entry-0800",
       "word": "carnival",
       "display": "carnival",
       "meaning": "嘉年華",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
@@ -10804,142 +9897,78 @@
       "sourceCount": 1
     },
     {
-      "id": "category-any-entry-5343",
+      "id": "category-noun-entry-0801",
       "word": "category",
       "display": "category",
-      "meaning": "種類",
-      "pos": "",
+      "meaning": "類別 / 種類",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
-      "id": "category-any-entry-1665",
-      "word": "category",
-      "display": "category",
-      "meaning": "選項",
+      "id": "cater-for-any-entry-0803",
+      "word": "cater for",
+      "display": "cater for",
+      "meaning": "提供餐飲 / 滿足...需要",
       "pos": "",
-      "type": "word",
+      "type": "phrase",
       "needsReview": false,
-      "sourceCount": 3,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
-      "id": "category-any-entry-2896",
-      "word": "category",
-      "display": "category",
-      "meaning": "類別",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 7,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "category-any-entry-7607",
-      "word": "category",
-      "display": "category",
-      "meaning": "類別 (產品)",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "category-any-entry-5328",
-      "word": "category",
-      "display": "category",
-      "meaning": "類別 (貨品)",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "category-any-entry-5352",
-      "word": "category",
-      "display": "category",
-      "meaning": "類別(產品)",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "cater-to-any-entry-1964",
+      "id": "cater-to-any-entry-0802",
       "word": "cater to",
       "display": "cater to",
-      "meaning": "迎合",
+      "meaning": "迎合 / 滿足...需要",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
-      "sourceCount": 12
-    },
-    {
-      "id": "cater-to-cater-for-any-entry-2068",
-      "word": "cater to / cater for",
-      "display": "cater to / cater for",
-      "meaning": "迎合",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
+      "aliases": [
+        "cater to / cater for",
+        "cater to / for"
+      ],
       "sourceCount": 1
     },
     {
-      "id": "cater-to-for-any-entry-2000",
-      "word": "cater to / for",
-      "display": "cater to / for",
-      "meaning": "迎合",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 5
-    },
-    {
-      "id": "catering-any-entry-6113",
+      "id": "catering-noun-entry-0804",
       "word": "catering",
       "display": "catering",
-      "meaning": "餐飲",
-      "pos": "",
+      "meaning": "餐飲服務",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "cathedral-any-entry-5000",
+      "id": "cathedral-noun-entry-0805",
       "word": "cathedral",
       "display": "cathedral",
       "meaning": "大教堂",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "catholic-any-entry-5585",
+      "id": "catholic-noun-entry-0807",
       "word": "catholic",
-      "display": "catholic",
-      "meaning": "天主教",
-      "pos": "",
+      "display": "Catholic",
+      "meaning": "天主教徒",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "catholic-adjective-entry-0806",
+      "word": "catholic",
+      "display": "Catholic",
+      "meaning": "天主教的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "cause-noun-entry-0368",
@@ -10962,50 +9991,34 @@
       "sourceCount": 1
     },
     {
-      "id": "cause-of-any-entry-5773",
+      "id": "cause-of-any-entry-0810",
       "word": "cause of",
       "display": "cause of",
-      "meaning": "...的原因 (-)",
+      "meaning": "...的原因",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "cautious-any-entry-4802",
+      "id": "cautious-adjective-entry-0808",
       "word": "cautious",
       "display": "cautious",
-      "meaning": "好小心",
-      "pos": "",
+      "meaning": "謹慎的 / 小心的",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
-      "id": "cautious-any-entry-5658",
-      "word": "cautious",
-      "display": "cautious",
-      "meaning": "謹慎",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "caviar-any-entry-6907",
+      "id": "caviar-noun-entry-0809",
       "word": "caviar",
       "display": "caviar",
       "meaning": "魚子醬",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "cease-any-entry-4398",
@@ -11047,13 +10060,13 @@
       "posReason": "chinese-adjective-meaning"
     },
     {
-      "id": "cede-any-entry-2798",
+      "id": "cede-verb-entry-0811",
       "word": "cede",
       "display": "cede",
-      "meaning": "割讓",
-      "pos": "",
+      "meaning": "割讓 / 讓出",
+      "pos": "verb",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
@@ -11070,30 +10083,14 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "celebrate-any-entry-3780",
+      "id": "celebrate-verb-entry-0812",
       "word": "celebrate",
       "display": "celebrate",
       "meaning": "慶祝",
-      "pos": "",
+      "pos": "verb",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 9,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "celebrate-any-entry-5163",
-      "word": "celebrate",
-      "display": "celebrate",
-      "meaning": "慶祝活動",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 90,
-      "posReason": "chinese-noun-meaning"
+      "sourceCount": 1
     },
     {
       "id": "celebrated-adjective-entry-0370",
@@ -11106,74 +10103,24 @@
       "sourceCount": 1
     },
     {
-      "id": "celebrated-for-any-entry-8237",
+      "id": "celebrated-for-any-entry-0813",
       "word": "celebrated for",
       "display": "celebrated for",
-      "meaning": "以...聞名",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 3
-    },
-    {
-      "id": "celebrated-for-any-entry-2310",
-      "word": "celebrated for",
-      "display": "celebrated for",
-      "meaning": "出名",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 2
-    },
-    {
-      "id": "celebrated-for-any-entry-1865",
-      "word": "celebrated for",
-      "display": "celebrated for",
-      "meaning": "出名於",
+      "meaning": "以...聞名 / 因...出名",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "celebrated-for-any-entry-3805",
-      "word": "celebrated for",
-      "display": "celebrated for",
-      "meaning": "出名於...",
-      "pos": "",
-      "type": "phrase",
+      "id": "celebration-noun-entry-0814",
+      "word": "celebration",
+      "display": "celebration",
+      "meaning": "慶祝活動",
+      "pos": "noun",
+      "type": "word",
       "needsReview": false,
       "sourceCount": 1
-    },
-    {
-      "id": "celebrated-for-any-entry-5154",
-      "word": "celebrated for",
-      "display": "celebrated for",
-      "meaning": "因...出名",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 2
-    },
-    {
-      "id": "celebrated-for-any-entry-4879",
-      "word": "celebrated for",
-      "display": "celebrated for",
-      "meaning": "因…而聞名",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "celebrated-for-any-entry-1814",
-      "word": "celebrated for",
-      "display": "celebrated for",
-      "meaning": "知名於",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 7
     },
     {
       "id": "celebration-events-any-entry-5155",
@@ -11232,52 +10179,33 @@
       "sourceCount": 1
     },
     {
-      "id": "cemetery-any-entry-4282",
+      "id": "cemetery-noun-entry-0815",
       "word": "cemetery",
       "display": "cemetery",
-      "meaning": "墓園",
-      "pos": "",
+      "meaning": "墓地 / 墳場",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
-      "id": "cemetery-any-entry-4305",
-      "word": "cemetery",
-      "display": "cemetery",
-      "meaning": "墓地",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adverb",
-      "posConfidence": 92,
-      "posReason": "chinese-adverb-meaning"
-    },
-    {
-      "id": "cemetery-any-entry-4267",
-      "word": "cemetery",
-      "display": "cemetery",
-      "meaning": "墳場",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "noun",
-      "posConfidence": 90,
-      "posReason": "chinese-noun-meaning"
-    },
-    {
-      "id": "censor-any-entry-3445",
+      "id": "censor-verb-entry-0816",
       "word": "censor",
       "display": "censor",
       "meaning": "審查",
-      "pos": "",
+      "pos": "verb",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "censor-noun-entry-0817",
+      "word": "censor",
+      "display": "censor",
+      "meaning": "審查員",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
       "sourceCount": 1
     },
     {
@@ -11304,17 +10232,14 @@
       "sourceCount": 4
     },
     {
-      "id": "ceramic-any-entry-4255",
+      "id": "ceramic-noun-entry-0818",
       "word": "ceramic",
       "display": "ceramic",
-      "meaning": "瓷器",
-      "pos": "",
+      "meaning": "陶瓷 / 瓷器",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "noun",
-      "posConfidence": 90,
-      "posReason": "chinese-noun-meaning"
+      "sourceCount": 1
     },
     {
       "id": "ceremony-noun-entry-0039",
@@ -11327,69 +10252,14 @@
       "sourceCount": 1
     },
     {
-      "id": "certain-any-entry-1661",
+      "id": "certain-adjective-entry-0819",
       "word": "certain",
       "display": "certain",
-      "meaning": "某些",
-      "pos": "",
+      "meaning": "某些 / 肯定的",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 8,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "certain-any-entry-7036",
-      "word": "certain",
-      "display": "certain",
-      "meaning": "某些 / 肯定",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "certain-any-entry-4877",
-      "word": "certain",
-      "display": "certain x2",
-      "meaning": "某些 肯定",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "certain-any-entry-8682",
-      "word": "certain",
-      "display": "certain x2",
-      "meaning": "確定",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "certain-any-entry-2474",
-      "word": "certain",
-      "display": "certain x2",
-      "meaning": "肯定",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 4,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
       "id": "certified-adjective-entry-0373",
@@ -11415,53 +10285,63 @@
       "posReason": "chinese-noun-meaning"
     },
     {
-      "id": "chairperson-any-entry-0797",
+      "id": "chairperson-noun-entry-0820",
       "word": "chairperson",
       "display": "chairperson",
       "meaning": "主席",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "chalk-any-entry-4612",
+      "id": "chalk-noun-entry-0821",
       "word": "chalk",
       "display": "chalk",
       "meaning": "粉筆",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "challenge-any-entry-5261",
+      "id": "challenge-noun-entry-0822",
       "word": "challenge",
       "display": "challenge",
       "meaning": "挑戰",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 8
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
-      "id": "challenges-any-entry-0997",
+      "id": "challenge-verb-entry-0823",
+      "word": "challenge",
+      "display": "challenge",
+      "meaning": "挑戰",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "challenges-noun-entry-0824",
       "word": "challenges",
       "display": "challenges",
       "meaning": "挑戰",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
-      "id": "chameleon-any-entry-4861",
+      "id": "chameleon-noun-entry-0825",
       "word": "chameleon",
       "display": "chameleon",
       "meaning": "變色龍",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
@@ -11548,144 +10428,44 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "chapel-any-entry-5590",
+      "id": "chapel-noun-entry-0826",
       "word": "chapel",
       "display": "chapel",
       "meaning": "小教堂",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "character-any-entry-8327",
-      "word": "character",
-      "display": "character x2",
-      "meaning": "個性",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "character-any-entry-7991",
-      "word": "character",
-      "display": "character x3",
-      "meaning": "字",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "character-any-entry-1406",
-      "word": "character",
-      "display": "character x2",
-      "meaning": "性格",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "character-any-entry-8002",
-      "word": "character",
-      "display": "character x3",
-      "meaning": "文字",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "character-any-entry-2647",
+      "id": "character-noun-entry-0827",
       "word": "character",
       "display": "character",
-      "meaning": "特性",
-      "pos": "",
+      "meaning": "性格 / 角色 / 文字",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
+      "sourceCount": 1
     },
     {
-      "id": "character-any-entry-7312",
-      "word": "character",
-      "display": "character",
-      "meaning": "特質, 性格, 角色",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "character-any-entry-2900",
-      "word": "character",
-      "display": "character",
-      "meaning": "特點",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 6,
-      "inferredPos": "noun",
-      "posConfidence": 90,
-      "posReason": "chinese-noun-meaning"
-    },
-    {
-      "id": "character-any-entry-1405",
-      "word": "character",
-      "display": "character x2",
-      "meaning": "角色",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 5,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "characteristic-any-entry-6311",
+      "id": "characteristic-adjective-entry-0829",
       "word": "characteristic",
       "display": "characteristic",
-      "meaning": "特徵",
-      "pos": "",
+      "meaning": "典型的 / 特有的",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 84,
-      "posReason": "english-adjective-suffix+oxford"
+      "sourceCount": 1
     },
     {
-      "id": "characteristic-any-entry-2359",
+      "id": "characteristic-noun-entry-0828",
       "word": "characteristic",
       "display": "characteristic",
-      "meaning": "特點",
-      "pos": "",
+      "meaning": "特徵 / 特點",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 5,
-      "inferredPos": "noun",
-      "posConfidence": 96,
-      "posReason": "chinese-noun-meaning+oxford"
+      "sourceCount": 1
     },
     {
       "id": "characteristics-noun-entry-0374",
@@ -11698,13 +10478,13 @@
       "sourceCount": 1
     },
     {
-      "id": "charcoal-any-entry-4938",
+      "id": "charcoal-noun-entry-0830",
       "word": "charcoal",
       "display": "charcoal",
       "meaning": "木炭",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
@@ -11771,30 +10551,14 @@
       "posReason": "chinese-noun-meaning"
     },
     {
-      "id": "charismatic-any-entry-7528",
-      "word": "charismatic",
-      "display": "charismatic",
-      "meaning": "有魅力",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "noun",
-      "posConfidence": 90,
-      "posReason": "chinese-noun-meaning"
-    },
-    {
-      "id": "charismatic-any-entry-5924",
+      "id": "charismatic-adjective-entry-0831",
       "word": "charismatic",
       "display": "charismatic",
       "meaning": "有魅力的",
-      "pos": "",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
+      "sourceCount": 1
     },
     {
       "id": "charm-any-entry-5020",
@@ -11836,16 +10600,6 @@
       "posReason": "chinese-adjective-meaning"
     },
     {
-      "id": "charming-charismatic-any-entry-6539",
-      "word": "charming / charismatic",
-      "display": "charming / charismatic",
-      "meaning": "迷人的",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
       "id": "charms-any-entry-3616",
       "word": "charms",
       "display": "charms",
@@ -11859,33 +10613,33 @@
       "posReason": "chinese-noun-meaning"
     },
     {
-      "id": "charts-any-entry-3930",
+      "id": "charts-noun-entry-0832",
       "word": "charts",
       "display": "charts",
       "meaning": "圖表",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "cheeks-any-entry-7763",
-      "word": "cheeks",
-      "display": "cheeks",
-      "meaning": "臉頰",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "cheetah-any-entry-4897",
+      "id": "cheeks-noun-entry-0833",
+      "word": "cheeks",
+      "display": "cheeks",
+      "meaning": "臉頰",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "cheetah-noun-entry-0834",
       "word": "cheetah",
       "display": "cheetah",
       "meaning": "獵豹",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
@@ -11902,39 +10656,33 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "chemical-any-entry-5840",
-      "word": "chemical",
-      "display": "chemical",
-      "meaning": "化學",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 84,
-      "posReason": "english-adjective-suffix+oxford"
-    },
-    {
-      "id": "chemical-any-entry-5860",
+      "id": "chemical-noun-entry-0836",
       "word": "chemical",
       "display": "chemical",
       "meaning": "化學物",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 96,
-      "posReason": "chinese-noun-meaning+oxford"
+      "sourceCount": 1
     },
     {
-      "id": "cherish-any-entry-8193",
+      "id": "chemical-adjective-entry-0835",
+      "word": "chemical",
+      "display": "chemical",
+      "meaning": "化學的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "cherish-verb-entry-0837",
       "word": "cherish",
       "display": "cherish",
       "meaning": "珍惜",
-      "pos": "",
+      "pos": "verb",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
@@ -12034,43 +10782,34 @@
       "sourceCount": 78
     },
     {
-      "id": "chinese-any-nutritionist-n-1894",
+      "id": "chinese-adjective-entry-0839",
       "word": "chinese",
       "display": "Chinese",
-      "meaning": "nutritionist (n) 營養師",
-      "pos": "",
+      "meaning": "中國的 / 中文的",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 4,
-      "inferredPos": "noun",
-      "posConfidence": 90,
-      "posReason": "chinese-noun-meaning"
+      "sourceCount": 1
     },
     {
-      "id": "chronic-any-entry-3603",
-      "word": "chronic",
-      "display": "chronic",
-      "meaning": "慢性",
-      "pos": "",
+      "id": "chinese-noun-entry-0838",
+      "word": "chinese",
+      "display": "Chinese",
+      "meaning": "中文 / 中國人",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 7,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
+      "sourceCount": 1
     },
     {
-      "id": "chronic-any-entry-2929",
+      "id": "chronic-adjective-entry-0840",
       "word": "chronic",
       "display": "chronic",
       "meaning": "慢性的",
-      "pos": "",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
+      "sourceCount": 1
     },
     {
       "id": "chronic-disease-any-entry-0327",
@@ -12103,50 +10842,24 @@
       "sourceCount": 1
     },
     {
-      "id": "chunk-any-entry-5650",
+      "id": "chunk-noun-entry-0841",
       "word": "chunk",
       "display": "chunk",
-      "meaning": "一舊",
-      "pos": "",
+      "meaning": "一大塊 / 一部分",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 3,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
-      "id": "chunk-any-entry-5617",
-      "word": "chunk",
-      "display": "chunk",
-      "meaning": "舊",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "churn-out-any-entry-3417",
+      "id": "churn-out-any-entry-0842",
       "word": "churn out",
       "display": "churn out",
-      "meaning": "大量及快生產",
+      "meaning": "大量快速生產",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
-      "sourceCount": 2
-    },
-    {
-      "id": "churn-out-any-entry-1073",
-      "word": "churn out",
-      "display": "churn out",
-      "meaning": "大量生產",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 79
+      "sourceCount": 1
     },
     {
       "id": "circumstances-any-entry-3848",
@@ -12162,33 +10875,33 @@
       "posReason": "chinese-noun-meaning"
     },
     {
-      "id": "circumvent-any-entry-0965",
+      "id": "circumvent-verb-entry-0843",
       "word": "circumvent",
       "display": "circumvent",
-      "meaning": "繞過",
-      "pos": "",
+      "meaning": "規避 / 避開",
+      "pos": "verb",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "circus-any-entry-4013",
+      "id": "circus-noun-entry-0844",
       "word": "circus",
       "display": "circus",
       "meaning": "馬戲團",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "citrus-any-entry-5990",
+      "id": "citrus-noun-entry-0845",
       "word": "citrus",
       "display": "citrus",
-      "meaning": "柑桔",
-      "pos": "",
+      "meaning": "柑橘類水果",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
@@ -12232,27 +10945,37 @@
       "sourceCount": 1
     },
     {
-      "id": "civilisation-any-entry-6848",
+      "id": "civilisation-noun-entry-0846",
       "word": "civilisation",
       "display": "civilisation",
       "meaning": "文明",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
-      "id": "claim-any-entry-1689",
+      "id": "claim-noun-entry-0848",
       "word": "claim",
       "display": "claim",
-      "meaning": "聲稱",
-      "pos": "",
+      "meaning": "聲稱 / 索償 / 要求",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 18
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
-      "id": "claim-lives-any-entry-6852",
+      "id": "claim-verb-entry-0847",
+      "word": "claim",
+      "display": "claim",
+      "meaning": "聲稱 / 索取",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "claim-lives-any-entry-0849",
       "word": "claim .... lives",
       "display": "claim .... lives",
       "meaning": "奪去...性命",
@@ -12260,16 +10983,6 @@
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 1
-    },
-    {
-      "id": "claim-lives-any-entry-6873",
-      "word": "claim .... lives",
-      "display": "claim .... lives",
-      "meaning": "奪去...生命",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 3
     },
     {
       "id": "clam-noun-entry-0379",
@@ -12308,14 +11021,14 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "clay-any-entry-8567",
+      "id": "clay-noun-entry-0850",
       "word": "clay",
       "display": "clay",
       "meaning": "黏土",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "cliche-noun-entry-0380",
@@ -12341,14 +11054,14 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "clients-any-entry-4973",
+      "id": "clients-noun-entry-0851",
       "word": "clients",
       "display": "clients",
       "meaning": "客戶",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "cliff-any-entry-4839",
@@ -12387,14 +11100,14 @@
       "sourceCount": 1
     },
     {
-      "id": "closet-any-entry-3886",
+      "id": "closet-noun-entry-0852",
       "word": "closet",
       "display": "closet",
       "meaning": "衣櫃",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "cloth-any-entry-2630",
@@ -12410,30 +11123,14 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "clue-any-entry-5859",
+      "id": "clue-noun-entry-0853",
       "word": "clue",
       "display": "clue",
       "meaning": "線索",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "clue-any-entry-5839",
-      "word": "clue",
-      "display": "clue",
-      "meaning": "頭緒",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
       "id": "clumsily-any-entry-5102",
@@ -12449,36 +11146,43 @@
       "posReason": "english-adverb-suffix"
     },
     {
-      "id": "clumsy-any-entry-3542",
+      "id": "clumsy-adjective-entry-0854",
       "word": "clumsy",
       "display": "clumsy",
-      "meaning": "笨拙",
-      "pos": "",
+      "meaning": "笨拙的",
+      "pos": "adjective",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "cluster-any-entry-1433",
+      "id": "cluster-noun-entry-0855",
       "word": "cluster",
       "display": "cluster",
-      "meaning": "散落",
-      "pos": "",
+      "meaning": "一群 / 一組",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
-      "id": "clutter-any-entry-4987",
+      "id": "clutter-verb-entry-0857",
+      "word": "clutter",
+      "display": "clutter",
+      "meaning": "使凌亂",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "clutter-noun-entry-0856",
       "word": "clutter",
       "display": "clutter",
       "meaning": "雜亂",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
@@ -12578,79 +11282,34 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "cod-any-entry-4974",
+      "id": "cod-noun-entry-0858",
       "word": "cod",
       "display": "cod",
       "meaning": "鱈魚",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "code-any-entry-8613",
+      "id": "code-noun-entry-0859",
       "word": "code",
       "display": "code",
-      "meaning": "代碼",
-      "pos": "",
+      "meaning": "代碼 / 編碼",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
-      "id": "code-any-entry-8626",
-      "word": "code",
-      "display": "code",
-      "meaning": "碼",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "code-any-entry-6124",
-      "word": "code",
-      "display": "code",
-      "meaning": "編碼",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "cognitive-any-entry-6657",
-      "word": "cognitive",
-      "display": "cognitive",
-      "meaning": "認知",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "cognitive-any-entry-2946",
+      "id": "cognitive-adjective-entry-0860",
       "word": "cognitive",
       "display": "cognitive",
       "meaning": "認知的",
-      "pos": "",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 3,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
+      "sourceCount": 1
     },
     {
       "id": "cognitive-ability-any-entry-5311",
@@ -12729,92 +11388,34 @@
       "posReason": "chinese-adjective-meaning"
     },
     {
-      "id": "cohesion-any-entry-6258",
+      "id": "cohesion-noun-entry-0861",
       "word": "cohesion",
       "display": "cohesion",
-      "meaning": "共融",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "coin-any-entry-0176",
-      "word": "coin",
-      "display": "coin",
-      "meaning": "創造",
-      "pos": "",
+      "meaning": "凝聚力 / 連貫性",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
-      "id": "coin-any-entry-1666",
+      "id": "coin-verb-entry-0863",
       "word": "coin",
       "display": "coin",
-      "meaning": "創造 (名詞)",
-      "pos": "",
+      "meaning": "創造新詞 / 首次使用",
+      "pos": "verb",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 3,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
-      "id": "coin-any-entry-0239",
+      "id": "coin-noun-entry-0862",
       "word": "coin",
       "display": "coin",
-      "meaning": "創造(字)",
-      "pos": "",
+      "meaning": "硬幣",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "coin-any-entry-3741",
-      "word": "coin",
-      "display": "coin",
-      "meaning": "創造(專有名詞)",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "coin-any-entry-7218",
-      "word": "coin",
-      "display": "coin",
-      "meaning": "創造名詞",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "coin-any-entry-0154",
-      "word": "coin",
-      "display": "coin",
-      "meaning": "硬幣 / 創造",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
       "id": "coin-a-phrase-any-entry-4538",
@@ -12827,53 +11428,20 @@
       "sourceCount": 1
     },
     {
-      "id": "collaborate-any-entry-2569",
+      "id": "collaborate-verb-entry-0864",
       "word": "collaborate",
       "display": "collaborate",
       "meaning": "合作",
-      "pos": "",
+      "pos": "verb",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 3,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "collaborate-any-entry-3352",
-      "word": "collaborate",
-      "display": "collaborate",
-      "meaning": "合作 (做一件事)",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "collaborate-with-any-entry-2273",
-      "word": "collaborate with",
-      "display": "collaborate with",
-      "meaning": "合作",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 2
-    },
-    {
-      "id": "collaborate-with-any-entry-2212",
-      "word": "collaborate with",
-      "display": "collaborate with",
-      "meaning": "合作(達到共同目標)",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
+      "aliases": [
+        "collabrate"
+      ],
       "sourceCount": 1
     },
     {
-      "id": "collaborate-with-any-entry-2282",
+      "id": "collaborate-with-any-entry-0865",
       "word": "collaborate with",
       "display": "collaborate with",
       "meaning": "與...合作",
@@ -12896,16 +11464,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "collabrate-any-entry-3318",
-      "word": "collabrate",
-      "display": "collabrate",
-      "meaning": "合作",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "collapse-noun-entry-0382",
       "word": "collapse",
       "display": "collapse",
@@ -12926,118 +11484,34 @@
       "sourceCount": 1
     },
     {
-      "id": "colleagues-any-entry-3984",
+      "id": "colleagues-noun-entry-0866",
       "word": "colleagues",
       "display": "colleagues",
       "meaning": "同事",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 32
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
-      "id": "collection-any-entry-7788",
+      "id": "collection-noun-entry-0867",
       "word": "collection",
       "display": "collection",
-      "meaning": "作品集",
-      "pos": "",
+      "meaning": "收藏 / 收藏品 / 作品集",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
-      "id": "collection-any-entry-3170",
-      "word": "collection",
-      "display": "collection",
-      "meaning": "合集",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "collection-any-entry-8388",
-      "word": "collection",
-      "display": "collection",
-      "meaning": "收藏",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 13,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "collection-any-entry-8351",
-      "word": "collection",
-      "display": "collection",
-      "meaning": "收藏品",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 15,
-      "inferredPos": "noun",
-      "posConfidence": 90,
-      "posReason": "chinese-noun-meaning"
-    },
-    {
-      "id": "collective-any-entry-1256",
+      "id": "collective-adjective-entry-0868",
       "word": "collective",
       "display": "collective",
-      "meaning": "共同",
-      "pos": "",
+      "meaning": "集體的 / 共同的",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "collective-any-entry-4259",
-      "word": "collective",
-      "display": "collective",
-      "meaning": "集冊的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "collective-any-entry-1282",
-      "word": "collective",
-      "display": "collective",
-      "meaning": "集體",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 7,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "collective-any-entry-4231",
-      "word": "collective",
-      "display": "collective",
-      "meaning": "集體的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 5,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
+      "sourceCount": 1
     },
     {
       "id": "collide-with-any-entry-5296",
@@ -13073,17 +11547,14 @@
       "sourceCount": 1
     },
     {
-      "id": "colony-any-entry-3009",
+      "id": "colony-noun-entry-0869",
       "word": "colony",
       "display": "colony",
       "meaning": "殖民地",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 6,
-      "inferredPos": "adverb",
-      "posConfidence": 92,
-      "posReason": "chinese-adverb-meaning"
+      "sourceCount": 1
     },
     {
       "id": "colossal-any-entry-7322",
@@ -13099,14 +11570,24 @@
       "posReason": "chinese-adjective-meaning"
     },
     {
-      "id": "combat-any-entry-2115",
+      "id": "combat-noun-entry-0871",
       "word": "combat",
       "display": "combat",
-      "meaning": "對抗",
-      "pos": "",
+      "meaning": "戰鬥",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 9
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "combat-verb-entry-0870",
+      "word": "combat",
+      "display": "combat",
+      "meaning": "戰鬥 / 打擊",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "combine-any-entry-5669",
@@ -13228,23 +11709,23 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "comeptition-any-entry-5148",
-      "word": "comeptition 不可數",
-      "display": "comeptition 不可數",
-      "meaning": "競爭",
-      "pos": "",
-      "type": "phrase",
+      "id": "comfort-verb-entry-0873",
+      "word": "comfort",
+      "display": "comfort",
+      "meaning": "安慰",
+      "pos": "verb",
+      "type": "word",
       "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "comfort-any-entry-8642",
+      "id": "comfort-noun-entry-0872",
       "word": "comfort",
       "display": "comfort",
-      "meaning": "舒適",
-      "pos": "",
+      "meaning": "舒適 / 安慰",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
@@ -13258,83 +11739,24 @@
       "sourceCount": 2
     },
     {
-      "id": "comfy-any-entry-4820",
+      "id": "comfy-adjective-entry-0874",
       "word": "comfy",
       "display": "comfy",
-      "meaning": "舒適",
-      "pos": "",
+      "meaning": "舒服的",
+      "pos": "adjective",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "comical-any-entry-6935",
+      "id": "comical-adjective-entry-0875",
       "word": "comical",
       "display": "comical",
-      "meaning": "可笑的",
-      "pos": "",
+      "meaning": "滑稽的 / 可笑的",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "comical-any-entry-7640",
-      "word": "comical",
-      "display": "comical",
-      "meaning": "可笑的 / 滑稽的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "comical-any-entry-7166",
-      "word": "comical",
-      "display": "comical",
-      "meaning": "好好笑",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "comical-any-entry-7155",
-      "word": "comical",
-      "display": "comical",
-      "meaning": "好笑",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
       "sourceCount": 1
-    },
-    {
-      "id": "comical-any-entry-7162",
-      "word": "comical",
-      "display": "comical",
-      "meaning": "滑稽",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "comical-any-entry-6946",
-      "word": "comical",
-      "display": "comical",
-      "meaning": "滑稽的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
     },
     {
       "id": "comically-any-entry-1508",
@@ -13363,14 +11785,14 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "commencement-any-entry-6294",
+      "id": "commencement-noun-entry-0876",
       "word": "commencement",
       "display": "commencement",
-      "meaning": "開始",
-      "pos": "",
+      "meaning": "開始 / 畢業典禮",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "commercial-adjective-entry-0383",
@@ -13380,7 +11802,10 @@
       "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1
+      "aliases": [
+        "commerical"
+      ],
+      "sourceCount": 2
     },
     {
       "id": "commercial-noun-entry-0384",
@@ -13390,7 +11815,7 @@
       "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1
+      "sourceCount": 2
     },
     {
       "id": "commercial-district-any-entry-5627",
@@ -13401,16 +11826,6 @@
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 4
-    },
-    {
-      "id": "commerical-any-entry-1333",
-      "word": "commerical",
-      "display": "commerical",
-      "meaning": "商業",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "commission-any-entry-5040",
@@ -13439,17 +11854,14 @@
       "posReason": "english-noun-suffix+oxford"
     },
     {
-      "id": "commit-any-entry-5807",
+      "id": "commit-verb-entry-0877",
       "word": "commit",
       "display": "commit",
-      "meaning": "做(-)",
-      "pos": "",
+      "meaning": "犯 / 承諾",
+      "pos": "verb",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
       "id": "commit-crime-any-entry-3824",
@@ -13512,34 +11924,24 @@
       "sourceCount": 14
     },
     {
-      "id": "commit-to-any-entry-5790",
+      "id": "commit-to-any-entry-0878",
       "word": "commit to",
       "display": "commit to",
-      "meaning": "承諾",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 6
-    },
-    {
-      "id": "commit-to-any-entry-2812",
-      "word": "commit to",
-      "display": "commit to",
-      "meaning": "承諾, 致力於",
+      "meaning": "承諾 / 致力於",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "commit-to-ving-any-entry-3826",
+      "id": "commit-to-ving-any-entry-0879",
       "word": "commit to ving",
-      "display": "commit to VING",
-      "meaning": "承諾",
+      "display": "commit to ving",
+      "meaning": "承諾 / 致力於",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
-      "sourceCount": 7
+      "sourceCount": 1
     },
     {
       "id": "commitment-noun-entry-0385",
@@ -13601,63 +12003,44 @@
       "posReason": "chinese-noun-meaning"
     },
     {
-      "id": "common-any-entry-8452",
+      "id": "common-adjective-entry-0881",
       "word": "common",
       "display": "common",
-      "meaning": "普遍",
-      "pos": "",
+      "meaning": "普遍的 / 常見的",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
-      "id": "commonplace-any-entry-3087",
+      "id": "commonplace-adjective-entry-0882",
       "word": "commonplace",
       "display": "commonplace",
-      "meaning": "常見的事",
-      "pos": "",
+      "meaning": "普遍的 / 常見的",
+      "pos": "adjective",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
-      "id": "communication-any-entry-2269",
+      "id": "communication-noun-entry-0880",
       "word": "communication",
       "display": "communication",
       "meaning": "溝通",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
-      "id": "communication-any-n-2202",
-      "word": "communication",
-      "display": "communication",
-      "meaning": "溝通 (n)",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "communism-any-entry-6253",
+      "id": "communism-noun-entry-0883",
       "word": "communism",
       "display": "communism",
       "meaning": "共產主義",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "community-any-entry-2566",
@@ -13673,14 +12056,24 @@
       "posReason": "chinese-noun-meaning"
     },
     {
-      "id": "commute-any-entry-0923",
+      "id": "commute-verb-entry-0884",
       "word": "commute",
       "display": "commute",
       "meaning": "通勤",
-      "pos": "",
+      "pos": "verb",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 13
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "commute-noun-entry-0885",
+      "word": "commute",
+      "display": "commute",
+      "meaning": "通勤路程",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "commute-to-any-entry-3952",
@@ -13827,95 +12220,14 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "compelling-any-entry-5462",
+      "id": "compelling-adjective-entry-0886",
       "word": "compelling",
       "display": "compelling",
-      "meaning": "令人入勝的 / 有說服力的",
-      "pos": "",
+      "meaning": "有說服力的 / 引人入勝的",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "compelling-any-entry-7060",
-      "word": "compelling",
-      "display": "compelling x2",
-      "meaning": "引人入勝",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "compelling-any-entry-6251",
-      "word": "compelling",
-      "display": "compelling x2",
-      "meaning": "引人入勝的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 3,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "compelling-any-entry-6529",
-      "word": "compelling",
-      "display": "compelling",
-      "meaning": "有吸引力的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "compelling-any-entry-3670",
-      "word": "compelling",
-      "display": "compelling",
-      "meaning": "有說服力",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 5,
-      "inferredPos": "noun",
-      "posConfidence": 90,
-      "posReason": "chinese-noun-meaning"
-    },
-    {
-      "id": "compelling-any-entry-5451",
-      "word": "compelling",
-      "display": "compelling",
-      "meaning": "有說服力 / 引人入勝的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "compelling-any-entry-5433",
-      "word": "compelling",
-      "display": "compelling",
-      "meaning": "有說服力的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
+      "sourceCount": 1
     },
     {
       "id": "compensation-any-entry-7284",
@@ -13954,32 +12266,22 @@
       "sourceCount": 1
     },
     {
-      "id": "compete-for-any-entry-4788",
+      "id": "compete-for-any-entry-0887",
       "word": "compete for",
       "display": "compete for",
-      "meaning": "爭",
+      "meaning": "競爭 / 爭取",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "compete-for-any-entry-2461",
-      "word": "compete for",
-      "display": "compete for",
-      "meaning": "競爭...",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "competition-any-entry-5145",
-      "word": "competition 可數",
-      "display": "competition 可數",
-      "meaning": "比賽",
-      "pos": "",
-      "type": "phrase",
+      "id": "competition-noun-entry-0888",
+      "word": "competition",
+      "display": "competition",
+      "meaning": "競爭 / 比賽",
+      "pos": "noun",
+      "type": "word",
       "needsReview": false,
       "sourceCount": 1
     },
@@ -14037,56 +12339,14 @@
       "sourceCount": 1
     },
     {
-      "id": "complicated-any-entry-3934",
-      "word": "complicated",
-      "display": "complicated",
-      "meaning": "複雜",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 22,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "complicated-any-entry-3793",
-      "word": "complicated",
-      "display": "complicated",
-      "meaning": "複雜 (-)",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 3,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "complicated-any-entry-3995",
-      "word": "complicated",
-      "display": "complicated",
-      "meaning": "複雜 (負面)",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "complicated-any-entry-3971",
+      "id": "complicated-adjective-entry-0889",
       "word": "complicated",
       "display": "complicated",
       "meaning": "複雜的",
-      "pos": "",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 8,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
+      "sourceCount": 1
     },
     {
       "id": "complication-any-entry-7183",
@@ -14158,30 +12418,14 @@
       "sourceCount": 5
     },
     {
-      "id": "component-any-entry-7450",
+      "id": "component-noun-entry-0890",
       "word": "component",
       "display": "component",
-      "meaning": "部件",
-      "pos": "",
+      "meaning": "部件 / 組成部分",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "component-any-entry-7498",
-      "word": "component",
-      "display": "component",
-      "meaning": "部份",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "noun",
-      "posConfidence": 90,
-      "posReason": "chinese-noun-meaning"
+      "sourceCount": 1
     },
     {
       "id": "compose-any-entry-4409",
@@ -14207,30 +12451,14 @@
       "sourceCount": 1
     },
     {
-      "id": "comprehensive-any-entry-6346",
-      "word": "comprehensive",
-      "display": "comprehensive",
-      "meaning": "全面",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 3,
-      "inferredPos": "noun",
-      "posConfidence": 90,
-      "posReason": "chinese-noun-meaning"
-    },
-    {
-      "id": "comprehensive-any-entry-3591",
+      "id": "comprehensive-adjective-entry-0891",
       "word": "comprehensive",
       "display": "comprehensive",
       "meaning": "全面的",
-      "pos": "",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 7,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
+      "sourceCount": 1
     },
     {
       "id": "comprise-any-entry-8314",
@@ -14272,37 +12500,44 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "compromise-any-entry-4787",
+      "id": "compromise-noun-entry-0892",
       "word": "compromise",
       "display": "compromise",
       "meaning": "妥協",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
-      "id": "compulsive-any-entry-3619",
-      "word": "compulsive",
-      "display": "compulsive",
-      "meaning": "強制",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "compulsory-any-entry-0708",
-      "word": "compulsory",
-      "display": "compulsory",
-      "meaning": "強制",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 4,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
+    },
+    {
+      "id": "compromise-verb-entry-0893",
+      "word": "compromise",
+      "display": "compromise",
+      "meaning": "妥協",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "compulsive-adjective-entry-0894",
+      "word": "compulsive",
+      "display": "compulsive",
+      "meaning": "強迫性的 / 難以控制的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "compulsory-adjective-entry-0895",
+      "word": "compulsory",
+      "display": "compulsory",
+      "meaning": "強制的 / 必修的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "concede-any-entry-7320",
@@ -14331,30 +12566,14 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "concentrate-any-entry-5848",
-      "word": "concentrate",
-      "display": "concentrate",
-      "meaning": "專注",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "concentrate-any-entry-5874",
+      "id": "concentrate-verb-entry-0896",
       "word": "concentrate",
       "display": "concentrate",
       "meaning": "集中 / 專注",
-      "pos": "",
+      "pos": "verb",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
       "id": "concentrate-on-any-entry-8145",
@@ -14393,13 +12612,23 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "concern-any-entry-1424",
+      "id": "concern-verb-entry-0898",
       "word": "concern",
       "display": "concern",
-      "meaning": "憂慮",
-      "pos": "",
+      "meaning": "使擔心 / 關乎",
+      "pos": "verb",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "concern-noun-entry-0897",
+      "word": "concern",
+      "display": "concern",
+      "meaning": "擔憂 / 關注",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
       "sourceCount": 1
     },
     {
@@ -14433,43 +12662,43 @@
       "sourceCount": 1
     },
     {
-      "id": "concerned-with-any-entry-7341",
+      "id": "concerned-with-any-entry-0899",
       "word": "concerned with",
       "display": "concerned with",
-      "meaning": "憂",
+      "meaning": "關於 / 與...有關",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "concerned-with-any-entry-7360",
-      "word": "concerned with",
-      "display": "concerned with",
-      "meaning": "關於",
-      "pos": "",
-      "type": "phrase",
+      "id": "concerning-adjective-entry-0901",
+      "word": "concerning",
+      "display": "concerning",
+      "meaning": "令人擔憂的",
+      "pos": "adjective",
+      "type": "word",
       "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "concerning-any-entry-4751",
+      "id": "concerning-preposition-entry-0900",
       "word": "concerning",
       "display": "concerning",
       "meaning": "關於",
-      "pos": "",
+      "pos": "preposition",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "concerns-any-entry-8209",
+      "id": "concerns-noun-entry-0902",
       "word": "concerns",
       "display": "concerns",
-      "meaning": "憂慮",
-      "pos": "",
+      "meaning": "擔憂 / 關注",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
@@ -14578,30 +12807,10 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "conducive-to-any-entry-2199",
+      "id": "conducive-to-any-entry-0903",
       "word": "conducive to",
       "display": "conducive to",
-      "meaning": "對...有利",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 2
-    },
-    {
-      "id": "conducive-to-any-entry-2279",
-      "word": "conducive to",
-      "display": "conducive to",
-      "meaning": "有助於",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 5
-    },
-    {
-      "id": "conducive-to-any-ving-2286",
-      "word": "conducive to",
-      "display": "conducive to",
-      "meaning": "有助於 +ving",
+      "meaning": "有助於 / 對...有利",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
@@ -14651,56 +12860,14 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "confess-any-entry-2961",
+      "id": "confess-verb-entry-0904",
       "word": "confess",
       "display": "confess",
-      "meaning": "承認",
-      "pos": "",
+      "meaning": "承認 / 認錯",
+      "pos": "verb",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 4,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "confess-any-entry-5911",
-      "word": "confess",
-      "display": "confess",
-      "meaning": "承認(錯)",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "confess-any-entry-3093",
-      "word": "confess",
-      "display": "confess",
-      "meaning": "承錯",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "confess-any-entry-3089",
-      "word": "confess",
-      "display": "confess",
-      "meaning": "認錯",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
       "id": "confident-in-any-entry-2290",
@@ -14762,6 +12929,16 @@
       "sourceCount": 1
     },
     {
+      "id": "confined-to-any-entry-0905",
+      "word": "confined to",
+      "display": "confined to",
+      "meaning": "限於",
+      "pos": "",
+      "type": "phrase",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
       "id": "confirm-any-entry-3918",
       "word": "confirm",
       "display": "confirm",
@@ -14775,14 +12952,24 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "conflict-any-entry-4776",
+      "id": "conflict-noun-entry-0906",
       "word": "conflict",
       "display": "conflict",
       "meaning": "衝突",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 7
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "conflict-verb-entry-0907",
+      "word": "conflict",
+      "display": "conflict",
+      "meaning": "衝突 / 抵觸",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "conform-to-any-entry-5769",
@@ -14831,17 +13018,14 @@
       "sourceCount": 1
     },
     {
-      "id": "confuse-any-entry-8091",
+      "id": "confuse-verb-entry-0908",
       "word": "confuse",
       "display": "confuse",
-      "meaning": "混亂",
-      "pos": "",
+      "meaning": "使混亂 / 混淆",
+      "pos": "verb",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
       "id": "confusing-any-entry-5702",
@@ -14855,66 +13039,6 @@
       "inferredPos": "adjective",
       "posConfidence": 90,
       "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "conj-any-entry-0258",
-      "word": "conj",
-      "display": "conj",
-      "meaning": "但是",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "conj-any-entry-4057",
-      "word": "conj",
-      "display": "conj",
-      "meaning": "因為",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 12
-    },
-    {
-      "id": "conj-any-entry-4188",
-      "word": "conj",
-      "display": "conj",
-      "meaning": "因為 (+名詞)",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "conj-any-n-4186",
-      "word": "conj",
-      "display": "conj",
-      "meaning": "因為 +n",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
-      "id": "conj-any-entry-4101",
-      "word": "conj",
-      "display": "conj",
-      "meaning": "基於",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "conj-any-entry-4121",
-      "word": "conj",
-      "display": "conj",
-      "meaning": "就...而言",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "conjure-up-any-entry-7766",
@@ -15003,47 +13127,24 @@
       "sourceCount": 1
     },
     {
-      "id": "conscious-any-entry-7205",
+      "id": "conscious-adjective-entry-0909",
       "word": "conscious",
       "display": "conscious",
-      "meaning": "意識",
-      "pos": "",
+      "meaning": "有意識的",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
-      "id": "conscious-of-any-entry-1221",
+      "id": "conscious-of-any-entry-0910",
       "word": "conscious of",
       "display": "conscious of",
       "meaning": "意識到",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
-      "sourceCount": 3
-    },
-    {
-      "id": "conscious-of-any-entry-2440",
-      "word": "conscious of",
-      "display": "conscious of",
-      "meaning": "有...意識",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 2
-    },
-    {
-      "id": "conscious-of-any-entry-0878",
-      "word": "conscious of",
-      "display": "conscious of",
-      "meaning": "有意識",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 2
+      "sourceCount": 1
     },
     {
       "id": "consecutive-any-entry-6606",
@@ -15072,37 +13173,27 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "conseqence-any-entry-0763",
-      "word": "conseqence",
-      "display": "conseqence",
-      "meaning": "後果",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "consequence-any-entry-0354",
+      "id": "consequence-noun-entry-0911",
       "word": "consequence",
       "display": "consequence",
       "meaning": "後果",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 30,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "aliases": [
+        "conseqence"
+      ],
+      "sourceCount": 1
     },
     {
-      "id": "consequences-any-entry-4219",
+      "id": "consequences-noun-entry-0912",
       "word": "consequences",
-      "display": "Consequences",
+      "display": "consequences",
       "meaning": "後果",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 10
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "conservation-any-entry-2820",
@@ -15131,238 +13222,54 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "conservative-any-entry-3935",
-      "word": "conservative",
-      "display": "conservative",
-      "meaning": "保守",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 16,
-      "inferredPos": "adjective",
-      "posConfidence": 84,
-      "posReason": "english-adjective-suffix+oxford"
-    },
-    {
-      "id": "conservative-any-entry-0186",
+      "id": "conservative-adjective-entry-0913",
       "word": "conservative",
       "display": "conservative",
       "meaning": "保守的",
-      "pos": "",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 15,
-      "inferredPos": "adjective",
-      "posConfidence": 96,
-      "posReason": "chinese-adjective-meaning+oxford"
+      "sourceCount": 1
     },
     {
-      "id": "conservative-any-entry-3947",
-      "word": "conservative",
-      "display": "conservative",
-      "meaning": "保留",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 84,
-      "posReason": "english-adjective-suffix+oxford"
-    },
-    {
-      "id": "conserve-any-entry-5175",
+      "id": "conserve-verb-entry-0914",
       "word": "conserve",
       "display": "conserve",
-      "meaning": "保存 / 節省",
-      "pos": "",
+      "meaning": "保育 / 節省 / 保存",
+      "pos": "verb",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
-      "id": "conserve-any-entry-3837",
-      "word": "conserve",
-      "display": "conserve",
-      "meaning": "保育",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 4,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "conserve-any-entry-4979",
-      "word": "conserve",
-      "display": "conserve",
-      "meaning": "保護",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "conserve-any-entry-3820",
-      "word": "conserve",
-      "display": "conserve",
-      "meaning": "節省 / 保育 (環境)",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "consider-any-entry-0117",
-      "word": "consider",
-      "display": "consider x2",
-      "meaning": "視為",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 38,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "consider-any-entry-0116",
-      "word": "consider",
-      "display": "consider x2",
-      "meaning": "考慮",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 42,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "consider-any-entry-0347",
+      "id": "consider-verb-entry-0915",
       "word": "consider",
       "display": "consider",
-      "meaning": "考慮 / 視為",
-      "pos": "",
+      "meaning": "考慮 / 認為",
+      "pos": "verb",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 11,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
-      "id": "consider-any-entry-8577",
-      "word": "consider",
-      "display": "consider x2",
-      "meaning": "認為",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "considerable-any-entry-7502",
+      "id": "considerable-adjective-entry-0916",
       "word": "considerable",
       "display": "considerable",
-      "meaning": "可觀的",
-      "pos": "",
+      "meaning": "相當大的 / 可觀的",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
+      "sourceCount": 1
     },
     {
-      "id": "considerable-any-entry-0617",
-      "word": "considerable",
-      "display": "considerable",
-      "meaning": "相當",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 3,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "considerable-any-entry-3592",
-      "word": "considerable",
-      "display": "considerable",
-      "meaning": "相當多的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "considerable-any-entry-3724",
-      "word": "considerable",
-      "display": "considerable",
-      "meaning": "相當大的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 3,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "considerable-any-entry-6281",
-      "word": "considerable",
-      "display": "considerable",
-      "meaning": "相當的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "considerably-any-entry-4636",
+      "id": "considerably-adverb-entry-0917",
       "word": "considerably",
       "display": "considerably",
       "meaning": "相當地",
-      "pos": "",
+      "pos": "adverb",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adverb",
-      "posConfidence": 94,
-      "posReason": "english-adverb-suffix"
-    },
-    {
-      "id": "considerably-any-entry-2998",
-      "word": "considerably",
-      "display": "considerably",
-      "meaning": "相當大的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adverb",
-      "posConfidence": 94,
-      "posReason": "english-adverb-suffix"
+      "sourceCount": 1
     },
     {
       "id": "consist-of-any-entry-4207",
@@ -15385,43 +13292,24 @@
       "sourceCount": 3
     },
     {
-      "id": "consistency-any-entry-3402",
+      "id": "consistency-noun-entry-0918",
       "word": "consistency",
       "display": "consistency",
       "meaning": "一致性",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
+      "sourceCount": 1
     },
     {
-      "id": "consistent-any-entry-4794",
-      "word": "consistent",
-      "display": "consistent",
-      "meaning": "一致",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "consistent-any-entry-6776",
+      "id": "consistent-adjective-entry-0919",
       "word": "consistent",
       "display": "consistent",
       "meaning": "一致的",
-      "pos": "",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
+      "sourceCount": 1
     },
     {
       "id": "consistent-with-any-entry-6455",
@@ -15467,43 +13355,14 @@
       "sourceCount": 1
     },
     {
-      "id": "constant-any-entry-3100",
+      "id": "constant-adjective-entry-0920",
       "word": "constant",
       "display": "constant",
-      "meaning": "持續",
-      "pos": "",
+      "meaning": "持續的 / 不變的",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "constant-any-entry-3057",
-      "word": "constant",
-      "display": "constant",
-      "meaning": "持續(+)",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "constant-any-entry-5019",
-      "word": "constant",
-      "display": "constant",
-      "meaning": "持續的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
+      "sourceCount": 1
     },
     {
       "id": "constantly-any-entry-8652",
@@ -15555,43 +13414,14 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "construct-any-entry-8042",
+      "id": "construct-verb-entry-0921",
       "word": "construct",
       "display": "construct",
-      "meaning": "建築",
-      "pos": "",
+      "meaning": "建造 / 建設",
+      "pos": "verb",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "construct-any-entry-8068",
-      "word": "construct",
-      "display": "construct",
-      "meaning": "建設",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "construct-any-entry-3763",
-      "word": "construct",
-      "display": "construct",
-      "meaning": "建造",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
       "id": "constructive-any-entry-4592",
@@ -15633,43 +13463,14 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "consume-any-entry-4526",
+      "id": "consume-verb-entry-0922",
       "word": "consume",
       "display": "consume",
-      "meaning": "消耗",
-      "pos": "",
+      "meaning": "消耗 / 食用",
+      "pos": "verb",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 26,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "consume-any-entry-4933",
-      "word": "consume",
-      "display": "consume",
-      "meaning": "食",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 27,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "consume-any-entry-6006",
-      "word": "consume",
-      "display": "consume",
-      "meaning": "食 / 消耗",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
       "id": "consumer-any-entry-3699",
@@ -15685,53 +13486,24 @@
       "posReason": "chinese-noun-meaning"
     },
     {
-      "id": "consumers-any-entry-4970",
+      "id": "consumers-noun-entry-0923",
       "word": "consumers",
       "display": "consumers",
-      "meaning": "顧客",
-      "pos": "",
+      "meaning": "消費者",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "contagious-any-entry-3466",
-      "word": "contagious",
-      "display": "contagious",
-      "meaning": "傳染性",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 9,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "contagious-any-entry-3563",
+      "id": "contagious-adjective-entry-0924",
       "word": "contagious",
       "display": "contagious",
       "meaning": "傳染性的",
-      "pos": "",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 10,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "contagious-any-entry-3508",
-      "word": "contagious",
-      "display": "contagious",
-      "meaning": "傳染的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
+      "sourceCount": 1
     },
     {
       "id": "contain-any-entry-8653",
@@ -15773,14 +13545,14 @@
       "posReason": "chinese-noun-meaning"
     },
     {
-      "id": "contamination-any-entry-3927",
+      "id": "contamination-noun-entry-0925",
       "word": "contamination",
       "display": "contamination",
       "meaning": "污染",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 5
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "contemplate-any-entry-3063",
@@ -15809,69 +13581,14 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "contemporary-any-entry-2859",
+      "id": "contemporary-adjective-entry-0926",
       "word": "contemporary",
       "display": "contemporary",
-      "meaning": "現代",
-      "pos": "",
+      "meaning": "當代的 / 現代的",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "contemporary-any-entry-7586",
-      "word": "contemporary",
-      "display": "contemporary",
-      "meaning": "現代的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "contemporary-any-entry-7570",
-      "word": "contemporary",
-      "display": "contemporary",
-      "meaning": "現在的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "contemporary-any-entry-7837",
-      "word": "contemporary",
-      "display": "contemporary",
-      "meaning": "當代",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "contemporary-any-entry-2876",
-      "word": "contemporary",
-      "display": "contemporary",
-      "meaning": "當代的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 5,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
+      "sourceCount": 1
     },
     {
       "id": "contend-any-entry-1230",
@@ -15960,56 +13677,14 @@
       "sourceCount": 1
     },
     {
-      "id": "contentious-any-entry-6564",
-      "word": "contentious",
-      "display": "contentious",
-      "meaning": "具爭議性的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "contentious-any-entry-2807",
-      "word": "contentious",
-      "display": "contentious",
-      "meaning": "有爭議性",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 22,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "contentious-any-entry-1131",
+      "id": "contentious-adjective-entry-0927",
       "word": "contentious",
       "display": "contentious",
       "meaning": "有爭議性的",
-      "pos": "",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 5,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "contentious-any-entry-1177",
-      "word": "contentious",
-      "display": "contentious",
-      "meaning": "爭議性的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
+      "sourceCount": 1
     },
     {
       "id": "contestants-noun-entry-0398",
@@ -16032,56 +13707,24 @@
       "sourceCount": 4
     },
     {
-      "id": "continuous-any-entry-7319",
+      "id": "continuous-adjective-entry-0928",
       "word": "continuous",
       "display": "continuous",
-      "meaning": "持續地",
-      "pos": "",
+      "meaning": "持續的 / 連續的",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adverb",
-      "posConfidence": 92,
-      "posReason": "chinese-adverb-meaning"
+      "sourceCount": 1
     },
     {
-      "id": "continuously-any-entry-2284",
+      "id": "continuously-adverb-entry-0929",
       "word": "continuously",
       "display": "continuously",
-      "meaning": "不斷地",
-      "pos": "",
+      "meaning": "持續地 / 不斷地",
+      "pos": "adverb",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adverb",
-      "posConfidence": 94,
-      "posReason": "english-adverb-suffix"
-    },
-    {
-      "id": "continuously-any-entry-2091",
-      "word": "continuously",
-      "display": "continuously",
-      "meaning": "持續地",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 5,
-      "inferredPos": "adverb",
-      "posConfidence": 94,
-      "posReason": "english-adverb-suffix"
-    },
-    {
-      "id": "continuously-any-entry-2267",
-      "word": "continuously",
-      "display": "continuously",
-      "meaning": "持續的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adverb",
-      "posConfidence": 94,
-      "posReason": "english-adverb-suffix"
+      "sourceCount": 1
     },
     {
       "id": "contradiction-any-entry-1466",
@@ -16120,112 +13763,24 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "contributory-factor-any-entry-0582",
+      "id": "contributory-factor-any-entry-0930",
       "word": "contributory factor",
       "display": "contributory factor",
-      "meaning": "原因(-)",
+      "meaning": "促成因素",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "contributory-factor-any-entry-0643",
-      "word": "contributory factor",
-      "display": "contributory factor",
-      "meaning": "因素",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 3
-    },
-    {
-      "id": "contributory-factor-any-entry-0608",
-      "word": "contributory factor",
-      "display": "contributory factor",
-      "meaning": "因素(-)",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 2
-    },
-    {
-      "id": "controversial-any-entry-1845",
-      "word": "controversial",
-      "display": "controversial",
-      "meaning": "具爭議性",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "controversial-any-entry-6566",
-      "word": "controversial",
-      "display": "controversial",
-      "meaning": "具爭議性的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "controversial-any-entry-1925",
-      "word": "controversial",
-      "display": "controversial",
-      "meaning": "有爭議",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "controversial-any-entry-1817",
-      "word": "controversial",
-      "display": "controversial",
-      "meaning": "有爭議性",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 30,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "controversial-any-entry-1737",
+      "id": "controversial-adjective-entry-0931",
       "word": "controversial",
       "display": "controversial",
       "meaning": "有爭議性的",
-      "pos": "",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 23,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "controversial-any-entry-1895",
-      "word": "controversial",
-      "display": "controversial",
-      "meaning": "爭議性的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 6,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
+      "sourceCount": 1
     },
     {
       "id": "controversy-any-entry-5367",
@@ -16254,30 +13809,14 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "convenient-any-entry-8441",
+      "id": "convenient-adjective-entry-0932",
       "word": "convenient",
       "display": "convenient",
-      "meaning": "方便",
-      "pos": "",
+      "meaning": "方便的",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "convenient-any-adj-3005",
-      "word": "convenient",
-      "display": "convenient",
-      "meaning": "方便 (adj)",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
+      "sourceCount": 1
     },
     {
       "id": "convention-any-entry-2721",
@@ -16317,16 +13856,6 @@
       "inferredPos": "noun",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "conversation-dialogue-any-entry-0356",
-      "word": "conversation / dialogue",
-      "display": "conversation / dialogue",
-      "meaning": "對話",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 2
     },
     {
       "id": "conversion-any-entry-1154",
@@ -16437,17 +13966,14 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "convincing-any-entry-3527",
+      "id": "convincing-adjective-entry-0933",
       "word": "convincing",
       "display": "convincing",
-      "meaning": "有說服力",
-      "pos": "",
+      "meaning": "有說服力的",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 4,
-      "inferredPos": "noun",
-      "posConfidence": 90,
-      "posReason": "chinese-noun-meaning"
+      "sourceCount": 1
     },
     {
       "id": "cooperate-with-any-entry-6419",
@@ -16460,14 +13986,14 @@
       "sourceCount": 2
     },
     {
-      "id": "cooperation-any-entry-0059",
+      "id": "cooperation-noun-entry-0934",
       "word": "cooperation",
       "display": "cooperation",
       "meaning": "合作",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "coordination-any-entry-3122",
@@ -16493,43 +14019,14 @@
       "sourceCount": 8
     },
     {
-      "id": "copious-any-entry-7670",
+      "id": "copious-adjective-entry-0935",
       "word": "copious",
       "display": "copious",
-      "meaning": "充沛的",
-      "pos": "",
+      "meaning": "大量的 / 充沛的",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "copious-any-entry-3271",
-      "word": "copious",
-      "display": "copious",
-      "meaning": "充沛的 / 大量的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "copious-any-entry-6322",
-      "word": "copious",
-      "display": "copious",
-      "meaning": "大量",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "noun",
-      "posConfidence": 90,
-      "posReason": "chinese-noun-meaning"
+      "sourceCount": 1
     },
     {
       "id": "coral-reef-any-entry-7092",
@@ -16542,14 +14039,24 @@
       "sourceCount": 2
     },
     {
-      "id": "core-any-entry-3127",
+      "id": "core-noun-entry-0936",
       "word": "core",
       "display": "core",
       "meaning": "核心",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "core-adjective-entry-0937",
+      "word": "core",
+      "display": "core",
+      "meaning": "核心的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "core-value-any-entry-7715",
@@ -16614,23 +14121,23 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "corporations-any-entry-0324",
+      "id": "corporations-noun-entry-0938",
       "word": "corporations",
       "display": "corporations",
-      "meaning": "大企業",
-      "pos": "",
+      "meaning": "企業 / 大公司",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 9
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
-      "id": "corpse-any-entry-6729",
+      "id": "corpse-noun-entry-0939",
       "word": "corpse",
       "display": "corpse",
       "meaning": "屍體",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
@@ -16736,56 +14243,14 @@
       "sourceCount": 5
     },
     {
-      "id": "costly-any-entry-1976",
+      "id": "costly-adjective-entry-0940",
       "word": "costly",
       "display": "costly",
-      "meaning": "(物品)",
-      "pos": "",
+      "meaning": "昂貴的",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 6,
-      "inferredPos": "adverb",
-      "posConfidence": 94,
-      "posReason": "english-adverb-suffix"
-    },
-    {
-      "id": "costly-any-entry-2298",
-      "word": "costly",
-      "display": "costly",
-      "meaning": "昂貴",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adverb",
-      "posConfidence": 94,
-      "posReason": "english-adverb-suffix"
-    },
-    {
-      "id": "costly-any-entry-5554",
-      "word": "costly",
-      "display": "costly",
-      "meaning": "物品貴",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adverb",
-      "posConfidence": 94,
-      "posReason": "english-adverb-suffix"
-    },
-    {
-      "id": "costly-any-entry-2351",
-      "word": "costly",
-      "display": "costly",
-      "meaning": "貴",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 7,
-      "inferredPos": "adverb",
-      "posConfidence": 94,
-      "posReason": "english-adverb-suffix"
+      "sourceCount": 1
     },
     {
       "id": "costume-any-entry-4616",
@@ -16801,14 +14266,24 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "cough-any-entry-8370",
+      "id": "cough-noun-entry-0941",
       "word": "cough",
       "display": "cough",
-      "meaning": "咳",
-      "pos": "",
+      "meaning": "咳嗽",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 25
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "cough-verb-entry-0942",
+      "word": "cough",
+      "display": "cough",
+      "meaning": "咳嗽",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "could-modal-entry-0420",
@@ -16834,13 +14309,23 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "count-any-entry-5130",
+      "id": "count-verb-entry-0943",
       "word": "count",
       "display": "count",
-      "meaning": "數",
-      "pos": "",
+      "meaning": "數 / 計算",
+      "pos": "verb",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "count-noun-entry-0944",
+      "word": "count",
+      "display": "count",
+      "meaning": "數目",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
       "sourceCount": 1
     },
     {
@@ -16857,56 +14342,24 @@
       "posReason": "english-noun-suffix+oxford"
     },
     {
-      "id": "counterpart-any-entry-6955",
+      "id": "counterpart-noun-entry-0945",
       "word": "counterpart",
       "display": "counterpart",
-      "meaning": "對應名詞",
-      "pos": "",
+      "meaning": "對應的人 / 對應物",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
-      "id": "counterpart-any-entry-2067",
-      "word": "counterpart",
-      "display": "counterpart",
-      "meaning": "對應物 / 人",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 90,
-      "posReason": "chinese-noun-meaning"
-    },
-    {
-      "id": "counterparts-any-entry-1945",
+      "id": "counterparts-noun-entry-0946",
       "word": "counterparts",
       "display": "counterparts",
-      "meaning": "對應物",
-      "pos": "",
+      "meaning": "對應的人 / 對應物",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 90,
-      "posReason": "chinese-noun-meaning"
-    },
-    {
-      "id": "counterparts-any-entry-1968",
-      "word": "counterparts",
-      "display": "counterparts",
-      "meaning": "對應物 / 人",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 8,
-      "inferredPos": "noun",
-      "posConfidence": 90,
-      "posReason": "chinese-noun-meaning"
+      "sourceCount": 1
     },
     {
       "id": "country-any-entry-7922",
@@ -17038,14 +14491,14 @@
       "sourceCount": 3
     },
     {
-      "id": "craft-verb-entry-8588",
+      "id": "craft-verb-entry-0947",
       "word": "craft",
-      "display": "craft (v)",
-      "meaning": "做手工",
+      "display": "craft",
+      "meaning": "製作",
       "pos": "verb",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 2
+      "sourceCount": 1
     },
     {
       "id": "crafter-any-entry-5125",
@@ -17061,24 +14514,24 @@
       "posReason": "chinese-noun-meaning"
     },
     {
-      "id": "crafts-any-entry-6359",
+      "id": "crafts-noun-entry-0948",
       "word": "crafts",
       "display": "crafts",
       "meaning": "手工藝",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
-      "id": "craftsman-any-entry-8568",
+      "id": "craftsman-noun-entry-0949",
       "word": "craftsman",
       "display": "craftsman",
       "meaning": "工匠",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "craftsmanship-noun-entry-0402",
@@ -17151,33 +14604,43 @@
       "sourceCount": 3
     },
     {
-      "id": "crane-any-entry-7798",
+      "id": "crane-noun-entry-0950",
       "word": "crane",
       "display": "crane",
-      "meaning": "吊臂",
-      "pos": "",
+      "meaning": "起重機 / 鶴",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "crash-any-entry-0002",
-      "word": "crash",
-      "display": "crash",
-      "meaning": "撞",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "crate-any-entry-6745",
+      "id": "crash-verb-entry-0952",
+      "word": "crash",
+      "display": "crash",
+      "meaning": "撞擊 / 崩潰",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "crash-noun-entry-0951",
+      "word": "crash",
+      "display": "crash",
+      "meaning": "撞車 / 崩潰",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "crate-noun-entry-0953",
       "word": "crate",
       "display": "crate",
-      "meaning": "木箱",
-      "pos": "",
+      "meaning": "板條箱 / 木箱",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
@@ -17289,13 +14752,13 @@
       "posReason": "chinese-noun-meaning"
     },
     {
-      "id": "credentials-any-entry-1686",
+      "id": "credentials-noun-entry-0954",
       "word": "credentials",
       "display": "credentials",
-      "meaning": "登入資料",
-      "pos": "",
+      "meaning": "資歷 / 證明文件",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
@@ -17325,14 +14788,24 @@
       "posReason": "chinese-adjective-meaning"
     },
     {
-      "id": "credit-any-entry-7827",
+      "id": "credit-noun-entry-0955",
       "word": "credit",
       "display": "credit",
-      "meaning": "功勞",
-      "pos": "",
+      "meaning": "信用 / 學分 / 讚揚",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "credit-verb-entry-0956",
+      "word": "credit",
+      "display": "credit",
+      "meaning": "歸功於",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "creep-in-any-entry-7653",
@@ -17368,43 +14841,14 @@
       "posReason": "chinese-adjective-meaning"
     },
     {
-      "id": "crew-any-entry-2362",
+      "id": "crew-noun-entry-0957",
       "word": "crew",
       "display": "crew",
-      "meaning": "工作人員",
-      "pos": "",
+      "meaning": "工作人員 / 全體船員",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 7,
-      "inferredPos": "noun",
-      "posConfidence": 90,
-      "posReason": "chinese-noun-meaning"
-    },
-    {
-      "id": "crew-any-entry-8589",
-      "word": "crew",
-      "display": "crew",
-      "meaning": "工作人員 (非文職)",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 90,
-      "posReason": "chinese-noun-meaning"
-    },
-    {
-      "id": "crew-any-entry-8600",
-      "word": "crew",
-      "display": "crew",
-      "meaning": "工作人員(非文職)",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 90,
-      "posReason": "chinese-noun-meaning"
+      "sourceCount": 1
     },
     {
       "id": "crisis-any-entry-2971",
@@ -17430,17 +14874,14 @@
       "sourceCount": 1
     },
     {
-      "id": "criterion-any-entry-0692",
+      "id": "criterion-noun-entry-0958",
       "word": "criterion",
       "display": "criterion",
-      "meaning": "準則(單數)",
-      "pos": "",
+      "meaning": "準則 / 標準",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
       "id": "critic-any-entry-7793",
@@ -17456,134 +14897,14 @@
       "posReason": "chinese-noun-meaning"
     },
     {
-      "id": "critical-any-entry-5403",
+      "id": "critical-adjective-entry-0959",
       "word": "critical",
       "display": "critical",
-      "meaning": "十分重要, 批評的, 批判性的",
-      "pos": "",
+      "meaning": "關鍵的 / 批判性的 / 危急的",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 3,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "critical-any-entry-6913",
-      "word": "critical",
-      "display": "critical",
-      "meaning": "批評 / 重要",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "critical-any-entry-5164",
-      "word": "critical",
-      "display": "critical",
-      "meaning": "至關重要的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "critical-any-entry-6179",
-      "word": "critical",
-      "display": "critical",
-      "meaning": "重要",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "critical-any-entry-7519",
-      "word": "critical",
-      "display": "critical",
-      "meaning": "重要 / 危殆 / 批評",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "critical-any-entry-7838",
-      "word": "critical",
-      "display": "critical",
-      "meaning": "重要 / 危殆 / 批評 / 批判",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "critical-any-entry-5170",
-      "word": "critical",
-      "display": "critical",
-      "meaning": "重要 危殆 瀕危 批評",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "critical-any-entry-6174",
-      "word": "critical",
-      "display": "critical",
-      "meaning": "關鍵",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "critical-any-entry-6163",
-      "word": "critical",
-      "display": "critical",
-      "meaning": "關鍵 / 批判 / 批評 / 危殆",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "critical-any-entry-4883",
-      "word": "critical",
-      "display": "critical x2",
-      "meaning": "關鍵 危殆",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
       "id": "critical-of-any-entry-7768",
@@ -17596,14 +14917,14 @@
       "sourceCount": 2
     },
     {
-      "id": "criticise-any-entry-7202",
+      "id": "criticise-verb-entry-0960",
       "word": "criticise",
       "display": "criticise",
       "meaning": "批評",
-      "pos": "",
+      "pos": "verb",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "criticism-any-entry-5055",
@@ -17619,40 +14940,24 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "criticisms-any-n-7981",
+      "id": "criticisms-noun-entry-0961",
       "word": "criticisms",
       "display": "criticisms",
-      "meaning": "批評 (n)",
-      "pos": "",
+      "meaning": "批評",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
-      "id": "criticize-any-entry-7999",
+      "id": "criticize-verb-entry-0962",
       "word": "criticize",
       "display": "criticize",
       "meaning": "批評",
-      "pos": "",
+      "pos": "verb",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 10,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "criticize-any-v-7983",
-      "word": "criticize",
-      "display": "criticize",
-      "meaning": "批評 (v)",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
       "id": "critics-any-entry-7975",
@@ -17678,13 +14983,13 @@
       "sourceCount": 1
     },
     {
-      "id": "crowds-any-entry-8512",
+      "id": "crowds-noun-entry-0963",
       "word": "crowds",
       "display": "crowds",
-      "meaning": "群眾",
-      "pos": "",
+      "meaning": "人群",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
@@ -17714,43 +15019,14 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "crucial-any-entry-5279",
+      "id": "crucial-adjective-entry-0964",
       "word": "crucial",
       "display": "crucial",
-      "meaning": "十分重要",
-      "pos": "",
+      "meaning": "至關重要的",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 13,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "crucial-any-entry-5297",
-      "word": "crucial",
-      "display": "crucial",
-      "meaning": "極重要",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 5,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "crucial-any-entry-2993",
-      "word": "crucial",
-      "display": "crucial",
-      "meaning": "重要",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 26,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
       "id": "cruel-any-entry-8191",
@@ -17766,13 +15042,23 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "cruise-any-entry-8691",
+      "id": "cruise-verb-entry-0966",
       "word": "cruise",
       "display": "cruise",
-      "meaning": "遊輪",
-      "pos": "",
+      "meaning": "乘船遊覽",
+      "pos": "verb",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "cruise-noun-entry-0965",
+      "word": "cruise",
+      "display": "cruise",
+      "meaning": "郵輪旅程",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
       "sourceCount": 1
     },
     {
@@ -17809,23 +15095,23 @@
       "sourceCount": 1
     },
     {
-      "id": "crust-any-entry-4553",
+      "id": "crust-noun-entry-0967",
       "word": "crust",
       "display": "crust",
-      "meaning": "地殼",
-      "pos": "",
+      "meaning": "外皮 / 地殼",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "crutch-any-entry-2751",
+      "id": "crutch-noun-entry-0968",
       "word": "crutch",
       "display": "crutch",
-      "meaning": "支撐",
-      "pos": "",
+      "meaning": "拐杖",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
@@ -17839,24 +15125,24 @@
       "sourceCount": 1
     },
     {
-      "id": "cubs-any-entry-4862",
+      "id": "cubs-noun-entry-0969",
       "word": "cubs",
       "display": "cubs",
-      "meaning": "幼崽",
-      "pos": "",
+      "meaning": "幼獸",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "cucumber-any-entry-7710",
+      "id": "cucumber-noun-entry-0970",
       "word": "cucumber",
       "display": "cucumber",
-      "meaning": "青瓜",
-      "pos": "",
+      "meaning": "青瓜 / 黃瓜",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "cuisine-noun-entry-0409",
@@ -17869,56 +15155,14 @@
       "sourceCount": 1
     },
     {
-      "id": "culinary-any-entry-0802",
-      "word": "culinary",
-      "display": "culinary",
-      "meaning": "烹調的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "culinary-any-entry-6568",
+      "id": "culinary-adjective-entry-0971",
       "word": "culinary",
       "display": "culinary",
       "meaning": "烹飪的 / 飲食的",
-      "pos": "",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "culinary-any-entry-1300",
-      "word": "culinary",
-      "display": "culinary",
-      "meaning": "飲食的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "culinary-any-entry-6589",
-      "word": "culinary",
-      "display": "culinary",
-      "meaning": "飲食的 / 烹飪的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
+      "sourceCount": 1
     },
     {
       "id": "culprit-noun-entry-0410",
@@ -17931,82 +15175,24 @@
       "sourceCount": 1
     },
     {
-      "id": "cultivate-any-entry-3416",
+      "id": "cultivate-verb-entry-0972",
       "word": "cultivate",
-      "display": "cultivate x2",
-      "meaning": "培植",
-      "pos": "",
+      "display": "cultivate",
+      "meaning": "培養 / 種植",
+      "pos": "verb",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
-      "id": "cultivate-any-entry-3415",
-      "word": "cultivate",
-      "display": "cultivate x2",
-      "meaning": "培養",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 18,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "cultivate-any-entry-5981",
-      "word": "cultivate",
-      "display": "cultivate x2",
-      "meaning": "種",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "cultivate-any-entry-3421",
-      "word": "cultivate",
-      "display": "cultivate x2",
-      "meaning": "種植",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 4,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "cultural-any-entry-8558",
-      "word": "cultural",
-      "display": "cultural",
-      "meaning": "文化",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 90,
-      "posReason": "chinese-noun-meaning"
-    },
-    {
-      "id": "cultural-any-entry-8270",
+      "id": "cultural-adjective-entry-0973",
       "word": "cultural",
       "display": "cultural",
       "meaning": "文化的",
-      "pos": "",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
+      "sourceCount": 1
     },
     {
       "id": "cultural-heritage-any-entry-8268",
@@ -18075,13 +15261,23 @@
       "sourceCount": 1
     },
     {
-      "id": "cure-any-entry-5137",
+      "id": "cure-verb-entry-0974",
       "word": "cure",
       "display": "cure",
-      "meaning": "治療",
-      "pos": "",
+      "meaning": "治療 / 治癒",
+      "pos": "verb",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "cure-noun-entry-0975",
+      "word": "cure",
+      "display": "cure",
+      "meaning": "療法",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
       "sourceCount": 1
     },
     {
@@ -18121,102 +15317,24 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "current-adjective-entry-5727",
+      "id": "current-adjective-entry-0976",
       "word": "current",
-      "display": "current (adj)",
-      "meaning": "現時",
+      "display": "current",
+      "meaning": "目前的 / 當前的",
       "pos": "adjective",
       "type": "word",
       "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "current-any-entry-8679",
-      "word": "current",
-      "display": "current",
-      "meaning": "現時的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 96,
-      "posReason": "chinese-adjective-meaning+oxford"
-    },
-    {
-      "id": "current-any-entry-8235",
-      "word": "current",
-      "display": "current",
-      "meaning": "當前的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 96,
-      "posReason": "chinese-adjective-meaning+oxford"
-    },
-    {
-      "id": "current-any-entry-8251",
-      "word": "current",
-      "display": "current",
-      "meaning": "目前",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 84,
-      "posReason": "english-adjective-suffix+oxford"
-    },
-    {
-      "id": "current-adjective-entry-5698",
-      "word": "current",
-      "display": "current (adj)",
-      "meaning": "目前的",
-      "pos": "adjective",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "currently-any-entry-3816",
-      "word": "currently",
-      "display": "currently",
-      "meaning": "現時",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 7,
-      "inferredPos": "adverb",
-      "posConfidence": 94,
-      "posReason": "english-adverb-suffix"
-    },
-    {
-      "id": "currently-any-entry-2340",
-      "word": "currently",
-      "display": "currently",
-      "meaning": "目前",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 6,
-      "inferredPos": "adverb",
-      "posConfidence": 94,
-      "posReason": "english-adverb-suffix"
-    },
-    {
-      "id": "currently-any-entry-5180",
+      "id": "currently-adverb-entry-0977",
       "word": "currently",
       "display": "currently",
       "meaning": "目前 / 現時",
-      "pos": "",
+      "pos": "adverb",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adverb",
-      "posConfidence": 94,
-      "posReason": "english-adverb-suffix"
+      "sourceCount": 1
     },
     {
       "id": "curse-noun-entry-0413",
@@ -18239,13 +15357,13 @@
       "sourceCount": 1
     },
     {
-      "id": "cursor-any-entry-4728",
+      "id": "cursor-noun-entry-0978",
       "word": "cursor",
       "display": "cursor",
-      "meaning": "鼠標",
-      "pos": "",
+      "meaning": "游標",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
+      "needsReview": false,
       "sourceCount": 1
     },
     {
@@ -18262,40 +15380,34 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "custard-any-entry-5479",
+      "id": "custard-noun-entry-0982",
       "word": "custard",
       "display": "custard",
-      "meaning": "蛋黃醬",
-      "pos": "",
+      "meaning": "吉士 / 蛋奶醬",
+      "pos": "noun",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 25
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
-      "id": "custom-any-entry-8791",
+      "id": "custom-noun-entry-0979",
       "word": "custom",
       "display": "custom",
       "meaning": "習俗",
-      "pos": "",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
-      "id": "custom-any-entry-7803",
+      "id": "custom-adjective-entry-0980",
       "word": "custom",
       "display": "custom",
-      "meaning": "自訂",
-      "pos": "",
+      "meaning": "訂製的 / 自訂的",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 4,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
       "id": "customer-base-any-entry-5227",
@@ -18328,14 +15440,14 @@
       "sourceCount": 1
     },
     {
-      "id": "customise-any-entry-5628",
+      "id": "customise-verb-entry-0981",
       "word": "customise",
       "display": "customise",
-      "meaning": "客製化",
-      "pos": "",
+      "meaning": "自訂 / 訂製",
+      "pos": "verb",
       "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
+      "needsReview": false,
+      "sourceCount": 1
     },
     {
       "id": "customs-noun-entry-0416",
@@ -18378,34 +15490,24 @@
       "sourceCount": 1
     },
     {
-      "id": "cutting-edge-any-entry-0819",
+      "id": "cutting-edge-any-entry-0983",
       "word": "cutting edge",
       "display": "cutting edge",
-      "meaning": "劃時代的",
+      "meaning": "尖端 / 最先進",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
-      "sourceCount": 2
+      "sourceCount": 1
     },
     {
-      "id": "cutting-edge-any-entry-4003",
+      "id": "cutting-edge-any-entry-0984",
       "word": "cutting-edge",
       "display": "cutting-edge",
-      "meaning": "劃時代",
+      "meaning": "尖端的 / 最先進的",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
-      "sourceCount": 3
-    },
-    {
-      "id": "cutting-edge-any-entry-3983",
-      "word": "cutting-edge",
-      "display": "cutting-edge",
-      "meaning": "劃時代的",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 8
+      "sourceCount": 1
     },
     {
       "id": "d-any-entry-1644",

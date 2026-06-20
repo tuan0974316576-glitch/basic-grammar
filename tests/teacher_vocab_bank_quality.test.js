@@ -311,7 +311,174 @@ function assertIncludes(word, expected) {
   ["bouncy", "adj. 有彈性的 / 彈跳的"],
   ["by", "prep. 由 / 被 / 靠近"],
   ["by far", "ph. 到目前為止 / 遠遠地"],
-  ["by leaps and bounds", "ph. 突飛猛進 / 快速地"]
+  ["by leaps and bounds", "ph. 突飛猛進 / 快速地"],
+  ["cabbage", "n. 椰菜 / 捲心菜"],
+  ["cabin", "n. 機艙 / 船艙 / 小屋"],
+  ["cactus", "n. 仙人掌"],
+  ["called", "v. 叫做 / 稱為"],
+  ["camel", "n. 駱駝"],
+  ["can be ascribed to", "ph. 可歸因於"],
+  ["can be attributed to", "ph. 可歸因於"],
+  ["Canada", "n. 加拿大"],
+  ["candidates", "n. 候選人 / 參加者"],
+  ["cannabis", "n. 大麻"],
+  ["canyon", "n. 峽谷"],
+  ["cap", "n. 帽子 / 上限"],
+  ["capital", "n. 首都 / 資本 / 資金"],
+  ["capitivating", "adj. 迷人的 / 有吸引力的"],
+  ["captivate", "v. 吸引 / 迷住"],
+  ["captivating", "adj. 迷人的 / 有吸引力的"],
+  ["caramel", "n. 焦糖"],
+  ["carcass", "n. 動物屍體"],
+  ["cardboard", "n. 硬紙板"],
+  ["cardiovascular", "adj. 心血管的"],
+  ["cargo", "n. 貨物"],
+  ["carnival", "n. 嘉年華"],
+  ["category", "n. 類別 / 種類"],
+  ["cater to", "ph. 迎合 / 滿足...需要"],
+  ["cater for", "ph. 提供餐飲 / 滿足...需要"],
+  ["cater to / for", "ph. 迎合 / 滿足...需要"],
+  ["catering", "n. 餐飲服務"],
+  ["cathedral", "n. 大教堂"],
+  ["Catholic", "adj. 天主教的"],
+  ["Catholic", "n. 天主教徒"],
+  ["cautious", "adj. 謹慎的 / 小心的"],
+  ["caviar", "n. 魚子醬"],
+  ["cede", "v. 割讓 / 讓出"],
+  ["celebrate", "v. 慶祝"],
+  ["celebrated for", "ph. 以...聞名 / 因...出名"],
+  ["cemetery", "n. 墓地 / 墳場"],
+  ["censor", "v. 審查"],
+  ["censor", "n. 審查員"],
+  ["certain", "adj. 某些 / 肯定的"],
+  ["chairperson", "n. 主席"],
+  ["chalk", "n. 粉筆"],
+  ["challenge", "n. 挑戰"],
+  ["challenge", "v. 挑戰"],
+  ["challenges", "n. 挑戰"],
+  ["chameleon", "n. 變色龍"],
+  ["chapel", "n. 小教堂"],
+  ["character", "n. 性格 / 角色 / 文字"],
+  ["characteristic", "n. 特徵 / 特點"],
+  ["characteristic", "adj. 典型的 / 特有的"],
+  ["charcoal", "n. 木炭"],
+  ["charismatic", "adj. 有魅力的"],
+  ["charts", "n. 圖表"],
+  ["cheeks", "n. 臉頰"],
+  ["cheetah", "n. 獵豹"],
+  ["chemical", "adj. 化學的"],
+  ["chemical", "n. 化學物"],
+  ["cherish", "v. 珍惜"],
+  ["Chinese", "n. 中文 / 中國人"],
+  ["Chinese", "adj. 中國的 / 中文的"],
+  ["chronic", "adj. 慢性的"],
+  ["chunk", "n. 一大塊 / 一部分"],
+  ["churn out", "ph. 大量快速生產"],
+  ["circumvent", "v. 規避 / 避開"],
+  ["circus", "n. 馬戲團"],
+  ["citrus", "n. 柑橘類水果"],
+  ["civilisation", "n. 文明"],
+  ["claim", "v. 聲稱 / 索取"],
+  ["claim", "n. 聲稱 / 索償 / 要求"],
+  ["clay", "n. 黏土"],
+  ["clients", "n. 客戶"],
+  ["closet", "n. 衣櫃"],
+  ["clue", "n. 線索"],
+  ["clumsy", "adj. 笨拙的"],
+  ["cluster", "n. 一群 / 一組"],
+  ["clutter", "n. 雜亂"],
+  ["clutter", "v. 使凌亂"],
+  ["cod", "n. 鱈魚"],
+  ["code", "n. 代碼 / 編碼"],
+  ["cognitive", "adj. 認知的"],
+  ["cohesion", "n. 凝聚力 / 連貫性"],
+  ["coin", "n. 硬幣"],
+  ["coin", "v. 創造新詞 / 首次使用"],
+  ["collaborate", "v. 合作"],
+  ["collabrate", "v. 合作"],
+  ["collaborate with", "ph. 與...合作"],
+  ["colleagues", "n. 同事"],
+  ["collection", "n. 收藏 / 收藏品 / 作品集"],
+  ["collective", "adj. 集體的 / 共同的"],
+  ["colony", "n. 殖民地"],
+  ["combat", "v. 戰鬥 / 打擊"],
+  ["combat", "n. 戰鬥"],
+  ["comfort", "n. 舒適 / 安慰"],
+  ["comfort", "v. 安慰"],
+  ["comfy", "adj. 舒服的"],
+  ["comical", "adj. 滑稽的 / 可笑的"],
+  ["commencement", "n. 開始 / 畢業典禮"],
+  ["commercial", "adj. 商業的"],
+  ["commercial", "n. 廣告"],
+  ["commerical", "adj. 商業的"],
+  ["commit", "v. 犯 / 承諾"],
+  ["commit to", "ph. 承諾 / 致力於"],
+  ["communication", "n. 溝通"],
+  ["common", "adj. 普遍的 / 常見的"],
+  ["commonplace", "adj. 普遍的 / 常見的"],
+  ["communism", "n. 共產主義"],
+  ["commute", "v. 通勤"],
+  ["commute", "n. 通勤路程"],
+  ["compelling", "adj. 有說服力的 / 引人入勝的"],
+  ["competition", "n. 競爭 / 比賽"],
+  ["complicated", "adj. 複雜的"],
+  ["component", "n. 部件 / 組成部分"],
+  ["comprehensive", "adj. 全面的"],
+  ["compromise", "n. 妥協"],
+  ["compromise", "v. 妥協"],
+  ["compulsive", "adj. 強迫性的 / 難以控制的"],
+  ["compulsory", "adj. 強制的 / 必修的"],
+  ["concern", "n. 擔憂 / 關注"],
+  ["concern", "v. 使擔心 / 關乎"],
+  ["concerning", "prep. 關於"],
+  ["concerning", "adj. 令人擔憂的"],
+  ["confess", "v. 承認 / 認錯"],
+  ["conflict", "n. 衝突"],
+  ["conflict", "v. 衝突 / 抵觸"],
+  ["consequence", "n. 後果"],
+  ["conseqence", "n. 後果"],
+  ["conserve", "v. 保育 / 節省 / 保存"],
+  ["consider", "v. 考慮 / 認為"],
+  ["considerable", "adj. 相當大的 / 可觀的"],
+  ["construct", "v. 建造 / 建設"],
+  ["consume", "v. 消耗 / 食用"],
+  ["consumers", "n. 消費者"],
+  ["contagious", "adj. 傳染性的"],
+  ["contamination", "n. 污染"],
+  ["contemporary", "adj. 當代的 / 現代的"],
+  ["contentious", "adj. 有爭議性的"],
+  ["controversial", "adj. 有爭議性的"],
+  ["convincing", "adj. 有說服力的"],
+  ["cooperation", "n. 合作"],
+  ["core", "n. 核心"],
+  ["core", "adj. 核心的"],
+  ["corpse", "n. 屍體"],
+  ["costly", "adj. 昂貴的"],
+  ["cough", "n. 咳嗽"],
+  ["cough", "v. 咳嗽"],
+  ["count", "v. 數 / 計算"],
+  ["crafts", "n. 手工藝"],
+  ["craftsman", "n. 工匠"],
+  ["crane", "n. 起重機 / 鶴"],
+  ["crash", "n. 撞車 / 崩潰"],
+  ["crash", "v. 撞擊 / 崩潰"],
+  ["credit", "n. 信用 / 學分 / 讚揚"],
+  ["credit", "v. 歸功於"],
+  ["critical", "adj. 關鍵的 / 批判性的 / 危急的"],
+  ["criticise", "v. 批評"],
+  ["criticize", "v. 批評"],
+  ["cruise", "n. 郵輪旅程"],
+  ["cruise", "v. 乘船遊覽"],
+  ["cucumber", "n. 青瓜 / 黃瓜"],
+  ["cure", "v. 治療 / 治癒"],
+  ["cure", "n. 療法"],
+  ["current", "adj. 目前的 / 當前的"],
+  ["custom", "n. 習俗"],
+  ["custom", "adj. 訂製的 / 自訂的"],
+  ["customise", "v. 自訂 / 訂製"],
+  ["custard", "n. 吉士 / 蛋奶醬"],
+  ["cutting edge", "ph. 尖端 / 最先進"],
+  ["cutting-edge", "ph. 尖端的 / 最先進的"]
 ].forEach(([word, expected]) => assertIncludes(word, expected));
 
 assert.ok(
@@ -444,5 +611,44 @@ assert.ok(
   "by far should not show typo meanings"
 );
 assert.deepStrictEqual(labels("budding / aspiring"), [], "combined example fragment should not be exposed");
+assert.deepStrictEqual(labels("c"), [], "c should not be exposed as a vocabulary word");
+assert.deepStrictEqual(labels("ca"), [], "ca should not be exposed as a vocabulary word");
+assert.deepStrictEqual(labels("c a"), [], "broken abbreviation c a should not be exposed");
+assert.deepStrictEqual(labels("c b"), [], "broken abbreviation c b should not be exposed");
+assert.deepStrictEqual(labels("can be"), [], "broken fragment can be should not be exposed");
+assert.deepStrictEqual(labels("can be as"), [], "broken fragment can be as should not be exposed");
+assert.deepStrictEqual(labels("charming / charismatic"), [], "combined example fragment should not be exposed");
+assert.deepStrictEqual(labels("conversation / dialogue"), [], "combined synonym fragment should not be exposed");
+assert.deepStrictEqual(labels("conj"), [], "conj should not be exposed as a vocabulary word");
+assert.deepStrictEqual(labels("competition 可數"), [], "lesson note should not be exposed as a vocab item");
+assert.deepStrictEqual(labels("comeptition 不可數"), [], "lesson note typo should not be exposed as a vocab item");
+assert.ok(
+  !labels("captivating").some((label) => label.startsWith("n.")),
+  "captivating should not be shown as a noun"
+);
+assert.ok(
+  !labels("Chinese").some((label) => label.includes("nutritionist")),
+  "Chinese should not inherit unrelated nutritionist notes"
+);
+assert.ok(
+  !labels("costly").some((label) => label.startsWith("adv.")),
+  "costly should not be shown as an adverb"
+);
+assert.ok(
+  !labels("coin").some((label) => label.includes("創造(") || label.includes("創造 (")),
+  "coin should not show noisy parenthetical fragments"
+);
+assert.ok(
+  !labels("component").some((label) => label.includes("部份")),
+  "component should use 組成部分 instead of noisy duplicate meanings"
+);
+assert.ok(
+  !labels("critical").some((label) => label.includes("重要 危殆") || label.includes("十分重要,")),
+  "critical should not show overloaded comma fragments"
+);
+assert.ok(
+  !labels("colony").some((label) => label.startsWith("adv.")),
+  "colony should not be shown as an adverb"
+);
 
 console.log("teacher_vocab_bank_quality tests passed");
