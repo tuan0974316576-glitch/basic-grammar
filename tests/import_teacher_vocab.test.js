@@ -17,6 +17,7 @@ assert.deepStrictEqual(importer.splitPosFromWord("force x2"), {
 
 assert.strictEqual(importer.detectType("be+pp"), "pattern");
 assert.strictEqual(importer.detectType("as+名詞"), "pattern");
+assert.strictEqual(importer.detectType("either...or"), "pattern");
 assert.strictEqual(importer.detectType("intend to"), "phrase");
 assert.deepStrictEqual(importer.splitMeanings("力量/強迫"), ["力量", "強迫"]);
 assert.strictEqual(importer.normalizePos("modal v."), "modal");

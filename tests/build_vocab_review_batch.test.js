@@ -59,6 +59,8 @@ assert.ok(rows[1].flags.includes("no-draft-meaning"));
 
 const csv = review.buildCsv(rows);
 assert.ok(csv.includes("reviewed_pos"));
+assert.ok(csv.includes("audit_reasons"));
+assert.ok(csv.includes("original_teacher_entry"));
 assert.ok(csv.includes("reviewed_meaning"));
 assert.ok(csv.includes("promote_to"));
 assert.ok(csv.includes("answer"));
@@ -76,5 +78,43 @@ assert.strictEqual(parsed.offset, 100);
 assert.strictEqual(parsed.limit, 50);
 assert.strictEqual(parsed.level, "A2");
 assert.ok(parsed.csv.endsWith("foo.csv"));
+
+const teacherAuditTasks = review.getReviewTasks({ source: "teacher-audit" });
+assert.ok(teacherAuditTasks.length > 4000, "Teacher audit should include full suspicious candidate set, not only needsReview entries.");
+assert.ok(teacherAuditTasks[0].audit?.reasons?.length);
+assert.strictEqual(teacherAuditTasks[0].source, "teacher-audit");
+
+const teacherAuditRows = review.buildReviewRows({
+  tasks: teacherAuditTasks.slice(0, 1),
+  lookups: {
+    teacher: () => [],
+    curated: () => [],
+    ccSupplement: () => [],
+    ecdict: () => [],
+    generatedSeed: () => [],
+    ccCedictReverse: () => []
+  }
+});
+assert.ok(teacherAuditRows[0].flags.includes("teacher-audit"));
+assert.ok(teacherAuditRows[0].flags.some((flag) => flag.startsWith("audit:")));
+assert.ok(teacherAuditRows[0].review.notes.startsWith("Original:"));
+
+assert.strictEqual(review.isLikelyTeacherAuditJunk({
+  word: "d",
+  display: "d",
+  audit: { originalMeaning: "患上 (v)" }
+}), true);
+assert.strictEqual(review.isLikelyTeacherAuditJunk({
+  word: "mental health",
+  display: "mental health",
+  audit: { originalMeaning: "名詞 plays a ... part / role in ........." }
+}), false);
+assert.strictEqual(review.inferAuditType("either...or", "word"), "pattern");
+assert.strictEqual(review.inferAuditType("mental health", "phrase"), "phrase");
+
+const highValueTeacherAuditTasks = review.getReviewTasks({ source: "teacher-audit", skipJunk: true });
+assert.ok(highValueTeacherAuditTasks.length < teacherAuditTasks.length);
+assert.ok(highValueTeacherAuditTasks.length > 3000);
+assert.ok(!highValueTeacherAuditTasks.some((task) => /^[a-z]$/.test(task.word)));
 
 console.log("build_vocab_review_batch tests passed");

@@ -163,7 +163,7 @@ function looksLikeHeader(value) {
 
 function detectType(word, explicitPos = "") {
   const normalized = normalizeWord(word);
-  if (/[+*=]|名詞|動詞|形容詞|副詞|\bpp\b/i.test(normalized)) return "pattern";
+  if (/[+*=]|\.{2,}|…|名詞|動詞|形容詞|副詞|\bpp\b/i.test(normalized)) return "pattern";
   if (/\s/.test(normalized) || /[-/]/.test(normalized)) return "phrase";
   if (explicitPos === "phrase") return "phrase";
   return "word";

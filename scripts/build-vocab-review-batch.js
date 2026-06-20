@@ -8,6 +8,7 @@ const VocabPosInference = require("../vocab_pos_inference.js");
 const TeacherVocab = require("../teacher_vocab.js");
 const VocabSenseBank = require("../vocab_sense_bank.js");
 const CcCedictSupplement = require("../cc_cedict_supplement.js");
+const TeacherAudit = require("./audit-teacher-vocab.js");
 const meaningGenerator = require("./generate-vocab-meanings.js");
 
 const ROOT_DIR = path.resolve(__dirname, "..");
@@ -35,6 +36,7 @@ function usage() {
     "  --limit <n>                          Batch size. Default: 100.",
     "  --level <A1-C1>                      Oxford CEFR level filter.",
     "  --word <word>                        One word / phrase only.",
+    "  --skip-junk                          Skip likely spreadsheet extraction fragments in teacher-audit batches.",
     "  --out <file>                         JSON output. Default: private_exports/vocab_review_batch_0000.json",
     "  --csv <file>                         CSV output. Default: same basename as JSON.",
     "",
@@ -49,6 +51,7 @@ function parseArgs(argv) {
     limit: DEFAULT_LIMIT,
     offset: 0,
     out: DEFAULT_OUTPUT,
+    skipJunk: false,
     source: SOURCE_OXFORD,
     word: ""
   };
@@ -82,6 +85,10 @@ function parseArgs(argv) {
     if (arg === "--word") {
       options.word = normalizeWord(argv[index + 1] || "");
       index += 1;
+      continue;
+    }
+    if (arg === "--skip-junk") {
+      options.skipJunk = true;
       continue;
     }
     if (arg === "--out") {
@@ -127,6 +134,12 @@ function formatPosLabel(pos) {
 
 function inferType(word, explicitType = "") {
   return VocabPosInference.normalizeType(explicitType, word);
+}
+
+function inferAuditType(word, explicitType = "") {
+  const normalizedExplicit = String(explicitType || "").trim().toLowerCase();
+  if (normalizedExplicit === "word") return inferType(word, "");
+  return inferType(word, explicitType);
 }
 
 function shardName(word) {
@@ -321,19 +334,27 @@ function makeOxfordReviewTasks() {
 }
 
 function makeTeacherAuditTasks() {
-  return TeacherVocab.entries
-    .filter((entry) => entry.needsReview)
-    .map((entry) => {
-      const word = normalizeWord(entry.word || entry.display);
+  return TeacherAudit.buildAuditRows(TeacherVocab.entries || [])
+    .map((row) => {
+      const word = normalizeWord(row.word || row.display);
       return {
-        id: `teacher-audit:${entry.id || word}`,
+        id: `teacher-audit:${row.id || word}`,
         source: SOURCE_TEACHER_AUDIT,
         word,
-        display: entry.display || entry.word || word,
+        display: row.display || row.word || word,
         level: "",
-        oxfordPos: [normalizePos(entry.pos || entry.inferredPos)].filter(Boolean),
+        oxfordPos: [normalizePos(row.pos)].filter(Boolean),
         posRaw: [],
-        type: inferType(word, entry.type),
+        type: inferAuditType(word, row.type),
+        audit: {
+          id: row.id || "",
+          score: Number(row.score) || 0,
+          reasons: Array.isArray(row.reasons) ? row.reasons : [],
+          originalPos: normalizePos(row.pos),
+          originalMeaning: normalizeMeaning(row.meaning),
+          sourceFile: row.sourceFile || "",
+          notes: row.notes || ""
+        },
         checklist: {
           source: "teacher bank audit",
           note: "Existing teacher entry is suspicious and should be cleaned before promotion."
@@ -341,6 +362,20 @@ function makeTeacherAuditTasks() {
       };
     })
     .filter((task) => task.word);
+}
+
+function isLikelyTeacherAuditJunk(task = {}) {
+  const word = normalizeWord(task.word);
+  const display = String(task.display || task.word || "").trim();
+  const originalMeaning = normalizeMeaning(task.audit?.originalMeaning || "");
+  if (/^[a-z]$/.test(word)) return true;
+  if (!/[a-z]{2,}/.test(word)) return true;
+  if (/^[-,.;:]+/.test(display)) return true;
+  if (/[×]| x\d+\b/i.test(display)) return true;
+  if (/^(?:[nv]|adj|adv|prep|conj)\.?$/i.test(word)) return true;
+  if (/^[a-z]{2,}\s*[×x]\s*\d+$/i.test(display)) return true;
+  if (/^[a-z]+$/.test(word) && originalMeaning && !/[\u3400-\u9fff]/.test(originalMeaning)) return true;
+  return false;
 }
 
 function getReviewTasks(options = {}) {
@@ -354,10 +389,13 @@ function getReviewTasks(options = {}) {
 
   const seen = new Set();
   return taskGroups
+    .filter((task) => !(options.skipJunk && task.source === SOURCE_TEACHER_AUDIT && isLikelyTeacherAuditJunk(task)))
     .filter((task) => !options.level || task.level === options.level)
     .filter((task) => !options.word || normalizeWord(task.word) === options.word)
     .filter((task) => {
-      const key = `${task.source}:${task.word}:${(task.oxfordPos || []).join(",")}`;
+      const key = task.source === SOURCE_TEACHER_AUDIT
+        ? `${task.source}:${task.audit?.id || task.id}:${task.word}:${task.audit?.originalMeaning || ""}`
+        : `${task.source}:${task.word}:${(task.oxfordPos || []).join(",")}`;
       if (seen.has(key)) return false;
       seen.add(key);
       return true;
@@ -387,6 +425,8 @@ function getDraftFlags(task, existing, drafts) {
     draftMeaningGroups.set(key, (draftMeaningGroups.get(key) || 0) + 1);
   });
 
+  if (task.source === SOURCE_TEACHER_AUDIT) flags.push("teacher-audit");
+  (task.audit?.reasons || []).forEach((reason) => flags.push(`audit:${reason}`));
   if (task.type === "phrase") flags.push("phrase");
   if ((task.oxfordPos || []).length > 1) flags.push("multi-pos");
   if (allExisting.length) flags.push("already-has-local-entry");
@@ -425,6 +465,7 @@ function makeReviewRow(task, lookups = {}) {
     level: task.level || "",
     type: task.type || inferType(task.word),
     checklistSource: task.checklist,
+    audit: task.audit || null,
     oxford: {
       pos: task.oxfordPos || [],
       posLabels: (task.oxfordPos || []).map(formatPosLabel),
@@ -437,7 +478,9 @@ function makeReviewRow(task, lookups = {}) {
       action: "edit-before-promote",
       promoteTo: "curated-or-teacher-bank",
       approvedEntries: [],
-      notes: ""
+      notes: task.audit?.originalMeaning
+        ? `Original: ${task.audit.originalMeaning}`
+        : ""
     }
   };
 }
@@ -468,6 +511,8 @@ function buildCsv(rows = []) {
     "word",
     "level",
     "type",
+    "audit_reasons",
+    "original_teacher_entry",
     "oxford_pos",
     "existing_teacher",
     "existing_curated",
@@ -487,6 +532,10 @@ function buildCsv(rows = []) {
         word: row.word,
         level: row.level,
         type: row.type,
+        audit_reasons: row.audit?.reasons?.join(" / ") || "",
+        original_teacher_entry: row.audit?.originalMeaning
+          ? `${row.audit.originalPos ? `${formatPosLabel(row.audit.originalPos)} ` : ""}${row.audit.originalMeaning}`
+          : "",
         oxford_pos: row.oxford.posLabels.join(" / "),
         existing_teacher: stringifyEntries(row.existing.teacher),
         existing_curated: stringifyEntries(row.existing.curated),
@@ -561,8 +610,10 @@ module.exports = {
   dedupeEntries,
   getDraftFlags,
   getReviewTasks,
+  inferAuditType,
   lookupCedictReverse,
   lookupOfflineDictionary,
+  isLikelyTeacherAuditJunk,
   makeReviewRow,
   normalizeMeaningGroupKey,
   parseArgs,

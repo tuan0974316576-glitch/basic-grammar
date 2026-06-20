@@ -70,5 +70,7 @@ assert.strictEqual(inference.inferEntryPos({
 }).pos, "");
 
 assert.strictEqual(inference.normalizeType("", "look for"), "phrase");
+assert.strictEqual(inference.normalizeType("", "either...or"), "pattern");
+assert.strictEqual(inference.normalizeType("", "whether … or"), "pattern");
 
 console.log("vocab_pos_inference tests passed");
