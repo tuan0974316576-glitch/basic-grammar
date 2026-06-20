@@ -3,10 +3,17 @@ const assert = require("assert");
 delete require.cache[require.resolve("../teacher_vocab.js")];
 delete require.cache[require.resolve("../vocab_sense_bank.js")];
 delete require.cache[require.resolve("../cc_cedict_supplement.js")];
+delete require.cache[require.resolve("../cc_cedict_reverse.js")];
 
 const teacherVocab = require("../teacher_vocab.js");
 const senseBank = require("../vocab_sense_bank.js");
 const cedict = require("../cc_cedict_supplement.js");
+const reverseCedict = require("../cc_cedict_reverse.js");
+
+reverseCedict.seed([
+  { id: "ccr-bacon", word: "bacon", meaning: "培根 / 煙肉", type: "word" },
+  { id: "ccr-rule-out", word: "rule out", meaning: "排除", pos: "verb", type: "phrase" }
+]);
 
 function entryPos(entry = {}) {
   return teacherVocab.normalizePos(entry.pos || entry.inferredPos) || "";
@@ -44,7 +51,9 @@ function lookupForStudent(word) {
   }
 
   if (curatedMatches.length) return dedupe(curatedMatches).slice(0, 12);
-  return dedupe(cedict.lookup(word, { limit: 12 })).slice(0, 12);
+  const cedictMatches = dedupe(cedict.lookup(word, { limit: 12 })).slice(0, 12);
+  if (cedictMatches.length) return cedictMatches;
+  return dedupe(reverseCedict.lookup(word, { limit: 8 })).slice(0, 8);
 }
 
 assert.deepStrictEqual(
@@ -70,6 +79,16 @@ assert.deepStrictEqual(
 assert.deepStrictEqual(
   lookupForStudent("Mong Kok").map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
   ["noun:旺角:cc-cedict-supplement"]
+);
+
+assert.deepStrictEqual(
+  lookupForStudent("bacon").map((entry) => `${entry.type}:${entry.meaning}:${entry.source}`),
+  ["word:培根 / 煙肉:cc-cedict-reverse"]
+);
+
+assert.deepStrictEqual(
+  lookupForStudent("rule out").map((entry) => `${entry.pos || entry.type}:${entry.meaning}:${entry.source}`),
+  ["verb:排除:cc-cedict-reverse"]
 );
 
 assert.deepStrictEqual(lookupForStudent("not a real class word"), []);

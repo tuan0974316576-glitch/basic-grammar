@@ -16,6 +16,7 @@ if (!VOCAB_DATA) {
 const VOCAB_AUDIO = window.VocabAudio || null;
 const VOCAB_SENSE_BANK = window.VocabSenseBank || null;
 const CC_CEDICT_SUPPLEMENT = window.CcCedictSupplement || null;
+const CC_CEDICT_REVERSE = window.CcCedictReverse || null;
 const TEACHER_VOCAB = window.TeacherVocab || null;
 const VOCAB_POS_INFERENCE = window.VocabPosInference || null;
 const VOCAB_EXAMPLE_UTILS = window.VocabExampleUtils || null;
@@ -237,6 +238,7 @@ let vocabEntryLookupState = {
   filterKey: "",
   selectedEntryIds: []
 };
+let vocabLookupRequestId = 0;
 let expandedVocabItemId = "";
 const vocabExampleCache = getSavedVocabExamplesCache();
 const vocabExampleRequests = new Map();
@@ -2133,6 +2135,15 @@ function getCcCedictSupplementMatches(word) {
   }));
 }
 
+async function getCcCedictReverseMatches(word) {
+  if (!CC_CEDICT_REVERSE?.lookup) return [];
+  await CC_CEDICT_REVERSE.loadShardForWord?.(word);
+  return CC_CEDICT_REVERSE.lookup(word, { limit: 8 }).map((entry) => ({
+    ...entry,
+    source: entry.source || "cc-cedict-reverse"
+  }));
+}
+
 function getCloudVocabExamplesCallable() {
   const firebase = getFirebaseBundle();
   if (!firebase?.functions || !firebase.modules?.httpsCallable || !firebase.auth?.currentUser) return null;
@@ -2154,7 +2165,7 @@ function dedupeVocabLookupMatches(matches = []) {
   });
 }
 
-function buildVocabLookupMatches(word) {
+async function buildVocabLookupMatches(word) {
   const curatedMatches = getCuratedVocabSenseMatches(word);
   const curatedOverrideMatches = curatedMatches.filter((entry) => entry.overrideTeacher);
   if (curatedOverrideMatches.length) {
@@ -2176,6 +2187,11 @@ function buildVocabLookupMatches(word) {
   const cedictMatches = getCcCedictSupplementMatches(word);
   if (cedictMatches.length) {
     return dedupeVocabLookupMatches(cedictMatches).slice(0, 12);
+  }
+
+  const reverseCedictMatches = await getCcCedictReverseMatches(word);
+  if (reverseCedictMatches.length) {
+    return dedupeVocabLookupMatches(reverseCedictMatches).slice(0, 8);
   }
 
   return [];
@@ -2367,6 +2383,7 @@ function renderVocabMeaningSuggestions() {
 
 async function refreshVocabTeacherLookup(options = {}) {
   const word = normalizeVocabWord(getTextEntryValue(el.vocabWordInput));
+  const requestId = ++vocabLookupRequestId;
 
   if (!word) {
     clearVocabMeaningSuggestions();
@@ -2376,7 +2393,8 @@ async function refreshVocabTeacherLookup(options = {}) {
   const wordChanged = word !== previousWord;
   if (!wordChanged && !options.force) return;
 
-  const matches = buildVocabLookupMatches(word);
+  const matches = await buildVocabLookupMatches(word);
+  if (requestId !== vocabLookupRequestId) return;
   vocabEntryLookupState = {
     word,
     matches,

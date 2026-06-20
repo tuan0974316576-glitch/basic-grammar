@@ -95,6 +95,7 @@ assert.strictEqual(teacherVocab.chooseAutoFillEntry(patternMatches).meaning, "�
 const phraseMatches = teacherVocab.lookup("intend to");
 assert.strictEqual(phraseMatches.length, 1);
 assert.strictEqual(phraseMatches[0].type, "phrase");
+assert.strictEqual(teacherVocab.getEntryLabel(phraseMatches[0]), "v. 打算");
 
 const typoMatches = teacherVocab.lookup("curiosty");
 assert.strictEqual(typoMatches.length, 1);
@@ -107,7 +108,7 @@ assert.deepStrictEqual(haveMatches.map(teacherVocab.getEntryLabel), ["v. 有", "
 
 const haveToMatches = teacherVocab.lookup("have to");
 assert.strictEqual(haveToMatches.length, 1);
-assert.strictEqual(teacherVocab.getEntryLabel(haveToMatches[0]), "ph. 必須 / 要");
+assert.strictEqual(teacherVocab.getEntryLabel(haveToMatches[0]), "modal v. 必須 / 要");
 
 delete global.TEACHER_VOCAB_BANK;
 

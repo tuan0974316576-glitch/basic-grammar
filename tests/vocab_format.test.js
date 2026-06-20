@@ -67,7 +67,7 @@ assert.strictEqual(teacherVocab.formatPosLabel("pattern"), "pt.");
 assert.strictEqual(teacherVocab.getEntryLabel(teacherVocab.lookup("hawker")[0]), "n. 小販");
 assert.strictEqual(teacherVocab.getEntryLabel(teacherVocab.lookup("cannot")[0]), "modal v. 不能");
 assert.strictEqual(teacherVocab.getEntryLabel(teacherVocab.lookup("bye")[0]), "exclam. 再見");
-assert.strictEqual(teacherVocab.getEntryLabel(teacherVocab.lookup("look for")[0]), "ph. 尋找");
+assert.strictEqual(teacherVocab.getEntryLabel(teacherVocab.lookup("look for")[0]), "v. 尋找");
 assert.strictEqual(teacherVocab.lookup("intrumental in")[0].word, "instrumental in");
 assert.strictEqual(teacherVocab.getEntryLabel(teacherVocab.lookup("intrumental in")[0]), "adj. 有助於");
 

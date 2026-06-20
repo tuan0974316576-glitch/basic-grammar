@@ -46,7 +46,7 @@ function assertIncludes(word, expected) {
   ["change", "n. 零錢"],
   ["turn", "n. 輪流 / 次序"],
   ["break", "n. 小休 / 休息"],
-  ["deal with", "ph. 處理"],
+  ["deal with", "v. 處理"],
   ["object", "v. 反對"],
   ["plant", "n. 工廠"],
   ["fall", "n. 秋天"],
@@ -54,7 +54,7 @@ function assertIncludes(word, expected) {
   ["permit", "n. 許可證"],
   ["abuse", "v. 濫用 / 虐待"],
   ["access", "n. 使用權 / 途徑"],
-  ["account for", "ph. 佔 / 解釋 / 是...原因"],
+  ["account for", "v. 佔 / 解釋 / 是...原因"],
   ["acquaintance", "n. 熟人"],
   ["advocate", "v. 提倡"],
   ["adovcate", "v. 提倡"],
@@ -62,7 +62,7 @@ function assertIncludes(word, expected) {
   ["appetizer", "n. 前菜 / 開胃菜"],
   ["as", "conj. 因為 / 當 / 正如"],
   ["as + 句子", "pt. 因為 / 正如 / 當 / 隨著"],
-  ["as well as", "ph. 除了...之外"],
+  ["as well as", "conj. 除了...之外"],
   ["attribute", "v. 歸因於"],
   ["backlash", "n. 強烈反對 / 反彈"],
   ["bark", "v. 吠"],
@@ -75,7 +75,7 @@ function assertIncludes(word, expected) {
   ["committment", "n. 承諾 / 責任"],
   ["concrete", "n. 混凝土"],
   ["conspicuous", "adj. 顯眼的 / 明顯的"],
-  ["contribute to", "ph. 促成 / 導致 / 貢獻"],
+  ["contribute to", "v. 促成 / 導致 / 貢獻"],
   ["craftsmanship", "n. 手藝 / 工藝"],
   ["criteria", "n. 標準 / 準則"],
   ["cuisine", "n. 菜式 / 菜系"],
@@ -105,7 +105,7 @@ function assertIncludes(word, expected) {
   ["elaborate", "v. 詳細說明"],
   ["feature", "n. 特色 / 特徵"],
   ["feature", "v. 以...為特色 / 由...主演"],
-  ["figure out", "ph. 理解 / 想出 / 找出"],
+  ["figure out", "v. 理解 / 想出 / 找出"],
   ["gather", "v. 聚集 / 收集"],
   ["host", "n. 主持人 / 主人"],
   ["host", "v. 主持 / 舉辦"],
@@ -184,8 +184,8 @@ function assertIncludes(word, expected) {
   ["Africa", "n. 非洲"],
   ["aggressive", "adj. 有攻擊性的 / 進取的"],
   ["agency", "n. 中介公司 / 機構"],
-  ["aim at", "ph. 旨在 / 目標是"],
-  ["aim to", "ph. 旨在 / 目的是"],
+  ["aim at", "v. 旨在 / 目標是"],
+  ["aim to", "v. 旨在 / 目的是"],
   ["akin to", "ph. 類似於 / 像"],
   ["albeit", "conj. 雖然"],
   ["alternative", "n. 替代品 / 選擇"],
@@ -241,8 +241,8 @@ function assertIncludes(word, expected) {
   ["be wary of", "ph. 提防 / 警惕"],
   ["beaver", "n. 海狸"],
   ["because", "conj. 因為"],
-  ["because of", "ph. 因為"],
-  ["beef up", "ph. 加強 / 增強"],
+  ["because of", "prep. 因為"],
+  ["beef up", "v. 加強 / 增強"],
   ["beneficial", "adj. 有益的"],
   ["benevolent", "adj. 仁慈的 / 慈善的"],
   ["besides", "adv. 此外"],
@@ -291,7 +291,7 @@ function assertIncludes(word, expected) {
   ["breeze", "n. 微風"],
   ["bribery", "n. 行賄 / 賄賂"],
   ["brick-and-mortar", "ph. 實體店的 / 實體的"],
-  ["brim with", "ph. 充滿"],
+  ["brim with", "v. 充滿"],
   ["brisk", "adj. 輕快的 / 清爽的"],
   ["broadcast", "v. 廣播 / 播放"],
   ["broadcast", "n. 廣播節目"],
@@ -653,7 +653,7 @@ assert.ok(
 
 assert.deepStrictEqual(
   labels("look up"),
-  ["ph. 查閱 / 查字典"],
+  ["v. 查閱 / 查字典"],
   "look up should not mix dictionary lookup with looking upward in the same primary choice"
 );
 [
@@ -665,15 +665,15 @@ assert.deepStrictEqual(
 assert.deepStrictEqual(labels("egg tart"), ["n. 蛋撻"]);
 assert.deepStrictEqual(labels("egg waffle"), ["n. 雞蛋仔"]);
 assert.deepStrictEqual(labels("lung cancer"), ["n. 肺癌"]);
-assert.deepStrictEqual(labels("put on"), ["ph. 穿上 / 戴上"]);
-assert.deepStrictEqual(labels("take off"), ["ph. 脫下 / 起飛"]);
-assert.deepStrictEqual(labels("pick up"), ["ph. 拿起 / 接載"]);
-assert.deepStrictEqual(labels("give up"), ["ph. 放棄"]);
-assert.deepStrictEqual(labels("turn on"), ["ph. 開啟"]);
-assert.deepStrictEqual(labels("turn off"), ["ph. 關掉"]);
-assert.deepStrictEqual(labels("get up"), ["ph. 起床"]);
-assert.deepStrictEqual(labels("wake up"), ["ph. 醒來 / 叫醒"]);
-assert.deepStrictEqual(labels("find out"), ["ph. 找出 / 查明"]);
+assert.deepStrictEqual(labels("put on"), ["v. 穿上 / 戴上"]);
+assert.deepStrictEqual(labels("take off"), ["v. 脫下 / 起飛"]);
+assert.deepStrictEqual(labels("pick up"), ["v. 拿起 / 接載"]);
+assert.deepStrictEqual(labels("give up"), ["v. 放棄"]);
+assert.deepStrictEqual(labels("turn on"), ["v. 開啟"]);
+assert.deepStrictEqual(labels("turn off"), ["v. 關掉"]);
+assert.deepStrictEqual(labels("get up"), ["v. 起床"]);
+assert.deepStrictEqual(labels("wake up"), ["v. 醒來 / 叫醒"]);
+assert.deepStrictEqual(labels("find out"), ["v. 找出 / 查明"]);
 assert.deepStrictEqual(labels("many"), ["det. 很多"]);
 assert.deepStrictEqual(labels("much"), ["det. 很多"]);
 assert.deepStrictEqual(labels("more than"), ["ph. 多於 / 超過"]);

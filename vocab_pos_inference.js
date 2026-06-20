@@ -79,13 +79,110 @@
   const CHINESE_ADJECTIVE_HINT = /(?:的|性|可|值得|充足|足夠|準確|安全|方便|突然|絕對|抽象|荒謬|急性)$/;
   const CHINESE_ADVERB_HINT = /(?:地|通常|其實|最終|另外|因此|準確地|足夠地|突然地)$/;
   const CHINESE_CONJUNCTION_HINT = /^(?:只要|如果|除非|因為|所以|雖然|但是|而且|或者|否則)$/;
-  const CHINESE_VERB_HINT = /(?:接受|放棄|廢除|廢棄|遺棄|評估|取得|得到|獲取|獲得|收購|吸收|陪同|達成|達到|加速|承認|致謝|應付|累積|指控|取得|管理|改善|增加|減少|影響|展示|低估|打算|意圖|充滿|吞|打發|支持|把握|抓緊|充公|起源於|尋找|照顧|查閱|查字典)$/;
+  const CHINESE_VERB_HINT = /(?:接受|放棄|廢除|廢棄|遺棄|評估|取得|得到|獲取|獲得|收購|吸收|陪同|達成|達到|加速|承認|致謝|應付|累積|指控|取得|管理|改善|增加|減少|影響|展示|低估|打算|意圖|充滿|吞|打發|支持|把握|抓緊|充公|起源於|尋找|照顧|查閱|查字典|查找|排除|處理|解釋|導致|促成|貢獻|取決於|依賴|理解|想出|找出|查明|流行起來|開始明白|脫下|起飛|開啟|關掉|歸因於)$/;
 
   const NOUN_SUFFIX = /(?:tion|sion|ment|ness|ity|ism|ship|age|ance|ence|cy|dom|hood|ture|logy|ist|ian|er|or|ee|ery|ary)$/;
   const ADJECTIVE_SUFFIX = /(?:able|ible|al|ful|less|ous|ive|ic|ical|ary|ent|ant|ed|ing)$/;
   const ADVERB_SUFFIX = /ly$/;
   const VERB_SUFFIX = /(?:ize|ise|ify|en|ate)$/;
   const COMMON_LY_NON_ADVERBS = new Set(["family", "friendly", "lonely", "lovely", "silly", "ugly"]);
+  const MODAL_PHRASES = new Set(["have to", "has to", "had to", "ought to"]);
+  const PREPOSITION_PHRASES = new Set([
+    "according to",
+    "apart from",
+    "aside from",
+    "because of",
+    "due to",
+    "instead of",
+    "thanks to"
+  ]);
+  const CONJUNCTION_PHRASES = new Set(["as well as", "rather than"]);
+  const VERB_PHRASE_HEADS = new Set([
+    "account",
+    "aim",
+    "beef",
+    "brim",
+    "bring",
+    "break",
+    "catch",
+    "check",
+    "clear",
+    "come",
+    "contribute",
+    "cut",
+    "deal",
+    "dedicate",
+    "depend",
+    "disapprove",
+    "enable",
+    "fall",
+    "figure",
+    "fill",
+    "find",
+    "get",
+    "give",
+    "go",
+    "hand",
+    "hold",
+    "insist",
+    "intend",
+    "keep",
+    "knock",
+    "leave",
+    "let",
+    "lie",
+    "look",
+    "make",
+    "manage",
+    "move",
+    "pass",
+    "pay",
+    "pick",
+    "point",
+    "pull",
+    "put",
+    "rule",
+    "run",
+    "set",
+    "show",
+    "shut",
+    "sit",
+    "stand",
+    "take",
+    "throw",
+    "try",
+    "turn",
+    "wake",
+    "work",
+    "write"
+  ]);
+  const VERB_PHRASE_PARTICLES = new Set([
+    "about",
+    "across",
+    "after",
+    "against",
+    "along",
+    "around",
+    "at",
+    "away",
+    "back",
+    "by",
+    "down",
+    "for",
+    "forward",
+    "from",
+    "in",
+    "into",
+    "of",
+    "off",
+    "on",
+    "out",
+    "over",
+    "through",
+    "to",
+    "up",
+    "with"
+  ]);
 
   function normalizeWord(value) {
     return String(value || "")
@@ -139,6 +236,36 @@
       .sort((left, right) => right.confidence - left.confidence)[0] || null;
   }
 
+  function looksLikeVerbPhrase(word, meaning = "") {
+    const normalizedWord = normalizeWord(word);
+    const words = normalizedWord.split(/\s+/).filter(Boolean);
+    if (words.length < 2) return false;
+    const head = words[0];
+    const second = words[1];
+    if (!VERB_PHRASE_HEADS.has(head)) return false;
+    if (VERB_PHRASE_PARTICLES.has(second) || words.includes("to")) return true;
+    const parts = splitMeaningParts(meaning);
+    return parts.some((part) => CHINESE_VERB_HINT.test(part));
+  }
+
+  function inferPhrasePos(word, meaning = "") {
+    const normalizedWord = normalizeWord(word);
+    if (!normalizedWord) return { pos: "", confidence: 0, reason: "not-inferred" };
+    if (MODAL_PHRASES.has(normalizedWord)) {
+      return { pos: "modal", confidence: 96, reason: "known-modal-phrase" };
+    }
+    if (PREPOSITION_PHRASES.has(normalizedWord)) {
+      return { pos: "preposition", confidence: 94, reason: "known-preposition-phrase" };
+    }
+    if (CONJUNCTION_PHRASES.has(normalizedWord)) {
+      return { pos: "conjunction", confidence: 94, reason: "known-conjunction-phrase" };
+    }
+    if (looksLikeVerbPhrase(normalizedWord, meaning)) {
+      return { pos: "verb", confidence: 90, reason: "verb-phrase-pattern" };
+    }
+    return { pos: "", confidence: 0, reason: "not-inferred" };
+  }
+
   function inferEntryPos(entry = {}, options = {}) {
     const word = normalizeWord(entry.word || entry.display || entry.english);
     const meaning = normalizeMeaning(entry.meaning || entry.chinese);
@@ -152,11 +279,17 @@
       !word
       || !meaning
       || type === "pattern"
-      || type === "phrase"
       || INVALID_WORDS.has(word)
       || (word.length === 1 && word !== "i")
     ) {
       return { pos: "", confidence: 0, reason: "not-inferred" };
+    }
+    if (type === "phrase") {
+      const phrasePos = inferPhrasePos(word, meaning);
+      if (phrasePos.pos && phrasePos.confidence >= (Number(options.minConfidence) || 76)) {
+        return phrasePos;
+      }
+      return { pos: "", confidence: phrasePos.confidence || 0, reason: phrasePos.reason || "not-inferred" };
     }
 
     const parts = splitMeaningParts(meaning);
@@ -213,6 +346,8 @@
 
   return {
     inferEntryPos,
+    inferPhrasePos,
+    looksLikeVerbPhrase,
     normalizeMeaning,
     normalizePos,
     normalizeType,

@@ -1,12 +1,14 @@
 (function attachTeacherVocab(root, factory) {
   const bank = root.TEACHER_VOCAB_BANK
     || (typeof require === "function" ? require("./teacher_vocab_bank.js") : null);
-  const api = factory(bank);
+  const posInference = root.VocabPosInference
+    || (typeof require === "function" ? require("./vocab_pos_inference.js") : null);
+  const api = factory(bank, posInference);
   if (typeof module !== "undefined" && module.exports) {
     module.exports = api;
   }
   root.TeacherVocab = api;
-})(typeof globalThis !== "undefined" ? globalThis : window, function createTeacherVocab(rawBank) {
+})(typeof globalThis !== "undefined" ? globalThis : window, function createTeacherVocab(rawBank, VocabPosInference) {
   "use strict";
 
   const bank = rawBank || {};
@@ -198,7 +200,10 @@
   }
 
   function getEntryLabel(entry = {}) {
-    const posLabel = formatPosLabel(entry.pos || entry.inferredPos) || formatPosLabel(entry.type);
+    const inferred = !entry.pos && !entry.inferredPos
+      ? VocabPosInference?.inferEntryPos?.(entry, { minConfidence: 84 })?.pos
+      : "";
+    const posLabel = formatPosLabel(entry.pos || entry.inferredPos || inferred) || formatPosLabel(entry.type);
     const prefix = posLabel ? `${posLabel} ` : "";
     return `${prefix}${normalizeMeaning(entry.meaning)}`;
   }

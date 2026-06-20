@@ -1,0 +1,12 @@
+CC-CEDICT
+
+Community maintained free Chinese-English dictionary.
+
+Publisher: MDBG
+Source: https://www.mdbg.net/chinese/dictionary?page=cc-cedict
+License: Creative Commons Attribution-ShareAlike 4.0 International License
+https://creativecommons.org/licenses/by-sa/4.0/
+
+This app generates an English-to-Traditional-Chinese reverse index from CC-CEDICT
+for offline student lookup. The generated index keeps only short, clean English
+headwords and phrases from the original definitions.

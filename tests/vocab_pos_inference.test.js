@@ -43,6 +43,30 @@ assert.strictEqual(inference.inferEntryPos({
   word: "look for",
   meaning: "尋找",
   type: "phrase"
+}).pos, "verb");
+
+assert.strictEqual(inference.inferEntryPos({
+  word: "rule out",
+  meaning: "排除",
+  type: "phrase"
+}).pos, "verb");
+
+assert.strictEqual(inference.inferEntryPos({
+  word: "have to",
+  meaning: "必須 / 要",
+  type: "phrase"
+}).pos, "modal");
+
+assert.strictEqual(inference.inferEntryPos({
+  word: "according to",
+  meaning: "根據",
+  type: "phrase"
+}).pos, "preposition");
+
+assert.strictEqual(inference.inferEntryPos({
+  word: "egg tart",
+  meaning: "蛋撻",
+  type: "phrase"
 }).pos, "");
 
 assert.strictEqual(inference.normalizeType("", "look for"), "phrase");
