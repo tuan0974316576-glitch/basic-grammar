@@ -108,7 +108,39 @@ function assertIncludes(word, expected) {
   ["figure out", "ph. 理解 / 想出 / 找出"],
   ["gather", "v. 聚集 / 收集"],
   ["host", "n. 主持人 / 主人"],
-  ["host", "v. 主持 / 舉辦"]
+  ["host", "v. 主持 / 舉辦"],
+  ["I", "pron. 我"],
+  ["in", "prep. 在...裡 / 在...期間"],
+  ["it", "pron. 它 / 牠 / 這件事"],
+  ["imply", "v. 暗示"],
+  ["importance", "n. 重要性"],
+  ["interest", "n. 興趣"],
+  ["interest", "n. 利益"],
+  ["issue", "n. 問題 / 議題"],
+  ["issue", "v. 發出 / 發布"],
+  ["just", "adv. 只是 / 剛剛"],
+  ["just", "adj. 公正的"],
+  ["key", "n. 關鍵"],
+  ["key", "adj. 重要的 / 關鍵的"],
+  ["kind", "n. 種類"],
+  ["kind", "adj. 友善的"],
+  ["last", "adj. 最後的 / 上一個的"],
+  ["last", "v. 持續"],
+  ["light", "n. 光 / 燈"],
+  ["light", "adj. 輕的 / 淺色的"],
+  ["like", "v. 喜歡"],
+  ["like", "prep. 像"],
+  ["likely", "adj. 可能的"],
+  ["live", "v. 住 / 生活"],
+  ["live", "adj. 現場直播的"],
+  ["match", "n. 比賽 / 配對"],
+  ["match", "v. 配對 / 相配"],
+  ["mean", "v. 意思是 / 意味著"],
+  ["mean", "adj. 刻薄的"],
+  ["mention", "v. 提及"],
+  ["model", "n. 模型 / 模特兒"],
+  ["motivate", "v. 激勵 / 推動"],
+  ["movement", "n. 移動 / 運動"]
 ].forEach(([word, expected]) => assertIncludes(word, expected));
 
 assert.ok(
@@ -138,6 +170,22 @@ assert.ok(
 assert.ok(
   !labels("game").every((label) => label.includes("野味")),
   "game should include the common meaning, not only the rare meat meaning"
+);
+assert.ok(
+  !labels("in").some((label) => label.startsWith("adj.")),
+  "in should not be shown as an adjective from broken Excel rows"
+);
+assert.ok(
+  !labels("imply").some((label) => label.startsWith("adv.")),
+  "imply should not be shown as an adverb"
+);
+assert.ok(
+  !labels("importance").some((label) => label.startsWith("adj.")),
+  "importance should not be shown as an adjective"
+);
+assert.ok(
+  !labels("motivate").some((label) => label.startsWith("n.")),
+  "motivate should not be shown as a noun"
 );
 
 console.log("teacher_vocab_bank_quality tests passed");
