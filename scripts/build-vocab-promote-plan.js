@@ -5,6 +5,7 @@ const fs = require("fs");
 const path = require("path");
 const VocabPosInference = require("../vocab_pos_inference.js");
 const TeacherVocab = require("../teacher_vocab.js");
+const XlsxReader = require("./xlsx-reader.js");
 
 const ROOT_DIR = path.resolve(__dirname, "..");
 const DEFAULT_INPUT = path.join(ROOT_DIR, "private_exports", "vocab_review_batch_0000.json");
@@ -14,7 +15,7 @@ const ALLOWED_PROMOTE_TARGETS = new Set(["curated", "teacher", "skip", "needs cl
 function usage() {
   console.log([
     "Usage:",
-    "  node scripts/build-vocab-promote-plan.js [review-json] [--out private_exports/vocab_promote_plan.json]",
+    "  node scripts/build-vocab-promote-plan.js [review-json|review-csv|review-xlsx] [--out private_exports/vocab_promote_plan.json]",
     "",
     "Reads a reviewed private batch and builds a promote plan. It does not edit app files."
   ].join("\n"));
@@ -55,10 +56,20 @@ function normalizePos(value) {
   return VocabPosInference.normalizePos(value);
 }
 
+function normalizeReviewType(value, word = "", posValue = "") {
+  const posKey = String(posValue || "").trim().replace(/[().]/g, "").toLowerCase();
+  if (["ph", "phr", "phrase"].includes(posKey)) return "phrase";
+  if (["pt", "pattern"].includes(posKey)) return "pattern";
+  const typeKey = String(value || "").trim().toLowerCase();
+  if (typeKey === "word") return TeacherVocab.normalizeType("", word);
+  return TeacherVocab.normalizeType(value, word);
+}
+
 function normalizePromoteTarget(value) {
   const target = String(value || "").trim().toLowerCase();
   if (target === "curated-sense-bank") return "curated";
   if (target === "teacher-bank" || target === "teacher live" || target === "teacher-live") return "teacher";
+  if (target === "no" || target === "none" || target === "ignore") return "skip";
   return target;
 }
 
@@ -107,9 +118,25 @@ function normalizeReviewedEntry(raw = {}, fallback = {}) {
   const word = normalizeWord(raw.word || fallback.word);
   const meaning = normalizeMeaning(raw.meaning || raw.chinese || raw.reviewedMeaning);
   const pos = normalizePos(raw.pos || raw.reviewedPos);
-  const type = TeacherVocab.normalizeType(raw.type || fallback.type, word);
+  const type = normalizeReviewType(raw.type || fallback.type, word, raw.pos || raw.reviewedPos);
   const promoteTo = normalizePromoteTarget(raw.promoteTo || raw.promote_to || fallback.promoteTo);
   if (!word || !meaning || !promoteTo) return null;
+  const originalTeacherEntry = normalizeMeaning(
+    raw.originalTeacherEntry
+    || raw.original_teacher_entry
+    || fallback.originalTeacherEntry
+    || ""
+  );
+  const auditReasons = Array.isArray(raw.auditReasons)
+    ? raw.auditReasons.map(normalizeMeaning).filter(Boolean)
+    : normalizeMeaning(raw.audit_reasons || raw.auditReasons || fallback.auditReasons || "")
+      .split(/\s+\/\s+/)
+      .map(normalizeMeaning)
+      .filter(Boolean);
+  const replaceTypeRaw = raw.replaceType ?? raw.replace_type ?? fallback.replaceType;
+  const replaceType = typeof replaceTypeRaw === "boolean"
+    ? replaceTypeRaw
+    : /^(?:true|yes|y|1|replace)$/i.test(String(replaceTypeRaw || ""));
   return {
     word,
     display: String(raw.display || fallback.display || word).trim() || word,
@@ -118,7 +145,10 @@ function normalizeReviewedEntry(raw = {}, fallback = {}) {
     type,
     promoteTo,
     level: String(raw.level || fallback.level || "").trim().toUpperCase(),
-    notes: normalizeMeaning(raw.notes || fallback.notes || "")
+    notes: normalizeMeaning(raw.notes || fallback.notes || ""),
+    auditReasons,
+    originalTeacherEntry,
+    replaceType: replaceType || Boolean(originalTeacherEntry || auditReasons.length)
   };
 }
 
@@ -132,9 +162,16 @@ function reviewedEntriesFromCsvRows(rows = []) {
       pos: row.reviewed_pos || row["reviewed POS"],
       meaning: row.reviewed_meaning || row["reviewed meaning"],
       promoteTo: row.promote_to || row["promote to"],
-      notes: row.notes
+      notes: row.notes,
+      audit_reasons: row.audit_reasons || row["audit reasons"],
+      original_teacher_entry: row.original_teacher_entry || row["original teacher entry"],
+      replace_type: row.replace_type || row["replace type"]
     }))
     .filter(Boolean);
+}
+
+function reviewedEntriesFromWorkbookRows(rows = []) {
+  return reviewedEntriesFromCsvRows(rows);
 }
 
 function getReviewedEntries(row = {}) {
@@ -144,7 +181,10 @@ function getReviewedEntries(row = {}) {
     level: row.level,
     type: row.type,
     promoteTo: row.review?.promoteTo,
-    notes: row.review?.notes
+    notes: row.review?.notes,
+    auditReasons: row.audit?.reasons || [],
+    originalTeacherEntry: row.audit?.originalMeaning || "",
+    replaceType: Boolean(row.audit?.originalMeaning || row.audit?.reasons?.length)
   };
   const reviewed = Array.isArray(row.review?.approvedEntries) ? row.review.approvedEntries : [];
   return reviewed
@@ -152,7 +192,7 @@ function getReviewedEntries(row = {}) {
     .filter(Boolean);
 }
 
-function loadReviewInput(filePath) {
+async function loadReviewInput(filePath) {
   const resolved = path.resolve(filePath || DEFAULT_INPUT);
   if (/\.csv$/i.test(resolved)) {
     return {
@@ -161,6 +201,18 @@ function loadReviewInput(filePath) {
         sourceFile: path.basename(resolved)
       },
       entries: reviewedEntriesFromCsvRows(readCsvRows(resolved))
+    };
+  }
+  if (/\.xlsx$/i.test(resolved)) {
+    const workbook = await XlsxReader.readWorkbook(resolved);
+    const entries = reviewedEntriesFromWorkbookRows(workbook.sheets.flatMap((sheet) => sheet.objects || []));
+    return {
+      meta: {
+        source: "review-xlsx",
+        sourceFile: path.basename(resolved),
+        sheetCount: workbook.sheetCount
+      },
+      entries
     };
   }
   return JSON.parse(fs.readFileSync(resolved, "utf8"));
@@ -178,7 +230,7 @@ function validatePlanEntry(entry = {}) {
 }
 
 function buildPromotePlan(reviewBatch = {}) {
-  if (Array.isArray(reviewBatch.entries) && reviewBatch.meta?.source === "review-csv") {
+  if (Array.isArray(reviewBatch.entries) && ["review-csv", "review-xlsx"].includes(reviewBatch.meta?.source)) {
     const deduped = dedupePlanEntries(reviewBatch.entries);
     const findings = getPlanFindings(deduped);
     return makePlanPayload(reviewBatch, deduped, findings);
@@ -222,9 +274,9 @@ function makePlanPayload(reviewBatch = {}, entries = [], findings = []) {
   };
 }
 
-function main() {
+async function main() {
   const options = parseArgs(process.argv.slice(2));
-  const reviewBatch = loadReviewInput(options.input);
+  const reviewBatch = await loadReviewInput(options.input);
   const plan = buildPromotePlan(reviewBatch);
   fs.mkdirSync(path.dirname(options.out), { recursive: true });
   fs.writeFileSync(options.out, `${JSON.stringify(plan, null, 2)}\n`);
@@ -238,12 +290,10 @@ function main() {
 }
 
 if (require.main === module) {
-  try {
-    main();
-  } catch (error) {
+  main().catch((error) => {
     console.error(error);
     process.exit(1);
-  }
+  });
 }
 
 module.exports = {
@@ -255,9 +305,11 @@ module.exports = {
   makePlanPayload,
   normalizePromoteTarget,
   normalizeReviewedEntry,
+  normalizeReviewType,
   parseArgs,
   parseCsvLine,
   readCsvRows,
   reviewedEntriesFromCsvRows,
+  reviewedEntriesFromWorkbookRows,
   validatePlanEntry
 };

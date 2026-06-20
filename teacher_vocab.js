@@ -108,7 +108,7 @@
     const type = String(value || "").trim().toLowerCase();
     if (type === "pattern" || type === "phrase" || type === "word") return type;
     const normalizedWord = normalizeWord(word);
-    if (/[+*=]|名詞|動詞|形容詞|副詞|\bpp\b/i.test(normalizedWord)) return "pattern";
+    if (/[+*=]|\.{2,}|…|名詞|動詞|形容詞|副詞|\bpp\b/i.test(normalizedWord)) return "pattern";
     if (/\s/.test(normalizedWord)) return "phrase";
     return "word";
   }

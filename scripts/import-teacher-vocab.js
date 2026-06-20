@@ -810,10 +810,12 @@ if (require.main === module) {
 module.exports = {
   detectType,
   createManualEntriesFromData,
+  createBankJs,
   dedupeEntries,
   extractEntriesFromRows,
   inferEntryPos,
   readManualUpdateFile,
+  normalizeManualType,
   normalizeAliases,
   normalizeMeaning,
   normalizePos,

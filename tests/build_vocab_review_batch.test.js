@@ -63,6 +63,7 @@ assert.ok(csv.includes("audit_reasons"));
 assert.ok(csv.includes("original_teacher_entry"));
 assert.ok(csv.includes("reviewed_meaning"));
 assert.ok(csv.includes("promote_to"));
+assert.ok(csv.includes("replace_type"));
 assert.ok(csv.includes("answer"));
 assert.ok(csv.includes("n. 答案 | v. 回答"));
 

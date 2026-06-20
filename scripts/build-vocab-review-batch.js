@@ -523,6 +523,7 @@ function buildCsv(rows = []) {
     "reviewed_pos",
     "reviewed_meaning",
     "promote_to",
+    "replace_type",
     "notes"
   ];
   const lines = [headers.join(",")];
@@ -546,6 +547,7 @@ function buildCsv(rows = []) {
         reviewed_pos: "",
         reviewed_meaning: "",
         promote_to: "",
+        replace_type: "",
         notes: ""
       }[header];
       return csvEscape(value);

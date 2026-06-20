@@ -57,12 +57,16 @@ assert.ok(badFindings.includes("meaning looks noisy"));
 
 assert.strictEqual(promote.normalizePromoteTarget("teacher-bank"), "teacher");
 assert.strictEqual(promote.normalizePromoteTarget("curated-sense-bank"), "curated");
+assert.strictEqual(promote.normalizeReviewType("word", "look up", "ph."), "phrase");
+assert.strictEqual(promote.normalizeReviewType("word", "either...or", ""), "pattern");
 
 const csvEntries = promote.reviewedEntriesFromCsvRows([
   {
     word: "above",
     level: "A1",
     type: "word",
+    audit_reasons: "missing-pos / noisy-meaning",
+    original_teacher_entry: "上面",
     reviewed_pos: "prep.",
     reviewed_meaning: "在...之上",
     promote_to: "curated",
@@ -76,6 +80,15 @@ const csvEntries = promote.reviewedEntriesFromCsvRows([
     reviewed_meaning: "",
     promote_to: "",
     notes: ""
+  },
+  {
+    word: "look up",
+    level: "A2",
+    type: "word",
+    reviewed_pos: "ph.",
+    reviewed_meaning: "查閱",
+    promote_to: "teacher",
+    notes: ""
   }
 ]);
 
@@ -88,7 +101,23 @@ assert.deepStrictEqual(csvEntries, [
     type: "word",
     promoteTo: "curated",
     level: "A1",
-    notes: "CSV reviewed"
+    notes: "CSV reviewed",
+    auditReasons: ["missing-pos", "noisy-meaning"],
+    originalTeacherEntry: "上面",
+    replaceType: true
+  },
+  {
+    word: "look up",
+    display: "look up",
+    meaning: "查閱",
+    pos: "",
+    type: "phrase",
+    promoteTo: "teacher",
+    level: "A2",
+    notes: "",
+    auditReasons: [],
+    originalTeacherEntry: "",
+    replaceType: false
   }
 ]);
 
@@ -96,8 +125,24 @@ const csvPlan = promote.buildPromotePlan({
   meta: { source: "review-csv" },
   entries: csvEntries
 });
-assert.strictEqual(csvPlan.meta.reviewedEntryCount, 1);
+assert.strictEqual(csvPlan.meta.reviewedEntryCount, 2);
 assert.strictEqual(csvPlan.entries[0].word, "above");
+assert.strictEqual(csvPlan.entries[1].word, "look up");
+assert.strictEqual(csvPlan.entries[1].promoteTo, "teacher");
+
+const workbookEntries = promote.reviewedEntriesFromWorkbookRows([
+  {
+    word: "either...or",
+    level: "",
+    type: "pattern",
+    reviewed_pos: "",
+    reviewed_meaning: "一係...一係...",
+    promote_to: "teacher"
+  }
+]);
+assert.strictEqual(workbookEntries[0].type, "pattern");
+assert.strictEqual(workbookEntries[0].promoteTo, "teacher");
+assert.strictEqual(workbookEntries[0].replaceType, false);
 
 assert.deepStrictEqual(promote.parseCsvLine('"a,b","c""d",e'), ["a,b", "c\"d", "e"]);
 
