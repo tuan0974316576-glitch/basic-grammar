@@ -17,7 +17,17 @@ service cloud.firestore {
         "classId",
         "lastLoginAt",
         "bestStreak",
+        "studyStreak",
         "vocabCacheOwner",
+        "updatedAt"
+      ]);
+    }
+
+    function studyStreakFieldsAreSafe(studyStreak) {
+      return studyStreak.keys().hasOnly([
+        "days",
+        "lastDateKey",
+        "lastCompletedDateKey",
         "updatedAt"
       ]);
     }
@@ -63,11 +73,13 @@ service cloud.firestore {
       return request.resource.data.keys().hasOnly([
         "word",
         "meaning",
+        "meanings",
         "pos",
         "type",
         "source",
         "teacherEntryId",
         "sourceEntryId",
+        "level",
         "createdAt",
         "updatedAt",
         "deletedAt",
@@ -81,15 +93,52 @@ service cloud.firestore {
       return (!("ownerUid" in request.resource.data) || request.resource.data.ownerUid == request.auth.uid)
         && (!("word" in request.resource.data) || request.resource.data.word is string)
         && (!("meaning" in request.resource.data) || request.resource.data.meaning is string)
+        && (!("meanings" in request.resource.data) || request.resource.data.meanings is list)
         && (!("pos" in request.resource.data) || request.resource.data.pos is string)
         && (!("type" in request.resource.data) || request.resource.data.type is string)
         && (!("source" in request.resource.data) || request.resource.data.source is string)
         && (!("teacherEntryId" in request.resource.data) || request.resource.data.teacherEntryId is string)
         && (!("sourceEntryId" in request.resource.data) || request.resource.data.sourceEntryId is string)
+        && (!("level" in request.resource.data) || request.resource.data.level is string)
         && (!("createdAt" in request.resource.data) || request.resource.data.createdAt is number)
         && (!("updatedAt" in request.resource.data) || request.resource.data.updatedAt is number)
         && (!("deletedAt" in request.resource.data) || request.resource.data.deletedAt is number)
         && (!("progress" in request.resource.data) || (request.resource.data.progress is map && vocabProgressKeysAreSafe(request.resource.data.progress)));
+    }
+
+    function vocabMeaningReviewKeysAreSafe() {
+      return request.resource.data.keys().hasOnly([
+        "word",
+        "meaning",
+        "type",
+        "source",
+        "sourceEntryId",
+        "status",
+        "requestedAt",
+        "updatedAt",
+        "count",
+        "ownerUid",
+        "studentId",
+        "classId",
+        "displayName",
+        "syncedAt"
+      ]);
+    }
+
+    function vocabMeaningReviewFieldsAreSafe() {
+      return (!("ownerUid" in request.resource.data) || request.resource.data.ownerUid == request.auth.uid)
+        && (!("word" in request.resource.data) || request.resource.data.word is string)
+        && (!("meaning" in request.resource.data) || request.resource.data.meaning is string)
+        && (!("type" in request.resource.data) || request.resource.data.type is string)
+        && (!("source" in request.resource.data) || request.resource.data.source is string)
+        && (!("sourceEntryId" in request.resource.data) || request.resource.data.sourceEntryId is string)
+        && (!("status" in request.resource.data) || request.resource.data.status in ["pending"])
+        && (!("requestedAt" in request.resource.data) || request.resource.data.requestedAt is number)
+        && (!("updatedAt" in request.resource.data) || request.resource.data.updatedAt is number)
+        && (!("count" in request.resource.data) || request.resource.data.count is number)
+        && (!("studentId" in request.resource.data) || request.resource.data.studentId is string)
+        && (!("classId" in request.resource.data) || request.resource.data.classId is string)
+        && (!("displayName" in request.resource.data) || request.resource.data.displayName is string);
     }
 
     match /studentAccounts/{studentId} {
@@ -104,6 +153,7 @@ service cloud.firestore {
       allow read: if isOwner(uid);
       allow create, update: if isOwner(uid)
         && userDocKeysAreSafe()
+        && (!("studyStreak" in request.resource.data) || (request.resource.data.studyStreak is map && studyStreakFieldsAreSafe(request.resource.data.studyStreak)))
         && studentIdMatchesToken()
         && classIdMatchesToken();
       allow delete: if false;
@@ -121,6 +171,14 @@ service cloud.firestore {
         allow create, update: if isOwner(uid)
           && vocabItemKeysAreSafe()
           && vocabItemFieldsAreSafe();
+        allow delete: if false;
+      }
+
+      match /vocabMeaningReviews/{reviewId} {
+        allow read: if isOwner(uid);
+        allow create, update: if isOwner(uid)
+          && vocabMeaningReviewKeysAreSafe()
+          && vocabMeaningReviewFieldsAreSafe();
         allow delete: if false;
       }
 

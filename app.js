@@ -54,6 +54,7 @@ const STUDENT_LOGIN_GRACE_MS = 3500;
 const VOCAB_ITEMS_KEY = "basic_vocab_items_v1";
 const VOCAB_PROGRESS_KEY = "basic_vocab_progress_v1";
 const VOCAB_SYNC_QUEUE_KEY = "basic_vocab_sync_queue_v1";
+const VOCAB_PENDING_REVIEW_QUEUE_KEY = "basic_vocab_pending_review_queue_v1";
 const VOCAB_CACHE_OWNER_KEY = "basic_vocab_cache_owner_v1";
 const VOCAB_EXAMPLES_CACHE_KEY = "basic_vocab_examples_cache_v1";
 const VOCAB_STAGE_KIND_PATTERN = ["reading", "listening", "spelling", "reading", "listening", "spelling", "reading", "listening", "spelling", "reading"];
@@ -277,6 +278,7 @@ const state = {
   vocabWords: getSavedVocabItems(),
   vocabProgress: getSavedVocabProgress(),
   vocabSyncQueue: getSavedVocabSyncQueue(),
+  vocabPendingReviewQueue: getSavedVocabPendingReviewQueue(),
   vocabCacheOwner: getSavedVocabCacheOwner(),
   studyStreak: getSavedStudyStreak(),
   streak: 0,
@@ -705,6 +707,69 @@ function saveVocabSyncQueue() {
   } catch (_error) {
     // The next meaningful vocab save will try again.
   }
+}
+
+function normalizeVocabPendingReviewQueue(queue = {}) {
+  const normalized = {};
+  Object.entries(queue || {}).forEach(([entryId, entry]) => {
+    const word = normalizeVocabWord(entry?.word || entryId);
+    if (!word) return;
+    const id = createVocabId(word);
+    const now = Date.now();
+    normalized[id] = {
+      id,
+      word,
+      meaning: "待老師確認",
+      type: String(entry?.type || (word.includes(" ") ? "phrase" : "word")).trim().toLowerCase(),
+      source: "pending-teacher-review",
+      sourceEntryId: String(entry?.sourceEntryId || `pending-teacher-review-${id}`),
+      requestedAt: Number(entry?.requestedAt) || Number(entry?.createdAt) || now,
+      updatedAt: Number(entry?.updatedAt) || now,
+      count: Math.max(1, Number(entry?.count) || 1)
+    };
+  });
+  return normalized;
+}
+
+function getSavedVocabPendingReviewQueue() {
+  try {
+    const saved = safeJsonParse(localStorage.getItem(VOCAB_PENDING_REVIEW_QUEUE_KEY), {});
+    return saved && typeof saved === "object" && !Array.isArray(saved)
+      ? normalizeVocabPendingReviewQueue(saved)
+      : {};
+  } catch (_error) {
+    return {};
+  }
+}
+
+function saveVocabPendingReviewQueue() {
+  try {
+    localStorage.setItem(VOCAB_PENDING_REVIEW_QUEUE_KEY, JSON.stringify(state.vocabPendingReviewQueue || {}));
+  } catch (_error) {
+    // Pending review words can be queued again the next time students add them.
+  }
+}
+
+function queueVocabPendingReviewEntries(word, entries = [], now = Date.now()) {
+  const hasPendingReview = entries.some(isPendingTeacherReviewEntry);
+  if (!hasPendingReview) return;
+  const normalizedWord = normalizeVocabWord(word);
+  if (!normalizedWord) return;
+  const id = createVocabId(normalizedWord);
+  const existing = state.vocabPendingReviewQueue[id] || {};
+  const pendingEntry = entries.find(isPendingTeacherReviewEntry) || {};
+  state.vocabPendingReviewQueue[id] = {
+    id,
+    word: normalizedWord,
+    meaning: "待老師確認",
+    type: String(pendingEntry.type || existing.type || (normalizedWord.includes(" ") ? "phrase" : "word")).trim().toLowerCase(),
+    source: "pending-teacher-review",
+    sourceEntryId: String(pendingEntry.sourceEntryId || existing.sourceEntryId || `pending-teacher-review-${id}`),
+    requestedAt: Number(existing.requestedAt) || now,
+    updatedAt: now,
+    count: (Number(existing.count) || 0) + 1
+  };
+  queueVocabPendingReviewSync();
 }
 
 function normalizeVocabExampleEntry(entry = {}) {
@@ -1600,6 +1665,13 @@ function queueVocabSync() {
   }
 }
 
+function queueVocabPendingReviewSync() {
+  saveVocabPendingReviewQueue();
+  if (studentAuthState.authenticated) {
+    void flushVocabPendingReviewQueue();
+  }
+}
+
 function getVocabCloudOwner() {
   return studentAuthState.profile?.uid || studentAuthState.user?.uid || state.vocabCacheOwner || VOCAB_CACHE_FALLBACK_OWNER;
 }
@@ -1670,9 +1742,11 @@ function prepareVocabCacheForStudent(uid) {
     state.vocabWords = [];
     state.vocabProgress = {};
     state.vocabSyncQueue = {};
+    state.vocabPendingReviewQueue = {};
     saveVocabItems();
     saveVocabProgress();
     saveVocabSyncQueue();
+    saveVocabPendingReviewQueue();
   }
   saveVocabCacheOwner(uid);
 }
@@ -1748,6 +1822,7 @@ async function syncStudentVocabCloud() {
     renderVocabList();
     queueSavedVocabAudioDownloads();
     await flushVocabSyncQueue();
+    await flushVocabPendingReviewQueue();
   })().catch((error) => {
     console.warn("Vocab cloud sync failed:", error);
   }).finally(() => {
@@ -1810,6 +1885,47 @@ async function flushVocabSyncQueue() {
   } finally {
     state.vocabSyncQueue = queue;
     saveVocabSyncQueue();
+  }
+}
+
+async function flushVocabPendingReviewQueue() {
+  const firebase = getFirebaseBundle();
+  const uid = studentAuthState.profile?.uid || studentAuthState.user?.uid;
+  if (!uid || !firebase?.db || !firebase.modules?.doc || !firebase.modules?.setDoc) return;
+
+  const queue = normalizeVocabPendingReviewQueue(state.vocabPendingReviewQueue);
+  const entries = Object.entries(queue);
+  if (!entries.length) return;
+
+  try {
+    const { doc, setDoc, serverTimestamp } = firebase.modules;
+    const owner = getVocabCloudOwner();
+    const profile = studentAuthState.profile || {};
+    for (const [reviewId, entry] of entries) {
+      const ref = doc(firebase.db, "users", uid, "vocabMeaningReviews", reviewId);
+      await setDoc(ref, {
+        word: entry.word,
+        meaning: "待老師確認",
+        type: entry.type || (entry.word.includes(" ") ? "phrase" : "word"),
+        source: "pending-teacher-review",
+        sourceEntryId: entry.sourceEntryId || `pending-teacher-review-${reviewId}`,
+        status: "pending",
+        requestedAt: Number(entry.requestedAt) || Date.now(),
+        updatedAt: Number(entry.updatedAt) || Date.now(),
+        count: Math.max(1, Number(entry.count) || 1),
+        ownerUid: owner,
+        studentId: String(profile.studentId || ""),
+        classId: String(profile.classId || ""),
+        displayName: String(profile.displayName || profile.studentId || ""),
+        syncedAt: serverTimestamp()
+      }, { merge: true });
+      delete queue[reviewId];
+    }
+  } catch (error) {
+    console.warn("Pending vocab review sync failed:", error);
+  } finally {
+    state.vocabPendingReviewQueue = queue;
+    saveVocabPendingReviewQueue();
   }
 }
 
@@ -2875,6 +2991,7 @@ async function addVocabItemFromEntry() {
 
   saveVocabItems();
   saveVocabProgress();
+  queueVocabPendingReviewEntries(word, selectedEntries, now);
   if (VOCAB_AUDIO) {
     VOCAB_AUDIO.queueEnsureAudio(savedItem.word);
   }
