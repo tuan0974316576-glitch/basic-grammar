@@ -41,9 +41,10 @@ assert.deepStrictEqual(next.outputPaths({
   xlsx: path.join(tmpDir, "teacher_vocab_review_batch_highvalue_0200.xlsx")
 });
 
-const parsed = next.parseArgs(["--offset", "300", "--limit", "50", "--no-xlsx"]);
+const parsed = next.parseArgs(["--offset", "300", "--limit", "50", "--count", "3", "--no-xlsx"]);
 assert.strictEqual(parsed.offset, 300);
 assert.strictEqual(parsed.limit, 50);
+assert.strictEqual(parsed.count, 3);
 assert.strictEqual(parsed.xlsx, false);
 
 console.log("build_vocab_review_next tests passed");

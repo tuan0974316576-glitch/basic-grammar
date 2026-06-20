@@ -15,7 +15,7 @@ const DEFAULT_LIMIT = 100;
 function usage() {
   console.log([
     "Usage:",
-    "  node scripts/build-vocab-review-next.js [--limit 100] [--offset n] [--no-xlsx]",
+    "  node scripts/build-vocab-review-next.js [--limit 100] [--offset n] [--count n] [--no-xlsx]",
     "",
     "Builds the next teacher vocab review batch from the private index.",
     "Default source is teacher-audit with --skip-junk."
@@ -25,6 +25,7 @@ function usage() {
 function parseArgs(argv) {
   const options = {
     dir: PRIVATE_EXPORTS_DIR,
+    count: 1,
     indexOut: DEFAULT_INDEX,
     limit: DEFAULT_LIMIT,
     offset: null,
@@ -47,6 +48,11 @@ function parseArgs(argv) {
     }
     if (arg === "--index-out") {
       options.indexOut = path.resolve(argv[index + 1] || DEFAULT_INDEX);
+      index += 1;
+      continue;
+    }
+    if (arg === "--count") {
+      options.count = Math.max(1, Number(argv[index + 1]) || 1);
       index += 1;
       continue;
     }
@@ -108,7 +114,9 @@ function getNextOffset(options = {}) {
 }
 
 function buildNextBatch(options = {}) {
-  const offset = getNextOffset(options);
+  const offset = options.offset !== null && options.offset !== undefined
+    ? Number(options.offset) || 0
+    : getNextOffset(options);
   const resolved = {
     ...options,
     offset
@@ -176,9 +184,30 @@ function buildNextBatch(options = {}) {
   };
 }
 
+function buildNextBatches(options = {}) {
+  const count = Math.max(1, Number(options.count) || 1);
+  const firstOffset = getNextOffset(options);
+  const batches = [];
+  for (let index = 0; index < count; index += 1) {
+    const offset = firstOffset + (index * (Number(options.limit) || DEFAULT_LIMIT));
+    batches.push(buildNextBatch({
+      ...options,
+      offset
+    }));
+  }
+  const last = batches[batches.length - 1] || null;
+  return {
+    count: batches.length,
+    firstOffset,
+    lastNextOffset: last?.nextOffset ?? firstOffset,
+    indexNextOffset: last?.indexNextOffset ?? firstOffset,
+    batches
+  };
+}
+
 function main() {
   const options = parseArgs(process.argv.slice(2));
-  const summary = buildNextBatch(options);
+  const summary = buildNextBatches(options);
   console.log(JSON.stringify(summary, null, 2));
 }
 
@@ -194,6 +223,7 @@ if (require.main === module) {
 module.exports = {
   batchId,
   buildNextBatch,
+  buildNextBatches,
   getNextOffset,
   outputPaths,
   parseArgs
