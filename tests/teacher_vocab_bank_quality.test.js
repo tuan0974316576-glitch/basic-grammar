@@ -160,7 +160,63 @@ function assertIncludes(word, expected) {
   ["associate", "adj. 副的 / 相關的"],
   ["at", "prep. 在 / 於"],
   ["around", "adv. 大約 / 在周圍"],
-  ["aware of", "ph. 意識到 / 知道"]
+  ["aware of", "ph. 意識到 / 知道"],
+  ["a boon", "ph. 好事 / 有益的事"],
+  ["a case in point", "ph. 一個好例子"],
+  ["a fraction of", "ph. 一小部分"],
+  ["a great deal of", "ph. 大量 / 很多（不可數）"],
+  ["a handful of", "ph. 一小撮 / 少量"],
+  ["a host of", "ph. 大量 / 許多"],
+  ["a number of", "ph. 幾個 / 一些"],
+  ["a staggering", "ph. 驚人的 / 大得驚人的"],
+  ["a whopping", "ph. 大得驚人的"],
+  ["a wide range of", "ph. 各式各樣的 / 不同種類的"],
+  ["a wide variety of", "ph. 各式各樣的 / 不同種類的"],
+  ["abandon", "v. 放棄 / 遺棄"],
+  ["absorbed in", "ph. 全神貫注於"],
+  ["access to", "ph. 使用 / 接觸 / 取得...的機會"],
+  ["achilles' heel", "ph. 弱點 / 致命弱點"],
+  ["acquainted with", "ph. 熟悉"],
+  ["acquire", "v. 獲得 / 取得"],
+  ["acquire", "v. 收購"],
+  ["adopt", "v. 採用 / 領養"],
+  ["advanced", "adj. 先進的 / 進階的"],
+  ["Africa", "n. 非洲"],
+  ["aggressive", "adj. 有攻擊性的 / 進取的"],
+  ["agency", "n. 中介公司 / 機構"],
+  ["aim at", "ph. 旨在 / 目標是"],
+  ["aim to", "ph. 旨在 / 目的是"],
+  ["akin to", "ph. 類似於 / 像"],
+  ["albeit", "conj. 雖然"],
+  ["alternative", "n. 替代品 / 選擇"],
+  ["alternative", "adj. 另一選擇的 / 替代的"],
+  ["amazing", "adj. 令人驚嘆的 / 精彩的"],
+  ["Americano", "n. 美式咖啡"],
+  ["amid", "prep. 在...當中"],
+  ["among", "prep. 在...之中 / 在...之間"],
+  ["ample", "adj. 充足的 / 足夠的"],
+  ["amusing", "adj. 有趣的 / 好笑的"],
+  ["ancient", "adj. 古代的 / 古老的"],
+  ["anticipate", "v. 預期 / 預計"],
+  ["anything but", "ph. 絕不 / 絕不是"],
+  ["apathetic to", "ph. 對...冷漠 / 不關心"],
+  ["appealing", "adj. 有吸引力的"],
+  ["appropriate", "adj. 合適的 / 恰當的"],
+  ["archaeologist", "n. 考古學家"],
+  ["archaelogist", "n. 考古學家"],
+  ["architect", "n. 建築師"],
+  ["artchitect", "n. 建築師"],
+  ["artificial", "adj. 人工的 / 人造的"],
+  ["assemble", "v. 組裝 / 集合"],
+  ["associated with", "ph. 與...有關 / 與...相關"],
+  ["association", "n. 協會 / 關係 / 關聯"],
+  ["assure", "v. 令...相信 / 保證"],
+  ["astonishing", "adj. 令人驚訝的 / 震驚的"],
+  ["at first glance", "ph. 乍看之下 / 第一眼看來"],
+  ["at stake", "ph. 危在旦夕 / 有風險"],
+  ["authority", "n. 權威 / 當局 / 權力"],
+  ["authentic", "adj. 真正的 / 正宗的"],
+  ["axe", "v. 裁員 / 解僱"]
 ].forEach(([word, expected]) => assertIncludes(word, expected));
 
 assert.ok(
@@ -229,6 +285,35 @@ assert.ok(
 assert.ok(
   !labels("assembly").some((label) => label.startsWith("adv.")),
   "assembly should not be shown as an adverb"
+);
+assert.deepStrictEqual(labels("as well as 在句子開頭"), [], "lesson note should not be exposed as a vocab item");
+assert.ok(
+  !labels("anything but").some((label) => label.includes("絕對是")),
+  "anything but should not show the opposite meaning"
+);
+assert.ok(
+  !labels("absorbed in").some((label) => label.includes("全神異注")),
+  "absorbed in should not show typo meanings"
+);
+assert.ok(
+  !labels("associated with").some((label) => label.includes(".與")),
+  "associated with should not show punctuation noise"
+);
+assert.ok(
+  !labels("ample").some((label) => label.startsWith("n.")),
+  "ample should not be shown as a noun"
+);
+assert.ok(
+  !labels("amusing").some((label) => label.includes("amusement park")),
+  "amusing should not include example fragments as meanings"
+);
+assert.ok(
+  !labels("among").some((label) => label.includes("有...之間") || label.includes("在..當中")),
+  "among should not show broken punctuation or wrong Chinese"
+);
+assert.ok(
+  !labels("axe").some((label) => label.includes("解雇")),
+  "axe should use Traditional Chinese 解僱"
 );
 
 console.log("teacher_vocab_bank_quality tests passed");
