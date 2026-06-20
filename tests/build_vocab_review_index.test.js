@@ -40,6 +40,8 @@ assert.strictEqual(index.meta.batchCount, 2);
 assert.strictEqual(index.meta.totalCandidateCount, 3971);
 assert.strictEqual(index.meta.nextOffset, 200);
 assert.strictEqual(index.meta.nextBatchId, "0200");
+assert.strictEqual(index.meta.readyForReviewBatchCount, 1);
+assert.strictEqual(index.meta.promotePlanBatchCount, 0);
 assert.strictEqual(index.batches[0].status, "ready-for-teacher-review");
 assert.strictEqual(index.batches[1].status, "needs-xlsx");
 assert.strictEqual(index.batches[0].reviewedEntryCount, 1);

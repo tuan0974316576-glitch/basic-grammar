@@ -132,6 +132,8 @@ function buildIndex(options = {}) {
   const coveredCount = batches.reduce((max, batch) => Math.max(max, batch.nextOffset), 0);
   const nextOffset = latest?.nextOffset || 0;
   const nextId = String(nextOffset).padStart(4, "0");
+  const readyForReviewBatchCount = batches.filter((batch) => batch.xlsxExists).length;
+  const promotePlanBatchCount = batches.filter((batch) => batch.promotePlanExists).length;
 
   return {
     meta: {
@@ -140,7 +142,8 @@ function buildIndex(options = {}) {
       batchCount: batches.length,
       totalCandidateCount,
       coveredCount,
-      reviewedBatchCount: batches.filter((batch) => batch.status !== "needs-xlsx").length,
+      readyForReviewBatchCount,
+      promotePlanBatchCount,
       nextOffset,
       nextBatchId: nextId,
       nextJson: path.relative(ROOT_DIR, path.join(dir, `${prefix}_${nextId}.json`)),
