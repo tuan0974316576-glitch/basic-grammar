@@ -97,4 +97,19 @@ assert.strictEqual(written.queues.length, 4);
 assert.ok(fs.existsSync(path.join(tmpDir, "dashboard.json")));
 assert.ok(fs.existsSync(path.join(tmpDir, "dashboard.csv")));
 
+writeIndex("teacher_live_vocab_review_index.json", {
+  prefix: "teacher_live_vocab_review_batch",
+  batchCount: 0,
+  totalCandidateCount: 0,
+  coveredCount: 0,
+  readyForReviewBatchCount: 0,
+  promotePlanBatchCount: 0,
+  nextOffset: 0,
+  nextBatchId: "0000",
+  nextXlsx: "private_exports/teacher_live_vocab_review_batch_0000.xlsx"
+}, []);
+const emptyLiveResult = dashboard.buildDashboard({ dir: tmpDir });
+assert.strictEqual(emptyLiveResult.queues.find((queue) => queue.id === "teacher-live").status, "empty");
+assert.ok(emptyLiveResult.queues.find((queue) => queue.id === "teacher-live").nextAction.includes("No entries"));
+
 console.log("build_vocab_review_dashboard tests passed");

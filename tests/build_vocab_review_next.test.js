@@ -110,4 +110,26 @@ const fakeSubprocessSummary = next.makeSubprocessSummary({
 assert.strictEqual(fakeSubprocessSummary.lastNextOffset, 3971);
 assert.strictEqual(fakeSubprocessSummary.indexNextOffset, 3971);
 
+const emptyTeacherLiveInput = path.join(tmpDir, "teacher_live_vocab_snapshot_empty.json");
+fs.writeFileSync(emptyTeacherLiveInput, JSON.stringify({
+  meta: { source: "teacher-live", entryCount: 0, privateOnly: true },
+  entries: []
+}, null, 2));
+const emptyTeacherLiveSummary = next.buildNextBatches({
+  dir: tmpDir,
+  indexOut: path.join(tmpDir, "teacher_live_vocab_review_index.json"),
+  prefix: "teacher_live_vocab_review_batch",
+  source: "teacher-live",
+  teacherLiveInput: emptyTeacherLiveInput,
+  skipJunk: false,
+  xlsx: false,
+  limit: 100,
+  count: 1
+});
+assert.strictEqual(emptyTeacherLiveSummary.count, 0);
+assert.strictEqual(emptyTeacherLiveSummary.skippedCount, 1);
+assert.strictEqual(emptyTeacherLiveSummary.skipped[0].reason, "no-review-tasks");
+assert.ok(fs.existsSync(path.join(tmpDir, "teacher_live_vocab_review_index.json")));
+assert.ok(!fs.existsSync(path.join(tmpDir, "teacher_live_vocab_review_batch_0000.json")));
+
 console.log("build_vocab_review_next tests passed");

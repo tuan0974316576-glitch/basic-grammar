@@ -112,6 +112,7 @@ function summarizeQueue(queue = {}, options = {}) {
   const coveredCount = Number(meta.coveredCount) || 0;
   const reviewedEntryCount = batches.reduce((sum, batch) => sum + (Number(batch.reviewedEntryCount) || 0), 0);
   const entryCount = batches.reduce((sum, batch) => sum + (Number(batch.entryCount) || 0), 0);
+  const isEmptyQueue = totalCandidateCount === 0 && entryCount === 0;
   const readyForReviewBatchCount = Number(meta.readyForReviewBatchCount) || batches.filter((batch) => batch.xlsxExists).length;
   const promotePlanBatchCount = Number(meta.promotePlanBatchCount) || batches.filter((batch) => batch.promotePlanExists).length;
   const appliedBatchCount = Number(meta.appliedBatchCount) || batches.filter((batch) => batch.applyPlanExists).length;
@@ -134,6 +135,7 @@ function summarizeQueue(queue = {}, options = {}) {
   if (needsXlsxBatchCount) status = "needs-xlsx";
   if (preflightFailedBatchCount) status = "has-preflight-errors";
   if (missingBatchCount) status = "has-missing-files";
+  if (isEmptyQueue) status = "empty";
 
   let nextAction = "Dry-run apply-plan for promote plans, then write when checked";
   if (readyButUnplannedCount) nextAction = "Run vocab:process-review after filling yellow review columns";
@@ -142,6 +144,7 @@ function summarizeQueue(queue = {}, options = {}) {
   if (status === "has-applied-batches") nextAction = "Sync teacher entries live if needed, then continue with remaining review batches";
   if (status === "has-preflight-errors") nextAction = "Fix rows listed in *_preflight.csv, then rerun vocab:process-review";
   if (status === "needs-more-batches") nextAction = queue.command;
+  if (status === "empty") nextAction = "No entries to review yet. Export again after adding teacher live vocab.";
 
   return {
     id: queue.id,

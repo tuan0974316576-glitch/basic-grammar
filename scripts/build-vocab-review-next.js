@@ -220,6 +220,28 @@ function buildNextBatch(options = {}) {
     limit: resolved.limit
   });
   const selectedTasks = allTasks.slice(offset, offset + resolved.limit);
+  if (!selectedTasks.length) {
+    const index = ReviewIndex.writeIndex({
+      dir: resolved.dir,
+      out: resolved.indexOut,
+      prefix: resolved.prefix
+    });
+    return {
+      id: paths.id,
+      offset,
+      limit: resolved.limit,
+      selectedCount: 0,
+      totalCandidateCount: allTasks.length,
+      nextOffset: offset,
+      skipped: true,
+      reason: allTasks.length ? "offset-past-end" : "no-review-tasks",
+      json: path.relative(ROOT_DIR, paths.json),
+      csv: path.relative(ROOT_DIR, paths.csv),
+      xlsx: path.relative(ROOT_DIR, paths.xlsx),
+      index: path.relative(ROOT_DIR, resolved.indexOut),
+      indexNextOffset: index.meta.nextOffset
+    };
+  }
   const rows = ReviewBatch.buildReviewRows({
     source: resolved.source,
     skipJunk: resolved.skipJunk,
@@ -286,20 +308,29 @@ function buildNextBatches(options = {}) {
     });
   }
   const batches = [];
+  const skipped = [];
   for (let index = 0; index < count; index += 1) {
     const offset = firstOffset + (index * (Number(options.limit) || DEFAULT_LIMIT));
-    batches.push(buildNextBatch({
+    const batch = buildNextBatch({
       ...options,
       offset
-    }));
+    });
+    if (batch.skipped) {
+      skipped.push(batch);
+      break;
+    }
+    batches.push(batch);
   }
   const last = batches[batches.length - 1] || null;
+  const lastSkipped = skipped[skipped.length - 1] || null;
   return {
     count: batches.length,
+    skippedCount: skipped.length,
     firstOffset,
-    lastNextOffset: last?.nextOffset ?? firstOffset,
-    indexNextOffset: last?.indexNextOffset ?? firstOffset,
-    batches
+    lastNextOffset: last?.nextOffset ?? lastSkipped?.nextOffset ?? firstOffset,
+    indexNextOffset: last?.indexNextOffset ?? lastSkipped?.indexNextOffset ?? firstOffset,
+    batches,
+    skipped
   };
 }
 
