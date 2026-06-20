@@ -106,41 +106,6 @@ service cloud.firestore {
         && (!("progress" in request.resource.data) || (request.resource.data.progress is map && vocabProgressKeysAreSafe(request.resource.data.progress)));
     }
 
-    function vocabMeaningReviewKeysAreSafe() {
-      return request.resource.data.keys().hasOnly([
-        "word",
-        "meaning",
-        "type",
-        "source",
-        "sourceEntryId",
-        "status",
-        "requestedAt",
-        "updatedAt",
-        "count",
-        "ownerUid",
-        "studentId",
-        "classId",
-        "displayName",
-        "syncedAt"
-      ]);
-    }
-
-    function vocabMeaningReviewFieldsAreSafe() {
-      return (!("ownerUid" in request.resource.data) || request.resource.data.ownerUid == request.auth.uid)
-        && (!("word" in request.resource.data) || request.resource.data.word is string)
-        && (!("meaning" in request.resource.data) || request.resource.data.meaning is string)
-        && (!("type" in request.resource.data) || request.resource.data.type is string)
-        && (!("source" in request.resource.data) || request.resource.data.source is string)
-        && (!("sourceEntryId" in request.resource.data) || request.resource.data.sourceEntryId is string)
-        && (!("status" in request.resource.data) || request.resource.data.status in ["pending"])
-        && (!("requestedAt" in request.resource.data) || request.resource.data.requestedAt is number)
-        && (!("updatedAt" in request.resource.data) || request.resource.data.updatedAt is number)
-        && (!("count" in request.resource.data) || request.resource.data.count is number)
-        && (!("studentId" in request.resource.data) || request.resource.data.studentId is string)
-        && (!("classId" in request.resource.data) || request.resource.data.classId is string)
-        && (!("displayName" in request.resource.data) || request.resource.data.displayName is string);
-    }
-
     match /studentAccounts/{studentId} {
       allow read, write: if false;
     }
@@ -171,14 +136,6 @@ service cloud.firestore {
         allow create, update: if isOwner(uid)
           && vocabItemKeysAreSafe()
           && vocabItemFieldsAreSafe();
-        allow delete: if false;
-      }
-
-      match /vocabMeaningReviews/{reviewId} {
-        allow read: if isOwner(uid);
-        allow create, update: if isOwner(uid)
-          && vocabMeaningReviewKeysAreSafe()
-          && vocabMeaningReviewFieldsAreSafe();
         allow delete: if false;
       }
 

@@ -42,7 +42,7 @@ function assertIncludes(word, expected) {
   ["spring", "v. 跳起"],
   ["run", "v. 跑"],
   ["set", "n. 一套"],
-  ["work", "v. 運作"],
+  ["work", "v. 運作 / 奏效"],
   ["change", "n. 零錢"],
   ["turn", "n. 輪流 / 次序"],
   ["break", "n. 小休 / 休息"],
@@ -650,5 +650,44 @@ assert.ok(
   !labels("colony").some((label) => label.startsWith("adv.")),
   "colony should not be shown as an adverb"
 );
+
+assert.deepStrictEqual(
+  labels("look up"),
+  ["ph. 查閱 / 查字典"],
+  "look up should not mix dictionary lookup with looking upward in the same primary choice"
+);
+[
+  "n. 工作",
+  "n. 作品",
+  "v. 工作 / 做事",
+  "v. 運作 / 奏效"
+].forEach((expected) => assertIncludes("work", expected));
+assert.deepStrictEqual(labels("egg tart"), ["n. 蛋撻"]);
+assert.deepStrictEqual(labels("egg waffle"), ["n. 雞蛋仔"]);
+assert.deepStrictEqual(labels("lung cancer"), ["n. 肺癌"]);
+assert.deepStrictEqual(labels("put on"), ["ph. 穿上 / 戴上"]);
+assert.deepStrictEqual(labels("take off"), ["ph. 脫下 / 起飛"]);
+assert.deepStrictEqual(labels("pick up"), ["ph. 拿起 / 接載"]);
+assert.deepStrictEqual(labels("give up"), ["ph. 放棄"]);
+assert.deepStrictEqual(labels("turn on"), ["ph. 開啟"]);
+assert.deepStrictEqual(labels("turn off"), ["ph. 關掉"]);
+assert.deepStrictEqual(labels("get up"), ["ph. 起床"]);
+assert.deepStrictEqual(labels("wake up"), ["ph. 醒來 / 叫醒"]);
+assert.deepStrictEqual(labels("find out"), ["ph. 找出 / 查明"]);
+assert.deepStrictEqual(labels("many"), ["det. 很多"]);
+assert.deepStrictEqual(labels("much"), ["det. 很多"]);
+assert.deepStrictEqual(labels("more than"), ["ph. 多於 / 超過"]);
+assert.deepStrictEqual(labels("less than"), ["ph. 少於"]);
+assert.deepStrictEqual(labels("a lot of"), ["ph. 很多"]);
+assert.deepStrictEqual(labels("a piece of"), ["ph. 一塊 / 一張 / 一件"]);
+assert.deepStrictEqual(labels("a pair of"), ["ph. 一雙 / 一對"]);
+assert.deepStrictEqual(labels("a bottle of"), ["ph. 一瓶"]);
+assert.deepStrictEqual(labels("a cup of"), ["ph. 一杯"]);
+assert.deepStrictEqual(labels("rice"), ["n. 飯 / 米"]);
+assert.deepStrictEqual(labels("homework"), ["n. 功課"]);
+assert.deepStrictEqual(labels("information"), ["n. 資訊 / 資料"]);
+assert.deepStrictEqual(labels("advice"), ["n. 建議"]);
+assert.deepStrictEqual(labels("news"), ["n. 新聞"]);
+assert.deepStrictEqual(labels("equipment"), ["n. 器材 / 設備"]);
 
 console.log("teacher_vocab_bank_quality tests passed");

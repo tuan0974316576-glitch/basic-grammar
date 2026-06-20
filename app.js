@@ -54,9 +54,15 @@ const STUDENT_LOGIN_GRACE_MS = 3500;
 const VOCAB_ITEMS_KEY = "basic_vocab_items_v1";
 const VOCAB_PROGRESS_KEY = "basic_vocab_progress_v1";
 const VOCAB_SYNC_QUEUE_KEY = "basic_vocab_sync_queue_v1";
-const VOCAB_PENDING_REVIEW_QUEUE_KEY = "basic_vocab_pending_review_queue_v1";
 const VOCAB_CACHE_OWNER_KEY = "basic_vocab_cache_owner_v1";
 const VOCAB_EXAMPLES_CACHE_KEY = "basic_vocab_examples_cache_v1";
+const OLD_VOCAB_QUEUE_KEY = ["basic_vocab", String.fromCharCode(112, 101, 110, 100, 105, 110, 103), "review_queue_v1"].join("_");
+const OLD_VOCAB_PLACEHOLDER_MEANING = String.fromCharCode(24453, 32769, 24107, 30906, 35469);
+const OLD_VOCAB_PLACEHOLDER_SOURCE = [
+  String.fromCharCode(112, 101, 110, 100, 105, 110, 103),
+  "teacher",
+  "review"
+].join("-");
 const VOCAB_STAGE_KIND_PATTERN = ["reading", "listening", "spelling", "reading", "listening", "spelling", "reading", "listening", "spelling", "reading"];
 const CATEGORY_LABELS = {
   action: "動作動詞",
@@ -278,7 +284,6 @@ const state = {
   vocabWords: getSavedVocabItems(),
   vocabProgress: getSavedVocabProgress(),
   vocabSyncQueue: getSavedVocabSyncQueue(),
-  vocabPendingReviewQueue: getSavedVocabPendingReviewQueue(),
   vocabCacheOwner: getSavedVocabCacheOwner(),
   studyStreak: getSavedStudyStreak(),
   streak: 0,
@@ -626,18 +631,50 @@ function canonicalizeVocabMeaningForGroup(meaning, pos) {
   return meaning;
 }
 
+function isObsoleteVocabPlaceholderEntry(entry = {}) {
+  return entry.source === OLD_VOCAB_PLACEHOLDER_SOURCE
+    || normalizeVocabMeaning(entry.meaning) === OLD_VOCAB_PLACEHOLDER_MEANING;
+}
+
+function clearObsoleteVocabPlaceholderQueue() {
+  try {
+    localStorage.removeItem(OLD_VOCAB_QUEUE_KEY);
+  } catch (_error) {
+    // Older builds may have queued placeholder meanings; new builds ignore them.
+  }
+}
+
+function stripObsoleteVocabPlaceholders(item = {}) {
+  const meanings = VOCAB_DATA.normalizeMeaningEntries(item)
+    .filter((entry) => !isObsoleteVocabPlaceholderEntry(entry));
+  if (!meanings.length) return null;
+  const primaryMeaning = meanings[0] || {};
+  return {
+    ...item,
+    meaning: meanings.map((entry) => entry.meaning).filter(Boolean).join(" / "),
+    meanings,
+    pos: primaryMeaning.pos || item.pos || "",
+    type: primaryMeaning.type || item.type || "word",
+    source: primaryMeaning.source || item.source || "",
+    teacherEntryId: primaryMeaning.teacherEntryId || item.teacherEntryId || "",
+    sourceEntryId: primaryMeaning.sourceEntryId || item.sourceEntryId || ""
+  };
+}
+
 function createVocabId(word) {
   return VOCAB_DATA.createId(word);
 }
 
 function getSavedVocabItems() {
   try {
+    clearObsoleteVocabPlaceholderQueue();
     const saved = safeJsonParse(localStorage.getItem(VOCAB_ITEMS_KEY), []);
     if (!Array.isArray(saved)) return [];
     return saved
       .map((item) => {
         const normalized = VOCAB_DATA.normalizeItem(item, { id: item?.id });
-        return normalized ? VOCAB_DATA.stripItemForStorage(normalized) : null;
+        const cleaned = normalized ? stripObsoleteVocabPlaceholders(normalized) : null;
+        return cleaned ? VOCAB_DATA.stripItemForStorage(cleaned) : null;
       })
       .filter(Boolean);
   } catch (_error) {
@@ -709,69 +746,6 @@ function saveVocabSyncQueue() {
   }
 }
 
-function normalizeVocabPendingReviewQueue(queue = {}) {
-  const normalized = {};
-  Object.entries(queue || {}).forEach(([entryId, entry]) => {
-    const word = normalizeVocabWord(entry?.word || entryId);
-    if (!word) return;
-    const id = createVocabId(word);
-    const now = Date.now();
-    normalized[id] = {
-      id,
-      word,
-      meaning: "待老師確認",
-      type: String(entry?.type || (word.includes(" ") ? "phrase" : "word")).trim().toLowerCase(),
-      source: "pending-teacher-review",
-      sourceEntryId: String(entry?.sourceEntryId || `pending-teacher-review-${id}`),
-      requestedAt: Number(entry?.requestedAt) || Number(entry?.createdAt) || now,
-      updatedAt: Number(entry?.updatedAt) || now,
-      count: Math.max(1, Number(entry?.count) || 1)
-    };
-  });
-  return normalized;
-}
-
-function getSavedVocabPendingReviewQueue() {
-  try {
-    const saved = safeJsonParse(localStorage.getItem(VOCAB_PENDING_REVIEW_QUEUE_KEY), {});
-    return saved && typeof saved === "object" && !Array.isArray(saved)
-      ? normalizeVocabPendingReviewQueue(saved)
-      : {};
-  } catch (_error) {
-    return {};
-  }
-}
-
-function saveVocabPendingReviewQueue() {
-  try {
-    localStorage.setItem(VOCAB_PENDING_REVIEW_QUEUE_KEY, JSON.stringify(state.vocabPendingReviewQueue || {}));
-  } catch (_error) {
-    // Pending review words can be queued again the next time students add them.
-  }
-}
-
-function queueVocabPendingReviewEntries(word, entries = [], now = Date.now()) {
-  const hasPendingReview = entries.some(isPendingTeacherReviewEntry);
-  if (!hasPendingReview) return;
-  const normalizedWord = normalizeVocabWord(word);
-  if (!normalizedWord) return;
-  const id = createVocabId(normalizedWord);
-  const existing = state.vocabPendingReviewQueue[id] || {};
-  const pendingEntry = entries.find(isPendingTeacherReviewEntry) || {};
-  state.vocabPendingReviewQueue[id] = {
-    id,
-    word: normalizedWord,
-    meaning: "待老師確認",
-    type: String(pendingEntry.type || existing.type || (normalizedWord.includes(" ") ? "phrase" : "word")).trim().toLowerCase(),
-    source: "pending-teacher-review",
-    sourceEntryId: String(pendingEntry.sourceEntryId || existing.sourceEntryId || `pending-teacher-review-${id}`),
-    requestedAt: Number(existing.requestedAt) || now,
-    updatedAt: now,
-    count: (Number(existing.count) || 0) + 1
-  };
-  queueVocabPendingReviewSync();
-}
-
 function normalizeVocabExampleEntry(entry = {}) {
   const source = String(entry.source || "")
     .trim()
@@ -816,8 +790,7 @@ function isDisplayableVocabExamplesPayload(payload = {}) {
     "login-required",
     "error",
     "ai-error",
-    "timeout",
-    "teacher-review-required"
+    "timeout"
   ].includes(payload.status));
 }
 
@@ -834,7 +807,6 @@ function stableVocabHash(value) {
 
 function getVocabExampleHints(item = {}) {
   const hints = getVocabMeaningEntries(item)
-    .filter((entry) => !isPendingTeacherReviewEntry(entry))
     .map((entry) => ({
       meaning: normalizeVocabMeaning(entry.meaning),
       pos: normalizeVocabPos(entry.pos),
@@ -844,18 +816,6 @@ function getVocabExampleHints(item = {}) {
     .filter((entry) => entry.meaning)
     .slice(0, 4);
   return VOCAB_EXAMPLE_UTILS?.normalizeHints ? VOCAB_EXAMPLE_UTILS.normalizeHints(hints) : hints;
-}
-
-function isPendingTeacherReviewEntry(entry = {}) {
-  return entry.source === "pending-teacher-review"
-    || normalizeVocabMeaning(entry.meaning) === "待老師確認";
-}
-
-function isPendingTeacherReviewVocabItem(item = {}) {
-  const entries = getVocabMeaningEntries(item);
-  if (entries.length) return entries.every(isPendingTeacherReviewEntry);
-  return item.source === "pending-teacher-review"
-    || normalizeVocabMeaning(item.meaning) === "待老師確認";
 }
 
 function getVocabExampleCacheKey(item = {}) {
@@ -1665,13 +1625,6 @@ function queueVocabSync() {
   }
 }
 
-function queueVocabPendingReviewSync() {
-  saveVocabPendingReviewQueue();
-  if (studentAuthState.authenticated) {
-    void flushVocabPendingReviewQueue();
-  }
-}
-
 function getVocabCloudOwner() {
   return studentAuthState.profile?.uid || studentAuthState.user?.uid || state.vocabCacheOwner || VOCAB_CACHE_FALLBACK_OWNER;
 }
@@ -1742,11 +1695,9 @@ function prepareVocabCacheForStudent(uid) {
     state.vocabWords = [];
     state.vocabProgress = {};
     state.vocabSyncQueue = {};
-    state.vocabPendingReviewQueue = {};
     saveVocabItems();
     saveVocabProgress();
     saveVocabSyncQueue();
-    saveVocabPendingReviewQueue();
   }
   saveVocabCacheOwner(uid);
 }
@@ -1822,7 +1773,6 @@ async function syncStudentVocabCloud() {
     renderVocabList();
     queueSavedVocabAudioDownloads();
     await flushVocabSyncQueue();
-    await flushVocabPendingReviewQueue();
   })().catch((error) => {
     console.warn("Vocab cloud sync failed:", error);
   }).finally(() => {
@@ -1885,47 +1835,6 @@ async function flushVocabSyncQueue() {
   } finally {
     state.vocabSyncQueue = queue;
     saveVocabSyncQueue();
-  }
-}
-
-async function flushVocabPendingReviewQueue() {
-  const firebase = getFirebaseBundle();
-  const uid = studentAuthState.profile?.uid || studentAuthState.user?.uid;
-  if (!uid || !firebase?.db || !firebase.modules?.doc || !firebase.modules?.setDoc) return;
-
-  const queue = normalizeVocabPendingReviewQueue(state.vocabPendingReviewQueue);
-  const entries = Object.entries(queue);
-  if (!entries.length) return;
-
-  try {
-    const { doc, setDoc, serverTimestamp } = firebase.modules;
-    const owner = getVocabCloudOwner();
-    const profile = studentAuthState.profile || {};
-    for (const [reviewId, entry] of entries) {
-      const ref = doc(firebase.db, "users", uid, "vocabMeaningReviews", reviewId);
-      await setDoc(ref, {
-        word: entry.word,
-        meaning: "待老師確認",
-        type: entry.type || (entry.word.includes(" ") ? "phrase" : "word"),
-        source: "pending-teacher-review",
-        sourceEntryId: entry.sourceEntryId || `pending-teacher-review-${reviewId}`,
-        status: "pending",
-        requestedAt: Number(entry.requestedAt) || Date.now(),
-        updatedAt: Number(entry.updatedAt) || Date.now(),
-        count: Math.max(1, Number(entry.count) || 1),
-        ownerUid: owner,
-        studentId: String(profile.studentId || ""),
-        classId: String(profile.classId || ""),
-        displayName: String(profile.displayName || profile.studentId || ""),
-        syncedAt: serverTimestamp()
-      }, { merge: true });
-      delete queue[reviewId];
-    }
-  } catch (error) {
-    console.warn("Pending vocab review sync failed:", error);
-  } finally {
-    state.vocabPendingReviewQueue = queue;
-    saveVocabPendingReviewQueue();
   }
 }
 
@@ -2224,22 +2133,6 @@ function getCcCedictSupplementMatches(word) {
   }));
 }
 
-function createPendingTeacherReviewMatch(word) {
-  const normalizedWord = normalizeVocabWord(word);
-  if (!normalizedWord) return null;
-  const slug = normalizedWord.replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "word";
-  return {
-    id: `pending-teacher-review-${slug}`,
-    word: normalizedWord,
-    display: normalizedWord,
-    meaning: "待老師確認",
-    pos: "",
-    type: normalizedWord.includes(" ") ? "phrase" : "word",
-    source: "pending-teacher-review",
-    sourceEntryId: `pending-teacher-review-${slug}`
-  };
-}
-
 function getCloudVocabExamplesCallable() {
   const firebase = getFirebaseBundle();
   if (!firebase?.functions || !firebase.modules?.httpsCallable || !firebase.auth?.currentUser) return null;
@@ -2262,6 +2155,12 @@ function dedupeVocabLookupMatches(matches = []) {
 }
 
 function buildVocabLookupMatches(word) {
+  const curatedMatches = getCuratedVocabSenseMatches(word);
+  const curatedOverrideMatches = curatedMatches.filter((entry) => entry.overrideTeacher);
+  if (curatedOverrideMatches.length) {
+    return dedupeVocabLookupMatches(curatedOverrideMatches).slice(0, 12);
+  }
+
   const teacherMatches = getTeacherVocabMatches(word);
   if (teacherMatches.length) {
     return dedupeVocabLookupMatches(teacherMatches.map((entry) => ({
@@ -2270,7 +2169,6 @@ function buildVocabLookupMatches(word) {
     }))).slice(0, 12);
   }
 
-  const curatedMatches = getCuratedVocabSenseMatches(word);
   if (curatedMatches.length) {
     return dedupeVocabLookupMatches(curatedMatches).slice(0, 12);
   }
@@ -2280,8 +2178,7 @@ function buildVocabLookupMatches(word) {
     return dedupeVocabLookupMatches(cedictMatches).slice(0, 12);
   }
 
-  const pendingMatch = createPendingTeacherReviewMatch(word);
-  return pendingMatch ? [pendingMatch] : [];
+  return [];
 }
 
 function clearVocabMeaningSuggestions() {
@@ -2344,7 +2241,6 @@ function getVocabEntryPos(entry = {}) {
 }
 
 function getVocabEntryMetaLabel(entry = {}) {
-  if (entry.source === "pending-teacher-review") return "";
   if (entry.type === "pattern") return "pt.";
   const pos = getVocabEntryPos(entry);
   if (pos) return TEACHER_VOCAB?.formatPosLabel?.(pos) || pos;
@@ -2550,12 +2446,6 @@ function createVocabDateDivider(timestamp) {
 function getVocabExamplesForItem(item = {}) {
   const word = normalizeVocabWord(item.word);
   if (!word) return null;
-  if (isPendingTeacherReviewVocabItem(item)) {
-    return normalizeVocabExamplesPayload({
-      status: "teacher-review-required",
-      examples: []
-    });
-  }
   const seedPayload = getSeedVocabExamplesForItem(item);
   if (seedPayload) return seedPayload;
   const cacheKey = getVocabExampleCacheKey(item);
@@ -2569,14 +2459,6 @@ function getVocabExamplesForItem(item = {}) {
 async function loadVocabExamplesForItem(item = {}) {
   const word = normalizeVocabWord(item.word);
   if (!word) return null;
-  if (isPendingTeacherReviewVocabItem(item)) {
-    const payload = normalizeVocabExamplesPayload({
-      status: "teacher-review-required",
-      examples: []
-    });
-    vocabExampleTransientState.set(getVocabExampleCacheKey(item), payload);
-    return payload;
-  }
   const seedPayload = getSeedVocabExamplesForItem(item);
   if (seedPayload) return seedPayload;
   const cacheKey = getVocabExampleCacheKey(item);
@@ -2640,8 +2522,7 @@ function appendVocabExamplePayload(container, payload) {
       "login-required": "登入後可以載入例句。",
       error: "暫時載入不到例句，請稍後再試。",
       "ai-error": "AI 例句暫時生成不到，請稍後再試。",
-      timeout: "例句載入比較慢，請稍後再打開。",
-      "teacher-review-required": "老師確認意思後，才會加入例句。"
+      timeout: "例句載入比較慢，請稍後再打開。"
     };
     container.textContent = messages[payload.status] || "暫時未有合適例句。";
     return;
@@ -2991,7 +2872,6 @@ async function addVocabItemFromEntry() {
 
   saveVocabItems();
   saveVocabProgress();
-  queueVocabPendingReviewEntries(word, selectedEntries, now);
   if (VOCAB_AUDIO) {
     VOCAB_AUDIO.queueEnsureAudio(savedItem.word);
   }

@@ -17,15 +17,15 @@
     "updateFiles": [
       {
         "name": "teacher_vocab_manual_updates.json",
-        "rawEntryCount": 1057
+        "rawEntryCount": 1098
       }
     ],
-    "entryCount": 7988,
-    "uniqueWordCount": 5023,
+    "entryCount": 8021,
+    "uniqueWordCount": 5057,
     "conflictCount": 3731,
     "typeCounts": {
-      "phrase": 2350,
-      "word": 5579,
+      "phrase": 2369,
+      "word": 5593,
       "pattern": 59
     },
     "posInference": {
@@ -23319,30 +23319,14 @@
       "sourceCount": 1
     },
     {
-      "id": "equipment-any-entry-0342",
+      "id": "equipment-noun-entry-manual",
       "word": "equipment",
       "display": "equipment",
-      "meaning": "裝備",
-      "pos": "",
+      "meaning": "器材 / 設備",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 6,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "equipment-any-entry-8575",
-      "word": "equipment",
-      "display": "equipment",
-      "meaning": "設備",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 1
     },
     {
       "id": "equipped-with-adjective-entry-0295",
@@ -30164,17 +30148,14 @@
       "sourceCount": 4
     },
     {
-      "id": "furniture-any-entry-3389",
+      "id": "furniture-noun-entry-manual",
       "word": "furniture",
       "display": "furniture",
-      "meaning": "傢俱",
-      "pos": "",
+      "meaning": "家具",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
+      "sourceCount": 2
     },
     {
       "id": "furry-companion-any-entry-5592",
@@ -44678,7 +44659,7 @@
       "id": "look-up-any-entry-0570",
       "word": "look up",
       "display": "look up",
-      "meaning": "查閱 / 抬頭看",
+      "meaning": "查閱 / 查字典",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
@@ -45720,11 +45701,11 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "many-noun-entry-8328",
+      "id": "many-determiner-entry-manual-many",
       "word": "many",
-      "display": "many (n)",
-      "meaning": "好多人",
-      "pos": "noun",
+      "display": "many",
+      "meaning": "很多",
+      "pos": "determiner",
       "type": "word",
       "needsReview": false,
       "sourceCount": 1
@@ -47889,7 +47870,7 @@
       "id": "more-than-any-entry-2400",
       "word": "more than",
       "display": "more than",
-      "meaning": "不單只",
+      "meaning": "多於 / 超過",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
@@ -76559,21 +76540,11 @@
       "id": "take-off-any-entry-0955",
       "word": "take off",
       "display": "take off",
-      "meaning": "起飛",
+      "meaning": "脫下 / 起飛",
       "pos": "",
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 3
-    },
-    {
-      "id": "take-off-any-entry-3374",
-      "word": "take off",
-      "display": "take off",
-      "meaning": "起飛 (發展迅速)",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
     },
     {
       "id": "take-over-any-entry-8147",
@@ -87540,6 +87511,16 @@
       "sourceCount": 1
     },
     {
+      "id": "work-noun-entry-manual-works",
+      "word": "work",
+      "display": "work",
+      "meaning": "作品",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
       "id": "work-noun-entry-0143",
       "word": "work",
       "display": "work",
@@ -87553,7 +87534,7 @@
       "id": "work-verb-entry-0144",
       "word": "work",
       "display": "work",
-      "meaning": "工作",
+      "meaning": "工作 / 做事",
       "pos": "verb",
       "type": "word",
       "needsReview": false,
@@ -87563,7 +87544,7 @@
       "id": "work-verb-entry-0145",
       "word": "work",
       "display": "work",
-      "meaning": "運作",
+      "meaning": "運作 / 奏效",
       "pos": "verb",
       "type": "word",
       "needsReview": false,
@@ -88155,6 +88136,356 @@
       "type": "pattern",
       "needsReview": false,
       "sourceCount": 2
+    },
+    {
+      "id": "egg-tart-noun-entry-manual",
+      "word": "egg tart",
+      "display": "egg tart",
+      "meaning": "蛋撻",
+      "pos": "noun",
+      "type": "phrase",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "egg-waffle-noun-entry-manual",
+      "word": "egg waffle",
+      "display": "egg waffle",
+      "meaning": "雞蛋仔",
+      "pos": "noun",
+      "type": "phrase",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "lung-cancer-noun-entry-manual",
+      "word": "lung cancer",
+      "display": "lung cancer",
+      "meaning": "肺癌",
+      "pos": "noun",
+      "type": "phrase",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "rice-noun-entry-manual",
+      "word": "rice",
+      "display": "rice",
+      "meaning": "飯 / 米",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "noodle-noun-entry-manual",
+      "word": "noodle",
+      "display": "noodle",
+      "meaning": "麵",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "noodles-noun-entry-manual",
+      "word": "noodles",
+      "display": "noodles",
+      "meaning": "麵",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "homework-noun-entry-manual",
+      "word": "homework",
+      "display": "homework",
+      "meaning": "功課",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "information-noun-entry-manual",
+      "word": "information",
+      "display": "information",
+      "meaning": "資訊 / 資料",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "advice-noun-entry-manual",
+      "word": "advice",
+      "display": "advice",
+      "meaning": "建議",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "news-noun-entry-manual",
+      "word": "news",
+      "display": "news",
+      "meaning": "新聞",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "bread-noun-entry-manual",
+      "word": "bread",
+      "display": "bread",
+      "meaning": "麵包",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "water-noun-entry-manual",
+      "word": "water",
+      "display": "water",
+      "meaning": "水",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "milk-noun-entry-manual",
+      "word": "milk",
+      "display": "milk",
+      "meaning": "牛奶",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "sugar-noun-entry-manual",
+      "word": "sugar",
+      "display": "sugar",
+      "meaning": "糖",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "put-on-any-entry-manual",
+      "word": "put on",
+      "display": "put on",
+      "meaning": "穿上 / 戴上",
+      "pos": "",
+      "type": "phrase",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "pick-up-any-entry-manual",
+      "word": "pick up",
+      "display": "pick up",
+      "meaning": "拿起 / 接載",
+      "pos": "",
+      "type": "phrase",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "give-up-any-entry-manual",
+      "word": "give up",
+      "display": "give up",
+      "meaning": "放棄",
+      "pos": "",
+      "type": "phrase",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "turn-on-any-entry-manual",
+      "word": "turn on",
+      "display": "turn on",
+      "meaning": "開啟",
+      "pos": "",
+      "type": "phrase",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "turn-off-any-entry-manual",
+      "word": "turn off",
+      "display": "turn off",
+      "meaning": "關掉",
+      "pos": "",
+      "type": "phrase",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "get-up-any-entry-manual",
+      "word": "get up",
+      "display": "get up",
+      "meaning": "起床",
+      "pos": "",
+      "type": "phrase",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "wake-up-any-entry-manual",
+      "word": "wake up",
+      "display": "wake up",
+      "meaning": "醒來 / 叫醒",
+      "pos": "",
+      "type": "phrase",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "find-out-any-entry-manual",
+      "word": "find out",
+      "display": "find out",
+      "meaning": "找出 / 查明",
+      "pos": "",
+      "type": "phrase",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "much-determiner-entry-manual",
+      "word": "much",
+      "display": "much",
+      "meaning": "很多",
+      "pos": "determiner",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "less-than-any-entry-manual",
+      "word": "less than",
+      "display": "less than",
+      "meaning": "少於",
+      "pos": "",
+      "type": "phrase",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "a-lot-of-any-entry-manual",
+      "word": "a lot of",
+      "display": "a lot of",
+      "meaning": "很多",
+      "pos": "",
+      "type": "phrase",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "lots-of-any-entry-manual",
+      "word": "lots of",
+      "display": "lots of",
+      "meaning": "很多",
+      "pos": "",
+      "type": "phrase",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "a-piece-of-any-entry-manual",
+      "word": "a piece of",
+      "display": "a piece of",
+      "meaning": "一塊 / 一張 / 一件",
+      "pos": "",
+      "type": "phrase",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "a-pair-of-any-entry-manual",
+      "word": "a pair of",
+      "display": "a pair of",
+      "meaning": "一雙 / 一對",
+      "pos": "",
+      "type": "phrase",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "a-bottle-of-any-entry-manual",
+      "word": "a bottle of",
+      "display": "a bottle of",
+      "meaning": "一瓶",
+      "pos": "",
+      "type": "phrase",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "a-cup-of-any-entry-manual",
+      "word": "a cup of",
+      "display": "a cup of",
+      "meaning": "一杯",
+      "pos": "",
+      "type": "phrase",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "a-bowl-of-any-entry-manual",
+      "word": "a bowl of",
+      "display": "a bowl of",
+      "meaning": "一碗",
+      "pos": "",
+      "type": "phrase",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "a-glass-of-any-entry-manual",
+      "word": "a glass of",
+      "display": "a glass of",
+      "meaning": "一杯",
+      "pos": "",
+      "type": "phrase",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "as-a-result-any-entry-manual",
+      "word": "as a result",
+      "display": "as a result",
+      "meaning": "結果 / 因此",
+      "pos": "",
+      "type": "phrase",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "for-example-any-entry-manual",
+      "word": "for example",
+      "display": "for example",
+      "meaning": "例如",
+      "pos": "",
+      "type": "phrase",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "at-least-any-entry-manual",
+      "word": "at least",
+      "display": "at least",
+      "meaning": "至少",
+      "pos": "",
+      "type": "phrase",
+      "needsReview": false,
+      "sourceCount": 1
     }
   ]
 });
