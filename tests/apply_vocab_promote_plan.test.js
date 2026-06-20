@@ -114,6 +114,11 @@ assert.deepStrictEqual(apply.getReviewQueueForPlan(path.join(tmpDir, "teacher_vo
   reviewPrefix: "teacher_vocab_review_batch_highvalue",
   indexFile: "teacher_vocab_review_index.json"
 });
+assert.deepStrictEqual(apply.getReviewQueueForPlan(path.join(tmpDir, "teacher_live_vocab_promote_plan_0000.json")), {
+  planPrefix: "teacher_live_vocab_promote_plan",
+  reviewPrefix: "teacher_live_vocab_review_batch",
+  indexFile: "teacher_live_vocab_review_index.json"
+});
 assert.strictEqual(
   apply.inferApplyReceiptPath(path.join(tmpDir, "teacher_vocab_promote_plan_highvalue_0000.json")),
   path.join(tmpDir, "teacher_vocab_promote_plan_highvalue_0000_applied.json")

@@ -1,4 +1,7 @@
 const assert = require("assert");
+const fs = require("fs");
+const os = require("os");
+const path = require("path");
 const review = require("../scripts/build-vocab-review-batch.js");
 
 const rows = review.buildReviewRows({
@@ -138,5 +141,53 @@ assert.deepStrictEqual(
 );
 assert.ok(supplementRow.flags.includes("supplement-checklist"));
 assert.ok(supplementRow.flags.includes("category:hong-kong-life"));
+
+const teacherLiveTmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "teacher-live-review-batch-"));
+const teacherLiveInput = path.join(teacherLiveTmpDir, "teacher_live_vocab_snapshot.json");
+fs.writeFileSync(teacherLiveInput, JSON.stringify({
+  meta: { source: "teacher-live", privateOnly: true },
+  entries: [
+    {
+      id: "customer-centric-adjective-1",
+      word: "customer-centric",
+      pos: "adjective",
+      type: "phrase",
+      meaning: "以顧客為中心的",
+      updatedAt: "2026-06-21T00:00:00.000Z"
+    },
+    {
+      id: "old-disabled",
+      word: "old",
+      pos: "adjective",
+      meaning: "舊的",
+      disabled: true
+    }
+  ]
+}, null, 2));
+
+const teacherLiveParsed = review.parseArgs(["--source", "teacher-live", "--teacher-live-input", teacherLiveInput, "--out", path.join(teacherLiveTmpDir, "live.json")]);
+assert.strictEqual(teacherLiveParsed.source, "teacher-live");
+assert.strictEqual(teacherLiveParsed.teacherLiveInput, teacherLiveInput);
+
+const teacherLiveTasks = review.getReviewTasks({
+  source: "teacher-live",
+  teacherLiveInput
+});
+assert.strictEqual(teacherLiveTasks.length, 1);
+assert.strictEqual(teacherLiveTasks[0].word, "customer-centric");
+assert.strictEqual(teacherLiveTasks[0].checklist.source, "teacher live cloud snapshot");
+
+const teacherLiveRow = review.makeReviewRow(teacherLiveTasks[0], {
+  teacher: () => [],
+  curated: () => [],
+  ccSupplement: () => [],
+  ecdict: () => [],
+  ccCedictReverse: () => []
+});
+assert.deepStrictEqual(
+  teacherLiveRow.drafts.generatedSeed.map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+  ["adjective:以顧客為中心的:teacher-live-snapshot"]
+);
+assert.ok(teacherLiveRow.flags.includes("teacher-live-snapshot"));
 
 console.log("build_vocab_review_batch tests passed");

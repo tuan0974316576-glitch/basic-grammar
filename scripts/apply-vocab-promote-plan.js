@@ -121,6 +121,11 @@ function getReviewQueueForPlan(input = "") {
       planPrefix: "supplement_vocab_promote_plan",
       reviewPrefix: "supplement_vocab_review_batch",
       indexFile: "supplement_vocab_review_index.json"
+    },
+    {
+      planPrefix: "teacher_live_vocab_promote_plan",
+      reviewPrefix: "teacher_live_vocab_review_batch",
+      indexFile: "teacher_live_vocab_review_index.json"
     }
   ];
   return queues.find((queue) => baseName.startsWith(`${queue.planPrefix}_`)) || null;

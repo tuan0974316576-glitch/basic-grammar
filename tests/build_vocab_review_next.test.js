@@ -70,6 +70,15 @@ assert.strictEqual(supplementParsed.indexOut, path.join(tmpDir, "supplement_voca
 assert.strictEqual(supplementParsed.limit, 10);
 assert.strictEqual(supplementParsed.xlsx, false);
 
+const teacherLiveInput = path.join(tmpDir, "teacher_live_vocab_snapshot.json");
+const teacherLiveParsed = next.parseArgs(["--preset", "teacher-live", "--dir", tmpDir, "--limit", "10", "--teacher-live-input", teacherLiveInput, "--no-xlsx"]);
+assert.strictEqual(teacherLiveParsed.preset, "teacher-live");
+assert.strictEqual(teacherLiveParsed.prefix, "teacher_live_vocab_review_batch");
+assert.strictEqual(teacherLiveParsed.source, "teacher-live");
+assert.strictEqual(teacherLiveParsed.skipJunk, false);
+assert.strictEqual(teacherLiveParsed.indexOut, path.join(tmpDir, "teacher_live_vocab_review_index.json"));
+assert.strictEqual(teacherLiveParsed.teacherLiveInput, teacherLiveInput);
+
 assert.strictEqual(next.getBatchCount({
   dir: tmpDir,
   prefix: "teacher_vocab_review_batch_highvalue",
@@ -83,12 +92,15 @@ const childArgs = next.childArgsForBatch({
   indexOut: path.join(tmpDir, "index.json"),
   prefix: "teacher_vocab_review_batch_highvalue",
   source: "teacher-audit",
+  teacherLiveInput,
   skipJunk: true,
   xlsx: false,
   limit: 100
 }, 200);
 assert.ok(childArgs.includes("--in-process"));
 assert.ok(childArgs.includes("--no-xlsx"));
+assert.ok(childArgs.includes("--teacher-live-input"));
+assert.ok(childArgs.includes(teacherLiveInput));
 
 const fakeSubprocessSummary = next.makeSubprocessSummary({
   batches: [{ offset: 3900, limit: 100 }],

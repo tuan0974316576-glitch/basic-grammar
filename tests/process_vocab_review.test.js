@@ -19,6 +19,10 @@ assert.strictEqual(
   path.join(tmpDir, "supplement_vocab_promote_plan_0000.json")
 );
 assert.strictEqual(
+  processor.inferPromotePlanPath(path.join(tmpDir, "teacher_live_vocab_review_batch_0000.json")),
+  path.join(tmpDir, "teacher_live_vocab_promote_plan_0000.json")
+);
+assert.strictEqual(
   processor.inferPreflightPath(path.join(tmpDir, "teacher_vocab_review_batch_highvalue_0200.xlsx")),
   path.join(tmpDir, "teacher_vocab_review_batch_highvalue_0200_preflight.json")
 );
@@ -37,6 +41,10 @@ assert.strictEqual(parsed.refresh, false);
 assert.deepStrictEqual(processor.getReviewQueueForInput(path.join(tmpDir, "teacher_vocab_review_batch_highvalue_0000.xlsx")), {
   prefix: "teacher_vocab_review_batch_highvalue",
   indexFile: "teacher_vocab_review_index.json"
+});
+assert.deepStrictEqual(processor.getReviewQueueForInput(path.join(tmpDir, "teacher_live_vocab_review_batch_0000.xlsx")), {
+  prefix: "teacher_live_vocab_review_batch",
+  indexFile: "teacher_live_vocab_review_index.json"
 });
 
 const dirtyReview = path.join(tmpDir, "teacher_vocab_review_batch_highvalue_0000.csv");

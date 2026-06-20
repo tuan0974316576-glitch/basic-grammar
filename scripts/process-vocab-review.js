@@ -23,6 +23,10 @@ const REVIEW_QUEUES = [
   {
     prefix: "supplement_vocab_review_batch",
     indexFile: "supplement_vocab_review_index.json"
+  },
+  {
+    prefix: "teacher_live_vocab_review_batch",
+    indexFile: "teacher_live_vocab_review_index.json"
   }
 ];
 

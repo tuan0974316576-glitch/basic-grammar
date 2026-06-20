@@ -28,6 +28,13 @@ const DEFAULT_QUEUES = [
     indexFile: "supplement_vocab_review_index.json",
     command: "npm run vocab:review-next:supplement -- --count 1",
     priority: 3
+  },
+  {
+    id: "teacher-live",
+    label: "Teacher live cloud review",
+    indexFile: "teacher_live_vocab_review_index.json",
+    command: "npm run vocab:export-teacher-live && npm run vocab:review-next:teacher-live -- --count 1",
+    priority: 4
   }
 ];
 

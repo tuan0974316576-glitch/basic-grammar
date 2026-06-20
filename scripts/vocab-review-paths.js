@@ -24,6 +24,9 @@ function inferPromotePlanName(baseName = "") {
   if (/^supplement_vocab_review_batch_/i.test(baseName)) {
     return baseName.replace(/^supplement_vocab_review_batch_/i, "supplement_vocab_promote_plan_");
   }
+  if (/^teacher_live_vocab_review_batch_/i.test(baseName)) {
+    return baseName.replace(/^teacher_live_vocab_review_batch_/i, "teacher_live_vocab_promote_plan_");
+  }
   if (/vocab_review_batch/i.test(baseName)) {
     return baseName.replace(/vocab_review_batch/i, "vocab_promote_plan");
   }

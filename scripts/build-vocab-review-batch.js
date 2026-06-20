@@ -18,12 +18,14 @@ const DEFAULT_OUTPUT = path.join(PRIVATE_EXPORTS_DIR, "vocab_review_batch_0000.j
 const DEFAULT_LIMIT = 100;
 const SOURCE_OXFORD = "oxford";
 const SOURCE_SUPPLEMENT = "supplement";
+const SOURCE_TEACHER_LIVE = "teacher-live";
 const SOURCE_TEACHER_AUDIT = "teacher-audit";
 const SOURCE_ALL = "all";
-const SUPPORTED_SOURCES = new Set([SOURCE_OXFORD, SOURCE_SUPPLEMENT, SOURCE_TEACHER_AUDIT, SOURCE_ALL]);
+const SUPPORTED_SOURCES = new Set([SOURCE_OXFORD, SOURCE_SUPPLEMENT, SOURCE_TEACHER_LIVE, SOURCE_TEACHER_AUDIT, SOURCE_ALL]);
 const OFFLINE_DICTIONARY_DIR = path.join(ROOT_DIR, "assets", "offline-dictionary");
 const CEDICT_REVERSE_DIR = path.join(ROOT_DIR, "assets", "cc-cedict-reverse");
 const MEANING_SEED_PATH = path.join(PRIVATE_EXPORTS_DIR, "vocab_meaning_seed.js");
+const TEACHER_LIVE_SNAPSHOT_PATH = path.join(PRIVATE_EXPORTS_DIR, "teacher_live_vocab_snapshot.json");
 
 const shardCache = new Map();
 
@@ -33,8 +35,9 @@ function usage() {
     "  node scripts/build-vocab-review-batch.js [options]",
     "",
     "Options:",
-    "  --source <oxford|supplement|teacher-audit|all>",
+    "  --source <oxford|supplement|teacher-live|teacher-audit|all>",
     "                                      Review source. Default: oxford.",
+    "  --teacher-live-input <json>          Private teacher live snapshot. Default: private_exports/teacher_live_vocab_snapshot.json.",
     "  --offset <n>                         Starting row. Default: 0.",
     "  --limit <n>                          Batch size. Default: 100.",
     "  --level <A1-C1>                      Oxford CEFR level filter.",
@@ -56,6 +59,7 @@ function parseArgs(argv) {
     out: DEFAULT_OUTPUT,
     skipJunk: false,
     source: SOURCE_OXFORD,
+    teacherLiveInput: TEACHER_LIVE_SNAPSHOT_PATH,
     word: ""
   };
 
@@ -87,6 +91,11 @@ function parseArgs(argv) {
     }
     if (arg === "--word") {
       options.word = normalizeWord(argv[index + 1] || "");
+      index += 1;
+      continue;
+    }
+    if (arg === "--teacher-live-input") {
+      options.teacherLiveInput = path.resolve(argv[index + 1] || TEACHER_LIVE_SNAPSHOT_PATH);
       index += 1;
       continue;
     }
@@ -276,6 +285,11 @@ function loadMeaningSeed(filePath = MEANING_SEED_PATH) {
   return loadJsModule(filePath, { entries: {} }) || { entries: {} };
 }
 
+function loadTeacherLiveSnapshot(filePath = TEACHER_LIVE_SNAPSHOT_PATH) {
+  if (!fs.existsSync(filePath)) return { entries: [] };
+  return JSON.parse(fs.readFileSync(filePath, "utf8"));
+}
+
 function lookupMeaningSeed(word, seed = loadMeaningSeed()) {
   const key = normalizeWord(word);
   const payload = seed.entries?.[key];
@@ -404,6 +418,46 @@ function makeTeacherAuditTasks() {
     .filter((task) => task.word);
 }
 
+function makeTeacherLiveReviewTasks(options = {}) {
+  const snapshot = loadTeacherLiveSnapshot(options.teacherLiveInput || TEACHER_LIVE_SNAPSHOT_PATH);
+  const entries = Array.isArray(snapshot.entries) ? snapshot.entries : [];
+  return entries
+    .map((entry, index) => {
+      const normalized = normalizeSourceEntry({
+        ...entry,
+        source: "teacher-live-snapshot"
+      }, "teacher-live-snapshot");
+      if (!normalized || entry.disabled) return null;
+      return {
+        id: `teacher-live:${entry.id || normalized.id || index}`,
+        source: SOURCE_TEACHER_LIVE,
+        word: normalized.word,
+        display: normalized.display,
+        level: String(entry.level || "").trim().toUpperCase(),
+        oxfordPos: normalized.pos ? [normalized.pos] : [],
+        posRaw: normalized.posLabel ? [normalized.posLabel] : [],
+        type: inferType(normalized.word, normalized.type),
+        teacherLive: {
+          id: entry.id || entry.sourceEntryId || "",
+          updatedAt: entry.updatedAt || "",
+          updatedBy: entry.updatedBy || "",
+          notes: normalizeMeaning(entry.notes || "")
+        },
+        supplementDrafts: [{
+          ...normalized,
+          id: `teacher-live-draft:${entry.id || normalized.id || index}`,
+          source: "teacher-live-snapshot",
+          sourceEntryId: entry.id || entry.sourceEntryId || ""
+        }],
+        checklist: {
+          source: "teacher live cloud snapshot",
+          note: "Same-day teacher cloud entry. Review before folding into local bundled teacher / curated bank."
+        }
+      };
+    })
+    .filter(Boolean);
+}
+
 function isLikelyTeacherAuditJunk(task = {}) {
   const word = normalizeWord(task.word);
   const display = String(task.display || task.word || "").trim();
@@ -426,6 +480,9 @@ function getReviewTasks(options = {}) {
   if (options.source === SOURCE_SUPPLEMENT || options.source === SOURCE_ALL) {
     taskGroups.push(...makeSupplementReviewTasks());
   }
+  if (options.source === SOURCE_TEACHER_LIVE || options.source === SOURCE_ALL) {
+    taskGroups.push(...makeTeacherLiveReviewTasks(options));
+  }
   if (options.source === SOURCE_TEACHER_AUDIT || options.source === SOURCE_ALL) {
     taskGroups.push(...makeTeacherAuditTasks());
   }
@@ -436,11 +493,16 @@ function getReviewTasks(options = {}) {
     .filter((task) => !options.level || task.level === options.level)
     .filter((task) => !options.word || normalizeWord(task.word) === options.word)
     .filter((task) => {
-      const key = task.source === SOURCE_TEACHER_AUDIT
-        ? `${task.source}:${task.audit?.id || task.id}:${task.word}:${task.audit?.originalMeaning || ""}`
-        : task.source === SOURCE_SUPPLEMENT
-          ? `${task.source}:${task.id}:${task.word}:${task.checklist?.category || ""}`
-        : `${task.source}:${task.word}:${(task.oxfordPos || []).join(",")}`;
+      let key = `${task.source}:${task.word}:${(task.oxfordPos || []).join(",")}`;
+      if (task.source === SOURCE_TEACHER_AUDIT) {
+        key = `${task.source}:${task.audit?.id || task.id}:${task.word}:${task.audit?.originalMeaning || ""}`;
+      }
+      if (task.source === SOURCE_SUPPLEMENT) {
+        key = `${task.source}:${task.id}:${task.word}:${task.checklist?.category || ""}`;
+      }
+      if (task.source === SOURCE_TEACHER_LIVE) {
+        key = `${task.source}:${task.teacherLive?.id || task.id}:${task.word}`;
+      }
       if (seen.has(key)) return false;
       seen.add(key);
       return true;
@@ -472,6 +534,7 @@ function getDraftFlags(task, existing, drafts) {
 
   if (task.source === SOURCE_TEACHER_AUDIT) flags.push("teacher-audit");
   if (task.source === SOURCE_SUPPLEMENT) flags.push("supplement-checklist");
+  if (task.source === SOURCE_TEACHER_LIVE) flags.push("teacher-live-snapshot");
   if (task.checklist?.category) flags.push(`category:${task.checklist.category}`);
   (task.audit?.reasons || []).forEach((reason) => flags.push(`audit:${reason}`));
   if (task.type === "phrase") flags.push("phrase");
@@ -671,6 +734,9 @@ module.exports = {
   normalizeMeaningGroupKey,
   parseArgs,
   SOURCE_SUPPLEMENT,
+  SOURCE_TEACHER_LIVE,
+  loadTeacherLiveSnapshot,
   stringifyEntries,
+  makeTeacherLiveReviewTasks,
   writeOutputs
 };

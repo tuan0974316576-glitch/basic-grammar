@@ -65,7 +65,7 @@ writeIndex("supplement_vocab_review_index.json", {
 ]);
 
 const result = dashboard.buildDashboard({ dir: tmpDir });
-assert.strictEqual(result.queues.length, 3);
+assert.strictEqual(result.queues.length, 4);
 assert.strictEqual(result.totals.totalCandidateCount, 550);
 assert.strictEqual(result.totals.coveredCount, 350);
 assert.strictEqual(result.totals.liveSyncedBatchCount, 1);
@@ -76,6 +76,8 @@ assert.strictEqual(result.queues.find((queue) => queue.id === "oxford").appliedB
 assert.strictEqual(result.queues.find((queue) => queue.id === "oxford").liveSyncedBatchCount, 1);
 assert.strictEqual(result.queues.find((queue) => queue.id === "oxford").liveSyncedEntryCount, 8);
 assert.strictEqual(result.queues.find((queue) => queue.id === "supplement").status, "needs-xlsx");
+assert.strictEqual(result.queues.find((queue) => queue.id === "teacher-live").status, "missing-index");
+assert.ok(result.queues.find((queue) => queue.id === "teacher-live").nextAction.includes("vocab:export-teacher-live"));
 assert.strictEqual(result.queues.find((queue) => queue.id === "teacher").reviewedEntryCount, 5);
 assert.strictEqual(result.queues.find((queue) => queue.id === "teacher").preflightFailedBatchCount, 1);
 assert.ok(result.queues.find((queue) => queue.id === "teacher").nextAction.includes("*_preflight.csv"));
@@ -91,7 +93,7 @@ const written = dashboard.writeDashboard({
   dir: tmpDir,
   out: path.join(tmpDir, "dashboard.json")
 });
-assert.strictEqual(written.queues.length, 3);
+assert.strictEqual(written.queues.length, 4);
 assert.ok(fs.existsSync(path.join(tmpDir, "dashboard.json")));
 assert.ok(fs.existsSync(path.join(tmpDir, "dashboard.csv")));
 

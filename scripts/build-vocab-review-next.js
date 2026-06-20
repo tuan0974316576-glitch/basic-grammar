@@ -29,17 +29,24 @@ const PRESETS = {
     indexFile: "supplement_vocab_review_index.json",
     source: "supplement",
     skipJunk: false
+  },
+  "teacher-live": {
+    prefix: "teacher_live_vocab_review_batch",
+    indexFile: "teacher_live_vocab_review_index.json",
+    source: "teacher-live",
+    skipJunk: false
   }
 };
 
 function usage() {
   console.log([
     "Usage:",
-    "  node scripts/build-vocab-review-next.js [--preset teacher|oxford|supplement] [--limit 100] [--offset n] [--count n] [--all] [--no-xlsx]",
+    "  node scripts/build-vocab-review-next.js [--preset teacher|oxford|teacher-live|supplement] [--limit 100] [--offset n] [--count n] [--all] [--no-xlsx]",
     "",
     "Builds the next private vocab review batch from the matching private index.",
     "Default preset is teacher: source teacher-audit with --skip-junk.",
     "Oxford preset uses source oxford, prefix oxford_vocab_review_batch, and a separate oxford index.",
+    "Teacher-live preset uses the private Firestore teacherVocabLive snapshot.",
     "Supplement preset uses country / city / Hong Kong life / school checklist candidates."
   ].join("\n"));
 }
@@ -68,6 +75,7 @@ function parseArgs(argv) {
     prefix: DEFAULT_PREFIX,
     source: "teacher-audit",
     skipJunk: true,
+    teacherLiveInput: "",
     xlsx: true
   };
   const touched = new Set();
@@ -127,6 +135,11 @@ function parseArgs(argv) {
     if (arg === "--source") {
       options.source = String(argv[index + 1] || options.source).trim();
       touched.add("source");
+      index += 1;
+      continue;
+    }
+    if (arg === "--teacher-live-input") {
+      options.teacherLiveInput = path.resolve(argv[index + 1] || "");
       index += 1;
       continue;
     }
@@ -202,6 +215,7 @@ function buildNextBatch(options = {}) {
   const allTasks = ReviewBatch.getReviewTasks({
     source: resolved.source,
     skipJunk: resolved.skipJunk,
+    teacherLiveInput: resolved.teacherLiveInput,
     offset,
     limit: resolved.limit
   });
@@ -307,6 +321,7 @@ function childArgsForBatch(options = {}, offset) {
     "--source",
     options.source || "teacher-audit"
   ];
+  if (options.teacherLiveInput) args.push("--teacher-live-input", options.teacherLiveInput);
   if (!options.skipJunk) args.push("--no-skip-junk");
   if (!options.xlsx) args.push("--no-xlsx");
   args.push("--in-process");
