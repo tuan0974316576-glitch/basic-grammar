@@ -105,6 +105,29 @@ function buildRows(entries = []) {
   ]);
 }
 
+function guideRows(source, entries) {
+  return [
+    ["Source", source.meta?.source || ""],
+    ["Offset", source.meta?.offset ?? ""],
+    ["Selected", source.meta?.selectedCount ?? entries.length],
+    ["Total candidates", source.meta?.totalCandidateCount ?? ""],
+    ["Next offset", source.meta?.nextOffset ?? ""],
+    ["Private only", "Yes"],
+    ["Reminder", "ECDICT / CC-CEDICT / generated drafts 只係參考材料；一定要改乾淨先 promote."],
+    ["", ""],
+    ["How to fill", "只需要填 Review Batch 入面黃色欄位。"],
+    ["reviewed POS", "填 n. / v. / adj. / adv. / prep. / conj. / pron. / det. / modal v. / ph. / pt."],
+    ["reviewed meaning", "填學生應該見到的乾淨中文意思，短、自然、準確。"],
+    ["promote to", "teacher = Austin Sir 上堂字庫；curated = 通用乾淨補充字典；skip = 不加入。"],
+    ["replace type", "普通新增可以留空。清走舊 teacher-bank 錯意思 / 垃圾資料時先填 yes。"],
+    ["notes", "可留空。可寫 typo、alias、或者點解 skip。"],
+    ["", ""],
+    ["Examples", "如果 word 係 guility，應該修正 spelling / notes，再決定 promote 或 skip；錯串字不要直接畀學生見。"],
+    ["Examples", "如果 ha = 只好 呢類明顯 spreadsheet junk，promote to 填 skip。"],
+    ["Examples", "如果一個字有兩個真正常用意思，而兩個都想畀學生揀，先保留兩行。"]
+  ];
+}
+
 async function buildWorkbook(source, options = {}) {
   const entries = Array.isArray(source.entries) ? source.entries : [];
   const workbook = Workbook.create();
@@ -213,17 +236,10 @@ async function buildWorkbook(source, options = {}) {
     font: { bold: true, color: "#FFFFFF", size: 14 },
     horizontalAlignment: "center"
   };
-  guide.getRange("A3:B9").values = [
-    ["Source", source.meta?.source || ""],
-    ["Offset", source.meta?.offset ?? ""],
-    ["Selected", source.meta?.selectedCount ?? entries.length],
-    ["Total candidates", source.meta?.totalCandidateCount ?? ""],
-    ["Next offset", source.meta?.nextOffset ?? ""],
-    ["Private only", "Yes"],
-    ["Reminder", "ECDICT / CC-CEDICT / generated drafts are materials only. Edit before promotion."]
-  ];
-  guide.getRange("A3:A9").format = { fill: "#E6F3EA", font: { bold: true } };
-  guide.getRange("A3:B9").format = {
+  const guideTableRows = guideRows(source, entries);
+  guide.getRangeByIndexes(2, 0, guideTableRows.length, 2).values = guideTableRows;
+  guide.getRangeByIndexes(2, 0, guideTableRows.length, 1).format = { fill: "#E6F3EA", font: { bold: true } };
+  guide.getRangeByIndexes(2, 0, guideTableRows.length, 2).format = {
     borders: { preset: "all", style: "thin", color: "#D1D5DB" },
     wrapText: true
   };
@@ -286,6 +302,7 @@ export {
   buildRows,
   buildWorkbook,
   entriesText,
+  guideRows,
   parseArgs,
   truncate
 };
