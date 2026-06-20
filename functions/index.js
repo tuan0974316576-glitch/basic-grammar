@@ -202,6 +202,8 @@ const CURATED_VOCAB_MEANINGS = new Map([
     { meaning: "分鐘", pos: "noun" },
     { meaning: "極小的", pos: "adjective", level: "C1" }
   ]],
+  ["cub", [{ meaning: "幼獸", pos: "noun" }]],
+  ["cubs", [{ meaning: "幼獸", pos: "noun" }]],
   ["delicacy", [{ meaning: "佳餚", pos: "noun" }]],
   ["hawker", [{ meaning: "小販", pos: "noun" }]],
   ["evaluate", [{ meaning: "評估", pos: "verb" }]],
@@ -391,9 +393,37 @@ function normalizeCloudPos(pos, word) {
 
 function normalizeMeaningKey(value) {
   return normalizeCloudMeaning(value)
+    .replace(/[（）()「」『』]/g, "")
     .replace(/[的地]$/g, "")
     .replace(/[\s/／]+/g, "")
     .toLowerCase();
+}
+
+function normalizeMeaningGroupKey(value) {
+  const key = normalizeMeaningKey(value)
+    .replace(/^(一個|一隻|一名|一位|一種)/, "")
+    .replace(/(的人|的東西|的事物)$/, "");
+  const groups = [
+    {
+      key: "young-animal",
+      variants: new Set(["幼", "幼仔", "幼獸", "幼崽", "幼童", "幼兒"])
+    },
+    {
+      key: "delicacy-food",
+      variants: new Set(["美味", "美食", "佳餚", "珍饈", "可口食物"])
+    }
+  ];
+  for (const group of groups) {
+    if (group.variants.has(key)) return group.key;
+  }
+  return key;
+}
+
+function canonicalizeMeaningForGroup(meaning, pos) {
+  const groupKey = normalizeMeaningGroupKey(meaning);
+  if (pos === "noun" && groupKey === "young-animal") return "幼獸";
+  if (pos === "noun" && groupKey === "delicacy-food") return "佳餚";
+  return meaning;
 }
 
 function normalizeMeaningEntries(word, entries = [], source = "azure-dictionary") {
@@ -403,20 +433,21 @@ function normalizeMeaningEntries(word, entries = [], source = "azure-dictionary"
     .map((entry, index) => {
       const pos = normalizeCloudPos(entry.pos, normalizedWord);
       const type = entry.type || inferVocabType(normalizedWord);
+      const meaning = normalizeCloudMeaning(entry.meaning);
       return {
-      id: `${source}-${makeVocabMeaningId(`${normalizedWord}:${entry.meaning}:${index}`)}`,
-      word: normalizedWord,
-      meaning: normalizeCloudMeaning(entry.meaning),
-      pos,
-      type: pos === "modal" ? "word" : type,
-      source,
-      sourceEntryId: entry.sourceEntryId || "",
-      level: String(entry.level || "").trim().toUpperCase()
-    };
+        id: `${source}-${makeVocabMeaningId(`${normalizedWord}:${meaning}:${index}`)}`,
+        word: normalizedWord,
+        meaning: canonicalizeMeaningForGroup(meaning, pos),
+        pos,
+        type: pos === "modal" ? "word" : type,
+        source,
+        sourceEntryId: entry.sourceEntryId || "",
+        level: String(entry.level || "").trim().toUpperCase()
+      };
     })
     .filter((entry) => entry.meaning)
     .filter((entry) => {
-      const key = `${entry.pos || entry.type}:${normalizeMeaningKey(entry.meaning)}`;
+      const key = `${entry.pos || entry.type}:${normalizeMeaningGroupKey(entry.meaning)}`;
       if (seen.has(key)) return false;
       seen.add(key);
       return true;

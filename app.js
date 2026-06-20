@@ -596,6 +596,39 @@ function normalizeVocabMeaning(value) {
   return VOCAB_DATA.normalizeMeaning(value);
 }
 
+function normalizeVocabMeaningKey(value) {
+  return normalizeVocabMeaning(value)
+    .replace(/[（）()「」『』]/g, "")
+    .replace(/[的地]$/g, "")
+    .replace(/[\s/／]+/g, "")
+    .toLowerCase();
+}
+
+function normalizeVocabMeaningGroupKey(value) {
+  const key = normalizeVocabMeaningKey(value)
+    .replace(/^(一個|一隻|一名|一位|一種)/, "")
+    .replace(/(的人|的東西|的事物)$/, "");
+  const groups = [
+    {
+      key: "young-animal",
+      variants: new Set(["幼", "幼仔", "幼獸", "幼崽", "幼童", "幼兒"])
+    },
+    {
+      key: "delicacy-food",
+      variants: new Set(["美味", "美食", "佳餚", "珍饈", "可口食物"])
+    }
+  ];
+  const matched = groups.find((group) => group.variants.has(key));
+  return matched ? matched.key : key;
+}
+
+function canonicalizeVocabMeaningForGroup(meaning, pos) {
+  const groupKey = normalizeVocabMeaningGroupKey(meaning);
+  if (pos === "noun" && groupKey === "young-animal") return "幼獸";
+  if (pos === "noun" && groupKey === "delicacy-food") return "佳餚";
+  return meaning;
+}
+
 function createVocabId(word) {
   return VOCAB_DATA.createId(word);
 }
@@ -2092,16 +2125,20 @@ function normalizeCloudVocabEntries(word, data = {}) {
   const normalizedWord = normalizeVocabWord(data.word || word);
   const entries = Array.isArray(data.entries) ? data.entries : [];
   return entries
-    .map((entry, index) => ({
-      id: entry.id || `cloud-${normalizedWord}-${index}`,
-      word: normalizedWord,
-      meaning: normalizeVocabMeaning(entry.meaning),
-      pos: normalizeVocabPos(entry.pos),
-      type: entry.type || (normalizedWord.includes(" ") ? "phrase" : "word"),
-      source: entry.source || data.source || "azure-dictionary",
-      sourceEntryId: entry.sourceEntryId || data.meaningId || "",
-      level: String(entry.level || "").trim().toUpperCase()
-    }))
+    .map((entry, index) => {
+      const pos = normalizeVocabPos(entry.pos);
+      const meaning = normalizeVocabMeaning(entry.meaning);
+      return {
+        id: entry.id || `cloud-${normalizedWord}-${index}`,
+        word: normalizedWord,
+        meaning: canonicalizeVocabMeaningForGroup(meaning, pos),
+        pos,
+        type: entry.type || (normalizedWord.includes(" ") ? "phrase" : "word"),
+        source: entry.source || data.source || "azure-dictionary",
+        sourceEntryId: entry.sourceEntryId || data.meaningId || "",
+        level: String(entry.level || "").trim().toUpperCase()
+      };
+    })
     .filter((entry) => entry.word && entry.meaning);
 }
 
@@ -2112,7 +2149,7 @@ function dedupeVocabLookupMatches(matches = []) {
       normalizeVocabWord(entry.word),
       getVocabEntryPos(entry),
       String(entry.type || "").trim().toLowerCase(),
-      normalizeVocabMeaning(entry.meaning)
+      normalizeVocabMeaningGroupKey(entry.meaning)
     ].join("|");
     if (seen.has(key)) return false;
     seen.add(key);

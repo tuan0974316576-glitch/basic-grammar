@@ -131,6 +131,8 @@
     ["letter", "noun", "字母"],
     ["minute", "noun", "分鐘"],
     ["minute", "adjective", "極小的", { level: "C1" }],
+    ["cub", "noun", "幼獸"],
+    ["cubs", "noun", "幼獸"],
     ["delicacy", "noun", "佳餚"],
     ["egg tart", "noun", "蛋撻", { type: "phrase" }],
     ["lung cancer", "noun", "肺癌", { type: "phrase" }],

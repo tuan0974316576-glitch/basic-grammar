@@ -169,6 +169,16 @@ mockMeaningCacheData = {
     "adjective:迅速的"
   ]);
 
+  const normalizedCubMeanings = helpers.normalizeMeaningEntries("cub", [
+    { meaning: "幼", pos: "noun", type: "word", sourceEntryId: "old-cache-0" },
+    { meaning: "幼仔", pos: "noun", type: "word", sourceEntryId: "old-cache-1" },
+    { meaning: "幼獸", pos: "noun", type: "word", sourceEntryId: "old-cache-2" },
+    { meaning: "幼童", pos: "noun", type: "word", sourceEntryId: "old-cache-3" }
+  ], "azure-dictionary");
+  assert.deepStrictEqual(normalizedCubMeanings.map((entry) => `${entry.pos}:${entry.meaning}`), [
+    "noun:幼獸"
+  ]);
+
   mockMeaningCacheWord = "delicacy";
   mockMeaningCacheData = {
     word: "delicacy",

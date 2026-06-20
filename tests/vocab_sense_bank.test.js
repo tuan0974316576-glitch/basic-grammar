@@ -38,5 +38,13 @@ assert.deepStrictEqual(
   senseBank.lookup("delicacy").map((entry) => `${entry.pos}:${entry.meaning}`),
   ["noun:佳餚"]
 );
+assert.deepStrictEqual(
+  senseBank.lookup("cub").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:幼獸"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("cubs").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:幼獸"]
+);
 
 console.log("vocab_sense_bank tests passed");
