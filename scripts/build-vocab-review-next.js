@@ -15,7 +15,7 @@ const DEFAULT_LIMIT = 100;
 function usage() {
   console.log([
     "Usage:",
-    "  node scripts/build-vocab-review-next.js [--limit 100] [--offset n] [--count n] [--no-xlsx]",
+    "  node scripts/build-vocab-review-next.js [--limit 100] [--offset n] [--count n] [--all] [--no-xlsx]",
     "",
     "Builds the next teacher vocab review batch from the private index.",
     "Default source is teacher-audit with --skip-junk."
@@ -56,6 +56,10 @@ function parseArgs(argv) {
       index += 1;
       continue;
     }
+    if (arg === "--all") {
+      options.all = true;
+      continue;
+    }
     if (arg === "--limit") {
       options.limit = Math.max(1, Number(argv[index + 1]) || DEFAULT_LIMIT);
       index += 1;
@@ -82,6 +86,10 @@ function parseArgs(argv) {
     }
     if (arg === "--no-xlsx") {
       options.xlsx = false;
+      continue;
+    }
+    if (arg === "--in-process") {
+      options.inProcess = true;
       continue;
     }
   }
@@ -111,6 +119,19 @@ function getNextOffset(options = {}) {
     prefix: options.prefix
   });
   return Number(index.meta?.nextOffset) || 0;
+}
+
+function getBatchCount(options = {}) {
+  if (!options.all) return Math.max(1, Number(options.count) || 1);
+  const index = ReviewIndex.buildIndex({
+    dir: options.dir,
+    prefix: options.prefix
+  });
+  const startOffset = getNextOffset(options);
+  const total = Number(index.meta?.totalCandidateCount) || 0;
+  const limit = Number(options.limit) || DEFAULT_LIMIT;
+  if (!total || startOffset >= total) return 0;
+  return Math.ceil((total - startOffset) / limit);
 }
 
 function buildNextBatch(options = {}) {
@@ -185,8 +206,15 @@ function buildNextBatch(options = {}) {
 }
 
 function buildNextBatches(options = {}) {
-  const count = Math.max(1, Number(options.count) || 1);
+  const count = getBatchCount(options);
   const firstOffset = getNextOffset(options);
+  if (options.spawnPerBatch) {
+    return buildNextBatchesWithSubprocesses({
+      ...options,
+      count,
+      firstOffset
+    });
+  }
   const batches = [];
   for (let index = 0; index < count; index += 1) {
     const offset = firstOffset + (index * (Number(options.limit) || DEFAULT_LIMIT));
@@ -205,9 +233,82 @@ function buildNextBatches(options = {}) {
   };
 }
 
+function childArgsForBatch(options = {}, offset) {
+  const args = [
+    path.join(ROOT_DIR, "scripts", "build-vocab-review-next.js"),
+    "--offset",
+    String(offset),
+    "--limit",
+    String(Number(options.limit) || DEFAULT_LIMIT),
+    "--count",
+    "1",
+    "--dir",
+    options.dir || PRIVATE_EXPORTS_DIR,
+    "--index-out",
+    options.indexOut || DEFAULT_INDEX,
+    "--prefix",
+    options.prefix || DEFAULT_PREFIX,
+    "--source",
+    options.source || "teacher-audit"
+  ];
+  if (!options.skipJunk) args.push("--no-skip-junk");
+  if (!options.xlsx) args.push("--no-xlsx");
+  args.push("--in-process");
+  return args;
+}
+
+function buildNextBatchesWithSubprocesses(options = {}) {
+  const count = Math.max(0, Number(options.count) || 0);
+  const firstOffset = Number(options.firstOffset) || getNextOffset(options);
+  const limit = Number(options.limit) || DEFAULT_LIMIT;
+  const batches = [];
+  for (let index = 0; index < count; index += 1) {
+    const offset = firstOffset + (index * limit);
+    const result = spawnSync(process.execPath, childArgsForBatch(options, offset), {
+      cwd: ROOT_DIR,
+      encoding: "utf8",
+      maxBuffer: 1024 * 1024 * 20
+    });
+    if (result.stdout) process.stdout.write(result.stdout);
+    if (result.stderr) process.stderr.write(result.stderr);
+    if (result.status !== 0) {
+      throw new Error(`Failed to build review batch at offset ${offset}`);
+    }
+    batches.push({
+      id: batchId(offset),
+      offset,
+      limit
+    });
+  }
+  const index = ReviewIndex.writeIndex({
+    dir: options.dir,
+    out: options.indexOut,
+    prefix: options.prefix
+  });
+  return makeSubprocessSummary({
+    batches,
+    firstOffset,
+    indexNextOffset: index.meta.nextOffset
+  });
+}
+
+function makeSubprocessSummary({ batches = [], firstOffset = 0, indexNextOffset = 0 } = {}) {
+  const safeNextOffset = Number(indexNextOffset) || firstOffset;
+  return {
+    count: batches.length,
+    firstOffset,
+    lastNextOffset: safeNextOffset,
+    indexNextOffset: safeNextOffset,
+    batches
+  };
+}
+
 function main() {
   const options = parseArgs(process.argv.slice(2));
-  const summary = buildNextBatches(options);
+  const summary = buildNextBatches({
+    ...options,
+    spawnPerBatch: !options.inProcess && (options.all || Number(options.count) > 1)
+  });
   console.log(JSON.stringify(summary, null, 2));
 }
 
@@ -224,7 +325,11 @@ module.exports = {
   batchId,
   buildNextBatch,
   buildNextBatches,
+  buildNextBatchesWithSubprocesses,
+  childArgsForBatch,
+  getBatchCount,
   getNextOffset,
+  makeSubprocessSummary,
   outputPaths,
   parseArgs
 };
