@@ -213,10 +213,11 @@ function buildCsv(entries = []) {
 }
 
 async function exportTeacherLiveVocab(options = {}) {
-  const rawEntries = options.entries
-    || loadInputEntries(options.input)
-    || [];
-  const docs = rawEntries.length || options.input
+  const hasExplicitEntries = Object.prototype.hasOwnProperty.call(options, "entries");
+  const rawEntries = hasExplicitEntries
+    ? options.entries
+    : loadInputEntries(options.input);
+  const docs = hasExplicitEntries || rawEntries.length || options.input
     ? []
     : await fetchTeacherLiveDocuments(options);
   const entries = dedupeEntries([

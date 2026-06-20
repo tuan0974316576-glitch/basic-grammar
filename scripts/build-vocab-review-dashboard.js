@@ -33,7 +33,7 @@ const DEFAULT_QUEUES = [
     id: "teacher-live",
     label: "Teacher live cloud review",
     indexFile: "teacher_live_vocab_review_index.json",
-    command: "npm run vocab:export-teacher-live && npm run vocab:review-next:teacher-live -- --count 1",
+    command: "npm run vocab:refresh-teacher-live-review",
     priority: 4
   }
 ];

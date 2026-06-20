@@ -77,7 +77,7 @@ assert.strictEqual(result.queues.find((queue) => queue.id === "oxford").liveSync
 assert.strictEqual(result.queues.find((queue) => queue.id === "oxford").liveSyncedEntryCount, 8);
 assert.strictEqual(result.queues.find((queue) => queue.id === "supplement").status, "needs-xlsx");
 assert.strictEqual(result.queues.find((queue) => queue.id === "teacher-live").status, "missing-index");
-assert.ok(result.queues.find((queue) => queue.id === "teacher-live").nextAction.includes("vocab:export-teacher-live"));
+assert.ok(result.queues.find((queue) => queue.id === "teacher-live").nextAction.includes("vocab:refresh-teacher-live-review"));
 assert.strictEqual(result.queues.find((queue) => queue.id === "teacher").reviewedEntryCount, 5);
 assert.strictEqual(result.queues.find((queue) => queue.id === "teacher").preflightFailedBatchCount, 1);
 assert.ok(result.queues.find((queue) => queue.id === "teacher").nextAction.includes("*_preflight.csv"));
