@@ -100,6 +100,7 @@ function buildBatchRecord(filePath, options = {}) {
   const reviewInputPath = fileExists(xlsxPath) ? xlsxPath : fileExists(csvPath) ? csvPath : filePath;
   const promotePlanPath = ReviewPaths.inferPromotePlanPath(reviewInputPath);
   const preflightPath = ReviewPaths.inferPreflightPath(reviewInputPath);
+  const applyReceiptPath = ReviewPaths.inferApplyReceiptPath(promotePlanPath);
   const preflightSummary = readPreflightSummary(preflightPath);
   const entryCount = Array.isArray(payload.entries) ? payload.entries.length : 0;
   const reviewedEntryCount = Array.isArray(payload.entries)
@@ -125,6 +126,7 @@ function buildBatchRecord(filePath, options = {}) {
     xlsx: path.relative(ROOT_DIR, xlsxPath),
     preflight: path.relative(ROOT_DIR, preflightPath),
     promotePlan: path.relative(ROOT_DIR, promotePlanPath),
+    applyReceipt: path.relative(ROOT_DIR, applyReceiptPath),
     jsonExists: true,
     csvExists: fileExists(csvPath),
     xlsxExists: fileExists(xlsxPath),
@@ -133,7 +135,7 @@ function buildBatchRecord(filePath, options = {}) {
     preflightErrorCount: preflightSummary ? Number(preflightSummary.errorCount) || 0 : 0,
     preflightWarningCount: preflightSummary ? Number(preflightSummary.warningCount) || 0 : 0,
     promotePlanExists: fileExists(promotePlanPath),
-    applyPlanExists: false
+    applyPlanExists: fileExists(applyReceiptPath)
   };
   return {
     ...record,
@@ -157,6 +159,7 @@ function buildIndex(options = {}) {
   const nextId = String(nextOffset).padStart(4, "0");
   const readyForReviewBatchCount = batches.filter((batch) => batch.xlsxExists).length;
   const promotePlanBatchCount = batches.filter((batch) => batch.promotePlanExists).length;
+  const appliedBatchCount = batches.filter((batch) => batch.applyPlanExists).length;
   const preflightFailedBatchCount = batches.filter((batch) => batch.status === "preflight-failed").length;
   const preflightPassedBatchCount = batches.filter((batch) => batch.status === "preflight-passed").length;
 
@@ -169,6 +172,7 @@ function buildIndex(options = {}) {
       coveredCount,
       readyForReviewBatchCount,
       promotePlanBatchCount,
+      appliedBatchCount,
       preflightFailedBatchCount,
       preflightPassedBatchCount,
       nextOffset,
@@ -197,7 +201,8 @@ function buildCsv(index = {}) {
     "preflight",
     "preflight_pass",
     "preflight_errors",
-    "promote_plan"
+    "promote_plan",
+    "apply_receipt"
   ];
   const lines = [headers.join(",")];
   (index.batches || []).forEach((batch) => {
@@ -216,7 +221,8 @@ function buildCsv(index = {}) {
       preflight: batch.preflight,
       preflight_pass: batch.preflightPass,
       preflight_errors: batch.preflightErrorCount,
-      promote_plan: batch.promotePlan
+      promote_plan: batch.promotePlan,
+      apply_receipt: batch.applyReceipt
     };
     lines.push(headers.map((header) => csvEscape(row[header])).join(","));
   });

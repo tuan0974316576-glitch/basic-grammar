@@ -107,6 +107,7 @@ function summarizeQueue(queue = {}, options = {}) {
   const entryCount = batches.reduce((sum, batch) => sum + (Number(batch.entryCount) || 0), 0);
   const readyForReviewBatchCount = Number(meta.readyForReviewBatchCount) || batches.filter((batch) => batch.xlsxExists).length;
   const promotePlanBatchCount = Number(meta.promotePlanBatchCount) || batches.filter((batch) => batch.promotePlanExists).length;
+  const appliedBatchCount = Number(meta.appliedBatchCount) || batches.filter((batch) => batch.applyPlanExists).length;
   const preflightFailedBatchCount = Number(meta.preflightFailedBatchCount) || batches.filter((batch) => batch.status === "preflight-failed").length;
   const preflightPassedBatchCount = Number(meta.preflightPassedBatchCount) || batches.filter((batch) => batch.status === "preflight-passed").length;
   const needsXlsxBatchCount = batches.filter((batch) => batch.status === "needs-xlsx").length;
@@ -120,7 +121,9 @@ function summarizeQueue(queue = {}, options = {}) {
       ? "has-preflight-errors"
       : needsXlsxBatchCount
         ? "needs-xlsx"
-        : coveredCount < totalCandidateCount
+        : appliedBatchCount > 0
+          ? "has-applied-batches"
+          : coveredCount < totalCandidateCount
           ? "needs-more-batches"
           : promotePlanBatchCount > 0
             ? "has-promote-plans"
@@ -131,7 +134,9 @@ function summarizeQueue(queue = {}, options = {}) {
     ? queue.command
     : status === "has-preflight-errors"
       ? "Fix rows listed in *_preflight.csv, then rerun vocab:process-review"
-      : status === "needs-xlsx"
+      : status === "has-applied-batches"
+        ? "Sync teacher entries live if needed, then continue with remaining review batches"
+        : status === "needs-xlsx"
       ? "Generate XLSX for batches marked needs-xlsx"
       : readyButUnplannedCount
         ? "Run vocab:process-review after filling yellow review columns"
@@ -158,6 +163,7 @@ function summarizeQueue(queue = {}, options = {}) {
     preflightFailedBatchCount,
     preflightPassedBatchCount,
     promotePlanBatchCount,
+    appliedBatchCount,
     reviewedEntryCount,
     reviewProgress,
     reviewProgressLabel: formatPercent(reviewProgress),
@@ -179,6 +185,7 @@ function buildDashboard(options = {}) {
     acc.preflightFailedBatchCount += Number(queue.preflightFailedBatchCount) || 0;
     acc.preflightPassedBatchCount += Number(queue.preflightPassedBatchCount) || 0;
     acc.promotePlanBatchCount += Number(queue.promotePlanBatchCount) || 0;
+    acc.appliedBatchCount += Number(queue.appliedBatchCount) || 0;
     acc.reviewedEntryCount += Number(queue.reviewedEntryCount) || 0;
     return acc;
   }, {
@@ -189,6 +196,7 @@ function buildDashboard(options = {}) {
     preflightFailedBatchCount: 0,
     preflightPassedBatchCount: 0,
     promotePlanBatchCount: 0,
+    appliedBatchCount: 0,
     reviewedEntryCount: 0
   });
   totals.coverage = pct(totals.coveredCount, totals.totalCandidateCount);
@@ -226,6 +234,7 @@ function buildCsv(dashboard = {}) {
     "preflight_failed_batches",
     "preflight_passed_batches",
     "promote_plan_batches",
+    "applied_batches",
     "reviewed_entries",
     "review_progress",
     "index",
@@ -247,6 +256,7 @@ function buildCsv(dashboard = {}) {
       preflight_failed_batches: queue.preflightFailedBatchCount,
       preflight_passed_batches: queue.preflightPassedBatchCount,
       promote_plan_batches: queue.promotePlanBatchCount,
+      applied_batches: queue.appliedBatchCount,
       reviewed_entries: queue.reviewedEntryCount,
       review_progress: queue.reviewProgressLabel,
       index: queue.index,

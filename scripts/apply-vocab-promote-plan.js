@@ -4,6 +4,9 @@
 const fs = require("fs");
 const path = require("path");
 const PromotePlan = require("./build-vocab-promote-plan.js");
+const ReviewDashboard = require("./build-vocab-review-dashboard.js");
+const ReviewIndex = require("./build-vocab-review-index.js");
+const ReviewPaths = require("./vocab-review-paths.js");
 const TeacherImporter = require("./import-teacher-vocab.js");
 const VocabSenseBank = require("../vocab_sense_bank.js");
 const VocabPosInference = require("../vocab_pos_inference.js");
@@ -32,6 +35,7 @@ function parseArgs(argv) {
     teacherUpdates: DEFAULT_TEACHER_UPDATES,
     curatedBank: DEFAULT_CURATED_BANK,
     teacherBank: DEFAULT_TEACHER_BANK,
+    refresh: true,
     write: false
   };
 
@@ -43,6 +47,10 @@ function parseArgs(argv) {
     }
     if (arg === "--write") {
       options.write = true;
+      continue;
+    }
+    if (arg === "--no-refresh") {
+      options.refresh = false;
       continue;
     }
     if (arg === "--teacher-updates") {
@@ -94,6 +102,76 @@ function loadPlan(filePath) {
     throw new Error(`Promote plan has no entries array: ${filePath}`);
   }
   return plan;
+}
+
+function getReviewQueueForPlan(input = "") {
+  const baseName = ReviewPaths.stripReviewExtension(input);
+  const queues = [
+    {
+      planPrefix: "teacher_vocab_promote_plan_highvalue",
+      reviewPrefix: "teacher_vocab_review_batch_highvalue",
+      indexFile: "teacher_vocab_review_index.json"
+    },
+    {
+      planPrefix: "oxford_vocab_promote_plan",
+      reviewPrefix: "oxford_vocab_review_batch",
+      indexFile: "oxford_vocab_review_index.json"
+    },
+    {
+      planPrefix: "supplement_vocab_promote_plan",
+      reviewPrefix: "supplement_vocab_review_batch",
+      indexFile: "supplement_vocab_review_index.json"
+    }
+  ];
+  return queues.find((queue) => baseName.startsWith(`${queue.planPrefix}_`)) || null;
+}
+
+function inferApplyReceiptPath(input = "") {
+  return ReviewPaths.inferApplyReceiptPath(input);
+}
+
+function writeApplyReceipt(summary = {}, options = {}) {
+  if (!options.write) return null;
+  const out = options.receiptOut || inferApplyReceiptPath(options.input || DEFAULT_PLAN);
+  const payload = {
+    meta: {
+      generatedAt: new Date().toISOString(),
+      input: path.relative(ROOT_DIR, options.input || DEFAULT_PLAN),
+      privateOnly: true,
+      note: "Apply receipt only. Indicates this promote plan was applied with --write."
+    },
+    summary
+  };
+  fs.mkdirSync(path.dirname(out), { recursive: true });
+  fs.writeFileSync(out, `${JSON.stringify(payload, null, 2)}\n`);
+  return out;
+}
+
+function refreshReviewStatusAfterApply(input = "", options = {}) {
+  const queue = getReviewQueueForPlan(input);
+  if (!queue) return null;
+  const dir = ReviewPaths.inferOutputDir(input);
+  const indexOut = path.join(dir, queue.indexFile);
+  const index = ReviewIndex.writeIndex({
+    dir,
+    prefix: queue.reviewPrefix,
+    out: indexOut
+  });
+  const dashboardOut = path.join(dir, "vocab_review_dashboard.json");
+  const dashboard = ReviewDashboard.writeDashboard({
+    dir,
+    out: dashboardOut
+  });
+  const planBaseName = ReviewPaths.stripReviewExtension(input);
+  const batchId = planBaseName.replace(`${queue.planPrefix}_`, "");
+  return {
+    queue: queue.reviewPrefix,
+    indexOut,
+    dashboardOut,
+    status: (index.batches || []).find((batch) => batch.id === batchId)?.status || "",
+    batchCount: index.meta?.batchCount || 0,
+    dashboardQueueCount: dashboard.queues?.length || 0
+  };
 }
 
 function planEntryKey(entry = {}) {
@@ -342,6 +420,8 @@ function applyPlan(plan, options = {}) {
     fs.writeFileSync(options.teacherUpdates || DEFAULT_TEACHER_UPDATES, `${JSON.stringify(mergedTeacher.data, null, 2)}\n`);
     fs.writeFileSync(options.curatedBank || DEFAULT_CURATED_BANK, mergedCurated.sourceText);
     fs.writeFileSync(options.teacherBank || DEFAULT_TEACHER_BANK, teacherBankSource);
+    summary.applyReceipt = writeApplyReceipt(summary, options);
+    if (options.refresh !== false) summary.refreshed = refreshReviewStatusAfterApply(options.input || DEFAULT_PLAN, options);
   }
 
   return summary;
@@ -367,11 +447,14 @@ module.exports = {
   applyPlan,
   buildCuratedInsertText,
   curatedEntryKey,
+  getReviewQueueForPlan,
+  inferApplyReceiptPath,
   loadPlan,
   makeCuratedRawEntry,
   makeTeacherUpdateEntry,
   mergeCuratedBank,
   mergeTeacherUpdates,
   parseArgs,
+  refreshReviewStatusAfterApply,
   splitEntries
 };

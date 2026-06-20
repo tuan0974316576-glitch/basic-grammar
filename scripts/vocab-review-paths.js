@@ -41,8 +41,13 @@ function inferPreflightPath(input = "") {
   return path.join(inferOutputDir(input), `${stripReviewExtension(input)}_preflight.json`);
 }
 
+function inferApplyReceiptPath(input = "") {
+  return path.join(inferOutputDir(input), `${stripReviewExtension(input)}_applied.json`);
+}
+
 module.exports = {
   DEFAULT_DIR,
+  inferApplyReceiptPath,
   inferOutputDir,
   inferPreflightPath,
   inferPromotePlanName,
