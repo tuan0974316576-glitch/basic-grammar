@@ -3,7 +3,7 @@
 
 const fs = require("fs");
 const path = require("path");
-const ReviewProcessor = require("./process-vocab-review.js");
+const ReviewPaths = require("./vocab-review-paths.js");
 
 const ROOT_DIR = path.resolve(__dirname, "..");
 const PRIVATE_EXPORTS_DIR = path.join(ROOT_DIR, "private_exports");
@@ -98,8 +98,8 @@ function buildBatchRecord(filePath, options = {}) {
   const xlsxPath = `${basename}.xlsx`;
   const csvPath = `${basename}.csv`;
   const reviewInputPath = fileExists(xlsxPath) ? xlsxPath : fileExists(csvPath) ? csvPath : filePath;
-  const promotePlanPath = ReviewProcessor.inferPromotePlanPath(reviewInputPath);
-  const preflightPath = ReviewProcessor.inferPreflightPath(reviewInputPath);
+  const promotePlanPath = ReviewPaths.inferPromotePlanPath(reviewInputPath);
+  const preflightPath = ReviewPaths.inferPreflightPath(reviewInputPath);
   const preflightSummary = readPreflightSummary(preflightPath);
   const entryCount = Array.isArray(payload.entries) ? payload.entries.length : 0;
   const reviewedEntryCount = Array.isArray(payload.entries)

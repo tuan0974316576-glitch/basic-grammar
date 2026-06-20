@@ -5,14 +5,31 @@ const fs = require("fs");
 const path = require("path");
 const Preflight = require("./preflight-vocab-review.js");
 const PromotePlan = require("./build-vocab-promote-plan.js");
+const ReviewDashboard = require("./build-vocab-review-dashboard.js");
+const ReviewIndex = require("./build-vocab-review-index.js");
+const ReviewPaths = require("./vocab-review-paths.js");
 
 const ROOT_DIR = path.resolve(__dirname, "..");
-const DEFAULT_DIR = path.join(ROOT_DIR, "private_exports");
+const DEFAULT_DIR = ReviewPaths.DEFAULT_DIR;
+const REVIEW_QUEUES = [
+  {
+    prefix: "teacher_vocab_review_batch_highvalue",
+    indexFile: "teacher_vocab_review_index.json"
+  },
+  {
+    prefix: "oxford_vocab_review_batch",
+    indexFile: "oxford_vocab_review_index.json"
+  },
+  {
+    prefix: "supplement_vocab_review_batch",
+    indexFile: "supplement_vocab_review_index.json"
+  }
+];
 
 function usage() {
   console.log([
     "Usage:",
-    "  node scripts/process-vocab-review.js <review.xlsx|review.csv|review.json> [--out private_exports/promote_plan.json] [--preflight-out private_exports/preflight.json]",
+    "  node scripts/process-vocab-review.js <review.xlsx|review.csv|review.json> [--out private_exports/promote_plan.json] [--preflight-out private_exports/preflight.json] [--no-refresh]",
     "",
     "Runs review preflight first. A promote plan is created only when preflight has no errors."
   ].join("\n"));
@@ -22,7 +39,8 @@ function parseArgs(argv) {
   const options = {
     input: "",
     out: "",
-    preflightOut: ""
+    preflightOut: "",
+    refresh: true
   };
 
   for (let index = 0; index < argv.length; index += 1) {
@@ -41,49 +59,17 @@ function parseArgs(argv) {
       index += 1;
       continue;
     }
+    if (arg === "--no-refresh") {
+      options.refresh = false;
+      continue;
+    }
     options.input = path.resolve(arg);
   }
 
   if (!options.input) throw new Error("Missing review file.");
-  if (!options.out) options.out = inferPromotePlanPath(options.input);
-  if (!options.preflightOut) options.preflightOut = inferPreflightPath(options.input);
+  if (!options.out) options.out = ReviewPaths.inferPromotePlanPath(options.input);
+  if (!options.preflightOut) options.preflightOut = ReviewPaths.inferPreflightPath(options.input);
   return options;
-}
-
-function stripReviewExtension(filePath = "") {
-  return path.basename(filePath).replace(/\.(?:xlsx|csv|json)$/i, "");
-}
-
-function inferOutputDir(filePath = "") {
-  const dir = path.dirname(path.resolve(filePath || DEFAULT_DIR));
-  return dir || DEFAULT_DIR;
-}
-
-function inferPromotePlanName(baseName = "") {
-  if (/^teacher_vocab_review_batch_highvalue_/i.test(baseName)) {
-    return baseName.replace(/^teacher_vocab_review_batch_highvalue_/i, "teacher_vocab_promote_plan_highvalue_");
-  }
-  if (/^oxford_vocab_review_batch_/i.test(baseName)) {
-    return baseName.replace(/^oxford_vocab_review_batch_/i, "oxford_vocab_promote_plan_");
-  }
-  if (/^supplement_vocab_review_batch_/i.test(baseName)) {
-    return baseName.replace(/^supplement_vocab_review_batch_/i, "supplement_vocab_promote_plan_");
-  }
-  if (/vocab_review_batch/i.test(baseName)) {
-    return baseName.replace(/vocab_review_batch/i, "vocab_promote_plan");
-  }
-  if (/review_batch/i.test(baseName)) {
-    return baseName.replace(/review_batch/i, "promote_plan");
-  }
-  return `${baseName}_promote_plan`;
-}
-
-function inferPromotePlanPath(input = "") {
-  return path.join(inferOutputDir(input), `${inferPromotePlanName(stripReviewExtension(input))}.json`);
-}
-
-function inferPreflightPath(input = "") {
-  return path.join(inferOutputDir(input), `${stripReviewExtension(input)}_preflight.json`);
 }
 
 function writePromotePlan(plan = {}, out = "") {
@@ -91,10 +77,42 @@ function writePromotePlan(plan = {}, out = "") {
   fs.writeFileSync(out, `${JSON.stringify(plan, null, 2)}\n`);
 }
 
+function getReviewQueueForInput(input = "") {
+  const baseName = ReviewPaths.stripReviewExtension(input);
+  return REVIEW_QUEUES.find((queue) => baseName.startsWith(`${queue.prefix}_`)) || null;
+}
+
+function refreshReviewStatus(input = "", options = {}) {
+  const queue = getReviewQueueForInput(input);
+  if (!queue) return null;
+  const dir = ReviewPaths.inferOutputDir(input);
+  const inputBaseName = ReviewPaths.stripReviewExtension(input);
+  const batchId = inputBaseName.replace(`${queue.prefix}_`, "");
+  const indexOut = path.join(dir, queue.indexFile);
+  const index = ReviewIndex.writeIndex({
+    dir,
+    prefix: queue.prefix,
+    out: indexOut
+  });
+  const dashboardOut = options.dashboardOut || path.join(dir, "vocab_review_dashboard.json");
+  const dashboard = ReviewDashboard.writeDashboard({
+    dir,
+    out: dashboardOut
+  });
+  return {
+    queue: queue.prefix,
+    indexOut,
+    dashboardOut,
+    status: (index.batches || []).find((batch) => batch.id === batchId)?.status || "",
+    batchCount: index.meta?.batchCount || 0,
+    dashboardQueueCount: dashboard.queues?.length || 0
+  };
+}
+
 async function processReview(options = {}) {
   const input = path.resolve(options.input || "");
-  const preflightOut = path.resolve(options.preflightOut || inferPreflightPath(input));
-  const out = path.resolve(options.out || inferPromotePlanPath(input));
+  const preflightOut = path.resolve(options.preflightOut || ReviewPaths.inferPreflightPath(input));
+  const out = path.resolve(options.out || ReviewPaths.inferPromotePlanPath(input));
 
   const rows = await Preflight.readReviewRows(input);
   const preflightReport = Preflight.buildReport(rows, { input });
@@ -111,11 +129,13 @@ async function processReview(options = {}) {
     out: "",
     reviewedEntryCount: 0,
     findingCount: 0,
-    pass: false
+    pass: false,
+    refreshed: null
   };
 
   if (!preflightReport.summary.pass) {
     summary.note = "Preflight failed. Fix the reviewed Excel/CSV before creating a promote plan.";
+    if (options.refresh !== false) summary.refreshed = refreshReviewStatus(input, options);
     return { summary, preflightReport, plan: null };
   }
 
@@ -130,6 +150,7 @@ async function processReview(options = {}) {
   summary.note = summary.pass
     ? "Promote plan created. Dry-run apply-plan before using --write."
     : "Promote plan created but still has findings. Fix before applying.";
+  if (options.refresh !== false) summary.refreshed = refreshReviewStatus(input, options);
 
   return { summary, preflightReport, plan };
 }
@@ -139,7 +160,12 @@ function relativeSummary(summary = {}) {
     ...summary,
     input: summary.input ? path.relative(ROOT_DIR, summary.input) : "",
     preflightOut: summary.preflightOut ? path.relative(ROOT_DIR, summary.preflightOut) : "",
-    out: summary.out ? path.relative(ROOT_DIR, summary.out) : ""
+    out: summary.out ? path.relative(ROOT_DIR, summary.out) : "",
+    refreshed: summary.refreshed ? {
+      ...summary.refreshed,
+      indexOut: summary.refreshed.indexOut ? path.relative(ROOT_DIR, summary.refreshed.indexOut) : "",
+      dashboardOut: summary.refreshed.dashboardOut ? path.relative(ROOT_DIR, summary.refreshed.dashboardOut) : ""
+    } : null
   };
 }
 
@@ -158,12 +184,15 @@ if (require.main === module) {
 }
 
 module.exports = {
-  inferPreflightPath,
-  inferPromotePlanName,
-  inferPromotePlanPath,
+  inferPreflightPath: ReviewPaths.inferPreflightPath,
+  inferPromotePlanName: ReviewPaths.inferPromotePlanName,
+  inferPromotePlanPath: ReviewPaths.inferPromotePlanPath,
+  inferOutputDir: ReviewPaths.inferOutputDir,
+  getReviewQueueForInput,
   parseArgs,
   processReview,
   relativeSummary,
-  stripReviewExtension,
+  refreshReviewStatus,
+  stripReviewExtension: ReviewPaths.stripReviewExtension,
   writePromotePlan
 };
