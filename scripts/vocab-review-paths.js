@@ -45,9 +45,17 @@ function inferApplyReceiptPath(input = "") {
   return path.join(inferOutputDir(input), `${stripReviewExtension(input)}_applied.json`);
 }
 
+function inferLiveSyncReceiptPath(input = "") {
+  const source = input || path.join(ROOT_DIR, "teacher_vocab_manual_updates.json");
+  const resolved = path.resolve(source);
+  const outDir = path.dirname(resolved) === ROOT_DIR ? DEFAULT_DIR : path.dirname(resolved);
+  return path.join(outDir, `${stripReviewExtension(source)}_live_synced.json`);
+}
+
 module.exports = {
   DEFAULT_DIR,
   inferApplyReceiptPath,
+  inferLiveSyncReceiptPath,
   inferOutputDir,
   inferPreflightPath,
   inferPromotePlanName,

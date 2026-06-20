@@ -34,6 +34,9 @@ fs.writeFileSync(path.join(tmpDir, "teacher_vocab_promote_plan_highvalue_0100.js
 fs.writeFileSync(path.join(tmpDir, "teacher_vocab_promote_plan_highvalue_0100_applied.json"), JSON.stringify({
   summary: { write: true }
 }, null, 2));
+fs.writeFileSync(path.join(tmpDir, "teacher_vocab_promote_plan_highvalue_0100_live_synced.json"), JSON.stringify({
+  summary: { write: true, uploaded: 2 }
+}, null, 2));
 fs.writeFileSync(path.join(tmpDir, "teacher_vocab_review_batch_highvalue_0000_preflight.json"), JSON.stringify({
   summary: {
     pass: false,
@@ -54,11 +57,15 @@ assert.strictEqual(index.meta.nextBatchId, "0200");
 assert.strictEqual(index.meta.readyForReviewBatchCount, 1);
 assert.strictEqual(index.meta.promotePlanBatchCount, 1);
 assert.strictEqual(index.meta.appliedBatchCount, 1);
+assert.strictEqual(index.meta.liveSyncedBatchCount, 1);
+assert.strictEqual(index.meta.liveSyncedEntryCount, 2);
 assert.strictEqual(index.meta.preflightFailedBatchCount, 1);
 assert.strictEqual(index.batches[0].status, "preflight-failed");
 assert.strictEqual(index.batches[0].preflightErrorCount, 2);
-assert.strictEqual(index.batches[1].status, "applied-or-ready-to-apply");
+assert.strictEqual(index.batches[1].status, "live-synced");
 assert.strictEqual(index.batches[1].applyPlanExists, true);
+assert.strictEqual(index.batches[1].liveSyncExists, true);
+assert.strictEqual(index.batches[1].liveSyncEntryCount, 2);
 assert.strictEqual(index.batches[0].reviewedEntryCount, 1);
 
 const csv = indexer.buildCsv(index);
@@ -66,5 +73,6 @@ assert.ok(csv.includes("teacher_vocab_review_batch_highvalue_0000.xlsx"));
 assert.ok(csv.includes("preflight-failed"));
 assert.ok(csv.includes("teacher_vocab_review_batch_highvalue_0000_preflight.json"));
 assert.ok(csv.includes("teacher_vocab_promote_plan_highvalue_0100_applied.json"));
+assert.ok(csv.includes("teacher_vocab_promote_plan_highvalue_0100_live_synced.json"));
 
 console.log("build_vocab_review_index tests passed");

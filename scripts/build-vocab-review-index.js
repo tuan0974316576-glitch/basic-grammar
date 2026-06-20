@@ -71,6 +71,16 @@ function readPreflightSummary(filePath) {
   }
 }
 
+function readReceiptSummary(filePath) {
+  if (!fileExists(filePath)) return null;
+  try {
+    const payload = readJson(filePath);
+    return payload.summary || null;
+  } catch (_error) {
+    return null;
+  }
+}
+
 function csvEscape(value) {
   const text = String(value ?? "");
   if (!/[",\n]/.test(text)) return text;
@@ -78,6 +88,7 @@ function csvEscape(value) {
 }
 
 function batchStatus(batch = {}) {
+  if (batch.liveSyncExists) return "live-synced";
   if (batch.applyPlanExists) return "applied-or-ready-to-apply";
   if (batch.promotePlanExists) return "promote-plan-created";
   if (batch.preflightExists && batch.preflightPass === false) return "preflight-failed";
@@ -101,7 +112,9 @@ function buildBatchRecord(filePath, options = {}) {
   const promotePlanPath = ReviewPaths.inferPromotePlanPath(reviewInputPath);
   const preflightPath = ReviewPaths.inferPreflightPath(reviewInputPath);
   const applyReceiptPath = ReviewPaths.inferApplyReceiptPath(promotePlanPath);
+  const liveSyncReceiptPath = ReviewPaths.inferLiveSyncReceiptPath(promotePlanPath);
   const preflightSummary = readPreflightSummary(preflightPath);
+  const liveSyncSummary = readReceiptSummary(liveSyncReceiptPath);
   const entryCount = Array.isArray(payload.entries) ? payload.entries.length : 0;
   const reviewedEntryCount = Array.isArray(payload.entries)
     ? payload.entries.filter((entry) => {
@@ -127,6 +140,7 @@ function buildBatchRecord(filePath, options = {}) {
     preflight: path.relative(ROOT_DIR, preflightPath),
     promotePlan: path.relative(ROOT_DIR, promotePlanPath),
     applyReceipt: path.relative(ROOT_DIR, applyReceiptPath),
+    liveSyncReceipt: path.relative(ROOT_DIR, liveSyncReceiptPath),
     jsonExists: true,
     csvExists: fileExists(csvPath),
     xlsxExists: fileExists(xlsxPath),
@@ -135,7 +149,9 @@ function buildBatchRecord(filePath, options = {}) {
     preflightErrorCount: preflightSummary ? Number(preflightSummary.errorCount) || 0 : 0,
     preflightWarningCount: preflightSummary ? Number(preflightSummary.warningCount) || 0 : 0,
     promotePlanExists: fileExists(promotePlanPath),
-    applyPlanExists: fileExists(applyReceiptPath)
+    applyPlanExists: fileExists(applyReceiptPath),
+    liveSyncExists: fileExists(liveSyncReceiptPath),
+    liveSyncEntryCount: liveSyncSummary ? Number(liveSyncSummary.uploaded || liveSyncSummary.uploadEntryCount) || 0 : 0
   };
   return {
     ...record,
@@ -160,6 +176,8 @@ function buildIndex(options = {}) {
   const readyForReviewBatchCount = batches.filter((batch) => batch.xlsxExists).length;
   const promotePlanBatchCount = batches.filter((batch) => batch.promotePlanExists).length;
   const appliedBatchCount = batches.filter((batch) => batch.applyPlanExists).length;
+  const liveSyncedBatchCount = batches.filter((batch) => batch.liveSyncExists).length;
+  const liveSyncedEntryCount = batches.reduce((sum, batch) => sum + (Number(batch.liveSyncEntryCount) || 0), 0);
   const preflightFailedBatchCount = batches.filter((batch) => batch.status === "preflight-failed").length;
   const preflightPassedBatchCount = batches.filter((batch) => batch.status === "preflight-passed").length;
 
@@ -173,6 +191,8 @@ function buildIndex(options = {}) {
       readyForReviewBatchCount,
       promotePlanBatchCount,
       appliedBatchCount,
+      liveSyncedBatchCount,
+      liveSyncedEntryCount,
       preflightFailedBatchCount,
       preflightPassedBatchCount,
       nextOffset,
@@ -202,7 +222,9 @@ function buildCsv(index = {}) {
     "preflight_pass",
     "preflight_errors",
     "promote_plan",
-    "apply_receipt"
+    "apply_receipt",
+    "live_sync_receipt",
+    "live_sync_entries"
   ];
   const lines = [headers.join(",")];
   (index.batches || []).forEach((batch) => {
@@ -222,7 +244,9 @@ function buildCsv(index = {}) {
       preflight_pass: batch.preflightPass,
       preflight_errors: batch.preflightErrorCount,
       promote_plan: batch.promotePlan,
-      apply_receipt: batch.applyReceipt
+      apply_receipt: batch.applyReceipt,
+      live_sync_receipt: batch.liveSyncReceipt,
+      live_sync_entries: batch.liveSyncEntryCount
     };
     lines.push(headers.map((header) => csvEscape(row[header])).join(","));
   });
@@ -258,6 +282,7 @@ module.exports = {
   buildCsv,
   buildIndex,
   parseArgs,
+  readReceiptSummary,
   readPreflightSummary,
   writeIndex
 };

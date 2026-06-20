@@ -7,6 +7,9 @@ const os = require("os");
 const path = require("path");
 const { spawnSync } = require("child_process");
 const ApplyPlan = require("./apply-vocab-promote-plan.js");
+const ReviewDashboard = require("./build-vocab-review-dashboard.js");
+const ReviewIndex = require("./build-vocab-review-index.js");
+const ReviewPaths = require("./vocab-review-paths.js");
 const TeacherLiveVocab = require("../teacher_live_vocab.js");
 
 const ROOT_DIR = path.resolve(__dirname, "..");
@@ -26,7 +29,8 @@ function usage() {
     "  - vocab promote plan JSON from npm run vocab:promote-plan",
     "",
     "Dry-runs by default. With --write, uploads reviewed teacher entries to Firestore teacherVocabLive.",
-    "Curated entries are intentionally skipped; only teacher-approved class vocab goes to the live cloud bank."
+    "Curated entries are intentionally skipped; only teacher-approved class vocab goes to the live cloud bank.",
+    "With --write, also writes a private *_live_synced.json receipt and refreshes review dashboard/index."
   ].join("\n"));
 }
 
@@ -46,6 +50,10 @@ function parseArgs(argv) {
     }
     if (arg === "--write") {
       options.write = true;
+      continue;
+    }
+    if (arg === "--no-refresh") {
+      options.refresh = false;
       continue;
     }
     if (arg === "--project") {
@@ -119,6 +127,55 @@ function loadTeacherLiveEntries(inputPath, options = {}) {
     inputKind,
     sourceEntryCount: rawEntries.length,
     entries
+  };
+}
+
+function inferLiveSyncReceiptPath(input = "") {
+  return ReviewPaths.inferLiveSyncReceiptPath(input || DEFAULT_INPUT);
+}
+
+function writeLiveSyncReceipt(summary = {}, options = {}) {
+  if (!options.write) return null;
+  const out = options.receiptOut || inferLiveSyncReceiptPath(options.input || DEFAULT_INPUT);
+  const payload = {
+    meta: {
+      generatedAt: new Date().toISOString(),
+      input: path.relative(ROOT_DIR, options.input || DEFAULT_INPUT),
+      project: options.project || DEFAULT_PROJECT_ID,
+      privateOnly: true,
+      note: "Live sync receipt only. Indicates teacher entries were uploaded to Firestore teacherVocabLive with --write."
+    },
+    summary
+  };
+  fs.mkdirSync(path.dirname(out), { recursive: true });
+  fs.writeFileSync(out, `${JSON.stringify(payload, null, 2)}\n`);
+  return out;
+}
+
+function refreshReviewStatusAfterLiveSync(input = "", options = {}) {
+  const queue = ApplyPlan.getReviewQueueForPlan(input);
+  if (!queue) return null;
+  const dir = ReviewPaths.inferOutputDir(input);
+  const indexOut = path.join(dir, queue.indexFile);
+  const index = ReviewIndex.writeIndex({
+    dir,
+    prefix: queue.reviewPrefix,
+    out: indexOut
+  });
+  const dashboardOut = options.dashboardOut || path.join(dir, "vocab_review_dashboard.json");
+  const dashboard = ReviewDashboard.writeDashboard({
+    dir,
+    out: dashboardOut
+  });
+  const planBaseName = ReviewPaths.stripReviewExtension(input);
+  const batchId = planBaseName.replace(`${queue.planPrefix}_`, "");
+  return {
+    queue: queue.reviewPrefix,
+    indexOut,
+    dashboardOut,
+    status: (index.batches || []).find((batch) => batch.id === batchId)?.status || "",
+    batchCount: index.meta?.batchCount || 0,
+    dashboardQueueCount: dashboard.queues?.length || 0
   };
 }
 
@@ -299,8 +356,13 @@ async function syncTeacherLiveVocab(options = {}) {
   };
 
   if (options.write) {
-    const upload = await uploadTeacherLiveEntries(source.entries, options);
+    const uploader = options.uploadTeacherLiveEntries || uploadTeacherLiveEntries;
+    const upload = await uploader(source.entries, options);
     summary.uploaded = upload.uploaded;
+    summary.liveSyncReceipt = writeLiveSyncReceipt(summary, options);
+    if (options.refresh !== false) {
+      summary.refreshed = refreshReviewStatusAfterLiveSync(options.input || DEFAULT_INPUT, options);
+    }
   }
   return summary;
 }
@@ -322,11 +384,13 @@ module.exports = {
   detectInputKind,
   entriesFromPromotePlan,
   entriesFromTeacherUpdates,
+  inferLiveSyncReceiptPath,
   loadTeacherLiveEntries,
   makeFirestoreFields,
   makeFirestoreWrite,
   makeTeacherLiveEntryId,
   normalizeTeacherEntry,
   parseArgs,
+  refreshReviewStatusAfterLiveSync,
   syncTeacherLiveVocab
 };

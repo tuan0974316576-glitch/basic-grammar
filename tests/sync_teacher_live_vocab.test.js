@@ -7,6 +7,19 @@ const sync = require("../scripts/sync-teacher-live-vocab.js");
 const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "teacher-live-sync-test-"));
 
 const promotePlanPath = path.join(tmpDir, "teacher_vocab_promote_plan_highvalue_0000.json");
+const reviewBatchPath = path.join(tmpDir, "teacher_vocab_review_batch_highvalue_0000.json");
+fs.writeFileSync(reviewBatchPath, JSON.stringify({
+  meta: {
+    source: "teacher-audit",
+    offset: 0,
+    limit: 100,
+    selectedCount: 1,
+    totalCandidateCount: 1,
+    nextOffset: 1
+  },
+  entries: [{ word: "almond" }]
+}, null, 2));
+fs.writeFileSync(path.join(tmpDir, "teacher_vocab_review_batch_highvalue_0000.xlsx"), "placeholder");
 fs.writeFileSync(promotePlanPath, JSON.stringify({
   meta: { source: "review-xlsx" },
   entries: [
@@ -92,7 +105,32 @@ sync.syncTeacherLiveVocab({
 }).then((summary) => {
   assert.strictEqual(summary.uploadEntryCount, 1);
   assert.strictEqual(summary.write, false);
+  assert.strictEqual(summary.liveSyncReceipt, undefined);
+  assert.ok(!fs.existsSync(sync.inferLiveSyncReceiptPath(manualUpdatesPath)));
   assert.strictEqual(summary.sample[0].word, "have to");
+  return sync.syncTeacherLiveVocab({
+    input: promotePlanPath,
+    project: "test-project",
+    write: true,
+    uploadTeacherLiveEntries: async (entries, options) => {
+      assert.strictEqual(options.project, "test-project");
+      assert.strictEqual(entries.length, 1);
+      assert.strictEqual(entries[0].word, "almond");
+      return { uploaded: entries.length };
+    }
+  });
+}).then((writeSummary) => {
+  assert.strictEqual(writeSummary.write, true);
+  assert.strictEqual(writeSummary.uploaded, 1);
+  assert.ok(writeSummary.liveSyncReceipt.endsWith("teacher_vocab_promote_plan_highvalue_0000_live_synced.json"));
+  assert.ok(fs.existsSync(writeSummary.liveSyncReceipt));
+  const receipt = JSON.parse(fs.readFileSync(writeSummary.liveSyncReceipt, "utf8"));
+  assert.strictEqual(receipt.summary.uploaded, 1);
+  assert.strictEqual(receipt.meta.project, "test-project");
+  assert.ok(writeSummary.refreshed);
+  assert.strictEqual(writeSummary.refreshed.status, "live-synced");
+  assert.ok(fs.existsSync(path.join(tmpDir, "teacher_vocab_review_index.json")));
+  assert.ok(fs.existsSync(path.join(tmpDir, "vocab_review_dashboard.json")));
   console.log("sync_teacher_live_vocab tests passed");
 }).catch((error) => {
   console.error(error);

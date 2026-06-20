@@ -41,11 +41,13 @@ writeIndex("oxford_vocab_review_index.json", {
   readyForReviewBatchCount: 1,
   promotePlanBatchCount: 1,
   appliedBatchCount: 1,
+  liveSyncedBatchCount: 1,
+  liveSyncedEntryCount: 8,
   nextOffset: 100,
   nextBatchId: "0100",
   nextXlsx: "private_exports/oxford_vocab_review_batch_0100.xlsx"
 }, [
-  { id: "0000", entryCount: 100, reviewedEntryCount: 0, xlsxExists: true, promotePlanExists: true, applyPlanExists: true, status: "applied-or-ready-to-apply" }
+  { id: "0000", entryCount: 100, reviewedEntryCount: 0, xlsxExists: true, promotePlanExists: true, applyPlanExists: true, liveSyncExists: true, liveSyncEntryCount: 8, status: "live-synced" }
 ]);
 
 writeIndex("supplement_vocab_review_index.json", {
@@ -66,9 +68,13 @@ const result = dashboard.buildDashboard({ dir: tmpDir });
 assert.strictEqual(result.queues.length, 3);
 assert.strictEqual(result.totals.totalCandidateCount, 550);
 assert.strictEqual(result.totals.coveredCount, 350);
+assert.strictEqual(result.totals.liveSyncedBatchCount, 1);
+assert.strictEqual(result.totals.liveSyncedEntryCount, 8);
 assert.strictEqual(result.queues.find((queue) => queue.id === "teacher").status, "has-preflight-errors");
-assert.strictEqual(result.queues.find((queue) => queue.id === "oxford").status, "has-applied-batches");
+assert.strictEqual(result.queues.find((queue) => queue.id === "oxford").status, "has-live-synced-batches");
 assert.strictEqual(result.queues.find((queue) => queue.id === "oxford").appliedBatchCount, 1);
+assert.strictEqual(result.queues.find((queue) => queue.id === "oxford").liveSyncedBatchCount, 1);
+assert.strictEqual(result.queues.find((queue) => queue.id === "oxford").liveSyncedEntryCount, 8);
 assert.strictEqual(result.queues.find((queue) => queue.id === "supplement").status, "needs-xlsx");
 assert.strictEqual(result.queues.find((queue) => queue.id === "teacher").reviewedEntryCount, 5);
 assert.strictEqual(result.queues.find((queue) => queue.id === "teacher").preflightFailedBatchCount, 1);
@@ -77,7 +83,7 @@ assert.strictEqual(result.queues.find((queue) => queue.id === "teacher").reviewP
 
 const csv = dashboard.buildCsv(result);
 assert.ok(csv.includes("Teacher vocab cleanup"));
-assert.ok(csv.includes("has-applied-batches"));
+assert.ok(csv.includes("has-live-synced-batches"));
 assert.ok(csv.includes("has-preflight-errors"));
 assert.ok(csv.includes("Fix rows listed"));
 
