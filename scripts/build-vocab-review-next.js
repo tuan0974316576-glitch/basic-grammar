@@ -11,15 +11,43 @@ const PRIVATE_EXPORTS_DIR = path.join(ROOT_DIR, "private_exports");
 const DEFAULT_PREFIX = "teacher_vocab_review_batch_highvalue";
 const DEFAULT_INDEX = path.join(PRIVATE_EXPORTS_DIR, "teacher_vocab_review_index.json");
 const DEFAULT_LIMIT = 100;
+const PRESETS = {
+  teacher: {
+    prefix: DEFAULT_PREFIX,
+    indexFile: "teacher_vocab_review_index.json",
+    source: "teacher-audit",
+    skipJunk: true
+  },
+  oxford: {
+    prefix: "oxford_vocab_review_batch",
+    indexFile: "oxford_vocab_review_index.json",
+    source: "oxford",
+    skipJunk: false
+  }
+};
 
 function usage() {
   console.log([
     "Usage:",
-    "  node scripts/build-vocab-review-next.js [--limit 100] [--offset n] [--count n] [--all] [--no-xlsx]",
+    "  node scripts/build-vocab-review-next.js [--preset teacher|oxford] [--limit 100] [--offset n] [--count n] [--all] [--no-xlsx]",
     "",
-    "Builds the next teacher vocab review batch from the private index.",
-    "Default source is teacher-audit with --skip-junk."
+    "Builds the next private vocab review batch from the matching private index.",
+    "Default preset is teacher: source teacher-audit with --skip-junk.",
+    "Oxford preset uses source oxford, prefix oxford_vocab_review_batch, and a separate oxford index."
   ].join("\n"));
+}
+
+function applyPreset(options = {}, presetName = "teacher") {
+  const preset = PRESETS[presetName] || PRESETS.teacher;
+  const dir = options.dir || PRIVATE_EXPORTS_DIR;
+  return {
+    ...options,
+    preset: presetName,
+    prefix: preset.prefix,
+    source: preset.source,
+    skipJunk: preset.skipJunk,
+    indexOut: path.join(dir, preset.indexFile)
+  };
 }
 
 function parseArgs(argv) {
@@ -29,11 +57,13 @@ function parseArgs(argv) {
     indexOut: DEFAULT_INDEX,
     limit: DEFAULT_LIMIT,
     offset: null,
+    preset: "teacher",
     prefix: DEFAULT_PREFIX,
     source: "teacher-audit",
     skipJunk: true,
     xlsx: true
   };
+  const touched = new Set();
 
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
@@ -41,13 +71,24 @@ function parseArgs(argv) {
       usage();
       process.exit(0);
     }
+    if (arg === "--preset") {
+      const preset = String(argv[index + 1] || options.preset).trim().toLowerCase();
+      if (!PRESETS[preset]) throw new Error(`Unsupported review preset: ${preset}`);
+      Object.assign(options, applyPreset(options, preset));
+      index += 1;
+      continue;
+    }
     if (arg === "--dir") {
       options.dir = path.resolve(argv[index + 1] || PRIVATE_EXPORTS_DIR);
+      if (!touched.has("indexOut") && PRESETS[options.preset]) {
+        options.indexOut = path.join(options.dir, PRESETS[options.preset].indexFile);
+      }
       index += 1;
       continue;
     }
     if (arg === "--index-out") {
       options.indexOut = path.resolve(argv[index + 1] || DEFAULT_INDEX);
+      touched.add("indexOut");
       index += 1;
       continue;
     }
@@ -72,16 +113,24 @@ function parseArgs(argv) {
     }
     if (arg === "--prefix") {
       options.prefix = String(argv[index + 1] || DEFAULT_PREFIX).trim();
+      touched.add("prefix");
       index += 1;
       continue;
     }
     if (arg === "--source") {
       options.source = String(argv[index + 1] || options.source).trim();
+      touched.add("source");
       index += 1;
       continue;
     }
     if (arg === "--no-skip-junk") {
       options.skipJunk = false;
+      touched.add("skipJunk");
+      continue;
+    }
+    if (arg === "--skip-junk") {
+      options.skipJunk = true;
+      touched.add("skipJunk");
       continue;
     }
     if (arg === "--no-xlsx") {

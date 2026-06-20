@@ -48,6 +48,19 @@ assert.strictEqual(parsed.count, 3);
 assert.strictEqual(parsed.all, true);
 assert.strictEqual(parsed.xlsx, false);
 
+const oxfordParsed = next.parseArgs(["--preset", "oxford", "--dir", tmpDir, "--limit", "25", "--no-xlsx"]);
+assert.strictEqual(oxfordParsed.preset, "oxford");
+assert.strictEqual(oxfordParsed.prefix, "oxford_vocab_review_batch");
+assert.strictEqual(oxfordParsed.source, "oxford");
+assert.strictEqual(oxfordParsed.skipJunk, false);
+assert.strictEqual(oxfordParsed.indexOut, path.join(tmpDir, "oxford_vocab_review_index.json"));
+assert.strictEqual(oxfordParsed.limit, 25);
+assert.strictEqual(oxfordParsed.xlsx, false);
+
+const explicitSource = next.parseArgs(["--preset", "oxford", "--source", "all", "--prefix", "custom_review"]);
+assert.strictEqual(explicitSource.source, "all");
+assert.strictEqual(explicitSource.prefix, "custom_review");
+
 assert.strictEqual(next.getBatchCount({
   dir: tmpDir,
   prefix: "teacher_vocab_review_batch_highvalue",

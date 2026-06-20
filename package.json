@@ -16,6 +16,7 @@
     "vocab:review-index": "node scripts/build-vocab-review-index.js",
     "vocab:review-index-xlsx": "node scripts/build-vocab-review-index-xlsx.mjs",
     "vocab:review-next": "node scripts/build-vocab-review-next.js",
+    "vocab:review-next:oxford": "node scripts/build-vocab-review-next.js --preset oxford",
     "vocab:review-xlsx": "node scripts/build-vocab-review-xlsx.mjs",
     "vocab:promote-plan": "node scripts/build-vocab-promote-plan.js",
     "vocab:apply-plan": "node scripts/apply-vocab-promote-plan.js",
