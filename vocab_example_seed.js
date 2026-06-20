@@ -5,11 +5,11 @@
   root.VOCAB_EXAMPLE_SEED = data;
 })(typeof globalThis !== "undefined" ? globalThis : window, {
   "meta": {
-    "generatedAt": "2026-06-19T09:52:10.219Z",
-    "entryCount": 1356,
-    "exampleCount": 4068,
+    "generatedAt": "2026-06-20T16:01:34.658Z",
+    "entryCount": 1368,
+    "exampleCount": 4104,
     "source": "local-seed-gemini",
-    "readyCount": 1356,
+    "readyCount": 1368,
     "failedCount": 0,
     "reviewRemovedCount": 220,
     "blockedKeys": [
@@ -49392,6 +49392,498 @@
           "target": "看看鏡子裡的自己。",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "almond|1z04sah": {
+      "word": "almond",
+      "display": "almond",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "杏仁",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "杏仁",
+          "pos": "noun",
+          "type": "word",
+          "level": ""
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-almond-39079e7b",
+          "source": "I put almonds on my cake.",
+          "target": "我把杏仁放在蛋糕上。",
+          "meaning": "杏仁",
+          "level": "B1"
+        },
+        {
+          "id": "seed-almond-b37c0ba8",
+          "source": "Almond milk is in the fridge.",
+          "target": "杏仁奶在雪櫃裡。",
+          "meaning": "杏仁",
+          "level": "B1"
+        },
+        {
+          "id": "seed-almond-0b09586a",
+          "source": "She eats a few almonds after school.",
+          "target": "她放學後吃幾粒杏仁。",
+          "meaning": "杏仁",
+          "level": "B1"
+        }
+      ]
+    },
+    "impulse|11t5j97": {
+      "word": "impulse",
+      "display": "impulse",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "衝動",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "衝動",
+          "pos": "noun",
+          "type": "word",
+          "level": ""
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-impulse-86581183",
+          "source": "He bought the toy on impulse.",
+          "target": "他一時衝動買了那個玩具。",
+          "meaning": "衝動",
+          "level": "B2"
+        },
+        {
+          "id": "seed-impulse-e6a271ae",
+          "source": "Do not act on impulse.",
+          "target": "不要衝動行事。",
+          "meaning": "衝動",
+          "level": "B2"
+        },
+        {
+          "id": "seed-impulse-a714fec2",
+          "source": "She felt an impulse to laugh.",
+          "target": "她突然有一股想笑的衝動。",
+          "meaning": "衝動",
+          "level": "B2"
+        }
+      ]
+    },
+    "possession|3qdewh": {
+      "word": "possession",
+      "display": "possession",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "擁有 / 所有",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "擁有 / 所有",
+          "pos": "noun",
+          "type": "word",
+          "level": ""
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-possession-408abbe1",
+          "source": "This watch is my possession.",
+          "target": "這隻手錶是我的個人物品。",
+          "meaning": "擁有 / 所有",
+          "level": "B1"
+        },
+        {
+          "id": "seed-possession-3ae1b402",
+          "source": "The old photo is her favourite possession.",
+          "target": "那張舊相是她最喜愛的物品。",
+          "meaning": "擁有 / 所有",
+          "level": "B1"
+        },
+        {
+          "id": "seed-possession-a3286528",
+          "source": "He lost possession of the ball.",
+          "target": "他失去了控球權。",
+          "meaning": "擁有 / 所有",
+          "level": "B1"
+        }
+      ]
+    },
+    "defective|95helg": {
+      "word": "defective",
+      "display": "defective",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "有缺陷的",
+      "pos": "adjective",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "有缺陷的",
+          "pos": "adjective",
+          "type": "word",
+          "level": ""
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-defective-1b6f81b4",
+          "source": "This phone is defective.",
+          "target": "這部電話有缺陷。",
+          "meaning": "有缺陷的",
+          "level": "B2"
+        },
+        {
+          "id": "seed-defective-482973b7",
+          "source": "The shop replaced the defective toy.",
+          "target": "店舖更換了有缺陷的玩具。",
+          "meaning": "有缺陷的",
+          "level": "B2"
+        },
+        {
+          "id": "seed-defective-174f3857",
+          "source": "We returned the defective chair.",
+          "target": "我們退回了有缺陷的椅子。",
+          "meaning": "有缺陷的",
+          "level": "B2"
+        }
+      ]
+    },
+    "customer-centric|12sspm8": {
+      "word": "customer-centric",
+      "display": "customer-centric",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "C1",
+      "meaning": "以顧客為中心的",
+      "pos": "adjective",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "以顧客為中心的",
+          "pos": "adjective",
+          "type": "word",
+          "level": ""
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-customer-centric-32e24ea1",
+          "source": "The shop is customer-centric.",
+          "target": "這間店以顧客為中心。",
+          "meaning": "以顧客為中心的",
+          "level": "C1"
+        },
+        {
+          "id": "seed-customer-centric-228ebf3e",
+          "source": "A customer-centric team listens carefully.",
+          "target": "以顧客為中心的團隊會細心聆聽。",
+          "meaning": "以顧客為中心的",
+          "level": "C1"
+        },
+        {
+          "id": "seed-customer-centric-0da7d518",
+          "source": "This company has a customer-centric service.",
+          "target": "這間公司有以顧客為中心的服務。",
+          "meaning": "以顧客為中心的",
+          "level": "C1"
+        }
+      ]
+    },
+    "czech|id7vca": {
+      "word": "czech",
+      "display": "Czech",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "捷克人 / 捷克語",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "捷克人 / 捷克語",
+          "pos": "noun",
+          "type": "word",
+          "level": ""
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-czech-c6bb03e7",
+          "source": "My Czech friend speaks English well.",
+          "target": "我的捷克朋友英文說得很好。",
+          "meaning": "捷克人 / 捷克語",
+          "level": "B1"
+        },
+        {
+          "id": "seed-czech-a75fcb37",
+          "source": "We learned about Czech food today.",
+          "target": "我們今天認識了捷克食物。",
+          "meaning": "捷克人 / 捷克語",
+          "level": "B1"
+        },
+        {
+          "id": "seed-czech-1c8c25da",
+          "source": "Czech is a European language.",
+          "target": "捷克語是一種歐洲語言。",
+          "meaning": "捷克人 / 捷克語",
+          "level": "B1"
+        }
+      ]
+    },
+    "czech|1nwqri": {
+      "word": "czech",
+      "display": "Czech",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "捷克的",
+      "pos": "adjective",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "捷克的",
+          "pos": "adjective",
+          "type": "word",
+          "level": ""
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-czech-adj-1",
+          "source": "The Czech team played very well.",
+          "target": "捷克隊表現得很好。",
+          "meaning": "捷克的",
+          "level": "B1"
+        },
+        {
+          "id": "seed-czech-adj-2",
+          "source": "She bought a Czech book.",
+          "target": "她買了一本捷克的書。",
+          "meaning": "捷克的",
+          "level": "B1"
+        },
+        {
+          "id": "seed-czech-adj-3",
+          "source": "We tried Czech food at the fair.",
+          "target": "我們在市集試了捷克食物。",
+          "meaning": "捷克的",
+          "level": "B1"
+        }
+      ]
+    },
+    "corporate|1l6rzlb": {
+      "word": "corporate",
+      "display": "corporate",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "企業的 / 公司的",
+      "pos": "adjective",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "企業的 / 公司的",
+          "pos": "adjective",
+          "type": "word",
+          "level": ""
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-corporate-97407178",
+          "source": "My aunt works in a corporate office.",
+          "target": "我姑姐在公司辦公室工作。",
+          "meaning": "企業的 / 公司的",
+          "level": "B2"
+        },
+        {
+          "id": "seed-corporate-faf90d50",
+          "source": "The corporate team joined the meeting.",
+          "target": "公司團隊參加了會議。",
+          "meaning": "企業的 / 公司的",
+          "level": "B2"
+        },
+        {
+          "id": "seed-corporate-f0e4d447",
+          "source": "He likes the corporate training programme.",
+          "target": "他喜歡公司的培訓課程。",
+          "meaning": "企業的 / 公司的",
+          "level": "B2"
+        }
+      ]
+    },
+    "impromptu|k3fzzl": {
+      "word": "impromptu",
+      "display": "impromptu",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "C1",
+      "meaning": "即興的",
+      "pos": "adjective",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "即興的",
+          "pos": "adjective",
+          "type": "word",
+          "level": ""
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-impromptu-2aa0a571",
+          "source": "She gave an impromptu speech.",
+          "target": "她作了一個即興演講。",
+          "meaning": "即興的",
+          "level": "C1"
+        },
+        {
+          "id": "seed-impromptu-6b3b0de7",
+          "source": "We had an impromptu singing show.",
+          "target": "我們來了一場即興歌唱表演。",
+          "meaning": "即興的",
+          "level": "C1"
+        },
+        {
+          "id": "seed-impromptu-baa31ac1",
+          "source": "His impromptu answer was funny.",
+          "target": "他的即興回答很有趣。",
+          "meaning": "即興的",
+          "level": "C1"
+        }
+      ]
+    },
+    "impromptu|15q91e0": {
+      "word": "impromptu",
+      "display": "impromptu",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "C1",
+      "meaning": "即興演出",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "即興演出",
+          "pos": "noun",
+          "type": "word",
+          "level": ""
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-impromptu-n-1",
+          "source": "The impromptu made everyone laugh.",
+          "target": "那場即興演出令大家大笑。",
+          "meaning": "即興演出",
+          "level": "C1"
+        },
+        {
+          "id": "seed-impromptu-n-2",
+          "source": "His short impromptu surprised the class.",
+          "target": "他的短即興演出令全班驚喜。",
+          "meaning": "即興演出",
+          "level": "C1"
+        },
+        {
+          "id": "seed-impromptu-n-3",
+          "source": "We enjoyed the impromptu after lunch.",
+          "target": "我們午飯後欣賞了即興演出。",
+          "meaning": "即興演出",
+          "level": "C1"
+        }
+      ]
+    },
+    "compatriot|13a0kbz": {
+      "word": "compatriot",
+      "display": "compatriot",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "C1",
+      "meaning": "同胞 / 同國人",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "同胞 / 同國人",
+          "pos": "noun",
+          "type": "word",
+          "level": ""
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-compatriot-fc6f4c22",
+          "source": "He helped his compatriot at the airport.",
+          "target": "他在機場幫助了自己的同胞。",
+          "meaning": "同胞 / 同國人",
+          "level": "C1"
+        },
+        {
+          "id": "seed-compatriot-8d7fbb7a",
+          "source": "She met a compatriot in London.",
+          "target": "她在倫敦遇到一位同國人。",
+          "meaning": "同胞 / 同國人",
+          "level": "C1"
+        },
+        {
+          "id": "seed-compatriot-1aef4c4f",
+          "source": "The athlete hugged his compatriot.",
+          "target": "那位運動員擁抱了自己的同胞。",
+          "meaning": "同胞 / 同國人",
+          "level": "C1"
+        }
+      ]
+    },
+    "rise to fame|18lskx0": {
+      "word": "rise to fame",
+      "display": "rise to fame",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "成名 / 走紅",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "成名 / 走紅",
+          "pos": "verb",
+          "type": "phrase",
+          "level": ""
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-rise-to-fame-a093923b",
+          "source": "The singer rose to fame quickly.",
+          "target": "那位歌手很快成名。",
+          "meaning": "成名 / 走紅",
+          "level": "B2"
+        },
+        {
+          "id": "seed-rise-to-fame-a51920e1",
+          "source": "He rose to fame after the film.",
+          "target": "他在那部電影之後走紅。",
+          "meaning": "成名 / 走紅",
+          "level": "B2"
+        },
+        {
+          "id": "seed-rise-to-fame-326e690b",
+          "source": "The young chef rose to fame online.",
+          "target": "那位年輕廚師在網上走紅。",
+          "meaning": "成名 / 走紅",
+          "level": "B2"
         }
       ]
     }

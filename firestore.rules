@@ -10,11 +10,16 @@ service cloud.firestore {
       return signedIn() && request.auth.uid == uid;
     }
 
+    function isTeacher() {
+      return signedIn() && request.auth.token.role == "teacher";
+    }
+
     function userDocKeysAreSafe() {
       return request.resource.data.keys().hasOnly([
         "studentId",
         "displayName",
         "classId",
+        "role",
         "lastLoginAt",
         "bestStreak",
         "studyStreak",
@@ -33,13 +38,15 @@ service cloud.firestore {
     }
 
     function studentIdMatchesToken() {
-      return !("studentId" in request.resource.data)
+      return isTeacher()
+        || !("studentId" in request.resource.data)
         || !("studentId" in request.auth.token)
         || request.resource.data.studentId == request.auth.token.studentId;
     }
 
     function classIdMatchesToken() {
-      return !("classId" in request.resource.data)
+      return isTeacher()
+        || !("classId" in request.resource.data)
         || !("classId" in request.auth.token)
         || request.resource.data.classId == request.auth.token.classId;
     }
@@ -106,12 +113,54 @@ service cloud.firestore {
         && (!("progress" in request.resource.data) || (request.resource.data.progress is map && vocabProgressKeysAreSafe(request.resource.data.progress)));
     }
 
+    function teacherVocabKeysAreSafe() {
+      return request.resource.data.keys().hasOnly([
+        "word",
+        "display",
+        "meaning",
+        "pos",
+        "type",
+        "aliases",
+        "level",
+        "source",
+        "notes",
+        "disabled",
+        "createdAt",
+        "updatedAt",
+        "createdBy",
+        "updatedBy"
+      ]);
+    }
+
+    function teacherVocabFieldsAreSafe() {
+      return request.resource.data.word is string
+        && request.resource.data.meaning is string
+        && (!("display" in request.resource.data) || request.resource.data.display is string)
+        && (!("pos" in request.resource.data) || request.resource.data.pos is string)
+        && (!("type" in request.resource.data) || request.resource.data.type is string)
+        && (!("aliases" in request.resource.data) || request.resource.data.aliases is list)
+        && (!("level" in request.resource.data) || request.resource.data.level is string)
+        && (!("source" in request.resource.data) || request.resource.data.source is string)
+        && (!("notes" in request.resource.data) || request.resource.data.notes is string)
+        && (!("disabled" in request.resource.data) || request.resource.data.disabled is bool)
+        && (!("createdBy" in request.resource.data) || request.resource.data.createdBy is string)
+        && (!("updatedBy" in request.resource.data) || request.resource.data.updatedBy == request.auth.uid);
+    }
+
     match /studentAccounts/{studentId} {
       allow read, write: if false;
     }
 
     match /vocabMeaningCache/{meaningId} {
       allow read, write: if false;
+    }
+
+    match /teacherVocabLive/{entryId} {
+      allow read: if signedIn();
+      allow create, update: if isTeacher()
+        && teacherVocabKeysAreSafe()
+        && teacherVocabFieldsAreSafe();
+      allow delete: if false;
     }
 
     match /users/{uid} {

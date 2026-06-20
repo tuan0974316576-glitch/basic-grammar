@@ -95,6 +95,7 @@ function makeStudentWrite(student) {
     uid: firestoreValue(student.uid || `student_${studentId.toLowerCase()}`),
     displayName: firestoreValue(student.displayName || studentId),
     classId: firestoreValue(student.classId || ""),
+    role: firestoreValue(student.role === "teacher" ? "teacher" : "student"),
     pinSalt: firestoreValue(crypto.randomBytes(16).toString("hex")),
     disabled: firestoreValue(Boolean(student.disabled)),
     updatedAt: firestoreValue(new Date())

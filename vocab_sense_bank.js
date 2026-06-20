@@ -188,7 +188,20 @@
     ["lung cancer", "noun", "肺癌", { type: "phrase" }],
     ["hawker", "noun", "小販"],
     ["evaluate", "verb", "評估"],
-    ["guts", "noun", "膽量"]
+    ["guts", "noun", "膽量"],
+    ["almond", "noun", "杏仁", { overrideTeacher: true }],
+    ["impulse", "noun", "衝動", { overrideTeacher: true }],
+    ["possession", "noun", "擁有 / 所有", { overrideTeacher: true }],
+    ["possession", "noun", "個人物品", { level: "B1" }],
+    ["defective", "adjective", "有缺陷的", { overrideTeacher: true }],
+    ["customer-centric", "adjective", "以顧客為中心的"],
+    ["Czech", "noun", "捷克人 / 捷克語"],
+    ["Czech", "adjective", "捷克的"],
+    ["corporate", "adjective", "企業的 / 公司的", { overrideTeacher: true }],
+    ["impromptu", "adjective", "即興的"],
+    ["impromptu", "noun", "即興演出"],
+    ["compatriot", "noun", "同胞 / 同國人"],
+    ["rise to fame", "verb", "成名 / 走紅", { type: "phrase", overrideTeacher: true }]
   ];
 
   function normalizeWord(value) {

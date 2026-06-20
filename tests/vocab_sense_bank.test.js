@@ -108,4 +108,17 @@ assert.deepStrictEqual(
   ["noun:幼獸"]
 );
 
+assert.deepStrictEqual(
+  senseBank.lookup("customer-centric").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["adjective:以顧客為中心的"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("Czech").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:捷克人 / 捷克語", "adjective:捷克的"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("rise to fame").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:成名 / 走紅"]
+);
+
 console.log("vocab_sense_bank tests passed");

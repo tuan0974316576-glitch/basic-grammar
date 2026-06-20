@@ -526,9 +526,53 @@
         <input id="sfx-volume" type="range" min="0" max="100" step="1" value="50" style="--range-fill: 50%;">
       </div>
 
+      <button id="settings-teacher-vocab-btn" class="ghost-btn settings-teacher-vocab-btn hidden" type="button">老師字庫</button>
       <button id="settings-logout-btn" class="ghost-btn settings-logout-btn" type="button">Log out</button>
 
       <div class="settings-footer">All rights reserved by Enguistics Learning Centre 2026</div>
+    </div>
+  </section>
+
+  <section id="teacher-vocab-modal" class="teacher-vocab-modal hidden" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="teacher-vocab-title">
+    <button class="teacher-vocab-backdrop" type="button" aria-label="關閉老師字庫" data-close-teacher-vocab></button>
+    <div class="teacher-vocab-panel">
+      <header class="teacher-vocab-header">
+        <div>
+          <div class="teacher-vocab-kicker">Teacher Bank</div>
+          <h2 id="teacher-vocab-title">老師字庫</h2>
+        </div>
+        <button class="teacher-vocab-close" type="button" aria-label="關閉" data-close-teacher-vocab>×</button>
+      </header>
+
+      <div id="teacher-vocab-status" class="teacher-vocab-status">輸入上堂生字，學生會優先見到呢個解釋。</div>
+
+      <div class="teacher-vocab-form">
+        <label class="teacher-vocab-field">
+          <span>English</span>
+          <input id="teacher-vocab-word-input" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="customer-centric">
+        </label>
+        <label class="teacher-vocab-field">
+          <span>POS</span>
+          <select id="teacher-vocab-pos-input">
+            <option value="noun">n.</option>
+            <option value="verb">v.</option>
+            <option value="adjective">adj.</option>
+            <option value="adverb">adv.</option>
+            <option value="phrase">ph.</option>
+            <option value="modal">modal v.</option>
+            <option value="conjunction">conj.</option>
+            <option value="preposition">prep.</option>
+          </select>
+        </label>
+        <label class="teacher-vocab-field teacher-vocab-field-wide">
+          <span>中文解釋</span>
+          <input id="teacher-vocab-meaning-input" type="text" autocomplete="off" placeholder="以顧客為中心的">
+        </label>
+        <button id="teacher-vocab-save-btn" class="primary-btn teacher-vocab-save-btn" type="button">送上雲端</button>
+      </div>
+
+      <div class="teacher-vocab-recent-head">最近新增</div>
+      <div id="teacher-vocab-recent-list" class="teacher-vocab-recent-list"></div>
     </div>
   </section>
 

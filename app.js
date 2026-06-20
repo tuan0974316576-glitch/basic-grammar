@@ -57,6 +57,7 @@ const VOCAB_PROGRESS_KEY = "basic_vocab_progress_v1";
 const VOCAB_SYNC_QUEUE_KEY = "basic_vocab_sync_queue_v1";
 const VOCAB_CACHE_OWNER_KEY = "basic_vocab_cache_owner_v1";
 const VOCAB_EXAMPLES_CACHE_KEY = "basic_vocab_examples_cache_v1";
+const TEACHER_LIVE_VOCAB_CACHE_KEY = "basic_teacher_live_vocab_cache_v1";
 const OLD_VOCAB_QUEUE_KEY = ["basic_vocab", String.fromCharCode(112, 101, 110, 100, 105, 110, 103), "review_queue_v1"].join("_");
 const OLD_VOCAB_PLACEHOLDER_MEANING = String.fromCharCode(24453, 32769, 24107, 30906, 35469);
 const OLD_VOCAB_PLACEHOLDER_SOURCE = [
@@ -223,6 +224,7 @@ const VERB_TABLE_REFERENCE_MIN_ACTIVE_MS = 700;
 const VERB_TABLE_IMAGE_VERSION = "20260613-lite";
 const VOCAB_CACHE_FALLBACK_OWNER = "guest";
 const VOCAB_EXAMPLE_LOAD_TIMEOUT_MS = 12000;
+const TEACHER_LIVE_LOOKUP_RETRY_MS = 30000;
 
 let audioContext = null;
 let celebrationAnimation = null;
@@ -247,6 +249,10 @@ let studentCloudSyncPromise = null;
 let studentCloudSyncUid = "";
 let vocabCloudSyncPromise = null;
 let vocabCloudSyncUid = "";
+let teacherLiveVocabSyncPromise = null;
+let teacherLiveVocabLastSyncAt = 0;
+const teacherLiveVocabLookupRequests = new Map();
+const teacherLiveVocabLookupCheckedAt = new Map();
 let vocabQuizState = null;
 let studentLoginGraceTimer = 0;
 let studentAuthState = {
@@ -283,6 +289,7 @@ const state = {
   verbTableWrongSlots: [],
   verbTableSubmitState: "",
   verbTableActiveField: "present",
+  teacherLiveVocab: getSavedTeacherLiveVocabEntries(),
   vocabWords: getSavedVocabItems(),
   vocabProgress: getSavedVocabProgress(),
   vocabSyncQueue: getSavedVocabSyncQueue(),
@@ -320,6 +327,14 @@ const el = {
   sfxVolumeInput: document.querySelector("#sfx-volume"),
   sfxVolumeLabel: document.querySelector("#sfx-volume-label"),
   settingsLogoutBtn: document.querySelector("#settings-logout-btn"),
+  settingsTeacherVocabBtn: document.querySelector("#settings-teacher-vocab-btn"),
+  teacherVocabModal: document.querySelector("#teacher-vocab-modal"),
+  teacherVocabStatus: document.querySelector("#teacher-vocab-status"),
+  teacherVocabWordInput: document.querySelector("#teacher-vocab-word-input"),
+  teacherVocabPosInput: document.querySelector("#teacher-vocab-pos-input"),
+  teacherVocabMeaningInput: document.querySelector("#teacher-vocab-meaning-input"),
+  teacherVocabSaveBtn: document.querySelector("#teacher-vocab-save-btn"),
+  teacherVocabRecentList: document.querySelector("#teacher-vocab-recent-list"),
   studentLoginModal: document.querySelector("#student-login-modal"),
   studentLoginStatus: document.querySelector("#student-login-status"),
   studentIdInput: document.querySelector("#student-id-input"),
@@ -661,6 +676,98 @@ function stripObsoleteVocabPlaceholders(item = {}) {
     teacherEntryId: primaryMeaning.teacherEntryId || item.teacherEntryId || "",
     sourceEntryId: primaryMeaning.sourceEntryId || item.sourceEntryId || ""
   };
+}
+
+function normalizeTeacherLiveType(value, word = "") {
+  const normalizedType = String(value || "").trim().toLowerCase();
+  if (normalizedType === "pattern" || normalizedType === "phrase" || normalizedType === "word") return normalizedType;
+  const normalizedWord = normalizeVocabWord(word);
+  if (/[+*=]|名詞|動詞|形容詞|副詞|\bpp\b/i.test(normalizedWord)) return "pattern";
+  return normalizedWord.includes(" ") ? "phrase" : "word";
+}
+
+function normalizeTeacherLiveEntry(entry = {}) {
+  const word = normalizeVocabWord(entry.word || entry.display);
+  const meaning = normalizeVocabMeaning(entry.meaning);
+  if (!word || !meaning) return null;
+  const pos = normalizeVocabPos(entry.pos);
+  const type = normalizeTeacherLiveType(entry.type, word);
+  const aliases = Array.isArray(entry.aliases)
+    ? entry.aliases.map(normalizeVocabWord).filter(Boolean)
+    : String(entry.aliases || "")
+      .split(/[,，;；|]/)
+      .map(normalizeVocabWord)
+      .filter(Boolean);
+  const sourceEntryId = String(entry.sourceEntryId || entry.id || makeTeacherLiveEntryId({ word, meaning, pos, type })).trim();
+  return {
+    id: sourceEntryId,
+    word,
+    display: String(entry.display || entry.word || word).trim() || word,
+    meaning,
+    pos,
+    type,
+    aliases: [...new Set(aliases)],
+    level: String(entry.level || "").trim().toUpperCase().slice(0, 2),
+    notes: normalizeVocabMeaning(entry.notes || "").slice(0, 120),
+    source: "teacher-live",
+    sourceEntryId,
+    updatedAt: Number(entry.updatedAt) || Date.now(),
+    disabled: Boolean(entry.disabled)
+  };
+}
+
+function getTeacherLiveSearchKeys(entry = {}) {
+  return Array.from(new Set([
+    normalizeVocabWord(entry.word),
+    ...(Array.isArray(entry.aliases) ? entry.aliases.map(normalizeVocabWord) : [])
+  ].filter(Boolean)));
+}
+
+function getSavedTeacherLiveVocabEntries() {
+  try {
+    const saved = safeJsonParse(localStorage.getItem(TEACHER_LIVE_VOCAB_CACHE_KEY), []);
+    if (!Array.isArray(saved)) return [];
+    return saved.map(normalizeTeacherLiveEntry).filter((entry) => entry && !entry.disabled);
+  } catch (_error) {
+    return [];
+  }
+}
+
+function saveTeacherLiveVocabEntries(entries = state.teacherLiveVocab) {
+  try {
+    localStorage.setItem(TEACHER_LIVE_VOCAB_CACHE_KEY, JSON.stringify(
+      (entries || []).map(normalizeTeacherLiveEntry).filter(Boolean)
+    ));
+  } catch (_error) {
+    // The cloud bank can still be used during the current session.
+  }
+}
+
+function makeTeacherLiveEntryId(entry = {}) {
+  const word = normalizeVocabWord(entry.word || entry.display);
+  const meaning = normalizeVocabMeaning(entry.meaning);
+  const pos = normalizeVocabPos(entry.pos);
+  const type = normalizeTeacherLiveType(entry.type, word);
+  const slug = [word, pos || type || "entry", meaning]
+    .join("-")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 52) || "teacher-vocab";
+  return `${slug}-${stableVocabHash(`${word}|${pos}|${type}|${meaning}`)}`.slice(0, 80);
+}
+
+function getTeacherLiveVocabMatches(word) {
+  const key = normalizeVocabWord(word);
+  if (!key) return [];
+  return (state.teacherLiveVocab || [])
+    .filter((entry) => !entry.disabled && getTeacherLiveSearchKeys(entry).includes(key))
+    .sort((left, right) => (Number(right.updatedAt) || 0) - (Number(left.updatedAt) || 0))
+    .slice(0, 12)
+    .map((entry) => ({
+      ...entry,
+      source: "teacher-live",
+      sourceEntryId: entry.sourceEntryId || entry.id
+    }));
 }
 
 function createVocabId(word) {
@@ -1112,6 +1219,7 @@ function syncSettingsControls() {
     el.sfxVolumeLabel.textContent = `${percent}%`;
   }
   el.settingsLogoutBtn?.classList.toggle("hidden", !studentAuthState.authenticated);
+  el.settingsTeacherVocabBtn?.classList.toggle("hidden", !isTeacherAccount());
 }
 
 function toggleSound() {
@@ -1317,6 +1425,7 @@ function syncModalOpenClass() {
   const hasOpenModal = Boolean(
     document.body.classList.contains("student-login-open")
       || document.body.classList.contains("settings-open")
+      || document.body.classList.contains("teacher-vocab-open")
       || document.body.classList.contains("streak-open")
       || (el.verbTableReferenceModal && !el.verbTableReferenceModal.classList.contains("hidden"))
   );
@@ -1393,6 +1502,112 @@ function closeSettings() {
   document.body.classList.remove("settings-open");
   syncModalOpenClass();
   playUiSound("next");
+}
+
+function setTeacherVocabStatus(message = "", type = "") {
+  if (!el.teacherVocabStatus) return;
+  el.teacherVocabStatus.className = `teacher-vocab-status${type ? ` ${type}` : ""}`;
+  el.teacherVocabStatus.textContent = message || "輸入上堂生字，學生會優先見到呢個解釋。";
+}
+
+function renderTeacherLiveVocabRecentList() {
+  if (!el.teacherVocabRecentList) return;
+  const recent = [...(state.teacherLiveVocab || [])]
+    .filter((entry) => !entry.disabled)
+    .sort((left, right) => (Number(right.updatedAt) || 0) - (Number(left.updatedAt) || 0))
+    .slice(0, 12);
+
+  if (!recent.length) {
+    const empty = document.createElement("div");
+    empty.className = "teacher-vocab-empty";
+    empty.textContent = "未有雲端老師字。";
+    el.teacherVocabRecentList.replaceChildren(empty);
+    return;
+  }
+
+  el.teacherVocabRecentList.replaceChildren(...recent.map((entry) => {
+    const row = document.createElement("div");
+    row.className = "teacher-vocab-recent-row";
+
+    const word = document.createElement("strong");
+    word.textContent = entry.display || entry.word;
+
+    const meaning = document.createElement("span");
+    meaning.textContent = formatVocabMeaningLine(entry);
+
+    row.append(word, meaning);
+    return row;
+  }));
+}
+
+function openTeacherVocabModal() {
+  if (!el.teacherVocabModal) return;
+  if (!isTeacherAccount()) {
+    setTeacherVocabStatus("老師帳號先可以修改共享字庫。", "error");
+    playUiSound("wrong");
+    return;
+  }
+
+  closeSettings();
+  el.teacherVocabModal.classList.remove("hidden");
+  el.teacherVocabModal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("teacher-vocab-open");
+  syncModalOpenClass();
+  setTeacherVocabStatus();
+  renderTeacherLiveVocabRecentList();
+  void syncTeacherLiveVocab({ force: true }).then(renderTeacherLiveVocabRecentList);
+  setTimeout(() => el.teacherVocabWordInput?.focus(), 80);
+  playUiSound("step");
+}
+
+function closeTeacherVocabModal() {
+  if (!el.teacherVocabModal || el.teacherVocabModal.classList.contains("hidden")) return;
+  el.teacherVocabModal.classList.add("hidden");
+  el.teacherVocabModal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("teacher-vocab-open");
+  syncModalOpenClass();
+  playUiSound("next");
+}
+
+function clearTeacherVocabForm() {
+  if (el.teacherVocabWordInput) el.teacherVocabWordInput.value = "";
+  if (el.teacherVocabMeaningInput) el.teacherVocabMeaningInput.value = "";
+  if (el.teacherVocabPosInput) el.teacherVocabPosInput.value = "noun";
+}
+
+async function submitTeacherVocabEntry() {
+  const word = normalizeVocabWord(el.teacherVocabWordInput?.value);
+  const meaning = normalizeVocabMeaning(el.teacherVocabMeaningInput?.value);
+  const pos = normalizeVocabPos(el.teacherVocabPosInput?.value);
+  if (!word || !meaning) {
+    setTeacherVocabStatus("請輸入英文同中文解釋。", "error");
+    playUiSound("wrong");
+    return;
+  }
+
+  if (el.teacherVocabSaveBtn) el.teacherVocabSaveBtn.disabled = true;
+  setTeacherVocabStatus("送上雲端中...", "loading");
+  try {
+    const type = pos === "modal" ? "word" : normalizeTeacherLiveType("", word);
+    const savedEntry = await saveTeacherLiveVocabEntry({
+      word,
+      display: el.teacherVocabWordInput?.value || word,
+      meaning,
+      pos,
+      type
+    });
+    setTeacherVocabStatus(`${savedEntry.display || savedEntry.word} 已加入老師字庫。`, "success");
+    clearTeacherVocabForm();
+    renderTeacherLiveVocabRecentList();
+    await refreshVocabTeacherLookup({ force: true, skipCloudRefresh: true });
+    playUiSound("correct");
+  } catch (error) {
+    console.warn("Teacher vocab save failed:", error);
+    setTeacherVocabStatus("暫時儲存不到，請確認你已用老師帳號登入。", "error");
+    playUiSound("wrong");
+  } finally {
+    if (el.teacherVocabSaveBtn) el.teacherVocabSaveBtn.disabled = false;
+  }
 }
 
 function renderStreakFireAnimation() {
@@ -1518,6 +1733,7 @@ async function loginWithStudentPin() {
       studentId: data.studentId || studentId,
       displayName: data.displayName || data.studentId || studentId,
       classId: data.classId || "",
+      role: data.role === "teacher" ? "teacher" : "student",
       lastLoginAt: Date.now()
     };
 
@@ -1527,6 +1743,7 @@ async function loginWithStudentPin() {
       studentId: profile.studentId,
       displayName: profile.displayName,
       classId: profile.classId,
+      role: profile.role,
       lastLoginAt: serverTimestamp()
     }, { merge: true });
 
@@ -1537,7 +1754,8 @@ async function loginWithStudentPin() {
       user: {
         uid: credential.user.uid,
         displayName: profile.displayName,
-        isAnonymous: false
+        isAnonymous: false,
+        role: profile.role
       },
       profile
     });
@@ -1640,6 +1858,176 @@ function updateLocalVocabCacheOwner() {
   if (owner && owner !== state.vocabCacheOwner) {
     saveVocabCacheOwner(owner);
   }
+}
+
+function isTeacherAccount() {
+  return studentAuthState.profile?.role === "teacher"
+    || studentAuthState.user?.role === "teacher";
+}
+
+async function syncTeacherLiveVocab(options = {}) {
+  const firebase = getFirebaseBundle();
+  if (!studentAuthState.authenticated || !firebase?.db || !firebase.modules?.collection || !firebase.modules?.getDocs) {
+    return state.teacherLiveVocab || [];
+  }
+
+  const now = Date.now();
+  if (
+    !options.force
+    && teacherLiveVocabLastSyncAt
+    && now - teacherLiveVocabLastSyncAt < 15000
+  ) {
+    return state.teacherLiveVocab || [];
+  }
+  if (teacherLiveVocabSyncPromise) return teacherLiveVocabSyncPromise;
+
+  teacherLiveVocabSyncPromise = (async () => {
+    const { collection, getDocs } = firebase.modules;
+    const snapshot = await getDocs(collection(firebase.db, "teacherVocabLive"));
+    const entries = snapshot.docs
+      .map((docSnapshot) => normalizeTeacherLiveEntry({
+        id: docSnapshot.id,
+        sourceEntryId: docSnapshot.id,
+        ...(docSnapshot.data() || {})
+      }))
+      .filter((entry) => entry && !entry.disabled);
+    state.teacherLiveVocab = entries;
+    teacherLiveVocabLastSyncAt = Date.now();
+    saveTeacherLiveVocabEntries(entries);
+    if (vocabEntryLookupState.word) {
+      void refreshVocabTeacherLookup({ force: true, skipCloudRefresh: true });
+    }
+    return entries;
+  })().catch((error) => {
+    console.warn("Teacher live vocab sync failed:", error);
+    return state.teacherLiveVocab || [];
+  }).finally(() => {
+    teacherLiveVocabSyncPromise = null;
+  });
+
+  return teacherLiveVocabSyncPromise;
+}
+
+function mergeTeacherLiveVocabEntries(entries = []) {
+  const byId = new Map((state.teacherLiveVocab || []).map((entry) => [entry.id || entry.sourceEntryId, entry]));
+  entries.map(normalizeTeacherLiveEntry).filter(Boolean).forEach((entry) => {
+    const key = entry.id || entry.sourceEntryId;
+    if (!key) return;
+    if (entry.disabled) {
+      byId.delete(key);
+    } else {
+      byId.set(key, entry);
+    }
+  });
+  state.teacherLiveVocab = Array.from(byId.values())
+    .sort((left, right) => (Number(right.updatedAt) || 0) - (Number(left.updatedAt) || 0));
+  saveTeacherLiveVocabEntries(state.teacherLiveVocab);
+  return state.teacherLiveVocab;
+}
+
+async function fetchTeacherLiveVocabWord(word, options = {}) {
+  const key = normalizeVocabWord(word);
+  const firebase = getFirebaseBundle();
+  if (!key || !studentAuthState.authenticated || !firebase?.db || !firebase.modules?.collection || !firebase.modules?.query || !firebase.modules?.where || !firebase.modules?.getDocs) {
+    return getTeacherLiveVocabMatches(key);
+  }
+
+  const checkedAt = teacherLiveVocabLookupCheckedAt.get(key) || 0;
+  if (!options.force && checkedAt && Date.now() - checkedAt < TEACHER_LIVE_LOOKUP_RETRY_MS) {
+    return getTeacherLiveVocabMatches(key);
+  }
+  if (teacherLiveVocabLookupRequests.has(key)) return teacherLiveVocabLookupRequests.get(key);
+
+  const request = (async () => {
+    const { collection, query, where, getDocs } = firebase.modules;
+    const collectionRef = collection(firebase.db, "teacherVocabLive");
+    const [wordSnapshot, aliasSnapshot] = await Promise.all([
+      getDocs(query(collectionRef, where("word", "==", key))),
+      getDocs(query(collectionRef, where("aliases", "array-contains", key))).catch(() => ({ docs: [] }))
+    ]);
+    const entries = [...wordSnapshot.docs, ...aliasSnapshot.docs]
+      .map((docSnapshot) => normalizeTeacherLiveEntry({
+        id: docSnapshot.id,
+        sourceEntryId: docSnapshot.id,
+        ...(docSnapshot.data() || {})
+      }))
+      .filter(Boolean);
+    mergeTeacherLiveVocabEntries(entries);
+    teacherLiveVocabLookupCheckedAt.set(key, Date.now());
+    return getTeacherLiveVocabMatches(key);
+  })().catch((error) => {
+    console.warn("Teacher live vocab word lookup failed:", error);
+    teacherLiveVocabLookupCheckedAt.set(key, Date.now());
+    return getTeacherLiveVocabMatches(key);
+  }).finally(() => {
+    teacherLiveVocabLookupRequests.delete(key);
+  });
+
+  teacherLiveVocabLookupRequests.set(key, request);
+  return request;
+}
+
+function buildTeacherLiveVocabPayload(entry = {}, previous = {}) {
+  const normalized = normalizeTeacherLiveEntry(entry);
+  if (!normalized) return null;
+  const uid = studentAuthState.profile?.uid || studentAuthState.user?.uid || "";
+  const createdAt = previous.createdAt || Date.now();
+  return {
+    word: normalized.word,
+    display: normalized.display,
+    meaning: normalized.meaning,
+    pos: normalized.pos,
+    type: normalized.type,
+    aliases: normalized.aliases,
+    level: normalized.level,
+    source: "teacher-live",
+    notes: normalized.notes,
+    disabled: Boolean(entry.disabled),
+    createdAt,
+    updatedAt: Date.now(),
+    createdBy: previous.createdBy || uid,
+    updatedBy: uid
+  };
+}
+
+async function saveTeacherLiveVocabEntry(rawEntry = {}) {
+  const firebase = getFirebaseBundle();
+  if (!isTeacherAccount() || !firebase?.db || !firebase.modules?.doc || !firebase.modules?.setDoc || !firebase.modules?.serverTimestamp) {
+    throw new Error("teacher-auth-required");
+  }
+
+  const entry = normalizeTeacherLiveEntry(rawEntry);
+  if (!entry) throw new Error("invalid-teacher-vocab-entry");
+  const entryId = makeTeacherLiveEntryId(entry);
+  const existing = (state.teacherLiveVocab || []).find((item) => item.id === entryId || item.sourceEntryId === entryId) || {};
+  const payload = buildTeacherLiveVocabPayload({
+    ...entry,
+    sourceEntryId: entryId,
+    id: entryId
+  }, existing);
+  if (!payload) throw new Error("invalid-teacher-vocab-entry");
+
+  const { doc, setDoc, serverTimestamp } = firebase.modules;
+  await setDoc(doc(firebase.db, "teacherVocabLive", entryId), {
+    ...payload,
+    createdAt: existing.createdAt || serverTimestamp(),
+    updatedAt: serverTimestamp()
+  }, { merge: true });
+
+  const localEntry = normalizeTeacherLiveEntry({
+    ...payload,
+    id: entryId,
+    sourceEntryId: entryId,
+    createdAt: Date.now(),
+    updatedAt: Date.now()
+  });
+  state.teacherLiveVocab = [
+    localEntry,
+    ...(state.teacherLiveVocab || []).filter((item) => item.id !== entryId && item.sourceEntryId !== entryId)
+  ].filter(Boolean);
+  saveTeacherLiveVocabEntries(state.teacherLiveVocab);
+  teacherLiveVocabLastSyncAt = Date.now();
+  return localEntry;
 }
 
 function normalizeVocabSyncQueue(queue = {}) {
@@ -2166,6 +2554,14 @@ function dedupeVocabLookupMatches(matches = []) {
 }
 
 async function buildVocabLookupMatches(word) {
+  let liveTeacherMatches = getTeacherLiveVocabMatches(word);
+  if (!liveTeacherMatches.length && studentAuthState.authenticated) {
+    liveTeacherMatches = await fetchTeacherLiveVocabWord(word);
+  }
+  if (liveTeacherMatches.length) {
+    return dedupeVocabLookupMatches(liveTeacherMatches).slice(0, 12);
+  }
+
   const curatedMatches = getCuratedVocabSenseMatches(word);
   const curatedOverrideMatches = curatedMatches.filter((entry) => entry.overrideTeacher);
   if (curatedOverrideMatches.length) {
@@ -6063,6 +6459,9 @@ el.vocabSettingsBtn?.addEventListener("click", openSettings);
 document.querySelectorAll("[data-close-settings]").forEach((button) => {
   button.addEventListener("click", closeSettings);
 });
+document.querySelectorAll("[data-close-teacher-vocab]").forEach((button) => {
+  button.addEventListener("click", closeTeacherVocabModal);
+});
 document.querySelectorAll("[data-close-student-login]").forEach((button) => {
   button.addEventListener("click", closeStudentLogin);
 });
@@ -6071,6 +6470,18 @@ el.studentPinInput?.addEventListener("click", () => activateTextEntryTarget("stu
 el.studentLoginSubmit?.addEventListener("click", loginWithStudentPin);
 el.studentLogoutBtn?.addEventListener("click", logoutStudent);
 el.settingsLogoutBtn?.addEventListener("click", logoutStudent);
+el.settingsTeacherVocabBtn?.addEventListener("click", openTeacherVocabModal);
+el.teacherVocabSaveBtn?.addEventListener("click", submitTeacherVocabEntry);
+el.teacherVocabWordInput?.addEventListener("keydown", (event) => {
+  if (event.key !== "Enter") return;
+  event.preventDefault();
+  el.teacherVocabMeaningInput?.focus();
+});
+el.teacherVocabMeaningInput?.addEventListener("keydown", (event) => {
+  if (event.key !== "Enter") return;
+  event.preventDefault();
+  submitTeacherVocabEntry();
+});
 el.sfxVolumeInput?.addEventListener("input", updateSfxVolume);
 el.sfxVolumeInput?.addEventListener("change", previewSfxVolume);
 el.vocabWordInput?.addEventListener("click", () => handleVocabEntryTap("vocabWord"));
@@ -6092,6 +6503,7 @@ document.addEventListener("keydown", (event) => {
 
   if (event.key === "Escape") {
     closeStreakModal();
+    closeTeacherVocabModal();
     closeSettings();
     closeStudentLogin();
     closeVerbTableReference();

@@ -1300,6 +1300,7 @@ exports.studentLogin = onCall({
   const uid = account.uid || `student_${studentId.toLowerCase()}`;
   const displayName = account.displayName || studentId;
   const classId = account.classId || "";
+  const role = account.role === "teacher" ? "teacher" : "student";
   const email = account.email || makeStudentEmail(studentId);
   const authPassword = makeStudentPassword(studentId, pin, salt);
 
@@ -1318,7 +1319,7 @@ exports.studentLogin = onCall({
   });
 
   await admin.auth().setCustomUserClaims(uid, {
-    role: "student",
+    role,
     studentId,
     classId
   });
@@ -1328,6 +1329,7 @@ exports.studentLogin = onCall({
     email,
     displayName,
     classId,
+    role,
     lastLoginAt: admin.firestore.FieldValue.serverTimestamp(),
     failedLoginCount: 0
   }, { merge: true });
@@ -1336,6 +1338,7 @@ exports.studentLogin = onCall({
     studentId,
     displayName,
     classId,
+    role,
     lastLoginAt: admin.firestore.FieldValue.serverTimestamp()
   }, { merge: true });
 
@@ -1344,7 +1347,8 @@ exports.studentLogin = onCall({
     authPassword,
     studentId,
     displayName,
-    classId
+    classId,
+    role
   };
 });
 

@@ -3338,6 +3338,215 @@ body.settings-open {
   overflow: hidden;
 }
 
+.settings-teacher-vocab-btn {
+  min-height: 52px;
+  color: #176b5f;
+  background: var(--soft-blue);
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 0 #bde0e1;
+}
+
+.teacher-vocab-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 4560;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(41, 60, 64, 0.38);
+  backdrop-filter: blur(8px);
+}
+
+.teacher-vocab-backdrop {
+  position: absolute;
+  inset: 0;
+  cursor: default;
+  background: transparent;
+  border: 0;
+}
+
+.teacher-vocab-panel {
+  position: relative;
+  z-index: 1;
+  width: min(560px, 100%);
+  max-height: calc(100svh - 36px);
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  overflow-y: auto;
+  background: #ffffff;
+  border: 4px dashed var(--primary-color);
+  border-radius: 28px;
+  box-shadow: 0 0 0 6px #ffffff, 0 14px 26px rgba(78, 205, 196, 0.24);
+}
+
+.teacher-vocab-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 50px;
+  gap: 12px;
+  align-items: start;
+  padding-bottom: 12px;
+  border-bottom: 2px dashed #e9ecef;
+}
+
+.teacher-vocab-kicker {
+  width: fit-content;
+  padding: 5px 12px;
+  color: #5d4037;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  background: var(--secondary-color);
+  border-radius: 999px;
+  box-shadow: 0 3px 0 var(--secondary-dark);
+}
+
+.teacher-vocab-header h2 {
+  margin-top: 8px;
+  text-align: left;
+}
+
+.teacher-vocab-close {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  color: #ffffff;
+  font-size: 34px;
+  font-weight: 900;
+  line-height: 1;
+  cursor: pointer;
+  background: var(--danger-color);
+  border: 0;
+  border-radius: 16px;
+  box-shadow: 0 5px 0 var(--danger-dark);
+}
+
+.teacher-vocab-status {
+  min-height: 46px;
+  display: grid;
+  align-items: center;
+  padding: 10px 14px;
+  color: #5d4037;
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1.35;
+  background: var(--soft-yellow);
+  border: 2px dashed var(--secondary-dark);
+  border-radius: 16px;
+  box-shadow: 0 4px 0 rgba(255, 183, 3, 0.2);
+}
+
+.teacher-vocab-status.error {
+  color: var(--danger-dark);
+  background: var(--soft-red);
+  border-color: var(--danger-color);
+  box-shadow: 0 4px 0 #ffc9c9;
+}
+
+.teacher-vocab-status.success {
+  color: var(--correct-dark);
+  background: var(--soft-green);
+  border-color: var(--correct-color);
+  box-shadow: 0 4px 0 #b7e7bf;
+}
+
+.teacher-vocab-status.loading {
+  color: #176b5f;
+  background: var(--soft-blue);
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 0 #bde0e1;
+}
+
+.teacher-vocab-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 108px;
+  gap: 12px;
+  padding: 14px;
+  background: var(--soft-blue);
+  border: 2px dashed var(--primary-color);
+  border-radius: 20px;
+  box-shadow: 0 4px 0 #bde0e1;
+}
+
+.teacher-vocab-field {
+  display: grid;
+  gap: 7px;
+}
+
+.teacher-vocab-field-wide,
+.teacher-vocab-save-btn {
+  grid-column: 1 / -1;
+}
+
+.teacher-vocab-field span,
+.teacher-vocab-recent-head {
+  color: var(--primary-dark);
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+
+.teacher-vocab-field input,
+.teacher-vocab-field select {
+  width: 100%;
+  min-height: 50px;
+  padding: 10px 12px;
+  color: #5d4037;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 900;
+  background: #fffdf2;
+  border: 3px dashed var(--border-color);
+  border-radius: 16px;
+  outline: none;
+  box-shadow: inset 0 -3px 0 rgba(255, 230, 109, 0.26);
+}
+
+.teacher-vocab-field input:focus,
+.teacher-vocab-field select:focus {
+  background: #ffffff;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 4px rgba(78, 205, 196, 0.16), inset 0 -3px 0 rgba(78, 205, 196, 0.18);
+}
+
+.teacher-vocab-save-btn {
+  min-height: 52px;
+}
+
+.teacher-vocab-recent-list {
+  display: grid;
+  gap: 8px;
+}
+
+.teacher-vocab-recent-row,
+.teacher-vocab-empty {
+  display: grid;
+  gap: 3px;
+  padding: 10px 12px;
+  background: #ffffff;
+  border: 2px dashed var(--border-color);
+  border-radius: 16px;
+  box-shadow: 0 3px 0 #e9ecef;
+}
+
+.teacher-vocab-recent-row strong {
+  color: var(--primary-dark);
+  font-size: 17px;
+  font-weight: 900;
+}
+
+.teacher-vocab-recent-row span,
+.teacher-vocab-empty {
+  color: #5d4037;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+body.teacher-vocab-open {
+  overflow: hidden;
+}
+
 .verb-table-reference-header {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 50px;

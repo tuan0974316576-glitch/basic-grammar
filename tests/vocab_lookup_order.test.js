@@ -10,6 +10,17 @@ const senseBank = require("../vocab_sense_bank.js");
 const cedict = require("../cc_cedict_supplement.js");
 const reverseCedict = require("../cc_cedict_reverse.js");
 
+const liveTeacherEntries = [
+  {
+    id: "live-corporate-company",
+    word: "corporate",
+    meaning: "公司層面的",
+    pos: "adjective",
+    type: "word",
+    source: "teacher-live"
+  }
+];
+
 reverseCedict.seed([
   { id: "ccr-bacon", word: "bacon", meaning: "培根 / 煙肉", type: "word" },
   { id: "ccr-rule-out", word: "rule out", meaning: "排除", pos: "verb", type: "phrase" }
@@ -35,6 +46,9 @@ function dedupe(matches = []) {
 }
 
 function lookupForStudent(word) {
+  const liveMatches = liveTeacherEntries.filter((entry) => teacherVocab.normalizeWord(entry.word) === teacherVocab.normalizeWord(word));
+  if (liveMatches.length) return dedupe(liveMatches).slice(0, 12);
+
   const curatedMatches = senseBank.lookup(word, { limit: 12 }).map((entry) => ({
     ...entry,
     source: entry.source || "curated-sense-bank"
@@ -89,6 +103,11 @@ assert.deepStrictEqual(
 assert.deepStrictEqual(
   lookupForStudent("rule out").map((entry) => `${entry.pos || entry.type}:${entry.meaning}:${entry.source}`),
   ["verb:排除:cc-cedict-reverse"]
+);
+
+assert.deepStrictEqual(
+  lookupForStudent("corporate").map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+  ["adjective:公司層面的:teacher-live"]
 );
 
 assert.deepStrictEqual(lookupForStudent("not a real class word"), []);
