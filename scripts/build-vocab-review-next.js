@@ -23,17 +23,24 @@ const PRESETS = {
     indexFile: "oxford_vocab_review_index.json",
     source: "oxford",
     skipJunk: false
+  },
+  supplement: {
+    prefix: "supplement_vocab_review_batch",
+    indexFile: "supplement_vocab_review_index.json",
+    source: "supplement",
+    skipJunk: false
   }
 };
 
 function usage() {
   console.log([
     "Usage:",
-    "  node scripts/build-vocab-review-next.js [--preset teacher|oxford] [--limit 100] [--offset n] [--count n] [--all] [--no-xlsx]",
+    "  node scripts/build-vocab-review-next.js [--preset teacher|oxford|supplement] [--limit 100] [--offset n] [--count n] [--all] [--no-xlsx]",
     "",
     "Builds the next private vocab review batch from the matching private index.",
     "Default preset is teacher: source teacher-audit with --skip-junk.",
-    "Oxford preset uses source oxford, prefix oxford_vocab_review_batch, and a separate oxford index."
+    "Oxford preset uses source oxford, prefix oxford_vocab_review_batch, and a separate oxford index.",
+    "Supplement preset uses country / city / Hong Kong life / school checklist candidates."
   ].join("\n"));
 }
 

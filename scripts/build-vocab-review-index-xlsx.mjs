@@ -111,6 +111,13 @@ function getReviewKind(index = {}) {
       purpose: "呢份係私有總覽，幫你管理 Oxford / common vocab review Excel。唔會放入 app，唔會 commit。"
     };
   }
+  if (/^supplement_/i.test(prefix)) {
+    return {
+      label: "Supplement Vocab",
+      tableName: "SupplementVocabReviewIndex",
+      purpose: "呢份係私有總覽，幫你管理國家名、城市、香港生活詞、學校常用詞 review Excel。唔會放入 app，唔會 commit。"
+    };
+  }
   return {
     label: "Teacher Vocab",
     tableName: "TeacherVocabReviewIndex",

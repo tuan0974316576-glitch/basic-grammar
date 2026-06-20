@@ -9,6 +9,7 @@ const TeacherVocab = require("../teacher_vocab.js");
 const VocabSenseBank = require("../vocab_sense_bank.js");
 const CcCedictSupplement = require("../cc_cedict_supplement.js");
 const TeacherAudit = require("./audit-teacher-vocab.js");
+const SupplementChecklist = require("./vocab-supplement-checklist.js");
 const meaningGenerator = require("./generate-vocab-meanings.js");
 
 const ROOT_DIR = path.resolve(__dirname, "..");
@@ -16,9 +17,10 @@ const PRIVATE_EXPORTS_DIR = path.join(ROOT_DIR, "private_exports");
 const DEFAULT_OUTPUT = path.join(PRIVATE_EXPORTS_DIR, "vocab_review_batch_0000.json");
 const DEFAULT_LIMIT = 100;
 const SOURCE_OXFORD = "oxford";
+const SOURCE_SUPPLEMENT = "supplement";
 const SOURCE_TEACHER_AUDIT = "teacher-audit";
 const SOURCE_ALL = "all";
-const SUPPORTED_SOURCES = new Set([SOURCE_OXFORD, SOURCE_TEACHER_AUDIT, SOURCE_ALL]);
+const SUPPORTED_SOURCES = new Set([SOURCE_OXFORD, SOURCE_SUPPLEMENT, SOURCE_TEACHER_AUDIT, SOURCE_ALL]);
 const OFFLINE_DICTIONARY_DIR = path.join(ROOT_DIR, "assets", "offline-dictionary");
 const CEDICT_REVERSE_DIR = path.join(ROOT_DIR, "assets", "cc-cedict-reverse");
 const MEANING_SEED_PATH = path.join(PRIVATE_EXPORTS_DIR, "vocab_meaning_seed.js");
@@ -31,7 +33,8 @@ function usage() {
     "  node scripts/build-vocab-review-batch.js [options]",
     "",
     "Options:",
-    "  --source <oxford|teacher-audit|all>  Review source. Default: oxford.",
+    "  --source <oxford|supplement|teacher-audit|all>",
+    "                                      Review source. Default: oxford.",
     "  --offset <n>                         Starting row. Default: 0.",
     "  --limit <n>                          Batch size. Default: 100.",
     "  --level <A1-C1>                      Oxford CEFR level filter.",
@@ -333,6 +336,43 @@ function makeOxfordReviewTasks() {
   }));
 }
 
+function makeSupplementReviewTasks() {
+  return (SupplementChecklist.entries || []).map((entry) => {
+    const word = normalizeWord(entry.word || entry.display);
+    const pos = normalizePos(entry.pos);
+    const meaning = normalizeMeaning(entry.meaning);
+    const category = String(entry.category || "supplement").trim();
+    const display = String(entry.display || entry.word || word).trim() || word;
+    return {
+      id: entry.id || `supplement:${category}:${word}`,
+      source: SOURCE_SUPPLEMENT,
+      word,
+      display,
+      level: String(entry.level || "").trim().toUpperCase(),
+      oxfordPos: pos ? [pos] : [],
+      posRaw: pos ? [formatPosLabel(pos)] : [],
+      type: inferType(word, entry.type),
+      aliases: Array.isArray(entry.aliases) ? entry.aliases : [],
+      supplementDrafts: meaning ? [{
+        id: `supplement-draft:${category}:${word}:${pos || "entry"}`,
+        word,
+        display,
+        pos,
+        posLabel: formatPosLabel(pos),
+        meaning,
+        type: inferType(word, entry.type),
+        source: "local-supplement-checklist",
+        sourceEntryId: entry.id || ""
+      }] : [],
+      checklist: {
+        source: "local supplement checklist",
+        category,
+        note: "Country / city / Hong Kong life / school vocab candidate. Review before promotion."
+      }
+    };
+  }).filter((task) => task.word);
+}
+
 function makeTeacherAuditTasks() {
   return TeacherAudit.buildAuditRows(TeacherVocab.entries || [])
     .map((row) => {
@@ -383,6 +423,9 @@ function getReviewTasks(options = {}) {
   if (options.source === SOURCE_OXFORD || options.source === SOURCE_ALL) {
     taskGroups.push(...makeOxfordReviewTasks());
   }
+  if (options.source === SOURCE_SUPPLEMENT || options.source === SOURCE_ALL) {
+    taskGroups.push(...makeSupplementReviewTasks());
+  }
   if (options.source === SOURCE_TEACHER_AUDIT || options.source === SOURCE_ALL) {
     taskGroups.push(...makeTeacherAuditTasks());
   }
@@ -395,6 +438,8 @@ function getReviewTasks(options = {}) {
     .filter((task) => {
       const key = task.source === SOURCE_TEACHER_AUDIT
         ? `${task.source}:${task.audit?.id || task.id}:${task.word}:${task.audit?.originalMeaning || ""}`
+        : task.source === SOURCE_SUPPLEMENT
+          ? `${task.source}:${task.id}:${task.word}:${task.checklist?.category || ""}`
         : `${task.source}:${task.word}:${(task.oxfordPos || []).join(",")}`;
       if (seen.has(key)) return false;
       seen.add(key);
@@ -426,6 +471,8 @@ function getDraftFlags(task, existing, drafts) {
   });
 
   if (task.source === SOURCE_TEACHER_AUDIT) flags.push("teacher-audit");
+  if (task.source === SOURCE_SUPPLEMENT) flags.push("supplement-checklist");
+  if (task.checklist?.category) flags.push(`category:${task.checklist.category}`);
   (task.audit?.reasons || []).forEach((reason) => flags.push(`audit:${reason}`));
   if (task.type === "phrase") flags.push("phrase");
   if ((task.oxfordPos || []).length > 1) flags.push("multi-pos");
@@ -454,7 +501,10 @@ function makeReviewRow(task, lookups = {}) {
   };
   const drafts = {
     ecdict: lookups.ecdict?.(task.word, task) || lookupOfflineDictionary(task.word, { pos: task.oxfordPos, limit: 10 }),
-    generatedSeed: lookups.generatedSeed?.(task.word, task) || lookupMeaningSeed(task.word),
+    generatedSeed: lookups.generatedSeed?.(task.word, task) || [
+      ...(task.supplementDrafts || []),
+      ...lookupMeaningSeed(task.word)
+    ],
     ccCedictReverse: lookups.ccCedictReverse?.(task.word, task) || lookupCedictReverse(task.word, { limit: 8 })
   };
 
@@ -616,9 +666,11 @@ module.exports = {
   lookupCedictReverse,
   lookupOfflineDictionary,
   isLikelyTeacherAuditJunk,
+  makeSupplementReviewTasks,
   makeReviewRow,
   normalizeMeaningGroupKey,
   parseArgs,
+  SOURCE_SUPPLEMENT,
   stringifyEntries,
   writeOutputs
 };

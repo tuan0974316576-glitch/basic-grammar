@@ -118,4 +118,25 @@ assert.ok(highValueTeacherAuditTasks.length < teacherAuditTasks.length);
 assert.ok(highValueTeacherAuditTasks.length > 3000);
 assert.ok(!highValueTeacherAuditTasks.some((task) => /^[a-z]$/.test(task.word)));
 
+const supplementTasks = review.getReviewTasks({ source: "supplement" });
+assert.ok(supplementTasks.length > 100);
+assert.ok(supplementTasks.some((task) => task.word === "egg tart"));
+assert.ok(supplementTasks.some((task) => task.word === "mong kok"));
+assert.ok(supplementTasks.some((task) => task.word === "worksheet"));
+assert.ok(supplementTasks.every((task) => task.source === "supplement"));
+
+const supplementRow = review.makeReviewRow(supplementTasks.find((task) => task.word === "egg tart"), {
+  teacher: () => [],
+  curated: () => [],
+  ccSupplement: () => [],
+  ecdict: () => [],
+  ccCedictReverse: () => []
+});
+assert.deepStrictEqual(
+  supplementRow.drafts.generatedSeed.map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+  ["noun:蛋撻:local-supplement-checklist"]
+);
+assert.ok(supplementRow.flags.includes("supplement-checklist"));
+assert.ok(supplementRow.flags.includes("category:hong-kong-life"));
+
 console.log("build_vocab_review_batch tests passed");

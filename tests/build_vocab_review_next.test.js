@@ -61,6 +61,15 @@ const explicitSource = next.parseArgs(["--preset", "oxford", "--source", "all", 
 assert.strictEqual(explicitSource.source, "all");
 assert.strictEqual(explicitSource.prefix, "custom_review");
 
+const supplementParsed = next.parseArgs(["--preset", "supplement", "--dir", tmpDir, "--limit", "10", "--no-xlsx"]);
+assert.strictEqual(supplementParsed.preset, "supplement");
+assert.strictEqual(supplementParsed.prefix, "supplement_vocab_review_batch");
+assert.strictEqual(supplementParsed.source, "supplement");
+assert.strictEqual(supplementParsed.skipJunk, false);
+assert.strictEqual(supplementParsed.indexOut, path.join(tmpDir, "supplement_vocab_review_index.json"));
+assert.strictEqual(supplementParsed.limit, 10);
+assert.strictEqual(supplementParsed.xlsx, false);
+
 assert.strictEqual(next.getBatchCount({
   dir: tmpDir,
   prefix: "teacher_vocab_review_batch_highvalue",
