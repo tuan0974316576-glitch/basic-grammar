@@ -19,6 +19,10 @@ assert.strictEqual(importer.detectType("be+pp"), "pattern");
 assert.strictEqual(importer.detectType("as+名詞"), "pattern");
 assert.strictEqual(importer.detectType("intend to"), "phrase");
 assert.deepStrictEqual(importer.splitMeanings("力量/強迫"), ["力量", "強迫"]);
+assert.strictEqual(importer.normalizePos("modal v."), "modal");
+assert.strictEqual(importer.normalizePos("aux."), "auxiliary");
+assert.strictEqual(importer.normalizePos("exclam."), "exclamation");
+assert.strictEqual(importer.normalizePos("num."), "number");
 
 const extracted = importer.extractEntriesFromRows({
   sourceFile: "fixture.xlsx",
@@ -48,13 +52,15 @@ const manualEntries = importer.createManualEntriesFromData({
   meta: { lesson: "Today" },
   entries: [
     { word: "appeal", meaning: "吸引力", pos: "noun" },
-    { word: "manage to", meaning: "能夠", type: "phrase", aliases: ["mange to"] }
+    { word: "manage to", meaning: "能夠", type: "phrase", aliases: ["mange to"] },
+    { word: "will", meaning: "將會", pos: "modal" }
   ]
 }, "manual.json");
-assert.strictEqual(manualEntries.length, 2);
+assert.strictEqual(manualEntries.length, 3);
 assert.strictEqual(manualEntries[0].override, true);
 assert.strictEqual(manualEntries[0].pos, "noun");
 assert.deepStrictEqual(manualEntries[1].aliases, ["mange to"]);
+assert.strictEqual(manualEntries[2].pos, "modal");
 
 const overridden = importer.dedupeEntries([
   {

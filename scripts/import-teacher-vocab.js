@@ -38,7 +38,22 @@ const POS_ALIASES = {
   代名詞: "pronoun",
   det: "determiner",
   determiner: "determiner",
-  限定詞: "determiner"
+  限定詞: "determiner",
+  modal: "modal",
+  "modal v": "modal",
+  modalverb: "modal",
+  auxiliary: "auxiliary",
+  aux: "auxiliary",
+  "auxiliary v": "auxiliary",
+  auxiliaryverb: "auxiliary",
+  exclam: "exclamation",
+  exclamation: "exclamation",
+  interj: "exclamation",
+  interjection: "exclamation",
+  number: "number",
+  num: "number",
+  phrase: "phrase",
+  pattern: "pattern"
 };
 
 function usage() {
