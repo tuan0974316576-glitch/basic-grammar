@@ -619,5 +619,6 @@ module.exports = {
   makeReviewRow,
   normalizeMeaningGroupKey,
   parseArgs,
-  stringifyEntries
+  stringifyEntries,
+  writeOutputs
 };
