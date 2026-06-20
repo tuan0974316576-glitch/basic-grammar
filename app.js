@@ -253,6 +253,7 @@ let teacherLiveVocabSyncPromise = null;
 let teacherLiveVocabLastSyncAt = 0;
 const teacherLiveVocabLookupRequests = new Map();
 const teacherLiveVocabLookupCheckedAt = new Map();
+let teacherLiveVocabFilter = "";
 let vocabQuizState = null;
 let studentLoginGraceTimer = 0;
 let studentAuthState = {
@@ -334,6 +335,8 @@ const el = {
   teacherVocabPosInput: document.querySelector("#teacher-vocab-pos-input"),
   teacherVocabMeaningInput: document.querySelector("#teacher-vocab-meaning-input"),
   teacherVocabSaveBtn: document.querySelector("#teacher-vocab-save-btn"),
+  teacherVocabSearchInput: document.querySelector("#teacher-vocab-search-input"),
+  teacherVocabCount: document.querySelector("#teacher-vocab-count"),
   teacherVocabRecentList: document.querySelector("#teacher-vocab-recent-list"),
   studentLoginModal: document.querySelector("#student-login-modal"),
   studentLoginStatus: document.querySelector("#student-login-status"),
@@ -613,6 +616,13 @@ function normalizeVocabWord(value) {
 
 function normalizeVocabMeaning(value) {
   return VOCAB_DATA.normalizeMeaning(value);
+}
+
+function normalizeTeacherVocabSearchText(value) {
+  return normalizeVocabMeaning(value)
+    .replace(/[’‘]/g, "'")
+    .replace(/\s+/g, " ")
+    .toLowerCase();
 }
 
 function normalizeVocabMeaningKey(value) {
@@ -1512,22 +1522,45 @@ function setTeacherVocabStatus(message = "", type = "") {
 
 function renderTeacherLiveVocabRecentList() {
   if (!el.teacherVocabRecentList) return;
-  const recent = [...(state.teacherLiveVocab || [])]
+  const filter = normalizeTeacherVocabSearchText(teacherLiveVocabFilter || el.teacherVocabSearchInput?.value || "");
+  const activeEntries = [...(state.teacherLiveVocab || [])]
     .filter((entry) => !entry.disabled)
-    .sort((left, right) => (Number(right.updatedAt) || 0) - (Number(left.updatedAt) || 0))
-    .slice(0, 12);
+    .sort((left, right) => (Number(right.updatedAt) || 0) - (Number(left.updatedAt) || 0));
+  const filteredEntries = filter
+    ? activeEntries.filter((entry) => {
+      const haystack = [
+        entry.word,
+        entry.display,
+        entry.meaning,
+        getVocabEntryMetaLabel(entry),
+        ...(Array.isArray(entry.aliases) ? entry.aliases : [])
+      ].map((value) => normalizeTeacherVocabSearchText(value)).join(" ");
+      return haystack.includes(filter);
+    })
+    : activeEntries;
+  const visibleEntries = filteredEntries.slice(0, filter ? 30 : 16);
 
-  if (!recent.length) {
+  if (el.teacherVocabCount) {
+    const totalText = `${activeEntries.length} 個雲端字`;
+    el.teacherVocabCount.textContent = filter
+      ? `${filteredEntries.length}/${activeEntries.length} 個結果`
+      : totalText;
+  }
+
+  if (!visibleEntries.length) {
     const empty = document.createElement("div");
     empty.className = "teacher-vocab-empty";
-    empty.textContent = "未有雲端老師字。";
+    empty.textContent = filter ? "搜尋不到呢個老師字。" : "未有雲端老師字。";
     el.teacherVocabRecentList.replaceChildren(empty);
     return;
   }
 
-  el.teacherVocabRecentList.replaceChildren(...recent.map((entry) => {
+  el.teacherVocabRecentList.replaceChildren(...visibleEntries.map((entry) => {
     const row = document.createElement("div");
     row.className = "teacher-vocab-recent-row";
+
+    const text = document.createElement("div");
+    text.className = "teacher-vocab-recent-text";
 
     const word = document.createElement("strong");
     word.textContent = entry.display || entry.word;
@@ -1535,7 +1568,16 @@ function renderTeacherLiveVocabRecentList() {
     const meaning = document.createElement("span");
     meaning.textContent = formatVocabMeaningLine(entry);
 
-    row.append(word, meaning);
+    text.append(word, meaning);
+
+    const disableButton = document.createElement("button");
+    disableButton.className = "teacher-vocab-row-action";
+    disableButton.type = "button";
+    disableButton.textContent = "停用";
+    disableButton.setAttribute("aria-label", `停用 ${entry.display || entry.word}`);
+    disableButton.addEventListener("click", () => disableTeacherLiveVocabEntry(entry));
+
+    row.append(text, disableButton);
     return row;
   }));
 }
@@ -1553,10 +1595,11 @@ function openTeacherVocabModal() {
   el.teacherVocabModal.setAttribute("aria-hidden", "false");
   document.body.classList.add("teacher-vocab-open");
   syncModalOpenClass();
+  teacherLiveVocabFilter = "";
+  if (el.teacherVocabSearchInput) el.teacherVocabSearchInput.value = "";
   setTeacherVocabStatus();
   renderTeacherLiveVocabRecentList();
   void syncTeacherLiveVocab({ force: true }).then(renderTeacherLiveVocabRecentList);
-  setTimeout(() => el.teacherVocabWordInput?.focus(), 80);
   playUiSound("step");
 }
 
@@ -2028,6 +2071,41 @@ async function saveTeacherLiveVocabEntry(rawEntry = {}) {
   saveTeacherLiveVocabEntries(state.teacherLiveVocab);
   teacherLiveVocabLastSyncAt = Date.now();
   return localEntry;
+}
+
+async function disableTeacherLiveVocabEntry(rawEntry = {}) {
+  const firebase = getFirebaseBundle();
+  const entry = normalizeTeacherLiveEntry(rawEntry);
+  const entryId = entry?.sourceEntryId || entry?.id;
+  if (!entryId || !isTeacherAccount() || !firebase?.db || !firebase.modules?.doc || !firebase.modules?.setDoc || !firebase.modules?.serverTimestamp) {
+    setTeacherVocabStatus("暫時停用不到，請確認你已用老師帳號登入。", "error");
+    playUiSound("wrong");
+    return;
+  }
+
+  setTeacherVocabStatus("更新雲端字庫中...", "loading");
+  try {
+    const { doc, setDoc, serverTimestamp } = firebase.modules;
+    const uid = studentAuthState.profile?.uid || studentAuthState.user?.uid || "";
+    await setDoc(doc(firebase.db, "teacherVocabLive", entryId), {
+      disabled: true,
+      updatedAt: serverTimestamp(),
+      updatedBy: uid
+    }, { merge: true });
+
+    state.teacherLiveVocab = (state.teacherLiveVocab || [])
+      .filter((item) => item.id !== entryId && item.sourceEntryId !== entryId);
+    saveTeacherLiveVocabEntries(state.teacherLiveVocab);
+    teacherLiveVocabLastSyncAt = Date.now();
+    renderTeacherLiveVocabRecentList();
+    await refreshVocabTeacherLookup({ force: true, skipCloudRefresh: true });
+    setTeacherVocabStatus(`${entry.display || entry.word} 已停用，學生不會再見到。`, "success");
+    playUiSound("next");
+  } catch (error) {
+    console.warn("Teacher vocab disable failed:", error);
+    setTeacherVocabStatus("暫時停用不到，請稍後再試。", "error");
+    playUiSound("wrong");
+  }
 }
 
 function normalizeVocabSyncQueue(queue = {}) {
@@ -6472,6 +6550,10 @@ el.studentLogoutBtn?.addEventListener("click", logoutStudent);
 el.settingsLogoutBtn?.addEventListener("click", logoutStudent);
 el.settingsTeacherVocabBtn?.addEventListener("click", openTeacherVocabModal);
 el.teacherVocabSaveBtn?.addEventListener("click", submitTeacherVocabEntry);
+el.teacherVocabSearchInput?.addEventListener("input", () => {
+  teacherLiveVocabFilter = el.teacherVocabSearchInput?.value || "";
+  renderTeacherLiveVocabRecentList();
+});
 el.teacherVocabWordInput?.addEventListener("keydown", (event) => {
   if (event.key !== "Enter") return;
   event.preventDefault();

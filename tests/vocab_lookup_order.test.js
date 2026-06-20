@@ -18,6 +18,15 @@ const liveTeacherEntries = [
     pos: "adjective",
     type: "word",
     source: "teacher-live"
+  },
+  {
+    id: "live-disabled-corporate",
+    word: "corporate",
+    meaning: "已停用的錯解釋",
+    pos: "adjective",
+    type: "word",
+    source: "teacher-live",
+    disabled: true
   }
 ];
 
@@ -46,7 +55,10 @@ function dedupe(matches = []) {
 }
 
 function lookupForStudent(word) {
-  const liveMatches = liveTeacherEntries.filter((entry) => teacherVocab.normalizeWord(entry.word) === teacherVocab.normalizeWord(word));
+  const liveMatches = liveTeacherEntries.filter((entry) => (
+    !entry.disabled
+    && teacherVocab.normalizeWord(entry.word) === teacherVocab.normalizeWord(word)
+  ));
   if (liveMatches.length) return dedupe(liveMatches).slice(0, 12);
 
   const curatedMatches = senseBank.lookup(word, { limit: 12 }).map((entry) => ({
