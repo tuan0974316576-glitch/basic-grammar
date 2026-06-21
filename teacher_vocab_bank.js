@@ -5,7 +5,7 @@
   root.TEACHER_VOCAB_BANK = bank;
 })(typeof globalThis !== "undefined" ? globalThis : window, {
   "meta": {
-    "generatedAt": "2026-06-20T23:53:14.107Z",
+    "generatedAt": "2026-06-21T01:17:21.709Z",
     "sourceFiles": [
       {
         "name": "Randomisable Vocab Test.xlsx",
@@ -30,10 +30,14 @@
       {
         "name": "teacher_vocab_manual_updates.json",
         "addedEntryCount": 111
+      },
+      {
+        "name": "teacher_vocab_manual_updates.json",
+        "addedEntryCount": 91
       }
     ],
-    "entryCount": 7944,
-    "uniqueWordCount": 5042,
+    "entryCount": 7901,
+    "uniqueWordCount": 5039,
     "conflictCount": 3731,
     "typeCounts": {
       "phrase": 2369,
@@ -42429,49 +42433,6 @@
       "sourceCount": 1
     },
     {
-      "id": "marginalized-any-entry-7602",
-      "word": "marginalized",
-      "display": "marginalized",
-      "meaning": "邊緣化",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "marginalized-any-entry-7572",
-      "word": "marginalized",
-      "display": "marginalized",
-      "meaning": "邊緣化的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "marginalized-any-entry-7608",
-      "word": "marginalized",
-      "display": "marginalized",
-      "meaning": "邊際化",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "marijuana-any-entry-3145",
-      "word": "marijuana",
-      "display": "marijuana",
-      "meaning": "大麻",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
       "id": "marine-any-entry-7082",
       "word": "marine",
       "display": "marine",
@@ -42615,42 +42576,6 @@
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 8
-    },
-    {
-      "id": "marvellous-any-entry-3251",
-      "word": "marvellous",
-      "display": "marvellous",
-      "meaning": "奇妙",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "marvellous-any-entry-2308",
-      "word": "marvellous",
-      "display": "marvellous",
-      "meaning": "奇妙的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "marvellous-any-entry-4867",
-      "word": "marvellous",
-      "display": "marvellous",
-      "meaning": "精彩的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
     },
     {
       "id": "mass-media-any-entry-7665",
@@ -42817,26 +42742,6 @@
       "posReason": "english-adjective-suffix+oxford"
     },
     {
-      "id": "materialism-any-entry-0962",
-      "word": "materialism",
-      "display": "materialism",
-      "meaning": "物質主義",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "materialistic-any-entry-5825",
-      "word": "materialistic",
-      "display": "materialistic",
-      "meaning": "物質主義",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "maternity-leave-any-entry-7623",
       "word": "maternity leave",
       "display": "maternity leave",
@@ -42845,16 +42750,6 @@
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 2
-    },
-    {
-      "id": "mating-any-entry-5715",
-      "word": "mating",
-      "display": "mating",
-      "meaning": "交配",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "matter-noun-entry-0172",
@@ -42897,29 +42792,6 @@
       "sourceCount": 1
     },
     {
-      "id": "meagre-any-entry-5821",
-      "word": "meagre",
-      "display": "meagre",
-      "meaning": "微薄",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "meagre-any-entry-6646",
-      "word": "meagre",
-      "display": "meagre",
-      "meaning": "微薄的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
       "id": "meagre-income-any-entry-1063",
       "word": "meagre income",
       "display": "meagre income",
@@ -42957,16 +42829,6 @@
       "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "meaningless-any-entry-8675",
-      "word": "meaningless",
-      "display": "meaningless",
-      "meaning": "無意思",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
       "sourceCount": 1
     },
     {
@@ -43029,16 +42891,6 @@
       "sourceCount": 1
     },
     {
-      "id": "measure-noun-entry-0583",
-      "word": "measure",
-      "display": "measure",
-      "meaning": "措施",
-      "pos": "noun",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
       "id": "measure-verb-entry-0584",
       "word": "measure",
       "display": "measure",
@@ -43047,16 +42899,6 @@
       "type": "word",
       "needsReview": false,
       "sourceCount": 1
-    },
-    {
-      "id": "measures-any-entry-0284",
-      "word": "measures",
-      "display": "measures",
-      "meaning": "措施",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
     },
     {
       "id": "medal-any-entry-2455",
@@ -43125,26 +42967,6 @@
       "posReason": "chinese-adjective-meaning"
     },
     {
-      "id": "mediocre-any-entry-0552",
-      "word": "mediocre",
-      "display": "mediocre",
-      "meaning": "中庸",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "mediocre-any-entry-7654",
-      "word": "mediocre",
-      "display": "mediocre",
-      "meaning": "平庸",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "meditation-any-entry-6353",
       "word": "meditation",
       "display": "meditation",
@@ -43156,36 +42978,6 @@
       "inferredPos": "noun",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "medium-any-entry-6592",
-      "word": "medium",
-      "display": "medium",
-      "meaning": "中間 / 媒介",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "medium-any-entry-6558",
-      "word": "medium",
-      "display": "medium",
-      "meaning": "媒介",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "medium-noun-entry-6577",
-      "word": "medium",
-      "display": "medium (n)",
-      "meaning": "媒介",
-      "pos": "noun",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1
     },
     {
       "id": "meet-verb-entry-0587",
@@ -43226,36 +43018,6 @@
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 1
-    },
-    {
-      "id": "melancholic-any-entry-3290",
-      "word": "melancholic",
-      "display": "melancholic",
-      "meaning": "鬱鬱寡歡",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
-      "id": "menace-any-entry-6761",
-      "word": "menace",
-      "display": "menace",
-      "meaning": "威脅",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "mend-any-entry-4581",
-      "word": "mend",
-      "display": "mend",
-      "meaning": "修補",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 5
     },
     {
       "id": "mental-health-any-plays-a-part-role-in-5448",
@@ -43347,29 +43109,6 @@
       "posReason": "chinese-adjective-meaning"
     },
     {
-      "id": "merciless-any-entry-7467",
-      "word": "merciless",
-      "display": "merciless",
-      "meaning": "無情",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "merciless-any-entry-7487",
-      "word": "merciless",
-      "display": "merciless",
-      "meaning": "無情的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
       "id": "merely-any-entry-2705",
       "word": "merely",
       "display": "merely",
@@ -43407,19 +43146,6 @@
       "inferredPos": "verb",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "merit-any-entry-0801",
-      "word": "merit",
-      "display": "merit",
-      "meaning": "優點",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 5,
-      "inferredPos": "noun",
-      "posConfidence": 90,
-      "posReason": "chinese-noun-meaning"
     },
     {
       "id": "merits-any-entry-3440",
@@ -43491,16 +43217,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "metaverse-any-entry-3148",
-      "word": "metaverse",
-      "display": "metaverse",
-      "meaning": "元宇宙",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "method-any-entry-3758",
       "word": "method",
       "display": "method",
@@ -43512,76 +43228,6 @@
       "inferredPos": "noun",
       "posConfidence": 90,
       "posReason": "chinese-noun-meaning"
-    },
-    {
-      "id": "metrics-any-entry-7652",
-      "word": "metrics",
-      "display": "metrics",
-      "meaning": "評分準則",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "metrics-any-entry-7637",
-      "word": "metrics",
-      "display": "metrics",
-      "meaning": "評核準則",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "metropolis-any-entry-1918",
-      "word": "metropolis",
-      "display": "metropolis",
-      "meaning": "大城市",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "metropolis-any-entry-1934",
-      "word": "metropolis",
-      "display": "metropolis",
-      "meaning": "大都市",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 6
-    },
-    {
-      "id": "metropolis-any-entry-1942",
-      "word": "metropolis",
-      "display": "metropolis",
-      "meaning": "大都會",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "mexico-any-entry-7911",
-      "word": "mexico",
-      "display": "Mexico",
-      "meaning": "墨西哥",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "microscope-any-entry-7708",
-      "word": "microscope",
-      "display": "microscope",
-      "meaning": "顯微鏡",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
     },
     {
       "id": "might-modal-entry-0423",
@@ -43618,46 +43264,6 @@
       "inferredPos": "noun",
       "posConfidence": 88,
       "posReason": "english-noun-suffix+oxford"
-    },
-    {
-      "id": "millennium-any-entry-5953",
-      "word": "millennium",
-      "display": "millennium",
-      "meaning": "一千年",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "millennium-any-millennials-7661",
-      "word": "millennium",
-      "display": "millennium",
-      "meaning": "一千年 millennials",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "mimic-any-entry-3556",
-      "word": "mimic",
-      "display": "mimic",
-      "meaning": "模仿",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "mimic-any-entry-3663",
-      "word": "mimic",
-      "display": "mimic",
-      "meaning": "模擬",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
     },
     {
       "id": "mind-verb-entry-0128",
@@ -43760,16 +43366,6 @@
       "sourceCount": 1
     },
     {
-      "id": "minerals-any-entry-8095",
-      "word": "minerals",
-      "display": "minerals",
-      "meaning": "礦物質",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "minimise-any-entry-1223",
       "word": "minimise",
       "display": "minimise",
@@ -43832,16 +43428,6 @@
       "sourceCount": 1
     },
     {
-      "id": "minutes-any-entry-2814",
-      "word": "minutes",
-      "display": "minutes",
-      "meaning": "會議紀錄",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "miracle-any-entry-4245",
       "word": "miracle",
       "display": "miracle",
@@ -43901,69 +43487,6 @@
       "posReason": "chinese-adjective-meaning"
     },
     {
-      "id": "misbehaviour-any-entry-1087",
-      "word": "misbehaviour",
-      "display": "misbehaviour",
-      "meaning": "不當行為",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "mischievous-any-entry-7609",
-      "word": "mischievous",
-      "display": "mischievous",
-      "meaning": "愛惡作劇的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "mischievous-any-entry-7558",
-      "word": "mischievous",
-      "display": "mischievous",
-      "meaning": "曳",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "mischievous-any-entry-7595",
-      "word": "mischievous",
-      "display": "mischievous",
-      "meaning": "頑皮",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "misconception-any-entry-3423",
-      "word": "misconception",
-      "display": "misconception",
-      "meaning": "謬誤",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "misconception-any-entry-3399",
-      "word": "misconception",
-      "display": "misconception",
-      "meaning": "錯誤觀念",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "miserable-any-entry-4417",
       "word": "miserable",
       "display": "miserable",
@@ -43990,26 +43513,6 @@
       "posReason": "chinese-adjective-meaning"
     },
     {
-      "id": "mishap-any-entry-5511",
-      "word": "mishap",
-      "display": "mishap",
-      "meaning": "厄運",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 24
-    },
-    {
-      "id": "mishaps-any-entry-6569",
-      "word": "mishaps",
-      "display": "mishaps",
-      "meaning": "厄運",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
       "id": "miss-verb-entry-0593",
       "word": "miss",
       "display": "miss",
@@ -44027,56 +43530,6 @@
       "pos": "adjective",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "mist-any-entry-0891",
-      "word": "mist",
-      "display": "mist",
-      "meaning": "霧氣",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "mistreat-any-entry-2409",
-      "word": "mistreat",
-      "display": "mistreat",
-      "meaning": "虐待",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
-      "id": "mitigate-any-entry-1184",
-      "word": "mitigate",
-      "display": "mitigate",
-      "meaning": "減輕",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 7
-    },
-    {
-      "id": "mitigate-any-entry-1132",
-      "word": "mitigate",
-      "display": "mitigate",
-      "meaning": "舒緩",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 7
-    },
-    {
-      "id": "mix-any-entry-8414",
-      "word": "mix",
-      "display": "mix",
-      "meaning": "混合",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
       "sourceCount": 1
     },
     {
@@ -44179,26 +43632,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "mocha-any-entry-5220",
-      "word": "mocha",
-      "display": "mocha",
-      "meaning": "摩卡",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "mocha-any-entry-5197",
-      "word": "mocha",
-      "display": "mocha",
-      "meaning": "朱古力咖啡",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "model-noun-entry-0597",
       "word": "model",
       "display": "model",
@@ -44255,16 +43688,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "modified-any-entry-4681",
-      "word": "modified",
-      "display": "modified",
-      "meaning": "修改",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "modify-any-entry-4384",
       "word": "modify",
       "display": "modify",
@@ -44317,26 +43740,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "moist-any-entry-5972",
-      "word": "moist",
-      "display": "moist",
-      "meaning": "濕潤",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
-      "id": "moist-any-entry-8040",
-      "word": "moist",
-      "display": "moist",
-      "meaning": "濕潤 / 霧氣",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "moment-noun-entry-0600",
       "word": "moment",
       "display": "moment",
@@ -44345,16 +43748,6 @@
       "type": "word",
       "needsReview": false,
       "sourceCount": 1
-    },
-    {
-      "id": "monastery-any-entry-5575",
-      "word": "monastery",
-      "display": "monastery",
-      "meaning": "大廟",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
     },
     {
       "id": "monetary-returns-any-entry-5822",
@@ -44410,49 +43803,6 @@
       "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "monotonous-any-entry-0566",
-      "word": "monotonous",
-      "display": "monotonous",
-      "meaning": "單調",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 7
-    },
-    {
-      "id": "monotonous-any-entry-0471",
-      "word": "monotonous",
-      "display": "monotonous",
-      "meaning": "單調的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 9,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "monotonous-any-entry-5063",
-      "word": "monotonous",
-      "display": "monotonous",
-      "meaning": "悶",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "monsoon-any-entry-4829",
-      "word": "monsoon",
-      "display": "monsoon",
-      "meaning": "季風",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
       "sourceCount": 1
     },
     {
@@ -44618,16 +43968,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "mosquito-any-entry-2360",
-      "word": "mosquito",
-      "display": "mosquito",
-      "meaning": "蚊",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "most-of-the-time-any-entry-8353",
       "word": "most of the time",
       "display": "Most of the time",
@@ -44717,16 +44057,6 @@
       "sourceCount": 1
     },
     {
-      "id": "motto-any-entry-7735",
-      "word": "motto",
-      "display": "motto",
-      "meaning": "座右銘",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "mount-verb-entry-0603",
       "word": "mount",
       "display": "mount",
@@ -44770,29 +44100,6 @@
       "posReason": "chinese-adjective-meaning"
     },
     {
-      "id": "mounting-any-entry-7726",
-      "word": "mounting",
-      "display": "mounting",
-      "meaning": "快速上升的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "mounting-any-entry-6610",
-      "word": "mounting",
-      "display": "mounting",
-      "meaning": "急升",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
       "id": "move-verb-entry-0605",
       "word": "move",
       "display": "move",
@@ -44800,16 +44107,6 @@
       "pos": "verb",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "move-to-any-entry-8422",
-      "word": "move to",
-      "display": "move to",
-      "meaning": "搬到 / 移民",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": true,
       "sourceCount": 1
     },
     {
@@ -44938,36 +44235,6 @@
       "posReason": "english-noun-suffix+oxford"
     },
     {
-      "id": "murmur-any-entry-4386",
-      "word": "murmur",
-      "display": "murmur",
-      "meaning": "喃喃自語",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "murmur-any-entry-4428",
-      "word": "murmur",
-      "display": "murmur",
-      "meaning": "喃喃自說",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "muscles-any-entry-5150",
-      "word": "muscles",
-      "display": "muscles",
-      "meaning": "肌肉",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "muscular-any-entry-6877",
       "word": "muscular",
       "display": "muscular",
@@ -45039,36 +44306,6 @@
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 1
-    },
-    {
-      "id": "myriads-of-any-entry-1216",
-      "word": "myriads of",
-      "display": "myriads of",
-      "meaning": "很多",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 5
-    },
-    {
-      "id": "myriads-of-any-entry-5523",
-      "word": "myriads of",
-      "display": "myriads of",
-      "meaning": "很多 / 很多不同類的",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": true,
-      "sourceCount": 20
-    },
-    {
-      "id": "myriads-of-any-entry-5484",
-      "word": "myriads of",
-      "display": "myriads of",
-      "meaning": "很多不同的",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 4
     },
     {
       "id": "mystery-any-entry-4449",
@@ -45856,26 +45093,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "naive-any-entry-3968",
-      "word": "naive",
-      "display": "naive",
-      "meaning": "幼稚",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 8
-    },
-    {
-      "id": "naive-any-entry-3937",
-      "word": "naive",
-      "display": "naive",
-      "meaning": "無知 / 膚淺",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "name-after-any-entry-3446",
       "word": "name after",
       "display": "name after",
@@ -46066,16 +45283,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "nausea-any-entry-0909",
-      "word": "nausea",
-      "display": "nausea",
-      "meaning": "作嘔作悶",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "navigation-any-entry-6754",
       "word": "navigation",
       "display": "navigation",
@@ -46141,16 +45348,6 @@
       "posReason": "chinese-noun-meaning"
     },
     {
-      "id": "needles-any-entry-6360",
-      "word": "needles",
-      "display": "needles",
-      "meaning": "針",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
       "id": "needless-to-say-any-entry-0168",
       "word": "needless to say",
       "display": "needless to say",
@@ -46169,95 +45366,6 @@
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 21
-    },
-    {
-      "id": "neglect-any-entry-0142",
-      "word": "neglect",
-      "display": "neglect",
-      "meaning": "忽略",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 55
-    },
-    {
-      "id": "neglect-any-entry-0277",
-      "word": "neglect",
-      "display": "neglect",
-      "meaning": "忽視",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 6
-    },
-    {
-      "id": "negligible-any-entry-0270",
-      "word": "negligible",
-      "display": "negligible",
-      "meaning": "可以忽略",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 5
-    },
-    {
-      "id": "negligible-any-entry-0158",
-      "word": "negligible",
-      "display": "negligible",
-      "meaning": "可以忽略的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 6,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "negligible-any-entry-0283",
-      "word": "negligible",
-      "display": "negligible",
-      "meaning": "可被忽略",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "negligible-any-entry-0107",
-      "word": "negligible",
-      "display": "negligible",
-      "meaning": "可被忽略的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 8,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "negligible-any-entry-0175",
-      "word": "negligible",
-      "display": "negligible",
-      "meaning": "微不足道的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "negotiable-any-entry-0933",
-      "word": "negotiable",
-      "display": "negotiable",
-      "meaning": "可商議",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "negotiate-any-entry-0575",
@@ -46284,26 +45392,6 @@
       "inferredPos": "verb",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "neither-nor-any-entry-8105",
-      "word": "neither...nor...",
-      "display": "neither...nor...",
-      "meaning": "兩者也不",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "neither-nor-any-entry-8123",
-      "word": "neither...nor...",
-      "display": "neither...nor...",
-      "meaning": "既不...也不",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "neon-lights-any-entry-3371",
@@ -46347,16 +45435,6 @@
       "inferredPos": "noun",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "neuro-any-entry-4748",
-      "word": "neuro",
-      "display": "neuro",
-      "meaning": "神經",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
     },
     {
       "id": "never-any-entry-8332",
@@ -46416,16 +45494,6 @@
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 2
-    },
-    {
-      "id": "nickname-any-entry-0057",
-      "word": "nickname",
-      "display": "nickname",
-      "meaning": "花名",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "nightmare-any-entry-2662",
@@ -46619,72 +45687,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "nostalgia-any-entry-6717",
-      "word": "nostalgia",
-      "display": "nostalgia",
-      "meaning": "念舊",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "nostalgia-any-entry-6688",
-      "word": "nostalgia",
-      "display": "nostalgia",
-      "meaning": "懷舊之情",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "nostalgic-any-entry-7588",
-      "word": "nostalgic",
-      "display": "nostalgic",
-      "meaning": "念舊的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "nostalgic-any-entry-2475",
-      "word": "nostalgic",
-      "display": "nostalgic",
-      "meaning": "懷舊",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 8
-    },
-    {
-      "id": "nostalgic-any-entry-5237",
-      "word": "nostalgic",
-      "display": "nostalgic",
-      "meaning": "懷舊的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "not-anytime-soon-any-entry-2338",
-      "word": "not ... anytime soon",
-      "display": "not ... anytime soon",
-      "meaning": "不會發生 / 可能性好低",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "not-an-easy-feat-any-entry-4249",
       "word": "not an easy feat",
       "display": "not an easy feat",
@@ -46791,26 +45793,6 @@
       "sourceCount": 1
     },
     {
-      "id": "notice-any-entry-8150",
-      "word": "notice",
-      "display": "notice",
-      "meaning": "留意",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "notice-any-entry-2651",
-      "word": "notice",
-      "display": "notice",
-      "meaning": "通知",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "noticeable-any-entry-8067",
       "word": "noticeable",
       "display": "noticeable",
@@ -46848,16 +45830,6 @@
       "inferredPos": "adverb",
       "posConfidence": 94,
       "posReason": "english-adverb-suffix"
-    },
-    {
-      "id": "notifications-any-entry-3084",
-      "word": "notifications",
-      "display": "notifications",
-      "meaning": "通知",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
     },
     {
       "id": "notion-any-entry-7757",
@@ -46958,99 +45930,6 @@
       "sourceCount": 77
     },
     {
-      "id": "nourish-any-entry-2906",
-      "word": "nourish",
-      "display": "nourish",
-      "meaning": "滋潤",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 9
-    },
-    {
-      "id": "novel-any-entry-5013",
-      "word": "novel",
-      "display": "novel x2",
-      "meaning": "小說",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 6
-    },
-    {
-      "id": "novel-any-entry-2823",
-      "word": "novel",
-      "display": "novel",
-      "meaning": "新穎",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "novel-any-entry-5014",
-      "word": "novel",
-      "display": "novel x2",
-      "meaning": "新穎的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 96,
-      "posReason": "chinese-adjective-meaning+oxford"
-    },
-    {
-      "id": "novice-any-entry-0297",
-      "word": "novice",
-      "display": "Novice",
-      "meaning": "新手",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 11
-    },
-    {
-      "id": "nuance-any-entry-7512",
-      "word": "nuance",
-      "display": "nuance",
-      "meaning": "微細差別",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "nuance-any-entry-6881",
-      "word": "nuance",
-      "display": "nuance",
-      "meaning": "微細差異",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "nuance-any-entry-2597",
-      "word": "nuance",
-      "display": "nuance",
-      "meaning": "細微差別",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "nuance-any-entry-0915",
-      "word": "nuance",
-      "display": "nuance",
-      "meaning": "細微差異",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
       "id": "nuclear-families-any-entry-5782",
       "word": "nuclear families",
       "display": "nuclear families",
@@ -47059,16 +45938,6 @@
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 1
-    },
-    {
-      "id": "nuisance-any-entry-1089",
-      "word": "nuisance",
-      "display": "nuisance",
-      "meaning": "滋擾",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 11
     },
     {
       "id": "number-any-entry-3972",
@@ -47082,16 +45951,6 @@
       "inferredPos": "noun",
       "posConfidence": 96,
       "posReason": "chinese-noun-meaning+oxford"
-    },
-    {
-      "id": "numeracy-any-entry-3121",
-      "word": "numeracy",
-      "display": "numeracy",
-      "meaning": "算術",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
     },
     {
       "id": "numerous-any-entry-0202",
@@ -47183,62 +46042,6 @@
       "inferredPos": "adjective",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "nurture-any-entry-1047",
-      "word": "nurture",
-      "display": "nurture",
-      "meaning": "孕育",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 89
-    },
-    {
-      "id": "nurture-any-entry-5535",
-      "word": "nurture",
-      "display": "nurture",
-      "meaning": "孕育 / 培養",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "nutrients-any-entry-5850",
-      "word": "nutrients",
-      "display": "nutrients",
-      "meaning": "營份",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 90,
-      "posReason": "chinese-noun-meaning"
-    },
-    {
-      "id": "nutrients-any-entry-6647",
-      "word": "nutrients",
-      "display": "nutrients",
-      "meaning": "營分",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "nutrients-any-entry-5872",
-      "word": "nutrients",
-      "display": "nutrients",
-      "meaning": "養份",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 90,
-      "posReason": "chinese-noun-meaning"
     },
     {
       "id": "nutrition-any-entry-1800",
@@ -47496,16 +46299,6 @@
       "sourceCount": 15
     },
     {
-      "id": "oasis-any-entry-4726",
-      "word": "oasis",
-      "display": "oasis",
-      "meaning": "綠洲",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
       "id": "obey-any-entry-4623",
       "word": "obey",
       "display": "obey",
@@ -47630,16 +46423,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "oblique-any-entry-3141",
-      "word": "oblique",
-      "display": "oblique",
-      "meaning": "模糊",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
       "id": "oblivious-to-any-entry-3468",
       "word": "oblivious to",
       "display": "oblivious to",
@@ -47710,29 +46493,6 @@
       "sourceCount": 2
     },
     {
-      "id": "obscure-any-entry-8758",
-      "word": "obscure",
-      "display": "obscure",
-      "meaning": "晦澀的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "obscure-any-entry-5930",
-      "word": "obscure",
-      "display": "obscure",
-      "meaning": "模糊",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "observation-any-entry-8736",
       "word": "observation",
       "display": "observation",
@@ -47757,26 +46517,6 @@
       "inferredPos": "verb",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "obsessed-any-entry-4921",
-      "word": "obsessed",
-      "display": "obsessed",
-      "meaning": "沉迷於",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "obsessed-any-entry-7535",
-      "word": "obsessed",
-      "display": "obsessed",
-      "meaning": "著迷",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
     },
     {
       "id": "obsessed-with-any-entry-8164",
@@ -47826,65 +46566,6 @@
       "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "obstacle-any-entry-8215",
-      "word": "obstacle",
-      "display": "obstacle",
-      "meaning": "阻礙",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "obstacle-any-entry-3392",
-      "word": "obstacle",
-      "display": "obstacle",
-      "meaning": "障礙",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 17,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "obstacle-any-entry-8774",
-      "word": "obstacle",
-      "display": "obstacle",
-      "meaning": "障礙物",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 90,
-      "posReason": "chinese-noun-meaning"
-    },
-    {
-      "id": "obstacles-any-entry-6230",
-      "word": "obstacles",
-      "display": "obstacles",
-      "meaning": "阻礙",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "obstacles-any-entry-6203",
-      "word": "obstacles",
-      "display": "obstacles",
-      "meaning": "障礙",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
       "sourceCount": 1
     },
     {
@@ -87663,6 +86344,875 @@
       "needsReview": false,
       "aliases": [
         "marginalize"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "marginalized-adjective-entry-7819",
+      "word": "marginalized",
+      "display": "marginalized",
+      "meaning": "邊緣化的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "marginalised"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "marijuana-noun-entry-7820",
+      "word": "marijuana",
+      "display": "marijuana",
+      "meaning": "大麻",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "marvellous-adjective-entry-7821",
+      "word": "marvellous",
+      "display": "marvellous",
+      "meaning": "奇妙的 / 精彩的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "marvelous"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "materialism-noun-entry-7822",
+      "word": "materialism",
+      "display": "materialism",
+      "meaning": "物質主義",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "materialistic-adjective-entry-7823",
+      "word": "materialistic",
+      "display": "materialistic",
+      "meaning": "物質主義的 / 物質至上的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "mating-noun-entry-7824",
+      "word": "mating",
+      "display": "mating",
+      "meaning": "交配",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "meagre-adjective-entry-7825",
+      "word": "meagre",
+      "display": "meagre",
+      "meaning": "微薄的 / 不足的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "meager"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "meaningless-adjective-entry-7826",
+      "word": "meaningless",
+      "display": "meaningless",
+      "meaning": "無意義的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "mediocre-adjective-entry-7827",
+      "word": "mediocre",
+      "display": "mediocre",
+      "meaning": "平庸的 / 普通的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "medium-noun-entry-7828",
+      "word": "medium",
+      "display": "medium",
+      "meaning": "媒介 / 媒體",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "medium-adjective-entry-7829",
+      "word": "medium",
+      "display": "medium",
+      "meaning": "中等的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "melancholic-adjective-entry-7830",
+      "word": "melancholic",
+      "display": "melancholic",
+      "meaning": "憂鬱的 / 鬱鬱寡歡的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "menace-noun-entry-7831",
+      "word": "menace",
+      "display": "menace",
+      "meaning": "威脅",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "menace-verb-entry-7832",
+      "word": "menace",
+      "display": "menace",
+      "meaning": "威脅 / 威嚇",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "mend-verb-entry-7833",
+      "word": "mend",
+      "display": "mend",
+      "meaning": "修補 / 修理",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "merciless-adjective-entry-7834",
+      "word": "merciless",
+      "display": "merciless",
+      "meaning": "無情的 / 殘忍的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "merit-noun-entry-7835",
+      "word": "merit",
+      "display": "merit",
+      "meaning": "優點 / 好處",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "merits"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "metaverse-noun-entry-7836",
+      "word": "metaverse",
+      "display": "metaverse",
+      "meaning": "元宇宙",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "metrics-noun-entry-7837",
+      "word": "metrics",
+      "display": "metrics",
+      "meaning": "評核指標 / 衡量標準",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "metropolis-noun-entry-7838",
+      "word": "metropolis",
+      "display": "metropolis",
+      "meaning": "大城市 / 大都市",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "mexico-noun-entry-7839",
+      "word": "mexico",
+      "display": "Mexico",
+      "meaning": "墨西哥",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "microscope-noun-entry-7840",
+      "word": "microscope",
+      "display": "microscope",
+      "meaning": "顯微鏡",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "millennium-noun-entry-7841",
+      "word": "millennium",
+      "display": "millennium",
+      "meaning": "千年 / 千禧年",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "mimic-verb-entry-7842",
+      "word": "mimic",
+      "display": "mimic",
+      "meaning": "模仿",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "mineral-noun-entry-7843",
+      "word": "mineral",
+      "display": "mineral",
+      "meaning": "礦物 / 礦物質",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "minerals"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "minutes-noun-entry-7844",
+      "word": "minutes",
+      "display": "minutes",
+      "meaning": "會議紀錄",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "misbehaviour-noun-entry-7845",
+      "word": "misbehaviour",
+      "display": "misbehaviour",
+      "meaning": "不當行為",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "misbehavior"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "mischievous-adjective-entry-7846",
+      "word": "mischievous",
+      "display": "mischievous",
+      "meaning": "頑皮的 / 愛惡作劇的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "misconception-noun-entry-7847",
+      "word": "misconception",
+      "display": "misconception",
+      "meaning": "錯誤觀念 / 誤解",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "mishap-noun-entry-7848",
+      "word": "mishap",
+      "display": "mishap",
+      "meaning": "不幸事件 / 小意外",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "mishaps"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "mist-noun-entry-7849",
+      "word": "mist",
+      "display": "mist",
+      "meaning": "薄霧 / 霧氣",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "mistreat-verb-entry-7850",
+      "word": "mistreat",
+      "display": "mistreat",
+      "meaning": "虐待",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "mitigate-verb-entry-7851",
+      "word": "mitigate",
+      "display": "mitigate",
+      "meaning": "減輕 / 緩和",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "mix-verb-entry-7852",
+      "word": "mix",
+      "display": "mix",
+      "meaning": "混合",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "mix-noun-entry-7853",
+      "word": "mix",
+      "display": "mix",
+      "meaning": "混合物",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "mocha-noun-entry-7854",
+      "word": "mocha",
+      "display": "mocha",
+      "meaning": "摩卡咖啡",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "modified-adjective-entry-7855",
+      "word": "modified",
+      "display": "modified",
+      "meaning": "修改過的 / 改良的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "moist-adjective-entry-7856",
+      "word": "moist",
+      "display": "moist",
+      "meaning": "潮濕的 / 濕潤的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "monastery-noun-entry-7857",
+      "word": "monastery",
+      "display": "monastery",
+      "meaning": "修道院 / 寺院",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "monotonous-adjective-entry-7858",
+      "word": "monotonous",
+      "display": "monotonous",
+      "meaning": "單調的 / 沉悶的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "monsoon-noun-entry-7859",
+      "word": "monsoon",
+      "display": "monsoon",
+      "meaning": "季風",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "mosquito-noun-entry-7860",
+      "word": "mosquito",
+      "display": "mosquito",
+      "meaning": "蚊 / 蚊子",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "motto-noun-entry-7861",
+      "word": "motto",
+      "display": "motto",
+      "meaning": "座右銘",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "mounting-adjective-entry-7862",
+      "word": "mounting",
+      "display": "mounting",
+      "meaning": "不斷增加的 / 加劇的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "move-to-verb-entry-7863",
+      "word": "move to",
+      "display": "move to",
+      "meaning": "搬到 / 移居到",
+      "pos": "verb",
+      "type": "phrase",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "murmur-noun-entry-7864",
+      "word": "murmur",
+      "display": "murmur",
+      "meaning": "低語",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "murmur-verb-entry-7865",
+      "word": "murmur",
+      "display": "murmur",
+      "meaning": "低聲說 / 喃喃自語",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "muscle-noun-entry-7866",
+      "word": "muscle",
+      "display": "muscle",
+      "meaning": "肌肉",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "muscles"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "myriads-of-phrase-entry-7867",
+      "word": "myriads of",
+      "display": "myriads of",
+      "meaning": "無數的 / 大量的",
+      "pos": "",
+      "type": "phrase",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "naive-adjective-entry-7868",
+      "word": "naive",
+      "display": "naive",
+      "meaning": "天真的 / 幼稚的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "nausea-noun-entry-7869",
+      "word": "nausea",
+      "display": "nausea",
+      "meaning": "作嘔 / 噁心",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "needle-noun-entry-7870",
+      "word": "needle",
+      "display": "needle",
+      "meaning": "針",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "needles"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "neglect-verb-entry-7871",
+      "word": "neglect",
+      "display": "neglect",
+      "meaning": "忽略 / 忽視",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "neglect-noun-entry-7872",
+      "word": "neglect",
+      "display": "neglect",
+      "meaning": "疏忽 / 忽視",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "negligible-adjective-entry-7873",
+      "word": "negligible",
+      "display": "negligible",
+      "meaning": "微不足道的 / 可忽略的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "negotiable-adjective-entry-7874",
+      "word": "negotiable",
+      "display": "negotiable",
+      "meaning": "可商議的 / 可協商的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "neither-nor-pattern-entry-7875",
+      "word": "neither...nor...",
+      "display": "neither...nor...",
+      "meaning": "既不...也不",
+      "pos": "",
+      "type": "pattern",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "neuro-adjective-entry-7876",
+      "word": "neuro",
+      "display": "neuro",
+      "meaning": "神經的 / 神經系統的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "nickname-noun-entry-7877",
+      "word": "nickname",
+      "display": "nickname",
+      "meaning": "綽號 / 花名",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "nickname-verb-entry-7878",
+      "word": "nickname",
+      "display": "nickname",
+      "meaning": "給...取綽號",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "nostalgia-noun-entry-7879",
+      "word": "nostalgia",
+      "display": "nostalgia",
+      "meaning": "懷舊之情 / 鄉愁",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "nostalgic-adjective-entry-7880",
+      "word": "nostalgic",
+      "display": "nostalgic",
+      "meaning": "懷舊的 / 念舊的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "not-anytime-soon-phrase-entry-7881",
+      "word": "not ... anytime soon",
+      "display": "not ... anytime soon",
+      "meaning": "短期內不會發生",
+      "pos": "",
+      "type": "phrase",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "notice-verb-entry-7882",
+      "word": "notice",
+      "display": "notice",
+      "meaning": "留意 / 注意",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "notice-noun-entry-7883",
+      "word": "notice",
+      "display": "notice",
+      "meaning": "通知 / 告示",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "notification-noun-entry-7884",
+      "word": "notification",
+      "display": "notification",
+      "meaning": "通知",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "notifications"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "nourish-verb-entry-7885",
+      "word": "nourish",
+      "display": "nourish",
+      "meaning": "滋養 / 培養",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "novel-noun-entry-7886",
+      "word": "novel",
+      "display": "novel",
+      "meaning": "小說",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "novel-adjective-entry-7887",
+      "word": "novel",
+      "display": "novel",
+      "meaning": "新穎的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "novice-noun-entry-7888",
+      "word": "novice",
+      "display": "novice",
+      "meaning": "新手",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "nuance-noun-entry-7889",
+      "word": "nuance",
+      "display": "nuance",
+      "meaning": "細微差別 / 微妙差異",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "nuisance-noun-entry-7890",
+      "word": "nuisance",
+      "display": "nuisance",
+      "meaning": "麻煩事 / 討厭的人或事",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "numeracy-noun-entry-7891",
+      "word": "numeracy",
+      "display": "numeracy",
+      "meaning": "計算能力 / 數學能力",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "nurture-verb-entry-7892",
+      "word": "nurture",
+      "display": "nurture",
+      "meaning": "培養 / 養育",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "nurture-noun-entry-7893",
+      "word": "nurture",
+      "display": "nurture",
+      "meaning": "培養 / 養育",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "nutrient-noun-entry-7894",
+      "word": "nutrient",
+      "display": "nutrient",
+      "meaning": "營養素",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "nutrients"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "oasis-noun-entry-7895",
+      "word": "oasis",
+      "display": "oasis",
+      "meaning": "綠洲",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "oblique-adjective-entry-7896",
+      "word": "oblique",
+      "display": "oblique",
+      "meaning": "斜的 / 間接的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "obscure-adjective-entry-7897",
+      "word": "obscure",
+      "display": "obscure",
+      "meaning": "模糊的 / 難懂的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "obscure-verb-entry-7898",
+      "word": "obscure",
+      "display": "obscure",
+      "meaning": "使模糊 / 遮掩",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "obsessed-adjective-entry-7899",
+      "word": "obsessed",
+      "display": "obsessed",
+      "meaning": "沉迷的 / 著迷的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "obstacle-noun-entry-7900",
+      "word": "obstacle",
+      "display": "obstacle",
+      "meaning": "障礙 / 阻礙",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "obstacles"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "measure-noun-entry-7901",
+      "word": "measure",
+      "display": "measure",
+      "meaning": "措施",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "measures"
       ],
       "sourceCount": 1
     }
