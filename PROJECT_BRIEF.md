@@ -133,9 +133,10 @@ Current vocab-bank goal:
 
 1. Add and keep improving the in-app teacher vocab page first. Austin Sir can type English / POS / Chinese meaning during class and save entries to the shared Firebase `teacherVocabLive` bank. Students should be able to find those teacher-approved meanings immediately.
 2. Build a clean student-facing vocab bank, not a noisy live dictionary. Oxford 3000 / Oxford 5000 / PDF lists are coverage checklists. ECDICT / CC-CEDICT / generated meanings / other sources are raw review material only, never automatic student-facing answers.
-3. Large-batch review is Codex's job, not Austin Sir's manual job. Auto-review may prepare conservative drafts, but Codex must inspect small batches, fix POS, improve Chinese meanings, remove duplicate or near-duplicate senses, add missing common meanings, handle phrases / phrasal verbs, and only then promote entries into the teacher / curated bank.
-4. Cleanup order: teacher live input page + Firebase shared bank, then the existing 4000-ish teacher bank, then Oxford / common basic vocabulary, then countries, cities, Hong Kong life words, and school vocabulary.
-5. Missing coverage should be fixed by improving the teacher / curated bank. Do not show placeholder meanings such as "待老師確認" in the student UI.
+3. Use PDF / Oxford / common-word lists as checklists first, then use ECDICT / CC-CEDICT / generated sources only to prepare draft material. After that, Codex reviews entries in small batches and promotes only clean entries into the teacher / curated bank.
+4. Large-batch review is Codex's job, not Austin Sir's manual job. Auto-review may prepare conservative drafts, but Codex must inspect batches, fix POS, improve Chinese meanings, remove duplicate or near-duplicate senses, add missing common meanings, handle phrases / phrasal verbs, and only then promote entries into the teacher / curated bank.
+5. Cleanup order: teacher live input page + Firebase shared bank, then the existing 4000-ish teacher bank, then Oxford / common basic vocabulary, then countries, cities, Hong Kong life words, and school vocabulary.
+6. Missing coverage should be fixed by improving the teacher / curated bank. Do not show placeholder meanings such as "待老師確認" in the student UI.
 
 Chinese meanings should prefer Austin Sir's notes / Excel vocab sheets over generic dictionaries.
 
