@@ -120,7 +120,7 @@ assert.strictEqual(review.inferAuditType("mental health", "phrase"), "phrase");
 
 const highValueTeacherAuditTasks = review.getReviewTasks({ source: "teacher-audit", skipJunk: true });
 assert.ok(highValueTeacherAuditTasks.length < teacherAuditTasks.length);
-assert.ok(highValueTeacherAuditTasks.length > 3000);
+assert.ok(highValueTeacherAuditTasks.length > 2500);
 assert.ok(!highValueTeacherAuditTasks.some((task) => /^[a-z]$/.test(task.word)));
 
 const supplementTasks = review.getReviewTasks({ source: "supplement" });

@@ -5,7 +5,7 @@
   root.TEACHER_VOCAB_BANK = bank;
 })(typeof globalThis !== "undefined" ? globalThis : window, {
   "meta": {
-    "generatedAt": "2026-06-21T02:11:04.514Z",
+    "generatedAt": "2026-06-21T02:24:23.124Z",
     "sourceFiles": [
       {
         "name": "Randomisable Vocab Test.xlsx",
@@ -74,10 +74,18 @@
       {
         "name": "teacher_vocab_manual_updates.json",
         "addedEntryCount": 1
+      },
+      {
+        "name": "teacher_vocab_manual_updates.json",
+        "addedEntryCount": 101
+      },
+      {
+        "name": "teacher_vocab_manual_updates.json",
+        "addedEntryCount": 2
       }
     ],
-    "entryCount": 7755,
-    "uniqueWordCount": 5039,
+    "entryCount": 7726,
+    "uniqueWordCount": 5041,
     "conflictCount": 3731,
     "typeCounts": {
       "phrase": 2369,
@@ -1016,26 +1024,6 @@
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 1
-    },
-    {
-      "id": "a-wide-array-of-any-entry-5165",
-      "word": "a wide array of",
-      "display": "a wide array of",
-      "meaning": "不同種類",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "a-wide-array-of-any-entry-3829",
-      "word": "a wide array of",
-      "display": "a wide array of",
-      "meaning": "不同種類的",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 7
     },
     {
       "id": "a-wide-range-of-any-entry-0645",
@@ -3906,26 +3894,6 @@
       "meaning": "一個 / 一位",
       "pos": "determiner",
       "type": "word",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "an-array-of-any-entry-3549",
-      "word": "an array of",
-      "display": "an array of",
-      "meaning": "一連串",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 3
-    },
-    {
-      "id": "an-array-of-any-entry-7617",
-      "word": "an array of",
-      "display": "an array of",
-      "meaning": "一連串的",
-      "pos": "",
-      "type": "phrase",
       "needsReview": false,
       "sourceCount": 1
     },
@@ -20792,36 +20760,6 @@
       "sourceCount": 2
     },
     {
-      "id": "eco-conscious-any-entry-0958",
-      "word": "eco-conscious",
-      "display": "eco-conscious",
-      "meaning": "有環保意識",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 2
-    },
-    {
-      "id": "eco-conscious-any-entry-4463",
-      "word": "eco-conscious",
-      "display": "eco-conscious",
-      "meaning": "有環保意識的",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "eco-conscious-any-entry-6208",
-      "word": "eco-conscious",
-      "display": "eco-conscious",
-      "meaning": "環保為主",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
       "id": "eco-consicous-any-entry-1695",
       "word": "eco-consicous",
       "display": "eco-consicous",
@@ -24387,45 +24325,6 @@
       "inferredPos": "noun",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "exceptional-any-entry-5435",
-      "word": "exceptional",
-      "display": "exceptional",
-      "meaning": "出眾",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 4,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "exceptional-any-outstanding-extraordinary-5455",
-      "word": "exceptional",
-      "display": "exceptional",
-      "meaning": "出眾 outstanding / extraordinary",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "exceptional-any-entry-5466",
-      "word": "exceptional",
-      "display": "exceptional",
-      "meaning": "超卓的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
     },
     {
       "id": "excess-any-entry-5997",
@@ -69990,16 +69889,6 @@
       "posReason": "english-adverb-suffix"
     },
     {
-      "id": "umami-any-entry-2914",
-      "word": "umami",
-      "display": "umami",
-      "meaning": "鮮味",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "unable-to-any-entry-3791",
       "word": "unable to",
       "display": "unable to",
@@ -70020,49 +69909,6 @@
       "sourceCount": 5
     },
     {
-      "id": "unanimous-any-entry-6290",
-      "word": "unanimous",
-      "display": "unanimous",
-      "meaning": "一致",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "unanimous-any-entry-6296",
-      "word": "unanimous",
-      "display": "unanimous",
-      "meaning": "一致 / 同體",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "unanimous-any-entry-2933",
-      "word": "unanimous",
-      "display": "unanimous",
-      "meaning": "一致同意的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "unassuming-any-entry-4817",
-      "word": "unassuming",
-      "display": "unassuming",
-      "meaning": "低調",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "unaware-of-any-entry-1694",
       "word": "unaware of",
       "display": "unaware of",
@@ -70070,62 +69916,6 @@
       "pos": "",
       "type": "phrase",
       "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "unblemished-any-entry-7326",
-      "word": "unblemished",
-      "display": "unblemished",
-      "meaning": "無瑕",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "unblemished-any-entry-0880",
-      "word": "unblemished",
-      "display": "unblemished",
-      "meaning": "無瑕疵的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "uncertain-any-entry-8683",
-      "word": "uncertain",
-      "display": "uncertain",
-      "meaning": "不確定",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "uncertain-any-entry-5030",
-      "word": "uncertain",
-      "display": "uncertain",
-      "meaning": "不確定的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "uncommon-any-entry-0041",
-      "word": "uncommon",
-      "display": "uncommon",
-      "meaning": "不常見",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
       "sourceCount": 1
     },
     {
@@ -70140,36 +69930,6 @@
       "inferredPos": "adjective",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "undeniable-any-entry-1923",
-      "word": "undeniable",
-      "display": "undeniable",
-      "meaning": "不可否認",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "undeniable-any-entry-1904",
-      "word": "undeniable",
-      "display": "undeniable",
-      "meaning": "無可否則",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "undeniable-any-entry-1907",
-      "word": "undeniable",
-      "display": "undeniable",
-      "meaning": "無可否認",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 18
     },
     {
       "id": "undeniably-any-entry-0231",
@@ -70306,36 +70066,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "underneath-any-entry-6002",
-      "word": "underneath",
-      "display": "underneath",
-      "meaning": "在...之下",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "underpin-any-entry-3640",
-      "word": "underpin",
-      "display": "underpin",
-      "meaning": "地基",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "underscore-any-entry-5707",
-      "word": "underscore",
-      "display": "underscore",
-      "meaning": "突顯",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
       "id": "understate-verb-entry-0015",
       "word": "understate",
       "display": "understate",
@@ -70370,29 +70100,6 @@
       "inferredPos": "verb",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "undesirable-any-entry-7581",
-      "word": "undesirable",
-      "display": "undesirable",
-      "meaning": "不可取",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "undesirable-any-entry-1501",
-      "word": "undesirable",
-      "display": "undesirable",
-      "meaning": "不可取的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 5,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
     },
     {
       "id": "undisputed-any-entry-2881",
@@ -70442,39 +70149,6 @@
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 1
-    },
-    {
-      "id": "unearth-any-entry-8587",
-      "word": "unearth",
-      "display": "unearth",
-      "meaning": "出土",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "uneasy-any-entry-8248",
-      "word": "uneasy",
-      "display": "uneasy",
-      "meaning": "不安",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "uneasy-any-entry-8221",
-      "word": "uneasy",
-      "display": "uneasy",
-      "meaning": "不安的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
     },
     {
       "id": "uneventful-any-entry-2806",
@@ -70527,16 +70201,6 @@
       "inferredPos": "adverb",
       "posConfidence": 94,
       "posReason": "english-adverb-suffix"
-    },
-    {
-      "id": "unicorn-any-entry-7107",
-      "word": "unicorn",
-      "display": "unicorn",
-      "meaning": "獨角獸",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
     },
     {
       "id": "unintentionally-any-entry-4406",
@@ -70705,26 +70369,6 @@
       "posReason": "chinese-adjective-meaning"
     },
     {
-      "id": "unleash-any-entry-0817",
-      "word": "unleash",
-      "display": "unleash",
-      "meaning": "發揮",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "unleash-any-entry-2510",
-      "word": "unleash",
-      "display": "unleash x2",
-      "meaning": "釋放",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "unleash-potential-any-entry-5795",
       "word": "unleash potential",
       "display": "unleash potential",
@@ -70800,42 +70444,6 @@
       "posReason": "chinese-adjective-meaning"
     },
     {
-      "id": "unmatched-any-entry-1988",
-      "word": "unmatched",
-      "display": "unmatched",
-      "meaning": "無可匹敵",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 8
-    },
-    {
-      "id": "unmatched-any-entry-1949",
-      "word": "unmatched",
-      "display": "unmatched",
-      "meaning": "無可匹敵的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "unmatched-any-entry-1969",
-      "word": "unmatched",
-      "display": "unmatched",
-      "meaning": "無可比擬的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 3,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
       "id": "unmatched-unrivalled-any-entry-2071",
       "word": "unmatched / unrivalled",
       "display": "unmatched / unrivalled",
@@ -70867,39 +70475,6 @@
       "type": "word",
       "needsReview": false,
       "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "unparalleled-any-entry-6780",
-      "word": "unparalleled",
-      "display": "unparalleled",
-      "meaning": "無可匹敵",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "unparalleled-any-entry-6222",
-      "word": "unparalleled",
-      "display": "unparalleled",
-      "meaning": "無可比擬",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "unparalleled-any-entry-3625",
-      "word": "unparalleled",
-      "display": "unparalleled",
-      "meaning": "無可比擬的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 9,
       "inferredPos": "adjective",
       "posConfidence": 90,
       "posReason": "chinese-adjective-meaning"
@@ -70993,52 +70568,6 @@
       "posReason": "english-adverb-suffix"
     },
     {
-      "id": "unrealistic-any-entry-2924",
-      "word": "unrealistic",
-      "display": "unrealistic",
-      "meaning": "不切實際的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "unrealistic-any-entry-5071",
-      "word": "unrealistic",
-      "display": "unrealistic",
-      "meaning": "不現實",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "unregulated-any-entry-7462",
-      "word": "unregulated",
-      "display": "unregulated",
-      "meaning": "不受規管",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "unregulated-any-entry-7494",
-      "word": "unregulated",
-      "display": "unregulated",
-      "meaning": "不被規管的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
       "id": "unrelenting-any-entry-7180",
       "word": "unrelenting",
       "display": "unrelenting",
@@ -71063,39 +70592,6 @@
       "inferredPos": "adjective",
       "posConfidence": 90,
       "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "unstable-any-entry-8649",
-      "word": "unstable",
-      "display": "unstable",
-      "meaning": "不穩定",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "unstable-any-entry-2704",
-      "word": "unstable",
-      "display": "unstable",
-      "meaning": "不穩定的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "until-any-entry-8445",
-      "word": "until",
-      "display": "until",
-      "meaning": "直至",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "unusual-any-entry-0023",
@@ -71160,16 +70656,6 @@
       "sourceCount": 1
     },
     {
-      "id": "unwind-any-entry-7724",
-      "word": "unwind",
-      "display": "unwind",
-      "meaning": "減壓",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "uphill-battle-any-entry-6823",
       "word": "uphill battle",
       "display": "uphill battle",
@@ -71226,26 +70712,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "uproar-any-entry-6141",
-      "word": "uproar",
-      "display": "uproar",
-      "meaning": "強烈反對",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
-      "id": "upside-any-entry-7719",
-      "word": "upside",
-      "display": "upside",
-      "meaning": "好處",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "urban-any-entry-5048",
       "word": "urban",
       "display": "urban",
@@ -71299,16 +70765,6 @@
       "sourceCount": 2
     },
     {
-      "id": "urbanisation-any-entry-4801",
-      "word": "urbanisation",
-      "display": "urbanisation",
-      "meaning": "都市化",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "urge-any-entry-1520",
       "word": "urge",
       "display": "urge",
@@ -71320,16 +70776,6 @@
       "inferredPos": "verb",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "urine-any-entry-3288",
-      "word": "urine",
-      "display": "urine",
-      "meaning": "尿液",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "used-to-any-entry-0108",
@@ -71370,16 +70816,6 @@
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 2
-    },
-    {
-      "id": "usher-any-entry-8768",
-      "word": "usher",
-      "display": "usher",
-      "meaning": "引導",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "usually-any-entry-8329",
@@ -71432,52 +70868,6 @@
       "inferredPos": "noun",
       "posConfidence": 90,
       "posReason": "chinese-noun-meaning"
-    },
-    {
-      "id": "utilise-any-entry-1273",
-      "word": "utilise",
-      "display": "utilise",
-      "meaning": "利用",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "utilise-any-entry-0349",
-      "word": "utilise",
-      "display": "utilise",
-      "meaning": "善用",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 16
-    },
-    {
-      "id": "utilize-any-entry-5173",
-      "word": "utilize",
-      "display": "utilize",
-      "meaning": "利用",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "utilize-any-entry-0433",
-      "word": "utilize",
-      "display": "utilize",
-      "meaning": "善用",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 11,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
     },
     {
       "id": "utter-verb-entry-5552",
@@ -72090,42 +71480,6 @@
       "sourceCount": 1
     },
     {
-      "id": "vacant-any-entry-6052",
-      "word": "vacant",
-      "display": "vacant",
-      "meaning": "空的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "vacant-any-entry-3687",
-      "word": "vacant",
-      "display": "vacant",
-      "meaning": "空缺",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "vacant-any-entry-6016",
-      "word": "vacant",
-      "display": "vacant",
-      "meaning": "空置的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
       "id": "vacuum-cleaner-any-entry-7730",
       "word": "vacuum cleaner",
       "display": "vacuum cleaner",
@@ -72250,26 +71604,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "value-verb-entry-4295",
-      "word": "value",
-      "display": "value (v)",
-      "meaning": "重視",
-      "pos": "verb",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 6
-    },
-    {
-      "id": "value-any-entry-4617",
-      "word": "value",
-      "display": "value",
-      "meaning": "重視 / 價值",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "value-for-money-any-entry-2299",
       "word": "value for money",
       "display": "value for money",
@@ -72277,26 +71611,6 @@
       "pos": "",
       "type": "phrase",
       "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "valued-any-entry-6112",
-      "word": "valued",
-      "display": "valued",
-      "meaning": "重視",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "valueless-any-entry-3539",
-      "word": "valueless",
-      "display": "valueless",
-      "meaning": "無價值",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
       "sourceCount": 1
     },
     {
@@ -72376,16 +71690,6 @@
       "inferredPos": "verb",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "variance-any-entry-2599",
-      "word": "variance",
-      "display": "variance",
-      "meaning": "差異",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "variation-any-entry-4770",
@@ -72685,26 +71989,6 @@
       "sourceCount": 11
     },
     {
-      "id": "veil-any-entry-1714",
-      "word": "veil",
-      "display": "veil",
-      "meaning": "面紗",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "vend-any-entry-2508",
-      "word": "vend",
-      "display": "vend",
-      "meaning": "販賣",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "vendor-any-entry-3195",
       "word": "vendor",
       "display": "vendor",
@@ -72767,36 +72051,6 @@
       "sourceCount": 2
     },
     {
-      "id": "venerable-any-entry-6737",
-      "word": "venerable",
-      "display": "venerable",
-      "meaning": "聲譽卓著",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "vent-any-entry-5310",
-      "word": "vent",
-      "display": "vent",
-      "meaning": "發洩",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "ventilation-any-entry-4828",
-      "word": "ventilation",
-      "display": "ventilation",
-      "meaning": "通風",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "venue-any-entry-3693",
       "word": "venue",
       "display": "venue",
@@ -72834,42 +72088,6 @@
       "inferredPos": "verb",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "versatile-any-entry-7143",
-      "word": "versatile",
-      "display": "versatile",
-      "meaning": "多功能的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "versatile-any-entry-7109",
-      "word": "versatile",
-      "display": "versatile",
-      "meaning": "多才多藝",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "versatile-any-entry-7137",
-      "word": "versatile",
-      "display": "versatile",
-      "meaning": "多才多藝 / 多用途的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
     },
     {
       "id": "version-any-entry-4667",
@@ -72941,26 +72159,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "vetting-any-entry-1448",
-      "word": "vetting",
-      "display": "vetting",
-      "meaning": "審查",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "vetting-any-entry-1477",
-      "word": "vetting",
-      "display": "vetting",
-      "meaning": "篩選",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "via-any-entry-2522",
       "word": "via",
       "display": "via",
@@ -72998,16 +72196,6 @@
       "inferredPos": "adjective",
       "posConfidence": 90,
       "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "vibe-any-entry-2464",
-      "word": "vibe",
-      "display": "vibe",
-      "meaning": "氛圍",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 5
     },
     {
       "id": "vibrant-adjective-entry-0008",
@@ -73107,16 +72295,6 @@
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 2
-    },
-    {
-      "id": "vietnam-any-entry-2336",
-      "word": "vietnam",
-      "display": "Vietnam",
-      "meaning": "越南",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
     },
     {
       "id": "view-noun-entry-5359",
@@ -73228,16 +72406,6 @@
       "posReason": "chinese-adjective-meaning"
     },
     {
-      "id": "villa-any-entry-5695",
-      "word": "villa",
-      "display": "villa",
-      "meaning": "渡假屋",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "villain-any-entry-8630",
       "word": "villain",
       "display": "villain",
@@ -73249,52 +72417,6 @@
       "inferredPos": "noun",
       "posConfidence": 90,
       "posReason": "chinese-noun-meaning"
-    },
-    {
-      "id": "vintage-any-entry-2463",
-      "word": "vintage",
-      "display": "vintage",
-      "meaning": "復古",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
-      "id": "vintage-any-entry-4323",
-      "word": "vintage",
-      "display": "vintage",
-      "meaning": "復古的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "vintage-any-entry-4353",
-      "word": "vintage",
-      "display": "vintage",
-      "meaning": "懷舊",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "vintage-any-entry-6716",
-      "word": "vintage",
-      "display": "vintage",
-      "meaning": "懷舊的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
     },
     {
       "id": "violate-any-entry-0912",
@@ -73334,16 +72456,6 @@
       "inferredPos": "adjective",
       "posConfidence": 90,
       "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "viral-any-entry-4818",
-      "word": "viral",
-      "display": "viral",
-      "meaning": "爆紅",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "virtual-any-entry-0540",
@@ -73480,16 +72592,6 @@
       "sourceCount": 2
     },
     {
-      "id": "visualise-any-entry-4842",
-      "word": "visualise",
-      "display": "visualise",
-      "meaning": "可視化",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "visually-impaired-any-entry-6275",
       "word": "visually impaired",
       "display": "visually impaired",
@@ -73559,55 +72661,6 @@
       "sourceCount": 1
     },
     {
-      "id": "vivid-any-entry-7391",
-      "word": "vivid",
-      "display": "vivid",
-      "meaning": "有活力的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "vivid-any-entry-2481",
-      "word": "vivid",
-      "display": "vivid",
-      "meaning": "生動",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 6
-    },
-    {
-      "id": "vivid-any-entry-4209",
-      "word": "vivid",
-      "display": "Vivid",
-      "meaning": "生動的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 9,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "vivid-any-entry-4299",
-      "word": "vivid",
-      "display": "Vivid",
-      "meaning": "鮮明的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
       "id": "vividly-any-entry-7790",
       "word": "vividly",
       "display": "vividly",
@@ -73619,49 +72672,6 @@
       "inferredPos": "adverb",
       "posConfidence": 94,
       "posReason": "english-adverb-suffix"
-    },
-    {
-      "id": "vocation-any-entry-6147",
-      "word": "vocation",
-      "display": "vocation",
-      "meaning": "職業",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
-      "id": "volatile-any-entry-5571",
-      "word": "volatile",
-      "display": "volatile",
-      "meaning": "波動",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "volatile-any-entry-1303",
-      "word": "volatile",
-      "display": "volatile",
-      "meaning": "波動的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "volcano-any-entry-0914",
-      "word": "volcano",
-      "display": "volcano",
-      "meaning": "火山",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "vulnerable-any-entry-1582",
@@ -73953,26 +72963,6 @@
       "sourceCount": 1
     },
     {
-      "id": "wallet-any-entry-8795",
-      "word": "wallet",
-      "display": "wallet",
-      "meaning": "錢包",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "walnut-any-entry-2910",
-      "word": "walnut",
-      "display": "walnut",
-      "meaning": "核桃",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "wander-any-entry-4599",
       "word": "wander",
       "display": "wander",
@@ -74010,16 +73000,6 @@
       "inferredPos": "verb",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "wardrobe-any-entry-0950",
-      "word": "wardrobe",
-      "display": "wardrobe",
-      "meaning": "衣櫃",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 5
     },
     {
       "id": "warehouse-any-entry-2668",
@@ -74072,76 +73052,6 @@
       "inferredPos": "adjective",
       "posConfidence": 90,
       "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "wary-of-any-entry-7599",
-      "word": "wary of",
-      "display": "wary of",
-      "meaning": "對...警惕",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "wary-of-any-entry-1208",
-      "word": "wary of",
-      "display": "wary of",
-      "meaning": "意識到 / 留意到",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "wary-of-any-entry-7606",
-      "word": "wary of",
-      "display": "wary of",
-      "meaning": "提防",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "wary-of-any-entry-7568",
-      "word": "wary of",
-      "display": "wary of",
-      "meaning": "警惕",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "waterfall-any-entry-5984",
-      "word": "waterfall",
-      "display": "waterfall",
-      "meaning": "瀑布",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "waters-any-entry-5718",
-      "word": "waters",
-      "display": "waters",
-      "meaning": "水域",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
-      "id": "wax-any-entry-8565",
-      "word": "wax",
-      "display": "wax",
-      "meaning": "蠟",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
     },
     {
       "id": "way-any-entry-8602",
@@ -74209,36 +73119,6 @@
       "posReason": "chinese-adjective-meaning"
     },
     {
-      "id": "weary-any-entry-1412",
-      "word": "weary",
-      "display": "weary",
-      "meaning": "攰",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "weary-any-entry-3499",
-      "word": "weary",
-      "display": "weary",
-      "meaning": "疲倦",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 18
-    },
-    {
-      "id": "weary-any-entry-3378",
-      "word": "weary",
-      "display": "weary",
-      "meaning": "疲累",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
       "id": "weary-of-any-entry-3487",
       "word": "weary of",
       "display": "weary of",
@@ -74256,16 +73136,6 @@
       "pos": "",
       "type": "phrase",
       "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "weathering-any-entry-8738",
-      "word": "weathering",
-      "display": "weathering",
-      "meaning": "風化",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
       "sourceCount": 1
     },
     {
@@ -74323,16 +73193,6 @@
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 6
-    },
-    {
-      "id": "weep-any-entry-4762",
-      "word": "weep",
-      "display": "weep",
-      "meaning": "流淚",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "weight-any-entry-8340",
@@ -74495,26 +73355,6 @@
       "inferredPos": "noun",
       "posConfidence": 90,
       "posReason": "chinese-noun-meaning"
-    },
-    {
-      "id": "whack-any-entry-6445",
-      "word": "whack",
-      "display": "whack",
-      "meaning": "猛擊",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "what-any-entry-8397",
-      "word": "what",
-      "display": "what",
-      "meaning": "的東西",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "what-s-more-any-entry-1826",
@@ -74702,26 +73542,6 @@
       "posReason": "chinese-conjunction-meaning+oxford"
     },
     {
-      "id": "while-whereas-any-entry-1998",
-      "word": "while / whereas",
-      "display": "while / whereas",
-      "meaning": "而",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": false,
-      "sourceCount": 7
-    },
-    {
-      "id": "while-whereas-any-entry-2280",
-      "word": "while / whereas",
-      "display": "while / whereas",
-      "meaning": "雖然 / 而 / 當",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "whisk-verb-entry-0067",
       "word": "whisk",
       "display": "whisk",
@@ -74771,16 +73591,6 @@
       "posReason": "english-noun-suffix+oxford"
     },
     {
-      "id": "whistle-any-entry-0016",
-      "word": "whistle",
-      "display": "whistle",
-      "meaning": "口哨",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "white-collar-workers-any-entry-4570",
       "word": "white-collar workers",
       "display": "white-collar workers",
@@ -74798,16 +73608,6 @@
       "pos": "",
       "type": "phrase",
       "needsReview": false,
-      "sourceCount": 2
-    },
-    {
-      "id": "whole-any-entry-8080",
-      "word": "whole",
-      "display": "whole",
-      "meaning": "一整個",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
       "sourceCount": 2
     },
     {
@@ -74848,26 +73648,6 @@
       "inferredPos": "adjective",
       "posConfidence": 90,
       "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "whopping-any-entry-7393",
-      "word": "whopping",
-      "display": "whopping",
-      "meaning": "大(數字)",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "whopping-any-entry-7531",
-      "word": "whopping",
-      "display": "whopping",
-      "meaning": "大到震驚",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
     },
     {
       "id": "wicked-any-entry-1137",
@@ -75380,16 +74160,6 @@
       "posReason": "english-adverb-suffix"
     },
     {
-      "id": "womb-any-entry-7296",
-      "word": "womb",
-      "display": "womb",
-      "meaning": "子宮",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "won-t-modal-entry-0425",
       "word": "won't",
       "display": "won't",
@@ -75585,16 +74355,6 @@
       "sourceCount": 16
     },
     {
-      "id": "worsen-any-entry-1077",
-      "word": "worsen",
-      "display": "worsen",
-      "meaning": "惡化",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
       "id": "worship-any-entry-3188",
       "word": "worship",
       "display": "worship",
@@ -75646,16 +74406,6 @@
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 10
-    },
-    {
-      "id": "wound-any-entry-2557",
-      "word": "wound",
-      "display": "wound",
-      "meaning": "傷口",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "woven-into-the-fabric-of-life-any-entry-6779",
@@ -75734,26 +74484,6 @@
       "sourceCount": 1
     },
     {
-      "id": "wreckage-any-entry-6553",
-      "word": "wreckage",
-      "display": "wreckage",
-      "meaning": "殘骸",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
-      "id": "wreckage-any-entry-4322",
-      "word": "wreckage",
-      "display": "wreckage",
-      "meaning": "殘骸 (交通工具)",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "wrestle-with-any-entry-6345",
       "word": "wrestle with",
       "display": "wrestle with",
@@ -75804,69 +74534,6 @@
       "sourceCount": 1
     },
     {
-      "id": "yacht-any-entry-2195",
-      "word": "yacht",
-      "display": "yacht",
-      "meaning": "遊艇",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "yardstick-any-entry-0686",
-      "word": "yardstick",
-      "display": "yardstick",
-      "meaning": "標準",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "yawn-any-entry-3555",
-      "word": "yawn",
-      "display": "yawn",
-      "meaning": "打呵欠",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "yawn-any-entry-4404",
-      "word": "yawn",
-      "display": "yawn",
-      "meaning": "打咸露",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "yet-any-entry-2345",
-      "word": "yet",
-      "display": "yet",
-      "meaning": "但是",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "conjunction",
-      "posConfidence": 96,
-      "posReason": "chinese-conjunction-meaning+oxford"
-    },
-    {
-      "id": "yet-any-entry-4923",
-      "word": "yet",
-      "display": "yet",
-      "meaning": "尚未",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "yet-to-any-entry-7091",
       "word": "yet to",
       "display": "yet to",
@@ -75887,29 +74554,6 @@
       "sourceCount": 1
     },
     {
-      "id": "yield-any-entry-5136",
-      "word": "yield",
-      "display": "yield",
-      "meaning": "產出",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
-      "id": "yield-any-entry-6958",
-      "word": "yield",
-      "display": "yield",
-      "meaning": "產量",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 4,
-      "inferredPos": "noun",
-      "posConfidence": 96,
-      "posReason": "chinese-noun-meaning+oxford"
-    },
-    {
       "id": "young-generations-any-entry-7410",
       "word": "young generations",
       "display": "young generations",
@@ -75918,26 +74562,6 @@
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 1
-    },
-    {
-      "id": "zealous-any-entry-7191",
-      "word": "zealous",
-      "display": "zealous",
-      "meaning": "狂熱",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "zombie-any-entry-0699",
-      "word": "zombie",
-      "display": "zombie",
-      "meaning": "喪屍",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
     },
     {
       "id": "entry-any-have-pp-8520",
@@ -76134,16 +74758,6 @@
       "word": "bread",
       "display": "bread",
       "meaning": "麵包",
-      "pos": "noun",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "water-noun-entry-manual",
-      "word": "water",
-      "display": "water",
-      "meaning": "水",
       "pos": "noun",
       "type": "word",
       "needsReview": false,
@@ -85692,6 +84306,1054 @@
       "display": "ubiquitous",
       "meaning": "無處不在的",
       "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "umami-noun-entry-7628",
+      "word": "umami",
+      "display": "umami",
+      "meaning": "鮮味",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "unanimous-adjective-entry-7629",
+      "word": "unanimous",
+      "display": "unanimous",
+      "meaning": "一致同意的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "unassuming-adjective-entry-7630",
+      "word": "unassuming",
+      "display": "unassuming",
+      "meaning": "低調謙遜的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "unblemished-adjective-entry-7631",
+      "word": "unblemished",
+      "display": "unblemished",
+      "meaning": "無瑕疵的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "uncertain-adjective-entry-7632",
+      "word": "uncertain",
+      "display": "uncertain",
+      "meaning": "不確定的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "uncommon-adjective-entry-7633",
+      "word": "uncommon",
+      "display": "uncommon",
+      "meaning": "不常見的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "undeniable-adjective-entry-7634",
+      "word": "undeniable",
+      "display": "undeniable",
+      "meaning": "不可否認的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "underneath-preposition-entry-7635",
+      "word": "underneath",
+      "display": "underneath",
+      "meaning": "在...之下",
+      "pos": "preposition",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "underneath-adverb-entry-7636",
+      "word": "underneath",
+      "display": "underneath",
+      "meaning": "在下面",
+      "pos": "adverb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "underpin-verb-entry-7637",
+      "word": "underpin",
+      "display": "underpin",
+      "meaning": "支撐 / 作為基礎",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "underscore-verb-entry-7638",
+      "word": "underscore",
+      "display": "underscore",
+      "meaning": "突顯 / 強調",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "underscore-noun-entry-7639",
+      "word": "underscore",
+      "display": "underscore",
+      "meaning": "底線符號",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "undesirable-adjective-entry-7640",
+      "word": "undesirable",
+      "display": "undesirable",
+      "meaning": "不可取的 / 不受歡迎的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "unearth-verb-entry-7641",
+      "word": "unearth",
+      "display": "unearth",
+      "meaning": "發掘 / 出土",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "uneasy-adjective-entry-7642",
+      "word": "uneasy",
+      "display": "uneasy",
+      "meaning": "不安的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "unicorn-noun-entry-7643",
+      "word": "unicorn",
+      "display": "unicorn",
+      "meaning": "獨角獸",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "unleash-verb-entry-7644",
+      "word": "unleash",
+      "display": "unleash",
+      "meaning": "釋放 / 發揮",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "unmatched-adjective-entry-7645",
+      "word": "unmatched",
+      "display": "unmatched",
+      "meaning": "無可匹敵的 / 無可比擬的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "unparalleled-adjective-entry-7646",
+      "word": "unparalleled",
+      "display": "unparalleled",
+      "meaning": "無可比擬的 / 無可匹敵的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "unrealistic-adjective-entry-7647",
+      "word": "unrealistic",
+      "display": "unrealistic",
+      "meaning": "不切實際的 / 不現實的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "unregulated-adjective-entry-7648",
+      "word": "unregulated",
+      "display": "unregulated",
+      "meaning": "不受規管的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "unstable-adjective-entry-7649",
+      "word": "unstable",
+      "display": "unstable",
+      "meaning": "不穩定的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "until-preposition-entry-7650",
+      "word": "until",
+      "display": "until",
+      "meaning": "直到 / 直至",
+      "pos": "preposition",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "until-conjunction-entry-7651",
+      "word": "until",
+      "display": "until",
+      "meaning": "直到 / 直至",
+      "pos": "conjunction",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "unwind-verb-entry-7652",
+      "word": "unwind",
+      "display": "unwind",
+      "meaning": "放鬆 / 減壓",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "uproar-noun-entry-7653",
+      "word": "uproar",
+      "display": "uproar",
+      "meaning": "騷動 / 強烈反對",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "upside-noun-entry-7654",
+      "word": "upside",
+      "display": "upside",
+      "meaning": "好處 / 上升空間",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "urbanisation-noun-entry-7655",
+      "word": "urbanisation",
+      "display": "urbanisation",
+      "meaning": "都市化",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "urbanization"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "urine-noun-entry-7656",
+      "word": "urine",
+      "display": "urine",
+      "meaning": "尿液",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "usher-verb-entry-7657",
+      "word": "usher",
+      "display": "usher",
+      "meaning": "引導",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "usher-noun-entry-7658",
+      "word": "usher",
+      "display": "usher",
+      "meaning": "引座員",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "utilise-verb-entry-7659",
+      "word": "utilise",
+      "display": "utilise",
+      "meaning": "利用 / 善用",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "utilize"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "vacant-adjective-entry-7660",
+      "word": "vacant",
+      "display": "vacant",
+      "meaning": "空置的 / 空缺的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "value-noun-entry-7661",
+      "word": "value",
+      "display": "value",
+      "meaning": "價值",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "value-verb-entry-7662",
+      "word": "value",
+      "display": "value",
+      "meaning": "重視",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "valued-adjective-entry-7663",
+      "word": "valued",
+      "display": "valued",
+      "meaning": "受重視的 / 珍貴的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "valueless-adjective-entry-7664",
+      "word": "valueless",
+      "display": "valueless",
+      "meaning": "無價值的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "variance-noun-entry-7665",
+      "word": "variance",
+      "display": "variance",
+      "meaning": "差異",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "vehicle-noun-entry-7666",
+      "word": "vehicle",
+      "display": "vehicle",
+      "meaning": "車輛 / 交通工具",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "vehicles"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "veil-noun-entry-7667",
+      "word": "veil",
+      "display": "veil",
+      "meaning": "面紗",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "veil-verb-entry-7668",
+      "word": "veil",
+      "display": "veil",
+      "meaning": "遮掩",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "vend-verb-entry-7669",
+      "word": "vend",
+      "display": "vend",
+      "meaning": "販賣",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "venerable-adjective-entry-7670",
+      "word": "venerable",
+      "display": "venerable",
+      "meaning": "德高望重的 / 可敬的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "vent-verb-entry-7671",
+      "word": "vent",
+      "display": "vent",
+      "meaning": "發洩",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "vent-noun-entry-7672",
+      "word": "vent",
+      "display": "vent",
+      "meaning": "通風口 / 排氣口",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "ventilation-noun-entry-7673",
+      "word": "ventilation",
+      "display": "ventilation",
+      "meaning": "通風",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "versatile-adjective-entry-7674",
+      "word": "versatile",
+      "display": "versatile",
+      "meaning": "多才多藝的 / 多用途的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "vetting-noun-entry-7675",
+      "word": "vetting",
+      "display": "vetting",
+      "meaning": "審查 / 篩選",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "vibe-noun-entry-7676",
+      "word": "vibe",
+      "display": "vibe",
+      "meaning": "氛圍 / 感覺",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "vietnam-noun-entry-7677",
+      "word": "vietnam",
+      "display": "Vietnam",
+      "meaning": "越南",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "villa-noun-entry-7678",
+      "word": "villa",
+      "display": "villa",
+      "meaning": "別墅 / 度假屋",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "vintage-adjective-entry-7679",
+      "word": "vintage",
+      "display": "vintage",
+      "meaning": "復古的 / 懷舊的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "vintage-noun-entry-7680",
+      "word": "vintage",
+      "display": "vintage",
+      "meaning": "古董年份 / 佳釀年份",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "viral-adjective-entry-7681",
+      "word": "viral",
+      "display": "viral",
+      "meaning": "爆紅的 / 病毒式傳播的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "visitor-noun-entry-7682",
+      "word": "visitor",
+      "display": "visitor",
+      "meaning": "訪客",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "visitors"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "visualise-verb-entry-7683",
+      "word": "visualise",
+      "display": "visualise",
+      "meaning": "想像 / 視覺化",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "visualize"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "vitamin-noun-entry-7684",
+      "word": "vitamin",
+      "display": "vitamin",
+      "meaning": "維他命 / 維生素",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "vitamins"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "vivid-adjective-entry-7685",
+      "word": "vivid",
+      "display": "vivid",
+      "meaning": "生動的 / 鮮明的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "vocation-noun-entry-7686",
+      "word": "vocation",
+      "display": "vocation",
+      "meaning": "職業 / 使命感",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "volatile-adjective-entry-7687",
+      "word": "volatile",
+      "display": "volatile",
+      "meaning": "波動的 / 不穩定的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "volcano-noun-entry-7688",
+      "word": "volcano",
+      "display": "volcano",
+      "meaning": "火山",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "wallet-noun-entry-7689",
+      "word": "wallet",
+      "display": "wallet",
+      "meaning": "錢包",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "walnut-noun-entry-7690",
+      "word": "walnut",
+      "display": "walnut",
+      "meaning": "核桃",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "wardrobe-noun-entry-7691",
+      "word": "wardrobe",
+      "display": "wardrobe",
+      "meaning": "衣櫃",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "wary-of-phrase-entry-7692",
+      "word": "wary of",
+      "display": "wary of",
+      "meaning": "提防 / 警惕",
+      "pos": "",
+      "type": "phrase",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "waterfall-noun-entry-7693",
+      "word": "waterfall",
+      "display": "waterfall",
+      "meaning": "瀑布",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "wax-noun-entry-7695",
+      "word": "wax",
+      "display": "wax",
+      "meaning": "蠟",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "wax-verb-entry-7696",
+      "word": "wax",
+      "display": "wax",
+      "meaning": "打蠟",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "weary-adjective-entry-7697",
+      "word": "weary",
+      "display": "weary",
+      "meaning": "疲倦的 / 疲累的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "weathering-noun-entry-7698",
+      "word": "weathering",
+      "display": "weathering",
+      "meaning": "風化作用",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "weep-verb-entry-7699",
+      "word": "weep",
+      "display": "weep",
+      "meaning": "流淚 / 哭泣",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "whack-verb-entry-7700",
+      "word": "whack",
+      "display": "whack",
+      "meaning": "猛擊",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "whack-noun-entry-7701",
+      "word": "whack",
+      "display": "whack",
+      "meaning": "重擊",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "what-pronoun-entry-7702",
+      "word": "what",
+      "display": "what",
+      "meaning": "的東西 / 什麼",
+      "pos": "pronoun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "what-determiner-entry-7703",
+      "word": "what",
+      "display": "what",
+      "meaning": "什麼",
+      "pos": "determiner",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "while-whereas-conjunction-entry-7704",
+      "word": "while / whereas",
+      "display": "while / whereas",
+      "meaning": "而 / 然而 / 雖然",
+      "pos": "conjunction",
+      "type": "phrase",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "whistle-noun-entry-7705",
+      "word": "whistle",
+      "display": "whistle",
+      "meaning": "口哨",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "whistle-verb-entry-7706",
+      "word": "whistle",
+      "display": "whistle",
+      "meaning": "吹口哨",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "whole-adjective-entry-7707",
+      "word": "whole",
+      "display": "whole",
+      "meaning": "全部的 / 一整個的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "whole-noun-entry-7708",
+      "word": "whole",
+      "display": "whole",
+      "meaning": "整體",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "whopping-adjective-entry-7709",
+      "word": "whopping",
+      "display": "whopping",
+      "meaning": "巨大的 / 大得驚人的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "womb-noun-entry-7710",
+      "word": "womb",
+      "display": "womb",
+      "meaning": "子宮",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "worsen-verb-entry-7711",
+      "word": "worsen",
+      "display": "worsen",
+      "meaning": "惡化",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "wound-noun-entry-7712",
+      "word": "wound",
+      "display": "wound",
+      "meaning": "傷口",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "wound-verb-entry-7713",
+      "word": "wound",
+      "display": "wound",
+      "meaning": "使受傷",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "wreckage-noun-entry-7714",
+      "word": "wreckage",
+      "display": "wreckage",
+      "meaning": "殘骸",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "yacht-noun-entry-7715",
+      "word": "yacht",
+      "display": "yacht",
+      "meaning": "遊艇",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "yardstick-noun-entry-7716",
+      "word": "yardstick",
+      "display": "yardstick",
+      "meaning": "標準 / 準繩",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "yawn-verb-entry-7717",
+      "word": "yawn",
+      "display": "yawn",
+      "meaning": "打呵欠",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "yawn-noun-entry-7718",
+      "word": "yawn",
+      "display": "yawn",
+      "meaning": "呵欠",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "yet-adverb-entry-7719",
+      "word": "yet",
+      "display": "yet",
+      "meaning": "尚未 / 還",
+      "pos": "adverb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "yet-conjunction-entry-7720",
+      "word": "yet",
+      "display": "yet",
+      "meaning": "但是 / 然而",
+      "pos": "conjunction",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "yield-verb-entry-7721",
+      "word": "yield",
+      "display": "yield",
+      "meaning": "產出",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "yield-noun-entry-7722",
+      "word": "yield",
+      "display": "yield",
+      "meaning": "產量",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "zealous-adjective-entry-7723",
+      "word": "zealous",
+      "display": "zealous",
+      "meaning": "熱心的 / 狂熱的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "zombie-noun-entry-7724",
+      "word": "zombie",
+      "display": "zombie",
+      "meaning": "喪屍 / 殭屍",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "exceptional-adjective-entry-7725",
+      "word": "exceptional",
+      "display": "exceptional",
+      "meaning": "出眾的 / 超卓的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "a-wide-array-of-phrase-entry-7726",
+      "word": "a wide array of",
+      "display": "a wide array of",
+      "meaning": "不同種類的 / 大量的",
+      "pos": "",
+      "type": "phrase",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "an-array-of-phrase-entry-7727",
+      "word": "an array of",
+      "display": "an array of",
+      "meaning": "一連串 / 一系列",
+      "pos": "",
+      "type": "phrase",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "eco-conscious-adjective-entry-7728",
+      "word": "eco-conscious",
+      "display": "eco-conscious",
+      "meaning": "有環保意識的",
+      "pos": "adjective",
+      "type": "phrase",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "water-noun-entry-manual",
+      "word": "water",
+      "display": "water",
+      "meaning": "水",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "water-verb-entry-manual",
+      "word": "water",
+      "display": "water",
+      "meaning": "澆水",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "waters-noun-entry-7726",
+      "word": "waters",
+      "display": "waters",
+      "meaning": "水域",
+      "pos": "noun",
       "type": "word",
       "needsReview": false,
       "sourceCount": 1
