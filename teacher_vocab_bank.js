@@ -5,7 +5,7 @@
   root.TEACHER_VOCAB_BANK = bank;
 })(typeof globalThis !== "undefined" ? globalThis : window, {
   "meta": {
-    "generatedAt": "2026-06-21T01:17:21.709Z",
+    "generatedAt": "2026-06-21T01:27:59.972Z",
     "sourceFiles": [
       {
         "name": "Randomisable Vocab Test.xlsx",
@@ -34,10 +34,14 @@
       {
         "name": "teacher_vocab_manual_updates.json",
         "addedEntryCount": 91
+      },
+      {
+        "name": "teacher_vocab_manual_updates.json",
+        "addedEntryCount": 98
       }
     ],
-    "entryCount": 7901,
-    "uniqueWordCount": 5039,
+    "entryCount": 7877,
+    "uniqueWordCount": 5034,
     "conflictCount": 3731,
     "typeCounts": {
       "phrase": 2369,
@@ -46569,16 +46573,6 @@
       "sourceCount": 1
     },
     {
-      "id": "obstruct-any-entry-4410",
-      "word": "obstruct",
-      "display": "obstruct",
-      "meaning": "妨礙",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 5
-    },
-    {
       "id": "obtain-any-entry-3168",
       "word": "obtain",
       "display": "obtain",
@@ -46810,16 +46804,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "octopus-any-entry-4950",
-      "word": "octopus",
-      "display": "octopus",
-      "meaning": "章魚",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "odd-any-entry-1411",
       "word": "odd",
       "display": "odd",
@@ -46831,16 +46815,6 @@
       "inferredPos": "adjective",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "odor-any-entry-4468",
-      "word": "odor",
-      "display": "odor",
-      "meaning": "氣味",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 6
     },
     {
       "id": "odourless-any-entry-4550",
@@ -47126,26 +47100,6 @@
       "posReason": "chinese-adjective-meaning+oxford"
     },
     {
-      "id": "offset-any-entry-4437",
-      "word": "offset",
-      "display": "offset",
-      "meaning": "抵消",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
-      "id": "offset-any-entry-4477",
-      "word": "offset",
-      "display": "offset",
-      "meaning": "抵銷",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "offspring-any-entry-1995",
       "word": "offspring",
       "display": "offspring",
@@ -47220,49 +47174,6 @@
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 2
-    },
-    {
-      "id": "omelette-any-entry-7025",
-      "word": "omelette",
-      "display": "omelette",
-      "meaning": "奄列",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "omission-any-entry-4444",
-      "word": "omission",
-      "display": "omission",
-      "meaning": "遺漏",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "on-any-entry-1347",
-      "word": "on",
-      "display": "on",
-      "meaning": "因為+句子",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 33
-    },
-    {
-      "id": "on-any-entry-0086",
-      "word": "on",
-      "display": "on",
-      "meaning": "地球上的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
     },
     {
       "id": "on-a-daily-basis-any-entry-8240",
@@ -47552,16 +47463,6 @@
       "pos": "",
       "type": "phrase",
       "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "once-any-entry-8746",
-      "word": "once",
-      "display": "Once",
-      "meaning": "曾經",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
       "sourceCount": 1
     },
     {
@@ -47856,49 +47757,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "opine-any-entry-5573",
-      "word": "opine",
-      "display": "opine",
-      "meaning": "提出意見",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "opine-any-entry-5604",
-      "word": "opine",
-      "display": "opine",
-      "meaning": "認為",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "opponent-any-entry-3336",
-      "word": "opponent",
-      "display": "opponent",
-      "meaning": "反對者",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "noun",
-      "posConfidence": 90,
-      "posReason": "chinese-noun-meaning"
-    },
-    {
-      "id": "opponents-any-entry-4425",
-      "word": "opponents",
-      "display": "opponents",
-      "meaning": "對手",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "opportunity-any-entry-2699",
       "word": "opportunity",
       "display": "opportunity",
@@ -48047,46 +47905,6 @@
       "posReason": "chinese-conjunction-meaning"
     },
     {
-      "id": "orchard-any-entry-5724",
-      "word": "orchard",
-      "display": "orchard",
-      "meaning": "果園",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "orchid-any-entry-5836",
-      "word": "orchid",
-      "display": "orchid",
-      "meaning": "蘭花",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "ordeal-any-entry-7582",
-      "word": "ordeal",
-      "display": "ordeal",
-      "meaning": "厄運",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "ordeal-any-entry-7587",
-      "word": "ordeal",
-      "display": "ordeal",
-      "meaning": "苦難",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 6
-    },
-    {
       "id": "order-noun-entry-0164",
       "word": "order",
       "display": "order",
@@ -48134,16 +47952,6 @@
       "pos": "verb",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "ordinance-any-entry-2714",
-      "word": "ordinance",
-      "display": "ordinance",
-      "meaning": "條例",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
       "sourceCount": 1
     },
     {
@@ -48210,26 +48018,6 @@
       "inferredPos": "adjective",
       "posConfidence": 90,
       "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "organisation-any-entry-2637",
-      "word": "organisation",
-      "display": "organisation",
-      "meaning": "組織",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "orienteering-any-entry-8735",
-      "word": "orienteering",
-      "display": "orienteering",
-      "meaning": "野外定向",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "origami-noun-entry-0023",
@@ -48389,36 +48177,6 @@
       "sourceCount": 6
     },
     {
-      "id": "ornaments-any-entry-5855",
-      "word": "ornaments",
-      "display": "ornaments",
-      "meaning": "裝飾",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "orphans-any-entry-2528",
-      "word": "orphans",
-      "display": "orphans",
-      "meaning": "孤兒",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "other-any-entry-8108",
-      "word": "other",
-      "display": "other",
-      "meaning": "其他",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
       "id": "other-than-any-entry-2350",
       "word": "other than",
       "display": "other than",
@@ -48501,26 +48259,6 @@
       "posReason": "chinese-noun-meaning"
     },
     {
-      "id": "outcry-any-entry-7357",
-      "word": "outcry",
-      "display": "outcry",
-      "meaning": "反對",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "outcry-any-entry-5565",
-      "word": "outcry",
-      "display": "outcry",
-      "meaning": "強烈反對",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 6
-    },
-    {
       "id": "outdated-any-entry-0184",
       "word": "outdated",
       "display": "outdated",
@@ -48545,16 +48283,6 @@
       "inferredPos": "noun",
       "posConfidence": 90,
       "posReason": "chinese-noun-meaning"
-    },
-    {
-      "id": "outline-any-entry-8138",
-      "word": "outline",
-      "display": "outline",
-      "meaning": "列出",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "outlook-any-entry-2421",
@@ -48607,49 +48335,6 @@
       "inferredPos": "adjective",
       "posConfidence": 90,
       "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "outsource-any-entry-3067",
-      "word": "outsource",
-      "display": "outsource",
-      "meaning": "外判",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "outspoken-any-entry-3597",
-      "word": "outspoken",
-      "display": "outspoken",
-      "meaning": "敢言",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 6
-    },
-    {
-      "id": "outspoken-any-entry-3938",
-      "word": "outspoken",
-      "display": "outspoken",
-      "meaning": "敢言的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 9,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "outweigh-any-entry-4763",
-      "word": "outweigh",
-      "display": "outweigh",
-      "meaning": "超過",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "over-any-entry-2319",
@@ -48705,110 +48390,10 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "overhaul-any-entry-7122",
-      "word": "overhaul",
-      "display": "overhaul",
-      "meaning": "大檢修",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
-      "id": "overhead-any-entry-1388",
-      "word": "overhead",
-      "display": "overhead",
-      "meaning": "間接成本",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "overheads-any-entry-7739",
       "word": "overheads",
       "display": "overheads",
       "meaning": "雜費",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "overhear-any-entry-3461",
-      "word": "overhear",
-      "display": "overhear",
-      "meaning": "不經意聽到",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 9
-    },
-    {
-      "id": "overhear-any-entry-3561",
-      "word": "overhear",
-      "display": "overhear",
-      "meaning": "唔覺意聽倒",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 7
-    },
-    {
-      "id": "overhear-any-entry-3504",
-      "word": "overhear",
-      "display": "overhear",
-      "meaning": "無意聽倒",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "overjoyed-any-entry-5321",
-      "word": "overjoyed",
-      "display": "overjoyed",
-      "meaning": "十分開心",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 7
-    },
-    {
-      "id": "overjoyed-any-entry-5276",
-      "word": "overjoyed",
-      "display": "overjoyed",
-      "meaning": "好開心",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 6
-    },
-    {
-      "id": "overjoyed-any-entry-8611",
-      "word": "overjoyed",
-      "display": "overjoyed",
-      "meaning": "很高興",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "overjoyed-any-entry-5304",
-      "word": "overjoyed",
-      "display": "overjoyed",
-      "meaning": "快樂",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "overjoyed-any-entry-8334",
-      "word": "overjoyed",
-      "display": "overjoyed",
-      "meaning": "開心(感覺)",
       "pos": "",
       "type": "word",
       "needsReview": true,
@@ -48854,36 +48439,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "overpriced-any-entry-4668",
-      "word": "overpriced",
-      "display": "overpriced",
-      "meaning": "唔抵",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "overpriced-any-entry-4663",
-      "word": "overpriced",
-      "display": "overpriced",
-      "meaning": "太貴(唔抵)",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
-      "id": "overseas-any-entry-3803",
-      "word": "overseas",
-      "display": "overseas",
-      "meaning": "海外",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "oversee-any-entry-5706",
       "word": "oversee",
       "display": "oversee",
@@ -48895,26 +48450,6 @@
       "inferredPos": "verb",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "overshadow-any-entry-0671",
-      "word": "overshadow",
-      "display": "overshadow",
-      "meaning": "蒙上陰影",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 5
-    },
-    {
-      "id": "overtake-any-entry-5716",
-      "word": "overtake",
-      "display": "overtake",
-      "meaning": "超過(速度)",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "overwhelmed-any-entry-2402",
@@ -49067,16 +48602,6 @@
       "inferredPos": "noun",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "oyster-any-entry-4727",
-      "word": "oyster",
-      "display": "oyster",
-      "meaning": "蠔",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
     },
     {
       "id": "p-any-90-7951",
@@ -49679,16 +49204,6 @@
       "sourceCount": 1
     },
     {
-      "id": "pace-any-entry-5640",
-      "word": "pace",
-      "display": "pace",
-      "meaning": "步伐",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 5
-    },
-    {
       "id": "pace-of-life-any-entry-2570",
       "word": "pace of life",
       "display": "pace of life",
@@ -49697,16 +49212,6 @@
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 1
-    },
-    {
-      "id": "packaging-any-entry-1272",
-      "word": "packaging",
-      "display": "packaging",
-      "meaning": "包裝",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
     },
     {
       "id": "packed-with-any-entry-1944",
@@ -49730,66 +49235,6 @@
       "inferredPos": "adjective",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "painkillers-any-entry-4777",
-      "word": "painkillers",
-      "display": "painkillers",
-      "meaning": "止痛藥",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 7
-    },
-    {
-      "id": "painstaking-any-entry-6207",
-      "word": "painstaking",
-      "display": "painstaking",
-      "meaning": "仔細, 小心翼翼",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "painstaking-any-entry-3642",
-      "word": "painstaking",
-      "display": "painstaking",
-      "meaning": "小心翼翼",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
-      "id": "painstaking-any-entry-7182",
-      "word": "painstaking",
-      "display": "painstaking",
-      "meaning": "謹慎",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "paint-with-a-single-brush-any-entry-0534",
-      "word": "paint ... with a single brush",
-      "display": "paint ... with a single brush",
-      "meaning": "一竹竿打沉一船人 / 以偏蓋全",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "pal-any-entry-4895",
-      "word": "pal",
-      "display": "pal",
-      "meaning": "朋友",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "palace-any-entry-6658",
@@ -49851,46 +49296,6 @@
       "sourceCount": 2
     },
     {
-      "id": "panacea-any-entry-1148",
-      "word": "panacea",
-      "display": "panacea",
-      "meaning": "靈丹妙藥",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 5
-    },
-    {
-      "id": "panacea-any-entry-1183",
-      "word": "panacea",
-      "display": "panacea",
-      "meaning": "靈舟妙藥",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "pandemic-any-entry-4590",
-      "word": "pandemic",
-      "display": "pandemic",
-      "meaning": "大傳染病",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "paparazzi-any-entry-1469",
-      "word": "paparazzi",
-      "display": "paparazzi",
-      "meaning": "狗仔隊",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
       "id": "parade-any-entry-3599",
       "word": "parade",
       "display": "parade",
@@ -49917,36 +49322,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "paradox-any-entry-4418",
-      "word": "paradox",
-      "display": "paradox",
-      "meaning": "迷思",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "paradsie-any-entry-8563",
-      "word": "paradsie",
-      "display": "paradsie",
-      "meaning": "天堂",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "paralyze-any-entry-3488",
-      "word": "paralyze",
-      "display": "paralyze",
-      "meaning": "癱瘓",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 17
-    },
-    {
       "id": "paramount-any-entry-5903",
       "word": "paramount",
       "display": "paramount",
@@ -49958,26 +49333,6 @@
       "inferredPos": "adjective",
       "posConfidence": 90,
       "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "parasite-any-entry-7542",
-      "word": "parasite",
-      "display": "parasite",
-      "meaning": "寄生蟲",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "parcel-any-entry-6194",
-      "word": "parcel",
-      "display": "parcel",
-      "meaning": "包裹",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
     },
     {
       "id": "parliament-any-entry-6269",
@@ -50345,29 +49700,6 @@
       "posReason": "chinese-noun-meaning"
     },
     {
-      "id": "pastry-any-entry-4649",
-      "word": "pastry",
-      "display": "pastry",
-      "meaning": "油酥類",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
-      "id": "pastry-any-entry-2511",
-      "word": "pastry",
-      "display": "pastry",
-      "meaning": "糕點",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "noun",
-      "posConfidence": 90,
-      "posReason": "chinese-noun-meaning"
-    },
-    {
       "id": "path-any-entry-0049",
       "word": "path",
       "display": "path",
@@ -50407,92 +49739,6 @@
       "posReason": "chinese-adjective-meaning"
     },
     {
-      "id": "patrol-any-entry-2731",
-      "word": "patrol",
-      "display": "patrol",
-      "meaning": "巡邏",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "patron-any-1-4156",
-      "word": "patron",
-      "display": "patron",
-      "meaning": "1. 可放在句子頭 / 中 / 尾",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "patron-any-entry-0937",
-      "word": "patron",
-      "display": "patron",
-      "meaning": "常客",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "patronize-any-entry-3665",
-      "word": "patronize",
-      "display": "patronize",
-      "meaning": "光顧",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "patrons-any-entry-2472",
-      "word": "patrons",
-      "display": "patrons",
-      "meaning": "常客",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "patterns-any-entry-5139",
-      "word": "patterns",
-      "display": "patterns",
-      "meaning": "圖案",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "pause-any-entry-2987",
-      "word": "pause",
-      "display": "pause",
-      "meaning": "中止",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "pause-any-entry-5744",
-      "word": "pause",
-      "display": "pause",
-      "meaning": "暫停",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
       "id": "pave-the-way-for-any-entry-0029",
       "word": "pave the way for",
       "display": "pave the way for",
@@ -50521,16 +49767,6 @@
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 1
-    },
-    {
-      "id": "pavement-any-entry-6916",
-      "word": "pavement",
-      "display": "pavement",
-      "meaning": "行人路",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
     },
     {
       "id": "pay-noun-entry-8762",
@@ -50591,26 +49827,6 @@
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 1
-    },
-    {
-      "id": "paycheck-any-entry-7279",
-      "word": "paycheck",
-      "display": "paycheck",
-      "meaning": "工資",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "paycheck-any-entry-1041",
-      "word": "paycheck",
-      "display": "paycheck",
-      "meaning": "收入",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 79
     },
     {
       "id": "peacefully-any-entry-4690",
@@ -50678,36 +49894,6 @@
       "posReason": "chinese-noun-meaning"
     },
     {
-      "id": "peek-any-entry-7813",
-      "word": "peek",
-      "display": "peek",
-      "meaning": "偷看",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "peel-any-entry-5982",
-      "word": "peel",
-      "display": "peel",
-      "meaning": "批皮",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "peers-any-entry-0286",
-      "word": "peers",
-      "display": "peers",
-      "meaning": "同儕",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "pen-any-entry-3368",
       "word": "pen",
       "display": "pen",
@@ -50719,46 +49905,6 @@
       "inferredPos": "noun",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "pendulum-any-entry-8663",
-      "word": "pendulum",
-      "display": "pendulum",
-      "meaning": "鐘擺",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "penetrate-any-entry-0638",
-      "word": "penetrate",
-      "display": "penetrate",
-      "meaning": "滲透",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 7
-    },
-    {
-      "id": "penetrate-any-entry-1606",
-      "word": "penetrate",
-      "display": "penetrate",
-      "meaning": "穿透, 普遍",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "peninsula-any-entry-7072",
-      "word": "peninsula",
-      "display": "peninsula",
-      "meaning": "半島",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
     },
     {
       "id": "people-from-all-walks-of-life-any-entry-5305",
@@ -50853,16 +49999,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "perfumes-any-entry-6458",
-      "word": "perfumes",
-      "display": "perfumes",
-      "meaning": "香水",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "perhaps-any-entry-8572",
       "word": "perhaps",
       "display": "perhaps",
@@ -50915,75 +50051,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "peril-any-entry-5717",
-      "word": "peril",
-      "display": "peril",
-      "meaning": "危險",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "perilous-any-entry-0352",
-      "word": "perilous",
-      "display": "perilous",
-      "meaning": "十分危險",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 6
-    },
-    {
-      "id": "perilous-any-entry-1485",
-      "word": "perilous",
-      "display": "perilous",
-      "meaning": "十分危險的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "perilous-any-entry-1436",
-      "word": "perilous",
-      "display": "perilous",
-      "meaning": "危險的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 5,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "perilous-any-entry-8386",
-      "word": "perilous",
-      "display": "perilous",
-      "meaning": "極危險",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 12
-    },
-    {
-      "id": "perilous-any-entry-0849",
-      "word": "perilous",
-      "display": "perilous",
-      "meaning": "極危險的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 16,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
       "id": "period-any-entry-8553",
       "word": "period",
       "display": "period",
@@ -50995,79 +50062,6 @@
       "inferredPos": "noun",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "perish-any-x-6835",
-      "word": "perish",
-      "display": "perish",
-      "meaning": "X生",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "perish-any-entry-6605",
-      "word": "perish",
-      "display": "perish",
-      "meaning": "去世",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "perish-any-entry-2748",
-      "word": "perish",
-      "display": "perish",
-      "meaning": "喪生",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "perish-any-entry-6725",
-      "word": "perish",
-      "display": "perish",
-      "meaning": "死",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "perish-any-entry-1597",
-      "word": "perish",
-      "display": "perish",
-      "meaning": "死亡",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "perk-any-entry-6425",
-      "word": "perk",
-      "display": "perk",
-      "meaning": "優點",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "noun",
-      "posConfidence": 90,
-      "posReason": "chinese-noun-meaning"
-    },
-    {
-      "id": "perk-any-entry-7720",
-      "word": "perk",
-      "display": "perk",
-      "meaning": "好處(小)",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "perks-any-entry-3286",
@@ -51137,29 +50131,6 @@
       "type": "word",
       "needsReview": false,
       "sourceCount": 1
-    },
-    {
-      "id": "perseverance-any-entry-5216",
-      "word": "perseverance",
-      "display": "perseverance",
-      "meaning": "堅毅",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "perseverance-any-entry-5235",
-      "word": "perseverance",
-      "display": "perseverance",
-      "meaning": "毅力",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 90,
-      "posReason": "chinese-noun-meaning"
     },
     {
       "id": "persist-in-any-entry-3924",
@@ -51332,16 +50303,6 @@
       "sourceCount": 1
     },
     {
-      "id": "pessimistic-any-entry-4337",
-      "word": "pessimistic",
-      "display": "pessimistic",
-      "meaning": "悲觀",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 5
-    },
-    {
       "id": "pessimistic-about-any-entry-0595",
       "word": "pessimistic about",
       "display": "pessimistic about",
@@ -51362,46 +50323,6 @@
       "sourceCount": 1
     },
     {
-      "id": "pest-any-entry-0903",
-      "word": "pest",
-      "display": "pest",
-      "meaning": "害虫",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 5
-    },
-    {
-      "id": "pest-any-entry-5983",
-      "word": "pest",
-      "display": "pest",
-      "meaning": "害蟲",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "pesticide-any-entry-3407",
-      "word": "pesticide",
-      "display": "pesticide",
-      "meaning": "殺虫劑",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 11
-    },
-    {
-      "id": "pesticide-any-entry-5873",
-      "word": "pesticide",
-      "display": "pesticide",
-      "meaning": "殺蟲劑",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "petrol-any-entry-4529",
       "word": "petrol",
       "display": "petrol",
@@ -51415,26 +50336,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "ph-any-entry-4184",
-      "word": "ph.",
-      "display": "ph.",
-      "meaning": "似乎",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "pharaoh-any-entry-7447",
-      "word": "pharaoh",
-      "display": "pharaoh",
-      "meaning": "法老王",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "pharmacist-any-entry-1544",
       "word": "pharmacist",
       "display": "pharmacist",
@@ -51446,16 +50347,6 @@
       "inferredPos": "noun",
       "posConfidence": 90,
       "posReason": "chinese-noun-meaning"
-    },
-    {
-      "id": "pharoah-any-entry-7492",
-      "word": "pharoah",
-      "display": "pharoah",
-      "meaning": "法老王",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 5
     },
     {
       "id": "phase-any-entry-7181",
@@ -51554,26 +50445,6 @@
       "inferredPos": "noun",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "pickle-any-entry-4273",
-      "word": "pickle",
-      "display": "pickle",
-      "meaning": "酸瓜",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "pickle-any-entry-4286",
-      "word": "pickle",
-      "display": "pickle",
-      "meaning": "酸青瓜",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
     },
     {
       "id": "picture-verb-entry-8607",
@@ -87214,6 +86085,911 @@
       "aliases": [
         "measures"
       ],
+      "sourceCount": 1
+    },
+    {
+      "id": "obstruct-verb-entry-7792",
+      "word": "obstruct",
+      "display": "obstruct",
+      "meaning": "妨礙 / 阻礙",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "octopus-noun-entry-7793",
+      "word": "octopus",
+      "display": "octopus",
+      "meaning": "章魚",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "odor-noun-entry-7794",
+      "word": "odor",
+      "display": "odor",
+      "meaning": "氣味",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "odour"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "offset-verb-entry-7795",
+      "word": "offset",
+      "display": "offset",
+      "meaning": "抵消 / 抵銷",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "offset-noun-entry-7796",
+      "word": "offset",
+      "display": "offset",
+      "meaning": "抵消 / 偏移量",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "omelette-noun-entry-7797",
+      "word": "omelette",
+      "display": "omelette",
+      "meaning": "奄列 / 煎蛋卷",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "omission-noun-entry-7798",
+      "word": "omission",
+      "display": "omission",
+      "meaning": "遺漏 / 省略",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "once-adverb-entry-7799",
+      "word": "once",
+      "display": "once",
+      "meaning": "曾經 / 一次",
+      "pos": "adverb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "once-conjunction-entry-7800",
+      "word": "once",
+      "display": "once",
+      "meaning": "一旦",
+      "pos": "conjunction",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "opine-verb-entry-7801",
+      "word": "opine",
+      "display": "opine",
+      "meaning": "認為 / 提出意見",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "opponent-noun-entry-7802",
+      "word": "opponent",
+      "display": "opponent",
+      "meaning": "對手",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "opponents"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "orchard-noun-entry-7803",
+      "word": "orchard",
+      "display": "orchard",
+      "meaning": "果園",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "orchid-noun-entry-7804",
+      "word": "orchid",
+      "display": "orchid",
+      "meaning": "蘭花",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "ordeal-noun-entry-7805",
+      "word": "ordeal",
+      "display": "ordeal",
+      "meaning": "嚴酷考驗 / 苦難",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "ordinance-noun-entry-7806",
+      "word": "ordinance",
+      "display": "ordinance",
+      "meaning": "條例 / 法令",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "organisation-noun-entry-7807",
+      "word": "organisation",
+      "display": "organisation",
+      "meaning": "組織 / 機構",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "organization"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "orienteering-noun-entry-7808",
+      "word": "orienteering",
+      "display": "orienteering",
+      "meaning": "野外定向",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "ornament-noun-entry-7809",
+      "word": "ornament",
+      "display": "ornament",
+      "meaning": "裝飾品",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "ornaments"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "orphan-noun-entry-7810",
+      "word": "orphan",
+      "display": "orphan",
+      "meaning": "孤兒",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "orphans"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "other-adjective-entry-7811",
+      "word": "other",
+      "display": "other",
+      "meaning": "其他的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "other-pronoun-entry-7812",
+      "word": "other",
+      "display": "other",
+      "meaning": "其他人或物",
+      "pos": "pronoun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "outcry-noun-entry-7813",
+      "word": "outcry",
+      "display": "outcry",
+      "meaning": "強烈抗議 / 強烈反對",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "outline-noun-entry-7814",
+      "word": "outline",
+      "display": "outline",
+      "meaning": "大綱 / 概要",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "outline-verb-entry-7815",
+      "word": "outline",
+      "display": "outline",
+      "meaning": "概述 / 列出",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "outsource-verb-entry-7816",
+      "word": "outsource",
+      "display": "outsource",
+      "meaning": "外判 / 外包",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "outspoken-adjective-entry-7817",
+      "word": "outspoken",
+      "display": "outspoken",
+      "meaning": "敢言的 / 直言的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "outweigh-verb-entry-7818",
+      "word": "outweigh",
+      "display": "outweigh",
+      "meaning": "比...重要 / 超過",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "overhaul-noun-entry-7819",
+      "word": "overhaul",
+      "display": "overhaul",
+      "meaning": "大檢修",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "overhaul-verb-entry-7820",
+      "word": "overhaul",
+      "display": "overhaul",
+      "meaning": "徹底檢修",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "overhead-noun-entry-7821",
+      "word": "overhead",
+      "display": "overhead",
+      "meaning": "間接成本 / 經常開支",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "overhead-noun-entry-7822",
+      "word": "overhead",
+      "display": "overhead",
+      "meaning": "雜費 / 經常開支",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "overheads"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "overhear-verb-entry-7823",
+      "word": "overhear",
+      "display": "overhear",
+      "meaning": "無意中聽到",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "overjoyed-adjective-entry-7824",
+      "word": "overjoyed",
+      "display": "overjoyed",
+      "meaning": "非常高興的 / 狂喜的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "overpriced-adjective-entry-7825",
+      "word": "overpriced",
+      "display": "overpriced",
+      "meaning": "價格過高的 / 太貴的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "overseas-adjective-entry-7826",
+      "word": "overseas",
+      "display": "overseas",
+      "meaning": "海外的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "overseas-adverb-entry-7827",
+      "word": "overseas",
+      "display": "overseas",
+      "meaning": "在海外",
+      "pos": "adverb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "overshadow-verb-entry-7828",
+      "word": "overshadow",
+      "display": "overshadow",
+      "meaning": "使蒙上陰影 / 令...失色",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "overtake-verb-entry-7829",
+      "word": "overtake",
+      "display": "overtake",
+      "meaning": "超越 / 趕過",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "oyster-noun-entry-7830",
+      "word": "oyster",
+      "display": "oyster",
+      "meaning": "蠔 / 牡蠣",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "pace-noun-entry-7831",
+      "word": "pace",
+      "display": "pace",
+      "meaning": "步伐 / 速度",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "pace-verb-entry-7832",
+      "word": "pace",
+      "display": "pace",
+      "meaning": "踱步",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "packaging-noun-entry-7833",
+      "word": "packaging",
+      "display": "packaging",
+      "meaning": "包裝",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "painkiller-noun-entry-7834",
+      "word": "painkiller",
+      "display": "painkiller",
+      "meaning": "止痛藥",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "painkillers"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "painstaking-adjective-entry-7835",
+      "word": "painstaking",
+      "display": "painstaking",
+      "meaning": "仔細的 / 煞費苦心的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "paint-with-a-single-brush-phrase-entry-7836",
+      "word": "paint ... with a single brush",
+      "display": "paint ... with a single brush",
+      "meaning": "一竹竿打沉一船人 / 以偏概全",
+      "pos": "",
+      "type": "phrase",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "pal-noun-entry-7837",
+      "word": "pal",
+      "display": "pal",
+      "meaning": "朋友",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "panacea-noun-entry-7838",
+      "word": "panacea",
+      "display": "panacea",
+      "meaning": "靈丹妙藥 / 萬能藥",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "pandemic-noun-entry-7839",
+      "word": "pandemic",
+      "display": "pandemic",
+      "meaning": "大流行病",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "pandemic-adjective-entry-7840",
+      "word": "pandemic",
+      "display": "pandemic",
+      "meaning": "大流行的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "paparazzi-noun-entry-7841",
+      "word": "paparazzi",
+      "display": "paparazzi",
+      "meaning": "狗仔隊",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "paradox-noun-entry-7842",
+      "word": "paradox",
+      "display": "paradox",
+      "meaning": "矛盾 / 悖論",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "paradise-noun-entry-7843",
+      "word": "paradise",
+      "display": "paradise",
+      "meaning": "天堂 / 樂園",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "paradsie"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "paralyze-verb-entry-7844",
+      "word": "paralyze",
+      "display": "paralyze",
+      "meaning": "使癱瘓",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "paralyse"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "parasite-noun-entry-7845",
+      "word": "parasite",
+      "display": "parasite",
+      "meaning": "寄生蟲",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "parcel-noun-entry-7846",
+      "word": "parcel",
+      "display": "parcel",
+      "meaning": "包裹",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "pastry-noun-entry-7847",
+      "word": "pastry",
+      "display": "pastry",
+      "meaning": "糕點 / 油酥點心",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "patrol-noun-entry-7848",
+      "word": "patrol",
+      "display": "patrol",
+      "meaning": "巡邏",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "patrol-verb-entry-7849",
+      "word": "patrol",
+      "display": "patrol",
+      "meaning": "巡邏",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "patronize-verb-entry-7850",
+      "word": "patronize",
+      "display": "patronize",
+      "meaning": "光顧 / 惠顧",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "patron-noun-entry-7851",
+      "word": "patron",
+      "display": "patron",
+      "meaning": "常客 / 顧客",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "patrons"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "pattern-noun-entry-7852",
+      "word": "pattern",
+      "display": "pattern",
+      "meaning": "圖案 / 模式",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "patterns"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "pause-noun-entry-7853",
+      "word": "pause",
+      "display": "pause",
+      "meaning": "暫停 / 停頓",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "pause-verb-entry-7854",
+      "word": "pause",
+      "display": "pause",
+      "meaning": "暫停",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "pavement-noun-entry-7855",
+      "word": "pavement",
+      "display": "pavement",
+      "meaning": "行人路",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "paycheck-noun-entry-7856",
+      "word": "paycheck",
+      "display": "paycheck",
+      "meaning": "工資 / 薪水",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "peek-verb-entry-7857",
+      "word": "peek",
+      "display": "peek",
+      "meaning": "偷看",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "peek-noun-entry-7858",
+      "word": "peek",
+      "display": "peek",
+      "meaning": "偷看",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "peel-verb-entry-7859",
+      "word": "peel",
+      "display": "peel",
+      "meaning": "削皮 / 剝皮",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "peel-noun-entry-7860",
+      "word": "peel",
+      "display": "peel",
+      "meaning": "果皮",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "peer-noun-entry-7861",
+      "word": "peer",
+      "display": "peer",
+      "meaning": "同輩 / 同儕",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "peers"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "pendulum-noun-entry-7862",
+      "word": "pendulum",
+      "display": "pendulum",
+      "meaning": "鐘擺",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "penetrate-verb-entry-7863",
+      "word": "penetrate",
+      "display": "penetrate",
+      "meaning": "穿透 / 滲透",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "peninsula-noun-entry-7864",
+      "word": "peninsula",
+      "display": "peninsula",
+      "meaning": "半島",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "perfume-noun-entry-7865",
+      "word": "perfume",
+      "display": "perfume",
+      "meaning": "香水",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "perfumes"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "peril-noun-entry-7866",
+      "word": "peril",
+      "display": "peril",
+      "meaning": "危險",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "perilous-adjective-entry-7867",
+      "word": "perilous",
+      "display": "perilous",
+      "meaning": "危險的 / 極危險的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "perish-verb-entry-7868",
+      "word": "perish",
+      "display": "perish",
+      "meaning": "死亡 / 喪生",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "perk-noun-entry-7869",
+      "word": "perk",
+      "display": "perk",
+      "meaning": "小福利 / 額外好處",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "perk-noun-entry-7870",
+      "word": "perk",
+      "display": "perk",
+      "meaning": "福利 / 好處",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "perks"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "perseverance-noun-entry-7871",
+      "word": "perseverance",
+      "display": "perseverance",
+      "meaning": "毅力 / 堅毅",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "pessimistic-adjective-entry-7872",
+      "word": "pessimistic",
+      "display": "pessimistic",
+      "meaning": "悲觀的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "pest-noun-entry-7873",
+      "word": "pest",
+      "display": "pest",
+      "meaning": "害蟲",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "pesticide-noun-entry-7874",
+      "word": "pesticide",
+      "display": "pesticide",
+      "meaning": "殺蟲劑 / 農藥",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "pharaoh-noun-entry-7875",
+      "word": "pharaoh",
+      "display": "pharaoh",
+      "meaning": "法老王",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "pharoah"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "pickle-noun-entry-7876",
+      "word": "pickle",
+      "display": "pickle",
+      "meaning": "酸青瓜 / 醃菜",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "pickle-verb-entry-7877",
+      "word": "pickle",
+      "display": "pickle",
+      "meaning": "醃製",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
       "sourceCount": 1
     }
   ]
