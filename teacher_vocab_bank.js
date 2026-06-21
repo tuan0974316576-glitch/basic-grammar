@@ -5,7 +5,7 @@
   root.TEACHER_VOCAB_BANK = bank;
 })(typeof globalThis !== "undefined" ? globalThis : window, {
   "meta": {
-    "generatedAt": "2026-06-21T01:43:58.890Z",
+    "generatedAt": "2026-06-21T01:50:50.665Z",
     "sourceFiles": [
       {
         "name": "Randomisable Vocab Test.xlsx",
@@ -54,10 +54,14 @@
       {
         "name": "teacher_vocab_manual_updates.json",
         "addedEntryCount": 2
+      },
+      {
+        "name": "teacher_vocab_manual_updates.json",
+        "addedEntryCount": 97
       }
     ],
-    "entryCount": 7830,
-    "uniqueWordCount": 5035,
+    "entryCount": 7816,
+    "uniqueWordCount": 5038,
     "conflictCount": 3731,
     "typeCounts": {
       "phrase": 2369,
@@ -59101,26 +59105,6 @@
       "sourceCount": 1
     },
     {
-      "id": "scalp-any-entry-4761",
-      "word": "scalp",
-      "display": "scalp",
-      "meaning": "頭皮",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "scam-any-entry-4961",
-      "word": "scam",
-      "display": "scam",
-      "meaning": "詐騙",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "scams-any-entry-3888",
       "word": "scams",
       "display": "scams",
@@ -59144,26 +59128,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "scar-any-entry-8060",
-      "word": "scar",
-      "display": "scar",
-      "meaning": "疤痕",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "scarce-any-entry-1036",
-      "word": "scarce",
-      "display": "scarce",
-      "meaning": "稀少",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 80
-    },
-    {
       "id": "scarcely-any-entry-1592",
       "word": "scarcely",
       "display": "scarcely",
@@ -59175,16 +59139,6 @@
       "inferredPos": "adverb",
       "posConfidence": 94,
       "posReason": "english-adverb-suffix"
-    },
-    {
-      "id": "scarf-any-entry-0010",
-      "word": "scarf",
-      "display": "scarf",
-      "meaning": "頸巾",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "scenario-any-entry-4859",
@@ -59226,16 +59180,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "scenery-any-entry-2850",
-      "word": "scenery",
-      "display": "scenery",
-      "meaning": "風景",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "scenic-spot-any-entry-1079",
       "word": "scenic spot",
       "display": "scenic spot",
@@ -59243,56 +59187,6 @@
       "pos": "",
       "type": "phrase",
       "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "scent-any-entry-7150",
-      "word": "scent",
-      "display": "scent",
-      "meaning": "氣味",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "scent-any-entry-6922",
-      "word": "scent",
-      "display": "scent",
-      "meaning": "香味",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
-      "id": "scent-any-entry-2551",
-      "word": "scent",
-      "display": "scent",
-      "meaning": "香味(花)",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "scent-any-entry-7165",
-      "word": "scent",
-      "display": "scent",
-      "meaning": "香氣",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
-      "id": "scent-any-entry-2458",
-      "word": "scent",
-      "display": "scent",
-      "meaning": "香氣 (花)",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
       "sourceCount": 1
     },
     {
@@ -59388,16 +59282,6 @@
       "posReason": "chinese-noun-meaning"
     },
     {
-      "id": "scold-any-entry-4984",
-      "word": "scold",
-      "display": "scold",
-      "meaning": "責備",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "scope-any-entry-7361",
       "word": "scope",
       "display": "scope",
@@ -59409,36 +59293,6 @@
       "inferredPos": "noun",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "scourge-any-entry-5526",
-      "word": "scourge",
-      "display": "scourge",
-      "meaning": "災禍",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 25
-    },
-    {
-      "id": "scourge-any-entry-7592",
-      "word": "scourge",
-      "display": "scourge",
-      "meaning": "禍害",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "scourge-any-entry-7583",
-      "word": "scourge",
-      "display": "scourge",
-      "meaning": "苦難",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "scramble-egg-any-entry-7020",
@@ -59468,16 +59322,6 @@
       "pos": "",
       "type": "phrase",
       "needsReview": false,
-      "sourceCount": 2
-    },
-    {
-      "id": "scratch-any-entry-3869",
-      "word": "scratch",
-      "display": "scratch",
-      "meaning": "花痕",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
       "sourceCount": 2
     },
     {
@@ -59541,16 +59385,6 @@
       "pos": "",
       "type": "phrase",
       "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "scrutinise-any-entry-7293",
-      "word": "scrutinise",
-      "display": "scrutinise",
-      "meaning": "仔細檢查",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
       "sourceCount": 1
     },
     {
@@ -59650,36 +59484,6 @@
       "sourceCount": 2
     },
     {
-      "id": "seal-any-entry-6550",
-      "word": "seal",
-      "display": "seal",
-      "meaning": "密封",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "seal-any-entry-6583",
-      "word": "seal",
-      "display": "seal",
-      "meaning": "海獅",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "seal-any-entry-0883",
-      "word": "seal",
-      "display": "seal",
-      "meaning": "海豹 / 密封",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "search-for-any-entry-0967",
       "word": "search (for)",
       "display": "search (for)",
@@ -59688,49 +59492,6 @@
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 1
-    },
-    {
-      "id": "seasoning-any-entry-2899",
-      "word": "seasoning",
-      "display": "seasoning",
-      "meaning": "調味料",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "seaweed-any-entry-4981",
-      "word": "seaweed",
-      "display": "seaweed",
-      "meaning": "海藻",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "secret-any-entry-8536",
-      "word": "secret",
-      "display": "secret",
-      "meaning": "秘密",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "secret-any-entry-4929",
-      "word": "secret",
-      "display": "secret",
-      "meaning": "秘密的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 96,
-      "posReason": "chinese-adjective-meaning+oxford"
     },
     {
       "id": "secretary-any-entry-4654",
@@ -59770,52 +59531,6 @@
       "inferredPos": "noun",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "secure-any-entry-8061",
-      "word": "secure",
-      "display": "secure",
-      "meaning": "保障",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "secure-any-entry-8066",
-      "word": "secure",
-      "display": "secure",
-      "meaning": "安全",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 96,
-      "posReason": "chinese-adjective-meaning+oxford"
-    },
-    {
-      "id": "secure-any-entry-6630",
-      "word": "secure",
-      "display": "secure",
-      "meaning": "安全 / 保障",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 96,
-      "posReason": "chinese-adjective-meaning+oxford"
-    },
-    {
-      "id": "sedentary-any-entry-6470",
-      "word": "sedentary",
-      "display": "sedentary",
-      "meaning": "久坐不動",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "see-as-any-entry-7201",
@@ -60029,16 +59744,6 @@
       "sourceCount": 1
     },
     {
-      "id": "selfless-any-entry-8701",
-      "word": "selfless",
-      "display": "selfless",
-      "meaning": "無私",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "seniors-any-entry-4780",
       "word": "seniors",
       "display": "seniors",
@@ -60238,16 +59943,6 @@
       "posReason": "chinese-noun-meaning"
     },
     {
-      "id": "separate-any-entry-4999",
-      "word": "separate",
-      "display": "separate",
-      "meaning": "分開",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
       "id": "separately-any-entry-0173",
       "word": "separately",
       "display": "separately",
@@ -60259,65 +59954,6 @@
       "inferredPos": "adverb",
       "posConfidence": 94,
       "posReason": "english-adverb-suffix"
-    },
-    {
-      "id": "serene-any-entry-3496",
-      "word": "serene",
-      "display": "serene",
-      "meaning": "安寧",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 9
-    },
-    {
-      "id": "serene-any-entry-6770",
-      "word": "serene",
-      "display": "serene",
-      "meaning": "安寧的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "serene-any-entry-3510",
-      "word": "serene",
-      "display": "serene",
-      "meaning": "寧靜",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
-      "id": "serene-any-entry-3572",
-      "word": "serene",
-      "display": "serene",
-      "meaning": "寧靜的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 6,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "serene-any-entry-3118",
-      "word": "serene",
-      "display": "serene",
-      "meaning": "平靜的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
     },
     {
       "id": "series-any-entry-1391",
@@ -60415,16 +60051,6 @@
       "sourceCount": 27
     },
     {
-      "id": "sesame-any-entry-8369",
-      "word": "sesame",
-      "display": "sesame",
-      "meaning": "芝麻",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 25
-    },
-    {
       "id": "set-noun-entry-0141",
       "word": "set",
       "display": "set",
@@ -60485,16 +60111,6 @@
       "sourceCount": 1
     },
     {
-      "id": "setback-any-entry-3463",
-      "word": "setback",
-      "display": "setback",
-      "meaning": "挫折",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 40
-    },
-    {
       "id": "settle-any-entry-7087",
       "word": "settle",
       "display": "settle x2",
@@ -60532,26 +60148,6 @@
       "inferredPos": "verb",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "several-any-entry-5667",
-      "word": "several",
-      "display": "several",
-      "meaning": "一些",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "several-any-entry-0365",
-      "word": "several",
-      "display": "several",
-      "meaning": "幾個",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 17
     },
     {
       "id": "several-a-couple-of-any-entry-0443",
@@ -60603,26 +60199,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "sew-any-entry-1140",
-      "word": "sew",
-      "display": "sew",
-      "meaning": "縫",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "sewer-any-entry-3192",
-      "word": "sewer",
-      "display": "sewer",
-      "meaning": "下水道",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
       "id": "shade-any-entry-6017",
       "word": "shade",
       "display": "shade",
@@ -60649,56 +60225,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "shape-any-entry-3457",
-      "word": "shape",
-      "display": "shape",
-      "meaning": "塑造",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "shape-verb-entry-1937",
-      "word": "shape",
-      "display": "shape (v)",
-      "meaning": "塑造",
-      "pos": "verb",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 3
-    },
-    {
-      "id": "shape-any-entry-5124",
-      "word": "shape",
-      "display": "shape",
-      "meaning": "形狀",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "shape-noun-entry-8561",
-      "word": "shape",
-      "display": "shape (n) x2",
-      "meaning": "形狀",
-      "pos": "noun",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2
-    },
-    {
-      "id": "shape-noun-entry-8562",
-      "word": "shape",
-      "display": "shape (n) x2",
-      "meaning": "體型",
-      "pos": "noun",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2
-    },
-    {
       "id": "sharpen-any-entry-3115",
       "word": "sharpen",
       "display": "sharpen",
@@ -60723,16 +60249,6 @@
       "inferredPos": "verb",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "shed-light-on-any-entry-1488",
-      "word": "shed light on",
-      "display": "shed light on",
-      "meaning": "提供資料 / 觀點",
-      "pos": "",
-      "type": "phrase",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "shed-some-lights-on-any-entry-1750",
@@ -60784,26 +60300,6 @@
       "posReason": "chinese-noun-meaning+oxford"
     },
     {
-      "id": "shift-any-entry-4296",
-      "word": "shift",
-      "display": "shift",
-      "meaning": "轉移",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "shift-any-entry-2666",
-      "word": "shift",
-      "display": "shift",
-      "meaning": "轉變",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "shine-any-entry-7278",
       "word": "shine",
       "display": "shine",
@@ -60828,16 +60324,6 @@
       "inferredPos": "noun",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "shock-any-entry-8207",
-      "word": "shock",
-      "display": "shock",
-      "meaning": "震驚",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "shoot-up-any-entry-7644",
@@ -60867,16 +60353,6 @@
       "pos": "",
       "type": "phrase",
       "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "shopaholic-any-entry-6829",
-      "word": "shopaholic",
-      "display": "shopaholic",
-      "meaning": "購物狂",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
       "sourceCount": 1
     },
     {
@@ -60923,42 +60399,6 @@
       "sourceCount": 1
     },
     {
-      "id": "shortcoming-any-entry-1986",
-      "word": "shortcoming",
-      "display": "shortcoming",
-      "meaning": "短處",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "shortcoming-any-entry-3605",
-      "word": "shortcoming",
-      "display": "shortcoming",
-      "meaning": "缺點",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 90,
-      "posReason": "chinese-noun-meaning"
-    },
-    {
-      "id": "shortcoming-any-entry-3410",
-      "word": "shortcoming",
-      "display": "shortcoming",
-      "meaning": "缺點 (不足之處)",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "noun",
-      "posConfidence": 90,
-      "posReason": "chinese-noun-meaning"
-    },
-    {
       "id": "shortcomings-any-entry-2001",
       "word": "shortcomings",
       "display": "shortcomings",
@@ -60969,16 +60409,6 @@
       "sourceCount": 5
     },
     {
-      "id": "shorten-any-entry-0654",
-      "word": "shorten",
-      "display": "shorten",
-      "meaning": "縮短",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
       "id": "should-modal-entry-0078",
       "word": "should",
       "display": "should",
@@ -60987,16 +60417,6 @@
       "type": "word",
       "needsReview": false,
       "sourceCount": 1
-    },
-    {
-      "id": "show-any-entry-0111",
-      "word": "show",
-      "display": "show",
-      "meaning": "顯示",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 8
     },
     {
       "id": "show-off-any-entry-8324",
@@ -61016,16 +60436,6 @@
       "pos": "verb",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "shrimp-any-entry-4946",
-      "word": "shrimp",
-      "display": "shrimp",
-      "meaning": "蝦",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
       "sourceCount": 1
     },
     {
@@ -61094,46 +60504,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "shun-any-entry-1179",
-      "word": "shun",
-      "display": "shun",
-      "meaning": "避免",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "shun-any-entry-1127",
-      "word": "shun",
-      "display": "shun",
-      "meaning": "避開",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "shutter-any-entry-5236",
-      "word": "shutter",
-      "display": "shutter",
-      "meaning": "快門",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "shutter-any-entry-5217",
-      "word": "shutter",
-      "display": "shutter",
-      "meaning": "關閉",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "siblings-any-entry-4220",
       "word": "siblings",
       "display": "siblings",
@@ -61154,26 +60524,6 @@
       "sourceCount": 1
     },
     {
-      "id": "sidewalk-any-entry-6937",
-      "word": "sidewalk",
-      "display": "sidewalk",
-      "meaning": "行人路",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
-      "id": "sigh-any-entry-0581",
-      "word": "sigh",
-      "display": "sigh",
-      "meaning": "嘆氣",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
       "id": "sight-any-entry-8156",
       "word": "sight",
       "display": "sight",
@@ -61185,16 +60535,6 @@
       "inferredPos": "noun",
       "posConfidence": 90,
       "posReason": "chinese-noun-meaning"
-    },
-    {
-      "id": "sign-any-entry-8593",
-      "word": "sign",
-      "display": "sign",
-      "meaning": "簽署",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
     },
     {
       "id": "sign-in-any-entry-8566",
@@ -61442,26 +60782,6 @@
       "posReason": "english-adverb-suffix"
     },
     {
-      "id": "simile-any-entry-3330",
-      "word": "simile",
-      "display": "simile",
-      "meaning": "明喻",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "simile-any-entry-3351",
-      "word": "simile",
-      "display": "simile",
-      "meaning": "比喻",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "simply-any-entry-8569",
       "word": "simply",
       "display": "simply",
@@ -61534,16 +60854,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "simultaneous-any-entry-3491",
-      "word": "simultaneous",
-      "display": "simultaneous",
-      "meaning": "同時",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 17
-    },
-    {
       "id": "simultaneously-any-entry-1390",
       "word": "simultaneously",
       "display": "simultaneously",
@@ -61581,36 +60891,6 @@
       "inferredPos": "noun",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "since-any-n-4683",
-      "word": "since",
-      "display": "since",
-      "meaning": "(+句子 / N)",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "since-any-n-4688",
-      "word": "since",
-      "display": "since",
-      "meaning": "(+句子 / N) 因為",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "since-any-entry-1046",
-      "word": "since",
-      "display": "since",
-      "meaning": "因為+句子",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 78
     },
     {
       "id": "since-then-any-entry-2673",
@@ -61663,16 +60943,6 @@
       "sourceCount": 1
     },
     {
-      "id": "singapore-any-entry-7904",
-      "word": "singapore",
-      "display": "Singapore",
-      "meaning": "新加坡",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
       "id": "singaporean-any-entry-1671",
       "word": "singaporean",
       "display": "Singaporean",
@@ -61709,46 +60979,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "sip-any-entry-6010",
-      "word": "sip",
-      "display": "sip",
-      "meaning": "小口喝",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "sip-any-entry-6045",
-      "word": "sip",
-      "display": "sip",
-      "meaning": "飲一啖",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "sip-any-entry-5969",
-      "word": "sip",
-      "display": "sip",
-      "meaning": "飲一小啖",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "sirloin-any-entry-2884",
-      "word": "sirloin",
-      "display": "sirloin",
-      "meaning": "西冷牛扒",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "sit-an-exam-any-entry-4493",
       "word": "sit an exam",
       "display": "sit an exam",
@@ -61770,16 +61000,6 @@
       "inferredPos": "noun",
       "posConfidence": 90,
       "posReason": "chinese-noun-meaning"
-    },
-    {
-      "id": "skeptical-any-entry-3672",
-      "word": "skeptical",
-      "display": "skeptical",
-      "meaning": "質疑",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
     },
     {
       "id": "skeptical-about-any-entry-7146",
@@ -61812,36 +61032,6 @@
       "sourceCount": 1
     },
     {
-      "id": "sketching-any-entry-6747",
-      "word": "sketching",
-      "display": "sketching",
-      "meaning": "素描",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "skewed-any-entry-1684",
-      "word": "skewed",
-      "display": "skewed",
-      "meaning": "偏頗",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "skewer-any-entry-1709",
-      "word": "skewer",
-      "display": "skewer",
-      "meaning": "串燒",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
       "id": "skills-any-entry-8316",
       "word": "skills",
       "display": "skills",
@@ -61850,59 +61040,6 @@
       "type": "word",
       "needsReview": true,
       "sourceCount": 1
-    },
-    {
-      "id": "skinny-any-entry-7979",
-      "word": "skinny",
-      "display": "skinny",
-      "meaning": "好瘦",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "skyrocket-any-entry-7311",
-      "word": "skyrocket",
-      "display": "skyrocket",
-      "meaning": "急升",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
-      "id": "skyrocketing-any-entry-0586",
-      "word": "skyrocketing",
-      "display": "skyrocketing",
-      "meaning": "急升",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 5
-    },
-    {
-      "id": "skyrocketing-any-entry-0618",
-      "word": "skyrocketing",
-      "display": "skyrocketing",
-      "meaning": "急升的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 3,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "skyscraper-any-entry-3388",
-      "word": "skyscraper",
-      "display": "skyscraper",
-      "meaning": "摩天大樓",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
     },
     {
       "id": "skyscrapers-any-entry-4224",
@@ -62032,69 +61169,6 @@
       "posReason": "english-adverb-suffix"
     },
     {
-      "id": "slim-any-entry-8082",
-      "word": "slim",
-      "display": "slim",
-      "meaning": "苗條",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "slimming-any-entry-8055",
-      "word": "slimming",
-      "display": "slimming",
-      "meaning": "纖體",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "slippery-any-entry-0148",
-      "word": "slippery",
-      "display": "slippery",
-      "meaning": "滑(地)",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "slippery-any-entry-1655",
-      "word": "slippery",
-      "display": "slippery",
-      "meaning": "滑(地面)",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
-      "id": "slippery-any-entry-5878",
-      "word": "slippery",
-      "display": "slippery",
-      "meaning": "滑的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "slippery-any-entry-0187",
-      "word": "slippery",
-      "display": "slippery",
-      "meaning": "濕滑",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
       "id": "slog-away-any-entry-7285",
       "word": "slog away",
       "display": "slog away",
@@ -62102,16 +61176,6 @@
       "pos": "",
       "type": "phrase",
       "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "sloppy-any-entry-6759",
-      "word": "sloppy",
-      "display": "sloppy",
-      "meaning": "馬虎",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
       "sourceCount": 1
     },
     {
@@ -62123,59 +61187,6 @@
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 2
-    },
-    {
-      "id": "sluggish-any-entry-6046",
-      "word": "sluggish",
-      "display": "sluggish",
-      "meaning": "停滯 (升得好慢)",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "sluggish-any-entry-6023",
-      "word": "sluggish",
-      "display": "sluggish",
-      "meaning": "停滯不前的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "slum-any-entry-4317",
-      "word": "slum",
-      "display": "slum",
-      "meaning": "貧民窟",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "slump-any-entry-1599",
-      "word": "slump",
-      "display": "slump",
-      "meaning": "急跌",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 6
-    },
-    {
-      "id": "slump-any-entry-2618",
-      "word": "slump",
-      "display": "slump",
-      "meaning": "暴跌",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "small-scale-any-entry-7465",
@@ -62198,16 +61209,6 @@
       "sourceCount": 1
     },
     {
-      "id": "smear-any-entry-2787",
-      "word": "smear",
-      "display": "smear",
-      "meaning": "塗污",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "smooth-any-entry-4673",
       "word": "smooth",
       "display": "smooth",
@@ -62221,16 +61222,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "smoothie-any-entry-5712",
-      "word": "smoothie",
-      "display": "smoothie",
-      "meaning": "沙冰",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "snap-up-any-entry-3719",
       "word": "snap up",
       "display": "snap up",
@@ -62239,39 +61230,6 @@
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 2
-    },
-    {
-      "id": "sneak-any-entry-3482",
-      "word": "sneak",
-      "display": "sneak",
-      "meaning": "潛行",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 16
-    },
-    {
-      "id": "snobbish-any-entry-7110",
-      "word": "snobbish",
-      "display": "snobbish",
-      "meaning": "勢利",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "snobbish-any-entry-7140",
-      "word": "snobbish",
-      "display": "snobbish",
-      "meaning": "勢利的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
     },
     {
       "id": "so-adj-that-any-entry-5149",
@@ -62449,46 +61407,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "soaring-any-entry-5460",
-      "word": "soaring",
-      "display": "soaring",
-      "meaning": "上升",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "soaring-any-entry-7718",
-      "word": "soaring",
-      "display": "soaring",
-      "meaning": "快速上升",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "soaring-any-entry-5431",
-      "word": "soaring",
-      "display": "soaring",
-      "meaning": "急升",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 6
-    },
-    {
-      "id": "soaring-any-entry-7044",
-      "word": "soaring",
-      "display": "soaring",
-      "meaning": "猛升",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
       "id": "social-bond-any-entry-7754",
       "word": "social bond",
       "display": "social bond",
@@ -62557,16 +61475,6 @@
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 1
-    },
-    {
-      "id": "socialise-any-entry-5948",
-      "word": "socialise",
-      "display": "socialise",
-      "meaning": "社交",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
     },
     {
       "id": "socioeconomic-status-any-entry-6420",
@@ -62648,16 +61556,6 @@
       "sourceCount": 1
     },
     {
-      "id": "solemn-any-entry-4986",
-      "word": "solemn",
-      "display": "solemn",
-      "meaning": "莊嚴",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "solid-waste-any-entry-8140",
       "word": "solid waste",
       "display": "solid waste",
@@ -62692,16 +61590,6 @@
       "inferredPos": "noun",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "solitary-any-entry-6468",
-      "word": "solitary",
-      "display": "solitary",
-      "meaning": "孤單",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "solve-any-entry-7905",
@@ -62793,36 +61681,6 @@
       "pos": "",
       "type": "phrase",
       "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "soothe-any-entry-6270",
-      "word": "soothe",
-      "display": "soothe",
-      "meaning": "安撫",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "soothe-any-entry-6255",
-      "word": "soothe",
-      "display": "soothe",
-      "meaning": "安撫 / 舒緩",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "soothe-any-entry-2625",
-      "word": "soothe",
-      "display": "soothe",
-      "meaning": "舒緩",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
       "sourceCount": 1
     },
     {
@@ -86493,6 +85351,1004 @@
       "word": "rust",
       "display": "rust",
       "meaning": "生鏽",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "scalp-noun-entry-7720",
+      "word": "scalp",
+      "display": "scalp",
+      "meaning": "頭皮",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "scam-noun-entry-7721",
+      "word": "scam",
+      "display": "scam",
+      "meaning": "騙局 / 詐騙",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "scams"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "scam-verb-entry-7722",
+      "word": "scam",
+      "display": "scam",
+      "meaning": "詐騙",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "scams"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "scar-noun-entry-7723",
+      "word": "scar",
+      "display": "scar",
+      "meaning": "疤痕",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "scar-verb-entry-7724",
+      "word": "scar",
+      "display": "scar",
+      "meaning": "留下疤痕",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "scarce-adjective-entry-7725",
+      "word": "scarce",
+      "display": "scarce",
+      "meaning": "稀少的 / 缺乏的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "scarf-noun-entry-7726",
+      "word": "scarf",
+      "display": "scarf",
+      "meaning": "頸巾 / 圍巾",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "scenery-noun-entry-7727",
+      "word": "scenery",
+      "display": "scenery",
+      "meaning": "風景",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "scent-noun-entry-7728",
+      "word": "scent",
+      "display": "scent",
+      "meaning": "氣味 / 香氣",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "scent-verb-entry-7729",
+      "word": "scent",
+      "display": "scent",
+      "meaning": "聞出",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "scold-verb-entry-7730",
+      "word": "scold",
+      "display": "scold",
+      "meaning": "責備 / 責罵",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "scourge-noun-entry-7731",
+      "word": "scourge",
+      "display": "scourge",
+      "meaning": "禍害 / 災禍",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "scratch-noun-entry-7732",
+      "word": "scratch",
+      "display": "scratch",
+      "meaning": "抓痕 / 刮痕",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "scratch-verb-entry-7733",
+      "word": "scratch",
+      "display": "scratch",
+      "meaning": "抓 / 刮",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "scrutinise-verb-entry-7734",
+      "word": "scrutinise",
+      "display": "scrutinise",
+      "meaning": "仔細檢查",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "scrutinize"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "seagull-noun-entry-7735",
+      "word": "seagull",
+      "display": "seagull",
+      "meaning": "海鷗",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "seagulls"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "seal-verb-entry-7736",
+      "word": "seal",
+      "display": "seal",
+      "meaning": "密封",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "seal-noun-entry-7737",
+      "word": "seal",
+      "display": "seal",
+      "meaning": "海豹",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "seal-noun-entry-7738",
+      "word": "seal",
+      "display": "seal",
+      "meaning": "印章",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "seasoning-noun-entry-7739",
+      "word": "seasoning",
+      "display": "seasoning",
+      "meaning": "調味料",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "seaweed-noun-entry-7740",
+      "word": "seaweed",
+      "display": "seaweed",
+      "meaning": "海藻",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "secret-noun-entry-7741",
+      "word": "secret",
+      "display": "secret",
+      "meaning": "秘密",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "secret-adjective-entry-7742",
+      "word": "secret",
+      "display": "secret",
+      "meaning": "秘密的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "secure-verb-entry-7743",
+      "word": "secure",
+      "display": "secure",
+      "meaning": "獲得 / 確保",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "secure-adjective-entry-7744",
+      "word": "secure",
+      "display": "secure",
+      "meaning": "安全的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "sedentary-adjective-entry-7745",
+      "word": "sedentary",
+      "display": "sedentary",
+      "meaning": "久坐不動的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "selfless-adjective-entry-7746",
+      "word": "selfless",
+      "display": "selfless",
+      "meaning": "無私的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "separate-verb-entry-7747",
+      "word": "separate",
+      "display": "separate",
+      "meaning": "分開",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "separate-adjective-entry-7748",
+      "word": "separate",
+      "display": "separate",
+      "meaning": "分開的 / 獨立的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "serene-adjective-entry-7749",
+      "word": "serene",
+      "display": "serene",
+      "meaning": "寧靜的 / 安寧的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "sesame-noun-entry-7750",
+      "word": "sesame",
+      "display": "sesame",
+      "meaning": "芝麻",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "setback-noun-entry-7751",
+      "word": "setback",
+      "display": "setback",
+      "meaning": "挫折",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "several-determiner-entry-7752",
+      "word": "several",
+      "display": "several",
+      "meaning": "幾個 / 一些",
+      "pos": "determiner",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "several-pronoun-entry-7753",
+      "word": "several",
+      "display": "several",
+      "meaning": "幾個",
+      "pos": "pronoun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "sew-verb-entry-7754",
+      "word": "sew",
+      "display": "sew",
+      "meaning": "縫",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "sewer-noun-entry-7755",
+      "word": "sewer",
+      "display": "sewer",
+      "meaning": "下水道",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "shape-noun-entry-7756",
+      "word": "shape",
+      "display": "shape",
+      "meaning": "形狀",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "shape-verb-entry-7757",
+      "word": "shape",
+      "display": "shape",
+      "meaning": "塑造",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "shed-light-on-phrase-entry-7758",
+      "word": "shed light on",
+      "display": "shed light on",
+      "meaning": "闡明 / 提供線索",
+      "pos": "",
+      "type": "phrase",
+      "needsReview": false,
+      "aliases": [
+        "shed some light on",
+        "shed some lights on"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "shift-verb-entry-7759",
+      "word": "shift",
+      "display": "shift",
+      "meaning": "轉移 / 轉變",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "shift-noun-entry-7760",
+      "word": "shift",
+      "display": "shift",
+      "meaning": "轉變 / 輪班",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "shock-noun-entry-7761",
+      "word": "shock",
+      "display": "shock",
+      "meaning": "震驚",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "shock-verb-entry-7762",
+      "word": "shock",
+      "display": "shock",
+      "meaning": "使震驚",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "shopaholic-noun-entry-7763",
+      "word": "shopaholic",
+      "display": "shopaholic",
+      "meaning": "購物狂",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "shortcoming-noun-entry-7764",
+      "word": "shortcoming",
+      "display": "shortcoming",
+      "meaning": "缺點 / 短處",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "shorten-verb-entry-7765",
+      "word": "shorten",
+      "display": "shorten",
+      "meaning": "縮短",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "show-verb-entry-7766",
+      "word": "show",
+      "display": "show",
+      "meaning": "顯示 / 展示",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "show-noun-entry-7767",
+      "word": "show",
+      "display": "show",
+      "meaning": "表演 / 節目",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "shrimp-noun-entry-7768",
+      "word": "shrimp",
+      "display": "shrimp",
+      "meaning": "蝦",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "shun-verb-entry-7769",
+      "word": "shun",
+      "display": "shun",
+      "meaning": "避開 / 避免",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "shutter-noun-entry-7770",
+      "word": "shutter",
+      "display": "shutter",
+      "meaning": "快門 / 百葉窗",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "shutter-verb-entry-7771",
+      "word": "shutter",
+      "display": "shutter",
+      "meaning": "關閉",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "sibling-noun-entry-7772",
+      "word": "sibling",
+      "display": "sibling",
+      "meaning": "兄弟姊妹",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "siblings"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "sidewalk-noun-entry-7773",
+      "word": "sidewalk",
+      "display": "sidewalk",
+      "meaning": "行人路",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "sigh-verb-entry-7774",
+      "word": "sigh",
+      "display": "sigh",
+      "meaning": "嘆氣",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "sigh-noun-entry-7775",
+      "word": "sigh",
+      "display": "sigh",
+      "meaning": "嘆息",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "sign-verb-entry-7776",
+      "word": "sign",
+      "display": "sign",
+      "meaning": "簽署",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "sign-noun-entry-7777",
+      "word": "sign",
+      "display": "sign",
+      "meaning": "標誌 / 迹象",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "simile-noun-entry-7778",
+      "word": "simile",
+      "display": "simile",
+      "meaning": "明喻",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "simultaneous-adjective-entry-7779",
+      "word": "simultaneous",
+      "display": "simultaneous",
+      "meaning": "同時的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "since-conjunction-entry-7780",
+      "word": "since",
+      "display": "since",
+      "meaning": "因為 / 既然",
+      "pos": "conjunction",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "since-preposition-entry-7781",
+      "word": "since",
+      "display": "since",
+      "meaning": "自從",
+      "pos": "preposition",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "singapore-noun-entry-7782",
+      "word": "singapore",
+      "display": "Singapore",
+      "meaning": "新加坡",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "sip-verb-entry-7783",
+      "word": "sip",
+      "display": "sip",
+      "meaning": "小口喝",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "sip-noun-entry-7784",
+      "word": "sip",
+      "display": "sip",
+      "meaning": "一小口",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "sirloin-noun-entry-7785",
+      "word": "sirloin",
+      "display": "sirloin",
+      "meaning": "西冷牛扒 / 牛脊肉",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "skeptical-adjective-entry-7786",
+      "word": "skeptical",
+      "display": "skeptical",
+      "meaning": "懷疑的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "sketching-noun-entry-7787",
+      "word": "sketching",
+      "display": "sketching",
+      "meaning": "素描",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "sketching-verb-entry-7788",
+      "word": "sketching",
+      "display": "sketching",
+      "meaning": "畫素描",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "skewed-adjective-entry-7789",
+      "word": "skewed",
+      "display": "skewed",
+      "meaning": "偏頗的 / 歪斜的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "skewer-noun-entry-7790",
+      "word": "skewer",
+      "display": "skewer",
+      "meaning": "串燒 / 串肉籤",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "skewer-verb-entry-7791",
+      "word": "skewer",
+      "display": "skewer",
+      "meaning": "用籤串起",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "skill-noun-entry-7792",
+      "word": "skill",
+      "display": "skill",
+      "meaning": "技能",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "skills"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "skinny-adjective-entry-7793",
+      "word": "skinny",
+      "display": "skinny",
+      "meaning": "很瘦的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "skyrocket-verb-entry-7794",
+      "word": "skyrocket",
+      "display": "skyrocket",
+      "meaning": "急升 / 飆升",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "skyrocketing-adjective-entry-7795",
+      "word": "skyrocketing",
+      "display": "skyrocketing",
+      "meaning": "急升的 / 飆升的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "skyscraper-noun-entry-7796",
+      "word": "skyscraper",
+      "display": "skyscraper",
+      "meaning": "摩天大樓",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "skyscrapers"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "slim-adjective-entry-7797",
+      "word": "slim",
+      "display": "slim",
+      "meaning": "苗條的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "slim-verb-entry-7798",
+      "word": "slim",
+      "display": "slim",
+      "meaning": "變苗條 / 減肥",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "slimming-noun-entry-7799",
+      "word": "slimming",
+      "display": "slimming",
+      "meaning": "纖體 / 減肥",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "slimming-adjective-entry-7800",
+      "word": "slimming",
+      "display": "slimming",
+      "meaning": "纖體的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "slippery-adjective-entry-7801",
+      "word": "slippery",
+      "display": "slippery",
+      "meaning": "濕滑的 / 滑的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "sloppy-adjective-entry-7802",
+      "word": "sloppy",
+      "display": "sloppy",
+      "meaning": "馬虎的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "sluggish-adjective-entry-7803",
+      "word": "sluggish",
+      "display": "sluggish",
+      "meaning": "緩慢的 / 停滯不前的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "slum-noun-entry-7804",
+      "word": "slum",
+      "display": "slum",
+      "meaning": "貧民窟",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "slump-noun-entry-7805",
+      "word": "slump",
+      "display": "slump",
+      "meaning": "暴跌 / 急跌",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "slump-verb-entry-7806",
+      "word": "slump",
+      "display": "slump",
+      "meaning": "暴跌 / 急跌",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "smear-verb-entry-7807",
+      "word": "smear",
+      "display": "smear",
+      "meaning": "塗污 / 抹上",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "smear-noun-entry-7808",
+      "word": "smear",
+      "display": "smear",
+      "meaning": "污跡",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "smoothie-noun-entry-7809",
+      "word": "smoothie",
+      "display": "smoothie",
+      "meaning": "沙冰 / 果昔",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "sneak-verb-entry-7810",
+      "word": "sneak",
+      "display": "sneak",
+      "meaning": "偷偷走 / 潛行",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "snobbish-adjective-entry-7811",
+      "word": "snobbish",
+      "display": "snobbish",
+      "meaning": "勢利的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "soaring-adjective-entry-7812",
+      "word": "soaring",
+      "display": "soaring",
+      "meaning": "急升的 / 猛升的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "socialise-verb-entry-7813",
+      "word": "socialise",
+      "display": "socialise",
+      "meaning": "社交 / 交際",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "socialize"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "solemn-adjective-entry-7814",
+      "word": "solemn",
+      "display": "solemn",
+      "meaning": "莊嚴的 / 嚴肅的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "solitary-adjective-entry-7815",
+      "word": "solitary",
+      "display": "solitary",
+      "meaning": "孤單的 / 獨自的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "soothe-verb-entry-7816",
+      "word": "soothe",
+      "display": "soothe",
+      "meaning": "安撫 / 舒緩",
       "pos": "verb",
       "type": "word",
       "needsReview": false,
