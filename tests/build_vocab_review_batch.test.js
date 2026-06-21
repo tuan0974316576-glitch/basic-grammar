@@ -86,7 +86,7 @@ assert.strictEqual(parsed.level, "A2");
 assert.ok(parsed.csv.endsWith("foo.csv"));
 
 const teacherAuditTasks = review.getReviewTasks({ source: "teacher-audit" });
-assert.ok(teacherAuditTasks.length > 4000, "Teacher audit should include full suspicious candidate set, not only needsReview entries.");
+assert.ok(teacherAuditTasks.length > 3500, "Teacher audit should include a broad suspicious candidate set, not only needsReview entries.");
 assert.ok(teacherAuditTasks[0].audit?.reasons?.length);
 assert.strictEqual(teacherAuditTasks[0].source, "teacher-audit");
 

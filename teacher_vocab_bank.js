@@ -5,7 +5,7 @@
   root.TEACHER_VOCAB_BANK = bank;
 })(typeof globalThis !== "undefined" ? globalThis : window, {
   "meta": {
-    "generatedAt": "2026-06-21T01:33:30.029Z",
+    "generatedAt": "2026-06-21T01:43:58.890Z",
     "sourceFiles": [
       {
         "name": "Randomisable Vocab Test.xlsx",
@@ -46,10 +46,18 @@
       {
         "name": "teacher_vocab_manual_updates.json",
         "addedEntryCount": 3
+      },
+      {
+        "name": "teacher_vocab_manual_updates.json",
+        "addedEntryCount": 107
+      },
+      {
+        "name": "teacher_vocab_manual_updates.json",
+        "addedEntryCount": 2
       }
     ],
-    "entryCount": 7834,
-    "uniqueWordCount": 5029,
+    "entryCount": 7830,
+    "uniqueWordCount": 5035,
     "conflictCount": 3731,
     "typeCounts": {
       "phrase": 2369,
@@ -54880,36 +54888,6 @@
       "sourceCount": 1
     },
     {
-      "id": "rampant-any-entry-1718",
-      "word": "rampant",
-      "display": "rampant",
-      "meaning": "猖獗",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "ransom-any-entry-8788",
-      "word": "ransom",
-      "display": "ransom",
-      "meaning": "贖金",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "rape-any-entry-8199",
-      "word": "rape",
-      "display": "rape",
-      "meaning": "強姦",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "rapid-any-entry-0056",
       "word": "rapid",
       "display": "rapid",
@@ -55066,16 +55044,6 @@
       "posReason": "english-adverb-suffix"
     },
     {
-      "id": "rash-any-entry-0899",
-      "word": "rash",
-      "display": "rash",
-      "meaning": "紅疹",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "rates-any-entry-8778",
       "word": "rates",
       "display": "rates",
@@ -55084,68 +55052,6 @@
       "type": "word",
       "needsReview": true,
       "sourceCount": 1
-    },
-    {
-      "id": "rather-adverb-entry-8355",
-      "word": "rather",
-      "display": "rather (adv)",
-      "meaning": "幾",
-      "pos": "adverb",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 25
-    },
-    {
-      "id": "rather-any-entry-1497",
-      "word": "rather",
-      "display": "rather",
-      "meaning": "幾",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 4,
-      "inferredPos": "adverb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "rather-any-entry-7038",
-      "word": "rather",
-      "display": "rather",
-      "meaning": "幾 / 相反",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adverb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "rather-any-entry-2549",
-      "word": "rather",
-      "display": "rather x2",
-      "meaning": "相反",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adverb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "rather-any-entry-2548",
-      "word": "rather",
-      "display": "rather x2",
-      "meaning": "相當",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adverb",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
     },
     {
       "id": "rather-adj-any-entry-5371",
@@ -55219,36 +55125,6 @@
       "inferredPos": "adjective",
       "posConfidence": 90,
       "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "rationale-any-entry-4464",
-      "word": "rationale",
-      "display": "rationale",
-      "meaning": "理念",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 5
-    },
-    {
-      "id": "rationale-any-entry-5242",
-      "word": "rationale",
-      "display": "rationale",
-      "meaning": "理由",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "razor-any-entry-0919",
-      "word": "razor",
-      "display": "razor",
-      "meaning": "刮鬍刀",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "re-energise-any-entry-3675",
@@ -55392,39 +55268,6 @@
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 1
-    },
-    {
-      "id": "realise-any-entry-2434",
-      "word": "realise",
-      "display": "realise",
-      "meaning": "意識到",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 54
-    },
-    {
-      "id": "realise-any-entry-5389",
-      "word": "realise",
-      "display": "realise",
-      "meaning": "意識到 / 實現",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "realise-any-entry-5375",
-      "word": "realise",
-      "display": "realise",
-      "meaning": "意識到 / 達成",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "verb",
-      "posConfidence": 88,
-      "posReason": "english-verb-suffix-with-meaning"
     },
     {
       "id": "realise-your-dream-any-entry-5151",
@@ -55698,16 +55541,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "recap-any-entry-8125",
-      "word": "recap",
-      "display": "recap",
-      "meaning": "回顧",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "receipt-any-entry-5198",
       "word": "receipt",
       "display": "receipt",
@@ -55843,26 +55676,6 @@
       "inferredPos": "verb",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "reclaim-any-entry-6795",
-      "word": "reclaim",
-      "display": "reclaim",
-      "meaning": "填海",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 9
-    },
-    {
-      "id": "reclamation-any-entry-6964",
-      "word": "reclamation",
-      "display": "reclamation",
-      "meaning": "填海",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
     },
     {
       "id": "recognise-any-entry-5038",
@@ -56019,16 +55832,6 @@
       "sourceCount": 1
     },
     {
-      "id": "recreation-any-entry-3979",
-      "word": "recreation",
-      "display": "recreation",
-      "meaning": "康樂",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 9
-    },
-    {
       "id": "recreational-any-entry-7729",
       "word": "recreational",
       "display": "recreational",
@@ -56042,36 +55845,6 @@
       "posReason": "chinese-adjective-meaning"
     },
     {
-      "id": "recruit-any-entry-5357",
-      "word": "recruit",
-      "display": "recruit",
-      "meaning": "招募",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "recruit-any-entry-5363",
-      "word": "recruit",
-      "display": "recruit",
-      "meaning": "招聘",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "rectify-any-entry-5567",
-      "word": "rectify",
-      "display": "rectify",
-      "meaning": "糾正",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "reduce-any-entry-5784",
       "word": "reduce",
       "display": "reduce",
@@ -56083,16 +55856,6 @@
       "inferredPos": "verb",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "redundant-any-entry-1552",
-      "word": "redundant",
-      "display": "redundant",
-      "meaning": "多餘",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "refer-to-any-entry-2670",
@@ -56116,26 +55879,6 @@
       "inferredPos": "noun",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "refine-any-entry-2465",
-      "word": "refine",
-      "display": "refine",
-      "meaning": "改良",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
-      "id": "refined-any-entry-6632",
-      "word": "refined",
-      "display": "refined",
-      "meaning": "改良",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "reflect-any-entry-0357",
@@ -56201,16 +55944,6 @@
       "sourceCount": 2
     },
     {
-      "id": "refreshing-any-entry-8435",
-      "word": "refreshing",
-      "display": "refreshing",
-      "meaning": "清爽",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "refreshment-any-entry-4650",
       "word": "refreshment",
       "display": "refreshment",
@@ -56248,16 +55981,6 @@
       "inferredPos": "noun",
       "posConfidence": 90,
       "posReason": "chinese-noun-meaning"
-    },
-    {
-      "id": "refrigeration-any-entry-4947",
-      "word": "refrigeration",
-      "display": "refrigeration",
-      "meaning": "冷藏",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "refugees-any-entry-2512",
@@ -56300,16 +56023,6 @@
       "sourceCount": 52
     },
     {
-      "id": "regarding-any-entry-1883",
-      "word": "regarding",
-      "display": "regarding",
-      "meaning": "關於",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 12
-    },
-    {
       "id": "regardless-of-any-entry-3832",
       "word": "regardless of",
       "display": "regardless of",
@@ -56338,16 +56051,6 @@
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 3
-    },
-    {
-      "id": "regenerate-any-entry-7671",
-      "word": "regenerate",
-      "display": "regenerate",
-      "meaning": "回復",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "region-any-entry-4732",
@@ -56526,45 +56229,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "regulation-any-entry-1250",
-      "word": "regulation",
-      "display": "regulation",
-      "meaning": "條例",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 7,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "regulation-any-entry-6607",
-      "word": "regulation",
-      "display": "regulation",
-      "meaning": "條例 / 規例",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "regulation-any-entry-8796",
-      "word": "regulation",
-      "display": "regulation",
-      "meaning": "規例",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
       "id": "regulations-any-entry-3774",
       "word": "regulations",
       "display": "regulations",
@@ -56593,36 +56257,6 @@
       "type": "word",
       "needsReview": true,
       "sourceCount": 1
-    },
-    {
-      "id": "reign-any-entry-2763",
-      "word": "reign",
-      "display": "reign",
-      "meaning": "統治",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "reignite-any-entry-5883",
-      "word": "reignite",
-      "display": "reignite",
-      "meaning": "重新燃起",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "reignite-any-entry-0659",
-      "word": "reignite",
-      "display": "reignite",
-      "meaning": "重燃",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
     },
     {
       "id": "reinforce-any-entry-7830",
@@ -56731,95 +56365,6 @@
       "inferredPos": "noun",
       "posConfidence": 90,
       "posReason": "chinese-noun-meaning"
-    },
-    {
-      "id": "release-any-entry-3018",
-      "word": "release",
-      "display": "release",
-      "meaning": "推出 / 舒緩 / 釋放",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "release-any-entry-1839",
-      "word": "release",
-      "display": "release",
-      "meaning": "推出 / 釋放",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "release-any-entry-1803",
-      "word": "release",
-      "display": "release",
-      "meaning": "釋放",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 11
-    },
-    {
-      "id": "release-any-entry-1776",
-      "word": "release",
-      "display": "release",
-      "meaning": "釋放 / 推出",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "relentless-any-entry-3091",
-      "word": "relentless",
-      "display": "relentless",
-      "meaning": "不斷的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 3,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "relentless-any-entry-3598",
-      "word": "relentless",
-      "display": "relentless",
-      "meaning": "不斷的(-)",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "relentless-any-entry-3053",
-      "word": "relentless",
-      "display": "relentless",
-      "meaning": "持續(-)",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "relentless-any-entry-4436",
-      "word": "relentless",
-      "display": "relentless",
-      "meaning": "無止境的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
     },
     {
       "id": "relevant-any-entry-2416",
@@ -57307,16 +56852,6 @@
       "posReason": "chinese-adjective-meaning"
     },
     {
-      "id": "remnant-any-entry-8739",
-      "word": "remnant",
-      "display": "remnant",
-      "meaning": "殘餘",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "remote-any-entry-4000",
       "word": "remote",
       "display": "remote",
@@ -57341,16 +56876,6 @@
       "inferredPos": "adjective",
       "posConfidence": 90,
       "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "remuneration-any-entry-7298",
-      "word": "remuneration",
-      "display": "remuneration",
-      "meaning": "酬金",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "renewal-projects-any-entry-0625",
@@ -57422,16 +56947,6 @@
       "sourceCount": 1
     },
     {
-      "id": "repercussion-any-entry-6918",
-      "word": "repercussion",
-      "display": "repercussion",
-      "meaning": "後果",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 12
-    },
-    {
       "id": "repetitive-any-entry-3637",
       "word": "repetitive",
       "display": "repetitive",
@@ -57494,16 +57009,6 @@
       "sourceCount": 1
     },
     {
-      "id": "replicate-any-entry-5876",
-      "word": "replicate",
-      "display": "replicate",
-      "meaning": "複製",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
       "id": "reply-to-any-entry-1881",
       "word": "reply to",
       "display": "reply to",
@@ -57521,16 +57026,6 @@
       "pos": "",
       "type": "phrase",
       "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "reprehend-any-entry-1299",
-      "word": "reprehend",
-      "display": "reprehend",
-      "meaning": "譴責",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
       "sourceCount": 1
     },
     {
@@ -57586,16 +57081,6 @@
       "posReason": "chinese-adjective-meaning+oxford"
     },
     {
-      "id": "reprimand-any-entry-1292",
-      "word": "reprimand",
-      "display": "reprimand",
-      "meaning": "譴責",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "reproduction-any-entry-5713",
       "word": "reproduction",
       "display": "reproduction",
@@ -57607,42 +57092,6 @@
       "inferredPos": "noun",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "reputable-any-entry-4583",
-      "word": "reputable",
-      "display": "reputable",
-      "meaning": "有聲望的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "reputable-any-entry-7466",
-      "word": "reputable",
-      "display": "reputable",
-      "meaning": "有聲譽",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "reputable-any-entry-4653",
-      "word": "reputable",
-      "display": "reputable",
-      "meaning": "有聲譽的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 7,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
     },
     {
       "id": "reputation-any-entry-7580",
@@ -57697,16 +57146,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "request-any-entry-2530",
-      "word": "request",
-      "display": "request",
-      "meaning": "要求",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "require-any-entry-2541",
       "word": "require",
       "display": "require",
@@ -57718,26 +57157,6 @@
       "inferredPos": "verb",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "rescue-any-entry-0020",
-      "word": "rescue",
-      "display": "rescue",
-      "meaning": "拯救",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "rescue-any-entry-8765",
-      "word": "rescue",
-      "display": "rescue",
-      "meaning": "救援",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "resemble-any-entry-0061",
@@ -57800,36 +57219,6 @@
       "type": "word",
       "needsReview": true,
       "sourceCount": 1
-    },
-    {
-      "id": "reserve-any-entry-4969",
-      "word": "reserve",
-      "display": "reserve",
-      "meaning": "保留",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "reserve-any-entry-3818",
-      "word": "reserve",
-      "display": "reserve",
-      "meaning": "預留",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 5
-    },
-    {
-      "id": "reserve-any-entry-5174",
-      "word": "reserve",
-      "display": "reserve",
-      "meaning": "預約",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
     },
     {
       "id": "reside-any-entry-5963",
@@ -57897,16 +57286,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "resilience-any-entry-4498",
-      "word": "resilience",
-      "display": "resilience",
-      "meaning": "堅韌",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "resist-any-entry-8775",
       "word": "resist",
       "display": "resist",
@@ -57931,16 +57310,6 @@
       "inferredPos": "verb",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "resistant-any-entry-5995",
-      "word": "resistant",
-      "display": "resistant",
-      "meaning": "抵抗",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "resolve-any-entry-0312",
@@ -58377,16 +57746,6 @@
       "sourceCount": 10
     },
     {
-      "id": "resurgence-any-entry-3086",
-      "word": "resurgence",
-      "display": "resurgence",
-      "meaning": "復興",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
       "id": "retail-any-entry-0889",
       "word": "retail",
       "display": "retail",
@@ -58459,39 +57818,6 @@
       "sourceCount": 2
     },
     {
-      "id": "retro-any-entry-2496",
-      "word": "retro",
-      "display": "retro",
-      "meaning": "復古",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
-      "id": "retro-any-entry-4327",
-      "word": "retro",
-      "display": "retro",
-      "meaning": "復古的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "retro-any-entry-7683",
-      "word": "retro",
-      "display": "retro",
-      "meaning": "懷舊",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "reveal-any-entry-5231",
       "word": "reveal",
       "display": "reveal",
@@ -58541,46 +57867,10 @@
       "sourceCount": 1
     },
     {
-      "id": "revenue-any-entry-5559",
-      "word": "revenue",
-      "display": "revenue",
-      "meaning": "公司收入",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "revenue-any-entry-3691",
-      "word": "revenue",
-      "display": "revenue",
-      "meaning": "收入",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 5,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
       "id": "revenues-any-entry-3172",
       "word": "revenues",
       "display": "revenues",
       "meaning": "收入(公司)",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "review-any-entry-3912",
-      "word": "review",
-      "display": "review",
-      "meaning": "回顧",
       "pos": "",
       "type": "word",
       "needsReview": true,
@@ -58734,16 +58024,6 @@
       "sourceCount": 3
     },
     {
-      "id": "riddle-any-entry-4432",
-      "word": "riddle",
-      "display": "riddle",
-      "meaning": "謎語",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
       "id": "riddle-out-any-entry-0957",
       "word": "riddle out",
       "display": "riddle out",
@@ -58780,26 +58060,6 @@
       "posReason": "chinese-adjective-meaning"
     },
     {
-      "id": "rifle-any-entry-1711",
-      "word": "rifle",
-      "display": "rifle",
-      "meaning": "土",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "rifle-any-entry-1751",
-      "word": "rifle",
-      "display": "rifle",
-      "meaning": "步槍",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "rigid-any-entry-3365",
       "word": "rigid",
       "display": "rigid",
@@ -58823,36 +58083,6 @@
       "sourceCount": 2
     },
     {
-      "id": "rinse-any-entry-4440",
-      "word": "rinse",
-      "display": "rinse",
-      "meaning": "沖洗",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "ripple-any-entry-6883",
-      "word": "ripple",
-      "display": "ripple",
-      "meaning": "漣漪",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 4
-    },
-    {
-      "id": "rise-any-entry-0040",
-      "word": "rise",
-      "display": "rise",
-      "meaning": "上升",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "rise-to-fame-any-entry-2770",
       "word": "rise to fame",
       "display": "rise to fame",
@@ -58861,16 +58091,6 @@
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 2
-    },
-    {
-      "id": "risk-any-entry-7984",
-      "word": "risk",
-      "display": "risk",
-      "meaning": "風險",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 11
     },
     {
       "id": "risky-any-entry-8393",
@@ -58922,26 +58142,6 @@
       "posReason": "english-adjective-suffix+oxford"
     },
     {
-      "id": "roast-any-entry-2469",
-      "word": "roast",
-      "display": "roast",
-      "meaning": "烤",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "roast-any-entry-7666",
-      "word": "roast",
-      "display": "roast",
-      "meaning": "燒",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "robust-any-entry-2739",
       "word": "robust",
       "display": "robust",
@@ -58953,16 +58153,6 @@
       "inferredPos": "adjective",
       "posConfidence": 88,
       "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "rodent-any-entry-1733",
-      "word": "rodent",
-      "display": "rodent",
-      "meaning": "老鼠類",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "role-any-entry-2665",
@@ -58991,16 +58181,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "rooftop-any-entry-2792",
-      "word": "rooftop",
-      "display": "rooftop",
-      "meaning": "天台",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "root-cause-any-entry-0844",
       "word": "root cause",
       "display": "root cause",
@@ -59009,26 +58189,6 @@
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 1
-    },
-    {
-      "id": "rot-any-entry-6645",
-      "word": "rot",
-      "display": "rot",
-      "meaning": "腐爛",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "rotten-any-entry-7089",
-      "word": "rotten",
-      "display": "rotten",
-      "meaning": "腐爛",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
     },
     {
       "id": "roughly-any-entry-0153",
@@ -59116,16 +58276,6 @@
       "posReason": "oxford-single-pos"
     },
     {
-      "id": "routine-any-entry-5661",
-      "word": "routine",
-      "display": "routine",
-      "meaning": "日常流程",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "row-noun-entry-0633",
       "word": "row",
       "display": "row",
@@ -59143,76 +58293,6 @@
       "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "royalty-any-entry-7648",
-      "word": "royalty",
-      "display": "royalty",
-      "meaning": "版權",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "royalty-any-entry-7636",
-      "word": "royalty",
-      "display": "royalty",
-      "meaning": "版稅",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "ruin-noun-entry-2399",
-      "word": "ruin",
-      "display": "ruin (n)",
-      "meaning": "廢墟",
-      "pos": "noun",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 3
-    },
-    {
-      "id": "ruin-any-entry-4716",
-      "word": "ruin",
-      "display": "ruin",
-      "meaning": "摧毀",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 5
-    },
-    {
-      "id": "ruin-verb-entry-2391",
-      "word": "ruin",
-      "display": "ruin (v)",
-      "meaning": "摧毀",
-      "pos": "verb",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 4
-    },
-    {
-      "id": "rule-any-entry-2532",
-      "word": "rule",
-      "display": "rule x2",
-      "meaning": "統治",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "rule-any-entry-2531",
-      "word": "rule",
-      "display": "rule x2",
-      "meaning": "規則",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
       "sourceCount": 1
     },
     {
@@ -59253,46 +58333,6 @@
       "pos": "verb",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "rust-any-entry-7449",
-      "word": "rust",
-      "display": "rust",
-      "meaning": "生銹",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "rust-any-entry-7490",
-      "word": "rust",
-      "display": "rust",
-      "meaning": "生锈",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "rusty-any-entry-3890",
-      "word": "rusty",
-      "display": "rusty",
-      "meaning": "生銹",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
-    },
-    {
-      "id": "ruthless-any-entry-8192",
-      "word": "ruthless",
-      "display": "ruthless",
-      "meaning": "無情",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
       "sourceCount": 1
     },
     {
@@ -59942,26 +58982,6 @@
       "posReason": "chinese-adjective-meaning"
     },
     {
-      "id": "sacrifice-any-entry-1467",
-      "word": "sacrifice",
-      "display": "sacrifice",
-      "meaning": "犧牲",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
-      "id": "sail-any-entry-7691",
-      "word": "sail",
-      "display": "sail",
-      "meaning": "航海",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
       "id": "salaries-any-entry-7403",
       "word": "salaries",
       "display": "salaries",
@@ -59970,29 +58990,6 @@
       "type": "word",
       "needsReview": true,
       "sourceCount": 2
-    },
-    {
-      "id": "salary-any-entry-1603",
-      "word": "salary",
-      "display": "salary",
-      "meaning": "人工",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "noun",
-      "posConfidence": 88,
-      "posReason": "oxford-single-pos"
-    },
-    {
-      "id": "saliva-any-entry-3311",
-      "word": "saliva",
-      "display": "saliva",
-      "meaning": "口水",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
     },
     {
       "id": "sanctuary-any-entry-8582",
@@ -60019,85 +59016,6 @@
       "inferredPos": "noun",
       "posConfidence": 90,
       "posReason": "chinese-noun-meaning"
-    },
-    {
-      "id": "sanitary-any-entry-5993",
-      "word": "sanitary",
-      "display": "sanitary",
-      "meaning": "衛生",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
-      "id": "sanitary-any-entry-3205",
-      "word": "sanitary",
-      "display": "sanitary",
-      "meaning": "衛生的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 3,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "sanitise-any-entry-1262",
-      "word": "sanitise",
-      "display": "sanitise",
-      "meaning": "消毒",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
-      "id": "sap-any-entry-4430",
-      "word": "sap",
-      "display": "sap",
-      "meaning": "飲一啖",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "sarcastic-any-entry-6198",
-      "word": "sarcastic",
-      "display": "sarcastic",
-      "meaning": "嘲諷的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "sarcastic-any-entry-6942",
-      "word": "sarcastic",
-      "display": "sarcastic",
-      "meaning": "挖苦",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 1
-    },
-    {
-      "id": "sarcastic-any-entry-6225",
-      "word": "sarcastic",
-      "display": "sarcastic",
-      "meaning": "挖苦的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
     },
     {
       "id": "sarcifice-any-entry-4964",
@@ -60143,16 +59061,6 @@
       "sourceCount": 1
     },
     {
-      "id": "saturated-any-entry-7694",
-      "word": "saturated",
-      "display": "saturated",
-      "meaning": "飽和",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 3
-    },
-    {
       "id": "save-a-lot-of-trouble-any-entry-1414",
       "word": "save a lot of trouble",
       "display": "save a lot of trouble",
@@ -60161,75 +59069,6 @@
       "type": "phrase",
       "needsReview": false,
       "sourceCount": 1
-    },
-    {
-      "id": "savour-any-entry-1957",
-      "word": "savour",
-      "display": "savour",
-      "meaning": "品嚐",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 10
-    },
-    {
-      "id": "savoury-any-entry-5474",
-      "word": "savoury",
-      "display": "savoury",
-      "meaning": "濃味",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 6
-    },
-    {
-      "id": "savoury-any-entry-2897",
-      "word": "savoury",
-      "display": "savoury",
-      "meaning": "濃味的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 2,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "savoury-any-entry-4655",
-      "word": "savoury",
-      "display": "savoury",
-      "meaning": "濃味的 (+)",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 3,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "savoury-any-entry-6001",
-      "word": "savoury",
-      "display": "savoury",
-      "meaning": "鹹香的",
-      "pos": "",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1,
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning"
-    },
-    {
-      "id": "say-any-entry-1095",
-      "word": "say",
-      "display": "say",
-      "meaning": "例如",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
-      "sourceCount": 2
     },
     {
       "id": "scale-noun-entry-0114",
@@ -60259,16 +59098,6 @@
       "pos": "noun",
       "type": "word",
       "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "scallop-any-entry-4942",
-      "word": "scallop",
-      "display": "scallop",
-      "meaning": "扇貝",
-      "pos": "",
-      "type": "word",
-      "needsReview": true,
       "sourceCount": 1
     },
     {
@@ -86543,6 +85372,1130 @@
       "aliases": [
         "purchases"
       ],
+      "sourceCount": 1
+    },
+    {
+      "id": "rampant-adjective-entry-7724",
+      "word": "rampant",
+      "display": "rampant",
+      "meaning": "猖獗的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "ransom-noun-entry-7725",
+      "word": "ransom",
+      "display": "ransom",
+      "meaning": "贖金",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "ransom-verb-entry-7726",
+      "word": "ransom",
+      "display": "ransom",
+      "meaning": "贖回",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "rape-noun-entry-7727",
+      "word": "rape",
+      "display": "rape",
+      "meaning": "強姦",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "rape-verb-entry-7728",
+      "word": "rape",
+      "display": "rape",
+      "meaning": "強姦",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "rash-noun-entry-7729",
+      "word": "rash",
+      "display": "rash",
+      "meaning": "紅疹",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "rash-adjective-entry-7730",
+      "word": "rash",
+      "display": "rash",
+      "meaning": "魯莽的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "rate-noun-entry-7731",
+      "word": "rate",
+      "display": "rate",
+      "meaning": "費率 / 價格",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "rates"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "rather-adverb-entry-7732",
+      "word": "rather",
+      "display": "rather",
+      "meaning": "相反 / 反而",
+      "pos": "adverb",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "rather"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "rationale-noun-entry-7733",
+      "word": "rationale",
+      "display": "rationale",
+      "meaning": "理由 / 理念",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "razor-noun-entry-7734",
+      "word": "razor",
+      "display": "razor",
+      "meaning": "刮鬍刀 / 剃刀",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "realise-verb-entry-7735",
+      "word": "realise",
+      "display": "realise",
+      "meaning": "意識到 / 實現",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "recap-noun-entry-7736",
+      "word": "recap",
+      "display": "recap",
+      "meaning": "回顧 / 總結",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "recap-verb-entry-7737",
+      "word": "recap",
+      "display": "recap",
+      "meaning": "回顧 / 總結",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "reclaim-verb-entry-7738",
+      "word": "reclaim",
+      "display": "reclaim",
+      "meaning": "取回 / 開墾",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "reclamation-noun-entry-7739",
+      "word": "reclamation",
+      "display": "reclamation",
+      "meaning": "填海 / 開墾",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "recreation-noun-entry-7740",
+      "word": "recreation",
+      "display": "recreation",
+      "meaning": "康樂 / 消遣",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "recruit-verb-entry-7741",
+      "word": "recruit",
+      "display": "recruit",
+      "meaning": "招募 / 招聘",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "recruit-noun-entry-7742",
+      "word": "recruit",
+      "display": "recruit",
+      "meaning": "新成員 / 新兵",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "rectify-verb-entry-7743",
+      "word": "rectify",
+      "display": "rectify",
+      "meaning": "糾正",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "redundant-adjective-entry-7744",
+      "word": "redundant",
+      "display": "redundant",
+      "meaning": "多餘的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "refine-verb-entry-7745",
+      "word": "refine",
+      "display": "refine",
+      "meaning": "改良 / 提煉",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "refined-adjective-entry-7746",
+      "word": "refined",
+      "display": "refined",
+      "meaning": "精緻的 / 改良過的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "refreshing-adjective-entry-7747",
+      "word": "refreshing",
+      "display": "refreshing",
+      "meaning": "清爽的 / 令人精神一振的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "refrigeration-noun-entry-7748",
+      "word": "refrigeration",
+      "display": "refrigeration",
+      "meaning": "冷藏",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "refugee-noun-entry-7749",
+      "word": "refugee",
+      "display": "refugee",
+      "meaning": "難民",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "refugees"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "regarding-preposition-entry-7750",
+      "word": "regarding",
+      "display": "regarding",
+      "meaning": "關於",
+      "pos": "preposition",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "regenerate-verb-entry-7751",
+      "word": "regenerate",
+      "display": "regenerate",
+      "meaning": "再生 / 修復",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "regular-noun-entry-7752",
+      "word": "regular",
+      "display": "regular",
+      "meaning": "常客",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "regulars"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "regulation-noun-entry-7753",
+      "word": "regulation",
+      "display": "regulation",
+      "meaning": "規例 / 條例",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "regulations"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "reign-noun-entry-7754",
+      "word": "reign",
+      "display": "reign",
+      "meaning": "統治期",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "reign-verb-entry-7755",
+      "word": "reign",
+      "display": "reign",
+      "meaning": "統治",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "reignite-verb-entry-7756",
+      "word": "reignite",
+      "display": "reignite",
+      "meaning": "重燃 / 重新燃起",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "relative-noun-entry-7757",
+      "word": "relative",
+      "display": "relative",
+      "meaning": "親戚",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "relatives"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "release-verb-entry-7758",
+      "word": "release",
+      "display": "release",
+      "meaning": "釋放 / 推出 / 發布",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "release-noun-entry-7759",
+      "word": "release",
+      "display": "release",
+      "meaning": "釋放 / 發布",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "relentless-adjective-entry-7760",
+      "word": "relentless",
+      "display": "relentless",
+      "meaning": "持續不斷的 / 無情的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "remnant-noun-entry-7761",
+      "word": "remnant",
+      "display": "remnant",
+      "meaning": "殘餘 / 剩餘部分",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "remuneration-noun-entry-7762",
+      "word": "remuneration",
+      "display": "remuneration",
+      "meaning": "報酬 / 薪酬",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "repercussion-noun-entry-7763",
+      "word": "repercussion",
+      "display": "repercussion",
+      "meaning": "後果 / 影響",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "replicate-verb-entry-7764",
+      "word": "replicate",
+      "display": "replicate",
+      "meaning": "複製 / 重複",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "reprehend-verb-entry-7765",
+      "word": "reprehend",
+      "display": "reprehend",
+      "meaning": "譴責",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "reprimand-noun-entry-7766",
+      "word": "reprimand",
+      "display": "reprimand",
+      "meaning": "譴責 / 訓斥",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "reprimand-verb-entry-7767",
+      "word": "reprimand",
+      "display": "reprimand",
+      "meaning": "譴責 / 訓斥",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "reputable-adjective-entry-7768",
+      "word": "reputable",
+      "display": "reputable",
+      "meaning": "有聲譽的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "request-noun-entry-7769",
+      "word": "request",
+      "display": "request",
+      "meaning": "要求 / 請求",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "request-verb-entry-7770",
+      "word": "request",
+      "display": "request",
+      "meaning": "要求 / 請求",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "rescue-verb-entry-7771",
+      "word": "rescue",
+      "display": "rescue",
+      "meaning": "拯救 / 救援",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "rescue-noun-entry-7772",
+      "word": "rescue",
+      "display": "rescue",
+      "meaning": "救援",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "reservation-noun-entry-7773",
+      "word": "reservation",
+      "display": "reservation",
+      "meaning": "預訂 / 保留",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "reservations"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "reserve-verb-entry-7774",
+      "word": "reserve",
+      "display": "reserve",
+      "meaning": "預留 / 預約 / 保留",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "reserve-noun-entry-7775",
+      "word": "reserve",
+      "display": "reserve",
+      "meaning": "儲備",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "resilience-noun-entry-7776",
+      "word": "resilience",
+      "display": "resilience",
+      "meaning": "抗逆力 / 堅韌",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "resistant-adjective-entry-7777",
+      "word": "resistant",
+      "display": "resistant",
+      "meaning": "有抵抗力的 / 抗拒的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "responsibility-noun-entry-7778",
+      "word": "responsibility",
+      "display": "responsibility",
+      "meaning": "責任",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "responsbility"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "restriction-noun-entry-7779",
+      "word": "restriction",
+      "display": "restriction",
+      "meaning": "限制",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "restrictions"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "resurgence-noun-entry-7780",
+      "word": "resurgence",
+      "display": "resurgence",
+      "meaning": "復興 / 再起",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "retro-adjective-entry-7781",
+      "word": "retro",
+      "display": "retro",
+      "meaning": "復古的 / 懷舊的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "revenue-noun-entry-7782",
+      "word": "revenue",
+      "display": "revenue",
+      "meaning": "收入 / 收益",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "revenues"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "review-noun-entry-7783",
+      "word": "review",
+      "display": "review",
+      "meaning": "回顧 / 評論",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "review-verb-entry-7784",
+      "word": "review",
+      "display": "review",
+      "meaning": "溫習 / 回顧",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "riddle-noun-entry-7785",
+      "word": "riddle",
+      "display": "riddle",
+      "meaning": "謎語",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "rifle-noun-entry-7786",
+      "word": "rifle",
+      "display": "rifle",
+      "meaning": "步槍",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "rinse-verb-entry-7787",
+      "word": "rinse",
+      "display": "rinse",
+      "meaning": "沖洗",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "rinse-noun-entry-7788",
+      "word": "rinse",
+      "display": "rinse",
+      "meaning": "沖洗",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "ripple-noun-entry-7789",
+      "word": "ripple",
+      "display": "ripple",
+      "meaning": "漣漪 / 波紋",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "ripple-verb-entry-7790",
+      "word": "ripple",
+      "display": "ripple",
+      "meaning": "泛起漣漪",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "rise-verb-entry-7791",
+      "word": "rise",
+      "display": "rise",
+      "meaning": "上升",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "rise-noun-entry-7792",
+      "word": "rise",
+      "display": "rise",
+      "meaning": "上升 / 增加",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "risk-noun-entry-7793",
+      "word": "risk",
+      "display": "risk",
+      "meaning": "風險",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "risk-verb-entry-7794",
+      "word": "risk",
+      "display": "risk",
+      "meaning": "冒險",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "roast-verb-entry-7795",
+      "word": "roast",
+      "display": "roast",
+      "meaning": "烤 / 燒",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "roast-adjective-entry-7796",
+      "word": "roast",
+      "display": "roast",
+      "meaning": "烤的 / 燒的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "roast-noun-entry-7797",
+      "word": "roast",
+      "display": "roast",
+      "meaning": "烤肉",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "rodent-noun-entry-7798",
+      "word": "rodent",
+      "display": "rodent",
+      "meaning": "齧齒動物",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "rooftop-noun-entry-7799",
+      "word": "rooftop",
+      "display": "rooftop",
+      "meaning": "天台 / 屋頂",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "rot-verb-entry-7800",
+      "word": "rot",
+      "display": "rot",
+      "meaning": "腐爛",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "rot-noun-entry-7801",
+      "word": "rot",
+      "display": "rot",
+      "meaning": "腐爛",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "rotten-adjective-entry-7802",
+      "word": "rotten",
+      "display": "rotten",
+      "meaning": "腐爛的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "routine-noun-entry-7803",
+      "word": "routine",
+      "display": "routine",
+      "meaning": "日常流程 / 常規",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "routine-adjective-entry-7804",
+      "word": "routine",
+      "display": "routine",
+      "meaning": "例行的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "royalty-noun-entry-7805",
+      "word": "royalty",
+      "display": "royalty",
+      "meaning": "版稅 / 皇室",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "ruin-verb-entry-7806",
+      "word": "ruin",
+      "display": "ruin",
+      "meaning": "摧毀 / 毀壞",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "ruin-noun-entry-7807",
+      "word": "ruin",
+      "display": "ruin",
+      "meaning": "廢墟 / 毀滅",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "rule-noun-entry-7808",
+      "word": "rule",
+      "display": "rule",
+      "meaning": "規則",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "rules"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "rusty-adjective-entry-7811",
+      "word": "rusty",
+      "display": "rusty",
+      "meaning": "生鏽的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "ruthless-adjective-entry-7812",
+      "word": "ruthless",
+      "display": "ruthless",
+      "meaning": "無情的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "sacrifice-noun-entry-7813",
+      "word": "sacrifice",
+      "display": "sacrifice",
+      "meaning": "犧牲",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "sarcifice"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "sacrifice-verb-entry-7814",
+      "word": "sacrifice",
+      "display": "sacrifice",
+      "meaning": "犧牲",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "sarcifice"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "sail-verb-entry-7815",
+      "word": "sail",
+      "display": "sail",
+      "meaning": "航行",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "sail-noun-entry-7816",
+      "word": "sail",
+      "display": "sail",
+      "meaning": "帆",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "salary-noun-entry-7817",
+      "word": "salary",
+      "display": "salary",
+      "meaning": "薪金",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "salaries"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "saliva-noun-entry-7818",
+      "word": "saliva",
+      "display": "saliva",
+      "meaning": "口水 / 唾液",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "sanitary-adjective-entry-7819",
+      "word": "sanitary",
+      "display": "sanitary",
+      "meaning": "衛生的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "sanitise-verb-entry-7820",
+      "word": "sanitise",
+      "display": "sanitise",
+      "meaning": "消毒",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "sanitize"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "sap-noun-entry-7821",
+      "word": "sap",
+      "display": "sap",
+      "meaning": "樹液",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "sap-verb-entry-7822",
+      "word": "sap",
+      "display": "sap",
+      "meaning": "削弱",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "sarcastic-adjective-entry-7823",
+      "word": "sarcastic",
+      "display": "sarcastic",
+      "meaning": "諷刺的 / 挖苦的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "saturated-adjective-entry-7824",
+      "word": "saturated",
+      "display": "saturated",
+      "meaning": "飽和的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "savour-verb-entry-7825",
+      "word": "savour",
+      "display": "savour",
+      "meaning": "品嚐 / 享受",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "savor"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "savour-noun-entry-7826",
+      "word": "savour",
+      "display": "savour",
+      "meaning": "滋味",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "savor"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "savoury-adjective-entry-7827",
+      "word": "savoury",
+      "display": "savoury",
+      "meaning": "鹹香的 / 濃味的",
+      "pos": "adjective",
+      "type": "word",
+      "needsReview": false,
+      "aliases": [
+        "savory"
+      ],
+      "sourceCount": 1
+    },
+    {
+      "id": "say-verb-entry-7828",
+      "word": "say",
+      "display": "say",
+      "meaning": "說",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "say-adverb-entry-7829",
+      "word": "say",
+      "display": "say",
+      "meaning": "例如",
+      "pos": "adverb",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "scallop-noun-entry-7830",
+      "word": "scallop",
+      "display": "scallop",
+      "meaning": "扇貝",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "rust-noun-entry-7829",
+      "word": "rust",
+      "display": "rust",
+      "meaning": "鏽",
+      "pos": "noun",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "rust-verb-entry-7830",
+      "word": "rust",
+      "display": "rust",
+      "meaning": "生鏽",
+      "pos": "verb",
+      "type": "word",
+      "needsReview": false,
       "sourceCount": 1
     }
   ]
