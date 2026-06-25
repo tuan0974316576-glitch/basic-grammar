@@ -386,6 +386,34 @@ assert.deepStrictEqual(
   ["verb:評估", "verb:評價"]
 );
 assert.deepStrictEqual(
+  senseBank.lookup("create").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:創造", "verb:建立"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("comfort").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:舒適", "noun:安慰", "verb:安慰"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("turn").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:轉動", "verb:轉彎", "noun:輪流", "noun:次序"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("close").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:關閉", "adjective:接近的", "adjective:親密的", "adverb:接近地", "noun:結束"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("state").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:狀態", "noun:州", "noun:國家", "verb:陳述 / 說明", "adjective:國家的 / 州的"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("hold").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:拿著 / 握住", "verb:舉行", "verb:容納", "verb:持有", "noun:抓握", "noun:控制"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("record").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:記錄", "verb:記錄", "verb:錄音", "verb:錄影"]
+);
+assert.deepStrictEqual(
   senseBank.lookup("cub").map((entry) => `${entry.pos}:${entry.meaning}`),
   ["noun:幼獸"]
 );
@@ -1988,7 +2016,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("create").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["verb:創造 / 建立"]
+  ["verb:創造", "verb:建立"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("decide").map((entry) => `${entry.pos}:${entry.meaning}`),

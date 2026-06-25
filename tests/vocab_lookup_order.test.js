@@ -1082,6 +1082,77 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("create")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:創造:curated-sense-bank",
+      "verb:建立:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("comfort")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:舒適:curated-sense-bank",
+      "noun:安慰:curated-sense-bank",
+      "verb:安慰:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("turn")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:轉動:curated-sense-bank",
+      "verb:轉彎:curated-sense-bank",
+      "noun:輪流:curated-sense-bank",
+      "noun:次序:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("close")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:關閉:curated-sense-bank",
+      "adjective:接近的:curated-sense-bank",
+      "adjective:親密的:curated-sense-bank",
+      "adverb:接近地:curated-sense-bank",
+      "noun:結束:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("state")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:狀態:curated-sense-bank",
+      "noun:州:curated-sense-bank",
+      "noun:國家:curated-sense-bank",
+      "verb:陳述 / 說明:curated-sense-bank",
+      "adjective:國家的 / 州的:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("hold")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:拿著 / 握住:curated-sense-bank",
+      "verb:舉行:curated-sense-bank",
+      "verb:容納:curated-sense-bank",
+      "verb:持有:curated-sense-bank",
+      "noun:抓握:curated-sense-bank",
+      "noun:控制:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("record")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:記錄:curated-sense-bank",
+      "verb:記錄:curated-sense-bank",
+      "verb:錄音:curated-sense-bank",
+      "verb:錄影:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("dependent")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     ["adjective:依賴的 / 取決於...的:curated-sense-bank"]
   );
