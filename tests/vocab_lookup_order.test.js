@@ -365,6 +365,39 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("left")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "adjective:左邊的:curated-sense-bank",
+      "noun:左邊:curated-sense-bank",
+      "adverb:向左:curated-sense-bank",
+      "adverb:在左邊:curated-sense-bank",
+      "verb:離開了（leave 的過去式 / PP）:curated-sense-bank",
+      "verb:留下了（leave 的過去式 / PP）:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("light")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:光:curated-sense-bank",
+      "noun:燈:curated-sense-bank",
+      "adjective:輕的:curated-sense-bank",
+      "adjective:淺色的:curated-sense-bank",
+      "verb:點燃:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("sound")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:聲音:curated-sense-bank",
+      "verb:聽起來:curated-sense-bank",
+      "adjective:合理的:curated-sense-bank",
+      "adjective:可靠的:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("validity")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "noun:有效性:curated-sense-bank",

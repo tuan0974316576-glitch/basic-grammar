@@ -426,6 +426,25 @@ assert.deepStrictEqual(
   ]
 );
 assert.deepStrictEqual(
+  senseBank.lookup("left").map((entry) => `${entry.pos}:${entry.meaning}`),
+  [
+    "adjective:左邊的",
+    "noun:左邊",
+    "adverb:向左",
+    "adverb:在左邊",
+    "verb:離開了（leave 的過去式 / PP）",
+    "verb:留下了（leave 的過去式 / PP）"
+  ]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("light").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:光", "noun:燈", "adjective:輕的", "adjective:淺色的", "verb:點燃"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("sound").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:聲音", "verb:聽起來", "adjective:合理的", "adjective:可靠的"]
+);
+assert.deepStrictEqual(
   senseBank.lookup("cub").map((entry) => `${entry.pos}:${entry.meaning}`),
   ["noun:幼獸"]
 );
