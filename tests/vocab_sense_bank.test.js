@@ -162,6 +162,18 @@ assert.deepStrictEqual(
   ["verb:檢查", "noun:檢查", "noun:賬單"]
 );
 assert.deepStrictEqual(
+  senseBank.lookup("break").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:打破", "verb:弄壞", "noun:小休 / 休息"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("lose").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:失去", "verb:輸掉"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("number").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:數字", "noun:號碼", "verb:編號", "verb:數算"]
+);
+assert.deepStrictEqual(
   senseBank.lookup("egg waffle").map((entry) => `${entry.pos}:${entry.meaning}`),
   ["noun:雞蛋仔"]
 );
@@ -614,7 +626,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("physical").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
-  ["adjective:身體的 / 物理的:override"]
+  ["adjective:身體的:override", "adjective:物理的:override"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("population").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
@@ -646,7 +658,11 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("power").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
-  ["noun:力量 / 能力:override", "noun:權力 / 電力:override", "verb:為...提供動力:override"]
+  ["noun:力量:override", "noun:能力:override", "noun:權力:override", "noun:電力:override", "verb:為...提供動力:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("image").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["noun:圖像:override", "noun:形象:override"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("rather").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),

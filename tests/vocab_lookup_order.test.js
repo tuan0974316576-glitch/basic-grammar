@@ -201,6 +201,60 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("break")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:打破:curated-sense-bank",
+      "verb:弄壞:curated-sense-bank",
+      "noun:小休 / 休息:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("power")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:力量:curated-sense-bank",
+      "noun:能力:curated-sense-bank",
+      "noun:權力:curated-sense-bank",
+      "noun:電力:curated-sense-bank",
+      "verb:為...提供動力:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("physical")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "adjective:身體的:curated-sense-bank",
+      "adjective:物理的:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("image")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:圖像:curated-sense-bank",
+      "noun:形象:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("lose")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:失去:curated-sense-bank",
+      "verb:輸掉:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("number")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:數字:curated-sense-bank",
+      "noun:號碼:curated-sense-bank",
+      "verb:編號:curated-sense-bank",
+      "verb:數算:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("hawker")).map((entry) => `${entryPos(entry)}:${entry.meaning}:${entry.source}`),
     ["noun:小販:curated-sense-bank"]
   );
