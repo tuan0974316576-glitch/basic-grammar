@@ -354,7 +354,8 @@ function assertStudentLookupContract(word, matches) {
   assert.deepStrictEqual(
     (await lookupForStudent("right")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
-      "adjective:正確的 / 右邊的:curated-sense-bank",
+      "adjective:正確的:curated-sense-bank",
+      "adjective:右邊的:curated-sense-bank",
       "noun:右邊 / 右方:curated-sense-bank",
       "adverb:向右:curated-sense-bank",
       "noun:權利:curated-sense-bank",
@@ -616,7 +617,37 @@ function assertStudentLookupContract(word, matches) {
       "charge:verb:收費:curated-sense-bank",
       "charge:verb:指控:curated-sense-bank",
       "charge:noun:費用:curated-sense-bank",
-      "charge:noun:指控 / 控罪:curated-sense-bank"
+      "charge:noun:指控:curated-sense-bank",
+      "charge:noun:控罪:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("conduct")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:行為:curated-sense-bank",
+      "verb:進行:curated-sense-bank",
+      "verb:指揮:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("project")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:專題:curated-sense-bank",
+      "noun:項目:curated-sense-bank",
+      "verb:預計:curated-sense-bank",
+      "verb:投射:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("harm")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:傷害:curated-sense-bank",
+      "noun:損害:curated-sense-bank",
+      "verb:傷害:curated-sense-bank",
+      "verb:損害:curated-sense-bank"
     ]
   );
 

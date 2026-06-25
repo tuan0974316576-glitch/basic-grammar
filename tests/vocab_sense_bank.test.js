@@ -414,6 +414,18 @@ assert.deepStrictEqual(
   ["noun:記錄", "verb:記錄", "verb:錄音", "verb:錄影"]
 );
 assert.deepStrictEqual(
+  senseBank.lookup("right").map((entry) => `${entry.pos}:${entry.meaning}`),
+  [
+    "adjective:正確的",
+    "adjective:右邊的",
+    "noun:右邊 / 右方",
+    "adverb:向右",
+    "noun:權利",
+    "adverb:正確地",
+    "adverb:立刻 / 馬上"
+  ]
+);
+assert.deepStrictEqual(
   senseBank.lookup("cub").map((entry) => `${entry.pos}:${entry.meaning}`),
   ["noun:幼獸"]
 );
@@ -704,7 +716,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("charge").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["verb:充電", "verb:收費", "verb:指控", "noun:費用", "noun:指控 / 控罪"]
+  ["verb:充電", "verb:收費", "verb:指控", "noun:費用", "noun:指控", "noun:控罪"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("matter").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -748,7 +760,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("conduct").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["noun:行為", "verb:進行 / 指揮"]
+  ["noun:行為", "verb:進行", "verb:指揮"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("entrance exam").map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),
@@ -760,7 +772,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("project").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["noun:專題 / 項目", "verb:預計 / 投射"]
+  ["noun:專題", "noun:項目", "verb:預計", "verb:投射"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("refuse").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -1384,7 +1396,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("harm").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["noun:傷害 / 損害", "verb:傷害 / 損害"]
+  ["noun:傷害", "noun:損害", "verb:傷害", "verb:損害"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("heal").map((entry) => `${entry.pos}:${entry.meaning}`),
