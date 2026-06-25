@@ -175,6 +175,32 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("strong")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "adjective:強壯的:curated-sense-bank",
+      "adjective:強烈的:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("wave")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:波浪:curated-sense-bank",
+      "noun:揮手:curated-sense-bank",
+      "verb:揮手:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("check")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:檢查:curated-sense-bank",
+      "noun:檢查:curated-sense-bank",
+      "noun:賬單:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("hawker")).map((entry) => `${entryPos(entry)}:${entry.meaning}:${entry.source}`),
     ["noun:小販:curated-sense-bank"]
   );

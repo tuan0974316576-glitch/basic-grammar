@@ -150,6 +150,18 @@ assert.deepStrictEqual(
   ["verb:掉下 / 放下", "verb:下降 / 減少", "noun:一滴", "noun:下降"]
 );
 assert.deepStrictEqual(
+  senseBank.lookup("strong").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["adjective:強壯的", "adjective:強烈的"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("wave").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:波浪", "noun:揮手", "verb:揮手"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("check").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:檢查", "noun:檢查", "noun:賬單"]
+);
+assert.deepStrictEqual(
   senseBank.lookup("egg waffle").map((entry) => `${entry.pos}:${entry.meaning}`),
   ["noun:雞蛋仔"]
 );
@@ -626,7 +638,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("wave").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
-  ["noun:波浪 / 揮手:override", "verb:揮手:override"]
+  ["noun:波浪:override", "noun:揮手:override", "verb:揮手:override"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("whole").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
