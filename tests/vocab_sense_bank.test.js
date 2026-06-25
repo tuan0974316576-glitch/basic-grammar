@@ -346,6 +346,46 @@ assert.deepStrictEqual(
   ]
 );
 assert.deepStrictEqual(
+  senseBank.lookup("characteristic").map((entry) => `${entry.pos}:${entry.meaning}`),
+  [
+    "adjective:典型的",
+    "adjective:特有的",
+    "noun:特徵",
+    "noun:特點"
+  ]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("considerable").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["adjective:相當大的", "adjective:可觀的"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("critical").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["adjective:關鍵的", "adjective:批判性的", "adjective:危急的"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("decline").map((entry) => `${entry.pos}:${entry.meaning}`),
+  [
+    "noun:下降",
+    "noun:衰退",
+    "verb:下降",
+    "verb:衰退",
+    "verb:婉拒",
+    "verb:拒絕"
+  ]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("demonstrate").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:示範", "verb:展示", "verb:顯示", "verb:證明"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("embrace").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:接受", "verb:支持"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("evaluate").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:評估", "verb:評價"]
+);
+assert.deepStrictEqual(
   senseBank.lookup("cub").map((entry) => `${entry.pos}:${entry.meaning}`),
   ["noun:幼獸"]
 );
@@ -3783,7 +3823,10 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("characteristics").map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}`),
-  ["characteristic:noun:特徵 / 特點"]
+  [
+    "characteristic:noun:特徵",
+    "characteristic:noun:特點"
+  ]
 );
 assert.deepStrictEqual(
   senseBank.lookup("chains").map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}`),

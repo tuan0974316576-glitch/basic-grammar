@@ -1009,8 +1009,76 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("characteristic")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "adjective:典型的:curated-sense-bank",
+      "adjective:特有的:curated-sense-bank",
+      "noun:特徵:curated-sense-bank",
+      "noun:特點:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("characteristics")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "characteristic:noun:特徵:curated-sense-bank",
+      "characteristic:noun:特點:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("considerable")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "adjective:相當大的:curated-sense-bank",
+      "adjective:可觀的:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("critical")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
-    ["adjective:關鍵的 / 批判性的 / 危急的:curated-sense-bank"]
+    [
+      "adjective:關鍵的:curated-sense-bank",
+      "adjective:批判性的:curated-sense-bank",
+      "adjective:危急的:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("decline")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:下降:curated-sense-bank",
+      "noun:衰退:curated-sense-bank",
+      "verb:下降:curated-sense-bank",
+      "verb:衰退:curated-sense-bank",
+      "verb:婉拒:curated-sense-bank",
+      "verb:拒絕:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("demonstrate")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:示範:curated-sense-bank",
+      "verb:展示:curated-sense-bank",
+      "verb:顯示:curated-sense-bank",
+      "verb:證明:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("embrace")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:接受:curated-sense-bank",
+      "verb:支持:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("evaluate")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:評估:curated-sense-bank",
+      "verb:評價:curated-sense-bank"
+    ]
   );
 
   assert.deepStrictEqual(
