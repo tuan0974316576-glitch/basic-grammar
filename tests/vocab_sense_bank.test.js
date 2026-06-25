@@ -174,6 +174,14 @@ assert.deepStrictEqual(
   ["noun:數字", "noun:號碼", "verb:編號", "verb:數算"]
 );
 assert.deepStrictEqual(
+  senseBank.lookup("stop").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:停止", "noun:車站", "noun:停止"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("study").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:學習", "verb:研究", "noun:研究", "noun:書房"]
+);
+assert.deepStrictEqual(
   senseBank.lookup("egg waffle").map((entry) => `${entry.pos}:${entry.meaning}`),
   ["noun:雞蛋仔"]
 );
@@ -582,7 +590,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("purpose").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
-  ["noun:目的 / 用途:override"]
+  ["noun:目的:override", "noun:用途:override"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("probably").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
@@ -663,6 +671,14 @@ assert.deepStrictEqual(
 assert.deepStrictEqual(
   senseBank.lookup("image").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
   ["noun:圖像:override", "noun:形象:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("movement").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["noun:移動:override", "noun:運動:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("particular").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["adjective:特定的:override", "adjective:特別的:override"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("rather").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
