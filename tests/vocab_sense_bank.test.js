@@ -598,11 +598,11 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("by").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
-  ["preposition:由 / 被 / 靠近:override", "adverb:經過 / 在旁邊:override"]
+  ["preposition:由:override", "preposition:被:override", "preposition:靠近:override", "adverb:經過:override", "adverb:在旁邊:override"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("may").map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
-  ["may:modal:可能 / 可以:override", "May:noun:五月:override"]
+  ["may:modal:可能:override", "may:modal:可以:override", "May:noun:五月:override"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("it").map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
@@ -614,7 +614,31 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("will").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
-  ["modal:將會 / 會:override", "noun:意志 / 遺囑:override"]
+  ["modal:將會:override", "modal:會:override", "noun:意志:override", "noun:遺囑:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("around").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["preposition:在...周圍:override", "adverb:到處:override", "adverb:大約:override", "adverb:在周圍:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("could").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["modal:可以:override", "modal:可能:override", "modal:能夠:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("just").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["adverb:只是:override", "adverb:剛剛:override", "adverb:正好:override", "adjective:公正的:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("with").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["preposition:和...一起:override", "preposition:帶有:override", "preposition:使用:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("would").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["modal:會:override", "modal:願意:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("event").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["noun:活動:override", "noun:事件:override"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("model").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),

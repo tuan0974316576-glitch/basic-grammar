@@ -263,6 +263,46 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("around")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "preposition:在...周圍:curated-sense-bank",
+      "adverb:到處:curated-sense-bank",
+      "adverb:大約:curated-sense-bank",
+      "adverb:在周圍:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("by")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "preposition:由:curated-sense-bank",
+      "preposition:被:curated-sense-bank",
+      "preposition:靠近:curated-sense-bank",
+      "adverb:經過:curated-sense-bank",
+      "adverb:在旁邊:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("may")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "may:modal:可能:curated-sense-bank",
+      "may:modal:可以:curated-sense-bank",
+      "May:noun:五月:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("will")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "modal:將會:curated-sense-bank",
+      "modal:會:curated-sense-bank",
+      "noun:意志:curated-sense-bank",
+      "noun:遺囑:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("movement")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "noun:移動:curated-sense-bank",
