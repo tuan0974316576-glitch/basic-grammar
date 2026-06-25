@@ -445,6 +445,34 @@ assert.deepStrictEqual(
   ["noun:聲音", "verb:聽起來", "adjective:合理的", "adjective:可靠的"]
 );
 assert.deepStrictEqual(
+  senseBank.lookup("class").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:班級", "noun:課堂", "noun:種類 / 類別"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("hard").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["adjective:困難的", "adjective:硬的", "adverb:努力地"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("free").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["adjective:免費的", "adjective:自由的", "adverb:免費地", "verb:釋放 / 使自由"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("ask").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:問", "verb:要求"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("call").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:打電話", "verb:稱呼", "noun:電話 / 呼叫"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("see").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:看見", "verb:明白"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("tell").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:告訴", "verb:講述"]
+);
+assert.deepStrictEqual(
   senseBank.lookup("cub").map((entry) => `${entry.pos}:${entry.meaning}`),
   ["noun:幼獸"]
 );
