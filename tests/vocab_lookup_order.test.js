@@ -459,6 +459,71 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("get")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:得到:curated-sense-bank",
+      "verb:取得:curated-sense-bank",
+      "verb:收到:curated-sense-bank",
+      "verb:到達:curated-sense-bank",
+      "verb:變得:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("make")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:製作:curated-sense-bank",
+      "verb:製造:curated-sense-bank",
+      "verb:使:curated-sense-bank",
+      "verb:令:curated-sense-bank",
+      "noun:品牌 / 型號:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("take")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:拿:curated-sense-bank",
+      "verb:取:curated-sense-bank",
+      "verb:帶:curated-sense-bank",
+      "verb:乘搭:curated-sense-bank",
+      "verb:花費時間:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("order")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:次序:curated-sense-bank",
+      "noun:命令:curated-sense-bank",
+      "noun:訂單:curated-sense-bank",
+      "verb:訂購:curated-sense-bank",
+      "verb:命令:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("present")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:禮物:curated-sense-bank",
+      "adjective:在場的:curated-sense-bank",
+      "verb:呈現:curated-sense-bank",
+      "verb:展示:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("match")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:比賽:curated-sense-bank",
+      "noun:火柴:curated-sense-bank",
+      "verb:配對:curated-sense-bank",
+      "verb:相配:curated-sense-bank",
+      "verb:相襯:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("validity")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "noun:有效性:curated-sense-bank",

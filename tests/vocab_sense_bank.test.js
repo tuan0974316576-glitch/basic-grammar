@@ -473,6 +473,26 @@ assert.deepStrictEqual(
   ["verb:告訴", "verb:講述"]
 );
 assert.deepStrictEqual(
+  senseBank.lookup("get").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:得到", "verb:取得", "verb:收到", "verb:到達", "verb:變得"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("make").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:製作", "verb:製造", "verb:使", "verb:令", "noun:品牌 / 型號"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("take").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:拿", "verb:取", "verb:帶", "verb:乘搭", "verb:花費時間"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("order").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:次序", "noun:命令", "noun:訂單", "verb:訂購", "verb:命令"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("present").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:禮物", "adjective:在場的", "verb:呈現", "verb:展示"]
+);
+assert.deepStrictEqual(
   senseBank.lookup("cub").map((entry) => `${entry.pos}:${entry.meaning}`),
   ["noun:幼獸"]
 );
@@ -490,7 +510,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("match").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
-  ["noun:比賽:override", "noun:火柴:override", "verb:配對 / 相配 / 相襯:override"]
+  ["noun:比賽:override", "noun:火柴:override", "verb:配對:override", "verb:相配:override", "verb:相襯:override"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("park").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
