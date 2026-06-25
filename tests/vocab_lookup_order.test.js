@@ -303,6 +303,76 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("move")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:移動:curated-sense-bank",
+      "verb:搬動:curated-sense-bank",
+      "verb:感動:curated-sense-bank",
+      "noun:行動:curated-sense-bank",
+      "noun:移動:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("experience")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:經驗:curated-sense-bank",
+      "noun:經歷:curated-sense-bank",
+      "verb:經歷:curated-sense-bank",
+      "verb:體驗:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("feature")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:特色:curated-sense-bank",
+      "noun:特徵:curated-sense-bank",
+      "verb:以...為特色:curated-sense-bank",
+      "verb:由...主演:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("process")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:過程:curated-sense-bank",
+      "noun:程序:curated-sense-bank",
+      "verb:處理:curated-sense-bank",
+      "verb:加工:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("rise")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:上升:curated-sense-bank",
+      "verb:升起:curated-sense-bank",
+      "noun:上升:curated-sense-bank",
+      "noun:增加:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("sign")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:標誌:curated-sense-bank",
+      "noun:跡象:curated-sense-bank",
+      "verb:簽署:curated-sense-bank",
+      "verb:簽名:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("shape")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:形狀:curated-sense-bank",
+      "verb:塑造:curated-sense-bank",
+      "verb:影響:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("movement")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "noun:移動:curated-sense-bank",

@@ -641,6 +641,10 @@ assert.deepStrictEqual(
   ["noun:活動:override", "noun:事件:override"]
 );
 assert.deepStrictEqual(
+  senseBank.lookup("move").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["verb:移動:override", "verb:搬動:override", "verb:感動:override", "noun:行動:override", "noun:移動:override"]
+);
+assert.deepStrictEqual(
   senseBank.lookup("model").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
   ["noun:模型:override", "noun:模特兒:override", "verb:示範:override"]
 );
@@ -655,6 +659,14 @@ assert.deepStrictEqual(
 assert.deepStrictEqual(
   senseBank.lookup("direct").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
   ["adjective:直接的:override", "adverb:直接地:override", "verb:指導 / 指揮:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("experience").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["noun:經驗:override", "noun:經歷:override", "verb:經歷:override", "verb:體驗:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("feature").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["noun:特色:override", "noun:特徵:override", "verb:以...為特色:override", "verb:由...主演:override"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("physical").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
@@ -675,6 +687,22 @@ assert.deepStrictEqual(
 assert.deepStrictEqual(
   senseBank.lookup("produce").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
   ["verb:生產 / 製造:override", "noun:農產品 / 農作物:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("process").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["noun:過程:override", "noun:程序:override", "verb:處理:override", "verb:加工:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("rise").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["verb:上升:override", "verb:升起:override", "noun:上升:override", "noun:增加:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("sign").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["noun:標誌:override", "noun:跡象:override", "verb:簽署:override", "verb:簽名:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("shape").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["noun:形狀:override", "verb:塑造:override", "verb:影響:override"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("step").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
