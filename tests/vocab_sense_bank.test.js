@@ -749,6 +749,34 @@ assert.deepStrictEqual(
   ["verb:考慮:override", "verb:認為:override", "verb:視為:override"]
 );
 assert.deepStrictEqual(
+  senseBank.lookup("several").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["determiner:幾個 / 數個:override", "pronoun:幾個 / 數個:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("industry").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["noun:行業:override", "noun:工業:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("drug").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["noun:藥物:override", "noun:毒品:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("code").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["noun:代碼:override", "noun:編碼:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("introduce").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["verb:介紹:override", "verb:引入:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("join").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["verb:加入:override", "verb:參加:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("know").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["verb:知道:override", "verb:認識:override"]
+);
+assert.deepStrictEqual(
   senseBank.lookup("step").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
   ["noun:步驟 / 措施:override", "noun:腳步:override", "verb:踏 / 踩:override"]
 );
@@ -3982,7 +4010,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("audiences").map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}`),
-  ["audience:noun:觀眾 / 聽眾"]
+  ["audience:noun:觀眾", "audience:noun:聽眾"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("a defining victory").map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),

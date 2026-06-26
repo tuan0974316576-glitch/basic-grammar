@@ -414,6 +414,30 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("several")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "determiner:幾個 / 數個:curated-sense-bank",
+      "pronoun:幾個 / 數個:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("drug")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:藥物:curated-sense-bank",
+      "noun:毒品:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("join")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:加入:curated-sense-bank",
+      "verb:參加:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("movement")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "noun:移動:curated-sense-bank",
