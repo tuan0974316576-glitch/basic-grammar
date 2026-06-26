@@ -2258,6 +2258,103 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("deny")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:否認:curated-sense-bank",
+      "verb:拒絕給予:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("determine")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:決定 / 確定:curated-sense-bank",
+      "verb:影響 / 支配:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("employ")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:僱用:curated-sense-bank",
+      "verb:使用 / 採用:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("express")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:表達:curated-sense-bank",
+      "adjective:特快的 / 明確的:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("require")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:需要 / 要求:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("release")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:釋放:curated-sense-bank",
+      "verb:發佈 / 推出:curated-sense-bank",
+      "noun:釋放 / 發佈:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("remain")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:保持 / 仍然是:curated-sense-bank",
+      "verb:留下 / 剩下:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("respect")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:尊重:curated-sense-bank",
+      "verb:尊重:curated-sense-bank",
+      "noun:方面:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("shift")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:輪班:curated-sense-bank",
+      "verb:轉移 / 移動:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("spot")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:地點:curated-sense-bank",
+      "noun:斑點:curated-sense-bank",
+      "verb:發現 / 看見:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("represent")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:代表:curated-sense-bank",
+      "verb:象徵 / 表示:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("reserve")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:預留 / 預約 / 保留:curated-sense-bank",
+      "noun:儲備:curated-sense-bank",
+      "noun:保護區:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("manage")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "verb:管理:curated-sense-bank",
