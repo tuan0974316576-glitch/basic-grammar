@@ -937,6 +937,30 @@ assert.deepStrictEqual(
   ["noun:行為:override"]
 );
 assert.deepStrictEqual(
+  senseBank.lookup("realise").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["verb:意識到:override", "verb:實現:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("realize").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["verb:意識到:override", "verb:實現:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("recognise").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["verb:認出:override", "verb:認可:override", "verb:承認:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("recognize").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["verb:認出:override", "verb:認可:override", "verb:承認:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("organise").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["verb:組織:override", "verb:安排:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("organize").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["verb:組織:override", "verb:安排:override"]
+);
+assert.deepStrictEqual(
   senseBank.lookup("USA").map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
   ["USA:noun:美國:override"]
 );

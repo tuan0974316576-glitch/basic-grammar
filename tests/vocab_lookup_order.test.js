@@ -2724,6 +2724,23 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("recognize")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "recognize:verb:認出:curated-sense-bank",
+      "recognize:verb:認可:curated-sense-bank",
+      "recognize:verb:承認:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("organise")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "organise:verb:組織:curated-sense-bank",
+      "organise:verb:安排:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("convert a into b")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
     ["convert A into B:phrase:verb:將A轉變成B:curated-sense-bank"]
   );
