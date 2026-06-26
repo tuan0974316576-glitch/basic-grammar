@@ -1370,6 +1370,30 @@ assert.deepStrictEqual(
   ["adjective:冷靜的", "adjective:平靜的", "verb:使平靜", "noun:平靜"]
 );
 assert.deepStrictEqual(
+  senseBank.lookup("candidate").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:候選人", "noun:參加者"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("captain").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:隊長", "noun:船長", "noun:機長"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("central").map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}`),
+  ["central:adjective:中央的", "central:adjective:主要的", "Central:noun:中環"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("channel").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:頻道", "noun:渠道", "noun:途徑"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("cheat").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:作弊", "verb:欺騙", "noun:騙子", "noun:作弊者"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("clause").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:子句", "noun:條款"]
+);
+assert.deepStrictEqual(
   senseBank.lookup("brief").map((entry) => `${entry.pos}:${entry.meaning}`),
   ["adjective:短暫的", "adjective:簡短的", "noun:摘要", "noun:指示", "verb:向...簡介"]
 );
@@ -4226,7 +4250,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("candidates").map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}`),
-  ["candidate:noun:候選人 / 參加者"]
+  ["candidate:noun:候選人", "candidate:noun:參加者"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("colleagues").map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}`),
