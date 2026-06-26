@@ -818,6 +818,18 @@
   { word: "grow", label: "v. 種植" },
   { word: "hide", label: "v. 隱藏" },
   { word: "hide", label: "v. 躲藏" },
+  { word: "ride", label: "v. 騎" },
+  { word: "ride", label: "v. 乘搭" },
+  { word: "ride", label: "n. 乘車" },
+  { word: "ride", label: "n. 騎乘" },
+  { word: "time", label: "n. 時間" },
+  { word: "time", label: "n. 次" },
+  { word: "visit", label: "v. 探訪" },
+  { word: "visit", label: "v. 參觀" },
+  { word: "visit", label: "n. 探訪" },
+  { word: "visit", label: "n. 參觀" },
+  { word: "walk", label: "n. 散步" },
+  { word: "walk", label: "n. 步行" },
   { word: "white-collar worker", label: "n. 白領人士" },
   { word: "have no choice but to", label: "v. 別無選擇，只好" }
 ]);

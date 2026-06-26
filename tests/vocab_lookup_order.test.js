@@ -2259,6 +2259,44 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("ride")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:騎:curated-sense-bank",
+      "verb:乘搭:curated-sense-bank",
+      "noun:乘車:curated-sense-bank",
+      "noun:騎乘:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("time")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:時間:curated-sense-bank",
+      "noun:次:curated-sense-bank",
+      "verb:計時:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("visit")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:探訪:curated-sense-bank",
+      "verb:參觀:curated-sense-bank",
+      "noun:探訪:curated-sense-bank",
+      "noun:參觀:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("walk")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:走路:curated-sense-bank",
+      "noun:散步:curated-sense-bank",
+      "noun:步行:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("late")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "adjective:遲的:curated-sense-bank",

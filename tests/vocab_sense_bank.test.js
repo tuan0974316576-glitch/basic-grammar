@@ -1127,6 +1127,22 @@ assert.deepStrictEqual(
   ["noun:票", "noun:罰單"]
 );
 assert.deepStrictEqual(
+  senseBank.lookup("ride").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:騎", "verb:乘搭", "noun:乘車", "noun:騎乘"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("time").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:時間", "noun:次", "verb:計時"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("visit").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:探訪", "verb:參觀", "noun:探訪", "noun:參觀"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("walk").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:走路", "noun:散步", "noun:步行"]
+);
+assert.deepStrictEqual(
   senseBank.lookup("permit").map((entry) => `${entry.pos}:${entry.meaning}`),
   ["verb:允許", "noun:許可證"]
 );
