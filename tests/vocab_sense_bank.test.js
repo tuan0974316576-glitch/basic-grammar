@@ -806,7 +806,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("rather").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
-  ["adverb:頗 / 相當:override", "adverb:反而 / 而是:override"]
+  ["adverb:頗:override", "adverb:相當:override", "adverb:反而:override", "adverb:而是:override"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("department").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
@@ -814,7 +814,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("desert").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
-  ["noun:沙漠:override", "verb:遺棄 / 離棄:override"]
+  ["noun:沙漠:override", "verb:遺棄:override", "verb:離棄:override"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("competition").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
@@ -826,7 +826,27 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("country").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
-  ["noun:國家 / 鄉郊:override"]
+  ["noun:國家:override", "noun:鄉郊:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("alternative").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["noun:替代品:override", "noun:另一選擇:override", "adjective:替代的:override", "adjective:另一選擇的:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("late").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["adjective:遲的:override", "adjective:晚的:override", "adverb:遲:override", "adverb:晚:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("moment").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["noun:時刻:override", "noun:片刻:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("ordinary").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["adjective:平凡的:override", "adjective:普通的:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("involve").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["verb:涉及:override", "verb:牽涉:override"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("still").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),

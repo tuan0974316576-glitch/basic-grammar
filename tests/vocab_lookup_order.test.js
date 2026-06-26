@@ -438,6 +438,24 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("country")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:國家:curated-sense-bank",
+      "noun:鄉郊:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("rather")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "adverb:頗:curated-sense-bank",
+      "adverb:相當:curated-sense-bank",
+      "adverb:反而:curated-sense-bank",
+      "adverb:而是:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("movement")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "noun:移動:curated-sense-bank",
