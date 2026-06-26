@@ -838,6 +838,16 @@
   { word: "send", label: "v. 寄" },
   { word: "stay", label: "v. 停留" },
   { word: "stay", label: "v. 留下" },
+  { word: "title", label: "n. 標題" },
+  { word: "title", label: "n. 頭銜" },
+  { word: "use", label: "n. 使用" },
+  { word: "use", label: "n. 用途" },
+  { word: "video", label: "n. 影片" },
+  { word: "video", label: "n. 錄像" },
+  { word: "position", label: "n. 位置" },
+  { word: "position", label: "n. 職位" },
+  { word: "position", label: "v. 安置" },
+  { word: "position", label: "v. 放置" },
   { word: "white-collar worker", label: "n. 白領人士" },
   { word: "have no choice but to", label: "v. 別無選擇，只好" }
 ]);

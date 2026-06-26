@@ -1159,6 +1159,22 @@ assert.deepStrictEqual(
   ["verb:停留", "verb:留下", "noun:停留"]
 );
 assert.deepStrictEqual(
+  senseBank.lookup("title").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:標題", "noun:頭銜", "verb:給...加標題"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("use").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:使用", "noun:使用", "noun:用途"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("video").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:影片", "noun:錄像"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("position").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:位置", "noun:職位", "verb:安置", "verb:放置"]
+);
+assert.deepStrictEqual(
   senseBank.lookup("permit").map((entry) => `${entry.pos}:${entry.meaning}`),
   ["verb:允許", "noun:許可證"]
 );

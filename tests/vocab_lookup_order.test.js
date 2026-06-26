@@ -2330,6 +2330,42 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("title")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:標題:curated-sense-bank",
+      "noun:頭銜:curated-sense-bank",
+      "verb:給...加標題:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("use")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:使用:curated-sense-bank",
+      "noun:使用:curated-sense-bank",
+      "noun:用途:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("video")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:影片:curated-sense-bank",
+      "noun:錄像:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("position")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:位置:curated-sense-bank",
+      "noun:職位:curated-sense-bank",
+      "verb:安置:curated-sense-bank",
+      "verb:放置:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("late")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "adjective:遲的:curated-sense-bank",
