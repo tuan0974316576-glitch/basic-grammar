@@ -81,6 +81,20 @@ const cleanReport = preflight.buildReport([
     reviewed_pos: "",
     reviewed_meaning: "查閱",
     promote_to: "teacher"
+  }, 0, "unit"),
+  preflight.normalizeReviewRow({
+    word: "eight",
+    type: "word",
+    reviewed_pos: "num.",
+    reviewed_meaning: "八",
+    promote_to: "curated"
+  }, 0, "unit"),
+  preflight.normalizeReviewRow({
+    word: "hello",
+    type: "word",
+    reviewed_pos: "exclam.",
+    reviewed_meaning: "你好",
+    promote_to: "curated"
   }, 0, "unit")
 ]);
 assert.strictEqual(cleanReport.summary.pass, true);
