@@ -640,6 +640,81 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("exam")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:考試:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("homework")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:功課:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("principal")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:校長:curated-sense-bank",
+      "adjective:主要的:curated-sense-bank",
+      "noun:本金:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("question")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:問題:curated-sense-bank",
+      "verb:詢問 / 質疑:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("answer")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:答案:curated-sense-bank",
+      "verb:回答:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("score")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:得分:curated-sense-bank",
+      "noun:分數 / 得分:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("level")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:水平 / 級別:curated-sense-bank",
+      "adjective:平坦的 / 同高的:curated-sense-bank",
+      "verb:弄平:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("standard")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:標準:curated-sense-bank",
+      "adjective:標準的:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("general")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adjective:一般的 / 總體的:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("common")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adjective:普遍的 / 常見的:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("private")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adjective:私人的 / 私立的:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("paper")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "noun:紙:curated-sense-bank",
