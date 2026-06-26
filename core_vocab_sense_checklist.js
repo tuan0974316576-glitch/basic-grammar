@@ -796,6 +796,18 @@
   { word: "section", label: "n. 區段" },
   { word: "ticket", label: "n. 票" },
   { word: "ticket", label: "n. 罰單" },
+  { word: "few", label: "det. 少數" },
+  { word: "few", label: "det. 幾個" },
+  { word: "few", label: "adj. 很少的" },
+  { word: "few", label: "adj. 幾個的" },
+  { word: "few", label: "pron. 少數人" },
+  { word: "few", label: "pron. 少數事物" },
+  { word: "follow", label: "v. 跟隨" },
+  { word: "follow", label: "v. 遵從" },
+  { word: "gallery", label: "n. 畫廊" },
+  { word: "gallery", label: "n. 展覽館" },
+  { word: "base", label: "n. 基地" },
+  { word: "base", label: "n. 基礎" },
   { word: "white-collar worker", label: "n. 白領人士" },
   { word: "have no choice but to", label: "v. 別無選擇，只好" }
 ]);

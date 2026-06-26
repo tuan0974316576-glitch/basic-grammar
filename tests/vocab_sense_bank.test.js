@@ -1392,7 +1392,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("base").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["noun:基地 / 基礎", "verb:以...為基礎"]
+  ["noun:基地", "noun:基礎", "verb:以...為基礎"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("beam").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -2604,7 +2604,14 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("few").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["determiner:少數 / 幾個", "adjective:很少的 / 幾個的", "pronoun:少數人 / 少數事物"]
+  [
+    "determiner:少數",
+    "determiner:幾個",
+    "adjective:很少的",
+    "adjective:幾個的",
+    "pronoun:少數人",
+    "pronoun:少數事物"
+  ]
 );
 assert.deepStrictEqual(
   senseBank.lookup("film").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -2612,7 +2619,11 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("follow").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["verb:跟隨 / 遵從"]
+  ["verb:跟隨", "verb:遵從"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("gallery").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:畫廊", "noun:展覽館"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("grow").map((entry) => `${entry.pos}:${entry.meaning}`),

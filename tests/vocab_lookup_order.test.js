@@ -2188,6 +2188,43 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("few")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "determiner:少數:curated-sense-bank",
+      "determiner:幾個:curated-sense-bank",
+      "adjective:很少的:curated-sense-bank",
+      "adjective:幾個的:curated-sense-bank",
+      "pronoun:少數人:curated-sense-bank",
+      "pronoun:少數事物:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("follow")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:跟隨:curated-sense-bank",
+      "verb:遵從:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("gallery")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:畫廊:curated-sense-bank",
+      "noun:展覽館:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("base")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:基地:curated-sense-bank",
+      "noun:基礎:curated-sense-bank",
+      "verb:以...為基礎:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("late")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "adjective:遲的:curated-sense-bank",
