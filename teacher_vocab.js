@@ -75,6 +75,9 @@
     句式: "pattern"
   };
 
+  const VALID_LEVELS = new Set(["A1", "A2", "B1", "B2", "C1", "C2"]);
+  const DEFAULT_STUDENT_READY_LEVEL = "B1";
+
   function normalizeWord(value) {
     return String(value || "")
       .trim()
@@ -102,6 +105,11 @@
   function formatPosLabel(pos) {
     const normalized = normalizePos(pos);
     return POS_LABELS[normalized] || "";
+  }
+
+  function normalizeLevel(value) {
+    const level = String(value || "").trim().toUpperCase();
+    return VALID_LEVELS.has(level) ? level : "";
   }
 
   function normalizeType(value, word = "") {
@@ -169,6 +177,47 @@
     return items.filter((entry) => !entry.needsReview);
   }
 
+  function getInferredPos(entry = {}, minConfidence = 84) {
+    if (entry.pos) return "";
+    return VocabPosInference?.inferEntryPos?.(entry, { minConfidence })?.pos || "";
+  }
+
+  function getStudentReadyPos(entry = {}, minConfidence = 84) {
+    if (entry.type === "pattern") return "pattern";
+    return normalizePos(entry.pos)
+      || normalizePos(getInferredPos(entry, minConfidence));
+  }
+
+  function isStudentReadyEntry(entry = {}, options = {}) {
+    if (entry.needsReview) return false;
+    if (!normalizeMeaning(entry.meaning)) return false;
+    if (/待老師|unknown|undefined|null/i.test(String(entry.meaning || ""))) return false;
+    return Boolean(getStudentReadyPos(entry, Number(options.minConfidence) || 84));
+  }
+
+  function getStudentReadyLevel(entry = {}, options = {}) {
+    return normalizeLevel(entry.level)
+      || normalizeLevel(options.defaultLevel)
+      || DEFAULT_STUDENT_READY_LEVEL;
+  }
+
+  function normalizeStudentReadyEntry(entry = {}, options = {}) {
+    if (!isStudentReadyEntry(entry, options)) return null;
+    const minConfidence = Number(options.minConfidence) || 84;
+    const inferredPos = getInferredPos(entry, minConfidence);
+    const studentPos = getStudentReadyPos(entry, minConfidence);
+    return {
+      ...entry,
+      pos: normalizePos(entry.pos) || (entry.type === "pattern" ? "" : studentPos),
+      inferredPos: normalizePos(inferredPos),
+      type: normalizeType(entry.type, entry.word || entry.display),
+      meaning: normalizeMeaning(entry.meaning),
+      level: getStudentReadyLevel(entry, options),
+      source: entry.source || "teacher",
+      sourceEntryId: entry.sourceEntryId || entry.id || ""
+    };
+  }
+
   function lookup(query, options = {}) {
     const key = normalizeWord(query);
     const limit = Number(options.limit) || 8;
@@ -188,6 +237,34 @@
     return fuzzyMatches.slice(0, limit);
   }
 
+  function lookupStudentReady(query, options = {}) {
+    const limit = Number(options.limit) || 8;
+    const matches = lookup(query, {
+      ...options,
+      limit: Math.max(limit * 4, 32)
+    }).map((entry) => normalizeStudentReadyEntry(entry, options)).filter(Boolean);
+    return dedupeStudentReadyEntries(matches).slice(0, limit);
+  }
+
+  function getStudentReadyEntryKey(entry = {}) {
+    return [
+      normalizeWord(entry.word || entry.display),
+      normalizePos(entry.pos || entry.inferredPos),
+      normalizeType(entry.type, entry.word || entry.display),
+      normalizeMeaning(entry.meaning)
+    ].join("\t");
+  }
+
+  function dedupeStudentReadyEntries(matches = []) {
+    const seen = new Set();
+    return matches.filter((entry) => {
+      const key = getStudentReadyEntryKey(entry);
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  }
+
   function chooseAutoFillEntry(matches = []) {
     if (!matches.length) return null;
     if (matches.length === 1) return matches[0];
@@ -200,9 +277,7 @@
   }
 
   function getEntryLabel(entry = {}) {
-    const inferred = !entry.pos && !entry.inferredPos
-      ? VocabPosInference?.inferEntryPos?.(entry, { minConfidence: 84 })?.pos
-      : "";
+    const inferred = getInferredPos(entry, 84);
     const posLabel = formatPosLabel(entry.pos || entry.inferredPos || inferred) || formatPosLabel(entry.type);
     const prefix = posLabel ? `${posLabel} ` : "";
     return `${prefix}${normalizeMeaning(entry.meaning)}`;
@@ -212,9 +287,17 @@
     entries,
     formatPosLabel,
     getEntryLabel,
+    getStudentReadyLevel,
+    getStudentReadyPos,
+    isStudentReadyEntry,
     lookup,
+    lookupStudentReady,
+    normalizeStudentReadyEntry,
+    dedupeStudentReadyEntries,
+    getStudentReadyEntryKey,
     chooseAutoFillEntry,
     normalizeAliases,
+    normalizeLevel,
     normalizeMeaning,
     normalizePos,
     normalizeType,

@@ -16,7 +16,6 @@ if (!VOCAB_DATA) {
 const VOCAB_AUDIO = window.VocabAudio || null;
 const VOCAB_SENSE_BANK = window.VocabSenseBank || null;
 const CC_CEDICT_SUPPLEMENT = window.CcCedictSupplement || null;
-const CC_CEDICT_REVERSE = window.CcCedictReverse || null;
 const TEACHER_VOCAB = window.TeacherVocab || null;
 const TEACHER_LIVE_VOCAB = window.TeacherLiveVocab || null;
 const VOCAB_LOOKUP = window.VocabLookup || null;
@@ -774,15 +773,29 @@ function makeLegacyTeacherLiveEntryId(entry = {}) {
 function getTeacherLiveVocabMatches(word) {
   const key = normalizeVocabWord(word);
   if (!key) return [];
-  return (state.teacherLiveVocab || [])
+  const matches = (state.teacherLiveVocab || [])
     .filter((entry) => !entry.disabled && getTeacherLiveSearchKeys(entry).includes(key))
     .sort((left, right) => (Number(right.updatedAt) || 0) - (Number(left.updatedAt) || 0))
     .slice(0, 12)
-    .map((entry) => ({
-      ...entry,
-      source: "teacher-live",
-      sourceEntryId: entry.sourceEntryId || entry.id
-    }));
+    .map((entry) => (
+      TEACHER_LIVE_VOCAB?.normalizeStudentReadyEntry
+        ? TEACHER_LIVE_VOCAB.normalizeStudentReadyEntry(entry)
+        : {
+          ...entry,
+          inferredPos: entry.inferredPos || TEACHER_LIVE_VOCAB?.getStudentReadyPos?.(entry) || "",
+          source: "teacher-live",
+          sourceEntryId: entry.sourceEntryId || entry.id,
+          level: entry.level || "B1"
+        }
+    ))
+    .filter((entry) => entry && (
+      TEACHER_LIVE_VOCAB?.isStudentReadyEntry
+        ? TEACHER_LIVE_VOCAB.isStudentReadyEntry(entry)
+        : getVocabEntryPos(entry)
+    ));
+  return TEACHER_LIVE_VOCAB?.dedupeStudentReadyEntries
+    ? TEACHER_LIVE_VOCAB.dedupeStudentReadyEntries(matches)
+    : matches;
 }
 
 function createVocabId(word) {
@@ -2141,8 +2154,15 @@ async function fetchTeacherLiveVocabWord(word, options = {}) {
 }
 
 function buildTeacherLiveVocabPayload(entry = {}, previous = {}) {
+  if (TEACHER_LIVE_VOCAB?.buildStudentReadyPayload) {
+    return TEACHER_LIVE_VOCAB.buildStudentReadyPayload(entry, {
+      previous,
+      uid: studentAuthState.profile?.uid || studentAuthState.user?.uid || "",
+      now: Date.now()
+    });
+  }
   const normalized = normalizeTeacherLiveEntry(entry);
-  if (!normalized) return null;
+  if (!normalized || !getVocabEntryPos(normalized)) return null;
   const uid = studentAuthState.profile?.uid || studentAuthState.user?.uid || "";
   const createdAt = previous.createdAt || Date.now();
   return {
@@ -2739,12 +2759,17 @@ function updateVocabEntryState() {
 
 function getTeacherVocabMatches(word) {
   if (!TEACHER_VOCAB?.lookup) return [];
-  return TEACHER_VOCAB.lookup(word, { exactOnly: true, limit: 10 });
+  if (TEACHER_VOCAB.lookupStudentReady) {
+    return TEACHER_VOCAB.lookupStudentReady(word, { exactOnly: true, limit: 10 });
+  }
+  return TEACHER_VOCAB.lookup(word, { exactOnly: true, limit: 10 }).filter((entry) => (
+    getVocabEntryPos(entry)
+  ));
 }
 
 function getCuratedVocabSenseMatches(word) {
   if (!VOCAB_SENSE_BANK?.lookup) return [];
-  return VOCAB_SENSE_BANK.lookup(word, { limit: 12 }).map((entry) => ({
+  return VOCAB_SENSE_BANK.lookup(word, { limit: 12, includeHidden: true }).map((entry) => ({
     ...entry,
     source: entry.source || "curated-sense-bank"
   }));
@@ -2755,15 +2780,6 @@ function getCcCedictSupplementMatches(word) {
   return CC_CEDICT_SUPPLEMENT.lookup(word, { limit: 12 }).map((entry) => ({
     ...entry,
     source: entry.source || "cc-cedict-supplement"
-  }));
-}
-
-async function getCcCedictReverseMatches(word) {
-  if (!CC_CEDICT_REVERSE?.lookup) return [];
-  await CC_CEDICT_REVERSE.loadShardForWord?.(word);
-  return CC_CEDICT_REVERSE.lookup(word, { limit: 8 }).map((entry) => ({
-    ...entry,
-    source: entry.source || "cc-cedict-reverse"
   }));
 }
 
@@ -2781,8 +2797,7 @@ async function buildVocabLookupMatches(word) {
     fetchLiveTeacherMatches: fetchTeacherLiveVocabWord,
     getCuratedMatches: getCuratedVocabSenseMatches,
     getTeacherMatches: getTeacherVocabMatches,
-    getCcCedictSupplementMatches,
-    getCcCedictReverseMatches
+    getCcCedictSupplementMatches
   }, {
     normalizeWord: normalizeVocabWord,
     normalizeMeaningGroupKey: normalizeVocabMeaningGroupKey,
@@ -2878,15 +2893,6 @@ function getVocabMeaningLines(item = {}) {
 
 function getVocabMeaningText(item = {}) {
   return getVocabMeaningLines(item).join(" / ") || normalizeVocabMeaning(item.meaning);
-}
-
-function needsFallbackPosLookup(matches = []) {
-  return matches.some((entry) => (
-    entry.source === "offline-dictionary"
-    && entry.type !== "pattern"
-    && entry.type !== "phrase"
-    && !entry.pos
-  ));
 }
 
 function getSelectedVocabEntries() {

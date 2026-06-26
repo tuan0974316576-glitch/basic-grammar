@@ -51,6 +51,120 @@ assert.deepStrictEqual(compact, {
   type: "word"
 });
 
+const unsafeNoPos = teacherLive.normalizeEntry({
+  word: "academy",
+  meaning: "學院",
+  type: "word"
+});
+assert.strictEqual(teacherLive.isStudentReadyEntry(unsafeNoPos), false);
+assert.strictEqual(teacherLive.getStudentReadyPos(unsafeNoPos), "");
+assert.strictEqual(teacherLive.normalizeStudentReadyEntry(unsafeNoPos), null);
+
+const unsafePlaceholder = teacherLive.normalizeEntry({
+  word: "unknown",
+  meaning: "待老師確認",
+  pos: "n.",
+  type: "word"
+});
+assert.strictEqual(teacherLive.isStudentReadyEntry(unsafePlaceholder), false);
+assert.strictEqual(teacherLive.normalizeStudentReadyEntry(unsafePlaceholder), null);
+
+const unsafeDisabled = teacherLive.normalizeEntry({
+  word: "disabled",
+  meaning: "停用的",
+  pos: "adj.",
+  type: "word",
+  disabled: true
+});
+assert.strictEqual(teacherLive.isStudentReadyEntry(unsafeDisabled), false);
+assert.strictEqual(teacherLive.normalizeStudentReadyEntry(unsafeDisabled), null);
+
+const inferredVerb = teacherLive.normalizeEntry({
+  word: "evaluate",
+  meaning: "評估",
+  type: "word"
+});
+assert.strictEqual(teacherLive.isStudentReadyEntry(inferredVerb), true);
+assert.strictEqual(teacherLive.getStudentReadyPos(inferredVerb), "verb");
+const inferredVerbStudentReady = teacherLive.normalizeStudentReadyEntry(inferredVerb);
+assert.strictEqual(inferredVerbStudentReady.pos, "verb");
+assert.strictEqual(inferredVerbStudentReady.level, "B1");
+assert.strictEqual(inferredVerbStudentReady.source, "teacher-live");
+assert.strictEqual(inferredVerbStudentReady.type, "word");
+
+const livePayload = teacherLive.buildStudentReadyPayload({
+  word: "evaluate",
+  meaning: "評估",
+  type: "word"
+}, {
+  previous: { createdAt: 1234, createdBy: "old-teacher" },
+  uid: "teacher-uid",
+  now: 5678
+});
+assert.deepStrictEqual(livePayload, {
+  word: "evaluate",
+  display: "evaluate",
+  meaning: "評估",
+  pos: "verb",
+  type: "word",
+  aliases: [],
+  level: "B1",
+  source: "teacher-live",
+  notes: "",
+  disabled: false,
+  createdAt: 1234,
+  updatedAt: 5678,
+  createdBy: "old-teacher",
+  updatedBy: "teacher-uid"
+});
+assert.strictEqual(teacherLive.buildStudentReadyPayload(unsafeNoPos), null);
+assert.strictEqual(teacherLive.buildStudentReadyPayload(unsafePlaceholder), null);
+assert.strictEqual(teacherLive.buildStudentReadyPayload(unsafeDisabled), null);
+
+const explicitLive = teacherLive.normalizeEntry({
+  word: "corporate",
+  meaning: "公司層面的",
+  pos: "adj.",
+  type: "word"
+});
+assert.strictEqual(teacherLive.isStudentReadyEntry(explicitLive), true);
+assert.strictEqual(teacherLive.getStudentReadyPos(explicitLive), "adjective");
+assert.strictEqual(teacherLive.normalizeStudentReadyEntry(explicitLive).level, "B1");
+
+const liveDuplicateMatches = [
+  teacherLive.normalizeStudentReadyEntry(teacherLive.normalizeEntry({
+    id: "reviewed-intend-to",
+    word: "intend to",
+    meaning: "打算",
+    pos: "v.",
+    type: "phrase",
+    updatedAt: 200
+  })),
+  teacherLive.normalizeStudentReadyEntry(teacherLive.normalizeEntry({
+    id: "older-intend-to",
+    word: "intend to",
+    meaning: "打算",
+    type: "phrase",
+    updatedAt: 100
+  })),
+  teacherLive.normalizeStudentReadyEntry(teacherLive.normalizeEntry({
+    id: "different-intend-to",
+    word: "intend to",
+    meaning: "意圖",
+    pos: "v.",
+    type: "phrase",
+    updatedAt: 50
+  }))
+].filter(Boolean);
+const dedupedLiveMatches = teacherLive.dedupeStudentReadyEntries(liveDuplicateMatches);
+assert.deepStrictEqual(
+  dedupedLiveMatches.map((entry) => `${entry.sourceEntryId}:${entry.pos}:${entry.meaning}`),
+  [
+    "reviewed-intend-to:verb:打算",
+    "different-intend-to:verb:意圖"
+  ]
+);
+
 const parsedBatch = teacherLive.parseBatchText([
   "intense 強烈的",
   "look for 尋找",
@@ -76,10 +190,13 @@ assert.deepStrictEqual(parsedBatch.entries.map((entry) => `${entry.word}:${entry
   "customer-centric:adjective:以顧客為中心的:word",
   "egg tart:noun:蛋撻:phrase",
   "manage to:verb:能夠:phrase",
-  "all the rage:phrase:大受歡迎:phrase",
+  "all the rage::大受歡迎:phrase",
   "rise to fame:verb:成名:phrase",
   "lung cancer:noun:肺癌:phrase"
 ]);
 assert.strictEqual(parsedBatch.errors[0].lineNumber, 12);
+const allTheRage = parsedBatch.entries.find((entry) => entry.word === "all the rage");
+assert.strictEqual(teacherLive.isStudentReadyEntry(allTheRage), false);
+assert.strictEqual(teacherLive.normalizeStudentReadyEntry(allTheRage), null);
 
 console.log("teacher_live_vocab tests passed");

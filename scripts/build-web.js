@@ -7,7 +7,6 @@ const outDir = path.join(rootDir, "www");
 const files = [
   ".htaccess",
   "app.js",
-  "fallback_dictionary.js",
   "firebase_config.js",
   "firebase-init.js",
   "grammar_core.js",
@@ -24,7 +23,6 @@ const files = [
   "vocab_lookup.js",
   "vocab_sense_bank.js",
   "cc_cedict_supplement.js",
-  "cc_cedict_reverse.js",
   "vocab_audio.js",
   "vocab_example_utils.js",
   "vocab_example_seed.js",
@@ -38,6 +36,17 @@ const directories = [
   "audio"
 ];
 
+const PRIVATE_REVIEW_ASSET_DIRS = new Set([
+  path.join(rootDir, "assets", "offline-dictionary"),
+  path.join(rootDir, "assets", "cc-cedict-reverse")
+]);
+
+function isPrivateReviewAsset(itemPath) {
+  return Array.from(PRIVATE_REVIEW_ASSET_DIRS).some((privateDir) => (
+    itemPath === privateDir || itemPath.startsWith(`${privateDir}${path.sep}`)
+  ));
+}
+
 function copyFile(source, target) {
   fs.mkdirSync(path.dirname(target), { recursive: true });
   fs.copyFileSync(source, target);
@@ -47,19 +56,33 @@ function copyDirectory(source, target) {
   fs.cpSync(source, target, {
     recursive: true,
     force: true,
-    filter: (itemPath) => !path.basename(itemPath).startsWith(".")
+    filter: (itemPath) => (
+      !path.basename(itemPath).startsWith(".")
+      && !isPrivateReviewAsset(itemPath)
+    )
   });
 }
 
-fs.rmSync(outDir, { recursive: true, force: true });
-fs.mkdirSync(outDir, { recursive: true });
+function buildWeb() {
+  fs.rmSync(outDir, { recursive: true, force: true });
+  fs.mkdirSync(outDir, { recursive: true });
 
-files.forEach((file) => {
-  copyFile(path.join(rootDir, file), path.join(outDir, file));
-});
+  files.forEach((file) => {
+    copyFile(path.join(rootDir, file), path.join(outDir, file));
+  });
 
-directories.forEach((directory) => {
-  copyDirectory(path.join(rootDir, directory), path.join(outDir, directory));
-});
+  directories.forEach((directory) => {
+    copyDirectory(path.join(rootDir, directory), path.join(outDir, directory));
+  });
 
-console.log(`Built web assets in ${outDir}`);
+  console.log(`Built web assets in ${outDir}`);
+}
+
+if (require.main === module) {
+  buildWeb();
+}
+
+module.exports = {
+  buildWeb,
+  isPrivateReviewAsset
+};

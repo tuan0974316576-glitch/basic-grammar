@@ -10,6 +10,8 @@
   "use strict";
 
   const BATCH_NOUN_PHRASE_HINT = /(?:仔|撻|餅|糕|茶|飯|麵|粉|湯|包|果|糖|癌|病|帶|機|車|站|店|街|路|區|角|灣|山|河|湖|島|國|城|市|村|鎮|場|館|中心|機場|餐廳|公園|市場|學校|公司|節|術|器|具|物|品|人|者|員|師)$/;
+  const VALID_LEVELS = new Set(["A1", "A2", "B1", "B2", "C1", "C2"]);
+  const DEFAULT_STUDENT_READY_LEVEL = "B1";
 
   function normalizeWord(value) {
     if (VocabPosInference?.normalizeWord) return VocabPosInference.normalizeWord(value);
@@ -80,6 +82,11 @@
     const normalizedWord = normalizeWord(word);
     if (/[+*=]|\.{2,}|…|名詞|動詞|形容詞|副詞|\bpp\b/i.test(normalizedWord)) return "pattern";
     return normalizedWord.includes(" ") ? "phrase" : "word";
+  }
+
+  function normalizeLevel(value) {
+    const level = String(value || "").trim().toUpperCase();
+    return VALID_LEVELS.has(level) ? level : "";
   }
 
   function normalizeAliases(value) {
@@ -217,13 +224,98 @@
       pos,
       type,
       aliases: normalizeAliases(raw.aliases || raw.alias),
-      level: String(raw.level || "").trim().toUpperCase().slice(0, 2),
+      level: normalizeLevel(raw.level),
       source: String(options.source || raw.source || "teacher-live"),
       notes: normalizeMeaning(raw.notes || "").slice(0, 120),
       disabled: Boolean(raw.disabled),
       sourceEntryId: id,
       updatedAt: Number(raw.updatedAt) || Date.now()
     };
+  }
+
+  function getInferredPos(entry = {}, minConfidence = 84) {
+    if (entry.pos) return "";
+    return VocabPosInference?.inferEntryPos?.(entry, { minConfidence })?.pos || "";
+  }
+
+  function getStudentReadyPos(entry = {}, minConfidence = 84) {
+    if (entry.type === "pattern") return "pattern";
+    return normalizePos(entry.pos) || normalizePos(getInferredPos(entry, minConfidence));
+  }
+
+  function isStudentReadyEntry(entry = {}, options = {}) {
+    if (!entry || entry.disabled) return false;
+    if (!normalizeMeaning(entry.meaning)) return false;
+    if (/待老師|unknown|undefined|null/i.test(String(entry.meaning || ""))) return false;
+    return Boolean(getStudentReadyPos(entry, Number(options.minConfidence) || 84));
+  }
+
+  function getStudentReadyLevel(entry = {}, options = {}) {
+    return normalizeLevel(entry.level)
+      || normalizeLevel(options.defaultLevel)
+      || DEFAULT_STUDENT_READY_LEVEL;
+  }
+
+  function normalizeStudentReadyEntry(entry = {}, options = {}) {
+    if (!isStudentReadyEntry(entry, options)) return null;
+    const minConfidence = Number(options.minConfidence) || 84;
+    const inferredPos = getInferredPos(entry, minConfidence);
+    const studentPos = getStudentReadyPos(entry, minConfidence);
+    const id = String(entry.sourceEntryId || entry.id || makeEntryId(entry)).trim();
+    return {
+      ...entry,
+      id,
+      pos: normalizePos(entry.pos) || (entry.type === "pattern" ? "" : studentPos),
+      inferredPos: normalizePos(entry.inferredPos) || normalizePos(inferredPos),
+      type: normalizeType(entry.type || entry.pos, entry.word || entry.display),
+      meaning: normalizeMeaning(entry.meaning),
+      level: getStudentReadyLevel(entry, options),
+      source: entry.source || "teacher-live",
+      sourceEntryId: id
+    };
+  }
+
+  function buildStudentReadyPayload(entry = {}, options = {}) {
+    const normalized = normalizeStudentReadyEntry(normalizeEntry(entry), options);
+    if (!normalized) return null;
+    const previous = options.previous || {};
+    const uid = String(options.uid || "").trim();
+    const now = Number(options.now) || Date.now();
+    return {
+      word: normalized.word,
+      display: normalized.display,
+      meaning: normalized.meaning,
+      pos: normalized.pos,
+      type: normalized.type,
+      aliases: normalized.aliases,
+      level: normalized.level,
+      source: "teacher-live",
+      notes: normalized.notes,
+      disabled: false,
+      createdAt: previous.createdAt || now,
+      updatedAt: now,
+      createdBy: previous.createdBy || uid,
+      updatedBy: uid
+    };
+  }
+
+  function getStudentReadyEntryKey(entry = {}) {
+    return [
+      normalizeWord(entry.word || entry.display),
+      normalizePos(entry.pos || entry.inferredPos),
+      normalizeType(entry.type || entry.pos, entry.word || entry.display),
+      normalizeMeaning(entry.meaning)
+    ].join("\t");
+  }
+
+  function dedupeStudentReadyEntries(matches = []) {
+    const seen = new Set();
+    return matches.filter((entry) => {
+      const key = getStudentReadyEntryKey(entry);
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
   }
 
   function parseBatchParts(parts = [], options = {}) {
@@ -249,11 +341,11 @@
   }
 
   function inferBatchPos(entry = {}, options = {}) {
-    const inferred = VocabPosInference?.inferEntryPos?.(entry, { minConfidence: 76 });
+    const inferred = VocabPosInference?.inferEntryPos?.(entry, { minConfidence: Number(options.minConfidence) || 84 });
     const word = normalizeWord(entry.word || entry.display);
     if (inferred?.pos) return inferred.pos;
-    if (word.includes(" ")) return looksLikeBatchNounPhrase(entry) ? "noun" : "phrase";
-    return normalizePos(options.defaultPos) || "noun";
+    if (word.includes(" ")) return looksLikeBatchNounPhrase(entry) ? "noun" : "";
+    return "";
   }
 
   function looksLikeBatchNounPhrase(entry = {}) {
@@ -329,13 +421,21 @@
   }
 
   return {
+    buildStudentReadyPayload,
     compactEntry,
+    dedupeStudentReadyEntries,
+    getStudentReadyLevel,
+    getStudentReadyEntryKey,
+    getStudentReadyPos,
+    isStudentReadyEntry,
     makeEntryId,
     makeLegacyAppEntryId,
     normalizeAliases,
     normalizeEntry,
+    normalizeLevel,
     normalizeMeaning,
     normalizePos,
+    normalizeStudentReadyEntry,
     normalizeType,
     normalizeWord,
     parseBatchLine,

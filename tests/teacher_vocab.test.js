@@ -1,7 +1,7 @@
 const assert = require("assert");
 
 global.TEACHER_VOCAB_BANK = {
-  meta: { entryCount: 6 },
+  meta: { entryCount: 12 },
   entries: [
     {
       id: "secure-adj",
@@ -34,6 +34,14 @@ global.TEACHER_VOCAB_BANK = {
       sourceCount: 3
     },
     {
+      id: "intend-to-reviewed",
+      word: "intend to",
+      meaning: "打算",
+      pos: "verb",
+      type: "phrase",
+      sourceCount: 4
+    },
+    {
       id: "curiosity-noun",
       word: "curiosity",
       meaning: "好奇心",
@@ -64,6 +72,35 @@ global.TEACHER_VOCAB_BANK = {
       meaning: "必須 / 要",
       type: "phrase",
       sourceCount: 1
+    },
+    {
+      id: "academy-no-pos",
+      word: "academy",
+      meaning: "學院",
+      type: "word",
+      sourceCount: 1
+    },
+    {
+      id: "evaluate-no-pos",
+      word: "evaluate",
+      meaning: "評估",
+      type: "word",
+      sourceCount: 1
+    },
+    {
+      id: "assessment-no-pos",
+      word: "assessment",
+      meaning: "評估",
+      type: "word",
+      sourceCount: 1
+    },
+    {
+      id: "accident-no-pos",
+      word: "accident",
+      meaning: "意外",
+      type: "word",
+      inferredPos: "adjective",
+      sourceCount: 1
     }
   ]
 };
@@ -93,9 +130,11 @@ assert.strictEqual(patternMatches[0].type, "pattern");
 assert.strictEqual(teacherVocab.chooseAutoFillEntry(patternMatches).meaning, "被");
 
 const phraseMatches = teacherVocab.lookup("intend to");
-assert.strictEqual(phraseMatches.length, 1);
+assert.strictEqual(phraseMatches.length, 2);
 assert.strictEqual(phraseMatches[0].type, "phrase");
 assert.strictEqual(teacherVocab.getEntryLabel(phraseMatches[0]), "v. 打算");
+assert.strictEqual(teacherVocab.lookupStudentReady("intend to").length, 1);
+assert.strictEqual(teacherVocab.lookupStudentReady("intend to")[0].sourceEntryId, "intend-to-reviewed");
 
 const typoMatches = teacherVocab.lookup("curiosty");
 assert.strictEqual(typoMatches.length, 1);
@@ -109,6 +148,34 @@ assert.deepStrictEqual(haveMatches.map(teacherVocab.getEntryLabel), ["v. 有", "
 const haveToMatches = teacherVocab.lookup("have to");
 assert.strictEqual(haveToMatches.length, 1);
 assert.strictEqual(teacherVocab.getEntryLabel(haveToMatches[0]), "modal v. 必須 / 要");
+assert.strictEqual(teacherVocab.lookupStudentReady("have to").length, 1);
+assert.strictEqual(teacherVocab.lookupStudentReady("have to")[0].source, "teacher");
+assert.strictEqual(teacherVocab.lookupStudentReady("have to")[0].level, "B1");
+
+assert.strictEqual(teacherVocab.lookup("academy").length, 1);
+assert.strictEqual(teacherVocab.lookupStudentReady("academy").length, 0);
+
+const evaluateStudentReady = teacherVocab.lookupStudentReady("evaluate");
+assert.strictEqual(evaluateStudentReady.length, 1);
+assert.strictEqual(teacherVocab.getEntryLabel(evaluateStudentReady[0]), "v. 評估");
+assert.strictEqual(evaluateStudentReady[0].source, "teacher");
+assert.strictEqual(evaluateStudentReady[0].level, "B1");
+
+const assessmentStudentReady = teacherVocab.lookupStudentReady("assessment");
+assert.strictEqual(assessmentStudentReady.length, 1);
+assert.strictEqual(teacherVocab.getEntryLabel(assessmentStudentReady[0]), "n. 評估");
+
+assert.strictEqual(teacherVocab.lookupStudentReady("accident").length, 0);
+
+const explicitLevel = teacherVocab.normalizeStudentReadyEntry({
+  word: "apple",
+  meaning: "蘋果",
+  pos: "noun",
+  type: "word",
+  level: "a1"
+});
+assert.strictEqual(explicitLevel.level, "A1");
+assert.strictEqual(explicitLevel.source, "teacher");
 
 delete global.TEACHER_VOCAB_BANK;
 
