@@ -4812,6 +4812,7 @@ async function auditCoreVocabSenses(items = checklist) {
     curatedMetadata: auditApprovedBankMetadata(senseBank.entries || [], "curated-sense-bank"),
     ccCedictSupplementMetadata: auditApprovedBankMetadata(ccCedictSupplement.entries || [], "cc-cedict-supplement"),
     expectedDisplayMetadata: auditExpectedDisplays(),
+    teacherExtractionJunkGapMetadata: auditTeacherExtractionJunkGaps(),
     oxfordLookupCoverageMetadata: await auditOxfordLookupCoverage(),
     teacherStudentReadyMetadata: auditStudentReadyLookupMetadata(),
     teacherVisibleLabelDuplicateMetadata: auditTeacherVisibleLabelDuplicateMetadata(),
@@ -4984,6 +4985,84 @@ function auditExpectedDisplays(items = EXPECTED_DISPLAY_CASES, banks = [
     issueCount: missing.length + mismatched.length,
     missing,
     mismatched
+  };
+}
+
+const TEACHER_EXTRACTION_JUNK_WORDS = new Set([
+  "em",
+  "f5 70%",
+  "gar",
+  "i a b t",
+  "k a o",
+  "l d o",
+  "n/v",
+  "t / i",
+  "t c w",
+  "to 在句頭",
+  "v / n",
+  "w / w"
+]);
+
+function isLikelyTeacherExtractionJunk(entry = {}) {
+  const word = teacherVocab.normalizeWord(entry.word || entry.display || "");
+  const display = String(entry.display || entry.word || "").trim();
+  const meaning = teacherVocab.normalizeMeaning(entry.meaning || "");
+  if (!word) return true;
+  if (TEACHER_EXTRACTION_JUNK_WORDS.has(word)) return true;
+  if (/^[a-z]$/.test(word)) return true;
+  if (!/[a-z]{2,}/i.test(word)) return true;
+  if (/^[-,.;:]+/.test(display)) return true;
+  if (/[×]| x\d+\b/i.test(display)) return true;
+  if (/^(?:[nv]|adj|adv|prep|conj)\.?$/i.test(word)) return true;
+  if (/^[a-z]\s+(?:[a-z]\s+){1,}[a-z]$/i.test(word)) return true;
+  if (/^[a-z]+$/.test(word) && meaning && !/[\u3400-\u9fff]/u.test(meaning)) return true;
+  if (/[^\x00-\x7F]/.test(word)) return true;
+  return false;
+}
+
+function auditTeacherExtractionJunkGaps(
+  teacherEntries = teacherVocab.entries || [],
+  curatedEntries = senseBank.entries || []
+) {
+  const curatedWords = new Set((curatedEntries || [])
+    .flatMap((entry) => [
+      teacherVocab.normalizeWord(entry.word || ""),
+      ...(Array.isArray(entry.aliases) ? entry.aliases : []).map((alias) => teacherVocab.normalizeWord(alias || ""))
+    ])
+    .filter(Boolean));
+  const rows = (teacherEntries || []).filter((entry) => entry.type !== "pattern" && !teacherVocab.normalizePos(entry.pos || ""));
+  const missingNotCovered = rows.filter((entry) => !curatedWords.has(teacherVocab.normalizeWord(entry.word || entry.display || "")));
+  const actionable = [];
+  const suppressedJunk = [];
+  const seen = new Set();
+
+  missingNotCovered.forEach((entry) => {
+    const word = teacherVocab.normalizeWord(entry.word || entry.display || "");
+    const key = `${word}::${teacherVocab.normalizeMeaning(entry.meaning || "")}`;
+    if (seen.has(key)) return;
+    seen.add(key);
+    const item = {
+      word,
+      display: entry.display || entry.word || word,
+      meaning: entry.meaning || "",
+      type: entry.type || "word",
+      id: entry.id || ""
+    };
+    if (isLikelyTeacherExtractionJunk(entry)) {
+      suppressedJunk.push(item);
+    } else {
+      actionable.push(item);
+    }
+  });
+
+  return {
+    checkedEntryCount: rows.length,
+    missingNotCoveredCount: missingNotCovered.length,
+    actionableCount: actionable.length,
+    suppressedJunkCount: suppressedJunk.length,
+    issueCount: actionable.length,
+    actionable,
+    suppressedJunk
   };
 }
 
@@ -5693,6 +5772,7 @@ async function main() {
     || result.curatedMetadata.issueCount
     || result.ccCedictSupplementMetadata.issueCount
     || result.expectedDisplayMetadata.issueCount
+    || result.teacherExtractionJunkGapMetadata.issueCount
     || result.oxfordLookupCoverageMetadata.issueCount
     || result.teacherStudentReadyMetadata.issueCount
     || result.teacherVisibleLabelDuplicateMetadata.issueCount
@@ -5724,6 +5804,7 @@ module.exports = {
   auditStudentNearDuplicateMeaningMetadata,
   auditStudentReadyLookupMetadata,
   auditStudentVisibleLabelDuplicateMetadata,
+  auditTeacherExtractionJunkGaps,
   auditTeacherVisibleLabelDuplicateMetadata,
   auditVerbTableFormCoverage,
   auditVisibleLookupRoughPosMetadata,
@@ -5735,6 +5816,7 @@ module.exports = {
   getApprovedLookupAuditWords,
   getTeacherLookupAuditWords,
   getOxfordLookupWords,
+  isLikelyTeacherExtractionJunk,
   getMeaningPartOverlap,
   normalizeOxfordLookupWord,
   normalizeMeaningGroupKey,

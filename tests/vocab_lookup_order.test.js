@@ -3968,6 +3968,16 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("not ... anytime soon")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adverb:短期內不會:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("paint ... with a single brush")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:以偏概全 / 一竹竿打沉一船人:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("pose a threat")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
     ["phrase:verb:構成威脅:curated-sense-bank"]
   );
@@ -4020,6 +4030,11 @@ function assertStudentLookupContract(word, matches) {
   assert.deepStrictEqual(
     (await lookupForStudent("rely on /")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
     ["rely on:phrase:verb:依賴 / 依靠:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("take up... as a hobby")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["take up ... as a hobby:phrase:verb:開始把...當作興趣:curated-sense-bank"]
   );
 
   assert.deepStrictEqual(
