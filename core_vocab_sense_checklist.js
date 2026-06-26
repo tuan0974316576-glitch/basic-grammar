@@ -830,6 +830,14 @@
   { word: "visit", label: "n. 參觀" },
   { word: "walk", label: "n. 散步" },
   { word: "walk", label: "n. 步行" },
+  { word: "parent", label: "n. 父母" },
+  { word: "parent", label: "n. 家長" },
+  { word: "piece", label: "n. 一塊" },
+  { word: "piece", label: "n. 一件" },
+  { word: "send", label: "v. 發送" },
+  { word: "send", label: "v. 寄" },
+  { word: "stay", label: "v. 停留" },
+  { word: "stay", label: "v. 留下" },
   { word: "white-collar worker", label: "n. 白領人士" },
   { word: "have no choice but to", label: "v. 別無選擇，只好" }
 ]);

@@ -1143,6 +1143,22 @@ assert.deepStrictEqual(
   ["verb:走路", "noun:散步", "noun:步行"]
 );
 assert.deepStrictEqual(
+  senseBank.lookup("parent").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:父母", "noun:家長"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("piece").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:一塊", "noun:一件"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("send").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:發送", "verb:寄"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("stay").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:停留", "verb:留下", "noun:停留"]
+);
+assert.deepStrictEqual(
   senseBank.lookup("permit").map((entry) => `${entry.pos}:${entry.meaning}`),
   ["verb:允許", "noun:許可證"]
 );
