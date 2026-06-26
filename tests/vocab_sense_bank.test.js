@@ -1327,11 +1327,35 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("border").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["noun:邊界 / 國界", "verb:與...接壤"]
+  ["noun:邊界", "noun:國界", "verb:與...接壤"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("budget").map((entry) => `${entry.pos}:${entry.meaning}`),
   ["noun:預算", "verb:制定預算", "verb:節省開支"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("brief").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["adjective:短暫的", "adjective:簡短的", "noun:摘要", "noun:指示", "verb:向...簡介"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("broad").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["adjective:寬闊的", "adjective:廣泛的", "adjective:概括的"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("broadcaster").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:廣播員", "noun:播音員", "noun:廣播機構"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("broadly").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["adverb:大體上", "adverb:廣泛地"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("cable").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:電纜", "noun:纜線", "noun:有線電視"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("calculate").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:計算", "verb:估計", "verb:推算"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("burn").map((entry) => `${entry.pos}:${entry.meaning}`),
