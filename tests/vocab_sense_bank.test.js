@@ -1302,6 +1302,10 @@ assert.deepStrictEqual(
   ["noun:好處", "verb:有益於", "verb:受益"]
 );
 assert.deepStrictEqual(
+  senseBank.lookup("beat").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:打敗", "verb:打", "noun:節拍", "noun:心跳"]
+);
+assert.deepStrictEqual(
   senseBank.lookup("belief").map((entry) => `${entry.pos}:${entry.meaning}`),
   ["noun:信念 / 信仰"]
 );
@@ -1322,6 +1326,10 @@ assert.deepStrictEqual(
   ["adjective:大膽的", "adjective:粗體的"]
 );
 assert.deepStrictEqual(
+  senseBank.lookup("block").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:大廈", "noun:街區", "noun:一塊", "noun:一段", "verb:阻擋", "verb:堵塞"]
+);
+assert.deepStrictEqual(
   senseBank.lookup("board").map((entry) => `${entry.pos}:${entry.meaning}`),
   ["noun:板", "noun:委員會 / 董事會", "verb:登上 / 上車"]
 );
@@ -1332,6 +1340,34 @@ assert.deepStrictEqual(
 assert.deepStrictEqual(
   senseBank.lookup("budget").map((entry) => `${entry.pos}:${entry.meaning}`),
   ["noun:預算", "verb:制定預算", "verb:節省開支"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("boom").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:快速增長", "noun:繁榮", "verb:快速發展"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("bother").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:打擾", "verb:煩擾"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("boundary").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:邊界", "noun:界線"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("boutique").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:時裝店", "noun:精品店"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("breath").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:呼吸", "noun:氣息"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("bubble").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:氣泡", "noun:泡泡"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("calm").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["adjective:冷靜的", "adjective:平靜的", "verb:使平靜", "noun:平靜"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("brief").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -1363,7 +1399,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("bury").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["verb:埋葬 / 埋藏"]
+  ["verb:埋葬", "verb:埋藏"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("campaign").map((entry) => `${entry.pos}:${entry.meaning}`),
