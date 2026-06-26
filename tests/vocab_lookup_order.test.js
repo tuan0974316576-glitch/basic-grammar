@@ -967,8 +967,26 @@ function assertStudentLookupContract(word, matches) {
   assert.deepStrictEqual(
     (await lookupForStudent("aim")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
-      "noun:目標 / 目的:curated-sense-bank",
-      "verb:旨在 / 瞄準:curated-sense-bank"
+      "noun:目標:curated-sense-bank",
+      "noun:目的:curated-sense-bank",
+      "verb:旨在:curated-sense-bank",
+      "verb:瞄準:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("agency")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:機構:curated-sense-bank",
+      "noun:代理公司:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("aggressive")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "adjective:有攻擊性的:curated-sense-bank",
+      "adjective:進取的:curated-sense-bank"
     ]
   );
 
@@ -1043,8 +1061,10 @@ function assertStudentLookupContract(word, matches) {
   assert.deepStrictEqual(
     (await lookupForStudent("arrest")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
-      "noun:逮捕 / 拘捕:curated-sense-bank",
-      "verb:逮捕 / 拘捕:curated-sense-bank"
+      "noun:逮捕:curated-sense-bank",
+      "noun:拘捕:curated-sense-bank",
+      "verb:逮捕:curated-sense-bank",
+      "verb:拘捕:curated-sense-bank"
     ]
   );
 
@@ -1509,7 +1529,18 @@ function assertStudentLookupContract(word, matches) {
 
   assert.deepStrictEqual(
     (await lookupForStudent("ambitious")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
-    ["adjective:有抱負的 / 有雄心的:curated-sense-bank"]
+    [
+      "adjective:有抱負的:curated-sense-bank",
+      "adjective:有雄心的:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("artificial")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "adjective:人工的:curated-sense-bank",
+      "adjective:人造的:curated-sense-bank"
+    ]
   );
 
   assert.deepStrictEqual(

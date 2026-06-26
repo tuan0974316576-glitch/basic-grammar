@@ -4476,6 +4476,34 @@ assert.deepStrictEqual(
   ["noun:牌照", "noun:許可證"]
 );
 assert.deepStrictEqual(
+  senseBank.lookup("agency").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:機構", "noun:代理公司"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("aggressive").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["adjective:有攻擊性的", "adjective:進取的"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("aim").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:目標", "noun:目的", "verb:旨在", "verb:瞄準"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("ambition").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:抱負", "noun:雄心"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("ambitious").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["adjective:有抱負的", "adjective:有雄心的"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("arrest").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:逮捕", "noun:拘捕", "verb:逮捕", "verb:拘捕"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("artificial").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["adjective:人工的", "adjective:人造的"]
+);
+assert.deepStrictEqual(
   senseBank.lookup("program").map((entry) => `${entry.pos}:${entry.meaning}`),
   ["noun:節目", "noun:程式", "noun:計劃", "verb:編寫程式"]
 );
