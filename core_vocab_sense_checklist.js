@@ -755,6 +755,14 @@
   { word: "grant", label: "v. 授予" },
   { word: "grant", label: "n. 補助金" },
   { word: "grant", label: "n. 撥款" },
+  { word: "highlight", label: "v. 用螢光筆標示" },
+  { word: "highlight", label: "v. 突顯" },
+  { word: "highlight", label: "n. 重點" },
+  { word: "highlight", label: "n. 亮點" },
+  { word: "host", label: "n. 主持人" },
+  { word: "host", label: "n. 主人" },
+  { word: "host", label: "v. 主持" },
+  { word: "host", label: "v. 舉辦" },
   { word: "white-collar worker", label: "n. 白領人士" },
   { word: "have no choice but to", label: "v. 別無選擇，只好" }
 ]);

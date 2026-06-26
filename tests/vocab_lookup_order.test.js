@@ -2068,6 +2068,26 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("highlight")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:用螢光筆標示:curated-sense-bank",
+      "verb:突顯:curated-sense-bank",
+      "noun:重點:curated-sense-bank",
+      "noun:亮點:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("host")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:主持人:curated-sense-bank",
+      "noun:主人:curated-sense-bank",
+      "verb:主持:curated-sense-bank",
+      "verb:舉辦:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("attribute")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "noun:特徵 / 屬性:curated-sense-bank",

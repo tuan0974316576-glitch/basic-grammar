@@ -1909,12 +1909,16 @@ assert.deepStrictEqual(
   ["verb:聘請 / 僱用", "noun:租用"]
 );
 assert.deepStrictEqual(
+  senseBank.lookup("highlight").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:用螢光筆標示", "verb:突顯", "noun:重點", "noun:亮點"]
+);
+assert.deepStrictEqual(
   senseBank.lookup("honour").map((entry) => `${entry.pos}:${entry.meaning}`),
   ["noun:榮譽", "verb:尊重 / 表揚", "verb:履行承諾"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("host").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["noun:主持人 / 主人", "verb:主持 / 舉辦"]
+  ["noun:主持人", "noun:主人", "verb:主持", "verb:舉辦"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("household").map((entry) => `${entry.pos}:${entry.meaning}`),
