@@ -4640,6 +4640,77 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("health")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:健康:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("healthy")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adjective:健康的:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("environment")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:環境:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("environmental")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adjective:環境的 / 環保的:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("community")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:社區:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("society")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:社會:curated-sense-bank",
+      "noun:協會 / 團體:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("social")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adjective:社會的 / 社交的:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("public")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "adjective:公眾的 / 公開的:curated-sense-bank",
+      "noun:公眾:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("facility")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["facility:noun:設施:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("facilities")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["facility:noun:設施:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("resource")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["resource:noun:資源:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("resources")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["resource:noun:資源:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("problem")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:問題:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("public facilities")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
     ["public facility:phrase:noun:公共設施:curated-sense-bank"]
   );
