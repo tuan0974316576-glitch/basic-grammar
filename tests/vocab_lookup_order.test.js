@@ -4350,7 +4350,17 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("China")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["China:noun:中國:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("general studies")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["General Studies:noun:常識科:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("General Studies")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
     ["General Studies:noun:常識科:curated-sense-bank"]
   );
 
