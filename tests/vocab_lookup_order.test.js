@@ -4853,6 +4853,233 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("eccentric")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adjective:古怪的 / 反常的:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("eerie")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adjective:怪異的 / 陰森的:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("elders")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["elder:noun:長輩:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("elements")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["element:noun:元素 / 要素:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("elevating")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["elevate:verb:提升 / 抬高:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("emigrate")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:移民:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("emit")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:排放 / 發出:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("empathy")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:同理心 / 共情:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("employers")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["employer:noun:僱主:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("employment opportunity")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:就業機會:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("emulate")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:模仿 / 努力趕上:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("enhanced")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adjective:增強的 / 改善的:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("enlighten")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:啟發 / 使明白:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("enquiries")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["enquiry:noun:查詢 / 調查:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("enrolment")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:報名 / 入學人數:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("entail")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:涉及 / 需要:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("enterprises")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["enterprise:noun:企業 / 事業:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("enticement")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:誘惑 / 誘因:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("envious")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adjective:羨慕的 / 妒忌的:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("envisage")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:想像 / 設想:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("envy")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:羨慕 / 妒忌:curated-sense-bank",
+      "verb:羨慕 / 妒忌:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("epic")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "adjective:宏大的 / 史詩般的:curated-sense-bank",
+      "noun:史詩 / 宏大的作品:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("erase")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:刪除 / 抹去:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("erode")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:侵蝕 / 逐漸削弱:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("estimation")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:估計 / 估算:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("ethics")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:倫理 / 道德規範:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("evacuation")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:撤離 / 疏散:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("evaproate")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["evaporate:verb:蒸發:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("exacerbate")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:使惡化 / 加劇:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("exasperation")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:惱怒 / 極度煩躁:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("exclaim")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:驚叫 / 大聲說:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("excursion")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:短途旅行:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("exhaust")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:使筋疲力盡 / 用盡:curated-sense-bank",
+      "noun:廢氣:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("exhausted")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adjective:筋疲力盡的 / 很累的:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("exorbitant")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adjective:過高的 / 昂貴得離譜的:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("expat")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:外籍人士:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("expenses")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "expense:noun:費用 / 開支:curated-sense-bank",
+      "expense:noun:代價:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("extinct")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adjective:絕種的 / 滅絕的:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("extravaganza")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:盛大表演 / 鋪張的活動:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("exude")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:散發 / 流露:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("fanatics")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["fanatic:noun:狂熱者:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("fares")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["fare:noun:車費 / 票價:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("fees")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["fee:noun:費用 / 收費:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("public facilities")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
     ["public facility:phrase:noun:公共設施:curated-sense-bank"]
   );
