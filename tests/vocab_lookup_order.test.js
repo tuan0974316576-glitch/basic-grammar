@@ -1537,6 +1537,97 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("charge")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:充電:curated-sense-bank",
+      "verb:收費:curated-sense-bank",
+      "verb:指控:curated-sense-bank",
+      "noun:費用:curated-sense-bank",
+      "noun:指控:curated-sense-bank",
+      "noun:控罪:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("fine")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "adjective:好的 / 不錯的:curated-sense-bank",
+      "noun:罰款:curated-sense-bank",
+      "verb:罰款:curated-sense-bank",
+      "adjective:細微的 / 精細的:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("store")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:商店:curated-sense-bank",
+      "verb:儲存:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("support")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:支持 / 支援:curated-sense-bank",
+      "noun:支持 / 支援:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("touch")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:觸摸 / 接觸:curated-sense-bank",
+      "noun:觸碰:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("value")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:價值:curated-sense-bank",
+      "verb:重視 / 珍惜:curated-sense-bank",
+      "verb:估價:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("view")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:觀點 / 看法:curated-sense-bank",
+      "noun:景色:curated-sense-bank",
+      "verb:觀看 / 查看:curated-sense-bank",
+      "verb:視為 / 看待:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("pick")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:挑選 / 摘:curated-sense-bank",
+      "noun:選擇:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("spring")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:春天:curated-sense-bank",
+      "noun:泉水:curated-sense-bank",
+      "verb:跳起 / 彈起:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("strike")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:擊打 / 撞擊:curated-sense-bank",
+      "verb:罷工:curated-sense-bank",
+      "noun:罷工:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("conditions")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "condition:noun:狀況:curated-sense-bank",
