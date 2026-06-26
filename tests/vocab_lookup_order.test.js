@@ -1482,6 +1482,106 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("mark")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:分數:curated-sense-bank",
+      "noun:標記 / 記號:curated-sense-bank",
+      "verb:標記:curated-sense-bank",
+      "verb:批改 / 評分:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("issue")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:問題 / 議題:curated-sense-bank",
+      "verb:發出 / 發布:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("range")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:範圍:curated-sense-bank",
+      "noun:一系列:curated-sense-bank",
+      "verb:介乎 / 變動:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("subject")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:科目:curated-sense-bank",
+      "noun:主題:curated-sense-bank",
+      "noun:實驗對象:curated-sense-bank",
+      "verb:使遭受 / 使受制於:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("figure")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:數字:curated-sense-bank",
+      "noun:人物:curated-sense-bank",
+      "noun:圖表:curated-sense-bank",
+      "noun:身材:curated-sense-bank",
+      "verb:認為 / 估計:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("address")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:地址:curated-sense-bank",
+      "verb:處理 / 應付:curated-sense-bank",
+      "verb:向...講話:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("cover")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:覆蓋:curated-sense-bank",
+      "verb:包括 / 涉及:curated-sense-bank",
+      "noun:封面:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("balance")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:平衡:curated-sense-bank",
+      "verb:保持平衡:curated-sense-bank",
+      "noun:餘額:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("bill")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:帳單:curated-sense-bank",
+      "verb:開帳單給 / 宣傳為:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("branch")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:樹枝:curated-sense-bank",
+      "noun:分店 / 分支:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("change")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:改變:curated-sense-bank",
+      "noun:變化:curated-sense-bank",
+      "noun:零錢:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("results")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "result:noun:結果:curated-sense-bank",
