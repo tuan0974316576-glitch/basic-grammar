@@ -4281,6 +4281,46 @@ assert.deepStrictEqual(
   ["concern:noun:擔憂 / 關注"]
 );
 assert.deepStrictEqual(
+  senseBank.lookup("confusion").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:困惑", "noun:混亂"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("consideration").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:考慮", "noun:體諒 / 顧及"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("construction").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:建造 / 施工", "noun:建築物 / 結構"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("consumption").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:消耗", "noun:消費"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("contest").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:比賽 / 競賽", "verb:爭辯 / 質疑"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("contribute").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:貢獻 / 捐助", "verb:促成 / 是原因之一"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("coverage").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:新聞報道", "noun:覆蓋範圍"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("crack").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:裂縫", "verb:破裂 / 裂開", "verb:破解 / 解決"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("craft").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:手藝 / 工藝", "noun:船 / 飛行器", "verb:精心製作"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("creation").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:創造 / 創作", "noun:創作品"]
+);
+assert.deepStrictEqual(
   senseBank.lookup("can hardly").map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),
   ["phrase:modal:幾乎不能"]
 );
