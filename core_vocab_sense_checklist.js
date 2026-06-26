@@ -739,6 +739,15 @@
   { word: "steak", label: "n. 牛扒" },
   { word: "extent", label: "n. 程度" },
   { word: "extent", label: "n. 範圍" },
+  { word: "faith", label: "n. 信任" },
+  { word: "faith", label: "n. 信心" },
+  { word: "faith", label: "n. 信仰" },
+  { word: "finance", label: "n. 財務" },
+  { word: "finance", label: "n. 資金" },
+  { word: "finance", label: "v. 資助" },
+  { word: "finance", label: "v. 提供資金" },
+  { word: "finding", label: "n. 發現" },
+  { word: "finding", label: "n. 研究結果" },
   { word: "white-collar worker", label: "n. 白領人士" },
   { word: "have no choice but to", label: "v. 別無選擇，只好" }
 ]);

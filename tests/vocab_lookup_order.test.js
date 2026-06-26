@@ -1112,6 +1112,33 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("faith")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:信任:curated-sense-bank",
+      "noun:信心:curated-sense-bank",
+      "noun:信仰:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("finance")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:財務:curated-sense-bank",
+      "noun:資金:curated-sense-bank",
+      "verb:資助:curated-sense-bank",
+      "verb:提供資金:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("finding")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:發現:curated-sense-bank",
+      "noun:研究結果:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("row")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "noun:一排:curated-sense-bank",

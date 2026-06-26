@@ -1833,8 +1833,20 @@ assert.deepStrictEqual(
   ["noun:錯誤 / 過失", "noun:缺點 / 故障"]
 );
 assert.deepStrictEqual(
+  senseBank.lookup("faith").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:信任", "noun:信心", "noun:信仰"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("finance").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:財務", "noun:資金", "verb:資助", "verb:提供資金"]
+);
+assert.deepStrictEqual(
   senseBank.lookup("financial").map((entry) => `${entry.pos}:${entry.meaning}`),
   ["adjective:財務的 / 金融的"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("finding").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:發現", "noun:研究結果"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("forecast").map((entry) => `${entry.pos}:${entry.meaning}`),
