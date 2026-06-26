@@ -1308,7 +1308,33 @@ function assertStudentLookupContract(word, matches) {
     (await lookupForStudent("center")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "noun:中心:curated-sense-bank",
-      "verb:集中於 / 以...為中心:curated-sense-bank"
+      "verb:集中於:curated-sense-bank",
+      "verb:以...為中心:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("centre")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:中心:curated-sense-bank",
+      "verb:集中於:curated-sense-bank",
+      "verb:以...為中心:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("theater")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:劇場:curated-sense-bank",
+      "noun:戲院:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("labour")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:勞動:curated-sense-bank",
+      "noun:勞工:curated-sense-bank"
     ]
   );
 
@@ -1415,7 +1441,8 @@ function assertStudentLookupContract(word, matches) {
     (await lookupForStudent("practice")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "noun:練習:curated-sense-bank",
-      "noun:做法 / 慣例:curated-sense-bank",
+      "noun:做法:curated-sense-bank",
+      "noun:慣例:curated-sense-bank",
       "verb:練習:curated-sense-bank"
     ]
   );

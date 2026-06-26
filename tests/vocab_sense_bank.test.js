@@ -35,7 +35,7 @@ assert.ok(senseBank.lookup("work").every((entry) => entry.overrideTeacher));
 assert.ok(senseBank.lookup("mean").some((entry) => entry.pos === "adjective" && entry.meaning === "吝嗇的"));
 assert.deepStrictEqual(
   senseBank.lookup("practice").map((entry) => `${entry.pos}:${entry.meaning}:${entry.level}`),
-  ["noun:練習:A2", "noun:做法 / 慣例:B1", "verb:練習:A2"]
+  ["noun:練習:A2", "noun:做法:B1", "noun:慣例:B1", "verb:練習:A2"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("subject to").map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),
@@ -4445,7 +4445,19 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("center").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["noun:中心", "verb:集中於 / 以...為中心"]
+  ["noun:中心", "verb:集中於", "verb:以...為中心"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("centre").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:中心", "verb:集中於", "verb:以...為中心"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("theatre").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:劇場", "noun:戲院"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("labor").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:勞動", "noun:勞工"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("defense").map((entry) => `${entry.pos}:${entry.meaning}`),
