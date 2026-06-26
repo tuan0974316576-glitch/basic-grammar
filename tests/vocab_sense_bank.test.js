@@ -417,8 +417,40 @@ assert.deepStrictEqual(
   ["adjective:明顯不同的", "adjective:清楚的"]
 );
 assert.deepStrictEqual(
+  senseBank.lookup("display").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:展示", "verb:顯示", "noun:展示 / 陳列", "noun:顯示器 / 顯示畫面"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("distribute").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:分發", "verb:分配", "verb:分佈"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("distribution").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:分發", "noun:分配", "noun:分佈"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("document").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:文件", "verb:記錄", "verb:證明"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("donation").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:捐款", "noun:捐贈"]
+);
+assert.deepStrictEqual(
   senseBank.lookup("dramatic").map((entry) => `${entry.pos}:${entry.meaning}`),
   ["adjective:巨大的 / 突然的", "adjective:戲劇的"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("edit").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:編輯", "verb:修改"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("eliminate").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:消除", "verb:淘汰"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("emphasis").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:強調", "noun:重點"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("demonstrate").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -1726,7 +1758,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("display").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["verb:展示 / 顯示", "noun:展示 / 陳列", "noun:顯示器 / 顯示畫面"]
+  ["verb:展示", "verb:顯示", "noun:展示 / 陳列", "noun:顯示器 / 顯示畫面"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("effective").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -2604,7 +2636,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("emphasis").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["noun:強調 / 重點"]
+  ["noun:強調", "noun:重點"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("forbid").map((entry) => `${entry.pos}:${entry.meaning}`),

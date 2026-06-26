@@ -1736,6 +1736,42 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("display")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:展示:curated-sense-bank",
+      "verb:顯示:curated-sense-bank",
+      "noun:展示 / 陳列:curated-sense-bank",
+      "noun:顯示器 / 顯示畫面:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("distribute")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:分發:curated-sense-bank",
+      "verb:分配:curated-sense-bank",
+      "verb:分佈:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("document")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:文件:curated-sense-bank",
+      "verb:記錄:curated-sense-bank",
+      "verb:證明:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("emphasis")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:強調:curated-sense-bank",
+      "noun:重點:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("evaluate")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "verb:評估:curated-sense-bank",
