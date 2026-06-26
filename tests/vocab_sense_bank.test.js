@@ -1111,6 +1111,22 @@ assert.deepStrictEqual(
   ["verb:展示", "verb:顯示", "verb:給...看", "noun:表演", "noun:節目"]
 );
 assert.deepStrictEqual(
+  senseBank.lookup("force").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:力量", "noun:武力", "verb:強迫"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("end").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:結束", "noun:末端", "verb:結束"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("section").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:部分", "noun:區段"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("ticket").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:票", "noun:罰單"]
+);
+assert.deepStrictEqual(
   senseBank.lookup("permit").map((entry) => `${entry.pos}:${entry.meaning}`),
   ["verb:允許", "noun:許可證"]
 );

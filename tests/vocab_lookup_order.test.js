@@ -2154,6 +2154,40 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("force")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:力量:curated-sense-bank",
+      "noun:武力:curated-sense-bank",
+      "verb:強迫:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("end")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:結束:curated-sense-bank",
+      "noun:末端:curated-sense-bank",
+      "verb:結束:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("section")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:部分:curated-sense-bank",
+      "noun:區段:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("ticket")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:票:curated-sense-bank",
+      "noun:罰單:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("late")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "adjective:遲的:curated-sense-bank",

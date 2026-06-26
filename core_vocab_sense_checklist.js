@@ -788,6 +788,14 @@
   { word: "show", label: "v. 給...看" },
   { word: "show", label: "n. 表演" },
   { word: "show", label: "n. 節目" },
+  { word: "force", label: "n. 力量" },
+  { word: "force", label: "n. 武力" },
+  { word: "end", label: "n. 結束" },
+  { word: "end", label: "n. 末端" },
+  { word: "section", label: "n. 部分" },
+  { word: "section", label: "n. 區段" },
+  { word: "ticket", label: "n. 票" },
+  { word: "ticket", label: "n. 罰單" },
   { word: "white-collar worker", label: "n. 白領人士" },
   { word: "have no choice but to", label: "v. 別無選擇，只好" }
 ]);
