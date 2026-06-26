@@ -2626,8 +2626,24 @@ assert.deepStrictEqual(
   ["noun:畫廊", "noun:展覽館"]
 );
 assert.deepStrictEqual(
+  senseBank.lookup("flood").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:洪水 / 水浸", "verb:淹沒", "verb:湧入"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("fuel").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:燃料", "verb:加劇", "verb:推動"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("gather").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:聚集", "verb:收集"]
+);
+assert.deepStrictEqual(
   senseBank.lookup("grow").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["verb:成長 / 種植"]
+  ["verb:成長", "verb:種植"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("hide").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:隱藏", "verb:躲藏"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("into").map((entry) => `${entry.pos}:${entry.meaning}`),

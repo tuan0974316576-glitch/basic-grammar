@@ -1129,7 +1129,8 @@ function assertStudentLookupContract(word, matches) {
     (await lookupForStudent("fuel")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "noun:燃料:curated-sense-bank",
-      "verb:加劇 / 推動:curated-sense-bank"
+      "verb:加劇:curated-sense-bank",
+      "verb:推動:curated-sense-bank"
     ]
   );
 
@@ -2221,6 +2222,39 @@ function assertStudentLookupContract(word, matches) {
       "noun:基地:curated-sense-bank",
       "noun:基礎:curated-sense-bank",
       "verb:以...為基礎:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("flood")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:洪水 / 水浸:curated-sense-bank",
+      "verb:淹沒:curated-sense-bank",
+      "verb:湧入:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("gather")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:聚集:curated-sense-bank",
+      "verb:收集:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("grow")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:成長:curated-sense-bank",
+      "verb:種植:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("hide")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:隱藏:curated-sense-bank",
+      "verb:躲藏:curated-sense-bank"
     ]
   );
 

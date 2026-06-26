@@ -808,6 +808,16 @@
   { word: "gallery", label: "n. 展覽館" },
   { word: "base", label: "n. 基地" },
   { word: "base", label: "n. 基礎" },
+  { word: "flood", label: "v. 淹沒" },
+  { word: "flood", label: "v. 湧入" },
+  { word: "fuel", label: "v. 加劇" },
+  { word: "fuel", label: "v. 推動" },
+  { word: "gather", label: "v. 聚集" },
+  { word: "gather", label: "v. 收集" },
+  { word: "grow", label: "v. 成長" },
+  { word: "grow", label: "v. 種植" },
+  { word: "hide", label: "v. 隱藏" },
+  { word: "hide", label: "v. 躲藏" },
   { word: "white-collar worker", label: "n. 白領人士" },
   { word: "have no choice but to", label: "v. 別無選擇，只好" }
 ]);
