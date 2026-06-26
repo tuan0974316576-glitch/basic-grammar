@@ -1268,6 +1268,69 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("brief")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "adjective:短暫的:curated-sense-bank",
+      "adjective:簡短的:curated-sense-bank",
+      "noun:摘要:curated-sense-bank",
+      "noun:指示:curated-sense-bank",
+      "verb:向...簡介:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("broad")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "adjective:寬闊的:curated-sense-bank",
+      "adjective:廣泛的:curated-sense-bank",
+      "adjective:概括的:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("calculate")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:計算:curated-sense-bank",
+      "verb:估計:curated-sense-bank",
+      "verb:推算:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("coverage")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:新聞報道:curated-sense-bank",
+      "noun:覆蓋範圍:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("crack")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:裂縫:curated-sense-bank",
+      "verb:破裂 / 裂開:curated-sense-bank",
+      "verb:破解 / 解決:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("craft")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:手藝 / 工藝:curated-sense-bank",
+      "noun:船 / 飛行器:curated-sense-bank",
+      "verb:精心製作:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("creation")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:創造 / 創作:curated-sense-bank",
+      "noun:創作品:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("row")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "noun:一排:curated-sense-bank",
@@ -2030,6 +2093,24 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("department")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:部門:curated-sense-bank",
+      "noun:政府部門:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("district")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:地區:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("employer")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:僱主:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("emphasis")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "noun:強調:curated-sense-bank",
@@ -2050,6 +2131,23 @@ function assertStudentLookupContract(word, matches) {
     [
       "verb:評估:curated-sense-bank",
       "verb:評價:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("lack")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:缺乏:curated-sense-bank",
+      "verb:缺乏:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("launch")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:推出 / 發起:curated-sense-bank",
+      "verb:發射:curated-sense-bank",
+      "noun:推出 / 發射:curated-sense-bank"
     ]
   );
 
