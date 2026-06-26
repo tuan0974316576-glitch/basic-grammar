@@ -573,8 +573,20 @@ assert.deepStrictEqual(
   ["noun:桌子:override", "noun:表格:override"]
 );
 assert.deepStrictEqual(
+  senseBank.lookup("be").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["verb:是:override", "verb:成為:override", "auxiliary:be 動詞（am / is / are / was / were）:override"]
+);
+assert.deepStrictEqual(
   senseBank.lookup("do").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
-  ["verb:做 / 進行:override", "auxiliary:用於問句 / 否定句:override"]
+  ["verb:做:override", "verb:進行:override", "auxiliary:用於問句 / 否定句:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("form").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["noun:表格:override", "noun:形式:override", "noun:形態:override", "verb:形成:override", "verb:組成:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("list").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["noun:清單:override", "noun:名單:override", "verb:列出:override"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("green").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),

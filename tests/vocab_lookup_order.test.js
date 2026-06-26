@@ -430,6 +430,26 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("be")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:是:curated-sense-bank",
+      "verb:成為:curated-sense-bank",
+      "auxiliary:be 動詞（am / is / are / was / were）:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("form")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:表格:curated-sense-bank",
+      "noun:形式:curated-sense-bank",
+      "noun:形態:curated-sense-bank",
+      "verb:形成:curated-sense-bank",
+      "verb:組成:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("join")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "verb:加入:curated-sense-bank",
