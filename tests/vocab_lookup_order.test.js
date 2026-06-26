@@ -601,6 +601,23 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("degree")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:度數:curated-sense-bank",
+      "noun:程度:curated-sense-bank",
+      "noun:大學學位:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("nature")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:大自然:curated-sense-bank",
+      "noun:性質 / 特質:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("cabinet")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "noun:櫥櫃:curated-sense-bank",
@@ -1165,6 +1182,15 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("board")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:板:curated-sense-bank",
+      "noun:委員會 / 董事會:curated-sense-bank",
+      "verb:登上 / 上車:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("cases")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "case:noun:情況:curated-sense-bank",
@@ -1437,6 +1463,43 @@ function assertStudentLookupContract(word, matches) {
     [
       "noun:影響:curated-sense-bank",
       "noun:效果:curated-sense-bank"
+    ]
+  );
+  assert.deepStrictEqual(
+    (await lookupForStudent("affect")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:影響:curated-sense-bank"]
+  );
+  assert.deepStrictEqual(
+    (await lookupForStudent("claim")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:聲稱:curated-sense-bank",
+      "verb:索取 / 要求:curated-sense-bank",
+      "noun:聲稱:curated-sense-bank",
+      "noun:索償 / 要求:curated-sense-bank"
+    ]
+  );
+  assert.deepStrictEqual(
+    (await lookupForStudent("concern")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:擔憂 / 關注:curated-sense-bank",
+      "verb:使擔心:curated-sense-bank",
+      "verb:關乎 / 涉及:curated-sense-bank"
+    ]
+  );
+  assert.deepStrictEqual(
+    (await lookupForStudent("condition")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:狀況:curated-sense-bank",
+      "noun:狀態:curated-sense-bank",
+      "noun:條件:curated-sense-bank",
+      "noun:環境 / 情況:curated-sense-bank"
+    ]
+  );
+  assert.deepStrictEqual(
+    (await lookupForStudent("quality")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:質素 / 品質:curated-sense-bank",
+      "noun:特質 / 特點:curated-sense-bank"
     ]
   );
   assert.deepStrictEqual(
