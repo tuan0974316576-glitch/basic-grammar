@@ -1862,7 +1862,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("gain").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["verb:獲得 / 取得", "noun:增加 / 收穫", "verb:增加"]
+  ["verb:獲得 / 取得", "noun:增加", "noun:收穫", "verb:增加"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("gear").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -1882,7 +1882,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("grant").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["verb:準許 / 授予", "noun:補助金 / 撥款"]
+  ["verb:準許", "verb:授予", "noun:補助金", "noun:撥款"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("handle").map((entry) => `${entry.pos}:${entry.meaning}`),

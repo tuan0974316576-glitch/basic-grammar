@@ -1477,6 +1477,26 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("gain")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:獲得 / 取得:curated-sense-bank",
+      "noun:增加:curated-sense-bank",
+      "noun:收穫:curated-sense-bank",
+      "verb:增加:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("grant")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:準許:curated-sense-bank",
+      "verb:授予:curated-sense-bank",
+      "noun:補助金:curated-sense-bank",
+      "noun:撥款:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("graduate")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "noun:畢業生:curated-sense-bank",

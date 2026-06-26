@@ -728,7 +728,6 @@
   { word: "public housing estate", label: "n. 公共屋邨 / 公屋" },
   { word: "estate", label: "n. 屋苑" },
   { word: "employer", label: "n. 僱主" },
-  { word: "grant", label: "v. 準許 / 授予" },
   { word: "root", label: "v. 紮根" },
   { word: "take hold", label: "v. 紮根 / 站穩陣腳" },
   { word: "express condolence", label: "v. 表達慰問 / 弔唁" },
@@ -748,6 +747,14 @@
   { word: "finance", label: "v. 提供資金" },
   { word: "finding", label: "n. 發現" },
   { word: "finding", label: "n. 研究結果" },
+  { word: "gain", label: "v. 獲得 / 取得" },
+  { word: "gain", label: "n. 增加" },
+  { word: "gain", label: "n. 收穫" },
+  { word: "gain", label: "v. 增加" },
+  { word: "grant", label: "v. 準許" },
+  { word: "grant", label: "v. 授予" },
+  { word: "grant", label: "n. 補助金" },
+  { word: "grant", label: "n. 撥款" },
   { word: "white-collar worker", label: "n. 白領人士" },
   { word: "have no choice but to", label: "v. 別無選擇，只好" }
 ]);
