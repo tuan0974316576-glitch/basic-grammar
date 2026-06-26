@@ -1713,8 +1713,7 @@ function assertStudentLookupContract(word, matches) {
       "noun:衰退:curated-sense-bank",
       "verb:下降:curated-sense-bank",
       "verb:衰退:curated-sense-bank",
-      "verb:婉拒:curated-sense-bank",
-      "verb:拒絕:curated-sense-bank"
+      "verb:婉拒 / 拒絕:curated-sense-bank"
     ]
   );
 
@@ -1817,7 +1816,10 @@ function assertStudentLookupContract(word, matches) {
 
   assert.deepStrictEqual(
     (await lookupForStudent("dependent")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
-    ["adjective:依賴的 / 取決於...的:curated-sense-bank"]
+    [
+      "adjective:依賴的:curated-sense-bank",
+      "adjective:取決於...的:curated-sense-bank"
+    ]
   );
 
   assert.deepStrictEqual(

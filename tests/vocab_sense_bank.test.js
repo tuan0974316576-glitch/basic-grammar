@@ -401,9 +401,24 @@ assert.deepStrictEqual(
     "noun:衰退",
     "verb:下降",
     "verb:衰退",
-    "verb:婉拒",
-    "verb:拒絕"
+    "verb:婉拒 / 拒絕"
   ]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("dependent").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["adjective:依賴的", "adjective:取決於...的"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("desperate").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["adjective:絕望的", "adjective:極需要的"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("distinct").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["adjective:明顯不同的", "adjective:清楚的"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("dramatic").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["adjective:巨大的 / 突然的", "adjective:戲劇的"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("demonstrate").map((entry) => `${entry.pos}:${entry.meaning}`),
