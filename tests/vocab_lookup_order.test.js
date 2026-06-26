@@ -5358,6 +5358,99 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("a wide array of")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["array:noun:一系列 / 大量:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("an array of")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["array:noun:一系列 / 大量:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("devoted to")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adjective:致力於 / 投放於:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("granted")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "grant:verb:準許:curated-sense-bank",
+      "grant:verb:授予:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("greenery")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:綠化 / 綠色植物:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("grooming")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:整理儀容 / 打扮:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("groundless")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adjective:無根據的:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("grouper")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:石斑魚:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("hard-earned money")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:血汗錢:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("have been to")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:去過:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("household name(s)")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["household name:phrase:noun:家喻戶曉的人或名字:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("in comparison to / compared to")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["in comparison to:phrase:preposition:與...相比:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("live up to expectations")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["live up to:phrase:verb:達到 / 不辜負:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("shed some lights on")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["shed light on:phrase:verb:闡明 / 提供線索:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("shortcomings")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["shortcoming:noun:缺點 / 短處:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("straw")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:稻草 / 飲管:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("thorns")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["thorn:noun:刺 / 荊棘:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("times")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:倍:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("public facilities")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
     ["public facility:phrase:noun:公共設施:curated-sense-bank"]
   );
