@@ -1660,6 +1660,63 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("role")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:角色:curated-sense-bank",
+      "noun:作用 / 職責:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("story")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:故事:curated-sense-bank",
+      "noun:樓層 / 層:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("letter")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:信:curated-sense-bank",
+      "noun:字母:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("approach")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:方法 / 方式:curated-sense-bank",
+      "verb:接近:curated-sense-bank",
+      "verb:處理 / 對待:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("cost")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:花費:curated-sense-bank",
+      "noun:費用 / 成本:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("credit")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:信用 / 學分 / 讚揚:curated-sense-bank",
+      "verb:歸功於:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("deal")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:處理:curated-sense-bank",
+      "noun:交易 / 協議:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("impacts")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "impact:noun:影響 / 衝擊:curated-sense-bank",
@@ -2393,6 +2450,57 @@ function assertStudentLookupContract(word, matches) {
     [
       "noun:缺乏:curated-sense-bank",
       "verb:缺乏:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("paste")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:貼上:curated-sense-bank",
+      "noun:醬 / 膏:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("copy")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:副本:curated-sense-bank",
+      "verb:複製 / 抄寫:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("grade")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:成績 / 等級:curated-sense-bank",
+      "verb:評分 / 分級:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("test")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:測驗 / 測試:curated-sense-bank",
+      "verb:測試 / 測驗:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("fit")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:適合 / 合身:curated-sense-bank",
+      "adjective:健康的:curated-sense-bank",
+      "adjective:合適的:curated-sense-bank",
+      "noun:發作 / 一陣:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("stick")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:棍 / 枝條:curated-sense-bank",
+      "verb:黏住 / 貼住:curated-sense-bank",
+      "verb:插入 / 卡住:curated-sense-bank"
     ]
   );
 
