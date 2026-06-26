@@ -601,6 +601,64 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("cabinet")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:櫥櫃:curated-sense-bank",
+      "noun:內閣:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("canvas")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:畫布:curated-sense-bank",
+      "noun:帆布:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("career")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:職業:curated-sense-bank",
+      "noun:事業:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("cease")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:停止:curated-sense-bank",
+      "verb:終止:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("challenge")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:挑戰:curated-sense-bank",
+      "verb:挑戰:curated-sense-bank",
+      "verb:質疑:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("casual")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "adjective:隨便的:curated-sense-bank",
+      "adjective:非正式的:curated-sense-bank",
+      "adjective:偶然的:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("chest")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:胸部:curated-sense-bank",
+      "noun:胸腔:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("capture")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "verb:捕捉:curated-sense-bank",
@@ -1432,6 +1490,88 @@ function assertStudentLookupContract(word, matches) {
       "board:noun:板:curated-sense-bank",
       "board:noun:委員會 / 董事會:curated-sense-bank",
       "board:verb:登上 / 上車:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("beat")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:打敗:curated-sense-bank",
+      "verb:打:curated-sense-bank",
+      "noun:節拍:curated-sense-bank",
+      "noun:心跳:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("benefit")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:好處:curated-sense-bank",
+      "verb:有益於:curated-sense-bank",
+      "verb:受益:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("block")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:大廈:curated-sense-bank",
+      "noun:街區:curated-sense-bank",
+      "noun:一塊:curated-sense-bank",
+      "noun:一段:curated-sense-bank",
+      "verb:阻擋:curated-sense-bank",
+      "verb:堵塞:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("boom")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:快速增長:curated-sense-bank",
+      "noun:繁榮:curated-sense-bank",
+      "verb:快速發展:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("border")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:邊界:curated-sense-bank",
+      "noun:國界:curated-sense-bank",
+      "verb:與...接壤:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("bother")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:打擾:curated-sense-bank",
+      "verb:煩擾:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("boundary")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:邊界:curated-sense-bank",
+      "noun:界線:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("budget")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:預算:curated-sense-bank",
+      "verb:制定預算:curated-sense-bank",
+      "verb:節省開支:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("bury")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:埋葬:curated-sense-bank",
+      "verb:埋藏:curated-sense-bank"
     ]
   );
 
