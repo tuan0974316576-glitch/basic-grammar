@@ -678,7 +678,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("develop").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
-  ["verb:發展 / 成長:override", "verb:培養 / 形成:override", "verb:患上:override"]
+  ["verb:發展:override", "verb:成長:override", "verb:培養:override", "verb:形成:override", "verb:患上:override"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("development").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -686,7 +686,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("produce").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
-  ["verb:生產 / 製造:override", "noun:農產品 / 農作物:override"]
+  ["verb:生產:override", "verb:製造:override", "noun:農產品:override", "noun:農作物:override"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("process").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
@@ -703,6 +703,50 @@ assert.deepStrictEqual(
 assert.deepStrictEqual(
   senseBank.lookup("shape").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
   ["noun:形狀:override", "verb:塑造:override", "verb:影響:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("keep").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["verb:保持:override", "verb:保留:override", "verb:留著:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("meet").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["verb:遇見:override", "verb:見面:override", "verb:滿足 / 符合:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("experiment").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["noun:實驗:override", "verb:進行實驗:override", "verb:嘗試:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("following").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["adjective:以下的:override", "adjective:接著的:override", "preposition:在...之後:override", "noun:追隨者:override", "noun:支持者:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("mobile").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["noun:手機:override", "adjective:流動的:override", "adjective:可移動的:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("notice").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["noun:告示:override", "noun:通知:override", "verb:注意到 / 留意:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("separate").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["verb:分開:override", "verb:分離:override", "adjective:分開的:override", "adjective:獨立的:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("survey").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["noun:問卷調查:override", "noun:調查:override", "verb:調查:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("request").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["noun:要求:override", "noun:請求:override", "verb:要求:override", "verb:請求:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("specific").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["adjective:特定的:override", "adjective:具體的:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("consider").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["verb:考慮:override", "verb:認為:override", "verb:視為:override"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("step").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),

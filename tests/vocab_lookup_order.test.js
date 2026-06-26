@@ -373,6 +373,47 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("develop")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:發展:curated-sense-bank",
+      "verb:成長:curated-sense-bank",
+      "verb:培養:curated-sense-bank",
+      "verb:形成:curated-sense-bank",
+      "verb:患上:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("produce")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:生產:curated-sense-bank",
+      "verb:製造:curated-sense-bank",
+      "noun:農產品:curated-sense-bank",
+      "noun:農作物:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("separate")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:分開:curated-sense-bank",
+      "verb:分離:curated-sense-bank",
+      "adjective:分開的:curated-sense-bank",
+      "adjective:獨立的:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("request")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:要求:curated-sense-bank",
+      "noun:請求:curated-sense-bank",
+      "verb:要求:curated-sense-bank",
+      "verb:請求:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("movement")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "noun:移動:curated-sense-bank",
