@@ -1095,6 +1095,22 @@ assert.deepStrictEqual(
   ["verb:說謊", "noun:謊言", "verb:躺 / 平放"]
 );
 assert.deepStrictEqual(
+  senseBank.lookup("pass").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:通行證", "verb:通過", "verb:及格", "verb:經過", "verb:傳遞"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("note").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:筆記", "noun:便條", "noun:音符", "verb:注意 / 記下"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("return").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:返回", "verb:歸還", "noun:返回", "noun:歸還"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("show").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:展示", "verb:顯示", "verb:給...看", "noun:表演", "noun:節目"]
+);
+assert.deepStrictEqual(
   senseBank.lookup("permit").map((entry) => `${entry.pos}:${entry.meaning}`),
   ["verb:允許", "noun:許可證"]
 );

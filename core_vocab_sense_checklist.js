@@ -776,6 +776,18 @@
   { word: "record", label: "n. 紀錄" },
   { word: "record", label: "n. 唱片" },
   { word: "run", label: "v. 運行" },
+  { word: "pass", label: "v. 及格" },
+  { word: "pass", label: "v. 經過" },
+  { word: "note", label: "n. 筆記" },
+  { word: "note", label: "n. 便條" },
+  { word: "note", label: "n. 音符" },
+  { word: "return", label: "v. 歸還" },
+  { word: "return", label: "n. 歸還" },
+  { word: "show", label: "v. 展示" },
+  { word: "show", label: "v. 顯示" },
+  { word: "show", label: "v. 給...看" },
+  { word: "show", label: "n. 表演" },
+  { word: "show", label: "n. 節目" },
   { word: "white-collar worker", label: "n. 白領人士" },
   { word: "have no choice but to", label: "v. 別無選擇，只好" }
 ]);

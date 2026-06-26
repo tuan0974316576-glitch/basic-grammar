@@ -2112,6 +2112,48 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("pass")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:通行證:curated-sense-bank",
+      "verb:通過:curated-sense-bank",
+      "verb:及格:curated-sense-bank",
+      "verb:經過:curated-sense-bank",
+      "verb:傳遞:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("note")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:筆記:curated-sense-bank",
+      "noun:便條:curated-sense-bank",
+      "noun:音符:curated-sense-bank",
+      "verb:注意 / 記下:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("return")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:返回:curated-sense-bank",
+      "verb:歸還:curated-sense-bank",
+      "noun:返回:curated-sense-bank",
+      "noun:歸還:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("show")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:展示:curated-sense-bank",
+      "verb:顯示:curated-sense-bank",
+      "verb:給...看:curated-sense-bank",
+      "noun:表演:curated-sense-bank",
+      "noun:節目:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("late")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "adjective:遲的:curated-sense-bank",
