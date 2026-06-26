@@ -1341,8 +1341,36 @@ function assertStudentLookupContract(word, matches) {
   assert.deepStrictEqual(
     (await lookupForStudent("defense")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
-      "noun:防衛 / 防守:curated-sense-bank",
+      "noun:防衛:curated-sense-bank",
+      "noun:防守:curated-sense-bank",
       "noun:辯護:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("defence")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:防衛:curated-sense-bank",
+      "noun:防守:curated-sense-bank",
+      "noun:辯護:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("license")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:牌照:curated-sense-bank",
+      "noun:許可證:curated-sense-bank",
+      "verb:批准:curated-sense-bank",
+      "verb:發牌:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("licence")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:牌照:curated-sense-bank",
+      "noun:許可證:curated-sense-bank"
     ]
   );
 

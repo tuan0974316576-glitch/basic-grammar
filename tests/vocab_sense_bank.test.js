@@ -4461,7 +4461,19 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("defense").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["noun:防衛 / 防守", "noun:辯護"]
+  ["noun:防衛", "noun:防守", "noun:辯護"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("defence").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:防衛", "noun:防守", "noun:辯護"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("license").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:牌照", "noun:許可證", "verb:批准", "verb:發牌"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("licence").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:牌照", "noun:許可證"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("program").map((entry) => `${entry.pos}:${entry.meaning}`),
