@@ -4504,6 +4504,42 @@ assert.deepStrictEqual(
   ["adjective:人工的", "adjective:人造的"]
 );
 assert.deepStrictEqual(
+  senseBank.lookup("associate").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:聯想", "verb:聯繫", "adjective:副的", "adjective:相關的"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("association").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:協會", "noun:關聯"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("assure").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:保證", "verb:使...相信"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("authority").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:權威", "noun:權力", "noun:當局", "noun:官方機構"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("barrier").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:屏障", "noun:障礙"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("blame").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:責任", "noun:責備", "verb:責怪", "verb:指責"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("boost").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:提升", "noun:幫助", "verb:提升", "verb:促進"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("broadcast").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:廣播節目", "verb:廣播", "verb:播放"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("cabin").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:機艙", "noun:船艙", "noun:小屋"]
+);
+assert.deepStrictEqual(
   senseBank.lookup("program").map((entry) => `${entry.pos}:${entry.meaning}`),
   ["noun:節目", "noun:程式", "noun:計劃", "verb:編寫程式"]
 );

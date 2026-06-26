@@ -1455,8 +1455,10 @@ function assertStudentLookupContract(word, matches) {
   assert.deepStrictEqual(
     (await lookupForStudent("authority")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
-      "noun:權威 / 權力:curated-sense-bank",
-      "noun:當局 / 官方機構:curated-sense-bank"
+      "noun:權威:curated-sense-bank",
+      "noun:權力:curated-sense-bank",
+      "noun:當局:curated-sense-bank",
+      "noun:官方機構:curated-sense-bank"
     ]
   );
 
@@ -1620,16 +1622,39 @@ function assertStudentLookupContract(word, matches) {
   assert.deepStrictEqual(
     (await lookupForStudent("associate")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
-      "verb:聯想 / 聯繫:curated-sense-bank",
-      "adjective:副的 / 相關的:curated-sense-bank"
+      "verb:聯想:curated-sense-bank",
+      "verb:聯繫:curated-sense-bank",
+      "adjective:副的:curated-sense-bank",
+      "adjective:相關的:curated-sense-bank"
     ]
   );
 
   assert.deepStrictEqual(
     (await lookupForStudent("blame")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
-      "noun:責任 / 責備:curated-sense-bank",
-      "verb:責怪 / 指責:curated-sense-bank"
+      "noun:責任:curated-sense-bank",
+      "noun:責備:curated-sense-bank",
+      "verb:責怪:curated-sense-bank",
+      "verb:指責:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("boost")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:提升:curated-sense-bank",
+      "noun:幫助:curated-sense-bank",
+      "verb:提升:curated-sense-bank",
+      "verb:促進:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("cabin")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:機艙:curated-sense-bank",
+      "noun:船艙:curated-sense-bank",
+      "noun:小屋:curated-sense-bank"
     ]
   );
 
