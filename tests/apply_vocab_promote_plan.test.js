@@ -187,6 +187,17 @@ const existingBank = {
       type: "word",
       needsReview: true,
       sourceCount: 1
+    },
+    {
+      id: "material-no-pos-entry",
+      word: "material",
+      display: "material",
+      meaning: "材料(不可食)",
+      pos: "",
+      inferredPos: "adjective",
+      type: "word",
+      needsReview: false,
+      sourceCount: 1
     }
   ]
 };
@@ -196,12 +207,13 @@ const bankMerge = apply.mergeTeacherBank(existingBank, teacherAddition.additions
 assert.strictEqual(bankMerge.mergeSummary.addedEntryCount, 1);
 assert.strictEqual(bankMerge.mergeSummary.removedEntryCount, 1);
 assert.strictEqual(bankMerge.mergeSummary.netEntryCount, 0);
-assert.strictEqual(bankMerge.entries.length, 5);
+assert.strictEqual(bankMerge.entries.length, 6);
 assert.strictEqual(bankMerge.entries.some((entry) => entry.id === "almond-noisy-entry"), false);
 assert.strictEqual(bankMerge.entries.find((entry) => entry.id === "almond-phrase-entry").sourceCount, 2);
 assert.strictEqual(bankMerge.entries.find((entry) => entry.id === "almond-adjective-entry").sourceCount, 3);
 assert.strictEqual(bankMerge.entries.find((entry) => entry.id === "bacon-entry").sourceCount, 5);
 assert.strictEqual(bankMerge.entries.find((entry) => entry.id === "almnd-typo-entry").sourceCount, 1);
+assert.strictEqual(bankMerge.entries.find((entry) => entry.id === "material-no-pos-entry").sourceCount, 1);
 assert.deepStrictEqual(
   bankMerge.entries
     .filter((entry) => entry.word === "almond")
@@ -229,6 +241,27 @@ assert.strictEqual(suppressBankMerge.mergeSummary.addedEntryCount, 0);
 assert.strictEqual(suppressBankMerge.mergeSummary.removedEntryCount, 1);
 assert.strictEqual(suppressBankMerge.entries.some((entry) => entry.id === "almnd-typo-entry"), false);
 assert.strictEqual(suppressBankMerge.entries.some((entry) => entry.word === "almnd"), false);
+
+const materialReplacement = apply.splitEntries([
+  {
+    word: "material",
+    pos: "n.",
+    type: "word",
+    meaning: "材料 / 原料",
+    promoteTo: "teacher",
+    replaceType: true
+  }
+]).teacher;
+const materialBankMerge = apply.mergeTeacherBank(existingBank, materialReplacement, {
+  teacherUpdates: teacherUpdatesPath
+});
+assert.strictEqual(materialBankMerge.entries.some((entry) => entry.id === "material-no-pos-entry"), false);
+assert.deepStrictEqual(
+  materialBankMerge.entries
+    .filter((entry) => entry.word === "material")
+    .map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),
+  ["word:noun:材料 / 原料"]
+);
 
 const drySummary = apply.applyPlan({
   entries: split.accepted.filter((entry) => !entry.suppress)

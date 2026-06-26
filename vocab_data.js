@@ -14,6 +14,29 @@
   const MAX_MEANING_ENTRIES = 8;
   const DELETE_GRACE_MS = 30 * 24 * 60 * 60 * 1000;
   const EXTRA_TEXT_FIELDS = ["pos", "type", "source", "teacherEntryId", "sourceEntryId", "level"];
+  const APPROVED_MEANING_SOURCES = new Set([
+    "teacher-live",
+    "teacher",
+    "curated-sense-bank",
+    "cc-cedict-supplement"
+  ]);
+  const VALID_MEANING_POS = new Set([
+    "noun",
+    "verb",
+    "adjective",
+    "adverb",
+    "preposition",
+    "conjunction",
+    "pronoun",
+    "determiner",
+    "modal",
+    "auxiliary",
+    "exclamation",
+    "number",
+    "phrase",
+    "pattern"
+  ]);
+  const VALID_MEANING_TYPES = new Set(["word", "phrase", "pattern"]);
 
   function normalizeWord(value) {
     return String(value || "")
@@ -31,13 +54,83 @@
       .slice(0, MAX_MEANING_LENGTH);
   }
 
+  function normalizePos(value) {
+    const key = String(value || "").trim().replace(/[().]/g, "").toLowerCase();
+    const aliases = {
+      n: "noun",
+      noun: "noun",
+      v: "verb",
+      verb: "verb",
+      adj: "adjective",
+      adjective: "adjective",
+      adv: "adverb",
+      adverb: "adverb",
+      prep: "preposition",
+      preposition: "preposition",
+      conj: "conjunction",
+      conjunction: "conjunction",
+      pron: "pronoun",
+      pronoun: "pronoun",
+      det: "determiner",
+      determiner: "determiner",
+      modal: "modal",
+      "modal v": "modal",
+      aux: "auxiliary",
+      auxiliary: "auxiliary",
+      exclam: "exclamation",
+      exclamation: "exclamation",
+      num: "number",
+      number: "number",
+      ph: "phrase",
+      phrase: "phrase",
+      pt: "pattern",
+      pattern: "pattern"
+    };
+    return aliases[key] || "";
+  }
+
+  function normalizeType(value, word = "") {
+    const key = String(value || "").trim().replace(/[().]/g, "").toLowerCase();
+    if (key === "word" || key === "phrase" || key === "pattern") return key;
+    const normalizedWord = normalizeWord(word);
+    if (/[+*=]|\.{2,}|…|名詞|動詞|形容詞|副詞|\bpp\b/i.test(normalizedWord)) return "pattern";
+    return normalizedWord.includes(" ") ? "phrase" : "word";
+  }
+
+  function isApprovedMeaningSource(source = "") {
+    return APPROVED_MEANING_SOURCES.has(String(source || "").trim());
+  }
+
+  function isUnsafeMeaningEntry(entry = {}) {
+    const source = String(entry.source || "").trim();
+    const meaning = normalizeMeaning(entry.meaning);
+    if (!meaning || /待老師|unknown|undefined|null/i.test(meaning)) return true;
+    if (!isApprovedMeaningSource(source)) return true;
+
+    const type = normalizeType(entry.type, entry.word || "");
+    if (!VALID_MEANING_TYPES.has(type)) return true;
+    if (type === "pattern") return false;
+    const pos = normalizePos(entry.pos);
+    return !VALID_MEANING_POS.has(pos);
+  }
+
   function normalizeMeaningEntry(entry = {}) {
     const meaning = normalizeMeaning(entry.meaning);
-    if (!meaning) return null;
+    if (isUnsafeMeaningEntry({ ...entry, meaning })) return null;
     const normalized = { meaning };
     EXTRA_TEXT_FIELDS.forEach((field) => {
       const value = String(entry[field] || "").trim().slice(0, 80);
-      if (value) normalized[field] = value;
+      if (!value) return;
+      if (field === "pos") {
+        const pos = normalizePos(value);
+        if (pos) normalized[field] = pos;
+        return;
+      }
+      if (field === "type") {
+        normalized[field] = normalizeType(value, entry.word || "");
+        return;
+      }
+      normalized[field] = value;
     });
     return normalized;
   }
@@ -278,7 +371,10 @@
   }
 
   return {
+    APPROVED_MEANING_SOURCES,
     DELETE_GRACE_MS,
+    VALID_MEANING_POS,
+    VALID_MEANING_TYPES,
     createId,
     createMeaningId,
     makeCloudDoc,
@@ -288,6 +384,8 @@
     normalizeMeaningEntries,
     normalizeMeaningEntry,
     normalizeMeaning,
+    normalizePos,
+    normalizeType,
     normalizeWord,
     stripItemForStorage,
     stripProgressForStorage,

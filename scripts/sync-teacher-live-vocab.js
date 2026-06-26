@@ -25,6 +25,7 @@ function usage() {
     "  - vocab promote plan JSON from npm run vocab:promote-plan",
     "",
     "Dry-runs by default. With --write, uploads reviewed teacher entries to Firestore teacherVocabLive.",
+    "Suppress entries are soft-disabled in Firestore with disabled=true; they are not hard-deleted.",
     "Curated entries are intentionally skipped; only teacher-approved class vocab goes to the live cloud bank.",
     "With --write, also writes a private *_live_synced.json receipt and refreshes review dashboard/index."
   ].join("\n"));
@@ -73,14 +74,47 @@ function makeTeacherLiveEntryId(entry = {}) {
 }
 
 function normalizeTeacherEntry(raw = {}) {
-  const entry = TeacherLiveVocab.normalizeEntry(raw, {
-    source: "reviewed-teacher-bank",
+  const payload = TeacherLiveVocab.buildStudentReadyPayload(raw, {
+    uid: "teacher-review-sync"
   });
-  return entry ? TeacherLiveVocab.compactEntry({
-    ...entry,
-    id: makeTeacherLiveEntryId(entry),
-    sourceEntryId: makeTeacherLiveEntryId(entry)
-  }) : null;
+  if (!payload) return null;
+  const id = makeTeacherLiveEntryId(payload);
+  return TeacherLiveVocab.compactEntry({
+    ...payload,
+    id,
+    source: "reviewed-teacher-bank",
+    sourceEntryId: id
+  });
+}
+
+function normalizeDisabledTeacherEntry(raw = {}) {
+  const word = TeacherLiveVocab.normalizeWord(raw.word || raw.display);
+  const meaning = TeacherLiveVocab.normalizeMeaning(raw.meaning || "");
+  const pos = TeacherLiveVocab.normalizePos(raw.pos || "");
+  const type = TeacherLiveVocab.normalizeType(raw.type || raw.pos, word);
+  if (!word) return null;
+  const display = String(raw.display || raw.word || word).trim() || word;
+  const id = String(raw.sourceEntryId || raw.id || makeTeacherLiveEntryId({
+    word,
+    display,
+    meaning,
+    pos,
+    type
+  })).trim();
+  return TeacherLiveVocab.compactEntry({
+    id,
+    word,
+    display,
+    meaning,
+    pos,
+    type,
+    aliases: TeacherLiveVocab.normalizeAliases(raw.aliases || raw.alias),
+    level: String(raw.level || "").trim().toUpperCase().slice(0, 2),
+    source: "reviewed-teacher-bank",
+    notes: TeacherLiveVocab.normalizeMeaning(raw.notes || "").slice(0, 120),
+    disabled: true,
+    sourceEntryId: id
+  });
 }
 
 function loadJson(filePath) {
@@ -110,6 +144,9 @@ function loadTeacherLiveEntries(inputPath, options = {}) {
   const rawEntries = inputKind === "promote-plan"
     ? entriesFromPromotePlan(payload)
     : entriesFromTeacherUpdates(payload);
+  const rawDisableEntries = inputKind === "promote-plan"
+    ? ApplyPlan.splitEntries(payload.entries || []).teacher.filter((entry) => entry.suppress)
+    : entriesFromTeacherUpdates(payload).filter((entry) => entry.suppress);
   const seen = new Set();
   const entries = rawEntries
     .map(normalizeTeacherEntry)
@@ -119,9 +156,20 @@ function loadTeacherLiveEntries(inputPath, options = {}) {
       seen.add(entry.id);
       return true;
     });
+  const disableSeen = new Set();
+  const disableEntries = rawDisableEntries
+    .map(normalizeDisabledTeacherEntry)
+    .filter(Boolean)
+    .filter((entry) => {
+      if (disableSeen.has(entry.id)) return false;
+      disableSeen.add(entry.id);
+      return true;
+    });
   return {
     inputKind,
     sourceEntryCount: rawEntries.length,
+    disableSourceEntryCount: rawDisableEntries.length,
+    disableEntries,
     entries
   };
 }
@@ -222,12 +270,37 @@ function makeFirestoreWrite(entry = {}, project = DEFAULT_PROJECT_ID, now = new 
   };
 }
 
+function makeFirestoreDisableWrite(entry = {}, project = DEFAULT_PROJECT_ID, now = new Date()) {
+  const fields = {
+    disabled: firestoreBoolean(true),
+    word: firestoreString(entry.word),
+    display: firestoreString(entry.display || entry.word),
+    meaning: firestoreString(entry.meaning || ""),
+    pos: firestoreString(entry.pos || ""),
+    type: firestoreString(entry.type || "word"),
+    notes: firestoreString(entry.notes || ""),
+    updatedAt: { timestampValue: now.toISOString() },
+    updatedBy: firestoreString("teacher-review-sync")
+  };
+  return {
+    update: {
+      name: `projects/${project}/databases/(default)/documents/teacherVocabLive/${entry.id}`,
+      fields
+    },
+    updateMask: {
+      fieldPaths: Object.keys(fields)
+    }
+  };
+}
+
 async function uploadTeacherLiveEntries(entries = [], options = {}) {
-  if (!entries.length) return { uploaded: 0 };
+  const disableEntries = options.disableEntries || [];
+  if (!entries.length && !disableEntries.length) return { uploaded: 0, disabled: 0 };
   const project = options.project || DEFAULT_PROJECT_ID;
   const accessToken = FirestoreRest.refreshFirebaseCliTokenIfNeeded();
   const commitUrl = `https://firestore.googleapis.com/v1/projects/${project}/databases/(default)/documents:commit`;
   let uploaded = 0;
+  let disabled = 0;
   for (let index = 0; index < entries.length; index += BATCH_LIMIT) {
     const batch = entries.slice(index, index + BATCH_LIMIT);
     const now = new Date();
@@ -235,7 +308,14 @@ async function uploadTeacherLiveEntries(entries = [], options = {}) {
     await FirestoreRest.postJson(commitUrl, { writes }, accessToken);
     uploaded += batch.length;
   }
-  return { uploaded };
+  for (let index = 0; index < disableEntries.length; index += BATCH_LIMIT) {
+    const batch = disableEntries.slice(index, index + BATCH_LIMIT);
+    const now = new Date();
+    const writes = batch.map((entry) => makeFirestoreDisableWrite(entry, project, now));
+    await FirestoreRest.postJson(commitUrl, { writes }, accessToken);
+    disabled += batch.length;
+  }
+  return { uploaded, disabled };
 }
 
 async function syncTeacherLiveVocab(options = {}) {
@@ -245,6 +325,8 @@ async function syncTeacherLiveVocab(options = {}) {
     inputKind: source.inputKind,
     sourceEntryCount: source.sourceEntryCount,
     uploadEntryCount: source.entries.length,
+    disableSourceEntryCount: source.disableSourceEntryCount,
+    disableEntryCount: source.disableEntries.length,
     write: Boolean(options.write),
     project: options.project || DEFAULT_PROJECT_ID,
     sample: source.entries.slice(0, 8).map((entry) => ({
@@ -253,13 +335,25 @@ async function syncTeacherLiveVocab(options = {}) {
       pos: entry.pos || "",
       type: entry.type || "",
       meaning: entry.meaning
+    })),
+    disableSample: source.disableEntries.slice(0, 8).map((entry) => ({
+      id: entry.id,
+      word: entry.word,
+      pos: entry.pos || "",
+      type: entry.type || "",
+      meaning: entry.meaning || "",
+      disabled: true
     }))
   };
 
   if (options.write) {
     const uploader = options.uploadTeacherLiveEntries || uploadTeacherLiveEntries;
-    const upload = await uploader(source.entries, options);
+    const upload = await uploader(source.entries, {
+      ...options,
+      disableEntries: source.disableEntries
+    });
     summary.uploaded = upload.uploaded;
+    summary.disabled = upload.disabled || 0;
     summary.liveSyncReceipt = writeLiveSyncReceipt(summary, options);
     if (options.refresh !== false) {
       summary.refreshed = refreshReviewStatusAfterLiveSync(options.input || DEFAULT_INPUT, options);
@@ -288,8 +382,10 @@ module.exports = {
   inferLiveSyncReceiptPath,
   loadTeacherLiveEntries,
   makeFirestoreFields,
+  makeFirestoreDisableWrite,
   makeFirestoreWrite,
   makeTeacherLiveEntryId,
+  normalizeDisabledTeacherEntry,
   normalizeTeacherEntry,
   parseArgs,
   refreshReviewStatusAfterLiveSync,

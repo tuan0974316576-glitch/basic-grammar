@@ -10,7 +10,7 @@ const TeacherVocab = require("../teacher_vocab.js");
 
 const ROOT_DIR = path.resolve(__dirname, "..");
 const DEFAULT_OUTPUT = path.join(ROOT_DIR, "private_exports", "vocab_review_preflight.json");
-const ALLOWED_POS_LABELS = new Set(["n.", "v.", "adj.", "adv.", "prep.", "conj.", "pron.", "det.", "modal v.", "ph.", "pt."]);
+const ALLOWED_POS_LABELS = new Set(["n.", "v.", "adj.", "adv.", "prep.", "conj.", "pron.", "det.", "num.", "exclam.", "modal v.", "aux.", "ph.", "pt."]);
 const ALLOWED_PROMOTE_TARGETS = new Set(["teacher", "curated", "skip", "needs class example"]);
 const REVIEW_SENSES = [
   { number: 1, suffix: "", label: "" },

@@ -445,7 +445,7 @@ function teacherBankWordTypeKey(entry = {}) {
 
 function shouldReplaceTeacherBankEntry(entry = {}, replacementEntries = []) {
   if (!replacementEntries.length) return false;
-  const entryPos = normalizePos(entry.pos || entry.inferredPos);
+  const entryPos = normalizePos(entry.pos);
   if (!entryPos) return true;
   return replacementEntries.some((replacement) => {
     const replacementPos = normalizePos(replacement.pos);
@@ -551,7 +551,7 @@ function applyPlan(plan, options = {}) {
   const existingTeacherBank = loadTeacherBank(options.teacherBank || DEFAULT_TEACHER_BANK);
   const mergedTeacherBankPayload = mergeTeacherBank(
     existingTeacherBank,
-    mergedTeacher.changedEntries,
+    split.teacher,
     options
   );
   const { mergeSummary: teacherBankMergeSummary, ...mergedTeacherBank } = mergedTeacherBankPayload;

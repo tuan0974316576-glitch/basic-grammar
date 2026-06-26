@@ -26,7 +26,19 @@ reverse.seed([
 const bacon = reverse.lookup("bacon");
 assert.strictEqual(bacon.length, 1);
 assert.strictEqual(bacon[0].source, "cc-cedict-reverse");
+assert.strictEqual(bacon[0].pos, "");
 assert.strictEqual(bacon[0].meaning, "培根 / 煙肉");
+
+reverse.seed([
+  {
+    id: "ccr-beard",
+    word: "beard",
+    meaning: "鬍鬚",
+    type: "word"
+  }
+]);
+const beard = reverse.lookup("beard");
+assert.strictEqual(beard[0].pos, "");
 
 const ruleOut = reverse.lookup(" RULE   OUT ");
 assert.strictEqual(ruleOut.length, 1);

@@ -18,18 +18,43 @@ const multiMeaningItem = vocabData.normalizeItem({
   id: "have",
   word: "have",
   meanings: [
-    { meaning: "有", pos: "verb", source: "azure-dictionary" },
-    { meaning: "擁有", pos: "verb", source: "azure-dictionary" }
+    { meaning: "有", pos: "verb", type: "word", source: "teacher", teacherEntryId: "teacher-have-verb" },
+    { meaning: "食 / 飲", pos: "verb", type: "word", source: "curated-sense-bank", sourceEntryId: "sense-have-eat-drink" }
   ],
   createdAt: now,
   updatedAt: now
 }, { id: "have", now });
 
-assert.strictEqual(multiMeaningItem.meaning, "有 / 擁有");
+assert.strictEqual(multiMeaningItem.meaning, "有 / 食 / 飲");
 assert.strictEqual(multiMeaningItem.meanings.length, 2);
 assert.strictEqual(multiMeaningItem.meanings[0].pos, "verb");
+assert.strictEqual(multiMeaningItem.meanings[0].source, "teacher");
+assert.strictEqual(multiMeaningItem.meanings[1].source, "curated-sense-bank");
 const multiMeaningStored = vocabData.stripItemForStorage(multiMeaningItem);
 assert.strictEqual(multiMeaningStored.meanings.length, 2);
+
+assert.strictEqual(vocabData.normalizeItem({
+  id: "raw-have",
+  word: "have",
+  meanings: [
+    { meaning: "有", pos: "verb", type: "word", source: "azure-dictionary" }
+  ],
+  createdAt: now,
+  updatedAt: now
+}, { id: "raw-have", now }), null);
+
+assert.strictEqual(vocabData.normalizeMeaningEntry({
+  meaning: "待老師確認",
+  pos: "noun",
+  type: "word",
+  source: "teacher"
+}), null);
+
+assert.strictEqual(vocabData.normalizeMeaningEntry({
+  meaning: "學院",
+  type: "word",
+  source: "teacher"
+}), null);
 
 const localProgress = scheduler.updateProgressAfterAnswer(
   scheduler.getInitialProgress(twoDaysAgo),
@@ -72,6 +97,9 @@ const mergedWithRemote = vocabData.mergeItems(
       id: "school",
       word: "school",
       meaning: "學校",
+      pos: "noun",
+      type: "word",
+      source: "teacher",
       createdAt: yesterday,
       updatedAt: yesterday,
       progress: scheduler.getInitialProgress(yesterday)
@@ -93,6 +121,9 @@ const queuedLocalWins = vocabData.mergeItems(
       id: "book",
       word: "book",
       meaning: "書",
+      pos: "noun",
+      type: "word",
+      source: "teacher",
       createdAt: twoDaysAgo,
       updatedAt: twoDaysAgo
     }
@@ -103,6 +134,9 @@ const queuedLocalWins = vocabData.mergeItems(
       id: "book",
       word: "book",
       meaning: "簿",
+      pos: "noun",
+      type: "word",
+      source: "teacher",
       createdAt: twoDaysAgo,
       updatedAt: yesterday,
       progress: scheduler.getInitialProgress(yesterday)
@@ -113,6 +147,9 @@ const queuedLocalWins = vocabData.mergeItems(
       id: "book",
       word: "book",
       meaning: "書本",
+      pos: "noun",
+      type: "word",
+      source: "teacher",
       createdAt: twoDaysAgo,
       updatedAt: now,
       progress: scheduler.getInitialProgress(now)
@@ -129,6 +166,9 @@ const deletedDoesNotReturn = vocabData.mergeItems(
       id: "cat",
       word: "cat",
       meaning: "貓",
+      pos: "noun",
+      type: "word",
+      source: "teacher",
       createdAt: twoDaysAgo,
       updatedAt: twoDaysAgo
     }
@@ -139,6 +179,9 @@ const deletedDoesNotReturn = vocabData.mergeItems(
       id: "cat",
       word: "cat",
       meaning: "貓",
+      pos: "noun",
+      type: "word",
+      source: "teacher",
       createdAt: twoDaysAgo,
       updatedAt: yesterday,
       progress: scheduler.getInitialProgress(yesterday)
@@ -185,7 +228,7 @@ assert.strictEqual(cloudDoc.progress.totalIncorrect, 1);
 assert.strictEqual(cloudDoc.deletedAt, 0);
 
 const multiMeaningCloudDoc = vocabData.makeCloudDoc(multiMeaningStored, scheduler.getInitialProgress(now), { now });
-assert.strictEqual(multiMeaningCloudDoc.meaning, "有 / 擁有");
+assert.strictEqual(multiMeaningCloudDoc.meaning, "有 / 食 / 飲");
 assert.strictEqual(multiMeaningCloudDoc.meanings.length, 2);
 
 console.log("vocab_data tests passed");

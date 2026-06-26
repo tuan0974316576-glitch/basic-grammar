@@ -136,7 +136,7 @@ assert.deepStrictEqual(csvEntries, [
     word: "look up",
     display: "look up",
     meaning: "查閱",
-    pos: "",
+    pos: "phrase",
     type: "phrase",
     promoteTo: "teacher",
     level: "A2",

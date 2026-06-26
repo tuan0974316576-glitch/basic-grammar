@@ -40,21 +40,41 @@ fs.writeFileSync(path.join(tmpDir, "teacher_vocab_review_batch_highvalue_0100_co
 fs.writeFileSync(promotePlanPath, JSON.stringify({
   meta: { source: "review-xlsx" },
   entries: [
-    {
-      word: "almond",
-      display: "almond",
-      pos: "n.",
-      type: "word",
-      meaning: "杏仁",
-      promoteTo: "teacher",
-      level: "A2"
-    },
+	    {
+	      word: "almond",
+	      display: "almond",
+	      pos: "n.",
+	      type: "word",
+	      meaning: "杏仁",
+	      promoteTo: "teacher",
+	      level: "A2"
+	    },
     {
       word: "jump over the moon",
       pos: "v.",
       type: "phrase",
       meaning: "跳過月亮",
       promoteTo: "curated"
+    },
+    {
+      word: "almnd",
+      type: "word",
+      promoteTo: "teacher",
+      suppress: true,
+      notes: "typo"
+    },
+    {
+      word: "academy",
+      type: "word",
+      meaning: "學院",
+      promoteTo: "teacher"
+    },
+    {
+      word: "placeholder",
+      pos: "n.",
+      type: "word",
+      meaning: "待老師確認",
+      promoteTo: "teacher"
     }
   ]
 }, null, 2));
@@ -75,13 +95,19 @@ fs.writeFileSync(codexPromotePlanPath, JSON.stringify({
 
 const loadedPlan = sync.loadTeacherLiveEntries(promotePlanPath);
 assert.strictEqual(loadedPlan.inputKind, "promote-plan");
-assert.strictEqual(loadedPlan.sourceEntryCount, 1);
+assert.strictEqual(loadedPlan.sourceEntryCount, 3);
 assert.strictEqual(loadedPlan.entries.length, 1);
+assert.strictEqual(loadedPlan.disableSourceEntryCount, 1);
+assert.strictEqual(loadedPlan.disableEntries.length, 1);
 assert.strictEqual(loadedPlan.entries[0].word, "almond");
 assert.strictEqual(loadedPlan.entries[0].pos, "noun");
 assert.strictEqual(loadedPlan.entries[0].type, "word");
 assert.strictEqual(loadedPlan.entries[0].meaning, "杏仁");
 assert.ok(loadedPlan.entries[0].id.startsWith("almond-noun-"));
+assert.strictEqual(loadedPlan.entries.some((entry) => entry.word === "academy"), false);
+assert.strictEqual(loadedPlan.entries.some((entry) => entry.word === "placeholder"), false);
+assert.strictEqual(loadedPlan.disableEntries[0].word, "almnd");
+assert.strictEqual(loadedPlan.disableEntries[0].disabled, true);
 
 const manualUpdatesPath = path.join(tmpDir, "teacher_vocab_manual_updates.json");
 fs.writeFileSync(manualUpdatesPath, JSON.stringify({
@@ -128,6 +154,10 @@ const write = sync.makeFirestoreWrite(loadedManual.entries[0], "test-project", n
 assert.ok(write.update.name.includes("/teacherVocabLive/"));
 assert.ok(write.updateMask.fieldPaths.includes("word"));
 assert.ok(write.updateMask.fieldPaths.includes("updatedAt"));
+const disableWrite = sync.makeFirestoreDisableWrite(loadedPlan.disableEntries[0], "test-project", new Date("2026-06-21T00:00:00.000Z"));
+assert.ok(disableWrite.update.name.includes("/teacherVocabLive/almnd"));
+assert.strictEqual(disableWrite.update.fields.disabled.booleanValue, true);
+assert.ok(disableWrite.updateMask.fieldPaths.includes("disabled"));
 
 sync.syncTeacherLiveVocab({
   input: manualUpdatesPath,
@@ -143,17 +173,20 @@ sync.syncTeacherLiveVocab({
     input: promotePlanPath,
     project: "test-project",
     write: true,
-    uploadTeacherLiveEntries: async (entries, options) => {
-      assert.strictEqual(options.project, "test-project");
-      assert.strictEqual(entries.length, 1);
-      assert.strictEqual(entries[0].word, "almond");
-      return { uploaded: entries.length };
-    }
-  });
-}).then((writeSummary) => {
-  assert.strictEqual(writeSummary.write, true);
-  assert.strictEqual(writeSummary.uploaded, 1);
-  assert.ok(writeSummary.liveSyncReceipt.endsWith("teacher_vocab_promote_plan_highvalue_0000_live_synced.json"));
+	    uploadTeacherLiveEntries: async (entries, options) => {
+	      assert.strictEqual(options.project, "test-project");
+	      assert.strictEqual(entries.length, 1);
+	      assert.strictEqual(entries[0].word, "almond");
+	      assert.strictEqual(options.disableEntries.length, 1);
+	      assert.strictEqual(options.disableEntries[0].word, "almnd");
+	      return { uploaded: entries.length, disabled: options.disableEntries.length };
+	    }
+	  });
+	}).then((writeSummary) => {
+	  assert.strictEqual(writeSummary.write, true);
+	  assert.strictEqual(writeSummary.uploaded, 1);
+	  assert.strictEqual(writeSummary.disabled, 1);
+	  assert.ok(writeSummary.liveSyncReceipt.endsWith("teacher_vocab_promote_plan_highvalue_0000_live_synced.json"));
   assert.ok(fs.existsSync(writeSummary.liveSyncReceipt));
   const receipt = JSON.parse(fs.readFileSync(writeSummary.liveSyncReceipt, "utf8"));
   assert.strictEqual(receipt.summary.uploaded, 1);

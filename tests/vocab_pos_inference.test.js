@@ -16,6 +16,30 @@ assert.strictEqual(inference.inferEntryPos({
 }).pos, "verb");
 
 assert.strictEqual(inference.inferEntryPos({
+  word: "assessment",
+  meaning: "評估",
+  type: "word"
+}).pos, "noun");
+
+assert.strictEqual(inference.inferEntryPos({
+  word: "accusation",
+  meaning: "指控",
+  type: "word"
+}).pos, "noun");
+
+assert.strictEqual(inference.inferEntryPos({
+  word: "validity",
+  meaning: "有效性",
+  type: "word"
+}).pos, "noun");
+
+assert.strictEqual(inference.inferEntryPos({
+  word: "accident",
+  meaning: "意外",
+  type: "word"
+}, { minConfidence: 84 }).pos, "");
+
+assert.strictEqual(inference.inferEntryPos({
   word: "comfortable",
   meaning: "舒服的",
   type: "word"

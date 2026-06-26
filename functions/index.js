@@ -458,8 +458,6 @@ function normalizeMeaningEntries(word, entries = [], source = "azure-dictionary"
 function shouldReuseCachedMeaning(cached = {}) {
   const source = String(cached.source || "").toLowerCase();
   return Boolean(source && [
-    "azure-dictionary",
-    "azure-translate-fallback",
     "curated-cloud",
     "shared-cache"
   ].includes(source));
@@ -878,7 +876,7 @@ async function getOrCreateVocabMeaning(word) {
   const docRef = db.collection("vocabMeaningCache").doc(meaningId);
   const curated = CURATED_VOCAB_MEANINGS.get(normalizedWord);
   let rawEntries = curated;
-  let source = curated ? "curated-cloud" : "azure-dictionary";
+  let source = curated ? "curated-cloud" : "reviewed-cache";
 
   if (!rawEntries) {
     const cachedSnap = await docRef.get();
@@ -898,34 +896,21 @@ async function getOrCreateVocabMeaning(word) {
   }
 
   if (!rawEntries) {
-    try {
-      const result = await lookupVocabMeaningsWithAzure(normalizedWord, {
-        translatorKey: AZURE_TRANSLATOR_KEY.value(),
-        translatorRegion: AZURE_TRANSLATOR_REGION.value()
-      });
-      rawEntries = result.entries;
-      source = result.source;
-    } catch (error) {
-      console.error("Azure vocab meaning lookup failed.", {
-        word: normalizedWord,
-        message: error?.message || String(error)
-      });
-      await docRef.set({
-        word: normalizedWord,
-        meaningId,
-        source,
-        status: "translator-error",
-        updatedAt: admin.firestore.FieldValue.serverTimestamp()
-      }, { merge: true });
-      return {
-        meaningId,
-        word: normalizedWord,
-        entries: [],
-        cached: false,
-        source,
-        status: "translator-error"
-      };
-    }
+    await docRef.set({
+      word: normalizedWord,
+      meaningId,
+      source,
+      status: "missing",
+      updatedAt: admin.firestore.FieldValue.serverTimestamp()
+    }, { merge: true });
+    return {
+      meaningId,
+      word: normalizedWord,
+      entries: [],
+      cached: false,
+      source,
+      status: "missing"
+    };
   }
   const entries = normalizeMeaningEntries(normalizedWord, rawEntries, source);
 
@@ -1148,7 +1133,7 @@ exports.ensureVocabAudio = onCall({
 
 exports.lookupVocabMeaning = onCall({
   invoker: "public",
-  secrets: [AZURE_TRANSLATOR_KEY, AZURE_TRANSLATOR_REGION]
+  secrets: []
 }, async (request) => {
   if (!request.auth) {
     throw new HttpsError("unauthenticated", "Please log in first.");
@@ -1356,6 +1341,7 @@ if (process.env.NODE_ENV === "test") {
   module.exports._private = {
     buildGeminiExamplePrompt,
     getOrCreateVocabMeaning,
+    lookupVocabMeaning: exports.lookupVocabMeaning,
     makeVocabMeaningId,
     makeVocabExamplesCacheKey,
     makeVocabExampleId,

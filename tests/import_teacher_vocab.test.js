@@ -161,4 +161,74 @@ const suppressed = importer.dedupeEntries([
 ]);
 assert.strictEqual(suppressed.length, 0);
 
+const rebuiltFromExisting = importer.rebuildEntriesFromExistingBank([
+  {
+    id: "old-pretty-adv",
+    word: "pretty",
+    display: "pretty",
+    meaning: "幾",
+    pos: "adverb",
+    type: "word",
+    source: "teacher",
+    sourceCount: 1
+  },
+  {
+    id: "old-account-for-inferred",
+    word: "account for",
+    display: "account for",
+    meaning: "佔",
+    pos: "",
+    type: "phrase",
+    source: "teacher",
+    sourceCount: 1
+  },
+  {
+    id: "old-rest-noun",
+    word: "rest",
+    display: "rest",
+    meaning: "休息",
+    pos: "noun",
+    type: "word",
+    source: "teacher",
+    sourceCount: 1
+  },
+  {
+    id: "old-rest-verb",
+    word: "rest",
+    display: "rest",
+    meaning: "休息",
+    pos: "verb",
+    type: "word",
+    source: "teacher",
+    sourceCount: 1
+  }
+], importer.createManualEntriesFromData({
+  meta: { lesson: "Patch" },
+  entries: [
+    { word: "pretty", meaning: "漂亮的", pos: "adjective" },
+    { word: "account for", meaning: "佔", pos: "verb", type: "phrase" }
+  ]
+}, "patch.json"));
+
+assert.deepStrictEqual(
+  rebuiltFromExisting
+    .filter((entry) => entry.word === "pretty")
+    .map((entry) => `${entry.pos}:${entry.meaning}`)
+    .sort(),
+  ["adjective:漂亮的", "adverb:幾"]
+);
+assert.deepStrictEqual(
+  rebuiltFromExisting
+    .filter((entry) => entry.word === "account for")
+    .map((entry) => `${entry.pos || importer.inferEntryPos(entry).pos}:${entry.meaning}`),
+  ["verb:佔"]
+);
+assert.deepStrictEqual(
+  rebuiltFromExisting
+    .filter((entry) => entry.word === "rest")
+    .map((entry) => `${entry.pos}:${entry.meaning}`)
+    .sort(),
+  ["noun:休息", "verb:休息"]
+);
+
 console.log("import_teacher_vocab tests passed");

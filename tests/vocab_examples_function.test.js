@@ -103,6 +103,9 @@ assert.ok(prompt.includes("Return exactly 3 examples"));
 
 assert.strictEqual(helpers.shouldReuseCachedExamples({ source: "azure-dictionary-examples" }), false);
 assert.strictEqual(helpers.shouldReuseCachedExamples({ source: "gemini-generated-examples" }), true);
+assert.strictEqual(helpers.shouldReuseCachedMeaning({ source: "azure-dictionary" }), false);
+assert.strictEqual(helpers.shouldReuseCachedMeaning({ source: "azure-translate-fallback" }), false);
+assert.strictEqual(helpers.shouldReuseCachedMeaning({ source: "curated-cloud" }), true);
 
 const parsed = helpers.parseGeminiJsonText("```json\n{\"examples\":[{\"source\":\"I have lunch.\",\"target\":\"我吃午餐。\"}]}\n```");
 assert.strictEqual(parsed.examples[0].source, "I have lunch.");
@@ -196,6 +199,40 @@ mockMeaningCacheData = {
   assert.strictEqual(delicacy.source, "curated-cloud");
   assert.deepStrictEqual(delicacy.entries.map((entry) => `${entry.pos}:${entry.meaning}`), [
     "noun:佳餚"
+  ]);
+
+  mockMeaningCacheWord = "academy";
+  mockMeaningCacheData = {
+    word: "academy",
+    source: "azure-dictionary",
+    status: "ready",
+    entries: [
+      { meaning: "學院", pos: "noun", type: "word", sourceEntryId: "old-cache-0" }
+    ]
+  };
+  const academy = await helpers.getOrCreateVocabMeaning("academy");
+  assert.strictEqual(academy.cached, false);
+  assert.strictEqual(academy.source, "reviewed-cache");
+  assert.strictEqual(academy.status, "missing");
+  assert.deepStrictEqual(academy.entries, []);
+
+  mockMeaningCacheData = null;
+  const callableMissing = await helpers.lookupVocabMeaning({
+    auth: { uid: "student_test" },
+    data: { word: "academy" }
+  });
+  assert.strictEqual(callableMissing.status, "missing");
+  assert.strictEqual(callableMissing.source, "reviewed-cache");
+  assert.deepStrictEqual(callableMissing.entries, []);
+
+  const callableCurated = await helpers.lookupVocabMeaning({
+    auth: { uid: "student_test" },
+    data: { word: "swift" }
+  });
+  assert.strictEqual(callableCurated.status, "ready");
+  assert.strictEqual(callableCurated.source, "curated-cloud");
+  assert.deepStrictEqual(callableCurated.entries.map((entry) => `${entry.pos}:${entry.meaning}`), [
+    "adjective:迅速的"
   ]);
 
   console.log("vocab example function tests passed");

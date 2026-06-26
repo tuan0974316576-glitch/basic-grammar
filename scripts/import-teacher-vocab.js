@@ -60,9 +60,11 @@ function usage() {
   console.log([
     "Usage:",
     "  node scripts/import-teacher-vocab.js <xlsx...> [--updates teacher_vocab_manual_updates.json] [--out teacher_vocab_bank.js] [--conflicts teacher_vocab_conflicts.json]",
+    "  node scripts/import-teacher-vocab.js --from-existing-bank [teacher_vocab_bank.js] [--updates teacher_vocab_manual_updates.json] [--out teacher_vocab_bank.js]",
     "",
     "Example:",
-    "  node scripts/import-teacher-vocab.js ~/Downloads/RANDOMISABLE\\ VOCAB\\ \\(2\\).xlsx"
+    "  node scripts/import-teacher-vocab.js ~/Downloads/RANDOMISABLE\\ VOCAB\\ \\(2\\).xlsx",
+    "  node scripts/import-teacher-vocab.js --from-existing-bank"
   ].join("\n"));
 }
 
@@ -71,6 +73,7 @@ function parseArgs(argv) {
   let out = DEFAULT_OUTPUT;
   let conflicts = DEFAULT_CONFLICTS;
   let updateFiles = fs.existsSync(DEFAULT_UPDATES) ? [DEFAULT_UPDATES] : [];
+  let fromExistingBank = "";
 
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
@@ -97,15 +100,25 @@ function parseArgs(argv) {
       updateFiles = [];
       continue;
     }
+    if (arg === "--from-existing-bank") {
+      const next = argv[index + 1] || "";
+      if (next && !next.startsWith("--")) {
+        fromExistingBank = path.resolve(next);
+        index += 1;
+      } else {
+        fromExistingBank = DEFAULT_OUTPUT;
+      }
+      continue;
+    }
     files.push(path.resolve(arg));
   }
 
-  if (!files.length) {
+  if (!files.length && !fromExistingBank) {
     usage();
     process.exit(1);
   }
 
-  return { files, out, conflicts, updateFiles: Array.from(new Set(updateFiles)).filter(Boolean) };
+  return { files, out, conflicts, fromExistingBank, updateFiles: Array.from(new Set(updateFiles)).filter(Boolean) };
 }
 
 function xmlLocalName(name = "") {
@@ -606,6 +619,82 @@ function applyManualOverrides(rawEntries) {
   });
 }
 
+function entryType(entry) {
+  return entry.type || detectType(entry.word, entry.pos || entry.inferredPos);
+}
+
+function effectiveEntryPos(entry) {
+  const explicit = normalizePos(entry.pos || entry.inferredPos);
+  if (explicit) return explicit;
+  const inferred = inferEntryPos(entry, { minConfidence: 84 });
+  return normalizePos(inferred.pos) || "";
+}
+
+function manualOverlayKey(entry) {
+  return [
+    normalizeWord(entry.word),
+    normalizeMeaning(entry.meaning),
+    entryType(entry),
+    effectiveEntryPos(entry)
+  ].join("\u0001");
+}
+
+function reviewedSenseKey(entry) {
+  return [
+    normalizeWord(entry.word),
+    effectiveEntryPos(entry),
+    normalizeMeaning(entry.meaning),
+    entryType(entry)
+  ].join("\u0001");
+}
+
+function reviewedEntryRank(entry) {
+  return (normalizePos(entry.pos) ? 16 : 0)
+    + (entry.source === "teacher" ? 8 : 0)
+    + (entry.override ? 4 : 0)
+    + (entry.inferredPos ? 2 : 0)
+    + (effectiveEntryPos(entry) ? 1 : 0);
+}
+
+function chooseHigherRankedEntry(left, right) {
+  if (!left) return right;
+  if (!right) return left;
+  return reviewedEntryRank(right) >= reviewedEntryRank(left) ? right : left;
+}
+
+function rebuildEntriesFromExistingBank(existingEntries = [], manualEntries = []) {
+  const manualByKey = new Map();
+  manualEntries.forEach((entry) => {
+    manualByKey.set(manualOverlayKey(entry), entry);
+  });
+
+  const candidates = new Map();
+  existingEntries.forEach((oldEntry) => {
+    const entry = manualByKey.get(manualOverlayKey(oldEntry)) || oldEntry;
+    const key = reviewedSenseKey(entry);
+    candidates.set(key, chooseHigherRankedEntry(candidates.get(key), entry));
+  });
+
+  manualEntries.forEach((entry) => {
+    const key = reviewedSenseKey(entry);
+    candidates.set(key, chooseHigherRankedEntry(candidates.get(key), entry));
+  });
+
+  const deduped = dedupeEntries(Array.from(candidates.values()));
+  const finalEntries = new Map();
+  deduped.forEach((entry) => {
+    const key = reviewedSenseKey(entry);
+    finalEntries.set(key, chooseHigherRankedEntry(finalEntries.get(key), entry));
+  });
+
+  return Array.from(finalEntries.values()).sort((left, right) => {
+    return left.word.localeCompare(right.word)
+      || left.type.localeCompare(right.type)
+      || left.meaning.localeCompare(right.meaning)
+      || left.id.localeCompare(right.id);
+  });
+}
+
 function dedupeEntries(rawEntries) {
   const groups = new Map();
 
@@ -741,6 +830,52 @@ function createBankJs(bank) {
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
+  const manualUpdates = [];
+  for (const file of args.updateFiles) {
+    manualUpdates.push(readManualUpdateFile(file));
+  }
+
+  if (args.fromExistingBank) {
+    const bank = require(args.fromExistingBank);
+    const entries = rebuildEntriesFromExistingBank(
+      Array.isArray(bank.entries) ? bank.entries : [],
+      manualUpdates.flatMap((updateFile) => updateFile.entries)
+    );
+    const conflictReport = buildConflicts(entries, []);
+    const uniqueWordCount = new Set(entries.map((entry) => normalizeWord(entry.word))).size;
+    const typeCounts = entries.reduce((counts, entry) => {
+      counts[entry.type] = (counts[entry.type] || 0) + 1;
+      return counts;
+    }, {});
+    const rebuiltBank = {
+      meta: {
+        ...(bank.meta || {}),
+        generatedAt: new Date().toISOString(),
+        sourceFiles: bank.meta?.sourceFiles || [],
+        updateFiles: manualUpdates.map((updateFile) => ({
+          name: path.basename(updateFile.filePath),
+          rawEntryCount: updateFile.entries.length
+        })),
+        entryCount: entries.length,
+        uniqueWordCount,
+        conflictCount: conflictReport.conflicts.length,
+        typeCounts,
+        rebuiltFromExistingBank: true
+      },
+      entries: entries.map((entry) => slimEntryForBank(entry))
+    };
+
+    fs.writeFileSync(args.out, createBankJs(rebuiltBank));
+    fs.writeFileSync(args.conflicts, `${JSON.stringify({
+      meta: rebuiltBank.meta,
+      ...conflictReport
+    }, null, 2)}\n`);
+    console.log(`Rebuilt ${entries.length} teacher vocab entries (${uniqueWordCount} unique words) from existing bank.`);
+    console.log(`Wrote ${args.out}`);
+    console.log(`Wrote ${args.conflicts}`);
+    return;
+  }
+
   const missingFiles = args.files.filter((file) => !fs.existsSync(file));
   if (missingFiles.length) {
     throw new Error(`File not found: ${missingFiles.join(", ")}`);
@@ -750,11 +885,6 @@ async function main() {
   for (const file of args.files) {
     workbooks.push(await readWorkbook(file));
   }
-  const manualUpdates = [];
-  for (const file of args.updateFiles) {
-    manualUpdates.push(readManualUpdateFile(file));
-  }
-
   const rawEntries = [
     ...workbooks.flatMap((workbook) => workbook.entries),
     ...manualUpdates.flatMap((updateFile) => updateFile.entries)
@@ -815,6 +945,7 @@ module.exports = {
   extractEntriesFromRows,
   inferEntryPos,
   readManualUpdateFile,
+  rebuildEntriesFromExistingBank,
   normalizeManualType,
   normalizeAliases,
   normalizeMeaning,

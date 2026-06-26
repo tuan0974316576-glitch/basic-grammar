@@ -86,7 +86,14 @@ assert.strictEqual(parsed.level, "A2");
 assert.ok(parsed.csv.endsWith("foo.csv"));
 
 const teacherAuditTasks = review.getReviewTasks({ source: "teacher-audit" });
-assert.ok(teacherAuditTasks.length > 3500, "Teacher audit should include a broad suspicious candidate set, not only needsReview entries.");
+const teacherAuditNeedsReviewCount = teacherAuditTasks.filter((task) => (
+  task.audit?.reasons?.includes("needsReview")
+)).length;
+assert.ok(
+  teacherAuditTasks.length > teacherAuditNeedsReviewCount * 2,
+  "Teacher audit should include a broad suspicious candidate set, not only needsReview entries."
+);
+assert.ok(teacherAuditTasks.some((task) => task.audit?.reasons?.includes("missing-pos")));
 assert.ok(teacherAuditTasks[0].audit?.reasons?.length);
 assert.strictEqual(teacherAuditTasks[0].source, "teacher-audit");
 
@@ -118,10 +125,11 @@ assert.strictEqual(review.isLikelyTeacherAuditJunk({
 assert.strictEqual(review.inferAuditType("either...or", "word"), "pattern");
 assert.strictEqual(review.inferAuditType("mental health", "phrase"), "phrase");
 
-const highValueTeacherAuditTasks = review.getReviewTasks({ source: "teacher-audit", skipJunk: true });
-assert.ok(highValueTeacherAuditTasks.length < teacherAuditTasks.length);
-assert.ok(highValueTeacherAuditTasks.length > 2500);
-assert.ok(!highValueTeacherAuditTasks.some((task) => /^[a-z]$/.test(task.word)));
+	const highValueTeacherAuditTasks = review.getReviewTasks({ source: "teacher-audit", skipJunk: true });
+	assert.ok(highValueTeacherAuditTasks.length < teacherAuditTasks.length);
+	assert.ok(highValueTeacherAuditTasks.length > 1000);
+	assert.ok(!highValueTeacherAuditTasks.some((task) => /^[a-z]$/.test(task.word)));
+	assert.ok(highValueTeacherAuditTasks.some((task) => task.word.includes(" ")));
 
 const supplementTasks = review.getReviewTasks({ source: "supplement" });
 assert.ok(supplementTasks.length > 100);

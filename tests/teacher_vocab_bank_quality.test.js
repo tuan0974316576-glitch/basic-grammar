@@ -17,6 +17,14 @@ function assertIncludes(word, expected) {
   );
 }
 
+function assertSameLabels(word, expected) {
+  assert.deepStrictEqual(
+    labels(word).slice().sort(),
+    expected.slice().sort(),
+    `Expected ${word} labels to match`
+  );
+}
+
 [
   ["may", "modal v. 可能 / 可以"],
   ["will", "modal v. 將會"],
@@ -39,7 +47,7 @@ function assertIncludes(word, expected) {
   ["raise", "v. 籌集"],
   ["conduct", "n. 行為"],
   ["term", "n. 學期"],
-  ["spring", "v. 跳起"],
+  ["spring", "v. 跳起 / 彈起"],
   ["run", "v. 跑"],
   ["set", "n. 一套"],
   ["work", "v. 運作 / 奏效"],
@@ -59,7 +67,6 @@ function assertIncludes(word, expected) {
   ["permit", "n. 許可證"],
   ["abuse", "v. 濫用 / 虐待"],
   ["access", "n. 使用權 / 途徑"],
-  ["account for", "v. 佔 / 解釋 / 是...原因"],
   ["acquaintance", "n. 熟人"],
   ["advocate", "v. 提倡"],
   ["adovcate", "v. 提倡"],
@@ -67,7 +74,7 @@ function assertIncludes(word, expected) {
   ["appetizer", "n. 前菜 / 開胃菜"],
   ["as", "conj. 因為 / 當 / 正如"],
   ["as + 句子", "pt. 因為 / 正如 / 當 / 隨著"],
-  ["as well as", "conj. 除了...之外"],
+  ["as well as", "conj. 以及 / 和 / 除了...之外"],
   ["attribute", "v. 歸因於"],
   ["backlash", "n. 強烈反對 / 反彈"],
   ["bark", "v. 吠"],
@@ -80,7 +87,6 @@ function assertIncludes(word, expected) {
   ["committment", "n. 承諾 / 責任"],
   ["concrete", "n. 混凝土"],
   ["conspicuous", "adj. 顯眼的 / 明顯的"],
-  ["contribute to", "v. 促成 / 導致 / 貢獻"],
   ["craftsmanship", "n. 手藝 / 工藝"],
   ["criteria", "n. 標準 / 準則"],
   ["cuisine", "n. 菜式 / 菜系"],
@@ -95,6 +101,20 @@ function assertIncludes(word, expected) {
   ["won't", "modal v. 不會 / 將不會"],
   ["wont", "modal v. 不會 / 將不會"],
   ["swift", "adj. 迅速的 / 敏捷的"],
+  ["signature", "adj. 標誌性的 / 招牌的"],
+  ["accountability", "n. 責任 / 問責性"],
+  ["elastic", "adj. 有彈性的"],
+  ["flexibility", "n. 靈活性 / 彈性"],
+  ["linear", "adj. 線性的"],
+  ["males", "n. 男性"],
+  ["rational", "adj. 理性的 / 合理的"],
+  ["sentimental", "adj. 多愁善感的 / 感情用事的"],
+  ["disposable", "adj. 一次性的 / 即棄的"],
+  ["diversity", "n. 多樣性 / 多元性"],
+  ["effectiveness", "n. 成效 / 有效性"],
+  ["likelihood", "n. 可能性"],
+  ["mobility", "n. 流動性 / 移動能力"],
+  ["probability", "n. 可能性 / 機率"],
   ["delicacy", "n. 佳餚"],
   ["delicacy", "n. 精緻 / 微妙"],
   ["game", "n. 遊戲 / 比賽"],
@@ -132,7 +152,47 @@ function assertIncludes(word, expected) {
   ["last", "adj. 最後的 / 上一個的"],
   ["last", "v. 持續"],
   ["light", "n. 光 / 燈"],
-  ["light", "adj. 輕的 / 淺色的"],
+  ["light", "adj. 輕的"],
+  ["light", "adj. 淺色的"],
+  ["play", "v. 玩 / 打（球類）"],
+  ["play", "n. 戲劇"],
+  ["watch", "v. 觀看"],
+  ["watch", "n. 手錶"],
+  ["book", "n. 書"],
+  ["book", "v. 預訂"],
+  ["right", "adj. 正確的 / 右邊的"],
+  ["right", "n. 權利"],
+  ["right", "adv. 向右"],
+  ["close", "v. 關閉"],
+  ["close", "adj. 近的 / 親密的"],
+  ["clean", "adj. 乾淨的"],
+  ["clean", "v. 清潔"],
+  ["face", "n. 臉"],
+  ["face", "v. 面對"],
+  ["hand", "n. 手"],
+  ["hand", "v. 交給 / 遞給"],
+  ["head", "n. 頭"],
+  ["head", "v. 前往 / 率領"],
+  ["take", "v. 拿 / 帶 / 乘搭"],
+  ["take", "v. 花費（時間）"],
+  ["get", "v. 得到 / 收到"],
+  ["get", "v. 變得 / 到達"],
+  ["look", "v. 看"],
+  ["look", "v. 看起來"],
+  ["point", "n. 分數 / 重點 / 點"],
+  ["point", "v. 指向"],
+  ["class", "n. 班 / 課堂"],
+  ["class", "n. 分類 / 類別"],
+  ["past", "n. 過去"],
+  ["past", "adj. 過去的"],
+  ["past", "prep. 經過"],
+  ["well", "adv. 好"],
+  ["well", "adj. 健康的"],
+  ["well", "n. 井"],
+  ["fine", "adj. 好的 / 不錯的"],
+  ["free", "adj. 免費的 / 自由的"],
+  ["free", "v. 釋放"],
+  ["poor", "adj. 貧窮的 / 差的 / 可憐的"],
   ["like", "v. 喜歡"],
   ["like", "prep. 像"],
   ["likely", "adj. 可能的"],
@@ -238,7 +298,7 @@ function assertIncludes(word, expected) {
   ["be dedicated to", "ph. 致力於 / 投入"],
   ["be destined to", "ph. 註定會"],
   ["be drawn to", "ph. 被...吸引 / 對...著迷"],
-  ["be inclined to", "ph. 傾向於"],
+  ["be inclined to", "adj. 傾向於"],
   ["be ingrained in", "ph. 根深蒂固於"],
   ["be poised to", "ph. 即將 / 準備好"],
   ["be put down to", "ph. 歸因於"],
@@ -261,8 +321,8 @@ function assertIncludes(word, expected) {
   ["billboard", "n. 廣告牌"],
   ["binary", "adj. 二元的 / 二進制的"],
   ["biodiversity", "n. 生物多樣性"],
-  ["brand new", "ph. 全新的"],
-  ["bland new", "ph. 全新的"],
+  ["brand new", "adj. 全新的"],
+  ["bland new", "adj. 全新的"],
   ["blessing", "n. 祝福"],
   ["blind", "adj. 盲的 / 失明的"],
   ["blip", "n. 短暫問題 / 小波動"],
@@ -417,7 +477,7 @@ function assertIncludes(word, expected) {
   ["commercial", "n. 廣告"],
   ["commerical", "adj. 商業的"],
   ["commit", "v. 犯 / 承諾"],
-  ["commit to", "ph. 承諾 / 致力於"],
+  ["commit to", "v. 承諾 / 致力於"],
   ["communication", "n. 溝通"],
   ["common", "adj. 普遍的 / 常見的"],
   ["commonplace", "adj. 普遍的 / 常見的"],
@@ -671,18 +731,43 @@ assert.deepStrictEqual(labels("egg tart"), ["n. 蛋撻"]);
 assert.deepStrictEqual(labels("egg waffle"), ["n. 雞蛋仔"]);
 assert.deepStrictEqual(labels("lung cancer"), ["n. 肺癌"]);
 assert.deepStrictEqual(labels("put on"), ["v. 穿上 / 戴上"]);
-assert.deepStrictEqual(labels("take off"), ["v. 脫下 / 起飛"]);
-assert.deepStrictEqual(labels("pick up"), ["v. 拿起 / 接載"]);
+assert.deepStrictEqual(labels("take off"), ["v. 脫下", "v. 起飛"]);
+assertSameLabels("pick up", ["v. 拿起 / 撿起", "v. 接載"]);
 assert.deepStrictEqual(labels("give up"), ["v. 放棄"]);
 assert.deepStrictEqual(labels("turn on"), ["v. 開啟"]);
 assert.deepStrictEqual(labels("turn off"), ["v. 關掉"]);
 assert.deepStrictEqual(labels("get up"), ["v. 起床"]);
-assert.deepStrictEqual(labels("wake up"), ["v. 醒來 / 叫醒"]);
+assertSameLabels("wake up", ["v. 醒來", "v. 叫醒"]);
 assert.deepStrictEqual(labels("find out"), ["v. 找出 / 查明"]);
+assertSameLabels("care for", ["v. 照顧", "v. 關心 / 在乎"]);
+assertSameLabels("bring up", ["v. 提出", "v. 撫養"]);
+assertSameLabels("go through", ["v. 經歷", "v. 仔細查看 / 檢查"]);
+assertSameLabels("turn down", ["v. 拒絕", "v. 調低"]);
+assertSameLabels("account for", ["v. 佔", "v. 解釋 / 是...原因"]);
+assertSameLabels("contribute to", ["v. 促成 / 導致", "v. 貢獻"]);
+assertSameLabels("go on", ["v. 繼續", "v. 發生 / 進行"]);
+assertSameLabels("get on", ["v. 上車", "v. 相處"]);
+assertSameLabels("break down", ["v. 故障", "v. 崩潰 / 情緒失控", "v. 分解 / 拆解"]);
+assertSameLabels("take place", ["v. 發生", "v. 舉行"]);
+assertSameLabels("bring out", ["v. 出版 / 推出", "v. 使顯現 / 帶出"]);
+assertSameLabels("refer to", ["v. 指的是", "v. 提及 / 提到"]);
+assertSameLabels("set up", ["v. 創立 / 設立", "v. 安裝 / 設定"]);
+assertSameLabels("take over", ["v. 接管", "v. 收購"]);
+assertSameLabels("take up", ["v. 佔用", "v. 開始從事 / 開始學"]);
+assertSameLabels("come up with", ["v. 想出", "v. 提出"]);
+assertSameLabels("spring", ["n. 春天", "n. 泉水", "v. 跳起 / 彈起"]);
+assertSameLabels("lie", ["v. 說謊", "n. 謊言", "v. 躺 / 平放"]);
+assertSameLabels("permit", ["v. 允許", "n. 許可證"]);
+assertSameLabels("charge", ["v. 充電", "v. 收費", "v. 指控", "n. 費用"]);
+assertSameLabels("conduct", ["n. 行為", "v. 進行 / 指揮"]);
+assertSameLabels("object", ["n. 物件", "v. 反對"]);
+assertSameLabels("plant", ["n. 工廠", "n. 植物", "v. 種植"]);
+assertSameLabels("project", ["n. 專題 / 項目", "v. 預計 / 投射"]);
+assertSameLabels("refuse", ["n. 垃圾 / 廢物", "v. 拒絕"]);
 assert.deepStrictEqual(labels("many"), ["det. 很多"]);
 assert.deepStrictEqual(labels("much"), ["det. 很多"]);
-assert.deepStrictEqual(labels("more than"), ["ph. 多於 / 超過"]);
-assert.deepStrictEqual(labels("less than"), ["ph. 少於"]);
+assert.deepStrictEqual(labels("more than"), ["prep. 多於 / 超過"]);
+assert.deepStrictEqual(labels("less than"), ["prep. 少於"]);
 assert.deepStrictEqual(labels("a lot of"), ["ph. 很多"]);
 assert.deepStrictEqual(labels("a piece of"), ["ph. 一塊 / 一張 / 一件"]);
 assert.deepStrictEqual(labels("a pair of"), ["ph. 一雙 / 一對"]);

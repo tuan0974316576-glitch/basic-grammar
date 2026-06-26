@@ -50,13 +50,14 @@
       const word = normalizeWord(entry.word);
       const meaning = normalizeMeaning(entry.meaning);
       if (!word || !meaning) return;
+      const type = inferType(word, entry.type);
       const normalizedEntry = {
         id: String(entry.id || `cc-reverse-${word}`),
         word,
         display: String(entry.display || word).trim() || word,
         meaning,
         pos: String(entry.pos || "").trim().toLowerCase(),
-        type: inferType(word, entry.type),
+        type,
         source: "cc-cedict-reverse",
         sourceEntryId: String(entry.sourceEntryId || entry.id || `cc-reverse-${word}`),
         sourceCount: Number(entry.sourceCount) || 1,
