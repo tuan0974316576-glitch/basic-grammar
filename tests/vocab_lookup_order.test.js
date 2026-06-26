@@ -324,6 +324,14 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("expression")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:表達:curated-sense-bank",
+      "noun:表情:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("feature")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "noun:特色:curated-sense-bank",
@@ -1768,6 +1776,14 @@ function assertStudentLookupContract(word, matches) {
     [
       "noun:強調:curated-sense-bank",
       "noun:重點:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("extent")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:程度:curated-sense-bank",
+      "noun:範圍:curated-sense-bank"
     ]
   );
 

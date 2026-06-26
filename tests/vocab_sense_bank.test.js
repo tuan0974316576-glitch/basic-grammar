@@ -752,6 +752,10 @@ assert.deepStrictEqual(
   ["noun:經驗:override", "noun:經歷:override", "verb:經歷:override", "verb:體驗:override"]
 );
 assert.deepStrictEqual(
+  senseBank.lookup("expression").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["noun:表達:override", "noun:表情:override"]
+);
+assert.deepStrictEqual(
   senseBank.lookup("feature").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
   ["noun:特色:override", "noun:特徵:override", "verb:以...為特色:override", "verb:由...主演:override"]
 );
@@ -2637,6 +2641,10 @@ assert.deepStrictEqual(
 assert.deepStrictEqual(
   senseBank.lookup("emphasis").map((entry) => `${entry.pos}:${entry.meaning}`),
   ["noun:強調", "noun:重點"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("extent").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:程度", "noun:範圍"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("forbid").map((entry) => `${entry.pos}:${entry.meaning}`),

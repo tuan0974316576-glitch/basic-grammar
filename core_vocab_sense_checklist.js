@@ -280,6 +280,8 @@
   { word: "experience", label: "n. 經歷" },
   { word: "experience", label: "v. 經歷" },
   { word: "experience", label: "v. 體驗" },
+  { word: "expression", label: "n. 表達" },
+  { word: "expression", label: "n. 表情" },
   { word: "feature", label: "n. 特色" },
   { word: "feature", label: "n. 特徵" },
   { word: "feature", label: "v. 以...為特色" },
@@ -735,6 +737,8 @@
   { word: "district", label: "n. 地區" },
   { word: "ministry", label: "n. 政府部門" },
   { word: "steak", label: "n. 牛扒" },
+  { word: "extent", label: "n. 程度" },
+  { word: "extent", label: "n. 範圍" },
   { word: "white-collar worker", label: "n. 白領人士" },
   { word: "have no choice but to", label: "v. 別無選擇，只好" }
 ]);
