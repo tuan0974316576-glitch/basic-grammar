@@ -67,7 +67,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("cause").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["noun:原因", "verb:導致 / 引起"]
+  ["noun:原因", "verb:導致", "verb:引起"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("result").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -1051,7 +1051,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("case").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["noun:情況", "noun:個案", "noun:案件", "noun:盒 / 箱"]
+  ["noun:情況", "noun:個案", "noun:案件", "noun:盒", "noun:箱"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("based on").map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),
@@ -1347,7 +1347,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("cabinet").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["noun:櫥櫃 / 內閣"]
+  ["noun:櫥櫃", "noun:內閣"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("calendar").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -1355,11 +1355,11 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("canvas").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["noun:畫布 / 帆布"]
+  ["noun:畫布", "noun:帆布"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("capital").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["noun:首都", "noun:資本 / 資金", "adjective:大寫的"]
+  ["noun:首都", "noun:資本", "noun:資金", "adjective:大寫的"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("capability").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -1371,7 +1371,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("career").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["noun:職業 / 事業"]
+  ["noun:職業", "noun:事業"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("carve").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -1379,7 +1379,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("cease").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["verb:停止 / 終止"]
+  ["verb:停止", "verb:終止"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("century").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -1388,6 +1388,10 @@ assert.deepStrictEqual(
 assert.deepStrictEqual(
   senseBank.lookup("charm").map((entry) => `${entry.pos}:${entry.meaning}`),
   ["noun:魅力"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("charming").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["adjective:迷人的", "adjective:有魅力的"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("challenge").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -1403,7 +1407,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("chest").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["noun:胸部 / 胸腔"]
+  ["noun:胸部", "noun:胸腔"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("classify").map((entry) => `${entry.pos}:${entry.meaning}`),

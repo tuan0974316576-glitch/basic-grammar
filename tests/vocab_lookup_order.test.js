@@ -550,7 +550,8 @@ function assertStudentLookupContract(word, matches) {
     (await lookupForStudent("capital")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "noun:首都:curated-sense-bank",
-      "noun:資本 / 資金:curated-sense-bank",
+      "noun:資本:curated-sense-bank",
+      "noun:資金:curated-sense-bank",
       "adjective:大寫的:curated-sense-bank"
     ]
   );
@@ -1022,7 +1023,8 @@ function assertStudentLookupContract(word, matches) {
       "noun:情況:curated-sense-bank",
       "noun:個案:curated-sense-bank",
       "noun:案件:curated-sense-bank",
-      "noun:盒 / 箱:curated-sense-bank"
+      "noun:盒:curated-sense-bank",
+      "noun:箱:curated-sense-bank"
     ]
   );
 
@@ -1032,7 +1034,8 @@ function assertStudentLookupContract(word, matches) {
       "case:noun:情況:curated-sense-bank",
       "case:noun:個案:curated-sense-bank",
       "case:noun:案件:curated-sense-bank",
-      "case:noun:盒 / 箱:curated-sense-bank"
+      "case:noun:盒:curated-sense-bank",
+      "case:noun:箱:curated-sense-bank"
     ]
   );
 
@@ -1238,14 +1241,16 @@ function assertStudentLookupContract(word, matches) {
     (await lookupForStudent("causes")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "cause:noun:原因:curated-sense-bank",
-      "cause:verb:導致 / 引起:curated-sense-bank"
+      "cause:verb:導致:curated-sense-bank",
+      "cause:verb:引起:curated-sense-bank"
     ]
   );
   assert.deepStrictEqual(
     (await lookupForStudent("cause")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "noun:原因:curated-sense-bank",
-      "verb:導致 / 引起:curated-sense-bank"
+      "verb:導致:curated-sense-bank",
+      "verb:引起:curated-sense-bank"
     ]
   );
 
