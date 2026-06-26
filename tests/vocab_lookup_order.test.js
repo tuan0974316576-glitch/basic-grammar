@@ -2088,6 +2088,46 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("late")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "adjective:遲的:curated-sense-bank",
+      "adjective:晚的:curated-sense-bank",
+      "adjective:已故的:curated-sense-bank",
+      "adverb:遲:curated-sense-bank",
+      "adverb:晚:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("learn")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:學習:curated-sense-bank",
+      "verb:得知:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("leave")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:離開:curated-sense-bank",
+      "verb:留下:curated-sense-bank",
+      "verb:留給:curated-sense-bank",
+      "noun:假期 / 休假:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("line")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:線:curated-sense-bank",
+      "noun:行:curated-sense-bank",
+      "noun:隊伍:curated-sense-bank",
+      "noun:台詞:curated-sense-bank",
+      "verb:沿...排列:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("attribute")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "noun:特徵 / 屬性:curated-sense-bank",

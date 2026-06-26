@@ -925,7 +925,17 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("late").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
-  ["adjective:遲的:override", "adjective:晚的:override", "adverb:遲:override", "adverb:晚:override"]
+  [
+    "adjective:遲的:override",
+    "adjective:晚的:override",
+    "adjective:已故的:override",
+    "adverb:遲:override",
+    "adverb:晚:override"
+  ]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("learn").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["verb:學習:override", "verb:得知:override"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("moment").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
@@ -1919,6 +1929,14 @@ assert.deepStrictEqual(
 assert.deepStrictEqual(
   senseBank.lookup("host").map((entry) => `${entry.pos}:${entry.meaning}`),
   ["noun:主持人", "noun:主人", "verb:主持", "verb:舉辦"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("leave").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:離開", "verb:留下", "verb:留給", "noun:假期 / 休假"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("line").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:線", "noun:行", "noun:隊伍", "noun:台詞", "verb:沿...排列"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("household").map((entry) => `${entry.pos}:${entry.meaning}`),

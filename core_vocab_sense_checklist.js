@@ -763,6 +763,12 @@
   { word: "host", label: "n. 主人" },
   { word: "host", label: "v. 主持" },
   { word: "host", label: "v. 舉辦" },
+  { word: "late", label: "adj. 已故的" },
+  { word: "learn", label: "v. 得知" },
+  { word: "leave", label: "v. 留給" },
+  { word: "line", label: "n. 線" },
+  { word: "line", label: "n. 行" },
+  { word: "line", label: "n. 台詞" },
   { word: "white-collar worker", label: "n. 白領人士" },
   { word: "have no choice but to", label: "v. 別無選擇，只好" }
 ]);
