@@ -303,6 +303,32 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("event")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:活動:curated-sense-bank",
+      "noun:事件:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("keep")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:保持:curated-sense-bank",
+      "verb:保留:curated-sense-bank",
+      "verb:留著:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("meet")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:遇見:curated-sense-bank",
+      "verb:見面:curated-sense-bank",
+      "verb:滿足 / 符合:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("move")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "verb:移動:curated-sense-bank",
