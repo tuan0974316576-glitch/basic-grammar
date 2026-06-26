@@ -581,12 +581,34 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("campaign")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:活動:curated-sense-bank",
+      "noun:運動:curated-sense-bank",
+      "verb:發起運動:curated-sense-bank",
+      "verb:參與運動:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("capital")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "noun:首都:curated-sense-bank",
       "noun:資本:curated-sense-bank",
       "noun:資金:curated-sense-bank",
       "adjective:大寫的:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("capture")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:捕捉:curated-sense-bank",
+      "verb:俘虜:curated-sense-bank",
+      "verb:拍攝:curated-sense-bank",
+      "verb:記錄:curated-sense-bank",
+      "noun:捕獲:curated-sense-bank",
+      "noun:佔領:curated-sense-bank"
     ]
   );
 
