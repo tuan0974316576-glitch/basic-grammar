@@ -5080,6 +5080,284 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("fad")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:一時熱潮 / 一時風尚:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("fascinate")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:使著迷 / 使深感興趣:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("fatigue")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:疲勞 / 疲倦:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("feast")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:盛宴 / 大餐:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("fencing")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:劍擊 / 圍欄:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("ferment")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:發酵:curated-sense-bank",
+      "noun:發酵 / 動盪:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("fetch")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:取來 / 賣得（某價錢）:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("figures")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "figure:noun:數字:curated-sense-bank",
+      "figure:noun:人物:curated-sense-bank",
+      "figure:noun:圖表:curated-sense-bank",
+      "figure:noun:身材:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("filling")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:餡料 / 填充物:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("fined")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["fine:verb:罰款:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("fines")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "fine:noun:罰款:curated-sense-bank",
+      "fine:verb:罰款:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("flakes")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["flake:noun:薄片 / 小碎片:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("flamingo")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:火烈鳥:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("flap")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:拍動 / 擺動:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("flavourful")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adjective:美味的 / 味道濃郁的:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("flaws")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["flaw:noun:缺陷 / 瑕疵:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("fleets")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["fleet:noun:船隊 / 車隊:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("flex")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:伸展 / 活動一下:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("flip")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:翻轉 / 翻動:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("flooding")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:水浸 / 洪水氾濫:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("fluctuate")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:波動 / 起伏不定:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("flush")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:沖廁 / 沖走:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("flyer")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:傳單:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("foodie")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:美食愛好者 / 吃貨:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("fountain")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:噴泉:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("fracture")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:骨折 / 裂縫:curated-sense-bank",
+      "verb:使斷裂 / 使破裂:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("fragrance")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:香味 / 香氣:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("frequenters")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["frequenter:noun:常客:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("freshwater")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adjective:淡水的:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("fume")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:煙霧 / 廢氣:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("fungi")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["fungus:noun:真菌:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("furnish")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:布置 / 為...配備家具:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("furnishings")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["furnishing:noun:家具 / 室內陳設:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("futile")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adjective:徒勞無功的 / 無效的:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("flurry companion")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["furry companion:phrase:noun:毛孩 / 寵物:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("galleries")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "gallery:noun:畫廊:curated-sense-bank",
+      "gallery:noun:展覽館:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("garment")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:服裝 / 衣服:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("genes")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["gene:noun:基因:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("genetics")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:遺傳學 / 基因:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("germ")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:細菌 / 病菌:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("gigantic")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adjective:巨大的 / 龐大的:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("gimmicks")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["gimmick:noun:噱頭 / 花招:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("gist")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:主旨 / 要點:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("glitz")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:浮華 / 耀眼魅力:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("glitzy")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adjective:華麗的 / 耀眼的:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("gossip")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:八卦 / 閒話:curated-sense-bank",
+      "verb:講八卦 / 說閒話:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("gourmet")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "adjective:美食的 / 高級美食的:curated-sense-bank",
+      "noun:美食家:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("graduates")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["graduate:noun:畢業生:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("graphs")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["graph:noun:圖表:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("gravitate")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:被吸引 / 受吸引而去:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("graze")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:吃草 / 放牧:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("public facilities")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
     ["public facility:phrase:noun:公共設施:curated-sense-bank"]
   );
