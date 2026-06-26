@@ -566,6 +566,103 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("save")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:儲存:curated-sense-bank",
+      "verb:拯救:curated-sense-bank",
+      "verb:節省:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("safe")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "adjective:安全的:curated-sense-bank",
+      "noun:保險箱:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("file")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:檔案 / 文件:curated-sense-bank",
+      "verb:歸檔:curated-sense-bank",
+      "verb:提交:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("monitor")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:班長 / 監察員:curated-sense-bank",
+      "noun:螢幕 / 顯示器:curated-sense-bank",
+      "verb:監察 / 監控:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("diet")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:日常飲食:curated-sense-bank",
+      "noun:節食:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("notebook")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:筆記簿:curated-sense-bank",
+      "noun:手提電腦:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("rubber")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:擦膠:curated-sense-bank",
+      "noun:橡膠:curated-sense-bank",
+      "adjective:橡膠的:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("course")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:課程:curated-sense-bank",
+      "noun:過程:curated-sense-bank",
+      "noun:一道菜:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("lesson")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:課堂 / 課:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("paper")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:紙:curated-sense-bank",
+      "noun:試卷:curated-sense-bank",
+      "noun:論文 / 報告:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("exercise")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:練習:curated-sense-bank",
+      "noun:運動:curated-sense-bank",
+      "verb:運動 / 鍛鍊:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("practise")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:練習:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("hawker")).map((entry) => `${entryPos(entry)}:${entry.meaning}:${entry.source}`),
     ["noun:小販:curated-sense-bank"]
   );
