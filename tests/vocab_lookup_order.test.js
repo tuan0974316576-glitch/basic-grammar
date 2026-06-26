@@ -3973,6 +3973,21 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("fumble")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:笨拙地摸索 / 失手處理:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("in contrast,")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["in contrast:phrase:adverb:相反 / 相比之下:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("pro-")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adjective:支持...的 / 親...的:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("provided (that)")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
     ["provided that:phrase:conjunction:只要 / 假如:curated-sense-bank"]
   );
@@ -3983,6 +3998,16 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("Rather,")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "rather:adverb:頗:curated-sense-bank",
+      "rather:adverb:相當:curated-sense-bank",
+      "rather:adverb:反而:curated-sense-bank",
+      "rather:adverb:而是:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("regardless of")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
     ["phrase:preposition:不論 / 不管:curated-sense-bank"]
   );
@@ -3990,6 +4015,11 @@ function assertStudentLookupContract(word, matches) {
   assert.deepStrictEqual(
     (await lookupForStudent("rely on")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
     ["phrase:verb:依賴 / 依靠:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("rely on /")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["rely on:phrase:verb:依賴 / 依靠:curated-sense-bank"]
   );
 
   assert.deepStrictEqual(
