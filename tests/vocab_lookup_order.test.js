@@ -2160,6 +2160,104 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("resolve")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:解決:curated-sense-bank",
+      "verb:下定決心:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("honour")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:榮譽:curated-sense-bank",
+      "verb:尊重 / 表揚:curated-sense-bank",
+      "verb:履行承諾:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("review")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:溫習 / 檢討:curated-sense-bank",
+      "noun:評論 / 回顧:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("treat")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:對待:curated-sense-bank",
+      "verb:治療:curated-sense-bank",
+      "verb:請客:curated-sense-bank",
+      "noun:款待 / 樂事:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("serve")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:服務:curated-sense-bank",
+      "verb:供應 / 上菜:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("permit")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:允許:curated-sense-bank",
+      "noun:許可證:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("object")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:物件:curated-sense-bank",
+      "verb:反對:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("refuse")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:拒絕:curated-sense-bank",
+      "noun:垃圾 / 廢物:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("commit")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:犯 / 承諾:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("focus")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:集中 / 聚焦:curated-sense-bank",
+      "noun:焦點 / 重點:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("key")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:鑰匙:curated-sense-bank",
+      "noun:關鍵:curated-sense-bank",
+      "adjective:重要的 / 關鍵的:curated-sense-bank",
+      "verb:輸入:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("lower")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "adjective:較低的:curated-sense-bank",
+      "verb:降低:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("manage")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "verb:管理:curated-sense-bank",
