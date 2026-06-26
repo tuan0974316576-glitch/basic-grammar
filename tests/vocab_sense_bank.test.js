@@ -582,11 +582,11 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("description").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
-  ["noun:描述 / 說明:override"]
+  ["noun:描述:override", "noun:說明:override"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("picture").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
-  ["noun:圖畫 / 相片:override", "verb:想像 / 描繪:override"]
+  ["noun:圖畫:override", "noun:相片:override", "verb:想像:override", "verb:描繪:override"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("purpose").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
@@ -595,6 +595,30 @@ assert.deepStrictEqual(
 assert.deepStrictEqual(
   senseBank.lookup("probably").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
   ["adverb:很可能 / 大概:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("regular").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["adjective:定期的:override", "adjective:規則的:override", "noun:常客:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("stage").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["noun:舞台:override", "noun:階段:override", "verb:上演:override", "verb:舉辦:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("thought").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["noun:想法:override", "noun:念頭:override", "verb:think 的過去式 / 過去分詞:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("yet").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["adverb:尚未:override", "adverb:還:override", "conjunction:但是:override", "conjunction:然而:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("even").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["adverb:甚至:override", "adjective:平坦的:override", "adjective:平均的:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("if").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["conjunction:如果:override", "conjunction:是否:override"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("by").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
@@ -610,7 +634,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("or").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
-  ["conjunction:或者 / 否則:override"]
+  ["conjunction:或者:override", "conjunction:否則:override"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("will").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
@@ -641,6 +665,10 @@ assert.deepStrictEqual(
   ["noun:活動:override", "noun:事件:override"]
 );
 assert.deepStrictEqual(
+  senseBank.lookup("live").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["verb:住:override", "verb:生活:override", "adjective:現場直播的:override", "adverb:現場直播地:override"]
+);
+assert.deepStrictEqual(
   senseBank.lookup("move").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
   ["verb:移動:override", "verb:搬動:override", "verb:感動:override", "noun:行動:override", "noun:移動:override"]
 );
@@ -650,11 +678,11 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("apply").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
-  ["verb:申請:override", "verb:應用 / 使用:override"]
+  ["verb:申請:override", "verb:應用:override", "verb:使用:override"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("count").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
-  ["verb:數 / 計算:override", "verb:重要 / 算數:override", "noun:數目 / 總數:override"]
+  ["verb:數:override", "verb:計算:override", "verb:重要:override", "verb:算數:override", "noun:數目:override", "noun:總數:override"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("direct").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
@@ -847,6 +875,10 @@ assert.deepStrictEqual(
 assert.deepStrictEqual(
   senseBank.lookup("involve").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
   ["verb:涉及:override", "verb:牽涉:override"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("individual").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
+  ["noun:個人:override", "adjective:個別的:override", "adjective:個人的:override"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("still").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),

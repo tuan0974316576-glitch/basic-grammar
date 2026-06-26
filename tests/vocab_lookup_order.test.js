@@ -456,6 +456,27 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("apply")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:申請:curated-sense-bank",
+      "verb:應用:curated-sense-bank",
+      "verb:使用:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("count")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:數:curated-sense-bank",
+      "verb:計算:curated-sense-bank",
+      "verb:重要:curated-sense-bank",
+      "verb:算數:curated-sense-bank",
+      "noun:數目:curated-sense-bank",
+      "noun:總數:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("movement")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "noun:移動:curated-sense-bank",
