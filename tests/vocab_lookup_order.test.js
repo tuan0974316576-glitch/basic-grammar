@@ -4711,6 +4711,148 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("diagonal")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:對角線:curated-sense-bank",
+      "adjective:對角線的 / 斜的:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("digestion")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:消化:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("diminishing")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adjective:逐漸減少的 / 遞減的:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("discern")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:看出 / 察覺:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("discernible")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adjective:可辨別的 / 看得出的:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("discreet")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adjective:謹慎的 / 審慎的:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("discriminate")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:歧視:curated-sense-bank",
+      "verb:區分 / 分辨:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("disdain")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:蔑視 / 鄙視:curated-sense-bank",
+      "verb:蔑視 / 鄙視:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("disfigured")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adjective:毀容的 / 外貌受損的:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("disgraceful")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adjective:不光彩的 / 可恥的:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("disguise")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:偽裝:curated-sense-bank",
+      "verb:偽裝 / 掩飾:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("disheartened")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adjective:感到灰心的 / 沮喪的:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("disheartening")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adjective:令人灰心的 / 令人沮喪的:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("dismayed")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adjective:感到沮喪的 / 震驚的:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("dismaying")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adjective:令人沮喪的 / 令人震驚的:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("distraction")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:令人分心的事 / 分心:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("distill")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["distil:verb:蒸餾:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("dodge")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:避開 / 閃避:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("domesticate")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:馴養 / 使馴化:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("doner")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:土耳其烤肉:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("doubtful")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adjective:懷疑的 / 不確定的:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("downpour")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:暴雨 / 傾盆大雨:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("drained")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adjective:筋疲力盡的 / 很累的:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("drawers")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["drawer:noun:抽屜:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("dubbed")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["dub:verb:稱為 / 給...起名:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("dwellers")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["dweller:noun:居民:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("public facilities")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
     ["public facility:phrase:noun:公共設施:curated-sense-bank"]
   );
