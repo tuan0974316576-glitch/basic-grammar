@@ -1299,7 +1299,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("benefit").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["noun:好處", "verb:有益於 / 受益"]
+  ["noun:好處", "verb:有益於", "verb:受益"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("belief").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -1331,7 +1331,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("budget").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["noun:預算", "verb:制定預算 / 節省開支"]
+  ["noun:預算", "verb:制定預算", "verb:節省開支"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("burn").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -1343,7 +1343,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("campaign").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["noun:活動 / 運動", "verb:發起運動 / 參與運動"]
+  ["noun:活動", "noun:運動", "verb:發起運動", "verb:參與運動"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("cabinet").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -1391,7 +1391,15 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("challenge").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["noun:挑戰", "verb:挑戰 / 質疑"]
+  ["noun:挑戰", "verb:挑戰", "verb:質疑"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("capture").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:捕捉", "verb:俘虜", "verb:拍攝", "verb:記錄", "noun:捕獲", "noun:佔領"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("casual").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["adjective:隨便的", "adjective:非正式的", "adjective:偶然的"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("chest").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -4150,7 +4158,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("campaigns").map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}`),
-  ["campaign:noun:活動 / 運動"]
+  ["campaign:noun:活動", "campaign:noun:運動"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("candidates").map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}`),
