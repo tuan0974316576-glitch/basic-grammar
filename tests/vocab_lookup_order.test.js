@@ -872,9 +872,31 @@ function assertStudentLookupContract(word, matches) {
     (await lookupForStudent("present")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "noun:禮物:curated-sense-bank",
+      "noun:現在:curated-sense-bank",
+      "adjective:現在的:curated-sense-bank",
       "adjective:在場的:curated-sense-bank",
       "verb:呈現:curated-sense-bank",
-      "verb:展示:curated-sense-bank"
+      "verb:展示:curated-sense-bank",
+      "verb:頒發:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("period")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:時期 / 期間:curated-sense-bank",
+      "noun:課節:curated-sense-bank",
+      "noun:句號:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("run")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:跑:curated-sense-bank",
+      "verb:經營 / 營運:curated-sense-bank",
+      "verb:運行:curated-sense-bank",
+      "noun:跑步 / 一段路程:curated-sense-bank"
     ]
   );
 
@@ -1907,6 +1929,8 @@ function assertStudentLookupContract(word, matches) {
     (await lookupForStudent("record")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "noun:記錄:curated-sense-bank",
+      "noun:紀錄:curated-sense-bank",
+      "noun:唱片:curated-sense-bank",
       "verb:記錄:curated-sense-bank",
       "verb:錄音:curated-sense-bank",
       "verb:錄影:curated-sense-bank"

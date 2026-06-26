@@ -490,7 +490,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("record").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["noun:記錄", "verb:記錄", "verb:錄音", "verb:錄影"]
+  ["noun:記錄", "noun:紀錄", "noun:唱片", "verb:記錄", "verb:錄音", "verb:錄影"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("right").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -569,7 +569,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("present").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["noun:禮物", "adjective:在場的", "verb:呈現", "verb:展示"]
+  ["noun:禮物", "noun:現在", "adjective:現在的", "adjective:在場的", "verb:呈現", "verb:展示", "verb:頒發"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("cub").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -1109,6 +1109,14 @@ assert.deepStrictEqual(
 assert.deepStrictEqual(
   senseBank.lookup("point").map((entry) => `${entry.pos}:${entry.meaning}`),
   ["noun:重點", "noun:分數", "noun:點 / 小點", "verb:指著 / 指向"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("period").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:時期 / 期間", "noun:課節", "noun:句號"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("run").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:跑", "verb:經營 / 營運", "verb:運行", "noun:跑步 / 一段路程"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("case").map((entry) => `${entry.pos}:${entry.meaning}`),

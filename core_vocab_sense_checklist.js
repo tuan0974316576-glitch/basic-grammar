@@ -769,6 +769,13 @@
   { word: "line", label: "n. 線" },
   { word: "line", label: "n. 行" },
   { word: "line", label: "n. 台詞" },
+  { word: "period", label: "n. 句號" },
+  { word: "present", label: "n. 現在" },
+  { word: "present", label: "adj. 現在的" },
+  { word: "present", label: "v. 頒發" },
+  { word: "record", label: "n. 紀錄" },
+  { word: "record", label: "n. 唱片" },
+  { word: "run", label: "v. 運行" },
   { word: "white-collar worker", label: "n. 白領人士" },
   { word: "have no choice but to", label: "v. 別無選擇，只好" }
 ]);
