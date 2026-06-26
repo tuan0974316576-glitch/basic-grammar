@@ -2152,6 +2152,97 @@ function assertStudentLookupContract(word, matches) {
   );
 
   assert.deepStrictEqual(
+    (await lookupForStudent("maintain")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:維持 / 保持:curated-sense-bank",
+      "verb:保養 / 維護:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("manage")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:管理:curated-sense-bank",
+      "verb:設法做到:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("manufacture")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:製造:curated-sense-bank",
+      "noun:製造:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("measure")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:測量:curated-sense-bank",
+      "noun:措施:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("minor")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adjective:次要的 / 輕微的:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("observe")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:觀察:curated-sense-bank",
+      "verb:遵守:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("occur")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:發生:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("operate")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:操作 / 運作:curated-sense-bank",
+      "verb:做手術:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("plain")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "adjective:簡單的 / 樸素的:curated-sense-bank",
+      "adjective:清楚的 / 明顯的:curated-sense-bank",
+      "noun:平原:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("secure")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "adjective:安全的 / 穩固的:curated-sense-bank",
+      "verb:取得 / 獲得 / 確保:curated-sense-bank",
+      "verb:保護 / 固定:curated-sense-bank"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("select")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:選擇 / 挑選:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("series")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:系列 / 一連串:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("significance")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:重要性 / 意義:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
     (await lookupForStudent("create")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "verb:創造:curated-sense-bank",
