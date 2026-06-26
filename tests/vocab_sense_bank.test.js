@@ -1394,6 +1394,26 @@ assert.deepStrictEqual(
   ["noun:子句", "noun:條款"]
 );
 assert.deepStrictEqual(
+  senseBank.lookup("combination").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:組合", "noun:結合"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("comic").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["adjective:滑稽的", "adjective:喜劇的", "noun:漫畫書"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("command").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:命令", "verb:命令", "verb:指揮", "noun:掌握", "noun:控制能力"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("comparative").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["adjective:比較的", "adjective:相對的"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("concerned").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["adjective:擔心的", "adjective:有關的", "adjective:相關的"]
+);
+assert.deepStrictEqual(
   senseBank.lookup("brief").map((entry) => `${entry.pos}:${entry.meaning}`),
   ["adjective:短暫的", "adjective:簡短的", "noun:摘要", "noun:指示", "verb:向...簡介"]
 );
