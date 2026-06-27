@@ -5111,6 +5111,7 @@
     ["qualify", "verb", "使合資格", {"level":"B1"}],
     ["quarter", "noun", "四分之一", {"level":"A2","overrideTeacher":true}],
     ["quarter", "noun", "季度 / 一季", {"level":"B1","overrideTeacher":true}],
+    ["quarter", "noun", "四分人", {"level":"A2","overrideTeacher":true,"hidden":true}],
     ["queue", "noun", "隊伍", {"level":"B1"}],
     ["queue", "verb", "排隊", {"level":"B1"}],
     ["quit", "verb", "離開 / 辭職", {"level":"B1"}],
