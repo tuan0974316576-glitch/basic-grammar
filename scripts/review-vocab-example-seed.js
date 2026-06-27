@@ -31,6 +31,8 @@ function getMismatchReason(entry = {}) {
     .join(" ");
   if (entry.word === "cons" && meaning === "缺點") return "";
   if (entry.word === "but" && meaning === "但是") return "";
+  if (entry.word === "however" && /但是|可是/.test(meaning)) return "";
+  if (entry.word === "if" && /如果|是否/.test(meaning)) return "";
   if (SUSPICIOUS_MEANING_RE.test(meaning)) return "suspicious meaning";
   if (/\d$/.test(String(entry.word || ""))) return "word contains trailing number";
   if (/因為\+句子/.test(meaning) && entry.word !== "because") return "non-because causal phrase";
