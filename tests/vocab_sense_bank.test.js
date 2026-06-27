@@ -4952,4 +4952,1040 @@ assert.deepStrictEqual(
   assert.ok(entry.overrideTeacher, `${word} should override noisy imported meanings`);
 });
 
+const phrasesTwoEntries = [
+  {
+    "word": "rise to fame",
+    "meaning": "變得出名"
+  },
+  {
+    "word": "take for granted",
+    "meaning": "視為理所當然"
+  },
+  {
+    "word": "catch one's eye",
+    "meaning": "吸引某人的注意"
+  },
+  {
+    "word": "pay attention to",
+    "meaning": "注意 / 專注於"
+  },
+  {
+    "word": "make a difference",
+    "meaning": "產生影響 / 帶來改變"
+  },
+  {
+    "word": "take advantage of",
+    "meaning": "利用 / 佔便宜"
+  },
+  {
+    "word": "keep in mind",
+    "meaning": "記在心上"
+  },
+  {
+    "word": "catch someone red-handed",
+    "meaning": "當場抓到某人做壞事"
+  },
+  {
+    "word": "bear in mind",
+    "meaning": "牢記"
+  },
+  {
+    "word": "make sense",
+    "meaning": "有道理 / 說得通"
+  },
+  {
+    "word": "take a risk",
+    "meaning": "冒險"
+  },
+  {
+    "word": "lose one's temper",
+    "meaning": "發脾氣"
+  },
+  {
+    "word": "change one's mind",
+    "meaning": "改變主意"
+  },
+  {
+    "word": "make progress",
+    "meaning": "取得進步"
+  },
+  {
+    "word": "make an effort",
+    "meaning": "付出努力"
+  },
+  {
+    "word": "take action",
+    "meaning": "採取行動"
+  },
+  {
+    "word": "have a look",
+    "meaning": "看一看"
+  },
+  {
+    "word": "set an example",
+    "meaning": "樹立榜樣"
+  },
+  {
+    "word": "pose a threat",
+    "meaning": "構成威脅"
+  },
+  {
+    "word": "come into effect",
+    "meaning": "生效 / 實施"
+  },
+  {
+    "word": "take responsibility for",
+    "meaning": "為...負責"
+  },
+  {
+    "word": "play a role in",
+    "meaning": "在...中扮演角色 / 起作用"
+  },
+  {
+    "word": "bring to light",
+    "meaning": "揭露 / 揭示"
+  },
+  {
+    "word": "put an end to",
+    "meaning": "結束 / 終止"
+  },
+  {
+    "word": "take effect",
+    "meaning": "見效 / 起作用"
+  },
+  {
+    "word": "run a business",
+    "meaning": "經營業務"
+  },
+  {
+    "word": "keep an eye on",
+    "meaning": "密切注意 / 照顧"
+  },
+  {
+    "word": "make a living",
+    "meaning": "謀生"
+  },
+  {
+    "word": "take place",
+    "meaning": "發生 / 舉行"
+  },
+  {
+    "word": "do one's best",
+    "meaning": "盡最大的努力"
+  },
+  {
+    "word": "keep track of",
+    "meaning": "記錄 / 追蹤"
+  },
+  {
+    "word": "break a promise",
+    "meaning": "違背承諾"
+  },
+  {
+    "word": "keep a secret",
+    "meaning": "保守秘密"
+  },
+  {
+    "word": "have a word with",
+    "meaning": "與某人談話"
+  },
+  {
+    "word": "take the blame",
+    "meaning": "承擔責任 / 背黑鍋"
+  },
+  {
+    "word": "make room for",
+    "meaning": "為...騰出空間"
+  },
+  {
+    "word": "meet expectations",
+    "meaning": "符合預期"
+  },
+  {
+    "word": "run a risk",
+    "meaning": "冒風險"
+  },
+  {
+    "word": "lose track of",
+    "meaning": "失去聯絡 / 忘記時間"
+  },
+  {
+    "word": "draw one's attention",
+    "meaning": "吸引某人的注意"
+  },
+  {
+    "word": "cast doubt on",
+    "meaning": "對...產生懷疑"
+  },
+  {
+    "word": "fall in love",
+    "meaning": "戀愛"
+  },
+  {
+    "word": "make a decision",
+    "meaning": "做出決定"
+  },
+  {
+    "word": "gain experience",
+    "meaning": "獲得經驗"
+  },
+  {
+    "word": "reach an agreement",
+    "meaning": "達成協議"
+  },
+  {
+    "word": "bridge the gap",
+    "meaning": "縮小差距 / 消除隔閡"
+  },
+  {
+    "word": "break the ice",
+    "meaning": "打破僵局 / 破冰"
+  },
+  {
+    "word": "make an appointment",
+    "meaning": "預約"
+  },
+  {
+    "word": "pay a visit",
+    "meaning": "拜訪"
+  },
+  {
+    "word": "save face",
+    "meaning": "挽回面子"
+  },
+  {
+    "word": "lose face",
+    "meaning": "丟臉"
+  },
+  {
+    "word": "make fun of",
+    "meaning": "嘲笑"
+  },
+  {
+    "word": "take a turn for the worse",
+    "meaning": "惡化"
+  },
+  {
+    "word": "take time",
+    "meaning": "花費時間"
+  },
+  {
+    "word": "waste time",
+    "meaning": "浪費時間"
+  },
+  {
+    "word": "spend money",
+    "meaning": "花錢"
+  },
+  {
+    "word": "catch fire",
+    "meaning": "著火"
+  },
+  {
+    "word": "give birth to",
+    "meaning": "出生 / 誕生"
+  },
+  {
+    "word": "pay the price",
+    "meaning": "付出代價"
+  },
+  {
+    "word": "break the law",
+    "meaning": "違法"
+  },
+  {
+    "word": "commit a crime",
+    "meaning": "犯罪"
+  },
+  {
+    "word": "shed light on",
+    "meaning": "闡明 / 有助於解釋"
+  },
+  {
+    "word": "place emphasis on",
+    "meaning": "強調"
+  },
+  {
+    "word": "achieve a goal",
+    "meaning": "達成目標"
+  },
+  {
+    "word": "fulfill a dream",
+    "meaning": "實現夢想"
+  },
+  {
+    "word": "make a mistake",
+    "meaning": "犯錯"
+  },
+  {
+    "word": "follow advice",
+    "meaning": "聽從建議"
+  },
+  {
+    "word": "voice an opinion",
+    "meaning": "表達意見"
+  },
+  {
+    "word": "solve a problem",
+    "meaning": "解決問題"
+  },
+  {
+    "word": "make an impression",
+    "meaning": "留下印象"
+  },
+  {
+    "word": "take a seat",
+    "meaning": "坐下"
+  },
+  {
+    "word": "give a speech",
+    "meaning": "發表演講"
+  },
+  {
+    "word": "hold an event",
+    "meaning": "舉辦活動"
+  },
+  {
+    "word": "win an award",
+    "meaning": "得獎"
+  },
+  {
+    "word": "lose a job",
+    "meaning": "失業"
+  },
+  {
+    "word": "find a solution",
+    "meaning": "尋找解決方案"
+  },
+  {
+    "word": "meet a deadline",
+    "meaning": "趕上截止日期"
+  },
+  {
+    "word": "miss an opportunity",
+    "meaning": "錯失機會"
+  },
+  {
+    "word": "raise a question",
+    "meaning": "提出問題"
+  },
+  {
+    "word": "conduct research",
+    "meaning": "進行研究"
+  },
+  {
+    "word": "gather information",
+    "meaning": "收集資訊"
+  },
+  {
+    "word": "build a reputation",
+    "meaning": "建立聲譽"
+  },
+  {
+    "word": "face a challenge",
+    "meaning": "面臨挑戰"
+  },
+  {
+    "word": "overcome an obstacle",
+    "meaning": "克服障礙"
+  },
+  {
+    "word": "take notes",
+    "meaning": "做筆記"
+  },
+  {
+    "word": "share an opinion",
+    "meaning": "分享觀點"
+  },
+  {
+    "word": "ask for permission",
+    "meaning": "請求准許"
+  },
+  {
+    "word": "give a warning",
+    "meaning": "給予警告"
+  },
+  {
+    "word": "express gratitude",
+    "meaning": "表達感激"
+  },
+  {
+    "word": "show respect",
+    "meaning": "展現尊重"
+  },
+  {
+    "word": "cause damage",
+    "meaning": "造成損害"
+  },
+  {
+    "word": "attract attention",
+    "meaning": "吸引注意"
+  },
+  {
+    "word": "generate revenue",
+    "meaning": "創造收入"
+  },
+  {
+    "word": "implement a policy",
+    "meaning": "實施政策"
+  },
+  {
+    "word": "establish a relationship",
+    "meaning": "建立關係"
+  },
+  {
+    "word": "narrow the options",
+    "meaning": "縮小選擇範圍"
+  },
+  {
+    "word": "keep a promise",
+    "meaning": "遵守承諾"
+  },
+  {
+    "word": "form a habit",
+    "meaning": "養成習慣"
+  },
+  {
+    "word": "run an experiment",
+    "meaning": "進行實驗"
+  },
+  {
+    "word": "take a shower",
+    "meaning": "洗澡"
+  },
+  {
+    "word": "clear one's throat",
+    "meaning": "清喉嚨"
+  },
+  {
+    "word": "draw a conclusion",
+    "meaning": "得出結論"
+  },
+  {
+    "word": "deliver a speech",
+    "meaning": "發表演講"
+  },
+  {
+    "word": "strike a balance",
+    "meaning": "取得平衡"
+  },
+  {
+    "word": "stand a chance",
+    "meaning": "有機會 / 有希望"
+  },
+  {
+    "word": "jump to conclusions",
+    "meaning": "貿然下結論"
+  },
+  {
+    "word": "change the subject",
+    "meaning": "改變話題"
+  },
+  {
+    "word": "tell a lie",
+    "meaning": "說謊"
+  },
+  {
+    "word": "voice a concern",
+    "meaning": "表達擔憂"
+  },
+  {
+    "word": "run late",
+    "meaning": "遲到 / 進度落後"
+  },
+  {
+    "word": "tell a joke",
+    "meaning": "講笑話"
+  },
+  {
+    "word": "keep company",
+    "meaning": "陪伴"
+  },
+  {
+    "word": "set a trap",
+    "meaning": "設下陷阱"
+  },
+  {
+    "word": "pay a fine",
+    "meaning": "罰款"
+  },
+  {
+    "word": "reach a compromise",
+    "meaning": "達成妥協"
+  },
+  {
+    "word": "pose a question",
+    "meaning": "提出問題"
+  },
+  {
+    "word": "drive someone crazy",
+    "meaning": "逼人發瘋"
+  },
+  {
+    "word": "run a fever",
+    "meaning": "發燒"
+  },
+  {
+    "word": "break the record",
+    "meaning": "打破紀錄"
+  },
+  {
+    "word": "catch a cold",
+    "meaning": "感冒"
+  },
+  {
+    "word": "lead a life",
+    "meaning": "過著...的生活"
+  },
+  {
+    "word": "set a date",
+    "meaning": "決定日期"
+  },
+  {
+    "word": "clear the table",
+    "meaning": "清理桌面 / 收拾碗盤"
+  },
+  {
+    "word": "take a break",
+    "meaning": "休息一下"
+  },
+  {
+    "word": "make an excuse",
+    "meaning": "找藉口"
+  },
+  {
+    "word": "come to an end",
+    "meaning": "結束"
+  },
+  {
+    "word": "keep a diary",
+    "meaning": "寫日記"
+  },
+  {
+    "word": "lose patience",
+    "meaning": "失去耐心"
+  },
+  {
+    "word": "do a favor",
+    "meaning": "幫忙"
+  },
+  {
+    "word": "take an exam",
+    "meaning": "參加考試"
+  },
+  {
+    "word": "run into trouble",
+    "meaning": "遇到麻煩"
+  },
+  {
+    "word": "have an argument",
+    "meaning": "爭吵"
+  },
+  {
+    "word": "pick a fight",
+    "meaning": "挑起爭端 / 挑釁"
+  },
+  {
+    "word": "get a promotion",
+    "meaning": "獲得升職"
+  },
+  {
+    "word": "run smooth",
+    "meaning": "進展順利"
+  },
+  {
+    "word": "throw a party",
+    "meaning": "舉辦派對"
+  },
+  {
+    "word": "have a passion for",
+    "meaning": "對...充滿熱情"
+  },
+  {
+    "word": "close a deal",
+    "meaning": "成交 / 達成協議"
+  },
+  {
+    "word": "take a photograph",
+    "meaning": "拍照"
+  },
+  {
+    "word": "keep a straight face",
+    "meaning": "保持嚴肅 / 不笑出來"
+  },
+  {
+    "word": "clear the path",
+    "meaning": "掃清道路 / 消除障礙"
+  },
+  {
+    "word": "fall asleep",
+    "meaning": "入睡"
+  },
+  {
+    "word": "catch sight of",
+    "meaning": "瞥見"
+  },
+  {
+    "word": "run the risk of",
+    "meaning": "冒著...的風險"
+  },
+  {
+    "word": "lose confidence",
+    "meaning": "失去信心"
+  },
+  {
+    "word": "win a game",
+    "meaning": "贏得比賽"
+  },
+  {
+    "word": "break a habit",
+    "meaning": "改掉習慣"
+  },
+  {
+    "word": "pay compliments",
+    "meaning": "稱讚"
+  },
+  {
+    "word": "keep control",
+    "meaning": "保持控制"
+  },
+  {
+    "word": "lose consciousness",
+    "meaning": "失去知覺 / 暈倒"
+  },
+  {
+    "word": "make an impact",
+    "meaning": "產生影響"
+  },
+  {
+    "word": "make a call",
+    "meaning": "打電話"
+  },
+  {
+    "word": "take a step",
+    "meaning": "採取步驟 / 踏出一步"
+  },
+  {
+    "word": "raise awareness",
+    "meaning": "提高意識"
+  },
+  {
+    "word": "gain entry",
+    "meaning": "獲准進入"
+  },
+  {
+    "word": "make light of",
+    "meaning": "輕視 / 對...不以為意"
+  },
+  {
+    "word": "come to terms with",
+    "meaning": "逐漸接受 / 妥協"
+  },
+  {
+    "word": "look at someone with disdain",
+    "meaning": "以鄙視 / 輕蔑的眼神看著某人"
+  },
+  {
+    "word": "wrap one's mind around",
+    "meaning": "理解 / 想通（通常用於複雜、令人震驚或難以置信的事）"
+  },
+  {
+    "word": "make up one's mind",
+    "meaning": "下定決心"
+  },
+  {
+    "word": "make a concession",
+    "meaning": "做出讓步"
+  },
+  {
+    "word": "catch one's breath",
+    "meaning": "喘口氣 / 歇口氣"
+  },
+  {
+    "word": "take a glance",
+    "meaning": "瞄一眼"
+  },
+  {
+    "word": "pay respects",
+    "meaning": "致敬 / 表達哀悼"
+  },
+  {
+    "word": "blow one's mind",
+    "meaning": "令人極度震驚 / 大開眼界"
+  },
+  {
+    "word": "cast a vote",
+    "meaning": "投票"
+  },
+  {
+    "word": "draw inspiration from",
+    "meaning": "從...汲取靈感"
+  },
+  {
+    "word": "drive a hard bargain",
+    "meaning": "討價還價很厲害 / 堅持苛刻條件"
+  },
+  {
+    "word": "hit the jackpot",
+    "meaning": "中大獎 / 發大財"
+  },
+  {
+    "word": "make a scene",
+    "meaning": "大吵大鬧 / 當眾出醜"
+  },
+  {
+    "word": "play mind games",
+    "meaning": "耍心機 / 玩心理戰"
+  },
+  {
+    "word": "raise one's voice",
+    "meaning": "提高音量 / 大小聲"
+  },
+  {
+    "word": "run an errand",
+    "meaning": "辦雜事 / 跑腿"
+  },
+  {
+    "word": "set a budget",
+    "meaning": "編列預算"
+  },
+  {
+    "word": "take a toll on",
+    "meaning": "對...造成損害或不良影響"
+  },
+  {
+    "word": "weather the storm",
+    "meaning": "渡過難關"
+  },
+  {
+    "word": "give an account of",
+    "meaning": "描述 / 說明"
+  },
+  {
+    "word": "bear fruit",
+    "meaning": "結出果實 / 獲得成效"
+  },
+  {
+    "word": "bring to a halt",
+    "meaning": "使...停止"
+  },
+  {
+    "word": "change one's tune",
+    "meaning": "改變態度 / 改口"
+  },
+  {
+    "word": "come into contact with",
+    "meaning": "接觸到"
+  },
+  {
+    "word": "do the dishes",
+    "meaning": "洗碗"
+  },
+  {
+    "word": "ease the pain",
+    "meaning": "減輕痛苦"
+  },
+  {
+    "word": "follow suit",
+    "meaning": "依樣畫葫蘆 / 跟進"
+  },
+  {
+    "word": "gain ground",
+    "meaning": "取得進展 / 獲得支持"
+  },
+  {
+    "word": "give way to",
+    "meaning": "讓路給 / 被...取代"
+  },
+  {
+    "word": "have a whale of a time",
+    "meaning": "玩得非常痛快"
+  },
+  {
+    "word": "keep one's word",
+    "meaning": "遵守諾言"
+  },
+  {
+    "word": "lay off staff",
+    "meaning": "解僱員工"
+  },
+  {
+    "word": "leave no stone unturned",
+    "meaning": "竭盡全力 / 想方設法"
+  },
+  {
+    "word": "make a profit",
+    "meaning": "賺取利潤"
+  },
+  {
+    "word": "pay a premium",
+    "meaning": "支付最高昂的費用 / 加價"
+  },
+  {
+    "word": "put emphasis on",
+    "meaning": "強調"
+  },
+  {
+    "word": "read between the lines",
+    "meaning": "讀出字裡行間的隱含意義"
+  },
+  {
+    "word": "ring a bell",
+    "meaning": "聽起來很耳熟"
+  },
+  {
+    "word": "run a simulation",
+    "meaning": "進行模擬"
+  },
+  {
+    "word": "save the day",
+    "meaning": "挽救局面"
+  },
+  {
+    "word": "shed tears",
+    "meaning": "流淚"
+  },
+  {
+    "word": "spill the beans",
+    "meaning": "洩漏秘密"
+  },
+  {
+    "word": "take a stance",
+    "meaning": "表明立場"
+  },
+  {
+    "word": "use caution",
+    "meaning": "保持謹慎"
+  },
+  {
+    "word": "wave goodbye",
+    "meaning": "揮手告別"
+  },
+  {
+    "word": "win one's heart",
+    "meaning": "贏得某人的心"
+  },
+  {
+    "word": "work miracles",
+    "meaning": "創造奇蹟"
+  },
+  {
+    "word": "build trust",
+    "meaning": "建立信任"
+  },
+  {
+    "word": "clear a debt",
+    "meaning": "清償債務"
+  },
+  {
+    "word": "meet a requirement",
+    "meaning": "符合要求"
+  },
+  {
+    "word": "state an opinion",
+    "meaning": "陳述觀點"
+  },
+  {
+    "word": "test a theory",
+    "meaning": "測試理論"
+  },
+  {
+    "word": "outline a plan",
+    "meaning": "概述計劃"
+  },
+  {
+    "word": "make an assumption",
+    "meaning": "做出假設"
+  },
+  {
+    "word": "launch a product",
+    "meaning": "推出產品"
+  },
+  {
+    "word": "file a complaint",
+    "meaning": "提出投訴"
+  },
+  {
+    "word": "yield results",
+    "meaning": "產生結果"
+  },
+  {
+    "word": "maintain order",
+    "meaning": "維持秩序"
+  },
+  {
+    "word": "formulate a strategy",
+    "meaning": "制定策略"
+  },
+  {
+    "word": "command respect",
+    "meaning": "贏得尊敬"
+  },
+  {
+    "word": "exert pressure",
+    "meaning": "施加壓力"
+  },
+  {
+    "word": "fulfill a duty",
+    "meaning": "履行職責"
+  },
+  {
+    "word": "incur expenses",
+    "meaning": "產生費用"
+  },
+  {
+    "word": "handle a crisis",
+    "meaning": "處理危機"
+  },
+  {
+    "word": "voice a grievance",
+    "meaning": "表達不滿 / 訴苦"
+  },
+  {
+    "word": "deliver a baby",
+    "meaning": "接生"
+  },
+  {
+    "word": "trigger a reaction",
+    "meaning": "引發反應"
+  },
+  {
+    "word": "prompt a discussion",
+    "meaning": "引起討論"
+  },
+  {
+    "word": "make peace",
+    "meaning": "和解"
+  },
+  {
+    "word": "address an issue",
+    "meaning": "處理 / 解決問題"
+  },
+  {
+    "word": "pose a challenge",
+    "meaning": "帶來挑戰"
+  },
+  {
+    "word": "draw a crowd",
+    "meaning": "吸引人群"
+  },
+  {
+    "word": "break the silence",
+    "meaning": "打破沉默"
+  },
+  {
+    "word": "make arrangements",
+    "meaning": "做出安排"
+  },
+  {
+    "word": "take a survey",
+    "meaning": "做問卷調查"
+  },
+  {
+    "word": "catch the train",
+    "meaning": "趕火車"
+  },
+  {
+    "word": "do research",
+    "meaning": "做研究"
+  },
+  {
+    "word": "raise capital",
+    "meaning": "籌集資金"
+  },
+  {
+    "word": "pose for a photo",
+    "meaning": "擺姿勢拍照"
+  },
+  {
+    "word": "make a guess",
+    "meaning": "猜測"
+  },
+  {
+    "word": "gain a competitive edge",
+    "meaning": "獲得競爭優勢"
+  },
+  {
+    "word": "cross one's mind",
+    "meaning": "閃過念頭"
+  },
+  {
+    "word": "leave an impression",
+    "meaning": "留下印象"
+  },
+  {
+    "word": "strike a deal",
+    "meaning": "達成協議"
+  },
+  {
+    "word": "clear the air",
+    "meaning": "消除誤會 / 淨化氣氛"
+  },
+  {
+    "word": "place an order",
+    "meaning": "下訂單"
+  },
+  {
+    "word": "draft a contract",
+    "meaning": "起草合約"
+  },
+  {
+    "word": "shift the blame",
+    "meaning": "推卸責任"
+  },
+  {
+    "word": "play a trick on",
+    "meaning": "惡作劇 / 開玩笑"
+  },
+  {
+    "word": "take the initiative",
+    "meaning": "採取主動"
+  },
+  {
+    "word": "make ends meet",
+    "meaning": "維持生計 / 使收支平衡"
+  },
+  {
+    "word": "spark an interest",
+    "meaning": "激發興趣"
+  },
+  {
+    "word": "exercise control",
+    "meaning": "實施控制"
+  },
+  {
+    "word": "bridge a gap",
+    "meaning": "消除隔閡 / 縮小差距"
+  },
+  {
+    "word": "cast light on",
+    "meaning": "闡明 / 使...清楚"
+  },
+  {
+    "word": "break a tie",
+    "meaning": "打破平局"
+  },
+  {
+    "word": "reach a milestone",
+    "meaning": "達到里程碑"
+  },
+  {
+    "word": "follow directions",
+    "meaning": "聽從指示"
+  },
+  {
+    "word": "put something on the map",
+    "meaning": "使...出名"
+  }
+];
+
+phrasesTwoEntries.forEach(({ word }) => {
+  const [entry] = senseBank.lookup(word);
+  assert.ok(entry, `${word} should be covered from PHRASES-2.txt`);
+  assert.strictEqual(entry.type, "phrase");
+  assert.strictEqual(entry.pos, "verb");
+  assert.ok(entry.meaning, `${word} should have a Chinese meaning`);
+  assert.ok(entry.level, `${word} should have a level`);
+});
+
 console.log("vocab_sense_bank tests passed");
