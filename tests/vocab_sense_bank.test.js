@@ -1,5 +1,8 @@
 const assert = require("assert");
 
+global.window = globalThis;
+delete require.cache[require.resolve("../grammar_verb_table_data.js")];
+require("../grammar_verb_table_data.js");
 delete require.cache[require.resolve("../vocab_sense_bank.js")];
 const senseBank = require("../vocab_sense_bank.js");
 
@@ -164,6 +167,22 @@ assert.deepStrictEqual(
 assert.deepStrictEqual(
   senseBank.lookup("break").map((entry) => `${entry.pos}:${entry.meaning}`),
   ["verb:打破", "verb:弄壞", "noun:小休 / 休息"]
+);
+assert.ok(
+  senseBank.lookup("broke").some((entry) => entry.pos === "verb" && entry.meaning === "打破 / 折斷 / 損壞（break 過去式）"),
+  "broke should show a real verb-table meaning, not only a form label"
+);
+assert.ok(
+  senseBank.lookup("broken").some((entry) => entry.pos === "verb" && entry.meaning === "打破 / 折斷 / 損壞（break PP）"),
+  "broken should include the break PP meaning"
+);
+assert.ok(
+  senseBank.lookup("broken").some((entry) => entry.pos === "adjective" && entry.meaning === "壞了的 / 破碎的"),
+  "broken should keep its adjective meaning"
+);
+assert.ok(
+  senseBank.lookup("breaking").some((entry) => entry.pos === "verb" && entry.meaning === "打破 / 折斷 / 損壞（break ING）"),
+  "breaking should include the break ING meaning"
 );
 assert.deepStrictEqual(
   senseBank.lookup("lose").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -512,7 +531,8 @@ assert.deepStrictEqual(
     "adverb:向左",
     "adverb:在左邊",
     "verb:離開了（leave 的過去式 / PP）",
-    "verb:留下了（leave 的過去式 / PP）"
+    "verb:留下了（leave 的過去式 / PP）",
+    "verb:離開 / 遺留 / 剩下（leave 過去式 / PP）"
   ]
 );
 assert.deepStrictEqual(
@@ -665,7 +685,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("thought").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
-  ["noun:想法:override", "noun:念頭:override", "verb:think 的過去式 / 過去分詞:override"]
+  ["noun:想法:override", "noun:念頭:override", "verb:想 / 認為 / 思考（think 過去式 / PP）:override"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("yet").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
@@ -809,7 +829,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("following").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
-  ["adjective:以下的:override", "adjective:接著的:override", "preposition:在...之後:override", "noun:追隨者:override", "noun:支持者:override"]
+  ["adjective:以下的:override", "adjective:接著的:override", "preposition:在...之後:override", "noun:追隨者:override", "noun:支持者:override", "verb:跟隨 / 遵守（follow ING）:override"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("mobile").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
@@ -979,7 +999,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("ground").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["noun:地面 / 土地", "noun:理由 / 根據"]
+  ["noun:地面 / 土地", "noun:理由 / 根據", "verb:磨碎 / 碾碎（grind 過去式 / PP）"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("incredible").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
@@ -1944,7 +1964,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("finding").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["noun:發現", "noun:研究結果"]
+  ["noun:發現", "noun:研究結果", "verb:發現 / 找到（find ING）"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("forecast").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -3833,7 +3853,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("taught").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["verb:teach 的過去式 / 過去分詞"]
+  ["verb:教導 / 教授（teach 過去式 / PP）"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("tech geeks").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
@@ -4577,7 +4597,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("called").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["verb:叫做 / 稱為", "verb:call 的過去式 / PP"]
+  ["verb:叫做 / 稱為", "verb:打電話 / 稱呼 / 叫喚（call 過去式 / PP）"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("colleagues").map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}`),
@@ -7114,6 +7134,49 @@ hkStreetEntries.forEach(([street, meaning]) => {
   const entries = senseBank.lookup(street, { includeHidden: true, limit: 12 });
   const entry = entries.find((candidate) => candidate.pos === "noun" && candidate.meaning === meaning);
   assert.ok(entry, street + " should be covered as a Hong Kong street / road name");
+});
+
+function normalizeVerbTableMeaning(value) {
+  return String(value || "")
+    .trim()
+    .replace(/[；;]/g, " / ")
+    .replace(/\s*[/／]\s*/g, " / ")
+    .replace(/\s+/g, " ");
+}
+
+const verbTableFormExpectations = new Map();
+(globalThis.GRAMMAR_VERB_BANK || []).forEach(([zh, present, past, pp, ing]) => {
+  const base = senseBank.normalizeWord(present);
+  const meaning = normalizeVerbTableMeaning(zh);
+  [
+    [past, "過去式"],
+    [pp, "PP"],
+    [ing, "ING"]
+  ].forEach(([rawForms, role]) => {
+    String(rawForms || "").split("/").map((form) => form.trim()).filter(Boolean).forEach((form) => {
+      const normalizedForm = senseBank.normalizeWord(form);
+      if (!normalizedForm || normalizedForm === base) return;
+      const key = `${normalizedForm}|${base}`;
+      if (!verbTableFormExpectations.has(key)) {
+        verbTableFormExpectations.set(key, {
+          form: normalizedForm,
+          base,
+          meaning,
+          roles: new Set()
+        });
+      }
+      verbTableFormExpectations.get(key).roles.add(role);
+    });
+  });
+});
+
+assert.ok(verbTableFormExpectations.size >= 500, "verb table should produce broad inflected-form coverage");
+verbTableFormExpectations.forEach(({ form, base, meaning, roles }) => {
+  const expectedMeaning = `${meaning}（${base} ${Array.from(roles).join(" / ")}）`;
+  const entry = senseBank.lookup(form, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === "verb" && candidate.meaning === expectedMeaning
+  ));
+  assert.ok(entry, `${form} should include verb-table meaning ${expectedMeaning}`);
 });
 
 console.log("vocab_sense_bank tests passed");

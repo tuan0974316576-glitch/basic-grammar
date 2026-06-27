@@ -12112,6 +12112,62 @@
     ["Cheung Tung Road", "noun", "翔東路", { type: "phrase", level: "B1", overrideTeacher: true }],
   ];
 
+  function normalizeVerbTableMeaning(value) {
+    return String(value || "")
+      .trim()
+      .replace(/[；;]/g, " / ")
+      .replace(/\s*[/／]\s*/g, " / ")
+      .replace(/\s+/g, " ");
+  }
+
+  function splitVerbTableForm(value) {
+    return String(value || "")
+      .split("/")
+      .map((part) => part.trim())
+      .filter(Boolean);
+  }
+
+  function buildVerbTableFormEntries() {
+    const globalRoot = typeof globalThis !== "undefined" ? globalThis : (typeof window !== "undefined" ? window : {});
+    const verbBank = Array.isArray(globalRoot.GRAMMAR_VERB_BANK) ? globalRoot.GRAMMAR_VERB_BANK : [];
+    const byFormAndBase = new Map();
+    verbBank.forEach((row) => {
+      const [zh, present, past, pp, ing] = Array.isArray(row) ? row : [];
+      const base = normalizeWord(present);
+      const meaning = normalizeVerbTableMeaning(zh);
+      if (!base || !meaning) return;
+      [
+        { value: past, role: "過去式" },
+        { value: pp, role: "PP" },
+        { value: ing, role: "ING" }
+      ].forEach(({ value, role }) => {
+        splitVerbTableForm(value).forEach((form) => {
+          const normalizedForm = normalizeWord(form);
+          if (!normalizedForm || normalizedForm === base) return;
+          const key = `${normalizedForm}|${base}`;
+          if (!byFormAndBase.has(key)) {
+            byFormAndBase.set(key, {
+              form: normalizedForm,
+              base,
+              meaning,
+              roles: new Set()
+            });
+          }
+          byFormAndBase.get(key).roles.add(role);
+        });
+      });
+    });
+
+    return Array.from(byFormAndBase.values()).map((entry) => ([
+      entry.form,
+      "verb",
+      `${entry.meaning}（${entry.base} ${Array.from(entry.roles).join(" / ")}）`,
+      { level: "A2", overrideTeacher: true, source: "verb-table-form" }
+    ]));
+  }
+
+  ENTRIES.push(...buildVerbTableFormEntries());
+
   function normalizeWord(value) {
     return String(value || "")
       .trim()
@@ -12165,7 +12221,7 @@
       pos: normalizedPos,
       type,
       level: String(options.level || "").trim().toUpperCase(),
-      source: "curated-sense-bank",
+      source: String(options.source || "").trim() || "curated-sense-bank",
       sourceEntryId: `sense-bank-${index}`,
       aliases: normalizeAliases(options.aliases || options.alias),
       hidden: Boolean(options.hidden),
@@ -12175,6 +12231,26 @@
   }
 
   const entries = ENTRIES.map(makeEntry).filter(Boolean);
+
+  function getPlainVerbFormBase(entry) {
+    if (!entry || entry.pos !== "verb" || entry.source !== "curated-sense-bank") return "";
+    const match = String(entry.meaning || "").match(/^([a-z]+(?: [a-z]+)*?) 的\s*(?:過去式|PP|過去分詞)(?:\s*\/\s*(?:過去式|PP|過去分詞))*$/i);
+    return match ? normalizeWord(match[1]) : "";
+  }
+
+  function hidePlainVerbFormLabelsCoveredByVerbTable() {
+    const richVerbTableForms = new Set(entries
+      .filter((entry) => entry.source === "verb-table-form" && entry.pos === "verb")
+      .map((entry) => entry.word));
+    if (!richVerbTableForms.size) return;
+    entries.forEach((entry) => {
+      if (entry.hidden || !richVerbTableForms.has(entry.word)) return;
+      if (getPlainVerbFormBase(entry)) entry.hidden = true;
+    });
+  }
+
+  hidePlainVerbFormLabelsCoveredByVerbTable();
+
   const byWord = new Map();
 
   entries.forEach((entry) => {

@@ -1,5 +1,8 @@
 const assert = require("assert");
 
+global.window = globalThis;
+delete require.cache[require.resolve("../grammar_verb_table_data.js")];
+require("../grammar_verb_table_data.js");
 delete require.cache[require.resolve("../teacher_vocab.js")];
 delete require.cache[require.resolve("../vocab_sense_bank.js")];
 delete require.cache[require.resolve("../cc_cedict_supplement.js")];
@@ -112,6 +115,7 @@ function assertStudentLookupContract(word, matches) {
     "teacher-live",
     "teacher",
     "curated-sense-bank",
+    "verb-table-form",
     "cc-cedict-supplement"
   ]);
   matches.forEach((entry) => {
@@ -207,6 +211,24 @@ function assertStudentLookupContract(word, matches) {
       "verb:弄壞:curated-sense-bank",
       "noun:小休 / 休息:curated-sense-bank"
     ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("broke")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:打破 / 折斷 / 損壞（break 過去式）:verb-table-form"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("broken")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "adjective:壞了的 / 破碎的:curated-sense-bank",
+      "verb:打破 / 折斷 / 損壞（break PP）:verb-table-form"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("breaking")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:打破 / 折斷 / 損壞（break ING）:verb-table-form"]
   );
 
   assert.deepStrictEqual(
@@ -1033,7 +1055,8 @@ function assertStudentLookupContract(word, matches) {
       "adverb:向左:curated-sense-bank",
       "adverb:在左邊:curated-sense-bank",
       "verb:離開了（leave 的過去式 / PP）:curated-sense-bank",
-      "verb:留下了（leave 的過去式 / PP）:curated-sense-bank"
+      "verb:留下了（leave 的過去式 / PP）:curated-sense-bank",
+      "verb:離開 / 遺留 / 剩下（leave 過去式 / PP）:verb-table-form"
     ]
   );
 
@@ -1461,7 +1484,8 @@ function assertStudentLookupContract(word, matches) {
     (await lookupForStudent("finding")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "noun:發現:curated-sense-bank",
-      "noun:研究結果:curated-sense-bank"
+      "noun:研究結果:curated-sense-bank",
+      "verb:發現 / 找到（find ING）:verb-table-form"
     ]
   );
 
@@ -2213,7 +2237,8 @@ function assertStudentLookupContract(word, matches) {
     (await lookupForStudent("ground")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "noun:地面 / 土地:curated-sense-bank",
-      "noun:理由 / 根據:curated-sense-bank"
+      "noun:理由 / 根據:curated-sense-bank",
+      "verb:磨碎 / 碾碎（grind 過去式 / PP）:verb-table-form"
     ]
   );
 
