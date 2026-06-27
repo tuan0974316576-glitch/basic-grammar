@@ -5988,4 +5988,1132 @@ phrasesTwoEntries.forEach(({ word }) => {
   assert.ok(entry.level, `${word} should have a level`);
 });
 
+const countryNationalityEntries = [
+  [
+    "China",
+    "中國",
+    "Chinese",
+    "中國的 / 中文的 / 中國人"
+  ],
+  [
+    "Japan",
+    "日本",
+    "Japanese",
+    "日本的 / 日文的 / 日本人"
+  ],
+  [
+    "South Korea",
+    "南韓",
+    "Korean",
+    "韓國的 / 韓文的 / 韓國人"
+  ],
+  [
+    "North Korea",
+    "北韓",
+    "North Korean",
+    "北韓的 / 北韓人"
+  ],
+  [
+    "Singapore",
+    "新加坡",
+    "Singaporean",
+    "新加坡的 / 新加坡人"
+  ],
+  [
+    "Thailand",
+    "泰國",
+    "Thai",
+    "泰國的 / 泰文的 / 泰國人"
+  ],
+  [
+    "Malaysia",
+    "馬來西亞",
+    "Malaysian",
+    "馬來西亞的 / 馬來西亞人"
+  ],
+  [
+    "Indonesia",
+    "印尼",
+    "Indonesian",
+    "印尼的 / 印尼文的 / 印尼人"
+  ],
+  [
+    "Vietnam",
+    "越南",
+    "Vietnamese",
+    "越南的 / 越南文的 / 越南人"
+  ],
+  [
+    "the Philippines",
+    "菲律賓",
+    "Filipino",
+    "菲律賓的 / 菲律賓人"
+  ],
+  [
+    "India",
+    "印度",
+    "Indian",
+    "印度的 / 印度人"
+  ],
+  [
+    "Pakistan",
+    "巴基斯坦",
+    "Pakistani",
+    "巴基斯坦的 / 巴基斯坦人"
+  ],
+  [
+    "Nepal",
+    "尼泊爾",
+    "Nepalese",
+    "尼泊爾的 / 尼泊爾人"
+  ],
+  [
+    "Bangladesh",
+    "孟加拉",
+    "Bangladeshi",
+    "孟加拉的 / 孟加拉人"
+  ],
+  [
+    "Sri Lanka",
+    "斯里蘭卡",
+    "Sri Lankan",
+    "斯里蘭卡的 / 斯里蘭卡人"
+  ],
+  [
+    "Australia",
+    "澳洲",
+    "Australian",
+    "澳洲的 / 澳洲人"
+  ],
+  [
+    "New Zealand",
+    "新西蘭",
+    "New Zealander",
+    "新西蘭人"
+  ],
+  [
+    "Canada",
+    "加拿大",
+    "Canadian",
+    "加拿大的 / 加拿大人"
+  ],
+  [
+    "the United States",
+    "美國",
+    "American",
+    "美國的 / 美國人"
+  ],
+  [
+    "the United Kingdom",
+    "英國",
+    "British",
+    "英國的 / 英國人"
+  ],
+  [
+    "Ireland",
+    "愛爾蘭",
+    "Irish",
+    "愛爾蘭的 / 愛爾蘭人"
+  ],
+  [
+    "France",
+    "法國",
+    "French",
+    "法國的 / 法文的 / 法國人"
+  ],
+  [
+    "Germany",
+    "德國",
+    "German",
+    "德國的 / 德文的 / 德國人"
+  ],
+  [
+    "Italy",
+    "意大利",
+    "Italian",
+    "意大利的 / 意大利文的 / 意大利人"
+  ],
+  [
+    "Spain",
+    "西班牙",
+    "Spanish",
+    "西班牙的 / 西班牙文的 / 西班牙人"
+  ],
+  [
+    "Portugal",
+    "葡萄牙",
+    "Portuguese",
+    "葡萄牙的 / 葡萄牙文的 / 葡萄牙人"
+  ],
+  [
+    "the Netherlands",
+    "荷蘭",
+    "Dutch",
+    "荷蘭的 / 荷蘭人"
+  ],
+  [
+    "Belgium",
+    "比利時",
+    "Belgian",
+    "比利時的 / 比利時人"
+  ],
+  [
+    "Switzerland",
+    "瑞士",
+    "Swiss",
+    "瑞士的 / 瑞士人"
+  ],
+  [
+    "Austria",
+    "奧地利",
+    "Austrian",
+    "奧地利的 / 奧地利人"
+  ],
+  [
+    "Sweden",
+    "瑞典",
+    "Swedish",
+    "瑞典的 / 瑞典文的 / 瑞典人"
+  ],
+  [
+    "Norway",
+    "挪威",
+    "Norwegian",
+    "挪威的 / 挪威文的 / 挪威人"
+  ],
+  [
+    "Denmark",
+    "丹麥",
+    "Danish",
+    "丹麥的 / 丹麥文的 / 丹麥人"
+  ],
+  [
+    "Finland",
+    "芬蘭",
+    "Finnish",
+    "芬蘭的 / 芬蘭文的 / 芬蘭人"
+  ],
+  [
+    "Poland",
+    "波蘭",
+    "Polish",
+    "波蘭的 / 波蘭文的 / 波蘭人"
+  ],
+  [
+    "Greece",
+    "希臘",
+    "Greek",
+    "希臘的 / 希臘文的 / 希臘人"
+  ],
+  [
+    "Russia",
+    "俄羅斯",
+    "Russian",
+    "俄羅斯的 / 俄文的 / 俄羅斯人"
+  ],
+  [
+    "Ukraine",
+    "烏克蘭",
+    "Ukrainian",
+    "烏克蘭的 / 烏克蘭文的 / 烏克蘭人"
+  ],
+  [
+    "Turkey",
+    "土耳其",
+    "Turkish",
+    "土耳其的 / 土耳其文的 / 土耳其人"
+  ],
+  [
+    "Egypt",
+    "埃及",
+    "Egyptian",
+    "埃及的 / 埃及人"
+  ],
+  [
+    "South Africa",
+    "南非",
+    "South African",
+    "南非的 / 南非人"
+  ],
+  [
+    "Nigeria",
+    "尼日利亞",
+    "Nigerian",
+    "尼日利亞的 / 尼日利亞人"
+  ],
+  [
+    "Kenya",
+    "肯尼亞",
+    "Kenyan",
+    "肯尼亞的 / 肯尼亞人"
+  ],
+  [
+    "Brazil",
+    "巴西",
+    "Brazilian",
+    "巴西的 / 巴西人"
+  ],
+  [
+    "Argentina",
+    "阿根廷",
+    "Argentinian",
+    "阿根廷的 / 阿根廷人"
+  ],
+  [
+    "Chile",
+    "智利",
+    "Chilean",
+    "智利的 / 智利人"
+  ],
+  [
+    "Mexico",
+    "墨西哥",
+    "Mexican",
+    "墨西哥的 / 墨西哥人"
+  ],
+  [
+    "Peru",
+    "秘魯",
+    "Peruvian",
+    "秘魯的 / 秘魯人"
+  ],
+  [
+    "Saudi Arabia",
+    "沙特阿拉伯",
+    "Saudi Arabian",
+    "沙特阿拉伯的 / 沙特阿拉伯人"
+  ],
+  [
+    "the United Arab Emirates",
+    "阿聯酋",
+    "Emirati",
+    "阿聯酋的 / 阿聯酋人"
+  ],
+  [
+    "Israel",
+    "以色列",
+    "Israeli",
+    "以色列的 / 以色列人"
+  ],
+  [
+    "Iran",
+    "伊朗",
+    "Iranian",
+    "伊朗的 / 伊朗人"
+  ],
+  [
+    "Iraq",
+    "伊拉克",
+    "Iraqi",
+    "伊拉克的 / 伊拉克人"
+  ]
+];
+const mtrStationEntries = [
+  [
+    "Whampoa",
+    "黃埔"
+  ],
+  [
+    "Ho Man Tin",
+    "何文田"
+  ],
+  [
+    "Yau Ma Tei",
+    "油麻地"
+  ],
+  [
+    "Mong Kok",
+    "旺角"
+  ],
+  [
+    "Prince Edward",
+    "太子"
+  ],
+  [
+    "Shek Kip Mei",
+    "石硤尾"
+  ],
+  [
+    "Kowloon Tong",
+    "九龍塘"
+  ],
+  [
+    "Lok Fu",
+    "樂富"
+  ],
+  [
+    "Wong Tai Sin",
+    "黃大仙"
+  ],
+  [
+    "Diamond Hill",
+    "鑽石山"
+  ],
+  [
+    "Choi Hung",
+    "彩虹"
+  ],
+  [
+    "Kowloon Bay",
+    "九龍灣"
+  ],
+  [
+    "Ngau Tau Kok",
+    "牛頭角"
+  ],
+  [
+    "Kwun Tong",
+    "觀塘"
+  ],
+  [
+    "Lam Tin",
+    "藍田"
+  ],
+  [
+    "Yau Tong",
+    "油塘"
+  ],
+  [
+    "Tiu Keng Leng",
+    "調景嶺"
+  ],
+  [
+    "Tsuen Wan",
+    "荃灣"
+  ],
+  [
+    "Tai Wo Hau",
+    "大窩口"
+  ],
+  [
+    "Kwai Hing",
+    "葵興"
+  ],
+  [
+    "Kwai Fong",
+    "葵芳"
+  ],
+  [
+    "Lai King",
+    "荔景"
+  ],
+  [
+    "Mei Foo",
+    "美孚"
+  ],
+  [
+    "Lai Chi Kok",
+    "荔枝角"
+  ],
+  [
+    "Cheung Sha Wan",
+    "長沙灣"
+  ],
+  [
+    "Sham Shui Po",
+    "深水埗"
+  ],
+  [
+    "Jordan",
+    "佐敦"
+  ],
+  [
+    "Tsim Sha Tsui",
+    "尖沙咀"
+  ],
+  [
+    "Admiralty",
+    "金鐘"
+  ],
+  [
+    "Central",
+    "中環"
+  ],
+  [
+    "Kennedy Town",
+    "堅尼地城"
+  ],
+  [
+    "HKU",
+    "香港大學"
+  ],
+  [
+    "Sai Ying Pun",
+    "西營盤"
+  ],
+  [
+    "Sheung Wan",
+    "上環"
+  ],
+  [
+    "Wan Chai",
+    "灣仔"
+  ],
+  [
+    "Causeway Bay",
+    "銅鑼灣"
+  ],
+  [
+    "Tin Hau",
+    "天后"
+  ],
+  [
+    "Fortress Hill",
+    "炮台山"
+  ],
+  [
+    "North Point",
+    "北角"
+  ],
+  [
+    "Quarry Bay",
+    "鰂魚涌"
+  ],
+  [
+    "Tai Koo",
+    "太古"
+  ],
+  [
+    "Sai Wan Ho",
+    "西灣河"
+  ],
+  [
+    "Shau Kei Wan",
+    "筲箕灣"
+  ],
+  [
+    "Heng Fa Chuen",
+    "杏花邨"
+  ],
+  [
+    "Chai Wan",
+    "柴灣"
+  ],
+  [
+    "Ocean Park",
+    "海洋公園"
+  ],
+  [
+    "Wong Chuk Hang",
+    "黃竹坑"
+  ],
+  [
+    "Lei Tung",
+    "利東"
+  ],
+  [
+    "South Horizons",
+    "海怡半島"
+  ],
+  [
+    "LOHAS Park",
+    "康城"
+  ],
+  [
+    "Po Lam",
+    "寶琳"
+  ],
+  [
+    "Hang Hau",
+    "坑口"
+  ],
+  [
+    "Tseung Kwan O",
+    "將軍澳"
+  ],
+  [
+    "Hong Kong",
+    "香港"
+  ],
+  [
+    "Kowloon",
+    "九龍"
+  ],
+  [
+    "Olympic",
+    "奧運"
+  ],
+  [
+    "Nam Cheong",
+    "南昌"
+  ],
+  [
+    "Tsing Yi",
+    "青衣"
+  ],
+  [
+    "Sunny Bay",
+    "欣澳"
+  ],
+  [
+    "Disneyland Resort",
+    "迪士尼"
+  ],
+  [
+    "Tung Chung",
+    "東涌"
+  ],
+  [
+    "Airport",
+    "機場"
+  ],
+  [
+    "AsiaWorld-Expo",
+    "博覽館"
+  ],
+  [
+    "Exhibition Centre",
+    "會展"
+  ],
+  [
+    "Hung Hom",
+    "紅磡"
+  ],
+  [
+    "Mong Kok East",
+    "旺角東"
+  ],
+  [
+    "Tai Wai",
+    "大圍"
+  ],
+  [
+    "Sha Tin",
+    "沙田"
+  ],
+  [
+    "Fo Tan",
+    "火炭"
+  ],
+  [
+    "Racecourse",
+    "馬場"
+  ],
+  [
+    "University",
+    "大學"
+  ],
+  [
+    "Tai Po Market",
+    "大埔墟"
+  ],
+  [
+    "Tai Wo",
+    "太和"
+  ],
+  [
+    "Fanling",
+    "粉嶺"
+  ],
+  [
+    "Sheung Shui",
+    "上水"
+  ],
+  [
+    "Lo Wu",
+    "羅湖"
+  ],
+  [
+    "Lok Ma Chau",
+    "落馬洲"
+  ],
+  [
+    "Wu Kai Sha",
+    "烏溪沙"
+  ],
+  [
+    "Ma On Shan",
+    "馬鞍山"
+  ],
+  [
+    "Heng On",
+    "恆安"
+  ],
+  [
+    "Tai Shui Hang",
+    "大水坑"
+  ],
+  [
+    "Shek Mun",
+    "石門"
+  ],
+  [
+    "City One",
+    "第一城"
+  ],
+  [
+    "Sha Tin Wai",
+    "沙田圍"
+  ],
+  [
+    "Che Kung Temple",
+    "車公廟"
+  ],
+  [
+    "Hin Keng",
+    "顯徑"
+  ],
+  [
+    "Kai Tak",
+    "啟德"
+  ],
+  [
+    "Sung Wong Toi",
+    "宋皇臺"
+  ],
+  [
+    "To Kwa Wan",
+    "土瓜灣"
+  ],
+  [
+    "East Tsim Sha Tsui",
+    "尖東"
+  ],
+  [
+    "Austin",
+    "柯士甸"
+  ],
+  [
+    "Tsuen Wan West",
+    "荃灣西"
+  ],
+  [
+    "Kam Sheung Road",
+    "錦上路"
+  ],
+  [
+    "Yuen Long",
+    "元朗"
+  ],
+  [
+    "Long Ping",
+    "朗屏"
+  ],
+  [
+    "Tin Shui Wai",
+    "天水圍"
+  ],
+  [
+    "Siu Hong",
+    "兆康"
+  ],
+  [
+    "Tuen Mun",
+    "屯門"
+  ],
+  [
+    "Hong Kong West Kowloon",
+    "香港西九龍"
+  ]
+];
+const hkStreetEntries = [
+  [
+    "Nathan Road",
+    "彌敦道"
+  ],
+  [
+    "Argyle Street",
+    "亞皆老街"
+  ],
+  [
+    "Prince Edward Road",
+    "太子道"
+  ],
+  [
+    "Prince Edward Road West",
+    "太子道西"
+  ],
+  [
+    "Prince Edward Road East",
+    "太子道東"
+  ],
+  [
+    "Waterloo Road",
+    "窩打老道"
+  ],
+  [
+    "Boundary Street",
+    "界限街"
+  ],
+  [
+    "Portland Street",
+    "砵蘭街"
+  ],
+  [
+    "Shanghai Street",
+    "上海街"
+  ],
+  [
+    "Tung Choi Street",
+    "通菜街"
+  ],
+  [
+    "Sai Yeung Choi Street",
+    "西洋菜街"
+  ],
+  [
+    "Fa Yuen Street",
+    "花園街"
+  ],
+  [
+    "Ladies Market",
+    "女人街"
+  ],
+  [
+    "Temple Street",
+    "廟街"
+  ],
+  [
+    "Canton Road",
+    "廣東道"
+  ],
+  [
+    "Austin Road",
+    "柯士甸道"
+  ],
+  [
+    "Salisbury Road",
+    "梳士巴利道"
+  ],
+  [
+    "Chatham Road South",
+    "漆咸道南"
+  ],
+  [
+    "Chatham Road North",
+    "漆咸道北"
+  ],
+  [
+    "Jordan Road",
+    "佐敦道"
+  ],
+  [
+    "Gascoigne Road",
+    "加士居道"
+  ],
+  [
+    "Lung Cheung Road",
+    "龍翔道"
+  ],
+  [
+    "Kwun Tong Road",
+    "觀塘道"
+  ],
+  [
+    "Hoi Yuen Road",
+    "開源道"
+  ],
+  [
+    "Hip Wo Street",
+    "協和街"
+  ],
+  [
+    "Kwun Tong Promenade",
+    "觀塘海濱"
+  ],
+  [
+    "Castle Peak Road",
+    "青山公路"
+  ],
+  [
+    "Tsuen Wan Road",
+    "荃灣路"
+  ],
+  [
+    "Kwai Chung Road",
+    "葵涌道"
+  ],
+  [
+    "Texaco Road",
+    "德士古道"
+  ],
+  [
+    "Sha Tsui Road",
+    "沙咀道"
+  ],
+  [
+    "Tai Ho Road",
+    "大河道"
+  ],
+  [
+    "Yeung Uk Road",
+    "楊屋道"
+  ],
+  [
+    "Shing Mun Road",
+    "城門道"
+  ],
+  [
+    "Tuen Mun Road",
+    "屯門公路"
+  ],
+  [
+    "Yuen Long Highway",
+    "元朗公路"
+  ],
+  [
+    "Tai Tong Road",
+    "大棠路"
+  ],
+  [
+    "Castle Peak Road - Yuen Long",
+    "青山公路－元朗段"
+  ],
+  [
+    "Ma Tin Road",
+    "馬田路"
+  ],
+  [
+    "Tin Wah Road",
+    "天華路"
+  ],
+  [
+    "Tin Shui Road",
+    "天瑞路"
+  ],
+  [
+    "Sha Tin Centre Street",
+    "沙田正街"
+  ],
+  [
+    "Tai Chung Kiu Road",
+    "大涌橋路"
+  ],
+  [
+    "Che Kung Miu Road",
+    "車公廟路"
+  ],
+  [
+    "Tai Po Road",
+    "大埔道"
+  ],
+  [
+    "Tai Po Road - Sha Tin",
+    "大埔公路－沙田段"
+  ],
+  [
+    "Tolo Highway",
+    "吐露港公路"
+  ],
+  [
+    "Fanling Highway",
+    "粉嶺公路"
+  ],
+  [
+    "Jockey Club Road",
+    "馬會道"
+  ],
+  [
+    "Po Shek Wu Road",
+    "寶石湖路"
+  ],
+  [
+    "Choi Yuen Road",
+    "彩園路"
+  ],
+  [
+    "King's Road",
+    "英皇道"
+  ],
+  [
+    "Java Road",
+    "渣華道"
+  ],
+  [
+    "Electric Road",
+    "電氣道"
+  ],
+  [
+    "Hennessy Road",
+    "軒尼詩道"
+  ],
+  [
+    "Johnston Road",
+    "莊士敦道"
+  ],
+  [
+    "Lockhart Road",
+    "駱克道"
+  ],
+  [
+    "Gloucester Road",
+    "告士打道"
+  ],
+  [
+    "Queen's Road Central",
+    "皇后大道中"
+  ],
+  [
+    "Queen's Road East",
+    "皇后大道東"
+  ],
+  [
+    "Queen's Road West",
+    "皇后大道西"
+  ],
+  [
+    "Des Voeux Road Central",
+    "德輔道中"
+  ],
+  [
+    "Des Voeux Road West",
+    "德輔道西"
+  ],
+  [
+    "Connaught Road Central",
+    "干諾道中"
+  ],
+  [
+    "Connaught Road West",
+    "干諾道西"
+  ],
+  [
+    "Hollywood Road",
+    "荷李活道"
+  ],
+  [
+    "Caine Road",
+    "堅道"
+  ],
+  [
+    "Bonham Road",
+    "般咸道"
+  ],
+  [
+    "Conduit Road",
+    "干德道"
+  ],
+  [
+    "Robinson Road",
+    "羅便臣道"
+  ],
+  [
+    "Garden Road",
+    "花園道"
+  ],
+  [
+    "Cotton Tree Drive",
+    "紅棉路"
+  ],
+  [
+    "Magazine Gap Road",
+    "馬己仙峽道"
+  ],
+  [
+    "Stubbs Road",
+    "司徒拔道"
+  ],
+  [
+    "Pok Fu Lam Road",
+    "薄扶林道"
+  ],
+  [
+    "Victoria Road",
+    "域多利道"
+  ],
+  [
+    "Aberdeen Main Road",
+    "香港仔大道"
+  ],
+  [
+    "Wong Chuk Hang Road",
+    "黃竹坑道"
+  ],
+  [
+    "Ap Lei Chau Bridge Road",
+    "鴨脷洲橋道"
+  ],
+  [
+    "Island Eastern Corridor",
+    "東區走廊"
+  ],
+  [
+    "Shau Kei Wan Road",
+    "筲箕灣道"
+  ],
+  [
+    "Chai Wan Road",
+    "柴灣道"
+  ],
+  [
+    "Shek O Road",
+    "石澳道"
+  ],
+  [
+    "Tseung Kwan O Road",
+    "將軍澳道"
+  ],
+  [
+    "Po Lam Road",
+    "寶琳路"
+  ],
+  [
+    "Wan Po Road",
+    "環保大道"
+  ],
+  [
+    "Clear Water Bay Road",
+    "清水灣道"
+  ],
+  [
+    "Sai Sha Road",
+    "西沙路"
+  ],
+  [
+    "Ma On Shan Road",
+    "馬鞍山路"
+  ],
+  [
+    "Tai Mong Tsai Road",
+    "大網仔路"
+  ],
+  [
+    "Hiram's Highway",
+    "西貢公路"
+  ],
+  [
+    "Lantau Link",
+    "青嶼幹線"
+  ],
+  [
+    "North Lantau Highway",
+    "北大嶼山公路"
+  ],
+  [
+    "Tung Chung Road",
+    "東涌道"
+  ],
+  [
+    "Cheung Tung Road",
+    "翔東路"
+  ]
+];
+
+countryNationalityEntries.forEach(([country, countryMeaning, nationality, nationalityMeaning]) => {
+  const [countryEntry] = senseBank.lookup(country);
+  assert.ok(countryEntry, country + " should be covered as a country name");
+  assert.strictEqual(countryEntry.pos, "noun");
+  assert.ok(countryEntry.meaning, country + " should have a Chinese meaning");
+
+  const nationalityEntries = senseBank.lookup(nationality, { includeHidden: true, limit: 12 });
+  const nationalityEntry = nationalityEntries.find((entry) => (
+    ["adjective", "noun"].includes(entry.pos)
+    && entry.meaning
+    && (entry.meaning.includes("人") || entry.meaning.includes("文") || entry.meaning.includes("的"))
+  ));
+  assert.ok(nationalityEntry, nationality + " should be covered as a nationality / language form");
+});
+
+mtrStationEntries.forEach(([station, meaning]) => {
+  const entries = senseBank.lookup(station, { includeHidden: true, limit: 12 });
+  const entry = entries.find((candidate) => candidate.pos === "noun" && candidate.meaning === meaning);
+  assert.ok(entry, station + " should be covered as an MTR station name");
+});
+
+hkStreetEntries.forEach(([street, meaning]) => {
+  const entries = senseBank.lookup(street, { includeHidden: true, limit: 12 });
+  const entry = entries.find((candidate) => candidate.pos === "noun" && candidate.meaning === meaning);
+  assert.ok(entry, street + " should be covered as a Hong Kong street / road name");
+});
+
 console.log("vocab_sense_bank tests passed");
