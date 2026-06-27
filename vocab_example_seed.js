@@ -5,11 +5,11 @@
   root.VOCAB_EXAMPLE_SEED = data;
 })(typeof globalThis !== "undefined" ? globalThis : window, {
   "meta": {
-    "generatedAt": "2026-06-27T23:14:07.696Z",
-    "entryCount": 3716,
-    "exampleCount": 11148,
+    "generatedAt": "2026-06-27T23:19:19.614Z",
+    "entryCount": 3816,
+    "exampleCount": 11448,
     "source": "local-seed-gemini",
-    "readyCount": 3716,
+    "readyCount": 3816,
     "failedCount": 0,
     "reviewRemovedCount": 220,
     "blockedKeys": [
@@ -23224,23 +23224,23 @@
       ],
       "examples": [
         {
-          "id": "seed-ln8kx8",
+          "id": "seed-fix-develop-1w2b5a9-1",
           "source": "He might develop a cold soon.",
-          "target": "他可能快要患上感冒了。",
+          "target": "他可能很快會患上感冒。",
           "meaning": "患上",
           "level": "A2"
         },
         {
-          "id": "seed-1e1za6t",
-          "source": "She did not develop any bad habits.",
-          "target": "她沒有患上任何壞習慣。",
-          "meaning": "患上",
-          "level": "A2"
-        },
-        {
-          "id": "seed-5c3x5w",
+          "id": "seed-fix-develop-1w2b5a9-2",
           "source": "Some children develop allergies to peanuts.",
           "target": "有些小朋友會患上花生敏感。",
+          "meaning": "患上",
+          "level": "A2"
+        },
+        {
+          "id": "seed-fix-develop-1w2b5a9-3",
+          "source": "She developed a fever last night.",
+          "target": "她昨晚發燒了。",
           "meaning": "患上",
           "level": "A2"
         }
@@ -23265,23 +23265,23 @@
       ],
       "examples": [
         {
-          "id": "seed-1kz961s",
-          "source": "Poor habits can develop into health problems.",
-          "target": "不良習慣可能會發展成健康問題。",
+          "id": "seed-fix-develop-b6kt78-1",
+          "source": "Children develop their skills through games.",
+          "target": "孩子們透過遊戲發展技能。",
           "meaning": "患上 / 發展",
           "level": "A2"
         },
         {
-          "id": "seed-1dbitbz",
-          "source": "He did not develop any bad habits.",
-          "target": "他沒有患上任何壞習慣。",
+          "id": "seed-fix-develop-b6kt78-2",
+          "source": "He may develop a cold after the trip.",
+          "target": "他旅行後可能會患上感冒。",
           "meaning": "患上 / 發展",
           "level": "A2"
         },
         {
-          "id": "seed-1rp96pq",
-          "source": "Children develop their skills through playing games.",
-          "target": "孩子們透過玩遊戲來發展他們的技能。",
+          "id": "seed-fix-develop-b6kt78-3",
+          "source": "The town began to develop quickly.",
+          "target": "這個小鎮開始快速發展。",
           "meaning": "患上 / 發展",
           "level": "A2"
         }
@@ -138099,23 +138099,23 @@
       ],
       "examples": [
         {
-          "id": "seed-1jw5pq",
+          "id": "seed-fix-best-1s982ro-1",
           "source": "She always tries her best at school.",
           "target": "她在學校總是盡力做到最好。",
           "meaning": "最好的人 / 最好的事物",
           "level": "A2"
         },
         {
-          "id": "seed-v2r29b",
-          "source": "Doing my homework is for the best.",
-          "target": "做功課是最好的選擇。",
+          "id": "seed-fix-best-1s982ro-2",
+          "source": "We should do our best every day.",
+          "target": "我們每天都應該盡力做到最好。",
           "meaning": "最好的人 / 最好的事物",
           "level": "A2"
         },
         {
-          "id": "seed-176b5pq",
-          "source": "We should do our best every day.",
-          "target": "我們每天都應該盡力做到最好。",
+          "id": "seed-fix-best-1s982ro-3",
+          "source": "I did my best in the English test.",
+          "target": "我在英文測驗中已經盡了最大努力。",
           "meaning": "最好的人 / 最好的事物",
           "level": "A2"
         }
@@ -138960,23 +138960,23 @@
       ],
       "examples": [
         {
-          "id": "seed-ffvvub",
+          "id": "seed-fix-blow-mes0m6-1",
           "source": "The bad news was a blow to the team.",
           "target": "這個壞消息對隊伍是一個打擊。",
           "meaning": "打擊 / 吹",
           "level": "A2"
         },
         {
-          "id": "seed-4l931z",
-          "source": "He felt sad after the big blow.",
-          "target": "受到這次打擊後，他感到很難過。",
+          "id": "seed-fix-blow-mes0m6-2",
+          "source": "Losing the match was a hard blow.",
+          "target": "輸掉比賽是一個沉重的打擊。",
           "meaning": "打擊 / 吹",
           "level": "A2"
         },
         {
-          "id": "seed-1balr6w",
-          "source": "He gave the ball a hard blow.",
-          "target": "他用力打了一下那個球。",
+          "id": "seed-fix-blow-mes0m6-3",
+          "source": "The fall gave him a blow on the arm.",
+          "target": "那次跌倒令他的手臂受到一下撞擊。",
           "meaning": "打擊 / 吹",
           "level": "A2"
         }
@@ -139657,23 +139657,23 @@
       ],
       "examples": [
         {
-          "id": "seed-1u2buil",
-          "source": "My name is on the bottom page.",
-          "target": "我的名字在最底那一頁。",
-          "meaning": "底部的",
-          "level": "A2"
-        },
-        {
-          "id": "seed-v3onjv",
+          "id": "seed-fix-bottom-6zonuv-1",
           "source": "The bottom drawer is for paper.",
-          "target": "底部的抽屜是用來放紙的。",
+          "target": "最底層的抽屜是用來放紙的。",
           "meaning": "底部的",
           "level": "A2"
         },
         {
-          "id": "seed-1epq1x2",
-          "source": "The bottom shelf is for my toys.",
-          "target": "底部的架子是用來放我的玩具。",
+          "id": "seed-fix-bottom-6zonuv-2",
+          "source": "Put the toys on the bottom shelf.",
+          "target": "把玩具放在最底層的架子上。",
+          "meaning": "底部的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-fix-bottom-6zonuv-3",
+          "source": "Read the note on the bottom line.",
+          "target": "閱讀最底一行的備註。",
           "meaning": "底部的",
           "level": "A2"
         }
@@ -140641,23 +140641,23 @@
       ],
       "examples": [
         {
-          "id": "seed-dkv5ki",
+          "id": "seed-fix-button-oe27dr-1",
           "source": "Please press the button to start the game.",
           "target": "請按按鈕來開始遊戲。",
           "meaning": "按鈕",
           "level": "A2"
         },
         {
-          "id": "seed-1on3ydq",
+          "id": "seed-fix-button-oe27dr-2",
           "source": "Click the green button to continue.",
           "target": "按綠色按鈕繼續。",
           "meaning": "按鈕",
           "level": "A2"
         },
         {
-          "id": "seed-1ww6y1e",
-          "source": "You should push the red button for help.",
-          "target": "你應該按下紅色按鈕來求助。",
+          "id": "seed-fix-button-oe27dr-3",
+          "source": "Push the red button if you need help.",
+          "target": "如果你需要幫助，請按紅色按鈕。",
           "meaning": "按鈕",
           "level": "A2"
         }
@@ -146154,6 +146154,4106 @@
           "source": "She can control her emotions very well.",
           "target": "她可以很好地控制自己的情緒。",
           "meaning": "控制",
+          "level": "A2"
+        }
+      ]
+    },
+    "convenience store|vmvpr": {
+      "word": "convenience store",
+      "display": "convenience store",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "便利店",
+      "pos": "noun",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "便利店",
+          "pos": "noun",
+          "type": "phrase",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1rn1ibj",
+          "source": "I bought a drink at the convenience store.",
+          "target": "我在便利店買了一杯飲品。",
+          "meaning": "便利店",
+          "level": "A2"
+        },
+        {
+          "id": "seed-r13xra",
+          "source": "The convenience store is near my school.",
+          "target": "那間便利店就在我學校附近。",
+          "meaning": "便利店",
+          "level": "A2"
+        },
+        {
+          "id": "seed-7bfhd",
+          "source": "Let's go to the convenience store now.",
+          "target": "我們現在去便利店吧。",
+          "meaning": "便利店",
+          "level": "A2"
+        }
+      ]
+    },
+    "cook|16vehbk": {
+      "word": "cook",
+      "display": "cook",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "廚師 / 煮飯的人",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "廚師 / 煮飯的人",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-50l67k",
+          "source": "My father is a great cook.",
+          "target": "我爸爸是一位很棒的廚師。",
+          "meaning": "廚師 / 煮飯的人",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1ppmehb",
+          "source": "The cook made a delicious lunch.",
+          "target": "那位廚師準備了美味的午餐。",
+          "meaning": "廚師 / 煮飯的人",
+          "level": "A2"
+        },
+        {
+          "id": "seed-a189ef",
+          "source": "She wants to be a professional cook.",
+          "target": "她長大後想成為一名專業廚師。",
+          "meaning": "廚師 / 煮飯的人",
+          "level": "A2"
+        }
+      ]
+    },
+    "cooked|13bovrx": {
+      "word": "cooked",
+      "display": "cooked",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "煮熟的",
+      "pos": "adjective",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "煮熟的",
+          "pos": "adjective",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1bsf7xp",
+          "source": "Please make sure the meat is cooked.",
+          "target": "請確保肉已經煮熟了。",
+          "meaning": "煮熟的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1309iqi",
+          "source": "Is the rice cooked yet?",
+          "target": "飯煮熟了沒有？",
+          "meaning": "煮熟的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1samrzd",
+          "source": "We only eat cooked vegetables for dinner.",
+          "target": "我們晚餐只吃煮熟的蔬菜。",
+          "meaning": "煮熟的",
+          "level": "A2"
+        }
+      ]
+    },
+    "cooker|1nj68s0": {
+      "word": "cooker",
+      "display": "cooker",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "爐具 / 煮食爐",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "爐具 / 煮食爐",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-lfwmh",
+          "source": "My mother uses the cooker to make soup.",
+          "target": "我媽媽用煮食爐來煲湯。",
+          "meaning": "爐具 / 煮食爐",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1dfhkrp",
+          "source": "Please turn off the cooker after cooking.",
+          "target": "煮完飯後請關掉煮食爐。",
+          "meaning": "爐具 / 煮食爐",
+          "level": "A2"
+        },
+        {
+          "id": "seed-18xpk7k",
+          "source": "The new cooker is very easy to use.",
+          "target": "這個新煮食爐非常好用。",
+          "meaning": "爐具 / 煮食爐",
+          "level": "A2"
+        }
+      ]
+    },
+    "copy|1jwfeiy": {
+      "word": "copy",
+      "display": "copy",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "副本",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "副本",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1wr8roq",
+          "source": "Please make a copy of this form.",
+          "target": "請為這份表格影印一份副本。",
+          "meaning": "副本",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1d16ts2",
+          "source": "I need a copy of my homework.",
+          "target": "我需要一份功課的副本。",
+          "meaning": "副本",
+          "level": "A2"
+        },
+        {
+          "id": "seed-14uejn4",
+          "source": "Keep a copy of the letter safely.",
+          "target": "請妥善保存這封信的副本。",
+          "meaning": "副本",
+          "level": "A2"
+        }
+      ]
+    },
+    "copy|1x3kcu6": {
+      "word": "copy",
+      "display": "copy",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "複製 / 抄寫",
+      "pos": "verb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "複製 / 抄寫",
+          "pos": "verb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1tlflzx",
+          "source": "Please copy the notes from the board.",
+          "target": "請把黑板上的筆記抄下來。",
+          "meaning": "複製 / 抄寫",
+          "level": "A2"
+        },
+        {
+          "id": "seed-b04ji",
+          "source": "Do not copy your friend's homework.",
+          "target": "不要抄襲你朋友的功課。",
+          "meaning": "複製 / 抄寫",
+          "level": "A2"
+        },
+        {
+          "id": "seed-sqof41",
+          "source": "I need to copy this document for you.",
+          "target": "我需要為你影印這份文件。",
+          "meaning": "複製 / 抄寫",
+          "level": "A2"
+        }
+      ]
+    },
+    "copy down|1m86zhm": {
+      "word": "copy down",
+      "display": "copy down",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "抄下",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "抄下",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1pizbwe",
+          "source": "Please copy down the homework from the board.",
+          "target": "請把黑板上的功課抄下來。",
+          "meaning": "抄下",
+          "level": "A2"
+        },
+        {
+          "id": "seed-tnksvr",
+          "source": "I need to copy down these new words.",
+          "target": "我需要把這些生字抄下來。",
+          "meaning": "抄下",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1uqn2p7",
+          "source": "She copied down the teacher's notes quickly.",
+          "target": "她很快地把老師的筆記抄了下來。",
+          "meaning": "抄下",
+          "level": "A2"
+        }
+      ]
+    },
+    "copybook|dae2vq": {
+      "word": "copybook",
+      "display": "copybook",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "抄書簿",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "抄書簿",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-fka2hy",
+          "source": "Please write neatly in your copybook.",
+          "target": "請在你的抄書簿上寫得整齊一點。",
+          "meaning": "抄書簿",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1m8sd1u",
+          "source": "I finished my homework in the copybook.",
+          "target": "我已經在抄書簿上完成了功課。",
+          "meaning": "抄書簿",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1uuoikg",
+          "source": "Bring your copybook to the teacher tomorrow.",
+          "target": "明天把你的抄書簿帶給老師。",
+          "meaning": "抄書簿",
+          "level": "A2"
+        }
+      ]
+    },
+    "corner|62e4bw": {
+      "word": "corner",
+      "display": "corner",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "角落 / 轉角",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "角落 / 轉角",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-zg4j8x",
+          "source": "The cat is sleeping in the corner.",
+          "target": "那隻貓正在角落睡覺。",
+          "meaning": "角落 / 轉角",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1ckwj1v",
+          "source": "Turn left at the corner of the street.",
+          "target": "在街角向左轉。",
+          "meaning": "角落 / 轉角",
+          "level": "A2"
+        },
+        {
+          "id": "seed-18hmdx3",
+          "source": "Put your school bag in the corner.",
+          "target": "把你的書包放在角落。",
+          "meaning": "角落 / 轉角",
+          "level": "A2"
+        }
+      ]
+    },
+    "correction tape|1wkq2t8": {
+      "word": "correction tape",
+      "display": "correction tape",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "改錯帶",
+      "pos": "noun",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "改錯帶",
+          "pos": "noun",
+          "type": "phrase",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-fix-correction-tape-1wkq-1",
+          "source": "I used correction tape to fix my mistake.",
+          "target": "我用了改錯帶去修正我的錯誤。",
+          "meaning": "改錯帶",
+          "level": "A2"
+        },
+        {
+          "id": "seed-fix-correction-tape-1wkq-2",
+          "source": "Please lend me your correction tape.",
+          "target": "請借你的改錯帶給我。",
+          "meaning": "改錯帶",
+          "level": "A2"
+        },
+        {
+          "id": "seed-fix-correction-tape-1wkq-3",
+          "source": "My correction tape has run out.",
+          "target": "我的改錯帶用完了。",
+          "meaning": "改錯帶",
+          "level": "A2"
+        }
+      ]
+    },
+    "corrections|162o57d": {
+      "word": "corrections",
+      "display": "corrections",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "改正",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "改正",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-n4lqqh",
+          "source": "Please check your homework for corrections.",
+          "target": "請檢查你的功課並作出改正。",
+          "meaning": "改正",
+          "level": "A2"
+        },
+        {
+          "id": "seed-x36cpw",
+          "source": "The teacher made corrections on my essay.",
+          "target": "老師在我的文章上作出了改正。",
+          "meaning": "改正",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1enm2di",
+          "source": "I need to make some corrections today.",
+          "target": "我今天需要做一些改正。",
+          "meaning": "改正",
+          "level": "A2"
+        }
+      ]
+    },
+    "correctly|q6gax4": {
+      "word": "correctly",
+      "display": "correctly",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "正確地",
+      "pos": "adverb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "正確地",
+          "pos": "adverb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1vxkdj6",
+          "source": "Please spell your name correctly.",
+          "target": "請正確地拼寫你的名字。",
+          "meaning": "正確地",
+          "level": "A2"
+        },
+        {
+          "id": "seed-7xbhj6",
+          "source": "You answered all the questions correctly.",
+          "target": "你正確地回答了所有問題。",
+          "meaning": "正確地",
+          "level": "A2"
+        },
+        {
+          "id": "seed-13vitgp",
+          "source": "He did the math homework correctly.",
+          "target": "他正確地完成了數學功課。",
+          "meaning": "正確地",
+          "level": "A2"
+        }
+      ]
+    },
+    "cost|16bwd45": {
+      "word": "cost",
+      "display": "cost",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "費用 / 成本",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "費用 / 成本",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1cu17wt",
+          "source": "The cost of this book is ten dollars.",
+          "target": "這本書的費用是十元。",
+          "meaning": "費用 / 成本",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1yf39iu",
+          "source": "We need to check the cost of lunch.",
+          "target": "我們需要查一下午餐的費用。",
+          "meaning": "費用 / 成本",
+          "level": "A2"
+        },
+        {
+          "id": "seed-aj0qju",
+          "source": "The total cost of the trip is high.",
+          "target": "這次旅行的總費用很高。",
+          "meaning": "費用 / 成本",
+          "level": "A2"
+        }
+      ]
+    },
+    "cough|2whdo9": {
+      "word": "cough",
+      "display": "cough",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "咳嗽",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "咳嗽",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1wjt52",
+          "source": "I have a bad cough today.",
+          "target": "我今天咳嗽得很厲害。",
+          "meaning": "咳嗽",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1gobsk2",
+          "source": "She has a cough and a fever.",
+          "target": "她又咳嗽又發燒。",
+          "meaning": "咳嗽",
+          "level": "A2"
+        },
+        {
+          "id": "seed-yg2txs",
+          "source": "Please cover your mouth when you cough.",
+          "target": "你咳嗽時請掩住口鼻。",
+          "meaning": "咳嗽",
+          "level": "A2"
+        }
+      ]
+    },
+    "cough|e4rpf0": {
+      "word": "cough",
+      "display": "cough",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "咳嗽",
+      "pos": "verb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "咳嗽",
+          "pos": "verb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-t0r18s",
+          "source": "Please cover your mouth when you cough.",
+          "target": "咳嗽時請掩住口鼻。",
+          "meaning": "咳嗽",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1uvtkyg",
+          "source": "He started to cough during the lesson.",
+          "target": "他在上課時開始咳嗽。",
+          "meaning": "咳嗽",
+          "level": "A2"
+        },
+        {
+          "id": "seed-4lfws8",
+          "source": "I have a cold and I cough a lot.",
+          "target": "我感冒了，而且咳得很厲害。",
+          "meaning": "咳嗽",
+          "level": "A2"
+        }
+      ]
+    },
+    "count|11qopmu": {
+      "word": "count",
+      "display": "count",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "數 / 計算",
+      "pos": "verb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "數 / 計算",
+          "pos": "verb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-ogjug1",
+          "source": "Please count the apples in the basket.",
+          "target": "請數一數籃子裡有多少個蘋果。",
+          "meaning": "數 / 計算",
+          "level": "A2"
+        },
+        {
+          "id": "seed-uz4zhf",
+          "source": "Can you count to one hundred?",
+          "target": "你可以數到一百嗎？",
+          "meaning": "數 / 計算",
+          "level": "A2"
+        },
+        {
+          "id": "seed-vu8yvp",
+          "source": "I am counting my coins for the trip.",
+          "target": "我正在為這次旅行點算我的硬幣。",
+          "meaning": "數 / 計算",
+          "level": "A2"
+        }
+      ]
+    },
+    "count|1vfh2sc": {
+      "word": "count",
+      "display": "count",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "總數",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "總數",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-vd30vk",
+          "source": "The total count of students is thirty.",
+          "target": "學生的總數是三十人。",
+          "meaning": "總數",
+          "level": "A2"
+        },
+        {
+          "id": "seed-n51jz1",
+          "source": "What is the final count of apples?",
+          "target": "蘋果的總數是多少？",
+          "meaning": "總數",
+          "level": "A2"
+        },
+        {
+          "id": "seed-hr3n8l",
+          "source": "We need a high count of volunteers.",
+          "target": "我們需要大量的義工總數。",
+          "meaning": "總數",
+          "level": "A2"
+        }
+      ]
+    },
+    "count|1ysl4lp": {
+      "word": "count",
+      "display": "count",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "計算",
+      "pos": "verb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "計算",
+          "pos": "verb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-j9xcfg",
+          "source": "Please count the apples in the basket.",
+          "target": "請計算籃子裡有多少個蘋果。",
+          "meaning": "計算",
+          "level": "A2"
+        },
+        {
+          "id": "seed-s63sq0",
+          "source": "I can count to one hundred in English.",
+          "target": "我可以用英文由一數到一百。",
+          "meaning": "計算",
+          "level": "A2"
+        },
+        {
+          "id": "seed-13aplr8",
+          "source": "She helped me count the books on the desk.",
+          "target": "她幫我計算桌上有多少本書。",
+          "meaning": "計算",
+          "level": "A2"
+        }
+      ]
+    },
+    "count|4h2fug": {
+      "word": "count",
+      "display": "count",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "數",
+      "pos": "verb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "數",
+          "pos": "verb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1gqjmel",
+          "source": "Please count the apples in the basket.",
+          "target": "請數一數籃子裡面的蘋果。",
+          "meaning": "數",
+          "level": "A2"
+        },
+        {
+          "id": "seed-11vgvwv",
+          "source": "Can you count to one hundred?",
+          "target": "你可以數到一百嗎？",
+          "meaning": "數",
+          "level": "A2"
+        },
+        {
+          "id": "seed-148bfh5",
+          "source": "I am counting my coins for the trip.",
+          "target": "我正在數去旅行用的硬幣。",
+          "meaning": "數",
+          "level": "A2"
+        }
+      ]
+    },
+    "count|j98tfr": {
+      "word": "count",
+      "display": "count",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "數目",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "數目",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-o3hhyf",
+          "source": "Please check the count of the books.",
+          "target": "請核對一下書本的數目。",
+          "meaning": "數目",
+          "level": "A2"
+        },
+        {
+          "id": "seed-af7j7d",
+          "source": "The final count of students is thirty.",
+          "target": "學生最後的數目是三十人。",
+          "meaning": "數目",
+          "level": "A2"
+        },
+        {
+          "id": "seed-11iexc1",
+          "source": "We need an accurate count of apples.",
+          "target": "我們需要蘋果準確的數目。",
+          "meaning": "數目",
+          "level": "A2"
+        }
+      ]
+    },
+    "counting|18cb8pt": {
+      "word": "counting",
+      "display": "counting",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "數數 / 計算",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "數數 / 計算",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1ktbxib",
+          "source": "Counting money is a useful skill.",
+          "target": "數錢是一項有用的技能。",
+          "meaning": "數數 / 計算",
+          "level": "A2"
+        },
+        {
+          "id": "seed-vw8rlq",
+          "source": "We are counting the books in class.",
+          "target": "我們正在課室裡數書本。",
+          "meaning": "數數 / 計算",
+          "level": "A2"
+        },
+        {
+          "id": "seed-pe33uo",
+          "source": "Counting stars at night is fun.",
+          "target": "晚上數星星很有趣。",
+          "meaning": "數數 / 計算",
+          "level": "A2"
+        }
+      ]
+    },
+    "couple|1k9vy54": {
+      "word": "couple",
+      "display": "couple",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "一對 / 夫婦",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "一對 / 夫婦",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-16ft436",
+          "source": "That young couple is walking in the park.",
+          "target": "那一對年輕夫婦正在公園散步。",
+          "meaning": "一對 / 夫婦",
+          "level": "A2"
+        },
+        {
+          "id": "seed-c1wdev",
+          "source": "I saw a happy couple at the cinema.",
+          "target": "我在戲院見到一對快樂的夫婦。",
+          "meaning": "一對 / 夫婦",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1cjzrnu",
+          "source": "The couple bought some fruit at the market.",
+          "target": "那對夫婦在街市買了一些水果。",
+          "meaning": "一對 / 夫婦",
+          "level": "A2"
+        }
+      ]
+    },
+    "coupon|1c9bhwp": {
+      "word": "coupon",
+      "display": "coupon",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "優惠券",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "優惠券",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-7j8mwp",
+          "source": "I used a coupon to buy this toy.",
+          "target": "我用優惠券買了這個玩具。",
+          "meaning": "優惠券",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1cs1ntz",
+          "source": "This coupon gives us ten dollars off.",
+          "target": "這張優惠券可以讓我們減十元。",
+          "meaning": "優惠券",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1e7r6dn",
+          "source": "Do you have a coupon for the shop?",
+          "target": "你有這間店的優惠券嗎？",
+          "meaning": "優惠券",
+          "level": "A2"
+        }
+      ]
+    },
+    "cover|14em03i": {
+      "word": "cover",
+      "display": "cover",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "封面",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "封面",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-18l3yun",
+          "source": "This book has a beautiful cover.",
+          "target": "這本書有一個漂亮的封面。",
+          "meaning": "封面",
+          "level": "A2"
+        },
+        {
+          "id": "seed-n7tb8y",
+          "source": "Please draw a picture on the cover.",
+          "target": "請在封面上畫一幅圖畫。",
+          "meaning": "封面",
+          "level": "A2"
+        },
+        {
+          "id": "seed-23hrun",
+          "source": "I like the color of this cover.",
+          "target": "我喜歡這個封面的顏色。",
+          "meaning": "封面",
+          "level": "A2"
+        }
+      ]
+    },
+    "cover|1rzimdn": {
+      "word": "cover",
+      "display": "cover",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "覆蓋",
+      "pos": "verb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "覆蓋",
+          "pos": "verb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-10yhzmh",
+          "source": "Please cover your books with paper.",
+          "target": "請用紙張覆蓋你的書本。",
+          "meaning": "覆蓋",
+          "level": "A2"
+        },
+        {
+          "id": "seed-3gnbt",
+          "source": "Clouds cover the sun in the sky.",
+          "target": "雲層覆蓋了天空中的太陽。",
+          "meaning": "覆蓋",
+          "level": "A2"
+        },
+        {
+          "id": "seed-ro7h8c",
+          "source": "Snow covers the ground in winter.",
+          "target": "冬天時，雪會覆蓋地面。",
+          "meaning": "覆蓋",
+          "level": "A2"
+        }
+      ]
+    },
+    "cozy|fe6msn": {
+      "word": "cozy",
+      "display": "cozy",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "舒適的",
+      "pos": "adjective",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "舒適的",
+          "pos": "adjective",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-o547ob",
+          "source": "The bedroom is very warm and cozy.",
+          "target": "這間睡房既溫暖又舒適。",
+          "meaning": "舒適的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1amnxs4",
+          "source": "We sat on the cozy sofa together.",
+          "target": "我們一起坐在舒適的沙發上。",
+          "meaning": "舒適的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-3z8woj",
+          "source": "This small cafe feels very cozy.",
+          "target": "這間小咖啡店感覺很舒適。",
+          "meaning": "舒適的",
+          "level": "A2"
+        }
+      ]
+    },
+    "crab|uoc0jk": {
+      "word": "crab",
+      "display": "crab",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "蟹",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "蟹",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1k4cuf6",
+          "source": "We saw a big crab at the beach.",
+          "target": "我們在沙灘見到一隻大蟹。",
+          "meaning": "蟹",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1njl0do",
+          "source": "The crab has two strong claws.",
+          "target": "那隻蟹有兩隻強壯的鉗。",
+          "meaning": "蟹",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1jjmu4s",
+          "source": "My dad cooked a delicious crab for dinner.",
+          "target": "爸爸煮了一隻美味的蟹做晚餐。",
+          "meaning": "蟹",
+          "level": "A2"
+        }
+      ]
+    },
+    "cram|c1avi1": {
+      "word": "cram",
+      "display": "cram",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "塞滿 / 死記硬背",
+      "pos": "verb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "塞滿 / 死記硬背",
+          "pos": "verb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-14plt7v",
+          "source": "I have to cram for my math test.",
+          "target": "我必須為數學測驗死記硬背。",
+          "meaning": "塞滿 / 死記硬背",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1e6a3mm",
+          "source": "Don't cram all your books into your bag.",
+          "target": "不要把所有書都塞進書包裡。",
+          "meaning": "塞滿 / 死記硬背",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1dzuomp",
+          "source": "She stayed up late to cram for exams.",
+          "target": "她熬夜為了考試而死記硬背。",
+          "meaning": "塞滿 / 死記硬背",
+          "level": "A2"
+        }
+      ]
+    },
+    "crane|1sls6t7": {
+      "word": "crane",
+      "display": "crane",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "起重機 / 鶴",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "起重機 / 鶴",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-t1pnho",
+          "source": "The crane is lifting heavy building materials.",
+          "target": "起重機正在吊起沉重的建築材料。",
+          "meaning": "起重機 / 鶴",
+          "level": "A2"
+        },
+        {
+          "id": "seed-7r5vl",
+          "source": "We saw a white crane in the park.",
+          "target": "我們在公園裡看見了一隻白鶴。",
+          "meaning": "起重機 / 鶴",
+          "level": "A2"
+        },
+        {
+          "id": "seed-ttfzts",
+          "source": "A tall crane stands on the construction site.",
+          "target": "地盤裡豎立著一台高大的起重機。",
+          "meaning": "起重機 / 鶴",
+          "level": "A2"
+        }
+      ]
+    },
+    "crate|1x4zky0": {
+      "word": "crate",
+      "display": "crate",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "板條箱 / 木箱",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "板條箱 / 木箱",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1rawme",
+          "source": "The apples are in a wooden crate.",
+          "target": "蘋果放在一個木箱裡。",
+          "meaning": "板條箱 / 木箱",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1yptdws",
+          "source": "Please move the heavy crate over there.",
+          "target": "請把那個沉重的木箱搬到那邊。",
+          "meaning": "板條箱 / 木箱",
+          "level": "A2"
+        },
+        {
+          "id": "seed-152e3vk",
+          "source": "We found some old toys in the crate.",
+          "target": "我們在木箱裡發現了一些舊玩具。",
+          "meaning": "板條箱 / 木箱",
+          "level": "A2"
+        }
+      ]
+    },
+    "crave|1w6w0et": {
+      "word": "crave",
+      "display": "crave",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "渴望",
+      "pos": "verb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "渴望",
+          "pos": "verb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-23lwrx",
+          "source": "I always crave chocolate after school.",
+          "target": "放學後，我總是渴望吃巧克力。",
+          "meaning": "渴望",
+          "level": "A2"
+        },
+        {
+          "id": "seed-6n8jtq",
+          "source": "She craves a cold drink in summer.",
+          "target": "夏天時，她很渴望喝一杯冷飲。",
+          "meaning": "渴望",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1t4e4c1",
+          "source": "Do you crave snacks during the lesson?",
+          "target": "上課時，你會渴望吃零食嗎？",
+          "meaning": "渴望",
+          "level": "A2"
+        }
+      ]
+    },
+    "craze|5jkotr": {
+      "word": "craze",
+      "display": "craze",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "熱潮 / 風潮",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "熱潮 / 風潮",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-10i1tog",
+          "source": "Stickers are a new craze at school.",
+          "target": "貼紙是學校裡的新熱潮。",
+          "meaning": "熱潮 / 風潮",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1qjixtk",
+          "source": "Video games are a craze among students.",
+          "target": "電子遊戲在學生之間很受歡迎。",
+          "meaning": "熱潮 / 風潮",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1xuw64o",
+          "source": "This dance craze is very popular now.",
+          "target": "這股舞蹈熱潮現在非常流行。",
+          "meaning": "熱潮 / 風潮",
+          "level": "A2"
+        }
+      ]
+    },
+    "crazy|ageqg5": {
+      "word": "crazy",
+      "display": "crazy",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "瘋狂的 / 很傻的",
+      "pos": "adjective",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "瘋狂的 / 很傻的",
+          "pos": "adjective",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1lyqso6",
+          "source": "It is crazy to run in the rain.",
+          "target": "在雨中奔跑真是太瘋狂了。",
+          "meaning": "瘋狂的 / 很傻的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-10vrtxn",
+          "source": "My brother has some crazy ideas today.",
+          "target": "我哥哥今天有一些很傻的想法。",
+          "meaning": "瘋狂的 / 很傻的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-10euusb",
+          "source": "Don't do anything crazy at school.",
+          "target": "在學校不要做任何瘋狂的事。",
+          "meaning": "瘋狂的 / 很傻的",
+          "level": "A2"
+        }
+      ]
+    },
+    "creative|10xuh08": {
+      "word": "creative",
+      "display": "creative",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "創意的",
+      "pos": "adjective",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "創意的",
+          "pos": "adjective",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-tmwxvw",
+          "source": "She has many creative ideas for art.",
+          "target": "她對美術有很多創意的想法。",
+          "meaning": "創意的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-cnl530",
+          "source": "The students made a very creative poster.",
+          "target": "學生們製作了一張很有創意的海報。",
+          "meaning": "創意的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-8j57dm",
+          "source": "He is a creative boy in class.",
+          "target": "他是班上一個很有創意的男孩。",
+          "meaning": "創意的",
+          "level": "A2"
+        }
+      ]
+    },
+    "credit|15r01bc": {
+      "word": "credit",
+      "display": "credit",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "信用 / 學分 / 讚揚",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "信用 / 學分 / 讚揚",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-8bb83l",
+          "source": "You should get credit for your hard work.",
+          "target": "你付出了努力，應該得到讚揚。",
+          "meaning": "信用 / 學分 / 讚揚",
+          "level": "A2"
+        },
+        {
+          "id": "seed-pf39qu",
+          "source": "I need more credits to graduate this year.",
+          "target": "我今年需要更多學分才能畢業。",
+          "meaning": "信用 / 學分 / 讚揚",
+          "level": "A2"
+        },
+        {
+          "id": "seed-osn43n",
+          "source": "She has good credit at the school library.",
+          "target": "她在學校圖書館有良好的信用記錄。",
+          "meaning": "信用 / 學分 / 讚揚",
+          "level": "A2"
+        }
+      ]
+    },
+    "credit|1biwluj": {
+      "word": "credit",
+      "display": "credit",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "歸功於",
+      "pos": "verb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "歸功於",
+          "pos": "verb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-6zm02q",
+          "source": "I credit my success to my teacher.",
+          "target": "我將成功歸功於我的老師。",
+          "meaning": "歸功於",
+          "level": "A2"
+        },
+        {
+          "id": "seed-ij9jrb",
+          "source": "She credits her hard work for winning.",
+          "target": "她將獲勝歸功於自己的努力。",
+          "meaning": "歸功於",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1tiukly",
+          "source": "He credits his team for the victory.",
+          "target": "他將勝利歸功於他的團隊。",
+          "meaning": "歸功於",
+          "level": "A2"
+        }
+      ]
+    },
+    "credit card|18pk7oe": {
+      "word": "credit card",
+      "display": "credit card",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "信用卡",
+      "pos": "noun",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "信用卡",
+          "pos": "noun",
+          "type": "phrase",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-uxu4vk",
+          "source": "My dad pays with his credit card.",
+          "target": "我爸爸用信用卡付款。",
+          "meaning": "信用卡",
+          "level": "A2"
+        },
+        {
+          "id": "seed-14s5orz",
+          "source": "She forgot her credit card at home.",
+          "target": "她把信用卡遺漏在家裡了。",
+          "meaning": "信用卡",
+          "level": "A2"
+        },
+        {
+          "id": "seed-acvnt6",
+          "source": "Can I use a credit card here?",
+          "target": "這裡可以用信用卡嗎？",
+          "meaning": "信用卡",
+          "level": "A2"
+        }
+      ]
+    },
+    "crime|1qtewnr": {
+      "word": "crime",
+      "display": "crime",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "罪行 / 犯罪",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "罪行 / 犯罪",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-17a4i4v",
+          "source": "Stealing is a serious crime.",
+          "target": "偷竊是一種嚴重的罪行。",
+          "meaning": "罪行 / 犯罪",
+          "level": "A2"
+        },
+        {
+          "id": "seed-67fg1s",
+          "source": "The police want to stop crime.",
+          "target": "警察想要阻止犯罪。",
+          "meaning": "罪行 / 犯罪",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1jq25dy",
+          "source": "He knows that crime is wrong.",
+          "target": "他知道犯罪是不對的。",
+          "meaning": "罪行 / 犯罪",
+          "level": "A2"
+        }
+      ]
+    },
+    "criminal|a9qf3m": {
+      "word": "criminal",
+      "display": "criminal",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "罪犯",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "罪犯",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-m702s6",
+          "source": "The police caught the criminal quickly.",
+          "target": "警察很快就捉到了那個罪犯。",
+          "meaning": "罪犯",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1qguyr0",
+          "source": "The criminal ran away from the shop.",
+          "target": "那個罪犯從商店逃跑了。",
+          "meaning": "罪犯",
+          "level": "A2"
+        },
+        {
+          "id": "seed-cu1l4x",
+          "source": "The judge sent the criminal to prison.",
+          "target": "法官把那個罪犯送進了監獄。",
+          "meaning": "罪犯",
+          "level": "A2"
+        }
+      ]
+    },
+    "criminal|qguv4u": {
+      "word": "criminal",
+      "display": "criminal",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "犯罪的 / 刑事的",
+      "pos": "adjective",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "犯罪的 / 刑事的",
+          "pos": "adjective",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-fix-criminal-qguv4u-1",
+          "source": "Stealing is a criminal act.",
+          "target": "偷竊是一種犯罪行為。",
+          "meaning": "犯罪的 / 刑事的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-fix-criminal-qguv4u-2",
+          "source": "The police investigate criminal cases.",
+          "target": "警察調查刑事案件。",
+          "meaning": "犯罪的 / 刑事的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-fix-criminal-qguv4u-3",
+          "source": "He studied criminal law at university.",
+          "target": "他在大學修讀刑事法律。",
+          "meaning": "犯罪的 / 刑事的",
+          "level": "A2"
+        }
+      ]
+    },
+    "crispy|14wryod": {
+      "word": "crispy",
+      "display": "crispy",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "香脆的 / 脆口的",
+      "pos": "adjective",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "香脆的 / 脆口的",
+          "pos": "adjective",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-4kqbky",
+          "source": "These potato chips are very crispy.",
+          "target": "這些薯片非常香脆。",
+          "meaning": "香脆的 / 脆口的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1fa3y2",
+          "source": "I love eating crispy fried chicken.",
+          "target": "我喜歡吃香脆的炸雞。",
+          "meaning": "香脆的 / 脆口的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-pcwx45",
+          "source": "The toast is nice and crispy.",
+          "target": "這塊多士又香又脆。",
+          "meaning": "香脆的 / 脆口的",
+          "level": "A2"
+        }
+      ]
+    },
+    "cross|1x1sb8s": {
+      "word": "cross",
+      "display": "cross",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "穿過 / 越過",
+      "pos": "verb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "穿過 / 越過",
+          "pos": "verb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1tlicap",
+          "source": "Please cross the road at the lights.",
+          "target": "請在交通燈處過馬路。",
+          "meaning": "穿過 / 越過",
+          "level": "A2"
+        },
+        {
+          "id": "seed-j5hju",
+          "source": "We cross the bridge to get home.",
+          "target": "我們過橋回家。",
+          "meaning": "穿過 / 越過",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1jtcfya",
+          "source": "Do not cross the street alone.",
+          "target": "不要獨自過馬路。",
+          "meaning": "穿過 / 越過",
+          "level": "A2"
+        }
+      ]
+    },
+    "cross|1xftqvx": {
+      "word": "cross",
+      "display": "cross",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "十字形",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "十字形",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1ba4zzk",
+          "source": "Draw a cross on your paper.",
+          "target": "在紙上畫一個十字。",
+          "meaning": "十字形",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1rkur7z",
+          "source": "She made a cross with two sticks.",
+          "target": "她用兩根木棍做了一個十字。",
+          "meaning": "十字形",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1baofo4",
+          "source": "Mark the correct answer with a cross.",
+          "target": "用十字記號標出正確答案。",
+          "meaning": "十字形",
+          "level": "A2"
+        }
+      ]
+    },
+    "crossed|1wxljin": {
+      "word": "crossed",
+      "display": "crossed",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "cross 的過去式 / PP",
+      "pos": "verb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "cross 的過去式 / PP",
+          "pos": "verb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-j5uo2r",
+          "source": "I crossed the road to school.",
+          "target": "我過馬路去學校。",
+          "meaning": "cross 的過去式 / PP",
+          "level": "A2"
+        },
+        {
+          "id": "seed-80rrvg",
+          "source": "She crossed her arms and waited.",
+          "target": "她交叉雙臂等待著。",
+          "meaning": "cross 的過去式 / PP",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1x77dby",
+          "source": "We crossed the bridge together.",
+          "target": "我們一起走過了那座橋。",
+          "meaning": "cross 的過去式 / PP",
+          "level": "A2"
+        }
+      ]
+    },
+    "crossing|11raw34": {
+      "word": "crossing",
+      "display": "crossing",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "過路處 / 交叉口",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "過路處 / 交叉口",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-epx81v",
+          "source": "Please wait at the zebra crossing.",
+          "target": "請在斑馬線等候。",
+          "meaning": "過路處 / 交叉口",
+          "level": "A2"
+        },
+        {
+          "id": "seed-sxcse3",
+          "source": "Look both ways at the crossing.",
+          "target": "在過路處要左右看清楚。",
+          "meaning": "過路處 / 交叉口",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1cto6eb",
+          "source": "We walk across the crossing together.",
+          "target": "我們一起走過這個過路處。",
+          "meaning": "過路處 / 交叉口",
+          "level": "A2"
+        }
+      ]
+    },
+    "crowd|1lrxaxz": {
+      "word": "crowd",
+      "display": "crowd",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "人群",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "人群",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1rhhrec",
+          "source": "I cannot see him in the crowd.",
+          "target": "我在人群中看不見他。",
+          "meaning": "人群",
+          "level": "A2"
+        },
+        {
+          "id": "seed-7uuikg",
+          "source": "The crowd cheered for the school team.",
+          "target": "人群為校隊歡呼。",
+          "meaning": "人群",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1gc9wvb",
+          "source": "Please do not push in the crowd.",
+          "target": "請不要在人群中推撞。",
+          "meaning": "人群",
+          "level": "A2"
+        }
+      ]
+    },
+    "crowded|x274xl": {
+      "word": "crowded",
+      "display": "crowded",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "擠迫的 / 擁擠的",
+      "pos": "adjective",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "擠迫的 / 擁擠的",
+          "pos": "adjective",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1hlg0io",
+          "source": "The school bus is very crowded today.",
+          "target": "校車今日非常擠迫。",
+          "meaning": "擠迫的 / 擁擠的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-ectnqt",
+          "source": "The park was crowded with many children.",
+          "target": "公園裡擠滿了許多小朋友。",
+          "meaning": "擠迫的 / 擁擠的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-100mpi5",
+          "source": "I do not like crowded shopping malls.",
+          "target": "我不喜歡擠迫的商場。",
+          "meaning": "擠迫的 / 擁擠的",
+          "level": "A2"
+        }
+      ]
+    },
+    "crust|1jxhr1c": {
+      "word": "crust",
+      "display": "crust",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "外皮 / 地殼",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "外皮 / 地殼",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1t2jczu",
+          "source": "Please cut off the bread crust.",
+          "target": "請切走麵包的外皮。",
+          "meaning": "外皮 / 地殼",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1ie9yl3",
+          "source": "The earth has a rocky crust.",
+          "target": "地球表面有一層岩石地殼。",
+          "meaning": "外皮 / 地殼",
+          "level": "A2"
+        },
+        {
+          "id": "seed-5t89rb",
+          "source": "I do not like the pizza crust.",
+          "target": "我不喜歡吃薄餅的外皮。",
+          "meaning": "外皮 / 地殼",
+          "level": "A2"
+        }
+      ]
+    },
+    "crux|1wrn77i": {
+      "word": "crux",
+      "display": "crux",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "關鍵",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "關鍵",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-8x54j3",
+          "source": "The crux of the problem is time.",
+          "target": "問題的關鍵在於時間。",
+          "meaning": "關鍵",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1cmdmvw",
+          "source": "Hard work is the crux of success.",
+          "target": "努力是成功的關鍵。",
+          "meaning": "關鍵",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1vdtomi",
+          "source": "We must find the crux of this.",
+          "target": "我們必須找出這件事的關鍵。",
+          "meaning": "關鍵",
+          "level": "A2"
+        }
+      ]
+    },
+    "cry|58lqgb": {
+      "word": "cry",
+      "display": "cry",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "哭 / 叫喊",
+      "pos": "verb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "哭 / 叫喊",
+          "pos": "verb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-m4jxg3",
+          "source": "The baby began to cry for milk.",
+          "target": "嬰兒開始哭著要奶喝。",
+          "meaning": "哭 / 叫喊",
+          "level": "A2"
+        },
+        {
+          "id": "seed-spd1c8",
+          "source": "Please do not cry in the classroom.",
+          "target": "請不要在課室裡哭。",
+          "meaning": "哭 / 叫喊",
+          "level": "A2"
+        },
+        {
+          "id": "seed-sovr67",
+          "source": "She started to cry when she felt sad.",
+          "target": "她感到難過時就哭了起來。",
+          "meaning": "哭 / 叫喊",
+          "level": "A2"
+        }
+      ]
+    },
+    "cry|8bes30": {
+      "word": "cry",
+      "display": "cry",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "哭聲 / 叫聲",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "哭聲 / 叫聲",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-ycrvo3",
+          "source": "I heard a cry in the room.",
+          "target": "我聽到房內傳來一聲哭叫。",
+          "meaning": "哭聲 / 叫聲",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1e6rvgk",
+          "source": "The baby gave a loud cry.",
+          "target": "嬰兒大哭了一聲。",
+          "meaning": "哭聲 / 叫聲",
+          "level": "A2"
+        },
+        {
+          "id": "seed-16s7u71",
+          "source": "She woke up from a sudden cry.",
+          "target": "她被一聲突如其來的叫聲吵醒了。",
+          "meaning": "哭聲 / 叫聲",
+          "level": "A2"
+        }
+      ]
+    },
+    "cub|1b750yt": {
+      "word": "cub",
+      "display": "cub",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "幼獸",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "幼獸",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-x2r5bm",
+          "source": "The lion cub plays with its mother.",
+          "target": "那隻幼獅正與媽媽玩耍。",
+          "meaning": "幼獸",
+          "level": "A2"
+        },
+        {
+          "id": "seed-ha5ue0",
+          "source": "Look at that cute little bear cub.",
+          "target": "看看那隻可愛的小幼熊。",
+          "meaning": "幼獸",
+          "level": "A2"
+        },
+        {
+          "id": "seed-17m38st",
+          "source": "The tiger cub is learning to hunt.",
+          "target": "那隻幼虎正在學習狩獵。",
+          "meaning": "幼獸",
+          "level": "A2"
+        }
+      ]
+    },
+    "cubs|1b750yt": {
+      "word": "cubs",
+      "display": "cubs",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "幼獸",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "幼獸",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-ux3su",
+          "source": "The lion cubs play in the grass.",
+          "target": "小獅子在草地上玩耍。",
+          "meaning": "幼獸",
+          "level": "A2"
+        },
+        {
+          "id": "seed-11o8kr2",
+          "source": "Two cute cubs follow their mother home.",
+          "target": "兩隻可愛的幼獸跟著媽媽回家。",
+          "meaning": "幼獸",
+          "level": "A2"
+        },
+        {
+          "id": "seed-117ypta",
+          "source": "The bear cubs are very fluffy.",
+          "target": "那些小熊看起來毛茸茸的。",
+          "meaning": "幼獸",
+          "level": "A2"
+        }
+      ]
+    },
+    "cupboard|he3p6d": {
+      "word": "cupboard",
+      "display": "cupboard",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "櫥櫃",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "櫥櫃",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-l62lke",
+          "source": "Please put the plates in the cupboard.",
+          "target": "請把碟子放進櫥櫃裡。",
+          "meaning": "櫥櫃",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1ewbn8i",
+          "source": "I found my snacks in the cupboard.",
+          "target": "我在櫥櫃裡找到了我的零食。",
+          "meaning": "櫥櫃",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1fna1aa",
+          "source": "The cups are inside the wooden cupboard.",
+          "target": "杯子都在木製的櫥櫃裡面。",
+          "meaning": "櫥櫃",
+          "level": "A2"
+        }
+      ]
+    },
+    "curb|1ncmzpb": {
+      "word": "curb",
+      "display": "curb",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "抑制",
+      "pos": "verb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "抑制",
+          "pos": "verb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-137sdqh",
+          "source": "We must curb our bad habits.",
+          "target": "我們必須抑制壞習慣。",
+          "meaning": "抑制",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1cig3r8",
+          "source": "He tried to curb his anger.",
+          "target": "他試著抑制自己的怒氣。",
+          "meaning": "抑制",
+          "level": "A2"
+        },
+        {
+          "id": "seed-km09zn",
+          "source": "Please curb your loud talking now.",
+          "target": "請現在抑制你的大聲喧嘩。",
+          "meaning": "抑制",
+          "level": "A2"
+        }
+      ]
+    },
+    "curb|gr321f": {
+      "word": "curb",
+      "display": "curb",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "路緣",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "路緣",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1af4r9y",
+          "source": "Please stand back from the curb.",
+          "target": "請站在路緣後面。",
+          "meaning": "路緣",
+          "level": "A2"
+        },
+        {
+          "id": "seed-c84hpp",
+          "source": "My ball rolled into the curb.",
+          "target": "我的球滾到了路緣邊。",
+          "meaning": "路緣",
+          "level": "A2"
+        },
+        {
+          "id": "seed-gywnrz",
+          "source": "Wait for the bus at the curb.",
+          "target": "在路緣旁邊等巴士。",
+          "meaning": "路緣",
+          "level": "A2"
+        }
+      ]
+    },
+    "curly|150nt2c": {
+      "word": "curly",
+      "display": "curly",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "捲曲的",
+      "pos": "adjective",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "捲曲的",
+          "pos": "adjective",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1me1gl",
+          "source": "She has long and curly hair.",
+          "target": "她有一頭長長的捲髮。",
+          "meaning": "捲曲的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-59aou0",
+          "source": "My sister has cute curly hair.",
+          "target": "我妹妹有可愛的捲髮。",
+          "meaning": "捲曲的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1lieqgs",
+          "source": "The puppy has soft curly fur.",
+          "target": "那隻小狗有柔軟的捲毛。",
+          "meaning": "捲曲的",
+          "level": "A2"
+        }
+      ]
+    },
+    "curry|mrv4is": {
+      "word": "curry",
+      "display": "curry",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "咖喱",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "咖喱",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1p7g6tl",
+          "source": "I like to eat chicken curry for dinner.",
+          "target": "我喜歡晚餐吃雞肉咖喱。",
+          "meaning": "咖喱",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1a6yz8c",
+          "source": "My mother makes delicious curry at home.",
+          "target": "我媽媽在家裏煮美味的咖喱。",
+          "meaning": "咖喱",
+          "level": "A2"
+        },
+        {
+          "id": "seed-144v6zu",
+          "source": "Is this curry very spicy to eat?",
+          "target": "這份咖喱吃起來很辣嗎？",
+          "meaning": "咖喱",
+          "level": "A2"
+        }
+      ]
+    },
+    "curse|104hfzw": {
+      "word": "curse",
+      "display": "curse",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "詛咒",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "詛咒",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1po4ow7",
+          "source": "The witch put a curse on the frog.",
+          "target": "女巫對青蛙下了詛咒。",
+          "meaning": "詛咒",
+          "level": "A2"
+        },
+        {
+          "id": "seed-imck5p",
+          "source": "He thinks the old ring is a curse.",
+          "target": "他認為那枚舊戒指是一個詛咒。",
+          "meaning": "詛咒",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1wmuit1",
+          "source": "The story tells of a mysterious curse.",
+          "target": "這個故事講述了一個神秘的詛咒。",
+          "meaning": "詛咒",
+          "level": "A2"
+        }
+      ]
+    },
+    "curse|udn6ex": {
+      "word": "curse",
+      "display": "curse",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "詛咒",
+      "pos": "verb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "詛咒",
+          "pos": "verb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-fix-curse-udn6ex-1",
+          "source": "The witch tried to curse the prince.",
+          "target": "女巫試圖詛咒那位王子。",
+          "meaning": "詛咒",
+          "level": "A2"
+        },
+        {
+          "id": "seed-fix-curse-udn6ex-2",
+          "source": "Do not curse at your classmates.",
+          "target": "不要咒罵你的同學。",
+          "meaning": "詛咒",
+          "level": "A2"
+        },
+        {
+          "id": "seed-fix-curse-udn6ex-3",
+          "source": "In the story, the man cursed his bad luck.",
+          "target": "在故事中，那個男人咒罵自己的壞運氣。",
+          "meaning": "詛咒",
+          "level": "A2"
+        }
+      ]
+    },
+    "curtain|fulfzw": {
+      "word": "curtain",
+      "display": "curtain",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "窗簾",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "窗簾",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1ertdk1",
+          "source": "Please close the curtain before you sleep.",
+          "target": "睡覺前請拉上窗簾。",
+          "meaning": "窗簾",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1qgs45s",
+          "source": "The yellow curtain looks very nice.",
+          "target": "那塊黃色的窗簾看起來很漂亮。",
+          "meaning": "窗簾",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1uozez7",
+          "source": "Open the curtain to let sunlight in.",
+          "target": "打開窗簾讓陽光照進來。",
+          "meaning": "窗簾",
+          "level": "A2"
+        }
+      ]
+    },
+    "cut|2shcgp": {
+      "word": "cut",
+      "display": "cut",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "傷口 / 割傷",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "傷口 / 割傷",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1deihsj",
+          "source": "I have a small cut on my finger.",
+          "target": "我的手指上有一個小傷口。",
+          "meaning": "傷口 / 割傷",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1jgxzbv",
+          "source": "He put a bandage on his cut.",
+          "target": "他在傷口上貼了膠布。",
+          "meaning": "傷口 / 割傷",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1xf8tpu",
+          "source": "Be careful not to get a cut.",
+          "target": "小心不要割傷自己。",
+          "meaning": "傷口 / 割傷",
+          "level": "A2"
+        }
+      ]
+    },
+    "cycle|1xfsnbz": {
+      "word": "cycle",
+      "display": "cycle",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "踩單車",
+      "pos": "verb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "踩單車",
+          "pos": "verb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-16rkree",
+          "source": "I cycle to school every morning.",
+          "target": "我每天早上都踩單車返學。",
+          "meaning": "踩單車",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1hgbe02",
+          "source": "We like to cycle in the park.",
+          "target": "我們喜歡在公園踩單車。",
+          "meaning": "踩單車",
+          "level": "A2"
+        },
+        {
+          "id": "seed-vzqdki",
+          "source": "Can you cycle without using your hands?",
+          "target": "你可以不扶手踩單車嗎？",
+          "meaning": "踩單車",
+          "level": "A2"
+        }
+      ]
+    },
+    "cycle|1xhty12": {
+      "word": "cycle",
+      "display": "cycle",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "循環 / 週期",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "循環 / 週期",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1n37q2a",
+          "source": "The water cycle is important for nature.",
+          "target": "水循環對大自然很重要。",
+          "meaning": "循環 / 週期",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1s8dqrh",
+          "source": "The moon follows a monthly cycle.",
+          "target": "月亮跟隨着每個月的週期。",
+          "meaning": "循環 / 週期",
+          "level": "A2"
+        },
+        {
+          "id": "seed-17clj4n",
+          "source": "We learned about the life cycle of frogs.",
+          "target": "我們學習了青蛙的生命週期。",
+          "meaning": "循環 / 週期",
+          "level": "A2"
+        }
+      ]
+    },
+    "cycling|s0muv": {
+      "word": "cycling",
+      "display": "cycling",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "踩單車 / 單車運動",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "踩單車 / 單車運動",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-7dxfnc",
+          "source": "I enjoy cycling in the park.",
+          "target": "我喜歡在公園踩單車。",
+          "meaning": "踩單車 / 單車運動",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1q25sji",
+          "source": "Cycling is good for your health.",
+          "target": "踩單車對你的健康有益。",
+          "meaning": "踩單車 / 單車運動",
+          "level": "A2"
+        },
+        {
+          "id": "seed-25fr0r",
+          "source": "We go cycling every Sunday morning.",
+          "target": "我們每個星期日早上都會去踩單車。",
+          "meaning": "踩單車 / 單車運動",
+          "level": "A2"
+        }
+      ]
+    },
+    "daily|1ony1g1": {
+      "word": "daily",
+      "display": "daily",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "每日",
+      "pos": "adverb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "每日",
+          "pos": "adverb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1xgcnp0",
+          "source": "I brush my teeth daily.",
+          "target": "我每日都會刷牙。",
+          "meaning": "每日",
+          "level": "A2"
+        },
+        {
+          "id": "seed-weelm8",
+          "source": "We practice English daily at school.",
+          "target": "我們在學校每日練習英語。",
+          "meaning": "每日",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1etvcif",
+          "source": "My dad reads the newspaper daily.",
+          "target": "我爸爸每日都會看報紙。",
+          "meaning": "每日",
+          "level": "A2"
+        }
+      ]
+    },
+    "daily|zv4w": {
+      "word": "daily",
+      "display": "daily",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "每日的",
+      "pos": "adjective",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "每日的",
+          "pos": "adjective",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-ewgm4e",
+          "source": "I have a daily routine at home.",
+          "target": "我在家裡有每日的作息習慣。",
+          "meaning": "每日的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-pj1o3c",
+          "source": "We do daily exercise in the park.",
+          "target": "我們在公園進行每日運動。",
+          "meaning": "每日的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-8sq2dk",
+          "source": "Reading is part of my daily life.",
+          "target": "閱讀是我每日生活的一部分。",
+          "meaning": "每日的",
+          "level": "A2"
+        }
+      ]
+    },
+    "danger|s7f88m": {
+      "word": "danger",
+      "display": "danger",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "危險",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "危險",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-fix-danger-s7f88m-1",
+          "source": "Do not play near danger.",
+          "target": "不要在危險附近玩耍。",
+          "meaning": "危險",
+          "level": "A2"
+        },
+        {
+          "id": "seed-fix-danger-s7f88m-2",
+          "source": "The sign warns us of danger.",
+          "target": "那個標誌提醒我們有危險。",
+          "meaning": "危險",
+          "level": "A2"
+        },
+        {
+          "id": "seed-fix-danger-s7f88m-3",
+          "source": "Please stay away from danger.",
+          "target": "請遠離危險。",
+          "meaning": "危險",
+          "level": "A2"
+        }
+      ]
+    },
+    "dark|tq1blp": {
+      "word": "dark",
+      "display": "dark",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "黑暗",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "黑暗",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-41v0pd",
+          "source": "It is hard to see in the dark.",
+          "target": "在黑暗中很難看清楚東西。",
+          "meaning": "黑暗",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1wx1n05",
+          "source": "Please turn on the light after dark.",
+          "target": "天黑後請開燈。",
+          "meaning": "黑暗",
+          "level": "A2"
+        },
+        {
+          "id": "seed-xdkoup",
+          "source": "The room was pitch dark at night.",
+          "target": "房間在晚上漆黑一片。",
+          "meaning": "黑暗",
+          "level": "A2"
+        }
+      ]
+    },
+    "data|1nsaprq": {
+      "word": "data",
+      "display": "data",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "數據 / 資料",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "數據 / 資料",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-13at64o",
+          "source": "We collected data for our science project.",
+          "target": "我們為科學專題研習收集了數據。",
+          "meaning": "數據 / 資料",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1qm1uqz",
+          "source": "The computer stores all my school data.",
+          "target": "這台電腦儲存了我所有的學校資料。",
+          "meaning": "數據 / 資料",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1ltrgwz",
+          "source": "Please check the data on this chart.",
+          "target": "請查看這張圖表上的數據。",
+          "meaning": "數據 / 資料",
+          "level": "A2"
+        }
+      ]
+    },
+    "dead|19p3zeb": {
+      "word": "dead",
+      "display": "dead",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "死的",
+      "pos": "adjective",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "死的",
+          "pos": "adjective",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-d55vpj",
+          "source": "The flowers in the vase are dead.",
+          "target": "花瓶裡的花已經死了。",
+          "meaning": "死的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-11noq6n",
+          "source": "My toy car is dead because of no batteries.",
+          "target": "我的玩具車因為沒電而不能動了。",
+          "meaning": "死的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1qsiq2t",
+          "source": "The old plant looks dead to me.",
+          "target": "我覺得那棵舊植物好像死了。",
+          "meaning": "死的",
+          "level": "A2"
+        }
+      ]
+    },
+    "deaf|1bgmp2": {
+      "word": "deaf",
+      "display": "deaf",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "聾的",
+      "pos": "adjective",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "聾的",
+          "pos": "adjective",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-g9xg83",
+          "source": "The boy is deaf and uses sign language.",
+          "target": "那個男孩是聾的，他會用手語溝通。",
+          "meaning": "聾的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-4ntb1z",
+          "source": "My friend is deaf, so I write notes to him.",
+          "target": "我的朋友是聾的，所以我會寫字條給他。",
+          "meaning": "聾的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1y47463",
+          "source": "She learned sign language to help deaf people.",
+          "target": "她學習手語去幫助聾人。",
+          "meaning": "聾的",
+          "level": "A2"
+        }
+      ]
+    },
+    "deal|d52yu3": {
+      "word": "deal",
+      "display": "deal",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "處理",
+      "pos": "verb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "處理",
+          "pos": "verb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1p9cpaj",
+          "source": "I need to deal with my homework now.",
+          "target": "我現在需要處理我的功課。",
+          "meaning": "處理",
+          "level": "A2"
+        },
+        {
+          "id": "seed-16enaad",
+          "source": "She knows how to deal with problems.",
+          "target": "她知道怎樣處理問題。",
+          "meaning": "處理",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1x8yjyx",
+          "source": "He deals with all the emails every morning.",
+          "target": "他每天早上都會處理所有電郵。",
+          "meaning": "處理",
+          "level": "A2"
+        }
+      ]
+    },
+    "deal|la3dan": {
+      "word": "deal",
+      "display": "deal",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "交易 / 協議",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "交易 / 協議",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-14p9zht",
+          "source": "We made a deal to share our snacks.",
+          "target": "我們達成協議，分享彼此的零食。",
+          "meaning": "交易 / 協議",
+          "level": "A2"
+        },
+        {
+          "id": "seed-15rixg7",
+          "source": "That is a great deal for this toy.",
+          "target": "這件玩具的交易非常划算。",
+          "meaning": "交易 / 協議",
+          "level": "A2"
+        },
+        {
+          "id": "seed-gow3ov",
+          "source": "They signed a deal to work together.",
+          "target": "他們簽署了一份合作協議。",
+          "meaning": "交易 / 協議",
+          "level": "A2"
+        }
+      ]
+    },
+    "deal|nkeesc": {
+      "word": "deal",
+      "display": "deal",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "交易",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "交易",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1yhy4p",
+          "source": "We made a deal to share our snacks.",
+          "target": "我們達成交易，互相分享零食。",
+          "meaning": "交易",
+          "level": "A2"
+        },
+        {
+          "id": "seed-16jdn5x",
+          "source": "That is a good deal for this toy.",
+          "target": "這件玩具的交易很划算。",
+          "meaning": "交易",
+          "level": "A2"
+        },
+        {
+          "id": "seed-12emtes",
+          "source": "They shook hands to close the deal.",
+          "target": "他們握手完成了這項交易。",
+          "meaning": "交易",
+          "level": "A2"
+        }
+      ]
+    },
+    "deal with|1g4imoi": {
+      "word": "deal with",
+      "display": "deal with",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "處理 / 應付",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "處理 / 應付",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1g6dh5b",
+          "source": "I need to deal with my homework now.",
+          "target": "我現在需要處理我的功課。",
+          "meaning": "處理 / 應付",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1tmm1l",
+          "source": "She can deal with difficult problems easily.",
+          "target": "她可以輕鬆應付困難的問題。",
+          "meaning": "處理 / 應付",
+          "level": "A2"
+        },
+        {
+          "id": "seed-do3dqb",
+          "source": "Who will deal with the messy classroom?",
+          "target": "誰會去處理這間凌亂的課室？",
+          "meaning": "處理 / 應付",
+          "level": "A2"
+        }
+      ]
+    },
+    "dear|14giu3g": {
+      "word": "dear",
+      "display": "dear",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "哎呀 / 天啊",
+      "pos": "exclamation",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "哎呀 / 天啊",
+          "pos": "exclamation",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1eh0dze",
+          "source": "Oh dear, I forgot my homework at home.",
+          "target": "哎呀，我把功課忘在家裡了。",
+          "meaning": "哎呀 / 天啊",
+          "level": "A2"
+        },
+        {
+          "id": "seed-seqmkz",
+          "source": "Dear me, the milk has spilled everywhere.",
+          "target": "天啊，牛奶灑得到處都是。",
+          "meaning": "哎呀 / 天啊",
+          "level": "A2"
+        },
+        {
+          "id": "seed-eyc7dz",
+          "source": "Oh dear, I think I lost my pen.",
+          "target": "哎呀，我想我弄丟了我的筆。",
+          "meaning": "哎呀 / 天啊",
+          "level": "A2"
+        }
+      ]
+    },
+    "death|10xmipx": {
+      "word": "death",
+      "display": "death",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "死亡",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "死亡",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-183l5xz",
+          "source": "The death of the pet made him sad.",
+          "target": "寵物的死亡令他感到很難過。",
+          "meaning": "死亡",
+          "level": "A2"
+        },
+        {
+          "id": "seed-xwhwsd",
+          "source": "We learned about the death of the plant.",
+          "target": "我們了解了那株植物的死亡。",
+          "meaning": "死亡",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1c8d5c3",
+          "source": "They were sad after the death of their fish.",
+          "target": "牠們的魚死亡後，他們感到很傷心。",
+          "meaning": "死亡",
+          "level": "A2"
+        }
+      ]
+    },
+    "decay|nlycu7": {
+      "word": "decay",
+      "display": "decay",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "腐爛 / 衰退",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "腐爛 / 衰退",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-7bj38n",
+          "source": "The old fruit started to decay.",
+          "target": "那水果開始腐爛了。",
+          "meaning": "腐爛 / 衰退",
+          "level": "A2"
+        },
+        {
+          "id": "seed-w6r5u0",
+          "source": "Sugar causes tooth decay in children.",
+          "target": "糖分會導致兒童蛀牙。",
+          "meaning": "腐爛 / 衰退",
+          "level": "A2"
+        },
+        {
+          "id": "seed-19feefa",
+          "source": "We must stop the decay of the wood.",
+          "target": "我們必須阻止木頭腐爛。",
+          "meaning": "腐爛 / 衰退",
+          "level": "A2"
+        }
+      ]
+    },
+    "decay|u1jybw": {
+      "word": "decay",
+      "display": "decay",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "腐爛 / 衰退",
+      "pos": "verb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "腐爛 / 衰退",
+          "pos": "verb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-fix-decay-u1jybw-1",
+          "source": "Old fruit will decay in the bin.",
+          "target": "舊水果會在垃圾桶內腐爛。",
+          "meaning": "腐爛 / 衰退",
+          "level": "A2"
+        },
+        {
+          "id": "seed-fix-decay-u1jybw-2",
+          "source": "Sugar can make your teeth decay.",
+          "target": "糖分會令你的牙齒蛀壞。",
+          "meaning": "腐爛 / 衰退",
+          "level": "A2"
+        },
+        {
+          "id": "seed-fix-decay-u1jybw-3",
+          "source": "The fallen leaves began to decay.",
+          "target": "落葉開始腐爛。",
+          "meaning": "腐爛 / 衰退",
+          "level": "A2"
+        }
+      ]
+    },
+    "decided|1gwknfr": {
+      "word": "decided",
+      "display": "decided",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "decide 的過去式 / PP",
+      "pos": "verb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "decide 的過去式 / PP",
+          "pos": "verb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-11jsm1b",
+          "source": "I decided to play football today.",
+          "target": "我決定今天去踢足球。",
+          "meaning": "decide 的過去式 / PP",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1of1h3a",
+          "source": "She decided to wear her blue dress.",
+          "target": "她決定穿上那條藍色的裙子。",
+          "meaning": "decide 的過去式 / PP",
+          "level": "A2"
+        },
+        {
+          "id": "seed-rpksxl",
+          "source": "We decided to have pizza for dinner.",
+          "target": "我們決定晚餐吃薄餅。",
+          "meaning": "decide 的過去式 / PP",
+          "level": "A2"
+        }
+      ]
+    },
+    "decision|1975ae1": {
+      "word": "decision",
+      "display": "decision",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "決定",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "決定",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1qs2gov",
+          "source": "It was a hard decision to make.",
+          "target": "這是一個很難做的決定。",
+          "meaning": "決定",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1ihig4p",
+          "source": "I made a decision to study hard.",
+          "target": "我做了一個努力讀書的決定。",
+          "meaning": "決定",
+          "level": "A2"
+        },
+        {
+          "id": "seed-rpp25b",
+          "source": "Please help me with this decision.",
+          "target": "請幫我做這個決定。",
+          "meaning": "決定",
+          "level": "A2"
+        }
+      ]
+    },
+    "deep|15k0cfd": {
+      "word": "deep",
+      "display": "deep",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "深的",
+      "pos": "adjective",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "深的",
+          "pos": "adjective",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1d2jb18",
+          "source": "The water in this pool is very deep.",
+          "target": "這個泳池的水很深。",
+          "meaning": "深的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1h4tkeu",
+          "source": "Be careful, the river is quite deep here.",
+          "target": "小心，這裡的河水相當深。",
+          "meaning": "深的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-9s678r",
+          "source": "The hole in the ground is very deep.",
+          "target": "地上的那個洞很深。",
+          "meaning": "深的",
+          "level": "A2"
+        }
+      ]
+    },
+    "deep|1yxrhdt": {
+      "word": "deep",
+      "display": "deep",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "深入地",
+      "pos": "adverb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "深入地",
+          "pos": "adverb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-to5gfg",
+          "source": "Breathe deep and relax your body.",
+          "target": "深呼吸，放鬆你的身體。",
+          "meaning": "深入地",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1i2t9yv",
+          "source": "The diver went deep into the sea.",
+          "target": "潛水員深入大海之中。",
+          "meaning": "深入地",
+          "level": "A2"
+        },
+        {
+          "id": "seed-b0opff",
+          "source": "Think deep before you make a choice.",
+          "target": "做決定前要深入思考。",
+          "meaning": "深入地",
+          "level": "A2"
+        }
+      ]
+    },
+    "definitely|14te5ep": {
+      "word": "definitely",
+      "display": "definitely",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "肯定地 / 一定",
+      "pos": "adverb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "肯定地 / 一定",
+          "pos": "adverb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-osh5ua",
+          "source": "I will definitely finish my homework today.",
+          "target": "我今天一定會完成功課。",
+          "meaning": "肯定地 / 一定",
+          "level": "A2"
+        },
+        {
+          "id": "seed-183hjif",
+          "source": "This cake is definitely very delicious.",
+          "target": "這個蛋糕肯定非常好吃。",
+          "meaning": "肯定地 / 一定",
+          "level": "A2"
+        },
+        {
+          "id": "seed-10aq1mx",
+          "source": "We will definitely go to the park.",
+          "target": "我們一定會去公園。",
+          "meaning": "肯定地 / 一定",
+          "level": "A2"
+        }
+      ]
+    },
+    "degree|19poulr": {
+      "word": "degree",
+      "display": "degree",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "度數",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "度數",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-fix-degree-19poulr-1",
+          "source": "The water is thirty degrees today.",
+          "target": "今天的水溫是三十度。",
+          "meaning": "度數",
+          "level": "A2"
+        },
+        {
+          "id": "seed-fix-degree-19poulr-2",
+          "source": "My glasses have a high degree.",
+          "target": "我的眼鏡度數很深。",
+          "meaning": "度數",
+          "level": "A2"
+        },
+        {
+          "id": "seed-fix-degree-19poulr-3",
+          "source": "The angle is ninety degrees.",
+          "target": "這個角是九十度。",
+          "meaning": "度數",
+          "level": "A2"
+        }
+      ]
+    },
+    "degree|igotw5": {
+      "word": "degree",
+      "display": "degree",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "大學學位",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "大學學位",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-ob8ryz",
+          "source": "She wants to earn a university degree.",
+          "target": "她想考取一個大學學位。",
+          "meaning": "大學學位",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1ejdbt4",
+          "source": "He is studying for his degree now.",
+          "target": "他現在正為大學學位而努力讀書。",
+          "meaning": "大學學位",
+          "level": "A2"
+        },
+        {
+          "id": "seed-h8qnuk",
+          "source": "My sister finally got her university degree.",
+          "target": "我姐姐終於拿到了她的大學學位。",
+          "meaning": "大學學位",
+          "level": "A2"
+        }
+      ]
+    },
+    "degree|in19rk": {
+      "word": "degree",
+      "display": "degree",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "程度",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "程度",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-fix-degree-in19rk-1",
+          "source": "I agree with you to a certain degree.",
+          "target": "我在某種程度上同意你。",
+          "meaning": "程度",
+          "level": "A2"
+        },
+        {
+          "id": "seed-fix-degree-in19rk-2",
+          "source": "His English improved to a great degree.",
+          "target": "他的英語在很大程度上進步了。",
+          "meaning": "程度",
+          "level": "A2"
+        },
+        {
+          "id": "seed-fix-degree-in19rk-3",
+          "source": "The plan changed to a small degree.",
+          "target": "這個計劃有小程度的改變。",
+          "meaning": "程度",
+          "level": "A2"
+        }
+      ]
+    },
+    "dentist|5hbj2p": {
+      "word": "dentist",
+      "display": "dentist",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "牙醫",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "牙醫",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1g5cugm",
+          "source": "I have an appointment with my dentist today.",
+          "target": "我今天跟牙醫有預約。",
+          "meaning": "牙醫",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1k66rfh",
+          "source": "The dentist tells me to brush my teeth.",
+          "target": "牙醫叫我要刷牙。",
+          "meaning": "牙醫",
+          "level": "A2"
+        },
+        {
+          "id": "seed-16l744w",
+          "source": "My dentist is very kind and gentle.",
+          "target": "我的牙醫很親切又溫柔。",
+          "meaning": "牙醫",
+          "level": "A2"
+        }
+      ]
+    },
+    "department|1xgfoop": {
+      "word": "department",
+      "display": "department x2",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "部門",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "部門",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1xi2ad9",
+          "source": "My father works in the sales department.",
+          "target": "我爸爸在銷售部工作。",
+          "meaning": "部門",
+          "level": "A2"
+        },
+        {
+          "id": "seed-n0x6hl",
+          "source": "Which department do you want to join?",
+          "target": "你想加入哪一個部門？",
+          "meaning": "部門",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1nhm0lg",
+          "source": "The school has a new sports department.",
+          "target": "學校有一個新的體育部。",
+          "meaning": "部門",
+          "level": "A2"
+        }
+      ]
+    },
+    "department|b4eebf": {
+      "word": "department",
+      "display": "department x2",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "局",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "局",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-19ebgpx",
+          "source": "My father works in the police department.",
+          "target": "我爸爸在警務處工作。",
+          "meaning": "局",
+          "level": "A2"
+        },
+        {
+          "id": "seed-q8zqra",
+          "source": "She works in the fire services department.",
+          "target": "她在消防處工作。",
+          "meaning": "局",
+          "level": "A2"
+        },
+        {
+          "id": "seed-18w4n62",
+          "source": "The health department gives us free vaccines.",
+          "target": "衛生署為我們提供免費疫苗。",
+          "meaning": "局",
+          "level": "A2"
+        }
+      ]
+    },
+    "depend|b2clvo": {
+      "word": "depend",
+      "display": "depend",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "依靠 / 視乎",
+      "pos": "verb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "依靠 / 視乎",
+          "pos": "verb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-gsjbt2",
+          "source": "Small babies depend on their parents.",
+          "target": "小嬰兒需要依靠他們的父母。",
+          "meaning": "依靠 / 視乎",
+          "level": "A2"
+        },
+        {
+          "id": "seed-lwdhha",
+          "source": "We depend on the bus to go home.",
+          "target": "我們依靠巴士回家。",
+          "meaning": "依靠 / 視乎",
+          "level": "A2"
+        },
+        {
+          "id": "seed-s5firg",
+          "source": "It depends on the weather tomorrow.",
+          "target": "這要視乎明天的天氣而定。",
+          "meaning": "依靠 / 視乎",
+          "level": "A2"
+        }
+      ]
+    },
+    "described|131okri": {
+      "word": "described",
+      "display": "described",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "describe 的過去式 / PP",
+      "pos": "verb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "describe 的過去式 / PP",
+          "pos": "verb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-10m8yfz",
+          "source": "He described his new toy to me.",
+          "target": "他向我描述了他的新玩具。",
+          "meaning": "describe 的過去式 / PP",
+          "level": "A2"
+        },
+        {
+          "id": "seed-c8t2zy",
+          "source": "She described the cat as very cute.",
+          "target": "她形容那隻貓非常可愛。",
+          "meaning": "describe 的過去式 / PP",
+          "level": "A2"
+        },
+        {
+          "id": "seed-anrxsu",
+          "source": "The teacher described the story clearly.",
+          "target": "老師清楚地講述了那個故事。",
+          "meaning": "describe 的過去式 / PP",
+          "level": "A2"
+        }
+      ]
+    },
+    "desert|1pgaha3": {
+      "word": "desert",
+      "display": "desert",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "遺棄 / 離棄",
+      "pos": "verb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "遺棄 / 離棄",
+          "pos": "verb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1199vfz",
+          "source": "Do not desert your friends at school.",
+          "target": "不要在學校離棄你的朋友。",
+          "meaning": "遺棄 / 離棄",
+          "level": "A2"
+        },
+        {
+          "id": "seed-nszakr",
+          "source": "The boy did not desert his pet.",
+          "target": "那個男孩沒有遺棄他的寵物。",
+          "meaning": "遺棄 / 離棄",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1r4bmxw",
+          "source": "We should never desert our family members.",
+          "target": "我們永遠不應該離棄我們的家人。",
+          "meaning": "遺棄 / 離棄",
+          "level": "A2"
+        }
+      ]
+    },
+    "designer|1vrouqd": {
+      "word": "designer",
+      "display": "designer",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "設計師",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "設計師",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-wqn2a",
+          "source": "My aunt is a fashion designer.",
+          "target": "我阿姨是一位時裝設計師。",
+          "meaning": "設計師",
+          "level": "A2"
+        },
+        {
+          "id": "seed-utidk3",
+          "source": "The designer drew a beautiful house.",
+          "target": "那位設計師畫了一間漂亮的房子。",
+          "meaning": "設計師",
+          "level": "A2"
+        },
+        {
+          "id": "seed-solic1",
+          "source": "I want to be a game designer.",
+          "target": "我想成為一名遊戲設計師。",
+          "meaning": "設計師",
+          "level": "A2"
+        }
+      ]
+    },
+    "dessert|6d21v": {
+      "word": "dessert",
+      "display": "dessert",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "甜品 / 甜點",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "甜品 / 甜點",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-xqn75f",
+          "source": "I want to eat chocolate for dessert.",
+          "target": "我想食朱古力做甜品。",
+          "meaning": "甜品 / 甜點",
+          "level": "A2"
+        },
+        {
+          "id": "seed-135gblv",
+          "source": "My mother made a delicious fruit dessert.",
+          "target": "我媽媽整咗一款好味嘅水果甜品。",
+          "meaning": "甜品 / 甜點",
+          "level": "A2"
+        },
+        {
+          "id": "seed-tvbu45",
+          "source": "We always have dessert after our dinner.",
+          "target": "我哋食完晚飯之後總會食甜品。",
+          "meaning": "甜品 / 甜點",
+          "level": "A2"
+        }
+      ]
+    },
+    "destroy|bk9a02": {
+      "word": "destroy",
+      "display": "destroy",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "破壞 / 摧毀",
+      "pos": "verb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "破壞 / 摧毀",
+          "pos": "verb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-igug8e",
+          "source": "The heavy rain will destroy our sandcastle.",
+          "target": "大雨會摧毀我們的沙堡。",
+          "meaning": "破壞 / 摧毀",
+          "level": "A2"
+        },
+        {
+          "id": "seed-ewj9ij",
+          "source": "Don't destroy your brother's toy model.",
+          "target": "不要破壞你弟弟的模型玩具。",
+          "meaning": "破壞 / 摧毀",
+          "level": "A2"
+        },
+        {
+          "id": "seed-l1d6e4",
+          "source": "Fire can easily destroy a wooden house.",
+          "target": "火災很容易摧毀一間木屋。",
+          "meaning": "破壞 / 摧毀",
+          "level": "A2"
+        }
+      ]
+    },
+    "detective|1h1seeq": {
+      "word": "detective",
+      "display": "detective",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "偵探",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "偵探",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1ovj47i",
+          "source": "The detective looks for the lost cat.",
+          "target": "偵探正在尋找那隻走失的貓。",
+          "meaning": "偵探",
+          "level": "A2"
+        },
+        {
+          "id": "seed-wp76ef",
+          "source": "I want to be a smart detective.",
+          "target": "我想成為一名聰明的偵探。",
+          "meaning": "偵探",
+          "level": "A2"
+        },
+        {
+          "id": "seed-eh9dh9",
+          "source": "The detective found a clue in school.",
+          "target": "偵探在學校找到了一條線索。",
+          "meaning": "偵探",
+          "level": "A2"
+        }
+      ]
+    },
+    "develop|1n43zib": {
+      "word": "develop",
+      "display": "develop",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "發展",
+      "pos": "verb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "發展",
+          "pos": "verb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-3u85tv",
+          "source": "We develop our skills in the art class.",
+          "target": "我們在美術課發展我們的技能。",
+          "meaning": "發展",
+          "level": "A2"
+        },
+        {
+          "id": "seed-16g58gv",
+          "source": "Good habits help children develop well.",
+          "target": "良好的習慣有助於孩子健康發展。",
+          "meaning": "發展",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1nsrv9h",
+          "source": "They develop new games for the school fair.",
+          "target": "他們為學校嘉年華發展出新的遊戲。",
+          "meaning": "發展",
+          "level": "A2"
+        }
+      ]
+    },
+    "develop|1slbyzz": {
+      "word": "develop",
+      "display": "develop",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "發展 / 患上",
+      "pos": "verb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "發展 / 患上",
+          "pos": "verb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1y0llns",
+          "source": "We should develop good study habits.",
+          "target": "我們應該培養良好的讀書習慣。",
+          "meaning": "發展 / 患上",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1jre8e7",
+          "source": "The baby will develop quickly this year.",
+          "target": "嬰兒今年會發育得很快。",
+          "meaning": "發展 / 患上",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1uyxc1e",
+          "source": "He might develop a cold tomorrow.",
+          "target": "他明天可能會患上感冒。",
+          "meaning": "發展 / 患上",
           "level": "A2"
         }
       ]
