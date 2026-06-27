@@ -56,6 +56,19 @@ assert.strictEqual(vocabData.normalizeMeaningEntry({
   source: "teacher"
 }), null);
 
+const properNameItem = vocabData.normalizeItem({
+  id: "hong-kong",
+  word: "Hong Kong",
+  meanings: [
+    { meaning: "香港", pos: "noun", type: "phrase", source: "curated-sense-bank" }
+  ],
+  createdAt: now,
+  updatedAt: now
+}, { id: "hong-kong", now });
+assert.strictEqual(properNameItem.word, "Hong Kong");
+assert.strictEqual(vocabData.stripItemForStorage(properNameItem).word, "Hong Kong");
+assert.strictEqual(vocabData.createId(properNameItem.word), "hong-kong");
+
 const localProgress = scheduler.updateProgressAfterAnswer(
   scheduler.getInitialProgress(twoDaysAgo),
   true,

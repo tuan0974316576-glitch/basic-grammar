@@ -37,6 +37,13 @@ const {
   PRONOUN_MATCH_ID,
   PRONOUN_SENTENCE_ID,
   COUNTABLE_NOUN_ID,
+  NOUN_CATEGORY_ID,
+  MODAL_VERB_ID,
+  ADJECTIVE_ID,
+  ADVERB_ID,
+  TENSE_ID,
+  TENSE_LABELS,
+  TENSE_OPTION_ROWS,
   VERB_TABLE_ID,
   LESSON_PROGRESS_KEYS,
   LESSONS,
@@ -323,6 +330,11 @@ const el = {
   menuProgressPronounMatch: document.querySelector("#menu-progress-pronoun-match"),
   menuProgressPronounSentence: document.querySelector("#menu-progress-pronoun-sentence"),
   menuProgressCountableNouns: document.querySelector("#menu-progress-countable-nouns"),
+  menuProgressNounCategory: document.querySelector("#menu-progress-noun-category"),
+  menuProgressModalVerb: document.querySelector("#menu-progress-modal-verb"),
+  menuProgressAdjective: document.querySelector("#menu-progress-adjective"),
+  menuProgressAdverb: document.querySelector("#menu-progress-adverb"),
+  menuProgressTenses: document.querySelector("#menu-progress-tenses"),
   menuProgressVerbTable: document.querySelector("#menu-progress-verb-table"),
   menuSettingsBtn: document.querySelector("#menu-settings-btn"),
   vocabSettingsBtn: document.querySelector("#vocab-settings-btn"),
@@ -403,6 +415,7 @@ const el = {
   beNeedChoice: document.querySelector("#be-need-choice"),
   beFormChoice: document.querySelector("#be-form-choice"),
   judgmentChoice: document.querySelector("#judgment-choice"),
+  tenseChoice: document.querySelector("#tense-choice"),
   verbCountChoice: document.querySelector("#verb-count-choice"),
   verbTokenChoice: document.querySelector("#verb-token-choice"),
   verbTokenGrid: document.querySelector("#verb-token-grid"),
@@ -1355,6 +1368,18 @@ function currentLesson() {
 
 function getLessonTotal(lessonId) {
   return LESSONS[lessonId]?.questions.length || 0;
+}
+
+function isSentenceCorrectionLesson(lessonId = state.lessonId) {
+  return lessonId === COUNTABLE_NOUN_ID
+    || lessonId === NOUN_CATEGORY_ID
+    || lessonId === MODAL_VERB_ID
+    || lessonId === ADJECTIVE_ID
+    || lessonId === ADVERB_ID;
+}
+
+function shouldShowQuestionZhAfterComplete(lessonId = state.lessonId) {
+  return isSentenceCorrectionLesson(lessonId) || lessonId === TENSE_ID;
 }
 
 function getProgress(lessonId = state.lessonId) {
@@ -2651,10 +2676,25 @@ function getReviewedVocabCount() {
 
 function getNextLessonCoachLine(progressByLesson) {
   if (progressByLesson[VERB_TABLE_ID] >= getLessonTotal(VERB_TABLE_ID)) {
-    return "Lesson 07 已完成，Verb Table 四式記得好穩。";
+    return "Lesson 12 已完成，Verb Table 四式記得好穩。";
+  }
+  if (progressByLesson[TENSE_ID] >= getLessonTotal(TENSE_ID)) {
+    return "Lesson 11 已完成，可以挑戰 Lesson 12 Verb Table。";
+  }
+  if (progressByLesson[ADVERB_ID] >= getLessonTotal(ADVERB_ID)) {
+    return "Lesson 10 已完成，可以挑戰 Lesson 11 Tenses 時態分辨。";
+  }
+  if (progressByLesson[ADJECTIVE_ID] >= getLessonTotal(ADJECTIVE_ID)) {
+    return "Lesson 09 已完成，可以挑戰 Lesson 10 Adverb 副詞。";
+  }
+  if (progressByLesson[MODAL_VERB_ID] >= getLessonTotal(MODAL_VERB_ID)) {
+    return "Lesson 08 已完成，可以挑戰 Lesson 09 Adjective 形容詞。";
+  }
+  if (progressByLesson[NOUN_CATEGORY_ID] >= getLessonTotal(NOUN_CATEGORY_ID)) {
+    return "Lesson 07 已完成，可以挑戰 Lesson 08 Modal Verb。";
   }
   if (progressByLesson[COUNTABLE_NOUN_ID] >= getLessonTotal(COUNTABLE_NOUN_ID)) {
-    return "Lesson 06 已完成，可以挑戰 Lesson 07 Verb Table。";
+    return "Lesson 06 已完成，可以挑戰 Lesson 07 名詞的類別。";
   }
   if (progressByLesson[PRONOUN_SENTENCE_ID] >= getLessonTotal(PRONOUN_SENTENCE_ID)) {
     return "Lesson 05 已完成，可以挑戰 Lesson 06 可數名詞。";
@@ -2717,6 +2757,11 @@ function updateMenuProgress() {
   const pronounProgress = getProgress(PRONOUN_MATCH_ID);
   const pronounSentenceProgress = getProgress(PRONOUN_SENTENCE_ID);
   const countableProgress = getProgress(COUNTABLE_NOUN_ID);
+  const nounCategoryProgress = getProgress(NOUN_CATEGORY_ID);
+  const modalVerbProgress = getProgress(MODAL_VERB_ID);
+  const adjectiveProgress = getProgress(ADJECTIVE_ID);
+  const adverbProgress = getProgress(ADVERB_ID);
+  const tenseProgress = getProgress(TENSE_ID);
   const verbTableProgress = getProgress(VERB_TABLE_ID);
   el.menuProgressLesson1.textContent = `${lesson1Progress}/${getLessonTotal(LESSON1_ID)}`;
   el.menuProgressLesson2.textContent = `${lesson2Progress}/${getLessonTotal(LESSON2_ID)}`;
@@ -2725,6 +2770,11 @@ function updateMenuProgress() {
   el.menuProgressPronounMatch.textContent = `${pronounProgress}/${getLessonTotal(PRONOUN_MATCH_ID)}`;
   el.menuProgressPronounSentence.textContent = `${pronounSentenceProgress}/${getLessonTotal(PRONOUN_SENTENCE_ID)}`;
   el.menuProgressCountableNouns.textContent = `${countableProgress}/${getLessonTotal(COUNTABLE_NOUN_ID)}`;
+  el.menuProgressNounCategory.textContent = `${nounCategoryProgress}/${getLessonTotal(NOUN_CATEGORY_ID)}`;
+  el.menuProgressModalVerb.textContent = `${modalVerbProgress}/${getLessonTotal(MODAL_VERB_ID)}`;
+  el.menuProgressAdjective.textContent = `${adjectiveProgress}/${getLessonTotal(ADJECTIVE_ID)}`;
+  el.menuProgressAdverb.textContent = `${adverbProgress}/${getLessonTotal(ADVERB_ID)}`;
+  el.menuProgressTenses.textContent = `${tenseProgress}/${getLessonTotal(TENSE_ID)}`;
   el.menuProgressVerbTable.textContent = `${verbTableProgress}/${getLessonTotal(VERB_TABLE_ID)}`;
 
   el.menuCoachLine.textContent = getMenuCoachMessage({
@@ -2735,6 +2785,11 @@ function updateMenuProgress() {
     [PRONOUN_MATCH_ID]: pronounProgress,
     [PRONOUN_SENTENCE_ID]: pronounSentenceProgress,
     [COUNTABLE_NOUN_ID]: countableProgress,
+    [NOUN_CATEGORY_ID]: nounCategoryProgress,
+    [MODAL_VERB_ID]: modalVerbProgress,
+    [ADJECTIVE_ID]: adjectiveProgress,
+    [ADVERB_ID]: adverbProgress,
+    [TENSE_ID]: tenseProgress,
     [VERB_TABLE_ID]: verbTableProgress
   });
 }
@@ -3366,10 +3421,11 @@ function dedupeVocabWordsByWord() {
     const existing = byWord.get(word);
     if (!existing) {
       const canonicalId = createVocabId(word);
+      const displayWord = String(item.word || "").trim().replace(/\s+/g, " ") || word;
       const normalizedItem = {
         ...item,
         id: canonicalId,
-        word,
+        word: displayWord,
         meanings: getVocabMeaningEntries(item),
         meaning: getVocabMeaningEntries(item).map((entry) => entry.meaning).join(" / ")
       };
@@ -3406,8 +3462,19 @@ function dedupeVocabWordsByWord() {
   return true;
 }
 
+function getVocabDisplayWordFromEntries(word, entries = []) {
+  const canonicalWord = normalizeVocabWord(word || entries?.[0]?.word || entries?.[0]?.display);
+  const displayEntry = entries.find((entry) => (
+    normalizeVocabWord(entry.display || entry.word) === canonicalWord
+    && String(entry.display || "").trim()
+  ));
+  const displayWord = String(displayEntry?.display || entries?.[0]?.display || word || entries?.[0]?.word || "").trim().replace(/\s+/g, " ");
+  return displayWord || canonicalWord;
+}
+
 function upsertVocabEntries(word, entries, now) {
-  const canonicalWord = normalizeVocabWord(word || entries?.[0]?.word);
+  const canonicalWord = normalizeVocabWord(word || entries?.[0]?.word || entries?.[0]?.display);
+  const displayWord = getVocabDisplayWordFromEntries(word, entries);
   const nextMeanings = mergeVocabMeaningEntries(entries.map(makeVocabMeaningEntry).filter(Boolean));
   if (!canonicalWord || !nextMeanings.length) return null;
 
@@ -3428,7 +3495,7 @@ function upsertVocabEntries(word, entries, now) {
     state.vocabWords[existingIndex] = {
       ...state.vocabWords[existingIndex],
       id: itemId,
-      word: canonicalWord,
+      word: displayWord,
       meaning,
       meanings,
       pos: primaryMeaning.pos || "",
@@ -3442,7 +3509,7 @@ function upsertVocabEntries(word, entries, now) {
   } else {
     savedItem = {
       id: itemId,
-      word: canonicalWord,
+      word: displayWord,
       meaning,
       meanings,
       pos: primaryMeaning.pos || "",
@@ -3916,6 +3983,7 @@ function showOnlyChoice(choice) {
   el.beNeedChoice.classList.toggle("hidden", choice !== "needsBe");
   el.beFormChoice.classList.toggle("hidden", choice !== "beForm");
   el.judgmentChoice.classList.toggle("hidden", choice !== "judgment");
+  el.tenseChoice.classList.toggle("hidden", choice !== "tense");
   el.verbCountChoice.classList.toggle("hidden", choice !== "verbCount");
   el.verbTokenChoice.classList.toggle("hidden", choice !== "verbTokens");
   el.countableCorrectionChoice.classList.toggle("hidden", choice !== "countableCorrection");
@@ -3925,7 +3993,7 @@ function showOnlyChoice(choice) {
   el.pronounSentenceChoice.classList.toggle("hidden", choice !== "pronounSentence");
   el.verbTableChoice.classList.toggle("hidden", choice !== "verbTable");
 
-  if (choice !== "countableCorrection" && activeTextEntryTarget === "countable") {
+  if (choice !== "countableCorrection") {
     deactivateTextEntryTarget("countable");
   }
 }
@@ -3978,7 +4046,7 @@ function getTextEntryConfig(targetName = activeTextEntryTarget) {
         ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
         ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
         ["z", "x", "c", "v", "b", "n", "m", "backspace"],
-        ["space", ".", "enter"]
+        ["-", "space", ",", ".", "enter"]
       ],
       labels: {
         backspace: "⌫",
@@ -3986,7 +4054,17 @@ function getTextEntryConfig(targetName = activeTextEntryTarget) {
         space: "Space"
       },
       maxLength: 80,
-      onChange: () => setFeedback(),
+      onChange: () => {
+        if (state.lessonId === TENSE_ID) {
+          setFeedback("請打空格入面嘅動詞形式。");
+          return;
+        }
+        if (state.lessonId === LESSON2_ID || state.lessonId === NOUN_CATEGORY_ID || state.lessonId === MODAL_VERB_ID || state.lessonId === ADJECTIVE_ID || state.lessonId === ADVERB_ID) {
+          setFeedback("請打完整正確句子。");
+          return;
+        }
+        setFeedback();
+      },
       onEnter: submitCountableCorrection
     },
     vocabWord: {
@@ -4409,18 +4487,18 @@ function questionHasVerb(question) {
 
 function getVerbChoiceExplanation(question, pickedHasActionVerb) {
   if (question.type === "action") {
-    return `${question.note} 所以呢句有動作動詞，應該按 TICK。`;
+    return `${question.note} 所以呢句有動詞，應該按 TICK。`;
   }
 
   if (question.type === "be") {
-    return `「${question.zh}」入面中文「是」用來連接主語和身份，不是動作動詞，所以應該先按 CROSS。`;
+    return `「${question.zh}」入面中文「是」用來連接主語和身份；英文句子要加 be (is / am / are) 作為動詞，所以應該先按 CROSS。`;
   }
 
   if (pickedHasActionVerb) {
-    return `「${question.zh}」是形容詞句，是在形容主語，沒有動作動詞，所以應該先按 CROSS。`;
+    return `「${question.zh}」是形容詞句，是在形容主語，句子沒有動詞，所以應該先按 CROSS。`;
   }
 
-  return "再睇一次句子類型，先分清楚有沒有動作動詞。";
+  return "再睇一次句子類型，先分清楚句子是否有動詞。";
 }
 
 function getBeRuleExplanation(question) {
@@ -4432,8 +4510,7 @@ function getBeRuleExplanation(question) {
 }
 
 function getNeedsBeExplanation(question) {
-  const sentenceType = question.type === "be" ? "「是」句" : "形容詞句";
-  return `${sentenceType}英文要用 be verb。${getBeRuleExplanation(question)}`;
+  return "句子沒有動詞就要加 be (is / am / are) 作為動詞，因為句子必須要有動詞。";
 }
 
 function getWrongBeFormExplanation(question, pickedForm) {
@@ -4522,15 +4599,20 @@ function renderQuestion() {
   el.lessonScreen.classList.toggle("underline-screen", state.lessonId === SENTENCE_UNDERLINE_ID);
   el.lessonScreen.classList.toggle("pronoun-screen", state.lessonId === PRONOUN_MATCH_ID);
   el.lessonScreen.classList.toggle("pronoun-sentence-screen", state.lessonId === PRONOUN_SENTENCE_ID);
-  el.lessonScreen.classList.toggle("countable-screen", state.lessonId === COUNTABLE_NOUN_ID);
+  el.lessonScreen.classList.toggle("countable-screen", isSentenceCorrectionLesson());
+  el.lessonScreen.classList.toggle("noun-category-screen", state.lessonId === NOUN_CATEGORY_ID);
+  el.lessonScreen.classList.toggle("modal-verb-screen", state.lessonId === MODAL_VERB_ID);
+  el.lessonScreen.classList.toggle("adjective-screen", state.lessonId === ADJECTIVE_ID);
+  el.lessonScreen.classList.toggle("adverb-screen", state.lessonId === ADVERB_ID);
+  el.lessonScreen.classList.toggle("tenses-screen", state.lessonId === TENSE_ID);
   el.lessonScreen.classList.toggle("verb-table-screen", state.lessonId === VERB_TABLE_ID);
-  el.chinesePrompt.classList.toggle("english-prompt", state.lessonId === LESSON2_ID || state.lessonId === PRONOUN_SENTENCE_ID || state.lessonId === COUNTABLE_NOUN_ID);
+  el.chinesePrompt.classList.toggle("english-prompt", state.lessonId === LESSON2_ID || state.lessonId === PRONOUN_SENTENCE_ID || isSentenceCorrectionLesson());
   el.chinesePrompt.classList.toggle("builder-prompt", state.lessonId === QUIZ1_ID);
   el.chinesePrompt.classList.toggle("underline-prompt", state.lessonId === SENTENCE_UNDERLINE_ID);
   el.chinesePrompt.classList.toggle("pronoun-prompt", state.lessonId === PRONOUN_MATCH_ID);
   el.chinesePrompt.classList.toggle("pronoun-sentence-prompt", state.lessonId === PRONOUN_SENTENCE_ID);
   el.chinesePrompt.classList.toggle("verb-table-prompt", state.lessonId === VERB_TABLE_ID);
-  el.ruleCard.classList.toggle("hidden", state.lessonId !== LESSON2_ID);
+  el.ruleCard.classList.add("hidden");
   el.verbTokenGrid.replaceChildren();
   setTextEntryValue(el.countableCorrectionInput, "");
   deactivateTextEntryTarget("countable");
@@ -4541,6 +4623,7 @@ function renderQuestion() {
   el.pronounMatchBoard.replaceChildren();
   el.pronounWordBank.replaceChildren();
   el.pronounSentenceChoice.replaceChildren();
+  el.tenseChoice.replaceChildren();
   el.verbTableSlots.replaceChildren();
   clearVerbTableImage();
   setFeedback();
@@ -4575,6 +4658,31 @@ function renderQuestion() {
     return;
   }
 
+  if (state.lessonId === NOUN_CATEGORY_ID) {
+    renderNounCategoryQuestion(question);
+    return;
+  }
+
+  if (state.lessonId === MODAL_VERB_ID) {
+    renderModalVerbQuestion(question);
+    return;
+  }
+
+  if (state.lessonId === ADJECTIVE_ID) {
+    renderAdjectiveQuestion(question);
+    return;
+  }
+
+  if (state.lessonId === ADVERB_ID) {
+    renderAdverbQuestion(question);
+    return;
+  }
+
+  if (state.lessonId === TENSE_ID) {
+    renderTenseQuestion(question);
+    return;
+  }
+
   if (state.lessonId === VERB_TABLE_ID) {
     renderVerbTableQuestion(question);
     return;
@@ -4588,7 +4696,7 @@ function renderGrammarQuestion(question) {
   el.categoryPill.textContent = CATEGORY_LABELS[question.type];
   el.categoryPill.dataset.type = question.type;
   el.chinesePrompt.textContent = question.zh;
-  el.guidance.textContent = "分析句子有沒有動作動詞：有就 TICK，冇就 CROSS。";
+  el.guidance.textContent = "句子是否有動詞？";
   showOnlyChoice("verb");
 }
 
@@ -4718,6 +4826,111 @@ function renderCountableNounQuestion(question) {
   showOnlyChoice("judgment");
 }
 
+function getNounCategoryLabel(category) {
+  const labels = {
+    countable: "可數名詞",
+    uncountable: "不可數名詞",
+    gerund: "ING 做名詞",
+    "proper-noun": "專有名詞"
+  };
+  return labels[category] || "名詞類別";
+}
+
+function renderNounCategoryQuestion(question) {
+  el.stepLabel.textContent = "English sentence";
+  el.categoryPill.textContent = getNounCategoryLabel(question.category);
+  el.categoryPill.dataset.type = "noun-category";
+  el.chinesePrompt.textContent = question.sentence;
+  el.guidance.textContent = question.zh;
+  showOnlyChoice("judgment");
+}
+
+function getModalVerbLabel(category) {
+  const labels = {
+    "base-verb": "modal + 原型動詞",
+    be: "modal + be",
+    position: "modal 位置"
+  };
+  return labels[category] || "Modal Verb";
+}
+
+function renderModalVerbQuestion(question) {
+  el.stepLabel.textContent = "English sentence";
+  el.categoryPill.textContent = getModalVerbLabel(question.category);
+  el.categoryPill.dataset.type = "modal-verb";
+  el.chinesePrompt.textContent = question.sentence;
+  el.guidance.textContent = question.zh;
+  showOnlyChoice("judgment");
+}
+
+function getAdjectiveLabel(category) {
+  const labels = {
+    simple: "簡單形容詞",
+    hyphen: "有 - 的形容詞",
+    compound: "複合形容詞"
+  };
+  return labels[category] || "Adjective";
+}
+
+function renderAdjectiveQuestion(question) {
+  el.stepLabel.textContent = "English sentence";
+  el.categoryPill.textContent = getAdjectiveLabel(question.category);
+  el.categoryPill.dataset.type = "adjective-lesson";
+  el.chinesePrompt.textContent = question.sentence;
+  el.guidance.textContent = question.zh;
+  showOnlyChoice("judgment");
+}
+
+function getAdverbLabel(category) {
+  const labels = {
+    front: "句首副詞",
+    "end-time": "句尾時間詞",
+    "end-place": "句尾地方詞",
+    "end-order": "地方 + 時間",
+    "end-manner": "句尾副詞",
+    middle: "句中副詞",
+    degree: "程度副詞"
+  };
+  return labels[category] || "Adverb";
+}
+
+function renderAdverbQuestion(question) {
+  el.stepLabel.textContent = "English sentence";
+  el.categoryPill.textContent = getAdverbLabel(question.category);
+  el.categoryPill.dataset.type = "adverb-lesson";
+  el.chinesePrompt.textContent = question.sentence;
+  el.guidance.textContent = question.zh;
+  showOnlyChoice("judgment");
+}
+
+function renderTenseQuestion(question) {
+  el.stepLabel.textContent = "中文句子";
+  el.categoryPill.textContent = "Tenses";
+  el.categoryPill.dataset.type = "tenses";
+  el.chinesePrompt.textContent = question.zh;
+  el.guidance.textContent = "先分辨句子要用邊一款時態。";
+  renderTenseChoiceButtons();
+  showOnlyChoice("tense");
+}
+
+function renderTenseChoiceButtons() {
+  el.tenseChoice.replaceChildren();
+  (TENSE_OPTION_ROWS || []).forEach((row) => {
+    const rowEl = document.createElement("div");
+    rowEl.className = "tense-choice-row";
+    row.forEach((tense) => {
+      const button = document.createElement("button");
+      button.className = "option-btn tense-choice-btn";
+      button.type = "button";
+      button.textContent = TENSE_LABELS?.[tense] || tense;
+      button.dataset.tenseChoice = tense;
+      button.addEventListener("click", () => answerTenseChoice(tense));
+      rowEl.append(button);
+    });
+    el.tenseChoice.append(rowEl);
+  });
+}
+
 function renderVerbTableQuestion(question) {
   el.stepLabel.textContent = "中文意思";
   el.categoryPill.textContent = "Verb Table";
@@ -4787,7 +5000,7 @@ function completeQuestion(message) {
 function recordWrong(message) {
   const question = currentQuestion();
   if (!question || state.resolved) return;
-  const isCountableLesson = state.lessonId === COUNTABLE_NOUN_ID;
+  const shouldHideEnglishCard = isSentenceCorrectionLesson();
 
   if (state.questionMistakes === 0) {
     state.streak = 0;
@@ -4804,8 +5017,8 @@ function recordWrong(message) {
   updateLiveStats();
   showOnlyChoice("");
   setVerbTableKeyboardDocked(false);
-  el.guidance.textContent = isCountableLesson ? question.zh : "睇完解釋，按「下一題」繼續。";
-  if (question.english && !isCountableLesson) {
+  el.guidance.textContent = shouldHideEnglishCard ? question.zh : "睇完解釋，按「下一題」繼續。";
+  if (question.english && !shouldHideEnglishCard) {
     el.englishText.textContent = question.english;
     el.englishCard.classList.remove("hidden");
   } else {
@@ -4824,6 +5037,63 @@ function askBeForm(message) {
   playUiSound("step");
 }
 
+function getLesson1VerbText(question) {
+  if (window.GrammarCore?.getLesson1VerbText) {
+    return window.GrammarCore.getLesson1VerbText(question);
+  }
+  const noteMatch = String(question?.note || "").match(/「([^」]+)」/);
+  return noteMatch ? noteMatch[1].trim() : "";
+}
+
+function getLesson1VerbTokens(question) {
+  if (window.GrammarCore?.getLesson1VerbTokens) {
+    return window.GrammarCore.getLesson1VerbTokens(question);
+  }
+  const sentence = String(question?.zh || "").replace(/[。！？!?.,，]/g, "").trim();
+  const verbText = getLesson1VerbText(question);
+  const verbIndex = verbText ? sentence.indexOf(verbText) : -1;
+  if (!sentence) return [];
+  if (!verbText || verbIndex < 0) return [sentence];
+  return [
+    sentence.slice(0, verbIndex).trim(),
+    verbText,
+    sentence.slice(verbIndex + verbText.length).trim()
+  ].filter(Boolean);
+}
+
+function isLesson1VerbTokenSelectionCorrect(question) {
+  if (window.GrammarCore?.isLesson1VerbTokenSelectionCorrect) {
+    return window.GrammarCore.isLesson1VerbTokenSelectionCorrect(question, state.selectedVerbIndexes);
+  }
+  const verbText = getLesson1VerbText(question);
+  const picked = state.selectedVerbIndexes;
+  const tokens = getLesson1VerbTokens(question);
+  return picked.length === 1 && tokens[picked[0]] === verbText;
+}
+
+function getLesson1VerbTokenFeedback(question) {
+  const verbText = getLesson1VerbText(question);
+  if (!verbText) return "未正確。請再睇一次句子入面邊個字係動詞。";
+  return `未正確。${question.note} 應該揀「${verbText}」。`;
+}
+
+function askLesson1VerbToken(question) {
+  const verbText = getLesson1VerbText(question);
+  const tokens = getLesson1VerbTokens(question);
+  if (!verbText || !tokens.length) {
+    completeQuestion(`正確，${question.note}`);
+    return;
+  }
+
+  state.selectedVerbIndexes = [];
+  el.stepLabel.textContent = "揀動詞";
+  el.guidance.textContent = "正確。再揀句子入面邊個字係動詞。";
+  renderVerbTokenButtons(question, tokens);
+  showOnlyChoice("verbTokens");
+  setFeedback("正確，有動詞。請揀出動詞。", "success");
+  playUiSound("step");
+}
+
 function answerVerbChoice(choice) {
   const question = currentQuestion();
   if (!question || state.resolved) return;
@@ -4835,16 +5105,14 @@ function answerVerbChoice(choice) {
   }
 
   if (question.type === "action") {
-    completeQuestion(`正確，${question.note}`);
+    askLesson1VerbToken(question);
     return;
   }
 
   el.stepLabel.textContent = "Be verb check";
-  el.guidance.textContent = question.type === "be"
-    ? "中文「是」不當動作動詞，英文要不要用 is / am / are？"
-    : "中文形容詞句沒有動作動詞，英文要不要補 is / am / are？";
+  el.guidance.textContent = "如果句子沒有動詞，英文要不要補 is / am / are？";
   showOnlyChoice("needsBe");
-  setFeedback(question.type === "be" ? "正確，「是」不算動詞" : "正確，呢句中文沒有動作動詞。", "success");
+  setFeedback(question.type === "be" ? "正確，英文句子需要 be 作為動詞。" : "正確，呢句沒有動詞。", "success");
   playUiSound("step");
 }
 
@@ -4901,7 +5169,45 @@ function getVerbCountFeedback(question) {
   ];
 }
 
+function getLesson2CorrectSentence(question) {
+  const explicitAnswer = String(question?.correctSentence || "").trim();
+  if (explicitAnswer) return explicitAnswer;
+  const correction = getLesson2Correction(question);
+  const match = correction.match(/(?:正確寫法：|應寫\s*)(.+)$/);
+  return (match?.[1] || correction).replace(/[。！？!?]+$/g, "").trim();
+}
+
+function isLesson2CorrectionCorrect(question, value) {
+  if (window.GrammarCore?.isTypedSentenceCorrect) {
+    return window.GrammarCore.isTypedSentenceCorrect(
+      question?.acceptedAnswers || [getLesson2CorrectSentence(question)],
+      value
+    );
+  }
+  const normalized = normalizeTypedSentence(value);
+  return (question?.acceptedAnswers || [getLesson2CorrectSentence(question)])
+    .some((answer) => normalizeTypedSentence(answer) === normalized);
+}
+
+function askLesson2Correction() {
+  const question = currentQuestion();
+  if (!question) return;
+  setTextEntryValue(el.countableCorrectionInput, "");
+  el.guidance.textContent = question.zh || "請輸入正確英文句子。";
+  showOnlyChoice("countableCorrection");
+  activateTextEntryTarget("countable");
+  setFeedback("正確，呢句有問題。請打返正確寫法。", "success");
+  playUiSound("step");
+}
+
 function getCountableNounFeedback(question, opening = "") {
+  return [
+    { text: `${opening}${question.explanation}` },
+    { text: `正確答案：${question.answer}`, className: "answer-line" }
+  ];
+}
+
+function getSentenceCorrectionFeedback(question, opening = "") {
   return [
     { text: `${opening}${question.explanation}` },
     { text: `正確答案：${question.answer}`, className: "answer-line" }
@@ -5087,6 +5393,68 @@ function isCountableTypedAnswerCorrect(question, value) {
   return question.acceptedAnswers.some((answer) => normalizeTypedSentence(answer) === normalized);
 }
 
+function normalizeCaseSensitiveSentence(value) {
+  return String(value || "")
+    .trim()
+    .replace(/[’‘]/g, "'")
+    .replace(/[“”]/g, "\"")
+    .replace(/\s+/g, " ")
+    .replace(/\s+([.,!?])/g, "$1")
+    .replace(/[.?!]+$/g, "");
+}
+
+function isSentenceCorrectionCorrect(question, value) {
+  const answers = question?.acceptedAnswers || [question?.answer].filter(Boolean);
+  if (question?.caseSensitive) {
+    const normalized = normalizeCaseSensitiveSentence(value);
+    return answers.some((answer) => normalizeCaseSensitiveSentence(answer) === normalized);
+  }
+  if (window.GrammarCore?.isTypedSentenceCorrect) {
+    return window.GrammarCore.isTypedSentenceCorrect(answers, value);
+  }
+  const normalized = normalizeTypedSentence(value);
+  return answers.some((answer) => normalizeTypedSentence(answer) === normalized);
+}
+
+function isTenseAnswerCorrect(question, value) {
+  const answers = question?.acceptedAnswers || [question?.answer].filter(Boolean);
+  if (window.GrammarCore?.isTypedSentenceCorrect) {
+    return window.GrammarCore.isTypedSentenceCorrect(answers, value);
+  }
+  const normalized = normalizeTypedSentence(value);
+  return answers.some((answer) => normalizeTypedSentence(answer) === normalized);
+}
+
+function getTenseFeedback(question, opening = "") {
+  return [
+    { text: `${opening}${question.explanation}` },
+    { text: `正確時態：${question.tenseLabel}`, className: "answer-line" },
+    { text: `正確答案：${question.english}`, className: "answer-line" }
+  ];
+}
+
+function answerTenseChoice(tense) {
+  const question = currentQuestion();
+  if (!question || state.lessonId !== TENSE_ID || state.resolved) return;
+
+  if (tense !== question.tense) {
+    recordWrong(getTenseFeedback(question, "時態未正確。"));
+    return;
+  }
+
+  setTextEntryValue(el.countableCorrectionInput, "");
+  el.stepLabel.textContent = "English sentence";
+  el.categoryPill.textContent = question.tenseLabel;
+  el.categoryPill.dataset.type = "tenses";
+  el.chinesePrompt.textContent = question.sentence;
+  el.chinesePrompt.classList.add("english-prompt");
+  el.guidance.textContent = question.zh;
+  showOnlyChoice("countableCorrection");
+  activateTextEntryTarget("countable");
+  setFeedback("時態正確。請打空格入面嘅動詞形式。", "success");
+  playUiSound("step");
+}
+
 function askCountableCorrection() {
   const question = currentQuestion();
   if (question?.zh) {
@@ -5095,6 +5463,18 @@ function askCountableCorrection() {
   showOnlyChoice("countableCorrection");
   activateTextEntryTarget("countable");
   setFeedback("正確，呢句有問題，請改成正確英文。", "success");
+  playUiSound("step");
+}
+
+function askSentenceCorrection(message = "正確，呢句有問題，請改成正確英文。") {
+  const question = currentQuestion();
+  if (question?.zh) {
+    el.guidance.textContent = question.zh;
+  }
+  setTextEntryValue(el.countableCorrectionInput, "");
+  showOnlyChoice("countableCorrection");
+  activateTextEntryTarget("countable");
+  setFeedback(message, "success");
   playUiSound("step");
 }
 
@@ -5116,23 +5496,77 @@ function answerCountableJudgment(choice) {
   askCountableCorrection();
 }
 
+function answerSentenceCorrectionJudgment(choice) {
+  const question = currentQuestion();
+  if (!question || !isSentenceCorrectionLesson() || state.resolved) return;
+
+  const pickedCorrect = choice === "correct";
+  if (pickedCorrect !== question.isCorrect) {
+    recordWrong(getSentenceCorrectionFeedback(question, question.isCorrect ? "句子本身正確。" : "句子錯誤。"));
+    return;
+  }
+
+  if (question.isCorrect) {
+    completeVerbLessonQuestion(getSentenceCorrectionFeedback(question, "句子正確。"));
+    return;
+  }
+
+  askSentenceCorrection();
+}
+
+function answerNounCategoryJudgment(choice) {
+  if (state.lessonId !== NOUN_CATEGORY_ID) return;
+  answerSentenceCorrectionJudgment(choice);
+}
+
 function submitCountableCorrection() {
   const question = currentQuestion();
-  if (!question || state.lessonId !== COUNTABLE_NOUN_ID || state.resolved) return;
+  if (!question || state.resolved) return;
+  if (![LESSON2_ID, COUNTABLE_NOUN_ID, NOUN_CATEGORY_ID, MODAL_VERB_ID, ADJECTIVE_ID, ADVERB_ID, TENSE_ID].includes(state.lessonId)) return;
   const typedAnswer = getTextEntryValue(el.countableCorrectionInput);
 
   if (!typedAnswer.trim()) {
-    setFeedback("請輸入正確英文句子。", "error");
+    setFeedback(state.lessonId === TENSE_ID ? "請輸入空格入面嘅動詞形式。" : "請輸入正確英文句子。", "error");
     playUiSound("wrong");
     return;
   }
 
-  if (!isCountableTypedAnswerCorrect(question, typedAnswer)) {
-    recordWrong(getCountableNounFeedback(question, "改寫未正確。"));
+  if (state.lessonId === TENSE_ID) {
+    if (!isTenseAnswerCorrect(question, typedAnswer)) {
+      recordWrong(getTenseFeedback(question, "動詞形式未正確。"));
+      return;
+    }
+
+    completeVerbLessonQuestion(getTenseFeedback(question, "填空正確。"));
     return;
   }
 
-  completeVerbLessonQuestion(getCountableNounFeedback(question, "改寫正確。"));
+  if (state.lessonId === LESSON2_ID) {
+    if (!isLesson2CorrectionCorrect(question, typedAnswer)) {
+      recordWrong(getVerbCountFeedback(question));
+      return;
+    }
+
+    completeVerbLessonQuestion(getVerbCountFeedback(question));
+    return;
+  }
+
+  if (state.lessonId === COUNTABLE_NOUN_ID) {
+    if (!isCountableTypedAnswerCorrect(question, typedAnswer)) {
+      recordWrong(getCountableNounFeedback(question, "改寫未正確。"));
+      return;
+    }
+
+    completeVerbLessonQuestion(getCountableNounFeedback(question, "改寫正確。"));
+    return;
+  }
+
+  if (!isSentenceCorrectionCorrect(question, typedAnswer)) {
+    recordWrong(getSentenceCorrectionFeedback(question, "改寫未正確。"));
+    return;
+  }
+
+  completeVerbLessonQuestion(getSentenceCorrectionFeedback(question, "改寫正確。"));
 }
 
 function completeVerbLessonQuestion(message) {
@@ -5153,7 +5587,7 @@ function completeVerbLessonQuestion(message) {
   updateLiveStats();
   showOnlyChoice("");
   setVerbTableKeyboardDocked(false);
-  el.guidance.textContent = state.lessonId === COUNTABLE_NOUN_ID ? question.zh : "睇完解釋，按「下一題」繼續。";
+  el.guidance.textContent = shouldShowQuestionZhAfterComplete() ? question.zh : "睇完解釋，按「下一題」繼續。";
   el.englishCard.classList.add("hidden");
   el.nextBtn.classList.remove("hidden");
   setFeedback(message, "success");
@@ -5166,6 +5600,26 @@ function answerSentenceJudgment(choice) {
 
   if (state.lessonId === COUNTABLE_NOUN_ID) {
     answerCountableJudgment(choice);
+    return;
+  }
+
+  if (state.lessonId === NOUN_CATEGORY_ID) {
+    answerNounCategoryJudgment(choice);
+    return;
+  }
+
+  if (state.lessonId === MODAL_VERB_ID) {
+    answerSentenceCorrectionJudgment(choice);
+    return;
+  }
+
+  if (state.lessonId === ADJECTIVE_ID) {
+    answerSentenceCorrectionJudgment(choice);
+    return;
+  }
+
+  if (state.lessonId === ADVERB_ID) {
+    answerSentenceCorrectionJudgment(choice);
     return;
   }
 
@@ -5193,8 +5647,13 @@ function answerVerbCount(count) {
     return;
   }
 
-  if (question.isCorrect || question.verbCount === 0) {
+  if (question.isCorrect) {
     completeVerbLessonQuestion(getVerbCountFeedback(question));
+    return;
+  }
+
+  if (question.verbCount === 0) {
+    askLesson2Correction();
     return;
   }
 
@@ -5205,9 +5664,9 @@ function answerVerbCount(count) {
   playUiSound("step");
 }
 
-function renderVerbTokenButtons(question) {
+function renderVerbTokenButtons(question, tokens = getSentenceTokens(question)) {
   el.verbTokenGrid.replaceChildren();
-  getSentenceTokens(question).forEach((token, index) => {
+  tokens.forEach((token, index) => {
     const button = document.createElement("button");
     button.className = "token-btn";
     button.type = "button";
@@ -5236,7 +5695,19 @@ function toggleVerbToken(index, button) {
 
 function submitVerbTokens() {
   const question = currentQuestion();
-  if (!question || state.lessonId !== LESSON2_ID || state.resolved) return;
+  if (!question || state.resolved) return;
+
+  if (state.lessonId === LESSON1_ID) {
+    if (!isLesson1VerbTokenSelectionCorrect(question)) {
+      recordWrong(getLesson1VerbTokenFeedback(question));
+      return;
+    }
+
+    completeQuestion(`正確，${question.note}`);
+    return;
+  }
+
+  if (state.lessonId !== LESSON2_ID) return;
 
   const picked = [...state.selectedVerbIndexes].sort((left, right) => left - right);
   const expected = [...question.verbIndexes].sort((left, right) => left - right);
@@ -5244,6 +5715,11 @@ function submitVerbTokens() {
 
   if (!matched) {
     recordWrong(getVerbCountFeedback(question));
+    return;
+  }
+
+  if (!question.isCorrect) {
+    askLesson2Correction();
     return;
   }
 
@@ -6330,6 +6806,11 @@ function renderReviewSummary() {
 
 function getQuestionPrompt(question) {
   if (question.type === "countable") return question.sentence;
+  if (question.type === "noun-category") return question.sentence;
+  if (question.type === "modal-verb") return question.sentence;
+  if (question.type === "adjective-lesson") return question.sentence;
+  if (question.type === "adverb-lesson") return question.sentence;
+  if (question.type === "tenses") return question.zh;
   if (question.type === "pronoun-sentence") return question.sentence;
   if (question.type === "verb-table") return question.zh;
   return question.zh || question.sentence || question.text || "";
@@ -6341,6 +6822,21 @@ function getResultMessage(percent, mistakes, mode) {
   if (state.lessonId === COUNTABLE_NOUN_ID && percent === 100 && mistakes === 0) return "滿分！可數名詞預設加 s 呢個盲點已經打通。";
   if (state.lessonId === COUNTABLE_NOUN_ID && percent >= 80) return "好穩陣！繼續留意 a/an、the 同不可數名詞。";
   if (state.lessonId === COUNTABLE_NOUN_ID) return "慢慢嚟，先問自己：泛指？一個？指定？不可數？";
+  if (state.lessonId === NOUN_CATEGORY_ID && percent === 100 && mistakes === 0) return "滿分！可數、不可數、ING 同專有名詞都分得好清楚。";
+  if (state.lessonId === NOUN_CATEGORY_ID && percent >= 80) return "好穩陣！繼續留意名詞前面要唔要 a/an/the，動詞要唔要變 ING。";
+  if (state.lessonId === NOUN_CATEGORY_ID) return "慢慢嚟，先分名詞類別，再打返正確句子。";
+  if (state.lessonId === MODAL_VERB_ID && percent === 100 && mistakes === 0) return "滿分！Modal verb 後用原型動詞同 be，你已經掌握得好穩。";
+  if (state.lessonId === MODAL_VERB_ID && percent >= 80) return "好穩陣！繼續留意 modal verb 要放主語正後面。";
+  if (state.lessonId === MODAL_VERB_ID) return "慢慢嚟，先找主語，再檢查 modal verb 後面是不是原型動詞或 be。";
+  if (state.lessonId === ADJECTIVE_ID && percent === 100 && mistakes === 0) return "滿分！你已經記住形容詞不是動詞，複合形容詞都要有 be。";
+  if (state.lessonId === ADJECTIVE_ID && percent >= 80) return "好穩陣！繼續留意 interested in、excited about、willing to 前面要有 be。";
+  if (state.lessonId === ADJECTIVE_ID) return "慢慢嚟，先問自己：形容詞係咪扮到好似動詞？句子有冇 be？";
+  if (state.lessonId === ADVERB_ID && percent === 100 && mistakes === 0) return "滿分！句首、句中、句尾副詞位置都掌握得好準。";
+  if (state.lessonId === ADVERB_ID && percent >= 80) return "好穩陣！繼續留意時間詞放最後，句中副詞貼住動詞位置。";
+  if (state.lessonId === ADVERB_ID) return "慢慢嚟，先分句首、句中、句尾，再檢查 comma 同 in/on/at。";
+  if (state.lessonId === TENSE_ID && percent === 100 && mistakes === 0) return "滿分！你可以先分時態，再準確寫出動詞形式。";
+  if (state.lessonId === TENSE_ID && percent >= 80) return "好穩陣！繼續留意 yesterday、recently、一直、正在呢啲提示字。";
+  if (state.lessonId === TENSE_ID) return "慢慢嚟，先睇提示字，再決定動詞形式。";
   if (state.lessonId === VERB_TABLE_ID && percent === 100 && mistakes === 0) return "滿分！Verb Table 四格都配得好準。";
   if (state.lessonId === VERB_TABLE_ID && percent >= 80) return "好穩陣！繼續記住過去式同 PP 嘅分別。";
   if (state.lessonId === VERB_TABLE_ID) return "慢慢嚟，先讀現在式，再記過去式、PP、ING。";
@@ -6357,8 +6853,8 @@ function getResultMessage(percent, mistakes, mode) {
   if (state.lessonId === QUIZ1_ID && percent >= 80) return "好穩陣！繼續練主語、動詞同句尾次序。";
   if (state.lessonId === QUIZ1_ID) return "慢慢嚟，先搵主語，再搵動詞，最後補完整句。";
   if (state.lessonId === LESSON2_ID && percent === 100 && mistakes === 0) return "滿分！你記得一句句子只可以有一個動詞。";
-  if (state.lessonId === LESSON2_ID && percent >= 80) return "好穩陣！繼續留意 ING / PP 不當動詞。";
-  if (state.lessonId === LESSON2_ID) return "慢慢嚟，先數現在式、過去式同 be 動詞。";
+  if (state.lessonId === LESSON2_ID && percent >= 80) return "好穩陣！繼續留意有冇漏 be，或者多咗 be。";
+  if (state.lessonId === LESSON2_ID) return "慢慢嚟，先數動詞，再打返正確寫法。";
   if (percent === 100 && mistakes === 0) return "滿分！你第一次就全部答啱。";
   if (percent >= 80) return "好穩陣！再玩一次可以挑戰更高準確率。";
   if (percent >= 60) return "有進步空間，留意形容詞句要補 be verb。";

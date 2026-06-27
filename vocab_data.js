@@ -205,13 +205,14 @@
   }
 
   function normalizeItem(item = {}, options = {}) {
-    const word = normalizeWord(item.word);
+    const normalizedWord = normalizeWord(item.word);
+    const displayWord = String(item.word || "").trim().replace(/\s+/g, " ");
     const meanings = normalizeMeaningEntries(item);
     const meaning = summarizeMeaning(meanings);
-    if (!word || !meaning) return null;
+    if (!normalizedWord || !meaning) return null;
 
     const now = Number(options.now) || Date.now();
-    const id = String(item.id || options.id || createId(word));
+    const id = String(item.id || options.id || createId(normalizedWord));
     const createdAt = safeTime(timestampToMillis(item.createdAt, item.createdAt), now);
     const updatedAt = safeTime(timestampToMillis(item.updatedAt, item.updatedAt), createdAt);
     const deletedAt = Number(timestampToMillis(item.deletedAt, item.deletedAt)) || 0;
@@ -226,7 +227,7 @@
 
     return {
       id,
-      word,
+      word: displayWord || normalizedWord,
       meaning,
       meanings,
       ...extras,
