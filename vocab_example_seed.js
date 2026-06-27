@@ -5,11 +5,11 @@
   root.VOCAB_EXAMPLE_SEED = data;
 })(typeof globalThis !== "undefined" ? globalThis : window, {
   "meta": {
-    "generatedAt": "2026-06-20T16:01:34.658Z",
-    "entryCount": 1408,
-    "exampleCount": 4224,
+    "generatedAt": "2026-06-27T05:40:40.606Z",
+    "entryCount": 1677,
+    "exampleCount": 5031,
     "source": "local-seed-gemini",
-    "readyCount": 1368,
+    "readyCount": 1677,
     "failedCount": 0,
     "reviewRemovedCount": 220,
     "blockedKeys": [
@@ -243,7 +243,8 @@
       "with|tlwe9c"
     ],
     "blockedCount": 228,
-    "curatedCount": 66
+    "curatedCount": 66,
+    "phrases2SeedCount": 269
   },
   "entries": {
     "ability|go54cp": {
@@ -471,6 +472,47 @@
         }
       ]
     },
+    "access to|stiyk6": {
+      "word": "access to",
+      "display": "access to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "進入 / 使用...的權利或機會",
+      "pos": "noun",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "進入 / 使用...的權利或機會",
+          "pos": "noun",
+          "type": "phrase",
+          "level": "B1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-access-to-1",
+          "source": "Students need access to clean water.",
+          "target": "學生需要有使用清潔食水的機會。",
+          "meaning": "進入 / 使用...的權利或機會",
+          "level": "B1"
+        },
+        {
+          "id": "seed-access-to-2",
+          "source": "The app gives children access to English practice.",
+          "target": "這個 app 讓孩子有機會練習英文。",
+          "meaning": "進入 / 使用...的權利或機會",
+          "level": "B1"
+        },
+        {
+          "id": "seed-access-to-3",
+          "source": "Not every family has access to a computer.",
+          "target": "不是每個家庭都有使用電腦的機會。",
+          "meaning": "進入 / 使用...的權利或機會",
+          "level": "B1"
+        }
+      ]
+    },
     "accident|1x3hsjc": {
       "word": "accident",
       "display": "accident",
@@ -632,6 +674,47 @@
           "target": "你午飯後會胃痛嗎？",
           "meaning": "痛",
           "level": "A2"
+        }
+      ]
+    },
+    "achieve a goal|151puz2": {
+      "word": "achieve a goal",
+      "display": "achieve a goal",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "達成目標",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "達成目標",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-14jn211",
+          "source": "With hard work, you will eventually achieve your goal.",
+          "target": "只要努力，你最終會達成目標。",
+          "meaning": "達成目標",
+          "level": "B2"
+        },
+        {
+          "id": "seed-lsg049",
+          "source": "She worked hard to achieve a goal she set years ago.",
+          "target": "她努力達成多年前設定的目標。",
+          "meaning": "達成目標",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1wh1bpj",
+          "source": "Teamwork helped us achieve a goal together.",
+          "target": "團隊合作幫助我們共同達成目標。",
+          "meaning": "達成目標",
+          "level": "B2"
         }
       ]
     },
@@ -1051,6 +1134,47 @@
         }
       ]
     },
+    "adapt to|2qdml1": {
+      "word": "adapt to",
+      "display": "adapt to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "適應",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "適應",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-adapt-to-1",
+          "source": "New students need time to adapt to school life.",
+          "target": "新生需要時間適應校園生活。",
+          "meaning": "適應",
+          "level": "B1"
+        },
+        {
+          "id": "seed-adapt-to-2",
+          "source": "Animals adapt to living in different places.",
+          "target": "動物會適應住在不同地方。",
+          "meaning": "適應",
+          "level": "B1"
+        },
+        {
+          "id": "seed-adapt-to-3",
+          "source": "I adapted to using the new app quickly.",
+          "target": "我很快適應使用新的 app。",
+          "meaning": "適應",
+          "level": "B1"
+        }
+      ]
+    },
     "add": {
       "word": "add",
       "display": "add",
@@ -1082,6 +1206,47 @@
           "target": "我會在麥片裡加牛奶。",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "address an issue|1mmhn1p": {
+      "word": "address an issue",
+      "display": "address an issue",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "處理 / 解決問題",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "處理 / 解決問題",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-2zxb3r",
+          "source": "The government needs to take urgent action to address the housing issue.",
+          "target": "政府需要採取緊急行動來處理住房問題。",
+          "meaning": "處理 / 解決問題",
+          "level": "B2"
+        },
+        {
+          "id": "seed-rzuvke",
+          "source": "We need to address an issue before it gets worse.",
+          "target": "我們需要在問題惡化前將其處理好。",
+          "meaning": "處理 / 解決問題",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1vxy7cp",
+          "source": "The committee met to address an issue regarding the budget.",
+          "target": "委員會開會討論如何處理有關預算的問題。",
+          "meaning": "處理 / 解決問題",
+          "level": "B2"
         }
       ]
     },
@@ -1164,6 +1329,88 @@
           "target": "他們在學校應付這個事項。",
           "meaning": "應付",
           "level": "A1"
+        }
+      ]
+    },
+    "adjust to|nva2yh": {
+      "word": "adjust to",
+      "display": "adjust to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "調整 / 適應",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "調整 / 適應",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-adjust-to-1",
+          "source": "You will adjust to the new class soon.",
+          "target": "你很快會適應新班級。",
+          "meaning": "調整 / 適應",
+          "level": "B1"
+        },
+        {
+          "id": "seed-adjust-to-2",
+          "source": "She adjusted to studying online.",
+          "target": "她適應了網上學習。",
+          "meaning": "調整 / 適應",
+          "level": "B1"
+        },
+        {
+          "id": "seed-adjust-to-3",
+          "source": "We adjusted to the colder weather.",
+          "target": "我們適應了較冷的天氣。",
+          "meaning": "調整 / 適應",
+          "level": "B1"
+        }
+      ]
+    },
+    "admit to|d04m1n": {
+      "word": "admit to",
+      "display": "admit to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "承認",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "承認",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-admit-to-1",
+          "source": "He admitted to breaking the cup.",
+          "target": "他承認打破了杯子。",
+          "meaning": "承認",
+          "level": "B2"
+        },
+        {
+          "id": "seed-admit-to-2",
+          "source": "She admitted to forgetting her homework.",
+          "target": "她承認忘記帶功課。",
+          "meaning": "承認",
+          "level": "B2"
+        },
+        {
+          "id": "seed-admit-to-3",
+          "source": "The boy admitted to taking the pencil.",
+          "target": "那男孩承認拿了鉛筆。",
+          "meaning": "承認",
+          "level": "B2"
         }
       ]
     },
@@ -2264,6 +2511,47 @@
         }
       ]
     },
+    "almond|1z04sah": {
+      "word": "almond",
+      "display": "almond",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "杏仁",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "杏仁",
+          "pos": "noun",
+          "type": "word",
+          "level": ""
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-almond-39079e7b",
+          "source": "I put almonds on my cake.",
+          "target": "我把杏仁放在蛋糕上。",
+          "meaning": "杏仁",
+          "level": "B1"
+        },
+        {
+          "id": "seed-almond-b37c0ba8",
+          "source": "Almond milk is in the fridge.",
+          "target": "杏仁奶在雪櫃裡。",
+          "meaning": "杏仁",
+          "level": "B1"
+        },
+        {
+          "id": "seed-almond-0b09586a",
+          "source": "She eats a few almonds after school.",
+          "target": "她放學後吃幾粒杏仁。",
+          "meaning": "杏仁",
+          "level": "B1"
+        }
+      ]
+    },
     "almost|11urgql": {
       "word": "almost",
       "display": "almost",
@@ -2445,6 +2733,47 @@
           "target": "她也有一隻小貓。",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "alternative to|cuzsto": {
+      "word": "alternative to",
+      "display": "alternative to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "...之外的替代方案",
+      "pos": "noun",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "...之外的替代方案",
+          "pos": "noun",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-alternative-to-1",
+          "source": "Walking is a healthy alternative to taking the bus.",
+          "target": "步行是乘巴士之外的健康替代方案。",
+          "meaning": "...之外的替代方案",
+          "level": "B2"
+        },
+        {
+          "id": "seed-alternative-to-2",
+          "source": "Is there an alternative to buying a new phone?",
+          "target": "有沒有買新電話之外的替代方案？",
+          "meaning": "...之外的替代方案",
+          "level": "B2"
+        },
+        {
+          "id": "seed-alternative-to-3",
+          "source": "Reading is a good alternative to playing games.",
+          "target": "閱讀是打機之外的好替代活動。",
+          "meaning": "...之外的替代方案",
+          "level": "B2"
         }
       ]
     },
@@ -4147,6 +4476,47 @@
         }
       ]
     },
+    "apply oneself to|1lnfqox": {
+      "word": "apply oneself to",
+      "display": "apply oneself to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "C1",
+      "meaning": "專心致力於",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "專心致力於",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "C1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-apply-oneself-to-1",
+          "source": "You must apply yourself to studying for the test.",
+          "target": "你必須專心溫習測驗。",
+          "meaning": "專心致力於",
+          "level": "C1"
+        },
+        {
+          "id": "seed-apply-oneself-to-2",
+          "source": "She applied herself to learning the piano.",
+          "target": "她專心學鋼琴。",
+          "meaning": "專心致力於",
+          "level": "C1"
+        },
+        {
+          "id": "seed-apply-oneself-to-3",
+          "source": "He applied himself to solving the problem.",
+          "target": "他專心解決問題。",
+          "meaning": "專心致力於",
+          "level": "C1"
+        }
+      ]
+    },
     "apply|1ic7d0k": {
       "word": "apply",
       "display": "apply",
@@ -4226,6 +4596,47 @@
           "target": "你有沒有申請參加暑期活動？",
           "meaning": "申請",
           "level": "A2"
+        }
+      ]
+    },
+    "approach to|19x78gm": {
+      "word": "approach to",
+      "display": "approach to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "...的方法",
+      "pos": "noun",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "...的方法",
+          "pos": "noun",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-approach-to-1",
+          "source": "We need a new approach to learning grammar.",
+          "target": "我們需要一個學文法的新方法。",
+          "meaning": "...的方法",
+          "level": "B2"
+        },
+        {
+          "id": "seed-approach-to-2",
+          "source": "Her approach to solving problems is clear.",
+          "target": "她解決問題的方法很清晰。",
+          "meaning": "...的方法",
+          "level": "B2"
+        },
+        {
+          "id": "seed-approach-to-3",
+          "source": "This is a useful approach to teaching vocabulary.",
+          "target": "這是教授生字的有用方法。",
+          "meaning": "...的方法",
+          "level": "B2"
         }
       ]
     },
@@ -5095,6 +5506,47 @@
         }
       ]
     },
+    "ask for permission|kskmdn": {
+      "word": "ask for permission",
+      "display": "ask for permission",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "請求准許",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "請求准許",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-jp525i",
+          "source": "You must ask for permission before leaving the classroom.",
+          "target": "離開教室前，你必須請求准許。",
+          "meaning": "請求准許",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1dsp5xi",
+          "source": "You should ask for permission before using his computer.",
+          "target": "在使用他的電腦前，你應該請求准許。",
+          "meaning": "請求准許",
+          "level": "B2"
+        },
+        {
+          "id": "seed-b4kasb",
+          "source": "Did you ask for permission to enter the room?",
+          "target": "你有請求准許進入房間嗎？",
+          "meaning": "請求准許",
+          "level": "B2"
+        }
+      ]
+    },
     "asleep": {
       "word": "asleep",
       "display": "asleep",
@@ -5385,6 +5837,47 @@
           "target": "他需要父母給予更多關注。",
           "meaning": "",
           "level": "A2"
+        }
+      ]
+    },
+    "attract attention|igzbt5": {
+      "word": "attract attention",
+      "display": "attract attention",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "吸引注意",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "吸引注意",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-c1h5fd",
+          "source": "The bright lights were designed to attract attention.",
+          "target": "這些明亮的燈光旨在吸引注意。",
+          "meaning": "吸引注意",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1q1yshd",
+          "source": "The colorful display helped to attract attention.",
+          "target": "色彩鮮豔的展示有助於吸引注意。",
+          "meaning": "吸引注意",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1fb81bt",
+          "source": "They used loud music to attract attention.",
+          "target": "他們用大聲的音樂來吸引注意。",
+          "meaning": "吸引注意",
+          "level": "B2"
         }
       ]
     },
@@ -7004,6 +7497,293 @@
         }
       ]
     },
+    "be close to|lrf0wz": {
+      "word": "be close to",
+      "display": "be close to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "接近於",
+      "pos": "adjective",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "接近於",
+          "pos": "adjective",
+          "type": "phrase",
+          "level": "B1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-be-close-to-1",
+          "source": "We are close to finishing the project.",
+          "target": "我們快要完成這個專題。",
+          "meaning": "接近於",
+          "level": "B1"
+        },
+        {
+          "id": "seed-be-close-to-2",
+          "source": "The answer is close to being correct.",
+          "target": "這個答案接近正確。",
+          "meaning": "接近於",
+          "level": "B1"
+        },
+        {
+          "id": "seed-be-close-to-3",
+          "source": "She was close to winning the race.",
+          "target": "她差一點就贏了比賽。",
+          "meaning": "接近於",
+          "level": "B1"
+        }
+      ]
+    },
+    "be committed to|1o9ytae": {
+      "word": "be committed to",
+      "display": "be committed to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "致力於",
+      "pos": "adjective",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "致力於",
+          "pos": "adjective",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-be-committed-to-1",
+          "source": "Our teacher is committed to helping every student.",
+          "target": "我們的老師致力於幫助每一位學生。",
+          "meaning": "致力於",
+          "level": "B2"
+        },
+        {
+          "id": "seed-be-committed-to-2",
+          "source": "The club is committed to protecting the environment.",
+          "target": "這個學會致力於保護環境。",
+          "meaning": "致力於",
+          "level": "B2"
+        },
+        {
+          "id": "seed-be-committed-to-3",
+          "source": "She is committed to becoming a better writer.",
+          "target": "她致力於成為更好的寫作者。",
+          "meaning": "致力於",
+          "level": "B2"
+        }
+      ]
+    },
+    "be dedicated to|12gkqn4": {
+      "word": "be dedicated to",
+      "display": "be dedicated to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "專注於 / 奉獻於",
+      "pos": "adjective",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "專注於 / 奉獻於",
+          "pos": "adjective",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-be-dedicated-to-1",
+          "source": "This page is dedicated to learning useful phrases.",
+          "target": "這一頁專注於學習有用短語。",
+          "meaning": "專注於 / 奉獻於",
+          "level": "B2"
+        },
+        {
+          "id": "seed-be-dedicated-to-2",
+          "source": "The centre is dedicated to helping young learners.",
+          "target": "這中心致力於幫助年幼學習者。",
+          "meaning": "專注於 / 奉獻於",
+          "level": "B2"
+        },
+        {
+          "id": "seed-be-dedicated-to-3",
+          "source": "She is dedicated to improving her pronunciation.",
+          "target": "她專注於改善自己的發音。",
+          "meaning": "專注於 / 奉獻於",
+          "level": "B2"
+        }
+      ]
+    },
+    "be devoted to|elr4zo": {
+      "word": "be devoted to",
+      "display": "be devoted to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "全心投入於",
+      "pos": "adjective",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "全心投入於",
+          "pos": "adjective",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-be-devoted-to-1",
+          "source": "She is devoted to teaching English.",
+          "target": "她全心投入於英文教學。",
+          "meaning": "全心投入於",
+          "level": "B2"
+        },
+        {
+          "id": "seed-be-devoted-to-2",
+          "source": "The coach is devoted to training the team.",
+          "target": "教練全心投入訓練隊伍。",
+          "meaning": "全心投入於",
+          "level": "B2"
+        },
+        {
+          "id": "seed-be-devoted-to-3",
+          "source": "He is devoted to looking after his younger sister.",
+          "target": "他全心照顧妹妹。",
+          "meaning": "全心投入於",
+          "level": "B2"
+        }
+      ]
+    },
+    "be near to|lrf0wz": {
+      "word": "be near to",
+      "display": "be near to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "接近於",
+      "pos": "adjective",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "接近於",
+          "pos": "adjective",
+          "type": "phrase",
+          "level": "B1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-be-near-to-1",
+          "source": "The work is near to completion.",
+          "target": "這項工作接近完成。",
+          "meaning": "接近於",
+          "level": "B1"
+        },
+        {
+          "id": "seed-be-near-to-2",
+          "source": "The team is near to reaching its goal.",
+          "target": "團隊快要達到目標。",
+          "meaning": "接近於",
+          "level": "B1"
+        },
+        {
+          "id": "seed-be-near-to-3",
+          "source": "He is near to solving the puzzle.",
+          "target": "他快要解開謎題。",
+          "meaning": "接近於",
+          "level": "B1"
+        }
+      ]
+    },
+    "be opposed to|rkkbr5": {
+      "word": "be opposed to",
+      "display": "be opposed to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "反對",
+      "pos": "adjective",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "反對",
+          "pos": "adjective",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-be-opposed-to-1",
+          "source": "The students are opposed to cancelling the school picnic.",
+          "target": "學生反對取消學校野餐。",
+          "meaning": "反對",
+          "level": "B2"
+        },
+        {
+          "id": "seed-be-opposed-to-2",
+          "source": "My father is opposed to wasting food.",
+          "target": "我爸爸反對浪費食物。",
+          "meaning": "反對",
+          "level": "B2"
+        },
+        {
+          "id": "seed-be-opposed-to-3",
+          "source": "The group was opposed to building a road there.",
+          "target": "該團體反對在那裡建路。",
+          "meaning": "反對",
+          "level": "B2"
+        }
+      ]
+    },
+    "be used to|yayge8": {
+      "word": "be used to",
+      "display": "be used to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "習慣於",
+      "pos": "adjective",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "習慣於",
+          "pos": "adjective",
+          "type": "phrase",
+          "level": "B1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-be-used-to-1",
+          "source": "She is used to waking up early.",
+          "target": "她習慣早起。",
+          "meaning": "習慣於",
+          "level": "B1"
+        },
+        {
+          "id": "seed-be-used-to-2",
+          "source": "I am used to speaking English in class.",
+          "target": "我習慣在課堂上說英文。",
+          "meaning": "習慣於",
+          "level": "B1"
+        },
+        {
+          "id": "seed-be-used-to-3",
+          "source": "They are used to living in Hong Kong.",
+          "target": "他們習慣住在香港。",
+          "meaning": "習慣於",
+          "level": "B1"
+        }
+      ]
+    },
     "be|1nh03c2": {
       "word": "be",
       "display": "be",
@@ -7185,6 +7965,129 @@
           "target": "我哋喺動物園見到一隻大熊。",
           "meaning": "",
           "level": "A2"
+        }
+      ]
+    },
+    "bear fruit|1dfg3w9": {
+      "word": "bear fruit",
+      "display": "bear fruit",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "結出果實 / 獲得成效",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "結出果實 / 獲得成效",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-c3gz02",
+          "source": "After years of hard work, his educational project finally began to bear fruit.",
+          "target": "經過多年的努力，他的教育計畫終於獲得了成效。",
+          "meaning": "結出果實 / 獲得成效",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1s8fzbu",
+          "source": "All our hard work is finally starting to bear fruit.",
+          "target": "我們所有的努力終於開始獲得成效。",
+          "meaning": "結出果實 / 獲得成效",
+          "level": "B2"
+        },
+        {
+          "id": "seed-iif1ol",
+          "source": "The new marketing strategy began to bear fruit after six months.",
+          "target": "新的行銷策略在六個月後開始結出果實。",
+          "meaning": "結出果實 / 獲得成效",
+          "level": "B2"
+        }
+      ]
+    },
+    "bear in mind|18qpbc9": {
+      "word": "bear in mind",
+      "display": "bear in mind",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "緊記",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "緊記",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1qdiwx7",
+          "source": "Bear in mind that prices may change without prior notice.",
+          "target": "請緊記價格可能會在沒有事先通知的情況下變動。",
+          "meaning": "緊記",
+          "level": "B2"
+        },
+        {
+          "id": "seed-mhos4l",
+          "source": "Bear in mind that it might rain later.",
+          "target": "請緊記稍後可能會下雨。",
+          "meaning": "緊記",
+          "level": "B2"
+        },
+        {
+          "id": "seed-266cvu",
+          "source": "Bear in mind the importance of being punctual.",
+          "target": "請緊記準時的重要性。",
+          "meaning": "緊記",
+          "level": "B2"
+        }
+      ]
+    },
+    "bear in mind|1j9j4b5": {
+      "word": "bear in mind",
+      "display": "bear in mind",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "牢記",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "牢記",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-maufxc",
+          "source": "Bear in mind that prices may change without prior notice.",
+          "target": "請牢記價格可能會在沒有事先通知的情況下變動。",
+          "meaning": "牢記",
+          "level": "B2"
+        },
+        {
+          "id": "seed-ljdl3k",
+          "source": "Bear in mind that the deadline is tomorrow.",
+          "target": "請牢記截止日期是明天。",
+          "meaning": "牢記",
+          "level": "B2"
+        },
+        {
+          "id": "seed-6wl0qz",
+          "source": "Bear in mind that you need to bring your ID card.",
+          "target": "請牢記你需要攜帶身份證。",
+          "meaning": "牢記",
+          "level": "B2"
         }
       ]
     },
@@ -8904,6 +9807,47 @@
         }
       ]
     },
+    "blow one's mind|1bh1evw": {
+      "word": "blow one's mind",
+      "display": "blow one's mind",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "令人極度震驚 / 大開眼界",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "令人極度震驚 / 大開眼界",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-rj2eua",
+          "source": "The special effects in that sci-fi movie completely blew my mind.",
+          "target": "那部科幻電影的特效讓我大開眼界。",
+          "meaning": "令人極度震驚 / 大開眼界",
+          "level": "B2"
+        },
+        {
+          "id": "seed-uqyfb3",
+          "source": "The sheer scale of the project blew my mind.",
+          "target": "這個計畫的規模之大讓我感到極度震驚。",
+          "meaning": "令人極度震驚 / 大開眼界",
+          "level": "B2"
+        },
+        {
+          "id": "seed-mry4ie",
+          "source": "His incredible piano performance totally blew my mind.",
+          "target": "他精彩的鋼琴演奏讓我大開眼界。",
+          "meaning": "令人極度震驚 / 大開眼界",
+          "level": "B2"
+        }
+      ]
+    },
     "blue|h5jecz": {
       "word": "blue",
       "display": "blue",
@@ -9912,6 +10856,293 @@
         }
       ]
     },
+    "break a habit|n49mgy": {
+      "word": "break a habit",
+      "display": "break a habit",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "改掉習慣",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "改掉習慣",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1qghxo6",
+          "source": "It is extremely difficult to break a bad habit like smoking.",
+          "target": "改掉像吸煙這樣的壞習慣是非常困難的。",
+          "meaning": "改掉習慣",
+          "level": "B2"
+        },
+        {
+          "id": "seed-u48tr9",
+          "source": "It takes time to break a habit like biting your nails.",
+          "target": "改掉咬指甲這樣的習慣需要時間。",
+          "meaning": "改掉習慣",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1esxhan",
+          "source": "She is trying to break a habit of drinking too much coffee.",
+          "target": "她正試圖改掉喝太多咖啡的習慣。",
+          "meaning": "改掉習慣",
+          "level": "B2"
+        }
+      ]
+    },
+    "break a promise|1t3sakj": {
+      "word": "break a promise",
+      "display": "break a promise",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "違背承諾",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "違背承諾",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-15yu0sw",
+          "source": "If you break a promise, people will lose trust in you.",
+          "target": "如果你違背承諾，人們將會失去對你的信任。",
+          "meaning": "違背承諾",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1g1icoh",
+          "source": "He never breaks a promise to his friends.",
+          "target": "他從不違背對朋友的承諾。",
+          "meaning": "違背承諾",
+          "level": "B2"
+        },
+        {
+          "id": "seed-qh8h7l",
+          "source": "It is wrong to break a promise intentionally.",
+          "target": "故意違背承諾是不對的。",
+          "meaning": "違背承諾",
+          "level": "B2"
+        }
+      ]
+    },
+    "break a tie|1vo707": {
+      "word": "break a tie",
+      "display": "break a tie",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "打破平局",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "打破平局",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-nw9cq7",
+          "source": "The referee called for extra time to break the tie between the two teams.",
+          "target": "裁判要求延長比賽時間以打破兩隊的平局。",
+          "meaning": "打破平局",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1ggc36v",
+          "source": "They played a penalty shootout to break a tie.",
+          "target": "他們進行了點球大戰來打破平局。",
+          "meaning": "打破平局",
+          "level": "B2"
+        },
+        {
+          "id": "seed-xntoel",
+          "source": "The chairperson cast the final vote to break a tie.",
+          "target": "主席投下了關鍵一票來打破平局。",
+          "meaning": "打破平局",
+          "level": "B2"
+        }
+      ]
+    },
+    "break the ice|1v6dj6g": {
+      "word": "break the ice",
+      "display": "break the ice",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "打破僵局 / 破冰",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "打破僵局 / 破冰",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-wdupdh",
+          "source": "He told a funny joke to break the ice at the meeting.",
+          "target": "他在會議上講了一個笑話來打破僵局。",
+          "meaning": "打破僵局 / 破冰",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1advz21",
+          "source": "Playing a game is a good way to break the ice.",
+          "target": "玩遊戲是打破僵局的好方法。",
+          "meaning": "打破僵局 / 破冰",
+          "level": "B2"
+        },
+        {
+          "id": "seed-gc43qw",
+          "source": "She smiled to break the ice with her new neighbors.",
+          "target": "她微笑著與新鄰居破冰。",
+          "meaning": "打破僵局 / 破冰",
+          "level": "B2"
+        }
+      ]
+    },
+    "break the law|1c4ok39": {
+      "word": "break the law",
+      "display": "break the law",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "違法",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "違法",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-144a93b",
+          "source": "Anyone who breaks the law will be punished.",
+          "target": "任何違法的人都會受到懲罰。",
+          "meaning": "違法",
+          "level": "B2"
+        },
+        {
+          "id": "seed-9y1cbx",
+          "source": "It is wrong to break the law.",
+          "target": "違法是不對的。",
+          "meaning": "違法",
+          "level": "B2"
+        },
+        {
+          "id": "seed-68npkq",
+          "source": "They were caught trying to break the law.",
+          "target": "他們在試圖違法時被抓住了。",
+          "meaning": "違法",
+          "level": "B2"
+        }
+      ]
+    },
+    "break the record|1yw2cn4": {
+      "word": "break the record",
+      "display": "break the record",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "打破紀錄",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "打破紀錄",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-756b0l",
+          "source": "The athlete broke the world record in the 100-meter race.",
+          "target": "這位運動員在百米賽跑中打破了世界紀錄。",
+          "meaning": "打破紀錄",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1dw9x5f",
+          "source": "He worked hard to break the record.",
+          "target": "他努力工作以打破紀錄。",
+          "meaning": "打破紀錄",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1obvfkg",
+          "source": "It is an honor to break the record in this competition.",
+          "target": "能在這次比賽中打破紀錄是一種榮幸。",
+          "meaning": "打破紀錄",
+          "level": "B2"
+        }
+      ]
+    },
+    "break the silence|irr7fp": {
+      "word": "break the silence",
+      "display": "break the silence",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "打破沉默",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "打破沉默",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-hq8xx6",
+          "source": "She finally broke the silence and told the truth about what happened.",
+          "target": "她終於打破沉默，說出了事情的真相。",
+          "meaning": "打破沉默",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1q7w1jn",
+          "source": "He decided to break the silence and speak his mind.",
+          "target": "他決定打破沉默，說出自己的想法。",
+          "meaning": "打破沉默",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1wbfug3",
+          "source": "The loud noise broke the silence of the library.",
+          "target": "巨大的噪音打破了圖書館的沉默。",
+          "meaning": "打破沉默",
+          "level": "B2"
+        }
+      ]
+    },
     "breakfast": {
       "word": "breakfast",
       "display": "breakfast",
@@ -10062,6 +11293,88 @@
         }
       ]
     },
+    "bridge a gap|1yk5qqp": {
+      "word": "bridge a gap",
+      "display": "bridge a gap",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "消除隔閡 / 縮小差距",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "消除隔閡 / 縮小差距",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1bam29v",
+          "source": "The new mentor program helps bridge the gap between senior and junior staff.",
+          "target": "新的導師計劃有助於消除資深員工與初級員工之間的隔閡。",
+          "meaning": "消除隔閡 / 縮小差距",
+          "level": "B2"
+        },
+        {
+          "id": "seed-qocj49",
+          "source": "Communication is key to bridge a gap between generations.",
+          "target": "溝通是消除代溝的關鍵。",
+          "meaning": "消除隔閡 / 縮小差距",
+          "level": "B2"
+        },
+        {
+          "id": "seed-uq7gq9",
+          "source": "The workshop helped to bridge a gap in their knowledge.",
+          "target": "研討會有助於縮小他們在知識上的差距。",
+          "meaning": "消除隔閡 / 縮小差距",
+          "level": "B2"
+        }
+      ]
+    },
+    "bridge the gap|1jm64i3": {
+      "word": "bridge the gap",
+      "display": "bridge the gap",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "縮小差距 / 消除隔閡",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "縮小差距 / 消除隔閡",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-mfvfpz",
+          "source": "The project aims to bridge the gap between rich and poor students.",
+          "target": "該項目旨在縮小貧富學生之間的差距。",
+          "meaning": "縮小差距 / 消除隔閡",
+          "level": "B2"
+        },
+        {
+          "id": "seed-ynuwf3",
+          "source": "New technology helps bridge the gap between schools.",
+          "target": "新技術有助於縮小學校之間的差距。",
+          "meaning": "縮小差距 / 消除隔閡",
+          "level": "B2"
+        },
+        {
+          "id": "seed-ki2e99",
+          "source": "We must bridge the gap in communication.",
+          "target": "我們必須消除溝通上的隔閡。",
+          "meaning": "縮小差距 / 消除隔閡",
+          "level": "B2"
+        }
+      ]
+    },
     "bright": {
       "word": "bright",
       "display": "bright",
@@ -10127,6 +11440,88 @@
           "target": "今天的太陽在天空中非常耀眼。",
           "meaning": "",
           "level": "A2"
+        }
+      ]
+    },
+    "bring to a halt|1cbp9z4": {
+      "word": "bring to a halt",
+      "display": "bring to a halt",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "使...停止",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "使...停止",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-i47j9p",
+          "source": "The heavy snowstorm brought the entire city's traffic to a halt.",
+          "target": "大風雪使整個城市的交通陷入停滯。",
+          "meaning": "使...停止",
+          "level": "B2"
+        },
+        {
+          "id": "seed-ksbstk",
+          "source": "The strike brought production to a halt.",
+          "target": "罷工使生產陷入停滯。",
+          "meaning": "使...停止",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1pk5quz",
+          "source": "The sudden power failure brought the machinery to a halt.",
+          "target": "突如其來的停電使機器停止運作。",
+          "meaning": "使...停止",
+          "level": "B2"
+        }
+      ]
+    },
+    "bring to light|cozufo": {
+      "word": "bring to light",
+      "display": "bring to light",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "揭露 / 揭示",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "揭露 / 揭示",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-y5vdry",
+          "source": "The investigation brought new evidence to light.",
+          "target": "調查揭露了新的證據。",
+          "meaning": "揭露 / 揭示",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1jp8f58",
+          "source": "The article brought the truth to light.",
+          "target": "這篇文章揭露了真相。",
+          "meaning": "揭露 / 揭示",
+          "level": "B2"
+        },
+        {
+          "id": "seed-8dj6hz",
+          "source": "New documents were brought to light yesterday.",
+          "target": "昨天有新的文件被揭示出來。",
+          "meaning": "揭露 / 揭示",
+          "level": "B2"
         }
       ]
     },
@@ -10379,6 +11774,88 @@
           "target": "我們砌了一座高塔。",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "build a reputation|bnzlmp": {
+      "word": "build a reputation",
+      "display": "build a reputation",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "建立聲譽",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "建立聲譽",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1uajgcu",
+          "source": "The company has built a solid reputation for quality service.",
+          "target": "這家公司以優質的服務建立了良好的聲譽。",
+          "meaning": "建立聲譽",
+          "level": "B2"
+        },
+        {
+          "id": "seed-f536gi",
+          "source": "She worked hard to build a reputation as a reliable expert.",
+          "target": "她努力工作，建立了可靠專家的聲譽。",
+          "meaning": "建立聲譽",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1yreghq",
+          "source": "It takes years to build a reputation in the industry.",
+          "target": "在行業內建立聲譽需要數年時間。",
+          "meaning": "建立聲譽",
+          "level": "B2"
+        }
+      ]
+    },
+    "build trust|1p431k8": {
+      "word": "build trust",
+      "display": "build trust",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "建立信任",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "建立信任",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-10wbdhj",
+          "source": "It takes years to build trust but only seconds to destroy it.",
+          "target": "建立信任需要多年時間，但摧毀它只需幾秒鐘。",
+          "meaning": "建立信任",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1aquuvt",
+          "source": "Open communication is the best way to build trust.",
+          "target": "公開溝通是建立信任的最佳途徑。",
+          "meaning": "建立信任",
+          "level": "B2"
+        },
+        {
+          "id": "seed-vf5m7e",
+          "source": "It is important to build trust with your new colleagues.",
+          "target": "與新同事建立信任是很重要的。",
+          "meaning": "建立信任",
+          "level": "B2"
         }
       ]
     },
@@ -11662,6 +13139,170 @@
         }
       ]
     },
+    "cast a vote|tmsvdq": {
+      "word": "cast a vote",
+      "display": "cast a vote",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "投票",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "投票",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1fpbun3",
+          "source": "Citizens will go to the polling stations to cast their votes tomorrow.",
+          "target": "公民們明天將前往投票站投票。",
+          "meaning": "投票",
+          "level": "B2"
+        },
+        {
+          "id": "seed-63sd37",
+          "source": "It is your civic duty to cast a vote in the election.",
+          "target": "在選舉中投票是你的公民義務。",
+          "meaning": "投票",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1mbo2yb",
+          "source": "She went to the polling station to cast her vote early.",
+          "target": "她提早去投票站投下了她的一票。",
+          "meaning": "投票",
+          "level": "B2"
+        }
+      ]
+    },
+    "cast doubt on|1h231pz": {
+      "word": "cast doubt on",
+      "display": "cast doubt on",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "C1",
+      "meaning": "質疑 / 令人懷疑",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "質疑 / 令人懷疑",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "C1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1vdn35c",
+          "source": "The new report casts doubt on the safety of the product.",
+          "target": "這份新報告令人質疑該產品的安全性。",
+          "meaning": "質疑 / 令人懷疑",
+          "level": "C1"
+        },
+        {
+          "id": "seed-1oj9ih3",
+          "source": "The evidence casts doubt on his story.",
+          "target": "證據令人質疑他的說法。",
+          "meaning": "質疑 / 令人懷疑",
+          "level": "C1"
+        },
+        {
+          "id": "seed-mtt5cc",
+          "source": "These findings cast doubt on the original theory.",
+          "target": "這些發現令人質疑最初的理論。",
+          "meaning": "質疑 / 令人懷疑",
+          "level": "C1"
+        }
+      ]
+    },
+    "cast doubt on|1kaiuvr": {
+      "word": "cast doubt on",
+      "display": "cast doubt on",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "C1",
+      "meaning": "對...產生懷疑",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "對...產生懷疑",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "C1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1omy3uy",
+          "source": "The new report casts doubt on the safety of the product.",
+          "target": "這份新報告對該產品的安全性產生了懷疑。",
+          "meaning": "對...產生懷疑",
+          "level": "C1"
+        },
+        {
+          "id": "seed-1t0t5qb",
+          "source": "His recent actions cast doubt on his sincerity.",
+          "target": "他最近的行為讓人對他的誠意產生懷疑。",
+          "meaning": "對...產生懷疑",
+          "level": "C1"
+        },
+        {
+          "id": "seed-1hhtpwi",
+          "source": "The findings cast doubt on the original theory.",
+          "target": "這些研究結果對最初的理論產生了懷疑。",
+          "meaning": "對...產生懷疑",
+          "level": "C1"
+        }
+      ]
+    },
+    "cast light on|15crs55": {
+      "word": "cast light on",
+      "display": "cast light on",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "闡明 / 使...清楚",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "闡明 / 使...清楚",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-lexpcj",
+          "source": "Further investigation will hopefully cast light on the cause of the fire.",
+          "target": "進一步的調查有望闡明火災的原因。",
+          "meaning": "闡明 / 使...清楚",
+          "level": "B2"
+        },
+        {
+          "id": "seed-gxgp1v",
+          "source": "New evidence helped to cast light on the mysterious case.",
+          "target": "新的證據有助於闡明這宗神秘案件。",
+          "meaning": "闡明 / 使...清楚",
+          "level": "B2"
+        },
+        {
+          "id": "seed-rr3w15",
+          "source": "This report will cast light on the current market trends.",
+          "target": "這份報告將闡明目前的市場趨勢。",
+          "meaning": "闡明 / 使...清楚",
+          "level": "B2"
+        }
+      ]
+    },
     "castle": {
       "word": "castle",
       "display": "castle",
@@ -11761,6 +13402,334 @@
           "target": "你有沒有聽清楚他說什麼？",
           "meaning": "",
           "level": "A2"
+        }
+      ]
+    },
+    "catch a cold|n8tk0i": {
+      "word": "catch a cold",
+      "display": "catch a cold",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "感冒",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "感冒",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1lq6c23",
+          "source": "Remember to wear a coat, or you might catch a cold.",
+          "target": "記得穿上外套，否則你可能會感冒。",
+          "meaning": "感冒",
+          "level": "B2"
+        },
+        {
+          "id": "seed-17cwnaz",
+          "source": "I think I am going to catch a cold.",
+          "target": "我想我快要感冒了。",
+          "meaning": "感冒",
+          "level": "B2"
+        },
+        {
+          "id": "seed-v4p02z",
+          "source": "She managed not to catch a cold during the winter.",
+          "target": "她在冬天期間成功沒有感冒。",
+          "meaning": "感冒",
+          "level": "B2"
+        }
+      ]
+    },
+    "catch fire|ezfmtx": {
+      "word": "catch fire",
+      "display": "catch fire",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "著火",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "著火",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-gfyhwy",
+          "source": "The dry grass caught fire because of the intense heat.",
+          "target": "乾草因為高溫而著火了。",
+          "meaning": "著火",
+          "level": "B2"
+        },
+        {
+          "id": "seed-rqgh31",
+          "source": "The curtains caught fire from the candle.",
+          "target": "窗簾被蠟燭點燃而著火。",
+          "meaning": "著火",
+          "level": "B2"
+        },
+        {
+          "id": "seed-9z2m48",
+          "source": "The old wooden shed caught fire quickly.",
+          "target": "那間舊木棚很快就著火了。",
+          "meaning": "著火",
+          "level": "B2"
+        }
+      ]
+    },
+    "catch one's breath|wmps3p": {
+      "word": "catch one's breath",
+      "display": "catch one's breath",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "喘口氣 / 歇口氣",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "喘口氣 / 歇口氣",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1j0a1t7",
+          "source": "After running up the stairs, she stopped to catch her breath.",
+          "target": "爬樓梯上來後，她停下來喘口氣。",
+          "meaning": "喘口氣 / 歇口氣",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1612hdf",
+          "source": "Let's sit on this bench and catch our breath.",
+          "target": "我們坐在這張長椅上歇口氣吧。",
+          "meaning": "喘口氣 / 歇口氣",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1190vey",
+          "source": "He paused for a moment to catch his breath before continuing the hike.",
+          "target": "他在繼續健行前停下來喘了口氣。",
+          "meaning": "喘口氣 / 歇口氣",
+          "level": "B2"
+        }
+      ]
+    },
+    "catch one's eye|6c195n": {
+      "word": "catch one's eye",
+      "display": "catch one's eye",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "吸引某人的注意",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "吸引某人的注意",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1gbsoux",
+          "source": "A beautiful leather jacket caught my eye in the shop window.",
+          "target": "櫥窗裡一件漂亮的皮夾克吸引了我的注意。",
+          "meaning": "吸引某人的注意",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1e0ysqp",
+          "source": "That bright red dress really caught my eye.",
+          "target": "那件鮮紅色的連身裙真的很吸引我的注意。",
+          "meaning": "吸引某人的注意",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1u58108",
+          "source": "A strange noise caught my eye as I walked past.",
+          "target": "我經過時，一個奇怪的聲音吸引了我的注意。",
+          "meaning": "吸引某人的注意",
+          "level": "B2"
+        }
+      ]
+    },
+    "catch sight of|117375n": {
+      "word": "catch sight of",
+      "display": "catch sight of",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "瞥見",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "瞥見",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-6qxqqu",
+          "source": "She caught sight of her old friend among the crowd.",
+          "target": "她在人群中瞥見了她的老朋友。",
+          "meaning": "瞥見",
+          "level": "B2"
+        },
+        {
+          "id": "seed-u86urh",
+          "source": "I caught sight of a rare bird in the garden this morning.",
+          "target": "今天早上我在花園裡瞥見了一隻稀有的鳥。",
+          "meaning": "瞥見",
+          "level": "B2"
+        },
+        {
+          "id": "seed-17lx55r",
+          "source": "He caught sight of the lighthouse in the distance.",
+          "target": "他瞥見了遠處的燈塔。",
+          "meaning": "瞥見",
+          "level": "B2"
+        }
+      ]
+    },
+    "catch someone red-handed|5g3trp": {
+      "word": "catch someone red-handed",
+      "display": "catch someone red-handed",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "當場抓到某人做壞事",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "當場抓到某人做壞事",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-14uus3l",
+          "source": "The thief was caught red-handed trying to steal a car.",
+          "target": "那名小偷在試圖偷車時被當場抓到。",
+          "meaning": "當場抓到某人做壞事",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1mqm5cv",
+          "source": "He was caught red-handed cheating on the test.",
+          "target": "他在考試作弊時被當場抓到。",
+          "meaning": "當場抓到某人做壞事",
+          "level": "B2"
+        },
+        {
+          "id": "seed-zii6or",
+          "source": "The boy was caught red-handed eating the cookies.",
+          "target": "那個男孩在偷吃餅乾時被當場抓到。",
+          "meaning": "當場抓到某人做壞事",
+          "level": "B2"
+        }
+      ]
+    },
+    "catch the train|17h385v": {
+      "word": "catch the train",
+      "display": "catch the train",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "趕火車",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "趕火車",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-pytp0o",
+          "source": "He woke up early this morning to make sure he could catch the train.",
+          "target": "他今天早上很早就起床，以確保能趕上火車。",
+          "meaning": "趕火車",
+          "level": "B2"
+        },
+        {
+          "id": "seed-v95ibs",
+          "source": "I have to leave now to catch the train on time.",
+          "target": "我現在必須離開去趕火車了。",
+          "meaning": "趕火車",
+          "level": "B2"
+        },
+        {
+          "id": "seed-5rg1d1",
+          "source": "She ran to the station to catch the train.",
+          "target": "她跑到車站去趕火車。",
+          "meaning": "趕火車",
+          "level": "B2"
+        }
+      ]
+    },
+    "cause damage|yltlqr": {
+      "word": "cause damage",
+      "display": "cause damage",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "造成損害",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "造成損害",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1mn7bhn",
+          "source": "The heavy storm caused severe damage to the buildings.",
+          "target": "強烈的風暴對建築物造成了嚴重的損害。",
+          "meaning": "造成損害",
+          "level": "B2"
+        },
+        {
+          "id": "seed-cr5w1r",
+          "source": "Careless driving can cause damage to your car.",
+          "target": "粗心的駕駛可能會對你的車造成損害。",
+          "meaning": "造成損害",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1hyaekw",
+          "source": "The fire did not cause damage to the main structure.",
+          "target": "火災沒有對主體結構造成損害。",
+          "meaning": "造成損害",
+          "level": "B2"
         }
       ]
     },
@@ -12590,6 +14559,47 @@
         }
       ]
     },
+    "challenge to|ltmkzq": {
+      "word": "challenge to",
+      "display": "challenge to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "對...的挑戰",
+      "pos": "noun",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "對...的挑戰",
+          "pos": "noun",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-challenge-to-1",
+          "source": "The new rule is a challenge to older students.",
+          "target": "新規則對較年長學生是一個挑戰。",
+          "meaning": "對...的挑戰",
+          "level": "B2"
+        },
+        {
+          "id": "seed-challenge-to-2",
+          "source": "Online learning can be a challenge to young children.",
+          "target": "網上學習對年幼孩子可能是一個挑戰。",
+          "meaning": "對...的挑戰",
+          "level": "B2"
+        },
+        {
+          "id": "seed-challenge-to-3",
+          "source": "This question is a challenge to our thinking.",
+          "target": "這條問題是對我們思考的挑戰。",
+          "meaning": "對...的挑戰",
+          "level": "B2"
+        }
+      ]
+    },
     "chance": {
       "word": "chance",
       "display": "chance",
@@ -12655,6 +14665,129 @@
           "target": "我們在課室裡換座位。",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "change one's mind|h9jv9q": {
+      "word": "change one's mind",
+      "display": "change one's mind",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "改變主意",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "改變主意",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-myuw47",
+          "source": "I was going to go out, but I changed my mind because of the rain.",
+          "target": "我本來打算出去，但因為下雨改變了主意。",
+          "meaning": "改變主意",
+          "level": "B2"
+        },
+        {
+          "id": "seed-3bzdh8",
+          "source": "Don't change your mind at the last minute.",
+          "target": "不要在最後一刻改變主意。",
+          "meaning": "改變主意",
+          "level": "B2"
+        },
+        {
+          "id": "seed-wwtovo",
+          "source": "He changed his mind about the trip.",
+          "target": "他對這次旅行改變了主意。",
+          "meaning": "改變主意",
+          "level": "B2"
+        }
+      ]
+    },
+    "change one's tune|fppjzw": {
+      "word": "change one's tune",
+      "display": "change one's tune",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "改變態度 / 改口",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "改變態度 / 改口",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1dny7o0",
+          "source": "He used to hate AI tools, but he changed his tune after seeing how much time they save.",
+          "target": "他以前很討厭人工智慧工具，但在看到它們能節省多少時間後，他改變了態度。",
+          "meaning": "改變態度 / 改口",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1krsxmn",
+          "source": "He changed his tune once he realized he was wrong.",
+          "target": "他意識到自己錯了之後就改口了。",
+          "meaning": "改變態度 / 改口",
+          "level": "B2"
+        },
+        {
+          "id": "seed-mdks50",
+          "source": "The manager changed his tune after hearing the staff's feedback.",
+          "target": "經理在聽取員工的回饋後改變了態度。",
+          "meaning": "改變態度 / 改口",
+          "level": "B2"
+        }
+      ]
+    },
+    "change the subject|1dj5rap": {
+      "word": "change the subject",
+      "display": "change the subject",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "改變話題",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "改變話題",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-j58y5j",
+          "source": "Whenever I ask about his new plan, he tries to change the subject.",
+          "target": "每當我問起他的新計劃時，他總是試圖改變話題。",
+          "meaning": "改變話題",
+          "level": "B2"
+        },
+        {
+          "id": "seed-90j479",
+          "source": "She tried to change the subject when I mentioned the deadline.",
+          "target": "當我提到截止日期時，她試圖改變話題。",
+          "meaning": "改變話題",
+          "level": "B2"
+        },
+        {
+          "id": "seed-oivucm",
+          "source": "Let's change the subject and talk about something fun.",
+          "target": "我們換個話題，聊些有趣的事吧。",
+          "meaning": "改變話題",
+          "level": "B2"
         }
       ]
     },
@@ -14014,6 +16147,211 @@
         }
       ]
     },
+    "clear a debt|1b8l4d": {
+      "word": "clear a debt",
+      "display": "clear a debt",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "清償債務",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "清償債務",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-9sa09r",
+          "source": "He worked two jobs for three years just to clear his debts.",
+          "target": "他為了清償債務，連續三年打了兩份工。",
+          "meaning": "清償債務",
+          "level": "B2"
+        },
+        {
+          "id": "seed-16nt7tk",
+          "source": "She used her bonus to clear her remaining debts.",
+          "target": "她用獎金清償了剩餘的債務。",
+          "meaning": "清償債務",
+          "level": "B2"
+        },
+        {
+          "id": "seed-7cnsgx",
+          "source": "It took him five years to finally clear his debt.",
+          "target": "他花了五年時間才終於清償債務。",
+          "meaning": "清償債務",
+          "level": "B2"
+        }
+      ]
+    },
+    "clear one's throat|1cu7hhn": {
+      "word": "clear one's throat",
+      "display": "clear one's throat",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "清喉嚨",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "清喉嚨",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1n9aerd",
+          "source": "He cleared his throat before he started giving the speech.",
+          "target": "他在開始演講前清了清喉嚨。",
+          "meaning": "清喉嚨",
+          "level": "B2"
+        },
+        {
+          "id": "seed-3w2f7w",
+          "source": "She cleared her throat to get everyone's attention.",
+          "target": "她清了清喉嚨以吸引大家的注意。",
+          "meaning": "清喉嚨",
+          "level": "B2"
+        },
+        {
+          "id": "seed-p2rgdf",
+          "source": "He cleared his throat before answering the question.",
+          "target": "他在回答問題前清了清喉嚨。",
+          "meaning": "清喉嚨",
+          "level": "B2"
+        }
+      ]
+    },
+    "clear the air|silq2p": {
+      "word": "clear the air",
+      "display": "clear the air",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "消除誤會 / 淨化氣氛",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "消除誤會 / 淨化氣氛",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-e2mqon",
+          "source": "They had a long talk last night to clear the air between them.",
+          "target": "他們昨晚進行了一次長談，以消除彼此之間的誤會。",
+          "meaning": "消除誤會 / 淨化氣氛",
+          "level": "B2"
+        },
+        {
+          "id": "seed-w9307t",
+          "source": "We should have a meeting to clear the air.",
+          "target": "我們應該開個會來消除誤會。",
+          "meaning": "消除誤會 / 淨化氣氛",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1udhruf",
+          "source": "A frank conversation helped clear the air between the colleagues.",
+          "target": "坦誠的對話有助於消除同事間的誤會。",
+          "meaning": "消除誤會 / 淨化氣氛",
+          "level": "B2"
+        }
+      ]
+    },
+    "clear the path|17ux6of": {
+      "word": "clear the path",
+      "display": "clear the path",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "掃清道路 / 消除障礙",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "掃清道路 / 消除障礙",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-ub9qui",
+          "source": "The new policy cleared the path for small business expansion.",
+          "target": "這項新政策為小型企業的擴張掃清了道路。",
+          "meaning": "掃清道路 / 消除障礙",
+          "level": "B2"
+        },
+        {
+          "id": "seed-wlhmq4",
+          "source": "Hard work will help to clear the path for your future success.",
+          "target": "努力工作將有助於為你未來的成功掃清道路。",
+          "meaning": "掃清道路 / 消除障礙",
+          "level": "B2"
+        },
+        {
+          "id": "seed-vipqwl",
+          "source": "The team worked together to clear the path for the new project.",
+          "target": "團隊合作為新項目消除了障礙。",
+          "meaning": "掃清道路 / 消除障礙",
+          "level": "B2"
+        }
+      ]
+    },
+    "clear the table|10t2bp2": {
+      "word": "clear the table",
+      "display": "clear the table",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "清理桌面 / 收拾碗盤",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "清理桌面 / 收拾碗盤",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-u9ela6",
+          "source": "Could you please help me clear the table after dinner?",
+          "target": "晚飯後你能幫我收拾一下桌面嗎？",
+          "meaning": "清理桌面 / 收拾碗盤",
+          "level": "B2"
+        },
+        {
+          "id": "seed-521fm2",
+          "source": "Please clear the table before you leave.",
+          "target": "請在離開前收拾好桌面。",
+          "meaning": "清理桌面 / 收拾碗盤",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1v69cof",
+          "source": "I will clear the table while you wash the dishes.",
+          "target": "你洗碗的時候我來收拾桌面。",
+          "meaning": "清理桌面 / 收拾碗盤",
+          "level": "B2"
+        }
+      ]
+    },
     "clearly": {
       "word": "clearly",
       "display": "clearly",
@@ -14222,6 +16560,47 @@
           "target": "我合上眼睛睡覺。",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "close a deal|1a9ni22": {
+      "word": "close a deal",
+      "display": "close a deal",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "成交 / 達成協議",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "成交 / 達成協議",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1t8sweq",
+          "source": "The sales team managed to close a major deal yesterday afternoon.",
+          "target": "銷售團隊昨天下午成功達成了一筆大交易。",
+          "meaning": "成交 / 達成協議",
+          "level": "B2"
+        },
+        {
+          "id": "seed-gd92dg",
+          "source": "It took weeks to close a deal with the client.",
+          "target": "花了幾週時間才與客戶達成協議。",
+          "meaning": "成交 / 達成協議",
+          "level": "B2"
+        },
+        {
+          "id": "seed-c7vfg7",
+          "source": "They are happy to close a deal today.",
+          "target": "他們很高興今天能成交。",
+          "meaning": "成交 / 達成協議",
+          "level": "B2"
         }
       ]
     },
@@ -14940,6 +17319,170 @@
         }
       ]
     },
+    "come into contact with|460fm2": {
+      "word": "come into contact with",
+      "display": "come into contact with",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "接觸到",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "接觸到",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-10od5fo",
+          "source": "Wash your hands immediately if they come into contact with chemicals.",
+          "target": "如果雙手接觸到化學品，請立即清洗。",
+          "meaning": "接觸到",
+          "level": "B2"
+        },
+        {
+          "id": "seed-9afmbe",
+          "source": "Avoid letting the paint come into contact with your skin.",
+          "target": "避免讓油漆接觸到你的皮膚。",
+          "meaning": "接觸到",
+          "level": "B2"
+        },
+        {
+          "id": "seed-fjv3b6",
+          "source": "The virus can spread when you come into contact with infected surfaces.",
+          "target": "當你接觸到受感染的表面時，病毒可能會傳播。",
+          "meaning": "接觸到",
+          "level": "B2"
+        }
+      ]
+    },
+    "come into effect|ptvwu6": {
+      "word": "come into effect",
+      "display": "come into effect",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "生效 / 實施",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "生效 / 實施",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-trjt16",
+          "source": "The new tax law will come into effect next month.",
+          "target": "新的稅法將於下個月生效。",
+          "meaning": "生效 / 實施",
+          "level": "B2"
+        },
+        {
+          "id": "seed-iykxjz",
+          "source": "The new rules will come into effect tomorrow.",
+          "target": "新規則將於明天生效。",
+          "meaning": "生效 / 實施",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1iany4u",
+          "source": "When does the new policy come into effect?",
+          "target": "新政策何時生效？",
+          "meaning": "生效 / 實施",
+          "level": "B2"
+        }
+      ]
+    },
+    "come to an end|rfyf36": {
+      "word": "come to an end",
+      "display": "come to an end",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "結束",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "結束",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1bvvk9",
+          "source": "The beautiful summer holiday will soon come to an end.",
+          "target": "美好的暑假很快就要結束了。",
+          "meaning": "結束",
+          "level": "B2"
+        },
+        {
+          "id": "seed-10ne2ff",
+          "source": "The long winter will soon come to an end.",
+          "target": "漫長的冬天很快就會結束。",
+          "meaning": "結束",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1qripqr",
+          "source": "The meeting finally came to an end after two hours.",
+          "target": "會議在兩小時後終於結束了。",
+          "meaning": "結束",
+          "level": "B2"
+        }
+      ]
+    },
+    "come to terms with|10jykgj": {
+      "word": "come to terms with",
+      "display": "come to terms with",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "逐漸接受 / 妥協",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "逐漸接受 / 妥協",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1wy71p1",
+          "source": "It took her a long time to come to terms with the loss of her cat.",
+          "target": "她花了很長時間才逐漸接受失去貓的事實。",
+          "meaning": "逐漸接受 / 妥協",
+          "level": "B2"
+        },
+        {
+          "id": "seed-mq2lzb",
+          "source": "It is hard to come to terms with such a big change.",
+          "target": "很難逐漸接受這麼大的改變。",
+          "meaning": "逐漸接受 / 妥協",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1kp64h8",
+          "source": "They eventually came to terms with their differences.",
+          "target": "他們最終對彼此的分歧達成了妥協。",
+          "meaning": "逐漸接受 / 妥協",
+          "level": "B2"
+        }
+      ]
+    },
     "comedy|16og178": {
       "word": "comedy",
       "display": "comedy",
@@ -15056,6 +17599,47 @@
         }
       ]
     },
+    "command respect|99c0q7": {
+      "word": "command respect",
+      "display": "command respect",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "贏得尊敬",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "贏得尊敬",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1wyhxaz",
+          "source": "The elderly professor commands respect from everyone in the department.",
+          "target": "這位年長的教授贏得了系上所有人的尊敬。",
+          "meaning": "贏得尊敬",
+          "level": "B2"
+        },
+        {
+          "id": "seed-y7ipe7",
+          "source": "A good leader commands respect through their actions.",
+          "target": "一位好的領導者透過行動贏得尊敬。",
+          "meaning": "贏得尊敬",
+          "level": "B2"
+        },
+        {
+          "id": "seed-167li0b",
+          "source": "Her dedication to her work commands respect.",
+          "target": "她對工作的奉獻贏得了尊敬。",
+          "meaning": "贏得尊敬",
+          "level": "B2"
+        }
+      ]
+    },
     "comment": {
       "word": "comment",
       "display": "comment",
@@ -15087,6 +17671,88 @@
           "target": "我同意你對這本書的評價。",
           "meaning": "",
           "level": "A2"
+        }
+      ]
+    },
+    "commit a crime|169566i": {
+      "word": "commit a crime",
+      "display": "commit a crime",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "犯罪",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "犯罪",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1qhw16c",
+          "source": "He was arrested for committing a serious crime.",
+          "target": "他因犯下嚴重罪行而被捕。",
+          "meaning": "犯罪",
+          "level": "B2"
+        },
+        {
+          "id": "seed-13ksicf",
+          "source": "He decided not to commit a crime.",
+          "target": "他決定不犯罪。",
+          "meaning": "犯罪",
+          "level": "B2"
+        },
+        {
+          "id": "seed-124gpn1",
+          "source": "It is a serious matter to commit a crime.",
+          "target": "犯罪是一件嚴肅的事情。",
+          "meaning": "犯罪",
+          "level": "B2"
+        }
+      ]
+    },
+    "commit to|dlvgmc": {
+      "word": "commit to",
+      "display": "commit to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "承諾 / 致力於",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "承諾 / 致力於",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-commit-to-1",
+          "source": "Our class committed to reading every day.",
+          "target": "我們班承諾每天閱讀。",
+          "meaning": "承諾 / 致力於",
+          "level": "B2"
+        },
+        {
+          "id": "seed-commit-to-2",
+          "source": "The team committed to improving their work.",
+          "target": "團隊致力於改善他們的工作。",
+          "meaning": "承諾 / 致力於",
+          "level": "B2"
+        },
+        {
+          "id": "seed-commit-to-3",
+          "source": "He committed to practising English after school.",
+          "target": "他承諾放學後練習英文。",
+          "meaning": "承諾 / 致力於",
+          "level": "B2"
         }
       ]
     },
@@ -15319,6 +17985,47 @@
           "target": "我們在課堂上比較答案。",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "compatriot|13a0kbz": {
+      "word": "compatriot",
+      "display": "compatriot",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "C1",
+      "meaning": "同胞 / 同國人",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "同胞 / 同國人",
+          "pos": "noun",
+          "type": "word",
+          "level": ""
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-compatriot-fc6f4c22",
+          "source": "He helped his compatriot at the airport.",
+          "target": "他在機場幫助了自己的同胞。",
+          "meaning": "同胞 / 同國人",
+          "level": "C1"
+        },
+        {
+          "id": "seed-compatriot-8d7fbb7a",
+          "source": "She met a compatriot in London.",
+          "target": "她在倫敦遇到一位同國人。",
+          "meaning": "同胞 / 同國人",
+          "level": "C1"
+        },
+        {
+          "id": "seed-compatriot-1aef4c4f",
+          "source": "The athlete hugged his compatriot.",
+          "target": "那位運動員擁抱了自己的同胞。",
+          "meaning": "同胞 / 同國人",
+          "level": "C1"
         }
       ]
     },
@@ -15649,6 +18356,47 @@
         }
       ]
     },
+    "conduct research|atzunb": {
+      "word": "conduct research",
+      "display": "conduct research",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "進行研究",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "進行研究",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-horn0k",
+          "source": "The scientists are conducting research on global warming.",
+          "target": "科學家們正在進行關於全球暖化的研究。",
+          "meaning": "進行研究",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1k2cvbc",
+          "source": "The university will conduct research on new energy sources.",
+          "target": "大學將對新能源進行研究。",
+          "meaning": "進行研究",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1hmperb",
+          "source": "They need more funding to conduct research properly.",
+          "target": "他們需要更多資金來妥善進行研究。",
+          "meaning": "進行研究",
+          "level": "B2"
+        }
+      ]
+    },
     "conference|10fjqhy": {
       "word": "conference",
       "display": "conference",
@@ -15687,6 +18435,47 @@
           "target": "我們稍後會談論這個會議。",
           "meaning": "會議",
           "level": "A2"
+        }
+      ]
+    },
+    "confess to|1szso40": {
+      "word": "confess to",
+      "display": "confess to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "坦白 / 交代",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "坦白 / 交代",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-confess-to-1",
+          "source": "He confessed to telling a lie.",
+          "target": "他坦白說了謊。",
+          "meaning": "坦白 / 交代",
+          "level": "B2"
+        },
+        {
+          "id": "seed-confess-to-2",
+          "source": "She confessed to eating the last biscuit.",
+          "target": "她坦白吃了最後一塊餅乾。",
+          "meaning": "坦白 / 交代",
+          "level": "B2"
+        },
+        {
+          "id": "seed-confess-to-3",
+          "source": "The student confessed to copying the answer.",
+          "target": "那學生坦白抄了答案。",
+          "meaning": "坦白 / 交代",
+          "level": "B2"
         }
       ]
     },
@@ -16188,6 +18977,47 @@
         }
       ]
     },
+    "contribute to|11l4imd": {
+      "word": "contribute to",
+      "display": "contribute to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "有助於 / 促成",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "有助於 / 促成",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-contribute-to-1",
+          "source": "Reading every day contributes to better writing.",
+          "target": "每天閱讀有助於改善寫作。",
+          "meaning": "有助於 / 促成",
+          "level": "B1"
+        },
+        {
+          "id": "seed-contribute-to-2",
+          "source": "Too much noise can contribute to poor sleep.",
+          "target": "太多噪音會導致睡眠質素差。",
+          "meaning": "有助於 / 促成",
+          "level": "B1"
+        },
+        {
+          "id": "seed-contribute-to-3",
+          "source": "Teamwork contributed to our success.",
+          "target": "團隊合作促成了我們的成功。",
+          "meaning": "有助於 / 促成",
+          "level": "B1"
+        }
+      ]
+    },
     "control": {
       "word": "control",
       "display": "control",
@@ -16464,6 +19294,47 @@
           "target": "角落裡有一張小書桌。",
           "meaning": "",
           "level": "A2"
+        }
+      ]
+    },
+    "corporate|1l6rzlb": {
+      "word": "corporate",
+      "display": "corporate",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "企業的 / 公司的",
+      "pos": "adjective",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "企業的 / 公司的",
+          "pos": "adjective",
+          "type": "word",
+          "level": ""
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-corporate-97407178",
+          "source": "My aunt works in a corporate office.",
+          "target": "我姑姐在公司辦公室工作。",
+          "meaning": "企業的 / 公司的",
+          "level": "B2"
+        },
+        {
+          "id": "seed-corporate-faf90d50",
+          "source": "The corporate team joined the meeting.",
+          "target": "公司團隊參加了會議。",
+          "meaning": "企業的 / 公司的",
+          "level": "B2"
+        },
+        {
+          "id": "seed-corporate-f0e4d447",
+          "source": "He likes the corporate training programme.",
+          "target": "他喜歡公司的培訓課程。",
+          "meaning": "企業的 / 公司的",
+          "level": "B2"
         }
       ]
     },
@@ -17538,6 +20409,47 @@
         }
       ]
     },
+    "cross one's mind|btqd5s": {
+      "word": "cross one's mind",
+      "display": "cross one's mind",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "閃過念頭",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "閃過念頭",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-gffz2r",
+          "source": "It never crossed my mind that he would resign so suddenly.",
+          "target": "我從沒想過他會這麼突然地辭職。",
+          "meaning": "閃過念頭",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1rdolen",
+          "source": "It never crossed my mind that I would win the prize.",
+          "target": "我從沒想過我會贏得獎項。",
+          "meaning": "閃過念頭",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1ifsa5x",
+          "source": "The idea to travel abroad crossed my mind yesterday.",
+          "target": "昨天我腦中閃過出國旅遊的念頭。",
+          "meaning": "閃過念頭",
+          "level": "B2"
+        }
+      ]
+    },
     "crowd": {
       "word": "crowd",
       "display": "crowd",
@@ -18152,6 +21064,47 @@
         }
       ]
     },
+    "customer-centric|12sspm8": {
+      "word": "customer-centric",
+      "display": "customer-centric",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "C1",
+      "meaning": "以顧客為中心的",
+      "pos": "adjective",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "以顧客為中心的",
+          "pos": "adjective",
+          "type": "word",
+          "level": ""
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-customer-centric-32e24ea1",
+          "source": "The shop is customer-centric.",
+          "target": "這間店以顧客為中心。",
+          "meaning": "以顧客為中心的",
+          "level": "C1"
+        },
+        {
+          "id": "seed-customer-centric-228ebf3e",
+          "source": "A customer-centric team listens carefully.",
+          "target": "以顧客為中心的團隊會細心聆聽。",
+          "meaning": "以顧客為中心的",
+          "level": "C1"
+        },
+        {
+          "id": "seed-customer-centric-0da7d518",
+          "source": "This company has a customer-centric service.",
+          "target": "這間公司有以顧客為中心的服務。",
+          "meaning": "以顧客為中心的",
+          "level": "C1"
+        }
+      ]
+    },
     "cut": {
       "word": "cut",
       "display": "cut",
@@ -18217,6 +21170,88 @@
           "target": "這部洗衣機有一個快速洗衣程序。",
           "meaning": "",
           "level": "A2"
+        }
+      ]
+    },
+    "czech|1nwqri": {
+      "word": "czech",
+      "display": "Czech",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "捷克的",
+      "pos": "adjective",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "捷克的",
+          "pos": "adjective",
+          "type": "word",
+          "level": ""
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-czech-adj-1",
+          "source": "The Czech team played very well.",
+          "target": "捷克隊表現得很好。",
+          "meaning": "捷克的",
+          "level": "B1"
+        },
+        {
+          "id": "seed-czech-adj-2",
+          "source": "She bought a Czech book.",
+          "target": "她買了一本捷克的書。",
+          "meaning": "捷克的",
+          "level": "B1"
+        },
+        {
+          "id": "seed-czech-adj-3",
+          "source": "We tried Czech food at the fair.",
+          "target": "我們在市集試了捷克食物。",
+          "meaning": "捷克的",
+          "level": "B1"
+        }
+      ]
+    },
+    "czech|id7vca": {
+      "word": "czech",
+      "display": "Czech",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "捷克人 / 捷克語",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "捷克人 / 捷克語",
+          "pos": "noun",
+          "type": "word",
+          "level": ""
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-czech-c6bb03e7",
+          "source": "My Czech friend speaks English well.",
+          "target": "我的捷克朋友英文說得很好。",
+          "meaning": "捷克人 / 捷克語",
+          "level": "B1"
+        },
+        {
+          "id": "seed-czech-a75fcb37",
+          "source": "We learned about Czech food today.",
+          "target": "我們今天認識了捷克食物。",
+          "meaning": "捷克人 / 捷克語",
+          "level": "B1"
+        },
+        {
+          "id": "seed-czech-1c8c25da",
+          "source": "Czech is a European language.",
+          "target": "捷克語是一種歐洲語言。",
+          "meaning": "捷克人 / 捷克語",
+          "level": "B1"
         }
       ]
     },
@@ -18962,6 +21997,47 @@
         }
       ]
     },
+    "dedicate to|1ki5zcp": {
+      "word": "dedicate to",
+      "display": "dedicate to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "奉獻於",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "奉獻於",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-dedicate-to-1",
+          "source": "He dedicated his life to helping children.",
+          "target": "他一生奉獻於幫助兒童。",
+          "meaning": "奉獻於",
+          "level": "B2"
+        },
+        {
+          "id": "seed-dedicate-to-2",
+          "source": "She dedicates her weekends to volunteering.",
+          "target": "她把週末奉獻於義工服務。",
+          "meaning": "奉獻於",
+          "level": "B2"
+        },
+        {
+          "id": "seed-dedicate-to-3",
+          "source": "The doctor dedicated many years to studying this illness.",
+          "target": "那位醫生奉獻多年研究這種疾病。",
+          "meaning": "奉獻於",
+          "level": "B2"
+        }
+      ]
+    },
     "deep": {
       "word": "deep",
       "display": "deep",
@@ -18993,6 +22069,47 @@
           "target": "游泳池這一端的水很深。",
           "meaning": "",
           "level": "A2"
+        }
+      ]
+    },
+    "defective|95helg": {
+      "word": "defective",
+      "display": "defective",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "有缺陷的",
+      "pos": "adjective",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "有缺陷的",
+          "pos": "adjective",
+          "type": "word",
+          "level": ""
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-defective-1b6f81b4",
+          "source": "This phone is defective.",
+          "target": "這部電話有缺陷。",
+          "meaning": "有缺陷的",
+          "level": "B2"
+        },
+        {
+          "id": "seed-defective-482973b7",
+          "source": "The shop replaced the defective toy.",
+          "target": "店舖更換了有缺陷的玩具。",
+          "meaning": "有缺陷的",
+          "level": "B2"
+        },
+        {
+          "id": "seed-defective-174f3857",
+          "source": "We returned the defective chair.",
+          "target": "我們退回了有缺陷的椅子。",
+          "meaning": "有缺陷的",
+          "level": "B2"
         }
       ]
     },
@@ -19143,6 +22260,88 @@
           "target": "這個蛋糕味道很美味。",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "deliver a baby|1p1ib2v": {
+      "word": "deliver a baby",
+      "display": "deliver a baby",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "接生",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "接生",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-y3ypip",
+          "source": "The experienced doctor has delivered thousands of babies throughout his career.",
+          "target": "這位經驗豐富的醫生在他的職業生涯中接生了數千名嬰兒。",
+          "meaning": "接生",
+          "level": "B2"
+        },
+        {
+          "id": "seed-78fdiq",
+          "source": "The midwife helped to deliver a baby safely at home.",
+          "target": "助產士協助在家中安全地接生了一名嬰兒。",
+          "meaning": "接生",
+          "level": "B2"
+        },
+        {
+          "id": "seed-18ubmfk",
+          "source": "He was surprised when he had to deliver a baby in the taxi.",
+          "target": "當他不得不在計程車上接生時，他感到非常驚訝。",
+          "meaning": "接生",
+          "level": "B2"
+        }
+      ]
+    },
+    "deliver a speech|12m9cgu": {
+      "word": "deliver a speech",
+      "display": "deliver a speech",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "發表演講",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "發表演講",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-wxcmfb",
+          "source": "The guest speaker delivered an inspiring speech to the graduates.",
+          "target": "這位演講嘉賓向畢業生發表了鼓舞人心的演講。",
+          "meaning": "發表演講",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1f0rt7v",
+          "source": "The principal will deliver a speech at the opening ceremony.",
+          "target": "校長將在開幕典禮上發表演講。",
+          "meaning": "發表演講",
+          "level": "B2"
+        },
+        {
+          "id": "seed-135azz7",
+          "source": "She was nervous before she had to deliver a speech.",
+          "target": "她在發表演講前感到很緊張。",
+          "meaning": "發表演講",
+          "level": "B2"
         }
       ]
     },
@@ -20119,6 +23318,47 @@
           "target": "請在課堂上關掉你的裝置。",
           "meaning": "",
           "level": "A2"
+        }
+      ]
+    },
+    "devote to|p5xbf9": {
+      "word": "devote to",
+      "display": "devote to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "投身於",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "投身於",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-devote-to-1",
+          "source": "He devotes his time to training young players.",
+          "target": "他投放時間訓練年輕球員。",
+          "meaning": "投身於",
+          "level": "B2"
+        },
+        {
+          "id": "seed-devote-to-2",
+          "source": "She devotes her energy to helping her family.",
+          "target": "她把精力投放於幫助家人。",
+          "meaning": "投身於",
+          "level": "B2"
+        },
+        {
+          "id": "seed-devote-to-3",
+          "source": "They devoted the afternoon to cleaning the classroom.",
+          "target": "他們把下午時間用於清潔課室。",
+          "meaning": "投身於",
+          "level": "B2"
         }
       ]
     },
@@ -21308,6 +24548,170 @@
         }
       ]
     },
+    "do a favor|ebfdlf": {
+      "word": "do a favor",
+      "display": "do a favor",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "幫忙",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "幫忙",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-zg8se2",
+          "source": "Could you do me a favor and carry this heavy box for me?",
+          "target": "你能幫我個忙，幫我搬這個重箱子嗎？",
+          "meaning": "幫忙",
+          "level": "B2"
+        },
+        {
+          "id": "seed-2pkz7e",
+          "source": "Could you do me a favor and open the window?",
+          "target": "你能幫我個忙，把窗戶打開嗎？",
+          "meaning": "幫忙",
+          "level": "B2"
+        },
+        {
+          "id": "seed-18nx02b",
+          "source": "I would be happy to do you a favor.",
+          "target": "我很樂意幫你這個忙。",
+          "meaning": "幫忙",
+          "level": "B2"
+        }
+      ]
+    },
+    "do one's best|164ktgu": {
+      "word": "do one's best",
+      "display": "do one's best",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "盡最大的努力",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "盡最大的努力",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1vpbxb2",
+          "source": "Don't worry about the result, just do your best.",
+          "target": "別擔心結果，盡你最大的努力就好。",
+          "meaning": "盡最大的努力",
+          "level": "B2"
+        },
+        {
+          "id": "seed-3zka91",
+          "source": "You should always do your best in every task.",
+          "target": "你在每項任務中都應該盡最大的努力。",
+          "meaning": "盡最大的努力",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1pn9qi3",
+          "source": "I did my best to finish the report on time.",
+          "target": "我盡了最大的努力按時完成報告。",
+          "meaning": "盡最大的努力",
+          "level": "B2"
+        }
+      ]
+    },
+    "do research|e0h72p": {
+      "word": "do research",
+      "display": "do research",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "做研究",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "做研究",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1bdhhrg",
+          "source": "The university students are doing research on local history.",
+          "target": "大學生們正在做關於當地歷史的研究。",
+          "meaning": "做研究",
+          "level": "B2"
+        },
+        {
+          "id": "seed-15moh7c",
+          "source": "Scientists are doing research on new energy sources.",
+          "target": "科學家們正在做關於新能源的研究。",
+          "meaning": "做研究",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1vmvh3f",
+          "source": "It is important to do research before buying a new car.",
+          "target": "買新車前做研究是很重要的。",
+          "meaning": "做研究",
+          "level": "B2"
+        }
+      ]
+    },
+    "do the dishes|t7ixd": {
+      "word": "do the dishes",
+      "display": "do the dishes",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "洗碗",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "洗碗",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-12a4hn0",
+          "source": "It is your turn to do the dishes after dinner tonight.",
+          "target": "今晚晚餐後輪到你洗碗了。",
+          "meaning": "洗碗",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1e5qqsn",
+          "source": "I usually listen to music while I do the dishes.",
+          "target": "我通常在洗碗時聽音樂。",
+          "meaning": "洗碗",
+          "level": "A2"
+        },
+        {
+          "id": "seed-cbyko9",
+          "source": "Could you please help me do the dishes?",
+          "target": "你可以幫我洗碗嗎？",
+          "meaning": "洗碗",
+          "level": "A2"
+        }
+      ]
+    },
     "doctor": {
       "word": "doctor",
       "display": "doctor",
@@ -21949,6 +25353,47 @@
         }
       ]
     },
+    "draft a contract|1pe1gkz": {
+      "word": "draft a contract",
+      "display": "draft a contract",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "起草合約",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "起草合約",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-879a0z",
+          "source": "The legal team is currently drafting a contract for the new partnership.",
+          "target": "法律團隊目前正在為新的合作夥伴關係起草合約。",
+          "meaning": "起草合約",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1gzr8wh",
+          "source": "The lawyer is drafting a contract for the house sale.",
+          "target": "律師正在為房屋買賣起草合約。",
+          "meaning": "起草合約",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1nqxz2n",
+          "source": "We need to draft a contract before we start working together.",
+          "target": "我們在開始合作前需要起草合約。",
+          "meaning": "起草合約",
+          "level": "B2"
+        }
+      ]
+    },
     "drama": {
       "word": "drama",
       "display": "drama",
@@ -21980,6 +25425,170 @@
           "target": "戲劇學會逢星期五下午聚會。",
           "meaning": "",
           "level": "A2"
+        }
+      ]
+    },
+    "draw a conclusion|6rg28g": {
+      "word": "draw a conclusion",
+      "display": "draw a conclusion",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "得出結論",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "得出結論",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-adtl85",
+          "source": "It is too early to draw a conclusion based on this single study.",
+          "target": "僅憑這項單一研究就得出結論還為時過早。",
+          "meaning": "得出結論",
+          "level": "B2"
+        },
+        {
+          "id": "seed-myx2t7",
+          "source": "It is difficult to draw a conclusion from such limited data.",
+          "target": "從如此有限的數據中得出結論是很困難的。",
+          "meaning": "得出結論",
+          "level": "B2"
+        },
+        {
+          "id": "seed-f0613k",
+          "source": "We need more evidence before we can draw a conclusion.",
+          "target": "在得出結論之前，我們需要更多證據。",
+          "meaning": "得出結論",
+          "level": "B2"
+        }
+      ]
+    },
+    "draw a crowd|sfkgwy": {
+      "word": "draw a crowd",
+      "display": "draw a crowd",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "吸引人群",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "吸引人群",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1ihtvkg",
+          "source": "The street performer's incredible tricks quickly drew a large crowd.",
+          "target": "街頭藝人精彩的表演很快吸引了大量人群。",
+          "meaning": "吸引人群",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1ha99rq",
+          "source": "The new store opening is expected to draw a crowd.",
+          "target": "新店開幕預計會吸引人群。",
+          "meaning": "吸引人群",
+          "level": "B2"
+        },
+        {
+          "id": "seed-13tp92",
+          "source": "The colorful parade managed to draw a crowd in the city center.",
+          "target": "色彩繽紛的遊行成功在市中心吸引了人群。",
+          "meaning": "吸引人群",
+          "level": "B2"
+        }
+      ]
+    },
+    "draw inspiration from|42ecb2": {
+      "word": "draw inspiration from",
+      "display": "draw inspiration from",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "從...汲取靈感",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "從...汲取靈感",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-m7izuw",
+          "source": "The designer drew inspiration from traditional Japanese architecture.",
+          "target": "這位設計師從傳統日本建築中汲取靈感。",
+          "meaning": "從...汲取靈感",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1vq0p1z",
+          "source": "The author drew inspiration from her travels in Europe.",
+          "target": "這位作家從她在歐洲的旅行中汲取靈感。",
+          "meaning": "從...汲取靈感",
+          "level": "B2"
+        },
+        {
+          "id": "seed-5uny0g",
+          "source": "Artists often draw inspiration from the beauty of nature.",
+          "target": "藝術家經常從大自然的美景中汲取靈感。",
+          "meaning": "從...汲取靈感",
+          "level": "B2"
+        }
+      ]
+    },
+    "draw one's attention|6c195n": {
+      "word": "draw one's attention",
+      "display": "draw one's attention",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "吸引某人的注意",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "吸引某人的注意",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-ywm1pv",
+          "source": "The loud noise drew everyone's attention to the window.",
+          "target": "巨大的噪音吸引了所有人的注意看向窗外。",
+          "meaning": "吸引某人的注意",
+          "level": "B2"
+        },
+        {
+          "id": "seed-2668cv",
+          "source": "The bright lights drew the audience's attention.",
+          "target": "明亮的燈光吸引了觀眾的注意。",
+          "meaning": "吸引某人的注意",
+          "level": "B2"
+        },
+        {
+          "id": "seed-15xuvlb",
+          "source": "He waved his hand to draw my attention.",
+          "target": "他揮手來吸引我的注意。",
+          "meaning": "吸引某人的注意",
+          "level": "B2"
         }
       ]
     },
@@ -22198,6 +25807,88 @@
           "target": "請現在喝完你的飲品。",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "drive a hard bargain|13xdjjo": {
+      "word": "drive a hard bargain",
+      "display": "drive a hard bargain",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "討價還價很厲害 / 堅持苛刻條件",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "討價還價很厲害 / 堅持苛刻條件",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-dlx7xp",
+          "source": "She is a sharp businesswoman who always drives a hard bargain.",
+          "target": "她是一位精明的女商人，總是討價還價得很厲害。",
+          "meaning": "討價還價很厲害 / 堅持苛刻條件",
+          "level": "B2"
+        },
+        {
+          "id": "seed-p6ahdl",
+          "source": "He is known to drive a hard bargain when buying cars.",
+          "target": "他買車時以討價還價很厲害而聞名。",
+          "meaning": "討價還價很厲害 / 堅持苛刻條件",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1b9lkgy",
+          "source": "Don't expect a discount; they drive a hard bargain.",
+          "target": "別指望有折扣；他們堅持苛刻條件。",
+          "meaning": "討價還價很厲害 / 堅持苛刻條件",
+          "level": "B2"
+        }
+      ]
+    },
+    "drive someone crazy|4yv7r4": {
+      "word": "drive someone crazy",
+      "display": "drive someone crazy",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "逼人發瘋",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "逼人發瘋",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-k8cs46",
+          "source": "The loud noise from the construction site is driving me crazy.",
+          "target": "建築工地的巨大噪音快要把我逼瘋了。",
+          "meaning": "逼人發瘋",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1vj25p6",
+          "source": "The constant interruptions are driving me crazy.",
+          "target": "不斷的打斷快要把我逼瘋了。",
+          "meaning": "逼人發瘋",
+          "level": "B2"
+        },
+        {
+          "id": "seed-36fkrc",
+          "source": "Waiting in this long line is driving me crazy.",
+          "target": "在這條長隊中等待快要把我逼瘋了。",
+          "meaning": "逼人發瘋",
+          "level": "B2"
         }
       ]
     },
@@ -22887,6 +26578,47 @@
           "target": "請放一些泥土進花盆裡。",
           "meaning": "泥土",
           "level": "A2"
+        }
+      ]
+    },
+    "ease the pain|gohbqu": {
+      "word": "ease the pain",
+      "display": "ease the pain",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "減輕痛苦",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "減輕痛苦",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1f9wgu9",
+          "source": "The doctor prescribed some medication to help ease the pain.",
+          "target": "醫生開了一些藥來幫助減輕痛苦。",
+          "meaning": "減輕痛苦",
+          "level": "B2"
+        },
+        {
+          "id": "seed-prcjx7",
+          "source": "A warm bath can help to ease the pain in your muscles.",
+          "target": "洗個熱水澡有助於減輕你的肌肉疼痛。",
+          "meaning": "減輕痛苦",
+          "level": "B2"
+        },
+        {
+          "id": "seed-dq4bvo",
+          "source": "She used an ice pack to ease the pain from the injury.",
+          "target": "她用冰袋來減輕受傷處的痛苦。",
+          "meaning": "減輕痛苦",
+          "level": "B2"
         }
       ]
     },
@@ -24382,6 +28114,47 @@
         }
       ]
     },
+    "equal to|saso5q": {
+      "word": "equal to",
+      "display": "equal to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "勝任...的 / 與...相等的",
+      "pos": "adjective",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "勝任...的 / 與...相等的",
+          "pos": "adjective",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-equal-to-1",
+          "source": "She is equal to leading the group.",
+          "target": "她勝任帶領小組。",
+          "meaning": "勝任...的 / 與...相等的",
+          "level": "B2"
+        },
+        {
+          "id": "seed-equal-to-2",
+          "source": "He is equal to handling this difficult task.",
+          "target": "他勝任處理這項困難任務。",
+          "meaning": "勝任...的 / 與...相等的",
+          "level": "B2"
+        },
+        {
+          "id": "seed-equal-to-3",
+          "source": "One dollar is not equal to one pound.",
+          "target": "一元不等於一英鎊。",
+          "meaning": "勝任...的 / 與...相等的",
+          "level": "B2"
+        }
+      ]
+    },
     "equipment|138cmpv": {
       "word": "equipment",
       "display": "equipment",
@@ -24775,6 +28548,88 @@
           "target": "老師讀了我的英文短文。",
           "meaning": "",
           "level": "A2"
+        }
+      ]
+    },
+    "essential to|7atyxk": {
+      "word": "essential to",
+      "display": "essential to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "對...不可或缺的",
+      "pos": "adjective",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "對...不可或缺的",
+          "pos": "adjective",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-essential-to-1",
+          "source": "Water is essential to staying alive.",
+          "target": "水對維持生命不可或缺。",
+          "meaning": "對...不可或缺的",
+          "level": "B2"
+        },
+        {
+          "id": "seed-essential-to-2",
+          "source": "Sleep is essential to learning well.",
+          "target": "睡眠對學得好不可或缺。",
+          "meaning": "對...不可或缺的",
+          "level": "B2"
+        },
+        {
+          "id": "seed-essential-to-3",
+          "source": "Practice is essential to improving pronunciation.",
+          "target": "練習對改善發音不可或缺。",
+          "meaning": "對...不可或缺的",
+          "level": "B2"
+        }
+      ]
+    },
+    "establish a relationship|15olzle": {
+      "word": "establish a relationship",
+      "display": "establish a relationship",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "建立關係",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "建立關係",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-g9seyy",
+          "source": "They succeeded in establishing a good relationship with the client.",
+          "target": "他們成功地與客戶建立了良好的關係。",
+          "meaning": "建立關係",
+          "level": "B2"
+        },
+        {
+          "id": "seed-kq5h78",
+          "source": "It takes time to establish a relationship with new neighbors.",
+          "target": "與新鄰居建立關係需要時間。",
+          "meaning": "建立關係",
+          "level": "B2"
+        },
+        {
+          "id": "seed-61ecny",
+          "source": "They want to establish a relationship based on trust.",
+          "target": "他們想要建立基於信任的關係。",
+          "meaning": "建立關係",
+          "level": "B2"
         }
       ]
     },
@@ -25357,6 +29212,47 @@
         }
       ]
     },
+    "exercise control|1rmbfof": {
+      "word": "exercise control",
+      "display": "exercise control",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "實施控制",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "實施控制",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-xuha3z",
+          "source": "The central bank exercises control over the country's interest rates.",
+          "target": "中央銀行對國家的利率實施控制。",
+          "meaning": "實施控制",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1edlpw6",
+          "source": "The government exercises control over the national budget.",
+          "target": "政府對國家預算實施控制。",
+          "meaning": "實施控制",
+          "level": "B2"
+        },
+        {
+          "id": "seed-s6dse8",
+          "source": "Parents should exercise control over their children's screen time.",
+          "target": "家長應該對孩子的螢幕使用時間實施控制。",
+          "meaning": "實施控制",
+          "level": "B2"
+        }
+      ]
+    },
     "exercise|1rmkrc5": {
       "word": "exercise",
       "display": "exercise",
@@ -25439,6 +29335,47 @@
         }
       ]
     },
+    "exert pressure|175h0k4": {
+      "word": "exert pressure",
+      "display": "exert pressure",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "施加壓力",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "施加壓力",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-ek7czq",
+          "source": "Parents often exert pressure on their children to achieve high grades.",
+          "target": "父母經常對孩子施加壓力，要求他們取得高分。",
+          "meaning": "施加壓力",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1v976ia",
+          "source": "The coach tried to exert pressure on the opposing team.",
+          "target": "教練試圖對對手施加壓力。",
+          "meaning": "施加壓力",
+          "level": "B2"
+        },
+        {
+          "id": "seed-jd9k7v",
+          "source": "Do not exert pressure on the fragile glass.",
+          "target": "不要對脆弱的玻璃施加壓力。",
+          "meaning": "施加壓力",
+          "level": "B2"
+        }
+      ]
+    },
     "expensive|1t0gkmw": {
       "word": "expensive",
       "display": "expensive",
@@ -25511,6 +29448,47 @@
           "target": "他清楚地解釋了課堂內容。",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "express gratitude|fnam9s": {
+      "word": "express gratitude",
+      "display": "express gratitude",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "表達感激",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "表達感激",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1ns7xw6",
+          "source": "I would like to express my gratitude for your generous help.",
+          "target": "我想對您的慷慨幫助表達感激。",
+          "meaning": "表達感激",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1qwgiqu",
+          "source": "He sent a card to express gratitude to his mentors.",
+          "target": "他寄了一張卡片向導師表達感激。",
+          "meaning": "表達感激",
+          "level": "B2"
+        },
+        {
+          "id": "seed-lr5uxl",
+          "source": "We want to express gratitude for your support.",
+          "target": "我們想對您的支持表達感激。",
+          "meaning": "表達感激",
+          "level": "B2"
         }
       ]
     },
@@ -25616,6 +29594,47 @@
         }
       ]
     },
+    "face a challenge|1aeff6o": {
+      "word": "face a challenge",
+      "display": "face a challenge",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "面臨挑戰",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "面臨挑戰",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-qnchbl",
+          "source": "The new government faces the challenge of lowering unemployment.",
+          "target": "新政府面臨著降低失業率的挑戰。",
+          "meaning": "面臨挑戰",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1kdpic3",
+          "source": "We must face a challenge with courage.",
+          "target": "我們必須勇敢地面對挑戰。",
+          "meaning": "面臨挑戰",
+          "level": "B2"
+        },
+        {
+          "id": "seed-yg24z4",
+          "source": "Many businesses face a challenge during economic downturns.",
+          "target": "許多企業在經濟低迷時期都會面臨挑戰。",
+          "meaning": "面臨挑戰",
+          "level": "B2"
+        }
+      ]
+    },
     "fact": {
       "word": "fact",
       "display": "fact",
@@ -25681,6 +29700,88 @@
           "target": "我不想跌倒。",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "fall asleep|1w5ogtl": {
+      "word": "fall asleep",
+      "display": "fall asleep",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "入睡",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "入睡",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1etpivr",
+          "source": "He was so exhausted that he fell asleep immediately.",
+          "target": "他太累了，馬上就入睡了。",
+          "meaning": "入睡",
+          "level": "B2"
+        },
+        {
+          "id": "seed-11k4fi0",
+          "source": "I usually fall asleep as soon as my head hits the pillow.",
+          "target": "我通常一躺下就會入睡。",
+          "meaning": "入睡",
+          "level": "B2"
+        },
+        {
+          "id": "seed-534emq",
+          "source": "The baby will fall asleep if you sing a lullaby.",
+          "target": "如果你唱搖籃曲，寶寶就會入睡。",
+          "meaning": "入睡",
+          "level": "B2"
+        }
+      ]
+    },
+    "fall in love|7sdx2e": {
+      "word": "fall in love",
+      "display": "fall in love",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "戀愛",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "戀愛",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-zqbr5z",
+          "source": "They fell in love when they were studying at university.",
+          "target": "他們在大學讀書時墜入愛河。",
+          "meaning": "戀愛",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1kjxwe9",
+          "source": "They fell in love at first sight.",
+          "target": "他們對彼此一見鍾情。",
+          "meaning": "戀愛",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1y3gcvv",
+          "source": "Many people fall in love during their summer holidays.",
+          "target": "許多人在暑假期間墜入愛河。",
+          "meaning": "戀愛",
+          "level": "B2"
         }
       ]
     },
@@ -26344,6 +30445,47 @@
         }
       ]
     },
+    "file a complaint|17xt6cg": {
+      "word": "file a complaint",
+      "display": "file a complaint",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "提出投訴",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "提出投訴",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1toi198",
+          "source": "Disappointed customers decided to file a official complaint against the airline.",
+          "target": "失望的顧客決定對該航空公司提出正式投訴。",
+          "meaning": "提出投訴",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1fumpfs",
+          "source": "If you are unhappy with the service, you can file a complaint.",
+          "target": "如果你對服務不滿意，可以提出投訴。",
+          "meaning": "提出投訴",
+          "level": "B2"
+        },
+        {
+          "id": "seed-11hmjbs",
+          "source": "He decided to file a complaint with the local authorities.",
+          "target": "他決定向地方當局提出投訴。",
+          "meaning": "提出投訴",
+          "level": "B2"
+        }
+      ]
+    },
     "fill": {
       "word": "fill",
       "display": "fill",
@@ -26443,6 +30585,47 @@
           "target": "我在書桌上找到我的書。",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "find a solution|1t1u9m2": {
+      "word": "find a solution",
+      "display": "find a solution",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "尋找解決方案",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "尋找解決方案",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-axq8h8",
+          "source": "The committee is trying to find a solution to the traffic problem.",
+          "target": "委員會正試圖為交通問題尋找解決方案。",
+          "meaning": "尋找解決方案",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1librdh",
+          "source": "We need to find a solution before the situation gets worse.",
+          "target": "我們需要在情況惡化前找到解決方案。",
+          "meaning": "尋找解決方案",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1wsmzut",
+          "source": "It is difficult to find a solution that satisfies everyone.",
+          "target": "很難找到一個讓每個人都滿意的解決方案。",
+          "meaning": "尋找解決方案",
+          "level": "B2"
         }
       ]
     },
@@ -26841,6 +31024,170 @@
         }
       ]
     },
+    "follow advice|11ujwd2": {
+      "word": "follow advice",
+      "display": "follow advice",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "聽從建議",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "聽從建議",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-yr64zj",
+          "source": "You should follow the doctor's advice and get more rest.",
+          "target": "你應該聽從醫生的建議並多休息。",
+          "meaning": "聽從建議",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1nk69t8",
+          "source": "If you follow advice from experts, you will succeed.",
+          "target": "如果你聽從專家的建議，你就會成功。",
+          "meaning": "聽從建議",
+          "level": "B2"
+        },
+        {
+          "id": "seed-q6cdr6",
+          "source": "She decided to follow advice given by her mentor.",
+          "target": "她決定聽從導師給予的建議。",
+          "meaning": "聽從建議",
+          "level": "B2"
+        }
+      ]
+    },
+    "follow directions|hc8bdd": {
+      "word": "follow directions",
+      "display": "follow directions",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "聽從指示",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "聽從指示",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-zt7awa",
+          "source": "Please follow the directions carefully to assemble the furniture.",
+          "target": "請仔細聽從指示來組裝家具。",
+          "meaning": "聽從指示",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1w0x6c5",
+          "source": "You must follow directions to complete the task safely.",
+          "target": "你必須聽從指示才能安全地完成任務。",
+          "meaning": "聽從指示",
+          "level": "B2"
+        },
+        {
+          "id": "seed-17t0bth",
+          "source": "The students failed to follow directions during the test.",
+          "target": "學生們在考試期間沒有聽從指示。",
+          "meaning": "聽從指示",
+          "level": "B2"
+        }
+      ]
+    },
+    "follow suit|1ckjtst": {
+      "word": "follow suit",
+      "display": "follow suit",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "C1",
+      "meaning": "依樣畫葫蘆 / 跟進",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "依樣畫葫蘆 / 跟進",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "C1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-14hria0",
+          "source": "When the market leader lowered its prices, other brands quickly followed suit.",
+          "target": "當市場領導者降低價格時，其他品牌很快就跟進了。",
+          "meaning": "依樣畫葫蘆 / 跟進",
+          "level": "C1"
+        },
+        {
+          "id": "seed-178wdqn",
+          "source": "One shop closed down, and the others soon followed suit.",
+          "target": "一家店倒閉了，其他店很快也跟進了。",
+          "meaning": "依樣畫葫蘆 / 跟進",
+          "level": "C1"
+        },
+        {
+          "id": "seed-dbbv1q",
+          "source": "If you start a trend, others will follow suit.",
+          "target": "如果你開啟了一種趨勢，其他人也會跟進。",
+          "meaning": "依樣畫葫蘆 / 跟進",
+          "level": "C1"
+        }
+      ]
+    },
+    "follow suit|1ix0byd": {
+      "word": "follow suit",
+      "display": "follow suit",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "C1",
+      "meaning": "仿效 / 跟隨做法",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "仿效 / 跟隨做法",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "C1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1m5k2en",
+          "source": "When the market leader lowered its prices, other brands quickly followed suit.",
+          "target": "當市場領導者降低價格時，其他品牌很快也仿效了。",
+          "meaning": "仿效 / 跟隨做法",
+          "level": "C1"
+        },
+        {
+          "id": "seed-1bradw3",
+          "source": "One shop started staying open late, and the others followed suit.",
+          "target": "一家商店開始延長營業時間，其他商店也跟隨做法。",
+          "meaning": "仿效 / 跟隨做法",
+          "level": "C1"
+        },
+        {
+          "id": "seed-vgrzpt",
+          "source": "If you decide to resign, I might follow suit.",
+          "target": "如果你決定辭職，我也許會仿效。",
+          "meaning": "仿效 / 跟隨做法",
+          "level": "C1"
+        }
+      ]
+    },
     "follow|18jwv5e": {
       "word": "follow",
       "display": "follow x2",
@@ -27093,6 +31440,47 @@
         }
       ]
     },
+    "form a habit|v35gji": {
+      "word": "form a habit",
+      "display": "form a habit",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "養成習慣",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "養成習慣",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1mbbpbv",
+          "source": "It takes about three weeks to form a new habit.",
+          "target": "養成一個新習慣大約需要三週的時間。",
+          "meaning": "養成習慣",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1adga68",
+          "source": "It is hard to form a habit of exercising daily.",
+          "target": "養成每天運動的習慣很困難。",
+          "meaning": "養成習慣",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1pwuepu",
+          "source": "You can form a habit by doing it consistently.",
+          "target": "你可以透過持續做某事來養成習慣。",
+          "meaning": "養成習慣",
+          "level": "B2"
+        }
+      ]
+    },
     "form|1jplz32": {
       "word": "form",
       "display": "form",
@@ -27172,6 +31560,47 @@
           "target": "小水珠在葉子上形成。",
           "meaning": "形成",
           "level": "A1"
+        }
+      ]
+    },
+    "formulate a strategy|1jluw62": {
+      "word": "formulate a strategy",
+      "display": "formulate a strategy",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "制定策略",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "制定策略",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-13bfl6u",
+          "source": "The committee met to formulate a long-term strategy for business growth.",
+          "target": "委員會開會制定了一項企業成長的長期策略。",
+          "meaning": "制定策略",
+          "level": "B2"
+        },
+        {
+          "id": "seed-t9n1u0",
+          "source": "We need to formulate a strategy to win the game.",
+          "target": "我們需要制定一項策略來贏得比賽。",
+          "meaning": "制定策略",
+          "level": "B2"
+        },
+        {
+          "id": "seed-g7tm5o",
+          "source": "The team helped to formulate a strategy for the project.",
+          "target": "團隊協助制定了該專案的策略。",
+          "meaning": "制定策略",
+          "level": "B2"
         }
       ]
     },
@@ -27549,6 +31978,88 @@
         }
       ]
     },
+    "fulfill a dream|16wzdhs": {
+      "word": "fulfill a dream",
+      "display": "fulfill a dream",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "實現夢想",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "實現夢想",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-lauqm6",
+          "source": "She finally fulfilled her dream of becoming a pilot.",
+          "target": "她終於實現了成為飛行員的夢想。",
+          "meaning": "實現夢想",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1bn4i8s",
+          "source": "He worked abroad to fulfill a dream of traveling the world.",
+          "target": "他到國外工作以實現環遊世界的夢想。",
+          "meaning": "實現夢想",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1ukh7qi",
+          "source": "It is never too late to fulfill a dream.",
+          "target": "實現夢想永遠不嫌晚。",
+          "meaning": "實現夢想",
+          "level": "B2"
+        }
+      ]
+    },
+    "fulfill a duty|w5xj4x": {
+      "word": "fulfill a duty",
+      "display": "fulfill a duty",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "履行職責",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "履行職責",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1xdgrhl",
+          "source": "Every citizen has a responsibility to fulfill their civic duties.",
+          "target": "每一位公民都有責任履行他們的公民職責。",
+          "meaning": "履行職責",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1qtnfe",
+          "source": "He worked hard to fulfill his duty as a doctor.",
+          "target": "他努力工作以履行作為醫生的職責。",
+          "meaning": "履行職責",
+          "level": "B2"
+        },
+        {
+          "id": "seed-103w8tc",
+          "source": "She always tries to fulfill her duty to her family.",
+          "target": "她總是盡力履行對家庭的職責。",
+          "meaning": "履行職責",
+          "level": "B2"
+        }
+      ]
+    },
     "full": {
       "word": "full",
       "display": "full",
@@ -27682,6 +32193,211 @@
           "target": "我們為未來作好計劃。",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "gain a competitive edge|1mxpr0h": {
+      "word": "gain a competitive edge",
+      "display": "gain a competitive edge",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "獲得競爭優勢",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "獲得競爭優勢",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-16czr9a",
+          "source": "Learning a third language can help you gain a competitive edge in the job market.",
+          "target": "學習第三語言可以幫助你在就業市場中獲得競爭優勢。",
+          "meaning": "獲得競爭優勢",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1ra96r4",
+          "source": "Our new software helps companies gain a competitive edge.",
+          "target": "我們的新軟體幫助公司獲得競爭優勢。",
+          "meaning": "獲得競爭優勢",
+          "level": "B2"
+        },
+        {
+          "id": "seed-rsqco9",
+          "source": "Innovation is key to gain a competitive edge in this industry.",
+          "target": "創新是在這個行業中獲得競爭優勢的關鍵。",
+          "meaning": "獲得競爭優勢",
+          "level": "B2"
+        }
+      ]
+    },
+    "gain entry|1wlyypi": {
+      "word": "gain entry",
+      "display": "gain entry",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "獲准進入",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "獲准進入",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1n88xcz",
+          "source": "The hackers failed to gain entry into the secure database.",
+          "target": "駭客未能獲准進入安全資料庫。",
+          "meaning": "獲准進入",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1bv079e",
+          "source": "The visitors failed to gain entry to the private club.",
+          "target": "遊客未能獲准進入私人俱樂部。",
+          "meaning": "獲准進入",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1wydu1b",
+          "source": "You need a valid ticket to gain entry to the concert.",
+          "target": "你需要有效的門票才能獲准進入音樂會。",
+          "meaning": "獲准進入",
+          "level": "B2"
+        }
+      ]
+    },
+    "gain experience|1rlpt9a": {
+      "word": "gain experience",
+      "display": "gain experience",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "獲得經驗",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "獲得經驗",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-2tesd4",
+          "source": "Internships are a great way to gain work experience.",
+          "target": "實習是獲得工作經驗的好方法。",
+          "meaning": "獲得經驗",
+          "level": "B2"
+        },
+        {
+          "id": "seed-w642yc",
+          "source": "He wants to gain experience in the marketing field.",
+          "target": "他想在市場營銷領域獲得經驗。",
+          "meaning": "獲得經驗",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1dlio1q",
+          "source": "Volunteering helps students gain experience.",
+          "target": "志願服務有助於學生獲得經驗。",
+          "meaning": "獲得經驗",
+          "level": "B2"
+        }
+      ]
+    },
+    "gain ground|1yvzh86": {
+      "word": "gain ground",
+      "display": "gain ground",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "C1",
+      "meaning": "取得進展 / 漸受重視",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "取得進展 / 漸受重視",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "C1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-15eth2v",
+          "source": "The new political party is rapidly gaining ground among young voters.",
+          "target": "這個新政黨在年輕選民中正迅速取得進展。",
+          "meaning": "取得進展 / 漸受重視",
+          "level": "C1"
+        },
+        {
+          "id": "seed-1o8pble",
+          "source": "Electric cars are starting to gain ground in the local market.",
+          "target": "電動車在本地市場正漸受重視。",
+          "meaning": "取得進展 / 漸受重視",
+          "level": "C1"
+        },
+        {
+          "id": "seed-jkbdkc",
+          "source": "The new technology is gaining ground among engineers.",
+          "target": "這項新技術在工程師之間正取得進展。",
+          "meaning": "取得進展 / 漸受重視",
+          "level": "C1"
+        }
+      ]
+    },
+    "gain ground|jpc2j": {
+      "word": "gain ground",
+      "display": "gain ground",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "C1",
+      "meaning": "取得進展 / 獲得支持",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "取得進展 / 獲得支持",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "C1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-hx6690",
+          "source": "The new political party is rapidly gaining ground among young voters.",
+          "target": "這個新政黨在年輕選民中正迅速獲得支持。",
+          "meaning": "取得進展 / 獲得支持",
+          "level": "C1"
+        },
+        {
+          "id": "seed-1yln0y6",
+          "source": "The new technology is gaining ground in the industry.",
+          "target": "這項新技術在業界正取得進展。",
+          "meaning": "取得進展 / 獲得支持",
+          "level": "C1"
+        },
+        {
+          "id": "seed-cgsjig",
+          "source": "The idea is gaining ground among the public.",
+          "target": "這個想法在大眾中正獲得支持。",
+          "meaning": "取得進展 / 獲得支持",
+          "level": "C1"
         }
       ]
     },
@@ -27842,6 +32558,88 @@
         }
       ]
     },
+    "gather information|pohhai": {
+      "word": "gather information",
+      "display": "gather information",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "收集資訊",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "收集資訊",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-mh01hb",
+          "source": "The journalists are gathering information for the news story.",
+          "target": "記者們正在為新聞報導收集資訊。",
+          "meaning": "收集資訊",
+          "level": "B2"
+        },
+        {
+          "id": "seed-17njt0c",
+          "source": "I need to gather information before making a decision.",
+          "target": "我在做決定前需要收集資訊。",
+          "meaning": "收集資訊",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1h7ddzg",
+          "source": "She spent all day trying to gather information for the project.",
+          "target": "她花了一整天試圖為專案收集資訊。",
+          "meaning": "收集資訊",
+          "level": "B2"
+        }
+      ]
+    },
+    "generate revenue|11loeq7": {
+      "word": "generate revenue",
+      "display": "generate revenue",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "創造收入",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "創造收入",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-f2o1tq",
+          "source": "The new product line is expected to generate high revenue.",
+          "target": "預計新產品系列將創造高額收入。",
+          "meaning": "創造收入",
+          "level": "B2"
+        },
+        {
+          "id": "seed-qne7hi",
+          "source": "The new project will help to generate revenue.",
+          "target": "新項目將有助於創造收入。",
+          "meaning": "創造收入",
+          "level": "B2"
+        },
+        {
+          "id": "seed-frsepu",
+          "source": "They are looking for ways to generate revenue.",
+          "target": "他們正在尋找創造收入的方法。",
+          "meaning": "創造收入",
+          "level": "B2"
+        }
+      ]
+    },
     "geography": {
       "word": "geography",
       "display": "geography",
@@ -27907,6 +32705,88 @@
           "target": "我哋六點返到屋企。",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "get a promotion|bh9h2a": {
+      "word": "get a promotion",
+      "display": "get a promotion",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "獲得升職",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "獲得升職",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-zfpds4",
+          "source": "She worked hard and finally got a promotion to manager.",
+          "target": "她工作努力，最終獲得了經理的升職。",
+          "meaning": "獲得升職",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1ye4exz",
+          "source": "He hopes to get a promotion by the end of the year.",
+          "target": "他希望在年底前獲得升職。",
+          "meaning": "獲得升職",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1e2f9bb",
+          "source": "She worked hard to get a promotion.",
+          "target": "她努力工作以獲得升職。",
+          "meaning": "獲得升職",
+          "level": "B2"
+        }
+      ]
+    },
+    "get used to|15yzpnx": {
+      "word": "get used to",
+      "display": "get used to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "變得習慣於",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "變得習慣於",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-get-used-to-1",
+          "source": "He got used to taking the bus to school.",
+          "target": "他變得習慣坐巴士上學。",
+          "meaning": "變得習慣於",
+          "level": "B1"
+        },
+        {
+          "id": "seed-get-used-to-2",
+          "source": "You will get used to writing longer answers.",
+          "target": "你會變得習慣寫較長的答案。",
+          "meaning": "變得習慣於",
+          "level": "B1"
+        },
+        {
+          "id": "seed-get-used-to-3",
+          "source": "It took me a week to get used to the new timetable.",
+          "target": "我花了一星期才習慣新的時間表。",
+          "meaning": "變得習慣於",
+          "level": "B1"
         }
       ]
     },
@@ -28132,6 +33012,211 @@
           "target": "他們送給我一份精美的禮物。",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "give a speech|12m9cgu": {
+      "word": "give a speech",
+      "display": "give a speech",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "發表演講",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "發表演講",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-ab21fs",
+          "source": "The principal gave a speech at the graduation ceremony.",
+          "target": "校長在畢業典禮上發表演講。",
+          "meaning": "發表演講",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1594icx",
+          "source": "The guest speaker will give a speech at noon.",
+          "target": "演講嘉賓將在中午發表演講。",
+          "meaning": "發表演講",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1t4ra7j",
+          "source": "She was nervous to give a speech in public.",
+          "target": "她對於公開發表演講感到緊張。",
+          "meaning": "發表演講",
+          "level": "B2"
+        }
+      ]
+    },
+    "give a warning|fcg4bd": {
+      "word": "give a warning",
+      "display": "give a warning",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "給予警告",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "給予警告",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1i8fyzo",
+          "source": "The policeman gave him a warning for speeding.",
+          "target": "警察因他超速而給予他警告。",
+          "meaning": "給予警告",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1mj1b0p",
+          "source": "The teacher gave a warning to the noisy students.",
+          "target": "老師給了吵鬧的學生一個警告。",
+          "meaning": "給予警告",
+          "level": "B2"
+        },
+        {
+          "id": "seed-4sh8zx",
+          "source": "The weather bureau gave a warning about the storm.",
+          "target": "氣象局對暴風雨給予了警告。",
+          "meaning": "給予警告",
+          "level": "B2"
+        }
+      ]
+    },
+    "give an account of|s81dxr": {
+      "word": "give an account of",
+      "display": "give an account of",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "描述 / 說明",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "描述 / 說明",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-16l45xk",
+          "source": "The witness gave a detailed account of the traffic accident.",
+          "target": "目擊者對這起交通事故做了詳細的描述。",
+          "meaning": "描述 / 說明",
+          "level": "B2"
+        },
+        {
+          "id": "seed-ac7djj",
+          "source": "She gave a clear account of what happened that night.",
+          "target": "她對那天晚上發生的事情做了清楚的說明。",
+          "meaning": "描述 / 說明",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1vh9stl",
+          "source": "The report gives an accurate account of the current situation.",
+          "target": "這份報告對當前局勢做了準確的描述。",
+          "meaning": "描述 / 說明",
+          "level": "B2"
+        }
+      ]
+    },
+    "give birth to|1eezqyv": {
+      "word": "give birth to",
+      "display": "give birth to",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "出生 / 誕生",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "出生 / 誕生",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-6gyogw",
+          "source": "She gave birth to a healthy baby boy yesterday.",
+          "target": "她昨天生下了一個健康的男嬰。",
+          "meaning": "出生 / 誕生",
+          "level": "B2"
+        },
+        {
+          "id": "seed-dssxlf",
+          "source": "She gave birth to twins last year.",
+          "target": "她去年生了一對雙胞胎。",
+          "meaning": "出生 / 誕生",
+          "level": "B2"
+        },
+        {
+          "id": "seed-w7uivb",
+          "source": "The cat gave birth to four kittens.",
+          "target": "那隻貓生了四隻小貓。",
+          "meaning": "出生 / 誕生",
+          "level": "B2"
+        }
+      ]
+    },
+    "give way to|14nasl6": {
+      "word": "give way to",
+      "display": "give way to",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "讓路給 / 被...取代",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "讓路給 / 被...取代",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-keznsi",
+          "source": "Traditional printed books are slowly giving way to digital e-books.",
+          "target": "傳統印刷書籍正慢慢被數位電子書取代。",
+          "meaning": "讓路給 / 被...取代",
+          "level": "B2"
+        },
+        {
+          "id": "seed-11ehz2b",
+          "source": "The old building gave way to a modern shopping mall.",
+          "target": "舊建築被一座現代化購物中心取代了。",
+          "meaning": "讓路給 / 被...取代",
+          "level": "B2"
+        },
+        {
+          "id": "seed-o9qqqx",
+          "source": "Panic gave way to calm as the situation improved.",
+          "target": "隨著情況好轉，恐慌被冷靜所取代。",
+          "meaning": "讓路給 / 被...取代",
+          "level": "B2"
         }
       ]
     },
@@ -28932,6 +34017,47 @@
         }
       ]
     },
+    "handle a crisis|16t8rbc": {
+      "word": "handle a crisis",
+      "display": "handle a crisis",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "處理危機",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "處理危機",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1mpavwe",
+          "source": "The PR team did an excellent job in handling the public relations crisis.",
+          "target": "公關團隊在處理危機方面表現出色。",
+          "meaning": "處理危機",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1wu1whx",
+          "source": "The manager knows how to handle a crisis calmly.",
+          "target": "經理知道如何冷靜地處理危機。",
+          "meaning": "處理危機",
+          "level": "B2"
+        },
+        {
+          "id": "seed-16yr87r",
+          "source": "We need a plan to handle a crisis if it happens.",
+          "target": "如果發生危機，我們需要一個計劃來處理它。",
+          "meaning": "處理危機",
+          "level": "B2"
+        }
+      ]
+    },
     "happen|14md4x8": {
       "word": "happen",
       "display": "happen",
@@ -29106,6 +34232,252 @@
           "target": "她好討厭返學落雨嘅日子。",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "have a look|1ojk95l": {
+      "word": "have a look",
+      "display": "have a look",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "A1",
+      "meaning": "看一看",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "看一看",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "A1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-qcx2u7",
+          "source": "Let me have a look at your computer to see what is wrong.",
+          "target": "讓我看一看你的電腦，看看出了什麼問題。",
+          "meaning": "看一看",
+          "level": "A1"
+        },
+        {
+          "id": "seed-kex9lk",
+          "source": "Can I have a look at your new camera?",
+          "target": "我可以看一看你的新相機嗎？",
+          "meaning": "看一看",
+          "level": "A1"
+        },
+        {
+          "id": "seed-9trdgn",
+          "source": "Let me have a look at the menu before ordering.",
+          "target": "點餐前讓我先看一看菜單。",
+          "meaning": "看一看",
+          "level": "A1"
+        }
+      ]
+    },
+    "have a look|auinsk": {
+      "word": "have a look",
+      "display": "have a look",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "A1",
+      "meaning": "看一看 / 看一下",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "看一看 / 看一下",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "A1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-zx58dp",
+          "source": "Let me have a look at your computer to see what is wrong.",
+          "target": "讓我看一看你的電腦，看看出了什麼問題。",
+          "meaning": "看一看 / 看一下",
+          "level": "A1"
+        },
+        {
+          "id": "seed-1uhhv9m",
+          "source": "Can I have a look at your notes?",
+          "target": "我可以看一看你的筆記嗎？",
+          "meaning": "看一看 / 看一下",
+          "level": "A1"
+        },
+        {
+          "id": "seed-ezvbgk",
+          "source": "Let's have a look at the menu.",
+          "target": "讓我們看一看菜單。",
+          "meaning": "看一看 / 看一下",
+          "level": "A1"
+        }
+      ]
+    },
+    "have a passion for|veewsa": {
+      "word": "have a passion for",
+      "display": "have a passion for",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "對...充滿熱情",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "對...充滿熱情",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1lue0sa",
+          "source": "She has a deep passion for teaching young children.",
+          "target": "她對教導幼兒充滿熱情。",
+          "meaning": "對...充滿熱情",
+          "level": "B2"
+        },
+        {
+          "id": "seed-q4qc44",
+          "source": "He has a passion for playing the piano.",
+          "target": "他對彈鋼琴充滿熱情。",
+          "meaning": "對...充滿熱情",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1uy71qv",
+          "source": "She has a passion for cooking healthy meals.",
+          "target": "她對烹飪健康餐點充滿熱情。",
+          "meaning": "對...充滿熱情",
+          "level": "B2"
+        }
+      ]
+    },
+    "have a whale of a time|9wnaur": {
+      "word": "have a whale of a time",
+      "display": "have a whale of a time",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "玩得非常痛快",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "玩得非常痛快",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-vk879n",
+          "source": "The children had a whale of a time at the amusement park.",
+          "target": "孩子們在遊樂園玩得非常痛快。",
+          "meaning": "玩得非常痛快",
+          "level": "B2"
+        },
+        {
+          "id": "seed-lhq23s",
+          "source": "We had a whale of a time at the beach party yesterday.",
+          "target": "我們昨天在海灘派對上玩得非常痛快。",
+          "meaning": "玩得非常痛快",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1dmfzp",
+          "source": "I hope you have a whale of a time on your holiday.",
+          "target": "希望你在假期裡玩得非常痛快。",
+          "meaning": "玩得非常痛快",
+          "level": "B2"
+        }
+      ]
+    },
+    "have a word with|1o4ovjm": {
+      "word": "have a word with",
+      "display": "have a word with",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "與某人談話",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "與某人談話",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-z8bven",
+          "source": "I need to have a word with you about the project.",
+          "target": "我需要和你談談關於這個專案的事。",
+          "meaning": "與某人談話",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1era89s",
+          "source": "I need to have a word with the manager.",
+          "target": "我需要與經理談談。",
+          "meaning": "與某人談話",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1ec3f3a",
+          "source": "Can I have a word with you after class?",
+          "target": "下課後我可以和你談談嗎？",
+          "meaning": "與某人談話",
+          "level": "B2"
+        }
+      ]
+    },
+    "have an argument|vgqwtp": {
+      "word": "have an argument",
+      "display": "have an argument",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "爭吵",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "爭吵",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-lqnuny",
+          "source": "They had a fierce argument about where to spend their holiday.",
+          "target": "他們為了去哪裡度假而激烈爭吵。",
+          "meaning": "爭吵",
+          "level": "B2"
+        },
+        {
+          "id": "seed-209tcw",
+          "source": "I don't want to have an argument with you.",
+          "target": "我不想和你爭吵。",
+          "meaning": "爭吵",
+          "level": "B2"
+        },
+        {
+          "id": "seed-tmh0uv",
+          "source": "They had an argument about the project plan.",
+          "target": "他們為了專案計畫而爭吵。",
+          "meaning": "爭吵",
+          "level": "B2"
         }
       ]
     },
@@ -29790,6 +35162,47 @@
         }
       ]
     },
+    "hit the jackpot|1w06uvq": {
+      "word": "hit the jackpot",
+      "display": "hit the jackpot",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "中大獎 / 發大財",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "中大獎 / 發大財",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-3l6qpz",
+          "source": "He hit the jackpot when his tech startup was acquired by a major corporation.",
+          "target": "當他的科技新創公司被大企業收購時，他發了大財。",
+          "meaning": "中大獎 / 發大財",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1ev82xn",
+          "source": "She really hit the jackpot with her new business idea.",
+          "target": "她憑藉新的商業點子真的發了大財。",
+          "meaning": "中大獎 / 發大財",
+          "level": "B2"
+        },
+        {
+          "id": "seed-j5w18o",
+          "source": "Finding that rare antique was like hitting the jackpot.",
+          "target": "找到那件稀有古董簡直就像中了大獎一樣。",
+          "meaning": "中大獎 / 發大財",
+          "level": "B2"
+        }
+      ]
+    },
     "hobby": {
       "word": "hobby",
       "display": "hobby",
@@ -29821,6 +35234,47 @@
           "target": "你的愛好是什麼？",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "hold an event|9k0a5w": {
+      "word": "hold an event",
+      "display": "hold an event",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "舉辦活動",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "舉辦活動",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-14msdrs",
+          "source": "The club will hold a charity event next week.",
+          "target": "俱樂部下週將舉辦一場慈善活動。",
+          "meaning": "舉辦活動",
+          "level": "B2"
+        },
+        {
+          "id": "seed-bri3vj",
+          "source": "They plan to hold an event for the local community.",
+          "target": "他們計劃為當地社區舉辦一場活動。",
+          "meaning": "舉辦活動",
+          "level": "B2"
+        },
+        {
+          "id": "seed-990f0y",
+          "source": "The school will hold an event to celebrate the anniversary.",
+          "target": "學校將舉辦一場活動來慶祝週年紀念。",
+          "meaning": "舉辦活動",
+          "level": "B2"
         }
       ]
     },
@@ -30518,6 +35972,88 @@
         }
       ]
     },
+    "impervious to|lzr10x": {
+      "word": "impervious to",
+      "display": "impervious to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "C1",
+      "meaning": "不受...影響的",
+      "pos": "adjective",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "不受...影響的",
+          "pos": "adjective",
+          "type": "phrase",
+          "level": "C1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-impervious-to-1",
+          "source": "He seems impervious to criticism.",
+          "target": "他似乎不受批評影響。",
+          "meaning": "不受...影響的",
+          "level": "C1"
+        },
+        {
+          "id": "seed-impervious-to-2",
+          "source": "The material is impervious to water.",
+          "target": "這種物料不透水。",
+          "meaning": "不受...影響的",
+          "level": "C1"
+        },
+        {
+          "id": "seed-impervious-to-3",
+          "source": "She remained impervious to the noise outside.",
+          "target": "她沒有受外面的噪音影響。",
+          "meaning": "不受...影響的",
+          "level": "C1"
+        }
+      ]
+    },
+    "implement a policy|1lxp66v": {
+      "word": "implement a policy",
+      "display": "implement a policy",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "實施政策",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "實施政策",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-kpba26",
+          "source": "The company will implement a new working-from-home policy.",
+          "target": "公司將實施一項新的居家工作政策。",
+          "meaning": "實施政策",
+          "level": "B2"
+        },
+        {
+          "id": "seed-ml1flm",
+          "source": "The government decided to implement a policy for green energy.",
+          "target": "政府決定實施一項綠色能源政策。",
+          "meaning": "實施政策",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1ji20u9",
+          "source": "It is difficult to implement a policy without staff support.",
+          "target": "沒有員工的支持，實施政策是很困難的。",
+          "meaning": "實施政策",
+          "level": "B2"
+        }
+      ]
+    },
     "important": {
       "word": "important",
       "display": "important",
@@ -30549,6 +36085,88 @@
           "target": "這本書很重要。",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "impromptu|15q91e0": {
+      "word": "impromptu",
+      "display": "impromptu",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "C1",
+      "meaning": "即興演出",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "即興演出",
+          "pos": "noun",
+          "type": "word",
+          "level": ""
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-impromptu-n-1",
+          "source": "The impromptu made everyone laugh.",
+          "target": "那場即興演出令大家大笑。",
+          "meaning": "即興演出",
+          "level": "C1"
+        },
+        {
+          "id": "seed-impromptu-n-2",
+          "source": "His short impromptu surprised the class.",
+          "target": "他的短即興演出令全班驚喜。",
+          "meaning": "即興演出",
+          "level": "C1"
+        },
+        {
+          "id": "seed-impromptu-n-3",
+          "source": "We enjoyed the impromptu after lunch.",
+          "target": "我們午飯後欣賞了即興演出。",
+          "meaning": "即興演出",
+          "level": "C1"
+        }
+      ]
+    },
+    "impromptu|k3fzzl": {
+      "word": "impromptu",
+      "display": "impromptu",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "C1",
+      "meaning": "即興的",
+      "pos": "adjective",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "即興的",
+          "pos": "adjective",
+          "type": "word",
+          "level": ""
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-impromptu-2aa0a571",
+          "source": "She gave an impromptu speech.",
+          "target": "她作了一個即興演講。",
+          "meaning": "即興的",
+          "level": "C1"
+        },
+        {
+          "id": "seed-impromptu-6b3b0de7",
+          "source": "We had an impromptu singing show.",
+          "target": "我們來了一場即興歌唱表演。",
+          "meaning": "即興的",
+          "level": "C1"
+        },
+        {
+          "id": "seed-impromptu-baa31ac1",
+          "source": "His impromptu answer was funny.",
+          "target": "他的即興回答很有趣。",
+          "meaning": "即興的",
+          "level": "C1"
         }
       ]
     },
@@ -30593,6 +36211,47 @@
         }
       ]
     },
+    "impulse|11t5j97": {
+      "word": "impulse",
+      "display": "impulse",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "衝動",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "衝動",
+          "pos": "noun",
+          "type": "word",
+          "level": ""
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-impulse-86581183",
+          "source": "He bought the toy on impulse.",
+          "target": "他一時衝動買了那個玩具。",
+          "meaning": "衝動",
+          "level": "B2"
+        },
+        {
+          "id": "seed-impulse-e6a271ae",
+          "source": "Do not act on impulse.",
+          "target": "不要衝動行事。",
+          "meaning": "衝動",
+          "level": "B2"
+        },
+        {
+          "id": "seed-impulse-a714fec2",
+          "source": "She felt an impulse to laugh.",
+          "target": "她突然有一股想笑的衝動。",
+          "meaning": "衝動",
+          "level": "B2"
+        }
+      ]
+    },
     "include|1p6iog4": {
       "word": "include",
       "display": "include",
@@ -30631,6 +36290,47 @@
           "target": "這個套裝包括一件玩具。",
           "meaning": "包括",
           "level": "A1"
+        }
+      ]
+    },
+    "incur expenses|1srlosf": {
+      "word": "incur expenses",
+      "display": "incur expenses",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "產生費用",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "產生費用",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-ysk7bg",
+          "source": "You will be reimbursed for any travel expenses incurred during the trip.",
+          "target": "你在旅途中產生的任何差旅費用都將獲得報銷。",
+          "meaning": "產生費用",
+          "level": "B2"
+        },
+        {
+          "id": "seed-bizh47",
+          "source": "The company will cover any expenses incurred during the project.",
+          "target": "公司將支付專案期間產生的任何費用。",
+          "meaning": "產生費用",
+          "level": "B2"
+        },
+        {
+          "id": "seed-iebhom",
+          "source": "Did you incur any extra expenses while you were abroad?",
+          "target": "你在國外時有產生任何額外費用嗎？",
+          "meaning": "產生費用",
+          "level": "B2"
         }
       ]
     },
@@ -31479,6 +37179,47 @@
         }
       ]
     },
+    "jump to conclusions|11u4eo9": {
+      "word": "jump to conclusions",
+      "display": "jump to conclusions",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "貿然下結論",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "貿然下結論",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-ygb2lk",
+          "source": "Don't jump to conclusions before you hear the whole story.",
+          "target": "在聽完事情的來龍去脈之前，不要貿然下結論。",
+          "meaning": "貿然下結論",
+          "level": "B2"
+        },
+        {
+          "id": "seed-mqcyi8",
+          "source": "It is easy to jump to conclusions when you are angry.",
+          "target": "當你生氣時，很容易貿然下結論。",
+          "meaning": "貿然下結論",
+          "level": "B2"
+        },
+        {
+          "id": "seed-f3deom",
+          "source": "Please wait for the facts and don't jump to conclusions.",
+          "target": "請等待事實，不要貿然下結論。",
+          "meaning": "貿然下結論",
+          "level": "B2"
+        }
+      ]
+    },
     "june": {
       "word": "june",
       "display": "June",
@@ -31578,6 +37319,498 @@
           "target": "每天都要保持房間整齊。",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "keep a diary|m3w219": {
+      "word": "keep a diary",
+      "display": "keep a diary",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "寫日記",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "寫日記",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-3fm747",
+          "source": "She has been keeping a diary since she was ten years old.",
+          "target": "她從十歲起就開始寫日記。",
+          "meaning": "寫日記",
+          "level": "B2"
+        },
+        {
+          "id": "seed-21oss4",
+          "source": "I find it helpful to keep a diary every day.",
+          "target": "我覺得每天寫日記很有幫助。",
+          "meaning": "寫日記",
+          "level": "B2"
+        },
+        {
+          "id": "seed-x3vqrm",
+          "source": "She likes to keep a diary of her travels.",
+          "target": "她喜歡寫旅行日記。",
+          "meaning": "寫日記",
+          "level": "B2"
+        }
+      ]
+    },
+    "keep a promise|18nv3lj": {
+      "word": "keep a promise",
+      "display": "keep a promise",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "遵守承諾",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "遵守承諾",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1shaa43",
+          "source": "An honest person always tries his best to keep a promise.",
+          "target": "一個誠實的人總是盡力遵守承諾。",
+          "meaning": "遵守承諾",
+          "level": "B2"
+        },
+        {
+          "id": "seed-xegl98",
+          "source": "You must learn to keep a promise if you want people to trust you.",
+          "target": "如果你想讓人信任你，就必須學會遵守承諾。",
+          "meaning": "遵守承諾",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1ixyq3x",
+          "source": "It is important to keep a promise you made to your family.",
+          "target": "遵守你對家人許下的承諾很重要。",
+          "meaning": "遵守承諾",
+          "level": "B2"
+        }
+      ]
+    },
+    "keep a secret|162bxes": {
+      "word": "keep a secret",
+      "display": "keep a secret",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "保守秘密",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "保守秘密",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-s7yncg",
+          "source": "Can I trust you to keep a secret?",
+          "target": "我可以相信你能保守秘密嗎？",
+          "meaning": "保守秘密",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1ku2vr8",
+          "source": "She promised to keep a secret for me.",
+          "target": "她答應為我保守秘密。",
+          "meaning": "保守秘密",
+          "level": "B2"
+        },
+        {
+          "id": "seed-a1io1f",
+          "source": "It is sometimes hard to keep a secret.",
+          "target": "有時候保守秘密很難。",
+          "meaning": "保守秘密",
+          "level": "B2"
+        }
+      ]
+    },
+    "keep a straight face|1xnc23b": {
+      "word": "keep a straight face",
+      "display": "keep a straight face",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "保持嚴肅 / 不笑出來",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "保持嚴肅 / 不笑出來",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-71lio3",
+          "source": "It was hard to keep a straight face when he told that ridiculous story.",
+          "target": "當他講那個荒謬的故事時，我很難保持嚴肅。",
+          "meaning": "保持嚴肅 / 不笑出來",
+          "level": "B2"
+        },
+        {
+          "id": "seed-ae9vvv",
+          "source": "She tried to keep a straight face during the serious meeting.",
+          "target": "她在嚴肅的會議期間試圖保持嚴肅。",
+          "meaning": "保持嚴肅 / 不笑出來",
+          "level": "B2"
+        },
+        {
+          "id": "seed-9lgrs6",
+          "source": "It is impossible to keep a straight face when the clown starts dancing.",
+          "target": "當小丑開始跳舞時，根本無法不笑出來。",
+          "meaning": "保持嚴肅 / 不笑出來",
+          "level": "B2"
+        }
+      ]
+    },
+    "keep an eye on|1gcd54f": {
+      "word": "keep an eye on",
+      "display": "keep an eye on",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "留意 / 注意",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "留意 / 注意",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1pfip88",
+          "source": "Could you keep an eye on my bags while I go to the restroom?",
+          "target": "在我去洗手間時，你能幫我留意一下我的行李嗎？",
+          "meaning": "留意 / 注意",
+          "level": "B1"
+        },
+        {
+          "id": "seed-1tst7n9",
+          "source": "Please keep an eye on the oven while I am out.",
+          "target": "我外出時請幫我留意一下烤箱。",
+          "meaning": "留意 / 注意",
+          "level": "B1"
+        },
+        {
+          "id": "seed-1qdzzma",
+          "source": "I will keep an eye on the traffic updates.",
+          "target": "我會留意交通更新。",
+          "meaning": "留意 / 注意",
+          "level": "B1"
+        }
+      ]
+    },
+    "keep an eye on|cmeofi": {
+      "word": "keep an eye on",
+      "display": "keep an eye on",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "密切注意 / 照顧",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "密切注意 / 照顧",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-mcv821",
+          "source": "Could you keep an eye on my bags while I go to the restroom?",
+          "target": "在我去洗手間的時候，你能幫我留意一下我的行李嗎？",
+          "meaning": "密切注意 / 照顧",
+          "level": "B1"
+        },
+        {
+          "id": "seed-3s65oc",
+          "source": "Please keep an eye on the oven while I am out.",
+          "target": "我外出時請幫我留意一下烤箱。",
+          "meaning": "密切注意 / 照顧",
+          "level": "B1"
+        },
+        {
+          "id": "seed-y5qp4g",
+          "source": "I asked my neighbor to keep an eye on my house.",
+          "target": "我請鄰居幫我留意一下我的房子。",
+          "meaning": "密切注意 / 照顧",
+          "level": "B1"
+        }
+      ]
+    },
+    "keep company|16eknt9": {
+      "word": "keep company",
+      "display": "keep company",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "陪伴",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "陪伴",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-11enh5x",
+          "source": "My sister stayed at home to keep our grandmother company.",
+          "target": "我妹妹留在家裡陪伴我們的祖母。",
+          "meaning": "陪伴",
+          "level": "B2"
+        },
+        {
+          "id": "seed-zbxtnt",
+          "source": "He came over to keep me company while I was sick.",
+          "target": "我生病時，他過來陪伴我。",
+          "meaning": "陪伴",
+          "level": "B2"
+        },
+        {
+          "id": "seed-tz2myc",
+          "source": "Would you like to stay and keep me company?",
+          "target": "你願意留下來陪我嗎？",
+          "meaning": "陪伴",
+          "level": "B2"
+        }
+      ]
+    },
+    "keep control|86erak": {
+      "word": "keep control",
+      "display": "keep control",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "保持控制",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "保持控制",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-4h1g7a",
+          "source": "The pilot struggled to keep control of the aircraft during the storm.",
+          "target": "飛行員在暴風雨中努力保持對飛機的控制。",
+          "meaning": "保持控制",
+          "level": "B2"
+        },
+        {
+          "id": "seed-5nus0n",
+          "source": "The driver struggled to keep control of the car on the icy road.",
+          "target": "司機在結冰的道路上努力保持對汽車的控制。",
+          "meaning": "保持控制",
+          "level": "B2"
+        },
+        {
+          "id": "seed-ccyhwp",
+          "source": "It is hard to keep control of your emotions when you are angry.",
+          "target": "當你生氣時，很難保持對情緒的控制。",
+          "meaning": "保持控制",
+          "level": "B2"
+        }
+      ]
+    },
+    "keep in mind|1vshsdy": {
+      "word": "keep in mind",
+      "display": "keep in mind",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "記在心上",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "記在心上",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-18xkzqm",
+          "source": "Keep in mind that the office will be closed on holidays.",
+          "target": "請記住辦公室在假期期間將會關閉。",
+          "meaning": "記在心上",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1udrc4t",
+          "source": "Keep in mind that the deadline is tomorrow.",
+          "target": "請記住截止日期是明天。",
+          "meaning": "記在心上",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1o4f8zt",
+          "source": "Keep in mind to bring your umbrella.",
+          "target": "請記住帶上你的雨傘。",
+          "meaning": "記在心上",
+          "level": "B2"
+        }
+      ]
+    },
+    "keep one's word|1oh17vk": {
+      "word": "keep one's word",
+      "display": "keep one's word",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "遵守諾言",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "遵守諾言",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1w5gcxc",
+          "source": "You can trust him because he always keeps his word.",
+          "target": "你可以信任他，因為他總是遵守諾言。",
+          "meaning": "遵守諾言",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1j9vifq",
+          "source": "He promised to help, and he kept his word.",
+          "target": "他答應幫忙，而且他遵守了諾言。",
+          "meaning": "遵守諾言",
+          "level": "B2"
+        },
+        {
+          "id": "seed-5d1gx0",
+          "source": "It is important to keep your word in business.",
+          "target": "在商業中遵守諾言很重要。",
+          "meaning": "遵守諾言",
+          "level": "B2"
+        }
+      ]
+    },
+    "keep track of|1x20dwb": {
+      "word": "keep track of",
+      "display": "keep track of",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "記錄 / 追蹤",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "記錄 / 追蹤",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-74e9em",
+          "source": "It is difficult to keep track of all the changes.",
+          "target": "要追蹤所有的變更很困難。",
+          "meaning": "記錄 / 追蹤",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1tbronm",
+          "source": "It is important to keep track of your expenses.",
+          "target": "記錄你的開支很重要。",
+          "meaning": "記錄 / 追蹤",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1cnbywd",
+          "source": "I use an app to keep track of my daily tasks.",
+          "target": "我使用應用程式來追蹤我的日常任務。",
+          "meaning": "記錄 / 追蹤",
+          "level": "B2"
+        }
+      ]
+    },
+    "key to|nabkuf": {
+      "word": "key to",
+      "display": "key to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "...的關鍵",
+      "pos": "noun",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "...的關鍵",
+          "pos": "noun",
+          "type": "phrase",
+          "level": "B1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-key-to-1",
+          "source": "Practice is the key to improving your English.",
+          "target": "練習是改善英文的關鍵。",
+          "meaning": "...的關鍵",
+          "level": "B1"
+        },
+        {
+          "id": "seed-key-to-2",
+          "source": "Sleep is the key to staying healthy.",
+          "target": "睡眠是保持健康的關鍵。",
+          "meaning": "...的關鍵",
+          "level": "B1"
+        },
+        {
+          "id": "seed-key-to-3",
+          "source": "Listening carefully is the key to understanding the story.",
+          "target": "細心聆聽是理解故事的關鍵。",
+          "meaning": "...的關鍵",
+          "level": "B1"
         }
       ]
     },
@@ -32044,6 +38277,129 @@
         }
       ]
     },
+    "launch a product|qlkc8o": {
+      "word": "launch a product",
+      "display": "launch a product",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "推出產品",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "推出產品",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-10d9ykf",
+          "source": "The tech company is planning to launch a new smartphone this autumn.",
+          "target": "這家科技公司計劃在今年秋天推出一款新智慧型手機。",
+          "meaning": "推出產品",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1cndo53",
+          "source": "The company will launch a product next month.",
+          "target": "公司下個月將會推出一款產品。",
+          "meaning": "推出產品",
+          "level": "B2"
+        },
+        {
+          "id": "seed-dcuwo3",
+          "source": "They are excited to launch a product that helps the environment.",
+          "target": "他們很興奮能推出一款有助於環境的產品。",
+          "meaning": "推出產品",
+          "level": "B2"
+        }
+      ]
+    },
+    "lay off staff|nhur09": {
+      "word": "lay off staff",
+      "display": "lay off staff",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "解僱員工",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "解僱員工",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-121u46x",
+          "source": "The factory had to lay off staff due to the drop in orders.",
+          "target": "由於訂單減少，工廠不得不解僱員工。",
+          "meaning": "解僱員工",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1lugtpp",
+          "source": "The company had to lay off staff to cut costs.",
+          "target": "公司為了削減成本不得不解僱員工。",
+          "meaning": "解僱員工",
+          "level": "B2"
+        },
+        {
+          "id": "seed-dnrk8y",
+          "source": "They were forced to lay off staff during the economic downturn.",
+          "target": "他們在經濟低迷時期被迫解僱員工。",
+          "meaning": "解僱員工",
+          "level": "B2"
+        }
+      ]
+    },
+    "lead a life|nx30hs": {
+      "word": "lead a life",
+      "display": "lead a life",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "過著...的生活",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "過著...的生活",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-go8eax",
+          "source": "They prefer to lead a simple life in the countryside.",
+          "target": "他們更喜歡在鄉下過著簡單的生活。",
+          "meaning": "過著...的生活",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1h51sm4",
+          "source": "He wants to lead a life of adventure.",
+          "target": "他想要過著冒險的生活。",
+          "meaning": "過著...的生活",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1wimx22",
+          "source": "It is important to lead a life that you enjoy.",
+          "target": "過著你喜歡的生活是很重要的。",
+          "meaning": "過著...的生活",
+          "level": "B2"
+        }
+      ]
+    },
     "learn": {
       "word": "learn",
       "display": "learn",
@@ -32109,6 +38465,88 @@
           "target": "他們每天都早點出門。",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "leave an impression|i79pqs": {
+      "word": "leave an impression",
+      "display": "leave an impression",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "留下印象",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "留下印象",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1n5mph5",
+          "source": "The beautiful scenery of Prague left a deep impression on the tourists.",
+          "target": "布拉格美麗的風景給遊客留下了深刻的印象。",
+          "meaning": "留下印象",
+          "level": "B2"
+        },
+        {
+          "id": "seed-e7o6wv",
+          "source": "Her kindness left a lasting impression on everyone she met.",
+          "target": "她的善良給她遇見的每個人都留下了深刻的印象。",
+          "meaning": "留下印象",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1h3zdhz",
+          "source": "The candidate left a good impression during the job interview.",
+          "target": "這位候選人在求職面試中留下了良好的印象。",
+          "meaning": "留下印象",
+          "level": "B2"
+        }
+      ]
+    },
+    "leave no stone unturned|1n4e9vd": {
+      "word": "leave no stone unturned",
+      "display": "leave no stone unturned",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "竭盡全力 / 想方設法",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "竭盡全力 / 想方設法",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-kc5f8c",
+          "source": "The police promised to leave no stone unturned in their search for the missing child.",
+          "target": "警方承諾會竭盡全力尋找失蹤兒童。",
+          "meaning": "竭盡全力 / 想方設法",
+          "level": "B2"
+        },
+        {
+          "id": "seed-qinfq4",
+          "source": "We will leave no stone unturned to find the lost documents.",
+          "target": "我們會想方設法尋找遺失的文件。",
+          "meaning": "竭盡全力 / 想方設法",
+          "level": "B2"
+        },
+        {
+          "id": "seed-82dnh6",
+          "source": "The investigators left no stone unturned during the inquiry.",
+          "target": "調查人員在調查過程中竭盡全力。",
+          "meaning": "竭盡全力 / 想方設法",
+          "level": "B2"
         }
       ]
     },
@@ -32456,6 +38894,47 @@
           "target": "你喜歡這個紅蘋果嗎？",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "limit to|78isix": {
+      "word": "limit to",
+      "display": "limit to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "對...的限制",
+      "pos": "noun",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "對...的限制",
+          "pos": "noun",
+          "type": "phrase",
+          "level": "B1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-limit-to-1",
+          "source": "There is a limit to using phones in class.",
+          "target": "課堂上使用電話有限制。",
+          "meaning": "對...的限制",
+          "level": "B1"
+        },
+        {
+          "id": "seed-limit-to-2",
+          "source": "There should be a limit to spending pocket money.",
+          "target": "花零用錢應該有限制。",
+          "meaning": "對...的限制",
+          "level": "B1"
+        },
+        {
+          "id": "seed-limit-to-3",
+          "source": "The teacher set a limit to talking time.",
+          "target": "老師限制了說話時間。",
+          "meaning": "對...的限制",
+          "level": "B1"
         }
       ]
     },
@@ -32875,6 +39354,47 @@
         }
       ]
     },
+    "look forward to|opp59f": {
+      "word": "look forward to",
+      "display": "look forward to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "期待",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "期待",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-look-forward-to-1",
+          "source": "We are looking forward to seeing you soon.",
+          "target": "我們期待很快見到你。",
+          "meaning": "期待",
+          "level": "A2"
+        },
+        {
+          "id": "seed-look-forward-to-2",
+          "source": "I look forward to joining the school trip.",
+          "target": "我期待參加學校旅行。",
+          "meaning": "期待",
+          "level": "A2"
+        },
+        {
+          "id": "seed-look-forward-to-3",
+          "source": "She looks forward to hearing the good news.",
+          "target": "她期待聽到好消息。",
+          "meaning": "期待",
+          "level": "A2"
+        }
+      ]
+    },
     "look|1i3xaip": {
       "word": "look",
       "display": "look",
@@ -32988,6 +39508,293 @@
           "target": "佢唔想輸。",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "lose a job|1tpxd9d": {
+      "word": "lose a job",
+      "display": "lose a job",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "失業",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "失業",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-6cyuss",
+          "source": "Many people lost their jobs during the economic crisis.",
+          "target": "許多人在經濟危機期間失業了。",
+          "meaning": "失業",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1s1kvq0",
+          "source": "He was worried he might lose a job due to the budget cuts.",
+          "target": "他擔心自己可能會因為預算削減而失業。",
+          "meaning": "失業",
+          "level": "B2"
+        },
+        {
+          "id": "seed-3n9qms",
+          "source": "It is stressful to lose a job unexpectedly.",
+          "target": "意外失業會讓人感到壓力。",
+          "meaning": "失業",
+          "level": "B2"
+        }
+      ]
+    },
+    "lose confidence|1k0bvrn": {
+      "word": "lose confidence",
+      "display": "lose confidence",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "失去信心",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "失去信心",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-pu4e64",
+          "source": "After failing the test twice, he completely lost confidence.",
+          "target": "在兩次考試不及格後，他徹底失去了信心。",
+          "meaning": "失去信心",
+          "level": "B2"
+        },
+        {
+          "id": "seed-fw5wgv",
+          "source": "She began to lose confidence after the project failed.",
+          "target": "項目失敗後，她開始失去信心。",
+          "meaning": "失去信心",
+          "level": "B2"
+        },
+        {
+          "id": "seed-wj881l",
+          "source": "You shouldn't lose confidence just because of one mistake.",
+          "target": "你不應該僅僅因為一個錯誤就失去信心。",
+          "meaning": "失去信心",
+          "level": "B2"
+        }
+      ]
+    },
+    "lose consciousness|19rj2wx": {
+      "word": "lose consciousness",
+      "display": "lose consciousness",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "失去知覺 / 暈倒",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "失去知覺 / 暈倒",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-19sqesw",
+          "source": "The injured driver lost consciousness shortly after the accident.",
+          "target": "受傷的司機在事故後不久就失去了知覺。",
+          "meaning": "失去知覺 / 暈倒",
+          "level": "B2"
+        },
+        {
+          "id": "seed-k53m8x",
+          "source": "The athlete lost consciousness during the intense match.",
+          "target": "運動員在激烈的比賽中暈倒了。",
+          "meaning": "失去知覺 / 暈倒",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1f2pbo4",
+          "source": "If you feel dizzy, sit down before you lose consciousness.",
+          "target": "如果你感到頭暈，在暈倒前先坐下來。",
+          "meaning": "失去知覺 / 暈倒",
+          "level": "B2"
+        }
+      ]
+    },
+    "lose face|rbye4n": {
+      "word": "lose face",
+      "display": "lose face",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "丟臉",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "丟臉",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-jmk1gg",
+          "source": "He apologized publicly because he didn't want his family to lose face.",
+          "target": "他公開道歉是因為不想讓家人丟臉。",
+          "meaning": "丟臉",
+          "level": "B2"
+        },
+        {
+          "id": "seed-16xiy4u",
+          "source": "He was afraid to lose face in front of his peers.",
+          "target": "他害怕在同儕面前丟臉。",
+          "meaning": "丟臉",
+          "level": "B2"
+        },
+        {
+          "id": "seed-12rhzbe",
+          "source": "She didn't want to lose face by admitting she was wrong.",
+          "target": "她不想因為承認錯誤而丟臉。",
+          "meaning": "丟臉",
+          "level": "B2"
+        }
+      ]
+    },
+    "lose one's temper|1sqn8bi": {
+      "word": "lose one's temper",
+      "display": "lose one's temper",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "發脾氣",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "發脾氣",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1em1eaw",
+          "source": "He rarely loses his temper, even when he is under pressure.",
+          "target": "即使在壓力下，他也很少發脾氣。",
+          "meaning": "發脾氣",
+          "level": "B2"
+        },
+        {
+          "id": "seed-4aibkg",
+          "source": "Try not to lose your temper in front of others.",
+          "target": "試著不要在別人面前發脾氣。",
+          "meaning": "發脾氣",
+          "level": "B2"
+        },
+        {
+          "id": "seed-11apr58",
+          "source": "She lost her temper because of the long wait.",
+          "target": "她因為長時間的等待而發脾氣。",
+          "meaning": "發脾氣",
+          "level": "B2"
+        }
+      ]
+    },
+    "lose patience|m2vxo2": {
+      "word": "lose patience",
+      "display": "lose patience",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "失去耐心",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "失去耐心",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-fevagz",
+          "source": "The teacher is losing patience with the disruptive students.",
+          "target": "老師對那些搗亂的學生快失去耐心了。",
+          "meaning": "失去耐心",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1tdn0to",
+          "source": "I am starting to lose patience with this slow computer.",
+          "target": "我對這台慢吞吞的電腦快失去耐心了。",
+          "meaning": "失去耐心",
+          "level": "B2"
+        },
+        {
+          "id": "seed-fvaq4c",
+          "source": "Don't lose patience; the results will come soon.",
+          "target": "別失去耐心，結果很快就會出來。",
+          "meaning": "失去耐心",
+          "level": "B2"
+        }
+      ]
+    },
+    "lose track of|if53px": {
+      "word": "lose track of",
+      "display": "lose track of",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "失去聯絡 / 忘記時間",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "失去聯絡 / 忘記時間",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-5vcnyv",
+          "source": "I was so busy reading that I lost track of time.",
+          "target": "我讀書讀得太專心，以至於忘記了時間。",
+          "meaning": "失去聯絡 / 忘記時間",
+          "level": "B2"
+        },
+        {
+          "id": "seed-3mso6b",
+          "source": "I lost track of the conversation because of the noise.",
+          "target": "因為噪音，我忘記了剛才談話的內容。",
+          "meaning": "失去聯絡 / 忘記時間",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1p1l52g",
+          "source": "She lost track of her keys again.",
+          "target": "她又弄丟了鑰匙（找不到鑰匙在哪）。",
+          "meaning": "失去聯絡 / 忘記時間",
+          "level": "B2"
         }
       ]
     },
@@ -33202,6 +40009,47 @@
         }
       ]
     },
+    "maintain order|ert5d1": {
+      "word": "maintain order",
+      "display": "maintain order",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "維持秩序",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "維持秩序",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-sduhl4",
+          "source": "Extra security guards were deployed to maintain order at the concert.",
+          "target": "增派了額外的保安人員以維持音樂會的秩序。",
+          "meaning": "維持秩序",
+          "level": "B2"
+        },
+        {
+          "id": "seed-jbyg0d",
+          "source": "The police were called to maintain order in the streets.",
+          "target": "警方被召喚到街上維持秩序。",
+          "meaning": "維持秩序",
+          "level": "B2"
+        },
+        {
+          "id": "seed-12529zh",
+          "source": "It is difficult to maintain order in a crowded room.",
+          "target": "在擁擠的房間裡很難維持秩序。",
+          "meaning": "維持秩序",
+          "level": "B2"
+        }
+      ]
+    },
     "make": {
       "word": "make",
       "display": "make",
@@ -33233,6 +40081,1072 @@
           "target": "佢係屋企整早餐㗎咩？",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "make a call|pt8wu8": {
+      "word": "make a call",
+      "display": "make a call",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "打電話",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "打電話",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-151f66m",
+          "source": "Excuse me for a moment; I need to make an urgent call.",
+          "target": "請稍等一下；我需要打一個緊急電話。",
+          "meaning": "打電話",
+          "level": "B2"
+        },
+        {
+          "id": "seed-h6t6qf",
+          "source": "I need to make a call to my parents tonight.",
+          "target": "我今晚需要打電話給我的父母。",
+          "meaning": "打電話",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1auuiqy",
+          "source": "Can I make a call from your office?",
+          "target": "我可以在你的辦公室打電話嗎？",
+          "meaning": "打電話",
+          "level": "B2"
+        }
+      ]
+    },
+    "make a concession|xgul8f": {
+      "word": "make a concession",
+      "display": "make a concession",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "做出讓步",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "做出讓步",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-mul4ph",
+          "source": "Both companies had to make a concession to finalize the contract.",
+          "target": "兩家公司都必須做出讓步才能敲定合約。",
+          "meaning": "做出讓步",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1jv25me",
+          "source": "The union agreed to make a concession to avoid a strike.",
+          "target": "工會同意做出讓步以避免罷工。",
+          "meaning": "做出讓步",
+          "level": "B2"
+        },
+        {
+          "id": "seed-pp0lzg",
+          "source": "Neither side was willing to make a concession during the negotiation.",
+          "target": "談判期間雙方都不願做出讓步。",
+          "meaning": "做出讓步",
+          "level": "B2"
+        }
+      ]
+    },
+    "make a decision|nwr7ur": {
+      "word": "make a decision",
+      "display": "make a decision",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "做出決定",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "做出決定",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-10r7tvn",
+          "source": "It took them a long time to make a final decision.",
+          "target": "他們花了很長時間才做出最終決定。",
+          "meaning": "做出決定",
+          "level": "B2"
+        },
+        {
+          "id": "seed-17qnrrh",
+          "source": "It is hard to make a decision when you are tired.",
+          "target": "當你疲倦時，很難做出決定。",
+          "meaning": "做出決定",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1wcojzh",
+          "source": "We need to make a decision by tomorrow.",
+          "target": "我們需要在明天之前做出決定。",
+          "meaning": "做出決定",
+          "level": "B2"
+        }
+      ]
+    },
+    "make a difference|1bfzbs": {
+      "word": "make a difference",
+      "display": "make a difference",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "產生影響 / 帶來改變",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "產生影響 / 帶來改變",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-2fvboh",
+          "source": "Every small donation can make a difference in a child's life.",
+          "target": "每一筆小額捐款都能為孩子的生活帶來改變。",
+          "meaning": "產生影響 / 帶來改變",
+          "level": "B2"
+        },
+        {
+          "id": "seed-bv3d0a",
+          "source": "Your hard work can really make a difference.",
+          "target": "你的努力工作真的能帶來改變。",
+          "meaning": "產生影響 / 帶來改變",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1vfoosm",
+          "source": "Even a small gesture can make a difference.",
+          "target": "即使是一個小小的舉動也能產生影響。",
+          "meaning": "產生影響 / 帶來改變",
+          "level": "B2"
+        }
+      ]
+    },
+    "make a guess|n4kk5v": {
+      "word": "make a guess",
+      "display": "make a guess",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "猜測",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "猜測",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-jf746h",
+          "source": "If you don't know the exact answer, just make a guess.",
+          "target": "如果你不知道確切的答案，就猜一下吧。",
+          "meaning": "猜測",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1xg12dm",
+          "source": "I don't know the answer, but I will make a guess.",
+          "target": "我不知道答案，但我會猜一下。",
+          "meaning": "猜測",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1kznb5h",
+          "source": "You can make a guess if you are not sure.",
+          "target": "如果你不確定，你可以猜一下。",
+          "meaning": "猜測",
+          "level": "B2"
+        }
+      ]
+    },
+    "make a living|1fpxtde": {
+      "word": "make a living",
+      "display": "make a living",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "謀生",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "謀生",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-13gjm6s",
+          "source": "She makes a living by writing children's books.",
+          "target": "她靠寫兒童書謀生。",
+          "meaning": "謀生",
+          "level": "B1"
+        },
+        {
+          "id": "seed-v3h971",
+          "source": "Many people make a living by working online.",
+          "target": "許多人靠網上工作謀生。",
+          "meaning": "謀生",
+          "level": "B1"
+        },
+        {
+          "id": "seed-1epb340",
+          "source": "He makes a living as a professional photographer.",
+          "target": "他以專業攝影師的身分謀生。",
+          "meaning": "謀生",
+          "level": "B1"
+        }
+      ]
+    },
+    "make a living|pw7ajc": {
+      "word": "make a living",
+      "display": "make a living",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "謀生 / 維持生計",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "謀生 / 維持生計",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-c2miou",
+          "source": "She makes a living by writing children's books.",
+          "target": "她靠寫兒童讀物維生。",
+          "meaning": "謀生 / 維持生計",
+          "level": "B1"
+        },
+        {
+          "id": "seed-153cedr",
+          "source": "He makes a living as a freelance photographer.",
+          "target": "他以自由攝影師的身分謀生。",
+          "meaning": "謀生 / 維持生計",
+          "level": "B1"
+        },
+        {
+          "id": "seed-6fp925",
+          "source": "It is hard to make a living in this industry.",
+          "target": "在這個行業維持生計很困難。",
+          "meaning": "謀生 / 維持生計",
+          "level": "B1"
+        }
+      ]
+    },
+    "make a mistake|1nh19jl": {
+      "word": "make a mistake",
+      "display": "make a mistake",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "犯錯",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "犯錯",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1yfy8o9",
+          "source": "We all make mistakes sometimes, but the key is to learn from them.",
+          "target": "我們有時都會犯錯，但關鍵是要從中學習。",
+          "meaning": "犯錯",
+          "level": "B2"
+        },
+        {
+          "id": "seed-iy1gsc",
+          "source": "It is easy to make a mistake when you are tired.",
+          "target": "疲倦時很容易犯錯。",
+          "meaning": "犯錯",
+          "level": "B2"
+        },
+        {
+          "id": "seed-gssiw3",
+          "source": "Don't worry, everyone makes a mistake sometimes.",
+          "target": "別擔心，每個人有時都會犯錯。",
+          "meaning": "犯錯",
+          "level": "B2"
+        }
+      ]
+    },
+    "make a profit|1qsbzwa": {
+      "word": "make a profit",
+      "display": "make a profit",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "賺取利潤",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "賺取利潤",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1mt51t8",
+          "source": "The shop managed to make a profit in its very first month of operation.",
+          "target": "這家店在營運的第一個月就成功賺取利潤。",
+          "meaning": "賺取利潤",
+          "level": "B2"
+        },
+        {
+          "id": "seed-3curwy",
+          "source": "It is hard for a new business to make a profit immediately.",
+          "target": "新企業很難立即賺取利潤。",
+          "meaning": "賺取利潤",
+          "level": "B2"
+        },
+        {
+          "id": "seed-xnfe9f",
+          "source": "They hope to make a profit by the end of the year.",
+          "target": "他們希望在年底前賺取利潤。",
+          "meaning": "賺取利潤",
+          "level": "B2"
+        }
+      ]
+    },
+    "make a scene|1331xn2": {
+      "word": "make a scene",
+      "display": "make a scene",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "大吵大鬧 / 當眾出醜",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "大吵大鬧 / 當眾出醜",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-scjgpp",
+          "source": "Please don't make a scene in the middle of the restaurant.",
+          "target": "請不要在餐廳中間大吵大鬧。",
+          "meaning": "大吵大鬧 / 當眾出醜",
+          "level": "B2"
+        },
+        {
+          "id": "seed-llbnc5",
+          "source": "He started to make a scene because his order was wrong.",
+          "target": "因為餐點送錯了，他開始大吵大鬧。",
+          "meaning": "大吵大鬧 / 當眾出醜",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1lg3fxc",
+          "source": "Try to resolve the issue calmly without making a scene.",
+          "target": "試著冷靜地解決問題，不要當眾出醜。",
+          "meaning": "大吵大鬧 / 當眾出醜",
+          "level": "B2"
+        }
+      ]
+    },
+    "make an appointment|nvyd2v": {
+      "word": "make an appointment",
+      "display": "make an appointment",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "預約",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "預約",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-jy78yo",
+          "source": "I need to call the clinic to make an appointment with the doctor.",
+          "target": "我需要打電話給診所預約醫生。",
+          "meaning": "預約",
+          "level": "B2"
+        },
+        {
+          "id": "seed-zh6uql",
+          "source": "I need to make an appointment for a haircut.",
+          "target": "我需要預約剪頭髮。",
+          "meaning": "預約",
+          "level": "B2"
+        },
+        {
+          "id": "seed-14nye9r",
+          "source": "Please make an appointment before you visit.",
+          "target": "請在拜訪前先預約。",
+          "meaning": "預約",
+          "level": "B2"
+        }
+      ]
+    },
+    "make an assumption|ye24w3": {
+      "word": "make an assumption",
+      "display": "make an assumption",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "做出假設",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "做出假設",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-5drzic",
+          "source": "We should not make assumptions about his motives without facts.",
+          "target": "我們不應該在沒有事實根據的情況下對他的動機做出假設。",
+          "meaning": "做出假設",
+          "level": "B2"
+        },
+        {
+          "id": "seed-m8ztvu",
+          "source": "It is unwise to make assumptions about people you just met.",
+          "target": "對剛認識的人做出假設是不明智的。",
+          "meaning": "做出假設",
+          "level": "B2"
+        },
+        {
+          "id": "seed-l2epa4",
+          "source": "Don't make assumptions; ask for clarification instead.",
+          "target": "不要做出假設，應該尋求澄清。",
+          "meaning": "做出假設",
+          "level": "B2"
+        }
+      ]
+    },
+    "make an effort|15lf9b2": {
+      "word": "make an effort",
+      "display": "make an effort",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "付出努力",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "付出努力",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-17bo90m",
+          "source": "You need to make an effort to arrive on time.",
+          "target": "你需要付出努力準時到達。",
+          "meaning": "付出努力",
+          "level": "B2"
+        },
+        {
+          "id": "seed-euph46",
+          "source": "You should make an effort to eat healthier.",
+          "target": "你應該付出努力吃得更健康。",
+          "meaning": "付出努力",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1jvioal",
+          "source": "She made an effort to learn the language.",
+          "target": "她付出了努力去學習這門語言。",
+          "meaning": "付出努力",
+          "level": "B2"
+        }
+      ]
+    },
+    "make an excuse|11dbnaj": {
+      "word": "make an excuse",
+      "display": "make an excuse",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "找藉口",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "找藉口",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1bsp0qv",
+          "source": "Stop making excuses and start doing your work.",
+          "target": "別再找藉口了，開始工作吧。",
+          "meaning": "找藉口",
+          "level": "B2"
+        },
+        {
+          "id": "seed-c8g44r",
+          "source": "He always tries to make an excuse for being late.",
+          "target": "他遲到時總想找藉口。",
+          "meaning": "找藉口",
+          "level": "B2"
+        },
+        {
+          "id": "seed-na8uv6",
+          "source": "There is no need to make an excuse for your mistake.",
+          "target": "你不需要為自己的錯誤找藉口。",
+          "meaning": "找藉口",
+          "level": "B2"
+        }
+      ]
+    },
+    "make an impact|1huivyo": {
+      "word": "make an impact",
+      "display": "make an impact",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "產生影響",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "產生影響",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1849cwf",
+          "source": "The new educational application made a huge impact on vocabulary learning.",
+          "target": "這個新的教育應用程式對詞彙學習產生了巨大的影響。",
+          "meaning": "產生影響",
+          "level": "B2"
+        },
+        {
+          "id": "seed-do3wrd",
+          "source": "Her speech made a big impact on the audience.",
+          "target": "她的演講對聽眾產生了很大的影響。",
+          "meaning": "產生影響",
+          "level": "B2"
+        },
+        {
+          "id": "seed-la5ee5",
+          "source": "Small changes can make an impact on the environment.",
+          "target": "小小的改變也能對環境產生影響。",
+          "meaning": "產生影響",
+          "level": "B2"
+        }
+      ]
+    },
+    "make an impression|i79pqs": {
+      "word": "make an impression",
+      "display": "make an impression",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "留下印象",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "留下印象",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-498d9b",
+          "source": "First impressions matter; you need to make a good impression.",
+          "target": "第一印象很重要；你需要留下好印象。",
+          "meaning": "留下印象",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1uq1r2j",
+          "source": "He tried to make a good impression at the interview.",
+          "target": "他在面試時試圖留下好印象。",
+          "meaning": "留下印象",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1sgc9vd",
+          "source": "It is hard to make a lasting impression on others.",
+          "target": "要在他人心中留下深刻印象是很難的。",
+          "meaning": "留下印象",
+          "level": "B2"
+        }
+      ]
+    },
+    "make arrangements|zscy0k": {
+      "word": "make arrangements",
+      "display": "make arrangements",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "做出安排",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "做出安排",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-11xlkr2",
+          "source": "We have already made arrangements for the upcoming educational seminar.",
+          "target": "我們已經為即將到來的教育研討會做出了安排。",
+          "meaning": "做出安排",
+          "level": "B2"
+        },
+        {
+          "id": "seed-lm9zt7",
+          "source": "Please make arrangements for the guests to stay at the hotel.",
+          "target": "請為客人在飯店住宿做出安排。",
+          "meaning": "做出安排",
+          "level": "B2"
+        },
+        {
+          "id": "seed-2spyw",
+          "source": "We need to make arrangements for the meeting room.",
+          "target": "我們需要為會議室做出安排。",
+          "meaning": "做出安排",
+          "level": "B2"
+        }
+      ]
+    },
+    "make ends meet|1s9mx5y": {
+      "word": "make ends meet",
+      "display": "make ends meet",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "C1",
+      "meaning": "維持生計",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "維持生計",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "C1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1blmjcy",
+          "source": "With the rising cost of living, many families struggle to make ends meet.",
+          "target": "隨著生活成本上升，許多家庭難以維持生計。",
+          "meaning": "維持生計",
+          "level": "C1"
+        },
+        {
+          "id": "seed-4yd8yo",
+          "source": "They work two jobs just to make ends meet.",
+          "target": "他們身兼兩職只為了維持生計。",
+          "meaning": "維持生計",
+          "level": "C1"
+        },
+        {
+          "id": "seed-1s0yyq3",
+          "source": "It is hard to make ends meet in such an expensive city.",
+          "target": "在這麼昂貴的城市裡很難維持生計。",
+          "meaning": "維持生計",
+          "level": "C1"
+        }
+      ]
+    },
+    "make ends meet|wk36zd": {
+      "word": "make ends meet",
+      "display": "make ends meet",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "C1",
+      "meaning": "維持生計 / 使收支平衡",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "維持生計 / 使收支平衡",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "C1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1d2t3tj",
+          "source": "With the rising cost of living, many families struggle to make ends meet.",
+          "target": "隨著生活成本上升，許多家庭難以維持生計。",
+          "meaning": "維持生計 / 使收支平衡",
+          "level": "C1"
+        },
+        {
+          "id": "seed-pl9v6w",
+          "source": "It is hard to make ends meet on a low salary.",
+          "target": "靠低薪維持生計很困難。",
+          "meaning": "維持生計 / 使收支平衡",
+          "level": "C1"
+        },
+        {
+          "id": "seed-ws3cbv",
+          "source": "They struggled to make ends meet during the crisis.",
+          "target": "危機期間他們努力維持生計。",
+          "meaning": "維持生計 / 使收支平衡",
+          "level": "C1"
+        }
+      ]
+    },
+    "make fun of|n2aza": {
+      "word": "make fun of",
+      "display": "make fun of",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "嘲笑",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "嘲笑",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-5j7gf9",
+          "source": "It is not polite to make fun of other people's mistakes.",
+          "target": "嘲笑別人的錯誤是不禮貌的。",
+          "meaning": "嘲笑",
+          "level": "B2"
+        },
+        {
+          "id": "seed-us8m0k",
+          "source": "Do not make fun of people who are different.",
+          "target": "不要嘲笑與眾不同的人。",
+          "meaning": "嘲笑",
+          "level": "B2"
+        },
+        {
+          "id": "seed-j8chpe",
+          "source": "It is unkind to make fun of his accent.",
+          "target": "嘲笑他的口音是不友善的。",
+          "meaning": "嘲笑",
+          "level": "B2"
+        }
+      ]
+    },
+    "make light of|1qsdzpl": {
+      "word": "make light of",
+      "display": "make light of",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "輕視 / 對...不以為意",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "輕視 / 對...不以為意",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-b9jt0i",
+          "source": "You should not make light of his warnings about the safety risks.",
+          "target": "你不應該對他關於安全風險的警告不以為意。",
+          "meaning": "輕視 / 對...不以為意",
+          "level": "B2"
+        },
+        {
+          "id": "seed-8uju3k",
+          "source": "Don't make light of the situation; it is quite serious.",
+          "target": "不要輕視這種情況；這相當嚴重。",
+          "meaning": "輕視 / 對...不以為意",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1x8g72q",
+          "source": "He tends to make light of his own health problems.",
+          "target": "他傾向於對自己的健康問題不以為意。",
+          "meaning": "輕視 / 對...不以為意",
+          "level": "B2"
+        }
+      ]
+    },
+    "make peace|zzmrzu": {
+      "word": "make peace",
+      "display": "make peace",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "和解",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "和解",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1m2y1pl",
+          "source": "After not talking for years, the two brothers finally made peace.",
+          "target": "在多年不說話後，這對兄弟終於和解了。",
+          "meaning": "和解",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1g47btv",
+          "source": "It is time for both sides to make peace.",
+          "target": "現在是雙方和解的時候了。",
+          "meaning": "和解",
+          "level": "B2"
+        },
+        {
+          "id": "seed-y2qi4q",
+          "source": "They decided to make peace after the long argument.",
+          "target": "在長時間的爭吵後，他們決定和解。",
+          "meaning": "和解",
+          "level": "B2"
+        }
+      ]
+    },
+    "make progress|16f9101": {
+      "word": "make progress",
+      "display": "make progress",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "取得進步",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "取得進步",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-ctuzos",
+          "source": "The students are making great progress in their studies.",
+          "target": "學生們在學業上取得了很大的進步。",
+          "meaning": "取得進步",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1tpvcjx",
+          "source": "You are making progress with your piano lessons.",
+          "target": "你的鋼琴課取得了進步。",
+          "meaning": "取得進步",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1fud8sf",
+          "source": "We are making progress on the project.",
+          "target": "我們在項目上取得了進步。",
+          "meaning": "取得進步",
+          "level": "B2"
+        }
+      ]
+    },
+    "make room for|e7taaq": {
+      "word": "make room for",
+      "display": "make room for",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "為...騰出空間",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "為...騰出空間",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1ejifl2",
+          "source": "We need to move this desk to make room for the new sofa.",
+          "target": "我們需要搬動這張桌子，為新沙發騰出空間。",
+          "meaning": "為...騰出空間",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1yqaq7o",
+          "source": "Please clear the table to make room for the guests.",
+          "target": "請清理桌子，為客人騰出空間。",
+          "meaning": "為...騰出空間",
+          "level": "B2"
+        },
+        {
+          "id": "seed-bhhnd9",
+          "source": "We moved the boxes to make room for the new equipment.",
+          "target": "我們搬走了箱子，為新設備騰出空間。",
+          "meaning": "為...騰出空間",
+          "level": "B2"
+        }
+      ]
+    },
+    "make sense|1mu0smh": {
+      "word": "make sense",
+      "display": "make sense",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "有道理 / 說得通",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "有道理 / 說得通",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-r3q2pm",
+          "source": "His explanation doesn't make sense to me at all.",
+          "target": "他的解釋對我來說一點也不合理。",
+          "meaning": "有道理 / 說得通",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1fn80cq",
+          "source": "Does this plan make sense to you?",
+          "target": "這個計劃對你來說有道理嗎？",
+          "meaning": "有道理 / 說得通",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1wh5knq",
+          "source": "It makes sense to start early.",
+          "target": "早點開始是說得通的。",
+          "meaning": "有道理 / 說得通",
+          "level": "B2"
+        }
+      ]
+    },
+    "make up one's mind|vucgl": {
+      "word": "make up one's mind",
+      "display": "make up one's mind",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "下定決心",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "下定決心",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-txgigw",
+          "source": "He finally made up his mind to study abroad next year.",
+          "target": "他終於下定決心明年出國留學。",
+          "meaning": "下定決心",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1a9axg0",
+          "source": "Have you made up your mind about which course to take?",
+          "target": "你決定好要修哪門課了嗎？",
+          "meaning": "下定決心",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1fpb8qh",
+          "source": "She hasn't made up her mind yet.",
+          "target": "她還沒下定決心。",
+          "meaning": "下定決心",
+          "level": "B2"
         }
       ]
     },
@@ -33726,6 +41640,129 @@
         }
       ]
     },
+    "meet a deadline|13wy6rw": {
+      "word": "meet a deadline",
+      "display": "meet a deadline",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "趕上截止日期",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "趕上截止日期",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-147yw0t",
+          "source": "We had to work overtime to meet the deadline.",
+          "target": "我們必須加班才能趕上截止日期。",
+          "meaning": "趕上截止日期",
+          "level": "B2"
+        },
+        {
+          "id": "seed-avxf47",
+          "source": "They worked all night to meet a deadline.",
+          "target": "他們通宵工作以趕上截止日期。",
+          "meaning": "趕上截止日期",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1r0nysc",
+          "source": "It is important to meet a deadline in this project.",
+          "target": "在這個專案中趕上截止日期很重要。",
+          "meaning": "趕上截止日期",
+          "level": "B2"
+        }
+      ]
+    },
+    "meet a requirement|s2ycu2": {
+      "word": "meet a requirement",
+      "display": "meet a requirement",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "符合要求",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "符合要求",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-17dihsg",
+          "source": "Applicants must meet all the academic requirements to enter the program.",
+          "target": "申請人必須符合所有學術要求才能進入該課程。",
+          "meaning": "符合要求",
+          "level": "B2"
+        },
+        {
+          "id": "seed-oe0sie",
+          "source": "The new building must meet safety requirements.",
+          "target": "這棟新建築必須符合安全要求。",
+          "meaning": "符合要求",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1d0bsmv",
+          "source": "Does your project meet the client's requirements?",
+          "target": "你的專案符合客戶的要求嗎？",
+          "meaning": "符合要求",
+          "level": "B2"
+        }
+      ]
+    },
+    "meet expectations|1w6amn4": {
+      "word": "meet expectations",
+      "display": "meet expectations",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "符合預期",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "符合預期",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-vu0xrx",
+          "source": "The performance did not meet the audience's expectations.",
+          "target": "表演沒有達到觀眾的預期。",
+          "meaning": "符合預期",
+          "level": "B2"
+        },
+        {
+          "id": "seed-e7ghh8",
+          "source": "The product did not meet my expectations.",
+          "target": "該產品沒有達到我的預期。",
+          "meaning": "符合預期",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1b8hpe0",
+          "source": "He worked hard to meet the company's expectations.",
+          "target": "他努力工作以符合公司的預期。",
+          "meaning": "符合預期",
+          "level": "B2"
+        }
+      ]
+    },
     "meeting": {
       "word": "meeting",
       "display": "meeting",
@@ -34097,6 +42134,47 @@
           "target": "我很掛念家中的小狗。",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "miss an opportunity|1fdxeix": {
+      "word": "miss an opportunity",
+      "display": "miss an opportunity",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "錯失機會",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "錯失機會",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-104fui1",
+          "source": "If you don't apply now, you will miss the opportunity.",
+          "target": "如果你現在不申請，你就會錯失機會。",
+          "meaning": "錯失機會",
+          "level": "B2"
+        },
+        {
+          "id": "seed-6z9thc",
+          "source": "Don't miss an opportunity to learn something new.",
+          "target": "不要錯失學習新事物的機會。",
+          "meaning": "錯失機會",
+          "level": "B2"
+        },
+        {
+          "id": "seed-11lw2yt",
+          "source": "He felt sad to miss an opportunity to travel abroad.",
+          "target": "他因為錯失出國旅遊的機會而感到難過。",
+          "meaning": "錯失機會",
+          "level": "B2"
         }
       ]
     },
@@ -34879,6 +42957,47 @@
           "target": "請喺呢度寫低你嘅名。",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "narrow the options|yb3bd6": {
+      "word": "narrow the options",
+      "display": "narrow the options",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "縮小選擇範圍",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "縮小選擇範圍",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-10as285",
+          "source": "We need to narrow the options down to three candidates.",
+          "target": "我們需要將選擇範圍縮小到三位候選人。",
+          "meaning": "縮小選擇範圍",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1qyas7t",
+          "source": "We need to narrow the options to make a decision.",
+          "target": "我們需要縮小選擇範圍來做決定。",
+          "meaning": "縮小選擇範圍",
+          "level": "B2"
+        },
+        {
+          "id": "seed-nw8gbb",
+          "source": "This list will help you narrow the options.",
+          "target": "這份清單將幫助你縮小選擇範圍。",
+          "meaning": "縮小選擇範圍",
+          "level": "B2"
         }
       ]
     },
@@ -35930,6 +44049,47 @@
         }
       ]
     },
+    "object to|1ipjk9x": {
+      "word": "object to",
+      "display": "object to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "反對",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "反對",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-object-to-1",
+          "source": "Many parents object to cutting the music lesson.",
+          "target": "許多家長反對削減音樂課。",
+          "meaning": "反對",
+          "level": "B2"
+        },
+        {
+          "id": "seed-object-to-2",
+          "source": "She objected to changing the plan at the last minute.",
+          "target": "她反對在最後一刻更改計劃。",
+          "meaning": "反對",
+          "level": "B2"
+        },
+        {
+          "id": "seed-object-to-3",
+          "source": "We do not object to trying a new method.",
+          "target": "我們不反對嘗試新方法。",
+          "meaning": "反對",
+          "level": "B2"
+        }
+      ]
+    },
     "october": {
       "word": "october",
       "display": "October",
@@ -36420,6 +44580,47 @@
         }
       ]
     },
+    "open to|1y7avw": {
+      "word": "open to",
+      "display": "open to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "對...開放的 / 不排斥的",
+      "pos": "adjective",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "對...開放的 / 不排斥的",
+          "pos": "adjective",
+          "type": "phrase",
+          "level": "B1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-open-to-1",
+          "source": "Our teacher is open to hearing new ideas.",
+          "target": "我們的老師樂意聽新想法。",
+          "meaning": "對...開放的 / 不排斥的",
+          "level": "B1"
+        },
+        {
+          "id": "seed-open-to-2",
+          "source": "I am open to trying a different method.",
+          "target": "我願意嘗試不同的方法。",
+          "meaning": "對...開放的 / 不排斥的",
+          "level": "B1"
+        },
+        {
+          "id": "seed-open-to-3",
+          "source": "The club is open to accepting new members.",
+          "target": "這個學會歡迎新會員加入。",
+          "meaning": "對...開放的 / 不排斥的",
+          "level": "B1"
+        }
+      ]
+    },
     "opinion": {
       "word": "opinion",
       "display": "opinion",
@@ -36747,6 +44948,47 @@
         }
       ]
     },
+    "outline a plan|1wh1vts": {
+      "word": "outline a plan",
+      "display": "outline a plan",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "概述計劃",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "概述計劃",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-c2jcam",
+          "source": "The manager outlined a new marketing plan during the morning meeting.",
+          "target": "經理在早會中概述了一項新的行銷計劃。",
+          "meaning": "概述計劃",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1ty9ntl",
+          "source": "The teacher outlined a plan for the upcoming semester.",
+          "target": "老師概述了下學期的計劃。",
+          "meaning": "概述計劃",
+          "level": "B2"
+        },
+        {
+          "id": "seed-szlu52",
+          "source": "He outlined a plan to improve the company's efficiency.",
+          "target": "他概述了一項提高公司效率的計劃。",
+          "meaning": "概述計劃",
+          "level": "B2"
+        }
+      ]
+    },
     "outside": {
       "word": "outside",
       "display": "outside",
@@ -36812,6 +45054,47 @@
           "target": "把毛毯蓋在你的腿上。",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "overcome an obstacle|1v3wdrk": {
+      "word": "overcome an obstacle",
+      "display": "overcome an obstacle",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "克服障礙",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "克服障礙",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-13t7cie",
+          "source": "She overcame many obstacles to achieve her academic goals.",
+          "target": "她克服了許多障礙才實現了自己的學術目標。",
+          "meaning": "克服障礙",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1t9lyi7",
+          "source": "He managed to overcome an obstacle in his career path.",
+          "target": "他成功克服了職業生涯中的一個障礙。",
+          "meaning": "克服障礙",
+          "level": "B2"
+        },
+        {
+          "id": "seed-18vi93v",
+          "source": "Teamwork helps us overcome an obstacle more easily.",
+          "target": "團隊合作能幫助我們更輕鬆地克服障礙。",
+          "meaning": "克服障礙",
+          "level": "B2"
         }
       ]
     },
@@ -37298,6 +45581,293 @@
         }
       ]
     },
+    "pay a fine|k5flf9": {
+      "word": "pay a fine",
+      "display": "pay a fine",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "罰款",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "罰款",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1olhsbw",
+          "source": "If you park your car here illegally, you will have to pay a fine.",
+          "target": "如果你非法停車，你將必須支付罰款。",
+          "meaning": "罰款",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1nscphu",
+          "source": "He had to pay a fine for speeding.",
+          "target": "他因為超速而必須支付罰款。",
+          "meaning": "罰款",
+          "level": "B2"
+        },
+        {
+          "id": "seed-14zgb5q",
+          "source": "Don't forget to pay a fine if you return the book late.",
+          "target": "如果你逾期還書，別忘了支付罰款。",
+          "meaning": "罰款",
+          "level": "B2"
+        }
+      ]
+    },
+    "pay a premium|1kzo75z": {
+      "word": "pay a premium",
+      "display": "pay a premium",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "支付最高昂的費用 / 加價",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "支付最高昂的費用 / 加價",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1dxjgwk",
+          "source": "Customers are willing to pay a premium for organic food.",
+          "target": "顧客願意為有機食品支付最高昂的費用。",
+          "meaning": "支付最高昂的費用 / 加價",
+          "level": "B2"
+        },
+        {
+          "id": "seed-s542cm",
+          "source": "You have to pay a premium for tickets in the front row.",
+          "target": "你必須為前排的票支付加價。",
+          "meaning": "支付最高昂的費用 / 加價",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1jvx3zg",
+          "source": "Many people pay a premium for brand-name clothing.",
+          "target": "許多人願意為名牌服裝支付最高昂的費用。",
+          "meaning": "支付最高昂的費用 / 加價",
+          "level": "B2"
+        }
+      ]
+    },
+    "pay a visit|1ds3cqt": {
+      "word": "pay a visit",
+      "display": "pay a visit",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "拜訪",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "拜訪",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-g2am9y",
+          "source": "We should pay a visit to our grandparents this weekend.",
+          "target": "我們這個週末應該去拜訪祖父母。",
+          "meaning": "拜訪",
+          "level": "B2"
+        },
+        {
+          "id": "seed-16bbl7n",
+          "source": "They plan to pay a visit to the museum.",
+          "target": "他們計劃去參觀博物館。",
+          "meaning": "拜訪",
+          "level": "B2"
+        },
+        {
+          "id": "seed-hw28tb",
+          "source": "It is polite to pay a visit to your teacher.",
+          "target": "去拜訪老師是很有禮貌的。",
+          "meaning": "拜訪",
+          "level": "B2"
+        }
+      ]
+    },
+    "pay attention to|jqvg9z": {
+      "word": "pay attention to",
+      "display": "pay attention to",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "注意 / 專注於",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "注意 / 專注於",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-s7kriq",
+          "source": "Please pay attention to the safety instructions before the flight.",
+          "target": "飛行前請注意安全須知。",
+          "meaning": "注意 / 專注於",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1zevny",
+          "source": "You should pay attention to what the teacher says.",
+          "target": "你應該注意老師所說的話。",
+          "meaning": "注意 / 專注於",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1kz3b8b",
+          "source": "Please pay attention to the traffic lights.",
+          "target": "請注意交通燈。",
+          "meaning": "注意 / 專注於",
+          "level": "B2"
+        }
+      ]
+    },
+    "pay compliments|eseylg": {
+      "word": "pay compliments",
+      "display": "pay compliments",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "稱讚",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "稱讚",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-15a47z2",
+          "source": "She always pays compliments to her colleagues on their work.",
+          "target": "她總是稱讚同事的工作表現。",
+          "meaning": "稱讚",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1d9c41w",
+          "source": "It is polite to pay compliments to the host.",
+          "target": "向主人稱讚是很禮貌的。",
+          "meaning": "稱讚",
+          "level": "B2"
+        },
+        {
+          "id": "seed-xq2gst",
+          "source": "He likes to pay compliments to his friends on their achievements.",
+          "target": "他喜歡稱讚朋友們的成就。",
+          "meaning": "稱讚",
+          "level": "B2"
+        }
+      ]
+    },
+    "pay respects|16876dq": {
+      "word": "pay respects",
+      "display": "pay respects",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "致敬 / 表達哀悼",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "致敬 / 表達哀悼",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1tlnnbn",
+          "source": "Many people went to the funeral to pay their respects to the late leader.",
+          "target": "許多人參加了葬禮，向這位已故的領導人致敬。",
+          "meaning": "致敬 / 表達哀悼",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1oechdy",
+          "source": "We stood in silence to pay our respects to the fallen soldiers.",
+          "target": "我們靜默站立，向陣亡將士致敬。",
+          "meaning": "致敬 / 表達哀悼",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1n8eze1",
+          "source": "Friends and family gathered to pay their respects.",
+          "target": "親朋好友聚集在一起表達哀悼。",
+          "meaning": "致敬 / 表達哀悼",
+          "level": "B2"
+        }
+      ]
+    },
+    "pay the price|eko8dp": {
+      "word": "pay the price",
+      "display": "pay the price",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "付出代價",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "付出代價",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-13sn0xa",
+          "source": "If you drive too fast, you will have to pay the price.",
+          "target": "如果你開車太快，你將會付出代價。",
+          "meaning": "付出代價",
+          "level": "B2"
+        },
+        {
+          "id": "seed-haor8x",
+          "source": "You will pay the price for your laziness.",
+          "target": "你會為你的懶惰付出代價。",
+          "meaning": "付出代價",
+          "level": "B2"
+        },
+        {
+          "id": "seed-2fq8vq",
+          "source": "He had to pay the price for his mistake.",
+          "target": "他必須為自己的錯誤付出代價。",
+          "meaning": "付出代價",
+          "level": "B2"
+        }
+      ]
+    },
     "pay|31tc6f": {
       "word": "pay",
       "display": "pay (n)",
@@ -37761,6 +46331,47 @@
         }
       ]
     },
+    "pick a fight|ortxso": {
+      "word": "pick a fight",
+      "display": "pick a fight",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "挑起爭端 / 挑釁",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "挑起爭端 / 挑釁",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-37roe2",
+          "source": "He was looking for someone to pick a fight with at the bar.",
+          "target": "他在酒吧裡尋找想要挑釁的人。",
+          "meaning": "挑起爭端 / 挑釁",
+          "level": "B2"
+        },
+        {
+          "id": "seed-ozjfmv",
+          "source": "He is just trying to pick a fight with you.",
+          "target": "他只是想找你麻煩。",
+          "meaning": "挑起爭端 / 挑釁",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1hsk3iz",
+          "source": "She is not the type of person to pick a fight.",
+          "target": "她不是那種會挑起爭端的人。",
+          "meaning": "挑起爭端 / 挑釁",
+          "level": "B2"
+        }
+      ]
+    },
     "piece": {
       "word": "piece",
       "display": "piece",
@@ -37897,6 +46508,129 @@
         }
       ]
     },
+    "place an order|luvdgg": {
+      "word": "place an order",
+      "display": "place an order",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "下訂單",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "下訂單",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-19ib1xs",
+          "source": "You can place an order directly through our online store.",
+          "target": "您可以直接透過我們的網上商店下訂單。",
+          "meaning": "下訂單",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1k4kza5",
+          "source": "Please place an order at least two days in advance.",
+          "target": "請至少提前兩天下訂單。",
+          "meaning": "下訂單",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1bo2gp7",
+          "source": "You can place an order for the new product starting tomorrow.",
+          "target": "您可以從明天開始為新產品下訂單。",
+          "meaning": "下訂單",
+          "level": "B2"
+        }
+      ]
+    },
+    "place emphasis on|15ua7ax": {
+      "word": "place emphasis on",
+      "display": "place emphasis on",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "強調",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "強調",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-e2tqss",
+          "source": "Our school places great emphasis on practical skills.",
+          "target": "我們學校非常強調實用技能。",
+          "meaning": "強調",
+          "level": "B2"
+        },
+        {
+          "id": "seed-vr1na",
+          "source": "The government places emphasis on environmental protection.",
+          "target": "政府強調環境保護。",
+          "meaning": "強調",
+          "level": "B2"
+        },
+        {
+          "id": "seed-14o844v",
+          "source": "They place emphasis on teamwork in this project.",
+          "target": "他們在這個專案中強調團隊合作。",
+          "meaning": "強調",
+          "level": "B2"
+        }
+      ]
+    },
+    "place emphasis on|1ejfawk": {
+      "word": "place emphasis on",
+      "display": "place emphasis on",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "重視",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "重視",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1snoslz",
+          "source": "Our school places great emphasis on practical skills.",
+          "target": "我們學校非常重視實用技能。",
+          "meaning": "重視",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1t0fnsl",
+          "source": "The government places emphasis on environmental protection.",
+          "target": "政府重視環境保護。",
+          "meaning": "重視",
+          "level": "B2"
+        },
+        {
+          "id": "seed-14v8o9d",
+          "source": "Teachers place emphasis on reading comprehension.",
+          "target": "老師們重視閱讀理解能力。",
+          "meaning": "重視",
+          "level": "B2"
+        }
+      ]
+    },
     "plan": {
       "word": "plan",
       "display": "plan",
@@ -38030,6 +46764,129 @@
           "target": "佢哋每日都玩遊戲。",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "play a role in|w1pliq": {
+      "word": "play a role in",
+      "display": "play a role in",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "在...中扮演角色 / 起作用",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "在...中扮演角色 / 起作用",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1up0d27",
+          "source": "Diet plays a crucial role in maintaining overall health.",
+          "target": "飲食在維持整體健康方面起著至關重要的作用。",
+          "meaning": "在...中扮演角色 / 起作用",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1kgc4g4",
+          "source": "Education plays a role in personal development.",
+          "target": "教育在個人發展中扮演著重要的角色。",
+          "meaning": "在...中扮演角色 / 起作用",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1nsmlci",
+          "source": "Technology plays a role in how we communicate today.",
+          "target": "科技在我們現今的溝通方式中起著作用。",
+          "meaning": "在...中扮演角色 / 起作用",
+          "level": "B2"
+        }
+      ]
+    },
+    "play a trick on|qt4lex": {
+      "word": "play a trick on",
+      "display": "play a trick on",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "惡作劇 / 開玩笑",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "惡作劇 / 開玩笑",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-juhfnu",
+          "source": "The students decided to play a trick on their teacher for April Fools' Day.",
+          "target": "學生們決定在愚人節對老師惡作劇。",
+          "meaning": "惡作劇 / 開玩笑",
+          "level": "B2"
+        },
+        {
+          "id": "seed-27sbvu",
+          "source": "My brother loves to play a trick on me.",
+          "target": "我哥哥喜歡對我惡作劇。",
+          "meaning": "惡作劇 / 開玩笑",
+          "level": "B2"
+        },
+        {
+          "id": "seed-28ecqs",
+          "source": "It was just a harmless trick to play on a friend.",
+          "target": "這只是對朋友開的一個無傷大雅的玩笑。",
+          "meaning": "惡作劇 / 開玩笑",
+          "level": "B2"
+        }
+      ]
+    },
+    "play mind games|x831ex": {
+      "word": "play mind games",
+      "display": "play mind games",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "耍心機 / 玩心理戰",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "耍心機 / 玩心理戰",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-9mbibp",
+          "source": "I want a straightforward relationship, so stop playing mind games with me.",
+          "target": "我想要一段坦誠的關係，所以別跟我玩心理戰。",
+          "meaning": "耍心機 / 玩心理戰",
+          "level": "B2"
+        },
+        {
+          "id": "seed-34nyyy",
+          "source": "I am too tired for your constant mind games.",
+          "target": "我太累了，沒空陪你玩那些沒完沒了的心理戰。",
+          "meaning": "耍心機 / 玩心理戰",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1sh1urf",
+          "source": "Stop playing mind games and just tell me what you want.",
+          "target": "別再耍心機了，直接告訴我你想要什麼。",
+          "meaning": "耍心機 / 玩心理戰",
+          "level": "B2"
         }
       ]
     },
@@ -38312,6 +47169,170 @@
         }
       ]
     },
+    "pose a challenge|14jxnx6": {
+      "word": "pose a challenge",
+      "display": "pose a challenge",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "帶來挑戰",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "帶來挑戰",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-wlqzux",
+          "source": "The rapid development of new technology poses a challenge to traditional schools.",
+          "target": "新技術的快速發展對傳統學校帶來了挑戰。",
+          "meaning": "帶來挑戰",
+          "level": "B2"
+        },
+        {
+          "id": "seed-tkmza8",
+          "source": "Climate change continues to pose a challenge to global agriculture.",
+          "target": "氣候變遷持續對全球農業帶來挑戰。",
+          "meaning": "帶來挑戰",
+          "level": "B2"
+        },
+        {
+          "id": "seed-9upuub",
+          "source": "The complex project will pose a challenge to the team.",
+          "target": "這個複雜的專案將對團隊帶來挑戰。",
+          "meaning": "帶來挑戰",
+          "level": "B2"
+        }
+      ]
+    },
+    "pose a question|16tbx7e": {
+      "word": "pose a question",
+      "display": "pose a question",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "提出問題",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "提出問題",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-79i9gk",
+          "source": "The unexpected results posed a new question for the research team.",
+          "target": "意想不到的結果為研究團隊提出了新的問題。",
+          "meaning": "提出問題",
+          "level": "B2"
+        },
+        {
+          "id": "seed-100iz0b",
+          "source": "The teacher paused to pose a question to the students.",
+          "target": "老師停下來向學生提出問題。",
+          "meaning": "提出問題",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1404alm",
+          "source": "He decided to pose a question about the future of the company.",
+          "target": "他決定就公司的未來提出問題。",
+          "meaning": "提出問題",
+          "level": "B2"
+        }
+      ]
+    },
+    "pose a threat|v6r68q": {
+      "word": "pose a threat",
+      "display": "pose a threat",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "構成威脅",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "構成威脅",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-15dsw56",
+          "source": "Plastic pollution poses a serious threat to marine life.",
+          "target": "塑膠污染對海洋生物構成嚴重威脅。",
+          "meaning": "構成威脅",
+          "level": "B2"
+        },
+        {
+          "id": "seed-19smm32",
+          "source": "These chemicals pose a threat to our health.",
+          "target": "這些化學物質對我們的健康構成威脅。",
+          "meaning": "構成威脅",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1no9vp5",
+          "source": "The storm poses a threat to the coastal area.",
+          "target": "這場風暴對沿海地區構成威脅。",
+          "meaning": "構成威脅",
+          "level": "B2"
+        }
+      ]
+    },
+    "pose for a photo|12bvra": {
+      "word": "pose for a photo",
+      "display": "pose for a photo",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "擺姿勢拍照",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "擺姿勢拍照",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-d7fk8k",
+          "source": "The players posed for a photo with the championship trophy.",
+          "target": "球員們拿著冠軍獎盃擺姿勢拍照。",
+          "meaning": "擺姿勢拍照",
+          "level": "B2"
+        },
+        {
+          "id": "seed-72oor4",
+          "source": "The family gathered to pose for a photo.",
+          "target": "全家人聚在一起擺姿勢拍照。",
+          "meaning": "擺姿勢拍照",
+          "level": "B2"
+        },
+        {
+          "id": "seed-gw00kl",
+          "source": "He asked the tourists to pose for a photo in front of the landmark.",
+          "target": "他請遊客們在地標前擺姿勢拍照。",
+          "meaning": "擺姿勢拍照",
+          "level": "B2"
+        }
+      ]
+    },
     "positive|1c0qscw": {
       "word": "positive",
       "display": "positive",
@@ -38391,6 +47412,47 @@
           "target": "他給我正面的意見。",
           "meaning": "正面的",
           "level": "A1"
+        }
+      ]
+    },
+    "possession|3qdewh": {
+      "word": "possession",
+      "display": "possession",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "擁有 / 所有",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "擁有 / 所有",
+          "pos": "noun",
+          "type": "word",
+          "level": ""
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-possession-408abbe1",
+          "source": "This watch is my possession.",
+          "target": "這隻手錶是我的個人物品。",
+          "meaning": "擁有 / 所有",
+          "level": "B1"
+        },
+        {
+          "id": "seed-possession-3ae1b402",
+          "source": "The old photo is her favourite possession.",
+          "target": "那張舊相是她最喜愛的物品。",
+          "meaning": "擁有 / 所有",
+          "level": "B1"
+        },
+        {
+          "id": "seed-possession-a3286528",
+          "source": "He lost possession of the ball.",
+          "target": "他失去了控球權。",
+          "meaning": "擁有 / 所有",
+          "level": "B1"
         }
       ]
     },
@@ -38639,6 +47701,47 @@
         }
       ]
     },
+    "preparatory to|1oi349r": {
+      "word": "preparatory to",
+      "display": "preparatory to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "C1",
+      "meaning": "作為...的準備",
+      "pos": "adverb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "作為...的準備",
+          "pos": "adverb",
+          "type": "phrase",
+          "level": "C1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-preparatory-to-1",
+          "source": "He read several books preparatory to writing his report.",
+          "target": "他讀了幾本書，作為寫報告的準備。",
+          "meaning": "作為...的準備",
+          "level": "C1"
+        },
+        {
+          "id": "seed-preparatory-to-2",
+          "source": "She made notes preparatory to giving a speech.",
+          "target": "她做筆記，作為演講的準備。",
+          "meaning": "作為...的準備",
+          "level": "C1"
+        },
+        {
+          "id": "seed-preparatory-to-3",
+          "source": "The team held a meeting preparatory to launching the project.",
+          "target": "團隊開會，作為推出項目的準備。",
+          "meaning": "作為...的準備",
+          "level": "C1"
+        }
+      ]
+    },
     "prepare": {
       "word": "prepare",
       "display": "prepare",
@@ -38871,6 +47974,47 @@
         }
       ]
     },
+    "prior to|veqq2g": {
+      "word": "prior to",
+      "display": "prior to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "在...之前",
+      "pos": "preposition",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "在...之前",
+          "pos": "preposition",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-prior-to-1",
+          "source": "Prior to joining this school, she lived in Canada.",
+          "target": "加入這間學校之前，她住在加拿大。",
+          "meaning": "在...之前",
+          "level": "B2"
+        },
+        {
+          "id": "seed-prior-to-2",
+          "source": "Please wash your hands prior to eating.",
+          "target": "進食之前請洗手。",
+          "meaning": "在...之前",
+          "level": "B2"
+        },
+        {
+          "id": "seed-prior-to-3",
+          "source": "He checked his work prior to handing it in.",
+          "target": "他交功課之前檢查了作品。",
+          "meaning": "在...之前",
+          "level": "B2"
+        }
+      ]
+    },
     "probably|15042aw": {
       "word": "probably",
       "display": "probably",
@@ -39062,6 +48206,47 @@
         }
       ]
     },
+    "prompt a discussion|djfv7j": {
+      "word": "prompt a discussion",
+      "display": "prompt a discussion",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "引起討論",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "引起討論",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-8nuls4",
+          "source": "The article on artificial intelligence prompted a lively discussion in class.",
+          "target": "那篇關於人工智慧的文章在課堂上引起了熱烈的討論。",
+          "meaning": "引起討論",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1lq1ylw",
+          "source": "The documentary prompted a discussion about environmental protection.",
+          "target": "這部紀錄片引起了關於環境保護的討論。",
+          "meaning": "引起討論",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1agjgty",
+          "source": "Her question prompted a discussion that lasted for an hour.",
+          "target": "她的問題引起了一場持續一小時的討論。",
+          "meaning": "引起討論",
+          "level": "B2"
+        }
+      ]
+    },
     "purple": {
       "word": "purple",
       "display": "purple",
@@ -39127,6 +48312,88 @@
           "target": "請穿上你的外套。",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "put an end to|14eslch": {
+      "word": "put an end to",
+      "display": "put an end to",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "結束 / 終止",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "結束 / 終止",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-11gh919",
+          "source": "The treaty finally put an end to the long war.",
+          "target": "該條約最終結束了那場漫長的戰爭。",
+          "meaning": "結束 / 終止",
+          "level": "B2"
+        },
+        {
+          "id": "seed-ez6l1v",
+          "source": "We must put an end to this waste of resources.",
+          "target": "我們必須結束這種資源浪費。",
+          "meaning": "結束 / 終止",
+          "level": "B2"
+        },
+        {
+          "id": "seed-9hzg91",
+          "source": "The new policy will put an end to the confusion.",
+          "target": "新政策將終止這種混亂。",
+          "meaning": "結束 / 終止",
+          "level": "B2"
+        }
+      ]
+    },
+    "put emphasis on|15ua7ax": {
+      "word": "put emphasis on",
+      "display": "put emphasis on",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "強調",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "強調",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-3ymtsz",
+          "source": "The curriculum puts heavy emphasis on developing critical thinking skills.",
+          "target": "課程非常強調培養批判性思維能力。",
+          "meaning": "強調",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1hewkhf",
+          "source": "The school puts emphasis on physical education.",
+          "target": "學校強調體育教育。",
+          "meaning": "強調",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1gm5xln",
+          "source": "We should put more emphasis on teamwork.",
+          "target": "我們應該更強調團隊合作。",
+          "meaning": "強調",
+          "level": "B2"
         }
       ]
     },
@@ -39450,6 +48717,334 @@
         }
       ]
     },
+    "raise a question|16tbx7e": {
+      "word": "raise a question",
+      "display": "raise a question",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "提出問題",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "提出問題",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-14zbwqx",
+          "source": "The latest incident raises questions about public safety.",
+          "target": "最近的事件引發了關於公共安全的問題。",
+          "meaning": "提出問題",
+          "level": "B2"
+        },
+        {
+          "id": "seed-wf36cc",
+          "source": "The teacher had to raise a question about the homework.",
+          "target": "老師必須提出關於作業的問題。",
+          "meaning": "提出問題",
+          "level": "B2"
+        },
+        {
+          "id": "seed-g8d3lg",
+          "source": "I would like to raise a question regarding the new policy.",
+          "target": "我想針對新政策提出一個問題。",
+          "meaning": "提出問題",
+          "level": "B2"
+        }
+      ]
+    },
+    "raise awareness|1hp1wxg": {
+      "word": "raise awareness",
+      "display": "raise awareness",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "提高意識",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "提高意識",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-131y1ex",
+          "source": "The campaign aims to raise awareness about mental health.",
+          "target": "這項活動旨在提高人們對心理健康的意識。",
+          "meaning": "提高意識",
+          "level": "B2"
+        },
+        {
+          "id": "seed-i88gd8",
+          "source": "We are holding an event to raise awareness about recycling.",
+          "target": "我們正在舉辦一場活動來提高人們對回收的意識。",
+          "meaning": "提高意識",
+          "level": "B2"
+        },
+        {
+          "id": "seed-x5gkhf",
+          "source": "Social media is a great tool to raise awareness.",
+          "target": "社交媒體是提高意識的絕佳工具。",
+          "meaning": "提高意識",
+          "level": "B2"
+        }
+      ]
+    },
+    "raise capital|1uwlat5": {
+      "word": "raise capital",
+      "display": "raise capital",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "籌集資金",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "籌集資金",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-c0m4mc",
+          "source": "The developers are looking for investors to raise capital for their new app.",
+          "target": "開發商正在尋找投資者，為他們的新應用程式籌集資金。",
+          "meaning": "籌集資金",
+          "level": "B2"
+        },
+        {
+          "id": "seed-167vd8o",
+          "source": "The startup needs to raise capital to expand its business.",
+          "target": "這家新創公司需要籌集資金來擴展業務。",
+          "meaning": "籌集資金",
+          "level": "B2"
+        },
+        {
+          "id": "seed-cyqlyb",
+          "source": "They held a meeting to raise capital for the project.",
+          "target": "他們舉行了一場會議來為該專案籌集資金。",
+          "meaning": "籌集資金",
+          "level": "B2"
+        }
+      ]
+    },
+    "raise one's voice|hnv0d8": {
+      "word": "raise one's voice",
+      "display": "raise one's voice",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "提高音量 / 大小聲",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "提高音量 / 大小聲",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1ovz4tx",
+          "source": "There is no need to raise your voice; I can hear you perfectly fine.",
+          "target": "沒必要提高音量；我聽得很清楚。",
+          "meaning": "提高音量 / 大小聲",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1yzgjxg",
+          "source": "Please don't raise your voice at me.",
+          "target": "請不要對我大小聲。",
+          "meaning": "提高音量 / 大小聲",
+          "level": "B2"
+        },
+        {
+          "id": "seed-oczdvu",
+          "source": "He had to raise his voice to be heard over the crowd.",
+          "target": "他必須提高音量才能在人群中被聽見。",
+          "meaning": "提高音量 / 大小聲",
+          "level": "B2"
+        }
+      ]
+    },
+    "reach a compromise|1lw6ani": {
+      "word": "reach a compromise",
+      "display": "reach a compromise",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "達成妥協",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "達成妥協",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1yr4vbe",
+          "source": "After hours of discussion, both sides finally reached a compromise.",
+          "target": "經過數小時的討論，雙方終於達成妥協。",
+          "meaning": "達成妥協",
+          "level": "B2"
+        },
+        {
+          "id": "seed-l1s5em",
+          "source": "It is not always easy to reach a compromise.",
+          "target": "達成妥協並不總是那麼容易。",
+          "meaning": "達成妥協",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1bpuhjt",
+          "source": "We finally managed to reach a compromise on the project.",
+          "target": "我們最終成功就該項目達成了妥協。",
+          "meaning": "達成妥協",
+          "level": "B2"
+        }
+      ]
+    },
+    "reach a milestone|wwq8l": {
+      "word": "reach a milestone",
+      "display": "reach a milestone",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "達到里程碑",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "達到里程碑",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-xgoj9u",
+          "source": "The educational app reached a milestone of one million downloads this week.",
+          "target": "該教育應用程式本週達到了百萬下載量的里程碑。",
+          "meaning": "達到里程碑",
+          "level": "B2"
+        },
+        {
+          "id": "seed-19w2du3",
+          "source": "The company reached a milestone in its research project.",
+          "target": "該公司在研究項目中達到了一個里程碑。",
+          "meaning": "達到里程碑",
+          "level": "B2"
+        },
+        {
+          "id": "seed-16qbj7j",
+          "source": "Graduating from university is a major milestone in life.",
+          "target": "大學畢業是人生的一個重要里程碑。",
+          "meaning": "達到里程碑",
+          "level": "B2"
+        }
+      ]
+    },
+    "reach an agreement|1kj5odv": {
+      "word": "reach an agreement",
+      "display": "reach an agreement",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "達成協議",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "達成協議",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-3ionn4",
+          "source": "After long negotiations, the two companies reached an agreement.",
+          "target": "經過長時間的談判，兩家公司達成了協議。",
+          "meaning": "達成協議",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1sdqy8d",
+          "source": "The team finally reached an agreement on the plan.",
+          "target": "團隊最終就該計劃達成了協議。",
+          "meaning": "達成協議",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1vu5b92",
+          "source": "They could not reach an agreement today.",
+          "target": "他們今天無法達成協議。",
+          "meaning": "達成協議",
+          "level": "B2"
+        }
+      ]
+    },
+    "reaction to|kfk4at": {
+      "word": "reaction to",
+      "display": "reaction to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "對...的反應",
+      "pos": "noun",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "對...的反應",
+          "pos": "noun",
+          "type": "phrase",
+          "level": "B1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-reaction-to-1",
+          "source": "Her reaction to the gift was lovely.",
+          "target": "她收到禮物後的反應很可愛。",
+          "meaning": "對...的反應",
+          "level": "B1"
+        },
+        {
+          "id": "seed-reaction-to-2",
+          "source": "His reaction to losing the game was mature.",
+          "target": "他輸掉比賽後的反應很成熟。",
+          "meaning": "對...的反應",
+          "level": "B1"
+        },
+        {
+          "id": "seed-reaction-to-3",
+          "source": "The class had a strong reaction to the story.",
+          "target": "全班對這個故事有強烈反應。",
+          "meaning": "對...的反應",
+          "level": "B1"
+        }
+      ]
+    },
     "read": {
       "word": "read",
       "display": "read",
@@ -39481,6 +49076,47 @@
           "target": "我們在學校讀英文。",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "read between the lines|1mt3k30": {
+      "word": "read between the lines",
+      "display": "read between the lines",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "讀出字裡行間的隱含意義",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "讀出字裡行間的隱含意義",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1s41hu4",
+          "source": "If you read between the lines, his letter is actually a cry for help.",
+          "target": "如果你讀出字裡行間的隱含意義，這封信其實是在求救。",
+          "meaning": "讀出字裡行間的隱含意義",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1gg4kfj",
+          "source": "Reading between the lines, she seems unhappy with the plan.",
+          "target": "讀出字裡行間的隱含意義，她似乎對這個計畫不滿意。",
+          "meaning": "讀出字裡行間的隱含意義",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1475gg",
+          "source": "You need to read between the lines to understand his true feelings.",
+          "target": "你需要讀出字裡行間的隱含意義才能理解他的真實感受。",
+          "meaning": "讀出字裡行間的隱含意義",
+          "level": "B2"
         }
       ]
     },
@@ -39855,6 +49491,129 @@
           "target": "請閱讀這份簡短的報告。",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "resigned to|1y56mys": {
+      "word": "resigned to",
+      "display": "resigned to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "C1",
+      "meaning": "無奈接受...的",
+      "pos": "adjective",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "無奈接受...的",
+          "pos": "adjective",
+          "type": "phrase",
+          "level": "C1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-resigned-to-1",
+          "source": "He is resigned to waiting for another hour.",
+          "target": "他無奈接受再等一小時。",
+          "meaning": "無奈接受...的",
+          "level": "C1"
+        },
+        {
+          "id": "seed-resigned-to-2",
+          "source": "She was resigned to missing the school trip.",
+          "target": "她無奈接受錯過學校旅行。",
+          "meaning": "無奈接受...的",
+          "level": "C1"
+        },
+        {
+          "id": "seed-resigned-to-3",
+          "source": "They are resigned to changing their plan.",
+          "target": "他們無奈接受更改計劃。",
+          "meaning": "無奈接受...的",
+          "level": "C1"
+        }
+      ]
+    },
+    "resort to|184vd8k": {
+      "word": "resort to",
+      "display": "resort to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "C1",
+      "meaning": "訴諸於 / 不得不使用",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "訴諸於 / 不得不使用",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "C1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-resort-to-1",
+          "source": "We should talk instead of resorting to shouting.",
+          "target": "我們應該溝通，而不是訴諸叫喊。",
+          "meaning": "訴諸於 / 不得不使用",
+          "level": "C1"
+        },
+        {
+          "id": "seed-resort-to-2",
+          "source": "He resorted to borrowing money from a friend.",
+          "target": "他不得不向朋友借錢。",
+          "meaning": "訴諸於 / 不得不使用",
+          "level": "C1"
+        },
+        {
+          "id": "seed-resort-to-3",
+          "source": "The team resorted to using a simpler plan.",
+          "target": "團隊不得不採用較簡單的計劃。",
+          "meaning": "訴諸於 / 不得不使用",
+          "level": "C1"
+        }
+      ]
+    },
+    "response to|ltlrty": {
+      "word": "response to",
+      "display": "response to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "對...的回應",
+      "pos": "noun",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "對...的回應",
+          "pos": "noun",
+          "type": "phrase",
+          "level": "B1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-response-to-1",
+          "source": "Her response to winning was very calm.",
+          "target": "她對得獎的反應很冷靜。",
+          "meaning": "對...的回應",
+          "level": "B1"
+        },
+        {
+          "id": "seed-response-to-2",
+          "source": "The teacher liked my response to the question.",
+          "target": "老師喜歡我對問題的回應。",
+          "meaning": "對...的回應",
+          "level": "B1"
+        },
+        {
+          "id": "seed-response-to-3",
+          "source": "His response to hearing the news was surprising.",
+          "target": "他聽到消息後的反應令人驚訝。",
+          "meaning": "對...的回應",
+          "level": "B1"
         }
       ]
     },
@@ -40233,6 +49992,129 @@
         }
       ]
     },
+    "ring a bell|1ejdtrv": {
+      "word": "ring a bell",
+      "display": "ring a bell",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "聽起來很耳熟",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "聽起來很耳熟",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-14dqdgq",
+          "source": "His name rings a bell, but I cannot remember where we met.",
+          "target": "他的名字聽起來很耳熟，但我記不起我們在哪裡見過。",
+          "meaning": "聽起來很耳熟",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1utdxv5",
+          "source": "That song rings a bell, but I don't know the title.",
+          "target": "那首歌聽起來很耳熟，但我不知道歌名。",
+          "meaning": "聽起來很耳熟",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1l5u4hh",
+          "source": "The address rings a bell.",
+          "target": "這個地址聽起來很耳熟。",
+          "meaning": "聽起來很耳熟",
+          "level": "B2"
+        }
+      ]
+    },
+    "rise to fame|18lskx0": {
+      "word": "rise to fame",
+      "display": "rise to fame",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "成名 / 走紅",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "成名 / 走紅",
+          "pos": "verb",
+          "type": "phrase",
+          "level": ""
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-rise-to-fame-a093923b",
+          "source": "The singer rose to fame quickly.",
+          "target": "那位歌手很快成名。",
+          "meaning": "成名 / 走紅",
+          "level": "B2"
+        },
+        {
+          "id": "seed-rise-to-fame-a51920e1",
+          "source": "He rose to fame after the film.",
+          "target": "他在那部電影之後走紅。",
+          "meaning": "成名 / 走紅",
+          "level": "B2"
+        },
+        {
+          "id": "seed-rise-to-fame-326e690b",
+          "source": "The young chef rose to fame online.",
+          "target": "那位年輕廚師在網上走紅。",
+          "meaning": "成名 / 走紅",
+          "level": "B2"
+        }
+      ]
+    },
+    "rise to fame|almkmd": {
+      "word": "rise to fame",
+      "display": "rise to fame",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "變得出名",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "變得出名",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1i8ltww",
+          "source": "The young singer rose to fame after winning the national talent show.",
+          "target": "那位年輕歌手在贏得全國才藝比賽後變得出名。",
+          "meaning": "變得出名",
+          "level": "B2"
+        },
+        {
+          "id": "seed-brmlyz",
+          "source": "The actress rose to fame after starring in the hit movie.",
+          "target": "那位女演員在主演了那部熱門電影後變得出名。",
+          "meaning": "變得出名",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1yi5odp",
+          "source": "He rose to fame overnight thanks to his viral video.",
+          "target": "多虧了他那段瘋傳的影片，他一夜之間變得出名。",
+          "meaning": "變得出名",
+          "level": "B2"
+        }
+      ]
+    },
     "river": {
       "word": "river",
       "display": "river",
@@ -40414,6 +50296,457 @@
           "target": "你知道圖書館的規則嗎？",
           "meaning": "規則",
           "level": "A1"
+        }
+      ]
+    },
+    "run a business|tdizfv": {
+      "word": "run a business",
+      "display": "run a business",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "經營業務",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "經營業務",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-mjw6sd",
+          "source": "He has been running a successful business for ten years.",
+          "target": "他經營一家成功的業務已有十年了。",
+          "meaning": "經營業務",
+          "level": "B2"
+        },
+        {
+          "id": "seed-k2tmzt",
+          "source": "She wants to run a business of her own.",
+          "target": "她想經營自己的業務。",
+          "meaning": "經營業務",
+          "level": "B2"
+        },
+        {
+          "id": "seed-aa41ni",
+          "source": "It is not easy to run a business in a big city.",
+          "target": "在大城市經營業務並不容易。",
+          "meaning": "經營業務",
+          "level": "B2"
+        }
+      ]
+    },
+    "run a fever|2v4pot": {
+      "word": "run a fever",
+      "display": "run a fever",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "發燒",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "發燒",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1bgt7fh",
+          "source": "The little child has been running a fever since last night.",
+          "target": "那個小孩從昨晚開始就一直在發燒。",
+          "meaning": "發燒",
+          "level": "B2"
+        },
+        {
+          "id": "seed-eotaqy",
+          "source": "If you are running a fever, you should see a doctor.",
+          "target": "如果你在發燒，你應該去看醫生。",
+          "meaning": "發燒",
+          "level": "B2"
+        },
+        {
+          "id": "seed-64g8sf",
+          "source": "She is still running a fever today.",
+          "target": "她今天仍然在發燒。",
+          "meaning": "發燒",
+          "level": "B2"
+        }
+      ]
+    },
+    "run a risk|7pxuaz": {
+      "word": "run a risk",
+      "display": "run a risk",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "冒險",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "冒險",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1lw22tq",
+          "source": "If you drive without a seatbelt, you run a serious risk of injury.",
+          "target": "如果你開車不繫安全帶，就有受重傷的風險。",
+          "meaning": "冒險",
+          "level": "B2"
+        },
+        {
+          "id": "seed-q17r7a",
+          "source": "You run a risk of failure if you don't prepare well.",
+          "target": "如果你準備不足，就有失敗的風險。",
+          "meaning": "冒險",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1b0qrg5",
+          "source": "He knew he was running a risk by investing all his money.",
+          "target": "他知道投資所有錢是在冒險。",
+          "meaning": "冒險",
+          "level": "B2"
+        }
+      ]
+    },
+    "run a risk|w9i6jl": {
+      "word": "run a risk",
+      "display": "run a risk",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "冒風險",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "冒風險",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-to9p70",
+          "source": "If you drive without a seatbelt, you run a serious risk of injury.",
+          "target": "如果你不繫安全帶開車，你就是在冒嚴重的受傷風險。",
+          "meaning": "冒風險",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1eynk75",
+          "source": "You run a risk of losing money if you invest in that company.",
+          "target": "如果你投資那家公司，你就是在冒虧錢的風險。",
+          "meaning": "冒風險",
+          "level": "B2"
+        },
+        {
+          "id": "seed-11hl866",
+          "source": "Don't run a risk by ignoring the safety warnings.",
+          "target": "不要因為忽視安全警告而冒險。",
+          "meaning": "冒風險",
+          "level": "B2"
+        }
+      ]
+    },
+    "run a simulation|1nue7rc": {
+      "word": "run a simulation",
+      "display": "run a simulation",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "進行模擬",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "進行模擬",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-6dzuwu",
+          "source": "The programmers ran a simulation to see how the software handles high traffic.",
+          "target": "程式設計師進行了模擬，以查看軟體如何處理高流量。",
+          "meaning": "進行模擬",
+          "level": "B2"
+        },
+        {
+          "id": "seed-8xisdi",
+          "source": "We need to run a simulation to test the new design.",
+          "target": "我們需要進行模擬來測試新設計。",
+          "meaning": "進行模擬",
+          "level": "B2"
+        },
+        {
+          "id": "seed-rn75kg",
+          "source": "The engineers ran a simulation of the flight path.",
+          "target": "工程師們對飛行路徑進行了模擬。",
+          "meaning": "進行模擬",
+          "level": "B2"
+        }
+      ]
+    },
+    "run an errand|2ldmax": {
+      "word": "run an errand",
+      "display": "run an errand",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "辦雜事 / 跑腿",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "辦雜事 / 跑腿",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-i6wns4",
+          "source": "She went out to run some errands, such as buying groceries and posting a letter.",
+          "target": "她出去辦些雜事，像是買菜和寄信。",
+          "meaning": "辦雜事 / 跑腿",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1srnk8q",
+          "source": "I have to run an errand for my grandmother this afternoon.",
+          "target": "今天下午我得幫我祖母跑腿。",
+          "meaning": "辦雜事 / 跑腿",
+          "level": "B2"
+        },
+        {
+          "id": "seed-wx4kib",
+          "source": "He spent the whole morning running errands around town.",
+          "target": "他花了一整個早上在城裡辦雜事。",
+          "meaning": "辦雜事 / 跑腿",
+          "level": "B2"
+        }
+      ]
+    },
+    "run an experiment|135rvwi": {
+      "word": "run an experiment",
+      "display": "run an experiment",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "進行實驗",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "進行實驗",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-11ny5h6",
+          "source": "The students ran an experiment to test the theory.",
+          "target": "學生們進行了實驗來驗證該理論。",
+          "meaning": "進行實驗",
+          "level": "B2"
+        },
+        {
+          "id": "seed-18pgqzm",
+          "source": "The scientists will run an experiment tomorrow.",
+          "target": "科學家們明天將進行實驗。",
+          "meaning": "進行實驗",
+          "level": "B2"
+        },
+        {
+          "id": "seed-n3zhkr",
+          "source": "We need to run an experiment to see if it works.",
+          "target": "我們需要進行實驗來看看它是否有效。",
+          "meaning": "進行實驗",
+          "level": "B2"
+        }
+      ]
+    },
+    "run into trouble|100gh18": {
+      "word": "run into trouble",
+      "display": "run into trouble",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "遇到麻煩",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "遇到麻煩",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-14v06no",
+          "source": "If you do not follow the guide, you might run into trouble.",
+          "target": "如果你不按照指南操作，可能會遇到麻煩。",
+          "meaning": "遇到麻煩",
+          "level": "B2"
+        },
+        {
+          "id": "seed-38i02y",
+          "source": "We might run into trouble if we don't have a map.",
+          "target": "如果沒有地圖，我們可能會遇到麻煩。",
+          "meaning": "遇到麻煩",
+          "level": "B2"
+        },
+        {
+          "id": "seed-kompoq",
+          "source": "They ran into trouble during their hike.",
+          "target": "他們在遠足時遇到了麻煩。",
+          "meaning": "遇到麻煩",
+          "level": "B2"
+        }
+      ]
+    },
+    "run late|1xbo2m5": {
+      "word": "run late",
+      "display": "run late",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "遲到 / 進度落後",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "遲到 / 進度落後",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1pxgxrq",
+          "source": "I apologize for the delay; my previous meeting ran late.",
+          "target": "我很抱歉延誤了；我之前的會議超時了。",
+          "meaning": "遲到 / 進度落後",
+          "level": "B2"
+        },
+        {
+          "id": "seed-mpszja",
+          "source": "The train is running late due to the heavy rain.",
+          "target": "由於大雨，火車進度落後了。",
+          "meaning": "遲到 / 進度落後",
+          "level": "B2"
+        },
+        {
+          "id": "seed-69y5ct",
+          "source": "I will be home soon, but the bus is running late.",
+          "target": "我很快就會到家，但巴士遲到了。",
+          "meaning": "遲到 / 進度落後",
+          "level": "B2"
+        }
+      ]
+    },
+    "run smooth|kozf1b": {
+      "word": "run smooth",
+      "display": "run smooth",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "進展順利",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "進展順利",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-3etr48",
+          "source": "The integration process ran smooth without any technical errors.",
+          "target": "整合過程進展順利，沒有任何技術錯誤。",
+          "meaning": "進展順利",
+          "level": "B2"
+        },
+        {
+          "id": "seed-8y0ahf",
+          "source": "The event ran smooth thanks to our planning.",
+          "target": "多虧了我們的規劃，活動進行得很順利。",
+          "meaning": "進展順利",
+          "level": "B2"
+        },
+        {
+          "id": "seed-ze8t3z",
+          "source": "Everything ran smooth during the performance.",
+          "target": "演出期間一切都很順利。",
+          "meaning": "進展順利",
+          "level": "B2"
+        }
+      ]
+    },
+    "run the risk of|1gxy6t8": {
+      "word": "run the risk of",
+      "display": "run the risk of",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "冒著...的風險",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "冒著...的風險",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-d7llr6",
+          "source": "If you skip breakfast every day, you run the risk of getting sick.",
+          "target": "如果你每天都不吃早餐，你就會冒著生病的風險。",
+          "meaning": "冒著...的風險",
+          "level": "B2"
+        },
+        {
+          "id": "seed-awbvyx",
+          "source": "Don't run the risk of losing your job by being late.",
+          "target": "別因為遲到而冒著失去工作的風險。",
+          "meaning": "冒著...的風險",
+          "level": "B2"
+        },
+        {
+          "id": "seed-l1lk0z",
+          "source": "Investors often run the risk of losing money in the market.",
+          "target": "投資者在市場中經常冒著賠錢的風險。",
+          "meaning": "冒著...的風險",
+          "level": "B2"
         }
       ]
     },
@@ -40621,6 +50954,88 @@
         }
       ]
     },
+    "save face|kr9bqm": {
+      "word": "save face",
+      "display": "save face",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "挽回面子",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "挽回面子",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1rq1cha",
+          "source": "The compromise allowed both sides to save face.",
+          "target": "這種妥協讓雙方都能挽回面子。",
+          "meaning": "挽回面子",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1fgzecg",
+          "source": "He apologized to save face.",
+          "target": "他道歉是為了挽回面子。",
+          "meaning": "挽回面子",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1j2godn",
+          "source": "She tried to save face after the mistake.",
+          "target": "她在犯錯後試圖挽回面子。",
+          "meaning": "挽回面子",
+          "level": "B2"
+        }
+      ]
+    },
+    "save the day|f2l4nn": {
+      "word": "save the day",
+      "display": "save the day",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "挽救局面",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "挽救局面",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1nyazk",
+          "source": "The technician saved the day by fixing the server right before the presentation.",
+          "target": "技術人員在簡報前修好了伺服器，挽救了局面。",
+          "meaning": "挽救局面",
+          "level": "B2"
+        },
+        {
+          "id": "seed-j105or",
+          "source": "His quick thinking saved the day.",
+          "target": "他敏捷的思維挽救了局面。",
+          "meaning": "挽救局面",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1y4iqo4",
+          "source": "The extra funding saved the day for the project.",
+          "target": "額外的資金為該項目挽救了局面。",
+          "meaning": "挽救局面",
+          "level": "B2"
+        }
+      ]
+    },
     "school": {
       "word": "school",
       "display": "school",
@@ -40761,6 +51176,47 @@
           "target": "我們在沙灘看到大海。",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "secret to|mxau39": {
+      "word": "secret to",
+      "display": "secret to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "...的秘訣",
+      "pos": "noun",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "...的秘訣",
+          "pos": "noun",
+          "type": "phrase",
+          "level": "B1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-secret-to-1",
+          "source": "What is your secret to staying calm?",
+          "target": "你保持冷靜的秘訣是甚麼？",
+          "meaning": "...的秘訣",
+          "level": "B1"
+        },
+        {
+          "id": "seed-secret-to-2",
+          "source": "The secret to writing well is reading more.",
+          "target": "寫得好的秘訣是多閱讀。",
+          "meaning": "...的秘訣",
+          "level": "B1"
+        },
+        {
+          "id": "seed-secret-to-3",
+          "source": "Her secret to learning fast is asking questions.",
+          "target": "她學得快的秘訣是發問。",
+          "meaning": "...的秘訣",
+          "level": "B1"
         }
       ]
     },
@@ -40934,6 +51390,170 @@
         }
       ]
     },
+    "set a budget|a3mps3": {
+      "word": "set a budget",
+      "display": "set a budget",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "編列預算",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "編列預算",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-140zelc",
+          "source": "We need to set a strict budget before planning our next trip.",
+          "target": "在規劃下次旅行前，我們需要編列嚴格的預算。",
+          "meaning": "編列預算",
+          "level": "B2"
+        },
+        {
+          "id": "seed-sobs41",
+          "source": "It is important to set a budget for your monthly expenses.",
+          "target": "為你的每月開銷編列預算很重要。",
+          "meaning": "編列預算",
+          "level": "B2"
+        },
+        {
+          "id": "seed-ihjwbs",
+          "source": "We set a budget of five hundred dollars for the party.",
+          "target": "我們為派對編列了五百美元的預算。",
+          "meaning": "編列預算",
+          "level": "B2"
+        }
+      ]
+    },
+    "set a date|eqtkh3": {
+      "word": "set a date",
+      "display": "set a date",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "決定日期",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "決定日期",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-89yjd4",
+          "source": "The couple has finally set a date for their wedding.",
+          "target": "這對情侶終於決定了他們的婚期。",
+          "meaning": "決定日期",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1e3zqrd",
+          "source": "We need to set a date for the next meeting.",
+          "target": "我們需要為下次會議決定日期。",
+          "meaning": "決定日期",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1hhjrxc",
+          "source": "Have they set a date for the party yet?",
+          "target": "他們決定好派對的日期了嗎？",
+          "meaning": "決定日期",
+          "level": "B2"
+        }
+      ]
+    },
+    "set a trap|14wsh9j": {
+      "word": "set a trap",
+      "display": "set a trap",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "設下陷阱",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "設下陷阱",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1ir4nu1",
+          "source": "The police set a trap to catch the criminals.",
+          "target": "警方設下陷阱以抓捕罪犯。",
+          "meaning": "設下陷阱",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1jx8e01",
+          "source": "The hunters set a trap in the forest.",
+          "target": "獵人在森林裡設下陷阱。",
+          "meaning": "設下陷阱",
+          "level": "B2"
+        },
+        {
+          "id": "seed-hp5cpe",
+          "source": "We need to set a trap to catch the mouse.",
+          "target": "我們需要設下陷阱來抓老鼠。",
+          "meaning": "設下陷阱",
+          "level": "B2"
+        }
+      ]
+    },
+    "set an example|1258xn2": {
+      "word": "set an example",
+      "display": "set an example",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "樹立榜樣",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "樹立榜樣",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-fzqc9k",
+          "source": "Parents should set a good example for their children.",
+          "target": "父母應該為孩子樹立良好的榜樣。",
+          "meaning": "樹立榜樣",
+          "level": "B2"
+        },
+        {
+          "id": "seed-bsslqm",
+          "source": "Teachers should set a good example for students.",
+          "target": "老師應該為學生樹立良好的榜樣。",
+          "meaning": "樹立榜樣",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1fhefgz",
+          "source": "He sets an example by working hard every day.",
+          "target": "他每天努力工作，樹立了榜樣。",
+          "meaning": "樹立榜樣",
+          "level": "B2"
+        }
+      ]
+    },
     "seven": {
       "word": "seven",
       "display": "seven",
@@ -41070,6 +51690,47 @@
         }
       ]
     },
+    "share an opinion|pztj4u": {
+      "word": "share an opinion",
+      "display": "share an opinion",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "分享觀點",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "分享觀點",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1tpujfl",
+          "source": "Thank you for sharing your opinion with the team.",
+          "target": "感謝您與團隊分享您的觀點。",
+          "meaning": "分享觀點",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1bzk28c",
+          "source": "It is helpful to share an opinion in group discussions.",
+          "target": "在小組討論中分享觀點很有幫助。",
+          "meaning": "分享觀點",
+          "level": "B2"
+        },
+        {
+          "id": "seed-10pbdm2",
+          "source": "She was invited to share an opinion on the project.",
+          "target": "她受邀分享對該項目的觀點。",
+          "meaning": "分享觀點",
+          "level": "B2"
+        }
+      ]
+    },
     "she": {
       "word": "she",
       "display": "she",
@@ -41104,6 +51765,129 @@
         }
       ]
     },
+    "shed light on|19b4kz9": {
+      "word": "shed light on",
+      "display": "shed light on",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "C1",
+      "meaning": "闡明 / 有助於解釋",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "闡明 / 有助於解釋",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "C1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1dlei9m",
+          "source": "This new discovery sheds light on how the universe was formed.",
+          "target": "這項新發現有助於解釋宇宙是如何形成的。",
+          "meaning": "闡明 / 有助於解釋",
+          "level": "C1"
+        },
+        {
+          "id": "seed-mhkgdz",
+          "source": "These documents shed light on the company's history.",
+          "target": "這些文件有助於解釋這家公司的歷史。",
+          "meaning": "闡明 / 有助於解釋",
+          "level": "C1"
+        },
+        {
+          "id": "seed-fk0p26",
+          "source": "The interview shed light on his future plans.",
+          "target": "這次採訪有助於解釋他未來的計畫。",
+          "meaning": "闡明 / 有助於解釋",
+          "level": "C1"
+        }
+      ]
+    },
+    "shed light on|1hixd7y": {
+      "word": "shed light on",
+      "display": "shed light on",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "C1",
+      "meaning": "闡明 / 提供線索",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "闡明 / 提供線索",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "C1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-npf28i",
+          "source": "This new discovery sheds light on how the universe was formed.",
+          "target": "這項新發現闡明了宇宙是如何形成的。",
+          "meaning": "闡明 / 提供線索",
+          "level": "C1"
+        },
+        {
+          "id": "seed-1w9iuq6",
+          "source": "The report sheds light on the causes of the accident.",
+          "target": "這份報告闡明了事故發生的原因。",
+          "meaning": "闡明 / 提供線索",
+          "level": "C1"
+        },
+        {
+          "id": "seed-p3h8yk",
+          "source": "These documents shed light on the company's past.",
+          "target": "這些文件為該公司的過去提供了線索。",
+          "meaning": "闡明 / 提供線索",
+          "level": "C1"
+        }
+      ]
+    },
+    "shed tears|1gju4no": {
+      "word": "shed tears",
+      "display": "shed tears",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "流淚",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "流淚",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1d0vh3p",
+          "source": "She shed tears of joy when she received the acceptance letter.",
+          "target": "當她收到錄取通知書時，她流下了喜悅的淚水。",
+          "meaning": "流淚",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1o5g13c",
+          "source": "He shed tears when he heard the sad news.",
+          "target": "當他聽到這個悲傷的消息時，他流下了淚水。",
+          "meaning": "流淚",
+          "level": "B2"
+        },
+        {
+          "id": "seed-11hz4rt",
+          "source": "She shed tears of relief after the exam ended.",
+          "target": "考試結束後，她流下了如釋重負的淚水。",
+          "meaning": "流淚",
+          "level": "B2"
+        }
+      ]
+    },
     "sheep": {
       "word": "sheep",
       "display": "sheep",
@@ -41135,6 +51919,47 @@
           "target": "綿羊有柔軟的毛。",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "shift the blame|llj5x6": {
+      "word": "shift the blame",
+      "display": "shift the blame",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "推卸責任",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "推卸責任",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1n8ob7j",
+          "source": "Instead of admitting his mistake, he tried to shift the blame onto his colleague.",
+          "target": "他沒有承認錯誤，反而試圖將責任推給同事。",
+          "meaning": "推卸責任",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1gedyl3",
+          "source": "It is unprofessional to shift the blame to others.",
+          "target": "將責任推卸給他人是不專業的行為。",
+          "meaning": "推卸責任",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1pahrqa",
+          "source": "Don't try to shift the blame when you make a mistake.",
+          "target": "當你犯錯時，不要試圖推卸責任。",
+          "meaning": "推卸責任",
+          "level": "B2"
         }
       ]
     },
@@ -41305,6 +52130,47 @@
           "target": "這個故事很短又很有趣。",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "show respect|1wx5b1x": {
+      "word": "show respect",
+      "display": "show respect",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "展現尊重",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "展現尊重",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1xiuxig",
+          "source": "It is important to show respect to your elders.",
+          "target": "對長輩展現尊重是很重要的。",
+          "meaning": "展現尊重",
+          "level": "B2"
+        },
+        {
+          "id": "seed-ds2oyn",
+          "source": "It is polite to show respect to everyone.",
+          "target": "對每個人展現尊重是有禮貌的。",
+          "meaning": "展現尊重",
+          "level": "B2"
+        },
+        {
+          "id": "seed-n2u4th",
+          "source": "We should show respect for different cultures.",
+          "target": "我們應該對不同的文化展現尊重。",
+          "meaning": "展現尊重",
+          "level": "B2"
         }
       ]
     },
@@ -42050,6 +52916,88 @@
         }
       ]
     },
+    "solution to|1b8u6p8": {
+      "word": "solution to",
+      "display": "solution to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "...的解決辦法",
+      "pos": "noun",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "...的解決辦法",
+          "pos": "noun",
+          "type": "phrase",
+          "level": "B1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-solution-to-1",
+          "source": "We need a solution to reducing food waste.",
+          "target": "我們需要一個減少食物浪費的解決辦法。",
+          "meaning": "...的解決辦法",
+          "level": "B1"
+        },
+        {
+          "id": "seed-solution-to-2",
+          "source": "There is no easy solution to stopping bullying.",
+          "target": "阻止欺凌沒有簡單的解決辦法。",
+          "meaning": "...的解決辦法",
+          "level": "B1"
+        },
+        {
+          "id": "seed-solution-to-3",
+          "source": "This app may be a solution to learning vocabulary.",
+          "target": "這個 app 可能是學習生字的解決辦法。",
+          "meaning": "...的解決辦法",
+          "level": "B1"
+        }
+      ]
+    },
+    "solve a problem|fzbsel": {
+      "word": "solve a problem",
+      "display": "solve a problem",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "解決問題",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "解決問題",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1ckcq4z",
+          "source": "We need to work together to solve this problem.",
+          "target": "我們需要共同努力來解決這個問題。",
+          "meaning": "解決問題",
+          "level": "B2"
+        },
+        {
+          "id": "seed-vrod9j",
+          "source": "They found a new way to solve a problem quickly.",
+          "target": "他們找到了一種快速解決問題的新方法。",
+          "meaning": "解決問題",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1pywl7j",
+          "source": "It took hours to solve a problem with the computer.",
+          "target": "花了好幾個小時才解決電腦的問題。",
+          "meaning": "解決問題",
+          "level": "B2"
+        }
+      ]
+    },
     "some|2xye0h": {
       "word": "some",
       "display": "some (n)",
@@ -42465,6 +53413,47 @@
         }
       ]
     },
+    "spark an interest|1tlu6wy": {
+      "word": "spark an interest",
+      "display": "spark an interest",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "激發興趣",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "激發興趣",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-xxz89v",
+          "source": "The interactive science museum successfully sparked the children's interest in physics.",
+          "target": "互動式科學博物館成功地激發了孩子們對物理學的興趣。",
+          "meaning": "激發興趣",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1dxkah2",
+          "source": "The book sparked an interest in history for the students.",
+          "target": "這本書激發了學生們對歷史的興趣。",
+          "meaning": "激發興趣",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1koy8ll",
+          "source": "Traveling abroad sparked an interest in learning new languages.",
+          "target": "出國旅遊激發了學習新語言的興趣。",
+          "meaning": "激發興趣",
+          "level": "B2"
+        }
+      ]
+    },
     "speak": {
       "word": "speak",
       "display": "speak",
@@ -42608,6 +53597,47 @@
         }
       ]
     },
+    "spend money|xjo1i4": {
+      "word": "spend money",
+      "display": "spend money",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "花錢",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "花錢",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-va8wnv",
+          "source": "She spends a lot of money on buying books.",
+          "target": "她花了很多錢買書。",
+          "meaning": "花錢",
+          "level": "B2"
+        },
+        {
+          "id": "seed-lvxcy4",
+          "source": "He likes to spend money on travel.",
+          "target": "他喜歡把錢花在旅遊上。",
+          "meaning": "花錢",
+          "level": "B2"
+        },
+        {
+          "id": "seed-g7l39t",
+          "source": "Don't spend money on unnecessary items.",
+          "target": "不要把錢花在不必要的物品上。",
+          "meaning": "花錢",
+          "level": "B2"
+        }
+      ]
+    },
     "spend|bv7ht1": {
       "word": "spend",
       "display": "spend",
@@ -42646,6 +53676,88 @@
           "target": "我們週末在家裡度過。",
           "meaning": "花費",
           "level": "A1"
+        }
+      ]
+    },
+    "spill the beans|fymwth": {
+      "word": "spill the beans",
+      "display": "spill the beans",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "C1",
+      "meaning": "洩漏秘密",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "洩漏秘密",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "C1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1r5v09i",
+          "source": "We were planning a surprise party, but my brother spilled the beans.",
+          "target": "我們原本計畫辦一場驚喜派對，但我哥哥洩漏了秘密。",
+          "meaning": "洩漏秘密",
+          "level": "C1"
+        },
+        {
+          "id": "seed-1pe2uai",
+          "source": "Don't spill the beans about the surprise gift.",
+          "target": "不要洩漏關於驚喜禮物的秘密。",
+          "meaning": "洩漏秘密",
+          "level": "C1"
+        },
+        {
+          "id": "seed-6s9v9t",
+          "source": "Someone spilled the beans before the official announcement.",
+          "target": "在正式宣布之前，有人洩漏了秘密。",
+          "meaning": "洩漏秘密",
+          "level": "C1"
+        }
+      ]
+    },
+    "spill the beans|jizj92": {
+      "word": "spill the beans",
+      "display": "spill the beans",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "C1",
+      "meaning": "洩露秘密",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "洩露秘密",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "C1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1gwkuyb",
+          "source": "We were planning a surprise party, but my brother spilled the beans.",
+          "target": "我們本來在計畫一個驚喜派對，但我哥哥洩露了秘密。",
+          "meaning": "洩露秘密",
+          "level": "C1"
+        },
+        {
+          "id": "seed-1fj75ob",
+          "source": "Don't spill the beans about the surprise gift.",
+          "target": "不要洩露關於驚喜禮物的秘密。",
+          "meaning": "洩露秘密",
+          "level": "C1"
+        },
+        {
+          "id": "seed-17gbo4s",
+          "source": "She accidentally spilled the beans during the meeting.",
+          "target": "她在會議中不小心洩露了秘密。",
+          "meaning": "洩露秘密",
+          "level": "C1"
         }
       ]
     },
@@ -42840,6 +53952,47 @@
         }
       ]
     },
+    "stand a chance|9bpokb": {
+      "word": "stand a chance",
+      "display": "stand a chance",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "有機會 / 有希望",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "有機會 / 有希望",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-fepvf9",
+          "source": "With your qualification, you stand a good chance of getting the job.",
+          "target": "憑藉你的資格，你很有機會得到這份工作。",
+          "meaning": "有機會 / 有希望",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1n7a8iw",
+          "source": "Do you think we stand a chance of winning the game?",
+          "target": "你認為我們有機會贏得比賽嗎？",
+          "meaning": "有機會 / 有希望",
+          "level": "B2"
+        },
+        {
+          "id": "seed-kq19nj",
+          "source": "They don't stand a chance without proper preparation.",
+          "target": "如果沒有適當的準備，他們根本沒有機會。",
+          "meaning": "有機會 / 有希望",
+          "level": "B2"
+        }
+      ]
+    },
     "star": {
       "word": "star",
       "display": "star",
@@ -42905,6 +54058,47 @@
           "target": "電影很快就會開始。",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "state an opinion|1a4em9m": {
+      "word": "state an opinion",
+      "display": "state an opinion",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "陳述觀點",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "陳述觀點",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-wz98xk",
+          "source": "Each member was given three minutes to state their opinion on the issue.",
+          "target": "每位成員有三分鐘的時間針對該議題陳述觀點。",
+          "meaning": "陳述觀點",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1tr9uyj",
+          "source": "She stood up to state her opinion clearly.",
+          "target": "她站起來清楚地陳述了自己的觀點。",
+          "meaning": "陳述觀點",
+          "level": "B2"
+        },
+        {
+          "id": "seed-5fdf23",
+          "source": "Everyone had a chance to state their opinion during the meeting.",
+          "target": "會議期間每個人都有機會陳述觀點。",
+          "meaning": "陳述觀點",
+          "level": "B2"
         }
       ]
     },
@@ -43143,6 +54337,88 @@
           "target": "街上有許多商店。",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "strike a balance|1p7hrs0": {
+      "word": "strike a balance",
+      "display": "strike a balance",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "取得平衡",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "取得平衡",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-qh8g6j",
+          "source": "It is crucial to strike a balance between work and personal life.",
+          "target": "在工作與個人生活之間取得平衡至關重要。",
+          "meaning": "取得平衡",
+          "level": "B2"
+        },
+        {
+          "id": "seed-11bhlni",
+          "source": "You need to strike a balance between study and leisure.",
+          "target": "你需要在學習和休閒之間取得平衡。",
+          "meaning": "取得平衡",
+          "level": "B2"
+        },
+        {
+          "id": "seed-xoyfnd",
+          "source": "It is hard to strike a balance when you are so busy.",
+          "target": "當你如此忙碌時，很難取得平衡。",
+          "meaning": "取得平衡",
+          "level": "B2"
+        }
+      ]
+    },
+    "strike a deal|1kj5odv": {
+      "word": "strike a deal",
+      "display": "strike a deal",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "達成協議",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "達成協議",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1qke9f6",
+          "source": "After weeks of negotiation, the two parties finally struck a deal.",
+          "target": "經過幾週的談判，雙方終於達成協議。",
+          "meaning": "達成協議",
+          "level": "B2"
+        },
+        {
+          "id": "seed-skwxtn",
+          "source": "The two companies managed to strike a deal after long discussions.",
+          "target": "經過長時間的討論，兩家公司成功達成協議。",
+          "meaning": "達成協議",
+          "level": "B2"
+        },
+        {
+          "id": "seed-dnayt2",
+          "source": "We need to strike a deal before the deadline.",
+          "target": "我們需要在截止日期前達成協議。",
+          "meaning": "達成協議",
+          "level": "B2"
         }
       ]
     },
@@ -43895,6 +55171,1113 @@
         }
       ]
     },
+    "take a break|lxihby": {
+      "word": "take a break",
+      "display": "take a break",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "休息一下",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "休息一下",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-10pz4o2",
+          "source": "You have been studying for three hours; you should take a break.",
+          "target": "你已經讀了三個小時的書，應該休息一下。",
+          "meaning": "休息一下",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1t7yvdg",
+          "source": "Let's take a break and have some coffee.",
+          "target": "我們休息一下，喝杯咖啡吧。",
+          "meaning": "休息一下",
+          "level": "B2"
+        },
+        {
+          "id": "seed-182dtf6",
+          "source": "I need to take a break from my computer screen.",
+          "target": "我需要從電腦螢幕前休息一下。",
+          "meaning": "休息一下",
+          "level": "B2"
+        }
+      ]
+    },
+    "take a glance|7kpaex": {
+      "word": "take a glance",
+      "display": "take a glance",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "瞄一眼",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "瞄一眼",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-3z3nnq",
+          "source": "He took a quick glance at his watch and realized he was late.",
+          "target": "他瞄了一眼手錶，發現自己遲到了。",
+          "meaning": "瞄一眼",
+          "level": "B2"
+        },
+        {
+          "id": "seed-3lgnvp",
+          "source": "She took a quick glance at the menu before ordering.",
+          "target": "她在點餐前瞄了一眼菜單。",
+          "meaning": "瞄一眼",
+          "level": "B2"
+        },
+        {
+          "id": "seed-iuqv4m",
+          "source": "I took a glance at the newspaper headlines this morning.",
+          "target": "我今天早上瞄了一眼報紙頭條。",
+          "meaning": "瞄一眼",
+          "level": "B2"
+        }
+      ]
+    },
+    "take a photograph|wzhc1j": {
+      "word": "take a photograph",
+      "display": "take a photograph",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "拍照",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "拍照",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-a2tbx2",
+          "source": "The tourists stopped to take photographs of the famous monument.",
+          "target": "遊客們停下來為這座著名的紀念碑拍照。",
+          "meaning": "拍照",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1kjkg3z",
+          "source": "Can I take a photograph of your dog?",
+          "target": "我可以幫你的狗拍照嗎？",
+          "meaning": "拍照",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1hb4w9e",
+          "source": "She loves to take a photograph of the sunset.",
+          "target": "她喜歡拍攝日落的照片。",
+          "meaning": "拍照",
+          "level": "B2"
+        }
+      ]
+    },
+    "take a risk|7pxuaz": {
+      "word": "take a risk",
+      "display": "take a risk",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "冒險",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "冒險",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1slzn8e",
+          "source": "If you want to succeed in business, you have to take a risk.",
+          "target": "如果你想在商業上取得成功，就必須冒險。",
+          "meaning": "冒險",
+          "level": "B2"
+        },
+        {
+          "id": "seed-128ai05",
+          "source": "Sometimes you have to take a risk to grow.",
+          "target": "有時候你必須冒險才能成長。",
+          "meaning": "冒險",
+          "level": "B2"
+        },
+        {
+          "id": "seed-v3uxf8",
+          "source": "I decided to take a risk and apply for the job.",
+          "target": "我決定冒險申請這份工作。",
+          "meaning": "冒險",
+          "level": "B2"
+        }
+      ]
+    },
+    "take a seat|wuc1wm": {
+      "word": "take a seat",
+      "display": "take a seat",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "坐下",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "坐下",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1ihx2qv",
+          "source": "The usher asked the guests to take their seats before the play started.",
+          "target": "引座員請客人在戲劇開始前坐下。",
+          "meaning": "坐下",
+          "level": "B2"
+        },
+        {
+          "id": "seed-4p11mk",
+          "source": "Please take a seat while you wait for the doctor.",
+          "target": "請坐下等候醫生。",
+          "meaning": "坐下",
+          "level": "B2"
+        },
+        {
+          "id": "seed-gpyniu",
+          "source": "Everyone was asked to take a seat before the meeting began.",
+          "target": "會議開始前，每個人都被要求坐下。",
+          "meaning": "坐下",
+          "level": "B2"
+        }
+      ]
+    },
+    "take a shower|epp8w7": {
+      "word": "take a shower",
+      "display": "take a shower",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "洗澡",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "洗澡",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-71rkz5",
+          "source": "I usually take a shower before going to bed.",
+          "target": "我通常在睡覺前洗澡。",
+          "meaning": "洗澡",
+          "level": "B2"
+        },
+        {
+          "id": "seed-ly92l5",
+          "source": "I like to take a shower after playing sports.",
+          "target": "我喜歡運動後洗澡。",
+          "meaning": "洗澡",
+          "level": "B2"
+        },
+        {
+          "id": "seed-sipdwd",
+          "source": "Remember to take a shower before going to the pool.",
+          "target": "記得去游泳池前先洗澡。",
+          "meaning": "洗澡",
+          "level": "B2"
+        }
+      ]
+    },
+    "take a stance|owxp6a": {
+      "word": "take a stance",
+      "display": "take a stance",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "表明立場",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "表明立場",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-g5p87m",
+          "source": "The university took a firm stance against cheating in examinations.",
+          "target": "大學對考試作弊採取了堅定的立場。",
+          "meaning": "表明立場",
+          "level": "B2"
+        },
+        {
+          "id": "seed-vo340y",
+          "source": "The government took a stance against pollution.",
+          "target": "政府對污染採取了立場。",
+          "meaning": "表明立場",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1xmcpj4",
+          "source": "It is time for us to take a stance on this issue.",
+          "target": "是時候讓我們對這個議題表明立場了。",
+          "meaning": "表明立場",
+          "level": "B2"
+        }
+      ]
+    },
+    "take a step|5hu1l1": {
+      "word": "take a step",
+      "display": "take a step",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "採取步驟 / 踏出一步",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "採取步驟 / 踏出一步",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-d9y5xc",
+          "source": "The company took a big step toward sustainable development.",
+          "target": "該公司在可持續發展方面採取了重大步驟。",
+          "meaning": "採取步驟 / 踏出一步",
+          "level": "B2"
+        },
+        {
+          "id": "seed-7f9mjh",
+          "source": "We need to take a step toward solving this problem.",
+          "target": "我們需要採取步驟來解決這個問題。",
+          "meaning": "採取步驟 / 踏出一步",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1d9fqx4",
+          "source": "He decided to take a step into the unknown.",
+          "target": "他決定踏出一步，進入未知的領域。",
+          "meaning": "採取步驟 / 踏出一步",
+          "level": "B2"
+        }
+      ]
+    },
+    "take a survey|pyg4l9": {
+      "word": "take a survey",
+      "display": "take a survey",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "做問卷調查",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "做問卷調查",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1xufj68",
+          "source": "We are asking consumers to take a quick survey to improve our service.",
+          "target": "我們正在請消費者做一個簡單的問卷調查，以改善我們的服務。",
+          "meaning": "做問卷調查",
+          "level": "B2"
+        },
+        {
+          "id": "seed-9cqi7u",
+          "source": "Would you mind if I take a survey about your shopping experience?",
+          "target": "你介意我做一個關於你購物體驗的問卷調查嗎？",
+          "meaning": "做問卷調查",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1x1z2it",
+          "source": "Many students were asked to take a survey on campus.",
+          "target": "許多學生在校園內被要求做問卷調查。",
+          "meaning": "做問卷調查",
+          "level": "B2"
+        }
+      ]
+    },
+    "take a toll on|1nskie2": {
+      "word": "take a toll on",
+      "display": "take a toll on",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "C1",
+      "meaning": "對...造成損害或不良影響",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "對...造成損害或不良影響",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "C1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-vvwh9i",
+          "source": "Working overnight for months has taken a heavy toll on his health.",
+          "target": "連續幾個月熬夜工作對他的健康造成了嚴重的損害。",
+          "meaning": "對...造成損害或不良影響",
+          "level": "C1"
+        },
+        {
+          "id": "seed-qnl7gt",
+          "source": "The drought has taken a toll on the local farmers.",
+          "target": "乾旱對當地農民造成了不良影響。",
+          "meaning": "對...造成損害或不良影響",
+          "level": "C1"
+        },
+        {
+          "id": "seed-1h88g2",
+          "source": "Stress can take a toll on your mental well-being.",
+          "target": "壓力會對你的心理健康造成損害。",
+          "meaning": "對...造成損害或不良影響",
+          "level": "C1"
+        }
+      ]
+    },
+    "take a toll on|rcak65": {
+      "word": "take a toll on",
+      "display": "take a toll on",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "C1",
+      "meaning": "對...造成損害 / 帶來負面影響",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "對...造成損害 / 帶來負面影響",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "C1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1ddz2qr",
+          "source": "Working overnight for months has taken a heavy toll on his health.",
+          "target": "連續幾個月熬夜工作對他的健康造成了嚴重的損害。",
+          "meaning": "對...造成損害 / 帶來負面影響",
+          "level": "C1"
+        },
+        {
+          "id": "seed-1wfqbl8",
+          "source": "The drought has taken a toll on the local farmers.",
+          "target": "乾旱對當地農民造成了負面影響。",
+          "meaning": "對...造成損害 / 帶來負面影響",
+          "level": "C1"
+        },
+        {
+          "id": "seed-1dpg2eb",
+          "source": "Constant stress can take a toll on your mental health.",
+          "target": "持續的壓力會對你的心理健康造成損害。",
+          "meaning": "對...造成損害 / 帶來負面影響",
+          "level": "C1"
+        }
+      ]
+    },
+    "take a turn for the worse|1lql68g": {
+      "word": "take a turn for the worse",
+      "display": "take a turn for the worse",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "惡化",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "惡化",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-lsrefo",
+          "source": "The patient's health suddenly took a turn for the worse.",
+          "target": "病人的健康狀況突然惡化。",
+          "meaning": "惡化",
+          "level": "B2"
+        },
+        {
+          "id": "seed-j33clm",
+          "source": "The weather took a turn for the worse.",
+          "target": "天氣狀況惡化了。",
+          "meaning": "惡化",
+          "level": "B2"
+        },
+        {
+          "id": "seed-10j8mmk",
+          "source": "Their relationship took a turn for the worse.",
+          "target": "他們的關係惡化了。",
+          "meaning": "惡化",
+          "level": "B2"
+        }
+      ]
+    },
+    "take action|172zbdf": {
+      "word": "take action",
+      "display": "take action",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "採取行動",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "採取行動",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-hhnn8w",
+          "source": "The government must take action to tackle climate change.",
+          "target": "政府必須採取行動來應對氣候變化。",
+          "meaning": "採取行動",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1go0m7p",
+          "source": "We need to take action before it's too late.",
+          "target": "我們需要在太遲之前採取行動。",
+          "meaning": "採取行動",
+          "level": "B2"
+        },
+        {
+          "id": "seed-c6a4qd",
+          "source": "The school took action to improve safety.",
+          "target": "學校採取了行動來改善安全。",
+          "meaning": "採取行動",
+          "level": "B2"
+        }
+      ]
+    },
+    "take advantage of|1oq1mk4": {
+      "word": "take advantage of",
+      "display": "take advantage of",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "利用 / 佔便宜",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "利用 / 佔便宜",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-gcc12x",
+          "source": "You should take advantage of this opportunity to practice your English.",
+          "target": "你應該利用這個機會練習你的英語。",
+          "meaning": "利用 / 佔便宜",
+          "level": "B1"
+        },
+        {
+          "id": "seed-11b4mtk",
+          "source": "She took advantage of the sunny weather to go for a walk.",
+          "target": "她利用晴朗的天氣去散步。",
+          "meaning": "利用 / 佔便宜",
+          "level": "B1"
+        },
+        {
+          "id": "seed-14ir42b",
+          "source": "We should take advantage of the library's resources.",
+          "target": "我們應該利用圖書館的資源。",
+          "meaning": "利用 / 佔便宜",
+          "level": "B1"
+        }
+      ]
+    },
+    "take advantage of|q76lr9": {
+      "word": "take advantage of",
+      "display": "take advantage of",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "利用 / 善用",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "利用 / 善用",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1294zl0",
+          "source": "You should take advantage of this opportunity to practice your English.",
+          "target": "你應該善用這個機會練習英語。",
+          "meaning": "利用 / 善用",
+          "level": "B1"
+        },
+        {
+          "id": "seed-mxbkzi",
+          "source": "We should take advantage of the sunny weather.",
+          "target": "我們應該善用這晴朗的天氣。",
+          "meaning": "利用 / 善用",
+          "level": "B1"
+        },
+        {
+          "id": "seed-1xldtz3",
+          "source": "She took advantage of the library's resources.",
+          "target": "她善用了圖書館的資源。",
+          "meaning": "利用 / 善用",
+          "level": "B1"
+        }
+      ]
+    },
+    "take an exam|s32ft9": {
+      "word": "take an exam",
+      "display": "take an exam",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "參加考試",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "參加考試",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-eizqh1",
+          "source": "The students are busy preparing to take their final exams.",
+          "target": "學生們正忙著準備參加期末考試。",
+          "meaning": "參加考試",
+          "level": "B2"
+        },
+        {
+          "id": "seed-kx88do",
+          "source": "I have to take an exam tomorrow morning.",
+          "target": "我明天早上要參加考試。",
+          "meaning": "參加考試",
+          "level": "B2"
+        },
+        {
+          "id": "seed-jj9x90",
+          "source": "She is nervous about taking an exam.",
+          "target": "她對參加考試感到緊張。",
+          "meaning": "參加考試",
+          "level": "B2"
+        }
+      ]
+    },
+    "take effect|fz0y0k": {
+      "word": "take effect",
+      "display": "take effect",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "見效 / 起作用",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "見效 / 起作用",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-jqcatm",
+          "source": "The medicine took effect within thirty minutes.",
+          "target": "藥物在三十分鐘內見效了。",
+          "meaning": "見效 / 起作用",
+          "level": "B2"
+        },
+        {
+          "id": "seed-hve251",
+          "source": "The new rules will take effect next month.",
+          "target": "新規定將於下個月生效。",
+          "meaning": "見效 / 起作用",
+          "level": "B2"
+        },
+        {
+          "id": "seed-18k4yoa",
+          "source": "The cleaning spray began to take effect immediately.",
+          "target": "清潔噴霧立即見效了。",
+          "meaning": "見效 / 起作用",
+          "level": "B2"
+        }
+      ]
+    },
+    "take for granted|1so94sp": {
+      "word": "take for granted",
+      "display": "take for granted",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "視為理所當然",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "視為理所當然",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1fth405",
+          "source": "We should never take our health for granted.",
+          "target": "我們絕不應該將健康視為理所當然。",
+          "meaning": "視為理所當然",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1xhtjdn",
+          "source": "Don't take your family's support for granted.",
+          "target": "不要將家人的支持視為理所當然。",
+          "meaning": "視為理所當然",
+          "level": "B2"
+        },
+        {
+          "id": "seed-55qjw6",
+          "source": "I took it for granted that the shop would be open.",
+          "target": "我理所當然地以為那家店會開門。",
+          "meaning": "視為理所當然",
+          "level": "B2"
+        }
+      ]
+    },
+    "take for granted|1xq5u1h": {
+      "word": "take for granted",
+      "display": "take for granted",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "視...為理所當然",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "視...為理所當然",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-ps2lmt",
+          "source": "We should never take our health for granted.",
+          "target": "我們永遠不應將健康視為理所當然。",
+          "meaning": "視...為理所當然",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1guhzh7",
+          "source": "Don't take your family's support for granted.",
+          "target": "不要將家人的支持視為理所當然。",
+          "meaning": "視...為理所當然",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1rzcwn0",
+          "source": "He took his job for granted until he lost it.",
+          "target": "他一直將這份工作視為理所當然，直到失去它為止。",
+          "meaning": "視...為理所當然",
+          "level": "B2"
+        }
+      ]
+    },
+    "take notes|1l88g99": {
+      "word": "take notes",
+      "display": "take notes",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "做筆記",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "做筆記",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1lmldcx",
+          "source": "The students took notes while the professor was lecturing.",
+          "target": "教授講課時，學生們都在做筆記。",
+          "meaning": "做筆記",
+          "level": "A2"
+        },
+        {
+          "id": "seed-5id383",
+          "source": "Please take notes during the meeting.",
+          "target": "請在會議期間做筆記。",
+          "meaning": "做筆記",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1og848f",
+          "source": "I always take notes to remember important details.",
+          "target": "我總是做筆記以記住重要的細節。",
+          "meaning": "做筆記",
+          "level": "A2"
+        }
+      ]
+    },
+    "take place|c2tu6g": {
+      "word": "take place",
+      "display": "take place",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "發生 / 舉行",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "發生 / 舉行",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-14f0r2g",
+          "source": "The Olympic Games take place every four years.",
+          "target": "奧運會每四年舉行一次。",
+          "meaning": "發生 / 舉行",
+          "level": "A2"
+        },
+        {
+          "id": "seed-yn6us6",
+          "source": "The meeting will take place in the conference room.",
+          "target": "會議將在會議室舉行。",
+          "meaning": "發生 / 舉行",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1vg1zor",
+          "source": "When does the event take place?",
+          "target": "這項活動什麼時候舉行？",
+          "meaning": "發生 / 舉行",
+          "level": "A2"
+        }
+      ]
+    },
+    "take place|h0r2vq": {
+      "word": "take place",
+      "display": "take place",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "發生",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "發生",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-zcg6b0",
+          "source": "The Olympic Games take place every four years.",
+          "target": "奧運會每四年舉行一次。",
+          "meaning": "發生",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1voozki",
+          "source": "The concert will take place in the park.",
+          "target": "音樂會將在公園舉行。",
+          "meaning": "發生",
+          "level": "A2"
+        },
+        {
+          "id": "seed-15pejim",
+          "source": "When does the meeting take place?",
+          "target": "會議什麼時候舉行？",
+          "meaning": "發生",
+          "level": "A2"
+        }
+      ]
+    },
+    "take responsibility for|14uixrf": {
+      "word": "take responsibility for",
+      "display": "take responsibility for",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "為...負責",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "為...負責",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-hz6som",
+          "source": "The manager took full responsibility for the mistake.",
+          "target": "經理為這個錯誤負全責。",
+          "meaning": "為...負責",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1r662oh",
+          "source": "You must take responsibility for your own actions.",
+          "target": "你必須為自己的行為負責。",
+          "meaning": "為...負責",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1trzmxn",
+          "source": "She took responsibility for the team's success.",
+          "target": "她為團隊的成功負責。",
+          "meaning": "為...負責",
+          "level": "B2"
+        }
+      ]
+    },
+    "take the blame|d4jhpw": {
+      "word": "take the blame",
+      "display": "take the blame",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "承擔責任 / 背黑鍋",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "承擔責任 / 背黑鍋",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1t0va61",
+          "source": "He refused to take the blame for something he didn't do.",
+          "target": "他拒絕為他沒做過的事承擔責任。",
+          "meaning": "承擔責任 / 背黑鍋",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1857t5l",
+          "source": "She was willing to take the blame for the mistake.",
+          "target": "她願意為這個錯誤承擔責任。",
+          "meaning": "承擔責任 / 背黑鍋",
+          "level": "B2"
+        },
+        {
+          "id": "seed-pistip",
+          "source": "Do not take the blame for someone else's actions.",
+          "target": "不要為別人的行為背黑鍋。",
+          "meaning": "承擔責任 / 背黑鍋",
+          "level": "B2"
+        }
+      ]
+    },
+    "take the initiative|z6vt0s": {
+      "word": "take the initiative",
+      "display": "take the initiative",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "採取主動",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "採取主動",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-jpw1km",
+          "source": "In modern workplaces, employees are encouraged to take the initiative.",
+          "target": "在現代職場中，員工被鼓勵採取主動。",
+          "meaning": "採取主動",
+          "level": "B2"
+        },
+        {
+          "id": "seed-intwfi",
+          "source": "You should take the initiative if you want to succeed.",
+          "target": "如果你想成功，就應該採取主動。",
+          "meaning": "採取主動",
+          "level": "B2"
+        },
+        {
+          "id": "seed-d410be",
+          "source": "She took the initiative to organize the team event.",
+          "target": "她採取主動去籌辦團隊活動。",
+          "meaning": "採取主動",
+          "level": "B2"
+        }
+      ]
+    },
+    "take time|tfwp90": {
+      "word": "take time",
+      "display": "take time",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "花費時間",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "花費時間",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-upq4ql",
+          "source": "Learning a new language takes time and patience.",
+          "target": "學習一門新語言需要時間和耐心。",
+          "meaning": "花費時間",
+          "level": "B2"
+        },
+        {
+          "id": "seed-105wt4c",
+          "source": "It takes time to build a house.",
+          "target": "蓋房子需要時間。",
+          "meaning": "花費時間",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1lwgj9l",
+          "source": "This project takes time to complete.",
+          "target": "這個項目需要時間才能完成。",
+          "meaning": "花費時間",
+          "level": "B2"
+        }
+      ]
+    },
+    "take to|ap4jvo": {
+      "word": "take to",
+      "display": "take to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "C1",
+      "meaning": "開始喜歡 / 養成...習慣",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "開始喜歡 / 養成...習慣",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "C1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-take-to-1",
+          "source": "He has taken to drinking green tea.",
+          "target": "他開始喜歡喝綠茶。",
+          "meaning": "開始喜歡 / 養成...習慣",
+          "level": "C1"
+        },
+        {
+          "id": "seed-take-to-2",
+          "source": "My sister has taken to drawing after school.",
+          "target": "我妹妹放學後開始喜歡畫畫。",
+          "meaning": "開始喜歡 / 養成...習慣",
+          "level": "C1"
+        },
+        {
+          "id": "seed-take-to-3",
+          "source": "The child took to reading before bed.",
+          "target": "那孩子養成睡前閱讀的習慣。",
+          "meaning": "開始喜歡 / 養成...習慣",
+          "level": "C1"
+        }
+      ]
+    },
     "talk": {
       "word": "talk",
       "display": "talk",
@@ -44269,6 +56652,88 @@
         }
       ]
     },
+    "tell a joke|n83m9q": {
+      "word": "tell a joke",
+      "display": "tell a joke",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "講笑話",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "講笑話",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-ohfyi2",
+          "source": "He knows how to tell a joke to make everyone laugh.",
+          "target": "他很會講笑話，能讓每個人都大笑。",
+          "meaning": "講笑話",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1u3xssu",
+          "source": "She loves to tell a joke to cheer everyone up.",
+          "target": "她喜歡講笑話來讓大家振作起來。",
+          "meaning": "講笑話",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1kzdgc5",
+          "source": "Can you tell a joke for the class?",
+          "target": "你能為全班講個笑話嗎？",
+          "meaning": "講笑話",
+          "level": "B2"
+        }
+      ]
+    },
+    "tell a lie|1sk8tmb": {
+      "word": "tell a lie",
+      "display": "tell a lie",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "說謊",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "說謊",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-eqggxu",
+          "source": "She has never told a lie in her entire life.",
+          "target": "她一生中從未說過謊。",
+          "meaning": "說謊",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1eb8inm",
+          "source": "It is wrong to tell a lie to your parents.",
+          "target": "對父母說謊是不對的。",
+          "meaning": "說謊",
+          "level": "B2"
+        },
+        {
+          "id": "seed-d4r3ll",
+          "source": "He felt guilty after he decided to tell a lie.",
+          "target": "他在決定說謊後感到內疚。",
+          "meaning": "說謊",
+          "level": "B2"
+        }
+      ]
+    },
     "ten": {
       "word": "ten",
       "display": "ten",
@@ -44450,6 +56915,47 @@
           "target": "佢溫習準備測驗。",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "test a theory|1m0t3d": {
+      "word": "test a theory",
+      "display": "test a theory",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "測試理論",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "測試理論",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1y8w835",
+          "source": "The researchers designed an experiment to test their new theory.",
+          "target": "研究人員設計了一項實驗來測試他們的新理論。",
+          "meaning": "測試理論",
+          "level": "B2"
+        },
+        {
+          "id": "seed-jl5l0",
+          "source": "Scientists need more data to test the theory.",
+          "target": "科學家需要更多數據來測試該理論。",
+          "meaning": "測試理論",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1bccrez",
+          "source": "We conducted a survey to test our theory about consumer behavior.",
+          "target": "我們進行了一項調查來測試我們關於消費者行為的理論。",
+          "meaning": "測試理論",
+          "level": "B2"
         }
       ]
     },
@@ -45400,6 +57906,47 @@
         }
       ]
     },
+    "throw a party|lqhth9": {
+      "word": "throw a party",
+      "display": "throw a party",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "舉辦派對",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "舉辦派對",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-vqq76c",
+          "source": "We are going to throw a party to celebrate his graduation.",
+          "target": "我們打算舉辦一場派對來慶祝他畢業。",
+          "meaning": "舉辦派對",
+          "level": "B2"
+        },
+        {
+          "id": "seed-mrqbo2",
+          "source": "They decided to throw a party for her birthday.",
+          "target": "他們決定為她舉辦生日派對。",
+          "meaning": "舉辦派對",
+          "level": "B2"
+        },
+        {
+          "id": "seed-skq3gj",
+          "source": "We should throw a party to welcome our new neighbor.",
+          "target": "我們應該舉辦一場派對來歡迎新鄰居。",
+          "meaning": "舉辦派對",
+          "level": "B2"
+        }
+      ]
+    },
     "thursday": {
       "word": "thursday",
       "display": "Thursday",
@@ -46190,6 +58737,47 @@
         }
       ]
     },
+    "trigger a reaction|ygbn3o": {
+      "word": "trigger a reaction",
+      "display": "trigger a reaction",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "引發反應",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "引發反應",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1w8yrim",
+          "source": "The controversial remarks triggered a strong reaction on social media.",
+          "target": "這些具爭議性的言論在社交媒體上引發了強烈反應。",
+          "meaning": "引發反應",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1kyd4jh",
+          "source": "The new policy will likely trigger a reaction from the public.",
+          "target": "這項新政策很可能會引發公眾的反應。",
+          "meaning": "引發反應",
+          "level": "B2"
+        },
+        {
+          "id": "seed-sk8jjh",
+          "source": "His sudden departure triggered a reaction of shock among the staff.",
+          "target": "他突然的離職在員工中引發了震驚的反應。",
+          "meaning": "引發反應",
+          "level": "B2"
+        }
+      ]
+    },
     "trip": {
       "word": "trip",
       "display": "trip",
@@ -46945,6 +59533,47 @@
         }
       ]
     },
+    "use caution|1cm14ya": {
+      "word": "use caution",
+      "display": "use caution",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "保持謹慎",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "保持謹慎",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-13ujrp8",
+          "source": "You should use caution when downloading files from unknown websites.",
+          "target": "從不明網站下載檔案時，你應該保持謹慎。",
+          "meaning": "保持謹慎",
+          "level": "B2"
+        },
+        {
+          "id": "seed-7fsa81",
+          "source": "Please use caution when walking on the slippery floor.",
+          "target": "在濕滑的地板上行走時，請保持謹慎。",
+          "meaning": "保持謹慎",
+          "level": "B2"
+        },
+        {
+          "id": "seed-6ff69f",
+          "source": "Drivers should use caution in heavy rain.",
+          "target": "司機在暴雨中應保持謹慎。",
+          "meaning": "保持謹慎",
+          "level": "B2"
+        }
+      ]
+    },
     "useful": {
       "word": "useful",
       "display": "useful",
@@ -47299,6 +59928,129 @@
         }
       ]
     },
+    "voice a concern|agt621": {
+      "word": "voice a concern",
+      "display": "voice a concern",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "表達擔憂",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "表達擔憂",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1ferzax",
+          "source": "Several parents voiced concerns about the new school policy.",
+          "target": "幾位家長表達了對新學校政策的擔憂。",
+          "meaning": "表達擔憂",
+          "level": "B2"
+        },
+        {
+          "id": "seed-cgwo2l",
+          "source": "The residents gathered to voice a concern about the traffic.",
+          "target": "居民們聚集在一起，表達對交通狀況的擔憂。",
+          "meaning": "表達擔憂",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1u6ky1x",
+          "source": "Employees were encouraged to voice a concern during the meeting.",
+          "target": "員工被鼓勵在會議期間表達擔憂。",
+          "meaning": "表達擔憂",
+          "level": "B2"
+        }
+      ]
+    },
+    "voice a grievance|1rfhmjc": {
+      "word": "voice a grievance",
+      "display": "voice a grievance",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "表達不滿 / 訴苦",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "表達不滿 / 訴苦",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-ic5fry",
+          "source": "Workers gathered outside the factory to voice their grievances about low wages.",
+          "target": "工人們聚集在工廠外，表達他們對低工資的不滿。",
+          "meaning": "表達不滿 / 訴苦",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1b1f559",
+          "source": "Employees used the meeting to voice a grievance about the new rules.",
+          "target": "員工們利用會議表達對新規則的不滿。",
+          "meaning": "表達不滿 / 訴苦",
+          "level": "B2"
+        },
+        {
+          "id": "seed-16axm3g",
+          "source": "It is important to have a safe way to voice a grievance.",
+          "target": "擁有一個安全的管道來表達不滿是很重要的。",
+          "meaning": "表達不滿 / 訴苦",
+          "level": "B2"
+        }
+      ]
+    },
+    "voice an opinion|rv6tep": {
+      "word": "voice an opinion",
+      "display": "voice an opinion",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "表達意見",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "表達意見",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-12v669k",
+          "source": "Employees are encouraged to voice their opinions during meetings.",
+          "target": "會議期間鼓勵員工表達意見。",
+          "meaning": "表達意見",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1gyrfe8",
+          "source": "Students should feel free to voice an opinion in class.",
+          "target": "學生在課堂上應該可以自由表達意見。",
+          "meaning": "表達意見",
+          "level": "B2"
+        },
+        {
+          "id": "seed-148qi42",
+          "source": "He was afraid to voice an opinion in front of his boss.",
+          "target": "他不敢在老闆面前表達意見。",
+          "meaning": "表達意見",
+          "level": "B2"
+        }
+      ]
+    },
     "wait": {
       "word": "wait",
       "display": "wait",
@@ -47571,6 +60323,47 @@
         }
       ]
     },
+    "waste time|16a3g3j": {
+      "word": "waste time",
+      "display": "waste time",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "浪費時間",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "浪費時間",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-xbka8z",
+          "source": "Stop wasting time on video games and do your homework.",
+          "target": "別再浪費時間玩電子遊戲了，快去做功課。",
+          "meaning": "浪費時間",
+          "level": "B2"
+        },
+        {
+          "id": "seed-18ypqpv",
+          "source": "Don't waste time on things that don't matter.",
+          "target": "不要在不重要的事情上浪費時間。",
+          "meaning": "浪費時間",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1ww2id4",
+          "source": "I hate to waste time waiting in line.",
+          "target": "我討厭浪費時間排隊。",
+          "meaning": "浪費時間",
+          "level": "B2"
+        }
+      ]
+    },
     "watch": {
       "word": "watch",
       "display": "watch",
@@ -47718,6 +60511,47 @@
           "target": "喝水對身體有好處。",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "wave goodbye|1afo0z1": {
+      "word": "wave goodbye",
+      "display": "wave goodbye",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "揮手告別",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "揮手告別",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1t4gt9e",
+          "source": "The mother stood at the gate and waved goodbye to her son.",
+          "target": "母親站在門口，向兒子揮手告別。",
+          "meaning": "揮手告別",
+          "level": "B2"
+        },
+        {
+          "id": "seed-3pf2zh",
+          "source": "We stood on the platform to wave goodbye to our friends.",
+          "target": "我們站在月台上向朋友們揮手告別。",
+          "meaning": "揮手告別",
+          "level": "B2"
+        },
+        {
+          "id": "seed-151wjx5",
+          "source": "She turned around to wave goodbye before entering the building.",
+          "target": "她在進入大樓前轉身揮手告別。",
+          "meaning": "揮手告別",
+          "level": "B2"
         }
       ]
     },
@@ -47902,6 +60736,47 @@
           "target": "你喜歡這種下雨的天氣嗎？",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "weather the storm|zvduhz": {
+      "word": "weather the storm",
+      "display": "weather the storm",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "渡過難關",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "渡過難關",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-6hhckh",
+          "source": "The small company managed to weather the storm during the economic crisis.",
+          "target": "這家小公司在經濟危機期間成功渡過了難關。",
+          "meaning": "渡過難關",
+          "level": "B2"
+        },
+        {
+          "id": "seed-ued6wy",
+          "source": "They worked together to weather the storm during the difficult times.",
+          "target": "他們在困難時期齊心協力渡過難關。",
+          "meaning": "渡過難關",
+          "level": "B2"
+        },
+        {
+          "id": "seed-evrrmh",
+          "source": "With enough savings, you can weather the storm if you lose your job.",
+          "target": "只要有足夠的存款，如果你失業了也能渡過難關。",
+          "meaning": "渡過難關",
+          "level": "B2"
         }
       ]
     },
@@ -48579,6 +61454,129 @@
         }
       ]
     },
+    "win a game|b75cge": {
+      "word": "win a game",
+      "display": "win a game",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "贏得比賽",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "贏得比賽",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-zn1dss",
+          "source": "Our school football team won the game last night.",
+          "target": "我們的學校足球隊昨晚贏得了比賽。",
+          "meaning": "贏得比賽",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1b9pzl2",
+          "source": "It is always a great feeling to win a game.",
+          "target": "贏得比賽總是一種很棒的感覺。",
+          "meaning": "贏得比賽",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1cxuha1",
+          "source": "They practiced hard to win a game against the champions.",
+          "target": "他們刻苦練習以贏得對陣冠軍的比賽。",
+          "meaning": "贏得比賽",
+          "level": "B2"
+        }
+      ]
+    },
+    "win an award|1ily02e": {
+      "word": "win an award",
+      "display": "win an award",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "得獎",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "得獎",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-7w0go4",
+          "source": "The movie won several awards at the film festival.",
+          "target": "這部電影在影展中贏得了多個獎項。",
+          "meaning": "得獎",
+          "level": "B2"
+        },
+        {
+          "id": "seed-15ux3gi",
+          "source": "She was happy to win an award for her hard work.",
+          "target": "她很高興能因自己的努力而得獎。",
+          "meaning": "得獎",
+          "level": "B2"
+        },
+        {
+          "id": "seed-u87ccq",
+          "source": "The young athlete hopes to win an award this year.",
+          "target": "這位年輕運動員希望今年能得獎。",
+          "meaning": "得獎",
+          "level": "B2"
+        }
+      ]
+    },
+    "win one's heart|1cxr5s2": {
+      "word": "win one's heart",
+      "display": "win one's heart",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "贏得某人的心",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "贏得某人的心",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-b0vger",
+          "source": "His kindness and sense of humor eventually won her heart.",
+          "target": "他的善良和幽默感最終贏得了她的心。",
+          "meaning": "贏得某人的心",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1jwi5h0",
+          "source": "His dedication to the community won the hearts of the residents.",
+          "target": "他對社區的貢獻贏得了居民們的心。",
+          "meaning": "贏得某人的心",
+          "level": "B2"
+        },
+        {
+          "id": "seed-1v40ll",
+          "source": "The puppy's playful nature quickly won our hearts.",
+          "target": "小狗頑皮的天性很快就贏得了我們的心。",
+          "meaning": "贏得某人的心",
+          "level": "B2"
+        }
+      ]
+    },
     "window": {
       "word": "window",
       "display": "window",
@@ -48678,6 +61676,88 @@
           "target": "我哋冬天會著外套。",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "with a view to|1ktdjqj": {
+      "word": "with a view to",
+      "display": "with a view to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "C1",
+      "meaning": "為了 / 目的在於",
+      "pos": "adverb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "為了 / 目的在於",
+          "pos": "adverb",
+          "type": "phrase",
+          "level": "C1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-with-a-view-to-1",
+          "source": "He joined the course with a view to improving his English.",
+          "target": "他參加課程，目的是改善英文。",
+          "meaning": "為了 / 目的在於",
+          "level": "C1"
+        },
+        {
+          "id": "seed-with-a-view-to-2",
+          "source": "She saved money with a view to studying abroad.",
+          "target": "她儲錢，目的是到海外讀書。",
+          "meaning": "為了 / 目的在於",
+          "level": "C1"
+        },
+        {
+          "id": "seed-with-a-view-to-3",
+          "source": "The school changed the timetable with a view to reducing stress.",
+          "target": "學校更改時間表，目的是減少壓力。",
+          "meaning": "為了 / 目的在於",
+          "level": "C1"
+        }
+      ]
+    },
+    "with an eye to|1aaene": {
+      "word": "with an eye to",
+      "display": "with an eye to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "C1",
+      "meaning": "考慮到 / 目的在於",
+      "pos": "adverb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "考慮到 / 目的在於",
+          "pos": "adverb",
+          "type": "phrase",
+          "level": "C1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-with-an-eye-to-1",
+          "source": "They designed the app with an eye to younger students.",
+          "target": "他們設計這個 app 時考慮到年幼學生。",
+          "meaning": "考慮到 / 目的在於",
+          "level": "C1"
+        },
+        {
+          "id": "seed-with-an-eye-to-2",
+          "source": "He chose science with an eye to becoming a doctor.",
+          "target": "他選擇科學，目的是將來做醫生。",
+          "meaning": "考慮到 / 目的在於",
+          "level": "C1"
+        },
+        {
+          "id": "seed-with-an-eye-to-3",
+          "source": "The shop opened early with an eye to attracting commuters.",
+          "target": "那間店提早開門，目的是吸引上班族。",
+          "meaning": "考慮到 / 目的在於",
+          "level": "C1"
         }
       ]
     },
@@ -48848,6 +61928,47 @@
           "target": "她星期六要工作嗎？",
           "meaning": "",
           "level": "A1"
+        }
+      ]
+    },
+    "work miracles|pskudg": {
+      "word": "work miracles",
+      "display": "work miracles",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "創造奇蹟",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "創造奇蹟",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-v99efu",
+          "source": "This new skincare product works miracles on dry skin.",
+          "target": "這款新的護膚產品對乾燥肌膚有奇效。",
+          "meaning": "創造奇蹟",
+          "level": "B2"
+        },
+        {
+          "id": "seed-13wo2oj",
+          "source": "A little bit of paint can work miracles on an old room.",
+          "target": "一點點油漆就能讓舊房間煥然一新（創造奇蹟）。",
+          "meaning": "創造奇蹟",
+          "level": "B2"
+        },
+        {
+          "id": "seed-w66hhw",
+          "source": "Regular exercise can work miracles for your energy levels.",
+          "target": "規律運動能讓你的精神狀態產生奇蹟般的改善。",
+          "meaning": "創造奇蹟",
+          "level": "B2"
         }
       ]
     },
@@ -49259,6 +62380,47 @@
         }
       ]
     },
+    "yield results|12ecpc0": {
+      "word": "yield results",
+      "display": "yield results",
+      "source": "local-seed-phrases2",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "產生結果",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "產生結果",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-35767l",
+          "source": "The new advertising campaign has already started to yield positive results.",
+          "target": "新的廣告活動已經開始產生正面結果。",
+          "meaning": "產生結果",
+          "level": "B2"
+        },
+        {
+          "id": "seed-84o9hp",
+          "source": "The new farming methods yield better results.",
+          "target": "新的耕作方法產生了更好的結果。",
+          "meaning": "產生結果",
+          "level": "B2"
+        },
+        {
+          "id": "seed-11itg52",
+          "source": "Hard work will eventually yield results.",
+          "target": "努力工作最終會產生結果。",
+          "meaning": "產生結果",
+          "level": "B2"
+        }
+      ]
+    },
     "you": {
       "word": "you",
       "display": "you",
@@ -49394,2139 +62556,6 @@
           "level": "A1"
         }
       ]
-    },
-    "almond|1z04sah": {
-      "word": "almond",
-      "display": "almond",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B1",
-      "meaning": "杏仁",
-      "pos": "noun",
-      "type": "word",
-      "hints": [
-        {
-          "meaning": "杏仁",
-          "pos": "noun",
-          "type": "word",
-          "level": ""
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-almond-39079e7b",
-          "source": "I put almonds on my cake.",
-          "target": "我把杏仁放在蛋糕上。",
-          "meaning": "杏仁",
-          "level": "B1"
-        },
-        {
-          "id": "seed-almond-b37c0ba8",
-          "source": "Almond milk is in the fridge.",
-          "target": "杏仁奶在雪櫃裡。",
-          "meaning": "杏仁",
-          "level": "B1"
-        },
-        {
-          "id": "seed-almond-0b09586a",
-          "source": "She eats a few almonds after school.",
-          "target": "她放學後吃幾粒杏仁。",
-          "meaning": "杏仁",
-          "level": "B1"
-        }
-      ]
-    },
-    "impulse|11t5j97": {
-      "word": "impulse",
-      "display": "impulse",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B2",
-      "meaning": "衝動",
-      "pos": "noun",
-      "type": "word",
-      "hints": [
-        {
-          "meaning": "衝動",
-          "pos": "noun",
-          "type": "word",
-          "level": ""
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-impulse-86581183",
-          "source": "He bought the toy on impulse.",
-          "target": "他一時衝動買了那個玩具。",
-          "meaning": "衝動",
-          "level": "B2"
-        },
-        {
-          "id": "seed-impulse-e6a271ae",
-          "source": "Do not act on impulse.",
-          "target": "不要衝動行事。",
-          "meaning": "衝動",
-          "level": "B2"
-        },
-        {
-          "id": "seed-impulse-a714fec2",
-          "source": "She felt an impulse to laugh.",
-          "target": "她突然有一股想笑的衝動。",
-          "meaning": "衝動",
-          "level": "B2"
-        }
-      ]
-    },
-    "possession|3qdewh": {
-      "word": "possession",
-      "display": "possession",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B1",
-      "meaning": "擁有 / 所有",
-      "pos": "noun",
-      "type": "word",
-      "hints": [
-        {
-          "meaning": "擁有 / 所有",
-          "pos": "noun",
-          "type": "word",
-          "level": ""
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-possession-408abbe1",
-          "source": "This watch is my possession.",
-          "target": "這隻手錶是我的個人物品。",
-          "meaning": "擁有 / 所有",
-          "level": "B1"
-        },
-        {
-          "id": "seed-possession-3ae1b402",
-          "source": "The old photo is her favourite possession.",
-          "target": "那張舊相是她最喜愛的物品。",
-          "meaning": "擁有 / 所有",
-          "level": "B1"
-        },
-        {
-          "id": "seed-possession-a3286528",
-          "source": "He lost possession of the ball.",
-          "target": "他失去了控球權。",
-          "meaning": "擁有 / 所有",
-          "level": "B1"
-        }
-      ]
-    },
-    "defective|95helg": {
-      "word": "defective",
-      "display": "defective",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B2",
-      "meaning": "有缺陷的",
-      "pos": "adjective",
-      "type": "word",
-      "hints": [
-        {
-          "meaning": "有缺陷的",
-          "pos": "adjective",
-          "type": "word",
-          "level": ""
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-defective-1b6f81b4",
-          "source": "This phone is defective.",
-          "target": "這部電話有缺陷。",
-          "meaning": "有缺陷的",
-          "level": "B2"
-        },
-        {
-          "id": "seed-defective-482973b7",
-          "source": "The shop replaced the defective toy.",
-          "target": "店舖更換了有缺陷的玩具。",
-          "meaning": "有缺陷的",
-          "level": "B2"
-        },
-        {
-          "id": "seed-defective-174f3857",
-          "source": "We returned the defective chair.",
-          "target": "我們退回了有缺陷的椅子。",
-          "meaning": "有缺陷的",
-          "level": "B2"
-        }
-      ]
-    },
-    "customer-centric|12sspm8": {
-      "word": "customer-centric",
-      "display": "customer-centric",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "C1",
-      "meaning": "以顧客為中心的",
-      "pos": "adjective",
-      "type": "word",
-      "hints": [
-        {
-          "meaning": "以顧客為中心的",
-          "pos": "adjective",
-          "type": "word",
-          "level": ""
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-customer-centric-32e24ea1",
-          "source": "The shop is customer-centric.",
-          "target": "這間店以顧客為中心。",
-          "meaning": "以顧客為中心的",
-          "level": "C1"
-        },
-        {
-          "id": "seed-customer-centric-228ebf3e",
-          "source": "A customer-centric team listens carefully.",
-          "target": "以顧客為中心的團隊會細心聆聽。",
-          "meaning": "以顧客為中心的",
-          "level": "C1"
-        },
-        {
-          "id": "seed-customer-centric-0da7d518",
-          "source": "This company has a customer-centric service.",
-          "target": "這間公司有以顧客為中心的服務。",
-          "meaning": "以顧客為中心的",
-          "level": "C1"
-        }
-      ]
-    },
-    "czech|id7vca": {
-      "word": "czech",
-      "display": "Czech",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B1",
-      "meaning": "捷克人 / 捷克語",
-      "pos": "noun",
-      "type": "word",
-      "hints": [
-        {
-          "meaning": "捷克人 / 捷克語",
-          "pos": "noun",
-          "type": "word",
-          "level": ""
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-czech-c6bb03e7",
-          "source": "My Czech friend speaks English well.",
-          "target": "我的捷克朋友英文說得很好。",
-          "meaning": "捷克人 / 捷克語",
-          "level": "B1"
-        },
-        {
-          "id": "seed-czech-a75fcb37",
-          "source": "We learned about Czech food today.",
-          "target": "我們今天認識了捷克食物。",
-          "meaning": "捷克人 / 捷克語",
-          "level": "B1"
-        },
-        {
-          "id": "seed-czech-1c8c25da",
-          "source": "Czech is a European language.",
-          "target": "捷克語是一種歐洲語言。",
-          "meaning": "捷克人 / 捷克語",
-          "level": "B1"
-        }
-      ]
-    },
-    "czech|1nwqri": {
-      "word": "czech",
-      "display": "Czech",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B1",
-      "meaning": "捷克的",
-      "pos": "adjective",
-      "type": "word",
-      "hints": [
-        {
-          "meaning": "捷克的",
-          "pos": "adjective",
-          "type": "word",
-          "level": ""
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-czech-adj-1",
-          "source": "The Czech team played very well.",
-          "target": "捷克隊表現得很好。",
-          "meaning": "捷克的",
-          "level": "B1"
-        },
-        {
-          "id": "seed-czech-adj-2",
-          "source": "She bought a Czech book.",
-          "target": "她買了一本捷克的書。",
-          "meaning": "捷克的",
-          "level": "B1"
-        },
-        {
-          "id": "seed-czech-adj-3",
-          "source": "We tried Czech food at the fair.",
-          "target": "我們在市集試了捷克食物。",
-          "meaning": "捷克的",
-          "level": "B1"
-        }
-      ]
-    },
-    "corporate|1l6rzlb": {
-      "word": "corporate",
-      "display": "corporate",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B2",
-      "meaning": "企業的 / 公司的",
-      "pos": "adjective",
-      "type": "word",
-      "hints": [
-        {
-          "meaning": "企業的 / 公司的",
-          "pos": "adjective",
-          "type": "word",
-          "level": ""
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-corporate-97407178",
-          "source": "My aunt works in a corporate office.",
-          "target": "我姑姐在公司辦公室工作。",
-          "meaning": "企業的 / 公司的",
-          "level": "B2"
-        },
-        {
-          "id": "seed-corporate-faf90d50",
-          "source": "The corporate team joined the meeting.",
-          "target": "公司團隊參加了會議。",
-          "meaning": "企業的 / 公司的",
-          "level": "B2"
-        },
-        {
-          "id": "seed-corporate-f0e4d447",
-          "source": "He likes the corporate training programme.",
-          "target": "他喜歡公司的培訓課程。",
-          "meaning": "企業的 / 公司的",
-          "level": "B2"
-        }
-      ]
-    },
-    "impromptu|k3fzzl": {
-      "word": "impromptu",
-      "display": "impromptu",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "C1",
-      "meaning": "即興的",
-      "pos": "adjective",
-      "type": "word",
-      "hints": [
-        {
-          "meaning": "即興的",
-          "pos": "adjective",
-          "type": "word",
-          "level": ""
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-impromptu-2aa0a571",
-          "source": "She gave an impromptu speech.",
-          "target": "她作了一個即興演講。",
-          "meaning": "即興的",
-          "level": "C1"
-        },
-        {
-          "id": "seed-impromptu-6b3b0de7",
-          "source": "We had an impromptu singing show.",
-          "target": "我們來了一場即興歌唱表演。",
-          "meaning": "即興的",
-          "level": "C1"
-        },
-        {
-          "id": "seed-impromptu-baa31ac1",
-          "source": "His impromptu answer was funny.",
-          "target": "他的即興回答很有趣。",
-          "meaning": "即興的",
-          "level": "C1"
-        }
-      ]
-    },
-    "impromptu|15q91e0": {
-      "word": "impromptu",
-      "display": "impromptu",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "C1",
-      "meaning": "即興演出",
-      "pos": "noun",
-      "type": "word",
-      "hints": [
-        {
-          "meaning": "即興演出",
-          "pos": "noun",
-          "type": "word",
-          "level": ""
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-impromptu-n-1",
-          "source": "The impromptu made everyone laugh.",
-          "target": "那場即興演出令大家大笑。",
-          "meaning": "即興演出",
-          "level": "C1"
-        },
-        {
-          "id": "seed-impromptu-n-2",
-          "source": "His short impromptu surprised the class.",
-          "target": "他的短即興演出令全班驚喜。",
-          "meaning": "即興演出",
-          "level": "C1"
-        },
-        {
-          "id": "seed-impromptu-n-3",
-          "source": "We enjoyed the impromptu after lunch.",
-          "target": "我們午飯後欣賞了即興演出。",
-          "meaning": "即興演出",
-          "level": "C1"
-        }
-      ]
-    },
-    "compatriot|13a0kbz": {
-      "word": "compatriot",
-      "display": "compatriot",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "C1",
-      "meaning": "同胞 / 同國人",
-      "pos": "noun",
-      "type": "word",
-      "hints": [
-        {
-          "meaning": "同胞 / 同國人",
-          "pos": "noun",
-          "type": "word",
-          "level": ""
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-compatriot-fc6f4c22",
-          "source": "He helped his compatriot at the airport.",
-          "target": "他在機場幫助了自己的同胞。",
-          "meaning": "同胞 / 同國人",
-          "level": "C1"
-        },
-        {
-          "id": "seed-compatriot-8d7fbb7a",
-          "source": "She met a compatriot in London.",
-          "target": "她在倫敦遇到一位同國人。",
-          "meaning": "同胞 / 同國人",
-          "level": "C1"
-        },
-        {
-          "id": "seed-compatriot-1aef4c4f",
-          "source": "The athlete hugged his compatriot.",
-          "target": "那位運動員擁抱了自己的同胞。",
-          "meaning": "同胞 / 同國人",
-          "level": "C1"
-        }
-      ]
-    },
-    "rise to fame|18lskx0": {
-      "word": "rise to fame",
-      "display": "rise to fame",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B2",
-      "meaning": "成名 / 走紅",
-      "pos": "verb",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "成名 / 走紅",
-          "pos": "verb",
-          "type": "phrase",
-          "level": ""
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-rise-to-fame-a093923b",
-          "source": "The singer rose to fame quickly.",
-          "target": "那位歌手很快成名。",
-          "meaning": "成名 / 走紅",
-          "level": "B2"
-        },
-        {
-          "id": "seed-rise-to-fame-a51920e1",
-          "source": "He rose to fame after the film.",
-          "target": "他在那部電影之後走紅。",
-          "meaning": "成名 / 走紅",
-          "level": "B2"
-        },
-        {
-          "id": "seed-rise-to-fame-326e690b",
-          "source": "The young chef rose to fame online.",
-          "target": "那位年輕廚師在網上走紅。",
-          "meaning": "成名 / 走紅",
-          "level": "B2"
-        }
-      ]
-    },
-    "look forward to|opp59f": {
-      "word": "look forward to",
-      "display": "look forward to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "A2",
-      "meaning": "期待",
-      "pos": "verb",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "期待",
-          "pos": "verb",
-          "type": "phrase",
-          "level": "A2"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-look-forward-to-1",
-          "source": "We are looking forward to seeing you soon.",
-          "target": "我們期待很快見到你。",
-          "meaning": "期待",
-          "level": "A2"
-        },
-        {
-          "id": "seed-look-forward-to-2",
-          "source": "I look forward to joining the school trip.",
-          "target": "我期待參加學校旅行。",
-          "meaning": "期待",
-          "level": "A2"
-        },
-        {
-          "id": "seed-look-forward-to-3",
-          "source": "She looks forward to hearing the good news.",
-          "target": "她期待聽到好消息。",
-          "meaning": "期待",
-          "level": "A2"
-        }
-      ]
-    },
-    "be used to|yayge8": {
-      "word": "be used to",
-      "display": "be used to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B1",
-      "meaning": "習慣於",
-      "pos": "adjective",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "習慣於",
-          "pos": "adjective",
-          "type": "phrase",
-          "level": "B1"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-be-used-to-1",
-          "source": "She is used to waking up early.",
-          "target": "她習慣早起。",
-          "meaning": "習慣於",
-          "level": "B1"
-        },
-        {
-          "id": "seed-be-used-to-2",
-          "source": "I am used to speaking English in class.",
-          "target": "我習慣在課堂上說英文。",
-          "meaning": "習慣於",
-          "level": "B1"
-        },
-        {
-          "id": "seed-be-used-to-3",
-          "source": "They are used to living in Hong Kong.",
-          "target": "他們習慣住在香港。",
-          "meaning": "習慣於",
-          "level": "B1"
-        }
-      ]
-    },
-    "get used to|15yzpnx": {
-      "word": "get used to",
-      "display": "get used to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B1",
-      "meaning": "變得習慣於",
-      "pos": "verb",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "變得習慣於",
-          "pos": "verb",
-          "type": "phrase",
-          "level": "B1"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-get-used-to-1",
-          "source": "He got used to taking the bus to school.",
-          "target": "他變得習慣坐巴士上學。",
-          "meaning": "變得習慣於",
-          "level": "B1"
-        },
-        {
-          "id": "seed-get-used-to-2",
-          "source": "You will get used to writing longer answers.",
-          "target": "你會變得習慣寫較長的答案。",
-          "meaning": "變得習慣於",
-          "level": "B1"
-        },
-        {
-          "id": "seed-get-used-to-3",
-          "source": "It took me a week to get used to the new timetable.",
-          "target": "我花了一星期才習慣新的時間表。",
-          "meaning": "變得習慣於",
-          "level": "B1"
-        }
-      ]
-    },
-    "object to|1ipjk9x": {
-      "word": "object to",
-      "display": "object to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B2",
-      "meaning": "反對",
-      "pos": "verb",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "反對",
-          "pos": "verb",
-          "type": "phrase",
-          "level": "B2"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-object-to-1",
-          "source": "Many parents object to cutting the music lesson.",
-          "target": "許多家長反對削減音樂課。",
-          "meaning": "反對",
-          "level": "B2"
-        },
-        {
-          "id": "seed-object-to-2",
-          "source": "She objected to changing the plan at the last minute.",
-          "target": "她反對在最後一刻更改計劃。",
-          "meaning": "反對",
-          "level": "B2"
-        },
-        {
-          "id": "seed-object-to-3",
-          "source": "We do not object to trying a new method.",
-          "target": "我們不反對嘗試新方法。",
-          "meaning": "反對",
-          "level": "B2"
-        }
-      ]
-    },
-    "be opposed to|rkkbr5": {
-      "word": "be opposed to",
-      "display": "be opposed to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B2",
-      "meaning": "反對",
-      "pos": "adjective",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "反對",
-          "pos": "adjective",
-          "type": "phrase",
-          "level": "B2"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-be-opposed-to-1",
-          "source": "The students are opposed to cancelling the school picnic.",
-          "target": "學生反對取消學校野餐。",
-          "meaning": "反對",
-          "level": "B2"
-        },
-        {
-          "id": "seed-be-opposed-to-2",
-          "source": "My father is opposed to wasting food.",
-          "target": "我爸爸反對浪費食物。",
-          "meaning": "反對",
-          "level": "B2"
-        },
-        {
-          "id": "seed-be-opposed-to-3",
-          "source": "The group was opposed to building a road there.",
-          "target": "該團體反對在那裡建路。",
-          "meaning": "反對",
-          "level": "B2"
-        }
-      ]
-    },
-    "commit to|dlvgmc": {
-      "word": "commit to",
-      "display": "commit to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B2",
-      "meaning": "承諾 / 致力於",
-      "pos": "verb",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "承諾 / 致力於",
-          "pos": "verb",
-          "type": "phrase",
-          "level": "B2"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-commit-to-1",
-          "source": "Our class committed to reading every day.",
-          "target": "我們班承諾每天閱讀。",
-          "meaning": "承諾 / 致力於",
-          "level": "B2"
-        },
-        {
-          "id": "seed-commit-to-2",
-          "source": "The team committed to improving their work.",
-          "target": "團隊致力於改善他們的工作。",
-          "meaning": "承諾 / 致力於",
-          "level": "B2"
-        },
-        {
-          "id": "seed-commit-to-3",
-          "source": "He committed to practising English after school.",
-          "target": "他承諾放學後練習英文。",
-          "meaning": "承諾 / 致力於",
-          "level": "B2"
-        }
-      ]
-    },
-    "be committed to|1o9ytae": {
-      "word": "be committed to",
-      "display": "be committed to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B2",
-      "meaning": "致力於",
-      "pos": "adjective",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "致力於",
-          "pos": "adjective",
-          "type": "phrase",
-          "level": "B2"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-be-committed-to-1",
-          "source": "Our teacher is committed to helping every student.",
-          "target": "我們的老師致力於幫助每一位學生。",
-          "meaning": "致力於",
-          "level": "B2"
-        },
-        {
-          "id": "seed-be-committed-to-2",
-          "source": "The club is committed to protecting the environment.",
-          "target": "這個學會致力於保護環境。",
-          "meaning": "致力於",
-          "level": "B2"
-        },
-        {
-          "id": "seed-be-committed-to-3",
-          "source": "She is committed to becoming a better writer.",
-          "target": "她致力於成為更好的寫作者。",
-          "meaning": "致力於",
-          "level": "B2"
-        }
-      ]
-    },
-    "dedicate to|1ki5zcp": {
-      "word": "dedicate to",
-      "display": "dedicate to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B2",
-      "meaning": "奉獻於",
-      "pos": "verb",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "奉獻於",
-          "pos": "verb",
-          "type": "phrase",
-          "level": "B2"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-dedicate-to-1",
-          "source": "He dedicated his life to helping children.",
-          "target": "他一生奉獻於幫助兒童。",
-          "meaning": "奉獻於",
-          "level": "B2"
-        },
-        {
-          "id": "seed-dedicate-to-2",
-          "source": "She dedicates her weekends to volunteering.",
-          "target": "她把週末奉獻於義工服務。",
-          "meaning": "奉獻於",
-          "level": "B2"
-        },
-        {
-          "id": "seed-dedicate-to-3",
-          "source": "The doctor dedicated many years to studying this illness.",
-          "target": "那位醫生奉獻多年研究這種疾病。",
-          "meaning": "奉獻於",
-          "level": "B2"
-        }
-      ]
-    },
-    "be dedicated to|12gkqn4": {
-      "word": "be dedicated to",
-      "display": "be dedicated to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B2",
-      "meaning": "專注於 / 奉獻於",
-      "pos": "adjective",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "專注於 / 奉獻於",
-          "pos": "adjective",
-          "type": "phrase",
-          "level": "B2"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-be-dedicated-to-1",
-          "source": "This page is dedicated to learning useful phrases.",
-          "target": "這一頁專注於學習有用短語。",
-          "meaning": "專注於 / 奉獻於",
-          "level": "B2"
-        },
-        {
-          "id": "seed-be-dedicated-to-2",
-          "source": "The centre is dedicated to helping young learners.",
-          "target": "這中心致力於幫助年幼學習者。",
-          "meaning": "專注於 / 奉獻於",
-          "level": "B2"
-        },
-        {
-          "id": "seed-be-dedicated-to-3",
-          "source": "She is dedicated to improving her pronunciation.",
-          "target": "她專注於改善自己的發音。",
-          "meaning": "專注於 / 奉獻於",
-          "level": "B2"
-        }
-      ]
-    },
-    "devote to|p5xbf9": {
-      "word": "devote to",
-      "display": "devote to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B2",
-      "meaning": "投身於",
-      "pos": "verb",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "投身於",
-          "pos": "verb",
-          "type": "phrase",
-          "level": "B2"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-devote-to-1",
-          "source": "He devotes his time to training young players.",
-          "target": "他投放時間訓練年輕球員。",
-          "meaning": "投身於",
-          "level": "B2"
-        },
-        {
-          "id": "seed-devote-to-2",
-          "source": "She devotes her energy to helping her family.",
-          "target": "她把精力投放於幫助家人。",
-          "meaning": "投身於",
-          "level": "B2"
-        },
-        {
-          "id": "seed-devote-to-3",
-          "source": "They devoted the afternoon to cleaning the classroom.",
-          "target": "他們把下午時間用於清潔課室。",
-          "meaning": "投身於",
-          "level": "B2"
-        }
-      ]
-    },
-    "be devoted to|elr4zo": {
-      "word": "be devoted to",
-      "display": "be devoted to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B2",
-      "meaning": "全心投入於",
-      "pos": "adjective",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "全心投入於",
-          "pos": "adjective",
-          "type": "phrase",
-          "level": "B2"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-be-devoted-to-1",
-          "source": "She is devoted to teaching English.",
-          "target": "她全心投入於英文教學。",
-          "meaning": "全心投入於",
-          "level": "B2"
-        },
-        {
-          "id": "seed-be-devoted-to-2",
-          "source": "The coach is devoted to training the team.",
-          "target": "教練全心投入訓練隊伍。",
-          "meaning": "全心投入於",
-          "level": "B2"
-        },
-        {
-          "id": "seed-be-devoted-to-3",
-          "source": "He is devoted to looking after his younger sister.",
-          "target": "他全心照顧妹妹。",
-          "meaning": "全心投入於",
-          "level": "B2"
-        }
-      ]
-    },
-    "contribute to|11l4imd": {
-      "word": "contribute to",
-      "display": "contribute to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B1",
-      "meaning": "有助於 / 促成",
-      "pos": "verb",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "有助於 / 促成",
-          "pos": "verb",
-          "type": "phrase",
-          "level": "B1"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-contribute-to-1",
-          "source": "Reading every day contributes to better writing.",
-          "target": "每天閱讀有助於改善寫作。",
-          "meaning": "有助於 / 促成",
-          "level": "B1"
-        },
-        {
-          "id": "seed-contribute-to-2",
-          "source": "Too much noise can contribute to poor sleep.",
-          "target": "太多噪音會導致睡眠質素差。",
-          "meaning": "有助於 / 促成",
-          "level": "B1"
-        },
-        {
-          "id": "seed-contribute-to-3",
-          "source": "Teamwork contributed to our success.",
-          "target": "團隊合作促成了我們的成功。",
-          "meaning": "有助於 / 促成",
-          "level": "B1"
-        }
-      ]
-    },
-    "with a view to|1ktdjqj": {
-      "word": "with a view to",
-      "display": "with a view to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "C1",
-      "meaning": "為了 / 目的在於",
-      "pos": "adverb",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "為了 / 目的在於",
-          "pos": "adverb",
-          "type": "phrase",
-          "level": "C1"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-with-a-view-to-1",
-          "source": "He joined the course with a view to improving his English.",
-          "target": "他參加課程，目的是改善英文。",
-          "meaning": "為了 / 目的在於",
-          "level": "C1"
-        },
-        {
-          "id": "seed-with-a-view-to-2",
-          "source": "She saved money with a view to studying abroad.",
-          "target": "她儲錢，目的是到海外讀書。",
-          "meaning": "為了 / 目的在於",
-          "level": "C1"
-        },
-        {
-          "id": "seed-with-a-view-to-3",
-          "source": "The school changed the timetable with a view to reducing stress.",
-          "target": "學校更改時間表，目的是減少壓力。",
-          "meaning": "為了 / 目的在於",
-          "level": "C1"
-        }
-      ]
-    },
-    "with an eye to|1aaene": {
-      "word": "with an eye to",
-      "display": "with an eye to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "C1",
-      "meaning": "考慮到 / 目的在於",
-      "pos": "adverb",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "考慮到 / 目的在於",
-          "pos": "adverb",
-          "type": "phrase",
-          "level": "C1"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-with-an-eye-to-1",
-          "source": "They designed the app with an eye to younger students.",
-          "target": "他們設計這個 app 時考慮到年幼學生。",
-          "meaning": "考慮到 / 目的在於",
-          "level": "C1"
-        },
-        {
-          "id": "seed-with-an-eye-to-2",
-          "source": "He chose science with an eye to becoming a doctor.",
-          "target": "他選擇科學，目的是將來做醫生。",
-          "meaning": "考慮到 / 目的在於",
-          "level": "C1"
-        },
-        {
-          "id": "seed-with-an-eye-to-3",
-          "source": "The shop opened early with an eye to attracting commuters.",
-          "target": "那間店提早開門，目的是吸引上班族。",
-          "meaning": "考慮到 / 目的在於",
-          "level": "C1"
-        }
-      ]
-    },
-    "adapt to|2qdml1": {
-      "word": "adapt to",
-      "display": "adapt to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B1",
-      "meaning": "適應",
-      "pos": "verb",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "適應",
-          "pos": "verb",
-          "type": "phrase",
-          "level": "B1"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-adapt-to-1",
-          "source": "New students need time to adapt to school life.",
-          "target": "新生需要時間適應校園生活。",
-          "meaning": "適應",
-          "level": "B1"
-        },
-        {
-          "id": "seed-adapt-to-2",
-          "source": "Animals adapt to living in different places.",
-          "target": "動物會適應住在不同地方。",
-          "meaning": "適應",
-          "level": "B1"
-        },
-        {
-          "id": "seed-adapt-to-3",
-          "source": "I adapted to using the new app quickly.",
-          "target": "我很快適應使用新的 app。",
-          "meaning": "適應",
-          "level": "B1"
-        }
-      ]
-    },
-    "adjust to|nva2yh": {
-      "word": "adjust to",
-      "display": "adjust to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B1",
-      "meaning": "調整 / 適應",
-      "pos": "verb",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "調整 / 適應",
-          "pos": "verb",
-          "type": "phrase",
-          "level": "B1"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-adjust-to-1",
-          "source": "You will adjust to the new class soon.",
-          "target": "你很快會適應新班級。",
-          "meaning": "調整 / 適應",
-          "level": "B1"
-        },
-        {
-          "id": "seed-adjust-to-2",
-          "source": "She adjusted to studying online.",
-          "target": "她適應了網上學習。",
-          "meaning": "調整 / 適應",
-          "level": "B1"
-        },
-        {
-          "id": "seed-adjust-to-3",
-          "source": "We adjusted to the colder weather.",
-          "target": "我們適應了較冷的天氣。",
-          "meaning": "調整 / 適應",
-          "level": "B1"
-        }
-      ]
-    },
-    "admit to|d04m1n": {
-      "word": "admit to",
-      "display": "admit to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B2",
-      "meaning": "承認",
-      "pos": "verb",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "承認",
-          "pos": "verb",
-          "type": "phrase",
-          "level": "B2"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-admit-to-1",
-          "source": "He admitted to breaking the cup.",
-          "target": "他承認打破了杯子。",
-          "meaning": "承認",
-          "level": "B2"
-        },
-        {
-          "id": "seed-admit-to-2",
-          "source": "She admitted to forgetting her homework.",
-          "target": "她承認忘記帶功課。",
-          "meaning": "承認",
-          "level": "B2"
-        },
-        {
-          "id": "seed-admit-to-3",
-          "source": "The boy admitted to taking the pencil.",
-          "target": "那男孩承認拿了鉛筆。",
-          "meaning": "承認",
-          "level": "B2"
-        }
-      ]
-    },
-    "confess to|1szso40": {
-      "word": "confess to",
-      "display": "confess to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B2",
-      "meaning": "坦白 / 交代",
-      "pos": "verb",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "坦白 / 交代",
-          "pos": "verb",
-          "type": "phrase",
-          "level": "B2"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-confess-to-1",
-          "source": "He confessed to telling a lie.",
-          "target": "他坦白說了謊。",
-          "meaning": "坦白 / 交代",
-          "level": "B2"
-        },
-        {
-          "id": "seed-confess-to-2",
-          "source": "She confessed to eating the last biscuit.",
-          "target": "她坦白吃了最後一塊餅乾。",
-          "meaning": "坦白 / 交代",
-          "level": "B2"
-        },
-        {
-          "id": "seed-confess-to-3",
-          "source": "The student confessed to copying the answer.",
-          "target": "那學生坦白抄了答案。",
-          "meaning": "坦白 / 交代",
-          "level": "B2"
-        }
-      ]
-    },
-    "take to|ap4jvo": {
-      "word": "take to",
-      "display": "take to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "C1",
-      "meaning": "開始喜歡 / 養成...習慣",
-      "pos": "verb",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "開始喜歡 / 養成...習慣",
-          "pos": "verb",
-          "type": "phrase",
-          "level": "C1"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-take-to-1",
-          "source": "He has taken to drinking green tea.",
-          "target": "他開始喜歡喝綠茶。",
-          "meaning": "開始喜歡 / 養成...習慣",
-          "level": "C1"
-        },
-        {
-          "id": "seed-take-to-2",
-          "source": "My sister has taken to drawing after school.",
-          "target": "我妹妹放學後開始喜歡畫畫。",
-          "meaning": "開始喜歡 / 養成...習慣",
-          "level": "C1"
-        },
-        {
-          "id": "seed-take-to-3",
-          "source": "The child took to reading before bed.",
-          "target": "那孩子養成睡前閱讀的習慣。",
-          "meaning": "開始喜歡 / 養成...習慣",
-          "level": "C1"
-        }
-      ]
-    },
-    "resort to|184vd8k": {
-      "word": "resort to",
-      "display": "resort to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "C1",
-      "meaning": "訴諸於 / 不得不使用",
-      "pos": "verb",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "訴諸於 / 不得不使用",
-          "pos": "verb",
-          "type": "phrase",
-          "level": "C1"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-resort-to-1",
-          "source": "We should talk instead of resorting to shouting.",
-          "target": "我們應該溝通，而不是訴諸叫喊。",
-          "meaning": "訴諸於 / 不得不使用",
-          "level": "C1"
-        },
-        {
-          "id": "seed-resort-to-2",
-          "source": "He resorted to borrowing money from a friend.",
-          "target": "他不得不向朋友借錢。",
-          "meaning": "訴諸於 / 不得不使用",
-          "level": "C1"
-        },
-        {
-          "id": "seed-resort-to-3",
-          "source": "The team resorted to using a simpler plan.",
-          "target": "團隊不得不採用較簡單的計劃。",
-          "meaning": "訴諸於 / 不得不使用",
-          "level": "C1"
-        }
-      ]
-    },
-    "apply oneself to|1lnfqox": {
-      "word": "apply oneself to",
-      "display": "apply oneself to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "C1",
-      "meaning": "專心致力於",
-      "pos": "verb",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "專心致力於",
-          "pos": "verb",
-          "type": "phrase",
-          "level": "C1"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-apply-oneself-to-1",
-          "source": "You must apply yourself to studying for the test.",
-          "target": "你必須專心溫習測驗。",
-          "meaning": "專心致力於",
-          "level": "C1"
-        },
-        {
-          "id": "seed-apply-oneself-to-2",
-          "source": "She applied herself to learning the piano.",
-          "target": "她專心學鋼琴。",
-          "meaning": "專心致力於",
-          "level": "C1"
-        },
-        {
-          "id": "seed-apply-oneself-to-3",
-          "source": "He applied himself to solving the problem.",
-          "target": "他專心解決問題。",
-          "meaning": "專心致力於",
-          "level": "C1"
-        }
-      ]
-    },
-    "be close to|lrf0wz": {
-      "word": "be close to",
-      "display": "be close to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B1",
-      "meaning": "接近於",
-      "pos": "adjective",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "接近於",
-          "pos": "adjective",
-          "type": "phrase",
-          "level": "B1"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-be-close-to-1",
-          "source": "We are close to finishing the project.",
-          "target": "我們快要完成這個專題。",
-          "meaning": "接近於",
-          "level": "B1"
-        },
-        {
-          "id": "seed-be-close-to-2",
-          "source": "The answer is close to being correct.",
-          "target": "這個答案接近正確。",
-          "meaning": "接近於",
-          "level": "B1"
-        },
-        {
-          "id": "seed-be-close-to-3",
-          "source": "She was close to winning the race.",
-          "target": "她差一點就贏了比賽。",
-          "meaning": "接近於",
-          "level": "B1"
-        }
-      ]
-    },
-    "be near to|lrf0wz": {
-      "word": "be near to",
-      "display": "be near to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B1",
-      "meaning": "接近於",
-      "pos": "adjective",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "接近於",
-          "pos": "adjective",
-          "type": "phrase",
-          "level": "B1"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-be-near-to-1",
-          "source": "The work is near to completion.",
-          "target": "這項工作接近完成。",
-          "meaning": "接近於",
-          "level": "B1"
-        },
-        {
-          "id": "seed-be-near-to-2",
-          "source": "The team is near to reaching its goal.",
-          "target": "團隊快要達到目標。",
-          "meaning": "接近於",
-          "level": "B1"
-        },
-        {
-          "id": "seed-be-near-to-3",
-          "source": "He is near to solving the puzzle.",
-          "target": "他快要解開謎題。",
-          "meaning": "接近於",
-          "level": "B1"
-        }
-      ]
-    },
-    "key to|nabkuf": {
-      "word": "key to",
-      "display": "key to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B1",
-      "meaning": "...的關鍵",
-      "pos": "noun",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "...的關鍵",
-          "pos": "noun",
-          "type": "phrase",
-          "level": "B1"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-key-to-1",
-          "source": "Practice is the key to improving your English.",
-          "target": "練習是改善英文的關鍵。",
-          "meaning": "...的關鍵",
-          "level": "B1"
-        },
-        {
-          "id": "seed-key-to-2",
-          "source": "Sleep is the key to staying healthy.",
-          "target": "睡眠是保持健康的關鍵。",
-          "meaning": "...的關鍵",
-          "level": "B1"
-        },
-        {
-          "id": "seed-key-to-3",
-          "source": "Listening carefully is the key to understanding the story.",
-          "target": "細心聆聽是理解故事的關鍵。",
-          "meaning": "...的關鍵",
-          "level": "B1"
-        }
-      ]
-    },
-    "secret to|mxau39": {
-      "word": "secret to",
-      "display": "secret to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B1",
-      "meaning": "...的秘訣",
-      "pos": "noun",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "...的秘訣",
-          "pos": "noun",
-          "type": "phrase",
-          "level": "B1"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-secret-to-1",
-          "source": "What is your secret to staying calm?",
-          "target": "你保持冷靜的秘訣是甚麼？",
-          "meaning": "...的秘訣",
-          "level": "B1"
-        },
-        {
-          "id": "seed-secret-to-2",
-          "source": "The secret to writing well is reading more.",
-          "target": "寫得好的秘訣是多閱讀。",
-          "meaning": "...的秘訣",
-          "level": "B1"
-        },
-        {
-          "id": "seed-secret-to-3",
-          "source": "Her secret to learning fast is asking questions.",
-          "target": "她學得快的秘訣是發問。",
-          "meaning": "...的秘訣",
-          "level": "B1"
-        }
-      ]
-    },
-    "solution to|1b8u6p8": {
-      "word": "solution to",
-      "display": "solution to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B1",
-      "meaning": "...的解決辦法",
-      "pos": "noun",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "...的解決辦法",
-          "pos": "noun",
-          "type": "phrase",
-          "level": "B1"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-solution-to-1",
-          "source": "We need a solution to reducing food waste.",
-          "target": "我們需要一個減少食物浪費的解決辦法。",
-          "meaning": "...的解決辦法",
-          "level": "B1"
-        },
-        {
-          "id": "seed-solution-to-2",
-          "source": "There is no easy solution to stopping bullying.",
-          "target": "阻止欺凌沒有簡單的解決辦法。",
-          "meaning": "...的解決辦法",
-          "level": "B1"
-        },
-        {
-          "id": "seed-solution-to-3",
-          "source": "This app may be a solution to learning vocabulary.",
-          "target": "這個 app 可能是學習生字的解決辦法。",
-          "meaning": "...的解決辦法",
-          "level": "B1"
-        }
-      ]
-    },
-    "alternative to|cuzsto": {
-      "word": "alternative to",
-      "display": "alternative to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B2",
-      "meaning": "...之外的替代方案",
-      "pos": "noun",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "...之外的替代方案",
-          "pos": "noun",
-          "type": "phrase",
-          "level": "B2"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-alternative-to-1",
-          "source": "Walking is a healthy alternative to taking the bus.",
-          "target": "步行是乘巴士之外的健康替代方案。",
-          "meaning": "...之外的替代方案",
-          "level": "B2"
-        },
-        {
-          "id": "seed-alternative-to-2",
-          "source": "Is there an alternative to buying a new phone?",
-          "target": "有沒有買新電話之外的替代方案？",
-          "meaning": "...之外的替代方案",
-          "level": "B2"
-        },
-        {
-          "id": "seed-alternative-to-3",
-          "source": "Reading is a good alternative to playing games.",
-          "target": "閱讀是打機之外的好替代活動。",
-          "meaning": "...之外的替代方案",
-          "level": "B2"
-        }
-      ]
-    },
-    "approach to|19x78gm": {
-      "word": "approach to",
-      "display": "approach to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B2",
-      "meaning": "...的方法",
-      "pos": "noun",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "...的方法",
-          "pos": "noun",
-          "type": "phrase",
-          "level": "B2"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-approach-to-1",
-          "source": "We need a new approach to learning grammar.",
-          "target": "我們需要一個學文法的新方法。",
-          "meaning": "...的方法",
-          "level": "B2"
-        },
-        {
-          "id": "seed-approach-to-2",
-          "source": "Her approach to solving problems is clear.",
-          "target": "她解決問題的方法很清晰。",
-          "meaning": "...的方法",
-          "level": "B2"
-        },
-        {
-          "id": "seed-approach-to-3",
-          "source": "This is a useful approach to teaching vocabulary.",
-          "target": "這是教授生字的有用方法。",
-          "meaning": "...的方法",
-          "level": "B2"
-        }
-      ]
-    },
-    "access to|stiyk6": {
-      "word": "access to",
-      "display": "access to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B1",
-      "meaning": "進入 / 使用...的權利或機會",
-      "pos": "noun",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "進入 / 使用...的權利或機會",
-          "pos": "noun",
-          "type": "phrase",
-          "level": "B1"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-access-to-1",
-          "source": "Students need access to clean water.",
-          "target": "學生需要有使用清潔食水的機會。",
-          "meaning": "進入 / 使用...的權利或機會",
-          "level": "B1"
-        },
-        {
-          "id": "seed-access-to-2",
-          "source": "The app gives children access to English practice.",
-          "target": "這個 app 讓孩子有機會練習英文。",
-          "meaning": "進入 / 使用...的權利或機會",
-          "level": "B1"
-        },
-        {
-          "id": "seed-access-to-3",
-          "source": "Not every family has access to a computer.",
-          "target": "不是每個家庭都有使用電腦的機會。",
-          "meaning": "進入 / 使用...的權利或機會",
-          "level": "B1"
-        }
-      ]
-    },
-    "response to|ltlrty": {
-      "word": "response to",
-      "display": "response to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B1",
-      "meaning": "對...的回應",
-      "pos": "noun",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "對...的回應",
-          "pos": "noun",
-          "type": "phrase",
-          "level": "B1"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-response-to-1",
-          "source": "Her response to winning was very calm.",
-          "target": "她對得獎的反應很冷靜。",
-          "meaning": "對...的回應",
-          "level": "B1"
-        },
-        {
-          "id": "seed-response-to-2",
-          "source": "The teacher liked my response to the question.",
-          "target": "老師喜歡我對問題的回應。",
-          "meaning": "對...的回應",
-          "level": "B1"
-        },
-        {
-          "id": "seed-response-to-3",
-          "source": "His response to hearing the news was surprising.",
-          "target": "他聽到消息後的反應令人驚訝。",
-          "meaning": "對...的回應",
-          "level": "B1"
-        }
-      ]
-    },
-    "reaction to|kfk4at": {
-      "word": "reaction to",
-      "display": "reaction to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B1",
-      "meaning": "對...的反應",
-      "pos": "noun",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "對...的反應",
-          "pos": "noun",
-          "type": "phrase",
-          "level": "B1"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-reaction-to-1",
-          "source": "Her reaction to the gift was lovely.",
-          "target": "她收到禮物後的反應很可愛。",
-          "meaning": "對...的反應",
-          "level": "B1"
-        },
-        {
-          "id": "seed-reaction-to-2",
-          "source": "His reaction to losing the game was mature.",
-          "target": "他輸掉比賽後的反應很成熟。",
-          "meaning": "對...的反應",
-          "level": "B1"
-        },
-        {
-          "id": "seed-reaction-to-3",
-          "source": "The class had a strong reaction to the story.",
-          "target": "全班對這個故事有強烈反應。",
-          "meaning": "對...的反應",
-          "level": "B1"
-        }
-      ]
-    },
-    "challenge to|ltmkzq": {
-      "word": "challenge to",
-      "display": "challenge to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B2",
-      "meaning": "對...的挑戰",
-      "pos": "noun",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "對...的挑戰",
-          "pos": "noun",
-          "type": "phrase",
-          "level": "B2"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-challenge-to-1",
-          "source": "The new rule is a challenge to older students.",
-          "target": "新規則對較年長學生是一個挑戰。",
-          "meaning": "對...的挑戰",
-          "level": "B2"
-        },
-        {
-          "id": "seed-challenge-to-2",
-          "source": "Online learning can be a challenge to young children.",
-          "target": "網上學習對年幼孩子可能是一個挑戰。",
-          "meaning": "對...的挑戰",
-          "level": "B2"
-        },
-        {
-          "id": "seed-challenge-to-3",
-          "source": "This question is a challenge to our thinking.",
-          "target": "這條問題是對我們思考的挑戰。",
-          "meaning": "對...的挑戰",
-          "level": "B2"
-        }
-      ]
-    },
-    "limit to|78isix": {
-      "word": "limit to",
-      "display": "limit to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B1",
-      "meaning": "對...的限制",
-      "pos": "noun",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "對...的限制",
-          "pos": "noun",
-          "type": "phrase",
-          "level": "B1"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-limit-to-1",
-          "source": "There is a limit to using phones in class.",
-          "target": "課堂上使用電話有限制。",
-          "meaning": "對...的限制",
-          "level": "B1"
-        },
-        {
-          "id": "seed-limit-to-2",
-          "source": "There should be a limit to spending pocket money.",
-          "target": "花零用錢應該有限制。",
-          "meaning": "對...的限制",
-          "level": "B1"
-        },
-        {
-          "id": "seed-limit-to-3",
-          "source": "The teacher set a limit to talking time.",
-          "target": "老師限制了說話時間。",
-          "meaning": "對...的限制",
-          "level": "B1"
-        }
-      ]
-    },
-    "open to|1y7avw": {
-      "word": "open to",
-      "display": "open to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B1",
-      "meaning": "對...開放的 / 不排斥的",
-      "pos": "adjective",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "對...開放的 / 不排斥的",
-          "pos": "adjective",
-          "type": "phrase",
-          "level": "B1"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-open-to-1",
-          "source": "Our teacher is open to hearing new ideas.",
-          "target": "我們的老師樂意聽新想法。",
-          "meaning": "對...開放的 / 不排斥的",
-          "level": "B1"
-        },
-        {
-          "id": "seed-open-to-2",
-          "source": "I am open to trying a different method.",
-          "target": "我願意嘗試不同的方法。",
-          "meaning": "對...開放的 / 不排斥的",
-          "level": "B1"
-        },
-        {
-          "id": "seed-open-to-3",
-          "source": "The club is open to accepting new members.",
-          "target": "這個學會歡迎新會員加入。",
-          "meaning": "對...開放的 / 不排斥的",
-          "level": "B1"
-        }
-      ]
-    },
-    "equal to|saso5q": {
-      "word": "equal to",
-      "display": "equal to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B2",
-      "meaning": "勝任...的 / 與...相等的",
-      "pos": "adjective",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "勝任...的 / 與...相等的",
-          "pos": "adjective",
-          "type": "phrase",
-          "level": "B2"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-equal-to-1",
-          "source": "She is equal to leading the group.",
-          "target": "她勝任帶領小組。",
-          "meaning": "勝任...的 / 與...相等的",
-          "level": "B2"
-        },
-        {
-          "id": "seed-equal-to-2",
-          "source": "He is equal to handling this difficult task.",
-          "target": "他勝任處理這項困難任務。",
-          "meaning": "勝任...的 / 與...相等的",
-          "level": "B2"
-        },
-        {
-          "id": "seed-equal-to-3",
-          "source": "One dollar is not equal to one pound.",
-          "target": "一元不等於一英鎊。",
-          "meaning": "勝任...的 / 與...相等的",
-          "level": "B2"
-        }
-      ]
-    },
-    "essential to|7atyxk": {
-      "word": "essential to",
-      "display": "essential to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B2",
-      "meaning": "對...不可或缺的",
-      "pos": "adjective",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "對...不可或缺的",
-          "pos": "adjective",
-          "type": "phrase",
-          "level": "B2"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-essential-to-1",
-          "source": "Water is essential to staying alive.",
-          "target": "水對維持生命不可或缺。",
-          "meaning": "對...不可或缺的",
-          "level": "B2"
-        },
-        {
-          "id": "seed-essential-to-2",
-          "source": "Sleep is essential to learning well.",
-          "target": "睡眠對學得好不可或缺。",
-          "meaning": "對...不可或缺的",
-          "level": "B2"
-        },
-        {
-          "id": "seed-essential-to-3",
-          "source": "Practice is essential to improving pronunciation.",
-          "target": "練習對改善發音不可或缺。",
-          "meaning": "對...不可或缺的",
-          "level": "B2"
-        }
-      ]
-    },
-    "preparatory to|1oi349r": {
-      "word": "preparatory to",
-      "display": "preparatory to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "C1",
-      "meaning": "作為...的準備",
-      "pos": "adverb",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "作為...的準備",
-          "pos": "adverb",
-          "type": "phrase",
-          "level": "C1"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-preparatory-to-1",
-          "source": "He read several books preparatory to writing his report.",
-          "target": "他讀了幾本書，作為寫報告的準備。",
-          "meaning": "作為...的準備",
-          "level": "C1"
-        },
-        {
-          "id": "seed-preparatory-to-2",
-          "source": "She made notes preparatory to giving a speech.",
-          "target": "她做筆記，作為演講的準備。",
-          "meaning": "作為...的準備",
-          "level": "C1"
-        },
-        {
-          "id": "seed-preparatory-to-3",
-          "source": "The team held a meeting preparatory to launching the project.",
-          "target": "團隊開會，作為推出項目的準備。",
-          "meaning": "作為...的準備",
-          "level": "C1"
-        }
-      ]
-    },
-    "prior to|veqq2g": {
-      "word": "prior to",
-      "display": "prior to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "B2",
-      "meaning": "在...之前",
-      "pos": "preposition",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "在...之前",
-          "pos": "preposition",
-          "type": "phrase",
-          "level": "B2"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-prior-to-1",
-          "source": "Prior to joining this school, she lived in Canada.",
-          "target": "加入這間學校之前，她住在加拿大。",
-          "meaning": "在...之前",
-          "level": "B2"
-        },
-        {
-          "id": "seed-prior-to-2",
-          "source": "Please wash your hands prior to eating.",
-          "target": "進食之前請洗手。",
-          "meaning": "在...之前",
-          "level": "B2"
-        },
-        {
-          "id": "seed-prior-to-3",
-          "source": "He checked his work prior to handing it in.",
-          "target": "他交功課之前檢查了作品。",
-          "meaning": "在...之前",
-          "level": "B2"
-        }
-      ]
-    },
-    "impervious to|lzr10x": {
-      "word": "impervious to",
-      "display": "impervious to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "C1",
-      "meaning": "不受...影響的",
-      "pos": "adjective",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "不受...影響的",
-          "pos": "adjective",
-          "type": "phrase",
-          "level": "C1"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-impervious-to-1",
-          "source": "He seems impervious to criticism.",
-          "target": "他似乎不受批評影響。",
-          "meaning": "不受...影響的",
-          "level": "C1"
-        },
-        {
-          "id": "seed-impervious-to-2",
-          "source": "The material is impervious to water.",
-          "target": "這種物料不透水。",
-          "meaning": "不受...影響的",
-          "level": "C1"
-        },
-        {
-          "id": "seed-impervious-to-3",
-          "source": "She remained impervious to the noise outside.",
-          "target": "她沒有受外面的噪音影響。",
-          "meaning": "不受...影響的",
-          "level": "C1"
-        }
-      ]
-    },
-    "resigned to|1y56mys": {
-      "word": "resigned to",
-      "display": "resigned to",
-      "source": "local-seed-curated",
-      "status": "ready",
-      "level": "C1",
-      "meaning": "無奈接受...的",
-      "pos": "adjective",
-      "type": "phrase",
-      "hints": [
-        {
-          "meaning": "無奈接受...的",
-          "pos": "adjective",
-          "type": "phrase",
-          "level": "C1"
-        }
-      ],
-      "examples": [
-        {
-          "id": "seed-resigned-to-1",
-          "source": "He is resigned to waiting for another hour.",
-          "target": "他無奈接受再等一小時。",
-          "meaning": "無奈接受...的",
-          "level": "C1"
-        },
-        {
-          "id": "seed-resigned-to-2",
-          "source": "She was resigned to missing the school trip.",
-          "target": "她無奈接受錯過學校旅行。",
-          "meaning": "無奈接受...的",
-          "level": "C1"
-        },
-        {
-          "id": "seed-resigned-to-3",
-          "source": "They are resigned to changing their plan.",
-          "target": "他們無奈接受更改計劃。",
-          "meaning": "無奈接受...的",
-          "level": "C1"
-        }
-      ]
     }
   }
-}
-);
+});

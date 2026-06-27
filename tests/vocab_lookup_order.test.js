@@ -972,7 +972,7 @@ function assertStudentLookupContract(word, matches) {
 
   assert.deepStrictEqual(
     (await lookupForStudent("have a look")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
-    ["phrase:verb:看一看 / 看一下:curated-sense-bank"]
+    ["phrase:verb:看一看:curated-sense-bank"]
   );
 
   assert.deepStrictEqual(
@@ -3935,7 +3935,7 @@ function assertStudentLookupContract(word, matches) {
 
   assert.deepStrictEqual(
     (await lookupForStudent("keep an eye on")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
-    ["phrase:verb:留意 / 注意:curated-sense-bank"]
+    ["phrase:verb:密切注意 / 照顧:curated-sense-bank"]
   );
 
   assert.deepStrictEqual(
@@ -3954,7 +3954,7 @@ function assertStudentLookupContract(word, matches) {
 
   assert.deepStrictEqual(
     (await lookupForStudent("make a living")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
-    ["phrase:verb:謀生 / 維持生計:curated-sense-bank"]
+    ["phrase:verb:謀生:curated-sense-bank"]
   );
 
   assert.deepStrictEqual(
@@ -5482,7 +5482,7 @@ function assertStudentLookupContract(word, matches) {
 
   assert.deepStrictEqual(
     (await lookupForStudent("shed some lights on")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
-    ["shed light on:phrase:verb:闡明 / 提供線索:curated-sense-bank"]
+    ["shed light on:phrase:verb:闡明 / 有助於解釋:curated-sense-bank"]
   );
 
   assert.deepStrictEqual(

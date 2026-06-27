@@ -14,7 +14,7 @@ assert.ok(have.some((entry) => entry.meaning === "食 / 飲" && entry.pos === "v
 assert.ok(have.some((entry) => entry.meaning === "上 / 參加" && entry.level === "A2"));
 assert.deepStrictEqual(
   senseBank.lookup("have a look").map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),
-  ["phrase:verb:看一看 / 看一下"]
+  ["phrase:verb:看一看"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("have lunch").map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),
@@ -292,7 +292,7 @@ assert.deepStrictEqual(
 assert.strictEqual(senseBank.lookup("break down")[0].overrideTeacher, true);
 assert.deepStrictEqual(
   senseBank.lookup("take place").map((entry) => `${entry.type}:${entry.meaning}`),
-  ["phrase:發生", "phrase:舉行"]
+  ["phrase:發生 / 舉行"]
 );
 assert.strictEqual(senseBank.lookup("take place")[0].overrideTeacher, true);
 assert.deepStrictEqual(
@@ -1060,7 +1060,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("rise to fame").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["verb:成名 / 走紅"]
+  ["verb:變得出名"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("pretty").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -2981,7 +2981,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("keep an eye on").map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),
-  ["phrase:verb:留意 / 注意"]
+  ["phrase:verb:密切注意 / 照顧"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("let alone").map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),
@@ -3001,7 +3001,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("make a living").map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),
-  ["phrase:verb:謀生 / 維持生計"]
+  ["phrase:verb:謀生"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("mindset").map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),
@@ -3049,7 +3049,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("take advantage of").map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),
-  ["phrase:verb:利用 / 善用"]
+  ["phrase:verb:利用 / 佔便宜"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("take into account").map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),
@@ -5979,12 +5979,12 @@ const phrasesTwoEntries = [
   }
 ];
 
-phrasesTwoEntries.forEach(({ word }) => {
+phrasesTwoEntries.forEach(({ word, meaning }) => {
   const [entry] = senseBank.lookup(word);
   assert.ok(entry, `${word} should be covered from PHRASES-2.txt`);
   assert.strictEqual(entry.type, "phrase");
   assert.strictEqual(entry.pos, "verb");
-  assert.ok(entry.meaning, `${word} should have a Chinese meaning`);
+  assert.strictEqual(entry.meaning, meaning, `${word} should match PHRASES-2.txt meaning`);
   assert.ok(entry.level, `${word} should have a level`);
 });
 

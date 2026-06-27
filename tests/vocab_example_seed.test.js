@@ -1,8 +1,10 @@
 const assert = require("assert");
+const fs = require("fs");
 
 process.env.NODE_ENV = "test";
 
 const utils = require("../vocab_example_utils.js");
+const senseBank = require("../vocab_sense_bank.js");
 const generator = require("../scripts/generate-vocab-examples.js");
 
 const blockedKeys = generator.getBlockedSeedKeys({
@@ -160,5 +162,44 @@ const seed = require("../vocab_example_seed.js");
     assert.ok(example.target, `${entry.word} example should have Chinese`);
   });
 });
+
+function parsePhrasesTwoFile(filePath) {
+  const text = fs.readFileSync(filePath, "utf8").replace(/^\uFEFF/, "");
+  return text.split(/\r?\n/).reduce((entries, line) => {
+    const match = line.match(/^\s*\*\s+(.+?)\s+\(([^)]+)\.\)\s+(.+?)\s*$/);
+    if (match) {
+      entries.push({
+        word: match[1].trim(),
+        meaning: utils.normalizeMeaning(match[3])
+      });
+    }
+    return entries;
+  }, []);
+}
+
+const phrasesTwoPath = "/Users/macbook/Downloads/PHRASES-2.txt";
+if (fs.existsSync(phrasesTwoPath)) {
+  const phrasesTwoEntries = parsePhrasesTwoFile(phrasesTwoPath);
+  assert.strictEqual(phrasesTwoEntries.length, 260);
+  phrasesTwoEntries.forEach(({ word }) => {
+    const entry = senseBank.lookup(word).find((item) => item.type === "phrase" && item.pos === "verb");
+    assert.ok(entry, `${word} should be covered from PHRASES-2.txt`);
+    const key = utils.getLocalCacheKey(word, [{
+      meaning: entry.meaning,
+      pos: entry.pos,
+      type: entry.type,
+      level: entry.level
+    }]);
+    const payload = seed.entries[key];
+    assert.ok(payload, `${word} should have local PHRASES-2 examples`);
+    assert.strictEqual(payload.type, "phrase");
+    assert.strictEqual(payload.pos, "verb");
+    assert.strictEqual(payload.examples.length, 3);
+    payload.examples.forEach((example) => {
+      assert.ok(example.source, `${word} example should have English`);
+      assert.ok(example.target, `${word} example should have Chinese`);
+    });
+  });
+}
 
 console.log("vocab example seed tests passed");
