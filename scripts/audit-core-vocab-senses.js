@@ -6,6 +6,8 @@ const fs = require("fs");
 const vm = require("vm");
 
 const ROOT_DIR = path.resolve(__dirname, "..");
+global.window = globalThis;
+require(path.join(ROOT_DIR, "grammar_verb_table_data.js"));
 const checklist = require(path.join(ROOT_DIR, "core_vocab_sense_checklist.js"));
 const teacherVocab = require(path.join(ROOT_DIR, "teacher_vocab.js"));
 const senseBank = require(path.join(ROOT_DIR, "vocab_sense_bank.js"));
@@ -4860,7 +4862,10 @@ function auditApprovedBankMetadata(entries = [], expectedSource = "") {
       invalidLevel.push(`${label} :: ${entry.level}`);
     }
     if (!entry.display) missingDisplay.push(label);
-    if (entry.source !== expectedSource) missingSource.push(`${label} :: ${entry.source || ""}`);
+    const expectedSources = expectedSource === "curated-sense-bank"
+      ? new Set(["curated-sense-bank", "verb-table-form"])
+      : new Set([expectedSource]);
+    if (!expectedSources.has(entry.source)) missingSource.push(`${label} :: ${entry.source || ""}`);
 
     const exactKey = [
       entry.word,
@@ -5218,7 +5223,7 @@ function getApprovedLookupAuditWords() {
 
 async function auditStudentLookupMetadata(words = STUDENT_LOOKUP_AUDIT_WORDS, providers = getStudentLookupProviders()) {
   const validLevels = new Set(["A1", "A2", "B1", "B2", "C1", "C2"]);
-  const approvedSources = new Set(["teacher-live", "teacher", "curated-sense-bank", "cc-cedict-supplement"]);
+  const approvedSources = new Set(["teacher-live", "teacher", "curated-sense-bank", "verb-table-form", "cc-cedict-supplement"]);
   const issues = [];
   const duplicateExact = [];
   const exactKeys = new Map();
@@ -5424,6 +5429,7 @@ async function auditExpectedStudentLookupMeanings(cases = EXPECTED_STUDENT_LOOKU
       && (
         normalizeMeaningGroupKey(entry.meaning) === expectedMeaningKey
         || normalizeMeaningGroupKey(entry.meaning).includes(expectedMeaningKey)
+        || verbTableFormMatchesExpectedLabel(entry, expected)
         || getMeaningParts(entry.meaning).some((part) => part === expectedMeaningKey || part.includes(expectedMeaningKey))
       )
     ));
@@ -5451,6 +5457,18 @@ async function auditExpectedStudentLookupMeanings(cases = EXPECTED_STUDENT_LOOKU
     issueCount: missing.length,
     missing
   };
+}
+
+function verbTableFormMatchesExpectedLabel(entry = {}, expected = {}) {
+  if (entry.source !== "verb-table-form") return false;
+  const expectedText = teacherVocab.normalizeMeaning(expected.meaning);
+  const match = expectedText.match(/^([a-z]+(?: [a-z]+)*) 的\s*(過去式|PP|過去分詞|ING)(?:\s*\/\s*(PP|過去分詞|ING))*$/i);
+  if (!match) return false;
+  const base = teacherVocab.normalizeWord(match[1]);
+  const roles = [match[2], match[3]].filter(Boolean).map((role) => role === "過去分詞" ? "PP" : role);
+  const entryText = teacherVocab.normalizeMeaning(entry.meaning);
+  return entryText.includes(`（${base} `)
+    && roles.some((role) => entryText.includes(role));
 }
 
 function studentLookupEntryMatchesWord(entry = {}, normalizedWord = "") {
@@ -5551,8 +5569,12 @@ function hasVerbTableFormSense(form = "", present = "", bank = senseBank) {
   return bank.lookup(form, { includeHidden: true, limit: 80 }).some((entry) => {
     if (teacherVocab.normalizePos(entry.pos) !== "verb") return false;
     const meaning = teacherVocab.normalizeMeaning(entry.meaning);
-    if (!/ 的\s*(過去式|PP)/.test(meaning)) return false;
     if (!normalizedPresent) return true;
+    if (entry.source === "verb-table-form") {
+      return meaning.includes(`（${normalizedPresent} `)
+        && /(過去式|PP)/.test(meaning);
+    }
+    if (!/ 的\s*(過去式|PP)/.test(meaning)) return false;
     return meaning
       .match(/[A-Za-z]+(?:\s+[A-Za-z]+)?\s+的\s*(?:過去式|PP)/g)
       ?.some((marker) => teacherVocab.normalizeWord(marker.split(" 的")[0]) === normalizedPresent);
@@ -5680,7 +5702,7 @@ async function auditOxfordLookupCoverage(entries = oxfordCefrVocab.entries || []
 
 function auditSavedVocabItemSafety() {
   const issues = [];
-  const requiredSources = ["teacher-live", "teacher", "curated-sense-bank", "cc-cedict-supplement"];
+  const requiredSources = ["teacher-live", "teacher", "curated-sense-bank", "verb-table-form", "cc-cedict-supplement"];
   const forbiddenSources = ["azure-dictionary", "azure-translate-fallback", "cc-cedict-reverse", "offline-dictionary"];
   requiredSources.forEach((source) => {
     if (!vocabData.APPROVED_MEANING_SOURCES?.has(source)) {

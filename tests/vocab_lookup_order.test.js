@@ -5209,7 +5209,10 @@ function assertStudentLookupContract(word, matches) {
 
   assert.deepStrictEqual(
     (await lookupForStudent("filling")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
-    ["noun:餡料 / 填充物:curated-sense-bank"]
+    [
+      "noun:餡料 / 填充物:curated-sense-bank",
+      "verb:填滿 / 裝滿（fill ING）:verb-table-form"
+    ]
   );
 
   assert.deepStrictEqual(

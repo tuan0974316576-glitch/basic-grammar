@@ -3869,7 +3869,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("traveling").map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}`),
-  ["traveling:noun:旅行", "travel:verb:旅行"]
+  ["traveling:noun:旅行"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("turn a into b").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),

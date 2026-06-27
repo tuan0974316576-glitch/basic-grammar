@@ -18,6 +18,7 @@
     "teacher-live",
     "teacher",
     "curated-sense-bank",
+    "verb-table-form",
     "cc-cedict-supplement"
   ]);
   const VALID_MEANING_POS = new Set([
