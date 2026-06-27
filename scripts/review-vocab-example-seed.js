@@ -36,7 +36,12 @@ function getMismatchReason(entry = {}) {
   if (/因為\+句子/.test(meaning) && entry.word !== "because") return "non-because causal phrase";
   if (entry.word === "imagine" && /幻想|想像/.test(meaning)) return "";
   if (entry.level === "A1" && ABSTRACT_A1_RE.test(meaning)) return "abstract A1 meaning";
-  if (entry.word === "drive" && /驅使|驅動/.test(meaning) && /car|work|開車|駕駛|drive to/i.test(examplesText)) {
+  if (
+    entry.word === "drive" &&
+    /驅使|驅動/.test(meaning) &&
+    /car|work|開車|駕駛|drive to/i.test(examplesText) &&
+    !/drives? (her|him|them|us|me|people)|驅使|推動/i.test(examplesText)
+  ) {
     return "drive meaning mismatch";
   }
   if (entry.word === "course" && meaning === "時間" && /課程|course/i.test(examplesText)) {

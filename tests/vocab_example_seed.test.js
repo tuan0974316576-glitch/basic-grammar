@@ -91,10 +91,12 @@ assert.strictEqual(generator.inferFallbackLevel({ word: "take for granted", type
 const tasks = generator.buildTasks({
   teacherEntries: [
     { id: "t1", word: "evaluate", meaning: "評估", pos: "verb", type: "word" },
+    { id: "bad-do", word: "do", meaning: "缺點", inferredPos: "noun", type: "word" },
     { id: "t2", word: "be+pp", meaning: "被", type: "pattern" }
   ],
   curatedEntries: [
-    { id: "c1", word: "water", meaning: "澆水", pos: "verb", type: "word", level: "B1", source: "curated-sense-bank" }
+    { id: "c1", word: "water", meaning: "澆水", pos: "verb", type: "word", level: "B1", source: "curated-sense-bank" },
+    { id: "hide-do", word: "do", meaning: "缺點", pos: "noun", type: "word", level: "B1", hidden: true, overrideTeacher: true }
   ],
   oxfordEntries: [
     { word: "evaluate", display: "evaluate", level: "B2", pos: ["verb"], posRaw: "v." },
@@ -111,6 +113,7 @@ assert.deepStrictEqual(
     `teacher:evaluate:${utils.getLocalCacheKey("evaluate", [{ meaning: "評估", pos: "verb", type: "word", level: "B2" }])}:B2`
   ]
 );
+assert.ok(!tasks.some((task) => task.word === "do" && task.meaning === "缺點"));
 
 const auditedCount = coverageAudit.countValidExamples({
   examples: [

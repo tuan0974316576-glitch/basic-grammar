@@ -266,6 +266,18 @@ function normalizeTeacherTask(entry = {}, oxfordLevelByWord = new Map()) {
   return normalizeMeaningTask(entry, oxfordLevelByWord, "teacher");
 }
 
+function getSuppressionKey(entry = {}) {
+  const word = VocabExampleUtils.normalizeWord(entry.word);
+  const meaning = VocabExampleUtils.normalizeMeaning(entry.meaning);
+  if (!word || !meaning) return "";
+  return `${word}|${meaning}`;
+}
+
+function isSuppressedByHiddenCuratedEntry(entry = {}, hiddenCuratedKeys = new Set()) {
+  const key = getSuppressionKey(entry);
+  return Boolean(key && hiddenCuratedKeys.has(key));
+}
+
 function normalizeMeaningTask(entry = {}, oxfordLevelByWord = new Map(), source = "teacher") {
   const word = VocabExampleUtils.normalizeWord(entry.word);
   const meaning = VocabExampleUtils.normalizeMeaning(entry.meaning);
@@ -341,8 +353,16 @@ function buildTasks(input = {}) {
       .map((entry) => VocabExampleUtils.normalizeWord(entry.word))
       .filter(Boolean)
   );
+  const hiddenCuratedKeys = new Set(
+    curatedEntries
+      .filter((entry) => entry.hidden && entry.overrideTeacher)
+      .map(getSuppressionKey)
+      .filter(Boolean)
+  );
   const tasks = [
-    ...teacherEntries.map((entry) => normalizeTeacherTask(entry, oxfordLevelByWord)),
+    ...teacherEntries
+      .filter((entry) => !isSuppressedByHiddenCuratedEntry(entry, hiddenCuratedKeys))
+      .map((entry) => normalizeTeacherTask(entry, oxfordLevelByWord)),
     ...curatedEntries.map((entry) => normalizeMeaningTask(entry, oxfordLevelByWord, entry.source || "curated")),
     ...oxfordEntries.map((entry) => normalizeOxfordTask(entry, teacherWordSet))
   ].filter(Boolean);
