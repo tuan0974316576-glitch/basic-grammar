@@ -5,11 +5,11 @@
   root.VOCAB_EXAMPLE_SEED = data;
 })(typeof globalThis !== "undefined" ? globalThis : window, {
   "meta": {
-    "generatedAt": "2026-06-27T22:51:16.523Z",
-    "entryCount": 3316,
-    "exampleCount": 9948,
+    "generatedAt": "2026-06-27T22:57:04.509Z",
+    "entryCount": 3416,
+    "exampleCount": 10248,
     "source": "local-seed-gemini",
-    "readyCount": 3316,
+    "readyCount": 3416,
     "failedCount": 0,
     "reviewRemovedCount": 220,
     "blockedKeys": [
@@ -129753,6 +129753,4106 @@
           "target": "好，我們現在可以回家了。",
           "meaning": "是 / 對",
           "level": "A1"
+        }
+      ]
+    },
+    "yesterday|12bzgkq": {
+      "word": "yesterday",
+      "display": "yesterday",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A1",
+      "meaning": "昨天",
+      "pos": "adverb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "昨天",
+          "pos": "adverb",
+          "type": "word",
+          "level": "A1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1kuenkl",
+          "source": "I went to school yesterday.",
+          "target": "我昨天去了學校。",
+          "meaning": "昨天",
+          "level": "A1"
+        },
+        {
+          "id": "seed-19xqdyf",
+          "source": "It was sunny yesterday.",
+          "target": "昨天天氣很好。",
+          "meaning": "昨天",
+          "level": "A1"
+        },
+        {
+          "id": "seed-1qz4es1",
+          "source": "We played games yesterday.",
+          "target": "我們昨天玩了遊戲。",
+          "meaning": "昨天",
+          "level": "A1"
+        }
+      ]
+    },
+    "yesterday|1r76kf2": {
+      "word": "yesterday",
+      "display": "yesterday",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A1",
+      "meaning": "昨天",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "昨天",
+          "pos": "noun",
+          "type": "word",
+          "level": "A1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-11p11u1",
+          "source": "I played games yesterday.",
+          "target": "我昨天玩了遊戲。",
+          "meaning": "昨天",
+          "level": "A1"
+        },
+        {
+          "id": "seed-77b2te",
+          "source": "It was very hot yesterday.",
+          "target": "昨天天氣很熱。",
+          "meaning": "昨天",
+          "level": "A1"
+        },
+        {
+          "id": "seed-19wu7rn",
+          "source": "We went to school yesterday.",
+          "target": "我們昨天去了學校。",
+          "meaning": "昨天",
+          "level": "A1"
+        }
+      ]
+    },
+    "you|10qj35w": {
+      "word": "you",
+      "display": "you",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A1",
+      "meaning": "你 / 你們",
+      "pos": "pronoun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "你 / 你們",
+          "pos": "pronoun",
+          "type": "word",
+          "level": "A1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1vbu5co",
+          "source": "You are my best friend.",
+          "target": "你是我最好的朋友。",
+          "meaning": "你 / 你們",
+          "level": "A1"
+        },
+        {
+          "id": "seed-ow21yl",
+          "source": "Do you like this red apple?",
+          "target": "你喜歡這個紅蘋果嗎？",
+          "meaning": "你 / 你們",
+          "level": "A1"
+        },
+        {
+          "id": "seed-1g1swp2",
+          "source": "I can play with you today.",
+          "target": "我今天可以跟你一起玩。",
+          "meaning": "你 / 你們",
+          "level": "A1"
+        }
+      ]
+    },
+    "young|1qao90p": {
+      "word": "young",
+      "display": "young",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A1",
+      "meaning": "年輕的",
+      "pos": "adjective",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "年輕的",
+          "pos": "adjective",
+          "type": "word",
+          "level": "A1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1qvuj30",
+          "source": "My brother is very young.",
+          "target": "我弟弟很年輕。",
+          "meaning": "年輕的",
+          "level": "A1"
+        },
+        {
+          "id": "seed-1r7olo6",
+          "source": "She is a young girl.",
+          "target": "她是一位年輕的女孩。",
+          "meaning": "年輕的",
+          "level": "A1"
+        },
+        {
+          "id": "seed-r1q0pr",
+          "source": "The young boy plays ball.",
+          "target": "那個年輕男孩在玩球。",
+          "meaning": "年輕的",
+          "level": "A1"
+        }
+      ]
+    },
+    "young|ey4bn8": {
+      "word": "young",
+      "display": "young",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "年輕人",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "年輕人",
+          "pos": "noun",
+          "type": "word",
+          "level": "B1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-c78oeg",
+          "source": "The young love to play games.",
+          "target": "年輕人很喜歡玩遊戲。",
+          "meaning": "年輕人",
+          "level": "B1"
+        },
+        {
+          "id": "seed-1vzef98",
+          "source": "Many young people visit the park.",
+          "target": "很多年輕人會去公園。",
+          "meaning": "年輕人",
+          "level": "B1"
+        },
+        {
+          "id": "seed-1e61513",
+          "source": "The young study hard at school.",
+          "target": "年輕人在學校努力讀書。",
+          "meaning": "年輕人",
+          "level": "B1"
+        }
+      ]
+    },
+    "younger|1r9foax": {
+      "word": "younger",
+      "display": "younger",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A1",
+      "meaning": "較年輕的 / 年紀較小的",
+      "pos": "adjective",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "較年輕的 / 年紀較小的",
+          "pos": "adjective",
+          "type": "word",
+          "level": "A1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1k2s3py",
+          "source": "My brother is younger than me.",
+          "target": "我弟弟比我年輕。",
+          "meaning": "較年輕的 / 年紀較小的",
+          "level": "A1"
+        },
+        {
+          "id": "seed-cynr0b",
+          "source": "She has a younger sister.",
+          "target": "她有一個妹妹。",
+          "meaning": "較年輕的 / 年紀較小的",
+          "level": "A1"
+        },
+        {
+          "id": "seed-dyzdap",
+          "source": "He is younger than his friend.",
+          "target": "他比他的朋友年紀小。",
+          "meaning": "較年輕的 / 年紀較小的",
+          "level": "A1"
+        }
+      ]
+    },
+    "younger brother|1753fhc": {
+      "word": "younger brother",
+      "display": "younger brother",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A1",
+      "meaning": "弟弟",
+      "pos": "noun",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "弟弟",
+          "pos": "noun",
+          "type": "phrase",
+          "level": "A1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-16xabv9",
+          "source": "My younger brother likes toys.",
+          "target": "我弟弟喜歡玩具。",
+          "meaning": "弟弟",
+          "level": "A1"
+        },
+        {
+          "id": "seed-1ehx5gc",
+          "source": "I play with my younger brother.",
+          "target": "我和弟弟一起玩。",
+          "meaning": "弟弟",
+          "level": "A1"
+        },
+        {
+          "id": "seed-ug4015",
+          "source": "My younger brother is very cute.",
+          "target": "我弟弟很可愛。",
+          "meaning": "弟弟",
+          "level": "A1"
+        }
+      ]
+    },
+    "younger sister|1x92m9s": {
+      "word": "younger sister",
+      "display": "younger sister",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A1",
+      "meaning": "妹妹",
+      "pos": "noun",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "妹妹",
+          "pos": "noun",
+          "type": "phrase",
+          "level": "A1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-ewew03",
+          "source": "My younger sister likes apples.",
+          "target": "我妹妹鍾意食蘋果。",
+          "meaning": "妹妹",
+          "level": "A1"
+        },
+        {
+          "id": "seed-u4yd2a",
+          "source": "I play with my younger sister.",
+          "target": "我同我妹妹一齊玩。",
+          "meaning": "妹妹",
+          "level": "A1"
+        },
+        {
+          "id": "seed-1uzji1n",
+          "source": "My younger sister is very cute.",
+          "target": "我妹妹好得意。",
+          "meaning": "妹妹",
+          "level": "A1"
+        }
+      ]
+    },
+    "your|na5wzk": {
+      "word": "your",
+      "display": "your",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A1",
+      "meaning": "你的 / 你們的",
+      "pos": "determiner",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "你的 / 你們的",
+          "pos": "determiner",
+          "type": "word",
+          "level": "A1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-f1stqt",
+          "source": "What is your name?",
+          "target": "你叫什麼名字？",
+          "meaning": "你的 / 你們的",
+          "level": "A1"
+        },
+        {
+          "id": "seed-1r6idqp",
+          "source": "This is your new book.",
+          "target": "這是你的新書。",
+          "meaning": "你的 / 你們的",
+          "level": "A1"
+        },
+        {
+          "id": "seed-1duy4dn",
+          "source": "I like your school bag.",
+          "target": "我喜歡你的書包。",
+          "meaning": "你的 / 你們的",
+          "level": "A1"
+        }
+      ]
+    },
+    "yourself|5322qd": {
+      "word": "yourself",
+      "display": "yourself",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A1",
+      "meaning": "你自己",
+      "pos": "pronoun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "你自己",
+          "pos": "pronoun",
+          "type": "word",
+          "level": "A1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1evbkbn",
+          "source": "You can do it yourself.",
+          "target": "你可以自己做。",
+          "meaning": "你自己",
+          "level": "A1"
+        },
+        {
+          "id": "seed-2epts",
+          "source": "Please take care of yourself.",
+          "target": "請照顧好你自己。",
+          "meaning": "你自己",
+          "level": "A1"
+        },
+        {
+          "id": "seed-1c4gpkr",
+          "source": "You should believe in yourself.",
+          "target": "你應該相信你自己。",
+          "meaning": "你自己",
+          "level": "A1"
+        }
+      ]
+    },
+    "yummy|1mkji6w": {
+      "word": "yummy",
+      "display": "yummy",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A1",
+      "meaning": "好味的 / 美味的",
+      "pos": "adjective",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "好味的 / 美味的",
+          "pos": "adjective",
+          "type": "word",
+          "level": "A1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-mhp50y",
+          "source": "This apple is very yummy.",
+          "target": "這個蘋果很好味。",
+          "meaning": "好味的 / 美味的",
+          "level": "A1"
+        },
+        {
+          "id": "seed-jn4m6w",
+          "source": "The cake is so yummy.",
+          "target": "這個蛋糕很美味。",
+          "meaning": "好味的 / 美味的",
+          "level": "A1"
+        },
+        {
+          "id": "seed-1vf92t8",
+          "source": "I love yummy chocolate cookies.",
+          "target": "我喜歡好味的朱古力曲奇。",
+          "meaning": "好味的 / 美味的",
+          "level": "A1"
+        }
+      ]
+    },
+    "zoo|1ahrdr3": {
+      "word": "zoo",
+      "display": "zoo",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A1",
+      "meaning": "動物園",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "動物園",
+          "pos": "noun",
+          "type": "word",
+          "level": "A1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1tg0zst",
+          "source": "We go to the zoo today.",
+          "target": "我們今天去動物園。",
+          "meaning": "動物園",
+          "level": "A1"
+        },
+        {
+          "id": "seed-y7v4ey",
+          "source": "I see a lion at the zoo.",
+          "target": "我在動物園看到一隻獅子。",
+          "meaning": "動物園",
+          "level": "A1"
+        },
+        {
+          "id": "seed-i6mht3",
+          "source": "The zoo has many big animals.",
+          "target": "動物園裡有很多大型動物。",
+          "meaning": "動物園",
+          "level": "A1"
+        }
+      ]
+    },
+    "a couple of|dcht86": {
+      "word": "a couple of",
+      "display": "a couple of",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "幾個 / 兩三個",
+      "pos": "determiner",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "幾個 / 兩三個",
+          "pos": "determiner",
+          "type": "phrase",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-76q2f7",
+          "source": "I ate a couple of apples today.",
+          "target": "我今天吃了幾個蘋果。",
+          "meaning": "幾個 / 兩三個",
+          "level": "A2"
+        },
+        {
+          "id": "seed-ruz90p",
+          "source": "She has a couple of good friends.",
+          "target": "她有兩三個好朋友。",
+          "meaning": "幾個 / 兩三個",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1443zei",
+          "source": "I need a couple of minutes now.",
+          "target": "我現在需要幾分鐘時間。",
+          "meaning": "幾個 / 兩三個",
+          "level": "A2"
+        }
+      ]
+    },
+    "a couple of / a number of|1aif9ju": {
+      "word": "a couple of / a number of",
+      "display": "a couple of / a number of",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "幾個 / 一些",
+      "pos": "determiner",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "幾個 / 一些",
+          "pos": "determiner",
+          "type": "phrase",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-tgccsh",
+          "source": "I have a couple of apples for lunch.",
+          "target": "我午餐有幾個蘋果。",
+          "meaning": "幾個 / 一些",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1gwaub0",
+          "source": "There are a number of books on my desk.",
+          "target": "我書桌上有一些書。",
+          "meaning": "幾個 / 一些",
+          "level": "A2"
+        },
+        {
+          "id": "seed-129l53a",
+          "source": "He invited a couple of friends to play.",
+          "target": "他邀請了幾個朋友來玩。",
+          "meaning": "幾個 / 一些",
+          "level": "A2"
+        }
+      ]
+    },
+    "a quarter of|1s5x92t": {
+      "word": "a quarter of",
+      "display": "a quarter of",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "四分之一",
+      "pos": "determiner",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "四分之一",
+          "pos": "determiner",
+          "type": "phrase",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-hp4nij",
+          "source": "I ate a quarter of the apple.",
+          "target": "我吃了四分之一個蘋果。",
+          "meaning": "四分之一",
+          "level": "A2"
+        },
+        {
+          "id": "seed-dphgo0",
+          "source": "A quarter of the class likes sports.",
+          "target": "全班有四分之一的同學喜歡運動。",
+          "meaning": "四分之一",
+          "level": "A2"
+        },
+        {
+          "id": "seed-c07zkm",
+          "source": "He spent a quarter of his money.",
+          "target": "他花掉了四分之一的錢。",
+          "meaning": "四分之一",
+          "level": "A2"
+        }
+      ]
+    },
+    "a variety of|mv60g2": {
+      "word": "a variety of",
+      "display": "a variety of",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "不同種類的",
+      "pos": "determiner",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "不同種類的",
+          "pos": "determiner",
+          "type": "phrase",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-ff6f8s",
+          "source": "The shop sells a variety of snacks.",
+          "target": "這間店售賣不同種類的零食。",
+          "meaning": "不同種類的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1vzutgs",
+          "source": "We saw a variety of birds today.",
+          "target": "我們今天看到了不同種類的雀鳥。",
+          "meaning": "不同種類的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-r7vxbf",
+          "source": "She has a variety of colorful pens.",
+          "target": "她有不同種類的顏色筆。",
+          "meaning": "不同種類的",
+          "level": "A2"
+        }
+      ]
+    },
+    "ability|1ukhar9": {
+      "word": "ability",
+      "display": "ability",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "能力",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "能力",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-ca8uud",
+          "source": "She has the ability to sing well.",
+          "target": "她有唱歌唱得好的能力。",
+          "meaning": "能力",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1yenixu",
+          "source": "I want to improve my ability in English.",
+          "target": "我想提升我的英語能力。",
+          "meaning": "能力",
+          "level": "A2"
+        },
+        {
+          "id": "seed-2bnw6o",
+          "source": "He shows great ability in playing football.",
+          "target": "他在踢足球方面展現出很強的能力。",
+          "meaning": "能力",
+          "level": "A2"
+        }
+      ]
+    },
+    "able|1s32ir": {
+      "word": "able",
+      "display": "able",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "能夠的 / 有能力的",
+      "pos": "adjective",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "能夠的 / 有能力的",
+          "pos": "adjective",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-13qjbgv",
+          "source": "I am able to finish my homework early.",
+          "target": "我能夠提早完成功課。",
+          "meaning": "能夠的 / 有能力的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-x9m0eh",
+          "source": "Are you able to speak English well?",
+          "target": "你能夠說得一口流利的英語嗎？",
+          "meaning": "能夠的 / 有能力的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1md78x1",
+          "source": "She is able to run very fast.",
+          "target": "她有能力跑得很快。",
+          "meaning": "能夠的 / 有能力的",
+          "level": "A2"
+        }
+      ]
+    },
+    "abroad|1itkl9q": {
+      "word": "abroad",
+      "display": "abroad",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "在外國 / 到外國",
+      "pos": "adverb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "在外國 / 到外國",
+          "pos": "adverb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1ytppff",
+          "source": "My uncle lives abroad in London.",
+          "target": "我叔叔住在倫敦，即是在外國。",
+          "meaning": "在外國 / 到外國",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1c5qxnf",
+          "source": "We want to travel abroad this summer.",
+          "target": "我們今年夏天想去外國旅遊。",
+          "meaning": "在外國 / 到外國",
+          "level": "A2"
+        },
+        {
+          "id": "seed-179v4ln",
+          "source": "She studies abroad at a big school.",
+          "target": "她在外國的一間大校園讀書。",
+          "meaning": "在外國 / 到外國",
+          "level": "A2"
+        }
+      ]
+    },
+    "accept|1ib84rs": {
+      "word": "accept",
+      "display": "accept",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "接受",
+      "pos": "verb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "接受",
+          "pos": "verb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1xa6vdd",
+          "source": "Please accept my small gift for you.",
+          "target": "請接受我送給你的一份小禮物。",
+          "meaning": "接受",
+          "level": "A2"
+        },
+        {
+          "id": "seed-ybcnno",
+          "source": "She decided to accept the new job.",
+          "target": "她決定接受這份新工作。",
+          "meaning": "接受",
+          "level": "A2"
+        },
+        {
+          "id": "seed-i5jc4a",
+          "source": "Did he accept your invitation to dinner?",
+          "target": "他有沒有接受你晚餐的邀請？",
+          "meaning": "接受",
+          "level": "A2"
+        }
+      ]
+    },
+    "accident|1eph819": {
+      "word": "accident",
+      "display": "accident",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "意外",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "意外",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-uk7o5c",
+          "source": "It was just an accident.",
+          "target": "這只是一場意外。",
+          "meaning": "意外",
+          "level": "A2"
+        },
+        {
+          "id": "seed-vrvy52",
+          "source": "He had an accident at school.",
+          "target": "他在學校發生了意外。",
+          "meaning": "意外",
+          "level": "A2"
+        },
+        {
+          "id": "seed-hkg0jx",
+          "source": "I broke the glass by accident.",
+          "target": "我不小心打破了玻璃。",
+          "meaning": "意外",
+          "level": "A2"
+        }
+      ]
+    },
+    "accident|9r4gon": {
+      "word": "accident",
+      "display": "accident",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "意外 / 事故",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "意外 / 事故",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-ewdqy5",
+          "source": "He had an accident at school today.",
+          "target": "他今天在學校發生了意外。",
+          "meaning": "意外 / 事故",
+          "level": "A2"
+        },
+        {
+          "id": "seed-qt5xv1",
+          "source": "Please be careful to avoid an accident.",
+          "target": "請小心一點，避免發生意外。",
+          "meaning": "意外 / 事故",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1y2vxny",
+          "source": "The accident happened on the way home.",
+          "target": "這宗意外是在回家途中發生的。",
+          "meaning": "意外 / 事故",
+          "level": "A2"
+        }
+      ]
+    },
+    "according to|rjjtpt": {
+      "word": "according to",
+      "display": "according to",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "根據",
+      "pos": "preposition",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "根據",
+          "pos": "preposition",
+          "type": "phrase",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-mwgfko",
+          "source": "According to the teacher, we have homework.",
+          "target": "根據老師所說，我們有功課。",
+          "meaning": "根據",
+          "level": "A2"
+        },
+        {
+          "id": "seed-i1vq5s",
+          "source": "We played games according to the rules.",
+          "target": "我們根據規則玩遊戲。",
+          "meaning": "根據",
+          "level": "A2"
+        },
+        {
+          "id": "seed-i76vy4",
+          "source": "According to the news, it will rain.",
+          "target": "根據新聞報導，明天會下雨。",
+          "meaning": "根據",
+          "level": "A2"
+        }
+      ]
+    },
+    "account|t4wl94": {
+      "word": "account",
+      "display": "account",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "帳戶",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "帳戶",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-nun8wx",
+          "source": "I have a bank account for my savings.",
+          "target": "我有一個銀行帳戶來儲蓄。",
+          "meaning": "帳戶",
+          "level": "A2"
+        },
+        {
+          "id": "seed-19qatet",
+          "source": "Please check your online account for updates.",
+          "target": "請檢查你的網上帳戶以獲取更新。",
+          "meaning": "帳戶",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1dly1bb",
+          "source": "My dad opened a new account today.",
+          "target": "爸爸今天開了一個新帳戶。",
+          "meaning": "帳戶",
+          "level": "A2"
+        }
+      ]
+    },
+    "ache|1v9vv3": {
+      "word": "ache",
+      "display": "ache",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "隱隱作痛",
+      "pos": "verb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "隱隱作痛",
+          "pos": "verb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-pl0fv6",
+          "source": "My tooth began to ache after dinner.",
+          "target": "晚飯後，我的牙齒開始隱隱作痛。",
+          "meaning": "隱隱作痛",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1wso36o",
+          "source": "Does your head ache after reading books?",
+          "target": "你看書後會覺得頭部隱隱作痛嗎？",
+          "meaning": "隱隱作痛",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1abpj2b",
+          "source": "My legs ache from running all day.",
+          "target": "我跑了一整天，雙腿隱隱作痛。",
+          "meaning": "隱隱作痛",
+          "level": "A2"
+        }
+      ]
+    },
+    "ache|h9stvw": {
+      "word": "ache",
+      "display": "ache",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "疼痛",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "疼痛",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-tt4c9m",
+          "source": "I have a bad toothache today.",
+          "target": "我今天牙齒很痛。",
+          "meaning": "疼痛",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1t2jd08",
+          "source": "My stomach ache is getting better.",
+          "target": "我的肚子痛好多了。",
+          "meaning": "疼痛",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1wr48u9",
+          "source": "Does your head ache after reading?",
+          "target": "你看完書後會頭痛嗎？",
+          "meaning": "疼痛",
+          "level": "A2"
+        }
+      ]
+    },
+    "achieve|1v9n9qs": {
+      "word": "achieve",
+      "display": "achieve",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "達成",
+      "pos": "verb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "達成",
+          "pos": "verb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-rqug7t",
+          "source": "I want to achieve my dream.",
+          "target": "我想達成我的夢想。",
+          "meaning": "達成",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1gov0r5",
+          "source": "Hard work helps you achieve success.",
+          "target": "努力工作能幫你達成成功。",
+          "meaning": "達成",
+          "level": "A2"
+        },
+        {
+          "id": "seed-12x1xtn",
+          "source": "We can achieve our goal together.",
+          "target": "我們可以一起達成目標。",
+          "meaning": "達成",
+          "level": "A2"
+        }
+      ]
+    },
+    "achieve|555vn8": {
+      "word": "achieve",
+      "display": "achieve",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "達到",
+      "pos": "verb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "達到",
+          "pos": "verb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1tbt7df",
+          "source": "I want to achieve my goals today.",
+          "target": "我今天想達到我的目標。",
+          "meaning": "達到",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1ncoq5u",
+          "source": "She worked hard to achieve good grades.",
+          "target": "她努力學習以達到好成績。",
+          "meaning": "達到",
+          "level": "A2"
+        },
+        {
+          "id": "seed-vss8i7",
+          "source": "We can achieve more by working together.",
+          "target": "我們一起合作可以達到更多成就。",
+          "meaning": "達到",
+          "level": "A2"
+        }
+      ]
+    },
+    "across|4ktvl6": {
+      "word": "across",
+      "display": "across",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "橫過 / 穿過 / 遍及",
+      "pos": "preposition",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "橫過 / 穿過 / 遍及",
+          "pos": "preposition",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1nxg92u",
+          "source": "We walked across the playground together.",
+          "target": "我們一起橫過操場。",
+          "meaning": "橫過 / 穿過 / 遍及",
+          "level": "A2"
+        },
+        {
+          "id": "seed-l72rk7",
+          "source": "He ran across the road carefully.",
+          "target": "他小心地橫過馬路。",
+          "meaning": "橫過 / 穿過 / 遍及",
+          "level": "A2"
+        },
+        {
+          "id": "seed-15nbym4",
+          "source": "They are popular across the school.",
+          "target": "他們在全校都很受歡迎。",
+          "meaning": "橫過 / 穿過 / 遍及",
+          "level": "A2"
+        }
+      ]
+    },
+    "across|xyb3o4": {
+      "word": "across",
+      "display": "across",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "在...對面",
+      "pos": "preposition",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "在...對面",
+          "pos": "preposition",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1ga8p58",
+          "source": "The library is across the playground.",
+          "target": "圖書館在操場對面。",
+          "meaning": "在...對面",
+          "level": "A2"
+        },
+        {
+          "id": "seed-lsfg2b",
+          "source": "My house is across the street.",
+          "target": "我家在馬路對面。",
+          "meaning": "在...對面",
+          "level": "A2"
+        },
+        {
+          "id": "seed-o1qksl",
+          "source": "The shop is across from our school.",
+          "target": "那間商店在我們學校對面。",
+          "meaning": "在...對面",
+          "level": "A2"
+        }
+      ]
+    },
+    "act|174vd6m": {
+      "word": "act",
+      "display": "act",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "行為 / 表演",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "行為 / 表演",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-gni9jt",
+          "source": "It was a kind act to help him.",
+          "target": "幫助他是個善意的行為。",
+          "meaning": "行為 / 表演",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1l3ql3m",
+          "source": "The school play had a funny act.",
+          "target": "學校話劇中有一個有趣的表演。",
+          "meaning": "行為 / 表演",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1sxbhp2",
+          "source": "Sharing your snacks is a nice act.",
+          "target": "分享你的零食是一個友善的行為。",
+          "meaning": "行為 / 表演",
+          "level": "A2"
+        }
+      ]
+    },
+    "act|7mbrx0": {
+      "word": "act",
+      "display": "act",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "行動 / 扮演",
+      "pos": "verb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "行動 / 扮演",
+          "pos": "verb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-slrqck",
+          "source": "We must act now to help him.",
+          "target": "我們必須現在就行動去幫助他。",
+          "meaning": "行動 / 扮演",
+          "level": "A2"
+        },
+        {
+          "id": "seed-5un19j",
+          "source": "She will act as a queen in the play.",
+          "target": "她將會在話劇中扮演皇后。",
+          "meaning": "行動 / 扮演",
+          "level": "A2"
+        },
+        {
+          "id": "seed-f0rn12",
+          "source": "It is time to act on this plan.",
+          "target": "現在是時候執行這個計劃了。",
+          "meaning": "行動 / 扮演",
+          "level": "A2"
+        }
+      ]
+    },
+    "active|ixk9r5": {
+      "word": "active",
+      "display": "active",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "活躍的 / 主動的",
+      "pos": "adjective",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "活躍的 / 主動的",
+          "pos": "adjective",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-4knets",
+          "source": "He is a very active boy in class.",
+          "target": "他在課堂上是一個很活躍的男孩。",
+          "meaning": "活躍的 / 主動的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-bkdm73",
+          "source": "She stays active by playing sports every day.",
+          "target": "她每天做運動來保持活躍。",
+          "meaning": "活躍的 / 主動的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-9s5kla",
+          "source": "You should be more active in group work.",
+          "target": "你在小組活動中應該更主動一點。",
+          "meaning": "活躍的 / 主動的",
+          "level": "A2"
+        }
+      ]
+    },
+    "actually|1i5cl0t": {
+      "word": "actually",
+      "display": "actually",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "其實",
+      "pos": "adverb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "其實",
+          "pos": "adverb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-c4fq5p",
+          "source": "Actually, I like apples more than oranges.",
+          "target": "其實，比起橙，我更喜歡蘋果。",
+          "meaning": "其實",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1rykt0f",
+          "source": "It actually rained during our school picnic.",
+          "target": "其實我們學校旅行當天下了雨。",
+          "meaning": "其實",
+          "level": "A2"
+        },
+        {
+          "id": "seed-14xbmw9",
+          "source": "I actually finished my homework very early.",
+          "target": "其實我好早就做完功課了。",
+          "meaning": "其實",
+          "level": "A2"
+        }
+      ]
+    },
+    "actually|bkozaz": {
+      "word": "actually",
+      "display": "actually",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "其實 / 實際上",
+      "pos": "adverb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "其實 / 實際上",
+          "pos": "adverb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1le7075",
+          "source": "It actually tastes better than it looks.",
+          "target": "它其實比看起來更好吃。",
+          "meaning": "其實 / 實際上",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1mku7qe",
+          "source": "I actually finished my homework already.",
+          "target": "我其實已經做完功課了。",
+          "meaning": "其實 / 實際上",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1trdq53",
+          "source": "She actually lives near my school.",
+          "target": "她其實住在我學校附近。",
+          "meaning": "其實 / 實際上",
+          "level": "A2"
+        }
+      ]
+    },
+    "adult|zn3plz": {
+      "word": "adult",
+      "display": "adult",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "成年的 / 成人的",
+      "pos": "adjective",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "成年的 / 成人的",
+          "pos": "adjective",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-usgkny",
+          "source": "This is an adult ticket.",
+          "target": "這是一張成人票。",
+          "meaning": "成年的 / 成人的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1jyqq57",
+          "source": "This movie is for an adult audience.",
+          "target": "這部電影是給成年觀眾看的。",
+          "meaning": "成年的 / 成人的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1yt1nwu",
+          "source": "This shop sells adult shoes too.",
+          "target": "這間店也售賣成人鞋。",
+          "meaning": "成年的 / 成人的",
+          "level": "A2"
+        }
+      ]
+    },
+    "advantage|1cxsnxy": {
+      "word": "advantage",
+      "display": "advantage",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "優點 / 好處",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "優點 / 好處",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1wbx618",
+          "source": "A big advantage of cycling is health.",
+          "target": "踏單車的一個大優點是健康。",
+          "meaning": "優點 / 好處",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1xiuubj",
+          "source": "This new pen has a great advantage.",
+          "target": "這枝新原子筆有一個很大的好處。",
+          "meaning": "優點 / 好處",
+          "level": "A2"
+        },
+        {
+          "id": "seed-18pgwb1",
+          "source": "Learning English gives you an advantage.",
+          "target": "學習英語會為你帶來優勢。",
+          "meaning": "優點 / 好處",
+          "level": "A2"
+        }
+      ]
+    },
+    "advantage|ffk36d": {
+      "word": "advantage",
+      "display": "advantage",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "優點",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "優點",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1slmknm",
+          "source": "A big advantage of cycling is exercise.",
+          "target": "踏單車的一個大優點是能做運動。",
+          "meaning": "優點",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1k80ibh",
+          "source": "This new pen has a great advantage.",
+          "target": "這支新筆有一個很大的優點。",
+          "meaning": "優點",
+          "level": "A2"
+        },
+        {
+          "id": "seed-pq60qg",
+          "source": "What is the advantage of this game?",
+          "target": "這個遊戲有什麼優點？",
+          "meaning": "優點",
+          "level": "A2"
+        }
+      ]
+    },
+    "adventure|1ghq6ia": {
+      "word": "adventure",
+      "display": "adventure",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "冒險 / 奇遇",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "冒險 / 奇遇",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1bokq68",
+          "source": "We went on a fun adventure today.",
+          "target": "我們今天去了一場有趣的冒險。",
+          "meaning": "冒險 / 奇遇",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1fy6w37",
+          "source": "Reading books is a great adventure.",
+          "target": "閱讀書籍是一場很棒的奇遇。",
+          "meaning": "冒險 / 奇遇",
+          "level": "A2"
+        },
+        {
+          "id": "seed-2f9kkf",
+          "source": "They shared their adventure in the park.",
+          "target": "他們分享了在公園裡的冒險經歷。",
+          "meaning": "冒險 / 奇遇",
+          "level": "A2"
+        }
+      ]
+    },
+    "advertise|125js0p": {
+      "word": "advertise",
+      "display": "advertise",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "賣廣告 / 宣傳",
+      "pos": "verb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "賣廣告 / 宣傳",
+          "pos": "verb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-cktpqo",
+          "source": "The shop will advertise its new toys.",
+          "target": "這間店舖會宣傳它的新玩具。",
+          "meaning": "賣廣告 / 宣傳",
+          "level": "A2"
+        },
+        {
+          "id": "seed-vb0zed",
+          "source": "We can advertise the school fair online.",
+          "target": "我們可以在網上宣傳學校嘉年華。",
+          "meaning": "賣廣告 / 宣傳",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1f249g1",
+          "source": "They advertise snacks on the television.",
+          "target": "他們在電視上賣零食廣告。",
+          "meaning": "賣廣告 / 宣傳",
+          "level": "A2"
+        }
+      ]
+    },
+    "advertisement|1e0upd8": {
+      "word": "advertisement",
+      "display": "advertisement",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "廣告",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "廣告",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1weoxih",
+          "source": "I saw an advertisement for a new toy.",
+          "target": "我看到一個新玩具的廣告。",
+          "meaning": "廣告",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1wu5eba",
+          "source": "This advertisement is very colourful and fun.",
+          "target": "這個廣告色彩繽紛，十分有趣。",
+          "meaning": "廣告",
+          "level": "A2"
+        },
+        {
+          "id": "seed-hvoc6g",
+          "source": "The advertisement shows the price of the book.",
+          "target": "廣告上顯示了這本書的價格。",
+          "meaning": "廣告",
+          "level": "A2"
+        }
+      ]
+    },
+    "advertising|g32ktl": {
+      "word": "advertising",
+      "display": "advertising",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "廣告 / 廣告業",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "廣告 / 廣告業",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1zplf5",
+          "source": "I saw an advertising poster at school.",
+          "target": "我在學校看到一張廣告海報。",
+          "meaning": "廣告 / 廣告業",
+          "level": "A2"
+        },
+        {
+          "id": "seed-44hifv",
+          "source": "The advertising on TV is very loud.",
+          "target": "電視上的廣告聲音很大。",
+          "meaning": "廣告 / 廣告業",
+          "level": "A2"
+        },
+        {
+          "id": "seed-k5aoxe",
+          "source": "She wants to work in advertising.",
+          "target": "她想投身廣告業。",
+          "meaning": "廣告 / 廣告業",
+          "level": "A2"
+        }
+      ]
+    },
+    "affect|6wcc6c": {
+      "word": "affect",
+      "display": "affect",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "影響",
+      "pos": "verb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "影響",
+          "pos": "verb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1t08jf",
+          "source": "The loud noise will affect my study.",
+          "target": "嘈雜的聲音會影響我的學習。",
+          "meaning": "影響",
+          "level": "A2"
+        },
+        {
+          "id": "seed-10fots5",
+          "source": "Does the weather affect your mood?",
+          "target": "天氣會影響你的心情嗎？",
+          "meaning": "影響",
+          "level": "A2"
+        },
+        {
+          "id": "seed-kd8qfv",
+          "source": "Late nights affect my health at school.",
+          "target": "熬夜會影響我在學校的健康。",
+          "meaning": "影響",
+          "level": "A2"
+        }
+      ]
+    },
+    "african|pv7l3x": {
+      "word": "african",
+      "display": "African",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "非洲人",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "非洲人",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-o4ddv2",
+          "source": "My new friend is an African.",
+          "target": "我的新朋友是一位非洲人。",
+          "meaning": "非洲人",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1kb3sku",
+          "source": "She met a kind African at school.",
+          "target": "她在學校遇見了一位友善的非洲人。",
+          "meaning": "非洲人",
+          "level": "A2"
+        },
+        {
+          "id": "seed-zblmhv",
+          "source": "The African student plays football very well.",
+          "target": "那位非洲學生足球踢得很好。",
+          "meaning": "非洲人",
+          "level": "A2"
+        }
+      ]
+    },
+    "after|1ux52tv": {
+      "word": "after",
+      "display": "after",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "之後 / 後來",
+      "pos": "adverb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "之後 / 後來",
+          "pos": "adverb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-lkchft",
+          "source": "We can play games after school.",
+          "target": "放學之後我們可以玩遊戲。",
+          "meaning": "之後 / 後來",
+          "level": "A2"
+        },
+        {
+          "id": "seed-t6m1d3",
+          "source": "I will do my homework after dinner.",
+          "target": "晚飯後我會做功課。",
+          "meaning": "之後 / 後來",
+          "level": "A2"
+        },
+        {
+          "id": "seed-117ewgx",
+          "source": "He went home shortly after lunch.",
+          "target": "午飯後不久他就回家了。",
+          "meaning": "之後 / 後來",
+          "level": "A2"
+        }
+      ]
+    },
+    "after school hours|iaanxb": {
+      "word": "after school hours",
+      "display": "after school hours",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "課後時間",
+      "pos": "adverb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "課後時間",
+          "pos": "adverb",
+          "type": "phrase",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-ae3jlq",
+          "source": "I play football after school hours.",
+          "target": "我會在課後時間踢足球。",
+          "meaning": "課後時間",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1198mv6",
+          "source": "We do our homework after school hours.",
+          "target": "我們會在課後時間做功課。",
+          "meaning": "課後時間",
+          "level": "A2"
+        },
+        {
+          "id": "seed-15vgc8k",
+          "source": "The library is open after school hours.",
+          "target": "圖書館在課後時間會開放。",
+          "meaning": "課後時間",
+          "level": "A2"
+        }
+      ]
+    },
+    "against|124h3ne": {
+      "word": "against",
+      "display": "against",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "反對 / 對抗",
+      "pos": "preposition",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "反對 / 對抗",
+          "pos": "preposition",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1i1jj43",
+          "source": "I am against playing games all day.",
+          "target": "我反對整天玩遊戲。",
+          "meaning": "反對 / 對抗",
+          "level": "A2"
+        },
+        {
+          "id": "seed-13924k4",
+          "source": "We played against another school.",
+          "target": "我們和另一間學校對賽。",
+          "meaning": "反對 / 對抗",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1vx3utb",
+          "source": "They voted against the new school rule.",
+          "target": "他們投票反對這條新校規。",
+          "meaning": "反對 / 對抗",
+          "level": "A2"
+        }
+      ]
+    },
+    "against|18o0ghg": {
+      "word": "against",
+      "display": "against",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "靠著 / 倚著",
+      "pos": "preposition",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "靠著 / 倚著",
+          "pos": "preposition",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-w0dnq1",
+          "source": "Do not lean against the white wall.",
+          "target": "不要靠著那面白色牆壁。",
+          "meaning": "靠著 / 倚著",
+          "level": "A2"
+        },
+        {
+          "id": "seed-18oid24",
+          "source": "She stood against the door to wait.",
+          "target": "她倚著門口等待。",
+          "meaning": "靠著 / 倚著",
+          "level": "A2"
+        },
+        {
+          "id": "seed-12c74jl",
+          "source": "The boy sat against the big tree.",
+          "target": "那個男孩靠著大樹坐下。",
+          "meaning": "靠著 / 倚著",
+          "level": "A2"
+        }
+      ]
+    },
+    "agony|ihka1s": {
+      "word": "agony",
+      "display": "agony",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "痛苦",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "痛苦",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1mngzim",
+          "source": "He was in agony after falling down.",
+          "target": "他跌倒後感到非常痛苦。",
+          "meaning": "痛苦",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1qy2era",
+          "source": "The toothache caused her great agony.",
+          "target": "牙痛令她感到十分痛苦。",
+          "meaning": "痛苦",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1m8iuau",
+          "source": "He cried out in agony from his injury.",
+          "target": "他因受傷而痛苦地大叫。",
+          "meaning": "痛苦",
+          "level": "A2"
+        }
+      ]
+    },
+    "agree with|6qhlon": {
+      "word": "agree with",
+      "display": "agree with",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "同意 / 贊成",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "同意 / 贊成",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1or7u78",
+          "source": "I agree with your idea.",
+          "target": "我同意你的想法。",
+          "meaning": "同意 / 贊成",
+          "level": "A2"
+        },
+        {
+          "id": "seed-eyu2xd",
+          "source": "Do you agree with me?",
+          "target": "你同意我嗎？",
+          "meaning": "同意 / 贊成",
+          "level": "A2"
+        },
+        {
+          "id": "seed-2g1udh",
+          "source": "My parents agree with my plan.",
+          "target": "我的父母同意我的計劃。",
+          "meaning": "同意 / 贊成",
+          "level": "A2"
+        }
+      ]
+    },
+    "agreed|xvl61b": {
+      "word": "agreed",
+      "display": "agreed",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "agree 的過去式 / PP",
+      "pos": "verb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "agree 的過去式 / PP",
+          "pos": "verb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-13de9nq",
+          "source": "My parents agreed to buy me a bike.",
+          "target": "我父母答應買單車給我。",
+          "meaning": "agree 的過去式 / PP",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1sjemzp",
+          "source": "We all agreed on the time to meet.",
+          "target": "我們大家都同意了見面的時間。",
+          "meaning": "agree 的過去式 / PP",
+          "level": "A2"
+        },
+        {
+          "id": "seed-optjvs",
+          "source": "She agreed to help me with my homework.",
+          "target": "她答應幫我做功課。",
+          "meaning": "agree 的過去式 / PP",
+          "level": "A2"
+        }
+      ]
+    },
+    "ah|fvuct4": {
+      "word": "ah",
+      "display": "ah",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "啊",
+      "pos": "exclamation",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "啊",
+          "pos": "exclamation",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1mi9l35",
+          "source": "Ah, I forgot to bring my homework today.",
+          "target": "啊，我今天忘記帶功課了。",
+          "meaning": "啊",
+          "level": "A2"
+        },
+        {
+          "id": "seed-nll75x",
+          "source": "Ah, that is a very beautiful drawing.",
+          "target": "啊，那是一幅很漂亮的圖畫。",
+          "meaning": "啊",
+          "level": "A2"
+        },
+        {
+          "id": "seed-7d5zq",
+          "source": "Ah, now I understand how to do this.",
+          "target": "啊，我現在明白怎樣做了。",
+          "meaning": "啊",
+          "level": "A2"
+        }
+      ]
+    },
+    "air conditioner|1sqx995": {
+      "word": "air conditioner",
+      "display": "air conditioner",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "冷氣機",
+      "pos": "noun",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "冷氣機",
+          "pos": "noun",
+          "type": "phrase",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-5titak",
+          "source": "Please turn on the air conditioner.",
+          "target": "請打開冷氣機。",
+          "meaning": "冷氣機",
+          "level": "A2"
+        },
+        {
+          "id": "seed-19jz3bh",
+          "source": "The air conditioner is very cold.",
+          "target": "這部冷氣機很冷。",
+          "meaning": "冷氣機",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1b8gks4",
+          "source": "We need a new air conditioner.",
+          "target": "我們需要一部新的冷氣機。",
+          "meaning": "冷氣機",
+          "level": "A2"
+        }
+      ]
+    },
+    "airline|1hdheqt": {
+      "word": "airline",
+      "display": "airline",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "航空公司",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "航空公司",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1sfg0fz",
+          "source": "Which airline are you flying with today?",
+          "target": "你今天乘搭哪間航空公司？",
+          "meaning": "航空公司",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1d8bw1",
+          "source": "My father works for a big airline.",
+          "target": "我爸爸在一間大型航空公司工作。",
+          "meaning": "航空公司",
+          "level": "A2"
+        },
+        {
+          "id": "seed-z9vgl9",
+          "source": "This airline offers very cheap flight tickets.",
+          "target": "這間航空公司提供很便宜的機票。",
+          "meaning": "航空公司",
+          "level": "A2"
+        }
+      ]
+    },
+    "airport express|rotrss": {
+      "word": "airport express",
+      "display": "Airport Express",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "機場快線",
+      "pos": "noun",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "機場快線",
+          "pos": "noun",
+          "type": "phrase",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1fajg5d",
+          "source": "We take the Airport Express to the airport.",
+          "target": "我們乘搭機場快線去機場。",
+          "meaning": "機場快線",
+          "level": "A2"
+        },
+        {
+          "id": "seed-kz08k7",
+          "source": "The Airport Express is very fast and comfortable.",
+          "target": "機場快線又快又舒適。",
+          "meaning": "機場快線",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1ygy0lw",
+          "source": "My dad goes to work by Airport Express.",
+          "target": "我爸爸乘搭機場快線去上班。",
+          "meaning": "機場快線",
+          "level": "A2"
+        }
+      ]
+    },
+    "alas|1c2p57j": {
+      "word": "alas",
+      "display": "alas",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "唉 / 可惜",
+      "pos": "exclamation",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "唉 / 可惜",
+          "pos": "exclamation",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-7k14m7",
+          "source": "Alas, I forgot my homework at home.",
+          "target": "唉，我忘記把功課留在家裡了。",
+          "meaning": "唉 / 可惜",
+          "level": "A2"
+        },
+        {
+          "id": "seed-12lpu0l",
+          "source": "Alas, it is raining on our sports day.",
+          "target": "可惜，運動會那天竟然下雨了。",
+          "meaning": "唉 / 可惜",
+          "level": "A2"
+        },
+        {
+          "id": "seed-18hstvc",
+          "source": "Alas, we have no more cake left.",
+          "target": "唉，蛋糕已經全部吃光了。",
+          "meaning": "唉 / 可惜",
+          "level": "A2"
+        }
+      ]
+    },
+    "alive|15oi9ti": {
+      "word": "alive",
+      "display": "alive",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "活著的",
+      "pos": "adjective",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "活著的",
+          "pos": "adjective",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-12pkj0g",
+          "source": "The little rabbit is still alive.",
+          "target": "那隻小兔子仍然活著。",
+          "meaning": "活著的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1kkv9ik",
+          "source": "Are there any fish alive in the pond?",
+          "target": "池塘裡還有活著的魚嗎？",
+          "meaning": "活著的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-175tgdd",
+          "source": "My pet hamster is very much alive.",
+          "target": "我的寵物倉鼠還活得好好的。",
+          "meaning": "活著的",
+          "level": "A2"
+        }
+      ]
+    },
+    "all|pp71z0": {
+      "word": "all",
+      "display": "all",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "完全 / 全部地",
+      "pos": "adverb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "完全 / 全部地",
+          "pos": "adverb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-13jzq3r",
+          "source": "I am all ready for school today.",
+          "target": "我今天已經完全準備好上學了。",
+          "meaning": "完全 / 全部地",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1cpege6",
+          "source": "The cake is all gone now.",
+          "target": "蛋糕現在已經全部吃光了。",
+          "meaning": "完全 / 全部地",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1p3t9zj",
+          "source": "My homework is all finished.",
+          "target": "我的功課已經全部做完了。",
+          "meaning": "完全 / 全部地",
+          "level": "A2"
+        }
+      ]
+    },
+    "all around the world|8ivr6x": {
+      "word": "all around the world",
+      "display": "all around the world",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "全世界 / 世界各地",
+      "pos": "adverb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "全世界 / 世界各地",
+          "pos": "adverb",
+          "type": "phrase",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-138yjxn",
+          "source": "People live all around the world.",
+          "target": "世界各地都有人居住。",
+          "meaning": "全世界 / 世界各地",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1uhh43j",
+          "source": "I want to travel all around the world.",
+          "target": "我想去全世界旅行。",
+          "meaning": "全世界 / 世界各地",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1jmeyc2",
+          "source": "They sell these toys all around the world.",
+          "target": "這些玩具在世界各地都有售。",
+          "meaning": "全世界 / 世界各地",
+          "level": "A2"
+        }
+      ]
+    },
+    "all over the world|1pqqwg0": {
+      "word": "all over the world",
+      "display": "all over the world",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "世界各地",
+      "pos": "adverb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "世界各地",
+          "pos": "adverb",
+          "type": "phrase",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1xy4wqq",
+          "source": "People all over the world love playing football.",
+          "target": "世界各地的人都喜歡踢足球。",
+          "meaning": "世界各地",
+          "level": "A2"
+        },
+        {
+          "id": "seed-sgj72h",
+          "source": "I want to travel all over the world.",
+          "target": "我想去世界各地旅遊。",
+          "meaning": "世界各地",
+          "level": "A2"
+        },
+        {
+          "id": "seed-fp2aou",
+          "source": "We have friends living all over the world.",
+          "target": "我們有朋友住在世界各地。",
+          "meaning": "世界各地",
+          "level": "A2"
+        }
+      ]
+    },
+    "all right|1xted8l": {
+      "word": "all right",
+      "display": "all right",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "可以的 / 沒事的",
+      "pos": "adjective",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "可以的 / 沒事的",
+          "pos": "adjective",
+          "type": "phrase",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-s2sfc6",
+          "source": "Is it all right to play here?",
+          "target": "可以在這裡玩嗎？",
+          "meaning": "可以的 / 沒事的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-16jqd15",
+          "source": "Don't worry, everything will be all right.",
+          "target": "別擔心，一切都會沒事的。",
+          "meaning": "可以的 / 沒事的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-zdmdvk",
+          "source": "It is all right to ask for help.",
+          "target": "尋求幫助是可以的。",
+          "meaning": "可以的 / 沒事的",
+          "level": "A2"
+        }
+      ]
+    },
+    "all right|j67z04": {
+      "word": "all right",
+      "display": "all right",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "好吧 / 可以",
+      "pos": "exclamation",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "好吧 / 可以",
+          "pos": "exclamation",
+          "type": "phrase",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1xpb1o3",
+          "source": "All right, I will help you with homework.",
+          "target": "好吧，我會幫你做功課。",
+          "meaning": "好吧 / 可以",
+          "level": "A2"
+        },
+        {
+          "id": "seed-11f8z5u",
+          "source": "Is it all right to play here?",
+          "target": "在這裡玩可以嗎？",
+          "meaning": "好吧 / 可以",
+          "level": "A2"
+        },
+        {
+          "id": "seed-9hg8cp",
+          "source": "All right, let us go to the park.",
+          "target": "好吧，我們去公園吧。",
+          "meaning": "好吧 / 可以",
+          "level": "A2"
+        }
+      ]
+    },
+    "all right|kqwksu": {
+      "word": "all right",
+      "display": "all right",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "還可以地",
+      "pos": "adverb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "還可以地",
+          "pos": "adverb",
+          "type": "phrase",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-14upx8l",
+          "source": "The game went all right today.",
+          "target": "今天的比賽進行得還可以。",
+          "meaning": "可以地",
+          "level": "A2"
+        },
+        {
+          "id": "seed-14v3osw",
+          "source": "My speech went all right.",
+          "target": "我的演講表現還可以。",
+          "meaning": "可以地",
+          "level": "A2"
+        },
+        {
+          "id": "seed-17rgtor",
+          "source": "The test went all right for me.",
+          "target": "這次測驗對我來說做得還可以。",
+          "meaning": "可以地",
+          "level": "A2"
+        }
+      ]
+    },
+    "allay|2e73q6": {
+      "word": "allay",
+      "display": "allay",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "減輕 / 舒緩",
+      "pos": "verb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "減輕 / 舒緩",
+          "pos": "verb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-iud04u",
+          "source": "The teacher tried to allay our fears.",
+          "target": "老師嘗試減輕我們的恐懼。",
+          "meaning": "減輕 / 舒緩",
+          "level": "A2"
+        },
+        {
+          "id": "seed-hsztbr",
+          "source": "This drink will allay your thirst.",
+          "target": "這杯飲品可以舒緩你的口渴。",
+          "meaning": "減輕 / 舒緩",
+          "level": "A2"
+        },
+        {
+          "id": "seed-w1holt",
+          "source": "His kind words helped allay my worry.",
+          "target": "他親切的話語幫助我減輕了擔憂。",
+          "meaning": "減輕 / 舒緩",
+          "level": "A2"
+        }
+      ]
+    },
+    "alley|5y00mn": {
+      "word": "alley",
+      "display": "alley",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "小巷",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "小巷",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-ockskq",
+          "source": "The cat ran into the narrow alley.",
+          "target": "那隻貓跑進了窄窄的小巷。",
+          "meaning": "小巷",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1tfgyss",
+          "source": "We walked through a quiet alley home.",
+          "target": "我們穿過一條安靜的小巷回家。",
+          "meaning": "小巷",
+          "level": "A2"
+        },
+        {
+          "id": "seed-tsngmy",
+          "source": "There is a small alley behind school.",
+          "target": "學校後面有一條小巷。",
+          "meaning": "小巷",
+          "level": "A2"
+        }
+      ]
+    },
+    "almost|kif75t": {
+      "word": "almost",
+      "display": "almost",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "差不多 / 幾乎",
+      "pos": "adverb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "差不多 / 幾乎",
+          "pos": "adverb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-4jecy4",
+          "source": "I have almost finished my homework.",
+          "target": "我差不多做完功課了。",
+          "meaning": "差不多 / 幾乎",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1iohcz3",
+          "source": "It is almost time for lunch.",
+          "target": "差不多到午飯時間了。",
+          "meaning": "差不多 / 幾乎",
+          "level": "A2"
+        },
+        {
+          "id": "seed-12dscve",
+          "source": "I almost missed the school bus.",
+          "target": "我差點就錯過了校車。",
+          "meaning": "差不多 / 幾乎",
+          "level": "A2"
+        }
+      ]
+    },
+    "alone|19smp71": {
+      "word": "alone",
+      "display": "alone",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "單獨的 / 孤單的",
+      "pos": "adjective",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "單獨的 / 孤單的",
+          "pos": "adjective",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1qu4k1z",
+          "source": "I do not like being home alone.",
+          "target": "我不喜歡獨自留在家裡。",
+          "meaning": "單獨的 / 孤單的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-i7ce8",
+          "source": "She walked to school all alone.",
+          "target": "她獨自一人走路去學校。",
+          "meaning": "單獨的 / 孤單的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-dm8hfa",
+          "source": "He felt alone in the big classroom.",
+          "target": "他在大課室裡感到很孤單。",
+          "meaning": "單獨的 / 孤單的",
+          "level": "A2"
+        }
+      ]
+    },
+    "alone|xz3tyd": {
+      "word": "alone",
+      "display": "alone",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "獨自地",
+      "pos": "adverb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "獨自地",
+          "pos": "adverb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1q2lob6",
+          "source": "I like to read books alone.",
+          "target": "我喜歡獨自看書。",
+          "meaning": "獨自地",
+          "level": "A2"
+        },
+        {
+          "id": "seed-g27hav",
+          "source": "He walked to school alone today.",
+          "target": "他今天獨自步行上學。",
+          "meaning": "獨自地",
+          "level": "A2"
+        },
+        {
+          "id": "seed-nf6njx",
+          "source": "She finished her homework all alone.",
+          "target": "她獨自完成了功課。",
+          "meaning": "獨自地",
+          "level": "A2"
+        }
+      ]
+    },
+    "along|c6pffz": {
+      "word": "along",
+      "display": "along",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "向前 / 一起",
+      "pos": "adverb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "向前 / 一起",
+          "pos": "adverb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1r0eyws",
+          "source": "Please walk along with your classmates.",
+          "target": "請與你的同學一起走。",
+          "meaning": "向前 / 一起",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1drbr3m",
+          "source": "We sang songs as we walked along.",
+          "target": "我們一邊向前走，一邊唱歌。",
+          "meaning": "向前 / 一起",
+          "level": "A2"
+        },
+        {
+          "id": "seed-ve27w1",
+          "source": "Come along and play with us.",
+          "target": "一起來跟我們玩吧。",
+          "meaning": "向前 / 一起",
+          "level": "A2"
+        }
+      ]
+    },
+    "along|uheoh3": {
+      "word": "along",
+      "display": "along",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "沿著",
+      "pos": "preposition",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "沿著",
+          "pos": "preposition",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-nkk17c",
+          "source": "We walked along the school corridor.",
+          "target": "我們沿著學校走廊走。",
+          "meaning": "沿著",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1x2yrxm",
+          "source": "Please line up along the wall.",
+          "target": "請沿著牆壁排隊。",
+          "meaning": "沿著",
+          "level": "A2"
+        },
+        {
+          "id": "seed-8td4l8",
+          "source": "They ran along the park path.",
+          "target": "他們沿著公園小徑跑步。",
+          "meaning": "沿著",
+          "level": "A2"
+        }
+      ]
+    },
+    "already|a3cfcy": {
+      "word": "already",
+      "display": "already",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "已經",
+      "pos": "adverb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "已經",
+          "pos": "adverb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1vlrsk7",
+          "source": "I have already finished my homework.",
+          "target": "我已經做完功課了。",
+          "meaning": "已經",
+          "level": "A2"
+        },
+        {
+          "id": "seed-qcg6lj",
+          "source": "The school bus has already left.",
+          "target": "校車已經開走了。",
+          "meaning": "已經",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1hjzsbd",
+          "source": "It is already time for lunch.",
+          "target": "現在已經是午飯時間了。",
+          "meaning": "已經",
+          "level": "A2"
+        }
+      ]
+    },
+    "alternative|12ier1i": {
+      "word": "alternative",
+      "display": "alternative",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "替代品",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "替代品",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-16w9w3i",
+          "source": "We need an alternative for our lunch.",
+          "target": "我們需要一個午餐的替代品。",
+          "meaning": "替代品",
+          "level": "A2"
+        },
+        {
+          "id": "seed-13iom2q",
+          "source": "Is there an alternative to this game?",
+          "target": "這個遊戲有沒有其他替代品？",
+          "meaning": "替代品",
+          "level": "A2"
+        },
+        {
+          "id": "seed-r9l1ve",
+          "source": "Please find an alternative for the party.",
+          "target": "請為派對找一個替代品。",
+          "meaning": "替代品",
+          "level": "A2"
+        }
+      ]
+    },
+    "alternative|1aacnl1": {
+      "word": "alternative",
+      "display": "alternative",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "另一選擇的",
+      "pos": "adjective",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "另一選擇的",
+          "pos": "adjective",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-hyknnm",
+          "source": "We have an alternative plan for today.",
+          "target": "我們今天有另一個選擇的計劃。",
+          "meaning": "另一選擇的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-18braeo",
+          "source": "Is there an alternative way to solve this?",
+          "target": "有沒有另一種解決的方法？",
+          "meaning": "另一選擇的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1gjq9nf",
+          "source": "She chose an alternative route to school.",
+          "target": "她選擇了另一條上學的路。",
+          "meaning": "另一選擇的",
+          "level": "A2"
+        }
+      ]
+    },
+    "alternative|1hhixds": {
+      "word": "alternative",
+      "display": "alternative",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "替代品 / 選擇",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "替代品 / 選擇",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-fenhba",
+          "source": "We need an alternative for our lunch.",
+          "target": "我們午餐需要一個替代選擇。",
+          "meaning": "替代品 / 選擇",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1eym9l7",
+          "source": "Is there an alternative way to school?",
+          "target": "有沒有其他上學的路線選擇？",
+          "meaning": "替代品 / 選擇",
+          "level": "A2"
+        },
+        {
+          "id": "seed-92xst2",
+          "source": "This game is a fun alternative.",
+          "target": "這個遊戲是一個有趣的替代品。",
+          "meaning": "替代品 / 選擇",
+          "level": "A2"
+        }
+      ]
+    },
+    "alternative|1j3lp1a": {
+      "word": "alternative",
+      "display": "alternative",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "替代的",
+      "pos": "adjective",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "替代的",
+          "pos": "adjective",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1nxg51b",
+          "source": "We need an alternative plan for today.",
+          "target": "我們今天需要一個替代方案。",
+          "meaning": "替代的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-17sdi3b",
+          "source": "Is there an alternative way to solve this?",
+          "target": "有沒有其他替代方法來解決這個問題？",
+          "meaning": "替代的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-mtqliq",
+          "source": "She chose an alternative route to school.",
+          "target": "她選擇了一條替代路線去學校。",
+          "meaning": "替代的",
+          "level": "A2"
+        }
+      ]
+    },
+    "alternative|1og2gby": {
+      "word": "alternative",
+      "display": "alternative",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "另一選擇",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "另一選擇",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-10sr76l",
+          "source": "We need an alternative for the party.",
+          "target": "我們需要派對的另一選擇。",
+          "meaning": "另一選擇",
+          "level": "A2"
+        },
+        {
+          "id": "seed-mahja3",
+          "source": "Is there an alternative way to school?",
+          "target": "有沒有另一條上學的路徑？",
+          "meaning": "另一選擇",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1osfgau",
+          "source": "This game is a fun alternative.",
+          "target": "這個遊戲是一個有趣的另一選擇。",
+          "meaning": "另一選擇",
+          "level": "A2"
+        }
+      ]
+    },
+    "alternative|pjw3mi": {
+      "word": "alternative",
+      "display": "alternative",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "另一選擇的 / 替代的",
+      "pos": "adjective",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "另一選擇的 / 替代的",
+          "pos": "adjective",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-t50aul",
+          "source": "We have an alternative plan for today.",
+          "target": "我們今天有一個替代方案。",
+          "meaning": "另一選擇的 / 替代的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-hehjbj",
+          "source": "Is there an alternative way to solve this?",
+          "target": "有沒有另一種方法可以解決這個問題？",
+          "meaning": "另一選擇的 / 替代的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-nxrhp0",
+          "source": "Please choose an alternative color for your bag.",
+          "target": "請為你的書包選擇另一種顏色。",
+          "meaning": "另一選擇的 / 替代的",
+          "level": "A2"
+        }
+      ]
+    },
+    "although|mqm123": {
+      "word": "although",
+      "display": "although",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "雖然",
+      "pos": "conjunction",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "雖然",
+          "pos": "conjunction",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-13r5i7w",
+          "source": "Although it is raining, we play outside.",
+          "target": "雖然正在下雨，但我們仍在外面玩。",
+          "meaning": "雖然",
+          "level": "A2"
+        },
+        {
+          "id": "seed-phn3s",
+          "source": "Although I am tired, I finish homework.",
+          "target": "雖然我很累，但我還是完成了功課。",
+          "meaning": "雖然",
+          "level": "A2"
+        },
+        {
+          "id": "seed-le41j1",
+          "source": "He likes apples, although he prefers oranges.",
+          "target": "雖然他比較喜歡橙，但他都鍾意食蘋果。",
+          "meaning": "雖然",
+          "level": "A2"
+        }
+      ]
+    },
+    "amass|1xlsi74": {
+      "word": "amass",
+      "display": "amass",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "累積",
+      "pos": "verb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "累積",
+          "pos": "verb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-uf54of",
+          "source": "I want to amass more toy cars.",
+          "target": "我想累積更多玩具車。",
+          "meaning": "累積",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1wwl6t6",
+          "source": "She likes to amass many pretty stickers.",
+          "target": "她喜歡累積很多漂亮的貼紙。",
+          "meaning": "累積",
+          "level": "A2"
+        },
+        {
+          "id": "seed-xz8nxl",
+          "source": "We amass old books for the library.",
+          "target": "我們為圖書館累積舊書。",
+          "meaning": "累積",
+          "level": "A2"
+        }
+      ]
+    },
+    "america|1agl5tm": {
+      "word": "america",
+      "display": "America",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "美國",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "美國",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1basny7",
+          "source": "My cousin lives in America now.",
+          "target": "我表親現在住在美國。",
+          "meaning": "美國",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1shy90a",
+          "source": "We want to visit America this summer.",
+          "target": "我們想在今年夏天去美國旅遊。",
+          "meaning": "美國",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1yux7gi",
+          "source": "I have a pen pal from America.",
+          "target": "我有一位來自美國的筆友。",
+          "meaning": "美國",
+          "level": "A2"
+        }
+      ]
+    },
+    "among|1t0by5n": {
+      "word": "among",
+      "display": "among",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "在...之中",
+      "pos": "preposition",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "在...之中",
+          "pos": "preposition",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-jiw042",
+          "source": "I am sitting among my best friends.",
+          "target": "我正坐在好朋友之中。",
+          "meaning": "在...之中",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1s5a9eu",
+          "source": "She hid the toy among the books.",
+          "target": "她把玩具藏在書本之中。",
+          "meaning": "在...之中",
+          "level": "A2"
+        },
+        {
+          "id": "seed-bv07vw",
+          "source": "There is a cat among the flowers.",
+          "target": "花叢之中有一隻貓。",
+          "meaning": "在...之中",
+          "level": "A2"
+        }
+      ]
+    },
+    "among|enzo12": {
+      "word": "among",
+      "display": "among",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "在...之中 / 在...之間",
+      "pos": "preposition",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "在...之中 / 在...之間",
+          "pos": "preposition",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1jt7d9m",
+          "source": "I am sitting among my best friends.",
+          "target": "我正坐在好朋友們之中。",
+          "meaning": "在...之中 / 在...之間",
+          "level": "A2"
+        },
+        {
+          "id": "seed-124fs6m",
+          "source": "She found a coin among the books.",
+          "target": "她在書堆之中找到了一枚硬幣。",
+          "meaning": "在...之中 / 在...之間",
+          "level": "A2"
+        },
+        {
+          "id": "seed-an026r",
+          "source": "The cat is hiding among the flowers.",
+          "target": "那隻貓正躲在花叢之中。",
+          "meaning": "在...之中 / 在...之間",
+          "level": "A2"
+        }
+      ]
+    },
+    "amount|b1iv27": {
+      "word": "amount",
+      "display": "amount",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "數量（不可數）",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "數量（不可數）",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1k2kv8t",
+          "source": "A small amount of rain fell today.",
+          "target": "今天下了少量的雨。",
+          "meaning": "數量（不可數）",
+          "level": "A2"
+        },
+        {
+          "id": "seed-g93duj",
+          "source": "We need a large amount of water.",
+          "target": "我們需要大量的食水。",
+          "meaning": "數量（不可數）",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1qkas26",
+          "source": "Please pay the correct amount of money.",
+          "target": "請支付正確的金額。",
+          "meaning": "數量（不可數）",
+          "level": "A2"
+        }
+      ]
+    },
+    "ample|12tw92s": {
+      "word": "ample",
+      "display": "ample",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "充足的 / 足夠的",
+      "pos": "adjective",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "充足的 / 足夠的",
+          "pos": "adjective",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1uysejx",
+          "source": "We have ample food for the party.",
+          "target": "我們有充足的食物舉行派對。",
+          "meaning": "充足的 / 足夠的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-fjzpfb",
+          "source": "There is ample space in the classroom.",
+          "target": "課室內有足夠的空間。",
+          "meaning": "充足的 / 足夠的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1bp9ta9",
+          "source": "He has ample time to finish homework.",
+          "target": "他有充足的時間完成功課。",
+          "meaning": "充足的 / 足夠的",
+          "level": "A2"
+        }
+      ]
+    },
+    "ancient|ialejb": {
+      "word": "ancient",
+      "display": "ancient",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "古代的 / 古老的",
+      "pos": "adjective",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "古代的 / 古老的",
+          "pos": "adjective",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1q5irwa",
+          "source": "We saw many ancient pots in the museum.",
+          "target": "我們在博物館看見了許多古老的陶器。",
+          "meaning": "古代的 / 古老的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1802cyi",
+          "source": "The class learned about ancient life in Egypt.",
+          "target": "全班一起學習了古埃及的生活。",
+          "meaning": "古代的 / 古老的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1c661g4",
+          "source": "This is an ancient map of the city.",
+          "target": "這是一張這座城市的古老地圖。",
+          "meaning": "古代的 / 古老的",
+          "level": "A2"
+        }
+      ]
+    },
+    "ancient|rtqicd": {
+      "word": "ancient",
+      "display": "ancient",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "古老的",
+      "pos": "adjective",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "古老的",
+          "pos": "adjective",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-da768w",
+          "source": "We saw many ancient coins at the museum.",
+          "target": "我們在博物館看到了許多古老的錢幣。",
+          "meaning": "古老的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-9itryz",
+          "source": "The ancient tree is very tall and strong.",
+          "target": "這棵古老的大樹又高又壯。",
+          "meaning": "古老的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-agf1u3",
+          "source": "They visited an ancient temple in the city.",
+          "target": "他們參觀了城裡一座古老的寺廟。",
+          "meaning": "古老的",
+          "level": "A2"
+        }
+      ]
+    },
+    "ancient|xlr39r": {
+      "word": "ancient",
+      "display": "ancient",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "古代的",
+      "pos": "adjective",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "古代的",
+          "pos": "adjective",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-pxw2pd",
+          "source": "We saw many ancient pots at the museum.",
+          "target": "我們在博物館看到了許多古代的陶罐。",
+          "meaning": "古代的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-f9zyb9",
+          "source": "The ancient city has a very long history.",
+          "target": "這座古代城市有著很悠久的歷史。",
+          "meaning": "古代的",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1utm38w",
+          "source": "We read stories about ancient kings in class.",
+          "target": "我們在課堂上閱讀關於古代國王的故事。",
+          "meaning": "古代的",
+          "level": "A2"
+        }
+      ]
+    },
+    "and so on|h0krz0": {
+      "word": "and so on",
+      "display": "and so on",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "等等",
+      "pos": "adverb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "等等",
+          "pos": "adverb",
+          "type": "phrase",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1i2635l",
+          "source": "We need pens, rulers, and so on.",
+          "target": "我們需要原子筆、尺等等。",
+          "meaning": "等等",
+          "level": "A2"
+        },
+        {
+          "id": "seed-8c7bpb",
+          "source": "I like apples, oranges, and so on.",
+          "target": "我喜歡蘋果、橙等等。",
+          "meaning": "等等",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1oa0rc4",
+          "source": "Bring your books, bags, and so on.",
+          "target": "帶備你的書本、書包等等。",
+          "meaning": "等等",
+          "level": "A2"
+        }
+      ]
+    },
+    "anime|12tfwzh": {
+      "word": "anime",
+      "display": "anime",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "動畫",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "動畫",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-lc0brn",
+          "source": "I like to watch anime after school.",
+          "target": "我放學後喜歡看動畫。",
+          "meaning": "動畫",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1ffy7p",
+          "source": "My brother loves watching Japanese anime.",
+          "target": "我弟弟很喜歡看日本動畫。",
+          "meaning": "動畫",
+          "level": "A2"
+        },
+        {
+          "id": "seed-z4twvw",
+          "source": "We talk about our favorite anime together.",
+          "target": "我們一起談論最喜歡的動畫。",
+          "meaning": "動畫",
+          "level": "A2"
+        }
+      ]
+    },
+    "ankle|dowe3d": {
+      "word": "ankle",
+      "display": "ankle",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "腳踝",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "腳踝",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1qed7vh",
+          "source": "I hurt my ankle while playing football.",
+          "target": "我踢足球時弄傷了腳踝。",
+          "meaning": "腳踝",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1fcetxr",
+          "source": "She wears a bandage on her ankle.",
+          "target": "她的腳踝上纏著繃帶。",
+          "meaning": "腳踝",
+          "level": "A2"
+        },
+        {
+          "id": "seed-b0zmss",
+          "source": "My ankle is sore after the run.",
+          "target": "跑步後我的腳踝感到酸痛。",
+          "meaning": "腳踝",
+          "level": "A2"
+        }
+      ]
+    },
+    "announce|19hilmm": {
+      "word": "announce",
+      "display": "announce",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "宣布",
+      "pos": "verb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "宣布",
+          "pos": "verb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-t49jhn",
+          "source": "The teacher will announce the exam results.",
+          "target": "老師將會宣布考試成績。",
+          "meaning": "宣布",
+          "level": "A2"
+        },
+        {
+          "id": "seed-jx0ij6",
+          "source": "The principal announced the new school rules.",
+          "target": "校長宣布了新的校規。",
+          "meaning": "宣布",
+          "level": "A2"
+        },
+        {
+          "id": "seed-90z6b4",
+          "source": "They announced the winner of the game.",
+          "target": "他們宣布了比賽的獲勝者。",
+          "meaning": "宣布",
+          "level": "A2"
+        }
+      ]
+    },
+    "answer sheet|1clpv69": {
+      "word": "answer sheet",
+      "display": "answer sheet",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "答題紙",
+      "pos": "noun",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "答題紙",
+          "pos": "noun",
+          "type": "phrase",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1wxvicx",
+          "source": "Please write your name on the answer sheet.",
+          "target": "請在答題紙上寫下你的名字。",
+          "meaning": "答題紙",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1qzmbyp",
+          "source": "I finished filling in my answer sheet today.",
+          "target": "我今天填好了我的答題紙。",
+          "meaning": "答題紙",
+          "level": "A2"
+        },
+        {
+          "id": "seed-up4jq7",
+          "source": "Hand in your answer sheet to the teacher.",
+          "target": "把你的答題紙交給老師。",
+          "meaning": "答題紙",
+          "level": "A2"
+        }
+      ]
+    },
+    "any|1m9ht0w": {
+      "word": "any",
+      "display": "any",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "一點也 / 絲毫",
+      "pos": "adverb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "一點也 / 絲毫",
+          "pos": "adverb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-pslhgf",
+          "source": "I do not feel any better today.",
+          "target": "我今天一點也沒有覺得好轉。",
+          "meaning": "一點也 / 絲毫",
+          "level": "A2"
+        },
+        {
+          "id": "seed-19lhle2",
+          "source": "He does not want any help now.",
+          "target": "他現在一點也不需要幫忙。",
+          "meaning": "一點也 / 絲毫",
+          "level": "A2"
+        },
+        {
+          "id": "seed-x6ntyd",
+          "source": "The math problem is not any easier.",
+          "target": "這道數學題一點也沒有變簡單。",
+          "meaning": "一點也 / 絲毫",
+          "level": "A2"
+        }
+      ]
+    },
+    "any more|1smk9ne": {
+      "word": "any more",
+      "display": "any more",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "再 / 不再",
+      "pos": "adverb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "再 / 不再",
+          "pos": "adverb",
+          "type": "phrase",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-s2saci",
+          "source": "I do not want any more cake.",
+          "target": "我不想再吃蛋糕了。",
+          "meaning": "再 / 不再",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1jejpqv",
+          "source": "We cannot play here any more.",
+          "target": "我們不能再在這裡玩了。",
+          "meaning": "再 / 不再",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1ubgckz",
+          "source": "She does not live here any more.",
+          "target": "她不再住在這裡了。",
+          "meaning": "再 / 不再",
+          "level": "A2"
+        }
+      ]
+    },
+    "anybody|1n4bimy": {
+      "word": "anybody",
+      "display": "anybody",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "任何人",
+      "pos": "pronoun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "任何人",
+          "pos": "pronoun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-17j9kak",
+          "source": "Does anybody know the answer to this?",
+          "target": "有沒有人知道這個問題的答案？",
+          "meaning": "任何人",
+          "level": "A2"
+        },
+        {
+          "id": "seed-5smj3h",
+          "source": "I did not see anybody in the room.",
+          "target": "我沒有在房間裡看見任何人。",
+          "meaning": "任何人",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1dgxynf",
+          "source": "Can anybody help me with my homework?",
+          "target": "有沒有人可以幫我做功課？",
+          "meaning": "任何人",
+          "level": "A2"
+        }
+      ]
+    },
+    "anyway|ui74qu": {
+      "word": "anyway",
+      "display": "anyway",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "無論如何 / 反正",
+      "pos": "adverb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "無論如何 / 反正",
+          "pos": "adverb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1x44ay5",
+          "source": "It is raining, but I will go anyway.",
+          "target": "正在下雨，但我還是會去。",
+          "meaning": "無論如何 / 反正",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1ddu8id",
+          "source": "I do not like it, but I will eat it anyway.",
+          "target": "我不喜歡，但反正我都會吃。",
+          "meaning": "無論如何 / 反正",
+          "level": "A2"
+        },
+        {
+          "id": "seed-m0iftz",
+          "source": "Anyway, let us start our homework now.",
+          "target": "無論如何，我們現在開始做功課吧。",
+          "meaning": "無論如何 / 反正",
+          "level": "A2"
+        }
+      ]
+    },
+    "anywhere|1al0tfj": {
+      "word": "anywhere",
+      "display": "anywhere",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "任何地方",
+      "pos": "pronoun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "任何地方",
+          "pos": "pronoun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-lke2je",
+          "source": "You can sit anywhere in this room.",
+          "target": "你可以坐在這間房裡的任何地方。",
+          "meaning": "任何地方",
+          "level": "A2"
+        },
+        {
+          "id": "seed-wa0k0g",
+          "source": "I cannot find my pen anywhere.",
+          "target": "我到處都找不到我的原子筆。",
+          "meaning": "任何地方",
+          "level": "A2"
+        },
+        {
+          "id": "seed-tbwufq",
+          "source": "Is there anywhere quiet to study?",
+          "target": "這裡有任何安靜的地方可以溫習嗎？",
+          "meaning": "任何地方",
+          "level": "A2"
+        }
+      ]
+    },
+    "anywhere|1v7b0e2": {
+      "word": "anywhere",
+      "display": "anywhere",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "任何地方",
+      "pos": "adverb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "任何地方",
+          "pos": "adverb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-adjsyk",
+          "source": "I cannot find my pen anywhere.",
+          "target": "我到處都找不到我的筆。",
+          "meaning": "任何地方",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1s8dkbi",
+          "source": "You can sit anywhere in this room.",
+          "target": "你可以在這房間隨便坐。",
+          "meaning": "任何地方",
+          "level": "A2"
+        },
+        {
+          "id": "seed-lo0cv9",
+          "source": "Is there anywhere quiet to study?",
+          "target": "有沒有什麼安靜的地方可以溫習？",
+          "meaning": "任何地方",
+          "level": "A2"
+        }
+      ]
+    },
+    "app|1mjufky": {
+      "word": "app",
+      "display": "app",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "應用程式",
+      "pos": "noun",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "應用程式",
+          "pos": "noun",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-1hsja5q",
+          "source": "I downloaded a new game app today.",
+          "target": "我今天下載了一個新的遊戲應用程式。",
+          "meaning": "應用程式",
+          "level": "A2"
+        },
+        {
+          "id": "seed-1qmze9u",
+          "source": "This app helps me learn English words.",
+          "target": "這個應用程式幫助我學習英文單字。",
+          "meaning": "應用程式",
+          "level": "A2"
+        },
+        {
+          "id": "seed-jzs7td",
+          "source": "My dad uses a map app to travel.",
+          "target": "我爸爸用地圖應用程式去旅行。",
+          "meaning": "應用程式",
+          "level": "A2"
+        }
+      ]
+    },
+    "appear|b64nog": {
+      "word": "appear",
+      "display": "appear",
+      "source": "local-seed-gemini",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "出現",
+      "pos": "verb",
+      "type": "word",
+      "hints": [
+        {
+          "meaning": "出現",
+          "pos": "verb",
+          "type": "word",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-epf0fr",
+          "source": "A rainbow began to appear in the sky.",
+          "target": "彩虹開始在天空中出現。",
+          "meaning": "出現",
+          "level": "A2"
+        },
+        {
+          "id": "seed-lsztf2",
+          "source": "The sun will appear after the rain.",
+          "target": "雨後太陽就會出現。",
+          "meaning": "出現",
+          "level": "A2"
+        },
+        {
+          "id": "seed-e1e3rq",
+          "source": "New flowers appear in the garden every spring.",
+          "target": "每年春天花園裡都會出現新的花朵。",
+          "meaning": "出現",
+          "level": "A2"
         }
       ]
     }
