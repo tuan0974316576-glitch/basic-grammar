@@ -6513,6 +6513,53 @@ function assertStudentLookupContract(word, matches) {
     assertStudentLookupContract(word, await lookupForStudent(word, { fetchLiveTeacher: true }));
   }
 
+  for (const [word, expected] of [
+    ["look forward to", "phrase:verb:期待:curated-sense-bank"],
+    ["be used to", "phrase:adjective:習慣於:curated-sense-bank"],
+    ["get used to", "phrase:verb:變得習慣於:curated-sense-bank"],
+    ["object to", "phrase:verb:反對:curated-sense-bank"],
+    ["be opposed to", "phrase:adjective:反對:curated-sense-bank"],
+    ["commit to", "phrase:verb:承諾 / 致力於:curated-sense-bank"],
+    ["be committed to", "phrase:adjective:致力於:curated-sense-bank"],
+    ["dedicate to", "phrase:verb:奉獻於:curated-sense-bank"],
+    ["be dedicated to", "phrase:adjective:專注於 / 奉獻於:curated-sense-bank"],
+    ["devote to", "phrase:verb:投身於:curated-sense-bank"],
+    ["be devoted to", "phrase:adjective:全心投入於:curated-sense-bank"],
+    ["contribute to", "phrase:verb:有助於 / 促成:curated-sense-bank"],
+    ["with a view to", "phrase:adverb:為了 / 目的在於:curated-sense-bank"],
+    ["with an eye to", "phrase:adverb:考慮到 / 目的在於:curated-sense-bank"],
+    ["adapt to", "phrase:verb:適應:curated-sense-bank"],
+    ["adjust to", "phrase:verb:調整 / 適應:curated-sense-bank"],
+    ["admit to", "phrase:verb:承認:curated-sense-bank"],
+    ["confess to", "phrase:verb:坦白 / 交代:curated-sense-bank"],
+    ["take to", "phrase:verb:開始喜歡 / 養成...習慣:curated-sense-bank"],
+    ["resort to", "phrase:verb:訴諸於 / 不得不使用:curated-sense-bank"],
+    ["apply oneself to", "phrase:verb:專心致力於:curated-sense-bank"],
+    ["be close to", "phrase:adjective:接近於:curated-sense-bank"],
+    ["be near to", "phrase:adjective:接近於:curated-sense-bank"],
+    ["key to", "phrase:noun:...的關鍵:curated-sense-bank"],
+    ["secret to", "phrase:noun:...的秘訣:curated-sense-bank"],
+    ["solution to", "phrase:noun:...的解決辦法:curated-sense-bank"],
+    ["alternative to", "phrase:noun:...之外的替代方案:curated-sense-bank"],
+    ["approach to", "phrase:noun:...的方法:curated-sense-bank"],
+    ["access to", "phrase:noun:進入 / 使用...的權利或機會:curated-sense-bank"],
+    ["response to", "phrase:noun:對...的回應:curated-sense-bank"],
+    ["reaction to", "phrase:noun:對...的反應:curated-sense-bank"],
+    ["challenge to", "phrase:noun:對...的挑戰:curated-sense-bank"],
+    ["limit to", "phrase:noun:對...的限制:curated-sense-bank"],
+    ["open to", "phrase:adjective:對...開放的 / 不排斥的:curated-sense-bank"],
+    ["equal to", "phrase:adjective:勝任...的 / 與...相等的:curated-sense-bank"],
+    ["essential to", "phrase:adjective:對...不可或缺的:curated-sense-bank"],
+    ["preparatory to", "phrase:adverb:作為...的準備:curated-sense-bank"],
+    ["prior to", "phrase:preposition:在...之前:curated-sense-bank"],
+    ["impervious to", "phrase:adjective:不受...影響的:curated-sense-bank"],
+    ["resigned to", "phrase:adjective:無奈接受...的:curated-sense-bank"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
   console.log("vocab_lookup_order tests passed");
 })().catch((error) => {
   console.error(error);

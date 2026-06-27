@@ -134,4 +134,31 @@ assert.strictEqual(normalized.length, 3);
 assert.strictEqual(normalized[0].meaning, "食 / 飲");
 assert.strictEqual(normalized[0].level, "A1");
 
+const seed = require("../vocab_example_seed.js");
+[
+  { word: "look forward to", pos: "verb", meaning: "期待", level: "A2" },
+  { word: "be used to", pos: "adjective", meaning: "習慣於", level: "B1" },
+  { word: "object to", pos: "verb", meaning: "反對", level: "B2" },
+  { word: "with a view to", pos: "adverb", meaning: "為了 / 目的在於", level: "C1" },
+  { word: "essential to", pos: "adjective", meaning: "對...不可或缺的", level: "B2" },
+  { word: "prior to", pos: "preposition", meaning: "在...之前", level: "B2" }
+].forEach((entry) => {
+  const key = utils.getLocalCacheKey(entry.word, [{
+    meaning: entry.meaning,
+    pos: entry.pos,
+    type: "phrase",
+    level: entry.level
+  }]);
+  const payload = seed.entries[key];
+  assert.ok(payload, `${entry.word} should have local curated examples`);
+  assert.strictEqual(payload.meaning, entry.meaning);
+  assert.strictEqual(payload.pos, entry.pos);
+  assert.strictEqual(payload.type, "phrase");
+  assert.strictEqual(payload.examples.length, 3);
+  payload.examples.forEach((example) => {
+    assert.ok(example.source, `${entry.word} example should have English`);
+    assert.ok(example.target, `${entry.word} example should have Chinese`);
+  });
+});
+
 console.log("vocab example seed tests passed");

@@ -272,7 +272,7 @@ assert.deepStrictEqual(
 assert.strictEqual(senseBank.lookup("account for")[0].overrideTeacher, true);
 assert.deepStrictEqual(
   senseBank.lookup("contribute to").map((entry) => `${entry.type}:${entry.meaning}`),
-  ["phrase:促成 / 導致", "phrase:貢獻"]
+  ["phrase:有助於 / 促成", "phrase:貢獻"]
 );
 assert.strictEqual(senseBank.lookup("contribute to")[0].overrideTeacher, true);
 assert.deepStrictEqual(
@@ -3909,7 +3909,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("with a view to").map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),
-  ["phrase:preposition:為了 / 旨在"]
+  ["phrase:adverb:為了 / 目的在於"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("young generations").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
@@ -4903,5 +4903,53 @@ assert.deepStrictEqual(
   senseBank.lookup("program").map((entry) => `${entry.pos}:${entry.meaning}`),
   ["noun:節目", "noun:程式", "noun:計劃", "verb:編寫程式"]
 );
+
+[
+  ["look forward to", "phrase:verb:期待"],
+  ["be used to", "phrase:adjective:習慣於"],
+  ["get used to", "phrase:verb:變得習慣於"],
+  ["object to", "phrase:verb:反對"],
+  ["be opposed to", "phrase:adjective:反對"],
+  ["commit to", "phrase:verb:承諾 / 致力於"],
+  ["be committed to", "phrase:adjective:致力於"],
+  ["dedicate to", "phrase:verb:奉獻於"],
+  ["be dedicated to", "phrase:adjective:專注於 / 奉獻於"],
+  ["devote to", "phrase:verb:投身於"],
+  ["be devoted to", "phrase:adjective:全心投入於"],
+  ["contribute to", "phrase:verb:有助於 / 促成"],
+  ["with a view to", "phrase:adverb:為了 / 目的在於"],
+  ["with an eye to", "phrase:adverb:考慮到 / 目的在於"],
+  ["adapt to", "phrase:verb:適應"],
+  ["adjust to", "phrase:verb:調整 / 適應"],
+  ["admit to", "phrase:verb:承認"],
+  ["confess to", "phrase:verb:坦白 / 交代"],
+  ["take to", "phrase:verb:開始喜歡 / 養成...習慣"],
+  ["resort to", "phrase:verb:訴諸於 / 不得不使用"],
+  ["apply oneself to", "phrase:verb:專心致力於"],
+  ["be close to", "phrase:adjective:接近於"],
+  ["be near to", "phrase:adjective:接近於"],
+  ["key to", "phrase:noun:...的關鍵"],
+  ["secret to", "phrase:noun:...的秘訣"],
+  ["solution to", "phrase:noun:...的解決辦法"],
+  ["alternative to", "phrase:noun:...之外的替代方案"],
+  ["approach to", "phrase:noun:...的方法"],
+  ["access to", "phrase:noun:進入 / 使用...的權利或機會"],
+  ["response to", "phrase:noun:對...的回應"],
+  ["reaction to", "phrase:noun:對...的反應"],
+  ["challenge to", "phrase:noun:對...的挑戰"],
+  ["limit to", "phrase:noun:對...的限制"],
+  ["open to", "phrase:adjective:對...開放的 / 不排斥的"],
+  ["equal to", "phrase:adjective:勝任...的 / 與...相等的"],
+  ["essential to", "phrase:adjective:對...不可或缺的"],
+  ["preparatory to", "phrase:adverb:作為...的準備"],
+  ["prior to", "phrase:preposition:在...之前"],
+  ["impervious to", "phrase:adjective:不受...影響的"],
+  ["resigned to", "phrase:adjective:無奈接受...的"]
+].forEach(([word, expected]) => {
+  const [entry] = senseBank.lookup(word);
+  assert.ok(entry, `${word} should be in the curated sense bank`);
+  assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}`, expected);
+  assert.ok(entry.overrideTeacher, `${word} should override noisy imported meanings`);
+});
 
 console.log("vocab_sense_bank tests passed");

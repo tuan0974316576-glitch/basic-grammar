@@ -6,8 +6,8 @@
 })(typeof globalThis !== "undefined" ? globalThis : window, {
   "meta": {
     "generatedAt": "2026-06-20T16:01:34.658Z",
-    "entryCount": 1368,
-    "exampleCount": 4104,
+    "entryCount": 1408,
+    "exampleCount": 4224,
     "source": "local-seed-gemini",
     "readyCount": 1368,
     "failedCount": 0,
@@ -243,7 +243,7 @@
       "with|tlwe9c"
     ],
     "blockedCount": 228,
-    "curatedCount": 26
+    "curatedCount": 66
   },
   "entries": {
     "ability|go54cp": {
@@ -49886,6 +49886,1647 @@
           "level": "B2"
         }
       ]
+    },
+    "look forward to|opp59f": {
+      "word": "look forward to",
+      "display": "look forward to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "A2",
+      "meaning": "期待",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "期待",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "A2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-look-forward-to-1",
+          "source": "We are looking forward to seeing you soon.",
+          "target": "我們期待很快見到你。",
+          "meaning": "期待",
+          "level": "A2"
+        },
+        {
+          "id": "seed-look-forward-to-2",
+          "source": "I look forward to joining the school trip.",
+          "target": "我期待參加學校旅行。",
+          "meaning": "期待",
+          "level": "A2"
+        },
+        {
+          "id": "seed-look-forward-to-3",
+          "source": "She looks forward to hearing the good news.",
+          "target": "她期待聽到好消息。",
+          "meaning": "期待",
+          "level": "A2"
+        }
+      ]
+    },
+    "be used to|yayge8": {
+      "word": "be used to",
+      "display": "be used to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "習慣於",
+      "pos": "adjective",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "習慣於",
+          "pos": "adjective",
+          "type": "phrase",
+          "level": "B1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-be-used-to-1",
+          "source": "She is used to waking up early.",
+          "target": "她習慣早起。",
+          "meaning": "習慣於",
+          "level": "B1"
+        },
+        {
+          "id": "seed-be-used-to-2",
+          "source": "I am used to speaking English in class.",
+          "target": "我習慣在課堂上說英文。",
+          "meaning": "習慣於",
+          "level": "B1"
+        },
+        {
+          "id": "seed-be-used-to-3",
+          "source": "They are used to living in Hong Kong.",
+          "target": "他們習慣住在香港。",
+          "meaning": "習慣於",
+          "level": "B1"
+        }
+      ]
+    },
+    "get used to|15yzpnx": {
+      "word": "get used to",
+      "display": "get used to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "變得習慣於",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "變得習慣於",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-get-used-to-1",
+          "source": "He got used to taking the bus to school.",
+          "target": "他變得習慣坐巴士上學。",
+          "meaning": "變得習慣於",
+          "level": "B1"
+        },
+        {
+          "id": "seed-get-used-to-2",
+          "source": "You will get used to writing longer answers.",
+          "target": "你會變得習慣寫較長的答案。",
+          "meaning": "變得習慣於",
+          "level": "B1"
+        },
+        {
+          "id": "seed-get-used-to-3",
+          "source": "It took me a week to get used to the new timetable.",
+          "target": "我花了一星期才習慣新的時間表。",
+          "meaning": "變得習慣於",
+          "level": "B1"
+        }
+      ]
+    },
+    "object to|1ipjk9x": {
+      "word": "object to",
+      "display": "object to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "反對",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "反對",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-object-to-1",
+          "source": "Many parents object to cutting the music lesson.",
+          "target": "許多家長反對削減音樂課。",
+          "meaning": "反對",
+          "level": "B2"
+        },
+        {
+          "id": "seed-object-to-2",
+          "source": "She objected to changing the plan at the last minute.",
+          "target": "她反對在最後一刻更改計劃。",
+          "meaning": "反對",
+          "level": "B2"
+        },
+        {
+          "id": "seed-object-to-3",
+          "source": "We do not object to trying a new method.",
+          "target": "我們不反對嘗試新方法。",
+          "meaning": "反對",
+          "level": "B2"
+        }
+      ]
+    },
+    "be opposed to|rkkbr5": {
+      "word": "be opposed to",
+      "display": "be opposed to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "反對",
+      "pos": "adjective",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "反對",
+          "pos": "adjective",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-be-opposed-to-1",
+          "source": "The students are opposed to cancelling the school picnic.",
+          "target": "學生反對取消學校野餐。",
+          "meaning": "反對",
+          "level": "B2"
+        },
+        {
+          "id": "seed-be-opposed-to-2",
+          "source": "My father is opposed to wasting food.",
+          "target": "我爸爸反對浪費食物。",
+          "meaning": "反對",
+          "level": "B2"
+        },
+        {
+          "id": "seed-be-opposed-to-3",
+          "source": "The group was opposed to building a road there.",
+          "target": "該團體反對在那裡建路。",
+          "meaning": "反對",
+          "level": "B2"
+        }
+      ]
+    },
+    "commit to|dlvgmc": {
+      "word": "commit to",
+      "display": "commit to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "承諾 / 致力於",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "承諾 / 致力於",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-commit-to-1",
+          "source": "Our class committed to reading every day.",
+          "target": "我們班承諾每天閱讀。",
+          "meaning": "承諾 / 致力於",
+          "level": "B2"
+        },
+        {
+          "id": "seed-commit-to-2",
+          "source": "The team committed to improving their work.",
+          "target": "團隊致力於改善他們的工作。",
+          "meaning": "承諾 / 致力於",
+          "level": "B2"
+        },
+        {
+          "id": "seed-commit-to-3",
+          "source": "He committed to practising English after school.",
+          "target": "他承諾放學後練習英文。",
+          "meaning": "承諾 / 致力於",
+          "level": "B2"
+        }
+      ]
+    },
+    "be committed to|1o9ytae": {
+      "word": "be committed to",
+      "display": "be committed to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "致力於",
+      "pos": "adjective",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "致力於",
+          "pos": "adjective",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-be-committed-to-1",
+          "source": "Our teacher is committed to helping every student.",
+          "target": "我們的老師致力於幫助每一位學生。",
+          "meaning": "致力於",
+          "level": "B2"
+        },
+        {
+          "id": "seed-be-committed-to-2",
+          "source": "The club is committed to protecting the environment.",
+          "target": "這個學會致力於保護環境。",
+          "meaning": "致力於",
+          "level": "B2"
+        },
+        {
+          "id": "seed-be-committed-to-3",
+          "source": "She is committed to becoming a better writer.",
+          "target": "她致力於成為更好的寫作者。",
+          "meaning": "致力於",
+          "level": "B2"
+        }
+      ]
+    },
+    "dedicate to|1ki5zcp": {
+      "word": "dedicate to",
+      "display": "dedicate to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "奉獻於",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "奉獻於",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-dedicate-to-1",
+          "source": "He dedicated his life to helping children.",
+          "target": "他一生奉獻於幫助兒童。",
+          "meaning": "奉獻於",
+          "level": "B2"
+        },
+        {
+          "id": "seed-dedicate-to-2",
+          "source": "She dedicates her weekends to volunteering.",
+          "target": "她把週末奉獻於義工服務。",
+          "meaning": "奉獻於",
+          "level": "B2"
+        },
+        {
+          "id": "seed-dedicate-to-3",
+          "source": "The doctor dedicated many years to studying this illness.",
+          "target": "那位醫生奉獻多年研究這種疾病。",
+          "meaning": "奉獻於",
+          "level": "B2"
+        }
+      ]
+    },
+    "be dedicated to|12gkqn4": {
+      "word": "be dedicated to",
+      "display": "be dedicated to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "專注於 / 奉獻於",
+      "pos": "adjective",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "專注於 / 奉獻於",
+          "pos": "adjective",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-be-dedicated-to-1",
+          "source": "This page is dedicated to learning useful phrases.",
+          "target": "這一頁專注於學習有用短語。",
+          "meaning": "專注於 / 奉獻於",
+          "level": "B2"
+        },
+        {
+          "id": "seed-be-dedicated-to-2",
+          "source": "The centre is dedicated to helping young learners.",
+          "target": "這中心致力於幫助年幼學習者。",
+          "meaning": "專注於 / 奉獻於",
+          "level": "B2"
+        },
+        {
+          "id": "seed-be-dedicated-to-3",
+          "source": "She is dedicated to improving her pronunciation.",
+          "target": "她專注於改善自己的發音。",
+          "meaning": "專注於 / 奉獻於",
+          "level": "B2"
+        }
+      ]
+    },
+    "devote to|p5xbf9": {
+      "word": "devote to",
+      "display": "devote to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "投身於",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "投身於",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-devote-to-1",
+          "source": "He devotes his time to training young players.",
+          "target": "他投放時間訓練年輕球員。",
+          "meaning": "投身於",
+          "level": "B2"
+        },
+        {
+          "id": "seed-devote-to-2",
+          "source": "She devotes her energy to helping her family.",
+          "target": "她把精力投放於幫助家人。",
+          "meaning": "投身於",
+          "level": "B2"
+        },
+        {
+          "id": "seed-devote-to-3",
+          "source": "They devoted the afternoon to cleaning the classroom.",
+          "target": "他們把下午時間用於清潔課室。",
+          "meaning": "投身於",
+          "level": "B2"
+        }
+      ]
+    },
+    "be devoted to|elr4zo": {
+      "word": "be devoted to",
+      "display": "be devoted to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "全心投入於",
+      "pos": "adjective",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "全心投入於",
+          "pos": "adjective",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-be-devoted-to-1",
+          "source": "She is devoted to teaching English.",
+          "target": "她全心投入於英文教學。",
+          "meaning": "全心投入於",
+          "level": "B2"
+        },
+        {
+          "id": "seed-be-devoted-to-2",
+          "source": "The coach is devoted to training the team.",
+          "target": "教練全心投入訓練隊伍。",
+          "meaning": "全心投入於",
+          "level": "B2"
+        },
+        {
+          "id": "seed-be-devoted-to-3",
+          "source": "He is devoted to looking after his younger sister.",
+          "target": "他全心照顧妹妹。",
+          "meaning": "全心投入於",
+          "level": "B2"
+        }
+      ]
+    },
+    "contribute to|11l4imd": {
+      "word": "contribute to",
+      "display": "contribute to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "有助於 / 促成",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "有助於 / 促成",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-contribute-to-1",
+          "source": "Reading every day contributes to better writing.",
+          "target": "每天閱讀有助於改善寫作。",
+          "meaning": "有助於 / 促成",
+          "level": "B1"
+        },
+        {
+          "id": "seed-contribute-to-2",
+          "source": "Too much noise can contribute to poor sleep.",
+          "target": "太多噪音會導致睡眠質素差。",
+          "meaning": "有助於 / 促成",
+          "level": "B1"
+        },
+        {
+          "id": "seed-contribute-to-3",
+          "source": "Teamwork contributed to our success.",
+          "target": "團隊合作促成了我們的成功。",
+          "meaning": "有助於 / 促成",
+          "level": "B1"
+        }
+      ]
+    },
+    "with a view to|1ktdjqj": {
+      "word": "with a view to",
+      "display": "with a view to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "C1",
+      "meaning": "為了 / 目的在於",
+      "pos": "adverb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "為了 / 目的在於",
+          "pos": "adverb",
+          "type": "phrase",
+          "level": "C1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-with-a-view-to-1",
+          "source": "He joined the course with a view to improving his English.",
+          "target": "他參加課程，目的是改善英文。",
+          "meaning": "為了 / 目的在於",
+          "level": "C1"
+        },
+        {
+          "id": "seed-with-a-view-to-2",
+          "source": "She saved money with a view to studying abroad.",
+          "target": "她儲錢，目的是到海外讀書。",
+          "meaning": "為了 / 目的在於",
+          "level": "C1"
+        },
+        {
+          "id": "seed-with-a-view-to-3",
+          "source": "The school changed the timetable with a view to reducing stress.",
+          "target": "學校更改時間表，目的是減少壓力。",
+          "meaning": "為了 / 目的在於",
+          "level": "C1"
+        }
+      ]
+    },
+    "with an eye to|1aaene": {
+      "word": "with an eye to",
+      "display": "with an eye to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "C1",
+      "meaning": "考慮到 / 目的在於",
+      "pos": "adverb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "考慮到 / 目的在於",
+          "pos": "adverb",
+          "type": "phrase",
+          "level": "C1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-with-an-eye-to-1",
+          "source": "They designed the app with an eye to younger students.",
+          "target": "他們設計這個 app 時考慮到年幼學生。",
+          "meaning": "考慮到 / 目的在於",
+          "level": "C1"
+        },
+        {
+          "id": "seed-with-an-eye-to-2",
+          "source": "He chose science with an eye to becoming a doctor.",
+          "target": "他選擇科學，目的是將來做醫生。",
+          "meaning": "考慮到 / 目的在於",
+          "level": "C1"
+        },
+        {
+          "id": "seed-with-an-eye-to-3",
+          "source": "The shop opened early with an eye to attracting commuters.",
+          "target": "那間店提早開門，目的是吸引上班族。",
+          "meaning": "考慮到 / 目的在於",
+          "level": "C1"
+        }
+      ]
+    },
+    "adapt to|2qdml1": {
+      "word": "adapt to",
+      "display": "adapt to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "適應",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "適應",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-adapt-to-1",
+          "source": "New students need time to adapt to school life.",
+          "target": "新生需要時間適應校園生活。",
+          "meaning": "適應",
+          "level": "B1"
+        },
+        {
+          "id": "seed-adapt-to-2",
+          "source": "Animals adapt to living in different places.",
+          "target": "動物會適應住在不同地方。",
+          "meaning": "適應",
+          "level": "B1"
+        },
+        {
+          "id": "seed-adapt-to-3",
+          "source": "I adapted to using the new app quickly.",
+          "target": "我很快適應使用新的 app。",
+          "meaning": "適應",
+          "level": "B1"
+        }
+      ]
+    },
+    "adjust to|nva2yh": {
+      "word": "adjust to",
+      "display": "adjust to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "調整 / 適應",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "調整 / 適應",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-adjust-to-1",
+          "source": "You will adjust to the new class soon.",
+          "target": "你很快會適應新班級。",
+          "meaning": "調整 / 適應",
+          "level": "B1"
+        },
+        {
+          "id": "seed-adjust-to-2",
+          "source": "She adjusted to studying online.",
+          "target": "她適應了網上學習。",
+          "meaning": "調整 / 適應",
+          "level": "B1"
+        },
+        {
+          "id": "seed-adjust-to-3",
+          "source": "We adjusted to the colder weather.",
+          "target": "我們適應了較冷的天氣。",
+          "meaning": "調整 / 適應",
+          "level": "B1"
+        }
+      ]
+    },
+    "admit to|d04m1n": {
+      "word": "admit to",
+      "display": "admit to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "承認",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "承認",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-admit-to-1",
+          "source": "He admitted to breaking the cup.",
+          "target": "他承認打破了杯子。",
+          "meaning": "承認",
+          "level": "B2"
+        },
+        {
+          "id": "seed-admit-to-2",
+          "source": "She admitted to forgetting her homework.",
+          "target": "她承認忘記帶功課。",
+          "meaning": "承認",
+          "level": "B2"
+        },
+        {
+          "id": "seed-admit-to-3",
+          "source": "The boy admitted to taking the pencil.",
+          "target": "那男孩承認拿了鉛筆。",
+          "meaning": "承認",
+          "level": "B2"
+        }
+      ]
+    },
+    "confess to|1szso40": {
+      "word": "confess to",
+      "display": "confess to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "坦白 / 交代",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "坦白 / 交代",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-confess-to-1",
+          "source": "He confessed to telling a lie.",
+          "target": "他坦白說了謊。",
+          "meaning": "坦白 / 交代",
+          "level": "B2"
+        },
+        {
+          "id": "seed-confess-to-2",
+          "source": "She confessed to eating the last biscuit.",
+          "target": "她坦白吃了最後一塊餅乾。",
+          "meaning": "坦白 / 交代",
+          "level": "B2"
+        },
+        {
+          "id": "seed-confess-to-3",
+          "source": "The student confessed to copying the answer.",
+          "target": "那學生坦白抄了答案。",
+          "meaning": "坦白 / 交代",
+          "level": "B2"
+        }
+      ]
+    },
+    "take to|ap4jvo": {
+      "word": "take to",
+      "display": "take to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "C1",
+      "meaning": "開始喜歡 / 養成...習慣",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "開始喜歡 / 養成...習慣",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "C1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-take-to-1",
+          "source": "He has taken to drinking green tea.",
+          "target": "他開始喜歡喝綠茶。",
+          "meaning": "開始喜歡 / 養成...習慣",
+          "level": "C1"
+        },
+        {
+          "id": "seed-take-to-2",
+          "source": "My sister has taken to drawing after school.",
+          "target": "我妹妹放學後開始喜歡畫畫。",
+          "meaning": "開始喜歡 / 養成...習慣",
+          "level": "C1"
+        },
+        {
+          "id": "seed-take-to-3",
+          "source": "The child took to reading before bed.",
+          "target": "那孩子養成睡前閱讀的習慣。",
+          "meaning": "開始喜歡 / 養成...習慣",
+          "level": "C1"
+        }
+      ]
+    },
+    "resort to|184vd8k": {
+      "word": "resort to",
+      "display": "resort to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "C1",
+      "meaning": "訴諸於 / 不得不使用",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "訴諸於 / 不得不使用",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "C1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-resort-to-1",
+          "source": "We should talk instead of resorting to shouting.",
+          "target": "我們應該溝通，而不是訴諸叫喊。",
+          "meaning": "訴諸於 / 不得不使用",
+          "level": "C1"
+        },
+        {
+          "id": "seed-resort-to-2",
+          "source": "He resorted to borrowing money from a friend.",
+          "target": "他不得不向朋友借錢。",
+          "meaning": "訴諸於 / 不得不使用",
+          "level": "C1"
+        },
+        {
+          "id": "seed-resort-to-3",
+          "source": "The team resorted to using a simpler plan.",
+          "target": "團隊不得不採用較簡單的計劃。",
+          "meaning": "訴諸於 / 不得不使用",
+          "level": "C1"
+        }
+      ]
+    },
+    "apply oneself to|1lnfqox": {
+      "word": "apply oneself to",
+      "display": "apply oneself to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "C1",
+      "meaning": "專心致力於",
+      "pos": "verb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "專心致力於",
+          "pos": "verb",
+          "type": "phrase",
+          "level": "C1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-apply-oneself-to-1",
+          "source": "You must apply yourself to studying for the test.",
+          "target": "你必須專心溫習測驗。",
+          "meaning": "專心致力於",
+          "level": "C1"
+        },
+        {
+          "id": "seed-apply-oneself-to-2",
+          "source": "She applied herself to learning the piano.",
+          "target": "她專心學鋼琴。",
+          "meaning": "專心致力於",
+          "level": "C1"
+        },
+        {
+          "id": "seed-apply-oneself-to-3",
+          "source": "He applied himself to solving the problem.",
+          "target": "他專心解決問題。",
+          "meaning": "專心致力於",
+          "level": "C1"
+        }
+      ]
+    },
+    "be close to|lrf0wz": {
+      "word": "be close to",
+      "display": "be close to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "接近於",
+      "pos": "adjective",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "接近於",
+          "pos": "adjective",
+          "type": "phrase",
+          "level": "B1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-be-close-to-1",
+          "source": "We are close to finishing the project.",
+          "target": "我們快要完成這個專題。",
+          "meaning": "接近於",
+          "level": "B1"
+        },
+        {
+          "id": "seed-be-close-to-2",
+          "source": "The answer is close to being correct.",
+          "target": "這個答案接近正確。",
+          "meaning": "接近於",
+          "level": "B1"
+        },
+        {
+          "id": "seed-be-close-to-3",
+          "source": "She was close to winning the race.",
+          "target": "她差一點就贏了比賽。",
+          "meaning": "接近於",
+          "level": "B1"
+        }
+      ]
+    },
+    "be near to|lrf0wz": {
+      "word": "be near to",
+      "display": "be near to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "接近於",
+      "pos": "adjective",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "接近於",
+          "pos": "adjective",
+          "type": "phrase",
+          "level": "B1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-be-near-to-1",
+          "source": "The work is near to completion.",
+          "target": "這項工作接近完成。",
+          "meaning": "接近於",
+          "level": "B1"
+        },
+        {
+          "id": "seed-be-near-to-2",
+          "source": "The team is near to reaching its goal.",
+          "target": "團隊快要達到目標。",
+          "meaning": "接近於",
+          "level": "B1"
+        },
+        {
+          "id": "seed-be-near-to-3",
+          "source": "He is near to solving the puzzle.",
+          "target": "他快要解開謎題。",
+          "meaning": "接近於",
+          "level": "B1"
+        }
+      ]
+    },
+    "key to|nabkuf": {
+      "word": "key to",
+      "display": "key to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "...的關鍵",
+      "pos": "noun",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "...的關鍵",
+          "pos": "noun",
+          "type": "phrase",
+          "level": "B1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-key-to-1",
+          "source": "Practice is the key to improving your English.",
+          "target": "練習是改善英文的關鍵。",
+          "meaning": "...的關鍵",
+          "level": "B1"
+        },
+        {
+          "id": "seed-key-to-2",
+          "source": "Sleep is the key to staying healthy.",
+          "target": "睡眠是保持健康的關鍵。",
+          "meaning": "...的關鍵",
+          "level": "B1"
+        },
+        {
+          "id": "seed-key-to-3",
+          "source": "Listening carefully is the key to understanding the story.",
+          "target": "細心聆聽是理解故事的關鍵。",
+          "meaning": "...的關鍵",
+          "level": "B1"
+        }
+      ]
+    },
+    "secret to|mxau39": {
+      "word": "secret to",
+      "display": "secret to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "...的秘訣",
+      "pos": "noun",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "...的秘訣",
+          "pos": "noun",
+          "type": "phrase",
+          "level": "B1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-secret-to-1",
+          "source": "What is your secret to staying calm?",
+          "target": "你保持冷靜的秘訣是甚麼？",
+          "meaning": "...的秘訣",
+          "level": "B1"
+        },
+        {
+          "id": "seed-secret-to-2",
+          "source": "The secret to writing well is reading more.",
+          "target": "寫得好的秘訣是多閱讀。",
+          "meaning": "...的秘訣",
+          "level": "B1"
+        },
+        {
+          "id": "seed-secret-to-3",
+          "source": "Her secret to learning fast is asking questions.",
+          "target": "她學得快的秘訣是發問。",
+          "meaning": "...的秘訣",
+          "level": "B1"
+        }
+      ]
+    },
+    "solution to|1b8u6p8": {
+      "word": "solution to",
+      "display": "solution to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "...的解決辦法",
+      "pos": "noun",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "...的解決辦法",
+          "pos": "noun",
+          "type": "phrase",
+          "level": "B1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-solution-to-1",
+          "source": "We need a solution to reducing food waste.",
+          "target": "我們需要一個減少食物浪費的解決辦法。",
+          "meaning": "...的解決辦法",
+          "level": "B1"
+        },
+        {
+          "id": "seed-solution-to-2",
+          "source": "There is no easy solution to stopping bullying.",
+          "target": "阻止欺凌沒有簡單的解決辦法。",
+          "meaning": "...的解決辦法",
+          "level": "B1"
+        },
+        {
+          "id": "seed-solution-to-3",
+          "source": "This app may be a solution to learning vocabulary.",
+          "target": "這個 app 可能是學習生字的解決辦法。",
+          "meaning": "...的解決辦法",
+          "level": "B1"
+        }
+      ]
+    },
+    "alternative to|cuzsto": {
+      "word": "alternative to",
+      "display": "alternative to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "...之外的替代方案",
+      "pos": "noun",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "...之外的替代方案",
+          "pos": "noun",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-alternative-to-1",
+          "source": "Walking is a healthy alternative to taking the bus.",
+          "target": "步行是乘巴士之外的健康替代方案。",
+          "meaning": "...之外的替代方案",
+          "level": "B2"
+        },
+        {
+          "id": "seed-alternative-to-2",
+          "source": "Is there an alternative to buying a new phone?",
+          "target": "有沒有買新電話之外的替代方案？",
+          "meaning": "...之外的替代方案",
+          "level": "B2"
+        },
+        {
+          "id": "seed-alternative-to-3",
+          "source": "Reading is a good alternative to playing games.",
+          "target": "閱讀是打機之外的好替代活動。",
+          "meaning": "...之外的替代方案",
+          "level": "B2"
+        }
+      ]
+    },
+    "approach to|19x78gm": {
+      "word": "approach to",
+      "display": "approach to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "...的方法",
+      "pos": "noun",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "...的方法",
+          "pos": "noun",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-approach-to-1",
+          "source": "We need a new approach to learning grammar.",
+          "target": "我們需要一個學文法的新方法。",
+          "meaning": "...的方法",
+          "level": "B2"
+        },
+        {
+          "id": "seed-approach-to-2",
+          "source": "Her approach to solving problems is clear.",
+          "target": "她解決問題的方法很清晰。",
+          "meaning": "...的方法",
+          "level": "B2"
+        },
+        {
+          "id": "seed-approach-to-3",
+          "source": "This is a useful approach to teaching vocabulary.",
+          "target": "這是教授生字的有用方法。",
+          "meaning": "...的方法",
+          "level": "B2"
+        }
+      ]
+    },
+    "access to|stiyk6": {
+      "word": "access to",
+      "display": "access to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "進入 / 使用...的權利或機會",
+      "pos": "noun",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "進入 / 使用...的權利或機會",
+          "pos": "noun",
+          "type": "phrase",
+          "level": "B1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-access-to-1",
+          "source": "Students need access to clean water.",
+          "target": "學生需要有使用清潔食水的機會。",
+          "meaning": "進入 / 使用...的權利或機會",
+          "level": "B1"
+        },
+        {
+          "id": "seed-access-to-2",
+          "source": "The app gives children access to English practice.",
+          "target": "這個 app 讓孩子有機會練習英文。",
+          "meaning": "進入 / 使用...的權利或機會",
+          "level": "B1"
+        },
+        {
+          "id": "seed-access-to-3",
+          "source": "Not every family has access to a computer.",
+          "target": "不是每個家庭都有使用電腦的機會。",
+          "meaning": "進入 / 使用...的權利或機會",
+          "level": "B1"
+        }
+      ]
+    },
+    "response to|ltlrty": {
+      "word": "response to",
+      "display": "response to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "對...的回應",
+      "pos": "noun",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "對...的回應",
+          "pos": "noun",
+          "type": "phrase",
+          "level": "B1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-response-to-1",
+          "source": "Her response to winning was very calm.",
+          "target": "她對得獎的反應很冷靜。",
+          "meaning": "對...的回應",
+          "level": "B1"
+        },
+        {
+          "id": "seed-response-to-2",
+          "source": "The teacher liked my response to the question.",
+          "target": "老師喜歡我對問題的回應。",
+          "meaning": "對...的回應",
+          "level": "B1"
+        },
+        {
+          "id": "seed-response-to-3",
+          "source": "His response to hearing the news was surprising.",
+          "target": "他聽到消息後的反應令人驚訝。",
+          "meaning": "對...的回應",
+          "level": "B1"
+        }
+      ]
+    },
+    "reaction to|kfk4at": {
+      "word": "reaction to",
+      "display": "reaction to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "對...的反應",
+      "pos": "noun",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "對...的反應",
+          "pos": "noun",
+          "type": "phrase",
+          "level": "B1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-reaction-to-1",
+          "source": "Her reaction to the gift was lovely.",
+          "target": "她收到禮物後的反應很可愛。",
+          "meaning": "對...的反應",
+          "level": "B1"
+        },
+        {
+          "id": "seed-reaction-to-2",
+          "source": "His reaction to losing the game was mature.",
+          "target": "他輸掉比賽後的反應很成熟。",
+          "meaning": "對...的反應",
+          "level": "B1"
+        },
+        {
+          "id": "seed-reaction-to-3",
+          "source": "The class had a strong reaction to the story.",
+          "target": "全班對這個故事有強烈反應。",
+          "meaning": "對...的反應",
+          "level": "B1"
+        }
+      ]
+    },
+    "challenge to|ltmkzq": {
+      "word": "challenge to",
+      "display": "challenge to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "對...的挑戰",
+      "pos": "noun",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "對...的挑戰",
+          "pos": "noun",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-challenge-to-1",
+          "source": "The new rule is a challenge to older students.",
+          "target": "新規則對較年長學生是一個挑戰。",
+          "meaning": "對...的挑戰",
+          "level": "B2"
+        },
+        {
+          "id": "seed-challenge-to-2",
+          "source": "Online learning can be a challenge to young children.",
+          "target": "網上學習對年幼孩子可能是一個挑戰。",
+          "meaning": "對...的挑戰",
+          "level": "B2"
+        },
+        {
+          "id": "seed-challenge-to-3",
+          "source": "This question is a challenge to our thinking.",
+          "target": "這條問題是對我們思考的挑戰。",
+          "meaning": "對...的挑戰",
+          "level": "B2"
+        }
+      ]
+    },
+    "limit to|78isix": {
+      "word": "limit to",
+      "display": "limit to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "對...的限制",
+      "pos": "noun",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "對...的限制",
+          "pos": "noun",
+          "type": "phrase",
+          "level": "B1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-limit-to-1",
+          "source": "There is a limit to using phones in class.",
+          "target": "課堂上使用電話有限制。",
+          "meaning": "對...的限制",
+          "level": "B1"
+        },
+        {
+          "id": "seed-limit-to-2",
+          "source": "There should be a limit to spending pocket money.",
+          "target": "花零用錢應該有限制。",
+          "meaning": "對...的限制",
+          "level": "B1"
+        },
+        {
+          "id": "seed-limit-to-3",
+          "source": "The teacher set a limit to talking time.",
+          "target": "老師限制了說話時間。",
+          "meaning": "對...的限制",
+          "level": "B1"
+        }
+      ]
+    },
+    "open to|1y7avw": {
+      "word": "open to",
+      "display": "open to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B1",
+      "meaning": "對...開放的 / 不排斥的",
+      "pos": "adjective",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "對...開放的 / 不排斥的",
+          "pos": "adjective",
+          "type": "phrase",
+          "level": "B1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-open-to-1",
+          "source": "Our teacher is open to hearing new ideas.",
+          "target": "我們的老師樂意聽新想法。",
+          "meaning": "對...開放的 / 不排斥的",
+          "level": "B1"
+        },
+        {
+          "id": "seed-open-to-2",
+          "source": "I am open to trying a different method.",
+          "target": "我願意嘗試不同的方法。",
+          "meaning": "對...開放的 / 不排斥的",
+          "level": "B1"
+        },
+        {
+          "id": "seed-open-to-3",
+          "source": "The club is open to accepting new members.",
+          "target": "這個學會歡迎新會員加入。",
+          "meaning": "對...開放的 / 不排斥的",
+          "level": "B1"
+        }
+      ]
+    },
+    "equal to|saso5q": {
+      "word": "equal to",
+      "display": "equal to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "勝任...的 / 與...相等的",
+      "pos": "adjective",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "勝任...的 / 與...相等的",
+          "pos": "adjective",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-equal-to-1",
+          "source": "She is equal to leading the group.",
+          "target": "她勝任帶領小組。",
+          "meaning": "勝任...的 / 與...相等的",
+          "level": "B2"
+        },
+        {
+          "id": "seed-equal-to-2",
+          "source": "He is equal to handling this difficult task.",
+          "target": "他勝任處理這項困難任務。",
+          "meaning": "勝任...的 / 與...相等的",
+          "level": "B2"
+        },
+        {
+          "id": "seed-equal-to-3",
+          "source": "One dollar is not equal to one pound.",
+          "target": "一元不等於一英鎊。",
+          "meaning": "勝任...的 / 與...相等的",
+          "level": "B2"
+        }
+      ]
+    },
+    "essential to|7atyxk": {
+      "word": "essential to",
+      "display": "essential to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "對...不可或缺的",
+      "pos": "adjective",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "對...不可或缺的",
+          "pos": "adjective",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-essential-to-1",
+          "source": "Water is essential to staying alive.",
+          "target": "水對維持生命不可或缺。",
+          "meaning": "對...不可或缺的",
+          "level": "B2"
+        },
+        {
+          "id": "seed-essential-to-2",
+          "source": "Sleep is essential to learning well.",
+          "target": "睡眠對學得好不可或缺。",
+          "meaning": "對...不可或缺的",
+          "level": "B2"
+        },
+        {
+          "id": "seed-essential-to-3",
+          "source": "Practice is essential to improving pronunciation.",
+          "target": "練習對改善發音不可或缺。",
+          "meaning": "對...不可或缺的",
+          "level": "B2"
+        }
+      ]
+    },
+    "preparatory to|1oi349r": {
+      "word": "preparatory to",
+      "display": "preparatory to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "C1",
+      "meaning": "作為...的準備",
+      "pos": "adverb",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "作為...的準備",
+          "pos": "adverb",
+          "type": "phrase",
+          "level": "C1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-preparatory-to-1",
+          "source": "He read several books preparatory to writing his report.",
+          "target": "他讀了幾本書，作為寫報告的準備。",
+          "meaning": "作為...的準備",
+          "level": "C1"
+        },
+        {
+          "id": "seed-preparatory-to-2",
+          "source": "She made notes preparatory to giving a speech.",
+          "target": "她做筆記，作為演講的準備。",
+          "meaning": "作為...的準備",
+          "level": "C1"
+        },
+        {
+          "id": "seed-preparatory-to-3",
+          "source": "The team held a meeting preparatory to launching the project.",
+          "target": "團隊開會，作為推出項目的準備。",
+          "meaning": "作為...的準備",
+          "level": "C1"
+        }
+      ]
+    },
+    "prior to|veqq2g": {
+      "word": "prior to",
+      "display": "prior to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "B2",
+      "meaning": "在...之前",
+      "pos": "preposition",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "在...之前",
+          "pos": "preposition",
+          "type": "phrase",
+          "level": "B2"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-prior-to-1",
+          "source": "Prior to joining this school, she lived in Canada.",
+          "target": "加入這間學校之前，她住在加拿大。",
+          "meaning": "在...之前",
+          "level": "B2"
+        },
+        {
+          "id": "seed-prior-to-2",
+          "source": "Please wash your hands prior to eating.",
+          "target": "進食之前請洗手。",
+          "meaning": "在...之前",
+          "level": "B2"
+        },
+        {
+          "id": "seed-prior-to-3",
+          "source": "He checked his work prior to handing it in.",
+          "target": "他交功課之前檢查了作品。",
+          "meaning": "在...之前",
+          "level": "B2"
+        }
+      ]
+    },
+    "impervious to|lzr10x": {
+      "word": "impervious to",
+      "display": "impervious to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "C1",
+      "meaning": "不受...影響的",
+      "pos": "adjective",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "不受...影響的",
+          "pos": "adjective",
+          "type": "phrase",
+          "level": "C1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-impervious-to-1",
+          "source": "He seems impervious to criticism.",
+          "target": "他似乎不受批評影響。",
+          "meaning": "不受...影響的",
+          "level": "C1"
+        },
+        {
+          "id": "seed-impervious-to-2",
+          "source": "The material is impervious to water.",
+          "target": "這種物料不透水。",
+          "meaning": "不受...影響的",
+          "level": "C1"
+        },
+        {
+          "id": "seed-impervious-to-3",
+          "source": "She remained impervious to the noise outside.",
+          "target": "她沒有受外面的噪音影響。",
+          "meaning": "不受...影響的",
+          "level": "C1"
+        }
+      ]
+    },
+    "resigned to|1y56mys": {
+      "word": "resigned to",
+      "display": "resigned to",
+      "source": "local-seed-curated",
+      "status": "ready",
+      "level": "C1",
+      "meaning": "無奈接受...的",
+      "pos": "adjective",
+      "type": "phrase",
+      "hints": [
+        {
+          "meaning": "無奈接受...的",
+          "pos": "adjective",
+          "type": "phrase",
+          "level": "C1"
+        }
+      ],
+      "examples": [
+        {
+          "id": "seed-resigned-to-1",
+          "source": "He is resigned to waiting for another hour.",
+          "target": "他無奈接受再等一小時。",
+          "meaning": "無奈接受...的",
+          "level": "C1"
+        },
+        {
+          "id": "seed-resigned-to-2",
+          "source": "She was resigned to missing the school trip.",
+          "target": "她無奈接受錯過學校旅行。",
+          "meaning": "無奈接受...的",
+          "level": "C1"
+        },
+        {
+          "id": "seed-resigned-to-3",
+          "source": "They are resigned to changing their plan.",
+          "target": "他們無奈接受更改計劃。",
+          "meaning": "無奈接受...的",
+          "level": "C1"
+        }
+      ]
     }
   }
-});
+}
+);
