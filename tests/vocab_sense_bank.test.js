@@ -3389,7 +3389,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("Thai").map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}`),
-  ["Thai:adjective:泰國的"]
+  ["Thai:adjective:泰國的", "Thai:noun:泰國人 / 泰文"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("vigourous").map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}`),
@@ -3561,7 +3561,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("Dutch").map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}`),
-  ["Dutch:adjective:荷蘭的"]
+  ["Dutch:adjective:荷蘭的", "Dutch:noun:荷蘭人 / 荷蘭語"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("emphasize").map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}`),

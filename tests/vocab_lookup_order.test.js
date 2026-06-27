@@ -4309,7 +4309,7 @@ function assertStudentLookupContract(word, matches) {
 
   assert.deepStrictEqual(
     (await lookupForStudent("Thai")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
-    ["Thai:adjective:泰國的:curated-sense-bank"]
+    ["Thai:adjective:泰國的:curated-sense-bank", "Thai:noun:泰國人 / 泰文:curated-sense-bank"]
   );
 
   assert.deepStrictEqual(
