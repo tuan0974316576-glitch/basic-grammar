@@ -220,6 +220,20 @@ function loadTeacherEntries() {
   return Array.isArray(bank.entries) ? bank.entries : [];
 }
 
+function loadCuratedEntries() {
+  const entries = [];
+  const senseBankPath = path.join(ROOT_DIR, "vocab_sense_bank.js");
+  const ccCedictPath = path.join(ROOT_DIR, "cc_cedict_supplement.js");
+  [senseBankPath, ccCedictPath].forEach((filePath) => {
+    delete require.cache[require.resolve(filePath)];
+    const bank = require(filePath);
+    if (Array.isArray(bank.entries)) {
+      entries.push(...bank.entries);
+    }
+  });
+  return entries;
+}
+
 function makeCacheId(cloudCacheKey) {
   return crypto.createHash("sha256").update(VocabExampleUtils.normalizeWord(cloudCacheKey)).digest("hex").slice(0, 24);
 }
@@ -249,14 +263,19 @@ function inferFallbackLevel(entry = {}) {
 }
 
 function normalizeTeacherTask(entry = {}, oxfordLevelByWord = new Map()) {
+  return normalizeMeaningTask(entry, oxfordLevelByWord, "teacher");
+}
+
+function normalizeMeaningTask(entry = {}, oxfordLevelByWord = new Map(), source = "teacher") {
   const word = VocabExampleUtils.normalizeWord(entry.word);
   const meaning = VocabExampleUtils.normalizeMeaning(entry.meaning);
-  if (!word || !meaning || entry.type === "pattern") return null;
+  if (!word || !meaning || entry.type === "pattern" || entry.hidden) return null;
   if (INVALID_TEACHER_TASK_WORDS.has(word)) return null;
   if (word.length === 1 && !["i"].includes(word)) return null;
   if (word.length === 2 && !oxfordLevelByWord.has(word) && entry.type !== "phrase") return null;
   const pos = entry.pos || entry.inferredPos || "";
-  const level = oxfordLevelByWord.get(word) || inferFallbackLevel(entry);
+  const rawLevel = String(entry.level || "").toUpperCase();
+  const level = LEVEL_ORDER[rawLevel] ? rawLevel : oxfordLevelByWord.get(word) || inferFallbackLevel(entry);
   const hints = VocabExampleUtils.normalizeHints([{
     meaning,
     pos,
@@ -266,8 +285,8 @@ function normalizeTeacherTask(entry = {}, oxfordLevelByWord = new Map()) {
   const localKey = VocabExampleUtils.getLocalCacheKey(word, hints);
   const cloudKey = VocabExampleUtils.getCloudCacheKey(word, hints);
   return {
-    id: `teacher:${entry.id || localKey}`,
-    source: "teacher",
+    id: `${source}:${entry.id || localKey}`,
+    source,
     word,
     display: entry.display || entry.word,
     meaning,
@@ -306,14 +325,25 @@ function normalizeOxfordTask(entry = {}, teacherWordSet = new Set()) {
 }
 
 function buildTasks(input = {}) {
-  const oxfordEntries = Array.isArray(input.oxfordEntries) ? input.oxfordEntries : loadOxfordEntries();
-  const teacherEntries = Array.isArray(input.teacherEntries) ? input.teacherEntries : loadTeacherEntries();
+  const hasExplicitInput = Object.keys(input).length > 0;
+  const oxfordEntries = Array.isArray(input.oxfordEntries)
+    ? input.oxfordEntries
+    : (hasExplicitInput ? [] : loadOxfordEntries());
+  const teacherEntries = Array.isArray(input.teacherEntries)
+    ? input.teacherEntries
+    : (hasExplicitInput ? [] : loadTeacherEntries());
+  const curatedEntries = Array.isArray(input.curatedEntries)
+    ? input.curatedEntries
+    : (hasExplicitInput ? [] : loadCuratedEntries());
   const oxfordLevelByWord = makeOxfordLevelLookup(oxfordEntries);
   const teacherWordSet = new Set(
-    teacherEntries.map((entry) => VocabExampleUtils.normalizeWord(entry.word)).filter(Boolean)
+    [...teacherEntries, ...curatedEntries]
+      .map((entry) => VocabExampleUtils.normalizeWord(entry.word))
+      .filter(Boolean)
   );
   const tasks = [
     ...teacherEntries.map((entry) => normalizeTeacherTask(entry, oxfordLevelByWord)),
+    ...curatedEntries.map((entry) => normalizeMeaningTask(entry, oxfordLevelByWord, entry.source || "curated")),
     ...oxfordEntries.map((entry) => normalizeOxfordTask(entry, teacherWordSet))
   ].filter(Boolean);
 
@@ -805,10 +835,12 @@ module.exports = {
   buildPrompt,
   buildTasks,
   inferFallbackLevel,
+  loadCuratedEntries,
   loadOxfordEntries,
   getBlockedSeedKeys,
   makeOxfordLevelLookup,
   normalizeGeneratedExamples,
+  normalizeMeaningTask,
   normalizeOxfordTask,
   normalizeTeacherTask,
   parseArgs,

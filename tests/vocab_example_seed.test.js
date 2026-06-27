@@ -6,6 +6,7 @@ process.env.NODE_ENV = "test";
 const utils = require("../vocab_example_utils.js");
 const senseBank = require("../vocab_sense_bank.js");
 const generator = require("../scripts/generate-vocab-examples.js");
+const coverageAudit = require("../scripts/audit-vocab-example-coverage.js");
 
 const blockedKeys = generator.getBlockedSeedKeys({
   meta: { blockedKeys: ["drive|bad", "course|bad"] }
@@ -92,8 +93,12 @@ const tasks = generator.buildTasks({
     { id: "t1", word: "evaluate", meaning: "評估", pos: "verb", type: "word" },
     { id: "t2", word: "be+pp", meaning: "被", type: "pattern" }
   ],
+  curatedEntries: [
+    { id: "c1", word: "water", meaning: "澆水", pos: "verb", type: "word", level: "B1", source: "curated-sense-bank" }
+  ],
   oxfordEntries: [
     { word: "evaluate", display: "evaluate", level: "B2", pos: ["verb"], posRaw: "v." },
+    { word: "water", display: "water", level: "A1", pos: ["noun"], posRaw: "n." },
     { word: "apple", display: "apple", level: "A1", pos: ["noun"], posRaw: "n." }
   ]
 });
@@ -102,9 +107,20 @@ assert.deepStrictEqual(
   tasks.map((task) => `${task.source}:${task.word}:${task.localKey}:${task.level}`),
   [
     "oxford:apple:apple:A1",
+    `curated-sense-bank:water:${utils.getLocalCacheKey("water", [{ meaning: "澆水", pos: "verb", type: "word", level: "B1" }])}:B1`,
     `teacher:evaluate:${utils.getLocalCacheKey("evaluate", [{ meaning: "評估", pos: "verb", type: "word", level: "B2" }])}:B2`
   ]
 );
+
+const auditedCount = coverageAudit.countValidExamples({
+  examples: [
+    { source: "I water the plants.", target: "我替植物澆水。" },
+    { source: "I water the plants.", target: "我替植物澆水。" },
+    { source: "She waters the flowers.", target: "她替花澆水。" },
+    { source: "", target: "空白英文不應計算。" }
+  ]
+});
+assert.strictEqual(auditedCount, 2);
 
 const prompt = generator.buildPrompt(haveFoodTask);
 assert.ok(prompt.includes("CEFR level: A1"));
