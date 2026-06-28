@@ -12169,6 +12169,31 @@
     ["endurance", "noun", "耐力", { level: "B1", overrideTeacher: true }],
     ["agility", "noun", "敏捷度", { level: "B1", overrideTeacher: true }],
     ["training session", "noun", "訓練課 / 練習時段", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["training sessions"] }],
+
+    // Health, outdoor activities, and community reading-comprehension supplement.
+    ["appointment card", "noun", "預約卡", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["appointment cards"] }],
+    ["sprain", "noun", "扭傷", { level: "B1", overrideTeacher: true }],
+    ["sprain", "verb", "扭傷", { level: "B1", overrideTeacher: true }],
+    ["hydration", "noun", "補充水分 / 水分補給", { level: "B1", overrideTeacher: true }],
+    ["sunscreen", "noun", "防曬霜 / 防曬乳", { level: "A2", overrideTeacher: true }],
+    ["insect repellent", "noun", "驅蚊用品 / 驅蟲劑", { type: "phrase", level: "B1", overrideTeacher: true }],
+    ["mosquito bite", "noun", "蚊叮 / 蚊咬", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["mosquito bites"] }],
+    ["hiking trail", "noun", "遠足徑 / 行山徑", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["hiking trails"] }],
+    ["picnic mat", "noun", "野餐墊", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["picnic mats"] }],
+    ["campsite", "noun", "營地", { level: "A2", overrideTeacher: true, aliases: ["campsites"] }],
+    ["compass", "noun", "指南針", { level: "A2", overrideTeacher: true }],
+    ["water bottle", "noun", "水樽 / 水瓶", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["water bottles"] }],
+    ["heatstroke", "noun", "中暑", { level: "B1", overrideTeacher: true }],
+    ["lifeguard", "noun", "救生員", { level: "A2", overrideTeacher: true, aliases: ["lifeguards"] }],
+    ["emergency exit", "noun", "緊急出口", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["emergency exits"] }],
+    ["lost and found", "noun", "失物認領處", { type: "phrase", level: "A2", overrideTeacher: true }],
+    ["library card", "noun", "圖書證", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["library cards"] }],
+    ["bulletin board", "noun", "告示板", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["bulletin boards"] }],
+    ["fire drill", "noun", "消防演習", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["fire drills"] }],
+    ["queue up", "verb", "排隊", { type: "phrase", level: "A2", overrideTeacher: true }],
+    ["keep quiet", "verb", "保持安靜", { type: "phrase", level: "A2", overrideTeacher: true }],
+    ["book fair", "noun", "書展 / 圖書展", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["book fairs"] }],
+    ["charity sale", "noun", "慈善義賣", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["charity sales"] }],
   ];
 
   function normalizeVerbTableMeaning(value) {
