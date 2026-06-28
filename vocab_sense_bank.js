@@ -12212,6 +12212,25 @@
     ["pier", "noun", "碼頭", { level: "A2", overrideTeacher: true, aliases: ["piers"] }],
     ["chilly", "adjective", "寒冷的 / 有寒意的", { level: "A2", overrideTeacher: true }],
     ["muddy", "adjective", "泥濘的", { level: "A2", overrideTeacher: true }],
+
+    // School, sport event, transport, and weather safety reading-comprehension supplement.
+    ["skipping rope", "noun", "跳繩", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["skipping ropes"] }],
+    ["knee pad", "noun", "護膝", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["knee pads", "kneepad", "kneepads"] }],
+    ["match point", "noun", "賽點", { type: "phrase", level: "B1", overrideTeacher: true }],
+    ["final whistle", "noun", "終場哨聲", { type: "phrase", level: "B1", overrideTeacher: true }],
+    ["medal ceremony", "noun", "頒獎典禮", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["medal ceremonies"] }],
+    ["practice match", "noun", "練習賽", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["practice matches"] }],
+    ["sports day", "noun", "運動會", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["sports days"] }],
+    ["locker room", "noun", "更衣室 / 儲物室", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["locker rooms"] }],
+    ["changing room", "noun", "更衣室", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["changing rooms"] }],
+    ["water fountain", "noun", "飲水機 / 飲水器", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["water fountains"] }],
+    ["permission slip", "noun", "家長同意書 / 回條", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["permission slips"] }],
+    ["schoolbag", "noun", "書包", { level: "A1", overrideTeacher: true, aliases: ["schoolbags", "school bag", "school bags"] }],
+    ["waterproof", "adjective", "防水的", { level: "B1", overrideTeacher: true }],
+    ["waterproof", "verb", "使防水", { level: "B2", overrideTeacher: true }],
+    ["stairwell", "noun", "樓梯間", { level: "B1", overrideTeacher: true, aliases: ["stairwells"] }],
+    ["ferry terminal", "noun", "渡輪碼頭", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["ferry terminals"] }],
+    ["platform screen door", "noun", "月台幕門", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["platform screen doors"] }],
   ];
 
   function normalizeVerbTableMeaning(value) {
