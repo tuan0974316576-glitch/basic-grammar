@@ -13638,6 +13638,26 @@
     ["heat warning", "noun", "酷熱天氣警告 / 高溫警告", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["heat warnings"] }],
     ["sun protection", "noun", "防曬保護", { type: "phrase", level: "B1", overrideTeacher: true }],
 
+    // School circulars, reply slips, parent forms, and activity-briefing supplement.
+    ["parent reply slip", "noun", "家長回條", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["parent reply slips"] }],
+    ["consent slip", "noun", "同意回條 / 同意書", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["consent slips"] }],
+    ["guardian consent", "noun", "監護人同意", { type: "phrase", level: "B1", overrideTeacher: true }],
+    ["guardian signature", "noun", "監護人簽署", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["guardian signatures"] }],
+    ["reply deadline", "noun", "回覆截止日期", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["reply deadlines"] }],
+    ["activity form", "noun", "活動表格", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["activity forms"] }],
+    ["parent meeting", "noun", "家長會議 / 家長會", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["parent meetings"] }],
+    ["briefing session", "noun", "簡介會 / 簡介環節", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["briefing sessions"] }],
+    ["information sheet", "noun", "資料頁 / 資料單張", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["information sheets"] }],
+    ["activity details", "noun", "活動詳情", { type: "phrase", level: "B1", overrideTeacher: true }],
+    ["required item", "noun", "必備物品", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["required items"] }],
+    ["items to bring", "noun", "需要攜帶的物品", { type: "phrase", level: "B1", overrideTeacher: true }],
+    ["emergency contact person", "noun", "緊急聯絡人", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["emergency contact persons"] }],
+    ["dismissal point", "noun", "解散地點", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["dismissal points"] }],
+    ["return the slip", "verb", "交回回條", { type: "phrase", level: "A2", overrideTeacher: true }],
+    ["submit the form", "verb", "遞交表格", { type: "phrase", level: "A2", overrideTeacher: true }],
+    ["hand in the form", "verb", "交表格", { type: "phrase", level: "A2", overrideTeacher: true }],
+    ["late application", "noun", "逾期申請 / 遲交申請", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["late applications"] }],
+
     // Library, community facilities, booking, and public-notice reading supplement.
     ["appointment booking", "noun", "預約 / 預約安排", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["appointment bookings"] }],
     ["walk-in service", "noun", "即場服務 / 無需預約服務", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["walk in service", "walk-in services", "walk in services"] }],
