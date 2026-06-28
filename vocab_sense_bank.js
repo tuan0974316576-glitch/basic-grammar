@@ -13360,6 +13360,27 @@
     ["delayed service", "noun", "服務延誤 / 班次延誤", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["delayed services"] }],
     ["special service", "noun", "特別班次 / 特別服務", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["special services"] }],
     ["temporary timetable", "noun", "臨時時間表", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["temporary timetables"] }],
+
+    // School outing, sports training, and event-safety reading supplement.
+    ["equipment rental", "noun", "器材租借 / 裝備租借", { type: "phrase", level: "B1", overrideTeacher: true }],
+    ["school picnic", "noun", "學校旅行 / 學校野餐", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["school picnics"] }],
+    ["arrival point", "noun", "到達地點", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["arrival points"] }],
+    ["departure point", "noun", "出發地點", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["departure points"] }],
+    ["backup plan", "noun", "後備計劃", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["backup plans", "back-up plan", "back-up plans"] }],
+    ["participation fee", "noun", "參加費", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["participation fees"] }],
+    ["equipment list", "noun", "裝備清單 / 器材清單", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["equipment lists"] }],
+    ["water station", "noun", "補水站 / 飲水站", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["water stations"] }],
+    ["injury report", "noun", "受傷報告", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["injury reports"] }],
+    ["incident report", "noun", "事故報告 / 事件報告", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["incident reports"] }],
+    ["training schedule", "noun", "訓練時間表", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["training schedules"] }],
+    ["fair play", "noun", "公平競賽 / 公平比賽精神", { type: "phrase", level: "B1", overrideTeacher: true }],
+    ["warm-up area", "noun", "熱身區", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["warmup area", "warm-up areas", "warmup areas"] }],
+    ["skill test", "noun", "技能測試", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["skill tests"] }],
+    ["practice session", "noun", "練習時段 / 練習課", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["practice sessions"] }],
+    ["score board", "noun", "記分牌", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["score boards", "scoreboard", "scoreboards"] }],
+    ["walking route", "noun", "步行路線", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["walking routes"] }],
+    ["heat warning", "noun", "酷熱天氣警告 / 高溫警告", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["heat warnings"] }],
+    ["sun protection", "noun", "防曬保護", { type: "phrase", level: "B1", overrideTeacher: true }],
   ];
 
   function normalizeVerbTableMeaning(value) {
