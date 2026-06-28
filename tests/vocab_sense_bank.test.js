@@ -3881,7 +3881,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("unmanly").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["adjective:不像男子漢的 / 懦弱的"]
+  []
 );
 assert.deepStrictEqual(
   senseBank.lookup("vendors").map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}`),

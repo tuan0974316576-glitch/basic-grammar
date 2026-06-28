@@ -4454,6 +4454,12 @@
     { "word": "pass", "meaning": "通行證", "pos": "noun", "type": "word", "replaceType": true, "notes": "codex-review 1500: reviewed Oxford B1 I-P batch / kept senior senses precise and replaced noisy old teacher entries" },
     { "word": "plot", "meaning": "情節", "pos": "noun", "type": "word", "replaceType": true, "notes": "codex-review 1500: reviewed Oxford B1 I-P batch / kept senior senses precise and replaced noisy old teacher entries" },
     { "word": "plot", "meaning": "小塊土地", "pos": "noun", "type": "word", "replaceType": true, "notes": "codex-review 1500: reviewed Oxford B1 I-P batch / kept senior senses precise and replaced noisy old teacher entries" },
-    { "word": "key", "meaning": "鑰匙", "pos": "noun", "type": "word", "replaceType": true, "notes": "codex patch 1500: split key noun senses" }
+    { "word": "key", "meaning": "鑰匙", "pos": "noun", "type": "word", "replaceType": true, "notes": "codex patch 1500: split key noun senses" },
+    { "word": "douse", "type": "word", "replaceType": true, "suppress": true, "notes": "codex examples audit: suppress wrong teacher entry douse=noun 劑量; use dose for 劑量 and douse v. 潑濕 / 澆熄." },
+    { "word": "gar", "type": "word", "replaceType": true, "suppress": true, "notes": "codex examples audit: suppress spreadsheet fragment; use garner attention for 取得關注." },
+    { "word": "manage", "meaning": "管理", "pos": "noun", "type": "word", "replaceType": true, "suppress": true, "notes": "codex examples audit: suppress wrong POS; manage is verb 管理 / 設法做到." },
+    { "word": "torture", "meaning": "折磨", "pos": "noun", "type": "word", "replaceType": true, "suppress": true, "notes": "codex examples audit: suppress sensitive student-facing noun sense from teacher bank." },
+    { "word": "rape", "meaning": "強姦", "pos": "noun", "type": "word", "replaceType": true, "suppress": true, "notes": "codex examples audit: suppress adult sensitive student-facing sense." },
+    { "word": "rape", "meaning": "強姦", "pos": "verb", "type": "word", "replaceType": true, "suppress": true, "notes": "codex examples audit: suppress adult sensitive student-facing sense." }
   ]
 }

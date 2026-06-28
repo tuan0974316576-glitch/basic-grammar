@@ -39,6 +39,10 @@ const INVALID_TEACHER_TASK_WORDS = new Set([
   "v",
   "verb"
 ]);
+const INVALID_OXFORD_TASK_WORDS = new Set([
+  "nction",
+  "tlement"
+]);
 const LEVEL_GUIDES = {
   A1: "Hong Kong junior primary level. Use 4-7 words, present simple, daily life only.",
   A2: "Hong Kong senior primary level. Use 5-9 words and simple school/home contexts.",
@@ -314,6 +318,9 @@ function normalizeMeaningTask(entry = {}, oxfordLevelByWord = new Map(), source 
 function normalizeOxfordTask(entry = {}, teacherWordSet = new Set()) {
   const word = VocabExampleUtils.normalizeWord(entry.word);
   if (!word || teacherWordSet.has(word)) return null;
+  if (INVALID_OXFORD_TASK_WORDS.has(word)) return null;
+  if (/\d/.test(word) || word.length < 2) return null;
+  if (!/^[a-z][a-z' -]*[a-z]$/.test(word)) return null;
   if (word.includes(",")) return null;
   const level = String(entry.level || "").toUpperCase();
   if (!LEVEL_ORDER[level]) return null;
