@@ -12255,6 +12255,32 @@
     ["air quality", "noun", "空氣質素", { type: "phrase", level: "B1", overrideTeacher: true }],
     ["ticket machine", "noun", "售票機", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["ticket machines"] }],
     ["lost property", "noun", "失物", { type: "phrase", level: "B1", overrideTeacher: true }],
+
+    // Home, shopping, public-safety, and sports competition reading supplement.
+    ["detergent", "noun", "洗衣液 / 清潔劑", { level: "B1", overrideTeacher: true }],
+    ["fabric softener", "noun", "衣物柔順劑", { type: "phrase", level: "B1", overrideTeacher: true }],
+    ["clothes hanger", "noun", "衣架", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["clothes hangers"] }],
+    ["drying rack", "noun", "晾衫架", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["drying racks"] }],
+    ["dustbin", "noun", "垃圾桶", { level: "A2", overrideTeacher: true, aliases: ["dustbins"] }],
+    ["recyclable", "adjective", "可回收的", { level: "B1", overrideTeacher: true }],
+    ["checkout counter", "noun", "收銀櫃檯", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["checkout counters"] }],
+    ["shopping basket", "noun", "購物籃", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["shopping baskets"] }],
+    ["discount coupon", "noun", "折扣券 / 優惠券", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["discount coupons"] }],
+    ["warranty", "noun", "保養 / 保用期", { level: "B1", overrideTeacher: true, aliases: ["warranties"] }],
+    ["queue number", "noun", "輪候號碼", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["queue numbers"] }],
+    ["public toilet", "noun", "公廁 / 公共洗手間", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["public toilets"] }],
+    ["information desk", "noun", "詢問處 / 資訊櫃檯", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["information desks"] }],
+    ["playground equipment", "noun", "遊樂場設施", { type: "phrase", level: "B1", overrideTeacher: true }],
+    ["handrail", "noun", "扶手", { level: "B1", overrideTeacher: true, aliases: ["handrails"] }],
+    ["slippery floor", "noun", "濕滑地面", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["slippery floors"] }],
+    ["wet floor sign", "noun", "小心地滑牌", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["wet floor signs"] }],
+    ["first-aid station", "noun", "急救站", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["first aid station", "first-aid stations", "first aid stations"] }],
+    ["scorekeeper", "noun", "記分員", { level: "B1", overrideTeacher: true, aliases: ["scorekeepers"] }],
+    ["umpire", "noun", "裁判", { level: "B1", overrideTeacher: true, aliases: ["umpires"] }],
+    ["half-time", "noun", "半場休息", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["halftime"] }],
+    ["kick-off", "noun", "開球", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["kickoff"] }],
+    ["runner-up", "noun", "亞軍", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["runner up", "runners-up", "runners up"] }],
+    ["opposing team", "noun", "對方隊伍", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["opposing teams"] }],
   ];
 
   function normalizeVerbTableMeaning(value) {
