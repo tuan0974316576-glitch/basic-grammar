@@ -15000,6 +15000,18 @@
     ["historical consequence", "noun", "歷史後果 / 歷史影響", { type: "phrase", level: "B2", overrideTeacher: true, aliases: ["historical consequences"] }],
     ["primary evidence", "noun", "第一手證據", { type: "phrase", level: "B2", overrideTeacher: true }],
     ["oral account", "noun", "口述記錄 / 口述敘述", { type: "phrase", level: "B2", overrideTeacher: true, aliases: ["oral accounts"] }],
+    ["habitat monitoring", "noun", "棲息地監測", { type: "phrase", level: "B2", overrideTeacher: true }],
+    ["wildlife camera", "noun", "野生動物相機 / 野外攝影機", { type: "phrase", level: "B2", overrideTeacher: true, aliases: ["wildlife cameras"] }],
+    ["field data", "noun", "實地數據 / 野外數據", { type: "phrase", level: "B2", overrideTeacher: true }],
+    ["natural food source", "noun", "天然食物來源", { type: "phrase", level: "B2", overrideTeacher: true, aliases: ["natural food sources"] }],
+    ["alternative protein", "noun", "替代蛋白質", { type: "phrase", level: "B2", overrideTeacher: true, aliases: ["alternative proteins"] }],
+    ["local harvest", "noun", "本地收成", { type: "phrase", level: "B1", overrideTeacher: true }],
+    ["ancient city wall", "noun", "古代城牆", { type: "phrase", level: "B2", overrideTeacher: true, aliases: ["ancient city walls"] }],
+    ["market square", "noun", "市集廣場", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["market squares"] }],
+    ["trade centre", "noun", "貿易中心", { type: "phrase", level: "B2", overrideTeacher: true, aliases: ["trade center", "trade centres", "trade centers"] }],
+    ["craft workshop", "noun", "手工藝作坊 / 工藝工作坊", { type: "phrase", level: "B2", overrideTeacher: true, aliases: ["craft workshops"] }],
+    ["public building", "noun", "公共建築", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["public buildings"] }],
+    ["ancient road system", "noun", "古代道路系統", { type: "phrase", level: "B2", overrideTeacher: true, aliases: ["ancient road systems"] }],
 
     // Public safety, road notices, and emergency-service reading supplement.
     ["fire exit", "noun", "消防出口 / 火警出口", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["fire exits"] }],
