@@ -13302,6 +13302,33 @@
     ["student handbook", "noun", "學生手冊", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["student handbooks"] }],
     ["school stamp", "noun", "學校印章", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["school stamps"] }],
     ["official receipt", "noun", "正式收據", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["official receipts"] }],
+
+    // Shopping, payment, restaurant, and customer-service reading supplement.
+    ["sale price", "noun", "特價 / 減價後價格", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["sale prices"] }],
+    ["original price", "noun", "原價", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["original prices"] }],
+    ["loyalty card", "noun", "積分卡 / 會員積分卡", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["loyalty cards"] }],
+    ["reward point", "noun", "獎賞積分 / 會員積分", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["reward points"] }],
+    ["cash coupon", "noun", "現金券", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["cash coupons"] }],
+    ["store credit", "noun", "店舖退款額 / 店內購物額", { type: "phrase", level: "B1", overrideTeacher: true }],
+    ["exchange counter", "noun", "換貨櫃檯 / 兌換櫃檯", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["exchange counters"] }],
+    ["customer service desk", "noun", "顧客服務櫃檯", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["customer service desks"] }],
+    ["proof of purchase", "noun", "購買證明", { type: "phrase", level: "B1", overrideTeacher: true }],
+    ["credit card payment", "noun", "信用卡付款", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["credit card payments"] }],
+    ["dine-in", "noun", "堂食", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["dine in"] }],
+    ["reservation fee", "noun", "預訂費", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["reservation fees"] }],
+    ["tray return", "noun", "餐盤回收處 / 歸還餐盤", { type: "phrase", level: "A2", overrideTeacher: true }],
+    ["condiment", "noun", "調味醬 / 佐料", { level: "B1", overrideTeacher: true, aliases: ["condiments"] }],
+    ["allergy information", "noun", "致敏資料 / 過敏資料", { type: "phrase", level: "B1", overrideTeacher: true }],
+    ["discount code", "noun", "折扣碼 / 優惠碼", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["discount codes"] }],
+    ["promo code", "noun", "優惠碼", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["promotion code", "promo codes", "promotion codes"] }],
+    ["online order", "noun", "網上訂單", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["online orders"] }],
+    ["delivery fee", "noun", "送貨費", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["delivery fees"] }],
+    ["delivery address", "noun", "送貨地址", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["delivery addresses"] }],
+    ["pickup point", "noun", "取貨點 / 集合點", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["pick-up point", "pickup points", "pick-up points"] }],
+    ["order number", "noun", "訂單號碼", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["order numbers"] }],
+    ["limited offer", "noun", "限時優惠 / 限量優惠", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["limited offers"] }],
+    ["free refill", "noun", "免費續杯 / 免費補充", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["free refills"] }],
+    ["meal voucher", "noun", "餐券", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["meal vouchers"] }],
   ];
 
   function normalizeVerbTableMeaning(value) {
