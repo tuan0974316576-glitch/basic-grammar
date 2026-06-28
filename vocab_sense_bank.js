@@ -12231,6 +12231,30 @@
     ["stairwell", "noun", "樓梯間", { level: "B1", overrideTeacher: true, aliases: ["stairwells"] }],
     ["ferry terminal", "noun", "渡輪碼頭", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["ferry terminals"] }],
     ["platform screen door", "noun", "月台幕門", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["platform screen doors"] }],
+
+    // School notices, athletics, and Hong Kong daily-life reading supplement.
+    ["school hall", "noun", "學校禮堂", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["school halls"] }],
+    ["packed lunch", "noun", "自備午餐 / 盒裝午餐", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["packed lunches"] }],
+    ["after-school activity", "noun", "課後活動", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["after-school activities", "after school activity", "after school activities"] }],
+    ["field trip", "noun", "戶外考察 / 校外參觀", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["field trips"] }],
+    ["parent-teacher meeting", "noun", "家長會 / 家長教師會面", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["parent teacher meeting", "parent-teacher meetings", "parent teacher meetings"] }],
+    ["sick leave", "noun", "病假", { type: "phrase", level: "A2", overrideTeacher: true }],
+    ["medical certificate", "noun", "醫生紙 / 醫療證明", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["medical certificates"] }],
+    ["cramp", "noun", "抽筋", { level: "B1", overrideTeacher: true }],
+    ["stretching", "noun", "伸展運動", { level: "A2", overrideTeacher: true }],
+    ["warm down", "verb", "做緩和運動 / 放鬆", { type: "phrase", level: "B1", overrideTeacher: true }],
+    ["personal best", "noun", "個人最佳成績", { type: "phrase", level: "B1", overrideTeacher: true }],
+    ["finish line", "noun", "終點線", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["finish lines"] }],
+    ["starting line", "noun", "起跑線", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["starting lines"] }],
+    ["baton", "noun", "接力棒", { level: "B1", overrideTeacher: true, aliases: ["batons"] }],
+    ["obstacle race", "noun", "障礙賽", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["obstacle races"] }],
+    ["shuttlecock", "noun", "羽毛球", { level: "A2", overrideTeacher: true, aliases: ["shuttlecocks"] }],
+    ["badminton racket", "noun", "羽毛球拍", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["badminton rackets", "badminton racquet", "badminton racquets"] }],
+    ["rainstorm warning", "noun", "暴雨警告", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["rainstorm warnings"] }],
+    ["typhoon signal", "noun", "颱風信號", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["typhoon signals"] }],
+    ["air quality", "noun", "空氣質素", { type: "phrase", level: "B1", overrideTeacher: true }],
+    ["ticket machine", "noun", "售票機", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["ticket machines"] }],
+    ["lost property", "noun", "失物", { type: "phrase", level: "B1", overrideTeacher: true }],
   ];
 
   function normalizeVerbTableMeaning(value) {
