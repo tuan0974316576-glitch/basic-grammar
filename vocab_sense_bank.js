@@ -12915,6 +12915,23 @@
     ["fully booked", "adjective", "已訂滿", { type: "phrase", level: "B1", overrideTeacher: true }],
     ["walk-in", "adjective", "即場 / 無需預約的", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["walk in"] }],
     ["walk-in registration", "noun", "即場報名", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["walk in registration"] }],
+    ["safety notice", "noun", "安全告示", { type: "phrase", level: "B1", overrideTeacher: true }],
+    ["sports shoes", "noun", "運動鞋", { type: "phrase", level: "A2", overrideTeacher: true }],
+    ["cool down", "verb", "緩和運動 / 放鬆", { type: "phrase", level: "A2", overrideTeacher: true }],
+    ["team spirit", "noun", "團隊精神", { type: "phrase", level: "B1", overrideTeacher: true }],
+    ["water break", "noun", "飲水休息", { type: "phrase", level: "A2", overrideTeacher: true }],
+    ["school team", "noun", "校隊", { type: "phrase", level: "A2", overrideTeacher: true }],
+    ["win a medal", "verb", "贏得獎牌", { type: "phrase", level: "A2", overrideTeacher: true }],
+    ["lose balance", "verb", "失去平衡", { type: "phrase", level: "B1", overrideTeacher: true }],
+    ["keep balance", "verb", "保持平衡", { type: "phrase", level: "A2", overrideTeacher: true }],
+    ["weather warning", "noun", "天氣警告", { type: "phrase", level: "A2", overrideTeacher: true }],
+    ["heat stroke", "noun", "中暑", { type: "phrase", level: "B1", overrideTeacher: true }],
+    ["comfortable shoes", "noun", "舒適的鞋", { type: "phrase", level: "A2", overrideTeacher: true }],
+    ["parent consent", "noun", "家長同意", { type: "phrase", level: "B1", overrideTeacher: true }],
+    ["bring your own", "verb", "自備", { type: "phrase", level: "B1", overrideTeacher: true }],
+    ["waterproof jacket", "noun", "防水外套", { type: "phrase", level: "B1", overrideTeacher: true }],
+    ["sports equipment", "noun", "運動器材", { type: "phrase", level: "A2", overrideTeacher: true }],
+    ["emergency drill", "noun", "緊急演習", { type: "phrase", level: "B1", overrideTeacher: true }],
   ];
 
   function normalizeVerbTableMeaning(value) {
