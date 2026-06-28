@@ -13564,6 +13564,28 @@
     ["keep calm", "verb", "保持冷靜", { type: "phrase", level: "A2", overrideTeacher: true }],
     ["service announcement", "noun", "服務廣播 / 服務公告", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["service announcements"] }],
 
+    // Clinic, medicine-label, dental, and health-form reading supplement.
+    ["health centre", "noun", "健康中心", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["health center", "health centres", "health centers"] }],
+    ["medical centre", "noun", "醫療中心", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["medical center", "medical centres", "medical centers"] }],
+    ["consultation room", "noun", "診症室 / 診療室", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["consultation rooms"] }],
+    ["before meals", "adverb", "飯前", { type: "phrase", level: "A2", overrideTeacher: true }],
+    ["after meals", "adverb", "飯後", { type: "phrase", level: "A2", overrideTeacher: true }],
+    ["twice a day", "adverb", "每日兩次", { type: "phrase", level: "A2", overrideTeacher: true }],
+    ["three times a day", "adverb", "每日三次", { type: "phrase", level: "A2", overrideTeacher: true }],
+    ["drug allergy", "noun", "藥物敏感", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["drug allergies"] }],
+    ["cough syrup", "noun", "咳藥水", { type: "phrase", level: "A2", overrideTeacher: true }],
+    ["eye drops", "noun", "眼藥水", { type: "phrase", level: "A2", overrideTeacher: true }],
+    ["ear drops", "noun", "耳藥水", { type: "phrase", level: "A2", overrideTeacher: true }],
+    ["ointment", "noun", "藥膏", { level: "B1", overrideTeacher: true, aliases: ["ointments"] }],
+    ["vision test", "noun", "視力測試", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["vision tests"] }],
+    ["hearing test", "noun", "聽力測試", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["hearing tests"] }],
+    ["immunisation record", "noun", "疫苗接種紀錄", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["immunization record", "immunisation records", "immunization records"] }],
+    ["chronic illness", "noun", "長期病患 / 慢性疾病", { type: "phrase", level: "B2", overrideTeacher: true, aliases: ["chronic illnesses"] }],
+    ["infectious disease", "noun", "傳染病", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["infectious diseases"] }],
+    ["mask wearing", "noun", "佩戴口罩", { type: "phrase", level: "A2", overrideTeacher: true }],
+    ["isolation period", "noun", "隔離期", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["isolation periods"] }],
+    ["recovery letter", "noun", "康復證明信 / 康復通知書", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["recovery letters"] }],
+
     // Transport, travel documents, and venue-entry reading supplement.
     ["train route", "noun", "鐵路路線 / 列車路線", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["train routes"] }],
     ["service route", "noun", "服務路線 / 營運路線", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["service routes"] }],
