@@ -12194,6 +12194,24 @@
     ["keep quiet", "verb", "保持安靜", { type: "phrase", level: "A2", overrideTeacher: true }],
     ["book fair", "noun", "書展 / 圖書展", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["book fairs"] }],
     ["charity sale", "noun", "慈善義賣", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["charity sales"] }],
+
+    // Food, transport, travel, and weather reading-comprehension supplement.
+    ["combo meal", "noun", "組合餐 / 套餐", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["combo meals"] }],
+    ["refill", "noun", "續杯 / 補充裝", { level: "B1", overrideTeacher: true }],
+    ["refill", "verb", "再添滿 / 補充", { level: "B1", overrideTeacher: true }],
+    ["split the bill", "verb", "分攤帳單", { type: "phrase", level: "B1", overrideTeacher: true }],
+    ["service charge", "noun", "服務費", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["service charges"] }],
+    ["cashless payment", "noun", "無現金付款", { type: "phrase", level: "B1", overrideTeacher: true }],
+    ["contactless payment", "noun", "非接觸式付款", { type: "phrase", level: "B1", overrideTeacher: true }],
+    ["boarding pass", "noun", "登機證", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["boarding passes"] }],
+    ["boarding gate", "noun", "登機閘口", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["boarding gates"] }],
+    ["interchange", "noun", "轉乘站 / 交匯處", { level: "B1", overrideTeacher: true }],
+    ["single journey", "noun", "單程", { type: "phrase", level: "A2", overrideTeacher: true }],
+    ["round trip", "noun", "來回行程", { type: "phrase", level: "B1", overrideTeacher: true }],
+    ["cycle lane", "noun", "單車徑 / 單車線", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["cycle lanes"] }],
+    ["pier", "noun", "碼頭", { level: "A2", overrideTeacher: true, aliases: ["piers"] }],
+    ["chilly", "adjective", "寒冷的 / 有寒意的", { level: "A2", overrideTeacher: true }],
+    ["muddy", "adjective", "泥濘的", { level: "A2", overrideTeacher: true }],
   ];
 
   function normalizeVerbTableMeaning(value) {
