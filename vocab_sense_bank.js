@@ -15105,6 +15105,30 @@
     ["fitness room", "noun", "健身室", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["fitness rooms"] }],
     ["playroom", "noun", "遊戲室", { level: "A2", overrideTeacher: true, aliases: ["playrooms"] }],
     ["booking system", "noun", "預約系統 / 訂位系統", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["booking systems"] }],
+
+    // Reading-comprehension topic supplement: food science, plant ecology, animal adaptation, and ancient history.
+    ["food processing", "noun", "食品加工", { type: "phrase", level: "B1", overrideTeacher: true }],
+    ["fermented food", "noun", "發酵食品", { type: "phrase", level: "B2", overrideTeacher: true, aliases: ["fermented foods"] }],
+    ["plant ecology", "noun", "植物生態學 / 植物生態", { type: "phrase", level: "B2", overrideTeacher: true }],
+    ["plant community", "noun", "植物群落", { type: "phrase", level: "B2", overrideTeacher: true, aliases: ["plant communities"] }],
+    ["fibrous root", "noun", "鬚根", { type: "phrase", level: "B2", overrideTeacher: true, aliases: ["fibrous roots"] }],
+    ["taproot", "noun", "主根 / 直根", { level: "B2", overrideTeacher: true, aliases: ["taproots"] }],
+    ["seedling growth", "noun", "幼苗生長", { type: "phrase", level: "B2", overrideTeacher: true }],
+    ["pollination method", "noun", "授粉方式", { type: "phrase", level: "B2", overrideTeacher: true, aliases: ["pollination methods"] }],
+    ["nocturnal animal", "noun", "夜行動物", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["nocturnal animals"] }],
+    ["diurnal animal", "noun", "晝行動物", { type: "phrase", level: "B2", overrideTeacher: true, aliases: ["diurnal animals"] }],
+    ["hibernation period", "noun", "冬眠期", { type: "phrase", level: "B2", overrideTeacher: true, aliases: ["hibernation periods"] }],
+    ["predator avoidance", "noun", "躲避捕食者", { type: "phrase", level: "B2", overrideTeacher: true }],
+    ["defence mechanism", "noun", "防禦機制", { type: "phrase", level: "B2", overrideTeacher: true, aliases: ["defense mechanism", "defence mechanisms", "defense mechanisms"] }],
+    ["warning colour", "noun", "警戒色", { type: "phrase", level: "B2", overrideTeacher: true, aliases: ["warning color", "warning colours", "warning colors"] }],
+    ["symbiotic relationship", "noun", "共生關係", { type: "phrase", level: "B2", overrideTeacher: true, aliases: ["symbiotic relationships"] }],
+    ["mutualism", "noun", "互利共生", { level: "C1", overrideTeacher: true }],
+    ["parasite host", "noun", "寄生蟲宿主", { type: "phrase", level: "C1", overrideTeacher: true, aliases: ["parasite hosts"] }],
+    ["river valley civilization", "noun", "河谷文明", { type: "phrase", level: "C1", overrideTeacher: true, aliases: ["river valley civilizations"] }],
+    ["dynastic rule", "noun", "王朝統治", { type: "phrase", level: "C1", overrideTeacher: true }],
+    ["royal court", "noun", "王室宮廷 / 朝廷", { type: "phrase", level: "B2", overrideTeacher: true, aliases: ["royal courts"] }],
+    ["artefact analysis", "noun", "文物分析", { type: "phrase", level: "C1", overrideTeacher: true, aliases: ["artifact analysis"] }],
+    ["trade route map", "noun", "貿易路線圖", { type: "phrase", level: "B2", overrideTeacher: true, aliases: ["trade route maps"] }],
   ];
 
   function normalizeVerbTableMeaning(value) {
