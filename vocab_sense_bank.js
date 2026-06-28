@@ -13381,6 +13381,33 @@
     ["walking route", "noun", "步行路線", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["walking routes"] }],
     ["heat warning", "noun", "酷熱天氣警告 / 高溫警告", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["heat warnings"] }],
     ["sun protection", "noun", "防曬保護", { type: "phrase", level: "B1", overrideTeacher: true }],
+
+    // Library, community facilities, booking, and public-notice reading supplement.
+    ["appointment booking", "noun", "預約 / 預約安排", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["appointment bookings"] }],
+    ["walk-in service", "noun", "即場服務 / 無需預約服務", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["walk in service", "walk-in services", "walk in services"] }],
+    ["deposit fee", "noun", "按金 / 保證金", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["deposit fees"] }],
+    ["paper cup", "noun", "紙杯", { type: "phrase", level: "A1", overrideTeacher: true, aliases: ["paper cups"] }],
+    ["baby changing room", "noun", "嬰兒護理室 / 換片房", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["baby changing rooms"] }],
+    ["advance booking", "noun", "預先預約 / 提前預訂", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["advance bookings"] }],
+    ["same-day ticket", "noun", "即日門票", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["same day ticket", "same-day tickets", "same day tickets"] }],
+    ["entry ticket", "noun", "入場券 / 門票", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["entry tickets"] }],
+    ["registration desk", "noun", "登記處 / 報到處", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["registration desks"] }],
+    ["cancellation fee", "noun", "取消費用", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["cancellation fees"] }],
+    ["replacement fee", "noun", "補領費 / 更換費", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["replacement fees"] }],
+    ["valid date", "noun", "有效日期", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["valid dates"] }],
+    ["privacy notice", "noun", "私隱通知", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["privacy notices"] }],
+    ["personal data", "noun", "個人資料", { type: "phrase", level: "B1", overrideTeacher: true }],
+    ["email address", "noun", "電郵地址", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["email addresses", "e-mail address", "e-mail addresses"] }],
+    ["home address", "noun", "住址 / 家庭地址", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["home addresses"] }],
+    ["student card", "noun", "學生證", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["student cards"] }],
+    ["return date", "noun", "歸還日期 / 交還日期", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["return dates"] }],
+    ["photocopying service", "noun", "影印服務", { type: "phrase", level: "B1", overrideTeacher: true }],
+    ["charging station", "noun", "充電站 / 充電位置", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["charging stations"] }],
+    ["drinking fountain", "noun", "飲水機 / 飲水噴泉", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["drinking fountains"] }],
+    ["umbrella stand", "noun", "雨傘架", { type: "phrase", level: "A2", overrideTeacher: true, aliases: ["umbrella stands"] }],
+    ["keep clear", "verb", "保持暢通 / 請勿阻塞", { type: "phrase", level: "B1", overrideTeacher: true }],
+    ["feedback form", "noun", "意見表 / 回饋表", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["feedback forms"] }],
+    ["customer enquiry", "noun", "顧客查詢 / 客戶查詢", { type: "phrase", level: "B1", overrideTeacher: true, aliases: ["customer inquiry", "customer enquiries", "customer inquiries"] }],
   ];
 
   function normalizeVerbTableMeaning(value) {
