@@ -6,7 +6,9 @@ const outDir = path.join(rootDir, "www");
 
 const files = [
   ".htaccess",
+  "apple-touch-icon.png",
   "app.js",
+  "favicon.ico",
   "firebase_config.js",
   "firebase-init.js",
   "grammar_core.js",
@@ -14,7 +16,12 @@ const files = [
   "grammar_verb_table_audio_manifest.js",
   "grammar_verb_table_data.js",
   "grammar_verb_table_image_manifest.js",
+  "icon-192-maskable.png",
+  "icon-192.png",
+  "icon-512-maskable.png",
+  "icon-512.png",
   "index.html",
+  "manifest.json",
   "style.css",
   "teacher_vocab_bank.js",
   "vocab_pos_inference.js",
