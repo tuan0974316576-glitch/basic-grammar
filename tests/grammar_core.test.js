@@ -16,6 +16,8 @@ assert.strictEqual(
   core.isCountableTypedAnswerCorrect({ acceptedAnswers: ["Air is clean."] }, "An air is clean"),
   false
 );
+assert.strictEqual(core.isTypedSentenceCorrect(["I am happy."], "i am happy"), true);
+assert.strictEqual(core.isTypedSentenceCorrect(["I am happy."], "I happy"), false);
 
 assert.deepStrictEqual(core.getSentenceTokens({ sentence: "He is play football well." }), [
   "He",
@@ -24,6 +26,23 @@ assert.deepStrictEqual(core.getSentenceTokens({ sentence: "He is play football w
   "football",
   "well"
 ]);
+assert.strictEqual(core.getLesson1VerbText({ note: "「吃」是動作動詞。" }), "吃");
+assert.deepStrictEqual(core.getLesson1VerbTokens({
+  zh: "我吃蘋果。",
+  note: "「吃」是動作動詞。"
+}), ["我", "吃", "蘋果"]);
+assert.deepStrictEqual(core.getLesson1VerbTokenIndexes({
+  zh: "妹妹畫畫。",
+  note: "「畫」是動作動詞。"
+}), [1, 2]);
+assert.strictEqual(core.isLesson1VerbTokenSelectionCorrect({
+  zh: "我吃蘋果。",
+  note: "「吃」是動作動詞。"
+}, [1]), true);
+assert.strictEqual(core.isLesson1VerbTokenSelectionCorrect({
+  zh: "我吃蘋果。",
+  note: "「吃」是動作動詞。"
+}, [0]), false);
 
 const quotaQuestions = [
   { id: "a1", type: "action" },

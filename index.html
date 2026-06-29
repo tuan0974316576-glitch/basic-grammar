@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Basic Grammar Game</title>
-  <link rel="stylesheet" href="style.css?v=20260619-sense-bank">
+  <link rel="stylesheet" href="style.css?v=20260628-have-usage-lesson">
 </head>
 <body>
   <main id="app-shell" class="app-shell">
@@ -98,9 +98,54 @@
             </span>
           </button>
 
+          <button class="lesson-card" type="button" data-start-lesson="noun-category">
+            <span class="lesson-kicker">Lesson 07</span>
+            <strong>名詞的類別</strong>
+            <span class="lesson-meta">
+              <span>可數、不可數、ING、專有名詞</span>
+              <span id="menu-progress-noun-category">0/60</span>
+            </span>
+          </button>
+
+          <button class="lesson-card" type="button" data-start-lesson="modal-verb">
+            <span class="lesson-kicker">Lesson 08</span>
+            <strong>Modal Verb 的要訣</strong>
+            <span class="lesson-meta">
+              <span>can / will / should / may / must</span>
+              <span id="menu-progress-modal-verb">0/60</span>
+            </span>
+          </button>
+
+          <button class="lesson-card" type="button" data-start-lesson="adjective-lesson">
+            <span class="lesson-kicker">Lesson 09</span>
+            <strong>Adjective 形容詞</strong>
+            <span class="lesson-meta">
+              <span>happy / useful / interested in / willing to</span>
+              <span id="menu-progress-adjective">0/60</span>
+            </span>
+          </button>
+
+          <button class="lesson-card" type="button" data-start-lesson="adverb-lesson">
+            <span class="lesson-kicker">Lesson 10</span>
+            <strong>Adverb 副詞</strong>
+            <span class="lesson-meta">
+              <span>句首、句中、句尾副詞位置</span>
+              <span id="menu-progress-adverb">0/100</span>
+            </span>
+          </button>
+
+          <button class="lesson-card" type="button" data-start-lesson="tenses">
+            <span class="lesson-kicker">Lesson 11</span>
+            <strong>Tenses 時態分辨</strong>
+            <span class="lesson-meta">
+              <span>可選時態範圍，再填動詞形式</span>
+              <span id="menu-progress-tenses">0/260</span>
+            </span>
+          </button>
+
           <div class="lesson-card-wrap">
             <button class="lesson-card lesson-card-with-info" type="button" data-start-lesson="verb-table">
-              <span class="lesson-kicker">Lesson 07</span>
+              <span class="lesson-kicker">Lesson 12</span>
               <strong>Verb Table 動詞四式</strong>
               <span class="lesson-meta">
                 <span>現在式、過去式、PP、ING 配對</span>
@@ -111,6 +156,15 @@
               <span>i</span>
             </button>
           </div>
+
+          <button class="lesson-card" type="button" data-start-lesson="have-usage">
+            <span class="lesson-kicker">Lesson 13</span>
+            <strong>「有」的主要用法</strong>
+            <span class="lesson-meta">
+              <span>There be / with / without / have</span>
+              <span id="menu-progress-have-usage">0/80</span>
+            </span>
+          </button>
         </div>
       </div>
     </section>
@@ -250,7 +304,7 @@
           <div id="verb-table-visual" class="verb-table-visual hidden" aria-hidden="true">
             <img id="verb-table-image" class="verb-table-image" alt="">
           </div>
-          <div id="guidance" class="guidance">分析句子有沒有動作動詞</div>
+          <div id="guidance" class="guidance">句子是否有動詞？</div>
         </div>
 
         <div id="rule-card" class="rule-card hidden">
@@ -280,6 +334,10 @@
           <button class="symbol-btn cross" type="button" data-sentence-judgment="wrong" aria-label="錯誤">×</button>
         </div>
 
+        <div id="tense-choice" class="tense-choice hidden" aria-label="時態選項"></div>
+
+        <div id="have-usage-choice" class="have-usage-choice hidden" aria-label="有的用法選項"></div>
+
         <div id="verb-count-choice" class="choice-grid count-grid hidden">
           <button class="option-btn" type="button" data-verb-count="0">0</button>
           <button class="option-btn" type="button" data-verb-count="1">1</button>
@@ -293,6 +351,7 @@
 
         <div id="countable-correction-choice" class="countable-correction hidden">
           <button id="countable-correction-input" class="text-entry-field countable-correction-input" type="button" aria-label="輸入正確英文句子" data-placeholder="Type the correct sentence"></button>
+          <button id="submit-countable-correction-btn" class="primary-btn" type="button">確認</button>
         </div>
 
         <div id="sentence-builder-choice" class="sentence-builder hidden">
@@ -445,7 +504,7 @@
     <div class="verb-table-reference-panel">
       <header class="verb-table-reference-header">
         <div>
-          <div class="verb-table-reference-kicker">Lesson 07</div>
+          <div class="verb-table-reference-kicker">Lesson 12</div>
           <h2 id="verb-table-reference-title">Verb Table 動詞四式</h2>
         </div>
         <button class="verb-table-reference-close" type="button" aria-label="關閉" data-close-verb-table-reference>×</button>
@@ -616,8 +675,8 @@
   <script src="grammar_verb_table_data.js?v=20260613-verb-table-reference"></script>
   <script src="grammar_verb_table_audio_manifest.js?v=20260613-verb-table-reference"></script>
   <script src="grammar_verb_table_image_manifest.js?v=20260613-verb-table-images-lite"></script>
-  <script src="grammar_core.js?v=20260614-native-flow-core"></script>
-  <script src="grammar_data.js?v=20260614-native-data-layer"></script>
+  <script src="grammar_core.js?v=20260621-lesson2-correction-input"></script>
+  <script src="grammar_data.js?v=20260628-have-usage-lesson"></script>
   <script src="vocab_scheduler.js?v=20260616-srs"></script>
   <script src="vocab_sense_bank.js?v=20260628-vocab-examples"></script>
   <script src="cc_cedict_supplement.js?v=20260620-clean-meanings"></script>
@@ -631,6 +690,6 @@
   <script src="vocab_data.js?v=20260628-vocab-examples"></script>
   <script src="vocab_word_audio_manifest.js?v=20260617-vocab-audio"></script>
   <script src="vocab_audio.js?v=20260617-vocab-audio"></script>
-  <script src="app.js?v=20260619-sense-bank"></script>
+  <script src="app.js?v=20260628-vocab-example-fallback"></script>
 </body>
 </html>

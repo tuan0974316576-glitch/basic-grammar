@@ -18,6 +18,7 @@
     "teacher-live",
     "teacher",
     "curated-sense-bank",
+    "mock-unseen-reviewed",
     "verb-table-form",
     "cc-cedict-supplement"
   ]);

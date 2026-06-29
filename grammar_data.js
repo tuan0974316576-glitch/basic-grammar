@@ -17,7 +17,7 @@ const QUESTIONS = [
   { id: "v07", type: "action", zh: "媽媽煮飯。", english: "Mum cooks dinner.", note: "「煮」是動作動詞。" },
   { id: "v08", type: "action", zh: "爸爸開車。", english: "Dad drives a car.", note: "「開」是動作動詞。" },
   { id: "v09", type: "action", zh: "小明寫字。", english: "Siu Ming writes words.", note: "「寫」是動作動詞。" },
-  { id: "v10", type: "action", zh: "妹妹畫畫。", english: "My younger sister draws pictures.", note: "「畫」是動作動詞。" },
+  { id: "v10", type: "action", zh: "妹妹畫畫。", english: "My younger sister draws pictures.", note: "「畫畫」是動作動詞。", verbZh: "畫畫" },
   { id: "v11", type: "action", zh: "老師教英文。", english: "The teacher teaches English.", note: "「教」是動作動詞。" },
   { id: "v12", type: "action", zh: "學生聽故事。", english: "The students listen to a story.", note: "「聽」是動作動詞。" },
   { id: "v13", type: "action", zh: "我買麵包。", english: "I buy bread.", note: "「買」是動作動詞。" },
@@ -129,7 +129,7 @@ function makeVerbCountQuestion(sentence, zh, isCorrect, verbCount, verbIndexes, 
 }
 
 function verbKindText(kind) {
-  return kind === "be" ? "be 動詞" : `${kind}動詞`;
+  return kind === "be" ? "be 動詞" : "動詞";
 }
 
 function oneVerb(sentence, zh, verbIndex, verb, kind = "現在式") {
@@ -145,7 +145,7 @@ function oneVerb(sentence, zh, verbIndex, verb, kind = "現在式") {
 }
 
 function zeroVerb(sentence, zh, reason, correction) {
-  return makeVerbCountQuestion(
+  const question = makeVerbCountQuestion(
     sentence,
     zh,
     false,
@@ -154,10 +154,13 @@ function zeroVerb(sentence, zh, reason, correction) {
     `${reason}，所以句子沒有動詞。`,
     correction
   );
+  question.correctSentence = correction.replace(/^正確寫法：/, "").replace(/[。！？!?]+$/g, "").trim();
+  question.acceptedAnswers = [question.correctSentence];
+  return question;
 }
 
 function twoVerbs(sentence, zh, verbIndexes, beVerb, mainVerb, kind, correctionSentence) {
-  return makeVerbCountQuestion(
+  const question = makeVerbCountQuestion(
     sentence,
     zh,
     false,
@@ -166,6 +169,9 @@ function twoVerbs(sentence, zh, verbIndexes, beVerb, mainVerb, kind, correctionS
     `${beVerb} 是 be 動詞，${mainVerb} 是${verbKindText(kind)}，所以句子有 2 個動詞。`,
     `${beVerb} 是多餘的，應寫 ${correctionSentence}`
   );
+  question.correctSentence = correctionSentence;
+  question.acceptedAnswers = [correctionSentence];
+  return question;
 }
 
 const VERB_COUNT_QUESTIONS = [
@@ -181,12 +187,6 @@ const VERB_COUNT_QUESTIONS = [
   oneVerb("Mum washes dishes.", "媽媽洗碗。", 1, "washes"),
   oneVerb("The dog sleeps.", "狗睡覺。", 2, "sleeps"),
   oneVerb("The cat jumps.", "貓跳。", 2, "jumps"),
-  oneVerb("I swam yesterday.", "我昨天游泳。", 1, "swam", "過去式"),
-  oneVerb("He ate lunch.", "他吃了午餐。", 1, "ate", "過去式"),
-  oneVerb("They came early.", "他們早到了。", 1, "came", "過去式"),
-  oneVerb("We saw birds.", "我們看見鳥。", 1, "saw", "過去式"),
-  oneVerb("She made a cake.", "她做了一個蛋糕。", 1, "made", "過去式"),
-  oneVerb("You opened the door.", "你打開了門。", 1, "opened", "過去式"),
   oneVerb("I am happy.", "我很開心。", 1, "am", "be"),
   oneVerb("You are late.", "你遲到了。", 1, "are", "be"),
   oneVerb("He is tired.", "他很累。", 1, "is", "be"),
@@ -195,26 +195,7 @@ const VERB_COUNT_QUESTIONS = [
   oneVerb("We are at school.", "我們在學校。", 1, "are", "be"),
   oneVerb("The apple is red.", "蘋果是紅色的。", 2, "is", "be"),
   oneVerb("The boys are noisy.", "男孩們很嘈。", 2, "are", "be"),
-  oneVerb("I am reading now.", "我現在正在閱讀。", 1, "am", "be"),
-  oneVerb("They are playing football.", "他們正在踢足球。", 1, "are", "be"),
-  oneVerb("She is drawing.", "她正在畫畫。", 1, "is", "be"),
-  oneVerb("We are eating lunch.", "我們正在吃午餐。", 1, "are", "be"),
-  oneVerb("Tom is running.", "Tom 正在跑步。", 1, "is", "be"),
-  oneVerb("Mary is singing.", "Mary 正在唱歌。", 1, "is", "be"),
-  oneVerb("The dog is sleeping.", "狗正在睡覺。", 2, "is", "be"),
 
-  zeroVerb("I swimming every day.", "我每天游泳。", "swimming 是 ING，不當動詞", "正確寫法：I swim every day."),
-  zeroVerb("You going home.", "你回家。", "going 是 ING，不當動詞", "正確寫法：You go home."),
-  zeroVerb("He playing football.", "他踢足球。", "playing 是 ING，不當動詞", "正確寫法：He plays football."),
-  zeroVerb("She reading books.", "她看書。", "reading 是 ING，不當動詞", "正確寫法：She reads books."),
-  zeroVerb("We singing songs.", "我們唱歌。", "singing 是 ING，不當動詞", "正確寫法：We sing songs."),
-  zeroVerb("They running fast.", "他們跑得快。", "running 是 ING，不當動詞", "正確寫法：They run fast."),
-  zeroVerb("Tom cooking dinner.", "Tom 煮晚餐。", "cooking 是 ING，不當動詞", "正確寫法：Tom cooks dinner."),
-  zeroVerb("Mary writing words.", "Mary 寫字。", "writing 是 ING，不當動詞", "正確寫法：Mary writes words."),
-  zeroVerb("Dad driving slowly.", "爸爸慢慢開車。", "driving 是 ING，不當動詞", "正確寫法：Dad drives slowly."),
-  zeroVerb("Mum washing dishes.", "媽媽洗碗。", "washing 是 ING，不當動詞", "正確寫法：Mum washes dishes."),
-  zeroVerb("The dog sleeping.", "狗睡覺。", "sleeping 是 ING，不當動詞", "正確寫法：The dog sleeps."),
-  zeroVerb("The cat jumping.", "貓跳。", "jumping 是 ING，不當動詞", "正確寫法：The cat jumps."),
   zeroVerb("I happy.", "我很開心。", "happy 是形容詞", "正確寫法：I am happy."),
   zeroVerb("You late.", "你遲到了。", "late 是形容詞", "正確寫法：You are late."),
   zeroVerb("He tired.", "他很累。", "tired 是形容詞", "正確寫法：He is tired."),
@@ -223,19 +204,6 @@ const VERB_COUNT_QUESTIONS = [
   zeroVerb("We at school.", "我們在學校。", "at school 不是動詞", "正確寫法：We are at school."),
   zeroVerb("The apple red.", "蘋果是紅色的。", "red 是形容詞", "正確寫法：The apple is red."),
   zeroVerb("The boys noisy.", "男孩們很嘈。", "noisy 是形容詞", "正確寫法：The boys are noisy."),
-  zeroVerb("I eaten breakfast.", "我吃了早餐。", "eaten 是 PP，不當動詞", "正確寫法：I ate breakfast."),
-  zeroVerb("He eaten lunch.", "他吃了午餐。", "eaten 是 PP，不當動詞", "正確寫法：He ate lunch."),
-  zeroVerb("They gone home.", "他們回家了。", "gone 是 PP，不當動詞", "正確寫法：They went home."),
-  zeroVerb("She seen birds.", "她看見鳥。", "seen 是 PP，不當動詞", "正確寫法：She saw birds."),
-  zeroVerb("We been there.", "我們去過那裡。", "been 是 PP，不當動詞", "正確寫法：We went there."),
-  zeroVerb("Tom taken a book.", "Tom 拿了一本書。", "taken 是 PP，不當動詞", "正確寫法：Tom took a book."),
-  zeroVerb("Mary written words.", "Mary 寫了字。", "written 是 PP，不當動詞", "正確寫法：Mary wrote words."),
-  zeroVerb("The cake eaten.", "蛋糕被吃了。", "eaten 是 PP，不當動詞", "正確寫法：The cake is eaten."),
-  zeroVerb("My bag gone.", "我的書包不見了。", "gone 是 PP，不當動詞", "正確寫法：My bag is gone."),
-  zeroVerb("The children swimming now.", "小朋友們正在游泳。", "swimming 是 ING，不當動詞", "正確寫法：The children are swimming now."),
-  zeroVerb("The baby crying.", "寶寶正在哭。", "crying 是 ING，不當動詞", "正確寫法：The baby is crying."),
-  zeroVerb("The birds flying.", "鳥正在飛。", "flying 是 ING，不當動詞", "正確寫法：The birds are flying."),
-  zeroVerb("I will late.", "我將會遲到。", "will 不是這課要數的現在式/過去式動詞，late 是形容詞", "正確寫法：I will be late."),
   zeroVerb("We very happy.", "我們很開心。", "very happy 是形容詞短語", "正確寫法：We are very happy."),
 
   twoVerbs("I am eat breakfast.", "我吃早餐。", [1, 2], "am", "eat", "現在式", "I eat breakfast."),
@@ -250,12 +218,6 @@ const VERB_COUNT_QUESTIONS = [
   twoVerbs("Mum is washes dishes.", "媽媽洗碗。", [1, 2], "is", "washes", "現在式", "Mum washes dishes."),
   twoVerbs("The dog is sleeps.", "狗睡覺。", [2, 3], "is", "sleeps", "現在式", "The dog sleeps."),
   twoVerbs("The cat is jumps.", "貓跳。", [2, 3], "is", "jumps", "現在式", "The cat jumps."),
-  twoVerbs("I am swam yesterday.", "我昨天游泳。", [1, 2], "am", "swam", "過去式", "I swam yesterday."),
-  twoVerbs("He is ate lunch.", "他吃了午餐。", [1, 2], "is", "ate", "過去式", "He ate lunch."),
-  twoVerbs("They are came early.", "他們早到了。", [1, 2], "are", "came", "過去式", "They came early."),
-  twoVerbs("We are saw birds.", "我們看見鳥。", [1, 2], "are", "saw", "過去式", "We saw birds."),
-  twoVerbs("She is made a cake.", "她做了一個蛋糕。", [1, 2], "is", "made", "過去式", "She made a cake."),
-  twoVerbs("You are opened the door.", "你打開了門。", [1, 2], "are", "opened", "過去式", "You opened the door."),
   twoVerbs("I am read books.", "我看書。", [1, 2], "am", "read", "現在式", "I read books."),
   twoVerbs("You are eat noodles.", "你吃麵。", [1, 2], "are", "eat", "現在式", "You eat noodles."),
   twoVerbs("He is runs home.", "他跑回家。", [1, 2], "is", "runs", "現在式", "He runs home."),
@@ -1404,6 +1366,2193 @@ function createCountableNounQuestions() {
 
 const COUNTABLE_NOUN_QUESTIONS = createCountableNounQuestions();
 
+function makeNounCategoryQuestion({
+  id,
+  category,
+  sentence,
+  zh,
+  isCorrect,
+  answer,
+  acceptedAnswers,
+  explanation,
+  caseSensitive = false
+}) {
+  const correctAnswer = String(answer || sentence || "").trim();
+  return {
+    id,
+    type: "noun-category",
+    category,
+    sentence,
+    zh,
+    isCorrect,
+    answer: correctAnswer,
+    english: correctAnswer,
+    acceptedAnswers: Array.from(new Set([correctAnswer, ...(acceptedAnswers || [])].filter(Boolean))),
+    explanation,
+    caseSensitive
+  };
+}
+
+function createNounCategoryQuestions() {
+  const questions = [];
+  let nextId = 1;
+  const add = (question) => {
+    questions.push(makeNounCategoryQuestion({
+      id: `nc${String(nextId).padStart(3, "0")}`,
+      ...question
+    }));
+    nextId += 1;
+  };
+  const addPair = ({ correct, wrong, zh, answer = correct, explanation, category, acceptedAnswers, caseSensitive = false }) => {
+    add({
+      category,
+      sentence: correct,
+      zh,
+      isCorrect: true,
+      answer: correct,
+      explanation,
+      acceptedAnswers,
+      caseSensitive
+    });
+    add({
+      category,
+      sentence: wrong,
+      zh,
+      isCorrect: false,
+      answer,
+      explanation,
+      acceptedAnswers,
+      caseSensitive
+    });
+  };
+
+  const countableArticleRule =
+    "可數名詞單數前面要有 a / an / the / 代名詞的；不是單數或指定，就通常用眾數 s。";
+  const uncountableRule =
+    "不可數名詞不可以加 s，也不用 a / an；可以直接用，或加 the / my / your 等。";
+  const gerundRule =
+    "動詞做主語或當一件事來講時，要加 ING，因為主語必須是名詞。";
+  const properNounRule =
+    "專有名詞是人名、地名或公司名，第一個字母必須大楷。";
+
+  [
+    {
+      correct: "I like cats.",
+      wrong: "I like cat.",
+      zh: "我喜歡貓。",
+      explanation: `${countableArticleRule} 這裡是一般地說喜歡貓，所以用 cats。`
+    },
+    {
+      correct: "She has a pencil.",
+      wrong: "She has pencil.",
+      zh: "她有一支鉛筆。",
+      explanation: `${countableArticleRule} 中文指一支 pencil，所以要用 a pencil。`
+    },
+    {
+      correct: "I see an apple.",
+      wrong: "I see a apple.",
+      zh: "我看見一個蘋果。",
+      explanation: `${countableArticleRule} apple 以母音開頭，所以一個蘋果要寫 an apple。`
+    },
+    {
+      correct: "The world is big.",
+      wrong: "World is big.",
+      zh: "世界很大。",
+      explanation: `${countableArticleRule} world 基本上會加 the，寫 The world。`
+    },
+    {
+      correct: "The government helps people.",
+      wrong: "Government helps people.",
+      zh: "政府幫助人民。",
+      explanation: `${countableArticleRule} government 通常指一個已知的政府，所以寫 The government。`
+    },
+    {
+      correct: "My dog is cute.",
+      wrong: "Dog is cute.",
+      zh: "我的狗很可愛。",
+      explanation: `${countableArticleRule} 中文指我的狗，所以要用代名詞的 my。`
+    },
+    {
+      correct: "I read books.",
+      wrong: "I read book.",
+      zh: "我看書。",
+      explanation: `${countableArticleRule} 這裡不是指一本書，所以可數名詞 book 要用眾數 books。`
+    },
+    {
+      correct: "The UK is far from Hong Kong.",
+      wrong: "UK is far from Hong Kong.",
+      zh: "英國離香港很遠。",
+      explanation: `${countableArticleRule} the UK 是固定寫法，要有 the。`
+    },
+    {
+      correct: "The US is a big country.",
+      wrong: "US is big country.",
+      zh: "美國是一個大國。",
+      explanation: `${countableArticleRule} the US 要有 the；country 是單數可數名詞，所以要寫 a big country。`
+    },
+    {
+      correct: "The environment is important.",
+      wrong: "Environment is important.",
+      zh: "環境很重要。",
+      explanation: `${countableArticleRule} environment 通常指整體環境，所以寫 The environment。`
+    }
+  ].forEach((item) => addPair({ ...item, category: "countable" }));
+
+  [
+    {
+      correct: "Information is useful.",
+      wrong: "Informations are useful.",
+      zh: "資料很有用。",
+      explanation: `${uncountableRule} information 是不可數名詞，所以沒有 s，用 is。`
+    },
+    {
+      correct: "Furniture is heavy.",
+      wrong: "Furnitures are heavy.",
+      zh: "傢俱很重。",
+      explanation: `${uncountableRule} furniture 是不可數名詞，所以沒有 s，用 is。`
+    },
+    {
+      correct: "Equipment is expensive.",
+      wrong: "Equipments are expensive.",
+      zh: "裝備很貴。",
+      explanation: `${uncountableRule} equipment 是不可數名詞，所以沒有 s，用 is。`
+    },
+    {
+      correct: "Advice is helpful.",
+      wrong: "Advices are helpful.",
+      zh: "建議很有幫助。",
+      explanation: `${uncountableRule} advice 是不可數名詞，所以沒有 s，用 is。`
+    },
+    {
+      correct: "I need water.",
+      wrong: "I need waters.",
+      zh: "我需要水。",
+      explanation: `${uncountableRule} water 是不可數名詞，所以直接寫 water。`
+    },
+    {
+      correct: "The milk is cold.",
+      wrong: "The milks are cold.",
+      zh: "那杯牛奶很凍。",
+      explanation: `${uncountableRule} milk 是不可數名詞；可以加 the，但不可以加 s。`
+    },
+    {
+      correct: "Her homework is neat.",
+      wrong: "Her homeworks are neat.",
+      zh: "她的功課很整齊。",
+      explanation: `${uncountableRule} homework 是不可數名詞；可以加 her，但不可以加 s。`
+    },
+    {
+      correct: "The equipment is in the room.",
+      wrong: "The equipments are in the room.",
+      zh: "這批裝備在房間裏。",
+      explanation: `${uncountableRule} equipment 是不可數名詞；指定時可用 the equipment，但仍然沒有 s。`
+    }
+  ].forEach((item) => addPair({ ...item, category: "uncountable" }));
+
+  [
+    {
+      correct: "Swimming is important.",
+      wrong: "Swim is important.",
+      zh: "游泳十分重要。",
+      explanation: `${gerundRule} 游泳做主語，要寫 Swimming。`
+    },
+    {
+      correct: "Reading is fun.",
+      wrong: "Read is fun.",
+      zh: "閱讀很有趣。",
+      explanation: `${gerundRule} 閱讀做主語，要寫 Reading。`
+    },
+    {
+      correct: "I hate eating fruits.",
+      wrong: "I hate eat fruit.",
+      zh: "我討厭食水果。",
+      explanation: `${gerundRule} hate 後面講「食水果」這件事，所以用 eating。`,
+      acceptedAnswers: ["I hate eating fruit."]
+    },
+    {
+      correct: "I can see a girl holding a pen.",
+      wrong: "I can see a girl holds a pen.",
+      zh: "我可以看到一個女孩拿著一枝筆。",
+      explanation: `${gerundRule} 句子已有 see；後面描述女孩拿著筆，要把 hold 變成 holding。`
+    },
+    {
+      correct: "I enjoy playing football.",
+      wrong: "I enjoy play football.",
+      zh: "我享受踢足球。",
+      explanation: `${gerundRule} enjoy 後面講「踢足球」這件事，所以用 playing。`
+    },
+    {
+      correct: "Walking to school is healthy.",
+      wrong: "Walk to school is healthy.",
+      zh: "行路返學很健康。",
+      explanation: `${gerundRule} 行路返學做主語，要寫 Walking to school。`
+    },
+    {
+      correct: "Singing songs makes me happy.",
+      wrong: "Sing songs makes me happy.",
+      zh: "唱歌令我開心。",
+      explanation: `${gerundRule} 唱歌這件事做主語，要寫 Singing songs。`
+    }
+  ].forEach((item) => addPair({ ...item, category: "gerund" }));
+
+  [
+    {
+      correct: "Tom is my friend.",
+      wrong: "tom is my friend.",
+      zh: "Tom 是我的朋友。",
+      explanation: `${properNounRule} Tom 是人名，要大楷 T。`
+    },
+    {
+      correct: "Mary is my classmate.",
+      wrong: "mary is my classmate.",
+      zh: "Mary 是我的同學。",
+      explanation: `${properNounRule} Mary 是人名，要大楷 M。`
+    },
+    {
+      correct: "China is a big country.",
+      wrong: "china is a big country.",
+      zh: "中國是一個大國。",
+      explanation: `${properNounRule} China 是地名，要大楷 C。`
+    },
+    {
+      correct: "Anna likes English.",
+      wrong: "anna likes English.",
+      zh: "Anna 喜歡英文。",
+      explanation: `${properNounRule} Anna 是人名，要大楷 A。`
+    },
+    {
+      correct: "Disney is a big company.",
+      wrong: "disney is a big company.",
+      zh: "Disney 是一間大公司。",
+      explanation: `${properNounRule} Disney 是公司名，要大楷 D。`
+    }
+  ].forEach((item) => addPair({ ...item, category: "proper-noun", caseSensitive: true }));
+
+  return questions;
+}
+
+const NOUN_CATEGORY_QUESTIONS = createNounCategoryQuestions();
+
+function makeModalVerbQuestion({
+  id,
+  category,
+  sentence,
+  zh,
+  isCorrect,
+  answer,
+  acceptedAnswers,
+  explanation
+}) {
+  const correctAnswer = String(answer || sentence || "").trim();
+  return {
+    id,
+    type: "modal-verb",
+    category,
+    sentence,
+    zh,
+    isCorrect,
+    answer: correctAnswer,
+    english: correctAnswer,
+    acceptedAnswers: Array.from(new Set([correctAnswer, ...(acceptedAnswers || [])].filter(Boolean))),
+    explanation
+  };
+}
+
+function createModalVerbQuestions() {
+  const questions = [];
+  let nextId = 1;
+  const add = (question) => {
+    questions.push(makeModalVerbQuestion({
+      id: `mv${String(nextId).padStart(3, "0")}`,
+      ...question
+    }));
+    nextId += 1;
+  };
+  const addPair = ({ correct, wrong, zh, answer = correct, explanation, category, acceptedAnswers }) => {
+    add({
+      category,
+      sentence: correct,
+      zh,
+      isCorrect: true,
+      answer: correct,
+      explanation,
+      acceptedAnswers
+    });
+    add({
+      category,
+      sentence: wrong,
+      zh,
+      isCorrect: false,
+      answer,
+      explanation,
+      acceptedAnswers
+    });
+  };
+
+  const baseVerbRule =
+    "Modal verb（情態動詞）後面只可以接原型動詞，不可以加 s、ed、ing。";
+  const beRule =
+    "Modal verb 後面可以接 be；如果後面是形容詞、名詞或地點，就用 modal verb + be。";
+  const positionRule =
+    "Modal verb 必須放在主語正後面；兩個 modal verb 不可以直接連住用。";
+
+  [
+    {
+      correct: "I can swim.",
+      wrong: "I can swims.",
+      zh: "我可以游泳。",
+      explanation: `${baseVerbRule} can 後面要用 swim。`
+    },
+    {
+      correct: "He can play football.",
+      wrong: "He can plays football.",
+      zh: "他可以踢足球。",
+      explanation: `${baseVerbRule} can 後面要用 play。`
+    },
+    {
+      correct: "She will go home.",
+      wrong: "She will goes home.",
+      zh: "她會回家。",
+      explanation: `${baseVerbRule} will 後面要用 go。`
+    },
+    {
+      correct: "They will come later.",
+      wrong: "They will comes later.",
+      zh: "他們會遲些來。",
+      explanation: `${baseVerbRule} will 後面要用 come。`
+    },
+    {
+      correct: "You should do your homework.",
+      wrong: "You should does your homework.",
+      zh: "你應該做功課。",
+      explanation: `${baseVerbRule} should 後面要用 do。`
+    },
+    {
+      correct: "We should listen to the teacher.",
+      wrong: "We should listening to the teacher.",
+      zh: "我們應該聽老師講。",
+      explanation: `${baseVerbRule} should 後面要用 listen。`
+    },
+    {
+      correct: "I may visit Grandma.",
+      wrong: "I may visited Grandma.",
+      zh: "我可能探望嫲嫲。",
+      explanation: `${baseVerbRule} may 後面要用 visit。`
+    },
+    {
+      correct: "Tom may join us.",
+      wrong: "Tom may joins us.",
+      zh: "Tom 可能加入我們。",
+      explanation: `${baseVerbRule} may 後面要用 join。`
+    },
+    {
+      correct: "Students must wear uniforms.",
+      wrong: "Students must wears uniforms.",
+      zh: "學生必須穿校服。",
+      explanation: `${baseVerbRule} must 後面要用 wear。`
+    },
+    {
+      correct: "We must finish the work.",
+      wrong: "We must finished the work.",
+      zh: "我們必須完成工作。",
+      explanation: `${baseVerbRule} must 後面要用 finish。`
+    },
+    {
+      correct: "She can draw well.",
+      wrong: "She can drawing well.",
+      zh: "她可以畫得很好。",
+      explanation: `${baseVerbRule} can 後面要用 draw。`
+    },
+    {
+      correct: "Dad will cook dinner.",
+      wrong: "Dad will cooks dinner.",
+      zh: "爸爸會煮晚餐。",
+      explanation: `${baseVerbRule} will 後面要用 cook。`
+    }
+  ].forEach((item) => addPair({ ...item, category: "base-verb" }));
+
+  [
+    {
+      correct: "I may be late.",
+      wrong: "I may late.",
+      zh: "我可能會遲到。",
+      explanation: `${beRule} late 是形容詞，所以要寫 may be late。`
+    },
+    {
+      correct: "He will be happy.",
+      wrong: "He will happy.",
+      zh: "他會開心。",
+      explanation: `${beRule} happy 是形容詞，所以要寫 will be happy。`
+    },
+    {
+      correct: "You should be careful.",
+      wrong: "You should careful.",
+      zh: "你應該小心。",
+      explanation: `${beRule} careful 是形容詞，所以要寫 should be careful。`
+    },
+    {
+      correct: "We must be quiet.",
+      wrong: "We must quiet.",
+      zh: "我們必須安靜。",
+      explanation: `${beRule} quiet 是形容詞，所以要寫 must be quiet。`
+    },
+    {
+      correct: "The answer may be right.",
+      wrong: "The answer may right.",
+      zh: "答案可能正確。",
+      explanation: `${beRule} right 是形容詞，所以要寫 may be right。`
+    },
+    {
+      correct: "She can be a monitor.",
+      wrong: "She can a monitor.",
+      zh: "她可以做班長。",
+      explanation: `${beRule} a monitor 是身份名詞，所以要寫 can be a monitor。`
+    },
+    {
+      correct: "Tom should be at school.",
+      wrong: "Tom should at school.",
+      zh: "Tom 應該在學校。",
+      explanation: `${beRule} at school 是地點，所以要寫 should be at school。`
+    },
+    {
+      correct: "The door must be open.",
+      wrong: "The door must opened.",
+      zh: "門必須是打開的。",
+      explanation: `${beRule} open 這裡是形容詞，表示狀態，所以要寫 must be open。`
+    }
+  ].forEach((item) => addPair({ ...item, category: "be" }));
+
+  [
+    {
+      correct: "He may be able to pass the exam.",
+      wrong: "He may can pass the exam.",
+      zh: "他可能可以考試合格。",
+      explanation: `${positionRule} may 和 can 都是 modal verb，不可以 may can；要把 can 改成 be able to。`
+    },
+    {
+      correct: "I will be able to help you.",
+      wrong: "I will can help you.",
+      zh: "我將會可以幫你。",
+      explanation: `${positionRule} will 和 can 不可以直接連住用；要寫 will be able to。`
+    },
+    {
+      correct: "She can play the piano.",
+      wrong: "She plays can the piano.",
+      zh: "她可以彈鋼琴。",
+      explanation: `${positionRule} can 要放在主語 She 正後面，後面用原型動詞 play。`
+    },
+    {
+      correct: "They will go to the park.",
+      wrong: "They go will to the park.",
+      zh: "他們會去公園。",
+      explanation: `${positionRule} will 要放在主語 They 正後面，後面用原型動詞 go。`
+    },
+    {
+      correct: "You should ask the teacher.",
+      wrong: "You ask should the teacher.",
+      zh: "你應該問老師。",
+      explanation: `${positionRule} should 要放在主語 You 正後面，後面用原型動詞 ask。`
+    },
+    {
+      correct: "We must line up.",
+      wrong: "We line must up.",
+      zh: "我們必須排隊。",
+      explanation: `${positionRule} must 要放在主語 We 正後面，後面用原型動詞 line。`
+    },
+    {
+      correct: "Mary may be at home.",
+      wrong: "Mary is may at home.",
+      zh: "Mary 可能在家。",
+      explanation: `${positionRule} may 要放在主語 Mary 正後面；at home 是地點，所以寫 may be at home。`
+    },
+    {
+      correct: "The dog can run fast.",
+      wrong: "The dog runs can fast.",
+      zh: "那隻狗可以跑得快。",
+      explanation: `${positionRule} can 要放在主語 The dog 正後面，後面用原型動詞 run。`
+    },
+    {
+      correct: "My brother should be kind.",
+      wrong: "My brother is should kind.",
+      zh: "我哥哥應該友善。",
+      explanation: `${positionRule} should 要放在主語 My brother 正後面；kind 是形容詞，所以寫 should be kind。`
+    },
+    {
+      correct: "We may be able to join the game.",
+      wrong: "We may can join the game.",
+      zh: "我們可能可以參加遊戲。",
+      explanation: `${positionRule} may 和 can 不可以直接連住用；要寫 may be able to。`
+    }
+  ].forEach((item) => addPair({ ...item, category: "position" }));
+
+  return questions;
+}
+
+const MODAL_VERB_QUESTIONS = createModalVerbQuestions();
+
+function makeAdjectiveQuestion({
+  id,
+  category,
+  sentence,
+  zh,
+  isCorrect,
+  answer,
+  acceptedAnswers,
+  explanation
+}) {
+  const correctAnswer = String(answer || sentence || "").trim();
+  return {
+    id,
+    type: "adjective-lesson",
+    category,
+    sentence,
+    zh,
+    isCorrect,
+    answer: correctAnswer,
+    english: correctAnswer,
+    acceptedAnswers: Array.from(new Set([correctAnswer, ...(acceptedAnswers || [])].filter(Boolean))),
+    explanation
+  };
+}
+
+function createAdjectiveQuestions() {
+  const questions = [];
+  let nextId = 1;
+  const add = (question) => {
+    questions.push(makeAdjectiveQuestion({
+      id: `adj${String(nextId).padStart(3, "0")}`,
+      ...question
+    }));
+    nextId += 1;
+  };
+  const addPair = ({ correct, wrong, zh, answer = correct, explanation, category, acceptedAnswers }) => {
+    add({
+      category,
+      sentence: correct,
+      zh,
+      isCorrect: true,
+      answer: correct,
+      explanation,
+      acceptedAnswers
+    });
+    add({
+      category,
+      sentence: wrong,
+      zh,
+      isCorrect: false,
+      answer,
+      explanation,
+      acceptedAnswers
+    });
+  };
+
+  const simpleRule =
+    "形容詞只是形容狀態，不是動詞；如果句子沒有其他動詞，就要加 be verb（is / am / are）做動詞。";
+  const hyphenRule =
+    "兩個字合起來放在名詞前做形容詞時，通常要用 hyphen（-）連起來。";
+  const compoundRule =
+    "形容詞可以配 preposition / to，例如 interested in、excited about、willing to；整組仍然是形容詞，不是動詞，所以前面要有 be verb。";
+
+  [
+    {
+      correct: "He is happy.",
+      wrong: "He happy.",
+      zh: "他很開心。",
+      explanation: `${simpleRule} happy 是形容詞，所以要寫 He is happy.`
+    },
+    {
+      correct: "This tool is useful.",
+      wrong: "This tool useful.",
+      zh: "這件工具很有用。",
+      explanation: `${simpleRule} useful 是形容詞，所以要寫 This tool is useful.`
+    },
+    {
+      correct: "I am careful.",
+      wrong: "I careful.",
+      zh: "我很小心。",
+      explanation: `${simpleRule} careful 是形容詞，所以要寫 I am careful.`
+    },
+    {
+      correct: "You are ready.",
+      wrong: "You ready.",
+      zh: "你準備好了。",
+      explanation: `${simpleRule} ready 是形容詞，所以要寫 You are ready.`
+    },
+    {
+      correct: "The room is clean.",
+      wrong: "The room clean.",
+      zh: "房間很乾淨。",
+      explanation: `${simpleRule} clean 是形容詞，所以要寫 The room is clean.`
+    },
+    {
+      correct: "The weather is hot.",
+      wrong: "The weather hot.",
+      zh: "天氣很熱。",
+      explanation: `${simpleRule} hot 是形容詞，所以要寫 The weather is hot.`
+    },
+    {
+      correct: "They are friendly.",
+      wrong: "They friendly.",
+      zh: "他們很友善。",
+      explanation: `${simpleRule} friendly 是形容詞，所以要寫 They are friendly.`
+    },
+    {
+      correct: "My bag is heavy.",
+      wrong: "My bag heavy.",
+      zh: "我的書包很重。",
+      explanation: `${simpleRule} heavy 是形容詞，所以要寫 My bag is heavy.`
+    },
+    {
+      correct: "The lesson is important.",
+      wrong: "The lesson important.",
+      zh: "這課很重要。",
+      explanation: `${simpleRule} important 是形容詞，所以要寫 The lesson is important.`
+    },
+    {
+      correct: "This story is interesting.",
+      wrong: "This story interesting.",
+      zh: "這個故事很有趣。",
+      explanation: `${simpleRule} interesting 是形容詞，所以要寫 This story is interesting.`
+    },
+    {
+      correct: "Her idea is helpful.",
+      wrong: "Her idea helpful.",
+      zh: "她的想法很有幫助。",
+      explanation: `${simpleRule} helpful 是形容詞，所以要寫 Her idea is helpful.`
+    },
+    {
+      correct: "The answer is correct.",
+      wrong: "The answer correct.",
+      zh: "答案是正確的。",
+      explanation: `${simpleRule} correct 是形容詞，所以要寫 The answer is correct.`
+    }
+  ].forEach((item) => addPair({ ...item, category: "simple" }));
+
+  [
+    {
+      correct: "It is a high-quality school bag.",
+      wrong: "It is a high quality school bag.",
+      zh: "這是一個高質素的書包。",
+      explanation: `${hyphenRule} high-quality 放在 school bag 前面做形容詞，所以要加 hyphen。`
+    },
+    {
+      correct: "This is a well-known story.",
+      wrong: "This is a well known story.",
+      zh: "這是一個著名的故事。",
+      explanation: `${hyphenRule} well-known 放在 story 前面做形容詞，所以要加 hyphen。`
+    },
+    {
+      correct: "She is a hard-working student.",
+      wrong: "She is a hard working student.",
+      zh: "她是一個勤力的學生。",
+      explanation: `${hyphenRule} hard-working 放在 student 前面做形容詞，所以要加 hyphen。`
+    },
+    {
+      correct: "Mum has a full-time job.",
+      wrong: "Mum has a full time job.",
+      zh: "媽媽有一份全職工作。",
+      explanation: `${hyphenRule} full-time 放在 job 前面做形容詞，所以要加 hyphen。`
+    }
+  ].forEach((item) => addPair({ ...item, category: "hyphen" }));
+
+  [
+    {
+      correct: "He is willing to help me.",
+      wrong: "He willing to help me.",
+      zh: "他願意幫我。",
+      explanation: `${compoundRule} willing to 很似動詞，但 willing 是形容詞，所以要寫 He is willing to help me.`
+    },
+    {
+      correct: "I am interested in English.",
+      wrong: "I interested in English.",
+      zh: "我對英文感興趣。",
+      explanation: `${compoundRule} interested in 是形容詞組，所以要寫 I am interested in English.`
+    },
+    {
+      correct: "They are excited about the trip.",
+      wrong: "They excited about the trip.",
+      zh: "他們對旅行感到興奮。",
+      explanation: `${compoundRule} excited about 是形容詞組，所以要寫 They are excited about the trip.`
+    },
+    {
+      correct: "She is good at drawing.",
+      wrong: "She good at drawing.",
+      zh: "她擅長畫畫。",
+      explanation: `${compoundRule} good at 是形容詞組，所以要寫 She is good at drawing.`
+    },
+    {
+      correct: "Tom is worried about the test.",
+      wrong: "Tom worried about the test.",
+      zh: "Tom 擔心測驗。",
+      explanation: `${compoundRule} worried about 是形容詞組，所以要寫 Tom is worried about the test.`
+    },
+    {
+      correct: "We are ready for class.",
+      wrong: "We ready for class.",
+      zh: "我們準備好上堂。",
+      explanation: `${compoundRule} ready for 是形容詞組，所以要寫 We are ready for class.`
+    },
+    {
+      correct: "Mary is afraid of dogs.",
+      wrong: "Mary afraid of dogs.",
+      zh: "Mary 怕狗。",
+      explanation: `${compoundRule} afraid of 是形容詞組，所以要寫 Mary is afraid of dogs.`
+    },
+    {
+      correct: "I am proud of my team.",
+      wrong: "I proud of my team.",
+      zh: "我為我的隊伍感到自豪。",
+      explanation: `${compoundRule} proud of 是形容詞組，所以要寫 I am proud of my team.`
+    },
+    {
+      correct: "He is angry with his brother.",
+      wrong: "He angry with his brother.",
+      zh: "他生他哥哥的氣。",
+      explanation: `${compoundRule} angry with 是形容詞組，所以要寫 He is angry with his brother.`
+    },
+    {
+      correct: "The game is popular with children.",
+      wrong: "The game popular with children.",
+      zh: "這個遊戲受小朋友歡迎。",
+      explanation: `${compoundRule} popular with 是形容詞組，所以要寫 The game is popular with children.`
+    },
+    {
+      correct: "This book is suitable for Primary 4 students.",
+      wrong: "This book suitable for Primary 4 students.",
+      zh: "這本書適合小四學生。",
+      explanation: `${compoundRule} suitable for 是形容詞組，所以要寫 This book is suitable for Primary 4 students.`
+    },
+    {
+      correct: "She is kind to her classmates.",
+      wrong: "She kind to her classmates.",
+      zh: "她對同學很友善。",
+      explanation: `${compoundRule} kind to 是形容詞組，所以要寫 She is kind to her classmates.`
+    },
+    {
+      correct: "My answer is different from yours.",
+      wrong: "My answer different from yours.",
+      zh: "我的答案跟你的不同。",
+      explanation: `${compoundRule} different from 是形容詞組，所以要寫 My answer is different from yours.`
+    },
+    {
+      correct: "We are responsible for the classroom.",
+      wrong: "We responsible for the classroom.",
+      zh: "我們負責課室。",
+      explanation: `${compoundRule} responsible for 是形容詞組，所以要寫 We are responsible for the classroom.`
+    }
+  ].forEach((item) => addPair({ ...item, category: "compound" }));
+
+  return questions;
+}
+
+const ADJECTIVE_QUESTIONS = createAdjectiveQuestions();
+
+function makeAdverbQuestion({
+  id,
+  category,
+  sentence,
+  zh,
+  isCorrect,
+  answer,
+  acceptedAnswers,
+  explanation
+}) {
+  const correctAnswer = String(answer || sentence || "").trim();
+  return {
+    id,
+    type: "adverb-lesson",
+    category,
+    sentence,
+    zh,
+    isCorrect,
+    answer: correctAnswer,
+    english: correctAnswer,
+    acceptedAnswers: Array.from(new Set([correctAnswer, ...(acceptedAnswers || [])].filter(Boolean))),
+    explanation
+  };
+}
+
+function createAdverbQuestions() {
+  const questions = [];
+  let nextId = 1;
+  const add = (question) => {
+    questions.push(makeAdverbQuestion({
+      id: `adv${String(nextId).padStart(3, "0")}`,
+      ...question
+    }));
+    nextId += 1;
+  };
+  const addPair = ({ correct, wrong, zh, answer = correct, explanation, category, acceptedAnswers }) => {
+    add({
+      category,
+      sentence: correct,
+      zh,
+      isCorrect: true,
+      answer: correct,
+      explanation,
+      acceptedAnswers
+    });
+    add({
+      category,
+      sentence: wrong,
+      zh,
+      isCorrect: false,
+      answer,
+      explanation,
+      acceptedAnswers
+    });
+  };
+
+  const frontRule =
+    "句首副詞放句子最前面，後面通常要加 comma（,）。";
+  const timeRule =
+    "句尾時間副詞 / 時間詞要留意 in / on / at；today、tomorrow、yesterday、now、soon、again、last、next、every、each 這類字前面不用 in / on / at。";
+  const placeRule =
+    "句尾地方詞多數用 in / on / at；here、there、overseas、abroad 前面不用 in / on / at。";
+  const orderRule =
+    "如果句尾同時有地方詞和時間詞，通常先寫地方，再寫時間，時間放最後。";
+  const mannerRule =
+    "happily、carefully、slowly、well、badly 這類副詞可以放句尾，形容動作怎樣做。";
+  const middleRule =
+    "句中副詞要放準位置：modal verb 後、be verb 後、have 和 PP 中間，或主動動詞前。";
+  const degreeRule =
+    "very、really、too、quite 這類程度副詞通常放在形容詞 / 副詞前；very much 常放在 like、enjoy、love 後面。";
+
+  [
+    {
+      correct: "Interestingly, Tom likes grammar.",
+      wrong: "Interestingly Tom likes grammar.",
+      zh: "有趣的是，Tom 喜歡文法。",
+      explanation: `${frontRule} Interestingly 放句首，要寫 Interestingly,`
+    },
+    {
+      correct: "More importantly, we must listen carefully.",
+      wrong: "More importantly we must listen carefully.",
+      zh: "更重要的是，我們必須小心聆聽。",
+      explanation: `${frontRule} More importantly 放句首，要寫 More importantly,`
+    },
+    {
+      correct: "Strangely, the door is open.",
+      wrong: "Strangely the door is open.",
+      zh: "奇怪的是，門是開著的。",
+      explanation: `${frontRule} Strangely 放句首，要寫 Strangely,`
+    },
+    {
+      correct: "Luckily, Mary is safe.",
+      wrong: "Luckily Mary is safe.",
+      zh: "幸運的是，Mary 很安全。",
+      explanation: `${frontRule} Luckily 放句首，要寫 Luckily,`
+    },
+    {
+      correct: "Clearly, this answer is wrong.",
+      wrong: "Clearly this answer is wrong.",
+      zh: "明顯地，這個答案是錯的。",
+      explanation: `${frontRule} Clearly 放句首，要寫 Clearly,`
+    },
+    {
+      correct: "Surely, you know the answer.",
+      wrong: "Surely you know the answer.",
+      zh: "你一定知道答案吧。",
+      explanation: `${frontRule} Surely 放句首，這課要求寫 Surely,`
+    },
+    {
+      correct: "Certainly, I can help you.",
+      wrong: "Certainly I can help you.",
+      zh: "當然，我可以幫你。",
+      explanation: `${frontRule} Certainly 放句首，這課要求寫 Certainly,`
+    }
+  ].forEach((item) => addPair({ ...item, category: "front" }));
+
+  [
+    {
+      correct: "I go to school every day.",
+      wrong: "I go to school in every day.",
+      zh: "我每天上學。",
+      explanation: `${timeRule} every day 前面不用 in。`
+    },
+    {
+      correct: "I will visit Grandma tomorrow.",
+      wrong: "I will visit Grandma on tomorrow.",
+      zh: "我明天會探望嫲嫲。",
+      explanation: `${timeRule} tomorrow 前面不用 on。`
+    },
+    {
+      correct: "We played football yesterday.",
+      wrong: "We played football in yesterday.",
+      zh: "我們昨天踢足球。",
+      explanation: `${timeRule} yesterday 前面不用 in。`
+    },
+    {
+      correct: "We have a quiz today.",
+      wrong: "We have a quiz on today.",
+      zh: "我們今天有小測。",
+      explanation: `${timeRule} today 前面不用 on。`
+    },
+    {
+      correct: "We will play football next week.",
+      wrong: "We will play football in next week.",
+      zh: "我們下星期會踢足球。",
+      explanation: `${timeRule} next week 前面不用 in。`
+    },
+    {
+      correct: "She reads books at night.",
+      wrong: "She reads books in night.",
+      zh: "她在晚上看書。",
+      explanation: `${timeRule} at night 是固定時間詞。`
+    },
+    {
+      correct: "I have piano lessons on Monday.",
+      wrong: "I have piano lessons in Monday.",
+      zh: "我星期一有鋼琴課。",
+      explanation: `${timeRule} Monday 是日子，要用 on Monday。`
+    },
+    {
+      correct: "Please do it now.",
+      wrong: "Please do it at now.",
+      zh: "請你現在做。",
+      explanation: `${timeRule} now 前面不用 at。`
+    },
+    {
+      correct: "We will leave soon.",
+      wrong: "We will leave in soon.",
+      zh: "我們很快會離開。",
+      explanation: `${timeRule} soon 前面不用 in。`
+    },
+    {
+      correct: "Please try again.",
+      wrong: "Please try againly.",
+      zh: "請再試一次。",
+      explanation: `${timeRule} again 本身已經是副詞，不用加 -ly。`
+    }
+  ].forEach((item) => addPair({ ...item, category: "end-time" }));
+
+  [
+    {
+      correct: "I live here.",
+      wrong: "I live in here.",
+      zh: "我住在這裡。",
+      explanation: `${placeRule} here 前面不用 in。`
+    },
+    {
+      correct: "She is there.",
+      wrong: "She is at there.",
+      zh: "她在那裡。",
+      explanation: `${placeRule} there 前面不用 at。`
+    },
+    {
+      correct: "My uncle works overseas.",
+      wrong: "My uncle works in overseas.",
+      zh: "我叔叔在海外工作。",
+      explanation: `${placeRule} overseas 前面不用 in。`
+    },
+    {
+      correct: "My aunt studies abroad.",
+      wrong: "My aunt studies at abroad.",
+      zh: "我姨姨在海外讀書。",
+      explanation: `${placeRule} abroad 前面不用 at。`
+    },
+    {
+      correct: "I live in Tsuen Wan.",
+      wrong: "I live at Tsuen Wan.",
+      zh: "我住在荃灣。",
+      explanation: `${placeRule} Tsuen Wan 是地方區域，要用 in Tsuen Wan。`
+    }
+  ].forEach((item) => addPair({ ...item, category: "end-place" }));
+
+  [
+    {
+      correct: "I lived in Tsuen Wan in 2010.",
+      wrong: "I lived in 2010 in Tsuen Wan.",
+      zh: "我在 2010 年住在荃灣。",
+      explanation: `${orderRule} in Tsuen Wan 是地方，in 2010 是時間，所以時間放最後。`
+    },
+    {
+      correct: "We will meet at the bus stop tomorrow.",
+      wrong: "We will meet tomorrow at the bus stop.",
+      zh: "我們明天會在巴士站見面。",
+      explanation: `${orderRule} at the bus stop 是地方，tomorrow 是時間，所以時間放最後。`
+    }
+  ].forEach((item) => addPair({ ...item, category: "end-order" }));
+
+  [
+    {
+      correct: "I learn English here happily.",
+      wrong: "I learn English here happy.",
+      zh: "我在這裡快樂地學英文。",
+      explanation: `${mannerRule} happy 是形容詞，形容 learn 要用副詞 happily。`
+    },
+    {
+      correct: "Tom runs quickly.",
+      wrong: "Tom runs quick.",
+      zh: "Tom 跑得很快。",
+      explanation: `${mannerRule} 這課用 quickly 形容 runs。`
+    },
+    {
+      correct: "We visit Grandma once in a while.",
+      wrong: "We visit Grandma once in while.",
+      zh: "我們有時探望嫲嫲。",
+      explanation: `${mannerRule} 正確寫法是 once in a while。`
+    },
+    {
+      correct: "I write carefully.",
+      wrong: "I write careful.",
+      zh: "我小心地寫字。",
+      explanation: `${mannerRule} careful 是形容詞，形容 write 要用副詞 carefully。`
+    },
+    {
+      correct: "Please speak slowly.",
+      wrong: "Please speak slow.",
+      zh: "請慢慢說。",
+      explanation: `${mannerRule} slow 是形容詞，形容 speak 要用副詞 slowly。`
+    },
+    {
+      correct: "She speaks English well.",
+      wrong: "She speaks English good.",
+      zh: "她英文說得好。",
+      explanation: `${mannerRule} 形容 speaks 的表現要用副詞 well，不是形容詞 good。`
+    }
+  ].forEach((item) => addPair({ ...item, category: "end-manner" }));
+
+  [
+    {
+      correct: "I can still walk.",
+      wrong: "I still can walk.",
+      zh: "我仍然可以行。",
+      explanation: `${middleRule} still 要放在 modal verb can 後面。`
+    },
+    {
+      correct: "He is still late.",
+      wrong: "He still is late.",
+      zh: "他仍然遲到。",
+      explanation: `${middleRule} still 要放在 be verb is 後面。`
+    },
+    {
+      correct: "I still believe you.",
+      wrong: "I believe still you.",
+      zh: "我仍然相信你。",
+      explanation: `${middleRule} still 要放在主動動詞 believe 前面。`
+    },
+    {
+      correct: "He can even eat ten egg tarts.",
+      wrong: "He even can eat ten egg tarts.",
+      zh: "他甚至可以食十個蛋撻。",
+      explanation: `${middleRule} even 要放在 modal verb can 後面。`
+    },
+    {
+      correct: "He is even willing to help me.",
+      wrong: "He even is willing to help me.",
+      zh: "他甚至願意幫我。",
+      explanation: `${middleRule} even 要放在 be verb is 後面。`
+    },
+    {
+      correct: "They even know my birthday.",
+      wrong: "They know even my birthday.",
+      zh: "他們甚至知道我的生日。",
+      explanation: `${middleRule} even 要放在主動動詞 know 前面。`
+    },
+    {
+      correct: "I always eat breakfast.",
+      wrong: "I eat always breakfast.",
+      zh: "我總是吃早餐。",
+      explanation: `${middleRule} always 要放在主動動詞 eat 前面。`
+    },
+    {
+      correct: "I usually do homework after school.",
+      wrong: "I do usually homework after school.",
+      zh: "我通常放學後做功課。",
+      explanation: `${middleRule} usually 要放在主動動詞 do 前面。`
+    },
+    {
+      correct: "I often read books.",
+      wrong: "I read often books.",
+      zh: "我經常看書。",
+      explanation: `${middleRule} often 要放在主動動詞 read 前面。`
+    },
+    {
+      correct: "She sometimes plays the piano.",
+      wrong: "She plays sometimes the piano.",
+      zh: "她有時彈鋼琴。",
+      explanation: `${middleRule} sometimes 放在主動動詞 plays 前面最清楚。`
+    },
+    {
+      correct: "He never tells lies.",
+      wrong: "He tells never lies.",
+      zh: "他從不說謊。",
+      explanation: `${middleRule} never 要放在主動動詞 tells 前面。`
+    },
+    {
+      correct: "I also like maths.",
+      wrong: "I like also maths.",
+      zh: "我也喜歡數學。",
+      explanation: `${middleRule} also 要放在主動動詞 like 前面。`
+    },
+    {
+      correct: "I have already finished my homework.",
+      wrong: "I have finished already my homework.",
+      zh: "我已經完成了功課。",
+      explanation: `${middleRule} already 要放在 have 和 PP finished 中間。`
+    },
+    {
+      correct: "She has just finished lunch.",
+      wrong: "She has finished just lunch.",
+      zh: "她剛剛吃完午餐。",
+      explanation: `${middleRule} just 要放在 has 和 PP finished 中間。`
+    },
+    {
+      correct: "They probably know the answer.",
+      wrong: "They know probably the answer.",
+      zh: "他們大概知道答案。",
+      explanation: `${middleRule} probably 要放在主動動詞 know 前面。`
+    }
+  ].forEach((item) => addPair({ ...item, category: "middle" }));
+
+  [
+    {
+      correct: "The box is very heavy.",
+      wrong: "The box is heavy very.",
+      zh: "這個箱很重。",
+      explanation: `${degreeRule} very 要放在形容詞 heavy 前面。`
+    },
+    {
+      correct: "I really like this story.",
+      wrong: "I like really this story.",
+      zh: "我真的喜歡這個故事。",
+      explanation: `${degreeRule} really 形容 like，通常放在 like 前面。`
+    },
+    {
+      correct: "I like this book very much.",
+      wrong: "I like very much this book.",
+      zh: "我很喜歡這本書。",
+      explanation: `${degreeRule} very much 放在 this book 後面最自然。`
+    },
+    {
+      correct: "The water is too hot.",
+      wrong: "The water is hot too.",
+      zh: "水太熱。",
+      explanation: `${degreeRule} too 要放在形容詞 hot 前面，表示「太」。`
+    },
+    {
+      correct: "This bag is quite heavy.",
+      wrong: "This bag is heavy quite.",
+      zh: "這個書包頗重。",
+      explanation: `${degreeRule} quite 要放在形容詞 heavy 前面。`
+    }
+  ].forEach((item) => addPair({ ...item, category: "degree" }));
+
+  return questions;
+}
+
+const ADVERB_QUESTIONS = createAdverbQuestions();
+
+const TENSE_LABELS = {
+  present: "現在式",
+  past: "過去式",
+  continuous: "進行式",
+  perfect: "has/have + pp",
+  perfectContinuous: "has/have + been + Ving"
+};
+
+const TENSE_OPTION_ROWS = [
+  ["present", "past", "continuous"],
+  ["perfect", "perfectContinuous"]
+];
+
+function makeTenseQuestion({
+  id,
+  tense,
+  zh,
+  sentence,
+  answer,
+  acceptedAnswers,
+  explanation
+}) {
+  const correctAnswer = String(answer || "").trim();
+  return {
+    id,
+    type: "tenses",
+    tense,
+    tenseLabel: TENSE_LABELS[tense] || tense,
+    zh,
+    sentence,
+    answer: correctAnswer,
+    english: sentence.replace("___", correctAnswer),
+    acceptedAnswers: Array.from(new Set([correctAnswer, ...(acceptedAnswers || [])].filter(Boolean))),
+    explanation
+  };
+}
+
+function createTenseQuestions() {
+  const questions = [];
+  const add = (question) => {
+    questions.push(makeTenseQuestion({
+      id: `tense${String(questions.length + 1).padStart(3, "0")}`,
+      ...question
+    }));
+  };
+
+  const presentRule =
+    "現在式表示到現在都有的習慣，或句子沒有說明要用其他時態。He / She / It / 單數名詞後面的動詞要加 s。";
+  const pastRule =
+    "過去式用於故事、新聞、幻想句子，或句子有 yesterday、last、ago 等過去時間詞。做法是把動詞轉做過去式。";
+  const continuousRule =
+    "進行式表示「正在 / 緊」，也可用於已預定好的將來行為。做法是 is / am / are / was / were + 動詞 ing。";
+  const perfectRule =
+    "has/have + pp 用於「了」但沒有過去時間詞、「過」、recently / lately、yet / never / ever 等情況。";
+  const perfectContinuousRule =
+    "has/have + been + Ving 用於「一直」或由過去開始到現在仍然持續的動作。";
+
+  [
+    {
+      zh: "他甚少喝啤酒。",
+      sentence: "He seldom ___ beer.",
+      answer: "drinks",
+      explanation: `${presentRule} He 是單數，所以 drink 要寫 drinks。`
+    },
+    {
+      zh: "狗經常挖洞。",
+      sentence: "Dogs often ___ holes.",
+      answer: "dig",
+      explanation: `${presentRule} Dogs 是眾數，所以動詞用原型 dig。`
+    },
+    {
+      zh: "她總是很早起床。",
+      sentence: "She always ___ up early.",
+      answer: "gets",
+      explanation: `${presentRule} always 表示習慣；She 後面的動詞要加 s，get up 變 gets up。`
+    },
+    {
+      zh: "我通常乘巴士上學。",
+      sentence: "I usually ___ to school by bus.",
+      answer: "go",
+      explanation: `${presentRule} usually 表示習慣；I 後面的動詞用原型 go。`
+    },
+    {
+      zh: "Tom 有時在公園跑步。",
+      sentence: "Tom sometimes ___ in the park.",
+      answer: "runs",
+      explanation: `${presentRule} sometimes 表示習慣；Tom 是單數名詞，所以 run 要寫 runs。`
+    },
+    {
+      zh: "我們從不在課室大叫。",
+      sentence: "We never ___ in the classroom.",
+      answer: "shout",
+      explanation: `${presentRule} never 表示習慣；We 後面的動詞用原型 shout。`
+    },
+    {
+      zh: "這部機通常運作得很好。",
+      sentence: "This machine usually ___ well.",
+      answer: "works",
+      explanation: `${presentRule} This machine 是單數名詞，所以 work 要寫 works。`
+    },
+    {
+      zh: "他們經常放學後踢足球。",
+      sentence: "They often ___ football after school.",
+      answer: "play",
+      explanation: `${presentRule} often 表示習慣；They 後面的動詞用原型 play。`
+    },
+    {
+      zh: "Mary 很少吃糖。",
+      sentence: "Mary seldom ___ sweets.",
+      answer: "eats",
+      explanation: `${presentRule} seldom 表示習慣；Mary 是單數名詞，所以 eat 要寫 eats。`
+    },
+    {
+      zh: "學生每天讀英文。",
+      sentence: "The students ___ English every day.",
+      answer: "read",
+      explanation: `${presentRule} every day 表示習慣；students 是眾數，所以動詞用原型 read。`
+    },
+    {
+      zh: "我喜歡科學。",
+      sentence: "I ___ science.",
+      answer: "like",
+      explanation: `${presentRule} 句子沒有說明要用其他時態，所以用現在式；I 後面用 like。`
+    },
+    {
+      zh: "她知道答案。",
+      sentence: "She ___ the answer.",
+      answer: "knows",
+      explanation: `${presentRule} 句子沒有說明要用其他時態，所以用現在式；She 後面 know 要寫 knows。`
+    }
+  ].forEach((item) => add({ ...item, tense: "present" }));
+
+  [
+    {
+      zh: "我昨天喝了很多。",
+      sentence: "I ___ a lot yesterday.",
+      answer: "drank",
+      explanation: `${pastRule} yesterday 是過去時間詞，所以 drink 要轉過去式 drank。`
+    },
+    {
+      zh: "她上星期買了一個書包。",
+      sentence: "She ___ a school bag last week.",
+      answer: "bought",
+      explanation: `${pastRule} last week 是過去時間詞，所以 buy 要轉過去式 bought。`
+    },
+    {
+      zh: "我們兩日前去了圖書館。",
+      sentence: "We ___ to the library two days ago.",
+      answer: "went",
+      explanation: `${pastRule} ago 表示過去，所以 go 要轉過去式 went。`
+    },
+    {
+      zh: "新聞說火車停了。",
+      sentence: "The news said the train ___.",
+      answer: "stopped",
+      explanation: `${pastRule} 新聞 / 報道通常講已發生的事，所以 stop 要轉過去式 stopped。`
+    },
+    {
+      zh: "故事入面，王子打開了門。",
+      sentence: "In the story, the prince ___ the door.",
+      answer: "opened",
+      explanation: `${pastRule} 故事多用過去式，所以 open 要寫 opened。`
+    },
+    {
+      zh: "如果我有一個有錢爸爸就好了。",
+      sentence: "I wish I ___ a rich dad.",
+      answer: "had",
+      explanation: `${pastRule} wish 這類幻想句子要用過去式，所以 have 要寫 had。`
+    },
+    {
+      zh: "我小時候住在荃灣。",
+      sentence: "I ___ in Tsuen Wan when I was small.",
+      answer: "lived",
+      explanation: `${pastRule} when I was small 有過去式 was，所以主句也用過去式 lived。`
+    },
+    {
+      zh: "他今早弄壞了杯。",
+      sentence: "He ___ the cup this morning.",
+      answer: "broke",
+      explanation: `${pastRule} this morning 在這句是已發生的事，所以 break 要轉過去式 broke。`
+    },
+    {
+      zh: "爸爸昨晚煮了晚餐。",
+      sentence: "Dad ___ dinner last night.",
+      answer: "cooked",
+      explanation: `${pastRule} last night 是過去時間詞，所以 cook 要寫 cooked。`
+    },
+    {
+      zh: "我剛才看見你的哥哥。",
+      sentence: "I ___ your brother just now.",
+      answer: "saw",
+      explanation: `${pastRule} just now 表示剛才，所以 see 要轉過去式 saw。`
+    },
+    {
+      zh: "比賽在五分鐘前開始。",
+      sentence: "The match ___ five minutes ago.",
+      answer: "started",
+      explanation: `${pastRule} ago 表示過去，所以 start 要寫 started。`
+    },
+    {
+      zh: "她上個月寫了一個故事。",
+      sentence: "She ___ a story last month.",
+      answer: "wrote",
+      explanation: `${pastRule} last month 是過去時間詞，所以 write 要轉過去式 wrote。`
+    }
+  ].forEach((item) => add({ ...item, tense: "past" }));
+
+  [
+    {
+      zh: "當你打給我的時候，我正在睡覺。",
+      sentence: "When you called me, I ___.",
+      answer: "was sleeping",
+      explanation: `${continuousRule} When you called me 是故事中的過去時間，所以用 was + sleeping。`
+    },
+    {
+      zh: "她現在正在做功課。",
+      sentence: "She ___ her homework now.",
+      answer: "is doing",
+      explanation: `${continuousRule} now 表示正在發生；She 配 is，所以寫 is doing。`
+    },
+    {
+      zh: "我們正在上英文課。",
+      sentence: "We ___ English.",
+      answer: "are learning",
+      explanation: `${continuousRule}「正在」表示進行式；We 配 are，所以寫 are learning。`
+    },
+    {
+      zh: "我明天就要走了。",
+      sentence: "I ___ tomorrow.",
+      answer: "am leaving",
+      explanation: `${continuousRule} 已預定好的將來行為可用進行式；I 配 am，所以寫 am leaving。`
+    },
+    {
+      zh: "他們下星期會去日本。",
+      sentence: "They ___ to Japan next week.",
+      answer: "are going",
+      explanation: `${continuousRule} 已預定好的將來行為可用進行式；They 配 are，所以寫 are going。`
+    },
+    {
+      zh: "Tom 現在正在打籃球。",
+      sentence: "Tom ___ basketball now.",
+      answer: "is playing",
+      explanation: `${continuousRule} now 表示正在；Tom 是單數，所以用 is playing。`
+    },
+    {
+      zh: "孩子們正在唱歌。",
+      sentence: "The children ___.",
+      answer: "are singing",
+      explanation: `${continuousRule}「正在」表示進行式；children 是眾數，所以用 are singing。`
+    },
+    {
+      zh: "昨天七點，媽媽正在煮飯。",
+      sentence: "Mum ___ at seven yesterday.",
+      answer: "was cooking",
+      explanation: `${continuousRule} at seven yesterday 是過去某一刻，所以用 was cooking。`
+    },
+    {
+      zh: "你剛才正在看電視。",
+      sentence: "You ___ TV just now.",
+      answer: "were watching",
+      explanation: `${continuousRule} just now 是過去時間；You 配 were，所以寫 were watching。`
+    },
+    {
+      zh: "小狗正在花園跑。",
+      sentence: "The dog ___ in the garden.",
+      answer: "is running",
+      explanation: `${continuousRule}「正在」表示進行式；The dog 是單數，所以用 is running。`
+    },
+    {
+      zh: "我們今晚會見 Miss Chan。",
+      sentence: "We ___ Miss Chan tonight.",
+      answer: "are meeting",
+      explanation: `${continuousRule} 已預定好的將來安排可用進行式；We 配 are，所以寫 are meeting。`
+    },
+    {
+      zh: "他正在哭。",
+      sentence: "He ___.",
+      answer: "is crying",
+      explanation: `${continuousRule}「正在」表示進行式；He 配 is，所以寫 is crying。`
+    }
+  ].forEach((item) => add({ ...item, tense: "continuous" }));
+
+  [
+    {
+      zh: "我交了 project。",
+      sentence: "I ___ the project.",
+      answer: "have submitted",
+      explanation: `${perfectRule}「交了」但沒有過去時間詞，所以用 have + PP：have submitted。`
+    },
+    {
+      zh: "她知道了真相。",
+      sentence: "She ___ the truth.",
+      answer: "has known",
+      explanation: `${perfectRule}「知道了」但沒有過去時間詞，所以用 has + PP：has known。`
+    },
+    {
+      zh: "我最近學了一些泰文。",
+      sentence: "I ___ some Thai recently.",
+      answer: "have learnt",
+      acceptedAnswers: ["have learned"],
+      explanation: `${perfectRule} recently 是完成式提示，所以用 have + PP：have learnt。`
+    },
+    {
+      zh: "他最近完成了模型。",
+      sentence: "He ___ the model lately.",
+      answer: "has finished",
+      explanation: `${perfectRule} lately 是完成式提示；He 配 has，所以寫 has finished。`
+    },
+    {
+      zh: "你有沒有去過日本？",
+      sentence: "Have you ever ___ to Japan?",
+      answer: "been",
+      explanation: `${perfectRule} 問「有沒有去過」要用 Have you ever been to ...，去過用 been to，不用 gone to。`
+    },
+    {
+      zh: "我沒有吃過壽司。",
+      sentence: "I have never ___ sushi.",
+      answer: "eaten",
+      explanation: `${perfectRule}「沒有...過」用 have never + PP，所以 eat 要寫 eaten。`
+    },
+    {
+      zh: "他們看過這套電影。",
+      sentence: "They have ___ this film.",
+      answer: "seen",
+      explanation: `${perfectRule}「看過」用 have + PP，所以 see 要寫 seen。`
+    },
+    {
+      zh: "Mary 去過英國。",
+      sentence: "Mary has ___ to the UK.",
+      answer: "been",
+      explanation: `${perfectRule} 去過某地用 has been to，不用 has gone to。`
+    },
+    {
+      zh: "你完成了功課未？",
+      sentence: "Have you ___ your homework yet?",
+      answer: "finished",
+      explanation: `${perfectRule} 問「...未？」用 Have you + PP + yet，所以 finish 要寫 finished。`
+    },
+    {
+      zh: "我還未打開禮物。",
+      sentence: "I have not ___ the gift yet.",
+      answer: "opened",
+      explanation: `${perfectRule}「還未」用 have not + PP + yet，所以 open 要寫 opened。`
+    },
+    {
+      zh: "她已經吃了午餐。",
+      sentence: "She has already ___ lunch.",
+      answer: "eaten",
+      explanation: `${perfectRule} already 常配完成式；She 配 has，所以 eat 要寫 PP eaten。`
+    },
+    {
+      zh: "我們剛剛聽了這首歌。",
+      sentence: "We have just ___ this song.",
+      answer: "heard",
+      explanation: `${perfectRule} just 可表示剛剛完成；hear 的 PP 是 heard。`
+    },
+    {
+      zh: "我遺失了鎖匙。",
+      sentence: "I ___ my keys.",
+      answer: "have lost",
+      explanation: `${perfectRule}「遺失了」但沒有過去時間詞，重點是現在仍然遺失，所以用 have lost。`
+    },
+    {
+      zh: "爸爸已經買了票。",
+      sentence: "Dad ___ the tickets.",
+      answer: "has bought",
+      explanation: `${perfectRule}「買了」但沒有過去時間詞，所以用 has + PP：has bought。`
+    },
+    {
+      zh: "學生已經寫了答案。",
+      sentence: "The students ___ the answers.",
+      answer: "have written",
+      explanation: `${perfectRule}「寫了」但沒有過去時間詞，所以用 have + PP：have written。`
+    },
+    {
+      zh: "她從未坐過飛機。",
+      sentence: "She has never ___ by plane.",
+      answer: "travelled",
+      acceptedAnswers: ["traveled"],
+      explanation: `${perfectRule}「從未...過」用 has never + PP；travel 的 PP 可寫 travelled。`
+    }
+  ].forEach((item) => add({ ...item, tense: "perfect" }));
+
+  [
+    {
+      zh: "他今日一直在哭。",
+      sentence: "He ___ today.",
+      answer: "has been crying",
+      explanation: `${perfectContinuousRule}「一直在哭」表示由較早開始到現在仍持續，所以用 has been crying。`
+    },
+    {
+      zh: "我學了英文很多年。",
+      sentence: "I ___ English for many years.",
+      answer: "have been learning",
+      explanation: `${perfectContinuousRule} for many years 表示持續到現在，所以用 have been learning。`
+    },
+    {
+      zh: "她等了巴士二十分鐘。",
+      sentence: "She ___ for the bus for twenty minutes.",
+      answer: "has been waiting",
+      explanation: `${perfectContinuousRule} for twenty minutes 表示動作一直持續，所以用 has been waiting。`
+    },
+    {
+      zh: "我們由早上開始一直在溫習。",
+      sentence: "We ___ since this morning.",
+      answer: "have been studying",
+      explanation: `${perfectContinuousRule} since this morning 表示由早上到現在，所以用 have been studying。`
+    },
+    {
+      zh: "Tom 打機打了兩小時。",
+      sentence: "Tom ___ games for two hours.",
+      answer: "has been playing",
+      explanation: `${perfectContinuousRule} for two hours 表示持續中，所以用 has been playing。`
+    },
+    {
+      zh: "他們一直在尋找那隻貓。",
+      sentence: "They ___ for the cat.",
+      answer: "have been looking",
+      explanation: `${perfectContinuousRule}「一直在尋找」表示持續的動作，所以用 have been looking。`
+    },
+    {
+      zh: "媽媽整個下午一直在煮飯。",
+      sentence: "Mum ___ all afternoon.",
+      answer: "has been cooking",
+      explanation: `${perfectContinuousRule} all afternoon 表示一直持續，所以用 has been cooking。`
+    },
+    {
+      zh: "我最近一直在練習鋼琴。",
+      sentence: "I ___ the piano recently.",
+      answer: "have been practising",
+      acceptedAnswers: ["have been practicing"],
+      explanation: `${perfectContinuousRule} recently 加上「一直在練習」表示持續到現在，所以用 have been practising。`
+    }
+  ].forEach((item) => add({ ...item, tense: "perfectContinuous" }));
+
+  const addExtraTenseQuestions = (tense, rule, items) => {
+    items.forEach(([zh, sentence, answer, note, acceptedAnswers]) => {
+      add({
+        tense,
+        zh,
+        sentence,
+        answer,
+        acceptedAnswers,
+        explanation: `${rule} ${note}`.replace("。 ", "；")
+      });
+    });
+  };
+
+  addExtraTenseQuestions("present", presentRule, [
+    ["我哥哥每天刷牙。", "My brother ___ his teeth every day.", "brushes", "every day 表示習慣；My brother 是單數，所以 brush 要寫 brushes。"],
+    ["那隻貓經常睡在椅子上。", "The cat often ___ on the chair.", "sleeps", "often 表示習慣；The cat 是單數，所以 sleep 要寫 sleeps。"],
+    ["我們通常十二點半吃午餐。", "We usually ___ lunch at half past twelve.", "eat", "usually 表示習慣；We 後面用原型 eat。"],
+    ["Jane 有時幫媽媽。", "Jane sometimes ___ her mum.", "helps", "sometimes 表示習慣；Jane 是單數，所以 help 要寫 helps。"],
+    ["我的父母很少看電視。", "My parents seldom ___ TV.", "watch", "seldom 表示習慣；parents 是眾數，所以用 watch。"],
+    ["我從不忘記帶功課。", "I never ___ my homework.", "forget", "never 表示習慣；I 後面用原型 forget。"],
+    ["這架巴士每天早上停在這裡。", "This bus ___ here every morning.", "stops", "every morning 表示習慣；This bus 是單數，所以 stop 要寫 stops。"],
+    ["這些鳥每年冬天飛到南方。", "These birds ___ south every winter.", "fly", "every winter 表示習慣；These birds 是眾數，所以用 fly。"],
+    ["水在一百度沸騰。", "Water ___ at 100 degrees.", "boils", "這是一般事實，所以用現在式；Water 是不可數名詞，當單數用，所以 boil 要寫 boils。"],
+    ["太陽每天升起。", "The sun ___ every day.", "rises", "every day 表示一般事實；The sun 是單數，所以 rise 要寫 rises。"],
+    ["我的老師每天給我們功課。", "My teacher ___ us homework every day.", "gives", "every day 表示習慣；My teacher 是單數，所以 give 要寫 gives。"],
+    ["你英文說得很好。", "You ___ English very well.", "speak", "句子沒有說明要用其他時態，所以用現在式；You 後面用 speak。"],
+    ["孩子們放學後在操場玩。", "The children ___ in the playground after school.", "play", "after school 這裡表示習慣；children 是眾數，所以用 play。"],
+    ["好學生上課時聆聽。", "A good student ___ in class.", "listens", "句子講一般習慣；A good student 是單數，所以 listen 要寫 listens。"],
+    ["這間店每天九點開門。", "The shop ___ at nine every day.", "opens", "every day 表示習慣；The shop 是單數，所以 open 要寫 opens。"],
+    ["圖書館星期日關門。", "The library ___ on Sundays.", "closes", "on Sundays 表示習慣；The library 是單數，所以 close 要寫 closes。"],
+    ["我妹妹努力讀書。", "My sister ___ hard.", "studies", "句子沒有過去或進行提示，所以用現在式；sister 是單數，study 要變 studies。"],
+    ["爸爸每天開車上班。", "Dad ___ to work every day.", "drives", "every day 表示習慣；Dad 是單數，所以 drive 要寫 drives。"],
+    ["他們每個月探望祖母。", "They ___ Grandma every month.", "visit", "every month 表示習慣；They 後面用 visit。"],
+    ["我晚飯前洗手。", "I ___ my hands before dinner.", "wash", "句子講日常習慣；I 後面用 wash。"],
+    ["Kenny 通常坐地鐵上學。", "Kenny usually ___ to school by MTR.", "goes", "usually 表示習慣；Kenny 是單數，所以 go 要寫 goes。"],
+    ["狗見到陌生人時會吠。", "Dogs ___ when they see strangers.", "bark", "句子講一般習性；Dogs 是眾數，所以用 bark。"],
+    ["嬰兒累的時候會哭。", "The baby ___ when she is tired.", "cries", "句子講一般情況；The baby 是單數，cry 要變 cries。"],
+    ["很多人每天使用手機。", "Many people ___ mobile phones every day.", "use", "every day 表示習慣；people 是眾數，所以用 use。"],
+    ["她每天帶一個粉紅色書包。", "She ___ a pink school bag every day.", "carries", "every day 表示習慣；She 後面 carry 要變 carries。"],
+    ["我們需要更多時間。", "We ___ more time.", "need", "句子沒有說明要用其他時態，所以用現在式；We 後面用 need。"],
+    ["香港夏天經常下雨。", "It often ___ in summer in Hong Kong.", "rains", "often 表示經常發生；It 後面 rain 要寫 rains。"],
+    ["我叔叔在銀行工作。", "My uncle ___ in a bank.", "works", "句子講現在的工作；My uncle 是單數，所以 work 要寫 works。"],
+    ["我們學校八點開始上課。", "Our school ___ at eight.", "starts", "句子講固定時間表，所以用現在式；Our school 是單數，所以 start 要寫 starts。"],
+    ["火車通常準時離開。", "The train usually ___ on time.", "leaves", "usually 表示習慣 / 時間表；The train 是單數，所以 leave 要寫 leaves。"],
+    ["我知道你的名字。", "I ___ your name.", "know", "句子沒有其他時態提示，所以用現在式；I 後面用 know。"],
+    ["他明白這個規則。", "He ___ this rule.", "understands", "句子沒有其他時態提示，所以用現在式；He 後面 understand 要寫 understands。"],
+    ["女孩們星期六跳舞。", "The girls ___ on Saturdays.", "dance", "on Saturdays 表示習慣；girls 是眾數，所以用 dance。"],
+    ["這部電話售價五千元。", "This phone ___ five thousand dollars.", "costs", "句子講現在的價錢；This phone 是單數，所以 cost 要寫 costs。"],
+    ["你今天看起來很開心。", "You ___ happy today.", "look", "句子沒有說明要用其他時態，所以用現在式；You 後面用 look。"],
+    ["Sam 有一架新單車。", "Sam ___ a new bike.", "has", "句子講現在擁有；Sam 是單數，所以 have 要寫 has。"],
+    ["我們享受英文課。", "We ___ English lessons.", "enjoy", "句子沒有其他時態提示，所以用現在式；We 後面用 enjoy。"],
+    ["Mary 教鋼琴。", "Mary ___ piano.", "teaches", "句子講現在的工作 / 習慣；Mary 是單數，所以 teach 要寫 teaches。"],
+    ["那個男孩接住球。", "The boy ___ the ball.", "catches", "句子沒有說明要用其他時態，所以用現在式；The boy 是單數，所以 catch 要寫 catches。"],
+    ["學生通常準時完成功課。", "The students usually ___ homework on time.", "finish", "usually 表示習慣；students 是眾數，所以用 finish。"]
+  ]);
+
+  addExtraTenseQuestions("past", pastRule, [
+    ["我昨天吃了三文治。", "I ___ a sandwich yesterday.", "ate", "yesterday 是過去時間詞，所以 eat 要轉過去式 ate。"],
+    ["她上星期日去了海灘。", "She ___ to the beach last Sunday.", "went", "last Sunday 是過去時間詞，所以 go 要轉過去式 went。"],
+    ["我們剛才看見彩虹。", "We ___ a rainbow just now.", "saw", "just now 表示剛才，所以 see 要轉過去式 saw。"],
+    ["Tom 兩日前找到他的鎖匙。", "Tom ___ his keys two days ago.", "found", "two days ago 表示過去，所以 find 要轉過去式 found。"],
+    ["爸爸昨晚帶我們去餐廳。", "Dad ___ us to a restaurant last night.", "took", "last night 是過去時間詞，所以 take 要轉過去式 took。"],
+    ["老師昨天給我們一張工作紙。", "The teacher ___ us a worksheet yesterday.", "gave", "yesterday 是過去時間詞，所以 give 要轉過去式 gave。"],
+    ["媽媽上星期做了一個蛋糕。", "Mum ___ a cake last week.", "made", "last week 是過去時間詞，所以 make 要轉過去式 made。"],
+    ["我昨晚寫了一封電郵。", "I ___ an email last night.", "wrote", "last night 是過去時間詞，所以 write 要轉過去式 wrote。"],
+    ["Mary 昨天讀了這本書。", "Mary ___ this book yesterday.", "read", "yesterday 是過去時間詞，所以 read 讀音變過去式，但串法仍然是 read。"],
+    ["弟弟昨晚很早睡。", "My brother ___ early last night.", "slept", "last night 是過去時間詞，所以 sleep 要轉過去式 slept。"],
+    ["他們剛才跑去操場。", "They ___ to the playground just now.", "ran", "just now 表示剛才，所以 run 要轉過去式 ran。"],
+    ["我上星期游了五十米。", "I ___ fifty metres last week.", "swam", "last week 是過去時間詞，所以 swim 要轉過去式 swam。"],
+    ["她昨天買了一把傘。", "She ___ an umbrella yesterday.", "bought", "yesterday 是過去時間詞，所以 buy 要轉過去式 bought。"],
+    ["那隻貓昨晚捉到一隻老鼠。", "The cat ___ a mouse last night.", "caught", "last night 是過去時間詞，所以 catch 要轉過去式 caught。"],
+    ["我今早打破了一隻杯。", "I ___ a cup this morning.", "broke", "this morning 在這句是已發生的事，所以 break 要轉過去式 broke。"],
+    ["她昨天遺失了八達通。", "She ___ her Octopus card yesterday.", "lost", "yesterday 是過去時間詞，所以 lose 要轉過去式 lost。"],
+    ["我們上星期贏了比賽。", "We ___ the match last week.", "won", "last week 是過去時間詞，所以 win 要轉過去式 won。"],
+    ["電影九點開始。", "The film ___ at nine.", "began", "句子講已發生的故事 / 事件，所以 begin 要轉過去式 began。"],
+    ["他昨天帶了一本字典。", "He ___ a dictionary yesterday.", "brought", "yesterday 是過去時間詞，所以 bring 要轉過去式 brought。"],
+    ["她上次選了藍色那件。", "She ___ the blue one last time.", "chose", "last time 表示過去，所以 choose 要轉過去式 chose。"],
+    ["工人去年建了一條橋。", "The workers ___ a bridge last year.", "built", "last year 是過去時間詞，所以 build 要轉過去式 built。"],
+    ["我昨天剪了頭髮。", "I ___ my hair yesterday.", "cut", "yesterday 是過去時間詞；cut 的過去式仍然是 cut。"],
+    ["他剛才覺得很累。", "He ___ tired just now.", "felt", "just now 表示剛才，所以 feel 要轉過去式 felt。"],
+    ["她昨天保留了收據。", "She ___ the receipt yesterday.", "kept", "yesterday 是過去時間詞，所以 keep 要轉過去式 kept。"],
+    ["我上星期遇見 Miss Lee。", "I ___ Miss Lee last week.", "met", "last week 是過去時間詞，所以 meet 要轉過去式 met。"],
+    ["爸爸昨日付了錢。", "Dad ___ the money yesterday.", "paid", "yesterday 是過去時間詞，所以 pay 要轉過去式 paid。"],
+    ["新聞說雨很大。", "The news ___ the rain was heavy.", "said", "新聞報道已發生的事，所以 say 要轉過去式 said。"],
+    ["他們上個月賣了舊車。", "They ___ their old car last month.", "sold", "last month 是過去時間詞，所以 sell 要轉過去式 sold。"],
+    ["我昨天寄了一張卡。", "I ___ a card yesterday.", "sent", "yesterday 是過去時間詞，所以 send 要轉過去式 sent。"],
+    ["我們剛才坐在後面。", "We ___ at the back just now.", "sat", "just now 表示剛才，所以 sit 要轉過去式 sat。"],
+    ["老師昨天告訴我們答案。", "The teacher ___ us the answer yesterday.", "told", "yesterday 是過去時間詞，所以 tell 要轉過去式 told。"],
+    ["我以為今天是假期。", "I ___ today was a holiday.", "thought", "句子講過去的想法，所以 think 要轉過去式 thought。"],
+    ["她昨天穿了紅色裙。", "She ___ a red dress yesterday.", "wore", "yesterday 是過去時間詞，所以 wear 要轉過去式 wore。"],
+    ["我們上星期清潔了課室。", "We ___ the classroom last week.", "cleaned", "last week 是過去時間詞，所以 clean 要寫 cleaned。"],
+    ["他們昨晚看了一套電影。", "They ___ a film last night.", "watched", "last night 是過去時間詞，所以 watch 要寫 watched。"],
+    ["我去年探望了澳門。", "I ___ Macau last year.", "visited", "last year 是過去時間詞，所以 visit 要寫 visited。"],
+    ["Mary 昨晚溫習英文。", "Mary ___ English last night.", "studied", "last night 是過去時間詞；study 的過去式是 studied。"],
+    ["他昨天拿著一個重袋。", "He ___ a heavy bag yesterday.", "carried", "yesterday 是過去時間詞；carry 的過去式是 carried。"],
+    ["妹妹昨晚哭了。", "My sister ___ last night.", "cried", "last night 是過去時間詞；cry 的過去式是 cried。"],
+    ["巴士五分鐘前停了。", "The bus ___ five minutes ago.", "stopped", "ago 表示過去；stop 的過去式要雙寫 p，寫 stopped。"]
+  ]);
+
+  addExtraTenseQuestions("continuous", continuousRule, [
+    ["我現在正在讀英文書。", "I ___ an English book now.", "am reading", "now 表示正在發生；I 配 am，所以寫 am reading。"],
+    ["她正在畫一幅圖畫。", "She ___ a picture.", "is drawing", "「正在」表示進行式；She 配 is，所以寫 is drawing。"],
+    ["他們正在公園玩。", "They ___ in the park.", "are playing", "「正在」表示進行式；They 配 are，所以寫 are playing。"],
+    ["我們現在正在吃午餐。", "We ___ lunch now.", "are having", "now 表示正在發生；We 配 are，所以寫 are having。"],
+    ["外面正在下雨。", "It ___ outside.", "is raining", "「正在下雨」表示進行式；It 配 is，所以寫 is raining。"],
+    ["媽媽正在廚房煮飯。", "Mum ___ in the kitchen.", "is cooking", "「正在」表示進行式；Mum 是單數，所以用 is cooking。"],
+    ["Tom 正在做功課。", "Tom ___ his homework.", "is doing", "「正在」表示進行式；Tom 是單數，所以用 is doing。"],
+    ["你正在講得太快。", "You ___ too fast.", "are talking", "「正在」表示進行式；You 配 are，所以寫 are talking。"],
+    ["孩子們正在操場跑步。", "The children ___ in the playground.", "are running", "「正在」表示進行式；children 是眾數，所以用 are running。"],
+    ["當電話響時，我正在洗澡。", "When the phone rang, I ___.", "was showering", "When the phone rang 是過去某一刻，所以用 was showering。"],
+    ["她昨晚八點正在溫習。", "She ___ at eight last night.", "was studying", "at eight last night 是過去某一刻，所以用 was studying。"],
+    ["他們那時正在看電視。", "They ___ TV at that time.", "were watching", "at that time 表示過去某一刻；They 配 were，所以寫 were watching。"],
+    ["我們聽到聲音時正在行路。", "We ___ when we heard the noise.", "were walking", "when we heard the noise 是過去某一刻，所以用 were walking。"],
+    ["爸爸剛才正在開車。", "Dad ___ just now.", "was driving", "just now 是過去時間；Dad 是單數，所以用 was driving。"],
+    ["嬰兒那時正在哭。", "The baby ___ at that time.", "was crying", "at that time 是過去某一刻；The baby 是單數，所以用 was crying。"],
+    ["學生們剛才正在寫答案。", "The students ___ the answers just now.", "were writing", "just now 是過去時間；students 是眾數，所以用 were writing。"],
+    ["我明天會見表弟。", "I ___ my cousin tomorrow.", "am meeting", "已預定好的將來安排可用進行式；I 配 am，所以寫 am meeting。"],
+    ["我們下星期會參觀博物館。", "We ___ the museum next week.", "are visiting", "已預定好的將來安排可用進行式；We 配 are，所以寫 are visiting。"],
+    ["她今晚會離開香港。", "She ___ Hong Kong tonight.", "is leaving", "已預定好的將來行為可用進行式；She 配 is，所以寫 is leaving。"],
+    ["他們星期五會飛去新加坡。", "They ___ to Singapore on Friday.", "are flying", "已預定好的將來安排可用進行式；They 配 are，所以寫 are flying。"],
+    ["Tom 明天會參加足球隊。", "Tom ___ the football team tomorrow.", "is joining", "已預定好的將來行為可用進行式；Tom 是單數，所以用 is joining。"],
+    ["我們班下星期會去旅行。", "Our class ___ on a trip next week.", "is going", "已預定好的將來安排可用進行式；Our class 當單數，所以用 is going。"],
+    ["我下星期一會考英文。", "I ___ an English test next Monday.", "am taking", "已預定好的將來安排可用進行式；I 配 am，所以寫 am taking。"],
+    ["他們現在正在排隊。", "They ___ in a line now.", "are standing", "now 表示正在發生；They 配 are，所以寫 are standing。"],
+    ["她正在聽音樂。", "She ___ to music.", "is listening", "「正在」表示進行式；She 配 is，所以寫 is listening。"],
+    ["我們正在等巴士。", "We ___ for the bus.", "are waiting", "「正在」表示進行式；We 配 are，所以寫 are waiting。"],
+    ["那個男孩正在踢足球。", "The boy ___ football.", "is playing", "「正在」表示進行式；The boy 是單數，所以用 is playing。"],
+    ["小鳥正在天空飛。", "The birds ___ in the sky.", "are flying", "「正在」表示進行式；birds 是眾數，所以用 are flying。"],
+    ["Miss Chan 正在改簿。", "Miss Chan ___ the books.", "is marking", "「正在」表示進行式；Miss Chan 是單數，所以用 is marking。"],
+    ["我正在找我的鉛筆。", "I ___ for my pencil.", "am looking", "「正在」表示進行式；I 配 am，所以寫 am looking。"],
+    ["火車正在進站。", "The train ___ into the station.", "is coming", "「正在」表示進行式；The train 是單數，所以用 is coming。"],
+    ["他們正準備考試。", "They ___ for the test.", "are preparing", "「正在」表示進行式；They 配 are，所以寫 are preparing。"],
+    ["當老師入來時，我們正在唱歌。", "We ___ when the teacher came in.", "were singing", "when the teacher came in 是過去某一刻，所以用 were singing。"],
+    ["當我看見 Mary 時，她正在買飲品。", "Mary ___ a drink when I saw her.", "was buying", "when I saw her 是過去某一刻；Mary 是單數，所以用 was buying。"],
+    ["我們今晚會和家人吃晚飯。", "We ___ dinner with our family tonight.", "are having", "已預定好的將來安排可用進行式；We 配 are，所以寫 are having。"],
+    ["他明天下午會看牙醫。", "He ___ the dentist tomorrow afternoon.", "is seeing", "已預定好的將來安排可用進行式；He 配 is，所以寫 is seeing。"],
+    ["我星期六會搭早班車。", "I ___ the early bus on Saturday.", "am taking", "已預定好的將來安排可用進行式；I 配 am，所以寫 am taking。"],
+    ["她下個月會開始新學校。", "She ___ at a new school next month.", "is starting", "已預定好的將來安排可用進行式；She 配 is，所以寫 is starting。"],
+    ["我們明早會搬屋。", "We ___ house tomorrow morning.", "are moving", "已預定好的將來行為可用進行式；We 配 are，所以寫 are moving。"],
+    ["他們星期日會舉行派對。", "They ___ a party on Sunday.", "are having", "已預定好的將來安排可用進行式；They 配 are，所以寫 are having。"]
+  ]);
+
+  addExtraTenseQuestions("perfect", perfectRule, [
+    ["我清潔了房間。", "I ___ my room.", "have cleaned", "「清潔了」但沒有過去時間詞，所以用 have + PP：have cleaned。"],
+    ["她打破了花瓶。", "She ___ the vase.", "has broken", "「打破了」但沒有過去時間詞，所以用 has + PP：has broken。"],
+    ["我們看過這張相。", "We have ___ this photo.", "seen", "「看過」用 have + PP，所以 see 要寫 seen。"],
+    ["Tom 吃了我的蛋糕。", "Tom ___ my cake.", "has eaten", "「吃了」但沒有過去時間詞，所以用 has + PP：has eaten。"],
+    ["他們完成了專題研習。", "They ___ the project.", "have finished", "「完成了」但沒有過去時間詞，所以用 have + PP：have finished。"],
+    ["Mary 讀了這篇文章。", "Mary ___ this article.", "has read", "「讀了」但沒有過去時間詞，所以用 has + PP；read 的 PP 串法仍然是 read。"],
+    ["我遺失了學生證。", "I ___ my student card.", "have lost", "「遺失了」但沒有過去時間詞，重點是現在仍然遺失，所以用 have lost。"],
+    ["他找到了答案。", "He ___ the answer.", "has found", "「找到了」但沒有過去時間詞，所以用 has + PP：has found。"],
+    ["我們買了新桌遊。", "We ___ a new board game.", "have bought", "「買了」但沒有過去時間詞，所以用 have + PP：have bought。"],
+    ["媽媽做了晚餐。", "Mum ___ dinner.", "has made", "「做了」但沒有過去時間詞，所以用 has + PP：has made。"],
+    ["學生們寫了三個句子。", "The students ___ three sentences.", "have written", "「寫了」但沒有過去時間詞，所以用 have + PP：have written。"],
+    ["她寄了電郵。", "She ___ the email.", "has sent", "「寄了」但沒有過去時間詞，所以用 has + PP：has sent。"],
+    ["我聽過這個故事。", "I have ___ this story.", "heard", "「聽過」用 have + PP，所以 hear 要寫 heard。"],
+    ["爸爸拍了很多相。", "Dad ___ many photos.", "has taken", "「拍了」但沒有過去時間詞，所以用 has + PP：has taken。"],
+    ["我們做了所有練習。", "We ___ all the exercises.", "have done", "「做了」但沒有過去時間詞，所以用 have + PP：have done。"],
+    ["他打開了窗。", "He ___ the window.", "has opened", "「打開了」但沒有過去時間詞，所以用 has + PP：has opened。"],
+    ["你有沒有參觀過故宮博物館？", "Have you ever ___ the Palace Museum?", "visited", "問「有沒有...過」用 Have you ever + PP，所以 visit 要寫 visited。"],
+    ["她贏過英文比賽。", "She has ___ an English competition.", "won", "「贏過」用 has + PP，所以 win 要寫 won。"],
+    ["我見過你的姐姐。", "I have ___ your sister.", "met", "「見過」用 have + PP，所以 meet 要寫 met。"],
+    ["天氣變冷了。", "The weather ___ cold.", "has become", "「變冷了」但沒有過去時間詞，所以用 has + PP：has become。"],
+    ["我最近學了一首新歌。", "I ___ a new song recently.", "have learnt", "recently 是完成式提示，所以用 have + PP：have learnt。", ["have learned"]],
+    ["他最近畫了一幅很美的畫。", "He ___ a beautiful picture lately.", "has drawn", "lately 是完成式提示；He 配 has，所以寫 has drawn。"],
+    ["他們已經離開課室。", "They have already ___ the classroom.", "left", "already 常配完成式；leave 的 PP 是 left。"],
+    ["我剛剛關了門。", "I have just ___ the door.", "closed", "just 可表示剛剛完成；close 的 PP 是 closed。"],
+    ["她還未選好禮物。", "She has not ___ a gift yet.", "chosen", "「還未」用 has not + PP + yet，所以 choose 要寫 chosen。"],
+    ["你吃了晚飯未？", "Have you ___ dinner yet?", "eaten", "問「...未？」用 Have you + PP + yet，所以 eat 要寫 eaten。"],
+    ["我們從未去過加拿大。", "We have never ___ to Canada.", "been", "「去過」用 been to；否定句用 have never + PP。"],
+    ["Tom 從未試過榴槤。", "Tom has never ___ durian.", "tried", "「從未...過」用 has never + PP；try 的 PP 是 tried。"],
+    ["他們最近搬了屋。", "They ___ house recently.", "have moved", "recently 是完成式提示，所以用 have + PP：have moved。"],
+    ["我已經洗了碗。", "I have already ___ the dishes.", "washed", "already 常配完成式；wash 的 PP 是 washed。"],
+    ["她已經忘記了密碼。", "She has already ___ the password.", "forgotten", "already 常配完成式；forget 的 PP 是 forgotten。"],
+    ["我們剛剛收到訊息。", "We have just ___ the message.", "received", "just 可表示剛剛完成；receive 的 PP 是 received。"],
+    ["他最近病了。", "He ___ ill lately.", "has been", "lately 是完成式提示；He 配 has，所以寫 has been。"],
+    ["我從未坐過渡輪。", "I have never ___ a ferry.", "taken", "「從未...過」用 have never + PP；take 的 PP 是 taken。"],
+    ["她去過澳洲。", "She has ___ to Australia.", "been", "去過某地用 has been to，不用 has gone to。"],
+    ["我們已經明白這課。", "We ___ this lesson.", "have understood", "「明白了」但沒有過去時間詞，所以用 have + PP：have understood。"],
+    ["老師已經改了測驗。", "The teacher ___ the quiz.", "has marked", "「改了」但沒有過去時間詞，所以用 has + PP：has marked。"],
+    ["我最近讀完了一本書。", "I ___ a book recently.", "have finished", "recently 是完成式提示，所以用 have + PP：have finished。"],
+    ["他們還未開始比賽。", "They have not ___ the match yet.", "started", "「還未」用 have not + PP + yet，所以 start 要寫 started。"],
+    ["Mary 已經帶了午餐。", "Mary ___ lunch.", "has brought", "「帶了」但沒有過去時間詞，所以用 has + PP：has brought。"]
+  ]);
+
+  addExtraTenseQuestions("perfectContinuous", perfectContinuousRule, [
+    ["她整個早上一直在讀書。", "She ___ all morning.", "has been reading", "all morning 表示動作一直持續，所以用 has been reading。"],
+    ["我們等了老師十分鐘。", "We ___ for the teacher for ten minutes.", "have been waiting", "for ten minutes 表示持續到現在，所以用 have been waiting。"],
+    ["天由早上開始一直在下雨。", "It ___ since this morning.", "has been raining", "since this morning 表示由早上到現在，所以用 has been raining。"],
+    ["孩子們玩了很久。", "The children ___ for a long time.", "have been playing", "for a long time 表示持續中，所以用 have been playing。"],
+    ["弟弟睡了兩小時。", "My brother ___ for two hours.", "has been sleeping", "for two hours 表示由過去持續到現在，所以用 has been sleeping。"],
+    ["我哋成日都在做這個 project。", "We ___ on this project all day.", "have been working", "all day 表示一直持續，所以用 have been working。"],
+    ["她由七點開始一直在溫習。", "She ___ since seven o'clock.", "has been studying", "since seven o'clock 表示由七點到現在，所以用 has been studying。"],
+    ["我最近一直在練英文。", "I ___ English recently.", "have been practising", "recently 加上「一直在練」表示持續，所以用 have been practising。", ["have been practicing"]],
+    ["Tom 咳了三日。", "Tom ___ for three days.", "has been coughing", "for three days 表示持續到現在，所以用 has been coughing。"],
+    ["我們在香港住了很多年。", "We ___ in Hong Kong for many years.", "have been living", "for many years 表示持續到現在，所以用 have been living。"],
+    ["Miss Lee 在這間學校教了十年。", "Miss Lee ___ at this school for ten years.", "has been teaching", "for ten years 表示由過去到現在，所以用 has been teaching。"],
+    ["他們整個下午一直在清潔課室。", "They ___ the classroom all afternoon.", "have been cleaning", "all afternoon 表示一直持續，所以用 have been cleaning。"],
+    ["妹妹由放學開始一直在畫畫。", "My sister ___ since school ended.", "has been drawing", "since school ended 表示由放學到現在，所以用 has been drawing。"],
+    ["我們一直在討論這個問題。", "We ___ this problem.", "have been discussing", "「一直在討論」表示持續的動作，所以用 have been discussing。"],
+    ["爸爸整個晚上一直在修理單車。", "Dad ___ the bike all evening.", "has been repairing", "all evening 表示一直持續，所以用 has been repairing。"],
+    ["工人們建這座橋建了幾個月。", "The workers ___ this bridge for several months.", "have been building", "for several months 表示持續中，所以用 have been building。"],
+    ["她寫這個故事寫了兩星期。", "She ___ this story for two weeks.", "has been writing", "for two weeks 表示由過去到現在仍在做，所以用 has been writing。"],
+    ["我們走了半小時。", "We ___ for half an hour.", "have been walking", "for half an hour 表示持續到現在，所以用 have been walking。"],
+    ["那個男人坐在那裡很久了。", "The man ___ there for a long time.", "has been sitting", "for a long time 表示持續到現在，所以用 has been sitting。"],
+    ["他們一直在找失物。", "They ___ for the lost item.", "have been looking", "「一直在找」表示持續的動作，所以用 have been looking。"],
+    ["嬰兒哭了很久。", "The baby ___ for a long time.", "has been crying", "for a long time 表示持續到現在，所以用 has been crying。"],
+    ["我們學普通話學了三年。", "We ___ Putonghua for three years.", "have been learning", "for three years 表示持續到現在，所以用 have been learning。"],
+    ["Tom 做這份功課做了一小時。", "Tom ___ this homework for an hour.", "has been doing", "for an hour 表示持續中，所以用 has been doing。"],
+    ["學生們跑了十分鐘。", "The students ___ for ten minutes.", "have been running", "for ten minutes 表示持續到現在，所以用 have been running。"],
+    ["媽媽由五點開始一直在煮飯。", "Mum ___ since five o'clock.", "has been cooking", "since five o'clock 表示由五點到現在，所以用 has been cooking。"],
+    ["我們談了整個小息。", "We ___ for the whole recess.", "have been talking", "for the whole recess 表示持續到現在，所以用 have been talking。"],
+    ["他整天都在用電腦。", "He ___ the computer all day.", "has been using", "all day 表示一直持續，所以用 has been using。"],
+    ["他們看電視看了一整個下午。", "They ___ TV all afternoon.", "have been watching", "all afternoon 表示一直持續，所以用 have been watching。"],
+    ["這棵植物最近長得很快。", "This plant ___ quickly recently.", "has been growing", "recently 加上持續變化，所以用 has been growing。"],
+    ["我們為旅行儲錢儲了半年。", "We ___ money for the trip for half a year.", "have been saving", "for half a year 表示持續到現在，所以用 have been saving。"],
+    ["她一直在計劃生日派對。", "She ___ the birthday party.", "has been planning", "「一直在計劃」表示持續的動作，所以用 has been planning。"],
+    ["我們由上星期開始一直在準備表演。", "We ___ for the show since last week.", "have been preparing", "since last week 表示由上星期到現在，所以用 have been preparing。"],
+    ["那個小朋友一直在問問題。", "The child ___ questions.", "has been asking", "「一直在問」表示持續的動作，所以用 has been asking。"],
+    ["學生們一直在幫老師。", "The students ___ the teacher.", "have been helping", "「一直在幫」表示持續的動作，所以用 have been helping。"],
+    ["哥哥為比賽訓練了三個月。", "My brother ___ for the race for three months.", "has been training", "for three months 表示持續到現在，所以用 has been training。"],
+    ["我們收集貼紙收集了很多年。", "We ___ stickers for many years.", "have been collecting", "for many years 表示持續到現在，所以用 have been collecting。"],
+    ["Mary 最近一直在照顧小狗。", "Mary ___ the puppy recently.", "has been looking after", "recently 加上「一直在照顧」表示持續，所以用 has been looking after。"],
+    ["他們由午餐後一直在練歌。", "They ___ since lunch.", "have been singing", "since lunch 表示由午餐後到現在，所以用 have been singing。"],
+    ["爸爸一直在洗車。", "Dad ___ the car.", "has been washing", "「一直在洗」表示持續的動作，所以用 has been washing。"],
+    ["我們排隊排了二十分鐘。", "We ___ in line for twenty minutes.", "have been standing", "for twenty minutes 表示持續到現在，所以用 have been standing。"]
+  ]);
+
+  return questions;
+}
+
+const TENSE_QUESTIONS = createTenseQuestions();
+
+const HAVE_USAGE_LABELS = {
+  "there-be": "There be",
+  "with-without": "with / without",
+  have: "have / has"
+};
+
+const HAVE_USAGE_OPTION_ROWS = [
+  ["there-be", "with-without", "have"]
+];
+
+function makeHaveUsageQuestion({
+  id,
+  category,
+  sentence,
+  zh,
+  isCorrect,
+  answer,
+  acceptedAnswers,
+  explanation
+}) {
+  const correctAnswer = String(answer || sentence || "").trim();
+  return {
+    id,
+    type: "have-usage",
+    category,
+    categoryLabel: HAVE_USAGE_LABELS[category] || category,
+    sentence,
+    zh,
+    isCorrect,
+    answer: correctAnswer,
+    english: correctAnswer,
+    acceptedAnswers: Array.from(new Set([correctAnswer, ...(acceptedAnswers || [])].filter(Boolean))),
+    explanation
+  };
+}
+
+function createHaveUsageQuestions() {
+  const questions = [];
+  let nextId = 1;
+  const add = (question) => {
+    questions.push(makeHaveUsageQuestion({
+      id: `hu${String(nextId).padStart(3, "0")}`,
+      ...question
+    }));
+    nextId += 1;
+  };
+  const addPair = ({ correct, wrong, zh, answer = correct, explanation, category, acceptedAnswers }) => {
+    add({
+      category,
+      sentence: correct,
+      zh,
+      isCorrect: true,
+      answer: correct,
+      explanation,
+      acceptedAnswers
+    });
+    add({
+      category,
+      sentence: wrong,
+      zh,
+      isCorrect: false,
+      answer,
+      explanation,
+      acceptedAnswers
+    });
+  };
+
+  const thereBeRule =
+    "句首「有」或地方「有」通常用 There is / There are；單數或不可數用 There is，眾數用 There are。";
+  const thereExtraRule =
+    "There be 後面如果再講動作，可以用 V-ing / PP，或者加 who / which 連住後面的動詞。";
+  const withRule =
+    "「有 / 沒有...的名詞」用 with / without；句首「有了 / 沒有...」也可以用 With / Without 加名詞，後面通常加 comma。";
+  const haveRule =
+    "如果不是句首存在 / 地方有，也不是形容一個名詞，就用 have / has；沒有就用 do not / does not / did not have。";
+
+  [
+    {
+      correct: "There are many wet markets in Hong Kong.",
+      wrong: "There has many wet markets in Hong Kong.",
+      zh: "香港有很多街市。",
+      explanation: `${thereBeRule} wet markets 是眾數，所以用 There are。`
+    },
+    {
+      correct: "There are many patients today.",
+      wrong: "Today has many patients.",
+      zh: "今日有很多病人。",
+      explanation: `${thereBeRule} 今日有很多病人是存在情況，所以用 There are。`
+    },
+    {
+      correct: "There is only one egg in the fridge.",
+      wrong: "There are only one egg in the fridge.",
+      zh: "雪櫃只有一隻蛋。",
+      explanation: `${thereBeRule} one egg 是單數，所以用 There is。`
+    },
+    {
+      correct: "There is a lot of fake news online.",
+      wrong: "There are many fake news online.",
+      zh: "網上有很多假新聞。",
+      acceptedAnswers: ["There is a lot of fake news on the internet."],
+      explanation: `${thereBeRule} news 是不可數名詞，所以用 There is a lot of fake news。`
+    },
+    {
+      correct: "There are five books on the desk.",
+      wrong: "On the desk has five books.",
+      zh: "桌上有五本書。",
+      explanation: `${thereBeRule} 地方有東西，不寫 On the desk has，要寫 There are。`
+    },
+    {
+      correct: "There is some water in the bottle.",
+      wrong: "There are some waters in the bottle.",
+      zh: "瓶裏有一些水。",
+      explanation: `${thereBeRule} water 是不可數名詞，所以用 There is some water。`
+    },
+    {
+      correct: "There are many people in the park.",
+      wrong: "The park there are many people.",
+      zh: "公園有很多人。",
+      explanation: `${thereBeRule} 地方「有」用 There are many people in the park。`
+    },
+    {
+      correct: "There is a problem with my computer.",
+      wrong: "My computer there is a problem.",
+      zh: "我的電腦有一個問題。",
+      explanation: `${thereBeRule} 這裡是說存在一個問題，所以用 There is a problem。`
+    },
+    {
+      correct: "There is a lot of food which should have expired in the fridge.",
+      wrong: "There is a lot of food should have expired in the fridge.",
+      zh: "雪櫃有很多食物應該過期了。",
+      explanation: `${thereExtraRule} There be 後面再有 should，就要加 which 連住：food which should have expired。`
+    },
+    {
+      correct: "There are many students who can answer this question.",
+      wrong: "There are many students can answer this question.",
+      zh: "有很多學生可以回答這條問題。",
+      explanation: `${thereExtraRule} There are many students 後面有 can answer，要加 who。`
+    },
+    {
+      correct: "There are many students asking me this question.",
+      wrong: "There are many students ask me this question.",
+      zh: "有很多學生問我這問題。",
+      acceptedAnswers: ["There are many students who ask me this question."],
+      explanation: `${thereExtraRule} There be 後面再有主動動作，可以用 asking，或加 who ask。`
+    },
+    {
+      correct: "There is a boy holding a red pen.",
+      wrong: "There is a boy holds a red pen.",
+      zh: "有一個男孩拿著一枝紅筆。",
+      acceptedAnswers: ["There is a boy who is holding a red pen."],
+      explanation: `${thereExtraRule} 句子已有 There is；後面描述男孩拿著筆，用 holding。`
+    },
+    {
+      correct: "There are many students punished by my class teacher.",
+      wrong: "There are many students punish by my class teacher.",
+      zh: "有很多學生被我的班主任罰。",
+      acceptedAnswers: ["There are many students who were punished by my class teacher."],
+      explanation: `${thereExtraRule} 被罰是被動意思，所以用 PP punished，或 who were punished。`
+    },
+    {
+      correct: "There are many windows broken by the typhoon.",
+      wrong: "There are many windows broke by the typhoon.",
+      zh: "有很多窗被颱風吹爛了。",
+      explanation: `${thereExtraRule} 被吹爛是被動意思，所以用 PP broken。`
+    },
+    {
+      correct: "There is a dog which may bite people.",
+      wrong: "There is a dog may bite people.",
+      zh: "有一隻狗可能會咬人。",
+      explanation: `${thereExtraRule} There is a dog 後面有 modal verb may，要加 which。`
+    },
+    {
+      correct: "There are some children playing outside.",
+      wrong: "There are some children play outside.",
+      zh: "有些小朋友在外面玩。",
+      acceptedAnswers: ["There are some children who are playing outside."],
+      explanation: `${thereExtraRule} There are 後面再講小朋友正在玩，用 playing，或 who are playing。`
+    }
+  ].forEach((item) => addPair({ ...item, category: "there-be" }));
+
+  [
+    {
+      correct: "I want a tortoise with two heads.",
+      wrong: "I want a tortoise has two heads.",
+      zh: "我想要一隻有兩個頭的龜。",
+      explanation: `${withRule} 有兩個頭的龜是形容 tortoise，所以用 with two heads。`
+    },
+    {
+      correct: "I prefer cats with a long tail.",
+      wrong: "I prefer cats have a long tail.",
+      zh: "我較喜歡有長尾巴的貓。",
+      explanation: `${withRule} 有長尾巴的貓是形容 cats，所以用 cats with a long tail。`
+    },
+    {
+      correct: "I don't need a torch without batteries.",
+      wrong: "I don't need a torch does not have batteries.",
+      zh: "我不需要沒有電池的電筒。",
+      acceptedAnswers: ["I do not need a torch without batteries."],
+      explanation: `${withRule} 沒有電池的電筒是形容 torch，所以用 without batteries。`
+    },
+    {
+      correct: "The girl with glasses is my sister.",
+      wrong: "The girl has glasses is my sister.",
+      zh: "那個戴眼鏡的女孩是我妹妹。",
+      explanation: `${withRule} with glasses 形容 The girl；不要直接寫 The girl has glasses is。`
+    },
+    {
+      correct: "A boy with a blue bag is waiting outside.",
+      wrong: "A boy has a blue bag is waiting outside.",
+      zh: "一個有藍色書包的男孩正在外面等。",
+      explanation: `${withRule} with a blue bag 形容 A boy。`
+    },
+    {
+      correct: "I bought a notebook with a red cover.",
+      wrong: "I bought a notebook has a red cover.",
+      zh: "我買了一本有紅色封面的筆記簿。",
+      explanation: `${withRule} with a red cover 形容 notebook。`
+    },
+    {
+      correct: "Do not buy snacks without labels.",
+      wrong: "Do not buy snacks do not have labels.",
+      zh: "不要買沒有標籤的零食。",
+      acceptedAnswers: ["Don't buy snacks without labels."],
+      explanation: `${withRule} 沒有標籤的零食是形容 snacks，所以用 without labels。`
+    },
+    {
+      correct: "The classroom with two doors is large.",
+      wrong: "The classroom has two doors is large.",
+      zh: "那間有兩道門的課室很大。",
+      explanation: `${withRule} with two doors 形容 The classroom。`
+    },
+    {
+      correct: "With your help, I believe I can pass.",
+      wrong: "With your help I believe I can pass.",
+      zh: "有了你的幫助，我相信我可以合格。",
+      explanation: `${withRule} With your help 放句首，後面要加 comma。`
+    },
+    {
+      correct: "With AI tools, I can learn faster.",
+      wrong: "Have AI tools, I can learn faster.",
+      zh: "有了 AI 工具，我可以學得更快。",
+      explanation: `${withRule} 句首「有了 AI 工具」用 With AI tools，不用 Have AI tools。`
+    },
+    {
+      correct: "Without you, my life is meaningless.",
+      wrong: "Without you my life is meaningless.",
+      zh: "沒有你，我的人生沒意義。",
+      explanation: `${withRule} Without you 放句首，後面要加 comma。`
+    },
+    {
+      correct: "Without enough sleep, students feel tired.",
+      wrong: "No enough sleep, students feel tired.",
+      zh: "沒有足夠睡眠，學生會覺得累。",
+      explanation: `${withRule} 句首「沒有足夠睡眠」用 Without enough sleep。`
+    }
+  ].forEach((item) => addPair({ ...item, category: "with-without" }));
+
+  [
+    {
+      correct: "They have many questions.",
+      wrong: "There are they many questions.",
+      zh: "他們有很多問題。",
+      explanation: `${haveRule} 這裡是他們擁有問題，所以用 They have。`
+    },
+    {
+      correct: "I do not have friends.",
+      wrong: "I have not friends.",
+      zh: "我沒有朋友。",
+      acceptedAnswers: ["I don't have friends."],
+      explanation: `${haveRule} 沒有用 do not have；I 後面用 do not have。`
+    },
+    {
+      correct: "These chairs do not have price tags.",
+      wrong: "These chairs without price tags.",
+      zh: "這些椅子沒有價錢牌。",
+      acceptedAnswers: ["These chairs don't have price tags."],
+      explanation: `${haveRule} 這裡是 chairs 沒有 price tags，所以用 do not have。`
+    },
+    {
+      correct: "She has a new school bag.",
+      wrong: "She is have a new school bag.",
+      zh: "她有一個新書包。",
+      explanation: `${haveRule} She 是單數，所以用 has；have 前面不用加 is。`
+    },
+    {
+      correct: "My brother has two watches.",
+      wrong: "My brother have two watches.",
+      zh: "我哥哥有兩隻手錶。",
+      explanation: `${haveRule} My brother 是單數，所以用 has。`
+    },
+    {
+      correct: "We have English lessons on Monday.",
+      wrong: "We are have English lessons on Monday.",
+      zh: "我們星期一有英文課。",
+      explanation: `${haveRule} We 後面用 have，不用 are have。`
+    },
+    {
+      correct: "Tom does not have a pencil.",
+      wrong: "Tom do not have a pencil.",
+      zh: "Tom 沒有鉛筆。",
+      acceptedAnswers: ["Tom doesn't have a pencil."],
+      explanation: `${haveRule} Tom 是單數，所以否定句用 does not have。`
+    },
+    {
+      correct: "Did you have breakfast?",
+      wrong: "Did you had breakfast?",
+      zh: "你吃了早餐嗎？",
+      explanation: `${haveRule} 問句有 Did，後面動詞用原型 have。`
+    },
+    {
+      correct: "Our school has a big hall.",
+      wrong: "Our school have a big hall.",
+      zh: "我們學校有一個大禮堂。",
+      explanation: `${haveRule} Our school 是單數，所以用 has。`
+    },
+    {
+      correct: "I had a fever yesterday.",
+      wrong: "I was have a fever yesterday.",
+      zh: "我昨天發燒。",
+      explanation: `${haveRule} yesterday 是過去時間，所以 have 變 had；不用 was have。`
+    },
+    {
+      correct: "The dog has black ears.",
+      wrong: "The dog with black ears.",
+      zh: "那隻狗有黑色耳朵。",
+      explanation: `${haveRule} 這裡是完整句子，要有動詞 has；with black ears 只是一個形容部分。`
+    },
+    {
+      correct: "My phone does not have enough battery.",
+      wrong: "My phone without enough battery.",
+      zh: "我的手機沒有足夠電量。",
+      acceptedAnswers: ["My phone doesn't have enough battery."],
+      explanation: `${haveRule} 這裡要寫完整句子，所以用 does not have。`
+    }
+  ].forEach((item) => addPair({ ...item, category: "have" }));
+
+  return questions;
+}
+
+const HAVE_USAGE_QUESTIONS = createHaveUsageQuestions();
+
 const VERB_TABLE_FIELDS = grammarCore?.VERB_TABLE_FIELDS || [
   { key: "present", label: "現在式", shortLabel: "Present" },
   { key: "past", label: "過去式", shortLabel: "Past" },
@@ -1531,7 +3680,13 @@ const SENTENCE_UNDERLINE_ID = "sentence-underline";
 const PRONOUN_MATCH_ID = "pronoun-match";
 const PRONOUN_SENTENCE_ID = "pronoun-sentence";
 const COUNTABLE_NOUN_ID = "countable-nouns";
+const NOUN_CATEGORY_ID = "noun-category";
+const MODAL_VERB_ID = "modal-verb";
+const ADJECTIVE_ID = "adjective-lesson";
+const ADVERB_ID = "adverb-lesson";
+const TENSE_ID = "tenses";
 const VERB_TABLE_ID = "verb-table";
+const HAVE_USAGE_ID = "have-usage";
 const LESSON_PROGRESS_KEYS = {
   [LESSON1_ID]: "basic_grammar_lesson_01_progress_v2",
   [LESSON2_ID]: "basic_grammar_lesson_02_progress_v1",
@@ -1540,7 +3695,13 @@ const LESSON_PROGRESS_KEYS = {
   [PRONOUN_MATCH_ID]: "basic_grammar_pronoun_match_progress_v1",
   [PRONOUN_SENTENCE_ID]: "basic_grammar_pronoun_sentence_progress_v1",
   [COUNTABLE_NOUN_ID]: "basic_grammar_countable_nouns_progress_v1",
-  [VERB_TABLE_ID]: "basic_grammar_verb_table_progress_v1"
+  [NOUN_CATEGORY_ID]: "basic_grammar_noun_category_progress_v1",
+  [MODAL_VERB_ID]: "basic_grammar_modal_verb_progress_v1",
+  [ADJECTIVE_ID]: "basic_grammar_adjective_progress_v1",
+  [ADVERB_ID]: "basic_grammar_adverb_progress_v1",
+  [TENSE_ID]: "basic_grammar_tenses_progress_v1",
+  [VERB_TABLE_ID]: "basic_grammar_verb_table_progress_v1",
+  [HAVE_USAGE_ID]: "basic_grammar_have_usage_progress_v1"
 };
 const LESSONS = {
   [LESSON1_ID]: {
@@ -1585,11 +3746,47 @@ const LESSONS = {
     title: "可數名詞的使用要點",
     questions: COUNTABLE_NOUN_QUESTIONS
   },
+  [NOUN_CATEGORY_ID]: {
+    id: NOUN_CATEGORY_ID,
+    kicker: "Lesson 07",
+    title: "名詞的類別",
+    questions: NOUN_CATEGORY_QUESTIONS
+  },
+  [MODAL_VERB_ID]: {
+    id: MODAL_VERB_ID,
+    kicker: "Lesson 08",
+    title: "Modal Verb 的要訣",
+    questions: MODAL_VERB_QUESTIONS
+  },
+  [ADJECTIVE_ID]: {
+    id: ADJECTIVE_ID,
+    kicker: "Lesson 09",
+    title: "Adjective 形容詞",
+    questions: ADJECTIVE_QUESTIONS
+  },
+  [ADVERB_ID]: {
+    id: ADVERB_ID,
+    kicker: "Lesson 10",
+    title: "Adverb 副詞",
+    questions: ADVERB_QUESTIONS
+  },
+  [TENSE_ID]: {
+    id: TENSE_ID,
+    kicker: "Lesson 11",
+    title: "Tenses 時態分辨",
+    questions: TENSE_QUESTIONS
+  },
   [VERB_TABLE_ID]: {
     id: VERB_TABLE_ID,
-    kicker: "Lesson 07",
+    kicker: "Lesson 12",
     title: "Verb Table 動詞四式",
     questions: VERB_TABLE_QUESTIONS
+  },
+  [HAVE_USAGE_ID]: {
+    id: HAVE_USAGE_ID,
+    kicker: "Lesson 13",
+    title: "「有」的主要用法",
+    questions: HAVE_USAGE_QUESTIONS
   }
 };
 
@@ -1606,6 +3803,16 @@ const LESSONS = {
     PRONOUN_SENTENCE_ROLE_LABELS,
     PRONOUN_SENTENCE_FORMS,
     COUNTABLE_NOUN_QUESTIONS,
+    NOUN_CATEGORY_QUESTIONS,
+    MODAL_VERB_QUESTIONS,
+    ADJECTIVE_QUESTIONS,
+    ADVERB_QUESTIONS,
+    TENSE_LABELS,
+    TENSE_OPTION_ROWS,
+    TENSE_QUESTIONS,
+    HAVE_USAGE_LABELS,
+    HAVE_USAGE_OPTION_ROWS,
+    HAVE_USAGE_QUESTIONS,
     VERB_TABLE_FIELDS,
     VERB_TABLE_QUESTIONS,
     LESSON1_ID,
@@ -1615,10 +3822,22 @@ const LESSONS = {
     PRONOUN_MATCH_ID,
     PRONOUN_SENTENCE_ID,
     COUNTABLE_NOUN_ID,
+    NOUN_CATEGORY_ID,
+    MODAL_VERB_ID,
+    ADJECTIVE_ID,
+    ADVERB_ID,
+    TENSE_ID,
     VERB_TABLE_ID,
+    HAVE_USAGE_ID,
     LESSON_PROGRESS_KEYS,
     LESSONS,
     capitalizeWord,
-    createCountableNounQuestions
+    createCountableNounQuestions,
+    createNounCategoryQuestions,
+    createModalVerbQuestions,
+    createAdjectiveQuestions,
+    createAdverbQuestions,
+    createTenseQuestions,
+    createHaveUsageQuestions
   };
 });

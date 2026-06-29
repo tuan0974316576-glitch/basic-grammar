@@ -27,7 +27,13 @@ Students practise grammar through short interactive lessons:
 - Lesson 04: 代名詞配對
 - Lesson 05: 代名詞句子 MC
 - Lesson 06: 可數名詞的使用要點
-- Lesson 07: Verb Table 動詞四式
+- Lesson 07: 名詞的類別
+- Lesson 08: Modal Verb 的要訣
+- Lesson 09: Adjective 形容詞
+- Lesson 10: Adverb 副詞
+- Lesson 11: Tenses 時態分辨
+- Lesson 12: Verb Table 動詞四式
+- Lesson 13: 「有」的主要用法
 
 Design principle: each wrong answer should teach clearly why it is wrong. Explanations should be simple, accurate, and useful for primary students.
 

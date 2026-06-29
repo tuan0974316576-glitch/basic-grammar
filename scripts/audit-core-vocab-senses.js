@@ -5223,7 +5223,14 @@ function getApprovedLookupAuditWords() {
 
 async function auditStudentLookupMetadata(words = STUDENT_LOOKUP_AUDIT_WORDS, providers = getStudentLookupProviders()) {
   const validLevels = new Set(["A1", "A2", "B1", "B2", "C1", "C2"]);
-  const approvedSources = new Set(["teacher-live", "teacher", "curated-sense-bank", "verb-table-form", "cc-cedict-supplement"]);
+  const approvedSources = new Set([
+    "teacher-live",
+    "teacher",
+    "curated-sense-bank",
+    "mock-unseen-reviewed",
+    "verb-table-form",
+    "cc-cedict-supplement"
+  ]);
   const issues = [];
   const duplicateExact = [];
   const exactKeys = new Map();

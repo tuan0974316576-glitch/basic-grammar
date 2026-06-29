@@ -141,6 +141,48 @@
     return String(question?.sentence || "").replace(/[.?!]/g, "").split(" ").filter(Boolean);
   }
 
+  function getLesson1VerbText(question) {
+    const explicitVerb = String(question?.verbZh || question?.verb || "").trim();
+    if (explicitVerb) return explicitVerb;
+    const noteMatch = String(question?.note || "").match(/「([^」]+)」/);
+    return noteMatch ? noteMatch[1].trim() : "";
+  }
+
+  function getLesson1ChineseSentenceText(question) {
+    return String(question?.zh || "")
+      .replace(/[。！？!?.,，]/g, "")
+      .trim();
+  }
+
+  function getLesson1VerbTokens(question) {
+    const sentence = getLesson1ChineseSentenceText(question);
+    if (!sentence) return [];
+
+    const verbText = getLesson1VerbText(question);
+    if (!verbText) return [sentence];
+
+    const verbIndex = sentence.indexOf(verbText);
+    if (verbIndex < 0) return [sentence];
+
+    const beforeVerb = sentence.slice(0, verbIndex).trim();
+    const afterVerb = sentence.slice(verbIndex + verbText.length).trim();
+    return [beforeVerb, verbText, afterVerb].filter(Boolean);
+  }
+
+  function getLesson1VerbTokenIndexes(question) {
+    const verbText = getLesson1VerbText(question);
+    if (!verbText) return [];
+    return getLesson1VerbTokens(question)
+      .map((token, index) => (token === verbText ? index : -1))
+      .filter((index) => index >= 0);
+  }
+
+  function isLesson1VerbTokenSelectionCorrect(question, selectedIndexes) {
+    const picked = Array.isArray(selectedIndexes) ? selectedIndexes : [];
+    if (picked.length !== 1) return false;
+    return getLesson1VerbTokenIndexes(question).includes(picked[0]);
+  }
+
   function getLesson2Correction(question) {
     return question?.correction || "句子正確，不用改。";
   }
@@ -174,6 +216,12 @@
       .some((answer) => normalizeTypedSentence(answer) === normalized);
   }
 
+  function isTypedSentenceCorrect(acceptedAnswers, value) {
+    const normalized = normalizeTypedSentence(value);
+    return (Array.isArray(acceptedAnswers) ? acceptedAnswers : [])
+      .some((answer) => normalizeTypedSentence(answer) === normalized);
+  }
+
   function normalizeVerbTableAnswer(value) {
     return String(value || "")
       .trim()
@@ -203,6 +251,9 @@
     VERB_TABLE_FIELDS,
     capitalizeWord,
     getLesson2Correction,
+    getLesson1VerbText,
+    getLesson1VerbTokenIndexes,
+    getLesson1VerbTokens,
     getNextProgress,
     getQuestionQuotas,
     getReviewQuestions,
@@ -212,6 +263,8 @@
     getVerbTableWrongSlots,
     formatSentenceInputCharacter,
     isCountableTypedAnswerCorrect,
+    isLesson1VerbTokenSelectionCorrect,
+    isTypedSentenceCorrect,
     isVerbTableSlotCorrect,
     normalizeTypedSentence,
     normalizeVerbTableAnswer,

@@ -45,6 +45,9 @@ const {
   TENSE_LABELS,
   TENSE_OPTION_ROWS,
   VERB_TABLE_ID,
+  HAVE_USAGE_ID,
+  HAVE_USAGE_LABELS,
+  HAVE_USAGE_OPTION_ROWS,
   LESSON_PROGRESS_KEYS,
   LESSONS,
   capitalizeWord
@@ -296,6 +299,9 @@ const state = {
   selectedPronounWordId: "",
   selectedPronounSlotKey: "",
   pronounAutoAdvanceTimer: 0,
+  tensePracticeTenses: [],
+  tenseScopeDraft: [],
+  haveUsageCategoryAnswered: false,
   verbTableWrongSlots: [],
   verbTableSubmitState: "",
   verbTableActiveField: "present",
@@ -336,6 +342,7 @@ const el = {
   menuProgressAdverb: document.querySelector("#menu-progress-adverb"),
   menuProgressTenses: document.querySelector("#menu-progress-tenses"),
   menuProgressVerbTable: document.querySelector("#menu-progress-verb-table"),
+  menuProgressHaveUsage: document.querySelector("#menu-progress-have-usage"),
   menuSettingsBtn: document.querySelector("#menu-settings-btn"),
   vocabSettingsBtn: document.querySelector("#vocab-settings-btn"),
   settingsModal: document.querySelector("#settings-modal"),
@@ -416,6 +423,7 @@ const el = {
   beFormChoice: document.querySelector("#be-form-choice"),
   judgmentChoice: document.querySelector("#judgment-choice"),
   tenseChoice: document.querySelector("#tense-choice"),
+  haveUsageChoice: document.querySelector("#have-usage-choice"),
   verbCountChoice: document.querySelector("#verb-count-choice"),
   verbTokenChoice: document.querySelector("#verb-token-choice"),
   verbTokenGrid: document.querySelector("#verb-token-grid"),
@@ -1009,6 +1017,63 @@ function getVocabExampleSeedKeys(item = {}) {
   return Array.from(new Set(keys.filter(Boolean)));
 }
 
+function getVocabExampleSeedPayloadForKeys(keys = []) {
+  const entries = VOCAB_EXAMPLE_SEED?.entries;
+  if (!entries || typeof entries !== "object") return null;
+  const rawPayload = keys
+    .map((key) => entries[key])
+    .find(Boolean);
+  if (!rawPayload) return null;
+  const payload = normalizeVocabExamplesPayload({
+    ...rawPayload,
+    source: rawPayload.source || VOCAB_EXAMPLE_SEED?.meta?.source || "local-example-seed",
+    status: rawPayload.status || "ready"
+  });
+  return isReusableVocabExamplesPayload(payload) ? payload : null;
+}
+
+function normalizeVocabExampleMeaningKey(value = "") {
+  const meaning = normalizeVocabMeaning(value);
+  if (typeof normalizeVocabMeaningGroupKey === "function") {
+    return normalizeVocabMeaningGroupKey(meaning);
+  }
+  return meaning
+    .replace(/\s*[/／;；]\s*/g, "/")
+    .replace(/\s+/g, "")
+    .toLowerCase();
+}
+
+function getReviewedVocabExampleFallbackItems(item = {}) {
+  const word = normalizeVocabWord(item.word);
+  if (!word) return [];
+
+  const hintKeys = new Set(
+    getVocabExampleHints(item)
+      .map((hint) => normalizeVocabExampleMeaningKey(hint.meaning))
+      .filter(Boolean)
+  );
+  if (!hintKeys.size) return [];
+
+  const rawMatches = [
+    ...getTeacherVocabMatches(word),
+    ...getCuratedVocabSenseMatches(word),
+    ...getCcCedictSupplementMatches(word)
+  ];
+  const seen = new Set();
+
+  return rawMatches
+    .map(makeVocabMeaningEntry)
+    .filter(Boolean)
+    .filter((entry) => hintKeys.has(normalizeVocabExampleMeaningKey(entry.meaning)))
+    .filter((entry) => {
+      const key = [entry.pos || "", entry.type || "", entry.meaning || "", entry.level || ""].join("|");
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
+    .map((entry) => createVocabMeaningExampleItem(item, entry));
+}
+
 function createVocabMeaningExampleItem(item = {}, meaningEntry = {}) {
   return {
     ...item,
@@ -1059,18 +1124,15 @@ function saveVocabExamplesCache() {
 }
 
 function getSeedVocabExamplesForItem(item = {}) {
-  const entries = VOCAB_EXAMPLE_SEED?.entries;
-  if (!entries || typeof entries !== "object") return null;
-  const rawPayload = getVocabExampleSeedKeys(item)
-    .map((key) => entries[key])
-    .find(Boolean);
-  if (!rawPayload) return null;
-  const payload = normalizeVocabExamplesPayload({
-    ...rawPayload,
-    source: rawPayload.source || VOCAB_EXAMPLE_SEED?.meta?.source || "local-example-seed",
-    status: rawPayload.status || "ready"
-  });
-  return isReusableVocabExamplesPayload(payload) ? payload : null;
+  const directPayload = getVocabExampleSeedPayloadForKeys(getVocabExampleSeedKeys(item));
+  if (directPayload) return directPayload;
+
+  const fallbackItems = getReviewedVocabExampleFallbackItems(item);
+  for (const fallbackItem of fallbackItems) {
+    const fallbackPayload = getVocabExampleSeedPayloadForKeys(getVocabExampleSeedKeys(fallbackItem));
+    if (fallbackPayload) return fallbackPayload;
+  }
+  return null;
 }
 
 function getVocabMeaningExampleState(item = {}, meaningEntry = {}) {
@@ -1202,6 +1264,26 @@ function pickQuestionsForLesson(lessonId, count) {
   }
 
   return shuffle(lesson.questions).slice(0, cappedCount);
+}
+
+function getTenseOptionKeys() {
+  return (TENSE_OPTION_ROWS || []).flat();
+}
+
+function getTenseQuestionsForScope(selectedTenses = []) {
+  const selected = new Set(selectedTenses);
+  const allTenses = getTenseOptionKeys();
+  const allowed = selected.size ? selected : new Set(allTenses);
+  return (LESSONS[TENSE_ID]?.questions || []).filter((question) => allowed.has(question.tense));
+}
+
+function pickTenseQuestionsForScope(selectedTenses = [], count = state.practiceCount) {
+  const pool = getTenseQuestionsForScope(selectedTenses);
+  return shuffle(pool).slice(0, Math.min(count, pool.length));
+}
+
+function shouldAskTenseQuestion() {
+  return state.lessonId === TENSE_ID && state.tensePracticeTenses.length !== 1;
 }
 
 function getSavedSoundEnabled() {
@@ -1375,7 +1457,8 @@ function isSentenceCorrectionLesson(lessonId = state.lessonId) {
     || lessonId === NOUN_CATEGORY_ID
     || lessonId === MODAL_VERB_ID
     || lessonId === ADJECTIVE_ID
-    || lessonId === ADVERB_ID;
+    || lessonId === ADVERB_ID
+    || lessonId === HAVE_USAGE_ID;
 }
 
 function shouldShowQuestionZhAfterComplete(lessonId = state.lessonId) {
@@ -2675,8 +2758,11 @@ function getReviewedVocabCount() {
 }
 
 function getNextLessonCoachLine(progressByLesson) {
+  if (progressByLesson[HAVE_USAGE_ID] >= getLessonTotal(HAVE_USAGE_ID)) {
+    return "Lesson 13 已完成，There be、with / without 同 have 分得好清楚。";
+  }
   if (progressByLesson[VERB_TABLE_ID] >= getLessonTotal(VERB_TABLE_ID)) {
-    return "Lesson 12 已完成，Verb Table 四式記得好穩。";
+    return "Lesson 12 已完成，可以挑戰 Lesson 13「有」的主要用法。";
   }
   if (progressByLesson[TENSE_ID] >= getLessonTotal(TENSE_ID)) {
     return "Lesson 11 已完成，可以挑戰 Lesson 12 Verb Table。";
@@ -2763,6 +2849,7 @@ function updateMenuProgress() {
   const adverbProgress = getProgress(ADVERB_ID);
   const tenseProgress = getProgress(TENSE_ID);
   const verbTableProgress = getProgress(VERB_TABLE_ID);
+  const haveUsageProgress = getProgress(HAVE_USAGE_ID);
   el.menuProgressLesson1.textContent = `${lesson1Progress}/${getLessonTotal(LESSON1_ID)}`;
   el.menuProgressLesson2.textContent = `${lesson2Progress}/${getLessonTotal(LESSON2_ID)}`;
   el.menuProgressQuiz1.textContent = `${quiz1Progress}/${getLessonTotal(QUIZ1_ID)}`;
@@ -2776,6 +2863,9 @@ function updateMenuProgress() {
   el.menuProgressAdverb.textContent = `${adverbProgress}/${getLessonTotal(ADVERB_ID)}`;
   el.menuProgressTenses.textContent = `${tenseProgress}/${getLessonTotal(TENSE_ID)}`;
   el.menuProgressVerbTable.textContent = `${verbTableProgress}/${getLessonTotal(VERB_TABLE_ID)}`;
+  if (el.menuProgressHaveUsage) {
+    el.menuProgressHaveUsage.textContent = `${haveUsageProgress}/${getLessonTotal(HAVE_USAGE_ID)}`;
+  }
 
   el.menuCoachLine.textContent = getMenuCoachMessage({
     [LESSON1_ID]: lesson1Progress,
@@ -2790,7 +2880,8 @@ function updateMenuProgress() {
     [ADJECTIVE_ID]: adjectiveProgress,
     [ADVERB_ID]: adverbProgress,
     [TENSE_ID]: tenseProgress,
-    [VERB_TABLE_ID]: verbTableProgress
+    [VERB_TABLE_ID]: verbTableProgress,
+    [HAVE_USAGE_ID]: haveUsageProgress
   });
 }
 
@@ -3936,6 +4027,8 @@ function switchAppTab(tabName) {
   clearCelebration();
   cancelSpeech();
   deactivateTextEntryTarget();
+  state.tensePracticeTenses = [];
+  state.tenseScopeDraft = [];
   if (vocabQuizState) {
     vocabQuizState = null;
     el.vocabNextBtn.textContent = "下一題";
@@ -3984,6 +4077,9 @@ function showOnlyChoice(choice) {
   el.beFormChoice.classList.toggle("hidden", choice !== "beForm");
   el.judgmentChoice.classList.toggle("hidden", choice !== "judgment");
   el.tenseChoice.classList.toggle("hidden", choice !== "tense");
+  if (el.haveUsageChoice) {
+    el.haveUsageChoice.classList.toggle("hidden", choice !== "haveUsage");
+  }
   el.verbCountChoice.classList.toggle("hidden", choice !== "verbCount");
   el.verbTokenChoice.classList.toggle("hidden", choice !== "verbTokens");
   el.countableCorrectionChoice.classList.toggle("hidden", choice !== "countableCorrection");
@@ -4059,7 +4155,7 @@ function getTextEntryConfig(targetName = activeTextEntryTarget) {
           setFeedback("請打空格入面嘅動詞形式。");
           return;
         }
-        if (state.lessonId === LESSON2_ID || state.lessonId === NOUN_CATEGORY_ID || state.lessonId === MODAL_VERB_ID || state.lessonId === ADJECTIVE_ID || state.lessonId === ADVERB_ID) {
+        if (state.lessonId === LESSON2_ID || isSentenceCorrectionLesson()) {
           setFeedback("請打完整正確句子。");
           return;
         }
@@ -4517,7 +4613,7 @@ function getWrongBeFormExplanation(question, pickedForm) {
   return `你揀咗 ${pickedForm}，但${getBeRuleExplanation(question)}`;
 }
 
-function prepareRun(mode, lessonId, questions) {
+function prepareRun(mode, lessonId, questions, options = {}) {
   clearPronounAutoAdvance();
   state.lessonId = lessonId;
   state.mode = mode;
@@ -4536,6 +4632,9 @@ function prepareRun(mode, lessonId, questions) {
   state.pronounWrongSlots = [];
   state.selectedPronounWordId = "";
   state.selectedPronounSlotKey = "";
+  state.tensePracticeTenses = options.tensePracticeTenses || [];
+  state.tenseScopeDraft = options.tenseScopeDraft || [];
+  state.haveUsageCategoryAnswered = false;
   state.verbTableWrongSlots = [];
   state.verbTableSubmitState = "";
   state.resolved = false;
@@ -4549,7 +4648,155 @@ function prepareRun(mode, lessonId, questions) {
 
 function startLesson(lessonId = state.lessonId) {
   const nextLessonId = LESSONS[lessonId] ? lessonId : LESSON1_ID;
+  if (nextLessonId === TENSE_ID) {
+    showTenseScopePicker();
+    return;
+  }
   prepareRun("practice", nextLessonId, pickQuestionsForLesson(nextLessonId, state.practiceCount));
+}
+
+function getTenseScopeDraft() {
+  return state.tenseScopeDraft;
+}
+
+function getTenseScopeTitle(selectedTenses = state.tensePracticeTenses) {
+  const allTenses = getTenseOptionKeys();
+  const list = selectedTenses.length ? selectedTenses : allTenses;
+  if (list.length === allTenses.length) return "全部混合";
+  if (list.length === 1) return TENSE_LABELS?.[list[0]] || "指定時態";
+  return list.map((tense) => TENSE_LABELS?.[tense] || tense).join(" / ");
+}
+
+function updateTenseScopeButtons() {
+  const selected = new Set(getTenseScopeDraft());
+  el.tenseChoice.querySelectorAll("[data-tense-scope]").forEach((button) => {
+    const active = selected.has(button.dataset.tenseScope);
+    button.classList.toggle("selected", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
+}
+
+function getTenseChoiceRowsForPractice() {
+  const selectedTenses = state.tensePracticeTenses.length ? state.tensePracticeTenses : getTenseOptionKeys();
+  const selected = new Set(selectedTenses);
+  return (TENSE_OPTION_ROWS || [])
+    .map((row) => row.filter((tense) => selected.has(tense)))
+    .filter((row) => row.length);
+}
+
+function toggleTenseScope(tense) {
+  const selected = new Set(getTenseScopeDraft());
+  if (selected.has(tense)) {
+    selected.delete(tense);
+  } else {
+    selected.add(tense);
+  }
+  state.tenseScopeDraft = [...selected].filter((key) => getTenseOptionKeys().includes(key));
+  updateTenseScopeButtons();
+  setFeedback(
+    state.tenseScopeDraft.length
+      ? `已選：${getTenseScopeTitle(state.tenseScopeDraft)}`
+      : "請至少選一種時態。",
+    state.tenseScopeDraft.length ? "success" : "error"
+  );
+  playUiSound("step");
+}
+
+function startTensePracticeWithScope(selectedTenses = getTenseOptionKeys()) {
+  const tenses = selectedTenses.length ? selectedTenses : getTenseOptionKeys();
+  const questions = pickTenseQuestionsForScope(tenses, state.practiceCount);
+  state.tensePracticeTenses = tenses;
+  state.tenseScopeDraft = tenses;
+  prepareRun("practice", TENSE_ID, questions, {
+    tensePracticeTenses: tenses,
+    tenseScopeDraft: tenses
+  });
+}
+
+function showTenseScopePicker() {
+  clearPronounAutoAdvance();
+  clearCelebration();
+  cancelSpeech();
+  deactivateTextEntryTarget();
+  setVerbTableKeyboardDocked(false);
+  closeVerbTableReference();
+
+  state.lessonId = TENSE_ID;
+  state.mode = "practice";
+  state.index = 0;
+  state.score = 0;
+  state.mistakes = 0;
+  state.questionMistakes = 0;
+  state.streak = 0;
+  state.missedQuestionIds = [];
+  state.reviewQuestions = [];
+  state.questions = [];
+  state.resolved = false;
+  state.tensePracticeTenses = [];
+  state.tenseScopeDraft = getTenseOptionKeys();
+
+  updateLessonChrome();
+  updateLiveStats();
+  el.questionNumber.textContent = "0";
+  el.questionTotal.textContent = String(getLessonTotal(TENSE_ID));
+  el.englishCard.classList.add("hidden");
+  el.nextBtn.classList.add("hidden");
+  el.restartBtn.classList.add("hidden");
+  el.ruleCard.classList.add("hidden");
+  el.chinesePrompt.classList.remove("english-prompt", "builder-prompt", "underline-prompt", "pronoun-prompt", "pronoun-sentence-prompt", "verb-table-prompt");
+  el.lessonScreen.classList.toggle("tenses-screen", true);
+  el.categoryPill.textContent = "Tenses";
+  el.categoryPill.dataset.type = "tenses";
+  el.stepLabel.textContent = "練習範圍";
+  el.chinesePrompt.textContent = "你想練邊啲時態？";
+  el.guidance.textContent = "可以選一種或多種；只選一種就直接填空，不會再問時態。";
+  el.tenseChoice.replaceChildren();
+
+  (TENSE_OPTION_ROWS || []).forEach((row) => {
+    const rowEl = document.createElement("div");
+    rowEl.className = "tense-choice-row";
+    rowEl.style.gridTemplateColumns = `repeat(${row.length}, minmax(0, 1fr))`;
+    row.forEach((tense) => {
+      const button = document.createElement("button");
+      button.className = "option-btn tense-choice-btn selected";
+      button.type = "button";
+      button.textContent = TENSE_LABELS?.[tense] || tense;
+      button.dataset.tenseScope = tense;
+      button.setAttribute("aria-pressed", "true");
+      button.addEventListener("click", () => toggleTenseScope(tense));
+      rowEl.append(button);
+    });
+    el.tenseChoice.append(rowEl);
+  });
+
+  const actions = document.createElement("div");
+  actions.className = "tense-scope-actions";
+  const allButton = document.createElement("button");
+  allButton.className = "ghost-btn";
+  allButton.type = "button";
+  allButton.textContent = "全部混合";
+  allButton.addEventListener("click", () => startTensePracticeWithScope(getTenseOptionKeys()));
+
+  const startButton = document.createElement("button");
+  startButton.className = "primary-btn";
+  startButton.type = "button";
+  startButton.textContent = "開始練習";
+  startButton.addEventListener("click", () => {
+    const selected = getTenseScopeDraft();
+    if (!selected.length) {
+      setFeedback("請至少選一種時態。", "error");
+      playUiSound("wrong");
+      return;
+    }
+    startTensePracticeWithScope(selected);
+  });
+  actions.append(allButton, startButton);
+  el.tenseChoice.append(actions);
+
+  showScreen("lesson");
+  showOnlyChoice("tense");
+  setFeedback("已預設全部混合，你可以改成只練某一種。");
+  playUiSound("start");
 }
 
 function startMistakeReview() {
@@ -4562,6 +4809,8 @@ function backToMenu() {
   clearCelebration();
   cancelSpeech();
   deactivateTextEntryTarget();
+  state.tensePracticeTenses = [];
+  state.tenseScopeDraft = [];
   setVerbTableKeyboardDocked(false);
   closeVerbTableReference();
   updateMenuProgress();
@@ -4581,6 +4830,7 @@ function renderQuestion() {
 
   state.resolved = false;
   state.questionMistakes = 0;
+  state.haveUsageCategoryAnswered = false;
   state.selectedVerbIndexes = [];
   state.pronounMatches = {};
   state.pronounWordTexts = {};
@@ -4606,6 +4856,7 @@ function renderQuestion() {
   el.lessonScreen.classList.toggle("adverb-screen", state.lessonId === ADVERB_ID);
   el.lessonScreen.classList.toggle("tenses-screen", state.lessonId === TENSE_ID);
   el.lessonScreen.classList.toggle("verb-table-screen", state.lessonId === VERB_TABLE_ID);
+  el.lessonScreen.classList.toggle("have-usage-screen", state.lessonId === HAVE_USAGE_ID);
   el.chinesePrompt.classList.toggle("english-prompt", state.lessonId === LESSON2_ID || state.lessonId === PRONOUN_SENTENCE_ID || isSentenceCorrectionLesson());
   el.chinesePrompt.classList.toggle("builder-prompt", state.lessonId === QUIZ1_ID);
   el.chinesePrompt.classList.toggle("underline-prompt", state.lessonId === SENTENCE_UNDERLINE_ID);
@@ -4624,6 +4875,9 @@ function renderQuestion() {
   el.pronounWordBank.replaceChildren();
   el.pronounSentenceChoice.replaceChildren();
   el.tenseChoice.replaceChildren();
+  if (el.haveUsageChoice) {
+    el.haveUsageChoice.replaceChildren();
+  }
   el.verbTableSlots.replaceChildren();
   clearVerbTableImage();
   setFeedback();
@@ -4685,6 +4939,11 @@ function renderQuestion() {
 
   if (state.lessonId === VERB_TABLE_ID) {
     renderVerbTableQuestion(question);
+    return;
+  }
+
+  if (state.lessonId === HAVE_USAGE_ID) {
+    renderHaveUsageQuestion(question);
     return;
   }
 
@@ -4904,8 +5163,13 @@ function renderAdverbQuestion(question) {
 }
 
 function renderTenseQuestion(question) {
+  if (!shouldAskTenseQuestion()) {
+    askTenseBlank(question, `練習：${question.tenseLabel}。請打空格入面嘅動詞形式。`);
+    return;
+  }
+
   el.stepLabel.textContent = "中文句子";
-  el.categoryPill.textContent = "Tenses";
+  el.categoryPill.textContent = getTenseScopeTitle(state.tensePracticeTenses);
   el.categoryPill.dataset.type = "tenses";
   el.chinesePrompt.textContent = question.zh;
   el.guidance.textContent = "先分辨句子要用邊一款時態。";
@@ -4915,9 +5179,10 @@ function renderTenseQuestion(question) {
 
 function renderTenseChoiceButtons() {
   el.tenseChoice.replaceChildren();
-  (TENSE_OPTION_ROWS || []).forEach((row) => {
+  getTenseChoiceRowsForPractice().forEach((row) => {
     const rowEl = document.createElement("div");
     rowEl.className = "tense-choice-row";
+    rowEl.style.gridTemplateColumns = `repeat(${row.length}, minmax(0, 1fr))`;
     row.forEach((tense) => {
       const button = document.createElement("button");
       button.className = "option-btn tense-choice-btn";
@@ -4929,6 +5194,64 @@ function renderTenseChoiceButtons() {
     });
     el.tenseChoice.append(rowEl);
   });
+}
+
+function renderHaveUsageChoiceButtons() {
+  if (!el.haveUsageChoice) return;
+  el.haveUsageChoice.replaceChildren();
+  (HAVE_USAGE_OPTION_ROWS || []).forEach((row) => {
+    const rowEl = document.createElement("div");
+    rowEl.className = "have-usage-choice-row";
+    rowEl.style.gridTemplateColumns = `repeat(${row.length}, minmax(0, 1fr))`;
+    row.forEach((category) => {
+      const button = document.createElement("button");
+      button.className = "option-btn have-usage-choice-btn";
+      button.type = "button";
+      button.textContent = HAVE_USAGE_LABELS?.[category] || category;
+      button.dataset.haveUsageChoice = category;
+      button.addEventListener("click", () => answerHaveUsageCategory(category));
+      rowEl.append(button);
+    });
+    el.haveUsageChoice.append(rowEl);
+  });
+}
+
+function renderHaveUsageQuestion(question) {
+  el.stepLabel.textContent = "中文句子";
+  el.categoryPill.textContent = "「有」用法";
+  el.categoryPill.dataset.type = "have-usage";
+  el.chinesePrompt.textContent = question.zh;
+  el.chinesePrompt.classList.remove("english-prompt");
+  el.guidance.textContent = "先判斷中文「有」應該用邊個英文結構。";
+  renderHaveUsageChoiceButtons();
+  showOnlyChoice("haveUsage");
+}
+
+function askHaveUsageJudgment(question) {
+  state.haveUsageCategoryAnswered = true;
+  el.stepLabel.textContent = "English sentence";
+  el.categoryPill.textContent = question.categoryLabel;
+  el.categoryPill.dataset.type = "have-usage";
+  el.chinesePrompt.textContent = question.sentence;
+  el.chinesePrompt.classList.add("english-prompt");
+  el.guidance.textContent = question.zh;
+  showOnlyChoice("judgment");
+  setFeedback(`分類正確：${question.categoryLabel}。再判斷英文句子有冇錯。`, "success");
+  playUiSound("step");
+}
+
+function askTenseBlank(question, message = "時態正確。請打空格入面嘅動詞形式。") {
+  setTextEntryValue(el.countableCorrectionInput, "");
+  el.stepLabel.textContent = "English sentence";
+  el.categoryPill.textContent = question.tenseLabel;
+  el.categoryPill.dataset.type = "tenses";
+  el.chinesePrompt.textContent = question.sentence;
+  el.chinesePrompt.classList.add("english-prompt");
+  el.guidance.textContent = question.zh;
+  showOnlyChoice("countableCorrection");
+  activateTextEntryTarget("countable");
+  setFeedback(message, "success");
+  playUiSound("step");
 }
 
 function renderVerbTableQuestion(question) {
@@ -5442,17 +5765,19 @@ function answerTenseChoice(tense) {
     return;
   }
 
-  setTextEntryValue(el.countableCorrectionInput, "");
-  el.stepLabel.textContent = "English sentence";
-  el.categoryPill.textContent = question.tenseLabel;
-  el.categoryPill.dataset.type = "tenses";
-  el.chinesePrompt.textContent = question.sentence;
-  el.chinesePrompt.classList.add("english-prompt");
-  el.guidance.textContent = question.zh;
-  showOnlyChoice("countableCorrection");
-  activateTextEntryTarget("countable");
-  setFeedback("時態正確。請打空格入面嘅動詞形式。", "success");
-  playUiSound("step");
+  askTenseBlank(question);
+}
+
+function answerHaveUsageCategory(category) {
+  const question = currentQuestion();
+  if (!question || state.lessonId !== HAVE_USAGE_ID || state.resolved) return;
+
+  if (category !== question.category) {
+    recordWrong(getSentenceCorrectionFeedback(question, `分類未正確。呢句要用 ${question.categoryLabel}。`));
+    return;
+  }
+
+  askHaveUsageJudgment(question);
 }
 
 function askCountableCorrection() {
@@ -5499,6 +5824,7 @@ function answerCountableJudgment(choice) {
 function answerSentenceCorrectionJudgment(choice) {
   const question = currentQuestion();
   if (!question || !isSentenceCorrectionLesson() || state.resolved) return;
+  if (state.lessonId === HAVE_USAGE_ID && !state.haveUsageCategoryAnswered) return;
 
   const pickedCorrect = choice === "correct";
   if (pickedCorrect !== question.isCorrect) {
@@ -5522,7 +5848,7 @@ function answerNounCategoryJudgment(choice) {
 function submitCountableCorrection() {
   const question = currentQuestion();
   if (!question || state.resolved) return;
-  if (![LESSON2_ID, COUNTABLE_NOUN_ID, NOUN_CATEGORY_ID, MODAL_VERB_ID, ADJECTIVE_ID, ADVERB_ID, TENSE_ID].includes(state.lessonId)) return;
+  if (![LESSON2_ID, COUNTABLE_NOUN_ID, NOUN_CATEGORY_ID, MODAL_VERB_ID, ADJECTIVE_ID, ADVERB_ID, TENSE_ID, HAVE_USAGE_ID].includes(state.lessonId)) return;
   const typedAnswer = getTextEntryValue(el.countableCorrectionInput);
 
   if (!typedAnswer.trim()) {
@@ -5619,6 +5945,11 @@ function answerSentenceJudgment(choice) {
   }
 
   if (state.lessonId === ADVERB_ID) {
+    answerSentenceCorrectionJudgment(choice);
+    return;
+  }
+
+  if (state.lessonId === HAVE_USAGE_ID) {
     answerSentenceCorrectionJudgment(choice);
     return;
   }
@@ -6811,6 +7142,7 @@ function getQuestionPrompt(question) {
   if (question.type === "adjective-lesson") return question.sentence;
   if (question.type === "adverb-lesson") return question.sentence;
   if (question.type === "tenses") return question.zh;
+  if (question.type === "have-usage") return question.zh;
   if (question.type === "pronoun-sentence") return question.sentence;
   if (question.type === "verb-table") return question.zh;
   return question.zh || question.sentence || question.text || "";
@@ -6840,6 +7172,9 @@ function getResultMessage(percent, mistakes, mode) {
   if (state.lessonId === VERB_TABLE_ID && percent === 100 && mistakes === 0) return "滿分！Verb Table 四格都配得好準。";
   if (state.lessonId === VERB_TABLE_ID && percent >= 80) return "好穩陣！繼續記住過去式同 PP 嘅分別。";
   if (state.lessonId === VERB_TABLE_ID) return "慢慢嚟，先讀現在式，再記過去式、PP、ING。";
+  if (state.lessonId === HAVE_USAGE_ID && percent === 100 && mistakes === 0) return "滿分！中文「有」轉英文結構，你已經分得好準。";
+  if (state.lessonId === HAVE_USAGE_ID && percent >= 80) return "好穩陣！繼續留意句首有、地方有、同有...的名詞。";
+  if (state.lessonId === HAVE_USAGE_ID) return "慢慢嚟，先問自己：存在？形容名詞？真正擁有？";
   if (state.lessonId === PRONOUN_MATCH_ID && percent === 100 && mistakes === 0) return "滿分！主語、非主語、的、的東西都配得好準。";
   if (state.lessonId === PRONOUN_MATCH_ID && percent >= 80) return "好穩陣！繼續記住 my/mine、your/yours 呢類分別。";
   if (state.lessonId === PRONOUN_MATCH_ID) return "慢慢嚟，先分清楚主語、非主語、的、的東西。";
