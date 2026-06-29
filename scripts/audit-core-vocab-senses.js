@@ -5227,6 +5227,7 @@ async function auditStudentLookupMetadata(words = STUDENT_LOOKUP_AUDIT_WORDS, pr
     "teacher-live",
     "teacher",
     "curated-sense-bank",
+    "curated-phrasal-verb-supplement",
     "mock-unseen-reviewed",
     "verb-table-form",
     "cc-cedict-supplement"
