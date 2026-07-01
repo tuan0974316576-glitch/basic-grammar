@@ -32,6 +32,8 @@ const GEMINI_EXAMPLE_MODEL = "gemini-3.1-flash-lite";
 const GEMINI_EXAMPLE_SOURCE = "gemini-generated-examples";
 const GEMINI_EXAMPLE_LIMIT = 3;
 const GEMINI_API_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta";
+const BATTLESHIP_FIREBASE_PROJECT_ID = "battleship-game-c0909";
+const BATTLESHIP_SHARED_VOCAB_UID_PREFIX = "battleship_";
 
 const CURATED_VOCAB_MEANINGS = new Map([
   ["have", [
@@ -221,6 +223,22 @@ function normalizeVocabWord(value) {
     .replace(/[‐‑‒–—―]/g, "-")
     .replace(/\s+/g, " ")
     .toLowerCase();
+}
+
+function getBattleshipAdminApp() {
+  const appName = "battleship-auth-bridge";
+  const existing = admin.apps.find((app) => app.name === appName);
+  if (existing) return existing;
+  return admin.initializeApp({
+    projectId: BATTLESHIP_FIREBASE_PROJECT_ID
+  }, appName);
+}
+
+function makeBattleshipSharedVocabUid(battleshipUid) {
+  const uid = String(battleshipUid || "").trim();
+  const safe = uid.replace(/[^A-Za-z0-9_-]+/g, "_").slice(0, 96);
+  const hash = crypto.createHash("sha256").update(uid).digest("hex").slice(0, 16);
+  return `${BATTLESHIP_SHARED_VOCAB_UID_PREFIX}${safe || "user"}_${hash}`.slice(0, 128);
 }
 
 function makeStudentEmail(studentId) {
@@ -1128,6 +1146,46 @@ exports.ensureVocabAudio = onCall({
     text,
     kind,
     ...result
+  };
+});
+
+exports.createBattleshipVocabAuthToken = onCall({
+  invoker: "public"
+}, async (request) => {
+  const battleshipIdToken = String(request.data?.battleshipIdToken || "").trim();
+  if (!battleshipIdToken) {
+    throw new HttpsError("unauthenticated", "Battleship login token is required.");
+  }
+
+  let decoded;
+  try {
+    decoded = await getBattleshipAdminApp().auth().verifyIdToken(battleshipIdToken);
+  } catch (error) {
+    console.error("Battleship token verification failed.", {
+      code: error?.code || "",
+      message: error?.message || String(error)
+    });
+    throw new HttpsError("unauthenticated", "Invalid Battleship login token.");
+  }
+
+  const battleshipUid = String(decoded.uid || "").trim();
+  if (!battleshipUid) {
+    throw new HttpsError("unauthenticated", "Battleship login token has no user.");
+  }
+
+  const uid = makeBattleshipSharedVocabUid(battleshipUid);
+  const customToken = await admin.auth().createCustomToken(uid, {
+    source: "battleship-1",
+    battleshipUid,
+    battleshipAnonymous: decoded.firebase?.sign_in_provider === "anonymous",
+    sharedVocabAccess: true
+  });
+
+  return {
+    status: "ready",
+    uid,
+    customToken,
+    expiresInSeconds: 3600
   };
 });
 
