@@ -171,6 +171,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt51-paper3-reviewed",
     "mock-unseen-mt54-paper3-reviewed",
     "mock-unseen-mt57-paper3-reviewed",
+    "mock-unseen-mt58-paper3-reviewed",
     "mock-unseen-mt30-paper2-reviewed",
     "mock-unseen-mt32-paper2-reviewed",
     "mock-unseen-mt35-paper2-reviewed",
@@ -616,6 +617,26 @@ function assertStudentLookupContract(word, matches) {
   assert.deepStrictEqual(
     (await lookupForStudent("junk mail")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
     ["junk mail:phrase:noun:垃圾郵件 / 垃圾宣傳郵件:mock-unseen-mt57-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Paralympic Games")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Paralympics:word:noun:殘疾人奧運會 / 殘奧會:mock-unseen-mt58-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("beat the odds")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["beat the odds:phrase:verb:逆境取勝 / 克服困難成功:mock-unseen-mt58-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("VIP areas")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["VIP area:phrase:noun:貴賓區:mock-unseen-mt58-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("false advertising")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["false advertising:phrase:noun:虛假廣告:mock-unseen-mt58-paper3-reviewed"]
   );
 
   assert.deepStrictEqual(

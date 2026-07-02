@@ -39,25 +39,20 @@ Latest verified progress:
 |---|---:|---:|---:|
 | Paper 1 | 84 | 24 | 60 |
 | Paper 2 | 81 | 81 | 0 |
-| Paper 3 | 77 | 56 | 21 |
+| Paper 3 | 77 | 57 | 20 |
 | Paper 4 | 72 | 0 | 72 |
-| Total | 314 | 161 | 153 |
+| Total | 314 | 162 | 152 |
 
 Most recent completed paper:
 
-- `MT57 Paper 3`
-- Source tag: `mock-unseen-mt57-paper3-reviewed`
-- Added 70 reviewed entries, including animated GIF / watermark as 加水印 / funds clear / intellectual property / IP theft / lock-in contract / go the extra mile / sous chef
+- `MT58 Paper 3`
+- Source tag: `mock-unseen-mt58-paper3-reviewed`
+- Added 28 reviewed entries, including Olympic Movement / Paralympics / beat the odds / internment camp / VIP area / false advertising
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely Paper 3 item:
 
-- `MT58 Paper 3`
-- Found files:
-  - `/Users/macbook/Downloads/Unseen Graded Mock Test/F6/Secondary 6 Paper 3 202122/MT58_Paper 3_SE_2022_6.1.docx`
-  - `/Users/macbook/Downloads/Unseen Graded Mock Test/F6/Secondary 6 Paper 3 202122/MT58_Paper 3_SE_2022_6.1.pdf`
-  - `/Users/macbook/Downloads/Unseen Graded Mock Test/F6/Secondary 6 Paper 3 202122/MT58_Paper 3_TE_2022_6.1.docx`
-  - `/Users/macbook/Downloads/Unseen Graded Mock Test/F6/Secondary 6 Paper 3 202122/MT58_Paper 3_TE_2022_6.1.pdf`
+- Find the next unreviewed Paper 3 file after MT58 with the normal `find` workflow.
 - Use the `.docx` student and teacher files first. If `textutil` extraction is poor, compare with PDF extraction.
 
 ## Normal Workflow For One Paper
