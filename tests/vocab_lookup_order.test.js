@@ -187,6 +187,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt63-paper4-reviewed",
     "mock-unseen-mt64-paper4-reviewed",
     "mock-unseen-mt65-paper4-reviewed",
+    "mock-unseen-mt66-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -11912,6 +11913,23 @@ function assertStudentLookupContract(word, matches) {
     ["benefit of the doubt", "phrase:verb:姑且相信某人 / 在有疑點時仍給予信任:mock-unseen-mt65-paper4-reviewed"],
     ["rob people of their jobs", "phrase:verb:奪去某人的... / 使某人失去...:mock-unseen-mt65-paper4-reviewed"],
     ["preprogrammed commands", "phrase:noun:預設指令 / 預先編程的指令:mock-unseen-mt65-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["bike-sharing program", "phrase:noun:共享單車計劃:mock-unseen-mt22-paper3-reviewed"],
+    ["newspaper clippings", "phrase:noun:剪報:mock-unseen-mt66-paper4-reviewed"],
+    ["clambering onto", "phrase:verb:吃力地爬上 / 費力登上:mock-unseen-mt66-paper4-reviewed"],
+    ["overwhelmingly", "word:adverb:壓倒性地 / 極其:mock-unseen-mt66-paper4-reviewed"],
+    ["great value for money", "phrase:noun:很高性價比 / 很划算:mock-unseen-mt66-paper4-reviewed"],
+    ["raring to go", "phrase:adjective:迫不及待想開始 / 精神奕奕準備好:mock-unseen-mt66-paper4-reviewed"],
+    ["create a buzz", "phrase:verb:製造話題 / 引起熱議:mock-unseen-mt66-paper4-reviewed"],
+    ["on a trial basis", "phrase:adverb:以試行方式 / 試驗性地:mock-unseen-mt66-paper4-reviewed"],
+    ["cutting into", "phrase:verb:佔用 / 削減:mock-unseen-mt66-paper4-reviewed"],
+    ["bike-friendly", "phrase:adjective:方便踩單車的 / 適合單車使用的:mock-unseen-mt66-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
