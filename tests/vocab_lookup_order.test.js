@@ -183,6 +183,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt57-paper4-reviewed",
     "mock-unseen-mt59-paper4-reviewed",
     "mock-unseen-mt60-paper4-reviewed",
+    "mock-unseen-mt62-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -11852,6 +11853,21 @@ function assertStudentLookupContract(word, matches) {
   {
     const entries = await lookupForStudent("underwater");
     assert.ok(entries.some((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}` === "word:adjective:負資產的 / 資產價值低於貸款的:mock-unseen-mt60-paper4-reviewed"), "underwater should include the MT60 property-price sense");
+  }
+
+  for (const [word, expected] of [
+    ["wildlife-friendly", "word:adjective:有利野生動物的 / 適合野生動物的:mock-unseen-mt62-paper4-reviewed"],
+    ["stumbled on", "phrase:verb:偶然發現 / 意外找到:mock-unseen-mt62-paper4-reviewed"],
+    ["space is at a premium", "phrase:adjective:空間非常珍貴 / 地方很有限:mock-unseen-mt62-paper4-reviewed"],
+    ["golden coin turtles", "phrase:noun:金錢龜:mock-unseen-mt62-paper4-reviewed"],
+    ["bird feeders", "phrase:noun:餵鳥器 / 鳥類餵食器:mock-unseen-mt62-paper4-reviewed"],
+    ["flyways", "word:noun:候鳥遷徙路線 / 飛行通道:mock-unseen-mt62-paper4-reviewed"],
+    ["stopping off point", "phrase:noun:中途停留點:mock-unseen-mt62-paper4-reviewed"],
+    ["pollinating", "word:verb:授粉:mock-unseen-mt62-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
   }
 
   for (const [word, expected] of [
