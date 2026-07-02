@@ -180,6 +180,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt50-paper4-reviewed",
     "mock-unseen-mt51-paper4-reviewed",
     "mock-unseen-mt56-paper4-reviewed",
+    "mock-unseen-mt57-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -11796,6 +11797,21 @@ function assertStudentLookupContract(word, matches) {
     ["macarons", "word:noun:馬卡龍:mock-unseen-mt56-paper4-reviewed"],
     ["red bean buns", "phrase:noun:紅豆包:mock-unseen-mt56-paper4-reviewed"],
     ["from memory", "phrase:adverb:憑記憶 / 不看資料地:mock-unseen-mt56-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["sports camps", "phrase:noun:運動夏令營 / 運動營:mock-unseen-mt57-paper4-reviewed"],
+    ["surge of adrenaline", "phrase:noun:一陣興奮 / 腎上腺素急升:mock-unseen-mt57-paper4-reviewed"],
+    ["set sail", "phrase:verb:啟航 / 揚帆出發:mock-unseen-mt57-paper4-reviewed"],
+    ["immerse themselves in", "phrase:verb:沉浸於 / 全心投入於:mock-unseen-mt57-paper4-reviewed"],
+    ["track and field", "phrase:noun:田徑:mock-unseen-mt57-paper4-reviewed"],
+    ["stay in shape", "phrase:verb:保持身形 / 保持健康狀態:mock-unseen-mt57-paper4-reviewed"],
+    ["narrow down", "phrase:verb:縮小範圍 / 篩選:mock-unseen-mt57-paper4-reviewed"],
+    ["side lines", "word:noun:場邊線 / 球場邊:mock-unseen-mt57-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
