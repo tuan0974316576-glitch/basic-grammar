@@ -165,6 +165,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt14-paper3-reviewed",
     "mock-unseen-mt15-paper3-reviewed",
     "mock-unseen-mt62-paper3-reviewed",
+    "mock-unseen-mt64-paper3-reviewed",
     "mock-unseen-mt37-paper3-reviewed",
     "mock-unseen-mt40-paper3-reviewed",
     "mock-unseen-mt44-paper3-reviewed",
@@ -6183,7 +6184,8 @@ function assertStudentLookupContract(word, matches) {
     (await lookupForStudent("medium")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "adjective:中等的:curated-sense-bank",
-      "noun:媒介 / 媒體:curated-sense-bank"
+      "noun:媒介 / 媒體:curated-sense-bank",
+      "noun:藝術媒介 / 材料:mock-unseen-mt64-paper3-reviewed"
     ]
   );
 
@@ -11527,6 +11529,20 @@ function assertStudentLookupContract(word, matches) {
     ["cutting corners", "phrase:verb:偷工減料 / 走捷徑:mock-unseen-mt62-paper3-reviewed"],
     ["toxic chemicals", "phrase:noun:有毒化學物:mock-unseen-mt62-paper3-reviewed"],
     ["put on a brave face", "phrase:verb:強顏歡笑 / 故作堅強:mock-unseen-mt62-paper3-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["dance crew", "phrase:noun:舞蹈隊 / 舞團:mock-unseen-mt64-paper3-reviewed"],
+    ["choreography", "word:noun:編舞 / 舞步編排:mock-unseen-mt64-paper3-reviewed"],
+    ["battle it out", "phrase:verb:一決高下 / 分出勝負:mock-unseen-mt64-paper3-reviewed"],
+    ["breakdancing", "word:noun:霹靂舞:mock-unseen-mt64-paper3-reviewed"],
+    ["tri-fold posterboard", "phrase:noun:三摺展示板:mock-unseen-mt64-paper3-reviewed"],
+    ["biodegrading", "word:verb:生物分解:mock-unseen-mt64-paper3-reviewed"],
+    ["scientific illustrator", "phrase:noun:科學插畫師:mock-unseen-mt64-paper3-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);

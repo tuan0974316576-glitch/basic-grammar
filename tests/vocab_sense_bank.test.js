@@ -138,6 +138,8 @@ const mt15Paper3Entries = senseBank.entries.filter((entry) => entry.source === "
 assert.ok(mt15Paper3Entries.length >= 24, `Expected MT15 Paper 3 reviewed entries, got ${mt15Paper3Entries.length}`);
 const mt62Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt62-paper3-reviewed");
 assert.ok(mt62Paper3Entries.length >= 55, `Expected MT62 Paper 3 reviewed entries, got ${mt62Paper3Entries.length}`);
+const mt64Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt64-paper3-reviewed");
+assert.ok(mt64Paper3Entries.length >= 65, `Expected MT64 Paper 3 reviewed entries, got ${mt64Paper3Entries.length}`);
 const mt37Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt37-paper3-reviewed");
 assert.ok(mt37Paper3Entries.length >= 29, `Expected MT37 Paper 3 reviewed entries, got ${mt37Paper3Entries.length}`);
 const mt40Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt40-paper3-reviewed");
@@ -8792,6 +8794,26 @@ mt62Paper3ReviewedExpectations.forEach(([word, pos, meaning]) => {
     candidate.pos === pos && candidate.meaning === meaning
   ));
   assert.ok(entry, `${word} should include MT62 Paper 3 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt64Paper3ReviewedExpectations = [
+  ["dance crew", "noun", "舞蹈隊 / 舞團"],
+  ["routine", "noun", "舞蹈套路 / 表演編排"],
+  ["choreography", "noun", "編舞 / 舞步編排"],
+  ["battle it out", "verb", "一決高下 / 分出勝負"],
+  ["breakdancing", "noun", "霹靂舞"],
+  ["freezes", "noun", "定格動作"],
+  ["afforded", "verb", "提供 / 給予"],
+  ["biodegrade", "verb", "生物分解"],
+  ["isolate", "verb", "分離 / 提取"],
+  ["two sides of the same coin", "noun", "同一件事的兩面 / 關係密切的兩方面"]
+];
+
+mt64Paper3ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT64 Paper 3 reviewed sense ${pos}:${meaning}`);
 });
 
 const mt55Paper3ReviewedExpectations = [
