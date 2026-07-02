@@ -182,6 +182,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt56-paper4-reviewed",
     "mock-unseen-mt57-paper4-reviewed",
     "mock-unseen-mt59-paper4-reviewed",
+    "mock-unseen-mt60-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -11832,6 +11833,25 @@ function assertStudentLookupContract(word, matches) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
     assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["priced out", "phrase:adjective:因價格太高而買不起的:mock-unseen-mt60-paper4-reviewed"],
+    ["in real terms", "phrase:adverb:按實質計算 / 扣除通脹後:mock-unseen-mt60-paper4-reviewed"],
+    ["financial downturns", "phrase:noun:金融低迷 / 經濟下滑:mock-unseen-mt60-paper4-reviewed"],
+    ["outstripping", "word:verb:超過 / 超越:mock-unseen-mt60-paper4-reviewed"],
+    ["property ladder", "phrase:noun:置業階梯:mock-unseen-mt60-paper4-reviewed"],
+    ["at a moment's notice", "phrase:adverb:在極短通知下 / 隨時:mock-unseen-mt60-paper4-reviewed"],
+    ["taken out a mortgage", "phrase:verb:申請按揭 / 承造按揭:mock-unseen-mt60-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  {
+    const entries = await lookupForStudent("underwater");
+    assert.ok(entries.some((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}` === "word:adjective:負資產的 / 資產價值低於貸款的:mock-unseen-mt60-paper4-reviewed"), "underwater should include the MT60 property-price sense");
   }
 
   for (const [word, expected] of [

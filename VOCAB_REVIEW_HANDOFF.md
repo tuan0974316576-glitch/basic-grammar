@@ -40,19 +40,19 @@ Latest verified progress:
 | Paper 1 | 84 | 24 | 60 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
-| Paper 4 | 72 | 18 | 54 |
-| Total | 314 | 200 | 114 |
+| Paper 4 | 72 | 19 | 53 |
+| Total | 314 | 201 | 113 |
 
 Most recent completed paper:
 
-- `MT59 Paper 4`
-- Source tag: `mock-unseen-mt59-paper4-reviewed`
-- Added 28 reviewed entries, including plant-based meat / in a short space of time / wonder of wonders / delve deeper / genetically engineer / ethical grounds / reach a consensus / cut out
+- `MT60 Paper 4`
+- Source tag: `mock-unseen-mt60-paper4-reviewed`
+- Added 31 reviewed entries, including priced out / housing market / in real terms / financial downturn / home ownership / property ladder / underwater / take out a mortgage
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely item:
 
-- Paper 3 is complete. `MT52` has no Paper 4 file in the current download set, and `MT56` / `MT57` / `MT59 Paper 4` are complete. Continue with the next available missing Paper 4 item, likely `MT60 Paper 4`, or continue remaining Paper 1 items from the review log.
+- Paper 3 is complete. `MT52` has no Paper 4 file in the current download set, and `MT56` / `MT57` / `MT59` / `MT60 Paper 4` are complete. Continue with the next available missing Paper 4 item, likely `MT62 Paper 4`, or continue remaining Paper 1 items from the review log.
 - Use the `.docx` student and teacher files first. If `textutil` extraction is poor, compare with PDF extraction.
 
 ## Normal Workflow For One Paper
