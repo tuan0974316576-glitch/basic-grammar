@@ -39,20 +39,20 @@ Latest verified progress:
 |---|---:|---:|---:|
 | Paper 1 | 84 | 24 | 60 |
 | Paper 2 | 81 | 81 | 0 |
-| Paper 3 | 77 | 69 | 8 |
+| Paper 3 | 77 | 70 | 7 |
 | Paper 4 | 72 | 0 | 72 |
-| Total | 314 | 174 | 140 |
+| Total | 314 | 175 | 139 |
 
 Most recent completed paper:
 
-- `MT76 Paper 3`
-- Source tag: `mock-unseen-mt76-paper3-reviewed`
-- Added 87 reviewed entries, including underwater rugby / sepak takraw / male-dominated / hot-air balloon / in the clear / smooth things over / scale the Seven Summits / join forces / once-in-a-lifetime opportunity
+- `MT68 Paper 3`
+- Source tag: `mock-unseen-mt68-paper3-reviewed`
+- Added 50 reviewed entries, including state of the art / future-proof / on the fence / digital assistant / corporate team-building / preliminary round / put someone off / downright hostile / sail through / open up the floodgates
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely Paper 3 item:
 
-- Next missing Paper 3 item found by the current find workflow, likely `MT78 Paper 3` if the file exists locally
+- Next missing Paper 3 item found by the current find workflow is likely `MT75 Paper 3`
 - Use the `.docx` student and teacher files first. If `textutil` extraction is poor, compare with PDF extraction.
 
 ## Normal Workflow For One Paper

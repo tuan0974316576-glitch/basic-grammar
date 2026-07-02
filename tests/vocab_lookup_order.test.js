@@ -164,6 +164,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt13-paper3-reviewed",
     "mock-unseen-mt14-paper3-reviewed",
     "mock-unseen-mt15-paper3-reviewed",
+    "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt62-paper3-reviewed",
     "mock-unseen-mt64-paper3-reviewed",
     "mock-unseen-mt67-paper3-reviewed",
@@ -11528,6 +11529,20 @@ function assertStudentLookupContract(word, matches) {
     ["meet up in person", "phrase:verb:見面 / 相約見面:mock-unseen-mt15-paper3-reviewed"],
     ["feel spied on", "phrase:verb:感到被監視:mock-unseen-mt15-paper3-reviewed"],
     ["not in the same league as", "phrase:preposition:不能與...相比 / 不及...:mock-unseen-mt15-paper3-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["state of the art", "phrase:adjective:最先進的 / 最新式的:mock-unseen-mt68-paper3-reviewed"],
+    ["future proof", "phrase:adjective:面向未來的 / 不易過時的:mock-unseen-mt68-paper3-reviewed"],
+    ["on the fence", "phrase:adjective:猶豫不決的 / 未決定的:mock-unseen-mt68-paper3-reviewed"],
+    ["digital assistants", "phrase:noun:數碼助理 / 智能助理:mock-unseen-mt68-paper3-reviewed"],
+    ["preliminary rounds", "phrase:noun:初賽 / 預賽:mock-unseen-mt68-paper3-reviewed"],
+    ["put me off", "phrase:verb:使某人反感 / 使某人失去興趣:mock-unseen-mt68-paper3-reviewed"],
+    ["opened up the floodgates", "phrase:verb:引發大量... / 令大量事情湧現:mock-unseen-mt68-paper3-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
