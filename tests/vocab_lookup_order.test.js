@@ -167,6 +167,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
+    "mock-unseen-mt82-paper3-reviewed",
     "mock-unseen-mt62-paper3-reviewed",
     "mock-unseen-mt64-paper3-reviewed",
     "mock-unseen-mt67-paper3-reviewed",
@@ -11673,6 +11674,19 @@ function assertStudentLookupContract(word, matches) {
     ["dialling up to eleven", "phrase:verb:把...推到極致 / 大幅加強:mock-unseen-mt79-paper3-reviewed"],
     ["have a lot on my plate", "phrase:verb:有很多事情要處理 / 十分忙碌:mock-unseen-mt79-paper3-reviewed"],
     ["teacher-student ratio", "phrase:noun:師生比例:mock-unseen-mt79-paper3-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["career counselor", "phrase:noun:職業輔導員 / 就業輔導員:mock-unseen-mt82-paper3-reviewed"],
+    ["roles started drying up", "phrase:verb:枯竭 / 逐漸消失:mock-unseen-mt82-paper3-reviewed"],
+    ["STEM fields", "word:noun:STEM 學科 / 科學、科技、工程和數學:mock-unseen-mt82-paper3-reviewed"],
+    ["not all recruitment agencies are created equal", "phrase:adjective:並非全都一樣好 / 質素有高低:mock-unseen-mt82-paper3-reviewed"],
+    ["money-back guarantee", "phrase:noun:退款保證:mock-unseen-mt82-paper3-reviewed"],
+    ["set a few things straight", "phrase:verb:澄清事實 / 糾正誤解:mock-unseen-mt82-paper3-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
