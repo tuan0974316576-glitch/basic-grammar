@@ -165,6 +165,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt14-paper3-reviewed",
     "mock-unseen-mt15-paper3-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
+    "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt62-paper3-reviewed",
     "mock-unseen-mt64-paper3-reviewed",
     "mock-unseen-mt67-paper3-reviewed",
@@ -11645,6 +11646,19 @@ function assertStudentLookupContract(word, matches) {
     ["fast-track entry", "phrase:noun:快速入場 / 優先入場:mock-unseen-mt74-paper3-reviewed"],
     ["hit a snag", "phrase:verb:遇到阻滯 / 碰上問題:mock-unseen-mt74-paper3-reviewed"],
     ["under your belt", "phrase:adjective:已取得的 / 已完成的:mock-unseen-mt74-paper3-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["cliff hanger", "word:noun:吊胃口的結尾 / 懸念結尾:mock-unseen-mt75-paper3-reviewed"],
+    ["on the edge of your seat", "phrase:verb:令某人緊張期待 / 令某人看得入神:mock-unseen-mt75-paper3-reviewed"],
+    ["street sleepers", "phrase:noun:露宿者:mock-unseen-mt75-paper3-reviewed"],
+    ["PTSD", "word:noun:創傷後壓力症:mock-unseen-mt75-paper3-reviewed"],
+    ["job shadowing", "phrase:noun:工作影子體驗 / 跟隨觀察工作:mock-unseen-mt75-paper3-reviewed"],
+    ["fall behind on bills", "phrase:verb:拖欠帳單 / 付不起帳單:mock-unseen-mt75-paper3-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
