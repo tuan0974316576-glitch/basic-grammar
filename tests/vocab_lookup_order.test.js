@@ -170,6 +170,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt47-paper3-reviewed",
     "mock-unseen-mt51-paper3-reviewed",
     "mock-unseen-mt54-paper3-reviewed",
+    "mock-unseen-mt55-paper3-reviewed",
     "mock-unseen-mt57-paper3-reviewed",
     "mock-unseen-mt58-paper3-reviewed",
     "mock-unseen-mt61-paper3-reviewed",
@@ -11509,6 +11510,17 @@ function assertStudentLookupContract(word, matches) {
     ["meet up in person", "phrase:verb:見面 / 相約見面:mock-unseen-mt15-paper3-reviewed"],
     ["feel spied on", "phrase:verb:感到被監視:mock-unseen-mt15-paper3-reviewed"],
     ["not in the same league as", "phrase:preposition:不能與...相比 / 不及...:mock-unseen-mt15-paper3-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["recipe for disaster", "phrase:noun:災難的導火線 / 必定出事的情況:mock-unseen-mt55-paper3-reviewed"],
+    ["touch upon", "phrase:verb:簡略談及 / 提到:mock-unseen-mt55-paper3-reviewed"],
+    ["screen acting", "phrase:noun:影視表演 / 鏡頭表演:mock-unseen-mt55-paper3-reviewed"],
+    ["turn the first sod", "phrase:verb:動土 / 鏟起第一鏟泥:mock-unseen-mt55-paper3-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);

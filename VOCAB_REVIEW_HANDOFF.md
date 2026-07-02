@@ -39,20 +39,20 @@ Latest verified progress:
 |---|---:|---:|---:|
 | Paper 1 | 84 | 24 | 60 |
 | Paper 2 | 81 | 81 | 0 |
-| Paper 3 | 77 | 59 | 18 |
+| Paper 3 | 77 | 60 | 17 |
 | Paper 4 | 72 | 0 | 72 |
-| Total | 314 | 164 | 150 |
+| Total | 314 | 165 | 149 |
 
 Most recent completed paper:
 
-- `MT65 Paper 3`
-- Source tag: `mock-unseen-mt65-paper3-reviewed`
-- Added 70 reviewed entries, including gluten intolerant / novelty cheque / cold case / forensic technology / amateur sleuth / sense of closure
+- `MT55 Paper 3`
+- Source tag: `mock-unseen-mt55-paper3-reviewed`
+- Added 57 reviewed entries, including recipe for disaster / touch upon / screen acting / Latin percussion / fire inspection / turn the first sod
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely Paper 3 item:
 
-- Find the next unreviewed Paper 3 file after MT58 with the normal `find` workflow.
+- `MT60 Paper 3`
 - Use the `.docx` student and teacher files first. If `textutil` extraction is poor, compare with PDF extraction.
 
 ## Normal Workflow For One Paper

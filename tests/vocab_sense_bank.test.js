@@ -148,6 +148,8 @@ const mt51Paper3Entries = senseBank.entries.filter((entry) => entry.source === "
 assert.ok(mt51Paper3Entries.length >= 54, `Expected MT51 Paper 3 reviewed entries, got ${mt51Paper3Entries.length}`);
 const mt54Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt54-paper3-reviewed");
 assert.ok(mt54Paper3Entries.length >= 54, `Expected MT54 Paper 3 reviewed entries, got ${mt54Paper3Entries.length}`);
+const mt55Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt55-paper3-reviewed");
+assert.ok(mt55Paper3Entries.length >= 57, `Expected MT55 Paper 3 reviewed entries, got ${mt55Paper3Entries.length}`);
 const mt57Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt57-paper3-reviewed");
 assert.ok(mt57Paper3Entries.length >= 70, `Expected MT57 Paper 3 reviewed entries, got ${mt57Paper3Entries.length}`);
 const mt58Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt58-paper3-reviewed");
@@ -654,7 +656,7 @@ assert.deepStrictEqual(
 assert.strictEqual(senseBank.lookup("take off")[0].overrideTeacher, true);
 assert.deepStrictEqual(
   senseBank.lookup("pick up").map((entry) => `${entry.type}:${entry.meaning}`),
-  ["phrase:拿起 / 撿起", "phrase:接載"]
+  ["phrase:拿起 / 撿起", "phrase:接載", "phrase:學會 / 掌握"]
 );
 assert.strictEqual(senseBank.lookup("pick up")[0].overrideTeacher, true);
 assert.deepStrictEqual(
@@ -8767,6 +8769,20 @@ mt15Paper3ReviewedExpectations.forEach(([word, pos, meaning]) => {
     candidate.pos === pos && candidate.meaning === meaning
   ));
   assert.ok(entry, `${word} should include MT15 Paper 3 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt55Paper3ReviewedExpectations = [
+  ["recipe for disaster", "noun", "災難的導火線 / 必定出事的情況"],
+  ["touch upon", "verb", "簡略談及 / 提到"],
+  ["screen acting", "noun", "影視表演 / 鏡頭表演"],
+  ["turn the first sod", "verb", "動土 / 鏟起第一鏟泥"]
+];
+
+mt55Paper3ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT55 Paper 3 reviewed sense ${pos}:${meaning}`);
 });
 
 const mt37Paper3ReviewedExpectations = [
