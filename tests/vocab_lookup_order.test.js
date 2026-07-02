@@ -191,6 +191,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt67-paper4-reviewed",
     "mock-unseen-mt68-paper4-reviewed",
     "mock-unseen-mt69-paper4-reviewed",
+    "mock-unseen-mt70-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -11995,6 +11996,27 @@ function assertStudentLookupContract(word, matches) {
     assert.ok(entry, `${word} should be available in student lookup`);
     assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
   }
+
+  for (const [word, expected] of [
+    ["dressing down", "phrase:verb:穿便服 / 穿得隨便:mock-unseen-mt70-paper4-reviewed"],
+    ["spent ages", "phrase:verb:花很長時間:mock-unseen-mt70-paper4-reviewed"],
+    ["bring myself to", "phrase:verb:忍心 / 說服自己去做:mock-unseen-mt70-paper4-reviewed"],
+    ["for fear that", "phrase:conjunction:因為擔心 / 以免:mock-unseen-mt70-paper4-reviewed"],
+    ["time will tell", "phrase:verb:時間會證明 / 要等時間告訴我們:mock-unseen-mt70-paper4-reviewed"],
+    ["dress accordingly", "phrase:verb:按情況穿著 / 穿著得體:mock-unseen-mt70-paper4-reviewed"],
+    ["in that respect", "phrase:adverb:在那方面:mock-unseen-mt70-paper4-reviewed"],
+    ["unfashionable", "word:adjective:不時髦的 / 過時的:mock-unseen-mt70-paper4-reviewed"],
+    ["loose fitting", "phrase:adjective:寬鬆的:mock-unseen-mt70-paper4-reviewed"],
+    ["at ease", "phrase:adjective:自在的 / 放鬆的:mock-unseen-mt70-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+  assert.ok(
+    (await lookupForStudent("flattering")).some((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}` === "word:adjective:顯得好看的 / 修飾身形的:mock-unseen-mt70-paper4-reviewed"),
+    "flattering should include MT70 clothing/body-shape sense"
+  );
 
   for (const [word, expected] of [
     ["cajon", "word:noun:木箱鼓:mock-unseen-mt85-paper3-reviewed"],

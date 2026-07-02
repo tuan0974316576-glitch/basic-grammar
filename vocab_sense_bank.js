@@ -30195,6 +30195,24 @@
     ["topic at hand", "noun", "手頭上的議題 / 當前話題", {type:"phrase",level:"C1",overrideTeacher:true,source:"mock-unseen-mt69-paper4-reviewed"}],
     ["base a career on", "verb", "以...作為事業基礎 / 以...發展事業", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt69-paper4-reviewed",aliases:["base a career off","basing a career off","bases a career on","based a career on","basing a career on"]}],
     ["get the respect someone deserves", "verb", "得到應有的尊重", {type:"phrase",level:"C1",overrideTeacher:true,source:"mock-unseen-mt69-paper4-reviewed",display:"get the respect someone deserves",aliases:["get the respect they deserve","gets the respect someone deserves","got the respect someone deserves","getting the respect someone deserves"]}],
+    // Reviewed from Unseen Graded Mock Test F4 MT70 Paper 4: school uniforms, casual clothing, dress codes, self-expression, bullying, and optional uniforms.
+    ["dress down", "verb", "穿便服 / 穿得隨便", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt70-paper4-reviewed",aliases:["dresses down","dressed down","dressing down"]}],
+    ["spend ages", "verb", "花很長時間", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt70-paper4-reviewed",aliases:["spends ages","spent ages","spending ages"]}],
+    ["bring oneself to", "verb", "忍心 / 說服自己去做", {type:"phrase",level:"C1",overrideTeacher:true,source:"mock-unseen-mt70-paper4-reviewed",display:"bring oneself to",aliases:["bring myself to","bring yourself to","bring himself to","bring herself to","brought myself to","bringing myself to"]}],
+    ["overly formal", "adjective", "過於正式的", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt70-paper4-reviewed"}],
+    ["for fear that", "conjunction", "因為擔心 / 以免", {type:"phrase",level:"C1",overrideTeacher:true,source:"mock-unseen-mt70-paper4-reviewed"}],
+    ["time will tell", "verb", "時間會證明 / 要等時間告訴我們", {type:"phrase",level:"C1",overrideTeacher:true,source:"mock-unseen-mt70-paper4-reviewed"}],
+    ["for or against", "adverb", "支持或反對", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt70-paper4-reviewed"}],
+    ["dress accordingly", "verb", "按情況穿著 / 穿著得體", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt70-paper4-reviewed",aliases:["dresses accordingly","dressed accordingly","dressing accordingly"]}],
+    ["in that respect", "adverb", "在那方面", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt70-paper4-reviewed"}],
+    ["unfashionable", "adjective", "不時髦的 / 過時的", {level:"B2",overrideTeacher:true,source:"mock-unseen-mt70-paper4-reviewed"}],
+    ["flattering", "adjective", "顯得好看的 / 修飾身形的", {level:"C1",overrideTeacher:true,source:"mock-unseen-mt70-paper4-reviewed"}],
+    ["tease", "verb", "取笑 / 嘲弄", {level:"B1",overrideTeacher:true,source:"mock-unseen-mt70-paper4-reviewed",aliases:["teases","teased","teasing"]}],
+    ["go right ahead", "verb", "儘管去做 / 請便", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt70-paper4-reviewed"}],
+    ["loose-fitting", "adjective", "寬鬆的", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt70-paper4-reviewed",aliases:["loose fitting"]}],
+    ["pick out", "verb", "挑選 / 選出", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt70-paper4-reviewed",aliases:["picks out","picked out","picking out"]}],
+    ["at ease", "adjective", "自在的 / 放鬆的", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt70-paper4-reviewed"}],
+    ["fashion addict", "noun", "時裝迷 / 愛買衫的人", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt70-paper4-reviewed",aliases:["fashion addicts"]}],
   ];
 
   function normalizeVerbTableMeaning(value) {
