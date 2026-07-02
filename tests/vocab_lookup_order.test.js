@@ -164,6 +164,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt13-paper3-reviewed",
     "mock-unseen-mt14-paper3-reviewed",
     "mock-unseen-mt15-paper3-reviewed",
+    "mock-unseen-mt15-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -11536,6 +11537,19 @@ function assertStudentLookupContract(word, matches) {
     ["meet up in person", "phrase:verb:見面 / 相約見面:mock-unseen-mt15-paper3-reviewed"],
     ["feel spied on", "phrase:verb:感到被監視:mock-unseen-mt15-paper3-reviewed"],
     ["not in the same league as", "phrase:preposition:不能與...相比 / 不及...:mock-unseen-mt15-paper3-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["mobile zoo", "phrase:noun:流動動物園:mock-unseen-mt15-paper4-reviewed"],
+    ["raise spirits", "phrase:verb:令人振奮 / 鼓舞情緒:mock-unseen-mt15-paper4-reviewed"],
+    ["bottle up their feelings", "phrase:verb:把感受埋藏心底 / 壓抑感受:mock-unseen-mt15-paper4-reviewed"],
+    ["animal cruelty", "phrase:noun:虐待動物 / 動物殘酷對待:mock-unseen-mt15-paper4-reviewed"],
+    ["Typhoon Haiyan", "phrase:noun:海燕颱風:mock-unseen-mt15-paper4-reviewed"],
+    ["birth certificates", "phrase:noun:出生證明書:mock-unseen-mt15-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
