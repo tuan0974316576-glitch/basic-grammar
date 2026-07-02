@@ -30173,6 +30173,28 @@
     ["cram into", "verb", "塞進 / 擠進", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt68-paper4-reviewed",aliases:["crams into","crammed into","cramming into"]}],
     ["compulsory subject", "noun", "必修科目", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt68-paper4-reviewed",aliases:["compulsory subjects"]}],
     ["there is still a place for", "verb", "仍然有存在價值 / 仍然有用武之地", {type:"phrase",level:"C1",overrideTeacher:true,source:"mock-unseen-mt68-paper4-reviewed",aliases:["there's still a place for","still a place for"]}],
+    // Reviewed from Unseen Graded Mock Test F5 MT69 Paper 4: life skills, core/elective subjects, adult independence, domestic tasks, and financial literacy.
+    ["core subject", "noun", "核心科目 / 必修主科", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt69-paper4-reviewed",aliases:["core subjects"]}],
+    ["academic focus", "noun", "學術重點 / 重視學業", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt69-paper4-reviewed"}],
+    ["live on one's own", "verb", "獨自生活 / 自己生活", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt69-paper4-reviewed",display:"live on one's own",aliases:["living on my own","live on my own","living on your own","live on your own","lived on my own","lives on his own","living on her own"]}],
+    ["do laundry", "verb", "洗衣服", {type:"phrase",level:"A2",overrideTeacher:true,source:"mock-unseen-mt69-paper4-reviewed",aliases:["does laundry","did laundry","doing laundry"]}],
+    ["pay bills", "verb", "繳付帳單", {type:"phrase",level:"A2",overrideTeacher:true,source:"mock-unseen-mt69-paper4-reviewed",aliases:["pay a bill","pays bills","paid bills","paying bills"]}],
+    ["leave someone out in the cold", "verb", "冷落某人 / 讓某人得不到幫助", {type:"phrase",level:"C1",overrideTeacher:true,source:"mock-unseen-mt69-paper4-reviewed",display:"leave someone out in the cold",aliases:["leave Hong Kong students out in the cold","leaves someone out in the cold","left someone out in the cold","leaving someone out in the cold"]}],
+    ["strike a chord", "verb", "引起共鳴", {type:"phrase",level:"C1",overrideTeacher:true,source:"mock-unseen-mt69-paper4-reviewed",aliases:["strikes a chord","struck a chord","striking a chord"]}],
+    ["chores", "noun", "家務 / 雜務", {level:"A2",overrideTeacher:true,source:"mock-unseen-mt69-paper4-reviewed",display:"chores",aliases:["chore"]}],
+    ["relationship skill", "noun", "人際關係技巧", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt69-paper4-reviewed",aliases:["relationship skills"]}],
+    ["stay out of debt", "verb", "避免負債 / 不欠債", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt69-paper4-reviewed",aliases:["stays out of debt","stayed out of debt","staying out of debt"]}],
+    ["be left up to", "verb", "由...負責 / 交由...決定", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt69-paper4-reviewed",aliases:["left up to"]}],
+    ["come away with", "verb", "帶著...離開 / 得到...", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt69-paper4-reviewed",aliases:["comes away with","came away with","coming away with"]}],
+    ["as is the case with", "conjunction", "正如...的情況一樣", {type:"phrase",level:"C1",overrideTeacher:true,source:"mock-unseen-mt69-paper4-reviewed"}],
+    ["gender component", "noun", "性別因素 / 性別成分", {type:"phrase",level:"C1",overrideTeacher:true,source:"mock-unseen-mt69-paper4-reviewed"}],
+    ["in one's best interest", "adjective", "符合某人最大利益的", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt69-paper4-reviewed",display:"in one's best interest",aliases:["in their best interest","in my best interest","in your best interest"]}],
+    ["elective", "noun", "選修科 / 選修課", {level:"B1",overrideTeacher:true,source:"mock-unseen-mt69-paper4-reviewed",aliases:["electives"]}],
+    ["Technology and Living", "noun", "科技與生活科", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt69-paper4-reviewed",display:"Technology and Living",aliases:["technology and living"]}],
+    ["food preparation", "noun", "食物準備 / 烹調準備", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt69-paper4-reviewed"}],
+    ["topic at hand", "noun", "手頭上的議題 / 當前話題", {type:"phrase",level:"C1",overrideTeacher:true,source:"mock-unseen-mt69-paper4-reviewed"}],
+    ["base a career on", "verb", "以...作為事業基礎 / 以...發展事業", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt69-paper4-reviewed",aliases:["base a career off","basing a career off","bases a career on","based a career on","basing a career on"]}],
+    ["get the respect someone deserves", "verb", "得到應有的尊重", {type:"phrase",level:"C1",overrideTeacher:true,source:"mock-unseen-mt69-paper4-reviewed",display:"get the respect someone deserves",aliases:["get the respect they deserve","gets the respect someone deserves","got the respect someone deserves","getting the respect someone deserves"]}],
   ];
 
   function normalizeVerbTableMeaning(value) {

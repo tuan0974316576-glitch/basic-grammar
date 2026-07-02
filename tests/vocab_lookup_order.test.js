@@ -190,6 +190,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt66-paper4-reviewed",
     "mock-unseen-mt67-paper4-reviewed",
     "mock-unseen-mt68-paper4-reviewed",
+    "mock-unseen-mt69-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -11971,6 +11972,24 @@ function assertStudentLookupContract(word, matches) {
     ["isn't getting us anywhere", "phrase:verb:沒有進展 / 沒有結果:mock-unseen-mt68-paper4-reviewed"],
     ["what's at stake", "phrase:noun:利害關係 / 風險所在:mock-unseen-mt68-paper4-reviewed"],
     ["there's still a place for", "phrase:verb:仍然有存在價值 / 仍然有用武之地:mock-unseen-mt68-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["core subjects", "phrase:noun:核心科目 / 必修主科:mock-unseen-mt69-paper4-reviewed"],
+    ["living on my own", "phrase:verb:獨自生活 / 自己生活:mock-unseen-mt69-paper4-reviewed"],
+    ["doing laundry", "phrase:verb:洗衣服:mock-unseen-mt69-paper4-reviewed"],
+    ["paying bills", "phrase:verb:繳付帳單:mock-unseen-mt69-paper4-reviewed"],
+    ["leave Hong Kong students out in the cold", "phrase:verb:冷落某人 / 讓某人得不到幫助:mock-unseen-mt69-paper4-reviewed"],
+    ["struck a chord", "phrase:verb:引起共鳴:mock-unseen-mt69-paper4-reviewed"],
+    ["staying out of debt", "phrase:verb:避免負債 / 不欠債:mock-unseen-mt69-paper4-reviewed"],
+    ["left up to", "phrase:verb:由...負責 / 交由...決定:mock-unseen-mt69-paper4-reviewed"],
+    ["Technology and Living", "phrase:noun:科技與生活科:mock-unseen-mt69-paper4-reviewed"],
+    ["topic at hand", "phrase:noun:手頭上的議題 / 當前話題:mock-unseen-mt69-paper4-reviewed"],
+    ["get the respect they deserve", "phrase:verb:得到應有的尊重:mock-unseen-mt69-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
