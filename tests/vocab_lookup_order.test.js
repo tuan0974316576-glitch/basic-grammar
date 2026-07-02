@@ -176,6 +176,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt38-paper4-reviewed",
     "mock-unseen-mt42-paper4-reviewed",
     "mock-unseen-mt45-paper4-reviewed",
+    "mock-unseen-mt49-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -11731,6 +11732,22 @@ function assertStudentLookupContract(word, matches) {
     ["expand my vocabulary", "phrase:verb:擴闊詞彙量:mock-unseen-mt45-paper4-reviewed"],
     ["assigned reading", "phrase:noun:指定閱讀:mock-unseen-mt45-paper4-reviewed"],
     ["in a matter of seconds", "phrase:adverb:在短短幾秒內:mock-unseen-mt45-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["online teaching", "phrase:noun:網上教學:mock-unseen-mt49-paper4-reviewed"],
+    ["breakout groups", "phrase:noun:分組討論小組:mock-unseen-mt49-paper4-reviewed"],
+    ["freeing up resources", "phrase:verb:騰出資源 / 釋放資源:mock-unseen-mt49-paper4-reviewed"],
+    ["prerecorded", "word:verb:預先錄製:mock-unseen-mt49-paper4-reviewed"],
+    ["re-watched", "word:verb:重看 / 再看一次:mock-unseen-mt49-paper4-reviewed"],
+    ["listened in on", "phrase:verb:旁聽 / 偷聽:mock-unseen-mt49-paper4-reviewed"],
+    ["reliable internet connections", "phrase:noun:可靠的網絡連接:mock-unseen-mt49-paper4-reviewed"],
+    ["on that front", "phrase:adverb:在那方面:mock-unseen-mt49-paper4-reviewed"],
+    ["syllabi", "word:noun:課程大綱 / 考試範圍:mock-unseen-mt49-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
