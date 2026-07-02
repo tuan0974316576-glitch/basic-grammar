@@ -158,6 +158,8 @@ const mt79Paper3Entries = senseBank.entries.filter((entry) => entry.source === "
 assert.ok(mt79Paper3Entries.length >= 66, `Expected MT79 Paper 3 reviewed entries, got ${mt79Paper3Entries.length}`);
 const mt82Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt82-paper3-reviewed");
 assert.ok(mt82Paper3Entries.length >= 63, `Expected MT82 Paper 3 reviewed entries, got ${mt82Paper3Entries.length}`);
+const mt85Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt85-paper3-reviewed");
+assert.ok(mt85Paper3Entries.length >= 51, `Expected MT85 Paper 3 reviewed entries, got ${mt85Paper3Entries.length}`);
 const mt76Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt76-paper3-reviewed");
 assert.ok(mt76Paper3Entries.length >= 87, `Expected MT76 Paper 3 reviewed entries, got ${mt76Paper3Entries.length}`);
 const mt37Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt37-paper3-reviewed");
@@ -8798,6 +8800,23 @@ mt15Paper3ReviewedExpectations.forEach(([word, pos, meaning]) => {
     candidate.pos === pos && candidate.meaning === meaning
   ));
   assert.ok(entry, `${word} should include MT15 Paper 3 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt85Paper3ReviewedExpectations = [
+  ["cajon", "noun", "木箱鼓"],
+  ["stick with it", "verb", "堅持下去 / 不放棄"],
+  ["stick to a budget", "verb", "遵守預算 / 按預算花錢"],
+  ["art jamming", "noun", "自由繪畫活動 / Art jam 活動"],
+  ["chock-full", "adjective", "充滿的 / 滿載的"],
+  ["by their lonesome", "adverb", "獨自一人 / 單獨地"],
+  ["take us up on this offer", "verb", "接受某人的提議 / 接受邀請"]
+];
+
+mt85Paper3ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT85 Paper 3 reviewed sense ${pos}:${meaning}`);
 });
 
 const mt62Paper3ReviewedExpectations = [
