@@ -174,6 +174,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt32-paper4-reviewed",
     "mock-unseen-mt35-paper4-reviewed",
     "mock-unseen-mt38-paper4-reviewed",
+    "mock-unseen-mt42-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -11698,6 +11699,21 @@ function assertStudentLookupContract(word, matches) {
     ["met with resistance", "phrase:verb:遇到阻力 / 遭到反對:mock-unseen-mt38-paper4-reviewed"],
     ["take it easy", "phrase:verb:放鬆 / 別太緊張:mock-unseen-mt38-paper4-reviewed"],
     ["eloquent", "word:adjective:表達流暢有說服力的:mock-unseen-mt38-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["online learning", "phrase:noun:網上學習:mock-unseen-mt42-paper4-reviewed"],
+    ["at the last minute", "phrase:adverb:在最後一刻:mock-unseen-mt42-paper4-reviewed"],
+    ["group chats", "phrase:noun:群組聊天:mock-unseen-mt42-paper4-reviewed"],
+    ["sleeping in", "phrase:verb:睡晚一點 / 睡到較晚:mock-unseen-mt42-paper4-reviewed"],
+    ["point in favor", "phrase:noun:支持某事的理由 / 優點:mock-unseen-mt42-paper4-reviewed"],
+    ["speaking up", "phrase:verb:開口發言 / 說出意見:mock-unseen-mt42-paper4-reviewed"],
+    ["at your own pace", "phrase:adverb:按自己的速度:mock-unseen-mt42-paper4-reviewed"],
+    ["Oxford", "word:noun:牛津 / 牛津大學:mock-unseen-mt42-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
