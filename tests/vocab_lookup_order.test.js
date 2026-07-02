@@ -181,6 +181,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt51-paper4-reviewed",
     "mock-unseen-mt56-paper4-reviewed",
     "mock-unseen-mt57-paper4-reviewed",
+    "mock-unseen-mt59-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -11812,6 +11813,21 @@ function assertStudentLookupContract(word, matches) {
     ["stay in shape", "phrase:verb:保持身形 / 保持健康狀態:mock-unseen-mt57-paper4-reviewed"],
     ["narrow down", "phrase:verb:縮小範圍 / 篩選:mock-unseen-mt57-paper4-reviewed"],
     ["side lines", "word:noun:場邊線 / 球場邊:mock-unseen-mt57-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["wonder of wonders", "phrase:adverb:令人驚訝的是 / 奇蹟般地:mock-unseen-mt59-paper4-reviewed"],
+    ["plastered all over", "phrase:verb:貼滿 / 佈滿:mock-unseen-mt59-paper4-reviewed"],
+    ["delving deeper", "phrase:verb:深入探究 / 進一步了解:mock-unseen-mt59-paper4-reviewed"],
+    ["genetically engineered", "phrase:verb:以基因工程改造:mock-unseen-mt59-paper4-reviewed"],
+    ["plant-based meats", "phrase:noun:植物肉:mock-unseen-mt59-paper4-reviewed"],
+    ["in place of", "phrase:preposition:代替 / 取代:mock-unseen-mt59-paper4-reviewed"],
+    ["ethical grounds", "phrase:noun:道德理由 / 倫理理由:mock-unseen-mt59-paper4-reviewed"],
+    ["cut out meat", "phrase:verb:戒掉 / 停止食用:mock-unseen-mt59-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
