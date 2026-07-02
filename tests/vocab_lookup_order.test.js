@@ -165,6 +165,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt14-paper3-reviewed",
     "mock-unseen-mt15-paper3-reviewed",
     "mock-unseen-mt15-paper4-reviewed",
+    "mock-unseen-mt17-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -11550,6 +11551,19 @@ function assertStudentLookupContract(word, matches) {
     ["animal cruelty", "phrase:noun:虐待動物 / 動物殘酷對待:mock-unseen-mt15-paper4-reviewed"],
     ["Typhoon Haiyan", "phrase:noun:海燕颱風:mock-unseen-mt15-paper4-reviewed"],
     ["birth certificates", "phrase:noun:出生證明書:mock-unseen-mt15-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["cat burglar", "phrase:noun:飛賊 / 靈巧入屋爆竊者:mock-unseen-mt17-paper4-reviewed"],
+    ["online role-playing game", "phrase:noun:網上角色扮演遊戲:mock-unseen-mt17-paper4-reviewed"],
+    ["plot against", "phrase:verb:密謀對付 / 暗中策劃害:mock-unseen-mt17-paper4-reviewed"],
+    ["all signs point to", "phrase:verb:所有跡象都指向 / 顯示:mock-unseen-mt17-paper4-reviewed"],
+    ["graphic violence", "phrase:noun:血腥暴力 / 逼真暴力畫面:mock-unseen-mt17-paper4-reviewed"],
+    ["caught up in", "phrase:adjective:過度投入於 / 深陷於:mock-unseen-mt17-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);

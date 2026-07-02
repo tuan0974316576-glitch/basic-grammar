@@ -40,19 +40,19 @@ Latest verified progress:
 | Paper 1 | 84 | 24 | 60 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
-| Paper 4 | 72 | 1 | 71 |
-| Total | 314 | 183 | 131 |
+| Paper 4 | 72 | 2 | 70 |
+| Total | 314 | 184 | 130 |
 
 Most recent completed paper:
 
-- `MT15 Paper 4`
-- Source tag: `mock-unseen-mt15-paper4-reviewed`
-- Added 32 reviewed entries, including mobile zoo / raise spirits / bottle up feelings / animal cruelty / Typhoon Haiyan / birth certificate
+- `MT17 Paper 4`
+- Source tag: `mock-unseen-mt17-paper4-reviewed`
+- Added 39 reviewed entries, including cat burglar / online role-playing game / plot against / all signs point to / graphic violence / caught up in
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely item:
 
-- Paper 3 is complete. Continue with the next missing Paper 4 item, likely `MT17 Paper 4`, or continue remaining Paper 1 items from the review log.
+- Paper 3 is complete. Continue with the next missing Paper 4 item, likely `MT20 Paper 4`, or continue remaining Paper 1 items from the review log.
 - Use the `.docx` student and teacher files first. If `textutil` extraction is poor, compare with PDF extraction.
 
 ## Normal Workflow For One Paper
