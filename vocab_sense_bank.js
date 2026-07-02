@@ -29550,6 +29550,22 @@
     ["pre-determined", "adjective", "預先決定的", {level:"B2",overrideTeacher:true,source:"mock-unseen-mt17-paper4-reviewed",aliases:["predetermined"]}],
     ["escape real life", "verb", "暫時逃離現實生活", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt17-paper4-reviewed",aliases:["escapes real life","escaped real life","escaping real life"]}],
     ["competitive swimmer", "noun", "競賽泳手 / 競技游泳員", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt17-paper4-reviewed",aliases:["competitive swimmers"]}],
+    ["contents", "noun", "內容物 / 所載內容", {level:"B1",overrideTeacher:true,source:"mock-unseen-mt20-paper4-reviewed"}],
+    ["public participation", "noun", "公眾參與", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt20-paper4-reviewed"}],
+    ["time period", "noun", "時期 / 時段", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt20-paper4-reviewed",aliases:["time periods"]}],
+    ["glass case", "noun", "玻璃展示櫃", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt20-paper4-reviewed",aliases:["glass cases"]}],
+    ["carved", "adjective", "雕刻而成的", {level:"B1",overrideTeacher:true,source:"mock-unseen-mt20-paper4-reviewed"}],
+    ["USB thumb drive", "noun", "USB手指 / USB記憶棒", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt20-paper4-reviewed",display:"USB thumb drive",aliases:["usb thumb drive","thumb drive","usb drive","USB drive"]}],
+    ["television drama", "noun", "電視劇 / 劇集", {type:"phrase",level:"A2",overrideTeacher:true,source:"mock-unseen-mt20-paper4-reviewed",aliases:["television dramas","tv drama","tv dramas"]}],
+    ["brainstorm ideas", "verb", "集思廣益想點子", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt20-paper4-reviewed",aliases:["brainstorms ideas","brainstormed ideas","brainstorming ideas"]}],
+    ["class schedule", "noun", "課堂時間表 / 上課時間表", {type:"phrase",level:"A2",overrideTeacher:true,source:"mock-unseen-mt20-paper4-reviewed",aliases:["class schedules"]}],
+    ["paper form", "noun", "紙本形式", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt20-paper4-reviewed"}],
+    ["tinned", "adjective", "罐頭的", {level:"B1",overrideTeacher:true,source:"mock-unseen-mt20-paper4-reviewed"}],
+    ["fried dace with black beans", "noun", "豆豉鯪魚", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt20-paper4-reviewed"}],
+    ["valid point", "noun", "合理觀點 / 有道理的一點", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt20-paper4-reviewed",aliases:["valid points"]}],
+    ["no objections", "noun", "沒有異議 / 沒有反對", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt20-paper4-reviewed"}],
+    ["commemorate", "verb", "紀念", {level:"B2",overrideTeacher:true,source:"mock-unseen-mt20-paper4-reviewed",aliases:["commemorates","commemorated","commemorating"]}],
+    ["bring something to life", "verb", "令某事物活現眼前 / 變得生動", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt20-paper4-reviewed",display:"bring something to life",aliases:["bringing a time and place to life","bring a time and place to life","brings something to life","brought something to life","bringing something to life"]}],
   ];
 
   function normalizeVerbTableMeaning(value) {

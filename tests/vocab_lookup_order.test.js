@@ -166,6 +166,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt15-paper3-reviewed",
     "mock-unseen-mt15-paper4-reviewed",
     "mock-unseen-mt17-paper4-reviewed",
+    "mock-unseen-mt20-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -11564,6 +11565,19 @@ function assertStudentLookupContract(word, matches) {
     ["all signs point to", "phrase:verb:所有跡象都指向 / 顯示:mock-unseen-mt17-paper4-reviewed"],
     ["graphic violence", "phrase:noun:血腥暴力 / 逼真暴力畫面:mock-unseen-mt17-paper4-reviewed"],
     ["caught up in", "phrase:adjective:過度投入於 / 深陷於:mock-unseen-mt17-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["USB thumb drive", "phrase:noun:USB手指 / USB記憶棒:mock-unseen-mt20-paper4-reviewed"],
+    ["fried dace with black beans", "phrase:noun:豆豉鯪魚:mock-unseen-mt20-paper4-reviewed"],
+    ["paper form", "phrase:noun:紙本形式:mock-unseen-mt20-paper4-reviewed"],
+    ["commemorated", "word:verb:紀念:mock-unseen-mt20-paper4-reviewed"],
+    ["bringing a time and place to life", "phrase:verb:令某事物活現眼前 / 變得生動:mock-unseen-mt20-paper4-reviewed"],
+    ["valid points", "phrase:noun:合理觀點 / 有道理的一點:mock-unseen-mt20-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
