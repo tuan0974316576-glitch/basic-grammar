@@ -29735,6 +29735,23 @@
     ["get nothing done", "verb", "甚麼也做不成", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt35-paper4-reviewed",aliases:["gets nothing done","got nothing done","getting nothing done"]}],
     ["push yourself too hard", "verb", "把自己逼得太緊", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt35-paper4-reviewed",aliases:["push oneself too hard","pushes yourself too hard","pushed yourself too hard","pushing yourself too hard"]}],
     ["happy medium", "noun", "折衷點 / 適中平衡", {type:"phrase",level:"C1",overrideTeacher:true,source:"mock-unseen-mt35-paper4-reviewed"}],
+    ["homework-free", "adjective", "無功課的", {level:"B1",overrideTeacher:true,source:"mock-unseen-mt38-paper4-reviewed",aliases:["home-work free","homework free"]}],
+    ["academic competency", "noun", "學業能力", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt38-paper4-reviewed"}],
+    ["competency", "noun", "能力 / 勝任能力", {level:"B2",overrideTeacher:true,source:"mock-unseen-mt38-paper4-reviewed"}],
+    ["marked improvement", "noun", "明顯進步", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt38-paper4-reviewed"}],
+    ["refreshed", "adjective", "精神恢復的 / 重新有精神的", {level:"B1",overrideTeacher:true,source:"mock-unseen-mt38-paper4-reviewed"}],
+    ["get back to work", "verb", "重新開始工作 / 重新開始學習", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt38-paper4-reviewed",aliases:["gets back to work","got back to work","getting back to work"]}],
+    ["complicate things", "verb", "令事情變複雜", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt38-paper4-reviewed",aliases:["complicates things","complicated things","complicating things"]}],
+    ["in some respects", "adverb", "在某些方面", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt38-paper4-reviewed"}],
+    ["at the very least", "adverb", "至少 / 起碼", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt38-paper4-reviewed"}],
+    ["to some degree", "adverb", "在某程度上", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt38-paper4-reviewed"}],
+    ["do without", "verb", "沒有...也行 / 不用...", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt38-paper4-reviewed",aliases:["does without","did without","doing without"]}],
+    ["meet with resistance", "verb", "遇到阻力 / 遭到反對", {type:"phrase",level:"C1",overrideTeacher:true,source:"mock-unseen-mt38-paper4-reviewed",aliases:["meets with resistance","met with resistance","meeting with resistance"]}],
+    ["take it easy", "verb", "放鬆 / 別太緊張", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt38-paper4-reviewed"}],
+    ["as it is", "adverb", "已經 / 照目前情況", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt38-paper4-reviewed"}],
+    ["essay writing", "noun", "作文 / 寫文章", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt38-paper4-reviewed"}],
+    ["open topic", "noun", "開放式題目", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt38-paper4-reviewed",aliases:["open topics"]}],
+    ["eloquent", "adjective", "表達流暢有說服力的", {level:"C1",overrideTeacher:true,source:"mock-unseen-mt38-paper4-reviewed"}],
   ];
 
   function normalizeVerbTableMeaning(value) {

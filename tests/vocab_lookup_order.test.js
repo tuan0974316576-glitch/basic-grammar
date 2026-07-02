@@ -173,6 +173,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt30-paper4-reviewed",
     "mock-unseen-mt32-paper4-reviewed",
     "mock-unseen-mt35-paper4-reviewed",
+    "mock-unseen-mt38-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -11683,6 +11684,20 @@ function assertStudentLookupContract(word, matches) {
     ["meditation sessions", "phrase:noun:冥想課節 / 冥想時段:mock-unseen-mt35-paper4-reviewed"],
     ["if it were up to us", "phrase:preposition:如果由...決定:mock-unseen-mt35-paper4-reviewed"],
     ["happy medium", "phrase:noun:折衷點 / 適中平衡:mock-unseen-mt35-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["homework free", "word:adjective:無功課的:mock-unseen-mt38-paper4-reviewed"],
+    ["academic competency", "phrase:noun:學業能力:mock-unseen-mt38-paper4-reviewed"],
+    ["in some respects", "phrase:adverb:在某些方面:mock-unseen-mt38-paper4-reviewed"],
+    ["do without", "phrase:verb:沒有...也行 / 不用...:mock-unseen-mt38-paper4-reviewed"],
+    ["met with resistance", "phrase:verb:遇到阻力 / 遭到反對:mock-unseen-mt38-paper4-reviewed"],
+    ["take it easy", "phrase:verb:放鬆 / 別太緊張:mock-unseen-mt38-paper4-reviewed"],
+    ["eloquent", "word:adjective:表達流暢有說服力的:mock-unseen-mt38-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
