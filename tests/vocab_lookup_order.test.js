@@ -184,6 +184,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt59-paper4-reviewed",
     "mock-unseen-mt60-paper4-reviewed",
     "mock-unseen-mt62-paper4-reviewed",
+    "mock-unseen-mt63-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -11864,6 +11865,21 @@ function assertStudentLookupContract(word, matches) {
     ["flyways", "word:noun:候鳥遷徙路線 / 飛行通道:mock-unseen-mt62-paper4-reviewed"],
     ["stopping off point", "phrase:noun:中途停留點:mock-unseen-mt62-paper4-reviewed"],
     ["pollinating", "word:verb:授粉:mock-unseen-mt62-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["personalised nutrition plans", "phrase:noun:個人化營養計劃:mock-unseen-mt63-paper4-reviewed"],
+    ["school meals", "phrase:noun:學校膳食 / 校餐:mock-unseen-mt63-paper4-reviewed"],
+    ["go on a diet", "phrase:verb:節食 / 開始控制飲食:mock-unseen-mt63-paper4-reviewed"],
+    ["bring lunch from home", "phrase:verb:從家中帶午餐:mock-unseen-mt63-paper4-reviewed"],
+    ["animal proteins", "phrase:noun:動物蛋白質:mock-unseen-mt63-paper4-reviewed"],
+    ["varied diet", "phrase:noun:多元化飲食 / 飲食多樣化:mock-unseen-mt63-paper4-reviewed"],
+    ["major food groups", "phrase:noun:主要食物類別:mock-unseen-mt63-paper4-reviewed"],
+    ["the list goes on", "phrase:verb:還有很多 / 例子多不勝數:mock-unseen-mt63-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
