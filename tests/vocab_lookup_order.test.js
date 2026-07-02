@@ -179,6 +179,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt49-paper4-reviewed",
     "mock-unseen-mt50-paper4-reviewed",
     "mock-unseen-mt51-paper4-reviewed",
+    "mock-unseen-mt56-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -1771,7 +1772,8 @@ function assertStudentLookupContract(word, matches) {
       "verb:上升:curated-sense-bank",
       "verb:升起:curated-sense-bank",
       "noun:上升:curated-sense-bank",
-      "noun:增加:curated-sense-bank"
+      "noun:增加:curated-sense-bank",
+      "verb:發酵膨脹:mock-unseen-mt56-paper4-reviewed"
     ]
   );
 
@@ -11781,6 +11783,19 @@ function assertStudentLookupContract(word, matches) {
     ["the ball is in the government's court", "phrase:verb:輪到某人採取行動 / 責任在某人身上:mock-unseen-mt51-paper4-reviewed"],
     ["austerity measures", "phrase:noun:緊縮措施:mock-unseen-mt51-paper4-reviewed"],
     ["domestic violence", "phrase:noun:家庭暴力:mock-unseen-mt51-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["food tourism", "phrase:noun:美食旅遊:mock-unseen-mt56-paper4-reviewed"],
+    ["full-blown", "word:adjective:全面發展的 / 完全形成的:mock-unseen-mt56-paper4-reviewed"],
+    ["keep up with demand", "phrase:verb:應付需求 / 跟上需求:mock-unseen-mt56-paper4-reviewed"],
+    ["macarons", "word:noun:馬卡龍:mock-unseen-mt56-paper4-reviewed"],
+    ["red bean buns", "phrase:noun:紅豆包:mock-unseen-mt56-paper4-reviewed"],
+    ["from memory", "phrase:adverb:憑記憶 / 不看資料地:mock-unseen-mt56-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);

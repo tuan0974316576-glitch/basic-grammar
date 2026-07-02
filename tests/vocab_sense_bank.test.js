@@ -166,6 +166,8 @@ const mt50Paper4Entries = senseBank.entries.filter((entry) => entry.source === "
 assert.ok(mt50Paper4Entries.length >= 23, `Expected MT50 Paper 4 reviewed entries, got ${mt50Paper4Entries.length}`);
 const mt51Paper4Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt51-paper4-reviewed");
 assert.ok(mt51Paper4Entries.length >= 30, `Expected MT51 Paper 4 reviewed entries, got ${mt51Paper4Entries.length}`);
+const mt56Paper4Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt56-paper4-reviewed");
+assert.ok(mt56Paper4Entries.length >= 29, `Expected MT56 Paper 4 reviewed entries, got ${mt56Paper4Entries.length}`);
 const mt68Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt68-paper3-reviewed");
 assert.ok(mt68Paper3Entries.length >= 50, `Expected MT68 Paper 3 reviewed entries, got ${mt68Paper3Entries.length}`);
 const mt62Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt62-paper3-reviewed");
@@ -1269,7 +1271,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("rise").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
-  ["verb:上升:override", "verb:升起:override", "noun:上升:override", "noun:增加:override"]
+  ["verb:上升:override", "verb:升起:override", "noun:上升:override", "noun:增加:override", "verb:發酵膨脹:override"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("sign").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
