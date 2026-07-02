@@ -173,6 +173,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt55-paper3-reviewed",
     "mock-unseen-mt57-paper3-reviewed",
     "mock-unseen-mt58-paper3-reviewed",
+    "mock-unseen-mt60-paper3-reviewed",
     "mock-unseen-mt61-paper3-reviewed",
     "mock-unseen-mt65-paper3-reviewed",
     "mock-unseen-mt30-paper2-reviewed",
@@ -3222,7 +3223,10 @@ function assertStudentLookupContract(word, matches) {
 
   assert.deepStrictEqual(
     (await lookupForStudent("rip off")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
-    ["phrase:verb:敲詐 / 收取過高價錢:mock-unseen-mt48-paper3-reviewed"]
+    [
+      "phrase:verb:敲詐 / 收取過高價錢:mock-unseen-mt48-paper3-reviewed",
+      "phrase:verb:抄襲 / 剽竊:mock-unseen-mt60-paper3-reviewed"
+    ]
   );
 
   assert.deepStrictEqual(
@@ -11521,6 +11525,22 @@ function assertStudentLookupContract(word, matches) {
     ["touch upon", "phrase:verb:簡略談及 / 提到:mock-unseen-mt55-paper3-reviewed"],
     ["screen acting", "phrase:noun:影視表演 / 鏡頭表演:mock-unseen-mt55-paper3-reviewed"],
     ["turn the first sod", "phrase:verb:動土 / 鏟起第一鏟泥:mock-unseen-mt55-paper3-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["coaches", "word:noun:旅遊巴 / 長途巴:mock-unseen-mt60-paper3-reviewed"],
+    ["street art", "phrase:noun:街頭藝術:mock-unseen-mt60-paper3-reviewed"],
+    ["curator", "word:noun:博物館館長 / 策展人:mock-unseen-mt60-paper3-reviewed"],
+    ["record contract", "phrase:noun:唱片合約:mock-unseen-mt60-paper3-reviewed"],
+    ["ratings", "word:noun:收視率:mock-unseen-mt60-paper3-reviewed"],
+    ["resting on their laurels", "phrase:verb:滿足於既有成就 / 固步自封:mock-unseen-mt60-paper3-reviewed"],
+    ["grounds for disqualification", "phrase:noun:取消資格的理由:mock-unseen-mt60-paper3-reviewed"],
+    ["note for note", "phrase:adverb:一個音符不差地:mock-unseen-mt60-paper3-reviewed"],
+    ["take the matter to court", "phrase:verb:將事件告上法庭:mock-unseen-mt60-paper3-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);

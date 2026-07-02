@@ -154,6 +154,8 @@ const mt57Paper3Entries = senseBank.entries.filter((entry) => entry.source === "
 assert.ok(mt57Paper3Entries.length >= 70, `Expected MT57 Paper 3 reviewed entries, got ${mt57Paper3Entries.length}`);
 const mt58Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt58-paper3-reviewed");
 assert.ok(mt58Paper3Entries.length >= 28, `Expected MT58 Paper 3 reviewed entries, got ${mt58Paper3Entries.length}`);
+const mt60Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt60-paper3-reviewed");
+assert.ok(mt60Paper3Entries.length >= 68, `Expected MT60 Paper 3 reviewed entries, got ${mt60Paper3Entries.length}`);
 const mt61Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt61-paper3-reviewed");
 assert.ok(mt61Paper3Entries.length >= 47, `Expected MT61 Paper 3 reviewed entries, got ${mt61Paper3Entries.length}`);
 const mt65Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt65-paper3-reviewed");
@@ -2872,7 +2874,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("settle").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["verb:定居", "verb:解決"]
+  ["verb:定居", "verb:解決", "verb:和解 / 解決爭議"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("severe").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -8783,6 +8785,25 @@ mt55Paper3ReviewedExpectations.forEach(([word, pos, meaning]) => {
     candidate.pos === pos && candidate.meaning === meaning
   ));
   assert.ok(entry, `${word} should include MT55 Paper 3 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt60Paper3ReviewedExpectations = [
+  ["coaches", "noun", "旅遊巴 / 長途巴"],
+  ["street art", "noun", "街頭藝術"],
+  ["curator", "noun", "博物館館長 / 策展人"],
+  ["record contract", "noun", "唱片合約"],
+  ["ratings", "noun", "收視率"],
+  ["resting on their laurels", "verb", "滿足於既有成就 / 固步自封"],
+  ["grounds for disqualification", "noun", "取消資格的理由"],
+  ["ripped off", "verb", "抄襲 / 剽竊"],
+  ["take the matter to court", "verb", "將事件告上法庭"]
+];
+
+mt60Paper3ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT60 Paper 3 reviewed sense ${pos}:${meaning}`);
 });
 
 const mt37Paper3ReviewedExpectations = [
