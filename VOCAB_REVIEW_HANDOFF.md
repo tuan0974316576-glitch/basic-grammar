@@ -40,19 +40,19 @@ Latest verified progress:
 | Paper 1 | 84 | 24 | 60 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
-| Paper 4 | 72 | 14 | 58 |
-| Total | 314 | 196 | 118 |
+| Paper 4 | 72 | 15 | 57 |
+| Total | 314 | 197 | 117 |
 
 Most recent completed paper:
 
-- `MT50 Paper 4`
-- Source tag: `mock-unseen-mt50-paper4-reviewed`
-- Added 23 reviewed entries, including environmental activist / school strike for climate / give up flying / climate action / switch off / greenhouse gas / travel by rail / flight-shaming
+- `MT51 Paper 4`
+- Source tag: `mock-unseen-mt51-paper4-reviewed`
+- Added 30 reviewed entries, including registered street sleeper / McRefugee / coffin home / fall through the net / through no fault of one's own / the ball is in someone's court / financial safety net / austerity measure
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely item:
 
-- Paper 3 is complete. `MT52` has no Paper 4 file in the current download set, so continue with the next available missing Paper 4 item, likely `MT51 Paper 4`, or continue remaining Paper 1 items from the review log.
+- Paper 3 is complete. `MT52` has no Paper 4 file in the current download set, so continue with the next available missing Paper 4 item, likely `MT56 Paper 4`, or continue remaining Paper 1 items from the review log.
 - Use the `.docx` student and teacher files first. If `textutil` extraction is poor, compare with PDF extraction.
 
 ## Normal Workflow For One Paper

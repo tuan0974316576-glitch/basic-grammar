@@ -178,6 +178,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt45-paper4-reviewed",
     "mock-unseen-mt49-paper4-reviewed",
     "mock-unseen-mt50-paper4-reviewed",
+    "mock-unseen-mt51-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -11764,6 +11765,22 @@ function assertStudentLookupContract(word, matches) {
     ["electric buses", "phrase:noun:電動巴士:mock-unseen-mt50-paper4-reviewed"],
     ["traveling by rail", "phrase:verb:乘火車出行 / 坐鐵路交通:mock-unseen-mt50-paper4-reviewed"],
     ["flight shaming", "word:noun:飛行羞恥 / 批評乘飛機行為:mock-unseen-mt50-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["registered street sleepers", "phrase:noun:已登記露宿者:mock-unseen-mt51-paper4-reviewed"],
+    ["paid rent", "phrase:verb:交租:mock-unseen-mt51-paper4-reviewed"],
+    ["released from prison", "phrase:verb:出獄 / 從監獄獲釋:mock-unseen-mt51-paper4-reviewed"],
+    ["McRefugees", "word:noun:麥難民 / 在麥當勞過夜的人:mock-unseen-mt51-paper4-reviewed"],
+    ["coffin homes", "phrase:noun:棺材房:mock-unseen-mt51-paper4-reviewed"],
+    ["through no fault of their own", "phrase:adverb:並非因自己犯錯 / 非因自身過失:mock-unseen-mt51-paper4-reviewed"],
+    ["the ball is in the government's court", "phrase:verb:輪到某人採取行動 / 責任在某人身上:mock-unseen-mt51-paper4-reviewed"],
+    ["austerity measures", "phrase:noun:緊縮措施:mock-unseen-mt51-paper4-reviewed"],
+    ["domestic violence", "phrase:noun:家庭暴力:mock-unseen-mt51-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
