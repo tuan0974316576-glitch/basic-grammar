@@ -170,6 +170,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt22-paper4-reviewed",
     "mock-unseen-mt25-paper4-reviewed",
     "mock-unseen-mt27-paper4-reviewed",
+    "mock-unseen-mt30-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -11629,6 +11630,23 @@ function assertStudentLookupContract(word, matches) {
     ["decision making process", "phrase:noun:決策過程:mock-unseen-mt27-paper4-reviewed"],
     ["hit on all the important points", "phrase:verb:想到 / 提到:mock-unseen-mt27-paper4-reviewed"],
     ["values", "word:noun:價值觀:mock-unseen-mt27-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["junk ships", "phrase:noun:中式帆船 / 戎克船:mock-unseen-mt30-paper4-reviewed"],
+    ["lion dance", "phrase:noun:舞獅:mock-unseen-mt30-paper4-reviewed"],
+    ["city pass", "phrase:noun:城市景點通行證 / 城市旅遊套票:mock-unseen-mt30-paper4-reviewed"],
+    ["make a case for", "phrase:verb:提出理由支持:mock-unseen-mt30-paper4-reviewed"],
+    ["in danger of extinction", "phrase:adjective:有滅絕危險的:mock-unseen-mt30-paper4-reviewed"],
+    ["get off track", "phrase:verb:離題 / 偏離正題:mock-unseen-mt30-paper4-reviewed"],
+    ["juxtaposing", "word:verb:並列對照:mock-unseen-mt30-paper4-reviewed"],
+    ["puttering around", "phrase:verb:慢慢行駛 / 悠閒地移動:mock-unseen-mt30-paper4-reviewed"],
+    ["warm up to", "phrase:verb:開始接受 / 逐漸喜歡:mock-unseen-mt30-paper4-reviewed"],
+    ["in short", "phrase:adverb:簡而言之:mock-unseen-mt30-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
