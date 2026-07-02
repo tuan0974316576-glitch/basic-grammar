@@ -154,6 +154,8 @@ const mt58Paper3Entries = senseBank.entries.filter((entry) => entry.source === "
 assert.ok(mt58Paper3Entries.length >= 28, `Expected MT58 Paper 3 reviewed entries, got ${mt58Paper3Entries.length}`);
 const mt61Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt61-paper3-reviewed");
 assert.ok(mt61Paper3Entries.length >= 47, `Expected MT61 Paper 3 reviewed entries, got ${mt61Paper3Entries.length}`);
+const mt65Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt65-paper3-reviewed");
+assert.ok(mt65Paper3Entries.length >= 70, `Expected MT65 Paper 3 reviewed entries, got ${mt65Paper3Entries.length}`);
 const mt9Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt9-paper2-reviewed");
 assert.ok(mt9Paper2Entries.length >= 42, `Expected MT9 Paper 2 reviewed entries, got ${mt9Paper2Entries.length}`);
 const mt10Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt10-paper2-reviewed");
@@ -2400,7 +2402,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("handle").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["verb:處理 / 應付", "noun:把手 / 手柄", "verb:觸摸 / 操作"]
+  ["verb:處理 / 應付", "noun:把手 / 手柄", "verb:觸摸 / 操作", "noun:網名 / 用戶名稱"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("happen").map((entry) => `${entry.pos}:${entry.meaning}`),

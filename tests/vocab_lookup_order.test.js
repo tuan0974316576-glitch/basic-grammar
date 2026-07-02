@@ -173,6 +173,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt57-paper3-reviewed",
     "mock-unseen-mt58-paper3-reviewed",
     "mock-unseen-mt61-paper3-reviewed",
+    "mock-unseen-mt65-paper3-reviewed",
     "mock-unseen-mt30-paper2-reviewed",
     "mock-unseen-mt32-paper2-reviewed",
     "mock-unseen-mt35-paper2-reviewed",
@@ -663,6 +664,26 @@ function assertStudentLookupContract(word, matches) {
   assert.deepStrictEqual(
     (await lookupForStudent("find my calling")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
     ["find one's calling:phrase:verb:找到使命 / 找到真正適合自己的事:mock-unseen-mt61-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("cold cases")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["cold case:phrase:noun:懸案 / 未偵破案件:mock-unseen-mt65-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("wreaked havoc")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["wreak havoc:phrase:verb:造成嚴重破壞 / 引起混亂:mock-unseen-mt65-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("amateur sleuths")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["amateur sleuth:phrase:noun:業餘偵探 / 業餘查案者:mock-unseen-mt65-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("sense of closure")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["sense of closure:phrase:noun:釋懷感 / 事情終結的感覺:mock-unseen-mt65-paper3-reviewed"]
   );
 
   assert.deepStrictEqual(

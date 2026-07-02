@@ -39,15 +39,15 @@ Latest verified progress:
 |---|---:|---:|---:|
 | Paper 1 | 84 | 24 | 60 |
 | Paper 2 | 81 | 81 | 0 |
-| Paper 3 | 77 | 58 | 19 |
+| Paper 3 | 77 | 59 | 18 |
 | Paper 4 | 72 | 0 | 72 |
-| Total | 314 | 163 | 151 |
+| Total | 314 | 164 | 150 |
 
 Most recent completed paper:
 
-- `MT61 Paper 3`
-- Source tag: `mock-unseen-mt61-paper3-reviewed`
-- Added 47 reviewed entries, including cable TV / cautionary tale / tour de force / record label / trials and tribulations / cross-section
+- `MT65 Paper 3`
+- Source tag: `mock-unseen-mt65-paper3-reviewed`
+- Added 70 reviewed entries, including gluten intolerant / novelty cheque / cold case / forensic technology / amateur sleuth / sense of closure
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely Paper 3 item:
