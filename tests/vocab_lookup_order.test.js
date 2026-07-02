@@ -169,6 +169,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt20-paper4-reviewed",
     "mock-unseen-mt22-paper4-reviewed",
     "mock-unseen-mt25-paper4-reviewed",
+    "mock-unseen-mt27-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -11611,6 +11612,23 @@ function assertStudentLookupContract(word, matches) {
     ["run someone over", "phrase:verb:撞倒 / 輾過:mock-unseen-mt25-paper4-reviewed"],
     ["motion detectors", "phrase:noun:動作偵測器 / 動作感應器:mock-unseen-mt25-paper4-reviewed"],
     ["social media apps", "phrase:noun:社交媒體應用程式:mock-unseen-mt25-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["Black Friday", "phrase:noun:黑色星期五購物節:mock-unseen-mt27-paper4-reviewed"],
+    ["Thanksgiving", "word:noun:感恩節:mock-unseen-mt27-paper4-reviewed"],
+    ["enough is enough", "phrase:noun:夠了 / 不能再忍受了:mock-unseen-mt27-paper4-reviewed"],
+    ["women’s shelter", "phrase:noun:婦女庇護所:mock-unseen-mt27-paper4-reviewed"],
+    ["put their journalism skills to good use", "phrase:verb:善用 / 好好運用:mock-unseen-mt27-paper4-reviewed"],
+    ["give back to", "phrase:verb:回饋 / 報答:mock-unseen-mt27-paper4-reviewed"],
+    ["bought in bulk", "phrase:verb:大量購買 / 批量購買:mock-unseen-mt27-paper4-reviewed"],
+    ["decision making process", "phrase:noun:決策過程:mock-unseen-mt27-paper4-reviewed"],
+    ["hit on all the important points", "phrase:verb:想到 / 提到:mock-unseen-mt27-paper4-reviewed"],
+    ["values", "word:noun:價值觀:mock-unseen-mt27-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
