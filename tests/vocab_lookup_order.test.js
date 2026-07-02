@@ -166,6 +166,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt15-paper3-reviewed",
     "mock-unseen-mt62-paper3-reviewed",
     "mock-unseen-mt64-paper3-reviewed",
+    "mock-unseen-mt67-paper3-reviewed",
     "mock-unseen-mt37-paper3-reviewed",
     "mock-unseen-mt40-paper3-reviewed",
     "mock-unseen-mt44-paper3-reviewed",
@@ -6714,7 +6715,8 @@ function assertStudentLookupContract(word, matches) {
     [
       "verb:覆蓋:curated-sense-bank",
       "verb:包括 / 涉及:curated-sense-bank",
-      "noun:封面:curated-sense-bank"
+      "noun:封面:curated-sense-bank",
+      "noun:翻唱版本:mock-unseen-mt67-paper3-reviewed"
     ]
   );
 
@@ -11543,6 +11545,21 @@ function assertStudentLookupContract(word, matches) {
     ["tri-fold posterboard", "phrase:noun:三摺展示板:mock-unseen-mt64-paper3-reviewed"],
     ["biodegrading", "word:verb:生物分解:mock-unseen-mt64-paper3-reviewed"],
     ["scientific illustrator", "phrase:noun:科學插畫師:mock-unseen-mt64-paper3-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["WWOOFers", "word:noun:參加 WWOOF 有機農場換宿的人:mock-unseen-mt67-paper3-reviewed"],
+    ["control pests", "phrase:verb:控制害蟲 / 防治蟲害:mock-unseen-mt67-paper3-reviewed"],
+    ["a cappella", "phrase:noun:無伴奏合唱 / 阿卡貝拉:mock-unseen-mt67-paper3-reviewed"],
+    ["vocal range", "phrase:noun:音域:mock-unseen-mt67-paper3-reviewed"],
+    ["stay in pitch", "phrase:verb:保持音準:mock-unseen-mt67-paper3-reviewed"],
+    ["barbershop quartets", "phrase:noun:四人無伴奏合唱組:mock-unseen-mt67-paper3-reviewed"],
+    ["went down a rabbit hole", "phrase:verb:越查越深入 / 陷入某個興趣坑:mock-unseen-mt67-paper3-reviewed"],
+    ["won me over", "phrase:verb:打動某人 / 令某人信服:mock-unseen-mt67-paper3-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);

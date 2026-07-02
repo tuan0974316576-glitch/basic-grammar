@@ -140,6 +140,8 @@ const mt62Paper3Entries = senseBank.entries.filter((entry) => entry.source === "
 assert.ok(mt62Paper3Entries.length >= 55, `Expected MT62 Paper 3 reviewed entries, got ${mt62Paper3Entries.length}`);
 const mt64Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt64-paper3-reviewed");
 assert.ok(mt64Paper3Entries.length >= 65, `Expected MT64 Paper 3 reviewed entries, got ${mt64Paper3Entries.length}`);
+const mt67Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt67-paper3-reviewed");
+assert.ok(mt67Paper3Entries.length >= 60, `Expected MT67 Paper 3 reviewed entries, got ${mt67Paper3Entries.length}`);
 const mt37Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt37-paper3-reviewed");
 assert.ok(mt37Paper3Entries.length >= 29, `Expected MT37 Paper 3 reviewed entries, got ${mt37Paper3Entries.length}`);
 const mt40Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt40-paper3-reviewed");
@@ -8814,6 +8816,26 @@ mt64Paper3ReviewedExpectations.forEach(([word, pos, meaning]) => {
     candidate.pos === pos && candidate.meaning === meaning
   ));
   assert.ok(entry, `${word} should include MT64 Paper 3 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt67Paper3ReviewedExpectations = [
+  ["WWOOFers", "noun", "參加 WWOOF 有機農場換宿的人"],
+  ["control pests", "verb", "控制害蟲 / 防治蟲害"],
+  ["local produce", "noun", "本地農產品"],
+  ["a cappella", "noun", "無伴奏合唱 / 阿卡貝拉"],
+  ["vocal range", "noun", "音域"],
+  ["stay in pitch", "verb", "保持音準"],
+  ["barbershop quartets", "noun", "四人無伴奏合唱組"],
+  ["go down a rabbit hole", "verb", "越查越深入 / 陷入某個興趣坑"],
+  ["won me over", "verb", "打動某人 / 令某人信服"],
+  ["at the drop of a hat", "adverb", "立即 / 毫不猶豫地"]
+];
+
+mt67Paper3ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT67 Paper 3 reviewed sense ${pos}:${meaning}`);
 });
 
 const mt55Paper3ReviewedExpectations = [
