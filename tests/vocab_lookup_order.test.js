@@ -177,6 +177,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt42-paper4-reviewed",
     "mock-unseen-mt45-paper4-reviewed",
     "mock-unseen-mt49-paper4-reviewed",
+    "mock-unseen-mt50-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -11748,6 +11749,21 @@ function assertStudentLookupContract(word, matches) {
     ["reliable internet connections", "phrase:noun:可靠的網絡連接:mock-unseen-mt49-paper4-reviewed"],
     ["on that front", "phrase:adverb:在那方面:mock-unseen-mt49-paper4-reviewed"],
     ["syllabi", "word:noun:課程大綱 / 考試範圍:mock-unseen-mt49-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["environmental activists", "phrase:noun:環保活動人士:mock-unseen-mt50-paper4-reviewed"],
+    ["gave up flying", "phrase:verb:放棄乘飛機 / 不再坐飛機:mock-unseen-mt50-paper4-reviewed"],
+    ["reignited", "word:verb:重新燃起 / 重新激發:mock-unseen-mt50-paper4-reviewed"],
+    ["greenhouse gases", "phrase:noun:溫室氣體:mock-unseen-mt50-paper4-reviewed"],
+    ["is responsible for", "phrase:verb:是...的原因 / 對...負責:mock-unseen-mt50-paper4-reviewed"],
+    ["electric buses", "phrase:noun:電動巴士:mock-unseen-mt50-paper4-reviewed"],
+    ["traveling by rail", "phrase:verb:乘火車出行 / 坐鐵路交通:mock-unseen-mt50-paper4-reviewed"],
+    ["flight shaming", "word:noun:飛行羞恥 / 批評乘飛機行為:mock-unseen-mt50-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
