@@ -160,6 +160,8 @@ const mt82Paper3Entries = senseBank.entries.filter((entry) => entry.source === "
 assert.ok(mt82Paper3Entries.length >= 63, `Expected MT82 Paper 3 reviewed entries, got ${mt82Paper3Entries.length}`);
 const mt85Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt85-paper3-reviewed");
 assert.ok(mt85Paper3Entries.length >= 51, `Expected MT85 Paper 3 reviewed entries, got ${mt85Paper3Entries.length}`);
+const mt86Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt86-paper3-reviewed");
+assert.ok(mt86Paper3Entries.length >= 57, `Expected MT86 Paper 3 reviewed entries, got ${mt86Paper3Entries.length}`);
 const mt76Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt76-paper3-reviewed");
 assert.ok(mt76Paper3Entries.length >= 87, `Expected MT76 Paper 3 reviewed entries, got ${mt76Paper3Entries.length}`);
 const mt37Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt37-paper3-reviewed");
@@ -8817,6 +8819,24 @@ mt85Paper3ReviewedExpectations.forEach(([word, pos, meaning]) => {
     candidate.pos === pos && candidate.meaning === meaning
   ));
   assert.ok(entry, `${word} should include MT85 Paper 3 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt86Paper3ReviewedExpectations = [
+  ["astrophotography", "noun", "天文攝影"],
+  ["humanoid robots", "noun", "人形機械人 / 人形機器人"],
+  ["technical jargon", "noun", "專業術語 / 技術行話"],
+  ["Turing Test", "noun", "圖靈測試"],
+  ["ultrasonic sensor", "noun", "超聲波感應器"],
+  ["molecular gastronomy", "noun", "分子料理 / 分子美食學"],
+  ["in furtherance of", "preposition", "為促進 / 為推動"],
+  ["velociraptor", "noun", "迅猛龍"]
+];
+
+mt86Paper3ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT86 Paper 3 reviewed sense ${pos}:${meaning}`);
 });
 
 const mt62Paper3ReviewedExpectations = [

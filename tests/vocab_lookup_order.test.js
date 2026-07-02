@@ -169,6 +169,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt79-paper3-reviewed",
     "mock-unseen-mt82-paper3-reviewed",
     "mock-unseen-mt85-paper3-reviewed",
+    "mock-unseen-mt86-paper3-reviewed",
     "mock-unseen-mt62-paper3-reviewed",
     "mock-unseen-mt64-paper3-reviewed",
     "mock-unseen-mt67-paper3-reviewed",
@@ -11545,6 +11546,20 @@ function assertStudentLookupContract(word, matches) {
     ["art jamming", "phrase:noun:自由繪畫活動 / Art jam 活動:mock-unseen-mt85-paper3-reviewed"],
     ["weeks on end", "phrase:adverb:連續幾個星期:mock-unseen-mt85-paper3-reviewed"],
     ["take us up on this offer", "phrase:verb:接受某人的提議 / 接受邀請:mock-unseen-mt85-paper3-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["astrophotography", "word:noun:天文攝影:mock-unseen-mt86-paper3-reviewed"],
+    ["humanoid robot", "phrase:noun:人形機械人 / 人形機器人:mock-unseen-mt86-paper3-reviewed"],
+    ["paywall", "word:noun:付費牆 / 付費閱讀限制:mock-unseen-mt86-paper3-reviewed"],
+    ["Turing Test", "phrase:noun:圖靈測試:mock-unseen-mt86-paper3-reviewed"],
+    ["ultrasonic sensor", "phrase:noun:超聲波感應器:mock-unseen-mt86-paper3-reviewed"],
+    ["molecular gastronomy", "phrase:noun:分子料理 / 分子美食學:mock-unseen-mt86-paper3-reviewed"],
+    ["in furtherance of", "phrase:preposition:為促進 / 為推動:mock-unseen-mt86-paper3-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
