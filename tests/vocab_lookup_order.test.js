@@ -171,6 +171,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt25-paper4-reviewed",
     "mock-unseen-mt27-paper4-reviewed",
     "mock-unseen-mt30-paper4-reviewed",
+    "mock-unseen-mt32-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -11647,6 +11648,23 @@ function assertStudentLookupContract(word, matches) {
     ["puttering around", "phrase:verb:慢慢行駛 / 悠閒地移動:mock-unseen-mt30-paper4-reviewed"],
     ["warm up to", "phrase:verb:開始接受 / 逐漸喜歡:mock-unseen-mt30-paper4-reviewed"],
     ["in short", "phrase:adverb:簡而言之:mock-unseen-mt30-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["three quarters", "phrase:noun:四分之三:mock-unseen-mt32-paper4-reviewed"],
+    ["i.e.", "word:adverb:即是 / 也就是:mock-unseen-mt32-paper4-reviewed"],
+    ["come out of it", "phrase:verb:從...中得到 / 經歷後變得:mock-unseen-mt32-paper4-reviewed"],
+    ["get back into", "phrase:verb:重新投入 / 重新開始做:mock-unseen-mt32-paper4-reviewed"],
+    ["let's face it", "phrase:adverb:面對現實吧 / 老實說:mock-unseen-mt32-paper4-reviewed"],
+    ["better off", "phrase:adjective:情況較好的 / 最好還是:mock-unseen-mt32-paper4-reviewed"],
+    ["get into university", "phrase:verb:入讀大學 / 考入大學:mock-unseen-mt32-paper4-reviewed"],
+    ["take care of ourselves", "phrase:verb:照顧自己:mock-unseen-mt32-paper4-reviewed"],
+    ["on her own", "phrase:adverb:獨自地 / 靠自己:mock-unseen-mt32-paper4-reviewed"],
+    ["volunteering program", "phrase:noun:義工計劃:mock-unseen-mt32-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
