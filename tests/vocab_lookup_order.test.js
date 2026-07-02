@@ -166,6 +166,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt15-paper3-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
+    "mock-unseen-mt79-paper3-reviewed",
     "mock-unseen-mt62-paper3-reviewed",
     "mock-unseen-mt64-paper3-reviewed",
     "mock-unseen-mt67-paper3-reviewed",
@@ -11659,6 +11660,19 @@ function assertStudentLookupContract(word, matches) {
     ["PTSD", "word:noun:創傷後壓力症:mock-unseen-mt75-paper3-reviewed"],
     ["job shadowing", "phrase:noun:工作影子體驗 / 跟隨觀察工作:mock-unseen-mt75-paper3-reviewed"],
     ["fall behind on bills", "phrase:verb:拖欠帳單 / 付不起帳單:mock-unseen-mt75-paper3-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["smart bins", "phrase:noun:智能垃圾桶:mock-unseen-mt79-paper3-reviewed"],
+    ["outstay our welcome", "phrase:verb:逗留太久而不受歡迎:mock-unseen-mt79-paper3-reviewed"],
+    ["dredged sand", "phrase:noun:挖掘出來的沙:mock-unseen-mt79-paper3-reviewed"],
+    ["dialling up to eleven", "phrase:verb:把...推到極致 / 大幅加強:mock-unseen-mt79-paper3-reviewed"],
+    ["have a lot on my plate", "phrase:verb:有很多事情要處理 / 十分忙碌:mock-unseen-mt79-paper3-reviewed"],
+    ["teacher-student ratio", "phrase:noun:師生比例:mock-unseen-mt79-paper3-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
