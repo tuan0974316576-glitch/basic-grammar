@@ -186,6 +186,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt62-paper4-reviewed",
     "mock-unseen-mt63-paper4-reviewed",
     "mock-unseen-mt64-paper4-reviewed",
+    "mock-unseen-mt65-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -11896,6 +11897,21 @@ function assertStudentLookupContract(word, matches) {
     ["walking billboards", "phrase:noun:流動廣告牌 / 活廣告:mock-unseen-mt64-paper4-reviewed"],
     ["on an ongoing basis", "phrase:adverb:持續地 / 長期地:mock-unseen-mt64-paper4-reviewed"],
     ["educational materials", "phrase:noun:教材 / 教育材料:mock-unseen-mt64-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["AI teaching assistants", "phrase:noun:AI 教學助理:mock-unseen-mt65-paper4-reviewed"],
+    ["unsung heroes", "phrase:noun:無名英雄 / 默默付出的人:mock-unseen-mt65-paper4-reviewed"],
+    ["budget cuts", "phrase:noun:削減預算 / 預算削減:mock-unseen-mt65-paper4-reviewed"],
+    ["adaptive learning software", "phrase:noun:自適應學習軟件:mock-unseen-mt65-paper4-reviewed"],
+    ["free up", "phrase:verb:騰出 / 空出:mock-unseen-mt65-paper4-reviewed"],
+    ["benefit of the doubt", "phrase:verb:姑且相信某人 / 在有疑點時仍給予信任:mock-unseen-mt65-paper4-reviewed"],
+    ["rob people of their jobs", "phrase:verb:奪去某人的... / 使某人失去...:mock-unseen-mt65-paper4-reviewed"],
+    ["preprogrammed commands", "phrase:noun:預設指令 / 預先編程的指令:mock-unseen-mt65-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
