@@ -11637,6 +11637,20 @@ function assertStudentLookupContract(word, matches) {
   }
 
   for (const [word, expected] of [
+    ["underwater rugby", "phrase:noun:水底欖球:mock-unseen-mt76-paper3-reviewed"],
+    ["sepak takraw", "phrase:noun:藤球:mock-unseen-mt76-paper3-reviewed"],
+    ["hot-air balloon", "phrase:noun:熱氣球:mock-unseen-mt76-paper3-reviewed"],
+    ["in the clear", "phrase:adjective:已無嫌疑的 / 脫離麻煩的:mock-unseen-mt76-paper3-reviewed"],
+    ["smooth things over", "phrase:verb:緩和局面 / 化解不滿:mock-unseen-mt76-paper3-reviewed"],
+    ["off-the-beaten-track", "phrase:adjective:人跡罕至的 / 非熱門路線的:mock-unseen-mt37-paper3-reviewed"],
+    ["once-in-a-lifetime opportunity", "phrase:noun:一生一次的機會 / 千載難逢的機會:mock-unseen-mt76-paper3-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
     ["recipe for disaster", "phrase:noun:災難的導火線 / 必定出事的情況:mock-unseen-mt55-paper3-reviewed"],
     ["touch upon", "phrase:verb:簡略談及 / 提到:mock-unseen-mt55-paper3-reviewed"],
     ["screen acting", "phrase:noun:影視表演 / 鏡頭表演:mock-unseen-mt55-paper3-reviewed"],
