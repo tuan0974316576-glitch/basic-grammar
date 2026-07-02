@@ -167,6 +167,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt15-paper4-reviewed",
     "mock-unseen-mt17-paper4-reviewed",
     "mock-unseen-mt20-paper4-reviewed",
+    "mock-unseen-mt22-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -11578,6 +11579,21 @@ function assertStudentLookupContract(word, matches) {
     ["commemorated", "word:verb:紀念:mock-unseen-mt20-paper4-reviewed"],
     ["bringing a time and place to life", "phrase:verb:令某事物活現眼前 / 變得生動:mock-unseen-mt20-paper4-reviewed"],
     ["valid points", "phrase:noun:合理觀點 / 有道理的一點:mock-unseen-mt20-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["life-size", "word:adjective:真人大小的 / 實物大小的:mock-unseen-mt22-paper4-reviewed"],
+    ["inapproachable", "word:adjective:難以接近的 / 難以理解的:mock-unseen-mt22-paper4-reviewed"],
+    ["club funds", "phrase:noun:社團經費 / 會費資金:mock-unseen-mt22-paper4-reviewed"],
+    ["have to do with", "phrase:verb:與...有關:mock-unseen-mt22-paper4-reviewed"],
+    ["shot down", "phrase:verb:否決 / 駁回:mock-unseen-mt22-paper4-reviewed"],
+    ["stuffed animals", "phrase:noun:毛公仔 / 填充玩具:mock-unseen-mt22-paper4-reviewed"],
+    ["pose for photos", "phrase:verb:擺姿勢拍照:mock-unseen-mt22-paper4-reviewed"],
+    ["flier", "word:noun:傳單:mock-unseen-mt22-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
