@@ -39,25 +39,25 @@ Latest verified progress:
 |---|---:|---:|---:|
 | Paper 1 | 84 | 24 | 60 |
 | Paper 2 | 81 | 81 | 0 |
-| Paper 3 | 77 | 55 | 22 |
+| Paper 3 | 77 | 56 | 21 |
 | Paper 4 | 72 | 0 | 72 |
-| Total | 314 | 160 | 154 |
+| Total | 314 | 161 | 153 |
 
 Most recent completed paper:
 
-- `MT54 Paper 3`
-- Source tag: `mock-unseen-mt54-paper3-reviewed`
-- Added 54 reviewed entries, including dry ice / meet-and-greet / screen as 放映 / set dresser / by way of compensation / right up one's alley / at the tender age of / pull off
+- `MT57 Paper 3`
+- Source tag: `mock-unseen-mt57-paper3-reviewed`
+- Added 70 reviewed entries, including animated GIF / watermark as 加水印 / funds clear / intellectual property / IP theft / lock-in contract / go the extra mile / sous chef
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely Paper 3 item:
 
-- `MT57 Paper 3`
+- `MT58 Paper 3`
 - Found files:
-  - `/Users/macbook/Downloads/Unseen Graded Mock Test/F5/Secondary 5 Paper 3 202122/MT57_Paper 3_SE_2022_5.1.docx`
-  - `/Users/macbook/Downloads/Unseen Graded Mock Test/F5/Secondary 5 Paper 3 202122/MT57_Paper 3_SE_2022_5.1.pdf`
-  - `/Users/macbook/Downloads/Unseen Graded Mock Test/F5/Secondary 5 Paper 3 202122/MT57_Paper 3_TE_2022_5.1.docx`
-  - `/Users/macbook/Downloads/Unseen Graded Mock Test/F5/Secondary 5 Paper 3 202122/MT57_Paper 3_TE_2022_5.1.pdf`
+  - `/Users/macbook/Downloads/Unseen Graded Mock Test/F6/Secondary 6 Paper 3 202122/MT58_Paper 3_SE_2022_6.1.docx`
+  - `/Users/macbook/Downloads/Unseen Graded Mock Test/F6/Secondary 6 Paper 3 202122/MT58_Paper 3_SE_2022_6.1.pdf`
+  - `/Users/macbook/Downloads/Unseen Graded Mock Test/F6/Secondary 6 Paper 3 202122/MT58_Paper 3_TE_2022_6.1.docx`
+  - `/Users/macbook/Downloads/Unseen Graded Mock Test/F6/Secondary 6 Paper 3 202122/MT58_Paper 3_TE_2022_6.1.pdf`
 - Use the `.docx` student and teacher files first. If `textutil` extraction is poor, compare with PDF extraction.
 
 ## Normal Workflow For One Paper

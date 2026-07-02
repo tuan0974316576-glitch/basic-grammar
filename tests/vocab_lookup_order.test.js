@@ -170,6 +170,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt47-paper3-reviewed",
     "mock-unseen-mt51-paper3-reviewed",
     "mock-unseen-mt54-paper3-reviewed",
+    "mock-unseen-mt57-paper3-reviewed",
     "mock-unseen-mt30-paper2-reviewed",
     "mock-unseen-mt32-paper2-reviewed",
     "mock-unseen-mt35-paper2-reviewed",
@@ -575,6 +576,46 @@ function assertStudentLookupContract(word, matches) {
   assert.deepStrictEqual(
     (await lookupForStudent("underwater scenes")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
     ["underwater scene:phrase:noun:水底場景 / 水底戲份:mock-unseen-mt54-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("animated gifs")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["animated GIF:phrase:noun:動態 GIF 圖:mock-unseen-mt57-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("funds to clear")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["funds clear:phrase:verb:款項入帳 / 資金結算完成:mock-unseen-mt57-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("IP theft")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["IP theft:phrase:noun:知識產權盜竊 / 盜用創作:mock-unseen-mt57-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("disable right-click")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["disable right-click:phrase:verb:停用右鍵功能:mock-unseen-mt57-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("lock-in contracts")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["lock-in contract:phrase:noun:綁定合約 / 長期綁約:mock-unseen-mt57-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("go the extra mile")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["go the extra mile:phrase:verb:多走一步 / 額外付出:mock-unseen-mt57-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("sous chef")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["sous chef:phrase:noun:副主廚:mock-unseen-mt57-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("junk mail")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["junk mail:phrase:noun:垃圾郵件 / 垃圾宣傳郵件:mock-unseen-mt57-paper3-reviewed"]
   );
 
   assert.deepStrictEqual(
