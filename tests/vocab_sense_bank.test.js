@@ -184,6 +184,8 @@ const mt65Paper4Entries = senseBank.entries.filter((entry) => entry.source === "
 assert.ok(mt65Paper4Entries.length >= 23, `Expected MT65 Paper 4 reviewed entries, got ${mt65Paper4Entries.length}`);
 const mt66Paper4Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt66-paper4-reviewed");
 assert.ok(mt66Paper4Entries.length >= 20, `Expected MT66 Paper 4 reviewed entries, got ${mt66Paper4Entries.length}`);
+const mt67Paper4Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt67-paper4-reviewed");
+assert.ok(mt67Paper4Entries.length >= 19, `Expected MT67 Paper 4 reviewed entries, got ${mt67Paper4Entries.length}`);
 const mt68Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt68-paper3-reviewed");
 assert.ok(mt68Paper3Entries.length >= 50, `Expected MT68 Paper 3 reviewed entries, got ${mt68Paper3Entries.length}`);
 const mt62Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt62-paper3-reviewed");
@@ -1742,7 +1744,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("object").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["noun:物件", "verb:反對"]
+  ["noun:物件", "verb:反對", "noun:目的 / 目標"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("project").map((entry) => `${entry.pos}:${entry.meaning}`),

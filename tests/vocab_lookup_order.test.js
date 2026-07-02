@@ -188,6 +188,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt64-paper4-reviewed",
     "mock-unseen-mt65-paper4-reviewed",
     "mock-unseen-mt66-paper4-reviewed",
+    "mock-unseen-mt67-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -7734,7 +7735,8 @@ function assertStudentLookupContract(word, matches) {
     (await lookupForStudent("object")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "noun:物件:curated-sense-bank",
-      "verb:反對:curated-sense-bank"
+      "verb:反對:curated-sense-bank",
+      "noun:目的 / 目標:mock-unseen-mt67-paper4-reviewed"
     ]
   );
 
@@ -11935,6 +11937,26 @@ function assertStudentLookupContract(word, matches) {
     assert.ok(entry, `${word} should be available in student lookup`);
     assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
   }
+
+  for (const [word, expected] of [
+    ["educational games", "phrase:noun:教育遊戲 / 有教育意義的遊戲:mock-unseen-mt67-paper4-reviewed"],
+    ["has a treat in store", "phrase:verb:有驚喜等著 / 有好東西等著:mock-unseen-mt67-paper4-reviewed"],
+    ["Newton's laws of motion", "phrase:noun:牛頓運動定律:mock-unseen-mt67-paper4-reviewed"],
+    ["3D simulations", "phrase:noun:三維模擬 / 立體模擬:mock-unseen-mt67-paper4-reviewed"],
+    ["along the lines of", "phrase:preposition:類似... / 大概像...:mock-unseen-mt67-paper4-reviewed"],
+    ["playing the part of", "phrase:verb:扮演...的角色:mock-unseen-mt67-paper4-reviewed"],
+    ["natural habitats", "phrase:noun:自然棲息地:mock-unseen-mt67-paper4-reviewed"],
+    ["object of the game", "phrase:noun:遊戲目標 / 遊戲目的:mock-unseen-mt67-paper4-reviewed"],
+    ["chemical reactions", "phrase:noun:化學反應:mock-unseen-mt67-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+  assert.ok(
+    (await lookupForStudent("dry")).some((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}` === "word:adjective:枯燥的 / 乏味的:mock-unseen-mt67-paper4-reviewed"),
+    "dry should include MT67 boring/dull lesson sense"
+  );
 
   for (const [word, expected] of [
     ["cajon", "word:noun:木箱鼓:mock-unseen-mt85-paper3-reviewed"],

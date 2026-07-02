@@ -30133,6 +30133,26 @@
     ["cut into", "verb", "佔用 / 削減", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt66-paper4-reviewed",aliases:["cuts into","cutting into"]}],
     ["trick", "noun", "特技 / 花式動作", {level:"B1",overrideTeacher:true,source:"mock-unseen-mt66-paper4-reviewed",aliases:["tricks"]}],
     ["bike-friendly", "adjective", "方便踩單車的 / 適合單車使用的", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt66-paper4-reviewed"}],
+    // Reviewed from Unseen Graded Mock Test F5 MT67 Paper 4: educational games, simulations, natural history, extinct animals, ecosystems, and school game design.
+    ["educational game", "noun", "教育遊戲 / 有教育意義的遊戲", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt67-paper4-reviewed",aliases:["educational games"]}],
+    ["have a treat in store", "verb", "有驚喜等著 / 有好東西等著", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt67-paper4-reviewed",aliases:["has a treat in store","had a treat in store","having a treat in store"]}],
+    ["no ordinary", "adjective", "非一般的 / 不普通的", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt67-paper4-reviewed"}],
+    ["set someone the challenge of", "verb", "給某人...的挑戰 / 要某人挑戰...", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt67-paper4-reviewed",display:"set someone the challenge of",aliases:["set her students the challenge of","sets someone the challenge of","setting someone the challenge of"]}],
+    ["law", "noun", "定律 / 法則", {level:"B1",overrideTeacher:true,source:"mock-unseen-mt67-paper4-reviewed"}],
+    ["Newton's laws of motion", "noun", "牛頓運動定律", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt67-paper4-reviewed",display:"Newton's laws of motion",aliases:["newton's laws of motion","Newton's law of motion","newton's law of motion","laws of motion","law of motion"]}],
+    ["3-D simulation", "noun", "三維模擬 / 立體模擬", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt67-paper4-reviewed",display:"3-D simulation",aliases:["3-D simulations","3D simulation","3D simulations","three-dimensional simulation","three-dimensional simulations"]}],
+    ["dry", "adjective", "枯燥的 / 乏味的", {level:"B2",overrideTeacher:true,source:"mock-unseen-mt67-paper4-reviewed"}],
+    ["along the lines of", "preposition", "類似... / 大概像...", {type:"phrase",level:"C1",overrideTeacher:true,source:"mock-unseen-mt67-paper4-reviewed"}],
+    ["play the part of", "verb", "扮演...的角色", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt67-paper4-reviewed",aliases:["plays the part of","played the part of","playing the part of"]}],
+    ["be onto something", "verb", "想到有用的點子 / 發現有價值的方向", {type:"phrase",level:"C1",overrideTeacher:true,source:"mock-unseen-mt67-paper4-reviewed",aliases:["am onto something","is onto something","are onto something","was onto something","were onto something","onto something"]}],
+    ["natural habitat", "noun", "自然棲息地", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt67-paper4-reviewed",aliases:["natural habitats"]}],
+    ["mammoth", "noun", "猛獁象 / 長毛象", {level:"B2",overrideTeacher:true,source:"mock-unseen-mt67-paper4-reviewed",aliases:["mammoths"]}],
+    ["object", "noun", "目的 / 目標", {level:"B2",overrideTeacher:true,source:"mock-unseen-mt67-paper4-reviewed"}],
+    ["object of the game", "noun", "遊戲目標 / 遊戲目的", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt67-paper4-reviewed"}],
+    ["for that matter", "adverb", "就此而言 / 說起來", {type:"phrase",level:"C1",overrideTeacher:true,source:"mock-unseen-mt67-paper4-reviewed"}],
+    ["key species", "noun", "關鍵物種", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt67-paper4-reviewed"}],
+    ["multiplayer game", "noun", "多人遊戲", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt67-paper4-reviewed",aliases:["multiplayer games"]}],
+    ["chemical reaction", "noun", "化學反應", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt67-paper4-reviewed",aliases:["chemical reactions"]}],
   ];
 
   function normalizeVerbTableMeaning(value) {
