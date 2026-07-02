@@ -40,19 +40,19 @@ Latest verified progress:
 | Paper 1 | 84 | 24 | 60 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
-| Paper 4 | 72 | 4 | 68 |
-| Total | 314 | 186 | 128 |
+| Paper 4 | 72 | 5 | 67 |
+| Total | 314 | 187 | 127 |
 
 Most recent completed paper:
 
-- `MT22 Paper 4`
-- Source tag: `mock-unseen-mt22-paper4-reviewed`
-- Added 23 reviewed entries, including life-size / club funds / unapproachable / shoot down / take away from / stuffed animal
+- `MT25 Paper 4`
+- Source tag: `mock-unseen-mt25-paper4-reviewed`
+- Added 21 reviewed entries, including real-world game / developer / emergency services / historical trail / get ahead of ourselves / run over / motion detector
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely item:
 
-- Paper 3 is complete. Continue with the next missing Paper 4 item, likely `MT25 Paper 4`, or continue remaining Paper 1 items from the review log.
+- Paper 3 is complete. Continue with the next missing Paper 4 item, likely `MT27 Paper 4`, or continue remaining Paper 1 items from the review log.
 - Use the `.docx` student and teacher files first. If `textutil` extraction is poor, compare with PDF extraction.
 
 ## Normal Workflow For One Paper

@@ -168,6 +168,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt17-paper4-reviewed",
     "mock-unseen-mt20-paper4-reviewed",
     "mock-unseen-mt22-paper4-reviewed",
+    "mock-unseen-mt25-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -11594,6 +11595,22 @@ function assertStudentLookupContract(word, matches) {
     ["stuffed animals", "phrase:noun:毛公仔 / 填充玩具:mock-unseen-mt22-paper4-reviewed"],
     ["pose for photos", "phrase:verb:擺姿勢拍照:mock-unseen-mt22-paper4-reviewed"],
     ["flier", "word:noun:傳單:mock-unseen-mt22-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["real world games", "phrase:noun:現實世界遊戲:mock-unseen-mt25-paper4-reviewed"],
+    ["app developers", "phrase:noun:應用程式開發者:mock-unseen-mt25-paper4-reviewed"],
+    ["pursuing their interest", "phrase:verb:追求興趣 / 發展興趣:mock-unseen-mt25-paper4-reviewed"],
+    ["emergency services", "phrase:noun:緊急救援服務 / 緊急服務:mock-unseen-mt25-paper4-reviewed"],
+    ["historical trail", "phrase:noun:歷史徑 / 歷史古蹟路線:mock-unseen-mt25-paper4-reviewed"],
+    ["get ahead of ourselves", "phrase:verb:操之過急 / 想得太遠:mock-unseen-mt25-paper4-reviewed"],
+    ["run someone over", "phrase:verb:撞倒 / 輾過:mock-unseen-mt25-paper4-reviewed"],
+    ["motion detectors", "phrase:noun:動作偵測器 / 動作感應器:mock-unseen-mt25-paper4-reviewed"],
+    ["social media apps", "phrase:noun:社交媒體應用程式:mock-unseen-mt25-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
