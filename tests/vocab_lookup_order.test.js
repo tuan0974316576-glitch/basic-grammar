@@ -167,6 +167,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt62-paper3-reviewed",
     "mock-unseen-mt64-paper3-reviewed",
     "mock-unseen-mt67-paper3-reviewed",
+    "mock-unseen-mt69-paper3-reviewed",
     "mock-unseen-mt37-paper3-reviewed",
     "mock-unseen-mt40-paper3-reviewed",
     "mock-unseen-mt44-paper3-reviewed",
@@ -11560,6 +11561,23 @@ function assertStudentLookupContract(word, matches) {
     ["barbershop quartets", "phrase:noun:四人無伴奏合唱組:mock-unseen-mt67-paper3-reviewed"],
     ["went down a rabbit hole", "phrase:verb:越查越深入 / 陷入某個興趣坑:mock-unseen-mt67-paper3-reviewed"],
     ["won me over", "phrase:verb:打動某人 / 令某人信服:mock-unseen-mt67-paper3-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["radio station giveaway", "phrase:noun:電台送禮 / 電台派票活動:mock-unseen-mt69-paper3-reviewed"],
+    ["woodwind instruments", "phrase:noun:木管樂器:mock-unseen-mt69-paper3-reviewed"],
+    ["Cook Islands", "phrase:noun:庫克群島:mock-unseen-mt69-paper3-reviewed"],
+    ["overwater bungalows", "phrase:noun:水上小屋 / 水上別墅:mock-unseen-mt69-paper3-reviewed"],
+    ["put me at ease", "phrase:verb:使某人放鬆 / 安心:mock-unseen-mt69-paper3-reviewed"],
+    ["underwhelmed", "word:adjective:感到失望的 / 不覺得驚喜的:mock-unseen-mt69-paper3-reviewed"],
+    ["health declaration form", "phrase:noun:健康申報表:mock-unseen-mt69-paper3-reviewed"],
+    ["sea-level rise", "phrase:noun:海平面上升:mock-unseen-mt69-paper3-reviewed"],
+    ["take a heavy toll on", "phrase:verb:對...造成嚴重損害 / 沉重打擊:mock-unseen-mt69-paper3-reviewed"],
+    ["surged", "word:verb:急升 / 激增:mock-unseen-mt69-paper3-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);

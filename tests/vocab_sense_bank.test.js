@@ -142,6 +142,8 @@ const mt64Paper3Entries = senseBank.entries.filter((entry) => entry.source === "
 assert.ok(mt64Paper3Entries.length >= 65, `Expected MT64 Paper 3 reviewed entries, got ${mt64Paper3Entries.length}`);
 const mt67Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt67-paper3-reviewed");
 assert.ok(mt67Paper3Entries.length >= 60, `Expected MT67 Paper 3 reviewed entries, got ${mt67Paper3Entries.length}`);
+const mt69Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt69-paper3-reviewed");
+assert.ok(mt69Paper3Entries.length >= 62, `Expected MT69 Paper 3 reviewed entries, got ${mt69Paper3Entries.length}`);
 const mt37Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt37-paper3-reviewed");
 assert.ok(mt37Paper3Entries.length >= 29, `Expected MT37 Paper 3 reviewed entries, got ${mt37Paper3Entries.length}`);
 const mt40Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt40-paper3-reviewed");
@@ -1696,7 +1698,10 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("accessible").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["adjective:容易到達的 / 容易使用的"]
+  [
+    "adjective:容易到達的 / 容易使用的",
+    "adjective:易於接觸的 / 容易理解的"
+  ]
 );
 assert.deepStrictEqual(
   senseBank.lookup("adjust").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -8836,6 +8841,27 @@ mt67Paper3ReviewedExpectations.forEach(([word, pos, meaning]) => {
     candidate.pos === pos && candidate.meaning === meaning
   ));
   assert.ok(entry, `${word} should include MT67 Paper 3 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt69Paper3ReviewedExpectations = [
+  ["radio station giveaway", "noun", "電台送禮 / 電台派票活動"],
+  ["woodwind instruments", "noun", "木管樂器"],
+  ["reach out to", "verb", "聯絡 / 主動接觸"],
+  ["Cook Islands", "noun", "庫克群島"],
+  ["overwater bungalows", "noun", "水上小屋 / 水上別墅"],
+  ["put me at ease", "verb", "使某人放鬆 / 安心"],
+  ["underwhelmed", "adjective", "感到失望的 / 不覺得驚喜的"],
+  ["health declaration form", "noun", "健康申報表"],
+  ["sea-level rise", "noun", "海平面上升"],
+  ["take a heavy toll on", "verb", "對...造成嚴重損害 / 沉重打擊"],
+  ["surged", "verb", "急升 / 激增"]
+];
+
+mt69Paper3ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT69 Paper 3 reviewed sense ${pos}:${meaning}`);
 });
 
 const mt55Paper3ReviewedExpectations = [
