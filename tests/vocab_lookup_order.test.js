@@ -175,6 +175,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt35-paper4-reviewed",
     "mock-unseen-mt38-paper4-reviewed",
     "mock-unseen-mt42-paper4-reviewed",
+    "mock-unseen-mt45-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -11714,6 +11715,22 @@ function assertStudentLookupContract(word, matches) {
     ["speaking up", "phrase:verb:開口發言 / 說出意見:mock-unseen-mt42-paper4-reviewed"],
     ["at your own pace", "phrase:adverb:按自己的速度:mock-unseen-mt42-paper4-reviewed"],
     ["Oxford", "word:noun:牛津 / 牛津大學:mock-unseen-mt42-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["Christmas Book Flood", "phrase:noun:聖誕書洪 / 冰島聖誕送書傳統:mock-unseen-mt45-paper4-reviewed"],
+    ["primary schools", "phrase:noun:小學:mock-unseen-mt45-paper4-reviewed"],
+    ["take over our time", "phrase:verb:佔據某人的時間:mock-unseen-mt45-paper4-reviewed"],
+    ["reading habits", "phrase:noun:閱讀習慣:mock-unseen-mt45-paper4-reviewed"],
+    ["get inside their heads", "phrase:verb:了解某人的想法 / 進入某人的內心世界:mock-unseen-mt45-paper4-reviewed"],
+    ["there was no going back", "phrase:verb:無法回頭 / 從此不能回頭:mock-unseen-mt45-paper4-reviewed"],
+    ["expand my vocabulary", "phrase:verb:擴闊詞彙量:mock-unseen-mt45-paper4-reviewed"],
+    ["assigned reading", "phrase:noun:指定閱讀:mock-unseen-mt45-paper4-reviewed"],
+    ["in a matter of seconds", "phrase:adverb:在短短幾秒內:mock-unseen-mt45-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
