@@ -148,6 +148,8 @@ const mt71Paper3Entries = senseBank.entries.filter((entry) => entry.source === "
 assert.ok(mt71Paper3Entries.length >= 63, `Expected MT71 Paper 3 reviewed entries, got ${mt71Paper3Entries.length}`);
 const mt72Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt72-paper3-reviewed");
 assert.ok(mt72Paper3Entries.length >= 42, `Expected MT72 Paper 3 reviewed entries, got ${mt72Paper3Entries.length}`);
+const mt74Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt74-paper3-reviewed");
+assert.ok(mt74Paper3Entries.length >= 55, `Expected MT74 Paper 3 reviewed entries, got ${mt74Paper3Entries.length}`);
 const mt37Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt37-paper3-reviewed");
 assert.ok(mt37Paper3Entries.length >= 29, `Expected MT37 Paper 3 reviewed entries, got ${mt37Paper3Entries.length}`);
 const mt40Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt40-paper3-reviewed");
@@ -2521,7 +2523,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("implement").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["verb:實施 / 執行"]
+  ["verb:實施 / 執行", "verb:體現 / 表現"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("increase").map((entry) => `${entry.pos}:${entry.meaning}`),
