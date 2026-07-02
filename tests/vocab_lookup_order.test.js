@@ -192,6 +192,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt68-paper4-reviewed",
     "mock-unseen-mt69-paper4-reviewed",
     "mock-unseen-mt70-paper4-reviewed",
+    "mock-unseen-mt71-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -12017,6 +12018,30 @@ function assertStudentLookupContract(word, matches) {
     (await lookupForStudent("flattering")).some((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}` === "word:adjective:顯得好看的 / 修飾身形的:mock-unseen-mt70-paper4-reviewed"),
     "flattering should include MT70 clothing/body-shape sense"
   );
+
+  for (const [word, expected] of [
+    ["free school lunches", "phrase:noun:免費校餐:mock-unseen-mt71-paper4-reviewed"],
+    ["no such thing as a free lunch", "phrase:noun:天下沒有免費午餐 / 凡事都有代價:mock-unseen-mt71-paper4-reviewed"],
+    ["served as an illustration", "phrase:verb:作為例子 / 說明:mock-unseen-mt71-paper4-reviewed"],
+    ["results speak for themselves", "phrase:verb:結果不言而喻 / 成效一目了然:mock-unseen-mt71-paper4-reviewed"],
+    ["took things a step further", "phrase:verb:更進一步 / 把事情推前一步:mock-unseen-mt71-paper4-reviewed"],
+    ["nutritional awareness", "phrase:noun:營養意識:mock-unseen-mt71-paper4-reviewed"],
+    ["educational attainment", "phrase:noun:教育成就 / 學業成就:mock-unseen-mt71-paper4-reviewed"],
+    ["taxpayer dollars", "phrase:noun:納稅人的錢 / 公帑:mock-unseen-mt71-paper4-reviewed"],
+    ["go hungry", "phrase:verb:捱餓 / 挨餓:mock-unseen-mt71-paper4-reviewed"],
+    ["added up over time", "phrase:verb:隨時間累積起來:mock-unseen-mt71-paper4-reviewed"],
+    ["charity cases", "phrase:noun:被視為靠救濟的人 / 被當作需要施捨的人:mock-unseen-mt71-paper4-reviewed"],
+    ["healthful", "word:adjective:有益健康的:mock-unseen-mt71-paper4-reviewed"],
+    ["disadvantaged students", "phrase:noun:弱勢學生 / 處於不利地位的學生:mock-unseen-mt71-paper4-reviewed"],
+    ["sticking to a healthy diet", "phrase:verb:堅持健康飲食:mock-unseen-mt71-paper4-reviewed"],
+    ["skipped breakfast", "phrase:verb:不吃早餐:mock-unseen-mt71-paper4-reviewed"],
+    ["ran out of energy", "phrase:verb:精力耗盡 / 沒有力氣:mock-unseen-mt71-paper4-reviewed"],
+    ["tuna buns", "phrase:noun:吞拿魚包:mock-unseen-mt71-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
 
   for (const [word, expected] of [
     ["cajon", "word:noun:木箱鼓:mock-unseen-mt85-paper3-reviewed"],

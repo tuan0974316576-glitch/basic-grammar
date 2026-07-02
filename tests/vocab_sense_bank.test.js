@@ -192,6 +192,8 @@ const mt69Paper4Entries = senseBank.entries.filter((entry) => entry.source === "
 assert.ok(mt69Paper4Entries.length >= 21, `Expected MT69 Paper 4 reviewed entries, got ${mt69Paper4Entries.length}`);
 const mt70Paper4Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt70-paper4-reviewed");
 assert.ok(mt70Paper4Entries.length >= 17, `Expected MT70 Paper 4 reviewed entries, got ${mt70Paper4Entries.length}`);
+const mt71Paper4Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt71-paper4-reviewed");
+assert.ok(mt71Paper4Entries.length >= 27, `Expected MT71 Paper 4 reviewed entries, got ${mt71Paper4Entries.length}`);
 const mt68Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt68-paper3-reviewed");
 assert.ok(mt68Paper3Entries.length >= 50, `Expected MT68 Paper 3 reviewed entries, got ${mt68Paper3Entries.length}`);
 const mt62Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt62-paper3-reviewed");
@@ -8055,6 +8057,28 @@ mt70ReviewedExpectations.forEach(([word, pos, meaning]) => {
     candidate.pos === pos && candidate.meaning === meaning
   ));
   assert.ok(entry, `${word} should include MT70 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt71Paper4ReviewedExpectations = [
+  ["no such thing as a free lunch", "noun", "天下沒有免費午餐 / 凡事都有代價"],
+  ["results speak for themselves", "verb", "結果不言而喻 / 成效一目了然"],
+  ["took things a step further", "verb", "更進一步 / 把事情推前一步"],
+  ["tackling obesity", "verb", "應對肥胖問題"],
+  ["taxpayer dollars", "noun", "納稅人的錢 / 公帑"],
+  ["go hungry", "verb", "捱餓 / 挨餓"],
+  ["charity cases", "noun", "被視為靠救濟的人 / 被當作需要施捨的人"],
+  ["healthful", "adjective", "有益健康的"],
+  ["bringing down the cost", "verb", "降低成本"],
+  ["skipping breakfast", "verb", "不吃早餐"],
+  ["ran out of energy", "verb", "精力耗盡 / 沒有力氣"],
+  ["tuna buns", "noun", "吞拿魚包"]
+];
+
+mt71Paper4ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT71 Paper 4 reviewed sense ${pos}:${meaning}`);
 });
 
 const mt35Paper3ReviewedExpectations = [
