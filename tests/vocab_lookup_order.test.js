@@ -172,6 +172,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt54-paper3-reviewed",
     "mock-unseen-mt57-paper3-reviewed",
     "mock-unseen-mt58-paper3-reviewed",
+    "mock-unseen-mt61-paper3-reviewed",
     "mock-unseen-mt30-paper2-reviewed",
     "mock-unseen-mt32-paper2-reviewed",
     "mock-unseen-mt35-paper2-reviewed",
@@ -637,6 +638,31 @@ function assertStudentLookupContract(word, matches) {
   assert.deepStrictEqual(
     (await lookupForStudent("false advertising")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
     ["false advertising:phrase:noun:虛假廣告:mock-unseen-mt58-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("cable TV")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["cable TV:phrase:noun:有線電視:mock-unseen-mt61-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("price matching")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["match the price:phrase:verb:配合同價 / 以同樣價錢出售:mock-unseen-mt61-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("tour de force")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["tour de force:phrase:noun:傑作 / 精彩之作:mock-unseen-mt61-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("record labels")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["record label:phrase:noun:唱片公司:mock-unseen-mt61-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("find my calling")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["find one's calling:phrase:verb:找到使命 / 找到真正適合自己的事:mock-unseen-mt61-paper3-reviewed"]
   );
 
   assert.deepStrictEqual(
