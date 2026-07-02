@@ -164,6 +164,8 @@ const mt86Paper3Entries = senseBank.entries.filter((entry) => entry.source === "
 assert.ok(mt86Paper3Entries.length >= 57, `Expected MT86 Paper 3 reviewed entries, got ${mt86Paper3Entries.length}`);
 const mt88Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt88-paper3-reviewed");
 assert.ok(mt88Paper3Entries.length >= 54, `Expected MT88 Paper 3 reviewed entries, got ${mt88Paper3Entries.length}`);
+const mt90Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt90-paper3-reviewed");
+assert.ok(mt90Paper3Entries.length >= 67, `Expected MT90 Paper 3 reviewed entries, got ${mt90Paper3Entries.length}`);
 const mt76Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt76-paper3-reviewed");
 assert.ok(mt76Paper3Entries.length >= 87, `Expected MT76 Paper 3 reviewed entries, got ${mt76Paper3Entries.length}`);
 const mt37Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt37-paper3-reviewed");
@@ -1217,7 +1219,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("population").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
-  ["noun:人口:override"]
+  ["noun:人口:override", "noun:族群 / 動植物群體:override"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("develop").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),

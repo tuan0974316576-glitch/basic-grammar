@@ -171,6 +171,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt85-paper3-reviewed",
     "mock-unseen-mt86-paper3-reviewed",
     "mock-unseen-mt88-paper3-reviewed",
+    "mock-unseen-mt90-paper3-reviewed",
     "mock-unseen-mt62-paper3-reviewed",
     "mock-unseen-mt64-paper3-reviewed",
     "mock-unseen-mt67-paper3-reviewed",
@@ -11574,6 +11575,20 @@ function assertStudentLookupContract(word, matches) {
     ["give the green light", "phrase:verb:批准 / 開綠燈:mock-unseen-mt88-paper3-reviewed"],
     ["whodunnit", "word:noun:偵探故事 / 懸疑查案故事:mock-unseen-mt88-paper3-reviewed"],
     ["crack the case", "phrase:verb:破案 / 解開案件:mock-unseen-mt88-paper3-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["take by storm", "phrase:verb:風靡 / 大受歡迎:mock-unseen-mt90-paper3-reviewed"],
+    ["house all the exhibits", "phrase:verb:收藏 / 容納展品:mock-unseen-mt90-paper3-reviewed"],
+    ["wild insect populations", "word:noun:族群 / 動植物群體:mock-unseen-mt90-paper3-reviewed"],
+    ["toxic black mould", "phrase:noun:有毒黑霉:mock-unseen-mt90-paper3-reviewed"],
+    ["weigh the pros and cons", "phrase:verb:權衡利弊:mock-unseen-mt90-paper3-reviewed"],
+    ["motion simulator", "phrase:noun:動感模擬器:mock-unseen-mt90-paper3-reviewed"],
+    ["on a roll", "phrase:adjective:連連成功的 / 狀態大勇的:mock-unseen-mt90-paper3-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
