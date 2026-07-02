@@ -8,6 +8,7 @@ const ReviewDashboard = require("./build-vocab-review-dashboard.js");
 const ReviewIndex = require("./build-vocab-review-index.js");
 const ReviewPaths = require("./vocab-review-paths.js");
 const TeacherImporter = require("./import-teacher-vocab.js");
+const BattleshipVocabSync = require("./sync-vocab-to-battleship.js");
 const VocabSenseBank = require("../vocab_sense_bank.js");
 const VocabPosInference = require("../vocab_pos_inference.js");
 
@@ -25,7 +26,10 @@ function usage() {
     "Dry-runs by default. With --write, appends reviewed entries to:",
     "  - teacher_vocab_manual_updates.json for promoteTo=teacher",
     "  - vocab_sense_bank.js for promoteTo=curated",
-    "and rebuilds teacher_vocab_bank.js from the existing bank plus manual updates."
+    "and rebuilds teacher_vocab_bank.js from the existing bank plus manual updates.",
+    "",
+    "With --write, reviewed student-facing vocab is also synced to Battleship-1 by default.",
+    "Use --no-battleship-sync for temporary/local test writes."
   ].join("\n"));
 }
 
@@ -36,6 +40,7 @@ function parseArgs(argv) {
     curatedBank: DEFAULT_CURATED_BANK,
     teacherBank: DEFAULT_TEACHER_BANK,
     refresh: true,
+    syncBattleship: true,
     write: false
   };
 
@@ -51,6 +56,10 @@ function parseArgs(argv) {
     }
     if (arg === "--no-refresh") {
       options.refresh = false;
+      continue;
+    }
+    if (arg === "--no-battleship-sync") {
+      options.syncBattleship = false;
       continue;
     }
     if (arg === "--teacher-updates") {
@@ -72,6 +81,47 @@ function parseArgs(argv) {
   }
 
   return options;
+}
+
+function usesDefaultStudentFacingVocabPaths(options = {}) {
+  return [
+    [options.teacherUpdates || DEFAULT_TEACHER_UPDATES, DEFAULT_TEACHER_UPDATES],
+    [options.curatedBank || DEFAULT_CURATED_BANK, DEFAULT_CURATED_BANK],
+    [options.teacherBank || DEFAULT_TEACHER_BANK, DEFAULT_TEACHER_BANK]
+  ].every(([actual, expected]) => path.resolve(actual) === path.resolve(expected));
+}
+
+function syncBattleshipVocabAfterApply(options = {}) {
+  if (options.syncBattleship === false) return null;
+  if (!usesDefaultStudentFacingVocabPaths(options)) {
+    return {
+      skipped: true,
+      reason: "custom vocab output paths"
+    };
+  }
+  const targetRoot = path.resolve(options.battleshipTarget || "/Users/macbook/battleship-1");
+  if (!fs.existsSync(targetRoot) || !fs.existsSync(path.join(targetRoot, "index.html"))) {
+    return {
+      skipped: true,
+      reason: `Battleship target not found: ${targetRoot}`
+    };
+  }
+  const results = BattleshipVocabSync.SHARED_VOCAB_FILES.map((file) => {
+    return BattleshipVocabSync.copyIfChanged(
+      path.join(ROOT_DIR, file),
+      path.join(targetRoot, file),
+      false
+    );
+  });
+  const summary = results.reduce((acc, result) => {
+    acc[result.status] = (acc[result.status] || 0) + 1;
+    return acc;
+  }, {});
+  return {
+    target: targetRoot,
+    summary,
+    results
+  };
 }
 
 function normalizeWord(value) {
@@ -579,6 +629,7 @@ function applyPlan(plan, options = {}) {
     fs.writeFileSync(options.teacherBank || DEFAULT_TEACHER_BANK, teacherBankSource);
     summary.applyReceipt = writeApplyReceipt(summary, options);
     if (options.refresh !== false) summary.refreshed = refreshReviewStatusAfterApply(options.input || DEFAULT_PLAN, options);
+    summary.battleshipSync = syncBattleshipVocabAfterApply(options);
   }
 
   return summary;
@@ -617,5 +668,6 @@ module.exports = {
   normalizeReviewBatchId,
   parseArgs,
   refreshReviewStatusAfterApply,
+  syncBattleshipVocabAfterApply,
   splitEntries
 };

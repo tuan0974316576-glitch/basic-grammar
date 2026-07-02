@@ -24,6 +24,394 @@ assert.deepStrictEqual(
   ["phrase:verb:吃午餐"]
 );
 
+const mt45Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt45-paper3-reviewed");
+assert.ok(mt45Paper3Entries.length >= 90, `Expected MT45 Paper 3 reviewed entries, got ${mt45Paper3Entries.length}`);
+const mt49Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt49-paper3-reviewed");
+assert.ok(mt49Paper3Entries.length >= 100, `Expected MT49 Paper 3 reviewed entries, got ${mt49Paper3Entries.length}`);
+const mt52Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt52-paper3-reviewed");
+assert.ok(mt52Paper3Entries.length >= 100, `Expected MT52 Paper 3 reviewed entries, got ${mt52Paper3Entries.length}`);
+const mt56Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt56-paper3-reviewed");
+assert.ok(mt56Paper3Entries.length >= 95, `Expected MT56 Paper 3 reviewed entries, got ${mt56Paper3Entries.length}`);
+const mt59Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt59-paper3-reviewed");
+assert.ok(mt59Paper3Entries.length >= 70, `Expected MT59 Paper 3 reviewed entries, got ${mt59Paper3Entries.length}`);
+const mt20Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt20-paper3-reviewed");
+assert.ok(mt20Paper3Entries.length >= 55, `Expected MT20 Paper 3 reviewed entries, got ${mt20Paper3Entries.length}`);
+const mt22Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt22-paper3-reviewed");
+assert.ok(mt22Paper3Entries.length >= 50, `Expected MT22 Paper 3 reviewed entries, got ${mt22Paper3Entries.length}`);
+const mt25Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt25-paper3-reviewed");
+assert.ok(mt25Paper3Entries.length >= 80, `Expected MT25 Paper 3 reviewed entries, got ${mt25Paper3Entries.length}`);
+const mt27Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt27-paper3-reviewed");
+assert.ok(mt27Paper3Entries.length >= 74, `Expected MT27 Paper 3 reviewed entries, got ${mt27Paper3Entries.length}`);
+const mt16Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt16-paper3-reviewed");
+assert.ok(mt16Paper3Entries.length >= 80, `Expected MT16 Paper 3 reviewed entries, got ${mt16Paper3Entries.length}`);
+const mt18Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt18-paper3-reviewed");
+assert.ok(mt18Paper3Entries.length >= 90, `Expected MT18 Paper 3 reviewed entries, got ${mt18Paper3Entries.length}`);
+const mt19Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt19-paper3-reviewed");
+assert.ok(mt19Paper3Entries.length >= 87, `Expected MT19 Paper 3 reviewed entries, got ${mt19Paper3Entries.length}`);
+const mt21Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt21-paper3-reviewed");
+assert.ok(mt21Paper3Entries.length >= 111, `Expected MT21 Paper 3 reviewed entries, got ${mt21Paper3Entries.length}`);
+const mt23Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt23-paper3-reviewed");
+assert.ok(mt23Paper3Entries.length >= 56, `Expected MT23 Paper 3 reviewed entries, got ${mt23Paper3Entries.length}`);
+const mt24Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt24-paper3-reviewed");
+assert.ok(mt24Paper3Entries.length >= 75, `Expected MT24 Paper 3 reviewed entries, got ${mt24Paper3Entries.length}`);
+const mt26Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt26-paper3-reviewed");
+assert.ok(mt26Paper3Entries.length >= 90, `Expected MT26 Paper 3 reviewed entries, got ${mt26Paper3Entries.length}`);
+const mt28Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt28-paper3-reviewed");
+assert.ok(mt28Paper3Entries.length >= 60, `Expected MT28 Paper 3 reviewed entries, got ${mt28Paper3Entries.length}`);
+const mt29Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt29-paper3-reviewed");
+assert.ok(mt29Paper3Entries.length >= 85, `Expected MT29 Paper 3 reviewed entries, got ${mt29Paper3Entries.length}`);
+const mt31Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt31-paper3-reviewed");
+assert.ok(mt31Paper3Entries.length >= 60, `Expected MT31 Paper 3 reviewed entries, got ${mt31Paper3Entries.length}`);
+const mt33Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt33-paper3-reviewed");
+assert.ok(mt33Paper3Entries.length >= 75, `Expected MT33 Paper 3 reviewed entries, got ${mt33Paper3Entries.length}`);
+const mt34Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt34-paper3-reviewed");
+assert.ok(mt34Paper3Entries.length >= 90, `Expected MT34 Paper 3 reviewed entries, got ${mt34Paper3Entries.length}`);
+const mt36Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt36-paper3-reviewed");
+assert.ok(mt36Paper3Entries.length >= 80, `Expected MT36 Paper 3 reviewed entries, got ${mt36Paper3Entries.length}`);
+const mt39Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt39-paper3-reviewed");
+assert.ok(mt39Paper3Entries.length >= 80, `Expected MT39 Paper 3 reviewed entries, got ${mt39Paper3Entries.length}`);
+const mt41Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt41-paper3-reviewed");
+assert.ok(mt41Paper3Entries.length >= 90, `Expected MT41 Paper 3 reviewed entries, got ${mt41Paper3Entries.length}`);
+const mt43Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt43-paper3-reviewed");
+assert.ok(mt43Paper3Entries.length >= 114, `Expected MT43 Paper 3 reviewed entries, got ${mt43Paper3Entries.length}`);
+const mt46Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt46-paper3-reviewed");
+assert.ok(mt46Paper3Entries.length >= 60, `Expected MT46 Paper 3 reviewed entries, got ${mt46Paper3Entries.length}`);
+const mt48Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt48-paper3-reviewed");
+assert.ok(mt48Paper3Entries.length >= 130, `Expected MT48 Paper 3 reviewed entries, got ${mt48Paper3Entries.length}`);
+const mt50Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt50-paper3-reviewed");
+assert.ok(mt50Paper3Entries.length >= 65, `Expected MT50 Paper 3 reviewed entries, got ${mt50Paper3Entries.length}`);
+const mt53Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt53-paper3-reviewed");
+assert.ok(mt53Paper3Entries.length >= 100, `Expected MT53 Paper 3 reviewed entries, got ${mt53Paper3Entries.length}`);
+const mt56Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt56-paper2-reviewed");
+assert.ok(mt56Paper2Entries.length >= 35, `Expected MT56 Paper 2 reviewed entries, got ${mt56Paper2Entries.length}`);
+const mt58Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt58-paper2-reviewed");
+assert.ok(mt58Paper2Entries.length >= 68, `Expected MT58 Paper 2 reviewed entries, got ${mt58Paper2Entries.length}`);
+const mt61Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt61-paper2-reviewed");
+assert.ok(mt61Paper2Entries.length >= 66, `Expected MT61 Paper 2 reviewed entries, got ${mt61Paper2Entries.length}`);
+const mt65Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt65-paper2-reviewed");
+assert.ok(mt65Paper2Entries.length >= 73, `Expected MT65 Paper 2 reviewed entries, got ${mt65Paper2Entries.length}`);
+const mt68Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt68-paper2-reviewed");
+assert.ok(mt68Paper2Entries.length >= 61, `Expected MT68 Paper 2 reviewed entries, got ${mt68Paper2Entries.length}`);
+const mt72Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt72-paper2-reviewed");
+assert.ok(mt72Paper2Entries.length >= 49, `Expected MT72 Paper 2 reviewed entries, got ${mt72Paper2Entries.length}`);
+const mt75Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt75-paper2-reviewed");
+assert.ok(mt75Paper2Entries.length >= 54, `Expected MT75 Paper 2 reviewed entries, got ${mt75Paper2Entries.length}`);
+const mt79Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt79-paper2-reviewed");
+assert.ok(mt79Paper2Entries.length >= 70, `Expected MT79 Paper 2 reviewed entries, got ${mt79Paper2Entries.length}`);
+const mt82Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt82-paper2-reviewed");
+assert.ok(mt82Paper2Entries.length >= 74, `Expected MT82 Paper 2 reviewed entries, got ${mt82Paper2Entries.length}`);
+const mt59Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt59-paper2-reviewed");
+assert.ok(mt59Paper2Entries.length >= 29, `Expected MT59 Paper 2 reviewed entries, got ${mt59Paper2Entries.length}`);
+const mt63Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt63-paper2-reviewed");
+assert.ok(mt63Paper2Entries.length >= 25, `Expected MT63 Paper 2 reviewed entries, got ${mt63Paper2Entries.length}`);
+const mt66Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt66-paper2-reviewed");
+assert.ok(mt66Paper2Entries.length >= 35, `Expected MT66 Paper 2 reviewed entries, got ${mt66Paper2Entries.length}`);
+const mt87Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt87-paper3-reviewed");
+assert.ok(mt87Paper3Entries.length >= 74, `Expected MT87 Paper 3 reviewed entries, got ${mt87Paper3Entries.length}`);
+const mt63Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt63-paper3-reviewed");
+assert.ok(mt63Paper3Entries.length >= 65, `Expected MT63 Paper 3 reviewed entries, got ${mt63Paper3Entries.length}`);
+const mt66Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt66-paper3-reviewed");
+assert.ok(mt66Paper3Entries.length >= 65, `Expected MT66 Paper 3 reviewed entries, got ${mt66Paper3Entries.length}`);
+const mt70Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt70-paper3-reviewed");
+assert.ok(mt70Paper3Entries.length >= 80, `Expected MT70 Paper 3 reviewed entries, got ${mt70Paper3Entries.length}`);
+const mt73Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt73-paper3-reviewed");
+assert.ok(mt73Paper3Entries.length >= 70, `Expected MT73 Paper 3 reviewed entries, got ${mt73Paper3Entries.length}`);
+const mt77Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt77-paper3-reviewed");
+assert.ok(mt77Paper3Entries.length >= 70, `Expected MT77 Paper 3 reviewed entries, got ${mt77Paper3Entries.length}`);
+const mt80Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt80-paper3-reviewed");
+assert.ok(mt80Paper3Entries.length >= 55, `Expected MT80 Paper 3 reviewed entries, got ${mt80Paper3Entries.length}`);
+const mt84Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt84-paper3-reviewed");
+assert.ok(mt84Paper3Entries.length >= 70, `Expected MT84 Paper 3 reviewed entries, got ${mt84Paper3Entries.length}`);
+const mt9Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt9-paper3-reviewed");
+assert.ok(mt9Paper3Entries.length >= 60, `Expected MT9 Paper 3 reviewed entries, got ${mt9Paper3Entries.length}`);
+const mt10Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt10-paper3-reviewed");
+assert.ok(mt10Paper3Entries.length >= 90, `Expected MT10 Paper 3 reviewed entries, got ${mt10Paper3Entries.length}`);
+const mt11Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt11-paper3-reviewed");
+assert.ok(mt11Paper3Entries.length >= 61, `Expected MT11 Paper 3 reviewed entries, got ${mt11Paper3Entries.length}`);
+const mt12Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt12-paper3-reviewed");
+assert.ok(mt12Paper3Entries.length >= 109, `Expected MT12 Paper 3 reviewed entries, got ${mt12Paper3Entries.length}`);
+const mt13Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt13-paper3-reviewed");
+assert.ok(mt13Paper3Entries.length >= 91, `Expected MT13 Paper 3 reviewed entries, got ${mt13Paper3Entries.length}`);
+const mt14Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt14-paper3-reviewed");
+assert.ok(mt14Paper3Entries.length >= 72, `Expected MT14 Paper 3 reviewed entries, got ${mt14Paper3Entries.length}`);
+const mt15Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt15-paper3-reviewed");
+assert.ok(mt15Paper3Entries.length >= 24, `Expected MT15 Paper 3 reviewed entries, got ${mt15Paper3Entries.length}`);
+const mt37Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt37-paper3-reviewed");
+assert.ok(mt37Paper3Entries.length >= 29, `Expected MT37 Paper 3 reviewed entries, got ${mt37Paper3Entries.length}`);
+const mt40Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt40-paper3-reviewed");
+assert.ok(mt40Paper3Entries.length >= 57, `Expected MT40 Paper 3 reviewed entries, got ${mt40Paper3Entries.length}`);
+const mt44Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt44-paper3-reviewed");
+assert.ok(mt44Paper3Entries.length >= 83, `Expected MT44 Paper 3 reviewed entries, got ${mt44Paper3Entries.length}`);
+const mt47Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt47-paper3-reviewed");
+assert.ok(mt47Paper3Entries.length >= 62, `Expected MT47 Paper 3 reviewed entries, got ${mt47Paper3Entries.length}`);
+const mt51Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt51-paper3-reviewed");
+assert.ok(mt51Paper3Entries.length >= 54, `Expected MT51 Paper 3 reviewed entries, got ${mt51Paper3Entries.length}`);
+const mt9Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt9-paper2-reviewed");
+assert.ok(mt9Paper2Entries.length >= 42, `Expected MT9 Paper 2 reviewed entries, got ${mt9Paper2Entries.length}`);
+const mt10Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt10-paper2-reviewed");
+assert.ok(mt10Paper2Entries.length >= 51, `Expected MT10 Paper 2 reviewed entries, got ${mt10Paper2Entries.length}`);
+const mt11Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt11-paper2-reviewed");
+assert.ok(mt11Paper2Entries.length >= 44, `Expected MT11 Paper 2 reviewed entries, got ${mt11Paper2Entries.length}`);
+const mt12Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt12-paper2-reviewed");
+assert.ok(mt12Paper2Entries.length >= 30, `Expected MT12 Paper 2 reviewed entries, got ${mt12Paper2Entries.length}`);
+const mt13Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt13-paper2-reviewed");
+assert.ok(mt13Paper2Entries.length >= 45, `Expected MT13 Paper 2 reviewed entries, got ${mt13Paper2Entries.length}`);
+const mt14Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt14-paper2-reviewed");
+assert.ok(mt14Paper2Entries.length >= 50, `Expected MT14 Paper 2 reviewed entries, got ${mt14Paper2Entries.length}`);
+const mt16Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt16-paper2-reviewed");
+assert.ok(mt16Paper2Entries.length >= 58, `Expected MT16 Paper 2 reviewed entries, got ${mt16Paper2Entries.length}`);
+const mt18Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt18-paper2-reviewed");
+assert.ok(mt18Paper2Entries.length >= 116, `Expected MT18 Paper 2 reviewed entries, got ${mt18Paper2Entries.length}`);
+const mt19Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt19-paper2-reviewed");
+assert.ok(mt19Paper2Entries.length >= 111, `Expected MT19 Paper 2 reviewed entries, got ${mt19Paper2Entries.length}`);
+const mt21Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt21-paper2-reviewed");
+assert.ok(mt21Paper2Entries.length >= 68, `Expected MT21 Paper 2 reviewed entries, got ${mt21Paper2Entries.length}`);
+const mt23Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt23-paper2-reviewed");
+assert.ok(mt23Paper2Entries.length >= 70, `Expected MT23 Paper 2 reviewed entries, got ${mt23Paper2Entries.length}`);
+const mt24Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt24-paper2-reviewed");
+assert.ok(mt24Paper2Entries.length >= 64, `Expected MT24 Paper 2 reviewed entries, got ${mt24Paper2Entries.length}`);
+const mt26Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt26-paper2-reviewed");
+assert.ok(mt26Paper2Entries.length >= 63, `Expected MT26 Paper 2 reviewed entries, got ${mt26Paper2Entries.length}`);
+const mt28Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt28-paper2-reviewed");
+assert.ok(mt28Paper2Entries.length >= 40, `Expected MT28 Paper 2 reviewed entries, got ${mt28Paper2Entries.length}`);
+const mt29Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt29-paper2-reviewed");
+assert.ok(mt29Paper2Entries.length >= 80, `Expected MT29 Paper 2 reviewed entries, got ${mt29Paper2Entries.length}`);
+const mt31Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt31-paper2-reviewed");
+assert.ok(mt31Paper2Entries.length >= 48, `Expected MT31 Paper 2 reviewed entries, got ${mt31Paper2Entries.length}`);
+const mt33Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt33-paper2-reviewed");
+assert.ok(mt33Paper2Entries.length >= 65, `Expected MT33 Paper 2 reviewed entries, got ${mt33Paper2Entries.length}`);
+const mt34Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt34-paper2-reviewed");
+assert.ok(mt34Paper2Entries.length >= 75, `Expected MT34 Paper 2 reviewed entries, got ${mt34Paper2Entries.length}`);
+const mt36Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt36-paper2-reviewed");
+assert.ok(mt36Paper2Entries.length >= 55, `Expected MT36 Paper 2 reviewed entries, got ${mt36Paper2Entries.length}`);
+const mt39Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt39-paper2-reviewed");
+assert.ok(mt39Paper2Entries.length >= 60, `Expected MT39 Paper 2 reviewed entries, got ${mt39Paper2Entries.length}`);
+const mt41Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt41-paper2-reviewed");
+assert.ok(mt41Paper2Entries.length >= 100, `Expected MT41 Paper 2 reviewed entries, got ${mt41Paper2Entries.length}`);
+const mt43Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt43-paper2-reviewed");
+assert.ok(mt43Paper2Entries.length >= 55, `Expected MT43 Paper 2 reviewed entries, got ${mt43Paper2Entries.length}`);
+const mt46Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt46-paper2-reviewed");
+assert.ok(mt46Paper2Entries.length >= 45, `Expected MT46 Paper 2 reviewed entries, got ${mt46Paper2Entries.length}`);
+const mt48Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt48-paper2-reviewed");
+assert.ok(mt48Paper2Entries.length >= 75, `Expected MT48 Paper 2 reviewed entries, got ${mt48Paper2Entries.length}`);
+const mt50Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt50-paper2-reviewed");
+assert.ok(mt50Paper2Entries.length >= 85, `Expected MT50 Paper 2 reviewed entries, got ${mt50Paper2Entries.length}`);
+const mt51Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt51-paper2-reviewed");
+assert.ok(mt51Paper2Entries.length >= 63, `Expected MT51 Paper 2 reviewed entries, got ${mt51Paper2Entries.length}`);
+const mt54Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt54-paper2-reviewed");
+assert.ok(mt54Paper2Entries.length >= 54, `Expected MT54 Paper 2 reviewed entries, got ${mt54Paper2Entries.length}`);
+const mt53Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt53-paper2-reviewed");
+assert.ok(mt53Paper2Entries.length >= 65, `Expected MT53 Paper 2 reviewed entries, got ${mt53Paper2Entries.length}`);
+const mt55Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt55-paper2-reviewed");
+assert.ok(mt55Paper2Entries.length >= 100, `Expected MT55 Paper 2 reviewed entries, got ${mt55Paper2Entries.length}`);
+const mt57Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt57-paper2-reviewed");
+assert.ok(mt57Paper2Entries.length >= 79, `Expected MT57 Paper 2 reviewed entries, got ${mt57Paper2Entries.length}`);
+const mt60Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt60-paper2-reviewed");
+assert.ok(mt60Paper2Entries.length >= 90, `Expected MT60 Paper 2 reviewed entries, got ${mt60Paper2Entries.length}`);
+const mt62Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt62-paper2-reviewed");
+assert.ok(mt62Paper2Entries.length >= 120, `Expected MT62 Paper 2 reviewed entries, got ${mt62Paper2Entries.length}`);
+const mt64Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt64-paper2-reviewed");
+assert.ok(mt64Paper2Entries.length >= 56, `Expected MT64 Paper 2 reviewed entries, got ${mt64Paper2Entries.length}`);
+const mt67Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt67-paper2-reviewed");
+assert.ok(mt67Paper2Entries.length >= 64, `Expected MT67 Paper 2 reviewed entries, got ${mt67Paper2Entries.length}`);
+const mt69Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt69-paper2-reviewed");
+assert.ok(mt69Paper2Entries.length >= 84, `Expected MT69 Paper 2 reviewed entries, got ${mt69Paper2Entries.length}`);
+const mt71Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt71-paper2-reviewed");
+assert.ok(mt71Paper2Entries.length >= 112, `Expected MT71 Paper 2 reviewed entries, got ${mt71Paper2Entries.length}`);
+const mt74Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt74-paper2-reviewed");
+assert.ok(mt74Paper2Entries.length >= 84, `Expected MT74 Paper 2 reviewed entries, got ${mt74Paper2Entries.length}`);
+const mt76Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt76-paper2-reviewed");
+assert.ok(mt76Paper2Entries.length >= 60, `Expected MT76 Paper 2 reviewed entries, got ${mt76Paper2Entries.length}`);
+const mt78Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt78-paper2-reviewed");
+assert.ok(mt78Paper2Entries.length >= 94, `Expected MT78 Paper 2 reviewed entries, got ${mt78Paper2Entries.length}`);
+const mt81Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt81-paper2-reviewed");
+assert.ok(mt81Paper2Entries.length >= 84, `Expected MT81 Paper 2 reviewed entries, got ${mt81Paper2Entries.length}`);
+const mt84Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt84-paper2-reviewed");
+assert.ok(mt84Paper2Entries.length >= 63, `Expected MT84 Paper 2 reviewed entries, got ${mt84Paper2Entries.length}`);
+const mt83Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt83-paper2-reviewed");
+assert.ok(mt83Paper2Entries.length >= 104, `Expected MT83 Paper 2 reviewed entries, got ${mt83Paper2Entries.length}`);
+const mt85Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt85-paper2-reviewed");
+assert.ok(mt85Paper2Entries.length >= 50, `Expected MT85 Paper 2 reviewed entries, got ${mt85Paper2Entries.length}`);
+const mt86Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt86-paper2-reviewed");
+assert.ok(mt86Paper2Entries.length >= 85, `Expected MT86 Paper 2 reviewed entries, got ${mt86Paper2Entries.length}`);
+const mt88Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt88-paper2-reviewed");
+assert.ok(mt88Paper2Entries.length >= 59, `Expected MT88 Paper 2 reviewed entries, got ${mt88Paper2Entries.length}`);
+const mt37Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt37-paper2-reviewed");
+assert.ok(mt37Paper2Entries.length >= 58, `Expected MT37 Paper 2 reviewed entries, got ${mt37Paper2Entries.length}`);
+const mt40Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt40-paper2-reviewed");
+assert.ok(mt40Paper2Entries.length >= 113, `Expected MT40 Paper 2 reviewed entries, got ${mt40Paper2Entries.length}`);
+const mt44Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt44-paper2-reviewed");
+assert.ok(mt44Paper2Entries.length >= 95, `Expected MT44 Paper 2 reviewed entries, got ${mt44Paper2Entries.length}`);
+const mt47Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt47-paper2-reviewed");
+assert.ok(mt47Paper2Entries.length >= 83, `Expected MT47 Paper 2 reviewed entries, got ${mt47Paper2Entries.length}`);
+const mt90Paper2Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt90-paper2-reviewed");
+assert.ok(mt90Paper2Entries.length >= 56, `Expected MT90 Paper 2 reviewed entries, got ${mt90Paper2Entries.length}`);
+assert.deepStrictEqual(
+  senseBank.lookup("World Culture Day").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
+  ["Culture Day:phrase:noun:文化日"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("sprained her ankle").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
+  ["sprained ankle:phrase:noun:腳踝扭傷"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("VIP boxes").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
+  ["VIP box:phrase:noun:貴賓包廂"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("copy editor").map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}`),
+  ["copyeditor:noun:文字編輯 / 校訂編輯"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("turns up her nose").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
+  ["turn up one's nose:phrase:verb:嗤之以鼻 / 表示嫌棄"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("scoring").map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+  [
+    "score:verb:用刀劃痕 / 劃線:mock-unseen-mt56-paper3-reviewed"
+  ]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("Rome was not built in a day").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
+  ["Rome wasn't built in a day:phrase:adverb:羅馬不是一天建成的 / 大事需要時間"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("black faced spoonbills").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
+  ["black-faced spoonbill:phrase:noun:黑臉琵鷺"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("watch it unfold").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
+  ["watch something unfold:phrase:verb:看著事情發生 / 目睹事情展開"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("held accountable").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
+  ["held accountable:phrase:adjective:須負責任的 / 被追究責任的"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("gig workers").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
+  ["gig worker:phrase:noun:零工工作者 / 接案工作者"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("killed two birds with one stone").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
+  ["kill two birds with one stone:phrase:verb:一石二鳥 / 一舉兩得"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("on the same page").map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),
+  ["phrase:adjective:想法一致的 / 達成共識的"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("Northern Lights").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
+  ["Northern Lights:phrase:noun:北極光"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("engine failed").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
+  ["engine fail:phrase:verb:引擎失靈"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("took me up on the offer").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
+  ["take someone up on an offer:phrase:verb:接受某人的提議 / 答應某人的邀請"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("dog biscuits").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
+  ["dog biscuit:phrase:noun:狗餅乾"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("Canis lupus").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
+  ["Canis lupus:phrase:noun:灰狼的學名"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("praying mantises").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
+  ["praying mantis:phrase:noun:螳螂"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("home-away-from-home").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
+  ["home away from home:phrase:noun:像家一樣舒服的地方"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("much ado about nothing").map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),
+  ["phrase:noun:小題大做 / 無事生非"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("paid through the nose").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
+  ["pay through the nose:phrase:verb:付出過高價錢 / 被迫付高價"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("sawn in half").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
+  ["saw in half:phrase:verb:鋸成兩半"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("keynote speakers").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
+  ["keynote speaker:phrase:noun:主講嘉賓 / 主題演講者"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("perfecting his art").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
+  ["perfect one's art:phrase:verb:精進技藝 / 使技藝更完善"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("stick around").map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),
+  ["phrase:verb:留下來 / 逗留"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("take sides").map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),
+  ["phrase:verb:偏幫一方 / 表明支持某一方"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("armchair advocacy").map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),
+  ["phrase:noun:安坐家中式倡議 / 只在網上支持行動"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("for immediate release").map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),
+  ["phrase:adverb:供即時發布 / 即時發布"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("debugging").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:除錯 / 程式偵錯"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("transitioning from print to digital").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
+  ["transition from print to digital:phrase:verb:由印刷轉為數碼形式"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("stick out like a sore thumb").map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),
+  ["phrase:verb:格格不入 / 顯得很突兀"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("harnessed the power").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
+  ["harness the power:phrase:verb:利用力量 / 善用力量"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("Song Dynasty").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
+  ["Song Dynasty:phrase:noun:宋朝"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("unlicensed dentists").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
+  ["unlicensed dentist:phrase:noun:無牌牙醫"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("Kai Tak Airport").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
+  ["Kai Tak Airport:phrase:noun:啟德機場"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("tick all our boxes").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
+  ["tick all the boxes:phrase:verb:符合所有要求 / 滿足所有條件"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("a dime a dozen").map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),
+  ["phrase:adjective:很普通的 / 隨處可見的"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("bricks and mortar").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
+  [
+    "bricks and mortar:phrase:noun:實體店 / 實體建築",
+    "bricks-and-mortar:phrase:adjective:實體店的 / 非網上的"
+  ]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("Grade II historical building").map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}`),
+  ["Grade II historic building:phrase:noun:二級歷史建築"]
+);
+
 const lookUp = senseBank.lookup("look   up");
 assert.strictEqual(lookUp.length, 1);
 assert.strictEqual(lookUp[0].type, "phrase");
@@ -251,7 +639,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("take off").map((entry) => `${entry.type}:${entry.meaning}`),
-  ["phrase:脫下", "phrase:起飛"]
+  ["phrase:脫下", "phrase:起飛", "phrase:突然流行 / 迅速成功"]
 );
 assert.strictEqual(senseBank.lookup("take off")[0].overrideTeacher, true);
 assert.deepStrictEqual(
@@ -873,7 +1261,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("code").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
-  ["noun:代碼:override", "noun:編碼:override"]
+  ["noun:代碼:override", "noun:編碼:override", "verb:編程 / 寫程式:override"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("introduce").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
@@ -991,7 +1379,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("field").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
-  ["noun:田野 / 運動場:override", "noun:領域 / 範疇:override"]
+  ["noun:田野 / 運動場:override", "noun:領域 / 範疇:override", "noun:田地 / 農田:override"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("article").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -1264,7 +1652,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("project").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["noun:專題", "noun:項目", "verb:預計", "verb:投射"]
+  ["noun:專題", "noun:項目", "verb:預計", "verb:投射", "verb:使聲音傳遠 / 放聲說話"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("refuse").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -1456,7 +1844,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("band").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["noun:樂隊", "noun:帶子 / 橡筋圈"]
+  ["noun:樂隊", "noun:帶子 / 橡筋圈", "noun:一群 / 一夥"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("base").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -1540,7 +1928,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("candidate").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["noun:候選人", "noun:參加者"]
+  ["noun:候選人", "noun:參加者", "noun:可能選項 / 候選對象"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("captain").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -1640,7 +2028,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("capacity").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["noun:容量", "noun:能力"]
+  ["noun:容量", "noun:能力", "noun:職位 / 身分"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("career").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -1660,7 +2048,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("charm").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["noun:魅力"]
+  ["noun:魅力", "verb:吸引 / 迷住"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("charming").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -2168,7 +2556,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("legend").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["noun:傳說 / 傳奇人物"]
+  ["noun:傳說 / 傳奇人物", "noun:圖例 / 說明圖例"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("leisure").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -2500,7 +2888,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("stable").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["adjective:穩定的"]
+  ["adjective:穩定的", "noun:馬房"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("status").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -2652,7 +3040,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("wrap").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["verb:包 / 包裹", "noun:包裹物 / 披肩"]
+  ["verb:包 / 包裹", "noun:包裹物 / 披肩", "noun:卷餅 / 包卷食物"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("yield").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -3165,7 +3553,10 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("related to").map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),
-  ["phrase:adjective:與...有關"]
+  [
+    "phrase:adjective:與...有關",
+    "phrase:verb:理解 / 有共鳴"
+  ]
 );
 assert.deepStrictEqual(
   senseBank.lookup("prior to").map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),
@@ -4309,6 +4700,18 @@ assert.deepStrictEqual(
   ["adjective:無處不在的"]
 );
 assert.deepStrictEqual(
+  senseBank.lookup("ubiquity").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:無處不在 / 普及"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("tattoo").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["noun:紋身", "verb:紋身 / 刺青"]
+);
+assert.deepStrictEqual(
+  senseBank.lookup("tattooed").map((entry) => `${entry.pos}:${entry.meaning}`),
+  ["verb:紋身 / 刺青", "adjective:有紋身的"]
+);
+assert.deepStrictEqual(
   senseBank.lookup("under undue stress").map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),
   ["phrase:adjective:承受過度壓力的"]
 );
@@ -4494,7 +4897,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("candidates").map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}`),
-  ["candidate:noun:候選人", "candidate:noun:參加者"]
+  ["candidate:noun:候選人", "candidate:noun:參加者", "candidate:noun:可能選項 / 候選對象"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("colleagues").map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}`),
@@ -4621,7 +5024,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("cutting edge").map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),
-  ["phrase:noun:尖端 / 最前沿"]
+  ["phrase:noun:尖端 / 最前沿", "phrase:adjective:尖端的 / 最先進的"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("cutting-edge").map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),
@@ -7177,6 +7580,1201 @@ verbTableFormExpectations.forEach(({ form, base, meaning, roles }) => {
     candidate.pos === "verb" && candidate.meaning === expectedMeaning
   ));
   assert.ok(entry, `${form} should include verb-table meaning ${expectedMeaning}`);
+});
+
+const mt25ReviewedExpectations = [
+  ["roof garden", "noun", "天台花園 / 屋頂花園"],
+  ["smell the roses", "verb", "享受身邊事物 / 放慢腳步欣賞生活"],
+  ["compost heap", "noun", "堆肥堆"],
+  ["typhoon-proof", "adjective", "防颱風的"],
+  ["rooftop farming", "noun", "天台耕種 / 屋頂農耕"],
+  ["urban jungle", "noun", "石屎森林 / 城市叢林"],
+  ["okra", "noun", "秋葵"],
+  ["forge links", "verb", "建立聯繫"],
+  ["in its infancy", "adjective", "處於起步階段的 / 尚在初期的"],
+  ["housing crisis", "noun", "房屋危機 / 住房危機"],
+  ["brownfield sites", "noun", "棕地 / 已發展後閒置土地"],
+  ["Small House Policy", "noun", "丁屋政策 / 小型屋宇政策"],
+  ["at a premium", "adjective", "供不應求的 / 非常珍貴的"],
+  ["state coffers", "noun", "政府庫房 / 公帑"],
+  ["property bubble", "noun", "樓市泡沫 / 物業泡沫"],
+  ["in free fall", "adjective", "急速下跌的 / 失控下跌的"],
+  ["priced out of the market", "adjective", "因價格太高而被市場排除的"],
+  ["take the hit", "verb", "承受打擊 / 承擔損失"],
+  ["cut my losses", "verb", "止蝕 / 減少損失"],
+  ["out of pocket", "adjective", "虧錢的 / 自掏腰包的"]
+];
+
+mt25ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT25 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt27ReviewedExpectations = [
+  ["anthropologist", "noun", "人類學家"],
+  ["social dynamics", "noun", "社交互動模式 / 群體互動"],
+  ["navigate", "verb", "應付 / 處理"],
+  ["inner circle", "noun", "核心朋友圈 / 親近圈子"],
+  ["rack up", "verb", "累積 / 大量取得"],
+  ["up their game", "verb", "提升表現 / 加把勁"],
+  ["sibling rivalry", "noun", "兄弟姊妹間的競爭"],
+  ["waterslide tester", "noun", "水上滑梯測試員"],
+  ["fragrance chemist", "noun", "香料化學師"],
+  ["food stylist", "noun", "食物造型師"],
+  ["professional mourner", "noun", "職業哭喪者 / 代哭者"],
+  ["fall out of fashion", "verb", "不再流行 / 過時"],
+  ["Arctic Circle", "noun", "北極圈"],
+  ["jet lag", "noun", "時差反應"],
+  ["living out of a suitcase", "verb", "長期在外奔波 / 經常旅行"],
+  ["sanity", "noun", "神志正常 / 理智"],
+  ["interminable", "adjective", "無盡的 / 漫長得看不到盡頭的"],
+  ["Martians", "noun", "火星人"],
+  ["ludicrous", "adjective", "荒謬可笑的"],
+  ["locomotion", "noun", "移動 / 運動方式"],
+  ["grotesque", "adjective", "怪異醜陋的"],
+  ["snuck up on", "verb", "悄悄接近 / 偷偷靠近"],
+  ["snuffed out", "verb", "殺死 / 消滅"],
+  ["archaic", "adjective", "古舊的 / 古體的"],
+  ["getting my bearings", "verb", "弄清方向 / 了解身處環境"]
+];
+
+mt27ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT27 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt30ReviewedExpectations = [
+  ["arctic", "adjective", "北極的 / 極寒的"],
+  ["salt flat", "noun", "鹽沼 / 鹽灘"],
+  ["trilogy", "noun", "三部曲"],
+  ["gunfire", "noun", "槍聲 / 槍火"],
+  ["eponymous", "adjective", "同名的"],
+  ["run-of-the-mill", "adjective", "普通的 / 平凡的"],
+  ["flak jacket", "noun", "防彈背心 / 防碎片背心"],
+  ["tourist trap", "noun", "遊客陷阱 / 專賺遊客錢的地方"],
+  ["miss the mark", "verb", "未能達到目的 / 不中肯"],
+  ["left me cold", "verb", "未能打動某人 / 令某人無感"],
+  ["fruitarian", "noun", "果食者 / 只吃水果的人"],
+  ["gluten-free diet", "noun", "無麩質飲食"],
+  ["flexitarian", "noun", "彈性素食者"],
+  ["flexitarianism", "noun", "彈性素食主義"],
+  ["Meat-free Monday", "noun", "無肉星期一運動"],
+  ["dietary fads", "noun", "一時流行的飲食潮流"],
+  ["sure-fire", "adjective", "肯定成功的 / 穩妥的"],
+  ["all-or-nothing", "adjective", "非黑即白的 / 全有或全無的"],
+  ["whole-hog", "adjective", "徹底的 / 全面的"],
+  ["egregious offender", "noun", "特別嚴重的問題來源 / 最嚴重的元兇"],
+  ["flora and fauna", "noun", "動植物"],
+  ["ethically indefensible", "adjective", "道德上站不住腳的"],
+  ["humane", "adjective", "人道的 / 仁慈的"],
+  ["open your doors to", "verb", "開始接受 / 接觸"]
+];
+
+mt30ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT30 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt32ReviewedExpectations = [
+  ["virtual doctor", "noun", "虛擬醫生 / 電腦醫生"],
+  ["practise medicine", "verb", "行醫"],
+  ["far-fetched", "adjective", "牽強的 / 難以相信的"],
+  ["crunch numbers", "verb", "處理大量數字 / 計算數據"],
+  ["heart attack", "noun", "心臟病發 / 心肌梗塞"],
+  ["healthcare professionals", "noun", "醫護專業人員"],
+  ["life-threatening illness", "noun", "危及生命的疾病"],
+  ["pacemaker", "noun", "心臟起搏器"],
+  ["organ transplant", "noun", "器官移植"],
+  ["mechanical skeleton", "noun", "機械骨骼"],
+  ["conformity", "noun", "遵從 / 一致"],
+  ["great leveller", "noun", "使人人平等的事物"],
+  ["gender-neutral uniforms", "noun", "性別中立校服 / 不分性別的校服"],
+  ["collectivism", "noun", "集體主義"],
+  ["terracotta warrior", "noun", "兵馬俑"],
+  ["Chinese tunic suit", "noun", "中山裝"],
+  ["Mao suit", "noun", "毛裝 / 中山裝"],
+  ["frown upon", "verb", "不贊成 / 反對"],
+  ["straitjacket", "noun", "束縛 / 約束"]
+];
+
+mt32ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT32 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt77ReviewedExpectations = [
+  ["yi mein", "noun", "伊麵 / 長壽麵"],
+  ["longevity noodles", "noun", "長壽麵"],
+  ["cottage industry", "noun", "家庭式小生意 / 家庭工業"],
+  ["legend has it", "verb", "傳說是 / 據傳"],
+  ["auspicious", "adjective", "吉利的 / 祥瑞的"],
+  ["tempt fate", "verb", "冒不必要的風險 / 觸霉頭"],
+  ["dexterous", "adjective", "靈巧的 / 手巧的"],
+  ["kudos", "noun", "讚賞 / 敬意"],
+  ["epée", "noun", "重劍"],
+  ["epee", "noun", "重劍"],
+  ["walkover", "noun", "輕易取勝 / 輕鬆勝利"],
+  ["nerve-wracking", "adjective", "令人緊張的"],
+  ["beacon of inspiration", "noun", "鼓舞人心的榜樣 / 靈感來源"],
+  ["bucket list", "adjective", "人生願望清單上的"],
+  ["money-spinner", "noun", "賺錢項目 / 搖錢樹"],
+  ["north of", "preposition", "多於 / 超過"],
+  ["outlier", "noun", "例外 / 異常情況"],
+  ["in lieu of", "preposition", "代替 / 而不是"],
+  ["on the cards", "adjective", "很可能發生的"],
+  ["perfect", "verb", "使完善 / 改善"],
+  ["baby bouncer", "noun", "嬰兒彈椅 / 嬰兒搖椅"]
+];
+
+mt77ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT77 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt56ReviewedExpectations = [
+  ["Take Your Dog to Work Day", "noun", "帶狗上班日"],
+  ["dog-friendly", "adjective", "對狗友善的 / 可帶狗的"],
+  ["with open arms", "adverb", "熱情地 / 欣然地"],
+  ["petting", "verb", "撫摸 / 輕拍"],
+  ["workplace gossip", "noun", "職場八卦 / 辦公室閒話"],
+  ["cynophobia", "noun", "恐狗症 / 對狗的恐懼"],
+  ["mother-to-be", "noun", "準媽媽"],
+  ["antioxidants", "noun", "抗氧化物"],
+  ["Pu'er", "noun", "普洱茶"],
+  ["steeping", "verb", "浸泡 / 沖泡"],
+  ["tea connoisseur", "noun", "茶藝鑑賞家 / 懂茶的人"],
+  ["gaiwan", "noun", "蓋碗"],
+  ["Chadō", "noun", "日本茶道"],
+  ["chasen", "noun", "茶筅 / 竹製抹茶刷"],
+  ["hefty price tag", "noun", "沉重代價 / 高昂價格"],
+  ["carbon emissions", "noun", "碳排放"],
+  ["fast fashion", "noun", "快時尚 / 快速時裝"],
+  ["synthetic fabrics", "noun", "合成布料"],
+  ["ephemeral", "adjective", "短暫的 / 轉瞬即逝的"],
+  ["must-haves", "noun", "必備物品 / 必買單品"],
+  ["resist the temptation", "verb", "抵抗誘惑"]
+];
+
+mt56ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT56 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt52ReviewedExpectations = [
+  ["HSP", "noun", "高敏感人士"],
+  ["coin the term", "verb", "創造這個用語 / 首次提出這個名稱"],
+  ["overstimulated", "adjective", "受過度刺激的"],
+  ["thin-skinned", "adjective", "臉皮薄的 / 容易因批評而不快的"],
+  ["downtime", "noun", "休息時間 / 放鬆時間"],
+  ["rest assured", "verb", "放心 / 可以安心"],
+  ["Canto-Western", "adjective", "港式西餐的 / 中西合璧的"],
+  ["taken aback", "adjective", "吃驚的 / 感到意外的"],
+  ["no-frills", "adjective", "簡單實用的 / 沒有花巧服務的"],
+  ["soy sauce western food", "noun", "豉油西餐 / 港式西餐"],
+  ["Singaporean noodles", "noun", "星洲炒米 / 星加坡炒米"],
+  ["evaporated milk", "noun", "淡奶 / 花奶"],
+  ["French toast", "noun", "西多士 / 法式多士"],
+  ["board-game cafe", "noun", "桌上遊戲咖啡店"],
+  ["tabletop games", "noun", "桌上遊戲"],
+  ["tip of the iceberg", "noun", "冰山一角"],
+  ["hold their own", "verb", "保持優勢 / 不輸蝕"],
+  ["tactility", "noun", "觸感 / 可觸摸的感覺"],
+  ["Eurogames", "noun", "歐式桌上遊戲"],
+  ["crowdfunding platform", "noun", "眾籌平台"],
+  ["game changer", "noun", "改變局面的事物 / 重大轉捩點"],
+  ["golden age", "noun", "黃金時代"]
+];
+
+mt52ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT52 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt49ReviewedExpectations = [
+  ["physical therapist", "noun", "物理治療師"],
+  ["half-marathon", "noun", "半馬拉松"],
+  ["trainers", "noun", "運動鞋"],
+  ["won’t cut it", "verb", "達到要求 / 夠好"],
+  ["runner’s high", "noun", "跑步後的愉快感"],
+  ["couch-to-5K", "noun", "由零開始跑五公里的訓練計劃"],
+  ["Jeffing", "noun", "跑走交替訓練法"],
+  ["birdcage", "noun", "鳥籠"],
+  ["turned my hand to", "verb", "開始嘗試做 / 著手做"],
+  ["honing my craft", "verb", "磨練手藝 / 鍛鍊技術"],
+  ["bird flu", "noun", "禽流感"],
+  ["cut out for", "adjective", "適合做...的"],
+  ["birdwatching", "noun", "觀鳥"],
+  ["frazzled", "adjective", "疲憊煩躁的 / 壓力很大的"],
+  ["Mai Po Marshes", "noun", "米埔濕地"],
+  ["binoculars", "noun", "雙筒望遠鏡"],
+  ["illegal dumping", "noun", "非法傾倒廢物"],
+  ["Blue Zones", "noun", "藍區 / 長壽地區"],
+  ["hara hachi bu", "noun", "八分飽原則"],
+  ["life expectancy", "noun", "預期壽命"],
+  ["close-knit community", "noun", "關係緊密的社群"],
+  ["spry", "adjective", "活躍敏捷的 / 老而健壯的"],
+  ["mindfulness", "noun", "靜觀 / 正念"]
+];
+
+mt49ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT49 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt45ReviewedExpectations = [
+  ["location sharing app", "noun", "位置分享應用程式"],
+  ["keep tabs on", "verb", "留意 / 掌握...的情況"],
+  ["par for the course", "adjective", "意料之內的 / 平常的"],
+  ["blindly optimistic", "adjective", "盲目樂觀的"],
+  ["stalk", "verb", "跟蹤 / 纏擾"],
+  ["nefarious motive", "noun", "邪惡動機 / 不良意圖"],
+  ["fever pitch", "noun", "極度激動 / 高度緊張狀態"],
+  ["erosion of privacy", "noun", "私隱逐漸被侵蝕"],
+  ["microcation", "noun", "短途短假期 / 微度假"],
+  ["rack up a hefty tab", "verb", "累積高額開支 / 花上一大筆錢"],
+  ["staycation", "noun", "留家度假 / 本地度假"],
+  ["economic injections", "noun", "經濟注入 / 經濟收益"],
+  ["dwarfed", "verb", "使顯得渺小 / 遠遠超過"],
+  ["inundating", "verb", "湧入 / 淹沒"],
+  ["shuttering their doors", "verb", "關門停業"],
+  ["add fuel to the fire", "verb", "火上加油 / 令問題惡化"],
+  ["multi-pronged approach", "noun", "多管齊下的方法"],
+  ["levies a daily fee", "verb", "徵收費用"],
+  ["lesser-known destinations", "noun", "較少人認識的目的地"]
+];
+
+mt45ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT45 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt80ReviewedExpectations = [
+  ["instalment", "noun", "一集 / 一部作品"],
+  ["installment", "noun", "一集 / 一部作品"],
+  ["franchise", "noun", "系列作品 / 影視系列"],
+  ["take in", "verb", "收留 / 收容"],
+  ["scratch the surface", "verb", "只了解表面 / 只觸及皮毛"],
+  ["bawl my eyes out", "verb", "大哭一場"],
+  ["geopark", "noun", "地質公園"],
+  ["Cretaceous period", "noun", "白堊紀"],
+  ["reel off", "verb", "一口氣說出 / 快速列出"],
+  ["turn them on to", "verb", "使某人對...產生興趣"],
+  ["strike gold", "verb", "取得重大成功 / 找到好機會"],
+  ["music therapy", "noun", "音樂治療"],
+  ["give them a lift", "verb", "令某人精神一振 / 鼓舞某人"],
+  ["track", "noun", "歌曲 / 音軌"],
+  ["get through to", "verb", "與...溝通成功 / 令...明白"],
+  ["shine a light into", "verb", "為...帶來希望 / 照亮"]
+];
+
+mt80ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT80 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt73ReviewedExpectations = [
+  ["illustrator", "noun", "插畫家"],
+  ["illustrious", "adjective", "著名且受尊敬的"],
+  ["chanced upon", "verb", "偶然發現 / 碰巧遇到"],
+  ["smash hit", "noun", "大受歡迎的作品 / 巨大成功"],
+  ["band", "noun", "一群 / 一夥"],
+  ["blew me away", "verb", "令某人驚喜 / 令某人十分感動"],
+  ["gruelling", "adjective", "極度辛苦的 / 令人筋疲力盡的"],
+  ["stray cats", "noun", "流浪貓"],
+  ["euthanasia", "noun", "安樂死"],
+  ["sterilized", "verb", "為...絕育"],
+  ["moggies", "noun", "貓 / 家貓"],
+  ["vaping", "noun", "吸電子煙"],
+  ["pull the wool over someone’s eyes", "verb", "蒙騙某人"],
+  ["phase out", "verb", "逐步淘汰 / 逐步停止"],
+  ["lauded", "verb", "讚揚 / 表揚"],
+  ["dragged their feet", "verb", "拖延 / 行動遲緩"],
+  ["black market", "noun", "黑市"],
+  ["watered down", "verb", "削弱 / 淡化"],
+  ["at the expense of", "preposition", "以犧牲...為代價"],
+  ["forsaken generation", "noun", "被放棄的一代"]
+];
+
+mt73ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT73 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt70ReviewedExpectations = [
+  ["graphic novels", "noun", "圖像小說 / 漫畫小說"],
+  ["in its own right", "adverb", "憑本身條件 / 本身就"],
+  ["sci-fi", "noun", "科幻作品"],
+  ["the thin end of the wedge", "noun", "問題惡化的開端"],
+  ["pique their interest", "verb", "引起某人的興趣"],
+  ["heavy lifting", "noun", "費力的工作 / 艱難部分"],
+  ["dyslexic", "adjective", "有讀寫障礙的"],
+  ["cabbies", "noun", "的士司機"],
+  ["customer satisfaction", "noun", "顧客滿意度"],
+  ["white knuckles", "noun", "因害怕而握緊至發白的手"],
+  ["in one piece", "adverb", "安然無恙地"],
+  ["pulling over", "verb", "靠邊停車"],
+  ["thermal vents", "noun", "熱泉口 / 熱液噴口"],
+  ["submersible", "noun", "潛水器"],
+  ["autonomous", "adjective", "自動操作的 / 自主的"],
+  ["imploded", "verb", "向內爆裂 / 內爆"],
+  ["wreck", "noun", "沉船 / 殘骸"],
+  ["high-net-worth", "adjective", "高資產的 / 富裕的"],
+  ["spelt out", "verb", "清楚說明 / 明確列出"],
+  ["fathom", "verb", "理解 / 弄明白"]
+];
+
+mt70ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT70 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt35Paper3ReviewedExpectations = [
+  ["cold-pressed juice", "noun", "冷壓果汁"],
+  ["budget-conscious", "adjective", "注重價錢的 / 精打細算的"],
+  ["make or break", "verb", "決定成敗"],
+  ["fit the bill", "verb", "符合要求 / 合適"],
+  ["immune system", "noun", "免疫系統"],
+  ["pasteurized", "adjective", "經巴士德消毒的 / 經高溫殺菌的"],
+  ["claymation", "noun", "黏土動畫"],
+  ["stop motion animation", "noun", "定格動畫"],
+  ["mail carrier", "noun", "郵差 / 郵件派送員"],
+  ["cast and crew", "noun", "演員和製作團隊"],
+  ["on a shoestring", "adverb", "以很少資金 / 低成本地"],
+  ["continuity", "noun", "連貫性 / 前後一致"],
+  ["squashed", "verb", "壓扁 / 壓爛"],
+  ["grant proposal", "noun", "撥款申請書"],
+  ["appropriacy", "noun", "語境合適度 / 用語恰當度"]
+];
+
+mt35Paper3ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT35 Paper 3 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt38Paper3ReviewedExpectations = [
+  ["listener survey", "noun", "聽眾問卷"],
+  ["take your mind off", "verb", "使某人暫時忘記 / 分散注意"],
+  ["misinterpreted", "verb", "誤解 / 錯誤理解"],
+  ["tender", "noun", "投標書 / 工程投標"],
+  ["shock absorption", "noun", "減震 / 吸震"],
+  ["compromise on quality", "verb", "犧牲質素 / 在質素上妥協"],
+  ["AOB", "noun", "其他事項"],
+  ["head it up", "verb", "負責 / 帶領"],
+  ["CSR initiatives", "noun", "企業社會責任措施"],
+  ["stand behind the work", "verb", "支持 / 為...負責"],
+  ["on the ground", "adverb", "在現場 / 實際上"],
+  ["jump ship", "verb", "跳槽 / 離職轉投別處"],
+  ["set ourselves apart", "verb", "使自己與眾不同 / 突顯自己"],
+  ["green buildings", "noun", "綠色建築 / 環保建築"],
+  ["put everyone's mind at rest", "verb", "使某人放心"]
+];
+
+mt38Paper3ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT38 Paper 3 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt42Paper3ReviewedExpectations = [
+  ["tree roots", "noun", "樹根"],
+  ["good grief", "adverb", "天啊 / 哎呀"],
+  ["ultra trail races", "noun", "超級越野跑賽事"],
+  ["ultramarathoner", "noun", "超級馬拉松跑手"],
+  ["Nordic skiing", "noun", "北歐式滑雪"],
+  ["test their limits", "verb", "挑戰自己的極限"],
+  ["sign up for", "verb", "報名參加"],
+  ["MacLehose Trail", "noun", "麥理浩徑"],
+  ["Mui Wo", "noun", "梅窩"],
+  ["fell in love with", "verb", "愛上 / 喜歡上"],
+  ["inhaler", "noun", "吸入器 / 哮喘噴霧"],
+  ["GPX files", "noun", "GPX 路線檔案"],
+  ["funding report", "noun", "資金報告 / 撥款報告"],
+  ["flagged up", "verb", "指出 / 提醒注意"],
+  ["questionnaire responses", "noun", "問卷回覆"]
+];
+
+mt42Paper3ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT42 Paper 3 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt59ReviewedExpectations = [
+  ["begs the question", "verb", "令人不禁要問 / 引出問題"],
+  ["inclination", "noun", "傾向 / 意向"],
+  ["walks of life", "noun", "各行各業 / 不同背景"],
+  ["on the other side of the pond", "adverb", "在大西洋另一邊 / 在英美另一邊"],
+  ["rival", "verb", "媲美 / 與...匹敵"],
+  ["integral demographic", "noun", "重要客群 / 重要人口群體"],
+  ["bag a gold medal", "verb", "贏得金牌"],
+  ["euphoric", "adjective", "極度興奮愉快的"],
+  ["make waves", "verb", "引起轟動 / 表現突出"],
+  ["clinched", "verb", "贏得 / 成功取得"],
+  ["squash", "noun", "壁球"],
+  ["bouldering", "noun", "抱石"],
+  ["HIIT", "noun", "高強度間歇訓練"],
+  ["do the trick", "verb", "奏效 / 達到效果"],
+  ["jumping jacks", "noun", "開合跳"],
+  ["run out of steam", "verb", "耗盡精力 / 無以為繼"],
+  ["heart rate", "noun", "心率 / 心跳率"],
+  ["plethora", "noun", "大量 / 許多"],
+  ["high blood pressure", "noun", "高血壓"],
+  ["put to rest", "verb", "終止 / 令...不再成立"]
+];
+
+mt59ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT59 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt84ReviewedExpectations = [
+  ["digital fast", "noun", "戒用電子屏幕 / 數碼禁食"],
+  ["digital detox", "noun", "戒用電子產品 / 數碼排毒"],
+  ["scrolling", "verb", "滑動瀏覽"],
+  ["stick it out", "verb", "撐下去 / 堅持到底"],
+  ["scarfed", "verb", "狼吞虎嚥地吃"],
+  ["out of the loop", "adjective", "不了解最新情況的 / 被排除在圈外的"],
+  ["crochet", "verb", "鉤織"],
+  ["hand-eye coordination", "noun", "手眼協調"],
+  ["tinnitus", "noun", "耳鳴"],
+  ["take a toll", "verb", "對...造成傷害 / 有負面影響"],
+  ["central nervous system", "noun", "中樞神經系統"],
+  ["developmental delays", "noun", "發展遲緩"],
+  ["noise-cancelling", "adjective", "降噪的 / 消除噪音的"],
+  ["glass-half-full", "adjective", "樂觀的"],
+  ["sleep like a log", "verb", "睡得很沉 / 熟睡"]
+];
+
+mt84ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT84 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt42ReviewedExpectations = [
+  ["pressing challenge", "noun", "迫切挑戰"],
+  ["methane", "noun", "甲烷"],
+  ["runoff", "noun", "地表徑流 / 流走的污水"],
+  ["raze", "verb", "夷平 / 徹底拆毀"],
+  ["per capita", "adverb", "人均 / 每人計"],
+  ["mock meat", "noun", "素肉 / 仿肉"],
+  ["tall order", "noun", "艱難任務 / 高要求"],
+  ["pilot programme", "noun", "試驗計劃"],
+  ["greywater", "noun", "生活污水 / 可重用廢水"],
+  ["e-waste", "noun", "電子廢物"],
+  ["planned obsolescence", "noun", "計劃性淘汰 / 有意設計成短壽命"],
+  ["Producer Responsibility Scheme", "noun", "生產者責任計劃"],
+  ["circular economy", "noun", "循環經濟"],
+  ["paltry", "adjective", "微不足道的 / 少得可憐的"],
+  ["in the right direction", "adverb", "方向正確地 / 朝正確方向"]
+];
+
+mt42ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT42 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt38ReviewedExpectations = [
+  ["iteration", "noun", "版本 / 形式"],
+  ["engrossed", "verb", "使全神貫注 / 吸引住"],
+  ["gained traction", "verb", "開始受支持 / 逐漸被接受"],
+  ["Kamishibai", "noun", "紙芝居 / 日本傳統紙劇場"],
+  ["Genga", "noun", "原畫 / 漫畫原稿"],
+  ["modern curse", "noun", "現代禍害 / 現代煩惱"],
+  ["delayed gratification", "noun", "延遲滿足 / 等待後才得到滿足"],
+  ["word-processing software", "noun", "文字處理軟件"],
+  ["eye-opening", "adjective", "令人大開眼界的"],
+  ["juggle", "verb", "兼顧 / 同時應付"],
+  ["procrastinating", "verb", "拖延 / 延遲做事"],
+  ["titivating", "verb", "修飾 / 反覆修改"],
+  ["RAM", "noun", "電腦隨機存取記憶體"],
+  ["capture points", "noun", "記錄點 / 收集想法的位置"],
+  ["under pressure", "adverb", "在壓力下"]
+];
+
+mt38ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT38 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt35ReviewedExpectations = [
+  ["classified ads", "noun", "分類廣告"],
+  ["proven track record", "noun", "已證明的良好往績"],
+  ["poach", "verb", "挖角 / 搶走人才"],
+  ["EdTech", "noun", "教育科技"],
+  ["airline pilot", "noun", "航空公司機師"],
+  ["autopilots", "noun", "自動駕駛系統"],
+  ["First Officer", "noun", "副機師 / 第一副機長"],
+  ["cadet programme", "noun", "見習機師培訓計劃"],
+  ["aviator", "noun", "飛行員"],
+  ["come clean", "verb", "坦白承認 / 說出真相"],
+  ["hoax", "noun", "騙局 / 惡作劇"],
+  ["human-powered flight", "noun", "人力飛行"],
+  ["BASE jumping", "noun", "定點跳傘"],
+  ["poles apart", "adjective", "截然不同的"],
+  ["Transhumanist", "noun", "超人類主義者"],
+  ["hot air balloons", "noun", "熱氣球"],
+  ["gliders", "noun", "滑翔機"],
+  ["meticulous", "adjective", "細緻的 / 一絲不苟的"],
+  ["propeller", "noun", "螺旋槳"],
+  ["transatlantic flight", "noun", "橫越大西洋的飛行"]
+];
+
+mt35ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT35 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt22ReviewedExpectations = [
+  ["TV personality", "noun", "電視名人"],
+  ["short end of the stick", "noun", "吃虧的一方 / 不利處境"],
+  ["heart is in the right place", "adjective", "出發點是好的 / 心地是好的"],
+  ["gawk at", "verb", "呆望 / 盯著看"],
+  ["native tree", "noun", "本地樹木"],
+  ["camphor tree", "noun", "樟樹"],
+  ["sea hibiscus", "noun", "黃槿 / 海濱木槿"],
+  ["financial meltdown", "noun", "金融崩潰"],
+  ["dugout", "noun", "獨木舟 / 挖空樹幹做成的船"],
+  ["paddle", "verb", "划槳 / 划艇"],
+  ["tip", "verb", "翻側 / 傾側"],
+  ["white water", "noun", "急流"],
+  ["rapid", "noun", "急流"],
+  ["get the hang of", "verb", "掌握技巧 / 學會竅門"],
+  ["tip over", "verb", "翻側 / 翻倒"]
+];
+
+mt22ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT22 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt20ReviewedExpectations = [
+  ["out of the blue", "adverb", "突然 / 出乎意料地"],
+  ["hereditary", "adjective", "遺傳的"],
+  ["knock-on effect", "noun", "連鎖反應 / 後續影響"],
+  ["idling engine", "noun", "空轉引擎"],
+  ["hit the nail on the head", "verb", "說得完全正確 / 一針見血"],
+  ["stock market", "noun", "股票市場"],
+  ["net worth", "noun", "淨資產 / 身家"],
+  ["frugal", "adjective", "節儉的"],
+  ["gift box", "noun", "禮物盒"],
+  ["orphanage", "noun", "孤兒院"],
+  ["care package", "noun", "慰問包 / 關愛包"],
+  ["domestic helper", "noun", "家庭傭工 / 家務助理"],
+  ["foreign domestic helper", "noun", "外籍家庭傭工 / 外傭"],
+  ["disposable income", "noun", "可支配收入"],
+  ["elevated walkway", "noun", "行人天橋 / 架空行人道"],
+  ["statutory minimum wage", "noun", "法定最低工資"],
+  ["minimum allowable wage", "noun", "最低允許工資"],
+  ["human rights activist", "noun", "人權活動人士"],
+  ["physically abuse", "verb", "身體虐待"],
+  ["poignant", "adjective", "令人心酸的 / 深刻感人的"]
+];
+
+mt20ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT20 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt17ReviewedExpectations = [
+  ["cosmetically pleasing", "adjective", "外觀好看的"],
+  ["artificial ingredient", "noun", "人工成分"],
+  ["dirty dozen", "noun", "高農藥殘留的十二種蔬果"],
+  ["stock up on", "verb", "大量購買 / 囤積"],
+  ["selfie", "noun", "自拍照"],
+  ["catch on like wildfire", "verb", "迅速流行起來"],
+  ["front-facing camera", "noun", "前置鏡頭"],
+  ["narcissism", "noun", "自戀"],
+  ["floating structure", "noun", "漂浮建築 / 浮動結構"],
+  ["seaplane", "noun", "水上飛機"],
+  ["seep through", "verb", "滲透 / 滲入"],
+  ["mythical island", "noun", "神話島嶼"],
+  ["electronic cigarette", "noun", "電子煙"],
+  ["relapse", "verb", "故態復萌 / 復吸"],
+  ["cigarette butt", "noun", "煙蒂"],
+  ["liquid nicotine", "noun", "液態尼古丁"],
+  ["kick the habit", "verb", "戒掉壞習慣 / 戒煙癮"],
+  ["withdrawal symptom", "noun", "戒斷症狀"],
+  ["cessation", "noun", "停止 / 戒除"],
+  ["efficacy", "noun", "效用 / 功效"]
+];
+
+mt17ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT17 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt15ReviewedExpectations = [
+  ["cut from the same cloth", "adjective", "同類的 / 本質相似的"],
+  ["eschew", "verb", "避開 / 摒棄"],
+  ["Gotham City", "noun", "葛咸城"],
+  ["World Cosplay Summit", "noun", "世界 Cosplay 峰會"],
+  ["LARP", "noun", "真人角色扮演遊戲"],
+  ["pathological gamer", "noun", "病態遊戲玩家"],
+  ["on a par with", "adjective", "與...同等 / 與...不相上下"],
+  ["cave in", "verb", "讓步 / 屈服"]
+];
+
+mt15ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT15 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt63ReviewedExpectations = [
+  ["linear TV", "noun", "線性電視 / 傳統電視"],
+  ["wishful thinking", "noun", "一廂情願"],
+  ["Sharp Peak", "noun", "蚺蛇尖"],
+  ["Lok Wah South Estate", "noun", "樂華南邨"],
+  ["snap-happy invader", "noun", "瘋狂拍照的闖入者"],
+  ["film adaptation", "noun", "電影改編作品"],
+  ["source material", "noun", "原著材料 / 原作"],
+  ["left on the cutting-room floor", "adjective", "被剪掉的 / 被刪走的"]
+];
+
+mt63ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT63 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt66ReviewedExpectations = [
+  ["Qatar", "noun", "卡塔爾"],
+  ["human rights record", "noun", "人權紀錄"],
+  ["dirty money", "noun", "黑錢 / 來歷不明的錢"],
+  ["migrant labourer", "noun", "外來勞工"],
+  ["smoke-free generation", "noun", "無煙世代"],
+  ["on the table", "adjective", "正在考慮中的"],
+  ["goblin mode", "noun", "放縱懶散模式 / 不理社會期望的狀態"],
+  ["rub one's achievements in someone's face", "verb", "炫耀成就 / 把成就曬給別人看"]
+];
+
+mt66ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT66 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt30Paper2ReviewedExpectations = [
+  ["quake-hit", "adjective", "受地震重創的"],
+  ["life-changing", "adjective", "改變人生的"],
+  ["Dragon Boat Racing", "noun", "龍舟競賽"],
+  ["animal adoption", "noun", "領養動物"],
+  ["overpopulation", "noun", "數量過多 / 過度繁殖"],
+  ["lazy typing", "noun", "懶散打字 / 隨便打字"],
+  ["team-building", "adjective", "團隊建立的"],
+  ["treasure hunt", "noun", "尋寶遊戲"]
+];
+
+mt30Paper2ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT30 Paper 2 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt30Paper3ReviewedExpectations = [
+  ["annual leave", "noun", "年假 / 有薪年假"],
+  ["well travelled", "adjective", "見多識廣的 / 去過很多地方的"],
+  ["Poya", "noun", "斯里蘭卡滿月節"],
+  ["sheer drop", "noun", "垂直落差 / 陡峭懸崖"],
+  ["pre-opening sale", "noun", "開幕前特賣"],
+  ["ball pit", "noun", "波波池"],
+  ["juggle", "verb", "拋接雜耍"],
+  ["wear charity like a mask", "verb", "以慈善作包裝 / 假裝有善心"],
+  ["data file manipulation", "noun", "改寫資料檔案內容"],
+  ["register", "noun", "語域 / 用語正式程度"]
+];
+
+mt30Paper3ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT30 Paper 3 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt32Paper3ReviewedExpectations = [
+  ["eco-fashion", "noun", "環保時裝 / 環保時尚"],
+  ["focus group", "noun", "焦點小組"],
+  ["faux leather", "noun", "人造皮革"],
+  ["pop-up shop", "noun", "期間限定店 / 快閃店"],
+  ["modern art installation", "noun", "現代藝術裝置"],
+  ["cash in on", "verb", "從...獲利 / 趁機利用"],
+  ["vegetation waste", "noun", "植物廢料"],
+  ["go public", "verb", "上市 / 公開發行股票"],
+  ["speak for itself", "verb", "不言而喻 / 本身已能說明一切"],
+  ["fashion legend", "noun", "時裝界傳奇人物"]
+];
+
+mt32Paper3ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT32 Paper 3 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt32Paper2ReviewedExpectations = [
+  ["school assembly", "noun", "學校集會"],
+  ["pet-friendly policy", "noun", "寵物友善政策"],
+  ["light pollution", "noun", "光污染"],
+  ["public nuisance", "noun", "公眾滋擾"],
+  ["good manners", "noun", "良好禮貌 / 好禮儀"],
+  ["video arcade", "noun", "電子遊戲機中心 / 遊戲機舖"],
+  ["desensitize", "verb", "使麻木 / 使失去敏感度"],
+  ["air on a channel", "verb", "在頻道播放"]
+];
+
+mt32Paper2ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT32 Paper 2 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt35Paper2ReviewedExpectations = [
+  ["Hong Kong Railway Museum", "noun", "香港鐵路博物館"],
+  ["public sitting-out area", "noun", "公眾休憩處"],
+  ["clinch a victory", "verb", "取得勝利"],
+  ["confidence booster", "noun", "增強自信的事物"],
+  ["creative outlet", "noun", "創意出口 / 表達創意的途徑"],
+  ["life of crime", "noun", "犯罪生活"],
+  ["all-expenses-paid", "adjective", "包全部費用的"],
+  ["place of interest", "noun", "名勝 / 景點"]
+];
+
+mt35Paper2ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT35 Paper 2 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt38Paper2ReviewedExpectations = [
+  ["fibre optics", "noun", "光纖技術"],
+  ["pave the way", "verb", "鋪路 / 為...創造條件"],
+  ["fat shaming", "noun", "嘲笑肥胖 / 身材羞辱"],
+  ["wrongful conviction", "noun", "錯誤定罪 / 冤案"],
+  ["facial recognition software", "noun", "面部識別軟件"],
+  ["the show must go on", "verb", "演出必須繼續 / 無論如何都要繼續"],
+  ["spoken word poetry", "noun", "口語詩 / 朗誦詩"],
+  ["word for word", "adverb", "逐字逐句地"]
+];
+
+mt38Paper2ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT38 Paper 2 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt42Paper2ReviewedExpectations = [
+  ["health and wellness", "noun", "身心健康"],
+  ["mentoring programme", "noun", "師友計劃 / 輔導計劃"],
+  ["student body", "noun", "全體學生"],
+  ["search engine", "noun", "搜尋引擎"],
+  ["movie extra", "noun", "電影臨時演員 / 群眾演員"],
+  ["pick on", "verb", "欺負 / 針對"],
+  ["Human Resources Department", "noun", "人力資源部"],
+  ["satellite phone", "noun", "衛星電話"],
+  ["make it out alive", "verb", "活著逃出 / 生還"]
+];
+
+mt42Paper2ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT42 Paper 2 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt45Paper2ReviewedExpectations = [
+  ["board game night", "noun", "桌上遊戲晚會"],
+  ["Owners' Committee", "noun", "業主委員會"],
+  ["peace of mind", "noun", "安心 / 心安"],
+  ["running cost", "noun", "營運費 / 日常開支"],
+  ["intranet", "noun", "內聯網"],
+  ["at one's fingertips", "adverb", "近在手邊 / 隨手可得"],
+  ["rave review", "noun", "高度好評 / 熱烈讚賞的評論"],
+  ["dedicate a song", "verb", "點歌送給... / 獻歌"],
+  ["spa treatment", "noun", "水療護理 / Spa 護理"],
+  ["plant crops", "verb", "種植農作物"],
+  ["shovel", "noun", "鏟 / 鐵鏟"]
+];
+
+mt45Paper2ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT45 Paper 2 reviewed sense ${pos}:${meaning}`);
+});
+
+["spa", "fingertip", "farewell", "disadvantaged"].forEach((word) => {
+  assert.ok(
+    senseBank.lookup(word, { includeHidden: true, limit: 20 }).some((entry) => entry.source === "mock-unseen-mt45-paper2-reviewed"),
+    `${word} should be available as an MT45 phrase component`
+  );
+});
+
+const mt49Paper2ReviewedExpectations = [
+  ["deluxe suite", "noun", "豪華套房"],
+  ["radio host", "noun", "電台主持"],
+  ["remote learning", "noun", "遙距學習 / 網上學習"],
+  ["hygiene practice", "noun", "衛生習慣 / 衛生做法"],
+  ["feel left out", "verb", "感到被冷落 / 被排除在外"],
+  ["game console", "noun", "遊戲機 / 遊戲主機"],
+  ["student band", "noun", "學生樂隊"],
+  ["awe-inspiring", "adjective", "令人敬畏的 / 令人驚嘆的"],
+  ["First World War", "noun", "第一次世界大戰"],
+  ["change the face of", "verb", "徹底改變...的面貌"]
+];
+
+mt49Paper2ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT49 Paper 2 reviewed sense ${pos}:${meaning}`);
+});
+
+["deluxe", "trivia", "console", "connectivity", "England"].forEach((word) => {
+  assert.ok(
+    senseBank.lookup(word, { includeHidden: true, limit: 20 }).some((entry) => entry.source === "mock-unseen-mt49-paper2-reviewed"),
+    `${word} should be available as an MT49 phrase component`
+  );
+});
+
+const mt56Paper2ReviewedExpectations = [
+  ["teen magazine", "noun", "青少年雜誌"],
+  ["historic landmark", "noun", "歷史地標"],
+  ["sedan chair", "noun", "轎 / 轎子"],
+  ["roll the dice", "verb", "擲骰子"],
+  ["guest of honour", "noun", "主禮嘉賓 / 貴賓"],
+  ["closing remarks", "noun", "閉幕致辭 / 總結發言"],
+  ["women's rights", "noun", "女性權利 / 婦女權益"],
+  ["traditional character", "noun", "繁體字"],
+  ["make a mess of it", "verb", "搞砸 / 做得一塌糊塗"],
+  ["award-winning", "adjective", "得獎的 / 獲獎的"]
+];
+
+mt56Paper2ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT56 Paper 2 reviewed sense ${pos}:${meaning}`);
+});
+
+["vermicelli", "tofu", "dice", "burpee", "GCSE", "Chinatown", "pronunciation", "subtitle"].forEach((word) => {
+  assert.ok(
+    senseBank.lookup(word, { includeHidden: true, limit: 20 }).some((entry) => entry.source === "mock-unseen-mt56-paper2-reviewed"),
+    `${word} should be available as an MT56 Paper 2 phrase component`
+  );
+});
+
+const mt59Paper2ReviewedExpectations = [
+  ["immigration trend", "noun", "移民趨勢"],
+  ["jot down", "verb", "匆匆記下 / 草草寫下"],
+  ["chief librarian", "noun", "總圖書館館長 / 圖書館主管"],
+  ["work out a schedule", "verb", "制定時間表 / 安排更表"],
+  ["luxurious", "adjective", "豪華的 / 奢華的"],
+  ["ensuite bathroom", "noun", "套房浴室 / 房內浴室"],
+  ["billiard table", "noun", "桌球枱"],
+  ["not one's cup of tea", "adjective", "不是某人喜歡的事物"],
+  ["slack off", "verb", "偷懶 / 懈怠"],
+  ["give it one's all", "verb", "全力以赴"]
+];
+
+mt59Paper2ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT59 Paper 2 reviewed sense ${pos}:${meaning}`);
+});
+
+["mahogany", "backyard", "preoccupied"].forEach((word) => {
+  assert.ok(
+    senseBank.lookup(word, { includeHidden: true, limit: 20 }).some((entry) => entry.source === "mock-unseen-mt59-paper2-reviewed"),
+    `${word} should be available as an MT59 Paper 2 phrase component`
+  );
+});
+
+const mt63Paper2ReviewedExpectations = [
+  ["popular culture", "noun", "流行文化"],
+  ["stay in the loop", "verb", "掌握最新消息 / 不脫節"],
+  ["information overload", "noun", "資訊過量 / 資訊超載"],
+  ["grounds", "noun", "理由 / 根據"],
+  ["family business", "noun", "家族生意 / 家族企業"],
+  ["choose one's own path", "verb", "選擇自己的道路"],
+  ["green oasis", "noun", "綠洲 / 綠色休憩地"],
+  ["set a dangerous precedent", "verb", "開危險先例"],
+  ["reclaimed land", "noun", "填海土地"],
+  ["future generation", "noun", "下一代 / 後代"]
+];
+
+mt63Paper2ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT63 Paper 2 reviewed sense ${pos}:${meaning}`);
+});
+
+["Kadoorie Farm", "local community", "over-stimulating", "resent"].forEach((word) => {
+  assert.ok(
+    senseBank.lookup(word, { includeHidden: true, limit: 20 }).some((entry) => entry.source === "mock-unseen-mt63-paper2-reviewed"),
+    `${word} should be available as an MT63 Paper 2 phrase component`
+  );
+});
+
+const mt66Paper2ReviewedExpectations = [
+  ["internal combustion engine", "noun", "內燃機"],
+  ["pet adoption day", "noun", "寵物領養日"],
+  ["put something to good use", "verb", "善用某物"],
+  ["mandatory work experience", "noun", "強制工作體驗"],
+  ["professional environment", "noun", "專業工作環境"]
+];
+
+mt66Paper2ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT66 Paper 2 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt12Paper2ReviewedExpectations = [
+  ["comic fan", "noun", "漫畫迷"],
+  ["digital publishing", "noun", "數碼出版"],
+  ["hunched over", "adjective", "彎腰駝背的 / 俯身的"],
+  ["in-app purchase", "noun", "應用程式內購買"],
+  ["calm one's nerves", "verb", "安撫緊張情緒 / 使自己冷靜"]
+];
+
+mt12Paper2ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT12 Paper 2 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt14Paper2ReviewedExpectations = [
+  ["over-packaging", "noun", "過度包裝"],
+  ["return to the workforce", "verb", "重返職場"],
+  ["celebrity status", "noun", "名人地位"],
+  ["flexitime", "noun", "彈性上班時間"],
+  ["Cantonese opera", "noun", "粵劇"]
+];
+
+mt14Paper2ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT14 Paper 2 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt28Paper2ReviewedExpectations = [
+  ["study skills", "noun", "學習技巧"],
+  ["go bankrupt", "verb", "破產"],
+  ["provide company", "verb", "作伴 / 陪伴"],
+  ["DAB radio", "noun", "數碼聲音廣播收音機"],
+  ["overhead walkway", "noun", "行人天橋 / 高架行人道"]
+];
+
+mt28Paper2ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT28 Paper 2 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt29Paper2ReviewedExpectations = [
+  ["environmental charity", "noun", "環保慈善機構"],
+  ["saved by the bell", "adjective", "在最後一刻被救了"],
+  ["fend for itself", "verb", "自力更生 / 自行生存"],
+  ["Generation Z", "noun", "Z 世代"],
+  ["take offense at", "verb", "因...感到被冒犯 / 介意"]
+];
+
+mt29Paper2ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT29 Paper 2 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt33Paper2ReviewedExpectations = [
+  ["town planning", "noun", "城市規劃"],
+  ["obtain sponsorship", "verb", "取得贊助"],
+  ["building block", "noun", "基礎要素 / 組成部分"],
+  ["social media account", "noun", "社交媒體帳戶"],
+  ["tell on someone", "verb", "告發某人 / 打小報告"]
+];
+
+mt33Paper2ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT33 Paper 2 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt34Paper2ReviewedExpectations = [
+  ["bi-cable ropeway", "noun", "雙纜索道"],
+  ["event management", "noun", "活動管理 / 活動統籌"],
+  ["exam results by gender", "noun", "按性別劃分的考試成績"],
+  ["coffee granules", "noun", "咖啡顆粒 / 即溶咖啡粒"],
+  ["internship programme", "noun", "實習計劃"],
+  ["paddock", "noun", "圍場 / 馬場小牧場"]
+];
+
+mt34Paper2ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT34 Paper 2 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt36Paper2ReviewedExpectations = [
+  ["Hong Kong Observatory", "noun", "香港天文台"],
+  ["blatant theft", "noun", "明目張膽的偷竊"],
+  ["give me your blessings", "verb", "祝福某人 / 支持某人的決定"],
+  ["worthy cause", "noun", "有價值的事業 / 值得支持的目標"],
+  ["winter blues", "noun", "冬日憂鬱 / 冬天心情低落"],
+  ["claim treasure", "verb", "認領財物 / 認領寶物"]
+];
+
+mt36Paper2ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT36 Paper 2 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt87ReviewedExpectations = [
+  ["Korean Wave", "noun", "韓流"],
+  ["push the envelope", "verb", "突破界限 / 挑戰極限"],
+  ["venture capital", "noun", "風險投資"],
+  ["buddy up", "verb", "結伴同行 / 找同伴"],
+  ["trail runner's paradise", "noun", "越野跑者的天堂"],
+  ["slow parenting", "noun", "慢養育 / 慢節奏育兒"],
+  ["magic bullet", "noun", "萬靈丹 / 神奇解決方法"],
+  ["dip one's toe in", "verb", "初步嘗試 / 小試牛刀"]
+];
+
+mt87ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT87 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt16Paper3ReviewedExpectations = [
+  ["book token", "noun", "書券"],
+  ["market share", "noun", "市場佔有率"],
+  ["rotisserie function", "noun", "旋轉烤焗功能"],
+  ["doggy-friendly", "adjective", "歡迎狗隻的 / 狗狗友善的"],
+  ["four-legged friend", "noun", "寵物狗 / 四腳朋友"],
+  ["preservative-free", "adjective", "不含防腐劑的"],
+  ["type 2 diabetes", "noun", "二型糖尿病"],
+  ["reverse diabetes", "verb", "逆轉糖尿病"]
+];
+
+mt16Paper3ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT16 Paper 3 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt18Paper3ReviewedExpectations = [
+  ["fund-raising campaign", "noun", "籌款活動 / 籌款運動"],
+  ["mascot", "noun", "吉祥物"],
+  ["vet clinic", "noun", "獸醫診所"],
+  ["loyalty scheme", "noun", "會員優惠計劃 / 顧客忠誠計劃"],
+  ["veterinary science", "noun", "獸醫科學 / 獸醫學"],
+  ["put on hold", "verb", "電話等候 / 被要求等候"],
+  ["microchipping", "noun", "植入晶片 / 寵物晶片植入"],
+  ["therapy animal", "noun", "治療動物"]
+];
+
+mt18Paper3ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT18 Paper 3 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt15Paper3ReviewedExpectations = [
+  ["pick your brains", "verb", "向某人請教 / 徵詢某人意見"],
+  ["meet up in person", "verb", "見面 / 相約見面"],
+  ["steal your identity", "verb", "盜用某人身份"],
+  ["feel spied on", "verb", "感到被監視"],
+  ["not in the same league as", "preposition", "不能與...相比 / 不及..."]
+];
+
+mt15Paper3ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT15 Paper 3 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt37Paper3ReviewedExpectations = [
+  ["biospheres", "noun", "生物圈 / 生態圈"],
+  ["pH", "noun", "酸鹼值"],
+  ["off the beaten track", "adjective", "人跡罕至的 / 非熱門路線的"],
+  ["Hong Kong Geopark", "noun", "香港地質公園"],
+  ["stone wall trees", "noun", "石牆樹"],
+  ["banyan tree", "noun", "榕樹"],
+  ["keep your distance", "verb", "保持距離"],
+  ["code of conduct", "noun", "行為守則"]
+];
+
+mt37Paper3ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT37 Paper 3 reviewed sense ${pos}:${meaning}`);
 });
 
 console.log("vocab_sense_bank tests passed");

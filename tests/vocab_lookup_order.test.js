@@ -115,6 +115,173 @@ function assertStudentLookupContract(word, matches) {
     "teacher-live",
     "teacher",
     "curated-sense-bank",
+    "mock-unseen-mt35-paper3-reviewed",
+    "mock-unseen-mt38-paper3-reviewed",
+    "mock-unseen-mt42-paper3-reviewed",
+    "mock-unseen-mt45-paper3-reviewed",
+    "mock-unseen-mt49-paper3-reviewed",
+    "mock-unseen-mt52-paper3-reviewed",
+    "mock-unseen-mt56-paper3-reviewed",
+    "mock-unseen-mt59-paper3-reviewed",
+    "mock-unseen-mt20-paper3-reviewed",
+    "mock-unseen-mt22-paper3-reviewed",
+    "mock-unseen-mt25-paper3-reviewed",
+    "mock-unseen-mt27-paper3-reviewed",
+    "mock-unseen-mt16-paper3-reviewed",
+    "mock-unseen-mt18-paper3-reviewed",
+    "mock-unseen-mt19-paper3-reviewed",
+    "mock-unseen-mt21-paper3-reviewed",
+    "mock-unseen-mt23-paper3-reviewed",
+    "mock-unseen-mt24-paper3-reviewed",
+    "mock-unseen-mt26-paper3-reviewed",
+    "mock-unseen-mt28-paper3-reviewed",
+    "mock-unseen-mt29-paper3-reviewed",
+    "mock-unseen-mt31-paper3-reviewed",
+    "mock-unseen-mt33-paper3-reviewed",
+    "mock-unseen-mt34-paper3-reviewed",
+    "mock-unseen-mt36-paper3-reviewed",
+    "mock-unseen-mt39-paper3-reviewed",
+    "mock-unseen-mt41-paper3-reviewed",
+    "mock-unseen-mt43-paper3-reviewed",
+    "mock-unseen-mt46-paper3-reviewed",
+    "mock-unseen-mt48-paper3-reviewed",
+    "mock-unseen-mt50-paper3-reviewed",
+    "mock-unseen-mt53-paper3-reviewed",
+    "mock-unseen-mt87-paper3-reviewed",
+    "mock-unseen-mt63-paper3-reviewed",
+    "mock-unseen-mt66-paper3-reviewed",
+    "mock-unseen-mt70-paper3-reviewed",
+    "mock-unseen-mt73-paper3-reviewed",
+    "mock-unseen-mt77-paper3-reviewed",
+    "mock-unseen-mt80-paper3-reviewed",
+    "mock-unseen-mt84-paper3-reviewed",
+    "mock-unseen-mt32-paper3-reviewed",
+    "mock-unseen-mt30-paper3-reviewed",
+    "mock-unseen-mt9-paper3-reviewed",
+    "mock-unseen-mt10-paper3-reviewed",
+    "mock-unseen-mt11-paper3-reviewed",
+    "mock-unseen-mt12-paper3-reviewed",
+    "mock-unseen-mt13-paper3-reviewed",
+    "mock-unseen-mt14-paper3-reviewed",
+    "mock-unseen-mt15-paper3-reviewed",
+    "mock-unseen-mt37-paper3-reviewed",
+    "mock-unseen-mt40-paper3-reviewed",
+    "mock-unseen-mt44-paper3-reviewed",
+    "mock-unseen-mt47-paper3-reviewed",
+    "mock-unseen-mt51-paper3-reviewed",
+    "mock-unseen-mt30-paper2-reviewed",
+    "mock-unseen-mt32-paper2-reviewed",
+    "mock-unseen-mt35-paper2-reviewed",
+    "mock-unseen-mt38-paper2-reviewed",
+    "mock-unseen-mt42-paper2-reviewed",
+    "mock-unseen-mt45-paper2-reviewed",
+    "mock-unseen-mt49-paper2-reviewed",
+    "mock-unseen-mt52-paper2-reviewed",
+    "mock-unseen-mt56-paper2-reviewed",
+    "mock-unseen-mt58-paper2-reviewed",
+    "mock-unseen-mt61-paper2-reviewed",
+    "mock-unseen-mt65-paper2-reviewed",
+    "mock-unseen-mt68-paper2-reviewed",
+    "mock-unseen-mt72-paper2-reviewed",
+    "mock-unseen-mt75-paper2-reviewed",
+    "mock-unseen-mt79-paper2-reviewed",
+    "mock-unseen-mt82-paper2-reviewed",
+    "mock-unseen-mt59-paper2-reviewed",
+    "mock-unseen-mt63-paper2-reviewed",
+    "mock-unseen-mt66-paper2-reviewed",
+    "mock-unseen-mt70-paper2-reviewed",
+    "mock-unseen-mt73-paper2-reviewed",
+    "mock-unseen-mt77-paper2-reviewed",
+    "mock-unseen-mt80-paper2-reviewed",
+    "mock-unseen-mt84-paper2-reviewed",
+    "mock-unseen-mt87-paper2-reviewed",
+    "mock-unseen-mt9-paper2-reviewed",
+    "mock-unseen-mt10-paper2-reviewed",
+    "mock-unseen-mt11-paper2-reviewed",
+    "mock-unseen-mt12-paper2-reviewed",
+    "mock-unseen-mt13-paper2-reviewed",
+    "mock-unseen-mt14-paper2-reviewed",
+    "mock-unseen-mt15-paper2-reviewed",
+    "mock-unseen-mt16-paper2-reviewed",
+    "mock-unseen-mt17-paper2-reviewed",
+    "mock-unseen-mt18-paper2-reviewed",
+    "mock-unseen-mt19-paper2-reviewed",
+    "mock-unseen-mt20-paper2-reviewed",
+    "mock-unseen-mt21-paper2-reviewed",
+    "mock-unseen-mt22-paper2-reviewed",
+    "mock-unseen-mt23-paper2-reviewed",
+    "mock-unseen-mt24-paper2-reviewed",
+    "mock-unseen-mt25-paper2-reviewed",
+    "mock-unseen-mt26-paper2-reviewed",
+    "mock-unseen-mt27-paper2-reviewed",
+    "mock-unseen-mt31-paper2-reviewed",
+    "mock-unseen-mt28-paper2-reviewed",
+    "mock-unseen-mt29-paper2-reviewed",
+    "mock-unseen-mt33-paper2-reviewed",
+    "mock-unseen-mt34-paper2-reviewed",
+    "mock-unseen-mt36-paper2-reviewed",
+    "mock-unseen-mt39-paper2-reviewed",
+    "mock-unseen-mt41-paper2-reviewed",
+    "mock-unseen-mt43-paper2-reviewed",
+    "mock-unseen-mt46-paper2-reviewed",
+    "mock-unseen-mt48-paper2-reviewed",
+    "mock-unseen-mt50-paper2-reviewed",
+    "mock-unseen-mt51-paper2-reviewed",
+    "mock-unseen-mt54-paper2-reviewed",
+    "mock-unseen-mt58-paper2-reviewed",
+    "mock-unseen-mt61-paper2-reviewed",
+    "mock-unseen-mt65-paper2-reviewed",
+    "mock-unseen-mt68-paper2-reviewed",
+    "mock-unseen-mt72-paper2-reviewed",
+    "mock-unseen-mt75-paper2-reviewed",
+    "mock-unseen-mt79-paper2-reviewed",
+    "mock-unseen-mt82-paper2-reviewed",
+    "mock-unseen-mt53-paper2-reviewed",
+    "mock-unseen-mt55-paper2-reviewed",
+    "mock-unseen-mt57-paper2-reviewed",
+    "mock-unseen-mt60-paper2-reviewed",
+    "mock-unseen-mt62-paper2-reviewed",
+    "mock-unseen-mt64-paper2-reviewed",
+    "mock-unseen-mt67-paper2-reviewed",
+    "mock-unseen-mt69-paper2-reviewed",
+    "mock-unseen-mt71-paper2-reviewed",
+    "mock-unseen-mt74-paper2-reviewed",
+    "mock-unseen-mt76-paper2-reviewed",
+    "mock-unseen-mt78-paper2-reviewed",
+    "mock-unseen-mt81-paper2-reviewed",
+    "mock-unseen-mt83-paper2-reviewed",
+    "mock-unseen-mt85-paper2-reviewed",
+    "mock-unseen-mt86-paper2-reviewed",
+    "mock-unseen-mt88-paper2-reviewed",
+    "mock-unseen-mt37-paper2-reviewed",
+    "mock-unseen-mt40-paper2-reviewed",
+    "mock-unseen-mt44-paper2-reviewed",
+    "mock-unseen-mt47-paper2-reviewed",
+    "mock-unseen-mt90-paper2-reviewed",
+    "mock-unseen-mt15-paper1-reviewed",
+    "mock-unseen-mt17-paper1-reviewed",
+    "mock-unseen-mt20-paper1-reviewed",
+    "mock-unseen-mt22-paper1-reviewed",
+    "mock-unseen-mt25-paper1-reviewed",
+    "mock-unseen-mt27-paper1-reviewed",
+    "mock-unseen-mt30-paper1-reviewed",
+    "mock-unseen-mt32-paper1-reviewed",
+    "mock-unseen-mt35-paper1-reviewed",
+    "mock-unseen-mt38-paper1-reviewed",
+    "mock-unseen-mt42-paper1-reviewed",
+    "mock-unseen-mt45-paper1-reviewed",
+    "mock-unseen-mt49-paper1-reviewed",
+    "mock-unseen-mt52-paper1-reviewed",
+    "mock-unseen-mt56-paper1-reviewed",
+    "mock-unseen-mt59-paper1-reviewed",
+    "mock-unseen-mt63-paper1-reviewed",
+    "mock-unseen-mt66-paper1-reviewed",
+    "mock-unseen-mt87-paper1-reviewed",
+    "mock-unseen-mt70-paper1-reviewed",
+    "mock-unseen-mt73-paper1-reviewed",
+    "mock-unseen-mt77-paper1-reviewed",
+    "mock-unseen-mt80-paper1-reviewed",
+    "mock-unseen-mt84-paper1-reviewed",
     "verb-table-form",
     "cc-cedict-supplement"
   ]);
@@ -248,6 +415,1035 @@ function assertStudentLookupContract(word, matches) {
       "adjective:身體的:curated-sense-bank",
       "adjective:物理的:curated-sense-bank"
     ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("physical force")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:武力 / 身體力量:mock-unseen-mt46-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("condoning")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["condone:verb:縱容 / 默許:mock-unseen-mt46-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("space suit")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["spacesuit:noun:太空衣:mock-unseen-mt46-paper2-reviewed"]
+  );
+
+  assert.ok(
+    (await lookupForStudent("acknowledge")).some((entry) => (
+      entry.pos === "verb" &&
+      entry.meaning === "向...打招呼 / 理會" &&
+      entry.source === "mock-unseen-mt46-paper2-reviewed"
+    )),
+    "Expected MT46 acknowledge sense for neighbours/community context"
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("gap year")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:空檔年 / 升學前休學一年:mock-unseen-mt48-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("standardised tests")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["standardized test:phrase:noun:標準化考試:mock-unseen-mt48-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("denigrated")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["denigrate:verb:貶低 / 詆毀:mock-unseen-mt48-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("horseless carriage")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:無馬車 / 早期汽車:mock-unseen-mt48-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("white water rafting")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["white-water rafting:phrase:noun:激流泛舟:mock-unseen-mt50-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("communal rubbish bins")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["communal rubbish bin:phrase:noun:公用垃圾桶:mock-unseen-mt50-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("unsupervised")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adjective:無人看管的 / 無人監督的:mock-unseen-mt50-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("grass is greener on the other side")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:總覺得別人的較好:mock-unseen-mt50-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("emotional baggage")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:情感包袱 / 心理負擔:mock-unseen-mt50-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("meat-free days")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["meat-free day:phrase:noun:無肉日 / 素食日:mock-unseen-mt51-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("game developers")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["game developer:phrase:noun:遊戲開發者:mock-unseen-mt51-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("four day workweeks")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["four-day workweek:phrase:noun:四天工作週:mock-unseen-mt51-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("across the board")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["across the board:phrase:adverb:全面地 / 涉及所有方面:mock-unseen-mt51-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("club merchandise")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["club merchandise:phrase:noun:球會商品 / 俱樂部商品:mock-unseen-mt51-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("magic potions")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["magic potion:phrase:noun:魔法藥水:mock-unseen-mt51-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("falling back on")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["fall back on:phrase:verb:依靠作後備 / 退而依靠:mock-unseen-mt51-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("in situ")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["in situ:phrase:adverb:在原本位置 / 在現場:mock-unseen-mt51-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("art heists")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["art heist:phrase:noun:藝術品盜竊案:mock-unseen-mt51-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("ripped apart")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["rip apart:phrase:verb:撕裂 / 扯爛:mock-unseen-mt51-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("beyond the shadow of a doubt")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["beyond the shadow of a doubt:phrase:adverb:毫無疑問地 / 證據確鑿地:mock-unseen-mt51-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("flat earthers")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["flat-earther:phrase:noun:地平說支持者:mock-unseen-mt51-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("low-income families")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["low-income family:phrase:noun:低收入家庭:mock-unseen-mt54-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("dye her hair")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["dye one's hair:phrase:verb:染髮:mock-unseen-mt54-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("flicking through")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["flick through:phrase:verb:快速翻閱:mock-unseen-mt54-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("staff turnover")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["staff turnover:phrase:noun:員工流失率:mock-unseen-mt54-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("car parking spaces")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["car parking space:phrase:noun:汽車泊車位:mock-unseen-mt54-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("cover versions")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["cover version:phrase:noun:翻唱版本:mock-unseen-mt54-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("virtual assistants")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["virtual assistant:phrase:noun:虛擬助理:mock-unseen-mt54-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("idolizing celebrities")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["idolize celebrities:phrase:verb:崇拜名人 / 追星:mock-unseen-mt54-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("live life to the fullest")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["live life to the fullest:phrase:verb:盡情生活 / 充實地生活:mock-unseen-mt54-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("water resources")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["water resource:phrase:noun:水資源:mock-unseen-mt58-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("work-life balance")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["work-life balance:phrase:noun:工作與生活平衡:mock-unseen-mt58-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Shek O")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Shek O:phrase:noun:石澳:mock-unseen-mt58-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("online gaming")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["online gaming:phrase:noun:網上遊戲:mock-unseen-mt58-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("the Bund")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["the Bund:phrase:noun:外灘:mock-unseen-mt58-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("broaden horizons")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["broaden one's horizons:phrase:verb:擴闊眼界:mock-unseen-mt58-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("poetry festivals")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["poetry festival:phrase:noun:詩歌節:mock-unseen-mt58-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("subdivided apartments")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["sub-divided apartment:phrase:noun:劏房:mock-unseen-mt58-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("drifting apart")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["drift apart:phrase:verb:逐漸疏遠:mock-unseen-mt58-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("student orientation sessions")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["student orientation session:phrase:noun:學生迎新活動 / 新生簡介會:mock-unseen-mt61-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("familiarize yourself with")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["familiarize oneself with:phrase:verb:熟悉 / 了解:mock-unseen-mt61-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("annual fundraising gala")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["annual fundraising gala:phrase:noun:年度籌款晚會:mock-unseen-mt61-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("throwing a tantrum")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["throw a tantrum:phrase:verb:發脾氣 / 發怒:mock-unseen-mt61-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Styrofoam boxes")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Styrofoam box:phrase:noun:發泡膠盒:mock-unseen-mt61-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("poetry translators")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["poetry translator:phrase:noun:詩歌翻譯員:mock-unseen-mt61-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("sports podcast hosts")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["sports podcast host:phrase:noun:體育 podcast 主持:mock-unseen-mt61-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("classical music concerts")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["classical music concert:phrase:noun:古典音樂會:mock-unseen-mt61-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("as nervous as a mouse")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["as nervous as a mouse:phrase:adjective:非常緊張的:mock-unseen-mt61-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("have faith in yourself")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["have faith in oneself:phrase:verb:對自己有信心:mock-unseen-mt61-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("immersive cinemas")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["immersive cinema:phrase:noun:沉浸式影院 / 沉浸式電影體驗:mock-unseen-mt65-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("scene stealing")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["scene-stealing:phrase:adjective:搶鏡的:mock-unseen-mt65-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("carried out maintenance")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["carry out maintenance:phrase:verb:進行維修 / 保養:mock-unseen-mt65-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("scalded")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["scald:word:verb:燙傷:mock-unseen-mt65-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("fairy godmothers")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["fairy godmother:phrase:noun:仙女教母:mock-unseen-mt65-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("aced the interview")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["ace the interview:phrase:verb:面試表現出色 / 成功通過面試:mock-unseen-mt65-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("proposed mergers")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["proposed merger:phrase:noun:擬議合併 / 建議中的合併:mock-unseen-mt65-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("signup day")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["sign-up day:phrase:noun:報名日 / 招生日:mock-unseen-mt68-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("veterinary assistants")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["veterinary assistant:phrase:noun:獸醫助理:mock-unseen-mt68-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("elephant in the room")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["elephant in the room:phrase:noun:明顯但大家避談的問題:mock-unseen-mt68-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("hotly contested")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["hotly contested:phrase:adjective:競爭激烈的:mock-unseen-mt68-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("faced up to")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["face up to:phrase:verb:勇敢面對:mock-unseen-mt68-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("truth dawned on")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["truth dawns on:phrase:verb:真相逐漸明白 / 恍然大悟:mock-unseen-mt68-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("on condition that")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["on condition that:phrase:conjunction:條件是 / 只要:mock-unseen-mt68-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("LCSD")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Leisure and Cultural Services Department:phrase:noun:康樂及文化事務署:mock-unseen-mt72-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("school-wide ban")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["schoolwide ban:phrase:noun:全校禁令:mock-unseen-mt72-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("combating cheating")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["combat cheating:phrase:verb:打擊作弊:mock-unseen-mt72-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("got hooked on")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["get hooked on:phrase:verb:對...上癮 / 迷上:mock-unseen-mt72-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("G force")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["g-force:phrase:noun:重力加速度 / G力:mock-unseen-mt72-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("beheld")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["behold:word:verb:看見 / 注視:mock-unseen-mt72-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("in unison")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["in unison:phrase:adverb:齊聲地 / 一致地:mock-unseen-mt72-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("environment clubs")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Environment Club:phrase:noun:環保學會 / 環境保護學會:mock-unseen-mt75-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("community recycling program")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["community recycling programme:phrase:noun:社區回收計劃:mock-unseen-mt75-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("high-level athletes")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["high-level athlete:phrase:noun:高水平運動員:mock-unseen-mt75-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("deferred dreams")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["dream deferred:phrase:noun:被延遲的夢想 / 暫時擱置的夢想:mock-unseen-mt75-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("out of my control")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["out of one's control:phrase:adjective:不受某人控制的:mock-unseen-mt75-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("works in progress")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["work in progress:phrase:noun:未完成作品 / 進行中的作品:mock-unseen-mt75-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("global food festivals")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Global Food Festival:phrase:noun:環球美食節:mock-unseen-mt79-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("air quality indexes")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["air quality index:phrase:noun:空氣質素指數:mock-unseen-mt79-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Zambian rock")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Zamrock:word:noun:贊比亞搖滾樂:mock-unseen-mt79-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("put together their teams")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["put together a team:phrase:verb:組成隊伍:mock-unseen-mt79-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("arguing in favor of")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["argue in favour of:phrase:verb:支持...而辯論 / 主張:mock-unseen-mt79-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("up and coming artists")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["up-and-coming artist:phrase:noun:新晉藝術家:mock-unseen-mt79-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Random Acts of Kindness Week")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["random act of kindness:phrase:noun:隨機善舉 / 小小善行:mock-unseen-mt82-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("plant based alternatives")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["plant-based alternative:phrase:noun:植物性替代品:mock-unseen-mt82-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("paid lip service to")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["pay lip service to:phrase:verb:口頭上支持 / 只是口講重視:mock-unseen-mt82-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("trafficked animals")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["traffic animals:phrase:verb:販運動物:mock-unseen-mt82-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("wildlife organisations")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["wildlife organization:phrase:noun:野生動物保護組織:mock-unseen-mt82-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("new town plaza")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["New Town Plaza:phrase:noun:新城市廣場:mock-unseen-mt82-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("state of mind")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:心境 / 思想狀態:mock-unseen-mt53-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("stretch your legs")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["stretch one's legs:phrase:verb:活動一下腿腳 / 走動一下:mock-unseen-mt53-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("marketing gimmick")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:營銷噱頭:mock-unseen-mt53-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("well versed in")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adjective:熟悉...的 / 精通...的:mock-unseen-mt53-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("intimidated")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adjective:感到受恐嚇的 / 感到害怕的:mock-unseen-mt53-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("up for grabs")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adjective:可供爭奪的 / 有機會得到的:mock-unseen-mt55-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("few and far between")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adjective:寥寥可數的 / 很少見的:mock-unseen-mt55-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("strike out on my own")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["strike out on one's own:phrase:verb:獨立發展 / 自己創業:mock-unseen-mt55-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("tranilizer dart")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["tranquilizer dart:phrase:noun:麻醉飛鏢:mock-unseen-mt55-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("inexplicable anomalies")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["inexplicable anomaly:phrase:noun:無法解釋的異常現象:mock-unseen-mt55-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("phone-free zones")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phone-free zone:phrase:noun:禁用手機區:mock-unseen-mt57-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("work under pressure")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:在壓力下工作:mock-unseen-mt57-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("eSports")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["e-sports:phrase:noun:電子競技 / 電競:mock-unseen-mt57-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("reading for pleasure")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:消閒閱讀 / 為興趣而閱讀:mock-unseen-mt57-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Reader's Theatre")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Reader's Theatre:phrase:noun:讀者劇場:mock-unseen-mt57-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("jam packed")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["jam-packed:phrase:adjective:擠滿人的 / 非常擠迫的:mock-unseen-mt60-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("money does not grow on trees")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:錢不是容易得來的 / 錢不會從天而降:mock-unseen-mt60-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("get in the way of")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:妨礙 / 阻礙:mock-unseen-mt60-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("posing as")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["pose as:phrase:verb:冒充 / 假扮成:mock-unseen-mt60-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("identity fraud")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:身份詐騙:mock-unseen-mt60-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("pitching a tent")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["pitch a tent:phrase:verb:搭帳篷:mock-unseen-mt62-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("hit on a good idea")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["hit on an idea:phrase:verb:偶然想到主意 / 想出點子:mock-unseen-mt62-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("one nil behind")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["one-nil behind:phrase:adjective:落後一比零的:mock-unseen-mt62-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("glued to screens")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["glued to a screen:phrase:adjective:長時間盯著螢幕的:mock-unseen-mt62-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("in accordance with")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:preposition:根據 / 按照:mock-unseen-mt62-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("home crowd")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["home crowd:phrase:noun:本地觀眾 / 主場觀眾:mock-unseen-mt64-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("cost effective")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["cost-effective:phrase:adjective:具成本效益的 / 合算的:mock-unseen-mt64-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("fitted")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["fit:verb:安裝:mock-unseen-mt64-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("put chai ko")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["put chai ko:phrase:noun:砵仔糕:mock-unseen-mt67-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("hole in the wall eateries")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["hole-in-the-wall eatery:phrase:noun:細小不起眼的食店:mock-unseen-mt67-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("take out membership")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["take out membership:phrase:verb:申請會籍 / 辦理會員資格:mock-unseen-mt67-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("perpetually")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adverb:長期地 / 不斷地:mock-unseen-mt67-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("climate anxiety")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["climate anxiety:phrase:noun:氣候焦慮:mock-unseen-mt69-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("romance tropes")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["romance trope:phrase:noun:愛情片套路:mock-unseen-mt69-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("booked appointments")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["book appointments:phrase:verb:預約 / 安排預約:mock-unseen-mt69-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("abandoned their pets")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["abandon a pet:phrase:verb:棄養寵物:mock-unseen-mt69-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("warehouse retailers")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["warehouse retailer:phrase:noun:倉儲式零售商:mock-unseen-mt74-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("autonomous vehicles")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["autonomous vehicle:phrase:noun:自動駕駛車輛:mock-unseen-mt74-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("ban mobile phones")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["ban mobile phones:phrase:verb:禁止使用手機:mock-unseen-mt74-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("gratitude journal")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["gratitude journal:phrase:noun:感恩日記:mock-unseen-mt74-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("artistic license")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["artistic licence:phrase:noun:藝術加工 / 藝術創作自由:mock-unseen-mt71-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("AFCD")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Agriculture, Fisheries and Conservation Department:phrase:noun:漁農自然護理署:mock-unseen-mt71-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("marine reserves")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["marine reserve:phrase:noun:海岸公園 / 海洋保護區:mock-unseen-mt71-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("six-day working week")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["six-day working week:phrase:noun:六天工作週:mock-unseen-mt71-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("lose out on")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["lose out on:phrase:verb:錯失 / 失去...機會:mock-unseen-mt71-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Greater Bay Area")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Greater Bay Area:phrase:noun:大灣區:mock-unseen-mt76-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("facades")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["facade:word:noun:建築物正面 / 外牆:mock-unseen-mt76-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("stress relief")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["stress relief:phrase:noun:減壓 / 舒緩壓力:mock-unseen-mt76-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("career pathways")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["career pathway:phrase:noun:職業路向 / 事業發展路徑:mock-unseen-mt76-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("stay on top of")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["stay on top of:phrase:verb:掌握 / 妥善處理:mock-unseen-mt78-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("drone users")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["drone user:phrase:noun:無人機使用者:mock-unseen-mt78-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("have too much on your plate")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["have too much on one's plate:phrase:verb:有太多事情要處理:mock-unseen-mt78-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("antique shops")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["antique shop:phrase:noun:古董店:mock-unseen-mt78-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("wearable fitness trackers")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["wearable fitness tracker:phrase:noun:穿戴式健身追蹤器:mock-unseen-mt81-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Hong Kong egg tarts")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Hong Kong egg tart:phrase:noun:港式蛋撻:mock-unseen-mt81-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("false alarms")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["false alarm:phrase:noun:誤報 / 假警報:mock-unseen-mt81-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("bend the rules")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["bend the rules:phrase:verb:鑽規則空子 / 稍微違規:mock-unseen-mt81-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("couch potatoes")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["couch potato:phrase:noun:經常坐著不動的人 / 懶散少動的人:mock-unseen-mt83-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("come out of her shell")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["come out of one's shell:phrase:verb:變得不再害羞 / 開始外向起來:mock-unseen-mt83-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("self-employed")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["self-employed:phrase:adjective:自僱的:mock-unseen-mt83-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("AI-generated work")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["AI-generated work:phrase:noun:人工智能生成的作品 / AI生成工作:mock-unseen-mt83-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("on the chopping block")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["on the chopping block:phrase:adjective:有被裁走風險的 / 可能被取消的:mock-unseen-mt83-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("doze off")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["doze off:phrase:verb:打瞌睡 / 入睡:mock-unseen-mt83-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("public address system")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["public address system:phrase:noun:公共廣播系統:mock-unseen-mt85-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("face your fears")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["face one's fears:phrase:verb:面對自己的恐懼:mock-unseen-mt85-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("synthetic materials")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["synthetic material:phrase:noun:合成材料:mock-unseen-mt85-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Rubik's Cube")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Rubik's Cube:phrase:noun:扭計骰 / 魔方:mock-unseen-mt85-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("standard of living")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["standard of living:phrase:noun:生活水平:mock-unseen-mt85-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("work from home trends")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["work-from-home trend:phrase:noun:在家工作趨勢:mock-unseen-mt85-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("restrict themselves to")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["restrict oneself to:phrase:verb:限制自己只做...:mock-unseen-mt88-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("washed ashore")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["wash ashore:phrase:verb:被沖上海岸:mock-unseen-mt88-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("work its way up")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["work its way up:phrase:verb:逐步向上傳遞 / 慢慢進入:mock-unseen-mt88-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("co-working spaces")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["co-working space:phrase:noun:共享工作空間:mock-unseen-mt88-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("online abuse")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["online abuse:phrase:noun:網上辱罵 / 網絡欺凌:mock-unseen-mt88-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("crossed the line")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["cross the line:phrase:verb:越界 / 過分:mock-unseen-mt88-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("taking over ownership")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["take over ownership:phrase:verb:接手擁有權 / 成為新主人:mock-unseen-mt37-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("office partitions")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["office partition:phrase:noun:辦公室隔板:mock-unseen-mt37-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("TV commercials")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["television commercial:phrase:noun:電視廣告:mock-unseen-mt37-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("all-male cast")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["all-male cast:phrase:noun:全男演員陣容:mock-unseen-mt37-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("read up on")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["read up on:phrase:verb:查閱 / 閱讀資料了解:mock-unseen-mt37-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("hinges on")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["hinge on:phrase:verb:取決於 / 視乎:mock-unseen-mt37-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Tung Ping Chau")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Tung Ping Chau:phrase:noun:東平洲:mock-unseen-mt40-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("head injuries")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["head injury:phrase:noun:頭部受傷:mock-unseen-mt40-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("ivory")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["ivory:word:noun:象牙:mock-unseen-mt40-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("content warnings")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["content warning:phrase:noun:內容警告 / 內容提示:mock-unseen-mt40-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("full length albums")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["full-length album:phrase:noun:完整專輯 / 長篇專輯:mock-unseen-mt40-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Songkran")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Songkran Festival:phrase:noun:潑水節 / 宋干節:mock-unseen-mt40-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("community gardens")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["community garden:phrase:noun:社區花園:mock-unseen-mt44-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("keep their business afloat")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["keep afloat:phrase:verb:維持經營 / 勉強支撐:mock-unseen-mt44-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("waste charging schemes")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["waste charging scheme:phrase:noun:垃圾徵費計劃:mock-unseen-mt44-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("VR tours")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["virtual reality tour:phrase:noun:虛擬實境導覽 / VR 睇樓:mock-unseen-mt44-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("put a ceiling on")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["put a ceiling on:phrase:verb:限制 / 設下上限:mock-unseen-mt44-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("container terminals")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["container terminal:phrase:noun:貨櫃碼頭:mock-unseen-mt44-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("wheelchair users")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["wheelchair user:phrase:noun:輪椅使用者:mock-unseen-mt47-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("disabled toilets")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["disabled toilet:phrase:noun:傷殘人士洗手間 / 無障礙洗手間:mock-unseen-mt47-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("were bombarded with")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["be bombarded with:phrase:verb:被大量...轟炸 / 不斷接收到:mock-unseen-mt47-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("learning apps")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["learning app:phrase:noun:學習應用程式:mock-unseen-mt47-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("throat lozenges")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["throat lozenge:phrase:noun:喉糖 / 潤喉含片:mock-unseen-mt47-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("recruitment drives")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["recruitment drive:phrase:noun:招募行動 / 招募活動:mock-unseen-mt47-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("impromptu performances")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["impromptu performance:phrase:noun:即興表演:mock-unseen-mt47-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("news outlets")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["news outlet:phrase:noun:新聞媒體 / 新聞機構:mock-unseen-mt47-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("school sports blog")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["school sports blog:phrase:noun:學校體育博客 / 學校運動網誌:mock-unseen-mt90-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("perfecting assignments")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["perfect an assignment:phrase:verb:完善功課 / 把作業做到最好:mock-unseen-mt90-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Beef Wellington")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Beef Wellington:phrase:noun:威靈頓牛柳:mock-unseen-mt90-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("season it properly")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["season properly:phrase:verb:適當調味:mock-unseen-mt90-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("attitudes toward money")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["attitude towards money:phrase:noun:對金錢的態度:mock-unseen-mt90-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("economic conditions")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["economic condition:phrase:noun:經濟狀況:mock-unseen-mt90-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("abruptly changed lanes")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["abruptly change lanes:phrase:verb:突然轉線:mock-unseen-mt86-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("license plate")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["license plate:phrase:noun:車牌:mock-unseen-mt86-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Golden Age classics")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Golden Age classic:phrase:noun:黃金時代經典作品:mock-unseen-mt86-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("fenced off")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["fence off:phrase:verb:用圍欄圍起:mock-unseen-mt86-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("10k race")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["10-kilometer race:phrase:noun:十公里賽跑:mock-unseen-mt86-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("gave it everything I had")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["give it everything one has:phrase:verb:盡全力 / 拼盡全力:mock-unseen-mt86-paper2-reviewed"]
   );
 
   assert.deepStrictEqual(
@@ -700,7 +1896,8 @@ function assertStudentLookupContract(word, matches) {
     (await lookupForStudent("score")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "verb:得分:curated-sense-bank",
-      "noun:分數 / 得分:curated-sense-bank"
+      "noun:分數 / 得分:curated-sense-bank",
+      "verb:用刀劃痕 / 劃線:mock-unseen-mt56-paper3-reviewed"
     ]
   );
 
@@ -772,6 +1969,3571 @@ function assertStudentLookupContract(word, matches) {
   assert.deepStrictEqual(
     (await lookupForStudent("bacon")).map((entry) => `${entry.type}:${entry.meaning}:${entry.source}`),
     ["word:煙肉 / 培根:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("annual leave")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:年假 / 有薪年假:mock-unseen-mt30-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("well-travelled")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["well travelled:phrase:adjective:見多識廣的 / 去過很多地方的:mock-unseen-mt30-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Poya")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Poya:noun:斯里蘭卡滿月節:mock-unseen-mt30-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("sheer drops")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["sheer drop:phrase:noun:垂直落差 / 陡峭懸崖:mock-unseen-mt30-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("pre opening sales")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["pre-opening sale:phrase:noun:開幕前特賣:mock-unseen-mt30-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("childcare area")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["child care area:phrase:noun:兒童照顧區:mock-unseen-mt30-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("set in stone")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adjective:不可更改的 / 已成定局的:mock-unseen-mt30-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("juggling")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "verb:兼顧 / 同時應付:mock-unseen-mt38-paper1-reviewed",
+      "verb:拋接雜耍:mock-unseen-mt30-paper3-reviewed"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("wear charity like a mask")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:以慈善作包裝 / 假裝有善心:mock-unseen-mt30-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("cohesive ties")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["cohesive tie:phrase:noun:銜接手法 / 連貫手法:mock-unseen-mt30-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("pay rise")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["pay rise:phrase:noun:加薪:mock-unseen-mt9-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("kleptomania")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["word:noun:偷竊癖 / 無法停止偷竊的心理失調:mock-unseen-mt9-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("turn yourself in")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["turn oneself in:phrase:verb:自首:mock-unseen-mt9-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("laptop-tracking software")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:手提電腦追蹤軟件:mock-unseen-mt9-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("jump down your throat")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["jump down someone's throat:phrase:verb:突然嚴厲斥責某人:mock-unseen-mt9-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("run-down")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["run down:phrase:adjective:破舊的 / 殘舊的:mock-unseen-mt10-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("claim her prize")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["claim a prize:phrase:verb:領獎 / 申領獎金:mock-unseen-mt10-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("red carpet release party")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:紅地氈首映派對:mock-unseen-mt10-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("lost her cool")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["lose one's cool:phrase:verb:失去冷靜 / 發脾氣:mock-unseen-mt10-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("reprising their roles")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["reprise one's role:phrase:verb:再次飾演同一角色:mock-unseen-mt10-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("cold-pressed juice")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:冷壓果汁:mock-unseen-mt35-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("charge through the nose")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:收取過高價錢:mock-unseen-mt35-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("stop motion animation")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["stop-motion animation:phrase:noun:定格動畫:mock-unseen-mt35-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("appropriacy")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:語境合適度 / 用語恰當度:mock-unseen-mt35-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("go live")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:上線 / 開始公開播放:mock-unseen-mt38-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("head it up")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["head up:phrase:verb:負責 / 帶領:mock-unseen-mt38-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("jump ship")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:跳槽 / 離職轉投別處:mock-unseen-mt38-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("green buildings")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["green building:phrase:noun:綠色建築 / 環保建築:mock-unseen-mt38-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("ultramarathons")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["ultramarathon:noun:超級馬拉松 / 超馬:mock-unseen-mt42-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("MacLehose Trail")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["MacLehose Trail:phrase:noun:麥理浩徑:mock-unseen-mt42-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("aid stations")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["aid station:phrase:noun:補給站 / 救護站:mock-unseen-mt42-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("sign up for")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:報名參加:mock-unseen-mt42-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("cheese rolling")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["cheese-rolling:phrase:noun:滾芝士比賽:mock-unseen-mt45-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("pulling your leg")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["pull someone's leg:phrase:verb:開某人玩笑 / 作弄某人:mock-unseen-mt45-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("descended en masse")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["descend en masse:phrase:verb:大批湧到 / 成群到達:mock-unseen-mt45-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("reimbursed")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["reimburse:verb:賠償 / 發還款項:mock-unseen-mt45-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("break the mould")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["break the mold:phrase:verb:打破常規 / 打破舊模式:mock-unseen-mt49-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("flew under the radar")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["fly under the radar:phrase:verb:不受注意 / 低調地避過關注:mock-unseen-mt49-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("child musical prodigy")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["child prodigy:phrase:noun:神童 / 天才兒童:mock-unseen-mt49-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("stepped on the toes of")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["step on someone's toes:phrase:verb:冒犯某人 / 侵犯某人的地位:mock-unseen-mt49-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("story time series")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["story time series:phrase:noun:故事時間系列活動:mock-unseen-mt52-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("substantive editors")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["substantive editor:phrase:noun:內容編輯 / 結構編輯:mock-unseen-mt52-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("keep me posted")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["keep someone posted:phrase:verb:讓某人知道最新情況:mock-unseen-mt52-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("visually impaired")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["visually impaired:adjective:視障的:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("product testers")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["product tester:phrase:noun:產品測試員:mock-unseen-mt52-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("swag bags")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["swag bag:phrase:noun:紀念品袋 / 贈品袋:mock-unseen-mt52-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("turns up her nose")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["turn up one's nose:phrase:verb:嗤之以鼻 / 表示嫌棄:mock-unseen-mt52-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("bodes well")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["bode well:phrase:verb:是好兆頭 / 預示好結果:mock-unseen-mt52-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("crunchy top")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["crunchy top:phrase:noun:香脆頂層:mock-unseen-mt56-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("scored")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "score:verb:用刀劃痕 / 劃線:mock-unseen-mt56-paper3-reviewed"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Sino-Japanese War")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Sino-Japanese War:phrase:noun:中日戰爭:mock-unseen-mt56-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("public consultations")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["public consultation:phrase:noun:公眾諮詢:mock-unseen-mt56-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("container return program")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["container return programme:phrase:noun:容器回收計劃 / 容器歸還計劃:mock-unseen-mt56-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("sold out")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "sold out:phrase:adjective:售罄:curated-sense-bank",
+      "sell out:phrase:verb:出賣原則 / 為利益妥協:mock-unseen-mt56-paper3-reviewed"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("high fructose corn syrup")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["high fructose corn syrup:phrase:noun:高果糖粟米糖漿:mock-unseen-mt56-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("critically endangered")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["critically endangered:phrase:adjective:極度瀕危的:mock-unseen-mt56-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("click through rate")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["click-through rate:phrase:noun:點擊率:mock-unseen-mt56-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("impressions")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "impression:noun:曝光次數 / 瀏覽曝光:mock-unseen-mt56-paper3-reviewed"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("black-faced spoonbills")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["black-faced spoonbill:phrase:noun:黑臉琵鷺:mock-unseen-mt59-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Mai Po")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Mai Po:phrase:noun:米埔:mock-unseen-mt59-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("capsized")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["capsize:verb:翻船 / 傾覆:mock-unseen-mt59-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("hired out")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["hire out:phrase:verb:出租:mock-unseen-mt59-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("in the event of")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["in the event of:phrase:preposition:如果發生 / 在...情況下:mock-unseen-mt59-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Eurasian tree sparrows")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Eurasian tree sparrow:phrase:noun:樹麻雀:mock-unseen-mt70-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("gig work")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:零工工作 / 短期接案工作:mock-unseen-mt70-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("killed two birds with one stone")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["kill two birds with one stone:phrase:verb:一石二鳥 / 一舉兩得:mock-unseen-mt70-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("on the same page")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adjective:想法一致的 / 達成共識的:mock-unseen-mt70-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("false choice")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:假兩難選擇 / 不必要的二選一:mock-unseen-mt70-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Northern Lights")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Northern Lights:phrase:noun:北極光:mock-unseen-mt73-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("snowmobiles")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["snowmobile:noun:雪地電單車 / 雪上摩托車:mock-unseen-mt73-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("satellite phone")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["satellite phone:phrase:noun:衛星電話:mock-unseen-mt42-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("good with kids")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adjective:擅長與小朋友相處的:mock-unseen-mt73-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("dos and don'ts")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:注意事項 / 應做與不應做的事:mock-unseen-mt73-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("quick fire questions")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["quick-fire question:phrase:noun:快速連環問題:mock-unseen-mt73-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Canis lupus")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Canis lupus:phrase:noun:灰狼的學名:mock-unseen-mt77-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("routine checkups")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["routine check-up:phrase:noun:例行檢查 / 定期檢查:mock-unseen-mt77-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("on board")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "phrase:adjective:加入的 / 參與其中的:mock-unseen-mt77-paper3-reviewed",
+      "phrase:adverb:在船上 / 在交通工具上:mock-unseen-mt32-paper2-reviewed"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("the likes of")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:preposition:像...這類 / 例如:mock-unseen-mt77-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("complimentary massage")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:免費按摩:mock-unseen-mt77-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("cooked from scratch")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adjective:由新鮮材料即場烹調的:mock-unseen-mt80-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Midday Meal Scheme")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Midday Meal Scheme:phrase:noun:印度學校午餐計劃:mock-unseen-mt80-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("wrong way round")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adverb:方向倒轉 / 反過來:mock-unseen-mt80-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("membership tiers")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["membership tier:phrase:noun:會籍級別:mock-unseen-mt80-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("have no problem with that whatsoever")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["have no problem with:phrase:verb:不介意 / 對...沒有問題:mock-unseen-mt80-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("rundown")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["word:noun:節目流程 / 項目清單:mock-unseen-mt63-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("field reports")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["field report:phrase:noun:現場報道 / 實地報告:mock-unseen-mt63-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("parental controls")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["parental control:phrase:noun:家長監控功能:mock-unseen-mt63-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("polite yet firm")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adjective:有禮但堅定的:mock-unseen-mt63-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("take down")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:下架 / 移除網上內容:mock-unseen-mt63-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("pet adoption")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:領養寵物:mock-unseen-mt20-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("desexed")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["desex:verb:為動物絕育:mock-unseen-mt20-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("parent supervisors")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["parent supervisor:phrase:noun:家長監察員 / 隨隊家長:mock-unseen-mt20-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Most Valuable Player")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Most Valuable Player:phrase:noun:最有價值球員:mock-unseen-mt20-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("basketball runs in sung's blood")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["run in someone's blood:phrase:verb:是某人天生擅長 / 家族遺傳的:mock-unseen-mt20-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("bike sharing schemes")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["bike-sharing scheme:phrase:noun:共享單車計劃:mock-unseen-mt22-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("on the spur of the moment")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adverb:一時衝動地 / 即興地:mock-unseen-mt22-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("put them off")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["put someone off:phrase:verb:令某人卻步 / 使某人不想做:mock-unseen-mt22-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("renewable energy source")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["renewable source of energy:phrase:noun:可再生能源:mock-unseen-mt22-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("wind turbines")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["wind turbine:phrase:noun:風力發電機:mock-unseen-mt22-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Davy Jones's locker")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Davy Jones's locker:phrase:noun:海底 / 葬身海底之處:mock-unseen-mt25-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("safety harnesses")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["safety harness:phrase:noun:安全吊帶 / 安全帶:mock-unseen-mt25-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Hidden Colours Viewer")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Hidden Colours Viewer:phrase:noun:隱藏顏色觀察器:mock-unseen-mt25-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("kinetic energy")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:動能:mock-unseen-mt25-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("has a bee in his bonnet")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["have a bee in one's bonnet:phrase:verb:對某事念念不忘 / 過分執著:mock-unseen-mt25-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("shady")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`).slice(0, 2),
+    [
+      "adjective:陰涼的:mock-unseen-mt27-paper3-reviewed",
+      "adjective:可疑的 / 不誠實的:mock-unseen-mt45-paper3-reviewed"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("knocks down")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "knock down:phrase:verb:撞倒 / 撞跌:mock-unseen-mt27-paper3-reviewed",
+      "knock down:phrase:verb:拆卸 / 拆掉:mock-unseen-mt73-paper2-reviewed"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("get the hang of it")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["get the hang of:phrase:verb:掌握...的竅門 / 開始懂得:mock-unseen-mt27-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("visualisation exercises")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["visualization exercise:phrase:noun:視覺化練習 / 想像訓練:mock-unseen-mt27-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("at the top of my game")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["at the top of one's game:phrase:adjective:處於最佳狀態 / 表現巔峰:mock-unseen-mt27-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("sport psychologists")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["sport psychologist:phrase:noun:運動心理學家:mock-unseen-mt27-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("greenwashing")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["word:noun:漂綠 / 假環保宣傳:mock-unseen-mt87-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Komodo dragons")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Komodo dragon:phrase:noun:科莫多巨蜥:mock-unseen-mt87-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("glamping resorts")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["glamping resort:phrase:noun:豪華露營度假村:mock-unseen-mt87-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("rainwater harvesting")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "rainwater harvesting:phrase:noun:雨水收集:curated-sense-bank",
+      "rainwater harvesting system:phrase:noun:雨水收集系統:mock-unseen-mt87-paper3-reviewed"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("crunching the numbers")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["crunch the numbers:phrase:verb:計算數字 / 仔細計數:mock-unseen-mt87-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("at the helm")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adverb:掌舵 / 負責領導:mock-unseen-mt87-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("book tokens")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["book token:phrase:noun:書券:mock-unseen-mt16-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("mini-ovens")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["mini-oven:phrase:noun:小型焗爐:mock-unseen-mt16-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("market share")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:市場佔有率:mock-unseen-mt16-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("rotisserie function")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:旋轉烤焗功能:mock-unseen-mt16-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("dog friendly")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["doggy-friendly:phrase:adjective:歡迎狗隻的 / 狗狗友善的:mock-unseen-mt16-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("four-legged friends")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["four-legged friend:phrase:noun:寵物狗 / 四腳朋友:mock-unseen-mt16-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("preservative free")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["preservative-free:phrase:adjective:不含防腐劑的:mock-unseen-mt16-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("type 2 diabetes")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:二型糖尿病:mock-unseen-mt16-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("reversing diabetes")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["reverse diabetes:phrase:verb:逆轉糖尿病:mock-unseen-mt16-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("cronuts")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["cronut:word:noun:牛角包冬甩:mock-unseen-mt16-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("fundraising campaigns")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["fund-raising campaign:phrase:noun:籌款活動 / 籌款運動:mock-unseen-mt18-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("mascots")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["mascot:word:noun:吉祥物:mock-unseen-mt18-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("vet clinics")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["vet clinic:phrase:noun:獸醫診所:mock-unseen-mt18-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("loyalty schemes")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["loyalty scheme:phrase:noun:會員優惠計劃 / 顧客忠誠計劃:mock-unseen-mt18-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("veterinary science")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:獸醫科學 / 獸醫學:mock-unseen-mt18-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("be put on hold")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["put on hold:phrase:verb:電話等候 / 被要求等候:mock-unseen-mt18-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("microchipped")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["microchip:word:verb:為...植入晶片:mock-unseen-mt18-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("in the flesh")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adverb:親眼見到 / 本人地:mock-unseen-mt18-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("therapy animals")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["therapy animal:phrase:noun:治療動物:mock-unseen-mt18-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("adoption fees")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adoption fee:phrase:noun:領養費:mock-unseen-mt18-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("study leave")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "phrase:noun:溫習假:curated-sense-bank",
+      "phrase:noun:考試溫習假:mock-unseen-mt19-paper3-reviewed"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("pulled a muscle")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["pull a muscle:phrase:verb:拉傷肌肉:mock-unseen-mt19-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("fear of missing out")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["FOMO:phrase:noun:錯失恐懼症 / 怕錯過別人活動的焦慮:mock-unseen-mt19-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("wake up call")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["wake-up call:phrase:noun:警號 / 提醒人正視問題的事:mock-unseen-mt19-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("emitting radiation")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["emit radiation:phrase:verb:發出輻射:mock-unseen-mt19-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("distracted driving")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:分心駕駛:mock-unseen-mt19-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("rendered incomprehensible")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["render incomprehensible:phrase:verb:令...難以理解:mock-unseen-mt19-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("gritty texture")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:粗糙有沙粒感的口感:mock-unseen-mt21-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("not to everyone's taste")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adjective:不是人人都喜歡的:mock-unseen-mt21-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("cup distributors")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["cup distributor:phrase:noun:杯子供應商 / 杯子分銷商:mock-unseen-mt21-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("applications due")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["application due:phrase:adjective:申請截止的:mock-unseen-mt21-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("rinseless shampoo")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:免沖洗洗頭水:mock-unseen-mt21-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("docking time")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:對接時間:mock-unseen-mt21-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("zero gravity")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:零重力:mock-unseen-mt21-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("wedding planners")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["wedding planner:phrase:noun:婚禮策劃師:mock-unseen-mt23-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("on the house")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adjective:由店方免費招待的:mock-unseen-mt23-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("secret diners")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["secret diner:phrase:noun:神秘食客 / 餐廳暗訪員:mock-unseen-mt23-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("head and shoulders above")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adjective:遠勝於 / 明顯優於:mock-unseen-mt23-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("revamped")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["revamp:verb:徹底改造 / 翻新:mock-unseen-mt23-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("monkey bars")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:攀爬架 / 猴架:mock-unseen-mt24-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("false starts")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["false start:phrase:noun:搶跑 / 起步犯規:mock-unseen-mt24-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("flagship brands")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["flagship brand:phrase:noun:旗艦品牌 / 主打品牌:mock-unseen-mt24-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("fleshed out")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["flesh out:phrase:verb:充實內容 / 加入細節:mock-unseen-mt24-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("tone style and register")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["tone, style and register:phrase:noun:語氣、文體和語域:mock-unseen-mt24-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("black rhinos")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["black rhino:phrase:noun:黑犀牛:mock-unseen-mt26-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("waders")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["wader:noun:涉水長靴:mock-unseen-mt26-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("wheelchair ramps")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["wheelchair ramp:phrase:noun:輪椅斜道:mock-unseen-mt26-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("voice-over")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["voiceover:noun:旁白:mock-unseen-mt26-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("drone mounted camera")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["drone-mounted camera:phrase:noun:無人機安裝相機:mock-unseen-mt26-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("chunks taken verbatim")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["chunk taken verbatim:phrase:noun:逐字照抄的一段文字:mock-unseen-mt26-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("trade show")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["trade fair:phrase:noun:貿易展覽 / 商貿展:mock-unseen-mt28-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Q and A session")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Q&A session:phrase:noun:問答環節:mock-unseen-mt28-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("tell off")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:責罵 / 斥責:mock-unseen-mt28-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Silver Surfers")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["silver surfer:phrase:noun:年長網民 / 年長科技用家:mock-unseen-mt28-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("run through")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:快速講解 / 排練:mock-unseen-mt28-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("World Quality of Life Survey")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["World Quality of Life Survey:phrase:noun:世界生活質素調查:mock-unseen-mt29-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("chime in")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:插話 / 加入討論:mock-unseen-mt29-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("sneak peek")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:率先預覽 / 偷偷一看:mock-unseen-mt29-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("airport shuttles")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["airport shuttle:phrase:noun:機場接駁車:mock-unseen-mt29-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("motion sensors")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["motion sensor:phrase:noun:動作感應器:mock-unseen-mt29-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("spare no expense")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:不惜工本 / 不計成本:mock-unseen-mt29-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("time trial")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:計時賽:mock-unseen-mt31-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("roofing membrane")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:屋頂防水膜:mock-unseen-mt31-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("green thumb")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:園藝天分 / 種植物的本領:mock-unseen-mt31-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("go over well")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:反應良好 / 被接受:mock-unseen-mt31-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("even playing field")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:公平競爭環境:mock-unseen-mt33-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("AR goggles")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["AR goggles:phrase:noun:AR 眼鏡 / 擴增實境護目鏡:mock-unseen-mt33-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("in the running")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adjective:有機會勝出 / 入圍的:mock-unseen-mt33-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("wholesale demand")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:批發需求:mock-unseen-mt33-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("infinite canvas")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:無限畫布:mock-unseen-mt34-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("escape rooms")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["escape room:phrase:noun:密室逃脫遊戲 / 逃脫房間:mock-unseen-mt34-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("poke the bear")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:惹怒對方 / 刺激敏感的人:mock-unseen-mt34-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Cheung Po Tsai Cave")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Cheung Po Tsai Cave:phrase:noun:張保仔洞:mock-unseen-mt34-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("dumbed down")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["dumb down:phrase:verb:簡化到過分淺白 / 降低深度:mock-unseen-mt36-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("strobe lights")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["strobe light:phrase:noun:頻閃燈:mock-unseen-mt36-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("rigged up")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["rig up:phrase:verb:臨時裝設 / 架設:mock-unseen-mt36-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("perfect fit")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:非常合適的人或事物:mock-unseen-mt36-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("haggis")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["word:noun:羊雜布丁 / 哈吉斯:mock-unseen-mt39-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("rough cut")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:粗剪版 / 初剪版本:mock-unseen-mt39-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("WOM campaign")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["word-of-mouth campaign:phrase:noun:口碑宣傳活動:mock-unseen-mt39-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("casting decisions")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["casting decision:phrase:noun:選角決定:mock-unseen-mt39-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("provenance")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["word:noun:來源紀錄 / 流傳歷史:mock-unseen-mt41-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("synthetic fibers")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["synthetic fibre:phrase:noun:合成纖維:mock-unseen-mt41-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("tonometers")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["tonometer:word:noun:眼壓計:mock-unseen-mt41-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("tax deduction")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:扣稅項目 / 稅務扣減:mock-unseen-mt41-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("at cost")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adverb:按成本價:mock-unseen-mt41-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("skateboard ramp")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:滑板斜台:mock-unseen-mt43-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("in-game ads")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["in-game ad:phrase:noun:遊戲內廣告:mock-unseen-mt43-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("one off development fee")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["one-off fee:phrase:noun:一次性費用:mock-unseen-mt43-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("iron out the kinks")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:解決小問題 / 修正毛病:mock-unseen-mt43-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Internet cafes")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Internet cafe:phrase:noun:網吧:mock-unseen-mt43-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Kowloon Walled City")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Kowloon Walled City:phrase:noun:九龍寨城:mock-unseen-mt43-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("yearbook")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["word:noun:畢業紀念冊 / 年刊:mock-unseen-mt46-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("artist's impression")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:藝術構想圖 / 效果圖:mock-unseen-mt46-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("lazy-river ride")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:漂流河遊樂設施:mock-unseen-mt46-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("plummeting")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "word:verb:暴跌 / 急跌:curated-sense-bank",
+      "word:verb:急墜 / 垂直落下:mock-unseen-mt46-paper3-reviewed"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("fit the bill")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:符合要求 / 合適:mock-unseen-mt35-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("llamas")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["llama:word:noun:羊駝:mock-unseen-mt48-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("volcanic ash")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:火山灰:mock-unseen-mt48-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("two-factor authentication")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:雙重認證:mock-unseen-mt48-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("rip off")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:敲詐 / 收取過高價錢:mock-unseen-mt48-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("supersonic aircraft")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:超音速飛機:mock-unseen-mt48-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("in-flight meals")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["in-flight meal:phrase:noun:機上餐膳:mock-unseen-mt48-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("volunteer tourism")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:義工旅遊 / 志願服務旅遊:mock-unseen-mt50-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("blade guard")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:鋸片護罩:mock-unseen-mt50-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("paid in exposure")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adjective:以曝光率作報酬的:mock-unseen-mt50-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("stick to your guns")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["stick to one's guns:phrase:verb:堅持立場 / 不讓步:mock-unseen-mt50-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("choosing beggars")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["choosing beggar:phrase:noun:又要免費又要求多多的人:mock-unseen-mt53-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("podcast directory")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:podcast 目錄 / 播客目錄平台:mock-unseen-mt53-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Nam Koo Terrace")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Nam Koo Terrace:phrase:noun:南固臺:mock-unseen-mt53-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("muffled")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["word:adjective:聲音焗住的 / 聽不清的:mock-unseen-mt53-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("co-hosting")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["co-host:phrase:verb:共同主持:mock-unseen-mt53-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("stilt houses")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["stilt house:phrase:noun:棚屋 / 高腳屋:mock-unseen-mt66-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("rattan furniture")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:藤製家具:mock-unseen-mt66-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("sustainable farming methods")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["sustainable farming method:phrase:noun:可持續耕作方法:mock-unseen-mt66-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("gesture of goodwill")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:善意表示 / 善意補償:mock-unseen-mt66-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("put myself in the customers' shoes")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["put oneself in someone's shoes:phrase:verb:代入某人處境 / 設身處地:mock-unseen-mt66-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("get back on his feet")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["get back on one's feet:phrase:verb:重新站穩 / 從困境中恢復:mock-unseen-mt84-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("e-readers")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["e-reader:phrase:noun:電子書閱讀器:mock-unseen-mt84-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("sweeten the deal")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:增加好處令條件更吸引:mock-unseen-mt84-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("meet with your approval")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["meet with one's approval:phrase:verb:獲得某人批准 / 得到某人認可:mock-unseen-mt84-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("speaker roster")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:講者名單:mock-unseen-mt84-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("eco fashion")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["eco-fashion:phrase:noun:環保時裝 / 環保時尚:mock-unseen-mt32-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("focus groups")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["focus group:phrase:noun:焦點小組:mock-unseen-mt32-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("second largest polluter")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["second-largest polluter:phrase:noun:第二大污染源:mock-unseen-mt32-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("pop up shops")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["pop-up shop:phrase:noun:期間限定店 / 快閃店:mock-unseen-mt32-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("cash in on")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:從...獲利 / 趁機利用:mock-unseen-mt32-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("goes public")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["go public:phrase:verb:上市 / 公開發行股票:mock-unseen-mt32-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("speak for itself")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:不言而喻 / 本身已能說明一切:mock-unseen-mt32-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("groundbreaking")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adjective:開創性的 / 突破性的:mock-unseen-mt32-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("quake-hit")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adjective:受地震重創的:mock-unseen-mt30-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Dragon Boat Racing")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Dragon Boat Racing:phrase:noun:龍舟競賽:mock-unseen-mt30-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("animal adoption")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:領養動物:mock-unseen-mt30-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("hut")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:小屋 / 茅屋:mock-unseen-mt30-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("mats")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["mat:noun:墊子 / 席子:mock-unseen-mt30-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("roared")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:吼叫 / 咆哮:mock-unseen-mt30-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("SPCA")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["SPCA:noun:愛護動物協會:mock-unseen-mt30-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("publicised")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:宣傳 / 公布:mock-unseen-mt30-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("take up a sport")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:開始參與一項運動:mock-unseen-mt30-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("baked goods")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:烘焙食品:mock-unseen-mt30-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("treasure hunts")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:尋寶遊戲:mock-unseen-mt30-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("school assembly")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:學校集會:mock-unseen-mt32-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("pet-friendly policies")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:寵物友善政策:mock-unseen-mt32-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("light pollution")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:光污染:mock-unseen-mt32-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("video arcades")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:電子遊戲機中心 / 遊戲機舖:mock-unseen-mt32-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("desensitised")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:使麻木 / 使失去敏感度:mock-unseen-mt32-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("aired on the channel")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:在頻道播放:mock-unseen-mt32-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Hong Kong Railway Museum")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Hong Kong Railway Museum:phrase:noun:香港鐵路博物館:mock-unseen-mt35-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("public sitting-out area")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:公眾休憩處:mock-unseen-mt35-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("clinch victory")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:取得勝利:mock-unseen-mt35-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("creative outlets")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:創意出口 / 表達創意的途徑:mock-unseen-mt35-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("all expenses paid")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adjective:包全部費用的:mock-unseen-mt35-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("places of interest")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:名勝 / 景點:mock-unseen-mt35-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("fibre optics")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:光纖技術:mock-unseen-mt38-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("paved the way")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:鋪路 / 為...創造條件:mock-unseen-mt38-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("fat shaming")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:嘲笑肥胖 / 身材羞辱:mock-unseen-mt38-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("wrongful convictions")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:錯誤定罪 / 冤案:mock-unseen-mt38-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("the show must go on")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:演出必須繼續 / 無論如何都要繼續:mock-unseen-mt38-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("word for word")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adverb:逐字逐句地:mock-unseen-mt38-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("mentoring program")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:師友計劃 / 輔導計劃:mock-unseen-mt42-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("student body")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:全體學生:mock-unseen-mt42-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("search engines")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:搜尋引擎:mock-unseen-mt42-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("extras")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["movie extra:phrase:noun:電影臨時演員 / 群眾演員:mock-unseen-mt42-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("picked on")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:欺負 / 針對:mock-unseen-mt42-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("HR Department")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Human Resources Department:phrase:noun:人力資源部:mock-unseen-mt42-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("satellite phones")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:衛星電話:mock-unseen-mt42-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("made it out alive")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:活著逃出 / 生還:mock-unseen-mt42-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("board game nights")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:桌上遊戲晚會:mock-unseen-mt45-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("owners committee")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Owners' Committee:phrase:noun:業主委員會:mock-unseen-mt45-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("running costs")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:營運費 / 日常開支:mock-unseen-mt45-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("intranet")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["word:noun:內聯網:mock-unseen-mt45-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("at my fingertips")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adverb:近在手邊 / 隨手可得:mock-unseen-mt45-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("spa treatments")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:水療護理 / Spa 護理:mock-unseen-mt45-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("spa")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["word:noun:水療 / Spa:mock-unseen-mt45-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("planted crops")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:種植農作物:mock-unseen-mt45-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("deluxe suites")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:豪華套房:mock-unseen-mt49-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("student radio host")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["radio host:phrase:noun:電台主持:mock-unseen-mt49-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("remote learning")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:遙距學習 / 網上學習:mock-unseen-mt49-paper2-reviewed"]
+  );
+
+  assert.ok(
+    (await lookupForStudent("hand sanitizer")).some((entry) => (
+      entry.type === "phrase"
+      && entry.pos === "noun"
+      && entry.meaning === "酒精搓手液 / 消毒搓手液"
+      && entry.source === "mock-unseen-mt49-paper2-reviewed"
+    ))
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("game consoles")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:遊戲機 / 遊戲主機:mock-unseen-mt49-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("awe inspiring")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adjective:令人敬畏的 / 令人驚嘆的:mock-unseen-mt49-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("World War II")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Second World War:phrase:noun:第二次世界大戰:mock-unseen-mt49-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("changed the face of")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:徹底改變...的面貌:mock-unseen-mt49-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("hotel amenities")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["hotel amenity:phrase:noun:酒店設施:mock-unseen-mt52-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("put up their tents")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:搭帳篷:mock-unseen-mt52-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("bobs up and down")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:上下浮動:mock-unseen-mt52-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("sedan chairs")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["sedan chair:phrase:noun:轎 / 轎子:mock-unseen-mt56-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("rolled the dice")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:擲骰子:mock-unseen-mt56-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("guest of honor")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["guest of honour:phrase:noun:主禮嘉賓 / 貴賓:mock-unseen-mt56-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("traditional characters")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["traditional character:phrase:noun:繁體字:mock-unseen-mt56-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("TV channels")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["television channel:phrase:noun:電視頻道:mock-unseen-mt56-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("award winning")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adjective:得獎的 / 獲獎的:mock-unseen-mt56-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("immigration trends")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["immigration trend:phrase:noun:移民趨勢:mock-unseen-mt59-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("jotted down")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:匆匆記下 / 草草寫下:mock-unseen-mt59-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("chief librarians")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["chief librarian:phrase:noun:總圖書館館長 / 圖書館主管:mock-unseen-mt59-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("not my cup of tea")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["not one's cup of tea:phrase:adjective:不是某人喜歡的事物:mock-unseen-mt59-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("slacking off")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:偷懶 / 懈怠:mock-unseen-mt59-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("give it my all")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["give it one's all:phrase:verb:全力以赴:mock-unseen-mt59-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("pop culture")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["popular culture:phrase:noun:流行文化:mock-unseen-mt63-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("sent in")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["write in:phrase:verb:寫信 / 寫訊息到節目:mock-unseen-mt63-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("on three main grounds")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["grounds:word:noun:理由 / 根據:mock-unseen-mt63-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("trapped")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["trap:word:verb:困住 / 使陷入困境:mock-unseen-mt63-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("set a dangerous precedent")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:開危險先例:mock-unseen-mt63-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("future generations")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["future generation:phrase:noun:下一代 / 後代:mock-unseen-mt63-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("pet accessories")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["pet accessory:phrase:noun:寵物用品 / 寵物配件:mock-unseen-mt66-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("internal combustion engines")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["internal combustion engine:phrase:noun:內燃機:mock-unseen-mt66-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("put the devices to good use")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["put something to good use:phrase:verb:善用某物:mock-unseen-mt66-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("audio and visual")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["audio-visual:phrase:adjective:視聽的 / 影音的:mock-unseen-mt66-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("run sports teams")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["run a sports team:phrase:verb:帶領 / 管理運動隊伍:mock-unseen-mt66-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("mandatory work experience")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["mandatory work experience:phrase:noun:強制工作體驗:mock-unseen-mt66-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("marine wildlife")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:海洋野生動物:mock-unseen-mt70-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("pack my bags")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:收拾行李離開:mock-unseen-mt70-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("bricks and mortar")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "phrase:noun:實體店 / 實體建築:curated-sense-bank",
+      "phrase:adjective:實體店的 / 非網上的:mock-unseen-mt70-paper2-reviewed"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("brick and mortar")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "phrase:noun:實體店 / 實體建築:curated-sense-bank",
+      "phrase:adjective:實體店的 / 非網上的:mock-unseen-mt70-paper2-reviewed"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("brick-and-mortar")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "phrase:noun:實體店 / 實體建築:curated-sense-bank",
+      "phrase:adjective:實體店的 / 非網上的:mock-unseen-mt70-paper2-reviewed"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("bricks-and-mortar")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "phrase:noun:實體店 / 實體建築:curated-sense-bank",
+      "phrase:adjective:實體店的 / 非網上的:mock-unseen-mt70-paper2-reviewed"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("dai pai dongs")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:大牌檔:mock-unseen-mt70-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("innocent bystanders")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:無辜旁觀者:mock-unseen-mt70-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("illuminated neon signs")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:發光霓虹招牌:mock-unseen-mt73-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("culturally diverse")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["culturally diverse:phrase:adjective:文化多元的:mock-unseen-mt9-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("amateur theater companies")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["amateur theatre company:phrase:noun:業餘劇團:mock-unseen-mt9-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("agreed to disagree")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["agree to disagree:phrase:verb:同意彼此保留不同意見:mock-unseen-mt9-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("workplace skills")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["workplace skills:phrase:noun:職場技能:mock-unseen-mt9-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("reality TV programmes")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["reality TV:phrase:noun:真人騷 / 真人實境節目:mock-unseen-mt9-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("singer songwriter")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["singer-songwriter:phrase:noun:創作歌手:mock-unseen-mt9-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("in the unlikely event of")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["in the unlikely event of:phrase:preposition:萬一發生...時:mock-unseen-mt10-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("healthy options")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["healthy option:phrase:noun:健康選擇:mock-unseen-mt10-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("work smarter not harder")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["work smarter, not harder:phrase:verb:聰明工作而非盲目苦幹:mock-unseen-mt10-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("paper-free offices")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["paper-free office:phrase:noun:無紙化辦公室:mock-unseen-mt10-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("till all the seas go dry")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["till all the seas go dry:phrase:adverb:直到海枯石爛:mock-unseen-mt10-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("parachutists")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["parachutist:word:noun:跳傘者:mock-unseen-mt10-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("dog-walking services")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["dog walking service:phrase:noun:遛狗服務:mock-unseen-mt11-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("break it to you")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["break it to:phrase:verb:把壞消息告訴...:mock-unseen-mt11-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("invasions of privacy")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["invasion of privacy:phrase:noun:侵犯私隱:mock-unseen-mt11-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("choking")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["choke:word:verb:窒息 / 哽住:mock-unseen-mt11-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("come around to")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["come round to:phrase:verb:來到...家 / 順道到...:mock-unseen-mt11-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("illegal loggers")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["illegal logger:phrase:noun:非法伐木者:mock-unseen-mt11-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("regained consciousness")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["regain consciousness:phrase:verb:恢復知覺 / 醒過來:mock-unseen-mt11-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("audio books")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["audio book:phrase:noun:有聲書:mock-unseen-mt12-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("in app purchases")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["in-app purchase:phrase:noun:應用程式內購買:mock-unseen-mt12-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("calm your nerves")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["calm one's nerves:phrase:verb:安撫緊張情緒 / 使自己冷靜:mock-unseen-mt12-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("complimenting me on")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["compliment someone on:phrase:verb:稱讚某人的...:mock-unseen-mt12-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("clapping along")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["clap along:phrase:verb:跟著節奏拍手:mock-unseen-mt12-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("learning centers")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["learning centre:phrase:noun:補習中心 / 學習中心:mock-unseen-mt13-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("work-experience placement")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["work experience placement:phrase:noun:工作體驗實習 / 職場體驗安排:mock-unseen-mt13-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("week in week out")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["week in, week out:phrase:adverb:每星期都 / 周復周地:mock-unseen-mt13-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("legal restrictions")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["legal restriction:phrase:noun:法律限制:mock-unseen-mt13-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("closed down")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["close down:phrase:verb:結業 / 關閉:mock-unseen-mt13-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("follow in your footsteps")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["follow in someone's footsteps:phrase:verb:追隨某人的腳步 / 效法某人:mock-unseen-mt13-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("try my luck")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["try one's luck:phrase:verb:碰碰運氣 / 試試運氣:mock-unseen-mt13-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("medical bills")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["medical bill:phrase:noun:醫療費用 / 醫藥費:mock-unseen-mt13-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("financial security")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["financial security:phrase:noun:經濟保障 / 財務安全:mock-unseen-mt13-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("over-packaged goods")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["over-packaged:phrase:adjective:過度包裝的:mock-unseen-mt14-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("returning to the workforce")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["return to the workforce:phrase:verb:重返職場:mock-unseen-mt14-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("brand endorsements")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["brand endorsement:phrase:noun:品牌代言 / 品牌背書:mock-unseen-mt14-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("working from home")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["working from home:phrase:noun:在家工作:mock-unseen-mt14-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("met targets")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["meet targets:phrase:verb:達成目標 / 達標:mock-unseen-mt14-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("went bankrupt")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["go bankrupt:phrase:verb:破產:mock-unseen-mt28-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("individual sports")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["individual sport:phrase:noun:個人運動:mock-unseen-mt28-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("give them a go")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["give something a go:phrase:verb:試一試:mock-unseen-mt28-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("DAB radios")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["DAB radio:phrase:noun:數碼聲音廣播收音機:mock-unseen-mt28-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("runs right across her face")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["run right across:phrase:verb:橫跨 / 橫過:mock-unseen-mt28-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("upcycled")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["upcycle:word:verb:升級再造 / 改造再用:mock-unseen-mt29-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("spelt the end of")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["spell the end of:phrase:verb:導致...結束:mock-unseen-mt29-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("hand-eye coordination")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["hand-eye coordination:phrase:noun:手眼協調:mock-unseen-mt84-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("keep your cool")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["keep one's cool:phrase:verb:保持冷靜:mock-unseen-mt29-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("superiors")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["superior:word:noun:上司 / 上級:mock-unseen-mt29-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("safety concerns")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["safety concern:phrase:noun:安全顧慮 / 安全問題:mock-unseen-mt33-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("bring our game to the next level")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["bring something to the next level:phrase:verb:把...提升到更高水平:mock-unseen-mt33-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("company provided lunches")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["company-provided lunch:phrase:noun:公司提供的午餐:mock-unseen-mt33-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("tell on others")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["tell on someone:phrase:verb:告發某人 / 打小報告:mock-unseen-mt33-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("victimized")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["victimised:word:adjective:被欺負的 / 成為受害者的:mock-unseen-mt33-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Ngong Ping 360")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Ngong Ping 360:phrase:noun:昂坪360:mock-unseen-mt34-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("cross harbour swimming race")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Cross-Harbour Swimming Race:phrase:noun:渡海泳比賽:mock-unseen-mt34-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("tight project deadlines")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["tight deadline:phrase:noun:緊迫的期限:mock-unseen-mt34-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("live streamed")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["live stream:phrase:verb:直播:mock-unseen-mt34-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("well groomed")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["well-groomed:phrase:adjective:打理整潔的 / 梳洗整齊的:mock-unseen-mt34-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("typhoon signal number 8")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Typhoon Signal Number 8:phrase:noun:八號颱風信號 / 八號風球:mock-unseen-mt36-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("signal was hoisted")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["hoist a signal:phrase:verb:懸掛信號 / 發出信號:mock-unseen-mt36-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("shared kitchen areas")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["shared kitchen area:phrase:noun:共用廚房區:mock-unseen-mt36-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("animal sanctuaries")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["animal sanctuary:phrase:noun:動物庇護所 / 動物保護區:curated-sense-bank"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("reruns")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["re-run:phrase:noun:重播:mock-unseen-mt36-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("photo editing software")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["photo-editing software:phrase:noun:修圖軟件:mock-unseen-mt39-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("gave in to")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["give in to:phrase:verb:屈服於 / 讓步於:mock-unseen-mt39-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("stripped him of")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["strip someone of:phrase:verb:剝奪某人的... / 取消某人的...:mock-unseen-mt39-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("wage statistics")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["wage statistic:phrase:noun:工資統計數據:mock-unseen-mt39-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("binge watched")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["binge-watch:phrase:verb:一口氣追看:mock-unseen-mt39-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Big Dipper")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Big Dipper:phrase:noun:北斗七星:mock-unseen-mt39-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("positive reinforcement")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:正面鼓勵 / 正向強化:mock-unseen-mt39-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Instagram tourists")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Instagram tourist:phrase:noun:為拍照打卡而旅遊的人:mock-unseen-mt41-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("jostling for positions")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["jostle for position:phrase:verb:爭位 / 擠著搶位置:mock-unseen-mt41-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("first person shooters")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["first-person shooter:phrase:noun:第一身射擊遊戲:mock-unseen-mt41-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("pitch invasions")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["pitch invasion:phrase:noun:球迷衝入球場:mock-unseen-mt41-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("punching above its weight")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["punch above one's weight:phrase:verb:表現超出自身規模 / 以小搏大:mock-unseen-mt41-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Michelin awarded")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Michelin-awarded:phrase:adjective:獲米芝蓮評級的:mock-unseen-mt41-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("nemeses")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["nemesis:noun:宿敵 / 難以戰勝的對手:mock-unseen-mt41-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("rolls off the tongue")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["roll off the tongue:phrase:verb:說起來順口 / 容易上口:mock-unseen-mt41-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("leaves a lot to be desired")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["leave a lot to be desired:phrase:verb:有很多不足 / 未如理想:mock-unseen-mt41-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("vocal warm-up exercises")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["vocal warm-up:phrase:noun:開聲練習 / 聲樂熱身:mock-unseen-mt41-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("marches")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`).filter((line) => line.includes("mock-unseen-mt43-paper2-reviewed")),
+    ["march:noun:遊行 / 示威遊行:mock-unseen-mt43-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("throwaway society")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["throw-away society:phrase:noun:即棄型社會 / 浪費型社會:mock-unseen-mt43-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("mixed team sports leagues")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["mixed-team sports league:phrase:noun:男女混合運動聯賽:mock-unseen-mt43-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("facial disfigurements")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["facial disfigurement:phrase:noun:面部毀容 / 面部缺陷:mock-unseen-mt43-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("held in high regard")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adjective:備受尊敬的:mock-unseen-mt43-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("would be thieves")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["would-be thief:phrase:noun:潛在小偷 / 意圖偷竊的人:mock-unseen-mt43-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("breaking and entering")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:非法闖入 / 入屋犯法行為:mock-unseen-mt43-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("knocked down")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "phrase:verb:撞倒 / 撞跌:mock-unseen-mt27-paper3-reviewed",
+      "phrase:verb:拆卸 / 拆掉:mock-unseen-mt73-paper2-reviewed"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("cinematic universes")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:電影宇宙:mock-unseen-mt73-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("AI-focused")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["AI-focussed:phrase:adjective:以人工智能為重點的:mock-unseen-mt73-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("cream soda with milk")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:忌廉溝鮮奶:mock-unseen-mt73-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("food sharing areas")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:食物分享區:mock-unseen-mt77-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("mysterious red envelopes")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:神秘紅封包 / 神秘利是封:mock-unseen-mt77-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("one size fits all")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adjective:一刀切的 / 不分差異的:mock-unseen-mt77-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("breathing new life into")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:為...注入新生命 / 令...重現活力:mock-unseen-mt77-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("stepped out of my comfort zone")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:踏出舒適圈:mock-unseen-mt77-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("time capsules")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:時間囊 / 時光膠囊:mock-unseen-mt80-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("box office sales")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:票房收入 / 票房銷售:mock-unseen-mt80-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("embarking on a cruise")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:登上郵輪展開旅程:mock-unseen-mt80-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("open water swimming")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:公開水域游泳 / 戶外水域游泳:mock-unseen-mt80-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Cross Harbour Swim")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Cross Harbour Swim:phrase:noun:渡海泳:mock-unseen-mt80-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("study buddies")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:學習伙伴 / 功課伙伴:mock-unseen-mt84-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("looked up to")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:尊敬 / 仰慕:mock-unseen-mt84-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("fill in the blanks")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adjective:填充的 / 填空的:mock-unseen-mt84-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("pick up this language")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:學會一種語言 / 自然學懂語言:mock-unseen-mt84-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("alternate routes")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:替代路線 / 另一條路:mock-unseen-mt84-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Hong Kongers")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Hong Konger:phrase:noun:香港人:mock-unseen-mt84-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("at any rate")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adverb:無論如何 / 不管怎樣:mock-unseen-mt84-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("visual prompts")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["visual prompt:phrase:noun:圖片提示 / 視覺提示:mock-unseen-mt84-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("overcame jealous feelings")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["overcome jealous feelings:phrase:verb:克服妒忌心:mock-unseen-mt84-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("real-time error correction")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["real-time error correction:phrase:noun:即時錯誤糾正:mock-unseen-mt84-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("in case of emergency")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["in case of emergency:phrase:adverb:以防緊急情況 / 遇到緊急情況時:mock-unseen-mt84-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("table for two")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["table for two:phrase:noun:二人桌 / 兩位用餐:mock-unseen-mt84-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("came to life")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:開始出現 / 變得活躍:mock-unseen-mt87-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("jade amulets")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:玉護身符 / 玉符:mock-unseen-mt87-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("pay their way")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:自己負擔費用:mock-unseen-mt87-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("developing countries")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:發展中國家:mock-unseen-mt87-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("do more harm than good")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:弊多於利 / 害處多於好處:mock-unseen-mt87-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("vocational training")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:職業訓練:mock-unseen-mt87-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("bidding for")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:申辦 / 爭取舉辦:mock-unseen-mt15-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Summer Olympics")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Summer Olympic Games:phrase:noun:夏季奧運會:mock-unseen-mt15-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("put their hearts and souls into")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:全心全意投入:mock-unseen-mt15-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("noxious fumes")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:有毒廢氣 / 有害煙霧:mock-unseen-mt15-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("get on each other's nerves")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:令某人煩躁 / 惹某人討厭:mock-unseen-mt15-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("jerked to a stop")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:猛然停下 / 突然一震停住:mock-unseen-mt15-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("went on the rampage")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["go on the rampage:phrase:verb:橫衝直撞地破壞 / 到處搗亂:mock-unseen-mt16-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("get lost")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "get lost:phrase:verb:迷路:mock-unseen-mt42-paper3-reviewed",
+      "get lost:phrase:verb:走開 / 滾開:mock-unseen-mt16-paper2-reviewed"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("home-schoolers")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["home schooler:phrase:noun:在家學習的學生:mock-unseen-mt16-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("five star hotel")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["five-star hotel:phrase:noun:五星級酒店:mock-unseen-mt16-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("melt in the mouth")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["melt in your mouth:phrase:verb:入口即化:mock-unseen-mt16-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("fancy dress parties")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["fancy-dress party:phrase:noun:化裝派對:mock-unseen-mt16-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("took me back to")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["take someone back to:phrase:verb:使某人回想起...:mock-unseen-mt16-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("landslides")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["landslip:word:noun:山泥傾瀉:mock-unseen-mt16-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("curried fish balls")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["curried fish ball:phrase:noun:咖喱魚蛋:mock-unseen-mt18-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("crashed headlong into")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["crash headlong into:phrase:verb:頭朝前撞向:mock-unseen-mt18-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Winter Olympics")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Winter Olympic Games:phrase:noun:冬季奧運會:mock-unseen-mt18-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("keep a roof over our heads")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["keep a roof over one's head:phrase:verb:維持有地方住 / 保住棲身之所:mock-unseen-mt18-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("second-generation immigrants")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["second generation immigrant:phrase:noun:第二代移民:mock-unseen-mt18-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("hold down a job")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["hold down a job:phrase:verb:保住一份工作 / 做得住一份工:mock-unseen-mt18-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("do our bit")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["do one's bit:phrase:verb:盡自己一分力:mock-unseen-mt18-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("jumped the queue")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["jump the queue:phrase:verb:打尖 / 插隊:mock-unseen-mt18-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Mass Transit Railway")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Mass Transit Railway:phrase:noun:港鐵 / 地下鐵路:mock-unseen-mt18-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("clutching at straws")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["clutch at straws:phrase:verb:抓住渺茫希望 / 作無望掙扎:mock-unseen-mt18-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("ticket stubs")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["ticket stub:phrase:noun:票尾 / 票根:mock-unseen-mt18-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("tiger mothers")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["tiger mother:phrase:noun:虎媽 / 嚴厲母親:mock-unseen-mt18-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("ran into")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["run into:phrase:verb:偶然遇見 / 撞見:mock-unseen-mt18-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("fumbled around")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["fumble around:phrase:verb:摸索 / 笨拙地翻找:mock-unseen-mt18-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Memory Lane")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Memory Lane:phrase:noun:回憶長廊 / 懷舊回憶:mock-unseen-mt19-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("aquaphobia")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["aquaphobia:word:noun:恐水症 / 怕水:mock-unseen-mt19-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("far from finished")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["far from finished:phrase:adjective:遠未完成的:mock-unseen-mt19-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("live wires")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["live wire:phrase:noun:帶電電線 / 通電電線:mock-unseen-mt19-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("have you in stitches")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["have someone in stitches:phrase:verb:令某人笑到停不了:mock-unseen-mt19-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("star-studded")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["star-studded:phrase:adjective:明星雲集的:mock-unseen-mt19-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("fiercely competitive")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["fiercely competitive:phrase:adjective:競爭非常激烈的:mock-unseen-mt19-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("secure admission")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["secure admission:phrase:verb:取得入學資格 / 成功入讀:mock-unseen-mt19-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("pay cut in disguise")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["pay cut in disguise:phrase:noun:變相減薪:mock-unseen-mt19-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("thin ideal")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["thin ideal:phrase:noun:以瘦為美的標準:mock-unseen-mt19-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("thigh gap")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["thigh gap:phrase:noun:大腿縫 / 大腿間距:mock-unseen-mt19-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("forked out")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["fork out:phrase:verb:勉強付出 / 掏錢付:mock-unseen-mt19-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Monday morning blues")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Monday morning blues:phrase:noun:星期一上班上學的鬱悶心情:mock-unseen-mt19-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("catch a glimpse of")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["catch a glimpse of:phrase:verb:瞥見 / 匆匆看見:mock-unseen-mt19-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("deep-fried squid")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["deep-fried squid:phrase:noun:炸魷魚:mock-unseen-mt21-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("benefits and drawbacks")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["benefit and drawback:phrase:noun:好處和壞處 / 利弊:mock-unseen-mt21-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("get involved in")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["get involved in:phrase:verb:參與 / 投入:mock-unseen-mt21-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("deal with success and defeat")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["deal with success and defeat:phrase:verb:面對成功與失敗:mock-unseen-mt21-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("sail around the world")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["sail around the world:phrase:verb:環遊世界航行:mock-unseen-mt21-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("care for the elderly")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["care for the elderly:phrase:verb:照顧長者:mock-unseen-mt21-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("call in on")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["call in on:phrase:verb:順道探望 / 探訪:mock-unseen-mt21-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("serve your internship")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["serve an internship:phrase:verb:實習 / 完成實習:mock-unseen-mt21-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("stand me in good stead")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["stand someone in good stead:phrase:verb:對某人將來有幫助:mock-unseen-mt21-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("lead guitarist")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["lead guitarist:phrase:noun:主音結他手:mock-unseen-mt21-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("thick canopy")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["thick canopy:phrase:noun:茂密樹冠:mock-unseen-mt21-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("come alive")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["come alive:phrase:verb:恢復生氣 / 變得有活力:mock-unseen-mt21-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("think up")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["think up:phrase:verb:想出 / 構思出:mock-unseen-mt21-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("creative industries")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["creative industry:phrase:noun:創意產業:mock-unseen-mt21-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Adoption Day")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Adoption Day:phrase:noun:領養日 / 領養活動日:mock-unseen-mt23-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("locally sourced")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["locally sourced:phrase:adjective:本地採購的 / 本地來源的:mock-unseen-mt23-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("top of their game")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["at the top of one's game:phrase:adjective:處於最佳狀態 / 表現頂尖:mock-unseen-mt23-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("opening night performance")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["opening night performance:phrase:noun:首晚演出 / 開幕夜演出:mock-unseen-mt23-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("fundraising activities")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["fundraising activity:phrase:noun:籌款活動:mock-unseen-mt23-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("electronic copies")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["electronic copy:phrase:noun:電子版本 / 電子副本:mock-unseen-mt23-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("collecting dust")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["collect dust:phrase:verb:擺著不用 / 積塵:mock-unseen-mt23-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("online shopping website")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["online shopping website:phrase:noun:網上購物網站:mock-unseen-mt23-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("quote a price")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["quote a price:phrase:verb:報價:mock-unseen-mt23-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("traipse around")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["traipse around:phrase:verb:到處奔波 / 疲累地四處走:mock-unseen-mt23-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("quiz show")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["quiz show:phrase:noun:問答遊戲節目 / 競答節目:mock-unseen-mt23-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("conduct myself")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["conduct oneself:phrase:verb:表現自己 / 舉止得體:mock-unseen-mt23-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("hologram menus")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["hologram menu:phrase:noun:全息影像餐牌:mock-unseen-mt23-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Tube Station")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Tube Station:phrase:noun:管道車站 / 未來交通站:mock-unseen-mt23-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("floating school")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["floating school:phrase:noun:空中學校 / 漂浮學校:mock-unseen-mt23-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("action figures")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["action figure:phrase:noun:動作人偶 / 可動公仔:mock-unseen-mt24-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("adrenaline rush")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adrenalin rush:phrase:noun:腎上腺素飆升 / 刺激感:mock-unseen-mt24-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("two sided argumentative essays")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["two-sided argumentative essay:phrase:noun:雙面議論文 / 正反議論文:mock-unseen-mt24-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("games consoles")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["game console:phrase:noun:遊戲機 / 遊戲主機:mock-unseen-mt24-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("posh")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["posh:word:adjective:高級的 / 有錢人味的:mock-unseen-mt24-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("could do with some")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["could do with:phrase:verb:需要 / 最好有:mock-unseen-mt26-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Kwai Tsing Container Port")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Kwai Tsing Container Port:phrase:noun:葵青貨櫃碼頭:mock-unseen-mt26-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("fair trade")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["fair trade:phrase:noun:公平貿易:mock-unseen-mt26-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("gambling addictions")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["gambling addiction:phrase:noun:賭博成癮 / 賭癮:mock-unseen-mt26-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("bury their heads in the sand")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["bury one's head in the sand:phrase:verb:逃避現實 / 不願面對問題:mock-unseen-mt26-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("jabbing")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["jab:word:verb:戳 / 猛戳:mock-unseen-mt26-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Thai wai greeting")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Thai wai greeting:phrase:noun:泰式合十鞠躬問候:mock-unseen-mt26-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("die-hard fans")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["diehard fan:phrase:noun:死忠粉絲:mock-unseen-mt26-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("four digit pin")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["four-digit PIN:phrase:noun:四位數密碼:mock-unseen-mt26-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("clueless")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["clueless:word:adjective:完全不明白的 / 無頭緒的:mock-unseen-mt26-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("donating blood")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["donate blood:phrase:verb:捐血:mock-unseen-mt31-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("work placements")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["work placement:phrase:noun:實習工作 / 工作體驗安排:mock-unseen-mt31-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("through the eyes of")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["through the eyes of:phrase:preposition:從...的角度:mock-unseen-mt31-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("backfired")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["backfire:word:verb:產生反效果 / 適得其反:mock-unseen-mt31-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("jumped on the bandwagon")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["jump on the bandwagon:phrase:verb:趕潮流 / 跟風:mock-unseen-mt31-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Careers Week")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Careers Week:phrase:noun:職業週:mock-unseen-mt31-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("stretch my mind")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["stretch one's mind:phrase:verb:擴闊思維 / 挑戰思考:mock-unseen-mt31-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("drama workshops")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["drama workshop:phrase:noun:戲劇工作坊:mock-unseen-mt31-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("put their hearts into")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["put one's heart into:phrase:verb:全心投入:mock-unseen-mt31-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("deliver their speech")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["deliver a speech:phrase:verb:發表演說 / 演講:mock-unseen-mt31-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("stand-up paddle surfing")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:直立板衝浪 / 直立划板:mock-unseen-mt17-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Shing Mun River")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Shing Mun River:phrase:noun:城門河:mock-unseen-mt17-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("cordoned off")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:封鎖 / 圍封:mock-unseen-mt17-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Pearl River Delta")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Pearl River Delta:phrase:noun:珠江三角洲:mock-unseen-mt17-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Individual Visit Scheme")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Individual Visit Scheme:phrase:noun:個人遊計劃:mock-unseen-mt17-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Michelin starred restaurants")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:米芝蓮星級餐廳:mock-unseen-mt17-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("give me a break")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:饒了我吧 / 別煩我:mock-unseen-mt17-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("mortarboards")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:四方帽 / 畢業帽:mock-unseen-mt17-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("where their talent lies")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:某人的才能所在:mock-unseen-mt20-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("in safe hands")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adjective:由可靠的人照顧 / 安全可靠:mock-unseen-mt20-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("variety is the spice of life")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:變化使生活更有趣:mock-unseen-mt20-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("black and white")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adjective:黑白分明的 / 單調的:mock-unseen-mt20-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("zookeepers")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:動物園管理員 / 飼養員:mock-unseen-mt20-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("must-see destination")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:必到目的地:mock-unseen-mt22-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("haggling")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:講價 / 討價還價:mock-unseen-mt22-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("agony aunt")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:答讀者煩惱的專欄作者:mock-unseen-mt22-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Symphony of Lights")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Symphony of Lights:phrase:noun:幻彩詠香江:mock-unseen-mt22-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("well signposted")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adjective:有清楚路牌指示的:mock-unseen-mt22-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("never left his side")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:離開某人身邊:mock-unseen-mt22-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("marched him to")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:押送某人到:mock-unseen-mt22-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("yum cha")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:飲茶:mock-unseen-mt25-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Rugby Sevens")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Rugby Sevens:phrase:noun:七人欖球賽:mock-unseen-mt25-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("take on board")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:接受並考慮 / 聽取:mock-unseen-mt25-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("dented")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:削弱 / 打擊:mock-unseen-mt25-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("rent the air")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:劃破長空 / 響徹空中:mock-unseen-mt25-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("to no avail")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adverb:徒勞無功 / 無效:mock-unseen-mt25-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Comic-Con")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Comic-Con:phrase:noun:動漫展 / 漫畫展:mock-unseen-mt25-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("have your heart set on")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:一心想要 / 決心要:mock-unseen-mt25-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("rooting for")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:支持 / 為...打氣:mock-unseen-mt25-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("environment friendly")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["environment-friendly:phrase:adjective:環保的:mock-unseen-mt27-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("sports ambassador")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:體育大使 / 運動代表:mock-unseen-mt27-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("line managed")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["line-manage:phrase:verb:直接管理 / 作為直屬上司管理:mock-unseen-mt27-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("shark's fin soup")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["shark fin soup:phrase:noun:魚翅湯:mock-unseen-mt27-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("passers-by")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["passer-by:phrase:noun:途人 / 路人:mock-unseen-mt27-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("have in store")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:即將推出 / 準備好:mock-unseen-mt27-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("platform games")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:平台遊戲:mock-unseen-mt27-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Poetry Society")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Poetry Society:phrase:noun:詩社 / 詩歌學會:mock-unseen-mt27-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("work experience")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:工作體驗 / 工作經驗:mock-unseen-mt27-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("sets")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`).filter((line) => line.includes("mock-unseen-mt27-paper2-reviewed")),
+    ["set:noun:佈景 / 舞台布景:mock-unseen-mt27-paper2-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("cut from the same cloth")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adjective:同類的 / 本質相似的:mock-unseen-mt15-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("World Cosplay Summit")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["World Cosplay Summit:phrase:noun:世界 Cosplay 峰會:mock-unseen-mt15-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("LARPs")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["LARP:noun:真人角色扮演遊戲:mock-unseen-mt15-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("pathological gamers")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:病態遊戲玩家:mock-unseen-mt15-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("caving in")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:讓步 / 屈服:mock-unseen-mt15-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("caught on like wildfire")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:迅速流行起來:mock-unseen-mt17-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("ISS")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["International Space Station:phrase:noun:國際太空站:mock-unseen-mt17-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("seeping through")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:滲透 / 滲入:mock-unseen-mt17-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("electronic cigarettes")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:電子煙:mock-unseen-mt17-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("kicking the habit")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:戒掉壞習慣 / 戒煙癮:mock-unseen-mt17-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("withdrawal symptoms")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:戒斷症狀:mock-unseen-mt17-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("linear TV")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["linear TV:phrase:noun:線性電視 / 傳統電視:mock-unseen-mt63-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Sharp Peak")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Sharp Peak:phrase:noun:蚺蛇尖:mock-unseen-mt63-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("snap-happy invaders")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["snap-happy invader:phrase:noun:瘋狂拍照的闖入者:mock-unseen-mt63-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("left on the cutting-room floor")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adjective:被剪掉的 / 被刪走的:mock-unseen-mt63-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Qatar")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Qatar:noun:卡塔爾:mock-unseen-mt66-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("human rights record")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:人權紀錄:mock-unseen-mt66-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("on the table")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adjective:正在考慮中的:mock-unseen-mt66-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("goblin mode")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:放縱懶散模式 / 不理社會期望的狀態:mock-unseen-mt66-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("rubbing their achievements in everyone else's face")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:炫耀成就 / 把成就曬給別人看:mock-unseen-mt66-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Korean Wave")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Korean Wave:phrase:noun:韓流:mock-unseen-mt87-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("push the envelope")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:突破界限 / 挑戰極限:mock-unseen-mt87-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("venture capital")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:風險投資:mock-unseen-mt87-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("buddying up")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:結伴同行 / 找同伴:mock-unseen-mt87-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("slow parenting")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:慢養育 / 慢節奏育兒:mock-unseen-mt87-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("dip their toe in")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:初步嘗試 / 小試牛刀:mock-unseen-mt87-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("cross our fingers")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:祈求好運 / 希望順利:mock-unseen-mt20-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("hit the nail on the head")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:說得完全正確 / 一針見血:mock-unseen-mt20-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("gave away")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "phrase:verb:捐出 / 送出:mock-unseen-mt20-paper1-reviewed",
+      "phrase:verb:洩露 / 透露:mock-unseen-mt40-paper2-reviewed"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("orphanages")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:孤兒院:mock-unseen-mt20-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("foreign domestic helpers")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:外籍家庭傭工 / 外傭:mock-unseen-mt20-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("SMW")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["statutory minimum wage:phrase:noun:法定最低工資:mock-unseen-mt20-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("MAW")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["minimum allowable wage:phrase:noun:最低允許工資:mock-unseen-mt20-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("TV personality")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:電視名人:mock-unseen-mt22-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("gawked at")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:呆望 / 盯著看:mock-unseen-mt22-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("sea hibiscus")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:黃槿 / 海濱木槿:mock-unseen-mt22-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("tip over")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:翻側 / 翻倒:mock-unseen-mt22-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("getting the hang of")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:掌握技巧 / 學會竅門:mock-unseen-mt22-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("brownfield site")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:棕地 / 已發展後閒置土地:mock-unseen-mt25-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Small House Policy")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Small House Policy:phrase:noun:丁屋政策 / 小型屋宇政策:mock-unseen-mt25-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("at a premium")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adjective:供不應求的 / 非常珍貴的:mock-unseen-mt25-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("property bubble")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:樓市泡沫 / 物業泡沫:mock-unseen-mt25-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("priced out of the market")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adjective:因價格太高而被市場排除的:mock-unseen-mt25-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("cut my losses")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:止蝕 / 減少損失:mock-unseen-mt25-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("up their game")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:提升表現 / 加把勁:mock-unseen-mt27-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("waterslide tester")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:水上滑梯測試員:mock-unseen-mt27-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("living out of a suitcase")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:長期在外奔波 / 經常旅行:mock-unseen-mt27-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("snuffed out")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:殺死 / 消滅:mock-unseen-mt27-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Arctic Circle")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Arctic Circle:phrase:noun:北極圈:mock-unseen-mt27-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("getting my bearings")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:弄清方向 / 了解身處環境:mock-unseen-mt27-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("run-of-the-mill")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adjective:普通的 / 平凡的:mock-unseen-mt30-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("tourist trap")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:遊客陷阱 / 專賺遊客錢的地方:mock-unseen-mt30-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("flexitarianism")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:彈性素食主義:mock-unseen-mt30-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("sure-fire")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adjective:肯定成功的 / 穩妥的:mock-unseen-mt30-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("ethically indefensible")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adjective:道德上站不住腳的:mock-unseen-mt30-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Meat-free Monday")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Meat-free Monday:phrase:noun:無肉星期一運動:mock-unseen-mt30-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("virtual doctor")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:虛擬醫生 / 電腦醫生:mock-unseen-mt32-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("far-fetched")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adjective:牽強的 / 難以相信的:mock-unseen-mt32-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("heart attack")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:心臟病發 / 心肌梗塞:mock-unseen-mt32-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("gender-neutral uniform")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:性別中立校服 / 不分性別的校服:mock-unseen-mt32-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Chinese tunic suit")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Chinese tunic suit:phrase:noun:中山裝:mock-unseen-mt32-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("frown upon")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:不贊成 / 反對:mock-unseen-mt32-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("rival")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:對手 / 競爭者:curated-sense-bank",
+      "adjective:競爭的:curated-sense-bank",
+      "verb:媲美 / 與...匹敵:mock-unseen-mt59-paper1-reviewed"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("squash")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "noun:壁球:mock-unseen-mt59-paper1-reviewed",
+      "verb:壓扁 / 壓爛:mock-unseen-mt35-paper3-reviewed"
+    ]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("HIIT")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["HIIT:phrase:noun:高強度間歇訓練:mock-unseen-mt59-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("heart rate")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:心率 / 心跳率:mock-unseen-mt59-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("graphic novel")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:圖像小說 / 漫畫小說:mock-unseen-mt70-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("white knuckles")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:因害怕而握緊至發白的手:mock-unseen-mt70-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("thermal vent")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:熱泉口 / 熱液噴口:mock-unseen-mt70-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("implode")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:向內爆裂 / 內爆:mock-unseen-mt70-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("illustrious")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adjective:著名且受尊敬的:mock-unseen-mt73-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("euthanasia")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:安樂死:mock-unseen-mt73-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("phase out")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:逐步淘汰 / 逐步停止:mock-unseen-mt73-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("watered down")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:削弱 / 淡化:mock-unseen-mt73-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("HSP")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["highly sensitive person:phrase:noun:高敏感人士:mock-unseen-mt52-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("no-frills")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adjective:簡單實用的 / 沒有花巧服務的:mock-unseen-mt52-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("French toast")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:西多士 / 法式多士:mock-unseen-mt52-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("tabletop game")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:桌上遊戲:mock-unseen-mt52-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("game changer")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:改變局面的事物 / 重大轉捩點:mock-unseen-mt52-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("couch-to-5K")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["couch-to-5K:phrase:noun:由零開始跑五公里的訓練計劃:mock-unseen-mt49-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("birdcage")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:鳥籠:mock-unseen-mt49-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Mai Po Marshes")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Mai Po Marshes:phrase:noun:米埔濕地:mock-unseen-mt49-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("Blue Zones")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["Blue Zone:phrase:noun:藍區 / 長壽地區:mock-unseen-mt49-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("life expectancy")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:預期壽命:mock-unseen-mt49-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("location sharing app")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:位置分享應用程式:mock-unseen-mt45-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("microcation")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:短途短假期 / 微度假:mock-unseen-mt45-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("staycation")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:留家度假 / 本地度假:mock-unseen-mt45-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("add fuel to the fire")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:火上加油 / 令問題惡化:mock-unseen-mt45-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("lesser-known destination")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:較少人認識的目的地:mock-unseen-mt45-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("e-waste")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:電子廢物:mock-unseen-mt42-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("planned obsolescence")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:計劃性淘汰 / 有意設計成短壽命:mock-unseen-mt42-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("greywater")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:生活污水 / 可重用廢水:mock-unseen-mt42-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("per capita")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:adverb:人均 / 每人計:mock-unseen-mt42-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("mock meats")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:素肉 / 仿肉:mock-unseen-mt42-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("gained traction")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:開始受支持 / 逐漸被接受:mock-unseen-mt38-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("delayed gratification")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:延遲滿足 / 等待後才得到滿足:mock-unseen-mt38-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("titivating")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["verb:修飾 / 反覆修改:mock-unseen-mt38-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("capture point")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:記錄點 / 收集想法的位置:mock-unseen-mt38-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("word-processing software")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:文字處理軟件:mock-unseen-mt38-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("classified ad")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:分類廣告:mock-unseen-mt35-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("proven track record")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:已證明的良好往績:mock-unseen-mt35-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("autopilot")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:自動駕駛系統:mock-unseen-mt35-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("come clean")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:坦白承認 / 說出真相:mock-unseen-mt35-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("BASE jumping")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["BASE jumping:phrase:noun:定點跳傘:mock-unseen-mt35-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("transatlantic flight")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:橫越大西洋的飛行:mock-unseen-mt35-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("cynophobia")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["noun:恐狗症 / 對狗的恐懼:mock-unseen-mt56-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("tea connoisseur")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:茶藝鑑賞家 / 懂茶的人:mock-unseen-mt56-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("fast fashion")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:快時尚 / 快速時裝:mock-unseen-mt56-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("ephemeral")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["adjective:短暫的 / 轉瞬即逝的:mock-unseen-mt56-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("digital detox")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:戒用電子產品 / 數碼排毒:mock-unseen-mt84-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("hand-eye coordination")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:noun:手眼協調:mock-unseen-mt84-paper1-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("take a toll")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["phrase:verb:對...造成傷害 / 有負面影響:mock-unseen-mt84-paper1-reviewed"]
   );
 
   assert.deepStrictEqual(
@@ -1625,7 +6387,8 @@ function assertStudentLookupContract(word, matches) {
       "noun:專題:curated-sense-bank",
       "noun:項目:curated-sense-bank",
       "verb:預計:curated-sense-bank",
-      "verb:投射:curated-sense-bank"
+      "verb:投射:curated-sense-bank",
+      "verb:使聲音傳遠 / 放聲說話:mock-unseen-mt38-paper2-reviewed"
     ]
   );
 
@@ -1754,7 +6517,8 @@ function assertStudentLookupContract(word, matches) {
     (await lookupForStudent("issue")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "noun:問題 / 議題:curated-sense-bank",
-      "verb:發出 / 發布:curated-sense-bank"
+      "verb:發出 / 發布:curated-sense-bank",
+      "verb:發給 / 發出:mock-unseen-mt19-paper3-reviewed"
     ]
   );
 
@@ -1819,7 +6583,8 @@ function assertStudentLookupContract(word, matches) {
     (await lookupForStudent("bill")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "noun:帳單:curated-sense-bank",
-      "verb:開帳單給 / 宣傳為:curated-sense-bank"
+      "verb:開帳單給 / 宣傳為:curated-sense-bank",
+      "noun:鳥嘴 / 喙:mock-unseen-mt59-paper3-reviewed"
     ]
   );
 
@@ -2399,7 +7164,10 @@ function assertStudentLookupContract(word, matches) {
 
   assert.deepStrictEqual(
     (await lookupForStudent("collection")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
-    ["noun:收藏 / 收藏品:curated-sense-bank"]
+    [
+      "noun:收藏 / 收藏品:curated-sense-bank",
+      "noun:系列服裝 / 新一季產品:mock-unseen-mt56-paper1-reviewed"
+    ]
   );
 
   assert.deepStrictEqual(
@@ -2688,7 +7456,8 @@ function assertStudentLookupContract(word, matches) {
       "verb:適合 / 合身:curated-sense-bank",
       "adjective:健康的:curated-sense-bank",
       "adjective:合適的:curated-sense-bank",
-      "noun:發作 / 一陣:curated-sense-bank"
+      "noun:發作 / 一陣:curated-sense-bank",
+      "verb:安裝:mock-unseen-mt64-paper2-reviewed"
     ]
   );
 
@@ -3689,7 +8458,8 @@ function assertStudentLookupContract(word, matches) {
     (await lookupForStudent("staple")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "adjective:主要的:curated-sense-bank",
-      "noun:主食 / 主要產品:curated-sense-bank"
+      "noun:主食 / 主要產品:curated-sense-bank",
+      "noun:釘書釘 / U形釘:mock-unseen-mt41-paper3-reviewed"
     ]
   );
 
@@ -4164,7 +8934,10 @@ function assertStudentLookupContract(word, matches) {
 
   assert.deepStrictEqual(
     (await lookupForStudent("related to")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
-    ["phrase:adjective:與...有關:curated-sense-bank"]
+    [
+      "phrase:adjective:與...有關:curated-sense-bank",
+      "phrase:verb:理解 / 有共鳴:mock-unseen-mt15-paper1-reviewed"
+    ]
   );
 
   assert.deepStrictEqual(
@@ -5181,7 +9954,7 @@ function assertStudentLookupContract(word, matches) {
 
   assert.deepStrictEqual(
     (await lookupForStudent("fencing")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
-    ["noun:劍擊 / 圍欄:curated-sense-bank"]
+    ["noun:劍擊:curated-sense-bank"]
   );
 
   assert.deepStrictEqual(
@@ -5470,7 +10243,10 @@ function assertStudentLookupContract(word, matches) {
 
   assert.deepStrictEqual(
     (await lookupForStudent("grooming")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
-    ["noun:整理儀容 / 打扮:curated-sense-bank"]
+    [
+      "noun:整理儀容 / 打扮:curated-sense-bank",
+      "noun:寵物梳洗 / 美容:mock-unseen-mt27-paper3-reviewed"
+    ]
   );
 
   assert.deepStrictEqual(
@@ -6582,6 +11358,67 @@ function assertStudentLookupContract(word, matches) {
     ["prior to", "phrase:preposition:在...之前:curated-sense-bank"],
     ["impervious to", "phrase:adjective:不受...影響的:curated-sense-bank"],
     ["resigned to", "phrase:adjective:無奈接受...的:curated-sense-bank"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["pick your brains", "phrase:verb:向某人請教 / 徵詢某人意見:mock-unseen-mt15-paper3-reviewed"],
+    ["meet up in person", "phrase:verb:見面 / 相約見面:mock-unseen-mt15-paper3-reviewed"],
+    ["feel spied on", "phrase:verb:感到被監視:mock-unseen-mt15-paper3-reviewed"],
+    ["not in the same league as", "phrase:preposition:不能與...相比 / 不及...:mock-unseen-mt15-paper3-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["off the beaten track", "phrase:adjective:人跡罕至的 / 非熱門路線的:mock-unseen-mt37-paper3-reviewed"],
+    ["Hong Kong Geopark", "phrase:noun:香港地質公園:mock-unseen-mt37-paper3-reviewed"],
+    ["stone wall trees", "phrase:noun:石牆樹:mock-unseen-mt37-paper3-reviewed"],
+    ["keep your distance", "phrase:verb:保持距離:mock-unseen-mt37-paper3-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["jumble sale", "phrase:noun:舊物義賣 / 雜物義賣:mock-unseen-mt40-paper3-reviewed"],
+    ["pair the toaster", "word:verb:配對 / 連接裝置:mock-unseen-mt40-paper3-reviewed"],
+    ["big-ticket items", "phrase:noun:貴價貨品 / 高價值物品:mock-unseen-mt40-paper3-reviewed"],
+    ["marketing ploy", "phrase:noun:營銷手段 / 宣傳花招:mock-unseen-mt40-paper3-reviewed"],
+    ["mixed bag", "phrase:noun:好壞參半的事物:mock-unseen-mt40-paper3-reviewed"],
+    ["get ahead of yourself", "phrase:verb:操之過急 / 太快下結論:mock-unseen-mt40-paper3-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["guest editorial", "phrase:noun:客席社論 / 特邀社論:mock-unseen-mt44-paper3-reviewed"],
+    ["scavenger hunt", "phrase:noun:尋寶遊戲:mock-unseen-mt44-paper3-reviewed"],
+    ["step into the shoes of", "phrase:verb:設身處地 / 代入某人的處境:mock-unseen-mt44-paper3-reviewed"],
+    ["camera obscura", "phrase:noun:暗箱 / 針孔成像裝置:mock-unseen-mt44-paper3-reviewed"],
+    ["instant gratification", "phrase:noun:即時滿足:mock-unseen-mt44-paper3-reviewed"],
+    ["worth her salt", "phrase:adjective:稱職的 / 名副其實的:mock-unseen-mt44-paper3-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["sharing economy", "phrase:noun:共享經濟:mock-unseen-mt47-paper3-reviewed"],
+    ["cut out the middleman", "phrase:verb:省去中間人 / 直接交易:mock-unseen-mt47-paper3-reviewed"],
+    ["hot desk", "phrase:noun:流動辦公桌 / 非固定座位:mock-unseen-mt47-paper3-reviewed"],
+    ["bugged the hell out of", "phrase:verb:令...非常煩厭:mock-unseen-mt47-paper3-reviewed"],
+    ["throwing money in the sea", "phrase:verb:浪費金錢 / 把錢倒進海裡:mock-unseen-mt47-paper3-reviewed"],
+    ["I stand corrected", "phrase:verb:承認自己錯了 / 接受指正:mock-unseen-mt47-paper3-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);

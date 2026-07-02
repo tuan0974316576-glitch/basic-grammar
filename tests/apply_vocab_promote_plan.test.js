@@ -377,5 +377,9 @@ assert.ok(fs.existsSync(writeSummary.applyReceipt));
 assert.ok(fs.existsSync(path.join(tmpDir, "teacher_vocab_review_index.json")));
 assert.ok(fs.existsSync(path.join(tmpDir, "vocab_review_dashboard.json")));
 assert.strictEqual(writeSummary.refreshed.status, "applied-or-ready-to-apply");
+assert.deepStrictEqual(writeSummary.battleshipSync, {
+  skipped: true,
+  reason: "custom vocab output paths"
+});
 
 console.log("apply_vocab_promote_plan tests passed");
