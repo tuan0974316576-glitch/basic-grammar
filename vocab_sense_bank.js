@@ -30026,7 +30026,7 @@
     ["wetland bird", "noun", "濕地鳥類", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt62-paper4-reviewed",aliases:["wetland birds"]}],
     ["take a breather", "verb", "稍作休息 / 喘口氣", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt62-paper4-reviewed",aliases:["takes a breather","took a breather","taken a breather","taking a breather"]}],
     ["touch on", "verb", "簡略談及 / 提到", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt62-paper4-reviewed",aliases:["touches on","touched on","touching on"]}],
-    ["light a fire", "verb", "生火 / 點火", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt62-paper4-reviewed",aliases:["light fires","lights a fire","lit a fire","lighting a fire"]}],
+    ["light a fire", "verb", "生火 / 點火", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt62-paper4-reviewed",aliases:["light fires","lighting fires","lights a fire","lit a fire","lighting a fire"]}],
     ["pollinate", "verb", "授粉", {level:"B2",overrideTeacher:true,source:"mock-unseen-mt62-paper4-reviewed",aliases:["pollinates","pollinated","pollinating"]}],
     ["city life", "noun", "城市生活", {type:"phrase",level:"A2",overrideTeacher:true,source:"mock-unseen-mt62-paper4-reviewed"}],
     // Reviewed from Unseen Graded Mock Test F4 MT63 Paper 4: personalized nutrition plans, school meals, exam performance, varied diets, food groups, and world food choices.
@@ -30153,6 +30153,26 @@
     ["key species", "noun", "關鍵物種", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt67-paper4-reviewed"}],
     ["multiplayer game", "noun", "多人遊戲", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt67-paper4-reviewed",aliases:["multiplayer games"]}],
     ["chemical reaction", "noun", "化學反應", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt67-paper4-reviewed",aliases:["chemical reactions"]}],
+    // Reviewed from Unseen Graded Mock Test F6 MT68 Paper 4: camping trips, outdoor skills, first aid, conservation, wildlife, and survival skills.
+    ["camping trip", "noun", "露營旅行 / 露營活動", {type:"phrase",level:"A2",overrideTeacher:true,source:"mock-unseen-mt68-paper4-reviewed",aliases:["camping trips"]}],
+    ["Kam Shan Country Park", "noun", "金山郊野公園", {type:"phrase",level:"A2",overrideTeacher:true,source:"mock-unseen-mt68-paper4-reviewed",display:"Kam Shan Country Park",aliases:["kam shan country park"]}],
+    ["map reading", "noun", "讀地圖 / 地圖閱讀", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt68-paper4-reviewed"}],
+    ["forage for food", "verb", "覓食 / 尋找食物", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt68-paper4-reviewed",aliases:["forages for food","foraged for food","foraging for food"]}],
+    ["build a shelter", "verb", "搭建庇護所 / 搭 shelter", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt68-paper4-reviewed",aliases:["build shelters","builds a shelter","built a shelter","building a shelter","building shelters"]}],
+    ["life and death", "noun", "生死 / 生死攸關", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt68-paper4-reviewed"}],
+    ["fend for oneself", "verb", "照顧自己 / 自力更生", {type:"phrase",level:"C1",overrideTeacher:true,source:"mock-unseen-mt68-paper4-reviewed",display:"fend for oneself",aliases:["fend for themselves","fending for themselves","fends for oneself","fended for oneself","fending for oneself"]}],
+    ["face lights up", "verb", "面露喜色 / 眼前一亮", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt68-paper4-reviewed",aliases:["face lit up","face lighted up","faces light up"]}],
+    ["Chinese pangolin", "noun", "中華穿山甲", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt68-paper4-reviewed",display:"Chinese pangolin",aliases:["chinese pangolin","Chinese pangolins","chinese pangolins"]}],
+    ["bring home", "verb", "使深切明白 / 使充分意識到", {type:"phrase",level:"C1",overrideTeacher:true,source:"mock-unseen-mt68-paper4-reviewed",aliases:["brings home","brought home","bringing home"]}],
+    ["outdoor skill", "noun", "戶外技能", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt68-paper4-reviewed",aliases:["outdoor skills"]}],
+    ["no signal", "noun", "沒有訊號", {type:"phrase",level:"A2",overrideTeacher:true,source:"mock-unseen-mt68-paper4-reviewed"}],
+    ["out of battery", "adjective", "沒電的 / 電量耗盡的", {type:"phrase",level:"A2",overrideTeacher:true,source:"mock-unseen-mt68-paper4-reviewed"}],
+    ["not get someone anywhere", "verb", "沒有進展 / 沒有結果", {type:"phrase",level:"C1",overrideTeacher:true,source:"mock-unseen-mt68-paper4-reviewed",display:"not get someone anywhere",aliases:["isn't getting us anywhere","not getting us anywhere","doesn't get us anywhere","didn't get us anywhere"]}],
+    ["there is something to be said for", "verb", "有可取之處 / 有值得考慮的地方", {type:"phrase",level:"C1",overrideTeacher:true,source:"mock-unseen-mt68-paper4-reviewed",aliases:["there's something to be said for","something to be said for"]}],
+    ["what is at stake", "noun", "利害關係 / 風險所在", {type:"phrase",level:"C1",overrideTeacher:true,source:"mock-unseen-mt68-paper4-reviewed",aliases:["what's at stake"]}],
+    ["cram into", "verb", "塞進 / 擠進", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt68-paper4-reviewed",aliases:["crams into","crammed into","cramming into"]}],
+    ["compulsory subject", "noun", "必修科目", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt68-paper4-reviewed",aliases:["compulsory subjects"]}],
+    ["there is still a place for", "verb", "仍然有存在價值 / 仍然有用武之地", {type:"phrase",level:"C1",overrideTeacher:true,source:"mock-unseen-mt68-paper4-reviewed",aliases:["there's still a place for","still a place for"]}],
   ];
 
   function normalizeVerbTableMeaning(value) {

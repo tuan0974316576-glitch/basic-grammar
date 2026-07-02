@@ -189,6 +189,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt65-paper4-reviewed",
     "mock-unseen-mt66-paper4-reviewed",
     "mock-unseen-mt67-paper4-reviewed",
+    "mock-unseen-mt68-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -11957,6 +11958,24 @@ function assertStudentLookupContract(word, matches) {
     (await lookupForStudent("dry")).some((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}` === "word:adjective:枯燥的 / 乏味的:mock-unseen-mt67-paper4-reviewed"),
     "dry should include MT67 boring/dull lesson sense"
   );
+
+  for (const [word, expected] of [
+    ["lighting fires", "phrase:verb:生火 / 點火:mock-unseen-mt62-paper4-reviewed"],
+    ["camping trips", "phrase:noun:露營旅行 / 露營活動:mock-unseen-mt68-paper4-reviewed"],
+    ["Kam Shan Country Park", "phrase:noun:金山郊野公園:mock-unseen-mt68-paper4-reviewed"],
+    ["foraging for food", "phrase:verb:覓食 / 尋找食物:mock-unseen-mt68-paper4-reviewed"],
+    ["building shelters", "phrase:verb:搭建庇護所 / 搭 shelter:mock-unseen-mt68-paper4-reviewed"],
+    ["fending for themselves", "phrase:verb:照顧自己 / 自力更生:mock-unseen-mt68-paper4-reviewed"],
+    ["Chinese pangolins", "phrase:noun:中華穿山甲:mock-unseen-mt68-paper4-reviewed"],
+    ["bringing home", "phrase:verb:使深切明白 / 使充分意識到:mock-unseen-mt68-paper4-reviewed"],
+    ["isn't getting us anywhere", "phrase:verb:沒有進展 / 沒有結果:mock-unseen-mt68-paper4-reviewed"],
+    ["what's at stake", "phrase:noun:利害關係 / 風險所在:mock-unseen-mt68-paper4-reviewed"],
+    ["there's still a place for", "phrase:verb:仍然有存在價值 / 仍然有用武之地:mock-unseen-mt68-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
 
   for (const [word, expected] of [
     ["cajon", "word:noun:木箱鼓:mock-unseen-mt85-paper3-reviewed"],

@@ -40,19 +40,19 @@ Latest verified progress:
 | Paper 1 | 84 | 24 | 60 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
-| Paper 4 | 72 | 25 | 47 |
-| Total | 314 | 207 | 107 |
+| Paper 4 | 72 | 26 | 46 |
+| Total | 314 | 208 | 106 |
 
 Most recent completed paper:
 
-- `MT67 Paper 4`
-- Source tag: `mock-unseen-mt67-paper4-reviewed`
-- Added 19 reviewed entries, including educational game / Newton's laws of motion / 3-D simulation / dry / along the lines of / natural habitat / object / chemical reaction
+- `MT68 Paper 4`
+- Source tag: `mock-unseen-mt68-paper4-reviewed`
+- Added 19 reviewed entries and supplemented 1 existing alias, including camping trip / map reading / forage for food / build a shelter / fend for oneself / Chinese pangolin / bring home / what is at stake
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely item:
 
-- Paper 3 is complete. `MT52` has no Paper 4 file in the current download set, and `MT56` / `MT57` / `MT59` / `MT60` / `MT62` / `MT63` / `MT64` / `MT65` / `MT66` / `MT67 Paper 4` are complete. Continue with the next available missing Paper 4 item, likely `MT68 Paper 4` if available, or continue remaining Paper 1 items from the review log.
+- Paper 3 is complete. `MT52` has no Paper 4 file in the current download set, and `MT56` / `MT57` / `MT59` / `MT60` / `MT62` / `MT63` / `MT64` / `MT65` / `MT66` / `MT67` / `MT68 Paper 4` are complete. Continue with the next available missing Paper 4 item, likely `MT69 Paper 4` if available, or continue remaining Paper 1 items from the review log.
 - Use the `.docx` student and teacher files first. If `textutil` extraction is poor, compare with PDF extraction.
 
 ## Normal Workflow For One Paper
