@@ -185,6 +185,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt60-paper4-reviewed",
     "mock-unseen-mt62-paper4-reviewed",
     "mock-unseen-mt63-paper4-reviewed",
+    "mock-unseen-mt64-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -11880,6 +11881,21 @@ function assertStudentLookupContract(word, matches) {
     ["varied diet", "phrase:noun:多元化飲食 / 飲食多樣化:mock-unseen-mt63-paper4-reviewed"],
     ["major food groups", "phrase:noun:主要食物類別:mock-unseen-mt63-paper4-reviewed"],
     ["the list goes on", "phrase:verb:還有很多 / 例子多不勝數:mock-unseen-mt63-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["sponsored schools", "phrase:noun:受贊助學校:mock-unseen-mt64-paper4-reviewed"],
+    ["sponsorship money", "phrase:noun:贊助款項 / 贊助金:mock-unseen-mt64-paper4-reviewed"],
+    ["too much of a good thing", "phrase:noun:好事過多反而不好:mock-unseen-mt64-paper4-reviewed"],
+    ["unfair labor practices", "phrase:noun:不公平勞工做法:mock-unseen-mt64-paper4-reviewed"],
+    ["cutting ties with", "phrase:verb:與...斷絕關係 / 中止合作:mock-unseen-mt64-paper4-reviewed"],
+    ["walking billboards", "phrase:noun:流動廣告牌 / 活廣告:mock-unseen-mt64-paper4-reviewed"],
+    ["on an ongoing basis", "phrase:adverb:持續地 / 長期地:mock-unseen-mt64-paper4-reviewed"],
+    ["educational materials", "phrase:noun:教材 / 教育材料:mock-unseen-mt64-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
