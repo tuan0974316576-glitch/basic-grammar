@@ -144,6 +144,8 @@ const mt67Paper3Entries = senseBank.entries.filter((entry) => entry.source === "
 assert.ok(mt67Paper3Entries.length >= 60, `Expected MT67 Paper 3 reviewed entries, got ${mt67Paper3Entries.length}`);
 const mt69Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt69-paper3-reviewed");
 assert.ok(mt69Paper3Entries.length >= 62, `Expected MT69 Paper 3 reviewed entries, got ${mt69Paper3Entries.length}`);
+const mt71Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt71-paper3-reviewed");
+assert.ok(mt71Paper3Entries.length >= 63, `Expected MT71 Paper 3 reviewed entries, got ${mt71Paper3Entries.length}`);
 const mt37Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt37-paper3-reviewed");
 assert.ok(mt37Paper3Entries.length >= 29, `Expected MT37 Paper 3 reviewed entries, got ${mt37Paper3Entries.length}`);
 const mt40Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt40-paper3-reviewed");
@@ -448,7 +450,7 @@ assert.ok(senseBank.lookup("work").every((entry) => entry.overrideTeacher));
 assert.ok(senseBank.lookup("mean").some((entry) => entry.pos === "adjective" && entry.meaning === "吝嗇的"));
 assert.deepStrictEqual(
   senseBank.lookup("practice").map((entry) => `${entry.pos}:${entry.meaning}:${entry.level}`),
-  ["noun:練習:A2", "noun:做法:B1", "noun:慣例:B1", "verb:練習:A2"]
+  ["noun:練習:A2", "noun:做法:B1", "noun:慣例:B1", "verb:練習:A2", "noun:診所 / 執業場所:B2"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("subject to").map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),
@@ -8862,6 +8864,26 @@ mt69Paper3ReviewedExpectations.forEach(([word, pos, meaning]) => {
     candidate.pos === pos && candidate.meaning === meaning
   ));
   assert.ok(entry, `${word} should include MT69 Paper 3 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt71Paper3ReviewedExpectations = [
+  ["community orchards", "noun", "社區果園"],
+  ["trunk flare", "noun", "樹幹根部外擴位置"],
+  ["food desert", "noun", "食物荒漠 / 難以買到新鮮食物的地區"],
+  ["take to heart", "verb", "銘記在心 / 認真看待"],
+  ["pickleball paddle", "noun", "匹克球球拍"],
+  ["sweeping the globe", "verb", "風靡全球 / 席捲世界"],
+  ["catch the bug", "verb", "開始迷上 / 染上興趣"],
+  ["aquatic lifts", "noun", "泳池升降椅 / 入水輔助升降機"],
+  ["thriving social life", "noun", "豐富活躍的社交生活"],
+  ["annual salary", "noun", "年薪"]
+];
+
+mt71Paper3ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT71 Paper 3 reviewed sense ${pos}:${meaning}`);
 });
 
 const mt55Paper3ReviewedExpectations = [

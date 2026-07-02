@@ -39,20 +39,20 @@ Latest verified progress:
 |---|---:|---:|---:|
 | Paper 1 | 84 | 24 | 60 |
 | Paper 2 | 81 | 81 | 0 |
-| Paper 3 | 77 | 65 | 12 |
+| Paper 3 | 77 | 66 | 11 |
 | Paper 4 | 72 | 0 | 72 |
-| Total | 314 | 170 | 144 |
+| Total | 314 | 171 | 143 |
 
 Most recent completed paper:
 
-- `MT69 Paper 3`
-- Source tag: `mock-unseen-mt69-paper3-reviewed`
-- Added 62 reviewed entries, including radio station giveaway / woodwind instrument / accessible as 易於接觸 / Cook Islands / eco-resort / overwater bungalow / underwhelmed / health declaration form / sea-level rise / take a heavy toll on
+- `MT71 Paper 3`
+- Source tag: `mock-unseen-mt71-paper3-reviewed`
+- Added 63 reviewed entries, including community orchard / trunk flare / food desert / pickleball / pickleball paddle / catch the bug / growing pains / aquatic lift / thriving social life / purview
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely Paper 3 item:
 
-- `MT71 Paper 3` or the next missing Paper 3 item found by the current find workflow
+- `MT72 Paper 3` or the next missing Paper 3 item found by the current find workflow
 - Use the `.docx` student and teacher files first. If `textutil` extraction is poor, compare with PDF extraction.
 
 ## Normal Workflow For One Paper

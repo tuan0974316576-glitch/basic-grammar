@@ -73,6 +73,7 @@
     "mock-unseen-mt64-paper3-reviewed",
     "mock-unseen-mt67-paper3-reviewed",
     "mock-unseen-mt69-paper3-reviewed",
+    "mock-unseen-mt71-paper3-reviewed",
     "mock-unseen-mt37-paper3-reviewed",
     "mock-unseen-mt40-paper3-reviewed",
     "mock-unseen-mt44-paper3-reviewed",
