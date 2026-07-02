@@ -193,6 +193,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt69-paper4-reviewed",
     "mock-unseen-mt70-paper4-reviewed",
     "mock-unseen-mt71-paper4-reviewed",
+    "mock-unseen-mt72-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -12042,6 +12043,34 @@ function assertStudentLookupContract(word, matches) {
     assert.ok(entry, `${word} should be available in student lookup`);
     assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
   }
+
+  for (const [word, expected] of [
+    ["smoking rates", "phrase:noun:吸煙率:mock-unseen-mt72-paper4-reviewed"],
+    ["foul odors", "phrase:noun:惡臭 / 難聞氣味:mock-unseen-mt72-paper4-reviewed"],
+    ["drastic measures", "phrase:noun:嚴厲措施 / 激烈手段:mock-unseen-mt72-paper4-reviewed"],
+    ["floated a suggestion", "phrase:verb:提出建議以供討論:mock-unseen-mt72-paper4-reviewed"],
+    ["Health Bureau", "phrase:noun:醫務衞生局:mock-unseen-mt72-paper4-reviewed"],
+    ["tobacco products", "phrase:noun:煙草產品:mock-unseen-mt72-paper4-reviewed"],
+    ["modeled after", "phrase:verb:仿照 / 以...為藍本:mock-unseen-mt72-paper4-reviewed"],
+    ["eminently sensible", "phrase:adjective:非常合理的 / 十分明智的:mock-unseen-mt72-paper4-reviewed"],
+    ["picking up a habit", "phrase:verb:養成習慣 / 染上習慣:mock-unseen-mt72-paper4-reviewed"],
+    ["smoking themselves to death", "phrase:verb:吸煙吸到致命 / 因吸煙而喪命:mock-unseen-mt72-paper4-reviewed"],
+    ["law abiding citizens", "phrase:noun:守法公民:mock-unseen-mt72-paper4-reviewed"],
+    ["tidy profit", "phrase:noun:可觀利潤:mock-unseen-mt72-paper4-reviewed"],
+    ["hooked on nicotine", "phrase:adjective:對尼古丁上癮的:mock-unseen-mt72-paper4-reviewed"],
+    ["has cause to", "phrase:verb:有理由去 / 有原因去:mock-unseen-mt72-paper4-reviewed"],
+    ["tax-funded", "word:adjective:由稅款資助的:mock-unseen-mt72-paper4-reviewed"],
+    ["all-out ban", "phrase:noun:全面禁令:mock-unseen-mt72-paper4-reviewed"],
+    ["covering healthcare costs", "phrase:verb:承擔醫療費用:mock-unseen-mt72-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+  assert.ok(
+    (await lookupForStudent("lit up")).some((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}` === "phrase:verb:點煙 / 吸煙:mock-unseen-mt72-paper4-reviewed"),
+    "lit up should include MT72 smoking sense alongside existing lit/light senses"
+  );
 
   for (const [word, expected] of [
     ["cajon", "word:noun:木箱鼓:mock-unseen-mt85-paper3-reviewed"],

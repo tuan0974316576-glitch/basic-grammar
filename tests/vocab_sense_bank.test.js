@@ -194,6 +194,8 @@ const mt70Paper4Entries = senseBank.entries.filter((entry) => entry.source === "
 assert.ok(mt70Paper4Entries.length >= 17, `Expected MT70 Paper 4 reviewed entries, got ${mt70Paper4Entries.length}`);
 const mt71Paper4Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt71-paper4-reviewed");
 assert.ok(mt71Paper4Entries.length >= 27, `Expected MT71 Paper 4 reviewed entries, got ${mt71Paper4Entries.length}`);
+const mt72Paper4Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt72-paper4-reviewed");
+assert.ok(mt72Paper4Entries.length >= 23, `Expected MT72 Paper 4 reviewed entries, got ${mt72Paper4Entries.length}`);
 const mt68Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt68-paper3-reviewed");
 assert.ok(mt68Paper3Entries.length >= 50, `Expected MT68 Paper 3 reviewed entries, got ${mt68Paper3Entries.length}`);
 const mt62Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt62-paper3-reviewed");
@@ -8079,6 +8081,29 @@ mt71Paper4ReviewedExpectations.forEach(([word, pos, meaning]) => {
     candidate.pos === pos && candidate.meaning === meaning
   ));
   assert.ok(entry, `${word} should include MT71 Paper 4 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt72Paper4ReviewedExpectations = [
+  ["lit up", "verb", "點煙 / 吸煙"],
+  ["foul odours", "noun", "惡臭 / 難聞氣味"],
+  ["drastic measures", "noun", "嚴厲措施 / 激烈手段"],
+  ["floated in a public consultation", "verb", "提出建議以供討論"],
+  ["modelled after", "verb", "仿照 / 以...為藍本"],
+  ["pick up this habit", "verb", "養成習慣 / 染上習慣"],
+  ["societal problems", "noun", "社會問題"],
+  ["smoking themselves to death", "verb", "吸煙吸到致命 / 因吸煙而喪命"],
+  ["law-abiding citizens", "noun", "守法公民"],
+  ["illegal tobacco sales", "noun", "非法煙草銷售"],
+  ["hooked on nicotine", "adjective", "對尼古丁上癮的"],
+  ["tax funded", "adjective", "由稅款資助的"],
+  ["all out ban", "noun", "全面禁令"]
+];
+
+mt72Paper4ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT72 Paper 4 reviewed sense ${pos}:${meaning}`);
 });
 
 const mt35Paper3ReviewedExpectations = [
