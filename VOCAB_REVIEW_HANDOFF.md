@@ -40,19 +40,19 @@ Latest verified progress:
 | Paper 1 | 84 | 24 | 60 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
-| Paper 4 | 72 | 8 | 64 |
-| Total | 314 | 190 | 124 |
+| Paper 4 | 72 | 9 | 63 |
+| Total | 314 | 191 | 123 |
 
 Most recent completed paper:
 
-- `MT32 Paper 4`
-- Source tag: `mock-unseen-mt32-paper4-reviewed`
-- Added 25 reviewed entries, including three quarters / come out of / let's face it / better off / workplace experience / get into university / sheltered life / on my own
+- `MT35 Paper 4`
+- Source tag: `mock-unseen-mt35-paper4-reviewed`
+- Added 31 reviewed entries, including processed sugar / cram all night / breathing exercise / combat stress / disrupt sleep patterns / meditation session / happy medium
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely item:
 
-- Paper 3 is complete. Continue with the next missing Paper 4 item, likely `MT35 Paper 4`, or continue remaining Paper 1 items from the review log.
+- Paper 3 is complete. Continue with the next missing Paper 4 item, likely `MT38 Paper 4`, or continue remaining Paper 1 items from the review log.
 - Use the `.docx` student and teacher files first. If `textutil` extraction is poor, compare with PDF extraction.
 
 ## Normal Workflow For One Paper

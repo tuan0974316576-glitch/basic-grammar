@@ -172,6 +172,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt27-paper4-reviewed",
     "mock-unseen-mt30-paper4-reviewed",
     "mock-unseen-mt32-paper4-reviewed",
+    "mock-unseen-mt35-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -11665,6 +11666,23 @@ function assertStudentLookupContract(word, matches) {
     ["take care of ourselves", "phrase:verb:照顧自己:mock-unseen-mt32-paper4-reviewed"],
     ["on her own", "phrase:adverb:獨自地 / 靠自己:mock-unseen-mt32-paper4-reviewed"],
     ["volunteering program", "phrase:noun:義工計劃:mock-unseen-mt32-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["processed sugar", "phrase:noun:加工糖 / 精製糖:mock-unseen-mt35-paper4-reviewed"],
+    ["cramming all night", "phrase:verb:通宵死記硬背 / 通宵溫習:mock-unseen-mt35-paper4-reviewed"],
+    ["full night’s sleep", "phrase:noun:一整晚充足睡眠:mock-unseen-mt35-paper4-reviewed"],
+    ["breathing exercises", "phrase:noun:呼吸練習:mock-unseen-mt35-paper4-reviewed"],
+    ["combat stress", "phrase:verb:對抗壓力 / 應付壓力:mock-unseen-mt35-paper4-reviewed"],
+    ["clear their heads", "phrase:verb:清醒頭腦 / 讓頭腦清晰:mock-unseen-mt35-paper4-reviewed"],
+    ["disrupted sleep patterns", "phrase:verb:擾亂睡眠模式:mock-unseen-mt35-paper4-reviewed"],
+    ["meditation sessions", "phrase:noun:冥想課節 / 冥想時段:mock-unseen-mt35-paper4-reviewed"],
+    ["if it were up to us", "phrase:preposition:如果由...決定:mock-unseen-mt35-paper4-reviewed"],
+    ["happy medium", "phrase:noun:折衷點 / 適中平衡:mock-unseen-mt35-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
