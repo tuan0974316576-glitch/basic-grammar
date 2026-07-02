@@ -170,6 +170,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt82-paper3-reviewed",
     "mock-unseen-mt85-paper3-reviewed",
     "mock-unseen-mt86-paper3-reviewed",
+    "mock-unseen-mt88-paper3-reviewed",
     "mock-unseen-mt62-paper3-reviewed",
     "mock-unseen-mt64-paper3-reviewed",
     "mock-unseen-mt67-paper3-reviewed",
@@ -11560,6 +11561,19 @@ function assertStudentLookupContract(word, matches) {
     ["ultrasonic sensor", "phrase:noun:超聲波感應器:mock-unseen-mt86-paper3-reviewed"],
     ["molecular gastronomy", "phrase:noun:分子料理 / 分子美食學:mock-unseen-mt86-paper3-reviewed"],
     ["in furtherance of", "phrase:preposition:為促進 / 為推動:mock-unseen-mt86-paper3-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["jaywalk", "word:verb:亂過馬路 / 不按交通燈過馬路:mock-unseen-mt88-paper3-reviewed"],
+    ["lifebuoy", "word:noun:救生圈:mock-unseen-mt88-paper3-reviewed"],
+    ["culturally insensitive", "phrase:adjective:文化上不敏感的 / 不尊重當地文化的:mock-unseen-mt88-paper3-reviewed"],
+    ["give the green light", "phrase:verb:批准 / 開綠燈:mock-unseen-mt88-paper3-reviewed"],
+    ["whodunnit", "word:noun:偵探故事 / 懸疑查案故事:mock-unseen-mt88-paper3-reviewed"],
+    ["crack the case", "phrase:verb:破案 / 解開案件:mock-unseen-mt88-paper3-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
