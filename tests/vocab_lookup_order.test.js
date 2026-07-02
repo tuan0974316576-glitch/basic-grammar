@@ -164,6 +164,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt13-paper3-reviewed",
     "mock-unseen-mt14-paper3-reviewed",
     "mock-unseen-mt15-paper3-reviewed",
+    "mock-unseen-mt62-paper3-reviewed",
     "mock-unseen-mt37-paper3-reviewed",
     "mock-unseen-mt40-paper3-reviewed",
     "mock-unseen-mt44-paper3-reviewed",
@@ -11514,6 +11515,18 @@ function assertStudentLookupContract(word, matches) {
     ["meet up in person", "phrase:verb:見面 / 相約見面:mock-unseen-mt15-paper3-reviewed"],
     ["feel spied on", "phrase:verb:感到被監視:mock-unseen-mt15-paper3-reviewed"],
     ["not in the same league as", "phrase:preposition:不能與...相比 / 不及...:mock-unseen-mt15-paper3-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["letterpress printing", "phrase:noun:活版印刷:mock-unseen-mt62-paper3-reviewed"],
+    ["sourcing", "word:verb:採購 / 尋找來源:mock-unseen-mt62-paper3-reviewed"],
+    ["cutting corners", "phrase:verb:偷工減料 / 走捷徑:mock-unseen-mt62-paper3-reviewed"],
+    ["toxic chemicals", "phrase:noun:有毒化學物:mock-unseen-mt62-paper3-reviewed"],
+    ["put on a brave face", "phrase:verb:強顏歡笑 / 故作堅強:mock-unseen-mt62-paper3-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);

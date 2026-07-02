@@ -136,6 +136,8 @@ const mt14Paper3Entries = senseBank.entries.filter((entry) => entry.source === "
 assert.ok(mt14Paper3Entries.length >= 72, `Expected MT14 Paper 3 reviewed entries, got ${mt14Paper3Entries.length}`);
 const mt15Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt15-paper3-reviewed");
 assert.ok(mt15Paper3Entries.length >= 24, `Expected MT15 Paper 3 reviewed entries, got ${mt15Paper3Entries.length}`);
+const mt62Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt62-paper3-reviewed");
+assert.ok(mt62Paper3Entries.length >= 55, `Expected MT62 Paper 3 reviewed entries, got ${mt62Paper3Entries.length}`);
 const mt37Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt37-paper3-reviewed");
 assert.ok(mt37Paper3Entries.length >= 29, `Expected MT37 Paper 3 reviewed entries, got ${mt37Paper3Entries.length}`);
 const mt40Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt40-paper3-reviewed");
@@ -1926,7 +1928,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("boutique").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["noun:時裝店", "noun:精品店"]
+  ["noun:時裝店", "noun:精品店", "adjective:小型精品式的 / 高端小眾的"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("breath").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -8771,6 +8773,25 @@ mt15Paper3ReviewedExpectations.forEach(([word, pos, meaning]) => {
     candidate.pos === pos && candidate.meaning === meaning
   ));
   assert.ok(entry, `${word} should include MT15 Paper 3 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt62Paper3ReviewedExpectations = [
+  ["letterpress printing", "noun", "活版印刷"],
+  ["operate out of", "verb", "以...為基地營運"],
+  ["source", "verb", "採購 / 尋找來源"],
+  ["fermentation", "noun", "發酵"],
+  ["put on a brave face", "verb", "強顏歡笑 / 故作堅強"],
+  ["final nail in the coffin", "noun", "致命一擊 / 最後一根稻草"],
+  ["carcinogens", "noun", "致癌物"],
+  ["cut corners", "verb", "偷工減料 / 走捷徑"],
+  ["retraction", "noun", "撤回聲明 / 更正啟事"]
+];
+
+mt62Paper3ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT62 Paper 3 reviewed sense ${pos}:${meaning}`);
 });
 
 const mt55Paper3ReviewedExpectations = [
