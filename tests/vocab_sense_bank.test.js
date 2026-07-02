@@ -196,6 +196,8 @@ const mt71Paper4Entries = senseBank.entries.filter((entry) => entry.source === "
 assert.ok(mt71Paper4Entries.length >= 27, `Expected MT71 Paper 4 reviewed entries, got ${mt71Paper4Entries.length}`);
 const mt72Paper4Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt72-paper4-reviewed");
 assert.ok(mt72Paper4Entries.length >= 23, `Expected MT72 Paper 4 reviewed entries, got ${mt72Paper4Entries.length}`);
+const mt73Paper4Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt73-paper4-reviewed");
+assert.ok(mt73Paper4Entries.length >= 26, `Expected MT73 Paper 4 reviewed entries, got ${mt73Paper4Entries.length}`);
 const mt68Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt68-paper3-reviewed");
 assert.ok(mt68Paper3Entries.length >= 50, `Expected MT68 Paper 3 reviewed entries, got ${mt68Paper3Entries.length}`);
 const mt62Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt62-paper3-reviewed");
@@ -8104,6 +8106,32 @@ mt72Paper4ReviewedExpectations.forEach(([word, pos, meaning]) => {
     candidate.pos === pos && candidate.meaning === meaning
   ));
   assert.ok(entry, `${word} should include MT72 Paper 4 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt73Paper4ReviewedExpectations = [
+  ["doxxing", "noun", "起底 / 公開他人私隱資料"],
+  ["doxed", "verb", "起底 / 公開他人私隱資料"],
+  ["blackmailing", "verb", "勒索 / 要脅"],
+  ["manipulated photos", "noun", "被改圖的照片 / 經修改的照片"],
+  ["zero tolerance policy", "noun", "零容忍方針 / 零容忍做法"],
+  ["Education Bureau", "noun", "教育局"],
+  ["telephone hotlines", "noun", "熱線"],
+  ["staying off the internet", "verb", "不上網 / 避免上網"],
+  ["turned to for help", "verb", "向...求助"],
+  ["retaliating", "verb", "報復 / 反擊"],
+  ["play into their hands", "verb", "正中某人下懷 / 落入某人圈套"],
+  ["impersonating", "verb", "冒充 / 假扮"],
+  ["restorative justice", "noun", "修復式司法 / 修復式公義"],
+  ["found closure", "verb", "得到釋懷 / 了結心結"],
+  ["take it out on", "verb", "向...發洩 / 拿...出氣"],
+  ["lashed out", "verb", "猛烈抨擊 / 發脾氣"]
+];
+
+mt73Paper4ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT73 Paper 4 reviewed sense ${pos}:${meaning}`);
 });
 
 const mt35Paper3ReviewedExpectations = [

@@ -40,19 +40,19 @@ Latest verified progress:
 | Paper 1 | 84 | 24 | 60 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
-| Paper 4 | 72 | 30 | 42 |
-| Total | 314 | 212 | 102 |
+| Paper 4 | 72 | 31 | 41 |
+| Total | 314 | 213 | 101 |
 
 Most recent completed paper:
 
-- `MT72 Paper 4`
-- Source tag: `mock-unseen-mt72-paper4-reviewed`
-- Added 23 reviewed entries, including light up / drastic measure / model after / lifetime ban / smoke oneself to death / hooked on nicotine / all-out ban
+- `MT73 Paper 4`
+- Source tag: `mock-unseen-mt73-paper4-reviewed`
+- Added 26 reviewed entries, including doxing / blackmail / zero-tolerance approach / play into someone's hands / restorative justice / take it out on / lash out
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely item:
 
-- Paper 3 is complete. `MT52` has no Paper 4 file in the current download set, and `MT56` / `MT57` / `MT59` / `MT60` / `MT62` / `MT63` / `MT64` / `MT65` / `MT66` / `MT67` / `MT68` / `MT69` / `MT70` / `MT71` / `MT72 Paper 4` are complete. Continue with the next available missing Paper 4 item, likely `MT73 Paper 4` if available, or continue remaining Paper 1 items from the review log.
+- Paper 3 is complete. `MT52` has no Paper 4 file in the current download set, and `MT56` / `MT57` / `MT59` / `MT60` / `MT62` / `MT63` / `MT64` / `MT65` / `MT66` / `MT67` / `MT68` / `MT69` / `MT70` / `MT71` / `MT72` / `MT73 Paper 4` are complete. Continue with the next available missing Paper 4 item, likely `MT74 Paper 4` if available, or continue remaining Paper 1 items from the review log.
 - Use the `.docx` student and teacher files first. If `textutil` extraction is poor, compare with PDF extraction.
 
 ## Normal Workflow For One Paper

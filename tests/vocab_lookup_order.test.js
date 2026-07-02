@@ -194,6 +194,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt70-paper4-reviewed",
     "mock-unseen-mt71-paper4-reviewed",
     "mock-unseen-mt72-paper4-reviewed",
+    "mock-unseen-mt73-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -12070,6 +12071,40 @@ function assertStudentLookupContract(word, matches) {
   assert.ok(
     (await lookupForStudent("lit up")).some((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}` === "phrase:verb:點煙 / 吸煙:mock-unseen-mt72-paper4-reviewed"),
     "lit up should include MT72 smoking sense alongside existing lit/light senses"
+  );
+
+  for (const [word, expected] of [
+    ["doxing", "word:noun:起底 / 公開他人私隱資料:mock-unseen-mt73-paper4-reviewed"],
+    ["doxed", "word:verb:起底 / 公開他人私隱資料:mock-unseen-mt73-paper4-reviewed"],
+    ["blackmailing", "word:verb:勒索 / 要脅:mock-unseen-mt73-paper4-reviewed"],
+    ["manipulated photos", "phrase:noun:被改圖的照片 / 經修改的照片:mock-unseen-mt73-paper4-reviewed"],
+    ["proven in court", "phrase:verb:在法庭上證明:mock-unseen-mt73-paper4-reviewed"],
+    ["zero-tolerance policy", "phrase:noun:零容忍方針 / 零容忍做法:mock-unseen-mt73-paper4-reviewed"],
+    ["EDB", "word:noun:教育局:mock-unseen-mt73-paper4-reviewed"],
+    ["telephone hotline", "word:noun:熱線:mock-unseen-mt73-paper4-reviewed"],
+    ["video conferencing", "phrase:noun:視像會議 / 視像通話:mock-unseen-mt73-paper4-reviewed"],
+    ["stay off the Internet", "phrase:verb:不上網 / 避免上網:mock-unseen-mt73-paper4-reviewed"],
+    ["turning to for help", "phrase:verb:向...求助:mock-unseen-mt73-paper4-reviewed"],
+    ["retaliated", "word:verb:報復 / 反擊:mock-unseen-mt73-paper4-reviewed"],
+    ["play into their hands", "phrase:verb:正中某人下懷 / 落入某人圈套:mock-unseen-mt73-paper4-reviewed"],
+    ["blocked from the platform", "phrase:verb:被平台封鎖 / 禁止使用平台:mock-unseen-mt73-paper4-reviewed"],
+    ["humiliating", "word:adjective:令人羞辱的 / 丟臉的:mock-unseen-mt73-paper4-reviewed"],
+    ["restorative justice", "phrase:noun:修復式司法 / 修復式公義:mock-unseen-mt73-paper4-reviewed"],
+    ["finding closure", "phrase:verb:得到釋懷 / 了結心結:mock-unseen-mt73-paper4-reviewed"],
+    ["controlled environments", "phrase:noun:受控環境:mock-unseen-mt73-paper4-reviewed"],
+    ["accepted the blame", "phrase:verb:承認責任 / 認錯:mock-unseen-mt73-paper4-reviewed"],
+    ["virtual worlds", "phrase:noun:虛擬世界:mock-unseen-mt73-paper4-reviewed"],
+    ["insecurities", "word:noun:不安全感 / 缺乏自信:mock-unseen-mt73-paper4-reviewed"],
+    ["took it out on", "phrase:verb:向...發洩 / 拿...出氣:mock-unseen-mt73-paper4-reviewed"],
+    ["lashing out", "phrase:verb:猛烈抨擊 / 發脾氣:mock-unseen-mt73-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+  assert.ok(
+    (await lookupForStudent("impersonated")).some((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}` === "word:verb:冒充 / 假扮:mock-unseen-mt73-paper4-reviewed"),
+    "impersonated should include MT73 account-impersonation sense alongside existing performance/mimic sense"
   );
 
   for (const [word, expected] of [
