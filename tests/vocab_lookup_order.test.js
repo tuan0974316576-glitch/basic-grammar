@@ -169,6 +169,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt44-paper3-reviewed",
     "mock-unseen-mt47-paper3-reviewed",
     "mock-unseen-mt51-paper3-reviewed",
+    "mock-unseen-mt54-paper3-reviewed",
     "mock-unseen-mt30-paper2-reviewed",
     "mock-unseen-mt32-paper2-reviewed",
     "mock-unseen-mt35-paper2-reviewed",
@@ -544,6 +545,36 @@ function assertStudentLookupContract(word, matches) {
   assert.deepStrictEqual(
     (await lookupForStudent("flat earthers")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
     ["flat-earther:phrase:noun:地平說支持者:mock-unseen-mt51-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("dry ice")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["dry ice:phrase:noun:乾冰:mock-unseen-mt54-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("meet and greet session")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["meet-and-greet:phrase:noun:見面交流環節 / 見面會:mock-unseen-mt54-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("right up our alley")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["right up one's alley:phrase:adjective:非常適合某人 / 正合某人興趣:mock-unseen-mt54-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("pull it off")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["pull off:phrase:verb:成功做到 / 成功完成難事:mock-unseen-mt54-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("by way of compensation")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["by way of compensation:phrase:adverb:作為補償:mock-unseen-mt54-paper3-reviewed"]
+  );
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("underwater scenes")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    ["underwater scene:phrase:noun:水底場景 / 水底戲份:mock-unseen-mt54-paper3-reviewed"]
   );
 
   assert.deepStrictEqual(

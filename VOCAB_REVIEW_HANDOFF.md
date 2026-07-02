@@ -39,25 +39,25 @@ Latest verified progress:
 |---|---:|---:|---:|
 | Paper 1 | 84 | 24 | 60 |
 | Paper 2 | 81 | 81 | 0 |
-| Paper 3 | 77 | 54 | 23 |
+| Paper 3 | 77 | 55 | 22 |
 | Paper 4 | 72 | 0 | 72 |
-| Total | 314 | 159 | 155 |
+| Total | 314 | 160 | 154 |
 
 Most recent completed paper:
 
-- `MT51 Paper 3`
-- Source tag: `mock-unseen-mt51-paper3-reviewed`
-- Added 54 reviewed entries, including in situ / art heist / beyond the shadow of a doubt / flat-earther / art installation / the back of beyond / broaden the mind / package holiday
-- Verified with full `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run
+- `MT54 Paper 3`
+- Source tag: `mock-unseen-mt54-paper3-reviewed`
+- Added 54 reviewed entries, including dry ice / meet-and-greet / screen as 放映 / set dresser / by way of compensation / right up one's alley / at the tender age of / pull off
+- Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely Paper 3 item:
 
-- `MT54 Paper 3`
+- `MT57 Paper 3`
 - Found files:
-  - `/Users/macbook/Downloads/Unseen Graded Mock Test/F6/Secondary 6 Paper 3 202021/MT54_Paper 3_SE_2021_6.2.docx`
-  - `/Users/macbook/Downloads/Unseen Graded Mock Test/F6/Secondary 6 Paper 3 202021/MT54_Paper 3_SE_2021_6.2.pdf`
-  - `/Users/macbook/Downloads/Unseen Graded Mock Test/F6/Secondary 6 Paper 3 202021/MT54_Paper 3_TE_2021_6.2.docx`
-  - `/Users/macbook/Downloads/Unseen Graded Mock Test/F6/Secondary 6 Paper 3 202021/MT54_Paper 3_TE_2021_6.2.pdf`
+  - `/Users/macbook/Downloads/Unseen Graded Mock Test/F5/Secondary 5 Paper 3 202122/MT57_Paper 3_SE_2022_5.1.docx`
+  - `/Users/macbook/Downloads/Unseen Graded Mock Test/F5/Secondary 5 Paper 3 202122/MT57_Paper 3_SE_2022_5.1.pdf`
+  - `/Users/macbook/Downloads/Unseen Graded Mock Test/F5/Secondary 5 Paper 3 202122/MT57_Paper 3_TE_2022_5.1.docx`
+  - `/Users/macbook/Downloads/Unseen Graded Mock Test/F5/Secondary 5 Paper 3 202122/MT57_Paper 3_TE_2022_5.1.pdf`
 - Use the `.docx` student and teacher files first. If `textutil` extraction is poor, compare with PDF extraction.
 
 ## Normal Workflow For One Paper
