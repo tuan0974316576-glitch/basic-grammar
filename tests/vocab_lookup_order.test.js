@@ -208,6 +208,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt8-paper4-reviewed",
     "mock-unseen-mt9-paper4-reviewed",
     "mock-unseen-mt10-paper4-reviewed",
+    "mock-unseen-mt11-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -12379,6 +12380,22 @@ function assertStudentLookupContract(word, matches) {
     ["my mind wanders", "phrase:verb:走神 / 思緒飄走:mock-unseen-mt10-paper4-reviewed"],
     ["stick in my memory", "phrase:verb:留在記憶中 / 記得住:mock-unseen-mt10-paper4-reviewed"],
     ["learning styles", "phrase:noun:學習方式 / 學習風格:mock-unseen-mt10-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["basic first aid", "phrase:noun:基本急救:mock-unseen-mt11-paper4-reviewed"],
+    ["in a tight spot", "phrase:noun:困境 / 危急情況:mock-unseen-mt11-paper4-reviewed"],
+    ["find your way home", "phrase:verb:找到回家的路:mock-unseen-mt11-paper4-reviewed"],
+    ["fell overboard", "phrase:verb:從船上跌落水:mock-unseen-mt11-paper4-reviewed"],
+    ["deserted islands", "phrase:noun:荒島:mock-unseen-mt11-paper4-reviewed"],
+    ["clearings", "word:noun:林中空地 / 空曠地方:mock-unseen-mt11-paper4-reviewed"],
+    ["get a fire going", "phrase:verb:把火生起來 / 令火燒起來:mock-unseen-mt11-paper4-reviewed"],
+    ["normal school hours", "phrase:noun:正常上課時間:mock-unseen-mt11-paper4-reviewed"],
+    ["modern inventions", "phrase:noun:現代發明:mock-unseen-mt11-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);

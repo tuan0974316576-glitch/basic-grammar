@@ -30641,6 +30641,21 @@
     ["stick in one's memory", "verb", "留在記憶中 / 記得住", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt10-paper4-reviewed",display:"stick in one's memory",aliases:["stick in my memory","stick in your memory","sticks in my memory","stuck in my memory"]}],
     ["learning style", "noun", "學習方式 / 學習風格", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt10-paper4-reviewed",aliases:["learning styles"]}],
     ["demand more of one's schedule", "verb", "佔用更多時間", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt10-paper4-reviewed",display:"demand more of one's schedule",aliases:["demand more of my schedule","demands more of my schedule","demanded more of my schedule"]}],
+    ["basic first aid", "noun", "基本急救", {type:"phrase",level:"A2",overrideTeacher:true,source:"mock-unseen-mt11-paper4-reviewed"}],
+    ["tight spot", "noun", "困境 / 危急情況", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt11-paper4-reviewed",aliases:["in a tight spot"]}],
+    ["trusty", "adjective", "可靠的 / 可信賴的", {level:"B2",overrideTeacher:true,source:"mock-unseen-mt11-paper4-reviewed"}],
+    ["growing wild", "adjective", "野生生長的", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt11-paper4-reviewed"}],
+    ["find one's way home", "verb", "找到回家的路", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt11-paper4-reviewed",display:"find one's way home",aliases:["find your way home","find my way home","find his way home","find her way home"]}],
+    ["fall overboard", "verb", "從船上跌落水", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt11-paper4-reviewed",aliases:["falls overboard","fell overboard","fallen overboard","falling overboard"]}],
+    ["wash up", "verb", "被沖上岸", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt11-paper4-reviewed",aliases:["washes up","washed up","washing up"]}],
+    ["deserted island", "noun", "荒島", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt11-paper4-reviewed",aliases:["deserted islands"]}],
+    ["depending on", "preposition", "視乎 / 取決於", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt11-paper4-reviewed"}],
+    ["clearing", "noun", "林中空地 / 空曠地方", {level:"B2",overrideTeacher:true,source:"mock-unseen-mt11-paper4-reviewed",aliases:["clearings"]}],
+    ["eaten alive", "adjective", "被咬得很厲害的", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt11-paper4-reviewed"}],
+    ["get a fire going", "verb", "把火生起來 / 令火燒起來", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt11-paper4-reviewed",aliases:["gets a fire going","got a fire going","getting a fire going"]}],
+    ["normal school hours", "noun", "正常上課時間", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt11-paper4-reviewed"}],
+    ["initial response", "noun", "最初反應 / 第一反應", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt11-paper4-reviewed",aliases:["initial responses"]}],
+    ["modern invention", "noun", "現代發明", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt11-paper4-reviewed",aliases:["modern inventions"]}],
   ];
 
   function normalizeVerbTableMeaning(value) {
