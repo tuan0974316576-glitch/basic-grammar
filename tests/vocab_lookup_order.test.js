@@ -166,6 +166,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt15-paper3-reviewed",
     "mock-unseen-mt16-paper4-reviewed",
     "mock-unseen-mt18-paper4-reviewed",
+    "mock-unseen-mt19-paper4-reviewed",
     "mock-unseen-mt15-paper4-reviewed",
     "mock-unseen-mt17-paper4-reviewed",
     "mock-unseen-mt20-paper4-reviewed",
@@ -12527,6 +12528,28 @@ function assertStudentLookupContract(word, matches) {
       entries.some((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}` === expected),
       `${word} should include MT18 reviewed sense ${expected}`
     );
+  }
+
+  for (const [word, expected] of [
+    ["traditional trades", "phrase:noun:傳統行業 / 傳統手藝行業:mock-unseen-mt19-paper4-reviewed"],
+    ["traditional crafts", "phrase:noun:傳統手藝 / 傳統工藝:mock-unseen-mt19-paper4-reviewed"],
+    ["offset printing", "phrase:noun:柯式印刷 / 平版印刷:mock-unseen-mt19-paper4-reviewed"],
+    ["paper lanterns", "phrase:noun:紙燈籠:mock-unseen-mt19-paper4-reviewed"],
+    ["honey plums", "phrase:noun:話梅 / 蜜餞梅:mock-unseen-mt19-paper4-reviewed"],
+    ["preserved lemons", "phrase:noun:鹹檸檬 / 醃檸檬:mock-unseen-mt19-paper4-reviewed"],
+    ["dragon beard candy", "phrase:noun:龍鬚糖:mock-unseen-mt19-paper4-reviewed"],
+    ["bamboo cutting boards", "phrase:noun:竹砧板:mock-unseen-mt19-paper4-reviewed"],
+    ["machine made", "phrase:adjective:機器製造的:mock-unseen-mt19-paper4-reviewed"],
+    ["master craftsmen", "phrase:noun:手藝大師 / 資深工匠:mock-unseen-mt19-paper4-reviewed"],
+    ["hand-printed", "phrase:verb:人手印刷:mock-unseen-mt19-paper4-reviewed"],
+    ["letter writers", "phrase:noun:代寫書信的人:mock-unseen-mt19-paper4-reviewed"],
+    ["family run businesses", "phrase:noun:家族經營的生意:mock-unseen-mt19-paper4-reviewed"],
+    ["government agencies", "phrase:noun:政府機構:mock-unseen-mt19-paper4-reviewed"],
+    ["garnering interest", "phrase:verb:吸引興趣 / 引起關注:mock-unseen-mt19-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
   }
 
   for (const [word, expected] of [
