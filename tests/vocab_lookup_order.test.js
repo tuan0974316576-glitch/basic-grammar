@@ -175,6 +175,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt29-paper4-reviewed",
     "mock-unseen-mt31-paper4-reviewed",
     "mock-unseen-mt33-paper4-reviewed",
+    "mock-unseen-mt34-paper4-reviewed",
     "mock-unseen-mt15-paper4-reviewed",
     "mock-unseen-mt17-paper4-reviewed",
     "mock-unseen-mt20-paper4-reviewed",
@@ -11743,6 +11744,25 @@ function assertStudentLookupContract(word, matches) {
     ["batteries recharged", "phrase:verb:恢復精力 / 充電:mock-unseen-mt33-paper4-reviewed"],
     ["go through my head", "phrase:verb:在某人腦海中掠過 / 想著:mock-unseen-mt33-paper4-reviewed"],
     ["get settled in", "phrase:verb:安頓下來 / 適應新環境:mock-unseen-mt33-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["Hong Kong Police Force", "phrase:noun:香港警務處 / 香港警隊:mock-unseen-mt34-paper4-reviewed"],
+    ["Recruitment Day", "phrase:noun:招聘日:mock-unseen-mt34-paper4-reviewed"],
+    ["Police Constables", "phrase:noun:警員:mock-unseen-mt34-paper4-reviewed"],
+    ["at the scene of", "phrase:preposition:在...現場:mock-unseen-mt34-paper4-reviewed"],
+    ["heated disputes", "phrase:noun:激烈爭執:mock-unseen-mt34-paper4-reviewed"],
+    ["handling weapons", "phrase:verb:處理 / 使用武器:mock-unseen-mt34-paper4-reviewed"],
+    ["calm and collected", "phrase:adjective:冷靜鎮定的:mock-unseen-mt34-paper4-reviewed"],
+    ["in the line of duty", "phrase:adverb:因公 / 執勤時:mock-unseen-mt34-paper4-reviewed"],
+    ["laid off", "phrase:verb:被裁員 / 被解僱:mock-unseen-mt34-paper4-reviewed"],
+    ["murder mystery games", "phrase:noun:謀殺懸疑故事 / 偵探推理遊戲:mock-unseen-mt34-paper4-reviewed"],
+    ["wouldn't dream of", "phrase:verb:絕不會想 / 不敢想像會:mock-unseen-mt34-paper4-reviewed"],
+    ["at any cost", "phrase:adverb:不惜任何代價:mock-unseen-mt34-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
