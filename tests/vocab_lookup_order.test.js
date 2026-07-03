@@ -200,6 +200,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt79-paper4-reviewed",
     "mock-unseen-mt81-paper4-reviewed",
     "mock-unseen-mt83-paper4-reviewed",
+    "mock-unseen-mt84-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -12234,6 +12235,24 @@ function assertStudentLookupContract(word, matches) {
     ["go to the trouble of", "phrase:verb:特意費心去做 / 花工夫去做:mock-unseen-mt83-paper4-reviewed"],
     ["do those films justice", "phrase:verb:充分展現 / 公平呈現:mock-unseen-mt83-paper4-reviewed"],
     ["tension builds up", "phrase:verb:營造緊張感 / 逐漸累積緊張氣氛:mock-unseen-mt83-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["scent boosters", "phrase:noun:香味加強珠 / 洗衣香珠:mock-unseen-mt84-paper4-reviewed"],
+    ["laundry cycles", "phrase:noun:洗衣程序 / 洗衣週期:mock-unseen-mt84-paper4-reviewed"],
+    ["single load of washing", "phrase:noun:一機衣物 / 一次洗衣量:mock-unseen-mt84-paper4-reviewed"],
+    ["adverse reactions", "phrase:noun:不良反應:mock-unseen-mt84-paper4-reviewed"],
+    ["be sparing", "phrase:verb:節制使用 / 少量使用:mock-unseen-mt84-paper4-reviewed"],
+    ["grabbed attention", "phrase:verb:吸引注意:mock-unseen-mt84-paper4-reviewed"],
+    ["took a whiff", "phrase:verb:嗅一嗅 / 聞一下:mock-unseen-mt84-paper4-reviewed"],
+    ["mask one smell with another", "phrase:verb:掩蓋氣味:mock-unseen-mt84-paper4-reviewed"],
+    ["marketed", "word:verb:推銷 / 推廣:mock-unseen-mt84-paper4-reviewed"],
+    ["doused oneself in perfume", "phrase:verb:噴大量香水在身上:mock-unseen-mt84-paper4-reviewed"],
+    ["freshly mown", "phrase:adjective:剛修剪過的:mock-unseen-mt84-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);

@@ -208,6 +208,8 @@ const mt81Paper4Entries = senseBank.entries.filter((entry) => entry.source === "
 assert.ok(mt81Paper4Entries.length >= 38, `Expected MT81 Paper 4 reviewed entries, got ${mt81Paper4Entries.length}`);
 const mt83Paper4Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt83-paper4-reviewed");
 assert.ok(mt83Paper4Entries.length >= 27, `Expected MT83 Paper 4 reviewed entries, got ${mt83Paper4Entries.length}`);
+const mt84Paper4Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt84-paper4-reviewed");
+assert.ok(mt84Paper4Entries.length >= 34, `Expected MT84 Paper 4 reviewed entries, got ${mt84Paper4Entries.length}`);
 const mt68Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt68-paper3-reviewed");
 assert.ok(mt68Paper3Entries.length >= 50, `Expected MT68 Paper 3 reviewed entries, got ${mt68Paper3Entries.length}`);
 const mt62Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt62-paper3-reviewed");
@@ -1183,7 +1185,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("regular").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
-  ["adjective:定期的:override", "adjective:規則的:override", "noun:常客:override"]
+  ["adjective:定期的:override", "adjective:規則的:override", "noun:常客:override", "adjective:普通的 / 一般的:override"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("stage").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
@@ -3286,7 +3288,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("marketing").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["noun:市場推廣 / 營銷"]
+  ["noun:市場推廣 / 營銷", "verb:推銷 / 推廣"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("persuade").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -8263,6 +8265,27 @@ mt83Paper4ReviewedExpectations.forEach(([word, pos, meaning]) => {
     candidate.pos === pos && candidate.meaning === meaning
   ));
   assert.ok(entry, `${word} should include MT83 Paper 4 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt84Paper4ReviewedExpectations = [
+  ["scent boosters", "noun", "香味加強珠 / 洗衣香珠"],
+  ["mildew", "noun", "霉味 / 霉菌"],
+  ["instructions for use", "noun", "使用說明"],
+  ["adverse reactions", "noun", "不良反應"],
+  ["be sparing", "verb", "節制使用 / 少量使用"],
+  ["grab the viewer's attention", "verb", "吸引注意"],
+  ["took a whiff", "verb", "嗅一嗅 / 聞一下"],
+  ["mask one smell with another", "verb", "掩蓋氣味"],
+  ["marketed", "verb", "推銷 / 推廣"],
+  ["dousing ourselves in perfume", "verb", "噴大量香水在身上"],
+  ["tolerance levels", "noun", "忍受程度 / 容忍度"]
+];
+
+mt84Paper4ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT84 Paper 4 reviewed sense ${pos}:${meaning}`);
 });
 
 const mt35Paper3ReviewedExpectations = [
