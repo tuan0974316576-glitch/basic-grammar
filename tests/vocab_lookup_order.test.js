@@ -204,6 +204,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt85-paper4-reviewed",
     "mock-unseen-mt86-paper4-reviewed",
     "mock-unseen-mt87-paper4-reviewed",
+    "mock-unseen-mt7-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -12313,6 +12314,20 @@ function assertStudentLookupContract(word, matches) {
     ["vote on", "phrase:verb:就...投票:mock-unseen-mt87-paper4-reviewed"],
     ["go through a worksheet", "phrase:verb:逐項查看 / 仔細討論:mock-unseen-mt87-paper4-reviewed"],
     ["for starters", "phrase:adverb:首先 / 作為開始:mock-unseen-mt87-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["crowdfunding", "word:noun:眾籌 / 群眾集資:mock-unseen-mt7-paper4-reviewed"],
+    ["super-fans", "word:noun:超級粉絲 / 狂熱粉絲:mock-unseen-mt7-paper4-reviewed"],
+    ["bank loans", "phrase:noun:銀行貸款:mock-unseen-mt7-paper4-reviewed"],
+    ["innovators", "word:noun:創新者 / 創意發明者:mock-unseen-mt7-paper4-reviewed"],
+    ["make their dream a reality", "phrase:verb:令夢想成真:mock-unseen-mt7-paper4-reviewed"],
+    ["water filtration devices", "phrase:noun:濾水裝置:mock-unseen-mt7-paper4-reviewed"],
+    ["computer-generated imagery", "phrase:noun:電腦生成影像 / 電腦特效影像:mock-unseen-mt7-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
