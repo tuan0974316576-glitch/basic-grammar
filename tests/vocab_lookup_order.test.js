@@ -165,6 +165,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt14-paper3-reviewed",
     "mock-unseen-mt15-paper3-reviewed",
     "mock-unseen-mt16-paper4-reviewed",
+    "mock-unseen-mt18-paper4-reviewed",
     "mock-unseen-mt15-paper4-reviewed",
     "mock-unseen-mt17-paper4-reviewed",
     "mock-unseen-mt20-paper4-reviewed",
@@ -9918,7 +9919,7 @@ function assertStudentLookupContract(word, matches) {
 
   assert.deepStrictEqual(
     (await lookupForStudent("dubbed")).map((entry) => `${entry.display}:${entry.pos}:${entry.meaning}:${entry.source}`),
-    ["dub:verb:稱為 / 給...起名:curated-sense-bank"]
+    ["dub:verb:配音 / 稱為:curated-sense-bank"]
   );
 
   assert.deepStrictEqual(
@@ -12490,6 +12491,41 @@ function assertStudentLookupContract(word, matches) {
     assert.ok(
       entries.some((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}` === "phrase:verb:造成 / 帶來:mock-unseen-mt16-paper4-reviewed"),
       "make for should include the MT16 'lead to / create' sense without hiding the movement sense"
+    );
+  }
+
+  for (const [word, expected] of [
+    ["debut films", "phrase:noun:首部電影 / 初次執導的電影:mock-unseen-mt18-paper4-reviewed"],
+    ["daily commute", "phrase:noun:每日通勤 / 每日上下班上學路程:mock-unseen-mt18-paper4-reviewed"],
+    ["cyber stalking", "phrase:noun:網絡跟蹤 / 網上騷擾式追蹤:mock-unseen-mt18-paper4-reviewed"],
+    ["in a new light", "phrase:adverb:從新的角度 / 以新的眼光:mock-unseen-mt18-paper4-reviewed"],
+    ["payphones", "phrase:noun:公用收費電話:mock-unseen-mt18-paper4-reviewed"],
+    ["glorified", "word:verb:美化 / 歌頌:mock-unseen-mt18-paper4-reviewed"],
+    ["criminal organisations", "phrase:noun:犯罪組織:mock-unseen-mt18-paper4-reviewed"],
+    ["foreign-language films", "phrase:noun:外語片:mock-unseen-mt18-paper4-reviewed"],
+    ["localized versions", "phrase:noun:本地化版本 / 改成本地版本:mock-unseen-mt18-paper4-reviewed"],
+    ["language barriers", "phrase:noun:語言障礙:mock-unseen-mt18-paper4-reviewed"],
+    ["inside jokes", "phrase:noun:圈內笑話 / 只有某群人才懂的笑話:mock-unseen-mt18-paper4-reviewed"],
+    ["excluded from consideration", "phrase:verb:排除在考慮之外:mock-unseen-mt18-paper4-reviewed"],
+    ["toilet humor", "phrase:noun:低俗笑話 / 廁所笑話:mock-unseen-mt18-paper4-reviewed"],
+    ["struck off the list", "phrase:verb:從名單剔除:mock-unseen-mt18-paper4-reviewed"],
+    ["home theater", "phrase:noun:家庭影院:mock-unseen-mt18-paper4-reviewed"],
+    ["newly released", "phrase:adjective:新上映的 / 新推出的:mock-unseen-mt18-paper4-reviewed"],
+    ["live audiences", "phrase:noun:現場觀眾:mock-unseen-mt18-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["misplaced", "word:verb:放錯地方 / 一時找不到:mock-unseen-mt18-paper4-reviewed"],
+    ["showing off", "phrase:verb:展示 / 表現出:mock-unseen-mt18-paper4-reviewed"]
+  ]) {
+    const entries = await lookupForStudent(word);
+    assert.ok(
+      entries.some((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}` === expected),
+      `${word} should include MT18 reviewed sense ${expected}`
     );
   }
 

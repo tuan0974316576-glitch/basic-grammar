@@ -5278,6 +5278,7 @@ async function auditStudentLookupMetadata(words = STUDENT_LOOKUP_AUDIT_WORDS, pr
     "mock-unseen-mt14-paper3-reviewed",
     "mock-unseen-mt15-paper3-reviewed",
     "mock-unseen-mt16-paper4-reviewed",
+    "mock-unseen-mt18-paper4-reviewed",
     "mock-unseen-mt15-paper4-reviewed",
     "mock-unseen-mt17-paper4-reviewed",
     "mock-unseen-mt20-paper4-reviewed",
