@@ -184,6 +184,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt43-paper4-reviewed",
     "mock-unseen-mt44-paper4-reviewed",
     "mock-unseen-mt46-paper4-reviewed",
+    "mock-unseen-mt47-paper4-reviewed",
     "mock-unseen-mt15-paper4-reviewed",
     "mock-unseen-mt17-paper4-reviewed",
     "mock-unseen-mt20-paper4-reviewed",
@@ -11916,6 +11917,25 @@ function assertStudentLookupContract(word, matches) {
     ["set a better tone", "phrase:verb:定下基調 / 影響氣氛:mock-unseen-mt46-paper4-reviewed"],
     ["check phones at the door", "phrase:verb:入場時交出手機:mock-unseen-mt46-paper4-reviewed"],
     ["retreat further into", "phrase:verb:退縮到 / 躲進:mock-unseen-mt46-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["duplicate fingerprints", "phrase:verb:複製指紋:mock-unseen-mt47-paper4-reviewed"],
+    ["two step authentication", "phrase:noun:兩步驗證 / 雙重認證:mock-unseen-mt47-paper4-reviewed"],
+    ["free public wifi", "phrase:noun:公共 Wi-Fi / 公眾無線網絡:mock-unseen-mt47-paper4-reviewed"],
+    ["land in the wrong hands", "phrase:verb:落入壞人手中 / 落入不當人士手中:mock-unseen-mt47-paper4-reviewed"],
+    ["banking apps", "phrase:noun:銀行應用程式:mock-unseen-mt47-paper4-reviewed"],
+    ["political ads", "phrase:noun:定向廣告 / 針對性廣告:mock-unseen-mt47-paper4-reviewed"],
+    ["voice-activated systems", "phrase:noun:聲控系統:mock-unseen-mt47-paper4-reviewed"],
+    ["pretended to be", "phrase:verb:假扮成 / 冒充:mock-unseen-mt47-paper4-reviewed"],
+    ["student records", "phrase:noun:學生紀錄:mock-unseen-mt47-paper4-reviewed"],
+    ["hard drives", "phrase:noun:硬碟:mock-unseen-mt47-paper4-reviewed"],
+    ["in their name", "phrase:adverb:以某人名義:mock-unseen-mt47-paper4-reviewed"],
+    ["getting broken into", "phrase:verb:被爆竊 / 被闖入:mock-unseen-mt47-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
