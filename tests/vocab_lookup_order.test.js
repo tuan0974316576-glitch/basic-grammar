@@ -173,6 +173,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt26-paper4-reviewed",
     "mock-unseen-mt28-paper4-reviewed",
     "mock-unseen-mt29-paper4-reviewed",
+    "mock-unseen-mt31-paper4-reviewed",
     "mock-unseen-mt15-paper4-reviewed",
     "mock-unseen-mt17-paper4-reviewed",
     "mock-unseen-mt20-paper4-reviewed",
@@ -12750,6 +12751,39 @@ function assertStudentLookupContract(word, matches) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
     assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["right on the heels of", "phrase:preposition:緊接在...之後:mock-unseen-mt31-paper4-reviewed"],
+    ["preventable", "word:adjective:可以避免的 / 可預防的:mock-unseen-mt31-paper4-reviewed"],
+    ["labour shortages", "phrase:noun:勞工短缺 / 人手不足:mock-unseen-mt31-paper4-reviewed"],
+    ["base wages", "phrase:noun:基本工資 / 底薪:mock-unseen-mt31-paper4-reviewed"],
+    ["lobbied for", "phrase:verb:游說爭取 / 推動:mock-unseen-mt31-paper4-reviewed"],
+    ["district councils", "phrase:noun:區議會:mock-unseen-mt31-paper4-reviewed"],
+    ["legislators", "word:noun:立法者 / 立法會議員:mock-unseen-mt31-paper4-reviewed"],
+    ["held responsible", "phrase:verb:追究責任 / 要...負責:mock-unseen-mt31-paper4-reviewed"],
+    ["profit margins", "phrase:noun:利潤率 / 利潤空間:mock-unseen-mt31-paper4-reviewed"],
+    ["low-income bus passes", "phrase:noun:巴士月票 / 巴士通行證:mock-unseen-mt31-paper4-reviewed"],
+    ["think things through", "phrase:verb:仔細想清楚:mock-unseen-mt31-paper4-reviewed"],
+    ["public health impact", "phrase:noun:公共衞生影響:mock-unseen-mt31-paper4-reviewed"],
+    ["second jobs", "phrase:noun:第二份工作 / 兼職:mock-unseen-mt31-paper4-reviewed"],
+    ["a rising tide lifts all boats", "phrase:noun:整體環境改善會惠及所有人的說法:mock-unseen-mt31-paper4-reviewed"],
+    ["back up our claim", "phrase:verb:支持某人的說法 / 為主張提供證據:mock-unseen-mt31-paper4-reviewed"],
+    ["phasing in", "phrase:verb:逐步引入 / 分階段實施:mock-unseen-mt31-paper4-reviewed"],
+    ["needlessly", "word:adverb:不必要地 / 無謂地:mock-unseen-mt31-paper4-reviewed"],
+    ["reckless", "word:adjective:魯莽的 / 不顧後果的:mock-unseen-mt31-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  {
+    const entries = await lookupForStudent("off-track");
+    assert.ok(
+      entries.some((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}` === "word:adjective:離題的 / 偏離正軌的:mock-unseen-mt31-paper4-reviewed"),
+      "off-track should include the MT31 adjective sense"
+    );
   }
 
   for (const [word, expected] of [
