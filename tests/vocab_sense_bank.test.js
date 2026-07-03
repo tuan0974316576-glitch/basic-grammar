@@ -24,6 +24,27 @@ assert.deepStrictEqual(
   ["phrase:verb:吃午餐"]
 );
 
+assert.ok(
+  senseBank.lookup("hot on heels").some((entry) => (
+    entry.display === "hot on one's heels"
+    && entry.meaning === "緊追在後的"
+    && entry.source === "mock-unseen-mt7-paper1-reviewed"
+  )),
+  "placeholder phrase lookup should allow omitted possessives"
+);
+assert.ok(
+  senseBank.lookup("hot on sb's heels").some((entry) => entry.display === "hot on one's heels"),
+  "placeholder phrase lookup should allow sb's variants"
+);
+assert.ok(
+  senseBank.lookup("put somebody up to").some((entry) => entry.display === "put someone up to"),
+  "placeholder phrase lookup should allow someone / somebody variants"
+);
+assert.ok(
+  senseBank.lookup("bags under eyes").some((entry) => entry.display === "bags under one's eyes"),
+  "placeholder phrase lookup should allow omitted one's"
+);
+
 const mt45Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt45-paper3-reviewed");
 assert.ok(mt45Paper3Entries.length >= 90, `Expected MT45 Paper 3 reviewed entries, got ${mt45Paper3Entries.length}`);
 const mt49Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt49-paper3-reviewed");
@@ -38,6 +59,8 @@ const mt20Paper3Entries = senseBank.entries.filter((entry) => entry.source === "
 assert.ok(mt20Paper3Entries.length >= 55, `Expected MT20 Paper 3 reviewed entries, got ${mt20Paper3Entries.length}`);
 const mt22Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt22-paper3-reviewed");
 assert.ok(mt22Paper3Entries.length >= 50, `Expected MT22 Paper 3 reviewed entries, got ${mt22Paper3Entries.length}`);
+const mt7Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt7-paper1-reviewed");
+assert.ok(mt7Paper1Entries.length >= 88, `Expected MT7 Paper 1 reviewed entries, got ${mt7Paper1Entries.length}`);
 const mt25Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt25-paper3-reviewed");
 assert.ok(mt25Paper3Entries.length >= 80, `Expected MT25 Paper 3 reviewed entries, got ${mt25Paper3Entries.length}`);
 const mt27Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt27-paper3-reviewed");

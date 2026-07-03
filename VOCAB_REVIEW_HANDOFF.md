@@ -37,17 +37,17 @@ Latest verified progress:
 
 | Paper | Total | Done | Remaining |
 |---|---:|---:|---:|
-| Paper 1 | 84 | 24 | 60 |
+| Paper 1 | 84 | 25 | 59 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
 | Paper 4 | 72 | 72 | 0 |
-| Total | 314 | 254 | 60 |
+| Total | 314 | 255 | 59 |
 
 Most recent completed paper:
 
-- `MT61 Paper 4`
-- Source tag: `mock-unseen-mt61-paper4-reviewed`
-- Added 21 reviewed entries, including lay on a treat / representative of / ravioli / bigos stew / bobotie / suya / poutine / fusion cuisine / ease someone into / go that far / cha siu / siu mei / fresh out of the oven
+- `MT7 Paper 1`
+- Source tag: `mock-unseen-mt7-paper1-reviewed`
+- Added 88 reviewed entries, including hot on one's heels / put someone up to / bags under one's eyes / typhoon intensity / plastic pellet / nebular hypothesis / rover / Red Planet / take up the reins / habitable zone / Mars Science Laboratory
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely item:

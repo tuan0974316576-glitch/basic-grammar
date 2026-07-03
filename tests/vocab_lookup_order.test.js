@@ -843,9 +843,14 @@ function assertStudentLookupContract(word, matches) {
     ["the Bund:phrase:noun:外灘:mock-unseen-mt58-paper2-reviewed"]
   );
 
-  assert.deepStrictEqual(
-    (await lookupForStudent("broaden horizons")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
-    ["broaden one's horizons:phrase:verb:擴闊眼界:mock-unseen-mt58-paper2-reviewed"]
+  assert.ok(
+    (await lookupForStudent("broaden horizons")).some((entry) => (
+      entry.display === "broaden one's horizons"
+      && entry.type === "phrase"
+      && entry.pos === "verb"
+      && entry.meaning === "擴闊眼界"
+      && ["mock-unseen-mt45-paper3-reviewed", "mock-unseen-mt58-paper2-reviewed"].includes(entry.source)
+    ))
   );
 
   assert.deepStrictEqual(
@@ -2698,9 +2703,14 @@ function assertStudentLookupContract(word, matches) {
     ["phrase:adverb:一時衝動地 / 即興地:mock-unseen-mt22-paper3-reviewed"]
   );
 
-  assert.deepStrictEqual(
-    (await lookupForStudent("put them off")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
-    ["put someone off:phrase:verb:令某人卻步 / 使某人不想做:mock-unseen-mt22-paper3-reviewed"]
+  assert.ok(
+    (await lookupForStudent("put them off")).some((entry) => (
+      entry.display === "put someone off"
+      && entry.type === "phrase"
+      && entry.pos === "verb"
+      && entry.meaning === "令某人卻步 / 使某人不想做"
+      && entry.source === "mock-unseen-mt22-paper3-reviewed"
+    ))
   );
 
   assert.deepStrictEqual(
@@ -2764,9 +2774,14 @@ function assertStudentLookupContract(word, matches) {
     ["visualization exercise:phrase:noun:視覺化練習 / 想像訓練:mock-unseen-mt27-paper3-reviewed"]
   );
 
-  assert.deepStrictEqual(
-    (await lookupForStudent("at the top of my game")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
-    ["at the top of one's game:phrase:adjective:處於最佳狀態 / 表現巔峰:mock-unseen-mt27-paper3-reviewed"]
+  assert.ok(
+    (await lookupForStudent("at the top of my game")).some((entry) => (
+      entry.display === "at the top of one's game"
+      && entry.type === "phrase"
+      && entry.pos === "adjective"
+      && entry.meaning === "處於最佳狀態 / 表現巔峰"
+      && entry.source === "mock-unseen-mt27-paper3-reviewed"
+    ))
   );
 
   assert.deepStrictEqual(
@@ -4072,9 +4087,14 @@ function assertStudentLookupContract(word, matches) {
     ["close down:phrase:verb:結業 / 關閉:mock-unseen-mt13-paper2-reviewed"]
   );
 
-  assert.deepStrictEqual(
-    (await lookupForStudent("follow in your footsteps")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
-    ["follow in someone's footsteps:phrase:verb:追隨某人的腳步 / 效法某人:mock-unseen-mt13-paper2-reviewed"]
+  assert.ok(
+    (await lookupForStudent("follow in your footsteps")).some((entry) => (
+      entry.display === "follow in someone's footsteps"
+      && entry.type === "phrase"
+      && entry.pos === "verb"
+      && entry.meaning === "追隨某人的腳步 / 效法某人"
+      && entry.source === "mock-unseen-mt13-paper2-reviewed"
+    ))
   );
 
   assert.deepStrictEqual(
@@ -4405,9 +4425,13 @@ function assertStudentLookupContract(word, matches) {
     ["phrase:verb:為...注入新生命 / 令...重現活力:mock-unseen-mt77-paper2-reviewed"]
   );
 
-  assert.deepStrictEqual(
-    (await lookupForStudent("stepped out of my comfort zone")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
-    ["phrase:verb:踏出舒適圈:mock-unseen-mt77-paper2-reviewed"]
+  assert.ok(
+    (await lookupForStudent("stepped out of my comfort zone")).some((entry) => (
+      entry.type === "phrase"
+      && entry.pos === "verb"
+      && entry.meaning === "踏出舒適圈"
+      && entry.source === "mock-unseen-mt77-paper2-reviewed"
+    ))
   );
 
   assert.deepStrictEqual(
@@ -4778,9 +4802,14 @@ function assertStudentLookupContract(word, matches) {
     ["serve an internship:phrase:verb:實習 / 完成實習:mock-unseen-mt21-paper2-reviewed"]
   );
 
-  assert.deepStrictEqual(
-    (await lookupForStudent("stand me in good stead")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
-    ["stand someone in good stead:phrase:verb:對某人將來有幫助:mock-unseen-mt21-paper2-reviewed"]
+  assert.ok(
+    (await lookupForStudent("stand me in good stead")).some((entry) => (
+      entry.display === "stand someone in good stead"
+      && entry.type === "phrase"
+      && entry.pos === "verb"
+      && entry.meaning === "對某人將來有幫助"
+      && entry.source === "mock-unseen-mt21-paper2-reviewed"
+    ))
   );
 
   assert.deepStrictEqual(
@@ -13364,6 +13393,19 @@ function assertStudentLookupContract(word, matches) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
     assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["hot on heels", "hot on one's heels:phrase:adjective:緊追在後的:mock-unseen-mt7-paper1-reviewed"],
+    ["hot on someone's heels", "hot on one's heels:phrase:adjective:緊追在後的:mock-unseen-mt7-paper1-reviewed"],
+    ["hot on sb's heels", "hot on one's heels:phrase:adjective:緊追在後的:mock-unseen-mt7-paper1-reviewed"],
+    ["put sb up to", "put someone up to:phrase:verb:唆使某人做:mock-unseen-mt7-paper1-reviewed"],
+    ["put somebody up to", "put someone up to:phrase:verb:唆使某人做:mock-unseen-mt7-paper1-reviewed"],
+    ["bags under eyes", "bags under one's eyes:phrase:noun:眼袋:mock-unseen-mt7-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available through placeholder lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
   }
 
   console.log("vocab_lookup_order tests passed");

@@ -58,14 +58,24 @@
   }
 
   function dedupeVisibleLabels(matches = [], options = {}) {
-    const seen = new Set();
+    const kept = [];
     return matches.filter((entry) => {
       const key = [
-        getEntryPos(entry, options),
-        getMeaningGroupKey(entry, options)
+        getEntryPos(entry, options)
       ].join("|");
-      if (seen.has(key)) return false;
-      seen.add(key);
+      const entryParts = new Set(entryMeaningParts(entry, options));
+      const isCovered = kept.some((keptEntry) => {
+        const keptKey = [
+          getEntryPos(keptEntry, options)
+        ].join("|");
+        if (keptKey !== key) return false;
+        const keptParts = new Set(entryMeaningParts(keptEntry, options));
+        if (!entryParts.size || !keptParts.size) return getMeaningGroupKey(keptEntry, options) === getMeaningGroupKey(entry, options);
+        return Array.from(entryParts).every((part) => keptParts.has(part))
+          || Array.from(keptParts).every((part) => entryParts.has(part));
+      });
+      if (isCovered) return false;
+      kept.push(entry);
       return true;
     });
   }

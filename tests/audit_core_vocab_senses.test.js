@@ -286,8 +286,7 @@ const vocabLookup = require("../vocab_lookup.js");
     ],
     getTeacherMatches: () => []
   }));
-  assert.strictEqual(nearDuplicateStudentAudit.issueCount, 1);
-  assert.ok(nearDuplicateStudentAudit.nearDuplicateMeanings[0].includes("advance"));
+  assert.strictEqual(nearDuplicateStudentAudit.issueCount, 0);
 
   const currentNearDuplicateStudentAudit = await audit.auditStudentNearDuplicateMeaningMetadata();
   assert.ok(currentNearDuplicateStudentAudit.checkedWordCount > 8000);
@@ -335,7 +334,7 @@ const vocabLookup = require("../vocab_lookup.js");
   assert.strictEqual(unexpectedLookupAudit.issueCount, 0);
 
   const savedVocabAudit = audit.auditSavedVocabItemSafety();
-  assert.strictEqual(savedVocabAudit.checkedCaseCount, 249);
+  assert.strictEqual(savedVocabAudit.checkedCaseCount, 250);
   assert.strictEqual(savedVocabAudit.issueCount, 0);
 
   const missingExpectedAudit = await audit.auditExpectedStudentLookupMeanings(

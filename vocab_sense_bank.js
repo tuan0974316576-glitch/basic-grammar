@@ -15706,6 +15706,96 @@
     ["artefact analysis", "noun", "文物分析", { type: "phrase", level: "C1", overrideTeacher: true, aliases: ["artifact analysis"] }],
     ["trade route map", "noun", "貿易路線圖", { type: "phrase", level: "B2", overrideTeacher: true, aliases: ["trade route maps"] }],
 
+    // Reviewed from Unseen Graded Mock Test F6 MT7 Paper 1: shoplifting story, Hong Kong typhoon history, War of the Worlds extract, and Mars rovers article.
+    ["storm towards", "verb", "怒氣沖沖地走向 / 衝向", { type: "phrase", level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["storms towards", "stormed towards", "storming towards", "storm toward", "storms toward", "stormed toward", "storming toward"] }],
+    ["take off after", "verb", "追著...跑 / 追趕", { type: "phrase", level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["takes off after", "took off after", "taking off after"] }],
+    ["gazelle", "noun", "羚羊", { level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["gazelles"] }],
+    ["pursuer", "noun", "追趕者 / 追捕者", { level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["pursuers"] }],
+    ["dart around", "verb", "快速穿梭 / 閃來閃去", { type: "phrase", level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["darts around", "darted around", "darting around"] }],
+    ["flawless agility", "noun", "完美的敏捷身手", { type: "phrase", level: "C1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed" }],
+    ["plough through", "verb", "用力穿過 / 衝過", { type: "phrase", level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["plow through", "ploughs through", "ploughed through", "ploughing through", "plowed through"] }],
+    ["stay the course", "verb", "堅持到底 / 不放棄", { type: "phrase", level: "C1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed" }],
+    ["hot on one's heels", "adjective", "緊追在後的", { type: "phrase", level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["hot on her heels", "hot on his heels", "hot on their heels", "hot on my heels", "hot on your heels"] }],
+    ["duck inside", "verb", "迅速閃入 / 低頭鑽入", { type: "phrase", level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["ducks inside", "ducked inside", "ducking inside"] }],
+    ["put someone up to", "verb", "唆使某人做", { type: "phrase", level: "C1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["put her up to", "put him up to", "put them up to", "puts someone up to", "putting someone up to"] }],
+    ["prove oneself", "verb", "證明自己的能力 / 證明自己", { type: "phrase", level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["prove herself", "prove himself", "prove themselves", "proved herself", "proving herself"] }],
+    ["peek out", "verb", "偷看出去 / 探頭看", { type: "phrase", level: "B1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["peeks out", "peeked out", "peeking out"] }],
+    ["flushed", "adjective", "臉紅的 / 漲紅的", { level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed" }],
+    ["dressed to the nines", "adjective", "衣著非常講究的 / 打扮得很漂亮的", { type: "phrase", level: "C1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed" }],
+    ["cost a fortune", "verb", "非常昂貴 / 花很多錢", { type: "phrase", level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["costs a fortune", "costing a fortune"] }],
+    ["slip on", "verb", "迅速穿上 / 套上", { type: "phrase", level: "B1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["slips on", "slipped on", "slipping on"] }],
+    ["shimmering", "adjective", "閃閃發亮的 / 微微閃爍的", { level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed" }],
+    ["bags under one's eyes", "noun", "眼袋", { type: "phrase", level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["bags under her eyes", "bags under his eyes", "bags under my eyes", "bags under your eyes"] }],
+    ["crooked", "adjective", "歪斜的 / 不正的", { level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed" }],
+    ["clothed in", "adjective", "穿著...的", { type: "phrase", level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed" }],
+    ["dejectedly", "adverb", "沮喪地 / 垂頭喪氣地", { level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed" }],
+    ["chicken out", "verb", "臨陣退縮 / 因害怕而放棄", { type: "phrase", level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["chickens out", "chickened out", "chickening out"] }],
+    ["look like one has seen a ghost", "verb", "看起來像見鬼一樣 / 大驚失色", { type: "phrase", level: "C1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["looked like he had seen a ghost", "looks like she has seen a ghost", "looks like he has seen a ghost"] }],
+    ["be true to oneself", "verb", "忠於自己 / 做真正的自己", { type: "phrase", level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["being true to herself", "be true to yourself", "be true to himself", "be true to herself"] }],
+    ["longingly", "adverb", "渴望地 / 盼望地", { level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed" }],
+    ["ocean swell", "noun", "海湧 / 海面長浪", { type: "phrase", level: "C1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["ocean swells"] }],
+    ["junk", "noun", "中式帆船 / 戎克船", { level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["junks"] }],
+    ["houseboat", "noun", "水上住家船 / 船屋", { level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["houseboats"] }],
+    ["slam against", "verb", "猛烈撞向", { type: "phrase", level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["slams against", "slammed against", "slamming against"] }],
+    ["typhoon intensity", "noun", "颱風強度", { type: "phrase", level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed" }],
+    ["super typhoon", "noun", "超強颱風", { type: "phrase", level: "B1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["super typhoons"] }],
+    ["recorded history", "noun", "有記錄以來的歷史", { type: "phrase", level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed" }],
+    ["grave occurrence", "noun", "嚴重事件", { type: "phrase", level: "C1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["grave occurrences"] }],
+    ["warning system", "noun", "警告系統 / 預警系統", { type: "phrase", level: "B1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["warning systems"] }],
+    ["tracking ability", "noun", "追蹤能力", { type: "phrase", level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["tracking abilities"] }],
+    ["signal station", "noun", "信號站", { type: "phrase", level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["signal stations"] }],
+    ["call-in telephone system", "noun", "電話查詢系統", { type: "phrase", level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["call in telephone system"] }],
+    ["plastic pellet", "noun", "塑膠粒", { type: "phrase", level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["plastic pellets"] }],
+    ["absorb toxin", "verb", "吸收毒素", { type: "phrase", level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["absorb toxins", "absorbs toxins", "absorbed toxins", "absorbing toxins"] }],
+    ["widespread panic", "noun", "大範圍恐慌 / 廣泛恐慌", { type: "phrase", level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed" }],
+    ["revolve", "verb", "圍繞...運行 / 旋轉", { level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["revolves", "revolved", "revolving"] }],
+    ["nebular hypothesis", "noun", "星雲假說", { type: "phrase", level: "C1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed" }],
+    ["molten", "adjective", "熔化的 / 熔融的", { level: "C1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed" }],
+    ["animated existence", "noun", "有生命的存在 / 生物存在", { type: "phrase", level: "C1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed" }],
+    ["vain", "adjective", "自負的 / 虛榮的", { level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed" }],
+    ["vanity", "noun", "自負 / 虛榮", { level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed" }],
+    ["equatorial", "adjective", "赤道的 / 赤道附近的", { level: "C1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed" }],
+    ["attenuated", "adjective", "稀薄的 / 變薄的", { level: "C1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed" }],
+    ["snowcap", "noun", "雪冠 / 山頂積雪", { level: "C1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["snowcaps"] }],
+    ["temperate zone", "noun", "溫帶地區", { type: "phrase", level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["temperate zones"] }],
+    ["intellect", "noun", "智力 / 理智", { level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["intellects"] }],
+    ["South Pole", "noun", "南極點", { type: "phrase", level: "B1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", display: "South Pole", aliases: ["south pole"] }],
+    ["Apollo 11", "noun", "阿波羅 11 號", { type: "phrase", level: "B1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", display: "Apollo 11" }],
+    ["rover", "noun", "探測車 / 巡視器", { level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["rovers"] }],
+    ["automated motor vehicle", "noun", "自動化機動車輛", { type: "phrase", level: "C1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["automated motor vehicles"] }],
+    ["stationary lander", "noun", "固定式著陸器", { type: "phrase", level: "C1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["stationary landers"] }],
+    ["unmanned space probe", "noun", "無人太空探測器", { type: "phrase", level: "C1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["unmanned space probes"] }],
+    ["USSR", "noun", "蘇聯", { level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", display: "USSR", aliases: ["ussr"] }],
+    ["ahead of the pack", "adjective", "領先其他人的 / 處於領先地位的", { type: "phrase", level: "C1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed" }],
+    ["orbiter", "noun", "軌道飛行器", { level: "C1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["orbiters"] }],
+    ["magnetic field", "noun", "磁場", { type: "phrase", level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["magnetic fields"] }],
+    ["take up the reins", "verb", "接手 / 接掌主導", { type: "phrase", level: "C1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["took up the reins", "takes up the reins", "taking up the reins"] }],
+    ["in operation", "adjective", "運作中的 / 使用中的", { type: "phrase", level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed" }],
+    ["organic compound", "noun", "有機化合物", { type: "phrase", level: "C1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["organic compounds"] }],
+    ["Red Planet", "noun", "紅色星球 / 火星", { type: "phrase", level: "B1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", display: "Red Planet", aliases: ["red planet"] }],
+    ["sol", "noun", "火星日", { level: "C1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["sols"] }],
+    ["immobile", "adjective", "不能移動的 / 固定不動的", { level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed" }],
+    ["science platform", "noun", "科學平台 / 科研平台", { type: "phrase", level: "C1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed" }],
+    ["physical make-up", "noun", "物理組成 / 實體構成", { type: "phrase", level: "C1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["physical makeup"] }],
+    ["rolled into one", "adjective", "合而為一的 / 集於一身的", { type: "phrase", level: "C1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed" }],
+    ["run out of batteries", "verb", "電池耗盡 / 沒電", { type: "phrase", level: "B1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["runs out of batteries", "ran out of batteries", "running out of batteries"] }],
+    ["precursor", "noun", "前身 / 先決條件", { level: "C1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["precursors"] }],
+    ["biological material", "noun", "生物物質 / 生物材料", { type: "phrase", level: "C1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed" }],
+    ["water ice", "noun", "水冰", { type: "phrase", level: "C1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed" }],
+    ["sublimate", "verb", "昇華 / 由固體直接變成氣體", { level: "C1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["sublimates", "sublimated", "sublimating"] }],
+    ["gaseous", "adjective", "氣態的", { level: "C1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed" }],
+    ["atmospheric condition", "noun", "大氣條件 / 大氣狀況", { type: "phrase", level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["atmospheric conditions"] }],
+    ["habitable zone", "noun", "宜居區 / 可居住區域", { type: "phrase", level: "C1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["habitable zones"] }],
+    ["Gale Crater", "noun", "蓋爾隕石坑", { type: "phrase", level: "C1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", display: "Gale Crater", aliases: ["gale crater"] }],
+    ["Mars Science Laboratory", "noun", "火星科學實驗室", { type: "phrase", level: "C1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", display: "Mars Science Laboratory", aliases: ["mars science laboratory"] }],
+    ["stereo system", "noun", "立體攝影系統 / 立體聲系統", { type: "phrase", level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["stereo systems"] }],
+    ["mast", "noun", "桅杆 / 支架", { level: "C1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["masts"] }],
+    ["geology", "noun", "地質學 / 地質", { level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed" }],
+    ["radiation exposure", "noun", "輻射暴露 / 接觸輻射", { type: "phrase", level: "C1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed" }],
+    ["earthly problem", "noun", "地球上的問題 / 現實問題", { type: "phrase", level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["earthly problems"] }],
+    ["stunning image", "noun", "令人驚嘆的影像 / 震撼圖片", { type: "phrase", level: "B2", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed", aliases: ["stunning images"] }],
+    ["illustrious history", "noun", "輝煌歷史", { type: "phrase", level: "C1", overrideTeacher: true, source: "mock-unseen-mt7-paper1-reviewed" }],
+
     // Reviewed from Unseen Graded Mock Test F4 MT77 Paper 1: passages, questions, options, and answer key.
     ["yi mein", "noun", "伊麵 / 長壽麵", { type: "phrase", level: "B1", overrideTeacher: true, source: "mock-unseen-mt77-paper1-reviewed" }],
     ["longevity noodle", "noun", "長壽麵", { type: "phrase", level: "B1", overrideTeacher: true, source: "mock-unseen-mt77-paper1-reviewed", aliases: ["longevity noodles"] }],
@@ -31521,6 +31611,55 @@
     ));
   }
 
+  function cleanGeneratedLookupKey(value) {
+    return normalizeWord(value).replace(/\s+/g, " ").trim();
+  }
+
+  function expandLookupPattern(keys, pattern, replacements, limit = 300) {
+    const next = new Set(keys);
+    keys.forEach((key) => {
+      replacements.forEach((replacement) => {
+        const expanded = cleanGeneratedLookupKey(key.replace(pattern, replacement));
+        if (expanded) next.add(expanded);
+      });
+    });
+    return Array.from(next).slice(0, limit);
+  }
+
+  function generatePlaceholderLookupKeys(key) {
+    let keys = [cleanGeneratedLookupKey(key)].filter(Boolean);
+    if (!keys.length) return [];
+    if (!keys[0].includes(" ")) return keys;
+
+    keys = expandLookupPattern(
+      keys,
+      /(^|\s)(someone|somebody|sb)(?=\s|$)/g,
+      ["$1someone", "$1somebody", "$1sb", "$1me", "$1you", "$1him", "$1her", "$1us", "$1them"]
+    );
+    keys = expandLookupPattern(
+      keys,
+      /(^|\s)(someone's|somebody's|sb's)(?=\s|$)/g,
+      ["$1someone's", "$1somebody's", "$1sb's", "$1my", "$1your", "$1his", "$1her", "$1its", "$1our", "$1their", "$1"]
+    );
+    keys = expandLookupPattern(
+      keys,
+      /(^|\s)one's(?=\s|$)/g,
+      ["$1one's", "$1someone's", "$1somebody's", "$1sb's", "$1my", "$1your", "$1his", "$1her", "$1its", "$1our", "$1their", "$1"]
+    );
+    keys = expandLookupPattern(
+      keys,
+      /(^|\s)(something|sth)(?=\s|$)/g,
+      ["$1something", "$1sth"]
+    );
+    keys = expandLookupPattern(
+      keys,
+      /(^|\s)oneself(?=\s|$)/g,
+      ["$1oneself", "$1myself", "$1yourself", "$1himself", "$1herself", "$1itself", "$1ourselves", "$1themselves"]
+    );
+
+    return Array.from(new Set(keys.map(cleanGeneratedLookupKey).filter(Boolean)));
+  }
+
   function inferType(word, explicitType = "") {
     const type = String(explicitType || "").trim().toLowerCase();
     if (type === "phrase" || type === "pattern" || type === "word") return type;
@@ -31575,9 +31714,13 @@
   const byWord = new Map();
 
   entries.forEach((entry) => {
-    Array.from(new Set([entry.word, ...entry.aliases])).forEach((key) => {
+    const lookupKeys = new Set();
+    [entry.word, ...entry.aliases].forEach((key) => {
+      generatePlaceholderLookupKeys(key).forEach((expandedKey) => lookupKeys.add(expandedKey));
+    });
+    lookupKeys.forEach((key) => {
       if (!byWord.has(key)) byWord.set(key, []);
-      byWord.get(key).push(entry);
+      if (!byWord.get(key).includes(entry)) byWord.get(key).push(entry);
     });
   });
 
@@ -31585,7 +31728,12 @@
     const key = normalizeWord(word);
     const limit = Number(options.limit) || 12;
     if (!key) return [];
-    return (byWord.get(key) || [])
+    return [...(byWord.get(key) || [])]
+      .sort((left, right) => {
+        const leftDirect = left.word === key || left.aliases.includes(key) ? 0 : 1;
+        const rightDirect = right.word === key || right.aliases.includes(key) ? 0 : 1;
+        return leftDirect - rightDirect;
+      })
       .filter((entry) => options.includeHidden || !entry.hidden)
       .slice(0, limit);
   }
@@ -31593,6 +31741,7 @@
   return {
     entries,
     lookup,
+    generatePlaceholderLookupKeys,
     normalizeMeaning,
     normalizePos,
     normalizeWord
