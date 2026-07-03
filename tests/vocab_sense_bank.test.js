@@ -198,6 +198,8 @@ const mt72Paper4Entries = senseBank.entries.filter((entry) => entry.source === "
 assert.ok(mt72Paper4Entries.length >= 23, `Expected MT72 Paper 4 reviewed entries, got ${mt72Paper4Entries.length}`);
 const mt73Paper4Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt73-paper4-reviewed");
 assert.ok(mt73Paper4Entries.length >= 26, `Expected MT73 Paper 4 reviewed entries, got ${mt73Paper4Entries.length}`);
+const mt75Paper4Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt75-paper4-reviewed");
+assert.ok(mt75Paper4Entries.length >= 26, `Expected MT75 Paper 4 reviewed entries, got ${mt75Paper4Entries.length}`);
 const mt68Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt68-paper3-reviewed");
 assert.ok(mt68Paper3Entries.length >= 50, `Expected MT68 Paper 3 reviewed entries, got ${mt68Paper3Entries.length}`);
 const mt62Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt62-paper3-reviewed");
@@ -8132,6 +8134,34 @@ mt73Paper4ReviewedExpectations.forEach(([word, pos, meaning]) => {
     candidate.pos === pos && candidate.meaning === meaning
   ));
   assert.ok(entry, `${word} should include MT73 Paper 4 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt75Paper4ReviewedExpectations = [
+  ["viral online challenges", "noun", "網上瘋傳挑戰 / viral 網上挑戰"],
+  ["putting out a warning", "verb", "發出警告"],
+  ["Blackout challenge", "noun", "昏迷挑戰 / Blackout 挑戰"],
+  ["rose to popularity", "verb", "開始流行 / 變得受歡迎"],
+  ["speedboats", "noun", "快艇"],
+  ["baijiu", "noun", "白酒 / 中國烈酒"],
+  ["awareness campaigns", "noun", "提高意識的宣傳活動"],
+  ["gaining a following", "verb", "吸引追隨者 / 累積粉絲"],
+  ["feel like they belong", "verb", "感到有歸屬感"],
+  ["assessing risk", "verb", "評估風險"],
+  ["lifelong damage", "noun", "終身傷害 / 長遠傷害"],
+  ["on second thought", "adverb", "再想一想後 / 改變主意後"],
+  ["middle ground", "noun", "中間立場 / 折衷方案"],
+  ["giving in to peer pressure", "verb", "屈服於朋輩壓力"],
+  ["check in with themselves", "verb", "留意自己的感受 / 問問自己"],
+  ["putting their lives at risk", "verb", "令自己生命有危險"],
+  ["overprotection", "noun", "過度保護"],
+  ["leaving room for questions", "verb", "留出提問空間 / 容許發問"]
+];
+
+mt75Paper4ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT75 Paper 4 reviewed sense ${pos}:${meaning}`);
 });
 
 const mt35Paper3ReviewedExpectations = [

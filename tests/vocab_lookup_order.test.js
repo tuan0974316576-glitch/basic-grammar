@@ -195,6 +195,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt71-paper4-reviewed",
     "mock-unseen-mt72-paper4-reviewed",
     "mock-unseen-mt73-paper4-reviewed",
+    "mock-unseen-mt75-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -12106,6 +12107,37 @@ function assertStudentLookupContract(word, matches) {
     (await lookupForStudent("impersonated")).some((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}` === "word:verb:冒充 / 假扮:mock-unseen-mt73-paper4-reviewed"),
     "impersonated should include MT73 account-impersonation sense alongside existing performance/mimic sense"
   );
+
+  for (const [word, expected] of [
+    ["viral online challenges", "phrase:noun:網上瘋傳挑戰 / viral 網上挑戰:mock-unseen-mt75-paper4-reviewed"],
+    ["Hong Kong Parents Advisory Council", "phrase:noun:香港家長諮詢會:mock-unseen-mt75-paper4-reviewed"],
+    ["putting out a warning", "phrase:verb:發出警告:mock-unseen-mt75-paper4-reviewed"],
+    ["Pass out challenge", "phrase:noun:昏倒挑戰 / Pass-out 挑戰:mock-unseen-mt75-paper4-reviewed"],
+    ["rose to popularity", "phrase:verb:開始流行 / 變得受歡迎:mock-unseen-mt75-paper4-reviewed"],
+    ["search terms", "phrase:noun:搜尋詞 / 搜尋字眼:mock-unseen-mt75-paper4-reviewed"],
+    ["speedboats", "phrase:noun:快艇:mock-unseen-mt75-paper4-reviewed"],
+    ["broken necks", "phrase:noun:頸部骨折:mock-unseen-mt75-paper4-reviewed"],
+    ["baijiu", "word:noun:白酒 / 中國烈酒:mock-unseen-mt75-paper4-reviewed"],
+    ["emergency treatment", "phrase:noun:緊急治療:mock-unseen-mt75-paper4-reviewed"],
+    ["awareness campaigns", "phrase:noun:提高意識的宣傳活動:mock-unseen-mt75-paper4-reviewed"],
+    ["gained a following", "phrase:verb:吸引追隨者 / 累積粉絲:mock-unseen-mt75-paper4-reviewed"],
+    ["feel like they belong", "phrase:verb:感到有歸屬感:mock-unseen-mt75-paper4-reviewed"],
+    ["assessing risk", "phrase:verb:評估風險:mock-unseen-mt75-paper4-reviewed"],
+    ["life-long damage", "phrase:noun:終身傷害 / 長遠傷害:mock-unseen-mt75-paper4-reviewed"],
+    ["on second thoughts", "phrase:adverb:再想一想後 / 改變主意後:mock-unseen-mt75-paper4-reviewed"],
+    ["middle ground", "phrase:noun:中間立場 / 折衷方案:mock-unseen-mt75-paper4-reviewed"],
+    ["gave in to peer pressure", "phrase:verb:屈服於朋輩壓力:mock-unseen-mt75-paper4-reviewed"],
+    ["check in with themselves", "phrase:verb:留意自己的感受 / 問問自己:mock-unseen-mt75-paper4-reviewed"],
+    ["putting their lives at risk", "phrase:verb:令自己生命有危險:mock-unseen-mt75-paper4-reviewed"],
+    ["morning announcements", "phrase:noun:早會宣布 / 早上廣播:mock-unseen-mt75-paper4-reviewed"],
+    ["restrictive", "word:adjective:限制多的 / 管束嚴的:mock-unseen-mt75-paper4-reviewed"],
+    ["overprotection", "word:noun:過度保護:mock-unseen-mt75-paper4-reviewed"],
+    ["leaving room for questions", "phrase:verb:留出提問空間 / 容許發問:mock-unseen-mt75-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
 
   for (const [word, expected] of [
     ["cajon", "word:noun:木箱鼓:mock-unseen-mt85-paper3-reviewed"],
