@@ -172,6 +172,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt24-paper4-reviewed",
     "mock-unseen-mt26-paper4-reviewed",
     "mock-unseen-mt28-paper4-reviewed",
+    "mock-unseen-mt29-paper4-reviewed",
     "mock-unseen-mt15-paper4-reviewed",
     "mock-unseen-mt17-paper4-reviewed",
     "mock-unseen-mt20-paper4-reviewed",
@@ -12721,6 +12722,34 @@ function assertStudentLookupContract(word, matches) {
       entries.some((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}` === "phrase:verb:派發 / 分發:mock-unseen-mt28-paper4-reviewed"),
       "giving out should include the MT28 distribution sense"
     );
+  }
+
+  for (const [word, expected] of [
+    ["entering the job market", "phrase:verb:進入就業市場:mock-unseen-mt29-paper4-reviewed"],
+    ["university halls", "phrase:noun:大學宿舍:mock-unseen-mt29-paper4-reviewed"],
+    ["renting a flat", "phrase:verb:租一個單位 / 租樓:mock-unseen-mt29-paper4-reviewed"],
+    ["moving out", "phrase:verb:搬出去住 / 搬離家:mock-unseen-mt29-paper4-reviewed"],
+    ["moved back in", "phrase:verb:搬回去住:mock-unseen-mt29-paper4-reviewed"],
+    ["housing minister", "phrase:noun:房屋部長 / 房屋政策官員:mock-unseen-mt29-paper4-reviewed"],
+    ["there's no way", "phrase:adverb:沒有可能 / 絕不可能:mock-unseen-mt29-paper4-reviewed"],
+    ["fresh university graduates", "phrase:noun:大學應屆畢業生:mock-unseen-mt29-paper4-reviewed"],
+    ["at minimum", "phrase:adverb:最低限度 / 至少:mock-unseen-mt29-paper4-reviewed"],
+    ["monthly salaries", "phrase:noun:月薪:mock-unseen-mt29-paper4-reviewed"],
+    ["leaving the nest", "phrase:verb:離家獨立生活:mock-unseen-mt29-paper4-reviewed"],
+    ["become your own person", "phrase:verb:成為獨立自主的人:mock-unseen-mt29-paper4-reviewed"],
+    ["standing on your own two feet", "phrase:verb:自立 / 獨立生活:mock-unseen-mt29-paper4-reviewed"],
+    ["flatmates", "word:noun:同屋住的人 / 合租室友:mock-unseen-mt29-paper4-reviewed"],
+    ["in the short term", "phrase:adverb:短期內 / 從短期來看:mock-unseen-mt29-paper4-reviewed"],
+    ["living arrangements", "phrase:noun:居住安排:mock-unseen-mt29-paper4-reviewed"],
+    ["rent control", "phrase:noun:租金管制:mock-unseen-mt29-paper4-reviewed"],
+    ["British Columbia", "phrase:noun:卑詩省 / 不列顛哥倫比亞省:mock-unseen-mt29-paper4-reviewed"],
+    ["Vancouver Island", "phrase:noun:溫哥華島:mock-unseen-mt29-paper4-reviewed"],
+    ["went to plan", "phrase:verb:按計劃進行:mock-unseen-mt29-paper4-reviewed"],
+    ["is dying to", "phrase:verb:非常想 / 迫不及待想:mock-unseen-mt29-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
   }
 
   for (const [word, expected] of [
