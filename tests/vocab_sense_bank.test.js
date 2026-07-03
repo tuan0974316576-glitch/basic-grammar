@@ -152,6 +152,8 @@ const mt30Paper4Entries = senseBank.entries.filter((entry) => entry.source === "
 assert.ok(mt30Paper4Entries.length >= 36, `Expected MT30 Paper 4 reviewed entries, got ${mt30Paper4Entries.length}`);
 const mt32Paper4Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt32-paper4-reviewed");
 assert.ok(mt32Paper4Entries.length >= 25, `Expected MT32 Paper 4 reviewed entries, got ${mt32Paper4Entries.length}`);
+const mt33Paper4Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt33-paper4-reviewed");
+assert.ok(mt33Paper4Entries.length >= 29, `Expected MT33 Paper 4 reviewed entries, got ${mt33Paper4Entries.length}`);
 const mt35Paper4Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt35-paper4-reviewed");
 assert.ok(mt35Paper4Entries.length >= 31, `Expected MT35 Paper 4 reviewed entries, got ${mt35Paper4Entries.length}`);
 const mt38Paper4Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt38-paper4-reviewed");
@@ -2781,7 +2783,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("minor").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["adjective:次要的 / 輕微的"]
+  ["adjective:次要的 / 輕微的", "noun:未成年人"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("motive").map((entry) => `${entry.pos}:${entry.meaning}`),

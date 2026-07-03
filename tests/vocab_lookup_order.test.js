@@ -174,6 +174,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt28-paper4-reviewed",
     "mock-unseen-mt29-paper4-reviewed",
     "mock-unseen-mt31-paper4-reviewed",
+    "mock-unseen-mt33-paper4-reviewed",
     "mock-unseen-mt15-paper4-reviewed",
     "mock-unseen-mt17-paper4-reviewed",
     "mock-unseen-mt20-paper4-reviewed",
@@ -7938,7 +7939,10 @@ function assertStudentLookupContract(word, matches) {
 
   assert.deepStrictEqual(
     (await lookupForStudent("minor")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
-    ["adjective:次要的 / 輕微的:curated-sense-bank"]
+    [
+      "adjective:次要的 / 輕微的:curated-sense-bank",
+      "noun:未成年人:mock-unseen-mt33-paper4-reviewed"
+    ]
   );
 
   assert.deepStrictEqual(
@@ -11720,6 +11724,25 @@ function assertStudentLookupContract(word, matches) {
     ["take care of ourselves", "phrase:verb:照顧自己:mock-unseen-mt32-paper4-reviewed"],
     ["on her own", "phrase:adverb:獨自地 / 靠自己:mock-unseen-mt32-paper4-reviewed"],
     ["volunteering program", "phrase:noun:義工計劃:mock-unseen-mt32-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["workplace experience scheme", "phrase:noun:職場體驗計劃:mock-unseen-mt33-paper4-reviewed"],
+    ["fire stations", "phrase:noun:消防局:mock-unseen-mt33-paper4-reviewed"],
+    ["filing invoices", "phrase:verb:整理 / 歸檔發票:mock-unseen-mt33-paper4-reviewed"],
+    ["take the mystery out of", "phrase:verb:令...不再神秘 / 使...更易明白:mock-unseen-mt33-paper4-reviewed"],
+    ["underage", "word:adjective:未成年的 / 未達法定年齡的:mock-unseen-mt33-paper4-reviewed"],
+    ["minors", "word:noun:未成年人:mock-unseen-mt33-paper4-reviewed"],
+    ["free labour", "phrase:noun:免費勞工 / 無償勞動:mock-unseen-mt33-paper4-reviewed"],
+    ["flip side", "phrase:noun:另一面 / 反面:mock-unseen-mt33-paper4-reviewed"],
+    ["chalked up", "phrase:verb:累積 / 取得:mock-unseen-mt33-paper4-reviewed"],
+    ["batteries recharged", "phrase:verb:恢復精力 / 充電:mock-unseen-mt33-paper4-reviewed"],
+    ["go through my head", "phrase:verb:在某人腦海中掠過 / 想著:mock-unseen-mt33-paper4-reviewed"],
+    ["get settled in", "phrase:verb:安頓下來 / 適應新環境:mock-unseen-mt33-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
