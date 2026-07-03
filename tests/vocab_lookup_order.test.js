@@ -180,6 +180,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt37-paper4-reviewed",
     "mock-unseen-mt39-paper4-reviewed",
     "mock-unseen-mt40-paper4-reviewed",
+    "mock-unseen-mt41-paper4-reviewed",
     "mock-unseen-mt15-paper4-reviewed",
     "mock-unseen-mt17-paper4-reviewed",
     "mock-unseen-mt20-paper4-reviewed",
@@ -11843,6 +11844,23 @@ function assertStudentLookupContract(word, matches) {
     ["in our lifetime", "phrase:adverb:在某人有生之年:mock-unseen-mt40-paper4-reviewed"],
     ["militarisation", "word:noun:軍事化:mock-unseen-mt40-paper4-reviewed"],
     ["international endeavor", "phrase:noun:國際合作努力 / 國際事業:mock-unseen-mt40-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["cancel culture", "phrase:noun:取消文化 / 網絡封殺文化:mock-unseen-mt41-paper4-reviewed"],
+    ["cancelled someone", "phrase:verb:封殺某人 / 抵制某人:mock-unseen-mt41-paper4-reviewed"],
+    ["go off the air", "phrase:verb:停播 / 不再播放:mock-unseen-mt41-paper4-reviewed"],
+    ["take issue with", "phrase:verb:對...有異議 / 不同意:mock-unseen-mt41-paper4-reviewed"],
+    ["free speech", "phrase:noun:言論自由:mock-unseen-mt41-paper4-reviewed"],
+    ["hold somebody accountable", "phrase:verb:追究某人責任 / 要某人負責:mock-unseen-mt41-paper4-reviewed"],
+    ["self censorship", "phrase:noun:自我審查:mock-unseen-mt41-paper4-reviewed"],
+    ["death threats", "phrase:noun:死亡威脅:mock-unseen-mt41-paper4-reviewed"],
+    ["inciting violence", "phrase:verb:煽動暴力:mock-unseen-mt41-paper4-reviewed"],
+    ["out in the open", "phrase:adverb:公開地 / 攤開來:mock-unseen-mt41-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
