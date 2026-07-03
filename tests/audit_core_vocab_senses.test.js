@@ -335,7 +335,7 @@ const vocabLookup = require("../vocab_lookup.js");
   assert.strictEqual(unexpectedLookupAudit.issueCount, 0);
 
   const savedVocabAudit = audit.auditSavedVocabItemSafety();
-  assert.strictEqual(savedVocabAudit.checkedCaseCount, 244);
+  assert.strictEqual(savedVocabAudit.checkedCaseCount, 245);
   assert.strictEqual(savedVocabAudit.issueCount, 0);
 
   const missingExpectedAudit = await audit.auditExpectedStudentLookupMeanings(

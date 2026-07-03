@@ -183,6 +183,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt41-paper4-reviewed",
     "mock-unseen-mt43-paper4-reviewed",
     "mock-unseen-mt44-paper4-reviewed",
+    "mock-unseen-mt46-paper4-reviewed",
     "mock-unseen-mt15-paper4-reviewed",
     "mock-unseen-mt17-paper4-reviewed",
     "mock-unseen-mt20-paper4-reviewed",
@@ -11898,6 +11899,23 @@ function assertStudentLookupContract(word, matches) {
     ["pay it off", "phrase:verb:還清貸款 / 清還債務:mock-unseen-mt44-paper4-reviewed"],
     ["take a big chunk out of", "phrase:verb:大幅削減 / 佔去一大部分:mock-unseen-mt44-paper4-reviewed"],
     ["save every penny", "phrase:verb:每一分錢都儲起 / 極度節省:mock-unseen-mt44-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["social media free", "phrase:adjective:不使用社交媒體的 / 無社交媒體的:mock-unseen-mt46-paper4-reviewed"],
+    ["likes", "word:noun:讚好 / like:mock-unseen-mt46-paper4-reviewed"],
+    ["classic signs", "phrase:noun:典型跡象:mock-unseen-mt46-paper4-reviewed"],
+    ["social media overuse", "phrase:noun:過度使用社交媒體:mock-unseen-mt46-paper4-reviewed"],
+    ["got caught up in", "phrase:verb:沉迷於 / 被...牽住:mock-unseen-mt46-paper4-reviewed"],
+    ["social media feeds", "phrase:noun:社交媒體動態 / 社交媒體資訊流:mock-unseen-mt46-paper4-reviewed"],
+    ["compare ourselves to", "phrase:verb:把自己與...比較:mock-unseen-mt46-paper4-reviewed"],
+    ["set a better tone", "phrase:verb:定下基調 / 影響氣氛:mock-unseen-mt46-paper4-reviewed"],
+    ["check phones at the door", "phrase:verb:入場時交出手機:mock-unseen-mt46-paper4-reviewed"],
+    ["retreat further into", "phrase:verb:退縮到 / 躲進:mock-unseen-mt46-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
