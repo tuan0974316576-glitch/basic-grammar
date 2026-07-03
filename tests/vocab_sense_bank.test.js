@@ -202,6 +202,8 @@ const mt75Paper4Entries = senseBank.entries.filter((entry) => entry.source === "
 assert.ok(mt75Paper4Entries.length >= 26, `Expected MT75 Paper 4 reviewed entries, got ${mt75Paper4Entries.length}`);
 const mt78Paper4Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt78-paper4-reviewed");
 assert.ok(mt78Paper4Entries.length >= 27, `Expected MT78 Paper 4 reviewed entries, got ${mt78Paper4Entries.length}`);
+const mt79Paper4Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt79-paper4-reviewed");
+assert.ok(mt79Paper4Entries.length >= 26, `Expected MT79 Paper 4 reviewed entries, got ${mt79Paper4Entries.length}`);
 const mt68Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt68-paper3-reviewed");
 assert.ok(mt68Paper3Entries.length >= 50, `Expected MT68 Paper 3 reviewed entries, got ${mt68Paper3Entries.length}`);
 const mt62Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt62-paper3-reviewed");
@@ -8189,6 +8191,31 @@ mt78Paper4ReviewedExpectations.forEach(([word, pos, meaning]) => {
     candidate.pos === pos && candidate.meaning === meaning
   ));
   assert.ok(entry, `${word} should include MT78 Paper 4 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt79Paper4ReviewedExpectations = [
+  ["broke a vow", "verb", "違背誓言 / 打破承諾"],
+  ["cooperative board games", "noun", "合作式桌上遊戲"],
+  ["around the world race", "noun", "環遊世界比賽"],
+  ["racing drivers", "noun", "賽車手"],
+  ["drawing cards", "verb", "抽卡 / 抽牌"],
+  ["has a bearing on", "verb", "對...有影響 / 與...有關"],
+  ["The Peak", "noun", "太平山頂"],
+  ["Bank of China Tower", "noun", "中銀大廈"],
+  ["miniature Star Ferries", "noun", "迷你天星小輪"],
+  ["element of chance", "noun", "運氣成分 / 隨機因素"],
+  ["smile points", "noun", "笑容分 / 快樂分"],
+  ["running short of time", "verb", "時間不夠 / 快沒有時間"],
+  ["taking on the role of", "verb", "擔任...角色 / 扮演...角色"],
+  ["player mats", "noun", "玩家墊 / 遊戲墊"],
+  ["tense", "adjective", "緊張的"]
+];
+
+mt79Paper4ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT79 Paper 4 reviewed sense ${pos}:${meaning}`);
 });
 
 const mt35Paper3ReviewedExpectations = [

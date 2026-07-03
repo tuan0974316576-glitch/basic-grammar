@@ -197,6 +197,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt73-paper4-reviewed",
     "mock-unseen-mt75-paper4-reviewed",
     "mock-unseen-mt78-paper4-reviewed",
+    "mock-unseen-mt79-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -12164,6 +12165,38 @@ function assertStudentLookupContract(word, matches) {
     ["pilot projects", "phrase:noun:試驗計劃 / 先導計劃:mock-unseen-mt78-paper4-reviewed"],
     ["plant biology", "phrase:noun:植物生物學:mock-unseen-mt78-paper4-reviewed"],
     ["container gardens", "phrase:noun:容器種植園 / 盆栽式花園:mock-unseen-mt78-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["broke a vow", "phrase:verb:違背誓言 / 打破承諾:mock-unseen-mt79-paper4-reviewed"],
+    ["explosion of", "phrase:noun:大量出現 / 激增:mock-unseen-mt79-paper4-reviewed"],
+    ["cooperative board games", "phrase:noun:合作式桌上遊戲:mock-unseen-mt79-paper4-reviewed"],
+    ["competitive board games", "phrase:noun:競爭式桌上遊戲:mock-unseen-mt79-paper4-reviewed"],
+    ["around the world race", "phrase:noun:環遊世界比賽:mock-unseen-mt79-paper4-reviewed"],
+    ["racing drivers", "phrase:noun:賽車手:mock-unseen-mt79-paper4-reviewed"],
+    ["time running out", "phrase:verb:時間用完 / 時限到:mock-unseen-mt79-paper4-reviewed"],
+    ["drawing cards", "phrase:verb:抽卡 / 抽牌:mock-unseen-mt79-paper4-reviewed"],
+    ["bearing", "word:noun:影響 / 關係:mock-unseen-mt79-paper4-reviewed"],
+    ["had a bearing on", "phrase:verb:對...有影響 / 與...有關:mock-unseen-mt79-paper4-reviewed"],
+    ["The Peak", "phrase:noun:太平山頂:mock-unseen-mt79-paper4-reviewed"],
+    ["Bank of China Tower", "phrase:noun:中銀大廈:mock-unseen-mt79-paper4-reviewed"],
+    ["water flume rides", "phrase:noun:激流滑水遊樂設施 / 水道滑行機動遊戲:mock-unseen-mt79-paper4-reviewed"],
+    ["miniature Star Ferries", "phrase:noun:迷你天星小輪:mock-unseen-mt79-paper4-reviewed"],
+    ["set options", "phrase:noun:預設選項 / 固定選項:mock-unseen-mt79-paper4-reviewed"],
+    ["unlocked a ride", "phrase:verb:解鎖一個遊樂設施:mock-unseen-mt79-paper4-reviewed"],
+    ["element of chance", "phrase:noun:運氣成分 / 隨機因素:mock-unseen-mt79-paper4-reviewed"],
+    ["got a boost", "phrase:verb:得到助力 / 獲得提升:mock-unseen-mt79-paper4-reviewed"],
+    ["rival companies", "phrase:noun:競爭公司 / 對手公司:mock-unseen-mt79-paper4-reviewed"],
+    ["scoring systems", "phrase:noun:計分制度 / 評分系統:mock-unseen-mt79-paper4-reviewed"],
+    ["smile points", "phrase:noun:笑容分 / 快樂分:mock-unseen-mt79-paper4-reviewed"],
+    ["running short of time", "phrase:verb:時間不夠 / 快沒有時間:mock-unseen-mt79-paper4-reviewed"],
+    ["took on the role of", "phrase:verb:擔任...角色 / 扮演...角色:mock-unseen-mt79-paper4-reviewed"],
+    ["player mats", "phrase:noun:玩家墊 / 遊戲墊:mock-unseen-mt79-paper4-reviewed"],
+    ["tense", "word:adjective:緊張的:mock-unseen-mt79-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
