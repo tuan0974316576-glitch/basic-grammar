@@ -200,6 +200,8 @@ const mt73Paper4Entries = senseBank.entries.filter((entry) => entry.source === "
 assert.ok(mt73Paper4Entries.length >= 26, `Expected MT73 Paper 4 reviewed entries, got ${mt73Paper4Entries.length}`);
 const mt75Paper4Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt75-paper4-reviewed");
 assert.ok(mt75Paper4Entries.length >= 26, `Expected MT75 Paper 4 reviewed entries, got ${mt75Paper4Entries.length}`);
+const mt78Paper4Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt78-paper4-reviewed");
+assert.ok(mt78Paper4Entries.length >= 27, `Expected MT78 Paper 4 reviewed entries, got ${mt78Paper4Entries.length}`);
 const mt68Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt68-paper3-reviewed");
 assert.ok(mt68Paper3Entries.length >= 50, `Expected MT68 Paper 3 reviewed entries, got ${mt68Paper3Entries.length}`);
 const mt62Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt62-paper3-reviewed");
@@ -8162,6 +8164,31 @@ mt75Paper4ReviewedExpectations.forEach(([word, pos, meaning]) => {
     candidate.pos === pos && candidate.meaning === meaning
   ));
   assert.ok(entry, `${word} should include MT75 Paper 4 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt78Paper4ReviewedExpectations = [
+  ["gardening", "noun", "園藝 / 種植"],
+  ["urban gardening", "noun", "城市園藝 / 都市種植"],
+  ["urban heat island effect", "noun", "城市熱島效應"],
+  ["building regulations", "noun", "建築規例 / 樓宇規例"],
+  ["sustainable living", "noun", "可持續生活"],
+  ["fostering a sense of community", "verb", "培養社區感 / 促進鄰里關係"],
+  ["sustainability goals", "noun", "可持續發展目標"],
+  ["absorbing pollution", "verb", "吸收污染物"],
+  ["getting their hands dirty", "verb", "親自動手做 / 落手落腳做"],
+  ["vertical gardening", "noun", "垂直種植 / 垂直園藝"],
+  ["recycled water", "noun", "循環再用水 / 再造水"],
+  ["gardening supplies", "noun", "園藝用品"],
+  ["co gardening", "noun", "共同種植 / 共享園藝"],
+  ["pilot projects", "noun", "試驗計劃 / 先導計劃"],
+  ["container gardens", "noun", "容器種植園 / 盆栽式花園"]
+];
+
+mt78Paper4ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT78 Paper 4 reviewed sense ${pos}:${meaning}`);
 });
 
 const mt35Paper3ReviewedExpectations = [

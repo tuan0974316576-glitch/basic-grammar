@@ -196,6 +196,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt72-paper4-reviewed",
     "mock-unseen-mt73-paper4-reviewed",
     "mock-unseen-mt75-paper4-reviewed",
+    "mock-unseen-mt78-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -12133,6 +12134,36 @@ function assertStudentLookupContract(word, matches) {
     ["restrictive", "word:adjective:限制多的 / 管束嚴的:mock-unseen-mt75-paper4-reviewed"],
     ["overprotection", "word:noun:過度保護:mock-unseen-mt75-paper4-reviewed"],
     ["leaving room for questions", "phrase:verb:留出提問空間 / 容許發問:mock-unseen-mt75-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["gardening", "word:noun:園藝 / 種植:mock-unseen-mt78-paper4-reviewed"],
+    ["urban gardening", "phrase:noun:城市園藝 / 都市種植:mock-unseen-mt78-paper4-reviewed"],
+    ["green revolution", "phrase:noun:綠色革命 / 環保轉變:mock-unseen-mt78-paper4-reviewed"],
+    ["living spaces", "phrase:noun:生活空間 / 居住空間:mock-unseen-mt78-paper4-reviewed"],
+    ["urban heat island effect", "phrase:noun:城市熱島效應:mock-unseen-mt78-paper4-reviewed"],
+    ["connection to nature", "phrase:noun:與大自然的聯繫:mock-unseen-mt78-paper4-reviewed"],
+    ["building regulations", "phrase:noun:建築規例 / 樓宇規例:mock-unseen-mt78-paper4-reviewed"],
+    ["sustainable living", "phrase:noun:可持續生活:mock-unseen-mt78-paper4-reviewed"],
+    ["fostering a sense of community", "phrase:verb:培養社區感 / 促進鄰里關係:mock-unseen-mt78-paper4-reviewed"],
+    ["shared garden spaces", "phrase:noun:共享花園空間:mock-unseen-mt78-paper4-reviewed"],
+    ["sustainability goals", "phrase:noun:可持續發展目標:mock-unseen-mt78-paper4-reviewed"],
+    ["absorbed pollution", "phrase:verb:吸收污染物:mock-unseen-mt78-paper4-reviewed"],
+    ["bringing back", "phrase:verb:恢復 / 重新帶回:mock-unseen-mt78-paper4-reviewed"],
+    ["getting their hands dirty", "phrase:verb:親自動手做 / 落手落腳做:mock-unseen-mt78-paper4-reviewed"],
+    ["vertical gardening", "phrase:noun:垂直種植 / 垂直園藝:mock-unseen-mt78-paper4-reviewed"],
+    ["portable shelters", "phrase:noun:可移動遮蔽物 / 便攜遮蔽設施:mock-unseen-mt78-paper4-reviewed"],
+    ["video tutorials", "phrase:noun:教學影片:mock-unseen-mt78-paper4-reviewed"],
+    ["gardening supplies", "phrase:noun:園藝用品:mock-unseen-mt78-paper4-reviewed"],
+    ["shared plots", "phrase:noun:共享小塊土地 / 共享種植地:mock-unseen-mt78-paper4-reviewed"],
+    ["co gardening", "phrase:noun:共同種植 / 共享園藝:mock-unseen-mt78-paper4-reviewed"],
+    ["pilot projects", "phrase:noun:試驗計劃 / 先導計劃:mock-unseen-mt78-paper4-reviewed"],
+    ["plant biology", "phrase:noun:植物生物學:mock-unseen-mt78-paper4-reviewed"],
+    ["container gardens", "phrase:noun:容器種植園 / 盆栽式花園:mock-unseen-mt78-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
