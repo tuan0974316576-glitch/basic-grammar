@@ -203,6 +203,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt84-paper4-reviewed",
     "mock-unseen-mt85-paper4-reviewed",
     "mock-unseen-mt86-paper4-reviewed",
+    "mock-unseen-mt87-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -5032,7 +5033,10 @@ function assertStudentLookupContract(word, matches) {
 
   assert.deepStrictEqual(
     (await lookupForStudent("black and white")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
-    ["phrase:adjective:黑白分明的 / 單調的:mock-unseen-mt20-paper2-reviewed"]
+    [
+      "phrase:adjective:黑白分明的 / 單調的:mock-unseen-mt20-paper2-reviewed",
+      "phrase:adjective:黑白的:mock-unseen-mt87-paper4-reviewed"
+    ]
   );
 
   assert.deepStrictEqual(
@@ -12291,6 +12295,24 @@ function assertStudentLookupContract(word, matches) {
     ["take your point", "phrase:verb:明白你的觀點 / 接受你的說法:mock-unseen-mt86-paper4-reviewed"],
     ["have it both ways", "phrase:verb:兩邊好處都想要 / 想兩全其美:mock-unseen-mt86-paper4-reviewed"],
     ["publicly", "word:adverb:公開地:mock-unseen-mt86-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["film clubs", "phrase:noun:電影學會 / 電影會:mock-unseen-mt87-paper4-reviewed"],
+    ["Facebook pages", "phrase:noun:Facebook 專頁:mock-unseen-mt87-paper4-reviewed"],
+    ["do all the talking", "phrase:verb:全程自己講 / 包辦所有發言:mock-unseen-mt87-paper4-reviewed"],
+    ["feature films", "phrase:noun:劇情長片 / 正片電影:mock-unseen-mt87-paper4-reviewed"],
+    ["fit in another club", "phrase:verb:安排時間做 / 擠出時間做:mock-unseen-mt87-paper4-reviewed"],
+    ["hanging around", "phrase:verb:閒逛 / 消磨時間:mock-unseen-mt87-paper4-reviewed"],
+    ["where your parents are coming from", "phrase:noun:某人的想法來源 / 某人為何這樣想:mock-unseen-mt87-paper4-reviewed"],
+    ["give it a miss", "phrase:verb:不去 / 不看 / 放棄做:mock-unseen-mt87-paper4-reviewed"],
+    ["vote on", "phrase:verb:就...投票:mock-unseen-mt87-paper4-reviewed"],
+    ["go through a worksheet", "phrase:verb:逐項查看 / 仔細討論:mock-unseen-mt87-paper4-reviewed"],
+    ["for starters", "phrase:adverb:首先 / 作為開始:mock-unseen-mt87-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);

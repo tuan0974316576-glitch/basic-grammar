@@ -214,6 +214,8 @@ const mt85Paper4Entries = senseBank.entries.filter((entry) => entry.source === "
 assert.ok(mt85Paper4Entries.length >= 30, `Expected MT85 Paper 4 reviewed entries, got ${mt85Paper4Entries.length}`);
 const mt86Paper4Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt86-paper4-reviewed");
 assert.ok(mt86Paper4Entries.length >= 36, `Expected MT86 Paper 4 reviewed entries, got ${mt86Paper4Entries.length}`);
+const mt87Paper4Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt87-paper4-reviewed");
+assert.ok(mt87Paper4Entries.length >= 22, `Expected MT87 Paper 4 reviewed entries, got ${mt87Paper4Entries.length}`);
 const mt68Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt68-paper3-reviewed");
 assert.ok(mt68Paper3Entries.length >= 50, `Expected MT68 Paper 3 reviewed entries, got ${mt68Paper3Entries.length}`);
 const mt62Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt62-paper3-reviewed");
@@ -788,7 +790,7 @@ assert.deepStrictEqual(
 assert.strictEqual(senseBank.lookup("bring up")[0].overrideTeacher, true);
 assert.deepStrictEqual(
   senseBank.lookup("go through").map((entry) => `${entry.type}:${entry.meaning}`),
-  ["phrase:經歷", "phrase:仔細查看 / 檢查"]
+  ["phrase:經歷", "phrase:仔細查看 / 檢查", "phrase:逐項查看 / 仔細討論"]
 );
 assert.strictEqual(senseBank.lookup("go through")[0].overrideTeacher, true);
 assert.deepStrictEqual(
@@ -8335,6 +8337,28 @@ mt86Paper4ReviewedExpectations.forEach(([word, pos, meaning]) => {
     candidate.pos === pos && candidate.meaning === meaning
   ));
   assert.ok(entry, `${word} should include MT86 Paper 4 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt87Paper4ReviewedExpectations = [
+  ["film clubs", "noun", "電影學會 / 電影會"],
+  ["Facebook pages", "noun", "Facebook 專頁"],
+  ["talking points", "noun", "討論要點 / 討論題目"],
+  ["do all the talking", "verb", "全程自己講 / 包辦所有發言"],
+  ["feature films", "noun", "劇情長片 / 正片電影"],
+  ["in their own time", "adverb", "在自己的時間 / 利用私人時間"],
+  ["fit in another club", "verb", "安排時間做 / 擠出時間做"],
+  ["hanging around", "verb", "閒逛 / 消磨時間"],
+  ["where your parents are coming from", "noun", "某人的想法來源 / 某人為何這樣想"],
+  ["give it a miss", "verb", "不去 / 不看 / 放棄做"],
+  ["take it in turns", "verb", "輪流"],
+  ["go through a worksheet", "verb", "逐項查看 / 仔細討論"]
+];
+
+mt87Paper4ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT87 Paper 4 reviewed sense ${pos}:${meaning}`);
 });
 
 const mt35Paper3ReviewedExpectations = [
