@@ -185,6 +185,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt44-paper4-reviewed",
     "mock-unseen-mt46-paper4-reviewed",
     "mock-unseen-mt47-paper4-reviewed",
+    "mock-unseen-mt48-paper4-reviewed",
     "mock-unseen-mt15-paper4-reviewed",
     "mock-unseen-mt17-paper4-reviewed",
     "mock-unseen-mt20-paper4-reviewed",
@@ -11936,6 +11937,27 @@ function assertStudentLookupContract(word, matches) {
     ["hard drives", "phrase:noun:硬碟:mock-unseen-mt47-paper4-reviewed"],
     ["in their name", "phrase:adverb:以某人名義:mock-unseen-mt47-paper4-reviewed"],
     ["getting broken into", "phrase:verb:被爆竊 / 被闖入:mock-unseen-mt47-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["careers in the arts", "phrase:noun:藝術事業 / 藝術行業生涯:mock-unseen-mt48-paper4-reviewed"],
+    ["kept me going", "phrase:verb:支持某人撐下去 / 使某人繼續努力:mock-unseen-mt48-paper4-reviewed"],
+    ["lucky breaks", "phrase:noun:幸運機會 / 轉機:mock-unseen-mt48-paper4-reviewed"],
+    ["Picasso", "phrase:noun:巴勃羅・畢加索:mock-unseen-mt48-paper4-reviewed"],
+    ["sculpting", "word:verb:雕塑 / 雕刻:mock-unseen-mt48-paper4-reviewed"],
+    ["follow in their footsteps", "phrase:verb:追隨某人的腳步 / 以某人為榜樣:mock-unseen-mt48-paper4-reviewed"],
+    ["Studio Ghibli", "phrase:noun:吉卜力工作室:mock-unseen-mt48-paper4-reviewed"],
+    ["Totoro", "phrase:noun:龍貓:mock-unseen-mt48-paper4-reviewed"],
+    ["attention to detail", "phrase:noun:注重細節:mock-unseen-mt48-paper4-reviewed"],
+    ["down the road", "phrase:adverb:將來 / 日後:mock-unseen-mt48-paper4-reviewed"],
+    ["have your work up", "phrase:verb:展出自己的作品:mock-unseen-mt48-paper4-reviewed"],
+    ["needs work", "phrase:verb:需要改善 / 還要修改:mock-unseen-mt48-paper4-reviewed"],
+    ["have some say in", "phrase:verb:對...有一定發言權 / 有份決定:mock-unseen-mt48-paper4-reviewed"],
+    ["give up altogether", "phrase:verb:完全放棄:mock-unseen-mt48-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
