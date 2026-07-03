@@ -13396,6 +13396,23 @@ function assertStudentLookupContract(word, matches) {
   }
 
   for (const [word, expected] of [
+    ["raw talent", "raw talent:phrase:noun:天生才能 / 原始天賦:mock-unseen-mt8-paper1-reviewed"],
+    ["set the stage", "set the stage for:phrase:verb:為...鋪路 / 為...創造條件:mock-unseen-mt8-paper1-reviewed"],
+    ["withheld", "withhold:word:verb:隱瞞 / 不給予:mock-unseen-mt8-paper1-reviewed"],
+    ["put her career on hold", "put one's career on hold:phrase:verb:暫停事業 / 暫停職業生涯:mock-unseen-mt8-paper1-reviewed"],
+    ["pitch black", "pitch-black:phrase:adjective:漆黑的:mock-unseen-mt8-paper1-reviewed"],
+    ["pick up on", "pick up on:phrase:verb:察覺 / 注意到:mock-unseen-mt8-paper1-reviewed"],
+    ["burning with curiosity", "burn with curiosity:phrase:verb:充滿好奇 / 急切想知道:mock-unseen-mt8-paper1-reviewed"],
+    ["biological rhythms", "biological rhythm:phrase:noun:生理節奏 / 生物節律:mock-unseen-mt8-paper1-reviewed"],
+    ["fireflies", "firefly:word:noun:螢火蟲:mock-unseen-mt8-paper1-reviewed"],
+    ["play a part", "play a part:phrase:verb:參與 / 發揮作用:mock-unseen-mt8-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
     ["hot on heels", "hot on one's heels:phrase:adjective:緊追在後的:mock-unseen-mt7-paper1-reviewed"],
     ["hot on someone's heels", "hot on one's heels:phrase:adjective:緊追在後的:mock-unseen-mt7-paper1-reviewed"],
     ["hot on sb's heels", "hot on one's heels:phrase:adjective:緊追在後的:mock-unseen-mt7-paper1-reviewed"],

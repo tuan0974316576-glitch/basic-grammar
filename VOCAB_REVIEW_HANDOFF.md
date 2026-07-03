@@ -37,17 +37,17 @@ Latest verified progress:
 
 | Paper | Total | Done | Remaining |
 |---|---:|---:|---:|
-| Paper 1 | 84 | 25 | 59 |
+| Paper 1 | 84 | 26 | 58 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
 | Paper 4 | 72 | 72 | 0 |
-| Total | 314 | 255 | 59 |
+| Total | 314 | 256 | 58 |
 
 Most recent completed paper:
 
-- `MT7 Paper 1`
-- Source tag: `mock-unseen-mt7-paper1-reviewed`
-- Added 88 reviewed entries, including hot on one's heels / put someone up to / bags under one's eyes / typhoon intensity / plastic pellet / nebular hypothesis / rover / Red Planet / take up the reins / habitable zone / Mars Science Laboratory
+- `MT8 Paper 1`
+- Source tag: `mock-unseen-mt8-paper1-reviewed`
+- Added 63 reviewed entries, including raw talent / set the stage for / withhold / put one's career on hold / pitch-black / pick up on / burning with curiosity / sky brightness / be fed up with / biological rhythm / firefly / play a part
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely item:
