@@ -206,6 +206,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt87-paper4-reviewed",
     "mock-unseen-mt7-paper4-reviewed",
     "mock-unseen-mt8-paper4-reviewed",
+    "mock-unseen-mt9-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -12345,6 +12346,22 @@ function assertStudentLookupContract(word, matches) {
     ["in general terms", "phrase:adverb:概括地說 / 大致上:mock-unseen-mt8-paper4-reviewed"],
     ["tie in with", "phrase:verb:與...配合 / 與...有關連:mock-unseen-mt8-paper4-reviewed"],
     ["limited seating", "phrase:noun:座位有限:mock-unseen-mt8-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["escape-room games", "phrase:noun:密室逃脫遊戲:mock-unseen-mt9-paper4-reviewed"],
+    ["werewolves", "word:noun:狼人:mock-unseen-mt9-paper4-reviewed"],
+    ["suffered", "word:verb:變差 / 受損:mock-unseen-mt9-paper4-reviewed"],
+    ["upcoming term", "phrase:noun:即將來臨的學期:mock-unseen-mt9-paper4-reviewed"],
+    ["excelled at", "phrase:verb:擅長:mock-unseen-mt9-paper4-reviewed"],
+    ["haunted house attractions", "phrase:noun:鬼屋景點 / 鬼屋遊樂設施:mock-unseen-mt9-paper4-reviewed"],
+    ["skits", "word:noun:短劇 / 小品:mock-unseen-mt9-paper4-reviewed"],
+    ["freaking out", "phrase:verb:嚇壞 / 慌張:mock-unseen-mt9-paper4-reviewed"],
+    ["theme park attractions", "phrase:noun:主題樂園遊樂設施 / 景點:mock-unseen-mt9-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);

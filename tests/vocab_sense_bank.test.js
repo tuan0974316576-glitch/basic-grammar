@@ -220,6 +220,8 @@ const mt7Paper4Entries = senseBank.entries.filter((entry) => entry.source === "m
 assert.ok(mt7Paper4Entries.length >= 20, `Expected MT7 Paper 4 reviewed entries, got ${mt7Paper4Entries.length}`);
 const mt8Paper4Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt8-paper4-reviewed");
 assert.ok(mt8Paper4Entries.length >= 18, `Expected MT8 Paper 4 reviewed entries, got ${mt8Paper4Entries.length}`);
+const mt9Paper4Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt9-paper4-reviewed");
+assert.ok(mt9Paper4Entries.length >= 19, `Expected MT9 Paper 4 reviewed entries, got ${mt9Paper4Entries.length}`);
 const mt68Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt68-paper3-reviewed");
 assert.ok(mt68Paper3Entries.length >= 50, `Expected MT68 Paper 3 reviewed entries, got ${mt68Paper3Entries.length}`);
 const mt62Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt62-paper3-reviewed");
@@ -3041,7 +3043,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("suffer").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["verb:遭受 / 受苦"]
+  ["verb:遭受 / 受苦", "verb:變差 / 受損"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("supply").map((entry) => `${entry.pos}:${entry.meaning}`),
