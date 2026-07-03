@@ -169,6 +169,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt19-paper4-reviewed",
     "mock-unseen-mt21-paper4-reviewed",
     "mock-unseen-mt23-paper4-reviewed",
+    "mock-unseen-mt24-paper4-reviewed",
     "mock-unseen-mt15-paper4-reviewed",
     "mock-unseen-mt17-paper4-reviewed",
     "mock-unseen-mt20-paper4-reviewed",
@@ -12614,6 +12615,43 @@ function assertStudentLookupContract(word, matches) {
     assert.ok(
       entries.some((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}` === "word:verb:排查問題 / 找出故障原因:mock-unseen-mt23-paper4-reviewed"),
       "troubleshooting should include the MT23 verb sense"
+    );
+  }
+
+  for (const [word, expected] of [
+    ["go for the gold", "phrase:verb:爭取金牌 / 力爭第一:mock-unseen-mt24-paper4-reviewed"],
+    ["heroism", "word:noun:英雄精神 / 英雄主義:mock-unseen-mt24-paper4-reviewed"],
+    ["heroically", "word:adverb:英勇地 / 像英雄般地:mock-unseen-mt24-paper4-reviewed"],
+    ["worthy of admiration", "phrase:adjective:值得欽佩的 / 值得讚賞的:mock-unseen-mt24-paper4-reviewed"],
+    ["push themselves to the limit", "phrase:verb:把自己逼到極限:mock-unseen-mt24-paper4-reviewed"],
+    ["perseveres", "word:verb:堅持不懈 / 不屈不撓:mock-unseen-mt24-paper4-reviewed"],
+    ["gold medalist", "phrase:noun:金牌得主:mock-unseen-mt24-paper4-reviewed"],
+    ["anger management", "phrase:noun:怒氣管理 / 情緒管理:mock-unseen-mt24-paper4-reviewed"],
+    ["self-interest", "word:noun:私利 / 個人利益:mock-unseen-mt24-paper4-reviewed"],
+    ["risk their life", "phrase:verb:冒生命危險:mock-unseen-mt24-paper4-reviewed"],
+    ["philanthropic", "word:adjective:慈善的 / 樂善好施的:mock-unseen-mt24-paper4-reviewed"],
+    ["get back on topic", "phrase:verb:回到正題:mock-unseen-mt24-paper4-reviewed"],
+    ["do whatever it takes", "phrase:verb:不惜一切 / 盡一切所能:mock-unseen-mt24-paper4-reviewed"],
+    ["has more to lose", "phrase:verb:風險更大 / 可能失去更多:mock-unseen-mt24-paper4-reviewed"],
+    ["tragic hero", "phrase:noun:悲劇英雄:mock-unseen-mt24-paper4-reviewed"],
+    ["character flaws", "phrase:noun:性格缺陷 / 人物缺點:mock-unseen-mt24-paper4-reviewed"],
+    ["philanthropism", "word:noun:慈善精神 / 樂善好施:mock-unseen-mt24-paper4-reviewed"],
+    ["in combination with", "phrase:preposition:與...結合 / 連同:mock-unseen-mt24-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["qualify", "word:verb:符合條件 / 算得上:mock-unseen-mt24-paper4-reviewed"],
+    ["consumed", "word:verb:充滿心頭 / 佔據心神:mock-unseen-mt24-paper4-reviewed"],
+    ["spoiled", "word:adjective:被寵壞的:mock-unseen-mt24-paper4-reviewed"]
+  ]) {
+    const entries = await lookupForStudent(word);
+    assert.ok(
+      entries.some((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}` === expected),
+      `${word} should include the MT24 Paper 4 reviewed sense`
     );
   }
 
