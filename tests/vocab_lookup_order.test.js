@@ -176,6 +176,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt31-paper4-reviewed",
     "mock-unseen-mt33-paper4-reviewed",
     "mock-unseen-mt34-paper4-reviewed",
+    "mock-unseen-mt36-paper4-reviewed",
     "mock-unseen-mt15-paper4-reviewed",
     "mock-unseen-mt17-paper4-reviewed",
     "mock-unseen-mt20-paper4-reviewed",
@@ -11763,6 +11764,25 @@ function assertStudentLookupContract(word, matches) {
     ["murder mystery games", "phrase:noun:謀殺懸疑故事 / 偵探推理遊戲:mock-unseen-mt34-paper4-reviewed"],
     ["wouldn't dream of", "phrase:verb:絕不會想 / 不敢想像會:mock-unseen-mt34-paper4-reviewed"],
     ["at any cost", "phrase:adverb:不惜任何代價:mock-unseen-mt34-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["Hiroshima", "word:noun:廣島:mock-unseen-mt36-paper4-reviewed"],
+    ["Hiroshima bombing", "phrase:noun:廣島轟炸 / 廣島原爆:mock-unseen-mt36-paper4-reviewed"],
+    ["atomic bombs", "phrase:noun:原子彈:mock-unseen-mt36-paper4-reviewed"],
+    ["special needs", "phrase:noun:特殊需要:mock-unseen-mt36-paper4-reviewed"],
+    ["T-Rex", "word:noun:暴龍 / 霸王龍:mock-unseen-mt36-paper4-reviewed"],
+    ["nuclei", "word:noun:原子核 / 細胞核:mock-unseen-mt36-paper4-reviewed"],
+    ["conceptualising", "word:verb:在腦中理解 / 構思:mock-unseen-mt36-paper4-reviewed"],
+    ["nuclear weapons", "phrase:noun:核武器:mock-unseen-mt36-paper4-reviewed"],
+    ["from the point of view of", "phrase:preposition:從...的角度:mock-unseen-mt36-paper4-reviewed"],
+    ["VR field trips", "phrase:noun:VR 虛擬校外考察:mock-unseen-mt36-paper4-reviewed"],
+    ["virtual textbooks", "phrase:noun:虛擬教科書 / 電子教科書:mock-unseen-mt36-paper4-reviewed"],
+    ["high-five", "phrase:noun:擊掌:mock-unseen-mt36-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
