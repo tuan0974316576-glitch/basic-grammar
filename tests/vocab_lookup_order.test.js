@@ -171,6 +171,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt23-paper4-reviewed",
     "mock-unseen-mt24-paper4-reviewed",
     "mock-unseen-mt26-paper4-reviewed",
+    "mock-unseen-mt28-paper4-reviewed",
     "mock-unseen-mt15-paper4-reviewed",
     "mock-unseen-mt17-paper4-reviewed",
     "mock-unseen-mt20-paper4-reviewed",
@@ -12688,6 +12689,37 @@ function assertStudentLookupContract(word, matches) {
     assert.ok(
       entries.some((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}` === "word:verb:長途跋涉 / 徒步穿越:mock-unseen-mt26-paper4-reviewed"),
       "trekking should include the MT26 verb sense"
+    );
+  }
+
+  for (const [word, expected] of [
+    ["Meatless Mondays", "phrase:noun:無肉星期一:mock-unseen-mt28-paper4-reviewed"],
+    ["meatless", "word:adjective:無肉的 / 不含肉的:mock-unseen-mt28-paper4-reviewed"],
+    ["environmental footprints", "phrase:noun:環境足跡 / 對環境的影響:mock-unseen-mt28-paper4-reviewed"],
+    ["meat farming", "phrase:noun:肉類畜牧業 / 肉類生產:mock-unseen-mt28-paper4-reviewed"],
+    ["take the challenge on", "phrase:verb:接受挑戰 / 承擔挑戰:mock-unseen-mt28-paper4-reviewed"],
+    ["picky eaters", "phrase:noun:揀飲擇食的人 / 挑食的人:mock-unseen-mt28-paper4-reviewed"],
+    ["meat stock", "word:noun:高湯 / 湯底:mock-unseen-mt28-paper4-reviewed"],
+    ["swapped out", "phrase:verb:替換 / 換走:mock-unseen-mt28-paper4-reviewed"],
+    ["rotating through", "phrase:verb:輪流更換 / 輪流使用:mock-unseen-mt28-paper4-reviewed"],
+    ["gift baskets", "phrase:noun:禮物籃:mock-unseen-mt28-paper4-reviewed"],
+    ["specialty shops", "phrase:noun:專門店 / 特色店:mock-unseen-mt28-paper4-reviewed"],
+    ["came in second", "phrase:verb:得第二名:mock-unseen-mt28-paper4-reviewed"],
+    ["tamales", "word:noun:墨西哥粟米糭:mock-unseen-mt28-paper4-reviewed"],
+    ["mole sauce", "word:noun:墨西哥朱古力辣醬:mock-unseen-mt28-paper4-reviewed"],
+    ["corn husks", "phrase:noun:粟米葉 / 玉米外皮:mock-unseen-mt28-paper4-reviewed"],
+    ["corn", "word:noun:粟米 / 玉米:mock-unseen-mt28-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  {
+    const entries = await lookupForStudent("giving out");
+    assert.ok(
+      entries.some((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}` === "phrase:verb:派發 / 分發:mock-unseen-mt28-paper4-reviewed"),
+      "giving out should include the MT28 distribution sense"
     );
   }
 
