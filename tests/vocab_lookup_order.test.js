@@ -181,6 +181,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt39-paper4-reviewed",
     "mock-unseen-mt40-paper4-reviewed",
     "mock-unseen-mt41-paper4-reviewed",
+    "mock-unseen-mt43-paper4-reviewed",
     "mock-unseen-mt15-paper4-reviewed",
     "mock-unseen-mt17-paper4-reviewed",
     "mock-unseen-mt20-paper4-reviewed",
@@ -11861,6 +11862,23 @@ function assertStudentLookupContract(word, matches) {
     ["death threats", "phrase:noun:死亡威脅:mock-unseen-mt41-paper4-reviewed"],
     ["inciting violence", "phrase:verb:煽動暴力:mock-unseen-mt41-paper4-reviewed"],
     ["out in the open", "phrase:adverb:公開地 / 攤開來:mock-unseen-mt41-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["clothing swaps", "phrase:noun:衣物交換活動:mock-unseen-mt43-paper4-reviewed"],
+    ["winding up", "phrase:verb:結果落得 / 最後變成:mock-unseen-mt43-paper4-reviewed"],
+    ["keep up with trends", "phrase:verb:追上潮流 / 跟上趨勢:mock-unseen-mt43-paper4-reviewed"],
+    ["off-the-rack", "phrase:adverb:買現成衣服地 / 非訂造地:mock-unseen-mt43-paper4-reviewed"],
+    ["stand out in a crowd", "phrase:verb:在人群中突出 / 顯眼:mock-unseen-mt43-paper4-reviewed"],
+    ["vintage shops", "phrase:noun:復古服飾店 / 古著店:mock-unseen-mt43-paper4-reviewed"],
+    ["take-back programs", "phrase:noun:回收計劃 / 舊物回收計劃:mock-unseen-mt43-paper4-reviewed"],
+    ["unskilled laborers", "phrase:noun:非技術工人:mock-unseen-mt43-paper4-reviewed"],
+    ["inventory", "word:noun:清單 / 詳細目錄:mock-unseen-mt90-paper3-reviewed"],
+    ["put profits ahead of", "phrase:verb:把利潤置於...之上 / 利潤優先於:mock-unseen-mt43-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
