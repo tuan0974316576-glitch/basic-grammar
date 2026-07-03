@@ -182,6 +182,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt40-paper4-reviewed",
     "mock-unseen-mt41-paper4-reviewed",
     "mock-unseen-mt43-paper4-reviewed",
+    "mock-unseen-mt44-paper4-reviewed",
     "mock-unseen-mt15-paper4-reviewed",
     "mock-unseen-mt17-paper4-reviewed",
     "mock-unseen-mt20-paper4-reviewed",
@@ -11879,6 +11880,24 @@ function assertStudentLookupContract(word, matches) {
     ["unskilled laborers", "phrase:noun:非技術工人:mock-unseen-mt43-paper4-reviewed"],
     ["inventory", "word:noun:清單 / 詳細目錄:mock-unseen-mt90-paper3-reviewed"],
     ["put profits ahead of", "phrase:verb:把利潤置於...之上 / 利潤優先於:mock-unseen-mt43-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["carry a balance", "phrase:verb:保留信用卡未清還餘額:mock-unseen-mt44-paper4-reviewed"],
+    ["conservative investments", "phrase:noun:保守投資 / 低風險投資:mock-unseen-mt44-paper4-reviewed"],
+    ["good with money", "phrase:adjective:善於理財的 / 懂得用錢的:mock-unseen-mt44-paper4-reviewed"],
+    ["financially literate", "phrase:adjective:具備理財知識的 / 懂理財的:mock-unseen-mt44-paper4-reviewed"],
+    ["interest rates", "phrase:noun:利率:mock-unseen-mt44-paper4-reviewed"],
+    ["falling into debt", "phrase:verb:陷入債務 / 欠債:mock-unseen-mt44-paper4-reviewed"],
+    ["household budgets", "phrase:noun:家庭預算:mock-unseen-mt44-paper4-reviewed"],
+    ["charging interest", "phrase:verb:收取利息:mock-unseen-mt44-paper4-reviewed"],
+    ["pay it off", "phrase:verb:還清貸款 / 清還債務:mock-unseen-mt44-paper4-reviewed"],
+    ["take a big chunk out of", "phrase:verb:大幅削減 / 佔去一大部分:mock-unseen-mt44-paper4-reviewed"],
+    ["save every penny", "phrase:verb:每一分錢都儲起 / 極度節省:mock-unseen-mt44-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
