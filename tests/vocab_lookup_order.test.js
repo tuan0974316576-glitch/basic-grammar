@@ -201,6 +201,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt81-paper4-reviewed",
     "mock-unseen-mt83-paper4-reviewed",
     "mock-unseen-mt84-paper4-reviewed",
+    "mock-unseen-mt85-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -10297,7 +10298,7 @@ function assertStudentLookupContract(word, matches) {
 
   assert.deepStrictEqual(
     (await lookupForStudent("freshwater")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
-    ["adjective:淡水的:curated-sense-bank"]
+    ["adjective:淡水的:curated-sense-bank", "noun:淡水:mock-unseen-mt85-paper4-reviewed"]
   );
 
   assert.deepStrictEqual(
@@ -12253,6 +12254,23 @@ function assertStudentLookupContract(word, matches) {
     ["marketed", "word:verb:推銷 / 推廣:mock-unseen-mt84-paper4-reviewed"],
     ["doused oneself in perfume", "phrase:verb:噴大量香水在身上:mock-unseen-mt84-paper4-reviewed"],
     ["freshly mown", "phrase:adjective:剛修剪過的:mock-unseen-mt84-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["flush toilets", "phrase:verb:沖廁:mock-unseen-mt85-paper4-reviewed"],
+    ["catchments", "word:noun:集水區 / 集水系統:mock-unseen-mt85-paper4-reviewed"],
+    ["overfilled", "word:verb:裝得太滿 / 塞得太滿:mock-unseen-mt85-paper4-reviewed"],
+    ["defrosting", "word:verb:解凍:mock-unseen-mt85-paper4-reviewed"],
+    ["aquatic animals", "phrase:noun:水生動物:mock-unseen-mt85-paper4-reviewed"],
+    ["straight out of the tap", "phrase:adverb:直接從水龍頭出來:mock-unseen-mt85-paper4-reviewed"],
+    ["grey water", "phrase:noun:生活污水 / 可重用家居廢水:mock-unseen-mt85-paper4-reviewed"],
+    ["brush your teeth", "phrase:verb:刷牙:mock-unseen-mt85-paper4-reviewed"],
+    ["out of luck", "phrase:adjective:不走運的 / 無辦法的:mock-unseen-mt85-paper4-reviewed"],
+    ["getting by", "phrase:verb:勉強過活 / 應付生活:mock-unseen-mt85-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);

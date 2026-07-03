@@ -210,6 +210,8 @@ const mt83Paper4Entries = senseBank.entries.filter((entry) => entry.source === "
 assert.ok(mt83Paper4Entries.length >= 27, `Expected MT83 Paper 4 reviewed entries, got ${mt83Paper4Entries.length}`);
 const mt84Paper4Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt84-paper4-reviewed");
 assert.ok(mt84Paper4Entries.length >= 34, `Expected MT84 Paper 4 reviewed entries, got ${mt84Paper4Entries.length}`);
+const mt85Paper4Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt85-paper4-reviewed");
+assert.ok(mt85Paper4Entries.length >= 30, `Expected MT85 Paper 4 reviewed entries, got ${mt85Paper4Entries.length}`);
 const mt68Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt68-paper3-reviewed");
 assert.ok(mt68Paper3Entries.length >= 50, `Expected MT68 Paper 3 reviewed entries, got ${mt68Paper3Entries.length}`);
 const mt62Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt62-paper3-reviewed");
@@ -8286,6 +8288,29 @@ mt84Paper4ReviewedExpectations.forEach(([word, pos, meaning]) => {
     candidate.pos === pos && candidate.meaning === meaning
   ));
   assert.ok(entry, `${word} should include MT84 Paper 4 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt85Paper4ReviewedExpectations = [
+  ["giant steps", "noun", "重大一步 / 重大進展"],
+  ["flush our toilets", "verb", "沖廁"],
+  ["freshwater", "noun", "淡水"],
+  ["catchments", "noun", "集水區 / 集水系統"],
+  ["defrosting", "verb", "解凍"],
+  ["creeks", "noun", "小溪 / 小河"],
+  ["corals", "noun", "珊瑚"],
+  ["grey water", "noun", "生活污水 / 可重用家居廢水"],
+  ["leaky faucets", "noun", "漏水水龍頭"],
+  ["brush your teeth", "verb", "刷牙"],
+  ["shaving", "verb", "剃鬚 / 刮鬍子"],
+  ["sinks", "noun", "洗碗盆 / 洗手盆"],
+  ["get by", "verb", "勉強過活 / 應付生活"]
+];
+
+mt85Paper4ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT85 Paper 4 reviewed sense ${pos}:${meaning}`);
 });
 
 const mt35Paper3ReviewedExpectations = [
