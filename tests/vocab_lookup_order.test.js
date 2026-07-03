@@ -167,6 +167,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt16-paper4-reviewed",
     "mock-unseen-mt18-paper4-reviewed",
     "mock-unseen-mt19-paper4-reviewed",
+    "mock-unseen-mt21-paper4-reviewed",
     "mock-unseen-mt15-paper4-reviewed",
     "mock-unseen-mt17-paper4-reviewed",
     "mock-unseen-mt20-paper4-reviewed",
@@ -12546,6 +12547,33 @@ function assertStudentLookupContract(word, matches) {
     ["family run businesses", "phrase:noun:家族經營的生意:mock-unseen-mt19-paper4-reviewed"],
     ["government agencies", "phrase:noun:政府機構:mock-unseen-mt19-paper4-reviewed"],
     ["garnering interest", "phrase:verb:吸引興趣 / 引起關注:mock-unseen-mt19-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["delivery drones", "phrase:noun:送貨無人機:mock-unseen-mt21-paper4-reviewed"],
+    ["remote controlled", "phrase:adjective:遙控的:mock-unseen-mt21-paper4-reviewed"],
+    ["takeaway food", "phrase:noun:外賣食物:mock-unseen-mt21-paper4-reviewed"],
+    ["environmentally friendlier", "phrase:adjective:環保的:mock-unseen-mt21-paper4-reviewed"],
+    ["hacker proof", "phrase:adjective:防黑客入侵的:mock-unseen-mt21-paper4-reviewed"],
+    ["non military", "phrase:adjective:非軍事的:mock-unseen-mt21-paper4-reviewed"],
+    ["hobbyists", "word:noun:業餘愛好者:mock-unseen-mt21-paper4-reviewed"],
+    ["aerial photography", "phrase:noun:航拍 / 空中攝影:mock-unseen-mt21-paper4-reviewed"],
+    ["violating privacy", "phrase:verb:侵犯私隱:mock-unseen-mt21-paper4-reviewed"],
+    ["hard to reach", "phrase:adjective:難以到達的 / 難以接近的:mock-unseen-mt21-paper4-reviewed"],
+    ["building inspectors", "phrase:noun:樓宇檢查員:mock-unseen-mt21-paper4-reviewed"],
+    ["essential supplies", "phrase:noun:必需物資:mock-unseen-mt21-paper4-reviewed"],
+    ["got caught up", "phrase:verb:太投入 / 被捲入而忘記其他事:mock-unseen-mt21-paper4-reviewed"],
+    ["outweigh the risks", "phrase:verb:好處大於風險:mock-unseen-mt21-paper4-reviewed"],
+    ["operating a drone", "phrase:verb:操作無人機:mock-unseen-mt21-paper4-reviewed"],
+    ["without their knowledge", "phrase:adverb:在某人不知情下:mock-unseen-mt21-paper4-reviewed"],
+    ["manufacturing requirements", "phrase:noun:製造要求 / 生產規定:mock-unseen-mt21-paper4-reviewed"],
+    ["taking work away from", "phrase:verb:搶走...的工作 / 令...失去工作:mock-unseen-mt21-paper4-reviewed"],
+    ["human interaction", "phrase:noun:人與人之間的互動:mock-unseen-mt21-paper4-reviewed"],
+    ["empathising with", "phrase:verb:理解並同情 / 對...有同理心:mock-unseen-mt21-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);

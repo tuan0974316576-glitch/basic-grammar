@@ -40,19 +40,19 @@ Latest verified progress:
 | Paper 1 | 84 | 24 | 60 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
-| Paper 4 | 72 | 51 | 21 |
-| Total | 314 | 233 | 81 |
+| Paper 4 | 72 | 52 | 20 |
+| Total | 314 | 234 | 80 |
 
 Most recent completed paper:
 
-- `MT19 Paper 4`
-- Source tag: `mock-unseen-mt19-paper4-reviewed`
-- Added 28 reviewed entries, including traditional trade / traditional craft / offset printing / paper craft / dragon's beard candy / bamboo cutting board / hand-print / family-run business / government agency / garner interest
+- `MT21 Paper 4`
+- Source tag: `mock-unseen-mt21-paper4-reviewed`
+- Added 29 reviewed entries, including delivery drone / remote-controlled / hacker-proof / non-military / aerial photography / violate privacy / building inspector / operate a drone / take work away from / empathize with
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely item:
 
-- Paper 3 is complete. `MT52`, `MT74`, `MT76`, and `MT77` have no Paper 4 file in the current download set, and `MT7` / `MT8` / `MT9` / `MT10` / `MT11` / `MT12` / `MT13` / `MT14` / `MT16` / `MT18` / `MT19` / `MT56` / `MT57` / `MT59` / `MT60` / `MT62` / `MT63` / `MT64` / `MT65` / `MT66` / `MT67` / `MT68` / `MT69` / `MT70` / `MT71` / `MT72` / `MT73` / `MT75` / `MT78` / `MT79` / `MT81` / `MT83` / `MT84` / `MT85` / `MT86` / `MT87 Paper 4` are complete. Continue with the next available missing Paper 4 item, or continue remaining Paper 1 items from the review log.
+- Paper 3 is complete. `MT52`, `MT74`, `MT76`, and `MT77` have no Paper 4 file in the current download set, and `MT7` / `MT8` / `MT9` / `MT10` / `MT11` / `MT12` / `MT13` / `MT14` / `MT16` / `MT18` / `MT19` / `MT21` / `MT56` / `MT57` / `MT59` / `MT60` / `MT62` / `MT63` / `MT64` / `MT65` / `MT66` / `MT67` / `MT68` / `MT69` / `MT70` / `MT71` / `MT72` / `MT73` / `MT75` / `MT78` / `MT79` / `MT81` / `MT83` / `MT84` / `MT85` / `MT86` / `MT87 Paper 4` are complete. Continue with the next available missing Paper 4 item, or continue remaining Paper 1 items from the review log.
 - Use the `.docx` student and teacher files first. If `textutil` extraction is poor, compare with PDF extraction.
 
 ## Normal Workflow For One Paper
