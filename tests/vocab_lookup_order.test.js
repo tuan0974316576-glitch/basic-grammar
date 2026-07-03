@@ -199,6 +199,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt78-paper4-reviewed",
     "mock-unseen-mt79-paper4-reviewed",
     "mock-unseen-mt81-paper4-reviewed",
+    "mock-unseen-mt83-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -12215,6 +12216,24 @@ function assertStudentLookupContract(word, matches) {
     ["got work done", "phrase:verb:做醫美 / 做整形療程:mock-unseen-mt81-paper4-reviewed"],
     ["laughter lines", "phrase:noun:笑紋:mock-unseen-mt81-paper4-reviewed"],
     ["take out loans", "phrase:verb:借貸 / 申請貸款:mock-unseen-mt81-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["put bums on seats", "phrase:verb:吸引觀眾入場 / 賣座:mock-unseen-mt83-paper4-reviewed"],
+    ["shut its doors", "phrase:verb:結業 / 關門停業:mock-unseen-mt83-paper4-reviewed"],
+    ["Netflix and chill", "phrase:noun:在家睇串流影片放鬆（網絡用語）:mock-unseen-mt83-paper4-reviewed"],
+    ["glimmer of hope", "phrase:noun:一線希望:mock-unseen-mt83-paper4-reviewed"],
+    ["box-office records", "phrase:noun:票房紀錄:mock-unseen-mt83-paper4-reviewed"],
+    ["fallen out of love with", "phrase:verb:不再喜愛 / 對...失去熱情:mock-unseen-mt83-paper4-reviewed"],
+    ["new releases", "phrase:noun:新上映電影 / 新推出作品:mock-unseen-mt83-paper4-reviewed"],
+    ["put on film festivals", "phrase:verb:舉辦 / 上演:mock-unseen-mt83-paper4-reviewed"],
+    ["go to the trouble of", "phrase:verb:特意費心去做 / 花工夫去做:mock-unseen-mt83-paper4-reviewed"],
+    ["do those films justice", "phrase:verb:充分展現 / 公平呈現:mock-unseen-mt83-paper4-reviewed"],
+    ["tension builds up", "phrase:verb:營造緊張感 / 逐漸累積緊張氣氛:mock-unseen-mt83-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);

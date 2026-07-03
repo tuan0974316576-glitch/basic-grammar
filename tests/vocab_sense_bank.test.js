@@ -206,6 +206,8 @@ const mt79Paper4Entries = senseBank.entries.filter((entry) => entry.source === "
 assert.ok(mt79Paper4Entries.length >= 26, `Expected MT79 Paper 4 reviewed entries, got ${mt79Paper4Entries.length}`);
 const mt81Paper4Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt81-paper4-reviewed");
 assert.ok(mt81Paper4Entries.length >= 38, `Expected MT81 Paper 4 reviewed entries, got ${mt81Paper4Entries.length}`);
+const mt83Paper4Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt83-paper4-reviewed");
+assert.ok(mt83Paper4Entries.length >= 27, `Expected MT83 Paper 4 reviewed entries, got ${mt83Paper4Entries.length}`);
 const mt68Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt68-paper3-reviewed");
 assert.ok(mt68Paper3Entries.length >= 50, `Expected MT68 Paper 3 reviewed entries, got ${mt68Paper3Entries.length}`);
 const mt62Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt62-paper3-reviewed");
@@ -751,7 +753,7 @@ assert.deepStrictEqual(
 
 assert.deepStrictEqual(
   senseBank.lookup("put on").map((entry) => `${entry.type}:${entry.meaning}`),
-  ["phrase:穿上 / 戴上"]
+  ["phrase:穿上 / 戴上", "phrase:舉辦 / 上演"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("take off").map((entry) => `${entry.type}:${entry.meaning}`),
@@ -8240,6 +8242,27 @@ mt81Paper4ReviewedExpectations.forEach(([word, pos, meaning]) => {
     candidate.pos === pos && candidate.meaning === meaning
   ));
   assert.ok(entry, `${word} should include MT81 Paper 4 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt83Paper4ReviewedExpectations = [
+  ["put bums on seats", "verb", "吸引觀眾入場 / 賣座"],
+  ["shut its doors", "verb", "結業 / 關門停業"],
+  ["woes", "noun", "問題 / 困境"],
+  ["gave the industry a beating", "verb", "重創 / 嚴重打擊"],
+  ["Netflix and chill", "noun", "在家睇串流影片放鬆（網絡用語）"],
+  ["box office records", "noun", "票房紀錄"],
+  ["fallen out of love with", "verb", "不再喜愛 / 對...失去熱情"],
+  ["three-D", "adjective", "3D 的 / 立體的"],
+  ["cinemagoers", "noun", "入戲院睇戲的人 / 電影觀眾"],
+  ["do those films justice", "verb", "充分展現 / 公平呈現"],
+  ["tension builds up", "verb", "營造緊張感 / 逐漸累積緊張氣氛"]
+];
+
+mt83Paper4ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT83 Paper 4 reviewed sense ${pos}:${meaning}`);
 });
 
 const mt35Paper3ReviewedExpectations = [
