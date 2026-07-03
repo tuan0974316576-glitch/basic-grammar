@@ -170,6 +170,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt21-paper4-reviewed",
     "mock-unseen-mt23-paper4-reviewed",
     "mock-unseen-mt24-paper4-reviewed",
+    "mock-unseen-mt26-paper4-reviewed",
     "mock-unseen-mt15-paper4-reviewed",
     "mock-unseen-mt17-paper4-reviewed",
     "mock-unseen-mt20-paper4-reviewed",
@@ -12652,6 +12653,41 @@ function assertStudentLookupContract(word, matches) {
     assert.ok(
       entries.some((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}` === expected),
       `${word} should include the MT24 Paper 4 reviewed sense`
+    );
+  }
+
+  for (const [word, expected] of [
+    ["school trips", "phrase:noun:學校旅行 / 學校參觀活動:mock-unseen-mt26-paper4-reviewed"],
+    ["Penang", "word:noun:檳城:mock-unseen-mt26-paper4-reviewed"],
+    ["Phuket", "word:noun:布吉 / 普吉島:mock-unseen-mt26-paper4-reviewed"],
+    ["Sentosa", "phrase:noun:聖淘沙島:mock-unseen-mt26-paper4-reviewed"],
+    ["Universal Studios", "phrase:noun:環球影城:mock-unseen-mt26-paper4-reviewed"],
+    ["Macau Tower", "phrase:noun:澳門旅遊塔:mock-unseen-mt26-paper4-reviewed"],
+    ["UNESCO heritage sites", "phrase:noun:文化遺產地點:mock-unseen-mt26-paper4-reviewed"],
+    ["Ferris wheel", "phrase:noun:觀景摩天輪:mock-unseen-mt26-paper4-reviewed"],
+    ["gondola rides", "phrase:noun:貢多拉船遊:mock-unseen-mt26-paper4-reviewed"],
+    ["shop houses", "word:noun:騎樓式店屋 / 店屋:mock-unseen-mt26-paper4-reviewed"],
+    ["gibbons", "word:noun:長臂猿:mock-unseen-mt26-paper4-reviewed"],
+    ["cooled off", "phrase:verb:消暑 / 涼快一下:mock-unseen-mt26-paper4-reviewed"],
+    ["nothing can beat", "phrase:verb:沒有甚麼比得上:mock-unseen-mt26-paper4-reviewed"],
+    ["moving on to", "phrase:verb:轉到 / 開始討論下一項:mock-unseen-mt26-paper4-reviewed"],
+    ["to be fair", "phrase:adverb:公平一點說 / 老實說:mock-unseen-mt26-paper4-reviewed"],
+    ["not necessarily", "phrase:adverb:不一定 / 未必:mock-unseen-mt26-paper4-reviewed"],
+    ["good deals", "phrase:verb:買到優惠 / 得到好價錢:mock-unseen-mt26-paper4-reviewed"],
+    ["is home to", "phrase:verb:是...的所在地 / 有...居住:mock-unseen-mt26-paper4-reviewed"],
+    ["posing", "word:verb:擺姿勢:mock-unseen-mt26-paper4-reviewed"],
+    ["arcades", "word:noun:遊戲機中心 / 電子遊戲場:mock-unseen-mt26-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  {
+    const entries = await lookupForStudent("trekking");
+    assert.ok(
+      entries.some((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}` === "word:verb:長途跋涉 / 徒步穿越:mock-unseen-mt26-paper4-reviewed"),
+      "trekking should include the MT26 verb sense"
     );
   }
 
