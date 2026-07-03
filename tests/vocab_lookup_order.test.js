@@ -209,6 +209,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt9-paper4-reviewed",
     "mock-unseen-mt10-paper4-reviewed",
     "mock-unseen-mt11-paper4-reviewed",
+    "mock-unseen-mt12-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -12396,6 +12397,24 @@ function assertStudentLookupContract(word, matches) {
     ["get a fire going", "phrase:verb:把火生起來 / 令火燒起來:mock-unseen-mt11-paper4-reviewed"],
     ["normal school hours", "phrase:noun:正常上課時間:mock-unseen-mt11-paper4-reviewed"],
     ["modern inventions", "phrase:noun:現代發明:mock-unseen-mt11-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["sensor systems", "phrase:noun:感應器系統:mock-unseen-mt12-paper4-reviewed"],
+    ["on-board computers", "phrase:noun:車載電腦 / 機上電腦:mock-unseen-mt12-paper4-reviewed"],
+    ["automakers", "word:noun:汽車製造商:mock-unseen-mt12-paper4-reviewed"],
+    ["ride booking apps", "phrase:noun:叫車應用程式 / 預約車程應用程式:mock-unseen-mt12-paper4-reviewed"],
+    ["cutting across", "phrase:verb:橫切穿過 / 抄捷徑穿過:mock-unseen-mt12-paper4-reviewed"],
+    ["merging into", "phrase:verb:匯入 / 併入:mock-unseen-mt12-paper4-reviewed"],
+    ["ushering in", "phrase:verb:開創 / 帶來:mock-unseen-mt12-paper4-reviewed"],
+    ["ride shares", "phrase:noun:共乘 / 拼車:mock-unseen-mt12-paper4-reviewed"],
+    ["early adopters", "phrase:noun:早期使用者 / 新科技早期嘗試者:mock-unseen-mt12-paper4-reviewed"],
+    ["flying saucers", "phrase:noun:飛碟:mock-unseen-mt12-paper4-reviewed"],
+    ["bugs have been worked out", "phrase:verb:修正問題 / 解決故障:mock-unseen-mt12-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);

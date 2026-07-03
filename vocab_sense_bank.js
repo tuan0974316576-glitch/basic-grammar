@@ -30656,6 +30656,23 @@
     ["normal school hours", "noun", "正常上課時間", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt11-paper4-reviewed"}],
     ["initial response", "noun", "最初反應 / 第一反應", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt11-paper4-reviewed",aliases:["initial responses"]}],
     ["modern invention", "noun", "現代發明", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt11-paper4-reviewed",aliases:["modern inventions"]}],
+    ["sensor system", "noun", "感應器系統", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt12-paper4-reviewed",aliases:["sensor systems"]}],
+    ["onboard computer", "noun", "車載電腦 / 機上電腦", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt12-paper4-reviewed",aliases:["on-board computer","onboard computers","on-board computers"]}],
+    ["automaker", "noun", "汽車製造商", {level:"B2",overrideTeacher:true,source:"mock-unseen-mt12-paper4-reviewed",aliases:["automakers"]}],
+    ["ride-booking app", "noun", "叫車應用程式 / 預約車程應用程式", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt12-paper4-reviewed",aliases:["ride booking app","ride-booking apps","ride booking apps"]}],
+    ["cut across", "verb", "橫切穿過 / 抄捷徑穿過", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt12-paper4-reviewed",aliases:["cuts across","cutting across"]}],
+    ["merge into", "verb", "匯入 / 併入", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt12-paper4-reviewed",aliases:["merges into","merged into","merging into"]}],
+    ["human error", "noun", "人為錯誤", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt12-paper4-reviewed"}],
+    ["near-flawless", "adjective", "近乎完美的", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt12-paper4-reviewed",aliases:["near flawless"]}],
+    ["safety record", "noun", "安全紀錄", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt12-paper4-reviewed"}],
+    ["usher in", "verb", "開創 / 帶來", {type:"phrase",level:"C1",overrideTeacher:true,source:"mock-unseen-mt12-paper4-reviewed",aliases:["ushers in","ushered in","ushering in"]}],
+    ["ride-sharing", "noun", "共乘 / 拼車", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt12-paper4-reviewed",aliases:["ride sharing","ride-share","ride share","ride shares"]}],
+    ["driver input", "noun", "司機操控 / 司機介入", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt12-paper4-reviewed"}],
+    ["early adopter", "noun", "早期使用者 / 新科技早期嘗試者", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt12-paper4-reviewed",aliases:["early adopters"]}],
+    ["outnumbered", "adjective", "寡不敵眾的 / 人數較少的", {level:"B2",overrideTeacher:true,source:"mock-unseen-mt12-paper4-reviewed"}],
+    ["get off-track", "verb", "離題 / 偏離正軌", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt12-paper4-reviewed",aliases:["off-track","getting off-track","got off-track"]}],
+    ["flying saucer", "noun", "飛碟", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt12-paper4-reviewed",aliases:["flying saucers"]}],
+    ["work out the bugs", "verb", "修正問題 / 解決故障", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt12-paper4-reviewed",aliases:["work out all the bugs","worked out all the bugs","bugs have been worked out"]}],
   ];
 
   function normalizeVerbTableMeaning(value) {
