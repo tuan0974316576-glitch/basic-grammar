@@ -40,19 +40,19 @@ Latest verified progress:
 | Paper 1 | 84 | 24 | 60 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
-| Paper 4 | 72 | 47 | 25 |
-| Total | 314 | 229 | 85 |
+| Paper 4 | 72 | 48 | 24 |
+| Total | 314 | 230 | 84 |
 
 Most recent completed paper:
 
-- `MT13 Paper 4`
-- Source tag: `mock-unseen-mt13-paper4-reviewed`
-- Added 19 reviewed entries, including tween / video streaming app / clock up / education app / penetration rate / gamify / trivia round / public/private boundary
+- `MT14 Paper 4`
+- Source tag: `mock-unseen-mt14-paper4-reviewed`
+- Added 30 reviewed entries, including Model United Nations / the more the merrier / diplomacy / conflict resolution / eat up / play devil's advocate / set in one's ways / lost cause
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely item:
 
-- Paper 3 is complete. `MT52`, `MT74`, `MT76`, and `MT77` have no Paper 4 file in the current download set, and `MT7` / `MT8` / `MT9` / `MT10` / `MT11` / `MT12` / `MT13` / `MT56` / `MT57` / `MT59` / `MT60` / `MT62` / `MT63` / `MT64` / `MT65` / `MT66` / `MT67` / `MT68` / `MT69` / `MT70` / `MT71` / `MT72` / `MT73` / `MT75` / `MT78` / `MT79` / `MT81` / `MT83` / `MT84` / `MT85` / `MT86` / `MT87 Paper 4` are complete. Continue with the next available missing Paper 4 item, likely `MT14 Paper 4`, or continue remaining Paper 1 items from the review log.
+- Paper 3 is complete. `MT52`, `MT74`, `MT76`, and `MT77` have no Paper 4 file in the current download set, and `MT7` / `MT8` / `MT9` / `MT10` / `MT11` / `MT12` / `MT13` / `MT14` / `MT56` / `MT57` / `MT59` / `MT60` / `MT62` / `MT63` / `MT64` / `MT65` / `MT66` / `MT67` / `MT68` / `MT69` / `MT70` / `MT71` / `MT72` / `MT73` / `MT75` / `MT78` / `MT79` / `MT81` / `MT83` / `MT84` / `MT85` / `MT86` / `MT87 Paper 4` are complete. Continue with the next available missing Paper 4 item, or continue remaining Paper 1 items from the review log.
 - Use the `.docx` student and teacher files first. If `textutil` extraction is poor, compare with PDF extraction.
 
 ## Normal Workflow For One Paper

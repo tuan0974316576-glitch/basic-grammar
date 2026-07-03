@@ -211,6 +211,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt11-paper4-reviewed",
     "mock-unseen-mt12-paper4-reviewed",
     "mock-unseen-mt13-paper4-reviewed",
+    "mock-unseen-mt14-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -12434,6 +12435,25 @@ function assertStudentLookupContract(word, matches) {
     ["tracking progress", "phrase:verb:追蹤進度:mock-unseen-mt13-paper4-reviewed"],
     ["trivia rounds", "phrase:noun:問答回合 / 冷知識回合:mock-unseen-mt13-paper4-reviewed"],
     ["public/private boundaries", "phrase:noun:公開與私人之間的界線:mock-unseen-mt13-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["MUN", "phrase:noun:模擬聯合國:mock-unseen-mt14-paper4-reviewed"],
+    ["the more the merrier", "phrase:adjective:人越多越好 / 越熱鬧越好:mock-unseen-mt14-paper4-reviewed"],
+    ["break things down", "phrase:verb:分拆講解 / 分析:mock-unseen-mt14-paper4-reviewed"],
+    ["the name of the game", "phrase:noun:最重要的事 / 關鍵所在:mock-unseen-mt14-paper4-reviewed"],
+    ["member states", "phrase:noun:成員國:mock-unseen-mt14-paper4-reviewed"],
+    ["raise its profile", "phrase:verb:提高知名度 / 提升形象:mock-unseen-mt14-paper4-reviewed"],
+    ["eating up", "phrase:verb:大量消耗 / 佔用:mock-unseen-mt14-paper4-reviewed"],
+    ["up for it", "phrase:verb:願意做 / 有興趣參與:mock-unseen-mt14-paper4-reviewed"],
+    ["play devil's advocate", "phrase:verb:故意提出反方意見 / 唱反調:mock-unseen-mt14-paper4-reviewed"],
+    ["approaching from a different angle", "phrase:verb:從不同角度處理 / 看待:mock-unseen-mt14-paper4-reviewed"],
+    ["set in their ways", "phrase:adjective:固執己見的 / 難以改變習慣的:mock-unseen-mt14-paper4-reviewed"],
+    ["a lost cause", "phrase:noun:無望的事 / 沒有希望成功的事:mock-unseen-mt14-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
