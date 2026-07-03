@@ -40,19 +40,19 @@ Latest verified progress:
 | Paper 1 | 84 | 24 | 60 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
-| Paper 4 | 72 | 34 | 38 |
-| Total | 314 | 216 | 98 |
+| Paper 4 | 72 | 35 | 37 |
+| Total | 314 | 217 | 97 |
 
 Most recent completed paper:
 
-- `MT79 Paper 4`
-- Source tag: `mock-unseen-mt79-paper4-reviewed`
-- Added 26 reviewed entries, including cooperative board game / have a bearing on / The Peak / water flume ride / element of chance / scoring system / player mat
+- `MT81 Paper 4`
+- Source tag: `mock-unseen-mt81-paper4-reviewed`
+- Added 38 reviewed entries, including medical beauty / licensing system / beauty parlour / Botox / chemical peel / laser hair removal / quick fix / laughter line / take out a loan
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely item:
 
-- Paper 3 is complete. `MT52`, `MT74`, `MT76`, and `MT77` have no Paper 4 file in the current download set, and `MT56` / `MT57` / `MT59` / `MT60` / `MT62` / `MT63` / `MT64` / `MT65` / `MT66` / `MT67` / `MT68` / `MT69` / `MT70` / `MT71` / `MT72` / `MT73` / `MT75` / `MT78` / `MT79 Paper 4` are complete. Continue with the next available missing Paper 4 item, likely `MT81 Paper 4` if available, or continue remaining Paper 1 items from the review log.
+- Paper 3 is complete. `MT52`, `MT74`, `MT76`, and `MT77` have no Paper 4 file in the current download set, and `MT56` / `MT57` / `MT59` / `MT60` / `MT62` / `MT63` / `MT64` / `MT65` / `MT66` / `MT67` / `MT68` / `MT69` / `MT70` / `MT71` / `MT72` / `MT73` / `MT75` / `MT78` / `MT79` / `MT81 Paper 4` are complete. Continue with the next available missing Paper 4 item, or continue remaining Paper 1 items from the review log.
 - Use the `.docx` student and teacher files first. If `textutil` extraction is poor, compare with PDF extraction.
 
 ## Normal Workflow For One Paper

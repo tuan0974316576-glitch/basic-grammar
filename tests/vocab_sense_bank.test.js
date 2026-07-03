@@ -204,6 +204,8 @@ const mt78Paper4Entries = senseBank.entries.filter((entry) => entry.source === "
 assert.ok(mt78Paper4Entries.length >= 27, `Expected MT78 Paper 4 reviewed entries, got ${mt78Paper4Entries.length}`);
 const mt79Paper4Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt79-paper4-reviewed");
 assert.ok(mt79Paper4Entries.length >= 26, `Expected MT79 Paper 4 reviewed entries, got ${mt79Paper4Entries.length}`);
+const mt81Paper4Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt81-paper4-reviewed");
+assert.ok(mt81Paper4Entries.length >= 38, `Expected MT81 Paper 4 reviewed entries, got ${mt81Paper4Entries.length}`);
 const mt68Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt68-paper3-reviewed");
 assert.ok(mt68Paper3Entries.length >= 50, `Expected MT68 Paper 3 reviewed entries, got ${mt68Paper3Entries.length}`);
 const mt62Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt62-paper3-reviewed");
@@ -8216,6 +8218,28 @@ mt79Paper4ReviewedExpectations.forEach(([word, pos, meaning]) => {
     candidate.pos === pos && candidate.meaning === meaning
   ));
   assert.ok(entry, `${word} should include MT79 Paper 4 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt81Paper4ReviewedExpectations = [
+  ["medical beauty", "noun", "醫學美容 / 醫美"],
+  ["licencing system", "noun", "發牌制度 / 牌照制度"],
+  ["beauty parlours", "noun", "美容院"],
+  ["Botox", "noun", "肉毒桿菌針 / Botox 注射"],
+  ["chemical peels", "noun", "化學換膚"],
+  ["laser hair removal", "noun", "激光脫毛"],
+  ["signs of ageing", "noun", "衰老跡象 / 老化跡象"],
+  ["lumps", "noun", "腫塊 / 硬塊"],
+  ["file complaints", "verb", "提出投訴"],
+  ["social media filters", "noun", "社交媒體濾鏡"],
+  ["quick fixes", "noun", "快速解決辦法 / 權宜之計"],
+  ["take out loans", "verb", "借貸 / 申請貸款"]
+];
+
+mt81Paper4ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT81 Paper 4 reviewed sense ${pos}:${meaning}`);
 });
 
 const mt35Paper3ReviewedExpectations = [

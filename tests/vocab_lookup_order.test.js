@@ -198,6 +198,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt75-paper4-reviewed",
     "mock-unseen-mt78-paper4-reviewed",
     "mock-unseen-mt79-paper4-reviewed",
+    "mock-unseen-mt81-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -12197,6 +12198,23 @@ function assertStudentLookupContract(word, matches) {
     ["took on the role of", "phrase:verb:擔任...角色 / 扮演...角色:mock-unseen-mt79-paper4-reviewed"],
     ["player mats", "phrase:noun:玩家墊 / 遊戲墊:mock-unseen-mt79-paper4-reviewed"],
     ["tense", "word:adjective:緊張的:mock-unseen-mt79-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["medical beauty", "phrase:noun:醫學美容 / 醫美:mock-unseen-mt81-paper4-reviewed"],
+    ["licencing system", "phrase:noun:發牌制度 / 牌照制度:mock-unseen-mt81-paper4-reviewed"],
+    ["beauty parlors", "phrase:noun:美容院:mock-unseen-mt81-paper4-reviewed"],
+    ["Botox", "word:noun:肉毒桿菌針 / Botox 注射:mock-unseen-mt81-paper4-reviewed"],
+    ["face-lifts", "phrase:noun:拉皮 / 面部提升療程:mock-unseen-mt81-paper4-reviewed"],
+    ["go ahead with treatments", "phrase:verb:繼續進行 / 決定做:mock-unseen-mt81-paper4-reviewed"],
+    ["reverse the ageing process", "phrase:verb:逆轉老化過程 / 令人看起來變年輕:mock-unseen-mt81-paper4-reviewed"],
+    ["got work done", "phrase:verb:做醫美 / 做整形療程:mock-unseen-mt81-paper4-reviewed"],
+    ["laughter lines", "phrase:noun:笑紋:mock-unseen-mt81-paper4-reviewed"],
+    ["take out loans", "phrase:verb:借貸 / 申請貸款:mock-unseen-mt81-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
