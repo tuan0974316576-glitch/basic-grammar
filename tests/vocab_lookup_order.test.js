@@ -207,6 +207,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt7-paper4-reviewed",
     "mock-unseen-mt8-paper4-reviewed",
     "mock-unseen-mt9-paper4-reviewed",
+    "mock-unseen-mt10-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -12362,6 +12363,22 @@ function assertStudentLookupContract(word, matches) {
     ["skits", "word:noun:短劇 / 小品:mock-unseen-mt9-paper4-reviewed"],
     ["freaking out", "phrase:verb:嚇壞 / 慌張:mock-unseen-mt9-paper4-reviewed"],
     ["theme park attractions", "phrase:noun:主題樂園遊樂設施 / 景點:mock-unseen-mt9-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["speed reading apps", "phrase:noun:速讀應用程式:mock-unseen-mt10-paper4-reviewed"],
+    ["cut your school study time in half", "phrase:verb:減半:mock-unseen-mt10-paper4-reviewed"],
+    ["flying through", "phrase:verb:很快完成 / 飛快讀完:mock-unseen-mt10-paper4-reviewed"],
+    ["feeds", "word:verb:逐步送出 / 逐字顯示:mock-unseen-mt10-paper4-reviewed"],
+    ["words per minute", "phrase:noun:每分鐘字數:mock-unseen-mt10-paper4-reviewed"],
+    ["Literature in English", "phrase:noun:英國文學科:mock-unseen-mt10-paper4-reviewed"],
+    ["my mind wanders", "phrase:verb:走神 / 思緒飄走:mock-unseen-mt10-paper4-reviewed"],
+    ["stick in my memory", "phrase:verb:留在記憶中 / 記得住:mock-unseen-mt10-paper4-reviewed"],
+    ["learning styles", "phrase:noun:學習方式 / 學習風格:mock-unseen-mt10-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);

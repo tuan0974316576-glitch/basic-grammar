@@ -40,19 +40,19 @@ Latest verified progress:
 | Paper 1 | 84 | 24 | 60 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
-| Paper 4 | 72 | 43 | 29 |
-| Total | 314 | 225 | 89 |
+| Paper 4 | 72 | 44 | 28 |
+| Total | 314 | 226 | 88 |
 
 Most recent completed paper:
 
-- `MT9 Paper 4`
-- Source tag: `mock-unseen-mt9-paper4-reviewed`
-- Added 19 reviewed entries, including escape-the-room game / werewolf / suffer / excel at / haunted house attraction / skit / freak out / theme park attraction
+- `MT10 Paper 4`
+- Source tag: `mock-unseen-mt10-paper4-reviewed`
+- Added 17 reviewed entries, including speed-reading app / cut in half / fly through / feed / ingest / Literature in English / mind wanders / stick in one's memory
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely item:
 
-- Paper 3 is complete. `MT52`, `MT74`, `MT76`, and `MT77` have no Paper 4 file in the current download set, and `MT7` / `MT8` / `MT9` / `MT56` / `MT57` / `MT59` / `MT60` / `MT62` / `MT63` / `MT64` / `MT65` / `MT66` / `MT67` / `MT68` / `MT69` / `MT70` / `MT71` / `MT72` / `MT73` / `MT75` / `MT78` / `MT79` / `MT81` / `MT83` / `MT84` / `MT85` / `MT86` / `MT87 Paper 4` are complete. Continue with the next available missing Paper 4 item, likely `MT10 Paper 4`, or continue remaining Paper 1 items from the review log.
+- Paper 3 is complete. `MT52`, `MT74`, `MT76`, and `MT77` have no Paper 4 file in the current download set, and `MT7` / `MT8` / `MT9` / `MT10` / `MT56` / `MT57` / `MT59` / `MT60` / `MT62` / `MT63` / `MT64` / `MT65` / `MT66` / `MT67` / `MT68` / `MT69` / `MT70` / `MT71` / `MT72` / `MT73` / `MT75` / `MT78` / `MT79` / `MT81` / `MT83` / `MT84` / `MT85` / `MT86` / `MT87 Paper 4` are complete. Continue with the next available missing Paper 4 item, likely `MT11 Paper 4`, or continue remaining Paper 1 items from the review log.
 - Use the `.docx` student and teacher files first. If `textutil` extraction is poor, compare with PDF extraction.
 
 ## Normal Workflow For One Paper

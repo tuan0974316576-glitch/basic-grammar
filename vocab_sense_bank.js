@@ -30624,6 +30624,23 @@
     ["fictional work", "noun", "虛構作品 / 文學或影視作品", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt9-paper4-reviewed",aliases:["fictional works"]}],
     ["theme park attraction", "noun", "主題樂園遊樂設施 / 景點", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt9-paper4-reviewed",aliases:["theme park attractions"]}],
     ["international destination", "noun", "外國旅遊目的地 / 國際目的地", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt9-paper4-reviewed",aliases:["international destinations"]}],
+    ["speed-reading app", "noun", "速讀應用程式", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt10-paper4-reviewed",aliases:["speed reading app","speed-reading apps","speed reading apps"]}],
+    ["secondary school curriculum", "noun", "中學課程", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt10-paper4-reviewed"}],
+    ["cut in half", "verb", "減半", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt10-paper4-reviewed",aliases:["cuts in half","cut your school study time in half","cutting in half"]}],
+    ["fly through", "verb", "很快完成 / 飛快讀完", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt10-paper4-reviewed",aliases:["flies through","flew through","flying through"]}],
+    ["outside interest", "noun", "課外興趣 / 其他興趣", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt10-paper4-reviewed",aliases:["outside interests"]}],
+    ["feed", "verb", "逐步送出 / 逐字顯示", {level:"B2",overrideTeacher:true,source:"mock-unseen-mt10-paper4-reviewed",aliases:["feeds","fed","feeding"]}],
+    ["physical act", "noun", "身體動作 / 實際動作", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt10-paper4-reviewed"}],
+    ["ingest", "verb", "吸收 / 攝取資訊", {level:"B2",overrideTeacher:true,source:"mock-unseen-mt10-paper4-reviewed",aliases:["ingests","ingested","ingesting"]}],
+    ["words per minute", "noun", "每分鐘字數", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt10-paper4-reviewed"}],
+    ["Literature in English", "noun", "英國文學科", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt10-paper4-reviewed",display:"Literature in English"}],
+    ["mind wanders", "verb", "走神 / 思緒飄走", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt10-paper4-reviewed",display:"mind wanders",aliases:["my mind wanders","mind wandered","mind wandering"]}],
+    ["dozy", "adjective", "昏昏欲睡的", {level:"B2",overrideTeacher:true,source:"mock-unseen-mt10-paper4-reviewed"}],
+    ["way of the future", "noun", "未來趨勢 / 未來方向", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt10-paper4-reviewed"}],
+    ["informational", "adjective", "資訊性的 / 提供資訊的", {level:"B2",overrideTeacher:true,source:"mock-unseen-mt10-paper4-reviewed"}],
+    ["stick in one's memory", "verb", "留在記憶中 / 記得住", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt10-paper4-reviewed",display:"stick in one's memory",aliases:["stick in my memory","stick in your memory","sticks in my memory","stuck in my memory"]}],
+    ["learning style", "noun", "學習方式 / 學習風格", {type:"phrase",level:"B1",overrideTeacher:true,source:"mock-unseen-mt10-paper4-reviewed",aliases:["learning styles"]}],
+    ["demand more of one's schedule", "verb", "佔用更多時間", {type:"phrase",level:"B2",overrideTeacher:true,source:"mock-unseen-mt10-paper4-reviewed",display:"demand more of one's schedule",aliases:["demand more of my schedule","demands more of my schedule","demanded more of my schedule"]}],
   ];
 
   function normalizeVerbTableMeaning(value) {
