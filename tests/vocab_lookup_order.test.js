@@ -186,6 +186,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt46-paper4-reviewed",
     "mock-unseen-mt47-paper4-reviewed",
     "mock-unseen-mt48-paper4-reviewed",
+    "mock-unseen-mt58-paper4-reviewed",
     "mock-unseen-mt15-paper4-reviewed",
     "mock-unseen-mt17-paper4-reviewed",
     "mock-unseen-mt20-paper4-reviewed",
@@ -11958,6 +11959,27 @@ function assertStudentLookupContract(word, matches) {
     ["needs work", "phrase:verb:需要改善 / 還要修改:mock-unseen-mt48-paper4-reviewed"],
     ["have some say in", "phrase:verb:對...有一定發言權 / 有份決定:mock-unseen-mt48-paper4-reviewed"],
     ["give up altogether", "phrase:verb:完全放棄:mock-unseen-mt48-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["typed out", "phrase:verb:打字寫出 / 打出文字:mock-unseen-mt58-paper4-reviewed"],
+    ["e learning", "word:noun:網上學習 / 電子學習:mock-unseen-mt58-paper4-reviewed"],
+    ["basic human rights", "phrase:noun:基本人權:mock-unseen-mt58-paper4-reviewed"],
+    ["at risk of", "phrase:preposition:有...風險 / 面臨...危險:mock-unseen-mt58-paper4-reviewed"],
+    ["redistributed", "word:verb:重新分配 / 重新派發:mock-unseen-mt58-paper4-reviewed"],
+    ["stylus", "word:noun:觸控筆 / 手寫筆:mock-unseen-mt58-paper4-reviewed"],
+    ["high speed internet", "phrase:noun:高速互聯網:mock-unseen-mt58-paper4-reviewed"],
+    ["computer labs", "phrase:noun:電腦室:mock-unseen-mt58-paper4-reviewed"],
+    ["word processing", "phrase:noun:文字處理:mock-unseen-mt58-paper4-reviewed"],
+    ["labour market", "phrase:noun:勞動市場 / 就業市場:mock-unseen-mt58-paper4-reviewed"],
+    ["SIM cards", "phrase:noun:SIM 卡 / 電話卡:mock-unseen-mt58-paper4-reviewed"],
+    ["in a jam", "phrase:adverb:遇上麻煩 / 陷入困境:mock-unseen-mt58-paper4-reviewed"],
+    ["traded in", "phrase:verb:以舊換新 / 折價換購:mock-unseen-mt58-paper4-reviewed"],
+    ["technological devices", "phrase:noun:科技裝置 / 科技設備:mock-unseen-mt58-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);

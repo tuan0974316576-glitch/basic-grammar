@@ -40,19 +40,19 @@ Latest verified progress:
 | Paper 1 | 84 | 24 | 60 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
-| Paper 4 | 72 | 70 | 2 |
-| Total | 314 | 252 | 62 |
+| Paper 4 | 72 | 71 | 1 |
+| Total | 314 | 253 | 61 |
 
 Most recent completed paper:
 
-- `MT48 Paper 4`
-- Source tag: `mock-unseen-mt48-paper4-reviewed`
-- Added 36 reviewed entries, including career in the arts / keep someone going / lucky break / Pablo Picasso / Studio Ghibli / Spirited Away / attention to detail / down the road / have one's work up / give up altogether / stable income
+- `MT58 Paper 4`
+- Source tag: `mock-unseen-mt58-paper4-reviewed`
+- Added 26 reviewed entries, including e-learning / basic human right / at risk of / redistribute / stylus / high-speed Internet / computer lab / word processing / labour market / SIM card / in a jam / trade in / best-case scenario
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely item:
 
-- Paper 3 is complete. `MT52`, `MT74`, `MT76`, and `MT77` have no Paper 4 file in the current download set, and `MT7` / `MT8` / `MT9` / `MT10` / `MT11` / `MT12` / `MT13` / `MT14` / `MT16` / `MT18` / `MT19` / `MT21` / `MT23` / `MT24` / `MT26` / `MT28` / `MT29` / `MT31` / `MT33` / `MT34` / `MT36` / `MT37` / `MT39` / `MT40` / `MT41` / `MT43` / `MT44` / `MT46` / `MT47` / `MT48` / `MT56` / `MT57` / `MT59` / `MT60` / `MT62` / `MT63` / `MT64` / `MT65` / `MT66` / `MT67` / `MT68` / `MT69` / `MT70` / `MT71` / `MT72` / `MT73` / `MT75` / `MT78` / `MT79` / `MT81` / `MT83` / `MT84` / `MT85` / `MT86` / `MT87 Paper 4` are complete. Continue with the next available missing Paper 4 item, or continue remaining Paper 1 items from the review log.
+- Paper 3 is complete. `MT52`, `MT74`, `MT76`, and `MT77` have no Paper 4 file in the current download set, and `MT7` / `MT8` / `MT9` / `MT10` / `MT11` / `MT12` / `MT13` / `MT14` / `MT16` / `MT18` / `MT19` / `MT21` / `MT23` / `MT24` / `MT26` / `MT28` / `MT29` / `MT31` / `MT33` / `MT34` / `MT36` / `MT37` / `MT39` / `MT40` / `MT41` / `MT43` / `MT44` / `MT46` / `MT47` / `MT48` / `MT56` / `MT57` / `MT58` / `MT59` / `MT60` / `MT62` / `MT63` / `MT64` / `MT65` / `MT66` / `MT67` / `MT68` / `MT69` / `MT70` / `MT71` / `MT72` / `MT73` / `MT75` / `MT78` / `MT79` / `MT81` / `MT83` / `MT84` / `MT85` / `MT86` / `MT87 Paper 4` are complete. Continue with the next available missing Paper 4 item, likely `MT61 Paper 4`, or continue remaining Paper 1 items from the review log.
 - Use the `.docx` student and teacher files first. If `textutil` extraction is poor, compare with PDF extraction.
 
 ## Normal Workflow For One Paper
