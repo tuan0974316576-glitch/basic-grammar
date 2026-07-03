@@ -205,6 +205,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt86-paper4-reviewed",
     "mock-unseen-mt87-paper4-reviewed",
     "mock-unseen-mt7-paper4-reviewed",
+    "mock-unseen-mt8-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -12328,6 +12329,22 @@ function assertStudentLookupContract(word, matches) {
     ["make their dream a reality", "phrase:verb:令夢想成真:mock-unseen-mt7-paper4-reviewed"],
     ["water filtration devices", "phrase:noun:濾水裝置:mock-unseen-mt7-paper4-reviewed"],
     ["computer-generated imagery", "phrase:noun:電腦生成影像 / 電腦特效影像:mock-unseen-mt7-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["animated videos", "phrase:noun:動畫影片:mock-unseen-mt8-paper4-reviewed"],
+    ["video sharing websites", "phrase:noun:影片分享網站:mock-unseen-mt8-paper4-reviewed"],
+    ["get taken off", "phrase:verb:移除 / 撤下:mock-unseen-mt8-paper4-reviewed"],
+    ["microblogging sites", "phrase:noun:微博網站 / 短訊息分享網站:mock-unseen-mt8-paper4-reviewed"],
+    ["friend requests", "phrase:noun:好友邀請 / 加朋友請求:mock-unseen-mt8-paper4-reviewed"],
+    ["five Ws", "phrase:noun:5W 要素 / 五個 W:mock-unseen-mt8-paper4-reviewed"],
+    ["in general terms", "phrase:adverb:概括地說 / 大致上:mock-unseen-mt8-paper4-reviewed"],
+    ["tie in with", "phrase:verb:與...配合 / 與...有關連:mock-unseen-mt8-paper4-reviewed"],
+    ["limited seating", "phrase:noun:座位有限:mock-unseen-mt8-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);

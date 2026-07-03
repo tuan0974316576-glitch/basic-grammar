@@ -218,6 +218,8 @@ const mt87Paper4Entries = senseBank.entries.filter((entry) => entry.source === "
 assert.ok(mt87Paper4Entries.length >= 22, `Expected MT87 Paper 4 reviewed entries, got ${mt87Paper4Entries.length}`);
 const mt7Paper4Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt7-paper4-reviewed");
 assert.ok(mt7Paper4Entries.length >= 20, `Expected MT7 Paper 4 reviewed entries, got ${mt7Paper4Entries.length}`);
+const mt8Paper4Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt8-paper4-reviewed");
+assert.ok(mt8Paper4Entries.length >= 18, `Expected MT8 Paper 4 reviewed entries, got ${mt8Paper4Entries.length}`);
 const mt68Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt68-paper3-reviewed");
 assert.ok(mt68Paper3Entries.length >= 50, `Expected MT68 Paper 3 reviewed entries, got ${mt68Paper3Entries.length}`);
 const mt62Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt62-paper3-reviewed");
@@ -767,7 +769,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("take off").map((entry) => `${entry.type}:${entry.meaning}`),
-  ["phrase:脫下", "phrase:起飛", "phrase:突然流行 / 迅速成功"]
+  ["phrase:脫下", "phrase:起飛", "phrase:突然流行 / 迅速成功", "phrase:移除 / 撤下"]
 );
 assert.strictEqual(senseBank.lookup("take off")[0].overrideTeacher, true);
 assert.deepStrictEqual(
