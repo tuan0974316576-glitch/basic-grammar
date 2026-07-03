@@ -202,6 +202,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt83-paper4-reviewed",
     "mock-unseen-mt84-paper4-reviewed",
     "mock-unseen-mt85-paper4-reviewed",
+    "mock-unseen-mt86-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -12271,6 +12272,25 @@ function assertStudentLookupContract(word, matches) {
     ["brush your teeth", "phrase:verb:刷牙:mock-unseen-mt85-paper4-reviewed"],
     ["out of luck", "phrase:adjective:不走運的 / 無辦法的:mock-unseen-mt85-paper4-reviewed"],
     ["getting by", "phrase:verb:勉強過活 / 應付生活:mock-unseen-mt85-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["creative spark", "phrase:noun:創作靈感 / 創意火花:mock-unseen-mt86-paper4-reviewed"],
+    ["machine language models", "phrase:noun:語言模型:mock-unseen-mt86-paper4-reviewed"],
+    ["opening credit sequences", "phrase:noun:片頭字幕段落 / 開場演職員名單片段:mock-unseen-mt86-paper4-reviewed"],
+    ["native speakers", "phrase:noun:母語使用者:mock-unseen-mt86-paper4-reviewed"],
+    ["Academy Awards", "phrase:noun:奧斯卡金像獎:mock-unseen-mt86-paper4-reviewed"],
+    ["filmmaking tools", "phrase:noun:電影製作工具:mock-unseen-mt86-paper4-reviewed"],
+    ["conducted an orchestra", "phrase:verb:指揮管弦樂團:mock-unseen-mt86-paper4-reviewed"],
+    ["jury is out", "phrase:verb:尚未有定論 / 未能下結論:mock-unseen-mt86-paper4-reviewed"],
+    ["put people out of work", "phrase:verb:令...失業:mock-unseen-mt86-paper4-reviewed"],
+    ["take your point", "phrase:verb:明白你的觀點 / 接受你的說法:mock-unseen-mt86-paper4-reviewed"],
+    ["have it both ways", "phrase:verb:兩邊好處都想要 / 想兩全其美:mock-unseen-mt86-paper4-reviewed"],
+    ["publicly", "word:adverb:公開地:mock-unseen-mt86-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);

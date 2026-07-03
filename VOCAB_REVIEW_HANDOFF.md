@@ -40,19 +40,19 @@ Latest verified progress:
 | Paper 1 | 84 | 24 | 60 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
-| Paper 4 | 72 | 38 | 34 |
-| Total | 314 | 220 | 94 |
+| Paper 4 | 72 | 39 | 33 |
+| Total | 314 | 221 | 93 |
 
 Most recent completed paper:
 
-- `MT85 Paper 4`
-- Source tag: `mock-unseen-mt85-paper4-reviewed`
-- Added 30 reviewed entries, including flush toilet / freshwater / catchment / defrost / grey water / leaky faucet / dishwasher / get by
+- `MT86 Paper 4`
+- Source tag: `mock-unseen-mt86-paper4-reviewed`
+- Added 36 reviewed entries, including creative spark / language model / opening credit sequence / Academy Award / movie score / put out of work / the jury is out / have it both ways
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely item:
 
-- Paper 3 is complete. `MT52`, `MT74`, `MT76`, and `MT77` have no Paper 4 file in the current download set, and `MT56` / `MT57` / `MT59` / `MT60` / `MT62` / `MT63` / `MT64` / `MT65` / `MT66` / `MT67` / `MT68` / `MT69` / `MT70` / `MT71` / `MT72` / `MT73` / `MT75` / `MT78` / `MT79` / `MT81` / `MT83` / `MT84` / `MT85 Paper 4` are complete. Continue with the next available missing Paper 4 item, or continue remaining Paper 1 items from the review log.
+- Paper 3 is complete. `MT52`, `MT74`, `MT76`, and `MT77` have no Paper 4 file in the current download set, and `MT56` / `MT57` / `MT59` / `MT60` / `MT62` / `MT63` / `MT64` / `MT65` / `MT66` / `MT67` / `MT68` / `MT69` / `MT70` / `MT71` / `MT72` / `MT73` / `MT75` / `MT78` / `MT79` / `MT81` / `MT83` / `MT84` / `MT85` / `MT86 Paper 4` are complete. Continue with the next available missing Paper 4 item, or continue remaining Paper 1 items from the review log.
 - Use the `.docx` student and teacher files first. If `textutil` extraction is poor, compare with PDF extraction.
 
 ## Normal Workflow For One Paper
