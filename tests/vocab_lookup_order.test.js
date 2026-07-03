@@ -177,6 +177,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt33-paper4-reviewed",
     "mock-unseen-mt34-paper4-reviewed",
     "mock-unseen-mt36-paper4-reviewed",
+    "mock-unseen-mt37-paper4-reviewed",
     "mock-unseen-mt15-paper4-reviewed",
     "mock-unseen-mt17-paper4-reviewed",
     "mock-unseen-mt20-paper4-reviewed",
@@ -11783,6 +11784,25 @@ function assertStudentLookupContract(word, matches) {
     ["VR field trips", "phrase:noun:VR 虛擬校外考察:mock-unseen-mt36-paper4-reviewed"],
     ["virtual textbooks", "phrase:noun:虛擬教科書 / 電子教科書:mock-unseen-mt36-paper4-reviewed"],
     ["high-five", "phrase:noun:擊掌:mock-unseen-mt36-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["perfect match", "phrase:noun:絕配 / 非常合適的配搭:mock-unseen-mt37-paper4-reviewed"],
+    ["head-start", "phrase:noun:領先優勢 / 先機:mock-unseen-mt37-paper4-reviewed"],
+    ["corporate school partnerships", "phrase:noun:企業與學校合作計劃:mock-unseen-mt37-paper4-reviewed"],
+    ["rose out of poverty", "phrase:verb:脫離貧窮:mock-unseen-mt37-paper4-reviewed"],
+    ["Coca Cola", "word:noun:可口可樂:mock-unseen-mt37-paper4-reviewed"],
+    ["put students first", "phrase:verb:以學生為先:mock-unseen-mt37-paper4-reviewed"],
+    ["sidetracked", "phrase:verb:離題 / 被帶離主題:mock-unseen-mt37-paper4-reviewed"],
+    ["set us up with", "phrase:verb:為某人提供 / 安排某物:mock-unseen-mt37-paper4-reviewed"],
+    ["toxic waste", "phrase:noun:有毒廢物:mock-unseen-mt37-paper4-reviewed"],
+    ["networking with", "phrase:verb:與...建立人脈 / 交流:mock-unseen-mt37-paper4-reviewed"],
+    ["take orders", "phrase:verb:記下點餐 / 接受訂單:mock-unseen-mt37-paper4-reviewed"],
+    ["stay competitive", "phrase:verb:保持競爭力:mock-unseen-mt37-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
