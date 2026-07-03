@@ -164,6 +164,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt13-paper3-reviewed",
     "mock-unseen-mt14-paper3-reviewed",
     "mock-unseen-mt15-paper3-reviewed",
+    "mock-unseen-mt16-paper4-reviewed",
     "mock-unseen-mt15-paper4-reviewed",
     "mock-unseen-mt17-paper4-reviewed",
     "mock-unseen-mt20-paper4-reviewed",
@@ -12458,6 +12459,38 @@ function assertStudentLookupContract(word, matches) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
     assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["access fees", "phrase:noun:使用費 / 入場費:mock-unseen-mt16-paper4-reviewed"],
+    ["set courses", "phrase:noun:固定路線 / 預設路線:mock-unseen-mt16-paper4-reviewed"],
+    ["virtual tourists", "phrase:noun:虛擬旅客 / 網上遊客:mock-unseen-mt16-paper4-reviewed"],
+    ["camera-equipped", "phrase:adjective:配備相機的:mock-unseen-mt16-paper4-reviewed"],
+    ["on loan", "phrase:adjective:借展的 / 暫借的:mock-unseen-mt16-paper4-reviewed"],
+    ["winding roads", "phrase:noun:蜿蜒道路 / 彎彎曲曲的路:mock-unseen-mt16-paper4-reviewed"],
+    ["vistas", "word:noun:遠景 / 景色:mock-unseen-mt16-paper4-reviewed"],
+    ["wax figures", "phrase:noun:蠟像:mock-unseen-mt16-paper4-reviewed"],
+    ["open air markets", "phrase:noun:露天市場:mock-unseen-mt16-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  {
+    const entries = await lookupForStudent("virtually");
+    assert.ok(
+      entries.some((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}` === "word:adverb:以虛擬方式 / 網上地:mock-unseen-mt16-paper4-reviewed"),
+      "virtually should include the MT16 virtual-mode sense without hiding the common 'almost' sense"
+    );
+  }
+
+  {
+    const entries = await lookupForStudent("makes for");
+    assert.ok(
+      entries.some((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}` === "phrase:verb:造成 / 帶來:mock-unseen-mt16-paper4-reviewed"),
+      "make for should include the MT16 'lead to / create' sense without hiding the movement sense"
+    );
   }
 
   for (const [word, expected] of [
