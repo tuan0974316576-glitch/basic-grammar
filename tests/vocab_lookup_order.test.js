@@ -210,6 +210,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt10-paper4-reviewed",
     "mock-unseen-mt11-paper4-reviewed",
     "mock-unseen-mt12-paper4-reviewed",
+    "mock-unseen-mt13-paper4-reviewed",
     "mock-unseen-mt68-paper3-reviewed",
     "mock-unseen-mt75-paper3-reviewed",
     "mock-unseen-mt79-paper3-reviewed",
@@ -12415,6 +12416,24 @@ function assertStudentLookupContract(word, matches) {
     ["early adopters", "phrase:noun:早期使用者 / 新科技早期嘗試者:mock-unseen-mt12-paper4-reviewed"],
     ["flying saucers", "phrase:noun:飛碟:mock-unseen-mt12-paper4-reviewed"],
     ["bugs have been worked out", "phrase:verb:修正問題 / 解決故障:mock-unseen-mt12-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["tweens", "word:noun:十至十二歲左右的少年 / 兒童與青少年之間的人:mock-unseen-mt13-paper4-reviewed"],
+    ["video-streaming apps", "phrase:noun:影片串流應用程式:mock-unseen-mt13-paper4-reviewed"],
+    ["clocking up", "phrase:verb:累積 / 達到（時間或數量）:mock-unseen-mt13-paper4-reviewed"],
+    ["online education apps", "phrase:noun:教育應用程式:mock-unseen-mt13-paper4-reviewed"],
+    ["mobile social networking", "phrase:noun:社交網絡應用程式:mock-unseen-mt13-paper4-reviewed"],
+    ["penetration rates", "phrase:noun:普及率 / 滲透率:mock-unseen-mt13-paper4-reviewed"],
+    ["topping the chart", "phrase:verb:位居榜首 / 排名第一:mock-unseen-mt13-paper4-reviewed"],
+    ["gamified", "word:verb:遊戲化 / 加入遊戲元素:mock-unseen-mt13-paper4-reviewed"],
+    ["tracking progress", "phrase:verb:追蹤進度:mock-unseen-mt13-paper4-reviewed"],
+    ["trivia rounds", "phrase:noun:問答回合 / 冷知識回合:mock-unseen-mt13-paper4-reviewed"],
+    ["public/private boundaries", "phrase:noun:公開與私人之間的界線:mock-unseen-mt13-paper4-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
