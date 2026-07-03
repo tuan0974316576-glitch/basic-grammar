@@ -168,6 +168,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt18-paper4-reviewed",
     "mock-unseen-mt19-paper4-reviewed",
     "mock-unseen-mt21-paper4-reviewed",
+    "mock-unseen-mt23-paper4-reviewed",
     "mock-unseen-mt15-paper4-reviewed",
     "mock-unseen-mt17-paper4-reviewed",
     "mock-unseen-mt20-paper4-reviewed",
@@ -12578,6 +12579,42 @@ function assertStudentLookupContract(word, matches) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
     assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["riding a bike", "phrase:verb:踩單車:mock-unseen-mt23-paper4-reviewed"],
+    ["milestones", "word:noun:重要階段 / 里程碑:mock-unseen-mt23-paper4-reviewed"],
+    ["all volunteer", "phrase:adjective:全由義工組成的:mock-unseen-mt23-paper4-reviewed"],
+    ["collectives", "word:noun:團體 / 集體組織:mock-unseen-mt23-paper4-reviewed"],
+    ["at no cost", "phrase:adverb:免費地 / 無需付費地:mock-unseen-mt23-paper4-reviewed"],
+    ["lost count", "phrase:verb:數不清 / 記不清數量:mock-unseen-mt23-paper4-reviewed"],
+    ["in the hundreds", "phrase:adverb:數以百計:mock-unseen-mt23-paper4-reviewed"],
+    ["bike repair workshops", "phrase:noun:單車維修工作坊:mock-unseen-mt23-paper4-reviewed"],
+    ["ecological benefits", "phrase:noun:生態好處 / 環保好處:mock-unseen-mt23-paper4-reviewed"],
+    ["run into difficulties", "phrase:verb:遇到困難:mock-unseen-mt23-paper4-reviewed"],
+    ["outlining", "word:verb:概述 / 列出大綱:mock-unseen-mt23-paper4-reviewed"],
+    ["dwelling on", "phrase:verb:老是想着 / 詳細談論:mock-unseen-mt23-paper4-reviewed"],
+    ["cobwebs", "word:noun:蜘蛛網:mock-unseen-mt23-paper4-reviewed"],
+    ["back up our points", "phrase:verb:支持某人的論點 / 為論點提供證據:mock-unseen-mt23-paper4-reviewed"],
+    ["turning donations away", "phrase:verb:拒絕接受 / 不准進入:mock-unseen-mt23-paper4-reviewed"],
+    ["cleaned out", "phrase:verb:清理 / 清空:mock-unseen-mt23-paper4-reviewed"],
+    ["storage spaces", "phrase:noun:儲物空間:mock-unseen-mt23-paper4-reviewed"],
+    ["dedicated spaces", "phrase:noun:專用空間:mock-unseen-mt23-paper4-reviewed"],
+    ["picking them up", "phrase:verb:上門收取 / 接走某物:mock-unseen-mt23-paper4-reviewed"],
+    ["little to no cost", "phrase:noun:極低或零成本:mock-unseen-mt23-paper4-reviewed"],
+    ["cycling to work", "phrase:verb:踩單車上班:mock-unseen-mt23-paper4-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  {
+    const entries = await lookupForStudent("troubleshooting");
+    assert.ok(
+      entries.some((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}` === "word:verb:排查問題 / 找出故障原因:mock-unseen-mt23-paper4-reviewed"),
+      "troubleshooting should include the MT23 verb sense"
+    );
   }
 
   for (const [word, expected] of [
