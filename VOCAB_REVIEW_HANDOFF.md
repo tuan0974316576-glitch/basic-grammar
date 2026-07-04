@@ -37,17 +37,17 @@ Latest verified progress:
 
 | Paper | Total | Done | Remaining |
 |---|---:|---:|---:|
-| Paper 1 | 84 | 46 | 38 |
+| Paper 1 | 84 | 47 | 37 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
 | Paper 4 | 72 | 72 | 0 |
-| Total | 314 | 276 | 38 |
+| Total | 314 | 277 | 37 |
 
 Most recent completed paper:
 
-- `MT37 Paper 1`
-- Source tag: `mock-unseen-mt37-paper1-reviewed`
-- Added 121 reviewed entries, including existential risk / get one's way / do someone's bidding / good-story bias / solid waste charge / fly-tipping / metal utilization / acid mine drainage / sulfate-reducing microorganism / Not In My Back Yard / pH value
+- `MT39 Paper 1`
+- Source tag: `mock-unseen-mt39-paper1-reviewed`
+- Added 112 reviewed entries, including gene-editing / micropig / opt-out policy / stem cell / proof-of-principle / sway the jury / self-domestication / cyber-slacker / digital dinosaur / driving simulator / bear down on
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely item:

@@ -391,6 +391,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt77-paper1-reviewed",
     "mock-unseen-mt80-paper1-reviewed",
     "mock-unseen-mt84-paper1-reviewed",
+    "mock-unseen-mt39-paper1-reviewed",
     "verb-table-form",
     "cc-cedict-supplement"
   ]);
@@ -13829,7 +13830,13 @@ function assertStudentLookupContract(word, matches) {
     ["Not In My Back Yard", "Not In My Back Yard:phrase:noun:鄰避心態 / 不要在我家附近:mock-unseen-mt37-paper1-reviewed"],
     ["heavy metals", "heavy metal:phrase:noun:重金屬:mock-unseen-mt37-paper1-reviewed"],
     ["sulphate-reducing microorganisms", "sulfate-reducing microorganism:phrase:noun:硫酸鹽還原微生物:mock-unseen-mt37-paper1-reviewed"],
-    ["pH values", "pH value:phrase:noun:酸鹼值 / pH 值:mock-unseen-mt37-paper1-reviewed"]
+    ["pH values", "pH value:phrase:noun:酸鹼值 / pH 值:mock-unseen-mt37-paper1-reviewed"],
+    ["gene editing", "gene-editing:phrase:noun:基因編輯:mock-unseen-mt39-paper1-reviewed"],
+    ["stem cells", "stem cell:phrase:noun:幹細胞:mock-unseen-mt39-paper1-reviewed"],
+    ["proof of principle", "proof-of-principle:phrase:noun:概念驗證 / 原理證明:mock-unseen-mt39-paper1-reviewed"],
+    ["swayed the jury", "sway the jury:phrase:verb:影響陪審團 / 說服陪審團:mock-unseen-mt39-paper1-reviewed"],
+    ["digital dinosaurs", "digital dinosaur:phrase:noun:不熟悉數碼科技的人:mock-unseen-mt39-paper1-reviewed"],
+    ["bears down on", "bear down on:phrase:verb:向...逼近 / 迫近:mock-unseen-mt39-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
