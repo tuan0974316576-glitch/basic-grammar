@@ -9771,4 +9771,35 @@ assert.ok(
   "MT51 Paper 1 should support curly apostrophe festival lookup"
 );
 
+const mt53Paper1ReviewedExpectations = [
+  ["bewildering array", "noun", "令人眼花繚亂的大量選擇"],
+  ["commodity coffee", "noun", "大眾商品咖啡 / 普通廉價咖啡"],
+  ["third place", "noun", "第三空間 / 家和公司以外的社交場所"],
+  ["wax lyrical", "verb", "興奮地大談 / 滔滔不絕地讚美"],
+  ["Key Opinion Leader", "noun", "關鍵意見領袖 / KOL"],
+  ["brand ambassador", "noun", "品牌大使"],
+  ["put the cash in the tills", "verb", "帶來實際銷售 / 令店舖有收入"],
+  ["have a thick skin", "verb", "臉皮厚 / 不易被批評傷害"],
+  ["pale in comparison to", "verb", "相比之下顯得遜色"],
+  ["weigh one's options", "verb", "權衡選擇 / 考慮各種選項"],
+  ["bells and whistles", "noun", "花巧附加功能 / 額外功能"],
+  ["tinker with", "verb", "小修小改 / 嘗試改動"]
+];
+
+mt53Paper1ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.source === "mock-unseen-mt53-paper1-reviewed"
+      && candidate.pos === pos
+      && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT53 Paper 1 reviewed sense ${pos}:${meaning}`);
+});
+
+assert.ok(
+  senseBank.lookup("KOL", { includeHidden: true, limit: 20 }).some((entry) => (
+    entry.display === "Key Opinion Leader" && entry.meaning === "關鍵意見領袖 / KOL"
+  )),
+  "MT53 Paper 1 should support KOL acronym lookup"
+);
+
 console.log("vocab_sense_bank tests passed");

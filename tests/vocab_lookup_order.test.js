@@ -386,6 +386,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt50-paper1-reviewed",
     "mock-unseen-mt51-paper1-reviewed",
     "mock-unseen-mt52-paper1-reviewed",
+    "mock-unseen-mt53-paper1-reviewed",
     "mock-unseen-mt56-paper1-reviewed",
     "mock-unseen-mt59-paper1-reviewed",
     "mock-unseen-mt63-paper1-reviewed",
@@ -5929,6 +5930,21 @@ function assertStudentLookupContract(word, matches) {
     ["forge new paths", "forge new paths:phrase:verb:開創新路 / 開創新方向:mock-unseen-mt51-paper1-reviewed"],
     ["cubicle farms", "cubicle farm:phrase:noun:間隔辦公室 / 格仔辦公室:mock-unseen-mt51-paper1-reviewed"],
     ["BYOD", "BYOD:phrase:noun:自攜裝置上班 / 自攜裝置政策:mock-unseen-mt51-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["bewildering array", "bewildering array:phrase:noun:令人眼花繚亂的大量選擇:mock-unseen-mt53-paper1-reviewed"],
+    ["commodity coffee", "commodity coffee:phrase:noun:大眾商品咖啡 / 普通廉價咖啡:mock-unseen-mt53-paper1-reviewed"],
+    ["wax lyrical", "wax lyrical:phrase:verb:興奮地大談 / 滔滔不絕地讚美:mock-unseen-mt53-paper1-reviewed"],
+    ["KOL", "Key Opinion Leader:phrase:noun:關鍵意見領袖 / KOL:mock-unseen-mt53-paper1-reviewed"],
+    ["brand ambassador", "brand ambassador:phrase:noun:品牌大使:mock-unseen-mt53-paper1-reviewed"],
+    ["have a thick skin", "have a thick skin:phrase:verb:臉皮厚 / 不易被批評傷害:mock-unseen-mt53-paper1-reviewed"],
+    ["pale in comparison to", "pale in comparison to:phrase:verb:相比之下顯得遜色:mock-unseen-mt53-paper1-reviewed"],
+    ["bells and whistles", "bells and whistles:phrase:noun:花巧附加功能 / 額外功能:mock-unseen-mt53-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
