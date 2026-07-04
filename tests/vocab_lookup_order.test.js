@@ -356,6 +356,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt10-paper1-reviewed",
     "mock-unseen-mt11-paper1-reviewed",
     "mock-unseen-mt12-paper1-reviewed",
+    "mock-unseen-mt13-paper1-reviewed",
     "mock-unseen-mt15-paper1-reviewed",
     "mock-unseen-mt17-paper1-reviewed",
     "mock-unseen-mt20-paper1-reviewed",
@@ -13522,6 +13523,27 @@ function assertStudentLookupContract(word, matches) {
     ["hate crime charges", "hate crime charge:phrase:noun:仇恨罪指控:mock-unseen-mt12-paper1-reviewed"],
     ["knee jerk reaction", "knee-jerk reaction:phrase:noun:本能反應 / 未經思考的反應:mock-unseen-mt12-paper1-reviewed"],
     ["style guides", "style guide:phrase:noun:寫作格式指南 / 文體指南:mock-unseen-mt12-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["petrol guzzling", "petrol-guzzling:phrase:adjective:耗油量大的:mock-unseen-mt13-paper1-reviewed"],
+    ["rare earth metals", "rare earth metal:phrase:noun:稀土金屬:mock-unseen-mt13-paper1-reviewed"],
+    ["earth crust", "earth's crust:phrase:noun:地殼:mock-unseen-mt13-paper1-reviewed"],
+    ["woefully underdeveloped", "woefully underdeveloped:phrase:adjective:嚴重發展不足的:mock-unseen-mt13-paper1-reviewed"],
+    ["self righteous", "self-righteous:phrase:adjective:自以為是的 / 自以為道德高尚的:mock-unseen-mt13-paper1-reviewed"],
+    ["slacktivists", "slacktivist:word:noun:鍵盤公益者 / 只在網上低投入表態的人:mock-unseen-mt13-paper1-reviewed"],
+    ["effecting change", "effect change:phrase:verb:實現改變 / 帶來改變:mock-unseen-mt13-paper1-reviewed"],
+    ["ice bucket challenge", "Ice Bucket Challenge:phrase:noun:冰桶挑戰:mock-unseen-mt13-paper1-reviewed"],
+    ["bogeymen", "bogeyman:word:noun:令人害怕的人物 / 被妖魔化的威脅:mock-unseen-mt13-paper1-reviewed"],
+    ["professional trolls", "professional troll:phrase:noun:職業網絡挑釁者 / 受僱網絡打手:mock-unseen-mt13-paper1-reviewed"],
+    ["check their humanity at the login screen", "check one's humanity at the login screen:phrase:verb:上網後失去基本人性 / 在網上不再像正常人般行事:mock-unseen-mt13-paper1-reviewed"],
+    ["trolls for hire", "troll-for-hire:phrase:noun:受僱網絡打手:mock-unseen-mt13-paper1-reviewed"],
+    ["powers that be", "powers-that-be:phrase:noun:當權者 / 掌權者:mock-unseen-mt13-paper1-reviewed"],
+    ["big brother is watching", "Big Brother is watching:phrase:verb:當權者正在監視人民:mock-unseen-mt13-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);

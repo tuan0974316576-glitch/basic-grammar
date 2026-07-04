@@ -37,17 +37,17 @@ Latest verified progress:
 
 | Paper | Total | Done | Remaining |
 |---|---:|---:|---:|
-| Paper 1 | 84 | 30 | 54 |
+| Paper 1 | 84 | 31 | 53 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
 | Paper 4 | 72 | 72 | 0 |
-| Total | 314 | 260 | 54 |
+| Total | 314 | 261 | 53 |
 
 Most recent completed paper:
 
-- `MT12 Paper 1`
-- Source tag: `mock-unseen-mt12-paper1-reviewed`
-- Added 83 reviewed entries, including juvenile detention / information interview / detail-oriented / auto-pilot / flat tire / feed / subtweet / vaguebooking / send shivers up one's spine / digital bankruptcy / gender-neutral pronoun / genderqueer / cisgender / thought experiment / hate crime charge / knee-jerk reaction / go down that road
+- `MT13 Paper 1`
+- Source tag: `mock-unseen-mt13-paper1-reviewed`
+- Added 115 reviewed entries, including petrol-guzzling / rare earth metal / lithium / woefully underdeveloped / eco-warrior / slacktivism / anecdotal evidence / Ice Bucket Challenge / professional troll / online disinhibition effect / troll-for-hire / powers-that-be / disingenuous / out of the frying pan and into the fire / Big Brother is watching
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely item:
