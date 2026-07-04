@@ -13413,6 +13413,30 @@ function assertStudentLookupContract(word, matches) {
   }
 
   for (const [word, expected] of [
+    ["cage homes", "cage home:phrase:noun:籠屋:mock-unseen-mt9-paper1-reviewed"],
+    ["bed-space apartments", "bed-space apartment:phrase:noun:床位寓所 / 籠屋式床位單位:mock-unseen-mt9-paper1-reviewed"],
+    ["was laid off from", "be laid off from:phrase:verb:被...裁員 / 從...被解僱:mock-unseen-mt9-paper1-reviewed"],
+    ["turn a blind eye towards", "turn a blind eye to:phrase:verb:視而不見 / 故意不理會:mock-unseen-mt9-paper1-reviewed"],
+    ["line their pockets", "line one's pockets:phrase:verb:中飽私囊 / 私下賺取利益:mock-unseen-mt9-paper1-reviewed"],
+    ["lost my appetite", "lose one's appetite:phrase:verb:失去胃口:mock-unseen-mt9-paper1-reviewed"],
+    ["catch a bug", "catch a bug:phrase:verb:染上病菌 / 受感染:mock-unseen-mt9-paper1-reviewed"],
+    ["whaling", "whaling:word:noun:捕鯨:mock-unseen-mt9-paper1-reviewed"],
+    ["mercury", "mercury:word:noun:水銀 / 汞:mock-unseen-mt9-paper1-reviewed"],
+    ["wean themselves from", "wean oneself from:phrase:verb:戒掉 / 逐漸擺脫:mock-unseen-mt9-paper1-reviewed"],
+    ["raised a few eyebrows", "raise eyebrows:phrase:verb:令人驚訝 / 引起側目:mock-unseen-mt9-paper1-reviewed"],
+    ["serial recall test", "serial recall test:phrase:noun:順序記憶測試:mock-unseen-mt9-paper1-reviewed"],
+    ["beadle", "beadle:word:noun:教區小吏 / 濟貧院職員:mock-unseen-mt9-paper1-reviewed"],
+    ["took the hint", "take the hint:phrase:verb:明白暗示 / 會意:mock-unseen-mt9-paper1-reviewed"],
+    ["make a feint of", "make a feint of:phrase:verb:假裝 / 裝作:mock-unseen-mt9-paper1-reviewed"],
+    ["workhouse", "workhouse:word:noun:濟貧院 / 救濟院:mock-unseen-mt9-paper1-reviewed"],
+    ["brought up", "bring up:phrase:verb:撫養:curated-sense-bank"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source || ""}`, expected);
+  }
+
+  for (const [word, expected] of [
     ["hot on heels", "hot on one's heels:phrase:adjective:緊追在後的:mock-unseen-mt7-paper1-reviewed"],
     ["hot on someone's heels", "hot on one's heels:phrase:adjective:緊追在後的:mock-unseen-mt7-paper1-reviewed"],
     ["hot on sb's heels", "hot on one's heels:phrase:adjective:緊追在後的:mock-unseen-mt7-paper1-reviewed"],

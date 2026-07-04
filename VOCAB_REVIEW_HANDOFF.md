@@ -37,17 +37,17 @@ Latest verified progress:
 
 | Paper | Total | Done | Remaining |
 |---|---:|---:|---:|
-| Paper 1 | 84 | 26 | 58 |
+| Paper 1 | 84 | 27 | 57 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
 | Paper 4 | 72 | 72 | 0 |
-| Total | 314 | 256 | 58 |
+| Total | 314 | 257 | 57 |
 
 Most recent completed paper:
 
-- `MT8 Paper 1`
-- Source tag: `mock-unseen-mt8-paper1-reviewed`
-- Added 63 reviewed entries, including raw talent / set the stage for / withhold / put one's career on hold / pitch-black / pick up on / burning with curiosity / sky brightness / be fed up with / biological rhythm / firefly / play a part
+- `MT9 Paper 1`
+- Source tag: `mock-unseen-mt9-paper1-reviewed`
+- Added 79 reviewed entries, including cage home / bed-space apartment / be laid off from / unsanitary / respiratory illness / catch a bug / turn a blind eye to / line one's pockets / whaling / mercury / serial recall test / beadle / take the hint / workhouse
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely item:
