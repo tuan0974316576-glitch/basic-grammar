@@ -394,6 +394,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt39-paper1-reviewed",
     "mock-unseen-mt40-paper1-reviewed",
     "mock-unseen-mt41-paper1-reviewed",
+    "mock-unseen-mt43-paper1-reviewed",
     "verb-table-form",
     "cc-cedict-supplement"
   ]);
@@ -6843,7 +6844,7 @@ function assertStudentLookupContract(word, matches) {
 
   assert.deepStrictEqual(
     (await lookupForStudent("subject to")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
-    ["phrase:adjective:受...影響的 / 取決於:curated-sense-bank"]
+    ["phrase:adjective:受...影響 / 取決於 / 受...約束:curated-sense-bank"]
   );
 
   assert.deepStrictEqual(
@@ -13850,7 +13851,14 @@ function assertStudentLookupContract(word, matches) {
     ["social media withdrawal", "social-media withdrawal:phrase:noun:戒斷社交媒體的不適:mock-unseen-mt41-paper1-reviewed"],
     ["active transportation", "active transportation:phrase:noun:主動交通 / 步行或踩單車出行:mock-unseen-mt41-paper1-reviewed"],
     ["put in irons", "put in irons:phrase:verb:給...戴上鐵鐐 / 囚禁:mock-unseen-mt41-paper1-reviewed"],
-    ["chronometers", "chronometer:word:noun:精密時計 / 航海天文鐘:mock-unseen-mt41-paper1-reviewed"]
+    ["chronometers", "chronometer:word:noun:精密時計 / 航海天文鐘:mock-unseen-mt41-paper1-reviewed"],
+    ["flavour compounds", "flavour compound:phrase:noun:味道化合物:mock-unseen-mt43-paper1-reviewed"],
+    ["sent ripples through", "send ripples through:phrase:verb:引起廣泛反響 / 造成連鎖影響:mock-unseen-mt43-paper1-reviewed"],
+    ["as murky as pasta water", "as murky as pasta water:phrase:adjective:像煮意粉水一樣不清楚 / 非常不明朗:mock-unseen-mt43-paper1-reviewed"],
+    ["shrouded in mystery", "shrouded in mystery:phrase:adjective:籠罩在謎團中 / 神秘不明的:mock-unseen-mt43-paper1-reviewed"],
+    ["tiffin tins", "tiffin tin:phrase:noun:分層飯盒 / 印度午餐盒:mock-unseen-mt43-paper1-reviewed"],
+    ["run a very tight ship", "run a tight ship:phrase:verb:管理嚴謹 / 紀律嚴明地運作:mock-unseen-mt43-paper1-reviewed"],
+    ["work out the kinks", "work out the kinks:phrase:verb:解決小問題 / 調整細節:mock-unseen-mt43-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);

@@ -139,6 +139,8 @@ const mt40Paper1Entries = senseBank.entries.filter((entry) => entry.source === "
 assert.ok(mt40Paper1Entries.length >= 93, `Expected MT40 Paper 1 reviewed entries, got ${mt40Paper1Entries.length}`);
 const mt41Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt41-paper1-reviewed");
 assert.ok(mt41Paper1Entries.length >= 94, `Expected MT41 Paper 1 reviewed entries, got ${mt41Paper1Entries.length}`);
+const mt43Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt43-paper1-reviewed");
+assert.ok(mt43Paper1Entries.length >= 54, `Expected MT43 Paper 1 reviewed entries, got ${mt43Paper1Entries.length}`);
 const mt25Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt25-paper3-reviewed");
 assert.ok(mt25Paper3Entries.length >= 80, `Expected MT25 Paper 3 reviewed entries, got ${mt25Paper3Entries.length}`);
 const mt27Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt27-paper3-reviewed");
@@ -721,7 +723,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("subject to").map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),
-  ["phrase:adjective:受...影響的 / 取決於"]
+  ["phrase:adjective:受...影響 / 取決於 / 受...約束"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("effect").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -1284,7 +1286,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("draw").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),
-  ["verb:畫畫:override", "verb:吸引:override", "noun:平局 / 和局:override"]
+  ["verb:畫畫:override", "verb:吸引:override", "noun:平局 / 和局:override", "noun:吸引之處 / 吸引力:override"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("match").map((entry) => `${entry.pos}:${entry.meaning}:${entry.overrideTeacher ? "override" : ""}`),

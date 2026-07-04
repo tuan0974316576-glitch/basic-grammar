@@ -37,17 +37,17 @@ Latest verified progress:
 
 | Paper | Total | Done | Remaining |
 |---|---:|---:|---:|
-| Paper 1 | 84 | 49 | 35 |
+| Paper 1 | 84 | 50 | 34 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
 | Paper 4 | 72 | 72 | 0 |
-| Total | 314 | 279 | 35 |
+| Total | 314 | 280 | 34 |
 
 Most recent completed paper:
 
-- `MT41 Paper 1`
-- Source tag: `mock-unseen-mt41-paper1-reviewed`
-- Added 94 reviewed entries, including go back to the Stone Age / hit the shelves / million-dollar question / draw the line / social-media withdrawal / active transportation / be into / weigh anchor / put in irons / chronometer
+- `MT43 Paper 1`
+- Source tag: `mock-unseen-mt43-paper1-reviewed`
+- Added 54 reviewed entries, including flavour compound / send ripples through / palate / as murky as pasta water / shrouded in mystery / epicure / tiffin tin / logistical nightmare / run a tight ship / work out the kinks
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely item:
