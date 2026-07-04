@@ -37,17 +37,17 @@ Latest verified progress:
 
 | Paper | Total | Done | Remaining |
 |---|---:|---:|---:|
-| Paper 1 | 84 | 27 | 57 |
+| Paper 1 | 84 | 28 | 56 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
 | Paper 4 | 72 | 72 | 0 |
-| Total | 314 | 257 | 57 |
+| Total | 314 | 258 | 56 |
 
 Most recent completed paper:
 
-- `MT9 Paper 1`
-- Source tag: `mock-unseen-mt9-paper1-reviewed`
-- Added 79 reviewed entries, including cage home / bed-space apartment / be laid off from / unsanitary / respiratory illness / catch a bug / turn a blind eye to / line one's pockets / whaling / mercury / serial recall test / beadle / take the hint / workhouse
+- `MT10 Paper 1`
+- Source tag: `mock-unseen-mt10-paper1-reviewed`
+- Added 95 reviewed entries, including popularize / string instrument / double bass / break free from the mould / icing on the cake / annals of history / pluck strings / food lover's paradise / sweltering / take one's pick / so much for / commuter / electronic ticket / putter along / exhaust emission / electronic road pricing / be up for debate
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely item:

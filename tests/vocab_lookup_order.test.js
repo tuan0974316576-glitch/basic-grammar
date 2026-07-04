@@ -350,6 +350,10 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt44-paper2-reviewed",
     "mock-unseen-mt47-paper2-reviewed",
     "mock-unseen-mt90-paper2-reviewed",
+    "mock-unseen-mt7-paper1-reviewed",
+    "mock-unseen-mt8-paper1-reviewed",
+    "mock-unseen-mt9-paper1-reviewed",
+    "mock-unseen-mt10-paper1-reviewed",
     "mock-unseen-mt15-paper1-reviewed",
     "mock-unseen-mt17-paper1-reviewed",
     "mock-unseen-mt20-paper1-reviewed",
@@ -13434,6 +13438,33 @@ function assertStudentLookupContract(word, matches) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
     assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source || ""}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["dominant figures", "dominant figure:phrase:noun:重要人物 / 有影響力的人物:mock-unseen-mt10-paper1-reviewed"],
+    ["popularized", "popularize:word:verb:推廣 / 使普及:mock-unseen-mt10-paper1-reviewed"],
+    ["string instruments", "string instrument:phrase:noun:弦樂器:mock-unseen-mt10-paper1-reviewed"],
+    ["break free from the mould", "break free from the mould:phrase:verb:打破常規 / 跳出框框:mock-unseen-mt10-paper1-reviewed"],
+    ["annals of history", "annals of history:phrase:noun:史冊 / 歷史記錄:mock-unseen-mt10-paper1-reviewed"],
+    ["pluck strings", "pluck strings:phrase:verb:撥弦:mock-unseen-mt10-paper1-reviewed"],
+    ["surged in popularity", "surge in popularity:phrase:verb:人氣急升 / 迅速流行:mock-unseen-mt10-paper1-reviewed"],
+    ["food lover's paradise", "food lover's paradise:phrase:noun:美食愛好者的天堂:mock-unseen-mt10-paper1-reviewed"],
+    ["take my pick", "take one's pick:phrase:verb:任意挑選 / 隨意選擇:mock-unseen-mt10-paper1-reviewed"],
+    ["so much for", "so much for:phrase:preposition:...泡湯了 / ...就此作罷:mock-unseen-mt10-paper1-reviewed"],
+    ["barefooted", "barefooted:word:adjective:赤腳的:mock-unseen-mt10-paper1-reviewed"],
+    ["commuters", "commuter:word:noun:通勤者 / 上班上學乘客:mock-unseen-mt10-paper1-reviewed"],
+    ["electronic tickets", "electronic ticket:phrase:noun:電子告票:mock-unseen-mt10-paper1-reviewed"],
+    ["spiked", "spike:word:verb:急升 / 大幅上升:mock-unseen-mt10-paper1-reviewed"],
+    ["putters along", "putter along:phrase:verb:慢吞吞地前進:mock-unseen-mt10-paper1-reviewed"],
+    ["compromised", "compromise:word:verb:損害 / 削弱:mock-unseen-mt10-paper1-reviewed"],
+    ["exhaust emissions", "exhaust emission:phrase:noun:廢氣排放:mock-unseen-mt10-paper1-reviewed"],
+    ["electronic road pricing", "electronic road pricing:phrase:noun:電子道路收費:mock-unseen-mt10-paper1-reviewed"],
+    ["floated as a possible solution", "float as a solution:phrase:verb:提出作可能方案:mock-unseen-mt10-paper1-reviewed"],
+    ["up for debate", "be up for debate:phrase:verb:有待討論 / 尚未有定論:mock-unseen-mt10-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
   }
 
   for (const [word, expected] of [
