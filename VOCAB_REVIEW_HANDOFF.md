@@ -37,17 +37,17 @@ Latest verified progress:
 
 | Paper | Total | Done | Remaining |
 |---|---:|---:|---:|
-| Paper 1 | 84 | 50 | 34 |
+| Paper 1 | 84 | 51 | 33 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
 | Paper 4 | 72 | 72 | 0 |
-| Total | 314 | 280 | 34 |
+| Total | 314 | 281 | 33 |
 
 Most recent completed paper:
 
-- `MT43 Paper 1`
-- Source tag: `mock-unseen-mt43-paper1-reviewed`
-- Added 54 reviewed entries, including flavour compound / send ripples through / palate / as murky as pasta water / shrouded in mystery / epicure / tiffin tin / logistical nightmare / run a tight ship / work out the kinks
+- `MT44 Paper 1`
+- Source tag: `mock-unseen-mt44-paper1-reviewed`
+- Added 69 reviewed entries, including attention economy / human downgrading / digital minimalism / digital maximalist / call the shots / dopamine loop / social validation / addictive-by-design / public relations effort / profit off
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely item:

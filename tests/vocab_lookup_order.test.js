@@ -395,6 +395,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt40-paper1-reviewed",
     "mock-unseen-mt41-paper1-reviewed",
     "mock-unseen-mt43-paper1-reviewed",
+    "mock-unseen-mt44-paper1-reviewed",
     "verb-table-form",
     "cc-cedict-supplement"
   ]);
@@ -13858,7 +13859,15 @@ function assertStudentLookupContract(word, matches) {
     ["shrouded in mystery", "shrouded in mystery:phrase:adjective:籠罩在謎團中 / 神秘不明的:mock-unseen-mt43-paper1-reviewed"],
     ["tiffin tins", "tiffin tin:phrase:noun:分層飯盒 / 印度午餐盒:mock-unseen-mt43-paper1-reviewed"],
     ["run a very tight ship", "run a tight ship:phrase:verb:管理嚴謹 / 紀律嚴明地運作:mock-unseen-mt43-paper1-reviewed"],
-    ["work out the kinks", "work out the kinks:phrase:verb:解決小問題 / 調整細節:mock-unseen-mt43-paper1-reviewed"]
+    ["work out the kinks", "work out the kinks:phrase:verb:解決小問題 / 調整細節:mock-unseen-mt43-paper1-reviewed"],
+    ["attention economy", "attention economy:phrase:noun:注意力經濟:mock-unseen-mt44-paper1-reviewed"],
+    ["tanked", "tank:word:verb:暴跌 / 急跌:mock-unseen-mt44-paper1-reviewed"],
+    ["human downgrading", "human downgrading:phrase:noun:人類能力降級 / 人性退化:mock-unseen-mt44-paper1-reviewed"],
+    ["digital minimalists", "digital minimalist:phrase:noun:數碼極簡主義者:mock-unseen-mt44-paper1-reviewed"],
+    ["call the shots", "call the shots:phrase:verb:作主 / 掌控局面:mock-unseen-mt44-paper1-reviewed"],
+    ["dopamine loops", "dopamine loop:phrase:noun:多巴胺循環:mock-unseen-mt44-paper1-reviewed"],
+    ["social validation", "social validation:phrase:noun:社交認同:mock-unseen-mt44-paper1-reviewed"],
+    ["public relations effort", "public relations effort:phrase:noun:公關行動 / 公關姿態:mock-unseen-mt44-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
