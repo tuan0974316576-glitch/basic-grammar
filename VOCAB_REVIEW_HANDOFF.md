@@ -37,17 +37,17 @@ Latest verified progress:
 
 | Paper | Total | Done | Remaining |
 |---|---:|---:|---:|
-| Paper 1 | 84 | 36 | 48 |
+| Paper 1 | 84 | 37 | 47 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
 | Paper 4 | 72 | 72 | 0 |
-| Total | 314 | 266 | 48 |
+| Total | 314 | 267 | 47 |
 
 Most recent completed paper:
 
-- `MT21 Paper 1`
-- Source tag: `mock-unseen-mt21-paper1-reviewed`
-- Added 90 reviewed entries, including weapon of mass destruction / impossible to stomach / fly into a rage / hit a nerve / rise through the ranks / Middle Passage / throw light upon / engraved upon one's memory / Emancipation Proclamation / pallet
+- `MT23 Paper 1`
+- Source tag: `mock-unseen-mt23-paper1-reviewed`
+- Added 118 reviewed entries, including win by a nose / photo finish / International Baccalaureate / reap the benefits / sing someone's praises / sticky rice / padaek / haute cuisine / Luang Prabang / as familiar as the back of one's hand
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely item:

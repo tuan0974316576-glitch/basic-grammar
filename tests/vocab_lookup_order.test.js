@@ -366,6 +366,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt20-paper1-reviewed",
     "mock-unseen-mt21-paper1-reviewed",
     "mock-unseen-mt22-paper1-reviewed",
+    "mock-unseen-mt23-paper1-reviewed",
     "mock-unseen-mt25-paper1-reviewed",
     "mock-unseen-mt27-paper1-reviewed",
     "mock-unseen-mt30-paper1-reviewed",
@@ -5376,6 +5377,21 @@ function assertStudentLookupContract(word, matches) {
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in MT21 Paper 1 lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["won by a nose", "win by a nose:phrase:verb:以極微距離勝出:mock-unseen-mt23-paper1-reviewed"],
+    ["photo finishes", "photo finish:phrase:noun:終點攝影判定 / 極接近的賽果:mock-unseen-mt23-paper1-reviewed"],
+    ["reaping the benefits", "reap the benefits:phrase:verb:收穫好處 / 享受成果:mock-unseen-mt23-paper1-reviewed"],
+    ["IB", "International Baccalaureate:phrase:noun:國際文憑課程:mock-unseen-mt23-paper1-reviewed"],
+    ["sing his praises", "sing someone's praises:phrase:verb:高度讚揚某人:mock-unseen-mt23-paper1-reviewed"],
+    ["hankering after", "hanker after:phrase:verb:渴望 / 很想要:mock-unseen-mt23-paper1-reviewed"],
+    ["larb", "laap:word:noun:老撾肉碎沙律:mock-unseen-mt23-paper1-reviewed"],
+    ["as familiar as the backs of our hands", "as familiar as the back of one's hand:phrase:adjective:非常熟悉的:mock-unseen-mt23-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in MT23 Paper 1 lookup`);
     assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
   }
 
@@ -10614,6 +10630,7 @@ function assertStudentLookupContract(word, matches) {
     (await lookupForStudent("grooming")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     [
       "noun:整理儀容 / 打扮:curated-sense-bank",
+      "verb:梳洗 / 打理馬匹:mock-unseen-mt23-paper1-reviewed",
       "noun:寵物梳洗 / 美容:mock-unseen-mt27-paper3-reviewed"
     ]
   );
