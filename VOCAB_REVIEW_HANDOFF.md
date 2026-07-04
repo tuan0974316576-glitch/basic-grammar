@@ -45,9 +45,9 @@ Latest verified progress:
 
 Most recent completed paper:
 
-- `MT19 Paper 1`
-- Source tag: `mock-unseen-mt19-paper1-reviewed`
-- Added 75 reviewed entries, including make one's way / launch into / work one's way out / closely guarded secret / raise red flags / live poultry market / species barrier / upper respiratory tract / step up surveillance / flu-like symptom
+- `MT21 Paper 1`
+- Source tag: `mock-unseen-mt21-paper1-reviewed`
+- Added 90 reviewed entries, including weapon of mass destruction / impossible to stomach / fly into a rage / hit a nerve / rise through the ranks / Middle Passage / throw light upon / engraved upon one's memory / Emancipation Proclamation / pallet
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely item:

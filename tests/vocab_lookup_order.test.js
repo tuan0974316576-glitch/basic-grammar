@@ -364,6 +364,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt18-paper1-reviewed",
     "mock-unseen-mt19-paper1-reviewed",
     "mock-unseen-mt20-paper1-reviewed",
+    "mock-unseen-mt21-paper1-reviewed",
     "mock-unseen-mt22-paper1-reviewed",
     "mock-unseen-mt25-paper1-reviewed",
     "mock-unseen-mt27-paper1-reviewed",
@@ -5361,6 +5362,20 @@ function assertStudentLookupContract(word, matches) {
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in MT19 Paper 1 lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["weapons of mass destruction", "weapon of mass destruction:phrase:noun:大規模殺傷性武器:mock-unseen-mt21-paper1-reviewed"],
+    ["impossible to stomach", "impossible to stomach:phrase:adjective:完全不能接受的 / 難以忍受的:mock-unseen-mt21-paper1-reviewed"],
+    ["flew into a rage", "fly into a rage:phrase:verb:勃然大怒:mock-unseen-mt21-paper1-reviewed"],
+    ["taxiing for takeoff", "taxi for take-off:phrase:verb:滑行準備起飛:mock-unseen-mt21-paper1-reviewed"],
+    ["throw light on", "throw light upon:phrase:verb:闡明 / 使...更清楚:mock-unseen-mt21-paper1-reviewed"],
+    ["engraved upon my memory", "engraved upon one's memory:phrase:adjective:深深刻在記憶中的:mock-unseen-mt21-paper1-reviewed"],
+    ["the Middle Passage", "Middle Passage:phrase:noun:中段航程 / 非洲奴隸被運往美洲的航程:mock-unseen-mt21-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in MT21 Paper 1 lookup`);
     assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
   }
 
