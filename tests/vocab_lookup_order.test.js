@@ -383,6 +383,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt47-paper1-reviewed",
     "mock-unseen-mt48-paper1-reviewed",
     "mock-unseen-mt49-paper1-reviewed",
+    "mock-unseen-mt50-paper1-reviewed",
     "mock-unseen-mt52-paper1-reviewed",
     "mock-unseen-mt56-paper1-reviewed",
     "mock-unseen-mt59-paper1-reviewed",
@@ -5897,6 +5898,21 @@ function assertStudentLookupContract(word, matches) {
     ["to a T", "to a T:phrase:adverb:完全地 / 恰到好處地:mock-unseen-mt48-paper1-reviewed"],
     ["acquiesced", "acquiesce:word:verb:勉強同意 / 默許:mock-unseen-mt48-paper1-reviewed"],
     ["woman of colour", "woman of color:phrase:noun:有色人種女性:mock-unseen-mt48-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["heart skipped a beat", "one's heart skips a beat:phrase:verb:心跳漏了一拍 / 突然心動或緊張:mock-unseen-mt50-paper1-reviewed"],
+    ["starved of time", "starved of time:phrase:adjective:非常缺時間的:mock-unseen-mt50-paper1-reviewed"],
+    ["Pearl of the Orient", "Pearl of the Orient:phrase:noun:東方之珠:mock-unseen-mt50-paper1-reviewed"],
+    ["crack down on", "crack down on:phrase:verb:嚴厲打擊 / 加強取締:mock-unseen-mt50-paper1-reviewed"],
+    ["LED", "LED:word:noun:LED / 發光二極管:mock-unseen-mt50-paper1-reviewed"],
+    ["brutal honesty", "brutal honesty:phrase:noun:毫不粉飾的真實 / 殘酷坦白:mock-unseen-mt50-paper1-reviewed"],
+    ["nuts and bolts", "nuts and bolts:phrase:noun:實際細節 / 基本細節:mock-unseen-mt50-paper1-reviewed"],
+    ["Arc de Triomphe", "Arc de Triomphe:phrase:noun:巴黎凱旋門:mock-unseen-mt50-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);

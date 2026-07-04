@@ -8272,6 +8272,42 @@ mt48ReviewedExpectations.forEach(([word, pos, meaning]) => {
   assert.ok(entry, `${word} should include MT48 reviewed sense ${pos}:${meaning}`);
 });
 
+const mt50ReviewedExpectations = [
+  ["heart skipped a beat", "verb", "心跳漏了一拍 / 突然心動或緊張"],
+  ["make up", "verb", "和好 / 和解"],
+  ["think less of him", "verb", "看不起 / 對...評價降低"],
+  ["starved of time", "adjective", "非常缺時間的"],
+  ["bombarded with", "verb", "被大量...轟炸 / 不斷收到"],
+  ["shooting off a text", "verb", "匆忙發出 / 迅速傳送"],
+  ["Pearl of the Orient", "noun", "東方之珠"],
+  ["crack down on", "verb", "嚴厲打擊 / 加強取締"],
+  ["LED signs", "noun", "LED / 發光二極管"],
+  ["thrown a lifeline", "verb", "給予救命機會 / 幫助渡過難關"],
+  ["brutal honesty", "noun", "毫不粉飾的真實 / 殘酷坦白"],
+  ["chengyu", "noun", "成語"],
+  ["cohesiveness", "noun", "視覺上的連貫性 / 統一感"],
+  ["nuts and bolts", "noun", "實際細節 / 基本細節"],
+  ["sweet-talked", "verb", "用好話哄 / 甜言蜜語說服"],
+  ["put paid to", "verb", "終結 / 使...落空"],
+  ["business acumen", "noun", "商業頭腦 / 商業眼光"],
+  ["Arc de Triomphe", "noun", "巴黎凱旋門"]
+];
+
+const mt50Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt50-paper1-reviewed");
+assert.ok(mt50Paper1Entries.length >= 87, `Expected MT50 Paper 1 reviewed entries, got ${mt50Paper1Entries.length}`);
+
+mt50ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT50 reviewed sense ${pos}:${meaning}`);
+});
+assert.strictEqual(
+  senseBank.lookup("LED", { includeHidden: true })[0]?.display,
+  "LED",
+  "exact acronym display should outrank lowercase verb-form homographs"
+);
+
 const mt80ReviewedExpectations = [
   ["instalment", "noun", "一集 / 一部作品"],
   ["installment", "noun", "一集 / 一部作品"],
