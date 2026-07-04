@@ -119,6 +119,8 @@ const mt37Paper1Entries = senseBank.entries.filter((entry) => entry.source === "
 assert.ok(mt37Paper1Entries.length >= 121, `Expected MT37 Paper 1 reviewed entries, got ${mt37Paper1Entries.length}`);
 const mt39Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt39-paper1-reviewed");
 assert.ok(mt39Paper1Entries.length >= 112, `Expected MT39 Paper 1 reviewed entries, got ${mt39Paper1Entries.length}`);
+const mt40Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt40-paper1-reviewed");
+assert.ok(mt40Paper1Entries.length >= 93, `Expected MT40 Paper 1 reviewed entries, got ${mt40Paper1Entries.length}`);
 const mt25Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt25-paper3-reviewed");
 assert.ok(mt25Paper3Entries.length >= 80, `Expected MT25 Paper 3 reviewed entries, got ${mt25Paper3Entries.length}`);
 const mt27Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt27-paper3-reviewed");
@@ -3142,7 +3144,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("shade").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["noun:陰影 / 陰涼處", "verb:遮陰"]
+  ["noun:陰影 / 陰涼處", "verb:遮陰", "noun:色調 / 深淺"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("shelter").map((entry) => `${entry.pos}:${entry.meaning}`),

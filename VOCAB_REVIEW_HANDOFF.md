@@ -37,17 +37,17 @@ Latest verified progress:
 
 | Paper | Total | Done | Remaining |
 |---|---:|---:|---:|
-| Paper 1 | 84 | 47 | 37 |
+| Paper 1 | 84 | 48 | 36 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
 | Paper 4 | 72 | 72 | 0 |
-| Total | 314 | 277 | 37 |
+| Total | 314 | 278 | 36 |
 
 Most recent completed paper:
 
-- `MT39 Paper 1`
-- Source tag: `mock-unseen-mt39-paper1-reviewed`
-- Added 112 reviewed entries, including gene-editing / micropig / opt-out policy / stem cell / proof-of-principle / sway the jury / self-domestication / cyber-slacker / digital dinosaur / driving simulator / bear down on
+- `MT40 Paper 1`
+- Source tag: `mock-unseen-mt40-paper1-reviewed`
+- Added 93 reviewed entries, including grue / greenhorn / green-eyed monster / go swimmingly / box-office takings / find one's feet / bear no resemblance / on the edge of one's seat / shrinking violet / actions speak louder than words
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely item:

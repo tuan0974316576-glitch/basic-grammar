@@ -392,6 +392,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt80-paper1-reviewed",
     "mock-unseen-mt84-paper1-reviewed",
     "mock-unseen-mt39-paper1-reviewed",
+    "mock-unseen-mt40-paper1-reviewed",
     "verb-table-form",
     "cc-cedict-supplement"
   ]);
@@ -13836,7 +13837,13 @@ function assertStudentLookupContract(word, matches) {
     ["proof of principle", "proof-of-principle:phrase:noun:概念驗證 / 原理證明:mock-unseen-mt39-paper1-reviewed"],
     ["swayed the jury", "sway the jury:phrase:verb:影響陪審團 / 說服陪審團:mock-unseen-mt39-paper1-reviewed"],
     ["digital dinosaurs", "digital dinosaur:phrase:noun:不熟悉數碼科技的人:mock-unseen-mt39-paper1-reviewed"],
-    ["bears down on", "bear down on:phrase:verb:向...逼近 / 迫近:mock-unseen-mt39-paper1-reviewed"]
+    ["bears down on", "bear down on:phrase:verb:向...逼近 / 迫近:mock-unseen-mt39-paper1-reviewed"],
+    ["greenbacks", "greenback:word:noun:美鈔 / 美元紙幣:mock-unseen-mt40-paper1-reviewed"],
+    ["found its cinematic feet", "find one's feet:phrase:verb:站穩陣腳 / 適應新環境:mock-unseen-mt40-paper1-reviewed"],
+    ["box office takings", "box-office takings:phrase:noun:票房收入:mock-unseen-mt40-paper1-reviewed"],
+    ["bear no resemblance", "bear no resemblance:phrase:verb:毫無相似之處:mock-unseen-mt40-paper1-reviewed"],
+    ["on the edge of his seat", "on the edge of one's seat:phrase:adjective:看得緊張投入的 / 非常入神的:mock-unseen-mt40-paper1-reviewed"],
+    ["actions speak louder than words", "actions speak louder than words:phrase:verb:行動勝於言語:mock-unseen-mt40-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
