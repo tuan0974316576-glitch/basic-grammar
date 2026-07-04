@@ -49,12 +49,28 @@ assert.ok(
   "placeholder phrase lookup should allow the before body parts"
 );
 assert.ok(
+  senseBank.lookup("bags under one eyes").some((entry) => entry.display === "bags under one's eyes"),
+  "placeholder phrase lookup should allow missing apostrophe in one's"
+);
+assert.ok(
+  senseBank.lookup("bags under ones eyes").some((entry) => entry.display === "bags under one's eyes"),
+  "placeholder phrase lookup should allow missing apostrophe in ones"
+);
+assert.ok(
   senseBank.lookup("think it through").some((entry) => entry.display === "think something through"),
   "placeholder phrase lookup should allow sth / something object-pronoun variants"
 );
 assert.ok(
   senseBank.lookup("think that through").some((entry) => entry.display === "think something through"),
   "placeholder phrase lookup should allow demonstrative object variants"
+);
+assert.ok(
+  senseBank.lookup("take sth for granted").some((entry) => entry.display === "take for granted"),
+  "object placeholder aliases should find phrases whose object is commonly omitted in the headword"
+);
+assert.ok(
+  senseBank.lookup("take it for granted").some((entry) => entry.display === "take for granted"),
+  "object pronoun aliases should find phrases whose object is commonly omitted in the headword"
 );
 
 const mt45Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt45-paper3-reviewed");
@@ -121,6 +137,8 @@ const mt39Paper1Entries = senseBank.entries.filter((entry) => entry.source === "
 assert.ok(mt39Paper1Entries.length >= 112, `Expected MT39 Paper 1 reviewed entries, got ${mt39Paper1Entries.length}`);
 const mt40Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt40-paper1-reviewed");
 assert.ok(mt40Paper1Entries.length >= 93, `Expected MT40 Paper 1 reviewed entries, got ${mt40Paper1Entries.length}`);
+const mt41Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt41-paper1-reviewed");
+assert.ok(mt41Paper1Entries.length >= 94, `Expected MT41 Paper 1 reviewed entries, got ${mt41Paper1Entries.length}`);
 const mt25Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt25-paper3-reviewed");
 assert.ok(mt25Paper3Entries.length >= 80, `Expected MT25 Paper 3 reviewed entries, got ${mt25Paper3Entries.length}`);
 const mt27Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt27-paper3-reviewed");

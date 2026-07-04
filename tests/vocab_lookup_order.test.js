@@ -393,6 +393,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt84-paper1-reviewed",
     "mock-unseen-mt39-paper1-reviewed",
     "mock-unseen-mt40-paper1-reviewed",
+    "mock-unseen-mt41-paper1-reviewed",
     "verb-table-form",
     "cc-cedict-supplement"
   ]);
@@ -13843,7 +13844,13 @@ function assertStudentLookupContract(word, matches) {
     ["box office takings", "box-office takings:phrase:noun:票房收入:mock-unseen-mt40-paper1-reviewed"],
     ["bear no resemblance", "bear no resemblance:phrase:verb:毫無相似之處:mock-unseen-mt40-paper1-reviewed"],
     ["on the edge of his seat", "on the edge of one's seat:phrase:adjective:看得緊張投入的 / 非常入神的:mock-unseen-mt40-paper1-reviewed"],
-    ["actions speak louder than words", "actions speak louder than words:phrase:verb:行動勝於言語:mock-unseen-mt40-paper1-reviewed"]
+    ["actions speak louder than words", "actions speak louder than words:phrase:verb:行動勝於言語:mock-unseen-mt40-paper1-reviewed"],
+    ["hit the shelves", "hit the shelves:phrase:verb:上市 / 開始發售:mock-unseen-mt41-paper1-reviewed"],
+    ["draw the line", "draw the line:phrase:verb:劃定界線 / 決定限度:mock-unseen-mt41-paper1-reviewed"],
+    ["social media withdrawal", "social-media withdrawal:phrase:noun:戒斷社交媒體的不適:mock-unseen-mt41-paper1-reviewed"],
+    ["active transportation", "active transportation:phrase:noun:主動交通 / 步行或踩單車出行:mock-unseen-mt41-paper1-reviewed"],
+    ["put in irons", "put in irons:phrase:verb:給...戴上鐵鐐 / 囚禁:mock-unseen-mt41-paper1-reviewed"],
+    ["chronometers", "chronometer:word:noun:精密時計 / 航海天文鐘:mock-unseen-mt41-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
