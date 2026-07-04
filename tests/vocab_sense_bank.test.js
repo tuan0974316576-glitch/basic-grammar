@@ -97,6 +97,8 @@ const mt23Paper1Entries = senseBank.entries.filter((entry) => entry.source === "
 assert.ok(mt23Paper1Entries.length >= 110, `Expected MT23 Paper 1 reviewed entries, got ${mt23Paper1Entries.length}`);
 const mt24Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt24-paper1-reviewed");
 assert.ok(mt24Paper1Entries.length >= 90, `Expected MT24 Paper 1 reviewed entries, got ${mt24Paper1Entries.length}`);
+const mt26Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt26-paper1-reviewed");
+assert.ok(mt26Paper1Entries.length >= 80, `Expected MT26 Paper 1 reviewed entries, got ${mt26Paper1Entries.length}`);
 const mt25Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt25-paper3-reviewed");
 assert.ok(mt25Paper3Entries.length >= 80, `Expected MT25 Paper 3 reviewed entries, got ${mt25Paper3Entries.length}`);
 const mt27Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt27-paper3-reviewed");
@@ -9526,6 +9528,30 @@ mt24Paper1ReviewedExpectations.forEach(([word, pos, meaning]) => {
       && candidate.meaning === meaning
   ));
   assert.ok(entry, `${word} should include MT24 Paper 1 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt26Paper1ReviewedExpectations = [
+  ["refugee camp", "noun", "難民營"],
+  ["grant asylum", "verb", "給予庇護"],
+  ["internally displaced", "adjective", "國內流離失所的"],
+  ["Holi", "noun", "灑紅節 / 胡里節"],
+  ["fire at will", "verb", "隨時開火 / 可自行射擊"],
+  ["in good spirits", "adjective", "心情愉快的 / 興高采烈的"],
+  ["take something in one's stride", "verb", "從容應付 / 處之泰然"],
+  ["pig-chopping festival", "noun", "斬豬節"],
+  ["turn one's stomach", "verb", "令人反胃 / 令人作嘔"],
+  ["Yulin Dog Meat Festival", "noun", "玉林狗肉節"],
+  ["inhumane", "adjective", "不人道的 / 殘忍的"],
+  ["impose one's values on", "verb", "把自己的價值觀強加於"]
+];
+
+mt26Paper1ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.source === "mock-unseen-mt26-paper1-reviewed"
+      && candidate.pos === pos
+      && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT26 Paper 1 reviewed sense ${pos}:${meaning}`);
 });
 
 console.log("vocab_sense_bank tests passed");

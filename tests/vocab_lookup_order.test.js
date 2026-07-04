@@ -369,6 +369,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt23-paper1-reviewed",
     "mock-unseen-mt24-paper1-reviewed",
     "mock-unseen-mt25-paper1-reviewed",
+    "mock-unseen-mt26-paper1-reviewed",
     "mock-unseen-mt27-paper1-reviewed",
     "mock-unseen-mt30-paper1-reviewed",
     "mock-unseen-mt32-paper1-reviewed",
@@ -5416,6 +5417,27 @@ function assertStudentLookupContract(word, matches) {
     assert.ok(
       entries.some((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}` === expected),
       `${word} should include MT24 Paper 1 lookup ${expected}`
+    );
+  }
+
+  for (const [word, expected] of [
+    ["Syrians", "Syrian:word:noun:敘利亞人:mock-unseen-mt26-paper1-reviewed"],
+    ["refugee camps", "refugee camp:phrase:noun:難民營:mock-unseen-mt26-paper1-reviewed"],
+    ["internally displaced", "internally displaced:phrase:adjective:國內流離失所的:mock-unseen-mt26-paper1-reviewed"],
+    ["water pistols", "water pistol:phrase:noun:水槍:mock-unseen-mt26-paper1-reviewed"],
+    ["fire at will", "fire at will:phrase:verb:隨時開火 / 可自行射擊:mock-unseen-mt26-paper1-reviewed"],
+    ["in good spirits", "in good spirits:phrase:adjective:心情愉快的 / 興高采烈的:mock-unseen-mt26-paper1-reviewed"],
+    ["strewn with", "strewn:word:adjective:散佈的 / 撒滿的:mock-unseen-mt26-paper1-reviewed"],
+    ["took it in our stride", "take something in one's stride:phrase:verb:從容應付 / 處之泰然:mock-unseen-mt26-paper1-reviewed"],
+    ["pinatas", "piñata:word:noun:皮納塔 / 糖果彩罐:mock-unseen-mt26-paper1-reviewed"],
+    ["impose our values on", "impose one's values on:phrase:verb:把自己的價值觀強加於:mock-unseen-mt26-paper1-reviewed"],
+    ["turned the stomachs", "turn one's stomach:phrase:verb:令人反胃 / 令人作嘔:mock-unseen-mt26-paper1-reviewed"],
+    ["meat hooks", "meat hook:phrase:noun:肉鉤:mock-unseen-mt26-paper1-reviewed"]
+  ]) {
+    const entries = await lookupForStudent(word);
+    assert.ok(
+      entries.some((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}` === expected),
+      `${word} should include MT26 Paper 1 lookup ${expected}`
     );
   }
 

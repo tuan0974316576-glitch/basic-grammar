@@ -37,17 +37,17 @@ Latest verified progress:
 
 | Paper | Total | Done | Remaining |
 |---|---:|---:|---:|
-| Paper 1 | 84 | 38 | 46 |
+| Paper 1 | 84 | 39 | 45 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
 | Paper 4 | 72 | 72 | 0 |
-| Total | 314 | 268 | 46 |
+| Total | 314 | 269 | 45 |
 
 Most recent completed paper:
 
-- `MT24 Paper 1`
-- Source tag: `mock-unseen-mt24-paper1-reviewed`
-- Added 92 reviewed entries, including toast of the town / close one's doors / flip the script / the jury is still out / mental heavy lifting / trophy hunting / put out of one's misery / sweep something under the rug / regulatory loophole / accusatory
+- `MT26 Paper 1`
+- Source tag: `mock-unseen-mt26-paper1-reviewed`
+- Added 80 reviewed entries, including refugee camp / grant asylum / internally displaced / Holi / fire at will / in good spirits / take something in one's stride / pig-chopping festival / turn one's stomach / Yulin Dog Meat Festival
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely item:
