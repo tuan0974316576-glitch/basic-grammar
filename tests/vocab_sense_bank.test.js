@@ -37,6 +37,14 @@ assert.ok(
   "placeholder phrase lookup should allow sb's variants"
 );
 assert.ok(
+  senseBank.lookup("hot on someone heels").some((entry) => entry.display === "hot on one's heels"),
+  "placeholder phrase lookup should allow missing possessive marker before body parts"
+);
+assert.ok(
+  senseBank.lookup("hot on sb heels").some((entry) => entry.display === "hot on one's heels"),
+  "placeholder phrase lookup should allow missing sb possessive marker before body parts"
+);
+assert.ok(
   senseBank.lookup("put somebody up to").some((entry) => entry.display === "put someone up to"),
   "placeholder phrase lookup should allow someone / somebody variants"
 );
@@ -8207,6 +8215,32 @@ mt46ReviewedExpectations.forEach(([word, pos, meaning]) => {
     candidate.pos === pos && candidate.meaning === meaning
   ));
   assert.ok(entry, `${word} should include MT46 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt47ReviewedExpectations = [
+  ["star sign", "noun", "星座"],
+  ["gloss over", "verb", "掩飾 / 輕描淡寫"],
+  ["Barnum statements", "noun", "巴納姆語句 / 適用於很多人的籠統描述"],
+  ["scapegoat", "noun", "代罪羔羊 / 替罪者"],
+  ["seismic shift", "noun", "巨大轉變 / 劇變"],
+  ["cog in a giant system", "noun", "龐大系統中的小齒輪 / 微不足道的一員"],
+  ["source language", "noun", "源語言 / 原文語言"],
+  ["Anglophone", "adjective", "英語圈的 / 說英語的"],
+  ["scientific literacy", "noun", "科學素養"],
+  ["radio dish", "noun", "射電望遠鏡碟形天線"],
+  ["dark forest theory", "noun", "黑暗森林理論"],
+  ["rich pickings", "noun", "大量可用素材 / 豐富收穫"],
+  ["would-be scientist", "adjective", "有志成為...的 / 未來的"]
+];
+
+const mt47Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt47-paper1-reviewed");
+assert.ok(mt47Paper1Entries.length >= 97, `Expected MT47 Paper 1 reviewed entries, got ${mt47Paper1Entries.length}`);
+
+mt47ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT47 reviewed sense ${pos}:${meaning}`);
 });
 
 const mt80ReviewedExpectations = [

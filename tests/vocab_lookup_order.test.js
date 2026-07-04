@@ -380,6 +380,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt42-paper1-reviewed",
     "mock-unseen-mt45-paper1-reviewed",
     "mock-unseen-mt46-paper1-reviewed",
+    "mock-unseen-mt47-paper1-reviewed",
     "mock-unseen-mt49-paper1-reviewed",
     "mock-unseen-mt52-paper1-reviewed",
     "mock-unseen-mt56-paper1-reviewed",
@@ -5868,6 +5869,19 @@ function assertStudentLookupContract(word, matches) {
     ["peek behind the curtain", "peek behind the curtain:phrase:noun:幕後一瞥 / 了解鮮為人知的內情:mock-unseen-mt46-paper1-reviewed"],
     ["climate-controlled", "climate-controlled:phrase:adjective:溫濕度受控的:mock-unseen-mt46-paper1-reviewed"],
     ["worth every penny", "worth every penny:phrase:adjective:物有所值的 / 每一分錢都值得:mock-unseen-mt46-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["star sign", "star sign:phrase:noun:星座:mock-unseen-mt47-paper1-reviewed"],
+    ["gloss over", "gloss over:phrase:verb:掩飾 / 輕描淡寫:mock-unseen-mt47-paper1-reviewed"],
+    ["Barnum statements", "Barnum statement:phrase:noun:巴納姆語句 / 適用於很多人的籠統描述:mock-unseen-mt47-paper1-reviewed"],
+    ["source language", "source language:phrase:noun:源語言 / 原文語言:mock-unseen-mt47-paper1-reviewed"],
+    ["scientific literacy", "scientific literacy:phrase:noun:科學素養:mock-unseen-mt47-paper1-reviewed"],
+    ["dark forest theory", "dark forest theory:phrase:noun:黑暗森林理論:mock-unseen-mt47-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
