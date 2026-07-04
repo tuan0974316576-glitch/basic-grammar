@@ -13734,6 +13734,22 @@ function assertStudentLookupContract(word, matches) {
   }
 
   for (const [word, expected] of [
+    ["vested interests", "vested interest:phrase:noun:既得利益:mock-unseen-mt29-paper1-reviewed"],
+    ["tip of the wasteberg", "tip of the wasteberg:phrase:noun:浪費問題的冰山一角:mock-unseen-mt29-paper1-reviewed"],
+    ["force to be reckoned with", "force to be reckoned with:phrase:noun:不可忽視的力量:mock-unseen-mt29-paper1-reviewed"],
+    ["come to grips with", "come to grips with:phrase:verb:理解 / 掌握:mock-unseen-mt29-paper1-reviewed"],
+    ["in their DNA", "in one's DNA:phrase:adjective:天生具有的 / 深植於本性的:mock-unseen-mt29-paper1-reviewed"],
+    ["bone of contention", "bone of contention:phrase:noun:爭議焦點:mock-unseen-mt29-paper1-reviewed"],
+    ["as far as this generation is concerned", "as far as one is concerned:phrase:preposition:就...而言:mock-unseen-mt29-paper1-reviewed"],
+    ["risk-averse", "averse to risks:phrase:adjective:不願冒險的:mock-unseen-mt29-paper1-reviewed"],
+    ["Roman alphabet", "Roman alphabet:phrase:noun:羅馬字母:mock-unseen-mt29-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
     ["hot on heels", "hot on one's heels:phrase:adjective:緊追在後的:mock-unseen-mt7-paper1-reviewed"],
     ["hot on someone's heels", "hot on one's heels:phrase:adjective:緊追在後的:mock-unseen-mt7-paper1-reviewed"],
     ["hot on sb's heels", "hot on one's heels:phrase:adjective:緊追在後的:mock-unseen-mt7-paper1-reviewed"],

@@ -101,6 +101,8 @@ const mt26Paper1Entries = senseBank.entries.filter((entry) => entry.source === "
 assert.ok(mt26Paper1Entries.length >= 80, `Expected MT26 Paper 1 reviewed entries, got ${mt26Paper1Entries.length}`);
 const mt28Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt28-paper1-reviewed");
 assert.ok(mt28Paper1Entries.length >= 63, `Expected MT28 Paper 1 reviewed entries, got ${mt28Paper1Entries.length}`);
+const mt29Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt29-paper1-reviewed");
+assert.ok(mt29Paper1Entries.length >= 113, `Expected MT29 Paper 1 reviewed entries, got ${mt29Paper1Entries.length}`);
 const mt25Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt25-paper3-reviewed");
 assert.ok(mt25Paper3Entries.length >= 80, `Expected MT25 Paper 3 reviewed entries, got ${mt25Paper3Entries.length}`);
 const mt27Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt27-paper3-reviewed");

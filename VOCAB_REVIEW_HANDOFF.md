@@ -37,17 +37,17 @@ Latest verified progress:
 
 | Paper | Total | Done | Remaining |
 |---|---:|---:|---:|
-| Paper 1 | 84 | 40 | 44 |
+| Paper 1 | 84 | 41 | 43 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
 | Paper 4 | 72 | 72 | 0 |
-| Total | 314 | 270 | 44 |
+| Total | 314 | 271 | 43 |
 
 Most recent completed paper:
 
-- `MT28 Paper 1`
-- Source tag: `mock-unseen-mt28-paper1-reviewed`
-- Added 63 reviewed entries, including tech nerd / you name it / top-of-the-range / phablet / might have a point / right to disconnect / electronic leash / throw a law at / centralized government / party as a legal or negotiating side
+- `MT29 Paper 1`
+- Source tag: `mock-unseen-mt29-paper1-reviewed`
+- Added 113 reviewed entries, including vested interest / tip of the wasteberg / food loss / force to be reckoned with / come of age / come to grips with / bone of contention / in one's DNA / averse to risks / Roman alphabet
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely item:
