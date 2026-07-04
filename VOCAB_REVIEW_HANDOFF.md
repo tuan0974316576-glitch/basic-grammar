@@ -37,17 +37,17 @@ Latest verified progress:
 
 | Paper | Total | Done | Remaining |
 |---|---:|---:|---:|
-| Paper 1 | 84 | 45 | 39 |
+| Paper 1 | 84 | 46 | 38 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
 | Paper 4 | 72 | 72 | 0 |
-| Total | 314 | 275 | 39 |
+| Total | 314 | 276 | 38 |
 
 Most recent completed paper:
 
-- `MT36 Paper 1`
-- Source tag: `mock-unseen-mt36-paper1-reviewed`
-- Added 58 reviewed entries, including glued to one's phone / lose track of time / scare someone straight / as regards / corpus callosum / auditory cortex / auditory discrimination / child's play / dabble in / biased
+- `MT37 Paper 1`
+- Source tag: `mock-unseen-mt37-paper1-reviewed`
+- Added 121 reviewed entries, including existential risk / get one's way / do someone's bidding / good-story bias / solid waste charge / fly-tipping / metal utilization / acid mine drainage / sulfate-reducing microorganism / Not In My Back Yard / pH value
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely item:
