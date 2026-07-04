@@ -87,6 +87,8 @@ const mt15Paper1Entries = senseBank.entries.filter((entry) => entry.source === "
 assert.ok(mt15Paper1Entries.length >= 160, `Expected MT15 Paper 1 reviewed entries, got ${mt15Paper1Entries.length}`);
 const mt16Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt16-paper1-reviewed");
 assert.ok(mt16Paper1Entries.length >= 90, `Expected MT16 Paper 1 reviewed entries, got ${mt16Paper1Entries.length}`);
+const mt18Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt18-paper1-reviewed");
+assert.ok(mt18Paper1Entries.length >= 100, `Expected MT18 Paper 1 reviewed entries, got ${mt18Paper1Entries.length}`);
 const mt25Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt25-paper3-reviewed");
 assert.ok(mt25Paper3Entries.length >= 80, `Expected MT25 Paper 3 reviewed entries, got ${mt25Paper3Entries.length}`);
 const mt27Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt27-paper3-reviewed");
@@ -737,7 +739,7 @@ assert.ok(senseBank.lookup("dictation book").some((entry) => entry.pos === "noun
 assert.ok(senseBank.lookup("corrections").some((entry) => entry.pos === "noun" && entry.meaning === "改正"));
 assert.deepStrictEqual(
   senseBank.lookup("composition").map((entry) => `${entry.pos}:${entry.meaning}:${entry.level}:${entry.overrideTeacher ? "override" : ""}`),
-  ["noun:作文:A2:override", "noun:組成 / 構成:B2:", "noun:樂曲:B2:"]
+  ["noun:作文:A2:override", "noun:組成 / 構成:B2:", "noun:樂曲:B2:", "noun:構圖:B2:override"]
 );
 assert.ok(senseBank.lookup("green minibus").some((entry) => entry.pos === "noun" && entry.meaning === "綠色小巴"));
 assert.ok(senseBank.lookup("red minibus").some((entry) => entry.pos === "noun" && entry.meaning === "紅色小巴"));

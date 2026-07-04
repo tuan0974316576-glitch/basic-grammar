@@ -361,6 +361,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt15-paper1-reviewed",
     "mock-unseen-mt16-paper1-reviewed",
     "mock-unseen-mt17-paper1-reviewed",
+    "mock-unseen-mt18-paper1-reviewed",
     "mock-unseen-mt20-paper1-reviewed",
     "mock-unseen-mt22-paper1-reviewed",
     "mock-unseen-mt25-paper1-reviewed",
@@ -5329,6 +5330,23 @@ function assertStudentLookupContract(word, matches) {
     ["phrase:noun:戒斷症狀:mock-unseen-mt17-paper1-reviewed"]
   );
 
+  for (const [word, expected] of [
+    ["stage managed", "stage-managed:phrase:adjective:刻意安排的 / 精心策劃的:mock-unseen-mt18-paper1-reviewed"],
+    ["measure themselves against", "measure oneself against:phrase:verb:把自己跟...比較:mock-unseen-mt18-paper1-reviewed"],
+    ["batted away", "bat away:phrase:verb:駁回 / 不理會:mock-unseen-mt18-paper1-reviewed"],
+    ["mnemonics", "mnemonic:word:noun:記憶法 / 助記工具:mock-unseen-mt18-paper1-reviewed"],
+    ["Pomodoro Technique", "Pomodoro Technique:phrase:noun:番茄工作法:mock-unseen-mt18-paper1-reviewed"],
+    ["igneous rocks", "igneous rock:phrase:noun:火成岩:mock-unseen-mt18-paper1-reviewed"],
+    ["PM2.5", "PM2.5:phrase:noun:PM2.5 懸浮粒子:mock-unseen-mt18-paper1-reviewed"],
+    ["naked eye", "naked eye:phrase:noun:肉眼:mock-unseen-mt18-paper1-reviewed"],
+    ["blanketed by smog", "blanketed in smog:phrase:adjective:被霧霾籠罩的:mock-unseen-mt18-paper1-reviewed"],
+    ["laid emphasis on", "lay emphasis on:phrase:verb:強調 / 重視:mock-unseen-mt18-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in MT18 Paper 1 lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
   assert.deepStrictEqual(
     (await lookupForStudent("linear TV")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
     ["linear TV:phrase:noun:線性電視 / 傳統電視:mock-unseen-mt63-paper1-reviewed"]
@@ -7436,7 +7454,8 @@ function assertStudentLookupContract(word, matches) {
     [
       "noun:作文:curated-sense-bank",
       "noun:組成 / 構成:curated-sense-bank",
-      "noun:樂曲:curated-sense-bank"
+      "noun:樂曲:curated-sense-bank",
+      "noun:構圖:mock-unseen-mt18-paper1-reviewed"
     ]
   );
 

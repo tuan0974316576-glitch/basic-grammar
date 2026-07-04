@@ -37,17 +37,17 @@ Latest verified progress:
 
 | Paper | Total | Done | Remaining |
 |---|---:|---:|---:|
-| Paper 1 | 84 | 34 | 50 |
+| Paper 1 | 84 | 35 | 49 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
 | Paper 4 | 72 | 72 | 0 |
-| Total | 314 | 264 | 50 |
+| Total | 314 | 265 | 49 |
 
 Most recent completed paper:
 
-- `MT16 Paper 1`
-- Source tag: `mock-unseen-mt16-paper1-reviewed`
-- Added 100 reviewed entries, including quiet before the storm / steal the show / gut-wrenching / torrential downpour / amber rainstorm signal / dropsonde / eye of the storm / Tornado Alley / prepper / nuclear meltdown / power grid / while away the time / domino effect / the Big Apple / biological terrorism / breakdown in law and order
+- `MT18 Paper 1`
+- Source tag: `mock-unseen-mt18-paper1-reviewed`
+- Added 108 reviewed entries, including narcissistic / stage-managed / measure oneself against / bat away / visual diary / feel-good factor / mnemonic / Pomodoro Technique / igneous rock / PM2.5 / naked eye / inflatable dome / fossil fuel burning / malignant tumour / blanketed in smog / lay emphasis on
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely item:
