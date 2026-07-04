@@ -362,6 +362,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt16-paper1-reviewed",
     "mock-unseen-mt17-paper1-reviewed",
     "mock-unseen-mt18-paper1-reviewed",
+    "mock-unseen-mt19-paper1-reviewed",
     "mock-unseen-mt20-paper1-reviewed",
     "mock-unseen-mt22-paper1-reviewed",
     "mock-unseen-mt25-paper1-reviewed",
@@ -5344,6 +5345,22 @@ function assertStudentLookupContract(word, matches) {
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in MT18 Paper 1 lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["make my way", "make one's way:phrase:verb:前往 / 走向:mock-unseen-mt19-paper1-reviewed"],
+    ["launched into", "launch into:phrase:verb:開始做 / 突然投入:mock-unseen-mt19-paper1-reviewed"],
+    ["work their way out", "work one's way out:phrase:verb:設法脫身 / 找路出去:mock-unseen-mt19-paper1-reviewed"],
+    ["closely guarded secret", "closely guarded secret:phrase:noun:嚴守的秘密:mock-unseen-mt19-paper1-reviewed"],
+    ["raise red flags", "raise red flags:phrase:verb:敲響警號 / 引起警惕:mock-unseen-mt19-paper1-reviewed"],
+    ["live bird market", "live poultry market:phrase:noun:活家禽市場:mock-unseen-mt19-paper1-reviewed"],
+    ["upper respiratory tract", "upper respiratory tract:phrase:noun:上呼吸道:mock-unseen-mt19-paper1-reviewed"],
+    ["stepped up surveillance", "step up surveillance:phrase:verb:加強監察 / 加強監控:mock-unseen-mt19-paper1-reviewed"],
+    ["flu-like symptoms", "flu-like symptom:phrase:noun:類似流感的症狀:mock-unseen-mt19-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in MT19 Paper 1 lookup`);
     assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
   }
 

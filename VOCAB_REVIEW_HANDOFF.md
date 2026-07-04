@@ -37,17 +37,17 @@ Latest verified progress:
 
 | Paper | Total | Done | Remaining |
 |---|---:|---:|---:|
-| Paper 1 | 84 | 35 | 49 |
+| Paper 1 | 84 | 36 | 48 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
 | Paper 4 | 72 | 72 | 0 |
-| Total | 314 | 265 | 49 |
+| Total | 314 | 266 | 48 |
 
 Most recent completed paper:
 
-- `MT18 Paper 1`
-- Source tag: `mock-unseen-mt18-paper1-reviewed`
-- Added 108 reviewed entries, including narcissistic / stage-managed / measure oneself against / bat away / visual diary / feel-good factor / mnemonic / Pomodoro Technique / igneous rock / PM2.5 / naked eye / inflatable dome / fossil fuel burning / malignant tumour / blanketed in smog / lay emphasis on
+- `MT19 Paper 1`
+- Source tag: `mock-unseen-mt19-paper1-reviewed`
+- Added 75 reviewed entries, including make one's way / launch into / work one's way out / closely guarded secret / raise red flags / live poultry market / species barrier / upper respiratory tract / step up surveillance / flu-like symptom
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely item:
