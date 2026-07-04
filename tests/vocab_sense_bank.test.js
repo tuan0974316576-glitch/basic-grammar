@@ -84,6 +84,14 @@ assert.ok(
   senseBank.lookup("take it for granted").some((entry) => entry.display === "take for granted"),
   "object pronoun aliases should find phrases whose object is commonly omitted in the headword"
 );
+assert.ok(
+  senseBank.lookup("take something into account").some((entry) => entry.display === "take into account"),
+  "object placeholder aliases should find fixed phrases where the object is commonly inserted"
+);
+assert.ok(
+  senseBank.lookup("take it into account").some((entry) => entry.display === "take into account"),
+  "object pronoun aliases should find fixed phrases where the object is commonly inserted"
+);
 
 const mt45Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt45-paper3-reviewed");
 assert.ok(mt45Paper3Entries.length >= 90, `Expected MT45 Paper 3 reviewed entries, got ${mt45Paper3Entries.length}`);
@@ -9800,6 +9808,41 @@ assert.ok(
     entry.display === "Key Opinion Leader" && entry.meaning === "關鍵意見領袖 / KOL"
   )),
   "MT53 Paper 1 should support KOL acronym lookup"
+);
+
+const mt54Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt54-paper1-reviewed");
+assert.ok(mt54Paper1Entries.length >= 108, `Expected MT54 Paper 1 reviewed entries, got ${mt54Paper1Entries.length}`);
+
+const mt54Paper1ReviewedExpectations = [
+  ["intuitive eating", "noun", "直覺飲食法 / 聆聽身體需要的飲食方式"],
+  ["fuel gauge", "noun", "油量表 / 燃料表"],
+  ["binge eating", "noun", "暴食"],
+  ["feel blue", "verb", "感到憂鬱 / 心情低落"],
+  ["anti-tourist protest", "noun", "反遊客抗議"],
+  ["sticking-plaster solution", "noun", "治標不治本的方法"],
+  ["have a say", "verb", "有發言權 / 有份決定"],
+  ["fluffy language", "noun", "空泛好聽但不精確的說法"],
+  ["green credentials", "noun", "環保形象 / 環保資歷"],
+  ["put one's money where one's mouth is", "verb", "用實際行動支持自己所說的話"],
+  ["take at face value", "verb", "只按表面相信 / 照單全收"],
+  ["jump on a bandwagon", "verb", "跟風 / 趕潮流"]
+];
+
+mt54Paper1ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.source === "mock-unseen-mt54-paper1-reviewed"
+      && candidate.pos === pos
+      && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT54 Paper 1 reviewed sense ${pos}:${meaning}`);
+});
+
+assert.ok(
+  senseBank.lookup("put their money where their mouths are", { includeHidden: true, limit: 20 }).some((entry) => (
+    entry.display === "put one's money where one's mouth is"
+      && entry.meaning === "用實際行動支持自己所說的話"
+  )),
+  "MT54 Paper 1 should support possessive idiom variants"
 );
 
 console.log("vocab_sense_bank tests passed");

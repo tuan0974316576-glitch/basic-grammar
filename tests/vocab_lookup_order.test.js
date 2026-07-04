@@ -387,6 +387,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt51-paper1-reviewed",
     "mock-unseen-mt52-paper1-reviewed",
     "mock-unseen-mt53-paper1-reviewed",
+    "mock-unseen-mt54-paper1-reviewed",
     "mock-unseen-mt56-paper1-reviewed",
     "mock-unseen-mt59-paper1-reviewed",
     "mock-unseen-mt63-paper1-reviewed",
@@ -5945,6 +5946,18 @@ function assertStudentLookupContract(word, matches) {
     ["have a thick skin", "have a thick skin:phrase:verb:臉皮厚 / 不易被批評傷害:mock-unseen-mt53-paper1-reviewed"],
     ["pale in comparison to", "pale in comparison to:phrase:verb:相比之下顯得遜色:mock-unseen-mt53-paper1-reviewed"],
     ["bells and whistles", "bells and whistles:phrase:noun:花巧附加功能 / 額外功能:mock-unseen-mt53-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["intuitive eating", "intuitive eating:phrase:noun:直覺飲食法 / 聆聽身體需要的飲食方式:mock-unseen-mt54-paper1-reviewed"],
+    ["sticking plaster solution", "sticking-plaster solution:phrase:noun:治標不治本的方法:mock-unseen-mt54-paper1-reviewed"],
+    ["put their money where their mouths are", "put one's money where one's mouth is:phrase:verb:用實際行動支持自己所說的話:mock-unseen-mt54-paper1-reviewed"],
+    ["take claims at face value", "take at face value:phrase:verb:只按表面相信 / 照單全收:mock-unseen-mt54-paper1-reviewed"],
+    ["jump on a bandwagon", "jump on a bandwagon:phrase:verb:跟風 / 趕潮流:mock-unseen-mt54-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
