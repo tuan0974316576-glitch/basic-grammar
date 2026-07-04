@@ -45,14 +45,15 @@ Latest verified progress:
 
 Most recent completed paper:
 
-- `MT44 Paper 1`
-- Source tag: `mock-unseen-mt44-paper1-reviewed`
-- Added 69 reviewed entries, including attention economy / human downgrading / digital minimalism / digital maximalist / call the shots / dopamine loop / social validation / addictive-by-design / public relations effort / profit off
+- `MT45 Paper 1`
+- Source tag: `mock-unseen-mt45-paper1-reviewed`
+- Reviewed and second-pass cleaned 111 entries, including location sharing app / par for the course / blip / bad actor / microcation / rack up a hefty tab / staycation / overtourism / dwarf / inundate / add fuel to the fire / long overdue / levy / diffuse / overrun
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely item:
 
 - Paper 3 and Paper 4 are complete. Continue remaining Paper 1 items from the review log.
+- Next missing Paper 1 item is likely `MT46 Paper 1`.
 - Use the `.docx` student and teacher files first. If `textutil` extraction is poor, compare with PDF extraction.
 
 ## Normal Workflow For One Paper

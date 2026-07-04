@@ -5848,6 +5848,18 @@ function assertStudentLookupContract(word, matches) {
     ["phrase:noun:較少人認識的目的地:mock-unseen-mt45-paper1-reviewed"]
   );
 
+  for (const [word, expected] of [
+    ["bad actor", "bad actor:phrase:noun:惡意人士 / 作惡者:mock-unseen-mt45-paper1-reviewed"],
+    ["tailored", "tailored:word:adjective:度身訂造的 / 按需要而設的:mock-unseen-mt45-paper1-reviewed"],
+    ["long overdue", "long overdue:phrase:adjective:早就應該做的 / 遲來的:mock-unseen-mt45-paper1-reviewed"],
+    ["levy", "levy:word:verb:徵收:mock-unseen-mt45-paper1-reviewed"],
+    ["overrun", "overrun:word:adjective:人滿為患的 / 被擠滿的:mock-unseen-mt45-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
   assert.deepStrictEqual(
     (await lookupForStudent("e-waste")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
     ["phrase:noun:電子廢物:mock-unseen-mt42-paper1-reviewed"]
@@ -13880,7 +13892,8 @@ function assertStudentLookupContract(word, matches) {
     ["hot on sb's heels", "hot on one's heels:phrase:adjective:緊追在後的:mock-unseen-mt7-paper1-reviewed"],
     ["put sb up to", "put someone up to:phrase:verb:唆使某人做:mock-unseen-mt7-paper1-reviewed"],
     ["put somebody up to", "put someone up to:phrase:verb:唆使某人做:mock-unseen-mt7-paper1-reviewed"],
-    ["bags under eyes", "bags under one's eyes:phrase:noun:眼袋:mock-unseen-mt7-paper1-reviewed"]
+    ["bags under eyes", "bags under one's eyes:phrase:noun:眼袋:mock-unseen-mt7-paper1-reviewed"],
+    ["under-eye bags", "bags under one's eyes:phrase:noun:眼袋:mock-unseen-mt7-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available through placeholder lookup`);

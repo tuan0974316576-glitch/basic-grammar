@@ -45,6 +45,10 @@ assert.ok(
   "placeholder phrase lookup should allow omitted one's"
 );
 assert.ok(
+  senseBank.lookup("under-eye bags").some((entry) => entry.display === "bags under one's eyes"),
+  "placeholder phrase lookup should allow common reordered aliases"
+);
+assert.ok(
   senseBank.lookup("bags under the eyes").some((entry) => entry.display === "bags under one's eyes"),
   "placeholder phrase lookup should allow the before body parts"
 );
@@ -8138,24 +8142,38 @@ mt49ReviewedExpectations.forEach(([word, pos, meaning]) => {
 const mt45ReviewedExpectations = [
   ["location sharing app", "noun", "位置分享應用程式"],
   ["keep tabs on", "verb", "留意 / 掌握...的情況"],
+  ["demographic", "noun", "某一類人群 / 人口組別"],
   ["par for the course", "adjective", "意料之內的 / 平常的"],
   ["blindly optimistic", "adjective", "盲目樂觀的"],
   ["stalk", "verb", "跟蹤 / 纏擾"],
   ["nefarious motive", "noun", "邪惡動機 / 不良意圖"],
+  ["blip", "noun", "地圖上的小點 / 螢幕上的光點"],
+  ["perpetual", "adjective", "持續不斷的 / 長期的"],
   ["fever pitch", "noun", "極度激動 / 高度緊張狀態"],
+  ["bad actor", "noun", "惡意人士 / 作惡者"],
+  ["unease", "noun", "不安 / 憂慮"],
   ["erosion of privacy", "noun", "私隱逐漸被侵蝕"],
   ["microcation", "noun", "短途短假期 / 微度假"],
   ["rack up a hefty tab", "verb", "累積高額開支 / 花上一大筆錢"],
   ["staycation", "noun", "留家度假 / 本地度假"],
+  ["tailored", "adjective", "度身訂造的 / 按需要而設的"],
   ["economic injections", "noun", "經濟注入 / 經濟收益"],
   ["dwarfed", "verb", "使顯得渺小 / 遠遠超過"],
   ["inundating", "verb", "湧入 / 淹沒"],
   ["shuttering their doors", "verb", "關門停業"],
+  ["sullied", "adjective", "被污染的 / 被玷污的"],
   ["add fuel to the fire", "verb", "火上加油 / 令問題惡化"],
   ["multi-pronged approach", "noun", "多管齊下的方法"],
+  ["long overdue", "adjective", "早就應該做的 / 遲來的"],
+  ["levy", "verb", "徵收"],
   ["levies a daily fee", "verb", "徵收費用"],
+  ["diffuse", "adjective", "分散的 / 散開的"],
+  ["overrun", "adjective", "人滿為患的 / 被擠滿的"],
   ["lesser-known destinations", "noun", "較少人認識的目的地"]
 ];
+
+const mt45Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt45-paper1-reviewed");
+assert.ok(mt45Paper1Entries.length >= 111, `Expected MT45 Paper 1 reviewed entries, got ${mt45Paper1Entries.length}`);
 
 mt45ReviewedExpectations.forEach(([word, pos, meaning]) => {
   const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
