@@ -37,17 +37,17 @@ Latest verified progress:
 
 | Paper | Total | Done | Remaining |
 |---|---:|---:|---:|
-| Paper 1 | 84 | 37 | 47 |
+| Paper 1 | 84 | 38 | 46 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
 | Paper 4 | 72 | 72 | 0 |
-| Total | 314 | 267 | 47 |
+| Total | 314 | 268 | 46 |
 
 Most recent completed paper:
 
-- `MT23 Paper 1`
-- Source tag: `mock-unseen-mt23-paper1-reviewed`
-- Added 118 reviewed entries, including win by a nose / photo finish / International Baccalaureate / reap the benefits / sing someone's praises / sticky rice / padaek / haute cuisine / Luang Prabang / as familiar as the back of one's hand
+- `MT24 Paper 1`
+- Source tag: `mock-unseen-mt24-paper1-reviewed`
+- Added 92 reviewed entries, including toast of the town / close one's doors / flip the script / the jury is still out / mental heavy lifting / trophy hunting / put out of one's misery / sweep something under the rug / regulatory loophole / accusatory
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely item:

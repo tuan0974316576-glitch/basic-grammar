@@ -95,6 +95,8 @@ const mt21Paper1Entries = senseBank.entries.filter((entry) => entry.source === "
 assert.ok(mt21Paper1Entries.length >= 85, `Expected MT21 Paper 1 reviewed entries, got ${mt21Paper1Entries.length}`);
 const mt23Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt23-paper1-reviewed");
 assert.ok(mt23Paper1Entries.length >= 110, `Expected MT23 Paper 1 reviewed entries, got ${mt23Paper1Entries.length}`);
+const mt24Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt24-paper1-reviewed");
+assert.ok(mt24Paper1Entries.length >= 90, `Expected MT24 Paper 1 reviewed entries, got ${mt24Paper1Entries.length}`);
 const mt25Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt25-paper3-reviewed");
 assert.ok(mt25Paper3Entries.length >= 80, `Expected MT25 Paper 3 reviewed entries, got ${mt25Paper3Entries.length}`);
 const mt27Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt27-paper3-reviewed");
@@ -3675,7 +3677,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("pay off").map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),
-  ["phrase:verb:取得回報 / 成功"]
+  ["phrase:verb:取得回報 / 成功", "phrase:verb:賄賂 / 買通"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("pose a threat").map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),
@@ -9500,6 +9502,30 @@ mt37Paper3ReviewedExpectations.forEach(([word, pos, meaning]) => {
     candidate.pos === pos && candidate.meaning === meaning
   ));
   assert.ok(entry, `${word} should include MT37 Paper 3 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt24Paper1ReviewedExpectations = [
+  ["toast of the town", "noun", "城中熱話 / 大受歡迎的人或事"],
+  ["flip the script", "verb", "徹底改變做法 / 反轉常規"],
+  ["operate at a loss", "verb", "虧本經營"],
+  ["pick up the slack", "verb", "補上空缺 / 承擔剩下工作"],
+  ["the jury is still out", "verb", "尚未有定論"],
+  ["cloud", "verb", "影響判斷 / 使不清楚"],
+  ["match wits with", "verb", "與...鬥智"],
+  ["trophy hunting", "noun", "獵殺動物作戰利品 / 獎盃狩獵"],
+  ["cough up", "verb", "勉強付出 / 掏錢"],
+  ["sweep something under the rug", "verb", "掩蓋問題 / 把問題隱瞞起來"],
+  ["regulatory loophole", "noun", "監管漏洞 / 法規漏洞"],
+  ["accusatory", "adjective", "指責的 / 帶控訴意味的"]
+];
+
+mt24Paper1ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.source === "mock-unseen-mt24-paper1-reviewed"
+      && candidate.pos === pos
+      && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT24 Paper 1 reviewed sense ${pos}:${meaning}`);
 });
 
 console.log("vocab_sense_bank tests passed");

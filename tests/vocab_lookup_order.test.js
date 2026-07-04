@@ -367,6 +367,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt21-paper1-reviewed",
     "mock-unseen-mt22-paper1-reviewed",
     "mock-unseen-mt23-paper1-reviewed",
+    "mock-unseen-mt24-paper1-reviewed",
     "mock-unseen-mt25-paper1-reviewed",
     "mock-unseen-mt27-paper1-reviewed",
     "mock-unseen-mt30-paper1-reviewed",
@@ -5393,6 +5394,29 @@ function assertStudentLookupContract(word, matches) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in MT23 Paper 1 lookup`);
     assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["toast of the town", "toast of the town:phrase:noun:城中熱話 / 大受歡迎的人或事:mock-unseen-mt24-paper1-reviewed"],
+    ["close its doors", "close one's doors:phrase:verb:停業 / 結業:mock-unseen-mt24-paper1-reviewed"],
+    ["take its toll", "take one's toll:phrase:verb:造成損害 / 帶來壞影響:mock-unseen-mt24-paper1-reviewed"],
+    ["picked up the slack", "pick up the slack:phrase:verb:補上空缺 / 承擔剩下工作:mock-unseen-mt24-paper1-reviewed"],
+    ["jury is still out", "the jury is still out:phrase:verb:尚未有定論:mock-unseen-mt24-paper1-reviewed"],
+    ["on its own merits", "on one's own merits:phrase:adverb:按本身優點 / 就本身來評價:mock-unseen-mt24-paper1-reviewed"],
+    ["clouded", "cloud:word:verb:影響判斷 / 使不清楚:mock-unseen-mt24-paper1-reviewed"],
+    ["mental heavy lifting", "mental heavy lifting:phrase:noun:費腦力的工作 / 需要大量思考的工作:mock-unseen-mt24-paper1-reviewed"],
+    ["play with fire", "play with fire:phrase:verb:玩火 / 冒險做危險的事:mock-unseen-mt24-paper1-reviewed"],
+    ["trophy hunting", "trophy hunting:phrase:noun:獵殺動物作戰利品 / 獎盃狩獵:mock-unseen-mt24-paper1-reviewed"],
+    ["put it out of its misery", "put out of one's misery:phrase:verb:結束痛苦 / 使不再受苦:mock-unseen-mt24-paper1-reviewed"],
+    ["sweep the incident under the rug", "sweep something under the rug:phrase:verb:掩蓋問題 / 把問題隱瞞起來:mock-unseen-mt24-paper1-reviewed"],
+    ["significant sums", "significant sum:phrase:noun:大筆金錢 / 可觀金額:mock-unseen-mt24-paper1-reviewed"],
+    ["regulatory loopholes", "regulatory loophole:phrase:noun:監管漏洞 / 法規漏洞:mock-unseen-mt24-paper1-reviewed"]
+  ]) {
+    const entries = await lookupForStudent(word);
+    assert.ok(
+      entries.some((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}` === expected),
+      `${word} should include MT24 Paper 1 lookup ${expected}`
+    );
   }
 
   assert.deepStrictEqual(
