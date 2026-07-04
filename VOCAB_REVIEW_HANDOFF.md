@@ -37,17 +37,17 @@ Latest verified progress:
 
 | Paper | Total | Done | Remaining |
 |---|---:|---:|---:|
-| Paper 1 | 84 | 43 | 41 |
+| Paper 1 | 84 | 44 | 40 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
 | Paper 4 | 72 | 72 | 0 |
-| Total | 314 | 273 | 41 |
+| Total | 314 | 274 | 40 |
 
 Most recent completed paper:
 
-- `MT33 Paper 1`
-- Source tag: `mock-unseen-mt33-paper1-reviewed`
-- Added 53 reviewed entries, including nomophobia / cold turkey / anti-establishment / get something out to / worth checking out / tech giant / mergers and acquisitions / IPO / willingness to pay / 2D culture
+- `MT34 Paper 1`
+- Source tag: `mock-unseen-mt34-paper1-reviewed`
+- Added 117 reviewed entries, including grey matter / hippocampus / randomised controlled trial / fight or flight / ladybird / aphid / fill someone with horror / parasitic wasp / scorpion / mealworm / get over oneself / dip a toe in the water
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely item:

@@ -13788,6 +13788,25 @@ function assertStudentLookupContract(word, matches) {
   }
 
   for (const [word, expected] of [
+    ["grey matter", "grey matter:phrase:noun:腦灰質 / 腦袋:mock-unseen-mt34-paper1-reviewed"],
+    ["randomized controlled trials", "randomised controlled trial:phrase:noun:隨機對照試驗:mock-unseen-mt34-paper1-reviewed"],
+    ["fight-or-flight", "fight or flight:phrase:noun:戰鬥或逃跑反應:mock-unseen-mt34-paper1-reviewed"],
+    ["mental faculties", "mental faculty:phrase:noun:心智能力:mock-unseen-mt34-paper1-reviewed"],
+    ["bee sting", "sting:word:noun:螫傷 / 刺痛:mock-unseen-mt34-paper1-reviewed"],
+    ["ladybugs", "ladybird:word:noun:瓢蟲:mock-unseen-mt34-paper1-reviewed"],
+    ["preying on", "prey on:phrase:verb:捕食 / 以...為食:mock-unseen-mt34-paper1-reviewed"],
+    ["fills me with horror", "fill someone with horror:phrase:verb:令某人感到恐懼 / 驚駭:mock-unseen-mt34-paper1-reviewed"],
+    ["struck me", "strike someone:phrase:verb:突然令某人想到:mock-unseen-mt34-paper1-reviewed"],
+    ["his eyes light up", "one's eyes light up:phrase:verb:眼前一亮 / 露出興奮神情:mock-unseen-mt34-paper1-reviewed"],
+    ["get over myself", "get over oneself:phrase:verb:別太在意自己 / 放下成見:mock-unseen-mt34-paper1-reviewed"],
+    ["dip your toe in the water", "dip a toe in the water:phrase:verb:初步嘗試:mock-unseen-mt34-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
     ["hot on heels", "hot on one's heels:phrase:adjective:緊追在後的:mock-unseen-mt7-paper1-reviewed"],
     ["hot on someone's heels", "hot on one's heels:phrase:adjective:緊追在後的:mock-unseen-mt7-paper1-reviewed"],
     ["hot on sb's heels", "hot on one's heels:phrase:adjective:緊追在後的:mock-unseen-mt7-paper1-reviewed"],
