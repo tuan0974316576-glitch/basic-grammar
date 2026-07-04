@@ -5268,6 +5268,19 @@ function assertStudentLookupContract(word, matches) {
     ["phrase:verb:讓步 / 屈服:mock-unseen-mt15-paper1-reviewed"]
   );
 
+  for (const [word, expected] of [
+    ["bad guys", "bad guy:phrase:noun:壞人 / 反派:mock-unseen-mt15-paper1-reviewed"],
+    ["in a single bound", "in a single bound:phrase:adverb:一躍之間 / 一下子跳過:mock-unseen-mt15-paper1-reviewed"],
+    ["knights of the realm", "knight of the realm:phrase:noun:王國騎士 / 受封騎士:mock-unseen-mt15-paper1-reviewed"],
+    ["conversing", "converse:word:verb:交談:mock-unseen-mt15-paper1-reviewed"],
+    ["positively reinforced", "positively reinforce:phrase:verb:正面強化:mock-unseen-mt15-paper1-reviewed"],
+    ["for years to come", "for years to come:phrase:adverb:未來多年 / 往後多年:mock-unseen-mt15-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in MT15 Paper 1 lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
   assert.deepStrictEqual(
     (await lookupForStudent("caught on like wildfire")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
     ["phrase:verb:迅速流行起來:mock-unseen-mt17-paper1-reviewed"]

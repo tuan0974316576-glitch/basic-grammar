@@ -37,17 +37,17 @@ Latest verified progress:
 
 | Paper | Total | Done | Remaining |
 |---|---:|---:|---:|
-| Paper 1 | 84 | 32 | 52 |
+| Paper 1 | 84 | 33 | 51 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
 | Paper 4 | 72 | 72 | 0 |
-| Total | 314 | 262 | 52 |
+| Total | 314 | 263 | 51 |
 
 Most recent completed paper:
 
-- `MT14 Paper 1`
-- Source tag: `mock-unseen-mt14-paper1-reviewed`
-- Added 135 reviewed entries, including garbage patch / gyre / marine soup / ride the crest of a wave / silver bullet / circular economy vocabulary / in the nick of time / on one's radar / give someone a big break / pull to shreds / straight-laced / rumor mill / wheeler-dealer / make oneself up from scratch
+- `MT15 Paper 1`
+- Source tag: `mock-unseen-mt15-paper1-reviewed`
+- Added / confirmed 160 reviewed entries, including cut from the same cloth / eschew / equal footing / World Cosplay Summit / LARP / knight of the realm / converse / pathological gamer / on a par with / impulse control disorder / cave in to pleas / positively reinforce / for years to come
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely item:

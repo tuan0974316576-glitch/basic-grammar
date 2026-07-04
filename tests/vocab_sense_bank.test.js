@@ -44,6 +44,14 @@ assert.ok(
   senseBank.lookup("bags under eyes").some((entry) => entry.display === "bags under one's eyes"),
   "placeholder phrase lookup should allow omitted one's"
 );
+assert.ok(
+  senseBank.lookup("think it through").some((entry) => entry.display === "think something through"),
+  "placeholder phrase lookup should allow sth / something object-pronoun variants"
+);
+assert.ok(
+  senseBank.lookup("think that through").some((entry) => entry.display === "think something through"),
+  "placeholder phrase lookup should allow demonstrative object variants"
+);
 
 const mt45Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt45-paper3-reviewed");
 assert.ok(mt45Paper3Entries.length >= 90, `Expected MT45 Paper 3 reviewed entries, got ${mt45Paper3Entries.length}`);
@@ -75,6 +83,8 @@ const mt13Paper1Entries = senseBank.entries.filter((entry) => entry.source === "
 assert.ok(mt13Paper1Entries.length >= 115, `Expected MT13 Paper 1 reviewed entries, got ${mt13Paper1Entries.length}`);
 const mt14Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt14-paper1-reviewed");
 assert.ok(mt14Paper1Entries.length >= 135, `Expected MT14 Paper 1 reviewed entries, got ${mt14Paper1Entries.length}`);
+const mt15Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt15-paper1-reviewed");
+assert.ok(mt15Paper1Entries.length >= 160, `Expected MT15 Paper 1 reviewed entries, got ${mt15Paper1Entries.length}`);
 const mt25Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt25-paper3-reviewed");
 assert.ok(mt25Paper3Entries.length >= 80, `Expected MT25 Paper 3 reviewed entries, got ${mt25Paper3Entries.length}`);
 const mt27Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt27-paper3-reviewed");
@@ -8765,7 +8775,12 @@ const mt15ReviewedExpectations = [
   ["LARP", "noun", "真人角色扮演遊戲"],
   ["pathological gamer", "noun", "病態遊戲玩家"],
   ["on a par with", "adjective", "與...同等 / 與...不相上下"],
-  ["cave in", "verb", "讓步 / 屈服"]
+  ["cave in", "verb", "讓步 / 屈服"],
+  ["in a single bound", "adverb", "一躍之間 / 一下子跳過"],
+  ["bad guy", "noun", "壞人 / 反派"],
+  ["knight of the realm", "noun", "王國騎士 / 受封騎士"],
+  ["converse", "verb", "交談"],
+  ["for years to come", "adverb", "未來多年 / 往後多年"]
 ];
 
 mt15ReviewedExpectations.forEach(([word, pos, meaning]) => {
