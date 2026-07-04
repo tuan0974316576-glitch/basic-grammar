@@ -9879,4 +9879,36 @@ assert.ok(
   "MT55 Paper 1 should support Maximum Sustainable Yield acronym lookup"
 );
 
+const mt57Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt57-paper1-reviewed");
+assert.ok(mt57Paper1Entries.length >= 100, `Expected MT57 Paper 1 reviewed entries, got ${mt57Paper1Entries.length}`);
+
+const mt57Paper1ReviewedExpectations = [
+  ["take to something like a duck to water", "verb", "很快適應某事 / 如魚得水"],
+  ["smartphone penetration rate", "noun", "智能手機普及率"],
+  ["give a wide berth", "verb", "避開 / 遠離"],
+  ["path of least resistance", "noun", "最省力的方法 / 阻力最小的路"],
+  ["wife cake", "noun", "老婆餅"],
+  ["candied winter melon", "noun", "糖冬瓜"],
+  ["century egg pastry", "noun", "皮蛋酥"],
+  ["hydroponics", "noun", "水耕種植 / 水培"],
+  ["wick system", "noun", "燈芯式水耕系統"],
+  ["Nutrient Film Technique", "noun", "營養液膜技術"],
+  ["private sector", "noun", "私營機構 / 私營部門"]
+];
+
+mt57Paper1ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.source === "mock-unseen-mt57-paper1-reviewed"
+      && candidate.pos === pos
+      && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT57 Paper 1 reviewed sense ${pos}:${meaning}`);
+});
+
+assert.strictEqual(
+  senseBank.lookup("moped", { includeHidden: true, limit: 20 })[0]?.meaning,
+  "電單車 / 機動腳踏車",
+  "MT57 Paper 1 should prefer moped noun over mope verb"
+);
+
 console.log("vocab_sense_bank tests passed");

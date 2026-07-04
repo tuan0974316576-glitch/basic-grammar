@@ -389,6 +389,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt53-paper1-reviewed",
     "mock-unseen-mt54-paper1-reviewed",
     "mock-unseen-mt55-paper1-reviewed",
+    "mock-unseen-mt57-paper1-reviewed",
     "mock-unseen-mt56-paper1-reviewed",
     "mock-unseen-mt59-paper1-reviewed",
     "mock-unseen-mt63-paper1-reviewed",
@@ -5972,6 +5973,19 @@ function assertStudentLookupContract(word, matches) {
     ["cause quite a stir", "cause a stir:phrase:verb:引起轟動 / 引起熱議:mock-unseen-mt55-paper1-reviewed"],
     ["MSY", "Maximum Sustainable Yield:phrase:noun:最大可持續產量:mock-unseen-mt55-paper1-reviewed"],
     ["play down", "play down:phrase:verb:淡化 / 貶低重要性:mock-unseen-mt55-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["moped", "moped:word:noun:電單車 / 機動腳踏車:mock-unseen-mt57-paper1-reviewed"],
+    ["take to like a duck to water", "take to something like a duck to water:phrase:verb:很快適應某事 / 如魚得水:mock-unseen-mt57-paper1-reviewed"],
+    ["wife cake", "wife cake:phrase:noun:老婆餅:mock-unseen-mt57-paper1-reviewed"],
+    ["barbecue pork pastry", "barbecue pork pastry:phrase:noun:叉燒酥:mock-unseen-mt57-paper1-reviewed"],
+    ["hydroponics", "hydroponics:word:noun:水耕種植 / 水培:mock-unseen-mt57-paper1-reviewed"],
+    ["NFT", "Nutrient Film Technique:phrase:noun:營養液膜技術:mock-unseen-mt57-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
