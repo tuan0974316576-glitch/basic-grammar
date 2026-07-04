@@ -357,6 +357,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt11-paper1-reviewed",
     "mock-unseen-mt12-paper1-reviewed",
     "mock-unseen-mt13-paper1-reviewed",
+    "mock-unseen-mt14-paper1-reviewed",
     "mock-unseen-mt15-paper1-reviewed",
     "mock-unseen-mt17-paper1-reviewed",
     "mock-unseen-mt20-paper1-reviewed",
@@ -13544,6 +13545,27 @@ function assertStudentLookupContract(word, matches) {
     ["trolls for hire", "troll-for-hire:phrase:noun:受僱網絡打手:mock-unseen-mt13-paper1-reviewed"],
     ["powers that be", "powers-that-be:phrase:noun:當權者 / 掌權者:mock-unseen-mt13-paper1-reviewed"],
     ["big brother is watching", "Big Brother is watching:phrase:verb:當權者正在監視人民:mock-unseen-mt13-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["garbage patches", "garbage patch:phrase:noun:海洋垃圾帶 / 垃圾聚集區:mock-unseen-mt14-paper1-reviewed"],
+    ["gyres", "gyre:word:noun:環流 / 海洋環流:mock-unseen-mt14-paper1-reviewed"],
+    ["riding the crest of a wave", "ride the crest of a wave:phrase:verb:乘勢而起 / 借助熱潮:mock-unseen-mt14-paper1-reviewed"],
+    ["silver bullet", "silver bullet:phrase:noun:萬靈丹 / 一招解決問題的方法:mock-unseen-mt14-paper1-reviewed"],
+    ["lowdown", "low-down:phrase:noun:內情 / 主要資料:mock-unseen-mt14-paper1-reviewed"],
+    ["in the nick of time", "in the nick of time:phrase:adverb:在最後一刻 / 及時:mock-unseen-mt14-paper1-reviewed"],
+    ["on my radar", "on one's radar:phrase:adjective:在某人關注範圍內:mock-unseen-mt14-paper1-reviewed"],
+    ["gave him his big break", "give someone a big break:phrase:verb:給某人成名機會 / 給某人重大機遇:mock-unseen-mt14-paper1-reviewed"],
+    ["pull them to shreds", "pull to shreds:phrase:verb:嚴厲批評 / 批得體無完膚:mock-unseen-mt14-paper1-reviewed"],
+    ["straight laced", "straight-laced:phrase:adjective:古板守規矩的 / 一本正經的:mock-unseen-mt14-paper1-reviewed"],
+    ["toyed with", "toy with:phrase:verb:玩弄 / 不認真對待:mock-unseen-mt14-paper1-reviewed"],
+    ["rumour mill", "rumor mill:phrase:noun:謠言圈 / 謠言製造機:mock-unseen-mt14-paper1-reviewed"],
+    ["wheeler dealer", "wheeler-dealer:phrase:noun:投機取巧的人 / 精明鑽營者:mock-unseen-mt14-paper1-reviewed"],
+    ["made himself up from scratch", "make oneself up from scratch:phrase:verb:從零開始塑造自己:mock-unseen-mt14-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);

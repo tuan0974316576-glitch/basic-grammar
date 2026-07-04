@@ -37,17 +37,17 @@ Latest verified progress:
 
 | Paper | Total | Done | Remaining |
 |---|---:|---:|---:|
-| Paper 1 | 84 | 31 | 53 |
+| Paper 1 | 84 | 32 | 52 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
 | Paper 4 | 72 | 72 | 0 |
-| Total | 314 | 261 | 53 |
+| Total | 314 | 262 | 52 |
 
 Most recent completed paper:
 
-- `MT13 Paper 1`
-- Source tag: `mock-unseen-mt13-paper1-reviewed`
-- Added 115 reviewed entries, including petrol-guzzling / rare earth metal / lithium / woefully underdeveloped / eco-warrior / slacktivism / anecdotal evidence / Ice Bucket Challenge / professional troll / online disinhibition effect / troll-for-hire / powers-that-be / disingenuous / out of the frying pan and into the fire / Big Brother is watching
+- `MT14 Paper 1`
+- Source tag: `mock-unseen-mt14-paper1-reviewed`
+- Added 135 reviewed entries, including garbage patch / gyre / marine soup / ride the crest of a wave / silver bullet / circular economy vocabulary / in the nick of time / on one's radar / give someone a big break / pull to shreds / straight-laced / rumor mill / wheeler-dealer / make oneself up from scratch
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely item:
