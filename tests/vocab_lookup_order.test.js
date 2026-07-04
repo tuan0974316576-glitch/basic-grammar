@@ -381,6 +381,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt45-paper1-reviewed",
     "mock-unseen-mt46-paper1-reviewed",
     "mock-unseen-mt47-paper1-reviewed",
+    "mock-unseen-mt48-paper1-reviewed",
     "mock-unseen-mt49-paper1-reviewed",
     "mock-unseen-mt52-paper1-reviewed",
     "mock-unseen-mt56-paper1-reviewed",
@@ -5882,6 +5883,20 @@ function assertStudentLookupContract(word, matches) {
     ["source language", "source language:phrase:noun:源語言 / 原文語言:mock-unseen-mt47-paper1-reviewed"],
     ["scientific literacy", "scientific literacy:phrase:noun:科學素養:mock-unseen-mt47-paper1-reviewed"],
     ["dark forest theory", "dark forest theory:phrase:noun:黑暗森林理論:mock-unseen-mt47-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["fade into obscurity", "fade into obscurity:phrase:verb:逐漸被遺忘 / 變得無人知曉:mock-unseen-mt48-paper1-reviewed"],
+    ["shell out", "shell out:phrase:verb:花大錢 / 掏錢:mock-unseen-mt48-paper1-reviewed"],
+    ["co-living", "co-living:phrase:noun:共居 / 共住模式:mock-unseen-mt48-paper1-reviewed"],
+    ["fills vacancies", "fill vacancy:phrase:verb:填補空缺 / 招租補位:mock-unseen-mt48-paper1-reviewed"],
+    ["to a T", "to a T:phrase:adverb:完全地 / 恰到好處地:mock-unseen-mt48-paper1-reviewed"],
+    ["acquiesced", "acquiesce:word:verb:勉強同意 / 默許:mock-unseen-mt48-paper1-reviewed"],
+    ["woman of colour", "woman of color:phrase:noun:有色人種女性:mock-unseen-mt48-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);

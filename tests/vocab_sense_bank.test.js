@@ -8243,6 +8243,35 @@ mt47ReviewedExpectations.forEach(([word, pos, meaning]) => {
   assert.ok(entry, `${word} should include MT47 reviewed sense ${pos}:${meaning}`);
 });
 
+const mt48ReviewedExpectations = [
+  ["fade into obscurity", "verb", "逐漸被遺忘 / 變得無人知曉"],
+  ["shelled out", "verb", "花大錢 / 掏錢"],
+  ["wears her heart on her sleeve", "verb", "感情外露 / 把情緒表露出來"],
+  ["in on the joke", "verb", "知道笑點 / 參與其中的玩笑"],
+  ["fat phobia", "noun", "肥胖歧視 / 對肥胖的偏見"],
+  ["co-living", "noun", "共居 / 共住模式"],
+  ["fills vacancies", "verb", "填補空缺 / 招租補位"],
+  ["not all sunshine and roses", "adjective", "並非事事美好 / 不是全無問題"],
+  ["dip their toes in", "verb", "初步嘗試 / 試水溫"],
+  ["to a T", "adverb", "完全地 / 恰到好處地"],
+  ["miniseries", "noun", "迷你劇集 / 短篇連續劇"],
+  ["grossing", "verb", "賺得 / 取得總收入"],
+  ["station", "noun", "社會地位 / 身份"],
+  ["acquiesced", "verb", "勉強同意 / 默許"],
+  ["woman of colour", "noun", "有色人種女性"],
+  ["enamoured with", "adjective", "迷戀 / 著迷於"]
+];
+
+const mt48Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt48-paper1-reviewed");
+assert.ok(mt48Paper1Entries.length >= 72, `Expected MT48 Paper 1 reviewed entries, got ${mt48Paper1Entries.length}`);
+
+mt48ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT48 reviewed sense ${pos}:${meaning}`);
+});
+
 const mt80ReviewedExpectations = [
   ["instalment", "noun", "一集 / 一部作品"],
   ["installment", "noun", "一集 / 一部作品"],
