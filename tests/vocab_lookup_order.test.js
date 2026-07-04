@@ -379,6 +379,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt38-paper1-reviewed",
     "mock-unseen-mt42-paper1-reviewed",
     "mock-unseen-mt45-paper1-reviewed",
+    "mock-unseen-mt46-paper1-reviewed",
     "mock-unseen-mt49-paper1-reviewed",
     "mock-unseen-mt52-paper1-reviewed",
     "mock-unseen-mt56-paper1-reviewed",
@@ -5854,6 +5855,19 @@ function assertStudentLookupContract(word, matches) {
     ["long overdue", "long overdue:phrase:adjective:早就應該做的 / 遲來的:mock-unseen-mt45-paper1-reviewed"],
     ["levy", "levy:word:verb:徵收:mock-unseen-mt45-paper1-reviewed"],
     ["overrun", "overrun:word:adjective:人滿為患的 / 被擠滿的:mock-unseen-mt45-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["give rise to", "give rise to:phrase:verb:引起 / 產生:mock-unseen-mt46-paper1-reviewed"],
+    ["bundle of nerves", "bundle of nerves:phrase:noun:非常緊張的人:mock-unseen-mt46-paper1-reviewed"],
+    ["Infinity Mirror rooms", "Infinity Mirror room:phrase:noun:無限鏡房:mock-unseen-mt46-paper1-reviewed"],
+    ["peek behind the curtain", "peek behind the curtain:phrase:noun:幕後一瞥 / 了解鮮為人知的內情:mock-unseen-mt46-paper1-reviewed"],
+    ["climate-controlled", "climate-controlled:phrase:adjective:溫濕度受控的:mock-unseen-mt46-paper1-reviewed"],
+    ["worth every penny", "worth every penny:phrase:adjective:物有所值的 / 每一分錢都值得:mock-unseen-mt46-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);

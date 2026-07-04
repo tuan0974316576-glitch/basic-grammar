@@ -8182,6 +8182,33 @@ mt45ReviewedExpectations.forEach(([word, pos, meaning]) => {
   assert.ok(entry, `${word} should include MT45 reviewed sense ${pos}:${meaning}`);
 });
 
+const mt46ReviewedExpectations = [
+  ["give rise to", "verb", "引起 / 產生"],
+  ["brain plasticity", "noun", "大腦可塑性"],
+  ["bundle of nerves", "noun", "非常緊張的人"],
+  ["chronic pain", "noun", "慢性痛症 / 長期痛楚"],
+  ["creative rut", "noun", "創意低潮 / 缺乏靈感的狀態"],
+  ["hallucination", "noun", "幻覺"],
+  ["Infinity Mirror rooms", "noun", "無限鏡房"],
+  ["drop off the radar", "verb", "淡出視線 / 被人遺忘"],
+  ["peek behind the curtain", "noun", "幕後一瞥 / 了解鮮為人知的內情"],
+  ["whet appetite", "verb", "激起興趣 / 勾起欲望"],
+  ["climate-controlled", "adjective", "溫濕度受控的"],
+  ["overkill", "noun", "過度做法 / 矯枉過正"],
+  ["worth every penny", "adjective", "物有所值的 / 每一分錢都值得"],
+  ["irked", "adjective", "惱怒的 / 不滿的"]
+];
+
+const mt46Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt46-paper1-reviewed");
+assert.ok(mt46Paper1Entries.length >= 83, `Expected MT46 Paper 1 reviewed entries, got ${mt46Paper1Entries.length}`);
+
+mt46ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT46 reviewed sense ${pos}:${meaning}`);
+});
+
 const mt80ReviewedExpectations = [
   ["instalment", "noun", "一集 / 一部作品"],
   ["installment", "noun", "一集 / 一部作品"],
