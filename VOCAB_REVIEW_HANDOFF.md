@@ -37,17 +37,17 @@ Latest verified progress:
 
 | Paper | Total | Done | Remaining |
 |---|---:|---:|---:|
-| Paper 1 | 84 | 39 | 45 |
+| Paper 1 | 84 | 40 | 44 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
 | Paper 4 | 72 | 72 | 0 |
-| Total | 314 | 269 | 45 |
+| Total | 314 | 270 | 44 |
 
 Most recent completed paper:
 
-- `MT26 Paper 1`
-- Source tag: `mock-unseen-mt26-paper1-reviewed`
-- Added 80 reviewed entries, including refugee camp / grant asylum / internally displaced / Holi / fire at will / in good spirits / take something in one's stride / pig-chopping festival / turn one's stomach / Yulin Dog Meat Festival
+- `MT28 Paper 1`
+- Source tag: `mock-unseen-mt28-paper1-reviewed`
+- Added 63 reviewed entries, including tech nerd / you name it / top-of-the-range / phablet / might have a point / right to disconnect / electronic leash / throw a law at / centralized government / party as a legal or negotiating side
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely item:

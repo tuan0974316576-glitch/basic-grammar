@@ -13718,6 +13718,22 @@ function assertStudentLookupContract(word, matches) {
   }
 
   for (const [word, expected] of [
+    ["tech nerd", "tech nerd:phrase:noun:科技迷 / 科技宅:mock-unseen-mt28-paper1-reviewed"],
+    ["you name it", "you name it:phrase:verb:應有盡有 / 你說得出的都有:mock-unseen-mt28-paper1-reviewed"],
+    ["top of the range", "top-of-the-range:phrase:adjective:最高級的 / 頂級的:mock-unseen-mt28-paper1-reviewed"],
+    ["give it a chance", "give something a chance:phrase:verb:給某事物一次機會 / 試一試:mock-unseen-mt28-paper1-reviewed"],
+    ["might have a point", "might have a point:phrase:verb:可能說得有道理:mock-unseen-mt28-paper1-reviewed"],
+    ["right to disconnect", "right to disconnect:phrase:noun:下班後斷線權 / 拒收工後工作訊息的權利:mock-unseen-mt28-paper1-reviewed"],
+    ["electronic leash", "electronic leash:phrase:noun:電子枷鎖 / 令人無法擺脫工作的電子束縛:mock-unseen-mt28-paper1-reviewed"],
+    ["throw laws at", "throw a law at:phrase:verb:用立法處理 / 以法律解決:mock-unseen-mt28-paper1-reviewed"],
+    ["centralised government", "centralized government:phrase:noun:中央集權政府:mock-unseen-mt28-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
     ["hot on heels", "hot on one's heels:phrase:adjective:緊追在後的:mock-unseen-mt7-paper1-reviewed"],
     ["hot on someone's heels", "hot on one's heels:phrase:adjective:緊追在後的:mock-unseen-mt7-paper1-reviewed"],
     ["hot on sb's heels", "hot on one's heels:phrase:adjective:緊追在後的:mock-unseen-mt7-paper1-reviewed"],
