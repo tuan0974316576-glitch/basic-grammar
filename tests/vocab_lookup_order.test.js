@@ -13807,6 +13807,20 @@ function assertStudentLookupContract(word, matches) {
   }
 
   for (const [word, expected] of [
+    ["glued to my phone", "glued to one's phone:phrase:adjective:離不開手機的 / 一直黏著手機的:mock-unseen-mt36-paper1-reviewed"],
+    ["scared me straight", "scare someone straight:phrase:verb:嚇醒某人 / 令某人改過:mock-unseen-mt36-paper1-reviewed"],
+    ["as regards", "as regards:phrase:preposition:關於 / 至於:mock-unseen-mt36-paper1-reviewed"],
+    ["nerve fibers", "nerve fibre:phrase:noun:神經纖維:mock-unseen-mt36-paper1-reviewed"],
+    ["auditory discrimination", "auditory discrimination:phrase:noun:分辨不同聲音的能力 / 聽覺辨別能力:mock-unseen-mt36-paper1-reviewed"],
+    ["child’s play", "child's play:phrase:noun:容易做到的事 / 小兒科:mock-unseen-mt36-paper1-reviewed"],
+    ["biased", "biased:word:adjective:有偏見的 / 偏頗的:mock-unseen-mt36-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
     ["hot on heels", "hot on one's heels:phrase:adjective:緊追在後的:mock-unseen-mt7-paper1-reviewed"],
     ["hot on someone's heels", "hot on one's heels:phrase:adjective:緊追在後的:mock-unseen-mt7-paper1-reviewed"],
     ["hot on sb's heels", "hot on one's heels:phrase:adjective:緊追在後的:mock-unseen-mt7-paper1-reviewed"],
