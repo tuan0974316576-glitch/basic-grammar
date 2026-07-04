@@ -355,6 +355,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt9-paper1-reviewed",
     "mock-unseen-mt10-paper1-reviewed",
     "mock-unseen-mt11-paper1-reviewed",
+    "mock-unseen-mt12-paper1-reviewed",
     "mock-unseen-mt15-paper1-reviewed",
     "mock-unseen-mt17-paper1-reviewed",
     "mock-unseen-mt20-paper1-reviewed",
@@ -5757,7 +5758,10 @@ function assertStudentLookupContract(word, matches) {
 
   assert.deepStrictEqual(
     (await lookupForStudent("autopilot")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
-    ["noun:自動駕駛系統:mock-unseen-mt35-paper1-reviewed"]
+    [
+      "noun:自動駕駛狀態 / 不經思考做事:mock-unseen-mt12-paper1-reviewed",
+      "noun:自動駕駛系統:mock-unseen-mt35-paper1-reviewed"
+    ]
   );
 
   assert.deepStrictEqual(
@@ -12702,7 +12706,6 @@ function assertStudentLookupContract(word, matches) {
     ["speed reading apps", "phrase:noun:速讀應用程式:mock-unseen-mt10-paper4-reviewed"],
     ["cut your school study time in half", "phrase:verb:減半:mock-unseen-mt10-paper4-reviewed"],
     ["flying through", "phrase:verb:很快完成 / 飛快讀完:mock-unseen-mt10-paper4-reviewed"],
-    ["feeds", "word:verb:逐步送出 / 逐字顯示:mock-unseen-mt10-paper4-reviewed"],
     ["words per minute", "phrase:noun:每分鐘字數:mock-unseen-mt10-paper4-reviewed"],
     ["Literature in English", "phrase:noun:英國文學科:mock-unseen-mt10-paper4-reviewed"],
     ["my mind wanders", "phrase:verb:走神 / 思緒飄走:mock-unseen-mt10-paper4-reviewed"],
@@ -12713,6 +12716,14 @@ function assertStudentLookupContract(word, matches) {
     assert.ok(entry, `${word} should be available in student lookup`);
     assert.strictEqual(`${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
   }
+
+  assert.deepStrictEqual(
+    (await lookupForStudent("feeds")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
+    [
+      "word:noun:社交媒體動態 / 動態消息:mock-unseen-mt12-paper1-reviewed",
+      "word:verb:逐步送出 / 逐字顯示:mock-unseen-mt10-paper4-reviewed"
+    ]
+  );
 
   for (const [word, expected] of [
     ["basic first aid", "phrase:noun:基本急救:mock-unseen-mt11-paper4-reviewed"],
@@ -13490,6 +13501,27 @@ function assertStudentLookupContract(word, matches) {
     ["belting out", "belt out:phrase:verb:高聲唱出:mock-unseen-mt11-paper1-reviewed"],
     ["scoffing", "scoff:word:verb:狼吞虎嚥地吃:mock-unseen-mt11-paper1-reviewed"],
     ["double as", "double as:phrase:verb:兼任 / 同時作為:mock-unseen-mt11-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["juvenile detention", "juvenile detention:phrase:noun:少年拘留 / 少年羈留:mock-unseen-mt12-paper1-reviewed"],
+    ["detail oriented", "detail-oriented:phrase:adjective:注重細節的:mock-unseen-mt12-paper1-reviewed"],
+    ["owe it to yourself", "owe it to oneself:phrase:verb:應該為自己做 / 對自己有責任:mock-unseen-mt12-paper1-reviewed"],
+    ["auto-pilot", "auto-pilot:phrase:noun:自動駕駛狀態 / 不經思考做事:mock-unseen-mt12-paper1-reviewed"],
+    ["flat tyres", "flat tire:phrase:noun:爆胎 / 扁了的車胎:mock-unseen-mt12-paper1-reviewed"],
+    ["feeds", "feed:word:noun:社交媒體動態 / 動態消息:mock-unseen-mt12-paper1-reviewed"],
+    ["subtweeted", "subtweet:word:verb:不點名地發文批評:mock-unseen-mt12-paper1-reviewed"],
+    ["sends shivers up your spine", "send shivers up one's spine:phrase:verb:令人不寒而慄 / 令人害怕:mock-unseen-mt12-paper1-reviewed"],
+    ["gender neutral pronouns", "gender-neutral pronoun:phrase:noun:中性代名詞 / 不標示性別的代名詞:mock-unseen-mt12-paper1-reviewed"],
+    ["talking the talk but not walking the walk", "talk the talk but not walk the walk:phrase:verb:講得到但做不到 / 只說不做:mock-unseen-mt12-paper1-reviewed"],
+    ["the matter at hand", "matter at hand:phrase:noun:目前討論的事情 / 當前問題:mock-unseen-mt12-paper1-reviewed"],
+    ["hate crime charges", "hate crime charge:phrase:noun:仇恨罪指控:mock-unseen-mt12-paper1-reviewed"],
+    ["knee jerk reaction", "knee-jerk reaction:phrase:noun:本能反應 / 未經思考的反應:mock-unseen-mt12-paper1-reviewed"],
+    ["style guides", "style guide:phrase:noun:寫作格式指南 / 文體指南:mock-unseen-mt12-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);

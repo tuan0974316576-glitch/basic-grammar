@@ -37,17 +37,17 @@ Latest verified progress:
 
 | Paper | Total | Done | Remaining |
 |---|---:|---:|---:|
-| Paper 1 | 84 | 29 | 55 |
+| Paper 1 | 84 | 30 | 54 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
 | Paper 4 | 72 | 72 | 0 |
-| Total | 314 | 259 | 55 |
+| Total | 314 | 260 | 54 |
 
 Most recent completed paper:
 
-- `MT11 Paper 1`
-- Source tag: `mock-unseen-mt11-paper1-reviewed`
-- Added 103 reviewed entries, including geoduck / easy on the eye / locust / yuck factor / induce nausea / silkworm pupa / pull a face / wash down / larger-than-life / gather pace / lash out at / raise the bar / beat someone to it / daily grind / sadistic / belt out / scoff / double as
+- `MT12 Paper 1`
+- Source tag: `mock-unseen-mt12-paper1-reviewed`
+- Added 83 reviewed entries, including juvenile detention / information interview / detail-oriented / auto-pilot / flat tire / feed / subtweet / vaguebooking / send shivers up one's spine / digital bankruptcy / gender-neutral pronoun / genderqueer / cisgender / thought experiment / hate crime charge / knee-jerk reaction / go down that road
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely item:
