@@ -105,6 +105,8 @@ const mt29Paper1Entries = senseBank.entries.filter((entry) => entry.source === "
 assert.ok(mt29Paper1Entries.length >= 113, `Expected MT29 Paper 1 reviewed entries, got ${mt29Paper1Entries.length}`);
 const mt31Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt31-paper1-reviewed");
 assert.ok(mt31Paper1Entries.length >= 68, `Expected MT31 Paper 1 reviewed entries, got ${mt31Paper1Entries.length}`);
+const mt33Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt33-paper1-reviewed");
+assert.ok(mt33Paper1Entries.length >= 53, `Expected MT33 Paper 1 reviewed entries, got ${mt33Paper1Entries.length}`);
 const mt25Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt25-paper3-reviewed");
 assert.ok(mt25Paper3Entries.length >= 80, `Expected MT25 Paper 3 reviewed entries, got ${mt25Paper3Entries.length}`);
 const mt27Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt27-paper3-reviewed");
@@ -2012,7 +2014,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("appetite").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["noun:胃口 / 食慾"]
+  ["noun:胃口 / 食慾", "noun:強烈需求 / 慾望"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("applaud").map((entry) => `${entry.pos}:${entry.meaning}`),

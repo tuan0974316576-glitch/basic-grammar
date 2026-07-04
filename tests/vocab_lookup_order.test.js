@@ -372,6 +372,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt26-paper1-reviewed",
     "mock-unseen-mt27-paper1-reviewed",
     "mock-unseen-mt31-paper1-reviewed",
+    "mock-unseen-mt33-paper1-reviewed",
     "mock-unseen-mt30-paper1-reviewed",
     "mock-unseen-mt32-paper1-reviewed",
     "mock-unseen-mt35-paper1-reviewed",
@@ -13761,6 +13762,25 @@ function assertStudentLookupContract(word, matches) {
     ["supply chains", "supply chain:phrase:noun:供應鏈:mock-unseen-mt31-paper1-reviewed"],
     ["cold supply chain", "cold supply chain:phrase:noun:冷凍供應鏈 / 冷鏈:mock-unseen-mt31-paper1-reviewed"],
     ["proof is in the pudding", "the proof is in the pudding:phrase:noun:要試過才知道好不好:mock-unseen-mt31-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["nomophobics", "nomophobic:word:noun:無手機恐懼症患者:mock-unseen-mt33-paper1-reviewed"],
+    ["confiscated", "confiscate:word:verb:沒收:mock-unseen-mt33-paper1-reviewed"],
+    ["no phone policy", "no-phone policy:phrase:noun:禁用手機政策:mock-unseen-mt33-paper1-reviewed"],
+    ["cold turkey", "cold turkey:phrase:noun:突然完全戒掉某習慣:mock-unseen-mt33-paper1-reviewed"],
+    ["anti establishment", "anti-establishment:phrase:adjective:反建制的 / 反主流權威的:mock-unseen-mt33-paper1-reviewed"],
+    ["get it out to", "get something out to:phrase:verb:把某物傳給 / 發放給:mock-unseen-mt33-paper1-reviewed"],
+    ["worth checking out", "worth checking out:phrase:adjective:值得看看 / 值得了解的:mock-unseen-mt33-paper1-reviewed"],
+    ["tech giants", "tech giant:phrase:noun:科技巨頭 / 大型科技公司:mock-unseen-mt33-paper1-reviewed"],
+    ["M&A", "mergers and acquisitions:phrase:noun:合併與收購:mock-unseen-mt33-paper1-reviewed"],
+    ["initial public offering", "IPO:word:noun:首次公開招股 / 上市:mock-unseen-mt33-paper1-reviewed"],
+    ["willingness to pay", "willingness to pay:phrase:noun:付費意願:mock-unseen-mt33-paper1-reviewed"],
+    ["2d culture", "2D culture:phrase:noun:二次元文化:mock-unseen-mt33-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
