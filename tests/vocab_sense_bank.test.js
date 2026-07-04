@@ -9911,4 +9911,34 @@ assert.strictEqual(
   "MT57 Paper 1 should prefer moped noun over mope verb"
 );
 
+const mt58Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt58-paper1-reviewed");
+assert.ok(mt58Paper1Entries.length >= 89, `Expected MT58 Paper 1 reviewed entries, got ${mt58Paper1Entries.length}`);
+
+const mt58Paper1ReviewedExpectations = [
+  ["cooked to order", "adjective", "即叫即煮的"],
+  ["take the bait", "verb", "上當 / 接受誘餌"],
+  ["Swiss chard", "noun", "瑞士甜菜"],
+  ["omega-3 fatty acid", "noun", "奧米加3脂肪酸"],
+  ["kefir", "noun", "克非爾 / 發酵乳飲品"],
+  ["step up to the plate", "verb", "挺身而出 / 接下責任"],
+  ["well-heeled", "adjective", "富有的 / 有錢的"],
+  ["terra firma", "noun", "陸地 / 地球表面"],
+  ["bragging rights", "noun", "炫耀資本 / 值得吹噓的事"],
+  ["aim for the stars", "verb", "志向遠大 / 以星空為目標"]
+];
+
+mt58Paper1ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.source === "mock-unseen-mt58-paper1-reviewed"
+      && candidate.pos === pos
+      && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT58 Paper 1 reviewed sense ${pos}:${meaning}`);
+});
+
+assert.ok(
+  senseBank.lookup("rest on our laurels").some((entry) => entry.display === "rest on one's laurels"),
+  "MT58 Paper 1 should support possessive variants for rest on one's laurels"
+);
+
 console.log("vocab_sense_bank tests passed");

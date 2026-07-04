@@ -37,23 +37,23 @@ Latest verified progress:
 
 | Paper | Total | Done | Remaining |
 |---|---:|---:|---:|
-| Paper 1 | 84 | 60 | 24 |
+| Paper 1 | 84 | 61 | 23 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
 | Paper 4 | 72 | 72 | 0 |
-| Total | 314 | 290 | 24 |
+| Total | 314 | 291 | 23 |
 
 Most recent completed paper:
 
-- `MT57 Paper 1`
-- Source tag: `mock-unseen-mt57-paper1-reviewed`
-- Added 100 reviewed entries, including take to something like a duck to water / smartphone penetration rate / give a wide berth / path of least resistance / wife cake / candied winter melon / century egg pastry / hydroponics / wick system / Nutrient Film Technique / private sector
+- `MT58 Paper 1`
+- Source tag: `mock-unseen-mt58-paper1-reviewed`
+- Added 89 reviewed entries, including cooked to order / chow down / take the bait / Swiss chard / omega-3 fatty acid / kefir / step up to the plate / well-heeled / terra firma / bragging rights
 - Verified with focused vocab tests. Full `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync should be run before commit if this was resumed mid-turn.
 
 Next likely item:
 
 - Paper 3 and Paper 4 are complete. Continue remaining Paper 1 items from the review log.
-- Next missing Paper 1 item is likely `MT58 Paper 1`.
+- Next missing Paper 1 item is likely `MT60 Paper 1`.
 - Use the `.docx` student and teacher files first. If `textutil` extraction is poor, compare with PDF extraction.
 
 ## Normal Workflow For One Paper

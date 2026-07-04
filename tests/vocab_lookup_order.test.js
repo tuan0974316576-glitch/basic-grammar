@@ -390,6 +390,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt54-paper1-reviewed",
     "mock-unseen-mt55-paper1-reviewed",
     "mock-unseen-mt57-paper1-reviewed",
+    "mock-unseen-mt58-paper1-reviewed",
     "mock-unseen-mt56-paper1-reviewed",
     "mock-unseen-mt59-paper1-reviewed",
     "mock-unseen-mt63-paper1-reviewed",
@@ -5986,6 +5987,20 @@ function assertStudentLookupContract(word, matches) {
     ["barbecue pork pastry", "barbecue pork pastry:phrase:noun:叉燒酥:mock-unseen-mt57-paper1-reviewed"],
     ["hydroponics", "hydroponics:word:noun:水耕種植 / 水培:mock-unseen-mt57-paper1-reviewed"],
     ["NFT", "Nutrient Film Technique:phrase:noun:營養液膜技術:mock-unseen-mt57-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["chowing down on", "chow down:phrase:verb:大口吃 / 開懷地吃:mock-unseen-mt58-paper1-reviewed"],
+    ["take the bait", "take the bait:phrase:verb:上當 / 接受誘餌:mock-unseen-mt58-paper1-reviewed"],
+    ["Swiss chard", "Swiss chard:phrase:noun:瑞士甜菜:mock-unseen-mt58-paper1-reviewed"],
+    ["omega 3 fatty acids", "omega-3 fatty acid:phrase:noun:奧米加3脂肪酸:mock-unseen-mt58-paper1-reviewed"],
+    ["step up to the plate", "step up to the plate:phrase:verb:挺身而出 / 接下責任:mock-unseen-mt58-paper1-reviewed"],
+    ["terra firma", "terra firma:phrase:noun:陸地 / 地球表面:mock-unseen-mt58-paper1-reviewed"],
+    ["bragging rights", "bragging rights:phrase:noun:炫耀資本 / 值得吹噓的事:mock-unseen-mt58-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
