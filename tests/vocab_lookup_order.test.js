@@ -354,6 +354,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt8-paper1-reviewed",
     "mock-unseen-mt9-paper1-reviewed",
     "mock-unseen-mt10-paper1-reviewed",
+    "mock-unseen-mt11-paper1-reviewed",
     "mock-unseen-mt15-paper1-reviewed",
     "mock-unseen-mt17-paper1-reviewed",
     "mock-unseen-mt20-paper1-reviewed",
@@ -13461,6 +13462,34 @@ function assertStudentLookupContract(word, matches) {
     ["electronic road pricing", "electronic road pricing:phrase:noun:電子道路收費:mock-unseen-mt10-paper1-reviewed"],
     ["floated as a possible solution", "float as a solution:phrase:verb:提出作可能方案:mock-unseen-mt10-paper1-reviewed"],
     ["up for debate", "be up for debate:phrase:verb:有待討論 / 尚未有定論:mock-unseen-mt10-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["geoduck", "geoduck:word:noun:象拔蚌:mock-unseen-mt11-paper1-reviewed"],
+    ["not easy on the eye", "easy on the eye:phrase:adjective:悅目的 / 好看的:mock-unseen-mt11-paper1-reviewed"],
+    ["locusts", "locust:word:noun:蝗蟲:mock-unseen-mt11-paper1-reviewed"],
+    ["induce nausea", "induce nausea:phrase:verb:引起噁心 / 令人作嘔:mock-unseen-mt11-paper1-reviewed"],
+    ["silkworm pupa", "silkworm pupa:phrase:noun:蠶蛹:mock-unseen-mt11-paper1-reviewed"],
+    ["pulled a face", "pull a face:phrase:verb:做鬼臉 / 露出難看的表情:mock-unseen-mt11-paper1-reviewed"],
+    ["wash it down", "wash down:phrase:verb:用飲品送服 / 用飲品沖走味道:mock-unseen-mt11-paper1-reviewed"],
+    ["larger than life", "larger-than-life:phrase:adjective:比真人更大的 / 形象鮮明誇張的:mock-unseen-mt11-paper1-reviewed"],
+    ["gathered pace", "gather pace:phrase:verb:加快 / 迅速發展:mock-unseen-mt11-paper1-reviewed"],
+    ["quesadillas", "quesadilla:word:noun:墨西哥芝士餡餅:mock-unseen-mt11-paper1-reviewed"],
+    ["lash out at", "lash out at:phrase:verb:猛烈抨擊 / 怒斥:mock-unseen-mt11-paper1-reviewed"],
+    ["raised the bar", "raise the bar:phrase:verb:提高標準 / 提升水平:mock-unseen-mt11-paper1-reviewed"],
+    ["has you covered", "have someone covered:phrase:verb:能滿足某人的需要 / 幫某人安排好:mock-unseen-mt11-paper1-reviewed"],
+    ["beaten you to it", "beat someone to it:phrase:verb:搶先一步做到:mock-unseen-mt11-paper1-reviewed"],
+    ["daily grind", "daily grind:phrase:noun:日常苦差 / 枯燥日常:mock-unseen-mt11-paper1-reviewed"],
+    ["scratched the surface", "scratch the surface:phrase:verb:只了解表面 / 只觸及皮毛:mock-unseen-mt80-paper1-reviewed"],
+    ["sadistic", "sadistic:word:adjective:虐待狂的 / 以折磨別人為樂的:mock-unseen-mt11-paper1-reviewed"],
+    ["take pity on", "take pity on:phrase:verb:同情 / 可憐:mock-unseen-mt11-paper1-reviewed"],
+    ["belting out", "belt out:phrase:verb:高聲唱出:mock-unseen-mt11-paper1-reviewed"],
+    ["scoffing", "scoff:word:verb:狼吞虎嚥地吃:mock-unseen-mt11-paper1-reviewed"],
+    ["double as", "double as:phrase:verb:兼任 / 同時作為:mock-unseen-mt11-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
