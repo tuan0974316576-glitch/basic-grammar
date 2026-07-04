@@ -371,6 +371,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt25-paper1-reviewed",
     "mock-unseen-mt26-paper1-reviewed",
     "mock-unseen-mt27-paper1-reviewed",
+    "mock-unseen-mt31-paper1-reviewed",
     "mock-unseen-mt30-paper1-reviewed",
     "mock-unseen-mt32-paper1-reviewed",
     "mock-unseen-mt35-paper1-reviewed",
@@ -13743,6 +13744,23 @@ function assertStudentLookupContract(word, matches) {
     ["as far as this generation is concerned", "as far as one is concerned:phrase:preposition:就...而言:mock-unseen-mt29-paper1-reviewed"],
     ["risk-averse", "averse to risks:phrase:adjective:不願冒險的:mock-unseen-mt29-paper1-reviewed"],
     ["Roman alphabet", "Roman alphabet:phrase:noun:羅馬字母:mock-unseen-mt29-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["revered", "revere:word:verb:尊敬 / 崇敬:mock-unseen-mt31-paper1-reviewed"],
+    ["looked at me in horror", "look at someone in horror:phrase:verb:驚恐地看着某人:mock-unseen-mt31-paper1-reviewed"],
+    ["grass stains", "grass stain:phrase:noun:草漬:mock-unseen-mt31-paper1-reviewed"],
+    ["get into mischief", "get into mischief:phrase:verb:搗蛋 / 做頑皮事:mock-unseen-mt31-paper1-reviewed"],
+    ["financial aid", "financial aid:phrase:noun:經濟援助 / 助學金:mock-unseen-mt31-paper1-reviewed"],
+    ["investment in my future", "investment in one's future:phrase:noun:對自己未來的投資:mock-unseen-mt31-paper1-reviewed"],
+    ["having the time of my life", "have the time of one's life:phrase:verb:玩得非常開心 / 享受人生中美好時光:mock-unseen-mt31-paper1-reviewed"],
+    ["supply chains", "supply chain:phrase:noun:供應鏈:mock-unseen-mt31-paper1-reviewed"],
+    ["cold supply chain", "cold supply chain:phrase:noun:冷凍供應鏈 / 冷鏈:mock-unseen-mt31-paper1-reviewed"],
+    ["proof is in the pudding", "the proof is in the pudding:phrase:noun:要試過才知道好不好:mock-unseen-mt31-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
