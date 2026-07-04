@@ -9742,4 +9742,33 @@ mt26Paper1ReviewedExpectations.forEach(([word, pos, meaning]) => {
   assert.ok(entry, `${word} should include MT26 Paper 1 reviewed sense ${pos}:${meaning}`);
 });
 
+const mt51Paper1ReviewedExpectations = [
+  ["average Joe", "noun", "普通人 / 一般人"],
+  ["memory palace", "noun", "記憶宮殿 / 記憶法中的想像空間"],
+  ["put a name to a face", "verb", "把樣貌和名字對上"],
+  ["green gold", "noun", "綠色黃金 / 有環保和經濟價值的資源"],
+  ["testament to", "noun", "...的證明"],
+  ["scaffolder's knot", "noun", "搭棚結 / 搭棚工人的繩結"],
+  ["Cheung Chau Bun Festival", "noun", "長洲太平清醮 / 長洲包山節"],
+  ["forge new paths", "verb", "開創新路 / 開創新方向"],
+  ["cubicle farm", "noun", "間隔辦公室 / 格仔辦公室"],
+  ["BYOD", "noun", "自攜裝置上班 / 自攜裝置政策"]
+];
+
+mt51Paper1ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.source === "mock-unseen-mt51-paper1-reviewed"
+      && candidate.pos === pos
+      && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT51 Paper 1 reviewed sense ${pos}:${meaning}`);
+});
+
+assert.ok(
+  senseBank.lookup("buddha’s birthday", { includeHidden: true, limit: 20 }).some((entry) => (
+    entry.display === "Buddha's Birthday" && entry.meaning === "佛誕"
+  )),
+  "MT51 Paper 1 should support curly apostrophe festival lookup"
+);
+
 console.log("vocab_sense_bank tests passed");

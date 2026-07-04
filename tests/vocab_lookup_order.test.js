@@ -384,6 +384,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt48-paper1-reviewed",
     "mock-unseen-mt49-paper1-reviewed",
     "mock-unseen-mt50-paper1-reviewed",
+    "mock-unseen-mt51-paper1-reviewed",
     "mock-unseen-mt52-paper1-reviewed",
     "mock-unseen-mt56-paper1-reviewed",
     "mock-unseen-mt59-paper1-reviewed",
@@ -5913,6 +5914,21 @@ function assertStudentLookupContract(word, matches) {
     ["brutal honesty", "brutal honesty:phrase:noun:毫不粉飾的真實 / 殘酷坦白:mock-unseen-mt50-paper1-reviewed"],
     ["nuts and bolts", "nuts and bolts:phrase:noun:實際細節 / 基本細節:mock-unseen-mt50-paper1-reviewed"],
     ["Arc de Triomphe", "Arc de Triomphe:phrase:noun:巴黎凱旋門:mock-unseen-mt50-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["average Joe", "average Joe:phrase:noun:普通人 / 一般人:mock-unseen-mt51-paper1-reviewed"],
+    ["put a name to a face", "put a name to a face:phrase:verb:把樣貌和名字對上:mock-unseen-mt51-paper1-reviewed"],
+    ["green gold", "green gold:phrase:noun:綠色黃金 / 有環保和經濟價值的資源:mock-unseen-mt51-paper1-reviewed"],
+    ["scaffolder’s knot", "scaffolder's knot:phrase:noun:搭棚結 / 搭棚工人的繩結:mock-unseen-mt51-paper1-reviewed"],
+    ["buddha’s birthday", "Buddha's Birthday:phrase:noun:佛誕:mock-unseen-mt51-paper1-reviewed"],
+    ["forge new paths", "forge new paths:phrase:verb:開創新路 / 開創新方向:mock-unseen-mt51-paper1-reviewed"],
+    ["cubicle farms", "cubicle farm:phrase:noun:間隔辦公室 / 格仔辦公室:mock-unseen-mt51-paper1-reviewed"],
+    ["BYOD", "BYOD:phrase:noun:自攜裝置上班 / 自攜裝置政策:mock-unseen-mt51-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
@@ -13627,6 +13643,7 @@ function assertStudentLookupContract(word, matches) {
     ["sharing economy", "phrase:noun:共享經濟:mock-unseen-mt47-paper3-reviewed"],
     ["cut out the middleman", "phrase:verb:省去中間人 / 直接交易:mock-unseen-mt47-paper3-reviewed"],
     ["hot desk", "phrase:noun:流動辦公桌 / 非固定座位:mock-unseen-mt47-paper3-reviewed"],
+    ["hot desking", "phrase:noun:流動辦公桌 / 非固定座位:mock-unseen-mt47-paper3-reviewed"],
     ["bugged the hell out of", "phrase:verb:令...非常煩厭:mock-unseen-mt47-paper3-reviewed"],
     ["throwing money in the sea", "phrase:verb:浪費金錢 / 把錢倒進海裡:mock-unseen-mt47-paper3-reviewed"],
     ["I stand corrected", "phrase:verb:承認自己錯了 / 接受指正:mock-unseen-mt47-paper3-reviewed"]
