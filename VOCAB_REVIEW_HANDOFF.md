@@ -37,17 +37,17 @@ Latest verified progress:
 
 | Paper | Total | Done | Remaining |
 |---|---:|---:|---:|
-| Paper 1 | 84 | 33 | 51 |
+| Paper 1 | 84 | 34 | 50 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
 | Paper 4 | 72 | 72 | 0 |
-| Total | 314 | 263 | 51 |
+| Total | 314 | 264 | 50 |
 
 Most recent completed paper:
 
-- `MT15 Paper 1`
-- Source tag: `mock-unseen-mt15-paper1-reviewed`
-- Added / confirmed 160 reviewed entries, including cut from the same cloth / eschew / equal footing / World Cosplay Summit / LARP / knight of the realm / converse / pathological gamer / on a par with / impulse control disorder / cave in to pleas / positively reinforce / for years to come
+- `MT16 Paper 1`
+- Source tag: `mock-unseen-mt16-paper1-reviewed`
+- Added 100 reviewed entries, including quiet before the storm / steal the show / gut-wrenching / torrential downpour / amber rainstorm signal / dropsonde / eye of the storm / Tornado Alley / prepper / nuclear meltdown / power grid / while away the time / domino effect / the Big Apple / biological terrorism / breakdown in law and order
 - Verified with `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync / dry-run.
 
 Next likely item:

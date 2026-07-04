@@ -359,6 +359,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt13-paper1-reviewed",
     "mock-unseen-mt14-paper1-reviewed",
     "mock-unseen-mt15-paper1-reviewed",
+    "mock-unseen-mt16-paper1-reviewed",
     "mock-unseen-mt17-paper1-reviewed",
     "mock-unseen-mt20-paper1-reviewed",
     "mock-unseen-mt22-paper1-reviewed",
@@ -5278,6 +5279,23 @@ function assertStudentLookupContract(word, matches) {
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in MT15 Paper 1 lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["stole the show", "steal the show:phrase:verb:搶盡風頭 / 成為焦點:mock-unseen-mt16-paper1-reviewed"],
+    ["gut wrenching", "gut-wrenching:phrase:adjective:令人心碎的 / 極度痛苦的:mock-unseen-mt16-paper1-reviewed"],
+    ["amber signal", "amber rainstorm signal:phrase:noun:黃色暴雨警告信號:mock-unseen-mt16-paper1-reviewed"],
+    ["dropsondes", "dropsonde:word:noun:投落式探空儀 / 風暴探測器:mock-unseen-mt16-paper1-reviewed"],
+    ["tornado alley", "Tornado Alley:phrase:noun:龍捲風走廊 / 美國龍捲風高發地帶:mock-unseen-mt16-paper1-reviewed"],
+    ["preppers", "prepper:word:noun:末日準備者 / 災難準備者:mock-unseen-mt16-paper1-reviewed"],
+    ["while away the time", "while away the time:phrase:verb:消磨時間:mock-unseen-mt16-paper1-reviewed"],
+    ["the Big Apple", "the Big Apple:phrase:noun:紐約市:mock-unseen-mt16-paper1-reviewed"],
+    ["ripped off", "rip something off:phrase:verb:扯掉 / 撕掉:mock-unseen-mt16-paper1-reviewed"],
+    ["non-preppers", "non-prepper:phrase:noun:非災難準備者:mock-unseen-mt16-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in MT16 Paper 1 lookup`);
     assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
   }
 

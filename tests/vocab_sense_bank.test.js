@@ -85,6 +85,8 @@ const mt14Paper1Entries = senseBank.entries.filter((entry) => entry.source === "
 assert.ok(mt14Paper1Entries.length >= 135, `Expected MT14 Paper 1 reviewed entries, got ${mt14Paper1Entries.length}`);
 const mt15Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt15-paper1-reviewed");
 assert.ok(mt15Paper1Entries.length >= 160, `Expected MT15 Paper 1 reviewed entries, got ${mt15Paper1Entries.length}`);
+const mt16Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt16-paper1-reviewed");
+assert.ok(mt16Paper1Entries.length >= 90, `Expected MT16 Paper 1 reviewed entries, got ${mt16Paper1Entries.length}`);
 const mt25Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt25-paper3-reviewed");
 assert.ok(mt25Paper3Entries.length >= 80, `Expected MT25 Paper 3 reviewed entries, got ${mt25Paper3Entries.length}`);
 const mt27Paper3Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt27-paper3-reviewed");
@@ -8788,6 +8790,28 @@ mt15ReviewedExpectations.forEach(([word, pos, meaning]) => {
     candidate.pos === pos && candidate.meaning === meaning
   ));
   assert.ok(entry, `${word} should include MT15 reviewed sense ${pos}:${meaning}`);
+});
+
+const mt16Paper1ReviewedExpectations = [
+  ["quiet before the storm", "noun", "暴風雨前的平靜 / 大事前的短暫平靜"],
+  ["steal the show", "verb", "搶盡風頭 / 成為焦點"],
+  ["gut-wrenching", "adjective", "令人心碎的 / 極度痛苦的"],
+  ["amber rainstorm signal", "noun", "黃色暴雨警告信號"],
+  ["eye of the storm", "noun", "風眼 / 風暴中心"],
+  ["dropsonde", "noun", "投落式探空儀 / 風暴探測器"],
+  ["Tornado Alley", "noun", "龍捲風走廊 / 美國龍捲風高發地帶"],
+  ["prepper", "noun", "末日準備者 / 災難準備者"],
+  ["domino effect", "noun", "骨牌效應 / 連鎖反應"],
+  ["while away the time", "verb", "消磨時間"],
+  ["the Big Apple", "noun", "紐約市"],
+  ["bury one's head in the sand", "verb", "逃避現實 / 不願面對問題"]
+];
+
+mt16Paper1ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.pos === pos && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT16 Paper 1 reviewed sense ${pos}:${meaning}`);
 });
 
 const mt63ReviewedExpectations = [
