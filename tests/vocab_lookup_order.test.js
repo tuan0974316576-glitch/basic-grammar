@@ -388,6 +388,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt52-paper1-reviewed",
     "mock-unseen-mt53-paper1-reviewed",
     "mock-unseen-mt54-paper1-reviewed",
+    "mock-unseen-mt55-paper1-reviewed",
     "mock-unseen-mt56-paper1-reviewed",
     "mock-unseen-mt59-paper1-reviewed",
     "mock-unseen-mt63-paper1-reviewed",
@@ -5964,6 +5965,19 @@ function assertStudentLookupContract(word, matches) {
     assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
   }
 
+  for (const [word, expected] of [
+    ["orator", "orator:word:noun:演說家 / 雄辯家:mock-unseen-mt55-paper1-reviewed"],
+    ["when in Rome", "when in Rome, do as the Romans do:phrase:verb:入鄉隨俗:mock-unseen-mt55-paper1-reviewed"],
+    ["give my wallet a break", "give one's wallet a break:phrase:verb:讓錢包休息一下 / 省點錢:mock-unseen-mt55-paper1-reviewed"],
+    ["cause quite a stir", "cause a stir:phrase:verb:引起轟動 / 引起熱議:mock-unseen-mt55-paper1-reviewed"],
+    ["MSY", "Maximum Sustainable Yield:phrase:noun:最大可持續產量:mock-unseen-mt55-paper1-reviewed"],
+    ["play down", "play down:phrase:verb:淡化 / 貶低重要性:mock-unseen-mt55-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
   assert.deepStrictEqual(
     (await lookupForStudent("e-waste")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
     ["phrase:noun:電子廢物:mock-unseen-mt42-paper1-reviewed"]
@@ -8492,7 +8506,8 @@ function assertStudentLookupContract(word, matches) {
     [
       "noun:規模:curated-sense-bank",
       "noun:刻度 / 等級:curated-sense-bank",
-      "noun:磅 / 體重計:curated-sense-bank"
+      "noun:磅 / 體重計:curated-sense-bank",
+      "verb:攀登 / 爬上:mock-unseen-mt55-paper1-reviewed"
     ]
   );
 

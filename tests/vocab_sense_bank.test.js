@@ -9845,4 +9845,38 @@ assert.ok(
   "MT54 Paper 1 should support possessive idiom variants"
 );
 
+const mt55Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt55-paper1-reviewed");
+assert.ok(mt55Paper1Entries.length >= 110, `Expected MT55 Paper 1 reviewed entries, got ${mt55Paper1Entries.length}`);
+
+const mt55Paper1ReviewedExpectations = [
+  ["orator", "noun", "演說家 / 雄辯家"],
+  ["gilded dust", "noun", "鍍金的灰塵 / 外表華麗但本質低劣的東西"],
+  ["pathos", "noun", "悲情 / 感人的感染力"],
+  ["macabre", "adjective", "恐怖詭異的 / 與死亡有關的"],
+  ["when in Rome, do as the Romans do", "verb", "入鄉隨俗"],
+  ["put the finishing touches to", "verb", "作最後修飾 / 完成最後工序"],
+  ["give one's wallet a break", "verb", "讓錢包休息一下 / 省點錢"],
+  ["cause a stir", "verb", "引起轟動 / 引起熱議"],
+  ["level criticism at", "verb", "批評 / 對...提出批評"],
+  ["Maximum Sustainable Yield", "noun", "最大可持續產量"],
+  ["play down", "verb", "淡化 / 貶低重要性"],
+  ["catch of the day", "noun", "是日鮮魚 / 當日捕獲的魚"]
+];
+
+mt55Paper1ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.source === "mock-unseen-mt55-paper1-reviewed"
+      && candidate.pos === pos
+      && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT55 Paper 1 reviewed sense ${pos}:${meaning}`);
+});
+
+assert.ok(
+  senseBank.lookup("MSY", { includeHidden: true, limit: 20 }).some((entry) => (
+    entry.display === "Maximum Sustainable Yield" && entry.meaning === "最大可持續產量"
+  )),
+  "MT55 Paper 1 should support Maximum Sustainable Yield acronym lookup"
+);
+
 console.log("vocab_sense_bank tests passed");
