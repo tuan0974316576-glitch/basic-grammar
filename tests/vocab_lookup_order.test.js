@@ -399,6 +399,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt64-paper1-reviewed",
     "mock-unseen-mt65-paper1-reviewed",
     "mock-unseen-mt67-paper1-reviewed",
+    "mock-unseen-mt68-paper1-reviewed",
     "mock-unseen-mt63-paper1-reviewed",
     "mock-unseen-mt66-paper1-reviewed",
     "mock-unseen-mt87-paper1-reviewed",
@@ -6128,6 +6129,31 @@ function assertStudentLookupContract(word, matches) {
     ["second guessing", "second-guess:phrase:verb:懷疑自己的判斷 / 事後質疑:mock-unseen-mt67-paper1-reviewed"],
     ["caught red-handed", "catch red-handed:phrase:verb:當場抓住 / 人贓並獲:mock-unseen-mt67-paper1-reviewed"],
     ["take his word over", "take someone's word over:phrase:verb:相信某人的話多於...:mock-unseen-mt67-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["Sisyphean task", "Sisyphean task:phrase:noun:永無止境而徒勞的任務:mock-unseen-mt68-paper1-reviewed"],
+    ["out of whack", "out of whack:phrase:adjective:失準的 / 不正常的:mock-unseen-mt68-paper1-reviewed"],
+    ["get your teeth into", "get one's teeth into:phrase:verb:專心投入 / 認真處理:mock-unseen-mt68-paper1-reviewed"],
+    ["maximum-capacity regulations", "maximum capacity:phrase:noun:最高容量 / 最大承載量:mock-unseen-mt17-paper2-reviewed"],
+    ["all hands on deck", "all hands on deck:phrase:noun:全員出動 / 需要大家一起幫忙:mock-unseen-mt68-paper1-reviewed"],
+    ["living hell", "living hell:phrase:noun:活地獄 / 極痛苦的生活:mock-unseen-mt68-paper1-reviewed"],
+    ["not rocket science", "rocket science:phrase:noun:高深複雜的事:mock-unseen-mt68-paper1-reviewed"],
+    ["circadian rhythms", "circadian rhythm:phrase:noun:生理時鐘 / 晝夜節律:mock-unseen-mt68-paper1-reviewed"],
+    ["sky glow", "sky glow:phrase:noun:夜空光害 / 天空輝光:mock-unseen-mt68-paper1-reviewed"],
+    ["Charter on External Lighting", "Charter on External Lighting:phrase:noun:戶外燈光約章:mock-unseen-mt68-paper1-reviewed"],
+    ["nebulous", "nebulous:word:adjective:模糊不清的:mock-unseen-mt68-paper1-reviewed"],
+    ["gleeful derision", "gleeful derision:phrase:noun:幸災樂禍的嘲笑:mock-unseen-mt68-paper1-reviewed"],
+    ["avatars", "avatar:word:noun:虛擬化身 / 頭像:mock-unseen-mt68-paper1-reviewed"],
+    ["lacklustre", "lacklustre:word:adjective:平淡乏味的 / 表現欠佳的:mock-unseen-mt68-paper1-reviewed"],
+    ["baulked at", "baulk at:phrase:verb:抗拒 / 不願接受:mock-unseen-mt68-paper1-reviewed"],
+    ["rose tinted glasses", "rose-tinted glasses:phrase:noun:過分樂觀的眼光:mock-unseen-mt68-paper1-reviewed"],
+    ["dystopian sci-fi", "dystopian science fiction:phrase:noun:反烏托邦科幻小說:mock-unseen-mt68-paper1-reviewed"],
+    ["hook themselves up to", "hook up to:phrase:verb:連接到 / 接駁到:mock-unseen-mt68-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);

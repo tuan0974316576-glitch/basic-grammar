@@ -10165,4 +10165,43 @@ assert.ok(
   "MT67 Paper 1 should support hyphen-free low-maintenance lookup"
 );
 
+const mt68Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt68-paper1-reviewed");
+assert.ok(mt68Paper1Entries.length >= 100, `Expected MT68 Paper 1 reviewed entries, got ${mt68Paper1Entries.length}`);
+
+const mt68Paper1ReviewedExpectations = [
+  ["Sisyphean task", "noun", "永無止境而徒勞的任務"],
+  ["out of whack", "adjective", "失準的 / 不正常的"],
+  ["all hands on deck", "noun", "全員出動 / 需要大家一起幫忙"],
+  ["living hell", "noun", "活地獄 / 極痛苦的生活"],
+  ["circadian rhythm", "noun", "生理時鐘 / 晝夜節律"],
+  ["sky glow", "noun", "夜空光害 / 天空輝光"],
+  ["Charter on External Lighting", "noun", "戶外燈光約章"],
+  ["nebulous", "adjective", "模糊不清的"],
+  ["avatar", "noun", "虛擬化身 / 頭像"],
+  ["lacklustre", "adjective", "平淡乏味的 / 表現欠佳的"],
+  ["baulk at", "verb", "抗拒 / 不願接受"],
+  ["rose-tinted glasses", "noun", "過分樂觀的眼光"],
+  ["dystopian science fiction", "noun", "反烏托邦科幻小說"],
+  ["hook up to", "verb", "連接到 / 接駁到"]
+];
+
+mt68Paper1ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.source === "mock-unseen-mt68-paper1-reviewed"
+      && candidate.pos === pos
+      && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT68 Paper 1 reviewed sense ${pos}:${meaning}`);
+});
+
+assert.ok(
+  senseBank.lookup("maximum-capacity regulations").some((entry) => entry.display === "maximum capacity"),
+  "MT68 Paper 1 should support maximum-capacity alias without duplicating the existing sense"
+);
+
+assert.ok(
+  senseBank.lookup("rose colored glasses").some((entry) => entry.display === "rose-tinted glasses"),
+  "MT68 Paper 1 should support rose-colored glasses variant"
+);
+
 console.log("vocab_sense_bank tests passed");

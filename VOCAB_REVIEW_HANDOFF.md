@@ -37,23 +37,23 @@ Latest verified progress:
 
 | Paper | Total | Done | Remaining |
 |---|---:|---:|---:|
-| Paper 1 | 84 | 67 | 17 |
+| Paper 1 | 84 | 68 | 16 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
 | Paper 4 | 72 | 72 | 0 |
-| Total | 314 | 297 | 17 |
+| Total | 314 | 298 | 16 |
 
 Most recent completed paper:
 
-- `MT67 Paper 1`
-- Source tag: `mock-unseen-mt67-paper1-reviewed`
-- Added 107 reviewed entries, including control group / the black stuff / Parkinson's disease / sit well with / on pain of death / through thick and thin / low-maintenance / blanket ban / gaslighting / give the nod to / watered-down / rear its ugly head / medical gaslighting / take someone's word over
+- `MT68 Paper 1`
+- Source tag: `mock-unseen-mt68-paper1-reviewed`
+- Added 104 reviewed entries, including Sisyphean task / out of whack / all hands on deck / living hell / rocket science / circadian rhythm / sky glow / Charter on External Lighting / nebulous / avatar / lacklustre / baulk at / rose-tinted glasses / dystopian science fiction / hook up to
 - Verified with focused vocab tests. Full `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync should be run before commit if this was resumed mid-turn.
 
 Next likely item:
 
 - Paper 3 and Paper 4 are complete. Continue remaining Paper 1 items from the review log.
-- Next missing Paper 1 item is likely the next unchecked Paper 1 item after `MT67 Paper 1`; consult `private_exports/mock_unseen_vocab_review_log.json` and the source-tag coverage before starting.
+- Next missing Paper 1 item is likely the next unchecked Paper 1 item after `MT68 Paper 1`; consult `private_exports/mock_unseen_vocab_review_log.json` and the source-tag coverage before starting.
 - Use the `.docx` student and teacher files first. If `textutil` extraction is poor, compare with PDF extraction.
 
 ## Normal Workflow For One Paper
