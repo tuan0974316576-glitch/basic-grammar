@@ -27,7 +27,7 @@ can't cannot don't doesn't didn't won't wouldn't isn't aren't wasn't weren't
 const NON_STANDALONE_COMPONENTS = new Set(`
 hong kong tai po sha shui wan tung chau cheung kwai lam lantau tong yuen wong siu chai choi chung shek sai shan kwun kowloon macau
 pre anti eco non mini multi semi sub mid post co re ultra micro macro cyber
-st nd rd th ing noun adjective verb adverb modal pron det prep conj
+st nd rd th ing noun adj adjective verb adverb modal pron det prep conj
 instagram facebook tiktok youtube whatsapp google microsoft netflix disney oxford cambridge harvard michelin
 `.trim().split(/\s+/));
 
@@ -86,7 +86,7 @@ function tokenizePhrase(value) {
     .replace(/&/g, " and ")
     .replace(/\.\.\.|…/g, " ")
     .split(/[\s/-]+/)
-    .map((token) => token.replace(/^'+|'+$/g, ""))
+    .map((token) => token.replace(/^[^a-z0-9']+|[^a-z0-9']+$/g, "").replace(/^'+|'+$/g, ""))
     .filter(Boolean);
 }
 
@@ -145,7 +145,8 @@ function isLikelyProperNamePart(component, examples) {
 function getIgnoreReason(component, examples) {
   if (!component || component.length < 3) return "too-short";
   if (STOP_COMPONENTS.has(component)) return "function-word";
-  if (/^\d+$/.test(component) || /^\d+(?:st|nd|rd|th|s)$/.test(component)) return "number";
+  if (/^\d[\d,]*$/.test(component) || /^\d[\d,]*(?:st|nd|rd|th|s)$/.test(component)) return "number";
+  if (/^\d[\d,]*[a-z]+$/.test(component)) return "number-fragment";
   if (/^[a-z]$/.test(component)) return "single-letter";
   if (/^[ivx]+$/.test(component)) return "roman-numeral";
   if (component.includes("'") && /^(?:someone|somebody|one|everyone|everybody|people|parent|student|child|children|artist|baby)'?s$/.test(component)) {

@@ -102,7 +102,15 @@ const reviewedPhraseComponents = [
   ["checkout", "noun", "收銀處 / 結帳"],
   ["dental", "adjective", "牙齒的 / 牙科的"],
   ["renewable", "adjective", "可再生的 / 可更新的"],
-  ["wireless", "adjective", "無線的"]
+  ["wireless", "adjective", "無線的"],
+  ["absorption", "noun", "吸收 / 專注"],
+  ["authentication", "noun", "身份驗證 / 認證"],
+  ["behavioural", "adjective", "行為的"],
+  ["charger", "noun", "充電器"],
+  ["digestive", "adjective", "消化的"],
+  ["fingerprint", "noun", "指紋"],
+  ["lighthouse", "noun", "燈塔"],
+  ["migratory", "adjective", "遷徙的"]
 ];
 
 reviewedPhraseComponents.forEach(([word, pos, meaning]) => {
