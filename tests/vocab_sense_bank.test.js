@@ -10204,4 +10204,48 @@ assert.ok(
   "MT68 Paper 1 should support rose-colored glasses variant"
 );
 
+const mt69Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt69-paper1-reviewed");
+assert.ok(mt69Paper1Entries.length >= 105, `Expected MT69 Paper 1 reviewed entries, got ${mt69Paper1Entries.length}`);
+
+const mt69Paper1ReviewedExpectations = [
+  ["pay cheque to pay cheque", "adverb", "月光族式地 / 薪金一到手就花光"],
+  ["osmosis learning", "noun", "耳濡目染式學習 / 潛移默化學習"],
+  ["drive round the bend", "verb", "逼瘋 / 令...受不了"],
+  ["long-suffering", "adjective", "長期受苦的 / 長期忍受困難的"],
+  ["mask mandate", "noun", "口罩令 / 強制戴口罩規定"],
+  ["Asia's World City", "noun", "亞洲國際都會"],
+  ["human-competitive", "adjective", "能與人類競爭的 / 達到人類水平的"],
+  ["clarion call", "noun", "強烈號召 / 清晰有力的呼籲"],
+  ["multimodal", "adjective", "多模態的 / 能處理多種輸入形式的"],
+  ["polymorphic malware", "noun", "多態惡意軟件 / 會變形的惡意軟件"],
+  ["moratorium", "noun", "暫停 / 暫緩令"],
+  ["crawl out of the woodwork", "verb", "突然冒出來 / 紛紛現身"],
+  ["robot overlord", "noun", "機械人統治者"],
+  ["personification", "noun", "擬人法"]
+];
+
+mt69Paper1ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.source === "mock-unseen-mt69-paper1-reviewed"
+      && candidate.pos === pos
+      && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT69 Paper 1 reviewed sense ${pos}:${meaning}`);
+});
+
+assert.ok(
+  senseBank.lookup("paycheck to paycheck").some((entry) => entry.display === "pay cheque to pay cheque"),
+  "MT69 Paper 1 should support US spelling for paycheck to paycheck"
+);
+
+assert.ok(
+  senseBank.lookup("AI driven").some((entry) => entry.display === "AI-driven"),
+  "MT69 Paper 1 should support hyphen-free AI-driven lookup"
+);
+
+assert.ok(
+  senseBank.lookup("crawl out of woodwork").some((entry) => entry.display === "crawl out of the woodwork"),
+  "MT69 Paper 1 should support omitted the in crawl out of the woodwork"
+);
+
 console.log("vocab_sense_bank tests passed");

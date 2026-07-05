@@ -400,6 +400,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt65-paper1-reviewed",
     "mock-unseen-mt67-paper1-reviewed",
     "mock-unseen-mt68-paper1-reviewed",
+    "mock-unseen-mt69-paper1-reviewed",
     "mock-unseen-mt63-paper1-reviewed",
     "mock-unseen-mt66-paper1-reviewed",
     "mock-unseen-mt87-paper1-reviewed",
@@ -6154,6 +6155,30 @@ function assertStudentLookupContract(word, matches) {
     ["rose tinted glasses", "rose-tinted glasses:phrase:noun:過分樂觀的眼光:mock-unseen-mt68-paper1-reviewed"],
     ["dystopian sci-fi", "dystopian science fiction:phrase:noun:反烏托邦科幻小說:mock-unseen-mt68-paper1-reviewed"],
     ["hook themselves up to", "hook up to:phrase:verb:連接到 / 接駁到:mock-unseen-mt68-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["paycheck to paycheck", "pay cheque to pay cheque:phrase:adverb:月光族式地 / 薪金一到手就花光:mock-unseen-mt69-paper1-reviewed"],
+    ["career ladder", "career ladder:phrase:noun:事業階梯 / 晉升階梯:mock-unseen-mt69-paper1-reviewed"],
+    ["stunting", "stunt:word:verb:阻礙發展 / 妨礙成長:mock-unseen-mt69-paper1-reviewed"],
+    ["blowing off steam", "blow off steam:phrase:verb:發洩情緒 / 紓解壓力:mock-unseen-mt69-paper1-reviewed"],
+    ["long suffering", "long-suffering:phrase:adjective:長期受苦的 / 長期忍受困難的:mock-unseen-mt69-paper1-reviewed"],
+    ["mask mandate", "mask mandate:phrase:noun:口罩令 / 強制戴口罩規定:mock-unseen-mt69-paper1-reviewed"],
+    ["Mainland tour groups", "Mainland tour group:phrase:noun:內地旅行團:mock-unseen-mt69-paper1-reviewed"],
+    ["asias world city", "Asia's World City:phrase:noun:亞洲國際都會:mock-unseen-mt69-paper1-reviewed"],
+    ["come down hard on", "come down hard on:phrase:verb:嚴厲批評 / 嚴厲對待:mock-unseen-mt69-paper1-reviewed"],
+    ["AI driven", "AI-driven:phrase:adjective:由人工智能驅動的:mock-unseen-mt69-paper1-reviewed"],
+    ["quantum leaps", "quantum leap:phrase:noun:巨大進步 / 飛躍:mock-unseen-mt69-paper1-reviewed"],
+    ["phishing messages", "phishing message:phrase:noun:網絡釣魚訊息:mock-unseen-mt69-paper1-reviewed"],
+    ["cybercrimes", "cybercriminality:word:noun:網絡犯罪:mock-unseen-mt69-paper1-reviewed"],
+    ["overseen", "oversee:word:verb:監督 / 監管:mock-unseen-mt69-paper1-reviewed"],
+    ["crawl out of woodwork", "crawl out of the woodwork:phrase:verb:突然冒出來 / 紛紛現身:mock-unseen-mt69-paper1-reviewed"],
+    ["kill time", "kill time:phrase:verb:消磨時間:mock-unseen-mt69-paper1-reviewed"],
+    ["raised the alarm", "raise alarm:phrase:verb:敲響警號 / 發出警告:mock-unseen-mt69-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);

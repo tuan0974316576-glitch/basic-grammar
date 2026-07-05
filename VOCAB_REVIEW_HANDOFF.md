@@ -37,18 +37,18 @@ Latest verified progress:
 
 | Paper | Total | Done | Remaining |
 |---|---:|---:|---:|
-| Paper 1 | 84 | 68 | 16 |
+| Paper 1 | 84 | 69 | 15 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
 | Paper 4 | 72 | 72 | 0 |
-| Total | 314 | 298 | 16 |
+| Total | 314 | 299 | 15 |
 
 Most recent completed paper:
 
-- `MT68 Paper 1`
-- Source tag: `mock-unseen-mt68-paper1-reviewed`
-- Added 104 reviewed entries, including Sisyphean task / out of whack / all hands on deck / living hell / rocket science / circadian rhythm / sky glow / Charter on External Lighting / nebulous / avatar / lacklustre / baulk at / rose-tinted glasses / dystopian science fiction / hook up to
-- Verified with focused vocab tests. Full `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync should be run before commit if this was resumed mid-turn.
+- `MT69 Paper 1`
+- Source tag: `mock-unseen-mt69-paper1-reviewed`
+- Added 108 reviewed entries, including pay cheque to pay cheque / osmosis learning / blow off steam / drive round the bend / mask mandate / Asia's World City / human-competitive / clarion call / AI-driven / polymorphic malware / moratorium / crawl out of the woodwork / robot overlord / personification
+- Verified with focused vocab tests and duplicate/POS scan. Full `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync should be run before commit if this was resumed mid-turn.
 
 Next likely item:
 
