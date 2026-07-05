@@ -9974,4 +9974,40 @@ assert.ok(
   "MT60 Paper 1 should support possessive variants for quick on one's feet"
 );
 
+const mt61Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt61-paper1-reviewed");
+assert.ok(mt61Paper1Entries.length >= 66, `Expected MT61 Paper 1 reviewed entries, got ${mt61Paper1Entries.length}`);
+
+const mt61Paper1ReviewedExpectations = [
+  ["fintech", "noun", "金融科技"],
+  ["defeat the purpose", "verb", "違背原意 / 失去目的"],
+  ["culling", "noun", "撲殺 / 淘汰控制"],
+  ["black-or-white issue", "noun", "非黑即白的問題"],
+  ["Sus scrofa", "noun", "野豬的學名"],
+  ["Quarry Bay Station", "noun", "鰂魚涌站"],
+  ["non-fungible token", "noun", "非同質化代幣 / NFT"],
+  ["set heads spinning", "verb", "令人震驚 / 令人摸不著頭腦"],
+  ["follow on the heels of", "verb", "緊接在...之後"],
+  ["monetize", "verb", "將...變現 / 從...賺錢"],
+  ["overinflated", "adjective", "被過度抬高的 / 虛高的"]
+];
+
+mt61Paper1ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.source === "mock-unseen-mt61-paper1-reviewed"
+      && candidate.pos === pos
+      && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT61 Paper 1 reviewed sense ${pos}:${meaning}`);
+});
+
+assert.ok(
+  senseBank.lookup("perform to the best of their abilities").some((entry) => entry.display === "perform to the best of one's abilities"),
+  "MT61 Paper 1 should support possessive variants for perform to the best of one's abilities"
+);
+
+assert.ok(
+  senseBank.lookup("NFTs").some((entry) => entry.display === "non-fungible token"),
+  "MT61 Paper 1 should support common NFT abbreviation lookup"
+);
+
 console.log("vocab_sense_bank tests passed");

@@ -394,6 +394,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt56-paper1-reviewed",
     "mock-unseen-mt59-paper1-reviewed",
     "mock-unseen-mt60-paper1-reviewed",
+    "mock-unseen-mt61-paper1-reviewed",
     "mock-unseen-mt63-paper1-reviewed",
     "mock-unseen-mt66-paper1-reviewed",
     "mock-unseen-mt87-paper1-reviewed",
@@ -6018,6 +6019,25 @@ function assertStudentLookupContract(word, matches) {
     ["Monstera", "Monstera:word:noun:龜背芋:mock-unseen-mt60-paper1-reviewed"],
     ["spiralling out of control", "spiral out of control:phrase:verb:失控惡化 / 迅速失控:mock-unseen-mt60-paper1-reviewed"],
     ["Mother Nature", "Mother Nature:phrase:noun:大自然:mock-unseen-mt60-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["fintech", "fintech:word:noun:金融科技:mock-unseen-mt61-paper1-reviewed"],
+    ["defeated the purpose", "defeat the purpose:phrase:verb:違背原意 / 失去目的:mock-unseen-mt61-paper1-reviewed"],
+    ["black or white issue", "black-or-white issue:phrase:noun:非黑即白的問題:mock-unseen-mt61-paper1-reviewed"],
+    ["let our emotions run away with us", "let one's emotions run away with one:phrase:verb:被情緒牽著走 / 讓情緒失控:mock-unseen-mt61-paper1-reviewed"],
+    ["Quarry Bay Station", "Quarry Bay Station:phrase:noun:鰂魚涌站:mock-unseen-mt61-paper1-reviewed"],
+    ["sniffed out", "sniff out:phrase:verb:嗅出 / 找出:mock-unseen-mt61-paper1-reviewed"],
+    ["NFTs", "non-fungible token:phrase:noun:非同質化代幣 / NFT:mock-unseen-mt61-paper1-reviewed"],
+    ["got a steal", "get a steal:phrase:verb:以筍價買到 / 買得很便宜:mock-unseen-mt61-paper1-reviewed"],
+    ["following on the heels of", "follow on the heels of:phrase:verb:緊接在...之後:mock-unseen-mt61-paper1-reviewed"],
+    ["joined the fray", "join the fray:phrase:verb:加入戰團 / 加入競爭:mock-unseen-mt61-paper1-reviewed"],
+    ["monetised", "monetize:word:verb:將...變現 / 從...賺錢:mock-unseen-mt61-paper1-reviewed"],
+    ["over-inflated", "overinflated:word:adjective:被過度抬高的 / 虛高的:mock-unseen-mt61-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
