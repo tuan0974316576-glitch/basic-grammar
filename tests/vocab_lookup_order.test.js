@@ -408,6 +408,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt71-paper1-reviewed",
     "mock-unseen-mt72-paper1-reviewed",
     "mock-unseen-mt74-paper1-reviewed",
+    "mock-unseen-mt75-paper1-reviewed",
     "mock-unseen-mt73-paper1-reviewed",
     "mock-unseen-mt77-paper1-reviewed",
     "mock-unseen-mt80-paper1-reviewed",
@@ -5847,6 +5848,24 @@ function assertStudentLookupContract(word, matches) {
     ["when it comes to the crunch", "come to the crunch:phrase:verb:到關鍵時刻 / 到需要作決定時:mock-unseen-mt74-paper1-reviewed"],
     ["listen to your gut", "listen to one's gut:phrase:verb:相信直覺:mock-unseen-mt74-paper1-reviewed"],
     ["supplement my income", "supplement one's income:phrase:verb:幫補收入 / 增加收入:mock-unseen-mt74-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["on the prowl", "on the prowl:phrase:adjective:四處尋找獵物的 / 伺機行動的:mock-unseen-mt75-paper1-reviewed"],
+    ["extinction level", "extinction-level:phrase:adjective:足以導致滅絕的:mock-unseen-mt75-paper1-reviewed"],
+    ["in our own backyard", "in one's own backyard:phrase:adverb:就在自己附近 / 在本地:mock-unseen-mt75-paper1-reviewed"],
+    ["mere slap on the wrist", "slap on the wrist:phrase:noun:輕微懲罰 / 不痛不癢的處罰:mock-unseen-mt75-paper1-reviewed"],
+    ["ramping up", "ramp up:phrase:verb:加強 / 大幅增加:mock-unseen-mt75-paper1-reviewed"],
+    ["ESAs", "emotional support animal:phrase:noun:情緒支援動物:mock-unseen-mt75-paper1-reviewed"],
+    ["vetted", "vet:word:verb:審查 / 檢查:mock-unseen-mt75-paper1-reviewed"],
+    ["never judge a book by its cover", "judge a book by its cover:phrase:verb:以貌取人 / 只看表面判斷:mock-unseen-mt75-paper1-reviewed"],
+    ["preaching to the converted", "preach to the converted:phrase:verb:向本來已同意的人宣講 / 多此一舉地說服同路人:mock-unseen-mt75-paper1-reviewed"],
+    ["push a certain set of beliefs down people's throats", "push beliefs down someone's throat:phrase:verb:把信念強加於人:mock-unseen-mt75-paper1-reviewed"],
+    ["more than meets the eye", "more than meets the eye:phrase:adjective:比表面看起來更複雜 / 另有內涵:mock-unseen-mt75-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);

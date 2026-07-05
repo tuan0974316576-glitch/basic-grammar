@@ -10410,4 +10410,61 @@ assert.ok(
   "MT74 Paper 1 should support possessive variants for supplement one's income"
 );
 
+const mt75Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt75-paper1-reviewed");
+assert.ok(mt75Paper1Entries.length >= 95, `Expected MT75 Paper 1 reviewed entries, got ${mt75Paper1Entries.length}`);
+
+const mt75Paper1ReviewedExpectations = [
+  ["on the prowl", "adjective", "四處尋找獵物的 / 伺機行動的"],
+  ["illicit commerce", "noun", "非法交易 / 非法買賣"],
+  ["extinction-level", "adjective", "足以導致滅絕的"],
+  ["in one's own backyard", "adverb", "就在自己附近 / 在本地"],
+  ["functionally extinct", "adjective", "功能性滅絕的 / 幾乎無法繁殖延續的"],
+  ["wildlife trafficking", "noun", "野生動物走私 / 非法野生動物交易"],
+  ["slap on the wrist", "noun", "輕微懲罰 / 不痛不癢的處罰"],
+  ["ramp up", "verb", "加強 / 大幅增加"],
+  ["service dog", "noun", "服務犬 / 輔助犬"],
+  ["emotional support animal", "noun", "情緒支援動物"],
+  ["temperament testing", "noun", "性情測試 / 脾性測試"],
+  ["attest", "verb", "證明 / 證實"],
+  ["vet", "verb", "審查 / 檢查"],
+  ["look upon with suspicion", "verb", "以懷疑眼光看待"],
+  ["judge a book by its cover", "verb", "以貌取人 / 只看表面判斷"],
+  ["reserve judgement", "verb", "暫不作判斷 / 保留判斷"],
+  ["othering", "noun", "把他人視為異類 / 排斥異己"],
+  ["demystify", "verb", "揭開神秘感 / 使容易理解"],
+  ["diversity and inclusion", "noun", "多元共融 / 多元與包容"],
+  ["preach to the converted", "verb", "向本來已同意的人宣講 / 多此一舉地說服同路人"],
+  ["push beliefs down someone's throat", "verb", "把信念強加於人"],
+  ["more than meets the eye", "adjective", "比表面看起來更複雜 / 另有內涵"]
+];
+
+mt75Paper1ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.source === "mock-unseen-mt75-paper1-reviewed"
+      && candidate.pos === pos
+      && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT75 Paper 1 reviewed sense ${pos}:${meaning}`);
+});
+
+assert.ok(
+  senseBank.lookup("mere slap on the wrist").some((entry) => entry.display === "slap on the wrist"),
+  "MT75 Paper 1 should support slap-on-the-wrist aliases"
+);
+
+assert.ok(
+  senseBank.lookup("ESAs").some((entry) => entry.display === "emotional support animal"),
+  "MT75 Paper 1 should support ESA abbreviation aliases"
+);
+
+assert.ok(
+  senseBank.lookup("preaching to the converted").some((entry) => entry.display === "preach to the converted"),
+  "MT75 Paper 1 should support gerund alias for preaching to the converted"
+);
+
+assert.ok(
+  senseBank.lookup("push a certain set of beliefs down people's throats").some((entry) => entry.display === "push beliefs down someone's throat"),
+  "MT75 Paper 1 should support contextual belief-pushing aliases"
+);
+
 console.log("vocab_sense_bank tests passed");
