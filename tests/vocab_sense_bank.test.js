@@ -10986,4 +10986,46 @@ assert.ok(
   "MT89 Paper 1 should support possessive variants for get high on one's own supply"
 );
 
+const mt90Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt90-paper1-reviewed");
+assert.ok(mt90Paper1Entries.length >= 118, `Expected MT90 Paper 1 reviewed entries, got ${mt90Paper1Entries.length}`);
+
+const mt90Paper1ReviewedExpectations = [
+  ["matcha tea", "noun", "抹茶"],
+  ["take one's sweet time", "verb", "慢慢來 / 花很長時間"],
+  ["bring to the masses", "verb", "帶給大眾 / 令大眾接觸到"],
+  ["caffeine hit", "noun", "咖啡因提神效果 / 咖啡因刺激"],
+  ["online influencer", "noun", "網紅 / 網上影響者"],
+  ["give someone a leg-up", "verb", "幫某人一把 / 給某人優勢"],
+  ["fit the mould", "verb", "符合典型模式 / 符合常規形象"],
+  ["rack up views", "verb", "累積觀看次數"],
+  ["plan B in one's pocket", "noun", "後備計劃 / 備用方案"],
+  ["take the lid off", "verb", "打開限制 / 釋放出來"],
+  ["vers libre", "noun", "自由詩"],
+  ["make an example of", "verb", "懲一儆百 / 拿...作警戒例子"]
+];
+
+mt90Paper1ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.source === "mock-unseen-mt90-paper1-reviewed"
+      && candidate.pos === pos
+      && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT90 Paper 1 reviewed sense ${pos}:${meaning}`);
+});
+
+assert.ok(
+  senseBank.lookup("fit the mold").some((entry) => entry.display === "fit the mould"),
+  "MT90 Paper 1 should support US spelling for fit the mould"
+);
+
+assert.ok(
+  senseBank.lookup("give you a leg up").some((entry) => entry.display === "give someone a leg-up"),
+  "MT90 Paper 1 should support contextual leg-up aliases"
+);
+
+assert.ok(
+  senseBank.lookup("throw up steady jobs").some((entry) => entry.display === "throw up a job"),
+  "MT90 Paper 1 should support contextual throw-up-a-job aliases"
+);
+
 console.log("vocab_sense_bank tests passed");

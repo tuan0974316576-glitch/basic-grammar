@@ -423,6 +423,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt86-paper1-reviewed",
     "mock-unseen-mt88-paper1-reviewed",
     "mock-unseen-mt89-paper1-reviewed",
+    "mock-unseen-mt90-paper1-reviewed",
     "mock-unseen-mt39-paper1-reviewed",
     "mock-unseen-mt40-paper1-reviewed",
     "mock-unseen-mt41-paper1-reviewed",
@@ -14425,7 +14426,14 @@ function assertStudentLookupContract(word, matches) {
     ["wrap your head around", "wrap one's head around:phrase:verb:理解 / 想明白:mock-unseen-mt89-paper1-reviewed"],
     ["cassette", "cassette tape:phrase:noun:卡式錄音帶:mock-unseen-mt89-paper1-reviewed"],
     ["go the way of the dodo", "go the way of the dodo:phrase:verb:絕跡 / 被淘汰:mock-unseen-mt89-paper1-reviewed"],
-    ["get high on their own supply", "get high on one's own supply:phrase:verb:沉迷於自己製造的東西 / 被自己的東西沖昏頭腦:mock-unseen-mt89-paper1-reviewed"]
+    ["get high on their own supply", "get high on one's own supply:phrase:verb:沉迷於自己製造的東西 / 被自己的東西沖昏頭腦:mock-unseen-mt89-paper1-reviewed"],
+    ["bring to the masses", "bring to the masses:phrase:verb:帶給大眾 / 令大眾接觸到:mock-unseen-mt90-paper1-reviewed"],
+    ["ASMR style", "ASMR-style:word:adjective:ASMR 風格的 / 令人有感官放鬆效果的:mock-unseen-mt90-paper1-reviewed"],
+    ["give you a leg up", "give someone a leg-up:phrase:verb:幫某人一把 / 給某人優勢:mock-unseen-mt90-paper1-reviewed"],
+    ["fit the mold", "fit the mould:phrase:verb:符合典型模式 / 符合常規形象:mock-unseen-mt90-paper1-reviewed"],
+    ["plan B in your pocket", "plan B in one's pocket:phrase:noun:後備計劃 / 備用方案:mock-unseen-mt90-paper1-reviewed"],
+    ["throw up steady jobs", "throw up a job:phrase:verb:辭去工作:mock-unseen-mt90-paper1-reviewed"],
+    ["cockatoos", "cockatoo:word:noun:鳳頭鸚鵡:mock-unseen-mt90-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available through placeholder lookup`);

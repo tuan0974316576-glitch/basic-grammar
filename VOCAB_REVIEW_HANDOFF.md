@@ -37,24 +37,23 @@ Latest verified progress:
 
 | Paper | Total | Done | Remaining |
 |---|---:|---:|---:|
-| Paper 1 | 84 | 83 | 1 |
+| Paper 1 | 84 | 84 | 0 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
 | Paper 4 | 72 | 72 | 0 |
-| Total | 314 | 313 | 1 |
+| Total | 314 | 314 | 0 |
 
 Most recent completed paper:
 
-- `MT89 Paper 1`
-- Source tag: `mock-unseen-mt89-paper1-reviewed`
-- Added 91 reviewed entries, including loneliness epidemic / solitary confinement / positive solitude / default mode network / hear me out / worldly goods / commercial viability / wrap one's head around / anemoia / go the way of the dodo / get high on one's own supply / rehash. Reused existing shared entries where they already covered the passage sense, including solitude, loneliness, social isolation, recharge one's batteries, legend has it, proven track record, do wonders for, self-awareness, minimalism, carbon footprint, nostalgia, dopamine, oxytocin, target audience, Generation Z, and take by storm.
+- `MT90 Paper 1`
+- Source tag: `mock-unseen-mt90-paper1-reviewed`
+- Added 118 reviewed entries, including matcha tea / take one's sweet time / bring to the masses / ASMR-style / caffeine hit / online influencer / give someone a leg-up / fit the mould / rack up views / plan B in one's pocket / vers libre / take the lid off / throw up a job / palanquin. Reused existing shared entries where they already covered the passage sense, including connoisseur, ware, self-imposed, take by storm, all the rage, ubiquitous, mindset, high-grade, craft, niche, content creation, engagement, online following, collaborate, discerning, monetize, sell out, by all means, give it a shot, encounter, metaphor, rhyme, menace, mischief, Great Wall, and Egyptian.
 - Verified with focused vocab tests. Full `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync should be run before commit if this was resumed mid-turn.
 
 Next likely item:
 
-- Paper 3 and Paper 4 are complete. Continue remaining Paper 1 items from the review log.
-- Remaining Paper 1 item by current source-tag coverage is `MT90`; consult `private_exports/mock_unseen_vocab_review_log.json` and the source-tag coverage before starting.
-- Use the `.docx` student and teacher files first. If `textutil` extraction is poor, compare with PDF extraction.
+- Paper 1, Paper 2, Paper 3, and Paper 4 are complete by current review log coverage.
+- Before marking the full goal complete, run the verification commands and sync/commit/push the final MT90 Paper 1 changes.
 
 ## Normal Workflow For One Paper
 
