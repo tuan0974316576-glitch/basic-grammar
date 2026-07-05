@@ -133,15 +133,97 @@
     ));
   }
 
+  function cleanGeneratedLookupKey(value) {
+    return normalizeWord(value).replace(/\s+/g, " ").trim();
+  }
+
+  function expandLookupPattern(keys, pattern, replacements, limit = 300) {
+    const next = new Set(keys);
+    keys.forEach((key) => {
+      replacements.forEach((replacement) => {
+        const expanded = cleanGeneratedLookupKey(key.replace(pattern, replacement));
+        if (expanded) next.add(expanded);
+      });
+    });
+    return Array.from(next).slice(0, limit);
+  }
+
+  const OBJECT_PLACEHOLDER_REPLACEMENTS = ["something", "sth", "it", "this", "that", "things", "them"];
+  const OBJECT_INSERTION_PATTERNS = [
+    {
+      pattern: /^take into account$/,
+      build: (object) => `take ${object} into account`
+    }
+  ];
+
+  function addObjectInsertionLookupKeys(keys, limit = 300) {
+    const next = new Set(keys);
+    keys.forEach((key) => {
+      OBJECT_INSERTION_PATTERNS.forEach(({ pattern, build }) => {
+        if (!pattern.test(key)) return;
+        OBJECT_PLACEHOLDER_REPLACEMENTS.forEach((object) => {
+          const expanded = cleanGeneratedLookupKey(build(object));
+          if (expanded) next.add(expanded);
+        });
+      });
+    });
+    return Array.from(next).slice(0, limit);
+  }
+
+  const POSSESSIVE_BODY_PART_PATTERN = /(^|\s)one's\s+(appetite|arm|arms|back|blood|body|bone|bones|brain|breath|chest|ear|ears|eye|eyes|face|feet|finger|fingers|foot|hair|hand|hands|head|heart|heel|heels|knee|knees|leg|legs|mind|mouth|neck|nerve|nerves|nose|shoulder|shoulders|skin|skull|spine|stomach|throat|toe|toes|tongue|tooth|teeth|voice)(?=\s|$)/g;
+
+  function generatePlaceholderLookupKeys(key) {
+    let keys = [cleanGeneratedLookupKey(key)].filter(Boolean);
+    if (!keys.length) return [];
+    if (!keys[0].includes(" ")) return keys;
+
+    keys = expandLookupPattern(
+      keys,
+      /(^|\s)(someone|somebody|sb)(?=\s|$)/g,
+      ["$1someone", "$1somebody", "$1sb", "$1me", "$1you", "$1him", "$1her", "$1us", "$1them"]
+    );
+    keys = expandLookupPattern(
+      keys,
+      /(^|\s)(someone's|somebody's|sb's)(?=\s|$)/g,
+      ["$1someone's", "$1somebody's", "$1sb's", "$1someones", "$1somebodies", "$1sbs", "$1someone", "$1somebody", "$1sb", "$1my", "$1your", "$1his", "$1her", "$1its", "$1our", "$1their", "$1"]
+    );
+    keys = expandLookupPattern(
+      keys,
+      /(^|\s)one's(?=\s|$)/g,
+      ["$1one's", "$1ones", "$1one", "$1someone's", "$1somebody's", "$1sb's", "$1someones", "$1somebodies", "$1sbs", "$1someone", "$1somebody", "$1sb", "$1my", "$1your", "$1his", "$1her", "$1its", "$1our", "$1their", "$1"]
+    );
+    keys = expandLookupPattern(
+      keys,
+      POSSESSIVE_BODY_PART_PATTERN,
+      ["$1the $2"]
+    );
+    keys = expandLookupPattern(
+      keys,
+      /(^|\s)(something|sth)(?=\s|$)/g,
+      ["$1something", "$1sth", "$1it", "$1this", "$1that", "$1things", "$1them"]
+    );
+    keys = expandLookupPattern(
+      keys,
+      /(^|\s)oneself(?=\s|$)/g,
+      ["$1oneself", "$1myself", "$1yourself", "$1himself", "$1herself", "$1itself", "$1ourselves", "$1themselves"]
+    );
+    keys = addObjectInsertionLookupKeys(keys);
+
+    return Array.from(new Set(keys.map(cleanGeneratedLookupKey).filter(Boolean)));
+  }
+
   function entrySearchKey(entry = {}) {
     return normalizeWord(entry.word || entry.english || entry.display || "");
   }
 
   function entrySearchKeys(entry = {}) {
-    return Array.from(new Set([
+    const directKeys = [
       entrySearchKey(entry),
       ...normalizeAliases(entry.aliases || entry.alias)
-    ].filter(Boolean)));
+    ].filter(Boolean);
+    return Array.from(new Set(
+      directKeys.flatMap((key) => generatePlaceholderLookupKeys(key))
+    ));
   }
 
   const entries = Array.isArray(bank.entries) ? bank.entries : [];
@@ -296,6 +378,7 @@
     dedupeStudentReadyEntries,
     getStudentReadyEntryKey,
     chooseAutoFillEntry,
+    generatePlaceholderLookupKeys,
     normalizeAliases,
     normalizeLevel,
     normalizeMeaning,

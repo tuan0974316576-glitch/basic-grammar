@@ -101,6 +101,31 @@ global.TEACHER_VOCAB_BANK = {
       type: "word",
       inferredPos: "adjective",
       sourceCount: 1
+    },
+    {
+      id: "hot-heels-phrase",
+      word: "hot on one's heels",
+      meaning: "緊追在後的",
+      pos: "adjective",
+      type: "phrase",
+      sourceCount: 1
+    },
+    {
+      id: "eye-bags-phrase",
+      word: "bags under one's eyes",
+      meaning: "眼袋",
+      pos: "noun",
+      type: "phrase",
+      aliases: ["under-eye bags"],
+      sourceCount: 1
+    },
+    {
+      id: "take-account-phrase",
+      word: "take into account",
+      meaning: "考慮到",
+      pos: "verb",
+      type: "phrase",
+      sourceCount: 1
     }
   ]
 };
@@ -166,6 +191,31 @@ assert.strictEqual(assessmentStudentReady.length, 1);
 assert.strictEqual(teacherVocab.getEntryLabel(assessmentStudentReady[0]), "n. 評估");
 
 assert.strictEqual(teacherVocab.lookupStudentReady("accident").length, 0);
+
+assert.strictEqual(
+  teacherVocab.lookupStudentReady("hot on her heels")[0].word,
+  "hot on one's heels"
+);
+assert.strictEqual(
+  teacherVocab.lookupStudentReady("hot on heels")[0].word,
+  "hot on one's heels"
+);
+assert.strictEqual(
+  teacherVocab.lookupStudentReady("bags under eyes")[0].word,
+  "bags under one's eyes"
+);
+assert.strictEqual(
+  teacherVocab.lookupStudentReady("bags under the eyes")[0].word,
+  "bags under one's eyes"
+);
+assert.strictEqual(
+  teacherVocab.lookupStudentReady("under-eye bags")[0].word,
+  "bags under one's eyes"
+);
+assert.strictEqual(
+  teacherVocab.lookupStudentReady("take it into account")[0].word,
+  "take into account"
+);
 
 const explicitLevel = teacherVocab.normalizeStudentReadyEntry({
   word: "apple",

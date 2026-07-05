@@ -37,23 +37,23 @@ Latest verified progress:
 
 | Paper | Total | Done | Remaining |
 |---|---:|---:|---:|
-| Paper 1 | 84 | 74 | 10 |
+| Paper 1 | 84 | 75 | 9 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
 | Paper 4 | 72 | 72 | 0 |
-| Total | 314 | 304 | 10 |
+| Total | 314 | 305 | 9 |
 
 Most recent completed paper:
 
-- `MT76 Paper 1`
-- Source tag: `mock-unseen-mt76-paper1-reviewed`
-- Added 103 reviewed entries, including subcontractor / succumb to one's injuries / overture / capacity crowd / sacred ground / watering hole / oyster farmer / shrimp paste / bounty of the sea / fisherfolk / aquaculture / global plastics treaty / polyvinyl chloride / rinse-off cosmetics / hard evidence / trailblazer
+- `MT77 Paper 1`
+- Source tag: `mock-unseen-mt77-paper1-reviewed`
+- Added 85 reviewed entries, including yi mein / cottage industry / tempt fate / walkover / nerve-wracking / beacon of inspiration / money-spinner / discontinue / beginning of the end / win someone over to / force someone's hand / in lieu of / on the cards / baby bouncer. Reused existing shared entries for course / wedding banquet / gifted / rocket / perfect where those senses were already covered, adding aliases where needed.
 - Verified with focused vocab tests and duplicate/POS scan. Full `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync should be run before commit if this was resumed mid-turn.
 
 Next likely item:
 
 - Paper 3 and Paper 4 are complete. Continue remaining Paper 1 items from the review log.
-- Next missing Paper 1 item is likely the next unchecked Paper 1 item after `MT68 Paper 1`; consult `private_exports/mock_unseen_vocab_review_log.json` and the source-tag coverage before starting.
+- Next missing Paper 1 item is likely the next unchecked Paper 1 item after `MT77 Paper 1`; consult `private_exports/mock_unseen_vocab_review_log.json` and the source-tag coverage before starting.
 - Use the `.docx` student and teacher files first. If `textutil` extraction is poor, compare with PDF extraction.
 
 ## Normal Workflow For One Paper

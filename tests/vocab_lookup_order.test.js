@@ -14339,7 +14339,12 @@ function assertStudentLookupContract(word, matches) {
     ["put sb up to", "put someone up to:phrase:verb:唆使某人做:mock-unseen-mt7-paper1-reviewed"],
     ["put somebody up to", "put someone up to:phrase:verb:唆使某人做:mock-unseen-mt7-paper1-reviewed"],
     ["bags under eyes", "bags under one's eyes:phrase:noun:眼袋:mock-unseen-mt7-paper1-reviewed"],
-    ["under-eye bags", "bags under one's eyes:phrase:noun:眼袋:mock-unseen-mt7-paper1-reviewed"]
+    ["under-eye bags", "bags under one's eyes:phrase:noun:眼袋:mock-unseen-mt7-paper1-reviewed"],
+    ["demand rocketed", "rocket:word:verb:急升 / 飆升:curated-sense-bank"],
+    ["épée", "épée:word:noun:重劍:mock-unseen-mt77-paper1-reviewed"],
+    ["the beginning of the end", "beginning of the end:phrase:noun:結束的開始 / 衰落的開端:mock-unseen-mt77-paper1-reviewed"],
+    ["won them over to", "win someone over to:phrase:verb:說服某人支持 / 使某人接受:mock-unseen-mt77-paper1-reviewed"],
+    ["forced its hand", "force someone's hand:phrase:verb:迫使某人行動:mock-unseen-mt77-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available through placeholder lookup`);

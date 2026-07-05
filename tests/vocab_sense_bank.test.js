@@ -10529,4 +10529,76 @@ assert.ok(
   "MT76 Paper 1 should support ringing-the-alarm variants"
 );
 
+const mt77Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt77-paper1-reviewed");
+assert.ok(mt77Paper1Entries.length >= 85, `Expected MT77 Paper 1 reviewed entries, got ${mt77Paper1Entries.length}`);
+
+const mt77Paper1ReviewedExpectations = [
+  ["yi mein", "noun", "伊麵 / 長壽麵"],
+  ["cottage industry", "noun", "家庭式小生意 / 家庭工業"],
+  ["legend has it", "verb", "傳說是 / 據傳"],
+  ["auspicious", "adjective", "吉利的 / 祥瑞的"],
+  ["full to bursting", "adjective", "擠滿的 / 爆滿的"],
+  ["tempt fate", "verb", "冒不必要的風險 / 觸霉頭"],
+  ["walkover", "noun", "輕易取勝 / 輕鬆勝利"],
+  ["nerve-wracking", "adjective", "令人緊張的"],
+  ["try one's hand at", "verb", "嘗試做"],
+  ["beacon of inspiration", "noun", "鼓舞人心的榜樣 / 靈感來源"],
+  ["discontinue", "verb", "停止 / 終止"],
+  ["beginning of the end", "noun", "結束的開始 / 衰落的開端"],
+  ["money-spinner", "noun", "賺錢項目 / 搖錢樹"],
+  ["dig deep into one's pockets", "verb", "花大錢 / 慷慨解囊"],
+  ["win someone over to", "verb", "說服某人支持 / 使某人接受"],
+  ["force someone's hand", "verb", "迫使某人行動"],
+  ["in lieu of", "preposition", "代替 / 而不是"],
+  ["on the cards", "adjective", "很可能發生的"],
+  ["baby bouncer", "noun", "嬰兒彈椅 / 嬰兒搖椅"]
+];
+
+mt77Paper1ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.source === "mock-unseen-mt77-paper1-reviewed"
+      && candidate.pos === pos
+      && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT77 Paper 1 reviewed sense ${pos}:${meaning}`);
+});
+
+assert.ok(
+  senseBank.lookup("épée").some((entry) => entry.display === "épée"),
+  "MT77 Paper 1 should support accented épée lookup"
+);
+
+assert.ok(
+  senseBank.lookup("demand rocketed").some((entry) => entry.display === "rocket"),
+  "MT77 Paper 1 review should preserve contextual rocket verb lookup"
+);
+
+assert.ok(
+  senseBank.lookup("perfect").some((entry) => (
+    entry.pos === "verb"
+      && entry.meaning === "使完善 / 改善"
+  )),
+  "MT77 Paper 1 review should preserve the perfect verb sense from the shared bank"
+);
+
+assert.ok(
+  senseBank.lookup("try her hand at").some((entry) => entry.display === "try one's hand at"),
+  "MT77 Paper 1 should support possessive variants for try one's hand at"
+);
+
+assert.ok(
+  senseBank.lookup("dig deep into their pockets").some((entry) => entry.display === "dig deep into one's pockets"),
+  "MT77 Paper 1 should support possessive variants for dig deep into one's pockets"
+);
+
+assert.ok(
+  senseBank.lookup("won them over to").some((entry) => entry.display === "win someone over to"),
+  "MT77 Paper 1 should support contextual win-someone-over variants"
+);
+
+assert.ok(
+  senseBank.lookup("forced its hand").some((entry) => entry.display === "force someone's hand"),
+  "MT77 Paper 1 should support force-someone's-hand variants"
+);
+
 console.log("vocab_sense_bank tests passed");
