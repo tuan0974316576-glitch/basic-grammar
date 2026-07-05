@@ -412,6 +412,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt76-paper1-reviewed",
     "mock-unseen-mt73-paper1-reviewed",
     "mock-unseen-mt77-paper1-reviewed",
+    "mock-unseen-mt78-paper1-reviewed",
     "mock-unseen-mt80-paper1-reviewed",
     "mock-unseen-mt84-paper1-reviewed",
     "mock-unseen-mt39-paper1-reviewed",
@@ -14344,7 +14345,15 @@ function assertStudentLookupContract(word, matches) {
     ["épée", "épée:word:noun:重劍:mock-unseen-mt77-paper1-reviewed"],
     ["the beginning of the end", "beginning of the end:phrase:noun:結束的開始 / 衰落的開端:mock-unseen-mt77-paper1-reviewed"],
     ["won them over to", "win someone over to:phrase:verb:說服某人支持 / 使某人接受:mock-unseen-mt77-paper1-reviewed"],
-    ["forced its hand", "force someone's hand:phrase:verb:迫使某人行動:mock-unseen-mt77-paper1-reviewed"]
+    ["forced its hand", "force someone's hand:phrase:verb:迫使某人行動:mock-unseen-mt77-paper1-reviewed"],
+    ["waded through", "wade through:phrase:verb:費力讀完 / 艱難處理:mock-unseen-mt78-paper1-reviewed"],
+    ["animal cafés", "animal cafe:phrase:noun:動物咖啡店:mock-unseen-mt78-paper1-reviewed"],
+    ["fly in the ointment", "flies in the ointment:phrase:noun:美中不足之處 / 掃興的問題:mock-unseen-mt78-paper1-reviewed"],
+    ["with a heavy heart", "with a heavy heart:phrase:adverb:懷著沉重心情 / 不情願地:mock-unseen-mt78-paper1-reviewed"],
+    ["putting in the hard yards", "put in the hard yards:phrase:verb:付出艱苦努力 / 刻苦訓練:mock-unseen-mt78-paper1-reviewed"],
+    ["in your back pocket", "in one's back pocket:phrase:adverb:可隨時使用 / 已準備好的:mock-unseen-mt78-paper1-reviewed"],
+    ["post competition blues", "post-competition blues:phrase:noun:賽後失落感 / 比賽後情緒低落:mock-unseen-mt78-paper1-reviewed"],
+    ["managing expectations", "manage expectations:phrase:verb:管理期望 / 調整期望:mock-unseen-mt78-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available through placeholder lookup`);

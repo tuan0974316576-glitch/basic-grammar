@@ -37,23 +37,23 @@ Latest verified progress:
 
 | Paper | Total | Done | Remaining |
 |---|---:|---:|---:|
-| Paper 1 | 84 | 75 | 9 |
+| Paper 1 | 84 | 76 | 8 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
 | Paper 4 | 72 | 72 | 0 |
-| Total | 314 | 305 | 9 |
+| Total | 314 | 306 | 8 |
 
 Most recent completed paper:
 
-- `MT77 Paper 1`
-- Source tag: `mock-unseen-mt77-paper1-reviewed`
-- Added 85 reviewed entries, including yi mein / cottage industry / tempt fate / walkover / nerve-wracking / beacon of inspiration / money-spinner / discontinue / beginning of the end / win someone over to / force someone's hand / in lieu of / on the cards / baby bouncer. Reused existing shared entries for course / wedding banquet / gifted / rocket / perfect where those senses were already covered, adding aliases where needed.
+- `MT78 Paper 1`
+- Source tag: `mock-unseen-mt78-paper1-reviewed`
+- Added 80 reviewed entries, including year out / launch into a career / taster / wade through / thorny issue / how long is a piece of string / flies in the ointment / animal cafe / feline fix / with a heavy heart / armchair athlete / put in the hard yards / post-competition blues / manage expectations / flippant. Reused existing shared entries where they already covered the passage sense, adding aliases for cafe/café, possessive placeholders, and hyphenless variants where needed.
 - Verified with focused vocab tests and duplicate/POS scan. Full `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync should be run before commit if this was resumed mid-turn.
 
 Next likely item:
 
 - Paper 3 and Paper 4 are complete. Continue remaining Paper 1 items from the review log.
-- Next missing Paper 1 item is likely the next unchecked Paper 1 item after `MT77 Paper 1`; consult `private_exports/mock_unseen_vocab_review_log.json` and the source-tag coverage before starting.
+- Next missing Paper 1 item is likely the next unchecked Paper 1 item after `MT78 Paper 1`; consult `private_exports/mock_unseen_vocab_review_log.json` and the source-tag coverage before starting.
 - Use the `.docx` student and teacher files first. If `textutil` extraction is poor, compare with PDF extraction.
 
 ## Normal Workflow For One Paper

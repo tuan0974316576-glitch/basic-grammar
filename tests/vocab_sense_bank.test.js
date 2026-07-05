@@ -10601,4 +10601,51 @@ assert.ok(
   "MT77 Paper 1 should support force-someone's-hand variants"
 );
 
+const mt78Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt78-paper1-reviewed");
+assert.ok(mt78Paper1Entries.length >= 80, `Expected MT78 Paper 1 reviewed entries, got ${mt78Paper1Entries.length}`);
+
+const mt78Paper1ReviewedExpectations = [
+  ["year out", "noun", "休學一年 / 空檔年"],
+  ["wade through", "verb", "費力讀完 / 艱難處理"],
+  ["thorny issue", "noun", "棘手問題"],
+  ["flies in the ointment", "noun", "美中不足之處 / 掃興的問題"],
+  ["animal cafe", "noun", "動物咖啡店"],
+  ["feline fix", "noun", "接觸貓的滿足感"],
+  ["with a heavy heart", "adverb", "懷著沉重心情 / 不情願地"],
+  ["armchair athlete", "noun", "只看不做運動的觀眾 / 紙上運動員"],
+  ["put in the hard yards", "verb", "付出艱苦努力 / 刻苦訓練"],
+  ["post-competition blues", "noun", "賽後失落感 / 比賽後情緒低落"],
+  ["manage expectations", "verb", "管理期望 / 調整期望"],
+  ["flippant", "adjective", "輕率的 / 不認真的"]
+];
+
+mt78Paper1ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.source === "mock-unseen-mt78-paper1-reviewed"
+      && candidate.pos === pos
+      && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT78 Paper 1 reviewed sense ${pos}:${meaning}`);
+});
+
+assert.ok(
+  senseBank.lookup("animal cafés").some((entry) => entry.display === "animal cafe"),
+  "MT78 Paper 1 should support accented animal cafe plural aliases"
+);
+
+assert.ok(
+  senseBank.lookup("work their way around").some((entry) => entry.display === "work one's way around"),
+  "MT78 Paper 1 should support possessive variants for work one's way around"
+);
+
+assert.ok(
+  senseBank.lookup("putting in the hard yards").some((entry) => entry.display === "put in the hard yards"),
+  "MT78 Paper 1 should support put-in-the-hard-yards variants"
+);
+
+assert.ok(
+  senseBank.lookup("in your back pocket").some((entry) => entry.display === "in one's back pocket"),
+  "MT78 Paper 1 should support possessive variants for in one's back pocket"
+);
+
 console.log("vocab_sense_bank tests passed");
