@@ -10467,4 +10467,66 @@ assert.ok(
   "MT75 Paper 1 should support contextual belief-pushing aliases"
 );
 
+const mt76Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt76-paper1-reviewed");
+assert.ok(mt76Paper1Entries.length >= 103, `Expected MT76 Paper 1 reviewed entries, got ${mt76Paper1Entries.length}`);
+
+const mt76Paper1ReviewedExpectations = [
+  ["subcontractor", "noun", "分判商 / 次承包商"],
+  ["impose a halt", "verb", "下令暫停 / 實施停工"],
+  ["succumb to one's injuries", "verb", "傷重不治"],
+  ["overture", "noun", "主動接觸 / 提議"],
+  ["capacity crowd", "noun", "滿座觀眾 / 爆滿人群"],
+  ["sacred ground", "noun", "神聖之地 / 極受珍視的地方"],
+  ["categorically opposed to", "adjective", "堅決反對...的"],
+  ["watering hole", "noun", "酒吧 / 常去飲酒的地方"],
+  ["oyster farmer", "noun", "蠔農"],
+  ["shrimp paste", "noun", "蝦醬"],
+  ["bounty of the sea", "noun", "海洋資源 / 海產"],
+  ["fisherfolk", "noun", "漁民 / 漁業人士"],
+  ["aquaculture", "noun", "水產養殖"],
+  ["global plastics treaty", "noun", "全球塑膠條約"],
+  ["polymer", "noun", "聚合物 / 高分子材料"],
+  ["polyvinyl chloride", "noun", "聚氯乙烯 / PVC"],
+  ["circulatory system", "noun", "循環系統"],
+  ["rinse-off cosmetics", "noun", "沖洗式化妝品 / 沖洗式個人護理產品"],
+  ["hard evidence", "noun", "確鑿證據 / 有力證據"],
+  ["sidelined", "adjective", "被排除在外的 / 被邊緣化的"],
+  ["hard to swallow", "adjective", "難以接受的"],
+  ["trailblazer", "noun", "開拓者 / 先驅"]
+];
+
+mt76Paper1ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.source === "mock-unseen-mt76-paper1-reviewed"
+      && candidate.pos === pos
+      && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT76 Paper 1 reviewed sense ${pos}:${meaning}`);
+});
+
+assert.ok(
+  senseBank.lookup("succumbed to his injuries").some((entry) => entry.display === "succumb to one's injuries"),
+  "MT76 Paper 1 should support possessive injury idiom variants"
+);
+
+assert.ok(
+  senseBank.lookup("launched their careers").some((entry) => entry.display === "launch one's career"),
+  "MT76 Paper 1 should support career-launch variants"
+);
+
+assert.ok(
+  senseBank.lookup("squid fishing tours").some((entry) => entry.display === "squid-fishing tour"),
+  "MT76 Paper 1 should support hyphenless squid-fishing tour aliases"
+);
+
+assert.ok(
+  senseBank.lookup("PVC").some((entry) => entry.display === "polyvinyl chloride"),
+  "MT76 Paper 1 should support PVC abbreviation lookup"
+);
+
+assert.ok(
+  senseBank.lookup("ringing the alarm").some((entry) => entry.display === "ring the alarm"),
+  "MT76 Paper 1 should support ringing-the-alarm variants"
+);
+
 console.log("vocab_sense_bank tests passed");

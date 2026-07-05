@@ -37,17 +37,17 @@ Latest verified progress:
 
 | Paper | Total | Done | Remaining |
 |---|---:|---:|---:|
-| Paper 1 | 84 | 73 | 11 |
+| Paper 1 | 84 | 74 | 10 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
 | Paper 4 | 72 | 72 | 0 |
-| Total | 314 | 303 | 11 |
+| Total | 314 | 304 | 10 |
 
 Most recent completed paper:
 
-- `MT75 Paper 1`
-- Source tag: `mock-unseen-mt75-paper1-reviewed`
-- Added 95 reviewed entries, including on the prowl / illicit commerce / functionally extinct / slap on the wrist / stain on one's reputation / ramp up / service dog / emotional support animal / temperament testing / look upon with suspicion / judge a book by its cover / reserve judgement / othering / diversity and inclusion / preach to the converted / more than meets the eye
+- `MT76 Paper 1`
+- Source tag: `mock-unseen-mt76-paper1-reviewed`
+- Added 103 reviewed entries, including subcontractor / succumb to one's injuries / overture / capacity crowd / sacred ground / watering hole / oyster farmer / shrimp paste / bounty of the sea / fisherfolk / aquaculture / global plastics treaty / polyvinyl chloride / rinse-off cosmetics / hard evidence / trailblazer
 - Verified with focused vocab tests and duplicate/POS scan. Full `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync should be run before commit if this was resumed mid-turn.
 
 Next likely item:

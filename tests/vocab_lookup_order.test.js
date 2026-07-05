@@ -409,6 +409,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt72-paper1-reviewed",
     "mock-unseen-mt74-paper1-reviewed",
     "mock-unseen-mt75-paper1-reviewed",
+    "mock-unseen-mt76-paper1-reviewed",
     "mock-unseen-mt73-paper1-reviewed",
     "mock-unseen-mt77-paper1-reviewed",
     "mock-unseen-mt80-paper1-reviewed",
@@ -5866,6 +5867,24 @@ function assertStudentLookupContract(word, matches) {
     ["preaching to the converted", "preach to the converted:phrase:verb:向本來已同意的人宣講 / 多此一舉地說服同路人:mock-unseen-mt75-paper1-reviewed"],
     ["push a certain set of beliefs down people's throats", "push beliefs down someone's throat:phrase:verb:把信念強加於人:mock-unseen-mt75-paper1-reviewed"],
     ["more than meets the eye", "more than meets the eye:phrase:adjective:比表面看起來更複雜 / 另有內涵:mock-unseen-mt75-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["succumbed to his injuries", "succumb to one's injuries:phrase:verb:傷重不治:mock-unseen-mt76-paper1-reviewed"],
+    ["overtures", "overture:word:noun:主動接觸 / 提議:mock-unseen-mt76-paper1-reviewed"],
+    ["capacity crowds", "capacity crowd:phrase:noun:滿座觀眾 / 爆滿人群:mock-unseen-mt76-paper1-reviewed"],
+    ["launched their careers", "launch one's career:phrase:verb:開展事業 / 展開職業生涯:mock-unseen-mt76-paper1-reviewed"],
+    ["watering holes", "watering hole:phrase:noun:酒吧 / 常去飲酒的地方:mock-unseen-mt76-paper1-reviewed"],
+    ["squid fishing tours", "squid-fishing tour:phrase:noun:釣魷魚團 / 夜釣魷魚活動:mock-unseen-mt76-paper1-reviewed"],
+    ["fisherfolk", "fisherfolk:word:noun:漁民 / 漁業人士:mock-unseen-mt76-paper1-reviewed"],
+    ["dwindling stocks", "dwindling stock:phrase:noun:不斷減少的存量 / 減少中的魚類資源:mock-unseen-mt76-paper1-reviewed"],
+    ["PVC", "polyvinyl chloride:phrase:noun:聚氯乙烯 / PVC:mock-unseen-mt76-paper1-reviewed"],
+    ["rinse off cosmetics", "rinse-off cosmetics:phrase:noun:沖洗式化妝品 / 沖洗式個人護理產品:mock-unseen-mt76-paper1-reviewed"],
+    ["ringing the alarm", "ring the alarm:phrase:verb:敲響警號 / 發出警告:mock-unseen-mt76-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
