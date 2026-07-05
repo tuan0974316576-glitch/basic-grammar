@@ -415,6 +415,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt78-paper1-reviewed",
     "mock-unseen-mt79-paper1-reviewed",
     "mock-unseen-mt80-paper1-reviewed",
+    "mock-unseen-mt81-paper1-reviewed",
     "mock-unseen-mt84-paper1-reviewed",
     "mock-unseen-mt39-paper1-reviewed",
     "mock-unseen-mt40-paper1-reviewed",
@@ -14363,7 +14364,13 @@ function assertStudentLookupContract(word, matches) {
     ["grounded to a halt", "ground to a halt:phrase:verb:慢慢停下 / 停頓下來:mock-unseen-mt79-paper1-reviewed"],
     ["blow a gasket", "blow a gasket:phrase:verb:大發雷霆 / 非常生氣:mock-unseen-mt79-paper1-reviewed"],
     ["bottom line", "bottom line:phrase:noun:重點 / 最終結論:mock-unseen-mt79-paper1-reviewed"],
-    ["have been around the block", "been around the block:phrase:adjective:經驗豐富的 / 見多識廣的:mock-unseen-mt79-paper1-reviewed"]
+    ["have been around the block", "been around the block:phrase:adjective:經驗豐富的 / 見多識廣的:mock-unseen-mt79-paper1-reviewed"],
+    ["push our buttons", "push someone's buttons:phrase:verb:刺激某人反應 / 觸動某人情緒:mock-unseen-mt81-paper1-reviewed"],
+    ["make our hearts melt", "make one's heart melt:phrase:verb:令人心軟 / 令人感到溫暖:mock-unseen-mt81-paper1-reviewed"],
+    ["on a loop", "on a loop:phrase:adverb:循環播放地 / 不停重複地:mock-unseen-mt81-paper1-reviewed"],
+    ["cotton top tamarins", "cotton-top tamarin:phrase:noun:棉頂狨猴:mock-unseen-mt81-paper1-reviewed"],
+    ["CBT", "cognitive behavioural therapy:phrase:noun:認知行為治療:mock-unseen-mt81-paper1-reviewed"],
+    ["hyper focused", "hyper-focused:phrase:adjective:高度專注的:mock-unseen-mt81-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available through placeholder lookup`);

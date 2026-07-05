@@ -10697,4 +10697,48 @@ assert.ok(
   "MT79 Paper 1 should support been-around-the-block variants"
 );
 
+const mt81Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt81-paper1-reviewed");
+assert.ok(mt81Paper1Entries.length >= 60, `Expected MT81 Paper 1 reviewed entries, got ${mt81Paper1Entries.length}`);
+
+const mt81Paper1ReviewedExpectations = [
+  ["pug", "noun", "巴哥犬"],
+  ["can't get enough of", "verb", "非常喜歡 / 看不夠"],
+  ["have a life of its own", "verb", "自行發展 / 不再受原意控制"],
+  ["metamorphosis", "noun", "轉變 / 演變"],
+  ["push someone's buttons", "verb", "刺激某人反應 / 觸動某人情緒"],
+  ["life hack", "noun", "生活小技巧"],
+  ["melioidosis", "noun", "類鼻疽"],
+  ["incubation period", "noun", "潛伏期"],
+  ["cotton-top tamarin", "noun", "棉頂狨猴"],
+  ["not a patch on", "adjective", "遠不及 / 比不上"],
+  ["ADHD", "noun", "專注力不足及過度活躍症"],
+  ["nomenclature", "noun", "命名系統 / 術語"],
+  ["cognitive behavioural therapy", "noun", "認知行為治療"],
+  ["neurodivergent", "adjective", "神經多樣的 / 神經發展有差異的"]
+];
+
+mt81Paper1ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.source === "mock-unseen-mt81-paper1-reviewed"
+      && candidate.pos === pos
+      && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT81 Paper 1 reviewed sense ${pos}:${meaning}`);
+});
+
+assert.ok(
+  senseBank.lookup("push our buttons").some((entry) => entry.display === "push someone's buttons"),
+  "MT81 Paper 1 should support contextual push-someone's-buttons variants"
+);
+
+assert.ok(
+  senseBank.lookup("make our hearts melt").some((entry) => entry.display === "make one's heart melt"),
+  "MT81 Paper 1 should support possessive and plural heart variants"
+);
+
+assert.ok(
+  senseBank.lookup("CBT").some((entry) => entry.display === "cognitive behavioural therapy"),
+  "MT81 Paper 1 should support CBT alias lookup"
+);
+
 console.log("vocab_sense_bank tests passed");

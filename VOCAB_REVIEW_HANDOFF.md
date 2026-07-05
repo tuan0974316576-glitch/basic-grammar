@@ -37,23 +37,23 @@ Latest verified progress:
 
 | Paper | Total | Done | Remaining |
 |---|---:|---:|---:|
-| Paper 1 | 84 | 76 | 8 |
+| Paper 1 | 84 | 77 | 7 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
 | Paper 4 | 72 | 72 | 0 |
-| Total | 314 | 306 | 8 |
+| Total | 314 | 307 | 7 |
 
 Most recent completed paper:
 
-- `MT79 Paper 1`
-- Source tag: `mock-unseen-mt79-paper1-reviewed`
-- Added 65 reviewed entries, including send pulses racing / kicktail / ollie / mainstream exposure / will someone on / make one's debut / protected corridor / cuteness stimulus / thruster / propulsion system / ground to a halt / blow a gasket / bottom line / been around the block. Reused existing shared entries where they already covered the passage sense, adding British spelling, possessive placeholders, and contextual variants where needed.
+- `MT81 Paper 1`
+- Source tag: `mock-unseen-mt81-paper1-reviewed`
+- Added 63 reviewed entries, including pug / can't get enough of / hail from / have a life of its own / push someone's buttons / make one's heart melt / melioidosis / incubation period / cotton-top tamarin / not a patch on / ADHD / cognitive behavioural therapy / neurodivergent / lapse in concentration. Reused existing shared entries where they already covered the passage sense, adding the missing video-context sense of metamorphosis and contextual aliases where needed.
 - Verified with focused vocab tests and duplicate/POS scan. Full `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync should be run before commit if this was resumed mid-turn.
 
 Next likely item:
 
 - Paper 3 and Paper 4 are complete. Continue remaining Paper 1 items from the review log.
-- Remaining Paper 1 items by current source-tag coverage are `MT81`, `MT82`, `MT83`, `MT85`, `MT86`, `MT88`, `MT89`, and `MT90`; consult `private_exports/mock_unseen_vocab_review_log.json` and the source-tag coverage before starting.
+- Remaining Paper 1 items by current source-tag coverage are `MT82`, `MT83`, `MT85`, `MT86`, `MT88`, `MT89`, and `MT90`; consult `private_exports/mock_unseen_vocab_review_log.json` and the source-tag coverage before starting.
 - Use the `.docx` student and teacher files first. If `textutil` extraction is poor, compare with PDF extraction.
 
 ## Normal Workflow For One Paper
