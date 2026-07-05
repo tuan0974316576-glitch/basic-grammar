@@ -88,6 +88,33 @@ assert.ok(
   senseBank.lookup("bouncer").some((entry) => entry.meaning === "嬰兒彈椅 / 彈跳椅"),
   "component lookup should find bouncer"
 );
+
+const reviewedPhraseComponents = [
+  ["controlled", "adjective", "受控制的"],
+  ["rack", "noun", "架 / 置物架"],
+  ["respiratory", "adjective", "呼吸系統的 / 呼吸道的"],
+  ["tart", "noun", "撻 / 水果餡餅"],
+  ["dusk", "noun", "黃昏"],
+  ["portal", "noun", "入口網站 / 平台"],
+  ["redeem", "verb", "兌換 / 挽回"],
+  ["wholesale", "adjective", "批發的"],
+  ["aerobic", "adjective", "帶氧的 / 有氧的"],
+  ["checkout", "noun", "收銀處 / 結帳"],
+  ["dental", "adjective", "牙齒的 / 牙科的"],
+  ["renewable", "adjective", "可再生的 / 可更新的"],
+  ["wireless", "adjective", "無線的"]
+];
+
+reviewedPhraseComponents.forEach(([word, pos, meaning]) => {
+  assert.ok(
+    senseBank.lookup(word).some((entry) => (
+      entry.source === "phrase-component-audit-reviewed"
+        && entry.pos === pos
+        && entry.meaning === meaning
+    )),
+    `phrase component lookup should find ${word} as ${pos}:${meaning}`
+  );
+});
 assert.ok(
   senseBank.lookup("think it through").some((entry) => entry.display === "think something through"),
   "placeholder phrase lookup should allow sth / something object-pronoun variants"
