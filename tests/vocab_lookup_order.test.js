@@ -393,6 +393,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt58-paper1-reviewed",
     "mock-unseen-mt56-paper1-reviewed",
     "mock-unseen-mt59-paper1-reviewed",
+    "mock-unseen-mt60-paper1-reviewed",
     "mock-unseen-mt63-paper1-reviewed",
     "mock-unseen-mt66-paper1-reviewed",
     "mock-unseen-mt87-paper1-reviewed",
@@ -6001,6 +6002,22 @@ function assertStudentLookupContract(word, matches) {
     ["step up to the plate", "step up to the plate:phrase:verb:挺身而出 / 接下責任:mock-unseen-mt58-paper1-reviewed"],
     ["terra firma", "terra firma:phrase:noun:陸地 / 地球表面:mock-unseen-mt58-paper1-reviewed"],
     ["bragging rights", "bragging rights:phrase:noun:炫耀資本 / 值得吹噓的事:mock-unseen-mt58-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["quick on his feet", "quick on one's feet:phrase:adjective:反應快的 / 腳步靈活的:mock-unseen-mt60-paper1-reviewed"],
+    ["bad rap", "bad rap:phrase:noun:壞名聲 / 不公正的負面評價:mock-unseen-mt60-paper1-reviewed"],
+    ["behind bars", "behind bars:phrase:adjective:在監獄裏 / 坐牢的:mock-unseen-mt60-paper1-reviewed"],
+    ["worked up", "worked up:phrase:adjective:激動的 / 緊張不安的:mock-unseen-mt60-paper1-reviewed"],
+    ["for better or worse", "for better or for worse:phrase:adverb:不論好壞 / 無論結果如何:mock-unseen-mt60-paper1-reviewed"],
+    ["window into", "window into:phrase:noun:了解...的窗口 / 洞察...的方法:mock-unseen-mt60-paper1-reviewed"],
+    ["Monstera", "Monstera:word:noun:龜背芋:mock-unseen-mt60-paper1-reviewed"],
+    ["spiralling out of control", "spiral out of control:phrase:verb:失控惡化 / 迅速失控:mock-unseen-mt60-paper1-reviewed"],
+    ["Mother Nature", "Mother Nature:phrase:noun:大自然:mock-unseen-mt60-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);

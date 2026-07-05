@@ -9941,4 +9941,37 @@ assert.ok(
   "MT58 Paper 1 should support possessive variants for rest on one's laurels"
 );
 
+const mt60Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt60-paper1-reviewed");
+assert.ok(mt60Paper1Entries.length >= 74, `Expected MT60 Paper 1 reviewed entries, got ${mt60Paper1Entries.length}`);
+
+const mt60Paper1ReviewedExpectations = [
+  ["quick on one's feet", "adjective", "反應快的 / 腳步靈活的"],
+  ["cost barrier", "noun", "費用障礙 / 金錢門檻"],
+  ["lie detector test", "noun", "測謊測試"],
+  ["bad rap", "noun", "壞名聲 / 不公正的負面評價"],
+  ["work in a bubble", "verb", "閉門造車 / 與外界隔絕地工作"],
+  ["worked up", "adjective", "激動的 / 緊張不安的"],
+  ["for better or for worse", "adverb", "不論好壞 / 無論結果如何"],
+  ["Shenzhen Nongke Orchid", "noun", "深圳農科蘭花"],
+  ["have no bearing on", "verb", "與...無關 / 對...沒有影響"],
+  ["variegated", "adjective", "有雜色的 / 斑葉的"],
+  ["Monstera", "noun", "龜背芋"],
+  ["spiral out of control", "verb", "失控惡化 / 迅速失控"],
+  ["Mother Nature", "noun", "大自然"]
+];
+
+mt60Paper1ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.source === "mock-unseen-mt60-paper1-reviewed"
+      && candidate.pos === pos
+      && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT60 Paper 1 reviewed sense ${pos}:${meaning}`);
+});
+
+assert.ok(
+  senseBank.lookup("quick on his feet").some((entry) => entry.display === "quick on one's feet"),
+  "MT60 Paper 1 should support possessive variants for quick on one's feet"
+);
+
 console.log("vocab_sense_bank tests passed");
