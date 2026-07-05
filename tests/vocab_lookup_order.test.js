@@ -416,6 +416,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt79-paper1-reviewed",
     "mock-unseen-mt80-paper1-reviewed",
     "mock-unseen-mt81-paper1-reviewed",
+    "mock-unseen-mt82-paper1-reviewed",
     "mock-unseen-mt84-paper1-reviewed",
     "mock-unseen-mt39-paper1-reviewed",
     "mock-unseen-mt40-paper1-reviewed",
@@ -14370,7 +14371,18 @@ function assertStudentLookupContract(word, matches) {
     ["on a loop", "on a loop:phrase:adverb:循環播放地 / 不停重複地:mock-unseen-mt81-paper1-reviewed"],
     ["cotton top tamarins", "cotton-top tamarin:phrase:noun:棉頂狨猴:mock-unseen-mt81-paper1-reviewed"],
     ["CBT", "cognitive behavioural therapy:phrase:noun:認知行為治療:mock-unseen-mt81-paper1-reviewed"],
-    ["hyper focused", "hyper-focused:phrase:adjective:高度專注的:mock-unseen-mt81-paper1-reviewed"]
+    ["hyper focused", "hyper-focused:phrase:adjective:高度專注的:mock-unseen-mt81-paper1-reviewed"],
+    ["URA", "Urban Renewal Authority:phrase:noun:市區重建局 / 市建局:mock-unseen-mt82-paper1-reviewed"],
+    ["gobble up", "gobble up:phrase:verb:大量消耗 / 吞噬:mock-unseen-mt82-paper1-reviewed"],
+    ["edged out", "edge out:phrase:verb:擠走 / 排擠出去:mock-unseen-mt82-paper1-reviewed"],
+    ["Swiss cheese plant", "Swiss cheese plant:phrase:noun:龜背竹:mock-unseen-mt82-paper1-reviewed"],
+    ["air con", "air con:phrase:noun:冷氣 / 空調:mock-unseen-mt82-paper1-reviewed"],
+    ["didn't have a clue", "not have a clue:phrase:verb:完全不知道 / 毫無頭緒:mock-unseen-mt82-paper1-reviewed"],
+    ["green fingers", "green fingers:phrase:noun:園藝天分 / 種植本領:mock-unseen-mt82-paper1-reviewed"],
+    ["electrically charged particles", "charged particle:phrase:noun:帶電粒子:mock-unseen-mt82-paper1-reviewed"],
+    ["southern lights", "aurora australis:phrase:noun:南極光:mock-unseen-mt82-paper1-reviewed"],
+    ["tick this special experience off their bucket list", "tick off one's bucket list:phrase:verb:完成願望清單上的一項:mock-unseen-mt82-paper1-reviewed"],
+    ["spell-bound", "spellbound:word:adjective:著迷的 / 入迷的:mock-unseen-mt82-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available through placeholder lookup`);

@@ -10741,4 +10741,43 @@ assert.ok(
   "MT81 Paper 1 should support CBT alias lookup"
 );
 
+const mt82Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt82-paper1-reviewed");
+assert.ok(mt82Paper1Entries.length >= 91, `Expected MT82 Paper 1 reviewed entries, got ${mt82Paper1Entries.length}`);
+
+const mt82Paper1ReviewedExpectations = [
+  ["Urban Renewal Authority", "noun", "市區重建局 / 市建局"],
+  ["gobble up", "verb", "大量消耗 / 吞噬"],
+  ["edge out", "verb", "擠走 / 排擠出去"],
+  ["Swiss cheese plant", "noun", "龜背竹"],
+  ["green fingers", "noun", "園藝天分 / 種植本領"],
+  ["aurora australis", "noun", "南極光"],
+  ["charged particle", "noun", "帶電粒子"],
+  ["tick off one's bucket list", "verb", "完成願望清單上的一項"],
+  ["spellbound", "adjective", "著迷的 / 入迷的"]
+];
+
+mt82Paper1ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.source === "mock-unseen-mt82-paper1-reviewed"
+      && candidate.pos === pos
+      && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT82 Paper 1 reviewed sense ${pos}:${meaning}`);
+});
+
+assert.ok(
+  senseBank.lookup("URA").some((entry) => entry.display === "Urban Renewal Authority"),
+  "MT82 Paper 1 should support URA abbreviation lookup"
+);
+
+assert.ok(
+  senseBank.lookup("tick this special experience off their bucket list").some((entry) => entry.display === "tick off one's bucket list"),
+  "MT82 Paper 1 should support contextual bucket-list variants"
+);
+
+assert.ok(
+  senseBank.lookup("spell-bound").some((entry) => entry.display === "spellbound"),
+  "MT82 Paper 1 should support hyphenated spell-bound lookup"
+);
+
 console.log("vocab_sense_bank tests passed");

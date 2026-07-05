@@ -37,23 +37,23 @@ Latest verified progress:
 
 | Paper | Total | Done | Remaining |
 |---|---:|---:|---:|
-| Paper 1 | 84 | 77 | 7 |
+| Paper 1 | 84 | 78 | 6 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
 | Paper 4 | 72 | 72 | 0 |
-| Total | 314 | 307 | 7 |
+| Total | 314 | 308 | 6 |
 
 Most recent completed paper:
 
-- `MT81 Paper 1`
-- Source tag: `mock-unseen-mt81-paper1-reviewed`
-- Added 63 reviewed entries, including pug / can't get enough of / hail from / have a life of its own / push someone's buttons / make one's heart melt / melioidosis / incubation period / cotton-top tamarin / not a patch on / ADHD / cognitive behavioural therapy / neurodivergent / lapse in concentration. Reused existing shared entries where they already covered the passage sense, adding the missing video-context sense of metamorphosis and contextual aliases where needed.
+- `MT82 Paper 1`
+- Source tag: `mock-unseen-mt82-paper1-reviewed`
+- Added 91 reviewed entries, including Urban Renewal Authority / Flower Market / public purse / gobble up / compulsory purchase order / edge out / Swiss cheese plant / thrive on neglect / green fingers / aurora australis / charged particle / tick off one's bucket list / geomagnetic storm / spellbound. Reused existing shared entries where they already covered the passage sense, including give the green light, and added contextual senses and aliases for price tag, fell, gobble up, edge out, rehabilitation, limp, muted, glass ceiling and bucket-list variants.
 - Verified with focused vocab tests and duplicate/POS scan. Full `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync should be run before commit if this was resumed mid-turn.
 
 Next likely item:
 
 - Paper 3 and Paper 4 are complete. Continue remaining Paper 1 items from the review log.
-- Remaining Paper 1 items by current source-tag coverage are `MT82`, `MT83`, `MT85`, `MT86`, `MT88`, `MT89`, and `MT90`; consult `private_exports/mock_unseen_vocab_review_log.json` and the source-tag coverage before starting.
+- Remaining Paper 1 items by current source-tag coverage are `MT83`, `MT85`, `MT86`, `MT88`, `MT89`, and `MT90`; consult `private_exports/mock_unseen_vocab_review_log.json` and the source-tag coverage before starting.
 - Use the `.docx` student and teacher files first. If `textutil` extraction is poor, compare with PDF extraction.
 
 ## Normal Workflow For One Paper
