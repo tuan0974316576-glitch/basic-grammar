@@ -26,9 +26,13 @@ can't cannot don't doesn't didn't won't wouldn't isn't aren't wasn't weren't
 
 const NON_STANDALONE_COMPONENTS = new Set(`
 hong kong tai po sha shui wan tung chau cheung kwai lam lantau tong yuen wong siu chai choi chung shek sai shan kwun kowloon macau
-pre anti eco non mini multi semi sub mid post co re ultra micro macro cyber inter intra socio nano sci bio cas9 caf chaan char feng alma avant bona cha dai dong garde esque hachi hara hei jour lohas musea pai papier pseudo quasi quo roly situ sous
+pre anti eco non mini multi semi sub mid post co re ultra micro macro cyber inter intra socio nano sci bio cas9 caf chaan char feng alma avant bona cha dai dong garde esque hachi hara hei jour lohas musea pai papier pseudo quasi quo roly situ sous teng terra thou trans tri uber vers versa wok yum
 st nd rd th ing noun adj adjective verb adverb modal pron det prep conj
 instagram facebook tiktok youtube whatsapp google microsoft netflix disney oxford cambridge harvard michelin fifa hsbc k11 newton noah hiram maclehose
+`.trim().split(/\s+/));
+
+const REVIEWED_NO_STANDALONE_COMPONENTS = new Set(`
+australis aye bhaji bigos bikeconnect billy bluesman bonnie borealis borscht brainer budgie callosum chad chang'e chit crawly dace earther fennec haute hen homer jollof katana keto korma lass lupus mariachi mecca mein merrier mod moss mystic natal nebular nil noughties obscura palimony petri piste pleaser poui rendang rib riff rocker rotisserie runt scrofa scrum sepak shorthair sledgehammer sod takraw tamarin terracotta terrier tiffin toed tracksuit tranquilizer tripper tufted tunic wasteberg whalebone wheeler wracking yuck
 `.trim().split(/\s+/));
 
 const SOURCE_ALLOWLIST_FOR_EXCLUDED_PROPER_PARTS = [
@@ -145,12 +149,13 @@ function isLikelyProperNamePart(component, examples) {
 function getIgnoreReason(component, examples) {
   if (!component || component.length < 3) return "too-short";
   if (STOP_COMPONENTS.has(component)) return "function-word";
-  if (["dos", "don'ts", "shreds", "stead", "bolts", "bums", "fide", "firma", "frills", "p.e", "pât", "peasy", "ins", "starters"].includes(component)) return "phrase-fragment";
+  if (REVIEWED_NO_STANDALONE_COMPONENTS.has(component)) return "reviewed-not-standalone";
+  if (["dos", "don'ts", "shreds", "stead", "bolts", "bums", "fide", "firma", "frills", "p.e", "pât", "peasy", "ins", "starters", "ain't", "hoc", "hog", "holier", "mâch", "masse", "mater", "modus", "operandi", "nitty", "poly", "ply", "rap", "rendingly", "spanking", "tad", "tatters", "throes", "timey", "ups"].includes(component)) return "phrase-fragment";
   if (/^\d[\d,]*$/.test(component) || /^\d[\d,]*(?:st|nd|rd|th|s)$/.test(component)) return "number";
   if (/^\d[\d,]*[a-z]+$/.test(component)) return "number-fragment";
   if (/^[a-z]$/.test(component)) return "single-letter";
   if (/^[ivx]+$/.test(component)) return "roman-numeral";
-  if (component.includes("'") && /^(?:someone|somebody|one|everyone|everybody|people|parent|student|child|children|artist|baby|woman|women|dragon|asia|bryde|chang|crow|hiram|jones|newton|noah)'?s$/.test(component)) {
+  if (component.includes("'") && /^(?:someone|somebody|one|everyone|everybody|people|parent|student|child|children|artist|baby|woman|women|dragon|asia|bryde|chang|crow|hiram|jones|newton|noah|rubik|santa|valentine)'?s$/.test(component)) {
     return "placeholder-possessive";
   }
   if (component === "..." || component === "…") return "pattern-placeholder";
