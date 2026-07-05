@@ -395,6 +395,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt59-paper1-reviewed",
     "mock-unseen-mt60-paper1-reviewed",
     "mock-unseen-mt61-paper1-reviewed",
+    "mock-unseen-mt62-paper1-reviewed",
     "mock-unseen-mt63-paper1-reviewed",
     "mock-unseen-mt66-paper1-reviewed",
     "mock-unseen-mt87-paper1-reviewed",
@@ -2055,7 +2056,8 @@ function assertStudentLookupContract(word, matches) {
     [
       "verb:儲存:curated-sense-bank",
       "verb:拯救:curated-sense-bank",
-      "verb:節省:curated-sense-bank"
+      "verb:節省:curated-sense-bank",
+      "preposition:除了 / 除...之外:mock-unseen-mt62-paper1-reviewed"
     ]
   );
 
@@ -6044,6 +6046,25 @@ function assertStudentLookupContract(word, matches) {
     assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
   }
 
+  for (const [word, expected] of [
+    ["slated to be included", "slated:word:adjective:預定的 / 計劃中的:mock-unseen-mt62-paper1-reviewed"],
+    ["back at the drawing board", "back at the drawing board:phrase:adjective:要重新開始規劃的 / 回到原點的:mock-unseen-mt62-paper1-reviewed"],
+    ["culture vultures", "culture vulture:phrase:noun:熱愛文化藝術的人:mock-unseen-mt62-paper1-reviewed"],
+    ["put Hong Kong on the cultural map", "put on the map:phrase:verb:令...出名 / 令...受到注意:mock-unseen-mt62-paper1-reviewed"],
+    ["Reykjavík", "Reykjavik:word:noun:雷克雅未克:mock-unseen-mt62-paper1-reviewed"],
+    ["fuel guzzling", "fuel-guzzling:phrase:adjective:耗油量大的:mock-unseen-mt62-paper1-reviewed"],
+    ["go out of their way", "go out of one's way:phrase:verb:特意努力去做 / 不嫌麻煩地做:mock-unseen-mt62-paper1-reviewed"],
+    ["I've got a bridge to sell you", "have a bridge to sell someone:phrase:verb:表示對方太易受騙 / 太天真:mock-unseen-mt62-paper1-reviewed"],
+    ["come round to my view", "come round to one's view:phrase:verb:接受某人的看法 / 改為同意某人:mock-unseen-mt62-paper1-reviewed"],
+    ["as true as gospel", "true as gospel:phrase:adjective:千真萬確的:mock-unseen-mt62-paper1-reviewed"],
+    ["fishes' scales", "scale:word:noun:鱗片:mock-unseen-mt62-paper1-reviewed"],
+    ["there was nothing in it", "nothing in it:phrase:noun:沒有甚麼了不起 / 沒甚麼特別:mock-unseen-mt62-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
   assert.deepStrictEqual(
     (await lookupForStudent("e-waste")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
     ["phrase:noun:電子廢物:mock-unseen-mt42-paper1-reviewed"]
@@ -8573,7 +8594,8 @@ function assertStudentLookupContract(word, matches) {
       "noun:規模:curated-sense-bank",
       "noun:刻度 / 等級:curated-sense-bank",
       "noun:磅 / 體重計:curated-sense-bank",
-      "verb:攀登 / 爬上:mock-unseen-mt55-paper1-reviewed"
+      "verb:攀登 / 爬上:mock-unseen-mt55-paper1-reviewed",
+      "noun:鱗片:mock-unseen-mt62-paper1-reviewed"
     ]
   );
 

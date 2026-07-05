@@ -10010,4 +10010,42 @@ assert.ok(
   "MT61 Paper 1 should support common NFT abbreviation lookup"
 );
 
+const mt62Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt62-paper1-reviewed");
+assert.ok(mt62Paper1Entries.length >= 78, `Expected MT62 Paper 1 reviewed entries, got ${mt62Paper1Entries.length}`);
+
+const mt62Paper1ReviewedExpectations = [
+  ["back at the drawing board", "adjective", "要重新開始規劃的 / 回到原點的"],
+  ["culture vulture", "noun", "熱愛文化藝術的人"],
+  ["cultural desert", "noun", "文化沙漠"],
+  ["put on the map", "verb", "令...出名 / 令...受到注意"],
+  ["New Nordic culinary movement", "noun", "新北歐烹飪運動"],
+  ["Central Catchment Nature Reserve", "noun", "中央集水區自然保護區"],
+  ["go out of one's way", "verb", "特意努力去做 / 不嫌麻煩地做"],
+  ["have a bridge to sell someone", "verb", "表示對方太易受騙 / 太天真"],
+  ["humdrum", "adjective", "沉悶的 / 乏味的"],
+  ["come round to one's view", "verb", "接受某人的看法 / 改為同意某人"],
+  ["true as gospel", "adjective", "千真萬確的"],
+  ["scale", "noun", "鱗片"],
+  ["nothing in it", "noun", "沒有甚麼了不起 / 沒甚麼特別"]
+];
+
+mt62Paper1ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.source === "mock-unseen-mt62-paper1-reviewed"
+      && candidate.pos === pos
+      && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT62 Paper 1 reviewed sense ${pos}:${meaning}`);
+});
+
+assert.ok(
+  senseBank.lookup("go out of their way").some((entry) => entry.display === "go out of one's way"),
+  "MT62 Paper 1 should support possessive variants for go out of one's way"
+);
+
+assert.ok(
+  senseBank.lookup("I've got a bridge to sell you").some((entry) => entry.display === "have a bridge to sell someone"),
+  "MT62 Paper 1 should support bridge idiom natural wording"
+);
+
 console.log("vocab_sense_bank tests passed");
