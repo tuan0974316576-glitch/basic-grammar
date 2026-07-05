@@ -37,17 +37,17 @@ Latest verified progress:
 
 | Paper | Total | Done | Remaining |
 |---|---:|---:|---:|
-| Paper 1 | 84 | 71 | 13 |
+| Paper 1 | 84 | 72 | 12 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
 | Paper 4 | 72 | 72 | 0 |
-| Total | 314 | 301 | 13 |
+| Total | 314 | 302 | 12 |
 
 Most recent completed paper:
 
-- `MT72 Paper 1`
-- Source tag: `mock-unseen-mt72-paper1-reviewed`
-- Added 53 reviewed entries, including rights / get one's start / first folio / at the other end of the spectrum / by a factor of / bibliophile / e-bike / cycle track / zip past / radioactive / nuclear power plant / reactor / decontaminate / Advanced Liquid Processing System / nuclear watchdog
+- `MT74 Paper 1`
+- Source tag: `mock-unseen-mt74-paper1-reviewed`
+- Added 79 reviewed entries, including in leaps and bounds / run rampant / juggernaut / to the exclusion of / stoke the fire / top whack / wok hei / rationalize / hawker centre / give it a shot / deinfluencer / cold hard cash / buy into / enter the fray / swallow something wholesale / listen to one's gut
 - Verified with focused vocab tests and duplicate/POS scan. Full `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync should be run before commit if this was resumed mid-turn.
 
 Next likely item:

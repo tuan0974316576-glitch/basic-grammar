@@ -10339,4 +10339,75 @@ assert.ok(
   "MT72 Paper 1 should support UN nuclear watchdog aliases"
 );
 
+const mt74Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt74-paper1-reviewed");
+assert.ok(mt74Paper1Entries.length >= 79, `Expected MT74 Paper 1 reviewed entries, got ${mt74Paper1Entries.length}`);
+
+const mt74Paper1ReviewedExpectations = [
+  ["in leaps and bounds", "adverb", "迅速地 / 大幅地"],
+  ["fine line", "noun", "微妙界線 / 細微分別"],
+  ["run rampant", "verb", "猖獗 / 失控蔓延"],
+  ["juggernaut", "noun", "不可阻擋的巨大力量"],
+  ["pocket", "verb", "私自拿走 / 偷走"],
+  ["stag do", "noun", "準新郎婚前派對"],
+  ["blacklist", "verb", "列入黑名單"],
+  ["to the exclusion of", "preposition", "排除... / 只顧...而忽略其他"],
+  ["stoke the fire", "verb", "火上加油 / 加劇問題"],
+  ["top whack", "noun", "高價 / 最高價"],
+  ["the tide turns", "verb", "形勢開始轉變"],
+  ["tread lightly", "verb", "減少影響 / 輕手處事"],
+  ["wok hei", "noun", "鑊氣"],
+  ["rationalize", "verb", "整頓 / 使制度化"],
+  ["stallholder", "noun", "攤檔檔主"],
+  ["splash out", "verb", "花大錢"],
+  ["hawker centre", "noun", "熟食中心 / 小販中心"],
+  ["give it a shot", "verb", "試一試"],
+  ["deinfluencer", "noun", "反種草網紅 / 勸人不要亂買的網紅"],
+  ["cold hard cash", "noun", "實實在在的現金 / 金錢"],
+  ["buy into", "verb", "完全相信 / 接受"],
+  ["change is afoot", "verb", "變化正在發生"],
+  ["enter the fray", "verb", "加入競爭 / 加入戰局"],
+  ["latch onto", "verb", "緊抓 / 盲目追隨"],
+  ["fall into the trap", "verb", "跌入陷阱 / 中計"],
+  ["cheap-as-chips", "adjective", "非常便宜的"],
+  ["modus operandi", "noun", "做事方式 / 操作手法"],
+  ["drip-feeding", "noun", "逐點灌輸 / 持續灌輸"],
+  ["antithesis", "noun", "正相反 / 對立面"],
+  ["swallow something wholesale", "verb", "全盤接受 / 毫不懷疑地相信"],
+  ["two sides of the same coin", "noun", "同一件事的兩面 / 本質相同的兩面"],
+  ["come to the crunch", "verb", "到關鍵時刻 / 到需要作決定時"],
+  ["listen to one's gut", "verb", "相信直覺"]
+];
+
+mt74Paper1ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.source === "mock-unseen-mt74-paper1-reviewed"
+      && candidate.pos === pos
+      && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT74 Paper 1 reviewed sense ${pos}:${meaning}`);
+});
+
+assert.ok(
+  senseBank.lookup("listen to your gut").some((entry) => entry.display === "listen to one's gut"),
+  "MT74 Paper 1 should support possessive variants for listen to one's gut"
+);
+
+assert.ok(
+  senseBank.lookup("hot spot").some((entry) => (
+    entry.display === "tourist hotspot"
+      && entry.meaning === "旅遊熱點"
+  )),
+  "MT74 Paper 1 should support hot spot aliases through the existing tourist hotspot entry"
+);
+
+assert.ok(
+  senseBank.lookup("swallow wholesale").some((entry) => entry.display === "swallow something wholesale"),
+  "MT74 Paper 1 should support object-omitted variants for swallow something wholesale"
+);
+
+assert.ok(
+  senseBank.lookup("supplement my income").some((entry) => entry.display === "supplement one's income"),
+  "MT74 Paper 1 should support possessive variants for supplement one's income"
+);
+
 console.log("vocab_sense_bank tests passed");

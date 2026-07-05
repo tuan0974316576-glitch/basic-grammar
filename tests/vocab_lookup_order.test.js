@@ -407,6 +407,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt70-paper1-reviewed",
     "mock-unseen-mt71-paper1-reviewed",
     "mock-unseen-mt72-paper1-reviewed",
+    "mock-unseen-mt74-paper1-reviewed",
     "mock-unseen-mt73-paper1-reviewed",
     "mock-unseen-mt77-paper1-reviewed",
     "mock-unseen-mt80-paper1-reviewed",
@@ -5816,6 +5817,36 @@ function assertStudentLookupContract(word, matches) {
     ["humanity’s common good", "common good:phrase:noun:公共利益 / 共同資源:mock-unseen-mt72-paper1-reviewed"],
     ["UN nuclear watchdog", "nuclear watchdog:phrase:noun:核監察機構 / 核監管機構:mock-unseen-mt72-paper1-reviewed"],
     ["within safe limits", "within safe limits:phrase:adjective:在安全限度內的:mock-unseen-mt72-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["in leaps and bounds", "in leaps and bounds:phrase:adverb:迅速地 / 大幅地:mock-unseen-mt74-paper1-reviewed"],
+    ["hot spot", "tourist hotspot:phrase:noun:旅遊熱點:curated-sense-bank"],
+    ["ran rampant", "run rampant:phrase:verb:猖獗 / 失控蔓延:mock-unseen-mt74-paper1-reviewed"],
+    ["pocketed", "pocket:word:verb:私自拿走 / 偷走:mock-unseen-mt74-paper1-reviewed"],
+    ["stag party", "stag do:phrase:noun:準新郎婚前派對:mock-unseen-mt74-paper1-reviewed"],
+    ["stoked the fire", "stoke the fire:phrase:verb:火上加油 / 加劇問題:mock-unseen-mt74-paper1-reviewed"],
+    ["the tide has begun to turn", "the tide turns:phrase:verb:形勢開始轉變:mock-unseen-mt74-paper1-reviewed"],
+    ["wok hei", "wok hei:phrase:noun:鑊氣:mock-unseen-mt74-paper1-reviewed"],
+    ["rationalise", "rationalize:word:verb:整頓 / 使制度化:mock-unseen-mt74-paper1-reviewed"],
+    ["splashed out", "splash out:phrase:verb:花大錢:mock-unseen-mt74-paper1-reviewed"],
+    ["give a shot", "give it a shot:phrase:verb:試一試:mock-unseen-mt74-paper1-reviewed"],
+    ["deinfluencers", "deinfluencer:word:noun:反種草網紅 / 勸人不要亂買的網紅:mock-unseen-mt74-paper1-reviewed"],
+    ["bought into", "buy into:phrase:verb:完全相信 / 接受:mock-unseen-mt74-paper1-reviewed"],
+    ["entered the fray", "enter the fray:phrase:verb:加入競爭 / 加入戰局:mock-unseen-mt74-paper1-reviewed"],
+    ["latched onto", "latch onto:phrase:verb:緊抓 / 盲目追隨:mock-unseen-mt74-paper1-reviewed"],
+    ["fell into the trap", "fall into the trap:phrase:verb:跌入陷阱 / 中計:mock-unseen-mt74-paper1-reviewed"],
+    ["cheap as chips", "cheap-as-chips:phrase:adjective:非常便宜的:mock-unseen-mt74-paper1-reviewed"],
+    ["shame people into", "shame someone into:phrase:verb:令某人因羞愧而做某事:mock-unseen-mt74-paper1-reviewed"],
+    ["swallow wholesale", "swallow something wholesale:phrase:verb:全盤接受 / 毫不懷疑地相信:mock-unseen-mt74-paper1-reviewed"],
+    ["same coin", "two sides of the same coin:phrase:noun:同一件事的兩面 / 本質相同的兩面:mock-unseen-mt74-paper1-reviewed"],
+    ["when it comes to the crunch", "come to the crunch:phrase:verb:到關鍵時刻 / 到需要作決定時:mock-unseen-mt74-paper1-reviewed"],
+    ["listen to your gut", "listen to one's gut:phrase:verb:相信直覺:mock-unseen-mt74-paper1-reviewed"],
+    ["supplement my income", "supplement one's income:phrase:verb:幫補收入 / 增加收入:mock-unseen-mt74-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
