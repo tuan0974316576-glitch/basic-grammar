@@ -10817,4 +10817,44 @@ assert.ok(
   "MT83 Paper 1 should support possessive variants for fruits of one's labour"
 );
 
+const mt85Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt85-paper1-reviewed");
+assert.ok(mt85Paper1Entries.length >= 71, `Expected MT85 Paper 1 reviewed entries, got ${mt85Paper1Entries.length}`);
+
+const mt85Paper1ReviewedExpectations = [
+  ["sharenting", "noun", "父母在網上分享子女相片或資訊"],
+  ["plum job", "noun", "筍工 / 好工作"],
+  ["Body Dysmorphic Disorder", "noun", "身體臆形症 / 身體畸形恐懼症"],
+  ["belayer", "noun", "確保員 / 保護攀登者的人"],
+  ["defy gravity", "verb", "彷彿不受地心吸力影響"],
+  ["boreout", "noun", "工作厭倦症 / 無聊倦怠"],
+  ["go through the motions", "verb", "敷衍了事 / 只是做樣子"],
+  ["what makes someone tick", "noun", "某人的動機 / 某人的想法"],
+  ["float one's boat", "verb", "令某人感興趣 / 合某人口味"],
+  ["suck it up", "verb", "忍住 / 接受現實"]
+];
+
+mt85Paper1ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.source === "mock-unseen-mt85-paper1-reviewed"
+      && candidate.pos === pos
+      && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT85 Paper 1 reviewed sense ${pos}:${meaning}`);
+});
+
+assert.ok(
+  senseBank.lookup("not a bed of roses").some((entry) => entry.display === "no bed of roses"),
+  "MT85 Paper 1 should reuse MT82 no-bed-of-roses entry through alias"
+);
+
+assert.ok(
+  senseBank.lookup("what makes them tick").some((entry) => entry.display === "what makes someone tick"),
+  "MT85 Paper 1 should support someone placeholder variants for what makes someone tick"
+);
+
+assert.ok(
+  senseBank.lookup("channel your energy into").some((entry) => entry.display === "channel one's energy into"),
+  "MT85 Paper 1 should support possessive variants for channel one's energy into"
+);
+
 console.log("vocab_sense_bank tests passed");

@@ -419,6 +419,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt82-paper1-reviewed",
     "mock-unseen-mt83-paper1-reviewed",
     "mock-unseen-mt84-paper1-reviewed",
+    "mock-unseen-mt85-paper1-reviewed",
     "mock-unseen-mt39-paper1-reviewed",
     "mock-unseen-mt40-paper1-reviewed",
     "mock-unseen-mt41-paper1-reviewed",
@@ -14394,7 +14395,15 @@ function assertStudentLookupContract(word, matches) {
     ["left right and centre", "left, right and centre:phrase:adverb:到處 / 大量地:mock-unseen-mt83-paper1-reviewed"],
     ["gravy train", "gravy train:phrase:noun:輕鬆賺錢的途徑 / 肥差:mock-unseen-mt83-paper1-reviewed"],
     ["cracked up to be", "be cracked up to be:phrase:verb:如傳聞般好 / 名副其實:mock-unseen-mt83-paper1-reviewed"],
-    ["don't make a dime", "make a dime:phrase:verb:賺到錢:mock-unseen-mt83-paper1-reviewed"]
+    ["don't make a dime", "make a dime:phrase:verb:賺到錢:mock-unseen-mt83-paper1-reviewed"],
+    ["data centres", "data centre:phrase:noun:數據中心:mock-unseen-mt85-paper1-reviewed"],
+    ["give us pause", "give someone pause:phrase:verb:令某人停下來思考 / 警惕:mock-unseen-mt85-paper1-reviewed"],
+    ["BDD", "Body Dysmorphic Disorder:phrase:noun:身體臆形症 / 身體畸形恐懼症:mock-unseen-mt85-paper1-reviewed"],
+    ["have the guts", "have the guts to:phrase:verb:有膽量 / 有勇氣:mock-unseen-mt85-paper1-reviewed"],
+    ["not a bed of roses", "no bed of roses:phrase:adjective:並不容易 / 並非一帆風順:mock-unseen-mt82-paper1-reviewed"],
+    ["what makes them tick", "what makes someone tick:phrase:noun:某人的動機 / 某人的想法:mock-unseen-mt85-paper1-reviewed"],
+    ["float your boat", "float one's boat:phrase:verb:令某人感興趣 / 合某人口味:mock-unseen-mt85-paper1-reviewed"],
+    ["sucked it up", "suck it up:phrase:verb:忍住 / 接受現實:mock-unseen-mt85-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available through placeholder lookup`);

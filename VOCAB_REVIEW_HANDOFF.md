@@ -37,23 +37,23 @@ Latest verified progress:
 
 | Paper | Total | Done | Remaining |
 |---|---:|---:|---:|
-| Paper 1 | 84 | 79 | 5 |
+| Paper 1 | 84 | 80 | 4 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
 | Paper 4 | 72 | 72 | 0 |
-| Total | 314 | 309 | 5 |
+| Total | 314 | 310 | 4 |
 
 Most recent completed paper:
 
-- `MT83 Paper 1`
-- Source tag: `mock-unseen-mt83-paper1-reviewed`
-- Added 74 reviewed entries, including public intellectual / hawk / style oneself / pocket / wiggle room / Sunday best / take to something like a fish to water / ring off the hook / horticulturist / come on the scene / too-big-to-fail / imposter syndrome / gravy train / make a dime. Reused existing shared entries where they already covered the passage sense, and added contextual lookup support for follow the lead of while avoiding duplicate lifelong / life-long coverage.
+- `MT85 Paper 1`
+- Source tag: `mock-unseen-mt85-paper1-reviewed`
+- Added 71 reviewed entries, including sharenting / plum job / put a dent in / Body Dysmorphic Disorder / go under the knife / belayer / defy gravity / boreout / go through the motions / thin on the ground / what makes someone tick / float one's boat / side hustle. Reused existing shared entries where they already covered the passage sense, added validation and put off senses, and added not a bed of roses alias to the existing no bed of roses entry.
 - Verified with focused vocab tests and duplicate/POS scan. Full `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync should be run before commit if this was resumed mid-turn.
 
 Next likely item:
 
 - Paper 3 and Paper 4 are complete. Continue remaining Paper 1 items from the review log.
-- Remaining Paper 1 items by current source-tag coverage are `MT85`, `MT86`, `MT88`, `MT89`, and `MT90`; consult `private_exports/mock_unseen_vocab_review_log.json` and the source-tag coverage before starting.
+- Remaining Paper 1 items by current source-tag coverage are `MT86`, `MT88`, `MT89`, and `MT90`; consult `private_exports/mock_unseen_vocab_review_log.json` and the source-tag coverage before starting.
 - Use the `.docx` student and teacher files first. If `textutil` extraction is poor, compare with PDF extraction.
 
 ## Normal Workflow For One Paper
