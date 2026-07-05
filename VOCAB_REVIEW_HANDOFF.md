@@ -45,15 +45,15 @@ Latest verified progress:
 
 Most recent completed paper:
 
-- `MT78 Paper 1`
-- Source tag: `mock-unseen-mt78-paper1-reviewed`
-- Added 80 reviewed entries, including year out / launch into a career / taster / wade through / thorny issue / how long is a piece of string / flies in the ointment / animal cafe / feline fix / with a heavy heart / armchair athlete / put in the hard yards / post-competition blues / manage expectations / flippant. Reused existing shared entries where they already covered the passage sense, adding aliases for cafe/café, possessive placeholders, and hyphenless variants where needed.
+- `MT79 Paper 1`
+- Source tag: `mock-unseen-mt79-paper1-reviewed`
+- Added 65 reviewed entries, including send pulses racing / kicktail / ollie / mainstream exposure / will someone on / make one's debut / protected corridor / cuteness stimulus / thruster / propulsion system / ground to a halt / blow a gasket / bottom line / been around the block. Reused existing shared entries where they already covered the passage sense, adding British spelling, possessive placeholders, and contextual variants where needed.
 - Verified with focused vocab tests and duplicate/POS scan. Full `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync should be run before commit if this was resumed mid-turn.
 
 Next likely item:
 
 - Paper 3 and Paper 4 are complete. Continue remaining Paper 1 items from the review log.
-- Next missing Paper 1 item is likely the next unchecked Paper 1 item after `MT78 Paper 1`; consult `private_exports/mock_unseen_vocab_review_log.json` and the source-tag coverage before starting.
+- Remaining Paper 1 items by current source-tag coverage are `MT81`, `MT82`, `MT83`, `MT85`, `MT86`, `MT88`, `MT89`, and `MT90`; consult `private_exports/mock_unseen_vocab_review_log.json` and the source-tag coverage before starting.
 - Use the `.docx` student and teacher files first. If `textutil` extraction is poor, compare with PDF extraction.
 
 ## Normal Workflow For One Paper

@@ -413,6 +413,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt73-paper1-reviewed",
     "mock-unseen-mt77-paper1-reviewed",
     "mock-unseen-mt78-paper1-reviewed",
+    "mock-unseen-mt79-paper1-reviewed",
     "mock-unseen-mt80-paper1-reviewed",
     "mock-unseen-mt84-paper1-reviewed",
     "mock-unseen-mt39-paper1-reviewed",
@@ -14353,7 +14354,16 @@ function assertStudentLookupContract(word, matches) {
     ["putting in the hard yards", "put in the hard yards:phrase:verb:付出艱苦努力 / 刻苦訓練:mock-unseen-mt78-paper1-reviewed"],
     ["in your back pocket", "in one's back pocket:phrase:adverb:可隨時使用 / 已準備好的:mock-unseen-mt78-paper1-reviewed"],
     ["post competition blues", "post-competition blues:phrase:noun:賽後失落感 / 比賽後情緒低落:mock-unseen-mt78-paper1-reviewed"],
-    ["managing expectations", "manage expectations:phrase:verb:管理期望 / 調整期望:mock-unseen-mt78-paper1-reviewed"]
+    ["managing expectations", "manage expectations:phrase:verb:管理期望 / 調整期望:mock-unseen-mt78-paper1-reviewed"],
+    ["sent pulses racing", "send pulses racing:phrase:verb:令人心跳加速 / 令人興奮:mock-unseen-mt79-paper1-reviewed"],
+    ["commercialised", "commercialize:word:verb:商業化:mock-unseen-mt79-paper1-reviewed"],
+    ["make their debut", "make one's debut:phrase:verb:首次亮相 / 初次登場:mock-unseen-mt79-paper1-reviewed"],
+    ["protected corridors", "protected corridor:phrase:noun:受保護走廊 / 野生動物通道:mock-unseen-mt79-paper1-reviewed"],
+    ["bargained for", "bargain for:phrase:verb:預料到 / 預期:mock-unseen-mt79-paper1-reviewed"],
+    ["grounded to a halt", "ground to a halt:phrase:verb:慢慢停下 / 停頓下來:mock-unseen-mt79-paper1-reviewed"],
+    ["blow a gasket", "blow a gasket:phrase:verb:大發雷霆 / 非常生氣:mock-unseen-mt79-paper1-reviewed"],
+    ["bottom line", "bottom line:phrase:noun:重點 / 最終結論:mock-unseen-mt79-paper1-reviewed"],
+    ["have been around the block", "been around the block:phrase:adjective:經驗豐富的 / 見多識廣的:mock-unseen-mt79-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available through placeholder lookup`);

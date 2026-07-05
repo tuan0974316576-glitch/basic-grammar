@@ -10648,4 +10648,53 @@ assert.ok(
   "MT78 Paper 1 should support possessive variants for in one's back pocket"
 );
 
+const mt79Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt79-paper1-reviewed");
+assert.ok(mt79Paper1Entries.length >= 65, `Expected MT79 Paper 1 reviewed entries, got ${mt79Paper1Entries.length}`);
+
+const mt79Paper1ReviewedExpectations = [
+  ["send pulses racing", "verb", "令人心跳加速 / 令人興奮"],
+  ["kicktail", "noun", "滑板翹尾"],
+  ["ollie", "noun", "豚跳 / 滑板跳起動作"],
+  ["mainstream exposure", "noun", "主流曝光 / 大眾關注"],
+  ["will someone on", "verb", "為某人打氣 / 盼望某人成功"],
+  ["giant panda", "noun", "大熊貓"],
+  ["make one's debut", "verb", "首次亮相 / 初次登場"],
+  ["protected corridor", "noun", "受保護走廊 / 野生動物通道"],
+  ["bargain for", "verb", "預料到 / 預期"],
+  ["thruster", "noun", "推進器"],
+  ["propulsion system", "noun", "推進系統"],
+  ["blow a gasket", "verb", "大發雷霆 / 非常生氣"],
+  ["bottom line", "noun", "重點 / 最終結論"],
+  ["been around the block", "adjective", "經驗豐富的 / 見多識廣的"]
+];
+
+mt79Paper1ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.source === "mock-unseen-mt79-paper1-reviewed"
+      && candidate.pos === pos
+      && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT79 Paper 1 reviewed sense ${pos}:${meaning}`);
+});
+
+assert.ok(
+  senseBank.lookup("commercialised").some((entry) => entry.display === "commercialize"),
+  "MT79 Paper 1 should support British spelling for commercialize"
+);
+
+assert.ok(
+  senseBank.lookup("make their debut").some((entry) => entry.display === "make one's debut"),
+  "MT79 Paper 1 should support possessive variants for make one's debut"
+);
+
+assert.ok(
+  senseBank.lookup("grounded to a halt").some((entry) => entry.display === "ground to a halt"),
+  "MT79 Paper 1 should support grounded-to-a-halt variants"
+);
+
+assert.ok(
+  senseBank.lookup("have been around the block").some((entry) => entry.display === "been around the block"),
+  "MT79 Paper 1 should support been-around-the-block variants"
+);
+
 console.log("vocab_sense_bank tests passed");
