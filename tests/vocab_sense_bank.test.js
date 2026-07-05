@@ -69,6 +69,26 @@ assert.ok(
   "placeholder phrase lookup should allow missing apostrophe in ones"
 );
 assert.ok(
+  senseBank.lookup("slap-on-the-wrist").some((entry) => entry.display === "slap on the wrist"),
+  "hyphenated idiom lookup should find slap on the wrist"
+);
+assert.ok(
+  senseBank.lookup("slap").some((entry) => entry.meaning === "掌摑 / 拍打"),
+  "component lookup should find slap"
+);
+assert.ok(
+  senseBank.lookup("wrist").some((entry) => entry.meaning === "手腕"),
+  "component lookup should find wrist"
+);
+assert.ok(
+  senseBank.lookup("confinement").some((entry) => entry.meaning === "囚禁 / 禁閉"),
+  "component lookup should find confinement"
+);
+assert.ok(
+  senseBank.lookup("bouncer").some((entry) => entry.meaning === "嬰兒彈椅 / 彈跳椅"),
+  "component lookup should find bouncer"
+);
+assert.ok(
   senseBank.lookup("think it through").some((entry) => entry.display === "think something through"),
   "placeholder phrase lookup should allow sth / something object-pronoun variants"
 );
