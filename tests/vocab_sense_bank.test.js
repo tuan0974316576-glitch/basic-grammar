@@ -10048,4 +10048,39 @@ assert.ok(
   "MT62 Paper 1 should support bridge idiom natural wording"
 );
 
+const mt64Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt64-paper1-reviewed");
+assert.ok(mt64Paper1Entries.length >= 85, `Expected MT64 Paper 1 reviewed entries, got ${mt64Paper1Entries.length}`);
+
+const mt64Paper1ReviewedExpectations = [
+  ["feast one's eyes on", "verb", "大飽眼福 / 盡情欣賞"],
+  ["were it not for", "conjunction", "若不是因為"],
+  ["have one's sights set on", "verb", "把目標放在 / 盯上"],
+  ["Kowloon-Canton Railway Terminus", "noun", "九廣鐵路總站"],
+  ["sail into the sunset", "verb", "走向結束 / 逐漸消失"],
+  ["kick the bucket", "verb", "死去 / 翹辮子"],
+  ["fork over", "verb", "付出 / 掏錢"],
+  ["at death's door", "adjective", "臨死 / 病危"],
+  ["set oneself up for failure", "verb", "令自己注定失敗"],
+  ["quixotic", "adjective", "不切實際的 / 空想的"]
+];
+
+mt64Paper1ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.source === "mock-unseen-mt64-paper1-reviewed"
+      && candidate.pos === pos
+      && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT64 Paper 1 reviewed sense ${pos}:${meaning}`);
+});
+
+assert.ok(
+  senseBank.lookup("feast their eyes on").some((entry) => entry.display === "feast one's eyes on"),
+  "MT64 Paper 1 should support possessive variants for feast one's eyes on"
+);
+
+assert.ok(
+  senseBank.lookup("set yourself up for failure").some((entry) => entry.display === "set oneself up for failure"),
+  "MT64 Paper 1 should support oneself variants for set oneself up for failure"
+);
+
 console.log("vocab_sense_bank tests passed");

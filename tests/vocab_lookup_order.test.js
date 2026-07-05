@@ -396,6 +396,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt60-paper1-reviewed",
     "mock-unseen-mt61-paper1-reviewed",
     "mock-unseen-mt62-paper1-reviewed",
+    "mock-unseen-mt64-paper1-reviewed",
     "mock-unseen-mt63-paper1-reviewed",
     "mock-unseen-mt66-paper1-reviewed",
     "mock-unseen-mt87-paper1-reviewed",
@@ -6059,6 +6060,25 @@ function assertStudentLookupContract(word, matches) {
     ["as true as gospel", "true as gospel:phrase:adjective:千真萬確的:mock-unseen-mt62-paper1-reviewed"],
     ["fishes' scales", "scale:word:noun:鱗片:mock-unseen-mt62-paper1-reviewed"],
     ["there was nothing in it", "nothing in it:phrase:noun:沒有甚麼了不起 / 沒甚麼特別:mock-unseen-mt62-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["feast their eyes on", "feast one's eyes on:phrase:verb:大飽眼福 / 盡情欣賞:mock-unseen-mt64-paper1-reviewed"],
+    ["were it not for", "were it not for:phrase:conjunction:若不是因為:mock-unseen-mt64-paper1-reviewed"],
+    ["have their sights set on", "have one's sights set on:phrase:verb:把目標放在 / 盯上:mock-unseen-mt64-paper1-reviewed"],
+    ["keep an eye out", "keep an eye out for:phrase:verb:留意 / 提防:mock-unseen-mt64-paper1-reviewed"],
+    ["secreted away", "secret away:phrase:verb:秘密藏起 / 偷偷收藏:mock-unseen-mt64-paper1-reviewed"],
+    ["KCR Terminus", "Kowloon-Canton Railway Terminus:phrase:noun:九廣鐵路總站:mock-unseen-mt64-paper1-reviewed"],
+    ["sailing into the sunset", "sail into the sunset:phrase:verb:走向結束 / 逐漸消失:mock-unseen-mt64-paper1-reviewed"],
+    ["kick the bucket", "kick the bucket:phrase:verb:死去 / 翹辮子:mock-unseen-mt64-paper1-reviewed"],
+    ["forked over", "fork over:phrase:verb:付出 / 掏錢:mock-unseen-mt64-paper1-reviewed"],
+    ["at death's door", "at death's door:phrase:adjective:臨死 / 病危:mock-unseen-mt64-paper1-reviewed"],
+    ["set yourself up for failure", "set oneself up for failure:phrase:verb:令自己注定失敗:mock-unseen-mt64-paper1-reviewed"],
+    ["quixotic", "quixotic:word:adjective:不切實際的 / 空想的:mock-unseen-mt64-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
