@@ -26,9 +26,9 @@ can't cannot don't doesn't didn't won't wouldn't isn't aren't wasn't weren't
 
 const NON_STANDALONE_COMPONENTS = new Set(`
 hong kong tai po sha shui wan tung chau cheung kwai lam lantau tong yuen wong siu chai choi chung shek sai shan kwun kowloon macau
-pre anti eco non mini multi semi sub mid post co re ultra micro macro cyber inter intra socio nano sci bio cas9 caf chaan char feng alma avant bona cha dai dong garde esque
+pre anti eco non mini multi semi sub mid post co re ultra micro macro cyber inter intra socio nano sci bio cas9 caf chaan char feng alma avant bona cha dai dong garde esque hachi hara hei jour lohas musea pai papier pseudo quasi quo roly situ sous
 st nd rd th ing noun adj adjective verb adverb modal pron det prep conj
-instagram facebook tiktok youtube whatsapp google microsoft netflix disney oxford cambridge harvard michelin
+instagram facebook tiktok youtube whatsapp google microsoft netflix disney oxford cambridge harvard michelin fifa hsbc k11 newton noah hiram maclehose
 `.trim().split(/\s+/));
 
 const SOURCE_ALLOWLIST_FOR_EXCLUDED_PROPER_PARTS = [
@@ -145,12 +145,12 @@ function isLikelyProperNamePart(component, examples) {
 function getIgnoreReason(component, examples) {
   if (!component || component.length < 3) return "too-short";
   if (STOP_COMPONENTS.has(component)) return "function-word";
-  if (["dos", "don'ts", "shreds", "stead", "bolts", "bums", "fide", "firma", "frills"].includes(component)) return "phrase-fragment";
+  if (["dos", "don'ts", "shreds", "stead", "bolts", "bums", "fide", "firma", "frills", "p.e", "pât", "peasy", "ins", "starters"].includes(component)) return "phrase-fragment";
   if (/^\d[\d,]*$/.test(component) || /^\d[\d,]*(?:st|nd|rd|th|s)$/.test(component)) return "number";
   if (/^\d[\d,]*[a-z]+$/.test(component)) return "number-fragment";
   if (/^[a-z]$/.test(component)) return "single-letter";
   if (/^[ivx]+$/.test(component)) return "roman-numeral";
-  if (component.includes("'") && /^(?:someone|somebody|one|everyone|everybody|people|parent|student|child|children|artist|baby|woman|women|dragon|asia|bryde|chang)'?s$/.test(component)) {
+  if (component.includes("'") && /^(?:someone|somebody|one|everyone|everybody|people|parent|student|child|children|artist|baby|woman|women|dragon|asia|bryde|chang|crow|hiram|jones|newton|noah)'?s$/.test(component)) {
     return "placeholder-possessive";
   }
   if (component === "..." || component === "…") return "pattern-placeholder";
