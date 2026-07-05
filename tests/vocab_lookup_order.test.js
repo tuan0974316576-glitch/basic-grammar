@@ -397,6 +397,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt61-paper1-reviewed",
     "mock-unseen-mt62-paper1-reviewed",
     "mock-unseen-mt64-paper1-reviewed",
+    "mock-unseen-mt65-paper1-reviewed",
     "mock-unseen-mt63-paper1-reviewed",
     "mock-unseen-mt66-paper1-reviewed",
     "mock-unseen-mt87-paper1-reviewed",
@@ -6079,6 +6080,25 @@ function assertStudentLookupContract(word, matches) {
     ["at death's door", "at death's door:phrase:adjective:臨死 / 病危:mock-unseen-mt64-paper1-reviewed"],
     ["set yourself up for failure", "set oneself up for failure:phrase:verb:令自己注定失敗:mock-unseen-mt64-paper1-reviewed"],
     ["quixotic", "quixotic:word:adjective:不切實際的 / 空想的:mock-unseen-mt64-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["year on year growth", "year-on-year:phrase:adjective:按年計算的 / 與去年同期比較的:mock-unseen-mt65-paper1-reviewed"],
+    ["false economy", "false economy:phrase:noun:表面省錢但實際更花錢的做法:mock-unseen-mt65-paper1-reviewed"],
+    ["to the tune of HK$300", "to the tune of:phrase:preposition:達...之多 / 金額為:mock-unseen-mt65-paper1-reviewed"],
+    ["gone down the toilet", "down the toilet:phrase:adjective:完蛋的 / 失敗的:mock-unseen-mt65-paper1-reviewed"],
+    ["at your peril", "at one's peril:phrase:adverb:自行承擔風險 / 後果自負:mock-unseen-mt65-paper1-reviewed"],
+    ["beside the point", "beside the point:phrase:adjective:離題的 / 不是重點的:mock-unseen-mt65-paper1-reviewed"],
+    ["grappling with", "grapple with:phrase:verb:努力應付 / 設法解決:mock-unseen-mt65-paper1-reviewed"],
+    ["raised the spectre of", "raise the spectre of:phrase:verb:令人擔心...可能發生 / 引起...陰影:mock-unseen-mt65-paper1-reviewed"],
+    ["extolling the virtues of", "extol the virtues of:phrase:verb:大力稱讚...的好處:mock-unseen-mt65-paper1-reviewed"],
+    ["Pandoras box", "Pandora's box:phrase:noun:潘朵拉盒子 / 會引發大量問題的事:mock-unseen-mt65-paper1-reviewed"],
+    ["patenting nature", "patent nature:phrase:verb:把自然物申請專利 / 將自然據為專利:mock-unseen-mt65-paper1-reviewed"],
+    ["rings false", "ring false:phrase:verb:聽起來不可信 / 顯得不真實:mock-unseen-mt65-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);

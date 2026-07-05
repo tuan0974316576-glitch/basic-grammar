@@ -10083,4 +10083,44 @@ assert.ok(
   "MT64 Paper 1 should support oneself variants for set oneself up for failure"
 );
 
+const mt65Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt65-paper1-reviewed");
+assert.ok(mt65Paper1Entries.length >= 89, `Expected MT65 Paper 1 reviewed entries, got ${mt65Paper1Entries.length}`);
+
+const mt65Paper1ReviewedExpectations = [
+  ["false economy", "noun", "表面省錢但實際更花錢的做法"],
+  ["to the tune of", "preposition", "達...之多 / 金額為"],
+  ["down the toilet", "adjective", "完蛋的 / 失敗的"],
+  ["at one's peril", "adverb", "自行承擔風險 / 後果自負"],
+  ["beside the point", "adjective", "離題的 / 不是重點的"],
+  ["raise the spectre of", "verb", "令人擔心...可能發生 / 引起...陰影"],
+  ["extol the virtues of", "verb", "大力稱讚...的好處"],
+  ["Pandora's box", "noun", "潘朵拉盒子 / 會引發大量問題的事"],
+  ["patent nature", "verb", "把自然物申請專利 / 將自然據為專利"],
+  ["ring false", "verb", "聽起來不可信 / 顯得不真實"]
+];
+
+mt65Paper1ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.source === "mock-unseen-mt65-paper1-reviewed"
+      && candidate.pos === pos
+      && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT65 Paper 1 reviewed sense ${pos}:${meaning}`);
+});
+
+assert.ok(
+  senseBank.lookup("at your peril").some((entry) => entry.display === "at one's peril"),
+  "MT65 Paper 1 should support possessive variants for at one's peril"
+);
+
+assert.ok(
+  senseBank.lookup("extolling the virtues of").some((entry) => entry.display === "extol the virtues of"),
+  "MT65 Paper 1 should support verb-form aliases for extol the virtues of"
+);
+
+assert.ok(
+  senseBank.lookup("patenting nature").some((entry) => entry.display === "patent nature"),
+  "MT65 Paper 1 should support gerund alias for patent nature"
+);
+
 console.log("vocab_sense_bank tests passed");
