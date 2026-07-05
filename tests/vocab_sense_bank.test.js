@@ -10290,4 +10290,53 @@ assert.ok(
   "MT71 Paper 1 should support postpartum depression variant"
 );
 
+const mt72Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt72-paper1-reviewed");
+assert.ok(mt72Paper1Entries.length >= 53, `Expected MT72 Paper 1 reviewed entries, got ${mt72Paper1Entries.length}`);
+
+const mt72Paper1ReviewedExpectations = [
+  ["rights", "noun", "版權 / 使用權"],
+  ["get one's start", "verb", "開始起步 / 初露頭角"],
+  ["first folio", "noun", "第一對開本 / 莎士比亞戲劇合集首版"],
+  ["job hunt", "noun", "求職 / 找工作"],
+  ["at the other end of the spectrum", "adverb", "在另一個極端 / 截然相反地"],
+  ["by a factor of", "preposition", "以...倍數 / 倍增"],
+  ["bibliophile", "noun", "愛書人 / 藏書愛好者"],
+  ["e-bike", "noun", "電動單車"],
+  ["upsurge", "noun", "急升 / 激增"],
+  ["cycle track", "noun", "單車徑"],
+  ["concurrently", "adverb", "同時 / 同期地"],
+  ["zip past", "verb", "快速掠過 / 疾馳而過"],
+  ["radioactive", "adjective", "放射性的 / 有輻射的"],
+  ["nuclear power plant", "noun", "核電廠"],
+  ["devastate", "verb", "嚴重破壞 / 摧毀"],
+  ["reactor", "noun", "反應堆 / 核反應爐"],
+  ["be subjected to", "verb", "使遭受 / 使經歷"],
+  ["nuclear disaster", "noun", "核災難"],
+  ["decontaminate", "verb", "去除污染 / 去污"],
+  ["fuel rod", "noun", "燃料棒"],
+  ["Advanced Liquid Processing System", "noun", "多核素去除設備 / ALPS 處理系統"],
+  ["common good", "noun", "公共利益 / 共同資源"],
+  ["nuclear watchdog", "noun", "核監察機構 / 核監管機構"],
+  ["within safe limits", "adjective", "在安全限度內的"]
+];
+
+mt72Paper1ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.source === "mock-unseen-mt72-paper1-reviewed"
+      && candidate.pos === pos
+      && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT72 Paper 1 reviewed sense ${pos}:${meaning}`);
+});
+
+assert.ok(
+  senseBank.lookup("got their start").some((entry) => entry.display === "get one's start"),
+  "MT72 Paper 1 should support possessive idiom variants for get one's start"
+);
+
+assert.ok(
+  senseBank.lookup("UN’s nuclear watchdog").some((entry) => entry.display === "nuclear watchdog"),
+  "MT72 Paper 1 should support UN nuclear watchdog aliases"
+);
+
 console.log("vocab_sense_bank tests passed");

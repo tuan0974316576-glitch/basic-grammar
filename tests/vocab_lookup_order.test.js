@@ -406,6 +406,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt87-paper1-reviewed",
     "mock-unseen-mt70-paper1-reviewed",
     "mock-unseen-mt71-paper1-reviewed",
+    "mock-unseen-mt72-paper1-reviewed",
     "mock-unseen-mt73-paper1-reviewed",
     "mock-unseen-mt77-paper1-reviewed",
     "mock-unseen-mt80-paper1-reviewed",
@@ -5790,6 +5791,31 @@ function assertStudentLookupContract(word, matches) {
     ["put her head above the parapet", "put one's head above the parapet:phrase:verb:冒險出頭 / 公開表態承受批評:mock-unseen-mt71-paper1-reviewed"],
     ["postpartum depression", "post-natal depression:phrase:noun:產後抑鬱:mock-unseen-mt71-paper1-reviewed"],
     ["goodwill ambassadors", "goodwill ambassador:phrase:noun:親善大使:mock-unseen-mt71-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["got their start", "get one's start:phrase:verb:開始起步 / 初露頭角:mock-unseen-mt72-paper1-reviewed"],
+    ["First Folio", "first folio:phrase:noun:第一對開本 / 莎士比亞戲劇合集首版:mock-unseen-mt72-paper1-reviewed"],
+    ["on the job hunt", "job hunt:phrase:noun:求職 / 找工作:mock-unseen-mt72-paper1-reviewed"],
+    ["at the other end of spectrum", "at the other end of the spectrum:phrase:adverb:在另一個極端 / 截然相反地:mock-unseen-mt72-paper1-reviewed"],
+    ["by a factor of 10", "by a factor of:phrase:preposition:以...倍數 / 倍增:mock-unseen-mt72-paper1-reviewed"],
+    ["bibliophiles", "bibliophile:word:noun:愛書人 / 藏書愛好者:mock-unseen-mt72-paper1-reviewed"],
+    ["e-bikes", "e-bike:phrase:noun:電動單車:mock-unseen-mt72-paper1-reviewed"],
+    ["cycle tracks", "cycle track:phrase:noun:單車徑:mock-unseen-mt72-paper1-reviewed"],
+    ["zips past", "zip past:phrase:verb:快速掠過 / 疾馳而過:mock-unseen-mt72-paper1-reviewed"],
+    ["pose grave health risks", "pose a risk:phrase:verb:構成風險:mock-unseen-mt52-paper2-reviewed"],
+    ["reactors", "reactor:word:noun:反應堆 / 核反應爐:mock-unseen-mt72-paper1-reviewed"],
+    ["be subjected to", "be subjected to:phrase:verb:使遭受 / 使經歷:mock-unseen-mt72-paper1-reviewed"],
+    ["decontaminating", "decontaminate:word:verb:去除污染 / 去污:mock-unseen-mt72-paper1-reviewed"],
+    ["fuel rods", "fuel rod:phrase:noun:燃料棒:mock-unseen-mt72-paper1-reviewed"],
+    ["ALPS", "Advanced Liquid Processing System:phrase:noun:多核素去除設備 / ALPS 處理系統:mock-unseen-mt72-paper1-reviewed"],
+    ["humanity’s common good", "common good:phrase:noun:公共利益 / 共同資源:mock-unseen-mt72-paper1-reviewed"],
+    ["UN nuclear watchdog", "nuclear watchdog:phrase:noun:核監察機構 / 核監管機構:mock-unseen-mt72-paper1-reviewed"],
+    ["within safe limits", "within safe limits:phrase:adjective:在安全限度內的:mock-unseen-mt72-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
