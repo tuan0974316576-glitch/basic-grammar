@@ -398,6 +398,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt62-paper1-reviewed",
     "mock-unseen-mt64-paper1-reviewed",
     "mock-unseen-mt65-paper1-reviewed",
+    "mock-unseen-mt67-paper1-reviewed",
     "mock-unseen-mt63-paper1-reviewed",
     "mock-unseen-mt66-paper1-reviewed",
     "mock-unseen-mt87-paper1-reviewed",
@@ -4247,7 +4248,10 @@ function assertStudentLookupContract(word, matches) {
 
   assert.deepStrictEqual(
     (await lookupForStudent("victimized")).map((entry) => `${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
-    ["victimised:word:adjective:被欺負的 / 成為受害者的:mock-unseen-mt33-paper2-reviewed"]
+    [
+      "victimised:word:adjective:被欺負的 / 成為受害者的:mock-unseen-mt33-paper2-reviewed",
+      "victimize:word:verb:使受害 / 迫害:mock-unseen-mt67-paper1-reviewed"
+    ]
   );
 
   assert.deepStrictEqual(
@@ -5786,7 +5790,10 @@ function assertStudentLookupContract(word, matches) {
 
   assert.deepStrictEqual(
     (await lookupForStudent("watered down")).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`),
-    ["phrase:verb:削弱 / 淡化:mock-unseen-mt73-paper1-reviewed"]
+    [
+      "phrase:verb:削弱 / 淡化:mock-unseen-mt73-paper1-reviewed",
+      "phrase:adjective:淡化了的 / 弱化了的:mock-unseen-mt67-paper1-reviewed"
+    ]
   );
 
   assert.deepStrictEqual(
@@ -6099,6 +6106,28 @@ function assertStudentLookupContract(word, matches) {
     ["Pandoras box", "Pandora's box:phrase:noun:潘朵拉盒子 / 會引發大量問題的事:mock-unseen-mt65-paper1-reviewed"],
     ["patenting nature", "patent nature:phrase:verb:把自然物申請專利 / 將自然據為專利:mock-unseen-mt65-paper1-reviewed"],
     ["rings false", "ring false:phrase:verb:聽起來不可信 / 顯得不真實:mock-unseen-mt65-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
+
+  for (const [word, expected] of [
+    ["control group", "control group:phrase:noun:對照組:mock-unseen-mt67-paper1-reviewed"],
+    ["the black stuff", "the black stuff:phrase:noun:黑色飲品 / 咖啡:mock-unseen-mt67-paper1-reviewed"],
+    ["Parkinson's", "Parkinson's disease:phrase:noun:柏金遜症:mock-unseen-mt67-paper1-reviewed"],
+    ["did not sit well with", "sit well with:phrase:verb:令...接受 / 合...心意:mock-unseen-mt67-paper1-reviewed"],
+    ["on pain of death", "on pain of death:phrase:adverb:違者處死 / 冒死亡風險:mock-unseen-mt67-paper1-reviewed"],
+    ["low maintenance", "low-maintenance:phrase:adjective:易打理的 / 不用花太多心力的:mock-unseen-mt67-paper1-reviewed"],
+    ["blanket ban", "blanket ban:phrase:noun:全面禁令:mock-unseen-mt67-paper1-reviewed"],
+    ["deep fake", "deepfake:word:noun:深偽技術 / AI 換臉假影片:mock-unseen-mt67-paper1-reviewed"],
+    ["gave the nod to", "give the nod to:phrase:verb:選中 / 批准:mock-unseen-mt67-paper1-reviewed"],
+    ["watered-down", "watered-down:phrase:adjective:淡化了的 / 弱化了的:mock-unseen-mt67-paper1-reviewed"],
+    ["rears its ugly head", "rear its ugly head:phrase:verb:再次出現 / 露出醜惡一面:mock-unseen-mt67-paper1-reviewed"],
+    ["imbalanced power dynamics", "skewed power dynamic:phrase:noun:傾斜的權力關係 / 權力不平衡:mock-unseen-mt67-paper1-reviewed"],
+    ["second guessing", "second-guess:phrase:verb:懷疑自己的判斷 / 事後質疑:mock-unseen-mt67-paper1-reviewed"],
+    ["caught red-handed", "catch red-handed:phrase:verb:當場抓住 / 人贓並獲:mock-unseen-mt67-paper1-reviewed"],
+    ["take his word over", "take someone's word over:phrase:verb:相信某人的話多於...:mock-unseen-mt67-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available in student lookup`);
@@ -7056,7 +7085,8 @@ function assertStudentLookupContract(word, matches) {
       "charge:verb:指控:curated-sense-bank",
       "charge:noun:費用:curated-sense-bank",
       "charge:noun:指控:curated-sense-bank",
-      "charge:noun:控罪:curated-sense-bank"
+      "charge:noun:控罪:curated-sense-bank",
+      "charge:noun:受照顧的人或動物:mock-unseen-mt67-paper1-reviewed"
     ]
   );
 
@@ -7414,7 +7444,8 @@ function assertStudentLookupContract(word, matches) {
       "verb:指控:curated-sense-bank",
       "noun:費用:curated-sense-bank",
       "noun:指控:curated-sense-bank",
-      "noun:控罪:curated-sense-bank"
+      "noun:控罪:curated-sense-bank",
+      "noun:受照顧的人或動物:mock-unseen-mt67-paper1-reviewed"
     ]
   );
 

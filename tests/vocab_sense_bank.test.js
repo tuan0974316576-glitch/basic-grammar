@@ -1903,7 +1903,7 @@ assert.deepStrictEqual(
 );
 assert.deepStrictEqual(
   senseBank.lookup("charge").map((entry) => `${entry.pos}:${entry.meaning}`),
-  ["verb:充電", "verb:收費", "verb:指控", "noun:費用", "noun:指控", "noun:控罪"]
+  ["verb:充電", "verb:收費", "verb:指控", "noun:費用", "noun:指控", "noun:控罪", "noun:受照顧的人或動物"]
 );
 assert.deepStrictEqual(
   senseBank.lookup("matter").map((entry) => `${entry.pos}:${entry.meaning}`),
@@ -10121,6 +10121,48 @@ assert.ok(
 assert.ok(
   senseBank.lookup("patenting nature").some((entry) => entry.display === "patent nature"),
   "MT65 Paper 1 should support gerund alias for patent nature"
+);
+
+const mt67Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt67-paper1-reviewed");
+assert.ok(mt67Paper1Entries.length >= 100, `Expected MT67 Paper 1 reviewed entries, got ${mt67Paper1Entries.length}`);
+
+const mt67Paper1ReviewedExpectations = [
+  ["control group", "noun", "對照組"],
+  ["miracle elixir", "noun", "神奇靈藥"],
+  ["on pain of death", "adverb", "違者處死 / 冒死亡風險"],
+  ["through thick and thin", "adverb", "同甘共苦 / 無論順境逆境"],
+  ["low-maintenance", "adjective", "易打理的 / 不用花太多心力的"],
+  ["blanket ban", "noun", "全面禁令"],
+  ["gaslighting", "noun", "煤氣燈操控 / 使人懷疑自己的心理操控"],
+  ["give the nod to", "verb", "選中 / 批准"],
+  ["watered-down", "adjective", "淡化了的 / 弱化了的"],
+  ["rear its ugly head", "verb", "再次出現 / 露出醜惡一面"],
+  ["medical gaslighting", "noun", "醫療煤氣燈操控 / 醫護否定病人症狀"],
+  ["take someone's word over", "verb", "相信某人的話多於..."]
+];
+
+mt67Paper1ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.source === "mock-unseen-mt67-paper1-reviewed"
+      && candidate.pos === pos
+      && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT67 Paper 1 reviewed sense ${pos}:${meaning}`);
+});
+
+assert.ok(
+  senseBank.lookup("did not sit well with").some((entry) => entry.display === "sit well with"),
+  "MT67 Paper 1 should support contextual alias for sit well with"
+);
+
+assert.ok(
+  senseBank.lookup("take her word over").some((entry) => entry.display === "take someone's word over"),
+  "MT67 Paper 1 should support someone variants for take someone's word over"
+);
+
+assert.ok(
+  senseBank.lookup("low maintenance").some((entry) => entry.display === "low-maintenance"),
+  "MT67 Paper 1 should support hyphen-free low-maintenance lookup"
 );
 
 console.log("vocab_sense_bank tests passed");
