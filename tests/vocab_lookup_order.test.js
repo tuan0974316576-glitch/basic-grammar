@@ -422,6 +422,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt85-paper1-reviewed",
     "mock-unseen-mt86-paper1-reviewed",
     "mock-unseen-mt88-paper1-reviewed",
+    "mock-unseen-mt89-paper1-reviewed",
     "mock-unseen-mt39-paper1-reviewed",
     "mock-unseen-mt40-paper1-reviewed",
     "mock-unseen-mt41-paper1-reviewed",
@@ -14418,7 +14419,13 @@ function assertStudentLookupContract(word, matches) {
     ["out of depth", "out of one's depth:phrase:adjective:力有不逮 / 應付不來:mock-unseen-mt88-paper1-reviewed"],
     ["off the beaten path", "off the beaten path:phrase:adjective:偏僻少人去的 / 非熱門路線的:mock-unseen-mt88-paper1-reviewed"],
     ["playing catch up", "play catch-up:phrase:verb:追趕 / 努力趕上:mock-unseen-mt88-paper1-reviewed"],
-    ["greenwash", "greenwash:word:noun:漂綠 / 假環保宣傳:mock-unseen-mt88-paper1-reviewed"]
+    ["greenwash", "greenwash:word:noun:漂綠 / 假環保宣傳:mock-unseen-mt88-paper1-reviewed"],
+    ["loneliness epidemic", "loneliness epidemic:phrase:noun:孤獨流行病 / 普遍孤獨問題:mock-unseen-mt89-paper1-reviewed"],
+    ["hear me out", "hear me out:phrase:verb:聽我講完 / 聽我解釋:mock-unseen-mt89-paper1-reviewed"],
+    ["wrap your head around", "wrap one's head around:phrase:verb:理解 / 想明白:mock-unseen-mt89-paper1-reviewed"],
+    ["cassette", "cassette tape:phrase:noun:卡式錄音帶:mock-unseen-mt89-paper1-reviewed"],
+    ["go the way of the dodo", "go the way of the dodo:phrase:verb:絕跡 / 被淘汰:mock-unseen-mt89-paper1-reviewed"],
+    ["get high on their own supply", "get high on one's own supply:phrase:verb:沉迷於自己製造的東西 / 被自己的東西沖昏頭腦:mock-unseen-mt89-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available through placeholder lookup`);

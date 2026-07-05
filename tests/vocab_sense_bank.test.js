@@ -10942,4 +10942,48 @@ assert.ok(
   "MT88 Paper 1 should support lower-case Internet alias"
 );
 
+const mt89Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt89-paper1-reviewed");
+assert.ok(mt89Paper1Entries.length >= 91, `Expected MT89 Paper 1 reviewed entries, got ${mt89Paper1Entries.length}`);
+
+const mt89Paper1ReviewedExpectations = [
+  ["loneliness epidemic", "noun", "孤獨流行病 / 普遍孤獨問題"],
+  ["solitary confinement", "noun", "單獨囚禁 / 單獨監禁"],
+  ["positive solitude", "noun", "正面獨處 / 有益的獨處"],
+  ["default mode network", "noun", "預設模式網絡 / 大腦預設網絡"],
+  ["minimalist", "noun", "極簡主義者"],
+  ["hear me out", "verb", "聽我講完 / 聽我解釋"],
+  ["worldly goods", "noun", "物質財物 / 身外物"],
+  ["commercial viability", "noun", "商業可行性 / 賺錢潛力"],
+  ["Generation X", "noun", "X 世代"],
+  ["anemoia", "noun", "對未曾經歷的過去產生懷舊感"],
+  ["cassette tape", "noun", "卡式錄音帶"],
+  ["go the way of the dodo", "verb", "絕跡 / 被淘汰"],
+  ["dud", "noun", "失敗產品 / 無用的東西"],
+  ["get high on one's own supply", "verb", "沉迷於自己製造的東西 / 被自己的東西沖昏頭腦"]
+];
+
+mt89Paper1ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.source === "mock-unseen-mt89-paper1-reviewed"
+      && candidate.pos === pos
+      && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT89 Paper 1 reviewed sense ${pos}:${meaning}`);
+});
+
+assert.ok(
+  senseBank.lookup("wrap your head around").some((entry) => entry.display === "wrap one's head around"),
+  "MT89 Paper 1 should support possessive variants for wrap one's head around"
+);
+
+assert.ok(
+  senseBank.lookup("cassette").some((entry) => entry.display === "cassette tape"),
+  "MT89 Paper 1 should allow cassette to find cassette tape"
+);
+
+assert.ok(
+  senseBank.lookup("get high on their own supply").some((entry) => entry.display === "get high on one's own supply"),
+  "MT89 Paper 1 should support possessive variants for get high on one's own supply"
+);
+
 console.log("vocab_sense_bank tests passed");

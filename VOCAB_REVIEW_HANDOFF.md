@@ -37,23 +37,23 @@ Latest verified progress:
 
 | Paper | Total | Done | Remaining |
 |---|---:|---:|---:|
-| Paper 1 | 84 | 82 | 2 |
+| Paper 1 | 84 | 83 | 1 |
 | Paper 2 | 81 | 81 | 0 |
 | Paper 3 | 77 | 77 | 0 |
 | Paper 4 | 72 | 72 | 0 |
-| Total | 314 | 312 | 2 |
+| Total | 314 | 313 | 1 |
 
 Most recent completed paper:
 
-- `MT88 Paper 1`
-- Source tag: `mock-unseen-mt88-paper1-reviewed`
-- Added 76 reviewed entries, including bold move / breach a ban / use a sledgehammer to crack a nut / out of one's depth / taster day / off the beaten path / greenwash / portmanteau / hoodwink / vicious circle / hard graft / play catch-up / authentic sustainability. Reused existing shared entries where they already covered the passage sense, including cyberbullying, peer pressure, safe space, miss out on, proactive, sailing, weather forecast, low tide, greenwashing, environmentalist, buzzword, carbon-neutral, accountable, renewable energy, and transparent.
+- `MT89 Paper 1`
+- Source tag: `mock-unseen-mt89-paper1-reviewed`
+- Added 91 reviewed entries, including loneliness epidemic / solitary confinement / positive solitude / default mode network / hear me out / worldly goods / commercial viability / wrap one's head around / anemoia / go the way of the dodo / get high on one's own supply / rehash. Reused existing shared entries where they already covered the passage sense, including solitude, loneliness, social isolation, recharge one's batteries, legend has it, proven track record, do wonders for, self-awareness, minimalism, carbon footprint, nostalgia, dopamine, oxytocin, target audience, Generation Z, and take by storm.
 - Verified with focused vocab tests. Full `npm test`, `npm run check:js`, `npm run build:web`, and Battleship sync should be run before commit if this was resumed mid-turn.
 
 Next likely item:
 
 - Paper 3 and Paper 4 are complete. Continue remaining Paper 1 items from the review log.
-- Remaining Paper 1 items by current source-tag coverage are `MT89` and `MT90`; consult `private_exports/mock_unseen_vocab_review_log.json` and the source-tag coverage before starting.
+- Remaining Paper 1 item by current source-tag coverage is `MT90`; consult `private_exports/mock_unseen_vocab_review_log.json` and the source-tag coverage before starting.
 - Use the `.docx` student and teacher files first. If `textutil` extraction is poor, compare with PDF extraction.
 
 ## Normal Workflow For One Paper
