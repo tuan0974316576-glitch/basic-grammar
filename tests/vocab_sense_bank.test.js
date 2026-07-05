@@ -10780,4 +10780,41 @@ assert.ok(
   "MT82 Paper 1 should support hyphenated spell-bound lookup"
 );
 
+const mt83Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt83-paper1-reviewed");
+assert.ok(mt83Paper1Entries.length >= 74, `Expected MT83 Paper 1 reviewed entries, got ${mt83Paper1Entries.length}`);
+
+const mt83Paper1ReviewedExpectations = [
+  ["public intellectual", "noun", "公共知識分子"],
+  ["hawk", "verb", "兜售 / 叫賣"],
+  ["pocket", "verb", "賺得 / 收入"],
+  ["wiggle room", "noun", "彈性空間 / 迴旋餘地"],
+  ["Sunday best", "noun", "最好的衣服 / 體面衣著"],
+  ["take to something like a fish to water", "verb", "很快適應 / 如魚得水"],
+  ["horticulturist", "noun", "園藝師 / 園藝學家"],
+  ["come on the scene", "verb", "出現 / 登場"],
+  ["too-big-to-fail", "adjective", "大到不能倒的"],
+  ["gravy train", "noun", "輕鬆賺錢的途徑 / 肥差"],
+  ["make a dime", "verb", "賺到錢"],
+  ["boggle the mind", "verb", "令人難以置信 / 令人震驚"]
+];
+
+mt83Paper1ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.source === "mock-unseen-mt83-paper1-reviewed"
+      && candidate.pos === pos
+      && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT83 Paper 1 reviewed sense ${pos}:${meaning}`);
+});
+
+assert.ok(
+  senseBank.lookup("follow the lead").some((entry) => entry.display === "follow the lead of"),
+  "MT83 Paper 1 should support follow-the-lead wording through the existing reviewed entry"
+);
+
+assert.ok(
+  senseBank.lookup("fruits of my labour").some((entry) => entry.display === "fruits of one's labour"),
+  "MT83 Paper 1 should support possessive variants for fruits of one's labour"
+);
+
 console.log("vocab_sense_bank tests passed");

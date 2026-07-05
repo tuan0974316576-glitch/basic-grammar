@@ -417,6 +417,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt80-paper1-reviewed",
     "mock-unseen-mt81-paper1-reviewed",
     "mock-unseen-mt82-paper1-reviewed",
+    "mock-unseen-mt83-paper1-reviewed",
     "mock-unseen-mt84-paper1-reviewed",
     "mock-unseen-mt39-paper1-reviewed",
     "mock-unseen-mt40-paper1-reviewed",
@@ -5833,7 +5834,7 @@ function assertStudentLookupContract(word, matches) {
     ["in leaps and bounds", "in leaps and bounds:phrase:adverb:迅速地 / 大幅地:mock-unseen-mt74-paper1-reviewed"],
     ["hot spot", "tourist hotspot:phrase:noun:旅遊熱點:curated-sense-bank"],
     ["ran rampant", "run rampant:phrase:verb:猖獗 / 失控蔓延:mock-unseen-mt74-paper1-reviewed"],
-    ["pocketed", "pocket:word:verb:私自拿走 / 偷走:mock-unseen-mt74-paper1-reviewed"],
+    ["pocketed", "pocket:word:verb:賺得 / 收入:mock-unseen-mt83-paper1-reviewed"],
     ["stag party", "stag do:phrase:noun:準新郎婚前派對:mock-unseen-mt74-paper1-reviewed"],
     ["stoked the fire", "stoke the fire:phrase:verb:火上加油 / 加劇問題:mock-unseen-mt74-paper1-reviewed"],
     ["the tide has begun to turn", "the tide turns:phrase:verb:形勢開始轉變:mock-unseen-mt74-paper1-reviewed"],
@@ -14382,7 +14383,18 @@ function assertStudentLookupContract(word, matches) {
     ["electrically charged particles", "charged particle:phrase:noun:帶電粒子:mock-unseen-mt82-paper1-reviewed"],
     ["southern lights", "aurora australis:phrase:noun:南極光:mock-unseen-mt82-paper1-reviewed"],
     ["tick this special experience off their bucket list", "tick off one's bucket list:phrase:verb:完成願望清單上的一項:mock-unseen-mt82-paper1-reviewed"],
-    ["spell-bound", "spellbound:word:adjective:著迷的 / 入迷的:mock-unseen-mt82-paper1-reviewed"]
+    ["spell-bound", "spellbound:word:adjective:著迷的 / 入迷的:mock-unseen-mt82-paper1-reviewed"],
+    ["style itself", "style oneself:phrase:verb:自稱 / 稱自己為:mock-unseen-mt83-paper1-reviewed"],
+    ["day jobs", "day job:phrase:noun:正職 / 本業:mock-unseen-mt83-paper1-reviewed"],
+    ["wiggle room", "wiggle room:phrase:noun:彈性空間 / 迴旋餘地:mock-unseen-mt83-paper1-reviewed"],
+    ["Sunday best", "Sunday best:phrase:noun:最好的衣服 / 體面衣著:mock-unseen-mt83-paper1-reviewed"],
+    ["took to life like a fish to water", "take to something like a fish to water:phrase:verb:很快適應 / 如魚得水:mock-unseen-mt83-paper1-reviewed"],
+    ["ringing off the hook", "ring off the hook:phrase:verb:電話響個不停:mock-unseen-mt83-paper1-reviewed"],
+    ["came on the scene", "come on the scene:phrase:verb:出現 / 登場:mock-unseen-mt83-paper1-reviewed"],
+    ["left right and centre", "left, right and centre:phrase:adverb:到處 / 大量地:mock-unseen-mt83-paper1-reviewed"],
+    ["gravy train", "gravy train:phrase:noun:輕鬆賺錢的途徑 / 肥差:mock-unseen-mt83-paper1-reviewed"],
+    ["cracked up to be", "be cracked up to be:phrase:verb:如傳聞般好 / 名副其實:mock-unseen-mt83-paper1-reviewed"],
+    ["don't make a dime", "make a dime:phrase:verb:賺到錢:mock-unseen-mt83-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available through placeholder lookup`);
