@@ -10898,4 +10898,48 @@ assert.ok(
   "MT86 Paper 1 should support possessive variants for put one's feet up"
 );
 
+const mt88Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt88-paper1-reviewed");
+assert.ok(mt88Paper1Entries.length >= 75, `Expected MT88 Paper 1 reviewed entries, got ${mt88Paper1Entries.length}`);
+
+const mt88Paper1ReviewedExpectations = [
+  ["bold move", "noun", "大膽舉動"],
+  ["breach a ban", "verb", "違反禁令"],
+  ["self-harm", "noun", "自殘"],
+  ["online predator", "noun", "網上獵食者 / 網上誘騙者"],
+  ["use a sledgehammer to crack a nut", "verb", "小題大做 / 用過重手段處理小問題"],
+  ["out of one's depth", "adjective", "力有不逮 / 應付不來"],
+  ["taster day", "noun", "體驗日"],
+  ["off the beaten path", "adjective", "偏僻少人去的 / 非熱門路線的"],
+  ["green agenda", "noun", "環保議程 / 環保取向"],
+  ["hoodwink", "verb", "欺騙 / 蒙騙"],
+  ["vicious circle", "noun", "惡性循環"],
+  ["hard graft", "noun", "辛苦實幹 / 艱苦工作"],
+  ["play catch-up", "verb", "追趕 / 努力趕上"],
+  ["green audit", "noun", "環保審計"]
+];
+
+mt88Paper1ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.source === "mock-unseen-mt88-paper1-reviewed"
+      && candidate.pos === pos
+      && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT88 Paper 1 reviewed sense ${pos}:${meaning}`);
+});
+
+assert.ok(
+  senseBank.lookup("out of depth").some((entry) => entry.display === "out of one's depth"),
+  "MT88 Paper 1 should support omitted possessive for out of one's depth"
+);
+
+assert.ok(
+  senseBank.lookup("off the beaten track").some((entry) => entry.display === "off the beaten path"),
+  "MT88 Paper 1 should support British variant off the beaten track"
+);
+
+assert.ok(
+  senseBank.lookup("roam the internet").some((entry) => entry.display === "roam the Internet"),
+  "MT88 Paper 1 should support lower-case Internet alias"
+);
+
 console.log("vocab_sense_bank tests passed");

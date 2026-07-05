@@ -421,6 +421,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt84-paper1-reviewed",
     "mock-unseen-mt85-paper1-reviewed",
     "mock-unseen-mt86-paper1-reviewed",
+    "mock-unseen-mt88-paper1-reviewed",
     "mock-unseen-mt39-paper1-reviewed",
     "mock-unseen-mt40-paper1-reviewed",
     "mock-unseen-mt41-paper1-reviewed",
@@ -14412,7 +14413,12 @@ function assertStudentLookupContract(word, matches) {
     ["squirrels away", "squirrel away:phrase:verb:偷偷儲起 / 存起來:mock-unseen-mt86-paper1-reviewed"],
     ["zero hours contract", "zero-hours contract:phrase:noun:零工時合約:mock-unseen-mt86-paper1-reviewed"],
     ["compartmentalising", "compartmentalize:word:verb:把事情分開處理 / 分隔不同生活範疇:mock-unseen-mt86-paper1-reviewed"],
-    ["put your feet up", "put one's feet up:phrase:verb:休息 / 放鬆一下:mock-unseen-mt86-paper1-reviewed"]
+    ["put your feet up", "put one's feet up:phrase:verb:休息 / 放鬆一下:mock-unseen-mt86-paper1-reviewed"],
+    ["sledgehammer to crack a nut", "use a sledgehammer to crack a nut:phrase:verb:小題大做 / 用過重手段處理小問題:mock-unseen-mt88-paper1-reviewed"],
+    ["out of depth", "out of one's depth:phrase:adjective:力有不逮 / 應付不來:mock-unseen-mt88-paper1-reviewed"],
+    ["off the beaten path", "off the beaten path:phrase:adjective:偏僻少人去的 / 非熱門路線的:mock-unseen-mt88-paper1-reviewed"],
+    ["playing catch up", "play catch-up:phrase:verb:追趕 / 努力趕上:mock-unseen-mt88-paper1-reviewed"],
+    ["greenwash", "greenwash:word:noun:漂綠 / 假環保宣傳:mock-unseen-mt88-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available through placeholder lookup`);
