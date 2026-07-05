@@ -8,7 +8,6 @@ const ROOT_DIR = path.resolve(__dirname, "..");
 const DEFAULT_TARGET = "/Users/macbook/battleship-1";
 
 const SHARED_VOCAB_FILES = [
-  "vocab_data.js",
   "vocab_scheduler.js",
   "vocab_pos_inference.js",
   "teacher_vocab_bank.js",
