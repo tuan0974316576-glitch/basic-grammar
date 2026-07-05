@@ -405,6 +405,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt66-paper1-reviewed",
     "mock-unseen-mt87-paper1-reviewed",
     "mock-unseen-mt70-paper1-reviewed",
+    "mock-unseen-mt71-paper1-reviewed",
     "mock-unseen-mt73-paper1-reviewed",
     "mock-unseen-mt77-paper1-reviewed",
     "mock-unseen-mt80-paper1-reviewed",
@@ -5774,6 +5775,26 @@ function assertStudentLookupContract(word, matches) {
     (await lookupForStudent("implode")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),
     ["verb:向內爆裂 / 內爆:mock-unseen-mt70-paper1-reviewed"]
   );
+
+  for (const [word, expected] of [
+    ["twist in the tale", "twist in the tale:phrase:noun:故事結尾的意外轉折:mock-unseen-mt71-paper1-reviewed"],
+    ["dip your toe into", "dip one's toe into:phrase:verb:初步嘗試 / 小試牛刀:mock-unseen-mt71-paper1-reviewed"],
+    ["stating the obvious", "state the obvious:phrase:verb:講明顯不過的事 / 說出人人都知的事:mock-unseen-mt71-paper1-reviewed"],
+    ["stomach did a little flip", "do a little flip:phrase:verb:心頭一震 / 感到緊張興奮:mock-unseen-mt71-paper1-reviewed"],
+    ["placing bets", "place bets:phrase:verb:下注:mock-unseen-mt71-paper1-reviewed"],
+    ["below bread line", "below the bread line:phrase:adjective:生活在貧窮線以下的:mock-unseen-mt71-paper1-reviewed"],
+    ["GOAT", "GOAT:word:noun:史上最偉大的人 / Greatest Of All Time:mock-unseen-mt71-paper1-reviewed"],
+    ["hung up her racquet", "hang up one's racquet:phrase:verb:掛拍退役 / 結束網球生涯:mock-unseen-mt71-paper1-reviewed"],
+    ["stepped up a gear", "step up a gear:phrase:verb:提升一個層次 / 加快步伐:mock-unseen-mt71-paper1-reviewed"],
+    ["ground strokes", "ground stroke:phrase:noun:底線擊球:mock-unseen-mt71-paper1-reviewed"],
+    ["put her head above the parapet", "put one's head above the parapet:phrase:verb:冒險出頭 / 公開表態承受批評:mock-unseen-mt71-paper1-reviewed"],
+    ["postpartum depression", "post-natal depression:phrase:noun:產後抑鬱:mock-unseen-mt71-paper1-reviewed"],
+    ["goodwill ambassadors", "goodwill ambassador:phrase:noun:親善大使:mock-unseen-mt71-paper1-reviewed"]
+  ]) {
+    const [entry] = await lookupForStudent(word);
+    assert.ok(entry, `${word} should be available in student lookup`);
+    assert.strictEqual(`${entry.display}:${entry.type}:${entry.pos}:${entry.meaning}:${entry.source}`, expected);
+  }
 
   assert.deepStrictEqual(
     (await lookupForStudent("illustrious")).map((entry) => `${entry.pos}:${entry.meaning}:${entry.source}`),

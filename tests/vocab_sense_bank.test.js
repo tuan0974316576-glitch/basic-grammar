@@ -10248,4 +10248,46 @@ assert.ok(
   "MT69 Paper 1 should support omitted the in crawl out of the woodwork"
 );
 
+const mt71Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt71-paper1-reviewed");
+assert.ok(mt71Paper1Entries.length >= 85, `Expected MT71 Paper 1 reviewed entries, got ${mt71Paper1Entries.length}`);
+
+const mt71Paper1ReviewedExpectations = [
+  ["twist in the tale", "noun", "故事結尾的意外轉折"],
+  ["distil down", "verb", "濃縮 / 精簡"],
+  ["state the obvious", "verb", "講明顯不過的事 / 說出人人都知的事"],
+  ["show, don't tell", "verb", "用描寫呈現，不要直接說明"],
+  ["do a little flip", "verb", "心頭一震 / 感到緊張興奮"],
+  ["charitable arm", "noun", "慈善部門 / 慈善分支"],
+  ["cost of living crisis", "noun", "生活成本危機"],
+  ["tug at the heartstrings", "verb", "觸動心弦 / 令人同情"],
+  ["below the bread line", "adjective", "生活在貧窮線以下的"],
+  ["GOAT", "noun", "史上最偉大的人 / Greatest Of All Time"],
+  ["hang up one's racquet", "verb", "掛拍退役 / 結束網球生涯"],
+  ["Grand Slam", "noun", "大滿貫賽事"],
+  ["tradition-bound", "adjective", "受傳統束縛的 / 墨守成規的"],
+  ["put one's head above the parapet", "verb", "冒險出頭 / 公開表態承受批評"],
+  ["pulmonary embolism", "noun", "肺栓塞"],
+  ["post-natal depression", "noun", "產後抑鬱"],
+  ["goodwill ambassador", "noun", "親善大使"]
+];
+
+mt71Paper1ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.source === "mock-unseen-mt71-paper1-reviewed"
+      && candidate.pos === pos
+      && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT71 Paper 1 reviewed sense ${pos}:${meaning}`);
+});
+
+assert.ok(
+  senseBank.lookup("hung up her racquet").some((entry) => entry.display === "hang up one's racquet"),
+  "MT71 Paper 1 should support possessive racquet idiom variants"
+);
+
+assert.ok(
+  senseBank.lookup("postpartum depression").some((entry) => entry.display === "post-natal depression"),
+  "MT71 Paper 1 should support postpartum depression variant"
+);
+
 console.log("vocab_sense_bank tests passed");
