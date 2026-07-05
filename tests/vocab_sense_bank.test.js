@@ -10857,4 +10857,45 @@ assert.ok(
   "MT85 Paper 1 should support possessive variants for channel one's energy into"
 );
 
+const mt86Paper1Entries = senseBank.entries.filter((entry) => entry.source === "mock-unseen-mt86-paper1-reviewed");
+assert.ok(mt86Paper1Entries.length >= 76, `Expected MT86 Paper 1 reviewed entries, got ${mt86Paper1Entries.length}`);
+
+const mt86Paper1ReviewedExpectations = [
+  ["social lubricant", "noun", "社交潤滑劑 / 使社交更順暢的事物"],
+  ["thaw the ice", "verb", "打破隔閡 / 使氣氛融洽"],
+  ["social glue", "noun", "社交黏合劑 / 連繫人們的事物"],
+  ["get out of one's head", "verb", "停止困在自己的思緒中 / 暫時不再胡思亂想"],
+  ["Tree Sparrow", "noun", "樹麻雀"],
+  ["raptor", "noun", "猛禽"],
+  ["Scarlet Minivet", "noun", "赤紅山椒鳥"],
+  ["get one's head around", "verb", "理解 / 想明白"],
+  ["zero-hours contract", "noun", "零工時合約"],
+  ["compartmentalize", "verb", "把事情分開處理 / 分隔不同生活範疇"],
+  ["put one's feet up", "verb", "休息 / 放鬆一下"]
+];
+
+mt86Paper1ReviewedExpectations.forEach(([word, pos, meaning]) => {
+  const entry = senseBank.lookup(word, { includeHidden: true, limit: 20 }).find((candidate) => (
+    candidate.source === "mock-unseen-mt86-paper1-reviewed"
+      && candidate.pos === pos
+      && candidate.meaning === meaning
+  ));
+  assert.ok(entry, `${word} should include MT86 Paper 1 reviewed sense ${pos}:${meaning}`);
+});
+
+assert.ok(
+  senseBank.lookup("Black-naped Terns").some((entry) => entry.display === "Black-naped Tern"),
+  "MT86 Paper 1 should support plural bird-name aliases"
+);
+
+assert.ok(
+  senseBank.lookup("get my head around").some((entry) => entry.display === "get one's head around"),
+  "MT86 Paper 1 should support possessive variants for get one's head around"
+);
+
+assert.ok(
+  senseBank.lookup("put your feet up").some((entry) => entry.display === "put one's feet up"),
+  "MT86 Paper 1 should support possessive variants for put one's feet up"
+);
+
 console.log("vocab_sense_bank tests passed");

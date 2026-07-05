@@ -420,6 +420,7 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt83-paper1-reviewed",
     "mock-unseen-mt84-paper1-reviewed",
     "mock-unseen-mt85-paper1-reviewed",
+    "mock-unseen-mt86-paper1-reviewed",
     "mock-unseen-mt39-paper1-reviewed",
     "mock-unseen-mt40-paper1-reviewed",
     "mock-unseen-mt41-paper1-reviewed",
@@ -14403,7 +14404,15 @@ function assertStudentLookupContract(word, matches) {
     ["not a bed of roses", "no bed of roses:phrase:adjective:並不容易 / 並非一帆風順:mock-unseen-mt82-paper1-reviewed"],
     ["what makes them tick", "what makes someone tick:phrase:noun:某人的動機 / 某人的想法:mock-unseen-mt85-paper1-reviewed"],
     ["float your boat", "float one's boat:phrase:verb:令某人感興趣 / 合某人口味:mock-unseen-mt85-paper1-reviewed"],
-    ["sucked it up", "suck it up:phrase:verb:忍住 / 接受現實:mock-unseen-mt85-paper1-reviewed"]
+    ["sucked it up", "suck it up:phrase:verb:忍住 / 接受現實:mock-unseen-mt85-paper1-reviewed"],
+    ["thaw the ice", "thaw the ice:phrase:verb:打破隔閡 / 使氣氛融洽:mock-unseen-mt86-paper1-reviewed"],
+    ["get out of your head", "get out of one's head:phrase:verb:停止困在自己的思緒中 / 暫時不再胡思亂想:mock-unseen-mt86-paper1-reviewed"],
+    ["Magpie Robins", "Magpie Robin:phrase:noun:鵲鴝:mock-unseen-mt86-paper1-reviewed"],
+    ["get my head around", "get one's head around:phrase:verb:理解 / 想明白:mock-unseen-mt86-paper1-reviewed"],
+    ["squirrels away", "squirrel away:phrase:verb:偷偷儲起 / 存起來:mock-unseen-mt86-paper1-reviewed"],
+    ["zero hours contract", "zero-hours contract:phrase:noun:零工時合約:mock-unseen-mt86-paper1-reviewed"],
+    ["compartmentalising", "compartmentalize:word:verb:把事情分開處理 / 分隔不同生活範疇:mock-unseen-mt86-paper1-reviewed"],
+    ["put your feet up", "put one's feet up:phrase:verb:休息 / 放鬆一下:mock-unseen-mt86-paper1-reviewed"]
   ]) {
     const [entry] = await lookupForStudent(word);
     assert.ok(entry, `${word} should be available through placeholder lookup`);
