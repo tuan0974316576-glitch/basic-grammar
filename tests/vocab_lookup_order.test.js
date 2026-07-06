@@ -429,6 +429,8 @@ function assertStudentLookupContract(word, matches) {
     "mock-unseen-mt41-paper1-reviewed",
     "mock-unseen-mt43-paper1-reviewed",
     "mock-unseen-mt44-paper1-reviewed",
+    "phrase-component-audit-reviewed",
+    "edge-extra-mock-reviewed",
     "verb-table-form",
     "cc-cedict-supplement"
   ]);

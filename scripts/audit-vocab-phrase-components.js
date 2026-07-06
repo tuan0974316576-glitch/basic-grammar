@@ -32,7 +32,7 @@ instagram facebook tiktok youtube whatsapp google microsoft netflix disney oxfor
 `.trim().split(/\s+/));
 
 const REVIEWED_NO_STANDALONE_COMPONENTS = new Set(`
-australis aye bhaji bigos bikeconnect billy bluesman bonnie borealis borscht brainer budgie callosum chad chang'e chit crawly dace earther fennec haute hen homer jollof katana keto korma lass lupus mariachi mecca mein merrier mod moss mystic natal nebular nil noughties obscura palimony petri piste pleaser poui rendang rib riff rocker rotisserie runt scrofa scrum sepak shorthair sledgehammer sod takraw tamarin terracotta terrier tiffin toed tracksuit tranquilizer tripper tufted tunic wasteberg whalebone wheeler wracking yuck
+australis aye bhaji bigos bikeconnect billy bluesman bonnie borealis borscht brainer budgie callosum carte chad chang'e chek chit crawly dace earther fennec haute hen homer jollof katana keto korma lass louas lupus mariachi mecca mein merrier mod moss mystic natal nebular nil noughties obscura palimony petri piste pleaser poui rendang rib riff rocker rotisserie runt scrofa scrum sepak shorthair shung sledgehammer sod takraw tamarin terracotta terrier thon tiffin toed toilette tracksuit tranquilizer tripper tufted tunic wasteberg whalebone wheeler wracking yuck
 `.trim().split(/\s+/));
 
 const SOURCE_ALLOWLIST_FOR_EXCLUDED_PROPER_PARTS = [
@@ -109,8 +109,17 @@ function getLookupVariants(component) {
     variants.add(`${component.slice(0, -3)}e`);
   }
   if (component.endsWith("ed") && component.length > 4) {
-    variants.add(component.slice(0, -2));
+    const base = component.slice(0, -2);
+    variants.add(base);
     variants.add(component.slice(0, -1));
+    if (/([a-z])\1$/.test(base)) variants.add(base.slice(0, -1));
+  }
+  if (component.endsWith("est") && component.length > 5) {
+    const base = component.slice(0, -3);
+    variants.add(base);
+    variants.add(`${base}e`);
+    if (/([a-z])\1$/.test(base)) variants.add(base.slice(0, -1));
+    if (component.endsWith("iest")) variants.add(`${component.slice(0, -4)}y`);
   }
   return Array.from(variants).filter(Boolean);
 }
