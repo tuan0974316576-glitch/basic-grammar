@@ -61,6 +61,7 @@ const BEST_STREAK_KEY = "basic_grammar_best_streak_v1";
 const STUDY_STREAK_KEY = "basic_grammar_study_streak_v1";
 const STREAK_MODAL_DISMISSED_KEY = "basic_grammar_streak_modal_dismissed_v1";
 const STUDENT_PROFILE_KEY = "basic_grammar_student_profile_v1";
+const STUDENT_DEVICE_SESSION_KEY = "basic_grammar_student_device_session_v1";
 const STUDENT_PROGRESS_SYNC_KEY = "basic_grammar_progress_sync_queue_v1";
 const STUDENT_LOGIN_GRACE_MS = 3500;
 const VOCAB_ITEMS_KEY = "basic_vocab_items_v1";
@@ -268,6 +269,7 @@ let teacherLiveVocabFilter = "";
 let teacherLiveVocabEditingEntryId = "";
 let vocabQuizState = null;
 let studentLoginGraceTimer = 0;
+let studentDeviceLoginPromise = null;
 let studentAuthState = {
   resolved: false,
   available: false,
@@ -633,6 +635,46 @@ function saveStudentProfile(profile) {
     }
   } catch (_error) {
     // Login still works during the current session.
+  }
+}
+
+function getSavedStudentDeviceSession() {
+  try {
+    const saved = safeJsonParse(localStorage.getItem(STUDENT_DEVICE_SESSION_KEY), null);
+    if (!saved?.studentId || !saved?.sessionId || !saved?.token) return null;
+    if (saved.expiresAt && Number(saved.expiresAt) < Date.now()) {
+      clearSavedStudentDeviceSession();
+      return null;
+    }
+    return saved;
+  } catch (_error) {
+    return null;
+  }
+}
+
+function saveStudentDeviceSession(session) {
+  try {
+    if (session?.studentId && session?.sessionId && session?.token) {
+      localStorage.setItem(STUDENT_DEVICE_SESSION_KEY, JSON.stringify({
+        studentId: String(session.studentId).trim().toUpperCase(),
+        sessionId: session.sessionId,
+        token: session.token,
+        expiresAt: Number(session.expiresAt) || 0,
+        savedAt: Date.now()
+      }));
+    } else {
+      localStorage.removeItem(STUDENT_DEVICE_SESSION_KEY);
+    }
+  } catch (_error) {
+    // The student can still log in manually.
+  }
+}
+
+function clearSavedStudentDeviceSession() {
+  try {
+    localStorage.removeItem(STUDENT_DEVICE_SESSION_KEY);
+  } catch (_error) {
+    // Nothing else to clear.
   }
 }
 
@@ -1980,6 +2022,20 @@ function applyStudentAuthState(patch = {}) {
     void syncStudentCloudProgress();
     void syncStudentVocabCloud();
     queueSavedVocabAudioDownloads();
+  } else if (
+    studentAuthState.available
+    && studentAuthState.profile
+    && getSavedStudentDeviceSession()
+    && !studentDeviceLoginPromise
+  ) {
+    studentDeviceLoginPromise = tryStudentDeviceLogin()
+      .catch((error) => {
+        console.warn("Saved student device login restore failed:", error);
+        return false;
+      })
+      .finally(() => {
+        studentDeviceLoginPromise = null;
+      });
   }
 }
 
@@ -1987,6 +2043,65 @@ window.applyStudentAuthState = applyStudentAuthState;
 
 function getFirebaseBundle() {
   return window.grammarFirebase || null;
+}
+
+async function tryStudentDeviceLogin() {
+  if (studentAuthState.authenticated) return false;
+  const firebase = getFirebaseBundle();
+  const savedSession = getSavedStudentDeviceSession();
+  if (!firebase || !studentAuthState.available || !savedSession) return false;
+
+  try {
+    const { httpsCallable, signInWithCustomToken } = firebase.modules;
+    if (!httpsCallable || !signInWithCustomToken) return false;
+    if (studentLoginGraceTimer) {
+      clearTimeout(studentLoginGraceTimer);
+      studentLoginGraceTimer = 0;
+    }
+    setStudentLoginStatus("正在自動登入...", "loading");
+    const studentDeviceLogin = httpsCallable(firebase.functions, "studentDeviceLogin");
+    const result = await studentDeviceLogin({
+      studentId: savedSession.studentId,
+      sessionId: savedSession.sessionId,
+      token: savedSession.token
+    });
+    const data = result?.data || {};
+    if (!data.customToken) throw new Error("Missing device login token.");
+    const credential = await signInWithCustomToken(firebase.auth, data.customToken);
+    const profile = {
+      uid: credential.user.uid,
+      studentId: data.studentId || savedSession.studentId,
+      displayName: data.displayName || data.studentId || savedSession.studentId,
+      classId: data.classId || "",
+      role: data.role === "teacher" ? "teacher" : "student",
+      lastLoginAt: Date.now()
+    };
+    studentAuthState.profile = profile;
+    saveStudentProfile(profile);
+    applyStudentAuthState({
+      resolved: true,
+      available: true,
+      authenticated: true,
+      user: {
+        uid: credential.user.uid,
+        displayName: profile.displayName,
+        isAnonymous: false,
+        role: profile.role
+      },
+      profile
+    });
+    setStudentLoginStatus("已自動登入。", "success");
+    return true;
+  } catch (error) {
+    console.warn("Saved student device login failed:", error);
+    clearSavedStudentDeviceSession();
+    applyStudentAuthState({
+      resolved: true,
+      restoringSavedProfile: false,
+      forceLoginGate: true
+    });
+    return false;
+  }
 }
 
 async function loginWithStudentPin() {
@@ -2033,6 +2148,10 @@ async function loginWithStudentPin() {
 
     studentAuthState.profile = profile;
     saveStudentProfile(profile);
+    saveStudentDeviceSession({
+      ...(data.deviceSession || {}),
+      studentId: profile.studentId
+    });
     await setDoc(doc(firebase.db, "users", credential.user.uid), {
       studentId: profile.studentId,
       displayName: profile.displayName,
@@ -2089,6 +2208,7 @@ async function logoutStudent() {
     studentLoginGraceTimer = 0;
   }
   saveStudentProfile(null);
+  clearSavedStudentDeviceSession();
   syncAccountWidget();
   setStudentLoginStatus("已登出。");
   closeSettings();

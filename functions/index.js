@@ -34,6 +34,7 @@ const GEMINI_EXAMPLE_LIMIT = 3;
 const GEMINI_API_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta";
 const BATTLESHIP_FIREBASE_PROJECT_ID = "battleship-game-c0909";
 const BATTLESHIP_SHARED_VOCAB_UID_PREFIX = "battleship_";
+const STUDENT_DEVICE_SESSION_TTL_DAYS = 180;
 
 const CURATED_VOCAB_MEANINGS = new Map([
   ["have", [
@@ -254,6 +255,55 @@ function hashPin(pin, salt) {
   return crypto
     .pbkdf2Sync(String(pin), String(salt), 120000, 32, "sha256")
     .toString("hex");
+}
+
+function hashDeviceToken(token) {
+  return crypto
+    .createHash("sha256")
+    .update(String(token || ""))
+    .digest("hex");
+}
+
+function makeDeviceSessionExpiry() {
+  return admin.firestore.Timestamp.fromMillis(Date.now() + STUDENT_DEVICE_SESSION_TTL_DAYS * 24 * 60 * 60 * 1000);
+}
+
+async function ensureStudentAuthUser({ uid, email, password, displayName }) {
+  await admin.auth().updateUser(uid, {
+    email,
+    password,
+    displayName
+  }).catch(async (error) => {
+    if (error?.code !== "auth/user-not-found") throw error;
+    await admin.auth().createUser({
+      uid,
+      email,
+      password,
+      displayName
+    });
+  });
+}
+
+async function createStudentDeviceSession(accountRef, { uid, studentId, classId, role }) {
+  const sessionId = crypto.randomBytes(16).toString("hex");
+  const token = crypto.randomBytes(32).toString("base64url");
+  const expiresAt = makeDeviceSessionExpiry();
+  await accountRef.collection("deviceSessions").doc(sessionId).set({
+    uid,
+    studentId,
+    classId,
+    role,
+    tokenHash: hashDeviceToken(token),
+    createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    lastUsedAt: admin.firestore.FieldValue.serverTimestamp(),
+    expiresAt,
+    revoked: false
+  });
+  return {
+    sessionId,
+    token,
+    expiresAt: expiresAt.toMillis()
+  };
 }
 
 function isLikelyWordOrPhrase(value) {
@@ -1347,18 +1397,11 @@ exports.studentLogin = onCall({
   const email = account.email || makeStudentEmail(studentId);
   const authPassword = makeStudentPassword(studentId, pin, salt);
 
-  await admin.auth().updateUser(uid, {
+  await ensureStudentAuthUser({
+    uid,
     email,
     password: authPassword,
     displayName
-  }).catch(async (error) => {
-    if (error?.code !== "auth/user-not-found") throw error;
-    await admin.auth().createUser({
-      uid,
-      email,
-      password: authPassword,
-      displayName
-    });
   });
 
   await admin.auth().setCustomUserClaims(uid, {
@@ -1385,9 +1428,95 @@ exports.studentLogin = onCall({
     lastLoginAt: admin.firestore.FieldValue.serverTimestamp()
   }, { merge: true });
 
+  const deviceSession = await createStudentDeviceSession(accountRef, {
+    uid,
+    studentId,
+    classId,
+    role
+  });
+
   return {
     email,
     authPassword,
+    deviceSession,
+    studentId,
+    displayName,
+    classId,
+    role
+  };
+});
+
+exports.studentDeviceLogin = onCall({
+  invoker: "public"
+}, async (request) => {
+  const studentId = normalizeStudentId(request.data?.studentId);
+  const sessionId = String(request.data?.sessionId || "").trim();
+  const token = String(request.data?.token || "").trim();
+
+  if (!studentId || !/^[A-Z0-9_-]{2,16}$/.test(studentId)) {
+    throw new HttpsError("invalid-argument", "Invalid student ID.");
+  }
+  if (!/^[a-f0-9]{32}$/.test(sessionId) || token.length < 32) {
+    throw new HttpsError("invalid-argument", "Invalid device session.");
+  }
+
+  const accountRef = db.collection("studentAccounts").doc(studentId);
+  const [accountSnapshot, sessionSnapshot] = await Promise.all([
+    accountRef.get(),
+    accountRef.collection("deviceSessions").doc(sessionId).get()
+  ]);
+
+  if (!accountSnapshot.exists || !sessionSnapshot.exists) {
+    throw new HttpsError("unauthenticated", "Saved login not found.");
+  }
+
+  const account = accountSnapshot.data() || {};
+  if (account.disabled) {
+    throw new HttpsError("permission-denied", "Student account is disabled.");
+  }
+
+  const session = sessionSnapshot.data() || {};
+  const expectedHash = String(session.tokenHash || "");
+  const actualHash = hashDeviceToken(token);
+  const tokenMatches = expectedHash
+    && actualHash.length === expectedHash.length
+    && crypto.timingSafeEqual(Buffer.from(actualHash), Buffer.from(expectedHash));
+  const expiresAt = session.expiresAt?.toMillis ? session.expiresAt.toMillis() : 0;
+  if (!tokenMatches || session.revoked || (expiresAt && expiresAt < Date.now())) {
+    throw new HttpsError("unauthenticated", "Saved login expired.");
+  }
+
+  const uid = account.uid || session.uid || `student_${studentId.toLowerCase()}`;
+  const displayName = account.displayName || studentId;
+  const classId = account.classId || session.classId || "";
+  const role = account.role === "teacher" ? "teacher" : "student";
+
+  await admin.auth().setCustomUserClaims(uid, {
+    role,
+    studentId,
+    classId
+  });
+
+  await accountRef.collection("deviceSessions").doc(sessionId).set({
+    lastUsedAt: admin.firestore.FieldValue.serverTimestamp()
+  }, { merge: true });
+
+  await db.collection("users").doc(uid).set({
+    studentId,
+    displayName,
+    classId,
+    role,
+    lastLoginAt: admin.firestore.FieldValue.serverTimestamp()
+  }, { merge: true });
+
+  const customToken = await admin.auth().createCustomToken(uid, {
+    role,
+    studentId,
+    classId
+  });
+
+  return {
+    customToken,
     studentId,
     displayName,
     classId,
