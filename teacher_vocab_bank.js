@@ -17318,8 +17318,9 @@
       "id": "dip-any-entry-1649",
       "word": "dip",
       "display": "dip",
-      "meaning": "跌一跌",
-      "pos": "",
+      "meaning": "下降 / 蘸",
+      "pos": "verb",
+      "level": "C1",
       "type": "word",
       "needsReview": false,
       "sourceCount": 1

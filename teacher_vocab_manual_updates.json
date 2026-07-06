@@ -473,6 +473,7 @@
     { "word": "detail", "meaning": "詳細說明", "pos": "verb" },
     { "word": "detrimental to", "meaning": "對...有害", "type": "phrase", "replaceType": true },
     { "word": "develop", "meaning": "發展 / 患上", "pos": "verb", "replaceType": true },
+    { "word": "dip", "meaning": "下降 / 蘸", "pos": "verb", "replaceType": true, "notes": "cleaned old vague teacher-bank meaning 跌一跌; noun 蘸醬 remains a separate sense" },
     { "word": "diligent", "meaning": "勤奮的", "pos": "adjective", "replaceType": true },
     { "word": "disapprove", "meaning": "不贊成", "pos": "verb" },
     { "word": "disapprove of", "meaning": "反對 / 不贊成", "type": "phrase", "replaceType": true },
