@@ -5,7 +5,7 @@
   root.TEACHER_VOCAB_BANK = bank;
 })(typeof globalThis !== "undefined" ? globalThis : window, {
   "meta": {
-    "generatedAt": "2026-06-28T10:54:14.925Z",
+    "generatedAt": "2026-07-06T21:23:10.772Z",
     "sourceFiles": [
       {
         "name": "Randomisable Vocab Test.xlsx",
@@ -29376,11 +29376,15 @@
     {
       "id": "have-been-ving-pattern-entry-2764",
       "word": "have been ving",
-      "display": "have been ving",
+      "display": "have been V-ing",
       "meaning": "一直在...",
       "pos": "pattern",
       "type": "pattern",
       "needsReview": false,
+      "aliases": [
+        "have been v-ing",
+        "have been doing"
+      ],
       "sourceCount": 1
     },
     {
