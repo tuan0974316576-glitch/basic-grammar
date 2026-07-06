@@ -231,8 +231,9 @@ function loadCuratedEntries() {
   [senseBankPath, ccCedictPath].forEach((filePath) => {
     delete require.cache[require.resolve(filePath)];
     const bank = require(filePath);
-    if (Array.isArray(bank.entries)) {
-      entries.push(...bank.entries);
+    const reviewedEntries = Array.isArray(bank.cleanEntries) ? bank.cleanEntries : bank.entries;
+    if (Array.isArray(reviewedEntries)) {
+      entries.push(...reviewedEntries);
     }
   });
   return entries;

@@ -5,6 +5,8 @@ delete require.cache[require.resolve("../grammar_verb_table_data.js")];
 require("../grammar_verb_table_data.js");
 delete require.cache[require.resolve("../vocab_sense_bank.js")];
 const senseBank = require("../vocab_sense_bank.js");
+const VocabExampleUtils = require("../vocab_example_utils.js");
+const vocabExampleSeed = require("../vocab_example_seed.js");
 
 const game = senseBank.lookup("game");
 assert.deepStrictEqual(
@@ -87,6 +89,34 @@ assert.ok(
 assert.ok(
   senseBank.lookup("bouncer").some((entry) => entry.meaning === "嬰兒彈椅 / 彈跳椅"),
   "component lookup should find bouncer"
+);
+
+const visibleExactSenseKeys = new Set();
+(senseBank.cleanEntries || senseBank.entries).filter((entry) => !entry.hidden).forEach((entry) => {
+  const key = [entry.word, entry.type, entry.pos, senseBank.normalizeMeaning(entry.meaning)].join("|");
+  assert.ok(!visibleExactSenseKeys.has(key), `duplicate visible vocab sense should be merged: ${key}`);
+  visibleExactSenseKeys.add(key);
+});
+
+assert.deepStrictEqual(
+  senseBank.lookup("chances are", { limit: 20 }).map((entry) => `${entry.type}:${entry.pos}:${entry.meaning}`),
+  ["phrase:adverb:很可能"],
+  "chances are should not show duplicate same-meaning choices"
+);
+
+const floraEntry = senseBank.lookup("flora and fauna")[0];
+assert.ok(floraEntry, "flora and fauna should be in the reviewed sense bank");
+const floraSeedKey = VocabExampleUtils.getLocalCacheKey(floraEntry.word, [{
+  meaning: floraEntry.meaning,
+  pos: floraEntry.pos,
+  type: floraEntry.type,
+  level: floraEntry.level
+}]);
+assert.strictEqual(floraSeedKey, "flora and fauna|1atgoxn");
+assert.strictEqual(
+  vocabExampleSeed.entries[floraSeedKey]?.examples?.length,
+  3,
+  "flora and fauna should have bundled examples"
 );
 
 const reviewedPhraseComponents = [
