@@ -48,7 +48,6 @@
       const key = [
         getDedupedWord(entry, options),
         getEntryPos(entry, options),
-        String(entry.type || "").trim().toLowerCase(),
         getMeaningGroupKey(entry, options)
       ].join("|");
       if (seen.has(key)) return false;

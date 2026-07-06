@@ -229,6 +229,41 @@
     return false;
   }
 
+  async function getPlaybackSource(word, options = {}) {
+    const kind = options.kind === "example" ? "example" : "word";
+    const key = getCacheKey(word, { kind });
+    if (!key) return null;
+
+    const staticUrl = getStaticAudioUrl(key, { kind });
+    if (staticUrl) {
+      return {
+        url: staticUrl,
+        kind,
+        source: "bundle",
+        cached: true
+      };
+    }
+
+    let cached = await getCachedRecord(key, { kind });
+    if (!cached?.blob && options.ensure !== false) {
+      const result = await ensureAudio(word, { force: options.forceEnsure === true, kind });
+      if (result?.status === "ready") {
+        cached = await getCachedRecord(key, { kind });
+      }
+    }
+
+    if (!cached?.blob) return null;
+    return {
+      url: String(cached.playbackUrl || "").trim(),
+      blob: cached.blob,
+      kind,
+      source: cached.source || "cache",
+      cached: true,
+      audioId: cached.audioId || "",
+      storagePath: cached.storagePath || ""
+    };
+  }
+
   function isLikelyEnglishWordOrPhrase(word) {
     const text = getCacheKey(word);
     return Boolean(text && /^[a-z][a-z' -]{0,60}$/.test(text) && !/ {2,}|--|''/.test(text));
@@ -430,6 +465,7 @@
     ensureAudio,
     getCacheKey,
     getStaticAudioUrl,
+    getPlaybackSource,
     hasAudio,
     hasCachedAudio,
     hasStaticAudio,
