@@ -5,7 +5,7 @@
   root.TEACHER_VOCAB_BANK = bank;
 })(typeof globalThis !== "undefined" ? globalThis : window, {
   "meta": {
-    "generatedAt": "2026-07-06T21:23:10.772Z",
+    "generatedAt": "2026-07-07T11:15:26.375Z",
     "sourceFiles": [
       {
         "name": "Randomisable Vocab Test.xlsx",
@@ -17,7 +17,7 @@
     "updateFiles": [
       {
         "name": "teacher_vocab_manual_updates.json",
-        "rawEntryCount": 4457
+        "rawEntryCount": 4459
       }
     ],
     "entryCount": 6490,
@@ -17315,12 +17315,11 @@
       "sourceCount": 1
     },
     {
-      "id": "dip-any-entry-1649",
+      "id": "dip-verb-entry-1649",
       "word": "dip",
       "display": "dip",
       "meaning": "下降 / 蘸",
       "pos": "verb",
-      "level": "C1",
       "type": "word",
       "needsReview": false,
       "sourceCount": 1
@@ -61734,20 +61733,17 @@
       "sourceCount": 1
     },
     {
-      "id": "terrestrial-any-entry-5790",
+      "id": "terrestrial-adjective-entry-6490",
       "word": "terrestrial",
       "display": "terrestrial",
-      "meaning": "地球的",
-      "pos": "",
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning",
+      "meaning": "陸地的 / 陸生的",
+      "pos": "adjective",
       "type": "word",
       "needsReview": false,
       "sourceCount": 1
     },
     {
-      "id": "terrible-any-entry-5791",
+      "id": "terrible-any-entry-5790",
       "word": "terrible",
       "display": "terrible",
       "meaning": "可怕的",
@@ -61760,7 +61756,7 @@
       "sourceCount": 1
     },
     {
-      "id": "terrible-any-entry-5792",
+      "id": "terrible-any-entry-5791",
       "word": "terrible",
       "display": "terrible",
       "meaning": "差到可怕",
@@ -61773,7 +61769,7 @@
       "sourceCount": 1
     },
     {
-      "id": "terrific-adjective-entry-5793",
+      "id": "terrific-adjective-entry-5792",
       "word": "terrific",
       "display": "terrific",
       "meaning": "極好的",
@@ -61783,7 +61779,7 @@
       "sourceCount": 1
     },
     {
-      "id": "terroir-noun-entry-5794",
+      "id": "terroir-noun-entry-5793",
       "word": "terroir",
       "display": "terroir",
       "meaning": "風土 / 產地特色",
@@ -61793,7 +61789,7 @@
       "sourceCount": 1
     },
     {
-      "id": "terror-any-entry-5795",
+      "id": "terror-any-entry-5794",
       "word": "terror",
       "display": "terror",
       "meaning": "恐懼",
@@ -61806,7 +61802,7 @@
       "sourceCount": 1
     },
     {
-      "id": "terrorist-any-entry-5796",
+      "id": "terrorist-any-entry-5795",
       "word": "terrorist",
       "display": "terrorist",
       "meaning": "恐怖份子",
@@ -61819,7 +61815,7 @@
       "sourceCount": 1
     },
     {
-      "id": "terrorist-any-entry-5797",
+      "id": "terrorist-any-entry-5796",
       "word": "terrorist",
       "display": "terrorist",
       "meaning": "恐怖分子",
@@ -61832,7 +61828,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tertiary-institution-noun-entry-5798",
+      "id": "tertiary-institution-noun-entry-5797",
       "word": "tertiary institution",
       "display": "tertiary institution",
       "meaning": "專上院校",
@@ -61842,7 +61838,7 @@
       "sourceCount": 1
     },
     {
-      "id": "textile-noun-entry-5799",
+      "id": "textile-noun-entry-5798",
       "word": "textile",
       "display": "textile",
       "meaning": "紡織品 / 織物",
@@ -61852,7 +61848,7 @@
       "sourceCount": 1
     },
     {
-      "id": "textile-adjective-entry-5800",
+      "id": "textile-adjective-entry-5799",
       "word": "textile",
       "display": "textile",
       "meaning": "紡織的",
@@ -61862,7 +61858,7 @@
       "sourceCount": 1
     },
     {
-      "id": "texture-noun-entry-5801",
+      "id": "texture-noun-entry-5800",
       "word": "texture",
       "display": "texture",
       "meaning": "質感",
@@ -61872,7 +61868,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thai-any-entry-5802",
+      "id": "thai-any-entry-5801",
       "word": "thai",
       "display": "Thai x2",
       "meaning": "泰國的",
@@ -61885,7 +61881,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thai-any-entry-5803",
+      "id": "thai-any-entry-5802",
       "word": "thai",
       "display": "Thai x2",
       "meaning": "泰文",
@@ -61895,7 +61891,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thailand-noun-entry-5804",
+      "id": "thailand-noun-entry-5803",
       "word": "thailand",
       "display": "Thailand",
       "meaning": "泰國",
@@ -61905,7 +61901,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thankfully-any-entry-5805",
+      "id": "thankfully-any-entry-5804",
       "word": "thankfully",
       "display": "thankfully",
       "meaning": "幸運地",
@@ -61918,7 +61914,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thankfully-any-entry-5806",
+      "id": "thankfully-any-entry-5805",
       "word": "thankfully",
       "display": "Thankfully",
       "meaning": "感恩地",
@@ -61931,7 +61927,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thanks-to-preposition-entry-5807",
+      "id": "thanks-to-preposition-entry-5806",
       "word": "thanks to",
       "display": "thanks to",
       "meaning": "因為 / 幸虧",
@@ -61941,7 +61937,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thanks-to-phrase-entry-5808",
+      "id": "thanks-to-phrase-entry-5807",
       "word": "thanks to",
       "display": "thanks to",
       "meaning": "幸虧 / 由於",
@@ -61951,7 +61947,7 @@
       "sourceCount": 1
     },
     {
-      "id": "that-being-said-adverb-entry-5809",
+      "id": "that-being-said-adverb-entry-5808",
       "word": "that being said",
       "display": "that being said",
       "meaning": "話雖如此",
@@ -61961,7 +61957,7 @@
       "sourceCount": 1
     },
     {
-      "id": "that-is-to-say-adverb-entry-5810",
+      "id": "that-is-to-say-adverb-entry-5809",
       "word": "that is to say",
       "display": "that is to say",
       "meaning": "也就是說",
@@ -61971,7 +61967,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-industry-pattern-entry-5811",
+      "id": "the-industry-pattern-entry-5810",
       "word": "the ... industry",
       "display": "the ... industry",
       "meaning": "...行業",
@@ -61981,7 +61977,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-industry-any-entry-5812",
+      "id": "the-industry-any-entry-5811",
       "word": "the ... industry",
       "display": "the ... industry",
       "meaning": "...業",
@@ -61991,7 +61987,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-1920s-noun-1920-5813",
+      "id": "the-1920s-noun-1920-5812",
       "word": "the 1920s",
       "display": "the 1920s",
       "meaning": "1920年代",
@@ -62001,7 +61997,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-20th-century-noun-entry-5814",
+      "id": "the-20th-century-noun-entry-5813",
       "word": "the 20th century",
       "display": "the 20th century",
       "meaning": "二十世紀",
@@ -62011,7 +62007,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-advent-of-noun-entry-5815",
+      "id": "the-advent-of-noun-entry-5814",
       "word": "the advent of",
       "display": "the advent of",
       "meaning": "...的出現 / 來臨",
@@ -62021,7 +62017,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-advent-of-phrase-entry-5816",
+      "id": "the-advent-of-phrase-entry-5815",
       "word": "the advent of",
       "display": "the advent of",
       "meaning": "...的出現 / 到來",
@@ -62031,7 +62027,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-amount-of-phrase-entry-5817",
+      "id": "the-amount-of-phrase-entry-5816",
       "word": "the amount of",
       "display": "the amount of",
       "meaning": "...的數量（不可數名詞）",
@@ -62041,7 +62037,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-appearance-of-noun-entry-5818",
+      "id": "the-appearance-of-noun-entry-5817",
       "word": "the appearance of",
       "display": "the appearance of",
       "meaning": "...的出現",
@@ -62051,7 +62047,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-authorities-noun-entry-5819",
+      "id": "the-authorities-noun-entry-5818",
       "word": "the authorities",
       "display": "the authorities",
       "meaning": "當局",
@@ -62061,7 +62057,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-authorities-concerned-noun-entry-5820",
+      "id": "the-authorities-concerned-noun-entry-5819",
       "word": "the authorities concerned",
       "display": "the authorities concerned",
       "meaning": "有關當局",
@@ -62071,7 +62067,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-authority-noun-entry-5821",
+      "id": "the-authority-noun-entry-5820",
       "word": "the authority",
       "display": "the authority",
       "meaning": "當局",
@@ -62081,7 +62077,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-authority-concerned-noun-entry-5822",
+      "id": "the-authority-concerned-noun-entry-5821",
       "word": "the authority concerned",
       "display": "the authority concerned",
       "meaning": "有關當局",
@@ -62091,7 +62087,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-catering-industry-noun-entry-5823",
+      "id": "the-catering-industry-noun-entry-5822",
       "word": "the catering industry",
       "display": "the catering industry",
       "meaning": "飲食業 / 餐飲業",
@@ -62101,7 +62097,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-cause-of-noun-entry-5824",
+      "id": "the-cause-of-noun-entry-5823",
       "word": "the cause of",
       "display": "the cause of",
       "meaning": "...的原因",
@@ -62111,7 +62107,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-demand-for-noun-entry-5825",
+      "id": "the-demand-for-noun-entry-5824",
       "word": "the demand for",
       "display": "the demand for",
       "meaning": "對...的需求",
@@ -62121,7 +62117,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-demise-of-noun-entry-5826",
+      "id": "the-demise-of-noun-entry-5825",
       "word": "the demise of",
       "display": "the demise of",
       "meaning": "...的衰落",
@@ -62131,7 +62127,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-disadvantaged-noun-entry-5827",
+      "id": "the-disadvantaged-noun-entry-5826",
       "word": "the disadvantaged",
       "display": "the disadvantaged",
       "meaning": "弱勢社群 / 弱勢人士",
@@ -62141,7 +62137,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-elderly-noun-entry-5828",
+      "id": "the-elderly-noun-entry-5827",
       "word": "the elderly",
       "display": "the elderly",
       "meaning": "長者",
@@ -62151,7 +62147,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-emergence-of-phrase-entry-5829",
+      "id": "the-emergence-of-phrase-entry-5828",
       "word": "the emergence of",
       "display": "the emergence of",
       "meaning": "...的出現",
@@ -62161,7 +62157,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-emergence-of-noun-entry-5830",
+      "id": "the-emergence-of-noun-entry-5829",
       "word": "the emergence of",
       "display": "the emergence of",
       "meaning": "...的出現 / 興起",
@@ -62171,7 +62167,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-emergence-of-phrase-entry-5831",
+      "id": "the-emergence-of-phrase-entry-5830",
       "word": "the emergence of",
       "display": "the emergence of",
       "meaning": "...的出現 / 興起",
@@ -62181,7 +62177,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-fall-of-noun-entry-5832",
+      "id": "the-fall-of-noun-entry-5831",
       "word": "the fall of",
       "display": "the fall of",
       "meaning": "...的衰落 / 衰退",
@@ -62191,7 +62187,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-fall-of-any-entry-5833",
+      "id": "the-fall-of-any-entry-5832",
       "word": "the fall of",
       "display": "the fall of",
       "meaning": "...的衰退 / 下跌",
@@ -62201,7 +62197,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-foreseeable-future-noun-entry-5834",
+      "id": "the-foreseeable-future-noun-entry-5833",
       "word": "the foreseeable future",
       "display": "the foreseeable future",
       "meaning": "可見的將來",
@@ -62211,7 +62207,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-former-noun-entry-5835",
+      "id": "the-former-noun-entry-5834",
       "word": "the former",
       "display": "the former",
       "meaning": "前者",
@@ -62221,7 +62217,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-general-public-noun-entry-5836",
+      "id": "the-general-public-noun-entry-5835",
       "word": "the general public",
       "display": "the general public",
       "meaning": "大眾 / 公眾",
@@ -62231,7 +62227,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-grassroots-families-noun-entry-5837",
+      "id": "the-grassroots-families-noun-entry-5836",
       "word": "the grassroots families",
       "display": "the grassroots families",
       "meaning": "草根家庭",
@@ -62241,7 +62237,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-great-majority-of-phrase-entry-5838",
+      "id": "the-great-majority-of-phrase-entry-5837",
       "word": "the great majority of",
       "display": "the great majority of",
       "meaning": "絕大多數...",
@@ -62251,7 +62247,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-greater-bay-area-noun-entry-5839",
+      "id": "the-greater-bay-area-noun-entry-5838",
       "word": "the greater bay area",
       "display": "the Greater Bay Area",
       "meaning": "大灣區",
@@ -62261,7 +62257,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-hearing-impaired-noun-entry-5840",
+      "id": "the-hearing-impaired-noun-entry-5839",
       "word": "the hearing impaired",
       "display": "the hearing impaired",
       "meaning": "聽障人士",
@@ -62271,7 +62267,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-homeless-noun-entry-5841",
+      "id": "the-homeless-noun-entry-5840",
       "word": "the homeless",
       "display": "the homeless",
       "meaning": "無家可歸者",
@@ -62281,7 +62277,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-hustle-and-bustle-noun-entry-5842",
+      "id": "the-hustle-and-bustle-noun-entry-5841",
       "word": "the hustle and bustle",
       "display": "the hustle and bustle",
       "meaning": "繁囂 / 熙來攘往",
@@ -62291,7 +62287,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-influx-of-noun-entry-5843",
+      "id": "the-influx-of-noun-entry-5842",
       "word": "the influx of",
       "display": "the influx of",
       "meaning": "...的湧入",
@@ -62301,7 +62297,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-latter-noun-entry-5844",
+      "id": "the-latter-noun-entry-5843",
       "word": "the latter",
       "display": "the latter",
       "meaning": "後者",
@@ -62311,7 +62307,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-majority-of-phrase-entry-5845",
+      "id": "the-majority-of-phrase-entry-5844",
       "word": "the majority of",
       "display": "the majority of",
       "meaning": "大多數...",
@@ -62321,7 +62317,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-mentally-impaired-noun-entry-5846",
+      "id": "the-mentally-impaired-noun-entry-5845",
       "word": "the mentally impaired",
       "display": "the mentally impaired",
       "meaning": "智障人士",
@@ -62331,7 +62327,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-middle-class-noun-entry-5847",
+      "id": "the-middle-class-noun-entry-5846",
       "word": "the middle class",
       "display": "the middle class",
       "meaning": "中產階層",
@@ -62341,7 +62337,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-needy-noun-entry-5848",
+      "id": "the-needy-noun-entry-5847",
       "word": "the needy",
       "display": "the needy",
       "meaning": "貧困者 / 有需要人士",
@@ -62351,7 +62347,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-netherlands-noun-entry-5849",
+      "id": "the-netherlands-noun-entry-5848",
       "word": "the netherlands",
       "display": "the Netherlands",
       "meaning": "荷蘭",
@@ -62361,7 +62357,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-norm-noun-entry-5850",
+      "id": "the-norm-noun-entry-5849",
       "word": "the norm",
       "display": "the norm",
       "meaning": "常態",
@@ -62371,7 +62367,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-norm-any-entry-5851",
+      "id": "the-norm-any-entry-5850",
       "word": "the norm",
       "display": "the norm",
       "meaning": "常態 / 慣例",
@@ -62381,7 +62377,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-not-too-distant-future-noun-entry-5852",
+      "id": "the-not-too-distant-future-noun-entry-5851",
       "word": "the not too distant future",
       "display": "the not too distant future",
       "meaning": "在不久的將來",
@@ -62391,7 +62387,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-number-of-phrase-entry-5853",
+      "id": "the-number-of-phrase-entry-5852",
       "word": "the number of",
       "display": "the number of",
       "meaning": "...的數量",
@@ -62401,7 +62397,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-number-of-phrase-entry-5854",
+      "id": "the-number-of-phrase-entry-5853",
       "word": "the number of",
       "display": "the number of",
       "meaning": "...的數量（可數名詞）",
@@ -62411,7 +62407,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-odds-are-pattern-entry-5855",
+      "id": "the-odds-are-pattern-entry-5854",
       "word": "the odds are",
       "display": "the odds are",
       "meaning": "很可能",
@@ -62421,7 +62417,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-odds-are-any-entry-5856",
+      "id": "the-odds-are-any-entry-5855",
       "word": "the odds are",
       "display": "the odds are",
       "meaning": "好可能",
@@ -62431,7 +62427,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-odds-are-that-pattern-entry-5857",
+      "id": "the-odds-are-that-pattern-entry-5856",
       "word": "the odds are that",
       "display": "the odds are that",
       "meaning": "很可能...",
@@ -62441,7 +62437,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-odds-are-that-any-entry-5858",
+      "id": "the-odds-are-that-any-entry-5857",
       "word": "the odds are that",
       "display": "the odds are that",
       "meaning": "好可能...",
@@ -62451,7 +62447,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-outlying-island-noun-entry-5859",
+      "id": "the-outlying-island-noun-entry-5858",
       "word": "the outlying island",
       "display": "the outlying island",
       "meaning": "離島",
@@ -62461,7 +62457,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-physically-impaired-noun-entry-5860",
+      "id": "the-physically-impaired-noun-entry-5859",
       "word": "the physically impaired",
       "display": "the physically impaired",
       "meaning": "肢體傷殘人士",
@@ -62471,7 +62467,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-presence-of-noun-entry-5861",
+      "id": "the-presence-of-noun-entry-5860",
       "word": "the presence of",
       "display": "the presence of",
       "meaning": "...的存在",
@@ -62481,7 +62477,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-prevalence-of-noun-entry-5862",
+      "id": "the-prevalence-of-noun-entry-5861",
       "word": "the prevalence of",
       "display": "the prevalence of",
       "meaning": "...的普遍 / 盛行",
@@ -62491,7 +62487,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-proceeds-noun-entry-5863",
+      "id": "the-proceeds-noun-entry-5862",
       "word": "the proceeds",
       "display": "the proceeds",
       "meaning": "收益 / 款項",
@@ -62501,7 +62497,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-reason-for-phrase-entry-5864",
+      "id": "the-reason-for-phrase-entry-5863",
       "word": "the reason for",
       "display": "the reason for",
       "meaning": "...的原因（後接名詞）",
@@ -62511,7 +62507,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-reason-why-phrase-entry-5865",
+      "id": "the-reason-why-phrase-entry-5864",
       "word": "the reason why",
       "display": "the reason why",
       "meaning": "...的原因（後接句子）",
@@ -62521,7 +62517,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-regime-noun-entry-5866",
+      "id": "the-regime-noun-entry-5865",
       "word": "the regime",
       "display": "the regime",
       "meaning": "政權",
@@ -62531,7 +62527,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-rest-of-phrase-entry-5867",
+      "id": "the-rest-of-phrase-entry-5866",
       "word": "the rest of",
       "display": "the rest of",
       "meaning": "其餘的...",
@@ -62541,7 +62537,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-rise-of-noun-entry-5868",
+      "id": "the-rise-of-noun-entry-5867",
       "word": "the rise of",
       "display": "the rise of",
       "meaning": "...的興起",
@@ -62551,7 +62547,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-rise-of-any-entry-5869",
+      "id": "the-rise-of-any-entry-5868",
       "word": "the rise of",
       "display": "the rise of",
       "meaning": "...的興起 / 上升",
@@ -62561,7 +62557,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-rise-of-noun-entry-5870",
+      "id": "the-rise-of-noun-entry-5869",
       "word": "the rise of ...",
       "display": "the rise of ...",
       "meaning": "...的興起",
@@ -62571,7 +62567,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-safest-adjective-entry-5871",
+      "id": "the-safest-adjective-entry-5870",
       "word": "the safest",
       "display": "the safest",
       "meaning": "最安全的",
@@ -62581,7 +62577,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-same-adjective-entry-5872",
+      "id": "the-same-adjective-entry-5871",
       "word": "the same",
       "display": "the same",
       "meaning": "一樣的",
@@ -62591,7 +62587,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-sandwich-class-noun-entry-5873",
+      "id": "the-sandwich-class-noun-entry-5872",
       "word": "the sandwich class",
       "display": "the sandwich class",
       "meaning": "夾心階層",
@@ -62601,7 +62597,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-tip-of-the-iceberg-noun-entry-5874",
+      "id": "the-tip-of-the-iceberg-noun-entry-5873",
       "word": "the tip of the iceberg",
       "display": "the tip of the iceberg",
       "meaning": "冰山一角",
@@ -62611,7 +62607,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-uk-noun-entry-5875",
+      "id": "the-uk-noun-entry-5874",
       "word": "the uk",
       "display": "The UK",
       "meaning": "英國",
@@ -62621,7 +62617,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-underlying-reasons-noun-entry-5876",
+      "id": "the-underlying-reasons-noun-entry-5875",
       "word": "the underlying reasons",
       "display": "the underlying reasons",
       "meaning": "背後的原因",
@@ -62631,7 +62627,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-underprivileged-noun-entry-5877",
+      "id": "the-underprivileged-noun-entry-5876",
       "word": "the underprivileged",
       "display": "the underprivileged",
       "meaning": "弱勢社群 / 弱勢人士",
@@ -62641,7 +62637,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-upper-echelon-of-society-noun-entry-5878",
+      "id": "the-upper-echelon-of-society-noun-entry-5877",
       "word": "the upper echelon of society",
       "display": "the upper echelon of society",
       "meaning": "社會上流階層",
@@ -62651,7 +62647,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-upper-echelons-of-society-noun-entry-5879",
+      "id": "the-upper-echelons-of-society-noun-entry-5878",
       "word": "the upper echelons of society",
       "display": "the upper echelons of society",
       "meaning": "社會上流階層",
@@ -62661,7 +62657,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-us-noun-entry-5880",
+      "id": "the-us-noun-entry-5879",
       "word": "the us",
       "display": "The US",
       "meaning": "美國",
@@ -62671,7 +62667,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-vast-majority-of-phrase-entry-5881",
+      "id": "the-vast-majority-of-phrase-entry-5880",
       "word": "the vast majority of",
       "display": "the vast majority of",
       "meaning": "絕大多數...",
@@ -62681,7 +62677,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-visually-impaired-noun-entry-5882",
+      "id": "the-visually-impaired-noun-entry-5881",
       "word": "the visually impaired",
       "display": "the visually impaired",
       "meaning": "視障人士",
@@ -62691,7 +62687,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-widespread-use-of-noun-entry-5883",
+      "id": "the-widespread-use-of-noun-entry-5882",
       "word": "the widespread use of",
       "display": "the widespread use of",
       "meaning": "...的廣泛使用",
@@ -62701,7 +62697,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-worst-case-scenario-noun-entry-5884",
+      "id": "the-worst-case-scenario-noun-entry-5883",
       "word": "the worst case scenario",
       "display": "the worst case scenario",
       "meaning": "最壞的情況",
@@ -62711,7 +62707,7 @@
       "sourceCount": 1
     },
     {
-      "id": "the-concerned-pattern-entry-5885",
+      "id": "the-concerned-pattern-entry-5884",
       "word": "the 名詞 concerned",
       "display": "the 名詞 concerned",
       "meaning": "有關的...",
@@ -62721,7 +62717,7 @@
       "sourceCount": 1
     },
     {
-      "id": "theater-noun-entry-5886",
+      "id": "theater-noun-entry-5885",
       "word": "theater",
       "display": "theater",
       "meaning": "劇場 / 戲院",
@@ -62731,7 +62727,7 @@
       "sourceCount": 1
     },
     {
-      "id": "theatre-noun-entry-5887",
+      "id": "theatre-noun-entry-5886",
       "word": "theatre",
       "display": "theatre",
       "meaning": "劇場 / 戲院",
@@ -62741,7 +62737,7 @@
       "sourceCount": 1
     },
     {
-      "id": "theory-any-entry-5888",
+      "id": "theory-any-entry-5887",
       "word": "theory",
       "display": "theory",
       "meaning": "理論",
@@ -62751,7 +62747,7 @@
       "sourceCount": 1
     },
     {
-      "id": "therapy-any-entry-5889",
+      "id": "therapy-any-entry-5888",
       "word": "therapy",
       "display": "therapy",
       "meaning": "療程",
@@ -62761,7 +62757,7 @@
       "sourceCount": 1
     },
     {
-      "id": "there-are-pattern-entry-5890",
+      "id": "there-are-pattern-entry-5889",
       "word": "there are",
       "display": "there are",
       "meaning": "有（眾數）",
@@ -62771,7 +62767,7 @@
       "sourceCount": 1
     },
     {
-      "id": "there-are-any-entry-5891",
+      "id": "there-are-any-entry-5890",
       "word": "there are",
       "display": "there are",
       "meaning": "有",
@@ -62781,7 +62777,7 @@
       "sourceCount": 1
     },
     {
-      "id": "there-be-pattern-entry-5892",
+      "id": "there-be-pattern-entry-5891",
       "word": "there be",
       "display": "there be",
       "meaning": "有",
@@ -62791,7 +62787,7 @@
       "sourceCount": 1
     },
     {
-      "id": "there-be-any-entry-5893",
+      "id": "there-be-any-entry-5892",
       "word": "there be",
       "display": "there be",
       "meaning": "有",
@@ -62801,7 +62797,7 @@
       "sourceCount": 1
     },
     {
-      "id": "there-is-no-denying-that-pattern-entry-5894",
+      "id": "there-is-no-denying-that-pattern-entry-5893",
       "word": "there is no denying that",
       "display": "there is no denying that",
       "meaning": "無可否認的是...",
@@ -62811,7 +62807,7 @@
       "sourceCount": 1
     },
     {
-      "id": "there-is-no-denying-that-any-entry-5895",
+      "id": "there-is-no-denying-that-any-entry-5894",
       "word": "there is no denying that",
       "display": "there is no denying that",
       "meaning": "無可否認的是",
@@ -62821,7 +62817,7 @@
       "sourceCount": 1
     },
     {
-      "id": "there-is-no-doubt-that-pattern-entry-5896",
+      "id": "there-is-no-doubt-that-pattern-entry-5895",
       "word": "there is no doubt that",
       "display": "there is no doubt that",
       "meaning": "毫無疑問...",
@@ -62831,7 +62827,7 @@
       "sourceCount": 1
     },
     {
-      "id": "there-s-no-doubt-that-pattern-entry-5897",
+      "id": "there-s-no-doubt-that-pattern-entry-5896",
       "word": "there's no doubt that",
       "display": "there's no doubt that",
       "meaning": "毫無疑問...",
@@ -62841,7 +62837,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thereby-any-entry-5898",
+      "id": "thereby-any-entry-5897",
       "word": "thereby",
       "display": "thereby",
       "meaning": "從而",
@@ -62851,7 +62847,7 @@
       "sourceCount": 1
     },
     {
-      "id": "therefore-any-entry-5899",
+      "id": "therefore-any-entry-5898",
       "word": "therefore",
       "display": "therefore",
       "meaning": "因此",
@@ -62864,7 +62860,7 @@
       "sourceCount": 1
     },
     {
-      "id": "therefore-any-entry-5900",
+      "id": "therefore-any-entry-5899",
       "word": "therefore",
       "display": "therefore",
       "meaning": "所以",
@@ -62877,7 +62873,7 @@
       "sourceCount": 1
     },
     {
-      "id": "these-determiner-entry-5901",
+      "id": "these-determiner-entry-5900",
       "word": "these",
       "display": "these",
       "meaning": "這些",
@@ -62887,7 +62883,7 @@
       "sourceCount": 1
     },
     {
-      "id": "these-pronoun-entry-5902",
+      "id": "these-pronoun-entry-5901",
       "word": "these",
       "display": "these",
       "meaning": "這些",
@@ -62897,7 +62893,7 @@
       "sourceCount": 1
     },
     {
-      "id": "these-days-adverb-entry-5903",
+      "id": "these-days-adverb-entry-5902",
       "word": "these days",
       "display": "these days",
       "meaning": "現今 / 近來",
@@ -62907,7 +62903,7 @@
       "sourceCount": 1
     },
     {
-      "id": "think-any-entry-5904",
+      "id": "think-any-entry-5903",
       "word": "think",
       "display": "think",
       "meaning": "以為",
@@ -62917,7 +62913,7 @@
       "sourceCount": 1
     },
     {
-      "id": "think-any-entry-5905",
+      "id": "think-any-entry-5904",
       "word": "think",
       "display": "think",
       "meaning": "覺得(思考)",
@@ -62927,7 +62923,7 @@
       "sourceCount": 1
     },
     {
-      "id": "think-about-verb-entry-5906",
+      "id": "think-about-verb-entry-5905",
       "word": "think about",
       "display": "think about",
       "meaning": "思考 / 考慮",
@@ -62937,7 +62933,7 @@
       "sourceCount": 1
     },
     {
-      "id": "think-of-verb-entry-5907",
+      "id": "think-of-verb-entry-5906",
       "word": "think of",
       "display": "think of",
       "meaning": "想到 / 想出",
@@ -62947,7 +62943,7 @@
       "sourceCount": 1
     },
     {
-      "id": "think-twice-verb-entry-5908",
+      "id": "think-twice-verb-entry-5907",
       "word": "think twice",
       "display": "think twice",
       "meaning": "三思",
@@ -62957,7 +62953,7 @@
       "sourceCount": 1
     },
     {
-      "id": "this-determiner-entry-5909",
+      "id": "this-determiner-entry-5908",
       "word": "this",
       "display": "this",
       "meaning": "這個",
@@ -62967,7 +62963,7 @@
       "sourceCount": 1
     },
     {
-      "id": "this-pronoun-entry-5910",
+      "id": "this-pronoun-entry-5909",
       "word": "this",
       "display": "this",
       "meaning": "這個",
@@ -62977,7 +62973,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thorn-noun-entry-5911",
+      "id": "thorn-noun-entry-5910",
       "word": "thorn",
       "display": "thorn",
       "meaning": "刺 / 荊棘",
@@ -62987,7 +62983,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thorns-any-entry-5912",
+      "id": "thorns-any-entry-5911",
       "word": "thorns",
       "display": "thorns",
       "meaning": "荊棘",
@@ -62997,7 +62993,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thorny-adjective-entry-5913",
+      "id": "thorny-adjective-entry-5912",
       "word": "thorny",
       "display": "thorny",
       "meaning": "棘手的 / 多刺的",
@@ -63007,7 +63003,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thorough-adjective-entry-5914",
+      "id": "thorough-adjective-entry-5913",
       "word": "thorough",
       "display": "thorough",
       "meaning": "徹底的",
@@ -63017,7 +63013,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thoroughly-adverb-entry-5915",
+      "id": "thoroughly-adverb-entry-5914",
       "word": "thoroughly",
       "display": "thoroughly",
       "meaning": "徹底地",
@@ -63027,7 +63023,7 @@
       "sourceCount": 1
     },
     {
-      "id": "those-any-entry-5916",
+      "id": "those-any-entry-5915",
       "word": "those",
       "display": "those",
       "meaning": "的人",
@@ -63040,7 +63036,7 @@
       "sourceCount": 1
     },
     {
-      "id": "those-with-phrase-entry-5917",
+      "id": "those-with-phrase-entry-5916",
       "word": "those with",
       "display": "those with",
       "meaning": "有...的人",
@@ -63050,7 +63046,7 @@
       "sourceCount": 1
     },
     {
-      "id": "though-any-entry-5918",
+      "id": "though-any-entry-5917",
       "word": "though",
       "display": "though",
       "meaning": "雖然",
@@ -63063,7 +63059,7 @@
       "sourceCount": 1
     },
     {
-      "id": "though-any-entry-5919",
+      "id": "though-any-entry-5918",
       "word": "though",
       "display": "though",
       "meaning": "雖然 / 但是",
@@ -63076,7 +63072,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thought-any-entry-5920",
+      "id": "thought-any-entry-5919",
       "word": "thought",
       "display": "thought x3",
       "meaning": "以為",
@@ -63086,7 +63082,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thought-any-entry-5921",
+      "id": "thought-any-entry-5920",
       "word": "thought",
       "display": "thought x3",
       "meaning": "想",
@@ -63096,7 +63092,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thought-any-entry-5922",
+      "id": "thought-any-entry-5921",
       "word": "thought",
       "display": "thought x3",
       "meaning": "想法",
@@ -63109,7 +63105,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thought-any-entry-5923",
+      "id": "thought-any-entry-5922",
       "word": "thought",
       "display": "thought",
       "meaning": "想法 / 想的過去式",
@@ -63122,7 +63118,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thought-provoking-adjective-entry-5924",
+      "id": "thought-provoking-adjective-entry-5923",
       "word": "thought-provoking",
       "display": "thought-provoking",
       "meaning": "發人深省的 / 有啟發性的",
@@ -63132,7 +63128,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thoughts-any-entry-5925",
+      "id": "thoughts-any-entry-5924",
       "word": "thoughts",
       "display": "thoughts",
       "meaning": "想法",
@@ -63145,7 +63141,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thousand-year-egg-noun-entry-5926",
+      "id": "thousand-year-egg-noun-entry-5925",
       "word": "thousand-year egg",
       "display": "thousand-year egg",
       "meaning": "皮蛋",
@@ -63155,7 +63151,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thread-any-entry-5927",
+      "id": "thread-any-entry-5926",
       "word": "thread",
       "display": "thread x2",
       "meaning": "線",
@@ -63165,7 +63161,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thread-any-entry-5928",
+      "id": "thread-any-entry-5927",
       "word": "thread",
       "display": "thread x2",
       "meaning": "聯繫",
@@ -63175,7 +63171,7 @@
       "sourceCount": 1
     },
     {
-      "id": "threat-any-entry-5929",
+      "id": "threat-any-entry-5928",
       "word": "threat",
       "display": "threat",
       "meaning": "威脅",
@@ -63185,7 +63181,7 @@
       "sourceCount": 1
     },
     {
-      "id": "threaten-verb-entry-5930",
+      "id": "threaten-verb-entry-5929",
       "word": "threaten",
       "display": "threaten",
       "meaning": "威脅",
@@ -63195,7 +63191,7 @@
       "sourceCount": 1
     },
     {
-      "id": "threshold-any-entry-5931",
+      "id": "threshold-any-entry-5930",
       "word": "threshold",
       "display": "threshold",
       "meaning": "門檻",
@@ -63205,7 +63201,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thrifty-any-entry-5932",
+      "id": "thrifty-any-entry-5931",
       "word": "thrifty",
       "display": "thrifty",
       "meaning": "節儉的",
@@ -63218,7 +63214,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thrill-verb-entry-5933",
+      "id": "thrill-verb-entry-5932",
       "word": "thrill",
       "display": "thrill",
       "meaning": "使興奮",
@@ -63228,7 +63224,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thrill-noun-entry-5934",
+      "id": "thrill-noun-entry-5933",
       "word": "thrill",
       "display": "thrill",
       "meaning": "刺激 / 興奮感",
@@ -63238,7 +63234,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thrilled-any-entry-5935",
+      "id": "thrilled-any-entry-5934",
       "word": "thrilled",
       "display": "thrilled",
       "meaning": "好興奮",
@@ -63251,7 +63247,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thrilled-any-entry-5936",
+      "id": "thrilled-any-entry-5935",
       "word": "thrilled",
       "display": "thrilled",
       "meaning": "興奮",
@@ -63264,7 +63260,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thrilled-about-adjective-entry-5937",
+      "id": "thrilled-about-adjective-entry-5936",
       "word": "thrilled about",
       "display": "thrilled about",
       "meaning": "對...感到興奮",
@@ -63274,7 +63270,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thriller-noun-entry-5938",
+      "id": "thriller-noun-entry-5937",
       "word": "thriller",
       "display": "thriller",
       "meaning": "驚悚小說 / 電影",
@@ -63284,7 +63280,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thrilling-any-entry-5939",
+      "id": "thrilling-any-entry-5938",
       "word": "thrilling",
       "display": "thrilling",
       "meaning": "令人十分興奮的",
@@ -63297,7 +63293,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thrilling-any-entry-5940",
+      "id": "thrilling-any-entry-5939",
       "word": "thrilling",
       "display": "thrilling",
       "meaning": "令人興奮的",
@@ -63310,7 +63306,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thrive-any-entry-5941",
+      "id": "thrive-any-entry-5940",
       "word": "thrive",
       "display": "thrive",
       "meaning": "發展良好",
@@ -63323,7 +63319,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thrive-any-entry-5942",
+      "id": "thrive-any-entry-5941",
       "word": "thrive",
       "display": "thrive",
       "meaning": "繁榮",
@@ -63336,7 +63332,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thrive-any-entry-5943",
+      "id": "thrive-any-entry-5942",
       "word": "thrive",
       "display": "thrive",
       "meaning": "繁榮 / 發展良好",
@@ -63349,7 +63345,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thrive-any-entry-5944",
+      "id": "thrive-any-entry-5943",
       "word": "thrive",
       "display": "thrive",
       "meaning": "繁榮, 發展得好",
@@ -63362,7 +63358,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thrive-any-entry-5945",
+      "id": "thrive-any-entry-5944",
       "word": "thrive",
       "display": "thrive",
       "meaning": "繁盛",
@@ -63375,7 +63371,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thrive-any-entry-5946",
+      "id": "thrive-any-entry-5945",
       "word": "thrive",
       "display": "thrive",
       "meaning": "興盛",
@@ -63388,7 +63384,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thronged-any-entry-5947",
+      "id": "thronged-any-entry-5946",
       "word": "thronged",
       "display": "thronged",
       "meaning": "充滿",
@@ -63401,7 +63397,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thronged-with-adjective-entry-5948",
+      "id": "thronged-with-adjective-entry-5947",
       "word": "thronged with",
       "display": "thronged with",
       "meaning": "擠滿 / 充滿",
@@ -63411,7 +63407,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thronged-with-any-entry-5949",
+      "id": "thronged-with-any-entry-5948",
       "word": "thronged with",
       "display": "thronged with",
       "meaning": "擠滿 / 充滿",
@@ -63421,7 +63417,7 @@
       "sourceCount": 1
     },
     {
-      "id": "through-preposition-entry-5950",
+      "id": "through-preposition-entry-5949",
       "word": "through",
       "display": "through",
       "meaning": "透過 / 經由 / 穿過",
@@ -63431,7 +63427,7 @@
       "sourceCount": 1
     },
     {
-      "id": "through-adverb-entry-5951",
+      "id": "through-adverb-entry-5950",
       "word": "through",
       "display": "through",
       "meaning": "通過",
@@ -63441,7 +63437,7 @@
       "sourceCount": 1
     },
     {
-      "id": "throughout-preposition-entry-5952",
+      "id": "throughout-preposition-entry-5951",
       "word": "throughout",
       "display": "throughout",
       "meaning": "在整個...期間 / 遍及",
@@ -63451,7 +63447,7 @@
       "sourceCount": 1
     },
     {
-      "id": "throughout-adverb-entry-5953",
+      "id": "throughout-adverb-entry-5952",
       "word": "throughout",
       "display": "throughout",
       "meaning": "自始至終",
@@ -63461,7 +63457,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thumb-any-entry-5954",
+      "id": "thumb-any-entry-5953",
       "word": "thumb",
       "display": "thumb",
       "meaning": "手指公",
@@ -63471,7 +63467,7 @@
       "sourceCount": 1
     },
     {
-      "id": "thus-any-entry-5955",
+      "id": "thus-any-entry-5954",
       "word": "thus",
       "display": "thus",
       "meaning": "因此",
@@ -63484,7 +63480,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tibet-noun-entry-5956",
+      "id": "tibet-noun-entry-5955",
       "word": "tibet",
       "display": "Tibet",
       "meaning": "西藏",
@@ -63494,7 +63490,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tide-any-entry-5957",
+      "id": "tide-any-entry-5956",
       "word": "tide",
       "display": "tide",
       "meaning": "浪潮",
@@ -63504,7 +63500,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tie-verb-entry-5958",
+      "id": "tie-verb-entry-5957",
       "word": "tie",
       "display": "tie",
       "meaning": "綁 / 打成平手",
@@ -63514,7 +63510,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tie-noun-entry-5959",
+      "id": "tie-noun-entry-5958",
       "word": "tie",
       "display": "tie",
       "meaning": "領帶",
@@ -63524,7 +63520,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tier-noun-entry-5960",
+      "id": "tier-noun-entry-5959",
       "word": "tier",
       "display": "tier",
       "meaning": "層級",
@@ -63534,7 +63530,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tight-any-entry-5961",
+      "id": "tight-any-entry-5960",
       "word": "tight",
       "display": "tight",
       "meaning": "緊",
@@ -63544,7 +63540,7 @@
       "sourceCount": 1
     },
     {
-      "id": "till-conjunction-entry-5962",
+      "id": "till-conjunction-entry-5961",
       "word": "till",
       "display": "till",
       "meaning": "直到",
@@ -63554,7 +63550,7 @@
       "sourceCount": 1
     },
     {
-      "id": "till-preposition-entry-5963",
+      "id": "till-preposition-entry-5962",
       "word": "till",
       "display": "till",
       "meaning": "直到",
@@ -63564,7 +63560,7 @@
       "sourceCount": 1
     },
     {
-      "id": "time-noun-entry-5964",
+      "id": "time-noun-entry-5963",
       "word": "time",
       "display": "time",
       "meaning": "時間",
@@ -63574,7 +63570,7 @@
       "sourceCount": 1
     },
     {
-      "id": "time-consuming-adjective-entry-5965",
+      "id": "time-consuming-adjective-entry-5964",
       "word": "time-consuming",
       "display": "time-consuming",
       "meaning": "耗時的 / 花時間的",
@@ -63584,7 +63580,7 @@
       "sourceCount": 1
     },
     {
-      "id": "time-wasting-adjective-entry-5966",
+      "id": "time-wasting-adjective-entry-5965",
       "word": "time-wasting",
       "display": "time-wasting",
       "meaning": "浪費時間的",
@@ -63594,7 +63590,7 @@
       "sourceCount": 1
     },
     {
-      "id": "timely-any-entry-5967",
+      "id": "timely-any-entry-5966",
       "word": "timely",
       "display": "timely",
       "meaning": "及時",
@@ -63607,7 +63603,7 @@
       "sourceCount": 1
     },
     {
-      "id": "times-any-entry-5968",
+      "id": "times-any-entry-5967",
       "word": "times",
       "display": "times x3",
       "meaning": "倍",
@@ -63617,7 +63613,7 @@
       "sourceCount": 1
     },
     {
-      "id": "times-any-entry-5969",
+      "id": "times-any-entry-5968",
       "word": "times",
       "display": "times x2",
       "meaning": "時代",
@@ -63627,7 +63623,7 @@
       "sourceCount": 1
     },
     {
-      "id": "times-any-entry-5970",
+      "id": "times-any-entry-5969",
       "word": "times",
       "display": "times x2",
       "meaning": "次",
@@ -63637,7 +63633,7 @@
       "sourceCount": 1
     },
     {
-      "id": "times-any-entry-5971",
+      "id": "times-any-entry-5970",
       "word": "times",
       "display": "times x2",
       "meaning": "次數",
@@ -63647,7 +63643,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tire-noun-entry-5972",
+      "id": "tire-noun-entry-5971",
       "word": "tire",
       "display": "tire",
       "meaning": "輪胎",
@@ -63657,7 +63653,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tired-of-adjective-entry-5973",
+      "id": "tired-of-adjective-entry-5972",
       "word": "tired of",
       "display": "tired of",
       "meaning": "對...厭倦",
@@ -63667,7 +63663,7 @@
       "sourceCount": 1
     },
     {
-      "id": "titan-any-entry-5974",
+      "id": "titan-any-entry-5973",
       "word": "titan",
       "display": "titan",
       "meaning": "巨人",
@@ -63680,7 +63676,7 @@
       "sourceCount": 1
     },
     {
-      "id": "to-any-entry-5975",
+      "id": "to-any-entry-5974",
       "word": "to",
       "display": "to",
       "meaning": "首先",
@@ -63690,7 +63686,7 @@
       "sourceCount": 1
     },
     {
-      "id": "to-a-certain-extent-adverb-entry-5976",
+      "id": "to-a-certain-extent-adverb-entry-5975",
       "word": "to a certain extent",
       "display": "to a certain extent",
       "meaning": "在某程度上",
@@ -63700,7 +63696,7 @@
       "sourceCount": 1
     },
     {
-      "id": "to-be-sure-adverb-entry-5977",
+      "id": "to-be-sure-adverb-entry-5976",
       "word": "to be sure",
       "display": "to be sure",
       "meaning": "可以肯定的是",
@@ -63710,7 +63706,7 @@
       "sourceCount": 1
     },
     {
-      "id": "to-commence-with-adverb-entry-5978",
+      "id": "to-commence-with-adverb-entry-5977",
       "word": "to commence with",
       "display": "to commence with",
       "meaning": "首先",
@@ -63720,7 +63716,7 @@
       "sourceCount": 1
     },
     {
-      "id": "to-make-matters-worse-adverb-entry-5979",
+      "id": "to-make-matters-worse-adverb-entry-5978",
       "word": "to make matters worse",
       "display": "to make matters worse",
       "meaning": "更糟的是",
@@ -63730,7 +63726,7 @@
       "sourceCount": 1
     },
     {
-      "id": "to-make-things-worse-adverb-entry-5980",
+      "id": "to-make-things-worse-adverb-entry-5979",
       "word": "to make things worse",
       "display": "to make things worse,",
       "meaning": "更糟的是",
@@ -63740,7 +63736,7 @@
       "sourceCount": 1
     },
     {
-      "id": "to-name-but-a-few-adverb-entry-5981",
+      "id": "to-name-but-a-few-adverb-entry-5980",
       "word": "to name but a few",
       "display": "to name but a few",
       "meaning": "僅舉幾例 / 諸如此類",
@@ -63750,7 +63746,7 @@
       "sourceCount": 1
     },
     {
-      "id": "to-name-just-a-few-adverb-entry-5982",
+      "id": "to-name-just-a-few-adverb-entry-5981",
       "word": "to name just a few",
       "display": "to name just a few",
       "meaning": "僅舉幾例 / 諸如此類",
@@ -63760,7 +63756,7 @@
       "sourceCount": 1
     },
     {
-      "id": "to-put-it-bluntly-adverb-entry-5983",
+      "id": "to-put-it-bluntly-adverb-entry-5982",
       "word": "to put it bluntly",
       "display": "to put it bluntly",
       "meaning": "坦白講 / 直截了當地說",
@@ -63770,7 +63766,7 @@
       "sourceCount": 1
     },
     {
-      "id": "to-put-it-simply-adverb-entry-5984",
+      "id": "to-put-it-simply-adverb-entry-5983",
       "word": "to put it simply",
       "display": "to put it simply",
       "meaning": "簡單來說",
@@ -63780,7 +63776,7 @@
       "sourceCount": 1
     },
     {
-      "id": "to-whom-it-may-concern-phrase-entry-5985",
+      "id": "to-whom-it-may-concern-phrase-entry-5984",
       "word": "to whom it may concern",
       "display": "To whom it may concern",
       "meaning": "敬啟者",
@@ -63790,7 +63786,7 @@
       "sourceCount": 1
     },
     {
-      "id": "to-any-entry-5986",
+      "id": "to-any-entry-5985",
       "word": "to 在句頭",
       "display": "to 在句頭 x2",
       "meaning": "對...來說",
@@ -63800,7 +63796,7 @@
       "sourceCount": 1
     },
     {
-      "id": "to-any-entry-5987",
+      "id": "to-any-entry-5986",
       "word": "to 在句頭",
       "display": "to 在句頭 x2",
       "meaning": "為了",
@@ -63810,7 +63806,7 @@
       "sourceCount": 1
     },
     {
-      "id": "to-do-list-noun-entry-5988",
+      "id": "to-do-list-noun-entry-5987",
       "word": "to-do list",
       "display": "to-do list",
       "meaning": "待辦清單",
@@ -63820,7 +63816,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tobacco-tax-noun-entry-5989",
+      "id": "tobacco-tax-noun-entry-5988",
       "word": "tobacco tax",
       "display": "tobacco tax",
       "meaning": "煙草稅",
@@ -63830,7 +63826,7 @@
       "sourceCount": 1
     },
     {
-      "id": "today-any-entry-5990",
+      "id": "today-any-entry-5989",
       "word": "today",
       "display": "today x2",
       "meaning": "今日",
@@ -63840,7 +63836,7 @@
       "sourceCount": 1
     },
     {
-      "id": "today-any-entry-5991",
+      "id": "today-any-entry-5990",
       "word": "today",
       "display": "today x2",
       "meaning": "今時今日",
@@ -63850,7 +63846,7 @@
       "sourceCount": 1
     },
     {
-      "id": "toddler-noun-entry-5992",
+      "id": "toddler-noun-entry-5991",
       "word": "toddler",
       "display": "toddler",
       "meaning": "幼兒 / 小童",
@@ -63860,7 +63856,7 @@
       "sourceCount": 1
     },
     {
-      "id": "toil-noun-entry-5993",
+      "id": "toil-noun-entry-5992",
       "word": "toil",
       "display": "toil",
       "meaning": "辛勞",
@@ -63870,7 +63866,7 @@
       "sourceCount": 1
     },
     {
-      "id": "toil-verb-entry-5994",
+      "id": "toil-verb-entry-5993",
       "word": "toil",
       "display": "toil",
       "meaning": "辛勤工作",
@@ -63880,7 +63876,7 @@
       "sourceCount": 1
     },
     {
-      "id": "token-noun-entry-5995",
+      "id": "token-noun-entry-5994",
       "word": "token",
       "display": "token",
       "meaning": "代幣 / 標記",
@@ -63890,7 +63886,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tolerate-any-entry-5996",
+      "id": "tolerate-any-entry-5995",
       "word": "tolerate",
       "display": "tolerate",
       "meaning": "容忍",
@@ -63900,7 +63896,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tolerate-any-entry-5997",
+      "id": "tolerate-any-entry-5996",
       "word": "tolerate",
       "display": "tolerate",
       "meaning": "忍受",
@@ -63910,7 +63906,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tomb-noun-entry-5998",
+      "id": "tomb-noun-entry-5997",
       "word": "tomb",
       "display": "tomb",
       "meaning": "墳墓 / 陵墓",
@@ -63920,7 +63916,7 @@
       "sourceCount": 1
     },
     {
-      "id": "top-notch-adjective-entry-5999",
+      "id": "top-notch-adjective-entry-5998",
       "word": "top-notch",
       "display": "top-notch",
       "meaning": "頂尖的 / 頂級的",
@@ -63930,7 +63926,7 @@
       "sourceCount": 1
     },
     {
-      "id": "top-tier-adjective-entry-6000",
+      "id": "top-tier-adjective-entry-5999",
       "word": "top-tier",
       "display": "top-tier",
       "meaning": "頂級的",
@@ -63940,7 +63936,7 @@
       "sourceCount": 1
     },
     {
-      "id": "torch-noun-entry-6001",
+      "id": "torch-noun-entry-6000",
       "word": "torch",
       "display": "torch",
       "meaning": "火把 / 電筒",
@@ -63950,7 +63946,7 @@
       "sourceCount": 1
     },
     {
-      "id": "torturing-any-entry-6002",
+      "id": "torturing-any-entry-6001",
       "word": "torturing",
       "display": "torturing",
       "meaning": "折磨人的",
@@ -63963,7 +63959,7 @@
       "sourceCount": 1
     },
     {
-      "id": "toss-any-entry-6003",
+      "id": "toss-any-entry-6002",
       "word": "toss",
       "display": "toss",
       "meaning": "扭",
@@ -63973,7 +63969,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tough-any-entry-6004",
+      "id": "tough-any-entry-6003",
       "word": "tough",
       "display": "tough x2",
       "meaning": "堅強",
@@ -63983,7 +63979,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tough-any-entry-6005",
+      "id": "tough-any-entry-6004",
       "word": "tough",
       "display": "tough x2",
       "meaning": "堅強 艱困",
@@ -63993,7 +63989,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tough-any-entry-6006",
+      "id": "tough-any-entry-6005",
       "word": "tough",
       "display": "tough x2",
       "meaning": "艱辛",
@@ -64003,7 +63999,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tough-any-entry-6007",
+      "id": "tough-any-entry-6006",
       "word": "tough",
       "display": "tough x2",
       "meaning": "艱難",
@@ -64013,7 +64009,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tourism-noun-entry-6008",
+      "id": "tourism-noun-entry-6007",
       "word": "tourism",
       "display": "tourism",
       "meaning": "旅遊業",
@@ -64023,7 +64019,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tourist-noun-entry-6009",
+      "id": "tourist-noun-entry-6008",
       "word": "tourist",
       "display": "tourist",
       "meaning": "旅客 / 遊客",
@@ -64036,7 +64032,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tourists-any-entry-6010",
+      "id": "tourists-any-entry-6009",
       "word": "tourists",
       "display": "tourists",
       "meaning": "旅客",
@@ -64046,7 +64042,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tourists-any-entry-6011",
+      "id": "tourists-any-entry-6010",
       "word": "tourists",
       "display": "tourists",
       "meaning": "遊客",
@@ -64056,7 +64052,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tournament-any-entry-6012",
+      "id": "tournament-any-entry-6011",
       "word": "tournament",
       "display": "tournament",
       "meaning": "錦標賽",
@@ -64069,7 +64065,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tower-any-entry-6013",
+      "id": "tower-any-entry-6012",
       "word": "tower",
       "display": "tower",
       "meaning": "塔",
@@ -64082,7 +64078,7 @@
       "sourceCount": 1
     },
     {
-      "id": "toxic-adjective-entry-6014",
+      "id": "toxic-adjective-entry-6013",
       "word": "toxic",
       "display": "toxic",
       "meaning": "有毒的",
@@ -64092,7 +64088,7 @@
       "sourceCount": 1
     },
     {
-      "id": "toxicity-noun-entry-6015",
+      "id": "toxicity-noun-entry-6014",
       "word": "toxicity",
       "display": "toxicity",
       "meaning": "毒性",
@@ -64102,7 +64098,7 @@
       "sourceCount": 1
     },
     {
-      "id": "trace-noun-entry-6016",
+      "id": "trace-noun-entry-6015",
       "word": "trace",
       "display": "trace",
       "meaning": "痕跡",
@@ -64112,7 +64108,7 @@
       "sourceCount": 1
     },
     {
-      "id": "trace-verb-entry-6017",
+      "id": "trace-verb-entry-6016",
       "word": "trace",
       "display": "trace",
       "meaning": "追溯 / 追蹤",
@@ -64122,7 +64118,7 @@
       "sourceCount": 1
     },
     {
-      "id": "trace-back-to-verb-entry-6018",
+      "id": "trace-back-to-verb-entry-6017",
       "word": "trace back to",
       "display": "trace back to",
       "meaning": "追溯到 / 追溯至",
@@ -64132,7 +64128,7 @@
       "sourceCount": 1
     },
     {
-      "id": "trade-verb-entry-6019",
+      "id": "trade-verb-entry-6018",
       "word": "trade",
       "display": "trade",
       "meaning": "交易",
@@ -64142,7 +64138,7 @@
       "sourceCount": 1
     },
     {
-      "id": "trade-noun-entry-6020",
+      "id": "trade-noun-entry-6019",
       "word": "trade",
       "display": "trade",
       "meaning": "貿易",
@@ -64152,7 +64148,7 @@
       "sourceCount": 1
     },
     {
-      "id": "trade-off-noun-entry-6021",
+      "id": "trade-off-noun-entry-6020",
       "word": "trade-off",
       "display": "trade-off",
       "meaning": "取捨",
@@ -64162,7 +64158,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tradition-any-entry-6022",
+      "id": "tradition-any-entry-6021",
       "word": "tradition",
       "display": "tradition",
       "meaning": "傳統",
@@ -64175,7 +64171,7 @@
       "sourceCount": 1
     },
     {
-      "id": "traditional-adjective-entry-6023",
+      "id": "traditional-adjective-entry-6022",
       "word": "traditional",
       "display": "traditional",
       "meaning": "傳統的",
@@ -64185,7 +64181,7 @@
       "sourceCount": 1
     },
     {
-      "id": "traditional-customs-noun-entry-6024",
+      "id": "traditional-customs-noun-entry-6023",
       "word": "traditional customs",
       "display": "traditional customs",
       "meaning": "傳統習俗",
@@ -64195,7 +64191,7 @@
       "sourceCount": 1
     },
     {
-      "id": "traffic-any-entry-6025",
+      "id": "traffic-any-entry-6024",
       "word": "traffic",
       "display": "traffic",
       "meaning": "交通",
@@ -64208,7 +64204,7 @@
       "sourceCount": 1
     },
     {
-      "id": "traffic-accident-noun-entry-6026",
+      "id": "traffic-accident-noun-entry-6025",
       "word": "traffic accident",
       "display": "traffic accident",
       "meaning": "交通意外",
@@ -64218,7 +64214,7 @@
       "sourceCount": 1
     },
     {
-      "id": "traffic-accidents-noun-entry-6027",
+      "id": "traffic-accidents-noun-entry-6026",
       "word": "traffic accidents",
       "display": "traffic accidents",
       "meaning": "交通意外",
@@ -64228,7 +64224,7 @@
       "sourceCount": 1
     },
     {
-      "id": "traffic-congestion-noun-entry-6028",
+      "id": "traffic-congestion-noun-entry-6027",
       "word": "traffic congestion",
       "display": "traffic congestion",
       "meaning": "交通擠塞",
@@ -64238,7 +64234,7 @@
       "sourceCount": 1
     },
     {
-      "id": "traffic-jam-noun-entry-6029",
+      "id": "traffic-jam-noun-entry-6028",
       "word": "traffic jam",
       "display": "traffic jam",
       "meaning": "交通堵塞",
@@ -64248,7 +64244,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tragedy-any-entry-6030",
+      "id": "tragedy-any-entry-6029",
       "word": "tragedy",
       "display": "tragedy",
       "meaning": "悲劇",
@@ -64258,7 +64254,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tragic-adjective-entry-6031",
+      "id": "tragic-adjective-entry-6030",
       "word": "tragic",
       "display": "tragic",
       "meaning": "悲劇的 / 悲慘的",
@@ -64268,7 +64264,7 @@
       "sourceCount": 1
     },
     {
-      "id": "train-noun-entry-6032",
+      "id": "train-noun-entry-6031",
       "word": "train",
       "display": "train",
       "meaning": "火車",
@@ -64278,7 +64274,7 @@
       "sourceCount": 1
     },
     {
-      "id": "train-verb-entry-6033",
+      "id": "train-verb-entry-6032",
       "word": "train",
       "display": "train",
       "meaning": "訓練",
@@ -64288,7 +64284,7 @@
       "sourceCount": 1
     },
     {
-      "id": "trait-noun-entry-6034",
+      "id": "trait-noun-entry-6033",
       "word": "trait",
       "display": "trait",
       "meaning": "特質",
@@ -64301,7 +64297,7 @@
       "sourceCount": 1
     },
     {
-      "id": "traits-any-entry-6035",
+      "id": "traits-any-entry-6034",
       "word": "traits",
       "display": "traits",
       "meaning": "特質",
@@ -64311,7 +64307,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tranquil-adjective-entry-6036",
+      "id": "tranquil-adjective-entry-6035",
       "word": "tranquil",
       "display": "tranquil",
       "meaning": "寧靜的 / 平靜的",
@@ -64321,7 +64317,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tranquil-adjective-entry-6037",
+      "id": "tranquil-adjective-entry-6036",
       "word": "tranquil",
       "display": "tranquil",
       "meaning": "寧靜的 / 幽靜的",
@@ -64331,7 +64327,7 @@
       "sourceCount": 1
     },
     {
-      "id": "transcript-any-entry-6038",
+      "id": "transcript-any-entry-6037",
       "word": "transcript",
       "display": "transcript",
       "meaning": "大學成績表",
@@ -64341,7 +64337,7 @@
       "sourceCount": 1
     },
     {
-      "id": "transcript-any-entry-6039",
+      "id": "transcript-any-entry-6038",
       "word": "transcript",
       "display": "transcript",
       "meaning": "大學成績表 / 錄音稿",
@@ -64351,7 +64347,7 @@
       "sourceCount": 1
     },
     {
-      "id": "transcript-any-entry-6040",
+      "id": "transcript-any-entry-6039",
       "word": "transcript",
       "display": "transcript",
       "meaning": "對話稿",
@@ -64361,7 +64357,7 @@
       "sourceCount": 1
     },
     {
-      "id": "transform-any-entry-6041",
+      "id": "transform-any-entry-6040",
       "word": "transform",
       "display": "transform",
       "meaning": "大改變",
@@ -64371,7 +64367,7 @@
       "sourceCount": 1
     },
     {
-      "id": "transform-any-entry-6042",
+      "id": "transform-any-entry-6041",
       "word": "transform",
       "display": "transform",
       "meaning": "改變",
@@ -64381,7 +64377,7 @@
       "sourceCount": 1
     },
     {
-      "id": "transform-any-entry-6043",
+      "id": "transform-any-entry-6042",
       "word": "transform",
       "display": "transform",
       "meaning": "改變(大)",
@@ -64391,7 +64387,7 @@
       "sourceCount": 1
     },
     {
-      "id": "transform-any-entry-6044",
+      "id": "transform-any-entry-6043",
       "word": "transform",
       "display": "transform",
       "meaning": "轉換",
@@ -64401,7 +64397,7 @@
       "sourceCount": 1
     },
     {
-      "id": "transform-any-entry-6045",
+      "id": "transform-any-entry-6044",
       "word": "transform",
       "display": "transform",
       "meaning": "轉變",
@@ -64411,7 +64407,7 @@
       "sourceCount": 1
     },
     {
-      "id": "transgender-adjective-entry-6046",
+      "id": "transgender-adjective-entry-6045",
       "word": "transgender",
       "display": "transgender",
       "meaning": "跨性別的",
@@ -64421,7 +64417,7 @@
       "sourceCount": 1
     },
     {
-      "id": "transgender-noun-entry-6047",
+      "id": "transgender-noun-entry-6046",
       "word": "transgender",
       "display": "transgender",
       "meaning": "跨性別者",
@@ -64431,7 +64427,7 @@
       "sourceCount": 1
     },
     {
-      "id": "transparency-any-entry-6048",
+      "id": "transparency-any-entry-6047",
       "word": "transparency",
       "display": "transparency",
       "meaning": "透明度",
@@ -64444,7 +64440,7 @@
       "sourceCount": 1
     },
     {
-      "id": "transparent-any-entry-6049",
+      "id": "transparent-any-entry-6048",
       "word": "transparent",
       "display": "transparent",
       "meaning": "透明",
@@ -64457,7 +64453,7 @@
       "sourceCount": 1
     },
     {
-      "id": "transplant-noun-entry-6050",
+      "id": "transplant-noun-entry-6049",
       "word": "transplant",
       "display": "transplant",
       "meaning": "移植",
@@ -64467,7 +64463,7 @@
       "sourceCount": 1
     },
     {
-      "id": "transplant-verb-entry-6051",
+      "id": "transplant-verb-entry-6050",
       "word": "transplant",
       "display": "transplant",
       "meaning": "移植",
@@ -64477,7 +64473,7 @@
       "sourceCount": 1
     },
     {
-      "id": "trauma-any-entry-6052",
+      "id": "trauma-any-entry-6051",
       "word": "trauma",
       "display": "trauma",
       "meaning": "創傷",
@@ -64487,7 +64483,7 @@
       "sourceCount": 1
     },
     {
-      "id": "travel-agency-noun-entry-6053",
+      "id": "travel-agency-noun-entry-6052",
       "word": "travel agency",
       "display": "travel agency",
       "meaning": "旅行社",
@@ -64497,7 +64493,7 @@
       "sourceCount": 1
     },
     {
-      "id": "traveling-noun-entry-6054",
+      "id": "traveling-noun-entry-6053",
       "word": "traveling",
       "display": "traveling",
       "meaning": "旅行",
@@ -64507,7 +64503,7 @@
       "sourceCount": 1
     },
     {
-      "id": "traveller-noun-entry-6055",
+      "id": "traveller-noun-entry-6054",
       "word": "traveller",
       "display": "traveller",
       "meaning": "旅客 / 遊客",
@@ -64522,7 +64518,7 @@
       "sourceCount": 1
     },
     {
-      "id": "travellers-any-entry-6056",
+      "id": "travellers-any-entry-6055",
       "word": "travellers",
       "display": "travellers",
       "meaning": "旅客",
@@ -64532,7 +64528,7 @@
       "sourceCount": 1
     },
     {
-      "id": "travellers-any-entry-6057",
+      "id": "travellers-any-entry-6056",
       "word": "travellers",
       "display": "travellers",
       "meaning": "遊客",
@@ -64542,7 +64538,7 @@
       "sourceCount": 1
     },
     {
-      "id": "travelling-noun-entry-6058",
+      "id": "travelling-noun-entry-6057",
       "word": "travelling",
       "display": "travelling",
       "meaning": "旅行",
@@ -64552,7 +64548,7 @@
       "sourceCount": 1
     },
     {
-      "id": "trawling-noun-entry-6059",
+      "id": "trawling-noun-entry-6058",
       "word": "trawling",
       "display": "trawling",
       "meaning": "拖網捕撈",
@@ -64562,7 +64558,7 @@
       "sourceCount": 1
     },
     {
-      "id": "treat-verb-entry-6060",
+      "id": "treat-verb-entry-6059",
       "word": "treat",
       "display": "treat (v) x4",
       "meaning": "對待",
@@ -64572,7 +64568,7 @@
       "sourceCount": 1
     },
     {
-      "id": "treat-noun-entry-6061",
+      "id": "treat-noun-entry-6060",
       "word": "treat",
       "display": "treat (n)",
       "meaning": "款待",
@@ -64582,7 +64578,7 @@
       "sourceCount": 1
     },
     {
-      "id": "treat-verb-entry-6062",
+      "id": "treat-verb-entry-6061",
       "word": "treat",
       "display": "treat (v) x4",
       "meaning": "治療",
@@ -64592,7 +64588,7 @@
       "sourceCount": 1
     },
     {
-      "id": "treat-verb-entry-6063",
+      "id": "treat-verb-entry-6062",
       "word": "treat",
       "display": "treat (v) x4",
       "meaning": "視為",
@@ -64602,7 +64598,7 @@
       "sourceCount": 1
     },
     {
-      "id": "treat-any-entry-6064",
+      "id": "treat-any-entry-6063",
       "word": "treat",
       "display": "treat x4",
       "meaning": "美食",
@@ -64612,7 +64608,7 @@
       "sourceCount": 1
     },
     {
-      "id": "treat-verb-entry-6065",
+      "id": "treat-verb-entry-6064",
       "word": "treat",
       "display": "treat (v) x4",
       "meaning": "請客",
@@ -64622,7 +64618,7 @@
       "sourceCount": 1
     },
     {
-      "id": "treat-as-verb-entry-6066",
+      "id": "treat-as-verb-entry-6065",
       "word": "treat as",
       "display": "treat as",
       "meaning": "視為",
@@ -64632,7 +64628,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tremendous-adjective-entry-6067",
+      "id": "tremendous-adjective-entry-6066",
       "word": "tremendous",
       "display": "tremendous",
       "meaning": "巨大的 / 極大的",
@@ -64642,7 +64638,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tremendous-loss-noun-entry-6068",
+      "id": "tremendous-loss-noun-entry-6067",
       "word": "tremendous loss",
       "display": "tremendous loss",
       "meaning": "巨大損失",
@@ -64652,7 +64648,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tremulous-any-entry-6069",
+      "id": "tremulous-any-entry-6068",
       "word": "tremulous",
       "display": "tremulous",
       "meaning": "膽小的",
@@ -64665,7 +64661,7 @@
       "sourceCount": 1
     },
     {
-      "id": "trench-noun-entry-6070",
+      "id": "trench-noun-entry-6069",
       "word": "trench",
       "display": "trench",
       "meaning": "壕溝 / 戰壕",
@@ -64675,7 +64671,7 @@
       "sourceCount": 1
     },
     {
-      "id": "trend-noun-entry-6071",
+      "id": "trend-noun-entry-6070",
       "word": "trend",
       "display": "trend",
       "meaning": "趨勢",
@@ -64688,7 +64684,7 @@
       "sourceCount": 1
     },
     {
-      "id": "trending-adjective-entry-6072",
+      "id": "trending-adjective-entry-6071",
       "word": "trending",
       "display": "trending",
       "meaning": "熱門的 / 流行中的",
@@ -64698,7 +64694,7 @@
       "sourceCount": 1
     },
     {
-      "id": "trends-any-entry-6073",
+      "id": "trends-any-entry-6072",
       "word": "trends",
       "display": "trends",
       "meaning": "趨勢",
@@ -64708,7 +64704,7 @@
       "sourceCount": 1
     },
     {
-      "id": "triad-noun-entry-6074",
+      "id": "triad-noun-entry-6073",
       "word": "triad",
       "display": "triad",
       "meaning": "三合會",
@@ -64718,7 +64714,7 @@
       "sourceCount": 1
     },
     {
-      "id": "trial-any-entry-6075",
+      "id": "trial-any-entry-6074",
       "word": "trial",
       "display": "trial x2",
       "meaning": "審判",
@@ -64731,7 +64727,7 @@
       "sourceCount": 1
     },
     {
-      "id": "trial-any-entry-6076",
+      "id": "trial-any-entry-6075",
       "word": "trial",
       "display": "trial",
       "meaning": "訴訟",
@@ -64744,7 +64740,7 @@
       "sourceCount": 1
     },
     {
-      "id": "trial-any-entry-6077",
+      "id": "trial-any-entry-6076",
       "word": "trial",
       "display": "trial",
       "meaning": "試用 審判",
@@ -64757,7 +64753,7 @@
       "sourceCount": 1
     },
     {
-      "id": "trial-any-entry-6078",
+      "id": "trial-any-entry-6077",
       "word": "trial",
       "display": "trial x2",
       "meaning": "試驗",
@@ -64770,7 +64766,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tribe-any-entry-6079",
+      "id": "tribe-any-entry-6078",
       "word": "tribe",
       "display": "tribe",
       "meaning": "部落",
@@ -64780,7 +64776,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tribute-any-entry-6080",
+      "id": "tribute-any-entry-6079",
       "word": "tribute",
       "display": "tribute",
       "meaning": "貢品",
@@ -64793,7 +64789,7 @@
       "sourceCount": 1
     },
     {
-      "id": "trigger-any-entry-6081",
+      "id": "trigger-any-entry-6080",
       "word": "trigger",
       "display": "trigger",
       "meaning": "觸法",
@@ -64806,7 +64802,7 @@
       "sourceCount": 1
     },
     {
-      "id": "trigger-any-entry-6082",
+      "id": "trigger-any-entry-6081",
       "word": "trigger",
       "display": "trigger",
       "meaning": "觸發",
@@ -64819,7 +64815,7 @@
       "sourceCount": 1
     },
     {
-      "id": "trip-noun-entry-6083",
+      "id": "trip-noun-entry-6082",
       "word": "trip",
       "display": "trip",
       "meaning": "旅行",
@@ -64829,7 +64825,7 @@
       "sourceCount": 1
     },
     {
-      "id": "trip-verb-entry-6084",
+      "id": "trip-verb-entry-6083",
       "word": "trip",
       "display": "trip",
       "meaning": "絆倒",
@@ -64839,7 +64835,7 @@
       "sourceCount": 1
     },
     {
-      "id": "triumph-noun-entry-6085",
+      "id": "triumph-noun-entry-6084",
       "word": "triumph",
       "display": "triumph",
       "meaning": "勝利 / 大勝利",
@@ -64849,7 +64845,7 @@
       "sourceCount": 1
     },
     {
-      "id": "triumph-verb-entry-6086",
+      "id": "triumph-verb-entry-6085",
       "word": "triumph",
       "display": "triumph",
       "meaning": "獲勝",
@@ -64859,7 +64855,7 @@
       "sourceCount": 1
     },
     {
-      "id": "troop-any-entry-6087",
+      "id": "troop-any-entry-6086",
       "word": "troop",
       "display": "troop",
       "meaning": "軍隊",
@@ -64869,7 +64865,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tropical-adjective-entry-6088",
+      "id": "tropical-adjective-entry-6087",
       "word": "tropical",
       "display": "tropical",
       "meaning": "熱帶的",
@@ -64879,7 +64875,7 @@
       "sourceCount": 1
     },
     {
-      "id": "troublesome-adjective-entry-6089",
+      "id": "troublesome-adjective-entry-6088",
       "word": "troublesome",
       "display": "troublesome",
       "meaning": "麻煩的",
@@ -64889,7 +64885,7 @@
       "sourceCount": 1
     },
     {
-      "id": "trump-verb-entry-6090",
+      "id": "trump-verb-entry-6089",
       "word": "trump",
       "display": "trump",
       "meaning": "勝過 / 壓倒",
@@ -64899,7 +64895,7 @@
       "sourceCount": 1
     },
     {
-      "id": "trust-noun-entry-6091",
+      "id": "trust-noun-entry-6090",
       "word": "trust",
       "display": "trust",
       "meaning": "信任",
@@ -64909,7 +64905,7 @@
       "sourceCount": 1
     },
     {
-      "id": "trust-verb-entry-6092",
+      "id": "trust-verb-entry-6091",
       "word": "trust",
       "display": "trust",
       "meaning": "信任 / 相信",
@@ -64919,7 +64915,7 @@
       "sourceCount": 1
     },
     {
-      "id": "trustworthy-any-entry-6093",
+      "id": "trustworthy-any-entry-6092",
       "word": "trustworthy",
       "display": "trustworthy",
       "meaning": "可信的",
@@ -64932,7 +64928,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tug-at-heartstrings-verb-entry-6094",
+      "id": "tug-at-heartstrings-verb-entry-6093",
       "word": "tug at heartstrings",
       "display": "tug at heartstrings",
       "meaning": "扣人心弦",
@@ -64942,7 +64938,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tuition-any-entry-6095",
+      "id": "tuition-any-entry-6094",
       "word": "tuition",
       "display": "tuition",
       "meaning": "學費",
@@ -64955,7 +64951,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tunnel-any-entry-6096",
+      "id": "tunnel-any-entry-6095",
       "word": "tunnel",
       "display": "tunnel",
       "meaning": "隧道",
@@ -64965,7 +64961,7 @@
       "sourceCount": 1
     },
     {
-      "id": "turkey-noun-entry-6097",
+      "id": "turkey-noun-entry-6096",
       "word": "turkey",
       "display": "Turkey",
       "meaning": "土耳其",
@@ -64975,7 +64971,7 @@
       "sourceCount": 1
     },
     {
-      "id": "turn-noun-entry-6098",
+      "id": "turn-noun-entry-6097",
       "word": "turn",
       "display": "turn",
       "meaning": "輪流 / 次序",
@@ -64985,7 +64981,7 @@
       "sourceCount": 1
     },
     {
-      "id": "turn-verb-entry-6099",
+      "id": "turn-verb-entry-6098",
       "word": "turn",
       "display": "turn",
       "meaning": "轉動 / 轉彎",
@@ -64995,7 +64991,7 @@
       "sourceCount": 1
     },
     {
-      "id": "turn-a-blind-eye-to-verb-entry-6100",
+      "id": "turn-a-blind-eye-to-verb-entry-6099",
       "word": "turn a blind eye to",
       "display": "turn a blind eye to",
       "meaning": "視而不見",
@@ -65005,7 +65001,7 @@
       "sourceCount": 1
     },
     {
-      "id": "turn-a-into-b-verb-a-b-6101",
+      "id": "turn-a-into-b-verb-a-b-6100",
       "word": "turn a into b",
       "display": "turn A into B",
       "meaning": "將A變成B",
@@ -65015,7 +65011,7 @@
       "sourceCount": 1
     },
     {
-      "id": "turn-down-verb-entry-6102",
+      "id": "turn-down-verb-entry-6101",
       "word": "turn down",
       "display": "turn down",
       "meaning": "拒絕",
@@ -65025,7 +65021,7 @@
       "sourceCount": 1
     },
     {
-      "id": "turn-down-verb-entry-6103",
+      "id": "turn-down-verb-entry-6102",
       "word": "turn down",
       "display": "turn down",
       "meaning": "調低",
@@ -65035,7 +65031,7 @@
       "sourceCount": 1
     },
     {
-      "id": "turn-into-verb-entry-6104",
+      "id": "turn-into-verb-entry-6103",
       "word": "turn into",
       "display": "turn into",
       "meaning": "變成 / 轉為",
@@ -65045,7 +65041,7 @@
       "sourceCount": 1
     },
     {
-      "id": "turn-off-verb-entry-6105",
+      "id": "turn-off-verb-entry-6104",
       "word": "turn off",
       "display": "turn off",
       "meaning": "關掉",
@@ -65055,7 +65051,7 @@
       "sourceCount": 1
     },
     {
-      "id": "turn-on-verb-entry-6106",
+      "id": "turn-on-verb-entry-6105",
       "word": "turn on",
       "display": "turn on",
       "meaning": "開啟",
@@ -65065,7 +65061,7 @@
       "sourceCount": 1
     },
     {
-      "id": "turn-out-to-verb-entry-6107",
+      "id": "turn-out-to-verb-entry-6106",
       "word": "turn out to",
       "display": "turn out to",
       "meaning": "結果是",
@@ -65075,7 +65071,7 @@
       "sourceCount": 1
     },
     {
-      "id": "turnip-noun-entry-6108",
+      "id": "turnip-noun-entry-6107",
       "word": "turnip",
       "display": "turnip",
       "meaning": "白蘿蔔 / 蕪菁",
@@ -65085,7 +65081,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tv-series-noun-entry-6109",
+      "id": "tv-series-noun-entry-6108",
       "word": "tv series",
       "display": "TV series",
       "meaning": "電視劇 / 電視連續劇",
@@ -65095,7 +65091,7 @@
       "sourceCount": 1
     },
     {
-      "id": "twist-any-entry-6110",
+      "id": "twist-any-entry-6109",
       "word": "twist",
       "display": "twist",
       "meaning": "扭轉",
@@ -65108,7 +65104,7 @@
       "sourceCount": 1
     },
     {
-      "id": "two-thirds-noun-entry-6111",
+      "id": "two-thirds-noun-entry-6110",
       "word": "two-thirds",
       "display": "two-thirds",
       "meaning": "三分之二",
@@ -65118,7 +65114,7 @@
       "sourceCount": 1
     },
     {
-      "id": "typical-adjective-entry-6112",
+      "id": "typical-adjective-entry-6111",
       "word": "typical",
       "display": "typical",
       "meaning": "典型的",
@@ -65128,7 +65124,7 @@
       "sourceCount": 1
     },
     {
-      "id": "typically-any-entry-6113",
+      "id": "typically-any-entry-6112",
       "word": "typically",
       "display": "typically",
       "meaning": "典型地",
@@ -65141,7 +65137,7 @@
       "sourceCount": 1
     },
     {
-      "id": "tyre-noun-entry-6114",
+      "id": "tyre-noun-entry-6113",
       "word": "tyre",
       "display": "tyre",
       "meaning": "輪胎",
@@ -65151,7 +65147,7 @@
       "sourceCount": 1
     },
     {
-      "id": "ubiquitous-adjective-entry-6115",
+      "id": "ubiquitous-adjective-entry-6114",
       "word": "ubiquitous",
       "display": "ubiquitous",
       "meaning": "無處不在的",
@@ -65161,7 +65157,7 @@
       "sourceCount": 1
     },
     {
-      "id": "ultimate-any-entry-6116",
+      "id": "ultimate-any-entry-6115",
       "word": "ultimate",
       "display": "ultimate",
       "meaning": "最終",
@@ -65174,7 +65170,7 @@
       "sourceCount": 1
     },
     {
-      "id": "ultimate-any-entry-6117",
+      "id": "ultimate-any-entry-6116",
       "word": "ultimate",
       "display": "ultimate x2",
       "meaning": "終極",
@@ -65184,7 +65180,7 @@
       "sourceCount": 1
     },
     {
-      "id": "ultimately-any-entry-6118",
+      "id": "ultimately-any-entry-6117",
       "word": "ultimately",
       "display": "ultimately",
       "meaning": "最後",
@@ -65197,7 +65193,7 @@
       "sourceCount": 1
     },
     {
-      "id": "ultimately-any-entry-6119",
+      "id": "ultimately-any-entry-6118",
       "word": "ultimately",
       "display": "ultimately",
       "meaning": "最終",
@@ -65210,7 +65206,7 @@
       "sourceCount": 1
     },
     {
-      "id": "umami-noun-entry-6120",
+      "id": "umami-noun-entry-6119",
       "word": "umami",
       "display": "umami",
       "meaning": "鮮味",
@@ -65220,7 +65216,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unable-to-adjective-entry-6121",
+      "id": "unable-to-adjective-entry-6120",
       "word": "unable to",
       "display": "unable to",
       "meaning": "不能夠 / 未能",
@@ -65230,7 +65226,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unanimous-adjective-entry-6122",
+      "id": "unanimous-adjective-entry-6121",
       "word": "unanimous",
       "display": "unanimous",
       "meaning": "一致同意的",
@@ -65240,7 +65236,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unassuming-adjective-entry-6123",
+      "id": "unassuming-adjective-entry-6122",
       "word": "unassuming",
       "display": "unassuming",
       "meaning": "低調謙遜的",
@@ -65250,7 +65246,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unaware-of-adjective-entry-6124",
+      "id": "unaware-of-adjective-entry-6123",
       "word": "unaware of",
       "display": "unaware of",
       "meaning": "沒有意識到 / 不知道",
@@ -65260,7 +65256,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unblemished-adjective-entry-6125",
+      "id": "unblemished-adjective-entry-6124",
       "word": "unblemished",
       "display": "unblemished",
       "meaning": "無瑕疵的",
@@ -65270,7 +65266,7 @@
       "sourceCount": 1
     },
     {
-      "id": "uncertain-adjective-entry-6126",
+      "id": "uncertain-adjective-entry-6125",
       "word": "uncertain",
       "display": "uncertain",
       "meaning": "不確定的",
@@ -65280,7 +65276,7 @@
       "sourceCount": 1
     },
     {
-      "id": "uncommon-adjective-entry-6127",
+      "id": "uncommon-adjective-entry-6126",
       "word": "uncommon",
       "display": "uncommon",
       "meaning": "不常見的",
@@ -65290,7 +65286,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unconscious-any-entry-6128",
+      "id": "unconscious-any-entry-6127",
       "word": "unconscious",
       "display": "unconscious",
       "meaning": "不醒人事",
@@ -65303,7 +65299,7 @@
       "sourceCount": 1
     },
     {
-      "id": "undeniable-adjective-entry-6129",
+      "id": "undeniable-adjective-entry-6128",
       "word": "undeniable",
       "display": "undeniable",
       "meaning": "不可否認的",
@@ -65313,7 +65309,7 @@
       "sourceCount": 1
     },
     {
-      "id": "undeniably-adverb-entry-6130",
+      "id": "undeniably-adverb-entry-6129",
       "word": "undeniably",
       "display": "undeniably",
       "meaning": "不可否認地",
@@ -65323,7 +65319,7 @@
       "sourceCount": 1
     },
     {
-      "id": "under-no-circumstances-adverb-entry-6131",
+      "id": "under-no-circumstances-adverb-entry-6130",
       "word": "under no circumstances",
       "display": "under no circumstances",
       "meaning": "絕不 / 在任何情況下都不",
@@ -65333,7 +65329,7 @@
       "sourceCount": 1
     },
     {
-      "id": "under-undue-stress-phrase-entry-6132",
+      "id": "under-undue-stress-phrase-entry-6131",
       "word": "under undue stress",
       "display": "under undue stress",
       "meaning": "承受過度壓力",
@@ -65343,7 +65339,7 @@
       "sourceCount": 1
     },
     {
-      "id": "undergo-any-entry-6133",
+      "id": "undergo-any-entry-6132",
       "word": "undergo",
       "display": "undergo",
       "meaning": "經歷",
@@ -65353,7 +65349,7 @@
       "sourceCount": 1
     },
     {
-      "id": "underlying-adjective-entry-6134",
+      "id": "underlying-adjective-entry-6133",
       "word": "underlying",
       "display": "underlying (adj.)",
       "meaning": "背後的 / 潛在的",
@@ -65363,7 +65359,7 @@
       "sourceCount": 1
     },
     {
-      "id": "undermine-any-entry-6135",
+      "id": "undermine-any-entry-6134",
       "word": "undermine",
       "display": "undermine",
       "meaning": "損害",
@@ -65373,7 +65369,7 @@
       "sourceCount": 1
     },
     {
-      "id": "undermine-any-entry-6136",
+      "id": "undermine-any-entry-6135",
       "word": "undermine",
       "display": "undermine",
       "meaning": "逐漸損害",
@@ -65383,7 +65379,7 @@
       "sourceCount": 1
     },
     {
-      "id": "underneath-preposition-entry-6137",
+      "id": "underneath-preposition-entry-6136",
       "word": "underneath",
       "display": "underneath",
       "meaning": "在...之下",
@@ -65393,7 +65389,7 @@
       "sourceCount": 1
     },
     {
-      "id": "underneath-adverb-entry-6138",
+      "id": "underneath-adverb-entry-6137",
       "word": "underneath",
       "display": "underneath",
       "meaning": "在下面",
@@ -65403,7 +65399,7 @@
       "sourceCount": 1
     },
     {
-      "id": "underpin-verb-entry-6139",
+      "id": "underpin-verb-entry-6138",
       "word": "underpin",
       "display": "underpin",
       "meaning": "支撐 / 作為基礎",
@@ -65413,7 +65409,7 @@
       "sourceCount": 1
     },
     {
-      "id": "underscore-noun-entry-6140",
+      "id": "underscore-noun-entry-6139",
       "word": "underscore",
       "display": "underscore",
       "meaning": "底線符號",
@@ -65423,7 +65419,7 @@
       "sourceCount": 1
     },
     {
-      "id": "underscore-verb-entry-6141",
+      "id": "underscore-verb-entry-6140",
       "word": "underscore",
       "display": "underscore",
       "meaning": "突顯 / 強調",
@@ -65433,7 +65429,7 @@
       "sourceCount": 1
     },
     {
-      "id": "understate-verb-entry-6142",
+      "id": "understate-verb-entry-6141",
       "word": "understate",
       "display": "understate",
       "meaning": "低估",
@@ -65443,7 +65439,7 @@
       "sourceCount": 1
     },
     {
-      "id": "undertake-any-entry-6143",
+      "id": "undertake-any-entry-6142",
       "word": "undertake",
       "display": "undertake",
       "meaning": "做",
@@ -65453,7 +65449,7 @@
       "sourceCount": 1
     },
     {
-      "id": "undertake-any-entry-6144",
+      "id": "undertake-any-entry-6143",
       "word": "undertake",
       "display": "undertake",
       "meaning": "做(困難)",
@@ -65463,7 +65459,7 @@
       "sourceCount": 1
     },
     {
-      "id": "undesirable-adjective-entry-6145",
+      "id": "undesirable-adjective-entry-6144",
       "word": "undesirable",
       "display": "undesirable",
       "meaning": "不可取的 / 不受歡迎的",
@@ -65473,7 +65469,7 @@
       "sourceCount": 1
     },
     {
-      "id": "undisputed-any-entry-6146",
+      "id": "undisputed-any-entry-6145",
       "word": "undisputed",
       "display": "undisputed",
       "meaning": "無可爭議的",
@@ -65486,7 +65482,7 @@
       "sourceCount": 1
     },
     {
-      "id": "undoubtedly-adverb-entry-6147",
+      "id": "undoubtedly-adverb-entry-6146",
       "word": "undoubtedly",
       "display": "undoubtedly",
       "meaning": "無疑地 / 毫無疑問",
@@ -65496,7 +65492,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unearth-verb-entry-6148",
+      "id": "unearth-verb-entry-6147",
       "word": "unearth",
       "display": "unearth",
       "meaning": "發掘 / 出土",
@@ -65506,7 +65502,7 @@
       "sourceCount": 1
     },
     {
-      "id": "uneasy-adjective-entry-6149",
+      "id": "uneasy-adjective-entry-6148",
       "word": "uneasy",
       "display": "uneasy",
       "meaning": "不安的",
@@ -65516,7 +65512,7 @@
       "sourceCount": 1
     },
     {
-      "id": "uneventful-any-entry-6150",
+      "id": "uneventful-any-entry-6149",
       "word": "uneventful",
       "display": "uneventful",
       "meaning": "平平無奇的",
@@ -65529,7 +65525,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unfortunate-any-entry-6151",
+      "id": "unfortunate-any-entry-6150",
       "word": "unfortunate",
       "display": "unfortunate",
       "meaning": "不幸地",
@@ -65542,7 +65538,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unfortunately-adverb-entry-6152",
+      "id": "unfortunately-adverb-entry-6151",
       "word": "unfortunately",
       "display": "unfortunately",
       "meaning": "不幸地",
@@ -65552,7 +65548,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unicorn-noun-entry-6153",
+      "id": "unicorn-noun-entry-6152",
       "word": "unicorn",
       "display": "unicorn",
       "meaning": "獨角獸",
@@ -65562,7 +65558,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unintentionally-any-entry-6154",
+      "id": "unintentionally-any-entry-6153",
       "word": "unintentionally",
       "display": "unintentionally",
       "meaning": "沒有意圖地",
@@ -65575,7 +65571,7 @@
       "sourceCount": 1
     },
     {
-      "id": "union-any-entry-6155",
+      "id": "union-any-entry-6154",
       "word": "union",
       "display": "union",
       "meaning": "聯盟",
@@ -65585,7 +65581,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unique-adjective-entry-6156",
+      "id": "unique-adjective-entry-6155",
       "word": "unique",
       "display": "unique",
       "meaning": "獨特的 / 獨一無二的",
@@ -65595,7 +65591,7 @@
       "sourceCount": 1
     },
     {
-      "id": "uniqueness-any-entry-6157",
+      "id": "uniqueness-any-entry-6156",
       "word": "uniqueness",
       "display": "uniqueness",
       "meaning": "獨特性",
@@ -65608,7 +65604,7 @@
       "sourceCount": 1
     },
     {
-      "id": "united-nations-noun-entry-6158",
+      "id": "united-nations-noun-entry-6157",
       "word": "united nations",
       "display": "United Nations",
       "meaning": "聯合國",
@@ -65618,7 +65614,7 @@
       "sourceCount": 1
     },
     {
-      "id": "universal-adjective-entry-6159",
+      "id": "universal-adjective-entry-6158",
       "word": "universal",
       "display": "universal",
       "meaning": "普遍的 / 全球的",
@@ -65628,7 +65624,7 @@
       "sourceCount": 1
     },
     {
-      "id": "universe-any-entry-6160",
+      "id": "universe-any-entry-6159",
       "word": "universe",
       "display": "universe",
       "meaning": "宇宙",
@@ -65638,7 +65634,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unlawful-any-entry-6161",
+      "id": "unlawful-any-entry-6160",
       "word": "unlawful",
       "display": "unlawful",
       "meaning": "非法的",
@@ -65651,7 +65647,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unleash-verb-entry-6162",
+      "id": "unleash-verb-entry-6161",
       "word": "unleash",
       "display": "unleash",
       "meaning": "釋放 / 發揮",
@@ -65661,7 +65657,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unleash-potential-verb-entry-6163",
+      "id": "unleash-potential-verb-entry-6162",
       "word": "unleash potential",
       "display": "unleash potential",
       "meaning": "發揮潛能",
@@ -65671,7 +65667,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unlike-any-entry-6164",
+      "id": "unlike-any-entry-6163",
       "word": "unlike",
       "display": "unlike",
       "meaning": "不像",
@@ -65681,7 +65677,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unlikely-any-30-6165",
+      "id": "unlikely-any-30-6164",
       "word": "unlikely",
       "display": "unlikely",
       "meaning": "30%可能",
@@ -65694,7 +65690,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unlikely-any-30-6166",
+      "id": "unlikely-any-30-6165",
       "word": "unlikely",
       "display": "unlikely",
       "meaning": "不太可能 30%可能",
@@ -65707,7 +65703,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unmanly-any-entry-6167",
+      "id": "unmanly-any-entry-6166",
       "word": "unmanly",
       "display": "unmanly",
       "meaning": "沒有人的",
@@ -65720,7 +65716,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unmanned-any-entry-6168",
+      "id": "unmanned-any-entry-6167",
       "word": "unmanned",
       "display": "unmanned",
       "meaning": "無人的",
@@ -65733,7 +65729,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unmatched-adjective-entry-6169",
+      "id": "unmatched-adjective-entry-6168",
       "word": "unmatched",
       "display": "unmatched",
       "meaning": "無可匹敵的 / 無可比擬的",
@@ -65743,7 +65739,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unmitigated-any-entry-6170",
+      "id": "unmitigated-any-entry-6169",
       "word": "unmitigated",
       "display": "unmitigated",
       "meaning": "無可挽回的",
@@ -65756,7 +65752,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unpalatable-any-entry-6171",
+      "id": "unpalatable-any-entry-6170",
       "word": "unpalatable",
       "display": "unpalatable",
       "meaning": "不可口的",
@@ -65769,7 +65765,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unparalleled-adjective-entry-6172",
+      "id": "unparalleled-adjective-entry-6171",
       "word": "unparalleled",
       "display": "unparalleled",
       "meaning": "無可比擬的 / 無可匹敵的",
@@ -65779,7 +65775,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unparalleled-success-noun-entry-6173",
+      "id": "unparalleled-success-noun-entry-6172",
       "word": "unparalleled success",
       "display": "unparalleled success",
       "meaning": "無可比擬的成功",
@@ -65789,7 +65785,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unpleasant-any-entry-6174",
+      "id": "unpleasant-any-entry-6173",
       "word": "unpleasant",
       "display": "unpleasant",
       "meaning": "令人不愉快的",
@@ -65802,7 +65798,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unprecedented-adjective-entry-6175",
+      "id": "unprecedented-adjective-entry-6174",
       "word": "unprecedented",
       "display": "unprecedented",
       "meaning": "前所未有的",
@@ -65812,7 +65808,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unprecedentedly-adverb-entry-6176",
+      "id": "unprecedentedly-adverb-entry-6175",
       "word": "unprecedentedly",
       "display": "unprecedentedly",
       "meaning": "前所未有地",
@@ -65822,7 +65818,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unrealistic-adjective-entry-6177",
+      "id": "unrealistic-adjective-entry-6176",
       "word": "unrealistic",
       "display": "unrealistic",
       "meaning": "不切實際的 / 不現實的",
@@ -65832,7 +65828,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unregulated-adjective-entry-6178",
+      "id": "unregulated-adjective-entry-6177",
       "word": "unregulated",
       "display": "unregulated",
       "meaning": "不受規管的",
@@ -65842,7 +65838,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unrelenting-any-entry-6179",
+      "id": "unrelenting-any-entry-6178",
       "word": "unrelenting",
       "display": "unrelenting",
       "meaning": "不動搖的",
@@ -65855,7 +65851,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unrivalled-adjective-entry-6180",
+      "id": "unrivalled-adjective-entry-6179",
       "word": "unrivalled",
       "display": "unrivalled",
       "meaning": "無可匹敵的",
@@ -65865,7 +65861,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unstable-adjective-entry-6181",
+      "id": "unstable-adjective-entry-6180",
       "word": "unstable",
       "display": "unstable",
       "meaning": "不穩定的",
@@ -65875,7 +65871,7 @@
       "sourceCount": 1
     },
     {
-      "id": "until-conjunction-entry-6182",
+      "id": "until-conjunction-entry-6181",
       "word": "until",
       "display": "until",
       "meaning": "直到 / 直至",
@@ -65885,7 +65881,7 @@
       "sourceCount": 1
     },
     {
-      "id": "until-preposition-entry-6183",
+      "id": "until-preposition-entry-6182",
       "word": "until",
       "display": "until",
       "meaning": "直到 / 直至",
@@ -65895,7 +65891,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unusual-any-entry-6184",
+      "id": "unusual-any-entry-6183",
       "word": "unusual",
       "display": "unusual",
       "meaning": "不常見",
@@ -65908,7 +65904,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unveil-any-entry-6185",
+      "id": "unveil-any-entry-6184",
       "word": "unveil",
       "display": "unveil",
       "meaning": "揭露",
@@ -65918,7 +65914,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unveil-any-entry-6186",
+      "id": "unveil-any-entry-6185",
       "word": "unveil",
       "display": "unveil",
       "meaning": "顯示",
@@ -65928,7 +65924,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unwavering-any-entry-6187",
+      "id": "unwavering-any-entry-6186",
       "word": "unwavering",
       "display": "unwavering",
       "meaning": "不動搖的",
@@ -65941,7 +65937,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unwilling-to-adjective-entry-6188",
+      "id": "unwilling-to-adjective-entry-6187",
       "word": "unwilling to",
       "display": "unwilling to",
       "meaning": "不願意",
@@ -65951,7 +65947,7 @@
       "sourceCount": 1
     },
     {
-      "id": "unwind-verb-entry-6189",
+      "id": "unwind-verb-entry-6188",
       "word": "unwind",
       "display": "unwind",
       "meaning": "放鬆 / 減壓",
@@ -65961,7 +65957,7 @@
       "sourceCount": 1
     },
     {
-      "id": "uphill-battle-noun-entry-6190",
+      "id": "uphill-battle-noun-entry-6189",
       "word": "uphill battle",
       "display": "uphill battle",
       "meaning": "艱難的挑戰",
@@ -65971,7 +65967,7 @@
       "sourceCount": 1
     },
     {
-      "id": "uphold-verb-entry-6191",
+      "id": "uphold-verb-entry-6190",
       "word": "uphold",
       "display": "uphold",
       "meaning": "維護 / 支持",
@@ -65981,7 +65977,7 @@
       "sourceCount": 1
     },
     {
-      "id": "uproar-noun-entry-6192",
+      "id": "uproar-noun-entry-6191",
       "word": "uproar",
       "display": "uproar",
       "meaning": "騷動 / 強烈反對",
@@ -65991,7 +65987,7 @@
       "sourceCount": 1
     },
     {
-      "id": "upside-noun-entry-6193",
+      "id": "upside-noun-entry-6192",
       "word": "upside",
       "display": "upside",
       "meaning": "好處 / 上升空間",
@@ -66001,7 +65997,7 @@
       "sourceCount": 1
     },
     {
-      "id": "urban-any-entry-6194",
+      "id": "urban-any-entry-6193",
       "word": "urban",
       "display": "urban",
       "meaning": "城市的",
@@ -66014,7 +66010,7 @@
       "sourceCount": 1
     },
     {
-      "id": "urban-dwellers-noun-entry-6195",
+      "id": "urban-dwellers-noun-entry-6194",
       "word": "urban dwellers",
       "display": "urban dwellers",
       "meaning": "城市居民 / 都市人",
@@ -66024,7 +66020,7 @@
       "sourceCount": 1
     },
     {
-      "id": "urban-legend-noun-entry-6196",
+      "id": "urban-legend-noun-entry-6195",
       "word": "urban legend",
       "display": "urban legend",
       "meaning": "都市傳說",
@@ -66034,7 +66030,7 @@
       "sourceCount": 1
     },
     {
-      "id": "urbanisation-noun-entry-6197",
+      "id": "urbanisation-noun-entry-6196",
       "word": "urbanisation",
       "display": "urbanisation",
       "meaning": "都市化",
@@ -66047,7 +66043,7 @@
       "sourceCount": 1
     },
     {
-      "id": "urge-any-entry-6198",
+      "id": "urge-any-entry-6197",
       "word": "urge",
       "display": "urge",
       "meaning": "催促",
@@ -66057,7 +66053,7 @@
       "sourceCount": 1
     },
     {
-      "id": "urine-noun-entry-6199",
+      "id": "urine-noun-entry-6198",
       "word": "urine",
       "display": "urine",
       "meaning": "尿液",
@@ -66067,7 +66063,7 @@
       "sourceCount": 1
     },
     {
-      "id": "used-to-pattern-entry-6200",
+      "id": "used-to-pattern-entry-6199",
       "word": "used to",
       "display": "used to",
       "meaning": "習慣於",
@@ -66077,7 +66073,7 @@
       "sourceCount": 1
     },
     {
-      "id": "used-to-modal-entry-6201",
+      "id": "used-to-modal-entry-6200",
       "word": "used to",
       "display": "used to",
       "meaning": "以前會 / 曾經",
@@ -66087,7 +66083,7 @@
       "sourceCount": 1
     },
     {
-      "id": "used-to-modal-entry-6202",
+      "id": "used-to-modal-entry-6201",
       "word": "used to",
       "display": "used to",
       "meaning": "過去曾經 / 以前會",
@@ -66097,7 +66093,7 @@
       "sourceCount": 1
     },
     {
-      "id": "user-interface-noun-entry-6203",
+      "id": "user-interface-noun-entry-6202",
       "word": "user interface",
       "display": "user interface",
       "meaning": "用戶介面",
@@ -66107,7 +66103,7 @@
       "sourceCount": 1
     },
     {
-      "id": "usher-verb-entry-6204",
+      "id": "usher-verb-entry-6203",
       "word": "usher",
       "display": "usher",
       "meaning": "引導",
@@ -66117,7 +66113,7 @@
       "sourceCount": 1
     },
     {
-      "id": "usher-noun-entry-6205",
+      "id": "usher-noun-entry-6204",
       "word": "usher",
       "display": "usher",
       "meaning": "引座員",
@@ -66127,7 +66123,7 @@
       "sourceCount": 1
     },
     {
-      "id": "usually-any-entry-6206",
+      "id": "usually-any-entry-6205",
       "word": "usually",
       "display": "usually",
       "meaning": "通常",
@@ -66140,7 +66136,7 @@
       "sourceCount": 1
     },
     {
-      "id": "usually-any-entry-6207",
+      "id": "usually-any-entry-6206",
       "word": "usually",
       "display": "usually",
       "meaning": "通常(頻率)",
@@ -66153,7 +66149,7 @@
       "sourceCount": 1
     },
     {
-      "id": "utensil-any-entry-6208",
+      "id": "utensil-any-entry-6207",
       "word": "utensil",
       "display": "utensil",
       "meaning": "器具",
@@ -66166,7 +66162,7 @@
       "sourceCount": 1
     },
     {
-      "id": "utensil-any-entry-6209",
+      "id": "utensil-any-entry-6208",
       "word": "utensil",
       "display": "utensil",
       "meaning": "用具",
@@ -66179,7 +66175,7 @@
       "sourceCount": 1
     },
     {
-      "id": "utilise-verb-entry-6210",
+      "id": "utilise-verb-entry-6209",
       "word": "utilise",
       "display": "utilise",
       "meaning": "利用 / 善用",
@@ -66192,7 +66188,7 @@
       "sourceCount": 1
     },
     {
-      "id": "utter-verb-entry-6211",
+      "id": "utter-verb-entry-6210",
       "word": "utter",
       "display": "utter (v)",
       "meaning": "講",
@@ -66202,7 +66198,7 @@
       "sourceCount": 1
     },
     {
-      "id": "v-n-any-entry-6212",
+      "id": "v-n-any-entry-6211",
       "word": "v / n",
       "display": "v / n",
       "meaning": "影響",
@@ -66212,7 +66208,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vacant-adjective-entry-6213",
+      "id": "vacant-adjective-entry-6212",
       "word": "vacant",
       "display": "vacant",
       "meaning": "空置的 / 空缺的",
@@ -66222,7 +66218,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vacuum-cleaner-noun-entry-6214",
+      "id": "vacuum-cleaner-noun-entry-6213",
       "word": "vacuum cleaner",
       "display": "vacuum cleaner",
       "meaning": "吸塵機",
@@ -66232,7 +66228,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vague-adjective-entry-6215",
+      "id": "vague-adjective-entry-6214",
       "word": "vague",
       "display": "vague",
       "meaning": "模糊的",
@@ -66242,7 +66238,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vaguely-any-entry-6216",
+      "id": "vaguely-any-entry-6215",
       "word": "vaguely",
       "display": "vaguely",
       "meaning": "模糊地",
@@ -66255,7 +66251,7 @@
       "sourceCount": 1
     },
     {
-      "id": "valentine-s-day-noun-entry-6217",
+      "id": "valentine-s-day-noun-entry-6216",
       "word": "valentine's day",
       "display": "Valentine's Day",
       "meaning": "情人節",
@@ -66265,7 +66261,7 @@
       "sourceCount": 1
     },
     {
-      "id": "valid-any-entry-6218",
+      "id": "valid-any-entry-6217",
       "word": "valid",
       "display": "valid",
       "meaning": "有效",
@@ -66275,7 +66271,7 @@
       "sourceCount": 1
     },
     {
-      "id": "validity-noun-entry-6219",
+      "id": "validity-noun-entry-6218",
       "word": "validity",
       "display": "validity",
       "meaning": "有效性 / 合理性",
@@ -66285,7 +66281,7 @@
       "sourceCount": 1
     },
     {
-      "id": "valley-any-entry-6220",
+      "id": "valley-any-entry-6219",
       "word": "valley",
       "display": "valley",
       "meaning": "山谷",
@@ -66295,7 +66291,7 @@
       "sourceCount": 1
     },
     {
-      "id": "valley-any-entry-6221",
+      "id": "valley-any-entry-6220",
       "word": "valley",
       "display": "valley",
       "meaning": "峽谷",
@@ -66305,7 +66301,7 @@
       "sourceCount": 1
     },
     {
-      "id": "valuable-any-entry-6222",
+      "id": "valuable-any-entry-6221",
       "word": "valuable",
       "display": "valuable",
       "meaning": "有價值",
@@ -66318,7 +66314,7 @@
       "sourceCount": 1
     },
     {
-      "id": "value-noun-entry-6223",
+      "id": "value-noun-entry-6222",
       "word": "value",
       "display": "value",
       "meaning": "價值",
@@ -66328,7 +66324,7 @@
       "sourceCount": 1
     },
     {
-      "id": "value-verb-entry-6224",
+      "id": "value-verb-entry-6223",
       "word": "value",
       "display": "value",
       "meaning": "重視",
@@ -66338,7 +66334,7 @@
       "sourceCount": 1
     },
     {
-      "id": "value-for-money-noun-entry-6225",
+      "id": "value-for-money-noun-entry-6224",
       "word": "value for money",
       "display": "value for money",
       "meaning": "性價比",
@@ -66348,7 +66344,7 @@
       "sourceCount": 1
     },
     {
-      "id": "valued-adjective-entry-6226",
+      "id": "valued-adjective-entry-6225",
       "word": "valued",
       "display": "valued",
       "meaning": "受重視的 / 珍貴的",
@@ -66358,7 +66354,7 @@
       "sourceCount": 1
     },
     {
-      "id": "valueless-adjective-entry-6227",
+      "id": "valueless-adjective-entry-6226",
       "word": "valueless",
       "display": "valueless",
       "meaning": "無價值的",
@@ -66368,7 +66364,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vandalism-any-entry-6228",
+      "id": "vandalism-any-entry-6227",
       "word": "vandalism",
       "display": "vandalism",
       "meaning": "破壞公物",
@@ -66381,7 +66377,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vanish-any-entry-6229",
+      "id": "vanish-any-entry-6228",
       "word": "vanish",
       "display": "vanish",
       "meaning": "快速消失",
@@ -66391,7 +66387,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vanish-any-entry-6230",
+      "id": "vanish-any-entry-6229",
       "word": "vanish",
       "display": "vanish",
       "meaning": "消失",
@@ -66401,7 +66397,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vanish-any-entry-6231",
+      "id": "vanish-any-entry-6230",
       "word": "vanish",
       "display": "vanish",
       "meaning": "消失(大)",
@@ -66411,7 +66407,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vanish-any-entry-6232",
+      "id": "vanish-any-entry-6231",
       "word": "vanish",
       "display": "vanish",
       "meaning": "消失(快)",
@@ -66421,7 +66417,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vanish-any-entry-6233",
+      "id": "vanish-any-entry-6232",
       "word": "vanish",
       "display": "vanish",
       "meaning": "突然消失",
@@ -66431,7 +66427,7 @@
       "sourceCount": 1
     },
     {
-      "id": "variance-noun-entry-6234",
+      "id": "variance-noun-entry-6233",
       "word": "variance",
       "display": "variance",
       "meaning": "差異",
@@ -66441,7 +66437,7 @@
       "sourceCount": 1
     },
     {
-      "id": "variation-any-entry-6235",
+      "id": "variation-any-entry-6234",
       "word": "variation",
       "display": "variation x3",
       "meaning": "差異",
@@ -66454,7 +66450,7 @@
       "sourceCount": 1
     },
     {
-      "id": "variation-any-entry-6236",
+      "id": "variation-any-entry-6235",
       "word": "variation",
       "display": "variation x3",
       "meaning": "改變",
@@ -66467,7 +66463,7 @@
       "sourceCount": 1
     },
     {
-      "id": "variation-any-entry-6237",
+      "id": "variation-any-entry-6236",
       "word": "variation",
       "display": "variation x3",
       "meaning": "變化",
@@ -66480,9 +66476,22 @@
       "sourceCount": 1
     },
     {
-      "id": "varied-any-entry-6238",
+      "id": "varied-any-entry-6237",
       "word": "varied",
       "display": "varied",
+      "meaning": "不同的",
+      "pos": "",
+      "inferredPos": "adjective",
+      "posConfidence": 90,
+      "posReason": "chinese-adjective-meaning",
+      "type": "word",
+      "needsReview": false,
+      "sourceCount": 1
+    },
+    {
+      "id": "various-any-entry-6238",
+      "word": "various",
+      "display": "various",
       "meaning": "不同的",
       "pos": "",
       "inferredPos": "adjective",
@@ -66496,7 +66505,7 @@
       "id": "various-any-entry-6239",
       "word": "various",
       "display": "various",
-      "meaning": "不同的",
+      "meaning": "不同的 (+)",
       "pos": "",
       "inferredPos": "adjective",
       "posConfidence": 90,
@@ -66509,7 +66518,7 @@
       "id": "various-any-entry-6240",
       "word": "various",
       "display": "various",
-      "meaning": "不同的 (+)",
+      "meaning": "不同種類的",
       "pos": "",
       "inferredPos": "adjective",
       "posConfidence": 90,
@@ -66522,19 +66531,6 @@
       "id": "various-any-entry-6241",
       "word": "various",
       "display": "various",
-      "meaning": "不同種類的",
-      "pos": "",
-      "inferredPos": "adjective",
-      "posConfidence": 90,
-      "posReason": "chinese-adjective-meaning",
-      "type": "word",
-      "needsReview": false,
-      "sourceCount": 1
-    },
-    {
-      "id": "various-any-entry-6242",
-      "word": "various",
-      "display": "various",
       "meaning": "各式各樣",
       "pos": "",
       "inferredPos": "adjective",
@@ -66545,7 +66541,7 @@
       "sourceCount": 1
     },
     {
-      "id": "various-any-entry-6243",
+      "id": "various-any-entry-6242",
       "word": "various",
       "display": "various",
       "meaning": "各種各樣的",
@@ -66558,7 +66554,7 @@
       "sourceCount": 1
     },
     {
-      "id": "various-any-entry-6244",
+      "id": "various-any-entry-6243",
       "word": "various",
       "display": "various",
       "meaning": "多種",
@@ -66571,7 +66567,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vary-any-entry-6245",
+      "id": "vary-any-entry-6244",
       "word": "vary",
       "display": "vary",
       "meaning": "改變",
@@ -66584,7 +66580,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vary-from-to-verb-entry-6246",
+      "id": "vary-from-to-verb-entry-6245",
       "word": "vary from ... to ...",
       "display": "vary from ... to ...",
       "meaning": "由...到...不等 / 因...而異",
@@ -66594,7 +66590,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vast-adjective-entry-6247",
+      "id": "vast-adjective-entry-6246",
       "word": "vast",
       "display": "vast",
       "meaning": "廣闊的 / 巨大的",
@@ -66604,7 +66600,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vegetative-any-entry-6248",
+      "id": "vegetative-any-entry-6247",
       "word": "vegetative",
       "display": "vegetative",
       "meaning": "植物人的",
@@ -66617,7 +66613,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vehicle-noun-entry-6249",
+      "id": "vehicle-noun-entry-6248",
       "word": "vehicle",
       "display": "vehicle",
       "meaning": "車輛 / 交通工具",
@@ -66630,7 +66626,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vehicles-any-entry-6250",
+      "id": "vehicles-any-entry-6249",
       "word": "vehicles",
       "display": "vehicles",
       "meaning": "汽車",
@@ -66643,7 +66639,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vehicles-any-entry-6251",
+      "id": "vehicles-any-entry-6250",
       "word": "vehicles",
       "display": "vehicles",
       "meaning": "車輛",
@@ -66653,7 +66649,7 @@
       "sourceCount": 1
     },
     {
-      "id": "veil-verb-entry-6252",
+      "id": "veil-verb-entry-6251",
       "word": "veil",
       "display": "veil",
       "meaning": "遮掩",
@@ -66663,7 +66659,7 @@
       "sourceCount": 1
     },
     {
-      "id": "veil-noun-entry-6253",
+      "id": "veil-noun-entry-6252",
       "word": "veil",
       "display": "veil",
       "meaning": "面紗",
@@ -66673,7 +66669,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vend-verb-entry-6254",
+      "id": "vend-verb-entry-6253",
       "word": "vend",
       "display": "vend",
       "meaning": "販賣",
@@ -66683,7 +66679,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vendor-any-entry-6255",
+      "id": "vendor-any-entry-6254",
       "word": "vendor",
       "display": "vendor",
       "meaning": "小販",
@@ -66696,7 +66692,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vendor-any-entry-6256",
+      "id": "vendor-any-entry-6255",
       "word": "vendor",
       "display": "vendor",
       "meaning": "賣家",
@@ -66709,7 +66705,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vendor-any-entry-6257",
+      "id": "vendor-any-entry-6256",
       "word": "vendor",
       "display": "vendor",
       "meaning": "賣家 / 小販",
@@ -66722,7 +66718,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vendors-noun-entry-6258",
+      "id": "vendors-noun-entry-6257",
       "word": "vendors",
       "display": "vendors",
       "meaning": "小販 / 攤販",
@@ -66732,7 +66728,7 @@
       "sourceCount": 1
     },
     {
-      "id": "venerable-adjective-entry-6259",
+      "id": "venerable-adjective-entry-6258",
       "word": "venerable",
       "display": "venerable",
       "meaning": "德高望重的 / 可敬的",
@@ -66742,7 +66738,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vent-verb-entry-6260",
+      "id": "vent-verb-entry-6259",
       "word": "vent",
       "display": "vent",
       "meaning": "發洩",
@@ -66752,7 +66748,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vent-noun-entry-6261",
+      "id": "vent-noun-entry-6260",
       "word": "vent",
       "display": "vent",
       "meaning": "通風口 / 排氣口",
@@ -66762,7 +66758,7 @@
       "sourceCount": 1
     },
     {
-      "id": "ventilation-noun-entry-6262",
+      "id": "ventilation-noun-entry-6261",
       "word": "ventilation",
       "display": "ventilation",
       "meaning": "通風",
@@ -66772,7 +66768,7 @@
       "sourceCount": 1
     },
     {
-      "id": "venue-any-entry-6263",
+      "id": "venue-any-entry-6262",
       "word": "venue",
       "display": "venue",
       "meaning": "場地",
@@ -66785,7 +66781,7 @@
       "sourceCount": 1
     },
     {
-      "id": "verify-any-entry-6264",
+      "id": "verify-any-entry-6263",
       "word": "verify",
       "display": "verify",
       "meaning": "核實",
@@ -66795,7 +66791,7 @@
       "sourceCount": 1
     },
     {
-      "id": "verify-any-entry-6265",
+      "id": "verify-any-entry-6264",
       "word": "verify",
       "display": "verify",
       "meaning": "驗證",
@@ -66805,7 +66801,7 @@
       "sourceCount": 1
     },
     {
-      "id": "versatile-adjective-entry-6266",
+      "id": "versatile-adjective-entry-6265",
       "word": "versatile",
       "display": "versatile",
       "meaning": "多才多藝的 / 多用途的",
@@ -66815,7 +66811,7 @@
       "sourceCount": 1
     },
     {
-      "id": "version-any-entry-6267",
+      "id": "version-any-entry-6266",
       "word": "version",
       "display": "version",
       "meaning": "版本",
@@ -66828,7 +66824,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vertical-any-entry-6268",
+      "id": "vertical-any-entry-6267",
       "word": "vertical",
       "display": "vertical",
       "meaning": "垂直的",
@@ -66841,7 +66837,7 @@
       "sourceCount": 1
     },
     {
-      "id": "very-few-determiner-entry-6269",
+      "id": "very-few-determiner-entry-6268",
       "word": "very few",
       "display": "very few",
       "meaning": "很少 / 得好少",
@@ -66851,7 +66847,7 @@
       "sourceCount": 1
     },
     {
-      "id": "very-few-any-entry-6270",
+      "id": "very-few-any-entry-6269",
       "word": "very few",
       "display": "very few",
       "meaning": "得好少",
@@ -66861,7 +66857,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vessel-noun-entry-6271",
+      "id": "vessel-noun-entry-6270",
       "word": "vessel",
       "display": "vessel",
       "meaning": "器皿 / 船",
@@ -66871,7 +66867,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vet-verb-entry-6272",
+      "id": "vet-verb-entry-6271",
       "word": "vet",
       "display": "vet (v)",
       "meaning": "審查",
@@ -66881,7 +66877,7 @@
       "sourceCount": 1
     },
     {
-      "id": "veteran-any-entry-6273",
+      "id": "veteran-any-entry-6272",
       "word": "veteran",
       "display": "veteran",
       "meaning": "老手",
@@ -66891,7 +66887,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vetting-noun-entry-6274",
+      "id": "vetting-noun-entry-6273",
       "word": "vetting",
       "display": "vetting",
       "meaning": "審查 / 篩選",
@@ -66901,7 +66897,7 @@
       "sourceCount": 1
     },
     {
-      "id": "via-any-entry-6275",
+      "id": "via-any-entry-6274",
       "word": "via",
       "display": "via",
       "meaning": "通過",
@@ -66911,7 +66907,7 @@
       "sourceCount": 1
     },
     {
-      "id": "viable-adjective-entry-6276",
+      "id": "viable-adjective-entry-6275",
       "word": "viable",
       "display": "viable",
       "meaning": "可行的",
@@ -66921,7 +66917,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vibe-noun-entry-6277",
+      "id": "vibe-noun-entry-6276",
       "word": "vibe",
       "display": "vibe",
       "meaning": "氛圍 / 感覺",
@@ -66931,7 +66927,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vibrant-adjective-entry-6278",
+      "id": "vibrant-adjective-entry-6277",
       "word": "vibrant",
       "display": "vibrant",
       "meaning": "生動的",
@@ -66941,7 +66937,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vibrantly-any-entry-6279",
+      "id": "vibrantly-any-entry-6278",
       "word": "vibrantly",
       "display": "vibrantly",
       "meaning": "生動地",
@@ -66954,7 +66950,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vice-any-entry-6280",
+      "id": "vice-any-entry-6279",
       "word": "vice",
       "display": "vice",
       "meaning": "副",
@@ -66964,7 +66960,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vice-principal-noun-entry-6281",
+      "id": "vice-principal-noun-entry-6280",
       "word": "vice principal",
       "display": "vice principal",
       "meaning": "副校長",
@@ -66974,7 +66970,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vice-versa-adverb-entry-6282",
+      "id": "vice-versa-adverb-entry-6281",
       "word": "vice versa",
       "display": "vice versa",
       "meaning": "反之亦然",
@@ -66984,7 +66980,7 @@
       "sourceCount": 1
     },
     {
-      "id": "victim-any-entry-6283",
+      "id": "victim-any-entry-6282",
       "word": "victim",
       "display": "victim",
       "meaning": "受害者",
@@ -66997,7 +66993,7 @@
       "sourceCount": 1
     },
     {
-      "id": "video-conferencing-app-noun-entry-6284",
+      "id": "video-conferencing-app-noun-entry-6283",
       "word": "video conferencing app",
       "display": "video conferencing app",
       "meaning": "視像會議軟件",
@@ -67007,7 +67003,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vie-for-verb-entry-6285",
+      "id": "vie-for-verb-entry-6284",
       "word": "vie for",
       "display": "vie for",
       "meaning": "爭奪",
@@ -67017,7 +67013,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vietnam-noun-entry-6286",
+      "id": "vietnam-noun-entry-6285",
       "word": "vietnam",
       "display": "Vietnam",
       "meaning": "越南",
@@ -67027,7 +67023,7 @@
       "sourceCount": 1
     },
     {
-      "id": "view-noun-entry-6287",
+      "id": "view-noun-entry-6286",
       "word": "view",
       "display": "view",
       "meaning": "觀點 / 看法",
@@ -67037,7 +67033,7 @@
       "sourceCount": 1
     },
     {
-      "id": "view-as-verb-entry-6288",
+      "id": "view-as-verb-entry-6287",
       "word": "view as",
       "display": "view as",
       "meaning": "視為",
@@ -67047,7 +67043,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vigourous-any-entry-6289",
+      "id": "vigourous-any-entry-6288",
       "word": "vigourous",
       "display": "vigourous",
       "meaning": "劇烈的 精力旺盛的",
@@ -67060,7 +67056,7 @@
       "sourceCount": 1
     },
     {
-      "id": "villa-noun-entry-6290",
+      "id": "villa-noun-entry-6289",
       "word": "villa",
       "display": "villa",
       "meaning": "別墅 / 度假屋",
@@ -67070,7 +67066,7 @@
       "sourceCount": 1
     },
     {
-      "id": "villain-any-entry-6291",
+      "id": "villain-any-entry-6290",
       "word": "villain",
       "display": "villain",
       "meaning": "壞人",
@@ -67083,7 +67079,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vintage-noun-entry-6292",
+      "id": "vintage-noun-entry-6291",
       "word": "vintage",
       "display": "vintage",
       "meaning": "古董年份 / 佳釀年份",
@@ -67093,7 +67089,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vintage-adjective-entry-6293",
+      "id": "vintage-adjective-entry-6292",
       "word": "vintage",
       "display": "vintage",
       "meaning": "復古的 / 懷舊的",
@@ -67103,7 +67099,7 @@
       "sourceCount": 1
     },
     {
-      "id": "violate-any-entry-6294",
+      "id": "violate-any-entry-6293",
       "word": "violate",
       "display": "violate",
       "meaning": "違反",
@@ -67113,7 +67109,7 @@
       "sourceCount": 1
     },
     {
-      "id": "violent-any-entry-6295",
+      "id": "violent-any-entry-6294",
       "word": "violent",
       "display": "violent",
       "meaning": "暴力",
@@ -67126,7 +67122,7 @@
       "sourceCount": 1
     },
     {
-      "id": "violent-any-entry-6296",
+      "id": "violent-any-entry-6295",
       "word": "violent",
       "display": "violent",
       "meaning": "暴力的",
@@ -67139,7 +67135,7 @@
       "sourceCount": 1
     },
     {
-      "id": "viral-adjective-entry-6297",
+      "id": "viral-adjective-entry-6296",
       "word": "viral",
       "display": "viral",
       "meaning": "爆紅的 / 病毒式傳播的",
@@ -67149,7 +67145,7 @@
       "sourceCount": 1
     },
     {
-      "id": "virtual-any-entry-6298",
+      "id": "virtual-any-entry-6297",
       "word": "virtual",
       "display": "virtual",
       "meaning": "虛擬",
@@ -67162,7 +67158,7 @@
       "sourceCount": 1
     },
     {
-      "id": "virtually-adverb-entry-6299",
+      "id": "virtually-adverb-entry-6298",
       "word": "virtually",
       "display": "virtually",
       "meaning": "幾乎",
@@ -67172,7 +67168,7 @@
       "sourceCount": 1
     },
     {
-      "id": "virtually-impossible-adjective-entry-6300",
+      "id": "virtually-impossible-adjective-entry-6299",
       "word": "virtually impossible",
       "display": "virtualy impossible",
       "meaning": "幾乎不可能",
@@ -67182,7 +67178,7 @@
       "sourceCount": 1
     },
     {
-      "id": "virtue-noun-entry-6301",
+      "id": "virtue-noun-entry-6300",
       "word": "virtue",
       "display": "virtue",
       "meaning": "好處 / 美德",
@@ -67192,7 +67188,7 @@
       "sourceCount": 1
     },
     {
-      "id": "virus-any-entry-6302",
+      "id": "virus-any-entry-6301",
       "word": "virus",
       "display": "virus",
       "meaning": "病毒",
@@ -67202,7 +67198,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vision-any-entry-6303",
+      "id": "vision-any-entry-6302",
       "word": "vision",
       "display": "vision",
       "meaning": "視力",
@@ -67215,7 +67211,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vision-any-entry-6304",
+      "id": "vision-any-entry-6303",
       "word": "vision",
       "display": "vision x2",
       "meaning": "視野",
@@ -67228,7 +67224,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vision-any-entry-6305",
+      "id": "vision-any-entry-6304",
       "word": "vision",
       "display": "vision",
       "meaning": "願景 / 視野",
@@ -67241,7 +67237,7 @@
       "sourceCount": 1
     },
     {
-      "id": "visitor-noun-entry-6306",
+      "id": "visitor-noun-entry-6305",
       "word": "visitor",
       "display": "visitor",
       "meaning": "訪客",
@@ -67254,7 +67250,7 @@
       "sourceCount": 1
     },
     {
-      "id": "visitors-any-entry-6307",
+      "id": "visitors-any-entry-6306",
       "word": "visitors",
       "display": "visitors",
       "meaning": "訪客",
@@ -67264,7 +67260,7 @@
       "sourceCount": 1
     },
     {
-      "id": "visualise-verb-entry-6308",
+      "id": "visualise-verb-entry-6307",
       "word": "visualise",
       "display": "visualise",
       "meaning": "想像 / 視覺化",
@@ -67277,7 +67273,7 @@
       "sourceCount": 1
     },
     {
-      "id": "visually-impaired-adjective-entry-6309",
+      "id": "visually-impaired-adjective-entry-6308",
       "word": "visually impaired",
       "display": "visually impaired",
       "meaning": "視障的",
@@ -67287,7 +67283,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vital-adjective-entry-6310",
+      "id": "vital-adjective-entry-6309",
       "word": "vital",
       "display": "vital",
       "meaning": "極重要的",
@@ -67297,7 +67293,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vitamin-noun-entry-6311",
+      "id": "vitamin-noun-entry-6310",
       "word": "vitamin",
       "display": "vitamin",
       "meaning": "維他命 / 維生素",
@@ -67310,7 +67306,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vitamins-any-entry-6312",
+      "id": "vitamins-any-entry-6311",
       "word": "vitamins",
       "display": "vitamins",
       "meaning": "維他命",
@@ -67320,7 +67316,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vitamins-any-entry-6313",
+      "id": "vitamins-any-entry-6312",
       "word": "vitamins",
       "display": "vitamins",
       "meaning": "維生素",
@@ -67330,7 +67326,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vivid-adjective-entry-6314",
+      "id": "vivid-adjective-entry-6313",
       "word": "vivid",
       "display": "vivid",
       "meaning": "生動的 / 鮮明的",
@@ -67340,7 +67336,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vividly-any-entry-6315",
+      "id": "vividly-any-entry-6314",
       "word": "vividly",
       "display": "vividly",
       "meaning": "生動地",
@@ -67353,7 +67349,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vocation-noun-entry-6316",
+      "id": "vocation-noun-entry-6315",
       "word": "vocation",
       "display": "vocation",
       "meaning": "職業 / 使命感",
@@ -67363,7 +67359,7 @@
       "sourceCount": 1
     },
     {
-      "id": "volatile-adjective-entry-6317",
+      "id": "volatile-adjective-entry-6316",
       "word": "volatile",
       "display": "volatile",
       "meaning": "波動的 / 不穩定的",
@@ -67373,7 +67369,7 @@
       "sourceCount": 1
     },
     {
-      "id": "volcano-noun-entry-6318",
+      "id": "volcano-noun-entry-6317",
       "word": "volcano",
       "display": "volcano",
       "meaning": "火山",
@@ -67383,7 +67379,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vulnerable-any-entry-6319",
+      "id": "vulnerable-any-entry-6318",
       "word": "vulnerable",
       "display": "vulnerable",
       "meaning": "易受傷害",
@@ -67396,7 +67392,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vulnerable-any-entry-6320",
+      "id": "vulnerable-any-entry-6319",
       "word": "vulnerable",
       "display": "vulnerable",
       "meaning": "易受傷的",
@@ -67409,7 +67405,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vulnerable-any-entry-6321",
+      "id": "vulnerable-any-entry-6320",
       "word": "vulnerable",
       "display": "vulnerable",
       "meaning": "脆弱的",
@@ -67422,7 +67418,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vulnerable-to-adjective-entry-6322",
+      "id": "vulnerable-to-adjective-entry-6321",
       "word": "vulnerable to",
       "display": "vulnerable to",
       "meaning": "易受...傷害的",
@@ -67432,7 +67428,7 @@
       "sourceCount": 1
     },
     {
-      "id": "vulnerable-to-adjective-entry-6323",
+      "id": "vulnerable-to-adjective-entry-6322",
       "word": "vulnerable to",
       "display": "vulnerable to",
       "meaning": "易受...影響 / 傷害",
@@ -67442,7 +67438,7 @@
       "sourceCount": 1
     },
     {
-      "id": "w-w-any-x2-6324",
+      "id": "w-w-any-x2-6323",
       "word": "w / w",
       "display": "w / w",
       "meaning": "而 x2",
@@ -67452,7 +67448,7 @@
       "sourceCount": 1
     },
     {
-      "id": "w-s-any-entry-6325",
+      "id": "w-s-any-entry-6324",
       "word": "w s",
       "display": "w s",
       "meaning": "更差的是",
@@ -67462,7 +67458,7 @@
       "sourceCount": 1
     },
     {
-      "id": "wait-for-verb-entry-6326",
+      "id": "wait-for-verb-entry-6325",
       "word": "wait for",
       "display": "wait for",
       "meaning": "等待",
@@ -67472,7 +67468,7 @@
       "sourceCount": 1
     },
     {
-      "id": "wake-up-verb-entry-6327",
+      "id": "wake-up-verb-entry-6326",
       "word": "wake up",
       "display": "wake up",
       "meaning": "叫醒",
@@ -67482,7 +67478,7 @@
       "sourceCount": 1
     },
     {
-      "id": "wake-up-verb-entry-6328",
+      "id": "wake-up-verb-entry-6327",
       "word": "wake up",
       "display": "wake up",
       "meaning": "醒來",
@@ -67492,7 +67488,7 @@
       "sourceCount": 1
     },
     {
-      "id": "wallet-noun-entry-6329",
+      "id": "wallet-noun-entry-6328",
       "word": "wallet",
       "display": "wallet",
       "meaning": "錢包",
@@ -67502,7 +67498,7 @@
       "sourceCount": 1
     },
     {
-      "id": "walnut-noun-entry-6330",
+      "id": "walnut-noun-entry-6329",
       "word": "walnut",
       "display": "walnut",
       "meaning": "核桃",
@@ -67512,7 +67508,7 @@
       "sourceCount": 1
     },
     {
-      "id": "wander-any-entry-6331",
+      "id": "wander-any-entry-6330",
       "word": "wander",
       "display": "wander",
       "meaning": "遊盪",
@@ -67525,7 +67521,7 @@
       "sourceCount": 1
     },
     {
-      "id": "wander-any-entry-6332",
+      "id": "wander-any-entry-6331",
       "word": "wander",
       "display": "wander",
       "meaning": "遊蕩",
@@ -67538,7 +67534,7 @@
       "sourceCount": 1
     },
     {
-      "id": "wander-any-entry-6333",
+      "id": "wander-any-entry-6332",
       "word": "wander",
       "display": "wander",
       "meaning": "遊蕩 / 流浪",
@@ -67551,7 +67547,7 @@
       "sourceCount": 1
     },
     {
-      "id": "wardrobe-noun-entry-6334",
+      "id": "wardrobe-noun-entry-6333",
       "word": "wardrobe",
       "display": "wardrobe",
       "meaning": "衣櫃",
@@ -67561,7 +67557,7 @@
       "sourceCount": 1
     },
     {
-      "id": "warehouse-any-entry-6335",
+      "id": "warehouse-any-entry-6334",
       "word": "warehouse",
       "display": "warehouse",
       "meaning": "倉庫",
@@ -67571,7 +67567,7 @@
       "sourceCount": 1
     },
     {
-      "id": "warehouse-any-entry-6336",
+      "id": "warehouse-any-entry-6335",
       "word": "warehouse",
       "display": "warehouse",
       "meaning": "貨倉",
@@ -67581,7 +67577,7 @@
       "sourceCount": 1
     },
     {
-      "id": "warehouse-any-entry-6337",
+      "id": "warehouse-any-entry-6336",
       "word": "warehouse",
       "display": "warehouse",
       "meaning": "貨庫",
@@ -67591,7 +67587,7 @@
       "sourceCount": 1
     },
     {
-      "id": "warp-any-entry-6338",
+      "id": "warp-any-entry-6337",
       "word": "warp",
       "display": "warp",
       "meaning": "反常的",
@@ -67604,7 +67600,7 @@
       "sourceCount": 1
     },
     {
-      "id": "wary-of-adjective-entry-6339",
+      "id": "wary-of-adjective-entry-6338",
       "word": "wary of",
       "display": "wary of",
       "meaning": "對...警惕 / 提防",
@@ -67614,7 +67610,7 @@
       "sourceCount": 1
     },
     {
-      "id": "wary-of-any-entry-6340",
+      "id": "wary-of-any-entry-6339",
       "word": "wary of",
       "display": "wary of",
       "meaning": "提防 / 警惕",
@@ -67624,7 +67620,7 @@
       "sourceCount": 1
     },
     {
-      "id": "watch-noun-entry-6341",
+      "id": "watch-noun-entry-6340",
       "word": "watch",
       "display": "watch",
       "meaning": "手錶",
@@ -67634,7 +67630,7 @@
       "sourceCount": 1
     },
     {
-      "id": "watch-verb-entry-6342",
+      "id": "watch-verb-entry-6341",
       "word": "watch",
       "display": "watch",
       "meaning": "觀看",
@@ -67644,7 +67640,7 @@
       "sourceCount": 1
     },
     {
-      "id": "water-noun-entry-6343",
+      "id": "water-noun-entry-6342",
       "word": "water",
       "display": "water",
       "meaning": "水",
@@ -67654,7 +67650,7 @@
       "sourceCount": 1
     },
     {
-      "id": "water-verb-entry-6344",
+      "id": "water-verb-entry-6343",
       "word": "water",
       "display": "water",
       "meaning": "澆水",
@@ -67664,7 +67660,7 @@
       "sourceCount": 1
     },
     {
-      "id": "waterfall-noun-entry-6345",
+      "id": "waterfall-noun-entry-6344",
       "word": "waterfall",
       "display": "waterfall",
       "meaning": "瀑布",
@@ -67674,7 +67670,7 @@
       "sourceCount": 1
     },
     {
-      "id": "waters-noun-entry-6346",
+      "id": "waters-noun-entry-6345",
       "word": "waters",
       "display": "waters",
       "meaning": "水域",
@@ -67684,7 +67680,7 @@
       "sourceCount": 1
     },
     {
-      "id": "wave-verb-entry-6347",
+      "id": "wave-verb-entry-6346",
       "word": "wave",
       "display": "wave",
       "meaning": "揮手",
@@ -67694,7 +67690,7 @@
       "sourceCount": 1
     },
     {
-      "id": "wave-noun-entry-6348",
+      "id": "wave-noun-entry-6347",
       "word": "wave",
       "display": "wave",
       "meaning": "波浪 / 揮手",
@@ -67704,7 +67700,7 @@
       "sourceCount": 1
     },
     {
-      "id": "wax-verb-entry-6349",
+      "id": "wax-verb-entry-6348",
       "word": "wax",
       "display": "wax",
       "meaning": "打蠟",
@@ -67714,7 +67710,7 @@
       "sourceCount": 1
     },
     {
-      "id": "wax-noun-entry-6350",
+      "id": "wax-noun-entry-6349",
       "word": "wax",
       "display": "wax",
       "meaning": "蠟",
@@ -67724,7 +67720,7 @@
       "sourceCount": 1
     },
     {
-      "id": "way-any-entry-6351",
+      "id": "way-any-entry-6350",
       "word": "way",
       "display": "way",
       "meaning": "方式",
@@ -67737,7 +67733,7 @@
       "sourceCount": 1
     },
     {
-      "id": "way-any-entry-6352",
+      "id": "way-any-entry-6351",
       "word": "way",
       "display": "way",
       "meaning": "方法",
@@ -67750,7 +67746,7 @@
       "sourceCount": 1
     },
     {
-      "id": "weaken-any-entry-6353",
+      "id": "weaken-any-entry-6352",
       "word": "weaken",
       "display": "weaken",
       "meaning": "弱化",
@@ -67760,7 +67756,7 @@
       "sourceCount": 1
     },
     {
-      "id": "wealth-any-entry-6354",
+      "id": "wealth-any-entry-6353",
       "word": "wealth",
       "display": "wealth",
       "meaning": "財富",
@@ -67770,7 +67766,7 @@
       "sourceCount": 1
     },
     {
-      "id": "wear-verb-entry-6355",
+      "id": "wear-verb-entry-6354",
       "word": "wear",
       "display": "wear",
       "meaning": "穿 / 戴",
@@ -67780,7 +67776,7 @@
       "sourceCount": 1
     },
     {
-      "id": "wearisome-any-entry-6356",
+      "id": "wearisome-any-entry-6355",
       "word": "wearisome",
       "display": "wearisome",
       "meaning": "令人疲累的",
@@ -67793,7 +67789,7 @@
       "sourceCount": 1
     },
     {
-      "id": "weary-adjective-entry-6357",
+      "id": "weary-adjective-entry-6356",
       "word": "weary",
       "display": "weary",
       "meaning": "疲倦的 / 疲累的",
@@ -67803,7 +67799,7 @@
       "sourceCount": 1
     },
     {
-      "id": "weary-of-adjective-entry-6358",
+      "id": "weary-of-adjective-entry-6357",
       "word": "weary of",
       "display": "weary of",
       "meaning": "對...厭倦",
@@ -67813,7 +67809,7 @@
       "sourceCount": 1
     },
     {
-      "id": "weathering-noun-entry-6359",
+      "id": "weathering-noun-entry-6358",
       "word": "weathering",
       "display": "weathering",
       "meaning": "風化作用",
@@ -67823,7 +67819,7 @@
       "sourceCount": 1
     },
     {
-      "id": "weave-any-entry-6360",
+      "id": "weave-any-entry-6359",
       "word": "weave",
       "display": "weave",
       "meaning": "編織",
@@ -67833,7 +67829,7 @@
       "sourceCount": 1
     },
     {
-      "id": "wedding-banquet-noun-entry-6361",
+      "id": "wedding-banquet-noun-entry-6360",
       "word": "wedding banquet",
       "display": "wedding banquet",
       "meaning": "婚宴",
@@ -67843,7 +67839,7 @@
       "sourceCount": 1
     },
     {
-      "id": "weed-any-entry-6362",
+      "id": "weed-any-entry-6361",
       "word": "weed",
       "display": "weed",
       "meaning": "雜草",
@@ -67856,7 +67852,7 @@
       "sourceCount": 1
     },
     {
-      "id": "weed-out-verb-entry-6363",
+      "id": "weed-out-verb-entry-6362",
       "word": "weed out",
       "display": "weed out",
       "meaning": "淘汰 / 清除",
@@ -67866,7 +67862,7 @@
       "sourceCount": 1
     },
     {
-      "id": "weep-verb-entry-6364",
+      "id": "weep-verb-entry-6363",
       "word": "weep",
       "display": "weep",
       "meaning": "流淚 / 哭泣",
@@ -67876,7 +67872,7 @@
       "sourceCount": 1
     },
     {
-      "id": "weight-any-entry-6365",
+      "id": "weight-any-entry-6364",
       "word": "weight",
       "display": "weight",
       "meaning": "重量",
@@ -67889,7 +67885,7 @@
       "sourceCount": 1
     },
     {
-      "id": "weird-any-entry-6366",
+      "id": "weird-any-entry-6365",
       "word": "weird",
       "display": "weird",
       "meaning": "奇怪",
@@ -67899,7 +67895,7 @@
       "sourceCount": 1
     },
     {
-      "id": "welfare-any-entry-6367",
+      "id": "welfare-any-entry-6366",
       "word": "welfare",
       "display": "welfare",
       "meaning": "福利",
@@ -67909,7 +67905,7 @@
       "sourceCount": 1
     },
     {
-      "id": "well-noun-entry-6368",
+      "id": "well-noun-entry-6367",
       "word": "well",
       "display": "well",
       "meaning": "井",
@@ -67919,7 +67915,7 @@
       "sourceCount": 1
     },
     {
-      "id": "well-adjective-entry-6369",
+      "id": "well-adjective-entry-6368",
       "word": "well",
       "display": "well",
       "meaning": "健康的",
@@ -67929,7 +67925,7 @@
       "sourceCount": 1
     },
     {
-      "id": "well-adverb-entry-6370",
+      "id": "well-adverb-entry-6369",
       "word": "well",
       "display": "well",
       "meaning": "好",
@@ -67939,7 +67935,7 @@
       "sourceCount": 1
     },
     {
-      "id": "well-being-noun-entry-6371",
+      "id": "well-being-noun-entry-6370",
       "word": "well-being",
       "display": "well-being",
       "meaning": "福祉 / 身心健康",
@@ -67949,7 +67945,7 @@
       "sourceCount": 1
     },
     {
-      "id": "well-intentioned-adjective-entry-6372",
+      "id": "well-intentioned-adjective-entry-6371",
       "word": "well-intentioned",
       "display": "well-intentioned",
       "meaning": "出於好意的",
@@ -67959,7 +67955,7 @@
       "sourceCount": 1
     },
     {
-      "id": "well-known-adjective-entry-6373",
+      "id": "well-known-adjective-entry-6372",
       "word": "well-known",
       "display": "well-known",
       "meaning": "知名的 / 眾所周知的",
@@ -67969,7 +67965,7 @@
       "sourceCount": 1
     },
     {
-      "id": "well-known-for-adjective-entry-6374",
+      "id": "well-known-for-adjective-entry-6373",
       "word": "well-known for",
       "display": "well-known for",
       "meaning": "以...聞名",
@@ -67979,7 +67975,7 @@
       "sourceCount": 1
     },
     {
-      "id": "well-off-adjective-entry-6375",
+      "id": "well-off-adjective-entry-6374",
       "word": "well-off",
       "display": "well-off",
       "meaning": "富裕的",
@@ -67989,7 +67985,7 @@
       "sourceCount": 1
     },
     {
-      "id": "well-off-family-noun-entry-6376",
+      "id": "well-off-family-noun-entry-6375",
       "word": "well-off family",
       "display": "well-off family",
       "meaning": "富裕家庭",
@@ -67999,7 +67995,7 @@
       "sourceCount": 1
     },
     {
-      "id": "well-paid-jobs-noun-entry-6377",
+      "id": "well-paid-jobs-noun-entry-6376",
       "word": "well-paid jobs",
       "display": "well-paid jobs",
       "meaning": "高收入工作",
@@ -68009,7 +68005,7 @@
       "sourceCount": 1
     },
     {
-      "id": "well-received-adjective-entry-6378",
+      "id": "well-received-adjective-entry-6377",
       "word": "well-received",
       "display": "well-received",
       "meaning": "受好評的",
@@ -68019,7 +68015,7 @@
       "sourceCount": 1
     },
     {
-      "id": "westerners-any-entry-6379",
+      "id": "westerners-any-entry-6378",
       "word": "westerners",
       "display": "westerners",
       "meaning": "西方人",
@@ -68032,7 +68028,7 @@
       "sourceCount": 1
     },
     {
-      "id": "whack-verb-entry-6380",
+      "id": "whack-verb-entry-6379",
       "word": "whack",
       "display": "whack",
       "meaning": "猛擊",
@@ -68042,7 +68038,7 @@
       "sourceCount": 1
     },
     {
-      "id": "whack-noun-entry-6381",
+      "id": "whack-noun-entry-6380",
       "word": "whack",
       "display": "whack",
       "meaning": "重擊",
@@ -68052,7 +68048,7 @@
       "sourceCount": 1
     },
     {
-      "id": "what-determiner-entry-6382",
+      "id": "what-determiner-entry-6381",
       "word": "what",
       "display": "what",
       "meaning": "什麼",
@@ -68062,7 +68058,7 @@
       "sourceCount": 1
     },
     {
-      "id": "what-pronoun-entry-6383",
+      "id": "what-pronoun-entry-6382",
       "word": "what",
       "display": "what",
       "meaning": "的東西 / 什麼",
@@ -68072,7 +68068,7 @@
       "sourceCount": 1
     },
     {
-      "id": "what-s-more-adverb-entry-6384",
+      "id": "what-s-more-adverb-entry-6383",
       "word": "what's more",
       "display": "what's more",
       "meaning": "此外 / 而且",
@@ -68082,7 +68078,7 @@
       "sourceCount": 1
     },
     {
-      "id": "when-it-comes-to-preposition-entry-6385",
+      "id": "when-it-comes-to-preposition-entry-6384",
       "word": "when it comes to",
       "display": "when it comes to",
       "meaning": "當談到...",
@@ -68092,7 +68088,7 @@
       "sourceCount": 1
     },
     {
-      "id": "whereas-conjunction-entry-6386",
+      "id": "whereas-conjunction-entry-6385",
       "word": "whereas",
       "display": "whereas",
       "meaning": "然而 / 而",
@@ -68102,7 +68098,7 @@
       "sourceCount": 1
     },
     {
-      "id": "whereas-while-conjunction-entry-6387",
+      "id": "whereas-while-conjunction-entry-6386",
       "word": "whereas / while",
       "display": "whereas / while",
       "meaning": "然而 / 而",
@@ -68112,7 +68108,7 @@
       "sourceCount": 1
     },
     {
-      "id": "which-in-turn-adverb-entry-6388",
+      "id": "which-in-turn-adverb-entry-6387",
       "word": "which in turn",
       "display": "which in turn",
       "meaning": "從而 / 繼而",
@@ -68122,7 +68118,7 @@
       "sourceCount": 1
     },
     {
-      "id": "while-conjunction-entry-6389",
+      "id": "while-conjunction-entry-6388",
       "word": "while",
       "display": "while",
       "meaning": "當 / 而 / 雖然",
@@ -68132,7 +68128,7 @@
       "sourceCount": 1
     },
     {
-      "id": "whisk-verb-entry-6390",
+      "id": "whisk-verb-entry-6389",
       "word": "whisk",
       "display": "whisk",
       "meaning": "打發",
@@ -68142,7 +68138,7 @@
       "sourceCount": 1
     },
     {
-      "id": "whisper-any-entry-6391",
+      "id": "whisper-any-entry-6390",
       "word": "whisper",
       "display": "whisper",
       "meaning": "低聲說",
@@ -68155,7 +68151,7 @@
       "sourceCount": 1
     },
     {
-      "id": "whisper-any-entry-6392",
+      "id": "whisper-any-entry-6391",
       "word": "whisper",
       "display": "whisper",
       "meaning": "細聲講",
@@ -68168,7 +68164,7 @@
       "sourceCount": 1
     },
     {
-      "id": "whisper-any-entry-6393",
+      "id": "whisper-any-entry-6392",
       "word": "whisper",
       "display": "whisper",
       "meaning": "輕聲細語",
@@ -68181,7 +68177,7 @@
       "sourceCount": 1
     },
     {
-      "id": "whistle-noun-entry-6394",
+      "id": "whistle-noun-entry-6393",
       "word": "whistle",
       "display": "whistle",
       "meaning": "口哨",
@@ -68191,7 +68187,7 @@
       "sourceCount": 1
     },
     {
-      "id": "whistle-verb-entry-6395",
+      "id": "whistle-verb-entry-6394",
       "word": "whistle",
       "display": "whistle",
       "meaning": "吹口哨",
@@ -68201,7 +68197,7 @@
       "sourceCount": 1
     },
     {
-      "id": "white-collar-workers-noun-entry-6396",
+      "id": "white-collar-workers-noun-entry-6395",
       "word": "white-collar workers",
       "display": "white-collar workers",
       "meaning": "白領 / 白領人士",
@@ -68211,7 +68207,7 @@
       "sourceCount": 1
     },
     {
-      "id": "whole-adjective-entry-6397",
+      "id": "whole-adjective-entry-6396",
       "word": "whole",
       "display": "whole",
       "meaning": "全部的 / 一整個的",
@@ -68221,7 +68217,7 @@
       "sourceCount": 1
     },
     {
-      "id": "whole-adjective-entry-6398",
+      "id": "whole-adjective-entry-6397",
       "word": "whole",
       "display": "whole",
       "meaning": "整個的 / 全部的",
@@ -68231,7 +68227,7 @@
       "sourceCount": 1
     },
     {
-      "id": "whole-noun-entry-6399",
+      "id": "whole-noun-entry-6398",
       "word": "whole",
       "display": "whole",
       "meaning": "整體",
@@ -68241,7 +68237,7 @@
       "sourceCount": 1
     },
     {
-      "id": "wholeheartedly-any-entry-6400",
+      "id": "wholeheartedly-any-entry-6399",
       "word": "wholeheartedly",
       "display": "wholeheartedly",
       "meaning": "衷心地",
@@ -68254,7 +68250,7 @@
       "sourceCount": 1
     },
     {
-      "id": "wholesaler-any-entry-6401",
+      "id": "wholesaler-any-entry-6400",
       "word": "wholesaler",
       "display": "wholesaler",
       "meaning": "批發商",
@@ -68267,7 +68263,7 @@
       "sourceCount": 1
     },
     {
-      "id": "wholesome-any-entry-6402",
+      "id": "wholesome-any-entry-6401",
       "word": "wholesome",
       "display": "wholesome",
       "meaning": "有益健康的",
@@ -68280,7 +68276,7 @@
       "sourceCount": 1
     },
     {
-      "id": "whopping-adjective-entry-6403",
+      "id": "whopping-adjective-entry-6402",
       "word": "whopping",
       "display": "whopping",
       "meaning": "巨大的 / 大得驚人的",
@@ -68290,7 +68286,7 @@
       "sourceCount": 1
     },
     {
-      "id": "wicked-any-entry-6404",
+      "id": "wicked-any-entry-6403",
       "word": "wicked",
       "display": "wicked",
       "meaning": "邪惡的",
@@ -68303,7 +68299,7 @@
       "sourceCount": 1
     },
     {
-      "id": "widely-received-adjective-entry-6405",
+      "id": "widely-received-adjective-entry-6404",
       "word": "widely received",
       "display": "widely received",
       "meaning": "廣受好評的",
@@ -68313,7 +68309,7 @@
       "sourceCount": 1
     },
     {
-      "id": "widely-recognised-adjective-entry-6406",
+      "id": "widely-recognised-adjective-entry-6405",
       "word": "widely recognised",
       "display": "widely recognised",
       "meaning": "廣受認可的",
@@ -68323,7 +68319,7 @@
       "sourceCount": 1
     },
     {
-      "id": "widen-our-horizons-verb-entry-6407",
+      "id": "widen-our-horizons-verb-entry-6406",
       "word": "widen our horizons",
       "display": "widen our horizons",
       "meaning": "擴闊視野 / 增廣見聞",
@@ -68333,7 +68329,7 @@
       "sourceCount": 1
     },
     {
-      "id": "widespread-adjective-entry-6408",
+      "id": "widespread-adjective-entry-6407",
       "word": "widespread",
       "display": "widespread",
       "meaning": "廣泛的 / 普遍的",
@@ -68343,7 +68339,7 @@
       "sourceCount": 1
     },
     {
-      "id": "wild-any-entry-6409",
+      "id": "wild-any-entry-6408",
       "word": "wild",
       "display": "wild",
       "meaning": "野生的",
@@ -68356,7 +68352,7 @@
       "sourceCount": 1
     },
     {
-      "id": "wildlife-any-entry-6410",
+      "id": "wildlife-any-entry-6409",
       "word": "wildlife",
       "display": "wildlife",
       "meaning": "野生動物",
@@ -68369,7 +68365,7 @@
       "sourceCount": 1
     },
     {
-      "id": "will-modal-entry-6411",
+      "id": "will-modal-entry-6410",
       "word": "will",
       "display": "will",
       "meaning": "將會",
@@ -68379,7 +68375,7 @@
       "sourceCount": 1
     },
     {
-      "id": "will-noun-entry-6412",
+      "id": "will-noun-entry-6411",
       "word": "will",
       "display": "will",
       "meaning": "意志",
@@ -68389,7 +68385,7 @@
       "sourceCount": 1
     },
     {
-      "id": "will-noun-entry-6413",
+      "id": "will-noun-entry-6412",
       "word": "will",
       "display": "will",
       "meaning": "遺囑",
@@ -68399,7 +68395,7 @@
       "sourceCount": 1
     },
     {
-      "id": "will-soon-pattern-entry-6414",
+      "id": "will-soon-pattern-entry-6413",
       "word": "will ... soon",
       "display": "will ... soon",
       "meaning": "快將...",
@@ -68409,7 +68405,7 @@
       "sourceCount": 1
     },
     {
-      "id": "will-soon-any-entry-6415",
+      "id": "will-soon-any-entry-6414",
       "word": "will ... soon",
       "display": "will ... soon",
       "meaning": "快將",
@@ -68419,7 +68415,7 @@
       "sourceCount": 1
     },
     {
-      "id": "willing-any-entry-6416",
+      "id": "willing-any-entry-6415",
       "word": "willing",
       "display": "willing",
       "meaning": "願意",
@@ -68432,7 +68428,7 @@
       "sourceCount": 1
     },
     {
-      "id": "willing-to-adjective-entry-6417",
+      "id": "willing-to-adjective-entry-6416",
       "word": "willing to",
       "display": "willing to",
       "meaning": "願意",
@@ -68442,7 +68438,7 @@
       "sourceCount": 1
     },
     {
-      "id": "wind-down-verb-entry-6418",
+      "id": "wind-down-verb-entry-6417",
       "word": "wind down",
       "display": "wind down",
       "meaning": "放鬆 / 放緩",
@@ -68452,7 +68448,7 @@
       "sourceCount": 1
     },
     {
-      "id": "windfall-gain-noun-entry-6419",
+      "id": "windfall-gain-noun-entry-6418",
       "word": "windfall gain",
       "display": "windfall gain",
       "meaning": "意外之財 / 意外收穫",
@@ -68462,7 +68458,7 @@
       "sourceCount": 1
     },
     {
-      "id": "wipe-off-verb-entry-6420",
+      "id": "wipe-off-verb-entry-6419",
       "word": "wipe off",
       "display": "wipe off",
       "meaning": "抹去 / 擦掉",
@@ -68472,7 +68468,7 @@
       "sourceCount": 1
     },
     {
-      "id": "wired-to-adjective-entry-6421",
+      "id": "wired-to-adjective-entry-6420",
       "word": "wired to",
       "display": "wired to",
       "meaning": "天生傾向於 / 與生俱來會",
@@ -68482,7 +68478,7 @@
       "sourceCount": 1
     },
     {
-      "id": "wise-adjective-entry-6422",
+      "id": "wise-adjective-entry-6421",
       "word": "wise",
       "display": "wise",
       "meaning": "明智的 / 有智慧的",
@@ -68492,7 +68488,7 @@
       "sourceCount": 1
     },
     {
-      "id": "with-preposition-entry-6423",
+      "id": "with-preposition-entry-6422",
       "word": "with",
       "display": "with",
       "meaning": "和...一起 / 帶有 / 隨著",
@@ -68502,7 +68498,7 @@
       "sourceCount": 1
     },
     {
-      "id": "with-a-view-to-preposition-entry-6424",
+      "id": "with-a-view-to-preposition-entry-6423",
       "word": "with a view to",
       "display": "with a view to",
       "meaning": "為了 / 旨在",
@@ -68512,7 +68508,7 @@
       "sourceCount": 1
     },
     {
-      "id": "with-ease-adverb-entry-6425",
+      "id": "with-ease-adverb-entry-6424",
       "word": "with ease",
       "display": "with ease",
       "meaning": "輕易地 / 從容地",
@@ -68522,7 +68518,7 @@
       "sourceCount": 1
     },
     {
-      "id": "with-regard-to-preposition-entry-6426",
+      "id": "with-regard-to-preposition-entry-6425",
       "word": "with regard to",
       "display": "with regard to",
       "meaning": "關於",
@@ -68532,7 +68528,7 @@
       "sourceCount": 1
     },
     {
-      "id": "with-that-said-adverb-entry-6427",
+      "id": "with-that-said-adverb-entry-6426",
       "word": "with that said",
       "display": "with that said",
       "meaning": "話雖如此",
@@ -68542,7 +68538,7 @@
       "sourceCount": 1
     },
     {
-      "id": "with-the-absence-of-preposition-entry-6428",
+      "id": "with-the-absence-of-preposition-entry-6427",
       "word": "with the absence of",
       "display": "with the absence of",
       "meaning": "在沒有...的情況下",
@@ -68552,7 +68548,7 @@
       "sourceCount": 1
     },
     {
-      "id": "withdraw-any-entry-6429",
+      "id": "withdraw-any-entry-6428",
       "word": "withdraw",
       "display": "withdraw x2",
       "meaning": "提款",
@@ -68562,7 +68558,7 @@
       "sourceCount": 1
     },
     {
-      "id": "withdraw-any-entry-6430",
+      "id": "withdraw-any-entry-6429",
       "word": "withdraw",
       "display": "withdraw x2",
       "meaning": "棄權",
@@ -68572,7 +68568,7 @@
       "sourceCount": 1
     },
     {
-      "id": "withdraw-any-entry-6431",
+      "id": "withdraw-any-entry-6430",
       "word": "withdraw",
       "display": "withdraw",
       "meaning": "棄權 下架 提款",
@@ -68582,7 +68578,7 @@
       "sourceCount": 1
     },
     {
-      "id": "within-any-entry-6432",
+      "id": "within-any-entry-6431",
       "word": "within",
       "display": "within",
       "meaning": "在...之內",
@@ -68592,7 +68588,7 @@
       "sourceCount": 1
     },
     {
-      "id": "within-any-entry-6433",
+      "id": "within-any-entry-6432",
       "word": "within",
       "display": "within",
       "meaning": "在...以內",
@@ -68602,7 +68598,7 @@
       "sourceCount": 1
     },
     {
-      "id": "within-any-entry-6434",
+      "id": "within-any-entry-6433",
       "word": "within",
       "display": "within",
       "meaning": "在...內",
@@ -68612,7 +68608,7 @@
       "sourceCount": 1
     },
     {
-      "id": "within-any-entry-6435",
+      "id": "within-any-entry-6434",
       "word": "within",
       "display": "within",
       "meaning": "在時間之內",
@@ -68622,7 +68618,7 @@
       "sourceCount": 1
     },
     {
-      "id": "without-doubt-adverb-entry-6436",
+      "id": "without-doubt-adverb-entry-6435",
       "word": "without doubt",
       "display": "without doubt",
       "meaning": "毫無疑問 / 無可置疑",
@@ -68632,7 +68628,7 @@
       "sourceCount": 1
     },
     {
-      "id": "without-further-delay-adverb-entry-6437",
+      "id": "without-further-delay-adverb-entry-6436",
       "word": "without further delay",
       "display": "without further delay",
       "meaning": "事不宜遲 / 不再拖延",
@@ -68642,7 +68638,7 @@
       "sourceCount": 1
     },
     {
-      "id": "without-much-effort-adverb-entry-6438",
+      "id": "without-much-effort-adverb-entry-6437",
       "word": "without much effort",
       "display": "without much effort",
       "meaning": "輕而易舉地",
@@ -68652,7 +68648,7 @@
       "sourceCount": 1
     },
     {
-      "id": "without-reservation-adverb-entry-6439",
+      "id": "without-reservation-adverb-entry-6438",
       "word": "without reservation",
       "display": "without reservation",
       "meaning": "毫無保留地",
@@ -68662,7 +68658,7 @@
       "sourceCount": 1
     },
     {
-      "id": "witness-any-entry-6440",
+      "id": "witness-any-entry-6439",
       "word": "witness",
       "display": "witness",
       "meaning": "觀察 / 目錄",
@@ -68675,7 +68671,7 @@
       "sourceCount": 1
     },
     {
-      "id": "woefully-adverb-entry-6441",
+      "id": "woefully-adverb-entry-6440",
       "word": "woefully",
       "display": "woefully",
       "meaning": "非常 / 極其",
@@ -68685,7 +68681,7 @@
       "sourceCount": 1
     },
     {
-      "id": "womb-noun-entry-6442",
+      "id": "womb-noun-entry-6441",
       "word": "womb",
       "display": "womb",
       "meaning": "子宮",
@@ -68695,7 +68691,7 @@
       "sourceCount": 1
     },
     {
-      "id": "won-t-modal-entry-6443",
+      "id": "won-t-modal-entry-6442",
       "word": "won't",
       "display": "won't",
       "meaning": "不會 / 將不會",
@@ -68708,7 +68704,7 @@
       "sourceCount": 1
     },
     {
-      "id": "work-noun-entry-6444",
+      "id": "work-noun-entry-6443",
       "word": "work",
       "display": "work",
       "meaning": "作品",
@@ -68718,7 +68714,7 @@
       "sourceCount": 1
     },
     {
-      "id": "work-noun-entry-6445",
+      "id": "work-noun-entry-6444",
       "word": "work",
       "display": "work",
       "meaning": "工作",
@@ -68728,7 +68724,7 @@
       "sourceCount": 1
     },
     {
-      "id": "work-verb-entry-6446",
+      "id": "work-verb-entry-6445",
       "word": "work",
       "display": "work",
       "meaning": "工作 / 做事",
@@ -68738,7 +68734,7 @@
       "sourceCount": 1
     },
     {
-      "id": "work-verb-entry-6447",
+      "id": "work-verb-entry-6446",
       "word": "work",
       "display": "work",
       "meaning": "運作 / 奏效",
@@ -68748,7 +68744,7 @@
       "sourceCount": 1
     },
     {
-      "id": "work-against-verb-entry-6448",
+      "id": "work-against-verb-entry-6447",
       "word": "work against",
       "display": "work against",
       "meaning": "對...不利 / 有負面影響",
@@ -68758,7 +68754,7 @@
       "sourceCount": 1
     },
     {
-      "id": "work-in-your-favour-verb-entry-6449",
+      "id": "work-in-your-favour-verb-entry-6448",
       "word": "work in your favour",
       "display": "work in your favour",
       "meaning": "對你有利",
@@ -68768,7 +68764,7 @@
       "sourceCount": 1
     },
     {
-      "id": "work-like-a-charm-verb-entry-6450",
+      "id": "work-like-a-charm-verb-entry-6449",
       "word": "work like a charm",
       "display": "work like a charm",
       "meaning": "非常有效 / 有奇效",
@@ -68778,7 +68774,7 @@
       "sourceCount": 1
     },
     {
-      "id": "work-like-a-charm-on-verb-entry-6451",
+      "id": "work-like-a-charm-on-verb-entry-6450",
       "word": "work like a charm on",
       "display": "work like a charm on",
       "meaning": "對...非常有效",
@@ -68788,7 +68784,7 @@
       "sourceCount": 1
     },
     {
-      "id": "work-out-verb-entry-6452",
+      "id": "work-out-verb-entry-6451",
       "word": "work out",
       "display": "work out",
       "meaning": "健身",
@@ -68798,7 +68794,7 @@
       "sourceCount": 1
     },
     {
-      "id": "work-out-verb-entry-6453",
+      "id": "work-out-verb-entry-6452",
       "word": "work out",
       "display": "work out",
       "meaning": "想出 / 解決",
@@ -68808,7 +68804,7 @@
       "sourceCount": 1
     },
     {
-      "id": "work-pattern-noun-entry-6454",
+      "id": "work-pattern-noun-entry-6453",
       "word": "work pattern",
       "display": "work pattern",
       "meaning": "工作模式",
@@ -68818,7 +68814,7 @@
       "sourceCount": 1
     },
     {
-      "id": "workload-any-entry-6455",
+      "id": "workload-any-entry-6454",
       "word": "workload",
       "display": "workload",
       "meaning": "工作量",
@@ -68831,7 +68827,7 @@
       "sourceCount": 1
     },
     {
-      "id": "works-any-entry-6456",
+      "id": "works-any-entry-6455",
       "word": "works",
       "display": "works",
       "meaning": "作品",
@@ -68844,7 +68840,7 @@
       "sourceCount": 1
     },
     {
-      "id": "worm-any-entry-6457",
+      "id": "worm-any-entry-6456",
       "word": "worm",
       "display": "worm",
       "meaning": "虫",
@@ -68854,7 +68850,7 @@
       "sourceCount": 1
     },
     {
-      "id": "worm-any-entry-6458",
+      "id": "worm-any-entry-6457",
       "word": "worm",
       "display": "worm",
       "meaning": "虫子",
@@ -68864,7 +68860,7 @@
       "sourceCount": 1
     },
     {
-      "id": "worse-still-adverb-entry-6459",
+      "id": "worse-still-adverb-entry-6458",
       "word": "worse still",
       "display": "worse still",
       "meaning": "更糟的是",
@@ -68874,7 +68870,7 @@
       "sourceCount": 1
     },
     {
-      "id": "worsen-verb-entry-6460",
+      "id": "worsen-verb-entry-6459",
       "word": "worsen",
       "display": "worsen",
       "meaning": "惡化",
@@ -68884,7 +68880,7 @@
       "sourceCount": 1
     },
     {
-      "id": "worship-any-entry-6461",
+      "id": "worship-any-entry-6460",
       "word": "worship",
       "display": "worship",
       "meaning": "崇拜",
@@ -68897,7 +68893,7 @@
       "sourceCount": 1
     },
     {
-      "id": "worth-ving-any-entry-6462",
+      "id": "worth-ving-any-entry-6461",
       "word": "worth + ving",
       "display": "worth + VING",
       "meaning": "值得",
@@ -68907,7 +68903,7 @@
       "sourceCount": 1
     },
     {
-      "id": "would-modal-entry-6463",
+      "id": "would-modal-entry-6462",
       "word": "would",
       "display": "would",
       "meaning": "會 / 願意",
@@ -68917,7 +68913,7 @@
       "sourceCount": 1
     },
     {
-      "id": "would-like-to-modal-entry-6464",
+      "id": "would-like-to-modal-entry-6463",
       "word": "would like to",
       "display": "would like to",
       "meaning": "想 / 想要",
@@ -68927,7 +68923,7 @@
       "sourceCount": 1
     },
     {
-      "id": "would-rather-modal-entry-6465",
+      "id": "would-rather-modal-entry-6464",
       "word": "would rather",
       "display": "would rather",
       "meaning": "寧願",
@@ -68937,7 +68933,7 @@
       "sourceCount": 1
     },
     {
-      "id": "wound-verb-entry-6466",
+      "id": "wound-verb-entry-6465",
       "word": "wound",
       "display": "wound",
       "meaning": "使受傷",
@@ -68947,7 +68943,7 @@
       "sourceCount": 1
     },
     {
-      "id": "wound-noun-entry-6467",
+      "id": "wound-noun-entry-6466",
       "word": "wound",
       "display": "wound",
       "meaning": "傷口",
@@ -68957,7 +68953,7 @@
       "sourceCount": 1
     },
     {
-      "id": "woven-into-the-fabric-of-life-adjective-entry-6468",
+      "id": "woven-into-the-fabric-of-life-adjective-entry-6467",
       "word": "woven into the fabric of life",
       "display": "woven into the fabric of life",
       "meaning": "成為生活中密不可分的一部分",
@@ -68967,7 +68963,7 @@
       "sourceCount": 1
     },
     {
-      "id": "wrangling-any-entry-6469",
+      "id": "wrangling-any-entry-6468",
       "word": "wrangling",
       "display": "wrangling",
       "meaning": "角力",
@@ -68980,7 +68976,7 @@
       "sourceCount": 1
     },
     {
-      "id": "wrap-any-entry-6470",
+      "id": "wrap-any-entry-6469",
       "word": "wrap",
       "display": "wrap",
       "meaning": "包著",
@@ -68990,7 +68986,7 @@
       "sourceCount": 1
     },
     {
-      "id": "wreak-havoc-on-verb-entry-6471",
+      "id": "wreak-havoc-on-verb-entry-6470",
       "word": "wreak havoc on",
       "display": "wreak havoc on",
       "meaning": "嚴重破壞 / 對...造成嚴重損害",
@@ -69000,7 +68996,7 @@
       "sourceCount": 1
     },
     {
-      "id": "wreckage-noun-entry-6472",
+      "id": "wreckage-noun-entry-6471",
       "word": "wreckage",
       "display": "wreckage",
       "meaning": "殘骸",
@@ -69010,7 +69006,7 @@
       "sourceCount": 1
     },
     {
-      "id": "wrestle-with-verb-entry-6473",
+      "id": "wrestle-with-verb-entry-6472",
       "word": "wrestle with",
       "display": "wrestle with",
       "meaning": "與...搏鬥 / 努力應付",
@@ -69020,7 +69016,7 @@
       "sourceCount": 1
     },
     {
-      "id": "write-off-verb-entry-6474",
+      "id": "write-off-verb-entry-6473",
       "word": "write off",
       "display": "write off",
       "meaning": "勾銷 / 報廢 / 不再理會",
@@ -69030,7 +69026,7 @@
       "sourceCount": 1
     },
     {
-      "id": "yacht-noun-entry-6475",
+      "id": "yacht-noun-entry-6474",
       "word": "yacht",
       "display": "yacht",
       "meaning": "遊艇",
@@ -69040,7 +69036,7 @@
       "sourceCount": 1
     },
     {
-      "id": "yard-noun-entry-6476",
+      "id": "yard-noun-entry-6475",
       "word": "yard",
       "display": "yard",
       "meaning": "院子",
@@ -69050,7 +69046,7 @@
       "sourceCount": 1
     },
     {
-      "id": "yardstick-noun-entry-6477",
+      "id": "yardstick-noun-entry-6476",
       "word": "yardstick",
       "display": "yardstick",
       "meaning": "標準 / 準繩",
@@ -69060,7 +69056,7 @@
       "sourceCount": 1
     },
     {
-      "id": "yawn-noun-entry-6478",
+      "id": "yawn-noun-entry-6477",
       "word": "yawn",
       "display": "yawn",
       "meaning": "呵欠",
@@ -69070,7 +69066,7 @@
       "sourceCount": 1
     },
     {
-      "id": "yawn-verb-entry-6479",
+      "id": "yawn-verb-entry-6478",
       "word": "yawn",
       "display": "yawn",
       "meaning": "打呵欠",
@@ -69080,7 +69076,7 @@
       "sourceCount": 1
     },
     {
-      "id": "yet-conjunction-entry-6480",
+      "id": "yet-conjunction-entry-6479",
       "word": "yet",
       "display": "yet",
       "meaning": "但是 / 然而",
@@ -69090,7 +69086,7 @@
       "sourceCount": 1
     },
     {
-      "id": "yet-adverb-entry-6481",
+      "id": "yet-adverb-entry-6480",
       "word": "yet",
       "display": "yet",
       "meaning": "尚未 / 還",
@@ -69100,7 +69096,7 @@
       "sourceCount": 1
     },
     {
-      "id": "yet-to-adverb-entry-6482",
+      "id": "yet-to-adverb-entry-6481",
       "word": "yet to",
       "display": "yet to",
       "meaning": "尚未 / 還未",
@@ -69110,7 +69106,7 @@
       "sourceCount": 1
     },
     {
-      "id": "yield-verb-entry-6483",
+      "id": "yield-verb-entry-6482",
       "word": "yield",
       "display": "yield",
       "meaning": "產出",
@@ -69120,7 +69116,7 @@
       "sourceCount": 1
     },
     {
-      "id": "yield-noun-entry-6484",
+      "id": "yield-noun-entry-6483",
       "word": "yield",
       "display": "yield",
       "meaning": "產量",
@@ -69130,7 +69126,7 @@
       "sourceCount": 1
     },
     {
-      "id": "young-generations-noun-entry-6485",
+      "id": "young-generations-noun-entry-6484",
       "word": "young generations",
       "display": "young generations",
       "meaning": "年輕一代",
@@ -69140,7 +69136,7 @@
       "sourceCount": 1
     },
     {
-      "id": "zealous-adjective-entry-6486",
+      "id": "zealous-adjective-entry-6485",
       "word": "zealous",
       "display": "zealous",
       "meaning": "熱心的 / 狂熱的",
@@ -69150,7 +69146,7 @@
       "sourceCount": 1
     },
     {
-      "id": "zombie-noun-entry-6487",
+      "id": "zombie-noun-entry-6486",
       "word": "zombie",
       "display": "zombie",
       "meaning": "喪屍 / 殭屍",
@@ -69160,7 +69156,7 @@
       "sourceCount": 1
     },
     {
-      "id": "free-pattern-entry-6488",
+      "id": "free-pattern-entry-6487",
       "word": "名詞+free",
       "display": "名詞+free",
       "meaning": "沒有...的",
@@ -69170,7 +69166,7 @@
       "sourceCount": 1
     },
     {
-      "id": "with-pattern-entry-6489",
+      "id": "with-pattern-entry-6488",
       "word": "名詞+with",
       "display": "名詞+with",
       "meaning": "有...的",
@@ -69180,7 +69176,7 @@
       "sourceCount": 1
     },
     {
-      "id": "with-pattern-entry-6490",
+      "id": "with-pattern-entry-6489",
       "word": "行為+with",
       "display": "行為+with",
       "meaning": "用...來...",

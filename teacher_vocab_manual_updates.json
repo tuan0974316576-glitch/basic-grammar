@@ -4216,6 +4216,7 @@
     { "word": "temporary", "meaning": "暫時的 / 臨時的", "pos": "adjective", "type": "word", "override": true, "replaceType": true, "notes": "codex-review 3900: cleaned duplicate meanings and normalized grammar patterns" },
     { "word": "tempt", "meaning": "引誘 / 誘惑", "pos": "verb", "type": "word", "replaceType": true, "notes": "codex-review 3900: cleaned duplicate meanings and normalized grammar patterns" },
     { "word": "tender", "meaning": "嫩的 / 溫柔的", "pos": "adjective", "type": "word", "override": true, "replaceType": true, "notes": "codex-review 3900: cleaned duplicate meanings and normalized grammar patterns" },
+    { "word": "terrestrial", "meaning": "陸地的 / 陸生的", "pos": "adjective", "type": "word", "override": true, "replaceType": true, "notes": "codex-review: merge near-duplicate terrestrial meanings" },
     { "word": "terrific", "meaning": "極好的", "pos": "adjective", "type": "word", "replaceType": true, "notes": "codex-review 3900: cleaned duplicate meanings and normalized grammar patterns" },
     { "word": "thorough", "meaning": "徹底的", "pos": "adjective", "type": "word", "replaceType": true, "notes": "codex-review 3900: cleaned duplicate meanings and normalized grammar patterns" },
     { "word": "thoroughly", "meaning": "徹底地", "pos": "adverb", "type": "word", "replaceType": true, "notes": "codex-review 3900: cleaned duplicate meanings and normalized grammar patterns" },
