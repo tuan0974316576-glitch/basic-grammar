@@ -80,53 +80,17 @@
               <input id="entry-word" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="macaroni">
             </label>
             <div class="search-summary" id="search-summary">打英文時會即時檢查現有字義；有 exact match 就通常唔需要新增。</div>
-            <div class="form-row">
-              <label>
-                <span>POS</span>
-                <select id="entry-pos">
-                  <option value="noun">n.</option>
-                  <option value="verb">v.</option>
-                  <option value="adjective">adj.</option>
-                  <option value="adverb">adv.</option>
-                  <option value="phrase">ph.</option>
-                  <option value="modal">modal v.</option>
-                  <option value="preposition">prep.</option>
-                  <option value="conjunction">conj.</option>
-                  <option value="pronoun">pron.</option>
-                  <option value="determiner">det.</option>
-                  <option value="number">num.</option>
-                </select>
-              </label>
-              <label>
-                <span>Level</span>
-                <select id="entry-level">
-                  <option value="">Auto</option>
-                  <option value="A1">A1</option>
-                  <option value="A2">A2</option>
-                  <option value="B1">B1</option>
-                  <option value="B2">B2</option>
-                  <option value="C1">C1</option>
-                  <option value="C2">C2</option>
-                </select>
-              </label>
-            </div>
-            <label>
-              <span>中文解釋</span>
-              <input id="entry-meaning" type="text" autocomplete="off" placeholder="通心粉">
-            </label>
             <label>
               <span>Aliases / 常見串法</span>
               <input id="entry-aliases" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="例如 macoroni, macaroni cheese">
             </label>
-            <label>
-              <span>Notes</span>
-              <input id="entry-notes" type="text" autocomplete="off" placeholder="可留空">
-            </label>
+            <div id="meaning-blocks" class="meaning-blocks" aria-label="Word meanings"></div>
+            <button id="add-sense-button" class="add-sense-button" type="button">+ Add Meaning</button>
             <div class="form-actions">
               <button id="save-entry-button" class="primary-action" type="submit">SAVE</button>
             </div>
           </form>
-          <div id="entry-status" class="status-line">儲存後學生會即時喺兩隻 game 查到。</div>
+          <div id="entry-status" class="status-line"></div>
         </section>
 
         <section class="console-panel recent-panel">

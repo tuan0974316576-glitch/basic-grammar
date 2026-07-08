@@ -30,7 +30,9 @@ const AZURE_DICTIONARY_EXAMPLE_PAIR_LIMIT = 6;
 const AZURE_DICTIONARY_EXAMPLE_LIMIT = 4;
 const GEMINI_EXAMPLE_MODEL = "gemini-3.1-flash-lite";
 const GEMINI_EXAMPLE_SOURCE = "gemini-generated-examples";
+const TEACHER_EXAMPLE_SOURCE = "teacher-approved-examples";
 const GEMINI_EXAMPLE_LIMIT = 3;
+const TEACHER_EXAMPLE_LIMIT = 4;
 const GEMINI_API_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta";
 const BATTLESHIP_FIREBASE_PROJECT_ID = "battleship-game-c0909";
 const BATTLESHIP_SHARED_VOCAB_UID_PREFIX = "battleship_";
@@ -606,7 +608,7 @@ function normalizeExampleEntries(word, examples = [], source = "azure-dictionary
 
 function shouldReuseCachedExamples(cached = {}) {
   const source = String(cached.source || "").toLowerCase();
-  return source === GEMINI_EXAMPLE_SOURCE;
+  return source === GEMINI_EXAMPLE_SOURCE || source === TEACHER_EXAMPLE_SOURCE;
 }
 
 function normalizeExampleHints(hints = []) {
@@ -763,6 +765,116 @@ async function generateVocabExamplesWithGemini(word, hints = [], apiKeyValue) {
   }
 
   return normalizeGeminiExamples(word, body, hints);
+}
+
+function normalizeTeacherExampleInputs(examples = []) {
+  return (Array.isArray(examples) ? examples : [])
+    .map((example) => normalizeVocabExample(example))
+    .filter(Boolean)
+    .filter((example, index, list) => list.indexOf(example) === index)
+    .slice(0, TEACHER_EXAMPLE_LIMIT);
+}
+
+function buildTeacherExamplePrompt(word, hints = [], examples = []) {
+  const normalizedWord = normalizeVocabWord(word);
+  const normalizedHints = normalizeExampleHints(hints);
+  const hintLines = normalizedHints
+    .map((hint, index) => {
+      const label = [hint.pos, hint.type].filter(Boolean).join(" / ");
+      return `${index + 1}. ${label ? `${label}: ` : ""}${hint.meaning}`;
+    })
+    .join("\n");
+  const exampleLines = normalizeTeacherExampleInputs(examples)
+    .map((example, index) => `${index + 1}. ${example}`)
+    .join("\n");
+
+  return [
+    "You are helping a Hong Kong English teacher prepare vocabulary examples.",
+    "Proofread the teacher's English example sentences and create matching Traditional Chinese translations.",
+    "",
+    `Vocabulary item: ${normalizedWord}`,
+    hintLines ? `Target meaning / part of speech hints:\n${hintLines}` : "Target meaning hint: use the most likely classroom meaning.",
+    "",
+    `Teacher examples:\n${exampleLines}`,
+    "",
+    "Rules:",
+    "- Return JSON only. No markdown.",
+    `- Return one cleaned example for each teacher example, up to ${TEACHER_EXAMPLE_LIMIT} examples.`,
+    "- Keep the English natural, short, and suitable for Hong Kong primary or junior secondary students.",
+    "- Keep the vocabulary item or a natural inflected form in each English sentence.",
+    "- Correct grammar, spelling, punctuation, and unnatural phrasing.",
+    "- Preserve the teacher's intended classroom meaning.",
+    "- The Traditional Chinese translation must be natural, Cantonese-friendly Traditional Chinese.",
+    "- Use Traditional Chinese, not Simplified Chinese.",
+    "- Avoid strange, violent, adult, political, religious, or scary content.",
+    "",
+    "JSON shape:",
+    "{\"examples\":[{\"source\":\"Clean English sentence.\",\"target\":\"繁體中文翻譯。\"}]}"
+  ].join("\n");
+}
+
+function normalizeTeacherExamplesWithGemini(word, body, hints = []) {
+  const text = body?.candidates?.[0]?.content?.parts
+    ?.map((part) => part?.text || "")
+    .join("")
+    .trim();
+  const parsed = parseGeminiJsonText(text);
+  const examples = Array.isArray(parsed?.examples) ? parsed.examples : [];
+  const primaryMeaning = normalizeExampleHints(hints)[0]?.meaning || "";
+  return normalizeExampleEntries(
+    word,
+    examples.map((example, index) => ({
+      source: example.source || example.english || "",
+      target: example.target || example.chinese || example.translation || "",
+      meaning: example.meaning || primaryMeaning,
+      sourceEntryId: `teacher-example-${index}`
+    })),
+    TEACHER_EXAMPLE_SOURCE
+  ).slice(0, TEACHER_EXAMPLE_LIMIT);
+}
+
+async function prepareTeacherExamplesWithGemini(word, hints = [], examples = [], apiKeyValue) {
+  const cleanExamples = normalizeTeacherExampleInputs(examples);
+  if (!cleanExamples.length) return [];
+  const apiKey = getGeminiApiKey(apiKeyValue);
+  const endpoint = `${GEMINI_API_ENDPOINT}/models/${GEMINI_EXAMPLE_MODEL}:generateContent?key=${encodeURIComponent(apiKey)}`;
+  const response = await fetch(endpoint, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      contents: [{
+        role: "user",
+        parts: [{ text: buildTeacherExamplePrompt(word, hints, cleanExamples) }]
+      }],
+      generationConfig: {
+        temperature: 0.2,
+        topP: 0.85,
+        maxOutputTokens: 640,
+        responseMimeType: "application/json"
+      }
+    })
+  });
+
+  const body = await response.json().catch(async () => ({ raw: await response.text().catch(() => "") }));
+  if (!response.ok) {
+    const details = body?.error?.message || body?.raw || `HTTP ${response.status}`;
+    throw new Error(`Gemini teacher example preparation failed: ${details}`);
+  }
+
+  const prepared = normalizeTeacherExamplesWithGemini(word, body, hints);
+  if (prepared.length) return prepared;
+
+  return normalizeExampleEntries(
+    word,
+    cleanExamples.map((example, index) => ({
+      source: example,
+      target: "",
+      sourceEntryId: `teacher-example-fallback-${index}`
+    })),
+    TEACHER_EXAMPLE_SOURCE
+  );
 }
 
 async function translateTextItemsWithAzure(items, { from, to, translatorKey, translatorRegion }) {
@@ -1325,6 +1437,71 @@ async function getOrCreateVocabExamples(word, hints = []) {
   };
 }
 
+exports.prepareTeacherVocabExamples = onCall({
+  invoker: "public",
+  secrets: [GEMINI_API_KEY]
+}, async (request) => {
+  if (!request.auth) {
+    throw new HttpsError("unauthenticated", "Please log in first.");
+  }
+  if (request.auth.token?.role !== "teacher") {
+    throw new HttpsError("permission-denied", "Teacher account required.");
+  }
+
+  const word = normalizeVocabWord(request.data?.word);
+  if (!isLikelyWordOrPhrase(word)) {
+    throw new HttpsError("invalid-argument", "Invalid vocabulary word.");
+  }
+
+  const examplesInput = normalizeTeacherExampleInputs(request.data?.examples || []);
+  if (!examplesInput.length) {
+    throw new HttpsError("invalid-argument", "Please provide at least one example.");
+  }
+
+  const hints = normalizeExampleHints(request.data?.meanings || request.data?.hints || []);
+  const exampleId = makeVocabExampleId(word, hints);
+  let examples = [];
+  let status = "ready";
+  try {
+    examples = await prepareTeacherExamplesWithGemini(word, hints, examplesInput, GEMINI_API_KEY.value());
+    status = examples.length ? "ready" : "missing";
+  } catch (error) {
+    console.error("Teacher vocab example preparation failed.", {
+      word,
+      message: error?.message || String(error)
+    });
+    status = "ai-error";
+  }
+
+  await db.collection("vocabExampleCache").doc(exampleId).set({
+    word,
+    exampleId,
+    cacheKey: makeVocabExamplesCacheKey(word, hints),
+    hints: normalizeExampleHints(hints),
+    source: TEACHER_EXAMPLE_SOURCE,
+    status,
+    teacherInputExamples: examplesInput,
+    examples: examples.map((example) => ({
+      source: example.source,
+      target: example.target,
+      meaning: example.meaning || "",
+      sourceEntryId: example.sourceEntryId || ""
+    })),
+    createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    updatedBy: request.auth.uid
+  }, { merge: true });
+
+  return {
+    status,
+    word,
+    exampleId,
+    examples,
+    source: TEACHER_EXAMPLE_SOURCE,
+    cached: false
+  };
+});
+
 exports.lookupVocabExamples = onCall({
   invoker: "public",
   secrets: [GEMINI_API_KEY]
@@ -1535,6 +1712,9 @@ if (process.env.NODE_ENV === "test") {
     normalizeMeaningEntries,
     normalizeExampleHints,
     normalizeGeminiExamples,
+    normalizeTeacherExampleInputs,
+    buildTeacherExamplePrompt,
+    normalizeTeacherExamplesWithGemini,
     parseGeminiJsonText,
     shouldReuseCachedMeaning,
     shouldReuseCachedExamples

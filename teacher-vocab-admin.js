@@ -3,6 +3,19 @@ const LIVE_COLLECTION = "teacherVocabLive";
 const SEARCH_LIMIT = 18;
 const RECENT_LIMIT = 24;
 const THEME_KEY = "teacher_vocab_console_theme_v1";
+const POS_OPTIONS = [
+  ["noun", "n."],
+  ["verb", "v."],
+  ["adjective", "adj."],
+  ["adverb", "adv."],
+  ["phrase", "ph."],
+  ["modal", "modal v."],
+  ["preposition", "prep."],
+  ["conjunction", "conj."],
+  ["pronoun", "pron."],
+  ["determiner", "det."],
+  ["number", "num."]
+];
 
 const state = {
   firebase: null,
@@ -33,11 +46,9 @@ const el = {
   editorTitle: document.querySelector("#editor-title"),
   entryForm: document.querySelector("#entry-form"),
   entryWord: document.querySelector("#entry-word"),
-  entryPos: document.querySelector("#entry-pos"),
-  entryLevel: document.querySelector("#entry-level"),
-  entryMeaning: document.querySelector("#entry-meaning"),
   entryAliases: document.querySelector("#entry-aliases"),
-  entryNotes: document.querySelector("#entry-notes"),
+  meaningBlocks: document.querySelector("#meaning-blocks"),
+  addSenseButton: document.querySelector("#add-sense-button"),
   entryStatus: document.querySelector("#entry-status"),
   saveEntryButton: document.querySelector("#save-entry-button"),
   resetFormButton: document.querySelector("#reset-form-button"),
@@ -420,7 +431,7 @@ function renderRecentList() {
 }
 
 function updateEditorMode() {
-  const isEditing = Boolean(state.editingEntryId);
+  const isEditing = Boolean(state.editingEntryId || getMeaningBlocks().some((block) => block.dataset.entryId));
   setText(el.editorTitle, isEditing ? "修改現有字義" : "新增老師字義");
   setText(el.saveEntryButton, isEditing ? "UPDATE" : "SAVE");
 }
@@ -435,12 +446,168 @@ function triggerSaveButtonSuccess() {
   }, 1450);
 }
 
+function createPosSelect(value = "noun") {
+  const select = document.createElement("select");
+  select.className = "meaning-pos";
+  POS_OPTIONS.forEach(([optionValue, label]) => {
+    const option = document.createElement("option");
+    option.value = optionValue;
+    option.textContent = label;
+    select.append(option);
+  });
+  select.value = normalizePos(value) || "noun";
+  return select;
+}
+
+function createFieldLabel(labelText, field) {
+  const label = document.createElement("label");
+  const span = document.createElement("span");
+  span.textContent = labelText;
+  label.append(span, field);
+  return label;
+}
+
+function createExampleRow(value = "") {
+  const row = document.createElement("div");
+  row.className = "example-row";
+
+  const input = document.createElement("input");
+  input.className = "meaning-example";
+  input.type = "text";
+  input.autocomplete = "off";
+  input.placeholder = "English example sentence";
+  input.value = String(value || "").trim();
+
+  const addButton = document.createElement("button");
+  addButton.className = "icon-add-button";
+  addButton.type = "button";
+  addButton.textContent = "+";
+  addButton.setAttribute("aria-label", "Add another example sentence");
+  addButton.addEventListener("click", () => {
+    const nextRow = createExampleRow();
+    row.after(nextRow);
+    nextRow.querySelector("input")?.focus();
+  });
+
+  const removeButton = document.createElement("button");
+  removeButton.className = "icon-remove-button";
+  removeButton.type = "button";
+  removeButton.textContent = "x";
+  removeButton.setAttribute("aria-label", "Remove example sentence");
+  removeButton.addEventListener("click", () => {
+    const parent = row.parentElement;
+    if (!parent || parent.querySelectorAll(".example-row").length <= 1) {
+      input.value = "";
+      input.focus();
+      return;
+    }
+    row.remove();
+  });
+
+  row.append(input, addButton, removeButton);
+  return row;
+}
+
+function createMeaningBlock(entry = {}) {
+  const block = document.createElement("section");
+  block.className = "meaning-block";
+  if (entry.sourceEntryId || entry.id) {
+    block.dataset.entryId = String(entry.sourceEntryId || entry.id);
+  }
+
+  const heading = document.createElement("div");
+  heading.className = "meaning-block-heading";
+  const title = document.createElement("div");
+  title.className = "meaning-block-title";
+  title.textContent = "Meaning";
+  const removeButton = document.createElement("button");
+  removeButton.className = "tiny-action danger meaning-remove-button";
+  removeButton.type = "button";
+  removeButton.textContent = "Remove";
+  removeButton.addEventListener("click", () => {
+    if (el.meaningBlocks?.querySelectorAll(".meaning-block").length <= 1) {
+      const meaningInput = block.querySelector(".meaning-text");
+      const exampleInput = block.querySelector(".meaning-example");
+      if (meaningInput) meaningInput.value = "";
+      if (exampleInput) exampleInput.value = "";
+      meaningInput?.focus();
+      return;
+    }
+    block.remove();
+    updateEditorMode();
+  });
+  heading.append(title, removeButton);
+
+  const topRow = document.createElement("div");
+  topRow.className = "meaning-grid";
+  const posLabel = createFieldLabel("POS", createPosSelect(entry.pos || entry.type || "noun"));
+  const meaningInput = document.createElement("input");
+  meaningInput.className = "meaning-text";
+  meaningInput.type = "text";
+  meaningInput.autocomplete = "off";
+  meaningInput.placeholder = "通心粉";
+  meaningInput.value = normalizeMeaning(entry.meaning || "");
+  const meaningLabel = createFieldLabel("中文解釋", meaningInput);
+  topRow.append(posLabel, meaningLabel);
+
+  const examplesLabel = document.createElement("div");
+  examplesLabel.className = "examples-label";
+  examplesLabel.textContent = "英文例句";
+  const examplesWrap = document.createElement("div");
+  examplesWrap.className = "examples-wrap";
+  const examples = Array.isArray(entry.examples) ? entry.examples : [];
+  const exampleValues = examples
+    .map((example) => String(example?.source || example || "").trim())
+    .filter(Boolean);
+  (exampleValues.length ? exampleValues : [""]).forEach((example) => {
+    examplesWrap.append(createExampleRow(example));
+  });
+
+  block.append(heading, topRow, examplesLabel, examplesWrap);
+  return block;
+}
+
+function getMeaningBlocks() {
+  return Array.from(el.meaningBlocks?.querySelectorAll(".meaning-block") || []);
+}
+
+function renderMeaningBlocks(entries = [{}]) {
+  if (!el.meaningBlocks) return;
+  const blocks = (entries.length ? entries : [{}]).map(createMeaningBlock);
+  el.meaningBlocks.replaceChildren(...blocks);
+  updateEditorMode();
+}
+
+function addMeaningBlock(entry = {}) {
+  const block = createMeaningBlock(entry);
+  el.meaningBlocks?.append(block);
+  updateEditorMode();
+  block.querySelector(".meaning-pos")?.focus();
+}
+
+function readMeaningBlocks() {
+  return getMeaningBlocks().map((block) => {
+    const pos = normalizePos(block.querySelector(".meaning-pos")?.value);
+    const meaning = normalizeMeaning(block.querySelector(".meaning-text")?.value);
+    const examples = Array.from(block.querySelectorAll(".meaning-example"))
+      .map((input) => String(input.value || "").trim().replace(/\s+/g, " "))
+      .filter(Boolean)
+      .slice(0, 4);
+    return {
+      editingEntryId: String(block.dataset.entryId || "").trim(),
+      pos,
+      meaning,
+      examples
+    };
+  }).filter((entry) => entry.meaning);
+}
+
 function resetForm() {
   state.editingEntryId = "";
   if (el.entryForm) el.entryForm.reset();
-  if (el.entryPos) el.entryPos.value = "noun";
+  renderMeaningBlocks([{}]);
   updateEditorMode();
-  setStatus(el.entryStatus, "儲存後學生會即時喺兩隻 game 查到。");
+  setStatus(el.entryStatus, "");
   renderSearchResults();
 }
 
@@ -448,43 +615,45 @@ function loadEntryIntoForm(entry = {}, options = {}) {
   const normalized = normalizeLiveEntry(entry) || entry;
   state.editingEntryId = options.edit ? String(normalized.sourceEntryId || normalized.id || "") : "";
   if (el.entryWord) el.entryWord.value = normalized.display || normalized.word || "";
-  if (el.entryPos) el.entryPos.value = normalizePos(normalized.pos || normalized.type) || "noun";
-  if (el.entryLevel) el.entryLevel.value = normalized.level || "";
-  if (el.entryMeaning) el.entryMeaning.value = normalizeMeaning(normalized.meaning);
   if (el.entryAliases) el.entryAliases.value = Array.isArray(normalized.aliases) ? normalized.aliases.join(", ") : "";
-  if (el.entryNotes) el.entryNotes.value = normalized.notes || "";
+  renderMeaningBlocks([{
+    ...normalized,
+    sourceEntryId: options.edit ? state.editingEntryId : ""
+  }]);
   updateEditorMode();
   setStatus(el.entryStatus, options.edit ? "正在修改現有字義。" : "已載入資料，可修改後新增。", options.edit ? "loading" : "");
   renderSearchResults();
-  el.entryMeaning?.focus();
+  el.meaningBlocks?.querySelector(".meaning-text")?.focus();
 }
 
-function readEntryForm() {
+function readEntryFormEntries() {
   const word = normalizeWord(el.entryWord?.value);
   const display = String(el.entryWord?.value || "").trim();
-  const pos = normalizePos(el.entryPos?.value);
-  const meaning = normalizeMeaning(el.entryMeaning?.value);
-  const level = String(el.entryLevel?.value || "").trim().toUpperCase();
   const aliases = normalizeAliases(el.entryAliases?.value);
-  const notes = normalizeMeaning(el.entryNotes?.value).slice(0, 120);
-  const type = pos === "phrase" ? "phrase" : normalizeType(pos, word);
-  return compactEntry({
-    word,
-    display: display || word,
-    pos: pos === "phrase" ? "" : pos,
-    type,
-    meaning,
-    level,
-    aliases,
-    notes,
-    source: "teacher-live"
+  return readMeaningBlocks().map((sense) => {
+    const type = sense.pos === "phrase" ? "phrase" : normalizeType(sense.pos, word);
+    return compactEntry({
+      word,
+      display: display || word,
+      pos: sense.pos === "phrase" ? "" : sense.pos,
+      type,
+      meaning: sense.meaning,
+      aliases,
+      source: "teacher-live",
+      sourceEntryId: sense.editingEntryId,
+      teacherExamples: sense.examples
+    });
   });
 }
 
-function findExistingEntry(entry = {}) {
+function readEntryForm() {
+  return readEntryFormEntries()[0] || {};
+}
+
+function findExistingEntry(entry = {}, editingEntryId = "") {
   const entryKey = getEntryKey(entry);
   return state.liveEntries.find((item) => (
-    String(item.sourceEntryId || item.id || "") === state.editingEntryId
+    String(item.sourceEntryId || item.id || "") === editingEntryId
     || String(item.sourceEntryId || item.id || "") === String(entry.sourceEntryId || entry.id || "")
     || getEntryKey(item) === entryKey
   ));
@@ -497,33 +666,46 @@ async function saveEntry(event) {
     return;
   }
 
-  const rawEntry = readEntryForm();
-  if (!rawEntry.word || !rawEntry.meaning) {
+  const rawEntries = readEntryFormEntries();
+  const firstEntry = rawEntries[0] || {};
+  if (!firstEntry.word || !rawEntries.some((entry) => entry.meaning)) {
     setStatus(el.entryStatus, "請輸入 English 同中文解釋。", "error");
     return;
   }
 
-  const normalized = api().normalizeEntry?.(rawEntry, { source: "teacher-live" });
-  if (!normalized) {
+  const normalizedEntries = rawEntries.map((rawEntry) => ({
+    rawEntry,
+    normalized: api().normalizeEntry?.(rawEntry, { source: "teacher-live" })
+  }));
+  if (normalizedEntries.some((item) => !item.normalized)) {
     setStatus(el.entryStatus, "呢個字格式未清楚，請檢查英文 / POS / 中文解釋。", "error");
     return;
   }
 
   const modules = state.firebase.modules;
-  const entryId = api().makeEntryId?.(normalized) || normalized.id;
-  const existing = findExistingEntry({ ...normalized, id: entryId, sourceEntryId: entryId }) || {};
-  const previousEditingId = state.editingEntryId;
-  const payload = api().buildStudentReadyPayload?.({
-    ...normalized,
-    id: entryId,
-    sourceEntryId: entryId
-  }, {
-    previous: existing,
-    uid: state.user.uid,
-    now: Date.now()
+  const preparedEntries = normalizedEntries.map(({ rawEntry, normalized }) => {
+    const entryId = api().makeEntryId?.(normalized) || normalized.id;
+    const previousEditingId = String(rawEntry.sourceEntryId || "").trim();
+    const existing = findExistingEntry({ ...normalized, id: entryId, sourceEntryId: entryId }, previousEditingId) || {};
+    const payload = api().buildStudentReadyPayload?.({
+      ...normalized,
+      id: entryId,
+      sourceEntryId: entryId
+    }, {
+      previous: existing,
+      uid: state.user.uid,
+      now: Date.now()
+    });
+    return {
+      entryId,
+      previousEditingId,
+      existing,
+      payload,
+      teacherExamples: Array.isArray(rawEntry.teacherExamples) ? rawEntry.teacherExamples : []
+    };
   });
 
-  if (!payload) {
+  if (preparedEntries.some((entry) => !entry.payload)) {
     setStatus(el.entryStatus, "呢個 entry 未能成為學生可用字義，請補 POS / 中文解釋。", "error");
     return;
   }
@@ -532,31 +714,44 @@ async function saveEntry(event) {
   setStatus(el.entryStatus, "Saving...", "loading");
   let savedSuccessfully = false;
   try {
-    const writePayload = {
-      ...payload,
-      updatedAt: modules.serverTimestamp()
-    };
-    if (!existing.sourceEntryId && !existing.id) {
-      writePayload.createdAt = modules.serverTimestamp();
-    } else {
-      delete writePayload.createdAt;
-    }
-    await modules.setDoc(modules.doc(state.firebase.db, LIVE_COLLECTION, entryId), writePayload, { merge: true });
+    for (const prepared of preparedEntries) {
+      const writePayload = {
+        ...prepared.payload,
+        updatedAt: modules.serverTimestamp()
+      };
+      if (!prepared.existing.sourceEntryId && !prepared.existing.id) {
+        writePayload.createdAt = modules.serverTimestamp();
+      } else {
+        delete writePayload.createdAt;
+      }
+      await modules.setDoc(modules.doc(state.firebase.db, LIVE_COLLECTION, prepared.entryId), writePayload, { merge: true });
 
-    if (previousEditingId && previousEditingId !== entryId) {
-      await modules.setDoc(modules.doc(state.firebase.db, LIVE_COLLECTION, previousEditingId), {
-        disabled: true,
-        replacedBy: entryId,
-        updatedAt: modules.serverTimestamp(),
-        updatedBy: state.user.uid
-      }, { merge: true });
+      if (prepared.previousEditingId && prepared.previousEditingId !== prepared.entryId) {
+        await modules.setDoc(modules.doc(state.firebase.db, LIVE_COLLECTION, prepared.previousEditingId), {
+          disabled: true,
+          replacedBy: prepared.entryId,
+          updatedAt: modules.serverTimestamp(),
+          updatedBy: state.user.uid
+        }, { merge: true });
+      }
     }
 
-    state.editingEntryId = entryId;
+    state.editingEntryId = preparedEntries[0]?.entryId || "";
+    renderMeaningBlocks(preparedEntries.map((prepared) => ({
+      ...prepared.payload,
+      id: prepared.entryId,
+      sourceEntryId: prepared.entryId,
+      examples: prepared.teacherExamples
+    })));
     updateEditorMode();
     setStatus(el.entryStatus, "");
     savedSuccessfully = true;
-    warmEntryAssets({ ...payload, id: entryId, sourceEntryId: entryId });
+    warmEntryAssets(preparedEntries.map((prepared) => ({
+      ...prepared.payload,
+      id: prepared.entryId,
+      sourceEntryId: prepared.entryId,
+      teacherExamples: prepared.teacherExamples
+    })));
   } catch (error) {
     console.warn("Teacher vocab save failed:", error);
     setStatus(el.entryStatus, `儲存不到：${error?.message || error}`, "error");
@@ -595,32 +790,47 @@ function getExampleHints(entry = {}) {
     meaning: normalizeMeaning(entry.meaning),
     pos,
     type: normalizeType(entry.type || pos, entry.word || entry.display),
+    level: String(entry.level || "").trim().toUpperCase(),
     sourceEntryId: entry.sourceEntryId || entry.id || ""
   }];
 }
 
-async function warmEntryAssets(entry = readEntryForm()) {
-  if (!state.user || !state.firebase?.functions || state.warming) return;
+async function warmSingleEntryAssets(entry = {}) {
   const normalized = api().normalizeEntry?.(entry, { source: "teacher-live" }) || entry;
   const word = normalizeWord(normalized.word || normalized.display);
   if (!word) return;
 
+  const modules = state.firebase.modules;
+  const lookupExamples = modules.httpsCallable(state.firebase.functions, "lookupVocabExamples");
+  const prepareTeacherExamples = modules.httpsCallable(state.firebase.functions, "prepareTeacherVocabExamples");
+  const ensureAudio = modules.httpsCallable(state.firebase.functions, "ensureVocabAudio");
+  const teacherExamples = Array.isArray(entry.teacherExamples)
+    ? entry.teacherExamples.map((example) => String(example || "").trim()).filter(Boolean)
+    : [];
+  const exampleCallable = teacherExamples.length
+    ? prepareTeacherExamples({ word, meanings: getExampleHints(normalized), examples: teacherExamples })
+    : lookupExamples({ word, meanings: getExampleHints(normalized) });
+  const [exampleResult] = await Promise.allSettled([
+    exampleCallable,
+    ensureAudio({ word, text: normalized.display || word, kind: "word" })
+  ]);
+  const examples = exampleResult.status === "fulfilled"
+    ? (exampleResult.value?.data?.examples || [])
+    : [];
+  if (examples.length) {
+    await Promise.allSettled(examples.slice(0, 4).map((example) => (
+      ensureAudio({ word: example.source, text: example.source, kind: "example" })
+    )));
+  }
+}
+
+async function warmEntryAssets(entries = readEntryFormEntries()) {
+  if (!state.user || !state.firebase?.functions || state.warming) return;
+  const list = Array.isArray(entries) ? entries : [entries];
   state.warming = true;
   try {
-    const modules = state.firebase.modules;
-    const lookupExamples = modules.httpsCallable(state.firebase.functions, "lookupVocabExamples");
-    const ensureAudio = modules.httpsCallable(state.firebase.functions, "ensureVocabAudio");
-    const [exampleResult] = await Promise.allSettled([
-      lookupExamples({ word, meanings: getExampleHints(normalized) }),
-      ensureAudio({ word, text: normalized.display || word, kind: "word" })
-    ]);
-    const examples = exampleResult.status === "fulfilled"
-      ? (exampleResult.value?.data?.examples || [])
-      : [];
-    if (examples.length) {
-      await Promise.allSettled(examples.slice(0, 3).map((example) => (
-        ensureAudio({ word: example.source, text: example.source, kind: "example" })
-      )));
+    for (const entry of list) {
+      await warmSingleEntryAssets(entry);
     }
   } catch (error) {
     console.warn("Warm teacher vocab assets failed:", error);
@@ -792,6 +1002,7 @@ function bindEvents() {
   el.entryWord?.addEventListener("input", scheduleSearchRender);
   el.entryForm?.addEventListener("submit", saveEntry);
   el.resetFormButton?.addEventListener("click", resetForm);
+  el.addSenseButton?.addEventListener("click", () => addMeaningBlock());
 }
 
 setTheme(getSavedTheme());

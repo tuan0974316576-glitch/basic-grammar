@@ -103,12 +103,27 @@ assert.ok(prompt.includes("Return exactly 3 examples"));
 
 assert.strictEqual(helpers.shouldReuseCachedExamples({ source: "azure-dictionary-examples" }), false);
 assert.strictEqual(helpers.shouldReuseCachedExamples({ source: "gemini-generated-examples" }), true);
+assert.strictEqual(helpers.shouldReuseCachedExamples({ source: "teacher-approved-examples" }), true);
 assert.strictEqual(helpers.shouldReuseCachedMeaning({ source: "azure-dictionary" }), false);
 assert.strictEqual(helpers.shouldReuseCachedMeaning({ source: "azure-translate-fallback" }), false);
 assert.strictEqual(helpers.shouldReuseCachedMeaning({ source: "curated-cloud" }), true);
 
 const parsed = helpers.parseGeminiJsonText("```json\n{\"examples\":[{\"source\":\"I have lunch.\",\"target\":\"我吃午餐。\"}]}\n```");
 assert.strictEqual(parsed.examples[0].source, "I have lunch.");
+
+const teacherExamplesInput = helpers.normalizeTeacherExampleInputs([
+  "  I eats macaroni.  ",
+  "",
+  "I eats macaroni."
+]);
+assert.deepStrictEqual(teacherExamplesInput, ["I eats macaroni."]);
+
+const teacherPrompt = helpers.buildTeacherExamplePrompt("macaroni", [
+  { meaning: "通心粉", pos: "noun", type: "word" }
+], teacherExamplesInput);
+assert.ok(teacherPrompt.includes("Proofread"));
+assert.ok(teacherPrompt.includes("通心粉"));
+assert.ok(teacherPrompt.includes("Traditional Chinese"));
 
 const examples = helpers.normalizeGeminiExamples("have", {
   candidates: [{
@@ -128,6 +143,23 @@ const examples = helpers.normalizeGeminiExamples("have", {
 assert.strictEqual(examples.length, 2);
 assert.strictEqual(examples[0].meaning, "食 / 飲");
 assert.strictEqual(examples[0].provider, "gemini-generated-examples");
+
+const teacherExamples = helpers.normalizeTeacherExamplesWithGemini("macaroni", {
+  candidates: [{
+    content: {
+      parts: [{
+        text: JSON.stringify({
+          examples: [
+            { source: "I eat macaroni for lunch.", target: "我午餐吃通心粉。" }
+          ]
+        })
+      }]
+    }
+  }]
+}, [{ meaning: "通心粉", pos: "noun" }]);
+assert.strictEqual(teacherExamples.length, 1);
+assert.strictEqual(teacherExamples[0].provider, "teacher-approved-examples");
+assert.strictEqual(teacherExamples[0].meaning, "通心粉");
 
 mockMeaningCacheData = {
   word: "apple",

@@ -394,6 +394,109 @@ select:focus {
   gap: 12px;
 }
 
+.meaning-blocks {
+  display: grid;
+  gap: 12px;
+}
+
+.meaning-block {
+  display: grid;
+  gap: 12px;
+  border: 1px solid rgba(48, 213, 255, 0.24);
+  border-radius: 8px;
+  padding: 14px;
+  background:
+    linear-gradient(135deg, rgba(48, 213, 255, 0.08), transparent 42%),
+    var(--card-soft);
+}
+
+body.theme-grammar .meaning-block {
+  border-color: rgba(214, 149, 30, 0.22);
+  background:
+    linear-gradient(135deg, rgba(255, 218, 118, 0.2), transparent 42%),
+    var(--card-soft);
+}
+
+.meaning-block-heading,
+.example-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.meaning-block-heading {
+  justify-content: space-between;
+}
+
+.meaning-block-title,
+.examples-label {
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.meaning-remove-button {
+  min-height: 30px;
+  padding: 0 10px;
+  font-size: 0.74rem;
+}
+
+.meaning-grid {
+  display: grid;
+  grid-template-columns: minmax(110px, 0.34fr) minmax(0, 1fr);
+  gap: 12px;
+}
+
+.examples-wrap {
+  display: grid;
+  gap: 8px;
+}
+
+.example-row input {
+  min-width: 0;
+  flex: 1;
+}
+
+.icon-add-button,
+.icon-remove-button,
+.add-sense-button {
+  border: 1px solid var(--field-border);
+  border-radius: 8px;
+  color: var(--text);
+  font-weight: 950;
+  background: var(--panel-strong);
+}
+
+.icon-add-button,
+.icon-remove-button {
+  width: 46px;
+  min-width: 46px;
+  min-height: 46px;
+  padding: 0;
+}
+
+.icon-add-button {
+  color: #031019;
+  border-color: rgba(86, 240, 162, 0.46);
+  background: linear-gradient(135deg, var(--green), #b9ffd7);
+  box-shadow: 0 0 16px rgba(86, 240, 162, 0.16);
+}
+
+.icon-remove-button {
+  color: #ffd5dc;
+  border-color: rgba(255, 90, 114, 0.34);
+}
+
+.add-sense-button {
+  min-height: 48px;
+  color: var(--gold);
+  border-style: dashed;
+  background:
+    linear-gradient(135deg, rgba(246, 200, 95, 0.1), rgba(48, 213, 255, 0.06)),
+    var(--card-soft);
+}
+
 .entry-form .form-actions .primary-action {
   width: 100%;
 }
@@ -578,6 +681,10 @@ select:focus {
     grid-template-columns: 1fr;
   }
 
+  .meaning-grid {
+    grid-template-columns: 1fr;
+  }
+
   .entry-card {
     grid-template-columns: 1fr;
   }
@@ -588,7 +695,8 @@ select:focus {
 
   .tiny-action,
   .primary-action,
-  .secondary-action {
+  .secondary-action,
+  .add-sense-button {
     width: 100%;
   }
 }
