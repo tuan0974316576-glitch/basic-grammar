@@ -1,4 +1,18 @@
 {
+  "hosting": {
+    "public": "www",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "/teacher-vocab",
+        "destination": "/teacher-vocab.html"
+      }
+    ]
+  },
   "firestore": {
     "rules": "firestore.rules",
     "indexes": "firestore.indexes.json"
