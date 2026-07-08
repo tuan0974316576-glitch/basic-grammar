@@ -40,12 +40,10 @@ const el = {
   teacherOnlineBadge: document.querySelector("#teacher-online-badge"),
   accountLabel: document.querySelector("#account-label"),
   refreshButton: document.querySelector("#refresh-button"),
-  searchSummary: document.querySelector("#search-summary"),
   resultsList: document.querySelector("#results-list"),
   editorTitle: document.querySelector("#editor-title"),
   entryForm: document.querySelector("#entry-form"),
   entryWord: document.querySelector("#entry-word"),
-  entryAliases: document.querySelector("#entry-aliases"),
   meaningBlocks: document.querySelector("#meaning-blocks"),
   addSenseButton: document.querySelector("#add-sense-button"),
   entryStatus: document.querySelector("#entry-status"),
@@ -98,10 +96,6 @@ function normalizePos(value) {
 
 function normalizeType(value, word = "") {
   return api().normalizeType?.(value, word) || (normalizeWord(word).includes(" ") ? "phrase" : "word");
-}
-
-function normalizeAliases(value) {
-  return api().normalizeAliases?.(value) || String(value || "").split(/[,，;；|]/).map(normalizeWord).filter(Boolean);
 }
 
 function formatPosLabel(value) {
@@ -349,8 +343,7 @@ function makeEntryCard(entry = {}, options = {}) {
 
   const source = document.createElement("div");
   source.className = "entry-source";
-  const aliases = Array.isArray(entry.aliases) && entry.aliases.length ? ` aliases: ${entry.aliases.join(", ")}` : "";
-  source.textContent = `${describeSource(entry)}${aliases}`;
+  source.textContent = describeSource(entry);
 
   main.append(wordLine, meaning, source);
 
@@ -396,7 +389,6 @@ function renderSearchResults() {
 
   if (!query) {
     el.resultsList.replaceChildren(createEmptyState("先喺右邊 English 輸入字詞，例如 macaroni。"));
-    setText(el.searchSummary, `已載入 ${state.liveEntries.filter((entry) => !entry.disabled).length} 個老師新增字義。`);
     return;
   }
 
@@ -413,7 +405,6 @@ function renderSearchResults() {
     el.resultsList.replaceChildren(fragment);
   }
 
-  setText(el.searchSummary, `${results.exact.length} exact / ${results.similar.length} similar。先睇 Exact，有啱就唔需要新增。`);
 }
 
 function renderRecentList() {
@@ -614,7 +605,6 @@ function loadEntryIntoForm(entry = {}, options = {}) {
   const normalized = normalizeLiveEntry(entry) || entry;
   state.editingEntryId = options.edit ? String(normalized.sourceEntryId || normalized.id || "") : "";
   if (el.entryWord) el.entryWord.value = normalized.display || normalized.word || "";
-  if (el.entryAliases) el.entryAliases.value = Array.isArray(normalized.aliases) ? normalized.aliases.join(", ") : "";
   renderMeaningBlocks([{
     ...normalized,
     sourceEntryId: options.edit ? state.editingEntryId : ""
@@ -628,7 +618,6 @@ function loadEntryIntoForm(entry = {}, options = {}) {
 function readEntryFormEntries() {
   const word = normalizeWord(el.entryWord?.value);
   const display = String(el.entryWord?.value || "").trim();
-  const aliases = normalizeAliases(el.entryAliases?.value);
   return readMeaningBlocks().map((sense) => {
     const type = sense.pos === "phrase" ? "phrase" : normalizeType(sense.pos, word);
     return compactEntry({
@@ -637,7 +626,6 @@ function readEntryFormEntries() {
       pos: sense.pos === "phrase" ? "" : sense.pos,
       type,
       meaning: sense.meaning,
-      aliases,
       source: "teacher-live",
       sourceEntryId: sense.editingEntryId,
       teacherExamples: sense.examples

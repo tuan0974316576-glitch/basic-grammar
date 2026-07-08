@@ -300,8 +300,7 @@ select:focus {
   opacity: 0.5;
 }
 
-.status-line,
-.search-summary {
+.status-line {
   min-height: 22px;
   margin-top: 14px;
   color: var(--muted);
@@ -309,18 +308,15 @@ select:focus {
   line-height: 1.5;
 }
 
-.status-line.success,
-.search-summary.success {
+.status-line.success {
   color: var(--green);
 }
 
-.status-line.error,
-.search-summary.error {
+.status-line.error {
   color: var(--red);
 }
 
-.status-line.loading,
-.search-summary.loading {
+.status-line.loading {
   color: var(--gold);
 }
 

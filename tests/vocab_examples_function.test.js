@@ -109,6 +109,7 @@ assert.ok(prompt.includes("Return exactly 3 examples"));
 assert.strictEqual(helpers.shouldReuseCachedExamples({ source: "azure-dictionary-examples" }), false);
 assert.strictEqual(helpers.shouldReuseCachedExamples({ source: "gemini-generated-examples" }), true);
 assert.strictEqual(helpers.shouldReuseCachedExamples({ source: "teacher-approved-examples" }), true);
+assert.strictEqual(helpers.shouldReuseCachedExamples({ source: "template-generated-examples" }), true);
 assert.strictEqual(helpers.shouldReuseCachedMeaning({ source: "azure-dictionary" }), false);
 assert.strictEqual(helpers.shouldReuseCachedMeaning({ source: "azure-translate-fallback" }), false);
 assert.strictEqual(helpers.shouldReuseCachedMeaning({ source: "curated-cloud" }), true);
@@ -165,6 +166,14 @@ const teacherExamples = helpers.normalizeTeacherExamplesWithGemini("macaroni", {
 assert.strictEqual(teacherExamples.length, 1);
 assert.strictEqual(teacherExamples[0].provider, "teacher-approved-examples");
 assert.strictEqual(teacherExamples[0].meaning, "通心粉");
+
+const templateExamples = helpers.buildTemplateExamples("macaroni", [
+  { meaning: "通心粉", pos: "noun", type: "word" }
+]);
+assert.strictEqual(templateExamples.length, 3);
+assert.strictEqual(templateExamples[0].provider, "template-generated-examples");
+assert.strictEqual(templateExamples[0].meaning, "通心粉");
+assert.ok(templateExamples[0].source.includes("macaroni"));
 
 assert.strictEqual(helpers.shouldWarmTeacherVocabEntry(null, {
   word: "macaroni",

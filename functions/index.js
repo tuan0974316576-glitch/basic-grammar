@@ -32,6 +32,7 @@ const AZURE_DICTIONARY_EXAMPLE_LIMIT = 4;
 const GEMINI_EXAMPLE_MODEL = "gemini-3.1-flash-lite";
 const GEMINI_EXAMPLE_SOURCE = "gemini-generated-examples";
 const TEACHER_EXAMPLE_SOURCE = "teacher-approved-examples";
+const TEMPLATE_EXAMPLE_SOURCE = "template-generated-examples";
 const GEMINI_EXAMPLE_LIMIT = 3;
 const TEACHER_EXAMPLE_LIMIT = 4;
 const GEMINI_API_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta";
@@ -609,7 +610,38 @@ function normalizeExampleEntries(word, examples = [], source = "azure-dictionary
 
 function shouldReuseCachedExamples(cached = {}) {
   const source = String(cached.source || "").toLowerCase();
-  return source === GEMINI_EXAMPLE_SOURCE || source === TEACHER_EXAMPLE_SOURCE;
+  return source === GEMINI_EXAMPLE_SOURCE || source === TEACHER_EXAMPLE_SOURCE || source === TEMPLATE_EXAMPLE_SOURCE;
+}
+
+function getPrimaryExampleMeaning(hints = []) {
+  const meaning = normalizeExampleHints(hints)[0]?.meaning || "";
+  return String(meaning || "").split("/").map((part) => part.trim()).filter(Boolean)[0] || meaning;
+}
+
+function buildTemplateExamples(word, hints = [], source = TEMPLATE_EXAMPLE_SOURCE) {
+  const normalizedWord = normalizeVocabWord(word);
+  const display = normalizeVocabExample(word) || normalizedWord;
+  const meaning = getPrimaryExampleMeaning(hints) || display;
+  return normalizeExampleEntries(normalizedWord, [
+    {
+      source: `I learned "${display}" today.`,
+      target: `我今天學了「${meaning}」。`,
+      meaning,
+      sourceEntryId: "template-example-0"
+    },
+    {
+      source: `Our teacher wrote "${display}" on the board.`,
+      target: `老師把「${meaning}」寫在白板上。`,
+      meaning,
+      sourceEntryId: "template-example-1"
+    },
+    {
+      source: `Please use "${display}" in a sentence.`,
+      target: `請用「${meaning}」造句。`,
+      meaning,
+      sourceEntryId: "template-example-2"
+    }
+  ], source).slice(0, GEMINI_EXAMPLE_LIMIT);
 }
 
 function normalizeExampleHints(hints = []) {
@@ -1399,7 +1431,7 @@ async function getOrCreateVocabExamples(word, hints = []) {
 
   let examples = [];
   let status = "ready";
-  const source = GEMINI_EXAMPLE_SOURCE;
+  let source = GEMINI_EXAMPLE_SOURCE;
   try {
     examples = await generateVocabExamplesWithGemini(normalizedWord, normalizedHints, GEMINI_API_KEY.value());
     status = examples.length ? "ready" : "missing";
@@ -1408,7 +1440,9 @@ async function getOrCreateVocabExamples(word, hints = []) {
       word: normalizedWord,
       message: error?.message || String(error)
     });
-    status = "ai-error";
+    examples = buildTemplateExamples(normalizedWord, normalizedHints);
+    source = TEMPLATE_EXAMPLE_SOURCE;
+    status = examples.length ? "ready" : "ai-error";
   }
 
   await docRef.set({
@@ -1445,6 +1479,7 @@ async function prepareAndCacheTeacherVocabExamples(word, hints = [], examplesInp
   const exampleId = makeVocabExampleId(normalizedWord, normalizedHints);
   let examples = [];
   let status = "ready";
+  let source = TEACHER_EXAMPLE_SOURCE;
   try {
     examples = await prepareTeacherExamplesWithGemini(
       normalizedWord,
@@ -1452,13 +1487,19 @@ async function prepareAndCacheTeacherVocabExamples(word, hints = [], examplesInp
       cleanExamples,
       GEMINI_API_KEY.value()
     );
+    if (!examples.length) {
+      examples = buildTemplateExamples(normalizedWord, normalizedHints);
+      source = TEMPLATE_EXAMPLE_SOURCE;
+    }
     status = examples.length ? "ready" : "missing";
   } catch (error) {
     console.error("Teacher vocab example preparation failed.", {
       word: normalizedWord,
       message: error?.message || String(error)
     });
-    status = "ai-error";
+    examples = buildTemplateExamples(normalizedWord, normalizedHints);
+    source = TEMPLATE_EXAMPLE_SOURCE;
+    status = examples.length ? "ready" : "ai-error";
   }
 
   await db.collection("vocabExampleCache").doc(exampleId).set({
@@ -1466,7 +1507,7 @@ async function prepareAndCacheTeacherVocabExamples(word, hints = [], examplesInp
     exampleId,
     cacheKey: makeVocabExamplesCacheKey(normalizedWord, normalizedHints),
     hints: normalizedHints,
-    source: TEACHER_EXAMPLE_SOURCE,
+    source,
     status,
     teacherInputExamples: cleanExamples,
     examples: examples.map((example) => ({
@@ -1485,7 +1526,7 @@ async function prepareAndCacheTeacherVocabExamples(word, hints = [], examplesInp
     word: normalizedWord,
     exampleId,
     examples,
-    source: TEACHER_EXAMPLE_SOURCE,
+    source,
     cached: false
   };
 }
@@ -1825,6 +1866,7 @@ if (process.env.NODE_ENV === "test") {
     normalizeTeacherExampleInputs,
     buildTeacherExamplePrompt,
     normalizeTeacherExamplesWithGemini,
+    buildTemplateExamples,
     getTeacherVocabWarmSignature,
     shouldWarmTeacherVocabEntry,
     parseGeminiJsonText,
