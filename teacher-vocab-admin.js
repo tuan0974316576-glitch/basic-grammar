@@ -25,10 +25,9 @@ const el = {
   loginButton: document.querySelector("#login-button"),
   loginStatus: document.querySelector("#login-status"),
   workspace: document.querySelector("#workspace"),
+  teacherOnlineBadge: document.querySelector("#teacher-online-badge"),
   accountLabel: document.querySelector("#account-label"),
   refreshButton: document.querySelector("#refresh-button"),
-  logoutButton: document.querySelector("#logout-button"),
-  searchInput: document.querySelector("#search-input"),
   searchSummary: document.querySelector("#search-summary"),
   resultsList: document.querySelector("#results-list"),
   editorTitle: document.querySelector("#editor-title"),
@@ -159,11 +158,11 @@ function setStatus(node, message = "", type = "") {
 
 function describeSource(entry = {}) {
   const source = String(entry.source || "");
-  if (source === "teacher-live") return "雲端老師字庫";
-  if (source === "teacher") return "Reviewed teacher bank";
-  if (source === "curated-sense-bank") return "Curated bank";
-  if (source === "cc-cedict-supplement") return "HK / culture supplement";
-  return source || "Reviewed bank";
+  if (source === "teacher-live") return "現有老師字義";
+  if (source === "teacher") return "Reviewed bank";
+  if (source === "curated-sense-bank") return "Reviewed bank";
+  if (source === "cc-cedict-supplement") return "Reviewed supplement";
+  return source ? "Reviewed bank" : "";
 }
 
 function formatEntryMeaning(entry = {}) {
@@ -272,7 +271,7 @@ function getBundledEntries() {
 function searchEntries(query = "") {
   const q = String(query || "").trim();
   if (!q) {
-    return { liveExact: [], liveSimilar: [], localExact: [], localSimilar: [] };
+    return { exact: [], similar: [] };
   }
 
   const activeLive = state.liveEntries.filter((entry) => !entry.disabled);
@@ -299,12 +298,17 @@ function searchEntries(query = "") {
     !liveScored.some((liveItem) => getEntryKey(liveItem.entry) === getEntryKey(item.entry))
   ));
 
-  return {
-    liveExact: liveScored.filter((item) => item.exact).slice(0, SEARCH_LIMIT).map((item) => item.entry),
-    liveSimilar: liveScored.filter((item) => !item.exact).slice(0, SEARCH_LIMIT).map((item) => item.entry),
-    localExact: localWithoutLiveDuplicates.filter((item) => item.exact).slice(0, SEARCH_LIMIT).map((item) => item.entry),
-    localSimilar: localWithoutLiveDuplicates.filter((item) => !item.exact).slice(0, SEARCH_LIMIT).map((item) => item.entry)
-  };
+  const exact = dedupeEntries([
+    ...liveScored.filter((item) => item.exact).map((item) => item.entry),
+    ...localWithoutLiveDuplicates.filter((item) => item.exact).map((item) => item.entry)
+  ]).slice(0, SEARCH_LIMIT);
+  const exactKeys = new Set(exact.map(getEntryKey));
+  const similar = dedupeEntries([
+    ...liveScored.filter((item) => !item.exact).map((item) => item.entry),
+    ...localWithoutLiveDuplicates.filter((item) => !item.exact).map((item) => item.entry)
+  ]).filter((entry) => !exactKeys.has(getEntryKey(entry))).slice(0, SEARCH_LIMIT);
+
+  return { exact, similar };
 }
 
 function createEmptyState(message) {
@@ -357,7 +361,7 @@ function makeEntryCard(entry = {}, options = {}) {
     const warmButton = document.createElement("button");
     warmButton.className = "tiny-action";
     warmButton.type = "button";
-    warmButton.textContent = "Warm";
+    warmButton.textContent = "準備";
     warmButton.addEventListener("click", () => warmEntryAssets(entry));
     actions.append(warmButton);
 
@@ -385,44 +389,29 @@ function appendResultGroup(parent, title, entries, options = {}) {
 }
 
 function renderSearchResults() {
-  const query = String(el.searchInput?.value || "").trim();
+  const query = String(el.entryWord?.value || "").trim();
   if (!el.resultsList) return;
 
   if (!query) {
-    el.resultsList.replaceChildren(createEmptyState("輸入英文或中文意思，例如 macaroni / 通心粉。"));
-    setText(el.searchSummary, `已載入 ${state.liveEntries.filter((entry) => !entry.disabled).length} 個雲端老師字。`);
+    el.resultsList.replaceChildren(createEmptyState("先喺右邊 English 輸入字詞，例如 macaroni。"));
+    setText(el.searchSummary, `已載入 ${state.liveEntries.filter((entry) => !entry.disabled).length} 個老師新增字義。`);
     return;
   }
 
   const results = searchEntries(query);
-  const total = Object.values(results).reduce((sum, items) => sum + items.length, 0);
+  const total = results.exact.length + results.similar.length;
   const fragment = document.createDocumentFragment();
-  appendResultGroup(fragment, "雲端 exact", results.liveExact);
-  appendResultGroup(fragment, "雲端 similar / meaning", results.liveSimilar, { similar: true });
-  appendResultGroup(fragment, "Reviewed exact", results.localExact);
-  appendResultGroup(fragment, "Reviewed similar", results.localSimilar, { similar: true });
+  appendResultGroup(fragment, "Exact matches", results.exact);
+  appendResultGroup(fragment, "Similar matches", results.similar, { similar: true });
 
   if (!total) {
-    const empty = createEmptyState("暫時搵不到現有字。可在右邊輸入 POS + 中文解釋，直接新增到雲端。");
-    const useQueryButton = document.createElement("button");
-    useQueryButton.className = "secondary-action";
-    useQueryButton.type = "button";
-    useQueryButton.textContent = "Use search word";
-    useQueryButton.addEventListener("click", () => {
-      if (el.entryWord) el.entryWord.value = query;
-      state.editingEntryId = "";
-      updateEditorMode();
-      el.entryMeaning?.focus();
-    });
-    empty.append(document.createElement("br"), useQueryButton);
+    const empty = createEmptyState("未搵到現有字義。可以繼續填 POS + 中文解釋，然後新增。");
     el.resultsList.replaceChildren(empty);
   } else {
     el.resultsList.replaceChildren(fragment);
   }
 
-  const exactCount = results.liveExact.length + results.localExact.length;
-  const similarCount = results.liveSimilar.length + results.localSimilar.length;
-  setText(el.searchSummary, `${exactCount} exact / ${similarCount} similar。雲端結果會優先畀學生見到。`);
+  setText(el.searchSummary, `${results.exact.length} exact / ${results.similar.length} similar。先睇 Exact，有啱就唔需要新增。`);
 }
 
 function renderRecentList() {
@@ -432,7 +421,7 @@ function renderRecentList() {
   setText(el.liveCount, String(activeEntries.length));
   if (!el.recentList) return;
   if (!activeEntries.length) {
-    el.recentList.replaceChildren(createEmptyState("未有雲端老師字。"));
+    el.recentList.replaceChildren(createEmptyState("未有老師新增字義。"));
     return;
   }
   el.recentList.replaceChildren(...activeEntries.slice(0, RECENT_LIMIT).map((entry) => makeEntryCard(entry)));
@@ -440,8 +429,8 @@ function renderRecentList() {
 
 function updateEditorMode() {
   const isEditing = Boolean(state.editingEntryId);
-  setText(el.editorTitle, isEditing ? "修改雲端字義" : "新增老師字義");
-  setText(el.saveEntryButton, isEditing ? "Update Cloud Entry" : "Save to Cloud");
+  setText(el.editorTitle, isEditing ? "修改現有字義" : "新增老師字義");
+  setText(el.saveEntryButton, isEditing ? "Update Entry" : "Save Entry");
 }
 
 function resetForm() {
@@ -450,6 +439,7 @@ function resetForm() {
   if (el.entryPos) el.entryPos.value = "noun";
   updateEditorMode();
   setStatus(el.entryStatus, "儲存後學生會即時喺兩隻 game 查到。");
+  renderSearchResults();
 }
 
 function loadEntryIntoForm(entry = {}, options = {}) {
@@ -462,7 +452,8 @@ function loadEntryIntoForm(entry = {}, options = {}) {
   if (el.entryAliases) el.entryAliases.value = Array.isArray(normalized.aliases) ? normalized.aliases.join(", ") : "";
   if (el.entryNotes) el.entryNotes.value = normalized.notes || "";
   updateEditorMode();
-  setStatus(el.entryStatus, options.edit ? "正在修改現有雲端字。" : "已載入資料，可修改後新增到雲端。", options.edit ? "loading" : "");
+  setStatus(el.entryStatus, options.edit ? "正在修改現有字義。" : "已載入資料，可修改後新增。", options.edit ? "loading" : "");
+  renderSearchResults();
   el.entryMeaning?.focus();
 }
 
@@ -500,7 +491,7 @@ function findExistingEntry(entry = {}) {
 async function saveEntry(event) {
   event?.preventDefault();
   if (!state.user || state.role !== "teacher") {
-    setStatus(el.entryStatus, "老師帳號先可以修改雲端字庫。", "error");
+    setStatus(el.entryStatus, "老師帳號先可以修改老師字庫。", "error");
     return;
   }
 
@@ -536,7 +527,7 @@ async function saveEntry(event) {
   }
 
   el.saveEntryButton.disabled = true;
-  setStatus(el.entryStatus, "Saving to cloud...", "loading");
+  setStatus(el.entryStatus, "Saving...", "loading");
   try {
     const writePayload = {
       ...payload,
@@ -572,12 +563,12 @@ async function saveEntry(event) {
 
 async function disableEntry(entry = {}) {
   if (!state.user || state.role !== "teacher") {
-    setStatus(el.entryStatus, "老師帳號先可以停用雲端字。", "error");
+    setStatus(el.entryStatus, "老師帳號先可以停用字義。", "error");
     return;
   }
   const entryId = String(entry.sourceEntryId || entry.id || "").trim();
   if (!entryId) return;
-  const confirmed = window.confirm(`停用 ${entry.display || entry.word} / ${entry.meaning}？學生之後不會再見到呢個雲端解釋。`);
+  const confirmed = window.confirm(`停用 ${entry.display || entry.word} / ${entry.meaning}？學生之後不會再見到呢個解釋。`);
   if (!confirmed) return;
   try {
     const modules = state.firebase.modules;
@@ -644,6 +635,8 @@ function applyAuthUi() {
   el.loginPanel?.classList.toggle("hidden", signedIn);
   el.workspace?.classList.toggle("hidden", !signedIn);
   setText(el.accountLabel, signedIn ? `${state.user.displayName || state.user.email || state.user.uid} (${state.role || "user"})` : "--");
+  setText(el.teacherOnlineBadge, isTeacher ? "TEACHER ONLINE" : signedIn ? "READ ONLY" : "OFFLINE");
+  el.teacherOnlineBadge?.classList.toggle("is-readonly", signedIn && !isTeacher);
   setText(el.cloudStatus, signedIn ? (isTeacher ? "Teacher Online" : "Read Only") : "Login Required");
   if (el.saveEntryButton) el.saveEntryButton.disabled = !isTeacher;
   if (el.warmEntryButton) el.warmEntryButton.disabled = !isTeacher;
@@ -682,8 +675,8 @@ async function startLiveListener() {
     },
     (error) => {
       console.warn("Teacher vocab live listener failed:", error);
-      setText(el.cloudStatus, "Cloud Error");
-      setStatus(el.loginStatus, `雲端讀取不到：${error?.message || error}`, "error");
+      setText(el.cloudStatus, "Connection Error");
+      setStatus(el.loginStatus, `字庫讀取不到：${error?.message || error}`, "error");
     }
   );
 }
@@ -691,7 +684,7 @@ async function startLiveListener() {
 async function initFirebase() {
   const config = window.GRAMMAR_FIREBASE_CONFIG;
   if (!config?.apiKey) {
-    setText(el.cloudStatus, "No Firebase");
+    setText(el.cloudStatus, "Config Error");
     setStatus(el.loginStatus, "未設定 Firebase config。", "error");
     return;
   }
@@ -780,13 +773,6 @@ async function login(event) {
   }
 }
 
-async function logout() {
-  if (!state.firebase?.auth) return;
-  await state.firebase.modules.signOut(state.firebase.auth);
-  resetForm();
-  setStatus(el.loginStatus, "已登出。");
-}
-
 function scheduleSearchRender() {
   if (state.searchTimer) clearTimeout(state.searchTimer);
   state.searchTimer = setTimeout(() => {
@@ -797,7 +783,6 @@ function scheduleSearchRender() {
 
 function bindEvents() {
   el.loginForm?.addEventListener("submit", login);
-  el.logoutButton?.addEventListener("click", logout);
   el.themeButtons.forEach((button) => {
     button.addEventListener("click", () => setTheme(button.dataset.themeChoice));
   });
@@ -805,7 +790,7 @@ function bindEvents() {
     renderRecentList();
     renderSearchResults();
   });
-  el.searchInput?.addEventListener("input", scheduleSearchRender);
+  el.entryWord?.addEventListener("input", scheduleSearchRender);
   el.entryForm?.addEventListener("submit", saveEntry);
   el.resetFormButton?.addEventListener("click", resetForm);
   el.warmEntryButton?.addEventListener("click", () => warmEntryAssets(readEntryForm()));

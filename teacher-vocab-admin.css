@@ -332,9 +332,50 @@ select:focus {
 
 .workspace-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.12fr) minmax(360px, 0.88fr);
+  grid-template-columns: minmax(380px, 0.9fr) minmax(0, 1.1fr);
   gap: 18px;
   align-items: start;
+}
+
+.workspace-header {
+  justify-content: flex-end;
+}
+
+.account-tools {
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.teacher-online-badge {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  border: 1px solid rgba(86, 240, 162, 0.42);
+  border-radius: 999px;
+  color: var(--green);
+  font-size: 0.84rem;
+  font-weight: 950;
+  background: rgba(86, 240, 162, 0.1);
+  box-shadow: 0 0 18px rgba(86, 240, 162, 0.18), inset 0 0 14px rgba(86, 240, 162, 0.08);
+}
+
+.teacher-online-badge.is-readonly {
+  border-color: var(--field-border);
+  color: var(--gold);
+  background: rgba(246, 200, 95, 0.08);
+  box-shadow: none;
+}
+
+.editor-panel {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.results-panel {
+  grid-column: 2;
+  grid-row: 1;
 }
 
 .recent-panel {
@@ -488,6 +529,24 @@ select:focus {
 
   .workspace-grid {
     grid-template-columns: 1fr;
+  }
+
+  .editor-panel,
+  .results-panel {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .editor-panel {
+    order: 1;
+  }
+
+  .results-panel {
+    order: 2;
+  }
+
+  .recent-panel {
+    order: 3;
   }
 
   .form-row {

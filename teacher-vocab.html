@@ -11,9 +11,9 @@
   <main class="teacher-console-shell">
     <section class="teacher-console-hero" aria-label="Teacher vocab console">
       <div>
-        <div class="eyebrow">Shared Cloud Bank</div>
+        <div class="eyebrow">Shared Teacher Bank</div>
         <h1>Teacher Vocab Console</h1>
-        <p>搜尋、修改、即時新增老師 approved 生字。Grammar Game 同 Battleship 會讀同一個雲端字庫。</p>
+        <p>搜尋、修改、即時新增老師 approved 生字。Grammar Game 同 Battleship 會讀同一個老師字庫。</p>
       </div>
       <div class="hero-tools">
         <div class="theme-switch" aria-label="Theme">
@@ -47,31 +47,19 @@
 
     <section id="workspace" class="workspace hidden" aria-label="Teacher vocab workspace">
       <header class="workspace-header console-panel">
-        <div>
-          <div class="eyebrow">Live Editing</div>
-          <h2>上堂即時補字</h2>
-        </div>
         <div class="account-tools">
+          <div id="teacher-online-badge" class="teacher-online-badge">TEACHER ONLINE</div>
           <div id="account-label" class="account-label">--</div>
           <button id="refresh-button" class="secondary-action" type="button">Refresh</button>
-          <button id="logout-button" class="secondary-action danger" type="button">Logout</button>
         </div>
       </header>
-
-      <section class="console-panel search-panel">
-        <label class="search-field">
-          <span>Search Vocab Bank</span>
-          <input id="search-input" type="search" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="輸入英文、中文意思，或可能串錯的字">
-        </label>
-        <div class="search-summary" id="search-summary">輸入字詞後會即時顯示 exact / similar / reviewed bank results。</div>
-      </section>
 
       <div class="workspace-grid">
         <section class="console-panel results-panel">
           <div class="panel-heading">
             <div>
-              <div class="eyebrow">Matches</div>
-              <h3>現有 / 相似字</h3>
+              <div class="eyebrow">Check First</div>
+              <h3>現有字義</h3>
             </div>
           </div>
           <div id="results-list" class="results-list"></div>
@@ -80,7 +68,7 @@
         <section class="console-panel editor-panel">
           <div class="panel-heading">
             <div>
-              <div class="eyebrow">Cloud Entry</div>
+              <div class="eyebrow">Teacher Entry</div>
               <h3 id="editor-title">新增老師字義</h3>
             </div>
             <button id="reset-form-button" class="secondary-action" type="button">Clear</button>
@@ -91,6 +79,7 @@
               <span>English</span>
               <input id="entry-word" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="macaroni">
             </label>
+            <div class="search-summary" id="search-summary">打英文時會即時檢查現有字義；有 exact match 就通常唔需要新增。</div>
             <div class="form-row">
               <label>
                 <span>POS</span>
@@ -134,8 +123,8 @@
               <input id="entry-notes" type="text" autocomplete="off" placeholder="可留空">
             </label>
             <div class="form-actions">
-              <button id="save-entry-button" class="primary-action" type="submit">Save to Cloud</button>
-              <button id="warm-entry-button" class="secondary-action" type="button">Warm Examples / Audio</button>
+              <button id="save-entry-button" class="primary-action" type="submit">Save Entry</button>
+              <button id="warm-entry-button" class="secondary-action" type="button">準備例句 / 讀音</button>
             </div>
           </form>
           <div id="entry-status" class="status-line">儲存後學生會即時喺兩隻 game 查到。</div>
@@ -145,7 +134,7 @@
           <div class="panel-heading">
             <div>
               <div class="eyebrow">Recent</div>
-              <h3>最近雲端字</h3>
+              <h3>最近新增</h3>
             </div>
             <div id="live-count" class="counter-pill">0</div>
           </div>
