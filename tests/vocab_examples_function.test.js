@@ -59,6 +59,11 @@ Module._load = function loadMock(request, parent, isMain) {
       onCall: (_options, handler) => handler
     };
   }
+  if (request === "firebase-functions/v2/firestore") {
+    return {
+      onDocumentWritten: (_options, handler) => handler
+    };
+  }
   if (request === "firebase-functions/v2") {
     return {
       setGlobalOptions: () => {}
@@ -160,6 +165,38 @@ const teacherExamples = helpers.normalizeTeacherExamplesWithGemini("macaroni", {
 assert.strictEqual(teacherExamples.length, 1);
 assert.strictEqual(teacherExamples[0].provider, "teacher-approved-examples");
 assert.strictEqual(teacherExamples[0].meaning, "通心粉");
+
+assert.strictEqual(helpers.shouldWarmTeacherVocabEntry(null, {
+  word: "macaroni",
+  meaning: "通心粉",
+  pos: "noun"
+}), true);
+assert.strictEqual(helpers.shouldWarmTeacherVocabEntry({
+  word: "macaroni",
+  meaning: "通心粉",
+  pos: "noun"
+}, {
+  word: "macaroni",
+  meaning: "通心粉",
+  pos: "noun",
+  updatedAt: 123
+}), false);
+assert.strictEqual(helpers.shouldWarmTeacherVocabEntry({
+  word: "macaroni",
+  meaning: "通心粉",
+  pos: "noun"
+}, {
+  word: "macaroni",
+  meaning: "通心粉",
+  pos: "noun",
+  teacherExamples: ["I eat macaroni."]
+}), true);
+assert.strictEqual(helpers.shouldWarmTeacherVocabEntry(null, {
+  word: "macaroni",
+  meaning: "通心粉",
+  pos: "noun",
+  disabled: true
+}), false);
 
 mockMeaningCacheData = {
   word: "apple",

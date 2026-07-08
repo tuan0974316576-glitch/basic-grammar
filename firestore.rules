@@ -124,6 +124,7 @@ service cloud.firestore {
         "level",
         "source",
         "notes",
+        "teacherExamples",
         "disabled",
         "replacedBy",
         "createdAt",
@@ -143,6 +144,7 @@ service cloud.firestore {
         && (!("level" in request.resource.data) || request.resource.data.level is string)
         && (!("source" in request.resource.data) || request.resource.data.source is string)
         && (!("notes" in request.resource.data) || request.resource.data.notes is string)
+        && (!("teacherExamples" in request.resource.data) || request.resource.data.teacherExamples is list)
         && (!("disabled" in request.resource.data) || request.resource.data.disabled is bool)
         && (!("replacedBy" in request.resource.data) || request.resource.data.replacedBy is string)
         && (!("createdBy" in request.resource.data) || request.resource.data.createdBy is string)

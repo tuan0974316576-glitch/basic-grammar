@@ -96,6 +96,14 @@
     return [...new Set(aliases.map(normalizeWord).filter(Boolean))];
   }
 
+  function normalizeTeacherExamples(value) {
+    return (Array.isArray(value) ? value : [])
+      .map((example) => String(example || "").trim().replace(/\s+/g, " "))
+      .filter(Boolean)
+      .filter((example, index, list) => list.indexOf(example) === index)
+      .slice(0, 4);
+  }
+
   function utf8Bytes(value) {
     const text = String(value || "");
     if (typeof TextEncoder !== "undefined") return Array.from(new TextEncoder().encode(text));
@@ -227,6 +235,7 @@
       level: normalizeLevel(raw.level),
       source: String(options.source || raw.source || "teacher-live"),
       notes: normalizeMeaning(raw.notes || "").slice(0, 120),
+      teacherExamples: normalizeTeacherExamples(raw.teacherExamples),
       disabled: Boolean(raw.disabled),
       sourceEntryId: id,
       updatedAt: Number(raw.updatedAt) || Date.now()
@@ -291,6 +300,7 @@
       level: normalized.level,
       source: "teacher-live",
       notes: normalized.notes,
+      teacherExamples: normalized.teacherExamples,
       disabled: false,
       createdAt: previous.createdAt || now,
       updatedAt: now,

@@ -1,5 +1,6 @@
 const crypto = require("crypto");
 const admin = require("firebase-admin");
+const { onDocumentWritten } = require("firebase-functions/v2/firestore");
 const { HttpsError, onCall } = require("firebase-functions/v2/https");
 const { setGlobalOptions } = require("firebase-functions/v2");
 const { defineSecret } = require("firebase-functions/params");
@@ -1437,6 +1438,58 @@ async function getOrCreateVocabExamples(word, hints = []) {
   };
 }
 
+async function prepareAndCacheTeacherVocabExamples(word, hints = [], examplesInput = [], updatedBy = "") {
+  const normalizedWord = normalizeVocabWord(word);
+  const normalizedHints = normalizeExampleHints(hints);
+  const cleanExamples = normalizeTeacherExampleInputs(examplesInput);
+  const exampleId = makeVocabExampleId(normalizedWord, normalizedHints);
+  let examples = [];
+  let status = "ready";
+  try {
+    examples = await prepareTeacherExamplesWithGemini(
+      normalizedWord,
+      normalizedHints,
+      cleanExamples,
+      GEMINI_API_KEY.value()
+    );
+    status = examples.length ? "ready" : "missing";
+  } catch (error) {
+    console.error("Teacher vocab example preparation failed.", {
+      word: normalizedWord,
+      message: error?.message || String(error)
+    });
+    status = "ai-error";
+  }
+
+  await db.collection("vocabExampleCache").doc(exampleId).set({
+    word: normalizedWord,
+    exampleId,
+    cacheKey: makeVocabExamplesCacheKey(normalizedWord, normalizedHints),
+    hints: normalizedHints,
+    source: TEACHER_EXAMPLE_SOURCE,
+    status,
+    teacherInputExamples: cleanExamples,
+    examples: examples.map((example) => ({
+      source: example.source,
+      target: example.target,
+      meaning: example.meaning || "",
+      sourceEntryId: example.sourceEntryId || ""
+    })),
+    createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    updatedBy
+  }, { merge: true });
+
+  return {
+    status,
+    word: normalizedWord,
+    exampleId,
+    examples,
+    source: TEACHER_EXAMPLE_SOURCE,
+    cached: false
+  };
+}
+
 exports.prepareTeacherVocabExamples = onCall({
   invoker: "public",
   secrets: [GEMINI_API_KEY]
@@ -1459,47 +1512,104 @@ exports.prepareTeacherVocabExamples = onCall({
   }
 
   const hints = normalizeExampleHints(request.data?.meanings || request.data?.hints || []);
-  const exampleId = makeVocabExampleId(word, hints);
-  let examples = [];
-  let status = "ready";
-  try {
-    examples = await prepareTeacherExamplesWithGemini(word, hints, examplesInput, GEMINI_API_KEY.value());
-    status = examples.length ? "ready" : "missing";
-  } catch (error) {
-    console.error("Teacher vocab example preparation failed.", {
+  return prepareAndCacheTeacherVocabExamples(word, hints, examplesInput, request.auth.uid);
+});
+
+function getTeacherVocabWarmSignature(entry = {}) {
+  return JSON.stringify({
+    word: normalizeVocabWord(entry.word || entry.display),
+    display: normalizeVocabExample(entry.display || entry.word || ""),
+    meaning: normalizeCloudMeaning(entry.meaning),
+    pos: String(entry.pos || "").trim().toLowerCase(),
+    type: String(entry.type || "").trim().toLowerCase(),
+    level: String(entry.level || "").trim().toUpperCase(),
+    disabled: Boolean(entry.disabled),
+    teacherExamples: normalizeTeacherExampleInputs(entry.teacherExamples)
+  });
+}
+
+function shouldWarmTeacherVocabEntry(before = null, after = null) {
+  if (!after || after.disabled) return false;
+  const word = normalizeVocabWord(after.word || after.display);
+  if (!isLikelyWordOrPhrase(word) || !normalizeCloudMeaning(after.meaning)) return false;
+  if (!before) return true;
+  return getTeacherVocabWarmSignature(before) !== getTeacherVocabWarmSignature(after);
+}
+
+function getTeacherVocabExampleHints(entry = {}, entryId = "") {
+  const pos = String(entry.pos || entry.type || "").trim().toLowerCase();
+  return [{
+    meaning: normalizeCloudMeaning(entry.meaning),
+    pos,
+    type: String(entry.type || (normalizeVocabWord(entry.word || entry.display).includes(" ") ? "phrase" : "word")).trim().toLowerCase(),
+    level: String(entry.level || "").trim().toUpperCase(),
+    sourceEntryId: entryId || String(entry.sourceEntryId || entry.id || "")
+  }];
+}
+
+async function warmTeacherVocabEntryAssets(entry = {}, entryId = "") {
+  const word = normalizeVocabWord(entry.word || entry.display);
+  const display = normalizeVocabExample(entry.display || entry.word || word) || word;
+  const hints = getTeacherVocabExampleHints(entry, entryId);
+  const teacherExamples = normalizeTeacherExampleInputs(entry.teacherExamples);
+  const [wordAudioResult, exampleResult] = await Promise.allSettled([
+    getOrCreateVocabAudio(display, { kind: "word" }),
+    teacherExamples.length
+      ? prepareAndCacheTeacherVocabExamples(word, hints, teacherExamples, String(entry.updatedBy || ""))
+      : getOrCreateVocabExamples(word, hints)
+  ]);
+  if (wordAudioResult.status === "rejected") {
+    console.error("Teacher vocab word audio warm failed.", {
       word,
-      message: error?.message || String(error)
+      message: wordAudioResult.reason?.message || String(wordAudioResult.reason)
     });
-    status = "ai-error";
   }
 
-  await db.collection("vocabExampleCache").doc(exampleId).set({
-    word,
-    exampleId,
-    cacheKey: makeVocabExamplesCacheKey(word, hints),
-    hints: normalizeExampleHints(hints),
-    source: TEACHER_EXAMPLE_SOURCE,
-    status,
-    teacherInputExamples: examplesInput,
-    examples: examples.map((example) => ({
-      source: example.source,
-      target: example.target,
-      meaning: example.meaning || "",
-      sourceEntryId: example.sourceEntryId || ""
-    })),
-    createdAt: admin.firestore.FieldValue.serverTimestamp(),
-    updatedAt: admin.firestore.FieldValue.serverTimestamp(),
-    updatedBy: request.auth.uid
-  }, { merge: true });
+  const examples = exampleResult.status === "fulfilled"
+    ? (exampleResult.value?.examples || [])
+    : [];
+  if (exampleResult.status === "rejected") {
+    console.error("Teacher vocab examples warm failed.", {
+      word,
+      message: exampleResult.reason?.message || String(exampleResult.reason)
+    });
+  }
+
+  const audioResults = await Promise.allSettled(examples.slice(0, TEACHER_EXAMPLE_LIMIT).map((example) => (
+    getOrCreateVocabAudio(example.source, { kind: "example" })
+  )));
+  audioResults.forEach((result) => {
+    if (result.status !== "rejected") return;
+    console.error("Teacher vocab example audio warm failed.", {
+      word,
+      message: result.reason?.message || String(result.reason)
+    });
+  });
 
   return {
-    status,
     word,
-    exampleId,
-    examples,
-    source: TEACHER_EXAMPLE_SOURCE,
-    cached: false
+    examples: examples.length,
+    teacherExamples: teacherExamples.length
   };
+}
+
+exports.warmTeacherVocabAssets = onDocumentWritten({
+  document: "teacherVocabLive/{entryId}",
+  secrets: [AZURE_SPEECH_KEY, AZURE_SPEECH_REGION, GEMINI_API_KEY]
+}, async (event) => {
+  const before = event.data?.before?.exists ? (event.data.before.data() || null) : null;
+  const after = event.data?.after?.exists ? (event.data.after.data() || null) : null;
+  if (!shouldWarmTeacherVocabEntry(before, after)) return;
+
+  try {
+    const result = await warmTeacherVocabEntryAssets(after, event.params.entryId);
+    console.info("Teacher vocab assets warmed.", result);
+  } catch (error) {
+    console.error("Teacher vocab asset warm trigger failed.", {
+      entryId: event.params.entryId,
+      message: error?.message || String(error)
+    });
+  }
 });
 
 exports.lookupVocabExamples = onCall({
@@ -1715,6 +1825,8 @@ if (process.env.NODE_ENV === "test") {
     normalizeTeacherExampleInputs,
     buildTeacherExamplePrompt,
     normalizeTeacherExamplesWithGemini,
+    getTeacherVocabWarmSignature,
+    shouldWarmTeacherVocabEntry,
     parseGeminiJsonText,
     shouldReuseCachedMeaning,
     shouldReuseCachedExamples

@@ -111,6 +111,7 @@ assert.deepStrictEqual(livePayload, {
   level: "B1",
   source: "teacher-live",
   notes: "",
+  teacherExamples: [],
   disabled: false,
   createdAt: 1234,
   updatedAt: 5678,

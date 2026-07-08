@@ -25,8 +25,7 @@ const state = {
   liveUnsubscribe: null,
   editingEntryId: "",
   bundledEntries: null,
-  searchTimer: 0,
-  warming: false
+  searchTimer: 0
 };
 
 const el = {
@@ -646,10 +645,6 @@ function readEntryFormEntries() {
   });
 }
 
-function readEntryForm() {
-  return readEntryFormEntries()[0] || {};
-}
-
 function findExistingEntry(entry = {}, editingEntryId = "") {
   const entryKey = getEntryKey(entry);
   return state.liveEntries.find((item) => (
@@ -719,6 +714,11 @@ async function saveEntry(event) {
         ...prepared.payload,
         updatedAt: modules.serverTimestamp()
       };
+      if (prepared.teacherExamples.length) {
+        writePayload.teacherExamples = prepared.teacherExamples;
+      } else {
+        writePayload.teacherExamples = [];
+      }
       if (!prepared.existing.sourceEntryId && !prepared.existing.id) {
         writePayload.createdAt = modules.serverTimestamp();
       } else {
@@ -746,12 +746,6 @@ async function saveEntry(event) {
     updateEditorMode();
     setStatus(el.entryStatus, "");
     savedSuccessfully = true;
-    warmEntryAssets(preparedEntries.map((prepared) => ({
-      ...prepared.payload,
-      id: prepared.entryId,
-      sourceEntryId: prepared.entryId,
-      teacherExamples: prepared.teacherExamples
-    })));
   } catch (error) {
     console.warn("Teacher vocab save failed:", error);
     setStatus(el.entryStatus, `儲存不到：${error?.message || error}`, "error");
@@ -781,61 +775,6 @@ async function disableEntry(entry = {}) {
   } catch (error) {
     console.warn("Disable teacher vocab failed:", error);
     setStatus(el.entryStatus, `停用不到：${error?.message || error}`, "error");
-  }
-}
-
-function getExampleHints(entry = {}) {
-  const pos = normalizePos(entry.pos || entry.type);
-  return [{
-    meaning: normalizeMeaning(entry.meaning),
-    pos,
-    type: normalizeType(entry.type || pos, entry.word || entry.display),
-    level: String(entry.level || "").trim().toUpperCase(),
-    sourceEntryId: entry.sourceEntryId || entry.id || ""
-  }];
-}
-
-async function warmSingleEntryAssets(entry = {}) {
-  const normalized = api().normalizeEntry?.(entry, { source: "teacher-live" }) || entry;
-  const word = normalizeWord(normalized.word || normalized.display);
-  if (!word) return;
-
-  const modules = state.firebase.modules;
-  const lookupExamples = modules.httpsCallable(state.firebase.functions, "lookupVocabExamples");
-  const prepareTeacherExamples = modules.httpsCallable(state.firebase.functions, "prepareTeacherVocabExamples");
-  const ensureAudio = modules.httpsCallable(state.firebase.functions, "ensureVocabAudio");
-  const teacherExamples = Array.isArray(entry.teacherExamples)
-    ? entry.teacherExamples.map((example) => String(example || "").trim()).filter(Boolean)
-    : [];
-  const exampleCallable = teacherExamples.length
-    ? prepareTeacherExamples({ word, meanings: getExampleHints(normalized), examples: teacherExamples })
-    : lookupExamples({ word, meanings: getExampleHints(normalized) });
-  const [exampleResult] = await Promise.allSettled([
-    exampleCallable,
-    ensureAudio({ word, text: normalized.display || word, kind: "word" })
-  ]);
-  const examples = exampleResult.status === "fulfilled"
-    ? (exampleResult.value?.data?.examples || [])
-    : [];
-  if (examples.length) {
-    await Promise.allSettled(examples.slice(0, 4).map((example) => (
-      ensureAudio({ word: example.source, text: example.source, kind: "example" })
-    )));
-  }
-}
-
-async function warmEntryAssets(entries = readEntryFormEntries()) {
-  if (!state.user || !state.firebase?.functions || state.warming) return;
-  const list = Array.isArray(entries) ? entries : [entries];
-  state.warming = true;
-  try {
-    for (const entry of list) {
-      await warmSingleEntryAssets(entry);
-    }
-  } catch (error) {
-    console.warn("Warm teacher vocab assets failed:", error);
-  } finally {
-    state.warming = false;
   }
 }
 
