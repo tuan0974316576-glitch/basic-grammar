@@ -2,6 +2,7 @@ const FIREBASE_VERSION = "10.12.5";
 const LIVE_COLLECTION = "teacherVocabLive";
 const SEARCH_LIMIT = 18;
 const RECENT_LIMIT = 24;
+const THEME_KEY = "teacher_vocab_console_theme_v1";
 
 const state = {
   firebase: null,
@@ -42,9 +43,34 @@ const el = {
   saveEntryButton: document.querySelector("#save-entry-button"),
   warmEntryButton: document.querySelector("#warm-entry-button"),
   resetFormButton: document.querySelector("#reset-form-button"),
+  themeButtons: Array.from(document.querySelectorAll("[data-theme-choice]")),
   liveCount: document.querySelector("#live-count"),
   recentList: document.querySelector("#recent-list")
 };
+
+function getSavedTheme() {
+  try {
+    const theme = localStorage.getItem(THEME_KEY);
+    return theme === "grammar" ? "grammar" : "battleship";
+  } catch (_error) {
+    return "battleship";
+  }
+}
+
+function setTheme(theme = "battleship") {
+  const normalized = theme === "grammar" ? "grammar" : "battleship";
+  document.body.classList.toggle("theme-grammar", normalized === "grammar");
+  el.themeButtons.forEach((button) => {
+    const isActive = button.dataset.themeChoice === normalized;
+    button.classList.toggle("active", isActive);
+    button.setAttribute("aria-pressed", isActive ? "true" : "false");
+  });
+  try {
+    localStorage.setItem(THEME_KEY, normalized);
+  } catch (_error) {
+    // Ignore storage failures; the active theme still applies for this page.
+  }
+}
 
 function api() {
   return window.TeacherLiveVocab || {};
@@ -772,6 +798,9 @@ function scheduleSearchRender() {
 function bindEvents() {
   el.loginForm?.addEventListener("submit", login);
   el.logoutButton?.addEventListener("click", logout);
+  el.themeButtons.forEach((button) => {
+    button.addEventListener("click", () => setTheme(button.dataset.themeChoice));
+  });
   el.refreshButton?.addEventListener("click", () => {
     renderRecentList();
     renderSearchResults();
@@ -782,6 +811,7 @@ function bindEvents() {
   el.warmEntryButton?.addEventListener("click", () => warmEntryAssets(readEntryForm()));
 }
 
+setTheme(getSavedTheme());
 bindEvents();
 applyAuthUi();
 resetForm();

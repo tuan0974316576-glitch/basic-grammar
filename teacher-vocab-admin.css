@@ -11,8 +11,36 @@
   --gold: #f6c85f;
   --green: #56f0a2;
   --red: #ff5a72;
+  --field: rgba(2, 10, 16, 0.76);
+  --field-border: rgba(133, 219, 255, 0.28);
+  --card: rgba(2, 12, 19, 0.72);
+  --card-soft: rgba(2, 12, 19, 0.46);
+  --hero-copy: #b9d8e5;
+  --meaning-text: #c9e8f2;
   --shadow: 0 20px 60px rgba(0, 0, 0, 0.36);
   font-family: "Inter", "Segoe UI", "Noto Sans TC", system-ui, sans-serif;
+}
+
+body.theme-grammar {
+  color-scheme: light;
+  --bg: #fff8e8;
+  --panel: rgba(255, 253, 246, 0.88);
+  --panel-strong: rgba(255, 255, 255, 0.98);
+  --line: rgba(64, 126, 153, 0.22);
+  --line-strong: rgba(28, 145, 174, 0.42);
+  --text: #1f3140;
+  --muted: #667889;
+  --cyan: #148db3;
+  --gold: #d6951e;
+  --green: #168957;
+  --red: #d8475c;
+  --field: rgba(255, 255, 255, 0.94);
+  --field-border: rgba(35, 126, 153, 0.24);
+  --card: rgba(255, 255, 255, 0.86);
+  --card-soft: rgba(255, 255, 255, 0.62);
+  --hero-copy: #536d7b;
+  --meaning-text: #355464;
+  --shadow: 0 18px 50px rgba(112, 87, 46, 0.16);
 }
 
 * {
@@ -27,6 +55,13 @@ body {
     radial-gradient(circle at 20% 10%, rgba(48, 213, 255, 0.12), transparent 28rem),
     radial-gradient(circle at 88% 18%, rgba(246, 200, 95, 0.12), transparent 24rem),
     linear-gradient(135deg, #061019 0%, #0b1722 52%, #08111b 100%);
+}
+
+body.theme-grammar {
+  background:
+    radial-gradient(circle at 14% 8%, rgba(255, 219, 122, 0.34), transparent 23rem),
+    radial-gradient(circle at 86% 18%, rgba(119, 210, 230, 0.28), transparent 24rem),
+    linear-gradient(135deg, #fff8e8 0%, #fdfaf2 54%, #eefaff 100%);
 }
 
 button,
@@ -85,6 +120,48 @@ button {
   position: relative;
 }
 
+.hero-tools {
+  display: grid;
+  gap: 12px;
+  justify-items: end;
+}
+
+.theme-switch {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(2, 10, 16, 0.36);
+}
+
+body.theme-grammar .theme-switch {
+  background: rgba(255, 255, 255, 0.66);
+}
+
+.theme-button {
+  min-height: 32px;
+  border: 0;
+  border-radius: 999px;
+  padding: 0 12px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 900;
+  background: transparent;
+}
+
+.theme-button.active {
+  color: #031019;
+  background: linear-gradient(135deg, var(--cyan), #9af3ff);
+  box-shadow: 0 0 14px rgba(48, 213, 255, 0.2);
+}
+
+body.theme-grammar .theme-button.active {
+  color: #442f08;
+  background: linear-gradient(135deg, #ffd978, #fff3bd);
+  box-shadow: 0 8px 22px rgba(214, 149, 30, 0.18);
+}
+
 .eyebrow {
   color: var(--cyan);
   font-size: 0.78rem;
@@ -117,7 +194,7 @@ h3 {
 .teacher-console-hero p {
   max-width: 680px;
   margin-top: 14px;
-  color: #b9d8e5;
+  color: var(--hero-copy);
   line-height: 1.6;
 }
 
@@ -172,12 +249,12 @@ input,
 select {
   width: 100%;
   min-height: 48px;
-  border: 1px solid rgba(133, 219, 255, 0.28);
+  border: 1px solid var(--field-border);
   border-radius: 8px;
   outline: none;
   padding: 0 14px;
   color: var(--text);
-  background: rgba(2, 10, 16, 0.76);
+  background: var(--field);
 }
 
 input:focus,
@@ -207,8 +284,8 @@ select:focus {
 
 .secondary-action {
   color: var(--text);
-  border: 1px solid rgba(133, 219, 255, 0.3);
-  background: rgba(12, 34, 50, 0.92);
+  border: 1px solid var(--field-border);
+  background: var(--panel-strong);
   box-shadow: none;
 }
 
@@ -300,10 +377,10 @@ select:focus {
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 14px;
   align-items: center;
-  border: 1px solid rgba(133, 219, 255, 0.2);
+  border: 1px solid var(--line);
   border-radius: 8px;
   padding: 13px;
-  background: rgba(2, 12, 19, 0.72);
+  background: var(--card);
 }
 
 .entry-card.is-live {
@@ -345,7 +422,7 @@ select:focus {
 
 .entry-meaning {
   margin-top: 5px;
-  color: #c9e8f2;
+  color: var(--meaning-text);
   line-height: 1.45;
 }
 
@@ -364,12 +441,12 @@ select:focus {
 
 .tiny-action {
   min-height: 34px;
-  border: 1px solid rgba(133, 219, 255, 0.26);
+  border: 1px solid var(--field-border);
   border-radius: 7px;
   padding: 0 10px;
   color: var(--text);
   font-weight: 850;
-  background: rgba(17, 48, 68, 0.82);
+  background: var(--panel-strong);
 }
 
 .tiny-action.danger {
@@ -378,12 +455,12 @@ select:focus {
 }
 
 .empty-state {
-  border: 1px dashed rgba(133, 219, 255, 0.28);
+  border: 1px dashed var(--field-border);
   border-radius: 8px;
   padding: 18px;
   color: var(--muted);
   line-height: 1.55;
-  background: rgba(2, 12, 19, 0.46);
+  background: var(--card-soft);
 }
 
 @media (max-width: 980px) {
@@ -393,11 +470,20 @@ select:focus {
   }
 
   .teacher-console-hero,
+  .hero-tools,
   .workspace-header,
   .panel-heading,
   .account-tools {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .hero-tools {
+    justify-items: stretch;
+  }
+
+  .theme-switch {
+    justify-content: center;
   }
 
   .workspace-grid {
