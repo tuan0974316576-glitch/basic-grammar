@@ -425,6 +425,16 @@ function updateEditorMode() {
   setText(el.saveEntryButton, isEditing ? "UPDATE" : "SAVE");
 }
 
+function triggerSaveButtonSuccess() {
+  if (!el.saveEntryButton) return;
+  el.saveEntryButton.classList.remove("save-success-pulse");
+  void el.saveEntryButton.offsetWidth;
+  el.saveEntryButton.classList.add("save-success-pulse");
+  window.setTimeout(() => {
+    el.saveEntryButton?.classList.remove("save-success-pulse");
+  }, 1450);
+}
+
 function resetForm() {
   state.editingEntryId = "";
   if (el.entryForm) el.entryForm.reset();
@@ -520,6 +530,7 @@ async function saveEntry(event) {
 
   el.saveEntryButton.disabled = true;
   setStatus(el.entryStatus, "Saving...", "loading");
+  let savedSuccessfully = false;
   try {
     const writePayload = {
       ...payload,
@@ -543,13 +554,15 @@ async function saveEntry(event) {
 
     state.editingEntryId = entryId;
     updateEditorMode();
-    setStatus(el.entryStatus, `${payload.display || payload.word} 已儲存。學生可以即時查到。`, "success");
+    setStatus(el.entryStatus, "");
+    savedSuccessfully = true;
     warmEntryAssets({ ...payload, id: entryId, sourceEntryId: entryId });
   } catch (error) {
     console.warn("Teacher vocab save failed:", error);
     setStatus(el.entryStatus, `儲存不到：${error?.message || error}`, "error");
   } finally {
     el.saveEntryButton.disabled = false;
+    if (savedSuccessfully) triggerSaveButtonSuccess();
   }
 }
 

@@ -398,6 +398,27 @@ select:focus {
   width: 100%;
 }
 
+.primary-action.save-success-pulse {
+  color: #04140b;
+  background: linear-gradient(135deg, var(--green), #b9ffd7);
+  animation: save-success-pulse 1.35s ease-out both;
+}
+
+@keyframes save-success-pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(86, 240, 162, 0);
+  }
+  28% {
+    transform: scale(1.035);
+    box-shadow: 0 0 0 8px rgba(86, 240, 162, 0.18), 0 0 30px rgba(86, 240, 162, 0.55);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 18px rgba(86, 240, 162, 0);
+  }
+}
+
 .results-list,
 .recent-list {
   display: grid;
