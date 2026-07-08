@@ -40,7 +40,6 @@ const el = {
   entryNotes: document.querySelector("#entry-notes"),
   entryStatus: document.querySelector("#entry-status"),
   saveEntryButton: document.querySelector("#save-entry-button"),
-  warmEntryButton: document.querySelector("#warm-entry-button"),
   resetFormButton: document.querySelector("#reset-form-button"),
   themeButtons: Array.from(document.querySelectorAll("[data-theme-choice]")),
   liveCount: document.querySelector("#live-count"),
@@ -358,13 +357,6 @@ function makeEntryCard(entry = {}, options = {}) {
   actions.append(useButton);
 
   if (entry.source === "teacher-live") {
-    const warmButton = document.createElement("button");
-    warmButton.className = "tiny-action";
-    warmButton.type = "button";
-    warmButton.textContent = "準備";
-    warmButton.addEventListener("click", () => warmEntryAssets(entry));
-    actions.append(warmButton);
-
     const disableButton = document.createElement("button");
     disableButton.className = "tiny-action danger";
     disableButton.type = "button";
@@ -430,7 +422,7 @@ function renderRecentList() {
 function updateEditorMode() {
   const isEditing = Boolean(state.editingEntryId);
   setText(el.editorTitle, isEditing ? "修改現有字義" : "新增老師字義");
-  setText(el.saveEntryButton, isEditing ? "Update Entry" : "Save Entry");
+  setText(el.saveEntryButton, isEditing ? "UPDATE" : "SAVE");
 }
 
 function resetForm() {
@@ -551,7 +543,7 @@ async function saveEntry(event) {
 
     state.editingEntryId = entryId;
     updateEditorMode();
-    setStatus(el.entryStatus, `${payload.display || payload.word} 已儲存。例句同讀音會喺背景預熱。`, "success");
+    setStatus(el.entryStatus, `${payload.display || payload.word} 已儲存。學生可以即時查到。`, "success");
     warmEntryAssets({ ...payload, id: entryId, sourceEntryId: entryId });
   } catch (error) {
     console.warn("Teacher vocab save failed:", error);
@@ -601,8 +593,6 @@ async function warmEntryAssets(entry = readEntryForm()) {
   if (!word) return;
 
   state.warming = true;
-  el.warmEntryButton.disabled = true;
-  setStatus(el.entryStatus, "預熱例句 / 讀音中...", "loading");
   try {
     const modules = state.firebase.modules;
     const lookupExamples = modules.httpsCallable(state.firebase.functions, "lookupVocabExamples");
@@ -619,13 +609,10 @@ async function warmEntryAssets(entry = readEntryForm()) {
         ensureAudio({ word: example.source, text: example.source, kind: "example" })
       )));
     }
-    setStatus(el.entryStatus, "例句 / 讀音 cache 已開始準備。", "success");
   } catch (error) {
     console.warn("Warm teacher vocab assets failed:", error);
-    setStatus(el.entryStatus, "字義已可用；例句 / 讀音稍後會由學生端補生成。", "error");
   } finally {
     state.warming = false;
-    el.warmEntryButton.disabled = false;
   }
 }
 
@@ -639,7 +626,6 @@ function applyAuthUi() {
   el.teacherOnlineBadge?.classList.toggle("is-readonly", signedIn && !isTeacher);
   setText(el.cloudStatus, signedIn ? (isTeacher ? "Teacher Online" : "Read Only") : "Login Required");
   if (el.saveEntryButton) el.saveEntryButton.disabled = !isTeacher;
-  if (el.warmEntryButton) el.warmEntryButton.disabled = !isTeacher;
   if (signedIn && !isTeacher) {
     setStatus(el.entryStatus, "目前帳號不是 teacher role，只可以搜尋，不能寫入。", "error");
   }
@@ -793,7 +779,6 @@ function bindEvents() {
   el.entryWord?.addEventListener("input", scheduleSearchRender);
   el.entryForm?.addEventListener("submit", saveEntry);
   el.resetFormButton?.addEventListener("click", resetForm);
-  el.warmEntryButton?.addEventListener("click", () => warmEntryAssets(readEntryForm()));
 }
 
 setTheme(getSavedTheme());

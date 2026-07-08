@@ -394,6 +394,10 @@ select:focus {
   gap: 12px;
 }
 
+.entry-form .form-actions .primary-action {
+  width: 100%;
+}
+
 .results-list,
 .recent-list {
   display: grid;
