@@ -567,6 +567,15 @@ function makeEntryMeaningRow(entry = {}) {
 
   actions.append(examplesButton, editButton);
 
+  if (state.role === "teacher" && entry.source === "teacher-live") {
+    const removeButton = document.createElement("button");
+    removeButton.className = "tiny-action danger";
+    removeButton.type = "button";
+    removeButton.textContent = "Remove";
+    removeButton.addEventListener("click", () => disableEntry(entry));
+    actions.append(removeButton);
+  }
+
   line.append(meaning, actions);
 
   const panel = document.createElement("div");
@@ -973,6 +982,7 @@ async function saveEntry(event) {
   el.saveEntryButton.disabled = true;
   setStatus(el.entryStatus, "Saving...", "loading");
   let savedSuccessfully = false;
+  const savedDisplayWord = firstEntry.display || firstEntry.word;
   try {
     for (const prepared of preparedEntries) {
       const writePayload = {
@@ -1001,8 +1011,30 @@ async function saveEntry(event) {
       }
     }
 
-    state.editingEntryId = preparedEntries[0]?.entryId || "";
-    resetForm();
+    const optimisticEntries = preparedEntries.map((prepared) => normalizeLiveEntry({
+      id: prepared.entryId,
+      sourceEntryId: prepared.entryId,
+      ...prepared.payload,
+      teacherExamples: prepared.teacherExamples,
+      updatedAt: Date.now()
+    })).filter(Boolean);
+    const optimisticIds = new Set(optimisticEntries.map((entry) => String(entry.sourceEntryId || entry.id)));
+    const replacedIds = new Set(preparedEntries
+      .map((prepared) => prepared.previousEditingId && prepared.previousEditingId !== prepared.entryId ? prepared.previousEditingId : "")
+      .filter(Boolean));
+    state.liveEntries = [
+      ...optimisticEntries,
+      ...state.liveEntries.filter((entry) => {
+        const entryId = String(entry.sourceEntryId || entry.id || "");
+        return !optimisticIds.has(entryId) && !replacedIds.has(entryId);
+      })
+    ].sort((left, right) => (right.updatedAt || 0) - (left.updatedAt || 0));
+    state.editingEntryId = "";
+    if (el.entryForm) el.entryForm.reset();
+    if (el.entryWord) el.entryWord.value = savedDisplayWord;
+    renderMeaningBlocks([{}]);
+    renderRecentList();
+    renderSearchResults();
     setStatus(el.entryStatus, "");
     savedSuccessfully = true;
   } catch (error) {
