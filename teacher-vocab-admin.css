@@ -544,10 +544,6 @@ body.theme-grammar .meaning-block {
   background: var(--card);
 }
 
-.entry-card.is-live {
-  border-color: rgba(86, 240, 162, 0.35);
-}
-
 .entry-card.is-similar {
   border-color: rgba(246, 200, 95, 0.35);
 }
@@ -615,10 +611,6 @@ body.theme-grammar .entry-meaning-row {
   background: rgba(255, 255, 255, 0.5);
 }
 
-.entry-meaning-row.is-live {
-  border-color: rgba(86, 240, 162, 0.22);
-}
-
 .entry-meaning-line {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
@@ -629,12 +621,6 @@ body.theme-grammar .entry-meaning-row {
 .entry-meaning {
   color: var(--meaning-text);
   line-height: 1.45;
-}
-
-.entry-source {
-  margin-top: 7px;
-  color: var(--muted);
-  font-size: 0.78rem;
 }
 
 .entry-actions {

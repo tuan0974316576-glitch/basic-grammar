@@ -162,15 +162,6 @@ function setStatus(node, message = "", type = "") {
   node.textContent = message;
 }
 
-function describeSource(entry = {}) {
-  const source = String(entry.source || "");
-  if (source === "teacher-live") return "現有老師字義";
-  if (source === "teacher") return "Reviewed bank";
-  if (source === "curated-sense-bank") return "Reviewed bank";
-  if (source === "cc-cedict-supplement") return "Reviewed supplement";
-  return source ? "Reviewed bank" : "";
-}
-
 function formatEntryMeaning(entry = {}) {
   const pos = formatPosLabel(entry.pos || entry.inferredPos || entry.type);
   const meaning = normalizeMeaning(entry.meaning);
@@ -550,7 +541,7 @@ function renderExamplePanel(panel, payload = {}) {
 
 function makeEntryMeaningRow(entry = {}) {
   const row = document.createElement("section");
-  row.className = `entry-meaning-row${entry.source === "teacher-live" ? " is-live" : ""}`;
+  row.className = "entry-meaning-row";
 
   const line = document.createElement("div");
   line.className = "entry-meaning-line";
@@ -569,21 +560,12 @@ function makeEntryMeaningRow(entry = {}) {
   const editButton = document.createElement("button");
   editButton.className = "tiny-action";
   editButton.type = "button";
-  editButton.textContent = entry.source === "teacher-live" ? "Edit" : "Copy";
+  editButton.textContent = "Edit";
   editButton.addEventListener("click", () => loadEntryIntoForm(entry, {
     edit: entry.source === "teacher-live"
   }));
 
   actions.append(examplesButton, editButton);
-
-  if (entry.source === "teacher-live") {
-    const disableButton = document.createElement("button");
-    disableButton.className = "tiny-action danger";
-    disableButton.type = "button";
-    disableButton.textContent = "Disable";
-    disableButton.addEventListener("click", () => disableEntry(entry));
-    actions.append(disableButton);
-  }
 
   line.append(meaning, actions);
 
@@ -602,7 +584,7 @@ function makeEntryMeaningRow(entry = {}) {
 
 function makeEntryGroupCard(group = {}, options = {}) {
   const card = document.createElement("article");
-  card.className = `entry-card${group.live ? " is-live" : ""}${options.similar ? " is-similar" : ""}`;
+  card.className = `entry-card${options.similar ? " is-similar" : ""}`;
 
   const main = document.createElement("div");
   main.className = "entry-main";
@@ -621,15 +603,11 @@ function makeEntryGroupCard(group = {}, options = {}) {
   playButton.addEventListener("click", () => playTeacherAudio(group.display || group.word, "word", playButton));
   wordLine.append(word, meta, playButton);
 
-  const source = document.createElement("div");
-  source.className = "entry-source";
-  source.textContent = group.live ? "現有老師字義" : describeSource(group.entries[0]);
-
   const meanings = document.createElement("div");
   meanings.className = "entry-meanings";
   meanings.append(...group.entries.map(makeEntryMeaningRow));
 
-  main.append(wordLine, source, meanings);
+  main.append(wordLine, meanings);
   card.append(main);
   return card;
 }
@@ -658,8 +636,8 @@ function renderSearchResults() {
   const results = searchEntries(query);
   const total = results.exact.length + results.similar.length;
   const fragment = document.createDocumentFragment();
-  appendResultGroup(fragment, "Exact matches", results.exact);
-  appendResultGroup(fragment, "Similar matches", results.similar, { similar: true });
+  appendResultGroup(fragment, "完全相同", results.exact);
+  appendResultGroup(fragment, "近似字詞", results.similar, { similar: true });
 
   if (!total) {
     const empty = createEmptyState("未搵到現有字義。可以繼續填 POS + 中文解釋，然後新增。");
@@ -684,9 +662,8 @@ function renderRecentList() {
 }
 
 function updateEditorMode() {
-  const isEditing = Boolean(state.editingEntryId || getMeaningBlocks().some((block) => block.dataset.entryId));
-  setText(el.editorTitle, isEditing ? "修改現有字義" : "新增老師字義");
-  setText(el.saveEntryButton, isEditing ? "UPDATE" : "SAVE");
+  setText(el.editorTitle, "新增 / 修改字義");
+  setText(el.saveEntryButton, "SAVE");
 }
 
 function triggerSaveButtonSuccess() {
@@ -873,7 +850,7 @@ function loadEntryIntoForm(entry = {}, options = {}) {
     sourceEntryId: options.edit ? state.editingEntryId : ""
   }]);
   updateEditorMode();
-  setStatus(el.entryStatus, options.edit ? "正在修改現有字義。" : "已載入資料，可修改後新增。", options.edit ? "loading" : "");
+  setStatus(el.entryStatus, "已載入左邊，可修改後按 SAVE。", "loading");
   renderSearchResults();
   el.meaningBlocks?.querySelector(".meaning-text")?.focus();
 }
