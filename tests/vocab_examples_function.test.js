@@ -116,6 +116,24 @@ assert.strictEqual(deepSeekPayload.model, "deepseek-v4-flash");
 assert.deepStrictEqual(deepSeekPayload.response_format, { type: "json_object" });
 assert.strictEqual(deepSeekPayload.messages[1].content, prompt);
 
+const levelPrompt = helpers.buildVocabLevelPrompt({
+  word: "macaroni",
+  meaning: "通心粉",
+  pos: "noun",
+  type: "word"
+});
+assert.ok(levelPrompt.includes("A1, A2, B1, B2, C1"));
+assert.ok(levelPrompt.includes("macaroni"));
+assert.ok(levelPrompt.includes("通心粉"));
+assert.strictEqual(helpers.normalizeDeepSeekVocabLevel({
+  choices: [{ message: { content: "{\"level\":\"A2\"}" } }]
+}), "A2");
+assert.strictEqual(helpers.normalizeGeminiVocabLevel({
+  candidates: [{ content: { parts: [{ text: "{\"level\":\"B2\"}" }] } }]
+}), "B2");
+assert.strictEqual(helpers.normalizeVocabCefrLevel("c2"), "");
+assert.strictEqual(helpers.inferFallbackVocabLevel({ word: "cat", meaning: "貓", pos: "noun" }), "A1");
+
 assert.strictEqual(helpers.shouldReuseCachedExamples({ source: "azure-dictionary-examples" }), false);
 assert.strictEqual(helpers.shouldReuseCachedExamples({ source: "deepseek-generated-examples" }), true);
 assert.strictEqual(helpers.shouldReuseCachedExamples({ source: "gemini-generated-examples" }), true);
@@ -244,6 +262,27 @@ assert.strictEqual(helpers.shouldWarmTeacherVocabEntry({
   meaning: "通心粉",
   pos: "noun",
   teacherExamples: ["I eat macaroni."]
+}), true);
+assert.strictEqual(helpers.shouldWarmTeacherVocabEntry({
+  word: "macaroni",
+  meaning: "通心粉",
+  pos: "noun"
+}, {
+  word: "macaroni",
+  meaning: "通心粉",
+  pos: "noun",
+  level: "A2",
+  levelSource: "deepseek-level"
+}), false);
+assert.strictEqual(helpers.shouldWarmTeacherVocabEntry({
+  word: "macaroni",
+  meaning: "通心粉",
+  pos: "noun"
+}, {
+  word: "macaroni",
+  meaning: "通心粉",
+  pos: "noun",
+  level: "A2"
 }), true);
 assert.strictEqual(helpers.shouldWarmTeacherVocabEntry(null, {
   word: "macaroni",

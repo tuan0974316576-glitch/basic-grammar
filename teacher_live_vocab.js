@@ -285,11 +285,13 @@
   }
 
   function buildStudentReadyPayload(entry = {}, options = {}) {
-    const normalized = normalizeStudentReadyEntry(normalizeEntry(entry), options);
+    const input = normalizeEntry(entry);
+    const normalized = normalizeStudentReadyEntry(input, options);
     if (!normalized) return null;
     const previous = options.previous || {};
     const uid = String(options.uid || "").trim();
     const now = Number(options.now) || Date.now();
+    const payloadLevel = normalizeLevel(input.level) || normalizeLevel(previous.level);
     return {
       word: normalized.word,
       display: normalized.display,
@@ -297,7 +299,7 @@
       pos: normalized.pos,
       type: normalized.type,
       aliases: normalized.aliases,
-      level: normalized.level,
+      level: payloadLevel,
       source: "teacher-live",
       notes: normalized.notes,
       teacherExamples: normalized.teacherExamples,

@@ -37,6 +37,8 @@ const DEEPSEEK_EXAMPLE_SOURCE = "deepseek-generated-examples";
 const TEACHER_EXAMPLE_SOURCE = "teacher-approved-examples";
 const TEMPLATE_EXAMPLE_SOURCE = "template-generated-examples";
 const VOCAB_EXAMPLE_CACHE_VERSION = "v2-written-zh";
+const VOCAB_CEFR_LEVELS = new Set(["A1", "A2", "B1", "B2", "C1"]);
+const AUTO_VOCAB_LEVEL_SOURCES = new Set(["deepseek-level", "gemini-level", "heuristic-level"]);
 const GEMINI_EXAMPLE_LIMIT = 3;
 const TEACHER_EXAMPLE_LIMIT = 4;
 const GEMINI_API_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta";
@@ -781,6 +783,157 @@ function parseGeminiJsonText(text) {
     }
   }
   return null;
+}
+
+function normalizeVocabCefrLevel(value) {
+  const level = String(value || "").trim().toUpperCase();
+  return VOCAB_CEFR_LEVELS.has(level) ? level : "";
+}
+
+function buildVocabLevelPrompt(entry = {}) {
+  const word = normalizeVocabWord(entry.word || entry.display);
+  const display = normalizeVocabExample(entry.display || entry.word || word) || word;
+  const meaning = normalizeCloudMeaning(entry.meaning);
+  const pos = String(entry.pos || entry.type || "").trim().toLowerCase();
+  const type = String(entry.type || (word.includes(" ") ? "phrase" : "word")).trim().toLowerCase();
+  return [
+    "Classify this English vocabulary item for Hong Kong English learners.",
+    "Choose exactly one CEFR-like level from A1, A2, B1, B2, C1.",
+    "",
+    "Level guide:",
+    "- A1: junior primary; very common daily words and simple school/home language.",
+    "- A2: senior primary; common daily words, food, places, actions, and simple phrases.",
+    "- B1: Secondary 1; common general vocabulary, school topics, simple abstract ideas.",
+    "- B2: Secondary 2-3 or DSE preparation; less common, more abstract, academic, or formal vocabulary.",
+    "- C1: DSE advanced; precise academic/formal vocabulary, idioms, literary, technical, or rare items.",
+    "",
+    `Word/Phrase: ${display}`,
+    `Normalized key: ${word}`,
+    pos ? `Part of speech: ${pos}` : "Part of speech: unknown",
+    type ? `Type: ${type}` : "Type: word",
+    meaning ? `Traditional Chinese meaning: ${meaning}` : "Traditional Chinese meaning: unknown",
+    "",
+    "Rules:",
+    "- Return JSON only. No markdown.",
+    "- Use the meaning and part of speech above, not only the spelling.",
+    "- Do not overrate simple food, object, animal, school, or daily-life words.",
+    "- Do not underrate academic, formal, idiomatic, or abstract meanings.",
+    "",
+    "JSON shape:",
+    "{\"level\":\"A2\"}"
+  ].join("\n");
+}
+
+function parseVocabLevelPayload(text) {
+  const parsed = parseGeminiJsonText(text);
+  return normalizeVocabCefrLevel(parsed?.level || parsed?.cefr || parsed?.difficulty);
+}
+
+function normalizeDeepSeekVocabLevel(body) {
+  return parseVocabLevelPayload(body?.choices?.[0]?.message?.content || "");
+}
+
+function normalizeGeminiVocabLevel(body) {
+  const text = body?.candidates?.[0]?.content?.parts
+    ?.map((part) => part?.text || "")
+    .join("")
+    .trim();
+  return parseVocabLevelPayload(text);
+}
+
+function inferFallbackVocabLevel(entry = {}) {
+  const word = normalizeVocabWord(entry.word || entry.display);
+  const meaning = normalizeCloudMeaning(entry.meaning);
+  const type = String(entry.type || (word.includes(" ") ? "phrase" : "word")).trim().toLowerCase();
+  if (!word) return "B1";
+  if (type === "phrase" || word.includes(" ")) {
+    const words = word.split(/\s+/).filter(Boolean).length;
+    return words >= 3 ? "B2" : "B1";
+  }
+  if (/^(mom|mum|dad|cat|dog|egg|milk|rice|book|pen|bus|car|run|eat|go|get|big|red|hot|cold)$/.test(word)) {
+    return "A1";
+  }
+  if (word.length <= 5 || /(?:飯|麵|粉|果|糖|茶|水|魚|貓|狗|學校|家|市場|食物|通心粉)/.test(meaning)) {
+    return "A2";
+  }
+  if (/(?:tion|sion|ment|ness|ity|ism|ship|ance|ence|ture|logy|graphy|cracy)$/.test(word)) {
+    return "B2";
+  }
+  if (word.length >= 12) return "B2";
+  return "B1";
+}
+
+async function inferVocabLevelWithDeepSeek(entry = {}, apiKeyValue) {
+  const body = await postDeepSeekJson(buildVocabLevelPrompt(entry), apiKeyValue, {
+    temperature: 0.1,
+    maxTokens: 180
+  });
+  const level = normalizeDeepSeekVocabLevel(body);
+  if (!level) throw new Error("DeepSeek returned no usable CEFR level.");
+  return { level, source: "deepseek-level" };
+}
+
+async function inferVocabLevelWithGemini(entry = {}, apiKeyValue) {
+  const apiKey = getGeminiApiKey(apiKeyValue);
+  const endpoint = `${GEMINI_API_ENDPOINT}/models/${GEMINI_EXAMPLE_MODEL}:generateContent?key=${encodeURIComponent(apiKey)}`;
+  const response = await fetch(endpoint, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      contents: [{
+        role: "user",
+        parts: [{ text: buildVocabLevelPrompt(entry) }]
+      }],
+      generationConfig: {
+        temperature: 0.1,
+        topP: 0.8,
+        maxOutputTokens: 180,
+        responseMimeType: "application/json"
+      }
+    })
+  });
+
+  const body = await response.json().catch(async () => ({ raw: await response.text().catch(() => "") }));
+  if (!response.ok) {
+    const details = body?.error?.message || body?.raw || `HTTP ${response.status}`;
+    throw new Error(`Gemini level inference failed: ${details}`);
+  }
+
+  const level = normalizeGeminiVocabLevel(body);
+  if (!level) throw new Error("Gemini returned no usable CEFR level.");
+  return { level, source: "gemini-level" };
+}
+
+async function resolveTeacherVocabLevel(entry = {}) {
+  const existingLevel = normalizeVocabCefrLevel(entry.level);
+  if (existingLevel) {
+    return { level: existingLevel, source: String(entry.levelSource || "existing-level") };
+  }
+
+  try {
+    return await inferVocabLevelWithDeepSeek(entry, DEEPSEEK_API_KEY.value());
+  } catch (deepSeekError) {
+    console.error("DeepSeek vocab level inference failed.", {
+      word: normalizeVocabWord(entry.word || entry.display),
+      message: deepSeekError?.message || String(deepSeekError)
+    });
+  }
+
+  try {
+    return await inferVocabLevelWithGemini(entry, GEMINI_API_KEY.value());
+  } catch (geminiError) {
+    console.error("Gemini vocab level inference failed.", {
+      word: normalizeVocabWord(entry.word || entry.display),
+      message: geminiError?.message || String(geminiError)
+    });
+  }
+
+  return {
+    level: inferFallbackVocabLevel(entry),
+    source: "heuristic-level"
+  };
 }
 
 function normalizeDeepSeekExamples(word, body, hints = []) {
@@ -1695,17 +1848,35 @@ exports.prepareTeacherVocabExamples = onCall({
   return prepareAndCacheTeacherVocabExamples(word, hints, examplesInput, request.auth.uid);
 });
 
-function getTeacherVocabWarmSignature(entry = {}) {
-  return JSON.stringify({
+function getTeacherVocabWarmSignature(entry = {}, options = {}) {
+  const signature = {
     word: normalizeVocabWord(entry.word || entry.display),
     display: normalizeVocabExample(entry.display || entry.word || ""),
     meaning: normalizeCloudMeaning(entry.meaning),
     pos: String(entry.pos || "").trim().toLowerCase(),
     type: String(entry.type || "").trim().toLowerCase(),
-    level: String(entry.level || "").trim().toUpperCase(),
     disabled: Boolean(entry.disabled),
     teacherExamples: normalizeTeacherExampleInputs(entry.teacherExamples)
-  });
+  };
+  if (options.includeLevel !== false) {
+    signature.level = normalizeVocabCefrLevel(entry.level);
+  }
+  return JSON.stringify(signature);
+}
+
+function isAutoVocabLevelSource(value) {
+  return AUTO_VOCAB_LEVEL_SOURCES.has(String(value || "").trim());
+}
+
+function isOnlyAutoLevelUpdate(before = {}, after = {}) {
+  if (!before || !after) return false;
+  if (getTeacherVocabWarmSignature(before, { includeLevel: false })
+    !== getTeacherVocabWarmSignature(after, { includeLevel: false })) {
+    return false;
+  }
+  const beforeLevel = normalizeVocabCefrLevel(before.level);
+  const afterLevel = normalizeVocabCefrLevel(after.level);
+  return Boolean(afterLevel && beforeLevel !== afterLevel && isAutoVocabLevelSource(after.levelSource));
 }
 
 function shouldWarmTeacherVocabEntry(before = null, after = null) {
@@ -1713,6 +1884,7 @@ function shouldWarmTeacherVocabEntry(before = null, after = null) {
   const word = normalizeVocabWord(after.word || after.display);
   if (!isLikelyWordOrPhrase(word) || !normalizeCloudMeaning(after.meaning)) return false;
   if (!before) return true;
+  if (isOnlyAutoLevelUpdate(before, after)) return false;
   return getTeacherVocabWarmSignature(before) !== getTeacherVocabWarmSignature(after);
 }
 
@@ -1730,7 +1902,9 @@ function getTeacherVocabExampleHints(entry = {}, entryId = "") {
 async function warmTeacherVocabEntryAssets(entry = {}, entryId = "") {
   const word = normalizeVocabWord(entry.word || entry.display);
   const display = normalizeVocabExample(entry.display || entry.word || word) || word;
-  const hints = getTeacherVocabExampleHints(entry, entryId);
+  const levelResult = await resolveTeacherVocabLevel(entry);
+  const effectiveEntry = levelResult.level ? { ...entry, level: levelResult.level } : entry;
+  const hints = getTeacherVocabExampleHints(effectiveEntry, entryId);
   const teacherExamples = normalizeTeacherExampleInputs(entry.teacherExamples);
   const [wordAudioResult, exampleResult] = await Promise.allSettled([
     getOrCreateVocabAudio(display, { kind: "word" }),
@@ -1766,8 +1940,18 @@ async function warmTeacherVocabEntryAssets(entry = {}, entryId = "") {
     });
   });
 
+  if (entryId && levelResult.level && !normalizeVocabCefrLevel(entry.level)) {
+    await db.collection("teacherVocabLive").doc(entryId).set({
+      level: levelResult.level,
+      levelSource: levelResult.source,
+      levelUpdatedAt: admin.firestore.FieldValue.serverTimestamp()
+    }, { merge: true });
+  }
+
   return {
     word,
+    level: levelResult.level || "",
+    levelSource: levelResult.source || "",
     examples: examples.length,
     teacherExamples: teacherExamples.length
   };
@@ -1995,6 +2179,7 @@ if (process.env.NODE_ENV === "test") {
   module.exports._private = {
     buildGeminiExamplePrompt,
     buildDeepSeekChatPayload,
+    buildVocabLevelPrompt,
     getOrCreateVocabMeaning,
     lookupVocabMeaning: exports.lookupVocabMeaning,
     makeVocabMeaningId,
@@ -2005,6 +2190,10 @@ if (process.env.NODE_ENV === "test") {
     normalizeDeepSeekExamples,
     normalizeGeminiExamples,
     normalizeTeacherExampleInputs,
+    normalizeDeepSeekVocabLevel,
+    normalizeGeminiVocabLevel,
+    normalizeVocabCefrLevel,
+    inferFallbackVocabLevel,
     buildTeacherExamplePrompt,
     normalizeTeacherExamplesWithDeepSeek,
     normalizeTeacherExamplesWithGemini,

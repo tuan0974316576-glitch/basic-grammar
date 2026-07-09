@@ -108,7 +108,7 @@ assert.deepStrictEqual(livePayload, {
   pos: "verb",
   type: "word",
   aliases: [],
-  level: "B1",
+  level: "",
   source: "teacher-live",
   notes: "",
   teacherExamples: [],
@@ -118,6 +118,16 @@ assert.deepStrictEqual(livePayload, {
   createdBy: "old-teacher",
   updatedBy: "teacher-uid"
 });
+const preservedLevelPayload = teacherLive.buildStudentReadyPayload({
+  word: "evaluate",
+  meaning: "評估",
+  type: "word"
+}, {
+  previous: { level: "B2" },
+  uid: "teacher-uid",
+  now: 5678
+});
+assert.strictEqual(preservedLevelPayload.level, "B2");
 assert.strictEqual(teacherLive.buildStudentReadyPayload(unsafeNoPos), null);
 assert.strictEqual(teacherLive.buildStudentReadyPayload(unsafePlaceholder), null);
 assert.strictEqual(teacherLive.buildStudentReadyPayload(unsafeDisabled), null);
