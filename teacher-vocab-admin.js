@@ -801,11 +801,43 @@ function getMeaningBlocks() {
   return Array.from(el.meaningBlocks?.querySelectorAll(".meaning-block") || []);
 }
 
+function getLiveEntryById(entryId = "") {
+  const targetId = String(entryId || "").trim();
+  if (!targetId) return null;
+  return state.liveEntries.find((entry) => (
+    String(entry.sourceEntryId || entry.id || "").trim() === targetId
+  )) || null;
+}
+
 function renderMeaningBlocks(entries = [{}]) {
   if (!el.meaningBlocks) return;
   const blocks = (entries.length ? entries : [{}]).map(createMeaningBlock);
   el.meaningBlocks.replaceChildren(...blocks);
   updateEditorMode();
+}
+
+function clearMeaningBlockEditingIds() {
+  state.editingEntryId = "";
+  getMeaningBlocks().forEach((block) => {
+    delete block.dataset.entryId;
+  });
+  updateEditorMode();
+}
+
+function clearEditLinksIfWordChanged() {
+  const currentWord = normalizeWord(el.entryWord?.value);
+  const editingIds = getMeaningBlocks()
+    .map((block) => String(block.dataset.entryId || "").trim())
+    .filter(Boolean);
+  if (!currentWord || !editingIds.length) return;
+  const stillEditingSameWord = editingIds.every((entryId) => {
+    const entry = getLiveEntryById(entryId);
+    if (!entry) return false;
+    return normalizeWord(entry.word || entry.display) === currentWord;
+  });
+  if (!stillEditingSameWord) {
+    clearMeaningBlockEditingIds();
+  }
 }
 
 function addMeaningBlock(entry = {}) {
@@ -908,7 +940,12 @@ async function saveEntry(event) {
   const modules = state.firebase.modules;
   const preparedEntries = normalizedEntries.map(({ rawEntry, normalized }) => {
     const entryId = api().makeEntryId?.(normalized) || normalized.id;
-    const previousEditingId = String(rawEntry.sourceEntryId || "").trim();
+    const rawPreviousEditingId = String(rawEntry.sourceEntryId || "").trim();
+    const previousEntry = getLiveEntryById(rawPreviousEditingId);
+    const previousEditingId = previousEntry
+      && normalizeWord(previousEntry.word || previousEntry.display) === normalizeWord(normalized.word || normalized.display)
+      ? rawPreviousEditingId
+      : "";
     const existing = findExistingEntry({ ...normalized, id: entryId, sourceEntryId: entryId }, previousEditingId) || {};
     const payload = api().buildStudentReadyPayload?.({
       ...normalized,
@@ -965,13 +1002,7 @@ async function saveEntry(event) {
     }
 
     state.editingEntryId = preparedEntries[0]?.entryId || "";
-    renderMeaningBlocks(preparedEntries.map((prepared) => ({
-      ...prepared.payload,
-      id: prepared.entryId,
-      sourceEntryId: prepared.entryId,
-      examples: prepared.teacherExamples
-    })));
-    updateEditorMode();
+    resetForm();
     setStatus(el.entryStatus, "");
     savedSuccessfully = true;
   } catch (error) {
@@ -1166,7 +1197,10 @@ function bindEvents() {
     renderRecentList();
     renderSearchResults();
   });
-  el.entryWord?.addEventListener("input", scheduleSearchRender);
+  el.entryWord?.addEventListener("input", () => {
+    clearEditLinksIfWordChanged();
+    scheduleSearchRender();
+  });
   el.entryForm?.addEventListener("submit", saveEntry);
   el.resetFormButton?.addEventListener("click", resetForm);
   el.addSenseButton?.addEventListener("click", () => addMeaningBlock());

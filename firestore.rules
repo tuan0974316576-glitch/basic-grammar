@@ -120,10 +120,15 @@ service cloud.firestore {
         "meaning",
         "pos",
         "type",
+        "sourceEntryId",
+        "inferredPos",
         "aliases",
         "level",
+        "levelSource",
+        "levelUpdatedAt",
         "source",
         "notes",
+        "examples",
         "teacherExamples",
         "disabled",
         "replacedBy",
@@ -140,10 +145,14 @@ service cloud.firestore {
         && (!("display" in request.resource.data) || request.resource.data.display is string)
         && (!("pos" in request.resource.data) || request.resource.data.pos is string)
         && (!("type" in request.resource.data) || request.resource.data.type is string)
+        && (!("sourceEntryId" in request.resource.data) || request.resource.data.sourceEntryId is string)
+        && (!("inferredPos" in request.resource.data) || request.resource.data.inferredPos is string)
         && (!("aliases" in request.resource.data) || request.resource.data.aliases is list)
         && (!("level" in request.resource.data) || request.resource.data.level is string)
+        && (!("levelSource" in request.resource.data) || request.resource.data.levelSource is string)
         && (!("source" in request.resource.data) || request.resource.data.source is string)
         && (!("notes" in request.resource.data) || request.resource.data.notes is string)
+        && (!("examples" in request.resource.data) || request.resource.data.examples is list)
         && (!("teacherExamples" in request.resource.data) || request.resource.data.teacherExamples is list)
         && (!("disabled" in request.resource.data) || request.resource.data.disabled is bool)
         && (!("replacedBy" in request.resource.data) || request.resource.data.replacedBy is string)
