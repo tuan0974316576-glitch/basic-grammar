@@ -106,10 +106,17 @@ assert.ok(prompt.includes("食 / 飲"));
 assert.ok(prompt.includes("Traditional Chinese"));
 assert.ok(prompt.includes("Return exactly 3 examples"));
 
+const deepSeekPayload = helpers.buildDeepSeekChatPayload(prompt);
+assert.strictEqual(deepSeekPayload.model, "deepseek-v4-flash");
+assert.deepStrictEqual(deepSeekPayload.response_format, { type: "json_object" });
+assert.strictEqual(deepSeekPayload.messages[1].content, prompt);
+
 assert.strictEqual(helpers.shouldReuseCachedExamples({ source: "azure-dictionary-examples" }), false);
+assert.strictEqual(helpers.shouldReuseCachedExamples({ source: "deepseek-generated-examples" }), true);
 assert.strictEqual(helpers.shouldReuseCachedExamples({ source: "gemini-generated-examples" }), true);
 assert.strictEqual(helpers.shouldReuseCachedExamples({ source: "teacher-approved-examples" }), true);
 assert.strictEqual(helpers.shouldReuseCachedExamples({ source: "template-generated-examples" }), true);
+assert.strictEqual(helpers.shouldReuseCachedExamples({ source: "template-generated-examples", status: "ai-error" }), false);
 assert.strictEqual(helpers.shouldReuseCachedMeaning({ source: "azure-dictionary" }), false);
 assert.strictEqual(helpers.shouldReuseCachedMeaning({ source: "azure-translate-fallback" }), false);
 assert.strictEqual(helpers.shouldReuseCachedMeaning({ source: "curated-cloud" }), true);
@@ -150,6 +157,22 @@ assert.strictEqual(examples.length, 2);
 assert.strictEqual(examples[0].meaning, "食 / 飲");
 assert.strictEqual(examples[0].provider, "gemini-generated-examples");
 
+const deepSeekExamples = helpers.normalizeDeepSeekExamples("have", {
+  choices: [{
+    message: {
+      content: JSON.stringify({
+        examples: [
+          { source: "I have lunch at school.", target: "我在學校吃午餐。" },
+          { source: "We have milk every day.", target: "我們每天喝牛奶。" }
+        ]
+      })
+    }
+  }]
+}, haveFoodHints);
+assert.strictEqual(deepSeekExamples.length, 2);
+assert.strictEqual(deepSeekExamples[0].meaning, "食 / 飲");
+assert.strictEqual(deepSeekExamples[0].provider, "deepseek-generated-examples");
+
 const teacherExamples = helpers.normalizeTeacherExamplesWithGemini("macaroni", {
   candidates: [{
     content: {
@@ -166,6 +189,21 @@ const teacherExamples = helpers.normalizeTeacherExamplesWithGemini("macaroni", {
 assert.strictEqual(teacherExamples.length, 1);
 assert.strictEqual(teacherExamples[0].provider, "teacher-approved-examples");
 assert.strictEqual(teacherExamples[0].meaning, "通心粉");
+
+const teacherExamplesFromDeepSeek = helpers.normalizeTeacherExamplesWithDeepSeek("macaroni", {
+  choices: [{
+    message: {
+      content: JSON.stringify({
+        examples: [
+          { source: "I eat macaroni for lunch.", target: "我午餐吃通心粉。" }
+        ]
+      })
+    }
+  }]
+}, [{ meaning: "通心粉", pos: "noun" }]);
+assert.strictEqual(teacherExamplesFromDeepSeek.length, 1);
+assert.strictEqual(teacherExamplesFromDeepSeek[0].provider, "teacher-approved-examples");
+assert.strictEqual(teacherExamplesFromDeepSeek[0].meaning, "通心粉");
 
 const templateExamples = helpers.buildTemplateExamples("macaroni", [
   { meaning: "通心粉", pos: "noun", type: "word" }

@@ -16,6 +16,7 @@ const AZURE_SPEECH_REGION = defineSecret("AZURE_SPEECH_REGION");
 const AZURE_TRANSLATOR_KEY = defineSecret("AZURE_TRANSLATOR_KEY");
 const AZURE_TRANSLATOR_REGION = defineSecret("AZURE_TRANSLATOR_REGION");
 const GEMINI_API_KEY = defineSecret("GEMINI_API_KEY");
+const DEEPSEEK_API_KEY = defineSecret("DEEPSEEK_API_KEY");
 
 const DEFAULT_VOICE = "en-US-AndrewMultilingualNeural";
 const DEFAULT_OUTPUT_FORMAT = "audio-24khz-48kbitrate-mono-mp3";
@@ -31,11 +32,14 @@ const AZURE_DICTIONARY_EXAMPLE_PAIR_LIMIT = 6;
 const AZURE_DICTIONARY_EXAMPLE_LIMIT = 4;
 const GEMINI_EXAMPLE_MODEL = "gemini-3.1-flash-lite";
 const GEMINI_EXAMPLE_SOURCE = "gemini-generated-examples";
+const DEEPSEEK_EXAMPLE_MODEL = "deepseek-v4-flash";
+const DEEPSEEK_EXAMPLE_SOURCE = "deepseek-generated-examples";
 const TEACHER_EXAMPLE_SOURCE = "teacher-approved-examples";
 const TEMPLATE_EXAMPLE_SOURCE = "template-generated-examples";
 const GEMINI_EXAMPLE_LIMIT = 3;
 const TEACHER_EXAMPLE_LIMIT = 4;
 const GEMINI_API_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta";
+const DEEPSEEK_API_ENDPOINT = "https://api.deepseek.com/chat/completions";
 const BATTLESHIP_FIREBASE_PROJECT_ID = "battleship-game-c0909";
 const BATTLESHIP_SHARED_VOCAB_UID_PREFIX = "battleship_";
 const STUDENT_DEVICE_SESSION_TTL_DAYS = 180;
@@ -610,7 +614,11 @@ function normalizeExampleEntries(word, examples = [], source = "azure-dictionary
 
 function shouldReuseCachedExamples(cached = {}) {
   const source = String(cached.source || "").toLowerCase();
-  return source === GEMINI_EXAMPLE_SOURCE || source === TEACHER_EXAMPLE_SOURCE || source === TEMPLATE_EXAMPLE_SOURCE;
+  const status = String(cached.status || "").toLowerCase();
+  if (source === TEMPLATE_EXAMPLE_SOURCE) {
+    return status !== "ai-error";
+  }
+  return source === DEEPSEEK_EXAMPLE_SOURCE || source === GEMINI_EXAMPLE_SOURCE || source === TEACHER_EXAMPLE_SOURCE;
 }
 
 function getPrimaryExampleMeaning(hints = []) {
@@ -683,6 +691,14 @@ function getGeminiApiKey(value) {
   return key;
 }
 
+function getDeepSeekApiKey(value) {
+  const key = String(value || "").trim();
+  if (!key) {
+    throw new HttpsError("failed-precondition", "DeepSeek API key is not configured.");
+  }
+  return key;
+}
+
 function buildGeminiExamplePrompt(word, hints = []) {
   const normalizedWord = normalizeVocabWord(word);
   const normalizedHints = normalizeExampleHints(hints);
@@ -728,6 +744,25 @@ function buildGeminiExamplePrompt(word, hints = []) {
   ].join("\n");
 }
 
+function buildDeepSeekChatPayload(prompt, { temperature = 0.4, maxTokens = 512 } = {}) {
+  return {
+    model: DEEPSEEK_EXAMPLE_MODEL,
+    messages: [
+      {
+        role: "system",
+        content: "You create safe English-learning content for Hong Kong students. Return strict JSON only."
+      },
+      {
+        role: "user",
+        content: prompt
+      }
+    ],
+    temperature,
+    max_tokens: maxTokens,
+    response_format: { type: "json_object" }
+  };
+}
+
 function parseGeminiJsonText(text) {
   const raw = String(text || "").trim();
   if (!raw) return null;
@@ -749,6 +784,23 @@ function parseGeminiJsonText(text) {
   return null;
 }
 
+function normalizeDeepSeekExamples(word, body, hints = []) {
+  const text = String(body?.choices?.[0]?.message?.content || "").trim();
+  const parsed = parseGeminiJsonText(text);
+  const examples = Array.isArray(parsed?.examples) ? parsed.examples : [];
+  const primaryMeaning = normalizeExampleHints(hints)[0]?.meaning || "";
+  return normalizeExampleEntries(
+    word,
+    examples.map((example, index) => ({
+      source: example.source || example.english || "",
+      target: example.target || example.chinese || example.translation || "",
+      meaning: example.meaning || primaryMeaning,
+      sourceEntryId: `deepseek-example-${index}`
+    })),
+    DEEPSEEK_EXAMPLE_SOURCE
+  ).slice(0, GEMINI_EXAMPLE_LIMIT);
+}
+
 function normalizeGeminiExamples(word, body, hints = []) {
   const text = body?.candidates?.[0]?.content?.parts
     ?.map((part) => part?.text || "")
@@ -767,6 +819,33 @@ function normalizeGeminiExamples(word, body, hints = []) {
     })),
     GEMINI_EXAMPLE_SOURCE
   ).slice(0, GEMINI_EXAMPLE_LIMIT);
+}
+
+async function postDeepSeekJson(prompt, apiKeyValue, options = {}) {
+  const apiKey = getDeepSeekApiKey(apiKeyValue);
+  const response = await fetch(DEEPSEEK_API_ENDPOINT, {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${apiKey}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(buildDeepSeekChatPayload(prompt, options))
+  });
+
+  const body = await response.json().catch(async () => ({ raw: await response.text().catch(() => "") }));
+  if (!response.ok) {
+    const details = body?.error?.message || body?.raw || `HTTP ${response.status}`;
+    throw new Error(`DeepSeek example generation failed: ${details}`);
+  }
+  return body;
+}
+
+async function generateVocabExamplesWithDeepSeek(word, hints = [], apiKeyValue) {
+  const body = await postDeepSeekJson(buildGeminiExamplePrompt(word, hints), apiKeyValue, {
+    temperature: 0.4,
+    maxTokens: 512
+  });
+  return normalizeDeepSeekExamples(word, body, hints);
 }
 
 async function generateVocabExamplesWithGemini(word, hints = [], apiKeyValue) {
@@ -864,6 +943,33 @@ function normalizeTeacherExamplesWithGemini(word, body, hints = []) {
     })),
     TEACHER_EXAMPLE_SOURCE
   ).slice(0, TEACHER_EXAMPLE_LIMIT);
+}
+
+function normalizeTeacherExamplesWithDeepSeek(word, body, hints = []) {
+  const text = String(body?.choices?.[0]?.message?.content || "").trim();
+  const parsed = parseGeminiJsonText(text);
+  const examples = Array.isArray(parsed?.examples) ? parsed.examples : [];
+  const primaryMeaning = normalizeExampleHints(hints)[0]?.meaning || "";
+  return normalizeExampleEntries(
+    word,
+    examples.map((example, index) => ({
+      source: example.source || example.english || "",
+      target: example.target || example.chinese || example.translation || "",
+      meaning: example.meaning || primaryMeaning,
+      sourceEntryId: `teacher-example-${index}`
+    })),
+    TEACHER_EXAMPLE_SOURCE
+  ).slice(0, TEACHER_EXAMPLE_LIMIT);
+}
+
+async function prepareTeacherExamplesWithDeepSeek(word, hints = [], examples = [], apiKeyValue) {
+  const cleanExamples = normalizeTeacherExampleInputs(examples);
+  if (!cleanExamples.length) return [];
+  const body = await postDeepSeekJson(buildTeacherExamplePrompt(word, hints, cleanExamples), apiKeyValue, {
+    temperature: 0.2,
+    maxTokens: 640
+  });
+  return normalizeTeacherExamplesWithDeepSeek(word, body, hints);
 }
 
 async function prepareTeacherExamplesWithGemini(word, hints = [], examples = [], apiKeyValue) {
@@ -1431,18 +1537,34 @@ async function getOrCreateVocabExamples(word, hints = []) {
 
   let examples = [];
   let status = "ready";
-  let source = GEMINI_EXAMPLE_SOURCE;
+  let source = DEEPSEEK_EXAMPLE_SOURCE;
   try {
-    examples = await generateVocabExamplesWithGemini(normalizedWord, normalizedHints, GEMINI_API_KEY.value());
-    status = examples.length ? "ready" : "missing";
-  } catch (error) {
-    console.error("Gemini vocab example generation failed.", {
+    examples = await generateVocabExamplesWithDeepSeek(normalizedWord, normalizedHints, DEEPSEEK_API_KEY.value());
+    if (!examples.length) {
+      throw new Error("DeepSeek returned no usable examples.");
+    }
+    status = "ready";
+  } catch (deepSeekError) {
+    console.error("DeepSeek vocab example generation failed.", {
       word: normalizedWord,
-      message: error?.message || String(error)
+      message: deepSeekError?.message || String(deepSeekError)
     });
-    examples = buildTemplateExamples(normalizedWord, normalizedHints);
-    source = TEMPLATE_EXAMPLE_SOURCE;
-    status = examples.length ? "ready" : "ai-error";
+    source = GEMINI_EXAMPLE_SOURCE;
+    try {
+      examples = await generateVocabExamplesWithGemini(normalizedWord, normalizedHints, GEMINI_API_KEY.value());
+      if (!examples.length) {
+        throw new Error("Gemini returned no usable examples.");
+      }
+      status = "ready";
+    } catch (geminiError) {
+      console.error("Gemini vocab example generation failed.", {
+        word: normalizedWord,
+        message: geminiError?.message || String(geminiError)
+      });
+      examples = buildTemplateExamples(normalizedWord, normalizedHints);
+      source = TEMPLATE_EXAMPLE_SOURCE;
+      status = examples.length ? "ai-error" : "missing";
+    }
   }
 
   await docRef.set({
@@ -1481,25 +1603,41 @@ async function prepareAndCacheTeacherVocabExamples(word, hints = [], examplesInp
   let status = "ready";
   let source = TEACHER_EXAMPLE_SOURCE;
   try {
-    examples = await prepareTeacherExamplesWithGemini(
+    examples = await prepareTeacherExamplesWithDeepSeek(
       normalizedWord,
       normalizedHints,
       cleanExamples,
-      GEMINI_API_KEY.value()
+      DEEPSEEK_API_KEY.value()
     );
     if (!examples.length) {
+      throw new Error("DeepSeek returned no usable teacher examples.");
+    }
+    status = "ready";
+  } catch (deepSeekError) {
+    console.error("DeepSeek teacher vocab example preparation failed.", {
+      word: normalizedWord,
+      message: deepSeekError?.message || String(deepSeekError)
+    });
+    try {
+      examples = await prepareTeacherExamplesWithGemini(
+        normalizedWord,
+        normalizedHints,
+        cleanExamples,
+        GEMINI_API_KEY.value()
+      );
+      if (!examples.length) {
+        throw new Error("Gemini returned no usable teacher examples.");
+      }
+      status = "ready";
+    } catch (geminiError) {
+      console.error("Gemini teacher vocab example preparation failed.", {
+        word: normalizedWord,
+        message: geminiError?.message || String(geminiError)
+      });
       examples = buildTemplateExamples(normalizedWord, normalizedHints);
       source = TEMPLATE_EXAMPLE_SOURCE;
+      status = examples.length ? "ai-error" : "missing";
     }
-    status = examples.length ? "ready" : "missing";
-  } catch (error) {
-    console.error("Teacher vocab example preparation failed.", {
-      word: normalizedWord,
-      message: error?.message || String(error)
-    });
-    examples = buildTemplateExamples(normalizedWord, normalizedHints);
-    source = TEMPLATE_EXAMPLE_SOURCE;
-    status = examples.length ? "ready" : "ai-error";
   }
 
   await db.collection("vocabExampleCache").doc(exampleId).set({
@@ -1533,7 +1671,7 @@ async function prepareAndCacheTeacherVocabExamples(word, hints = [], examplesInp
 
 exports.prepareTeacherVocabExamples = onCall({
   invoker: "public",
-  secrets: [GEMINI_API_KEY]
+  secrets: [DEEPSEEK_API_KEY, GEMINI_API_KEY]
 }, async (request) => {
   if (!request.auth) {
     throw new HttpsError("unauthenticated", "Please log in first.");
@@ -1636,7 +1774,7 @@ async function warmTeacherVocabEntryAssets(entry = {}, entryId = "") {
 
 exports.warmTeacherVocabAssets = onDocumentWritten({
   document: "teacherVocabLive/{entryId}",
-  secrets: [AZURE_SPEECH_KEY, AZURE_SPEECH_REGION, GEMINI_API_KEY]
+  secrets: [AZURE_SPEECH_KEY, AZURE_SPEECH_REGION, DEEPSEEK_API_KEY, GEMINI_API_KEY]
 }, async (event) => {
   const before = event.data?.before?.exists ? (event.data.before.data() || null) : null;
   const after = event.data?.after?.exists ? (event.data.after.data() || null) : null;
@@ -1655,7 +1793,7 @@ exports.warmTeacherVocabAssets = onDocumentWritten({
 
 exports.lookupVocabExamples = onCall({
   invoker: "public",
-  secrets: [GEMINI_API_KEY]
+  secrets: [DEEPSEEK_API_KEY, GEMINI_API_KEY]
 }, async (request) => {
   if (!request.auth) {
     throw new HttpsError("unauthenticated", "Please log in first.");
@@ -1855,6 +1993,7 @@ exports.studentDeviceLogin = onCall({
 if (process.env.NODE_ENV === "test") {
   module.exports._private = {
     buildGeminiExamplePrompt,
+    buildDeepSeekChatPayload,
     getOrCreateVocabMeaning,
     lookupVocabMeaning: exports.lookupVocabMeaning,
     makeVocabMeaningId,
@@ -1862,9 +2001,11 @@ if (process.env.NODE_ENV === "test") {
     makeVocabExampleId,
     normalizeMeaningEntries,
     normalizeExampleHints,
+    normalizeDeepSeekExamples,
     normalizeGeminiExamples,
     normalizeTeacherExampleInputs,
     buildTeacherExamplePrompt,
+    normalizeTeacherExamplesWithDeepSeek,
     normalizeTeacherExamplesWithGemini,
     buildTemplateExamples,
     getTeacherVocabWarmSignature,
