@@ -115,7 +115,7 @@ assert.strictEqual(helpers.shouldReuseCachedExamples({ source: "azure-dictionary
 assert.strictEqual(helpers.shouldReuseCachedExamples({ source: "deepseek-generated-examples" }), true);
 assert.strictEqual(helpers.shouldReuseCachedExamples({ source: "gemini-generated-examples" }), true);
 assert.strictEqual(helpers.shouldReuseCachedExamples({ source: "teacher-approved-examples" }), true);
-assert.strictEqual(helpers.shouldReuseCachedExamples({ source: "template-generated-examples" }), true);
+assert.strictEqual(helpers.shouldReuseCachedExamples({ source: "template-generated-examples" }), false);
 assert.strictEqual(helpers.shouldReuseCachedExamples({ source: "template-generated-examples", status: "ai-error" }), false);
 assert.strictEqual(helpers.shouldReuseCachedMeaning({ source: "azure-dictionary" }), false);
 assert.strictEqual(helpers.shouldReuseCachedMeaning({ source: "azure-translate-fallback" }), false);

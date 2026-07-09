@@ -614,10 +614,6 @@ function normalizeExampleEntries(word, examples = [], source = "azure-dictionary
 
 function shouldReuseCachedExamples(cached = {}) {
   const source = String(cached.source || "").toLowerCase();
-  const status = String(cached.status || "").toLowerCase();
-  if (source === TEMPLATE_EXAMPLE_SOURCE) {
-    return status !== "ai-error";
-  }
   return source === DEEPSEEK_EXAMPLE_SOURCE || source === GEMINI_EXAMPLE_SOURCE || source === TEACHER_EXAMPLE_SOURCE;
 }
 

@@ -25,6 +25,9 @@ const state = {
   liveUnsubscribe: null,
   editingEntryId: "",
   bundledEntries: null,
+  examplePayloads: new Map(),
+  exampleRequests: new Map(),
+  audioUrls: new Map(),
   searchTimer: 0
 };
 
@@ -321,43 +324,257 @@ function createEmptyState(message) {
   return node;
 }
 
-function makeEntryCard(entry = {}, options = {}) {
-  const card = document.createElement("article");
-  card.className = `entry-card${entry.source === "teacher-live" ? " is-live" : ""}${options.similar ? " is-similar" : ""}`;
+function getEntryDisplayWord(entry = {}) {
+  return String(entry.display || entry.word || "").trim();
+}
 
-  const main = document.createElement("div");
-  main.className = "entry-main";
+function getWordGroupKey(entry = {}) {
+  return normalizeWord(entry.word || entry.display);
+}
 
-  const wordLine = document.createElement("div");
-  wordLine.className = "entry-word";
-  const word = document.createElement("strong");
-  word.textContent = entry.display || entry.word;
-  const meta = document.createElement("span");
-  meta.className = "entry-meta";
-  meta.textContent = formatPosLabel(entry.pos || entry.inferredPos || entry.type) || "entry";
-  wordLine.append(word, meta);
+function getEntryExamples(entry = {}) {
+  const examples = Array.isArray(entry.examples) ? entry.examples : [];
+  const teacherExamples = Array.isArray(entry.teacherExamples) ? entry.teacherExamples : [];
+  return examples.length ? examples : teacherExamples;
+}
 
+function getEntryExampleHint(entry = {}) {
+  return {
+    meaning: normalizeMeaning(entry.meaning),
+    pos: normalizePos(entry.pos || entry.inferredPos),
+    type: normalizeType(entry.type || entry.pos, entry.word || entry.display),
+    level: String(entry.level || "").trim().toUpperCase()
+  };
+}
+
+function getEntryExampleCacheKey(entry = {}) {
+  const hint = getEntryExampleHint(entry);
+  return [
+    normalizeWord(entry.word || entry.display),
+    hint.pos,
+    hint.type,
+    hint.meaning
+  ].join("|");
+}
+
+function groupEntriesByWord(entries = []) {
+  const groups = new Map();
+  entries.forEach((entry) => {
+    const key = getWordGroupKey(entry);
+    if (!key) return;
+    if (!groups.has(key)) {
+      groups.set(key, {
+        key,
+        word: key,
+        display: getEntryDisplayWord(entry) || key,
+        entries: [],
+        live: false,
+        updatedAt: 0
+      });
+    }
+    const group = groups.get(key);
+    group.entries.push(entry);
+    group.live = group.live || entry.source === "teacher-live";
+    group.updatedAt = Math.max(group.updatedAt, Number(entry.updatedAt) || 0);
+    if (entry.source === "teacher-live" && getEntryDisplayWord(entry)) {
+      group.display = getEntryDisplayWord(entry);
+    }
+  });
+  return Array.from(groups.values()).map((group) => ({
+    ...group,
+    entries: group.entries.sort((left, right) => {
+      if ((left.source === "teacher-live") !== (right.source === "teacher-live")) {
+        return left.source === "teacher-live" ? -1 : 1;
+      }
+      return formatEntryMeaning(left).localeCompare(formatEntryMeaning(right));
+    })
+  }));
+}
+
+function getTeacherCallable(name) {
+  if (!state.firebase?.functions || !state.firebase.modules?.httpsCallable || !state.user) return null;
+  return state.firebase.modules.httpsCallable(state.firebase.functions, name);
+}
+
+function normalizeExamplePayload(payload = {}) {
+  return {
+    status: payload.status || "ready",
+    source: payload.source || "",
+    examples: (Array.isArray(payload.examples) ? payload.examples : [])
+      .map((example) => ({
+        source: String(example?.source || example?.english || "").trim(),
+        target: String(example?.target || example?.chinese || example?.translation || "").trim()
+      }))
+      .filter((example) => example.source)
+      .slice(0, 3)
+  };
+}
+
+function fallbackSpeak(text = "", kind = "word") {
+  const value = String(text || "").trim();
+  if (!value || !window.speechSynthesis) return false;
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(value);
+  utterance.lang = "en-US";
+  utterance.rate = kind === "example" ? 0.9 : 0.84;
+  utterance.pitch = 1;
+  window.speechSynthesis.speak(utterance);
+  return true;
+}
+
+async function playTeacherAudio(text = "", kind = "word", button = null) {
+  const value = String(text || "").trim();
+  if (!value) return;
+  const cacheKey = `${kind}:${value.toLowerCase()}`;
+  const previousText = button?.textContent || "";
+  if (button) {
+    button.disabled = true;
+    button.textContent = "...";
+  }
+
+  try {
+    let audioUrl = state.audioUrls.get(cacheKey);
+    if (audioUrl) {
+      const audio = new Audio(audioUrl);
+      audio.volume = 1;
+      await audio.play();
+    } else {
+      const usedFallback = fallbackSpeak(value, kind);
+      const callable = getTeacherCallable("ensureVocabAudio");
+      if (!callable) throw new Error("login-required");
+      const result = await callable({ text: value, kind });
+      audioUrl = String(result?.data?.downloadUrl || "");
+      if (audioUrl) state.audioUrls.set(cacheKey, audioUrl);
+      if (!usedFallback && audioUrl) {
+        const audio = new Audio(audioUrl);
+        audio.volume = 1;
+        await audio.play();
+      } else if (!usedFallback && !audioUrl) {
+        throw new Error("audio-unavailable");
+      }
+    }
+  } catch (error) {
+    console.warn("Teacher vocab audio failed:", error);
+    fallbackSpeak(value, kind);
+  } finally {
+    if (button) {
+      button.disabled = false;
+      button.textContent = previousText;
+    }
+  }
+}
+
+async function loadExamplesForEntry(entry = {}, panel, button = null) {
+  const cacheKey = getEntryExampleCacheKey(entry);
+  const cached = state.examplePayloads.get(cacheKey);
+  if (cached) {
+    renderExamplePanel(panel, cached);
+    return;
+  }
+
+  if (state.exampleRequests.has(cacheKey)) {
+    const payload = await state.exampleRequests.get(cacheKey);
+    renderExamplePanel(panel, payload);
+    return;
+  }
+
+  const localExamples = getEntryExamples(entry);
+  if (localExamples.length) {
+    const payload = normalizeExamplePayload({
+      status: "ready",
+      source: "teacher-input",
+      examples: localExamples.map((example) => ({
+        source: example?.source || example,
+        target: example?.target || ""
+      }))
+    });
+    state.examplePayloads.set(cacheKey, payload);
+    renderExamplePanel(panel, payload);
+    return;
+  }
+
+  const callable = getTeacherCallable("lookupVocabExamples");
+  if (!callable) {
+    renderExamplePanel(panel, normalizeExamplePayload({ status: "login-required", examples: [] }));
+    return;
+  }
+
+  panel.textContent = "Loading examples...";
+  if (button) button.disabled = true;
+  const request = callable({
+    word: normalizeWord(entry.word || entry.display),
+    meanings: [getEntryExampleHint(entry)]
+  }).then((result) => {
+    const payload = normalizeExamplePayload(result?.data || {});
+    state.examplePayloads.set(cacheKey, payload);
+    return payload;
+  }).catch((error) => {
+    console.warn("Teacher vocab examples failed:", error);
+    return normalizeExamplePayload({ status: "error", examples: [] });
+  }).finally(() => {
+    state.exampleRequests.delete(cacheKey);
+    if (button) button.disabled = false;
+  });
+  state.exampleRequests.set(cacheKey, request);
+  renderExamplePanel(panel, await request);
+}
+
+function renderExamplePanel(panel, payload = {}) {
+  if (!panel) return;
+  panel.replaceChildren();
+  if (!payload.examples?.length) {
+    const message = document.createElement("div");
+    message.className = "entry-example-empty";
+    message.textContent = payload.status === "login-required"
+      ? "登入後可以載入例句。"
+      : "暫時未有例句。";
+    panel.append(message);
+    return;
+  }
+
+  payload.examples.forEach((example) => {
+    const row = document.createElement("div");
+    row.className = "entry-example-row";
+    const text = document.createElement("button");
+    text.className = "entry-example-en";
+    text.type = "button";
+    text.textContent = example.source;
+    text.addEventListener("click", () => playTeacherAudio(example.source, "example", text));
+    const target = document.createElement("div");
+    target.className = "entry-example-zh";
+    target.textContent = example.target || "";
+    row.append(text, target);
+    panel.append(row);
+  });
+}
+
+function makeEntryMeaningRow(entry = {}) {
+  const row = document.createElement("section");
+  row.className = `entry-meaning-row${entry.source === "teacher-live" ? " is-live" : ""}`;
+
+  const line = document.createElement("div");
+  line.className = "entry-meaning-line";
   const meaning = document.createElement("div");
   meaning.className = "entry-meaning";
-  meaning.textContent = normalizeMeaning(entry.meaning);
-
-  const source = document.createElement("div");
-  source.className = "entry-source";
-  source.textContent = describeSource(entry);
-
-  main.append(wordLine, meaning, source);
+  meaning.textContent = formatEntryMeaning(entry);
 
   const actions = document.createElement("div");
   actions.className = "entry-actions";
 
-  const useButton = document.createElement("button");
-  useButton.className = "tiny-action";
-  useButton.type = "button";
-  useButton.textContent = entry.source === "teacher-live" ? "Edit" : "Use";
-  useButton.addEventListener("click", () => loadEntryIntoForm(entry, {
+  const examplesButton = document.createElement("button");
+  examplesButton.className = "tiny-action";
+  examplesButton.type = "button";
+  examplesButton.textContent = "Examples";
+
+  const editButton = document.createElement("button");
+  editButton.className = "tiny-action";
+  editButton.type = "button";
+  editButton.textContent = entry.source === "teacher-live" ? "Edit" : "Copy";
+  editButton.addEventListener("click", () => loadEntryIntoForm(entry, {
     edit: entry.source === "teacher-live"
   }));
-  actions.append(useButton);
+
+  actions.append(examplesButton, editButton);
 
   if (entry.source === "teacher-live") {
     const disableButton = document.createElement("button");
@@ -368,18 +585,64 @@ function makeEntryCard(entry = {}, options = {}) {
     actions.append(disableButton);
   }
 
-  card.append(main, actions);
+  line.append(meaning, actions);
+
+  const panel = document.createElement("div");
+  panel.className = "entry-examples-panel hidden";
+  examplesButton.addEventListener("click", async () => {
+    const isOpening = panel.classList.contains("hidden");
+    panel.classList.toggle("hidden", !isOpening);
+    examplesButton.classList.toggle("active", isOpening);
+    if (isOpening) await loadExamplesForEntry(entry, panel, examplesButton);
+  });
+
+  row.append(line, panel);
+  return row;
+}
+
+function makeEntryGroupCard(group = {}, options = {}) {
+  const card = document.createElement("article");
+  card.className = `entry-card${group.live ? " is-live" : ""}${options.similar ? " is-similar" : ""}`;
+
+  const main = document.createElement("div");
+  main.className = "entry-main";
+
+  const wordLine = document.createElement("div");
+  wordLine.className = "entry-word";
+  const word = document.createElement("strong");
+  word.textContent = group.display || group.word;
+  const meta = document.createElement("span");
+  meta.className = "entry-meta";
+  meta.textContent = `${group.entries.length} meaning${group.entries.length > 1 ? "s" : ""}`;
+  const playButton = document.createElement("button");
+  playButton.className = "entry-play-button";
+  playButton.type = "button";
+  playButton.textContent = "PLAY";
+  playButton.addEventListener("click", () => playTeacherAudio(group.display || group.word, "word", playButton));
+  wordLine.append(word, meta, playButton);
+
+  const source = document.createElement("div");
+  source.className = "entry-source";
+  source.textContent = group.live ? "現有老師字義" : describeSource(group.entries[0]);
+
+  const meanings = document.createElement("div");
+  meanings.className = "entry-meanings";
+  meanings.append(...group.entries.map(makeEntryMeaningRow));
+
+  main.append(wordLine, source, meanings);
+  card.append(main);
   return card;
 }
 
 function appendResultGroup(parent, title, entries, options = {}) {
   if (!entries.length) return;
+  const groups = groupEntriesByWord(entries);
   const group = document.createElement("section");
   group.className = "result-group";
   const heading = document.createElement("div");
   heading.className = "result-group-title";
-  heading.textContent = `${title} (${entries.length})`;
-  group.append(heading, ...entries.map((entry) => makeEntryCard(entry, options)));
+  heading.textContent = `${title} (${groups.length})`;
+  group.append(heading, ...groups.map((entryGroup) => makeEntryGroupCard(entryGroup, options)));
   parent.append(group);
 }
 
@@ -417,7 +680,7 @@ function renderRecentList() {
     el.recentList.replaceChildren(createEmptyState("未有老師新增字義。"));
     return;
   }
-  el.recentList.replaceChildren(...activeEntries.slice(0, RECENT_LIMIT).map((entry) => makeEntryCard(entry)));
+  el.recentList.replaceChildren(...groupEntriesByWord(activeEntries).slice(0, RECENT_LIMIT).map(makeEntryGroupCard));
 }
 
 function updateEditorMode() {
