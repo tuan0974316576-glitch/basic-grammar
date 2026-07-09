@@ -790,6 +790,15 @@ function normalizeVocabCefrLevel(value) {
   return VOCAB_CEFR_LEVELS.has(level) ? level : "";
 }
 
+function shouldInferTeacherVocabLevel(entry = {}) {
+  const level = normalizeVocabCefrLevel(entry.level);
+  if (!level) return true;
+  return level === "B1"
+    && !String(entry.levelSource || "").trim()
+    && !entry.levelUpdatedAt
+    && !entry.levelReviewedAt;
+}
+
 function buildVocabLevelPrompt(entry = {}) {
   const word = normalizeVocabWord(entry.word || entry.display);
   const display = normalizeVocabExample(entry.display || entry.word || word) || word;
@@ -908,7 +917,7 @@ async function inferVocabLevelWithGemini(entry = {}, apiKeyValue) {
 
 async function resolveTeacherVocabLevel(entry = {}) {
   const existingLevel = normalizeVocabCefrLevel(entry.level);
-  if (existingLevel) {
+  if (existingLevel && !shouldInferTeacherVocabLevel(entry)) {
     return { level: existingLevel, source: String(entry.levelSource || "existing-level") };
   }
 
@@ -1940,7 +1949,7 @@ async function warmTeacherVocabEntryAssets(entry = {}, entryId = "") {
     });
   });
 
-  if (entryId && levelResult.level && !normalizeVocabCefrLevel(entry.level)) {
+  if (entryId && levelResult.level && shouldInferTeacherVocabLevel(entry)) {
     await db.collection("teacherVocabLive").doc(entryId).set({
       level: levelResult.level,
       levelSource: levelResult.source,
@@ -2193,6 +2202,7 @@ if (process.env.NODE_ENV === "test") {
     normalizeDeepSeekVocabLevel,
     normalizeGeminiVocabLevel,
     normalizeVocabCefrLevel,
+    shouldInferTeacherVocabLevel,
     inferFallbackVocabLevel,
     buildTeacherExamplePrompt,
     normalizeTeacherExamplesWithDeepSeek,

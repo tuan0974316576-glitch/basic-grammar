@@ -133,6 +133,10 @@ assert.strictEqual(helpers.normalizeGeminiVocabLevel({
 }), "B2");
 assert.strictEqual(helpers.normalizeVocabCefrLevel("c2"), "");
 assert.strictEqual(helpers.inferFallbackVocabLevel({ word: "cat", meaning: "貓", pos: "noun" }), "A1");
+assert.strictEqual(helpers.shouldInferTeacherVocabLevel({ level: "" }), true);
+assert.strictEqual(helpers.shouldInferTeacherVocabLevel({ level: "B1" }), true);
+assert.strictEqual(helpers.shouldInferTeacherVocabLevel({ level: "B1", levelSource: "deepseek-level" }), false);
+assert.strictEqual(helpers.shouldInferTeacherVocabLevel({ level: "B2" }), false);
 
 assert.strictEqual(helpers.shouldReuseCachedExamples({ source: "azure-dictionary-examples" }), false);
 assert.strictEqual(helpers.shouldReuseCachedExamples({ source: "deepseek-generated-examples" }), true);
